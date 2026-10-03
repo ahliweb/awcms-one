@@ -8700,6 +8700,225 @@ paths:
           $ref: "#/components/responses/Forbidden"
         "404":
           $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/documents:
+    get:
+      operationId: listCommerceDocuments
+      tags:
+        - Commerce
+      summary: "Issue #286 (ADR-0029). Lists receipt and invoice documents, newest first. Gated on `commerce.documents.read`."
+      description: Filterable by `docType` and `orderId`. Gated on the `documents` feature.
+      parameters:
+        - &a6
+          name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: docType
+          in: query
+          schema:
+            type: string
+            enum:
+              - receipt
+              - invoice
+        - name: orderId
+          in: query
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: A page of documents.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceDocument"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "400":
+          description: "`VALIDATION_ERROR`."
+          content: &a1
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401": &a2
+          $ref: "#/components/responses/Unauthorized"
+        "403": &a3
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
+          content: *a1
+    post:
+      operationId: issueCommerceDocument
+      tags:
+        - Commerce
+      summary: "Issue #286 (ADR-0029). Issues a numbered, immutable receipt or invoice for a finalized order. Gated on `commerce.documents.create`; requires `Idempotency-Key`."
+      description: "The document is a frozen snapshot of the order (seller, customer, lines, totals, the payments as the ledger showed them) with the next gapless `RCP-` / `INV-<year>-<counter>` number and a SHA-256 of the snapshot; its money is verified equal to the order's. It is NOT an accounts-receivable invoice and carries no payment state of its own. One receipt and one invoice per order: issuing again answers `200` with the existing document and `alreadyIssued: true`. An invoice needs an order that took effect (`409 ORDER_NOT_FINAL` for a cancelled or expired one); a receipt additionally needs it fully paid (`409 ORDER_NOT_PAID`). Emits `awcms.commerce.document.issued`."
+      parameters:
+        - &a7
+          name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - orderId
+                - docType
+              properties:
+                orderId:
+                  type: string
+                  format: uuid
+                docType:
+                  type: string
+                  enum:
+                    - receipt
+                    - invoice
+      responses:
+        "200":
+          description: "The document an earlier call issued (`alreadyIssued: true`)."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceDocumentDetail"
+        "201":
+          description: The new document (or the stored replay).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceDocumentDetail"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content: *a1
+        "401": *a2
+        "403": *a3
+        "404": &a4
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`ORDER_NOT_FINAL`, `ORDER_NOT_PAID`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
+          content: *a1
+  /api/v1/commerce/documents/{id}:
+    get:
+      operationId: getCommerceDocument
+      tags:
+        - Commerce
+      summary: "Issue #286 (ADR-0029). One stored document with its immutable snapshot and content hash. Gated on `commerce.documents.read`."
+      description: An unknown id and another tenant's id are the same `404`.
+      parameters:
+        - &a5
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The document.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceDocumentDetail"
+        "401": *a2
+        "403": *a3
+        "404": *a4
+        "409":
+          description: "`FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
+          content: *a1
+  /api/v1/commerce/documents/{id}/render:
+    get:
+      operationId: renderCommerceDocument
+      tags:
+        - Commerce
+      summary: "Issue #286 (ADR-0029 D7). Renders a stored document for print, export or digital delivery. Gated on `commerce.documents.read`."
+      description: "A pure function of the STORED snapshot: reprinting never mutates the document, and the snapshot's SHA-256 is re-verified first (`409 DOCUMENT_INTEGRITY_FAILURE` instead of printing a snapshot that no longer matches). `json` is the document envelope; `text` is a 42-column plain-text receipt; `html` is a self-contained print-ready page (inline CSS, no script, no external resource) served under a locked-down CSP. Every render is audited as `document.render`. Delivery itself (e-mail / WhatsApp / push) is a separate port that consumes this contract and is deferred."
+      parameters:
+        - *a5
+        - name: format
+          in: query
+          schema:
+            type: string
+            enum:
+              - json
+              - text
+              - html
+            default: json
+        - name: locale
+          in: query
+          schema:
+            type: string
+            enum:
+              - id
+              - en
+            default: id
+      responses:
+        "200":
+          description: The rendering.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceDocumentDetail"
+            text/plain:
+              schema:
+                type: string
+            text/html:
+              schema:
+                type: string
+        "400":
+          description: "`VALIDATION_ERROR` (unknown format or locale)."
+          content: *a1
+        "401": *a2
+        "403": *a3
+        "404": *a4
+        "409":
+          description: "`DOCUMENT_INTEGRITY_FAILURE` or `FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
+          content: *a1
   /api/v1/commerce/entitlements:
     get:
       operationId: listCommerceEntitlements
@@ -9203,6 +9422,222 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/held-sales:
+    get:
+      operationId: listCommerceHeldSales
+      tags:
+        - Commerce
+      summary: "Issue #286 (ADR-0029). Lists the caller's own parked POS carts, newest first. Gated on `commerce.held_sales.read`."
+      description: "`scope=all` lists every cashier's and additionally needs `commerce.held_sales.approve` (`403` otherwise). `status` filters on the EFFECTIVE status: a still-held cart past its expiry reads `expired`. Gated on the `documents` feature."
+      parameters:
+        - *a6
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum:
+              - held
+              - resumed
+              - discarded
+              - expired
+        - name: scope
+          in: query
+          schema:
+            type: string
+            enum:
+              - own
+              - all
+            default: own
+      responses:
+        "200":
+          description: A page of held sales.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceHeldSale"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "400":
+          description: "`VALIDATION_ERROR` (malformed cursor, status or scope)."
+          content: *a1
+        "401": *a2
+        "403": *a3
+        "409":
+          description: "`FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
+          content: *a1
+    post:
+      operationId: holdCommerceSale
+      tags:
+        - Commerce
+      summary: "Issue #286 (ADR-0029). Parks a POS cart as a held sale. Gated on `commerce.held_sales.create`; requires `Idempotency-Key`."
+      description: Stores the cart's lines (`productId`, `variantId`, `quantity`), an optional customer and notes - never a price and never a stock reservation. Expires `ttlHours` after parking (default 24, at most 168). A cashier may have at most 50 active held sales (`409 HELD_SALE_LIMIT`). Audited as `held_sale.hold`.
+      parameters:
+        - *a7
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - lines
+              properties:
+                label:
+                  type: string
+                  nullable: true
+                  maxLength: 120
+                lines: &a8
+                  type: array
+                  minItems: 1
+                  maxItems: 100
+                  items:
+                    type: object
+                    required:
+                      - productId
+                      - quantity
+                    properties:
+                      productId:
+                        type: string
+                        format: uuid
+                      variantId:
+                        type: string
+                        format: uuid
+                        nullable: true
+                      quantity:
+                        type: integer
+                        minimum: 1
+                        maximum: 10000
+                customer:
+                  type: object
+                  nullable: true
+                  properties:
+                    name:
+                      type: string
+                      nullable: true
+                      maxLength: 120
+                    phone:
+                      type: string
+                      nullable: true
+                      maxLength: 32
+                notes:
+                  type: string
+                  nullable: true
+                  maxLength: 1000
+                registerId:
+                  type: string
+                  format: uuid
+                  nullable: true
+                ttlHours:
+                  type: integer
+                  minimum: 1
+                  maximum: 168
+                  default: 24
+      responses:
+        "201":
+          description: The held sale (or the stored replay).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceHeldSale"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content: *a1
+        "401": *a2
+        "403": *a3
+        "404": *a4
+        "409":
+          description: "`HELD_SALE_LIMIT` (`details.limit`), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
+          content: *a1
+  /api/v1/commerce/held-sales/{id}/discard:
+    post:
+      operationId: discardCommerceHeldSale
+      tags:
+        - Commerce
+      summary: "Issue #286 (ADR-0029). Throws a parked cart away. Gated on `commerce.held_sales.update`; requires `Idempotency-Key`."
+      description: Same ownership rule, idempotency and errors as `resume`; the cart is wiped and not returned. Audited as `held_sale.discard`.
+      parameters:
+        - *a5
+        - *a7
+      responses:
+        "200":
+          description: The discarded sale (or the stored replay).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceHeldSale"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content: *a1
+        "401": *a2
+        "403": *a3
+        "404":
+          description: An unknown id, another tenant's id AND another cashier's cart (unless the caller holds `commerce.held_sales.approve`) - one neutral answer.
+          content: *a1
+        "409":
+          description: "`HELD_SALE_EXPIRED` (the expiry is persisted), `HELD_SALE_NOT_HELD` (`details.status`), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
+          content: *a1
+  /api/v1/commerce/held-sales/{id}/resume:
+    post:
+      operationId: resumeCommerceHeldSale
+      tags:
+        - Commerce
+      summary: "Issue #286 (ADR-0029). Resumes a parked cart. Gated on `commerce.held_sales.update`; requires `Idempotency-Key`."
+      description: "Single-use: the cart's lines (and optional customer and notes) are returned once and the stored copy is wiped. The POS re-prices the lines with the ordinary quote - nothing was reserved. Another cashier's cart needs the supervisor key `commerce.held_sales.approve` (checked only then). Audited as `held_sale.resume`."
+      parameters:
+        - *a5
+        - *a7
+      responses:
+        "200":
+          description: The resumed sale with its cart (or the stored replay).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceResumedHeldSale"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content: *a1
+        "401": *a2
+        "403": *a3
+        "404":
+          description: An unknown id, another tenant's id AND another cashier's cart (unless the caller holds `commerce.held_sales.approve`) - one neutral answer.
+          content: *a1
+        "409":
+          description: "`HELD_SALE_EXPIRED` (the expiry is persisted), `HELD_SALE_NOT_HELD` (`details.status`), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
+          content: *a1
   /api/v1/commerce/loyalty/accounts:
     get:
       operationId: listCommerceLoyaltyAccounts
@@ -11825,6 +12260,310 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/quotations:
+    get:
+      operationId: listCommerceQuotations
+      tags:
+        - Commerce
+      summary: "Issue #286 (ADR-0029). Lists quotations, newest first. Gated on `commerce.quotations.read`."
+      description: A `sent` quotation whose current version's validity has passed reads and filters as `expired`. Gated on the `documents` feature.
+      parameters:
+        - *a6
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum:
+              - draft
+              - sent
+              - accepted
+              - rejected
+              - expired
+              - converted
+              - cancelled
+      responses:
+        "200":
+          description: A page of quotations.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceQuotation"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "400":
+          description: "`VALIDATION_ERROR`."
+          content: *a1
+        "401": *a2
+        "403": *a3
+        "409":
+          description: "`FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
+          content: *a1
+    post:
+      operationId: createCommerceQuotation
+      tags:
+        - Commerce
+      summary: "Issue #286 (ADR-0029). Creates a quotation (version 1). Gated on `commerce.quotations.create`; requires `Idempotency-Key`."
+      description: The lines are priced by the ordinary quote engine (self-pickup, the customer's tier) and frozen into an immutable version with a validity (`validUntil`, default 14 days, at most 180) and a SHA-256. The customer is found or created by phone. Takes the next gapless `QUO-<year>-<counter>` number. No stock is reserved.
+      parameters:
+        - *a7
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - customer
+                - lines
+              properties:
+                customer:
+                  type: object
+                  required:
+                    - name
+                    - phone
+                  properties:
+                    name:
+                      type: string
+                      maxLength: 120
+                    phone:
+                      type: string
+                      maxLength: 32
+                lines: *a8
+                validUntil:
+                  type: string
+                  format: date-time
+                notes:
+                  type: string
+                  nullable: true
+                  maxLength: 1000
+      responses:
+        "201":
+          description: The quotation with its versions (or the stored replay).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceQuotationDetail"
+        "400":
+          description: "`VALIDATION_ERROR` (including an invalid phone) or `IDEMPOTENCY_REQUIRED`."
+          content: *a1
+        "401": *a2
+        "403": *a3
+        "409":
+          description: "`CART_CHANGED` (`details.quote`: a line cannot be priced), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
+          content: *a1
+  /api/v1/commerce/quotations/{id}:
+    get:
+      operationId: getCommerceQuotation
+      tags:
+        - Commerce
+      summary: "Issue #286 (ADR-0029). One quotation with every version. Gated on `commerce.quotations.read`."
+      description: Each version carries its lines, totals, validity, pricing context and content hash. An unknown id and another tenant's id are the same `404`.
+      parameters:
+        - *a5
+      responses:
+        "200":
+          description: The quotation.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceQuotationDetail"
+        "401": *a2
+        "403": *a3
+        "404": *a4
+        "409":
+          description: "`FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
+          content: *a1
+  /api/v1/commerce/quotations/{id}/actions/{action}:
+    post:
+      operationId: applyCommerceQuotationAction
+      tags:
+        - Commerce
+      summary: "Issue #286 (ADR-0029). Sends, accepts, rejects or cancels a quotation. Gated on `commerce.quotations.update`; requires `Idempotency-Key`."
+      description: "`send` (draft -> sent), `accept` (sent -> accepted; pins the current version and emits `awcms.commerce.quotation.accepted`), `reject` (sent -> rejected), `cancel` (draft | sent | accepted -> cancelled). Accepting a version whose validity has passed is `409 QUOTATION_EXPIRED` and persists the expiry. An unknown action is a `404`."
+      parameters:
+        - *a5
+        - name: action
+          in: path
+          required: true
+          schema:
+            type: string
+            enum:
+              - send
+              - accept
+              - reject
+              - cancel
+        - *a7
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                note:
+                  type: string
+                  nullable: true
+                  maxLength: 500
+      responses:
+        "200":
+          description: The quotation (or the stored replay).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceQuotationDetail"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content: *a1
+        "401": *a2
+        "403": *a3
+        "404": *a4
+        "409":
+          description: "`QUOTATION_EXPIRED`, `QUOTATION_STATUS_CONFLICT` (`details.status`), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
+          content: *a1
+  /api/v1/commerce/quotations/{id}/convert:
+    post:
+      operationId: convertCommerceQuotation
+      tags:
+        - Commerce
+      summary: "Issue #286 (ADR-0029). Converts an ACCEPTED quotation into a commerce order. Gated on `commerce.quotation_conversions.create` AND `commerce.pos_due.create`; requires `Idempotency-Key`."
+      description: "The order is written by the ordinary POS order path (`channel: pos`, `allowDue`, no tenders) at TODAY's price and stock, so it is created with the whole total due and paid later through the payment ledger. If its total differs from the accepted version's the request rolls back and answers `409 QUOTATION_PRICE_CHANGED` with both totals, unless `acceptPriceChange: true`. Converting an already converted quotation (any key, any caller) answers `200` with the existing order and `alreadyConverted: true`. With the `register` feature on, `registerId` is required. Needs the `documents` and `pos` features. Emits `awcms.commerce.quotation.converted` (the provenance: quotation id/number/accepted version -> order id/code)."
+      parameters:
+        - *a5
+        - *a7
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                registerId:
+                  type: string
+                  format: uuid
+                  nullable: true
+                acceptPriceChange:
+                  type: boolean
+                  default: false
+      responses:
+        "200":
+          description: The existing conversion (a retry or an already converted quotation).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceConvertedQuotation"
+        "201":
+          description: The converted quotation and its order.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceConvertedQuotation"
+        "400":
+          description: "`VALIDATION_ERROR` (including `registerId` required) or `IDEMPOTENCY_REQUIRED`."
+          content: *a1
+        "401": *a2
+        "403": *a3
+        "404": *a4
+        "409":
+          description: "`QUOTATION_NOT_ACCEPTED` (`details.status`), `QUOTATION_PRICE_CHANGED` (`details.quotedTotal`, `details.currentTotal`), `CART_CHANGED`, `QUOTATION_CUSTOMER_INVALID`, `REGISTER_SESSION_REQUIRED`, `REGISTER_SESSION_CLOSING`, `NOT_SESSION_CASHIER`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED`."
+          content: *a1
+  /api/v1/commerce/quotations/{id}/versions:
+    post:
+      operationId: reviseCommerceQuotation
+      tags:
+        - Commerce
+      summary: "Issue #286 (ADR-0029). Adds a revised version. Gated on `commerce.quotations.create`; requires `Idempotency-Key`."
+      description: Re-prices the new lines and freezes them as version N+1 with their own validity; earlier versions are never edited and the quotation returns to `draft` (a revised offer must be sent and accepted again). Allowed from `draft`, `sent` and `expired`.
+      parameters:
+        - *a5
+        - *a7
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - lines
+              properties:
+                lines: *a8
+                validUntil:
+                  type: string
+                  format: date-time
+                notes:
+                  type: string
+                  nullable: true
+                  maxLength: 1000
+      responses:
+        "201":
+          description: The quotation with its versions (or the stored replay).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceQuotationDetail"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content: *a1
+        "401": *a2
+        "403": *a3
+        "404": *a4
+        "409":
+          description: "`QUOTATION_NOT_REVISABLE` (`details.status`), `CART_CHANGED`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
+          content: *a1
   /api/v1/commerce/register-sessions:
     get:
       operationId: listCommerceRegisterSessions
@@ -15534,6 +16273,233 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/work-orders:
+    get:
+      operationId: listCommerceWorkOrders
+      tags:
+        - Commerce
+      summary: "Issue #286 (ADR-0029). Lists work orders, newest first. Gated on `commerce.work_orders.read`."
+      description: Filterable by `status` and `assignee`. Gated on the `documents` feature.
+      parameters:
+        - *a6
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum:
+              - received
+              - scheduled
+              - in_progress
+              - on_hold
+              - ready
+              - completed
+              - cancelled
+        - name: assignee
+          in: query
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: A page of work orders.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceWorkOrder"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "400":
+          description: "`VALIDATION_ERROR`."
+          content: *a1
+        "401": *a2
+        "403": *a3
+        "409":
+          description: "`FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
+          content: *a1
+    post:
+      operationId: createCommerceWorkOrder
+      tags:
+        - Commerce
+      summary: "Issue #286 (ADR-0029). Creates a work order. Gated on `commerce.work_orders.create`; requires `Idempotency-Key`."
+      description: Optionally from an ACCEPTED (or converted) quotation - the accepted version becomes its provenance - and/or linked to an existing order. Takes the next gapless `WO-<year>-<counter>` number. A work order holds no money. An unknown or other-tenant customer / quotation / order is rejected identically (`400 VALIDATION_ERROR` naming only the field sent).
+      parameters:
+        - *a7
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - title
+              properties:
+                title:
+                  type: string
+                  maxLength: 160
+                description:
+                  type: string
+                  nullable: true
+                  maxLength: 2000
+                priority:
+                  type: string
+                  enum:
+                    - low
+                    - normal
+                    - high
+                    - urgent
+                  default: normal
+                customerId:
+                  type: string
+                  format: uuid
+                  nullable: true
+                quotationId:
+                  type: string
+                  format: uuid
+                  nullable: true
+                orderId:
+                  type: string
+                  format: uuid
+                  nullable: true
+                assigneeTenantUserId:
+                  type: string
+                  format: uuid
+                  nullable: true
+                dueAt:
+                  type: string
+                  format: date-time
+                  nullable: true
+      responses:
+        "201":
+          description: The work order (or the stored replay).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceWorkOrderDetail"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content: *a1
+        "401": *a2
+        "403": *a3
+        "409":
+          description: "`QUOTATION_NOT_ACCEPTED`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
+          content: *a1
+  /api/v1/commerce/work-orders/{id}:
+    get:
+      operationId: getCommerceWorkOrder
+      tags:
+        - Commerce
+      summary: "Issue #286 (ADR-0029). One work order with its append-only status history. Gated on `commerce.work_orders.read`."
+      description: An unknown id and another tenant's id are the same `404`.
+      parameters:
+        - *a5
+      responses:
+        "200":
+          description: The work order.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceWorkOrderDetail"
+        "401": *a2
+        "403": *a3
+        "404": *a4
+        "409":
+          description: "`FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
+          content: *a1
+    patch:
+      operationId: updateCommerceWorkOrder
+      tags:
+        - Commerce
+      summary: "Issue #286 (ADR-0029). Moves a work order through its status machine and/or reassigns, reschedules or reprioritises it. Gated on `commerce.work_orders.update`; requires `Idempotency-Key`."
+      description: "Legal status edges: received -> scheduled | in_progress | cancelled; scheduled -> in_progress | on_hold | cancelled; in_progress -> on_hold | ready | cancelled; on_hold -> in_progress | cancelled; ready -> completed | in_progress. A status move writes a history row and emits `awcms.commerce.work_order.status_changed`. A completed or cancelled work order accepts nothing."
+      parameters:
+        - *a5
+        - *a7
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum:
+                    - received
+                    - scheduled
+                    - in_progress
+                    - on_hold
+                    - ready
+                    - completed
+                    - cancelled
+                note:
+                  type: string
+                  nullable: true
+                  maxLength: 500
+                assigneeTenantUserId:
+                  type: string
+                  format: uuid
+                  nullable: true
+                dueAt:
+                  type: string
+                  format: date-time
+                  nullable: true
+                priority:
+                  type: string
+                  enum:
+                    - low
+                    - normal
+                    - high
+                    - urgent
+      responses:
+        "200":
+          description: The work order (or the stored replay).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceWorkOrderDetail"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content: *a1
+        "401": *a2
+        "403": *a3
+        "404": *a4
+        "409":
+          description: "`WORK_ORDER_TRANSITION_ILLEGAL` (`details.from`, `details.to`), `WORK_ORDER_CLOSED`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
+          content: *a1
   /api/v1/data-lifecycle/dry-run:
     post:
       tags:
@@ -31866,6 +32832,27 @@ components:
         createdAt:
           type: string
           format: date-time
+    CommerceConvertedQuotation:
+      type: object
+      description: "Issue #286 (ADR-0029 D5). A conversion's result: the quotation (now `converted`) and the order it produced."
+      properties:
+        quotation:
+          $ref: "#/components/schemas/CommerceQuotationDetail"
+        order:
+          type: object
+          properties:
+            id: &a10
+              type: string
+              format: uuid
+            orderCode: &a9
+              type: string
+            status: *a9
+            paymentStatus: *a9
+            total: &a11
+              type: string
+              description: "`numeric(14,2)` decimal string (ADR-0003)."
+        alreadyConverted:
+          type: boolean
     CommerceCreateOrderRequest:
       type: object
       required:
@@ -31951,6 +32938,53 @@ components:
         createdAt:
           type: string
           format: date-time
+    CommerceDocument:
+      type: object
+      description: "Issue #286 (ADR-0029). The header of an immutable numbered receipt/invoice document. The money is a frozen copy of the source order's, verified equal at insert; the order stays the monetary authority."
+      properties:
+        id: *a10
+        docType:
+          type: string
+          enum:
+            - receipt
+            - invoice
+        number: *a9
+        sourceType:
+          type: string
+          enum:
+            - order
+        sourceId: *a10
+        sourceVersion:
+          type: integer
+        currency:
+          type: string
+          enum:
+            - IDR
+        subtotal: *a11
+        discount: *a11
+        shippingCost: *a11
+        insuranceFee: *a11
+        tax: *a11
+        total: *a11
+        contentHash:
+          type: string
+          description: SHA-256 hex of the canonical snapshot.
+        issuedByTenantUserId: *a10
+        issuedAt: &a12
+          type: string
+          format: date-time
+    CommerceDocumentDetail:
+      allOf:
+        - $ref: "#/components/schemas/CommerceDocument"
+        - type: object
+          properties:
+            alreadyIssued:
+              type: boolean
+              description: Present and `true` only when `issueCommerceDocument` returned an earlier document.
+            snapshot:
+              type: object
+              description: "The immutable render input: `schemaVersion`, `docType`, `number`, `issuedAt`, `seller`, `customer`, `order`, `lines`, `totals`, `payments`, `settlement`."
+              additionalProperties: true
     CommerceEntitlement:
       type: object
       description: "Issue #267 (IRMbyDUS entitlement module) — NOT identity-access's ADR-0084 tenant/plan entitlement concept; see sql/936's header. Granted once per (order, product) when the sourcing order reaches paid; revoked only by an admin (no refunded order status/event exists yet to auto-revoke from)."
@@ -32176,6 +33210,34 @@ components:
           enum:
             - draft
             - scheduled
+    CommerceHeldSale:
+      type: object
+      description: "Issue #286 (ADR-0029). A parked POS cart. `status` is the EFFECTIVE status: a still-held cart past its expiry reads `expired`. Carries no cart content (that is returned once, by resume)."
+      properties:
+        id: *a10
+        ownerTenantUserId: *a10
+        registerId:
+          type: string
+          format: uuid
+          nullable: true
+        label:
+          type: string
+          nullable: true
+        lineCount:
+          type: integer
+        status:
+          type: string
+          enum:
+            - held
+            - resumed
+            - discarded
+            - expired
+        heldAt: *a12
+        expiresAt: *a12
+        closedAt:
+          type: string
+          format: date-time
+          nullable: true
     CommerceOrder:
       type: object
       description: Issue 29 — the storefront tracking/order-creation shape (`commerce-storefront-endpoints.md`). Customer/address phone are MASKED (phoneMasked); money fields are numeric(14,2) strings.
@@ -33136,6 +34198,110 @@ components:
           minimum: 0
         sortOrder:
           type: integer
+    CommerceQuotation:
+      type: object
+      description: "Issue #286 (ADR-0029). A quotation header with its CURRENT version's validity and total. `status` is effective: a `sent` quotation whose current version's validity has passed reads `expired`."
+      properties:
+        id: *a10
+        number: *a9
+        status:
+          type: string
+          enum:
+            - draft
+            - sent
+            - accepted
+            - rejected
+            - expired
+            - converted
+            - cancelled
+        customerId:
+          type: string
+          format: uuid
+          nullable: true
+        customerName:
+          type: string
+          nullable: true
+        currentVersion:
+          type: integer
+        acceptedVersion:
+          type: integer
+          nullable: true
+        acceptedAt:
+          type: string
+          format: date-time
+          nullable: true
+        convertedOrderId:
+          type: string
+          format: uuid
+          nullable: true
+        validUntil: *a12
+        total: *a11
+        createdAt: *a12
+        updatedAt: *a12
+    CommerceQuotationDetail:
+      allOf:
+        - $ref: "#/components/schemas/CommerceQuotation"
+        - type: object
+          properties:
+            versions:
+              type: array
+              items:
+                $ref: "#/components/schemas/CommerceQuotationVersion"
+    CommerceQuotationVersion:
+      type: object
+      description: "Issue #286 (ADR-0029). An immutable priced version snapshot."
+      properties:
+        version:
+          type: integer
+        validUntil: *a12
+        currency:
+          type: string
+          enum:
+            - IDR
+        lines:
+          type: array
+          items:
+            type: object
+            properties:
+              productId: *a10
+              variantId:
+                type: string
+                format: uuid
+                nullable: true
+              name:
+                type: string
+                nullable: true
+              variantName:
+                type: string
+                nullable: true
+              sku:
+                type: string
+                nullable: true
+              quantity:
+                type: integer
+              unitPrice: *a11
+              lineTotal: *a11
+        subtotal: *a11
+        discount: *a11
+        tax: *a11
+        total: *a11
+        customer:
+          type: object
+          nullable: true
+          properties:
+            name: *a9
+            phone: *a9
+        pricingContext:
+          type: object
+          additionalProperties: true
+        notes:
+          type: string
+          nullable: true
+        contentHash:
+          type: string
+          description: SHA-256 hex of the canonical version content.
+        createdByTenantUserId: *a10
+        createdAt: *a12
     CommerceRegister:
       type: object
       description: "Issue #284 (ADR-0028) — a POS register (a named till)."
@@ -33432,6 +34598,39 @@ components:
           type: string
           format: uuid
           nullable: true
+    CommerceResumedHeldSale:
+      allOf:
+        - $ref: "#/components/schemas/CommerceHeldSale"
+        - type: object
+          properties:
+            cart:
+              type: object
+              properties:
+                lines:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      productId: *a10
+                      variantId:
+                        type: string
+                        format: uuid
+                        nullable: true
+                      quantity:
+                        type: integer
+                customer:
+                  type: object
+                  nullable: true
+                  properties:
+                    name:
+                      type: string
+                      nullable: true
+                    phone:
+                      type: string
+                      nullable: true
+                notes:
+                  type: string
+                  nullable: true
     CommerceReview:
       type: object
       description: Issue 29 — admin review moderation record.
@@ -34334,6 +35533,90 @@ components:
           type: string
           format: date-time
           nullable: true
+    CommerceWorkOrder:
+      type: object
+      description: "Issue #286 (ADR-0029 D6). An operational work/service order. Holds no money."
+      properties:
+        id: *a10
+        number: *a9
+        title: *a9
+        description:
+          type: string
+          nullable: true
+        status:
+          type: string
+          enum:
+            - received
+            - scheduled
+            - in_progress
+            - on_hold
+            - ready
+            - completed
+            - cancelled
+        priority:
+          type: string
+          enum:
+            - low
+            - normal
+            - high
+            - urgent
+        customerId:
+          type: string
+          format: uuid
+          nullable: true
+        quotationId:
+          type: string
+          format: uuid
+          nullable: true
+        quotationVersion:
+          type: integer
+          nullable: true
+        orderId:
+          type: string
+          format: uuid
+          nullable: true
+        assigneeTenantUserId:
+          type: string
+          format: uuid
+          nullable: true
+        dueAt:
+          type: string
+          format: date-time
+          nullable: true
+        completedAt:
+          type: string
+          format: date-time
+          nullable: true
+        cancelledAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdByTenantUserId: *a10
+        createdAt: *a12
+        updatedAt: *a12
+    CommerceWorkOrderDetail:
+      allOf:
+        - $ref: "#/components/schemas/CommerceWorkOrder"
+        - type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: "#/components/schemas/CommerceWorkOrderEvent"
+    CommerceWorkOrderEvent:
+      type: object
+      description: "Issue #286 (ADR-0029). One append-only status-history row."
+      properties:
+        id: *a10
+        fromStatus:
+          type: string
+          nullable: true
+        toStatus: *a9
+        note:
+          type: string
+          nullable: true
+        actorTenantUserId: *a10
+        createdAt: *a12
     ComposedHomepageGroup:
       type: object
       properties:

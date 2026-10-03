@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 26    |
-| Migrations                          | 226   |
-| `awcms_*` tables                    | 221   |
-| Tables with `FORCE` RLS             | 203   |
+| Migrations                          | 229   |
+| `awcms_*` tables                    | 228   |
+| Tables with `FORCE` RLS             | 210   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 643   |
-| Route files                         | 590   |
+| Test files                          | 647   |
+| Route files                         | 604   |
 | ADR                                 | 252   |
 
 ### Modules
@@ -277,6 +277,9 @@
 | 224 | `sql/972_awcms_commerce_register_permissions.sql`                           |
 | 225 | `sql/973_awcms_commerce_register_worker_grants.sql`                         |
 | 226 | `sql/974_awcms_commerce_register_reversal_stamp.sql`                        |
+| 227 | `sql/980_awcms_commerce_documents_schema.sql`                               |
+| 228 | `sql/981_awcms_commerce_documents_permissions.sql`                          |
+| 229 | `sql/982_awcms_commerce_documents_worker_grants.sql`                        |
 
 ### Tables & Row-Level Security
 
@@ -330,9 +333,12 @@
 | `awcms_commerce_customer_otps`              | `sql/917_awcms_commerce_customer_accounts_schema.sql`      | yes | yes   |
 | `awcms_commerce_customer_sessions`          | `sql/917_awcms_commerce_customer_accounts_schema.sql`      | yes | yes   |
 | `awcms_commerce_customers`                  | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
+| `awcms_commerce_document_sequences`         | `sql/980_awcms_commerce_documents_schema.sql`              | yes | yes   |
+| `awcms_commerce_documents`                  | `sql/980_awcms_commerce_documents_schema.sql`              | yes | yes   |
 | `awcms_commerce_entitlements`               | `sql/936_awcms_commerce_entitlements_schema.sql`           | yes | yes   |
 | `awcms_commerce_flash_sale_products`        | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
 | `awcms_commerce_flash_sales`                | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
+| `awcms_commerce_held_sales`                 | `sql/980_awcms_commerce_documents_schema.sql`              | yes | yes   |
 | `awcms_commerce_loyalty_accounts`           | `sql/950_awcms_commerce_loyalty_schema.sql`                | yes | yes   |
 | `awcms_commerce_loyalty_ledger`             | `sql/950_awcms_commerce_loyalty_schema.sql`                | yes | yes   |
 | `awcms_commerce_loyalty_programs`           | `sql/950_awcms_commerce_loyalty_schema.sql`                | yes | yes   |
@@ -350,6 +356,8 @@
 | `awcms_commerce_product_variants`           | `sql/905_awcms_commerce_product_images_variants.sql`       | yes | yes   |
 | `awcms_commerce_products`                   | `sql/901_awcms_commerce_schema.sql`                        | yes | yes   |
 | `awcms_commerce_protected_media_links`      | `sql/939_awcms_commerce_protected_media_links_schema.sql`  | yes | yes   |
+| `awcms_commerce_quotation_versions`         | `sql/980_awcms_commerce_documents_schema.sql`              | yes | yes   |
+| `awcms_commerce_quotations`                 | `sql/980_awcms_commerce_documents_schema.sql`              | yes | yes   |
 | `awcms_commerce_register_close_lines`       | `sql/970_awcms_commerce_register_schema.sql`               | yes | yes   |
 | `awcms_commerce_register_close_requests`    | `sql/970_awcms_commerce_register_schema.sql`               | yes | yes   |
 | `awcms_commerce_register_corrections`       | `sql/970_awcms_commerce_register_schema.sql`               | yes | yes   |
@@ -369,6 +377,8 @@
 | `awcms_commerce_whatsapp_delivery_attempts` | `sql/925_awcms_commerce_whatsapp_outbox_otp_channel.sql`   | yes | yes   |
 | `awcms_commerce_whatsapp_messages`          | `sql/925_awcms_commerce_whatsapp_outbox_otp_channel.sql`   | yes | yes   |
 | `awcms_commerce_wishlists`                  | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
+| `awcms_commerce_work_order_events`          | `sql/980_awcms_commerce_documents_schema.sql`              | yes | yes   |
+| `awcms_commerce_work_orders`                | `sql/980_awcms_commerce_documents_schema.sql`              | yes | yes   |
 | `awcms_data_lifecycle_archive_manifests`    | `sql/055_awcms_data_lifecycle_schema.sql`                  | yes | yes   |
 | `awcms_data_lifecycle_cursors`              | `sql/055_awcms_data_lifecycle_schema.sql`                  | yes | yes   |
 | `awcms_data_lifecycle_legal_holds`          | `sql/055_awcms_data_lifecycle_schema.sql`                  | yes | yes   |
@@ -508,17 +518,17 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 507        |
+| `(root)`      | 509        |
 | `e2e`         | 21         |
-| `integration` | 114        |
+| `integration` | 116        |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 471   |
-| `/admin/**`     | 89    |
+| `/api/v1/**`    | 484   |
+| `/admin/**`     | 90    |
 | publik / anonim | 30    |
 
 <!-- END GENERATED: repo-inventory -->

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:c0ee3017059642549c529f320201a62831a8abd599ff5c3ea1ade371dae67ad4 -->
+<!-- i18n-source-hash: sha256:89cf8ba451ef5cc1c713e99e0b1b8079f647c28022cb14ecdc3c2b4f6dab4765 -->
 
 # Kamus data
 
@@ -245,6 +245,24 @@ Atribut kustom **bertipe** buatan tenant — desain milik platform ini sendiri (
 | koreksi | `awcms_commerce_register_corrections` | Penyesuaian kompensasi bertanda pada jumlah DIHITUNG sebuah tender pada sesi yang sudah ditutup; baris asli tidak pernah diubah; sesi menjadi `corrected` |
 | fitur `register` | pengaturan modul commerce `features.register` (default MATI) | Menyalakan seluruh permukaan register dan membuat penjualan POS mensyaratkan sesi terbuka pada register yang dipilih |
 | `commerce.registers.*`, `commerce.register_sessions.*`, `commerce.register_cash_ups.*`, `commerce.register_corrections.approve` | `awcms_permissions` (`sql/972`) | Sepuluh kunci: kelola register, baca / buka / pakai / ekspor sesi, tutup / setujui selisih, koreksi sesi yang sudah ditutup |
+
+## Kosakata dokumen commerce (issue #286, [ADR-0029](adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md))
+
+Rancangan platform ini sendiri — tidak ada yang di-port dari toko lama. Status adalah `text` + `CHECK`, tidak pernah enum bawaan.
+
+| Bidang | Nilai / bentuk | Arti |
+| --- | --- | --- |
+| `status` penjualan tertahan | `held`, `resumed`, `discarded`, `expired` | `expired` bersifat *efektif*: baris `held` yang melewati `expires_at` terbaca `expired` sebelum ada yang menyimpannya |
+| `status` penawaran | `draft`, `sent`, `accepted`, `rejected`, `expired`, `converted`, `cancelled` | `sent` yang melewati `valid_until` versi saat ini terbaca `expired`; `accepted` menyematkan `accepted_version`; `converted` membawa `converted_order_id` |
+| `status` perintah kerja | `received`, `scheduled`, `in_progress`, `on_hold`, `ready`, `completed`, `cancelled` | `completed` dan `cancelled` adalah terminal |
+| `priority` perintah kerja | `low`, `normal`, `high`, `urgent` | |
+| `doc_type` dokumen | `receipt`, `invoice` | dokumen komersial — bukan faktur piutang dan bukan faktur pajak |
+| `number` | `QUO-`, `WO-`, `RCP-`, `INV-` + tahun UTC + penghitung enam digit, mis. `INV-2026-000042` | tanpa celah per tenant, jenis, dan tahun; tidak pernah dipakai ulang |
+| asal-usul dokumen | `source_type` `order`, `source_id`, `source_version` `1` | pesanan adalah versi tunggalnya sendiri: baris dan totalnya ditulis sekali |
+| `content_hash` | 64 heksadesimal huruf kecil | SHA-256 dari JSON kanonik (kunci terurut) isi tersimpan; dihitung ulang sebelum setiap render |
+| `snapshot` dokumen | `schemaVersion`, `docType`, `number`, `issuedAt`, `currency`, `seller`, `customer`, `order`, `lines`, `totals`, `payments`, `settlement` | `payments` adalah leg ledger yang berhasil saat terbit (tender, jenis, jumlah, waktu — tanpa referensi penyedia, tanpa id staf); informasional, ledger tetap otoritas |
+| `cart` tertahan | `{ lines: [{ productId, variantId, quantity }], customer: { name, phone } \| null, notes }` | tanpa harga; dihapus menjadi `{}` saat penjualan meninggalkan `held` |
+| `pricing_context` versi penawaran | `engine`, `quotedAt`, `customerLevel`, `taxActive`, `taxPercent`, `shippingCost` | apa yang dipakai mesin kutipan, disimpan sebagai bukti |
 
 ## Kolom dan tabel yang ditunda — tidak di-porting
 

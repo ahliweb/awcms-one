@@ -1,0 +1,1389 @@
+---
+/**
+ * Commerce documents (Issue #286, epic #281 and #280, ADR-0029) - quotations,
+ * work orders, numbered receipt/invoice documents and held (parked) sales on
+ * one screen, four tabs (`?tab=quotations|work-orders|documents|held`). The
+ * page's entry permission is `commerce.documents.read`; every tab and every
+ * form inside it is gated on its OWN permission, so a user holding only some
+ * of the keys sees only what they may use.
+ *
+ * The whole screen sits behind the tenant's `documents` feature (default OFF):
+ * with it off one notice points at the settings screen, matching the routes'
+ * own `409 FEATURE_DISABLED`.
+ *
+ * Nothing here computes money in the browser or holds a price: a quotation is
+ * priced by the server's quote engine, a conversion creates its order through
+ * the ordinary POS path, and a document is a stored snapshot the server
+ * renders. Resuming a held sale happens on the POS screen (it needs the cart);
+ * discarding one happens here.
+ *
+ * Every string the client script shows is rendered by `t()` into a `data-*`
+ * attribute on `#documents-root` and read from there (the script cannot
+ * translate), the same pattern `commerce-registers.astro` uses. The quotation
+ * line editor picks from the tenant's first 100 active products; a product
+ * with variants is quoted through the API (the line editor does not offer a
+ * variant picker yet).
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import CommerceConfirmDialog from "../../components/CommerceConfirmDialog.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import { formatCurrency, formatDateTime } from "../../lib/i18n/format";
+import {
+  commerceLabel,
+  createCommerceLabels,
+  heldSaleStatusTone,
+  quotationStatusTone,
+  workOrderStatusTone
+} from "../../lib/ui/commerce-admin-labels";
+import { decodeKeysetCursor } from "../../modules/_shared/keyset-pagination";
+import { fetchCommerceFeatures } from "../../modules/commerce/application/commerce-feature-gate";
+import {
+  listDocuments,
+  type DocumentListPage
+} from "../../modules/commerce/application/document-directory";
+import {
+  listHeldSales,
+  type HeldSaleListPage
+} from "../../modules/commerce/application/held-sale-directory";
+import { listOrdersForAdmin } from "../../modules/commerce/application/order-directory";
+import { listProducts } from "../../modules/commerce/application/product-directory";
+import {
+  listQuotations,
+  type QuotationListPage
+} from "../../modules/commerce/application/quotation-directory";
+import {
+  listWorkOrders,
+  type WorkOrderListPage
+} from "../../modules/commerce/application/work-order-directory";
+import {
+  LEGAL_WORK_ORDER_TRANSITIONS,
+  WORK_ORDER_PRIORITIES
+} from "../../modules/commerce/domain/documents";
+
+const ssr = Astro.locals.ssrContext!;
+const locale = Astro.locals.locale;
+const { t, tn } = getTranslatorFor(locale);
+const labels = createCommerceLabels(t);
+
+const TIME_ZONE = "Asia/Jakarta";
+const money = (value: string): string =>
+  formatCurrency(locale, value, "IDR", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+const when = (iso: string | null): string =>
+  iso ? formatDateTime(locale, iso, TIME_ZONE) : "—";
+
+const TABS = ["quotations", "work-orders", "documents", "held"] as const;
+type Tab = (typeof TABS)[number];
+const tabParam = Astro.url.searchParams.get("tab") ?? "";
+const tab: Tab = (TABS as readonly string[]).includes(tabParam)
+  ? (tabParam as Tab)
+  : "quotations";
+const cursorParam = Astro.url.searchParams.get("cursor");
+const cursor = cursorParam ? decodeKeysetCursor(cursorParam) : null;
+
+type Can = {
+  quotationsRead: boolean;
+  quotationsCreate: boolean;
+  quotationsUpdate: boolean;
+  convert: boolean;
+  workOrdersRead: boolean;
+  workOrdersCreate: boolean;
+  workOrdersUpdate: boolean;
+  documentsCreate: boolean;
+  heldRead: boolean;
+  heldUpdate: boolean;
+  heldApprove: boolean;
+};
+const NO_CAN: Can = {
+  quotationsRead: false,
+  quotationsCreate: false,
+  quotationsUpdate: false,
+  convert: false,
+  workOrdersRead: false,
+  workOrdersCreate: false,
+  workOrdersUpdate: false,
+  documentsCreate: false,
+  heldRead: false,
+  heldUpdate: false,
+  heldApprove: false
+};
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "commerce",
+    activityCode: "documents",
+    action: "read"
+  },
+  load: async ({ tx, can }) => {
+    const features = await fetchCommerceFeatures(tx, ssr.tenantId);
+    if (!features.documents) {
+      return {
+        enabled: false as const,
+        can: NO_CAN,
+        quotations: null as QuotationListPage | null,
+        workOrders: null as WorkOrderListPage | null,
+        documents: null as DocumentListPage | null,
+        held: null as HeldSaleListPage | null,
+        products: [] as { id: string; label: string }[],
+        orders: [] as { id: string; label: string }[]
+      };
+    }
+    const perms: Can = {
+      quotationsRead: await can({
+        moduleKey: "commerce",
+        activityCode: "quotations",
+        action: "read"
+      }),
+      quotationsCreate: await can({
+        moduleKey: "commerce",
+        activityCode: "quotations",
+        action: "create"
+      }),
+      quotationsUpdate: await can({
+        moduleKey: "commerce",
+        activityCode: "quotations",
+        action: "update"
+      }),
+      convert: await can({
+        moduleKey: "commerce",
+        activityCode: "quotation_conversions",
+        action: "create"
+      }),
+      workOrdersRead: await can({
+        moduleKey: "commerce",
+        activityCode: "work_orders",
+        action: "read"
+      }),
+      workOrdersCreate: await can({
+        moduleKey: "commerce",
+        activityCode: "work_orders",
+        action: "create"
+      }),
+      workOrdersUpdate: await can({
+        moduleKey: "commerce",
+        activityCode: "work_orders",
+        action: "update"
+      }),
+      documentsCreate: await can({
+        moduleKey: "commerce",
+        activityCode: "documents",
+        action: "create"
+      }),
+      heldRead: await can({
+        moduleKey: "commerce",
+        activityCode: "held_sales",
+        action: "read"
+      }),
+      heldUpdate: await can({
+        moduleKey: "commerce",
+        activityCode: "held_sales",
+        action: "update"
+      }),
+      heldApprove: await can({
+        moduleKey: "commerce",
+        activityCode: "held_sales",
+        action: "approve"
+      })
+    };
+    const now = new Date();
+    const quotations =
+      tab === "quotations" && perms.quotationsRead
+        ? await listQuotations(tx, ssr.tenantId, cursor, {}, now)
+        : null;
+    const workOrders =
+      tab === "work-orders" && perms.workOrdersRead
+        ? await listWorkOrders(tx, ssr.tenantId, cursor)
+        : null;
+    const documents =
+      tab === "documents"
+        ? await listDocuments(tx, ssr.tenantId, cursor)
+        : null;
+    const held =
+      tab === "held" && perms.heldRead
+        ? await listHeldSales(
+            tx,
+            ssr.tenantId,
+            { actorTenantUserId: ssr.tenantUserId, all: perms.heldApprove },
+            cursor,
+            null,
+            now
+          )
+        : null;
+    const products =
+      tab === "quotations" && perms.quotationsCreate
+        ? (
+            await listProducts(tx, ssr.tenantId, null, { status: "active" })
+          ).items.map((product) => ({
+            id: product.id,
+            label: `${product.name} · ${product.sku} · ${product.finalPrice}`
+          }))
+        : [];
+    const orders =
+      tab === "documents" && perms.documentsCreate
+        ? (await listOrdersForAdmin(tx, ssr.tenantId, null)).items
+            .filter(
+              (order) =>
+                order.status !== "cancelled" && order.status !== "expired"
+            )
+            .slice(0, 50)
+            .map((order) => ({
+              id: order.id,
+              label: `${order.orderCode} · ${order.customerName} · ${order.total} · ${order.paymentStatus}`
+            }))
+        : [];
+    return {
+      enabled: true as const,
+      can: perms,
+      quotations,
+      workOrders,
+      documents,
+      held,
+      products,
+      orders
+    };
+  },
+  onError: (error) => {
+    logAdminPageError("admin/commerce-documents.astro: failed to load", error, {
+      correlationId: Astro.locals.correlationId
+    });
+  }
+});
+
+const allowed = screen.state === "allowed";
+const denied = screen.state === "denied";
+const loadError = screen.state === "error";
+const data = screen.state === "allowed" ? screen.data : null;
+const enabled = data?.enabled === true;
+const can = data?.can ?? NO_CAN;
+const quotations = data?.quotations ?? null;
+const workOrders = data?.workOrders ?? null;
+const documents = data?.documents ?? null;
+const held = data?.held ?? null;
+const products = data?.products ?? [];
+const orders = data?.orders ?? [];
+
+const tabLabels: Record<Tab, string> = {
+  quotations: t("Quotations"),
+  "work-orders": t("Work orders"),
+  documents: t("Receipts and invoices"),
+  held: t("Held sales")
+};
+const tabHref = (next: Tab) => `/admin/commerce-documents?tab=${next}`;
+const nextHref = (next: string) =>
+  `/admin/commerce-documents?tab=${tab}&cursor=${encodeURIComponent(next)}`;
+const cashierLabel = (id: string): string =>
+  id === ssr.tenantUserId ? t("You") : id.slice(0, 8);
+---
+
+<AdminLayout
+  title={t("Documents")}
+  description={t(
+    "Quotations, work orders, receipts and invoices, and parked POS sales."
+  )}
+>
+  {denied && (
+    <p class="state-notice fade-in-up" id="documents-denied" role="status">
+      {t("You do not have permission to view documents.")}
+    </p>
+  )}
+  {loadError && (
+    <p class="state-notice fade-in-up" id="documents-error" role="alert">
+      {t("Documents could not be loaded right now. Please try again later.")}
+    </p>
+  )}
+  {allowed && !enabled && (
+    <p
+      class="state-notice fade-in-up"
+      id="documents-feature-disabled"
+      role="status"
+    >
+      {t(
+        "Quotations, work orders and documents are turned off for this store."
+      )}{" "}
+      <a class="quick-link" href="/admin/commerce-settings">
+        {t("Turn them on under Features in the store settings.")}
+      </a>
+    </p>
+  )}
+
+  {allowed && enabled && (
+    <div
+      id="documents-root"
+      data-msg-busy={t("Please wait…")}
+      data-msg-failed={t("That did not work. Please try again.")}
+      data-msg-saved={t("Saved.")}
+      data-msg-no-lines={t("Add at least one product line.")}
+      data-msg-bad-phone={t("The customer phone number is not valid.")}
+      data-msg-cart-changed={t(
+        "One or more lines cannot be priced right now; check the products and quantities."
+      )}
+      data-msg-expired={t(
+        "The quotation's validity period has passed; revise it to offer again."
+      )}
+      data-msg-conflict={t("That action is not allowed in the current status.")}
+      data-msg-price-changed={t(
+        "The current price differs from the quoted price. Press Convert again to accept the current price."
+      )}
+      data-msg-not-accepted={t(
+        "Only an accepted quotation can be converted into an order."
+      )}
+      data-msg-register-required={t(
+        "Converting needs an open register session; open one in the POS first."
+      )}
+      data-msg-due-denied={t(
+        "You need the permission to sell on credit to convert a quotation."
+      )}
+      data-msg-order-not-paid={t("A receipt needs a fully paid order.")}
+      data-msg-order-not-final={t(
+        "A cancelled or expired order cannot be documented."
+      )}
+      data-msg-bad-order={t("Choose an order.")}
+      data-msg-reference={t(
+        "A linked record could not be found. Check the quotation or order."
+      )}
+      data-msg-closed={t("A completed or cancelled work order cannot change.")}
+      data-msg-illegal={t(
+        "That status change is not allowed from the current status."
+      )}
+    >
+      <nav class="admin-segmented" aria-label={t("Document sections")}>
+        {TABS.map((entry) => (
+          <a
+            href={tabHref(entry)}
+            aria-current={tab === entry ? "page" : undefined}
+          >
+            {tabLabels[entry]}
+          </a>
+        ))}
+      </nav>
+
+      {tab === "quotations" && (
+        <section class="fade-in-up" aria-labelledby="documents-q-heading">
+          <h2 id="documents-q-heading">{t("Quotations")}</h2>
+          <p
+            id="documents-q-error"
+            class="admin-create-error"
+            role="alert"
+            hidden
+          />
+          {can.quotationsCreate && (
+            <form id="quotation-form" class="admin-create-form admin-panel">
+              <h3 id="quotation-form-title">{t("New quotation")}</h3>
+              <input
+                type="hidden"
+                name="quotationId"
+                id="quotation-id"
+                value=""
+              />
+              <label for="quotation-customer-name">
+                {t("Customer name")}
+                <input
+                  id="quotation-customer-name"
+                  name="customerName"
+                  type="text"
+                  maxlength="120"
+                  required
+                />
+              </label>
+              <label for="quotation-customer-phone">
+                {t("Customer phone")}
+                <input
+                  id="quotation-customer-phone"
+                  name="customerPhone"
+                  type="tel"
+                  inputmode="tel"
+                  maxlength="32"
+                  required
+                />
+              </label>
+              <label for="quotation-valid-days">
+                {t("Valid for (days)")}
+                <input
+                  id="quotation-valid-days"
+                  name="validDays"
+                  type="number"
+                  min="1"
+                  max="180"
+                  value="14"
+                  required
+                />
+              </label>
+              <fieldset>
+                <legend>{t("Lines")}</legend>
+                <div id="quotation-lines" />
+                <button
+                  type="button"
+                  class="btn-inline"
+                  id="quotation-add-line"
+                >
+                  {t("Add line")}
+                </button>
+              </fieldset>
+              <label for="quotation-notes">
+                {t("Notes")}
+                <textarea
+                  id="quotation-notes"
+                  name="notes"
+                  rows="2"
+                  maxlength="1000"
+                />
+              </label>
+              <div class="admin-form-actions">
+                <button
+                  type="submit"
+                  class="module-toggle"
+                  id="quotation-submit"
+                >
+                  {t("Save quotation")}
+                </button>
+                <button
+                  type="button"
+                  class="btn-inline"
+                  id="quotation-reset"
+                  hidden
+                >
+                  {t("Cancel revision")}
+                </button>
+              </div>
+            </form>
+          )}
+          <template id="quotation-line-template">
+            <div class="admin-form-actions quotation-line">
+              <label>
+                <span class="sr-only">{t("Product")}</span>
+                <select class="quotation-line-product" required>
+                  {products.map((product) => (
+                    <option value={product.id}>{product.label}</option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                <span class="sr-only">{t("Quantity")}</span>
+                <input
+                  class="quotation-line-qty"
+                  type="number"
+                  min="1"
+                  max="10000"
+                  value="1"
+                  required
+                />
+              </label>
+              <button type="button" class="btn-inline quotation-line-remove">
+                {t("Remove")}
+              </button>
+            </div>
+          </template>
+          <div class="data-table-scroll">
+            <table class="data-table data-table--stack" id="quotations-table">
+              <caption>
+                {tn(
+                  "{count} quotation",
+                  "{count} quotations",
+                  quotations?.items.length ?? 0,
+                  {
+                    count: quotations?.items.length ?? 0
+                  }
+                )}
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">{t("Number")}</th>
+                  <th scope="col">{t("Customer")}</th>
+                  <th scope="col">{t("Status")}</th>
+                  <th scope="col">{t("Version")}</th>
+                  <th scope="col">{t("Total")}</th>
+                  <th scope="col">{t("Valid until")}</th>
+                  <th scope="col">{t("Actions")}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {(quotations?.items.length ?? 0) === 0 ? (
+                  <tr>
+                    <td class="data-table-empty" colspan={7}>
+                      <div class="empty-state">
+                        <span class="empty-state-title">
+                          {t("No quotations yet")}
+                        </span>
+                      </div>
+                    </td>
+                  </tr>
+                ) : (
+                  (quotations?.items ?? []).map((quotation) => (
+                    <tr data-quotation-row={quotation.id}>
+                      <td data-label={t("Number")}>{quotation.number}</td>
+                      <td data-label={t("Customer")}>
+                        {quotation.customerName ?? "—"}
+                      </td>
+                      <td data-label={t("Status")}>
+                        <span
+                          class="admin-status-pill"
+                          data-tone={quotationStatusTone[quotation.status]}
+                        >
+                          <span
+                            class="admin-status-pill-dot"
+                            aria-hidden="true"
+                          />
+                          {commerceLabel(
+                            labels.quotationStatus,
+                            quotation.status
+                          )}
+                        </span>
+                      </td>
+                      <td data-label={t("Version")}>
+                        {quotation.currentVersion}
+                      </td>
+                      <td data-label={t("Total")}>{money(quotation.total)}</td>
+                      <td data-label={t("Valid until")}>
+                        {when(quotation.validUntil)}
+                      </td>
+                      <td data-label={t("Actions")}>
+                        <div class="row-actions">
+                          {can.quotationsUpdate &&
+                            quotation.status === "draft" && (
+                              <button
+                                type="button"
+                                class="btn-inline quotation-action"
+                                data-id={quotation.id}
+                                data-action="send"
+                              >
+                                {t("Send")}
+                              </button>
+                            )}
+                          {can.quotationsUpdate &&
+                            quotation.status === "sent" && (
+                              <button
+                                type="button"
+                                class="btn-inline quotation-action"
+                                data-id={quotation.id}
+                                data-action="accept"
+                              >
+                                {t("Accept")}
+                              </button>
+                            )}
+                          {can.quotationsUpdate &&
+                            quotation.status === "sent" && (
+                              <button
+                                type="button"
+                                class="btn-inline quotation-action"
+                                data-id={quotation.id}
+                                data-action="reject"
+                                data-confirm-title={t("Reject this quotation?")}
+                                data-confirm-message={t(
+                                  "The customer declined this offer. It cannot be accepted afterwards."
+                                )}
+                                data-confirm-label={t("Reject")}
+                                data-confirm-danger="true"
+                              >
+                                {t("Reject")}
+                              </button>
+                            )}
+                          {can.quotationsUpdate &&
+                            (quotation.status === "draft" ||
+                              quotation.status === "sent" ||
+                              quotation.status === "accepted") && (
+                              <button
+                                type="button"
+                                class="btn-inline quotation-action"
+                                data-id={quotation.id}
+                                data-action="cancel"
+                                data-confirm-title={t("Cancel this quotation?")}
+                                data-confirm-message={t(
+                                  "A cancelled quotation cannot be offered or converted again."
+                                )}
+                                data-confirm-label={t("Cancel quotation")}
+                                data-confirm-danger="true"
+                              >
+                                {t("Cancel")}
+                              </button>
+                            )}
+                          {can.quotationsCreate &&
+                            (quotation.status === "draft" ||
+                              quotation.status === "sent" ||
+                              quotation.status === "expired") && (
+                              <button
+                                type="button"
+                                class="btn-inline quotation-revise"
+                                data-id={quotation.id}
+                              >
+                                {t("Revise")}
+                              </button>
+                            )}
+                          {can.convert && quotation.status === "accepted" && (
+                            <button
+                              type="button"
+                              class="btn-inline quotation-convert"
+                              data-id={quotation.id}
+                              data-confirm-title={t("Convert to an order?")}
+                              data-confirm-message={t(
+                                "An order will be created at the current price, with the balance due."
+                              )}
+                              data-confirm-label={t("Convert")}
+                            >
+                              {t("Convert to order")}
+                            </button>
+                          )}
+                          {quotation.convertedOrderId && (
+                            <a
+                              href={`/admin/commerce-orders/${quotation.convertedOrderId}`}
+                            >
+                              {t("View order")}
+                            </a>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+          {quotations?.nextCursor && (
+            <p>
+              <a class="quick-link" href={nextHref(quotations.nextCursor)}>
+                {t("Older quotations")}
+              </a>
+            </p>
+          )}
+        </section>
+      )}
+
+      {tab === "work-orders" && (
+        <section class="fade-in-up" aria-labelledby="documents-w-heading">
+          <h2 id="documents-w-heading">{t("Work orders")}</h2>
+          <p
+            id="documents-w-error"
+            class="admin-create-error"
+            role="alert"
+            hidden
+          />
+          {can.workOrdersCreate && (
+            <form id="work-order-form" class="admin-create-form admin-panel">
+              <h3>{t("New work order")}</h3>
+              <label for="work-order-title">
+                {t("Title")}
+                <input
+                  id="work-order-title"
+                  name="title"
+                  type="text"
+                  maxlength="160"
+                  required
+                />
+              </label>
+              <label for="work-order-description">
+                {t("Description")}
+                <textarea
+                  id="work-order-description"
+                  name="description"
+                  rows="2"
+                  maxlength="2000"
+                />
+              </label>
+              <label for="work-order-priority">
+                {t("Priority")}
+                <select id="work-order-priority" name="priority">
+                  {WORK_ORDER_PRIORITIES.map((priority) => (
+                    <option value={priority} selected={priority === "normal"}>
+                      {commerceLabel(labels.workOrderPriority, priority)}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label for="work-order-quotation">
+                {t("From accepted quotation (optional id)")}
+                <input
+                  id="work-order-quotation"
+                  name="quotationId"
+                  type="text"
+                  maxlength="36"
+                />
+              </label>
+              <button type="submit" class="module-toggle">
+                {t("Create work order")}
+              </button>
+            </form>
+          )}
+          <div class="data-table-scroll">
+            <table class="data-table data-table--stack" id="work-orders-table">
+              <caption>
+                {tn(
+                  "{count} work order",
+                  "{count} work orders",
+                  workOrders?.items.length ?? 0,
+                  {
+                    count: workOrders?.items.length ?? 0
+                  }
+                )}
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">{t("Number")}</th>
+                  <th scope="col">{t("Title")}</th>
+                  <th scope="col">{t("Status")}</th>
+                  <th scope="col">{t("Priority")}</th>
+                  <th scope="col">{t("Due")}</th>
+                  <th scope="col">{t("Actions")}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {(workOrders?.items.length ?? 0) === 0 ? (
+                  <tr>
+                    <td class="data-table-empty" colspan={6}>
+                      <div class="empty-state">
+                        <span class="empty-state-title">
+                          {t("No work orders yet")}
+                        </span>
+                      </div>
+                    </td>
+                  </tr>
+                ) : (
+                  (workOrders?.items ?? []).map((workOrder) => (
+                    <tr data-work-order-row={workOrder.id}>
+                      <td data-label={t("Number")}>{workOrder.number}</td>
+                      <td data-label={t("Title")}>{workOrder.title}</td>
+                      <td data-label={t("Status")}>
+                        <span
+                          class="admin-status-pill"
+                          data-tone={workOrderStatusTone[workOrder.status]}
+                        >
+                          <span
+                            class="admin-status-pill-dot"
+                            aria-hidden="true"
+                          />
+                          {commerceLabel(
+                            labels.workOrderStatus,
+                            workOrder.status
+                          )}
+                        </span>
+                      </td>
+                      <td data-label={t("Priority")}>
+                        {commerceLabel(
+                          labels.workOrderPriority,
+                          workOrder.priority
+                        )}
+                      </td>
+                      <td data-label={t("Due")}>{when(workOrder.dueAt)}</td>
+                      <td data-label={t("Actions")}>
+                        {can.workOrdersUpdate &&
+                          LEGAL_WORK_ORDER_TRANSITIONS[workOrder.status]
+                            .length > 0 && (
+                            <div class="row-actions">
+                              <label>
+                                <span class="sr-only">
+                                  {t("Move to status")}
+                                </span>
+                                <select
+                                  class="work-order-next"
+                                  data-id={workOrder.id}
+                                >
+                                  {LEGAL_WORK_ORDER_TRANSITIONS[
+                                    workOrder.status
+                                  ].map((next) => (
+                                    <option value={next}>
+                                      {commerceLabel(
+                                        labels.workOrderStatus,
+                                        next
+                                      )}
+                                    </option>
+                                  ))}
+                                </select>
+                              </label>
+                              <button
+                                type="button"
+                                class="btn-inline work-order-move"
+                                data-id={workOrder.id}
+                              >
+                                {t("Move")}
+                              </button>
+                            </div>
+                          )}
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+          {workOrders?.nextCursor && (
+            <p>
+              <a class="quick-link" href={nextHref(workOrders.nextCursor)}>
+                {t("Older work orders")}
+              </a>
+            </p>
+          )}
+        </section>
+      )}
+
+      {tab === "documents" && (
+        <section class="fade-in-up" aria-labelledby="documents-d-heading">
+          <h2 id="documents-d-heading">{t("Receipts and invoices")}</h2>
+          <p
+            id="documents-d-error"
+            class="admin-create-error"
+            role="alert"
+            hidden
+          />
+          {can.documentsCreate && (
+            <form id="document-form" class="admin-create-form admin-panel">
+              <h3>{t("Issue a document")}</h3>
+              <label for="document-order">
+                {t("Order")}
+                <select id="document-order" name="orderId" required>
+                  <option value="">{t("Choose an order")}</option>
+                  {orders.map((order) => (
+                    <option value={order.id}>{order.label}</option>
+                  ))}
+                </select>
+              </label>
+              <label for="document-type">
+                {t("Document type")}
+                <select id="document-type" name="docType">
+                  <option value="invoice">
+                    {commerceLabel(labels.documentType, "invoice")}
+                  </option>
+                  <option value="receipt">
+                    {commerceLabel(labels.documentType, "receipt")}
+                  </option>
+                </select>
+              </label>
+              <p class="form-hint">
+                {t(
+                  "A numbered document is a permanent copy of the order. It cannot be edited or deleted."
+                )}
+              </p>
+              <button type="submit" class="module-toggle">
+                {t("Issue document")}
+              </button>
+            </form>
+          )}
+          <div class="data-table-scroll">
+            <table class="data-table data-table--stack" id="documents-table">
+              <caption>
+                {tn(
+                  "{count} document",
+                  "{count} documents",
+                  documents?.items.length ?? 0,
+                  {
+                    count: documents?.items.length ?? 0
+                  }
+                )}
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">{t("Number")}</th>
+                  <th scope="col">{t("Document type")}</th>
+                  <th scope="col">{t("Total")}</th>
+                  <th scope="col">{t("Issued")}</th>
+                  <th scope="col">{t("Actions")}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {(documents?.items.length ?? 0) === 0 ? (
+                  <tr>
+                    <td class="data-table-empty" colspan={5}>
+                      <div class="empty-state">
+                        <span class="empty-state-title">
+                          {t("No documents yet")}
+                        </span>
+                      </div>
+                    </td>
+                  </tr>
+                ) : (
+                  (documents?.items ?? []).map((document) => (
+                    <tr data-document-row={document.id}>
+                      <td data-label={t("Number")}>{document.number}</td>
+                      <td data-label={t("Document type")}>
+                        {commerceLabel(labels.documentType, document.docType)}
+                      </td>
+                      <td data-label={t("Total")}>{money(document.total)}</td>
+                      <td data-label={t("Issued")}>
+                        {when(document.issuedAt)}
+                      </td>
+                      <td data-label={t("Actions")}>
+                        <div class="row-actions">
+                          <a
+                            href={`/api/v1/commerce/documents/${document.id}/render?format=html&locale=${locale === "en" ? "en" : "id"}`}
+                            target="_blank"
+                            rel="noopener"
+                          >
+                            {t("Print view")}
+                          </a>
+                          <a
+                            href={`/api/v1/commerce/documents/${document.id}/render?format=text&locale=${locale === "en" ? "en" : "id"}`}
+                            target="_blank"
+                            rel="noopener"
+                          >
+                            {t("Plain text")}
+                          </a>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+          {documents?.nextCursor && (
+            <p>
+              <a class="quick-link" href={nextHref(documents.nextCursor)}>
+                {t("Older documents")}
+              </a>
+            </p>
+          )}
+        </section>
+      )}
+
+      {tab === "held" && (
+        <section class="fade-in-up" aria-labelledby="documents-h-heading">
+          <h2 id="documents-h-heading">{t("Held sales")}</h2>
+          <p class="form-hint">
+            {t(
+              "Parked carts keep no prices and reserve no stock. Resume one from the POS screen."
+            )}
+          </p>
+          <p
+            id="documents-h-error"
+            class="admin-create-error"
+            role="alert"
+            hidden
+          />
+          <div class="data-table-scroll">
+            <table class="data-table data-table--stack" id="held-table">
+              <caption>
+                {tn(
+                  "{count} held sale",
+                  "{count} held sales",
+                  held?.items.length ?? 0,
+                  {
+                    count: held?.items.length ?? 0
+                  }
+                )}
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">{t("Label")}</th>
+                  <th scope="col">{t("Cashier")}</th>
+                  <th scope="col">{t("Status")}</th>
+                  <th scope="col">{t("Lines")}</th>
+                  <th scope="col">{t("Held")}</th>
+                  <th scope="col">{t("Expires")}</th>
+                  <th scope="col">{t("Actions")}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {(held?.items.length ?? 0) === 0 ? (
+                  <tr>
+                    <td class="data-table-empty" colspan={7}>
+                      <div class="empty-state">
+                        <span class="empty-state-title">
+                          {t("No held sales")}
+                        </span>
+                      </div>
+                    </td>
+                  </tr>
+                ) : (
+                  (held?.items ?? []).map((sale) => (
+                    <tr data-held-row={sale.id}>
+                      <td data-label={t("Label")}>{sale.label ?? "—"}</td>
+                      <td data-label={t("Cashier")}>
+                        {cashierLabel(sale.ownerTenantUserId)}
+                      </td>
+                      <td data-label={t("Status")}>
+                        <span
+                          class="admin-status-pill"
+                          data-tone={heldSaleStatusTone[sale.status]}
+                        >
+                          <span
+                            class="admin-status-pill-dot"
+                            aria-hidden="true"
+                          />
+                          {commerceLabel(labels.heldSaleStatus, sale.status)}
+                        </span>
+                      </td>
+                      <td data-label={t("Lines")}>{sale.lineCount}</td>
+                      <td data-label={t("Held")}>{when(sale.heldAt)}</td>
+                      <td data-label={t("Expires")}>{when(sale.expiresAt)}</td>
+                      <td data-label={t("Actions")}>
+                        {can.heldUpdate && sale.status === "held" && (
+                          <button
+                            type="button"
+                            class="btn-inline held-discard"
+                            data-id={sale.id}
+                            data-confirm-title={t("Discard this held sale?")}
+                            data-confirm-message={t(
+                              "The parked cart is deleted and cannot be resumed."
+                            )}
+                            data-confirm-label={t("Discard")}
+                            data-confirm-danger="true"
+                          >
+                            {t("Discard")}
+                          </button>
+                        )}
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+          {held?.nextCursor && (
+            <p>
+              <a class="quick-link" href={nextHref(held.nextCursor)}>
+                {t("Older held sales")}
+              </a>
+            </p>
+          )}
+        </section>
+      )}
+    </div>
+  )}
+
+  <CommerceConfirmDialog locale={Astro.locals.locale} />
+</AdminLayout>
+
+<script>
+  import {
+    field,
+    messageBox,
+    onAction,
+    onSubmit,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+  import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
+
+  const root = document.getElementById("documents-root");
+  const msg = (key: string): string => root?.dataset[key] ?? "";
+
+  const quotationError = messageBox("documents-q-error");
+  const workOrderError = messageBox("documents-w-error");
+  const documentError = messageBox("documents-d-error");
+  const heldError = messageBox("documents-h-error");
+
+  const idempotency = () => ({ "Idempotency-Key": crypto.randomUUID() });
+  const code = (result: { errorCode: string | null }, fallback: string) => {
+    switch (result.errorCode) {
+      case "QUOTATION_EXPIRED":
+        return msg("msgExpired");
+      case "QUOTATION_STATUS_CONFLICT":
+      case "QUOTATION_NOT_REVISABLE":
+        return msg("msgConflict");
+      case "QUOTATION_NOT_ACCEPTED":
+        return msg("msgNotAccepted");
+      case "CART_CHANGED":
+        return msg("msgCartChanged");
+      case "REGISTER_SESSION_REQUIRED":
+      case "REGISTER_REQUIRED":
+        return msg("msgRegisterRequired");
+      case "ORDER_NOT_PAID":
+        return msg("msgOrderNotPaid");
+      case "ORDER_NOT_FINAL":
+        return msg("msgOrderNotFinal");
+      case "WORK_ORDER_CLOSED":
+        return msg("msgClosed");
+      case "WORK_ORDER_TRANSITION_ILLEGAL":
+        return msg("msgIllegal");
+      case "FORBIDDEN":
+        return msg("msgDueDenied");
+      default:
+        return fallback;
+    }
+  };
+
+  // -- Quotation line editor -------------------------------------------------
+  const linesEl = document.getElementById("quotation-lines");
+  const lineTemplate = document.getElementById(
+    "quotation-line-template"
+  ) as HTMLTemplateElement | null;
+
+  function addLine(productId?: string, quantity?: number): void {
+    if (!linesEl || !lineTemplate) return;
+    const fragment = lineTemplate.content.cloneNode(true) as DocumentFragment;
+    const row = fragment.querySelector<HTMLElement>(".quotation-line");
+    const select = fragment.querySelector<HTMLSelectElement>(
+      ".quotation-line-product"
+    );
+    const qty = fragment.querySelector<HTMLInputElement>(".quotation-line-qty");
+    if (!row || !select || !qty) return;
+    if (productId) select.value = productId;
+    if (quantity) qty.value = String(quantity);
+    fragment
+      .querySelector<HTMLButtonElement>(".quotation-line-remove")
+      ?.addEventListener("click", () => row.remove());
+    linesEl.appendChild(fragment);
+  }
+  function readLines(): { productId: string; quantity: number }[] {
+    return Array.from(
+      linesEl?.querySelectorAll<HTMLElement>(".quotation-line") ?? []
+    ).map((row) => ({
+      productId:
+        row.querySelector<HTMLSelectElement>(".quotation-line-product")
+          ?.value ?? "",
+      quantity: Number(
+        row.querySelector<HTMLInputElement>(".quotation-line-qty")?.value ?? "1"
+      )
+    }));
+  }
+  if (linesEl) addLine();
+  document
+    .getElementById("quotation-add-line")
+    ?.addEventListener("click", () => addLine());
+
+  const revisingEl = document.getElementById(
+    "quotation-id"
+  ) as HTMLInputElement | null;
+  document.getElementById("quotation-reset")?.addEventListener("click", () => {
+    window.location.reload();
+  });
+
+  onSubmit("quotation-form", ({ data, submit }) => {
+    quotationError.clear();
+    const lines = readLines().filter((line) => line.productId !== "");
+    if (lines.length === 0) {
+      quotationError.show(msg("msgNoLines"));
+      return Promise.resolve();
+    }
+    const validDays = Number(field(data, "validDays"));
+    const validUntil = new Date(
+      Date.now() + validDays * 86_400_000
+    ).toISOString();
+    const notes = field(data, "notes").trim();
+    const revising = revisingEl?.value ?? "";
+    return (async () => {
+      if (submit) submit.disabled = true;
+      const result = revising
+        ? await sendJson(
+            "POST",
+            `/api/v1/commerce/quotations/${revising}/versions`,
+            { lines, validUntil, notes: notes === "" ? null : notes },
+            idempotency()
+          )
+        : await sendJson(
+            "POST",
+            "/api/v1/commerce/quotations",
+            {
+              customer: {
+                name: field(data, "customerName").trim(),
+                phone: field(data, "customerPhone").trim()
+              },
+              lines,
+              validUntil,
+              notes: notes === "" ? null : notes
+            },
+            idempotency()
+          );
+      if (result.ok) {
+        window.location.reload();
+        return;
+      }
+      if (submit) submit.disabled = false;
+      quotationError.show(code(result, msg("msgFailed")));
+    })();
+  });
+
+  onAction(".quotation-revise", async (button) => {
+    const id = button.dataset.id;
+    if (!id || !revisingEl) return;
+    quotationError.clear();
+    const response = await fetch(`/api/v1/commerce/quotations/${id}`, {
+      credentials: "same-origin"
+    });
+    const payload = (await response.json().catch(() => null)) as {
+      success?: boolean;
+      data?: {
+        versions?: {
+          version: number;
+          lines: { productId: string; quantity: number }[];
+          notes: string | null;
+        }[];
+        customerName?: string | null;
+      };
+    } | null;
+    const versions = payload?.data?.versions;
+    const current = versions?.[versions.length - 1];
+    if (!response.ok || !payload?.success || !current) {
+      quotationError.show(msg("msgFailed"));
+      return;
+    }
+    revisingEl.value = id;
+    if (linesEl) linesEl.textContent = "";
+    for (const line of current.lines) addLine(line.productId, line.quantity);
+    // The customer is fixed at creation; the revision form hides those inputs.
+    for (const name of [
+      "quotation-customer-name",
+      "quotation-customer-phone"
+    ]) {
+      const input = document.getElementById(name) as HTMLInputElement | null;
+      if (input) {
+        input.required = false;
+        input.closest("label")?.setAttribute("hidden", "");
+      }
+    }
+    const notesEl = document.getElementById(
+      "quotation-notes"
+    ) as HTMLTextAreaElement | null;
+    if (notesEl) notesEl.value = current.notes ?? "";
+    document.getElementById("quotation-reset")?.removeAttribute("hidden");
+    document
+      .getElementById("quotation-form")
+      ?.scrollIntoView({ block: "start" });
+  });
+
+  onAction(".quotation-action", async (button) => {
+    const id = button.dataset.id;
+    const action = button.dataset.action;
+    if (!id || !action) return;
+    quotationError.clear();
+    if (button.dataset.confirmTitle) {
+      const confirmed = await confirmFromTrigger(button);
+      if (!confirmed) return;
+    }
+    button.disabled = true;
+    const result = await sendJson(
+      "POST",
+      `/api/v1/commerce/quotations/${id}/actions/${action}`,
+      {},
+      idempotency()
+    );
+    if (result.ok) {
+      window.location.reload();
+      return;
+    }
+    button.disabled = false;
+    quotationError.show(code(result, msg("msgFailed")));
+  });
+
+  onAction(".quotation-convert", async (button) => {
+    const id = button.dataset.id;
+    if (!id) return;
+    quotationError.clear();
+    const confirmed = await confirmFromTrigger(button);
+    if (!confirmed) return;
+    button.disabled = true;
+    const result = await sendJson(
+      "POST",
+      `/api/v1/commerce/quotations/${id}/convert`,
+      button.dataset.acceptPrice === "true" ? { acceptPriceChange: true } : {},
+      idempotency()
+    );
+    if (result.ok) {
+      window.location.reload();
+      return;
+    }
+    button.disabled = false;
+    if (result.errorCode === "QUOTATION_PRICE_CHANGED") {
+      // The next press accepts the CURRENT price (the server compared totals).
+      button.dataset.acceptPrice = "true";
+      quotationError.show(msg("msgPriceChanged"));
+      return;
+    }
+    quotationError.show(code(result, msg("msgFailed")));
+  });
+
+  // -- Work orders -----------------------------------------------------------
+  onSubmit("work-order-form", ({ data, submit }) => {
+    workOrderError.clear();
+    const description = field(data, "description").trim();
+    const quotationId = field(data, "quotationId").trim();
+    return (async () => {
+      if (submit) submit.disabled = true;
+      const result = await sendJson(
+        "POST",
+        "/api/v1/commerce/work-orders",
+        {
+          title: field(data, "title").trim(),
+          description: description === "" ? null : description,
+          priority: field(data, "priority"),
+          quotationId: quotationId === "" ? null : quotationId
+        },
+        idempotency()
+      );
+      if (result.ok) {
+        window.location.reload();
+        return;
+      }
+      if (submit) submit.disabled = false;
+      workOrderError.show(
+        result.errorCode === "VALIDATION_ERROR"
+          ? msg("msgReference")
+          : code(result, msg("msgFailed"))
+      );
+    })();
+  });
+
+  onAction(".work-order-move", async (button) => {
+    const id = button.dataset.id;
+    if (!id) return;
+    workOrderError.clear();
+    const select =
+      button.parentElement?.querySelector<HTMLSelectElement>(
+        ".work-order-next"
+      );
+    if (!select) return;
+    button.disabled = true;
+    const result = await sendJson(
+      "PATCH",
+      `/api/v1/commerce/work-orders/${id}`,
+      { status: select.value },
+      idempotency()
+    );
+    if (result.ok) {
+      window.location.reload();
+      return;
+    }
+    button.disabled = false;
+    workOrderError.show(code(result, msg("msgFailed")));
+  });
+
+  // -- Documents -------------------------------------------------------------
+  onSubmit("document-form", ({ data, submit }) => {
+    documentError.clear();
+    const orderId = field(data, "orderId");
+    if (orderId === "") {
+      documentError.show(msg("msgBadOrder"));
+      return Promise.resolve();
+    }
+    return (async () => {
+      if (submit) submit.disabled = true;
+      const result = await sendJson(
+        "POST",
+        "/api/v1/commerce/documents",
+        { orderId, docType: field(data, "docType") },
+        idempotency()
+      );
+      if (result.ok) {
+        window.location.reload();
+        return;
+      }
+      if (submit) submit.disabled = false;
+      documentError.show(code(result, msg("msgFailed")));
+    })();
+  });
+
+  // -- Held sales ------------------------------------------------------------
+  onAction(".held-discard", async (button) => {
+    const id = button.dataset.id;
+    if (!id) return;
+    heldError.clear();
+    const confirmed = await confirmFromTrigger(button);
+    if (!confirmed) return;
+    button.disabled = true;
+    const result = await sendJson(
+      "POST",
+      `/api/v1/commerce/held-sales/${id}/discard`,
+      {},
+      idempotency()
+    );
+    if (result.ok) {
+      window.location.reload();
+      return;
+    }
+    button.disabled = false;
+    heldError.show(code(result, msg("msgFailed")));
+  });
+</script>

@@ -446,6 +446,63 @@ export const COMMERCE_REGISTER_CORRECTION_PERMISSIONS = {
 } as const;
 
 /**
+ * The commerce document lifecycle (Issue #286, ADR-0029): held sales,
+ * quotations, quotation->order conversion, work orders and numbered
+ * receipt/invoice documents. Five activity codes, thirteen permissions, each
+ * with its own enforcing route, NONE implied by `commerce.pos.create` or by
+ * each other - holding a cart, quoting, creating an order from a quote,
+ * running a job and issuing a legal document are five different authorities.
+ * Existing `AccessAction` verbs only; the upstream-owned union is not widened:
+ *
+ *   - `held_sales`: `read`/`create`/`update` act on the caller's OWN carts;
+ *     `approve` (high-risk, so a tenant may author SoD rules against it) lets a
+ *     supervisor see, resume or discard another cashier's.
+ *   - `quotations`: `read`; `create` (new quotation or revision); `update`
+ *     (send / accept / reject / cancel).
+ *   - `quotation_conversions`: `create` - it creates an order, so it is its
+ *     own key (and the handler additionally requires `commerce.pos_due.create`,
+ *     because a conversion leaves the order with a balance due).
+ *   - `work_orders`: `read` / `create` / `update` (status moves, reassignment).
+ *   - `documents`: `read` (list, read, render/print); `create` (ISSUE - a
+ *     numbered, irreversible act).
+ */
+export const COMMERCE_HELD_SALES_ACTIVITY_CODE = "held_sales";
+export const COMMERCE_QUOTATIONS_ACTIVITY_CODE = "quotations";
+export const COMMERCE_QUOTATION_CONVERSIONS_ACTIVITY_CODE =
+  "quotation_conversions";
+export const COMMERCE_WORK_ORDERS_ACTIVITY_CODE = "work_orders";
+export const COMMERCE_DOCUMENTS_ACTIVITY_CODE = "documents";
+
+export const COMMERCE_HELD_SALE_PERMISSIONS = {
+  read: "commerce.held_sales.read",
+  create: "commerce.held_sales.create",
+  update: "commerce.held_sales.update",
+  /** Supervisor override: another cashier's held sale. */
+  approve: "commerce.held_sales.approve"
+} as const;
+
+export const COMMERCE_QUOTATION_PERMISSIONS = {
+  read: "commerce.quotations.read",
+  create: "commerce.quotations.create",
+  update: "commerce.quotations.update"
+} as const;
+
+export const COMMERCE_QUOTATION_CONVERSION_PERMISSIONS = {
+  create: "commerce.quotation_conversions.create"
+} as const;
+
+export const COMMERCE_WORK_ORDER_PERMISSIONS = {
+  read: "commerce.work_orders.read",
+  create: "commerce.work_orders.create",
+  update: "commerce.work_orders.update"
+} as const;
+
+export const COMMERCE_DOCUMENT_PERMISSIONS = {
+  read: "commerce.documents.read",
+  create: "commerce.documents.create"
+} as const;
+
+/**
  * Loyalty points ledger (Issue #289, ADR-0026 D9). Four permissions on three
  * activity codes — NOT `commerce.loyalty.adjust`/`.redeem`: the
  * `AccessAction` union (identity-access, upstream-owned) has no

@@ -297,6 +297,27 @@ A same-key/same-body repeat of `redeem`/`adjust` replays the stored `201`; same 
 }
 ```
 
+## Owner API: held sales, quotations, work orders, documents (issue #286, epic #281, [ADR-0029](adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md))
+
+Every route below is behind the tenant's `documents` feature flag (default OFF — `409 FEATURE_DISABLED`), requires a bearer/cookie session, and — for every mutation — an **`Idempotency-Key`** header (`400 IDEMPOTENCY_REQUIRED`; same key + same body replays the stored answer, same key + different body is `409 IDEMPOTENCY_CONFLICT`). An unknown id, a malformed id and another tenant's id are the same neutral `404`. Permission keys are resource-split and none is implied by `commerce.pos.create`; the contract is `openapi/modules/commerce.openapi.yaml`.
+
+| Method | Path | Notes |
+| --- | --- | --- |
+| `GET`/`POST` | `/api/v1/commerce/held-sales` | `held_sales.read` / `.create`. `GET` lists the caller's own parked carts (`?status=`, `?scope=all` needs `held_sales.approve`); `POST` parks lines (no prices; `ttlHours` default 24, max 168; at most 50 active per cashier — `409 HELD_SALE_LIMIT`). No stock is reserved |
+| `POST` | `/api/v1/commerce/held-sales/{id}/resume` · `/discard` | `held_sales.update`; another cashier's cart is a `404` unless the caller also holds `held_sales.approve`. Resume is single-use and returns the cart's lines; `409 HELD_SALE_EXPIRED` / `HELD_SALE_NOT_HELD` |
+| `GET`/`POST` | `/api/v1/commerce/quotations` | `quotations.read` / `.create`. `POST { customer: { name, phone }, lines, validUntil?, notes? }` prices the lines server-side and freezes version 1; `409 CART_CHANGED` if a line cannot be priced |
+| `GET` | `/api/v1/commerce/quotations/{id}` | `quotations.read` — header plus every version (lines, totals, validity, pricing context, content hash) |
+| `POST` | `/api/v1/commerce/quotations/{id}/versions` | `quotations.create` — a revision (version N+1, back to `draft`); `409 QUOTATION_NOT_REVISABLE` |
+| `POST` | `/api/v1/commerce/quotations/{id}/actions/{send,accept,reject,cancel}` | `quotations.update`; `accept` pins the current version — `409 QUOTATION_EXPIRED` after its validity, `409 QUOTATION_STATUS_CONFLICT` for an illegal move |
+| `POST` | `/api/v1/commerce/quotations/{id}/convert` | `quotation_conversions.create` **and** `pos_due.create`; needs the `pos` feature. Creates the order through the POS path with the balance due; `409 QUOTATION_PRICE_CHANGED` (`quotedTotal`, `currentTotal`) unless `acceptPriceChange: true`; a retry or an already converted quotation answers `200` with the same order (`alreadyConverted`) |
+| `GET`/`POST` | `/api/v1/commerce/work-orders` | `work_orders.read` / `.create` — optionally `quotationId` (must be accepted) and `orderId`; an unknown or foreign reference is `400 VALIDATION_ERROR` |
+| `GET`/`PATCH` | `/api/v1/commerce/work-orders/{id}` | `work_orders.read` / `.update` — `PATCH { status?, note?, assigneeTenantUserId?, dueAt?, priority? }`; `409 WORK_ORDER_TRANSITION_ILLEGAL` / `WORK_ORDER_CLOSED` |
+| `GET`/`POST` | `/api/v1/commerce/documents` | `documents.read` / `.create`. `POST { orderId, docType: receipt \| invoice }` issues the next numbered snapshot (`201`), or returns the existing one (`200`, `alreadyIssued`); `409 ORDER_NOT_PAID` / `ORDER_NOT_FINAL` |
+| `GET` | `/api/v1/commerce/documents/{id}` | `documents.read` — the stored snapshot and hash |
+| `GET` | `/api/v1/commerce/documents/{id}/render?format=json\|text\|html&locale=id\|en` | `documents.read` — the render contract: a pure function of the stored snapshot (hash re-verified, `409 DOCUMENT_INTEGRITY_FAILURE`); `html` carries `Content-Security-Policy: default-src 'none'`, `nosniff`, `no-store`; every render is audited |
+
+Events: `awcms.commerce.quotation.accepted`, `awcms.commerce.quotation.converted` (the conversion's provenance), `awcms.commerce.work_order.status_changed`, `awcms.commerce.document.issued`. Thirteen permission keys: `commerce.held_sales.{read,create,update,approve}`, `commerce.quotations.{read,create,update}`, `commerce.quotation_conversions.create`, `commerce.work_orders.{read,create,update}`, `commerce.documents.{read,create}`.
+
 ## Authorization: 39 owner permissions (plus the increment-5 keys, since #285 `commerce.payments.{read,create,revoke}` and `commerce.pos_due.create`, and since #284 ten register keys: `commerce.registers.{read,create,update}`, `commerce.register_sessions.{read,create,update,export}`, `commerce.register_cash_ups.{create,approve}`, `commerce.register_corrections.approve`)
 
 The `commerce` module declares 39 permission keys in total (10 + 22 + 7 below), grouped by the same three areas as its tables — a count too large for this document's own "spelled number matches a counted set" convention (`bun run audit:dokumen`'s linked-count check only recognises spelled numbers one through twenty), so it is stated here as a numeral instead of inside a guarded block.

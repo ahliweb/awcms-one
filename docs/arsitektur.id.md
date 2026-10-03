@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](arsitektur.md)
 
-<!-- i18n-source-hash: sha256:cbf2f3a7416fc6b44c58b4833023f6c6dd6fb82c43dc6039f26f53480898ad52 -->
+<!-- i18n-source-hash: sha256:d330124b6257bbbcdb773ea5ba4de5e1c2d4fb63acd8170d596077e8147d359e -->
 
 # Arsitektur
 
@@ -193,6 +193,15 @@ Loyalitas berada di dalam `commerce` dan tidak menyentuh kode order, POS, peneta
 ## Shift adalah turunan atas ledger (issue #284, [ADR-0028](adr/0028-pos-register-sessions-and-cash-up.md))
 
 Tutup kas tidak menyimpan total sendiri. Jumlah penutupan yang seharusnya per tender adalah jumlah atas baris yang sudah ada dan tidak dapat diedit — leg ledger alokasi pembayaran yang distempel dengan sesi, ditambah mutasi laci append-only sesi itu — dihitung di bawah kunci baris sesi dan di-snapshot sekali pada baris penutupan. Stempellah yang membuatnya persis (jendela waktu atas `created_at` tidak: timestamp sebuah leg adalah awal transaksinya). Baris sesi membawa tiga mode kunci — `FOR SHARE` untuk penjualan, mutasi, dan leg yang distempel (banyak sekaligus), `FOR NO KEY UPDATE` untuk serah terima, penutupan, persetujuan, dan koreksi (eksklusif, namun kompatibel dengan `FOR KEY SHARE` yang diambil insert FK, pelajaran ADR-0025 D4) — ditambah indeks unik parsial dan kunci baris register untuk "satu sesi aktif per register". Sesi yang sudah ditutup dibekukan trigger; koreksi adalah baris kompensasi; alur penutupan (`open → closing → closed | open`, `closed → corrected`) tidak pernah menulis ulang penjualan atau pembayaran. Dengan fitur `register` mati (default) tidak ada satu pun dari ini di jalur penjualan.
+
+## Dokumen adalah snapshot, nomor adalah penghitung yang terikat transaksi (issue #286, [ADR-0029](adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md))
+
+Empat gagasan menjaga siklus dokumen agar tidak menjadi buku penjualan kedua.
+
+1. **Satu otoritas uang.** Penjualan tertahan menyimpan baris tanpa harga; versi penawaran menyimpan apa yang *ditawarkan*; perintah kerja tidak menyimpan uang; hanya pesanan dan ledger pembayarannya (ADR-0025) yang merupakan penjualan. Kolom uang dokumen adalah salinan, dan trigger `BEFORE INSERT` menolak dokumen yang `subtotal`, `discount`, `shipping_cost`, `insurance_fee`, `tax`, atau `total`-nya berbeda dari pesanannya. Penawaran dikonversi dengan memanggil `createPosOrder` sendiri — fungsi yang sama dengan yang dipakai kasir — dengan `allowDue` dan tanpa tender.
+2. **Nomor adalah penghitung yang dinaikkan dalam transaksi yang sama dengan baris pembawanya.** `application/document-numbering.ts` menjalankan satu `INSERT … ON CONFLICT DO UPDATE … RETURNING` pada `awcms_commerce_document_sequences (tenant_id, doc_type, period)`; kunci baris dipegang sampai commit, sehingga alokasi bersamaan mengantre dan mendapat nomor berurutan, dan rollback mengembalikan nomornya. Dua aturan membuatnya benar: alokasikan **paling akhir** (tidak ada langkah yang dapat gagal antara alokasi dan insert), dan jangan pernah *mengembalikan* respons gagal setelah mengalokasikan — `409` yang dikembalikan tetap meng-commit transaksi, hanya error yang dilempar yang me-rollback.
+3. **Savepoint adalah satu-satunya cara membatalkan pekerjaan sambil tetap menjawab dengan sopan.** `defineTenantRoute` melakukan commit kecuali handler melempar error. Konversi harus membuat pesanan, membandingkan totalnya dengan yang ditawarkan, dan membatalkan pesanan bila berbeda *sambil menjawab `409`* — maka ia berjalan di dalam `tx.savepoint(...)` dan mengubah error harga yang dilempar menjadi sebuah hasil. Apa pun yang tidak boleh tersimpan namun tetap harus menghasilkan respons memakai bentuk ini.
+4. **Render adalah fungsi murni dari snapshot tersimpan yang di-hash.** `domain/documents.ts` merender json / text / html dari `awcms_commerce_documents.snapshot`; rute memverifikasi ulang `content_hash` (SHA-256 dari JSON kanonik) sebelum merender dan mengaudit setiap render. Mencetak ulang karena itu tidak dapat mengubah apa pun, dan snapshot yang dirusak ditolak, bukan dicetak. Kanal pengiriman akan mengonsumsi kontrak ini, bukan merender ulang.
 
 ## Satu hal lagi yang dilakukan server: memperbaiki halaman yang terbayangi
 

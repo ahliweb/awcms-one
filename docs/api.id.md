@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:66b36c51219e3d5631054d61261b33a9c8c789ff03747335a148e2dcf66cabf1 -->
+<!-- i18n-source-hash: sha256:3f0375d8885fcb60f6c1aeb82a8a89c504fcf3db92c69cdc2ec8e1ec112d57bf -->
 
 # API
 
@@ -298,6 +298,27 @@ Pengulangan `redeem`/`adjust` dengan kunci dan body yang sama me-replay `201` ya
   expiresAt: string | null, paidAt/shippedAt/completedAt/cancelledAt: string | null
 }
 ```
+
+## API pemilik: penjualan tertahan, penawaran, perintah kerja, dokumen (issue #286, epik #281, [ADR-0029](adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md))
+
+Setiap rute di bawah berada di balik feature flag `documents` milik tenant (bawaan MATI — `409 FEATURE_DISABLED`), membutuhkan sesi bearer/cookie, dan — untuk setiap mutasi — header **`Idempotency-Key`** (`400 IDEMPOTENCY_REQUIRED`; kunci sama + body sama memutar ulang jawaban tersimpan, kunci sama + body berbeda adalah `409 IDEMPOTENCY_CONFLICT`). Id yang tidak dikenal, id yang salah format, dan id milik tenant lain adalah `404` netral yang sama. Kunci izin dipisah per sumber daya dan tidak ada yang tersirat dari `commerce.pos.create`; kontraknya adalah `openapi/modules/commerce.openapi.yaml`.
+
+| Metode | Path | Catatan |
+| --- | --- | --- |
+| `GET`/`POST` | `/api/v1/commerce/held-sales` | `held_sales.read` / `.create`. `GET` mendaftar keranjang tertahan milik pemanggil (`?status=`, `?scope=all` butuh `held_sales.approve`); `POST` memarkir baris (tanpa harga; `ttlHours` bawaan 24, maks 168; paling banyak 50 aktif per kasir — `409 HELD_SALE_LIMIT`). Stok tidak dicadangkan |
+| `POST` | `/api/v1/commerce/held-sales/{id}/resume` · `/discard` | `held_sales.update`; keranjang kasir lain adalah `404` kecuali pemanggil juga memegang `held_sales.approve`. Resume sekali pakai dan mengembalikan baris keranjang; `409 HELD_SALE_EXPIRED` / `HELD_SALE_NOT_HELD` |
+| `GET`/`POST` | `/api/v1/commerce/quotations` | `quotations.read` / `.create`. `POST { customer: { name, phone }, lines, validUntil?, notes? }` menghargai baris di sisi server dan membekukan versi 1; `409 CART_CHANGED` bila sebuah baris tidak dapat dihargai |
+| `GET` | `/api/v1/commerce/quotations/{id}` | `quotations.read` — header ditambah setiap versi (baris, total, masa berlaku, konteks harga, hash konten) |
+| `POST` | `/api/v1/commerce/quotations/{id}/versions` | `quotations.create` — revisi (versi N+1, kembali ke `draft`); `409 QUOTATION_NOT_REVISABLE` |
+| `POST` | `/api/v1/commerce/quotations/{id}/actions/{send,accept,reject,cancel}` | `quotations.update`; `accept` menyematkan versi saat ini — `409 QUOTATION_EXPIRED` setelah masa berlakunya, `409 QUOTATION_STATUS_CONFLICT` untuk perpindahan tidak sah |
+| `POST` | `/api/v1/commerce/quotations/{id}/convert` | `quotation_conversions.create` **dan** `pos_due.create`; butuh fitur `pos`. Membuat pesanan lewat jalur POS dengan sisa tagihan terutang; `409 QUOTATION_PRICE_CHANGED` (`quotedTotal`, `currentTotal`) kecuali `acceptPriceChange: true`; ulangan atau penawaran yang sudah dikonversi menjawab `200` dengan pesanan yang sama (`alreadyConverted`) |
+| `GET`/`POST` | `/api/v1/commerce/work-orders` | `work_orders.read` / `.create` — opsional `quotationId` (harus diterima) dan `orderId`; referensi tidak dikenal atau asing adalah `400 VALIDATION_ERROR` |
+| `GET`/`PATCH` | `/api/v1/commerce/work-orders/{id}` | `work_orders.read` / `.update` — `PATCH { status?, note?, assigneeTenantUserId?, dueAt?, priority? }`; `409 WORK_ORDER_TRANSITION_ILLEGAL` / `WORK_ORDER_CLOSED` |
+| `GET`/`POST` | `/api/v1/commerce/documents` | `documents.read` / `.create`. `POST { orderId, docType: receipt \| invoice }` menerbitkan snapshot bernomor berikutnya (`201`), atau mengembalikan yang sudah ada (`200`, `alreadyIssued`); `409 ORDER_NOT_PAID` / `ORDER_NOT_FINAL` |
+| `GET` | `/api/v1/commerce/documents/{id}` | `documents.read` — snapshot tersimpan dan hash-nya |
+| `GET` | `/api/v1/commerce/documents/{id}/render?format=json\|text\|html&locale=id\|en` | `documents.read` — kontrak render: fungsi murni dari snapshot tersimpan (hash diverifikasi ulang, `409 DOCUMENT_INTEGRITY_FAILURE`); `html` membawa `Content-Security-Policy: default-src 'none'`, `nosniff`, `no-store`; setiap render diaudit |
+
+Event: `awcms.commerce.quotation.accepted`, `awcms.commerce.quotation.converted` (asal-usul konversi), `awcms.commerce.work_order.status_changed`, `awcms.commerce.document.issued`. Tiga belas kunci izin: `commerce.held_sales.{read,create,update,approve}`, `commerce.quotations.{read,create,update}`, `commerce.quotation_conversions.create`, `commerce.work_orders.{read,create,update}`, `commerce.documents.{read,create}`.
 
 ## Otorisasi: 39 izin owner (ditambah kunci increment-5, sejak #285 `commerce.payments.{read,create,revoke}` dan `commerce.pos_due.create`, dan sejak #284 sepuluh kunci register: `commerce.registers.{read,create,update}`, `commerce.register_sessions.{read,create,update,export}`, `commerce.register_cash_ups.{create,approve}`, `commerce.register_corrections.approve`)
 

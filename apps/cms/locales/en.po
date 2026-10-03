@@ -9073,3 +9073,281 @@ msgstr ""
 
 msgid "Close attempts"
 msgstr ""
+
+msgid "A cancelled or expired order cannot be documented."
+msgstr ""
+
+msgid "A cancelled quotation cannot be offered or converted again."
+msgstr ""
+
+msgid "Accept"
+msgstr ""
+
+msgid "A completed or cancelled work order cannot change."
+msgstr ""
+
+msgid "Add at least one product line."
+msgstr ""
+
+msgid "Add line"
+msgstr ""
+
+msgid "A linked record could not be found. Check the quotation or order."
+msgstr ""
+
+msgid "An order will be created at the current price, with the balance due."
+msgstr ""
+
+msgid "A numbered document is a permanent copy of the order. It cannot be edited or deleted."
+msgstr ""
+
+msgid "A receipt needs a fully paid order."
+msgstr ""
+
+msgid "Cancel quotation"
+msgstr ""
+
+msgid "Cancel revision"
+msgstr ""
+
+msgid "Cancel this quotation?"
+msgstr ""
+
+msgid "Choose an order"
+msgstr ""
+
+msgid "Choose an order."
+msgstr ""
+
+msgid "Convert"
+msgstr ""
+
+msgid "Converted to order"
+msgstr ""
+
+msgid "Converting needs an open register session; open one in the POS first."
+msgstr ""
+
+msgid "Convert to an order?"
+msgstr ""
+
+msgid "Convert to order"
+msgstr ""
+
+msgid "Could not hold the sale. Please try again."
+msgstr ""
+
+msgid "Could not resume the held sale. Please try again."
+msgstr ""
+
+msgid "Create work order"
+msgstr ""
+
+msgid "Customer name"
+msgstr ""
+
+msgid "Discard"
+msgstr ""
+
+msgid "Discarded"
+msgstr ""
+
+msgid "Discard this held sale?"
+msgstr ""
+
+msgid "Documents could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Document sections"
+msgstr ""
+
+msgid "Document type"
+msgstr ""
+
+msgid "From accepted quotation (optional id)"
+msgstr ""
+
+msgid "Held sales"
+msgstr ""
+
+msgid "Hold sale"
+msgstr ""
+
+msgid "Invoice"
+msgstr ""
+
+msgid "Issue a document"
+msgstr ""
+
+msgid "Issued"
+msgstr ""
+
+msgid "Issue document"
+msgstr ""
+
+msgid "Move"
+msgstr ""
+
+msgid "Move to status"
+msgstr ""
+
+msgid "New quotation"
+msgstr ""
+
+msgid "New work order"
+msgstr ""
+
+msgid "No documents yet"
+msgstr ""
+
+msgid "No held sales"
+msgstr ""
+
+msgid "No quotations yet"
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+msgid "No work orders yet"
+msgstr ""
+
+msgid "Number"
+msgstr ""
+
+msgid "Older documents"
+msgstr ""
+
+msgid "Older held sales"
+msgstr ""
+
+msgid "Older quotations"
+msgstr ""
+
+msgid "Older work orders"
+msgstr ""
+
+msgid "One or more lines cannot be priced right now; check the products and quantities."
+msgstr ""
+
+msgid "On hold"
+msgstr ""
+
+msgid "Only an accepted quotation can be converted into an order."
+msgstr ""
+
+msgid "Parked carts keep no prices and reserve no stock. Resume one from the POS screen."
+msgstr ""
+
+msgid "Plain text"
+msgstr ""
+
+msgid "Print view"
+msgstr ""
+
+msgid "Quotations"
+msgstr ""
+
+msgid "Quotations, work orders and documents are turned off for this store."
+msgstr ""
+
+msgid "Quotations, work orders, receipts and invoices, and parked POS sales."
+msgstr ""
+
+msgid "Ready"
+msgstr ""
+
+msgid "Receipts and invoices"
+msgstr ""
+
+msgid "Reject this quotation?"
+msgstr ""
+
+msgid "Resumed"
+msgstr ""
+
+msgid "Resume held sale"
+msgstr ""
+
+msgid "Revise"
+msgstr ""
+
+msgid "Save quotation"
+msgstr ""
+
+msgid "Send"
+msgstr ""
+
+msgid "That action is not allowed in the current status."
+msgstr ""
+
+msgid "That did not work. Please try again."
+msgstr ""
+
+msgid "That held sale has expired."
+msgstr ""
+
+msgid "That held sale was already resumed or discarded."
+msgstr ""
+
+msgid "That status change is not allowed from the current status."
+msgstr ""
+
+msgid "The current price differs from the quoted price. Press Convert again to accept the current price."
+msgstr ""
+
+msgid "The customer declined this offer. It cannot be accepted afterwards."
+msgstr ""
+
+msgid "The parked cart is deleted and cannot be resumed."
+msgstr ""
+
+msgid "The quotation's validity period has passed; revise it to offer again."
+msgstr ""
+
+msgid "Too many parked sales; resume or discard some first."
+msgstr ""
+
+msgid "Urgent"
+msgstr ""
+
+msgid "Valid for (days)"
+msgstr ""
+
+msgid "Valid until"
+msgstr ""
+
+msgid "View order"
+msgstr ""
+
+msgid "Work orders"
+msgstr ""
+
+msgid "You do not have permission to view documents."
+msgstr ""
+
+msgid "You need the permission to sell on credit to convert a quotation."
+msgstr ""
+
+msgid "{count} document"
+msgid_plural "{count} documents"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} held sale"
+msgid_plural "{count} held sales"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} quotation"
+msgid_plural "{count} quotations"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} work order"
+msgid_plural "{count} work orders"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Quotations, work orders and documents"
+msgstr ""

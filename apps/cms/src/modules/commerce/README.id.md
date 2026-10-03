@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:887805449216f5914d788f973968928f9025a5b3f0badc39a6bb3da20a1e41d9 -->
+<!-- i18n-source-hash: sha256:edf575eabed4df55420b7a410230b5601503f9f3f026745d309f038381c6696d -->
 
 # `commerce`
 
@@ -1319,6 +1319,18 @@ Enam tabel (`sql/970`: `awcms_commerce_registers`, `…_register_sessions`, `…
 - **Event.** `awcms.commerce.register_session.{opened,movement_recorded,closed,corrected}` pada agregat `commerce.register_session`; audit `register.*` / `register_session.*` (uang, tipe, id — tidak pernah teks bebas).
 - **Layar.** `/admin/commerce-registers`, `/admin/commerce-registers/[id]`, banner register di `/admin/commerce-pos` (lihat panduan cms di root awcms-one, [panduan modul commerce](../../../../../docs/cms.id.md)).
 - **Ditunda.** Domain pengeluaran (#294) dan referensi bertipe pada mutasi pengeluaran (`reference_kind` adalah kaitnya), angka "dicatat setelah penutupan" untuk aktivitas ledger terlambat, ambang per register, pemilih kasir untuk serah terima — lihat [ADR-0028](../../../../../docs/adr/0028-pos-register-sessions-and-cash-up.md).
+
+## Siklus dokumen: penjualan tertahan, penawaran, perintah kerja, struk, dan faktur — SUDAH DIIMPLEMENTASIKAN (Issue #286, epik #281 — [ADR-0029](../../../../../docs/adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.id.md))
+
+Tujuh tabel (`sql/980`: `awcms_commerce_document_sequences`, `…_held_sales`, `…_quotations`, `…_quotation_versions`, `…_work_orders`, `…_work_order_events`, `…_documents`), tiga belas izin (`sql/981`), hak hapus untuk worker retensi (`sql/982`). Tidak ada kolom yang ditambahkan ke tabel yang sudah ada.
+
+- **Di mana kodenya.** `domain/documents.ts` (kosakata, mesin status, validator, format penomoran, JSON kanonik + SHA-256, perbandingan sen yang tepat, kontrak render json/text/html — murni), `domain/documents-lifecycle.ts` (deskriptor `dataLifecycle` dan `subjectData`), `application/document-numbering.ts` (pengalokasi tanpa celah satu pernyataan), `application/held-sale-directory.ts`, `application/quotation-directory.ts` (buat / revisi / aksi / konversi), `application/work-order-directory.ts`, `application/document-directory.ts` (terbitkan / daftar / render), `application/documents-http.ts` (gerbang fitur dan pemeriksaan supervisor malas yang dipakai tiga belas rute).
+- **Aturan yang harus dijaga perubahan.** Satu otoritas uang: uang dokumen adalah salinan yang diverifikasi trigger, penawaran dikonversi dengan memanggil `createPosOrder`, tidak pernah dengan menulis pesanan. Alokasikan nomor **paling akhir**, dan jangan pernah mengembalikan _respons_ gagal setelah mengalokasikan (`409` yang dikembalikan di-commit; hanya lemparan yang me-rollback) — batalkan-lalu-jawab memakai savepoint (`convertQuotation`). Versi penawaran, event perintah kerja, dan dokumen bersifat append-only: revisi atau koreksi adalah baris baru. Penjualan tertahan tidak mencadangkan stok dan tidak menyimpan harga. Id asing adalah `404` netral. Jangan pernah menyunting `awcms_commerce_document_sequences` dengan tangan.
+- **Feature flag.** `features.documents` bawaannya MATI (flag kedua yang demikian, setelah `register`): rute pemilik menjawab `409 FEATURE_DISABLED` dan entri sidebar disembunyikan.
+- **Izin.** `commerce.held_sales.{read,create,update,approve}`, `commerce.quotations.{read,create,update}`, `commerce.quotation_conversions.create`, `commerce.work_orders.{read,create,update}`, `commerce.documents.{read,create}` — hanya kata kerja `AccessAction` yang sudah ada; konversi juga membutuhkan `commerce.pos_due.create`.
+- **Event.** `awcms.commerce.quotation.{accepted,converted}`, `awcms.commerce.work_order.status_changed`, `awcms.commerce.document.issued`; audit `held_sale.*`, `quotation.*`, `work_order.*`, `document.*` (id, nomor, status, jumlah — tidak pernah teks bebas).
+- **Layar.** `/admin/commerce-documents` (empat tab) dan kontrol tahan / lanjutkan pada `/admin/commerce-pos` (lihat panduan cms di akar awcms-one, [panduan modul commerce](../../../../../docs/cms.id.md)).
+- **Ditunda.** Faktur piutang (AR) dan nota kredit, pembatalan atau penggantian dokumen, struk per pembayaran, pengiriman digital dan PDF, tahun penomoran menurut zona waktu tenant, pemilih varian pada editor penawaran, referensi booking pada perintah kerja — lihat [ADR-0029](../../../../../docs/adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.id.md).
 
 ## Buku besar poin loyalitas — SUDAH DIIMPLEMENTASIKAN (Issue #289, epic #281 — ADR-0026)
 
