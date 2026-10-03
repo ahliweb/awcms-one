@@ -1,7 +1,7 @@
 ---
 /**
  * Gift cards and store credit - closed-loop stored value (Issue #288, epic
- * #281, ADR-0029). One screen, five panels, each gated on its OWN permission
+ * #281, ADR-0030). One screen, five panels, each gated on its OWN permission
  * (the page's entry permission is `commerce.stored_value.read`):
  *
  *   1. headline figures - what is outstanding (owed to cardholders), of which
@@ -24,7 +24,7 @@
  * browser - every typed amount is posted as a `numeric(14,2)` STRING and the
  * server is the authority; every figure shown is read from the same directory
  * functions the API serves. There is deliberately NO control that converts
- * value to cash: the loop is closed (ADR-0029).
+ * value to cash: the loop is closed (ADR-0030).
  *
  * Every string the client script shows is rendered by `t()` into a `data-*`
  * attribute on `#sv-root` and read from there (the script cannot translate),

@@ -1,6 +1,6 @@
 /**
  * Closed-loop stored value — gift cards and store credit (Issue #288, epic
- * #281, ADR-0029). Pure: no database, no I/O beyond the platform CSPRNG.
+ * #281, ADR-0030). Pure: no database, no I/O beyond the platform CSPRNG.
  *
  * ## What is here
  *
@@ -11,7 +11,7 @@
  *   - signed-money arithmetic in integer cents (the shared `toCents` cannot
  *     carry a sign: `toCents("-0.50")` is `+50`);
  *   - the ledger's rules as pure functions ({@link evaluateEntry}, mirrored by
- *     the database trigger in `sql/980`, which is the actual enforcement), and
+ *     the database trigger in `sql/985`, which is the actual enforcement), and
  *     {@link replayLedger} — the model reconcile and the tests compare the
  *     stored projection against;
  *   - request validation for the owner routes.
@@ -212,7 +212,7 @@ export function maskStoredValueCode(last4: string): string {
 }
 
 // ---------------------------------------------------------------------------
-// Ledger rules (pure mirror of `sql/980`'s trigger)
+// Ledger rules (pure mirror of `sql/985`'s trigger)
 // ---------------------------------------------------------------------------
 
 export type AccountState = {
@@ -400,7 +400,7 @@ export function computeExpiresAt(
 }
 
 // ---------------------------------------------------------------------------
-// Source keys (row-level idempotency, `sql/980`'s unique index)
+// Source keys (row-level idempotency, `sql/985`'s unique index)
 // ---------------------------------------------------------------------------
 
 export const storedValueSourceKeys = {

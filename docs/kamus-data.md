@@ -202,7 +202,7 @@ BjekMart's kasir (`commerce_bj_mart`'s counter sales, recorded in the legacy `or
 | `register` feature | commerce module settings `features.register` (default OFF) | Turns the whole register surface on and makes a POS sale require an open session on the chosen register |
 | `commerce.registers.*`, `commerce.register_sessions.*`, `commerce.register_cash_ups.*`, `commerce.register_corrections.approve` | `awcms_permissions` (`sql/972`) | The ten keys: manage registers, read / open / use / export a session, close it / approve a variance, correct a closed session |
 
-### Gift cards and store credit (issue #288, [ADR-0029](adr/0029-stored-value-is-a-closed-loop-liability-ledger.md))
+### Gift cards and store credit (issue #288, [ADR-0030](adr/0030-stored-value-is-a-closed-loop-liability-ledger.md))
 
 | Term | Where it lives | Meaning |
 | --- | --- | --- |
@@ -217,7 +217,7 @@ BjekMart's kasir (`commerce_bj_mart`'s counter sales, recorded in the legacy `or
 | `stored_value_account_id` | `awcms_commerce_payment_allocations` | The account a `gift_card`/`store_credit` leg drew from (a reversal returns value to it); NULL for every other tender; frozen |
 | outstanding | derived | The sum of every ledger entry of a kind — what is owed; of which `disabledBalance` is frozen and `lapsedPendingRelease` is past expiry but not yet released by the sweep |
 | `storedValue` feature | commerce module settings `features.storedValue` (default OFF) | Turns the whole surface on; off, a card tender is refused before anything is written |
-| `commerce.stored_value_programs.*`, `commerce.stored_value.*`, `commerce.stored_value_adjustments.create`, `commerce.stored_value_reconcile.approve` | `awcms_permissions` (`sql/982`) | The seven keys; redeeming is a payment tender, not one of them |
+| `commerce.stored_value_programs.*`, `commerce.stored_value.*`, `commerce.stored_value_adjustments.create`, `commerce.stored_value_reconcile.approve` | `awcms_permissions` (`sql/987`) | The seven keys; redeeming is a payment tender, not one of them |
 
 ## Deferred columns and tables — not ported
 

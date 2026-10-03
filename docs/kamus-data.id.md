@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:565da1cd53d35a3db4fe64dd0055df46b5eead9ca53c2726cd2fc3b4593c78a8 -->
+<!-- i18n-source-hash: sha256:6d2f8665d1e115cb865b6906416973b00cef24225af8658dd59d66853750250a -->
 
 # Kamus data
 
@@ -204,7 +204,7 @@ Kasir BjekMart (penjualan konter `commerce_bj_mart`, yang di tabel `orders`/`tra
 | fitur `register` | pengaturan modul commerce `features.register` (default MATI) | Menyalakan seluruh permukaan register dan membuat penjualan POS mensyaratkan sesi terbuka pada register yang dipilih |
 | `commerce.registers.*`, `commerce.register_sessions.*`, `commerce.register_cash_ups.*`, `commerce.register_corrections.approve` | `awcms_permissions` (`sql/972`) | Sepuluh kunci: kelola register, baca / buka / pakai / ekspor sesi, tutup / setujui selisih, koreksi sesi yang sudah ditutup |
 
-### Kartu hadiah dan kredit toko (issue #288, [ADR-0029](adr/0029-stored-value-is-a-closed-loop-liability-ledger.md))
+### Kartu hadiah dan kredit toko (issue #288, [ADR-0030](adr/0030-stored-value-is-a-closed-loop-liability-ledger.md))
 
 | Istilah | Letaknya | Arti |
 | --- | --- | --- |
@@ -219,7 +219,7 @@ Kasir BjekMart (penjualan konter `commerce_bj_mart`, yang di tabel `orders`/`tra
 | `stored_value_account_id` | `awcms_commerce_payment_allocations` | Akun yang menjadi sumber leg `gift_card`/`store_credit` (pembalikan mengembalikan nilai ke sana); NULL untuk tender lain; dibekukan |
 | terutang (outstanding) | turunan | Jumlah setiap entri ledger suatu jenis — yang dihutang; di antaranya `disabledBalance` beku dan `lapsedPendingRelease` melewati kedaluwarsa tetapi belum dilepas sweep |
 | fitur `storedValue` | pengaturan modul commerce `features.storedValue` (default MATI) | Menyalakan seluruh permukaan; saat mati, tender kartu ditolak sebelum apa pun ditulis |
-| `commerce.stored_value_programs.*`, `commerce.stored_value.*`, `commerce.stored_value_adjustments.create`, `commerce.stored_value_reconcile.approve` | `awcms_permissions` (`sql/982`) | Tujuh kunci; menukar adalah tender pembayaran, bukan salah satunya |
+| `commerce.stored_value_programs.*`, `commerce.stored_value.*`, `commerce.stored_value_adjustments.create`, `commerce.stored_value_reconcile.approve` | `awcms_permissions` (`sql/987`) | Tujuh kunci; menukar adalah tender pembayaran, bukan salah satunya |
 
 ## Kolom dan tabel yang ditunda — tidak di-porting
 

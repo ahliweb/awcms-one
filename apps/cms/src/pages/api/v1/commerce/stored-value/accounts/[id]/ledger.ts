@@ -1,7 +1,7 @@
 /**
  * `GET /api/v1/commerce/stored-value/accounts/{id}/ledger` — an account's
  * append-only history, newest first, keyset-paginated on the per-account
- * sequence (`?before=<account_seq>`) (Issue #288, ADR-0029). Every entry shows
+ * sequence (`?before=<account_seq>`) (Issue #288, ADR-0030). Every entry shows
  * its kind, signed amount, running balance and the order/payment it mirrors
  * (`allocationId`), never the code. Gated on `commerce.stored_value.read` and
  * the `storedValue` feature; an unknown or other-tenant account is the same

@@ -402,7 +402,7 @@ export async function createPosOrder(
   const change = plan.changeAmount;
   const amountTendered = plan.cashTendered;
 
-  // Issue #288 (ADR-0029) - stored-value tenders. Resolve each code to its
+  // Issue #288 (ADR-0030) - stored-value tenders. Resolve each code to its
   // account, then lock every account involved and refuse (with a typed error,
   // BEFORE any row of this sale exists) whatever cannot be redeemed in full.
   // The locks last to the end of this transaction, so nothing can spend the

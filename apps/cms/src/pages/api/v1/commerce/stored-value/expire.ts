@@ -1,6 +1,6 @@
 /**
  * `POST /api/v1/commerce/stored-value/expire` — release the balance of every
- * lapsed account (Issue #288, ADR-0029): one `expire` ledger entry per account
+ * lapsed account (Issue #288, ADR-0030): one `expire` ledger entry per account
  * past its expiry, bounded to one batch (`more: true` = call again). Idempotent
  * by construction (the entry's source key is the account and its expiry
  * instant), so it needs no `Idempotency-Key`. The application never WAITS for

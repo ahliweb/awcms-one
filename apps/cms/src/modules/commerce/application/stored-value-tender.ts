@@ -1,5 +1,5 @@
 /**
- * Stored value as a payment TENDER (Issue #288, ADR-0029): the three steps a
+ * Stored value as a payment TENDER (Issue #288, ADR-0030): the three steps a
  * request that carries a gift-card / store-credit code goes through before the
  * payment ledger writes anything.
  *

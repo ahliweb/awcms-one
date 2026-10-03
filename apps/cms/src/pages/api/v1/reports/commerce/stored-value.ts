@@ -10,7 +10,7 @@ import {
 } from "../../../../../modules/commerce/domain/sales-report-query";
 
 /**
- * `GET /api/v1/reports/commerce/stored-value?from&to` (Issue #288, ADR-0029) —
+ * `GET /api/v1/reports/commerce/stored-value?from&to` (Issue #288, ADR-0030) —
  * the closed-loop liability report: per kind (`gift_card`, `store_credit`)
  * what was issued, loaded, redeemed, refunded, adjusted (up and down kept
  * apart) and expired over an inclusive range of report days (default: the last

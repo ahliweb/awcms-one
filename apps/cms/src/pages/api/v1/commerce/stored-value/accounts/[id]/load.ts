@@ -1,6 +1,6 @@
 /**
  * `POST /api/v1/commerce/stored-value/accounts/{id}/load` — add value to an
- * existing account (a top-up) (Issue #288, ADR-0029). Gated on
+ * existing account (a top-up) (Issue #288, ADR-0030). Gated on
  * `commerce.stored_value.create` and the `storedValue` feature; requires
  * `Idempotency-Key` (a replay returns the original entry and never loads
  * twice). Refused when the program is not enabled, the account is disabled or

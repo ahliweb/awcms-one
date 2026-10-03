@@ -1,6 +1,6 @@
 /**
  * Closed-loop stored value: structure, permission separation and the "the
- * plaintext code is never stored or logged" rules (Issue #288, ADR-0029).
+ * plaintext code is never stored or logged" rules (Issue #288, ADR-0030).
  * Pure - no database, no network. Every assertion reads source or evaluates the
  * real access model; none restates another.
  *
@@ -407,9 +407,9 @@ describe("the plaintext code is never stored, logged, audited or published", () 
   });
 
   test("the code appears in no column the migrations create (only a hash and the last four)", async () => {
-    const sql = await read("sql/980_awcms_commerce_stored_value_schema.sql");
+    const sql = await read("sql/985_awcms_commerce_stored_value_schema.sql");
     const sql981 = await read(
-      "sql/981_awcms_commerce_stored_value_payment_integration.sql"
+      "sql/986_awcms_commerce_stored_value_payment_integration.sql"
     );
     const columns = [...sql.matchAll(/^\s{2}([a-z_0-9]+) [a-z]/gm)].map(
       (match) => match[1]!
@@ -592,7 +592,7 @@ describe("the loop is closed: no cash-out and no transfer between accounts", () 
     expect(routeNames).not.toMatch(/withdraw|cash|transfer|payout|convert/i);
     // Comments aside (the header says the loop is closed), no identifier.
     const schema = (
-      await read("sql/980_awcms_commerce_stored_value_schema.sql")
+      await read("sql/985_awcms_commerce_stored_value_schema.sql")
     )
       .split("\n")
       .filter((line) => !line.trim().startsWith("--"))

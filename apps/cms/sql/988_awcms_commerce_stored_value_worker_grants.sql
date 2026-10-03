@@ -5,8 +5,8 @@
 -- `commerce/domain/stored-value-lifecycle.ts` (ten-year ceiling, five-year
 -- floor), so the grants must exist (`data-lifecycle:worker-grants:check`) —
 -- `sql/937`/`sql/942`/`sql/973`'s reasoning. No UPDATE: the engine never
--- rewrites these rows, and `sql/980`'s triggers would refuse it. `awcms_app`,
--- by contrast, LOSES DELETE on all three (sql/980's REVOKEs) and UPDATE on
+-- rewrites these rows, and `sql/985`'s triggers would refuse it. `awcms_app`,
+-- by contrast, LOSES DELETE on all three (sql/985's REVOKEs) and UPDATE on
 -- the ledger: the role that runs the till must not be the role that can erase
 -- a liability record; only the retention engine, past the fiscal horizon, may.
 GRANT SELECT, DELETE ON awcms_commerce_stored_value_programs TO awcms_worker;

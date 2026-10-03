@@ -1,6 +1,6 @@
 /**
  * `GET /api/v1/commerce/stored-value/programs` — the tenant's gift-card and
- * store-credit program configuration (Issue #288, ADR-0029). Always returns
+ * store-credit program configuration (Issue #288, ADR-0030). Always returns
  * BOTH kinds; one the tenant never saved is reported with its disabled
  * defaults (`configured: false`). Gated on `commerce.stored_value_programs.read`
  * and the tenant's `storedValue` feature (`409 FEATURE_DISABLED` while it is

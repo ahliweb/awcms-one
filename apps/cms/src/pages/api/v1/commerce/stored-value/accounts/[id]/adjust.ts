@@ -1,6 +1,6 @@
 /**
  * `POST /api/v1/commerce/stored-value/accounts/{id}/adjust` — a reasoned manual
- * correction of a balance, up or down (Issue #288, ADR-0029). Gated on the
+ * correction of a balance, up or down (Issue #288, ADR-0030). Gated on the
  * SEPARATE `commerce.stored_value_adjustments.create` permission (a role that
  * may sell a card is not thereby trusted to edit a balance by hand) and the
  * `storedValue` feature; requires `Idempotency-Key` and a mandatory `reason`.

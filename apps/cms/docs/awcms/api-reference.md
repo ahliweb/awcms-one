@@ -11380,7 +11380,7 @@ One `section` column (`summary`, `tender`, `movement`, `correction`) keeps the w
 | 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/commerce/stored-value/accounts` — Issue #288 (ADR-0029). Gift-card / store-credit accounts, newest first, keyset-paginated. Gated on `commerce.stored_value.read` and the tenant's `storedValue` feature.
+### `GET /api/v1/commerce/stored-value/accounts` — Issue #288 (ADR-0030). Gift-card / store-credit accounts, newest first, keyset-paginated. Gated on `commerce.stored_value.read` and the tenant's `storedValue` feature.
 
 - **operationId**: `listCommerceStoredValueAccounts`
 - **Security**: bearerAuth + tenantHeader
@@ -11407,7 +11407,7 @@ Every code is MASKED (`•••••••-•••••••-•••ABCD
 | 403    | Access denied by RBAC/ABAC.                                                       | [`ApiError`](#standard-error-envelope) |
 | 409    | `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/stored-value/accounts` — Issue #288 (ADR-0029). Issues a gift card / store credit. Gated on `commerce.stored_value.create` and the tenant's `storedValue` feature; requires `Idempotency-Key`.
+### `POST /api/v1/commerce/stored-value/accounts` — Issue #288 (ADR-0030). Issues a gift card / store credit. Gated on `commerce.stored_value.create` and the tenant's `storedValue` feature; requires `Idempotency-Key`.
 
 - **operationId**: `issueCommerceStoredValueAccount`
 - **Security**: bearerAuth + tenantHeader
@@ -11433,7 +11433,7 @@ Generates a CSPRNG code (20 characters from an unambiguous 32-symbol alphabet = 
 | 404    | Resource not found.                                                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
 | 409    | `STORED_VALUE_PROGRAM_DISABLED`, `STORED_VALUE_BALANCE_CEILING` (`details.ceiling`), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/commerce/stored-value/accounts/{id}` — Issue #288 (ADR-0029). One account. Gated on `commerce.stored_value.read` and the tenant's `storedValue` feature.
+### `GET /api/v1/commerce/stored-value/accounts/{id}` — Issue #288 (ADR-0030). One account. Gated on `commerce.stored_value.read` and the tenant's `storedValue` feature.
 
 - **operationId**: `getCommerceStoredValueAccount`
 - **Security**: bearerAuth + tenantHeader
@@ -11456,7 +11456,7 @@ Resolved tenant-scoped: an unknown id and another tenant's id are the same `404`
 | 404    | Resource not found.                                                               | [`ApiError`](#standard-error-envelope) |
 | 409    | `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/stored-value/accounts/{id}/adjust` — Issue #288 (ADR-0029). A reasoned manual correction of a balance, up or down. Gated on the SEPARATE `commerce.stored_value_adjustments.create` and the tenant's `storedValue` feature; requires `Idempotency-Key`.
+### `POST /api/v1/commerce/stored-value/accounts/{id}/adjust` — Issue #288 (ADR-0030). A reasoned manual correction of a balance, up or down. Gated on the SEPARATE `commerce.stored_value_adjustments.create` and the tenant's `storedValue` feature; requires `Idempotency-Key`.
 
 - **operationId**: `adjustCommerceStoredValueAccount`
 - **Security**: bearerAuth + tenantHeader
@@ -11483,7 +11483,7 @@ The ledger is append-only: this is a NEW `adjust` entry, never an edit. A downwa
 | 404    | Resource not found.                                                                                                                                                                                                                          | [`ApiError`](#standard-error-envelope) |
 | 409    | `STORED_VALUE_INSUFFICIENT`, `STORED_VALUE_ACCOUNT_EXPIRED`, `STORED_VALUE_ACCOUNT_UNAVAILABLE`, `STORED_VALUE_BALANCE_CEILING`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/commerce/stored-value/accounts/{id}/ledger` — Issue #288 (ADR-0029). An account's append-only history, newest first. Gated on `commerce.stored_value.read` and the tenant's `storedValue` feature.
+### `GET /api/v1/commerce/stored-value/accounts/{id}/ledger` — Issue #288 (ADR-0030). An account's append-only history, newest first. Gated on `commerce.stored_value.read` and the tenant's `storedValue` feature.
 
 - **operationId**: `listCommerceStoredValueLedger`
 - **Security**: bearerAuth + tenantHeader
@@ -11508,7 +11508,7 @@ Keyset-paginated on the per-account sequence (`before`). Every entry shows its k
 | 404    | Resource not found.                                                               | [`ApiError`](#standard-error-envelope) |
 | 409    | `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/stored-value/accounts/{id}/load` — Issue #288 (ADR-0029). Adds value to an existing account (a top-up). Gated on `commerce.stored_value.create` and the tenant's `storedValue` feature; requires `Idempotency-Key`.
+### `POST /api/v1/commerce/stored-value/accounts/{id}/load` — Issue #288 (ADR-0030). Adds value to an existing account (a top-up). Gated on `commerce.stored_value.create` and the tenant's `storedValue` feature; requires `Idempotency-Key`.
 
 - **operationId**: `loadCommerceStoredValueAccount`
 - **Security**: bearerAuth + tenantHeader
@@ -11535,7 +11535,7 @@ A replay returns the original entry and never loads twice. Refused when the prog
 | 404    | Resource not found.                                                                                                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
 | 409    | `STORED_VALUE_PROGRAM_DISABLED`, `STORED_VALUE_ACCOUNT_EXPIRED`, `STORED_VALUE_ACCOUNT_UNAVAILABLE`, `STORED_VALUE_BALANCE_CEILING`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/stored-value/accounts/{id}/status` — Issue #288 (ADR-0029). Disables or re-enables an account. Gated on `commerce.stored_value.update` and the tenant's `storedValue` feature; requires `Idempotency-Key`.
+### `POST /api/v1/commerce/stored-value/accounts/{id}/status` — Issue #288 (ADR-0030). Disables or re-enables an account. Gated on `commerce.stored_value.update` and the tenant's `storedValue` feature; requires `Idempotency-Key`.
 
 - **operationId**: `changeCommerceStoredValueAccountStatus`
 - **Security**: bearerAuth + tenantHeader
@@ -11562,7 +11562,7 @@ A disabled account refuses every redemption and refund but keeps its balance (st
 | 404    | Resource not found.                                                                                                                                                          | [`ApiError`](#standard-error-envelope) |
 | 409    | `STORED_VALUE_STATUS_UNCHANGED`, `STORED_VALUE_ACCOUNT_EXPIRED`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/stored-value/expire` — Issue #288 (ADR-0029). Releases the balance of every lapsed account. Gated on `commerce.stored_value.update` and the tenant's `storedValue` feature.
+### `POST /api/v1/commerce/stored-value/expire` — Issue #288 (ADR-0030). Releases the balance of every lapsed account. Gated on `commerce.stored_value.update` and the tenant's `storedValue` feature.
 
 - **operationId**: `sweepCommerceStoredValueExpiry`
 - **Security**: bearerAuth + tenantHeader
@@ -11578,7 +11578,7 @@ One `expire` ledger entry per account past its expiry, bounded to one batch (`mo
 | 403    | Access denied by RBAC/ABAC.                                                       | [`ApiError`](#standard-error-envelope) |
 | 409    | `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/commerce/stored-value/programs` — Issue #288 (ADR-0029). The tenant's gift-card and store-credit program configuration. Gated on `commerce.stored_value_programs.read` and the tenant's `storedValue` feature.
+### `GET /api/v1/commerce/stored-value/programs` — Issue #288 (ADR-0030). The tenant's gift-card and store-credit program configuration. Gated on `commerce.stored_value_programs.read` and the tenant's `storedValue` feature.
 
 - **operationId**: `listCommerceStoredValuePrograms`
 - **Security**: bearerAuth + tenantHeader
@@ -11594,7 +11594,7 @@ Always returns BOTH kinds; one the tenant never saved is reported with its disab
 | 403    | Access denied by RBAC/ABAC.                                                       | [`ApiError`](#standard-error-envelope) |
 | 409    | `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
 
-### `PUT /api/v1/commerce/stored-value/programs/{kind}` — Issue #288 (ADR-0029). Creates or updates one kind's program. Gated on `commerce.stored_value_programs.update` and the tenant's `storedValue` feature.
+### `PUT /api/v1/commerce/stored-value/programs/{kind}` — Issue #288 (ADR-0030). Creates or updates one kind's program. Gated on `commerce.stored_value_programs.update` and the tenant's `storedValue` feature.
 
 - **operationId**: `upsertCommerceStoredValueProgram`
 - **Security**: bearerAuth + tenantHeader
@@ -11614,7 +11614,7 @@ A PUT by nature (the same body leaves the same row), so it takes no `Idempotency
 | Status | Description | Schema |
 | ------ | ----------- | ------ |
 
-### `POST /api/v1/commerce/stored-value/reconcile` — Issue #288 (ADR-0029). Compares every account's projected balance with its ledger, the ledger with itself and every redemption with its payment leg. `repair: false` needs `commerce.stored_value.read`; `repair: true` also needs `commerce.stored_value_reconcile.approve`.
+### `POST /api/v1/commerce/stored-value/reconcile` — Issue #288 (ADR-0030). Compares every account's projected balance with its ledger, the ledger with itself and every redemption with its payment leg. `repair: false` needs `commerce.stored_value.read`; `repair: true` also needs `commerce.stored_value_reconcile.approve`.
 
 - **operationId**: `reconcileCommerceStoredValue`
 - **Security**: bearerAuth + tenantHeader
@@ -12217,7 +12217,7 @@ Anonymous by definition — a provider callback carries no session. Replay-prote
 | 401    | Missing or invalid session.          | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC.          | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/reports/commerce/stored-value` — Issue #288 (ADR-0029). The closed-loop liability report. Gated on `commerce.stored_value.read` and the tenant's `storedValue` feature.
+### `GET /api/v1/reports/commerce/stored-value` — Issue #288 (ADR-0030). The closed-loop liability report. Gated on `commerce.stored_value.read` and the tenant's `storedValue` feature.
 
 - **operationId**: `getCommerceStoredValueReport`
 - **Security**: bearerAuth + tenantHeader

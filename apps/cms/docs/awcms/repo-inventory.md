@@ -267,10 +267,10 @@
 | 214 | `sql/971_awcms_commerce_register_stamping.sql`                              |
 | 215 | `sql/972_awcms_commerce_register_permissions.sql`                           |
 | 216 | `sql/973_awcms_commerce_register_worker_grants.sql`                         |
-| 217 | `sql/980_awcms_commerce_stored_value_schema.sql`                            |
-| 218 | `sql/981_awcms_commerce_stored_value_payment_integration.sql`               |
-| 219 | `sql/982_awcms_commerce_stored_value_permissions.sql`                       |
-| 220 | `sql/983_awcms_commerce_stored_value_worker_grants.sql`                     |
+| 217 | `sql/985_awcms_commerce_stored_value_schema.sql`                            |
+| 218 | `sql/986_awcms_commerce_stored_value_payment_integration.sql`               |
+| 219 | `sql/987_awcms_commerce_stored_value_permissions.sql`                       |
+| 220 | `sql/988_awcms_commerce_stored_value_worker_grants.sql`                     |
 
 ### Tables & Row-Level Security
 
@@ -351,9 +351,9 @@
 | `awcms_commerce_shipping_rates`             | `sql/924_awcms_commerce_shipping_rates_schema.sql`         | yes | yes   |
 | `awcms_commerce_sliders`                    | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
 | `awcms_commerce_store_settings`             | `sql/910_awcms_commerce_store_settings.sql`                | yes | yes   |
-| `awcms_commerce_stored_value_accounts`      | `sql/980_awcms_commerce_stored_value_schema.sql`           | yes | yes   |
-| `awcms_commerce_stored_value_ledger`        | `sql/980_awcms_commerce_stored_value_schema.sql`           | yes | yes   |
-| `awcms_commerce_stored_value_programs`      | `sql/980_awcms_commerce_stored_value_schema.sql`           | yes | yes   |
+| `awcms_commerce_stored_value_accounts`      | `sql/985_awcms_commerce_stored_value_schema.sql`           | yes | yes   |
+| `awcms_commerce_stored_value_ledger`        | `sql/985_awcms_commerce_stored_value_schema.sql`           | yes | yes   |
+| `awcms_commerce_stored_value_programs`      | `sql/985_awcms_commerce_stored_value_schema.sql`           | yes | yes   |
 | `awcms_commerce_testimonials`               | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
 | `awcms_commerce_vouchers`                   | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
 | `awcms_commerce_webhook_endpoints`          | `sql/926_awcms_commerce_payment_gateway_schema.sql`        | yes | yes   |

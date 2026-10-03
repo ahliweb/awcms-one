@@ -1,6 +1,6 @@
 /**
  * Closed-loop stored-value ledger integration (Issue #288, epic #281,
- * ADR-0029) — against a REAL migrated Postgres through
+ * ADR-0030) — against a REAL migrated Postgres through
  * `tests/integration/harness.ts`, the same pattern `commerce-payment-
  * allocations` / `commerce-register-cash-up` use. Gated on `DATABASE_URL`;
  * skips cleanly without one.

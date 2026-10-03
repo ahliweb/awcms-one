@@ -1,6 +1,6 @@
 /**
  * `POST /api/v1/commerce/stored-value/accounts/{id}/status` — disable or
- * re-enable an account (Issue #288, ADR-0029). A disabled account refuses every
+ * re-enable an account (Issue #288, ADR-0030). A disabled account refuses every
  * redemption and refund but keeps its balance (still a liability); it is the
  * remedy for a lost or stolen card. `expired` is terminal and is never set by
  * hand. Gated on `commerce.stored_value.update` and the `storedValue` feature;

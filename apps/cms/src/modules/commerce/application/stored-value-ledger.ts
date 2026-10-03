@@ -1,6 +1,6 @@
 /**
  * The closed-loop stored-value ledger — the SQL half of Issue #288 (epic #281,
- * ADR-0029). `domain/stored-value.ts` decides what the rows MEAN; this file
+ * ADR-0030). `domain/stored-value.ts` decides what the rows MEAN; this file
  * writes them. It makes NO provider/network call (ADR-0006): a redemption is a
  * pair of rows (the payment-allocation leg and the ledger entry) written in the
  * caller's transaction.
@@ -10,7 +10,7 @@
  * {@link appendStoredValueEntry} is the ONLY function in `src/` that inserts a
  * ledger row (`apps/cms/tests/commerce-stored-value-routes.test.ts` fails if
  * any other file does), and the database trigger it fires
- * (`awcms_commerce_stored_value_ledger_apply`, `sql/980`) is the ONLY thing
+ * (`awcms_commerce_stored_value_ledger_apply`, `sql/985`) is the ONLY thing
  * that moves an account's `balance`/`version`/`status`. The application checks
  * below are therefore a courtesy — they turn a refusal into a clean outcome
  * before a write — and never the enforcement: a caller that skipped them is
@@ -19,7 +19,7 @@
  * ## Locking
  *
  * Every function that writes locks the account row `FOR NO KEY UPDATE` first
- * (see `sql/980`'s header for why not `FOR UPDATE`). When an order is also
+ * (see `sql/985`'s header for why not `FOR UPDATE`). When an order is also
  * involved the order is locked FIRST, always — order -> account — so a
  * redemption and a reversal can never deadlock; a POS sale that has no order
  * row yet locks its accounts (sorted by id) before inserting the order, which
@@ -315,7 +315,7 @@ export type AppendStoredValueEntryParams = {
   /** Signed `numeric(14,2)` string — the sign must agree with `kind` (the table's CHECK). */
   amount: string;
   reason?: string | null;
-  /** Row-level idempotency key — unique per tenant (`sql/980`). */
+  /** Row-level idempotency key — unique per tenant (`sql/985`). */
   sourceKey: string;
   actor: StoredValueActor;
   /** `redeem` / `refund` only: the payment-allocation row this entry mirrors. */

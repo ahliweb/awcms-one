@@ -63,7 +63,7 @@ export const DEFAULT_COMMERCE_FEATURES: CommerceFeatures = {
   // one ADDS an obligation (a POS sale needs an open register session), so a
   // tenant that never opens "Fitur" must see exactly today's POS.
   register: false,
-  // Issue #288 (ADR-0029) — the second flag that defaults OFF. Stored value is
+  // Issue #288 (ADR-0030) — the second flag that defaults OFF. Stored value is
   // a liability the tenant takes on (money held that is not yet revenue),
   // which has accounting, consumer-protection and regulatory consequences it
   // must choose to accept; a tenant that never opens "Fitur" must see exactly

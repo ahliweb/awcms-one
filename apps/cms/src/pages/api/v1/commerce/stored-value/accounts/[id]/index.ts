@@ -1,6 +1,6 @@
 /**
  * `GET /api/v1/commerce/stored-value/accounts/{id}` — one account (Issue #288,
- * ADR-0029): kind, status, projected balance, masked code, expiry. Gated on
+ * ADR-0030): kind, status, projected balance, masked code, expiry. Gated on
  * `commerce.stored_value.read` and the `storedValue` feature. Resolved tenant-
  * scoped: an unknown id and another tenant's id are the same `404` (no BOLA
  * oracle).

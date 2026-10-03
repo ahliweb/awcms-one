@@ -1,6 +1,6 @@
 /**
  * Stored-value programs, accounts and the owner-side mutations over them
- * (Issue #288, epic #281, ADR-0029). `stored-value-ledger.ts` is the one
+ * (Issue #288, epic #281, ADR-0030). `stored-value-ledger.ts` is the one
  * writer of ledger rows; everything here composes it with the shared
  * idempotency store, the program configuration and the read models the admin
  * screens and reports need.

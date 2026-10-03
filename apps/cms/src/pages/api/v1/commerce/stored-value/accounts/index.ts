@@ -1,6 +1,6 @@
 /**
  * `GET|POST /api/v1/commerce/stored-value/accounts` — gift-card / store-credit
- * accounts (Issue #288, ADR-0029). Both gated on the tenant's `storedValue`
+ * accounts (Issue #288, ADR-0030). Both gated on the tenant's `storedValue`
  * feature (`409 FEATURE_DISABLED` while it is off).
  *
  * `GET` (`commerce.stored_value.read`) lists accounts newest first, keyset

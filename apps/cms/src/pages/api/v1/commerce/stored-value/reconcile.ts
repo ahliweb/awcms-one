@@ -1,7 +1,7 @@
 /**
  * `POST /api/v1/commerce/stored-value/reconcile` — compare every account's
  * projected balance with its ledger, the ledger with itself, and every
- * redemption with its payment-allocation leg (Issue #288, ADR-0029). Body
+ * redemption with its payment-allocation leg (Issue #288, ADR-0030). Body
  * `{ "repair": false }` (default) is READ-ONLY and needs only
  * `commerce.stored_value.read`; `{ "repair": true }` additionally needs
  * `commerce.stored_value_reconcile.approve` (a high-risk verb: it rewrites a

@@ -1,8 +1,8 @@
--- Issue #288 (epic #281, ADR-0029) — closed-loop stored value: gift cards and
--- store credit as a LIABILITY ledger. Migrations 980-984 are this issue's
--- slice of the reserved commerce 9xx range (ADR-0015): 980 (this file) the
--- three tables and their guards, 981 the payment-ledger integration, 982 the
--- permission catalog, 983 the retention worker's grants; 984 is held and
+-- Issue #288 (epic #281, ADR-0030) — closed-loop stored value: gift cards and
+-- store credit as a LIABILITY ledger. Migrations 985-989 are this issue's
+-- slice of the reserved commerce 9xx range (ADR-0015): 985 (this file) the
+-- three tables and their guards, 986 the payment-ledger integration, 987 the
+-- permission catalog, 988 the retention worker's grants; 989 is held and
 -- unused.
 --
 -- Same conventions as `sql/901`/`sql/936`/`sql/940`/`sql/970` (not repeated in
@@ -19,11 +19,11 @@
 -- ledger of that liability. It is deliberately:
 --
 --   * CLOSED-LOOP: value can be redeemed ONLY as a tender against this
---     tenant's own orders (`sql/981` adds the `gift_card`/`store_credit`
+--     tenant's own orders (`sql/986` adds the `gift_card`/`store_credit`
 --     tender types to the payment-allocation ledger). There is no cash-out,
 --     no transfer between accounts and no withdrawal — not even a column that
 --     could model one. Converting value to cash is a legal/business decision
---     (see ADR-0029 on the e-money boundary) that a future, separately
+--     (see ADR-0030 on the e-money boundary) that a future, separately
 --     reviewed feature may take; this schema cannot express it.
 --   * SEPARATE from loyalty points (#289) and from vouchers/discounts: those
 --     are marketing mechanics that reduce a price; this is money owed.
@@ -69,7 +69,7 @@
 --     refuses every UPDATE for any role. A correction is a NEW `adjust` row.
 --   * An account can never be deleted by `awcms_app`; its identity columns
 --     (code hash, kind, program, customer, expiry, issuer) are frozen.
---   * `awcms_worker` keeps SELECT + DELETE (`sql/983`) only for the
+--   * `awcms_worker` keeps SELECT + DELETE (`sql/988`) only for the
 --     data-lifecycle engine's ten-year ceiling.
 --
 -- ## Entry kinds and signs
@@ -104,7 +104,7 @@
 -- five-year floor — the fiscal horizon `commerce.payment_allocations` uses).
 -- Ledger rows are keyed on `created_at`; accounts and programs on `deleted_at`,
 -- which the guard below forbids ever setting, so a live liability is
--- unreachable. The honest consequence is recorded in ADR-0029: an account
+-- unreachable. The honest consequence is recorded in ADR-0030: an account
 -- whose earliest history is purged past the ceiling no longer sums to its
 -- projection, and reconcile reports it.
 
@@ -216,7 +216,7 @@ CREATE TABLE IF NOT EXISTS awcms_commerce_stored_value_accounts (
   -- operator to find a card ("…K7QX"). Four of the twenty-one characters.
   code_last4 text NOT NULL,
   -- Optional ownership/reference. Informational: the code is a bearer
-  -- instrument and redemption does not require the customer (ADR-0029).
+  -- instrument and redemption does not require the customer (ADR-0030).
   customer_id uuid,
   status text NOT NULL DEFAULT 'active',
   -- PROJECTION of the ledger, moved only by the ledger's own trigger.
@@ -661,11 +661,11 @@ CREATE CONSTRAINT TRIGGER awcms_commerce_stored_value_accounts_issue_check
   EXECUTE FUNCTION awcms_commerce_stored_value_accounts_issue_check();
 
 COMMENT ON TABLE awcms_commerce_stored_value_programs IS
-  'Issue #288 (ADR-0029) — per-tenant configuration of one kind of closed-loop stored value (gift_card | store_credit).';
+  'Issue #288 (ADR-0030) — per-tenant configuration of one kind of closed-loop stored value (gift_card | store_credit).';
 COMMENT ON TABLE awcms_commerce_stored_value_accounts IS
-  'Issue #288 (ADR-0029) — one gift card / store credit. The redeemable code is NEVER stored (code_hash + code_last4 only). balance/version/status are a projection of the ledger, moved only by the ledger trigger.';
+  'Issue #288 (ADR-0030) — one gift card / store credit. The redeemable code is NEVER stored (code_hash + code_last4 only). balance/version/status are a projection of the ledger, moved only by the ledger trigger.';
 COMMENT ON TABLE awcms_commerce_stored_value_ledger IS
-  'Issue #288 (ADR-0029) — append-only liability ledger of closed-loop stored value; every balance change is one signed row; the trigger awcms_commerce_stored_value_ledger_apply is the single writer of the account projection.';
+  'Issue #288 (ADR-0030) — append-only liability ledger of closed-loop stored value; every balance change is one signed row; the trigger awcms_commerce_stored_value_ledger_apply is the single writer of the account projection.';
 COMMENT ON COLUMN awcms_commerce_stored_value_accounts.code_hash IS
   'sha256: over "awcms.stored_value.v1|<tenant id>|<normalised code>". The plaintext code is returned once at issue time and never stored or logged.';
 COMMENT ON COLUMN awcms_commerce_stored_value_ledger.source_key IS

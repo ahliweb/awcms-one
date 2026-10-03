@@ -120,7 +120,7 @@ export type PaymentAllocationRecord = {
   createdAt: string;
   settledAt: string | null;
   /**
-   * Issue #288 (ADR-0029) — the gift-card / store-credit account a
+   * Issue #288 (ADR-0030) — the gift-card / store-credit account a
    * `gift_card`/`store_credit` leg drew from (or a reversal returned value
    * to); `null` for every other tender. Only the MASKED code is ever shown —
    * the plaintext is never stored.
@@ -493,7 +493,7 @@ export type RecordPaymentAllocationParams = {
   cashHanded?: string;
   note?: string | null;
   /**
-   * `gift_card` / `store_credit` only (Issue #288, ADR-0029): the account the
+   * `gift_card` / `store_credit` only (Issue #288, ADR-0030): the account the
    * leg draws on, ALREADY RESOLVED from the code by the caller
    * (`stored-value-tender.ts`) — the code itself never reaches this file.
    * Under the order lock this function locks the account (always order ->

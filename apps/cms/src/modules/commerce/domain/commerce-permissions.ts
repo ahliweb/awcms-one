@@ -417,7 +417,7 @@ export const COMMERCE_REGISTER_CORRECTION_PERMISSIONS = {
 
 /**
  * Closed-loop stored value — gift cards and store credit (Issue #288,
- * ADR-0029). Five activity codes, seven permissions, each with its own
+ * ADR-0030). Five activity codes, seven permissions, each with its own
  * enforcing route and NONE implied by `commerce.pos.create` /
  * `commerce.payments.create` (redeeming is only ever a TENDER on a payment, so
  * a cashier who can take a gift card as payment gets no authority to issue,

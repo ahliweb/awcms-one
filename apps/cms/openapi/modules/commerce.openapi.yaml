@@ -2993,7 +2993,7 @@ paths:
                 storedValueCode:
                   type: string
                   maxLength: 64
-                  description: "Required for `gift_card` / `store_credit` (Issue #288, ADR-0029), forbidden otherwise: the plaintext code of the account to draw from (separators and case are ignored; the check character is verified). It is resolved to an account and discarded — never stored, logged, audited or echoed (the response shows only the masked code). Needs the tenant's `storedValue` feature (`409 FEATURE_DISABLED`)."
+                  description: "Required for `gift_card` / `store_credit` (Issue #288, ADR-0030), forbidden otherwise: the plaintext code of the account to draw from (separators and case are ignored; the check character is verified). It is resolved to an account and discarded — never stored, logged, audited or echoed (the response shows only the masked code). Needs the tenant's `storedValue` feature (`409 FEATURE_DISABLED`)."
                 amount:
                   type: string
                   description: "`numeric(14,2)` string, > 0, never a JSON number. For `cash`, the amount handed over."
@@ -6386,7 +6386,7 @@ paths:
                       storedValueCode:
                         type: string
                         maxLength: 64
-                        description: "Required for `gift_card` / `store_credit` (Issue #288, ADR-0029), forbidden otherwise; one code at most once per sale. Resolved to an account (neutral `404 STORED_VALUE_NOT_FOUND` for an unknown, other-tenant or other-kind code) and discarded: never stored, logged, audited, hashed into the idempotency key as plaintext, or returned. A refused card (`409 STORED_VALUE_UNAVAILABLE` / `STORED_VALUE_INSUFFICIENT`, `429 STORED_VALUE_LOOKUP_THROTTLED`) refuses the WHOLE sale before any row is written."
+                        description: "Required for `gift_card` / `store_credit` (Issue #288, ADR-0030), forbidden otherwise; one code at most once per sale. Resolved to an account (neutral `404 STORED_VALUE_NOT_FOUND` for an unknown, other-tenant or other-kind code) and discarded: never stored, logged, audited, hashed into the idempotency key as plaintext, or returned. A refused card (`409 STORED_VALUE_UNAVAILABLE` / `STORED_VALUE_INSUFFICIENT`, `429 STORED_VALUE_LOOKUP_THROTTLED`) refuses the WHOLE sale before any row is written."
                 allowDue:
                   type: boolean
                   description: "Issue #285 — finalize with a balance due. Requires `tenders[]`, a customer phone, and `commerce.pos_due.create`."
@@ -7476,7 +7476,7 @@ paths:
       operationId: listCommerceStoredValuePrograms
       tags:
         - Commerce
-      summary: "Issue #288 (ADR-0029). The tenant's gift-card and store-credit program configuration. Gated on `commerce.stored_value_programs.read` and the tenant's `storedValue` feature."
+      summary: "Issue #288 (ADR-0030). The tenant's gift-card and store-credit program configuration. Gated on `commerce.stored_value_programs.read` and the tenant's `storedValue` feature."
       description: >-
         Always returns BOTH kinds; one the tenant never saved is reported with
         its disabled defaults (`configured: false`).
@@ -7514,7 +7514,7 @@ paths:
       operationId: upsertCommerceStoredValueProgram
       tags:
         - Commerce
-      summary: "Issue #288 (ADR-0029). Creates or updates one kind's program. Gated on `commerce.stored_value_programs.update` and the tenant's `storedValue` feature."
+      summary: "Issue #288 (ADR-0030). Creates or updates one kind's program. Gated on `commerce.stored_value_programs.update` and the tenant's `storedValue` feature."
       description: >-
         A PUT by nature (the same body leaves the same row), so it takes no
         `Idempotency-Key`; every change is audited. `enabled` governs ISSUING
@@ -7591,7 +7591,7 @@ paths:
       operationId: listCommerceStoredValueAccounts
       tags:
         - Commerce
-      summary: "Issue #288 (ADR-0029). Gift-card / store-credit accounts, newest first, keyset-paginated. Gated on `commerce.stored_value.read` and the tenant's `storedValue` feature."
+      summary: "Issue #288 (ADR-0030). Gift-card / store-credit accounts, newest first, keyset-paginated. Gated on `commerce.stored_value.read` and the tenant's `storedValue` feature."
       description: >-
         Every code is MASKED (`•••••••-•••••••-•••ABCD`): the plaintext is never
         stored. `last4` finds a card by the last four characters of its code.
@@ -7673,7 +7673,7 @@ paths:
       operationId: issueCommerceStoredValueAccount
       tags:
         - Commerce
-      summary: "Issue #288 (ADR-0029). Issues a gift card / store credit. Gated on `commerce.stored_value.create` and the tenant's `storedValue` feature; requires `Idempotency-Key`."
+      summary: "Issue #288 (ADR-0030). Issues a gift card / store credit. Gated on `commerce.stored_value.create` and the tenant's `storedValue` feature; requires `Idempotency-Key`."
       description: >-
         Generates a CSPRNG code (20 characters from an unambiguous 32-symbol
         alphabet = 100 bits, plus one check character), stores ONLY its
@@ -7761,7 +7761,7 @@ paths:
       operationId: getCommerceStoredValueAccount
       tags:
         - Commerce
-      summary: "Issue #288 (ADR-0029). One account. Gated on `commerce.stored_value.read` and the tenant's `storedValue` feature."
+      summary: "Issue #288 (ADR-0030). One account. Gated on `commerce.stored_value.read` and the tenant's `storedValue` feature."
       description: >-
         Resolved tenant-scoped: an unknown id and another tenant's id are the
         same `404` (no BOLA oracle).
@@ -7803,7 +7803,7 @@ paths:
       operationId: listCommerceStoredValueLedger
       tags:
         - Commerce
-      summary: "Issue #288 (ADR-0029). An account's append-only history, newest first. Gated on `commerce.stored_value.read` and the tenant's `storedValue` feature."
+      summary: "Issue #288 (ADR-0030). An account's append-only history, newest first. Gated on `commerce.stored_value.read` and the tenant's `storedValue` feature."
       description: >-
         Keyset-paginated on the per-account sequence (`before`). Every entry
         shows its kind, signed amount, running balance and the payment
@@ -7866,7 +7866,7 @@ paths:
       operationId: loadCommerceStoredValueAccount
       tags:
         - Commerce
-      summary: "Issue #288 (ADR-0029). Adds value to an existing account (a top-up). Gated on `commerce.stored_value.create` and the tenant's `storedValue` feature; requires `Idempotency-Key`."
+      summary: "Issue #288 (ADR-0030). Adds value to an existing account (a top-up). Gated on `commerce.stored_value.create` and the tenant's `storedValue` feature; requires `Idempotency-Key`."
       description: >-
         A replay returns the original entry and never loads twice. Refused when
         the program is not enabled, the account is disabled or expired, or the
@@ -7936,7 +7936,7 @@ paths:
       operationId: adjustCommerceStoredValueAccount
       tags:
         - Commerce
-      summary: "Issue #288 (ADR-0029). A reasoned manual correction of a balance, up or down. Gated on the SEPARATE `commerce.stored_value_adjustments.create` and the tenant's `storedValue` feature; requires `Idempotency-Key`."
+      summary: "Issue #288 (ADR-0030). A reasoned manual correction of a balance, up or down. Gated on the SEPARATE `commerce.stored_value_adjustments.create` and the tenant's `storedValue` feature; requires `Idempotency-Key`."
       description: >-
         The ledger is append-only: this is a NEW `adjust` entry, never an edit.
         A downward adjustment can never take the balance below zero (`409
@@ -8010,7 +8010,7 @@ paths:
       operationId: changeCommerceStoredValueAccountStatus
       tags:
         - Commerce
-      summary: "Issue #288 (ADR-0029). Disables or re-enables an account. Gated on `commerce.stored_value.update` and the tenant's `storedValue` feature; requires `Idempotency-Key`."
+      summary: "Issue #288 (ADR-0030). Disables or re-enables an account. Gated on `commerce.stored_value.update` and the tenant's `storedValue` feature; requires `Idempotency-Key`."
       description: >-
         A disabled account refuses every redemption and refund but keeps its
         balance (still a liability); it is the remedy for a lost or stolen
@@ -8084,7 +8084,7 @@ paths:
       operationId: sweepCommerceStoredValueExpiry
       tags:
         - Commerce
-      summary: "Issue #288 (ADR-0029). Releases the balance of every lapsed account. Gated on `commerce.stored_value.update` and the tenant's `storedValue` feature."
+      summary: "Issue #288 (ADR-0030). Releases the balance of every lapsed account. Gated on `commerce.stored_value.update` and the tenant's `storedValue` feature."
       description: >-
         One `expire` ledger entry per account past its expiry, bounded to one
         batch (`more: true` = call again). Idempotent by construction (the
@@ -8129,7 +8129,7 @@ paths:
       operationId: reconcileCommerceStoredValue
       tags:
         - Commerce
-      summary: "Issue #288 (ADR-0029). Compares every account's projected balance with its ledger, the ledger with itself and every redemption with its payment leg. `repair: false` needs `commerce.stored_value.read`; `repair: true` also needs `commerce.stored_value_reconcile.approve`."
+      summary: "Issue #288 (ADR-0030). Compares every account's projected balance with its ledger, the ledger with itself and every redemption with its payment leg. `repair: false` needs `commerce.stored_value.read`; `repair: true` also needs `commerce.stored_value_reconcile.approve`."
       description: >-
         Read-only by default. `repair: true` rebuilds ONLY the `balance` and
         `version` of drifted accounts, under the account lock, auditing each. A
@@ -8181,7 +8181,7 @@ paths:
       operationId: getCommerceStoredValueReport
       tags:
         - Commerce
-      summary: "Issue #288 (ADR-0029). The closed-loop liability report. Gated on `commerce.stored_value.read` and the tenant's `storedValue` feature."
+      summary: "Issue #288 (ADR-0030). The closed-loop liability report. Gated on `commerce.stored_value.read` and the tenant's `storedValue` feature."
       description: >-
         Per kind (`gift_card`, `store_credit`): what was issued, loaded,
         redeemed, refunded, adjusted (up and down kept apart) and expired over
@@ -8237,7 +8237,7 @@ components:
   schemas:
     CommerceStoredValueProgram:
       type: object
-      description: "Issue #288 (ADR-0029) — per-tenant configuration of one kind of closed-loop stored value."
+      description: "Issue #288 (ADR-0030) — per-tenant configuration of one kind of closed-loop stored value."
       properties:
         id:
           type: string
@@ -8267,7 +8267,7 @@ components:
           nullable: true
     CommerceStoredValueAccount:
       type: object
-      description: "Issue #288 (ADR-0029) — one gift card / store credit. The code is NEVER returned (only masked); `balance`, `version` and `status` are the projection of the ledger."
+      description: "Issue #288 (ADR-0030) — one gift card / store credit. The code is NEVER returned (only masked); `balance`, `version` and `status` are the projection of the ledger."
       properties:
         id:
           type: string
@@ -8323,7 +8323,7 @@ components:
           format: date-time
     CommerceStoredValueEntry:
       type: object
-      description: "Issue #288 (ADR-0029) — one append-only liability entry."
+      description: "Issue #288 (ADR-0030) — one append-only liability entry."
       properties:
         id:
           type: string

@@ -997,7 +997,7 @@ export const READER_BUDGET_BYTES = 24_000;
  * total sits well below this.
  *
  * **Raised to 308,300 B for Issue #288** (gift cards and store credit,
- * ADR-0029) - one new admin screen and two touched, re-MEASURED rather than
+ * ADR-0030) - one new admin screen and two touched, re-MEASURED rather than
  * summed. `commerce-stored-value.astro`'s client script is 6,386 B (issue form
  * with the one-time copy/print receipt - the print window is built with DOM
  * calls, never `innerHTML` -, the manage form, the programs forms, the expiry

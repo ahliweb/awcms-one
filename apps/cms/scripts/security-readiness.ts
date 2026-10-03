@@ -725,13 +725,13 @@ export const RETIRED_TENANT_TABLE_PRIVILEGES: Record<string, string[]> = {
   awcms_commerce_register_close_requests: ["SELECT", "INSERT", "UPDATE"],
   awcms_commerce_register_close_lines: ["SELECT", "INSERT"],
   awcms_commerce_register_corrections: ["SELECT", "INSERT"],
-  // Issue #288 / `sql/980`. The closed-loop stored-value tables - NOT retired,
+  // Issue #288 / `sql/985`. The closed-loop stored-value tables - NOT retired,
   // written on every issue and redemption. A liability record must not be
   // erasable by the role that runs the till: DELETE is revoked on all three.
   // The ledger is pure append (a trigger refuses every UPDATE, and UPDATE is
   // revoked too - the privilege error is the earlier, louder answer). The
   // account keeps UPDATE for its projection (balance/version/status), which
-  // `sql/980`'s guard trigger confines to the ledger's own trigger; the program
+  // `sql/985`'s guard trigger confines to the ledger's own trigger; the program
   // keeps it for configuration.
   awcms_commerce_stored_value_programs: ["SELECT", "INSERT", "UPDATE"],
   awcms_commerce_stored_value_accounts: ["SELECT", "INSERT", "UPDATE"],
@@ -1653,7 +1653,7 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_commerce_register_close_requests: ["SELECT", "DELETE"],
   awcms_commerce_register_close_lines: ["SELECT", "DELETE"],
   awcms_commerce_register_corrections: ["SELECT", "DELETE"],
-  // Issue #288 (`sql/980`/`sql/983`): the three stored-value tables'
+  // Issue #288 (`sql/985`/`sql/988`): the three stored-value tables'
   // `dataLifecycle` descriptors (`commerce/domain/stored-value-lifecycle.ts`)
   // are `executionMode: "generic"` with `hard_delete`; the retention worker is
   // the only role that may delete a liability record (awcms_app has had DELETE

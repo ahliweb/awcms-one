@@ -145,7 +145,7 @@ export const COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE =
   "awcms.commerce.register_session.corrected";
 
 /**
- * Closed-loop stored-value ledger event (Issue #288, ADR-0029). ONE type for
+ * Closed-loop stored-value ledger event (Issue #288, ADR-0030). ONE type for
  * every ledger entry (issue, load, redeem, refund, adjust, expire, disable,
  * enable), on the STORED-VALUE ACCOUNT aggregate (`commerce.stored_value_
  * account`, aggregate id = the account id), so a consumer rebuilding "what

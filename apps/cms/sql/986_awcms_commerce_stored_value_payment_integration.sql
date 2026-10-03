@@ -1,10 +1,10 @@
--- Issue #288 (ADR-0029) — the stored-value tenders in the payment-allocation
+-- Issue #288 (ADR-0030) — the stored-value tenders in the payment-allocation
 -- ledger (`sql/940`, ADR-0025). `sql/940`'s header said it plainly: "Store
 -- credit / gift card are NOT in the list on purpose — a CHECK value no code
 -- path can write is a claim, not a feature; widen the constraint in the
 -- migration that ships the first writer." This is that migration: the writer
 -- is `application/payment-allocation-directory.ts` +
--- `application/stored-value-ledger.ts`, and `sql/980`'s ledger trigger refuses
+-- `application/stored-value-ledger.ts`, and `sql/985`'s ledger trigger refuses
 -- any `redeem`/`refund` entry that does not mirror one of these rows.
 --
 -- ## What changes
@@ -22,7 +22,7 @@
 --     body is otherwise `sql/971`'s, verbatim).
 --   * A DEFERRED constraint trigger makes the pairing two-way: a stored-value
 --     allocation row cannot survive a COMMIT without its mirror ledger entry
---     (`sql/980` already refuses the reverse). The redemption and the ledger
+--     (`sql/985` already refuses the reverse). The redemption and the ledger
 --     entry are therefore written in ONE transaction, with no network call.
 --   * `awcms_commerce_orders.payment_method` (a legacy summary HINT; the ledger
 --     is the truth — ADR-0025 D8) is widened with the two values, so a sale
@@ -142,4 +142,4 @@ ALTER TABLE awcms_commerce_orders
   ));
 
 COMMENT ON COLUMN awcms_commerce_payment_allocations.stored_value_account_id IS
-  'Issue #288 (ADR-0029) — the gift-card / store-credit account a gift_card|store_credit leg drew from (or, on a reversal, returns value to); NULL for every other tender. Frozen. The redeemable code is never stored on this table.';
+  'Issue #288 (ADR-0030) — the gift-card / store-credit account a gift_card|store_credit leg drew from (or, on a reversal, returns value to); NULL for every other tender. Frozen. The redeemable code is never stored on this table.';

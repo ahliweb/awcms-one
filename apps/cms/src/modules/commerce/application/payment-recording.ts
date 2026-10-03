@@ -122,7 +122,7 @@ export async function recordOwnerPayment(
 
   const isCash = input.tenderType === "cash";
 
-  // Issue #288 (ADR-0029) - a stored-value tender names its account by code;
+  // Issue #288 (ADR-0030) - a stored-value tender names its account by code;
   // resolve it (throttled, one neutral not-found for every failure) before
   // the ledger takes the order lock.
   let storedValueAccountId: string | null = null;

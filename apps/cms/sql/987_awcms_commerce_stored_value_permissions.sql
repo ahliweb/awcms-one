@@ -1,4 +1,4 @@
--- Issue #288 (ADR-0029) — permission catalog seed for closed-loop stored
+-- Issue #288 (ADR-0030) — permission catalog seed for closed-loop stored
 -- value, mirroring `src/modules/commerce/module.ts`'s `permissions` array
 -- exactly (see `sql/902`'s header for the reasoning this migration does not
 -- repeat: global catalog, idempotent via `ON CONFLICT DO NOTHING`, existing

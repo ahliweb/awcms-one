@@ -1,6 +1,6 @@
 /**
  * Closed-loop stored value through the REAL route handlers (Issue #288, epic
- * #281, ADR-0029) - the HTTP half that `commerce-stored-value.integration
+ * #281, ADR-0030) - the HTTP half that `commerce-stored-value.integration
  * .test.ts` (which drives the directory functions) cannot see: route wiring
  * (`defineTenantRoute`, ABAC, the `storedValue` feature gate, body validation,
  * `Idempotency-Key`, the error -> status mapping) with real argon2/session/

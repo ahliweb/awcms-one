@@ -7791,7 +7791,7 @@ msgstr "Register kasir"
 msgid "Close attempts"
 msgstr "Percobaan penutupan"
 
-#. Issue #288 — gift cards and store credit (ADR-0029)
+#. Issue #288 — gift cards and store credit (ADR-0030)
 msgid "A reason is required."
 msgstr "Alasan wajib diisi."
 

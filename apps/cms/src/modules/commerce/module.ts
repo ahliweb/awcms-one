@@ -617,7 +617,7 @@ export const commerceModule = defineModule({
       requiredPermission: "commerce.register_sessions.read",
       requiredFeature: { moduleKey: "commerce", feature: "register" }
     },
-    // Issue #288 (ADR-0029) - gift cards and store credit. Gated on the
+    // Issue #288 (ADR-0030) - gift cards and store credit. Gated on the
     // account-read permission and hidden the moment the tenant turns
     // `features.storedValue` off (it defaults OFF).
     {
@@ -2351,7 +2351,7 @@ export const commerceModule = defineModule({
     // Issue #284 (ADR-0028) - the six POS register tables; see
     // `domain/register-lifecycle.ts`.
     ...REGISTER_DATA_LIFECYCLE,
-    // Issue #288 (ADR-0029) - the three closed-loop stored-value tables; see
+    // Issue #288 (ADR-0030) - the three closed-loop stored-value tables; see
     // `domain/stored-value-lifecycle.ts`.
     ...STORED_VALUE_DATA_LIFECYCLE,
     {
@@ -2922,7 +2922,7 @@ export const commerceModule = defineModule({
     },
     // Issue #284 (ADR-0028) - see `domain/register-lifecycle.ts`.
     ...REGISTER_SUBJECT_DATA,
-    // Issue #288 (ADR-0029) - see `domain/stored-value-lifecycle.ts`.
+    // Issue #288 (ADR-0030) - see `domain/stored-value-lifecycle.ts`.
     ...STORED_VALUE_SUBJECT_DATA,
     {
       key: "commerce.protected_media_links",

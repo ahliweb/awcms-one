@@ -2,7 +2,7 @@
  * `PUT /api/v1/commerce/stored-value/programs/{kind}` — create or update one
  * kind's program (`gift_card` | `store_credit`): enabled, default expiry in
  * days, whether a payment made with it may be refunded back to the account,
- * and an optional balance ceiling (Issue #288, ADR-0029). Gated on
+ * and an optional balance ceiling (Issue #288, ADR-0030). Gated on
  * `commerce.stored_value_programs.update` and the `storedValue` feature. An
  * idempotent PUT by nature (the same body leaves the same row), so it takes no
  * `Idempotency-Key`; every change is audited. `enabled` governs ISSUING and

@@ -83,7 +83,7 @@ Every route below is behind the tenant's `register` feature flag (default OFF �
 
 The POS route (`POST commerce/pos/orders`) gains an optional **`registerId`**: REQUIRED while the `register` feature is on (the sale is attached to that register's open session, whose current cashier must be the caller — `404` unknown/foreign register, `409 REGISTER_SESSION_REQUIRED | REGISTER_SESSION_CLOSING | NOT_SESSION_CASHIER`, all before anything is written); with the feature off, sending it is `409 FEATURE_DISABLED` and nothing is stamped. The 201 gains `registerSessionId`.
 
-## Owner API: gift cards and store credit (issue #288, epic #281, [ADR-0029](adr/0029-stored-value-is-a-closed-loop-liability-ledger.md))
+## Owner API: gift cards and store credit (issue #288, epic #281, [ADR-0030](adr/0030-stored-value-is-a-closed-loop-liability-ledger.md))
 
 Every route below is behind the tenant's `storedValue` feature flag (default OFF — `409 FEATURE_DISABLED`), requires a bearer/cookie session, and — for every mutation but the program PUT and the expiry sweep — an **`Idempotency-Key`** header (`400 IDEMPOTENCY_REQUIRED`). Money is a `numeric(14,2)` STRING; ledger amounts are signed. Seven permissions. A code is **never** returned except once, by the issuing response; everywhere else it is masked (`•••••••-•••••••-•••ABCD`). There is deliberately no public lookup or redeem endpoint.
 

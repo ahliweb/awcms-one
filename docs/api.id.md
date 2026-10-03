@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:ecc2b5d64d9d0cc175160bf36dbcbb7375c432efe2e89d7f2977a204cf0972c2 -->
+<!-- i18n-source-hash: sha256:5aabf61331f6b037e331325331c1bc7d06f31cd94bb9b9d5664622b9a6442bf2 -->
 
 # API
 
@@ -85,7 +85,7 @@ Setiap rute di bawah ini berada di belakang flag fitur `register` milik tenant (
 
 Rute POS (`POST commerce/pos/orders`) mendapat **`registerId`** opsional: WAJIB selama fitur `register` nyala (penjualan dilekatkan ke sesi terbuka register itu, yang kasir saat ini-nya harus pemanggil — `404` register tak dikenal/milik tenant lain, `409 REGISTER_SESSION_REQUIRED | REGISTER_SESSION_CLOSING | NOT_SESSION_CASHIER`, semuanya sebelum apa pun ditulis); dengan fitur mati, mengirimnya adalah `409 FEATURE_DISABLED` dan tidak ada yang distempel. 201 mendapat `registerSessionId`.
 
-## API pemilik: kartu hadiah dan kredit toko (issue #288, epik #281, [ADR-0029](adr/0029-stored-value-is-a-closed-loop-liability-ledger.md))
+## API pemilik: kartu hadiah dan kredit toko (issue #288, epik #281, [ADR-0030](adr/0030-stored-value-is-a-closed-loop-liability-ledger.md))
 
 Setiap rute di bawah berada di balik flag fitur `storedValue` tenant (default MATI — `409 FEATURE_DISABLED`), memerlukan sesi bearer/cookie, dan — untuk setiap mutasi kecuali PUT program dan sweep kedaluwarsa — header **`Idempotency-Key`** (`400 IDEMPOTENCY_REQUIRED`). Uang adalah STRING `numeric(14,2)`; jumlah ledger bertanda. Tujuh izin. Kode **tidak pernah** dikembalikan kecuali sekali, oleh respons penerbitan; di tempat lain ia tersamar (`•••••••-•••••••-•••ABCD`). Sengaja tidak ada endpoint pencarian atau penukaran publik.
 

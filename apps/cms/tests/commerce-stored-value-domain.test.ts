@@ -1,5 +1,5 @@
 /**
- * Closed-loop stored value, pure rules (Issue #288, ADR-0029) - no database.
+ * Closed-loop stored value, pure rules (Issue #288, ADR-0030) - no database.
  *
  * The properties pinned here are the ones a reader of the ADR relies on: the
  * code's entropy, alphabet and check character; the tenant-scoped hash (and

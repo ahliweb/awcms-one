@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](cms.md)
 
-<!-- i18n-source-hash: sha256:ae8a933ce3aa290b4562ced9f7d30be72fa81534c5cf7f55364061d3a6b1a2d7 -->
+<!-- i18n-source-hash: sha256:451d7c55d435ace970f52a7b428b1a7a577e88ed18b86ebecdceaae1af51015a -->
 
 # CMS: authoring, publikasi, izin, audit, media, taksonomi
 
@@ -303,7 +303,7 @@ Sampai issue ini, pembayaran pesanan adalah `payment_method` ditambah satu `paym
 - **Laporan dan ekspor.** `GET .../register-sessions/{id}` adalah laporannya; `.../report.csv` (`commerce.register_sessions.export`, verba berisiko tinggi) adalah satu berkas bersekat dengan setiap sel dinetralkan dari formula spreadsheet dan tanpa data pelanggan.
 - **Tes.** `apps/cms/tests/commerce-register-domain.test.ts` (validasi, aritmetika sen-eksak seharusnya/selisih/ambang/koreksi, netralisasi CSV), `commerce-register-permissions.test.ts` (pemisahan sepuluh kunci, evaluasi akses nyata atas grant kasir), dan terhadap Postgres sungguhan `apps/cms/tests/integration/commerce-register-cash-up.integration.test.ts` (pembukaan dan penutupan yang benar-benar bersamaan, penutupan yang berlomba dengan penjualan, penstempelan, imutabilitas di tingkat aplikasi dan basis data, koreksi, isolasi RLS dan FK komposit, kompatibilitas fitur-mati, rekonsiliasi laporan, isi audit/event) dan `commerce-register-routes.integration.test.ts` (hal yang sama lewat handler rute sungguhan dengan prinsipal yang di-seed persis dengan kunci izin yang diuji).
 
-## Kartu hadiah dan kredit toko (issue #288, epik #281, [ADR-0029](adr/0029-stored-value-is-a-closed-loop-liability-ledger.md))
+## Kartu hadiah dan kredit toko (issue #288, epik #281, [ADR-0030](adr/0030-stored-value-is-a-closed-loop-liability-ledger.md))
 
 - **Model.** Satu program per jenis (`gift_card`, `store_credit`) memegang konfigurasi tenant; akun adalah satu kartu/kredit dengan status `active | disabled | expired`, saldo proyeksi, dan `expires_at` opsional; ledger memegang entri bertanda (`issue`, `load`, `redeem`, `refund`, `adjust`, `expire`, `disable`, `enable`). Ledger adalah kebenarannya, trigger database adalah satu-satunya penulis proyeksi, dan `awcms_app` tidak dapat meng-update maupun menghapus baris ledger.
 - **Terbitkan.** `POST /api/v1/commerce/stored-value/accounts` (`commerce.stored_value.create`, `Idempotency-Key`) menghasilkan kode, menyimpan hash dan empat karakter terakhirnya, menambahkan entri `issue`, dan mengembalikan plaintext sekali; replay mengembalikan akun yang sama dengan `codeRevealed: false`. Program untuk jenis itu harus aktif dan jumlahnya dalam batasnya.

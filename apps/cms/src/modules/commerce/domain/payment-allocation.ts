@@ -48,7 +48,7 @@ type ValidationResult<T> =
 
 /**
  * `gift_card` / `store_credit` joined this list with their first writer
- * (Issue #288, ADR-0029; `sql/981` widened the table's CHECK in the same
+ * (Issue #288, ADR-0030; `sql/986` widened the table's CHECK in the same
  * change, as `sql/940` promised): a leg of either tender draws on the
  * closed-loop stored-value ledger in the SAME transaction
  * (`application/stored-value-ledger.ts`), and its row names the account

@@ -1,7 +1,7 @@
 /**
  * The HTTP plumbing the stored-value routes and the two payment routes that can
  * carry a stored-value tender (`POST .../pos/orders`, `POST .../orders/{id}/
- * payments`) share (Issue #288, ADR-0029): the feature gate and the ONE
+ * payments`) share (Issue #288, ADR-0030): the feature gate and the ONE
  * mapping of the typed tender errors to a response, declared once so the three
  * callers cannot drift into three slightly different answers.
  *

@@ -1,6 +1,6 @@
 /**
  * `dataLifecycle` and `subjectData` descriptors for the three closed-loop
- * stored-value tables (Issue #288, ADR-0029), declared once here and spread
+ * stored-value tables (Issue #288, ADR-0030), declared once here and spread
  * into `module.ts`'s two arrays (the shape `register-lifecycle.ts` set).
  * Pure data, no imports beyond types.
  *
@@ -9,14 +9,14 @@
  * A gift card / store credit is a LIABILITY and its ledger a fiscal record:
  * five-year floor, ten-year ceiling (the window `commerce.payment_allocations`
  * uses, because every redemption is one of those payments). The parents
- * (`programs`, `accounts`) are keyed on `deleted_at`, which `sql/980`'s guard
+ * (`programs`, `accounts`) are keyed on `deleted_at`, which `sql/985`'s guard
  * trigger FORBIDS ever setting - so the purge predicate can never match a live
  * liability, the same "unreachable by construction" shape `commerce.orders`
  * and the register parents use. The ledger is append-only and keyed on
  * `created_at`; `awcms_app` has no DELETE on any of the three, only the
- * retention worker does (`sql/983`).
+ * retention worker does (`sql/988`).
  *
- * The honest consequence, recorded in ADR-0029: a ledger row past the ceiling
+ * The honest consequence, recorded in ADR-0030: a ledger row past the ceiling
  * is deleted even when its account still holds a balance (a card unspent for
  * ten years), after which that account no longer sums to its projection and
  * reconcile reports it. Ten years makes that a deliberate operator choice
@@ -76,14 +76,14 @@ export const STORED_VALUE_DATA_LIFECYCLE: HighVolumeTableDescriptor[] = [
     deletion: {
       mode: "hard_delete",
       rationale:
-        "Technically the generic engine's only mode, but practically UNREACHABLE: a program is configured, never soft-deleted (deleted_at stays NULL forever - sql/980's guard forbids setting it), and every account keeps a foreign key to it."
+        "Technically the generic engine's only mode, but practically UNREACHABLE: a program is configured, never soft-deleted (deleted_at stays NULL forever - sql/985's guard forbids setting it), and every account keeps a foreign key to it."
     },
     legalHold: NO_LEGAL_HOLD,
     requiredIndexes: [
       {
         columns: ["tenant_id", "deleted_at"],
         purpose:
-          "awcms_commerce_stored_value_programs_tenant_deleted_idx (sql/980) - the (tenant, cursor) composite the generic purge engine filters + orders by."
+          "awcms_commerce_stored_value_programs_tenant_deleted_idx (sql/985) - the (tenant, cursor) composite the generic purge engine filters + orders by."
       }
     ],
     batchLimit: 5000,
@@ -104,14 +104,14 @@ export const STORED_VALUE_DATA_LIFECYCLE: HighVolumeTableDescriptor[] = [
     deletion: {
       mode: "hard_delete",
       rationale:
-        "Practically UNREACHABLE, like commerce.orders: an account is never soft-deleted (deleted_at stays NULL forever - sql/980's guard forbids setting it; an account is disabled or expires), and its ledger, payment legs keep foreign keys to it. A live liability can therefore never match the purge predicate."
+        "Practically UNREACHABLE, like commerce.orders: an account is never soft-deleted (deleted_at stays NULL forever - sql/985's guard forbids setting it; an account is disabled or expires), and its ledger, payment legs keep foreign keys to it. A live liability can therefore never match the purge predicate."
     },
     legalHold: NO_LEGAL_HOLD,
     requiredIndexes: [
       {
         columns: ["tenant_id", "deleted_at"],
         purpose:
-          "awcms_commerce_stored_value_accounts_tenant_deleted_idx (sql/980) - the (tenant, cursor) composite the generic purge engine filters + orders by."
+          "awcms_commerce_stored_value_accounts_tenant_deleted_idx (sql/985) - the (tenant, cursor) composite the generic purge engine filters + orders by."
       }
     ],
     batchLimit: 5000,
@@ -134,14 +134,14 @@ export const STORED_VALUE_DATA_LIFECYCLE: HighVolumeTableDescriptor[] = [
     deletion: {
       mode: "hard_delete",
       rationale:
-        "The generic engine's only mode. Reachable only past the ten-year ceiling and only by the retention worker: awcms_app has no UPDATE or DELETE (sql/980's REVOKE) and a trigger forbids every UPDATE, so the table is append-only for every runtime path. A row past the ceiling is deleted even if its account still holds a balance (ADR-0029 records the consequence: reconcile then reports that account)."
+        "The generic engine's only mode. Reachable only past the ten-year ceiling and only by the retention worker: awcms_app has no UPDATE or DELETE (sql/985's REVOKE) and a trigger forbids every UPDATE, so the table is append-only for every runtime path. A row past the ceiling is deleted even if its account still holds a balance (ADR-0030 records the consequence: reconcile then reports that account)."
     },
     legalHold: NO_LEGAL_HOLD,
     requiredIndexes: [
       {
         columns: ["tenant_id", "created_at"],
         purpose:
-          "awcms_commerce_stored_value_ledger_tenant_created_idx (sql/980) - the (tenant, cursor) composite the generic purge engine filters + orders by, and the liability report's range scan."
+          "awcms_commerce_stored_value_ledger_tenant_created_idx (sql/985) - the (tenant, cursor) composite the generic purge engine filters + orders by, and the liability report's range scan."
       }
     ],
     batchLimit: 5000,

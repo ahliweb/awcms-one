@@ -122,7 +122,7 @@ export const COMMERCE_REGISTER_SESSION_CLOSED_EVENT_TYPE =
 export const COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE =
   "awcms.commerce.register_session.corrected";
 
-/** Issue #288 (ADR-0029) — closed-loop stored-value ledger. */
+/** Issue #288 (ADR-0030) — closed-loop stored-value ledger. */
 export const COMMERCE_STORED_VALUE_ENTRY_RECORDED_EVENT_TYPE =
   "awcms.commerce.stored_value.entry_recorded";
 
