@@ -94,7 +94,10 @@ import type {
 import type { CreatePosOrderInput } from "../../src/modules/commerce/domain/pos-order-validation";
 import type { CreateProductInput } from "../../src/modules/commerce/domain/product-validation";
 import type { CreateOrderInput } from "../../src/modules/commerce/domain/order-request-validation";
-import { SALES_REPORT_TIME_ZONE } from "../../src/modules/commerce/domain/sales-report-deltas";
+import {
+  SALES_REPORT_TIME_ZONE,
+  resolveSalesReportDay
+} from "../../src/modules/commerce/domain/sales-report-deltas";
 import { mediaLibraryPortAdapter } from "../../src/modules/media-library/application/media-library-port-adapter";
 import {
   getAdminSql,
@@ -1876,7 +1879,7 @@ suite("closed-loop stored value integration (Issue #288)", () => {
       const live = await issueOk(TENANT_A, { amount: "9000.00" });
       await Bun.sleep(1500);
 
-      const today = new Date().toISOString().slice(0, 10);
+      const today = resolveSalesReportDay(new Date(), SALES_REPORT_TIME_ZONE);
       const beforeReport = await inTenant(TENANT_A, (tx) =>
         fetchStoredValueReport(
           tx,
@@ -1993,7 +1996,7 @@ suite("closed-loop stored value integration (Issue #288)", () => {
       }
       await issueOk(TENANT_A, { kind: "store_credit", amount: "1000.00" });
 
-      const today = new Date().toISOString().slice(0, 10);
+      const today = resolveSalesReportDay(new Date(), SALES_REPORT_TIME_ZONE);
       const report = await inTenant(TENANT_A, (tx) =>
         fetchStoredValueReport(
           tx,
