@@ -121,6 +121,12 @@ export const COMMERCE_REGISTER_SESSION_CLOSED_EVENT_TYPE =
   "awcms.commerce.register_session.closed";
 export const COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE =
   "awcms.commerce.register_session.corrected";
+/**
+ * Loyalty points ledger (Issue #289, ADR-0026) — ONE event type for every
+ * ledger row, `kind` in the payload.
+ */
+export const COMMERCE_LOYALTY_ENTRY_RECORDED_EVENT_TYPE =
+  "awcms.commerce.loyalty.entry_recorded";
 
 export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
   [
@@ -301,6 +307,12 @@ export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
       eventVersion: COMMERCE_EVENT_VERSION,
       description:
         "A compensating correction was recorded against a closed register session (the original cash-up is preserved). Producer: commerce/application/register-cash-up.ts's recordRegisterCorrection. Carries the per-tender adjustments, never the free-text reason."
+    },
+    {
+      eventType: COMMERCE_LOYALTY_ENTRY_RECORDED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A row was appended to the append-only loyalty points ledger (Issue #289) — an earn for a paid order, a redemption, an expiry, a manual adjustment or a reversal. Producer: commerce/application/loyalty-ledger.ts's appendLedgerEntry, in the same transaction as the ledger insert and the account projection update. Aggregate is the loyalty account; the payload carries entryId, customerId, kind, signed integer points, balanceAfter and sourceType — never a name, phone or free-text reason."
     }
   ];
 

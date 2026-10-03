@@ -10100,6 +10100,290 @@ status is DERIVED from now() against startsAt/endsAt — scheduled or active; en
 | 401    | Missing or invalid session.       | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC.       | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/loyalty/accounts` — Issue #289 (ADR-0026). Keyset list of loyalty accounts (newest first) with the customer's name and masked phone; `customerId` narrows to one customer and `phone` is the counter lookup, which also returns a `customer` block (balance 0 for a customer with no account yet). Gated on `commerce.loyalty.read`; `409 FEATURE_DISABLED` when the tenant's `loyalty` feature is off.
+
+- **operationId**: `listCommerceLoyaltyAccounts`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name         | In    | Required | Type          | Description                                                                                                                 |
+| ------------ | ----- | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `cursor`     | query | no       | string        |                                                                                                                             |
+| `limit`      | query | no       | integer       |                                                                                                                             |
+| `customerId` | query | no       | string (uuid) |                                                                                                                             |
+| `phone`      | query | no       | string        | An Indonesian phone number in any common notation; normalised server-side. The walk-in sentinel customer is never returned. |
+
+**Responses**
+
+| Status | Description                                                            | Schema                                 |
+| ------ | ---------------------------------------------------------------------- | -------------------------------------- |
+| 200    | One page of loyalty accounts.                                          | object                                 |
+| 400    | Validation error.                                                      | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                            | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                            | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED — the tenant has not turned the `loyalty` feature on. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/loyalty/accounts/{customerId}` — Issue #289. One customer's loyalty position — name, masked phone and the projected balance (0 for a customer who has never earned). An unknown, deleted or other-tenant customer id is the same 404. Gated on `commerce.loyalty.read`.
+
+- **operationId**: `getCommerceLoyaltyAccount`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name         | In   | Required | Type          | Description |
+| ------------ | ---- | -------- | ------------- | ----------- |
+| `customerId` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                      | Schema                                 |
+| ------ | -------------------------------- | -------------------------------------- |
+| 200    | The customer's loyalty position. | object                                 |
+| 400    | Validation error.                | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.      | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.      | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.              | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED.                | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/loyalty/accounts/{customerId}/adjust` — Issue #289. A manual signed points adjustment — its own permission (`commerce.loyalty_adjustments.create`), a MANDATORY `reason`, an audit event, and an `Idempotency-Key`. A negative adjustment cannot take the balance below zero (`409 WOULD_GO_NEGATIVE`); only a system reversal may.
+
+- **operationId**: `adjustCommerceLoyaltyPoints`
+- **Security**: bearerAuth + tenantHeader
+
+Same key + same body replays the stored 201; same key + different body is `409 IDEMPOTENCY_CONFLICT`. Adjustments never expire.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `customerId`      | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                   | Schema                                 |
+| ------ | ------------------------------------------------------------- | -------------------------------------- |
+| 201    | Adjustment recorded (or replayed).                            | object                                 |
+| 400    | Validation error.                                             | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                   | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                           | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED, WOULD_GO_NEGATIVE, or IDEMPOTENCY_CONFLICT. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/loyalty/accounts/{customerId}/ledger` — Issue #289. The customer's append-only points history, newest first, keyset-paginated. Staff view: carries the actor and the reason that the customer-facing history omits. Gated on `commerce.loyalty.read`.
+
+- **operationId**: `listCommerceLoyaltyLedger`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name         | In    | Required | Type          | Description |
+| ------------ | ----- | -------- | ------------- | ----------- |
+| `customerId` | path  | yes      | string (uuid) |             |
+| `cursor`     | query | no       | string        |             |
+| `limit`      | query | no       | integer       |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | One page of ledger entries. | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED.           | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/loyalty/accounts/{customerId}/redeem` — Issue #289. Redeem a customer's points at the counter or on their behalf. Gated on `commerce.loyalty_redemptions.create`; `Idempotency-Key` required. Runs under the account row lock, so concurrent redemptions cannot overdraw (`409 INSUFFICIENT_POINTS`).
+
+- **operationId**: `redeemCommerceLoyaltyPoints`
+- **Security**: bearerAuth + tenantHeader
+
+Records the points DEBIT only. Converting points into a discount at checkout needs the tender model of #285 and is deferred (ADR-0026). Points past their `expiresAt` are expired first, under the same lock, so lapsed points can never be spent. Same key + same body replays the stored 201; same key + different body is `409 IDEMPOTENCY_CONFLICT`. A refused (insufficient) request is not recorded, so the same key can succeed after a top-up.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `customerId`      | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                               | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Points redeemed (or replayed).                                                                            | object                                 |
+| 400    | Validation error.                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                               | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                               | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED, INSUFFICIENT_POINTS (details carry `balance` and `requested`), or IDEMPOTENCY_CONFLICT. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/loyalty/programs` — Issue #289. Every loyalty program VERSION, newest first. Gated on `commerce.loyalty.read`.
+
+- **operationId**: `listCommerceLoyaltyPrograms`
+- **Security**: bearerAuth + tenantHeader
+
+**Responses**
+
+| Status | Description                    | Schema                                 |
+| ------ | ------------------------------ | -------------------------------------- |
+| 200    | The tenant's program versions. | object                                 |
+| 401    | Missing or invalid session.    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.    | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED.              | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/loyalty/programs` — Issue #289. Create a new DRAFT program version (version number = max + 1 per tenant). Gated on `commerce.loyalty.manage`.
+
+- **operationId**: `createCommerceLoyaltyProgram`
+- **Security**: bearerAuth + tenantHeader
+
+**Request body** (required): [`LoyaltyProgramInput`](#schema-loyaltyprograminput)
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 201    | Draft version created.      | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED.           | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/loyalty/programs/{id}` — Issue #289. One program version. Gated on `commerce.loyalty.read`.
+
+- **operationId**: `getCommerceLoyaltyProgram`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The program version.        | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED.           | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/loyalty/programs/{id}` — Issue #289. Edit a DRAFT program version. An active or retired version is immutable (a ledger row records the version it earned under) — `409 PROGRAM_NOT_EDITABLE`; a change of rules is a new version. Gated on `commerce.loyalty.manage`.
+
+- **operationId**: `updateCommerceLoyaltyProgram`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                               | Schema                                 |
+| ------ | ----------------------------------------- | -------------------------------------- |
+| 200    | The updated draft.                        | object                                 |
+| 400    | Validation error.                         | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.               | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.               | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                       | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED or PROGRAM_NOT_EDITABLE. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/loyalty/programs/{id}/activate` — Issue #289. Activate a draft version NOW: `effectiveFrom` = this instant, and the version open at that instant is closed (`effectiveTo` = this instant, `retired`) in the same transaction under a per-tenant lock. A high-risk `manage` action. A second call finds the version no longer a draft (`409 PROGRAM_NOT_DRAFT`).
+
+- **operationId**: `activateCommerceLoyaltyProgram`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                            | Schema                                 |
+| ------ | -------------------------------------- | -------------------------------------- |
+| 200    | Version activated.                     | object                                 |
+| 400    | Validation error.                      | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.            | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.            | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                    | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED or PROGRAM_NOT_DRAFT. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/loyalty/programs/{id}/retire` — Issue #289. End the open active version NOW. Orders paid afterwards earn nothing until another version is activated; points already earned are untouched. `409 PROGRAM_NOT_ACTIVE` for anything but the open active version.
+
+- **operationId**: `retireCommerceLoyaltyProgram`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                             | Schema                                 |
+| ------ | --------------------------------------- | -------------------------------------- |
+| 200    | Version retired.                        | object                                 |
+| 400    | Validation error.                       | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.             | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.             | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                     | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED or PROGRAM_NOT_ACTIVE. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/loyalty/reconcile` — Issue #289. Recompute every account's balance from the ledger and report drift (projection disagrees with the ledger) and ledger breaks (a row whose running `balanceAfter` is not the running sum). `repair: true` additionally rewrites each drifted account's PROJECTION — never the ledger — with one audit event per repair. Gated on `commerce.loyalty.manage` (a high-risk action) in both modes.
+
+- **operationId**: `reconcileCommerceLoyalty`
+- **Security**: bearerAuth + tenantHeader
+
+**Request body** (optional): object
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The reconcile report.       | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED.           | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/loyalty/summary` — Issue #289. Earned / redeemed / expired / reversed / net for a window plus the all-time outstanding points, every figure SUMMED FROM THE LEDGER by `kind` so no point is counted twice. Gated on `commerce.loyalty.read`.
+
+- **operationId**: `getCommerceLoyaltySummary`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name   | In    | Required | Type   | Description                                                                                            |
+| ------ | ----- | -------- | ------ | ------------------------------------------------------------------------------------------------------ |
+| `from` | query | no       | string | Inclusive lower bound. An ISO-8601 instant or a bare `YYYY-MM-DD` day (UTC).                           |
+| `to`   | query | no       | string | Exclusive upper bound for an instant; a bare `YYYY-MM-DD` day means through the end of that day (UTC). |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The loyalty summary.        | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED.           | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/orders` — Admin order list (Issue 29). Keyset-paginated, newest first; optional status/paymentStatus filters. Gated on orders.read.
 
 - **operationId**: `listCommerceOrders`
@@ -12247,6 +12531,30 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 | ------ | ---------------- | -------------------------------------- |
 | 204    | Revoked.         |                                        |
 | 401    | UNAUTHENTICATED. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/storefront/account/loyalty` — Issue #289 (ADR-0026). The signed-in customer's OWN points balance, the earn rule currently in force, and their point history (newest first, keyset-paginated). The customer id is read ONLY from the verified bearer session — there is no identifier a caller can change to read another customer's ledger.
+
+- **operationId**: `getCommerceStorefrontAccountLoyalty`
+- **Security**: customerBearer
+
+Each history item is `{ id, kind, points, balanceAfter, expiresAt, createdAt }` — never the staff actor, the free-text reason, the source order or the program id. A tenant that has not turned the `loyalty` feature on answers the neutral `404`, like every other disabled public case.
+
+**Parameters**
+
+| Name     | In    | Required | Type    | Description |
+| -------- | ----- | -------- | ------- | ----------- |
+| `cursor` | query | no       | string  |             |
+| `limit`  | query | no       | integer |             |
+
+**Responses**
+
+| Status | Description                                 | Schema                                 |
+| ------ | ------------------------------------------- | -------------------------------------- |
+| 200    | Balance, earn rule and one page of history. | object                                 |
+| 400    | Validation error.                           | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.                            | [`ApiError`](#standard-error-envelope) |
+| 403    | ACCOUNT_BLOCKED.                            | [`ApiError`](#standard-error-envelope) |
+| 404    | Loyalty is not enabled for this store.      | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/storefront/account/me` — Issue #89 (implemented, contract #86). The signed-in customer account (D1).
 
@@ -15095,6 +15403,34 @@ Unparseable entries are refused at issuance. At request time an unreadable entry
 }
 ```
 
+### Schema: LoyaltyProgramInput
+
+Issue #289 — the create body of a loyalty program version. Points are integers; money is a numeric(14,2) STRING (ADR-0003).
+
+| Field               | Type    | Required | Nullable | Description                                                                                   |
+| ------------------- | ------- | -------- | -------- | --------------------------------------------------------------------------------------------- |
+| `name`              | string  | yes      | no       |                                                                                               |
+| `earnUnitAmount`    | string  | yes      | no       | Spend that earns one step of points. Greater than zero.                                       |
+| `earnPointsPerUnit` | integer | yes      | no       |                                                                                               |
+| `minOrderAmount`    | string  | no       | no       | Eligible spend below this earns nothing. Defaults to "0.00".                                  |
+| `maxPointsPerOrder` | integer | no       | yes      |                                                                                               |
+| `expiryDays`        | integer | no       | yes      | Points earned under this version lapse this many days after the order was paid; null = never. |
+| `notes`             | string  | no       | yes      |                                                                                               |
+
+**Example**
+
+```json
+{
+  "name": "string",
+  "earnUnitAmount": "string",
+  "earnPointsPerUnit": 1,
+  "minOrderAmount": "string",
+  "maxPointsPerOrder": 1,
+  "expiryDays": 1,
+  "notes": "string"
+}
+```
+
 ### Schema: MediaRightsUpdateRequest
 
 At least one field. `null` clears; an omitted field is left alone.
@@ -15861,7 +16197,7 @@ consumer/subscriber contract in this file).
 }
 ```
 
-### Channels (62)
+### Channels (63)
 
 - `awcms.blog-content.ad.created` — An advertisement was created. Documented contract only; producer is `pages/api/v1/blog/ads/index.ts`'s `blog-content.ad.created` log line.
 - `awcms.blog-content.ad.deleted` — An advertisement was soft-deleted. Documented contract only; producer is `pages/api/v1/blog/ads/[id].ts`'s `blog-content.ad.deleted` log line.
@@ -15895,18 +16231,19 @@ consumer/subscriber contract in this file).
 - `awcms.comments.reply.created` — A submitted comment was a reply to an existing comment. Producer: `comments/application/comment-service.ts`'s `submitComment`, published alongside `comment.submitted` so a consumer can distinguish thread replies without re-reading the row. The recipient address is resolved from encrypted storage by the dispatcher at send time and is never carried here.
 - `awcms.commerce.flash_sale.ended` — A flash sale's derived status crossed into `ended` (`now()` passed `ends_at`). Producer: `commerce/application/flash-sale-directory.ts`'s `tickFlashSalesForTenant`, run by the scheduled `commerce:flash-sales:tick` job.
 - `awcms.commerce.flash_sale.started` — A flash sale's derived status crossed into `active` (`now()` entered `[starts_at, ends_at]`). Producer: `commerce/application/flash-sale-directory.ts`'s `tickFlashSalesForTenant`, run by the scheduled `commerce:flash-sales:tick` job — never a direct admin `PATCH`.
+- `awcms.commerce.loyalty.entry_recorded` — A payment-allocation ledger leg became a `succeeded` payment against an order (an operator-recorded tender, a POS tender, an accepted manual-transfer confirmation, or a confirmed gateway leg). Producer: `commerce/application/payment-allocation-directory.ts`'s `recordPaymentAllocation` / `resolveGatewayAllocation`, in the same transaction as the ledger write. The order aggregate carries the stream, so `payment.recorded` is ordered against `order.paid`. Payload: `orderId`, `orderCode`, `allocationId`, `tenderType`, `amount`, `source`, and the order's resulting `paid`/`outstanding`/ `paymentStatus` — never a customer name/phone or a payment reference. A pending gateway leg and the `sql/943` backfill do not fire it.
 - `awcms.commerce.order.cancelled` — An order was cancelled, by the customer (while `pending_payment`) or an admin. Producer: `commerce/application/order-directory.ts`'s `transitionOrderStatus`, published alongside `commerce.order.status_changed`; its line items are restocked and any redeemed voucher un-redeemed in the same transaction.
 - `awcms.commerce.order.created` — An order was created via the anonymous storefront checkout path. Producer: `commerce/application/order-directory.ts`'s `createOrderFromCart`, in the same transaction as the order/order-items insert, the stock/flash-sale-quota decrement, and (when a voucher was used) its redemption.
 - `awcms.commerce.order.expired` — A `pending_payment` order's payment window elapsed. Producer: `commerce/application/order-directory.ts`'s `transitionOrderStatus`, run by the scheduled `commerce:orders:expire` job; its line items are restocked and any redeemed voucher un-redeemed in the same transaction.
 - `awcms.commerce.order.paid` — An order's status transitioned to `paid` — normally an admin accepting a payment confirmation. Producer: `commerce/application/order-directory.ts`'s `transitionOrderStatus`, published alongside `commerce.order.status_changed`.
 - `awcms.commerce.order.status_changed` — An order's status transitioned (`commerce/domain/order-status.ts`'s `LEGAL_ORDER_STATUS_TRANSITIONS`). Producer: `commerce/application/order-directory.ts`'s `transitionOrderStatus`. Carries `from`/`to` status; a consumer that only cares an order moved can key off this without diffing the row.
-- `awcms.commerce.payment.recorded` — A payment-allocation ledger leg became a `succeeded` payment against an order (an operator-recorded tender, a POS tender, an accepted manual-transfer confirmation, or a confirmed gateway leg). Producer: `commerce/application/payment-allocation-directory.ts`'s `recordPaymentAllocation` / `resolveGatewayAllocation`, in the same transaction as the ledger write. The order aggregate carries the stream, so `payment.recorded` is ordered against `order.paid`. Payload: `orderId`, `orderCode`, `allocationId`, `tenderType`, `amount`, `source`, and the order's resulting `paid`/`outstanding`/ `paymentStatus` — never a customer name/phone or a payment reference. A pending gateway leg and the `sql/943` backfill do not fire it.
+- `awcms.commerce.payment.recorded` —
 - `awcms.commerce.payment.reversed` — A compensating reversal was recorded against an earlier payment-allocation (a refund or a corrected entry). Producer: `commerce/application/payment-allocation-directory.ts`'s `recordPaymentReversal`, in the same transaction as the ledger insert. Payload: `orderId`, `orderCode`, `allocationId`, `reversesAllocationId`, `tenderType`, `amount`, and the order's resulting `paid`/`outstanding`/`paymentStatus`. Never moves the order lifecycle (`status`).
 - `awcms.commerce.product.created` — A product was created (status `draft`). Producer: `commerce/application/product-directory.ts`'s `createProduct`, via `appendDomainEvent` in the same transaction as the row's creation.
 - `awcms.commerce.product.status_changed` — A product's lifecycle status transitioned (`commerce/domain/product-status.ts`'s `LEGAL_TRANSITIONS`). Producer: `commerce/application/product-directory.ts`'s `updateProduct`. Carries `previousStatus` and `status`; a consumer that only cares whether a product is still sellable can key off this without diffing the row.
 - `awcms.commerce.product.updated` — A product's fields other than `status` were changed. Producer: `commerce/application/product-directory.ts`'s `updateProduct`. Published alongside `commerce.product.status_changed` when a single `PATCH` changes both.
 - `awcms.commerce.register_session.closed` — A POS register session was closed (cash-up). Producer: `commerce/application/register-cash-up.ts`'s `closeRegisterSession` / `decideRegisterClose`, in the same transaction as the status change. Fired once per session, only when it actually reaches `closed` (a close awaiting approval, or a rejected one, does not fire it). Payload: `sessionId`, `registerId`, `varianceTotal`, `varianceGross`, `approvalRequired`, and per-tender `lines` (`tenderType`, `expected`, `counted`, `variance`).
-- `awcms.commerce.register_session.corrected` — A compensating correction was recorded against a closed register session; the original close request and lines are preserved untouched. Producer: `commerce/application/register-cash-up.ts`'s `recordRegisterCorrection`. Payload: `sessionId`, `correctionId`, and `adjustments` (`tenderType`, `adjustment`) - never the free-text reason.
+- `awcms.commerce.register_session.corrected` — A compensating correction was recorded against a closed register session; the original close request and lines are preserved untouched. Producer: `commerce/application/register-cash-up.ts`'s `recordRegisterCorrection`. Payload: `sessionId`, `correctionId`, and `adjustments` (`tenderType`, `adjustment`) - never the free-text reason. A row was appended to the append-only loyalty points ledger (Issue #289) — an earn for a paid order, a redemption, an expiry, a manual adjustment or a reversal. Producer: `commerce/application/loyalty-ledger.ts`'s `appendLedgerEntry`, in the same transaction as the ledger insert and the account projection update. Aggregate is the loyalty account; the payload carries `entryId`, `customerId`, `kind`, signed integer `points`, `balanceAfter` and `sourceType` — never a name, phone or free-text reason.
 - `awcms.commerce.register_session.movement_recorded` — A cash drawer movement (cash in/out, safe drop, expense, transfer, correction) was recorded against an open register session. Producer: `commerce/application/register-session-directory.ts`'s `recordRegisterMovement`. Payload: `sessionId`, `movementId`, `movementType`, `direction`, `amount` - never the free-text reference or note.
 - `awcms.commerce.register_session.opened` — A POS register session was opened with an opening float (Issue #284, ADR-0028). Producer: `commerce/application/register-session-directory.ts`'s `openRegisterSession`, in the same transaction as the session row. Aggregate: the register session. Payload: `sessionId`, `registerId`, `openingFloat`, `cashierTenantUserId`.
 - `awcms.commerce.review.published` — A pending review was moderated to `published` by an admin. Producer: `commerce/application/review-directory.ts`'s `moderateReview` — never fired on review creation, since a pending review is not yet a fact worth publishing to anyone.

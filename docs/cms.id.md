@@ -1,6 +1,7 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](cms.md)
 
 <!-- i18n-source-hash: sha256:2846284045a15c25bb8d8af91b14b070f7c869aca1ef85546b4574c7305344a2 -->
+<!-- i18n-source-hash: sha256:c5f7d7d189ed0a88687a52e04d8ada5eebf34f5e4485da01687fcfc005589040 -->
 
 # CMS: authoring, publikasi, izin, audit, media, taksonomi
 
@@ -292,6 +293,17 @@ Sampai issue ini, pembayaran pesanan adalah `payment_method` ditambah satu `paym
 - **Layar.** `/admin/commerce-pos` menerima baris tender terbagi dengan ringkasan langsung diterapkan/kembalian/saldo (`aria-live`, field berlabel, tanpa kontrol khusus-pointer); `/admin/commerce-orders/{id}` menampilkan penyelesaian, ledger, dan form catat-pembayaran / catat-pembalikan (dijaga `commerce.payments.{read,create,revoke}`); `/admin/commerce-reports` menampilkan bauran tender dan saldo terutang.
 - **Laporan.** `GET /api/v1/reports/commerce/tender-mix` dan `.../outstanding-balances` (`commerce.payments.read`) membaca ledger langsung — ledger adalah sumber kebenaran, sehingga tidak ada proyeksi kedua yang bisa menyimpang.
 - **Tes.** `apps/cms/tests/commerce-payment-allocation-domain.test.ts` (aritmetika penyelesaian/status/perencanaan tender yang persis-sen, validator) dan `apps/cms/tests/integration/commerce-payment-allocations.integration.test.ts` terhadap Postgres sungguhan (penyelesaian terbagi, kurang/lebih bayar, replay/konflik idempotensi, alokasi final dan pembalikan yang benar-benar konkuren, trigger append-only/REVOKE, isolasi RLS dan FK komposit, BOLA, alur konfirmasi/webhook/reconcile/POS, backfill, laporan).
+## Poin loyalitas: ledger, program, job, dan layar (issue #289, [ADR-0026](adr/0026-loyalty-points-are-an-append-only-ledger.id.md))
+
+Flag `features` keenam, **`loyalty`, default `false`** — satu-satunya flag di dokumen pengaturan yang tidak default hidup, karena ia perilaku baru (poin terakumulasi pada setiap order yang dibayar dan muncul saldo yang terlihat pelanggan), bukan gerbang bagi perilaku yang sudah ada. Skema: [`docs/skema-basis-data.md`](skema-basis-data.md); endpoint dan izin: [`docs/api.md`](api.md); kosakata: [`docs/kamus-data.md`](kamus-data.md).
+
+- **Bagaimana poin diperoleh.** Consumer `commerce.order_paid_loyalty_earner` membaca baris order yang dibayar (`subtotal - discount`, `paid_at`, `customer_id`) dan menulis satu baris ledger `earn` di bawah versi program yang berlaku pada `paid_at` — `floor(belanja / earn_unit_amount) * earn_points_per_unit`, dibatasi `max_points_per_order`, tidak ada di bawah `min_order_amount`. Tepat sekali per order (kunci ledger `earn:order:<id>` plus penanda consumer). Pelanggan sentinel walk-in, pelanggan terblokir, order yang dibatalkan, tenant dengan fitur mati, dan order yang dibayar sebelum ada program tidak memperoleh apa pun; menghidupkan fitur kemudian tidak mengisi ulang.
+- **Bagaimana poin hilang.** `expire`: per lot perolehan, yang paling cepat kedaluwarsa lebih dulu, ditambahkan oleh `commerce:loyalty:expire` (tiap jam) dan — agar kadens tidak pernah memengaruhi kebenaran — oleh redeem, penyesuaian, atau pembatalan itu sendiri sebelum bertindak. `reversal`: consumer `order.cancelled` menambahkan baris kompensasi untuk perolehan order (yang belum kedaluwarsa, termasuk poin yang sudah dipakai, sehingga saldo bisa negatif dan memblokir redeem sampai perolehan berikutnya menutupinya). `redeem`: penukaran di kasir, `409 INSUFFICIENT_POINTS` bila akan overdraw; hanya mencatat pengurangan.
+- **Program** adalah versi. Buat draf, aktifkan (segera; menutup versi yang terbuka dalam transaksi yang sama), pensiunkan. Versi aktif atau pensiun tidak pernah diedit.
+- **Layar admin** `/admin/commerce-loyalty` (`commerce-loyalty.astro`, `loadAdminScreen`, pintu masuk `commerce.loyalty.read`, entri sidebar disembunyikan selama flag mati): angka kunci hasil penjumlahan ledger, versi program dengan aktifkan/pensiunkan berdialog konfirmasi, pencarian pelanggan lewat telepon (atau dari daftar akun terbaru) dengan ledger pelanggan itu plus form redeem dan adjust — masing-masing hanya tampil bagi pemegang izinnya sendiri — dan pemeriksaan saldo hanya-baca yang perbaikannya butuh langkah kedua yang eksplisit dan dikonfirmasi. Kunjungan langsung saat flag mati menyatakannya, bukan menampilkan tabel kosong.
+- **Pelanggan** `GET /api/v1/commerce/storefront/account/loyalty` (sesi bearer; id pelanggan hanya dari sesi). Belum ada halaman storefront untuknya.
+- **Reconcile.** `commerce:loyalty:reconcile` (harian) hanya-baca dan keluar non-nol pada saldo yang drift atau baris ledger yang saldo berjalannya tidak cocok. Perbaikan hanya menulis ulang proyeksi, diaudit per akun.
+- **Tes.** `apps/cms/tests/commerce-loyalty-{earn,lots,validation,routes}.test.ts` (murni) dan `apps/cms/tests/integration/commerce-loyalty.integration.test.ts` (Postgres nyata, termasuk perolehan dan kedaluwarsa yang dijalankan sebagai role `awcms_worker` sungguhan).
 
 ## Register POS dan tutup kas (issue #284, epik #281, [ADR-0028](adr/0028-pos-register-sessions-and-cash-up.md))
 

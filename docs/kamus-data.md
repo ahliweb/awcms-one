@@ -182,6 +182,23 @@ BjekMart's kasir (`commerce_bj_mart`'s counter sales, recorded in the legacy `or
 | due balance / `allowDue` | `POST /api/v1/commerce/pos/orders` | A POS sale finalized with money still owed (explicit, needs `commerce.pos_due.create` and a customer phone): `pending_payment`, no expiry, `settlement.outstanding` explicit |
 | `tenders[]` | POS request, contract version 2 | The explicit multi-tender payload (`{ tenderType, amount, reference? }`); mutually exclusive with the legacy `payment` object. Non-cash `amount` = applied, cash `amount` = handed over |
 | `commerce.payments.{read,create,revoke}`, `commerce.pos_due.create` | `awcms_permissions` (`sql/941`) | Read the ledger/reports, record a tender, record a reversal (`revoke` is the platform's high-risk verb), finalize a POS sale with a balance due |
+## Loyalty vocabulary (issue #289, [ADR-0026](adr/0026-loyalty-points-are-an-append-only-ledger.md))
+
+This platform's own design — OSPOS's "rewards" is the inspiration, none of its code or schema is carried over.
+
+| Term | Where | Meaning |
+| --- | --- | --- |
+| point | `awcms_commerce_loyalty_ledger.points`, `bigint`, signed | An integer. Never a float and never money; not store credit or stored value (#288). Bounded to ±10¹² and asserted on every decode (`assertPoints`) |
+| `kind` | ledger `CHECK IN ('earn','redeem','expire','adjustment','reversal')` | `earn` points granted for a paid order (> 0, a **lot** that may carry `expires_at`); `redeem` points spent (< 0); `expire` a lot lapsing (<= 0 — 0 is a marker for a lot already fully spent); `adjustment` a manual correction (non-zero, actor + reason mandatory); `reversal` the compensating entry for one earn (non-zero, names `reverses_entry_id`) |
+| `source_type` / `source_id` | ledger | Where a row came from: `order` (an order id), `expiry` (the lapsing lot's entry id), `redemption`, `manual`. No FK on `source_id` |
+| `idempotency_key` | ledger, unique per tenant | `earn:order:<orderId>`, `reversal:order:<orderId>`, `expire:<lotEntryId>`, `redeem:<accountId>:<clientKey>`, `adjust:<accountId>:<clientKey>` — the reason a replayed event, job or retry cannot write a second row |
+| `account_seq` / `balance_after` | ledger | The row's position in its account's history (assigned under the account lock) and the running balance after it — what reconcile verifies |
+| lot | derived (`domain/loyalty-lots.ts`) | A positive ledger entry and how much of it is still spendable, computed by replaying the ledger (earliest-expiry-first). Never stored |
+| program version | `awcms_commerce_loyalty_programs` | One earn rule: `earn_points_per_unit` points per WHOLE `earn_unit_amount` of eligible spend, FLOOR rounding (`earn_rounding = 'floor'`), optional `min_order_amount`, `max_points_per_order`, `expiry_days`. Status `draft` → `active` → `retired`; effective at an instant when `effective_from <= t < effective_to` |
+| eligible spend | computed | The order's `subtotal - discount` (merchandise net of voucher), floored at zero; shipping, insurance and tax never earn |
+| `features.loyalty` | `commerce` module settings, `domain/commerce-features.ts` | The tenant switch, default **false** (the only commerce flag that defaults off) |
+| `commerce.loyalty.{read,manage}`, `commerce.loyalty_adjustments.create`, `commerce.loyalty_redemptions.create` | `awcms_permissions` (`sql/952`) | Four permissions on three activity codes — not `loyalty.adjust`/`.redeem`, because `AccessAction` is upstream-owned |
+| `awcms.commerce.loyalty.entry_recorded` | domain event | One event per ledger row; aggregate `commerce.loyalty_account`; payload carries `kind`, signed `points`, `balanceAfter`, `sourceType`, never PII |
 
 ### POS registers and cash-up (issue #284, [ADR-0028](adr/0028-pos-register-sessions-and-cash-up.md))
 
