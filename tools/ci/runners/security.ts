@@ -34,6 +34,7 @@
  */
 import { existsSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
+import { loadAuditIgnoreArgs } from "../lib/audit-exceptions.ts";
 import { partitionHighSeverityFindings, parseBaseline } from "../lib/baseline.ts";
 import { ensureCodeqlCli } from "../lib/codeql-cli.ts";
 import { run, runOrThrow } from "../lib/exec.ts";
@@ -160,7 +161,13 @@ export async function runSecurityLeg(
   }
 
   // ---- 3. bun audit -------------------------------------------------------
-  const audit = await run(["bun", "audit", "--audit-level=low"], {
+  // Same dated, reasoned exceptions `local-ci/check-toko` applies — one list
+  // for both legs, read from the commit under test (lib/audit-exceptions.ts).
+  const ignore = loadAuditIgnoreArgs(worktreeRoot);
+  if (!ignore.ok) {
+    return fail(`dependency-audit exception(s) past reviewDate: ${ignore.expired.map((e) => e.advisory).join(", ")}`);
+  }
+  const audit = await run(["bun", "audit", "--audit-level=low", ...ignore.args], {
     cwd: worktreeRoot,
     logFile: log("bun-audit")
   });
