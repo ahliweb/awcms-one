@@ -1014,7 +1014,17 @@ export const READER_BUDGET_BYTES = 24_000;
  * small margin" convention as every raise above; re-measure on the next
  * commerce screen and tighten if the real total sits well below this.
  */
-export const APP_BUDGET_BYTES = 308_000;
+/**
+ * **Raised to 313,500 B for Issue #295** (document delivery, ADR-0034) - one
+ * new shared dialog, no new screen: `CommerceDeliveryDialog.astro` (its scoped
+ * CSS and server-rendered chrome) and `commerce-delivery-dialog-client.ts` (the
+ * open / load-history / submit driver, built on `admin-form-client.ts`'s
+ * `onAction`/`onSubmit`/`sendJsonForData`/`messageBox`; every string reaches it
+ * as a `data-*` attribute), plus the Deliver buttons on
+ * `commerce-documents.astro`. Measured clean build: 312,873 B (up from
+ * 307,774 B). Same "measured + small margin" convention as every raise above.
+ */
+export const APP_BUDGET_BYTES = 313_500;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

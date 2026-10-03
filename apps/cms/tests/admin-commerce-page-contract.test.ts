@@ -89,7 +89,7 @@ async function enforcedTriples(
 }
 
 describe("commerce module descriptor — restore is declared for both activity codes", () => {
-  test("eighty permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations/entitlements, three for reviews, one for whatsapp, three for campaigns, one for webhook_endpoints, one for pos, one for pos_due, three for payments, ten for registers/cash-up, thirteen for held sales/quotations/conversions/work orders/documents", () => {
+  test("eighty-three permissions total —five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations/entitlements, three for reviews, one for whatsapp, three for campaigns, one for webhook_endpoints, one for pos, one for pos_due, three for payments, ten for registers/cash-up, thirteen for held sales/quotations/conversions/work orders/documents, three for document delivery", () => {
     // Issue #23: categories/products carry read/create/update/delete/restore.
     // Issue #26: flash_sales/vouchers/sliders/testimonials/popups carry
     // read/create/update/delete (soft delete only, no restore — the marketing
@@ -147,7 +147,9 @@ describe("commerce module descriptor — restore is declared for both activity c
         1 +
         3 +
         10 +
-        13
+        13 +
+        // Issue #295: document_deliveries read/create, document_delivery_overrides create.
+        3
     );
 
     for (const activityCode of ["categories", "products"]) {

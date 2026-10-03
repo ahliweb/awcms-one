@@ -1,0 +1,16 @@
+---
+"awcms": minor
+---
+
+feat(commerce): transactional delivery of receipts, invoices, quotation versions and work-order notices through the existing e-mail and WhatsApp outboxes (Issue #295, epic #281)
+
+New table `awcms_commerce_document_deliveries` (`sql/965` schema + append-only and source-integrity triggers + REVOKEs + a partial `(tenant_id, correlation_id)` index on `awcms_commerce_whatsapp_messages`, `sql/966` three permissions, `sql/967` worker purge grant; `968`–`969` held). No existing table gained a column. A delivery is a request row, not a queue: the message is enqueued in the caller's transaction into `awcms_email_messages` (via `enqueueDirectAddressEmail`, category `derived.transactional`) or `awcms_commerce_whatsapp_messages` (via `enqueueWhatsappMessage`, template `commerce.document`) with the delivery id as `correlation_id`, and the existing dispatchers call the providers later. The history reads the outbox row's live status back; nothing is copied. The three source references (`document_id`, `quotation_version_id`, `work_order_id`) are checked by a `BEFORE INSERT` trigger (same-tenant existence, true `doc_number`) rather than foreign keys, because migrations 965–969 sort before the `sql/980` tables they reference.
+
+Messages are built from a stored source only (document snapshot with hash re-verified; quotation version row; work-order status and target date); a unit test pins that the delivery code reads no live order. Idempotent via the shared store (a replay enqueues nothing; a new key is a re-send with `resend_of_id`); five requests per source per rolling hour. Transactional purpose (`CHECK (purpose = 'transactional')`): no marketing consent, e-mail suppression list honoured, recipient defaults to the source's customer, an override needs its own permission and is stored masked. An opt-in private link (`dl_` + 32 CSPRNG bytes, `sha256:` at rest, unique, at most 168 hours by `CHECK`) opens the print page through an anonymous, rate-limited route.
+
+New endpoints (behind the `documents` and `documentDelivery` feature flags — the latter default OFF → `409 FEATURE_DISABLED`):
+
+- `GET`/`POST /api/v1/commerce/document-deliveries` (`commerce.document_deliveries.{read,create}`; a recipient other than the customer on file needs `commerce.document_delivery_overrides.create`; `POST` requires `Idempotency-Key`; `409 CHANNEL_UNAVAILABLE | RECIPIENT_UNAVAILABLE | RECIPIENT_SUPPRESSED | TEMPLATE_UNAVAILABLE | SOURCE_NOT_DELIVERABLE | DOCUMENT_INTEGRITY_FAILURE`, `429 DELIVERY_RATE_LIMITED`)
+- `GET /api/v1/commerce/storefront/document-links/{token}` (anonymous; neutral `404`, `410 LINK_EXPIRED`)
+
+Event `awcms.commerce.document.delivery_requested` (registered in `module.ts`, the event-type registry and AsyncAPI); audit `document_delivery.{request,denied,link_opened,link_expired}`. `dataLifecycle`/`subjectData` descriptors (`domain/documents-lifecycle.ts`: `system_event`, 90-day floor, 3-year ceiling, 1 year by default). Admin: a Deliver dialog (`src/components/CommerceDeliveryDialog.astro`) on `/admin/commerce-documents`, a "Send documents by e-mail and WhatsApp" toggle (default off) in the commerce Features section. New optional env `COMMERCE_DOCUMENT_LINK_BASE_URL`. ADR-0034 and Indonesian mirrors.

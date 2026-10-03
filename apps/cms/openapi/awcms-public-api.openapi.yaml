@@ -8534,6 +8534,150 @@ paths:
           $ref: "#/components/responses/Forbidden"
         "404":
           $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/document-deliveries:
+    get:
+      operationId: listCommerceDocumentDeliveries
+      tags:
+        - Commerce
+      summary: "Issue #295 (ADR-0034). The delivery history of one receipt, invoice, quotation or work order, newest first. Gated on `commerce.document_deliveries.read`."
+      description: "Each entry is the append-only REQUEST (who asked, which immutable source, which channel, the MASKED recipient, the template version, the content hash) joined with the live state of the existing e-mail or WhatsApp outbox row it produced (`outbox`: status, provider message id, retry count, last error) - read, never copied, so it cannot drift. For `targetType: quotation_version` the `targetId` is the quotation's id and the history spans every version. An unknown id and another tenant's id are the same empty list. Needs the `documents` and `documentDelivery` features."
+      parameters:
+        - name: targetType
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - document
+              - quotation_version
+              - work_order
+        - name: targetId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The history, newest first (at most 50 entries).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceDocumentDelivery"
+        "400":
+          description: "`VALIDATION_ERROR` (missing or malformed `targetType` / `targetId`)."
+          content: &a1
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401": &a2
+          $ref: "#/components/responses/Unauthorized"
+        "403": &a3
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`FEATURE_DISABLED` - the tenant's `documents` or `documentDelivery` feature is off (`documentDelivery` defaults OFF)."
+          content: *a1
+    post:
+      operationId: requestCommerceDocumentDelivery
+      tags:
+        - Commerce
+      summary: "Issue #295 (ADR-0034). Requests delivery of a receipt, invoice, quotation version or work-order notice by e-mail or WhatsApp. Gated on `commerce.document_deliveries.create`; requires `Idempotency-Key`."
+      description: "Transactional, not marketing: the message is built from the STORED source only (a document's snapshot after its SHA-256 is re-verified, a quotation version row, a work order read at the request) and enqueued into the channel's EXISTING outbox in this transaction; a dispatcher calls the provider later. The default recipient is the customer the source names; any other recipient needs `commerce.document_delivery_overrides.create` (checked before the source is read). A replay of the same `Idempotency-Key` returns the stored result and enqueues nothing; a NEW key is an explicit re-send (`resendOfId` names the delivery it repeats). `includeLink` (documents only) adds an opaque private link valid for `linkTtlHours` (default 72, at most 168) - only its SHA-256 is stored and it is never returned. At most 5 requests per source per rolling hour (`429 DELIVERY_RATE_LIMITED`). Emits `awcms.commerce.document.delivery_requested`; audited as `document_delivery.request` / `document_delivery.denied`."
+      parameters:
+        - &a4
+          name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - targetType
+                - targetId
+                - channel
+              properties:
+                targetType:
+                  type: string
+                  enum:
+                    - document
+                    - quotation_version
+                    - work_order
+                targetId:
+                  type: string
+                  format: uuid
+                  description: A document id, a quotation id (with `version`) or a work-order id.
+                version:
+                  type: integer
+                  minimum: 1
+                  description: "`quotation_version` only; defaults to the current version."
+                channel:
+                  type: string
+                  enum:
+                    - email
+                    - whatsapp
+                locale:
+                  type: string
+                  enum:
+                    - id
+                    - en
+                  default: id
+                recipient:
+                  type: string
+                  description: An address (`email`) or number (`whatsapp`) other than the customer on file. Needs `commerce.document_delivery_overrides.create`.
+                includeLink:
+                  type: boolean
+                  default: false
+                linkTtlHours:
+                  type: integer
+                  minimum: 1
+                  maximum: 168
+                  default: 72
+      responses:
+        "201":
+          description: The delivery request (or the stored replay). `outbox.status` is `queued` until a dispatcher moves it.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceDocumentDelivery"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content: *a1
+        "401": *a2
+        "403":
+          description: "`ACCESS_DENIED` - the caller lacks `commerce.document_deliveries.create`, or named a recipient without `commerce.document_delivery_overrides.create`."
+          content: *a1
+        "404": &a5
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`CHANNEL_UNAVAILABLE` (the channel is not enabled on this deployment), `RECIPIENT_UNAVAILABLE` (the source names no usable recipient for the channel), `RECIPIENT_SUPPRESSED` or `TEMPLATE_UNAVAILABLE` (`details` is the recorded, not-enqueued delivery), `SOURCE_NOT_DELIVERABLE` (a cancelled quotation), `DOCUMENT_INTEGRITY_FAILURE`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED`."
+          content: *a1
+        "429":
+          description: "`DELIVERY_RATE_LIMITED` - too many requests for this source in the rolling window; `Retry-After` is in seconds."
+          content: *a1
   /api/v1/commerce/documents:
     get:
       operationId: listCommerceDocuments
@@ -8542,7 +8686,7 @@ paths:
       summary: "Issue #286 (ADR-0029). Lists receipt and invoice documents, newest first. Gated on `commerce.documents.read`."
       description: Filterable by `docType` and `orderId`. Gated on the `documents` feature.
       parameters:
-        - &a6
+        - &a7
           name: cursor
           in: query
           required: false
@@ -8584,14 +8728,9 @@ paths:
                         nullable: true
         "400":
           description: "`VALIDATION_ERROR`."
-          content: &a1
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiError"
-        "401": &a2
-          $ref: "#/components/responses/Unauthorized"
-        "403": &a3
-          $ref: "#/components/responses/Forbidden"
+          content: *a1
+        "401": *a2
+        "403": *a3
         "409":
           description: "`FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
           content: *a1
@@ -8602,12 +8741,7 @@ paths:
       summary: "Issue #286 (ADR-0029). Issues a numbered, immutable receipt or invoice for a finalized order. Gated on `commerce.documents.create`; requires `Idempotency-Key`."
       description: "The document is a frozen snapshot of the order (seller, customer, lines, totals, the payments as the ledger showed them) with the next gapless `RCP-` / `INV-<year>-<counter>` number and a SHA-256 of the snapshot; its money is verified equal to the order's. It is NOT an accounts-receivable invoice and carries no payment state of its own. One receipt and one invoice per order: issuing again answers `200` with the existing document and `alreadyIssued: true`. An invoice needs an order that took effect (`409 ORDER_NOT_FINAL` for a cancelled or expired one); a receipt additionally needs it fully paid (`409 ORDER_NOT_PAID`). Emits `awcms.commerce.document.issued`."
       parameters:
-        - &a7
-          name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - *a4
       requestBody:
         required: true
         content:
@@ -8658,8 +8792,7 @@ paths:
           content: *a1
         "401": *a2
         "403": *a3
-        "404": &a4
-          $ref: "#/components/responses/NotFound"
+        "404": *a5
         "409":
           description: "`ORDER_NOT_FINAL`, `ORDER_NOT_PAID`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
           content: *a1
@@ -8671,7 +8804,7 @@ paths:
       summary: "Issue #286 (ADR-0029). One stored document with its immutable snapshot and content hash. Gated on `commerce.documents.read`."
       description: An unknown id and another tenant's id are the same `404`.
       parameters:
-        - &a5
+        - &a6
           name: id
           in: path
           required: true
@@ -8694,7 +8827,7 @@ paths:
                     $ref: "#/components/schemas/CommerceDocumentDetail"
         "401": *a2
         "403": *a3
-        "404": *a4
+        "404": *a5
         "409":
           description: "`FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
           content: *a1
@@ -8706,7 +8839,7 @@ paths:
       summary: "Issue #286 (ADR-0029 D7). Renders a stored document for print, export or digital delivery. Gated on `commerce.documents.read`."
       description: "A pure function of the STORED snapshot: reprinting never mutates the document, and the snapshot's SHA-256 is re-verified first (`409 DOCUMENT_INTEGRITY_FAILURE` instead of printing a snapshot that no longer matches). `json` is the document envelope; `text` is a 42-column plain-text receipt; `html` is a self-contained print-ready page (inline CSS, no script, no external resource) served under a locked-down CSP. Every render is audited as `document.render`. Delivery itself (e-mail / WhatsApp / push) is a separate port that consumes this contract and is deferred."
       parameters:
-        - *a5
+        - *a6
         - name: format
           in: query
           schema:
@@ -8749,7 +8882,7 @@ paths:
           content: *a1
         "401": *a2
         "403": *a3
-        "404": *a4
+        "404": *a5
         "409":
           description: "`DOCUMENT_INTEGRITY_FAILURE` or `FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
           content: *a1
@@ -9264,7 +9397,7 @@ paths:
       summary: "Issue #286 (ADR-0029). Lists the caller's own parked POS carts, newest first. Gated on `commerce.held_sales.read`."
       description: "`scope=all` lists every cashier's and additionally needs `commerce.held_sales.approve` (`403` otherwise). `status` filters on the EFFECTIVE status: a still-held cart past its expiry reads `expired`. Gated on the `documents` feature."
       parameters:
-        - *a6
+        - *a7
         - name: status
           in: query
           schema:
@@ -9319,7 +9452,7 @@ paths:
       summary: "Issue #286 (ADR-0029). Parks a POS cart as a held sale. Gated on `commerce.held_sales.create`; requires `Idempotency-Key`."
       description: Stores the cart's lines (`productId`, `variantId`, `quantity`), an optional customer and notes - never a price and never a stock reservation. Expires `ttlHours` after parking (default 24, at most 168). A cashier may have at most 50 active held sales (`409 HELD_SALE_LIMIT`). Audited as `held_sale.hold`.
       parameters:
-        - *a7
+        - *a4
       requestBody:
         required: true
         content:
@@ -9398,7 +9531,7 @@ paths:
           content: *a1
         "401": *a2
         "403": *a3
-        "404": *a4
+        "404": *a5
         "409":
           description: "`HELD_SALE_LIMIT` (`details.limit`), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
           content: *a1
@@ -9410,8 +9543,8 @@ paths:
       summary: "Issue #286 (ADR-0029). Throws a parked cart away. Gated on `commerce.held_sales.update`; requires `Idempotency-Key`."
       description: Same ownership rule, idempotency and errors as `resume`; the cart is wiped and not returned. Audited as `held_sale.discard`.
       parameters:
-        - *a5
-        - *a7
+        - *a6
+        - *a4
       responses:
         "200":
           description: The discarded sale (or the stored replay).
@@ -9445,8 +9578,8 @@ paths:
       summary: "Issue #286 (ADR-0029). Resumes a parked cart. Gated on `commerce.held_sales.update`; requires `Idempotency-Key`."
       description: "Single-use: the cart's lines (and optional customer and notes) are returned once and the stored copy is wiped. The POS re-prices the lines with the ordinary quote - nothing was reserved. Another cashier's cart needs the supervisor key `commerce.held_sales.approve` (checked only then). Audited as `held_sale.resume`."
       parameters:
-        - *a5
-        - *a7
+        - *a6
+        - *a4
       responses:
         "200":
           description: The resumed sale with its cart (or the stored replay).
@@ -11159,7 +11292,7 @@ paths:
       summary: "Issue #286 (ADR-0029). Lists quotations, newest first. Gated on `commerce.quotations.read`."
       description: A `sent` quotation whose current version's validity has passed reads and filters as `expired`. Gated on the `documents` feature.
       parameters:
-        - *a6
+        - *a7
         - name: status
           in: query
           schema:
@@ -11209,7 +11342,7 @@ paths:
       summary: "Issue #286 (ADR-0029). Creates a quotation (version 1). Gated on `commerce.quotations.create`; requires `Idempotency-Key`."
       description: The lines are priced by the ordinary quote engine (self-pickup, the customer's tier) and frozen into an immutable version with a validity (`validUntil`, default 14 days, at most 180) and a SHA-256. The customer is found or created by phone. Takes the next gapless `QUO-<year>-<counter>` number. No stock is reserved.
       parameters:
-        - *a7
+        - *a4
       requestBody:
         required: true
         content:
@@ -11270,7 +11403,7 @@ paths:
       summary: "Issue #286 (ADR-0029). One quotation with every version. Gated on `commerce.quotations.read`."
       description: Each version carries its lines, totals, validity, pricing context and content hash. An unknown id and another tenant's id are the same `404`.
       parameters:
-        - *a5
+        - *a6
       responses:
         "200":
           description: The quotation.
@@ -11287,7 +11420,7 @@ paths:
                     $ref: "#/components/schemas/CommerceQuotationDetail"
         "401": *a2
         "403": *a3
-        "404": *a4
+        "404": *a5
         "409":
           description: "`FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
           content: *a1
@@ -11299,7 +11432,7 @@ paths:
       summary: "Issue #286 (ADR-0029). Sends, accepts, rejects or cancels a quotation. Gated on `commerce.quotations.update`; requires `Idempotency-Key`."
       description: "`send` (draft -> sent), `accept` (sent -> accepted; pins the current version and emits `awcms.commerce.quotation.accepted`), `reject` (sent -> rejected), `cancel` (draft | sent | accepted -> cancelled). Accepting a version whose validity has passed is `409 QUOTATION_EXPIRED` and persists the expiry. An unknown action is a `404`."
       parameters:
-        - *a5
+        - *a6
         - name: action
           in: path
           required: true
@@ -11310,7 +11443,7 @@ paths:
               - accept
               - reject
               - cancel
-        - *a7
+        - *a4
       requestBody:
         required: false
         content:
@@ -11341,7 +11474,7 @@ paths:
           content: *a1
         "401": *a2
         "403": *a3
-        "404": *a4
+        "404": *a5
         "409":
           description: "`QUOTATION_EXPIRED`, `QUOTATION_STATUS_CONFLICT` (`details.status`), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
           content: *a1
@@ -11353,8 +11486,8 @@ paths:
       summary: "Issue #286 (ADR-0029). Converts an ACCEPTED quotation into a commerce order. Gated on `commerce.quotation_conversions.create` AND `commerce.pos_due.create`; requires `Idempotency-Key`."
       description: "The order is written by the ordinary POS order path (`channel: pos`, `allowDue`, no tenders) at TODAY's price and stock, so it is created with the whole total due and paid later through the payment ledger. If its total differs from the accepted version's the request rolls back and answers `409 QUOTATION_PRICE_CHANGED` with both totals, unless `acceptPriceChange: true`. Converting an already converted quotation (any key, any caller) answers `200` with the existing order and `alreadyConverted: true`. With the `register` feature on, `registerId` is required. Needs the `documents` and `pos` features. Emits `awcms.commerce.quotation.converted` (the provenance: quotation id/number/accepted version -> order id/code)."
       parameters:
-        - *a5
-        - *a7
+        - *a6
+        - *a4
       requestBody:
         required: false
         content:
@@ -11401,7 +11534,7 @@ paths:
           content: *a1
         "401": *a2
         "403": *a3
-        "404": *a4
+        "404": *a5
         "409":
           description: "`QUOTATION_NOT_ACCEPTED` (`details.status`), `QUOTATION_PRICE_CHANGED` (`details.quotedTotal`, `details.currentTotal`), `CART_CHANGED`, `QUOTATION_CUSTOMER_INVALID`, `REGISTER_SESSION_REQUIRED`, `REGISTER_SESSION_CLOSING`, `NOT_SESSION_CASHIER`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED`."
           content: *a1
@@ -11413,8 +11546,8 @@ paths:
       summary: "Issue #286 (ADR-0029). Adds a revised version. Gated on `commerce.quotations.create`; requires `Idempotency-Key`."
       description: Re-prices the new lines and freezes them as version N+1 with their own validity; earlier versions are never edited and the quotation returns to `draft` (a revised offer must be sent and accepted again). Allowed from `draft`, `sent` and `expired`.
       parameters:
-        - *a5
-        - *a7
+        - *a6
+        - *a4
       requestBody:
         required: true
         content:
@@ -11451,7 +11584,7 @@ paths:
           content: *a1
         "401": *a2
         "403": *a3
-        "404": *a4
+        "404": *a5
         "409":
           description: "`QUOTATION_NOT_REVISABLE` (`details.status`), `CART_CHANGED`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
           content: *a1
@@ -13865,6 +13998,41 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/document-links/{token}:
+    get:
+      operationId: openCommerceDocumentLink
+      tags:
+        - Commerce
+      summary: "Issue #295 (ADR-0034 D6). Anonymous: opens the print page of a receipt or invoice through the opaque private link a delivery carried."
+      description: "The token IS the credential: 32 random bytes with a `dl_` prefix, only its SHA-256 stored, a hard expiry of at most 168 hours. The page is the stored snapshot rendered (hash re-verified), served `no-store` under a locked-down CSP. An unknown, malformed or other-tenant token and a disabled feature are the same neutral `404`; a known token past its expiry is `410 LINK_EXPIRED`. Every open (and every expired open) is audited without an actor or recipient."
+      security: []
+      parameters:
+        - name: token
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: The document's print page.
+          content:
+            text/html:
+              schema:
+                type: string
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "410":
+          description: "`LINK_EXPIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: Rate limited.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/storefront/orders:
     post:
       operationId: createCommerceStorefrontOrder
@@ -15084,7 +15252,7 @@ paths:
       summary: "Issue #286 (ADR-0029). Lists work orders, newest first. Gated on `commerce.work_orders.read`."
       description: Filterable by `status` and `assignee`. Gated on the `documents` feature.
       parameters:
-        - *a6
+        - *a7
         - name: status
           in: query
           schema:
@@ -15139,7 +15307,7 @@ paths:
       summary: "Issue #286 (ADR-0029). Creates a work order. Gated on `commerce.work_orders.create`; requires `Idempotency-Key`."
       description: Optionally from an ACCEPTED (or converted) quotation - the accepted version becomes its provenance - and/or linked to an existing order. Takes the next gapless `WO-<year>-<counter>` number. A work order holds no money. An unknown or other-tenant customer / quotation / order is rejected identically (`400 VALIDATION_ERROR` naming only the field sent).
       parameters:
-        - *a7
+        - *a4
       requestBody:
         required: true
         content:
@@ -15214,7 +15382,7 @@ paths:
       summary: "Issue #286 (ADR-0029). One work order with its append-only status history. Gated on `commerce.work_orders.read`."
       description: An unknown id and another tenant's id are the same `404`.
       parameters:
-        - *a5
+        - *a6
       responses:
         "200":
           description: The work order.
@@ -15231,7 +15399,7 @@ paths:
                     $ref: "#/components/schemas/CommerceWorkOrderDetail"
         "401": *a2
         "403": *a3
-        "404": *a4
+        "404": *a5
         "409":
           description: "`FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
           content: *a1
@@ -15242,8 +15410,8 @@ paths:
       summary: "Issue #286 (ADR-0029). Moves a work order through its status machine and/or reassigns, reschedules or reprioritises it. Gated on `commerce.work_orders.update`; requires `Idempotency-Key`."
       description: "Legal status edges: received -> scheduled | in_progress | cancelled; scheduled -> in_progress | on_hold | cancelled; in_progress -> on_hold | ready | cancelled; on_hold -> in_progress | cancelled; ready -> completed | in_progress. A status move writes a history row and emits `awcms.commerce.work_order.status_changed`. A completed or cancelled work order accepts nothing."
       parameters:
-        - *a5
-        - *a7
+        - *a6
+        - *a4
       requestBody:
         required: true
         content:
@@ -15299,7 +15467,7 @@ paths:
           content: *a1
         "401": *a2
         "403": *a3
-        "404": *a4
+        "404": *a5
         "409":
           description: "`WORK_ORDER_TRANSITION_ILLEGAL` (`details.from`, `details.to`), `WORK_ORDER_CLOSED`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
           content: *a1
@@ -31332,6 +31500,132 @@ components:
         issuedAt: &a12
           type: string
           format: date-time
+    CommerceDocumentDelivery:
+      type: object
+      description: "Issue #295 (ADR-0034). One append-only delivery REQUEST, with the live state of the outbox row it produced. Never carries the recipient (only a masked form), the message body, a customer name or the private link token."
+      required:
+        - id
+        - targetType
+        - targetId
+        - docNumber
+        - channel
+        - purpose
+        - recipientSource
+        - recipientMasked
+        - locale
+        - templateKey
+        - templateVersion
+        - contentHash
+        - status
+        - hasLink
+        - createdAt
+        - outbox
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Also the `correlation_id` of the outbox row.
+        targetType:
+          type: string
+          enum:
+            - document
+            - quotation_version
+            - work_order
+        targetId:
+          type: string
+          format: uuid
+        docNumber:
+          type: string
+        channel:
+          type: string
+          enum:
+            - email
+            - whatsapp
+        purpose:
+          type: string
+          enum:
+            - transactional
+        recipientSource:
+          type: string
+          enum:
+            - source_customer
+            - override
+        recipientMasked:
+          type: string
+        locale:
+          type: string
+          enum:
+            - id
+            - en
+        templateKey:
+          type: string
+        templateVersion:
+          type: integer
+        contentHash:
+          type: string
+          description: SHA-256 of the exact variables handed to the outbox; two sends of one immutable source have the same hash.
+        status:
+          type: string
+          enum:
+            - queued
+            - not_enqueued
+          description: The HAND-OFF outcome only; what happened after lives in `outbox`.
+        failureReason:
+          type: string
+          nullable: true
+          enum:
+            - RECIPIENT_SUPPRESSED
+            - TEMPLATE_UNAVAILABLE
+            - null
+        resendOfId:
+          type: string
+          format: uuid
+          nullable: true
+        hasLink:
+          type: boolean
+        linkExpiresAt:
+          type: string
+          format: date-time
+          nullable: true
+        requestedByTenantUserId:
+          type: string
+          format: uuid
+        createdAt:
+          type: string
+          format: date-time
+        outbox:
+          $ref: "#/components/schemas/CommerceDocumentDeliveryOutbox"
+    CommerceDocumentDeliveryOutbox:
+      type: object
+      description: The live state of the e-mail or WhatsApp outbox row, read at response time.
+      properties:
+        status:
+          type: string
+          nullable: true
+          enum:
+            - queued
+            - sending
+            - sent
+            - failed
+            - retry_wait
+            - cancelled
+            - suppressed
+            - null
+          description: "`null` when the row was never created (`not_enqueued`) or has been purged by its own retention."
+        providerMessageId:
+          type: string
+          nullable: true
+        retryCount:
+          type: integer
+          description: Failed attempts so far.
+        lastError:
+          type: string
+          nullable: true
+          description: Already redacted by the dispatcher; truncated to 200 characters.
+        sentAt:
+          type: string
+          format: date-time
+          nullable: true
     CommerceDocumentDetail:
       allOf:
         - $ref: "#/components/schemas/CommerceDocument"

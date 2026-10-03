@@ -40,7 +40,8 @@ export type CommerceFeatureKey =
   | "gateway"
   | "courier"
   | "register"
-  | "documents";
+  | "documents"
+  | "documentDelivery";
 
 export type CommerceFeatures = Readonly<Record<CommerceFeatureKey, boolean>>;
 
@@ -67,7 +68,13 @@ export const DEFAULT_COMMERCE_FEATURES: CommerceFeatures = {
   // quotations, work orders and numbered receipt/invoice documents are a whole
   // new surface (and a numbering obligation once a document is issued), so a
   // tenant that never opens "Fitur" must see exactly today's commerce module.
-  documents: false
+  documents: false,
+  // Issue #295 (ADR-0034) - the third flag that defaults OFF: sending a
+  // receipt, quotation or work-order notice to a customer is an outbound
+  // communication a tenant must opt into (it needs a working e-mail or WhatsApp
+  // channel, and it puts customer data on the wire). It also requires
+  // `documents`: there is nothing to deliver without it.
+  documentDelivery: false
 };
 
 const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
@@ -77,7 +84,8 @@ const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
   "gateway",
   "courier",
   "register",
-  "documents"
+  "documents",
+  "documentDelivery"
 ];
 
 function isBoolean(value: unknown): value is boolean {

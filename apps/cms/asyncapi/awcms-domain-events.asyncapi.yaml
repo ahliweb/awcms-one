@@ -701,6 +701,22 @@ channels:
       same transaction as the numbered row. Aggregate: the document. Payload:
       `documentId`, `docType`, `number`, `sourceType`, `sourceId`,
       `sourceVersion`, `total` - never the customer.
+  awcms.commerce.document.delivery_requested:
+    address: awcms.commerce.document.delivery_requested
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A delivery of a commercial document (receipt, invoice, quotation version
+      or work-order notice) was requested (Issue #295, ADR-0034): handed to the
+      e-mail or commerce WhatsApp outbox, or refused at the hand-off (a
+      suppressed address). Producer:
+      `commerce/application/document-delivery-directory.ts`'s
+      `requestDocumentDelivery`, in the same transaction as the outbox row.
+      Aggregate: the delivery request. Payload: `deliveryId`, `targetType`,
+      `targetId`, `docNumber`, `channel`, `status` (`queued` or `not_enqueued`),
+      `failureReason` - never a recipient or message content; the provider
+      outcome lives in the outbox, not in this event.
 operations:
   publishDomainEventRuntimeSampleRecorded:
     action: send
@@ -1104,6 +1120,12 @@ operations:
       $ref: "#/channels/awcms.commerce.document.issued"
     messages:
       - $ref: "#/channels/awcms.commerce.document.issued/messages/DomainEvent"
+  publishCommerceDocumentDeliveryRequested:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.document.delivery_requested"
+    messages:
+      - $ref: "#/channels/awcms.commerce.document.delivery_requested/messages/DomainEvent"
 components:
   messages:
     DomainEvent:

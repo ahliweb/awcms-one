@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:8ea6632d4940322b1d92dade3fa2125b0579dd0ce5293696346f1337a999d09a -->
+<!-- i18n-source-hash: sha256:4cf5c00efe662cb8dd2f081d38a850ce83fb9a6831bc1bd1f7e2d64876e185ab -->
 
 # `commerce`
 
@@ -1345,3 +1345,15 @@ Tujuh tabel (`sql/980`: `awcms_commerce_document_sequences`, `…_held_sales`, `
   pencarian ber-ranking — `site_search` adalah modul pencarian
   lintas-konten base ini, dan `commerce` tidak berintegrasi dengannya di
   peningkatan ini.
+
+## Pengiriman dokumen — TERIMPLEMENTASI (Issue #295, epic #281 — [ADR-0034](../../../../../docs/adr/0034-commercial-documents-are-delivered-through-the-existing-outboxes-as-transactional-messages-built-from-immutable-sources.md))
+
+Satu tabel (`sql/965`: `awcms_commerce_document_deliveries`), tiga izin (`sql/966`), hak purge worker (`sql/967`). Tidak ada kolom yang ditambahkan ke tabel yang sudah ada; satu indeks parsial ditambahkan pada `awcms_commerce_whatsapp_messages` untuk join correlation-id.
+
+- **Letak kodenya.** `domain/document-delivery.ts` (kosakata, validator permintaan, pembuat pesan murni, kontrak templat berversi, token tautan pribadi — murni), `application/document-delivery-directory.ts` (permintaan / riwayat / resolusi tautan), `application/documents-http.ts` (`requireDocumentDeliveryFeature`), rute `src/pages/api/v1/commerce/document-deliveries/index.ts` dan `src/pages/api/v1/commerce/storefront/document-links/[token].ts`, serta dialog admin `src/components/CommerceDeliveryDialog.astro` + `src/lib/ui/commerce-delivery-dialog-client.ts`.
+- **Aturan yang harus dijaga perubahan.** Tidak ada antrean ketiga: antrekan ke outbox yang sudah ada milik saluran, jangan pernah memanggil penyedia. Susun pesan hanya dari sumber tersimpan (tidak ada pembacaan pesanan hidup — sebuah tes mengunci hal ini). Penerima disimpan tersamar; token tautan mentah tidak pernah disimpan, dikembalikan, atau dicatat. E-mail memakai kategori dasar `derived.transactional` (kategori turunan tak terlihat oleh proses `email:dispatch` yang terpisah). Mengubah daftar variabel atau redaksi salah satu templat menaikkan `DOCUMENT_DELIVERY_TEMPLATE_VERSION`. Baris permintaan append-only; kirim ulang adalah baris baru.
+- **Feature flag.** `features.documentDelivery` bawaannya MATI dan juga mensyaratkan `documents`.
+- **Izin.** `commerce.document_deliveries.{read,create}`, `commerce.document_delivery_overrides.create` — hanya kata kerja `AccessAction` yang ada.
+- **Event.** `awcms.commerce.document.delivery_requested`; audit `document_delivery.{request,denied,link_opened,link_expired}` (id, nomor, saluran, status, penerima tersamar — tidak pernah alamat, nama, atau isi).
+- **Env.** `COMMERCE_DOCUMENT_LINK_BASE_URL` (opsional; cadangan `APP_URL`).
+- **Ditunda.** Kirim ulang atas permintaan pelanggan, PDF, push, pengiriman otomatis saat pembayaran/perubahan status, daftar berhenti WhatsApp, pencabutan tautan — lihat [ADR-0034](../../../../../docs/adr/0034-commercial-documents-are-delivered-through-the-existing-outboxes-as-transactional-messages-built-from-immutable-sources.md).

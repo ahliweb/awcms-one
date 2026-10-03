@@ -1256,3 +1256,15 @@ Seven tables (`sql/980`: `awcms_commerce_document_sequences`, `…_held_sales`, 
   (`sql/907`) is substring search, not a ranked search index — `site_search`
   is this base's cross-content search module, and `commerce` does not
   integrate with it in this increment.
+
+## Document delivery — IMPLEMENTED (Issue #295, epic #281 — [ADR-0034](../../../../../docs/adr/0034-commercial-documents-are-delivered-through-the-existing-outboxes-as-transactional-messages-built-from-immutable-sources.md))
+
+One table (`sql/965`: `awcms_commerce_document_deliveries`), three permissions (`sql/966`), a worker purge grant (`sql/967`). No column was added to an existing table; one partial index was added to `awcms_commerce_whatsapp_messages` for the correlation-id join.
+
+- **Where the code is.** `domain/document-delivery.ts` (vocabulary, the request validator, the pure message builders, the versioned template contract, the private-link token — pure), `application/document-delivery-directory.ts` (request / history / link resolution), `application/documents-http.ts` (`requireDocumentDeliveryFeature`), the routes `src/pages/api/v1/commerce/document-deliveries/index.ts` and `src/pages/api/v1/commerce/storefront/document-links/[token].ts`, and the admin dialog `src/components/CommerceDeliveryDialog.astro` + `src/lib/ui/commerce-delivery-dialog-client.ts`.
+- **The rules a change must keep.** No third queue: enqueue into the channel's existing outbox, never call a provider. Build the message from a stored source only (no live order read — a test pins it). The recipient is stored masked; the raw link token is never stored, returned or logged. The e-mail uses the base category `derived.transactional` (a derived category is invisible to the separate `email:dispatch` process). Changing the variable list or wording of either template bumps `DOCUMENT_DELIVERY_TEMPLATE_VERSION`. The request row is append-only; a re-send is a new row.
+- **Feature flag.** `features.documentDelivery` defaults OFF and also requires `documents`.
+- **Permissions.** `commerce.document_deliveries.{read,create}`, `commerce.document_delivery_overrides.create` — existing `AccessAction` verbs only.
+- **Events.** `awcms.commerce.document.delivery_requested`; audit `document_delivery.{request,denied,link_opened,link_expired}` (ids, numbers, channel, status, masked recipient — never an address, name or body).
+- **Env.** `COMMERCE_DOCUMENT_LINK_BASE_URL` (optional; falls back to `APP_URL`).
+- **Deferred.** Customer-requested resend, PDF, push, automatic delivery on payment/status change, a WhatsApp opt-out list, link revocation — see [ADR-0034](../../../../../docs/adr/0034-commercial-documents-are-delivered-through-the-existing-outboxes-as-transactional-messages-built-from-immutable-sources.md).

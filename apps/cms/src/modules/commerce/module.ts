@@ -68,6 +68,10 @@ import {
   COMMERCE_WORK_ORDER_PERMISSIONS,
   COMMERCE_DOCUMENTS_ACTIVITY_CODE,
   COMMERCE_DOCUMENT_PERMISSIONS,
+  COMMERCE_DOCUMENT_DELIVERIES_ACTIVITY_CODE,
+  COMMERCE_DOCUMENT_DELIVERY_PERMISSIONS,
+  COMMERCE_DOCUMENT_DELIVERY_OVERRIDES_ACTIVITY_CODE,
+  COMMERCE_DOCUMENT_DELIVERY_OVERRIDE_PERMISSIONS,
   COMMERCE_ENTITLEMENTS_ACTIVITY_CODE
 } from "./domain/commerce-permissions";
 import {
@@ -92,7 +96,8 @@ import {
   COMMERCE_QUOTATION_ACCEPTED_EVENT_TYPE,
   COMMERCE_QUOTATION_CONVERTED_EVENT_TYPE,
   COMMERCE_WORK_ORDER_STATUS_CHANGED_EVENT_TYPE,
-  COMMERCE_DOCUMENT_ISSUED_EVENT_TYPE
+  COMMERCE_DOCUMENT_ISSUED_EVENT_TYPE,
+  COMMERCE_DOCUMENT_DELIVERY_REQUESTED_EVENT_TYPE
 } from "./domain/commerce-events";
 import {
   SALES_BY_CATEGORY_PROJECTION_KEY,
@@ -329,7 +334,8 @@ export const commerceModule = defineModule({
       COMMERCE_QUOTATION_ACCEPTED_EVENT_TYPE,
       COMMERCE_QUOTATION_CONVERTED_EVENT_TYPE,
       COMMERCE_WORK_ORDER_STATUS_CHANGED_EVENT_TYPE,
-      COMMERCE_DOCUMENT_ISSUED_EVENT_TYPE
+      COMMERCE_DOCUMENT_ISSUED_EVENT_TYPE,
+      COMMERCE_DOCUMENT_DELIVERY_REQUESTED_EVENT_TYPE
     ]
   },
   /**
@@ -3368,6 +3374,24 @@ export const commerceModule = defineModule({
         "Issue a numbered receipt or invoice document for a finalized order (Issue #286)"
     },
     {
+      activityCode: COMMERCE_DOCUMENT_DELIVERIES_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "Read the delivery history of a commercial document (Issue #295)"
+    },
+    {
+      activityCode: COMMERCE_DOCUMENT_DELIVERIES_ACTIVITY_CODE,
+      action: "create",
+      description:
+        "Send or re-send a commercial document to the customer on file by e-mail or WhatsApp (Issue #295)"
+    },
+    {
+      activityCode: COMMERCE_DOCUMENT_DELIVERY_OVERRIDES_ACTIVITY_CODE,
+      action: "create",
+      description:
+        "Send a commercial document to a recipient other than the customer on file (Issue #295)"
+    },
+    {
       activityCode: COMMERCE_ENTITLEMENTS_ACTIVITY_CODE,
       action: "read",
       description:
@@ -3414,5 +3438,7 @@ export {
   COMMERCE_QUOTATION_PERMISSIONS,
   COMMERCE_QUOTATION_CONVERSION_PERMISSIONS,
   COMMERCE_WORK_ORDER_PERMISSIONS,
-  COMMERCE_DOCUMENT_PERMISSIONS
+  COMMERCE_DOCUMENT_PERMISSIONS,
+  COMMERCE_DOCUMENT_DELIVERY_PERMISSIONS,
+  COMMERCE_DOCUMENT_DELIVERY_OVERRIDE_PERMISSIONS
 };

@@ -130,6 +130,9 @@ export const COMMERCE_WORK_ORDER_STATUS_CHANGED_EVENT_TYPE =
   "awcms.commerce.work_order.status_changed";
 export const COMMERCE_DOCUMENT_ISSUED_EVENT_TYPE =
   "awcms.commerce.document.issued";
+/** Issue #295 (ADR-0034) — a delivery of a commercial document was requested. */
+export const COMMERCE_DOCUMENT_DELIVERY_REQUESTED_EVENT_TYPE =
+  "awcms.commerce.document.delivery_requested";
 
 export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
   [
@@ -334,6 +337,12 @@ export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
       eventVersion: COMMERCE_EVENT_VERSION,
       description:
         "A numbered receipt or invoice document was issued for a finalized order (an immutable snapshot). Producer: commerce/application/document-directory.ts's issueDocument, in the same transaction as the numbered row. Carries the document type/number, the source order id and the total - never the customer."
+    },
+    {
+      eventType: COMMERCE_DOCUMENT_DELIVERY_REQUESTED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A delivery of a commercial document (receipt, invoice, quotation version, work-order notice) was requested: handed to the e-mail or WhatsApp outbox, or refused at the hand-off (suppressed address). Producer: commerce/application/document-delivery-directory.ts's requestDocumentDelivery, in the same transaction as the outbox row. Aggregate: the delivery request. Carries ids, the document number, the channel and the hand-off status - never a recipient or message content; the provider outcome lives in the outbox."
     }
   ];
 

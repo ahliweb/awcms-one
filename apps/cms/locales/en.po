@@ -8118,3 +8118,93 @@ msgstr[1] ""
 
 msgid "Quotations, work orders and documents"
 msgstr ""
+
+msgid "A cancelled quotation cannot be sent."
+msgstr ""
+
+msgid "{count} failed attempts"
+msgstr ""
+
+msgid "Deliver"
+msgstr ""
+
+msgid "Deliver {number}"
+msgstr ""
+
+msgid "Delivery history"
+msgstr ""
+
+msgid "Details"
+msgstr ""
+
+msgid "Include a private link to the print view (expires in {hours} hours)"
+msgstr ""
+
+msgid "Message language"
+msgstr ""
+
+msgid "No message template is available; nothing was sent."
+msgstr ""
+
+msgid "Nothing has been sent yet."
+msgstr ""
+
+msgid "Not sent"
+msgstr ""
+
+msgid "Other recipient"
+msgstr ""
+
+msgid "Private link until {date}"
+msgstr ""
+
+msgid "Queued for delivery to {recipient}."
+msgstr ""
+
+msgid "Recipient"
+msgstr ""
+
+msgid "Re-sent"
+msgstr ""
+
+msgid "Send to a different recipient (optional)"
+msgstr ""
+
+msgid "That address has asked not to receive e-mail from this store; nothing was sent."
+msgstr ""
+
+msgid "The delivery history could not be loaded."
+msgstr ""
+
+msgid "The recipient is not valid for this channel."
+msgstr ""
+
+msgid "There is no usable e-mail address or phone number on file. Enter a recipient."
+msgstr ""
+
+msgid "The stored document no longer matches its checksum and cannot be sent."
+msgstr ""
+
+msgid "This delivery channel is not enabled on this deployment."
+msgstr ""
+
+msgid "This is a transactional message about the customer's own purchase, built from the saved copy of the document."
+msgstr ""
+
+msgid "Too many deliveries were requested for this document. Try again later."
+msgstr ""
+
+msgid "Unknown"
+msgstr ""
+
+msgid "Waiting to be sent"
+msgstr ""
+
+msgid "Will retry"
+msgstr ""
+
+msgid "You are not allowed to send to that recipient."
+msgstr ""
+
+msgid "Send documents by e-mail and WhatsApp"
+msgstr ""

@@ -67,6 +67,8 @@ type Spec = {
   partitionWhy: string;
   deletionWhy: string;
   indexName: string;
+  /** The migration that created the index; defaults to `sql/980`. */
+  migration?: string;
 };
 
 function descriptor(spec: Spec): HighVolumeTableDescriptor {
@@ -87,7 +89,7 @@ function descriptor(spec: Spec): HighVolumeTableDescriptor {
     requiredIndexes: [
       {
         columns: ["tenant_id", spec.cursorColumn],
-        purpose: `${spec.indexName} (sql/980) - the (tenant, cursor) composite the generic purge engine filters + orders by.`
+        purpose: `${spec.indexName} (${spec.migration ?? "sql/980"}) - the (tenant, cursor) composite the generic purge engine filters + orders by.`
       }
     ],
     batchLimit: 5000,
@@ -193,6 +195,24 @@ export const DOCUMENT_DATA_LIFECYCLE: HighVolumeTableDescriptor[] = [
     deletionWhy:
       "The generic engine's only mode. Reachable only past the ten-year ceiling and only by the retention worker: awcms_app has no DELETE (sql/980's REVOKE) and a trigger forbids every UPDATE, so a numbered legal document is immutable for every runtime path.",
     indexName: "awcms_commerce_documents_tenant_created_idx"
+  }),
+  // Issue #295 (ADR-0034): the delivery REQUESTS. Shorter than the documents
+  // they point at on purpose - a request is a record that a message was handed
+  // to an outbox, not a commercial record, and it holds only a masked recipient.
+  descriptor({
+    key: "commerce.document_deliveries",
+    tableName: "awcms_commerce_document_deliveries",
+    cursorColumn: "created_at",
+    retentionClass: "system_event",
+    min: 90,
+    max: 1095,
+    def: 365,
+    partitionWhy:
+      "At most a handful of requests per document (a per-source rolling limit bounds a stuck client) - proportional to documents, which are not partitioned either.",
+    deletionWhy:
+      "The generic engine's only mode. Reachable only past the ninety-day floor and only by the retention worker: awcms_app has no DELETE or UPDATE (sql/965's REVOKE and append-only trigger). The outbox rows a request points at have their own, independent retention.",
+    indexName: "awcms_commerce_document_deliveries_tenant_created_idx",
+    migration: "sql/965"
   })
 ];
 
@@ -276,5 +296,17 @@ export const DOCUMENT_SUBJECT_DATA: SubjectDataDescriptor[] = [
     erasure: "retain_under_obligation",
     rationale: `Issue #286 - an immutable numbered receipt/invoice snapshot of a finalized order, retained under the tax/commercial-record obligation like commerce.orders. ${STAFF} ${CUSTOMER}`,
     redactedColumns: ["snapshot"]
+  },
+  {
+    key: "commerce.document_deliveries",
+    tableName: "awcms_commerce_document_deliveries",
+    ownerModuleKey: "commerce",
+    subjectColumns: [
+      { column: "requested_by_tenant_user_id", references: "tenant_user" }
+    ],
+    exportable: false,
+    erasure: "retain_under_obligation",
+    rationale: `Issue #295 - an append-only record that a commercial document was handed to the e-mail or WhatsApp outbox: ids, the document number, channel, hand-off status and a MASKED recipient (never the address or number, never the message body or a customer name). ${STAFF} ${CUSTOMER}`,
+    redactedColumns: ["recipient_masked"]
   }
 ];

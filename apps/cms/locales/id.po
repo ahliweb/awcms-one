@@ -8081,3 +8081,93 @@ msgstr[0] "{count} perintah kerja"
 
 msgid "Quotations, work orders and documents"
 msgstr "Penawaran, perintah kerja, dan dokumen"
+
+msgid "A cancelled quotation cannot be sent."
+msgstr "Penawaran yang dibatalkan tidak dapat dikirim."
+
+msgid "{count} failed attempts"
+msgstr "{count} percobaan gagal"
+
+msgid "Deliver"
+msgstr "Kirim ke pelanggan"
+
+msgid "Deliver {number}"
+msgstr "Kirim {number}"
+
+msgid "Delivery history"
+msgstr "Riwayat pengiriman"
+
+msgid "Details"
+msgstr "Rincian"
+
+msgid "Include a private link to the print view (expires in {hours} hours)"
+msgstr "Sertakan tautan pribadi ke tampilan cetak (kedaluwarsa dalam {hours} jam)"
+
+msgid "Message language"
+msgstr "Bahasa pesan"
+
+msgid "No message template is available; nothing was sent."
+msgstr "Tidak ada templat pesan yang tersedia; tidak ada yang dikirim."
+
+msgid "Nothing has been sent yet."
+msgstr "Belum ada yang dikirim."
+
+msgid "Not sent"
+msgstr "Tidak terkirim"
+
+msgid "Other recipient"
+msgstr "Penerima lain"
+
+msgid "Private link until {date}"
+msgstr "Tautan pribadi sampai {date}"
+
+msgid "Queued for delivery to {recipient}."
+msgstr "Masuk antrean pengiriman ke {recipient}."
+
+msgid "Recipient"
+msgstr "Penerima"
+
+msgid "Re-sent"
+msgstr "Dikirim ulang"
+
+msgid "Send to a different recipient (optional)"
+msgstr "Kirim ke penerima lain (opsional)"
+
+msgid "That address has asked not to receive e-mail from this store; nothing was sent."
+msgstr "Alamat itu meminta tidak menerima e-mail dari toko ini; tidak ada yang dikirim."
+
+msgid "The delivery history could not be loaded."
+msgstr "Riwayat pengiriman tidak dapat dimuat."
+
+msgid "The recipient is not valid for this channel."
+msgstr "Penerima tidak valid untuk saluran ini."
+
+msgid "There is no usable e-mail address or phone number on file. Enter a recipient."
+msgstr "Tidak ada alamat e-mail atau nomor telepon yang dapat dipakai. Isi penerima."
+
+msgid "The stored document no longer matches its checksum and cannot be sent."
+msgstr "Dokumen tersimpan tidak lagi cocok dengan checksum-nya dan tidak dapat dikirim."
+
+msgid "This delivery channel is not enabled on this deployment."
+msgstr "Saluran pengiriman ini tidak diaktifkan pada penerapan ini."
+
+msgid "This is a transactional message about the customer's own purchase, built from the saved copy of the document."
+msgstr "Ini pesan transaksional tentang pembelian pelanggan itu sendiri, disusun dari salinan dokumen yang tersimpan."
+
+msgid "Too many deliveries were requested for this document. Try again later."
+msgstr "Terlalu banyak pengiriman diminta untuk dokumen ini. Coba lagi nanti."
+
+msgid "Unknown"
+msgstr "Tidak diketahui"
+
+msgid "Waiting to be sent"
+msgstr "Menunggu dikirim"
+
+msgid "Will retry"
+msgstr "Akan dicoba lagi"
+
+msgid "You are not allowed to send to that recipient."
+msgstr "Anda tidak diizinkan mengirim ke penerima itu."
+
+msgid "Send documents by e-mail and WhatsApp"
+msgstr "Kirim dokumen lewat e-mail dan WhatsApp"

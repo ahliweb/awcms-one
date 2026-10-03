@@ -740,7 +740,10 @@ export const RETIRED_TENANT_TABLE_PRIVILEGES: Record<string, string[]> = {
   awcms_commerce_quotation_versions: ["SELECT", "INSERT"],
   awcms_commerce_work_orders: ["SELECT", "INSERT", "UPDATE"],
   awcms_commerce_work_order_events: ["SELECT", "INSERT"],
-  awcms_commerce_documents: ["SELECT", "INSERT"]
+  awcms_commerce_documents: ["SELECT", "INSERT"],
+  // Issue #295 / `sql/965`. Append-only delivery requests: written once by the
+  // sender role, never rewritten (trigger) and never deleted by it.
+  awcms_commerce_document_deliveries: ["SELECT", "INSERT"]
 };
 
 type RlsRow = {
@@ -1672,6 +1675,9 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_commerce_work_orders: ["SELECT", "DELETE"],
   awcms_commerce_work_order_events: ["SELECT", "DELETE"],
   awcms_commerce_documents: ["SELECT", "DELETE"],
+  // Issue #295 (`sql/967`): the delivery-request table's generic hard_delete
+  // descriptor, executed by the retention worker only.
+  awcms_commerce_document_deliveries: ["SELECT", "DELETE"],
   // Issue #268 (`sql/939`): the protected-media link table's `dataLifecycle`
   // descriptor (`commerce/module.ts`) is `executionMode: "generic"` with a
   // real, reachable `hard_delete` (unlike entitlements above, this one IS
