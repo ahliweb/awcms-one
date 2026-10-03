@@ -833,6 +833,262 @@ export const READER_BUDGET_BYTES = 24_000;
  * var(--color-danger)` shorthand — needed whole, not just `border-color`, to
  * out-rank `.admin-create-form button`'s own `border: none` — cost 4 B more
  * than first measured).
+ *
+ * **Raised again for Issue #860** (wave 2 of the admin-shell parity work,
+ * `docs/awcms/admin-ui-parity-matrix.md` §7): `.admin-stat-card` gains
+ * optional `-grid`/`-value--mono`/`-head`/`-delta` modifiers in `admin.css`
+ * — the decision the matrix's own §4 flagged as "a real design decision for
+ * wave 2" was to port the legacy `.stat-head`/`.stat-delta` icon+trend
+ * affordance rather than drop it, so a screen reaching for the shared
+ * primitive keeps the same capability the per-repo `.stat-card` duplicate
+ * already had. `omes-control-center.css` gained a parallel (not renamed)
+ * block so its other 8 not-yet-migrated screens keep their existing
+ * `.stat-card` styling untouched. Both the grid wrapper and the icon-head
+ * row were folded into EXISTING declarations (`.kpi-grid`/`.dashboard-grid`,
+ * `.admin-tile`) rather than repeated, and the signed-delta modifier ships
+ * colour only — no `::before` glyph — leaving the non-colour half of "not
+ * conveyed by colour alone" to the consumer's own text content, precisely
+ * to keep this raise as small as the four migrated screens' actual need.
+ * This is temporary, self-limiting growth: `admin-screens.css`'s `.stat-card`
+ * family (admittedly still shipped for the 14 screens still on it) is what
+ * waves 3/6 delete once every screen has migrated, at which point this
+ * budget has room to come back down. Measured actual total:
+ *
+ * ```
+ * before (239,956 ceiling)   239,956 B
+ * + .admin-stat-card grid/mono/head/delta modifiers   240,975 B (measured actual total)
+ * ```
+ *
+ * 240,975 is the measured value with no added margin.
+ *
+ * **Raised again for Issue #854 part 1** (ADR-0125's three admin v2
+ * primitives — `ConfirmDialog`, `SettingsSaveBar`, `ReasonPanel`). This is
+ * new admin vocabulary shared across every screen that adopts it (43
+ * `window.confirm()` sites and 9 `window.prompt()` sites converted), not
+ * per-screen duplication — the same distinction the docblock above draws for
+ * `.admin-stat-card`. Measured actual total:
+ *
+ * ```
+ * before (240,975 ceiling)   240,975 B
+ * + ConfirmDialog/SettingsSaveBar/ReasonPanel markup + CSS   247,880 B (measured actual total)
+ * ```
+ *
+ * 247,880 is the measured value with no added margin.
+ *
+ * **Raised again for Issue #861** (no raw enums, #854 item 4). The only
+ * growth is `omes/orkestrasi-langsung.astro`'s polling client, which
+ * re-renders node/event state badges from a JSON fetch and must show the
+ * same translated label as the SSR rows. It reads the labels from a
+ * server-serialised `data-state-labels` attribute rather than shipping a
+ * catalogue copy, so the cost is one small parser. Measured actual total:
+ *
+ * ```
+ * before (247,880 ceiling)   247,880 B
+ * + orkestrasi-langsung translated state labels   248,045 B (measured actual total)
+ * ```
+ *
+ * 248,045 is the measured value with no added margin.
+ *
+ * **Raised again for Issue #865** (Wave 6, admin-ui-parity-matrix.md §7): the
+ * 12 OMES screens migrated their `.status-badge`/`.stat-card` markup onto
+ * `.admin-status-pill`/`.admin-stat-card`. This did NOT add a new CSS rule —
+ * `omes-control-center.css` already carried the dual `.stat-card`/
+ * `.admin-stat-card` selector list from Issue #860 (wave 2), and never
+ * redeclared `.status-badge`/`.admin-status-pill` itself (both classes
+ * consume the same `--color-*-soft` custom properties the file already
+ * overrides), so the only real growth is `orkestrasi-langsung.astro`'s
+ * client-rendered activity-stream template literal: its badge markup's class
+ * names got longer (`status-badge` -> `admin-status-pill`, `status-dot` ->
+ * `admin-status-pill-dot`), offset slightly by `data-variant` -> `data-tone`
+ * being three characters shorter. Measured actual total:
+ *
+ * ```
+ * before (248,045 ceiling)   248,045 B
+ * + admin-status-pill/admin-stat-card class rename (12 OMES screens)   248,058 B (measured actual total)
+ * ```
+ *
+ * 248,058 is the measured value with no added margin.
+ *
+ * **Raised again for Issue #864** (media/settings admin-primitives wave —
+ * `docs/awcms/admin-ui-parity-matrix.md` §7 Wave 5). `media.astro` and
+ * `account.astro` only swap existing markup onto classes `admin.css` already
+ * defines (`.admin-stat-card`, `.admin-status-pill`), so neither adds a byte
+ * here. The growth is `access-policies.astro`'s simulator: its verdict was
+ * plain `textContent`, and is now an `.admin-status-pill` built client-side
+ * (tone carries allow/deny, matching the table's `Allow`/`Deny` column) with
+ * its "Allow"/"Deny"/"no policy matched" labels read from translated
+ * `data-verdict-*` attributes rather than shipping a catalogue copy — the
+ * same pattern `orkestrasi-langsung.astro`'s raise above already paid for.
+ * Measured actual total:
+ *
+ * ```
+ * before (248,058 ceiling)   248,058 B
+ * + access-policies.astro verdict pill   248,346 B (measured actual total)
+ * ```
+ *
+ * 248,346 is the measured value with no added margin.
+ *
+ * **Raised again for Issue #863** (wave 4 of the admin-ui-parity-matrix —
+ * approvals/business-scope/data-lifecycle/omes-health/reporting adopt
+ * `.admin-timeline`). The only growth is the primitive's own list-style reset
+ * (`.admin-timeline { list-style: none; margin: 0; padding: 0; }`) added to
+ * `admin.css` — one small rule shared by every admin page, not per-screen
+ * duplication. Measured actual total:
+ *
+ * ```
+ * before (248,346 ceiling)   248,346 B
+ * + .admin-timeline list-style reset   248,397 B (measured actual total)
+ * ```
+ *
+ * 248,397 is the measured value with no added margin.
+ *
+ * **Raised again for Issue #862** (wave 3 of #858: comments.astro's
+ * `.admin-segmented`/`.admin-bulk-bar` adoption, plus the `.admin-status-pill`
+ * sweep across 31 list-management screens). The growth is the new
+ * `src/lib/ui/admin-bulk-bar-client.ts` module (comments.astro's bulk-select
+ * wiring), the one small `.cell-select` rule added to `admin.css`, and a
+ * `flex-wrap` fix to `.admin-segmented` itself (360px overflow fix, caught by
+ * `tests/e2e/responsive-360.e2e.ts` against the primitive's first real
+ * 5-option consumer) — the `.admin-status-pill` sweep itself adds no CSS (the
+ * primitive was already shipped, unused, by PR #813). Measured actual total:
+ *
+ * ```
+ * before (248,397 ceiling)   248,397 B
+ * + admin-bulk-bar-client.ts + .cell-select + .admin-segmented flex-wrap   250,380 B (measured actual total)
+ * + .admin-segmented-option[aria-current="page"] selector (nav, not tablist)   250,423 B (measured actual total)
+ * ```
+ *
+ * 250,423 is the measured value with no added margin.
+ *
+ * **Raised again for Issue #872** (follow-up to wave 5 / #864): the shared
+ * media picker (`src/lib/ui/media-picker-client.ts`, consumed by
+ * `blog.astro`/`blog-ads.astro`/`site-profile.astro`) adopts
+ * `.admin-media-grid`/`.admin-media-grid-tile` (`admin.css`, unchanged) for
+ * its thumbnail grid. `admin-screens.css` first SHRINKS — the bespoke grid
+ * layout (`display: grid`/`grid-template-columns` on `.media-picker-panel`)
+ * and the box/colour styling `.media-option` used to duplicate are removed,
+ * since the primitive now supplies both — but the picker still needs a
+ * `.media-option-caption` overlay (the tile's `<img>` fills it edge-to-edge,
+ * leaving no room for a below-image label) and `wireMediaPickers` gained the
+ * `aria-pressed`/`data-selected` tracking the issue requires so the current
+ * choice is exposed to AT rather than by tile colour alone. Net growth after
+ * that reduction. Measured actual total:
+ *
+ * ```
+ * before (250,423 ceiling)   250,423 B
+ * + .media-option-caption - duplicate grid/box CSS + aria-pressed tracking   250,480 B (measured actual total)
+ * + --color-media-scrim / --color-on-media-scrim tokens (caption scrim, tokens not literals)   250,566 B (measured actual total)
+ * ```
+ *
+ * 250,566 is the measured value with no added margin.
+ *
+ * **Lowered for Issue #866** (wave 7 of #858, the final sweep): the last
+ * `.stat-card`/`.stat-grid`/`.stat-label`/`.stat-value`/`.stat-hint`/
+ * `.stat-head`/`.stat-delta` and `.status-badge`/`.status-dot` consumers
+ * (data-lifecycle.astro, site-search.astro, idn-regions.astro, tenants.astro,
+ * sync.astro, push-notifications.astro, domain-events.astro,
+ * omes/health.astro, reporting.astro) migrated onto `.admin-stat-card`/
+ * `.admin-status-pill`, which let the legacy rule blocks be DELETED from
+ * `admin.css`/`admin-screens.css` (and the `.stat-card` half of the dual
+ * selector list in `omes-control-center.css`) — this is the first wave that
+ * shrinks the budget rather than growing it, because retiring a whole legacy
+ * component family removes CSS with no replacement cost (the migrated
+ * markup reuses primitives `admin.css` already shipped). Measured actual
+ * total, landing on top of #872 above:
+ *
+ * ```
+ * before (250,566 ceiling)   250,566 B
+ * - legacy .stat-card/.stat-grid/.status-badge rule blocks retired   248,033 B (measured actual total)
+ * ```
+ *
+ * 248,033 is the measured value with no added margin.
+ *
+ * **Raised for ahliweb/omes#265** (3D Mission Control, epic ahliweb/omes#263,
+ * OMES ADR-0031): one new screen, `/admin/omes/mission-control`, whose
+ * spatial view needs a WebGL2 renderer. This is new feature code, not the
+ * Issue #552 shape — it reuses `admin-form-client.ts` (`messageBox`) and the
+ * existing colour tokens rather than copying either, and nothing is
+ * duplicated per screen. The renderer is deliberately hand-written instead
+ * of adopting three.js: a three.js build is hundreds of KB minified, which
+ * would break `PER_FILE_BUDGET_BYTES` outright and need a raise roughly
+ * twenty times this one (OMES ADR-0031 records the comparison). Both new JS
+ * chunks are route-split — only this screen downloads them — and
+ * `scene-gl.*.js` is additionally a lazy `import()`, so the accessible object
+ * list works even when that chunk or WebGL2 is unavailable. Measured actual
+ * total, on top of #866 above:
+ *
+ * ```
+ * before (248,033 ceiling)   248,033 B
+ * + mission-control page script (controller, layout, vocab)   15,488 B
+ * + scene-gl.*.js (lazy WebGL2 renderer + math)                9,651 B
+ * + omes-control-center.css Mission Control rules              2,457 B
+ *                                                            275,629 B (measured actual total)
+ * ```
+ *
+ * 275,629 is the measured value with no added margin.
+ *
+ * **Raised for ahliweb/omes#266** (Mission Control historical replay, same
+ * screen, same epic): the evidence-based History mode — time range,
+ * play/step/scrubber transport, evidence-gap list and the accessible event
+ * list kept in sync with the scene. New feature code again, not duplication:
+ * it reuses #265's renderer, layout and visual-state rule and the shared
+ * `admin-form-client.ts`. `replay.*.js` is a lazy `import()` loaded only when
+ * a viewer enters History mode, so live-mode viewers download none of it.
+ * Measured actual total, on top of #265 above:
+ *
+ * ```
+ * before (275,629 ceiling)   275,629 B
+ * + mission-control page script (mode switch, lazy replay hook)   +1,542 B
+ * + replay.*.js (lazy History-mode client, new)                   +7,764 B
+ * + omes-control-center.css replay controls/banner/event list     +1,480 B
+ *                                                               286,415 B (measured actual total)
+ * ```
+ *
+ * 286,415 is the measured value with no added margin.
+ *
+ * **Raised for ahliweb/omes#267** (Mission Control contextual actions, same
+ * screen, same epic): per-object actions that call ONLY the existing
+ * operations / jobs cancel+approve / backup restore endpoints, with a
+ * preflight summary, the shared ConfirmDialog and outcome states that never
+ * report success on acceptance. `actions.*.js` is a lazy `import()` loaded on
+ * the first live-mode selection. The one cross-screen cost is the opt-in
+ * `data-command-palette-item` hook in `admin-command-palette.ts`, which every
+ * admin page's `AdminLayout` script carries (+867 B): it is generic (any
+ * screen may mark items) and inert on pages that mark none. Measured actual
+ * total, on top of #266 above:
+ *
+ * ```
+ * before (286,415 ceiling)   286,415 B
+ * + actions.*.js (lazy action client, new)                        +6,819 B
+ * + AdminLayout script (opt-in palette page-item hook)              +867 B
+ * + mission-control page script (selection -> actions hook)         +891 B
+ * + omes-control-center.css action/preflight/outcome rules          +353 B
+ * - replay.*.js (shared helpers moved out)                          -101 B
+ *                                                               295,244 B (measured actual total)
+ * ```
+ *
+ * 295,244 is the measured value with no added margin.
+ *
+ * **Raised for Issue #877** (the axe-core a11y smoke and the five real
+ * violations it found): `.reason-panel { display: flex }` scoped to
+ * `.reason-panel[open]` (one added selector token) plus the doc comment
+ * explaining why, a `<label for>` replacing a bare `<span>` around the
+ * reason textarea's label text, an `aria-label="AWCMS"` + a second
+ * `aria-hidden="true"` on `AdminLayout.astro`'s brand link/wordmark span,
+ * `.admin-logout` moving from `--color-text-muted` to
+ * `--color-sidebar-text`, and the dashboard's `.dd-alert` moving from
+ * `--color-danger-strong` to `--color-danger` (a one-token swap that
+ * shrinks the CSS slightly rather than adding to it). None of it is
+ * decoration this repo could trim back out — each line fixes a violation axe reported as `critical`/`serious`.
+ * Measured actual total, on top of ahliweb/omes#267 above (re-measured after
+ * merging `main`, since the base moved under this branch):
+ *
+ * ```
+ * before (295,244 ceiling)   295,244 B
+ * + a11y fixes (see above)   295,259 B (measured actual total, +15 B)
+ * ```
+ *
+ * 295,259 is the measured value with no added margin.
  */
 /**
  * **Raised to 254,500 B in awcms-one (subtree sync of awcms#813, issue
@@ -970,7 +1226,28 @@ export const READER_BUDGET_BYTES = 24_000;
  * on the next commerce screen and tighten if the real total sits well below
  * this.
  */
-export const APP_BUDGET_BYTES = 291_400;
+/**
+ * **Raised to 344,000 B in awcms-one (subtree sync of awcms v10.4.0
+ * `cfc2df9a`, issue awcms-one#300)** — again BOTH lineages: upstream's own
+ * 239,956 → 295,259 B (3D Mission Control: its page script, the lazy WebGL2
+ * renderer chunk and CSS; the admin v2 primitives; the a11y fixes) lands on
+ * top of this repo's commerce surface. As at the #260 sync the figure is
+ * MEASURED on the merged build, not summed: 343,962 B (the commerce lineage
+ * is therefore +48,703 B over upstream's budget, against +48,435 B at the
+ * #260 sync — the five commerce screens migrated off the retired
+ * `.status-badge`/`.stat-grid` classes onto `.admin-status-pill`/
+ * `.admin-stat-card-grid` cost only the longer class names). 344,000 keeps
+ * the "measured + small margin" convention; re-measure on the next sync.
+ */
+/**
+ * **Raised to 347,000 B when awcms-one#289 (loyalty points ledger) was merged
+ * onto the #300 sync (AWCMS v10.4.0)** — the two raises above (291,400 B at
+ * #289's own baseline; 344,000 B at the sync) are not additive, so the figure
+ * is MEASURED on the merged build: 346,862 B (the sync's 343,962 B plus the
+ * loyalty screen's own script and 76 catalogue entries, +2,900 B). 347,000
+ * keeps the "measured + small margin" convention.
+ */
+export const APP_BUDGET_BYTES = 347_000;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.
@@ -1031,8 +1308,24 @@ export const PER_FILE_BUDGET_BYTES = 27_000;
  * duplication (see that constant's docblock for the full accounting).
  * Measured after the restyle: `_astro/AdminLayout.*.css` is 47,240 B. 52,000
  * is measured + ~10%, the same margin this constant's previous raise used.
+ *
+ * **Raised to 57,300 on 29 September 2026 (Issue #854 part 1)** for the same
+ * reason `APP_BUDGET_BYTES` was raised alongside it: `ConfirmDialog`,
+ * `SettingsSaveBar`, and `ReasonPanel` (ADR-0125) are three new shared
+ * `<dialog>`/save-bar components every admin screen can adopt, added to
+ * `admin.css` rather than duplicated per screen. Measured after the addition:
+ * `_astro/AdminLayout.*.css` is 52,089 B. 57,300 is measured + ~10%, the same
+ * margin this constant's previous raises used.
+ *
+ * **Lowered to 56,800 for Issue #866** (wave 7 of #858, the final sweep):
+ * retiring the legacy `.stat-card`/`.stat-grid`/`.status-badge`/`.status-dot`
+ * rule blocks from `admin.css`/`admin-screens.css` (see `APP_BUDGET_BYTES`'s
+ * own docblock for the consumer list) shrinks the bundled `AdminLayout.*.css`
+ * chunk. Measured after the retirement: `_astro/AdminLayout.*.css` is
+ * 51,594 B. 56,800 is measured + ~10%, the same margin this constant's
+ * previous raises used.
  */
-export const PER_FILE_CSS_BUDGET_BYTES = 52_000;
+export const PER_FILE_CSS_BUDGET_BYTES = 56_800;
 
 /**
  * ADR-0120 — the typeface, budgeted separately from everything else.

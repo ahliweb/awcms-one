@@ -190,7 +190,11 @@ describe("stale/missing health evidence renders explicitly, never as healthy", (
   test("the health screen has its own stale badge, distinct from the base overallStatus badge", async () => {
     const page = await readFile(PAGES.health, "utf8");
     expect(page).toContain("snapshot.stale &&");
-    expect(page).toContain('data-variant="warning"');
+    // Issue #863 migrated this screen's badges from the legacy
+    // `.status-badge[data-variant]` onto the shared `.admin-status-pill
+    // [data-tone]` primitive — same "look up the tone separately from the
+    // staleness badge" shape, new class/attribute names.
+    expect(page).toContain('data-tone="warning"');
     expect(page).toContain('{t("stale")}');
     // The base status badge's variant is looked up separately from the
     // staleness badge, so a stale-but-"healthy" snapshot cannot render a
@@ -213,10 +217,15 @@ describe("stale/missing health evidence renders explicitly, never as healthy", (
     expect(page).toContain('{t("Stale snapshots")}');
   });
 
-  test("backups shows an explicit not-fresh badge (age-derived) independent of the completed/verified status badge", async () => {
+  test("backups shows an explicit not-fresh badge (age-derived) independent of the completed/verified status pill", async () => {
     const page = await readFile(PAGES.backups, "utf8");
     expect(page).toContain("!backup.fresh &&");
-    expect(page).toContain('data-variant="warning"');
+    // #865 (wave 6): backups.astro migrated its `.status-badge` markup to
+    // the shared `.admin-status-pill` primitive (`data-variant` ->
+    // `data-tone`) — health.astro (wave 4, untouched here) still uses the
+    // legacy attribute, which is why this assertion is scoped to
+    // PAGES.backups only, not shared with the health assertion above.
+    expect(page).toContain('data-tone="warning"');
     expect(page).toContain('{t("not fresh")}');
   });
 });

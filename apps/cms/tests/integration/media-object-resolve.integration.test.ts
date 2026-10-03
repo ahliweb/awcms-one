@@ -122,7 +122,7 @@ async function seedMedia(
       : (rights.rightsVerifiedBy ?? userId);
   const verifiedAt = verificationStatus === "unverified" ? null : new Date();
 
-  // Issue #268 — `sql/168`'s CHECK constraint requires `public_url IS NULL`
+  // Issue #268 — `sql/880`'s CHECK constraint requires `public_url IS NULL`
   // for a private object; a fixture that ignored this would be rejected by
   // the database itself, same as every other invariant this function's
   // existing comments document.
@@ -243,7 +243,7 @@ suite("media object batch resolution", () => {
     expect(result.unresolved).toEqual([ids[key]!]);
   });
 
-  test("a private object's publicUrl is NULL at the row level too (sql/168's CHECK), not merely excluded by the resolver", async () => {
+  test("a private object's publicUrl is NULL at the row level too (sql/880's CHECK), not merely excluded by the resolver", async () => {
     const rows = (await getAdminSql()`
       SELECT public_url, visibility FROM awcms_news_media_objects
       WHERE id = ${ids.privateVerified!}

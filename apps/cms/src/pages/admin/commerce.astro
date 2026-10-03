@@ -623,13 +623,13 @@ const totalTableColumns = 6 + (showActions ? 2 : 0);
                   <td data-label={t("Stock")}>{product.stock}</td>
                   <td data-label={t("Status")}>
                     <span
-                      class="status-badge"
-                      data-variant={
+                      class="admin-status-pill"
+                      data-tone={
                         product.status === "active" ? "success" : "neutral"
                       }
                       data-product-status={product.status}
                     >
-                      <span class="status-dot" aria-hidden="true" />
+                      <span class="admin-status-pill-dot" aria-hidden="true" />
                       {commerceLabel(labels.productStatus, product.status)}
                     </span>
                   </td>
