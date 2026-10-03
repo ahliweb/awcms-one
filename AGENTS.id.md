@@ -12,6 +12,21 @@ Berlaku untuk manusia maupun agen AI yang bekerja di repo ini. Baca ini sebelum 
 
 Tata letak workspace, mekanisme gerbang, dan konvensi changeset dokumen ini diadaptasi dari [`ahliweb/media-lenterakalteng`](https://github.com/ahliweb/media-lenterakalteng). Di mana sebuah aturan di bawah diwarisi dari pelajaran mahal repo itu sendiri alih-alih ditemukan sendiri oleh repo ini, itu dinyatakan.
 
+## Aturan kepemilikan template-only — aplikasi turunan memiliki backend sendiri
+
+**Repo ini tidak boleh menjadi backend runtime bersama untuk produk yang dibuat darinya.** `awcms-one` adalah template/reference implementation. Setelah repo produk dibuat, repo produk tersebut memiliki runtime backend, basis data, migrasi, secret, domain, konfigurasi deployment, data produk, modul spesifik produk, dan lifecycle operasionalnya sendiri. Produk boleh menggunakan ulang kode dan kontrak dari template, tetapi trafik produksinya tidak boleh diarahkan ke `apps/cms` hidup milik repo ini hanya karena capability yang dibutuhkan sudah tersedia. Lihat [ADR-0024](docs/adr/0024-awcms-one-is-template-only-derived-apps-own-their-backend.id.md).
+
+Terapkan aturan berikut pada **setiap implementasi dan setiap issue**:
+
+- **Issue mengikuti kepemilikan kode.** Pekerjaan backend spesifik produk berada di repo produk/consumer yang benar-benar menyimpan kode tersebut. Requirement produk, UX, UAT, legal/compliance, dan deployment juga tetap di repo produk.
+- **Hanya capability template yang reusable yang berada di sini.** Capability yang muncul karena kebutuhan consumer hanya boleh ditambahkan ke `awcms-one` setelah nama consumer, konten spesifik produk, asumsi workflow sekali-pakai, dan konfigurasi deployment spesifik dihilangkan serta reuse lintas aplikasi dapat dibuktikan.
+- **Foundation AWCMS generik tetap mengikuti ownership upstream.** Jika capability merupakan milik `ahliweb/awcms`, implementasikan upstream lalu bawa ke sini melalui subtree sync normal; jangan membuat local divergence baru karena kebutuhan satu consumer.
+- **Tidak ada tenancy runtime consumer di sini.** Jangan membuat tenant produksi, verifikasi domain, API token, konten privat, secret, data pelanggan, atau scheduled job spesifik produk turunan pada reference deployment ini.
+- **Tidak ada dependency runtime lintas-repo ke repo ini.** Repo turunan boleh mengadopsi peningkatan template yang dirilis kemudian secara sengaja, dengan migration/regression plan miliknya sendiri, tetapi availability produk tidak boleh bergantung pada `awcms-one` sedang online.
+- **Promosi capability harus eksplisit.** Saat consumer menemukan foundation yang belum ada, klasifikasikan terlebih dahulu sebagai consumer-specific atau reusable. Implementasi consumer-specific tetap di repo consumer. Pekerjaan reusable membutuhkan ADR template/upstream, tes, rencana migrasi/kompatibilitas, dan penamaan netral sebelum diterima di sini.
+
+Migrasi IRMbyDUS pada issue #297 adalah penerapan pertama aturan ini: improvement generik yang sudah merged tetap menjadi capability template, sedangkan kode practice/program/journal/progress/mentoring spesifik IRM dimiliki oleh `ahliweb/web-irmbydus.com`.
+
 ## Yang ada hari ini, dan yang tidak
 
 **[`docs/status.md`](docs/status.id.md) adalah referensi keadaan-terkini** — apa yang ada, per permukaan (storefront per profil build, modul `commerce`, akun pelanggan, integrasi eksternal, ops/deploy, mekanisme template), dan daftar singkat "belum ada", masing-masing item menaut ke dokumen atau ADR dengan detailnya. Riwayat — issue atau epic mana yang membangun bagian mana, dan kapan — hidup di [`CHANGELOG.md`](CHANGELOG.md) dan [indeks ADR](docs/adr/README.id.md), bukan di sini. Jangan menulis kode, gerbang, atau dokumentasi yang mengasumsikan salah satu butir "belum ada" milik `docs/status.md` sudah ada. Jalur yang dikutip dalam backtick yang tidak ada di repo ini akan tertangkap pemeriksaan jalur bertanda `bun run audit:dokumen`, kecuali terdaftar di `EXCLUDED_PATHS` gerbang itu, beserta alasannya. Lihat [`docs/README.md`](docs/README.id.md) untuk indeks dokumentasi lengkap.
