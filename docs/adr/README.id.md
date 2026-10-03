@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:03db3a09683c418bbcab1380f6dabe918b449de80c8f35bf980443d733e3dba4 -->
+<!-- i18n-source-hash: sha256:79d085e2e53d108f117ad6266ab5733579e0cf99a14e100f8c8f2018f8356088 -->
 
 # Architecture Decision Records
 
@@ -41,6 +41,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0021](0021-zero-github-actions-local-ci-with-exact-sha-statuses.md) | Nol GitHub Actions: CI lokal dengan status komit ber-SHA-eksak | Diterima |
 | [0022](0022-production-deployment-is-server-side-and-explicit.md) | Deployment produksi bersifat server-side dan eksplisit | Diterima (digantikan sebagian oleh [0021](0021-zero-github-actions-local-ci-with-exact-sha-statuses.md)) |
 | [0023](0023-release-images-are-built-signed-and-published-from-a-trusted-release-host.md) | Image rilis dibangun, ditandatangani, dan dipublikasikan dari release host tepercaya | Diterima |
+| [0024](0024-awcms-one-is-template-only-derived-apps-own-their-backend.md) | awcms-one hanya template; setiap aplikasi turunan memiliki backend dan runtime sendiri | Diterima |
 | [0026](0026-loyalty-points-are-an-append-only-ledger.md) | Poin loyalitas adalah buku besar append-only dengan saldo hasil proyeksi | Diterima |
 
 ## Mengapa penomoran dimulai dari 0001
