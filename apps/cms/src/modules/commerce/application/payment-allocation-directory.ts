@@ -59,6 +59,7 @@ import {
   computeSettlement,
   derivePaymentStatus,
   hasReachedRelease,
+  orderPaymentMethodToTender,
   OverpaymentError,
   toSettlementView,
   type LedgerRow,
@@ -305,6 +306,26 @@ export async function listAllocationsForOrder(
   return rows.map(toRecord);
 }
 
+/**
+ * Takes the order-row lock and answers whether the ledger holds received money
+ * for the order (`settled > 0`). The expiry job uses it: an order that holds
+ * money is never expired (and so never restocked) — see ADR-0025. `null` for
+ * an unknown order.
+ */
+export async function orderHoldsSettledMoney(
+  tx: Bun.SQL,
+  tenantId: string,
+  orderId: string
+): Promise<boolean | null> {
+  const header = await lockOrderForSettlement(tx, tenantId, orderId);
+  if (!header) return null;
+  const { settlement } = settlementOf(
+    header,
+    await readLedgerRows(tx, tenantId, orderId)
+  );
+  return settlement.settledCents > 0n;
+}
+
 export type OrderPaymentSummary = {
   orderId: string;
   orderCode: string;
@@ -473,9 +494,67 @@ export type RecordPaymentAllocationOutcome =
     };
 
 export class AllocationSourceKeyConflictError extends Error {
-  constructor() {
-    super("The source key was already used for a different order.");
+  constructor(
+    message = "The source key was already used for a different order or request."
+  ) {
+    super(message);
     this.name = "AllocationSourceKeyConflictError";
+  }
+}
+
+/**
+ * A ledger-level replay (the same `sourceKey` found on the same order) must be
+ * the SAME request: a different tender or amount under a reused key is a
+ * conflict, never a silent "deduplicated" answer carrying the old row. The
+ * derived amounts are exempt where they legitimately differ on replay: a cash
+ * leg's applied amount is derived from the outstanding balance (so its
+ * handed-over figure is compared instead), and a clamped confirmation leg's
+ * amount is capped by the balance at the time.
+ */
+function assertSamePaymentRequest(
+  existing: PaymentAllocationRecord,
+  params: RecordPaymentAllocationParams
+): void {
+  if (
+    existing.kind !== "payment" ||
+    existing.tenderType !== params.tenderType
+  ) {
+    throw new AllocationSourceKeyConflictError(
+      "The source key was already used for a different payment."
+    );
+  }
+  if (params.cashHanded !== undefined) {
+    if (
+      existing.tenderedAmount === null ||
+      toCents(existing.tenderedAmount) !== toCents(params.cashHanded)
+    ) {
+      throw new AllocationSourceKeyConflictError(
+        "The source key was already used for a different payment."
+      );
+    }
+  } else if (
+    !params.clampToOutstanding &&
+    toCents(existing.amount) !== toCents(params.amount)
+  ) {
+    throw new AllocationSourceKeyConflictError(
+      "The source key was already used for a different payment."
+    );
+  }
+}
+
+function assertSameReversalRequest(
+  existing: PaymentAllocationRecord,
+  params: RecordPaymentReversalParams
+): void {
+  if (
+    existing.kind !== "reversal" ||
+    existing.reversesAllocationId !== params.allocationId ||
+    (params.amount !== null &&
+      toCents(existing.amount) !== toCents(params.amount))
+  ) {
+    throw new AllocationSourceKeyConflictError(
+      "The source key was already used for a different reversal."
+    );
   }
 }
 
@@ -597,6 +676,7 @@ export async function recordPaymentAllocation(
     if (existing.orderId !== params.orderId) {
       throw new AllocationSourceKeyConflictError();
     }
+    assertSamePaymentRequest(existing, params);
     const rows = await readLedgerRows(tx, tenantId, header.id);
     const { settlement, paymentStatus } = settlementOf(header, rows);
     return {
@@ -708,6 +788,99 @@ export async function recordPaymentAllocation(
   );
 
   return { kind: "recorded", allocation, settlement: view, released };
+}
+
+// ---------------------------------------------------------------------------
+// Manual "mark paid" — the backward-compatible status override
+// ---------------------------------------------------------------------------
+
+export type SettleForManualPaidOutcome =
+  | { kind: "order_not_found" }
+  /** Nothing to do before the status transition (already settled, not a `pending_payment` order, or a free order). */
+  | { kind: "proceed" }
+  /** The order has ledger legs but is not settled: the operator must record the missing payment. */
+  | { kind: "not_settled"; outstanding: string }
+  /** A leg for the full total was recorded and the ledger released the order to `paid`. */
+  | { kind: "recorded"; allocation: PaymentAllocationRecord };
+
+/**
+ * The payment gate of `PATCH .../orders/{id}/status -> paid`, entirely under
+ * the order-row lock (ADR-0025 "behaviour changes"):
+ *
+ *   * the order has NO ledger leg at all (a COD / offline tenant that never
+ *     recorded money through the ledger): ONE succeeded leg for the whole
+ *     total is recorded, with source `admin`, source key
+ *     `status-paid:{order id}` (a replay is a no-op) and a tender derived from
+ *     the order's payment method; it is audited like any payment, and the
+ *     ledger releases the order to `paid`;
+ *   * the order has legs and is settled: `proceed` (the plain transition runs);
+ *   * the order has legs but is not settled: `not_settled`
+ *     (`409 PAYMENT_NOT_SETTLED`) -- money the ledger never saw is not invented.
+ */
+export async function settleOrderForManualPaid(
+  tx: Bun.SQL,
+  tenantId: string,
+  params: {
+    orderId: string;
+    actorTenantUserId: string;
+    release: ReleaseOrderFn;
+    note: string | null;
+    correlationId?: string;
+  }
+): Promise<SettleForManualPaidOutcome> {
+  const header = await lockOrderForSettlement(tx, tenantId, params.orderId);
+  if (!header) return { kind: "order_not_found" };
+
+  const legCountRows = (await tx`
+    SELECT COUNT(*) AS legs
+    FROM awcms_commerce_payment_allocations
+    WHERE tenant_id = ${tenantId} AND order_id = ${header.id}
+  `) as { legs: string | number }[];
+  const hasLegs = Number(legCountRows[0]!.legs) > 0;
+
+  if (hasLegs) {
+    const { settlement } = settlementOf(
+      header,
+      await readLedgerRows(tx, tenantId, header.id)
+    );
+    if (!hasReachedRelease(settlement, header)) {
+      return {
+        kind: "not_settled",
+        outstanding: fromCents(settlement.outstandingCents)
+      };
+    }
+    return { kind: "proceed" };
+  }
+
+  // No leg at all. Only a `pending_payment` order with something owed can
+  // take one; anything else goes to the status machine, which accepts or
+  // rejects the transition on its own terms (and writes no ledger row).
+  if (header.status !== "pending_payment" || toCents(header.total) <= 0n) {
+    return { kind: "proceed" };
+  }
+
+  const tender = orderPaymentMethodToTender(header.paymentMethod);
+  const outcome = await recordPaymentAllocation(tx, tenantId, {
+    orderId: header.id,
+    tenderType: tender,
+    amount: header.total,
+    provider: tender === "gateway" ? "legacy" : null,
+    note: params.note
+      ? `Marked paid by status change: ${params.note}`
+      : "Marked paid by status change (no payment had been recorded in the ledger).",
+    source: "admin",
+    sourceKey: `status-paid:${header.id}`,
+    actor: { kind: "tenant_user", tenantUserId: params.actorTenantUserId },
+    enforceNoOverpayment: true,
+    allowedOrderStatuses: ["pending_payment"],
+    release: params.release,
+    releaseNote: params.note ?? "Marked paid by an administrator.",
+    correlationId: params.correlationId
+  });
+  if (outcome.kind === "recorded" || outcome.kind === "deduplicated") {
+    return { kind: "recorded", allocation: outcome.allocation };
+  }
+  return { kind: "proceed" };
 }
 
 // ---------------------------------------------------------------------------
@@ -977,6 +1150,7 @@ export async function recordPaymentReversal(
     if (existing.orderId !== params.orderId) {
       throw new AllocationSourceKeyConflictError();
     }
+    assertSameReversalRequest(existing, params);
     const { settlement, paymentStatus } = settlementOf(
       header,
       await readLedgerRows(tx, tenantId, header.id)
