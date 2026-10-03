@@ -214,6 +214,33 @@ playwright test`, Bun-only), separate from `bun test`
 > `POST /api/v1/setup/initialize` (a real bootstrap) and hands
 > its credentials to the spec via env.
 
+> **Automated accessibility smoke (`@axe-core/playwright`, Issue #877).**
+> `tests/e2e/a11y-axe.e2e.ts` runs `AxeBuilder` (WCAG 2.0/2.1 A+AA tags)
+> against representative admin routes — `/admin`, `/admin/comments`,
+> `/admin/users`, `/admin/approvals`, `/admin/media`, `/admin/omes`,
+> `/admin/omes/jobs`, `/admin/site-profile` — in light AND dark theme (the
+> app's real `localStorage["awcms_theme"]` mechanism, not a CSS override), at
+> 360px and desktop, plus the ADR-0125 `ConfirmDialog`/`ReasonPanel` opened
+> then cancelled. It fails on any `critical`/`serious` violation and is
+> classified READ_WAVE (`tests/e2e/support/e2e-waves.ts`) — every dialog it
+> opens is cancelled, never submitted, so it mutates nothing through the app.
+> Run for real while adding it, it found and this repo fixed five shipped
+> defects (see the `awcms-browser-test` skill and
+> `docs/awcms/admin-ui-parity-matrix.md` §7 for the list). See that spec's
+> own header comment for why it runs under `reducedMotion: "reduce"` —
+> `.fade-in-up`'s entrance animation genuinely lowers rendered contrast
+> mid-transition, which is not what this smoke means to measure.
+
+> **Responsive overflow sweep (Issue #884).** `tests/e2e/responsive-360.e2e.ts`
+> loads every static `/admin/*` screen and asserts
+> `document.documentElement.scrollWidth <= innerWidth` (+1px) at four
+> viewports: **360px** (narrowest phone), **640×360** (a 1280×720 desktop at
+> 200% browser zoom — WCAG 2.1 SC 1.4.10 measures reflow in CSS px and
+> Playwright has no zoom API, so the equivalent CSS viewport is used),
+> **768px** (tablet portrait) and **1024px** (the #843 topbar overlap). Each
+> viewport is one `test()` in the same file with the same assertion; no
+> screen or width is exempted.
+
 > **Test runner.** The runner is **`bun test`** (`bun:test`), with files in
 > `tests/`. The list of targets below is a **planning target for the ERP modules**,
 > not today's implementation status — not a single ERP module

@@ -263,15 +263,15 @@ const mfaContradiction =
             <tbody>
               {statusRows.map((row) => (
                 <tr>
-                  <th scope="row" data-label="Control">
+                  <th scope="row" data-label={t("Control")}>
                     {row.label}
                   </th>
-                  <td data-label="State">
+                  <td data-label={t("State")}>
                     <span
-                      class="status-badge"
-                      data-variant={row.state === "on" ? "success" : "neutral"}
+                      class="admin-status-pill"
+                      data-tone={row.state === "on" ? "success" : "neutral"}
                     >
-                      <span class="status-dot" aria-hidden="true" />
+                      <span class="admin-status-pill-dot" aria-hidden="true" />
                       {row.value}
                     </span>
                   </td>
@@ -501,26 +501,27 @@ const mfaContradiction =
                 <tbody>
                   {providers.map((provider) => (
                     <tr>
-                      <th scope="row" data-label="Key">
+                      <th scope="row" data-label={t("Key")}>
                         <code class="cell-code">{provider.providerKey}</code>
                       </th>
-                      <td data-label="Name">{provider.displayName}</td>
-                      <td data-label="Issuer">
+                      <td data-label={t("Name")}>{provider.displayName}</td>
+                      <td data-label={t("Issuer")}>
                         <code class="cell-code">{provider.issuerUrl}</code>
                       </td>
-                      <td data-label="Secret">
+                      <td data-label={t("Secret")}>
                         {provider.secretSource === "env"
                           ? `Environment (${provider.clientSecretEnvVar})`
                           : "Encrypted at rest"}
                       </td>
-                      <td data-label="State">
+                      <td data-label={t("State")}>
                         <span
-                          class="status-badge"
-                          data-variant={
-                            provider.enabled ? "success" : "neutral"
-                          }
+                          class="admin-status-pill"
+                          data-tone={provider.enabled ? "success" : "neutral"}
                         >
-                          <span class="status-dot" aria-hidden="true" />
+                          <span
+                            class="admin-status-pill-dot"
+                            aria-hidden="true"
+                          />
                           {provider.enabled ? "Enabled" : "Disabled"}
                         </span>
                       </td>

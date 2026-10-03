@@ -86,6 +86,12 @@ const KIND_LABELS: Record<string, string> = {
   other: t("Other")
 };
 
+/** GitHub issue `state` — one screen only. */
+const STATE_LABELS: Record<"open" | "closed", string> = {
+  open: t("Open"),
+  closed: t("Closed")
+};
+
 const screen = await loadAdminScreen({
   ssr,
   workClass: "interactive",
@@ -275,19 +281,17 @@ function milestoneCellFor(
           {progress.observedAt ? (
             <span data-freshness={progress.freshness}>
               <span
-                class="status-badge"
-                data-variant={
-                  progress.freshness === "stale" ? "danger" : "info"
-                }
+                class="admin-status-pill"
+                data-tone={progress.freshness === "stale" ? "danger" : "info"}
               >
-                <span class="status-dot" aria-hidden="true" />
+                <span class="admin-status-pill-dot" aria-hidden="true" />
                 {progress.freshness === "stale" ? t("Stale") : t("Fresh")}
               </span>{" "}
               {t("Observed")}: {progress.observedAt}
             </span>
           ) : (
-            <span class="status-badge" data-variant="info">
-              <span class="status-dot" aria-hidden="true" />
+            <span class="admin-status-pill" data-tone="info">
+              <span class="admin-status-pill-dot" aria-hidden="true" />
               {t("Awaiting first poll")}
             </span>
           )}
@@ -295,11 +299,11 @@ function milestoneCellFor(
             <>
               {" · "}
               <span
-                class="status-badge"
-                data-variant="danger"
+                class="admin-status-pill"
+                data-tone="danger"
                 id="repo-progress-error-badge"
               >
-                <span class="status-dot" aria-hidden="true" />
+                <span class="admin-status-pill-dot" aria-hidden="true" />
                 {t("Last poll failed")}
               </span>
               {progress.lastErrorClass && (
@@ -372,7 +376,7 @@ function milestoneCellFor(
             >
               <thead>
                 <tr>
-                  <th scope="col">#</th>
+                  <th scope="col">{t("#")}</th>
                   <th scope="col">{t("Title")}</th>
                   <th scope="col">{t("Status")}</th>
                   <th scope="col">{t("Kind")}</th>
@@ -382,7 +386,7 @@ function milestoneCellFor(
               <tbody>
                 {progress.issues.map((issue) => (
                   <tr>
-                    <td data-label="#">
+                    <td data-label={t("#")}>
                       <a
                         href={issue.htmlUrl}
                         target="_blank"
@@ -392,15 +396,16 @@ function milestoneCellFor(
                       </a>
                     </td>
                     <td data-label={t("Title")}>{issue.title}</td>
-                    <td data-label={t("Status")}>
+                    <td data-label={t("Status")} data-state={issue.state}>
                       <span
-                        class="status-badge"
-                        data-variant={
-                          issue.state === "closed" ? "info" : "danger"
-                        }
+                        class="admin-status-pill"
+                        data-tone={issue.state === "closed" ? "info" : "danger"}
                       >
-                        <span class="status-dot" aria-hidden="true" />
-                        {issue.state}
+                        <span
+                          class="admin-status-pill-dot"
+                          aria-hidden="true"
+                        />
+                        {STATE_LABELS[issue.state]}
                       </span>
                     </td>
                     <td data-label={t("Kind")}>
@@ -446,6 +451,7 @@ function milestoneCellFor(
       onSubmit,
       sendJson
     } from "../../../lib/ui/admin-form-client";
+    import { confirmAction } from "../../../lib/ui/confirm-dialog-client";
 
     const configErrorBox = messageBox("repo-progress-config-error");
 
@@ -475,9 +481,9 @@ function milestoneCellFor(
 
     clearButton?.addEventListener("click", async () => {
       if (
-        !window.confirm(
+        !(await confirmAction(
           "Clear the configured repository? The current projection will be removed too."
-        )
+        ))
       ) {
         return;
       }

@@ -195,7 +195,10 @@ function filterHref(next: { status?: string; unread?: string }): string {
                     <td data-label={t("Customer")}>
                       {conversation.customerName}
                       {conversation.unreadForStore > 0 && (
-                        <span class="status-badge" aria-label={t("Unread")}>
+                        <span
+                          class="admin-status-pill"
+                          aria-label={t("Unread")}
+                        >
                           {t("Unread")}
                         </span>
                       )}
@@ -203,7 +206,7 @@ function filterHref(next: { status?: string; unread?: string }): string {
                     <td data-label={t("Subject")}>{conversation.subject}</td>
                     <td data-label={t("Status")}>
                       <span
-                        class="status-badge"
+                        class="admin-status-pill"
                         data-status={conversation.status}
                       >
                         {commerceLabel(
@@ -243,7 +246,7 @@ function filterHref(next: { status?: string; unread?: string }): string {
               <p>
                 {t("Status")}:{" "}
                 <span
-                  class="status-badge"
+                  class="admin-status-pill"
                   data-status={thread.conversation.status}
                 >
                   {commerceLabel(
