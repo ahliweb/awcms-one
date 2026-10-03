@@ -300,7 +300,7 @@ export async function listAllocationsForOrder(
     SELECT ${tx.unsafe(ALLOCATION_COLUMNS)}
     FROM awcms_commerce_payment_allocations
     WHERE tenant_id = ${tenantId} AND order_id = ${orderId}
-    ORDER BY created_at ASC, id ASC
+    ORDER BY created_at ASC, entry_seq ASC
   `) as AllocationRow[];
   return rows.map(toRecord);
 }

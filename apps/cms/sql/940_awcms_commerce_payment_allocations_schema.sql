@@ -129,6 +129,11 @@ CREATE TABLE IF NOT EXISTS awcms_commerce_payment_allocations (
   actor_tenant_user_id uuid,
   created_at timestamptz NOT NULL DEFAULT now(),
   settled_at timestamptz,
+  -- Insertion order. Every leg of one POS sale is written in one transaction,
+  -- so they share `created_at = now()`; without this the tie fell to the
+  -- random `id` and a receipt could list the tenders in a different order
+  -- from the one the cashier entered them in.
+  entry_seq bigint GENERATED ALWAYS AS IDENTITY,
   CONSTRAINT awcms_commerce_payment_allocations_order_fk
     FOREIGN KEY (tenant_id, order_id)
     REFERENCES awcms_commerce_orders (tenant_id, id),
