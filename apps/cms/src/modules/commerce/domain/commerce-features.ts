@@ -34,12 +34,18 @@
 
 /** Every togglable commerce feature, contract #106 D10's own five. `pos` has no route/screen wired to it YET (issue #116, landing in parallel) — the default exists so the settings document has a stable shape from day one and #116's own gate has nothing left to add here. */
 export type CommerceFeatureKey =
-  "pos" | "inbox" | "campaigns" | "gateway" | "courier" | "register";
+  | "pos"
+  | "inbox"
+  | "campaigns"
+  | "gateway"
+  | "courier"
+  | "register"
+  | "storedValue";
 
 export type CommerceFeatures = Readonly<Record<CommerceFeatureKey, boolean>>;
 
 /**
- * Default-ON for every feature but `register` (Issue #284, below) — turning a feature toggle ON by default
+ * Default-ON for every feature but `register` (Issue #284) and `storedValue` (Issue #288), below — turning a feature toggle ON by default
  * means shipping this settings document changes NOTHING for an existing
  * tenant that never opens the new "Fitur" section, matching this repo's
  * "migration-free upgrade" convention (`store-settings-validation.ts`'s own
@@ -56,7 +62,13 @@ export const DEFAULT_COMMERCE_FEATURES: CommerceFeatures = {
   // default is ON because it describes what the platform already did; this
   // one ADDS an obligation (a POS sale needs an open register session), so a
   // tenant that never opens "Fitur" must see exactly today's POS.
-  register: false
+  register: false,
+  // Issue #288 (ADR-0029) — the second flag that defaults OFF. Stored value is
+  // a liability the tenant takes on (money held that is not yet revenue),
+  // which has accounting, consumer-protection and regulatory consequences it
+  // must choose to accept; a tenant that never opens "Fitur" must see exactly
+  // today's commerce.
+  storedValue: false
 };
 
 const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
@@ -65,7 +77,8 @@ const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
   "campaigns",
   "gateway",
   "courier",
-  "register"
+  "register",
+  "storedValue"
 ];
 
 function isBoolean(value: unknown): value is boolean {

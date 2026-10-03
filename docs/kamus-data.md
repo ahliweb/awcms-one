@@ -202,6 +202,23 @@ BjekMart's kasir (`commerce_bj_mart`'s counter sales, recorded in the legacy `or
 | `register` feature | commerce module settings `features.register` (default OFF) | Turns the whole register surface on and makes a POS sale require an open session on the chosen register |
 | `commerce.registers.*`, `commerce.register_sessions.*`, `commerce.register_cash_ups.*`, `commerce.register_corrections.approve` | `awcms_permissions` (`sql/972`) | The ten keys: manage registers, read / open / use / export a session, close it / approve a variance, correct a closed session |
 
+### Gift cards and store credit (issue #288, [ADR-0029](adr/0029-stored-value-is-a-closed-loop-liability-ledger.md))
+
+| Term | Where it lives | Meaning |
+| --- | --- | --- |
+| stored value | the three `awcms_commerce_stored_value_*` tables | Closed-loop money the tenant owes: redeemable only as a tender on this tenant's own orders. A LIABILITY, not a discount and not loyalty points |
+| kind | `kind IN ('gift_card','store_credit')` | `gift_card` is sold/gifted value; `store_credit` is value kept for a customer (e.g. instead of a refund). One program per kind per tenant |
+| program | `awcms_commerce_stored_value_programs` | Per-tenant configuration: `enabled` (issuing/loading only), `expiry_days` (default lifetime), `allow_refund_to_account`, `max_balance` (ceiling, not applied to a refund) |
+| account | `awcms_commerce_stored_value_accounts` | One card/credit: `status` `active \| disabled \| expired` (terminal), `balance` and `version` (a PROJECTION of the ledger, moved only by the ledger trigger), `expires_at` (frozen), optional `customer_id` (informational), `issued_by` stamp |
+| code | NOT stored | A 21-character code (20 random characters = 100 bits from a 32-symbol alphabet without `I O 0 1`, plus a check character), shown as `XXXXXXX-XXXXXXX-XXXXXXX` once, at issue |
+| `code_hash` / `code_last4` | accounts | `sha256:` over `awcms.stored_value.v1\|<tenant id>\|<normalised code>` (tenant-scoped, unique per tenant) and the last four characters for display; the masked form is `•••••••-•••••••-•••ABCD` |
+| ledger entry | `awcms_commerce_stored_value_ledger` | One append-only SIGNED row: `issue` (+, exactly one, first), `load` (+), `redeem` (−), `refund` (+), `adjust` (±, reason required), `expire` (≤ 0, releases the balance), `disable`/`enable` (0). Carries `account_seq` and `balance_after`, assigned by the trigger |
+| `source_key` | ledger | Row-level idempotency key, unique per tenant: `issue:{key}`, `load:{account}:{key}`, `redeem:{allocation source key}`, `refund:…`, `expire:{account}:{epoch}` |
+| `stored_value_account_id` | `awcms_commerce_payment_allocations` | The account a `gift_card`/`store_credit` leg drew from (a reversal returns value to it); NULL for every other tender; frozen |
+| outstanding | derived | The sum of every ledger entry of a kind — what is owed; of which `disabledBalance` is frozen and `lapsedPendingRelease` is past expiry but not yet released by the sweep |
+| `storedValue` feature | commerce module settings `features.storedValue` (default OFF) | Turns the whole surface on; off, a card tender is refused before anything is written |
+| `commerce.stored_value_programs.*`, `commerce.stored_value.*`, `commerce.stored_value_adjustments.create`, `commerce.stored_value_reconcile.approve` | `awcms_permissions` (`sql/982`) | The seven keys; redeeming is a payment tender, not one of them |
+
 ## Deferred columns and tables — not ported
 
 - **A live RajaOngkir courier-RATE table is done** (issue #107, `sql/924` — `awcms_commerce_courier_destinations`/`_shipping_rates`, a cached rate the order path validates against, never a synchronous provider call). What is still deferred: live courier TRACKING (a shipped parcel's own status) — `shipping_method`/`shipping_service_name` on an order remain merchant-defined labels for the `alternative`/`self_pickup` methods; a `courier` shipment's rate is now live, its post-dispatch tracking is not (named as a follow-up in [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md)).

@@ -6,6 +6,10 @@ import {
   REGISTER_SUBJECT_DATA
 } from "./domain/register-lifecycle";
 import {
+  STORED_VALUE_DATA_LIFECYCLE,
+  STORED_VALUE_SUBJECT_DATA
+} from "./domain/stored-value-lifecycle";
+import {
   COMMERCE_CATEGORIES_ACTIVITY_CODE,
   COMMERCE_CATEGORY_PERMISSIONS,
   COMMERCE_FLASH_SALES_ACTIVITY_CODE,
@@ -54,6 +58,14 @@ import {
   COMMERCE_REGISTER_CASH_UP_PERMISSIONS,
   COMMERCE_REGISTER_CORRECTIONS_ACTIVITY_CODE,
   COMMERCE_REGISTER_CORRECTION_PERMISSIONS,
+  COMMERCE_STORED_VALUE_PROGRAMS_ACTIVITY_CODE,
+  COMMERCE_STORED_VALUE_PROGRAM_PERMISSIONS,
+  COMMERCE_STORED_VALUE_ACTIVITY_CODE,
+  COMMERCE_STORED_VALUE_PERMISSIONS,
+  COMMERCE_STORED_VALUE_ADJUSTMENTS_ACTIVITY_CODE,
+  COMMERCE_STORED_VALUE_ADJUSTMENT_PERMISSIONS,
+  COMMERCE_STORED_VALUE_RECONCILE_ACTIVITY_CODE,
+  COMMERCE_STORED_VALUE_RECONCILE_PERMISSIONS,
   COMMERCE_ENTITLEMENTS_ACTIVITY_CODE
 } from "./domain/commerce-permissions";
 import {
@@ -74,7 +86,8 @@ import {
   COMMERCE_REGISTER_SESSION_OPENED_EVENT_TYPE,
   COMMERCE_REGISTER_SESSION_MOVEMENT_RECORDED_EVENT_TYPE,
   COMMERCE_REGISTER_SESSION_CLOSED_EVENT_TYPE,
-  COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE
+  COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE,
+  COMMERCE_STORED_VALUE_ENTRY_RECORDED_EVENT_TYPE
 } from "./domain/commerce-events";
 import {
   SALES_BY_CATEGORY_PROJECTION_KEY,
@@ -307,7 +320,8 @@ export const commerceModule = defineModule({
       COMMERCE_REGISTER_SESSION_OPENED_EVENT_TYPE,
       COMMERCE_REGISTER_SESSION_MOVEMENT_RECORDED_EVENT_TYPE,
       COMMERCE_REGISTER_SESSION_CLOSED_EVENT_TYPE,
-      COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE
+      COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE,
+      COMMERCE_STORED_VALUE_ENTRY_RECORDED_EVENT_TYPE
     ]
   },
   /**
@@ -602,6 +616,16 @@ export const commerceModule = defineModule({
       order: 18,
       requiredPermission: "commerce.register_sessions.read",
       requiredFeature: { moduleKey: "commerce", feature: "register" }
+    },
+    // Issue #288 (ADR-0029) - gift cards and store credit. Gated on the
+    // account-read permission and hidden the moment the tenant turns
+    // `features.storedValue` off (it defaults OFF).
+    {
+      labelKey: "admin.layout.nav_commerce_stored_value",
+      path: "/admin/commerce-stored-value",
+      order: 19,
+      requiredPermission: "commerce.stored_value.read",
+      requiredFeature: { moduleKey: "commerce", feature: "storedValue" }
     }
   ],
   /**
@@ -2327,6 +2351,9 @@ export const commerceModule = defineModule({
     // Issue #284 (ADR-0028) - the six POS register tables; see
     // `domain/register-lifecycle.ts`.
     ...REGISTER_DATA_LIFECYCLE,
+    // Issue #288 (ADR-0029) - the three closed-loop stored-value tables; see
+    // `domain/stored-value-lifecycle.ts`.
+    ...STORED_VALUE_DATA_LIFECYCLE,
     {
       key: "commerce.protected_media_links",
       tableName: "awcms_commerce_protected_media_links",
@@ -2895,6 +2922,8 @@ export const commerceModule = defineModule({
     },
     // Issue #284 (ADR-0028) - see `domain/register-lifecycle.ts`.
     ...REGISTER_SUBJECT_DATA,
+    // Issue #288 (ADR-0029) - see `domain/stored-value-lifecycle.ts`.
+    ...STORED_VALUE_SUBJECT_DATA,
     {
       key: "commerce.protected_media_links",
       tableName: "awcms_commerce_protected_media_links",
@@ -3257,6 +3286,48 @@ export const commerceModule = defineModule({
         "Post a compensating correction to a closed register session (Issue #284)"
     },
     {
+      activityCode: COMMERCE_STORED_VALUE_PROGRAMS_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "Read the gift-card / store-credit program configuration (Issue #288)"
+    },
+    {
+      activityCode: COMMERCE_STORED_VALUE_PROGRAMS_ACTIVITY_CODE,
+      action: "update",
+      description:
+        "Change the gift-card / store-credit program configuration: enable, expiry, refund policy, balance ceiling (Issue #288)"
+    },
+    {
+      activityCode: COMMERCE_STORED_VALUE_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "Read gift-card / store-credit accounts, their ledger, the liability report and the reconcile report (Issue #288)"
+    },
+    {
+      activityCode: COMMERCE_STORED_VALUE_ACTIVITY_CODE,
+      action: "create",
+      description:
+        "Issue a gift card / store credit and load value onto it (Issue #288)"
+    },
+    {
+      activityCode: COMMERCE_STORED_VALUE_ACTIVITY_CODE,
+      action: "update",
+      description:
+        "Disable or enable a gift-card / store-credit account and run the expiry sweep (Issue #288)"
+    },
+    {
+      activityCode: COMMERCE_STORED_VALUE_ADJUSTMENTS_ACTIVITY_CODE,
+      action: "create",
+      description:
+        "Post a reasoned manual adjustment to a gift-card / store-credit balance (Issue #288)"
+    },
+    {
+      activityCode: COMMERCE_STORED_VALUE_RECONCILE_ACTIVITY_CODE,
+      action: "approve",
+      description:
+        "Repair a gift-card / store-credit balance projection that drifted from its ledger (Issue #288)"
+    },
+    {
       activityCode: COMMERCE_ENTITLEMENTS_ACTIVITY_CODE,
       action: "read",
       description:
@@ -3298,5 +3369,9 @@ export {
   COMMERCE_REGISTER_PERMISSIONS,
   COMMERCE_REGISTER_SESSION_PERMISSIONS,
   COMMERCE_REGISTER_CASH_UP_PERMISSIONS,
-  COMMERCE_REGISTER_CORRECTION_PERMISSIONS
+  COMMERCE_REGISTER_CORRECTION_PERMISSIONS,
+  COMMERCE_STORED_VALUE_PROGRAM_PERMISSIONS,
+  COMMERCE_STORED_VALUE_PERMISSIONS,
+  COMMERCE_STORED_VALUE_ADJUSTMENT_PERMISSIONS,
+  COMMERCE_STORED_VALUE_RECONCILE_PERMISSIONS
 };

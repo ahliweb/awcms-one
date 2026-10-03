@@ -83,6 +83,26 @@ Every route below is behind the tenant's `register` feature flag (default OFF �
 
 The POS route (`POST commerce/pos/orders`) gains an optional **`registerId`**: REQUIRED while the `register` feature is on (the sale is attached to that register's open session, whose current cashier must be the caller — `404` unknown/foreign register, `409 REGISTER_SESSION_REQUIRED | REGISTER_SESSION_CLOSING | NOT_SESSION_CASHIER`, all before anything is written); with the feature off, sending it is `409 FEATURE_DISABLED` and nothing is stamped. The 201 gains `registerSessionId`.
 
+## Owner API: gift cards and store credit (issue #288, epic #281, [ADR-0029](adr/0029-stored-value-is-a-closed-loop-liability-ledger.md))
+
+Every route below is behind the tenant's `storedValue` feature flag (default OFF — `409 FEATURE_DISABLED`), requires a bearer/cookie session, and — for every mutation but the program PUT and the expiry sweep — an **`Idempotency-Key`** header (`400 IDEMPOTENCY_REQUIRED`). Money is a `numeric(14,2)` STRING; ledger amounts are signed. Seven permissions. A code is **never** returned except once, by the issuing response; everywhere else it is masked (`•••••••-•••••••-•••ABCD`). There is deliberately no public lookup or redeem endpoint.
+
+| Method | Path | Permission | Notes |
+| --- | --- | --- | --- |
+| `GET` | `commerce/stored-value/programs` | `commerce.stored_value_programs.read` | Both kinds; an unsaved one reports its disabled defaults (`configured: false`) |
+| `PUT` | `commerce/stored-value/programs/{kind}` | `commerce.stored_value_programs.update` | `{ enabled, allowRefundToAccount, expiryDays?, maxBalance? }`; `enabled` governs issuing/loading only — outstanding value stays redeemable |
+| `GET`/`POST` | `commerce/stored-value/accounts` | `commerce.stored_value.read` / `.create` | Keyset list (`?kind&status&customerId&last4&cursor`) / ISSUE `{ kind, amount, customerId?, expiresAt?, reason? }` → `201 { account, entry, code, codeRevealed }`; `409 STORED_VALUE_PROGRAM_DISABLED`, `STORED_VALUE_BALANCE_CEILING`; four concurrent requests with one key issue exactly one account |
+| `GET` | `commerce/stored-value/accounts/{id}` | `commerce.stored_value.read` | One account; another tenant's id is the same `404` |
+| `GET` | `commerce/stored-value/accounts/{id}/ledger` | `commerce.stored_value.read` | Append-only history, newest first (`?before=<account_seq>`) |
+| `POST` | `commerce/stored-value/accounts/{id}/load` | `commerce.stored_value.create` | `{ amount, reason? }` top-up → `201 { account, entry }`; `409 STORED_VALUE_PROGRAM_DISABLED \| _ACCOUNT_EXPIRED \| _ACCOUNT_UNAVAILABLE \| _BALANCE_CEILING` |
+| `POST` | `commerce/stored-value/accounts/{id}/adjust` | `commerce.stored_value_adjustments.create` | `{ amount (signed, non-zero), reason }`; never below zero (`409 STORED_VALUE_INSUFFICIENT`, `details.available`) |
+| `POST` | `commerce/stored-value/accounts/{id}/status` | `commerce.stored_value.update` | `{ action: disable \| enable, reason? }` (reason required to disable); `409 STORED_VALUE_STATUS_UNCHANGED` |
+| `POST` | `commerce/stored-value/expire` | `commerce.stored_value.update` | Releases lapsed balances in batches of 200 (`{ expired, released, more }`); idempotent |
+| `POST` | `commerce/stored-value/reconcile` | `commerce.stored_value.read` (+ `commerce.stored_value_reconcile.approve` for `repair: true`) | Findings: projection drift, ledger break, status drift, allocation mismatch; repair rebuilds only the projection |
+| `GET` | `reports/commerce/stored-value` | `commerce.stored_value.read` | `?from&to` (default last 30 `Asia/Jakarta` days): per kind issued / loaded / redeemed / refunded / adjusted up & down / expired / net, plus outstanding, frozen on disabled, lapsed-pending |
+
+Redemption is a **tender**, not a route here: `POST commerce/pos/orders` (`tenders[]`) and `POST commerce/orders/{id}/payments` accept `tenderType: gift_card \| store_credit` with a `storedValueCode` (and only then); a refused card answers `404 STORED_VALUE_NOT_FOUND` (an unknown, other-kind or other-tenant code — one neutral answer), `409 STORED_VALUE_UNAVAILABLE` (`details.reason`: `UNAVAILABLE \| EXPIRED`), `409 STORED_VALUE_INSUFFICIENT` (`details.available`) or `429 STORED_VALUE_LOOKUP_THROTTLED` (30 lookups per minute per user), always before any row is written. A reversal of such a payment is `409 PAYMENT_NOT_REVERSIBLE` when the program disallows a refund back onto the card or the account cannot take it.
+
 ## Storefront (anonymous) API — `/api/v1/commerce/storefront/*`
 
 Every route resolves its tenant from the request's `Origin`/`Host` against `awcms_tenant_domains` — never from a header the caller controls — answers the `OPTIONS` preflight, echoes the allowed origin verbatim (never `*`), sends `Vary: Origin`, grants no credentials, and rate-limits per IP (order creation also per normalised phone). See [ADR-0007](adr/0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.md) for why this exists instead of a runtime credential.
@@ -261,7 +281,7 @@ No phone → the sale is attached to the tenant's single walk-in customer row (s
 }
 ```
 
-## Authorization: 39 owner permissions (plus the increment-5 keys, since #285 `commerce.payments.{read,create,revoke}` and `commerce.pos_due.create`, and since #284 ten register keys: `commerce.registers.{read,create,update}`, `commerce.register_sessions.{read,create,update,export}`, `commerce.register_cash_ups.{create,approve}`, `commerce.register_corrections.approve`)
+## Authorization: 39 owner permissions (plus the increment-5 keys, since #285 `commerce.payments.{read,create,revoke}` and `commerce.pos_due.create`, since #288 seven stored-value keys: `commerce.stored_value_programs.{read,update}`, `commerce.stored_value.{read,create,update}`, `commerce.stored_value_adjustments.create`, `commerce.stored_value_reconcile.approve`, and since #284 ten register keys: `commerce.registers.{read,create,update}`, `commerce.register_sessions.{read,create,update,export}`, `commerce.register_cash_ups.{create,approve}`, `commerce.register_corrections.approve`)
 
 The `commerce` module declares 39 permission keys in total (10 + 22 + 7 below), grouped by the same three areas as its tables — a count too large for this document's own "spelled number matches a counted set" convention (`bun run audit:dokumen`'s linked-count check only recognises spelled numbers one through twenty), so it is stated here as a numeral instead of inside a guarded block.
 
@@ -275,9 +295,9 @@ Deliberately **no `create`/`delete` for `orders`/`customers`**: an order or cust
 
 The storefront (anonymous) API has **no permission keys at all** — its trust boundary is the Origin-bound tenant resolver, not RBAC/ABAC.
 
-## Domain events: eighteen
+## Domain events: nineteen
 
-All eighteen are registered in the three places `awcms` keeps in sync (`domain-event-runtime/domain/event-type-registry.ts`, `apps/cms/asyncapi/awcms-domain-events.asyncapi.yaml`, `commerce/module.ts`'s `events.publishes`):
+All nineteen are registered in the three places `awcms` keeps in sync (`domain-event-runtime/domain/event-type-registry.ts`, `apps/cms/asyncapi/awcms-domain-events.asyncapi.yaml`, `commerce/module.ts`'s `events.publishes`):
 
 | Aggregate             | Events                                                                                                                                |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
@@ -286,6 +306,7 @@ All eighteen are registered in the three places `awcms` keeps in sync (`domain-e
 | `commerce.voucher`    | `awcms.commerce.voucher.redeemed` — pre-declared as a forward reference in #26, only actually fired once #29's order path redeems one |
 | `commerce.order`      | `awcms.commerce.order.{created,paid,status_changed,cancelled,expired}`, and since #285 `awcms.commerce.payment.{recorded,reversed}` (the payment ledger rides the ORDER aggregate: one ordered stream per order; ids/tender/amounts/resulting settlement, never a customer name/phone or payment reference) |
 | `commerce.review`     | `awcms.commerce.review.published`                                                                                                     |
+| `commerce.stored_value_account` | `awcms.commerce.stored_value.entry_recorded` — one event per ledger entry (issue, load, redeem, refund, adjust, expire, disable, enable) on the account aggregate (#288); ids, kinds, the signed amount and the resulting balance, never the code, the customer or the free-text reason |
 | `commerce.register_session` | `awcms.commerce.register_session.{opened,movement_recorded,closed,corrected}` — the shift's own ordered stream (#284); `closed` fires once, only when the session actually reaches `closed`; payloads carry ids/types/amounts/variance, never a movement's free-text reference/note or a close's reason |
 
 `categories` still publishes no domain events — the same choice `tenant_admin` makes for `awcms_offices`; a soft delete is an audit-log fact, not something a downstream consumer needs to react to.

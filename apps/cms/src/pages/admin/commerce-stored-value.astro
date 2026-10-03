@@ -1,0 +1,1283 @@
+---
+/**
+ * Gift cards and store credit - closed-loop stored value (Issue #288, epic
+ * #281, ADR-0029). One screen, five panels, each gated on its OWN permission
+ * (the page's entry permission is `commerce.stored_value.read`):
+ *
+ *   1. headline figures - what is outstanding (owed to cardholders), of which
+ *      frozen on disabled cards and lapsed-but-not-yet-released, per kind;
+ *   2. ISSUE a card / credit (`stored_value.create`) - the code is shown ONCE,
+ *      in a receipt panel the operator can copy or print; it is never stored;
+ *   3. the accounts table (kind / status filters, newest first) and the
+ *      ledger of the selected account (`?account=`, masked codes only);
+ *   4. MANAGE one account - load (`stored_value.create`), adjust with a reason
+ *      (the separate `stored_value_adjustments.create`), disable / enable
+ *      (`stored_value.update`);
+ *   5. programs (`stored_value_programs.read` / `update`), the liability
+ *      report (last 30 report days) and the maintenance actions: the expiry
+ *      sweep (`stored_value.update`) and the consistency check / repair
+ *      (`stored_value_reconcile.approve` for the repair).
+ *
+ * The whole screen sits behind the tenant's `storedValue` feature (default
+ * OFF): with it off one notice points at the settings screen, matching the
+ * routes' own `409 FEATURE_DISABLED`. Nothing here computes money in the
+ * browser - every typed amount is posted as a `numeric(14,2)` STRING and the
+ * server is the authority; every figure shown is read from the same directory
+ * functions the API serves. There is deliberately NO control that converts
+ * value to cash: the loop is closed (ADR-0029).
+ *
+ * Every string the client script shows is rendered by `t()` into a `data-*`
+ * attribute on `#sv-root` and read from there (the script cannot translate),
+ * the same pattern `commerce-registers.astro` uses.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import { formatCurrency, formatDateTime } from "../../lib/i18n/format";
+import {
+  commerceLabel,
+  createCommerceLabels,
+  storedValueAccountStatusTone
+} from "../../lib/ui/commerce-admin-labels";
+import { decodeKeysetCursor } from "../../modules/_shared/keyset-pagination";
+import { fetchCommerceFeatures } from "../../modules/commerce/application/commerce-feature-gate";
+import {
+  fetchStoredValueAccount,
+  fetchStoredValueReport,
+  listStoredValueAccounts,
+  listStoredValueLedger,
+  listStoredValuePrograms,
+  type StoredValueAccountPage,
+  type StoredValueLedgerPage,
+  type StoredValueProgramRecord,
+  type StoredValueReport
+} from "../../modules/commerce/application/stored-value-directory";
+import {
+  fromCents,
+  toCents
+} from "../../modules/commerce/domain/price-calculation";
+import { SALES_REPORT_TIME_ZONE } from "../../modules/commerce/domain/sales-report-deltas";
+import { validateSalesReportRange } from "../../modules/commerce/domain/sales-report-query";
+import {
+  isStoredValueKind,
+  isUuid,
+  STORED_VALUE_ACCOUNT_STATUSES,
+  STORED_VALUE_KINDS,
+  type StoredValueAccountStatus,
+  type StoredValueKind
+} from "../../modules/commerce/domain/stored-value";
+import type { StoredValueAccountRecord } from "../../modules/commerce/application/stored-value-ledger";
+
+const ssr = Astro.locals.ssrContext!;
+const locale = Astro.locals.locale;
+const { t, tn } = getTranslatorFor(locale);
+const labels = createCommerceLabels(t);
+
+const money = (value: string): string =>
+  formatCurrency(locale, value, "IDR", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+const when = (iso: string | null): string =>
+  iso ? formatDateTime(locale, iso, SALES_REPORT_TIME_ZONE) : "—";
+
+const kindParam = Astro.url.searchParams.get("kind") ?? "";
+const kindFilter: StoredValueKind | null = isStoredValueKind(kindParam)
+  ? kindParam
+  : null;
+const statusParam = Astro.url.searchParams.get("status") ?? "";
+const statusFilter: StoredValueAccountStatus | null = (
+  STORED_VALUE_ACCOUNT_STATUSES as readonly string[]
+).includes(statusParam)
+  ? (statusParam as StoredValueAccountStatus)
+  : null;
+const cursorParam = Astro.url.searchParams.get("cursor");
+const cursor = cursorParam ? decodeKeysetCursor(cursorParam) : null;
+const accountParam = Astro.url.searchParams.get("account") ?? "";
+const selectedAccountId = isUuid(accountParam) ? accountParam : null;
+const beforeParam = Astro.url.searchParams.get("before") ?? "";
+const before = /^\d{1,15}$/.test(beforeParam) ? Number(beforeParam) : null;
+
+const rangeResult = validateSalesReportRange({ from: null, to: null });
+const range = rangeResult.valid
+  ? rangeResult.value
+  : { from: "1970-01-01", to: "1970-01-01" };
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "commerce",
+    activityCode: "stored_value",
+    action: "read"
+  },
+  load: async ({ tx, can }) => {
+    const features = await fetchCommerceFeatures(tx, ssr.tenantId);
+    if (!features.storedValue) {
+      return {
+        enabled: false as const,
+        programs: [] as StoredValueProgramRecord[],
+        accounts: null as StoredValueAccountPage | null,
+        report: null as StoredValueReport | null,
+        selected: null as StoredValueAccountRecord | null,
+        ledger: null as StoredValueLedgerPage | null,
+        canReadPrograms: false,
+        canUpdatePrograms: false,
+        canIssue: false,
+        canAdjust: false,
+        canUpdate: false,
+        canRepair: false
+      };
+    }
+    const canReadPrograms = await can({
+      moduleKey: "commerce",
+      activityCode: "stored_value_programs",
+      action: "read"
+    });
+    const canUpdatePrograms = await can({
+      moduleKey: "commerce",
+      activityCode: "stored_value_programs",
+      action: "update"
+    });
+    const canIssue = await can({
+      moduleKey: "commerce",
+      activityCode: "stored_value",
+      action: "create"
+    });
+    const canAdjust = await can({
+      moduleKey: "commerce",
+      activityCode: "stored_value_adjustments",
+      action: "create"
+    });
+    const canUpdate = await can({
+      moduleKey: "commerce",
+      activityCode: "stored_value",
+      action: "update"
+    });
+    const canRepair = await can({
+      moduleKey: "commerce",
+      activityCode: "stored_value_reconcile",
+      action: "approve"
+    });
+    const programs = canReadPrograms
+      ? await listStoredValuePrograms(tx, ssr.tenantId)
+      : [];
+    const accounts = await listStoredValueAccounts(tx, ssr.tenantId, cursor, {
+      kind: kindFilter ?? undefined,
+      status: statusFilter ?? undefined
+    });
+    const report = await fetchStoredValueReport(
+      tx,
+      ssr.tenantId,
+      range,
+      SALES_REPORT_TIME_ZONE
+    );
+    const selected = selectedAccountId
+      ? await fetchStoredValueAccount(tx, ssr.tenantId, selectedAccountId)
+      : null;
+    const ledger = selected
+      ? await listStoredValueLedger(tx, ssr.tenantId, selected.id, before)
+      : null;
+    return {
+      enabled: true as const,
+      programs,
+      accounts,
+      report,
+      selected,
+      ledger,
+      canReadPrograms,
+      canUpdatePrograms,
+      canIssue,
+      canAdjust,
+      canUpdate,
+      canRepair
+    };
+  },
+  onError: (error) => {
+    logAdminPageError(
+      "admin/commerce-stored-value.astro: failed to load",
+      error,
+      { correlationId: Astro.locals.correlationId }
+    );
+  }
+});
+
+const allowed = screen.state === "allowed";
+const denied = screen.state === "denied";
+const loadError = screen.state === "error";
+const data = screen.state === "allowed" ? screen.data : null;
+const enabled = data?.enabled === true;
+const programs = data?.programs ?? [];
+const accounts = data?.accounts ?? null;
+const report = data?.report ?? null;
+const selected = data?.selected ?? null;
+const ledger = data?.ledger ?? null;
+const canReadPrograms = data?.canReadPrograms === true;
+const canUpdatePrograms = data?.canUpdatePrograms === true;
+const canIssue = data?.canIssue === true;
+const canAdjust = data?.canAdjust === true;
+const canUpdate = data?.canUpdate === true;
+const canRepair = data?.canRepair === true;
+const canManage = canIssue || canAdjust || canUpdate;
+const frozenTotal = fromCents(
+  (report?.kinds ?? []).reduce(
+    (sum, kindReport) => sum + toCents(kindReport.disabledBalance),
+    0n
+  )
+);
+
+function listHref(
+  kind: StoredValueKind | null,
+  status: StoredValueAccountStatus | null,
+  next?: string
+): string {
+  const params = new URLSearchParams();
+  if (kind) params.set("kind", kind);
+  if (status) params.set("status", status);
+  if (next) params.set("cursor", next);
+  const query = params.toString();
+  return query
+    ? `/admin/commerce-stored-value?${query}`
+    : "/admin/commerce-stored-value";
+}
+const accountHref = (id: string): string =>
+  `${listHref(kindFilter, statusFilter, cursorParam ?? undefined)}${
+    kindFilter || statusFilter || cursorParam ? "&" : "?"
+  }account=${id}#sv-ledger`;
+const actorLabel = (id: string | null): string =>
+  id === null
+    ? t("System")
+    : id === ssr.tenantUserId
+      ? t("You")
+      : id.slice(0, 8);
+---
+
+<AdminLayout
+  title={t("Gift cards and store credit")}
+  description={t(
+    "Issue gift cards and store credit, track what is owed to cardholders, and keep the balances reconciled."
+  )}
+>
+  {denied && (
+    <p class="state-notice fade-in-up" id="sv-denied" role="status">
+      {t("You do not have permission to view gift cards and store credit.")}
+    </p>
+  )}
+  {loadError && (
+    <p class="state-notice fade-in-up" id="sv-error" role="alert">
+      {t(
+        "Gift cards and store credit could not be loaded right now. Please try again later."
+      )}
+    </p>
+  )}
+  {allowed && !enabled && (
+    <p class="state-notice fade-in-up" id="sv-feature-disabled" role="status">
+      {t("Gift cards and store credit are turned off for this store.")}{" "}
+      <a class="quick-link" href="/admin/commerce-settings">
+        {t("Turn them on under Features in the store settings.")}
+      </a>
+    </p>
+  )}
+
+  {allowed && enabled && (
+    <div
+      id="sv-root"
+      data-msg-busy={t("Please wait…")}
+      data-msg-bad-amount={t(
+        "The amount must be like 50000 or 50000.50, greater than zero."
+      )}
+      data-msg-bad-signed-amount={t(
+        "The amount must be like 5000 or -5000.50 (negative takes value off), and not zero."
+      )}
+      data-msg-reason-required={t("A reason is required.")}
+      data-msg-issue-failed={t("Could not issue the card. Please try again.")}
+      data-msg-program-disabled={t(
+        "That kind is not enabled yet. Enable it under Programs first."
+      )}
+      data-msg-ceiling={t("That would pass the balance ceiling for this kind.")}
+      data-msg-insufficient={t("That would take the balance below zero.")}
+      data-msg-expired={t(
+        "This account has expired; it takes no more entries."
+      )}
+      data-msg-unavailable={t(
+        "This account is disabled; enable it first, or choose Adjust."
+      )}
+      data-msg-unchanged={t("The account is already in that state.")}
+      data-msg-conflict={t(
+        "That request was already used with different details. Reload and try again."
+      )}
+      data-msg-manage-failed={t("Could not save the change. Please try again.")}
+      data-msg-manage-done={t("Saved.")}
+      data-msg-program-saved={t("Program saved.")}
+      data-msg-program-failed={t(
+        "Could not save the program. Please try again."
+      )}
+      data-msg-bad-expiry={t(
+        "Expiry must be a whole number of days from 1 to 3650, or empty."
+      )}
+      data-msg-bad-ceiling={t(
+        "The ceiling must be an amount like 1000000 or empty."
+      )}
+      data-msg-copied={t("Code copied.")}
+      data-msg-copy-failed={t(
+        "Could not copy; select the code and copy it by hand."
+      )}
+      data-msg-receipt-title={t("Gift card receipt")}
+      data-msg-receipt-code={t("Code")}
+      data-msg-receipt-amount={t("Value")}
+      data-msg-receipt-terms={t(
+        "Present this code to redeem. Not exchangeable for cash."
+      )}
+      data-msg-popup-blocked={t("The print window was blocked by the browser.")}
+      data-msg-sweep-done={t("Expiry run finished.")}
+      data-msg-sweep-failed={t("Could not run the expiry. Please try again.")}
+      data-msg-reconcile-clean={t("Every balance agrees with its ledger.")}
+      data-msg-reconcile-found={t("Differences found.")}
+      data-msg-reconcile-failed={t(
+        "Could not run the check. Please try again."
+      )}
+      data-msg-reconcile-repaired={t("Repaired balances.")}
+      data-msg-find-projection={t("Balance differs from the ledger")}
+      data-msg-find-status={t("Status differs from the ledger")}
+      data-msg-find-break={t("Ledger disagrees with itself")}
+      data-msg-find-allocation={t("Redemption without a matching ledger entry")}
+      data-msg-label-released={t("Released")}
+      data-msg-label-accounts={t("Accounts")}
+      data-msg-label-gift-card={labels.storedValueKind.gift_card}
+      data-msg-label-store-credit={labels.storedValueKind.store_credit}
+    >
+      <section
+        class="admin-dashboard-stats fade-in-up"
+        aria-label={t("Gift card and store credit figures")}
+      >
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Owed to cardholders")}</span>
+          <span class="admin-stat-card-value" id="sv-stat-outstanding">
+            {money(report?.totals.outstanding ?? "0.00")}
+          </span>
+        </div>
+        {(report?.kinds ?? []).map((kindReport) => (
+          <div class="admin-stat-card" data-kind-stat={kindReport.kind}>
+            <span class="admin-stat-card-label">
+              {commerceLabel(labels.storedValueKind, kindReport.kind)}
+            </span>
+            <span class="admin-stat-card-value">
+              {money(kindReport.outstanding)}
+            </span>
+          </div>
+        ))}
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Frozen on disabled")}</span>
+          <span class="admin-stat-card-value" id="sv-stat-frozen">
+            {money(frozenTotal)}
+          </span>
+        </div>
+      </section>
+
+      {canIssue && (
+        <section
+          class="admin-panel fade-in-up"
+          aria-labelledby="sv-issue-heading"
+        >
+          <h2 id="sv-issue-heading">{t("Issue a card or credit")}</h2>
+          <p class="form-hint">
+            {t(
+              "The code is shown once, right after you issue it - it is not stored, so copy or print it then."
+            )}
+          </p>
+          <p
+            id="sv-issue-error"
+            class="admin-create-error"
+            role="alert"
+            hidden
+          />
+          <form id="sv-issue-form" class="admin-create-form">
+            <label for="sv-issue-kind">
+              {t("Kind")}
+              <select id="sv-issue-kind" name="kind" required>
+                {STORED_VALUE_KINDS.map((kind) => (
+                  <option value={kind}>
+                    {commerceLabel(labels.storedValueKind, kind)}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label for="sv-issue-amount">
+              {t("Value")}
+              <input
+                id="sv-issue-amount"
+                name="amount"
+                type="text"
+                inputmode="decimal"
+                autocomplete="off"
+                required
+              />
+            </label>
+            <label for="sv-issue-reason">
+              {t("Note (optional)")}
+              <input
+                id="sv-issue-reason"
+                name="reason"
+                type="text"
+                maxlength={500}
+                autocomplete="off"
+              />
+            </label>
+            <button type="submit" class="module-toggle" id="sv-issue-submit">
+              {t("Issue")}
+            </button>
+          </form>
+          <div id="sv-receipt" class="admin-panel" role="status" hidden>
+            <h3>{t("Show this code to the customer now")}</h3>
+            <p class="form-hint">
+              {t(
+                "It cannot be shown again. If it is lost, disable the account and issue a new one."
+              )}
+            </p>
+            <p>
+              <strong>
+                <code id="sv-receipt-code"></code>
+              </strong>
+            </p>
+            <p id="sv-receipt-meta" class="cell-muted"></p>
+            <p class="admin-create-form">
+              <button type="button" class="module-toggle" id="sv-receipt-copy">
+                {t("Copy code")}
+              </button>
+              <button type="button" class="module-toggle" id="sv-receipt-print">
+                {t("Print receipt")}
+              </button>
+              <button type="button" class="module-toggle" id="sv-receipt-done">
+                {t("Done")}
+              </button>
+            </p>
+          </div>
+        </section>
+      )}
+
+      <section class="fade-in-up" aria-labelledby="sv-accounts-heading">
+        <h2 id="sv-accounts-heading">{t("Accounts")}</h2>
+        <nav class="admin-segmented" aria-label={t("Filter by kind")}>
+          <a
+            href={listHref(null, statusFilter)}
+            aria-current={kindFilter === null ? "page" : undefined}
+          >
+            {t("All kinds")}
+          </a>
+          {STORED_VALUE_KINDS.map((kind) => (
+            <a
+              href={listHref(kind, statusFilter)}
+              aria-current={kindFilter === kind ? "page" : undefined}
+            >
+              {commerceLabel(labels.storedValueKind, kind)}
+            </a>
+          ))}
+        </nav>
+        <nav class="admin-segmented" aria-label={t("Filter by status")}>
+          <a
+            href={listHref(kindFilter, null)}
+            aria-current={statusFilter === null ? "page" : undefined}
+          >
+            {t("All")}
+          </a>
+          {STORED_VALUE_ACCOUNT_STATUSES.map((status) => (
+            <a
+              href={listHref(kindFilter, status)}
+              aria-current={statusFilter === status ? "page" : undefined}
+            >
+              {commerceLabel(labels.storedValueAccountStatus, status)}
+            </a>
+          ))}
+        </nav>
+        <div class="data-table-scroll">
+          <table class="data-table data-table--stack" id="sv-accounts-table">
+            <caption>
+              {tn(
+                "{count} account",
+                "{count} accounts",
+                accounts?.items.length ?? 0,
+                { count: accounts?.items.length ?? 0 }
+              )}
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">{t("Code")}</th>
+                <th scope="col">{t("Kind")}</th>
+                <th scope="col">{t("Status")}</th>
+                <th scope="col">{t("Balance")}</th>
+                <th scope="col">{t("Expires")}</th>
+                <th scope="col">{t("Issued")}</th>
+                <th scope="col">{t("Actions")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {(accounts?.items.length ?? 0) === 0 ? (
+                <tr>
+                  <td class="data-table-empty" colspan={7}>
+                    <div class="empty-state">
+                      <span class="empty-state-icon" aria-hidden="true">
+                        ◇
+                      </span>
+                      <span class="empty-state-title">
+                        {t("No accounts yet")}
+                      </span>
+                      <span class="empty-state-text">
+                        {t("Issue a card or credit above.")}
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              ) : (
+                (accounts?.items ?? []).map((account) => (
+                  <tr data-account-row={account.id}>
+                    <td data-label={t("Code")}>
+                      <code>{account.maskedCode}</code>
+                    </td>
+                    <td data-label={t("Kind")}>
+                      {commerceLabel(labels.storedValueKind, account.kind)}
+                    </td>
+                    <td data-label={t("Status")}>
+                      <span
+                        class="admin-status-pill"
+                        data-tone={storedValueAccountStatusTone[account.status]}
+                      >
+                        <span
+                          class="admin-status-pill-dot"
+                          aria-hidden="true"
+                        />
+                        {commerceLabel(
+                          labels.storedValueAccountStatus,
+                          account.status
+                        )}
+                      </span>
+                    </td>
+                    <td data-label={t("Balance")}>{money(account.balance)}</td>
+                    <td data-label={t("Expires")}>{when(account.expiresAt)}</td>
+                    <td data-label={t("Issued")}>{when(account.createdAt)}</td>
+                    <td data-label={t("Actions")}>
+                      <a href={accountHref(account.id)}>{t("Ledger")}</a>
+                      {canManage && account.status !== "expired" && (
+                        <button
+                          type="button"
+                          class="module-toggle sv-manage-open"
+                          data-account-id={account.id}
+                          data-account-code={account.maskedCode}
+                          data-account-status={account.status}
+                        >
+                          {t("Manage")}
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+        {accounts?.nextCursor && (
+          <p>
+            <a
+              class="quick-link"
+              href={listHref(kindFilter, statusFilter, accounts.nextCursor)}
+            >
+              {t("Older accounts")}
+            </a>
+          </p>
+        )}
+      </section>
+
+      {canManage && (
+        <section
+          class="admin-panel fade-in-up"
+          id="sv-manage"
+          aria-labelledby="sv-manage-heading"
+          hidden
+        >
+          <h2 id="sv-manage-heading">{t("Manage an account")}</h2>
+          <p class="cell-muted" id="sv-manage-target"></p>
+          <p
+            id="sv-manage-error"
+            class="admin-create-error"
+            role="alert"
+            hidden
+          />
+          <p id="sv-manage-success" class="state-notice" role="status" hidden />
+          <form id="sv-manage-form" class="admin-create-form">
+            <label for="sv-manage-action">
+              {t("Action")}
+              <select id="sv-manage-action" name="action" required>
+                {canIssue && <option value="load">{t("Load value")}</option>}
+                {canAdjust && (
+                  <option value="adjust">{t("Adjust the balance")}</option>
+                )}
+                {canUpdate && <option value="disable">{t("Disable")}</option>}
+                {canUpdate && <option value="enable">{t("Enable")}</option>}
+              </select>
+            </label>
+            <label for="sv-manage-amount" id="sv-manage-amount-label">
+              {t("Amount")}
+              <input
+                id="sv-manage-amount"
+                name="amount"
+                type="text"
+                inputmode="decimal"
+                autocomplete="off"
+              />
+            </label>
+            <label for="sv-manage-reason">
+              {t("Reason")}
+              <input
+                id="sv-manage-reason"
+                name="reason"
+                type="text"
+                maxlength={500}
+                autocomplete="off"
+              />
+            </label>
+            <button type="submit" class="module-toggle" id="sv-manage-submit">
+              {t("Save")}
+            </button>
+          </form>
+        </section>
+      )}
+
+      {selected && (
+        <section
+          class="fade-in-up"
+          id="sv-ledger"
+          aria-labelledby="sv-ledger-heading"
+        >
+          <h2 id="sv-ledger-heading">{t("Ledger")}</h2>
+          <p class="cell-muted">
+            <code>{selected.maskedCode}</code> ·{" "}
+            {commerceLabel(labels.storedValueKind, selected.kind)} ·{" "}
+            {t("Balance")} {money(selected.balance)}
+          </p>
+          <div class="data-table-scroll">
+            <table class="data-table data-table--stack" id="sv-ledger-table">
+              <caption>
+                {tn(
+                  "{count} entry",
+                  "{count} entries",
+                  ledger?.items.length ?? 0,
+                  { count: ledger?.items.length ?? 0 }
+                )}
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">{t("When")}</th>
+                  <th scope="col">{t("Entry")}</th>
+                  <th scope="col">{t("Amount")}</th>
+                  <th scope="col">{t("Balance after")}</th>
+                  <th scope="col">{t("By")}</th>
+                  <th scope="col">{t("Reason")}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {(ledger?.items ?? []).map((entry) => (
+                  <tr data-entry-row={entry.id} data-entry-kind={entry.kind}>
+                    <td data-label={t("When")}>{when(entry.createdAt)}</td>
+                    <td data-label={t("Entry")}>
+                      {commerceLabel(labels.storedValueEntryKind, entry.kind)}
+                    </td>
+                    <td data-label={t("Amount")}>{money(entry.amount)}</td>
+                    <td data-label={t("Balance after")}>
+                      {money(entry.balanceAfter)}
+                    </td>
+                    <td data-label={t("By")}>
+                      {actorLabel(entry.actorTenantUserId)}
+                    </td>
+                    <td data-label={t("Reason")}>{entry.reason ?? "—"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          {ledger?.nextCursor && (
+            <p>
+              <a
+                class="quick-link"
+                href={`/admin/commerce-stored-value?account=${selected.id}&before=${ledger.nextCursor}#sv-ledger`}
+              >
+                {t("Older entries")}
+              </a>
+            </p>
+          )}
+        </section>
+      )}
+
+      {canReadPrograms && (
+        <section
+          class="admin-panel fade-in-up"
+          aria-labelledby="sv-programs-heading"
+        >
+          <h2 id="sv-programs-heading">{t("Programs")}</h2>
+          <p class="form-hint">
+            {t(
+              "Turning a kind off stops new cards and top-ups; value already issued stays redeemable."
+            )}
+          </p>
+          <p
+            id="sv-programs-error"
+            class="admin-create-error"
+            role="alert"
+            hidden
+          />
+          <p
+            id="sv-programs-success"
+            class="state-notice"
+            role="status"
+            hidden
+          />
+          {programs.map((program) => (
+            <form
+              class="admin-create-form sv-program-form"
+              data-kind={program.kind}
+            >
+              <h3>{commerceLabel(labels.storedValueKind, program.kind)}</h3>
+              <label for={`sv-program-enabled-${program.kind}`}>
+                <input
+                  id={`sv-program-enabled-${program.kind}`}
+                  name="enabled"
+                  type="checkbox"
+                  checked={program.enabled}
+                  disabled={!canUpdatePrograms}
+                />{" "}
+                {t("Enabled")}
+              </label>
+              <label for={`sv-program-expiry-${program.kind}`}>
+                {t("Expires after (days)")}
+                <input
+                  id={`sv-program-expiry-${program.kind}`}
+                  name="expiryDays"
+                  type="text"
+                  inputmode="numeric"
+                  autocomplete="off"
+                  value={
+                    program.expiryDays === null
+                      ? ""
+                      : String(program.expiryDays)
+                  }
+                  disabled={!canUpdatePrograms}
+                />
+              </label>
+              <label for={`sv-program-ceiling-${program.kind}`}>
+                {t("Balance ceiling")}
+                <input
+                  id={`sv-program-ceiling-${program.kind}`}
+                  name="maxBalance"
+                  type="text"
+                  inputmode="decimal"
+                  autocomplete="off"
+                  value={program.maxBalance ?? ""}
+                  disabled={!canUpdatePrograms}
+                />
+              </label>
+              <label for={`sv-program-refund-${program.kind}`}>
+                <input
+                  id={`sv-program-refund-${program.kind}`}
+                  name="allowRefundToAccount"
+                  type="checkbox"
+                  checked={program.allowRefundToAccount}
+                  disabled={!canUpdatePrograms}
+                />{" "}
+                {t("A refund goes back onto the same card")}
+              </label>
+              {canUpdatePrograms && (
+                <button type="submit" class="module-toggle">
+                  {t("Save program")}
+                </button>
+              )}
+            </form>
+          ))}
+        </section>
+      )}
+
+      <section
+        class="admin-panel fade-in-up"
+        aria-labelledby="sv-report-heading"
+      >
+        <h2 id="sv-report-heading">{t("Liability report")}</h2>
+        <div class="data-table-scroll">
+          <table class="data-table data-table--stack" id="sv-report-table">
+            <caption>
+              {t(
+                "Value issued and used per kind, {from} to {to}, by the day each entry was recorded.",
+                { from: range.from, to: range.to }
+              )}
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">{t("Kind")}</th>
+                <th scope="col">{t("Issued")}</th>
+                <th scope="col">{t("Redeemed")}</th>
+                <th scope="col">{t("Refunded to card")}</th>
+                <th scope="col">{t("Adjusted up")}</th>
+                <th scope="col">{t("Adjusted down")}</th>
+                <th scope="col">{t("Expired")}</th>
+                <th scope="col">{t("Owed now")}</th>
+                <th scope="col">{t("Lapsed, not yet released")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {(report?.kinds ?? []).map((kindReport) => (
+                <tr data-report-kind={kindReport.kind}>
+                  <th scope="row" data-label={t("Kind")}>
+                    {commerceLabel(labels.storedValueKind, kindReport.kind)}
+                  </th>
+                  <td data-label={t("Issued")}>
+                    {money(kindReport.issued.amount)}
+                  </td>
+                  <td data-label={t("Redeemed")}>
+                    {money(kindReport.redeemed.amount)}
+                  </td>
+                  <td data-label={t("Refunded to card")}>
+                    {money(kindReport.refunded.amount)}
+                  </td>
+                  <td data-label={t("Adjusted up")}>
+                    {money(kindReport.adjustedUp.amount)}
+                  </td>
+                  <td data-label={t("Adjusted down")}>
+                    {money(kindReport.adjustedDown.amount)}
+                  </td>
+                  <td data-label={t("Expired")}>
+                    {money(kindReport.expired.amount)}
+                  </td>
+                  <td data-label={t("Owed now")}>
+                    {money(kindReport.outstanding)}
+                  </td>
+                  <td data-label={t("Lapsed, not yet released")}>
+                    {money(kindReport.lapsedPendingRelease)}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {(canUpdate || report !== null) && (
+        <section
+          class="admin-panel fade-in-up"
+          aria-labelledby="sv-maintenance-heading"
+        >
+          <h2 id="sv-maintenance-heading">{t("Maintenance")}</h2>
+          <p class="form-hint">
+            {t(
+              "The check compares every balance with its ledger. A balance that differs can be rebuilt from the ledger; anything else is only reported."
+            )}
+          </p>
+          <p
+            id="sv-maintenance-result"
+            class="state-notice"
+            role="status"
+            hidden
+          />
+          <ul id="sv-maintenance-findings" hidden></ul>
+          <p class="admin-create-form">
+            {canUpdate && (
+              <button type="button" class="module-toggle" id="sv-sweep-run">
+                {t("Release lapsed balances")}
+              </button>
+            )}
+            <button type="button" class="module-toggle" id="sv-reconcile-check">
+              {t("Check balances")}
+            </button>
+            {canRepair && (
+              <button
+                type="button"
+                class="module-toggle"
+                id="sv-reconcile-repair"
+              >
+                {t("Check and rebuild differing balances")}
+              </button>
+            )}
+          </p>
+        </section>
+      )}
+    </div>
+  )}
+</AdminLayout>
+
+<script>
+  import {
+    field,
+    messageBox,
+    onAction,
+    onSubmit,
+    onSubmitAll,
+    sendJson,
+    sendJsonForData
+  } from "../../lib/ui/admin-form-client";
+
+  const root = document.getElementById("sv-root");
+  const msg = (key: string): string => root?.dataset[key] ?? "";
+
+  const MONEY = /^\d{1,12}(\.\d{1,2})?$/;
+  const SIGNED_MONEY = /^-?\d{1,12}(\.\d{1,2})?$/;
+  const BASE = "/api/v1/commerce/stored-value";
+
+  const issueError = messageBox("sv-issue-error");
+  const manageError = messageBox("sv-manage-error");
+  const programsError = messageBox("sv-programs-error");
+
+  type IssueBody = {
+    account: { maskedCode: string; kind: string; balance: string };
+    code: string | null;
+  };
+
+  const errorMessage = (code: string | null, fallback: string): string => {
+    switch (code) {
+      case "STORED_VALUE_PROGRAM_DISABLED":
+        return msg("msgProgramDisabled");
+      case "STORED_VALUE_BALANCE_CEILING":
+        return msg("msgCeiling");
+      case "STORED_VALUE_INSUFFICIENT":
+        return msg("msgInsufficient");
+      case "STORED_VALUE_ACCOUNT_EXPIRED":
+        return msg("msgExpired");
+      case "STORED_VALUE_ACCOUNT_UNAVAILABLE":
+        return msg("msgUnavailable");
+      case "STORED_VALUE_STATUS_UNCHANGED":
+        return msg("msgUnchanged");
+      case "IDEMPOTENCY_CONFLICT":
+        return msg("msgConflict");
+      default:
+        return fallback;
+    }
+  };
+
+  // ---- Issue: the plaintext code is shown once, here, and nowhere else. ----
+  let shownCode = "";
+  let shownAmount = "";
+  let shownKind = "";
+  const receipt = document.getElementById("sv-receipt");
+  const receiptCode = document.getElementById("sv-receipt-code");
+  const receiptMeta = document.getElementById("sv-receipt-meta");
+
+  onSubmit("sv-issue-form", ({ data, submit }) => {
+    const amount = field(data, "amount");
+    if (!MONEY.test(amount) || Number(amount) <= 0) {
+      issueError.show(msg("msgBadAmount"));
+      return Promise.resolve();
+    }
+    issueError.clear();
+    return (async () => {
+      if (submit) submit.disabled = true;
+      const reason = field(data, "reason");
+      const result = await sendJsonForData<IssueBody>(
+        "POST",
+        `${BASE}/accounts`,
+        {
+          kind: field(data, "kind"),
+          amount,
+          ...(reason === "" ? {} : { reason })
+        },
+        { "Idempotency-Key": crypto.randomUUID() }
+      );
+      if (submit) submit.disabled = false;
+      if (!result.ok || !result.data?.code) {
+        issueError.show(errorMessage(result.errorCode, msg("msgIssueFailed")));
+        return;
+      }
+      shownCode = result.data.code;
+      shownAmount = result.data.account.balance;
+      shownKind = result.data.account.kind;
+      if (receiptCode) receiptCode.textContent = shownCode;
+      if (receiptMeta) {
+        receiptMeta.textContent = `${
+          shownKind === "store_credit"
+            ? msg("msgLabelStoreCredit")
+            : msg("msgLabelGiftCard")
+        } · ${shownAmount}`;
+      }
+      if (receipt) receipt.hidden = false;
+      receipt?.scrollIntoView({ block: "nearest" });
+    })();
+  });
+
+  document.getElementById("sv-receipt-copy")?.addEventListener("click", () => {
+    const status = document.getElementById("sv-receipt-meta");
+    navigator.clipboard
+      .writeText(shownCode)
+      .then(() => {
+        if (status) status.textContent = msg("msgCopied");
+      })
+      .catch(() => {
+        if (status) status.textContent = msg("msgCopyFailed");
+      });
+  });
+
+  document.getElementById("sv-receipt-print")?.addEventListener("click", () => {
+    const popup = window.open("", "_blank", "width=420,height=560");
+    if (!popup) {
+      if (receiptMeta) receiptMeta.textContent = msg("msgPopupBlocked");
+      return;
+    }
+    const doc = popup.document;
+    doc.title = msg("msgReceiptTitle");
+    const body = doc.body;
+    body.style.fontFamily = "system-ui, sans-serif";
+    body.style.padding = "24px";
+    const heading = doc.createElement("h1");
+    heading.textContent = msg("msgReceiptTitle");
+    const kind = doc.createElement("p");
+    kind.textContent =
+      shownKind === "store_credit"
+        ? msg("msgLabelStoreCredit")
+        : msg("msgLabelGiftCard");
+    const amountLine = doc.createElement("p");
+    amountLine.textContent = `${msg("msgReceiptAmount")}: ${shownAmount}`;
+    const codeLine = doc.createElement("p");
+    codeLine.textContent = `${msg("msgReceiptCode")}:`;
+    const code = doc.createElement("p");
+    code.textContent = shownCode;
+    code.style.fontFamily = "ui-monospace, monospace";
+    code.style.fontSize = "22px";
+    code.style.letterSpacing = "0.08em";
+    const terms = doc.createElement("p");
+    terms.textContent = msg("msgReceiptTerms");
+    body.append(heading, kind, amountLine, codeLine, code, terms);
+    popup.focus();
+    popup.print();
+  });
+
+  document.getElementById("sv-receipt-done")?.addEventListener("click", () => {
+    // Forget the plaintext before the table reloads.
+    shownCode = "";
+    if (receiptCode) receiptCode.textContent = "";
+    window.location.reload();
+  });
+
+  // ---- Manage one account: load / adjust / disable / enable. ----
+  const managePanel = document.getElementById("sv-manage");
+  const manageTarget = document.getElementById("sv-manage-target");
+  const manageAction = document.getElementById(
+    "sv-manage-action"
+  ) as HTMLSelectElement | null;
+  const amountLabel = document.getElementById("sv-manage-amount-label");
+  let managedId = "";
+
+  const syncManageFields = (): void => {
+    const action = manageAction?.value ?? "";
+    if (amountLabel) {
+      amountLabel.hidden = action === "disable" || action === "enable";
+    }
+  };
+  manageAction?.addEventListener("change", syncManageFields);
+
+  onAction(".sv-manage-open", (button) => {
+    managedId = button.dataset.accountId ?? "";
+    if (manageTarget) {
+      manageTarget.textContent = button.dataset.accountCode ?? "";
+    }
+    // Offer only the status change that makes sense for this account.
+    const status = button.dataset.accountStatus;
+    if (manageAction) {
+      for (const option of Array.from(manageAction.options)) {
+        option.hidden =
+          (option.value === "disable" && status !== "active") ||
+          (option.value === "enable" && status !== "disabled");
+        option.disabled = option.hidden;
+      }
+      const firstUsable = Array.from(manageAction.options).find(
+        (option) => !option.disabled
+      );
+      if (firstUsable) manageAction.value = firstUsable.value;
+    }
+    manageError.clear();
+    const success = document.getElementById("sv-manage-success");
+    if (success) success.hidden = true;
+    syncManageFields();
+    if (managePanel) {
+      managePanel.hidden = false;
+      managePanel.scrollIntoView({ block: "nearest" });
+    }
+  });
+
+  onSubmit("sv-manage-form", ({ data, submit }) => {
+    manageError.clear();
+    if (!managedId) return Promise.resolve();
+    const action = field(data, "action");
+    const amount = field(data, "amount");
+    const reason = field(data, "reason");
+    if (action === "load" && (!MONEY.test(amount) || Number(amount) <= 0)) {
+      manageError.show(msg("msgBadAmount"));
+      return Promise.resolve();
+    }
+    if (action === "adjust") {
+      if (!SIGNED_MONEY.test(amount) || Number(amount) === 0) {
+        manageError.show(msg("msgBadSignedAmount"));
+        return Promise.resolve();
+      }
+      if (reason === "") {
+        manageError.show(msg("msgReasonRequired"));
+        return Promise.resolve();
+      }
+    }
+    if (action === "disable" && reason === "") {
+      manageError.show(msg("msgReasonRequired"));
+      return Promise.resolve();
+    }
+    return (async () => {
+      if (submit) submit.disabled = true;
+      const headers = { "Idempotency-Key": crypto.randomUUID() };
+      const base = `${BASE}/accounts/${managedId}`;
+      const result =
+        action === "load"
+          ? await sendJson(
+              "POST",
+              `${base}/load`,
+              { amount, ...(reason === "" ? {} : { reason }) },
+              headers
+            )
+          : action === "adjust"
+            ? await sendJson(
+                "POST",
+                `${base}/adjust`,
+                { amount, reason },
+                headers
+              )
+            : await sendJson(
+                "POST",
+                `${base}/status`,
+                { action, ...(reason === "" ? {} : { reason }) },
+                headers
+              );
+      if (submit) submit.disabled = false;
+      if (result.ok) {
+        window.location.reload();
+        return;
+      }
+      manageError.show(errorMessage(result.errorCode, msg("msgManageFailed")));
+    })();
+  });
+
+  // ---- Programs. ----
+  onSubmitAll(".sv-program-form", ({ form, submit }) => {
+    programsError.clear();
+    const success = document.getElementById("sv-programs-success");
+    if (success) success.hidden = true;
+    const read = (name: string): HTMLInputElement | null =>
+      form.elements.namedItem(name) as HTMLInputElement | null;
+    const expiryRaw = (read("expiryDays")?.value ?? "").trim();
+    const ceilingRaw = (read("maxBalance")?.value ?? "").trim();
+    let expiryDays: number | null = null;
+    if (expiryRaw !== "") {
+      expiryDays = Number(expiryRaw);
+      if (
+        !Number.isInteger(expiryDays) ||
+        expiryDays < 1 ||
+        expiryDays > 3650
+      ) {
+        programsError.show(msg("msgBadExpiry"));
+        return Promise.resolve();
+      }
+    }
+    if (
+      ceilingRaw !== "" &&
+      (!MONEY.test(ceilingRaw) || Number(ceilingRaw) <= 0)
+    ) {
+      programsError.show(msg("msgBadCeiling"));
+      return Promise.resolve();
+    }
+    return (async () => {
+      if (submit) submit.disabled = true;
+      const result = await sendJson(
+        "PUT",
+        `${BASE}/programs/${form.dataset.kind ?? ""}`,
+        {
+          enabled: read("enabled")?.checked === true,
+          expiryDays,
+          maxBalance: ceilingRaw === "" ? null : ceilingRaw,
+          allowRefundToAccount: read("allowRefundToAccount")?.checked === true
+        }
+      );
+      if (submit) submit.disabled = false;
+      if (result.ok) {
+        if (success) {
+          success.textContent = msg("msgProgramSaved");
+          success.hidden = false;
+        }
+        return;
+      }
+      programsError.show(msg("msgProgramFailed"));
+    })();
+  });
+
+  // ---- Maintenance: the expiry sweep and the consistency check. ----
+  const result = document.getElementById("sv-maintenance-result");
+  const findings = document.getElementById("sv-maintenance-findings");
+  const show = (text: string): void => {
+    if (!result) return;
+    result.textContent = text;
+    result.hidden = false;
+  };
+
+  onAction("#sv-sweep-run", async (button) => {
+    button.disabled = true;
+    const response = await sendJsonForData<{
+      expired: number;
+      released: string;
+    }>("POST", `${BASE}/expire`);
+    button.disabled = false;
+    if (response.ok && response.data) {
+      show(
+        `${msg("msgSweepDone")} ${msg("msgLabelAccounts")}: ${response.data.expired} · ${msg("msgLabelReleased")}: ${response.data.released}`
+      );
+      return;
+    }
+    show(msg("msgSweepFailed"));
+  });
+
+  type Finding = { type: string; accountId: string };
+  const findingLabel = (type: string): string =>
+    type === "projection_drift"
+      ? msg("msgFindProjection")
+      : type === "status_drift"
+        ? msg("msgFindStatus")
+        : type === "ledger_break"
+          ? msg("msgFindBreak")
+          : msg("msgFindAllocation");
+
+  const reconcile = async (
+    button: HTMLButtonElement,
+    repair: boolean
+  ): Promise<void> => {
+    button.disabled = true;
+    if (findings) findings.hidden = true;
+    const response = await sendJsonForData<{
+      findings: Finding[];
+      repaired: number;
+    }>("POST", `${BASE}/reconcile`, { repair });
+    button.disabled = false;
+    if (!response.ok || !response.data) {
+      show(msg("msgReconcileFailed"));
+      return;
+    }
+    const found = response.data.findings;
+    if (found.length === 0) {
+      show(msg("msgReconcileClean"));
+      return;
+    }
+    show(
+      `${msg("msgReconcileFound")} ${
+        repair ? `${msg("msgReconcileRepaired")} ${response.data.repaired}` : ""
+      }`.trim()
+    );
+    if (findings) {
+      findings.replaceChildren(
+        ...found.slice(0, 20).map((finding) => {
+          const item = document.createElement("li");
+          item.textContent = `${findingLabel(finding.type)} · ${finding.accountId.slice(0, 8)}`;
+          return item;
+        })
+      );
+      findings.hidden = false;
+    }
+  };
+  onAction("#sv-reconcile-check", (button) => reconcile(button, false));
+  onAction("#sv-reconcile-repair", (button) => reconcile(button, true));
+</script>

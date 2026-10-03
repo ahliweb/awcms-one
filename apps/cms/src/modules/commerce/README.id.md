@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:888e1535f074dd97752e2f493df58fe0463cf24f1210f2a55c79c76db7a57352 -->
+<!-- i18n-source-hash: sha256:fe48c0a6662d7020fd785947488e35ba622f3fcc78e3e6569b5fad205fefb15e -->
 
 # `commerce`
 
@@ -1317,6 +1317,18 @@ Enam tabel (`sql/970`: `awcms_commerce_registers`, `…_register_sessions`, `…
 - **Event.** `awcms.commerce.register_session.{opened,movement_recorded,closed,corrected}` pada agregat `commerce.register_session`; audit `register.*` / `register_session.*` (uang, tipe, id — tidak pernah teks bebas).
 - **Layar.** `/admin/commerce-registers`, `/admin/commerce-registers/[id]`, banner register di `/admin/commerce-pos` (lihat panduan cms di root awcms-one, [panduan modul commerce](../../../../../docs/cms.id.md)).
 - **Ditunda.** Domain pengeluaran (#294) dan referensi bertipe pada mutasi pengeluaran (`reference_kind` adalah kaitnya), angka "dicatat setelah penutupan" untuk aktivitas ledger terlambat, ambang per register, pemilih kasir untuk serah terima — lihat [ADR-0028](../../../../../docs/adr/0028-pos-register-sessions-and-cash-up.md).
+
+## Kartu hadiah dan kredit toko — SUDAH DIIMPLEMENTASIKAN (Issue #288, epik #281 — [ADR-0029](../../../../../docs/adr/0029-stored-value-is-a-closed-loop-liability-ledger.id.md))
+
+Tiga tabel (`sql/980`: `awcms_commerce_stored_value_programs`, `…_accounts`, `…_ledger`), integrasi ledger pembayaran (`sql/981`: `stored_value_account_id`, dua jenis tender, trigger pasangan tertangguh, petunjuk `payment_method` yang dilebarkan), tujuh izin (`sql/982`), grant purge worker (`sql/983`).
+
+- **Letak kodenya.** `domain/stored-value.ts` (kosakata, kode — pembuatan, normalisasi, karakter cek, hash berlingkup tenant, topeng —, sen bertanda, `evaluateEntry` dan `replayLedger`, validator; murni), `domain/stored-value-lifecycle.ts` (tiga deskriptor `dataLifecycle` dan `subjectData`), `application/stored-value-ledger.ts` (**satu-satunya penulis**: `appendStoredValueEntry`, kunci akun, `settleLapse`, dan kait redeem/refund yang dipanggil ledger pembayaran), `application/stored-value-directory.ts` (program, penerbitan, load/adjust/status, sweep kedaluwarsa, pembacaan, laporan kewajiban, reconcile), `application/stored-value-tender.ts` (resolusi kode → akun dengan throttle pencarian, preflight POS, penolakan bertipe, `redactTendersForHash`), `application/stored-value-http.ts` (gerbang fitur dan satu pemetaan penolakan ke respons).
+- **Aturan yang harus dijaga perubahan.** Ledger append-only dan trigger database adalah satu-satunya yang menggerakkan `balance`/`version`/`status` akun — jangan menulis `UPDATE` atasnya (satu-satunya pengecualian adalah perbaikan reconcile, yang diterima database hanya untuk jumlah ledger yang persis); urutan kunci adalah baris pesanan → baris akun (`FOR NO KEY UPDATE`, tidak pernah `FOR UPDATE`); penolakan nilai tersimpan diputuskan SEBELUM baris apa pun ditulis (respons yang dikembalikan meng-commit — hanya error yang dilempar yang me-rollback), dan pelanggaran invarian setelah preflight melempar `StoredValueInvariantError`, yang tidak dipetakan rute mana pun; kode plaintext tidak pernah mencapai tabel, log, atribut audit, payload event, atau store idempotensi (hash dengan `hashStoredValueCode` / `redactTendersForHash`); setiap pencarian kode yang gagal adalah satu `STORED_VALUE_NOT_FOUND` netral; tidak ada tarik tunai dan tidak ada transfer, dan pengembalian dana kembali ke akun yang dipakai pembayaran atau tidak sama sekali.
+- **Flag fitur.** `features.storedValue` (`domain/commerce-features.ts`) default MATI — bersama `register`, satu-satunya flag yang demikian. Mati: rute pemilik menjawab `409 FEATURE_DISABLED`, entri sidebar disembunyikan, dan tender kartu ditolak sebelum apa pun ditulis (pembalikan pembayaran kartu yang sudah ada tidak digerbangkan: ia mengkompensasi data yang ada).
+- **Izin.** `commerce.stored_value_programs.{read,update}`, `commerce.stored_value.{read,create,update}`, `commerce.stored_value_adjustments.create`, `commerce.stored_value_reconcile.approve` — hanya verba `AccessAction` yang sudah ada; menukar adalah tender pada `commerce.pos.create` / `commerce.payments.create`, bukan salah satunya.
+- **Event.** `awcms.commerce.stored_value.entry_recorded` pada agregat `commerce.stored_value_account` (satu per entri ledger); audit `stored_value.*` / `stored_value_program.update` (id, jenis, uang — tidak pernah kode, pelanggan, atau teks bebas).
+- **Layar.** `/admin/commerce-stored-value`; baris tender kartu hadiah / kredit toko di `/admin/commerce-pos` dan `/admin/commerce-orders/[id]` (hanya dengan fitur menyala); toggle "Gift cards and store credit" di layar pengaturan.
+- **Ditunda.** Job kedaluwarsa terjadwal, pencarian/penukaran publik atau tampilan saldo pelanggan apa pun, pengembalian dana ke kartu yang lewat batas, tarik tunai/transfer (ditolak), menjual kartu sebagai produk katalog, kredit toko dari retur — lihat [ADR-0029](../../../../../docs/adr/0029-stored-value-is-a-closed-loop-liability-ledger.id.md).
 
 ## Dengan sengaja tidak ada di sini
 

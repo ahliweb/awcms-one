@@ -724,7 +724,18 @@ export const RETIRED_TENANT_TABLE_PRIVILEGES: Record<string, string[]> = {
   awcms_commerce_register_movements: ["SELECT", "INSERT"],
   awcms_commerce_register_close_requests: ["SELECT", "INSERT", "UPDATE"],
   awcms_commerce_register_close_lines: ["SELECT", "INSERT"],
-  awcms_commerce_register_corrections: ["SELECT", "INSERT"]
+  awcms_commerce_register_corrections: ["SELECT", "INSERT"],
+  // Issue #288 / `sql/980`. The closed-loop stored-value tables - NOT retired,
+  // written on every issue and redemption. A liability record must not be
+  // erasable by the role that runs the till: DELETE is revoked on all three.
+  // The ledger is pure append (a trigger refuses every UPDATE, and UPDATE is
+  // revoked too - the privilege error is the earlier, louder answer). The
+  // account keeps UPDATE for its projection (balance/version/status), which
+  // `sql/980`'s guard trigger confines to the ledger's own trigger; the program
+  // keeps it for configuration.
+  awcms_commerce_stored_value_programs: ["SELECT", "INSERT", "UPDATE"],
+  awcms_commerce_stored_value_accounts: ["SELECT", "INSERT", "UPDATE"],
+  awcms_commerce_stored_value_ledger: ["SELECT", "INSERT"]
 };
 
 type RlsRow = {
@@ -1642,6 +1653,16 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_commerce_register_close_requests: ["SELECT", "DELETE"],
   awcms_commerce_register_close_lines: ["SELECT", "DELETE"],
   awcms_commerce_register_corrections: ["SELECT", "DELETE"],
+  // Issue #288 (`sql/980`/`sql/983`): the three stored-value tables'
+  // `dataLifecycle` descriptors (`commerce/domain/stored-value-lifecycle.ts`)
+  // are `executionMode: "generic"` with `hard_delete`; the retention worker is
+  // the only role that may delete a liability record (awcms_app has had DELETE
+  // revoked), the two parents are unreachable by construction (`deleted_at` is
+  // never set - the guard trigger forbids it) and the ledger only past the
+  // ten-year ceiling.
+  awcms_commerce_stored_value_programs: ["SELECT", "DELETE"],
+  awcms_commerce_stored_value_accounts: ["SELECT", "DELETE"],
+  awcms_commerce_stored_value_ledger: ["SELECT", "DELETE"],
   // Issue #268 (`sql/939`): the protected-media link table's `dataLifecycle`
   // descriptor (`commerce/module.ts`) is `executionMode: "generic"` with a
   // real, reachable `hard_delete` (unlike entitlements above, this one IS

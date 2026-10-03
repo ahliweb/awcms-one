@@ -131,6 +131,11 @@ import type {
   RegisterMovementType,
   RegisterSessionStatus
 } from "../../modules/commerce/domain/register";
+import type {
+  StoredValueAccountStatus,
+  StoredValueEntryKind,
+  StoredValueKind
+} from "../../modules/commerce/domain/stored-value";
 import type { PopupFrequency } from "../../modules/commerce/domain/popup-validation";
 import type { PaymentGatewayStatus } from "../../modules/commerce/domain/payment-gateway-provider";
 import type { ReviewStatus } from "../../modules/commerce/application/review-directory";
@@ -424,7 +429,9 @@ export function createCommerceLabels(t: Translator["t"]) {
     cash: t("Cash"),
     manual_qris: t("QRIS"),
     manual_bank_transfer: t("Bank transfer"),
-    gateway: t("Payment gateway")
+    gateway: t("Payment gateway"),
+    gift_card: t("Gift card"),
+    store_credit: t("Store credit")
   } satisfies Record<PaymentTenderType, string>;
 
   /** Issue #285 - a ledger row's own state; only `succeeded` legs count toward settlement. */
@@ -472,6 +479,31 @@ export function createCommerceLabels(t: Translator["t"]) {
     rejected: t("Rejected")
   } satisfies Record<RegisterCloseDecision, string>;
 
+  /** Issue #288 - the two kinds of closed-loop stored value (`domain/stored-value.ts`). Same wording as the `gift_card` / `store_credit` payment tenders. */
+  const storedValueKind = {
+    gift_card: t("Gift card"),
+    store_credit: t("Store credit")
+  } satisfies Record<StoredValueKind, string>;
+
+  /** Issue #288 - a stored-value account's status; `expired` is terminal. */
+  const storedValueAccountStatus = {
+    active: t("Active"),
+    disabled: t("Disabled"),
+    expired: t("Expired")
+  } satisfies Record<StoredValueAccountStatus, string>;
+
+  /** Issue #288 - what a stored-value ledger entry did to the balance. */
+  const storedValueEntryKind = {
+    issue: t("Issued"),
+    load: t("Loaded"),
+    redeem: t("Redeemed"),
+    refund: t("Refunded to card"),
+    adjust: t("Adjusted"),
+    expire: t("Expired"),
+    disable: t("Disabled"),
+    enable: t("Enabled")
+  } satisfies Record<StoredValueEntryKind, string>;
+
   /** `domain/order-status.ts`'s own header documents the domain meaning behind each of these three values — see {@link PaymentEventOutcome}'s own comment above. */
   const paymentEventOutcome = {
     applied: t("Applied"),
@@ -509,7 +541,10 @@ export function createCommerceLabels(t: Translator["t"]) {
     registerSessionStatus,
     registerMovementType,
     registerMovementDirection,
-    registerCloseDecision
+    registerCloseDecision,
+    storedValueKind,
+    storedValueAccountStatus,
+    storedValueEntryKind
   };
 }
 
@@ -553,6 +588,16 @@ export const registerSessionStatusTone: Record<
   closing: "warning",
   closed: "neutral",
   corrected: "info"
+};
+
+/** Issue #288 - a stored-value account's tone: active is live, disabled needs attention, expired is over. */
+export const storedValueAccountStatusTone: Record<
+  StoredValueAccountStatus,
+  CommerceTone
+> = {
+  active: "success",
+  disabled: "warning",
+  expired: "neutral"
 };
 
 /** The affiliate half of `commerce-affiliates.astro`'s combined `STATUS_TONE`. */

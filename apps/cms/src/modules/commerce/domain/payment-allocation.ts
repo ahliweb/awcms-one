@@ -37,22 +37,31 @@
  * exceed what is still owed.
  */
 import { fromCents, toCents } from "./price-calculation";
+import {
+  isStoredValueTender,
+  validateStoredValueCodeField
+} from "./stored-value";
 
 export type ValidationError = { field: string; message: string };
 type ValidationResult<T> =
   { valid: true; value: T } | { valid: false; errors: ValidationError[] };
 
 /**
- * `store_credit`/`gift_card` are NOT here on purpose: the value ledgers of
- * #288/#289 do not exist, and a tender no code path can write is a claim, not
- * a feature (`sql/940`'s header). Widen this list and the table's CHECK in
- * the migration that ships the first writer.
+ * `gift_card` / `store_credit` joined this list with their first writer
+ * (Issue #288, ADR-0029; `sql/981` widened the table's CHECK in the same
+ * change, as `sql/940` promised): a leg of either tender draws on the
+ * closed-loop stored-value ledger in the SAME transaction
+ * (`application/stored-value-ledger.ts`), and its row names the account
+ * (`stored_value_account_id`). They are NON-cash tenders: change never
+ * applies to them, and an amount can never exceed what is owed.
  */
 export const PAYMENT_TENDER_TYPES = [
   "cash",
   "manual_qris",
   "manual_bank_transfer",
-  "gateway"
+  "gateway",
+  "gift_card",
+  "store_credit"
 ] as const;
 export type PaymentTenderType = (typeof PAYMENT_TENDER_TYPES)[number];
 
@@ -66,7 +75,9 @@ export type PaymentTenderType = (typeof PAYMENT_TENDER_TYPES)[number];
 export const OWNER_RECORDABLE_TENDER_TYPES = [
   "cash",
   "manual_qris",
-  "manual_bank_transfer"
+  "manual_bank_transfer",
+  "gift_card",
+  "store_credit"
 ] as const satisfies readonly PaymentTenderType[];
 export type OwnerRecordableTenderType =
   (typeof OWNER_RECORDABLE_TENDER_TYPES)[number];
@@ -241,6 +252,13 @@ export type TenderInput = {
    */
   amount: string | null;
   reference: string | null;
+  /**
+   * `gift_card` / `store_credit` only (Issue #288): the NORMALISED plaintext
+   * code of the account to draw from. It is resolved to an account id and then
+   * discarded — it is never written to the ledger, the audit log or the
+   * idempotency store (callers hash it for their request hash).
+   */
+  storedValueCode?: string | null;
 };
 
 export type PlannedTender = {
@@ -252,6 +270,8 @@ export type PlannedTender = {
   /** Cash leg only; `"0.00"` when exact. */
   changeAmount: string | null;
   reference: string | null;
+  /** Stored-value legs only (Issue #288) — see {@link TenderInput.storedValueCode}; absent on every other leg. */
+  storedValueCode?: string | null;
 };
 
 export type TenderPlan = {
@@ -331,6 +351,15 @@ export function planTenders(
   const remainderTenders = tenders.filter(
     (t) => t.tenderType !== "cash" && t.amount === null
   );
+  if (remainderTenders.some((t) => isStoredValueTender(t.tenderType))) {
+    // A gift card / store credit is debited an EXPLICIT amount; "the whole
+    // bill" is a legacy single-QRIS shorthand and must never silently drain
+    // a card.
+    throw new InvalidTenderPlanError(
+      "tenders",
+      "A gift_card / store_credit tender needs an explicit amount."
+    );
+  }
   if (remainderTenders.length > 0) {
     // Legacy adapter only: one non-cash tender standing for "the whole bill".
     if (tenders.length !== 1) {
@@ -367,7 +396,10 @@ export function planTenders(
       amount: fromCents(cents),
       tenderedAmount: null,
       changeAmount: null,
-      reference: tender.reference
+      reference: tender.reference,
+      ...(isStoredValueTender(tender.tenderType)
+        ? { storedValueCode: tender.storedValueCode ?? null }
+        : {})
     });
   }
 
@@ -435,6 +467,8 @@ export type RecordPaymentInput = {
   amount: string;
   reference: string | null;
   note: string | null;
+  /** `gift_card` / `store_credit` only (Issue #288): the normalised plaintext code; never persisted. Absent for every other tender. */
+  storedValueCode?: string | null;
 };
 
 export type RecordReversalInput = {
@@ -535,6 +569,26 @@ export function validateRecordPaymentInput(
     errors
   );
   const note = optionalText(record.note, "note", MAX_NOTE_LENGTH, errors);
+  const storedValueCode =
+    tenderValid && isStoredValueTender(record.tenderType as string)
+      ? validateStoredValueCodeField(
+          record.storedValueCode,
+          "storedValueCode",
+          errors
+        )
+      : null;
+  if (
+    tenderValid &&
+    !isStoredValueTender(record.tenderType as string) &&
+    record.storedValueCode !== undefined &&
+    record.storedValueCode !== null
+  ) {
+    errors.push({
+      field: "storedValueCode",
+      message:
+        "storedValueCode is only valid for a gift_card / store_credit tender."
+    });
+  }
 
   if (errors.length > 0) return { valid: false, errors };
   return {
@@ -543,8 +597,11 @@ export function validateRecordPaymentInput(
       idempotencyKey: key,
       tenderType: record.tenderType as OwnerRecordableTenderType,
       amount,
-      reference,
-      note
+      reference: storedValueCode === null ? reference : null,
+      note,
+      ...(isStoredValueTender(record.tenderType as string)
+        ? { storedValueCode }
+        : {})
     }
   };
 }
@@ -591,6 +648,7 @@ export function validatePosTenders(
     });
   }
   const result: TenderInput[] = [];
+  const seenCodes = new Set<string>();
   value.slice(0, MAX_TENDERS).forEach((entry, index) => {
     const prefix = `tenders[${index}]`;
     if (!isRecord(entry)) {
@@ -615,21 +673,59 @@ export function validatePosTenders(
       MAX_REFERENCE_LENGTH,
       errors
     );
+    let storedValueCode: string | null = null;
+    if (tenderValid && isStoredValueTender(entry.tenderType as string)) {
+      storedValueCode = validateStoredValueCodeField(
+        entry.storedValueCode,
+        `${prefix}.storedValueCode`,
+        errors
+      );
+      if (storedValueCode !== null) {
+        if (seenCodes.has(storedValueCode)) {
+          errors.push({
+            field: `${prefix}.storedValueCode`,
+            message: "The same code cannot be used by two tenders of one sale."
+          });
+        }
+        seenCodes.add(storedValueCode);
+      }
+    } else if (
+      tenderValid &&
+      entry.storedValueCode !== undefined &&
+      entry.storedValueCode !== null
+    ) {
+      errors.push({
+        field: `${prefix}.storedValueCode`,
+        message: `${prefix}.storedValueCode is only valid for a gift_card / store_credit tender.`
+      });
+    }
     if (tenderValid) {
       result.push({
         tenderType: entry.tenderType as OwnerRecordableTenderType,
         amount,
-        reference
+        // A code must never double as a free-text reference (which is stored).
+        reference: storedValueCode === null ? reference : null,
+        ...(isStoredValueTender(entry.tenderType as string)
+          ? { storedValueCode }
+          : {})
       });
     }
   });
   return result;
 }
 
+export type OrderPaymentMethodHint =
+  | "cash"
+  | "manual_qris"
+  | "manual_bank"
+  | "gateway"
+  | "gift_card"
+  | "store_credit";
+
 /** The legacy `orders.payment_method` summary hint for a ledger tender (the ledger, not this column, is the truth). */
 export function tenderToOrderPaymentMethod(
   tenderType: PaymentTenderType
-): "cash" | "manual_qris" | "manual_bank" | "gateway" {
+): OrderPaymentMethodHint {
   switch (tenderType) {
     case "cash":
       return "cash";
@@ -639,6 +735,10 @@ export function tenderToOrderPaymentMethod(
       return "manual_bank";
     case "gateway":
       return "gateway";
+    case "gift_card":
+      return "gift_card";
+    case "store_credit":
+      return "store_credit";
   }
 }
 

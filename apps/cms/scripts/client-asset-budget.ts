@@ -995,8 +995,22 @@ export const READER_BUDGET_BYTES = 24_000;
  * 300,700 keeps the same tight "measured + small margin" convention as every
  * raise above; re-measure on the next commerce screen and tighten if the real
  * total sits well below this.
+ *
+ * **Raised to 308,300 B for Issue #288** (gift cards and store credit,
+ * ADR-0029) - one new admin screen and two touched, re-MEASURED rather than
+ * summed. `commerce-stored-value.astro`'s client script is 6,386 B (issue form
+ * with the one-time copy/print receipt - the print window is built with DOM
+ * calls, never `innerHTML` -, the manage form, the programs forms, the expiry
+ * sweep and the consistency check), and the gift-card/store-credit tender line
+ * (code field, per-type labels, the four refusal messages) added about 1.2 kB
+ * across `commerce-pos.astro`'s existing island and the order detail's payment
+ * form, plus the screen's share of `admin-screens.css`. Every mutation goes
+ * through `admin-form-client.ts` (`onSubmit`/`onSubmitAll`/`onAction`/
+ * `sendJson`/`sendJsonForData`/`messageBox`); every string reaches the script
+ * as a `data-msg-*` attribute (SSR-only catalogue entries add nothing here).
+ * Measured clean build: 308,061 B (up from 300,423 B).
  */
-export const APP_BUDGET_BYTES = 300_700;
+export const APP_BUDGET_BYTES = 308_300;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

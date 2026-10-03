@@ -56,6 +56,18 @@ import {
   COMMERCE_PAYMENT_REVERSED_EVENT_TYPE
 } from "../domain/commerce-events";
 import {
+  checkStoredValueRedeemable,
+  checkStoredValueRefundable,
+  redeemForAllocation,
+  refundForReversal,
+  type StoredValueRedeemRefusal,
+  type StoredValueRefundRefusal
+} from "./stored-value-ledger";
+import {
+  isStoredValueTender,
+  maskStoredValueCode
+} from "../domain/stored-value";
+import {
   computeSettlement,
   derivePaymentStatus,
   hasReachedRelease,
@@ -107,6 +119,17 @@ export type PaymentAllocationRecord = {
   actorTenantUserId: string | null;
   createdAt: string;
   settledAt: string | null;
+  /**
+   * Issue #288 (ADR-0029) — the gift-card / store-credit account a
+   * `gift_card`/`store_credit` leg drew from (or a reversal returned value
+   * to); `null` for every other tender. Only the MASKED code is ever shown —
+   * the plaintext is never stored.
+   */
+  storedValue: {
+    accountId: string;
+    kind: "gift_card" | "store_credit";
+    maskedCode: string;
+  } | null;
 };
 
 type AllocationRow = {
@@ -127,12 +150,14 @@ type AllocationRow = {
   actor_tenant_user_id: string | null;
   created_at: Date;
   settled_at: Date | null;
+  stored_value_account_id: string | null;
 };
 
 const ALLOCATION_COLUMNS = `id, order_id, kind, reverses_allocation_id, tender_type, amount, status,
   provider, provider_reference, tendered_amount, change_amount, note, source,
-  actor_kind, actor_tenant_user_id, created_at, settled_at`;
+  actor_kind, actor_tenant_user_id, created_at, settled_at, stored_value_account_id`;
 
+/** Sync mapping WITHOUT the masked code (see {@link hydrateStoredValue}). */
 function toRecord(row: AllocationRow): PaymentAllocationRecord {
   return {
     id: row.id,
@@ -153,8 +178,48 @@ function toRecord(row: AllocationRow): PaymentAllocationRecord {
     actorKind: row.actor_kind as "tenant_user" | "system",
     actorTenantUserId: row.actor_tenant_user_id,
     createdAt: row.created_at.toISOString(),
-    settledAt: row.settled_at ? row.settled_at.toISOString() : null
+    settledAt: row.settled_at ? row.settled_at.toISOString() : null,
+    storedValue: row.stored_value_account_id
+      ? {
+          accountId: row.stored_value_account_id,
+          kind: row.tender_type as "gift_card" | "store_credit",
+          maskedCode: ""
+        }
+      : null
   };
+}
+
+/**
+ * Fills in the MASKED code of every stored-value leg in one query (never the
+ * plaintext — it is not stored anywhere). A no-op for a ledger without one.
+ */
+async function hydrateStoredValue(
+  tx: Bun.SQL,
+  tenantId: string,
+  records: PaymentAllocationRecord[]
+): Promise<PaymentAllocationRecord[]> {
+  const ids = [
+    ...new Set(
+      records.flatMap((record) =>
+        record.storedValue ? [record.storedValue.accountId] : []
+      )
+    )
+  ];
+  if (ids.length === 0) return records;
+  const rows = (await tx`
+    SELECT id, code_last4
+    FROM awcms_commerce_stored_value_accounts
+    WHERE tenant_id = ${tenantId} AND id = ANY(${tx.array(ids, "uuid")}::uuid[])
+  `) as { id: string; code_last4: string }[];
+  const last4 = new Map(rows.map((row) => [row.id, row.code_last4]));
+  for (const record of records) {
+    if (record.storedValue) {
+      record.storedValue.maskedCode = maskStoredValueCode(
+        last4.get(record.storedValue.accountId) ?? "????"
+      );
+    }
+  }
+  return records;
 }
 
 type OrderLedgerHeader = {
@@ -302,7 +367,7 @@ export async function listAllocationsForOrder(
     WHERE tenant_id = ${tenantId} AND order_id = ${orderId}
     ORDER BY created_at ASC, entry_seq ASC
   `) as AllocationRow[];
-  return rows.map(toRecord);
+  return hydrateStoredValue(tx, tenantId, rows.map(toRecord));
 }
 
 export type OrderPaymentSummary = {
@@ -427,6 +492,16 @@ export type RecordPaymentAllocationParams = {
    */
   cashHanded?: string;
   note?: string | null;
+  /**
+   * `gift_card` / `store_credit` only (Issue #288, ADR-0029): the account the
+   * leg draws on, ALREADY RESOLVED from the code by the caller
+   * (`stored-value-tender.ts`) — the code itself never reaches this file.
+   * Under the order lock this function locks the account (always order ->
+   * account), refuses before writing anything when it is unavailable or too
+   * poor, and writes the allocation row and the mirror `redeem` ledger entry
+   * in this one transaction.
+   */
+  storedValueAccountId?: string | null;
   source: PaymentAllocationSource;
   /** Row-level idempotency key — unique per tenant (see `sql/940`). */
   sourceKey: string;
@@ -459,6 +534,12 @@ export type RecordPaymentAllocationParams = {
 export type RecordPaymentAllocationOutcome =
   | { kind: "order_not_found" }
   | { kind: "order_not_payable"; orderStatus: string }
+  | {
+      kind: "stored_value_refused";
+      refusal: StoredValueRedeemRefusal;
+      /** The account's available balance, `numeric(14,2)` (for `insufficient`). */
+      available: string;
+    }
   | { kind: "nothing_to_settle"; settlement: SettlementView }
   | {
       kind: "deduplicated";
@@ -489,7 +570,8 @@ async function findAllocationBySourceKey(
     FROM awcms_commerce_payment_allocations
     WHERE tenant_id = ${tenantId} AND source_key = ${sourceKey}
   `) as AllocationRow[];
-  return rows[0] ? toRecord(rows[0]) : null;
+  if (!rows[0]) return null;
+  return (await hydrateStoredValue(tx, tenantId, [toRecord(rows[0])]))[0]!;
 }
 
 function actorColumns(actor: AllocationActor): {
@@ -672,21 +754,69 @@ export async function recordPaymentAllocation(
     tenantId,
     header.registerSessionId
   );
+
+  // Issue #288 — a stored-value tender locks and checks its account BEFORE any
+  // row is written (so a refusal leaves nothing behind), in the order this
+  // file always uses: order row (above), then account.
+  const storedValueTender = isStoredValueTender(params.tenderType);
+  if (storedValueTender) {
+    if (!params.storedValueAccountId) {
+      throw new RangeError(
+        "A gift_card / store_credit tender requires storedValueAccountId."
+      );
+    }
+    const check = await checkStoredValueRedeemable(tx, tenantId, {
+      accountId: params.storedValueAccountId,
+      tenderType: params.tenderType as "gift_card" | "store_credit",
+      amount
+    });
+    if (!check.ok) {
+      return {
+        kind: "stored_value_refused",
+        refusal: check.refusal,
+        available: check.available
+      };
+    }
+  } else if (params.storedValueAccountId) {
+    throw new RangeError(
+      "storedValueAccountId is only valid for a gift_card / store_credit tender."
+    );
+  }
+
   const rows = (await tx`
     INSERT INTO awcms_commerce_payment_allocations (
       tenant_id, order_id, kind, tender_type, amount, status,
       provider, provider_reference, tendered_amount, change_amount, note,
-      source, source_key, actor_kind, actor_tenant_user_id, register_session_id, settled_at
+      source, source_key, actor_kind, actor_tenant_user_id, register_session_id,
+      stored_value_account_id, settled_at
     )
     VALUES (
       ${tenantId}, ${header.id}, 'payment', ${params.tenderType}, ${amount}, 'succeeded',
       ${params.provider ?? null}, ${params.providerReference ?? null},
       ${tenderedAmount}, ${changeAmount}, ${note},
-      ${params.source}, ${params.sourceKey}, ${actor.kind}, ${actor.tenantUserId}, ${registerSessionId}, now()
+      ${params.source}, ${params.sourceKey}, ${actor.kind}, ${actor.tenantUserId}, ${registerSessionId},
+      ${params.storedValueAccountId ?? null}, now()
     )
     RETURNING ${tx.unsafe(ALLOCATION_COLUMNS)}
   `) as AllocationRow[];
-  const allocation = toRecord(rows[0]!);
+  const allocation = (
+    await hydrateStoredValue(tx, tenantId, [toRecord(rows[0]!)])
+  )[0]!;
+
+  if (storedValueTender) {
+    // The mirror ledger entry, in this same transaction, no network call. The
+    // database trigger refuses it unless it matches this allocation row
+    // exactly (account, tender, amount), and the deferred pairing trigger
+    // refuses this row without it.
+    await redeemForAllocation(tx, tenantId, {
+      accountId: params.storedValueAccountId!,
+      allocationId: allocation.id,
+      amount: allocation.amount,
+      allocationSourceKey: params.sourceKey,
+      actor: params.actor,
+      correlationId: params.correlationId
+    });
+  }
 
   const { view, released } = await finalizeSettlement(
     tx,
@@ -935,7 +1065,14 @@ export type RecordPaymentReversalOutcome =
   | { kind: "not_found" }
   | {
       kind: "not_reversible";
-      reason: "not_a_payment" | "not_succeeded" | "fully_reversed";
+      reason:
+        | "not_a_payment"
+        | "not_succeeded"
+        | "fully_reversed"
+        // Issue #288: a gift-card / store-credit payment can only be reversed
+        // back onto its own account, and only when the program allows it and
+        // the account can still take value.
+        | StoredValueRefundRefusal;
     }
   | {
       kind: "deduplicated";
@@ -995,7 +1132,9 @@ export async function recordPaymentReversal(
     FROM awcms_commerce_payment_allocations
     WHERE tenant_id = ${tenantId} AND order_id = ${header.id} AND id = ${params.allocationId}
   `) as AllocationRow[];
-  const original = originalRows[0] ? toRecord(originalRows[0]) : null;
+  const original = originalRows[0]
+    ? (await hydrateStoredValue(tx, tenantId, [toRecord(originalRows[0])]))[0]!
+    : null;
   if (!original) return { kind: "not_found" };
   if (original.kind !== "payment") {
     return { kind: "not_reversible", reason: "not_a_payment" };
@@ -1023,6 +1162,21 @@ export async function recordPaymentReversal(
     throw new ReversalExceedsPaymentError(fromCents(reversibleCents));
   }
 
+  // Issue #288 — a stored-value payment goes back to the account it came
+  // from (a compensating `refund` entry, no cash-out), never anywhere else.
+  // The account is locked and checked BEFORE the reversal row is written, in
+  // this file's order (order row above, then account); a refusal writes
+  // nothing.
+  const storedValueAccountId = original.storedValue?.accountId ?? null;
+  if (storedValueAccountId) {
+    const refundCheck = await checkStoredValueRefundable(tx, tenantId, {
+      accountId: storedValueAccountId
+    });
+    if (!refundCheck.ok) {
+      return { kind: "not_reversible", reason: refundCheck.refusal };
+    }
+  }
+
   const actor = actorColumns(params.actor);
   // Issue #284 — a reversal recorded while the sale's register session is
   // still open (a cash refund at the counter) is part of that cash-up.
@@ -1035,17 +1189,30 @@ export async function recordPaymentReversal(
     INSERT INTO awcms_commerce_payment_allocations (
       tenant_id, order_id, kind, reverses_allocation_id, tender_type, amount, status,
       provider, provider_reference, note, source, source_key,
-      actor_kind, actor_tenant_user_id, register_session_id, settled_at
+      actor_kind, actor_tenant_user_id, register_session_id, stored_value_account_id, settled_at
     )
     VALUES (
       ${tenantId}, ${header.id}, 'reversal', ${original.id}, ${original.tenderType},
       ${fromCents(amountCents)}, 'succeeded',
       ${original.provider}, ${original.providerReference}, ${params.note}, 'admin', ${params.sourceKey},
-      ${actor.kind}, ${actor.tenantUserId}, ${registerSessionId}, now()
+      ${actor.kind}, ${actor.tenantUserId}, ${registerSessionId}, ${storedValueAccountId}, now()
     )
     RETURNING ${tx.unsafe(ALLOCATION_COLUMNS)}
   `) as AllocationRow[];
-  const allocation = toRecord(rows[0]!);
+  const allocation = (
+    await hydrateStoredValue(tx, tenantId, [toRecord(rows[0]!)])
+  )[0]!;
+
+  if (storedValueAccountId) {
+    await refundForReversal(tx, tenantId, {
+      accountId: storedValueAccountId,
+      allocationId: allocation.id,
+      amount: allocation.amount,
+      allocationSourceKey: params.sourceKey,
+      actor: params.actor,
+      correlationId: params.correlationId
+    });
+  }
 
   // `release: null` — a reversal never moves the lifecycle.
   const { view } = await finalizeSettlement(tx, tenantId, header, null, "");
@@ -1092,7 +1259,9 @@ const TENDER_ORDER: readonly PaymentTenderType[] = [
   "cash",
   "manual_qris",
   "manual_bank_transfer",
-  "gateway"
+  "gateway",
+  "gift_card",
+  "store_credit"
 ];
 
 /**
