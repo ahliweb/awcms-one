@@ -216,7 +216,7 @@ const canConfigureExports =
 const canTriggerExport =
   screen.state === "allowed" && screen.data.canTriggerExport;
 
-/** Freshness status -> `status-badge` variant. `rebuilding` is progress, not a fault. */
+/** Freshness status -> `admin-status-pill` tone. `rebuilding` is progress, not a fault. */
 const FRESHNESS_VARIANT: Record<string, string> = {
   current: "success",
   delayed: "warning",
@@ -225,6 +225,18 @@ const FRESHNESS_VARIANT: Record<string, string> = {
   failed: "danger"
 };
 
+/** Projection freshness `status` — one screen only. */
+const FRESHNESS_LABEL: Record<string, string> = {
+  current: t("Current"),
+  delayed: t("Delayed"),
+  stale: t("Stale"),
+  rebuilding: t("Rebuilding"),
+  failed: t("Failed")
+};
+function freshnessLabel(value: string): string {
+  return FRESHNESS_LABEL[value] ?? value;
+}
+
 const REBUILD_VARIANT: Record<RebuildRunRow["status"], string> = {
   running: "info",
   completed: "success",
@@ -232,13 +244,32 @@ const REBUILD_VARIANT: Record<RebuildRunRow["status"], string> = {
   cancelled: "neutral"
 };
 
+/** `RebuildRunRow["status"]` — one screen only. */
+const REBUILD_STATUS_LABEL: Record<RebuildRunRow["status"], string> = {
+  running: t("Running"),
+  completed: t("Completed"),
+  failed: t("Failed"),
+  cancelled: t("Cancelled")
+};
+
 const EXPORT_RUN_VARIANT: Record<ExportRunRow["status"], string> = {
   completed: "success",
   failed: "danger"
 };
 
+/** `ExportRunRow["status"]` — one screen only. */
+const EXPORT_RUN_STATUS_LABEL: Record<ExportRunRow["status"], string> = {
+  completed: t("Completed"),
+  failed: t("Failed")
+};
+
 function formatTimestamp(value: Date | string | null): string {
   if (value === null) return "—";
+  return typeof value === "string" ? value : value.toISOString();
+}
+
+/** `<time datetime>` needs a real ISO string, never the "—" placeholder. */
+function isoTimestamp(value: Date | string): string {
   return typeof value === "string" ? value : value.toISOString();
 }
 
@@ -307,10 +338,10 @@ const exportConfigColumns = canConfigureExports ? 6 : 5;
       <h2 class="admin-section-title" id="email-health-title">
         {t("Email queue health")}
         <span
-          class="status-badge"
-          data-variant={emailHealth.isHealthy ? "success" : "warning"}
+          class="admin-status-pill"
+          data-tone={emailHealth.isHealthy ? "success" : "warning"}
         >
-          <span class="status-dot" aria-hidden="true" />
+          <span class="admin-status-pill-dot" aria-hidden="true" />
           {emailHealth.isHealthy ? "healthy" : "needs attention"}
         </span>
       </h2>
@@ -320,42 +351,50 @@ const exportConfigColumns = canConfigureExports ? 6 : 5;
         )}
       </p>
 
-      <div class="stat-grid stagger-children">
-        <div class="stat-card">
-          <span class="stat-label">{t("Queued")}</span>
-          <span class="stat-value">{emailHealth.queuedCount}</span>
-          <span class="stat-hint">
+      <div class="admin-stat-card-grid stagger-children">
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Queued")}</span>
+          <span class="admin-stat-card-value">{emailHealth.queuedCount}</span>
+          <span class="admin-stat-card-caption">
             {t("Oldest:")} {formatTimestamp(emailHealth.oldestQueuedAt)}
           </span>
         </div>
-        <div class="stat-card">
-          <span class="stat-label">{t("Awaiting retry")}</span>
-          <span class="stat-value">{emailHealth.retryWaitCount}</span>
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Awaiting retry")}</span>
+          <span class="admin-stat-card-value">
+            {emailHealth.retryWaitCount}
+          </span>
         </div>
-        <div class="stat-card">
-          <span class="stat-label">{t("Failed")}</span>
-          <span class="stat-value">{emailHealth.failedCount}</span>
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Failed")}</span>
+          <span class="admin-stat-card-value">{emailHealth.failedCount}</span>
         </div>
-        <div class="stat-card">
-          <span class="stat-label">{t("Suppressed")}</span>
-          <span class="stat-value">{emailHealth.suppressedCount}</span>
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Suppressed")}</span>
+          <span class="admin-stat-card-value">
+            {emailHealth.suppressedCount}
+          </span>
         </div>
-        <div class="stat-card">
-          <span class="stat-label">{t("Sent (24h)")}</span>
-          <span class="stat-value">{emailHealth.sentLast24hCount}</span>
-          <span class="stat-hint">
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Sent (24h)")}</span>
+          <span class="admin-stat-card-value">
+            {emailHealth.sentLast24hCount}
+          </span>
+          <span class="admin-stat-card-caption">
             {t("Last:")} {formatTimestamp(emailHealth.mostRecentSentAt)}
           </span>
         </div>
-        <div class="stat-card">
-          <span class="stat-label">{t("Dispatch")}</span>
-          <span class="stat-value stat-value--mono">
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Dispatch")}</span>
+          <span class="admin-stat-card-value admin-stat-card-value--mono">
             {emailHealth.emailEnabled
               ? (emailHealth.provider ?? "enabled")
               : "disabled"}
           </span>
           {/* Process env, not a per-tenant setting — see `fetchEmailHealthReport`. */}
-          <span class="stat-hint">{t("Deployment-wide setting")}</span>
+          <span class="admin-stat-card-caption">
+            {t("Deployment-wide setting")}
+          </span>
         </div>
       </div>
     </section>
@@ -406,47 +445,50 @@ const exportConfigColumns = canConfigureExports ? 6 : 5;
                 <h3>
                   <span class="cell-code">{projection.key}</span>
                   <span
-                    class="status-badge"
-                    data-variant={
+                    class="admin-status-pill"
+                    data-tone={
                       FRESHNESS_VARIANT[projection.freshness.status] ??
                       "neutral"
                     }
+                    data-freshness={projection.freshness.status}
                   >
-                    <span class="status-dot" aria-hidden="true" />
-                    {projection.freshness.status}
+                    <span class="admin-status-pill-dot" aria-hidden="true" />
+                    {freshnessLabel(projection.freshness.status)}
                   </span>
                 </h3>
                 <p class="page-description">{projection.description}</p>
 
-                <dl class="stat-grid">
-                  <div class="stat-card">
-                    <dt class="stat-label">{t("Owner")}</dt>
-                    <dd class="stat-value stat-value--mono">
+                <dl class="admin-stat-card-grid">
+                  <div class="admin-stat-card">
+                    <dt class="admin-stat-card-label">{t("Owner")}</dt>
+                    <dd class="admin-stat-card-value admin-stat-card-value--mono">
                       {projection.ownerModuleKey} v{projection.version}
                     </dd>
                   </div>
-                  <div class="stat-card">
-                    <dt class="stat-label">{t("Last success")}</dt>
-                    <dd class="stat-value stat-value--mono">
+                  <div class="admin-stat-card">
+                    <dt class="admin-stat-card-label">{t("Last success")}</dt>
+                    <dd class="admin-stat-card-value admin-stat-card-value--mono">
                       {formatAge(projection.freshness.ageSeconds)}
                     </dd>
-                    <span class="stat-hint">
+                    <span class="admin-stat-card-caption">
                       {formatTimestamp(projection.freshness.lastSuccessAt)}
                     </span>
                   </div>
-                  <div class="stat-card">
-                    <dt class="stat-label">{t("Consecutive failures")}</dt>
-                    <dd class="stat-value">
+                  <div class="admin-stat-card">
+                    <dt class="admin-stat-card-label">
+                      {t("Consecutive failures")}
+                    </dt>
+                    <dd class="admin-stat-card-value">
                       {projection.freshness.consecutiveFailures}
                     </dd>
                   </div>
                   {Object.entries(projection.metrics).map(
                     ([metricKey, value]) => (
-                      <div class="stat-card">
-                        <dt class="stat-label">
+                      <div class="admin-stat-card">
+                        <dt class="admin-stat-card-label">
                           {projection.metricLabels[metricKey] ?? metricKey}
                         </dt>
-                        <dd class="stat-value">{value}</dd>
+                        <dd class="admin-stat-card-value">{value}</dd>
                       </div>
                     )
                   )}
@@ -488,14 +530,16 @@ const exportConfigColumns = canConfigureExports ? 6 : 5;
                       <tbody>
                         {latest.details.map((detail) => (
                           <tr>
-                            <td data-label="Metric">
+                            <td data-label={t("Metric")}>
                               <span class="cell-code">{detail.metricKey}</span>
                             </td>
-                            <td data-label="Projection">
+                            <td data-label={t("Projection")}>
                               {detail.projectionTotal}
                             </td>
-                            <td data-label="Source">{detail.sourceTotal}</td>
-                            <td data-label="Match">
+                            <td data-label={t("Source")}>
+                              {detail.sourceTotal}
+                            </td>
+                            <td data-label={t("Match")}>
                               {detail.mismatch ? "differs" : "equal"}
                             </td>
                           </tr>
@@ -579,81 +623,72 @@ const exportConfigColumns = canConfigureExports ? 6 : 5;
         <span class="count-pill">{rebuildRuns.length}</span>
       </h2>
 
-      <div class="data-table-scroll">
-        <table class="data-table data-table--stack">
-          <caption class="sr-only">
-            {t("Projection rebuild runs, newest first, capped at 100 rows.")}
-          </caption>
-          <thead>
-            <tr>
-              <th scope="col">{t("Projection")}</th>
-              <th scope="col">{t("Status")}</th>
-              <th scope="col">{t("Rows")}</th>
-              <th scope="col">{t("Started")}</th>
-              <th scope="col">{t("Finished")}</th>
-              <th scope="col">{t("Reason")}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rebuildRuns.length === 0 ? (
-              <tr>
-                <td class="data-table-empty" colspan={6}>
-                  <div class="empty-state">
-                    <span class="empty-state-icon" aria-hidden="true">
-                      ↻
-                    </span>
-                    <span class="empty-state-title">
-                      {t("No rebuilds yet")}
-                    </span>
-                    <span class="empty-state-text">
-                      {t(
-                        "Incremental updates keep a projection current without one; a rebuild is for recovering after a source or definition change."
-                      )}
-                    </span>
-                  </div>
-                </td>
-              </tr>
-            ) : (
-              rebuildRuns.map((run) => (
-                <tr>
-                  <td data-label="Projection">
-                    <span class="cell-code">{run.projectionKey}</span>
-                  </td>
-                  <td data-label="Status">
-                    <span
-                      class="status-badge"
-                      data-variant={REBUILD_VARIANT[run.status]}
-                    >
-                      <span class="status-dot" aria-hidden="true" />
-                      {run.status}
-                    </span>
-                    {run.cancelRequested && run.status === "running" && (
-                      <span class="cell-muted">{t("\u00b7 cancelling")}</span>
-                    )}
-                  </td>
-                  <td data-label="Rows">{run.rowsProcessed}</td>
-                  <td data-label="Started">
-                    <span class="cell-muted">
-                      {formatTimestamp(run.startedAt)}
-                    </span>
-                  </td>
-                  <td data-label="Finished">
-                    <span class="cell-muted">
-                      {formatTimestamp(run.completedAt)}
-                    </span>
-                  </td>
-                  <td data-label="Reason">
-                    <span set:text={run.reason ?? "—"} />
-                    {run.errorMessage && (
-                      <span class="cell-code" set:text={run.errorMessage} />
-                    )}
-                  </td>
-                </tr>
-              ))
+      {rebuildRuns.length === 0 ? (
+        <div class="empty-state">
+          <span class="empty-state-icon" aria-hidden="true">
+            ↻
+          </span>
+          <span class="empty-state-title">{t("No rebuilds yet")}</span>
+          <span class="empty-state-text">
+            {t(
+              "Incremental updates keep a projection current without one; a rebuild is for recovering after a source or definition change."
             )}
-          </tbody>
-        </table>
-      </div>
+          </span>
+        </div>
+      ) : (
+        <ol
+          class="admin-timeline"
+          aria-label={t(
+            "Projection rebuild runs, newest first, capped at 100 rows."
+          )}
+        >
+          {rebuildRuns.map((run) => (
+            <li class="admin-timeline-item">
+              <div class="admin-timeline-label">
+                <span class="cell-code">{run.projectionKey}</span>
+                <span
+                  class="admin-status-pill"
+                  data-tone={REBUILD_VARIANT[run.status]}
+                  data-status={run.status}
+                >
+                  <span class="admin-status-pill-dot" aria-hidden="true" />
+                  {REBUILD_STATUS_LABEL[run.status]}
+                </span>
+                {run.cancelRequested && run.status === "running" && (
+                  <span class="cell-muted">{t("\u00b7 cancelling")}</span>
+                )}
+              </div>
+              <div class="admin-timeline-meta">
+                <time datetime={isoTimestamp(run.startedAt)}>
+                  {formatTimestamp(run.startedAt)}
+                </time>
+                {run.completedAt && (
+                  <>
+                    {" \u2192 "}
+                    <time datetime={isoTimestamp(run.completedAt)}>
+                      {formatTimestamp(run.completedAt)}
+                    </time>
+                  </>
+                )}
+                {" \u00b7 "}
+                {t("Rows")}: {run.rowsProcessed}
+                {run.reason && (
+                  <>
+                    {" \u00b7 "}
+                    <span set:text={run.reason} />
+                  </>
+                )}
+                {run.errorMessage && (
+                  <>
+                    {" \u00b7 "}
+                    <span class="cell-code" set:text={run.errorMessage} />
+                  </>
+                )}
+              </div>
+            </li>
+          ))}
+        </ol>
+      )}
     </section>
   )}
 
@@ -710,31 +745,31 @@ const exportConfigColumns = canConfigureExports ? 6 : 5;
             ) : (
               exportConfigs.map((config) => (
                 <tr>
-                  <td data-label="Projection">
+                  <td data-label={t("Projection")}>
                     <span class="cell-code">{config.projectionKey}</span>
                   </td>
-                  <td data-label="Format">
+                  <td data-label={t("Format")}>
                     <span class="cell-code">{config.format}</span>
                   </td>
-                  <td data-label="Interval">
+                  <td data-label={t("Interval")}>
                     {formatInterval(config.scheduleIntervalMinutes)}
                   </td>
-                  <td data-label="State">
+                  <td data-label={t("State")}>
                     <span
-                      class="status-badge"
-                      data-variant={config.enabled ? "success" : "neutral"}
+                      class="admin-status-pill"
+                      data-tone={config.enabled ? "success" : "neutral"}
                     >
-                      <span class="status-dot" aria-hidden="true" />
+                      <span class="admin-status-pill-dot" aria-hidden="true" />
                       {config.enabled ? "enabled" : "retired"}
                     </span>
                   </td>
-                  <td data-label="Created">
+                  <td data-label={t("Created")}>
                     <span class="cell-muted">
                       {formatTimestamp(config.createdAt)}
                     </span>
                   </td>
                   {canConfigureExports && (
-                    <td data-label="Actions">
+                    <td data-label={t("Actions")}>
                       <div class="row-actions">
                         {config.enabled && (
                           <button
@@ -892,34 +927,34 @@ const exportConfigColumns = canConfigureExports ? 6 : 5;
             ) : (
               exportRuns.map((run) => (
                 <tr>
-                  <td data-label="Projection">
+                  <td data-label={t("Projection")}>
                     <span class="cell-code">{run.projectionKey}</span>
                     <span class="cell-muted"> · {run.format}</span>
                   </td>
-                  <td data-label="Status">
+                  <td data-label={t("Status")} data-status={run.status}>
                     <span
-                      class="status-badge"
-                      data-variant={EXPORT_RUN_VARIANT[run.status]}
+                      class="admin-status-pill"
+                      data-tone={EXPORT_RUN_VARIANT[run.status]}
                     >
-                      <span class="status-dot" aria-hidden="true" />
-                      {run.status}
+                      <span class="admin-status-pill-dot" aria-hidden="true" />
+                      {EXPORT_RUN_STATUS_LABEL[run.status]}
                     </span>
                     {run.errorMessage && (
                       <span class="cell-code" set:text={run.errorMessage} />
                     )}
                   </td>
-                  <td data-label="Rows">{run.rowCount}</td>
-                  <td data-label="Created">
+                  <td data-label={t("Rows")}>{run.rowCount}</td>
+                  <td data-label={t("Created")}>
                     <span class="cell-muted">
                       {formatTimestamp(run.createdAt)}
                     </span>
                   </td>
-                  <td data-label="Expires">
+                  <td data-label={t("Expires")}>
                     <span class="cell-muted">
                       {formatTimestamp(run.expiresAt)}
                     </span>
                   </td>
-                  <td data-label="Artifact">
+                  <td data-label={t("Artifact")}>
                     {run.status === "completed" && !isExpired(run) ? (
                       // Cookie auth rides along on a plain navigation, and
                       // the endpoint re-checks RBAC/ABAC at download time —
@@ -964,6 +999,7 @@ const exportConfigColumns = canConfigureExports ? 6 : 5;
     onSubmit,
     sendJson
   } from "../../lib/ui/admin-form-client";
+  import { confirmAction } from "../../lib/ui/confirm-dialog-client";
 
   const actionError = messageBox("reporting-action-error");
   const createError = messageBox("export-create-error");
@@ -1012,9 +1048,9 @@ const exportConfigColumns = canConfigureExports ? 6 : 5;
     if (!key) return;
 
     if (
-      !window.confirm(
+      !(await confirmAction(
         `Cancel the running rebuild of ${key}? Its progress so far is kept, but the read model stays partial until a rebuild completes.`
-      )
+      ))
     ) {
       return;
     }
@@ -1059,9 +1095,9 @@ const exportConfigColumns = canConfigureExports ? 6 : 5;
 
     // Retiring is not undoable from this screen — there is no re-enable.
     if (
-      !window.confirm(
+      !(await confirmAction(
         `Disable the ${label} export schedule? It is retired, not paused — re-enabling means creating a new schedule.`
-      )
+      ))
     ) {
       return;
     }

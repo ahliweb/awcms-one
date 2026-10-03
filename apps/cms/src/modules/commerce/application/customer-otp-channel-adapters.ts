@@ -6,18 +6,17 @@
  * than through a port owned by `email` — this module already depends on
  * `email` for exactly this reason (see `module.ts`).
  *
- * ## Category registration happens HERE, at import time
+ * ## Category registration: `../domain/email-template-categories.ts` (Issue #311)
  *
- * `registerDerivedEmailTemplateCategory` must run before any template using
- * `derived.commerce_customer_otp` is created/validated/rendered. This file
- * is imported by every composition root that can send an OTP (the
- * `otp/request` route, and any test that exercises the real adapter), so the
- * side effect fires before first use — the same "registered before use"
- * guarantee `newsletter`'s own derived category documents but (see its own
- * header) never actually wires up; this module does not repeat that gap.
+ * The category is registered by importing the side-effect module imported below (which
+ * this file does) and ALSO by `email-dispatch.ts`, so the separate
+ * `email:dispatch` process renders the code instead of an empty body.
  */
 import { log } from "../../../lib/logging/logger";
-import { registerDerivedEmailTemplateCategory } from "../../email/domain/email-template-categories";
+import {
+  CUSTOMER_OTP_TEMPLATE_KEY,
+  CUSTOMER_OTP_TEMPLATE_VARIABLES
+} from "../domain/email-template-categories";
 import { enqueueDirectAddressEmail } from "../../email/application/direct-address-notification";
 import {
   fetchActiveEmailTemplateByKey,
@@ -34,20 +33,7 @@ import type {
   CustomerOtpChannelResult
 } from "../domain/customer-otp-channel";
 
-/** `template_key` doubles as the category (`email`'s own convention) — one derived category, one template, one row per tenant. */
-export const CUSTOMER_OTP_TEMPLATE_KEY = "derived.commerce_customer_otp";
-
-/** The only variables the template may interpolate — `email-template-render.ts` silently drops anything else. */
-export const CUSTOMER_OTP_TEMPLATE_VARIABLES = [
-  "code",
-  "expiresInMinutes",
-  "storeName"
-] as const;
-
-registerDerivedEmailTemplateCategory(
-  CUSTOMER_OTP_TEMPLATE_KEY,
-  CUSTOMER_OTP_TEMPLATE_VARIABLES
-);
+export { CUSTOMER_OTP_TEMPLATE_KEY, CUSTOMER_OTP_TEMPLATE_VARIABLES };
 
 /**
  * The default template, byte-for-byte what `sql/919` seeded for the tenants

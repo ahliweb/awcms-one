@@ -35,6 +35,7 @@ import {
   InvalidTenderPlanError,
   OverpaymentError
 } from "../../../../../../modules/commerce/domain/payment-allocation";
+import { AllocationSourceKeyConflictError } from "../../../../../../modules/commerce/application/payment-allocation-directory";
 import { IdempotencyPayloadMismatchError } from "../../../../../../modules/commerce/application/order-directory";
 import { FeatureDisabledError } from "../../../../../../modules/commerce/domain/commerce-features";
 import { storedValueTenderErrorResponse } from "../../../../../../modules/commerce/application/stored-value-http";
@@ -251,7 +252,10 @@ export const POST = defineTenantRoute<CreatePosOrderInput>({
           "Idempotency-Key was already used with a different request."
         );
       }
-      if (error instanceof IdempotencyPayloadMismatchError) {
+      if (
+        error instanceof IdempotencyPayloadMismatchError ||
+        error instanceof AllocationSourceKeyConflictError
+      ) {
         return fail(
           409,
           "IDEMPOTENCY_CONFLICT",

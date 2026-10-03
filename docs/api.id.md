@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:5aabf61331f6b037e331325331c1bc7d06f31cd94bb9b9d5664622b9a6442bf2 -->
+<!-- i18n-source-hash: sha256:a4901a63798239b316e191b663b3397a9ac4b34537d95735e4518ab7219b8b51 -->
 
 # API
 
@@ -33,6 +33,21 @@ Dikelompokkan berdasarkan tiga area yang sama yang dideskripsikan [`docs/arsitek
 | `POST`/`PATCH`/`DELETE`                     | `/api/v1/commerce/products/{id}/variants(/{variantId})` | Keunikan SKU diperiksa terhadap `awcms_commerce_products` maupun tabel varian itu sendiri                                                                            |
 
 Paginasi: keyset, terbaru lebih dulu secara default (`sort=newest`), ukuran halaman tetap 100 di sisi server. Sort `price_asc`/`price_desc`/`name` mengembalikan satu halaman terbatas tunggal (`nextCursor: null`) alih-alih penelusuran keyset — `cursor` yang dikombinasikan dengan sort selain `newest` ditolak 400.
+
+### Atribut katalog, impor dan ekspor (issue #291, [ADR-0027](adr/0027-catalog-custom-attributes-are-typed-and-allowlisted.md))
+
+| Metode | Path | Izin | Catatan |
+| --- | --- | --- | --- |
+| `GET`/`POST` | `/api/v1/commerce/attributes` | `attributes.read` / `attributes.manage` | Definisi atribut tenant (≤ 100, tidak dipaginasi); `key` (slug) dan `valueType` tetap sejak dibuat |
+| `GET`/`PATCH`/`DELETE` | `/api/v1/commerce/attributes/{id}` | `attributes.read` / `.manage` | `PATCH` yang menyebut `key`/`valueType` adalah 400; menghapus opsi enum yang dipakai atau mempersempit `appliesTo` di bawah nilai tersimpan adalah 409 |
+| `GET` | `/api/v1/commerce/products/{id}/attributes` | `attributes.read` | Himpunan atribut lengkap (admin) beserta definisi yang berlaku. Dijaga `attributes.read`, **bukan** `products.read`: kredensial etalase memegang yang terakhir |
+| `PUT` | `/api/v1/commerce/products/{id}/attributes` | `products.update` | `{ "attributes": { "<key>": <nilai> \| null } }`; `null` menghapus; satu nilai tidak valid menolak seluruh request, tidak ada yang ditulis |
+| `PUT` | `/api/v1/commerce/products/{id}/variants/{variantId}/attributes` | `products.update` | Kembaran tingkat varian, definisi yang `appliesTo`-nya mencakup varian |
+| `GET` | `/api/v1/commerce/products?attr=<key>:<op>:<value>` | `products.read` | Dapat diulang (≤ 5, di-AND); `op` ∈ `eq`, `in`, `gte`, `lte`, `contains`. Hanya audiens publik: kunci `filterable && visible_public`; kunci tak dikenal, tak dapat difilter, atau tak publik adalah satu dan sama 400. `q` juga mencocokkan atribut `searchable && visible_public` |
+| `GET` | `/api/v1/commerce/products/export.csv` | `products.export` | RFC 4180, UTF-8 dengan BOM, formula dinetralkan; ≤ 5000 baris (`X-AWCMS-Export-Truncated`) |
+| `POST` | `/api/v1/commerce/products/import?mode=dry_run\|apply` | `products.import` (+ `create` + `update` untuk apply) | Body `text/csv`, ≤ 5 MiB dan 5000 baris. Dry-run tidak menulis apa pun; apply semua-atau-tidak-sama-sekali, butuh `Idempotency-Key`, `expectedSha256` opsional |
+
+Respons produk (`GET /products`, `/{id}`, `/by-slug/{slug}`) mendapat `attributes[]` **aditif** pada produk dan setiap varian: `{ key, label, labels, valueType, value, valueLabel }`, hanya nilai `visible_public`. `value` adalah angka JSON untuk `integer`, **string** desimal untuk `decimal`, boolean, string ISO `YYYY-MM-DD` untuk `date`, dan string untuk `text`/`enum`. Angka hanya memakai digit dan `.` (`1,5` adalah 400). Error impor: `422 IMPORT_VALIDATION_FAILED` (rencana memiliki error; `error.details` adalah laporan per baris, tidak ada yang ditulis), `409 IMPORT_CONFLICT` (konflik saat-tulis; tidak ada yang ditulis), `409 IMPORT_FILE_MISMATCH`, `409 IDEMPOTENCY_CONFLICT`, `400 IDEMPOTENCY_REQUIRED`, `413`, `415`; definisi: `409 ATTRIBUTE_KEY_ALREADY_EXISTS`, `ATTRIBUTE_DEFINITION_LIMIT_REACHED`, `ATTRIBUTE_OPTION_IN_USE`, `ATTRIBUTE_APPLIES_TO_IN_USE`.
 
 ### Marketing (issue #26)
 
@@ -250,6 +265,27 @@ Satu berkas rute, dua handler (`apps/cms/src/pages/api/v1/commerce/pos/orders/in
 
 Tanpa telepon → penjualan dikaitkan ke satu baris pelanggan walk-in tenant (telepon sentinel `+620000000000`); dengan telepon → cari-atau-buat berdasarkan nomor yang dinormalisasi dan `level` pelanggan memberi harga penjualan. Jalur storefront (`GET storefront/orders/{code}?phone=`, `GET storefront/account/orders(/{code})`) tidak pernah mengembalikan pesanan `channel: "pos"`, dan `POST storefront/orders` menolak baik `payment.method: "cash"` maupun telepon sentinel. Pencarian produk untuk layar POS adalah `GET /api/v1/commerce/products?q=&status=active` yang sudah ada.
 
+### Buku besar poin loyalitas — sudah diimplementasikan (#289, ADR-0026)
+
+Semua route pemilik memakai `defineTenantRoute`, di balik feature flag `loyalty` milik tenant (`409 FEATURE_DISABLED` saat mati; default **mati**). Route pelanggan memakai pola bearer keluarga anonim (ADR-0016 D3) dan menjawab `404` netral saat fitur mati. Rancangan lengkap: [ADR-0026](adr/0026-loyalty-points-are-an-append-only-ledger.md); kosakata: [`docs/kamus-data.md`](kamus-data.md).
+
+| Method | Path | Auth | Catatan |
+| --- | --- | --- | --- |
+| `GET` / `POST` | `commerce/loyalty/programs` | `commerce.loyalty.read` / `.manage` | Daftar semua versi aturan, terbaru dulu / buat **draf** (versi = max + 1 per tenant). Body `{name, earnUnitAmount (string desimal), earnPointsPerUnit (int), minOrderAmount?, maxPointsPerOrder?, expiryDays?, notes?}` |
+| `GET` / `PATCH` | `commerce/loyalty/programs/{id}` | `.read` / `.manage` | `PATCH` hanya mengubah **draf**; versi aktif atau pensiun tidak dapat diubah (`409 PROGRAM_NOT_EDITABLE`) |
+| `POST` | `commerce/loyalty/programs/{id}/activate` | `.manage` (berisiko tinggi) | Mengaktifkan draf **sekarang** dan menutup versi yang terbuka dalam transaksi yang sama (`409 PROGRAM_NOT_DRAFT` bila diulang) |
+| `POST` | `commerce/loyalty/programs/{id}/retire` | `.manage` | Mengakhiri versi aktif yang terbuka sekarang (`409 PROGRAM_NOT_ACTIVE` bila bukan); poin yang sudah diperoleh tidak terpengaruh |
+| `GET` | `commerce/loyalty/accounts` | `.read` | Daftar keyset (`?cursor&limit`), `?customerId=`, atau pencarian kasir `?phone=` (juga mengembalikan blok `customer` dengan saldo 0 untuk pelanggan tanpa akun). Telepon disamarkan |
+| `GET` | `commerce/loyalty/accounts/{customerId}` | `.read` | Nama, telepon tersamar, `balance` hasil proyeksi. Pelanggan tak dikenal/tenant lain adalah satu `404` |
+| `GET` | `commerce/loyalty/accounts/{customerId}/ledger` | `.read` | Riwayat append-only, terbaru dulu, dipaginasi keyset; tampilan staf (aktor dan alasan disertakan) |
+| `POST` | `commerce/loyalty/accounts/{customerId}/redeem` | `commerce.loyalty_redemptions.create` | **`Idempotency-Key` wajib.** `{points (int >= 1), reason?}`. Berjalan di bawah kunci akun: `409 INSUFFICIENT_POINTS` (`details.balance`/`requested`) untuk request yang akan overdraw. Hanya mencatat pengurangan poin — tanpa diskon |
+| `POST` | `commerce/loyalty/accounts/{customerId}/adjust` | `commerce.loyalty_adjustments.create` | **`Idempotency-Key` wajib.** `{points (int non-nol), reason (wajib, <= 500)}`. `409 WOULD_GO_NEGATIVE` untuk pengurangan di bawah nol. Diaudit |
+| `GET` | `commerce/loyalty/summary` | `.read` | `?from&to` (instant ISO atau `YYYY-MM-DD`): `period.{earned,redeemed,expired,adjustmentsNet,reversed,net}` plus `outstanding` sepanjang waktu, masing-masing `SUM` atas ledger menurut `kind` |
+| `POST` | `commerce/loyalty/reconcile` | `.manage` (berisiko tinggi) | `{repair?: boolean}`. Melaporkan drift proyeksi dan ledger break; `repair: true` menulis ulang hanya proyeksi yang drift, satu event audit per akun |
+| `GET` | `commerce/storefront/account/loyalty` | bearer pelanggan | `balance` milik sendiri, aturan yang berlaku, dan riwayat milik sendiri (`?cursor&limit`). Id pelanggan hanya dari sesi terverifikasi; item riwayat `{id, kind, points, balanceAfter, expiresAt, createdAt}` |
+
+Pengulangan `redeem`/`adjust` dengan kunci dan body yang sama me-replay `201` yang tersimpan; kunci sama dengan body berbeda adalah `409 IDEMPOTENCY_CONFLICT`. Perolehan dan pembatalan **tidak punya route**: keduanya berjalan dari domain event `order.paid` / `order.cancelled` (`commerce.order_paid_loyalty_earner`, `commerce.order_cancelled_loyalty_reverser`), dan kedaluwarsa dari job `commerce:loyalty:expire`. Izin yang ditambahkan: `commerce.loyalty.{read,manage}`, `commerce.loyalty_adjustments.create`, `commerce.loyalty_redemptions.create`. Domain event yang ditambahkan: `awcms.commerce.loyalty.entry_recorded` (agregat `commerce.loyalty_account`).
+
 ## Bentuk request/respons
 
 `CommerceProduct` (pembacaan owner dan storefront berbagi bentuk yang sama; field yang ditambahkan #23 bersifat aditif):
@@ -322,7 +358,7 @@ Kesembilan belas event terdaftar di tiga tempat yang dijaga selaras `awcms` (`do
 | `409`  | `CATEGORY_SLUG_ALREADY_EXISTS` / `PRODUCT_SLUG_ALREADY_EXISTS` / `PRODUCT_SKU_ALREADY_EXISTS` | Slug/SKU sudah dipakai baris hidup di tenant ini                                                                                                                 |
 | `409`  | `CART_CHANGED`                                                                                | Re-quote milik request pembuatan-pesanan storefront (atau POS, #116) tidak sepakat dengan keranjang yang dikirim; respons membawa `details.quote` baru          |
 | `409`  | `INSUFFICIENT_TENDER`                                                                         | Hanya POS (#116, diperlebar #285): tender tidak menutup total pesanan (kecuali `allowDue`); `details.shortfall` adalah selisihnya sebagai string `numeric(14,2)`   |
-| `409`  | `OVERPAYMENT` / `REVERSAL_EXCEEDS_PAYMENT` / `PAYMENT_NOT_REVERSIBLE` / `PAYMENT_NOT_SETTLED`  | Ledger pembayaran (#285): jumlah di atas yang terutang (hanya kembalian tunai yang boleh melebihi); pembalikan di atas sisa yang bisa dibalik; pembayaran yang tidak bisa dibalik; `-> paid` manual sebelum ledger menyatakan pesanan terselesaikan |
+| `409`  | `OVERPAYMENT` / `REVERSAL_EXCEEDS_PAYMENT` / `PAYMENT_NOT_REVERSIBLE` / `PAYMENT_NOT_SETTLED`  | Ledger pembayaran (#285): jumlah di atas yang terutang (hanya kembalian tunai yang boleh melebihi); pembalikan di atas sisa yang bisa dibalik; pembayaran yang tidak bisa dibalik; `-> paid` manual untuk pesanan yang punya leg tetapi belum terselesaikan (pesanan tanpa leg justru dicatatkan satu leg senilai penuh). `Idempotency-Key` yang dipakai ulang untuk pesanan lain, atau dengan tender/jumlah berbeda, adalah `409 IDEMPOTENCY_CONFLICT`; `ORDER_PARTIALLY_SETTLED` (sesi gateway storefront) berarti uang sudah diterima sehingga tidak ada hosted checkout yang ditawarkan |
 | `409`  | `FEATURE_DISABLED`                                                                            | Rute owner dari fitur yang dimatikan tenant (#118) — kotak masuk, kampanye, gateway, kurir, dan sejak #116 rute POS, dan sejak #284 setiap rute register (flag `register` default MATI; menyebut `registerId` pada penjualan POS saat mati adalah penolakan yang sama)                                              |
 | `409`  | `REGISTER_SESSION_REQUIRED` / `REGISTER_SESSION_CLOSING` / `NOT_SESSION_CASHIER` / `REGISTER_SESSION_ALREADY_OPEN` / `REGISTER_SESSION_NOT_OPEN` / `REGISTER_SESSION_NOT_CLOSED` / `REGISTER_CLOSE_NOT_PENDING` / `REGISTER_CODE_TAKEN` / `REGISTER_HAS_ACTIVE_SESSION` / `REGISTER_INACTIVE` / `UNKNOWN_CASHIER` / `SAME_CASHIER` | Register dan tutup kas (#284): keadaan shift menolak aksi (tidak ada sesi terbuka untuk penjualan POS, sesi yang sedang dihitung, laci kasir lain, sesi terbuka kedua pada satu register, mutasi/penutupan pada sesi tidak terbuka, koreksi pada sesi belum ditutup, keputusan tanpa yang tertunda, kode register ganda, menonaktifkan register yang punya sesi aktif, serah terima ke pengguna tak dikenal/nonaktif atau ke kasir saat ini) |
 | `409`  | `ORDER_NOT_PAYABLE` / `ORDER_NOT_CANCELLABLE`                                                 | Status pesanan saat ini secara legal tidak mengizinkan aksi yang diminta                                                                                         |

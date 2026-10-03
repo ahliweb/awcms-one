@@ -1,8 +1,9 @@
 /**
  * Exceptions for `bun run deps:audit:check` — advisories knowingly accepted.
  *
- * **Empty is the target state.** (In the awcms-one embed it holds one dated
- * entry — `http-cache-semantics`, no fixed release published — see below.) The reasoning is the
+ * **Empty is the target state; the list holds ONE entry, for an advisory with
+ * NO patched release anywhere** (`http-cache-semantics`, below — an `overrides`
+ * entry cannot point at a version that does not exist). The reasoning is the
  * one ADR-0058 settled for the permission-enforcement gate: an empty list makes
  * the NEXT exception the only entry, so it cannot be added without being seen.
  * A list with five reasonable-looking entries is where the sixth hides.
@@ -49,20 +50,27 @@ export type AuditException = {
 };
 
 export const EXCEPTIONS: readonly AuditException[] = [
-  // awcms-one local divergence (2026-10-03, root AGENTS.md "Known local
-  // divergences"): no release of `http-cache-semantics` fixes this advisory
-  // (`<=4.2.0` vulnerable, `4.2.0` is the latest published version), so no
-  // `overrides` entry can close it. Drop this entry the day a fixed version is
-  // published, or when upstream `ahliweb/awcms` lands its own resolution.
   {
     packageName: "http-cache-semantics",
     advisoryUrl: "https://github.com/advisories/GHSA-ch52-4w7c-c8xp",
     reason:
-      "Only consumer is astro's build-time remote-image cache (astro/dist/assets/build/remote.js, " +
-      "verified by grep over astro@7.3.5's dist/); it runs once per `astro build` for one operator, " +
-      "never behind a shared multi-user HTTP cache at request time, which is the precondition for a " +
-      "cross-user max-stale disclosure. No published version fixes it, so no override can.",
-    owner: "awcms-one maintainers (ahliweb)",
+      "No patched release exists: the advisory (CVE-2026-93748, CWE-524, vulnerable <=4.2.0) lists " +
+      "no patched version and registry.npmjs.org `latest` is still 4.2.0 (checked 2026-10-03), so " +
+      "an `overrides` entry has nothing to point at; `astro@7.3.5` (latest) and `astro@7.4.0-beta.1` " +
+      "both still declare `^4.2.0`. Not reachable here: the flaw is in `evaluateRequest()` / " +
+      "`satisfiesWithoutRevalidation()` evaluating a client `max-stale` request header against a " +
+      "stored shared-cache entry. Astro is the only consumer (no `src/`/`scripts/` code imports it) " +
+      "and uses it solely in `astro/dist/assets/build/remote.js` (`loadRemoteImage` / " +
+      "`revalidateRemoteImage`), which only calls `new CachePolicy(...)`, `storable()` and " +
+      "`timeToLive()` on a request Astro synthesises itself (`new Request(src)`) to compute a TTL " +
+      "at BUILD time — never `evaluateRequest`, `satisfiesWithoutRevalidation`, " +
+      "`revalidationHeaders` or `revalidatedPolicy`, and never an inbound client request. The SSR " +
+      "image endpoint (`assets/endpoint/shared.js`) does not use the package at all. This repo " +
+      'also has `output: "server"`, no `astro:assets` / `<Image>` usage in `src/`, and no ' +
+      "`image.domains` / `image.remotePatterns`, so remote images are refused (403) before any " +
+      "fetch. There is no server-side shared cache keyed by http-cache-semantics, so there is " +
+      "no cross-user entry to disclose.",
+    owner: "ahliweb/awcms maintainers",
     reviewDate: "2026-11-03"
   }
 ];

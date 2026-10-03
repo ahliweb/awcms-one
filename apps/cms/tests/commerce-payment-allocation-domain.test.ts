@@ -20,6 +20,7 @@ import {
   OverpaymentError,
   planTenders,
   releaseThresholdCents,
+  orderPaymentMethodToTender,
   tenderToOrderPaymentMethod,
   toSettlementView,
   validatePosTenders,
@@ -613,5 +614,17 @@ describe("small mappers", () => {
     expect(confirmationMethodToTender("manual_bank")).toBe(
       "manual_bank_transfer"
     );
+  });
+});
+
+describe("orderPaymentMethodToTender (manual mark-paid, ADR-0025 review fix)", () => {
+  test("maps each order payment method to the ledger tender that fits it", () => {
+    expect(orderPaymentMethodToTender("cash")).toBe("cash");
+    expect(orderPaymentMethodToTender("manual_qris")).toBe("manual_qris");
+    expect(orderPaymentMethodToTender("gateway")).toBe("gateway");
+    expect(orderPaymentMethodToTender("manual_bank")).toBe(
+      "manual_bank_transfer"
+    );
+    expect(orderPaymentMethodToTender("dp")).toBe("manual_bank_transfer");
   });
 });

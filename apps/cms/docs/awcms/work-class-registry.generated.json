@@ -492,6 +492,16 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/attributes/[id].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/attributes/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/campaigns/[id]/cancel.ts",
       "workClass": "interactive",
       "source": "factory"
@@ -592,6 +602,61 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/loyalty/accounts/[customerId]/adjust.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/loyalty/accounts/[customerId]/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/loyalty/accounts/[customerId]/ledger.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/loyalty/accounts/[customerId]/redeem.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/loyalty/accounts/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/loyalty/programs/[id]/activate.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/loyalty/programs/[id]/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/loyalty/programs/[id]/retire.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/loyalty/programs/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/loyalty/reconcile.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/loyalty/summary.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/orders/[id].ts",
       "workClass": "interactive",
       "source": "factory"
@@ -657,6 +722,11 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/products/[id]/attributes.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/products/[id]/images/[imageId].ts",
       "workClass": "interactive",
       "source": "factory"
@@ -682,6 +752,11 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/products/[id]/variants/[variantId]/attributes.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/products/[id]/variants/index.ts",
       "workClass": "interactive",
       "source": "factory"
@@ -689,6 +764,16 @@
     {
       "path": "src/pages/api/v1/commerce/products/by-slug/[slug].ts",
       "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/products/export.csv.ts",
+      "workClass": "reporting",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/products/import.ts",
+      "workClass": "background_sync",
       "source": "factory"
     },
     {
@@ -1328,6 +1413,21 @@
     },
     {
       "path": "src/pages/api/v1/omes/jobs/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/omes/mission-control/actions.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/omes/mission-control/replay.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/omes/mission-control/scene.ts",
       "workClass": "interactive",
       "source": "factory"
     },
@@ -1991,6 +2091,18 @@
       "workClass": "background_sync",
       "source": "registry",
       "rationale": "Scheduled status-derivation tick (commerce:flash-sales:tick, Issue #26), every 1-5 minutes — same recurring-but-not-latency-sensitive profile as blog:publish:scheduled; tickFlashSalesForTenant passes workClass: \"background_sync\" explicitly."
+    },
+    {
+      "path": "scripts/commerce-loyalty-expire.ts",
+      "workClass": "background_sync",
+      "source": "registry",
+      "rationale": "Scheduled loyalty-points expiry sweep (commerce:loyalty:expire, Issue #289), hourly — same recurring-but-not-latency-sensitive profile as commerce:orders:expire; expireDueLoyaltyPointsForTenant passes workClass: \"background_sync\" explicitly on every per-account transaction."
+    },
+    {
+      "path": "scripts/commerce-loyalty-reconcile.ts",
+      "workClass": "background_sync",
+      "source": "registry",
+      "rationale": "Scheduled read-only loyalty balance reconcile (commerce:loyalty:reconcile, Issue #289), daily off-peak — same recurring-but-not-latency-sensitive profile as commerce:orders:expire; the per-tenant scan passes workClass: \"background_sync\" explicitly."
     },
     {
       "path": "scripts/commerce-orders-expire.ts",

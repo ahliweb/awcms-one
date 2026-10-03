@@ -71,7 +71,37 @@ export const COMMERCE_PRODUCT_PERMISSIONS = {
   /** Soft delete a product. */
   delete: "commerce.products.delete",
   /** Restore a soft-deleted product (Issue #23). */
-  restore: "commerce.products.restore"
+  restore: "commerce.products.restore",
+  /**
+   * Issue #291 — download the catalog as CSV (a bulk read of the whole
+   * catalog, hence the high-risk `export` action rather than plain `read`).
+   */
+  export: "commerce.products.export",
+  /**
+   * Issue #291 — dry-run and apply a catalog CSV import (a bulk write, hence
+   * the high-risk `import` action rather than `create`/`update`). The import
+   * additionally holds the caller to `create`/`update` per row implicitly: it
+   * calls the same `createProduct`/`updateProduct` directory functions a
+   * single-product request does, and the route requires BOTH
+   * `commerce.products.import` and — via the handler — `create` + `update`.
+   */
+  import: "commerce.products.import"
+} as const;
+
+/**
+ * Issue #291 — typed custom catalog attributes. `read` lists definitions;
+ * `manage` creates/updates/deletes them. `manage` (not separate
+ * create/update/delete) because a definition is schema, not data: one audience
+ * — whoever may reshape what every product's attributes validate against and
+ * what the public catalog API may expose — and a single high-risk action keeps
+ * the SoD hook on one key. Reading/writing a product's attribute VALUES reuses
+ * `commerce.products.read`/`.update` (see `COMMERCE_PRODUCT_PERMISSIONS`).
+ */
+export const COMMERCE_ATTRIBUTES_ACTIVITY_CODE = "attributes";
+
+export const COMMERCE_ATTRIBUTE_PERMISSIONS = {
+  read: "commerce.attributes.read",
+  manage: "commerce.attributes.manage"
 } as const;
 
 export type CommerceProductPermissionKey =
@@ -464,4 +494,40 @@ export const COMMERCE_STORED_VALUE_ADJUSTMENT_PERMISSIONS = {
 
 export const COMMERCE_STORED_VALUE_RECONCILE_PERMISSIONS = {
   approve: "commerce.stored_value_reconcile.approve"
+} as const;
+
+/**
+ * Loyalty points ledger (Issue #289, ADR-0026 D9). Four permissions on three
+ * activity codes — NOT `commerce.loyalty.adjust`/`.redeem`: the
+ * `AccessAction` union (identity-access, upstream-owned) has no
+ * `adjust`/`redeem` member and widening it would add a divergence in an
+ * upstream file to every future subtree sync. A redemption and a manual
+ * adjustment are each the CREATION of a ledger row, so each is `create` on its
+ * own activity code — which also keeps them separately grantable (a cashier
+ * can redeem without being able to adjust, and neither implies `manage`).
+ *
+ * `manage` is already a high-risk action in `access-control.ts`
+ * (`HIGH_RISK_ACTIONS`), which is the right posture for activating a program
+ * version (it changes what every future order earns) and for repairing a
+ * balance projection.
+ */
+export const COMMERCE_LOYALTY_ACTIVITY_CODE = "loyalty";
+export const COMMERCE_LOYALTY_ADJUSTMENTS_ACTIVITY_CODE = "loyalty_adjustments";
+export const COMMERCE_LOYALTY_REDEMPTIONS_ACTIVITY_CODE = "loyalty_redemptions";
+
+export const COMMERCE_LOYALTY_PERMISSIONS = {
+  /** Programs, accounts, the ledger and the summary. */
+  read: "commerce.loyalty.read",
+  /** Create/edit/activate/retire program versions; repair a drifted projection. */
+  manage: "commerce.loyalty.manage"
+} as const;
+
+export const COMMERCE_LOYALTY_ADJUSTMENT_PERMISSIONS = {
+  /** A manual signed adjustment — mandatory reason. */
+  create: "commerce.loyalty_adjustments.create"
+} as const;
+
+export const COMMERCE_LOYALTY_REDEMPTION_PERMISSIONS = {
+  /** Redeem points at the counter (or for a customer). */
+  create: "commerce.loyalty_redemptions.create"
 } as const;

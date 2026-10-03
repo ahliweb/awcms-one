@@ -334,20 +334,20 @@ function formatTimestamp(value: Date | string | null): string {
           <h2 class="admin-section-title" id="sales-freshness-title">
             {t("Projection freshness")}
           </h2>
-          <div class="stat-grid">
+          <div class="admin-stat-card-grid">
             {projections.map((projection) => (
               <article class="admin-panel" data-projection-key={projection.key}>
                 <h3>
                   {PROJECTION_LABELS[projection.key] ?? projection.key}
                   <span
-                    class="status-badge"
-                    data-variant={
+                    class="admin-status-pill"
+                    data-tone={
                       reportFreshnessTone[projection.freshness.status] ??
                       "neutral"
                     }
                     data-status={projection.freshness.status}
                   >
-                    <span class="status-dot" aria-hidden="true" />
+                    <span class="admin-status-pill-dot" aria-hidden="true" />
                     {commerceLabel(
                       labels.reportFreshnessStatus,
                       projection.freshness.status
@@ -864,13 +864,16 @@ function formatTimestamp(value: Date | string | null): string {
                       </td>
                       <td data-label={t("Status")}>
                         <span
-                          class="status-badge"
-                          data-variant={
+                          class="admin-status-pill"
+                          data-tone={
                             reportRunStatusTone[run.status] ?? "neutral"
                           }
                           data-status={run.status}
                         >
-                          <span class="status-dot" aria-hidden="true" />
+                          <span
+                            class="admin-status-pill-dot"
+                            aria-hidden="true"
+                          />
                           {commerceLabel(labels.reportRunStatus, run.status)}
                         </span>
                       </td>

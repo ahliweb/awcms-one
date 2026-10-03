@@ -22,6 +22,7 @@ const PRODUCT_ROUTES = [
   "src/pages/api/v1/commerce/products/[id].ts",
   "src/pages/api/v1/commerce/products/[id]/restore.ts",
   "src/pages/api/v1/commerce/products/by-slug/[slug].ts",
+  "src/pages/api/v1/commerce/products/export.csv.ts",
   "src/pages/api/v1/commerce/products/[id]/images/index.ts",
   "src/pages/api/v1/commerce/products/[id]/images/[imageId].ts",
   "src/pages/api/v1/commerce/products/[id]/variants/index.ts",
@@ -89,7 +90,7 @@ async function enforcedTriples(
 }
 
 describe("commerce module descriptor — restore is declared for both activity codes", () => {
-  test("seventy-four permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations/entitlements, three for reviews, one for whatsapp, three for campaigns, one for webhook_endpoints, one for pos, one for pos_due, three for payments, ten for registers/cash-up, seven for stored value", () => {
+  test("eighty-two permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations/entitlements, three for reviews, one for whatsapp, three for campaigns, one for webhook_endpoints, one for pos, one for pos_due, three for payments, ten for registers/cash-up, two for loyalty and one each for loyalty_adjustments/loyalty_redemptions, and (Issue #291) read/manage for attributes plus export/import on products, and seven for stored value", () => {
     // Issue #23: categories/products carry read/create/update/delete/restore.
     // Issue #26: flash_sales/vouchers/sliders/testimonials/popups carry
     // read/create/update/delete (soft delete only, no restore — the marketing
@@ -148,8 +149,28 @@ describe("commerce module descriptor — restore is declared for both activity c
         1 +
         3 +
         10 +
+        4 +
+        2 +
+        2 +
         7
     );
+
+    // Issue #291 — typed catalog attributes. `manage` (one high-risk action,
+    // not create/update/delete) because a definition is schema; the CSV
+    // import/export are products actions with their own audience.
+    for (const key of [
+      "commerce.attributes.read",
+      "commerce.attributes.manage",
+      "commerce.products.export",
+      "commerce.products.import"
+    ] as const) {
+      expect(declared.has(key as Triple)).toBe(true);
+    }
+    for (const action of ["create", "update", "delete", "restore"]) {
+      expect(declared.has(`commerce.attributes.${action}` as Triple)).toBe(
+        false
+      );
+    }
 
     for (const activityCode of ["categories", "products"]) {
       for (const action of ["read", "create", "update", "delete", "restore"]) {
@@ -240,6 +261,27 @@ describe("commerce module descriptor — restore is declared for both activity c
         false
       );
     }
+
+    // Issue #289 (loyalty) — four permissions on three activity codes. NOT
+    // `commerce.loyalty.adjust`/`.redeem`: `AccessAction` has no such member
+    // and widening it would diverge an upstream-owned file (sql/952).
+    for (const key of [
+      "commerce.loyalty.read",
+      "commerce.loyalty.manage",
+      "commerce.loyalty_adjustments.create",
+      "commerce.loyalty_redemptions.create"
+    ]) {
+      expect(declared.has(key as Triple)).toBe(true);
+    }
+    for (const key of [
+      "commerce.loyalty.create",
+      "commerce.loyalty.update",
+      "commerce.loyalty.delete",
+      "commerce.loyalty.adjust",
+      "commerce.loyalty.redeem"
+    ]) {
+      expect(declared.has(key as Triple)).toBe(false);
+    }
   });
 
   test("neither commerce activity code's permissions remain on NOT_YET_SCREENED", () => {
@@ -256,10 +298,12 @@ describe("/admin/commerce (products) permission gates", () => {
     const declared = declaredTriples();
 
     expect([...pageKeys].filter((key) => !declared.has(key))).toEqual([]);
-    // read/create/update/delete/restore — every products.* permission.
+    // read/create/update/delete/restore — every products.* permission — plus
+    // `export` (Issue #291: the page's "Export CSV" link is gated on it).
+    // `import` is claimed by `/admin/commerce-catalog-import`, not here.
     expect(
       [...pageKeys].filter((key) => key.startsWith("commerce.products.")).length
-    ).toBe(5);
+    ).toBe(6);
 
     const enforced = await enforcedTriples(
       PRODUCT_ROUTES,

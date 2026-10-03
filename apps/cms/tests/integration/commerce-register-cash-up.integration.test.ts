@@ -65,6 +65,7 @@ import {
   recordRegisterMovement
 } from "../../src/modules/commerce/application/register-session-directory";
 import { IdempotencyPayloadMismatchError } from "../../src/modules/commerce/application/order-directory";
+import { RegisterSessionClosingError } from "../../src/modules/commerce/application/register-session-stamp";
 import {
   recordOwnerPayment,
   recordOwnerReversal
@@ -156,7 +157,12 @@ async function enableSelfPickupAndQris(tenantId: string): Promise<void> {
 /** Turns the `register` feature on/off and sets the approval threshold, through the same call the settings route makes. */
 async function configureRegisters(
   tenantId: string,
-  options: { register: boolean; threshold?: string }
+  options: {
+    register: boolean;
+    threshold?: string;
+    /** `cashUp.allowSelfApproval`; omitted = the platform default (false). */
+    allowSelfApproval?: boolean;
+  }
 ): Promise<void> {
   await inTenant(tenantId, (tx) =>
     updateModuleSettings(
@@ -173,7 +179,14 @@ async function configureRegisters(
           register: options.register
         },
         ...(options.threshold !== undefined
-          ? { cashUp: { approvalThreshold: options.threshold } }
+          ? {
+              cashUp: {
+                approvalThreshold: options.threshold,
+                ...(options.allowSelfApproval !== undefined
+                  ? { allowSelfApproval: options.allowSelfApproval }
+                  : {})
+              }
+            }
           : {})
       },
       CASHIER_1
@@ -415,7 +428,14 @@ suite("POS register sessions and cash-up integration (Issue #284)", () => {
     }
     await seedTenantUser(TENANT_B, B_CASHIER);
     await enableSelfPickupAndQris(TENANT_A);
-    await configureRegisters(TENANT_A, { register: true, threshold: "50.00" });
+    // Most scenarios below exercise the one-step close of a single-operator
+    // tenant, so the suite opts IN to self-approval; the default-deny path has
+    // its own tests that switch it back off.
+    await configureRegisters(TENANT_A, {
+      register: true,
+      threshold: "50.00",
+      allowSelfApproval: true
+    });
   }, 30000);
 
   describe("registers and sessions", () => {
@@ -1929,6 +1949,299 @@ suite("POS register sessions and cash-up integration (Issue #284)", () => {
           secret
         );
       }
+    });
+  });
+
+  // -------------------------------------------------------------------------
+  // Review fixes: separation of duties, closing sessions, refunds across shifts
+  // -------------------------------------------------------------------------
+
+  describe("separation of duties on the cash-up", () => {
+    const largeVariance = (): CloseSessionInput =>
+      closeInput({ cash: "100000.00" }, { varianceReason: "short" });
+
+    async function dueSaleShift(): Promise<{
+      sessionId: string;
+      orderId: string;
+    }> {
+      const productId = await seedActiveProduct(TENANT_A);
+      const registerId = await makeRegister(TENANT_A);
+      const sessionId = await openOk(TENANT_A, registerId, "100000.00");
+      const sale = await ringOk(
+        TENANT_A,
+        posInput(productId, registerId, {
+          customer: { name: "Siti", phone: "081211112222" },
+          payment: null,
+          tenders: [{ tenderType: "cash", amount: "5000.00", reference: null }],
+          allowDue: true
+        })
+      );
+      return { sessionId, orderId: sale.id };
+    }
+
+    const decide = (
+      sessionId: string,
+      actor: string,
+      decision: "approve" | "reject"
+    ) =>
+      inTenant(TENANT_A, (tx) =>
+        decideRegisterClose(tx, TENANT_A, actor, sessionId, {
+          idempotencyKey: crypto.randomUUID(),
+          decision,
+          note: decision === "reject" ? "recount" : null
+        })
+      );
+
+    test("by default a closer who holds the approve permission does NOT self-approve a variance above the threshold: the session waits for someone else", async () => {
+      await configureRegisters(TENANT_A, {
+        register: true,
+        threshold: "50.00",
+        allowSelfApproval: false
+      });
+      const { sessionId } = await dueSaleShift();
+      const outcome = await close(TENANT_A, sessionId, largeVariance(), {
+        canApprove: true
+      });
+      expect(outcome.kind).toBe("pending_approval");
+      if (outcome.kind !== "pending_approval") return;
+      expect(outcome.body.report.session.status).toBe("closing");
+      expect(outcome.body.report.closeRequests[0]).toMatchObject({
+        decision: "pending",
+        decidedByTenantUserId: null
+      });
+    });
+
+    test("the decider must differ from the requester: approving your own count is refused, another user approves, rejecting your own count is allowed", async () => {
+      await configureRegisters(TENANT_A, {
+        register: true,
+        threshold: "50.00",
+        allowSelfApproval: false
+      });
+      const { sessionId } = await dueSaleShift();
+      await close(TENANT_A, sessionId, largeVariance());
+
+      expect((await decide(sessionId, CASHIER_1, "approve")).kind).toBe(
+        "self_approval_forbidden"
+      );
+      expect((await report(TENANT_A, sessionId)).session.status).toBe(
+        "closing"
+      );
+
+      // Rejecting your own pending count only sends the drawer back to recount.
+      expect((await decide(sessionId, CASHIER_1, "reject")).kind).toBe(
+        "rejected"
+      );
+      expect((await report(TENANT_A, sessionId)).session.status).toBe("open");
+
+      await close(TENANT_A, sessionId, largeVariance());
+      const approved = await decide(sessionId, SUPERVISOR, "approve");
+      expect(approved.kind).toBe("approved");
+      expect((await report(TENANT_A, sessionId)).session.status).toBe("closed");
+    });
+
+    test("with cashUp.allowSelfApproval ON the closer closes in one step, and the requester may approve their own pending count", async () => {
+      await configureRegisters(TENANT_A, {
+        register: true,
+        threshold: "50.00",
+        allowSelfApproval: false
+      });
+      const { sessionId } = await dueSaleShift();
+      // Pending under the default...
+      await close(TENANT_A, sessionId, largeVariance());
+      // ...then the tenant opts in: the requester can now decide it.
+      await configureRegisters(TENANT_A, {
+        register: true,
+        threshold: "50.00",
+        allowSelfApproval: true
+      });
+      expect((await decide(sessionId, CASHIER_1, "approve")).kind).toBe(
+        "approved"
+      );
+
+      // And a fresh close by an approve-holder is a one-step close.
+      const productId = (
+        (await getAdminSql()`
+          SELECT id FROM awcms_commerce_products WHERE tenant_id = ${TENANT_A} LIMIT 1
+        `) as { id: string }[]
+      )[0]!.id;
+      const registerId = await makeRegister(TENANT_A, "KASIR-2");
+      const second = await openOk(TENANT_A, registerId, "100000.00");
+      await ringOk(TENANT_A, posInput(productId, registerId));
+      const outcome = await close(TENANT_A, second, largeVariance(), {
+        canApprove: true
+      });
+      expect(outcome.kind).toBe("closed");
+    });
+  });
+
+  describe("payments into a closing session", () => {
+    test("a counter payment on a sale whose session is `closing` is refused (it would fall into no cash-up); once the count is rejected it is recorded and stamped", async () => {
+      await configureRegisters(TENANT_A, {
+        register: true,
+        threshold: "50.00",
+        allowSelfApproval: false
+      });
+      const productId = await seedActiveProduct(TENANT_A);
+      const registerId = await makeRegister(TENANT_A);
+      const sessionId = await openOk(TENANT_A, registerId, "100000.00");
+      const sale = await ringOk(
+        TENANT_A,
+        posInput(productId, registerId, {
+          customer: { name: "Siti", phone: "081211112222" },
+          payment: null,
+          tenders: [{ tenderType: "cash", amount: "5000.00", reference: null }],
+          allowDue: true
+        })
+      );
+      const outcome = await close(
+        TENANT_A,
+        sessionId,
+        closeInput({ cash: "100000.00" }, { varianceReason: "short" })
+      );
+      expect(outcome.kind).toBe("pending_approval");
+
+      const payBalance = () =>
+        inTenant(TENANT_A, (tx) =>
+          recordOwnerPayment(tx, TENANT_A, CASHIER_1, sale.id, {
+            idempotencyKey: crypto.randomUUID(),
+            tenderType: "cash",
+            amount: "15000.00",
+            reference: null,
+            note: null
+          })
+        );
+      await expect(payBalance()).rejects.toBeInstanceOf(
+        RegisterSessionClosingError
+      );
+      expect(
+        (
+          (await getAdminSql()`
+            SELECT count(*)::int AS n FROM awcms_commerce_payment_allocations
+            WHERE order_id = ${sale.id}
+          `) as { n: number }[]
+        )[0]!.n
+      ).toBe(1);
+
+      await inTenant(TENANT_A, (tx) =>
+        decideRegisterClose(tx, TENANT_A, SUPERVISOR, sessionId, {
+          idempotencyKey: crypto.randomUUID(),
+          decision: "reject",
+          note: "recount"
+        })
+      );
+      expect((await payBalance()).kind).toBe("created");
+      const stamped = (await getAdminSql()`
+        SELECT register_session_id FROM awcms_commerce_payment_allocations
+        WHERE order_id = ${sale.id} ORDER BY entry_seq DESC LIMIT 1
+      `) as { register_session_id: string | null }[];
+      expect(stamped[0]!.register_session_id).toBe(sessionId);
+    });
+  });
+
+  describe("a cash refund for a sale from an earlier, closed shift", () => {
+    async function closedShiftSale(): Promise<{
+      orderId: string;
+      cashLegId: string;
+      registerId: string;
+    }> {
+      const productId = await seedActiveProduct(TENANT_A);
+      const registerId = await makeRegister(TENANT_A);
+      const first = await openOk(TENANT_A, registerId, "100000.00");
+      const sale = await ringOk(TENANT_A, posInput(productId, registerId));
+      const closed = await close(
+        TENANT_A,
+        first,
+        closeInput({ cash: "120000.00" })
+      );
+      expect(closed.kind).toBe("closed");
+      const legs = (await getAdminSql()`
+        SELECT id FROM awcms_commerce_payment_allocations WHERE order_id = ${sale.id}
+      `) as { id: string }[];
+      return { orderId: sale.id, cashLegId: legs[0]!.id, registerId };
+    }
+
+    const refund = (
+      orderId: string,
+      legId: string,
+      registerSessionId: string | undefined,
+      actor = CASHIER_1
+    ) =>
+      inTenant(TENANT_A, (tx) =>
+        recordOwnerReversal(tx, TENANT_A, actor, orderId, legId, {
+          idempotencyKey: crypto.randomUUID(),
+          amount: "5000.00",
+          note: "returned the next day",
+          ...(registerSessionId ? { registerSessionId } : {})
+        })
+      );
+
+    test("without a session the refund stays unstamped (today's behaviour); with an OPEN session it is stamped and lowers THAT drawer's expected cash", async () => {
+      const { orderId, cashLegId, registerId } = await closedShiftSale();
+      const second = await openOk(TENANT_A, registerId, "100000.00");
+
+      const plain = await refund(orderId, cashLegId, undefined);
+      expect(plain.kind).toBe("created");
+      if (plain.kind !== "created") return;
+      expect(tender(await report(TENANT_A, second), "cash")).toMatchObject({
+        reversals: "0.00",
+        expected: "100000.00"
+      });
+
+      const stampedRefund = await refund(orderId, cashLegId, second);
+      expect(stampedRefund.kind).toBe("created");
+      if (stampedRefund.kind !== "created") return;
+      const rows = (await getAdminSql()`
+        SELECT register_session_id FROM awcms_commerce_payment_allocations
+        WHERE id = ${stampedRefund.body.payment.id}
+      `) as { register_session_id: string | null }[];
+      expect(rows[0]!.register_session_id).toBe(second);
+      expect(tender(await report(TENANT_A, second), "cash")).toMatchObject({
+        reversals: "5000.00",
+        expected: "95000.00"
+      });
+    });
+
+    test("the session must be an open one of this tenant whose current cashier is the actor", async () => {
+      const { orderId, cashLegId, registerId } = await closedShiftSale();
+      const second = await openOk(TENANT_A, registerId, "100000.00");
+      const closedSessionRows = (await getAdminSql()`
+        SELECT id FROM awcms_commerce_register_sessions
+        WHERE register_id = ${registerId} AND status = 'closed'
+      `) as { id: string }[];
+
+      expect((await refund(orderId, cashLegId, crypto.randomUUID())).kind).toBe(
+        "register_session_not_found"
+      );
+      expect(
+        (await refund(orderId, cashLegId, closedSessionRows[0]!.id)).kind
+      ).toBe("register_session_not_open");
+      expect((await refund(orderId, cashLegId, second, CASHIER_2)).kind).toBe(
+        "register_session_not_cashier"
+      );
+      expect(
+        (
+          (await getAdminSql()`
+            SELECT count(*)::int AS n FROM awcms_commerce_payment_allocations
+            WHERE order_id = ${orderId} AND kind = 'reversal'
+          `) as { n: number }[]
+        )[0]!.n
+      ).toBe(0);
+    });
+
+    test("the database guard still refuses a PAYMENT stamped with a session other than its order's, and a reversal stamped with a non-open session", async () => {
+      const { orderId, registerId } = await closedShiftSale();
+      const second = await openOk(TENANT_A, registerId, "100000.00");
+      await expect(
+        attempt(getAdminSql()`
+          INSERT INTO awcms_commerce_payment_allocations (
+            tenant_id, order_id, kind, tender_type, amount, status, source, source_key,
+            actor_kind, register_session_id, settled_at
+          ) VALUES (
+            ${TENANT_A}, ${orderId}, 'payment', 'cash', '1.00', 'succeeded', 'pos',
+            'guard-test-payment', 'system', ${second}, now()
+          )
+        `)
+      ).rejects.toThrow();
     });
   });
 });

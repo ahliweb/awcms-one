@@ -34,7 +34,11 @@ import {
   readJsonBody
 } from "../../../../../../../lib/security/request-body-limit";
 import { IdempotencyPayloadMismatchError } from "../../../../../../../modules/commerce/application/order-directory";
-import { fetchOrderPaymentSummary } from "../../../../../../../modules/commerce/application/payment-allocation-directory";
+import {
+  AllocationSourceKeyConflictError,
+  fetchOrderPaymentSummary
+} from "../../../../../../../modules/commerce/application/payment-allocation-directory";
+import { RegisterSessionClosingError } from "../../../../../../../modules/commerce/application/register-session-stamp";
 import { recordOwnerPayment } from "../../../../../../../modules/commerce/application/payment-recording";
 import {
   OverpaymentError,
@@ -148,12 +152,18 @@ export const POST = defineTenantRoute<RecordPaymentInput>({
           "Idempotency-Key was already used with a different request."
         );
       }
-      if (error instanceof IdempotencyPayloadMismatchError) {
+      if (
+        error instanceof IdempotencyPayloadMismatchError ||
+        error instanceof AllocationSourceKeyConflictError
+      ) {
         return fail(
           409,
           "IDEMPOTENCY_CONFLICT",
           "Idempotency-Key was already used with a different request."
         );
+      }
+      if (error instanceof RegisterSessionClosingError) {
+        return fail(409, "REGISTER_SESSION_CLOSING", error.message);
       }
       if (error instanceof OverpaymentError) {
         return fail(

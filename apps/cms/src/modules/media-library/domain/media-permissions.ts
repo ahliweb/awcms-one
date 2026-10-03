@@ -116,7 +116,7 @@ export const MEDIA_PERMISSIONS = {
    * METADATA (`media.read` is explicitly safe for a read-only machine
    * credential, ADR-0049), while `download` mints a credential-bearing URL
    * that serves the actual BYTES of a private object, bypassing its lack of
-   * a permanent public URL for the URL's short lifetime. See `sql/169`'s
+   * a permanent public URL for the URL's short lifetime. See `sql/881`'s
    * header for why this is not folded into `read`, and this route's own
    * header for why NO commerce entitlement applies here — a tenant user
    * downloading through this permission is administering the tenant's own

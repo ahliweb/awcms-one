@@ -1653,6 +1653,29 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_commerce_register_close_requests: ["SELECT", "DELETE"],
   awcms_commerce_register_close_lines: ["SELECT", "DELETE"],
   awcms_commerce_register_corrections: ["SELECT", "DELETE"],
+  // Issue #291 (`sql/960`/`962`/`964`): catalog attributes. Definitions and
+  // values are soft-deleted (`deleted_at` cursor) and aged out by the generic
+  // purge engine, which needs SELECT + DELETE; an import batch is an
+  // append-only record purged by `created_at`.
+  awcms_commerce_attribute_definitions: ["SELECT", "DELETE"],
+  awcms_commerce_product_attribute_values: ["SELECT", "DELETE"],
+  awcms_commerce_catalog_import_batches: ["SELECT", "DELETE"],
+  // Issue #289 (sql/950/951): the loyalty tables. The domain-event dispatcher
+  // runs the order-paid earn / order-cancelled reversal consumers and the
+  // `commerce:loyalty:expire` job appends ledger rows, all as this role.
+  // programs: read + the generic purge of RETIRED versions (cursor
+  // `effective_to`, NULL for a draft/open version so a live rule never
+  // matches). accounts: create-or-lock (`FOR UPDATE` needs UPDATE) + project
+  // the balance + the generic purge of an account idle for the whole window.
+  // ledger: append + the retention purge's DELETE and NEVER UPDATE — it is
+  // append-only and sql/950's trigger rejects it regardless.
+  awcms_commerce_loyalty_programs: ["SELECT", "DELETE"],
+  awcms_commerce_loyalty_accounts: ["SELECT", "INSERT", "UPDATE", "DELETE"],
+  awcms_commerce_loyalty_ledger: ["SELECT", "INSERT", "DELETE"],
+  // Issue #289 (sql/951): the earn consumer reads the tenant's `commerce`
+  // feature flags (`features.loyalty`) through `fetchCommerceFeatures`.
+  // Tenant-RLS table; SELECT only.
+  awcms_module_settings: ["SELECT"],
   // Issue #288 (`sql/985`/`sql/988`): the three stored-value tables'
   // `dataLifecycle` descriptors (`commerce/domain/stored-value-lifecycle.ts`)
   // are `executionMode: "generic"` with `hard_delete`; the retention worker is

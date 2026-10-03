@@ -203,6 +203,9 @@ export async function recordOwnerPayment(
 
 export type RecordOwnerReversalOutcome =
   | { kind: "not_found" }
+  | { kind: "register_session_not_found" }
+  | { kind: "register_session_not_open"; status: string }
+  | { kind: "register_session_not_cashier" }
   | {
       kind: "not_reversible";
       reason:
@@ -233,7 +236,11 @@ export async function recordOwnerReversal(
     orderId,
     paymentId,
     amount: input.amount,
-    note: input.note
+    note: input.note,
+    // Only when present, so a pre-existing payload hashes exactly as before.
+    ...(input.registerSessionId
+      ? { registerSessionId: input.registerSessionId }
+      : {})
   });
 
   const existing = await findIdempotencyRecord(
@@ -259,10 +266,18 @@ export async function recordOwnerReversal(
     note: input.note,
     sourceKey: `reversal:${input.idempotencyKey}`,
     actor: { kind: "tenant_user", tenantUserId: actorTenantUserId },
+    registerSessionId: input.registerSessionId,
     correlationId
   });
 
   if (outcome.kind === "not_found") return { kind: "not_found" };
+  if (
+    outcome.kind === "register_session_not_found" ||
+    outcome.kind === "register_session_not_open" ||
+    outcome.kind === "register_session_not_cashier"
+  ) {
+    return outcome;
+  }
   if (outcome.kind === "not_reversible") {
     return { kind: "not_reversible", reason: outcome.reason };
   }

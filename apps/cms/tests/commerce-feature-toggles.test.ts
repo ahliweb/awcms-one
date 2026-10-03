@@ -22,12 +22,19 @@ import { toPublicRecord } from "../src/modules/commerce/application/store-settin
 describe("resolveCommerceFeatures", () => {
   test("defaults every flag to true when settings are absent, except `register` (Issue #284) and `storedValue` (Issue #288), which add an obligation / a liability and so default OFF", () => {
     expect(DEFAULT_COMMERCE_FEATURES.register).toBe(false);
+    expect(DEFAULT_COMMERCE_FEATURES.loyalty).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.storedValue).toBe(false);
     expect(
       Object.entries(DEFAULT_COMMERCE_FEATURES)
-        .filter(([key]) => key !== "register" && key !== "storedValue")
+        .filter(
+          ([key]) =>
+            key !== "register" && key !== "loyalty" && key !== "storedValue"
+        )
         .every(([, value]) => value === true)
     ).toBe(true);
+  });
+
+  test("defaults every pre-#289 flag to true (and loyalty, new in #289, to false) when settings are absent", () => {
     expect(resolveCommerceFeatures(undefined)).toEqual(
       DEFAULT_COMMERCE_FEATURES
     );
@@ -44,6 +51,21 @@ describe("resolveCommerceFeatures", () => {
       gateway: true,
       courier: true,
       register: false,
+      loyalty: false,
+      storedValue: false
+    });
+  });
+
+  test("loyalty (Issue #289) defaults OFF and can be turned on without disturbing the other flags", () => {
+    expect(DEFAULT_COMMERCE_FEATURES.loyalty).toBe(false);
+    expect(resolveCommerceFeatures({ features: { loyalty: true } })).toEqual({
+      pos: true,
+      inbox: true,
+      campaigns: true,
+      gateway: true,
+      courier: true,
+      register: false,
+      loyalty: true,
       storedValue: false
     });
   });
@@ -64,6 +86,7 @@ describe("resolveCommerceFeatures", () => {
         gateway: false,
         courier: false,
         register: false,
+        loyalty: false,
         storedValue: false
       }
     });
@@ -74,6 +97,7 @@ describe("resolveCommerceFeatures", () => {
       gateway: false,
       courier: false,
       register: false,
+      loyalty: false,
       storedValue: false
     });
     // ...and the flags that default off can be turned on.

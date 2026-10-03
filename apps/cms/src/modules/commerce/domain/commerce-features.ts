@@ -40,12 +40,13 @@ export type CommerceFeatureKey =
   | "gateway"
   | "courier"
   | "register"
+  | "loyalty"
   | "storedValue";
 
 export type CommerceFeatures = Readonly<Record<CommerceFeatureKey, boolean>>;
 
 /**
- * Default-ON for every feature but `register` (Issue #284) and `storedValue` (Issue #288), below — turning a feature toggle ON by default
+ * Default-ON for every feature but `register` (Issue #284), `loyalty` (Issue #289) and `storedValue` (Issue #288), below — turning a feature toggle ON by default
  * means shipping this settings document changes NOTHING for an existing
  * tenant that never opens the new "Fitur" section, matching this repo's
  * "migration-free upgrade" convention (`store-settings-validation.ts`'s own
@@ -63,6 +64,12 @@ export const DEFAULT_COMMERCE_FEATURES: CommerceFeatures = {
   // one ADDS an obligation (a POS sale needs an open register session), so a
   // tenant that never opens "Fitur" must see exactly today's POS.
   register: false,
+  // Issue #289 (ADR-0026 D2) — the one flag that defaults OFF. The five above
+  // default ON because they gated behaviour that already existed; loyalty is
+  // NEW behaviour that accrues points on every paid order and exposes a
+  // customer-visible balance, so a tenant must choose it. A tenant that never
+  // opens the "Features" section therefore sees no change at all.
+  loyalty: false,
   // Issue #288 (ADR-0030) — the second flag that defaults OFF. Stored value is
   // a liability the tenant takes on (money held that is not yet revenue),
   // which has accounting, consumer-protection and regulatory consequences it
@@ -78,6 +85,7 @@ const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
   "gateway",
   "courier",
   "register",
+  "loyalty",
   "storedValue"
 ];
 

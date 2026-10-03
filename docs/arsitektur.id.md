@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](arsitektur.md)
 
-<!-- i18n-source-hash: sha256:0fad296ee0342bb9f185f731efaccd342ceaa0db853dd6e52076e1d6deef1221 -->
+<!-- i18n-source-hash: sha256:16ae61418d4532564690c8c0e33918642dfdfcf3b3cffba4216736d166ee43ec -->
 
 # Arsitektur
 
@@ -186,6 +186,9 @@ flowchart TB
 ## Pembayaran adalah ledger, bukan kolom (issue #285, [ADR-0025](adr/0025-payments-are-an-allocation-ledger-separate-from-order-status.md))
 
 Setiap cara uang sampai ke sebuah pesanan — tender POS, konfirmasi transfer manual yang diterima, pembayaran yang dicatat staf, webhook gateway terverifikasi atau hasil reconcile — menulis SATU tabel append-only, `awcms_commerce_payment_allocations`, dan tidak ada yang lain yang memutuskan "lunas". Penyelesaian diturunkan dari baris-barisnya (`Σ pembayaran berhasil − Σ pembalikan berhasil`); `orders.payment_status` adalah cache dari turunan itu; siklus hidup pesanan bergerak ke `paid` lewat satu `transitionOrderStatus` yang sudah ada ketika penyelesaian mencapai ambang rilis pesanan, tidak pernah lewat jalur sendiri. Setiap penulis mengunci baris pesanan lebih dulu (`FOR NO KEY UPDATE`, agar kunci key-share FK dari insert anak tidak bisa membuatnya deadlock), itulah yang membuat dua pembayaran final yang bersamaan aman; `source_key` unik milik ledger adalah penjaga kedua yang independen di belakang store idempotensi bersama. `awcms_app` tidak bisa `DELETE` baris ledger dan trigger membekukan setiap kolom kecuali transisi leg gateway `pending → succeeded|failed`. Graf impor lokal-modul tetap satu arah: `payment-allocation-directory.ts` tidak mengimpor apa pun dari `order-directory.ts` dan diberi callback rilis; `payment-recording.ts` menyusun keduanya. Tidak ada panggilan provider yang masuk ke transaksi-transaksi ini (leg gateway dibuka setelah provider kembali dan diselesaikan oleh hasil webhook/reconcile yang terverifikasi).
+## Poin loyalitas: buku besar append-only yang diumpan domain event ([ADR-0026](adr/0026-loyalty-points-are-an-append-only-ledger.id.md))
+
+Loyalitas berada di dalam `commerce` dan tidak menyentuh kode order, POS, penetapan harga, atau webhook pembayaran. Setiap jalur pembayaran sudah menerbitkan `order.paid` dan setiap pembatalan `order.cancelled`; dua consumer `domain_event_runtime` (`commerce.order_paid_loyalty_earner`, `commerce.order_cancelled_loyalty_reverser`, terdaftar di samping entitlement grantor) mengubahnya menjadi baris `awcms_commerce_loyalty_ledger`. Ledger adalah kebenarannya dan `awcms_commerce_loyalty_accounts.balance` proyeksinya, dijaga dalam transaksi yang sama dengan setiap insert di bawah kunci baris — `appendLedgerEntry` di `application/loyalty-ledger.ts` adalah satu-satunya penulis — itulah yang membuat dua redeem konkuren aman tanpa loop retry. Dua job menyertainya: `commerce:loyalty:expire` (append-only, idempoten) dan `commerce:loyalty:reconcile` yang hanya-baca. Seluruh fitur berada di balik `features.loyalty`, default mati, dan endpoint untuk pelanggan memakai pola sesi bearer yang sama dengan permukaan akun lainnya (tanpa cookie, id pelanggan hanya dari sesi).
 
 ## Shift adalah turunan atas ledger (issue #284, [ADR-0028](adr/0028-pos-register-sessions-and-cash-up.md))
 
