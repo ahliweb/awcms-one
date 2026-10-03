@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](status.md)
 
-<!-- i18n-source-hash: sha256:f5bd6f16be4ba56cb47bee4358cddf3e9adb39788711270967796736850c0b85 -->
+<!-- i18n-source-hash: sha256:7aa7e13ef5b523d056fd4b1bbd1bd9df2684d258d1f743c7d8241c219c1042a1 -->
 
 # Status
 
@@ -17,6 +17,10 @@ Sebuah workspace Bun: `apps/cms` (backend/system of record, `ahliweb/awcms` dise
 ## `apps/cms` — modul `commerce` (ADR-0008)
 
 Satu modul, bukan tiga, membawa seluruh toko: katalog (gambar, varian, harga bertingkat, tabel ukuran, formulir layanan), marketing (flash sale, voucher, slider, testimonial, popup, pengaturan toko berversi, banner promo), dan pesanan (checkout tamu lewat kode pesanan + telepon — [ADR-0009](adr/0009-guest-checkout-by-order-code-and-phone.md) — konfirmasi pembayaran, ulasan). Keluarga `/api/v1/commerce/storefront/*` yang anonim dan terikat Origin, yang dipanggil langsung oleh browser statis, adalah [ADR-0007](adr/0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.md). Detail per-field: [`docs/cms.md`](cms.id.md), [`docs/api.md`](api.id.md), [`docs/skema-basis-data.md`](skema-basis-data.id.md), [`docs/kamus-data.md`](kamus-data.id.md). UI admin (`apps/cms/src/pages/admin/commerce*`) punya epic paritas kedua sendiri terhadap admin v2 milik `ahliweb/media-lenterakalteng` (#249): dialog konfirmasi aksesibel yang menggantikan `window.confirm`, satu peta label terjemahan bersama untuk setiap enum commerce, save bar settings persisten, konfirmasi status-pesanan dengan catatan opsional, dan publish/draf/hapus massal pada daftar produk tanpa endpoint massal baru — lihat bagian "Commerce admin v2" milik [`docs/cms.md`](cms.id.md) dan [`docs/ui-ux.md`](ui-ux.id.md).
+
+## Atribut katalog dan impor/ekspor CSV (ADR-0027)
+
+Atribut kustom **bertipe** yang didefinisikan tenant pada produk dan varian (teks, bilangan bulat, desimal, boolean, tanggal, daftar pilihan), dengan tata bahasa angka ketat yang tidak bergantung locale, disimpan sebagai integer berskala yang eksak; pemfilteran atribut bernama (`attr=<key>:<op>:<value>`) dan pencarian teks bebas atas atribut searchable, dibangun agar tidak ada identifier atau ekspresi SQL yang diturunkan dari request; API katalog publik hanya menampilkan atribut `visible_public` (`attributes[]` aditif); ekspor CSV yang menetralkan formula spreadsheet; dan impor CSV berupa dry-run → laporan per baris → apply semua-atau-tidak-sama-sekali, idempoten dan terikat pada file yang ditinjau, mencocokkan SKU dan tidak pernah mengambil media. Admin: `/admin/commerce-attributes`, `/admin/commerce-catalog-import`, input bertipe per produk dan varian di `/admin/commerce`. Rincian dan rencana kueri terukur: [ADR-0027](adr/0027-catalog-custom-attributes-are-typed-and-allowlisted.md), [`docs/skema-basis-data.md`](skema-basis-data.md), [`docs/api.md`](api.md).
 
 ## Akun pelanggan dan afiliasi (ADR-0016)
 
@@ -64,6 +68,7 @@ Media (fotografi produk, hero artikel, kreatif iklan) diresolusi lewat `GET /api
 
 - Ubah e-mail/telepon pada akun pelanggan yang sudah ada, dan verifikasi telepon ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) D6).
 - Redeem loyalitas ke harga checkout dan tender POS, tier opsional, kompensasi retur per baris, kelayakan kampanye/segmen, dan halaman saldo storefront — daftar Ditunda di [ADR-0026](adr/0026-loyalty-points-are-an-append-only-ledger.md).
+- Atribut katalog: varian pada impor/ekspor CSV, pengurutan berdasarkan nilai atribut, UI faset etalase di atas filter `attr=`, dan penggantian nama opsi enum — masing-masing dicatat pada "Ditunda" di [ADR-0027](adr/0027-catalog-custom-attributes-are-typed-and-allowlisted.md).
 - Media library ter-upload sungguhan untuk gambar produk/slider/testimonial — sesi `media_library` berbasis-R2 sudah ada, tapi belum ada yang mengisinya di repo ini (lihat [`docs/deployment.md`](deployment.id.md), [`docs/cms.md`](cms.id.md)).
 - Adapter gateway pembayaran Xendit dan pelacakan kurir, keduanya disebut sebagai tindak lanjut eksplisit di belakang port yang sudah dibangun [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md).
 - Tender kredit-toko / kartu-hadiah dan refund provider otomatis pada ledger pembayaran (Ditunda di [ADR-0025](adr/0025-payments-are-an-allocation-ledger-separate-from-order-status.md)).

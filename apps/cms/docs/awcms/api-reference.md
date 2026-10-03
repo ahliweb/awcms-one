@@ -9429,6 +9429,82 @@ Proves the parts of the chain nothing else can see — that the VAPID key pair m
 
 Catalog slice of the re-platformed storefront (commerce module, Issue #4, epic #1) — tenant-scoped product categories (hierarchical, self-referencing parent) and products (physical/digital/service/subscription), ported from the legacy MySQL commerce_bj_mart schema's core catalog columns. price is numeric(14,2) and crosses the wire as a string, never a JSON number, so money arithmetic never drifts through binary floating point. A product's lifecycle status (draft/active/inactive/archived) travels through the same PATCH as every other field and is checked against a legal-transition table before any write. Categories have no status and no re-parenting via update — a hierarchy position is set once, at creation. This slice ships no restore endpoint: a soft-deleted row is retained (for the FK integrity of anything still referencing it) but not exposed for recovery here.
 
+### `GET /api/v1/commerce/attributes` — Issue #291. Every live attribute definition of the tenant (sort_order, key). Not paginated: a tenant is capped at 100 definitions. Gated on attributes.read.
+
+- **operationId**: `listCommerceAttributeDefinitions`
+- **Security**: bearerAuth + tenantHeader
+
+**Responses**
+
+| Status | Description                         | Schema                                 |
+| ------ | ----------------------------------- | -------------------------------------- |
+| 200    | The tenant's attribute definitions. | object                                 |
+| 401    | Missing or invalid session.         | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.         | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/attributes` — Issue #291. Create an attribute definition. `key` (a lowercase slug) and `valueType` are immutable. Gated on attributes.manage.
+
+- **operationId**: `createCommerceAttributeDefinition`
+- **Security**: bearerAuth + tenantHeader
+
+**Request body** (required): [`CommerceAttributeDefinitionInput`](#schema-commerceattributedefinitioninput)
+
+**Responses**
+
+| Status | Description                                                                                                                        | Schema                                 |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Definition created.                                                                                                                | object                                 |
+| 400    | Validation error.                                                                                                                  | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 409    | ATTRIBUTE_KEY_ALREADY_EXISTS (the key is taken by a live definition) or ATTRIBUTE_DEFINITION_LIMIT_REACHED (100 live definitions). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/attributes/{id}` — Issue #291. Fetch one attribute definition. Gated on attributes.read.
+
+- **operationId**: `getCommerceAttributeDefinition`
+- **Security**: bearerAuth + tenantHeader
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The definition.             | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/attributes/{id}` — Issue #291. Update label/labels/constraints/flags/appliesTo/sortOrder. A body naming `key` or `valueType` is a 400. Removing an enum option stored values still use (ATTRIBUTE_OPTION_IN_USE) or narrowing appliesTo under stored values (ATTRIBUTE_APPLIES_TO_IN_USE) is a 409. Narrowing other constraints does not rewrite stored values. Gated on attributes.manage.
+
+- **operationId**: `updateCommerceAttributeDefinition`
+- **Security**: bearerAuth + tenantHeader
+
+**Request body** (required): [`CommerceAttributeDefinitionInput`](#schema-commerceattributedefinitioninput)
+
+**Responses**
+
+| Status | Description                                             | Schema                                 |
+| ------ | ------------------------------------------------------- | -------------------------------------- |
+| 200    | The updated definition.                                 | object                                 |
+| 400    | Validation error.                                       | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                             | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                             | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                     | [`ApiError`](#standard-error-envelope) |
+| 409    | ATTRIBUTE_OPTION_IN_USE or ATTRIBUTE_APPLIES_TO_IN_USE. | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/commerce/attributes/{id}` — Issue #291. Soft delete (audited). The key becomes free to reuse; stored values stay in the database but are no longer read. Gated on attributes.manage.
+
+- **operationId**: `deleteCommerceAttributeDefinition`
+- **Security**: bearerAuth + tenantHeader
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Deleted.                    | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/campaigns` — Issue #114 (contract #106 ADR-0017 D9). Staff list of campaigns, newest first. Gated on `commerce.campaigns.read`.
 
 - **operationId**: `listCommerceCampaigns`
@@ -10764,15 +10840,16 @@ The 201 carries `payments` (every ledger row — one per tender, for the receipt
 
 **Parameters**
 
-| Name          | In    | Required | Type                                              | Description                                                                                                                                                                                      |
-| ------------- | ----- | -------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `cursor`      | query | no       | string                                            | Opaque cursor from a previous response's nextCursor. Only meaningful with the default sort=newest; combined with any other sort it is rejected with 400. A malformed value is rejected with 400. |
-| `categoryId`  | query | no       | string (uuid)                                     |                                                                                                                                                                                                  |
-| `status`      | query | no       | enum(`draft`, `active`, `inactive`, `archived`)   |                                                                                                                                                                                                  |
-| `q`           | query | no       | string                                            | Case-insensitive substring match on name or sku (trigram-indexed).                                                                                                                               |
-| `sort`        | query | no       | enum(`newest`, `price_asc`, `price_desc`, `name`) | Defaults to newest. price_asc/price_desc/name return a single bounded page (no nextCursor) rather than a keyset walk — see domain/product-sort.ts.                                               |
-| `featured`    | query | no       | boolean                                           |                                                                                                                                                                                                  |
-| `recommended` | query | no       | boolean                                           |                                                                                                                                                                                                  |
+| Name          | In    | Required | Type                                              | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ------------- | ----- | -------- | ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `cursor`      | query | no       | string                                            | Opaque cursor from a previous response's nextCursor. Only meaningful with the default sort=newest; combined with any other sort it is rejected with 400. A malformed value is rejected with 400.                                                                                                                                                                                                                                                                                                                                                                       |
+| `categoryId`  | query | no       | string (uuid)                                     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `status`      | query | no       | enum(`draft`, `active`, `inactive`, `archived`)   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `q`           | query | no       | string                                            | Case-insensitive substring match on name or sku (trigram-indexed).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `sort`        | query | no       | enum(`newest`, `price_asc`, `price_desc`, `name`) | Defaults to newest. price_asc/price_desc/name return a single bounded page (no nextCursor) rather than a keyset walk — see domain/product-sort.ts.                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `featured`    | query | no       | boolean                                           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `recommended` | query | no       | boolean                                           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `attr`        | query | no       | array of string                                   | Issue #291 — repeatable typed attribute filter `attr=<key>:<operator>:<value>` (at most 5, AND-ed). `operator` is one of eq, in (comma-separated, at most 20), gte, lte (integer/decimal/date), contains (text). `key` must be a filterable, `visible_public` attribute; an unknown, non-filterable or non-public key is one and the same 400. The value is parsed with the attribute's typed grammar (a decimal uses a dot; `1,5` is a 400). A variant-level value matches its product. `q` additionally matches `searchable`, `visible_public` text/enum attributes. |
 
 **Responses**
 
@@ -10867,6 +10944,37 @@ Sets deleted_at; the sku and slug are freed for reuse. Restore it with POST /api
 | 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/products/{id}/attributes` — Issue #291. The product's FULL (admin) attribute set — product-level and per-variant values of every visible_admin definition — plus the applicable definitions. Gated on attributes.read, not products.read, so a storefront machine credential holding products.read cannot read back-office-only attributes.
+
+- **operationId**: `getCommerceProductAttributes`
+- **Security**: bearerAuth + tenantHeader
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Definitions and values.     | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `PUT /api/v1/commerce/products/{id}/attributes` — Issue #291. Set/clear the product's attribute values (`{attributes: {key: value|null}}`). Every value is parsed with the typed grammar (decimal: digits and a dot only, never a locale spelling; date: YYYY-MM-DD; enum: an exact option); one invalid entry rejects the whole request with nothing written. Gated on products.update.
+
+- **operationId**: `setCommerceProductAttributes`
+- **Security**: bearerAuth + tenantHeader
+
+**Request body** (required): [`CommerceAttributeAssignments`](#schema-commerceattributeassignments)
+
+**Responses**
+
+| Status | Description                          | Schema                                 |
+| ------ | ------------------------------------ | -------------------------------------- |
+| 200    | The keys whose stored value changed. | object                                 |
+| 400    | Validation error.                    | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.          | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                  | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/products/{id}/images` — Attach a media object to a product (Issue 23). Gated on products.update.
 
@@ -11079,6 +11187,23 @@ Upsert on `(tenant_id, product_id)` — at most one link per product (`sql/939`)
 | 403    | Access denied by RBAC/ABAC.   | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.           | [`ApiError`](#standard-error-envelope) |
 
+### `PUT /api/v1/commerce/products/{id}/variants/{variantId}/attributes` — Issue #291. Variant-level twin of PUT /products/{id}/attributes, restricted to definitions whose appliesTo covers variants; the variant must belong to the product. Gated on products.update.
+
+- **operationId**: `setCommerceVariantAttributes`
+- **Security**: bearerAuth + tenantHeader
+
+**Request body** (required): [`CommerceAttributeAssignments`](#schema-commerceattributeassignments)
+
+**Responses**
+
+| Status | Description                          | Schema                                 |
+| ------ | ------------------------------------ | -------------------------------------- |
+| 200    | The keys whose stored value changed. | object                                 |
+| 400    | Validation error.                    | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.          | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                  | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/products/by-slug/{slug}` — Fetch one product by its URL slug (Issue 23) — the storefront's detail fetch.
 
 - **operationId**: `getCommerceProductBySlug`
@@ -11098,6 +11223,47 @@ Upsert on `(tenant_id, product_id)` — at most one link per product (`sql/939`)
 | 401    | Missing or invalid session.                        | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC.                        | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.                                | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/products/export.csv` — Issue #291. The live product catalog as RFC 4180 CSV (UTF-8 with BOM) — core columns plus one `attr:<key>` column per admin-visible product attribute. Every cell is formula-injection-neutralised (a cell starting with = + - @ TAB or CR is prefixed with `'`; a plain signed number is left as is). At most 5000 rows; `X-AWCMS-Export-Truncated: true` flags a larger catalog. costPrice and downloadLink are not exported. Gated on products.export.
+
+- **operationId**: `exportCommerceProductsCsv`
+- **Security**: bearerAuth + tenantHeader
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The CSV file.               | string                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/products/import` — Issue #291. Validate (mode=dry_run, the default — writes NOTHING) or apply (mode=apply) a product CSV. The body is the CSV itself (text/csv, UTF-8, at most 5 MiB and 5000 data rows). Rows match on `sku`: a live product with that SKU is updated, any other SKU creates one. apply is ALL-OR-NOTHING (422 IMPORT_VALIDATION_FAILED when the plan has any error, 409 IMPORT_CONFLICT on a write-time conflict — both leave the catalog untouched), needs `Idempotency-Key` (a replay with the same key and file returns the original response; the same key with a different file is 409 IDEMPOTENCY_CONFLICT), and needs products.import AND products.create AND products.update. `expectedSha256` (the dry-run's fileSha256) refuses a file that differs from the reviewed one (409 IMPORT_FILE_MISMATCH). No column accepts a media reference and nothing is fetched remotely. Gated on products.import.
+
+- **operationId**: `importCommerceProductsCsv`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name              | In     | Required | Type                     | Description                                                          |
+| ----------------- | ------ | -------- | ------------------------ | -------------------------------------------------------------------- |
+| `mode`            | query  | no       | enum(`dry_run`, `apply`) |                                                                      |
+| `expectedSha256`  | query  | no       | string                   | apply only — the fileSha256 of the dry-run report that was reviewed. |
+| `Idempotency-Key` | header | no       | string                   | Required for mode=apply.                                             |
+
+**Request body** (required): string
+
+**Responses**
+
+| Status | Description                                                                                          | Schema                                 |
+| ------ | ---------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The per-row report (dry-run), or the applied report with `batchId`.                                  | object                                 |
+| 400    | Validation error.                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                          | [`ApiError`](#standard-error-envelope) |
+| 409    | IMPORT_FILE_MISMATCH, IMPORT_CONFLICT (details carry the report) or IDEMPOTENCY_CONFLICT.            | [`ApiError`](#standard-error-envelope) |
+| 413    | The body exceeds 5 MiB.                                                                              | [`ApiError`](#standard-error-envelope) |
+| 415    | The body is not text/csv.                                                                            | [`ApiError`](#standard-error-envelope) |
+| 422    | IMPORT_VALIDATION_FAILED — the file has errors; nothing was imported. `error.details` is the report. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/reviews` — Admin review moderation list (Issue 29). Keyset-paginated; optional status filter. Gated on reviews.read.
 
@@ -13953,6 +14119,107 @@ Per-tenant comment configuration. Every numeric bound mirrors a CHECK constraint
   "turnstileEnabled": false,
   "notifyOnReply": false
 }
+```
+
+### Schema: CommerceAttributeAssignments
+
+| Field        | Type   | Required | Nullable | Description                                                                                                                                                                                    |
+| ------------ | ------ | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `attributes` | object | yes      | no       | `{ <key>: <value> \| null }`. A value sets the attribute, `null` clears it, an absent key is untouched. Values are parsed with the typed grammar; one invalid entry rejects the whole request. |
+
+**Example**
+
+```json
+{
+  "attributes": "(operation-specific payload)"
+}
+```
+
+### Schema: CommerceAttributeConstraints
+
+Closed per-type schema — any other key is a 400. text: minLength, maxLength (<= 2000). integer/decimal: min, max (canonical decimal strings; integer up to 12 digits, decimal up to 12 integer + 6 fractional digits), decimal also scale (1..6). date: min, max (ISO dates). enum: options[] (value, label), case-insensitively unique. boolean: none.
+
+| Field       | Type            | Required | Nullable | Description |
+| ----------- | --------------- | -------- | -------- | ----------- |
+| `minLength` | integer         | no       | no       |             |
+| `maxLength` | integer         | no       | no       |             |
+| `min`       | string          | no       | no       |             |
+| `max`       | string          | no       | no       |             |
+| `scale`     | integer         | no       | no       |             |
+| `options`   | array of object | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "minLength": 0,
+  "maxLength": 0,
+  "min": "string",
+  "max": "string",
+  "scale": 1,
+  "options": [
+    {
+      "value": "string",
+      "label": "string"
+    }
+  ]
+}
+```
+
+### Schema: CommerceAttributeDefinitionInput
+
+| Field           | Type                                                                   | Required | Nullable | Description |
+| --------------- | ---------------------------------------------------------------------- | -------- | -------- | ----------- |
+| `key`           | string                                                                 | yes      | no       |             |
+| `label`         | string                                                                 | yes      | no       |             |
+| `labels`        | object                                                                 | no       | no       |             |
+| `valueType`     | [`CommerceAttributeValueType`](#schema-commerceattributevaluetype)     | yes      | no       |             |
+| `constraints`   | [`CommerceAttributeConstraints`](#schema-commerceattributeconstraints) | no       | no       |             |
+| `appliesTo`     | enum(`product`, `variant`, `both`)                                     | no       | no       |             |
+| `isSearchable`  | boolean                                                                | no       | no       |             |
+| `isFilterable`  | boolean                                                                | no       | no       |             |
+| `visibleAdmin`  | boolean                                                                | no       | no       |             |
+| `visiblePublic` | boolean                                                                | no       | no       |             |
+| `sortOrder`     | integer                                                                | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "key": "string",
+  "label": "string",
+  "labels": "(operation-specific payload)",
+  "valueType": "text",
+  "constraints": {
+    "minLength": 0,
+    "maxLength": 0,
+    "min": "string",
+    "max": "string",
+    "scale": 1,
+    "options": [
+      {
+        "value": "string",
+        "label": "string"
+      }
+    ]
+  },
+  "appliesTo": "product",
+  "isSearchable": false,
+  "isFilterable": false,
+  "visibleAdmin": false,
+  "visiblePublic": false,
+  "sortOrder": 0
+}
+```
+
+### Schema: CommerceAttributeValueType
+
+Enum values: `text`, `integer`, `decimal`, `boolean`, `date`, `enum`.
+
+**Example**
+
+```json
+"text"
 ```
 
 ### Schema: CommerceCartQuoteLine

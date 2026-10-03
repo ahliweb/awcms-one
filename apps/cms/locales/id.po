@@ -7255,6 +7255,136 @@ msgstr "Dibalik"
 msgid "Ring up a counter sale — cash, QRIS or bank transfer, in one or more payments — and browse past POS sales."
 msgstr "Catat penjualan kasir — tunai, QRIS, atau transfer bank, dalam satu atau beberapa pembayaran — dan telusuri penjualan POS sebelumnya."
 
+#. Catalog attributes, CSV import/export (Issue #291)
+msgid "A blank cell in a product column leaves that field unchanged (or uses the default for a new product). A blank cell in an attr: column clears that attribute."
+msgstr "Sel kosong pada kolom produk membiarkan kolom itu tidak berubah (atau memakai nilai bawaan untuk produk baru). Sel kosong pada kolom attr: menghapus atribut tersebut."
+
+msgid "A choice that stored values still use cannot be removed."
+msgstr "Pilihan yang masih dipakai oleh nilai tersimpan tidak dapat dihapus."
+
+msgid "A row conflicted with the catalog while writing. Nothing was imported; validate the file again."
+msgstr "Sebuah baris berbenturan dengan katalog saat ditulis. Tidak ada yang diimpor; validasi file sekali lagi."
+
+msgid "Add a column named attr: followed by the attribute key for each product attribute (for example attr:weight). An unknown column rejects the file."
+msgstr "Tambahkan kolom bernama attr: diikuti kunci atribut untuk setiap atribut produk (misalnya attr:weight). Kolom yang tidak dikenal akan menolak file."
+
+msgid "Apply import"
+msgstr "Terapkan impor"
+
+msgid "Apply this file? {create} products will be created and {update} updated. All rows are applied together, or none."
+msgstr "Terapkan file ini? {create} produk akan dibuat dan {update} diperbarui. Semua baris diterapkan bersamaan, atau tidak sama sekali."
+
+msgid "Apply this import?"
+msgstr "Terapkan impor ini?"
+
+msgid "Applying the import…"
+msgstr "Menerapkan impor…"
+
+msgid "At most {count} products are exported."
+msgstr "Paling banyak {count} produk diekspor."
+
+msgid "At most {count} rows per file."
+msgstr "Paling banyak {count} baris per file."
+
+msgid "Attribute"
+msgstr "Atribut"
+
+msgid "Attribute filters"
+msgstr "Filter atribut"
+
+msgid "Attribute {key} will be removed. Its stored values stay in the database but are no longer shown, and the key becomes free to reuse."
+msgstr "Atribut {key} akan dihapus. Nilai yang tersimpan tetap ada di basis data tetapi tidak lagi ditampilkan, dan kuncinya bebas dipakai kembali."
+
+msgid "Attributes"
+msgstr "Atribut"
+
+msgid "Attributes defined for this tenant will appear here."
+msgstr "Atribut yang didefinisikan untuk tenant ini akan muncul di sini."
+
+msgid "Behaviour"
+msgstr "Perilaku"
+
+msgid "CSV file"
+msgstr "File CSV"
+
+msgid "Catalog import and export"
+msgstr "Impor dan ekspor katalog"
+
+msgid "Checking the file…"
+msgstr "Memeriksa file…"
+
+msgid "Choice list"
+msgstr "Daftar pilihan"
+
+msgid "Choices (one per line: value or value|Label)"
+msgstr "Pilihan (satu per baris: nilai atau nilai|Label)"
+
+msgid "Choose a CSV file first."
+msgstr "Pilih file CSV terlebih dahulu."
+
+msgid "Columns: sku (required), name, slug, type, status, categorySlug, price, discountPercent, stock, weightGrams, minPurchase, description, isFeatured, isRecommended."
+msgstr "Kolom: sku (wajib), name, slug, type, status, categorySlug, price, discountPercent, stock, weightGrams, minPurchase, description, isFeatured, isRecommended."
+
+msgid "Condition"
+msgstr "Kondisi"
+
+msgid "Could not create the attribute. Check the key is unique and every field is valid."
+msgstr "Atribut tidak dapat dibuat. Pastikan kuncinya unik dan setiap kolom valid."
+
+msgid "Could not delete the attribute. Please try again."
+msgstr "Atribut tidak dapat dihapus. Silakan coba lagi."
+
+msgid "Could not save the attribute. Check every field is valid."
+msgstr "Atribut tidak dapat disimpan. Pastikan setiap kolom valid."
+
+msgid "Could not save the attributes. Check every value matches its type."
+msgstr "Atribut tidak dapat disimpan. Pastikan setiap nilai sesuai tipenya."
+
+msgid "Create"
+msgstr "Buat"
+
+msgid "Create an attribute"
+msgstr "Buat atribut"
+
+msgid "Create attribute"
+msgstr "Buat atribut"
+
+msgid "Decimal number"
+msgstr "Bilangan desimal"
+
+msgid "Decimal places (at most 6)"
+msgstr "Angka desimal (paling banyak 6)"
+
+msgid "Delete attribute"
+msgstr "Hapus atribut"
+
+msgid "Delete this attribute?"
+msgstr "Hapus atribut ini?"
+
+msgid "Deleting…"
+msgstr "Menghapus…"
+
+msgid "Details"
+msgstr "Rincian"
+
+msgid "Digits and a dot only, for example 12.5."
+msgstr "Hanya angka dan titik, misalnya 12.5."
+
+msgid "Digits only, for example 42."
+msgstr "Hanya angka, misalnya 42."
+
+msgid "Download CSV"
+msgstr "Unduh CSV"
+
+msgid "Download the catalog as CSV, or validate and apply a CSV import with a per-row report."
+msgstr "Unduh katalog sebagai CSV, atau validasi dan terapkan impor CSV dengan laporan per baris."
+
+msgid "Download the live product catalog as a CSV file (UTF-8). It includes one column per product attribute and re-imports without changes."
+msgstr "Unduh katalog produk aktif sebagai file CSV (UTF-8). Berisi satu kolom per atribut produk dan dapat diimpor ulang tanpa perubahan."
+
+msgid "Earliest date"
+msgstr "Tanggal paling awal"
+
 msgid "Accounts checked"
 msgstr "Akun diperiksa"
 
@@ -7611,6 +7741,177 @@ msgstr "Penghapusan"
 msgid "Export"
 msgstr "Ekspor"
 
+msgid "File format"
+msgstr "Format file"
+
+msgid "Filterable"
+msgstr "Dapat difilter"
+
+msgid "Images and other media are not imported here: a media column rejects the file."
+msgstr "Gambar dan media lain tidak diimpor di sini: kolom media akan menolak file."
+
+msgid "Import"
+msgstr "Impor"
+
+msgid "Included in free-text search (text and choice lists only)"
+msgstr "Disertakan dalam pencarian teks bebas (hanya teks dan daftar pilihan)"
+
+msgid "Label (English)"
+msgstr "Label (Inggris)"
+
+msgid "Label (Indonesian)"
+msgstr "Label (Indonesia)"
+
+msgid "Latest date"
+msgstr "Tanggal paling akhir"
+
+msgid "Line"
+msgstr "Baris file"
+
+msgid "Lowercase letters, digits and underscores, starting with a letter. It cannot be changed later."
+msgstr "Huruf kecil, angka, dan garis bawah, diawali huruf. Tidak dapat diubah kemudian."
+
+msgid "Maximum length"
+msgstr "Panjang maksimum"
+
+msgid "Maximum value"
+msgstr "Nilai maksimum"
+
+msgid "Maximum: {value}."
+msgstr "Maksimum: {value}."
+
+msgid "Minimum length"
+msgstr "Panjang minimum"
+
+msgid "Minimum value"
+msgstr "Nilai minimum"
+
+msgid "Minimum: {value}."
+msgstr "Minimum: {value}."
+
+msgid "No attributes yet"
+msgstr "Belum ada atribut"
+
+msgid "Not filtered"
+msgstr "Tidak difilter"
+
+msgid "Not set"
+msgstr "Belum diisi"
+
+msgid "Numbers use digits and a dot only (1234.5). A decimal comma or thousands separator is rejected. Dates are YYYY-MM-DD."
+msgstr "Angka hanya memakai digit dan titik (1234.5). Koma desimal atau pemisah ribuan ditolak. Tanggal berformat YYYY-MM-DD."
+
+msgid "Per-row report"
+msgstr "Laporan per baris"
+
+msgid "Product attributes"
+msgstr "Atribut produk"
+
+msgid "Product attributes could not be loaded right now. Please try again later."
+msgstr "Atribut produk tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Products and variants"
+msgstr "Produk dan varian"
+
+msgid "Result"
+msgstr "Hasil"
+
+msgid "Row"
+msgstr "Baris"
+
+msgid "Rows are matched on the sku column: a product with that SKU is updated, any other SKU creates a product. Upload the file, validate it, then apply it."
+msgstr "Baris dicocokkan pada kolom sku: produk dengan SKU tersebut diperbarui, SKU lain membuat produk baru. Unggah file, validasi, lalu terapkan."
+
+msgid "Save attributes"
+msgstr "Simpan atribut"
+
+msgid "Searchable"
+msgstr "Dapat dicari"
+
+msgid "Text"
+msgstr "Teks"
+
+msgid "The attribute filters could not be applied: check the attribute, the condition and that the value matches the attribute's type."
+msgstr "Filter atribut tidak dapat diterapkan: periksa atribut, kondisi, dan pastikan nilai sesuai tipe atribut."
+
+msgid "The file changed after it was validated. Validate it again before applying."
+msgstr "File berubah setelah divalidasi. Validasi lagi sebelum menerapkan."
+
+msgid "The file has errors. Nothing was imported; fix the file and validate again."
+msgstr "File memiliki kesalahan. Tidak ada yang diimpor; perbaiki file lalu validasi lagi."
+
+msgid "The file is valid. Review the report, then apply the import."
+msgstr "File valid. Tinjau laporan, lalu terapkan impor."
+
+msgid "The import was applied: {create} created, {update} updated, {unchanged} unchanged."
+msgstr "Impor diterapkan: {create} dibuat, {update} diperbarui, {unchanged} tidak berubah."
+
+msgid "The request failed. Please try again."
+msgstr "Permintaan gagal. Silakan coba lagi."
+
+msgid "This file is large, so only the rows with errors are listed. The counts above cover every row."
+msgstr "File ini besar, sehingga hanya baris yang bermasalah yang ditampilkan. Jumlah di atas mencakup semua baris."
+
+msgid "This page could not be loaded right now. Please try again later."
+msgstr "Halaman ini tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Typed custom attributes for products and variants: define what can be recorded, how it is validated, and where it is searchable or visible."
+msgstr "Atribut kustom bertipe untuk produk dan varian: tentukan apa yang dapat dicatat, cara validasinya, serta di mana atribut dapat dicari atau terlihat."
+
+msgid "Unchanged"
+msgstr "Tidak berubah"
+
+msgid "Update"
+msgstr "Perbarui"
+
+msgid "Validate file"
+msgstr "Validasi file"
+
+msgid "Visible in the admin"
+msgstr "Terlihat di admin"
+
+msgid "Visible on the storefront API"
+msgstr "Terlihat di API etalase"
+
+msgid "Whole number"
+msgstr "Bilangan bulat"
+
+msgid "Yes/No"
+msgstr "Ya/Tidak"
+
+msgid "You do not have permission to import or export the catalog."
+msgstr "Anda tidak memiliki izin untuk mengimpor atau mengekspor katalog."
+
+msgid "You do not have permission to view product attributes."
+msgstr "Anda tidak memiliki izin untuk melihat atribut produk."
+
+msgid "contains"
+msgstr "mengandung"
+
+msgid "equals"
+msgstr "sama dengan"
+
+msgid "is at least"
+msgstr "paling sedikit"
+
+msgid "is at most"
+msgstr "paling banyak"
+
+msgid "is one of (comma-separated)"
+msgstr "salah satu dari (dipisah koma)"
+
+msgid "line {line}"
+msgstr "baris {line}"
+
+msgid "{rows} rows checked: {create} to create, {update} to update, {unchanged} unchanged, {error} with errors."
+msgstr "{rows} baris diperiksa: {create} akan dibuat, {update} akan diperbarui, {unchanged} tidak berubah, {error} bermasalah."
+
+msgid "{count} attribute"
+msgid_plural "{count} attributes"
+msgstr[0] "{count} atribut"
+
+msgid "Catalog import/export"
+msgstr "Impor/ekspor katalog"
 msgid "Failure"
 msgstr "Gagal"
 

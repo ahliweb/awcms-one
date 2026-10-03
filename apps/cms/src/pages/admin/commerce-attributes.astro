@@ -1,0 +1,566 @@
+---
+/**
+ * Catalog attribute definitions (Issue #291) — the tenant-authored schema the
+ * typed custom attributes on products and variants are validated against:
+ * create, edit (label, translations, constraints, flags, applicability) and
+ * soft delete. The key and the value type are fixed at creation (a different
+ * type is a different attribute — see `domain/attribute-definition.ts`), so
+ * the edit form shows them read-only.
+ *
+ * Every control is UX-only; `/api/v1/commerce/attributes` is the authority and
+ * re-validates every field. Gated on `commerce.attributes.read` (view) and
+ * `commerce.attributes.manage` (change).
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import CommerceConfirmDialog from "../../components/CommerceConfirmDialog.astro";
+import CommerceAttributeConstraintFields from "../../components/CommerceAttributeConstraintFields.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import { listAttributeDefinitions } from "../../modules/commerce/application/attribute-definition-directory";
+import { ATTRIBUTE_APPLIES_TO } from "../../modules/commerce/domain/attribute-definition";
+import { ATTRIBUTE_VALUE_TYPES } from "../../modules/commerce/domain/attribute-value";
+import {
+  commerceLabel,
+  createCommerceLabels
+} from "../../lib/ui/commerce-admin-labels";
+
+const ssr = Astro.locals.ssrContext!;
+const { t, tn } = getTranslatorFor(Astro.locals.locale);
+const labels = createCommerceLabels(t);
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "commerce",
+    activityCode: "attributes",
+    action: "read"
+  },
+  load: async ({ tx, can }) => {
+    const definitions = await listAttributeDefinitions(tx, ssr.tenantId);
+    const canManage = await can({
+      moduleKey: "commerce",
+      activityCode: "attributes",
+      action: "manage"
+    });
+    return { definitions, canManage };
+  },
+  onError: (error) => {
+    logAdminPageError(
+      "admin/commerce-attributes.astro: failed to list attribute definitions",
+      error,
+      { correlationId: Astro.locals.correlationId }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+const loadError = screen.state === "error";
+const definitions = screen.state === "allowed" ? screen.data.definitions : [];
+const canManage = screen.state === "allowed" && screen.data.canManage;
+---
+
+<AdminLayout
+  title={t("Product attributes")}
+  description={t(
+    "Typed custom attributes for products and variants: define what can be recorded, how it is validated, and where it is searchable or visible."
+  )}
+>
+  {!canRead && (
+    <p class="state-notice fade-in-up" id="attributes-denied">
+      {t("You do not have permission to view product attributes.")}
+    </p>
+  )}
+
+  {canRead && loadError && (
+    <p class="state-notice fade-in-up" id="attributes-error">
+      {t(
+        "Product attributes could not be loaded right now. Please try again later."
+      )}
+    </p>
+  )}
+
+  {canManage && (
+    <form
+      id="attribute-create-form"
+      class="admin-create-form fade-in-up"
+      data-failure={t(
+        "Could not create the attribute. Check the key is unique and every field is valid."
+      )}
+    >
+      <p class="form-legend">{t("Create an attribute")}</p>
+      <p
+        id="attribute-create-error"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      />
+
+      <label for="attribute-key">{t("Key")}</label>
+      <input
+        id="attribute-key"
+        name="key"
+        type="text"
+        required
+        autocomplete="off"
+        pattern="[a-z][a-z0-9_]{0,62}"
+        aria-describedby="attribute-key-hint"
+      />
+      <p id="attribute-key-hint" class="form-hint">
+        {t(
+          "Lowercase letters, digits and underscores, starting with a letter. It cannot be changed later."
+        )}
+      </p>
+
+      <label for="attribute-label">{t("Label")}</label>
+      <input
+        id="attribute-label"
+        name="label"
+        type="text"
+        required
+        autocomplete="off"
+      />
+
+      <label for="attribute-label-en">{t("Label (English)")}</label>
+      <input
+        id="attribute-label-en"
+        name="labelEn"
+        type="text"
+        autocomplete="off"
+      />
+
+      <label for="attribute-label-id">{t("Label (Indonesian)")}</label>
+      <input
+        id="attribute-label-id"
+        name="labelId"
+        type="text"
+        autocomplete="off"
+      />
+
+      <label for="attribute-valueType">{t("Type")}</label>
+      <select id="attribute-valueType" name="valueType">
+        {ATTRIBUTE_VALUE_TYPES.map((type) => (
+          <option value={type}>
+            {commerceLabel(labels.attributeValueType, type)}
+          </option>
+        ))}
+      </select>
+
+      <label for="attribute-appliesTo">{t("Applies to")}</label>
+      <select id="attribute-appliesTo" name="appliesTo">
+        {ATTRIBUTE_APPLIES_TO.map((target) => (
+          <option value={target}>
+            {commerceLabel(labels.attributeAppliesTo, target)}
+          </option>
+        ))}
+      </select>
+
+      <CommerceAttributeConstraintFields
+        locale={Astro.locals.locale}
+        idPrefix="attribute-create"
+      />
+
+      <label>
+        <input type="checkbox" name="isFilterable" value="true" />{" "}
+        {t("Filterable")}
+      </label>
+      <label>
+        <input type="checkbox" name="isSearchable" value="true" />{" "}
+        {t("Included in free-text search (text and choice lists only)")}
+      </label>
+      <label>
+        <input type="checkbox" name="visibleAdmin" value="true" checked />{" "}
+        {t("Visible in the admin")}
+      </label>
+      <label>
+        <input type="checkbox" name="visiblePublic" value="true" />{" "}
+        {t("Visible on the storefront API")}
+      </label>
+
+      <label for="attribute-sortOrder">{t("Sort order")}</label>
+      <input
+        id="attribute-sortOrder"
+        name="sortOrder"
+        type="number"
+        min="0"
+        max="10000"
+        value="0"
+      />
+
+      <button
+        type="submit"
+        id="attribute-create-submit"
+        data-busy={t("Saving…")}
+      >
+        {t("Create attribute")}
+      </button>
+    </form>
+  )}
+
+  {canRead && !loadError && (
+    <p
+      id="attribute-action-error"
+      class="admin-create-error"
+      role="alert"
+      hidden
+    />
+  )}
+
+  {canRead && !loadError && (
+    <div class="data-table-scroll fade-in-up">
+      <table
+        class="data-table data-table--stack"
+        id="commerce-attributes-table"
+      >
+        <caption>
+          {tn("{count} attribute", "{count} attributes", definitions.length, {
+            count: definitions.length
+          })}
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">{t("Key")}</th>
+            <th scope="col">{t("Label")}</th>
+            <th scope="col">{t("Type")}</th>
+            <th scope="col">{t("Applies to")}</th>
+            <th scope="col">{t("Behaviour")}</th>
+            {canManage && <th scope="col">{t("Actions")}</th>}
+          </tr>
+        </thead>
+        <tbody>
+          {definitions.length === 0 ? (
+            <tr>
+              <td class="data-table-empty" colspan={canManage ? 6 : 5}>
+                <div class="empty-state">
+                  <span class="empty-state-icon" aria-hidden="true">
+                    ◇
+                  </span>
+                  <span class="empty-state-title">
+                    {t("No attributes yet")}
+                  </span>
+                  <span class="empty-state-text">
+                    {t("Attributes defined for this tenant will appear here.")}
+                  </span>
+                </div>
+              </td>
+            </tr>
+          ) : (
+            definitions.map((definition) => (
+              <>
+                <tr data-attribute-row={definition.id}>
+                  <td data-label={t("Key")}>
+                    <span class="cell-code">{definition.key}</span>
+                  </td>
+                  <td data-label={t("Label")}>{definition.label}</td>
+                  <td data-label={t("Type")}>
+                    <span
+                      class="cell-muted"
+                      data-value-type={definition.valueType}
+                    >
+                      {commerceLabel(
+                        labels.attributeValueType,
+                        definition.valueType
+                      )}
+                    </span>
+                  </td>
+                  <td data-label={t("Applies to")}>
+                    {commerceLabel(
+                      labels.attributeAppliesTo,
+                      definition.appliesTo
+                    )}
+                  </td>
+                  <td data-label={t("Behaviour")}>
+                    <div class="pill-row">
+                      {definition.isFilterable && (
+                        <span class="admin-status-pill" data-tone="neutral">
+                          {t("Filterable")}
+                        </span>
+                      )}
+                      {definition.isSearchable && (
+                        <span class="admin-status-pill" data-tone="neutral">
+                          {t("Searchable")}
+                        </span>
+                      )}
+                      {definition.visibleAdmin && (
+                        <span class="admin-status-pill" data-tone="neutral">
+                          {t("Admin")}
+                        </span>
+                      )}
+                      {definition.visiblePublic && (
+                        <span class="admin-status-pill" data-tone="success">
+                          {t("Storefront")}
+                        </span>
+                      )}
+                    </div>
+                  </td>
+                  {canManage && (
+                    <td data-label={t("Actions")} class="stacked-block">
+                      <div class="row-actions">
+                        <button
+                          type="button"
+                          class="module-toggle attribute-delete-btn"
+                          data-attribute-id={definition.id}
+                          data-confirm-title={t("Delete this attribute?")}
+                          data-confirm-message={t(
+                            "Attribute {key} will be removed. Its stored values stay in the database but are no longer shown, and the key becomes free to reuse.",
+                            { key: definition.key }
+                          )}
+                          data-confirm-label={t("Delete attribute")}
+                          data-confirm-danger="true"
+                          data-failure={t(
+                            "Could not delete the attribute. Please try again."
+                          )}
+                          data-busy={t("Deleting…")}
+                        >
+                          {t("Delete")}
+                        </button>
+                      </div>
+                    </td>
+                  )}
+                </tr>
+                {canManage && (
+                  <tr>
+                    <td colspan={6}>
+                      <details class="admin-section">
+                        <summary>{t("Edit")}</summary>
+                        <form
+                          class="admin-create-form attribute-edit-form"
+                          data-attribute-id={definition.id}
+                          data-value-type={definition.valueType}
+                          data-failure={t(
+                            "Could not save the attribute. Check every field is valid."
+                          )}
+                          data-option-in-use={t(
+                            "A choice that stored values still use cannot be removed."
+                          )}
+                        >
+                          <p
+                            id={`attribute-edit-error-${definition.id}`}
+                            class="admin-create-error"
+                            role="alert"
+                            hidden
+                          />
+                          <label>{t("Label")}</label>
+                          <input
+                            name="label"
+                            type="text"
+                            value={definition.label}
+                          />
+                          <label>{t("Label (English)")}</label>
+                          <input
+                            name="labelEn"
+                            type="text"
+                            value={definition.labels.en ?? ""}
+                          />
+                          <label>{t("Label (Indonesian)")}</label>
+                          <input
+                            name="labelId"
+                            type="text"
+                            value={definition.labels.id ?? ""}
+                          />
+                          <label>{t("Applies to")}</label>
+                          <select name="appliesTo">
+                            {ATTRIBUTE_APPLIES_TO.map((target) => (
+                              <option
+                                value={target}
+                                selected={target === definition.appliesTo}
+                              >
+                                {commerceLabel(
+                                  labels.attributeAppliesTo,
+                                  target
+                                )}
+                              </option>
+                            ))}
+                          </select>
+
+                          <CommerceAttributeConstraintFields
+                            locale={Astro.locals.locale}
+                            idPrefix={`attribute-${definition.id}`}
+                            valueType={definition.valueType}
+                            constraints={definition.constraints}
+                          />
+
+                          <label>
+                            <input
+                              type="checkbox"
+                              name="isFilterable"
+                              value="true"
+                              checked={definition.isFilterable}
+                            />{" "}
+                            {t("Filterable")}
+                          </label>
+                          {(definition.valueType === "text" ||
+                            definition.valueType === "enum") && (
+                            <label>
+                              <input
+                                type="checkbox"
+                                name="isSearchable"
+                                value="true"
+                                checked={definition.isSearchable}
+                              />{" "}
+                              {t(
+                                "Included in free-text search (text and choice lists only)"
+                              )}
+                            </label>
+                          )}
+                          <label>
+                            <input
+                              type="checkbox"
+                              name="visibleAdmin"
+                              value="true"
+                              checked={definition.visibleAdmin}
+                            />{" "}
+                            {t("Visible in the admin")}
+                          </label>
+                          <label>
+                            <input
+                              type="checkbox"
+                              name="visiblePublic"
+                              value="true"
+                              checked={definition.visiblePublic}
+                            />{" "}
+                            {t("Visible on the storefront API")}
+                          </label>
+                          <label>{t("Sort order")}</label>
+                          <input
+                            name="sortOrder"
+                            type="number"
+                            min="0"
+                            max="10000"
+                            value={definition.sortOrder}
+                          />
+                          <button type="submit" data-busy={t("Saving…")}>
+                            {t("Save")}
+                          </button>
+                        </form>
+                      </details>
+                    </td>
+                  </tr>
+                )}
+              </>
+            ))
+          )}
+        </tbody>
+      </table>
+    </div>
+  )}
+  <CommerceConfirmDialog locale={Astro.locals.locale} />
+</AdminLayout>
+
+<script>
+  import {
+    field,
+    messageBox,
+    mutateAndReload,
+    onAction,
+    onSubmit,
+    onSubmitAll,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+  import {
+    buildConstraintsPayload,
+    initAttributeTypeToggle
+  } from "../../lib/ui/commerce-attributes-client";
+  import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
+
+  /** `labels` object from the two language inputs; empty inputs are omitted. */
+  function labelsFrom(data: FormData): Record<string, string> {
+    const labels: Record<string, string> = {};
+    const en = field(data, "labelEn");
+    const id = field(data, "labelId");
+    if (en) labels.en = en;
+    if (id) labels.id = id;
+    return labels;
+  }
+
+  const flags = (data: FormData) => ({
+    isFilterable: data.get("isFilterable") !== null,
+    isSearchable: data.get("isSearchable") !== null,
+    visibleAdmin: data.get("visibleAdmin") !== null,
+    visiblePublic: data.get("visiblePublic") !== null
+  });
+
+  const createForm = document.getElementById("attribute-create-form");
+  if (createForm instanceof HTMLFormElement)
+    initAttributeTypeToggle(createForm);
+
+  const createError = messageBox("attribute-create-error");
+
+  onSubmit("attribute-create-form", async ({ form, data, submit }) => {
+    const valueType = field(data, "valueType");
+    await mutateAndReload(
+      submit,
+      createError,
+      () =>
+        sendJson("POST", "/api/v1/commerce/attributes", {
+          key: field(data, "key"),
+          label: field(data, "label"),
+          labels: labelsFrom(data),
+          valueType,
+          appliesTo: field(data, "appliesTo"),
+          constraints: buildConstraintsPayload(valueType, (name) =>
+            field(data, name)
+          ),
+          sortOrder: Number(field(data, "sortOrder") || "0"),
+          ...flags(data)
+        }),
+      form.dataset.failure ?? "",
+      submit?.dataset.busy
+    );
+  });
+
+  const actionError = messageBox("attribute-action-error");
+
+  onSubmitAll(".attribute-edit-form", async ({ form, data, submit }) => {
+    const id = form.dataset.attributeId;
+    const valueType = form.dataset.valueType ?? "text";
+    if (!id) return;
+    const rowError = messageBox(`attribute-edit-error-${id}`);
+
+    const body: Record<string, unknown> = {
+      label: field(data, "label"),
+      labels: labelsFrom(data),
+      appliesTo: field(data, "appliesTo"),
+      constraints: buildConstraintsPayload(valueType, (name) =>
+        field(data, name)
+      ),
+      sortOrder: Number(field(data, "sortOrder") || "0"),
+      isFilterable: data.get("isFilterable") !== null,
+      visibleAdmin: data.get("visibleAdmin") !== null,
+      visiblePublic: data.get("visiblePublic") !== null
+    };
+    // Only text/choice attributes render the searchable checkbox; sending it
+    // for another type would be rejected by the server.
+    if (valueType === "text" || valueType === "enum") {
+      body.isSearchable = data.get("isSearchable") !== null;
+    }
+
+    await mutateAndReload(
+      submit,
+      rowError,
+      () => sendJson("PATCH", `/api/v1/commerce/attributes/${id}`, body),
+      (errorCode) =>
+        errorCode === "ATTRIBUTE_OPTION_IN_USE"
+          ? (form.dataset.optionInUse ?? "")
+          : (form.dataset.failure ?? ""),
+      submit?.dataset.busy
+    );
+  });
+
+  onAction(".attribute-delete-btn", async (button) => {
+    const id = button.dataset.attributeId;
+    if (!id) return;
+    const confirmed = await confirmFromTrigger(button);
+    if (!confirmed) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () => sendJson("DELETE", `/api/v1/commerce/attributes/${id}`),
+      button.dataset.failure ?? "",
+      button.dataset.busy
+    );
+  });
+</script>
