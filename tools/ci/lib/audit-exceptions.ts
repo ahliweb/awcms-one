@@ -89,3 +89,27 @@ export function loadAuditIgnoreArgs(
   if (!existsSync(path)) return { ok: true, args: [] };
   return auditIgnoreArgs(parseAuditExceptions(readFileSync(path, "utf8")), today);
 }
+
+/**
+ * Run `bun audit --audit-level=low` in `cwd` with the exception list applied,
+ * output inherited. For callers outside the local-CI runners (the release
+ * tool, `tools/rilis.mjs`), so they spawn nothing themselves (scripts
+ * standard: no direct spawn in `tools/*.mjs`). Returns the exit code; an
+ * expired exception is reported and returns 1 without running.
+ */
+export function runBunAuditWithExceptions(cwd: string, today?: string): number {
+  const ignore = loadAuditIgnoreArgs(cwd, today);
+  if (!ignore.ok) {
+    console.error(
+      `bun audit exception(s) past reviewDate: ${ignore.expired.map((e) => e.advisory).join(", ")} — ` +
+        "re-justify or remove them in tools/ci/dependency-audit-exceptions.json."
+    );
+    return 1;
+  }
+  const result = Bun.spawnSync(["bun", "audit", "--audit-level=low", ...ignore.args], {
+    cwd,
+    stdout: "inherit",
+    stderr: "inherit"
+  });
+  return result.exitCode ?? 1;
+}
