@@ -53,6 +53,8 @@ import {
   type OrderPaymentSummary
 } from "../../../modules/commerce/application/payment-allocation-directory";
 import { toCents } from "../../../modules/commerce/domain/price-calculation";
+import { fetchCommerceFeatures } from "../../../modules/commerce/application/commerce-feature-gate";
+import { findOpenSessionForCashier } from "../../../modules/commerce/application/register-session-directory";
 import { mediaLibraryPortAdapter } from "../../../modules/media-library/application/media-library-port-adapter";
 import {
   createCommerceLabels,
@@ -114,7 +116,8 @@ const screen = await loadAdminScreen({
         canReadPayments,
         canRecordPayment,
         canRecordReversal,
-        payments: null as OrderPaymentSummary | null
+        payments: null as OrderPaymentSummary | null,
+        drawer: null as { sessionId: string; registerCode: string } | null
       };
     }
     const detail = await fetchOrderDetailForAdmin(
@@ -130,20 +133,29 @@ const screen = await loadAdminScreen({
         canReadPayments,
         canRecordPayment,
         canRecordReversal,
-        payments: null as OrderPaymentSummary | null
+        payments: null as OrderPaymentSummary | null,
+        drawer: null as { sessionId: string; registerCode: string } | null
       };
     }
     const record = await toAdminOrderRecord(tx, ssr.tenantId, detail);
     const payments = canReadPayments
       ? await fetchOrderPaymentSummary(tx, ssr.tenantId, orderId)
       : null;
+    // Issue #284 (ADR-0028 D2): a cashier with an open drawer can pay a refund
+    // from it, so today's expected cash drops instead of an earlier shift's.
+    const drawer =
+      canRecordReversal &&
+      (await fetchCommerceFeatures(tx, ssr.tenantId)).register
+        ? await findOpenSessionForCashier(tx, ssr.tenantId, ssr.tenantUserId)
+        : null;
     return {
       order: record,
       canReadOrder,
       canReadPayments,
       canRecordPayment,
       canRecordReversal,
-      payments
+      payments,
+      drawer
     };
   },
   onError: (error) => {
@@ -166,6 +178,7 @@ const canRecordPayment =
   screen.state === "allowed" && screen.data.canRecordPayment;
 const canRecordReversal =
   screen.state === "allowed" && screen.data.canRecordReversal;
+const drawer = screen.state === "allowed" ? screen.data.drawer : null;
 /** Succeeded payment legs that still have something left to reverse — the reversal form's choices. */
 const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
   if (leg.kind !== "payment" || leg.status !== "succeeded") return false;
@@ -290,6 +303,9 @@ const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
                 "That reversal is more than what is left of the payment."
               )}
               data-msg-not-reversible={t("That payment cannot be reversed.")}
+              data-msg-closing={t(
+                "This sale's register shift is being closed. Record the payment once the close is decided."
+              )}
               data-msg-generic={t(
                 "Could not record this. Check the amount and try again."
               )}
@@ -493,6 +509,17 @@ const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
                       ))}
                     </select>
                   </label>
+                  {drawer && (
+                    <label class="admin-checkbox-label">
+                      <input
+                        type="checkbox"
+                        name="fromDrawer"
+                        value={drawer.sessionId}
+                      />{" "}
+                      {t("Pay this refund from my open register")} (
+                      {drawer.registerCode})
+                    </label>
+                  )}
                   <label for="order-reversal-amount">
                     {t("Amount to reverse (blank = all that is left)")}
                     <input
@@ -518,7 +545,12 @@ const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
                   <p class="form-hint">
                     {t(
                       "A reversal records that money was given back. It does not move the money and does not cancel the order."
-                    )}
+                    )}{" "}
+                    {drawer
+                      ? t(
+                          "Tick the box if cash leaves your open register for this refund (for a sale from an earlier shift); otherwise add a cash-out movement to the register session."
+                        )
+                      : ""}
                   </p>
                   <div class="admin-form-actions">
                     <button
@@ -620,7 +652,8 @@ const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
       OVERPAYMENT: m("msgOverpayment"),
       ORDER_NOT_PAYABLE: m("msgNotPayable"),
       REVERSAL_EXCEEDS_PAYMENT: m("msgExceeds"),
-      PAYMENT_NOT_REVERSIBLE: m("msgNotReversible")
+      PAYMENT_NOT_REVERSIBLE: m("msgNotReversible"),
+      REGISTER_SESSION_CLOSING: m("msgClosing")
     };
     return map[code ?? ""] ?? m("msgGeneric");
   }
@@ -688,7 +721,11 @@ const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
       const { ok, errorCode } = await sendJsonForData(
         "POST",
         `/api/v1/commerce/orders/${orderIdForPayments}/payments/${encodeURIComponent(String(data.get("paymentId") ?? ""))}/reversals`,
-        { amount: amount === "" ? null : amount, note },
+        {
+          amount: amount === "" ? null : amount,
+          note,
+          registerSessionId: String(data.get("fromDrawer") ?? "") || null
+        },
         { "Idempotency-Key": crypto.randomUUID() }
       );
       if (!ok) {

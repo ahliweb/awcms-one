@@ -25,9 +25,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+msgid "Pay this refund from my open register"
+msgstr "Bayar pengembalian ini dari register saya yang sedang terbuka"
+
 #. Admin shell — skip link, drawer, topbar
 msgid "Skip to main content"
 msgstr "Lewati ke konten utama"
+
+msgid "This sale's register shift is being closed. Record the payment once the close is decided."
+msgstr "Shift register penjualan ini sedang ditutup. Catat pembayaran setelah penutupan diputuskan."
+
+msgid "Tick the box if cash leaves your open register for this refund (for a sale from an earlier shift); otherwise add a cash-out movement to the register session."
+msgstr "Centang kotak ini jika uang tunai keluar dari register Anda yang terbuka untuk pengembalian ini (untuk penjualan dari shift sebelumnya); jika tidak, tambahkan mutasi kas keluar pada sesi register."
 
 msgid "Toggle navigation menu"
 msgstr "Buka/tutup menu navigasi"

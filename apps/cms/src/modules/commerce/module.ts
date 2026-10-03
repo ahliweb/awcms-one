@@ -456,7 +456,13 @@ export const commerceModule = defineModule({
       // by `domain/register.ts`'s `resolveCashUpSettings`. A new top-level
       // key, so no schemaVersion bump: a tenant that never touches it gets
       // this default through `mergeEffectiveSettings`.
-      cashUp: { approvalThreshold: DEFAULT_CASH_UP_APPROVAL_THRESHOLD }
+      //
+      // `allowSelfApproval` (default `false`): the cashier who counted may not
+      // approve their own variance unless the tenant opts in (SoD).
+      cashUp: {
+        approvalThreshold: DEFAULT_CASH_UP_APPROVAL_THRESHOLD,
+        allowSelfApproval: false
+      }
     }
   },
   // Full CRUD screens: two as of Issue #23 (`src/pages/admin/commerce.astro`,

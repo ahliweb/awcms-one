@@ -442,6 +442,14 @@ export type RecordReversalInput = {
   /** `null` = reverse whatever remains reversible of the payment. */
   amount: string | null;
   note: string;
+  /**
+   * Issue #284 (ADR-0028 D2): the OPEN register session the refunded money
+   * leaves. Optional; when given the reversal leg is stamped with it (so the
+   * drawer that actually paid out is the one whose expected cash drops).
+   * Without it a reversal is stamped, as before, only with its own order's
+   * session while that is still open.
+   */
+  registerSessionId?: string | null;
 };
 
 export function isRecord(value: unknown): value is Record<string, unknown> {
@@ -568,12 +576,33 @@ export function validateRecordReversalInput(
     errors.push({ field: "note", message: "note (the reason) is required." });
   }
 
+  let registerSessionId: string | null = null;
+  if (
+    record.registerSessionId !== undefined &&
+    record.registerSessionId !== null
+  ) {
+    if (
+      typeof record.registerSessionId === "string" &&
+      UUID_PATTERN.test(record.registerSessionId)
+    ) {
+      registerSessionId = record.registerSessionId.toLowerCase();
+    } else {
+      errors.push({
+        field: "registerSessionId",
+        message: "registerSessionId must be a UUID."
+      });
+    }
+  }
+
   if (errors.length > 0) return { valid: false, errors };
   return {
     valid: true,
-    value: { idempotencyKey: key, amount, note: note! }
+    value: { idempotencyKey: key, amount, note: note!, registerSessionId }
   };
 }
+
+const UUID_PATTERN =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 /** Tender list shape for the POS `tenders[]` payload (explicit, versioned multi-tender contract). */
 export function validatePosTenders(

@@ -589,7 +589,17 @@ export function validateRecordCorrectionInput(
 // Tenant setting: the approval threshold
 // ---------------------------------------------------------------------------
 
-export type CashUpSettings = { approvalThreshold: string };
+export type CashUpSettings = {
+  approvalThreshold: string;
+  /**
+   * `cashUp.allowSelfApproval` (default `false`): whether the cashier who
+   * counted the drawer may also approve their own variance above the
+   * threshold. Off by default (separation of duties, ADR-0028 D4); a tenant
+   * with a single operator opts in explicitly. Anything that is not the
+   * boolean `true` reads as `false`.
+   */
+  allowSelfApproval: boolean;
+};
 
 /**
  * Reads `cashUp.approvalThreshold` from a `commerce` module settings view's
@@ -608,7 +618,10 @@ export function resolveCashUpSettings(
     NON_NEGATIVE_MONEY_PATTERN.test(raw.approvalThreshold)
       ? fromCents(toCents(raw.approvalThreshold))
       : DEFAULT_CASH_UP_APPROVAL_THRESHOLD;
-  return { approvalThreshold: threshold };
+  return {
+    approvalThreshold: threshold,
+    allowSelfApproval: isRecord(raw) && raw.allowSelfApproval === true
+  };
 }
 
 /** Validates the value the admin form sends before it is PATCHed into module settings. */

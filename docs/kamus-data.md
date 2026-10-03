@@ -197,6 +197,7 @@ BjekMart's kasir (`commerce_bj_mart`'s counter sales, recorded in the legacy `or
 | counted | `awcms_commerce_register_close_lines.counted` | What the cashier counted per tender at close |
 | variance / difference | `variance = counted − expected`, signed (negative = short) | Per tender; `variance_total` is the net sum, `variance_gross` the sum of absolute values |
 | approval threshold | commerce module setting `cashUp.approvalThreshold` (default `"0.00"`) | The gross variance above which a close needs a user holding `commerce.register_cash_ups.approve` |
+| self-approval | commerce module setting `cashUp.allowSelfApproval` (default `false`) | Whether the cashier who counted may approve their own variance above the threshold; off = separation of duties (`409 SOD_MAKER_IS_CHECKER`) |
 | close request / attempt | `awcms_commerce_register_close_requests` | One count-and-close attempt; decision `auto` (within the threshold), `pending` (session `closing`), `approved`, `rejected` (session back to `open`, kept as history) |
 | correction | `awcms_commerce_register_corrections` | A compensating, signed adjustment to a tender's COUNTED amount on a closed session; the original lines are never altered; the session becomes `corrected` |
 | `register` feature | commerce module settings `features.register` (default OFF) | Turns the whole register surface on and makes a POS sale require an open session on the chosen register |

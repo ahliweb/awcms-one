@@ -9347,7 +9347,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: "`IDEMPOTENCY_CONFLICT`, `OVERPAYMENT` (the amount exceeds what is still owed — `details.outstanding`/`details.attempted`) or `ORDER_NOT_PAYABLE` (a cancelled or expired order)."
+          description: "`IDEMPOTENCY_CONFLICT` (also a key reused against another order or with a different tender/amount), `OVERPAYMENT` (the amount exceeds what is still owed — `details.outstanding`/`details.attempted`), `ORDER_NOT_PAYABLE` (a cancelled or expired order) or `REGISTER_SESSION_CLOSING` (Issue #284: the POS sale's register session is counting/awaiting a supervisor, so the money would fall into no cash-up — retry once the close is decided)."
           content:
             application/json:
               schema:
@@ -9394,6 +9394,11 @@ paths:
                   type: string
                   maxLength: 500
                   description: The reason for the reversal (required).
+                registerSessionId:
+                  type: string
+                  format: uuid
+                  nullable: true
+                  description: "Issue #284 (ADR-0028 D2). The OPEN register session of the tenant, whose current cashier is the caller, that the refund is paid out of. The reversal leg is stamped with it, so THAT drawer's expected cash drops (a cash refund for a sale from an earlier, closed shift would otherwise lower no cash-up). Omitted = unchanged behaviour: the leg is stamped only with its own order's session while that is still open."
       responses:
         "201":
           description: Recorded (or replayed). `data.payment` is the new reversal row.
@@ -9421,7 +9426,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: "`IDEMPOTENCY_CONFLICT`, `REVERSAL_EXCEEDS_PAYMENT` (`details.reversible`) or `PAYMENT_NOT_REVERSIBLE` (`details.reason`: `not_a_payment`, `not_succeeded`, `fully_reversed`)."
+          description: "`IDEMPOTENCY_CONFLICT` (also a key reused against another order, or with a different amount), `REVERSAL_EXCEEDS_PAYMENT` (`details.reversible`), `PAYMENT_NOT_REVERSIBLE` (`details.reason`: `not_a_payment`, `not_succeeded`, `fully_reversed`), `REGISTER_SESSION_NOT_OPEN` (`details.status`) or `NOT_SESSION_CASHIER` for a `registerSessionId` that is not an open session of the caller. An unknown or other-tenant `registerSessionId` is `404`."
           content:
             application/json:
               schema:
@@ -11022,7 +11027,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: "`REGISTER_CLOSE_NOT_PENDING` (`details.status`), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF)."
+          description: "`REGISTER_CLOSE_NOT_PENDING` (`details.status`), `SOD_MAKER_IS_CHECKER` (an approval by the user who requested the close, unless the tenant set `cashUp.allowSelfApproval`; rejecting your own count is allowed), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF)."
           content:
             application/json:
               schema:

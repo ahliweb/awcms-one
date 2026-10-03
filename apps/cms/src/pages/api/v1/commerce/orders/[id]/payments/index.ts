@@ -35,6 +35,7 @@ import {
   AllocationSourceKeyConflictError,
   fetchOrderPaymentSummary
 } from "../../../../../../../modules/commerce/application/payment-allocation-directory";
+import { RegisterSessionClosingError } from "../../../../../../../modules/commerce/application/register-session-stamp";
 import { recordOwnerPayment } from "../../../../../../../modules/commerce/application/payment-recording";
 import {
   OverpaymentError,
@@ -155,6 +156,9 @@ export const POST = defineTenantRoute<RecordPaymentInput>({
           "IDEMPOTENCY_CONFLICT",
           "Idempotency-Key was already used with a different request."
         );
+      }
+      if (error instanceof RegisterSessionClosingError) {
+        return fail(409, "REGISTER_SESSION_CLOSING", error.message);
       }
       if (error instanceof OverpaymentError) {
         return fail(

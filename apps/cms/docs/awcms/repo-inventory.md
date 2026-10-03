@@ -8,7 +8,7 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 26    |
-| Migrations                          | 216   |
+| Migrations                          | 217   |
 | `awcms_*` tables                    | 215   |
 | Tables with `FORCE` RLS             | 197   |
 | RLS-free tables (global, by design) | 18    |
@@ -267,6 +267,7 @@
 | 214 | `sql/971_awcms_commerce_register_stamping.sql`                              |
 | 215 | `sql/972_awcms_commerce_register_permissions.sql`                           |
 | 216 | `sql/973_awcms_commerce_register_worker_grants.sql`                         |
+| 217 | `sql/974_awcms_commerce_register_reversal_stamp.sql`                        |
 
 ### Tables & Row-Level Security
 

@@ -24,8 +24,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Pay this refund from my open register"
+msgstr ""
+
 #. Admin shell — skip link, drawer, topbar
 msgid "Skip to main content"
+msgstr ""
+
+msgid "This sale's register shift is being closed. Record the payment once the close is decided."
+msgstr ""
+
+msgid "Tick the box if cash leaves your open register for this refund (for a sale from an earlier shift); otherwise add a cash-out movement to the register session."
 msgstr ""
 
 msgid "Toggle navigation menu"

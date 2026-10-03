@@ -42,7 +42,10 @@
  * went back is a human decision (`domain/order-status.ts`'s header).
  */
 import { recordAuditEvent } from "../../logging/application/audit-log";
-import { resolveRegisterSessionStamp } from "./register-session-stamp";
+import {
+  checkReversalRegisterSession,
+  resolveRegisterSessionStamp
+} from "./register-session-stamp";
 import { appendDomainEvent } from "../../domain-event-runtime/application/append-domain-event";
 import {
   fromCents,
@@ -750,7 +753,11 @@ export async function recordPaymentAllocation(
   const registerSessionId = await resolveRegisterSessionStamp(
     tx,
     tenantId,
-    header.registerSessionId
+    header.registerSessionId,
+    // A counter/admin payment into a session that is `closing` would fall
+    // into no cash-up: refuse it (409 REGISTER_SESSION_CLOSING). Gateway and
+    // confirmation legs are not drawer money and are never refused.
+    { rejectClosing: params.source === "pos" || params.source === "admin" }
   );
   const rows = (await tx`
     INSERT INTO awcms_commerce_payment_allocations (
@@ -1101,11 +1108,20 @@ export type RecordPaymentReversalParams = {
   note: string;
   sourceKey: string;
   actor: AllocationActor;
+  /**
+   * Issue #284 (ADR-0028 D2): stamp the reversal with THIS open register
+   * session (the drawer the refund is paid from) instead of the order's own.
+   * Must be an open session of the tenant whose current cashier is the actor.
+   */
+  registerSessionId?: string | null;
   correlationId?: string;
 };
 
 export type RecordPaymentReversalOutcome =
   | { kind: "not_found" }
+  | { kind: "register_session_not_found" }
+  | { kind: "register_session_not_open"; status: string }
+  | { kind: "register_session_not_cashier" }
   | {
       kind: "not_reversible";
       reason: "not_a_payment" | "not_succeeded" | "fully_reversed";
@@ -1200,11 +1216,31 @@ export async function recordPaymentReversal(
   const actor = actorColumns(params.actor);
   // Issue #284 — a reversal recorded while the sale's register session is
   // still open (a cash refund at the counter) is part of that cash-up.
-  const registerSessionId = await resolveRegisterSessionStamp(
-    tx,
-    tenantId,
-    header.registerSessionId
-  );
+  let registerSessionId: string | null;
+  if (params.registerSessionId) {
+    const check = await checkReversalRegisterSession(
+      tx,
+      tenantId,
+      params.registerSessionId,
+      params.actor.kind === "tenant_user" ? params.actor.tenantUserId : null
+    );
+    if (check.kind === "not_found") {
+      return { kind: "register_session_not_found" };
+    }
+    if (check.kind === "not_open") {
+      return { kind: "register_session_not_open", status: check.status };
+    }
+    if (check.kind === "not_session_cashier") {
+      return { kind: "register_session_not_cashier" };
+    }
+    registerSessionId = check.sessionId;
+  } else {
+    registerSessionId = await resolveRegisterSessionStamp(
+      tx,
+      tenantId,
+      header.registerSessionId
+    );
+  }
   const rows = (await tx`
     INSERT INTO awcms_commerce_payment_allocations (
       tenant_id, order_id, kind, reverses_allocation_id, tender_type, amount, status,
