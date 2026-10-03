@@ -1615,6 +1615,22 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // retention worker is the ONLY role that may delete a ledger row (awcms_app
   // has had DELETE revoked), and only past that ceiling.
   awcms_commerce_payment_allocations: ["SELECT", "DELETE"],
+  // Issue #289 (sql/950/951): the loyalty tables. The domain-event dispatcher
+  // runs the order-paid earn / order-cancelled reversal consumers and the
+  // `commerce:loyalty:expire` job appends ledger rows, all as this role.
+  // programs: read + the generic purge of RETIRED versions (cursor
+  // `effective_to`, NULL for a draft/open version so a live rule never
+  // matches). accounts: create-or-lock (`FOR UPDATE` needs UPDATE) + project
+  // the balance + the generic purge of an account idle for the whole window.
+  // ledger: append + the retention purge's DELETE and NEVER UPDATE — it is
+  // append-only and sql/950's trigger rejects it regardless.
+  awcms_commerce_loyalty_programs: ["SELECT", "DELETE"],
+  awcms_commerce_loyalty_accounts: ["SELECT", "INSERT", "UPDATE", "DELETE"],
+  awcms_commerce_loyalty_ledger: ["SELECT", "INSERT", "DELETE"],
+  // Issue #289 (sql/951): the earn consumer reads the tenant's `commerce`
+  // feature flags (`features.loyalty`) through `fetchCommerceFeatures`.
+  // Tenant-RLS table; SELECT only.
+  awcms_module_settings: ["SELECT"],
   // Issue #268 (`sql/939`): the protected-media link table's `dataLifecycle`
   // descriptor (`commerce/module.ts`) is `executionMode: "generic"` with a
   // real, reachable `hard_delete` (unlike entitlements above, this one IS

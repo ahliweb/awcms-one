@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:b28272c1116723a2b930e2cbe5e5320e46175acd7948048cc1043fb7bb96b07c -->
+<!-- i18n-source-hash: sha256:1f392a7b0891d0e1afb31906cde7c9e765ec16a02690091ee1582f87011bf280 -->
 
 # API
 
@@ -210,6 +210,27 @@ Satu berkas rute, dua handler (`apps/cms/src/pages/api/v1/commerce/pos/orders/in
 | `POST` | `commerce/pos/orders` | `commerce.pos.create` | **Header `Idempotency-Key` wajib** (`400 IDEMPOTENCY_REQUIRED`). Body `{ customer?: {name?, phone?}, lines: [{productId, variantId?, quantity}], payment: {method: "cash"\|"manual_qris", amountTendered?}, notes? }` — `amountTendered` adalah STRING `numeric(14,2)`, wajib untuk `cash`, diabaikan untuk `manual_qris`. **Kontrak versi 2 (#285, aditif):** sebagai ganti `payment`, kirim `tenders: [{ tenderType: "cash"\|"manual_qris"\|"manual_bank_transfer", amount, reference? }]` (tidak pernah keduanya; `amount` non-tunai = diterapkan, `amount` tender tunai tunggal = diserahkan, kembalian hanya dari leg tunai) dan opsional `allowDue: true` (butuh `tenders`, telepon pelanggan, dan izin terpisah `commerce.pos_due.create`) untuk meninggalkan saldo terutang pada pesanan `pending_payment`. `201` juga membawa `payments[]` dan `settlement`; `409 OVERPAYMENT` untuk tender non-tunai di atas total. → `201` dengan record pesanan admin (`status: "paid"`, `channel: "pos"`, `shippingMethod: "self_pickup"`) plus `change` (string atau `null`), `amountTendered`, `cashierTenantUserId`; pengulangan kunci-sama/body-sama me-replay `201` yang sama. `400 VALIDATION_ERROR` (bentuk, atau `customer.phone` yang tidak dapat dinormalisasi — tidak pernah diam-diam jadi walk-in); `409 IDEMPOTENCY_CONFLICT` (kunci sama, body beda atau kasir beda); `409 CART_CHANGED` (`details.quote` — harga/stok suatu baris berubah); `409 INSUFFICIENT_TENDER` (`details.shortfall`) |
 
 Tanpa telepon → penjualan dikaitkan ke satu baris pelanggan walk-in tenant (telepon sentinel `+620000000000`); dengan telepon → cari-atau-buat berdasarkan nomor yang dinormalisasi dan `level` pelanggan memberi harga penjualan. Jalur storefront (`GET storefront/orders/{code}?phone=`, `GET storefront/account/orders(/{code})`) tidak pernah mengembalikan pesanan `channel: "pos"`, dan `POST storefront/orders` menolak baik `payment.method: "cash"` maupun telepon sentinel. Pencarian produk untuk layar POS adalah `GET /api/v1/commerce/products?q=&status=active` yang sudah ada.
+
+### Buku besar poin loyalitas — sudah diimplementasikan (#289, ADR-0026)
+
+Semua route pemilik memakai `defineTenantRoute`, di balik feature flag `loyalty` milik tenant (`409 FEATURE_DISABLED` saat mati; default **mati**). Route pelanggan memakai pola bearer keluarga anonim (ADR-0016 D3) dan menjawab `404` netral saat fitur mati. Rancangan lengkap: [ADR-0026](adr/0026-loyalty-points-are-an-append-only-ledger.md); kosakata: [`docs/kamus-data.md`](kamus-data.md).
+
+| Method | Path | Auth | Catatan |
+| --- | --- | --- | --- |
+| `GET` / `POST` | `commerce/loyalty/programs` | `commerce.loyalty.read` / `.manage` | Daftar semua versi aturan, terbaru dulu / buat **draf** (versi = max + 1 per tenant). Body `{name, earnUnitAmount (string desimal), earnPointsPerUnit (int), minOrderAmount?, maxPointsPerOrder?, expiryDays?, notes?}` |
+| `GET` / `PATCH` | `commerce/loyalty/programs/{id}` | `.read` / `.manage` | `PATCH` hanya mengubah **draf**; versi aktif atau pensiun tidak dapat diubah (`409 PROGRAM_NOT_EDITABLE`) |
+| `POST` | `commerce/loyalty/programs/{id}/activate` | `.manage` (berisiko tinggi) | Mengaktifkan draf **sekarang** dan menutup versi yang terbuka dalam transaksi yang sama (`409 PROGRAM_NOT_DRAFT` bila diulang) |
+| `POST` | `commerce/loyalty/programs/{id}/retire` | `.manage` | Mengakhiri versi aktif yang terbuka sekarang (`409 PROGRAM_NOT_ACTIVE` bila bukan); poin yang sudah diperoleh tidak terpengaruh |
+| `GET` | `commerce/loyalty/accounts` | `.read` | Daftar keyset (`?cursor&limit`), `?customerId=`, atau pencarian kasir `?phone=` (juga mengembalikan blok `customer` dengan saldo 0 untuk pelanggan tanpa akun). Telepon disamarkan |
+| `GET` | `commerce/loyalty/accounts/{customerId}` | `.read` | Nama, telepon tersamar, `balance` hasil proyeksi. Pelanggan tak dikenal/tenant lain adalah satu `404` |
+| `GET` | `commerce/loyalty/accounts/{customerId}/ledger` | `.read` | Riwayat append-only, terbaru dulu, dipaginasi keyset; tampilan staf (aktor dan alasan disertakan) |
+| `POST` | `commerce/loyalty/accounts/{customerId}/redeem` | `commerce.loyalty_redemptions.create` | **`Idempotency-Key` wajib.** `{points (int >= 1), reason?}`. Berjalan di bawah kunci akun: `409 INSUFFICIENT_POINTS` (`details.balance`/`requested`) untuk request yang akan overdraw. Hanya mencatat pengurangan poin — tanpa diskon |
+| `POST` | `commerce/loyalty/accounts/{customerId}/adjust` | `commerce.loyalty_adjustments.create` | **`Idempotency-Key` wajib.** `{points (int non-nol), reason (wajib, <= 500)}`. `409 WOULD_GO_NEGATIVE` untuk pengurangan di bawah nol. Diaudit |
+| `GET` | `commerce/loyalty/summary` | `.read` | `?from&to` (instant ISO atau `YYYY-MM-DD`): `period.{earned,redeemed,expired,adjustmentsNet,reversed,net}` plus `outstanding` sepanjang waktu, masing-masing `SUM` atas ledger menurut `kind` |
+| `POST` | `commerce/loyalty/reconcile` | `.manage` (berisiko tinggi) | `{repair?: boolean}`. Melaporkan drift proyeksi dan ledger break; `repair: true` menulis ulang hanya proyeksi yang drift, satu event audit per akun |
+| `GET` | `commerce/storefront/account/loyalty` | bearer pelanggan | `balance` milik sendiri, aturan yang berlaku, dan riwayat milik sendiri (`?cursor&limit`). Id pelanggan hanya dari sesi terverifikasi; item riwayat `{id, kind, points, balanceAfter, expiresAt, createdAt}` |
+
+Pengulangan `redeem`/`adjust` dengan kunci dan body yang sama me-replay `201` yang tersimpan; kunci sama dengan body berbeda adalah `409 IDEMPOTENCY_CONFLICT`. Perolehan dan pembatalan **tidak punya route**: keduanya berjalan dari domain event `order.paid` / `order.cancelled` (`commerce.order_paid_loyalty_earner`, `commerce.order_cancelled_loyalty_reverser`), dan kedaluwarsa dari job `commerce:loyalty:expire`. Izin yang ditambahkan: `commerce.loyalty.{read,manage}`, `commerce.loyalty_adjustments.create`, `commerce.loyalty_redemptions.create`. Domain event yang ditambahkan: `awcms.commerce.loyalty.entry_recorded` (agregat `commerce.loyalty_account`).
 
 ## Bentuk request/respons
 
