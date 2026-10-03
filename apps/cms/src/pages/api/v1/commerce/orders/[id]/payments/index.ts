@@ -10,7 +10,10 @@
  * waits and then fails its own overpayment check — `409 OVERPAYMENT`), and the
  * leg that brings settlement to the order's release threshold moves the order
  * to `paid` through the one order-status machine. Staff may record `cash`,
- * `manual_qris` and `manual_bank_transfer`; a `gateway` leg is created only by
+ * `manual_qris`, `manual_bank_transfer` and — with the tenant's `storedValue`
+ * feature on (Issue #288) — `gift_card` / `store_credit`, which carry the
+ * plaintext `storedValueCode` (resolved to an account, never stored) and
+ * redeem it in the same transaction; a `gateway` leg is created only by
  * the hosted-checkout flow. For `cash`, `amount` is what the customer HANDED
  * OVER — the applied amount and the change are derived server-side.
  *
@@ -39,6 +42,8 @@ import {
   type RecordPaymentInput
 } from "../../../../../../../modules/commerce/domain/payment-allocation";
 import { COMMERCE_PAYMENTS_ACTIVITY_CODE } from "../../../../../../../modules/commerce/domain/commerce-permissions";
+import { FeatureDisabledError } from "../../../../../../../modules/commerce/domain/commerce-features";
+import { storedValueTenderErrorResponse } from "../../../../../../../modules/commerce/application/stored-value-http";
 
 const READ_GUARD = {
   moduleKey: "commerce",
@@ -159,6 +164,15 @@ export const POST = defineTenantRoute<RecordPaymentInput>({
           { outstanding: error.outstanding, attempted: error.attempted }
         );
       }
+      if (error instanceof FeatureDisabledError) {
+        return fail(
+          409,
+          "FEATURE_DISABLED",
+          `The "${error.feature}" feature is disabled for this tenant.`
+        );
+      }
+      const storedValue = storedValueTenderErrorResponse(error);
+      if (storedValue) return storedValue;
       throw error;
     }
   }

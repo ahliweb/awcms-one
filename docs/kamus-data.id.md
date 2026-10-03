@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:04f7ee0540d76e5bc946985ac5e6cd49876bb33083759a6a2a7b8f60f029b487 -->
+<!-- i18n-source-hash: sha256:565da1cd53d35a3db4fe64dd0055df46b5eead9ca53c2726cd2fc3b4593c78a8 -->
 
 # Kamus data
 
@@ -203,6 +203,23 @@ Kasir BjekMart (penjualan konter `commerce_bj_mart`, yang di tabel `orders`/`tra
 | koreksi | `awcms_commerce_register_corrections` | Penyesuaian kompensasi bertanda pada jumlah DIHITUNG sebuah tender pada sesi yang sudah ditutup; baris asli tidak pernah diubah; sesi menjadi `corrected` |
 | fitur `register` | pengaturan modul commerce `features.register` (default MATI) | Menyalakan seluruh permukaan register dan membuat penjualan POS mensyaratkan sesi terbuka pada register yang dipilih |
 | `commerce.registers.*`, `commerce.register_sessions.*`, `commerce.register_cash_ups.*`, `commerce.register_corrections.approve` | `awcms_permissions` (`sql/972`) | Sepuluh kunci: kelola register, baca / buka / pakai / ekspor sesi, tutup / setujui selisih, koreksi sesi yang sudah ditutup |
+
+### Kartu hadiah dan kredit toko (issue #288, [ADR-0029](adr/0029-stored-value-is-a-closed-loop-liability-ledger.md))
+
+| Istilah | Letaknya | Arti |
+| --- | --- | --- |
+| nilai tersimpan | tiga tabel `awcms_commerce_stored_value_*` | Uang closed-loop yang terutang oleh tenant: hanya dapat ditukar sebagai tender pada pesanan tenant ini sendiri. KEWAJIBAN, bukan diskon dan bukan poin loyalti |
+| jenis | `kind IN ('gift_card','store_credit')` | `gift_card` adalah nilai yang dijual/dihadiahkan; `store_credit` adalah nilai yang disimpan untuk pelanggan (mis. sebagai pengganti refund). Satu program per jenis per tenant |
+| program | `awcms_commerce_stored_value_programs` | Konfigurasi per tenant: `enabled` (hanya penerbitan/pengisian), `expiry_days` (umur bawaan), `allow_refund_to_account`, `max_balance` (batas, tidak berlaku untuk pengembalian) |
+| akun | `awcms_commerce_stored_value_accounts` | Satu kartu/kredit: `status` `active \| disabled \| expired` (terminal), `balance` dan `version` (PROYEKSI ledger, hanya digerakkan trigger ledger), `expires_at` (dibekukan), `customer_id` opsional (informasional), stempel `issued_by` |
+| kode | TIDAK disimpan | Kode 21 karakter (20 karakter acak = 100 bit dari alfabet 32 simbol tanpa `I O 0 1`, ditambah karakter cek), ditampilkan sebagai `XXXXXXX-XXXXXXX-XXXXXXX` sekali, saat penerbitan |
+| `code_hash` / `code_last4` | akun | `sha256:` atas `awcms.stored_value.v1\|<id tenant>\|<kode ternormalisasi>` (berlingkup tenant, unik per tenant) dan empat karakter terakhir untuk tampilan; bentuk tersamarnya `•••••••-•••••••-•••ABCD` |
+| entri ledger | `awcms_commerce_stored_value_ledger` | Satu baris BERTANDA append-only: `issue` (+, tepat satu, pertama), `load` (+), `redeem` (−), `refund` (+), `adjust` (±, alasan wajib), `expire` (≤ 0, melepas saldo), `disable`/`enable` (0). Membawa `account_seq` dan `balance_after`, ditetapkan oleh trigger |
+| `source_key` | ledger | Kunci idempotensi tingkat-baris, unik per tenant: `issue:{key}`, `load:{akun}:{key}`, `redeem:{source key alokasi}`, `refund:…`, `expire:{akun}:{epoch}` |
+| `stored_value_account_id` | `awcms_commerce_payment_allocations` | Akun yang menjadi sumber leg `gift_card`/`store_credit` (pembalikan mengembalikan nilai ke sana); NULL untuk tender lain; dibekukan |
+| terutang (outstanding) | turunan | Jumlah setiap entri ledger suatu jenis — yang dihutang; di antaranya `disabledBalance` beku dan `lapsedPendingRelease` melewati kedaluwarsa tetapi belum dilepas sweep |
+| fitur `storedValue` | pengaturan modul commerce `features.storedValue` (default MATI) | Menyalakan seluruh permukaan; saat mati, tender kartu ditolak sebelum apa pun ditulis |
+| `commerce.stored_value_programs.*`, `commerce.stored_value.*`, `commerce.stored_value_adjustments.create`, `commerce.stored_value_reconcile.approve` | `awcms_permissions` (`sql/982`) | Tujuh kunci; menukar adalah tender pembayaran, bukan salah satunya |
 
 ## Kolom dan tabel yang ditunda — tidak di-porting
 

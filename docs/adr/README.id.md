@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:63a3e3046cb09bc19e189128bd1d03c406e21dd8d770f6c949b7c9be42cd8e26 -->
+<!-- i18n-source-hash: sha256:784fc6af8450cc848516107a72c4af419cb448ff6167731f688770cd1b99f296 -->
 
 # Architecture Decision Records
 
@@ -44,6 +44,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0024](0024-awcms-one-is-template-only-derived-apps-own-their-backend.md) | awcms-one hanya template; setiap aplikasi turunan memiliki backend dan runtime sendiri | Diterima |
 | [0025](0025-payments-are-an-allocation-ledger-separate-from-order-status.md) | Pembayaran adalah ledger alokasi append-only, terpisah dari status pesanan | Diterima |
 | [0028](0028-pos-register-sessions-and-cash-up.md) | Sesi register POS dan tutup kas: jumlah yang seharusnya diturunkan dari ledger pembayaran, shift yang sudah ditutup tidak dapat diubah | Diterima |
+| [0029](0029-stored-value-is-a-closed-loop-liability-ledger.md) | Nilai tersimpan adalah ledger kewajiban closed-loop: kartu hadiah dan kredit toko adalah baris append-only, database yang menggerakkan saldo, kode ditampilkan sekali dan tidak pernah disimpan | Diterima |
 
 ## Mengapa penomoran dimulai dari 0001
 

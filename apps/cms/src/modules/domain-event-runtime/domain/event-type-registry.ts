@@ -122,6 +122,10 @@ export const COMMERCE_REGISTER_SESSION_CLOSED_EVENT_TYPE =
 export const COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE =
   "awcms.commerce.register_session.corrected";
 
+/** Issue #288 (ADR-0029) — closed-loop stored-value ledger. */
+export const COMMERCE_STORED_VALUE_ENTRY_RECORDED_EVENT_TYPE =
+  "awcms.commerce.stored_value.entry_recorded";
+
 export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
   [
     {
@@ -301,6 +305,12 @@ export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
       eventVersion: COMMERCE_EVENT_VERSION,
       description:
         "A compensating correction was recorded against a closed register session (the original cash-up is preserved). Producer: commerce/application/register-cash-up.ts's recordRegisterCorrection. Carries the per-tender adjustments, never the free-text reason."
+    },
+    {
+      eventType: COMMERCE_STORED_VALUE_ENTRY_RECORDED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A closed-loop stored-value ledger entry (gift card / store credit: issue, load, redeem, refund, adjust, expire, disable, enable) was appended. Producer: commerce/application/stored-value-ledger.ts's appendStoredValueEntry, in the same transaction as the ledger insert (and, for redeem/refund, the payment-allocation row it mirrors). Aggregate: the stored-value account. Carries ids, kinds, the signed amount and the resulting balance - never the code, the customer or the free-text reason."
     }
   ];
 

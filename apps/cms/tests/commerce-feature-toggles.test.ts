@@ -20,11 +20,12 @@ import { toPublicRecord } from "../src/modules/commerce/application/store-settin
 // ---------------------------------------------------------------------------
 
 describe("resolveCommerceFeatures", () => {
-  test("defaults every flag to true when settings are absent, except `register` (Issue #284), which adds an obligation and so defaults OFF", () => {
+  test("defaults every flag to true when settings are absent, except `register` (Issue #284) and `storedValue` (Issue #288), which add an obligation / a liability and so default OFF", () => {
     expect(DEFAULT_COMMERCE_FEATURES.register).toBe(false);
+    expect(DEFAULT_COMMERCE_FEATURES.storedValue).toBe(false);
     expect(
       Object.entries(DEFAULT_COMMERCE_FEATURES)
-        .filter(([key]) => key !== "register")
+        .filter(([key]) => key !== "register" && key !== "storedValue")
         .every(([, value]) => value === true)
     ).toBe(true);
     expect(resolveCommerceFeatures(undefined)).toEqual(
@@ -42,7 +43,8 @@ describe("resolveCommerceFeatures", () => {
       campaigns: true,
       gateway: true,
       courier: true,
-      register: false
+      register: false,
+      storedValue: false
     });
   });
 
@@ -61,7 +63,8 @@ describe("resolveCommerceFeatures", () => {
         campaigns: false,
         gateway: false,
         courier: false,
-        register: false
+        register: false,
+        storedValue: false
       }
     });
     expect(resolved).toEqual({
@@ -70,11 +73,15 @@ describe("resolveCommerceFeatures", () => {
       campaigns: false,
       gateway: false,
       courier: false,
-      register: false
+      register: false,
+      storedValue: false
     });
-    // ...and the one flag that defaults off can be turned on.
+    // ...and the flags that default off can be turned on.
     expect(
       resolveCommerceFeatures({ features: { register: true } }).register
+    ).toBe(true);
+    expect(
+      resolveCommerceFeatures({ features: { storedValue: true } }).storedValue
     ).toBe(true);
   });
 });

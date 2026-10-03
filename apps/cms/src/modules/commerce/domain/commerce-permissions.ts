@@ -414,3 +414,54 @@ export const COMMERCE_REGISTER_CASH_UP_PERMISSIONS = {
 export const COMMERCE_REGISTER_CORRECTION_PERMISSIONS = {
   approve: "commerce.register_corrections.approve"
 } as const;
+
+/**
+ * Closed-loop stored value — gift cards and store credit (Issue #288,
+ * ADR-0029). Five activity codes, seven permissions, each with its own
+ * enforcing route and NONE implied by `commerce.pos.create` /
+ * `commerce.payments.create` (redeeming is only ever a TENDER on a payment, so
+ * a cashier who can take a gift card as payment gets no authority to issue,
+ * load, adjust, disable or report on one). Existing `AccessAction` verbs only;
+ * the upstream-owned union is not widened (ADR-0025 D9's reasoning, again):
+ *
+ *   - `stored_value_programs`: `read`, `update` — the per-tenant program
+ *     configuration (enable, expiry, refund policy, balance ceiling).
+ *   - `stored_value`: `read` (accounts, ledger, the liability and reconcile
+ *     reports), `create` (ISSUE a card and LOAD value onto it - money INTO the
+ *     liability), `update` (disable / enable an account, run the expiry sweep).
+ *   - `stored_value_adjustments`: `create` - a reasoned manual correction of a
+ *     balance, deliberately SEPARATE from `stored_value.create`: a role that
+ *     may sell a card to a paying customer is not thereby trusted to edit a
+ *     balance by hand.
+ *   - `stored_value_reconcile`: `approve` - repair a drifted projection
+ *     (`approve` is the platform's high-risk verb, so a tenant may author SoD
+ *     rules against it).
+ */
+export const COMMERCE_STORED_VALUE_PROGRAMS_ACTIVITY_CODE =
+  "stored_value_programs";
+export const COMMERCE_STORED_VALUE_ACTIVITY_CODE = "stored_value";
+export const COMMERCE_STORED_VALUE_ADJUSTMENTS_ACTIVITY_CODE =
+  "stored_value_adjustments";
+export const COMMERCE_STORED_VALUE_RECONCILE_ACTIVITY_CODE =
+  "stored_value_reconcile";
+
+export const COMMERCE_STORED_VALUE_PROGRAM_PERMISSIONS = {
+  read: "commerce.stored_value_programs.read",
+  update: "commerce.stored_value_programs.update"
+} as const;
+
+export const COMMERCE_STORED_VALUE_PERMISSIONS = {
+  read: "commerce.stored_value.read",
+  /** Issue a card / credit and load value onto it. */
+  create: "commerce.stored_value.create",
+  /** Disable / enable an account; run the expiry sweep. */
+  update: "commerce.stored_value.update"
+} as const;
+
+export const COMMERCE_STORED_VALUE_ADJUSTMENT_PERMISSIONS = {
+  create: "commerce.stored_value_adjustments.create"
+} as const;
+
+export const COMMERCE_STORED_VALUE_RECONCILE_PERMISSIONS = {
+  approve: "commerce.stored_value_reconcile.approve"
+} as const;

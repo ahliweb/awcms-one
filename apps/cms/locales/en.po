@@ -7823,3 +7823,299 @@ msgstr ""
 
 msgid "Close attempts"
 msgstr ""
+
+#. Issue #288 — gift cards and store credit (ADR-0029)
+msgid "A reason is required."
+msgstr ""
+
+msgid "A refund goes back onto the same card"
+msgstr ""
+
+msgid "Accounts"
+msgstr ""
+
+msgid "Adjust the balance"
+msgstr ""
+
+msgid "Adjusted"
+msgstr ""
+
+msgid "Adjusted down"
+msgstr ""
+
+msgid "Adjusted up"
+msgstr ""
+
+msgid "All kinds"
+msgstr ""
+
+msgid "Balance"
+msgstr ""
+
+msgid "Balance after"
+msgstr ""
+
+msgid "Balance ceiling"
+msgstr ""
+
+msgid "Balance differs from the ledger"
+msgstr ""
+
+msgid "By"
+msgstr ""
+
+msgid "Check and rebuild differing balances"
+msgstr ""
+
+msgid "Check balances"
+msgstr ""
+
+msgid "Code copied."
+msgstr ""
+
+msgid "Copy code"
+msgstr ""
+
+msgid "Could not copy; select the code and copy it by hand."
+msgstr ""
+
+msgid "Could not issue the card. Please try again."
+msgstr ""
+
+msgid "Could not run the check. Please try again."
+msgstr ""
+
+msgid "Could not run the expiry. Please try again."
+msgstr ""
+
+msgid "Could not save the change. Please try again."
+msgstr ""
+
+msgid "Could not save the program. Please try again."
+msgstr ""
+
+msgid "Differences found."
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+msgid "Enter the gift card or credit code for that payment line."
+msgstr ""
+
+msgid "Enter the gift card or credit code."
+msgstr ""
+
+msgid "Entry"
+msgstr ""
+
+msgid "Every balance agrees with its ledger."
+msgstr ""
+
+msgid "Expires after (days)"
+msgstr ""
+
+msgid "Expiry must be a whole number of days from 1 to 3650, or empty."
+msgstr ""
+
+msgid "Expiry run finished."
+msgstr ""
+
+msgid "Filter by kind"
+msgstr ""
+
+msgid "Frozen on disabled"
+msgstr ""
+
+msgid "Gift card"
+msgstr ""
+
+msgid "Gift card and store credit figures"
+msgstr ""
+
+msgid "Gift card or credit code"
+msgstr ""
+
+msgid "Gift card receipt"
+msgstr ""
+
+msgid "Gift cards and store credit"
+msgstr ""
+
+msgid "Gift cards and store credit are turned off for this store."
+msgstr ""
+
+msgid "Gift cards and store credit could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Issue"
+msgstr ""
+
+msgid "Issue a card or credit"
+msgstr ""
+
+msgid "Issue a card or credit above."
+msgstr ""
+
+msgid "Issue gift cards and store credit, track what is owed to cardholders, and keep the balances reconciled."
+msgstr ""
+
+msgid "Issued"
+msgstr ""
+
+msgid "It cannot be shown again. If it is lost, disable the account and issue a new one."
+msgstr ""
+
+msgid "Lapsed, not yet released"
+msgstr ""
+
+msgid "Ledger"
+msgstr ""
+
+msgid "Ledger disagrees with itself"
+msgstr ""
+
+msgid "Liability report"
+msgstr ""
+
+msgid "Load value"
+msgstr ""
+
+msgid "Loaded"
+msgstr ""
+
+msgid "Maintenance"
+msgstr ""
+
+msgid "Manage"
+msgstr ""
+
+msgid "Manage an account"
+msgstr ""
+
+msgid "No accounts yet"
+msgstr ""
+
+msgid "Older accounts"
+msgstr ""
+
+msgid "Older entries"
+msgstr ""
+
+msgid "Owed now"
+msgstr ""
+
+msgid "Owed to cardholders"
+msgstr ""
+
+msgid "Present this code to redeem. Not exchangeable for cash."
+msgstr ""
+
+msgid "Program saved."
+msgstr ""
+
+msgid "Programs"
+msgstr ""
+
+msgid "Redeemed"
+msgstr ""
+
+msgid "Redemption without a matching ledger entry"
+msgstr ""
+
+msgid "Refunded to card"
+msgstr ""
+
+msgid "Release lapsed balances"
+msgstr ""
+
+msgid "Released"
+msgstr ""
+
+msgid "Repaired balances."
+msgstr ""
+
+msgid "Save program"
+msgstr ""
+
+msgid "Show this code to the customer now"
+msgstr ""
+
+msgid "Status differs from the ledger"
+msgstr ""
+
+msgid "Store credit"
+msgstr ""
+
+msgid "That gift card or credit code was not recognised."
+msgstr ""
+
+msgid "That gift card or credit does not have enough balance for the amount entered."
+msgstr ""
+
+msgid "That gift card or credit is disabled or has expired."
+msgstr ""
+
+msgid "That kind is not enabled yet. Enable it under Programs first."
+msgstr ""
+
+msgid "That request was already used with different details. Reload and try again."
+msgstr ""
+
+msgid "That would pass the balance ceiling for this kind."
+msgstr ""
+
+msgid "That would take the balance below zero."
+msgstr ""
+
+msgid "The account is already in that state."
+msgstr ""
+
+msgid "The amount must be like 5000 or -5000.50 (negative takes value off), and not zero."
+msgstr ""
+
+msgid "The amount must be like 50000 or 50000.50, greater than zero."
+msgstr ""
+
+msgid "The ceiling must be an amount like 1000000 or empty."
+msgstr ""
+
+msgid "The check compares every balance with its ledger. A balance that differs can be rebuilt from the ledger; anything else is only reported."
+msgstr ""
+
+msgid "The code is shown once, right after you issue it - it is not stored, so copy or print it then."
+msgstr ""
+
+msgid "The print window was blocked by the browser."
+msgstr ""
+
+msgid "This account has expired; it takes no more entries."
+msgstr ""
+
+msgid "This account is disabled; enable it first, or choose Adjust."
+msgstr ""
+
+msgid "Too many code lookups. Wait a moment and try again."
+msgstr ""
+
+msgid "Turning a kind off stops new cards and top-ups; value already issued stays redeemable."
+msgstr ""
+
+msgid "Value issued and used per kind, {from} to {to}, by the day each entry was recorded."
+msgstr ""
+
+msgid "You do not have permission to view gift cards and store credit."
+msgstr ""
+
+msgid "{count} account"
+msgid_plural "{count} accounts"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} entry"
+msgid_plural "{count} entries"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Gift cards & credit"
+msgstr ""

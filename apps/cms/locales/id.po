@@ -7790,3 +7790,297 @@ msgstr "Register kasir"
 
 msgid "Close attempts"
 msgstr "Percobaan penutupan"
+
+#. Issue #288 — gift cards and store credit (ADR-0029)
+msgid "A reason is required."
+msgstr "Alasan wajib diisi."
+
+msgid "A refund goes back onto the same card"
+msgstr "Pengembalian dana kembali ke kartu yang sama"
+
+msgid "Accounts"
+msgstr "Akun"
+
+msgid "Adjust the balance"
+msgstr "Sesuaikan saldo"
+
+msgid "Adjusted"
+msgstr "Disesuaikan"
+
+msgid "Adjusted down"
+msgstr "Disesuaikan turun"
+
+msgid "Adjusted up"
+msgstr "Disesuaikan naik"
+
+msgid "All kinds"
+msgstr "Semua jenis"
+
+msgid "Balance"
+msgstr "Saldo"
+
+msgid "Balance after"
+msgstr "Saldo setelahnya"
+
+msgid "Balance ceiling"
+msgstr "Batas saldo"
+
+msgid "Balance differs from the ledger"
+msgstr "Saldo berbeda dari buku besar"
+
+msgid "By"
+msgstr "Oleh"
+
+msgid "Check and rebuild differing balances"
+msgstr "Periksa dan bangun ulang saldo yang berbeda"
+
+msgid "Check balances"
+msgstr "Periksa saldo"
+
+msgid "Code copied."
+msgstr "Kode disalin."
+
+msgid "Copy code"
+msgstr "Salin kode"
+
+msgid "Could not copy; select the code and copy it by hand."
+msgstr "Tidak dapat menyalin; pilih kode lalu salin secara manual."
+
+msgid "Could not issue the card. Please try again."
+msgstr "Tidak dapat menerbitkan kartu. Silakan coba lagi."
+
+msgid "Could not run the check. Please try again."
+msgstr "Tidak dapat menjalankan pemeriksaan. Silakan coba lagi."
+
+msgid "Could not run the expiry. Please try again."
+msgstr "Tidak dapat menjalankan kedaluwarsa. Silakan coba lagi."
+
+msgid "Could not save the change. Please try again."
+msgstr "Tidak dapat menyimpan perubahan. Silakan coba lagi."
+
+msgid "Could not save the program. Please try again."
+msgstr "Tidak dapat menyimpan program. Silakan coba lagi."
+
+msgid "Differences found."
+msgstr "Ditemukan perbedaan."
+
+msgid "Done"
+msgstr "Selesai"
+
+msgid "Enter the gift card or credit code for that payment line."
+msgstr "Masukkan kode kartu hadiah atau kredit untuk baris pembayaran itu."
+
+msgid "Enter the gift card or credit code."
+msgstr "Masukkan kode kartu hadiah atau kredit."
+
+msgid "Entry"
+msgstr "Entri"
+
+msgid "Every balance agrees with its ledger."
+msgstr "Setiap saldo sesuai dengan buku besarnya."
+
+msgid "Expires after (days)"
+msgstr "Kedaluwarsa setelah (hari)"
+
+msgid "Expiry must be a whole number of days from 1 to 3650, or empty."
+msgstr "Kedaluwarsa harus berupa bilangan bulat hari dari 1 sampai 3650, atau kosong."
+
+msgid "Expiry run finished."
+msgstr "Proses kedaluwarsa selesai."
+
+msgid "Filter by kind"
+msgstr "Saring menurut jenis"
+
+msgid "Frozen on disabled"
+msgstr "Dibekukan pada akun nonaktif"
+
+msgid "Gift card"
+msgstr "Kartu hadiah"
+
+msgid "Gift card and store credit figures"
+msgstr "Angka kartu hadiah dan kredit toko"
+
+msgid "Gift card or credit code"
+msgstr "Kode kartu hadiah atau kredit"
+
+msgid "Gift card receipt"
+msgstr "Struk kartu hadiah"
+
+msgid "Gift cards and store credit"
+msgstr "Kartu hadiah dan kredit toko"
+
+msgid "Gift cards and store credit are turned off for this store."
+msgstr "Kartu hadiah dan kredit toko dimatikan untuk toko ini."
+
+msgid "Gift cards and store credit could not be loaded right now. Please try again later."
+msgstr "Kartu hadiah dan kredit toko tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Issue"
+msgstr "Terbitkan"
+
+msgid "Issue a card or credit"
+msgstr "Terbitkan kartu atau kredit"
+
+msgid "Issue a card or credit above."
+msgstr "Terbitkan kartu atau kredit di atas."
+
+msgid "Issue gift cards and store credit, track what is owed to cardholders, and keep the balances reconciled."
+msgstr "Terbitkan kartu hadiah dan kredit toko, pantau kewajiban kepada pemegang kartu, dan jaga saldo tetap terekonsiliasi."
+
+msgid "Issued"
+msgstr "Diterbitkan"
+
+msgid "It cannot be shown again. If it is lost, disable the account and issue a new one."
+msgstr "Kode tidak dapat ditampilkan lagi. Jika hilang, nonaktifkan akun lalu terbitkan yang baru."
+
+msgid "Lapsed, not yet released"
+msgstr "Kedaluwarsa, belum dilepas"
+
+msgid "Ledger"
+msgstr "Buku besar"
+
+msgid "Ledger disagrees with itself"
+msgstr "Buku besar tidak konsisten dengan dirinya sendiri"
+
+msgid "Liability report"
+msgstr "Laporan kewajiban"
+
+msgid "Load value"
+msgstr "Isi saldo"
+
+msgid "Loaded"
+msgstr "Diisi"
+
+msgid "Maintenance"
+msgstr "Pemeliharaan"
+
+msgid "Manage"
+msgstr "Kelola"
+
+msgid "Manage an account"
+msgstr "Kelola akun"
+
+msgid "No accounts yet"
+msgstr "Belum ada akun"
+
+msgid "Older accounts"
+msgstr "Akun lebih lama"
+
+msgid "Older entries"
+msgstr "Entri lebih lama"
+
+msgid "Owed now"
+msgstr "Terutang sekarang"
+
+msgid "Owed to cardholders"
+msgstr "Terutang kepada pemegang kartu"
+
+msgid "Present this code to redeem. Not exchangeable for cash."
+msgstr "Tunjukkan kode ini untuk menukar. Tidak dapat ditukar dengan uang tunai."
+
+msgid "Program saved."
+msgstr "Program disimpan."
+
+msgid "Programs"
+msgstr "Program"
+
+msgid "Redeemed"
+msgstr "Ditukar"
+
+msgid "Redemption without a matching ledger entry"
+msgstr "Penukaran tanpa entri buku besar yang cocok"
+
+msgid "Refunded to card"
+msgstr "Dikembalikan ke kartu"
+
+msgid "Release lapsed balances"
+msgstr "Lepas saldo yang kedaluwarsa"
+
+msgid "Released"
+msgstr "Dilepas"
+
+msgid "Repaired balances."
+msgstr "Saldo diperbaiki:"
+
+msgid "Save program"
+msgstr "Simpan program"
+
+msgid "Show this code to the customer now"
+msgstr "Tunjukkan kode ini kepada pelanggan sekarang"
+
+msgid "Status differs from the ledger"
+msgstr "Status berbeda dari buku besar"
+
+msgid "Store credit"
+msgstr "Kredit toko"
+
+msgid "That gift card or credit code was not recognised."
+msgstr "Kode kartu hadiah atau kredit itu tidak dikenali."
+
+msgid "That gift card or credit does not have enough balance for the amount entered."
+msgstr "Saldo kartu hadiah atau kredit itu tidak cukup untuk jumlah yang dimasukkan."
+
+msgid "That gift card or credit is disabled or has expired."
+msgstr "Kartu hadiah atau kredit itu nonaktif atau sudah kedaluwarsa."
+
+msgid "That kind is not enabled yet. Enable it under Programs first."
+msgstr "Jenis itu belum diaktifkan. Aktifkan lebih dulu di Program."
+
+msgid "That request was already used with different details. Reload and try again."
+msgstr "Permintaan itu sudah dipakai dengan rincian berbeda. Muat ulang lalu coba lagi."
+
+msgid "That would pass the balance ceiling for this kind."
+msgstr "Itu akan melewati batas saldo untuk jenis ini."
+
+msgid "That would take the balance below zero."
+msgstr "Itu akan membuat saldo di bawah nol."
+
+msgid "The account is already in that state."
+msgstr "Akun sudah dalam keadaan itu."
+
+msgid "The amount must be like 5000 or -5000.50 (negative takes value off), and not zero."
+msgstr "Jumlah harus seperti 5000 atau -5000.50 (negatif mengurangi nilai), dan tidak nol."
+
+msgid "The amount must be like 50000 or 50000.50, greater than zero."
+msgstr "Jumlah harus seperti 50000 atau 50000.50, lebih besar dari nol."
+
+msgid "The ceiling must be an amount like 1000000 or empty."
+msgstr "Batas harus berupa jumlah seperti 1000000 atau kosong."
+
+msgid "The check compares every balance with its ledger. A balance that differs can be rebuilt from the ledger; anything else is only reported."
+msgstr "Pemeriksaan membandingkan setiap saldo dengan buku besarnya. Saldo yang berbeda dapat dibangun ulang dari buku besar; hal lain hanya dilaporkan."
+
+msgid "The code is shown once, right after you issue it - it is not stored, so copy or print it then."
+msgstr "Kode ditampilkan sekali, tepat setelah Anda menerbitkannya - kode tidak disimpan, jadi salin atau cetak saat itu."
+
+msgid "The print window was blocked by the browser."
+msgstr "Jendela cetak diblokir oleh peramban."
+
+msgid "This account has expired; it takes no more entries."
+msgstr "Akun ini sudah kedaluwarsa; tidak menerima entri lagi."
+
+msgid "This account is disabled; enable it first, or choose Adjust."
+msgstr "Akun ini nonaktif; aktifkan dulu, atau pilih Sesuaikan."
+
+msgid "Too many code lookups. Wait a moment and try again."
+msgstr "Terlalu banyak pencarian kode. Tunggu sebentar lalu coba lagi."
+
+msgid "Turning a kind off stops new cards and top-ups; value already issued stays redeemable."
+msgstr "Mematikan suatu jenis menghentikan kartu baru dan pengisian saldo; nilai yang sudah diterbitkan tetap dapat ditukar."
+
+msgid "Value issued and used per kind, {from} to {to}, by the day each entry was recorded."
+msgstr "Nilai yang diterbitkan dan dipakai per jenis, {from} sampai {to}, menurut hari setiap entri dicatat."
+
+msgid "You do not have permission to view gift cards and store credit."
+msgstr "Anda tidak memiliki izin untuk melihat kartu hadiah dan kredit toko."
+
+msgid "{count} account"
+msgid_plural "{count} accounts"
+msgstr[0] "{count} akun"
+
+msgid "{count} entry"
+msgid_plural "{count} entries"
+msgstr[0] "{count} entri"
+
+msgid "Gift cards & credit"
+msgstr "Kartu hadiah & kredit"

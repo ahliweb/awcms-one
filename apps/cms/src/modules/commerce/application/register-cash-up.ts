@@ -387,7 +387,9 @@ export async function fetchRegisterCashUpReport(
     "cash",
     "manual_qris",
     "manual_bank_transfer",
-    "gateway"
+    "gateway",
+    "gift_card",
+    "store_credit"
   ];
   const tenders: ReportTenderLine[] = [...tenderTypes]
     .sort((a, b) => order.indexOf(a) - order.indexOf(b))

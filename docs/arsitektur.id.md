@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](arsitektur.md)
 
-<!-- i18n-source-hash: sha256:5fa48ecead7feb28e5ba1ecff1d450011a7eaebfd5b55f8e26a444dd5d76a1d2 -->
+<!-- i18n-source-hash: sha256:f4dc9a542036c0b55936ce9133bf2486627078ac8e4333d13d1d122236312ab6 -->
 
 # Arsitektur
 
@@ -190,6 +190,10 @@ Setiap cara uang sampai ke sebuah pesanan — tender POS, konfirmasi transfer ma
 ## Shift adalah turunan atas ledger (issue #284, [ADR-0028](adr/0028-pos-register-sessions-and-cash-up.md))
 
 Tutup kas tidak menyimpan total sendiri. Jumlah penutupan yang seharusnya per tender adalah jumlah atas baris yang sudah ada dan tidak dapat diedit — leg ledger alokasi pembayaran yang distempel dengan sesi, ditambah mutasi laci append-only sesi itu — dihitung di bawah kunci baris sesi dan di-snapshot sekali pada baris penutupan. Stempellah yang membuatnya persis (jendela waktu atas `created_at` tidak: timestamp sebuah leg adalah awal transaksinya). Baris sesi membawa tiga mode kunci — `FOR SHARE` untuk penjualan, mutasi, dan leg yang distempel (banyak sekaligus), `FOR NO KEY UPDATE` untuk serah terima, penutupan, persetujuan, dan koreksi (eksklusif, namun kompatibel dengan `FOR KEY SHARE` yang diambil insert FK, pelajaran ADR-0025 D4) — ditambah indeks unik parsial dan kunci baris register untuk "satu sesi aktif per register". Sesi yang sudah ditutup dibekukan trigger; koreksi adalah baris kompensasi; alur penutupan (`open → closing → closed | open`, `closed → corrected`) tidak pernah menulis ulang penjualan atau pembayaran. Dengan fitur `register` mati (default) tidak ada satu pun dari ini di jalur penjualan.
+
+## Nilai tersimpan adalah kewajiban yang dijaga tetap tepat oleh database (issue #288, [ADR-0029](adr/0029-stored-value-is-a-closed-loop-liability-ledger.md))
+
+Kartu hadiah adalah uang terutang, jadi saldonya bukan field yang diedit fungsi aplikasi. Setiap perubahan adalah satu baris bertanda pada ledger append-only, dan satu-satunya yang menggerakkan `balance`/`version`/`status` akun adalah trigger `BEFORE INSERT` ledger sendiri — ia mengunci akun, menerapkan aturan jenis/status/kedaluwarsa, menolak apa pun yang turun di bawah nol, menomori entri, dan memperbarui proyeksi dalam transaksi yang menyisipkan; trigger kedua menolak edit lain atas kolom-kolom itu. Penukaran adalah tender pada ledger pembayaran ADR-0025: leg alokasi dan entri ledger cerminannya ditulis bersama (masing-masing menolak ada tanpa yang lain, lewat trigger dan trigger constraint tertangguh), tidak ada panggilan provider atau jaringan masuk ke transaksi, dan urutan kunci adalah baris pesanan → baris akun di mana-mana (akun `FOR NO KEY UPDATE`, karena alasan key-share FK yang sama dengan ADR-0025 D4); penjualan POS, yang belum punya baris pesanan, mengunci akunnya terurut menurut id dan menolak kartu yang buruk dalam preflight SEBELUM pesanan ada, sehingga tidak ada yang tertinggal (respons yang dikembalikan meng-commit; hanya error yang dilempar yang me-rollback). Kode yang dapat ditukar adalah nilai CSPRNG 100 bit yang hanya disimpan sebagai sha256 berlingkup tenant ditambah empat karakter terakhir, dikembalikan sekali saat penerbitan dan tidak ada di log, atribut audit, payload event, maupun baris idempotensi mana pun. Loop ditutup secara konstruksi: tidak ada di skema yang dapat menyatakan tarik tunai atau transfer.
 
 ## Satu hal lagi yang dilakukan server: memperbaiki halaman yang terbayangi
 
