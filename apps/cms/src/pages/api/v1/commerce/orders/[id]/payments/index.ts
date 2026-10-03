@@ -31,7 +31,10 @@ import {
   readJsonBody
 } from "../../../../../../../lib/security/request-body-limit";
 import { IdempotencyPayloadMismatchError } from "../../../../../../../modules/commerce/application/order-directory";
-import { fetchOrderPaymentSummary } from "../../../../../../../modules/commerce/application/payment-allocation-directory";
+import {
+  AllocationSourceKeyConflictError,
+  fetchOrderPaymentSummary
+} from "../../../../../../../modules/commerce/application/payment-allocation-directory";
 import { recordOwnerPayment } from "../../../../../../../modules/commerce/application/payment-recording";
 import {
   OverpaymentError,
@@ -143,7 +146,10 @@ export const POST = defineTenantRoute<RecordPaymentInput>({
           "Idempotency-Key was already used with a different request."
         );
       }
-      if (error instanceof IdempotencyPayloadMismatchError) {
+      if (
+        error instanceof IdempotencyPayloadMismatchError ||
+        error instanceof AllocationSourceKeyConflictError
+      ) {
         return fail(
           409,
           "IDEMPOTENCY_CONFLICT",

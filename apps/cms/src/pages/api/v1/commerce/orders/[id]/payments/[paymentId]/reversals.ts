@@ -31,7 +31,10 @@ import {
   readJsonBody
 } from "../../../../../../../../lib/security/request-body-limit";
 import { IdempotencyPayloadMismatchError } from "../../../../../../../../modules/commerce/application/order-directory";
-import { ReversalExceedsPaymentError } from "../../../../../../../../modules/commerce/application/payment-allocation-directory";
+import {
+  AllocationSourceKeyConflictError,
+  ReversalExceedsPaymentError
+} from "../../../../../../../../modules/commerce/application/payment-allocation-directory";
 import { recordOwnerReversal } from "../../../../../../../../modules/commerce/application/payment-recording";
 import {
   validateRecordReversalInput,
@@ -121,7 +124,10 @@ export const POST = defineTenantRoute<RecordReversalInput>({
           "Idempotency-Key was already used with a different request."
         );
       }
-      if (error instanceof IdempotencyPayloadMismatchError) {
+      if (
+        error instanceof IdempotencyPayloadMismatchError ||
+        error instanceof AllocationSourceKeyConflictError
+      ) {
         return fail(
           409,
           "IDEMPOTENCY_CONFLICT",

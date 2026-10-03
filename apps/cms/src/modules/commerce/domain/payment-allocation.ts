@@ -648,3 +648,26 @@ export function confirmationMethodToTender(
 ): "manual_qris" | "manual_bank_transfer" {
   return method === "manual_qris" ? "manual_qris" : "manual_bank_transfer";
 }
+
+/**
+ * The tender a manual `PATCH .../status -> paid` is recorded as when the order
+ * has no ledger leg at all (ADR-0025 "behaviour changes"): the order's own
+ * `payment_method` says how the customer was going to pay, so the leg
+ * is attributed to the matching tender: `cash` for COD, `manual_qris` for
+ * QRIS, `gateway` (provider `legacy`, as `sql/943` backfilled it) for a
+ * gateway order, `manual_bank_transfer` for everything else (bank transfer, dp).
+ */
+export function orderPaymentMethodToTender(
+  paymentMethod: string
+): PaymentTenderType {
+  switch (paymentMethod) {
+    case "cash":
+      return "cash";
+    case "manual_qris":
+      return "manual_qris";
+    case "gateway":
+      return "gateway";
+    default:
+      return "manual_bank_transfer";
+  }
+}

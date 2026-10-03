@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:51c5db2b167d3b09c0f3405b75acf3ebe115a21f385368090e037ed280713e06 -->
+<!-- i18n-source-hash: sha256:b28272c1116723a2b930e2cbe5e5320e46175acd7948048cc1043fb7bb96b07c -->
 
 # API
 
@@ -281,7 +281,7 @@ Keempat belas event terdaftar di tiga tempat yang dijaga selaras `awcms` (`domai
 | `409`  | `CATEGORY_SLUG_ALREADY_EXISTS` / `PRODUCT_SLUG_ALREADY_EXISTS` / `PRODUCT_SKU_ALREADY_EXISTS` | Slug/SKU sudah dipakai baris hidup di tenant ini                                                                                                                 |
 | `409`  | `CART_CHANGED`                                                                                | Re-quote milik request pembuatan-pesanan storefront (atau POS, #116) tidak sepakat dengan keranjang yang dikirim; respons membawa `details.quote` baru          |
 | `409`  | `INSUFFICIENT_TENDER`                                                                         | Hanya POS (#116, diperlebar #285): tender tidak menutup total pesanan (kecuali `allowDue`); `details.shortfall` adalah selisihnya sebagai string `numeric(14,2)`   |
-| `409`  | `OVERPAYMENT` / `REVERSAL_EXCEEDS_PAYMENT` / `PAYMENT_NOT_REVERSIBLE` / `PAYMENT_NOT_SETTLED`  | Ledger pembayaran (#285): jumlah di atas yang terutang (hanya kembalian tunai yang boleh melebihi); pembalikan di atas sisa yang bisa dibalik; pembayaran yang tidak bisa dibalik; `-> paid` manual sebelum ledger menyatakan pesanan terselesaikan |
+| `409`  | `OVERPAYMENT` / `REVERSAL_EXCEEDS_PAYMENT` / `PAYMENT_NOT_REVERSIBLE` / `PAYMENT_NOT_SETTLED`  | Ledger pembayaran (#285): jumlah di atas yang terutang (hanya kembalian tunai yang boleh melebihi); pembalikan di atas sisa yang bisa dibalik; pembayaran yang tidak bisa dibalik; `-> paid` manual untuk pesanan yang punya leg tetapi belum terselesaikan (pesanan tanpa leg justru dicatatkan satu leg senilai penuh). `Idempotency-Key` yang dipakai ulang untuk pesanan lain, atau dengan tender/jumlah berbeda, adalah `409 IDEMPOTENCY_CONFLICT`; `ORDER_PARTIALLY_SETTLED` (sesi gateway storefront) berarti uang sudah diterima sehingga tidak ada hosted checkout yang ditawarkan |
 | `409`  | `FEATURE_DISABLED`                                                                            | Rute owner dari fitur yang dimatikan tenant (#118) — kotak masuk, kampanye, gateway, kurir, dan sejak #116 rute POS                                              |
 | `409`  | `ORDER_NOT_PAYABLE` / `ORDER_NOT_CANCELLABLE`                                                 | Status pesanan saat ini secara legal tidak mengizinkan aksi yang diminta                                                                                         |
 | `404`  | `NOT_FOUND`                                                                                   | Resource tak dikenal, atau — pada API storefront — penolakan netral yang mencakup "pesanan tak dikenal", "telepon salah", dan "milik tenant lain" secara identik |

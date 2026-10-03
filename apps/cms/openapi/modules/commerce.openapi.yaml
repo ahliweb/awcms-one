@@ -2669,7 +2669,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: "`ILLEGAL_STATUS_TRANSITION` (the requested transition is not legal from the order's current status) or `PAYMENT_NOT_SETTLED` (Issue #285 — a manual `-> paid` while the payment-allocation ledger has not reached the order's release threshold; `details.outstanding` carries what is still owed. Record the payment with `POST /api/v1/commerce/orders/{id}/payments` and the order moves to `paid` by itself)."
+          description: "`ILLEGAL_STATUS_TRANSITION` (the requested transition is not legal from the order's current status) or `PAYMENT_NOT_SETTLED` (Issue #285 — a manual `-> paid` for an order that HAS payment-allocation legs but whose ledger has not reached the order's release threshold; `details.outstanding` carries what is still owed. Record the payment with `POST /api/v1/commerce/orders/{id}/payments` and the order moves to `paid` by itself. An order with NO ledger leg at all is not refused: the call records one full-amount succeeded leg and releases the order)."
           content:
             application/json:
               schema:
@@ -3764,7 +3764,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: "PAYMENT_NOT_APPLICABLE — the order's `paymentMethod` is not `gateway`, or its status is not `pending_payment`."
+          description: "`PAYMENT_NOT_APPLICABLE` — the order's `paymentMethod` is not `gateway`, or its status is not `pending_payment`; or `ORDER_PARTIALLY_SETTLED` (Issue #285, ADR-0025) — money has already been received against the order, so a hosted checkout (which charges the whole total) is neither created nor handed back; `details.outstanding` carries the balance, to be settled with a manual tender."
           content:
             application/json:
               schema:
