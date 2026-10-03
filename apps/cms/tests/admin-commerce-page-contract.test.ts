@@ -90,7 +90,7 @@ async function enforcedTriples(
 }
 
 describe("commerce module descriptor — restore is declared for both activity codes", () => {
-  test("sixty-five permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations/entitlements, three for reviews, one for whatsapp, three for campaigns, one for webhook_endpoints, one for pos, one for pos_due, three for payments, two for loyalty and one each for loyalty_adjustments/loyalty_redemptions, and (Issue #291) read/manage for attributes plus export/import on products", () => {
+  test("seventy-five permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations/entitlements, three for reviews, one for whatsapp, three for campaigns, one for webhook_endpoints, one for pos, one for pos_due, three for payments, ten for registers/cash-up, two for loyalty and one each for loyalty_adjustments/loyalty_redemptions, and (Issue #291) read/manage for attributes plus export/import on products", () => {
     // Issue #23: categories/products carry read/create/update/delete/restore.
     // Issue #26: flash_sales/vouchers/sliders/testimonials/popups carry
     // read/create/update/delete (soft delete only, no restore — the marketing
@@ -124,6 +124,9 @@ describe("commerce module descriptor — restore is declared for both activity c
     // sale left with a balance due), payments carries read/create/revoke
     // (record a tender / record a reversal — `revoke` is the platform's
     // existing high-risk verb), each with its own enforcing route.
+    // Issue #284: registers carries read/create/update, register_sessions
+    // read/create/update/export, register_cash_ups create/approve and
+    // register_corrections approve (ten keys, none implied by pos.create).
     expect(declared.size).toBe(
       2 * 5 +
         5 * 4 +
@@ -141,6 +144,7 @@ describe("commerce module descriptor — restore is declared for both activity c
         2 +
         1 +
         3 +
+        10 +
         4 +
         2 +
         2
@@ -549,5 +553,150 @@ describe("payment-allocation ledger permission gates (Issue #285)", () => {
     expect(page).toContain("listTenderMix(");
     expect(page).toContain("listOutstandingBalances(");
     expect(page).toContain('activityCode: "payments"');
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Issue #284 — registers, register sessions and cash-up (ADR-0028)
+// ---------------------------------------------------------------------------
+
+const REGISTERS_PAGE = "src/pages/admin/commerce-registers.astro";
+const REGISTER_SESSION_PAGE = "src/pages/admin/commerce-registers/[id].astro";
+const REGISTER_ROUTES = [
+  "src/pages/api/v1/commerce/registers/index.ts",
+  "src/pages/api/v1/commerce/registers/[id].ts",
+  "src/pages/api/v1/commerce/register-sessions/index.ts",
+  "src/pages/api/v1/commerce/register-sessions/[id]/index.ts",
+  "src/pages/api/v1/commerce/register-sessions/[id]/movements.ts",
+  "src/pages/api/v1/commerce/register-sessions/[id]/handover.ts",
+  "src/pages/api/v1/commerce/register-sessions/[id]/close.ts",
+  "src/pages/api/v1/commerce/register-sessions/[id]/close-decision.ts",
+  "src/pages/api/v1/commerce/register-sessions/[id]/corrections.ts",
+  "src/pages/api/v1/commerce/register-sessions/[id]/report.csv.ts"
+];
+
+describe("register screens' permission gates (Issue #284)", () => {
+  test("the list screen claims the register / session / settings permissions it renders controls for, all declared", async () => {
+    const page = await readFile(REGISTERS_PAGE, "utf8");
+    const pageKeys = pageTriplesFrom(page);
+    const declared = declaredTriples();
+
+    expect([...pageKeys].sort()).toEqual([
+      "commerce.register_sessions.create",
+      "commerce.register_sessions.read",
+      "commerce.registers.create",
+      "commerce.registers.read",
+      "commerce.registers.update"
+    ]);
+    expect([...pageKeys].filter((key) => !declared.has(key))).toEqual([]);
+    // The cash-up threshold is edited through the GENERIC module-settings
+    // route behind module_management's own permission, not a commerce one.
+    expect(page).toContain("MODULE_SETTINGS_UPDATE_GUARD");
+  });
+
+  test("the session screen claims the use / close / approve / correct / export permissions, all declared", async () => {
+    const page = await readFile(REGISTER_SESSION_PAGE, "utf8");
+    const pageKeys = pageTriplesFrom(page);
+    const declared = declaredTriples();
+
+    expect([...pageKeys].sort()).toEqual([
+      "commerce.register_cash_ups.approve",
+      "commerce.register_cash_ups.create",
+      "commerce.register_corrections.approve",
+      "commerce.register_sessions.export",
+      "commerce.register_sessions.read",
+      "commerce.register_sessions.update"
+    ]);
+    expect([...pageKeys].filter((key) => !declared.has(key))).toEqual([]);
+  });
+
+  test("every permission a register screen claims is enforced by the endpoint behind it", async () => {
+    const claimed = new Set<Triple>([
+      ...pageTriplesFrom(await readFile(REGISTERS_PAGE, "utf8")),
+      ...pageTriplesFrom(await readFile(REGISTER_SESSION_PAGE, "utf8"))
+    ]);
+    const enforced = new Set<Triple>();
+    for (const [constant, code] of [
+      ["COMMERCE_REGISTERS_ACTIVITY_CODE", "registers"],
+      ["COMMERCE_REGISTER_SESSIONS_ACTIVITY_CODE", "register_sessions"],
+      ["COMMERCE_REGISTER_CASH_UPS_ACTIVITY_CODE", "register_cash_ups"],
+      ["COMMERCE_REGISTER_CORRECTIONS_ACTIVITY_CODE", "register_corrections"]
+    ] as const) {
+      for (const key of await enforcedTriples(
+        REGISTER_ROUTES,
+        constant,
+        code
+      )) {
+        enforced.add(key);
+      }
+    }
+    expect([...claimed].filter((key) => !enforced.has(key))).toEqual([]);
+  });
+
+  test("the screens never write raw SQL or innerHTML - every mutation posts to a guarded endpoint with an Idempotency-Key", async () => {
+    for (const path of [REGISTERS_PAGE, REGISTER_SESSION_PAGE]) {
+      const page = await readFile(path, "utf8");
+      expect(page).not.toMatch(
+        /\b(INSERT\s+INTO|UPDATE\s+awcms_|DELETE\s+FROM)/i
+      );
+      expect(page).not.toMatch(/\.innerHTML\s*=/);
+      expect(page).not.toContain("window.confirm");
+    }
+    const list = await readFile(REGISTERS_PAGE, "utf8");
+    expect(list).toContain('"/api/v1/commerce/register-sessions"');
+    expect(list).toContain('"Idempotency-Key"');
+    const detail = await readFile(REGISTER_SESSION_PAGE, "utf8");
+    for (const suffix of [
+      "/movements",
+      "/handover",
+      "/close",
+      "/close-decision",
+      "/corrections"
+    ]) {
+      expect(detail).toContain("`${base}" + suffix + "`");
+    }
+    expect(detail).toContain('"Idempotency-Key"');
+  });
+
+  test("both screens honour the register feature flag and read through the directory", async () => {
+    const list = await readFile(REGISTERS_PAGE, "utf8");
+    const detail = await readFile(REGISTER_SESSION_PAGE, "utf8");
+    expect(list).toContain("fetchCommerceFeatures(");
+    expect(list).toContain("listRegisterSessions(");
+    expect(detail).toContain("fetchCommerceFeatures(");
+    expect(detail).toContain("fetchRegisterCashUpReport(");
+  });
+
+  test("the sidebar entry points at the list screen, is gated on session read, and requires the register feature", () => {
+    const nav = listModules()
+      .find((module) => module.key === "commerce")
+      ?.navigation?.find((entry) => entry.path === "/admin/commerce-registers");
+
+    expect(nav).toBeDefined();
+    expect(nav!.requiredPermission).toBe("commerce.register_sessions.read");
+    expect(declaredTriples().has(nav!.requiredPermission as Triple)).toBe(true);
+    expect(nav!.requiredFeature).toEqual({
+      moduleKey: "commerce",
+      feature: "register"
+    });
+  });
+
+  test("the POS screen shows the register banner only behind the feature and posts the register id", async () => {
+    const page = await readFile(POS_PAGE, "utf8");
+    expect(page).toContain("registerEnabled");
+    expect(page).toContain("listRegisterSessions(");
+    expect(page).toContain("registerId");
+  });
+
+  test("the POS route maps every register-gate refusal", async () => {
+    const source = await readFile(POS_ROUTES[0]!, "utf8");
+    for (const code of [
+      "REGISTER_SESSION_REQUIRED",
+      "REGISTER_SESSION_CLOSING",
+      "NOT_SESSION_CASHIER"
+    ]) {
+      expect(source).toContain(`"${code}"`);
+    }
+    expect(source).toContain("PosRegisterSessionError");
   });
 });

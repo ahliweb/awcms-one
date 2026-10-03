@@ -225,6 +225,26 @@ Tenant-authored, **typed** custom attributes — this platform's own design (OSP
 | `commerce.attributes.read` / `.manage` | `awcms_permissions` (`sql/961`)                                       | View / change definitions; `read` also gates a product's full attribute set                                                                 |
 | `commerce.products.export` / `.import` | `awcms_permissions` (`sql/961`)                                       | Download / import the catalog CSV; applying also needs `create` + `update`                                                                  |
 
+### POS registers and cash-up (issue #284, [ADR-0028](adr/0028-pos-register-sessions-and-cash-up.md))
+
+| Term | Where it lives | Meaning |
+| --- | --- | --- |
+| register | `awcms_commerce_registers` | A named till (`code`, `name`, optional location label, `active`). Deactivated, never deleted |
+| register session / shift | `awcms_commerce_register_sessions` | One shift on one register: opening float, current cashier, `status` `open \| closing \| closed \| corrected`. At most one `open`/`closing` session per register |
+| opening float | `opening_float numeric(14,2)` | The counted cash in the drawer when the session opened |
+| cashier (current) | `current_cashier_tenant_user_id` | The one named person accountable for the drawer; a movement, a sale and a close are theirs; a handover changes it (the history is the audit trail) |
+| drawer movement | `awcms_commerce_register_movements` | An append-only CASH movement: `cash_in`, `cash_out`, `safe_drop`, `expense`, `transfer`, `correction`, each `in` or `out` |
+| expected (closing amount) | derived, snapshotted on the close lines | Cash: opening float + Σ cash legs stamped with the session − Σ cash reversals + movements in − movements out. Other tender: Σ payments − Σ reversals of that tender. Never a stored running total |
+| register-session stamp | `register_session_id` on a POS order and on its ledger legs | Which shift a sale / payment leg belongs to. Set at write time under the session lock; frozen; NULL outside an open session |
+| counted | `awcms_commerce_register_close_lines.counted` | What the cashier counted per tender at close |
+| variance / difference | `variance = counted − expected`, signed (negative = short) | Per tender; `variance_total` is the net sum, `variance_gross` the sum of absolute values |
+| approval threshold | commerce module setting `cashUp.approvalThreshold` (default `"0.00"`) | The gross variance above which a close needs a user holding `commerce.register_cash_ups.approve` |
+| self-approval | commerce module setting `cashUp.allowSelfApproval` (default `false`) | Whether the cashier who counted may approve their own variance above the threshold; off = separation of duties (`409 SOD_MAKER_IS_CHECKER`) |
+| close request / attempt | `awcms_commerce_register_close_requests` | One count-and-close attempt; decision `auto` (within the threshold), `pending` (session `closing`), `approved`, `rejected` (session back to `open`, kept as history) |
+| correction | `awcms_commerce_register_corrections` | A compensating, signed adjustment to a tender's COUNTED amount on a closed session; the original lines are never altered; the session becomes `corrected` |
+| `register` feature | commerce module settings `features.register` (default OFF) | Turns the whole register surface on and makes a POS sale require an open session on the chosen register |
+| `commerce.registers.*`, `commerce.register_sessions.*`, `commerce.register_cash_ups.*`, `commerce.register_corrections.approve` | `awcms_permissions` (`sql/972`) | The ten keys: manage registers, read / open / use / export a session, close it / approve a variance, correct a closed session |
+
 ## Deferred columns and tables — not ported
 
 - **A live RajaOngkir courier-RATE table is done** (issue #107, `sql/924` — `awcms_commerce_courier_destinations`/`_shipping_rates`, a cached rate the order path validates against, never a synchronous provider call). What is still deferred: live courier TRACKING (a shipped parcel's own status) — `shipping_method`/`shipping_service_name` on an order remain merchant-defined labels for the `alternative`/`self_pickup` methods; a `courier` shipment's rate is now live, its post-dispatch tracking is not (named as a follow-up in [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md)).

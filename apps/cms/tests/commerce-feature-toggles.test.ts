@@ -20,6 +20,16 @@ import { toPublicRecord } from "../src/modules/commerce/application/store-settin
 // ---------------------------------------------------------------------------
 
 describe("resolveCommerceFeatures", () => {
+  test("defaults every flag to true when settings are absent, except `register` (Issue #284), which adds an obligation and so defaults OFF", () => {
+    expect(DEFAULT_COMMERCE_FEATURES.register).toBe(false);
+    expect(DEFAULT_COMMERCE_FEATURES.loyalty).toBe(false);
+    expect(
+      Object.entries(DEFAULT_COMMERCE_FEATURES)
+        .filter(([key]) => key !== "register" && key !== "loyalty")
+        .every(([, value]) => value === true)
+    ).toBe(true);
+  });
+
   test("defaults every pre-#289 flag to true (and loyalty, new in #289, to false) when settings are absent", () => {
     expect(resolveCommerceFeatures(undefined)).toEqual(
       DEFAULT_COMMERCE_FEATURES
@@ -36,6 +46,7 @@ describe("resolveCommerceFeatures", () => {
       campaigns: true,
       gateway: true,
       courier: true,
+      register: false,
       loyalty: false
     });
   });
@@ -48,6 +59,7 @@ describe("resolveCommerceFeatures", () => {
       campaigns: true,
       gateway: true,
       courier: true,
+      register: false,
       loyalty: true
     });
   });
@@ -67,6 +79,7 @@ describe("resolveCommerceFeatures", () => {
         campaigns: false,
         gateway: false,
         courier: false,
+        register: false,
         loyalty: false
       }
     });
@@ -76,8 +89,13 @@ describe("resolveCommerceFeatures", () => {
       campaigns: false,
       gateway: false,
       courier: false,
+      register: false,
       loyalty: false
     });
+    // ...and the one flag that defaults off can be turned on.
+    expect(
+      resolveCommerceFeatures({ features: { register: true } }).register
+    ).toBe(true);
   });
 });
 

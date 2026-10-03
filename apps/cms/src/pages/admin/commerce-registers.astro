@@ -1,0 +1,800 @@
+---
+/**
+ * POS registers, register sessions and cash-up (Issue #284, epic #281,
+ * ADR-0028) - the list screen. Four panels, each gated on its own permission
+ * (the page's entry permission is `commerce.register_sessions.read`):
+ *
+ *   1. headline figures - open sessions, closes awaiting approval, registers;
+ *   2. OPEN a session (`register_sessions.create`): pick an active register
+ *      with no live session, count the opening float;
+ *   3. the sessions table (status filter, newest first) - each row links to
+ *      the drawer / cash-up screen `/admin/commerce-registers/{id}`;
+ *   4. the register definitions (`registers.read`/`create`/`update`) and the
+ *      tenant's cash-up approval threshold (`module_management.settings.update`
+ *      - a step up from running a shift, like the "Fitur" toggles).
+ *
+ * The whole screen sits behind the tenant's `register` feature (default OFF):
+ * with it off one notice points at the settings screen, matching the routes'
+ * own `409 FEATURE_DISABLED`. Nothing here computes money in the browser -
+ * the open form posts the typed float as a `numeric(14,2)` STRING and the
+ * server is the authority; every figure shown is read from the same
+ * directory functions the API serves.
+ *
+ * Every string the client script shows is rendered by `t()` into a `data-*`
+ * attribute on `#registers-root` and read from there (the script cannot
+ * translate), the same pattern `commerce-pos.astro` uses.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import CommerceConfirmDialog from "../../components/CommerceConfirmDialog.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import { formatCurrency, formatDateTime } from "../../lib/i18n/format";
+import {
+  commerceLabel,
+  createCommerceLabels,
+  registerSessionStatusTone
+} from "../../lib/ui/commerce-admin-labels";
+import { decodeKeysetCursor } from "../../modules/_shared/keyset-pagination";
+import { fetchCommerceFeatures } from "../../modules/commerce/application/commerce-feature-gate";
+import {
+  listRegisters,
+  type RegisterRecord
+} from "../../modules/commerce/application/register-directory";
+import {
+  listRegisterSessions,
+  type RegisterSessionListPage
+} from "../../modules/commerce/application/register-session-directory";
+import {
+  fetchModuleSettingsView,
+  MODULE_SETTINGS_UPDATE_GUARD
+} from "../../modules/module-management/application/module-settings";
+import {
+  REGISTER_SESSION_STATUSES,
+  resolveCashUpSettings,
+  type RegisterSessionStatus
+} from "../../modules/commerce/domain/register";
+
+const ssr = Astro.locals.ssrContext!;
+const locale = Astro.locals.locale;
+const { t, tn } = getTranslatorFor(locale);
+const labels = createCommerceLabels(t);
+
+const TIME_ZONE = "Asia/Jakarta";
+const money = (value: string): string =>
+  formatCurrency(locale, value, "IDR", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+const when = (iso: string | null): string =>
+  iso ? formatDateTime(locale, iso, TIME_ZONE) : "—";
+
+const statusParam = Astro.url.searchParams.get("status") ?? "";
+const statusFilter: RegisterSessionStatus | null = (
+  REGISTER_SESSION_STATUSES as readonly string[]
+).includes(statusParam)
+  ? (statusParam as RegisterSessionStatus)
+  : null;
+const cursorParam = Astro.url.searchParams.get("cursor");
+const cursor = cursorParam ? decodeKeysetCursor(cursorParam) : null;
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "commerce",
+    activityCode: "register_sessions",
+    action: "read"
+  },
+  load: async ({ tx, can }) => {
+    const features = await fetchCommerceFeatures(tx, ssr.tenantId);
+    if (!features.register) {
+      return {
+        registerEnabled: false as const,
+        registers: [] as RegisterRecord[],
+        sessions: null as RegisterSessionListPage | null,
+        canReadRegisters: false,
+        canCreateRegister: false,
+        canUpdateRegister: false,
+        canOpen: false,
+        canManageSettings: false,
+        approvalThreshold: "0.00",
+        allowSelfApproval: false
+      };
+    }
+    const canReadRegisters = await can({
+      moduleKey: "commerce",
+      activityCode: "registers",
+      action: "read"
+    });
+    const canCreateRegister = await can({
+      moduleKey: "commerce",
+      activityCode: "registers",
+      action: "create"
+    });
+    const canUpdateRegister = await can({
+      moduleKey: "commerce",
+      activityCode: "registers",
+      action: "update"
+    });
+    const canOpen = await can({
+      moduleKey: "commerce",
+      activityCode: "register_sessions",
+      action: "create"
+    });
+    const canManageSettings = await can(MODULE_SETTINGS_UPDATE_GUARD);
+    const registers = canReadRegisters
+      ? await listRegisters(tx, ssr.tenantId)
+      : [];
+    const sessions = await listRegisterSessions(tx, ssr.tenantId, cursor, {
+      status: statusFilter ?? undefined
+    });
+    const settingsView = await fetchModuleSettingsView(
+      tx,
+      ssr.tenantId,
+      "commerce"
+    );
+    return {
+      registerEnabled: true as const,
+      registers,
+      sessions,
+      canReadRegisters,
+      canCreateRegister,
+      canUpdateRegister,
+      canOpen,
+      canManageSettings,
+      approvalThreshold: resolveCashUpSettings(settingsView?.effective)
+        .approvalThreshold,
+      allowSelfApproval: resolveCashUpSettings(settingsView?.effective)
+        .allowSelfApproval
+    };
+  },
+  onError: (error) => {
+    logAdminPageError("admin/commerce-registers.astro: failed to load", error, {
+      correlationId: Astro.locals.correlationId
+    });
+  }
+});
+
+const allowed = screen.state === "allowed";
+const denied = screen.state === "denied";
+const loadError = screen.state === "error";
+const data = screen.state === "allowed" ? screen.data : null;
+const registerEnabled = data?.registerEnabled === true;
+const registers = data?.registers ?? [];
+const sessions = data?.sessions ?? null;
+const canReadRegisters = data?.canReadRegisters === true;
+const canCreateRegister = data?.canCreateRegister === true;
+const canUpdateRegister = data?.canUpdateRegister === true;
+const canOpen = data?.canOpen === true;
+const canManageSettings = data?.canManageSettings === true;
+const approvalThreshold = data?.approvalThreshold ?? "0.00";
+const allowSelfApproval = data?.allowSelfApproval === true;
+
+const liveSessions = registers.filter((r) => r.activeSession !== null);
+const openCount = liveSessions.filter(
+  (r) => r.activeSession?.status === "open"
+).length;
+const closingCount = liveSessions.filter(
+  (r) => r.activeSession?.status === "closing"
+).length;
+const openableRegisters = registers.filter(
+  (r) => r.active && r.activeSession === null
+);
+
+function filterHref(status: RegisterSessionStatus | null): string {
+  return status
+    ? `/admin/commerce-registers?status=${status}`
+    : "/admin/commerce-registers";
+}
+function nextHref(next: string): string {
+  const params = new URLSearchParams();
+  if (statusFilter) params.set("status", statusFilter);
+  params.set("cursor", next);
+  return `/admin/commerce-registers?${params.toString()}`;
+}
+const cashierLabel = (id: string): string =>
+  id === ssr.tenantUserId ? t("You") : id.slice(0, 8);
+---
+
+<AdminLayout
+  title={t("Registers and cash-up")}
+  description={t(
+    "Open a register session with a counted float, track the drawer, and cash up at the end of the shift."
+  )}
+>
+  {denied && (
+    <p class="state-notice fade-in-up" id="registers-denied" role="status">
+      {t("You do not have permission to view register sessions.")}
+    </p>
+  )}
+  {loadError && (
+    <p class="state-notice fade-in-up" id="registers-error" role="alert">
+      {t("Registers could not be loaded right now. Please try again later.")}
+    </p>
+  )}
+  {allowed && !registerEnabled && (
+    <p
+      class="state-notice fade-in-up"
+      id="registers-feature-disabled"
+      role="status"
+    >
+      {t("Registers and cash-up are turned off for this store.")}{" "}
+      <a class="quick-link" href="/admin/commerce-settings">
+        {t("Turn them on under Features in the store settings.")}
+      </a>
+    </p>
+  )}
+
+  {allowed && registerEnabled && (
+    <div
+      id="registers-root"
+      data-msg-opened={t("Session opened.")}
+      data-msg-open-failed={t("Could not open the session. Please try again.")}
+      data-msg-already-open={t("That register already has an open session.")}
+      data-msg-inactive={t("That register is deactivated.")}
+      data-msg-bad-float={t(
+        "The opening float must be an amount like 100000 or 100000.50 (zero is allowed)."
+      )}
+      data-msg-register-created={t("Register defined.")}
+      data-msg-code-taken={t("A register with that code already exists.")}
+      data-msg-register-failed={t(
+        "Could not save the register. Please try again."
+      )}
+      data-msg-has-active-session={t(
+        "Close the register's open session before deactivating it."
+      )}
+      data-msg-bad-threshold={t(
+        "The threshold must be an amount like 50000 or 50000.50 (zero means every difference needs approval)."
+      )}
+      data-msg-threshold-saved={t("Threshold saved.")}
+      data-msg-threshold-failed={t(
+        "Could not save the threshold. Please try again."
+      )}
+      data-msg-busy={t("Please wait…")}
+    >
+      <section
+        class="admin-dashboard-stats fade-in-up"
+        aria-label={t("Register figures")}
+      >
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Open sessions")}</span>
+          <span class="admin-stat-card-value" id="registers-stat-open">
+            {openCount}
+          </span>
+        </div>
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Awaiting approval")}</span>
+          <span class="admin-stat-card-value" id="registers-stat-closing">
+            {closingCount}
+          </span>
+        </div>
+        {canReadRegisters && (
+          <div class="admin-stat-card">
+            <span class="admin-stat-card-label">{t("Registers")}</span>
+            <span class="admin-stat-card-value" id="registers-stat-registers">
+              {registers.length}
+            </span>
+          </div>
+        )}
+      </section>
+
+      {canOpen && canReadRegisters && (
+        <section
+          class="admin-panel fade-in-up"
+          aria-labelledby="registers-open-heading"
+        >
+          <h2 id="registers-open-heading">{t("Open a session")}</h2>
+          <p
+            id="registers-open-error"
+            class="admin-create-error"
+            role="alert"
+            hidden
+          />
+          {openableRegisters.length === 0 ? (
+            <p class="cell-muted" id="registers-open-none">
+              {t(
+                "Every active register already has a session. Define a register below, or close a session first."
+              )}
+            </p>
+          ) : (
+            <form id="register-open-form" class="admin-create-form">
+              <label for="register-open-register">
+                {t("Cash register")}
+                <select id="register-open-register" name="registerId" required>
+                  {openableRegisters.map((register) => (
+                    <option value={register.id}>
+                      {register.code} · {register.name}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label for="register-open-float">
+                {t("Opening float")}
+                <input
+                  id="register-open-float"
+                  name="openingFloat"
+                  type="text"
+                  inputmode="decimal"
+                  autocomplete="off"
+                  required
+                  value="0"
+                  aria-describedby="register-open-float-hint"
+                />
+              </label>
+              <button
+                type="submit"
+                class="module-toggle"
+                id="register-open-submit"
+              >
+                {t("Open session")}
+              </button>
+              <p class="form-hint" id="register-open-float-hint">
+                {t(
+                  "Count the cash in the drawer and enter it as the opening float."
+                )}
+              </p>
+            </form>
+          )}
+        </section>
+      )}
+
+      <section class="fade-in-up" aria-labelledby="registers-sessions-heading">
+        <h2 id="registers-sessions-heading">{t("Sessions")}</h2>
+        <nav
+          class="admin-segmented"
+          aria-label={t("Filter sessions by status")}
+        >
+          <a
+            href={filterHref(null)}
+            aria-current={statusFilter === null ? "page" : undefined}
+          >
+            {t("All")}
+          </a>
+          {REGISTER_SESSION_STATUSES.map((status) => (
+            <a
+              href={filterHref(status)}
+              aria-current={statusFilter === status ? "page" : undefined}
+            >
+              {commerceLabel(labels.registerSessionStatus, status)}
+            </a>
+          ))}
+        </nav>
+        <div class="data-table-scroll">
+          <table
+            class="data-table data-table--stack"
+            id="registers-sessions-table"
+          >
+            <caption>
+              {tn(
+                "{count} session",
+                "{count} sessions",
+                sessions?.items.length ?? 0,
+                {
+                  count: sessions?.items.length ?? 0
+                }
+              )}
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">{t("Cash register")}</th>
+                <th scope="col">{t("Status")}</th>
+                <th scope="col">{t("Cashier")}</th>
+                <th scope="col">{t("Opened")}</th>
+                <th scope="col">{t("Opening float")}</th>
+                <th scope="col">{t("Closed")}</th>
+                <th scope="col">{t("Actions")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {(sessions?.items.length ?? 0) === 0 ? (
+                <tr>
+                  <td class="data-table-empty" colspan={7}>
+                    <div class="empty-state">
+                      <span class="empty-state-icon" aria-hidden="true">
+                        ◇
+                      </span>
+                      <span class="empty-state-title">
+                        {t("No sessions yet")}
+                      </span>
+                      <span class="empty-state-text">
+                        {t("Open a session above to start a shift.")}
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              ) : (
+                (sessions?.items ?? []).map((session) => (
+                  <tr data-session-row={session.id}>
+                    <td data-label={t("Cash register")}>
+                      {session.registerCode} · {session.registerName}
+                    </td>
+                    <td data-label={t("Status")}>
+                      <span
+                        class="admin-status-pill"
+                        data-tone={registerSessionStatusTone[session.status]}
+                      >
+                        <span
+                          class="admin-status-pill-dot"
+                          aria-hidden="true"
+                        />
+                        {commerceLabel(
+                          labels.registerSessionStatus,
+                          session.status
+                        )}
+                      </span>
+                    </td>
+                    <td data-label={t("Cashier")}>
+                      {cashierLabel(session.currentCashierTenantUserId)}
+                    </td>
+                    <td data-label={t("Opened")}>{when(session.openedAt)}</td>
+                    <td data-label={t("Opening float")}>
+                      {money(session.openingFloat)}
+                    </td>
+                    <td data-label={t("Closed")}>{when(session.closedAt)}</td>
+                    <td data-label={t("Actions")}>
+                      <a href={`/admin/commerce-registers/${session.id}`}>
+                        {t("View")}
+                      </a>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+        {sessions?.nextCursor && (
+          <p>
+            <a class="quick-link" href={nextHref(sessions.nextCursor)}>
+              {t("Older sessions")}
+            </a>
+          </p>
+        )}
+      </section>
+
+      {canReadRegisters && (
+        <section
+          class="admin-panel fade-in-up"
+          aria-labelledby="registers-defs-heading"
+        >
+          <h2 id="registers-defs-heading">{t("Register definitions")}</h2>
+          <p
+            id="registers-defs-error"
+            class="admin-create-error"
+            role="alert"
+            hidden
+          />
+          {canCreateRegister && (
+            <form id="register-create-form" class="admin-create-form">
+              <label for="register-create-code">
+                {t("Code")}
+                <input
+                  id="register-create-code"
+                  name="code"
+                  type="text"
+                  maxlength={40}
+                  required
+                  autocomplete="off"
+                />
+              </label>
+              <label for="register-create-name">
+                {t("Name")}
+                <input
+                  id="register-create-name"
+                  name="name"
+                  type="text"
+                  maxlength={120}
+                  required
+                />
+              </label>
+              <label for="register-create-location">
+                {t("Location label (optional)")}
+                <input
+                  id="register-create-location"
+                  name="locationLabel"
+                  type="text"
+                  maxlength={120}
+                />
+              </label>
+              <button
+                type="submit"
+                class="module-toggle"
+                id="register-create-submit"
+              >
+                {t("Define register")}
+              </button>
+            </form>
+          )}
+          <div class="data-table-scroll">
+            <table
+              class="data-table data-table--stack"
+              id="registers-defs-table"
+            >
+              <caption>
+                {tn("{count} register", "{count} registers", registers.length, {
+                  count: registers.length
+                })}
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">{t("Code")}</th>
+                  <th scope="col">{t("Name")}</th>
+                  <th scope="col">{t("Location label")}</th>
+                  <th scope="col">{t("Status")}</th>
+                  <th scope="col">{t("Actions")}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {registers.length === 0 ? (
+                  <tr>
+                    <td class="data-table-empty" colspan={5}>
+                      <div class="empty-state">
+                        <span class="empty-state-icon" aria-hidden="true">
+                          ◇
+                        </span>
+                        <span class="empty-state-title">
+                          {t("No registers yet")}
+                        </span>
+                        <span class="empty-state-text">
+                          {t("Define the first register above.")}
+                        </span>
+                      </div>
+                    </td>
+                  </tr>
+                ) : (
+                  registers.map((register) => (
+                    <tr data-register-row={register.id}>
+                      <td data-label={t("Code")}>{register.code}</td>
+                      <td data-label={t("Name")}>{register.name}</td>
+                      <td data-label={t("Location label")}>
+                        {register.locationLabel ?? "—"}
+                      </td>
+                      <td data-label={t("Status")}>
+                        <span
+                          class="admin-status-pill"
+                          data-tone={register.active ? "success" : "neutral"}
+                        >
+                          <span
+                            class="admin-status-pill-dot"
+                            aria-hidden="true"
+                          />
+                          {register.active ? t("Active") : t("Inactive")}
+                        </span>
+                        {register.activeSession && (
+                          <span class="cell-muted">
+                            {" "}
+                            {commerceLabel(
+                              labels.registerSessionStatus,
+                              register.activeSession.status
+                            )}
+                          </span>
+                        )}
+                      </td>
+                      <td data-label={t("Actions")}>
+                        {canUpdateRegister ? (
+                          <button
+                            type="button"
+                            class="module-toggle register-toggle-active"
+                            data-register-id={register.id}
+                            data-next-active={
+                              register.active ? "false" : "true"
+                            }
+                            data-confirm-title={t("Deactivate this register?")}
+                            data-confirm-message={t(
+                              "A deactivated register cannot open a new session. Existing sessions and reports are kept."
+                            )}
+                            data-confirm-label={t("Deactivate")}
+                            data-confirm-danger="true"
+                            data-needs-confirm={
+                              register.active ? "true" : "false"
+                            }
+                          >
+                            {register.active
+                              ? t("Deactivate")
+                              : t("Reactivate")}
+                          </button>
+                        ) : (
+                          <span class="cell-muted">—</span>
+                        )}
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      )}
+
+      {canManageSettings && (
+        <section
+          class="admin-panel fade-in-up"
+          aria-labelledby="registers-threshold-heading"
+        >
+          <h2 id="registers-threshold-heading">
+            {t("Cash-up approval threshold")}
+          </h2>
+          <p class="form-hint">
+            {t(
+              "A close whose total difference (the sum of the absolute differences per payment method) is above this amount needs a supervisor's approval. Zero means any difference does."
+            )}
+          </p>
+          <p
+            id="registers-threshold-error"
+            class="admin-create-error"
+            role="alert"
+            hidden
+          />
+          <p
+            id="registers-threshold-success"
+            class="state-notice"
+            role="status"
+            hidden
+          />
+          <form id="register-threshold-form" class="admin-create-form">
+            {/* The settings route is a shallow merge: carry the sibling flag back so saving the threshold never resets it. */}
+            <input
+              type="hidden"
+              name="allowSelfApproval"
+              value={allowSelfApproval ? "true" : "false"}
+            />
+            <label for="register-threshold-input">
+              {t("Approval threshold")}
+              <input
+                id="register-threshold-input"
+                name="approvalThreshold"
+                type="text"
+                inputmode="decimal"
+                autocomplete="off"
+                required
+                value={approvalThreshold}
+              />
+            </label>
+            <button
+              type="submit"
+              class="module-toggle"
+              id="register-threshold-submit"
+            >
+              {t("Save threshold")}
+            </button>
+          </form>
+        </section>
+      )}
+    </div>
+  )}
+  <CommerceConfirmDialog locale={Astro.locals.locale} />
+</AdminLayout>
+
+<script>
+  import {
+    field,
+    messageBox,
+    onAction,
+    onSubmit,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+  import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
+
+  const root = document.getElementById("registers-root");
+  const msg = (key: string): string => root?.dataset[key] ?? "";
+
+  const MONEY = /^\d{1,12}(\.\d{1,2})?$/;
+
+  const openError = messageBox("registers-open-error");
+  const defsError = messageBox("registers-defs-error");
+  const thresholdError = messageBox("registers-threshold-error");
+
+  onSubmit("register-open-form", ({ data, submit }) => {
+    const openingFloat = field(data, "openingFloat").trim();
+    if (!MONEY.test(openingFloat)) {
+      openError.show(msg("msgBadFloat"));
+      return Promise.resolve();
+    }
+    openError.clear();
+    return (async () => {
+      if (submit) submit.disabled = true;
+      const result = await sendJson(
+        "POST",
+        "/api/v1/commerce/register-sessions",
+        { registerId: field(data, "registerId"), openingFloat },
+        { "Idempotency-Key": crypto.randomUUID() }
+      );
+      if (result.ok) {
+        window.location.reload();
+        return;
+      }
+      if (submit) submit.disabled = false;
+      openError.show(
+        result.errorCode === "REGISTER_SESSION_ALREADY_OPEN"
+          ? msg("msgAlreadyOpen")
+          : result.errorCode === "REGISTER_INACTIVE"
+            ? msg("msgInactive")
+            : msg("msgOpenFailed")
+      );
+    })();
+  });
+
+  onSubmit("register-create-form", ({ data, submit }) => {
+    defsError.clear();
+    return (async () => {
+      if (submit) submit.disabled = true;
+      const location = field(data, "locationLabel").trim();
+      const result = await sendJson("POST", "/api/v1/commerce/registers", {
+        code: field(data, "code").trim(),
+        name: field(data, "name").trim(),
+        locationLabel: location === "" ? null : location
+      });
+      if (result.ok) {
+        window.location.reload();
+        return;
+      }
+      if (submit) submit.disabled = false;
+      defsError.show(
+        result.errorCode === "REGISTER_CODE_TAKEN"
+          ? msg("msgCodeTaken")
+          : msg("msgRegisterFailed")
+      );
+    })();
+  });
+
+  onAction(".register-toggle-active", async (button) => {
+    const id = button.dataset.registerId;
+    if (!id) return;
+    defsError.clear();
+    if (button.dataset.needsConfirm === "true") {
+      const confirmed = await confirmFromTrigger(button);
+      if (!confirmed) return;
+    }
+    button.disabled = true;
+    const result = await sendJson("PATCH", `/api/v1/commerce/registers/${id}`, {
+      active: button.dataset.nextActive === "true"
+    });
+    if (result.ok) {
+      window.location.reload();
+      return;
+    }
+    button.disabled = false;
+    defsError.show(
+      result.errorCode === "REGISTER_HAS_ACTIVE_SESSION"
+        ? msg("msgHasActiveSession")
+        : msg("msgRegisterFailed")
+    );
+  });
+
+  onSubmit("register-threshold-form", ({ data, submit }) => {
+    thresholdError.clear();
+    const success = document.getElementById("registers-threshold-success");
+    if (success) success.hidden = true;
+    const approvalThreshold = field(data, "approvalThreshold").trim();
+    if (!MONEY.test(approvalThreshold)) {
+      thresholdError.show(msg("msgBadThreshold"));
+      return Promise.resolve();
+    }
+    return (async () => {
+      if (submit) submit.disabled = true;
+      // Writes through the GENERIC module-settings route, like the "Features"
+      // section: a shallow top-level merge, so the whole `cashUp` object is
+      // sent and the sibling `features` key is untouched.
+      const result = await sendJson(
+        "PATCH",
+        "/api/v1/tenant/modules/commerce/settings",
+        {
+          cashUp: {
+            approvalThreshold,
+            allowSelfApproval: field(data, "allowSelfApproval") === "true"
+          }
+        }
+      );
+      if (submit) submit.disabled = false;
+      if (result.ok) {
+        if (success) {
+          success.textContent = msg("msgThresholdSaved");
+          success.hidden = false;
+        }
+        return;
+      }
+      thresholdError.show(msg("msgThresholdFailed"));
+    })();
+  });
+</script>

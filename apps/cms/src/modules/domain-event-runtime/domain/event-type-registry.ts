@@ -112,6 +112,15 @@ export const COMMERCE_PAYMENT_RECORDED_EVENT_TYPE =
   "awcms.commerce.payment.recorded";
 export const COMMERCE_PAYMENT_REVERSED_EVENT_TYPE =
   "awcms.commerce.payment.reversed";
+/** Issue #284 (ADR-0028) — POS register-session events. */
+export const COMMERCE_REGISTER_SESSION_OPENED_EVENT_TYPE =
+  "awcms.commerce.register_session.opened";
+export const COMMERCE_REGISTER_SESSION_MOVEMENT_RECORDED_EVENT_TYPE =
+  "awcms.commerce.register_session.movement_recorded";
+export const COMMERCE_REGISTER_SESSION_CLOSED_EVENT_TYPE =
+  "awcms.commerce.register_session.closed";
+export const COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE =
+  "awcms.commerce.register_session.corrected";
 /**
  * Loyalty points ledger (Issue #289, ADR-0026) — ONE event type for every
  * ledger row, `kind` in the payload.
@@ -274,6 +283,30 @@ export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
       eventVersion: COMMERCE_EVENT_VERSION,
       description:
         "A compensating reversal was recorded against an earlier payment-allocation (a refund or a corrected entry). Producer: commerce/application/payment-allocation-directory.ts's recordPaymentReversal, in the same transaction as the ledger insert. Carries the order's resulting settlement; never moves the order lifecycle."
+    },
+    {
+      eventType: COMMERCE_REGISTER_SESSION_OPENED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A POS register session was opened with an opening float. Producer: commerce/application/register-session-directory.ts's openRegisterSession, in the same transaction as the session row. Aggregate: the register session."
+    },
+    {
+      eventType: COMMERCE_REGISTER_SESSION_MOVEMENT_RECORDED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A cash drawer movement (cash in/out, safe drop, expense, transfer, correction) was recorded against an open register session. Producer: commerce/application/register-session-directory.ts's recordRegisterMovement. Carries type, direction and amount - never the free-text reference or note."
+    },
+    {
+      eventType: COMMERCE_REGISTER_SESSION_CLOSED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A POS register session was closed (cash-up): counted amounts per tender, variance and who approved. Producer: commerce/application/register-cash-up.ts's closeRegisterSession / decideRegisterClose, in the same transaction as the status change. Fired once per session, only when it actually reaches closed - a close awaiting approval or a rejected one does not fire it."
+    },
+    {
+      eventType: COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A compensating correction was recorded against a closed register session (the original cash-up is preserved). Producer: commerce/application/register-cash-up.ts's recordRegisterCorrection. Carries the per-tender adjustments, never the free-text reason."
     },
     {
       eventType: COMMERCE_LOYALTY_ENTRY_RECORDED_EVENT_TYPE,

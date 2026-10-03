@@ -4140,7 +4140,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: "`IDEMPOTENCY_CONFLICT`, `OVERPAYMENT` (the amount exceeds what is still owed — `details.outstanding`/`details.attempted`) or `ORDER_NOT_PAYABLE` (a cancelled or expired order)."
+          description: "`IDEMPOTENCY_CONFLICT` (also a key reused against another order or with a different tender/amount), `OVERPAYMENT` (the amount exceeds what is still owed — `details.outstanding`/`details.attempted`), `ORDER_NOT_PAYABLE` (a cancelled or expired order) or `REGISTER_SESSION_CLOSING` (Issue #284: the POS sale's register session is counting/awaiting a supervisor, so the money would fall into no cash-up — retry once the close is decided)."
           content:
             application/json:
               schema:
@@ -4199,6 +4199,11 @@ paths:
                   type: string
                   maxLength: 500
                   description: The reason for the reversal (required).
+                registerSessionId:
+                  type: string
+                  format: uuid
+                  nullable: true
+                  description: "Issue #284 (ADR-0028 D2). The OPEN register session of the tenant, whose current cashier is the caller, that the refund is paid out of. The reversal leg is stamped with it, so THAT drawer's expected cash drops (a cash refund for a sale from an earlier, closed shift would otherwise lower no cash-up). Omitted = unchanged behaviour: the leg is stamped only with its own order's session while that is still open."
       responses:
         "201":
           description: Recorded (or replayed). `data.payment` is the new reversal row.
@@ -4226,7 +4231,850 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: "`IDEMPOTENCY_CONFLICT`, `REVERSAL_EXCEEDS_PAYMENT` (`details.reversible`) or `PAYMENT_NOT_REVERSIBLE` (`details.reason`: `not_a_payment`, `not_succeeded`, `fully_reversed`)."
+          description: "`IDEMPOTENCY_CONFLICT` (also a key reused against another order, or with a different amount), `REVERSAL_EXCEEDS_PAYMENT` (`details.reversible`), `PAYMENT_NOT_REVERSIBLE` (`details.reason`: `not_a_payment`, `not_succeeded`, `fully_reversed`), `REGISTER_SESSION_NOT_OPEN` (`details.status`) or `NOT_SESSION_CASHIER` for a `registerSessionId` that is not an open session of the caller. An unknown or other-tenant `registerSessionId` is `404`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/registers:
+    get:
+      operationId: listCommerceRegisters
+      tags:
+        - Commerce
+      summary: "Issue #284 (ADR-0028). The tenant's POS registers (code, name, optional location label, active flag), each with its live (open/closing) session if any. Gated on `commerce.registers.read` and the tenant's `register` feature."
+      parameters:
+        - name: includeInactive
+          in: query
+          required: false
+          description: "`false` hides deactivated registers; anything else (the default) lists them."
+          schema:
+            type: string
+            enum:
+              - "true"
+              - "false"
+      responses:
+        "200":
+          description: The registers, active first then by code (limit 200).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceRegister"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    post:
+      operationId: createCommerceRegister
+      tags:
+        - Commerce
+      summary: "Issue #284 (ADR-0028). Defines a POS register. Gated on `commerce.registers.create`; `code` is unique per tenant, case-insensitively."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - code
+                - name
+              properties:
+                code:
+                  type: string
+                  maxLength: 40
+                  description: Letters, digits, `.`, `_`, `-`; starts with a letter or digit. Never changes after creation.
+                name:
+                  type: string
+                  maxLength: 120
+                locationLabel:
+                  type: string
+                  nullable: true
+                  maxLength: 120
+      responses:
+        "201":
+          description: The new register.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceRegister"
+        "400":
+          description: "`VALIDATION_ERROR`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`REGISTER_CODE_TAKEN` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/registers/{id}:
+    get:
+      operationId: getCommerceRegister
+      tags:
+        - Commerce
+      summary: "Issue #284 (ADR-0028). One register. Gated on `commerce.registers.read`. An unknown id and another tenant's id are the same 404."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The register.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceRegister"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    patch:
+      operationId: updateCommerceRegister
+      tags:
+        - Commerce
+      summary: "Issue #284 (ADR-0028). Renames, relabels or (de)activates a register. Gated on `commerce.registers.update`. A register with an open/closing session cannot be deactivated."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: At least one field. `code` is immutable and rejected if sent.
+              properties:
+                name:
+                  type: string
+                  maxLength: 120
+                locationLabel:
+                  type: string
+                  nullable: true
+                  maxLength: 120
+                active:
+                  type: boolean
+      responses:
+        "200":
+          description: The updated register.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceRegister"
+        "400":
+          description: "`VALIDATION_ERROR`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`REGISTER_HAS_ACTIVE_SESSION` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/register-sessions:
+    get:
+      operationId: listCommerceRegisterSessions
+      tags:
+        - Commerce
+      summary: "Issue #284 (ADR-0028). Register sessions, keyset-paginated, newest first. Gated on `commerce.register_sessions.read` and the `register` feature."
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: registerId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - open
+              - closing
+              - closed
+              - corrected
+        - name: cashier
+          in: query
+          required: false
+          description: Filter to sessions whose CURRENT cashier is this tenant user.
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: One page of sessions (limit 50) with an opaque `nextCursor` (null on the last page).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceRegisterSession"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "400":
+          description: "`VALIDATION_ERROR` (a malformed cursor, uuid or status)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    post:
+      operationId: openCommerceRegisterSession
+      tags:
+        - Commerce
+      summary: "Issue #284 (ADR-0028). Opens a session on a register with a counted opening float; the opener is the first current cashier. Gated on `commerce.register_sessions.create`; requires `Idempotency-Key`."
+      description: >-
+        One ACTIVE (open/closing) session per register: a second open is
+        `409 REGISTER_SESSION_ALREADY_OPEN` (`details.activeSessionId`). Two
+        genuinely concurrent opens serialise on the register row, and a partial
+        unique index is the independent backstop, so exactly one wins. Same key
+        + same body replays the stored 201; same key + a different body is
+        `409 IDEMPOTENCY_CONFLICT`. Emits
+        `awcms.commerce.register_session.opened`.
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - registerId
+                - openingFloat
+              properties:
+                registerId:
+                  type: string
+                  format: uuid
+                openingFloat:
+                  type: string
+                  description: "`numeric(14,2)` string, >= 0 (zero is allowed), never a JSON number."
+      responses:
+        "201":
+          description: The session (or the stored replay).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceRegisterSession"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`REGISTER_SESSION_ALREADY_OPEN`, `REGISTER_INACTIVE`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/register-sessions/{id}:
+    get:
+      operationId: getCommerceRegisterSession
+      tags:
+        - Commerce
+      summary: "Issue #284 (ADR-0028). One session with its cash-up report: opening float, sales, expected / counted / difference per tender, movements, close history and corrections. Gated on `commerce.register_sessions.read`."
+      description: >-
+        Live (derived from the payment ledger and the movements) while the
+        session is open or closing; the stored close snapshot once it is
+        closed, with every correction applied ON TOP (the original lines are
+        never altered). An unknown id and another tenant's id are the same 404.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The cash-up report.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceRegisterCashUpReport"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/register-sessions/{id}/movements:
+    post:
+      operationId: recordCommerceRegisterMovement
+      tags:
+        - Commerce
+      summary: "Issue #284 (ADR-0028). Records a cash drawer movement against an OPEN session. Gated on `commerce.register_sessions.update`; requires `Idempotency-Key`."
+      description: >-
+        Append-only and cash only. `cash_in` is always `in`; `cash_out`,
+        `safe_drop` and `expense` are always `out`; `transfer` and `correction`
+        must say `direction`. An `expense`/`transfer` needs a `reference`, a
+        `correction` a `note`. The `reference` is FREE TEXT today — the typed
+        reference to the expenses domain (#294) is a documented hook, not yet a
+        field. Only the session's current cashier may record one. Emits
+        `awcms.commerce.register_session.movement_recorded` (never the free
+        text).
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - movementType
+                - amount
+              properties:
+                movementType:
+                  type: string
+                  enum:
+                    - cash_in
+                    - cash_out
+                    - safe_drop
+                    - expense
+                    - transfer
+                    - correction
+                direction:
+                  type: string
+                  enum:
+                    - in
+                    - out
+                  description: Required for `transfer` and `correction`; implied (and checked) for the others.
+                amount:
+                  type: string
+                  description: "`numeric(14,2)` string, > 0."
+                reference:
+                  type: string
+                  nullable: true
+                  maxLength: 100
+                note:
+                  type: string
+                  nullable: true
+                  maxLength: 500
+      responses:
+        "201":
+          description: The movement (or the stored replay).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceRegisterMovement"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`REGISTER_SESSION_NOT_OPEN` (`details.status`), `NOT_SESSION_CASHIER`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/register-sessions/{id}/handover:
+    post:
+      operationId: handOverCommerceRegisterSession
+      tags:
+        - Commerce
+      summary: "Issue #284 (ADR-0028). Hands the drawer to another cashier. Gated on `commerce.register_sessions.update`; requires `Idempotency-Key`."
+      description: >-
+        Allowed for the session's CURRENT cashier, or for a supervisor holding
+        `commerce.register_cash_ups.approve` (checked by the handler through the
+        same access chokepoint only when the caller is not the current cashier;
+        `403 ACCESS_DENIED` otherwise). The new cashier must be an ACTIVE tenant
+        user of this tenant (`409 UNKNOWN_CASHIER` for an unknown, inactive or
+        foreign id). The history is the audit trail
+        (`register_session.handover`), not a table.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - toTenantUserId
+              properties:
+                toTenantUserId:
+                  type: string
+                  format: uuid
+                note:
+                  type: string
+                  nullable: true
+                  maxLength: 500
+      responses:
+        "200":
+          description: The session, now owned by the new cashier (or the stored replay).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceRegisterSession"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`REGISTER_SESSION_NOT_OPEN`, `SAME_CASHIER`, `UNKNOWN_CASHIER`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/register-sessions/{id}/close:
+    post:
+      operationId: closeCommerceRegisterSession
+      tags:
+        - Commerce
+      summary: "Issue #284 (ADR-0028). Closes (cash-ups) a session by counting the drawer per tender. Gated on `commerce.register_cash_ups.create`; requires `Idempotency-Key`."
+      description: >-
+        The expected amount per tender is DERIVED (opening float + the session's
+        stamped payment-ledger legs + drawer movements); the body carries only
+        what was COUNTED. A count is required for `cash` and every tender with
+        activity. The GROSS variance (the sum of the absolute per-tender
+        differences) is compared with the tenant's `cashUp.approvalThreshold`
+        (module setting; default `0.00`): within it the session is `closed`;
+        above it, a caller who ALSO holds `commerce.register_cash_ups.approve`
+        closes it in one step, and one who does not leaves it `closing`
+        (`outcome: pending_approval`) until `.../close-decision`. A
+        `varianceReason` is mandatory whenever any tender differs. Only the
+        session's current cashier may close. The close is exclusive against every
+        sale, movement and stamped payment leg of the session and idempotent: a
+        replay returns the stored body, and two concurrent closes yield exactly
+        one `closed`. Emits `awcms.commerce.register_session.closed` once, when
+        the session actually reaches `closed`. Never rewrites a sale or a payment.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - counted
+              properties:
+                counted:
+                  type: object
+                  description: "Counted amount per tender type (`cash`, `manual_qris`, `manual_bank_transfer`, `gateway`) — `numeric(14,2)` strings, >= 0."
+                  additionalProperties:
+                    type: string
+                varianceReason:
+                  type: string
+                  nullable: true
+                  maxLength: 500
+      responses:
+        "200":
+          description: The close outcome and the cash-up report (or the stored replay).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceRegisterCloseBody"
+        "400":
+          description: "`VALIDATION_ERROR` (a missing required count, a variance with no reason, a malformed amount) or `IDEMPOTENCY_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`REGISTER_SESSION_NOT_OPEN` (`details.status`), `NOT_SESSION_CASHIER`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/register-sessions/{id}/close-decision:
+    post:
+      operationId: decideCommerceRegisterClose
+      tags:
+        - Commerce
+      summary: "Issue #284 (ADR-0028). Approves or rejects a `closing` session's pending close request. Gated on `commerce.register_cash_ups.approve` (a high-risk verb); requires `Idempotency-Key`."
+      description: >-
+        `approve` closes the session (the cashier who counted stays the closer;
+        the approver is on the request). `reject` (a `note` is required) returns
+        the session to `open` for a recount and keeps the rejected request as
+        history; the next close is attempt n+1. Only a `closing` session has
+        anything to decide (`409 REGISTER_CLOSE_NOT_PENDING`).
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - decision
+              properties:
+                decision:
+                  type: string
+                  enum:
+                    - approve
+                    - reject
+                note:
+                  type: string
+                  nullable: true
+                  maxLength: 500
+      responses:
+        "200":
+          description: "The outcome (`closed` after an approval, `reopened` after a rejection) and the report (or the stored replay)."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceRegisterCloseBody"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`REGISTER_CLOSE_NOT_PENDING` (`details.status`), `SOD_MAKER_IS_CHECKER` (an approval by the user who requested the close, unless the tenant set `cashUp.allowSelfApproval`; rejecting your own count is allowed), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/register-sessions/{id}/corrections:
+    post:
+      operationId: correctCommerceRegisterSession
+      tags:
+        - Commerce
+      summary: "Issue #284 (ADR-0028). Posts a compensating correction to a CLOSED session. Gated on `commerce.register_corrections.approve` (a high-risk verb); requires `Idempotency-Key`."
+      description: >-
+        A closed session is immutable: a correction adds signed per-tender
+        `adjustment`s to the COUNTED amount (the original close request and
+        lines are preserved untouched), moves the session `closed -> corrected`
+        (further corrections keep it `corrected`) and returns the report with
+        the corrected figures. A correction can never make a counted amount
+        negative (`400`), and only a closed or corrected session can be
+        corrected (`409 REGISTER_SESSION_NOT_CLOSED`). Emits
+        `awcms.commerce.register_session.corrected` (never the free-text reason).
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - reason
+                - adjustments
+              properties:
+                reason:
+                  type: string
+                  maxLength: 500
+                adjustments:
+                  type: array
+                  minItems: 1
+                  maxItems: 4
+                  items:
+                    type: object
+                    required:
+                      - tenderType
+                      - adjustment
+                    properties:
+                      tenderType:
+                        type: string
+                        enum:
+                          - cash
+                          - manual_qris
+                          - manual_bank_transfer
+                          - gateway
+                      adjustment:
+                        type: string
+                        description: "Signed, non-zero `numeric(14,2)` string (e.g. `-5000.00`)."
+      responses:
+        "201":
+          description: The report with the correction applied (or the stored replay).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceRegisterCashUpReport"
+        "400":
+          description: "`VALIDATION_ERROR` (including a correction that would make a count negative) or `IDEMPOTENCY_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`REGISTER_SESSION_NOT_CLOSED` (`details.status`), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/register-sessions/{id}/report.csv:
+    get:
+      operationId: exportCommerceRegisterSessionCsv
+      tags:
+        - Commerce
+      summary: "Issue #284 (ADR-0028). The session's cash-up as CSV: summary, per-tender expected/counted/difference, every movement and every correction. Gated on `commerce.register_sessions.export` (the platform's high-risk `export` verb)."
+      description: >-
+        One `section` column (`summary`, `tender`, `movement`, `correction`)
+        keeps the whole cash-up unambiguous in a spreadsheet. EVERY cell is
+        spreadsheet-formula-neutralised (a cell starting with `=`, `+`, `-`,
+        `@`, a tab or a carriage return is prefixed with `'`; a strictly numeric
+        amount keeps its sign). No customer name or phone appears. `Cache-Control:
+        no-store`.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The CSV.
+          content:
+            text/csv:
+              schema:
+                type: string
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF)."
           content:
             application/json:
               schema:
@@ -6736,6 +7584,11 @@ paths:
                 allowDue:
                   type: boolean
                   description: "Issue #285 — finalize with a balance due. Requires `tenders[]`, a customer phone, and `commerce.pos_due.create`."
+                registerId:
+                  type: string
+                  format: uuid
+                  nullable: true
+                  description: "Issue #284 (ADR-0028) — the register the sale is rung up on. REQUIRED while the tenant's `register` feature is on: the sale is attached to that register's OPEN session, whose current cashier must be the caller. Optional for a tenant with the feature off (the default) — naming a register then is `409 FEATURE_DISABLED`, so a sale never looks attached when it is not."
                 lines:
                   type: array
                   items:
@@ -6801,6 +7654,11 @@ paths:
                             type: string
                             format: uuid
                             description: The staff member who rang the sale up (`orders.pos_cashier_tenant_user_id`).
+                          registerSessionId:
+                            type: string
+                            format: uuid
+                            nullable: true
+                            description: "Issue #284 — the register session the sale was attached to; `null` when the tenant's `register` feature is off."
         "400":
           description: "`VALIDATION_ERROR` (shape, or a `customer.phone` that does not normalise) or `IDEMPOTENCY_REQUIRED` (no `Idempotency-Key` header)."
           content:
@@ -6811,8 +7669,10 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
         "409":
-          description: "`FEATURE_DISABLED` (the tenant turned `pos` off, #118), `IDEMPOTENCY_CONFLICT` (same key, different payload), `CART_CHANGED` (a line's price/stock changed since it was priced — `details.quote` carries the fresh quote), `INSUFFICIENT_TENDER` (the tenders do not cover the total — `details.shortfall`) or `OVERPAYMENT` (non-cash tenders exceed the total — `details.outstanding`/`details.attempted`). `403` also covers `allowDue: true` without `commerce.pos_due.create`."
+          description: "`FEATURE_DISABLED` (the tenant turned `pos` off, #118), `IDEMPOTENCY_CONFLICT` (same key, different payload), `CART_CHANGED` (a line's price/stock changed since it was priced — `details.quote` carries the fresh quote), `INSUFFICIENT_TENDER` (the tenders do not cover the total — `details.shortfall`) or `OVERPAYMENT` (non-cash tenders exceed the total — `details.outstanding`/`details.attempted`) or, with the `register` feature on (Issue #284), `REGISTER_SESSION_REQUIRED` (the register has no open session), `REGISTER_SESSION_CLOSING` or `NOT_SESSION_CASHIER`. `403` also covers `allowDue: true` without `commerce.pos_due.create`; `404` an unknown or other-tenant `registerId`."
           content:
             application/json:
               schema:
@@ -10547,6 +11407,302 @@ components:
           $ref: "#/components/schemas/CommercePaymentAllocation"
         settlement:
           $ref: "#/components/schemas/CommerceSettlement"
+    CommerceRegister:
+      type: object
+      description: "Issue #284 (ADR-0028) — a POS register (a named till)."
+      properties:
+        id:
+          type: string
+          format: uuid
+        code:
+          type: string
+        name:
+          type: string
+        locationLabel:
+          type: string
+          nullable: true
+        active:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        activeSession:
+          type: object
+          nullable: true
+          description: The register's single live (open/closing) session, if any.
+          properties:
+            id:
+              type: string
+              format: uuid
+            status:
+              type: string
+              enum:
+                - open
+                - closing
+            currentCashierTenantUserId:
+              type: string
+              format: uuid
+            openedAt:
+              type: string
+              format: date-time
+    CommerceRegisterSession:
+      type: object
+      description: "Issue #284 (ADR-0028) — one shift on one register. `closing` = a close awaits a supervisor's approval; `corrected` = a closed session with a compensating correction. Money is a `numeric(14,2)` decimal string."
+      properties:
+        id:
+          type: string
+          format: uuid
+        registerId:
+          type: string
+          format: uuid
+        registerCode:
+          type: string
+        registerName:
+          type: string
+        status:
+          type: string
+          enum:
+            - open
+            - closing
+            - closed
+            - corrected
+        openedAt:
+          type: string
+          format: date-time
+        openedByTenantUserId:
+          type: string
+          format: uuid
+        openingFloat:
+          type: string
+        currentCashierTenantUserId:
+          type: string
+          format: uuid
+        closedAt:
+          type: string
+          format: date-time
+          nullable: true
+        closedByTenantUserId:
+          type: string
+          format: uuid
+          nullable: true
+    CommerceRegisterMovement:
+      type: object
+      description: "Issue #284 (ADR-0028) — an append-only cash drawer movement."
+      properties:
+        id:
+          type: string
+          format: uuid
+        sessionId:
+          type: string
+          format: uuid
+        movementType:
+          type: string
+          enum:
+            - cash_in
+            - cash_out
+            - safe_drop
+            - expense
+            - transfer
+            - correction
+        direction:
+          type: string
+          enum:
+            - in
+            - out
+        amount:
+          type: string
+        reference:
+          type: string
+          nullable: true
+          description: Free text today; the typed reference to the expenses domain (#294) is a documented hook.
+        note:
+          type: string
+          nullable: true
+        actorTenantUserId:
+          type: string
+          format: uuid
+        createdAt:
+          type: string
+          format: date-time
+    CommerceRegisterCashUpReport:
+      type: object
+      description: "Issue #284 (ADR-0028) — a session's cash-up report. `live` is true while the figures are derived from the ledger (open/closing) and false once they are the stored close snapshot. Every amount is a `numeric(14,2)` decimal string; variances and corrections are SIGNED (negative = short)."
+      properties:
+        register:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+            code:
+              type: string
+            name:
+              type: string
+            locationLabel:
+              type: string
+              nullable: true
+        session:
+          $ref: "#/components/schemas/CommerceRegisterSession"
+        live:
+          type: boolean
+        openingFloat:
+          type: string
+        sales:
+          type: object
+          description: Sales attached to the session, cancelled/expired ones excluded.
+          properties:
+            count:
+              type: integer
+            total:
+              type: string
+        tenders:
+          type: array
+          items:
+            type: object
+            properties:
+              tenderType:
+                type: string
+                enum:
+                  - cash
+                  - manual_qris
+                  - manual_bank_transfer
+                  - gateway
+              payments:
+                type: string
+              reversals:
+                type: string
+              expected:
+                type: string
+                description: "Cash: opening float + net cash legs + movements in − movements out. Other tenders: payments − reversals. Signed."
+              counted:
+                type: string
+                nullable: true
+                description: "`null` until a close was requested. Never altered by a correction."
+              variance:
+                type: string
+                nullable: true
+              correction:
+                type: string
+                description: Σ post-close corrections to the counted amount (`0.00` when none).
+              effectiveCounted:
+                type: string
+                nullable: true
+              effectiveVariance:
+                type: string
+                nullable: true
+        movementTotals:
+          type: object
+          properties:
+            in:
+              type: string
+            out:
+              type: string
+        movements:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceRegisterMovement"
+        closeRequests:
+          type: array
+          description: Every close attempt, oldest first (a rejected one stays as history).
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+              attempt:
+                type: integer
+              requestedByTenantUserId:
+                type: string
+                format: uuid
+              requestedAt:
+                type: string
+                format: date-time
+              varianceTotal:
+                type: string
+              varianceGross:
+                type: string
+              approvalThreshold:
+                type: string
+              approvalRequired:
+                type: boolean
+              varianceReason:
+                type: string
+                nullable: true
+              decision:
+                type: string
+                enum:
+                  - auto
+                  - pending
+                  - approved
+                  - rejected
+              decidedByTenantUserId:
+                type: string
+                format: uuid
+                nullable: true
+              decidedAt:
+                type: string
+                format: date-time
+                nullable: true
+              decisionNote:
+                type: string
+                nullable: true
+        variance:
+          type: object
+          nullable: true
+          description: The variance of the request that closed the session (or the pending one); `null` before any close request.
+          properties:
+            total:
+              type: string
+            gross:
+              type: string
+            reason:
+              type: string
+              nullable: true
+            approvalThreshold:
+              type: string
+            decision:
+              type: string
+              enum:
+                - auto
+                - pending
+                - approved
+                - rejected
+        corrections:
+          type: array
+          items:
+            type: object
+            properties:
+              correctionId:
+                type: string
+                format: uuid
+              tenderType:
+                type: string
+              adjustment:
+                type: string
+              reason:
+                type: string
+              actorTenantUserId:
+                type: string
+                format: uuid
+              createdAt:
+                type: string
+                format: date-time
+    CommerceRegisterCloseBody:
+      type: object
+      description: "Issue #284 (ADR-0028) — the body of a close / close decision. `outcome`: `closed`, `pending_approval` (the session is `closing`), or `reopened` (an approver rejected the count)."
+      properties:
+        outcome:
+          type: string
+          enum:
+            - closed
+            - pending_approval
+            - reopened
+        report:
+          $ref: "#/components/schemas/CommerceRegisterCashUpReport"
     CommerceTenderMixRow:
       type: object
       description: "Issue #285 — one tender's activity over the report range. Money is a `numeric(14,2)` decimal string."

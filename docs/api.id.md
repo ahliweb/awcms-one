@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:762e7de81ac99c81a00529fef01a66306255262e8266821abe636e9367f16390 -->
+<!-- i18n-source-hash: sha256:66b36c51219e3d5631054d61261b33a9c8c789ff03747335a148e2dcf66cabf1 -->
 
 # API
 
@@ -80,6 +80,25 @@ Respons produk (`GET /products`, `/{id}`, `/by-slug/{slug}`) mendapat `attribute
 | `GET`                  | `/api/v1/commerce/orders/export.csv`                              |                                                                                                    |
 | `GET`/`PATCH`          | `/api/v1/commerce/customers(/{id})`                               | Tidak ada `POST`/`DELETE` — baris pelanggan hanya dibuat oleh jalur pesanan anonim                 |
 | `GET`/`PATCH`/`DELETE` | `/api/v1/commerce/reviews(/{id})`                                 | `PATCH {status}` memoderasi `pending → published/rejected`                                         |
+
+## API owner: register, sesi, dan tutup kas (issue #284, epik #281, [ADR-0028](adr/0028-pos-register-sessions-and-cash-up.md))
+
+Setiap rute di bawah ini berada di belakang flag fitur `register` milik tenant (default MATI — `409 FEATURE_DISABLED`), memerlukan sesi bearer/cookie, dan — untuk setiap mutasi — header **`Idempotency-Key`** (`400 IDEMPOTENCY_REQUIRED`). Uang adalah STRING `numeric(14,2)`; selisih dan koreksi bertanda. Sepuluh izin, tidak ada yang tersirat dari `commerce.pos.create`.
+
+| Method | Path | Izin | Catatan |
+| --- | --- | --- | --- |
+| `GET`/`POST` | `commerce/registers` | `commerce.registers.read` / `.create` | Daftar register beserta sesi aktifnya / buat satu (`{ code, name, locationLabel? }`; `code` unik per tenant, tak peka huruf besar-kecil → `409 REGISTER_CODE_TAKEN`) |
+| `GET`/`PATCH` | `commerce/registers/{id}` | `commerce.registers.read` / `.update` | Ganti nama, label, (non)aktifkan (`409 REGISTER_HAS_ACTIVE_SESSION`); `code` tidak dapat diubah |
+| `GET`/`POST` | `commerce/register-sessions` | `commerce.register_sessions.read` / `.create` | Riwayat keyset (`?cursor&registerId&status&cashier`) / BUKA sesi `{ registerId, openingFloat }` → `201`; `409 REGISTER_SESSION_ALREADY_OPEN` (satu sesi aktif per register; dua pembukaan bersamaan → tepat satu menang), `REGISTER_INACTIVE` |
+| `GET` | `commerce/register-sessions/{id}` | `commerce.register_sessions.read` | Laporan tutup kas: modal, penjualan, pembayaran / pembalikan / seharusnya / dihitung / selisih per tender (koreksi di atasnya, aslinya tak tersentuh), mutasi, percobaan penutupan, koreksi |
+| `POST` | `commerce/register-sessions/{id}/movements` | `commerce.register_sessions.update` | `{ movementType: cash_in\|cash_out\|safe_drop\|expense\|transfer\|correction, direction?, amount, reference?, note? }`; append-only, hanya tunai; hanya kasir saat ini (`409 NOT_SESSION_CASHIER`), hanya sesi terbuka (`409 REGISTER_SESSION_NOT_OPEN`) |
+| `POST` | `commerce/register-sessions/{id}/handover` | `commerce.register_sessions.update` (+ `commerce.register_cash_ups.approve` bagi supervisor yang mengambil alih) | `{ toTenantUserId, note? }`; `409 UNKNOWN_CASHIER` / `SAME_CASHIER` |
+| `POST` | `commerce/register-sessions/{id}/close` | `commerce.register_cash_ups.create` | `{ counted: { cash, manual_qris?, … }, varianceReason? }` → `200 { outcome: closed\|pending_approval, report }`; eksklusif terhadap penjualan/mutasi, idempoten (replay mengembalikan body tersimpan); selisih kotor di atas ambang tenant → `closing` kecuali penutup juga memegang kunci approve; `400` untuk hitungan yang hilang atau selisih tanpa alasan |
+| `POST` | `commerce/register-sessions/{id}/close-decision` | `commerce.register_cash_ups.approve` | `{ decision: approve\|reject, note? }` (catatan wajib untuk menolak) → `200 { outcome: closed\|reopened, report }`; `409 REGISTER_CLOSE_NOT_PENDING` |
+| `POST` | `commerce/register-sessions/{id}/corrections` | `commerce.register_corrections.approve` | `{ reason, adjustments: [{ tenderType, adjustment }] }` (delta bertanda pada jumlah yang DIHITUNG) → `201` laporan; sesi menjadi `corrected`; `409 REGISTER_SESSION_NOT_CLOSED`; tidak pernah negatif (`400`) |
+| `GET` | `commerce/register-sessions/{id}/report.csv` | `commerce.register_sessions.export` | Tutup kas sebagai satu CSV bersekat, setiap sel dinetralkan dari formula spreadsheet; `Cache-Control: no-store` |
+
+Rute POS (`POST commerce/pos/orders`) mendapat **`registerId`** opsional: WAJIB selama fitur `register` nyala (penjualan dilekatkan ke sesi terbuka register itu, yang kasir saat ini-nya harus pemanggil — `404` register tak dikenal/milik tenant lain, `409 REGISTER_SESSION_REQUIRED | REGISTER_SESSION_CLOSING | NOT_SESSION_CASHIER`, semuanya sebelum apa pun ditulis); dengan fitur mati, mengirimnya adalah `409 FEATURE_DISABLED` dan tidak ada yang distempel. 201 mendapat `registerSessionId`.
 
 ## Storefront (anonim) API — `/api/v1/commerce/storefront/*`
 
@@ -280,7 +299,7 @@ Pengulangan `redeem`/`adjust` dengan kunci dan body yang sama me-replay `201` ya
 }
 ```
 
-## Otorisasi: 39 izin owner (ditambah kunci increment-5 dan, sejak #285, `commerce.payments.{read,create,revoke}` dan `commerce.pos_due.create`)
+## Otorisasi: 39 izin owner (ditambah kunci increment-5, sejak #285 `commerce.payments.{read,create,revoke}` dan `commerce.pos_due.create`, dan sejak #284 sepuluh kunci register: `commerce.registers.{read,create,update}`, `commerce.register_sessions.{read,create,update,export}`, `commerce.register_cash_ups.{create,approve}`, `commerce.register_corrections.approve`)
 
 Modul `commerce` mendeklarasikan 39 kunci izin secara total (10 + 22 + 7 di bawah), dikelompokkan berdasarkan tiga area yang sama dengan tabelnya — jumlah yang terlalu besar untuk konvensi "angka yang dieja cocok dengan set yang dihitung" milik dokumen ini sendiri (pengecekan hitungan-tertaut milik `bun run audit:dokumen` hanya mengenali angka yang dieja satu sampai dua puluh), sehingga di sini dinyatakan sebagai angka numeral, bukan di dalam blok terjaga.
 
@@ -294,9 +313,9 @@ Sengaja **tanpa `create`/`delete` untuk `orders`/`customers`**: baris pesanan at
 
 API storefront (anonim) sama sekali **tidak punya kunci izin** — batas kepercayaannya adalah tenant resolver yang Origin-bound, bukan RBAC/ABAC.
 
-## Domain event: empat belas
+## Domain event: delapan belas
 
-Keempat belas event terdaftar di tiga tempat yang dijaga selaras `awcms` (`domain-event-runtime/domain/event-type-registry.ts`, `apps/cms/asyncapi/awcms-domain-events.asyncapi.yaml`, `events.publishes` milik `commerce/module.ts`):
+Kedelapan belas event terdaftar di tiga tempat yang dijaga selaras `awcms` (`domain-event-runtime/domain/event-type-registry.ts`, `apps/cms/asyncapi/awcms-domain-events.asyncapi.yaml`, `events.publishes` milik `commerce/module.ts`):
 
 | Agregat               | Event                                                                                                                                                         |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -305,6 +324,7 @@ Keempat belas event terdaftar di tiga tempat yang dijaga selaras `awcms` (`domai
 | `commerce.voucher`    | `awcms.commerce.voucher.redeemed` — dideklarasikan lebih dulu sebagai forward reference di #26, baru benar-benar dipicu begitu jalur pesanan #29 menebus satu |
 | `commerce.order`      | `awcms.commerce.order.{created,paid,status_changed,cancelled,expired}`, dan sejak #285 `awcms.commerce.payment.{recorded,reversed}` (ledger pembayaran berjalan pada agregat PESANAN: satu aliran berurutan per pesanan; id/tender/jumlah/penyelesaian hasilnya, tidak pernah nama/telepon pelanggan atau referensi pembayaran) |
 | `commerce.review`     | `awcms.commerce.review.published`                                                                                                                             |
+| `commerce.register_session` | `awcms.commerce.register_session.{opened,movement_recorded,closed,corrected}` — aliran berurutan shift itu sendiri (#284); `closed` dipicu sekali, hanya ketika sesi benar-benar mencapai `closed`; payload membawa id/tipe/jumlah/selisih, tidak pernah referensi/catatan teks bebas mutasi atau alasan penutupan |
 
 `categories` masih tidak mempublikasikan domain event apa pun — pilihan yang sama diambil `tenant_admin` untuk `awcms_offices`; soft delete adalah fakta log-audit, bukan sesuatu yang perlu direaksi konsumen hilir.
 
@@ -318,7 +338,8 @@ Keempat belas event terdaftar di tiga tempat yang dijaga selaras `awcms` (`domai
 | `409`  | `CART_CHANGED`                                                                                | Re-quote milik request pembuatan-pesanan storefront (atau POS, #116) tidak sepakat dengan keranjang yang dikirim; respons membawa `details.quote` baru          |
 | `409`  | `INSUFFICIENT_TENDER`                                                                         | Hanya POS (#116, diperlebar #285): tender tidak menutup total pesanan (kecuali `allowDue`); `details.shortfall` adalah selisihnya sebagai string `numeric(14,2)`   |
 | `409`  | `OVERPAYMENT` / `REVERSAL_EXCEEDS_PAYMENT` / `PAYMENT_NOT_REVERSIBLE` / `PAYMENT_NOT_SETTLED`  | Ledger pembayaran (#285): jumlah di atas yang terutang (hanya kembalian tunai yang boleh melebihi); pembalikan di atas sisa yang bisa dibalik; pembayaran yang tidak bisa dibalik; `-> paid` manual untuk pesanan yang punya leg tetapi belum terselesaikan (pesanan tanpa leg justru dicatatkan satu leg senilai penuh). `Idempotency-Key` yang dipakai ulang untuk pesanan lain, atau dengan tender/jumlah berbeda, adalah `409 IDEMPOTENCY_CONFLICT`; `ORDER_PARTIALLY_SETTLED` (sesi gateway storefront) berarti uang sudah diterima sehingga tidak ada hosted checkout yang ditawarkan |
-| `409`  | `FEATURE_DISABLED`                                                                            | Rute owner dari fitur yang dimatikan tenant (#118) — kotak masuk, kampanye, gateway, kurir, dan sejak #116 rute POS                                              |
+| `409`  | `FEATURE_DISABLED`                                                                            | Rute owner dari fitur yang dimatikan tenant (#118) — kotak masuk, kampanye, gateway, kurir, dan sejak #116 rute POS, dan sejak #284 setiap rute register (flag `register` default MATI; menyebut `registerId` pada penjualan POS saat mati adalah penolakan yang sama)                                              |
+| `409`  | `REGISTER_SESSION_REQUIRED` / `REGISTER_SESSION_CLOSING` / `NOT_SESSION_CASHIER` / `REGISTER_SESSION_ALREADY_OPEN` / `REGISTER_SESSION_NOT_OPEN` / `REGISTER_SESSION_NOT_CLOSED` / `REGISTER_CLOSE_NOT_PENDING` / `REGISTER_CODE_TAKEN` / `REGISTER_HAS_ACTIVE_SESSION` / `REGISTER_INACTIVE` / `UNKNOWN_CASHIER` / `SAME_CASHIER` | Register dan tutup kas (#284): keadaan shift menolak aksi (tidak ada sesi terbuka untuk penjualan POS, sesi yang sedang dihitung, laci kasir lain, sesi terbuka kedua pada satu register, mutasi/penutupan pada sesi tidak terbuka, koreksi pada sesi belum ditutup, keputusan tanpa yang tertunda, kode register ganda, menonaktifkan register yang punya sesi aktif, serah terima ke pengguna tak dikenal/nonaktif atau ke kasir saat ini) |
 | `409`  | `ORDER_NOT_PAYABLE` / `ORDER_NOT_CANCELLABLE`                                                 | Status pesanan saat ini secara legal tidak mengizinkan aksi yang diminta                                                                                         |
 | `404`  | `NOT_FOUND`                                                                                   | Resource tak dikenal, atau — pada API storefront — penolakan netral yang mencakup "pesanan tak dikenal", "telepon salah", dan "milik tenant lain" secara identik |
 | `503`  | `MEDIA_UNAVAILABLE`                                                                           | Rute upload-session bukti-pembayaran, selalu, di increment ini                                                                                                   |

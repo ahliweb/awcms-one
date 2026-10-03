@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:d1cd490f2f828f53a3a92604f409f4e7055cb2b75ccf9b1af109c1fdddf2ce5a -->
+<!-- i18n-source-hash: sha256:23f332250b7fa2b831d73ca97f0d5999c0465f94e39120dbf5241b6862ae5e37 -->
 
 # Skema basis data
 
@@ -203,6 +203,23 @@ Ledger append-only ber-RLS FORCE: satu baris per leg tender atau pembalikan komp
 - **Referensi aman-tenant:** FK komposit `(tenant_id, order_id) → awcms_commerce_orders (tenant_id, id)` dan `(tenant_id, reverses_allocation_id) → (tenant_id, id)`, ditopang indeks `UNIQUE (tenant_id, id)` (yang pada `awcms_commerce_orders` ditambahkan `sql/940`), plus kebijakan isolasi tenant dengan `WITH CHECK`.
 - **Indeks:** `(tenant_id, order_id, created_at)` (ledger sebuah pesanan), `(tenant_id, created_at)` (pindaian tender-mix dan kursor purge), source key unik, `(order_id)`, `(tenant_id, reverses_allocation_id)` parsial, dan pada `awcms_commerce_orders` indeks parsial `(tenant_id, created_at DESC) WHERE payment_status IN ('unpaid','partially_paid','dp_paid') AND status NOT IN ('cancelled','expired') AND deleted_at IS NULL` untuk pindaian saldo terutang.
 - **`sql/941`** menyemai `commerce.payments.{read,create,revoke}` dan `commerce.pos_due.create`; **`sql/943`** adalah expand→backfill: satu leg `backfill` deterministik per pesanan yang sudah lunas (`ON CONFLICT DO NOTHING`, dilewati untuk pesanan yang sudah punya baris ledger, timestamp = `paid_at` pesanan itu sendiri), dengan jumlah pesanan uang muka direkonstruksi dari konfirmasi yang diterima (dibatasi pada total) dan status cache-nya dikoreksi menjadi `dp_paid`.
+
+## Register POS dan tutup kas: enam tabel dan dua kolom stempel (`sql/970`–`973`, issue #284, [ADR-0028](adr/0028-pos-register-sessions-and-cash-up.md))
+
+Enam tabel FORCE-RLS (kebijakan isolasi tenant dengan `WITH CHECK`, FK komposit `(tenant_id, …)` yang ditopang `UNIQUE (tenant_id, id)`, setiap kolom FK diindeks, uang `numeric(14,2)`), dan satu `register_session_id` nullable pada masing-masing `awcms_commerce_orders` dan `awcms_commerce_payment_allocations`.
+
+| Tabel | Isinya | Constraint penting |
+| --- | --- | --- |
+| `awcms_commerce_registers` | Kasir bernama: `code`, `name`, `location_label`, `active`, stempel pembuat/pengubah, `deleted_at` (tidak pernah diset — kursor retensi, bentuk `commerce.orders`) | `UNIQUE (tenant_id, lower(code))`; CHECK panjang |
+| `awcms_commerce_register_sessions` | Satu shift: `register_id`, `status` (`open \| closing \| closed \| corrected`), `opened_at`/`opened_by`, `opening_float >= 0`, `current_cashier_tenant_user_id`, `closed_at`/`closed_by` | **UNIQUE parsial `(tenant_id, register_id) WHERE status IN ('open','closing')`** — satu sesi aktif per register; `closed_at`/`closed_by` terisi persis saat `closed`/`corrected`; trigger penjaga selalu membekukan kolom identitas dan setiap kolom sesi yang sudah ditutup kecuali `closed → corrected` |
+| `awcms_commerce_register_movements` | Mutasi laci tunai append-only: `movement_type` (`cash_in \| cash_out \| safe_drop \| expense \| transfer \| correction`), `direction`, `amount > 0`, `reference`, `note`, stempel pelaku, `source_key` | tipe menetapkan arah tiga tipe satu arah; `expense`/`transfer` butuh `reference`, `correction` butuh `note`; `reference_kind CHECK IN ('free_text')` adalah kait bertipe untuk domain pengeluaran (#294); BEFORE INSERT mensyaratkan sesi `open`; UPDATE ditolak trigger dan dicabut; `UNIQUE (tenant_id, source_key)` |
+| `awcms_commerce_register_close_requests` | Satu baris per percobaan penutupan: `attempt`, pemohon, `variance_total` (bersih, bertanda), `variance_gross` (Σ mutlak), `approval_threshold` yang berlaku, `approval_required`, `variance_reason`, `decision` (`auto \| pending \| approved \| rejected`), pemutus + waktu + catatan | alasan wajib setiap kali `variance_gross > 0`; CHECK bentuk-keputusan mengikat pemutus/waktu ke keputusan; `UNIQUE (tenant_id, session_id, attempt)`; BEFORE INSERT mensyaratkan sesi `open`; satu-satunya UPDATE sah adalah `pending → approved \| rejected` |
+| `awcms_commerce_register_close_lines` | Snapshot per tender satu permintaan: `tender_type`, `expected` (bertanda), `counted >= 0`, `variance` | `variance = counted - expected` adalah CHECK; `ON DELETE CASCADE` ke permintaannya (retensi); append-only |
+| `awcms_commerce_register_corrections` | Baris kompensasi pasca-penutupan: `correction_id` (mengelompokkan baris satu koreksi), `tender_type`, `adjustment <> 0` (bertanda), `reason`, pelaku | BEFORE INSERT mensyaratkan sesi `closed`/`corrected`; append-only; `UNIQUE (tenant_id, correction_id, tender_type)` |
+
+- **Kolom stempel (`sql/971`).** `awcms_commerce_orders.register_session_id` (CHECK: hanya `channel = 'pos'`; trigger mengisinya sekali saat INSERT, hanya terhadap sesi `open`, dan menolak perubahan berikutnya) dan `awcms_commerce_payment_allocations.register_session_id` (trigger mensyaratkannya sama dengan sesi pesanan leg itu sendiri dan sesi itu `open`; penjaga append-only ledger, yang diganti `sql/971`, membekukannya). Keduanya NULL untuk setiap baris yang dicatat di luar sesi terbuka — langkah expand, tidak ada yang perlu di-backfill.
+- **Hak istimewa.** `awcms_app` kehilangan `DELETE` pada keenamnya; tiga tabel murni-tambah (mutasi, baris penutupan, koreksi) juga kehilangan `UPDATE`. `awcms_worker` mempertahankan `SELECT, DELETE` (`sql/973`) untuk mesin retensi (`commerce.register_*`, batas bawah lima tahun, batas atas sepuluh tahun; dua induk berkursor `deleted_at` yang tidak pernah diset, empat anak berkursor `created_at`). `security-readiness.ts` menegaskan himpunan yang persis di kedua arah.
+- **`sql/972`** men-seed sepuluh kunci izin; `sql/974` ditahan dan tidak dipakai.
 
 ## Proyeksi laporan penjualan: tiga tabel turunan (`sql/933`)
 

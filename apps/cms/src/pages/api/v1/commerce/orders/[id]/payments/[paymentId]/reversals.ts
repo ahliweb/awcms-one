@@ -110,6 +110,25 @@ export const POST = defineTenantRoute<RecordReversalInput>({
           { reason: outcome.reason }
         );
       }
+      if (outcome.kind === "register_session_not_found") {
+        return fail(404, "RESOURCE_NOT_FOUND", "Register session not found.");
+      }
+      if (outcome.kind === "register_session_not_open") {
+        return fail(
+          409,
+          "REGISTER_SESSION_NOT_OPEN",
+          "The register session is not open; a refund can only be paid from an open drawer.",
+          {},
+          { status: outcome.status }
+        );
+      }
+      if (outcome.kind === "register_session_not_cashier") {
+        return fail(
+          409,
+          "NOT_SESSION_CASHIER",
+          "Only the register session's current cashier can pay a refund from its drawer."
+        );
+      }
       return created(outcome.body);
     } catch (error) {
       if (error instanceof IdempotencyRaceLostError) {

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](cms.md)
 
-<!-- i18n-source-hash: sha256:c5f7d7d189ed0a88687a52e04d8ada5eebf34f5e4485da01687fcfc005589040 -->
+<!-- i18n-source-hash: sha256:6d3cad6e987d87e928e7665935c95941c977d766406e7a6819c677bf48983008 -->
 
 # CMS: authoring, publikasi, izin, audit, media, taksonomi
 
@@ -303,6 +303,16 @@ Flag `features` keenam, **`loyalty`, default `false`** — satu-satunya flag di 
 - **Pelanggan** `GET /api/v1/commerce/storefront/account/loyalty` (sesi bearer; id pelanggan hanya dari sesi). Belum ada halaman storefront untuknya.
 - **Reconcile.** `commerce:loyalty:reconcile` (harian) hanya-baca dan keluar non-nol pada saldo yang drift atau baris ledger yang saldo berjalannya tidak cocok. Perbaikan hanya menulis ulang proyeksi, diaudit per akun.
 - **Tes.** `apps/cms/tests/commerce-loyalty-{earn,lots,validation,routes}.test.ts` (murni) dan `apps/cms/tests/integration/commerce-loyalty.integration.test.ts` (Postgres nyata, termasuk perolehan dan kedaluwarsa yang dijalankan sebagai role `awcms_worker` sungguhan).
+
+## Register POS dan tutup kas (issue #284, epik #281, [ADR-0028](adr/0028-pos-register-sessions-and-cash-up.md))
+
+- **Model.** Register adalah kasir bernama; sesi adalah satu shift di atasnya (`open → closing → closed | open`, `closed → corrected`). Pembuka menghitung modal awal dan menjadi kasir saat ini pertama; serah terima (kasir saat ini, atau supervisor pemegang `commerce.register_cash_ups.approve`) memindahkan laci ke pengguna aktif lain. Mutasi laci — `cash_in`, `cash_out`, `safe_drop`, `expense` (referensi teks bebas saat ini; referensi pengeluaran bertipe adalah kait #294), `transfer`, `correction` — append-only dan hanya tunai.
+- **Tutup kas.** Jumlah yang seharusnya per tender diturunkan (lihat [`docs/arsitektur.id.md`](arsitektur.id.md)); kasir hanya mengetik apa yang dihitungnya. Selisih per tender dan kotor; alasan wajib bila ada yang tidak cocok; di atas `cashUp.approvalThreshold` tenant penutupan menunggu `closing` untuk penyetuju (setujui → closed; tolak dengan catatan → `open`, hitung ulang adalah percobaan ke-n+1) kecuali penutup juga memegang kunci approve. Penutupan idempoten dan eksklusif terhadap setiap penjualan, mutasi, dan leg yang distempel pada sesi itu.
+- **Tidak dapat diubah.** Sesi yang sudah ditutup tidak bisa berubah; koreksi (`commerce.register_corrections.approve`) menambahkan penyesuaian bertanda per tender pada jumlah DIHITUNG dan sesi menjadi `corrected` — baris penutupan asli tetap seperti semula. Aktivitas ledger yang terlambat pada penjualan sesi yang sudah ditutup dicatat tetapi tidak pernah distempel, sehingga tidak pernah mengubah tutup kas yang sudah ditutup.
+- **POS.** Dengan fitur `register` nyala (default MATI) penjualan harus menyebut register yang punya sesi terbuka milik kasir yang bertindak (sesi dikunci `FOR SHARE` selama sisa transaksi penjualan); saat mati, POS tidak berubah dan menyebut register ditolak. Layar POS menampilkan sesi terbuka milik kasir sendiri di sebuah banner dan mengirim `registerId` yang dipilih.
+- **Layar.** `/admin/commerce-registers` (angka ringkas, buka sesi, tabel sesi dengan filter status, definisi register, ambang persetujuan — yang terakhir ditulis lewat rute pengaturan modul generik di belakang `module_management.settings.update`, seperti toggle "Fitur") dan `/admin/commerce-registers/{id}` (ringkasan, seharusnya / dihitung / selisih per tender, mutasi dan formulirnya, serah terima, formulir tutup kas dengan seharusnya/selisih langsung dan petunjuk persetujuan, panel menunggu-persetujuan dengan dialog konfirmasi, percobaan penutupan, koreksi, unduh CSV). Tidak ada yang dikarang layar: tender tanpa aktivitas tidak punya baris, dan dihitung/selisih kosong sampai ada penutupan.
+- **Laporan dan ekspor.** `GET .../register-sessions/{id}` adalah laporannya; `.../report.csv` (`commerce.register_sessions.export`, verba berisiko tinggi) adalah satu berkas bersekat dengan setiap sel dinetralkan dari formula spreadsheet dan tanpa data pelanggan.
+- **Tes.** `apps/cms/tests/commerce-register-domain.test.ts` (validasi, aritmetika sen-eksak seharusnya/selisih/ambang/koreksi, netralisasi CSV), `commerce-register-permissions.test.ts` (pemisahan sepuluh kunci, evaluasi akses nyata atas grant kasir), dan terhadap Postgres sungguhan `apps/cms/tests/integration/commerce-register-cash-up.integration.test.ts` (pembukaan dan penutupan yang benar-benar bersamaan, penutupan yang berlomba dengan penjualan, penstempelan, imutabilitas di tingkat aplikasi dan basis data, koreksi, isolasi RLS dan FK komposit, kompatibilitas fitur-mati, rekonsiliasi laporan, isi audit/event) dan `commerce-register-routes.integration.test.ts` (hal yang sama lewat handler rute sungguhan dengan prinsipal yang di-seed persis dengan kunci izin yang diuji).
 
 ## Toggle fitur dan harga bertingkat (issue #118, epik #33 C9, kontrak #106 D10, ADR-0016 D6)
 

@@ -1295,6 +1295,28 @@ export const READER_BUDGET_BYTES = 24_000;
  * sum.
  */
 /**
+ * **Issue #284's own raise (300,700 B before the v10.4.0 sync; the final
+ * figure is the last paragraph's)** (POS registers and cash-up,
+ * ADR-0028) — two new admin screens and one touched. The growth is exactly
+ * their client scripts, no new shared primitive and no new CSS file:
+ * `commerce-registers/[id].astro` (4,567 B — the movement, handover, cash-up
+ * and approval/correction forms, with the `bigint`-cents live expected/difference
+ * mirror of `domain/register.ts`'s `evaluateCount`, the same ADR-0003 idiom
+ * `commerce-pos.astro` carries), `commerce-registers.astro` (2,160 B — open
+ * session, define/deactivate register, threshold forms), and the register
+ * banner/`registerId` plumbing in `commerce-pos.astro`'s existing island (a few
+ * hundred bytes, plus the screens' share of `admin-screens.css`). Every
+ * mutation goes through `admin-form-client.ts` (`onSubmit`/`onAction`/
+ * `sendJson`/`messageBox`) and the shared confirm dialog, so none of it is a
+ * hand-copied lifecycle; every string reaches the script as a `data-msg-*`
+ * attribute (SSR-only catalogue entries add nothing here). The two copies of
+ * the cents helpers (POS and the session screen) are ~600 B together and are
+ * the place to look first if a later screen needs a third. Measured clean
+ * build: 300,423 B (up from 293,287 B); the largest-file checks still pass.
+ * 300,700 keeps the same tight "measured + small margin" convention as every
+ * raise above; re-measure on the next commerce screen and tighten if the real
+ * total sits well below this.
+ *
  * **Raised to 354,500 B when awcms-one#291 (typed catalog attributes) was
  * merged onto the build that already carries #289 (loyalty) and the #300
  * sync** — the two feature raises above are not additive (each was measured
@@ -1307,8 +1329,13 @@ export const READER_BUDGET_BYTES = 24_000;
  * was merged onto main with #289 and #291** — MEASURED 359,316 B on the
  * merged build (#291's 354,420 B plus #285's three screens, +4,896 B); a
  * measurement, not a sum.
+ *
+ * **Final: 366,700 B when awcms-one#284 (POS registers and cash-up) was
+ * merged onto #285, #289 and #291** — MEASURED 366,601 B on the merged build
+ * (#285's 359,316 B plus the register screens, +7,285 B); a measurement, not
+ * a sum.
  */
-export const APP_BUDGET_BYTES = 359_400;
+export const APP_BUDGET_BYTES = 366_700;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

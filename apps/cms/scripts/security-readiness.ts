@@ -709,7 +709,22 @@ export const RETIRED_TENANT_TABLE_PRIVILEGES: Record<string, string[]> = {
   // one (the `REVOKE` in sql/940 achieves it; sql/019 grants all four verbs by
   // default). UPDATE stays, narrowed by sql/940's trigger to the one
   // `pending -> succeeded|failed` gateway-leg transition.
-  awcms_commerce_payment_allocations: ["SELECT", "INSERT", "UPDATE"]
+  awcms_commerce_payment_allocations: ["SELECT", "INSERT", "UPDATE"],
+  // Issue #284 / `sql/970`. The POS register tables - NOT retired, written on
+  // every shift. A cash shift is a fiscal record, so the role that runs one
+  // must not be able to erase it: DELETE is revoked on all six. The three
+  // pure-append tables (movements, close lines, corrections) lose UPDATE as
+  // well - the append-only trigger would refuse it anyway, and the privilege
+  // error is the earlier, louder answer. The close request keeps UPDATE for
+  // its one legal transition (`pending -> approved|rejected`), the register
+  // keeps it for rename/deactivate, and the session for its status machine
+  // (a closed session is frozen by sql/970's guard trigger, not by privilege).
+  awcms_commerce_registers: ["SELECT", "INSERT", "UPDATE"],
+  awcms_commerce_register_sessions: ["SELECT", "INSERT", "UPDATE"],
+  awcms_commerce_register_movements: ["SELECT", "INSERT"],
+  awcms_commerce_register_close_requests: ["SELECT", "INSERT", "UPDATE"],
+  awcms_commerce_register_close_lines: ["SELECT", "INSERT"],
+  awcms_commerce_register_corrections: ["SELECT", "INSERT"]
 };
 
 type RlsRow = {
@@ -1615,6 +1630,18 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // retention worker is the ONLY role that may delete a ledger row (awcms_app
   // has had DELETE revoked), and only past that ceiling.
   awcms_commerce_payment_allocations: ["SELECT", "DELETE"],
+  // Issue #284 (`sql/970`/`sql/973`): the six POS register tables'
+  // `dataLifecycle` descriptors (`commerce/domain/register-lifecycle.ts`) are
+  // `executionMode: "generic"` with `hard_delete`; the retention worker is the
+  // only role that may delete a register/shift row (awcms_app has had DELETE
+  // revoked), and the two parent tables are unreachable by construction
+  // (`deleted_at` is never set).
+  awcms_commerce_registers: ["SELECT", "DELETE"],
+  awcms_commerce_register_sessions: ["SELECT", "DELETE"],
+  awcms_commerce_register_movements: ["SELECT", "DELETE"],
+  awcms_commerce_register_close_requests: ["SELECT", "DELETE"],
+  awcms_commerce_register_close_lines: ["SELECT", "DELETE"],
+  awcms_commerce_register_corrections: ["SELECT", "DELETE"],
   // Issue #291 (`sql/960`/`962`/`964`): catalog attributes. Definitions and
   // values are soft-deleted (`deleted_at` cursor) and aged out by the generic
   // purge engine, which needs SELECT + DELETE; an import batch is an

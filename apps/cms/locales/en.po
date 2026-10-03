@@ -24,8 +24,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Pay this refund from my open register"
+msgstr ""
+
 #. Admin shell — skip link, drawer, topbar
 msgid "Skip to main content"
+msgstr ""
+
+msgid "This sale's register shift is being closed. Record the payment once the close is decided."
+msgstr ""
+
+msgid "Tick the box if cash leaves your open register for this refund (for a sale from an earlier shift); otherwise add a cash-out movement to the register session."
 msgstr ""
 
 msgid "Toggle navigation menu"
@@ -8584,4 +8593,483 @@ msgid "Open approval inbox"
 msgstr ""
 
 msgid "Availability is advisory: the existing endpoints check permission, approval and state again when you send. Approval decisions are made only in the approval inbox."
+msgstr ""
+
+# Issue #284 (ADR-0028) — POS registers and cash-up.
+
+msgid "A close whose total difference (the sum of the absolute differences per payment method) is above this amount needs a supervisor's approval. Zero means any difference does."
+msgstr ""
+
+msgid "A closed session never changes. A correction adds a signed adjustment to a counted amount; the original count is kept."
+msgstr ""
+
+msgid "A deactivated register cannot open a new session. Existing sessions and reports are kept."
+msgstr ""
+
+msgid "A note (the reason) is required for a correction."
+msgstr ""
+
+msgid "A reference is required for an expense or a transfer."
+msgstr ""
+
+msgid "A register with that code already exists."
+msgstr ""
+
+msgid "A user with approval permission has to decide this close."
+msgstr ""
+
+msgid "Adjustment (signed)"
+msgstr ""
+
+msgid "Approval threshold"
+msgstr ""
+
+msgid "Approve close"
+msgstr ""
+
+msgid "Approve this close?"
+msgstr ""
+
+msgid "Awaiting approval"
+msgstr ""
+
+msgid "Back to registers"
+msgstr ""
+
+msgid "Cash in"
+msgstr ""
+
+msgid "Cash in, safe drops and expenses recorded during the shift appear here."
+msgstr ""
+
+msgid "Cash out"
+msgstr ""
+
+msgid "Cash up"
+msgstr ""
+
+msgid "Cash-up approval threshold"
+msgstr ""
+
+msgid "Choose the register you are selling on."
+msgstr ""
+
+msgid "Close awaiting approval"
+msgstr ""
+
+msgid "Close session"
+msgstr ""
+
+msgid "Close the register's open session before deactivating it."
+msgstr ""
+
+msgid "Corrected"
+msgstr ""
+
+msgid "Corrected count"
+msgstr ""
+
+msgid "Correction"
+msgstr ""
+
+msgid "Corrections"
+msgstr ""
+
+msgid "Could not close the session. Please try again."
+msgstr ""
+
+msgid "Could not hand the drawer over. Please try again."
+msgstr ""
+
+msgid "Could not open the session. Please try again."
+msgstr ""
+
+msgid "Could not record the correction. Please try again."
+msgstr ""
+
+msgid "Could not record the decision. Please try again."
+msgstr ""
+
+msgid "Could not record the movement. Please try again."
+msgstr ""
+
+msgid "Could not save the register. Please try again."
+msgstr ""
+
+msgid "Could not save the threshold. Please try again."
+msgstr ""
+
+msgid "Count every payment method listed."
+msgstr ""
+
+msgid "Count per payment method"
+msgstr ""
+
+msgid "Count the cash in the drawer and enter it as the opening float."
+msgstr ""
+
+msgid "Count what is in the drawer and what each other payment method settled, then close the session."
+msgstr ""
+
+msgid "Counted"
+msgstr ""
+
+msgid "Counted amount for {method}"
+msgstr ""
+
+msgid "Deactivate this register?"
+msgstr ""
+
+msgid "Define register"
+msgstr ""
+
+msgid "Define the first register above."
+msgstr ""
+
+msgid "Difference"
+msgstr ""
+
+msgid "Direction"
+msgstr ""
+
+msgid "Download cash-up CSV"
+msgstr ""
+
+msgid "Drawer and cash-up"
+msgstr ""
+
+msgid "Drawer movements"
+msgstr ""
+
+msgid "Enter a signed amount like -5000 or 5000.50 (not zero)."
+msgstr ""
+
+msgid "Enter an amount like 100000 or 100000.50."
+msgstr ""
+
+msgid "Enter the counted amounts to see the difference."
+msgstr ""
+
+msgid "Enter the new cashier's user ID."
+msgstr ""
+
+msgid "Every active register already has a session. Define a register below, or close a session first."
+msgstr ""
+
+msgid "Expected"
+msgstr ""
+
+msgid "Expected amounts are derived live from this session's sales and drawer movements."
+msgstr ""
+
+msgid "Expected cash"
+msgstr ""
+
+msgid "Expected, counted and difference"
+msgstr ""
+
+msgid "Expense"
+msgstr ""
+
+msgid "Filter sessions by status"
+msgstr ""
+
+msgid "Give the reason for rejecting the count."
+msgstr ""
+
+msgid "Give the reason for the difference."
+msgstr ""
+
+msgid "Give the register to another cashier. Their user ID is on the Users screen."
+msgstr ""
+
+msgid "Gross difference"
+msgstr ""
+
+msgid "Hand over"
+msgstr ""
+
+msgid "Hand the drawer over"
+msgstr ""
+
+msgid "In"
+msgstr ""
+
+msgid "Location label"
+msgstr ""
+
+msgid "Location label (optional)"
+msgstr ""
+
+msgid "Movement"
+msgstr ""
+
+msgid "Movement recorded."
+msgstr ""
+
+msgid "New cashier's user ID"
+msgstr ""
+
+msgid "No corrections"
+msgstr ""
+
+msgid "No movements yet"
+msgstr ""
+
+msgid "No open session"
+msgstr ""
+
+msgid "No registers yet"
+msgstr ""
+
+msgid "No sessions yet"
+msgstr ""
+
+msgid "Older sessions"
+msgstr ""
+
+msgid "Only the session's current cashier can do this."
+msgstr ""
+
+msgid "Open a register session"
+msgstr ""
+
+msgid "Open a register session with a counted float, track the drawer, and cash up at the end of the shift."
+msgstr ""
+
+msgid "Open a session"
+msgstr ""
+
+msgid "Open a session above to start a shift."
+msgstr ""
+
+msgid "Open session"
+msgstr ""
+
+msgid "Open sessions"
+msgstr ""
+
+msgid "Opened"
+msgstr ""
+
+msgid "Opening float"
+msgstr ""
+
+msgid "Out"
+msgstr ""
+
+msgid "Per payment method"
+msgstr ""
+
+msgid "Please wait…"
+msgstr ""
+
+msgid "Reactivate"
+msgstr ""
+
+msgid "Reason for rejecting"
+msgstr ""
+
+msgid "Reason for the difference"
+msgstr ""
+
+msgid "Reason: {reason}"
+msgstr ""
+
+msgid "Record correction"
+msgstr ""
+
+msgid "Record movement"
+msgstr ""
+
+msgid "Reference"
+msgstr ""
+
+msgid "Register defined."
+msgstr ""
+
+msgid "Register definitions"
+msgstr ""
+
+msgid "Register figures"
+msgstr ""
+
+msgid "Register mode is on: open a register session before ringing up a sale."
+msgstr ""
+
+msgid "Register session"
+msgstr ""
+
+msgid "Register {code}"
+msgstr ""
+
+msgid "Registers"
+msgstr ""
+
+msgid "Registers and cash-up"
+msgstr ""
+
+msgid "Registers and cash-up are turned off for this store."
+msgstr ""
+
+msgid "Registers could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Reject count"
+msgstr ""
+
+msgid "Reject this count?"
+msgstr ""
+
+msgid "Safe drop"
+msgstr ""
+
+msgid "Sales"
+msgstr ""
+
+msgid "Save threshold"
+msgstr ""
+
+msgid "Sell on register"
+msgstr ""
+
+msgid "Selling on {register}."
+msgstr ""
+
+msgid "Session open"
+msgstr ""
+
+msgid "Session opened."
+msgstr ""
+
+msgid "That register already has an open session."
+msgstr ""
+
+msgid "That register is deactivated."
+msgstr ""
+
+msgid "That register no longer exists."
+msgstr ""
+
+msgid "That user already has the drawer."
+msgstr ""
+
+msgid "That user is not an active user of this store."
+msgstr ""
+
+msgid "The correction would make a counted amount negative."
+msgstr ""
+
+msgid "The count differs by {gross} in total, above the threshold of {threshold}."
+msgstr ""
+
+msgid "The count matches the expected amounts."
+msgstr ""
+
+msgid "The drawer, the cash-up and the report of one register session."
+msgstr ""
+
+msgid "The opening float must be an amount like 100000 or 100000.50 (zero is allowed)."
+msgstr ""
+
+msgid "The session goes back to open and the cashier has to count again. The rejected count is kept as history."
+msgstr ""
+
+msgid "The session is not open any more. Reload the page."
+msgstr ""
+
+msgid "The session will be closed with the counted amounts and the difference recorded."
+msgstr ""
+
+msgid "The threshold must be an amount like 50000 or 50000.50 (zero means every difference needs approval)."
+msgstr ""
+
+msgid "The total difference is above the approval threshold: a supervisor has to approve this close."
+msgstr ""
+
+msgid "The total difference is within the approval threshold."
+msgstr ""
+
+msgid "This register has no open session. Open one on the Registers screen first."
+msgstr ""
+
+msgid "This register session could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "This register session does not exist."
+msgstr ""
+
+msgid "This register's session belongs to another cashier. Ask for a handover."
+msgstr ""
+
+msgid "This register's session is being closed and accepts no sales."
+msgstr ""
+
+msgid "This session's close has not been corrected."
+msgstr ""
+
+msgid "Threshold saved."
+msgstr ""
+
+msgid "Total difference"
+msgstr ""
+
+msgid "Total difference {total}, gross {gross}, threshold {threshold}."
+msgstr ""
+
+msgid "Transfer"
+msgstr ""
+
+msgid "Turn them on under Features in the store settings."
+msgstr ""
+
+msgid "Within threshold"
+msgstr ""
+
+msgid "You"
+msgstr ""
+
+msgid "You do not have permission to view register sessions."
+msgstr ""
+
+msgid "You have several open register sessions."
+msgstr ""
+
+msgid "POS registers and cash-up"
+msgstr ""
+
+msgid "{count} close attempt"
+msgid_plural "{count} close attempts"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} correction"
+msgid_plural "{count} corrections"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} movement"
+msgid_plural "{count} movements"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} register"
+msgid_plural "{count} registers"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} sale"
+msgid_plural "{count} sales"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} session"
+msgid_plural "{count} sessions"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Cash register"
+msgstr ""
+
+msgid "Close attempts"
 msgstr ""

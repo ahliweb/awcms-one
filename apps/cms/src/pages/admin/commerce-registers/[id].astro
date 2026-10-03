@@ -1,0 +1,1288 @@
+---
+/**
+ * `/admin/commerce-registers/{id}` (Issue #284, epic #281, ADR-0028) - one
+ * register session: the drawer, the cash-up, the report. A DYNAMIC page under
+ * `commerce-registers/` (not a query-string page) for the reason
+ * `commerce-orders/[id].astro` states: a per-session view is not a sidebar
+ * link, and its parent `/admin/commerce-registers` exists and links here.
+ *
+ * Entry permission `commerce.register_sessions.read`; every panel is gated on
+ * the permission of the endpoint behind it, and the endpoints decide for
+ * themselves (the page only hides what a viewer cannot use):
+ *
+ *   - movements + handover form: `register_sessions.update` (and the viewer
+ *     must be the session's current cashier; a supervisor holding
+ *     `register_cash_ups.approve` may also hand the drawer over);
+ *   - the cash-up form: `register_cash_ups.create`, current cashier only. One
+ *     input per tender the session has activity for (cash is always there);
+ *     the expected amount, the difference per tender and the total difference
+ *     update live as the cashier types - arithmetic in `bigint` cents exactly
+ *     like `domain/register.ts` (ADR-0003), with the server authoritative;
+ *   - the pending-approval panel: `register_cash_ups.approve`;
+ *   - the correction form: `register_corrections.approve`, closed sessions;
+ *   - the CSV link: `register_sessions.export`.
+ *
+ * Real data only: every figure is read from `fetchRegisterCashUpReport` (the
+ * same function the API serves). A tender with no activity has no row; counted
+ * and difference are empty - never a placeholder zero - until a close exists.
+ * Every string the client script shows arrives in a `data-*` attribute.
+ */
+import AdminLayout from "../../../layouts/AdminLayout.astro";
+import CommerceConfirmDialog from "../../../components/CommerceConfirmDialog.astro";
+import "../../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../../lib/logging/error-log";
+import { getTranslatorFor } from "../../../lib/i18n";
+import { formatCurrency, formatDateTime } from "../../../lib/i18n/format";
+import {
+  commerceLabel,
+  createCommerceLabels,
+  registerSessionStatusTone
+} from "../../../lib/ui/commerce-admin-labels";
+import { fetchCommerceFeatures } from "../../../modules/commerce/application/commerce-feature-gate";
+import { fetchRegisterCashUpReport } from "../../../modules/commerce/application/register-cash-up";
+import { fetchModuleSettingsView } from "../../../modules/module-management/application/module-settings";
+import {
+  isUuid,
+  resolveCashUpSettings,
+  type RegisterCashUpReport
+} from "../../../modules/commerce/domain/register";
+
+const ssr = Astro.locals.ssrContext!;
+const locale = Astro.locals.locale;
+const { t, tn } = getTranslatorFor(locale);
+const labels = createCommerceLabels(t);
+
+const sessionId = Astro.params.id ?? "";
+
+const TIME_ZONE = "Asia/Jakarta";
+const money = (value: string): string =>
+  formatCurrency(locale, value, "IDR", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+const when = (iso: string | null): string =>
+  iso ? formatDateTime(locale, iso, TIME_ZONE) : "—";
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "commerce",
+    activityCode: "register_sessions",
+    action: "read"
+  },
+  load: async ({ tx, can }) => {
+    const features = await fetchCommerceFeatures(tx, ssr.tenantId);
+    if (!features.register || !isUuid(sessionId)) {
+      return {
+        registerEnabled: features.register,
+        report: null as RegisterCashUpReport | null,
+        canUpdate: false,
+        canClose: false,
+        canApprove: false,
+        canCorrect: false,
+        canExport: false,
+        approvalThreshold: "0.00"
+      };
+    }
+    const report = await fetchRegisterCashUpReport(tx, ssr.tenantId, sessionId);
+    const canUpdate = await can({
+      moduleKey: "commerce",
+      activityCode: "register_sessions",
+      action: "update"
+    });
+    const canClose = await can({
+      moduleKey: "commerce",
+      activityCode: "register_cash_ups",
+      action: "create"
+    });
+    const canApprove = await can({
+      moduleKey: "commerce",
+      activityCode: "register_cash_ups",
+      action: "approve"
+    });
+    const canCorrect = await can({
+      moduleKey: "commerce",
+      activityCode: "register_corrections",
+      action: "approve"
+    });
+    const canExport = await can({
+      moduleKey: "commerce",
+      activityCode: "register_sessions",
+      action: "export"
+    });
+    const settingsView = await fetchModuleSettingsView(
+      tx,
+      ssr.tenantId,
+      "commerce"
+    );
+    return {
+      registerEnabled: true,
+      report,
+      canUpdate,
+      canClose,
+      canApprove,
+      canCorrect,
+      canExport,
+      approvalThreshold: resolveCashUpSettings(settingsView?.effective)
+        .approvalThreshold
+    };
+  },
+  onError: (error) => {
+    logAdminPageError(
+      "admin/commerce-registers/[id].astro: failed to load",
+      error,
+      {
+        correlationId: Astro.locals.correlationId
+      }
+    );
+  }
+});
+
+const allowed = screen.state === "allowed";
+const denied = screen.state === "denied";
+const loadError = screen.state === "error";
+const data = screen.state === "allowed" ? screen.data : null;
+const registerEnabled = data?.registerEnabled === true;
+const report = data?.report ?? null;
+const canUpdate = data?.canUpdate === true;
+const canClose = data?.canClose === true;
+const canApprove = data?.canApprove === true;
+const canCorrect = data?.canCorrect === true;
+const canExport = data?.canExport === true;
+const approvalThreshold = data?.approvalThreshold ?? "0.00";
+
+const session = report?.session ?? null;
+const isCurrentCashier =
+  session?.currentCashierTenantUserId === ssr.tenantUserId;
+const status = session?.status ?? "open";
+const isOpen = status === "open";
+const isClosing = status === "closing";
+const isClosed = status === "closed" || status === "corrected";
+const pendingRequest =
+  report?.closeRequests.find((r) => r.decision === "pending") ?? null;
+const cashierLabel = (id: string): string =>
+  id === ssr.tenantUserId ? t("You") : id.slice(0, 8);
+const signed = (value: string | null): string =>
+  value === null ? "—" : money(value);
+const cashTender =
+  report?.tenders.find((line) => line.tenderType === "cash") ?? null;
+---
+
+<AdminLayout
+  title={
+    report
+      ? t("Register {code}", { code: report.register.code })
+      : t("Register session")
+  }
+  description={t(
+    "The drawer, the cash-up and the report of one register session."
+  )}
+>
+  {denied && (
+    <p class="state-notice fade-in-up" id="session-denied" role="status">
+      {t("You do not have permission to view register sessions.")}
+    </p>
+  )}
+  {loadError && (
+    <p class="state-notice fade-in-up" id="session-error" role="alert">
+      {t(
+        "This register session could not be loaded right now. Please try again later."
+      )}
+    </p>
+  )}
+  {allowed && !registerEnabled && (
+    <p
+      class="state-notice fade-in-up"
+      id="session-feature-disabled"
+      role="status"
+    >
+      {t("Registers and cash-up are turned off for this store.")}{" "}
+      <a class="quick-link" href="/admin/commerce-settings">
+        {t("Turn them on under Features in the store settings.")}
+      </a>
+    </p>
+  )}
+  {allowed && registerEnabled && !report && (
+    <p class="state-notice fade-in-up" id="session-not-found" role="status">
+      {t("This register session does not exist.")}{" "}
+      <a class="quick-link" href="/admin/commerce-registers">
+        {t("Back to registers")}
+      </a>
+    </p>
+  )}
+
+  {allowed && registerEnabled && report && session && (
+    <div
+      id="session-root"
+      data-session-id={session.id}
+      data-threshold={approvalThreshold}
+      data-can-approve={canApprove ? "true" : "false"}
+      data-msg-bad-amount={t("Enter an amount like 100000 or 100000.50.")}
+      data-msg-bad-signed={t(
+        "Enter a signed amount like -5000 or 5000.50 (not zero)."
+      )}
+      data-msg-reason-required={t("Give the reason for the difference.")}
+      data-msg-movement-saved={t("Movement recorded.")}
+      data-msg-movement-failed={t(
+        "Could not record the movement. Please try again."
+      )}
+      data-msg-reference-required={t(
+        "A reference is required for an expense or a transfer."
+      )}
+      data-msg-note-required={t(
+        "A note (the reason) is required for a correction."
+      )}
+      data-msg-not-cashier={t(
+        "Only the session's current cashier can do this."
+      )}
+      data-msg-not-open={t(
+        "The session is not open any more. Reload the page."
+      )}
+      data-msg-handover-failed={t(
+        "Could not hand the drawer over. Please try again."
+      )}
+      data-msg-unknown-cashier={t(
+        "That user is not an active user of this store."
+      )}
+      data-msg-same-cashier={t("That user already has the drawer.")}
+      data-msg-bad-user={t("Enter the new cashier's user ID.")}
+      data-msg-close-failed={t(
+        "Could not close the session. Please try again."
+      )}
+      data-msg-missing-count={t("Count every payment method listed.")}
+      data-msg-decision-failed={t(
+        "Could not record the decision. Please try again."
+      )}
+      data-msg-reject-note={t("Give the reason for rejecting the count.")}
+      data-msg-correction-failed={t(
+        "Could not record the correction. Please try again."
+      )}
+      data-msg-negative-count={t(
+        "The correction would make a counted amount negative."
+      )}
+      data-msg-needs-approval={t(
+        "The total difference is above the approval threshold: a supervisor has to approve this close."
+      )}
+      data-msg-within-threshold={t(
+        "The total difference is within the approval threshold."
+      )}
+      data-msg-no-difference={t("The count matches the expected amounts.")}
+      data-msg-busy={t("Please wait…")}
+    >
+      <section class="fade-in-up" aria-labelledby="session-summary-heading">
+        <h2 id="session-summary-heading">
+          {report.register.code} · {report.register.name}
+          {report.register.locationLabel
+            ? ` (${report.register.locationLabel})`
+            : ""}
+        </h2>
+        <div class="admin-dashboard-stats">
+          <div class="admin-stat-card">
+            <span class="admin-stat-card-label">{t("Status")}</span>
+            <span class="admin-stat-card-value" id="session-status">
+              <span
+                class="admin-status-pill"
+                data-tone={registerSessionStatusTone[session.status]}
+              >
+                <span class="admin-status-pill-dot" aria-hidden="true" />
+                {commerceLabel(labels.registerSessionStatus, session.status)}
+              </span>
+            </span>
+          </div>
+          <div class="admin-stat-card">
+            <span class="admin-stat-card-label">{t("Opening float")}</span>
+            <span class="admin-stat-card-value" id="session-float">
+              {money(report.openingFloat)}
+            </span>
+          </div>
+          <div class="admin-stat-card">
+            <span class="admin-stat-card-label">{t("Sales")}</span>
+            <span class="admin-stat-card-value" id="session-sales-total">
+              {money(report.sales.total)}
+            </span>
+            <span class="cell-muted">
+              {tn("{count} sale", "{count} sales", report.sales.count, {
+                count: report.sales.count
+              })}
+            </span>
+          </div>
+          {cashTender && (
+            <div class="admin-stat-card">
+              <span class="admin-stat-card-label">{t("Expected cash")}</span>
+              <span class="admin-stat-card-value" id="session-expected-cash">
+                {money(cashTender.expected)}
+              </span>
+            </div>
+          )}
+        </div>
+        <p>
+          <strong>{t("Cashier")}:</strong>{" "}
+          <span id="session-cashier">
+            {cashierLabel(session.currentCashierTenantUserId)}
+          </span>
+        </p>
+        <p>
+          <strong>{t("Opened")}:</strong> {when(session.openedAt)} ·{" "}
+          {cashierLabel(session.openedByTenantUserId)}
+        </p>
+        <p>
+          <strong>{t("Closed")}:</strong>{" "}
+          {session.closedAt
+            ? `${when(session.closedAt)} · ${cashierLabel(session.closedByTenantUserId ?? "")}`
+            : "—"}
+        </p>
+        <p class="row-actions">
+          <a class="quick-link" href="/admin/commerce-registers">
+            {t("Back to registers")}
+          </a>
+          {canExport && (
+            <a
+              class="quick-link"
+              id="session-export"
+              href={`/api/v1/commerce/register-sessions/${session.id}/report.csv`}
+            >
+              {t("Download cash-up CSV")}
+            </a>
+          )}
+        </p>
+      </section>
+
+      <section class="fade-in-up" aria-labelledby="session-tenders-heading">
+        <h2 id="session-tenders-heading">
+          {t("Expected, counted and difference")}
+        </h2>
+        {report.live && (
+          <p class="form-hint">
+            {t(
+              "Expected amounts are derived live from this session's sales and drawer movements."
+            )}
+          </p>
+        )}
+        <div class="data-table-scroll">
+          <table
+            class="data-table data-table--stack"
+            id="session-tenders-table"
+          >
+            <caption>{t("Per payment method")}</caption>
+            <thead>
+              <tr>
+                <th scope="col">{t("Payment method")}</th>
+                <th scope="col">{t("Received")}</th>
+                <th scope="col">{t("Reversals")}</th>
+                <th scope="col">{t("Expected")}</th>
+                <th scope="col">{t("Counted")}</th>
+                <th scope="col">{t("Difference")}</th>
+                {report.corrections.length > 0 && (
+                  <th scope="col">{t("Corrected count")}</th>
+                )}
+              </tr>
+            </thead>
+            <tbody>
+              {report.tenders.map((line) => (
+                <tr data-tender-row={line.tenderType}>
+                  <td data-label={t("Payment method")}>
+                    {commerceLabel(labels.paymentTenderType, line.tenderType)}
+                  </td>
+                  <td data-label={t("Received")}>{money(line.payments)}</td>
+                  <td data-label={t("Reversals")}>{money(line.reversals)}</td>
+                  <td data-label={t("Expected")}>{money(line.expected)}</td>
+                  <td data-label={t("Counted")}>{signed(line.counted)}</td>
+                  <td data-label={t("Difference")}>{signed(line.variance)}</td>
+                  {report.corrections.length > 0 && (
+                    <td data-label={t("Corrected count")}>
+                      {line.effectiveCounted === null
+                        ? "—"
+                        : `${money(line.effectiveCounted)} (${money(line.effectiveVariance ?? "0.00")})`}
+                    </td>
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        {report.variance && (
+          <p id="session-variance-summary">
+            {t(
+              "Total difference {total}, gross {gross}, threshold {threshold}.",
+              {
+                total: money(report.variance.total),
+                gross: money(report.variance.gross),
+                threshold: money(report.variance.approvalThreshold)
+              }
+            )}{" "}
+            <span
+              class="admin-status-pill"
+              data-tone={
+                report.variance.decision === "pending" ? "warning" : "neutral"
+              }
+            >
+              <span class="admin-status-pill-dot" aria-hidden="true" />
+              {commerceLabel(
+                labels.registerCloseDecision,
+                report.variance.decision
+              )}
+            </span>
+            {report.variance.reason && (
+              <span id="session-variance-reason">
+                {" "}
+                {t("Reason: {reason}", { reason: report.variance.reason })}
+              </span>
+            )}
+          </p>
+        )}
+      </section>
+
+      <section
+        class="admin-panel fade-in-up"
+        aria-labelledby="session-movements-heading"
+      >
+        <h2 id="session-movements-heading">{t("Drawer movements")}</h2>
+        <p
+          id="session-movement-error"
+          class="admin-create-error"
+          role="alert"
+          hidden
+        />
+        {isOpen && isCurrentCashier && canUpdate && (
+          <form id="movement-form" class="admin-create-form">
+            <label for="movement-type">
+              {t("Movement")}
+              <select id="movement-type" name="movementType" required>
+                {(
+                  [
+                    "cash_in",
+                    "cash_out",
+                    "safe_drop",
+                    "expense",
+                    "transfer",
+                    "correction"
+                  ] as const
+                ).map((type) => (
+                  <option value={type}>
+                    {commerceLabel(labels.registerMovementType, type)}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label
+              for="movement-direction"
+              id="movement-direction-label"
+              hidden
+            >
+              {t("Direction")}
+              <select id="movement-direction" name="direction" disabled>
+                <option value="in">
+                  {commerceLabel(labels.registerMovementDirection, "in")}
+                </option>
+                <option value="out">
+                  {commerceLabel(labels.registerMovementDirection, "out")}
+                </option>
+              </select>
+            </label>
+            <label for="movement-amount">
+              {t("Amount")}
+              <input
+                id="movement-amount"
+                name="amount"
+                type="text"
+                inputmode="decimal"
+                autocomplete="off"
+                required
+              />
+            </label>
+            <label for="movement-reference">
+              {t("Reference (optional)")}
+              <input
+                id="movement-reference"
+                name="reference"
+                type="text"
+                maxlength={100}
+              />
+            </label>
+            <label for="movement-note">
+              {t("Note (optional)")}
+              <input
+                id="movement-note"
+                name="note"
+                type="text"
+                maxlength={500}
+              />
+            </label>
+            <button type="submit" class="module-toggle" id="movement-submit">
+              {t("Record movement")}
+            </button>
+          </form>
+        )}
+        <div class="data-table-scroll">
+          <table
+            class="data-table data-table--stack"
+            id="session-movements-table"
+          >
+            <caption>
+              {tn(
+                "{count} movement",
+                "{count} movements",
+                report.movements.length,
+                {
+                  count: report.movements.length
+                }
+              )}
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">{t("Movement")}</th>
+                <th scope="col">{t("Direction")}</th>
+                <th scope="col">{t("Amount")}</th>
+                <th scope="col">{t("Reference")}</th>
+                <th scope="col">{t("Note")}</th>
+                <th scope="col">{t("Recorded")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {report.movements.length === 0 ? (
+                <tr>
+                  <td class="data-table-empty" colspan={6}>
+                    <div class="empty-state">
+                      <span class="empty-state-icon" aria-hidden="true">
+                        ◇
+                      </span>
+                      <span class="empty-state-title">
+                        {t("No movements yet")}
+                      </span>
+                      <span class="empty-state-text">
+                        {t(
+                          "Cash in, safe drops and expenses recorded during the shift appear here."
+                        )}
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              ) : (
+                report.movements.map((movement) => (
+                  <tr data-movement-row={movement.id}>
+                    <td data-label={t("Movement")}>
+                      {commerceLabel(
+                        labels.registerMovementType,
+                        movement.movementType
+                      )}
+                    </td>
+                    <td data-label={t("Direction")}>
+                      {commerceLabel(
+                        labels.registerMovementDirection,
+                        movement.direction
+                      )}
+                    </td>
+                    <td data-label={t("Amount")}>{money(movement.amount)}</td>
+                    <td data-label={t("Reference")}>
+                      {movement.reference ?? "—"}
+                    </td>
+                    <td data-label={t("Note")}>{movement.note ?? "—"}</td>
+                    <td data-label={t("Recorded")}>
+                      {when(movement.createdAt)}
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {isOpen && canUpdate && (isCurrentCashier || canApprove) && (
+        <section
+          class="admin-panel fade-in-up"
+          aria-labelledby="session-handover-heading"
+        >
+          <h2 id="session-handover-heading">{t("Hand the drawer over")}</h2>
+          <p class="form-hint">
+            {t(
+              "Give the register to another cashier. Their user ID is on the Users screen."
+            )}
+          </p>
+          <p
+            id="session-handover-error"
+            class="admin-create-error"
+            role="alert"
+            hidden
+          />
+          <form id="handover-form" class="admin-create-form">
+            <label for="handover-user">
+              {t("New cashier's user ID")}
+              <input
+                id="handover-user"
+                name="toTenantUserId"
+                type="text"
+                autocomplete="off"
+                required
+              />
+            </label>
+            <label for="handover-note">
+              {t("Note (optional)")}
+              <input
+                id="handover-note"
+                name="note"
+                type="text"
+                maxlength={500}
+              />
+            </label>
+            <button type="submit" class="module-toggle" id="handover-submit">
+              {t("Hand over")}
+            </button>
+          </form>
+        </section>
+      )}
+
+      {isOpen && isCurrentCashier && canClose && (
+        <section
+          class="admin-panel fade-in-up"
+          aria-labelledby="session-cashup-heading"
+        >
+          <h2 id="session-cashup-heading">{t("Cash up")}</h2>
+          <p class="form-hint">
+            {t(
+              "Count what is in the drawer and what each other payment method settled, then close the session."
+            )}
+          </p>
+          <p
+            id="session-cashup-error"
+            class="admin-create-error"
+            role="alert"
+            hidden
+          />
+          <form id="cashup-form">
+            <div class="data-table-scroll">
+              <table class="data-table data-table--stack" id="cashup-table">
+                <caption>{t("Count per payment method")}</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">{t("Payment method")}</th>
+                    <th scope="col">{t("Expected")}</th>
+                    <th scope="col">{t("Counted")}</th>
+                    <th scope="col">{t("Difference")}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {report.tenders.map((line) => (
+                    <tr
+                      data-count-row={line.tenderType}
+                      data-expected={line.expected}
+                    >
+                      <td data-label={t("Payment method")}>
+                        {commerceLabel(
+                          labels.paymentTenderType,
+                          line.tenderType
+                        )}
+                      </td>
+                      <td data-label={t("Expected")}>{money(line.expected)}</td>
+                      <td data-label={t("Counted")}>
+                        <label
+                          class="visually-hidden"
+                          for={`count-${line.tenderType}`}
+                        >
+                          {t("Counted amount for {method}", {
+                            method: commerceLabel(
+                              labels.paymentTenderType,
+                              line.tenderType
+                            )
+                          })}
+                        </label>
+                        <input
+                          id={`count-${line.tenderType}`}
+                          class="cashup-count"
+                          name={line.tenderType}
+                          type="text"
+                          inputmode="decimal"
+                          autocomplete="off"
+                          required
+                          aria-describedby="cashup-summary"
+                        />
+                      </td>
+                      <td data-label={t("Difference")}>
+                        <output
+                          class="cashup-variance"
+                          data-for={line.tenderType}
+                        >
+                          —
+                        </output>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p id="cashup-summary" class="form-hint" aria-live="polite">
+              {t("Enter the counted amounts to see the difference.")}
+            </p>
+            <div class="admin-form">
+              <label for="cashup-reason">
+                {t("Reason for the difference")}
+                <textarea
+                  id="cashup-reason"
+                  name="varianceReason"
+                  rows={3}
+                  maxlength={500}
+                />
+              </label>
+            </div>
+            <div class="row-actions">
+              <button type="submit" class="module-toggle" id="cashup-submit">
+                {t("Close session")}
+              </button>
+            </div>
+          </form>
+        </section>
+      )}
+
+      {isClosing && pendingRequest && (
+        <section
+          class="admin-panel fade-in-up"
+          aria-labelledby="session-approval-heading"
+          id="session-approval"
+        >
+          <h2 id="session-approval-heading">{t("Close awaiting approval")}</h2>
+          <p>
+            {t(
+              "The count differs by {gross} in total, above the threshold of {threshold}.",
+              {
+                gross: money(pendingRequest.varianceGross),
+                threshold: money(pendingRequest.approvalThreshold)
+              }
+            )}
+            {pendingRequest.varianceReason
+              ? ` ${t("Reason: {reason}", { reason: pendingRequest.varianceReason })}`
+              : ""}
+          </p>
+          <p
+            id="session-approval-error"
+            class="admin-create-error"
+            role="alert"
+            hidden
+          />
+          {canApprove ? (
+            <div class="row-actions">
+              <button
+                type="button"
+                class="module-toggle close-decision"
+                id="close-approve"
+                data-decision="approve"
+                data-confirm-title={t("Approve this close?")}
+                data-confirm-message={t(
+                  "The session will be closed with the counted amounts and the difference recorded."
+                )}
+                data-confirm-label={t("Approve close")}
+                data-confirm-note-label={t("Note (optional)")}
+              >
+                {t("Approve close")}
+              </button>
+              <button
+                type="button"
+                class="module-toggle close-decision"
+                id="close-reject"
+                data-decision="reject"
+                data-confirm-title={t("Reject this count?")}
+                data-confirm-message={t(
+                  "The session goes back to open and the cashier has to count again. The rejected count is kept as history."
+                )}
+                data-confirm-label={t("Reject count")}
+                data-confirm-danger="true"
+                data-confirm-note-label={t("Reason for rejecting")}
+              >
+                {t("Reject count")}
+              </button>
+            </div>
+          ) : (
+            <p class="cell-muted">
+              {t("A user with approval permission has to decide this close.")}
+            </p>
+          )}
+        </section>
+      )}
+
+      {report.closeRequests.length > 0 && (
+        <section class="fade-in-up" aria-labelledby="session-requests-heading">
+          <h2 id="session-requests-heading">{t("Close attempts")}</h2>
+          <div class="data-table-scroll">
+            <table
+              class="data-table data-table--stack"
+              id="session-requests-table"
+            >
+              <caption>
+                {tn(
+                  "{count} close attempt",
+                  "{count} close attempts",
+                  report.closeRequests.length,
+                  {
+                    count: report.closeRequests.length
+                  }
+                )}
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">{t("Attempt")}</th>
+                  <th scope="col">{t("Decision")}</th>
+                  <th scope="col">{t("Total difference")}</th>
+                  <th scope="col">{t("Gross difference")}</th>
+                  <th scope="col">{t("Requested")}</th>
+                  <th scope="col">{t("Decided")}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {report.closeRequests.map((request) => (
+                  <tr data-request-row={request.id}>
+                    <td data-label={t("Attempt")}>{request.attempt}</td>
+                    <td data-label={t("Decision")}>
+                      {commerceLabel(
+                        labels.registerCloseDecision,
+                        request.decision
+                      )}
+                    </td>
+                    <td data-label={t("Total difference")}>
+                      {money(request.varianceTotal)}
+                    </td>
+                    <td data-label={t("Gross difference")}>
+                      {money(request.varianceGross)}
+                    </td>
+                    <td data-label={t("Requested")}>
+                      {when(request.requestedAt)} ·{" "}
+                      {cashierLabel(request.requestedByTenantUserId)}
+                    </td>
+                    <td data-label={t("Decided")}>
+                      {request.decidedAt
+                        ? `${when(request.decidedAt)}${
+                            request.decidedByTenantUserId
+                              ? ` · ${cashierLabel(request.decidedByTenantUserId)}`
+                              : ""
+                          }`
+                        : "—"}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      )}
+
+      {isClosed && (
+        <section
+          class="admin-panel fade-in-up"
+          aria-labelledby="session-corrections-heading"
+        >
+          <h2 id="session-corrections-heading">{t("Corrections")}</h2>
+          <p class="form-hint">
+            {t(
+              "A closed session never changes. A correction adds a signed adjustment to a counted amount; the original count is kept."
+            )}
+          </p>
+          <p
+            id="session-correction-error"
+            class="admin-create-error"
+            role="alert"
+            hidden
+          />
+          {canCorrect && (
+            <form id="correction-form" class="admin-create-form">
+              <label for="correction-tender">
+                {t("Payment method")}
+                <select id="correction-tender" name="tenderType" required>
+                  {report.tenders.map((line) => (
+                    <option value={line.tenderType}>
+                      {commerceLabel(labels.paymentTenderType, line.tenderType)}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label for="correction-adjustment">
+                {t("Adjustment (signed)")}
+                <input
+                  id="correction-adjustment"
+                  name="adjustment"
+                  type="text"
+                  inputmode="decimal"
+                  autocomplete="off"
+                  required
+                />
+              </label>
+              <label for="correction-reason">
+                {t("Reason")}
+                <input
+                  id="correction-reason"
+                  name="reason"
+                  type="text"
+                  maxlength={500}
+                  required
+                />
+              </label>
+              <button
+                type="submit"
+                class="module-toggle"
+                id="correction-submit"
+              >
+                {t("Record correction")}
+              </button>
+            </form>
+          )}
+          <div class="data-table-scroll">
+            <table
+              class="data-table data-table--stack"
+              id="session-corrections-table"
+            >
+              <caption>
+                {tn(
+                  "{count} correction",
+                  "{count} corrections",
+                  report.corrections.length,
+                  {
+                    count: report.corrections.length
+                  }
+                )}
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">{t("Payment method")}</th>
+                  <th scope="col">{t("Adjustment")}</th>
+                  <th scope="col">{t("Reason")}</th>
+                  <th scope="col">{t("Recorded")}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {report.corrections.length === 0 ? (
+                  <tr>
+                    <td class="data-table-empty" colspan={4}>
+                      <div class="empty-state">
+                        <span class="empty-state-icon" aria-hidden="true">
+                          ◇
+                        </span>
+                        <span class="empty-state-title">
+                          {t("No corrections")}
+                        </span>
+                        <span class="empty-state-text">
+                          {t("This session's close has not been corrected.")}
+                        </span>
+                      </div>
+                    </td>
+                  </tr>
+                ) : (
+                  report.corrections.map((correction) => (
+                    <tr data-correction-row={correction.correctionId}>
+                      <td data-label={t("Payment method")}>
+                        {commerceLabel(
+                          labels.paymentTenderType,
+                          correction.tenderType
+                        )}
+                      </td>
+                      <td data-label={t("Adjustment")}>
+                        {money(correction.adjustment)}
+                      </td>
+                      <td data-label={t("Reason")}>{correction.reason}</td>
+                      <td data-label={t("Recorded")}>
+                        {when(correction.createdAt)} ·{" "}
+                        {cashierLabel(correction.actorTenantUserId)}
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      )}
+    </div>
+  )}
+  <CommerceConfirmDialog locale={Astro.locals.locale} />
+</AdminLayout>
+
+<script>
+  import {
+    field,
+    messageBox,
+    onAction,
+    onSubmit,
+    sendJson
+  } from "../../../lib/ui/admin-form-client";
+  import { confirmFromTriggerWithNote } from "../../../lib/ui/commerce-confirm-dialog-client";
+
+  const root = document.getElementById("session-root");
+  const msg = (key: string): string => root?.dataset[key] ?? "";
+  const sessionId = root?.dataset.sessionId ?? "";
+  const base = `/api/v1/commerce/register-sessions/${sessionId}`;
+
+  // ADR-0003 - `numeric(14,2)` strings in, `bigint` cents inside, strings out.
+  // Mirrors `domain/register.ts`; the server is the authority.
+  const MONEY = /^\d{1,12}(\.\d{1,2})?$/;
+  const SIGNED_MONEY = /^-?\d{1,12}(\.\d{1,2})?$/;
+  function toCents(value: string): bigint {
+    const negative = value.startsWith("-");
+    const [whole, fraction = ""] = (negative ? value.slice(1) : value).split(
+      "."
+    );
+    const cents =
+      BigInt(whole || "0") * 100n + BigInt((fraction + "00").slice(0, 2));
+    return negative ? -cents : cents;
+  }
+  function fromCents(cents: bigint): string {
+    const negative = cents < 0n;
+    const abs = negative ? -cents : cents;
+    return `${negative ? "-" : ""}${abs / 100n}.${(abs % 100n).toString().padStart(2, "0")}`;
+  }
+
+  function mapError(code: string | null, fallback: string): string {
+    switch (code) {
+      case "NOT_SESSION_CASHIER":
+        return msg("msgNotCashier");
+      case "REGISTER_SESSION_NOT_OPEN":
+        return msg("msgNotOpen");
+      case "UNKNOWN_CASHIER":
+        return msg("msgUnknownCashier");
+      case "SAME_CASHIER":
+        return msg("msgSameCashier");
+      default:
+        return fallback;
+    }
+  }
+
+  // ---- movements -------------------------------------------------------
+  const movementError = messageBox("session-movement-error");
+  const typeSelect = document.getElementById(
+    "movement-type"
+  ) as HTMLSelectElement | null;
+  const directionSelect = document.getElementById(
+    "movement-direction"
+  ) as HTMLSelectElement | null;
+  const directionLabel = document.getElementById("movement-direction-label");
+  function syncDirection(): void {
+    const needsDirection =
+      typeSelect?.value === "transfer" || typeSelect?.value === "correction";
+    if (directionSelect) directionSelect.disabled = !needsDirection;
+    if (directionLabel) directionLabel.hidden = !needsDirection;
+  }
+  typeSelect?.addEventListener("change", syncDirection);
+  syncDirection();
+
+  onSubmit("movement-form", ({ data, submit }) => {
+    const movementType = field(data, "movementType");
+    const amount = field(data, "amount");
+    const reference = field(data, "reference");
+    const note = field(data, "note");
+    movementError.clear();
+    if (!MONEY.test(amount) || toCents(amount) === 0n) {
+      movementError.show(msg("msgBadAmount"));
+      return;
+    }
+    if (
+      (movementType === "expense" || movementType === "transfer") &&
+      reference === ""
+    ) {
+      movementError.show(msg("msgReferenceRequired"));
+      return;
+    }
+    if (movementType === "correction" && note === "") {
+      movementError.show(msg("msgNoteRequired"));
+      return;
+    }
+    return (async () => {
+      if (submit) submit.disabled = true;
+      const result = await sendJson(
+        "POST",
+        `${base}/movements`,
+        {
+          movementType,
+          ...(movementType === "transfer" || movementType === "correction"
+            ? { direction: field(data, "direction") }
+            : {}),
+          amount: fromCents(toCents(amount)),
+          reference: reference === "" ? null : reference,
+          note: note === "" ? null : note
+        },
+        { "Idempotency-Key": crypto.randomUUID() }
+      );
+      if (result.ok) {
+        window.location.reload();
+        return;
+      }
+      if (submit) submit.disabled = false;
+      movementError.show(mapError(result.errorCode, msg("msgMovementFailed")));
+    })();
+  });
+
+  // ---- handover --------------------------------------------------------
+  const handoverError = messageBox("session-handover-error");
+  onSubmit("handover-form", ({ data, submit }) => {
+    handoverError.clear();
+    const toTenantUserId = field(data, "toTenantUserId");
+    if (toTenantUserId === "") {
+      handoverError.show(msg("msgBadUser"));
+      return;
+    }
+    const note = field(data, "note");
+    return (async () => {
+      if (submit) submit.disabled = true;
+      const result = await sendJson(
+        "POST",
+        `${base}/handover`,
+        { toTenantUserId, note: note === "" ? null : note },
+        { "Idempotency-Key": crypto.randomUUID() }
+      );
+      if (result.ok) {
+        window.location.reload();
+        return;
+      }
+      if (submit) submit.disabled = false;
+      handoverError.show(mapError(result.errorCode, msg("msgHandoverFailed")));
+    })();
+  });
+
+  // ---- cash-up: live expected / difference ------------------------------
+  const cashupError = messageBox("session-cashup-error");
+  const summaryEl = document.getElementById("cashup-summary");
+  const threshold = toCents(root?.dataset.threshold ?? "0.00");
+  const rows = Array.from(
+    document.querySelectorAll<HTMLTableRowElement>("[data-count-row]")
+  );
+
+  function evaluate(): { complete: boolean; total: bigint; gross: bigint } {
+    let complete = true;
+    let total = 0n;
+    let gross = 0n;
+    for (const row of rows) {
+      const input = row.querySelector<HTMLInputElement>(".cashup-count");
+      const output = row.querySelector<HTMLOutputElement>(".cashup-variance");
+      const raw = input?.value.trim() ?? "";
+      if (!MONEY.test(raw)) {
+        complete = false;
+        if (output) output.textContent = "—";
+        continue;
+      }
+      const variance = toCents(raw) - toCents(row.dataset.expected ?? "0.00");
+      total += variance;
+      gross += variance < 0n ? -variance : variance;
+      if (output) output.textContent = fromCents(variance);
+    }
+    return { complete, total, gross };
+  }
+
+  function refreshSummary(): void {
+    const { complete, gross } = evaluate();
+    if (!summaryEl || !complete) return;
+    summaryEl.textContent =
+      gross === 0n
+        ? msg("msgNoDifference")
+        : gross > threshold
+          ? msg("msgNeedsApproval")
+          : msg("msgWithinThreshold");
+  }
+  document.addEventListener("input", (event) => {
+    if ((event.target as Element | null)?.classList.contains("cashup-count")) {
+      refreshSummary();
+    }
+  });
+
+  onSubmit("cashup-form", ({ data, submit }) => {
+    cashupError.clear();
+    const counted: Record<string, string> = {};
+    for (const row of rows) {
+      const tender = row.dataset.countRow ?? "";
+      const raw = field(data, tender);
+      if (raw === "") {
+        cashupError.show(msg("msgMissingCount"));
+        return;
+      }
+      if (!MONEY.test(raw)) {
+        cashupError.show(msg("msgBadAmount"));
+        return;
+      }
+      counted[tender] = fromCents(toCents(raw));
+    }
+    const reason = field(data, "varianceReason");
+    const { gross } = evaluate();
+    if (gross > 0n && reason === "") {
+      cashupError.show(msg("msgReasonRequired"));
+      return;
+    }
+    return (async () => {
+      if (submit) submit.disabled = true;
+      const result = await sendJson(
+        "POST",
+        `${base}/close`,
+        { counted, varianceReason: reason === "" ? null : reason },
+        { "Idempotency-Key": crypto.randomUUID() }
+      );
+      if (result.ok) {
+        window.location.reload();
+        return;
+      }
+      if (submit) submit.disabled = false;
+      cashupError.show(mapError(result.errorCode, msg("msgCloseFailed")));
+    })();
+  });
+
+  // ---- approve / reject a pending close ---------------------------------
+  const approvalError = messageBox("session-approval-error");
+  onAction(".close-decision", async (button) => {
+    approvalError.clear();
+    const decision = button.dataset.decision;
+    if (decision !== "approve" && decision !== "reject") return;
+    const confirmed = await confirmFromTriggerWithNote(button);
+    if (!confirmed) return;
+    if (decision === "reject" && confirmed.note.trim() === "") {
+      approvalError.show(msg("msgRejectNote"));
+      return;
+    }
+    button.disabled = true;
+    const result = await sendJson(
+      "POST",
+      `${base}/close-decision`,
+      {
+        decision,
+        note: confirmed.note.trim() === "" ? null : confirmed.note.trim()
+      },
+      { "Idempotency-Key": crypto.randomUUID() }
+    );
+    if (result.ok) {
+      window.location.reload();
+      return;
+    }
+    button.disabled = false;
+    approvalError.show(msg("msgDecisionFailed"));
+  });
+
+  // ---- corrections --------------------------------------------------------
+  const correctionError = messageBox("session-correction-error");
+  onSubmit("correction-form", ({ data, submit }) => {
+    correctionError.clear();
+    const adjustment = field(data, "adjustment");
+    if (!SIGNED_MONEY.test(adjustment) || toCents(adjustment) === 0n) {
+      correctionError.show(msg("msgBadSigned"));
+      return;
+    }
+    return (async () => {
+      if (submit) submit.disabled = true;
+      const result = await sendJson(
+        "POST",
+        `${base}/corrections`,
+        {
+          reason: field(data, "reason"),
+          adjustments: [
+            {
+              tenderType: field(data, "tenderType"),
+              adjustment: fromCents(toCents(adjustment))
+            }
+          ]
+        },
+        { "Idempotency-Key": crypto.randomUUID() }
+      );
+      if (result.ok) {
+        window.location.reload();
+        return;
+      }
+      if (submit) submit.disabled = false;
+      correctionError.show(
+        result.errorCode === "VALIDATION_ERROR"
+          ? msg("msgNegativeCount")
+          : msg("msgCorrectionFailed")
+      );
+    })();
+  });
+</script>

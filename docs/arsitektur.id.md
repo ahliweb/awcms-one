@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](arsitektur.md)
 
-<!-- i18n-source-hash: sha256:dc76237cd004b482f7d5cb7d2c19f792260570a5ddb4bc849b4381e5a27a90a8 -->
+<!-- i18n-source-hash: sha256:cbf2f3a7416fc6b44c58b4833023f6c6dd6fb82c43dc6039f26f53480898ad52 -->
 
 # Arsitektur
 
@@ -189,6 +189,10 @@ Setiap cara uang sampai ke sebuah pesanan — tender POS, konfirmasi transfer ma
 ## Poin loyalitas: buku besar append-only yang diumpan domain event ([ADR-0026](adr/0026-loyalty-points-are-an-append-only-ledger.id.md))
 
 Loyalitas berada di dalam `commerce` dan tidak menyentuh kode order, POS, penetapan harga, atau webhook pembayaran. Setiap jalur pembayaran sudah menerbitkan `order.paid` dan setiap pembatalan `order.cancelled`; dua consumer `domain_event_runtime` (`commerce.order_paid_loyalty_earner`, `commerce.order_cancelled_loyalty_reverser`, terdaftar di samping entitlement grantor) mengubahnya menjadi baris `awcms_commerce_loyalty_ledger`. Ledger adalah kebenarannya dan `awcms_commerce_loyalty_accounts.balance` proyeksinya, dijaga dalam transaksi yang sama dengan setiap insert di bawah kunci baris — `appendLedgerEntry` di `application/loyalty-ledger.ts` adalah satu-satunya penulis — itulah yang membuat dua redeem konkuren aman tanpa loop retry. Dua job menyertainya: `commerce:loyalty:expire` (append-only, idempoten) dan `commerce:loyalty:reconcile` yang hanya-baca. Seluruh fitur berada di balik `features.loyalty`, default mati, dan endpoint untuk pelanggan memakai pola sesi bearer yang sama dengan permukaan akun lainnya (tanpa cookie, id pelanggan hanya dari sesi).
+
+## Shift adalah turunan atas ledger (issue #284, [ADR-0028](adr/0028-pos-register-sessions-and-cash-up.md))
+
+Tutup kas tidak menyimpan total sendiri. Jumlah penutupan yang seharusnya per tender adalah jumlah atas baris yang sudah ada dan tidak dapat diedit — leg ledger alokasi pembayaran yang distempel dengan sesi, ditambah mutasi laci append-only sesi itu — dihitung di bawah kunci baris sesi dan di-snapshot sekali pada baris penutupan. Stempellah yang membuatnya persis (jendela waktu atas `created_at` tidak: timestamp sebuah leg adalah awal transaksinya). Baris sesi membawa tiga mode kunci — `FOR SHARE` untuk penjualan, mutasi, dan leg yang distempel (banyak sekaligus), `FOR NO KEY UPDATE` untuk serah terima, penutupan, persetujuan, dan koreksi (eksklusif, namun kompatibel dengan `FOR KEY SHARE` yang diambil insert FK, pelajaran ADR-0025 D4) — ditambah indeks unik parsial dan kunci baris register untuk "satu sesi aktif per register". Sesi yang sudah ditutup dibekukan trigger; koreksi adalah baris kompensasi; alur penutupan (`open → closing → closed | open`, `closed → corrected`) tidak pernah menulis ulang penjualan atau pembayaran. Dengan fitur `register` mati (default) tidak ada satu pun dari ini di jalur penjualan.
 
 ## Satu hal lagi yang dilakukan server: memperbaiki halaman yang terbayangi
 

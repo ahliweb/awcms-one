@@ -123,6 +123,28 @@ export const COMMERCE_PAYMENT_REVERSED_EVENT_TYPE =
   "awcms.commerce.payment.reversed";
 
 /**
+ * POS register-session events (Issue #284, ADR-0028). All four ride on the
+ * REGISTER SESSION aggregate (`commerce.register_session`, aggregate id = the
+ * session id), so a consumer rebuilding "what happened in this shift" reads
+ * one ordered stream: `opened`, `movement_recorded`..., `closed`,
+ * `corrected`. A handover, a pending-approval close request and a rejected
+ * close are recorded in the audit log only (they are not facts a downstream
+ * consumer needs; `closed` is). Payloads carry ids, tender codes, amounts and
+ * the variance - never a customer name/phone, and never a movement's free-text
+ * reference/note. Registered in `domain-event-runtime/domain/event-type-
+ * registry.ts` and `asyncapi/awcms-domain-events.asyncapi.yaml` in the same
+ * change (this file's own rule).
+ */
+export const COMMERCE_REGISTER_SESSION_OPENED_EVENT_TYPE =
+  "awcms.commerce.register_session.opened";
+export const COMMERCE_REGISTER_SESSION_MOVEMENT_RECORDED_EVENT_TYPE =
+  "awcms.commerce.register_session.movement_recorded";
+export const COMMERCE_REGISTER_SESSION_CLOSED_EVENT_TYPE =
+  "awcms.commerce.register_session.closed";
+export const COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE =
+  "awcms.commerce.register_session.corrected";
+
+/**
  * Loyalty points ledger (Issue #289, ADR-0026 D8). ONE event type for every
  * ledger row — an earn, redemption, expiry, adjustment or reversal — with the
  * `kind` in the payload, because every consumer that wants "the balance
@@ -141,4 +163,6 @@ export const COMMERCE_LOYALTY_ACCOUNT_AGGREGATE_TYPE =
   "commerce.loyalty_account";
 
 export const COMMERCE_ORDER_AGGREGATE_TYPE = "commerce.order";
+export const COMMERCE_REGISTER_SESSION_AGGREGATE_TYPE =
+  "commerce.register_session";
 export const COMMERCE_REVIEW_AGGREGATE_TYPE = "commerce.review";

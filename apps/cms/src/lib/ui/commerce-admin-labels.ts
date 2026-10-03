@@ -128,6 +128,12 @@ import type {
   CampaignStatus
 } from "../../modules/commerce/domain/campaign-validation";
 import type { FlashSaleStatus } from "../../modules/commerce/domain/flash-sale-status";
+import type {
+  RegisterCloseDecision,
+  RegisterMovementDirection,
+  RegisterMovementType,
+  RegisterSessionStatus
+} from "../../modules/commerce/domain/register";
 import type { PopupFrequency } from "../../modules/commerce/domain/popup-validation";
 import type { PaymentGatewayStatus } from "../../modules/commerce/domain/payment-gateway-provider";
 import type { ReviewStatus } from "../../modules/commerce/application/review-directory";
@@ -466,6 +472,38 @@ export function createCommerceLabels(t: Translator["t"]) {
     reversal: t("Reversal")
   } satisfies Record<PaymentAllocationKind, string>;
 
+  /** Issue #284 - a register session's status (`domain/register.ts`). `closing` means a close awaits a supervisor's approval; `corrected` means a compensating correction exists on a closed session. */
+  const registerSessionStatus = {
+    open: t("Open"),
+    closing: t("Awaiting approval"),
+    closed: t("Closed"),
+    corrected: t("Corrected")
+  } satisfies Record<RegisterSessionStatus, string>;
+
+  /** Issue #284 - the drawer movement types (cash only). */
+  const registerMovementType = {
+    cash_in: t("Cash in"),
+    cash_out: t("Cash out"),
+    safe_drop: t("Safe drop"),
+    expense: t("Expense"),
+    transfer: t("Transfer"),
+    correction: t("Correction")
+  } satisfies Record<RegisterMovementType, string>;
+
+  /** Issue #284 - which way a movement moved the cash. */
+  const registerMovementDirection = {
+    in: t("In"),
+    out: t("Out")
+  } satisfies Record<RegisterMovementDirection, string>;
+
+  /** Issue #284 - a close request's decision: `auto` = within the threshold, closed on the spot. */
+  const registerCloseDecision = {
+    auto: t("Within threshold"),
+    pending: t("Pending approval"),
+    approved: t("Approved"),
+    rejected: t("Rejected")
+  } satisfies Record<RegisterCloseDecision, string>;
+
   /** `domain/order-status.ts`'s own header documents the domain meaning behind each of these three values — see {@link PaymentEventOutcome}'s own comment above. */
   const paymentEventOutcome = {
     applied: t("Applied"),
@@ -519,6 +557,10 @@ export function createCommerceLabels(t: Translator["t"]) {
     paymentTenderType,
     paymentAllocationStatus,
     paymentAllocationKind,
+    registerSessionStatus,
+    registerMovementType,
+    registerMovementDirection,
+    registerCloseDecision,
     loyaltyEntryKind,
     loyaltyProgramStatus
   };
@@ -553,6 +595,17 @@ export const orderStatusTone: Record<OrderStatus, CommerceTone> = {
   completed: "success",
   cancelled: "danger",
   expired: "neutral"
+};
+
+/** Issue #284 - a register session's tone: open is live, `closing` needs a supervisor, closed is done, corrected is a closed session that was amended. */
+export const registerSessionStatusTone: Record<
+  RegisterSessionStatus,
+  CommerceTone
+> = {
+  open: "success",
+  closing: "warning",
+  closed: "neutral",
+  corrected: "info"
 };
 
 /** The affiliate half of `commerce-affiliates.astro`'s combined `STATUS_TONE`. */

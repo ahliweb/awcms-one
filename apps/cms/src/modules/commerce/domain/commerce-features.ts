@@ -34,11 +34,18 @@
 
 /** Every togglable commerce feature, contract #106 D10's own five. `pos` has no route/screen wired to it YET (issue #116, landing in parallel) — the default exists so the settings document has a stable shape from day one and #116's own gate has nothing left to add here. */
 export type CommerceFeatureKey =
-  "pos" | "inbox" | "campaigns" | "gateway" | "courier" | "loyalty";
+  | "pos"
+  | "inbox"
+  | "campaigns"
+  | "gateway"
+  | "courier"
+  | "register"
+  | "loyalty";
 
 export type CommerceFeatures = Readonly<Record<CommerceFeatureKey, boolean>>;
 
 /**
+ * Default-ON for every feature but `register` (Issue #284, below) — turning a feature toggle ON by default
  * Default-ON for the five features that predate this document — turning a feature toggle ON by default
  * means shipping this settings document changes NOTHING for an existing
  * tenant that never opens the new "Fitur" section, matching this repo's
@@ -52,6 +59,11 @@ export const DEFAULT_COMMERCE_FEATURES: CommerceFeatures = {
   campaigns: true,
   gateway: true,
   courier: true,
+  // Issue #284 (ADR-0028) — the one flag that defaults OFF. Every other
+  // default is ON because it describes what the platform already did; this
+  // one ADDS an obligation (a POS sale needs an open register session), so a
+  // tenant that never opens "Fitur" must see exactly today's POS.
+  register: false,
   // Issue #289 (ADR-0026 D2) — the one flag that defaults OFF. The five above
   // default ON because they gated behaviour that already existed; loyalty is
   // NEW behaviour that accrues points on every paid order and exposes a
@@ -66,6 +78,7 @@ const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
   "campaigns",
   "gateway",
   "courier",
+  "register",
   "loyalty"
 ];
 
