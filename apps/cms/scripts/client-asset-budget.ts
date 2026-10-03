@@ -1014,7 +1014,23 @@ export const READER_BUDGET_BYTES = 24_000;
  * small margin" convention as every raise above; re-measure on the next
  * commerce screen and tighten if the real total sits well below this.
  */
-export const APP_BUDGET_BYTES = 308_000;
+/**
+ * **Raised to 322,000 B for Issue #292** (barcodes, label printing, scanner
+ * input and the cashier keyboard layer, ADR-0032) - one new admin screen
+ * (`commerce-labels.astro`: a ~1.3 kB script for the per-row assign box and the
+ * print button, ~1.6 kB of label-sheet CSS) and the scanner/shortcut layer on
+ * `commerce-pos.astro`. The POS island grew because it now bundles
+ * `lib/ui/pos-keyboard-client.ts` plus the pure `domain/pos-scan.ts` and
+ * `domain/pos-shortcuts.ts` it shares with the server (the burst detector, the
+ * chord policy and conflict resolution, the rebind dialog) - deliberately NOT
+ * duplicated per screen and NOT a new dependency; the barcode encoders and the
+ * label SVG never reach the client (labels are rendered on the server, so the
+ * print path ships no encoder). Measured clean build: 321,740 B (up from
+ * 307,774 B); the largest-file checks still pass. 322,000 keeps the same tight
+ * "measured + small margin" convention as every raise above; re-measure on the
+ * next commerce screen and tighten if the real total sits well below this.
+ */
+export const APP_BUDGET_BYTES = 322_000;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

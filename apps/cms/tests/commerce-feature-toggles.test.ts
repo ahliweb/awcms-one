@@ -23,9 +23,13 @@ describe("resolveCommerceFeatures", () => {
   test("defaults every flag to true when settings are absent, except `register` (Issue #284), which adds an obligation and so defaults OFF", () => {
     expect(DEFAULT_COMMERCE_FEATURES.register).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.documents).toBe(false);
+    expect(DEFAULT_COMMERCE_FEATURES.barcode).toBe(false);
     expect(
       Object.entries(DEFAULT_COMMERCE_FEATURES)
-        .filter(([key]) => key !== "register" && key !== "documents")
+        .filter(
+          ([key]) =>
+            key !== "register" && key !== "documents" && key !== "barcode"
+        )
         .every(([, value]) => value === true)
     ).toBe(true);
     expect(resolveCommerceFeatures(undefined)).toEqual(
@@ -44,7 +48,8 @@ describe("resolveCommerceFeatures", () => {
       gateway: true,
       courier: true,
       register: false,
-      documents: false
+      documents: false,
+      barcode: false
     });
   });
 
@@ -64,7 +69,8 @@ describe("resolveCommerceFeatures", () => {
         gateway: false,
         courier: false,
         register: false,
-        documents: false
+        documents: false,
+        barcode: false
       }
     });
     expect(resolved).toEqual({
@@ -74,11 +80,20 @@ describe("resolveCommerceFeatures", () => {
       gateway: false,
       courier: false,
       register: false,
-      documents: false
+      documents: false,
+      barcode: false
     });
     // ...and the one flag that defaults off can be turned on.
     expect(
       resolveCommerceFeatures({ features: { register: true } }).register
+    ).toBe(true);
+  });
+
+  test("barcode (Issue #292, ADR-0032) defaults OFF and can be turned on", () => {
+    expect(DEFAULT_COMMERCE_FEATURES.barcode).toBe(false);
+    expect(resolveCommerceFeatures({}).barcode).toBe(false);
+    expect(
+      resolveCommerceFeatures({ features: { barcode: true } }).barcode
     ).toBe(true);
   });
 });

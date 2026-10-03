@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 26    |
-| Migrations                          | 219   |
+| Migrations                          | 221   |
 | `awcms_*` tables                    | 222   |
 | Tables with `FORCE` RLS             | 204   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 611   |
-| Route files                         | 579   |
+| Test files                          | 617   |
+| Route files                         | 582   |
 | ADR                                 | 250   |
 
 ### Modules
@@ -267,9 +267,11 @@
 | 214 | `sql/971_awcms_commerce_register_stamping.sql`                              |
 | 215 | `sql/972_awcms_commerce_register_permissions.sql`                           |
 | 216 | `sql/973_awcms_commerce_register_worker_grants.sql`                         |
-| 217 | `sql/980_awcms_commerce_documents_schema.sql`                               |
-| 218 | `sql/981_awcms_commerce_documents_permissions.sql`                          |
-| 219 | `sql/982_awcms_commerce_documents_worker_grants.sql`                        |
+| 217 | `sql/975_awcms_commerce_barcodes_schema.sql`                                |
+| 218 | `sql/976_awcms_commerce_barcodes_permissions.sql`                           |
+| 219 | `sql/980_awcms_commerce_documents_schema.sql`                               |
+| 220 | `sql/981_awcms_commerce_documents_permissions.sql`                          |
+| 221 | `sql/982_awcms_commerce_documents_worker_grants.sql`                        |
 
 ### Tables & Row-Level Security
 
@@ -502,17 +504,17 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 481        |
+| `(root)`      | 485        |
 | `e2e`         | 20         |
-| `integration` | 109        |
+| `integration` | 111        |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 463   |
-| `/admin/**`     | 86    |
+| `/api/v1/**`    | 465   |
+| `/admin/**`     | 87    |
 | publik / anonim | 30    |
 
 <!-- END GENERATED: repo-inventory -->

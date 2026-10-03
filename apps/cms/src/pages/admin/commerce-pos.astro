@@ -79,6 +79,12 @@ import {
   type HeldSaleRecord
 } from "../../modules/commerce/application/held-sale-directory";
 import { POS_WALK_IN_CUSTOMER_NAME } from "../../modules/commerce/domain/pos-order-validation";
+import { fetchTenantShortcutOverrides } from "../../modules/commerce/application/barcode-http";
+import {
+  DEFAULT_POS_SHORTCUTS,
+  POS_SHORTCUT_ACTIONS,
+  type PosShortcutAction
+} from "../../modules/commerce/domain/pos-shortcuts";
 
 const ssr = Astro.locals.ssrContext!;
 const { t, tn } = getTranslatorFor(Astro.locals.locale);
@@ -179,7 +185,25 @@ const screen = await loadAdminScreen({
           )
         ).items
       : [];
+    // Issue #292 (ADR-0032) - scanner input and the shortcut layer, only while
+    // the `barcode` feature is on and the sale form shows. The scan field
+    // needs its own key (`commerce.barcodes.read`); the shortcuts do not.
+    const barcodeAvailable =
+      features.pos && features.barcode && canSell && tab === "sale";
+    const canLookup =
+      barcodeAvailable &&
+      (await can({
+        moduleKey: "commerce",
+        activityCode: "barcodes",
+        action: "read"
+      }));
+    const tenantShortcuts = barcodeAvailable
+      ? await fetchTenantShortcutOverrides(tx, ssr.tenantId)
+      : {};
     return {
+      barcodeAvailable,
+      canLookup,
+      tenantShortcuts,
       posEnabled: features.pos,
       registerEnabled: features.register,
       registerSessions,
@@ -213,6 +237,24 @@ const history = allowed ? screen.data.history : null;
 const canHold = allowed && screen.data.canHold;
 const canResumeHeld = allowed && screen.data.canResumeHeld;
 const heldSales = allowed ? screen.data.heldSales : [];
+const barcodeAvailable = allowed && screen.data.barcodeAvailable;
+const canLookup = allowed && screen.data.canLookup;
+const tenantShortcuts = allowed ? screen.data.tenantShortcuts : {};
+/** Human label per shortcut action (Issue #292). */
+const SHORTCUT_LABELS: Record<PosShortcutAction, string> = {
+  focusScan: t("Focus the scan field"),
+  focusSearch: t("Focus product search"),
+  editQuantity: t("Edit the quantity of a cart line"),
+  removeLine: t("Remove a cart line"),
+  focusCustomer: t("Go to the customer field"),
+  focusPayment: t("Go to the payment lines"),
+  hold: t("Hold the sale"),
+  resume: t("Resume a held sale"),
+  finalize: t("Finalize the sale"),
+  printReceipt: t("Print the receipt"),
+  newSale: t("Start a new sale"),
+  showHelp: t("Show keyboard shortcuts")
+};
 const cashierTenantUserId = ssr.tenantUserId;
 const storeName = ssr.display.tenantName?.trim() || "";
 
@@ -310,6 +352,40 @@ const tenderLabel = (method: string): string =>
         "Too many parked sales; resume or discard some first."
       )}
       data-register-mode={registerEnabled ? "true" : "false"}
+      data-barcode-mode={barcodeAvailable ? "true" : "false"}
+      data-tenant-shortcuts={JSON.stringify(tenantShortcuts)}
+      data-msg-scan-failed={t(
+        "Could not look up that barcode. Please try again."
+      )}
+      data-msg-scan-unknown={t("No product has the barcode {code}.")}
+      data-msg-scan-invalid={t(
+        "That is not a valid barcode. Use a code, or a quantity and a code like 3*CODE."
+      )}
+      data-msg-scan-requires-variant={t(
+        "{name} has variants; search for it and pick one."
+      )}
+      data-msg-scan-out-of-stock={t("{name} is out of stock.")}
+      data-msg-scan-not-for-sale={t("{name} is not for sale.")}
+      data-msg-scan-stock={t("Only {stock} of {name} in stock.")}
+      data-msg-scan-added={t("Added {quantity} x {name}.")}
+      data-msg-line-removed={t("Removed {name}.")}
+      data-label-rebind={t("Change")}
+      data-label-press-keys={t("Press keys…")}
+      data-msg-press-keys={t(
+        "Press the new key combination, or Escape to cancel."
+      )}
+      data-msg-record-cancelled={t("Cancelled. The shortcut is unchanged.")}
+      data-msg-combo-bare={t(
+        "A shortcut must include a modifier key such as Alt+Shift, or be a function key."
+      )}
+      data-msg-combo-reserved={t(
+        "That combination is reserved by the browser or your assistive technology. Try another."
+      )}
+      data-msg-combo-conflict={t(
+        "That combination is already used for: {action}."
+      )}
+      data-msg-combo-saved={t("Shortcut saved on this device.")}
+      data-msg-shortcuts-reset={t("Shortcuts reset to the store defaults.")}
       data-msg-register-required={t("Choose the register you are selling on.")}
       data-msg-register-session-required={t(
         "This register has no open session. Open one on the Registers screen first."
@@ -447,6 +523,46 @@ const tenderLabel = (method: string): string =>
 
       <div class="pos-layout">
         <div class="admin-panel pos-panel">
+          {barcodeAvailable && (
+            <div class="admin-form pos-scan">
+              {canLookup && (
+                <>
+                  <label for="pos-scan-input">
+                    {t("Scan a barcode")}
+                    <input
+                      type="text"
+                      id="pos-scan-input"
+                      autocomplete="off"
+                      autocapitalize="off"
+                      spellcheck="false"
+                      maxlength="60"
+                      aria-describedby="pos-scan-hint pos-scan-status pos-scan-error"
+                    />
+                  </label>
+                  <p class="form-hint" id="pos-scan-hint">
+                    {t(
+                      "Scan, or type a code and press Enter. Use 3*CODE to add three."
+                    )}
+                  </p>
+                </>
+              )}
+              <p
+                class="form-hint"
+                id="pos-scan-status"
+                role="status"
+                aria-live="polite"
+              />
+              <p
+                class="admin-create-error"
+                id="pos-scan-error"
+                role="alert"
+                hidden
+              />
+              <button type="button" class="btn-inline" id="pos-shortcuts-open">
+                {t("Keyboard shortcuts")}
+              </button>
+            </div>
+          )}
           <div class="admin-form">
             <label for="pos-search-input">
               {t("Product search")}
@@ -851,6 +967,67 @@ const tenderLabel = (method: string): string =>
   )}
 </AdminLayout>
 
+{barcodeAvailable && (
+  <dialog
+    id="pos-shortcuts-dialog"
+    class="pos-shortcuts-dialog"
+    aria-labelledby="pos-shortcuts-heading"
+  >
+    <h2 id="pos-shortcuts-heading">{t("Keyboard shortcuts")}</h2>
+    <p class="form-hint">
+      {t(
+        "These shortcuts work anywhere on the sale screen. Your changes are saved on this device only."
+      )}
+    </p>
+    <table class="data-table" id="pos-shortcuts-table">
+      <caption class="sr-only">{t("Keyboard shortcuts")}</caption>
+      <thead>
+        <tr>
+          <th scope="col">{t("Action")}</th>
+          <th scope="col">{t("Shortcut")}</th>
+          <th scope="col">
+            <span class="sr-only">{t("Change")}</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody id="pos-shortcuts-body">
+        {POS_SHORTCUT_ACTIONS.map((action) => (
+          <tr data-action-id={action}>
+            <td data-field="label">{SHORTCUT_LABELS[action]}</td>
+            <td>
+              <kbd data-field="combo">{DEFAULT_POS_SHORTCUTS[action]}</kbd>
+            </td>
+            <td>
+              <button
+                type="button"
+                class="btn-inline"
+                data-field="change"
+                aria-label={`${t("Change")}: ${SHORTCUT_LABELS[action]}`}
+              >
+                {t("Change")}
+              </button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    <p
+      class="form-hint"
+      id="pos-shortcuts-message"
+      role="status"
+      aria-live="polite"
+    />
+    <div class="admin-form-actions">
+      <button type="button" class="btn-inline" id="pos-shortcuts-reset">
+        {t("Reset to store defaults")}
+      </button>
+      <button type="button" class="module-toggle" id="pos-shortcuts-close">
+        {t("Close")}
+      </button>
+    </div>
+  </dialog>
+)}
+
 <template id="pos-result-template">
   <li>
     <button type="button" class="btn-inline pos-result-btn">
@@ -938,6 +1115,24 @@ const tenderLabel = (method: string): string =>
   }
   .pos-panel {
     min-width: 0;
+  }
+  .pos-scan {
+    margin-bottom: var(--sp-3);
+  }
+  .pos-shortcuts-dialog {
+    max-width: min(40rem, 94vw);
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius-md, 8px);
+    padding: var(--sp-4);
+  }
+  .pos-shortcuts-dialog::backdrop {
+    background: rgb(0 0 0 / 0.45);
+  }
+  .pos-shortcuts-dialog kbd {
+    font-family: ui-monospace, "Courier New", monospace;
+    padding: 1px 6px;
+    border: 1px solid var(--color-border-soft);
+    border-radius: 4px;
   }
   .pos-search-results {
     list-style: none;
@@ -1083,6 +1278,7 @@ const tenderLabel = (method: string): string =>
     messageBox,
     sendJsonForData
   } from "../../lib/ui/admin-form-client";
+  import { initPosKeyboard } from "../../lib/ui/pos-keyboard-client";
 
   type CartLine = {
     productId: string;
@@ -1422,6 +1618,26 @@ const tenderLabel = (method: string): string =>
       searchInput.value = "";
       searchInput.focus();
     }
+  }
+
+  // Issue #292 (ADR-0032) - the scan/shortcut layer lives in
+  // `lib/ui/pos-keyboard-client.ts`; the cart only exposes this one hook.
+  if (root?.dataset.barcodeMode === "true") {
+    initPosKeyboard({
+      root,
+      addScanned: (item, quantity) => {
+        const existing = cart.find(
+          (entry) =>
+            entry.productId === item.productId &&
+            entry.variantId === item.variantId
+        );
+        if ((existing?.quantity ?? 0) + quantity > item.stock) return "stock";
+        if (existing) existing.quantity += quantity;
+        else cart.push({ ...item, quantity });
+        renderCart();
+        return "added";
+      }
+    });
   }
 
   function renderResults(items: ProductHit[]): void {

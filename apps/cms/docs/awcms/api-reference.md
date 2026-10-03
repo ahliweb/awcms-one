@@ -9429,6 +9429,75 @@ Proves the parts of the chain nothing else can see — that the VAPID key pair m
 
 Catalog slice of the re-platformed storefront (commerce module, Issue #4, epic #1) — tenant-scoped product categories (hierarchical, self-referencing parent) and products (physical/digital/service/subscription), ported from the legacy MySQL commerce_bj_mart schema's core catalog columns. price is numeric(14,2) and crosses the wire as a string, never a JSON number, so money arithmetic never drifts through binary floating point. A product's lifecycle status (draft/active/inactive/archived) travels through the same PATCH as every other field and is checked against a legal-transition table before any write. Categories have no status and no re-parenting via update — a hierarchy position is set once, at creation. This slice ships no restore endpoint: a soft-deleted row is retained (for the FK integrity of anything still referencing it) but not exposed for recovery here.
 
+### `GET /api/v1/commerce/barcodes` — Issue #292 (ADR-0032). Pages the products (without variants) and variants of the tenant with their barcode. Gated on `commerce.barcodes.read`.
+
+- **operationId**: `listCommerceBarcodes`
+- **Security**: bearerAuth + tenantHeader
+
+Name-ordered, offset-paginated (an operator screen, not a hot path). `q` matches name/SKU by substring (LIKE metacharacters are literal) or a barcode exactly; `barcode=with|without` narrows to rows that do or do not carry one. Gated on the `barcode` feature.
+
+**Parameters**
+
+| Name      | In    | Required | Type                    | Description |
+| --------- | ----- | -------- | ----------------------- | ----------- |
+| `q`       | query | no       | string                  |             |
+| `barcode` | query | no       | enum(`with`, `without`) |             |
+| `page`    | query | no       | integer                 |             |
+
+**Responses**
+
+| Status | Description                                                                   | Schema                                 |
+| ------ | ----------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | A page of catalogue rows.                                                     | object                                 |
+| 400    | `VALIDATION_ERROR` (q too long, unknown barcode filter, malformed page).      | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` - the tenant's `barcode` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `PUT /api/v1/commerce/barcodes` — Issue #292 (ADR-0032). Sets or clears the barcode of one product or variant. Gated on `commerce.barcodes.update`.
+
+- **operationId**: `assignCommerceBarcode`
+- **Security**: bearerAuth + tenantHeader
+
+`barcode` is required: a string to set, `null` to clear. A code is 1-48 printable ASCII characters without spaces; an all-digit code of 8, 12, 13 or 14 digits is a GTIN and needs a valid GS1 check digit; it may not start with a quantity prefix like `3*`. Unique per tenant among live products AND variants. Naturally idempotent (it sets state), so no `Idempotency-Key`. A variant id must belong to the named product. Audited as `update` on `product` / `product_variant`. Gated on the `barcode` feature.
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                          | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The updated catalogue row.                                                                                                                                           | object                                 |
+| 400    | `VALIDATION_ERROR` (malformed id, invalid barcode, bad GTIN check digit, missing `barcode` key).                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                          | [`ApiError`](#standard-error-envelope) |
+| 404    | An unknown id, another tenant's id and a variant that does not belong to the named product - one neutral answer.                                                     | [`ApiError`](#standard-error-envelope) |
+| 409    | `BARCODE_DUPLICATE` (already used by another live product or variant of the tenant) or `FEATURE_DISABLED` - the tenant's `barcode` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/barcodes/lookup` — Issue #292 (ADR-0032). Resolves a scanned barcode to the ONE product or variant it names in the caller's tenant. Gated on `commerce.barcodes.read`.
+
+- **operationId**: `lookupCommerceBarcode`
+- **Security**: bearerAuth + tenantHeader
+
+An equality probe on the tenant's partial unique barcode index. A barcode is an identifier, not a credential: the caller is authorised first, and an unknown, soft-deleted and other-tenant code answer the same neutral `404`. `requiresVariant` is true for the bare parent of a product that has live variants; `sellable` is true only for an active, in-stock, variant-free row. Gated on the `barcode` feature.
+
+**Parameters**
+
+| Name   | In    | Required | Type   | Description |
+| ------ | ----- | -------- | ------ | ----------- |
+| `code` | query | yes      | string |             |
+
+**Responses**
+
+| Status | Description                                                                   | Schema                                 |
+| ------ | ----------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The matching catalogue row with its sellability.                              | object                                 |
+| 400    | `VALIDATION_ERROR` (missing, over-long or non-printable code).                | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                   | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                           | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` - the tenant's `barcode` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/campaigns` — Issue #114 (contract #106 ADR-0017 D9). Staff list of campaigns, newest first. Gated on `commerce.campaigns.read`.
 
 - **operationId**: `listCommerceCampaigns`
