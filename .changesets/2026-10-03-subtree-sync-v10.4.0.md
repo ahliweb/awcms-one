@@ -20,12 +20,14 @@ commit, as every subtree sync must be.
   confirm when no dialog is available (upstream now forbids it); it refuses,
   the same fail-closed posture as upstream's `confirm-dialog-client.ts`.
 - **Operator action:** upstream took `sql/168`, so this repo's media-library
-  migrations were renumbered forward to `sql/169_awcms_news_media_objects_visibility.sql`
-  and `sql/170_awcms_media_library_media_download_permission.sql` (contents,
-  and so checksums, unchanged). A database that already applied the old names
-  must rename the two `awcms_schema_migrations.migration_name` rows before its
-  next `db:migrate` (statements in `AGENTS.md`'s divergence list); a fresh
-  database needs nothing.
+  migrations moved (contents byte-identical, so checksums unchanged) to
+  `sql/880_awcms_news_media_objects_visibility.sql` and
+  `sql/881_awcms_media_library_media_download_permission.sql`, a new `880`-`899`
+  band for local non-commerce divergences. A database that already applied the
+  old names must run, once, before its next `db:migrate`:
+  `UPDATE awcms_schema_migrations SET migration_name = '880_awcms_news_media_objects_visibility.sql' WHERE migration_name = '168_awcms_news_media_objects_visibility.sql';` and
+  `UPDATE awcms_schema_migrations SET migration_name = '881_awcms_media_library_media_download_permission.sql' WHERE migration_name = '169_awcms_media_library_media_download_permission.sql';`.
+  A fresh database needs nothing.
 - `APP_BUDGET_BYTES` re-measured on the merged build: 344,000 B (343,962 B).
 - The `apps/cms` `http-cache-semantics` audit exception is now upstream's own
   and no longer a local divergence; the root `tools/ci/dependency-audit-exceptions.json`

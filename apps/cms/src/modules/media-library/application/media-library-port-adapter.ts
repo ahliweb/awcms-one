@@ -114,7 +114,7 @@ export const mediaLibraryPortAdapter: MediaLibraryPort = {
         // fails closed to `null` rather than being passed through.
         //
         // Issue #268 — `isNewsMediaObjectSafeForPublicReference` now ALSO
-        // requires `visibility === "public"`, and `sql/169`'s CHECK
+        // requires `visibility === "public"`, and `sql/880`'s CHECK
         // constraint guarantees a public object's `publicUrl` is never null
         // — the non-null assertion below is that DB-enforced invariant, not
         // an unchecked assumption.

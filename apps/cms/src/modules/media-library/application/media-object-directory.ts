@@ -292,7 +292,7 @@ export async function createPendingNewsMediaObject(
   const visibility: MediaVisibility = input.visibility ?? "public";
   // Issue #268 (FR-LIB-002) — a private object NEVER gets a permanent public
   // URL, not even one that is simply unused: `null` here, enforced again at
-  // the schema level by `sql/169`'s
+  // the schema level by `sql/880`'s
   // `awcms_news_media_objects_visibility_public_url_check`.
   const publicUrl =
     visibility === "public"

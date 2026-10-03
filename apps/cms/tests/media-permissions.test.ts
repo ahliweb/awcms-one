@@ -36,7 +36,7 @@ describe("MEDIA_PERMISSIONS", () => {
         // separately-grantable permission.
         "adjudicate_rights",
         "verify",
-        // Issue #268 — the tenth, `sql/170`: issue a short-lived presigned
+        // Issue #268 — the tenth, `sql/881`: issue a short-lived presigned
         // GET URL for a media object (public or private). Its endpoint
         // (`GET /api/v1/media/objects/{id}/download-url`) landed in the same
         // change.
