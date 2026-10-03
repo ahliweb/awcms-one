@@ -39,6 +39,7 @@ What does **not** need an ADR: adding a field within an already-decided schema, 
 | [0021](0021-zero-github-actions-local-ci-with-exact-sha-statuses.md) | Zero GitHub Actions: local CI with exact-SHA commit statuses | Accepted |
 | [0022](0022-production-deployment-is-server-side-and-explicit.md) | Production deployment is server-side and explicit | Accepted (superseded in part by [0021](0021-zero-github-actions-local-ci-with-exact-sha-statuses.md)) |
 | [0023](0023-release-images-are-built-signed-and-published-from-a-trusted-release-host.md) | Release images are built, signed, and published from a trusted release host | Accepted |
+| [0027](0027-catalog-custom-attributes-are-typed-and-allowlisted.md) | Catalog custom attributes are typed and allowlisted, and bulk import is validate-then-apply | Accepted |
 
 ## Why the numbering starts at 0001
 

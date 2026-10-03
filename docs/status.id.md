@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](status.md)
 
-<!-- i18n-source-hash: sha256:01527299c2f4775f71fcb70669b36219017a2a5d3e160db6e54f0479c69590b9 -->
+<!-- i18n-source-hash: sha256:90685a11786a74c209be4f7d64662d12c6cfe44d3789095de4be44e65045f78a -->
 
 # Status
 
@@ -17,6 +17,10 @@ Sebuah workspace Bun: `apps/cms` (backend/system of record, `ahliweb/awcms` dise
 ## `apps/cms` — modul `commerce` (ADR-0008)
 
 Satu modul, bukan tiga, membawa seluruh toko: katalog (gambar, varian, harga bertingkat, tabel ukuran, formulir layanan), marketing (flash sale, voucher, slider, testimonial, popup, pengaturan toko berversi, banner promo), dan pesanan (checkout tamu lewat kode pesanan + telepon — [ADR-0009](adr/0009-guest-checkout-by-order-code-and-phone.md) — konfirmasi pembayaran, ulasan). Keluarga `/api/v1/commerce/storefront/*` yang anonim dan terikat Origin, yang dipanggil langsung oleh browser statis, adalah [ADR-0007](adr/0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.md). Detail per-field: [`docs/cms.md`](cms.id.md), [`docs/api.md`](api.id.md), [`docs/skema-basis-data.md`](skema-basis-data.id.md), [`docs/kamus-data.md`](kamus-data.id.md). UI admin (`apps/cms/src/pages/admin/commerce*`) punya epic paritas kedua sendiri terhadap admin v2 milik `ahliweb/media-lenterakalteng` (#249): dialog konfirmasi aksesibel yang menggantikan `window.confirm`, satu peta label terjemahan bersama untuk setiap enum commerce, save bar settings persisten, konfirmasi status-pesanan dengan catatan opsional, dan publish/draf/hapus massal pada daftar produk tanpa endpoint massal baru — lihat bagian "Commerce admin v2" milik [`docs/cms.md`](cms.id.md) dan [`docs/ui-ux.md`](ui-ux.id.md).
+
+## Atribut katalog dan impor/ekspor CSV (ADR-0027)
+
+Atribut kustom **bertipe** yang didefinisikan tenant pada produk dan varian (teks, bilangan bulat, desimal, boolean, tanggal, daftar pilihan), dengan tata bahasa angka ketat yang tidak bergantung locale, disimpan sebagai integer berskala yang eksak; pemfilteran atribut bernama (`attr=<key>:<op>:<value>`) dan pencarian teks bebas atas atribut searchable, dibangun agar tidak ada identifier atau ekspresi SQL yang diturunkan dari request; API katalog publik hanya menampilkan atribut `visible_public` (`attributes[]` aditif); ekspor CSV yang menetralkan formula spreadsheet; dan impor CSV berupa dry-run → laporan per baris → apply semua-atau-tidak-sama-sekali, idempoten dan terikat pada file yang ditinjau, mencocokkan SKU dan tidak pernah mengambil media. Admin: `/admin/commerce-attributes`, `/admin/commerce-catalog-import`, input bertipe per produk dan varian di `/admin/commerce`. Rincian dan rencana kueri terukur: [ADR-0027](adr/0027-catalog-custom-attributes-are-typed-and-allowlisted.md), [`docs/skema-basis-data.md`](skema-basis-data.md), [`docs/api.md`](api.md).
 
 ## Akun pelanggan dan afiliasi (ADR-0016)
 
@@ -55,6 +59,7 @@ Media (fotografi produk, hero artikel, kreatif iklan) diresolusi lewat `GET /api
 ## Belum ada — daftar singkat
 
 - Ubah e-mail/telepon pada akun pelanggan yang sudah ada, dan verifikasi telepon ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) D6).
+- Atribut katalog: varian pada impor/ekspor CSV, pengurutan berdasarkan nilai atribut, UI faset etalase di atas filter `attr=`, dan penggantian nama opsi enum — masing-masing dicatat pada "Ditunda" di [ADR-0027](adr/0027-catalog-custom-attributes-are-typed-and-allowlisted.md).
 - Media library ter-upload sungguhan untuk gambar produk/slider/testimonial — sesi `media_library` berbasis-R2 sudah ada, tapi belum ada yang mengisinya di repo ini (lihat [`docs/deployment.md`](deployment.id.md), [`docs/cms.md`](cms.id.md)).
 - Adapter gateway pembayaran Xendit dan pelacakan kurir, keduanya disebut sebagai tindak lanjut eksplisit di belakang port yang sudah dibangun [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md).
 - Pipeline CI yang mempublikasikan image per-profil milik `apps/storefront` ke registry — [ADR-0020](adr/0020-publish-only-the-cms-images-to-ghcr-with-sbom-and-provenance.md) D2 menolak ini secara eksplisit, bukan sekadar menundanya.

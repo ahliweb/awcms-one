@@ -32,6 +32,21 @@ Grouped by the same three areas [`docs/arsitektur.md`](arsitektur.md) and [ADR-0
 
 Pagination: keyset, newest-first by default (`sort=newest`), page size fixed at 100 server-side. `price_asc`/`price_desc`/`name` sorts return a single bounded page (`nextCursor: null`) rather than a keyset walk — a `cursor` combined with a non-`newest` sort is rejected 400.
 
+### Catalog attributes, import and export (issue #291, [ADR-0027](adr/0027-catalog-custom-attributes-are-typed-and-allowlisted.md))
+
+| Method | Path | Permission | Notes |
+| --- | --- | --- | --- |
+| `GET`/`POST` | `/api/v1/commerce/attributes` | `attributes.read` / `attributes.manage` | The tenant's attribute definitions (≤ 100, not paginated); `key` (slug) and `valueType` are fixed at creation |
+| `GET`/`PATCH`/`DELETE` | `/api/v1/commerce/attributes/{id}` | `attributes.read` / `.manage` | `PATCH` naming `key`/`valueType` is a 400; removing an in-use enum option or narrowing `appliesTo` under stored values is a 409 |
+| `GET` | `/api/v1/commerce/products/{id}/attributes` | `attributes.read` | The full (admin) attribute set plus the applicable definitions. Gated on `attributes.read`, **not** `products.read`: a storefront credential holds the latter |
+| `PUT` | `/api/v1/commerce/products/{id}/attributes` | `products.update` | `{ "attributes": { "<key>": <value> \| null } }`; `null` clears; one invalid value rejects the whole request, nothing written |
+| `PUT` | `/api/v1/commerce/products/{id}/variants/{variantId}/attributes` | `products.update` | The variant-level twin, definitions whose `appliesTo` covers variants |
+| `GET` | `/api/v1/commerce/products?attr=<key>:<op>:<value>` | `products.read` | Repeatable (≤ 5, AND-ed); `op` ∈ `eq`, `in`, `gte`, `lte`, `contains`. Public audience only: `filterable && visible_public` keys; an unknown, non-filterable or non-public key is one and the same 400. `q` also matches `searchable && visible_public` attributes |
+| `GET` | `/api/v1/commerce/products/export.csv` | `products.export` | RFC 4180, UTF-8 with BOM, formula-neutralised; ≤ 5000 rows (`X-AWCMS-Export-Truncated`) |
+| `POST` | `/api/v1/commerce/products/import?mode=dry_run\|apply` | `products.import` (+ `create` + `update` to apply) | Body is `text/csv`, ≤ 5 MiB and 5000 rows. Dry-run writes nothing; apply is all-or-nothing, needs `Idempotency-Key`, optional `expectedSha256` |
+
+Product responses (`GET /products`, `/{id}`, `/by-slug/{slug}`) gain an **additive** `attributes[]` on the product and on each variant: `{ key, label, labels, valueType, value, valueLabel }`, only `visible_public` values. `value` is a JSON number for `integer`, a decimal **string** for `decimal`, a boolean, an ISO `YYYY-MM-DD` string for `date`, and a string for `text`/`enum`. Numbers use digits and `.` only (`1,5` is a 400). Import errors: `422 IMPORT_VALIDATION_FAILED` (the plan has errors; `error.details` is the per-row report, nothing written), `409 IMPORT_CONFLICT` (a write-time conflict; nothing written), `409 IMPORT_FILE_MISMATCH`, `409 IDEMPOTENCY_CONFLICT`, `400 IDEMPOTENCY_REQUIRED`, `413`, `415`; definitions: `409 ATTRIBUTE_KEY_ALREADY_EXISTS`, `ATTRIBUTE_DEFINITION_LIMIT_REACHED`, `ATTRIBUTE_OPTION_IN_USE`, `ATTRIBUTE_APPLIES_TO_IN_USE`.
+
 ### Marketing (issue #26)
 
 | Family                         | Owner routes                                                                     | Public read model                                                                                                                                                                            |

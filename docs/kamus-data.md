@@ -167,6 +167,31 @@ BjekMart's kasir (`commerce_bj_mart`'s counter sales, recorded in the legacy `or
 | `commerce.pos.create` | `awcms_permissions` (`sql/932`); `COMMERCE_POS_PERMISSIONS.create` | The ONE permission-gated order-creation path in the module. POS history reuses `commerce.orders.read` |
 | `commerce.pos.sale` | `awcms_audit_events.action` | The audit event every counter sale writes (order code, total, method, tendered, change, walk-in flag, line count — never the customer's name or phone) |
 
+## Catalog attribute vocabulary (issue #291)
+
+Tenant-authored, **typed** custom attributes — this platform's own design (OSPOS's extensible item attributes were the prompt; nothing is ported from `commerce_bj_mart`, which has none). Decisions: [ADR-0027](adr/0027-catalog-custom-attributes-are-typed-and-allowlisted.md).
+
+| Term | Where | Meaning |
+| --- | --- | --- |
+| attribute definition | `awcms_commerce_attribute_definitions`; `CommerceAttributeDefinition` | A tenant's schema entry: stable `key`, `label` + per-locale `labels`, `valueType`, `constraints`, flags, `appliesTo` |
+| `key` | `^[a-z][a-z0-9_]{0,62}$` | The wire identity of an attribute (CSV column `attr:<key>`, filter `attr=<key>:…`). Immutable; never concatenated into SQL |
+| `valueType` | `text` · `integer` · `decimal` · `boolean` · `date` · `enum` | Immutable. Chooses the typed column a value lives in and the grammar it is parsed with |
+| `constraints` | `jsonb`, closed per-type schema | text: `minLength`/`maxLength`; integer/decimal: `min`/`max` (+ `scale` ≤ 6); date: `min`/`max`; enum: `options[]`. No regex, no expressions |
+| `appliesTo` | `product` · `variant` · `both` | Which entity may carry a value |
+| `isSearchable` | flag | The value joins the free-text `q` match (text and enum types only) |
+| `isFilterable` | flag | The attribute may be named in an `attr=` filter |
+| `visibleAdmin` / `visiblePublic` | flags | `visiblePublic` is what the catalog API may expose and filter on |
+| attribute value | `awcms_commerce_product_attribute_values` | One typed value per (product or variant, definition) |
+| `value_scaled` | `bigint` | An integer/decimal value as `value × 10^6` — exact; the representation range filters use |
+| `value_search` | `text` | NFKC + lower-cased text/enum value, what equality/`contains`/`q` match |
+| decimal grammar | `[+-]?[0-9]+(\.[0-9]+)?` | `.` only; `1,5` and `1.234,5` are refused, never interpreted |
+| attribute filter | `attr=<key>:<op>:<value>` | `op` ∈ `eq`, `in`, `gte`, `lte`, `contains`; resolved against definitions, parsed with the typed grammar, bound as a parameter |
+| `attr:<key>` column | catalog CSV | One column per product attribute; a blank cell clears the attribute |
+| import batch | `awcms_commerce_catalog_import_batches` | One applied import: file hash, hashed `Idempotency-Key`, counts, actor |
+| `expectedSha256` | `POST /products/import` query | The dry-run's `fileSha256`, to apply exactly the file that was reviewed |
+| `commerce.attributes.read` / `.manage` | `awcms_permissions` (`sql/961`) | View / change definitions; `read` also gates a product's full attribute set |
+| `commerce.products.export` / `.import` | `awcms_permissions` (`sql/961`) | Download / import the catalog CSV; applying also needs `create` + `update` |
+
 ## Deferred columns and tables — not ported
 
 - **A live RajaOngkir courier-RATE table is done** (issue #107, `sql/924` — `awcms_commerce_courier_destinations`/`_shipping_rates`, a cached rate the order path validates against, never a synchronous provider call). What is still deferred: live courier TRACKING (a shipped parcel's own status) — `shipping_method`/`shipping_service_name` on an order remain merchant-defined labels for the `alternative`/`self_pickup` methods; a `courier` shipment's rate is now live, its post-dispatch tracking is not (named as a follow-up in [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md)).
