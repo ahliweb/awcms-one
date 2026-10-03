@@ -49,7 +49,10 @@ import {
   fetchActiveEmailTemplateByKey,
   seedDefaultEmailTemplates
 } from "../../email/application/email-template-directory";
-import { registerDerivedEmailTemplateCategory } from "../../email/domain/email-template-categories";
+import {
+  CAMPAIGN_EMAIL_TEMPLATE_KEY,
+  CAMPAIGN_EMAIL_TEMPLATE_VARIABLES
+} from "../domain/email-template-categories";
 import type { DefaultEmailTemplate } from "../../email/domain/email-default-templates";
 import { maskIdentifierValue } from "../../profile-identity/domain/identifier";
 import { renderCampaignText } from "../domain/campaign-content";
@@ -79,13 +82,7 @@ const MAX_CAMPAIGNS_PER_TENANT_PER_RUN = 5;
 // calls `email`'s own exported seed/enqueue functions, which do the write.
 // ---------------------------------------------------------------------------
 
-export const CAMPAIGN_EMAIL_TEMPLATE_KEY = "derived.commerce_campaign";
-export const CAMPAIGN_EMAIL_TEMPLATE_VARIABLES = ["subject", "body"] as const;
-
-registerDerivedEmailTemplateCategory(
-  CAMPAIGN_EMAIL_TEMPLATE_KEY,
-  CAMPAIGN_EMAIL_TEMPLATE_VARIABLES
-);
+export { CAMPAIGN_EMAIL_TEMPLATE_KEY, CAMPAIGN_EMAIL_TEMPLATE_VARIABLES };
 
 const CAMPAIGN_EMAIL_DEFAULT_TEMPLATE = {
   name: "Customer campaign",
