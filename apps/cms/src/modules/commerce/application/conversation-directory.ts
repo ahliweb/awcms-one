@@ -23,7 +23,10 @@ import {
   fetchActiveEmailTemplateByKey,
   seedDefaultEmailTemplates
 } from "../../email/application/email-template-directory";
-import { registerDerivedEmailTemplateCategory } from "../../email/domain/email-template-categories";
+import {
+  CONVERSATION_REPLY_TEMPLATE_KEY,
+  CONVERSATION_REPLY_TEMPLATE_VARIABLES
+} from "../domain/email-template-categories";
 import type { DefaultEmailTemplate } from "../../email/domain/email-default-templates";
 import {
   decodeKeysetCursor,
@@ -44,21 +47,10 @@ export const CONVERSATION_LIST_MAX_LIMIT = 50;
 // already established for this module.
 // ---------------------------------------------------------------------------
 
-export const CONVERSATION_REPLY_TEMPLATE_KEY =
-  "derived.commerce_conversation_reply";
-
-/** The only variables the template may interpolate — `email-template-render.ts` silently drops anything else. */
-export const CONVERSATION_REPLY_TEMPLATE_VARIABLES = [
-  "name",
-  "subject",
-  "storeName",
-  "link"
-] as const;
-
-registerDerivedEmailTemplateCategory(
+export {
   CONVERSATION_REPLY_TEMPLATE_KEY,
   CONVERSATION_REPLY_TEMPLATE_VARIABLES
-);
+};
 
 export const CONVERSATION_REPLY_DEFAULT_TEMPLATE = {
   name: "Conversation reply",
