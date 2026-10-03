@@ -218,9 +218,9 @@
 | 165 | `sql/165_awcms_omes_architecture_permissions.sql`                           |
 | 166 | `sql/166_awcms_omes_repository_progress_schema.sql`                         |
 | 167 | `sql/167_awcms_omes_repository_progress_permissions.sql`                    |
-| 168 | `sql/168_awcms_news_media_objects_visibility.sql`                           |
-| 169 | `sql/168_awcms_omes_mission_control_replay_indexes.sql`                     |
-| 170 | `sql/169_awcms_media_library_media_download_permission.sql`                 |
+| 168 | `sql/168_awcms_omes_mission_control_replay_indexes.sql`                     |
+| 169 | `sql/169_awcms_news_media_objects_visibility.sql`                           |
+| 170 | `sql/170_awcms_media_library_media_download_permission.sql`                 |
 | 171 | `sql/901_awcms_commerce_schema.sql`                                         |
 | 172 | `sql/902_awcms_commerce_permissions.sql`                                    |
 | 173 | `sql/903_awcms_commerce_worker_lifecycle_purge_grants.sql`                  |

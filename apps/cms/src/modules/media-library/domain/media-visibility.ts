@@ -11,7 +11,7 @@
  * surfaces) treated that as a given.
  *
  * `"private"` is the new class this issue adds: a `visibility: "private"`
- * object NEVER gets a `public_url` at all — `sql/168`'s CHECK constraint
+ * object NEVER gets a `public_url` at all — `sql/169`'s CHECK constraint
  * enforces `visibility = 'private' IMPLIES public_url IS NULL` at the schema
  * level, not merely as an application-layer convention, so a future bug
  * cannot silently persist a permanent URL for one. The only way to read a

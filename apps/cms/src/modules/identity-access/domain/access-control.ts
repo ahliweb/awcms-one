@@ -155,7 +155,7 @@ export type AccessAction =
   // self-attest it cleared for publication. Classified HIGH-RISK below: see
   // that Set's own comment for why.
   | "adjudicate_rights"
-  // Media library (Issue #268, `sql/169`): `download` issues a short-lived
+  // Media library (Issue #268, `sql/170`): `download` issues a short-lived
   // presigned GET URL for a media object (public or private). Deliberately
   // NOT high-risk: it neither deletes nor irreversibly changes any data —
   // the URL itself expires within `NEWS_MEDIA_R2_MAX_PRESIGNED_DOWNLOAD_TTL_SECONDS`

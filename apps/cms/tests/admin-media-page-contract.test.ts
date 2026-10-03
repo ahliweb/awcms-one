@@ -190,7 +190,7 @@ describe("/admin/media permission gates", () => {
 
   test("and is declared by the module descriptor, so a migration seeds it", async () => {
     const declared = declaredTriples();
-    // Issue #268 added the tenth `media.*` key, `download` (sql/169) — not
+    // Issue #268 added the tenth `media.*` key, `download` (sql/170) — not
     // yet driven by this page (`admin-screen-coverage-ledger.ts`'s
     // `NOT_YET_SCREENED`, a backlog item, not a DELIBERATE_ABSENCES decision).
     expect(declared.size).toBe(12);
