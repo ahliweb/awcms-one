@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:d3b2df402552aa7384114870352ba97b5cea3d5b74abdc051bdbeabb3799d0f4 -->
+<!-- i18n-source-hash: sha256:cf9bb53dbd5f6c4147d5b5531257807a07e680e96a9d1b6a5857982c71c53d18 -->
 
 # `commerce`
 
@@ -513,6 +513,8 @@ kali `EMAIL_PROVIDER=log` atau `EMAIL_ENABLED` bukan `"true"`, sehingga
 dev/CI bekerja tanpa kredensial e-mail). `commerce` mendapat dependensi ke
 `email` untuk ini (lihat `module.ts`), sama seperti `newsletter` yang sudah
 bergantung padanya untuk e-mail konfirmasinya sendiri.
+
+**Registrasi di proses `email:dispatch` (Issue #311).** Ketiga kategori e-mail `derived.commerce_*` (`customer_otp`, `conversation_reply`, `campaign`) didaftarkan oleh SATU berkas efek-samping tanpa dependensi, `domain/email-template-categories.ts`, yang diimpor berkas application dan juga oleh `email/application/email-dispatch.ts` (satu divergensi upstream yang tercatat, lihat `AGENTS.md` root). Registri bersifat per proses dan `renderEmailTemplate` membuang semua variabel untuk kategori tak dikenal, sehingga registrasi yang hanya ada di berkas application yang tak pernah dimuat dispatcher terpisah membuat OTP e-mail terkirim dengan kode kosong. Tambahkan setiap kategori `derived.commerce_*` baru hanya di berkas itu; `tests/commerce-email-categories-dispatch.test.ts` memeriksanya dari proses baru.
 
 **Sesi** (`application/customer-session-auth.ts`): `requireCustomerSession`
 mem-parsing `Authorization: Bearer cs_…`, mencari baris hidup di
