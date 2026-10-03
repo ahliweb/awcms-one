@@ -146,6 +146,44 @@ export async function sendJsonRequest(
 }
 
 /**
+ * The same-origin mutation for the ONE endpoint family whose request body is
+ * not JSON — the catalog CSV import (`POST .../products/import`, Issue #291),
+ * which takes `text/csv`. It lives beside {@link sendJsonRequest} so the
+ * envelope contract (`payload?.success === true`) is written once, here, and
+ * is not re-derived by a hand-built `fetch` in a page module (the
+ * `admin-json-client-core` test forbids exactly that copy). The response is
+ * still the JSON envelope, so the result shape is the same.
+ *
+ * Never throws.
+ */
+export async function sendTextRequest(
+  url: string,
+  text: string,
+  contentType: string,
+  extraHeaders?: Record<string, string>
+): Promise<JsonRequestResult> {
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { ...extraHeaders, "Content-Type": contentType },
+      credentials: "same-origin",
+      body: text
+    });
+    const payload = (await response
+      .json()
+      .catch(() => null)) as JsonEnvelope | null;
+
+    if (response.ok && payload?.success === true) {
+      return { ok: true, errorCode: null, payload };
+    }
+
+    return { ok: false, errorCode: payload?.error?.code ?? null, payload };
+  } catch {
+    return { ok: false, errorCode: "NETWORK_ERROR", payload: null };
+  }
+}
+
+/**
  * Sends a JSON body and returns ONLY `{ ok, errorCode }` — the shape callers
  * show a generic message from, so no screen can surface internal detail by
  * accident (Issue #540). What most admin buttons want.

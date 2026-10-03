@@ -71,7 +71,37 @@ export const COMMERCE_PRODUCT_PERMISSIONS = {
   /** Soft delete a product. */
   delete: "commerce.products.delete",
   /** Restore a soft-deleted product (Issue #23). */
-  restore: "commerce.products.restore"
+  restore: "commerce.products.restore",
+  /**
+   * Issue #291 — download the catalog as CSV (a bulk read of the whole
+   * catalog, hence the high-risk `export` action rather than plain `read`).
+   */
+  export: "commerce.products.export",
+  /**
+   * Issue #291 — dry-run and apply a catalog CSV import (a bulk write, hence
+   * the high-risk `import` action rather than `create`/`update`). The import
+   * additionally holds the caller to `create`/`update` per row implicitly: it
+   * calls the same `createProduct`/`updateProduct` directory functions a
+   * single-product request does, and the route requires BOTH
+   * `commerce.products.import` and — via the handler — `create` + `update`.
+   */
+  import: "commerce.products.import"
+} as const;
+
+/**
+ * Issue #291 — typed custom catalog attributes. `read` lists definitions;
+ * `manage` creates/updates/deletes them. `manage` (not separate
+ * create/update/delete) because a definition is schema, not data: one audience
+ * — whoever may reshape what every product's attributes validate against and
+ * what the public catalog API may expose — and a single high-risk action keeps
+ * the SoD hook on one key. Reading/writing a product's attribute VALUES reuses
+ * `commerce.products.read`/`.update` (see `COMMERCE_PRODUCT_PERMISSIONS`).
+ */
+export const COMMERCE_ATTRIBUTES_ACTIVITY_CODE = "attributes";
+
+export const COMMERCE_ATTRIBUTE_PERMISSIONS = {
+  read: "commerce.attributes.read",
+  manage: "commerce.attributes.manage"
 } as const;
 
 export type CommerceProductPermissionKey =

@@ -85,6 +85,9 @@ export type AccessAction =
   | "rebuild"
   | "analyze"
   | "export"
+  // Catalog bulk import (Issue #291): the dry-run/apply of a product CSV. A
+  // bulk catalog write, high-risk like `export` is for the bulk read.
+  | "import"
   // MFA administration (Issue #184): `reset` disables another user's factor
   // (high-risk); `configure` sets the tenant MFA enforcement policy.
   | "reset"
@@ -312,6 +315,7 @@ const HIGH_RISK_ACTIONS: ReadonlySet<AccessAction> = new Set([
   "revoke",
   "rebuild",
   "export",
+  "import",
   "archive",
   // Data lifecycle (ADR-0037): releasing a legal hold removes a data-protection
   // safeguard — see the `AccessAction` union's own comment for `release`.

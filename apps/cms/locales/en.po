@@ -7177,3 +7177,309 @@ msgstr ""
 
 msgid "Other"
 msgstr ""
+
+#. Catalog attributes, CSV import/export (Issue #291)
+msgid "A blank cell in a product column leaves that field unchanged (or uses the default for a new product). A blank cell in an attr: column clears that attribute."
+msgstr ""
+
+msgid "A choice that stored values still use cannot be removed."
+msgstr ""
+
+msgid "A row conflicted with the catalog while writing. Nothing was imported; validate the file again."
+msgstr ""
+
+msgid "Add a column named attr: followed by the attribute key for each product attribute (for example attr:weight). An unknown column rejects the file."
+msgstr ""
+
+msgid "Apply import"
+msgstr ""
+
+msgid "Apply this file? {create} products will be created and {update} updated. All rows are applied together, or none."
+msgstr ""
+
+msgid "Apply this import?"
+msgstr ""
+
+msgid "Applying the import…"
+msgstr ""
+
+msgid "At most {count} products are exported."
+msgstr ""
+
+msgid "At most {count} rows per file."
+msgstr ""
+
+msgid "Attribute"
+msgstr ""
+
+msgid "Attribute filters"
+msgstr ""
+
+msgid "Attribute {key} will be removed. Its stored values stay in the database but are no longer shown, and the key becomes free to reuse."
+msgstr ""
+
+msgid "Attributes"
+msgstr ""
+
+msgid "Attributes defined for this tenant will appear here."
+msgstr ""
+
+msgid "Behaviour"
+msgstr ""
+
+msgid "CSV file"
+msgstr ""
+
+msgid "Catalog import and export"
+msgstr ""
+
+msgid "Checking the file…"
+msgstr ""
+
+msgid "Choice list"
+msgstr ""
+
+msgid "Choices (one per line: value or value|Label)"
+msgstr ""
+
+msgid "Choose a CSV file first."
+msgstr ""
+
+msgid "Columns: sku (required), name, slug, type, status, categorySlug, price, discountPercent, stock, weightGrams, minPurchase, description, isFeatured, isRecommended."
+msgstr ""
+
+msgid "Condition"
+msgstr ""
+
+msgid "Could not create the attribute. Check the key is unique and every field is valid."
+msgstr ""
+
+msgid "Could not delete the attribute. Please try again."
+msgstr ""
+
+msgid "Could not save the attribute. Check every field is valid."
+msgstr ""
+
+msgid "Could not save the attributes. Check every value matches its type."
+msgstr ""
+
+msgid "Create"
+msgstr ""
+
+msgid "Create an attribute"
+msgstr ""
+
+msgid "Create attribute"
+msgstr ""
+
+msgid "Decimal number"
+msgstr ""
+
+msgid "Decimal places (at most 6)"
+msgstr ""
+
+msgid "Delete attribute"
+msgstr ""
+
+msgid "Delete this attribute?"
+msgstr ""
+
+msgid "Deleting…"
+msgstr ""
+
+msgid "Details"
+msgstr ""
+
+msgid "Digits and a dot only, for example 12.5."
+msgstr ""
+
+msgid "Digits only, for example 42."
+msgstr ""
+
+msgid "Download CSV"
+msgstr ""
+
+msgid "Download the catalog as CSV, or validate and apply a CSV import with a per-row report."
+msgstr ""
+
+msgid "Download the live product catalog as a CSV file (UTF-8). It includes one column per product attribute and re-imports without changes."
+msgstr ""
+
+msgid "Earliest date"
+msgstr ""
+
+msgid "Export"
+msgstr ""
+
+msgid "File format"
+msgstr ""
+
+msgid "Filterable"
+msgstr ""
+
+msgid "Images and other media are not imported here: a media column rejects the file."
+msgstr ""
+
+msgid "Import"
+msgstr ""
+
+msgid "Included in free-text search (text and choice lists only)"
+msgstr ""
+
+msgid "Label (English)"
+msgstr ""
+
+msgid "Label (Indonesian)"
+msgstr ""
+
+msgid "Latest date"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Lowercase letters, digits and underscores, starting with a letter. It cannot be changed later."
+msgstr ""
+
+msgid "Maximum length"
+msgstr ""
+
+msgid "Maximum value"
+msgstr ""
+
+msgid "Maximum: {value}."
+msgstr ""
+
+msgid "Minimum length"
+msgstr ""
+
+msgid "Minimum value"
+msgstr ""
+
+msgid "Minimum: {value}."
+msgstr ""
+
+msgid "No attributes yet"
+msgstr ""
+
+msgid "Not filtered"
+msgstr ""
+
+msgid "Not set"
+msgstr ""
+
+msgid "Numbers use digits and a dot only (1234.5). A decimal comma or thousands separator is rejected. Dates are YYYY-MM-DD."
+msgstr ""
+
+msgid "Per-row report"
+msgstr ""
+
+msgid "Product attributes"
+msgstr ""
+
+msgid "Product attributes could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Products and variants"
+msgstr ""
+
+msgid "Result"
+msgstr ""
+
+msgid "Row"
+msgstr ""
+
+msgid "Rows are matched on the sku column: a product with that SKU is updated, any other SKU creates a product. Upload the file, validate it, then apply it."
+msgstr ""
+
+msgid "Save attributes"
+msgstr ""
+
+msgid "Searchable"
+msgstr ""
+
+msgid "Text"
+msgstr ""
+
+msgid "The attribute filters could not be applied: check the attribute, the condition and that the value matches the attribute's type."
+msgstr ""
+
+msgid "The file changed after it was validated. Validate it again before applying."
+msgstr ""
+
+msgid "The file has errors. Nothing was imported; fix the file and validate again."
+msgstr ""
+
+msgid "The file is valid. Review the report, then apply the import."
+msgstr ""
+
+msgid "The import was applied: {create} created, {update} updated, {unchanged} unchanged."
+msgstr ""
+
+msgid "The request failed. Please try again."
+msgstr ""
+
+msgid "This file is large, so only the rows with errors are listed. The counts above cover every row."
+msgstr ""
+
+msgid "This page could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Typed custom attributes for products and variants: define what can be recorded, how it is validated, and where it is searchable or visible."
+msgstr ""
+
+msgid "Unchanged"
+msgstr ""
+
+msgid "Update"
+msgstr ""
+
+msgid "Validate file"
+msgstr ""
+
+msgid "Visible in the admin"
+msgstr ""
+
+msgid "Visible on the storefront API"
+msgstr ""
+
+msgid "Whole number"
+msgstr ""
+
+msgid "Yes/No"
+msgstr ""
+
+msgid "You do not have permission to import or export the catalog."
+msgstr ""
+
+msgid "You do not have permission to view product attributes."
+msgstr ""
+
+msgid "contains"
+msgstr ""
+
+msgid "equals"
+msgstr ""
+
+msgid "is at least"
+msgstr ""
+
+msgid "is at most"
+msgstr ""
+
+msgid "is one of (comma-separated)"
+msgstr ""
+
+msgid "line {line}"
+msgstr ""
+
+msgid "{rows} rows checked: {create} to create, {update} to update, {unchanged} unchanged, {error} with errors."
+msgstr ""
+
+msgid "{count} attribute"
+msgid_plural "{count} attributes"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Catalog import/export"
+msgstr ""

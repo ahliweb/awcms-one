@@ -111,6 +111,9 @@ import type { OrderStatus } from "../../modules/commerce/domain/order-status";
 import type { PaymentStatus } from "../../modules/commerce/domain/commerce-order-types";
 import type { ProductStatus } from "../../modules/commerce/domain/product-status";
 import type { ProductType } from "../../modules/commerce/domain/product-type";
+import type { AttributeAppliesTo } from "../../modules/commerce/domain/attribute-definition";
+import type { AttributeValueType } from "../../modules/commerce/domain/attribute-value";
+import type { ImportRowAction } from "../../modules/commerce/domain/catalog-import";
 import type {
   VoucherType,
   VoucherStatus
@@ -274,6 +277,31 @@ export function createCommerceLabels(t: Translator["t"]) {
     event: t("Event")
   } satisfies Record<ProductType, string>;
 
+  /** Issue #291 — a catalog attribute's value type (`domain/attribute-value.ts`). */
+  const attributeValueType = {
+    text: t("Text"),
+    integer: t("Whole number"),
+    decimal: t("Decimal number"),
+    boolean: t("Yes/No"),
+    date: t("Date"),
+    enum: t("Choice list")
+  } satisfies Record<AttributeValueType, string>;
+
+  /** Issue #291 — which catalog entity an attribute definition applies to. */
+  const attributeAppliesTo = {
+    product: t("Products"),
+    variant: t("Variants"),
+    both: t("Products and variants")
+  } satisfies Record<AttributeAppliesTo, string>;
+
+  /** Issue #291 — the catalog import dry-run's per-row verdict. */
+  const importRowAction = {
+    create: t("Create"),
+    update: t("Update"),
+    unchanged: t("Unchanged"),
+    error: t("Error")
+  } satisfies Record<ImportRowAction, string>;
+
   const voucherType = {
     percentage: t("Percentage"),
     nominal: t("Nominal"),
@@ -420,6 +448,9 @@ export function createCommerceLabels(t: Translator["t"]) {
     orderChannel,
     productStatus,
     productType,
+    attributeValueType,
+    attributeAppliesTo,
+    importRowAction,
     voucherType,
     campaignStatus,
     campaignChannel,
