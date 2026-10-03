@@ -277,3 +277,20 @@ export function buildReportRows(diagnostics: readonly ImportRowDiagnostic[]): {
     truncated: true
   };
 }
+
+/**
+ * The only request media type the import endpoint accepts. `text/plain` (and
+ * `application/x-www-form-urlencoded`, `multipart/form-data`) are CORS-safelisted
+ * — a cross-site form or `fetch` can send them without a preflight — so
+ * accepting `text/plain` would let a foreign page post a dry-run with no
+ * `Idempotency-Key` and no preflight. `text/csv` is not safelisted.
+ */
+export const CATALOG_IMPORT_CONTENT_TYPE = "text/csv";
+
+/** `true` for exactly `text/csv` (parameters such as `; charset=utf-8` ignored, case-insensitive). */
+export function isCatalogImportContentType(header: string | null): boolean {
+  return (
+    (header ?? "").split(";")[0]!.trim().toLowerCase() ===
+    CATALOG_IMPORT_CONTENT_TYPE
+  );
+}

@@ -80,10 +80,18 @@ export async function exportCatalogCsv(
   tx: Bun.SQL,
   tenantId: string,
   actorTenantUserId: string,
-  correlationId?: string
+  correlationId?: string,
+  /**
+   * `false` (the caller lacks `commerce.attributes.read`) limits the
+   * `attr:<key>` columns to `visible_public` definitions — the same set the
+   * storefront already exposes. Defaults to the admin set.
+   */
+  includeNonPublicAttributes = true
 ): Promise<CatalogExportResult> {
   const definitions = (
-    await listAttributeDefinitions(tx, tenantId, { audience: "admin" })
+    await listAttributeDefinitions(tx, tenantId, {
+      audience: includeNonPublicAttributes ? "admin" : "public"
+    })
   ).filter((definition) =>
     attributeAppliesToTarget(definition.appliesTo, "product")
   );

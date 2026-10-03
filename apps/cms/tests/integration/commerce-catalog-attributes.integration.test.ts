@@ -1182,6 +1182,7 @@ suite("commerce typed attributes + catalog import/export (Issue #291)", () => {
         applyCatalogImport(tx, TENANT_A, ACTOR, csv, "key-bad")
       );
       expect(outcome.kind).toBe("invalid");
+      if (outcome.kind !== "invalid") throw new Error("expected invalid");
       expect(outcome.report.valid).toBe(false);
       expect(outcome.report.summary).toEqual({
         create: 1,
@@ -1279,11 +1280,13 @@ suite("commerce typed attributes + catalog import/export (Issue #291)", () => {
       );
       expect(first.kind).toBe("applied");
 
-      await expect(
-        inTenant(TENANT_A, (tx) =>
-          applyCatalogImport(tx, TENANT_A, ACTOR, csv, "same-key")
-        )
-      ).rejects.toThrow();
+      // The key claim is the first write: a second apply reports
+      // `duplicate_key` (the route replays / 409s) instead of a raw unique
+      // violation, and writes nothing.
+      const second = await inTenant(TENANT_A, (tx) =>
+        applyCatalogImport(tx, TENANT_A, ACTOR, csv, "same-key")
+      );
+      expect(second.kind).toBe("duplicate_key");
       expect(await productCount(TENANT_A)).toBe(1);
 
       const batches = (await getAdminSql()`
@@ -1296,6 +1299,68 @@ suite("commerce typed attributes + catalog import/export (Issue #291)", () => {
       expect(batches).toHaveLength(1);
       expect(batches[0]!.idempotency_key_hash).toMatch(/^[0-9a-f]{64}$/);
       expect(batches[0]!.idempotency_key_hash).not.toContain("same-key");
+    });
+
+    test("concurrent applies with one Idempotency-Key: exactly one wins, the rest are duplicate_key, never a raw error", async () => {
+      await seedExportable();
+      const csv =
+        "sku,name,slug,price\nRACE-1,One,race-1,100\nRACE-2,Two,race-2,200";
+      const outcomes = await Promise.all(
+        [0, 1, 2, 3].map(() =>
+          inTenant(TENANT_A, (tx) =>
+            applyCatalogImport(tx, TENANT_A, ACTOR, csv, "race-key")
+          )
+        )
+      );
+      expect(outcomes.filter((o) => o.kind === "applied")).toHaveLength(1);
+      expect(outcomes.filter((o) => o.kind === "duplicate_key")).toHaveLength(
+        3
+      );
+      expect(await productCount(TENANT_A)).toBe(2);
+      const batches = (await getAdminSql()`
+        SELECT count(*)::int AS n FROM awcms_commerce_catalog_import_batches
+      `) as { n: number }[];
+      expect(batches[0]!.n).toBe(1);
+    });
+
+    test("a rolled-back apply releases its key claim, so the corrected file can reuse the key", async () => {
+      await seedExportable();
+      await makeProduct(TENANT_A, { sku: "TAKEN", slug: "taken-slug" });
+      const conflicting =
+        "sku,name,slug,price\nNEW-1,New,new-1,100\nNEW-2,New2,taken-slug,100";
+      const first = await inTenant(TENANT_A, (tx) =>
+        applyCatalogImport(tx, TENANT_A, ACTOR, conflicting, "retry-key")
+      );
+      expect(["rolled_back", "invalid"]).toContain(first.kind);
+      const fixed = "sku,name,slug,price\nNEW-1,New,new-1,100";
+      const second = await inTenant(TENANT_A, (tx) =>
+        applyCatalogImport(tx, TENANT_A, ACTOR, fixed, "retry-key")
+      );
+      expect(second.kind).toBe("applied");
+    });
+
+    test("export without attributes.read carries only visible_public attribute columns", async () => {
+      await seedExportable();
+      const p = await makeProduct(TENANT_A, { sku: "PUB-1", slug: "pub-1" });
+      await setAttributes(TENANT_A, p.id, {
+        weight: "3",
+        color: "blue",
+        note: "secret-note"
+      });
+      const full = await inTenant(TENANT_A, (tx) =>
+        exportCatalogCsv(tx, TENANT_A, ACTOR)
+      );
+      expect(full.csv).toContain("attr:note");
+      expect(full.csv).toContain("secret-note");
+
+      const limited = await inTenant(TENANT_A, (tx) =>
+        exportCatalogCsv(tx, TENANT_A, ACTOR, undefined, false)
+      );
+      expect(limited.csv).toContain("attr:weight");
+      expect(limited.csv).not.toContain("attr:note");
+      expect(limited.csv).not.toContain("attr:color");
+      expect(limited.csv).not.toContain("secret-note");
+      expect(limited.csv).not.toContain("blue");
     });
 
     test("an import never matches, reads or writes another tenant's products", async () => {

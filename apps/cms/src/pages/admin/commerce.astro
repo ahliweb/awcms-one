@@ -193,7 +193,9 @@ const screen = await loadAdminScreen({
         ? filterRecommended
         : undefined,
       attributeFilters: attributeFilters.valid ? attributeFilters.filters : [],
-      attributeAudience: "admin"
+      // A `products.read`-only operator searches the public attribute set,
+      // exactly like the storefront: a non-public value must not be probeable.
+      attributeAudience: canReadAttributes ? "admin" : "public"
     });
     const attributeSets: Map<string, ProductAttributeSet> =
       canReadAttributes && attributeDefinitions.length > 0

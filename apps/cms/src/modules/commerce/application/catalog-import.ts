@@ -498,7 +498,13 @@ export type ApplyCatalogImportResult =
   /** The plan has errors (or the file is unusable): nothing was written. */
   | { kind: "invalid"; report: ImportReport }
   /** The plan was valid but a write failed (a race): the savepoint was rolled back, nothing persists. */
-  | { kind: "rolled_back"; report: ImportReport; message: string };
+  | { kind: "rolled_back"; report: ImportReport; message: string }
+  /**
+   * The `Idempotency-Key` already owns a committed batch (a replay, or a
+   * concurrent request that committed first): nothing was written. The caller
+   * answers with the stored replay, or `409 IDEMPOTENCY_CONFLICT`.
+   */
+  | { kind: "duplicate_key" };
 
 /**
  * Applies a catalog CSV all-or-nothing. The caller has already checked
@@ -519,7 +525,33 @@ export async function applyCatalogImport(
   }
 
   await tx.unsafe(`SAVEPOINT ${IMPORT_SAVEPOINT}`);
+  let batchId: string;
   try {
+    // Claim the Idempotency-Key BEFORE any product write, inside the savepoint.
+    // A concurrent apply with the same key blocks on the unique index until the
+    // winner commits, then gets no row back and writes nothing — so the loser
+    // never hits a raw unique violation (a 500) and never double-applies. If
+    // the writes below fail, the rollback releases the claim too.
+    const keyHash = sha256Hex(idempotencyKey);
+    const batchRows = (await tx`
+      INSERT INTO awcms_commerce_catalog_import_batches (
+        tenant_id, file_sha256, idempotency_key_hash, row_count,
+        created_count, updated_count, unchanged_count, actor_tenant_user_id
+      )
+      VALUES (
+        ${tenantId}, ${plan.fileSha256}, ${keyHash}, ${plan.rowCount},
+        ${plan.summary.create}, ${plan.summary.update}, ${plan.summary.unchanged},
+        ${actorTenantUserId}
+      )
+      ON CONFLICT (tenant_id, idempotency_key_hash) DO NOTHING
+      RETURNING id
+    `) as { id: string }[];
+    if (batchRows.length === 0) {
+      await tx.unsafe(`ROLLBACK TO SAVEPOINT ${IMPORT_SAVEPOINT}`);
+      return { kind: "duplicate_key" };
+    }
+    batchId = batchRows[0]!.id;
+
     for (const row of plan.planned) {
       if (row.action === "unchanged") continue;
 
@@ -586,21 +618,6 @@ export async function applyCatalogImport(
       report: planToReport(plan, "apply")
     };
   }
-
-  const keyHash = sha256Hex(idempotencyKey);
-  const batchRows = (await tx`
-    INSERT INTO awcms_commerce_catalog_import_batches (
-      tenant_id, file_sha256, idempotency_key_hash, row_count,
-      created_count, updated_count, unchanged_count, actor_tenant_user_id
-    )
-    VALUES (
-      ${tenantId}, ${plan.fileSha256}, ${keyHash}, ${plan.rowCount},
-      ${plan.summary.create}, ${plan.summary.update}, ${plan.summary.unchanged},
-      ${actorTenantUserId}
-    )
-    RETURNING id
-  `) as { id: string }[];
-  const batchId = batchRows[0]!.id;
 
   await recordAuditEvent(tx, {
     tenantId,

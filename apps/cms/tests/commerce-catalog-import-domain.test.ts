@@ -17,6 +17,7 @@ import {
   coreCellsToProductBody,
   CORE_IMPORT_COLUMNS,
   FULL_DIAGNOSTICS_ROW_LIMIT,
+  isCatalogImportContentType,
   isRaggedRow,
   MAX_CATALOG_EXPORT_ROWS,
   MAX_CATALOG_IMPORT_ROWS,
@@ -423,5 +424,45 @@ describe("route and screen contracts (source level)", () => {
       expect(page).not.toContain('data-label="');
       expect(page).toContain("CommerceConfirmDialog");
     }
+  });
+
+  test("the import accepts exactly text/csv: text/plain (CORS-safelisted, no preflight) and friends are refused", async () => {
+    expect(isCatalogImportContentType("text/csv")).toBe(true);
+    expect(isCatalogImportContentType("text/csv; charset=utf-8")).toBe(true);
+    expect(isCatalogImportContentType("TEXT/CSV;charset=UTF-8")).toBe(true);
+    for (const rejected of [
+      "text/plain",
+      "text/plain; charset=utf-8",
+      "application/csv",
+      "application/x-www-form-urlencoded",
+      "multipart/form-data; boundary=x",
+      "application/json",
+      "",
+      null
+    ]) {
+      expect(isCatalogImportContentType(rejected)).toBe(false);
+    }
+    const route = stripComments(
+      await source("src/pages/api/v1/commerce/products/import.ts")
+    );
+    expect(route).toContain("isCatalogImportContentType(");
+    expect(route).not.toContain("text/plain");
+  });
+
+  test("a products.read / export holder without attributes.read cannot reach non-public attributes", async () => {
+    // Admin `q` search: the audience follows attributes.read, not products.read.
+    const screen = stripComments(
+      await source("src/pages/admin/commerce.astro")
+    );
+    expect(screen).toContain(
+      'attributeAudience: canReadAttributes ? "admin" : "public"'
+    );
+    expect(screen).not.toContain('attributeAudience: "admin"');
+    // CSV export: the attribute columns widen only with attributes.read.
+    const route = stripComments(
+      await source("src/pages/api/v1/commerce/products/export.csv.ts")
+    );
+    expect(route).toContain("COMMERCE_ATTRIBUTES_ACTIVITY_CODE");
+    expect(route).toContain("attributeDecision.allowed");
   });
 });

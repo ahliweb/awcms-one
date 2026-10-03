@@ -20,6 +20,7 @@ import {
   dryRunCatalogImport,
   sha256Hex
 } from "../../../../../modules/commerce/application/catalog-import";
+import { isCatalogImportContentType } from "../../../../../modules/commerce/domain/catalog-import";
 import { COMMERCE_PRODUCTS_ACTIVITY_CODE } from "../../../../../modules/commerce/domain/commerce-permissions";
 
 const IDEMPOTENCY_SCOPE = "commerce_catalog_import_apply";
@@ -45,7 +46,6 @@ const APPLY_EXTRA_GUARDS = [
 ] as const;
 
 const SHA256_PATTERN = /^[0-9a-f]{64}$/;
-const ACCEPTED_CONTENT_TYPES = ["text/csv", "text/plain", "application/csv"];
 
 type Prepared = {
   mode: "dry_run" | "apply";
@@ -56,7 +56,7 @@ type Prepared = {
 
 /**
  * `POST /api/v1/commerce/products/import?mode=dry_run|apply` (Issue #291) — body
- * is the CSV itself (`Content-Type: text/csv`, UTF-8), capped at the "large"
+ * is the CSV itself (`Content-Type: text/csv` only — `text/plain` is CORS-safelisted, so accepting it would let a cross-site form skip the preflight; UTF-8), capped at the "large"
  * body tier (5 MiB) and {@link MAX_CATALOG_IMPORT_ROWS} data rows.
  *
  *   - `mode=dry_run` (default): validates every row, writes NOTHING, answers 200
@@ -84,11 +84,7 @@ export const POST = defineTenantRoute<Prepared>({
       );
     }
 
-    const contentType = (request.headers.get("content-type") ?? "")
-      .split(";")[0]!
-      .trim()
-      .toLowerCase();
-    if (!ACCEPTED_CONTENT_TYPES.includes(contentType)) {
+    if (!isCatalogImportContentType(request.headers.get("content-type"))) {
       return fail(
         415,
         "UNSUPPORTED_MEDIA_TYPE",
@@ -181,18 +177,17 @@ export const POST = defineTenantRoute<Prepared>({
       IDEMPOTENCY_SCOPE,
       idempotencyKey
     );
-    if (existing) {
-      if (existing.requestHash !== requestHash) {
-        return fail(
-          409,
-          "IDEMPOTENCY_CONFLICT",
-          "Idempotency-Key was already used with a different request."
-        );
-      }
-      return jsonResponse(existing.responseBody, {
-        status: existing.responseStatus
-      });
-    }
+    const replayOrConflict = (
+      record: NonNullable<typeof existing>
+    ): Response =>
+      record.requestHash !== requestHash
+        ? fail(
+            409,
+            "IDEMPOTENCY_CONFLICT",
+            "Idempotency-Key was already used with a different request."
+          )
+        : jsonResponse(record.responseBody, { status: record.responseStatus });
+    if (existing) return replayOrConflict(existing);
 
     const outcome = await applyCatalogImport(
       tx,
@@ -203,6 +198,24 @@ export const POST = defineTenantRoute<Prepared>({
       locals.correlationId
     );
 
+    if (outcome.kind === "duplicate_key") {
+      // A concurrent apply with this key committed first (the batch claim
+      // found it). Answer with its stored response when the file matches,
+      // otherwise a clean 409 — never a 500.
+      const winner = await findIdempotencyRecord(
+        tx,
+        tenantId,
+        IDEMPOTENCY_SCOPE,
+        idempotencyKey
+      );
+      return winner
+        ? replayOrConflict(winner)
+        : fail(
+            409,
+            "IDEMPOTENCY_CONFLICT",
+            "Idempotency-Key was already used by another import."
+          );
+    }
     if (outcome.kind === "invalid") {
       return fail(
         422,
