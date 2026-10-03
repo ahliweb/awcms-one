@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](AGENTS.md)
 
-<!-- i18n-source-hash: sha256:48049c86b918f757fc7b4cd645f6f09b3937dbe0dfc5191ff0dc927053461b15 -->
+<!-- i18n-source-hash: sha256:f0963143b320ac62a54adb16d794197495e0b74ab91bcc87d76855315947acdb -->
 
 # AGENTS.md — kontrak kerja awcms-one
 
