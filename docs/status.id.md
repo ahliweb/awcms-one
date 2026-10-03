@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](status.md)
 
-<!-- i18n-source-hash: sha256:90685a11786a74c209be4f7d64662d12c6cfe44d3789095de4be44e65045f78a -->
+<!-- i18n-source-hash: sha256:426af324162cd4a84b5d641c17ffc939818180d7dc83df0bf16565d2732d05d4 -->
 
 # Status
 
@@ -25,6 +25,10 @@ Atribut kustom **bertipe** yang didefinisikan tenant pada produk dan varian (tek
 ## Akun pelanggan dan afiliasi (ADR-0016)
 
 Tingkat kepercayaan ketiga, terverifikasi-OTP, di atas pelanggan checkout-tamu: login/registrasi OTP e-mail (dan WhatsApp, lihat integrasi di bawah), sesi bearer opaque berawalan `cs_` (di-hash `sha256:` saat disimpan, `Authorization: Bearer`, disimpan di `localStorage` milik browser sendiri — tidak pernah cookie, lihat aturan bearer-session milik [`AGENTS.md`](../AGENTS.md)), dashboard akun (alamat, riwayat pesanan, ulasan, wishlist yang tersinkron, kotak pesan pelanggan), dan program afiliasi (penangkapan `?ref=`, atribusi checkout, `/akun/afiliasi`, layar moderasi owner). **Belum ada:** ubah e-mail/telepon pada akun yang sudah ada, dan verifikasi telepon — dua item yang ditunda [ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) D6.
+
+## Buku besar poin loyalitas (ADR-0026)
+
+Program poin di dalam `commerce`, di balik `features.loyalty` (default **mati**): buku besar append-only (`awcms_commerce_loyalty_ledger`) dengan saldo akun hasil proyeksi, program perolehan berversi dengan tanggal berlaku, perolehan pada `order.paid` dan pembatalan kompensasi pada `order.cancelled` (keduanya digerakkan domain event — loyalitas tidak mengubah kode order, POS, maupun pembayaran), kedaluwarsa per lot (`commerce:loyalty:expire`), redeem di kasir dan penyesuaian manual masing-masing di balik izinnya sendiri dan `Idempotency-Key`, job `commerce:loyalty:reconcile` yang hanya-baca plus perbaikan proyeksi yang diaudit, laporan hasil penjumlahan ledger, endpoint saldo/riwayat pelanggan yang diamankan bearer, dan layar admin. Detail: [ADR-0026](adr/0026-loyalty-points-are-an-append-only-ledger.md), [`docs/skema-basis-data.md`](skema-basis-data.md), [`docs/kamus-data.md`](kamus-data.md), [`docs/api.md`](api.md). **Belum ada:** mengubah poin menjadi diskon saat checkout/POS (butuh model tender #285), tier, kompensasi retur/refund per baris (#287), kelayakan kampanye/segmen (#280), dan halaman storefront untuk saldo.
 
 ## Integrasi eksternal (ADR-0017)
 
@@ -59,6 +63,7 @@ Media (fotografi produk, hero artikel, kreatif iklan) diresolusi lewat `GET /api
 ## Belum ada — daftar singkat
 
 - Ubah e-mail/telepon pada akun pelanggan yang sudah ada, dan verifikasi telepon ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) D6).
+- Redeem loyalitas ke harga checkout dan tender POS, tier opsional, kompensasi retur per baris, kelayakan kampanye/segmen, dan halaman saldo storefront — daftar Ditunda di [ADR-0026](adr/0026-loyalty-points-are-an-append-only-ledger.md).
 - Atribut katalog: varian pada impor/ekspor CSV, pengurutan berdasarkan nilai atribut, UI faset etalase di atas filter `attr=`, dan penggantian nama opsi enum — masing-masing dicatat pada "Ditunda" di [ADR-0027](adr/0027-catalog-custom-attributes-are-typed-and-allowlisted.md).
 - Media library ter-upload sungguhan untuk gambar produk/slider/testimonial — sesi `media_library` berbasis-R2 sudah ada, tapi belum ada yang mengisinya di repo ini (lihat [`docs/deployment.md`](deployment.id.md), [`docs/cms.md`](cms.id.md)).
 - Adapter gateway pembayaran Xendit dan pelacakan kurir, keduanya disebut sebagai tindak lanjut eksplisit di belakang port yang sudah dibangun [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md).

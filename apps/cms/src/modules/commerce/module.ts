@@ -39,7 +39,10 @@ import {
   COMMERCE_POS_PERMISSIONS,
   COMMERCE_ENTITLEMENTS_ACTIVITY_CODE,
   COMMERCE_ATTRIBUTES_ACTIVITY_CODE,
-  COMMERCE_ATTRIBUTE_PERMISSIONS
+  COMMERCE_ATTRIBUTE_PERMISSIONS,
+  COMMERCE_LOYALTY_ACTIVITY_CODE,
+  COMMERCE_LOYALTY_ADJUSTMENTS_ACTIVITY_CODE,
+  COMMERCE_LOYALTY_REDEMPTIONS_ACTIVITY_CODE
 } from "./domain/commerce-permissions";
 import {
   COMMERCE_FLASH_SALE_ENDED_EVENT_TYPE,
@@ -53,7 +56,8 @@ import {
   COMMERCE_ORDER_CANCELLED_EVENT_TYPE,
   COMMERCE_ORDER_EXPIRED_EVENT_TYPE,
   COMMERCE_VOUCHER_REDEEMED_EVENT_TYPE,
-  COMMERCE_REVIEW_PUBLISHED_EVENT_TYPE
+  COMMERCE_REVIEW_PUBLISHED_EVENT_TYPE,
+  COMMERCE_LOYALTY_ENTRY_RECORDED_EVENT_TYPE
 } from "./domain/commerce-events";
 import {
   SALES_BY_CATEGORY_PROJECTION_KEY,
@@ -280,7 +284,8 @@ export const commerceModule = defineModule({
       COMMERCE_ORDER_CANCELLED_EVENT_TYPE,
       COMMERCE_ORDER_EXPIRED_EVENT_TYPE,
       COMMERCE_VOUCHER_REDEEMED_EVENT_TYPE,
-      COMMERCE_REVIEW_PUBLISHED_EVENT_TYPE
+      COMMERCE_REVIEW_PUBLISHED_EVENT_TYPE,
+      COMMERCE_LOYALTY_ENTRY_RECORDED_EVENT_TYPE
     ]
   },
   /**
@@ -384,6 +389,34 @@ export const commerceModule = defineModule({
       recommendedSchedule: "Every 1-2 minutes via cron/systemd timer.",
       environmentNotes:
         "No external provider call itself — only inserts into the e-mail/WhatsApp outbox tables; safe to schedule regardless of deployment profile (e.g. offline/LAN).",
+      safeInOfflineLan: true
+    },
+    {
+      command: "bun run commerce:loyalty:expire",
+      schedule: {
+        mode: "cron",
+        expression: "10 * * * *",
+        backlog: "bounded"
+      },
+      purpose:
+        "Expires every loyalty earn lot whose expires_at has passed across every active tenant, appending one `expire` ledger entry per lot (a zero-point marker when the lot was already fully spent) — never a delete or an update (Issue #289). Idempotent: a lot with an expire entry is anti-joined out of the next scan and cannot get a second one (unique index, sql/950). Bounded: 200 accounts per tenant per run, each in its own short transaction.",
+      recommendedSchedule: "Hourly via cron/systemd timer.",
+      environmentNotes:
+        "No external provider call — pure database appends, safe to run in any deployment profile. Correctness does not depend on the cadence: a redemption or reversal expires the account's due lots itself under the account lock before it acts.",
+      safeInOfflineLan: true
+    },
+    {
+      command: "bun run commerce:loyalty:reconcile",
+      schedule: {
+        mode: "cron",
+        expression: "40 2 * * *",
+        backlog: "bounded"
+      },
+      purpose:
+        "Recomputes every active tenant's loyalty balances from the append-only ledger and reports any account whose projected balance/version disagrees with it, plus any ledger row whose running balance_after is not the running sum (Issue #289). READ-ONLY: it never writes — repair is the authenticated POST /api/v1/commerce/loyalty/reconcile with repair:true. Exits non-zero (status partial) when drift is found so the scheduler surfaces it.",
+      recommendedSchedule: "Daily, off-peak, via cron/systemd timer.",
+      environmentNotes:
+        "No external provider call — read-only database scan (bounded to 1000 findings per tenant), safe to run in any deployment profile.",
       safeInOfflineLan: true
     }
   ],
@@ -570,6 +603,16 @@ export const commerceModule = defineModule({
       path: "/admin/commerce-catalog-import",
       order: 21,
       requiredPermission: "commerce.products.import"
+    },
+    // Issue #289 — loyalty programs, balances and the points ledger. Gated on
+    // `loyalty.read` and hidden unless the tenant turned `features.loyalty`
+    // on (default OFF).
+    {
+      labelKey: "admin.layout.nav_commerce_loyalty",
+      path: "/admin/commerce-loyalty",
+      order: 18,
+      requiredPermission: "commerce.loyalty.read",
+      requiredFeature: { moduleKey: "commerce", feature: "loyalty" }
     }
   ],
   /**
@@ -2298,6 +2341,151 @@ export const commerceModule = defineModule({
       executionMode: "generic"
     },
     {
+      key: "commerce.loyalty_ledger",
+      tableName: "awcms_commerce_loyalty_ledger",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "created_at",
+      // Issue #289 / ADR-0026. An append-only points ledger: every row is a
+      // balance-affecting fact (earn, redeem, expire, adjustment, reversal)
+      // and `awcms_commerce_loyalty_accounts.balance` is the SUM of it. The
+      // retention floor is FIVE years and the ceiling/default TEN — the same
+      // fiscal-record class `commerce.orders` states, because a point is a
+      // liability the merchant owes the customer and a redemption is a
+      // discount on a taxable sale. The floor is also an integrity floor: a
+      // purge removes whole old rows, so `commerce:loyalty:reconcile` (which
+      // checks `balance = SUM(points)`) would report drift for an account
+      // whose early history was purged. Ten years is long enough that the
+      // purge is a deliberate operator choice, never a surprise.
+      retentionClass: "financial_tax",
+      retentionMinDays: 1825,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 3650,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by the number of paid orders plus redemptions/expiries per tenant — at most a handful of rows per order. Nowhere near partition-worthy, and a partitioned table could not keep sql/950's composite (tenant_id, id) foreign key from `reverses_entry_id`."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "The generic engine's only implemented artefact is ordinary backup/restore; no standalone archive exists yet for this table."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only mode, run as awcms_worker (the only role that may DELETE here — awcms_app is REVOKEd UPDATE and DELETE by sql/950, and a trigger rejects every UPDATE). Rows are deleted whole and only past the retention window (default ten years); a reversal is deleted together with the earn it compensates (ON DELETE CASCADE on reverses_entry_id, sql/950), so a purge batch can never split the pair. See the retention note above for the reconcile consequence."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "created_at"],
+          purpose:
+            "awcms_commerce_loyalty_ledger_tenant_created_idx (sql/950) — the (tenant, cursor) composite the generic purge engine filters + orders by, and the reporting summary's date-range scan."
+        },
+        {
+          columns: ["tenant_id", "account_id", "created_at"],
+          purpose:
+            "awcms_commerce_loyalty_ledger_account_created_idx (sql/950) — one account's history, newest first (admin ledger view, customer history)."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact. The account projection is rebuilt from this table (commerce:loyalty:reconcile), so a restore of the ledger alone is sufficient.",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.loyalty_accounts",
+      tableName: "awcms_commerce_loyalty_accounts",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      // Issue #289 / ADR-0026. One row per customer, a PROJECTION of the
+      // ledger. The cursor is `updated_at` — bumped by every ledger append —
+      // so only an account UNTOUCHED for the whole window is ever eligible:
+      // its newest ledger row is at most that old, and the ledger descriptor
+      // above purges that history first. The ledger's FK to this table is
+      // RESTRICT, so a pass that races ahead of the ledger purge fails that
+      // batch harmlessly and succeeds on a later run, once the history is gone.
+      cursorColumn: "updated_at",
+      retentionClass: "financial_tax",
+      retentionMinDays: 1825,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 3650,
+      partition: {
+        eligible: false,
+        rationale:
+          "At most one row per customer per tenant (unique index, sql/950) — bounded by commerce.customers."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A projection, fully rebuildable from the ledger; the evidence is the ledger, which has its own descriptor."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only mode. Reaches only an account idle for the full retention window (default ten years); the composite RESTRICT foreign key from the ledger makes it impossible to delete an account that still has history."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "updated_at"],
+          purpose:
+            "awcms_commerce_loyalty_accounts_tenant_updated_idx (sql/950) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact. Rebuilt from the ledger by commerce:loyalty:reconcile.",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.loyalty_programs",
+      tableName: "awcms_commerce_loyalty_programs",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      // Issue #289 / ADR-0026. A rule VERSION. The cursor is `effective_to`,
+      // which is NULL for a draft and for the open active version — a NULL
+      // never satisfies `< cutoff`, so a live or not-yet-live rule is
+      // unreachable by construction. Only a version RETIRED more than the
+      // window ago is eligible, and every ledger row that cites it is older
+      // still (an earn is stamped with a version that was in force when it was
+      // written) and has been purged first; the ledger's composite FK to this
+      // table is RESTRICT for the same reason as accounts above.
+      cursorColumn: "effective_to",
+      retentionClass: "financial_tax",
+      retentionMinDays: 1825,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 3650,
+      partition: {
+        eligible: false,
+        rationale:
+          "A tenant has a handful of versions over its lifetime — each needs a human action to create."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "Tiny and human-authored; ordinary backup/restore is the artefact."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only mode. Reaches only a version retired for the full window; a draft or the open active version has effective_to NULL and can never match, and the ledger's RESTRICT FK refuses a version that still has history."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "effective_to"],
+          purpose:
+            "awcms_commerce_loyalty_programs_tenant_effective_to_idx (sql/950) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "generic"
+    },
+    {
       key: "commerce.attribute_definitions",
       tableName: "awcms_commerce_attribute_definitions",
       ownerModuleKey: "commerce",
@@ -2933,6 +3121,39 @@ export const commerceModule = defineModule({
         "Issue #268 (IRMbyDUS) — which product's entitlement gates which private media object. Names a product and a media object, never a person; no column on this table could join a row to any subject even in principle. Retained under the same obligation as commerce.entitlements: the link is what makes an already-sold product's download issuable at all, so it is deployment configuration bound to the product's lifecycle, not personal data."
     },
     {
+      key: "commerce.loyalty_programs",
+      tableName: "awcms_commerce_loyalty_programs",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "Issue #289 — a rule VERSION (earn rate, minimum order, expiry days) a tenant administrator authored; it describes the store's offer, never a person. created_by_tenant_user_id names the STAFF author for attribution only, the same posture the audit log's actor column takes, and the version is retained because every ledger row that cites it is a financial record."
+    },
+    {
+      key: "commerce.loyalty_accounts",
+      tableName: "awcms_commerce_loyalty_accounts",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "Issue #289 — customer_id names a row in commerce.customers, which itself carries no tenant_user/identity/profile/principal id (ADR-0016 D1, same gap commerce.orders'/commerce.entitlements' own entries document) — this engine's subject vocabulary still cannot reach it. The balance is a projection of the ledger, which is retained as a financial record (a point is a liability the merchant owes), so the account is retained under that obligation rather than erased even if it were reachable."
+    },
+    {
+      key: "commerce.loyalty_ledger",
+      tableName: "awcms_commerce_loyalty_ledger",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "Issue #289 — rows are keyed to account_id -> customer_id -> commerce.customers, which carries no tenant_user/identity/profile/principal id (ADR-0016 D1), so this engine's subject vocabulary cannot reach them. actor_tenant_user_id names the STAFF member of a manual adjustment/redemption for attribution only (audit-log posture), not a data subject. The ledger is append-only and retained under the fiscal-record obligation: rewriting or erasing a row would falsify every later balance_after, which is exactly what an append-only ledger exists to prevent."
+    },
+    {
       key: "commerce.attribute_definitions",
       tableName: "awcms_commerce_attribute_definitions",
       ownerModuleKey: "commerce",
@@ -3267,6 +3488,30 @@ export const commerceModule = defineModule({
       activityCode: COMMERCE_PRODUCTS_ACTIVITY_CODE,
       action: "import",
       description: "Dry-run and apply a product catalog CSV import (Issue #291)"
+    },
+    {
+      activityCode: COMMERCE_LOYALTY_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "View loyalty programs, customer point balances, the point ledger and the loyalty summary (Issue #289)"
+    },
+    {
+      activityCode: COMMERCE_LOYALTY_ACTIVITY_CODE,
+      action: "manage",
+      description:
+        "Create, edit, activate and retire loyalty program versions, and repair a drifted balance projection from the ledger (Issue #289)"
+    },
+    {
+      activityCode: COMMERCE_LOYALTY_ADJUSTMENTS_ACTIVITY_CODE,
+      action: "create",
+      description:
+        "Record a manual loyalty points adjustment — a signed ledger entry with a mandatory reason (Issue #289)"
+    },
+    {
+      activityCode: COMMERCE_LOYALTY_REDEMPTIONS_ACTIVITY_CODE,
+      action: "create",
+      description:
+        "Redeem a customer's loyalty points at the counter or on their behalf (Issue #289)"
     }
   ]
 });
@@ -3295,3 +3540,8 @@ export {
   COMMERCE_POS_PERMISSIONS,
   COMMERCE_ATTRIBUTE_PERMISSIONS
 };
+export {
+  COMMERCE_LOYALTY_PERMISSIONS,
+  COMMERCE_LOYALTY_ADJUSTMENT_PERMISSIONS,
+  COMMERCE_LOYALTY_REDEMPTION_PERMISSIONS
+} from "./domain/commerce-permissions";

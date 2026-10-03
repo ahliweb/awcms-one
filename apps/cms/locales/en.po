@@ -7306,6 +7306,244 @@ msgid "Download the live product catalog as a CSV file (UTF-8). It includes one 
 msgstr ""
 
 msgid "Earliest date"
+
+msgid "Accounts checked"
+msgstr ""
+
+msgid "Activate this version?"
+msgstr ""
+
+msgid "Activate version"
+msgstr ""
+
+msgid "Adjust points"
+msgstr ""
+
+msgid "Adjustment"
+msgstr ""
+
+msgid "All-time figures, summed from the ledger."
+msgstr ""
+
+msgid "An account opens with a customer's first points."
+msgstr ""
+
+msgid "Balance after"
+msgstr ""
+
+msgid "Balance check"
+msgstr ""
+
+msgid "Balances out of step"
+msgstr ""
+
+msgid "Balances repaired"
+msgstr ""
+
+msgid "Create a draft and activate it to start awarding points."
+msgstr ""
+
+msgid "Create a program version"
+msgstr ""
+
+msgid "Customer balance"
+msgstr ""
+
+msgid "Customer lookup"
+msgstr ""
+
+msgid "Customer phone"
+msgstr ""
+
+msgid "Each out-of-step balance is rewritten from the ledger. The ledger itself is never changed."
+msgstr ""
+
+msgid "Earn rule"
+msgstr ""
+
+msgid "Earned"
+msgstr ""
+
+msgid "Effective"
+msgstr ""
+
+msgid "Every balance matches the ledger."
+msgstr ""
+
+msgid "Expiry"
+msgstr ""
+
+msgid "Find customer"
+msgstr ""
+
+msgid "Ledger rows that need review"
+msgstr ""
+
+msgid "Loyalty"
+msgstr ""
+
+msgid "Loyalty could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Loyalty points are turned off for this store. Turn them on under Store settings, Features."
+msgstr ""
+
+msgid "Loyalty points"
+msgstr ""
+
+msgid "Maximum points per order (optional)"
+msgstr ""
+
+msgid "Never"
+msgstr ""
+
+msgid "No customer found."
+msgstr ""
+
+msgid "No loyalty accounts yet"
+msgstr ""
+
+msgid "No points activity yet"
+msgstr ""
+
+msgid "No program versions yet"
+msgstr ""
+
+msgid "Older entries"
+msgstr ""
+
+msgid "Orders paid from now on will earn no points until another version is activated. Points already earned are not affected."
+msgstr ""
+
+msgid "Points"
+msgstr ""
+
+msgid "Points (negative to deduct)"
+msgstr ""
+
+msgid "Points earned"
+msgstr ""
+
+msgid "Points expire after days (optional)"
+msgstr ""
+
+msgid "Points expired"
+msgstr ""
+
+msgid "Points outstanding"
+msgstr ""
+
+msgid "Points per step"
+msgstr ""
+
+msgid "Points programs, customer balances and the append-only points ledger."
+msgstr ""
+
+msgid "Points redeemed"
+msgstr ""
+
+msgid "Points reversed"
+msgstr ""
+
+msgid "Points to redeem"
+msgstr ""
+
+msgid "Recently opened accounts"
+msgstr ""
+
+msgid "Recomputes every balance from the ledger and compares it with the stored balance. Checking changes nothing."
+msgstr ""
+
+msgid "Record adjustment"
+msgstr ""
+
+msgid "Redeem"
+msgstr ""
+
+msgid "Redeem points"
+msgstr ""
+
+msgid "Redeemed"
+msgstr ""
+
+msgid "Repair balances"
+msgstr ""
+
+msgid "Repair balances from the ledger?"
+msgstr ""
+
+msgid "Retire"
+msgstr ""
+
+msgid "Retire this version?"
+msgstr ""
+
+msgid "Retire version"
+msgstr ""
+
+msgid "Retired"
+msgstr ""
+
+msgid "Reversal"
+msgstr ""
+
+msgid "Run balance check"
+msgstr ""
+
+msgid "Some balances do not match the ledger."
+msgstr ""
+
+msgid "Spend per earning step"
+msgstr ""
+
+msgid "That is not a valid Indonesian phone number."
+msgstr ""
+
+msgid "Version {version} takes effect now and replaces the version currently in force. Orders paid from now on earn under it."
+msgstr ""
+
+msgid "Version {version} takes effect now. Orders paid from now on earn under it."
+msgstr ""
+
+msgid "You do not have permission to view loyalty."
+msgstr ""
+
+msgid "max {points} per order"
+msgstr ""
+
+msgid "open"
+msgstr ""
+
+msgid "points"
+msgstr ""
+
+msgid "{points} per {amount} spent"
+msgstr ""
+
+msgid "{count} account below zero"
+msgid_plural "{count} accounts below zero"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} day"
+msgid_plural "{count} days"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} entry shown"
+msgid_plural "{count} entries shown"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} point"
+msgid_plural "{count} points"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} program version"
+msgid_plural "{count} program versions"
+msgstr[0] ""
+msgstr[1] ""
 msgid "Delete {host}?"
 msgstr ""
 

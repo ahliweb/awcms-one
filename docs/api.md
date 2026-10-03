@@ -221,6 +221,27 @@ One route file, two handlers (`apps/cms/src/pages/api/v1/commerce/pos/orders/ind
 
 No phone → the sale is attached to the tenant's single walk-in customer row (sentinel phone `+620000000000`); a phone → find-or-create by the normalised number and the customer's `level` prices the sale. The storefront paths (`GET storefront/orders/{code}?phone=`, `GET storefront/account/orders(/{code})`) never return a `channel: "pos"` order, and `POST storefront/orders` refuses both `payment.method: "cash"` and the sentinel phone. Product search for the POS screen is the existing `GET /api/v1/commerce/products?q=&status=active`.
 
+### Loyalty points ledger — implemented (#289, ADR-0026)
+
+All owner routes are `defineTenantRoute`, behind the tenant's `loyalty` feature flag (`409 FEATURE_DISABLED` when off; default **off**). The customer route is the anonymous-family bearer pattern (ADR-0016 D3) and answers the neutral `404` when the feature is off. Full design: [ADR-0026](adr/0026-loyalty-points-are-an-append-only-ledger.md); vocabulary: [`docs/kamus-data.md`](kamus-data.md).
+
+| Method | Path | Auth | Notes |
+| --- | --- | --- | --- |
+| `GET` / `POST` | `commerce/loyalty/programs` | `commerce.loyalty.read` / `.manage` | List every rule version, newest first / create a **draft** (version = max + 1 per tenant). Body `{name, earnUnitAmount (decimal string), earnPointsPerUnit (int), minOrderAmount?, maxPointsPerOrder?, expiryDays?, notes?}` |
+| `GET` / `PATCH` | `commerce/loyalty/programs/{id}` | `.read` / `.manage` | `PATCH` edits a **draft** only; an active or retired version is immutable (`409 PROGRAM_NOT_EDITABLE`) |
+| `POST` | `commerce/loyalty/programs/{id}/activate` | `.manage` (high-risk) | Activates a draft **now** and closes the open version in the same transaction (`409 PROGRAM_NOT_DRAFT` on a repeat) |
+| `POST` | `commerce/loyalty/programs/{id}/retire` | `.manage` | Ends the open active version now (`409 PROGRAM_NOT_ACTIVE` otherwise); points already earned are untouched |
+| `GET` | `commerce/loyalty/accounts` | `.read` | Keyset list (`?cursor&limit`), `?customerId=`, or the counter lookup `?phone=` (also returns a `customer` block with balance 0 for a customer with no account). Phones are masked |
+| `GET` | `commerce/loyalty/accounts/{customerId}` | `.read` | Name, masked phone, projected `balance`. Unknown/other-tenant customer is one `404` |
+| `GET` | `commerce/loyalty/accounts/{customerId}/ledger` | `.read` | The append-only history, newest first, keyset-paginated; staff view (actor and reason included) |
+| `POST` | `commerce/loyalty/accounts/{customerId}/redeem` | `commerce.loyalty_redemptions.create` | **`Idempotency-Key` required.** `{points (int >= 1), reason?}`. Runs under the account lock: `409 INSUFFICIENT_POINTS` (`details.balance`/`requested`) for the request that would overdraw. Records the points debit only — no discount |
+| `POST` | `commerce/loyalty/accounts/{customerId}/adjust` | `commerce.loyalty_adjustments.create` | **`Idempotency-Key` required.** `{points (non-zero int), reason (required, <= 500)}`. `409 WOULD_GO_NEGATIVE` for a deduction below zero. Audited |
+| `GET` | `commerce/loyalty/summary` | `.read` | `?from&to` (ISO instant or `YYYY-MM-DD`): `period.{earned,redeemed,expired,adjustmentsNet,reversed,net}` plus all-time `outstanding`, each a `SUM` over the ledger by `kind` |
+| `POST` | `commerce/loyalty/reconcile` | `.manage` (high-risk) | `{repair?: boolean}`. Reports projection drift and ledger breaks; `repair: true` rewrites only the drifted projections, one audit event each |
+| `GET` | `commerce/storefront/account/loyalty` | customer bearer | Own `balance`, the rule in force, and own history (`?cursor&limit`). The customer id comes only from the verified session; history items are `{id, kind, points, balanceAfter, expiresAt, createdAt}` |
+
+A same-key/same-body repeat of `redeem`/`adjust` replays the stored `201`; same key with a different body is `409 IDEMPOTENCY_CONFLICT`. Earn and reversal have **no route**: they run from the `order.paid` / `order.cancelled` domain events (`commerce.order_paid_loyalty_earner`, `commerce.order_cancelled_loyalty_reverser`), and expiry from the `commerce:loyalty:expire` job. Permissions added: `commerce.loyalty.{read,manage}`, `commerce.loyalty_adjustments.create`, `commerce.loyalty_redemptions.create`. Domain event added: `awcms.commerce.loyalty.entry_recorded` (aggregate `commerce.loyalty_account`).
+
 ## Request/response shapes
 
 `CommerceProduct` (owner and storefront reads share the same shape; fields added by #23 are additive):

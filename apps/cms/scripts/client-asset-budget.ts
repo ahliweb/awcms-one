@@ -1226,6 +1226,20 @@ export const READER_BUDGET_BYTES = 24_000;
  * and the shared chrome; nothing is hand-copied.
  */
 /**
+ * **Raised to 291,400 B for awcms-one Issue #289 (loyalty points ledger)** —
+ * `/admin/commerce-loyalty` adds one admin screen: its own `<script>` (program
+ * create/activate/retire, redeem/adjust with a per-submit `Idempotency-Key`,
+ * and the balance check's result rendering), built entirely on existing shared
+ * chrome (`admin-form-client.ts`, `commerce-confirm-dialog-client.ts`,
+ * `.admin-stat-card`/`.admin-status-pill`/`.data-table--stack`) — no new
+ * component and no new stylesheet — plus 76 new i18n catalogue entries
+ * (`locales/id.po`, compiled into the client catalogue). Measured clean build:
+ * 291,291 B (up from 288,391 B at the #260 sync). 291,400 keeps the same
+ * tight "measured + small margin" convention as every raise above; re-measure
+ * on the next commerce screen and tighten if the real total sits well below
+ * this.
+ */
+/**
  * **Raised to 344,000 B in awcms-one (subtree sync of awcms v10.4.0
  * `cfc2df9a`, issue awcms-one#300)** — again BOTH lineages: upstream's own
  * 239,956 → 295,259 B (3D Mission Control: its page script, the lazy WebGL2
@@ -1247,7 +1261,24 @@ export const READER_BUDGET_BYTES = 24_000;
  * catalogue entries, +7,558 B). 351,600 keeps the "measured + small margin"
  * convention.
  */
-export const APP_BUDGET_BYTES = 351_600;
+/**
+ * **Raised to 347,000 B when awcms-one#289 (loyalty points ledger) was merged
+ * onto the #300 sync (AWCMS v10.4.0)** — the two raises above (291,400 B at
+ * #289's own baseline; 344,000 B at the sync) are not additive, so the figure
+ * is MEASURED on the merged build: 346,862 B (the sync's 343,962 B plus the
+ * loyalty screen's own script and 76 catalogue entries, +2,900 B). 347,000
+ * keeps the "measured + small margin" convention.
+ */
+/**
+ * **Raised to 354,500 B when awcms-one#291 (typed catalog attributes) was
+ * merged onto the build that already carries #289 (loyalty) and the #300
+ * sync** — the two feature raises above are not additive (each was measured
+ * off a different baseline), so the figure is MEASURED on the merged build:
+ * 354,420 B (loyalty's 346,862 B plus the attribute / catalog-import screens,
+ * their shared client and ~100 new catalogue entries, +7,558 B). 354,500
+ * keeps the "measured + small margin" convention.
+ */
+export const APP_BUDGET_BYTES = 354_500;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

@@ -134,6 +134,10 @@ import type {
 import type { AdminConversationRecord } from "../../modules/commerce/application/conversation-directory";
 import type { CustomerAdminRecord } from "../../modules/commerce/application/customer-directory";
 import type { WebhookEndpointProvider } from "../../modules/commerce/application/webhook-endpoint-directory";
+import type {
+  LoyaltyEntryKind,
+  LoyaltyProgramStatus
+} from "../../modules/commerce/domain/loyalty";
 import type { ProjectionFreshnessStatus } from "../../modules/reporting/domain/freshness";
 import type { RebuildRunStatus } from "../../modules/reporting/application/rebuild-run-store";
 
@@ -442,6 +446,22 @@ export function createCommerceLabels(t: Translator["t"]) {
     replay: t("Replay")
   } satisfies Record<PaymentEventOutcome, string>;
 
+  /** Issue #289 — the five ledger entry kinds of the loyalty points ledger. */
+  const loyaltyEntryKind = {
+    earn: t("Earned"),
+    redeem: t("Redeemed"),
+    expire: t("Expired"),
+    adjustment: t("Adjustment"),
+    reversal: t("Reversal")
+  } satisfies Record<LoyaltyEntryKind, string>;
+
+  /** Issue #289 — a loyalty program version's lifecycle. `draft`/`active` reuse existing msgids; `retired` is new. */
+  const loyaltyProgramStatus = {
+    draft: t("Draft"),
+    active: t("Active"),
+    retired: t("Retired")
+  } satisfies Record<LoyaltyProgramStatus, string>;
+
   return {
     orderStatus,
     paymentStatus,
@@ -468,7 +488,9 @@ export function createCommerceLabels(t: Translator["t"]) {
     popupFrequency,
     webhookEndpointProvider,
     paymentGatewaySessionProvider,
-    paymentEventOutcome
+    paymentEventOutcome,
+    loyaltyEntryKind,
+    loyaltyProgramStatus
   };
 }
 
@@ -547,4 +569,14 @@ export const reportRunStatusTone: Record<RebuildRunStatus, CommerceTone> = {
   completed: "success",
   failed: "danger",
   cancelled: "neutral"
+};
+
+/** Issue #289 — a draft is awaiting activation (warning), the open active version is success, a retired one is neutral. */
+export const loyaltyProgramStatusTone: Record<
+  LoyaltyProgramStatus,
+  CommerceTone
+> = {
+  draft: "warning",
+  active: "success",
+  retired: "neutral"
 };

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](arsitektur.md)
 
-<!-- i18n-source-hash: sha256:f6e10b63862a6b3c182f84e04c02682f5b7644a422a20ec035c8e94a9cca7ba3 -->
+<!-- i18n-source-hash: sha256:1013cc9eb1b78232ee3dae4c8fbce4725c8829455d0e5925224342648cf99c90 -->
 
 # Arsitektur
 
@@ -182,6 +182,10 @@ flowchart TB
 | `PaymentGatewayProvider` (issue #110/#113) | `midtrans`, `log` | `awcms_commerce_payment_gateway_sessions`, `awcms_commerce_payment_events` (buku besar anti-replay), `awcms_commerce_webhook_endpoints` (token di-hash) | `commerce:payments:reconcile` (tiap 2 menit) |
 
 **Webhook masuk tidak pernah mempercayai payload untuk identitas tenant.** `POST /api/v1/commerce/webhooks/{provider}/{endpointToken}` publik me-resolve `(tenant, provider)` dari token per-tenant yang opak dan di-hash lewat fungsi bootstrap `SECURITY DEFINER` yang meniru `awcms_resolve_tenant_domain_lookup` — body webhook yang mengklaim `tenant_id` akan menjadi oracle yang tidak terverifikasi, sesuai tabel alternatif-yang-ditolak milik ADR-0017 D2 sendiri. Perlindungan replay adalah constraint `UNIQUE (tenant_id, provider, event_key)` pada `awcms_commerce_payment_events`, sehingga pengiriman at-least-once milik penyedia menjadi idempoten: event yang di-replay tetap menjawab `200`, hanya tanpa efek samping kedua. Ketidakcocokan jumlah antara `gross_amount` webhook dan total pesanan sendiri dicatat (`outcome = 'amount_mismatch'`) tapi tidak pernah menandai pesanan lunas — `sql/934` menambahkan guard itu setelah #110 dikirim, menutup celah yang ditandai #113. Karena webhook bisa hilang dalam perjalanan, `commerce:payments:reconcile` mem-poll `fetchStatus` setiap sesi gateway yang masih `pending`/`created` pada jadwalnya sendiri — jalur `markOrderPaidBySystem` yang sama yang dipakai handler webhook, sehingga webhook yang hilang menyembuhkan dirinya sendiri dalam interval job itu alih-alih membuat pesanan terdampar selamanya di `pending_payment`.
+
+## Poin loyalitas: buku besar append-only yang diumpan domain event ([ADR-0026](adr/0026-loyalty-points-are-an-append-only-ledger.id.md))
+
+Loyalitas berada di dalam `commerce` dan tidak menyentuh kode order, POS, penetapan harga, atau webhook pembayaran. Setiap jalur pembayaran sudah menerbitkan `order.paid` dan setiap pembatalan `order.cancelled`; dua consumer `domain_event_runtime` (`commerce.order_paid_loyalty_earner`, `commerce.order_cancelled_loyalty_reverser`, terdaftar di samping entitlement grantor) mengubahnya menjadi baris `awcms_commerce_loyalty_ledger`. Ledger adalah kebenarannya dan `awcms_commerce_loyalty_accounts.balance` proyeksinya, dijaga dalam transaksi yang sama dengan setiap insert di bawah kunci baris — `appendLedgerEntry` di `application/loyalty-ledger.ts` adalah satu-satunya penulis — itulah yang membuat dua redeem konkuren aman tanpa loop retry. Dua job menyertainya: `commerce:loyalty:expire` (append-only, idempoten) dan `commerce:loyalty:reconcile` yang hanya-baca. Seluruh fitur berada di balik `features.loyalty`, default mati, dan endpoint untuk pelanggan memakai pola sesi bearer yang sama dengan permukaan akun lainnya (tanpa cookie, id pelanggan hanya dari sesi).
 
 ## Satu hal lagi yang dilakukan server: memperbaiki halaman yang terbayangi
 

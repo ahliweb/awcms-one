@@ -1,0 +1,953 @@
+---
+/**
+ * `/admin/commerce-loyalty` — loyalty programs, balances and the points ledger
+ * (Issue #289, ADR-0026). One screen, four panels:
+ *
+ *   1. key figures from the ledger (outstanding / earned / redeemed / expired);
+ *   2. program versions — create a draft, activate it, retire the open one;
+ *   3. a customer lookup (by phone, or from the recent-accounts list) with that
+ *      customer's balance, their append-only history, and the redeem / adjust
+ *      forms (each gated by its OWN permission);
+ *   4. a read-only reconcile check, with an explicit, confirmed "repair" when
+ *      it finds a drifted balance projection.
+ *
+ * Real data only: every figure is `fetchLoyaltySummary` summing the ledger or
+ * a row from one of the three loyalty tables. The panel is hidden by the
+ * `loyalty` feature flag (default OFF); a direct visit while it is off says so
+ * instead of rendering an empty program table.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import CommerceConfirmDialog from "../../components/CommerceConfirmDialog.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import {
+  formatCurrency,
+  formatDateTime,
+  formatNumber
+} from "../../lib/i18n/format";
+import {
+  commerceLabel,
+  createCommerceLabels,
+  loyaltyProgramStatusTone
+} from "../../lib/ui/commerce-admin-labels";
+import { fetchCommerceFeatures } from "../../modules/commerce/application/commerce-feature-gate";
+import {
+  fetchLoyaltyAccountForCustomer,
+  fetchLoyaltyCustomerById,
+  fetchLoyaltySummary,
+  findCustomerForLoyaltyLookup,
+  listLedgerForAccount,
+  listLoyaltyAccounts
+} from "../../modules/commerce/application/loyalty-ledger";
+import { listLoyaltyPrograms } from "../../modules/commerce/application/loyalty-program-directory";
+import { decodeKeysetCursor } from "../../modules/_shared/keyset-pagination";
+import { normalizePhoneNumber } from "../../modules/commerce/domain/phone-normalisation";
+import { SALES_REPORT_TIME_ZONE } from "../../modules/commerce/domain/sales-report-deltas";
+
+const ssr = Astro.locals.ssrContext!;
+const locale = Astro.locals.locale;
+const { t, tn } = getTranslatorFor(locale);
+const labels = createCommerceLabels(t);
+const CURRENCY = "IDR";
+const money = (value: string) =>
+  formatCurrency(locale, value, CURRENCY, { maximumFractionDigits: 0 });
+const count = (value: number) => formatNumber(locale, value);
+const signed = (value: number) =>
+  `${value > 0 ? "+" : ""}${formatNumber(locale, value)}`;
+const when = (iso: string | null) =>
+  iso === null ? "—" : formatDateTime(locale, iso, SALES_REPORT_TIME_ZONE);
+
+const UUID_PATTERN =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const phoneParam = Astro.url.searchParams.get("phone")?.trim() ?? "";
+const customerParam = Astro.url.searchParams.get("customer") ?? "";
+const cursorParam = Astro.url.searchParams.get("cursor");
+const lookupPhone = phoneParam ? normalizePhoneNumber(phoneParam) : null;
+const phoneInvalid = lookupPhone !== null && !lookupPhone.valid;
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "commerce",
+    activityCode: "loyalty",
+    action: "read"
+  },
+  load: async ({ tx, can }) => {
+    const features = await fetchCommerceFeatures(tx, ssr.tenantId);
+    if (!features.loyalty) {
+      return { enabled: false as const };
+    }
+
+    const canManage = await can({
+      moduleKey: "commerce",
+      activityCode: "loyalty",
+      action: "manage"
+    });
+    const canAdjust = await can({
+      moduleKey: "commerce",
+      activityCode: "loyalty_adjustments",
+      action: "create"
+    });
+    const canRedeem = await can({
+      moduleKey: "commerce",
+      activityCode: "loyalty_redemptions",
+      action: "create"
+    });
+
+    const summary = await fetchLoyaltySummary(tx, ssr.tenantId, {});
+    const programs = await listLoyaltyPrograms(tx, ssr.tenantId);
+    const accounts = await listLoyaltyAccounts(tx, ssr.tenantId, {}, null, 10);
+
+    // The selected customer: a phone lookup wins, else an explicit id.
+    let customer = null;
+    if (lookupPhone && lookupPhone.valid) {
+      customer = await findCustomerForLoyaltyLookup(
+        tx,
+        ssr.tenantId,
+        lookupPhone.value
+      );
+    } else if (UUID_PATTERN.test(customerParam)) {
+      customer = await fetchLoyaltyCustomerById(
+        tx,
+        ssr.tenantId,
+        customerParam
+      );
+    }
+
+    let ledger = null;
+    if (customer) {
+      const account = await fetchLoyaltyAccountForCustomer(
+        tx,
+        ssr.tenantId,
+        customer.id
+      );
+      const decoded = cursorParam ? decodeKeysetCursor(cursorParam) : null;
+      ledger = account
+        ? await listLedgerForAccount(tx, ssr.tenantId, account.id, decoded, 20)
+        : { items: [], nextCursor: null };
+    }
+
+    return {
+      enabled: true as const,
+      canManage,
+      canAdjust,
+      canRedeem,
+      summary,
+      programs,
+      accounts,
+      customer,
+      ledger
+    };
+  },
+  onError: (error) => {
+    logAdminPageError(
+      "admin/commerce-loyalty.astro: failed to load loyalty data",
+      error,
+      { correlationId: Astro.locals.correlationId }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+const loadError = screen.state === "error";
+const data = screen.state === "allowed" ? screen.data : null;
+const enabled = data !== null && data.enabled === true;
+const view = data !== null && data.enabled === true ? data : null;
+const canManage = view?.canManage ?? false;
+const canAdjust = view?.canAdjust ?? false;
+const canRedeem = view?.canRedeem ?? false;
+const summary = view?.summary ?? null;
+const programs = view?.programs ?? [];
+const accounts = view?.accounts.items ?? [];
+const customer = view?.customer ?? null;
+const ledger = view?.ledger ?? null;
+const hasOpenProgram = programs.some(
+  (program) => program.status === "active" && program.effectiveTo === null
+);
+const ruleText = (program: (typeof programs)[number]) =>
+  t("{points} per {amount} spent", {
+    points: tn("{count} point", "{count} points", program.earnPointsPerUnit, {
+      count: count(program.earnPointsPerUnit)
+    }),
+    amount: money(program.earnUnitAmount)
+  });
+---
+
+<AdminLayout
+  title={t("Loyalty")}
+  description={t(
+    "Points programs, customer balances and the append-only points ledger."
+  )}
+>
+  {!canRead && (
+    <p class="state-notice fade-in-up" id="loyalty-denied">
+      {t("You do not have permission to view loyalty.")}
+    </p>
+  )}
+  {canRead && loadError && (
+    <p class="state-notice fade-in-up" id="loyalty-error">
+      {t("Loyalty could not be loaded right now. Please try again later.")}
+    </p>
+  )}
+  {canRead && !loadError && data !== null && !enabled && (
+    <p class="state-notice fade-in-up" id="loyalty-disabled">
+      {t(
+        "Loyalty points are turned off for this store. Turn them on under Store settings, Features."
+      )}
+    </p>
+  )}
+
+  {canRead && !loadError && view !== null && summary !== null && (
+    <div class="fade-in-up">
+      <section class="admin-dashboard-stats" aria-label={t("Key figures")}>
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Points outstanding")}</span>
+          <span class="admin-stat-card-value" id="loyalty-stat-outstanding">
+            {count(summary.outstanding)}
+          </span>
+          {summary.accountsWithNegativeBalance > 0 && (
+            <span class="admin-status-pill" data-tone="warning">
+              <span class="admin-status-pill-dot" aria-hidden="true" />
+              {tn(
+                "{count} account below zero",
+                "{count} accounts below zero",
+                summary.accountsWithNegativeBalance,
+                { count: count(summary.accountsWithNegativeBalance) }
+              )}
+            </span>
+          )}
+        </div>
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Points earned")}</span>
+          <span class="admin-stat-card-value">
+            {count(summary.period.earned)}
+          </span>
+        </div>
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Points redeemed")}</span>
+          <span class="admin-stat-card-value">
+            {count(summary.period.redeemed)}
+          </span>
+        </div>
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Points expired")}</span>
+          <span class="admin-stat-card-value">
+            {count(summary.period.expired)}
+          </span>
+        </div>
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Points reversed")}</span>
+          <span class="admin-stat-card-value">
+            {count(summary.period.reversed)}
+          </span>
+        </div>
+      </section>
+      <p class="admin-stat-card-caption">
+        {t("All-time figures, summed from the ledger.")}
+      </p>
+    </div>
+  )}
+
+  {canManage && view !== null && (
+    <form id="loyalty-program-form" class="admin-create-form fade-in-up">
+      <p class="form-legend">{t("Create a program version")}</p>
+      <p
+        id="loyalty-program-error"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      />
+
+      <label for="loyalty-name">{t("Name")}</label>
+      <input
+        id="loyalty-name"
+        name="name"
+        type="text"
+        required
+        autocomplete="off"
+      />
+
+      <label for="loyalty-unit">{t("Spend per earning step")}</label>
+      <input
+        id="loyalty-unit"
+        name="earnUnitAmount"
+        type="text"
+        inputmode="decimal"
+        required
+        placeholder="10000.00"
+      />
+
+      <label for="loyalty-points">{t("Points per step")}</label>
+      <input
+        id="loyalty-points"
+        name="earnPointsPerUnit"
+        type="number"
+        min="1"
+        step="1"
+        required
+        value="1"
+      />
+
+      <label for="loyalty-min">{t("Minimum order")}</label>
+      <input
+        id="loyalty-min"
+        name="minOrderAmount"
+        type="text"
+        inputmode="decimal"
+        placeholder="0.00"
+      />
+
+      <label for="loyalty-max">
+        {t("Maximum points per order (optional)")}
+      </label>
+      <input
+        id="loyalty-max"
+        name="maxPointsPerOrder"
+        type="number"
+        min="1"
+        step="1"
+      />
+
+      <label for="loyalty-expiry">
+        {t("Points expire after days (optional)")}
+      </label>
+      <input
+        id="loyalty-expiry"
+        name="expiryDays"
+        type="number"
+        min="1"
+        step="1"
+      />
+
+      <label for="loyalty-notes">{t("Notes")}</label>
+      <input id="loyalty-notes" name="notes" type="text" autocomplete="off" />
+
+      <button type="submit" id="loyalty-program-submit">
+        {t("Create draft")}
+      </button>
+    </form>
+  )}
+
+  {canRead && !loadError && view !== null && (
+    <p
+      id="loyalty-action-error"
+      class="admin-create-error"
+      role="alert"
+      hidden
+    />
+  )}
+
+  {canRead && !loadError && view !== null && (
+    <div class="data-table-scroll fade-in-up">
+      <table class="data-table data-table--stack" id="loyalty-programs-table">
+        <caption>
+          {tn(
+            "{count} program version",
+            "{count} program versions",
+            programs.length,
+            {
+              count: programs.length
+            }
+          )}
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">{t("Version")}</th>
+            <th scope="col">{t("Name")}</th>
+            <th scope="col">{t("Status")}</th>
+            <th scope="col">{t("Earn rule")}</th>
+            <th scope="col">{t("Minimum order")}</th>
+            <th scope="col">{t("Expiry")}</th>
+            <th scope="col">{t("Effective")}</th>
+            {canManage && <th scope="col">{t("Actions")}</th>}
+          </tr>
+        </thead>
+        <tbody>
+          {programs.length === 0 ? (
+            <tr>
+              <td class="data-table-empty" colspan={canManage ? 8 : 7}>
+                <div class="empty-state">
+                  <span class="empty-state-icon" aria-hidden="true">
+                    ◇
+                  </span>
+                  <span class="empty-state-title">
+                    {t("No program versions yet")}
+                  </span>
+                  <span class="empty-state-text">
+                    {t(
+                      "Create a draft and activate it to start awarding points."
+                    )}
+                  </span>
+                </div>
+              </td>
+            </tr>
+          ) : (
+            programs.map((program) => (
+              <tr data-program-row={program.id}>
+                <td data-label={t("Version")}>{program.version}</td>
+                <td data-label={t("Name")}>{program.name}</td>
+                <td data-label={t("Status")}>
+                  <span
+                    class="admin-status-pill"
+                    data-tone={loyaltyProgramStatusTone[program.status]}
+                    data-status={program.status}
+                  >
+                    <span class="admin-status-pill-dot" aria-hidden="true" />
+                    {commerceLabel(labels.loyaltyProgramStatus, program.status)}
+                  </span>
+                </td>
+                <td data-label={t("Earn rule")}>
+                  {ruleText(program)}
+                  {program.maxPointsPerOrder !== null &&
+                    ` · ${t("max {points} per order", { points: count(program.maxPointsPerOrder) })}`}
+                </td>
+                <td data-label={t("Minimum order")}>
+                  {money(program.minOrderAmount)}
+                </td>
+                <td data-label={t("Expiry")}>
+                  {program.expiryDays === null
+                    ? t("Never")
+                    : tn("{count} day", "{count} days", program.expiryDays, {
+                        count: count(program.expiryDays)
+                      })}
+                </td>
+                <td data-label={t("Effective")}>
+                  {program.effectiveFrom === null
+                    ? "—"
+                    : `${when(program.effectiveFrom)} → ${program.effectiveTo === null ? t("open") : when(program.effectiveTo)}`}
+                </td>
+                {canManage && (
+                  <td data-label={t("Actions")} class="stacked-block">
+                    <div class="row-actions">
+                      {program.status === "draft" && (
+                        <button
+                          type="button"
+                          class="module-toggle loyalty-activate-btn"
+                          data-program-id={program.id}
+                          data-confirm-title={t("Activate this version?")}
+                          data-confirm-message={
+                            hasOpenProgram
+                              ? t(
+                                  "Version {version} takes effect now and replaces the version currently in force. Orders paid from now on earn under it.",
+                                  { version: program.version }
+                                )
+                              : t(
+                                  "Version {version} takes effect now. Orders paid from now on earn under it.",
+                                  { version: program.version }
+                                )
+                          }
+                          data-confirm-label={t("Activate version")}
+                        >
+                          {t("Activate")}
+                        </button>
+                      )}
+                      {program.status === "active" &&
+                        program.effectiveTo === null && (
+                          <button
+                            type="button"
+                            class="module-toggle loyalty-retire-btn"
+                            data-program-id={program.id}
+                            data-confirm-title={t("Retire this version?")}
+                            data-confirm-message={t(
+                              "Orders paid from now on will earn no points until another version is activated. Points already earned are not affected."
+                            )}
+                            data-confirm-label={t("Retire version")}
+                            data-confirm-danger="true"
+                          >
+                            {t("Retire")}
+                          </button>
+                        )}
+                    </div>
+                  </td>
+                )}
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
+    </div>
+  )}
+
+  {canRead && !loadError && view !== null && (
+    <section
+      class="admin-dashboard-panel fade-in-up"
+      aria-label={t("Customer lookup")}
+    >
+      <h2 class="admin-dashboard-panel-title">{t("Customer lookup")}</h2>
+      <form method="get" id="loyalty-lookup-form" class="admin-create-form">
+        <label for="loyalty-lookup-phone">{t("Customer phone")}</label>
+        <input
+          id="loyalty-lookup-phone"
+          name="phone"
+          type="tel"
+          inputmode="tel"
+          autocomplete="off"
+          value={phoneParam}
+          placeholder="08123456789"
+        />
+        <button type="submit">{t("Find customer")}</button>
+      </form>
+      {phoneInvalid && (
+        <p class="state-notice" id="loyalty-lookup-invalid" role="alert">
+          {t("That is not a valid Indonesian phone number.")}
+        </p>
+      )}
+      {(phoneParam !== "" || customerParam !== "") &&
+        !phoneInvalid &&
+        customer === null && (
+          <p class="state-notice" id="loyalty-lookup-none">
+            {t("No customer found.")}
+          </p>
+        )}
+
+      {customer !== null && (
+        <div id="loyalty-customer-panel" data-customer-id={customer.id}>
+          <section
+            class="admin-dashboard-stats"
+            aria-label={t("Customer balance")}
+          >
+            <div class="admin-stat-card">
+              <span class="admin-stat-card-label">{customer.name}</span>
+              <span class="admin-stat-card-caption">
+                {customer.phoneMasked}
+              </span>
+              <span class="admin-stat-card-value" id="loyalty-customer-balance">
+                {count(customer.balance)}
+              </span>
+              <span class="admin-stat-card-caption">{t("points")}</span>
+            </div>
+          </section>
+
+          {canRedeem && (
+            <form id="loyalty-redeem-form" class="admin-create-form">
+              <p class="form-legend">{t("Redeem points")}</p>
+              <p
+                id="loyalty-redeem-error"
+                class="admin-create-error"
+                role="alert"
+                hidden
+              />
+              <label for="loyalty-redeem-points">{t("Points to redeem")}</label>
+              <input
+                id="loyalty-redeem-points"
+                name="points"
+                type="number"
+                min="1"
+                step="1"
+                required
+              />
+              <label for="loyalty-redeem-reason">{t("Note (optional)")}</label>
+              <input
+                id="loyalty-redeem-reason"
+                name="reason"
+                type="text"
+                autocomplete="off"
+                maxlength="500"
+              />
+              <button type="submit" id="loyalty-redeem-submit">
+                {t("Redeem")}
+              </button>
+            </form>
+          )}
+
+          {canAdjust && (
+            <form id="loyalty-adjust-form" class="admin-create-form">
+              <p class="form-legend">{t("Adjust points")}</p>
+              <p
+                id="loyalty-adjust-error"
+                class="admin-create-error"
+                role="alert"
+                hidden
+              />
+              <label for="loyalty-adjust-points">
+                {t("Points (negative to deduct)")}
+              </label>
+              <input
+                id="loyalty-adjust-points"
+                name="points"
+                type="number"
+                step="1"
+                required
+              />
+              <label for="loyalty-adjust-reason">{t("Reason")}</label>
+              <input
+                id="loyalty-adjust-reason"
+                name="reason"
+                type="text"
+                required
+                autocomplete="off"
+                maxlength="500"
+              />
+              <button type="submit" id="loyalty-adjust-submit">
+                {t("Record adjustment")}
+              </button>
+            </form>
+          )}
+
+          {ledger !== null && (
+            <div class="data-table-scroll">
+              <table
+                class="data-table data-table--stack"
+                id="loyalty-ledger-table"
+              >
+                <caption>
+                  {tn(
+                    "{count} entry shown",
+                    "{count} entries shown",
+                    ledger.items.length,
+                    {
+                      count: ledger.items.length
+                    }
+                  )}
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">{t("Date")}</th>
+                    <th scope="col">{t("Type")}</th>
+                    <th scope="col">{t("Points")}</th>
+                    <th scope="col">{t("Balance after")}</th>
+                    <th scope="col">{t("Expires")}</th>
+                    <th scope="col">{t("Reason")}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {ledger.items.length === 0 ? (
+                    <tr>
+                      <td class="data-table-empty" colspan="6">
+                        <div class="empty-state">
+                          <span class="empty-state-icon" aria-hidden="true">
+                            ◇
+                          </span>
+                          <span class="empty-state-title">
+                            {t("No points activity yet")}
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+                  ) : (
+                    ledger.items.map((entry) => (
+                      <tr data-ledger-row={entry.id}>
+                        <td data-label={t("Date")}>{when(entry.createdAt)}</td>
+                        <td data-label={t("Type")} data-kind={entry.kind}>
+                          {commerceLabel(labels.loyaltyEntryKind, entry.kind)}
+                        </td>
+                        <td data-label={t("Points")}>{signed(entry.points)}</td>
+                        <td data-label={t("Balance after")}>
+                          {count(entry.balanceAfter)}
+                        </td>
+                        <td data-label={t("Expires")}>
+                          {when(entry.expiresAt)}
+                        </td>
+                        <td data-label={t("Reason")}>{entry.reason ?? "—"}</td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+              {ledger.nextCursor !== null && (
+                <p>
+                  <a
+                    id="loyalty-ledger-older"
+                    href={`?customer=${customer.id}&cursor=${encodeURIComponent(ledger.nextCursor)}`}
+                  >
+                    {t("Older entries")}
+                  </a>
+                </p>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+
+      <div class="data-table-scroll">
+        <table class="data-table data-table--stack" id="loyalty-accounts-table">
+          <caption>{t("Recently opened accounts")}</caption>
+          <thead>
+            <tr>
+              <th scope="col">{t("Customer")}</th>
+              <th scope="col">{t("Phone")}</th>
+              <th scope="col">{t("Points")}</th>
+              <th scope="col">{t("Actions")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {accounts.length === 0 ? (
+              <tr>
+                <td class="data-table-empty" colspan="4">
+                  <div class="empty-state">
+                    <span class="empty-state-icon" aria-hidden="true">
+                      ◇
+                    </span>
+                    <span class="empty-state-title">
+                      {t("No loyalty accounts yet")}
+                    </span>
+                    <span class="empty-state-text">
+                      {t("An account opens with a customer's first points.")}
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              accounts.map((account) => (
+                <tr data-account-row={account.id}>
+                  <td data-label={t("Customer")}>{account.customerName}</td>
+                  <td data-label={t("Phone")}>
+                    <span class="cell-code">{account.customerPhoneMasked}</span>
+                  </td>
+                  <td data-label={t("Points")}>{count(account.balance)}</td>
+                  <td data-label={t("Actions")}>
+                    <a href={`?customer=${account.customerId}`}>{t("View")}</a>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  )}
+
+  {canManage && view !== null && (
+    <section
+      class="admin-dashboard-panel fade-in-up"
+      aria-label={t("Balance check")}
+    >
+      <h2 class="admin-dashboard-panel-title">{t("Balance check")}</h2>
+      <p class="admin-stat-card-caption">
+        {t(
+          "Recomputes every balance from the ledger and compares it with the stored balance. Checking changes nothing."
+        )}
+      </p>
+      <p
+        id="loyalty-reconcile-error"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      />
+      <button type="button" class="module-toggle" id="loyalty-reconcile-run">
+        {t("Run balance check")}
+      </button>
+      <div id="loyalty-reconcile-result" hidden>
+        <p id="loyalty-reconcile-clean" class="state-notice" hidden>
+          {t("Every balance matches the ledger.")}
+        </p>
+        <p
+          id="loyalty-reconcile-drift"
+          class="state-notice"
+          role="alert"
+          hidden
+        >
+          {t("Some balances do not match the ledger.")}
+        </p>
+        <dl>
+          <dt>{t("Accounts checked")}</dt>
+          <dd id="loyalty-reconcile-checked"></dd>
+          <dt>{t("Balances out of step")}</dt>
+          <dd id="loyalty-reconcile-drifted"></dd>
+          <dt>{t("Ledger rows that need review")}</dt>
+          <dd id="loyalty-reconcile-breaks"></dd>
+          <dt>{t("Balances repaired")}</dt>
+          <dd id="loyalty-reconcile-repaired"></dd>
+        </dl>
+        <button
+          type="button"
+          class="module-toggle"
+          id="loyalty-reconcile-repair"
+          hidden
+          data-confirm-title={t("Repair balances from the ledger?")}
+          data-confirm-message={t(
+            "Each out-of-step balance is rewritten from the ledger. The ledger itself is never changed."
+          )}
+          data-confirm-label={t("Repair balances")}
+          data-confirm-danger="true"
+        >
+          {t("Repair balances")}
+        </button>
+      </div>
+    </section>
+  )}
+  <CommerceConfirmDialog locale={Astro.locals.locale} />
+</AdminLayout>
+
+<script>
+  import {
+    blankToNull,
+    field,
+    messageBox,
+    mutateAndReload,
+    onAction,
+    onSubmit,
+    sendJson,
+    sendJsonForData
+  } from "../../lib/ui/admin-form-client";
+  import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
+
+  const programError = messageBox("loyalty-program-error");
+
+  const optionalInteger = (value: string): number | null =>
+    value === "" ? null : Number(value);
+
+  onSubmit("loyalty-program-form", async ({ data, submit }) => {
+    await mutateAndReload(
+      submit,
+      programError,
+      () =>
+        sendJson("POST", "/api/v1/commerce/loyalty/programs", {
+          name: field(data, "name"),
+          earnUnitAmount: field(data, "earnUnitAmount"),
+          earnPointsPerUnit: Number(field(data, "earnPointsPerUnit")),
+          minOrderAmount: field(data, "minOrderAmount") || "0.00",
+          maxPointsPerOrder: optionalInteger(field(data, "maxPointsPerOrder")),
+          expiryDays: optionalInteger(field(data, "expiryDays")),
+          notes: blankToNull(field(data, "notes"))
+        }),
+      "Could not create the program version. Check the values and try again."
+    );
+  });
+
+  const actionError = messageBox("loyalty-action-error");
+
+  onAction(".loyalty-activate-btn", async (button) => {
+    const id = button.dataset.programId;
+    if (!id) return;
+    if (!(await confirmFromTrigger(button))) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson(
+          "POST",
+          `/api/v1/commerce/loyalty/programs/${id}/activate`,
+          {}
+        ),
+      "Could not activate the program version. Please try again.",
+      "Activating…"
+    );
+  });
+
+  onAction(".loyalty-retire-btn", async (button) => {
+    const id = button.dataset.programId;
+    if (!id) return;
+    if (!(await confirmFromTrigger(button))) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson("POST", `/api/v1/commerce/loyalty/programs/${id}/retire`, {}),
+      "Could not retire the program version. Please try again.",
+      "Retiring…"
+    );
+  });
+
+  const customerPanel = document.getElementById("loyalty-customer-panel");
+  const customerId = customerPanel?.dataset.customerId ?? "";
+
+  // A fresh Idempotency-Key per SUBMIT (a double click is already stopped by
+  // the locked button); a failed attempt that the operator retries is a new
+  // attempt and gets a new key.
+  const newKey = () => ({ "Idempotency-Key": crypto.randomUUID() });
+
+  const redeemError = messageBox("loyalty-redeem-error");
+  onSubmit("loyalty-redeem-form", async ({ data, submit }) => {
+    await mutateAndReload(
+      submit,
+      redeemError,
+      () =>
+        sendJson(
+          "POST",
+          `/api/v1/commerce/loyalty/accounts/${customerId}/redeem`,
+          {
+            points: Number(field(data, "points")),
+            reason: blankToNull(field(data, "reason"))
+          },
+          newKey()
+        ),
+      (code) =>
+        code === "INSUFFICIENT_POINTS"
+          ? "The customer does not have enough points."
+          : "Could not redeem the points. Please try again."
+    );
+  });
+
+  const adjustError = messageBox("loyalty-adjust-error");
+  onSubmit("loyalty-adjust-form", async ({ data, submit }) => {
+    await mutateAndReload(
+      submit,
+      adjustError,
+      () =>
+        sendJson(
+          "POST",
+          `/api/v1/commerce/loyalty/accounts/${customerId}/adjust`,
+          {
+            points: Number(field(data, "points")),
+            reason: field(data, "reason")
+          },
+          newKey()
+        ),
+      (code) =>
+        code === "WOULD_GO_NEGATIVE"
+          ? "A manual adjustment cannot take the balance below zero."
+          : "Could not record the adjustment. Please try again."
+    );
+  });
+
+  type ReconcileReport = {
+    accountsChecked: number;
+    drifted: unknown[];
+    ledgerBreaks: unknown[];
+    repaired: number;
+  };
+
+  const reconcileError = messageBox("loyalty-reconcile-error");
+  const setText = (id: string, value: string) => {
+    const element = document.getElementById(id);
+    if (element) element.textContent = value;
+  };
+  const setHidden = (id: string, hidden: boolean) => {
+    const element = document.getElementById(id);
+    if (element) element.hidden = hidden;
+  };
+
+  const showReport = (report: ReconcileReport) => {
+    setHidden("loyalty-reconcile-result", false);
+    setText("loyalty-reconcile-checked", String(report.accountsChecked));
+    setText("loyalty-reconcile-drifted", String(report.drifted.length));
+    setText("loyalty-reconcile-breaks", String(report.ledgerBreaks.length));
+    setText("loyalty-reconcile-repaired", String(report.repaired));
+    const clean =
+      report.drifted.length === 0 && report.ledgerBreaks.length === 0;
+    setHidden("loyalty-reconcile-clean", !clean);
+    setHidden("loyalty-reconcile-drift", clean);
+    setHidden("loyalty-reconcile-repair", report.drifted.length === 0);
+  };
+
+  const runReconcile = async (
+    button: HTMLButtonElement,
+    repair: boolean
+  ): Promise<void> => {
+    reconcileError.clear();
+    button.disabled = true;
+    const result = await sendJsonForData<ReconcileReport>(
+      "POST",
+      "/api/v1/commerce/loyalty/reconcile",
+      { repair }
+    );
+    button.disabled = false;
+    if (!result.ok || !result.data) {
+      reconcileError.show("Could not run the balance check. Please try again.");
+      return;
+    }
+    showReport(result.data);
+  };
+
+  onAction("#loyalty-reconcile-run", (button) => runReconcile(button, false));
+  onAction("#loyalty-reconcile-repair", async (button) => {
+    if (!(await confirmFromTrigger(button))) return;
+    await runReconcile(button, true);
+  });
+</script>

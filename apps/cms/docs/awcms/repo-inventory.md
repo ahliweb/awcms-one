@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 26    |
-| Migrations                          | 214   |
-| `awcms_*` tables                    | 211   |
-| Tables with `FORCE` RLS             | 193   |
+| Migrations                          | 217   |
+| `awcms_*` tables                    | 214   |
+| Tables with `FORCE` RLS             | 196   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 630   |
-| Route files                         | 561   |
+| Test files                          | 635   |
+| Route files                         | 574   |
 | ADR                                 | 252   |
 
 ### Modules
@@ -260,11 +260,14 @@
 | 207 | `sql/937_awcms_commerce_entitlements_worker_grants.sql`                     |
 | 208 | `sql/938_awcms_commerce_entitlements_permissions.sql`                       |
 | 209 | `sql/939_awcms_commerce_protected_media_links_schema.sql`                   |
-| 210 | `sql/960_awcms_commerce_attributes_schema.sql`                              |
-| 211 | `sql/961_awcms_commerce_attributes_permissions.sql`                         |
-| 212 | `sql/962_awcms_commerce_attributes_worker_grants.sql`                       |
-| 213 | `sql/963_awcms_commerce_attributes_value_indexes.sql`                       |
-| 214 | `sql/964_awcms_commerce_catalog_import_batches.sql`                         |
+| 210 | `sql/950_awcms_commerce_loyalty_schema.sql`                                 |
+| 211 | `sql/951_awcms_commerce_loyalty_worker_grants.sql`                          |
+| 212 | `sql/952_awcms_commerce_loyalty_permissions.sql`                            |
+| 213 | `sql/960_awcms_commerce_attributes_schema.sql`                              |
+| 214 | `sql/961_awcms_commerce_attributes_permissions.sql`                         |
+| 215 | `sql/962_awcms_commerce_attributes_worker_grants.sql`                       |
+| 216 | `sql/963_awcms_commerce_attributes_value_indexes.sql`                       |
+| 217 | `sql/964_awcms_commerce_catalog_import_batches.sql`                         |
 
 ### Tables & Row-Level Security
 
@@ -321,6 +324,9 @@
 | `awcms_commerce_entitlements`               | `sql/936_awcms_commerce_entitlements_schema.sql`           | yes | yes   |
 | `awcms_commerce_flash_sale_products`        | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
 | `awcms_commerce_flash_sales`                | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
+| `awcms_commerce_loyalty_accounts`           | `sql/950_awcms_commerce_loyalty_schema.sql`                | yes | yes   |
+| `awcms_commerce_loyalty_ledger`             | `sql/950_awcms_commerce_loyalty_schema.sql`                | yes | yes   |
+| `awcms_commerce_loyalty_programs`           | `sql/950_awcms_commerce_loyalty_schema.sql`                | yes | yes   |
 | `awcms_commerce_messages`                   | `sql/927_awcms_commerce_conversations_schema.sql`          | yes | yes   |
 | `awcms_commerce_order_events`               | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
 | `awcms_commerce_order_items`                | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
@@ -486,17 +492,17 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 499        |
+| `(root)`      | 503        |
 | `e2e`         | 21         |
-| `integration` | 109        |
+| `integration` | 110        |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 445   |
-| `/admin/**`     | 86    |
+| `/api/v1/**`    | 457   |
+| `/admin/**`     | 87    |
 | publik / anonim | 30    |
 
 <!-- END GENERATED: repo-inventory -->

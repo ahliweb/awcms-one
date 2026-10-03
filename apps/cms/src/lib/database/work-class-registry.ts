@@ -150,6 +150,16 @@ export const JOB_WORK_CLASS_REGISTRY: Readonly<
     rationale:
       'Scheduled pending-order expiry sweep (commerce:orders:expire, Issue #29), every 1-5 minutes — same recurring-but-not-latency-sensitive profile as commerce:flash-sales:tick; expireOrdersForTenant passes workClass: "background_sync" explicitly.'
   },
+  "scripts/commerce-loyalty-expire.ts": {
+    workClass: "background_sync",
+    rationale:
+      'Scheduled loyalty-points expiry sweep (commerce:loyalty:expire, Issue #289), hourly — same recurring-but-not-latency-sensitive profile as commerce:orders:expire; expireDueLoyaltyPointsForTenant passes workClass: "background_sync" explicitly on every per-account transaction.'
+  },
+  "scripts/commerce-loyalty-reconcile.ts": {
+    workClass: "background_sync",
+    rationale:
+      'Scheduled read-only loyalty balance reconcile (commerce:loyalty:reconcile, Issue #289), daily off-peak — same recurring-but-not-latency-sensitive profile as commerce:orders:expire; the per-tenant scan passes workClass: "background_sync" explicitly.'
+  },
   "scripts/commerce-customer-auth-purge.ts": {
     workClass: "background_sync",
     rationale:

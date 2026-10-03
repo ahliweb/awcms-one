@@ -1,0 +1,41 @@
+-- Issue #289 — `awcms_worker` grants for the loyalty tables (`sql/950`).
+--
+-- Four worker entrypoints touch these tables:
+--
+--   * `domain-events:dispatch` runs the `commerce.order_paid_loyalty_earner`
+--     and `commerce.order_cancelled_loyalty_reverser` consumers
+--     (`domain-event-runtime/infrastructure/consumer-registry.ts`): they
+--     read the program versions, create-or-lock the customer's account,
+--     append ledger rows and update the account projection;
+--   * `commerce:loyalty:expire` appends `expire` rows the same way;
+--   * `commerce:loyalty:reconcile` reads everything and writes nothing
+--     (repair is an authenticated API action run as `awcms_app`);
+--   * `data-lifecycle:archive-purge` runs the three loyalty `dataLifecycle`
+--     descriptors (`commerce/module.ts`), which needs DELETE (see below).
+--
+-- Narrow on purpose (`sql/916`'s discipline):
+--
+--   programs  SELECT, DELETE
+--             — the consumers only read a version; DELETE is the generic purge
+--               of RETIRED versions past the window (cursor `effective_to`, so
+--               a draft or the open active version is unreachable)
+--   accounts  SELECT, INSERT, UPDATE, DELETE
+--             — create-or-lock (`FOR UPDATE` needs UPDATE), project the
+--               balance, and the generic purge of an account idle for the whole
+--               window (cursor `updated_at`; RESTRICT FK from the ledger)
+--   ledger    SELECT, INSERT, DELETE
+--             — append, and the retention purge. NEVER UPDATE: the ledger is
+--               append-only and `sql/950`'s trigger rejects it anyway
+--
+-- The worker already holds SELECT on `awcms_commerce_orders`, `_order_items`
+-- and `_customers` (`sql/903`/`sql/915`) — the earn path's source reads.
+--
+-- `awcms_module_settings` is NEW for the worker: the earn consumer reads the
+-- tenant's `commerce` feature flags (`features.loyalty`, default OFF) before
+-- it records anything, through the same `fetchCommerceFeatures` every owner
+-- route uses. It is a tenant-RLS table (`sql/008`), so the grant exposes no
+-- cross-tenant data; SELECT only.
+GRANT SELECT, DELETE ON awcms_commerce_loyalty_programs TO awcms_worker;
+GRANT SELECT, INSERT, UPDATE, DELETE ON awcms_commerce_loyalty_accounts TO awcms_worker;
+GRANT SELECT, INSERT, DELETE ON awcms_commerce_loyalty_ledger TO awcms_worker;
+GRANT SELECT ON awcms_module_settings TO awcms_worker;
