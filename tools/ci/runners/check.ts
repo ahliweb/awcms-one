@@ -5,9 +5,12 @@
  *
  * `check-toko` additionally runs the steps that job scopes to
  * `matrix.profile == 'toko'`: the bare root `bun test`, the four `audit:*`
- * gates, and `bun audit --audit-level=low`.
+ * gates, and `bun audit --audit-level=low` (minus the dated, reasoned
+ * entries in `tools/ci/dependency-audit-exceptions.json` — see
+ * `lib/audit-exceptions.ts`).
  */
 import { join } from "node:path";
+import { loadAuditIgnoreArgs } from "../lib/audit-exceptions.ts";
 import { run } from "../lib/exec.ts";
 import type { LegContext, LegOutcome } from "../lib/types.ts";
 
@@ -38,13 +41,23 @@ export async function runCheckLeg(
   ];
 
   if (profile === "toko") {
+    const ignore = loadAuditIgnoreArgs(worktreeRoot);
+    if (!ignore.ok) {
+      return {
+        context,
+        ok: false,
+        summary: `dependency-audit exception(s) past reviewDate: ${ignore.expired.map((e) => e.advisory).join(", ")}`,
+        durationMs: performance.now() - start,
+        evidenceDir
+      };
+    }
     steps.push(
       { name: "root-bun-test", argv: ["bun", "test"] },
       { name: "audit-dokumen", argv: ["bun", "run", "audit:dokumen"] },
       { name: "audit-translation", argv: ["bun", "run", "audit:translation"] },
       { name: "audit-graf", argv: ["bun", "run", "audit:graf"] },
       { name: "audit-rilis", argv: ["bun", "run", "audit:rilis"] },
-      { name: "dependency-audit", argv: ["bun", "audit", "--audit-level=low"] }
+      { name: "dependency-audit", argv: ["bun", "audit", "--audit-level=low", ...ignore.args] }
     );
   }
 
