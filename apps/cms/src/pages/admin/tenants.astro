@@ -163,6 +163,17 @@ function statusVariant(status: string): string {
   if (status === "suspended") return "danger";
   return "neutral";
 }
+
+/** `awcms_tenants.status` (sql/002) — one screen only. */
+const TENANT_STATUS_LABEL: Record<"active" | "inactive" | "suspended", string> =
+  {
+    active: t("Active"),
+    inactive: t("Inactive"),
+    suspended: t("Suspended")
+  };
+function tenantStatusLabel(value: string): string {
+  return (TENANT_STATUS_LABEL as Record<string, string>)[value] ?? value;
+}
 ---
 
 <AdminLayout
@@ -211,26 +222,28 @@ function statusVariant(status: string): string {
   {canRead && (
     <section class="admin-section fade-in-up" id="tenants-summary">
       <h2 class="admin-section-title">{t("Deployment")}</h2>
-      <div class="stat-grid stagger-children">
-        <div class="stat-card">
-          <span class="stat-label">{t("Tenancy mode")}</span>
-          <span class="stat-value stat-value--mono">{tenancyMode}</span>
-          <span class="stat-hint">
+      <div class="admin-stat-card-grid stagger-children">
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Tenancy mode")}</span>
+          <span class="admin-stat-card-value admin-stat-card-value--mono">
+            {tenancyMode}
+          </span>
+          <span class="admin-stat-card-caption">
             {tenancyMode === "single"
               ? "one active tenant — provisioning a second flips this"
               : "derived from the active-tenant count, never configured"}
           </span>
         </div>
-        <div class="stat-card">
-          <span class="stat-label">{t("Tenants listed")}</span>
-          <span class="stat-value">{tenants.length}</span>
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Tenants listed")}</span>
+          <span class="admin-stat-card-value">{tenants.length}</span>
         </div>
-        <div class="stat-card">
-          <span class="stat-label">{t("Platform tenant")}</span>
-          <span class="stat-value stat-value--mono">
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Platform tenant")}</span>
+          <span class="admin-stat-card-value admin-stat-card-value--mono">
             {platformTenantCode ?? "—"}
           </span>
-          <span class="stat-hint">
+          <span class="admin-stat-card-caption">
             {t("holds platform-scoped permissions")}
           </span>
         </div>
@@ -354,26 +367,26 @@ function statusVariant(status: string): string {
             )}
             {tenants.map((tenant) => (
               <tr>
-                <td data-label="Code">
+                <td data-label={t("Code")}>
                   <span class="cell-code">{tenant.tenantCode}</span>
                   {tenant.tenantCode === platformTenantCode && (
-                    <span class="status-badge" data-variant="info">
-                      <span class="status-dot" aria-hidden="true" />
+                    <span class="admin-status-pill" data-tone="info">
+                      <span class="admin-status-pill-dot" aria-hidden="true" />
                       {t("platform")}
                     </span>
                   )}
                 </td>
-                <td data-label="Name">{tenant.tenantName}</td>
-                <td data-label="Status">
+                <td data-label={t("Name")}>{tenant.tenantName}</td>
+                <td data-label={t("Status")} data-status={tenant.status}>
                   <span
-                    class="status-badge"
-                    data-variant={statusVariant(tenant.status)}
+                    class="admin-status-pill"
+                    data-tone={statusVariant(tenant.status)}
                   >
-                    <span class="status-dot" aria-hidden="true" />
-                    {tenant.status}
+                    <span class="admin-status-pill-dot" aria-hidden="true" />
+                    {tenantStatusLabel(tenant.status)}
                   </span>
                 </td>
-                <td data-label="Created">
+                <td data-label={t("Created")}>
                   <span class="cell-code">
                     {formatTimestamp(tenant.createdAt)}
                   </span>

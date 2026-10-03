@@ -192,7 +192,7 @@ function formatWindow(placement: AdPlacementView): string {
             {bySlot.map((slot) =>
               slot.placements.length === 0 ? (
                 <tr data-slot-empty={slot.key}>
-                  <td data-label="Slot">
+                  <td data-label={t("Slot")}>
                     <span class="cell-code" set:text={slot.key} />
                     <span class="cell-muted">
                       {" "}
@@ -210,7 +210,7 @@ function formatWindow(placement: AdPlacementView): string {
               ) : (
                 slot.placements.map((placement) => (
                   <tr data-ad-row={placement.id}>
-                    <td data-label="Slot">
+                    <td data-label={t("Slot")}>
                       <span class="cell-code" set:text={slot.key} />
                       <span class="cell-muted">
                         {" "}
@@ -218,18 +218,24 @@ function formatWindow(placement: AdPlacementView): string {
                         {slot.preset.maxItems}
                       </span>
                       {!slot.renderedHere && (
-                        <span class="status-badge" data-variant="warning">
-                          <span class="status-dot" aria-hidden="true" />
+                        <span class="admin-status-pill" data-tone="warning">
+                          <span
+                            class="admin-status-pill-dot"
+                            aria-hidden="true"
+                          />
                           {t("Not rendered here")}
                         </span>
                       )}
                     </td>
-                    <td data-label="Creative">
+                    <td data-label={t("Creative")}>
                       <span set:text={placement.name} />
                     </td>
-                    <td data-label="Rotation">
-                      <span class="status-badge" data-variant="neutral">
-                        <span class="status-dot" aria-hidden="true" />
+                    <td data-label={t("Rotation")}>
+                      <span class="admin-status-pill" data-tone="neutral">
+                        <span
+                          class="admin-status-pill-dot"
+                          aria-hidden="true"
+                        />
                         {placement.rotationMode}
                       </span>
                       <span class="cell-muted">
@@ -237,7 +243,7 @@ function formatWindow(placement: AdPlacementView): string {
                         · {t("priority")} {placement.priority}
                       </span>
                     </td>
-                    <td data-label="Target">
+                    <td data-label={t("Target")}>
                       <span class="cell-code" set:text={placement.targetType} />
                       {placement.targetId && (
                         <span class="cell-muted">
@@ -250,28 +256,29 @@ function formatWindow(placement: AdPlacementView): string {
                         </span>
                       )}
                     </td>
-                    <td data-label="Content class">
+                    <td data-label={t("Content class")}>
                       <span
                         class="cell-code"
                         set:text={placement.contentClass}
                       />
                     </td>
-                    <td data-label="Active">
+                    <td data-label={t("Active")}>
                       <span
-                        class="status-badge"
-                        data-variant={
-                          placement.isActive ? "success" : "neutral"
-                        }
+                        class="admin-status-pill"
+                        data-tone={placement.isActive ? "success" : "neutral"}
                       >
-                        <span class="status-dot" aria-hidden="true" />
+                        <span
+                          class="admin-status-pill-dot"
+                          aria-hidden="true"
+                        />
                         {placement.isActive ? t("Active") : t("Paused")}
                       </span>
                     </td>
-                    <td data-label="Schedule">
+                    <td data-label={t("Schedule")}>
                       <span class="cell-muted">{formatWindow(placement)}</span>
                     </td>
                     {canConfigure && (
-                      <td data-label="Actions">
+                      <td data-label={t("Actions")}>
                         <div class="row-actions">
                           <a
                             class="quick-link"
@@ -394,7 +401,7 @@ function formatWindow(placement: AdPlacementView): string {
                 {t("Remove image")}
               </button>
             </div>
-            <div class="media-picker-panel" hidden />
+            <div class="media-picker-panel admin-media-grid" hidden />
           </div>
           <p class="form-hint">
             {t(
@@ -596,10 +603,10 @@ function formatWindow(placement: AdPlacementView): string {
             ) : (
               eligiblePosts.map((post) => (
                 <tr>
-                  <td data-label="Title">
+                  <td data-label={t("Title")}>
                     <span set:text={post.title} />
                   </td>
-                  <td data-label="Id">
+                  <td data-label={t("Id")}>
                     <span class="cell-code" set:text={post.id} />
                   </td>
                 </tr>
@@ -630,6 +637,7 @@ function formatWindow(placement: AdPlacementView): string {
     onSubmit,
     sendJson
   } from "../../lib/ui/admin-form-client";
+  import { confirmAction } from "../../lib/ui/confirm-dialog-client";
   import { wireMediaPickers } from "../../lib/ui/media-picker-client";
 
   const actionError = messageBox("ad-action-error");
@@ -645,10 +653,10 @@ function formatWindow(placement: AdPlacementView): string {
 
     const name = button.dataset.adName ?? "this placement";
     if (
-      !window.confirm(
+      !(await confirmAction(
         `Delete "${name}"? The slot goes back to showing its availability ` +
           `notice, and the image itself stays in the media library.`
-      )
+      ))
     ) {
       return;
     }
