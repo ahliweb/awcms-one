@@ -89,7 +89,7 @@ async function enforcedTriples(
 }
 
 describe("commerce module descriptor — restore is declared for both activity codes", () => {
-  test("sixty-seven permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations/entitlements, three for reviews, one for whatsapp, three for campaigns, one for webhook_endpoints, one for pos, one for pos_due, three for payments, ten for registers/cash-up", () => {
+  test("eighty permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations/entitlements, three for reviews, one for whatsapp, three for campaigns, one for webhook_endpoints, one for pos, one for pos_due, three for payments, ten for registers/cash-up, thirteen for held sales/quotations/conversions/work orders/documents", () => {
     // Issue #23: categories/products carry read/create/update/delete/restore.
     // Issue #26: flash_sales/vouchers/sliders/testimonials/popups carry
     // read/create/update/delete (soft delete only, no restore — the marketing
@@ -126,8 +126,28 @@ describe("commerce module descriptor — restore is declared for both activity c
     // Issue #284: registers carries read/create/update, register_sessions
     // read/create/update/export, register_cash_ups create/approve and
     // register_corrections approve (ten keys, none implied by pos.create).
+    // Issue #286: held_sales read/create/update/approve, quotations
+    // read/create/update, quotation_conversions create, work_orders
+    // read/create/update, documents read/create (thirteen keys, resource-split).
     expect(declared.size).toBe(
-      2 * 5 + 5 * 4 + 2 + 2 + 2 + 3 + 2 + 2 + 1 + 2 + 3 + 1 + 1 + 2 + 1 + 3 + 10
+      2 * 5 +
+        5 * 4 +
+        2 +
+        2 +
+        2 +
+        3 +
+        2 +
+        2 +
+        1 +
+        2 +
+        3 +
+        1 +
+        1 +
+        2 +
+        1 +
+        3 +
+        10 +
+        13
     );
 
     for (const activityCode of ["categories", "products"]) {
@@ -355,6 +375,9 @@ describe("/admin/commerce-pos permission gates", () => {
     const declared = declaredTriples();
 
     expect([...pageKeys].sort()).toEqual([
+      // Issue #286 — hold and resume a parked cart; also checked by the endpoints.
+      "commerce.held_sales.create",
+      "commerce.held_sales.update",
       "commerce.orders.read",
       "commerce.pos.create",
       // Issue #285 — the credit-sale checkbox; also checked by the endpoint.

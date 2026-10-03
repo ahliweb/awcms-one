@@ -22,9 +22,10 @@ import { toPublicRecord } from "../src/modules/commerce/application/store-settin
 describe("resolveCommerceFeatures", () => {
   test("defaults every flag to true when settings are absent, except `register` (Issue #284), which adds an obligation and so defaults OFF", () => {
     expect(DEFAULT_COMMERCE_FEATURES.register).toBe(false);
+    expect(DEFAULT_COMMERCE_FEATURES.documents).toBe(false);
     expect(
       Object.entries(DEFAULT_COMMERCE_FEATURES)
-        .filter(([key]) => key !== "register")
+        .filter(([key]) => key !== "register" && key !== "documents")
         .every(([, value]) => value === true)
     ).toBe(true);
     expect(resolveCommerceFeatures(undefined)).toEqual(
@@ -42,7 +43,8 @@ describe("resolveCommerceFeatures", () => {
       campaigns: true,
       gateway: true,
       courier: true,
-      register: false
+      register: false,
+      documents: false
     });
   });
 
@@ -61,7 +63,8 @@ describe("resolveCommerceFeatures", () => {
         campaigns: false,
         gateway: false,
         courier: false,
-        register: false
+        register: false,
+        documents: false
       }
     });
     expect(resolved).toEqual({
@@ -70,7 +73,8 @@ describe("resolveCommerceFeatures", () => {
       campaigns: false,
       gateway: false,
       courier: false,
-      register: false
+      register: false,
+      documents: false
     });
     // ...and the one flag that defaults off can be turned on.
     expect(

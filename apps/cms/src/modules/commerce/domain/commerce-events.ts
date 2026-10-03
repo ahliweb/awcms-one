@@ -144,6 +144,27 @@ export const COMMERCE_REGISTER_SESSION_CLOSED_EVENT_TYPE =
 export const COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE =
   "awcms.commerce.register_session.corrected";
 
+/**
+ * Document-lifecycle events (Issue #286, ADR-0029). Four facts a downstream
+ * consumer (accounting, CRM, a notification) needs; held sales and ordinary
+ * quotation/work-order edits are audit-only. Payloads carry ids, numbers,
+ * statuses and amounts - never a customer name/phone or a free-text note.
+ * Registered in `domain-event-runtime/domain/event-type-registry.ts` and
+ * `asyncapi/awcms-domain-events.asyncapi.yaml` in the same change.
+ */
+export const COMMERCE_QUOTATION_ACCEPTED_EVENT_TYPE =
+  "awcms.commerce.quotation.accepted";
+export const COMMERCE_QUOTATION_CONVERTED_EVENT_TYPE =
+  "awcms.commerce.quotation.converted";
+export const COMMERCE_WORK_ORDER_STATUS_CHANGED_EVENT_TYPE =
+  "awcms.commerce.work_order.status_changed";
+export const COMMERCE_DOCUMENT_ISSUED_EVENT_TYPE =
+  "awcms.commerce.document.issued";
+
+export const COMMERCE_QUOTATION_AGGREGATE_TYPE = "commerce.quotation";
+export const COMMERCE_WORK_ORDER_AGGREGATE_TYPE = "commerce.work_order";
+export const COMMERCE_DOCUMENT_AGGREGATE_TYPE = "commerce.document";
+
 export const COMMERCE_ORDER_AGGREGATE_TYPE = "commerce.order";
 export const COMMERCE_REGISTER_SESSION_AGGREGATE_TYPE =
   "commerce.register_session";

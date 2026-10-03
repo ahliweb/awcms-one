@@ -34,7 +34,13 @@
 
 /** Every togglable commerce feature, contract #106 D10's own five. `pos` has no route/screen wired to it YET (issue #116, landing in parallel) — the default exists so the settings document has a stable shape from day one and #116's own gate has nothing left to add here. */
 export type CommerceFeatureKey =
-  "pos" | "inbox" | "campaigns" | "gateway" | "courier" | "register";
+  | "pos"
+  | "inbox"
+  | "campaigns"
+  | "gateway"
+  | "courier"
+  | "register"
+  | "documents";
 
 export type CommerceFeatures = Readonly<Record<CommerceFeatureKey, boolean>>;
 
@@ -56,7 +62,12 @@ export const DEFAULT_COMMERCE_FEATURES: CommerceFeatures = {
   // default is ON because it describes what the platform already did; this
   // one ADDS an obligation (a POS sale needs an open register session), so a
   // tenant that never opens "Fitur" must see exactly today's POS.
-  register: false
+  register: false,
+  // Issue #286 (ADR-0029) - the second flag that defaults OFF: held sales,
+  // quotations, work orders and numbered receipt/invoice documents are a whole
+  // new surface (and a numbering obligation once a document is issued), so a
+  // tenant that never opens "Fitur" must see exactly today's commerce module.
+  documents: false
 };
 
 const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
@@ -65,7 +76,8 @@ const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
   "campaigns",
   "gateway",
   "courier",
-  "register"
+  "register",
+  "documents"
 ];
 
 function isBoolean(value: unknown): value is boolean {

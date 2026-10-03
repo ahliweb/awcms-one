@@ -6,6 +6,10 @@ import {
   REGISTER_SUBJECT_DATA
 } from "./domain/register-lifecycle";
 import {
+  DOCUMENT_DATA_LIFECYCLE,
+  DOCUMENT_SUBJECT_DATA
+} from "./domain/documents-lifecycle";
+import {
   COMMERCE_CATEGORIES_ACTIVITY_CODE,
   COMMERCE_CATEGORY_PERMISSIONS,
   COMMERCE_FLASH_SALES_ACTIVITY_CODE,
@@ -54,6 +58,16 @@ import {
   COMMERCE_REGISTER_CASH_UP_PERMISSIONS,
   COMMERCE_REGISTER_CORRECTIONS_ACTIVITY_CODE,
   COMMERCE_REGISTER_CORRECTION_PERMISSIONS,
+  COMMERCE_HELD_SALES_ACTIVITY_CODE,
+  COMMERCE_HELD_SALE_PERMISSIONS,
+  COMMERCE_QUOTATIONS_ACTIVITY_CODE,
+  COMMERCE_QUOTATION_PERMISSIONS,
+  COMMERCE_QUOTATION_CONVERSIONS_ACTIVITY_CODE,
+  COMMERCE_QUOTATION_CONVERSION_PERMISSIONS,
+  COMMERCE_WORK_ORDERS_ACTIVITY_CODE,
+  COMMERCE_WORK_ORDER_PERMISSIONS,
+  COMMERCE_DOCUMENTS_ACTIVITY_CODE,
+  COMMERCE_DOCUMENT_PERMISSIONS,
   COMMERCE_ENTITLEMENTS_ACTIVITY_CODE
 } from "./domain/commerce-permissions";
 import {
@@ -74,7 +88,11 @@ import {
   COMMERCE_REGISTER_SESSION_OPENED_EVENT_TYPE,
   COMMERCE_REGISTER_SESSION_MOVEMENT_RECORDED_EVENT_TYPE,
   COMMERCE_REGISTER_SESSION_CLOSED_EVENT_TYPE,
-  COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE
+  COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE,
+  COMMERCE_QUOTATION_ACCEPTED_EVENT_TYPE,
+  COMMERCE_QUOTATION_CONVERTED_EVENT_TYPE,
+  COMMERCE_WORK_ORDER_STATUS_CHANGED_EVENT_TYPE,
+  COMMERCE_DOCUMENT_ISSUED_EVENT_TYPE
 } from "./domain/commerce-events";
 import {
   SALES_BY_CATEGORY_PROJECTION_KEY,
@@ -307,7 +325,11 @@ export const commerceModule = defineModule({
       COMMERCE_REGISTER_SESSION_OPENED_EVENT_TYPE,
       COMMERCE_REGISTER_SESSION_MOVEMENT_RECORDED_EVENT_TYPE,
       COMMERCE_REGISTER_SESSION_CLOSED_EVENT_TYPE,
-      COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE
+      COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE,
+      COMMERCE_QUOTATION_ACCEPTED_EVENT_TYPE,
+      COMMERCE_QUOTATION_CONVERTED_EVENT_TYPE,
+      COMMERCE_WORK_ORDER_STATUS_CHANGED_EVENT_TYPE,
+      COMMERCE_DOCUMENT_ISSUED_EVENT_TYPE
     ]
   },
   /**
@@ -602,6 +624,17 @@ export const commerceModule = defineModule({
       order: 18,
       requiredPermission: "commerce.register_sessions.read",
       requiredFeature: { moduleKey: "commerce", feature: "register" }
+    },
+    // Issue #286 (ADR-0029) - held sales, quotations, work orders and
+    // receipt/invoice documents. Gated on the document-read permission and
+    // hidden the moment the tenant turns `features.documents` off (it defaults
+    // OFF).
+    {
+      labelKey: "admin.layout.nav_commerce_documents",
+      path: "/admin/commerce-documents",
+      order: 19,
+      requiredPermission: "commerce.documents.read",
+      requiredFeature: { moduleKey: "commerce", feature: "documents" }
     }
   ],
   /**
@@ -2327,6 +2360,10 @@ export const commerceModule = defineModule({
     // Issue #284 (ADR-0028) - the six POS register tables; see
     // `domain/register-lifecycle.ts`.
     ...REGISTER_DATA_LIFECYCLE,
+    // Issue #286 (ADR-0029) - held sales, quotations (+ versions), work orders
+    // (+ events) and documents; see `domain/documents-lifecycle.ts`. The
+    // numbering sequences deliberately declare none.
+    ...DOCUMENT_DATA_LIFECYCLE,
     {
       key: "commerce.protected_media_links",
       tableName: "awcms_commerce_protected_media_links",
@@ -2895,6 +2932,8 @@ export const commerceModule = defineModule({
     },
     // Issue #284 (ADR-0028) - see `domain/register-lifecycle.ts`.
     ...REGISTER_SUBJECT_DATA,
+    // Issue #286 (ADR-0029) - see `domain/documents-lifecycle.ts`.
+    ...DOCUMENT_SUBJECT_DATA,
     {
       key: "commerce.protected_media_links",
       tableName: "awcms_commerce_protected_media_links",
@@ -3257,6 +3296,78 @@ export const commerceModule = defineModule({
         "Post a compensating correction to a closed register session (Issue #284)"
     },
     {
+      activityCode: COMMERCE_HELD_SALES_ACTIVITY_CODE,
+      action: "read",
+      description: "List your own held sales (Issue #286)"
+    },
+    {
+      activityCode: COMMERCE_HELD_SALES_ACTIVITY_CODE,
+      action: "create",
+      description: "Hold (park) a POS cart as a held sale (Issue #286)"
+    },
+    {
+      activityCode: COMMERCE_HELD_SALES_ACTIVITY_CODE,
+      action: "update",
+      description: "Resume or discard your own held sale (Issue #286)"
+    },
+    {
+      activityCode: COMMERCE_HELD_SALES_ACTIVITY_CODE,
+      action: "approve",
+      description:
+        "See, resume or discard another cashier's held sale (Issue #286)"
+    },
+    {
+      activityCode: COMMERCE_QUOTATIONS_ACTIVITY_CODE,
+      action: "read",
+      description: "List and read quotations and their versions (Issue #286)"
+    },
+    {
+      activityCode: COMMERCE_QUOTATIONS_ACTIVITY_CODE,
+      action: "create",
+      description: "Create a quotation or add a revised version (Issue #286)"
+    },
+    {
+      activityCode: COMMERCE_QUOTATIONS_ACTIVITY_CODE,
+      action: "update",
+      description: "Send, accept, reject or cancel a quotation (Issue #286)"
+    },
+    {
+      activityCode: COMMERCE_QUOTATION_CONVERSIONS_ACTIVITY_CODE,
+      action: "create",
+      description:
+        "Convert an accepted quotation into a commerce order (Issue #286)"
+    },
+    {
+      activityCode: COMMERCE_WORK_ORDERS_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "List and read work orders and their status history (Issue #286)"
+    },
+    {
+      activityCode: COMMERCE_WORK_ORDERS_ACTIVITY_CODE,
+      action: "create",
+      description:
+        "Create a work order, optionally from an accepted quotation (Issue #286)"
+    },
+    {
+      activityCode: COMMERCE_WORK_ORDERS_ACTIVITY_CODE,
+      action: "update",
+      description:
+        "Move a work order through its status machine or reassign it (Issue #286)"
+    },
+    {
+      activityCode: COMMERCE_DOCUMENTS_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "List, read and render (print) receipt and invoice documents (Issue #286)"
+    },
+    {
+      activityCode: COMMERCE_DOCUMENTS_ACTIVITY_CODE,
+      action: "create",
+      description:
+        "Issue a numbered receipt or invoice document for a finalized order (Issue #286)"
+    },
+    {
       activityCode: COMMERCE_ENTITLEMENTS_ACTIVITY_CODE,
       action: "read",
       description:
@@ -3298,5 +3409,10 @@ export {
   COMMERCE_REGISTER_PERMISSIONS,
   COMMERCE_REGISTER_SESSION_PERMISSIONS,
   COMMERCE_REGISTER_CASH_UP_PERMISSIONS,
-  COMMERCE_REGISTER_CORRECTION_PERMISSIONS
+  COMMERCE_REGISTER_CORRECTION_PERMISSIONS,
+  COMMERCE_HELD_SALE_PERMISSIONS,
+  COMMERCE_QUOTATION_PERMISSIONS,
+  COMMERCE_QUOTATION_CONVERSION_PERMISSIONS,
+  COMMERCE_WORK_ORDER_PERMISSIONS,
+  COMMERCE_DOCUMENT_PERMISSIONS
 };
