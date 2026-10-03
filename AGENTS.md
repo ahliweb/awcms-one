@@ -10,6 +10,21 @@ Applies to humans and AI agents working in this repo alike. Read this before doi
 
 This document's own workspace layout, gate mechanism, and changeset convention are adapted from [`ahliweb/media-lenterakalteng`](https://github.com/ahliweb/media-lenterakalteng). Where a rule below is inherited from that repo's own hard-won lesson rather than one this repo has found for itself, it says so.
 
+## Template-only ownership rule — derived applications own their backend
+
+**This repository must never become the shared runtime backend for a product that was created from it.** `awcms-one` is a template/reference implementation. Once a product repository is created, that repository owns its own backend runtime, database, migrations, secrets, domains, deployment configuration, product data, product-specific modules, and operational lifecycle. It may reuse code and contracts from the template, but it must not point production traffic at this repository's live `apps/cms` merely because the template already contains the needed capability. See [ADR-0024](docs/adr/0024-awcms-one-is-template-only-derived-apps-own-their-backend.md).
+
+Apply these rules to **every implementation and every issue**:
+
+- **Issue follows code ownership.** Product-specific backend work belongs in the product/consumer repository that will contain the code. Product requirements, UX, UAT, legal/compliance and deployment work also stay with that product repository.
+- **Only reusable template capabilities belong here.** A capability requested by a consumer may be added to `awcms-one` only after removing consumer names, product-specific content, one-off workflow assumptions and deployment-specific configuration, and after proving that the result is a reusable baseline for multiple derived applications.
+- **Generic AWCMS foundation still follows upstream ownership.** If the capability belongs to `ahliweb/awcms` itself, implement it upstream and bring it here by the normal subtree sync; do not use a consumer request as a reason to create another local divergence.
+- **No consumer runtime tenancy here.** Do not create a derived product's production tenant, domain verification, API token, private content, secrets, customer data, or product-specific scheduled jobs in the reference deployment.
+- **No cross-repo runtime dependency on this repository.** A derived app may deliberately adopt a later released template improvement, with its own migration/regression plan, but its availability must not depend on `awcms-one` being online.
+- **Promotion is explicit.** When a consumer discovers a missing foundation, first classify it as consumer-specific vs. reusable. Consumer-specific implementation stays in the consumer repo. Reusable work gets its own template/upstream ADR, tests, migration/compatibility plan and neutral naming before it is accepted here.
+
+The IRMbyDUS migration in issue #297 is the first application of this rule: already-merged generic improvements remain template capabilities, while IRM-specific practice/program/journal/progress/mentoring code is owned by `ahliweb/web-irmbydus.com`.
+
 ## What is here today, and what is not
 
 **[`docs/status.md`](docs/status.md) is the current-state reference** — what exists, by surface (storefront per build profile, the `commerce` module, customer accounts, external integrations, ops/deploy, the template mechanism), and the short "not here yet" list, each item linking to the document or ADR with the detail. History — which issue or epic built which piece, and when — lives in [`CHANGELOG.md`](CHANGELOG.md) and the [ADR index](docs/adr/README.md), not here. Do not write code, gates, or documentation that assumes a `docs/status.md` "not here yet" item already exists. A path cited in backticks that does not exist in this repo is caught by `bun run audit:dokumen`'s named-path check unless it is listed in that gate's `EXCLUDED_PATHS`, with a reason. See [`docs/README.md`](docs/README.md) for the full documentation index.
