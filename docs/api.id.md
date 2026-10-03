@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:2b0192b48766691881fed260f8b997306e7a9fdf0a3e9710269132c04c6ba75b -->
+<!-- i18n-source-hash: sha256:ce643076f8cddedbc0de6dbcc7c4f68673b5bc35e984fe7eae1d02fb345316c3 -->
 
 # API
 
@@ -283,6 +283,16 @@ Setiap rute di bawah berada di balik feature flag `documents` milik tenant (bawa
 | `GET` | `/api/v1/commerce/documents/{id}/render?format=json\|text\|html&locale=id\|en` | `documents.read` — kontrak render: fungsi murni dari snapshot tersimpan (hash diverifikasi ulang, `409 DOCUMENT_INTEGRITY_FAILURE`); `html` membawa `Content-Security-Policy: default-src 'none'`, `nosniff`, `no-store`; setiap render diaudit |
 
 Event: `awcms.commerce.quotation.accepted`, `awcms.commerce.quotation.converted` (asal-usul konversi), `awcms.commerce.work_order.status_changed`, `awcms.commerce.document.issued`. Tiga belas kunci izin: `commerce.held_sales.{read,create,update,approve}`, `commerce.quotations.{read,create,update}`, `commerce.quotation_conversions.create`, `commerce.work_orders.{read,create,update}`, `commerce.documents.{read,create}`.
+
+## API pemilik: barcode (issue #292, epic #281, [ADR-0032](adr/0032-barcodes-are-a-derived-identifier-and-the-cashier-keyboard-layer-is-chord-only.md))
+
+Ketiga rute dibatasi oleh fitur `barcode` milik tenant (`409 FEATURE_DISABLED` saat mati — bawaannya MATI) dan izin yang dipisah per sumber daya.
+
+| Metode | Path | Catatan |
+| --- | --- | --- |
+| `GET` | `/api/v1/commerce/barcodes/lookup?code=` | `barcodes.read`. Menyelesaikan kode yang dipindai menjadi satu produk atau varian yang ditunjuknya di tenant pemanggil: `{ productId, variantId, name, variantLabel, sku, barcode, symbology, price, stock, status, requiresVariant, sellable }`. `requiresVariant` adalah induk polos dari produk yang punya varian hidup; `sellable` adalah aktif + ada stok + tanpa varian. Kode tak dikenal, terhapus lunak, dan milik tenant lain adalah `404` yang **sama**; kode hilang, terlalu panjang (> 48), atau tak dapat dicetak adalah `400` |
+| `GET` | `/api/v1/commerce/barcodes` | `barcodes.read`. Menomori produk (tanpa varian) dan varian, berurut nama: `?q=` (substring nama/SKU, atau barcode persis), `?barcode=with\|without`, `?page=` (bawaan 0, 50 per halaman) → `{ items, page, hasMore }` |
+| `PUT` | `/api/v1/commerce/barcodes` | `barcodes.update`. `{ productId, variantId?, barcode }` — `barcode` adalah string untuk menetapkan atau `null` untuk menghapus. `400` untuk id atau kode salah bentuk (kode numerik 8/12/13/14 digit butuh digit pemeriksa GTIN yang valid; awalan `<n>*` ditolak); `404` untuk id tak dikenal, id tenant lain, atau varian yang bukan milik produk yang disebut (satu jawaban netral); `409 BARCODE_DUPLICATE` bila produk atau varian hidup lain memegang kode itu. Idempoten secara alami sehingga tanpa `Idempotency-Key`; diaudit sebagai `update` pada `product` / `product_variant` |
 
 ## Otorisasi: 39 izin owner (ditambah kunci increment-5, sejak #285 `commerce.payments.{read,create,revoke}` dan `commerce.pos_due.create`, dan sejak #284 sepuluh kunci register: `commerce.registers.{read,create,update}`, `commerce.register_sessions.{read,create,update,export}`, `commerce.register_cash_ups.{create,approve}`, `commerce.register_corrections.approve`)
 

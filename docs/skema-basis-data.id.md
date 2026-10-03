@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:baef4a90ae2564d0e996083263b81894ffe1848fbaece9001f069e5f1b2dd96f -->
+<!-- i18n-source-hash: sha256:0ad334061b49163543c800b8203aac39fb3a08af3c6ecfb391fdb2d4cdb8e132 -->
 
 # Skema basis data
 
@@ -244,6 +244,17 @@ erDiagram
 ```
 
 `document_sequences` sengaja tidak punya foreign key ke baris bernomor: ia adalah penghitung tempat nomor mereka berasal, dinaikkan dalam transaksi yang sama, dan baris penghitung hidup lebih lama dari dokumennya selama tahunnya masih berjalan. Tidak ada kolom yang ditambahkan ke `orders`: ia tidak pernah tahu tentang penawaran, perintah kerja, atau dokumen yang menunjuk kepadanya.
+
+## Barcode: dua kolom, dua indeks, satu trigger (`sql/975`–`976`, issue #292, [ADR-0032](adr/0032-barcodes-are-a-derived-identifier-and-the-cashier-keyboard-layer-is-chord-only.md))
+
+Tanpa tabel baru. `barcode text` (nullable) pada `awcms_commerce_products` dan `awcms_commerce_product_variants`, dengan `CHECK (barcode ~ '^[!-~]{1,48}$')` (ASCII yang dapat dicetak, tanpa spasi). Simbologi **tidak disimpan** — ia adalah fungsi murni dari kodenya (`domain/barcode.ts`).
+
+| Objek | Yang ditegakkan |
+| --- | --- |
+| `awcms_commerce_products_tenant_barcode_key`, `awcms_commerce_product_variants_tenant_barcode_key` | `UNIQUE (tenant_id, barcode) WHERE deleted_at IS NULL AND barcode IS NOT NULL` parsial — separuh aturan pada satu tabel, **sekaligus indeks pencarian** (pindaian diselesaikan dengan satu probe kesetaraan; terverifikasi sebagai index scan pada 20.000 baris) |
+| `awcms_commerce_barcode_cross_guard()` + trigger `BEFORE INSERT OR UPDATE` pada tiap tabel | separuh lintas tabel: kode yang dipegang baris hidup di tabel lainnya ditolak (`unique_violation`, constraint `awcms_commerce_barcode_cross_table_key`), di bawah `pg_advisory_xact_lock(918292, hash & 255)` — **256 strip, bukan satu lock per kode**, karena advisory lock menempati satu slot tabel kunci bersama sampai commit dan pemuatan massal 20.000 baris gagal dengan `out of shared memory` pada lock per kode. Baris terhapus lunak membebaskan kodenya; **memulihkan** baris yang kodenya dipakai ulang kembali dengan `barcode = NULL`, bukan gagal |
+
+Dua tenant boleh memegang kode yang sama. Row-level security, filter tenant, hapus lunak, dan deskriptor retensi adalah milik baris tempat kolom itu berada; tidak ada entri `dataLifecycle`/`subjectData`, hak worker, atau FK komposit yang ditambahkan karena tidak ada tabel baru. Izin: `commerce.barcodes.{read,update}` (`sql/976`).
 
 ## Proyeksi laporan penjualan: tiga tabel turunan (`sql/933`)
 

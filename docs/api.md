@@ -282,6 +282,16 @@ Every route below is behind the tenant's `documents` feature flag (default OFF �
 
 Events: `awcms.commerce.quotation.accepted`, `awcms.commerce.quotation.converted` (the conversion's provenance), `awcms.commerce.work_order.status_changed`, `awcms.commerce.document.issued`. Thirteen permission keys: `commerce.held_sales.{read,create,update,approve}`, `commerce.quotations.{read,create,update}`, `commerce.quotation_conversions.create`, `commerce.work_orders.{read,create,update}`, `commerce.documents.{read,create}`.
 
+## Owner API: barcodes (issue #292, epic #281, [ADR-0032](adr/0032-barcodes-are-a-derived-identifier-and-the-cashier-keyboard-layer-is-chord-only.md))
+
+All three routes are gated on the tenant's `barcode` feature (`409 FEATURE_DISABLED` while off — it defaults OFF) and a resource-split permission.
+
+| Method | Path | Notes |
+| --- | --- | --- |
+| `GET` | `/api/v1/commerce/barcodes/lookup?code=` | `barcodes.read`. Resolves a scanned code to the one product or variant it names in the caller's tenant: `{ productId, variantId, name, variantLabel, sku, barcode, symbology, price, stock, status, requiresVariant, sellable }`. `requiresVariant` is the bare parent of a product with live variants; `sellable` is active + in stock + variant-free. Unknown, soft-deleted and other-tenant codes are the **same** `404`; a missing, over-long (> 48) or non-printable code is `400` |
+| `GET` | `/api/v1/commerce/barcodes` | `barcodes.read`. Pages products (without variants) and variants, name-ordered: `?q=` (name/SKU substring, or a barcode exactly), `?barcode=with\|without`, `?page=` (default 0, 50 per page) → `{ items, page, hasMore }` |
+| `PUT` | `/api/v1/commerce/barcodes` | `barcodes.update`. `{ productId, variantId?, barcode }` — `barcode` is a string to set or `null` to clear. `400` for a malformed id or code (a numeric 8/12/13/14-digit code needs a valid GTIN check digit; a `<n>*` prefix is refused); `404` for an unknown id, another tenant's id, or a variant that is not the named product's (one neutral answer); `409 BARCODE_DUPLICATE` when another live product or variant holds the code. Idempotent by nature, so no `Idempotency-Key`; audited as `update` on `product` / `product_variant` |
+
 ## Authorization: 39 owner permissions (plus the increment-5 keys, since #285 `commerce.payments.{read,create,revoke}` and `commerce.pos_due.create`, and since #284 ten register keys: `commerce.registers.{read,create,update}`, `commerce.register_sessions.{read,create,update,export}`, `commerce.register_cash_ups.{create,approve}`, `commerce.register_corrections.approve`)
 
 The `commerce` module declares 39 permission keys in total (10 + 22 + 7 below), grouped by the same three areas as its tables — a count too large for this document's own "spelled number matches a counted set" convention (`bun run audit:dokumen`'s linked-count check only recognises spelled numbers one through twenty), so it is stated here as a numeral instead of inside a guarded block.

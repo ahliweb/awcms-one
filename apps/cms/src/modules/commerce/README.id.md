@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:8ea6632d4940322b1d92dade3fa2125b0579dd0ce5293696346f1337a999d09a -->
+<!-- i18n-source-hash: sha256:0f010434b73b519869658974e53ab078c79cba20b455e0d761f52a2bb6f13013 -->
 
 # `commerce`
 
@@ -1345,3 +1345,12 @@ Tujuh tabel (`sql/980`: `awcms_commerce_document_sequences`, `…_held_sales`, `
   pencarian ber-ranking — `site_search` adalah modul pencarian
   lintas-konten base ini, dan `commerce` tidak berintegrasi dengannya di
   peningkatan ini.
+
+## Barcode, label, input pemindai, dan pintasan kasir - TERIMPLEMENTASI (Issue #292, epic #281 - [ADR-0032](../../../../../docs/adr/0032-barcodes-are-a-derived-identifier-and-the-cashier-keyboard-layer-is-chord-only.md))
+
+Dua kolom `barcode` nullable (`sql/975`: produk dan varian), dua izin (`commerce.barcodes.{read,update}`, `sql/976`), tanpa tabel baru.
+
+- **Lokasi kode.** `domain/barcode.ts` (digit pemeriksa GTIN, kebijakan validasi, encoder Code 128 / EAN-13 / EAN-8, perender SVG, opsi label - murni), `domain/pos-scan.ts` (parsing kolom pindai dan `ScanBurstDetector`, diberi cap waktu eksplisit - murni), `domain/pos-shortcuts.ts` (kebijakan kombinasi, bentrok, pelapisan bawaan -> tenant -> pengguna - murni), `application/barcode-directory.ts` (lookup, katalog, penetapan, baris label), `application/barcode-http.ts` (guard, gerbang fitur, pengaturan pintasan tenant), rute di `pages/api/v1/commerce/barcodes/`, layar `pages/admin/commerce-labels.astro`, dan sisi klien `src/lib/ui/pos-keyboard-client.ts` (satu-satunya tempat skrip layar POS dijangkau: satu kait `addScanned`, sisanya id elemen).
+- **Aturan yang harus dijaga perubahan.** Barcode adalah pengenal, bukan otoritas: otorisasi pemanggil terlebih dahulu. Simbologi tetap diturunkan. Keunikan adalah tugas database (indeks parsial + trigger lintas tabel); jangan ganti advisory lock berstrip dengan satu lock per kode (menghabiskan tabel kunci pada pemuatan massal). Lookup yang meleset adalah satu `404` netral. SVG label hanya berisi angka dan teks tenant di-escape, tidak pernah `set:html`. Pintasan adalah kombinasi - tidak pernah karakter polos, tidak pernah tombol yang dicadangkan peramban - dan detektor tidak pernah aktif di kolom teks.
+- **Feature flag.** `features.barcode` bawaannya MATI (flag ketiga seperti itu, setelah `register` dan `documents`).
+- **Ditunda.** Beberapa barcode per barang, barcode bundel (#290, terblokir oleh #282), barcode dengan harga/berat tertanam, ekspor label PDF, simbologi lain, layar penyunting pintasan tingkat tenant, penyimpanan pintasan per pengguna di server.

@@ -1,0 +1,15 @@
+---
+bump: minor
+type: structure
+impact: public
+---
+
+# Barcodes, label printing, scanner input and a keyboard-first cashier layer (issue #292, ADR-0032)
+
+The POS screen had no barcode support: a cashier searched by name or SKU and clicked. Products and variants can now carry a **barcode**, a USB keyboard-wedge scanner works on the POS screen, labels can be printed, and the repeated cashier actions have configurable keyboard shortcuts. The "why", the options weighed (security, performance, accessibility, UX, compatibility, operational complexity) and what was left out are in [ADR-0032](../docs/adr/0032-barcodes-are-a-derived-identifier-and-the-cashier-keyboard-layer-is-chord-only.md). Migrations `975`–`976` under `apps/cms/sql/`, starting at `apps/cms/sql/975_awcms_commerce_barcodes_schema.sql`.
+
+- New: a nullable `barcode` on `awcms_commerce_products` and `awcms_commerce_product_variants` — 1 to 48 printable characters, unique per tenant among live products **and** variants (two tenants may share a code); an 8/12/13/14-digit numeric code is a GTIN and needs a valid check digit, anything else is a free Code 128 internal code, and the symbology is derived, never stored. `GET /api/v1/commerce/barcodes/lookup?code=` resolves a scan (one neutral `404` for unknown, deleted and other-tenant codes), `GET`/`PUT /api/v1/commerce/barcodes` browse and assign. Screen `/admin/commerce-labels`: assign codes and print label sheets (columns, copies, label size, name/price/SKU) rendered on the server with a built-in Code 128 / EAN-13 / EAN-8 encoder — no new dependency, no client script on the print path, tenant text escaped.
+- POS: a _Scan a barcode_ field (`3*CODE` for a quantity), a global fast-burst scanner detector that never fires inside a text field and swallows its own Enter, inline `role="status"`/`role="alert"` results (no modal), and a chord-only shortcut layer (`F2` scan, `Ctrl+Enter` finalize, `Alt+Shift+…` for the rest) with a visible help dialog where every chord can be changed (conflicts and browser-reserved keys are refused). A tenant default map is the `commerce` module setting `posShortcuts`; a personal override stays in the browser.
+- Two new resource-split permissions: `commerce.barcodes.read` (lookup, catalogue, labels) and `commerce.barcodes.update` (assign) — not implied by `commerce.pos.create` or `commerce.products.update`. Existing tenants do not gain them retroactively.
+- **Backward compatible, opt-in.** The whole surface is behind the new `barcode` feature flag (commerce settings → Features), which defaults OFF: with it off every barcode route answers `409 FEATURE_DISABLED`, the scan field, shortcuts and sidebar entry are absent, and the existing mouse/touch POS flow is unchanged. No new table; the new columns are nullable.
+- Not here yet (ADR-0032 Deferred): several barcodes per item, bundle barcodes (blocked on the inventory epic), embedded price/weight barcodes, PDF label export and further symbologies, a tenant-level shortcut editor screen, a server-side per-user shortcut store, and a real-browser E2E of the scan/keyboard flow.

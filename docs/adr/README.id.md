@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:8f1b97a31e1d46faa8a2fce8fbe9cd2e4e6802d1cb821d1865e0484fc4b05d87 -->
+<!-- i18n-source-hash: sha256:8ed28f177d384f034526dfc4b0c8c1cece3f7e8e79f952c63e661fd17e06d08c -->
 
 # Architecture Decision Records
 
@@ -44,6 +44,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0025](0025-payments-are-an-allocation-ledger-separate-from-order-status.md) | Pembayaran adalah ledger alokasi append-only, terpisah dari status pesanan | Diterima |
 | [0028](0028-pos-register-sessions-and-cash-up.md) | Sesi register POS dan tutup kas: jumlah yang seharusnya diturunkan dari ledger pembayaran, shift yang sudah ditutup tidak dapat diubah | Diterima |
 | [0029](0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md) | Dokumen commerce: penjualan tertahan, penawaran, perintah kerja, dan struk/faktur adalah rekaman terpisah, dan dokumen bernomor adalah snapshot pesanan yang tidak dapat diubah | Diterima |
+| [0032](0032-barcodes-are-a-derived-identifier-and-the-cashier-keyboard-layer-is-chord-only.md) | Barcode adalah pengenal per tenant dengan simbologi turunan, label dirender di server, dan lapisan keyboard kasir hanya berbasis kombinasi tombol | Diterima |
 
 ## Mengapa penomoran dimulai dari 0001
 

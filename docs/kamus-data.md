@@ -220,6 +220,18 @@ This platform's own design — nothing here is ported from the legacy store. Sta
 | held `cart` | `{ lines: [{ productId, variantId, quantity }], customer: { name, phone } \| null, notes }` | no price; wiped to `{}` when the sale leaves `held` |
 | quotation version `pricing_context` | `engine`, `quotedAt`, `customerLevel`, `taxActive`, `taxPercent`, `shippingCost` | what the quote engine used, kept as evidence |
 
+## Barcode vocabulary (issue #292, [ADR-0032](adr/0032-barcodes-are-a-derived-identifier-and-the-cashier-keyboard-layer-is-chord-only.md))
+
+This platform's own design - nothing here is ported from the legacy store.
+
+| Field | Values / shape | Meaning |
+| --- | --- | --- |
+| `barcode` | 1-48 printable ASCII characters, no spaces; not `<1-3 digits>*...` | an identifier of a product or variant, unique per tenant among live rows of both |
+| `symbology` (derived) | `ean13`, `ean8`, `upca`, `gtin14`, `code128` | all-digit 13 -> `ean13`, 8 -> `ean8`, 12 -> `upca` (printed as EAN-13 with a leading zero), 14 -> `gtin14` (printed as Code 128); anything else -> `code128`. An 8/12/13/14-digit numeric code must have a valid GS1 check digit |
+| `requiresVariant` / `sellable` (lookup) | boolean | `requiresVariant`: the code names the bare parent of a product with live variants; `sellable`: active, in stock, no variant needed |
+| `features.barcode` | boolean, default `false` | gates every barcode route, the POS scan field and shortcut layer, and the sidebar entry |
+| `posShortcuts` (module setting) | `{ action: combo }` | the tenant's shortcut overrides; actions `focusScan focusSearch editQuantity removeLine focusCustomer focusPayment hold resume finalize printReceipt newSale showHelp`; a combo is `Alt+Shift+<letter or digit>`, `F2`/`F4`/`F8`/`F9`, or `Ctrl+Enter`/`Ctrl+Shift+Enter` |
+
 ## Deferred columns and tables — not ported
 
 - **A live RajaOngkir courier-RATE table is done** (issue #107, `sql/924` — `awcms_commerce_courier_destinations`/`_shipping_rates`, a cached rate the order path validates against, never a synchronous provider call). What is still deferred: live courier TRACKING (a shipped parcel's own status) — `shipping_method`/`shipping_service_name` on an order remain merchant-defined labels for the `alternative`/`self_pickup` methods; a `courier` shipment's rate is now live, its post-dispatch tracking is not (named as a follow-up in [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md)).
