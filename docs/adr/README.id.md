@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:1de563e37089433fece8b946f1cf790380e85235ec6aea4af170759e62767278 -->
+<!-- i18n-source-hash: sha256:0fcbfbd68523a145705eaa376c1b8ffdcea44e07929b4144147d95dce5700fea -->
 
 # Architecture Decision Records
 
@@ -41,6 +41,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0021](0021-zero-github-actions-local-ci-with-exact-sha-statuses.md) | Nol GitHub Actions: CI lokal dengan status komit ber-SHA-eksak | Diterima |
 | [0022](0022-production-deployment-is-server-side-and-explicit.md) | Deployment produksi bersifat server-side dan eksplisit | Diterima (digantikan sebagian oleh [0021](0021-zero-github-actions-local-ci-with-exact-sha-statuses.md)) |
 | [0023](0023-release-images-are-built-signed-and-published-from-a-trusted-release-host.md) | Image rilis dibangun, ditandatangani, dan dipublikasikan dari release host tepercaya | Diterima |
+| [0024](0024-awcms-one-is-template-only-derived-apps-own-their-backend.md) | awcms-one hanya template; setiap aplikasi turunan memiliki backend dan runtime sendiri | Diterima |
 | [0025](0025-payments-are-an-allocation-ledger-separate-from-order-status.md) | Pembayaran adalah ledger alokasi append-only, terpisah dari status pesanan | Diterima |
 
 ## Mengapa penomoran dimulai dari 0001
