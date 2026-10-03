@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 26    |
-| Migrations                          | 212   |
-| `awcms_*` tables                    | 211   |
-| Tables with `FORCE` RLS             | 193   |
+| Migrations                          | 217   |
+| `awcms_*` tables                    | 214   |
+| Tables with `FORCE` RLS             | 196   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 632   |
-| Route files                         | 566   |
+| Test files                          | 635   |
+| Route files                         | 574   |
 | ADR                                 | 252   |
 
 ### Modules
@@ -263,6 +263,11 @@
 | 210 | `sql/950_awcms_commerce_loyalty_schema.sql`                                 |
 | 211 | `sql/951_awcms_commerce_loyalty_worker_grants.sql`                          |
 | 212 | `sql/952_awcms_commerce_loyalty_permissions.sql`                            |
+| 213 | `sql/960_awcms_commerce_attributes_schema.sql`                              |
+| 214 | `sql/961_awcms_commerce_attributes_permissions.sql`                         |
+| 215 | `sql/962_awcms_commerce_attributes_worker_grants.sql`                       |
+| 216 | `sql/963_awcms_commerce_attributes_value_indexes.sql`                       |
+| 217 | `sql/964_awcms_commerce_catalog_import_batches.sql`                         |
 
 ### Tables & Row-Level Security
 
@@ -304,8 +309,10 @@
 | `awcms_comments_threads`                    | `sql/066_awcms_comments_schema.sql`                        | yes | yes   |
 | `awcms_commerce_affiliate_commissions`      | `sql/921_awcms_commerce_affiliates_schema.sql`             | yes | yes   |
 | `awcms_commerce_affiliates`                 | `sql/921_awcms_commerce_affiliates_schema.sql`             | yes | yes   |
+| `awcms_commerce_attribute_definitions`      | `sql/960_awcms_commerce_attributes_schema.sql`             | yes | yes   |
 | `awcms_commerce_campaign_recipients`        | `sql/929_awcms_commerce_campaigns_schema.sql`              | yes | yes   |
 | `awcms_commerce_campaigns`                  | `sql/929_awcms_commerce_campaigns_schema.sql`              | yes | yes   |
+| `awcms_commerce_catalog_import_batches`     | `sql/964_awcms_commerce_catalog_import_batches.sql`        | yes | yes   |
 | `awcms_commerce_categories`                 | `sql/901_awcms_commerce_schema.sql`                        | yes | yes   |
 | `awcms_commerce_conversations`              | `sql/927_awcms_commerce_conversations_schema.sql`          | yes | yes   |
 | `awcms_commerce_courier_destinations`       | `sql/924_awcms_commerce_shipping_rates_schema.sql`         | yes | yes   |
@@ -328,6 +335,7 @@
 | `awcms_commerce_payment_events`             | `sql/926_awcms_commerce_payment_gateway_schema.sql`        | yes | yes   |
 | `awcms_commerce_payment_gateway_sessions`   | `sql/926_awcms_commerce_payment_gateway_schema.sql`        | yes | yes   |
 | `awcms_commerce_popups`                     | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
+| `awcms_commerce_product_attribute_values`   | `sql/960_awcms_commerce_attributes_schema.sql`             | yes | yes   |
 | `awcms_commerce_product_images`             | `sql/905_awcms_commerce_product_images_variants.sql`       | yes | yes   |
 | `awcms_commerce_product_variants`           | `sql/905_awcms_commerce_product_images_variants.sql`       | yes | yes   |
 | `awcms_commerce_products`                   | `sql/901_awcms_commerce_schema.sql`                        | yes | yes   |
@@ -484,17 +492,17 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 501        |
+| `(root)`      | 503        |
 | `e2e`         | 21         |
-| `integration` | 109        |
+| `integration` | 110        |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 451   |
-| `/admin/**`     | 85    |
+| `/api/v1/**`    | 457   |
+| `/admin/**`     | 87    |
 | publik / anonim | 30    |
 
 <!-- END GENERATED: repo-inventory -->

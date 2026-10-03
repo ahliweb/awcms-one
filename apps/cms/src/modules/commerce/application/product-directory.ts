@@ -32,6 +32,12 @@ import type { SubscriptionPeriod } from "../domain/subscription-period";
 import type { ServiceFormField } from "../domain/service-form-validation";
 import type { VariantAttributeGroup } from "../domain/variant-attributes-validation";
 import type { ProductSort } from "../domain/product-sort";
+import type { ResolvedAttributeFilter } from "../domain/attribute-filter";
+import { listAttributeDefinitions } from "./attribute-definition-directory";
+import {
+  buildAttributeFilterFragment,
+  buildSearchableAttributeFragment
+} from "./attribute-filter-sql";
 import { fetchCategoryById } from "./category-directory";
 import {
   listLiveProductImagesByProductIds,
@@ -331,6 +337,20 @@ export type ProductListFilters = {
   sort?: ProductSort;
   featured?: boolean;
   recommended?: boolean;
+  /**
+   * Issue #291 — typed attribute filters, ALREADY RESOLVED against the tenant's
+   * definitions by `resolveAttributeFilterRequest` (a definition id from the
+   * database, a closed operator, typed operands). Never raw request text.
+   */
+  attributeFilters?: ResolvedAttributeFilter[];
+  /**
+   * Which definitions' values the free-text `q` may match, besides name/sku:
+   * `public` (the default, safe for the machine-credential API the storefront
+   * reads) matches only `searchable && visible_public` attributes; `admin`
+   * matches every `searchable && visible_admin` one. A non-public attribute can
+   * therefore never be probed through the public search.
+   */
+  attributeAudience?: "admin" | "public";
 };
 
 /**
@@ -375,10 +395,33 @@ async function queryProductRows(
     sort === "newest" ? (cursor?.createdAt ?? null) : null;
   const cursorId = sort === "newest" ? (cursor?.id ?? null) : null;
 
+  // Issue #291 — the searchable-attribute branch of `q` and the typed attribute
+  // filters are SQL FRAGMENTS built from database-resolved definition ids and
+  // typed, bound operands (`attribute-filter-sql.ts`); with no `q` and no
+  // filters both are empty and the statement is exactly the pre-attribute one.
+  let searchableIds: string[] = [];
+  if (qLike !== null) {
+    const audience = filters.attributeAudience ?? "public";
+    searchableIds = (await listAttributeDefinitions(tx, tenantId, { audience }))
+      .filter((definition) => definition.isSearchable)
+      .map((definition) => definition.id);
+  }
+  const searchableFragment = buildSearchableAttributeFragment(
+    tx,
+    tenantId,
+    searchableIds,
+    qLike
+  );
+  const attributeFragment = buildAttributeFilterFragment(
+    tx,
+    tenantId,
+    filters.attributeFilters ?? []
+  );
+
   const rows = (await tx`
     SELECT ${tx.unsafe(PRODUCT_COLUMNS)},
            ${tx.unsafe(keysetCursorCreatedAtSql())} AS created_at_cursor
-    FROM awcms_commerce_products
+    FROM awcms_commerce_products AS p
     WHERE tenant_id = ${tenantId}
       AND deleted_at IS NULL
       AND (${categoryIdParam}::uuid IS NULL OR category_id = ${categoryIdParam}::uuid)
@@ -389,7 +432,9 @@ async function queryProductRows(
         ${qLike}::text IS NULL
         OR name ILIKE ${qLike} ESCAPE '\\'
         OR sku ILIKE ${qLike} ESCAPE '\\'
+        ${searchableFragment}
       )
+      ${attributeFragment}
       AND (
         ${cursorCreatedAt}::timestamptz IS NULL
         OR (created_at, id) < (${cursorCreatedAt}, ${cursorId})
@@ -518,6 +563,41 @@ export async function fetchProductByIdForAdmin(
   `) as ProductRow[];
 
   return rows[0] ? toAdminRecord(rows[0]) : null;
+}
+
+/**
+ * Live products by SKU (admin shape) — the catalog import's match step. The SKU
+ * list is bound as a text array (`tx.array(...)`), never interpolated.
+ */
+export async function fetchProductsBySkusForAdmin(
+  tx: Bun.SQL,
+  tenantId: string,
+  skus: readonly string[]
+): Promise<ProductAdminRecord[]> {
+  if (skus.length === 0) return [];
+  const rows = (await tx`
+    SELECT ${tx.unsafe(PRODUCT_COLUMNS)}
+    FROM awcms_commerce_products
+    WHERE tenant_id = ${tenantId} AND deleted_at IS NULL
+      AND sku = ANY(${tx.array([...skus], "text")}::text[])
+  `) as ProductRow[];
+  return rows.map(toAdminRecord);
+}
+
+/** Which LIVE product (by sku) currently owns each of `slugs` — the import's slug-collision pre-check. */
+export async function fetchLiveSlugOwners(
+  tx: Bun.SQL,
+  tenantId: string,
+  slugs: readonly string[]
+): Promise<Map<string, string>> {
+  if (slugs.length === 0) return new Map();
+  const rows = (await tx`
+    SELECT slug, sku
+    FROM awcms_commerce_products
+    WHERE tenant_id = ${tenantId} AND deleted_at IS NULL
+      AND slug = ANY(${tx.array([...slugs], "text")}::text[])
+  `) as { slug: string; sku: string }[];
+  return new Map(rows.map((row) => [row.slug, row.sku]));
 }
 
 /** `GET /api/v1/commerce/products/by-slug/{slug}` — the storefront's detail fetch by URL key. */
