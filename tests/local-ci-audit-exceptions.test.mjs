@@ -19,6 +19,12 @@ const valid = {
 };
 
 describe("tools/ci/lib/audit-exceptions.ts", () => {
+  test("the release tool runs bun audit through the same exception list, spawning nothing itself", () => {
+    const source = readFileSync("tools/rilis.mjs", "utf8");
+    assert.match(source, /runBunAuditWithExceptions\("\."\)/);
+    assert.doesNotMatch(source, /execSync\("bun audit/);
+  });
+
   test("the committed dependency-audit-exceptions.json parses", () => {
     const entries = parseAuditExceptions(readFileSync("tools/ci/dependency-audit-exceptions.json", "utf8"));
     assert.ok(Array.isArray(entries));

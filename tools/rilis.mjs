@@ -30,6 +30,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { execSync } from "node:child_process";
 import { gitRunInherit, gitRunOrThrow } from "../packages/gerbang/lib/git.mjs";
+import { runBunAuditWithExceptions } from "./ci/lib/audit-exceptions.ts";
 import {
   changesetBody,
   isChangesetFile,
@@ -184,8 +185,14 @@ execSync("bun test", { stdio: "inherit" });
 // `bun audit` (dependency vulnerabilities) and this repo's own
 // `audit:dokumen`/`audit:rilis`/`audit:translation` gates are unrelated,
 // and their names are kept distinct on purpose.
+// The same dated, reasoned exceptions the local-CI legs honour
+// (`tools/ci/dependency-audit-exceptions.json`): an advisory no published
+// release fixes is accepted there with a reviewDate, and a release refuses
+// to proceed once that date has passed. The spawn lives in that library
+// (an argv array, no shell): the ignore ids are data read from a file.
 console.log("Running bun audit ...");
-execSync("bun audit --audit-level=low", { stdio: "inherit" });
+const auditExit = runBunAuditWithExceptions(".");
+if (auditExit !== 0) process.exit(auditExit);
 
 // -- Fold changesets into CHANGELOG.md ----------------------------------------
 // Local date, not UTC: cutting a release late at night would otherwise be
