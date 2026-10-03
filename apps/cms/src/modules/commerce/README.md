@@ -473,6 +473,8 @@ codebase that does — selected whenever `EMAIL_PROVIDER=log` or
 `commerce` gained a dependency on `email` for this (see `module.ts`), the
 same way `newsletter` already depends on it for its own confirmation mail.
 
+**Registration in the `email:dispatch` process (Issue #311).** The three `derived.commerce_*` e-mail categories (`customer_otp`, `conversation_reply`, `campaign`) are registered by ONE dependency-free side-effect file, `domain/email-template-categories.ts`, which the application files import and which `email/application/email-dispatch.ts` imports too (one recorded upstream divergence, see the root `AGENTS.md`). The registry is per process and `renderEmailTemplate` drops every variable for an unknown category, so a registration that lived only in application files the separate dispatcher never loaded sent OTP e-mails with an empty code. Add every new `derived.commerce_*` category in that file only; `tests/commerce-email-categories-dispatch.test.ts` checks it from a fresh process.
+
 **Sessions** (`application/customer-session-auth.ts`): `requireCustomerSession`
 parses `Authorization: Bearer cs_…`, looks up a live row in
 `awcms_commerce_customer_sessions` (`findSessionByTokenHash`), and slides its
