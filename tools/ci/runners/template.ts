@@ -82,15 +82,19 @@ export async function runTemplateLeg(context: string, profile: Profile, ctx: Leg
   const log = (name: string) => join(evidenceDir, `${name}.log`);
   const storefrontDir = join(worktreeRoot, "apps", "storefront");
 
+  // Declared before the first `fail(...)` call: `fail` is hoisted and kills
+  // the stub, so a `const` destructured further down would throw a TDZ
+  // ReferenceError on any early failure (template:init) and mask the real
+  // reason as "runner threw: Cannot access 'stubProc' before initialization".
+  let stubProc: ReturnType<typeof Bun.spawn> | undefined;
+
   const init = await templateInit(worktreeRoot, profile, profile, log("template-init"));
   if (init.exitCode !== 0) return fail(`template:init --profil ${profile} failed`);
 
   const port = await freePort();
-  const { proc: stubProc, ok: stubOk } = await startStub(storefrontDir, port, log("stub"));
-  if (!stubOk) {
-    stubProc.kill();
-    return fail("stub CMS did not answer in time");
-  }
+  const stub = await startStub(storefrontDir, port, log("stub"));
+  stubProc = stub.proc;
+  if (!stub.ok) return fail("stub CMS did not answer in time");
 
   try {
     const build = await run(["bun", "run", "build"], {
@@ -122,11 +126,11 @@ export async function runTemplateLeg(context: string, profile: Profile, ctx: Leg
       evidenceDir
     };
   } finally {
-    stubProc.kill();
+    stubProc?.kill();
   }
 
   function fail(summary: string): LegOutcome {
-    stubProc.kill();
+    stubProc?.kill();
     return { context, ok: false, summary, durationMs: performance.now() - start, evidenceDir };
   }
 }

@@ -1,0 +1,9 @@
+[
+  {
+    "advisory": "GHSA-ch52-4w7c-c8xp",
+    "packageName": "http-cache-semantics",
+    "reason": "No published release fixes it (<=4.2.0 vulnerable; 4.2.0 is the latest), so no overrides entry can close it. Its only consumer is astro's build-time remote-image cache (astro/dist/assets/build/remote.js); it runs once per `astro build` for one operator, never behind a shared multi-user HTTP cache at request time, which a cross-user max-stale disclosure requires. Mirrors apps/cms/scripts/dependency-audit-exceptions.ts.",
+    "owner": "awcms-one maintainers (ahliweb)",
+    "reviewDate": "2026-11-03"
+  }
+]
