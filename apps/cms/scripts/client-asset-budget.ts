@@ -956,7 +956,21 @@ export const READER_BUDGET_BYTES = 24_000;
  * re-measure on the next commerce or control-center screen and tighten if
  * the real total sits well below this.
  */
-export const APP_BUDGET_BYTES = 288_500;
+/**
+ * **Raised to 291,400 B for awcms-one Issue #289 (loyalty points ledger)** —
+ * `/admin/commerce-loyalty` adds one admin screen: its own `<script>` (program
+ * create/activate/retire, redeem/adjust with a per-submit `Idempotency-Key`,
+ * and the balance check's result rendering), built entirely on existing shared
+ * chrome (`admin-form-client.ts`, `commerce-confirm-dialog-client.ts`,
+ * `.admin-stat-card`/`.admin-status-pill`/`.data-table--stack`) — no new
+ * component and no new stylesheet — plus 76 new i18n catalogue entries
+ * (`locales/id.po`, compiled into the client catalogue). Measured clean build:
+ * 291,291 B (up from 288,391 B at the #260 sync). 291,400 keeps the same
+ * tight "measured + small margin" convention as every raise above; re-measure
+ * on the next commerce screen and tighten if the real total sits well below
+ * this.
+ */
+export const APP_BUDGET_BYTES = 291_400;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

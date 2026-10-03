@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:e8c8ba5ee52bf90907d2eba2eeeb1cd0940066a4a177f1f36c0074a822246cb0 -->
+<!-- i18n-source-hash: sha256:2d220dd0a066dddbb7e31666070a55d4929d3ded6fb5a0aed5c4188f5b3adbd9 -->
 
 # Kamus data
 
@@ -168,6 +168,24 @@ Kasir BjekMart (penjualan konter `commerce_bj_mart`, yang di tabel `orders`/`tra
 | telepon sentinel walk-in | `POS_WALK_IN_CUSTOMER_SENTINEL_PHONE` = **`+620000000000`** (`domain/phone-normalisation.ts`, satu-satunya sumber kebenaran untuk literalnya); nama barisnya `POS_WALK_IN_CUSTOMER_NAME` = `Pelanggan Walk-in` | Satu baris `awcms_commerce_customers` per tenant tempat setiap penjualan konter tanpa telepon dikaitkan (`customers.phone` `NOT NULL` dan unik per tenant, sehingga sentinel-lah yang membuat baris itu unik). Sudah dinormalisasi E.164 (`+62` + sepuluh nol — tidak ada nomor pelanggan Indonesia yang bagian nasionalnya berawalan `0`), sehingga ia melewati `normalizePhoneNumber` tanpa berubah dan tidak pernah tertukar dengan pelanggan nyata. Ditolak sebagai identitas pelanggan pada checkout storefront, dan tidak pernah dilayani pencarian pelacakan storefront — nilai yang terdokumentasi tidak boleh menjadi kredensial untuk membaca struk walk-in |
 | `commerce.pos.create` | `awcms_permissions` (`sql/932`); `COMMERCE_POS_PERMISSIONS.create` | SATU-SATUNYA jalur pembuatan pesanan yang di-gate izin di modul ini. Riwayat POS memakai ulang `commerce.orders.read` |
 | `commerce.pos.sale` | `awcms_audit_events.action` | Peristiwa audit yang ditulis setiap penjualan konter (kode pesanan, total, metode, dibayar, kembalian, flag walk-in, jumlah baris — tidak pernah nama atau telepon pelanggan) |
+
+## Kosakata loyalitas (issue #289, [ADR-0026](adr/0026-loyalty-points-are-an-append-only-ledger.md))
+
+Desain milik platform ini sendiri — "rewards" OSPOS menjadi inspirasi, tidak ada kode atau skemanya yang dibawa.
+
+| Istilah | Lokasi | Arti |
+| --- | --- | --- |
+| poin | `awcms_commerce_loyalty_ledger.points`, `bigint`, bertanda | Bilangan bulat. Bukan float dan bukan uang; bukan store credit atau nilai tersimpan (#288). Dibatasi ±10¹² dan diverifikasi pada setiap decode (`assertPoints`) |
+| `kind` | `CHECK IN ('earn','redeem','expire','adjustment','reversal')` pada ledger | `earn` poin yang diberikan untuk order yang dibayar (> 0, sebuah **lot** yang boleh membawa `expires_at`); `redeem` poin yang dipakai (< 0); `expire` lot yang kedaluwarsa (<= 0 — 0 adalah penanda untuk lot yang sudah habis terpakai); `adjustment` koreksi manual (non-nol, aktor + alasan wajib); `reversal` entri kompensasi untuk satu earn (non-nol, menyebut `reverses_entry_id`) |
+| `source_type` / `source_id` | ledger | Asal sebuah baris: `order` (id order), `expiry` (id entri lot yang kedaluwarsa), `redemption`, `manual`. Tanpa FK pada `source_id` |
+| `idempotency_key` | ledger, unik per tenant | `earn:order:<orderId>`, `reversal:order:<orderId>`, `expire:<lotEntryId>`, `redeem:<accountId>:<clientKey>`, `adjust:<accountId>:<clientKey>` — alasan event, job, atau retry yang di-replay tidak bisa menulis baris kedua |
+| `account_seq` / `balance_after` | ledger | Posisi baris dalam riwayat akunnya (ditetapkan di bawah kunci akun) dan saldo berjalan setelahnya — yang diverifikasi reconcile |
+| lot | turunan (`domain/loyalty-lots.ts`) | Entri ledger positif dan berapa banyak yang masih bisa dipakai, dihitung dengan me-replay ledger (yang paling cepat kedaluwarsa dulu). Tidak pernah disimpan |
+| versi program | `awcms_commerce_loyalty_programs` | Satu aturan perolehan: `earn_points_per_unit` poin per `earn_unit_amount` UTUH dari belanja yang layak, pembulatan FLOOR (`earn_rounding = 'floor'`), `min_order_amount`, `max_points_per_order`, `expiry_days` opsional. Status `draft` → `active` → `retired`; berlaku pada saat t bila `effective_from <= t < effective_to` |
+| belanja yang layak | dihitung | `subtotal - discount` order (barang setelah voucher), batas bawah nol; ongkir, asuransi, dan pajak tidak pernah memperoleh poin |
+| `features.loyalty` | pengaturan modul `commerce`, `domain/commerce-features.ts` | Saklar tenant, default **false** (satu-satunya flag commerce yang default mati) |
+| `commerce.loyalty.{read,manage}`, `commerce.loyalty_adjustments.create`, `commerce.loyalty_redemptions.create` | `awcms_permissions` (`sql/952`) | Empat izin pada tiga kode aktivitas — bukan `loyalty.adjust`/`.redeem`, karena `AccessAction` milik upstream |
+| `awcms.commerce.loyalty.entry_recorded` | domain event | Satu event per baris ledger; agregat `commerce.loyalty_account`; payload membawa `kind`, `points` bertanda, `balanceAfter`, `sourceType`, tidak pernah PII |
 
 ## Kolom dan tabel yang ditunda — tidak di-porting
 

@@ -2779,6 +2779,699 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/loyalty/accounts:
+    get:
+      operationId: listCommerceLoyaltyAccounts
+      tags:
+        - Commerce
+      summary: "Issue #289 (ADR-0026). Keyset list of loyalty accounts (newest first) with the customer's name and masked phone; `customerId` narrows to one customer and `phone` is the counter lookup, which also returns a `customer` block (balance 0 for a customer with no account yet). Gated on `commerce.loyalty.read`; `409 FEATURE_DISABLED` when the tenant's `loyalty` feature is off."
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            maximum: 50
+        - name: customerId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - name: phone
+          in: query
+          required: false
+          description: An Indonesian phone number in any common notation; normalised server-side. The walk-in sentinel customer is never returned.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: One page of loyalty accounts.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/LoyaltyAccount"
+                      nextCursor:
+                        type: string
+                        nullable: true
+                      customer:
+                        description: Present only for a `phone` lookup; `null` when no customer matches.
+                        nullable: true
+                        allOf:
+                          - $ref: "#/components/schemas/LoyaltyCustomerLookup"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: FEATURE_DISABLED — the tenant has not turned the `loyalty` feature on.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/loyalty/accounts/{customerId}:
+    get:
+      operationId: getCommerceLoyaltyAccount
+      tags:
+        - Commerce
+      summary: "Issue #289. One customer's loyalty position — name, masked phone and the projected balance (0 for a customer who has never earned). An unknown, deleted or other-tenant customer id is the same 404. Gated on `commerce.loyalty.read`."
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The customer's loyalty position.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      customerId:
+                        type: string
+                        format: uuid
+                      customerName:
+                        type: string
+                      customerPhoneMasked:
+                        type: string
+                      accountId:
+                        type: string
+                        format: uuid
+                        nullable: true
+                      balance:
+                        type: integer
+                        format: int64
+                      version:
+                        type: integer
+                        format: int64
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: FEATURE_DISABLED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/loyalty/accounts/{customerId}/adjust:
+    post:
+      operationId: adjustCommerceLoyaltyPoints
+      tags:
+        - Commerce
+      summary: "Issue #289. A manual signed points adjustment — its own permission (`commerce.loyalty_adjustments.create`), a MANDATORY `reason`, an audit event, and an `Idempotency-Key`. A negative adjustment cannot take the balance below zero (`409 WOULD_GO_NEGATIVE`); only a system reversal may."
+      description: >-
+        Same key + same body replays the stored 201; same key + different body
+        is `409 IDEMPOTENCY_CONFLICT`. Adjustments never expire.
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            maxLength: 128
+            pattern: "^[A-Za-z0-9._:-]+$"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - points
+                - reason
+              properties:
+                points:
+                  type: integer
+                  description: Signed, non-zero, within ±1,000,000,000,000.
+                reason:
+                  type: string
+                  maxLength: 500
+      responses:
+        "201":
+          description: Adjustment recorded (or replayed).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      entry:
+                        $ref: "#/components/schemas/LoyaltyLedgerEntry"
+                      balance:
+                        type: integer
+                        format: int64
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: FEATURE_DISABLED, WOULD_GO_NEGATIVE, or IDEMPOTENCY_CONFLICT.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/loyalty/accounts/{customerId}/ledger:
+    get:
+      operationId: listCommerceLoyaltyLedger
+      tags:
+        - Commerce
+      summary: "Issue #289. The customer's append-only points history, newest first, keyset-paginated. Staff view: carries the actor and the reason that the customer-facing history omits. Gated on `commerce.loyalty.read`."
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            maximum: 50
+      responses:
+        "200":
+          description: One page of ledger entries.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/LoyaltyLedgerEntry"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: FEATURE_DISABLED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/loyalty/accounts/{customerId}/redeem:
+    post:
+      operationId: redeemCommerceLoyaltyPoints
+      tags:
+        - Commerce
+      summary: "Issue #289. Redeem a customer's points at the counter or on their behalf. Gated on `commerce.loyalty_redemptions.create`; `Idempotency-Key` required. Runs under the account row lock, so concurrent redemptions cannot overdraw (`409 INSUFFICIENT_POINTS`)."
+      description: >-
+        Records the points DEBIT only. Converting points into a discount at
+        checkout needs the tender model of #285 and is deferred (ADR-0026).
+        Points past their `expiresAt` are expired first, under the same lock,
+        so lapsed points can never be spent. Same key + same body replays the
+        stored 201; same key + different body is `409 IDEMPOTENCY_CONFLICT`. A
+        refused (insufficient) request is not recorded, so the same key can
+        succeed after a top-up.
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            maxLength: 128
+            pattern: "^[A-Za-z0-9._:-]+$"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - points
+              properties:
+                points:
+                  type: integer
+                  minimum: 1
+                  description: A positive count of points to spend (the ledger row stores it negated).
+                reason:
+                  type: string
+                  nullable: true
+                  maxLength: 500
+      responses:
+        "201":
+          description: Points redeemed (or replayed).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      entry:
+                        $ref: "#/components/schemas/LoyaltyLedgerEntry"
+                      balance:
+                        type: integer
+                        format: int64
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: FEATURE_DISABLED, INSUFFICIENT_POINTS (details carry `balance` and `requested`), or IDEMPOTENCY_CONFLICT.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/loyalty/programs:
+    get:
+      operationId: listCommerceLoyaltyPrograms
+      tags:
+        - Commerce
+      summary: "Issue #289. Every loyalty program VERSION, newest first. Gated on `commerce.loyalty.read`."
+      responses:
+        "200":
+          description: The tenant's program versions.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/LoyaltyProgram"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: FEATURE_DISABLED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    post:
+      operationId: createCommerceLoyaltyProgram
+      tags:
+        - Commerce
+      summary: "Issue #289. Create a new DRAFT program version (version number = max + 1 per tenant). Gated on `commerce.loyalty.manage`."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoyaltyProgramInput"
+      responses:
+        "201":
+          description: Draft version created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/LoyaltyProgram"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: FEATURE_DISABLED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/loyalty/programs/{id}:
+    get:
+      operationId: getCommerceLoyaltyProgram
+      tags:
+        - Commerce
+      summary: "Issue #289. One program version. Gated on `commerce.loyalty.read`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The program version.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/LoyaltyProgram"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: FEATURE_DISABLED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    patch:
+      operationId: updateCommerceLoyaltyProgram
+      tags:
+        - Commerce
+      summary: "Issue #289. Edit a DRAFT program version. An active or retired version is immutable (a ledger row records the version it earned under) — `409 PROGRAM_NOT_EDITABLE`; a change of rules is a new version. Gated on `commerce.loyalty.manage`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Any non-empty subset of the create fields.
+              properties:
+                name:
+                  type: string
+                earnUnitAmount:
+                  type: string
+                earnPointsPerUnit:
+                  type: integer
+                minOrderAmount:
+                  type: string
+                maxPointsPerOrder:
+                  type: integer
+                  nullable: true
+                expiryDays:
+                  type: integer
+                  nullable: true
+                notes:
+                  type: string
+                  nullable: true
+      responses:
+        "200":
+          description: The updated draft.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/LoyaltyProgram"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: FEATURE_DISABLED or PROGRAM_NOT_EDITABLE.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/loyalty/programs/{id}/activate:
+    post:
+      operationId: activateCommerceLoyaltyProgram
+      tags:
+        - Commerce
+      summary: "Issue #289. Activate a draft version NOW: `effectiveFrom` = this instant, and the version open at that instant is closed (`effectiveTo` = this instant, `retired`) in the same transaction under a per-tenant lock. A high-risk `manage` action. A second call finds the version no longer a draft (`409 PROGRAM_NOT_DRAFT`)."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Version activated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      program:
+                        $ref: "#/components/schemas/LoyaltyProgram"
+                      closedVersion:
+                        type: integer
+                        nullable: true
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: FEATURE_DISABLED or PROGRAM_NOT_DRAFT.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/loyalty/programs/{id}/retire:
+    post:
+      operationId: retireCommerceLoyaltyProgram
+      tags:
+        - Commerce
+      summary: "Issue #289. End the open active version NOW. Orders paid afterwards earn nothing until another version is activated; points already earned are untouched. `409 PROGRAM_NOT_ACTIVE` for anything but the open active version."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Version retired.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/LoyaltyProgram"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: FEATURE_DISABLED or PROGRAM_NOT_ACTIVE.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/loyalty/reconcile:
+    post:
+      operationId: reconcileCommerceLoyalty
+      tags:
+        - Commerce
+      summary: "Issue #289. Recompute every account's balance from the ledger and report drift (projection disagrees with the ledger) and ledger breaks (a row whose running `balanceAfter` is not the running sum). `repair: true` additionally rewrites each drifted account's PROJECTION — never the ledger — with one audit event per repair. Gated on `commerce.loyalty.manage` (a high-risk action) in both modes."
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                repair:
+                  type: boolean
+                  default: false
+      responses:
+        "200":
+          description: The reconcile report.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/LoyaltyReconcileReport"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: FEATURE_DISABLED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/loyalty/summary:
+    get:
+      operationId: getCommerceLoyaltySummary
+      tags:
+        - Commerce
+      summary: "Issue #289. Earned / redeemed / expired / reversed / net for a window plus the all-time outstanding points, every figure SUMMED FROM THE LEDGER by `kind` so no point is counted twice. Gated on `commerce.loyalty.read`."
+      parameters:
+        - name: from
+          in: query
+          required: false
+          description: Inclusive lower bound. An ISO-8601 instant or a bare `YYYY-MM-DD` day (UTC).
+          schema:
+            type: string
+        - name: to
+          in: query
+          required: false
+          description: Exclusive upper bound for an instant; a bare `YYYY-MM-DD` day means through the end of that day (UTC).
+          schema:
+            type: string
+      responses:
+        "200":
+          description: The loyalty summary.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/LoyaltySummary"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: FEATURE_DISABLED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/orders/{id}/payment-gateway/reconcile:
     post:
       operationId: reconcileCommerceOrderPaymentGateway
@@ -4314,6 +5007,99 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/loyalty:
+    get:
+      operationId: getCommerceStorefrontAccountLoyalty
+      tags:
+        - Commerce Accounts
+      summary: "Issue #289 (ADR-0026). The signed-in customer's OWN points balance, the earn rule currently in force, and their point history (newest first, keyset-paginated). The customer id is read ONLY from the verified bearer session — there is no identifier a caller can change to read another customer's ledger."
+      description: >-
+        Each history item is `{ id, kind, points, balanceAfter, expiresAt,
+        createdAt }` — never the staff actor, the free-text reason, the source
+        order or the program id. A tenant that has not turned the `loyalty`
+        feature on answers the neutral `404`, like every other disabled public
+        case.
+      security:
+        - customerBearer: []
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            maximum: 50
+      responses:
+        "200":
+          description: Balance, earn rule and one page of history.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      balance:
+                        type: integer
+                        format: int64
+                      program:
+                        nullable: true
+                        description: The rule in force right now; `null` when no version is active.
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          earnUnitAmount:
+                            type: string
+                          earnPointsPerUnit:
+                            type: integer
+                          minOrderAmount:
+                            type: string
+                          maxPointsPerOrder:
+                            type: integer
+                            nullable: true
+                          expiryDays:
+                            type: integer
+                            nullable: true
+                      history:
+                        type: object
+                        properties:
+                          items:
+                            type: array
+                            items:
+                              $ref: "#/components/schemas/CustomerLoyaltyHistoryItem"
+                          nextCursor:
+                            type: string
+                            nullable: true
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "403":
+          description: ACCOUNT_BLOCKED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          description: Loyalty is not enabled for this store.
           content:
             application/json:
               schema:
@@ -8083,6 +8869,313 @@ components:
         updatedAt:
           type: string
           format: date-time
+    LoyaltyProgramInput:
+      type: object
+      description: "Issue #289 — the create body of a loyalty program version. Points are integers; money is a numeric(14,2) STRING (ADR-0003)."
+      required:
+        - name
+        - earnUnitAmount
+        - earnPointsPerUnit
+      properties:
+        name:
+          type: string
+          maxLength: 200
+        earnUnitAmount:
+          type: string
+          description: Spend that earns one step of points. Greater than zero.
+        earnPointsPerUnit:
+          type: integer
+          minimum: 1
+          maximum: 1000000
+        minOrderAmount:
+          type: string
+          description: Eligible spend below this earns nothing. Defaults to "0.00".
+        maxPointsPerOrder:
+          type: integer
+          nullable: true
+          minimum: 1
+        expiryDays:
+          type: integer
+          nullable: true
+          minimum: 1
+          maximum: 3650
+          description: Points earned under this version lapse this many days after the order was paid; null = never.
+        notes:
+          type: string
+          nullable: true
+          maxLength: 1000
+    LoyaltyProgram:
+      type: object
+      description: "Issue #289 — one versioned, effective-dated earn rule. Eligible spend is the order's subtotal minus voucher discount (never shipping, insurance or tax); the points are `floor(spend / earnUnitAmount) * earnPointsPerUnit`, capped by `maxPointsPerOrder`. Rounding is always floor, recorded as `earnRounding`."
+      properties:
+        id:
+          type: string
+          format: uuid
+        version:
+          type: integer
+        name:
+          type: string
+        status:
+          type: string
+          enum:
+            - draft
+            - active
+            - retired
+        effectiveFrom:
+          type: string
+          format: date-time
+          nullable: true
+        effectiveTo:
+          type: string
+          format: date-time
+          nullable: true
+        earnUnitAmount:
+          type: string
+        earnPointsPerUnit:
+          type: integer
+        earnRounding:
+          type: string
+          enum:
+            - floor
+        minOrderAmount:
+          type: string
+        maxPointsPerOrder:
+          type: integer
+          nullable: true
+        expiryDays:
+          type: integer
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    LoyaltyLedgerEntry:
+      type: object
+      description: "Issue #289 — one row of the append-only points ledger. `points` is a signed INTEGER: earn > 0, redeem < 0, expire <= 0 (0 marks a lot already fully spent), adjustment and reversal non-zero. `balanceAfter` is the account's running balance after this row."
+      properties:
+        id:
+          type: string
+          format: uuid
+        accountId:
+          type: string
+          format: uuid
+        accountSeq:
+          type: integer
+          format: int64
+        kind:
+          type: string
+          enum:
+            - earn
+            - redeem
+            - expire
+            - adjustment
+            - reversal
+        points:
+          type: integer
+          format: int64
+        balanceAfter:
+          type: integer
+          format: int64
+        programId:
+          type: string
+          format: uuid
+          nullable: true
+        sourceType:
+          type: string
+          enum:
+            - order
+            - expiry
+            - redemption
+            - manual
+        sourceId:
+          type: string
+          format: uuid
+          nullable: true
+        reversesEntryId:
+          type: string
+          format: uuid
+          nullable: true
+        expiresAt:
+          type: string
+          format: date-time
+          nullable: true
+        actorTenantUserId:
+          type: string
+          format: uuid
+          nullable: true
+        reason:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+    LoyaltyAccount:
+      type: object
+      description: "Issue #289 — a customer's loyalty account. `balance` is a PROJECTION of the ledger (the sum of every row's points), kept in the same transaction as each ledger insert; it can be negative only after a reversal clawed back points that were already spent."
+      properties:
+        id:
+          type: string
+          format: uuid
+        customerId:
+          type: string
+          format: uuid
+        balance:
+          type: integer
+          format: int64
+        version:
+          type: integer
+          format: int64
+        customerName:
+          type: string
+        customerPhoneMasked:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    LoyaltyCustomerLookup:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        phoneMasked:
+          type: string
+        balance:
+          type: integer
+          format: int64
+          description: 0 for a customer with no account yet.
+    CustomerLoyaltyHistoryItem:
+      type: object
+      description: "Issue #289 — the customer-facing projection of a ledger row: no staff actor, no free-text reason, no source order or program id."
+      properties:
+        id:
+          type: string
+          format: uuid
+        kind:
+          type: string
+          enum:
+            - earn
+            - redeem
+            - expire
+            - adjustment
+            - reversal
+        points:
+          type: integer
+          format: int64
+        balanceAfter:
+          type: integer
+          format: int64
+        expiresAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+    LoyaltySummary:
+      type: object
+      description: "Issue #289 — ledger-summed figures. `net` = earned − redeemed − expired + adjustmentsNet − reversed. `outstanding` is the all-time sum of the ledger (not the projection), so it stays right if a projection has drifted."
+      properties:
+        from:
+          type: string
+          format: date-time
+          nullable: true
+        to:
+          type: string
+          format: date-time
+          nullable: true
+        period:
+          type: object
+          properties:
+            entries:
+              type: integer
+            earned:
+              type: integer
+              format: int64
+            redeemed:
+              type: integer
+              format: int64
+            expired:
+              type: integer
+              format: int64
+            adjustmentsNet:
+              type: integer
+              format: int64
+            reversed:
+              type: integer
+              format: int64
+            net:
+              type: integer
+              format: int64
+        outstanding:
+          type: integer
+          format: int64
+        accounts:
+          type: integer
+        accountsWithNegativeBalance:
+          type: integer
+    LoyaltyReconcileReport:
+      type: object
+      properties:
+        accountsChecked:
+          type: integer
+        drifted:
+          type: array
+          items:
+            type: object
+            properties:
+              accountId:
+                type: string
+                format: uuid
+              customerId:
+                type: string
+                format: uuid
+              projectedBalance:
+                type: integer
+                format: int64
+              ledgerBalance:
+                type: integer
+                format: int64
+              projectedVersion:
+                type: integer
+                format: int64
+              ledgerVersion:
+                type: integer
+                format: int64
+        ledgerBreaks:
+          type: array
+          items:
+            type: object
+            properties:
+              accountId:
+                type: string
+                format: uuid
+              badRows:
+                type: integer
+        unrepairable:
+          type: array
+          description: "Drifted accounts whose surviving ledger is not a complete history (it does not start at account_seq 1, has gaps, or is empty while the balance is not) because a retention purge aged early rows out. Reported, never repaired: SUM(ledger) is not their balance. A subset of drifted."
+          items:
+            type: object
+            properties:
+              accountId:
+                type: string
+                format: uuid
+              reason:
+                type: string
+                enum: [unrepairable_history_purged]
+        repaired:
+          type: integer
     CommerceOrder:
       type: object
       description: Issue 29 — the storefront tracking/order-creation shape (`commerce-storefront-endpoints.md`). Customer/address phone are MASKED (phoneMasked); money fields are numeric(14,2) strings.

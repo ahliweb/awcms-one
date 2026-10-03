@@ -20,7 +20,7 @@ import { toPublicRecord } from "../src/modules/commerce/application/store-settin
 // ---------------------------------------------------------------------------
 
 describe("resolveCommerceFeatures", () => {
-  test("defaults every flag to true when settings are absent", () => {
+  test("defaults every pre-#289 flag to true (and loyalty, new in #289, to false) when settings are absent", () => {
     expect(resolveCommerceFeatures(undefined)).toEqual(
       DEFAULT_COMMERCE_FEATURES
     );
@@ -35,7 +35,20 @@ describe("resolveCommerceFeatures", () => {
       inbox: true,
       campaigns: true,
       gateway: true,
-      courier: true
+      courier: true,
+      loyalty: false
+    });
+  });
+
+  test("loyalty (Issue #289) defaults OFF and can be turned on without disturbing the other flags", () => {
+    expect(DEFAULT_COMMERCE_FEATURES.loyalty).toBe(false);
+    expect(resolveCommerceFeatures({ features: { loyalty: true } })).toEqual({
+      pos: true,
+      inbox: true,
+      campaigns: true,
+      gateway: true,
+      courier: true,
+      loyalty: true
     });
   });
 
@@ -53,7 +66,8 @@ describe("resolveCommerceFeatures", () => {
         inbox: false,
         campaigns: false,
         gateway: false,
-        courier: false
+        courier: false,
+        loyalty: false
       }
     });
     expect(resolved).toEqual({
@@ -61,7 +75,8 @@ describe("resolveCommerceFeatures", () => {
       inbox: false,
       campaigns: false,
       gateway: false,
-      courier: false
+      courier: false,
+      loyalty: false
     });
   });
 });

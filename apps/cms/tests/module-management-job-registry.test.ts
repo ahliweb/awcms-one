@@ -101,6 +101,10 @@ describe("fetchModuleJobs", () => {
         "bun run commerce:customer-auth:purge",
         // Issue #26 (awcms-one epic #21): the flash-sale status tick.
         "bun run commerce:flash-sales:tick",
+        // Issue #289 (awcms-one epic #281): the loyalty expiry sweep and the
+        // read-only loyalty balance reconcile.
+        "bun run commerce:loyalty:expire",
+        "bun run commerce:loyalty:reconcile",
         // Issue #29 (awcms-one epic #21): the pending-order expiry sweep.
         "bun run commerce:orders:expire",
         // Issue #113 (awcms-one epic #33): the payment-gateway reconcile sweep.

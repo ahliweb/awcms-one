@@ -7150,3 +7150,236 @@ msgstr "Dokumentasi"
 
 msgid "Other"
 msgstr "Lainnya"
+
+msgid "Accounts checked"
+msgstr "Akun diperiksa"
+
+msgid "Activate this version?"
+msgstr "Aktifkan versi ini?"
+
+msgid "Activate version"
+msgstr "Aktifkan versi"
+
+msgid "Adjust points"
+msgstr "Sesuaikan poin"
+
+msgid "Adjustment"
+msgstr "Penyesuaian"
+
+msgid "All-time figures, summed from the ledger."
+msgstr "Angka sepanjang waktu, dijumlahkan dari buku besar."
+
+msgid "An account opens with a customer's first points."
+msgstr "Akun dibuka saat pelanggan mendapat poin pertamanya."
+
+msgid "Balance after"
+msgstr "Saldo setelahnya"
+
+msgid "Balance check"
+msgstr "Pemeriksaan saldo"
+
+msgid "Balances out of step"
+msgstr "Saldo yang tidak sesuai"
+
+msgid "Balances repaired"
+msgstr "Saldo yang diperbaiki"
+
+msgid "Create a draft and activate it to start awarding points."
+msgstr "Buat draf lalu aktifkan untuk mulai memberi poin."
+
+msgid "Create a program version"
+msgstr "Buat versi program"
+
+msgid "Customer balance"
+msgstr "Saldo pelanggan"
+
+msgid "Customer lookup"
+msgstr "Cari pelanggan"
+
+msgid "Customer phone"
+msgstr "Telepon pelanggan"
+
+msgid "Each out-of-step balance is rewritten from the ledger. The ledger itself is never changed."
+msgstr "Setiap saldo yang tidak sesuai ditulis ulang dari buku besar. Buku besar itu sendiri tidak pernah diubah."
+
+msgid "Earn rule"
+msgstr "Aturan perolehan"
+
+msgid "Earned"
+msgstr "Diperoleh"
+
+msgid "Effective"
+msgstr "Berlaku"
+
+msgid "Every balance matches the ledger."
+msgstr "Semua saldo sesuai dengan buku besar."
+
+msgid "Expiry"
+msgstr "Kedaluwarsa"
+
+msgid "Find customer"
+msgstr "Cari pelanggan"
+
+msgid "Ledger rows that need review"
+msgstr "Baris buku besar yang perlu ditinjau"
+
+msgid "Loyalty"
+msgstr "Loyalitas"
+
+msgid "Loyalty could not be loaded right now. Please try again later."
+msgstr "Loyalitas tidak dapat dimuat saat ini. Coba lagi nanti."
+
+msgid "Loyalty points are turned off for this store. Turn them on under Store settings, Features."
+msgstr "Poin loyalitas dimatikan untuk toko ini. Aktifkan di Pengaturan toko, Fitur."
+
+msgid "Loyalty points"
+msgstr "Poin loyalitas"
+
+msgid "Maximum points per order (optional)"
+msgstr "Poin maksimum per pesanan (opsional)"
+
+msgid "Never"
+msgstr "Tidak pernah"
+
+msgid "No customer found."
+msgstr "Pelanggan tidak ditemukan."
+
+msgid "No loyalty accounts yet"
+msgstr "Belum ada akun loyalitas"
+
+msgid "No points activity yet"
+msgstr "Belum ada aktivitas poin"
+
+msgid "No program versions yet"
+msgstr "Belum ada versi program"
+
+msgid "Older entries"
+msgstr "Entri lebih lama"
+
+msgid "Orders paid from now on will earn no points until another version is activated. Points already earned are not affected."
+msgstr "Pesanan yang dibayar mulai sekarang tidak akan mendapat poin sampai versi lain diaktifkan. Poin yang sudah diperoleh tidak terpengaruh."
+
+msgid "Points"
+msgstr "Poin"
+
+msgid "Points (negative to deduct)"
+msgstr "Poin (negatif untuk mengurangi)"
+
+msgid "Points earned"
+msgstr "Poin diperoleh"
+
+msgid "Points expire after days (optional)"
+msgstr "Poin kedaluwarsa setelah (hari, opsional)"
+
+msgid "Points expired"
+msgstr "Poin kedaluwarsa"
+
+msgid "Points outstanding"
+msgstr "Poin beredar"
+
+msgid "Points per step"
+msgstr "Poin per langkah"
+
+msgid "Points programs, customer balances and the append-only points ledger."
+msgstr "Program poin, saldo pelanggan, dan buku besar poin yang hanya bisa ditambah."
+
+msgid "Points redeemed"
+msgstr "Poin ditukar"
+
+msgid "Points reversed"
+msgstr "Poin dibatalkan"
+
+msgid "Points to redeem"
+msgstr "Poin yang ditukar"
+
+msgid "Recently opened accounts"
+msgstr "Akun yang baru dibuka"
+
+msgid "Recomputes every balance from the ledger and compares it with the stored balance. Checking changes nothing."
+msgstr "Menghitung ulang setiap saldo dari buku besar dan membandingkannya dengan saldo tersimpan. Pemeriksaan tidak mengubah apa pun."
+
+msgid "Record adjustment"
+msgstr "Catat penyesuaian"
+
+msgid "Redeem"
+msgstr "Tukar"
+
+msgid "Redeem points"
+msgstr "Tukar poin"
+
+msgid "Redeemed"
+msgstr "Ditukar"
+
+msgid "Repair balances"
+msgstr "Perbaiki saldo"
+
+msgid "Repair balances from the ledger?"
+msgstr "Perbaiki saldo dari buku besar?"
+
+msgid "Retire"
+msgstr "Pensiunkan"
+
+msgid "Retire this version?"
+msgstr "Pensiunkan versi ini?"
+
+msgid "Retire version"
+msgstr "Pensiunkan versi"
+
+msgid "Retired"
+msgstr "Dipensiunkan"
+
+msgid "Reversal"
+msgstr "Pembatalan"
+
+msgid "Run balance check"
+msgstr "Jalankan pemeriksaan saldo"
+
+msgid "Some balances do not match the ledger."
+msgstr "Sebagian saldo tidak sesuai dengan buku besar."
+
+msgid "Spend per earning step"
+msgstr "Belanja per langkah perolehan"
+
+msgid "That is not a valid Indonesian phone number."
+msgstr "Itu bukan nomor telepon Indonesia yang valid."
+
+msgid "Version {version} takes effect now and replaces the version currently in force. Orders paid from now on earn under it."
+msgstr "Versi {version} berlaku sekarang dan menggantikan versi yang sedang berlaku. Pesanan yang dibayar mulai sekarang memperoleh poin dengan versi ini."
+
+msgid "Version {version} takes effect now. Orders paid from now on earn under it."
+msgstr "Versi {version} berlaku sekarang. Pesanan yang dibayar mulai sekarang memperoleh poin dengan versi ini."
+
+msgid "You do not have permission to view loyalty."
+msgstr "Anda tidak memiliki izin untuk melihat loyalitas."
+
+msgid "max {points} per order"
+msgstr "maks. {points} per pesanan"
+
+msgid "open"
+msgstr "terbuka"
+
+msgid "points"
+msgstr "poin"
+
+msgid "{points} per {amount} spent"
+msgstr "{points} per {amount} belanja"
+
+msgid "{count} account below zero"
+msgid_plural "{count} accounts below zero"
+msgstr[0] "{count} akun di bawah nol"
+
+msgid "{count} day"
+msgid_plural "{count} days"
+msgstr[0] "{count} hari"
+
+msgid "{count} entry shown"
+msgid_plural "{count} entries shown"
+msgstr[0] "{count} entri ditampilkan"
+
+msgid "{count} point"
+msgid_plural "{count} points"
+msgstr[0] "{count} poin"
+
+msgid "{count} program version"
+msgid_plural "{count} program versions"
+msgstr[0] "{count} versi program"
