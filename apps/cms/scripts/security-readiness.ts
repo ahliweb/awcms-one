@@ -1774,6 +1774,30 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_commerce_sales_daily: ["SELECT", "INSERT", "UPDATE", "DELETE"],
   awcms_commerce_sales_by_product: ["SELECT", "INSERT", "UPDATE", "DELETE"],
   awcms_commerce_sales_by_category: ["SELECT", "INSERT", "UPDATE", "DELETE"],
+  // Issue #296 (sql/998) - the five POS operational-report projection tables,
+  // the same grant shape as the three above: the `reporting` engine's additive
+  // upsert (UPDATE for `ON CONFLICT DO UPDATE`) and the generic purge (DELETE).
+  awcms_commerce_report_tender_daily: ["SELECT", "INSERT", "UPDATE", "DELETE"],
+  awcms_commerce_report_cash_up_tenders: [
+    "SELECT",
+    "INSERT",
+    "UPDATE",
+    "DELETE"
+  ],
+  awcms_commerce_report_expense_daily: ["SELECT", "INSERT", "UPDATE", "DELETE"],
+  awcms_commerce_report_loyalty_daily: ["SELECT", "INSERT", "UPDATE", "DELETE"],
+  awcms_commerce_report_stored_value_daily: [
+    "SELECT",
+    "INSERT",
+    "UPDATE",
+    "DELETE"
+  ],
+  // ...and the four `security_invoker` source views the streams with a
+  // nullable cursor read (sql/998): SELECT only, the engine never writes them.
+  awcms_commerce_report_src_allocations: ["SELECT"],
+  awcms_commerce_report_src_close_decisions: ["SELECT"],
+  awcms_commerce_report_src_expenses_posted: ["SELECT"],
+  awcms_commerce_report_src_expenses_reversed: ["SELECT"],
   awcms_commerce_payment_events: ["SELECT", "DELETE"],
   awcms_commerce_webhook_endpoints: ["SELECT", "DELETE"],
   // omes_control — the generic data_lifecycle purge engine (sql/154's

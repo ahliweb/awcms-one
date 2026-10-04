@@ -26188,6 +26188,426 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+  /api/v1/reports/commerce/operational-cash-ups:
+    get:
+      operationId: getReportsCommerceOperationalCashUps
+      tags:
+        - Commerce
+      summary: "Issue #296 (ADR-0035). The POS operational cash-ups report over the inclusive day range: the cash-up variance of every register session that closed in the range, per tender, with register and cashier of record, from the `commerce.pos_cash_up_variance` projection; variance is counted (with corrections) minus expected, negative is short. While the tenant's `register` feature is OFF the answer is `200` with `enabled: false` and no rows. Gated on `commerce.report_cash_ups.read`, a permission of its own (not implied by `reporting.dashboard.read` or by the source-domain permission)."
+      parameters:
+        - name: from
+          in: query
+          required: false
+          description: Inclusive first report day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days.
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: false
+          description: Inclusive last report day (`YYYY-MM-DD`). Defaults to today in the report time zone.
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: The report for the range.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceOperationalCashUpsReport"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/reports/commerce/operational-cash-ups.csv:
+    get:
+      operationId: exportReportsCommerceOperationalCashUpsCsv
+      tags:
+        - Commerce
+      summary: "Issue #296 (ADR-0035). The same cash-ups report as a CSV (`text/csv`, one row per day and dimension, spreadsheet-formula-neutralised: a text cell starting with `=`, `+`, `-`, `@`, a tab or a carriage return is prefixed with `'`). Gated on `commerce.report_cash_ups.export`, the high-risk `export` verb; the export is audited (family, range and row count — never a cell). A family whose feature is off returns a header row only."
+      parameters:
+        - name: from
+          in: query
+          required: false
+          description: Inclusive first report day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days.
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: false
+          description: Inclusive last report day (`YYYY-MM-DD`). Defaults to today in the report time zone.
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: The CSV file.
+          headers:
+            Content-Disposition:
+              schema:
+                type: string
+            Cache-Control:
+              schema:
+                type: string
+                enum:
+                  - no-store
+          content:
+            text/csv:
+              schema:
+                type: string
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/reports/commerce/operational-expenses:
+    get:
+      operationId: getReportsCommerceOperationalExpenses
+      tags:
+        - Commerce
+      summary: "Issue #296 (ADR-0035). The POS operational expenses report over the inclusive day range: posted and reversed expenses per business day, category and tender, from the `commerce.pos_expense_daily` projection; a reversal is taken off the SAME day row its posting landed on. While the tenant's `expenses` feature is OFF the answer is `200` with `enabled: false` and no rows. Gated on `commerce.report_expenses.read`, a permission of its own (not implied by `reporting.dashboard.read` or by the source-domain permission)."
+      parameters:
+        - name: from
+          in: query
+          required: false
+          description: Inclusive first report day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days.
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: false
+          description: Inclusive last report day (`YYYY-MM-DD`). Defaults to today in the report time zone.
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: The report for the range.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceOperationalExpensesReport"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/reports/commerce/operational-expenses.csv:
+    get:
+      operationId: exportReportsCommerceOperationalExpensesCsv
+      tags:
+        - Commerce
+      summary: "Issue #296 (ADR-0035). The same expenses report as a CSV (`text/csv`, one row per day and dimension, spreadsheet-formula-neutralised: a text cell starting with `=`, `+`, `-`, `@`, a tab or a carriage return is prefixed with `'`). Gated on `commerce.report_expenses.export`, the high-risk `export` verb; the export is audited (family, range and row count — never a cell). A family whose feature is off returns a header row only."
+      parameters:
+        - name: from
+          in: query
+          required: false
+          description: Inclusive first report day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days.
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: false
+          description: Inclusive last report day (`YYYY-MM-DD`). Defaults to today in the report time zone.
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: The CSV file.
+          headers:
+            Content-Disposition:
+              schema:
+                type: string
+            Cache-Control:
+              schema:
+                type: string
+                enum:
+                  - no-store
+          content:
+            text/csv:
+              schema:
+                type: string
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/reports/commerce/operational-loyalty:
+    get:
+      operationId: getReportsCommerceOperationalLoyalty
+      tags:
+        - Commerce
+      summary: "Issue #296 (ADR-0035). The POS operational loyalty report over the inclusive day range: loyalty points earned, redeemed, expired, adjusted and reversed per day, with the outstanding points (the liability) at the start and end of the range, from the `commerce.pos_loyalty_daily` projection. While the tenant's `loyalty` feature is OFF the answer is `200` with `enabled: false` and no rows. Gated on `commerce.report_loyalty.read`, a permission of its own (not implied by `reporting.dashboard.read` or by the source-domain permission)."
+      parameters:
+        - name: from
+          in: query
+          required: false
+          description: Inclusive first report day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days.
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: false
+          description: Inclusive last report day (`YYYY-MM-DD`). Defaults to today in the report time zone.
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: The report for the range.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceOperationalLoyaltyReport"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/reports/commerce/operational-loyalty.csv:
+    get:
+      operationId: exportReportsCommerceOperationalLoyaltyCsv
+      tags:
+        - Commerce
+      summary: "Issue #296 (ADR-0035). The same loyalty report as a CSV (`text/csv`, one row per day and dimension, spreadsheet-formula-neutralised: a text cell starting with `=`, `+`, `-`, `@`, a tab or a carriage return is prefixed with `'`). Gated on `commerce.report_loyalty.export`, the high-risk `export` verb; the export is audited (family, range and row count — never a cell). A family whose feature is off returns a header row only."
+      parameters:
+        - name: from
+          in: query
+          required: false
+          description: Inclusive first report day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days.
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: false
+          description: Inclusive last report day (`YYYY-MM-DD`). Defaults to today in the report time zone.
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: The CSV file.
+          headers:
+            Content-Disposition:
+              schema:
+                type: string
+            Cache-Control:
+              schema:
+                type: string
+                enum:
+                  - no-store
+          content:
+            text/csv:
+              schema:
+                type: string
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/reports/commerce/operational-stored-value:
+    get:
+      operationId: getReportsCommerceOperationalStoredValue
+      tags:
+        - Commerce
+      summary: "Issue #296 (ADR-0035). The POS operational stored-value report over the inclusive day range: gift-card and store-credit movement per day, account kind and bucket, with the outstanding liability per kind at the start and end of the range, from the `commerce.pos_stored_value_daily` projection. While the tenant's `storedValue` feature is OFF the answer is `200` with `enabled: false` and no rows. Gated on `commerce.report_stored_value.read`, a permission of its own (not implied by `reporting.dashboard.read` or by the source-domain permission)."
+      parameters:
+        - name: from
+          in: query
+          required: false
+          description: Inclusive first report day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days.
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: false
+          description: Inclusive last report day (`YYYY-MM-DD`). Defaults to today in the report time zone.
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: The report for the range.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceOperationalStoredValueReport"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/reports/commerce/operational-stored-value.csv:
+    get:
+      operationId: exportReportsCommerceOperationalStoredValueCsv
+      tags:
+        - Commerce
+      summary: "Issue #296 (ADR-0035). The same stored-value report as a CSV (`text/csv`, one row per day and dimension, spreadsheet-formula-neutralised: a text cell starting with `=`, `+`, `-`, `@`, a tab or a carriage return is prefixed with `'`). Gated on `commerce.report_stored_value.export`, the high-risk `export` verb; the export is audited (family, range and row count — never a cell). A family whose feature is off returns a header row only."
+      parameters:
+        - name: from
+          in: query
+          required: false
+          description: Inclusive first report day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days.
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: false
+          description: Inclusive last report day (`YYYY-MM-DD`). Defaults to today in the report time zone.
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: The CSV file.
+          headers:
+            Content-Disposition:
+              schema:
+                type: string
+            Cache-Control:
+              schema:
+                type: string
+                enum:
+                  - no-store
+          content:
+            text/csv:
+              schema:
+                type: string
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/reports/commerce/operational-tenders:
+    get:
+      operationId: getReportsCommerceOperationalTenders
+      tags:
+        - Commerce
+      summary: "Issue #296 (ADR-0035). The POS operational tenders report over the inclusive day range: money movement per day, register and tender (payment and reversal counts and sums, net derived), from the `commerce.pos_tender_daily` projection over the payment-allocation ledger; each leg lands on the day it SETTLED in the report time zone, and pending or failed legs never count. It needs no tenant feature (payments exist in every tenant). Gated on `commerce.report_tenders.read`, a permission of its own (not implied by `reporting.dashboard.read` or by the source-domain permission)."
+      parameters:
+        - name: from
+          in: query
+          required: false
+          description: Inclusive first report day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days.
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: false
+          description: Inclusive last report day (`YYYY-MM-DD`). Defaults to today in the report time zone.
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: The report for the range.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceOperationalTendersReport"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/reports/commerce/operational-tenders.csv:
+    get:
+      operationId: exportReportsCommerceOperationalTendersCsv
+      tags:
+        - Commerce
+      summary: "Issue #296 (ADR-0035). The same tenders report as a CSV (`text/csv`, one row per day and dimension, spreadsheet-formula-neutralised: a text cell starting with `=`, `+`, `-`, `@`, a tab or a carriage return is prefixed with `'`). Gated on `commerce.report_tenders.export`, the high-risk `export` verb; the export is audited (family, range and row count — never a cell). A family whose feature is off returns a header row only."
+      parameters:
+        - name: from
+          in: query
+          required: false
+          description: Inclusive first report day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days.
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: false
+          description: Inclusive last report day (`YYYY-MM-DD`). Defaults to today in the report time zone.
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: The CSV file.
+          headers:
+            Content-Disposition:
+              schema:
+                type: string
+            Cache-Control:
+              schema:
+                type: string
+                enum:
+                  - no-store
+          content:
+            text/csv:
+              schema:
+                type: string
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /api/v1/reports/commerce/outstanding-balances:
     get:
       operationId: getReportsCommerceOutstandingBalances
@@ -35614,6 +36034,393 @@ components:
           type: string
           format: date-time
           nullable: true
+    CommerceOperationalCashUpRow:
+      type: object
+      description: "Issue #296 — one closed shift and tender. `variance` = `countedWithCorrections` − `expected`; negative is short."
+      properties:
+        day:
+          type: string
+          format: date
+        sessionId:
+          type: string
+          format: uuid
+        registerId:
+          type: string
+          format: uuid
+        registerCode:
+          type: string
+          nullable: true
+        registerName:
+          type: string
+          nullable: true
+        cashierTenantUserId:
+          type: string
+          format: uuid
+        tenderType:
+          type: string
+        expected:
+          type: string
+        counted:
+          type: string
+        adjustment:
+          type: string
+        countedWithCorrections:
+          type: string
+        variance:
+          type: string
+    CommerceOperationalCashUpsReport:
+      type: object
+      description: "Issue #296 — the cash-up variance report."
+      properties:
+        from:
+          type: string
+          format: date
+        to:
+          type: string
+          format: date
+        timeZone:
+          type: string
+          description: The report time zone (`Asia/Jakarta`); every `day` is bucketed in it.
+        enabled:
+          type: boolean
+          description: "`false` while the family's source feature is off: everything below is then empty."
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceOperationalCashUpRow"
+        sessionCount:
+          type: integer
+        totalVariance:
+          type: string
+        totalShort:
+          type: string
+        totalOver:
+          type: string
+    CommerceOperationalExpenseRow:
+      type: object
+      description: "Issue #296 — one business day, category and tender."
+      properties:
+        day:
+          type: string
+          format: date
+        categoryId:
+          type: string
+          format: uuid
+        categoryName:
+          type: string
+        tenderType:
+          type: string
+        postedCount:
+          type: integer
+        posted:
+          type: string
+        reversedCount:
+          type: integer
+        reversed:
+          type: string
+        net:
+          type: string
+    CommerceOperationalExpensesReport:
+      type: object
+      description: "Issue #296 — the expenses report."
+      properties:
+        from:
+          type: string
+          format: date
+        to:
+          type: string
+          format: date
+        timeZone:
+          type: string
+          description: The report time zone (`Asia/Jakarta`); every `day` is bucketed in it.
+        enabled:
+          type: boolean
+          description: "`false` while the family's source feature is off: everything below is then empty."
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceOperationalExpenseRow"
+        summary:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceOperationalExpenseSummaryRow"
+        totalPosted:
+          type: string
+        totalReversed:
+          type: string
+        totalNet:
+          type: string
+    CommerceOperationalExpenseSummaryRow:
+      type: object
+      description: "Issue #296 — one category and tender folded over the range."
+      properties:
+        categoryId:
+          type: string
+          format: uuid
+        categoryName:
+          type: string
+        tenderType:
+          type: string
+        postedCount:
+          type: integer
+        posted:
+          type: string
+        reversedCount:
+          type: integer
+        reversed:
+          type: string
+        net:
+          type: string
+    CommerceOperationalLoyaltyReport:
+      type: object
+      description: "Issue #296 — the loyalty-points report. Outstanding points are the running sum of every bucket."
+      properties:
+        from:
+          type: string
+          format: date
+        to:
+          type: string
+          format: date
+        timeZone:
+          type: string
+          description: The report time zone (`Asia/Jakarta`); every `day` is bucketed in it.
+        enabled:
+          type: boolean
+          description: "`false` while the family's source feature is off: everything below is then empty."
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceOperationalLoyaltyRow"
+        summary:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceOperationalLoyaltySummaryRow"
+        openingPoints:
+          type: string
+        movementPoints:
+          type: string
+        closingPoints:
+          type: string
+    CommerceOperationalLoyaltyRow:
+      type: object
+      description: "Issue #296 — one day and bucket."
+      properties:
+        day:
+          type: string
+          format: date
+        bucket:
+          type: string
+          enum:
+            - earn
+            - redeem
+            - expire
+            - adjustment_up
+            - adjustment_down
+            - reversal_up
+            - reversal_down
+        entries:
+          type: integer
+        points:
+          type: string
+          description: Signed integer points as a decimal string (bigint-safe).
+    CommerceOperationalLoyaltySummaryRow:
+      type: object
+      description: "Issue #296 — one bucket folded over the range."
+      properties:
+        bucket:
+          type: string
+          enum:
+            - earn
+            - redeem
+            - expire
+            - adjustment_up
+            - adjustment_down
+            - reversal_up
+            - reversal_down
+        entries:
+          type: integer
+        points:
+          type: string
+          description: Signed integer points as a decimal string (bigint-safe).
+    CommerceOperationalStoredValueBalance:
+      type: object
+      description: "Issue #296 — the outstanding liability of one account kind around the range."
+      properties:
+        accountKind:
+          type: string
+          enum:
+            - gift_card
+            - store_credit
+        opening:
+          type: string
+        movement:
+          type: string
+        closing:
+          type: string
+    CommerceOperationalStoredValueReport:
+      type: object
+      description: "Issue #296 — the stored-value liability report."
+      properties:
+        from:
+          type: string
+          format: date
+        to:
+          type: string
+          format: date
+        timeZone:
+          type: string
+          description: The report time zone (`Asia/Jakarta`); every `day` is bucketed in it.
+        enabled:
+          type: boolean
+          description: "`false` while the family's source feature is off: everything below is then empty."
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceOperationalStoredValueRow"
+        summary:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceOperationalStoredValueSummaryRow"
+        balances:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceOperationalStoredValueBalance"
+        totalClosing:
+          type: string
+    CommerceOperationalStoredValueRow:
+      type: object
+      description: "Issue #296 — one day, account kind and bucket."
+      properties:
+        day:
+          type: string
+          format: date
+        accountKind:
+          type: string
+          enum:
+            - gift_card
+            - store_credit
+        bucket:
+          type: string
+          enum:
+            - issue
+            - load
+            - redeem
+            - refund
+            - expire
+            - adjust_up
+            - adjust_down
+        entries:
+          type: integer
+        amount:
+          type: string
+    CommerceOperationalStoredValueSummaryRow:
+      type: object
+      description: "Issue #296 — one account kind and bucket folded over the range."
+      properties:
+        accountKind:
+          type: string
+          enum:
+            - gift_card
+            - store_credit
+        bucket:
+          type: string
+          enum:
+            - issue
+            - load
+            - redeem
+            - refund
+            - expire
+            - adjust_up
+            - adjust_down
+        entries:
+          type: integer
+        amount:
+          type: string
+    CommerceOperationalTenderRow:
+      type: object
+      description: "Issue #296 — one day, register and tender."
+      properties:
+        day:
+          type: string
+          format: date
+        registerId:
+          type: string
+          format: uuid
+          nullable: true
+        registerCode:
+          type: string
+          nullable: true
+        registerName:
+          type: string
+          nullable: true
+        tenderType:
+          type: string
+        paymentCount:
+          type: integer
+        payments:
+          type: string
+        reversalCount:
+          type: integer
+        reversals:
+          type: string
+        net:
+          type: string
+    CommerceOperationalTendersReport:
+      type: object
+      description: "Issue #296 — the tender-mix report."
+      properties:
+        from:
+          type: string
+          format: date
+        to:
+          type: string
+          format: date
+        timeZone:
+          type: string
+          description: The report time zone (`Asia/Jakarta`); every `day` is bucketed in it.
+        enabled:
+          type: boolean
+          description: "`false` while the family's source feature is off: everything below is then empty."
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceOperationalTenderRow"
+        summary:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceOperationalTenderSummaryRow"
+        totalPayments:
+          type: string
+        totalReversals:
+          type: string
+        totalNet:
+          type: string
+    CommerceOperationalTenderSummaryRow:
+      type: object
+      description: "Issue #296 — one register and tender folded over the range. Money is a `numeric(14,2)` decimal string."
+      properties:
+        registerId:
+          type: string
+          format: uuid
+          nullable: true
+        registerCode:
+          type: string
+          nullable: true
+        registerName:
+          type: string
+          nullable: true
+        tenderType:
+          type: string
+        paymentCount:
+          type: integer
+        payments:
+          type: string
+        reversalCount:
+          type: integer
+        reversals:
+          type: string
+        net:
+          type: string
     CommerceOrder:
       type: object
       description: Issue 29 — the storefront tracking/order-creation shape (`commerce-storefront-endpoints.md`). Customer/address phone are MASKED (phoneMasked); money fields are numeric(14,2) strings.

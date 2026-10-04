@@ -296,6 +296,22 @@ This platform's own design — nothing here is ported from the legacy store. Sta
 | `expenses` feature | commerce module settings `features.expenses` (default OFF) | Turns the whole expense surface on; while ON a raw `expense` drawer movement is refused |
 | `commerce.expense_categories.*`, `commerce.expenses.*`, `commerce.expense_postings.*`, `commerce.expense_reversals.approve`, `commerce.expense_receipts.*` | `awcms_permissions` (`sql/992`) | The twelve keys: categories, read / create / edit / export expenses, submit / approve a posting, reverse, read / attach a receipt |
 
+## POS operational-report vocabulary (issue #296, [ADR-0035](adr/0035-pos-operational-reports-are-commerce-projections-over-the-existing-ledgers-on-the-reporting-engine.md))
+
+| Term | Where it lives | Meaning |
+| --- | --- | --- |
+| operational report | the five `commerce.pos_*` projections | A per-day (or per-shift) aggregate over a ledger that already exists, kept by the `reporting` engine: rebuildable, reconcilable, freshness-monitored, exportable. Not a source of truth — the ledger is |
+| report family | `OPERATIONAL_REPORT_FAMILIES` (`domain/operational-report-keys.ts`) | `tenders`, `cash-ups`, `expenses`, `loyalty`, `stored-value`: one projection, one feature gate (or none), one permission pair, one route pair |
+| settlement day | `awcms_commerce_report_tender_daily.day` | The `Asia/Jakarta` day a payment leg **settled** (`settled_at`) — a gateway leg that settles after midnight lands on the later day; a pending or failed leg lands nowhere |
+| close day | `awcms_commerce_report_cash_up_tenders.day` | The day the register session **closed**; a later approval or correction is added to this day |
+| variance | cash-up report | `counted + corrections − expected` for one tender of one closed shift; negative is **short**, positive is **over** |
+| occurred-on day | `awcms_commerce_report_expense_daily.day` | The calendar date the tenant typed on the expense — not an instant, so no time-zone conversion; a reversal lands on the day its posting did |
+| bucket | loyalty and stored-value tables | A ledger `kind` (adjustments and reversals split by the sign of the entry): `earn`, `redeem`, `expire`, `adjustment_up/down`, `reversal_up/down`; `issue`, `load`, `redeem`, `refund`, `expire`, `adjust_up/down` |
+| outstanding (points / liability) | opening, movement and closing in the loyalty and stored-value reports | The running sum of every bucket since the beginning: points still owed to customers, money still held on cards and credit. `closing = opening + movement` |
+| source view | `awcms_commerce_report_src_*` | A `security_invoker` view of the rows whose cursor column is set, so the engine's NULL-unsafe rebuild scan never sees a NULL (ADR-0035 D3) |
+| `commerce.report_tenders.*`, `…report_cash_ups.*`, `…report_expenses.*`, `…report_loyalty.*`, `…report_stored_value.*` | `awcms_permissions` (`sql/999`) | The ten keys: `read` and the high-risk `export` for each family. None is implied by `reporting.dashboard.read` or by a source-domain key, and none opens a source row |
+| `operational_report.export` | audit action | One row per CSV export: family, range, row count, never a cell |
+
 ## Barcode vocabulary (issue #292, [ADR-0032](adr/0032-barcodes-are-a-derived-identifier-and-the-cashier-keyboard-layer-is-chord-only.md))
 
 This platform's own design - nothing here is ported from the legacy store.

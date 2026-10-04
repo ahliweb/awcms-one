@@ -10084,3 +10084,96 @@ msgstr "Kembalikan ke bawaan toko"
 
 msgid "Barcodes, labels and cashier shortcuts"
 msgstr "Barcode, label, dan pintasan kasir"
+
+msgid "Reversed up"
+msgstr "Dibalik naik"
+
+msgid "Reversed down"
+msgstr "Dibalik turun"
+
+msgid "Short"
+msgstr "Kurang"
+
+msgid "Over"
+msgstr "Lebih"
+
+msgid "Balanced"
+msgstr "Seimbang"
+
+msgid "Tender mix by register"
+msgstr "Ragam pembayaran per kasir"
+
+msgid "Tender mix totals"
+msgstr "Total ragam pembayaran"
+
+msgid "Money received and given back per register and payment method, {from} to {to}, by the day each payment settled."
+msgstr "Uang diterima dan dikembalikan per kasir dan metode pembayaran, {from} sampai {to}, menurut hari setiap pembayaran selesai."
+
+msgid "No payments settled in this range"
+msgstr "Tidak ada pembayaran selesai pada rentang ini"
+
+msgid "No register"
+msgstr "Tanpa kasir"
+
+msgid "Cash-up variance"
+msgstr "Selisih tutup kasir"
+
+msgid "Cash-up variance totals"
+msgstr "Total selisih tutup kasir"
+
+msgid "Net variance"
+msgstr "Selisih bersih"
+
+msgid "Expected against counted per closed shift and payment method, {from} to {to}, by the day the shift closed. Corrections are included in the counted figure."
+msgstr "Yang diharapkan terhadap yang dihitung per shift tertutup dan metode pembayaran, {from} sampai {to}, menurut hari shift ditutup. Koreksi sudah termasuk dalam angka hitungan."
+
+msgid "Variance"
+msgstr "Selisih"
+
+msgid "No shifts closed in this range"
+msgstr "Tidak ada shift ditutup pada rentang ini"
+
+msgid "Expenses by category"
+msgstr "Pengeluaran per kategori"
+
+msgid "Posted expenses per category and payment method, {from} to {to}, by the date each expense occurred. A reversal is taken off the day it was posted on."
+msgstr "Pengeluaran yang dibukukan per kategori dan metode pembayaran, {from} sampai {to}, menurut tanggal terjadinya setiap pengeluaran. Pembalikan dikurangkan dari hari pengeluaran itu dibukukan."
+
+msgid "Entries"
+msgstr "Entri"
+
+msgid "No expenses posted in this range"
+msgstr "Tidak ada pengeluaran dibukukan pada rentang ini"
+
+msgid "Loyalty points totals"
+msgstr "Total poin loyalitas"
+
+msgid "Outstanding at start"
+msgstr "Sisa di awal"
+
+msgid "Movement in range"
+msgstr "Pergerakan dalam rentang"
+
+msgid "Outstanding at end"
+msgstr "Sisa di akhir"
+
+msgid "Points moved per kind, {from} to {to}, by the day each entry was written."
+msgstr "Poin yang bergerak per jenis, {from} sampai {to}, menurut hari setiap entri dicatat."
+
+msgid "No points moved in this range"
+msgstr "Tidak ada poin bergerak pada rentang ini"
+
+msgid "Stored-value liability"
+msgstr "Kewajiban nilai tersimpan"
+
+msgid "Stored-value liability totals"
+msgstr "Total kewajiban nilai tersimpan"
+
+msgid "Owed at end of range"
+msgstr "Terutang di akhir rentang"
+
+msgid "Gift-card and store-credit movement per kind, {from} to {to}, by the day each entry was written."
+msgstr "Pergerakan kartu hadiah dan kredit toko per jenis, {from} sampai {to}, menurut hari setiap entri dicatat."
+
+msgid "No stored value moved in this range"
+msgstr "Tidak ada nilai tersimpan bergerak pada rentang ini"

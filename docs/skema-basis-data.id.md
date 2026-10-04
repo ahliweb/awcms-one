@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:8b2a0b25622bd8cb7ef8c29da0b0d4bdb95d25a9ce3782905b8cd908a3c73376 -->
+<!-- i18n-source-hash: sha256:dcd657d617194f1ecdeab51cbe6a28fff60904fed8f00f2a5ced1c25e8fe135a -->
 
 # Skema basis data
 
@@ -305,6 +305,20 @@ Issue #117, D7 kontrak #106 — read model dari tiga proyeksi reporting `cursor_
 | `awcms_commerce_sales_by_category` | `PRIMARY KEY (tenant_id, day, category_id)`, `category_name text` (snapshot), `qty integer`, `gross numeric(14,2)`   | Per hari dan kategori produk, diatribusikan lewat `products.category_id` saat pemrosesan. `category_id` `NOT NULL` karena bagian dari kunci: produk tanpa kategori mendarat di uuid sentinel serba-nol, yang oleh rute baca dipetakan kembali menjadi `categoryId: null`. Indeks `(tenant_id, category_id)`                                    |
 
 Ketiganya: RLS `ENABLE`+`FORCE`, policy isolasi tenant, `updated_at`, uang sebagai `numeric(14,2)` yang ditulis dari sen bilangan bulat sebagai string desimal (tak pernah float). Baris di-upsert menurut primary key dengan `INSERT ... ON CONFLICT DO UPDATE SET x = x + EXCLUDED.x` di dalam transaksi pass terbatas milik mesin, setelah advisory lock (tenant, proyeksi) dan sebelum kursor maju; rebuild men-`DELETE` baris tenant dalam transaksi yang sama dengan reset kursor. `awcms_worker` diberi `SELECT, INSERT, UPDATE, DELETE` (`bun run reporting:projections:refresh` meng-upsert; purge data-lifecycle generik menghapus; delete milik reset rebuild sendiri berjalan sebagai `awcms_app` dalam transaksi rute API) — dicerminkan di `WORKER_ROLE_GRANTS`. Retensi: tiga deskriptor `dataLifecycle` di `commerce/module.ts` (`commerce.sales_daily`/`_by_product`/`_by_category`, kursor `day`, jendela 365–3650 hari yang sama dengan `commerce.order_events` — baris yang lebih tua dari retensi sumbernya tak pernah bisa dibangun ulang dan aman dipurge). Data subjek: `NO_SUBJECT_DATA` di ledger skrip (angka per hari/produk/kategori adalah fakta tentang tidak seorang pun).
+
+## Proyeksi laporan operasional POS: lima tabel turunan dan empat view sumber (`sql/998`–`999`, issue #296, [ADR-0035](adr/0035-pos-operational-reports-are-commerce-projections-over-the-existing-ledgers-on-the-reporting-engine.md))
+
+Model baca dari lima proyeksi `cursor_table` yang disumbangkan `commerce` di samping proyeksi penjualan, dipelihara (dan di-rebuild) worker mesin `reporting` — tidak pernah ditulis oleh permintaan. Uang adalah `numeric(14,2)` yang ditulis dari sen bulat, poin adalah `bigint`; setiap tabel punya FK tenant, RLS `ENABLE`+`FORCE` dengan kebijakan `WITH CHECK`, `updated_at`, dan di-upsert secara aditif (`x = x + EXCLUDED.x`), sehingga dua aliran yang mengisi satu tabel bersifat komutatif.
+
+| Tabel | Kunci utama | Kolom | Catatan |
+| --- | --- | --- | --- |
+| `awcms_commerce_report_tender_daily` | `(tenant_id, day, register_id, tender_type)` | `payment_count`, `payments`, `reversal_count`, `reversals` | `day` adalah hari leg **selesai** di `Asia/Jakarta`; `register_id` adalah uuid nol semua untuk leg yang tidak diambil di kasir. Bersih diturunkan saat dibaca |
+| `awcms_commerce_report_cash_up_tenders` | `(tenant_id, session_id, tender_type)` | `register_id`, `cashier_tenant_user_id`, `day`, `line_count`, `expected`, `counted`, `adjustment` | Satu baris per shift tertutup dan metode; `day` adalah hari sesi **ditutup**. `adjustment` adalah jumlah bertanda koreksi; selisih = `counted + adjustment − expected`. Indeks `(tenant_id, day)` |
+| `awcms_commerce_report_expense_daily` | `(tenant_id, day, category_id, tender_type)` | `category_name` (snapshot), `posted_count`, `posted`, `reversed_count`, `reversed` | `day` adalah tanggal `occurred_on` pengeluaran yang diketik (tanpa konversi zona waktu); pembalikan ditambahkan ke kolom `reversed*` baris yang sama |
+| `awcms_commerce_report_loyalty_daily` | `(tenant_id, day, bucket)` | `entries`, `points bigint` | `bucket` ∈ `earn`, `redeem`, `expire`, `adjustment_up/down`, `reversal_up/down` (CHECK). Poin beredar = jumlah berjalan |
+| `awcms_commerce_report_stored_value_daily` | `(tenant_id, day, account_kind, bucket)` | `entries`, `amount` | `account_kind` ∈ `gift_card`, `store_credit`; `bucket` ∈ `issue`, `load`, `redeem`, `refund`, `expire`, `adjust_up/down` (CHECK). Kewajiban beredar = jumlah berjalan per jenis |
+
+`register_id`, `category_id` dan kasir adalah **snapshot tanpa kunci asing** (sikap proyeksi penjualan): baris laporan adalah fakta historis dan pembersihan retensi sepuluh tahun atas kasir atau kategori tidak boleh terhalang oleh atau membatalkannya. Empat view `security_invoker` — `awcms_commerce_report_src_allocations`, `…_close_decisions`, `…_expenses_posted`, `…_expenses_reversed` — hanya menampilkan id, tenant, kursor dan satu kolom pencocok dari baris yang kursornya terisi, karena pindaian rebuild mesin tidak punya predikat `IS NOT NULL` (ADR-0035 D3); empat indeks kursor parsial pada tabel sumber melayaninya. `awcms_worker` memegang `SELECT, INSERT, UPDATE, DELETE` pada lima tabel dan `SELECT` pada view (dicerminkan di `WORKER_ROLE_GRANTS`). Retensi (batas atas 3650 hari, kursor `day`) dan data subjek (hanya uuid kasir) dideklarasikan di `domain/operational-report-lifecycle.ts`. `sql/999` menyemai sepuluh izin `commerce.report_*.read|export`.
 
 ## Buku besar poin loyalitas: tiga tabel (`sql/950`, grant worker `sql/951`, seed izin `sql/952`)
 

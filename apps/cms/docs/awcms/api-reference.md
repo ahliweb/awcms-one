@@ -13562,6 +13562,216 @@ Legal status edges: received -> scheduled | in_progress | cancelled; scheduled -
 | 404    | Resource not found.                                                                                                                                                                            | [`ApiError`](#standard-error-envelope) |
 | 409    | `WORK_ORDER_TRANSITION_ILLEGAL` (`details.from`, `details.to`), `WORK_ORDER_CLOSED`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/reports/commerce/operational-cash-ups` — Issue #296 (ADR-0035). The POS operational cash-ups report over the inclusive day range: the cash-up variance of every register session that closed in the range, per tender, with register and cashier of record, from the `commerce.pos_cash_up_variance` projection; variance is counted (with corrections) minus expected, negative is short. While the tenant's `register` feature is OFF the answer is `200` with `enabled: false` and no rows. Gated on `commerce.report_cash_ups.read`, a permission of its own (not implied by `reporting.dashboard.read` or by the source-domain permission).
+
+- **operationId**: `getReportsCommerceOperationalCashUps`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name   | In    | Required | Type          | Description                                                                                                                          |
+| ------ | ----- | -------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `from` | query | no       | string (date) | Inclusive first report day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days. |
+| `to`   | query | no       | string (date) | Inclusive last report day (`YYYY-MM-DD`). Defaults to today in the report time zone.                                                 |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The report for the range.   | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/reports/commerce/operational-cash-ups.csv` — Issue #296 (ADR-0035). The same cash-ups report as a CSV (`text/csv`, one row per day and dimension, spreadsheet-formula-neutralised: a text cell starting with `=`, `+`, `-`, `@`, a tab or a carriage return is prefixed with `'`). Gated on `commerce.report_cash_ups.export`, the high-risk `export` verb; the export is audited (family, range and row count — never a cell). A family whose feature is off returns a header row only.
+
+- **operationId**: `exportReportsCommerceOperationalCashUpsCsv`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name   | In    | Required | Type          | Description                                                                                                                          |
+| ------ | ----- | -------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `from` | query | no       | string (date) | Inclusive first report day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days. |
+| `to`   | query | no       | string (date) | Inclusive last report day (`YYYY-MM-DD`). Defaults to today in the report time zone.                                                 |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The CSV file.               | string                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/reports/commerce/operational-expenses` — Issue #296 (ADR-0035). The POS operational expenses report over the inclusive day range: posted and reversed expenses per business day, category and tender, from the `commerce.pos_expense_daily` projection; a reversal is taken off the SAME day row its posting landed on. While the tenant's `expenses` feature is OFF the answer is `200` with `enabled: false` and no rows. Gated on `commerce.report_expenses.read`, a permission of its own (not implied by `reporting.dashboard.read` or by the source-domain permission).
+
+- **operationId**: `getReportsCommerceOperationalExpenses`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name   | In    | Required | Type          | Description                                                                                                                          |
+| ------ | ----- | -------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `from` | query | no       | string (date) | Inclusive first report day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days. |
+| `to`   | query | no       | string (date) | Inclusive last report day (`YYYY-MM-DD`). Defaults to today in the report time zone.                                                 |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The report for the range.   | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/reports/commerce/operational-expenses.csv` — Issue #296 (ADR-0035). The same expenses report as a CSV (`text/csv`, one row per day and dimension, spreadsheet-formula-neutralised: a text cell starting with `=`, `+`, `-`, `@`, a tab or a carriage return is prefixed with `'`). Gated on `commerce.report_expenses.export`, the high-risk `export` verb; the export is audited (family, range and row count — never a cell). A family whose feature is off returns a header row only.
+
+- **operationId**: `exportReportsCommerceOperationalExpensesCsv`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name   | In    | Required | Type          | Description                                                                                                                          |
+| ------ | ----- | -------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `from` | query | no       | string (date) | Inclusive first report day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days. |
+| `to`   | query | no       | string (date) | Inclusive last report day (`YYYY-MM-DD`). Defaults to today in the report time zone.                                                 |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The CSV file.               | string                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/reports/commerce/operational-loyalty` — Issue #296 (ADR-0035). The POS operational loyalty report over the inclusive day range: loyalty points earned, redeemed, expired, adjusted and reversed per day, with the outstanding points (the liability) at the start and end of the range, from the `commerce.pos_loyalty_daily` projection. While the tenant's `loyalty` feature is OFF the answer is `200` with `enabled: false` and no rows. Gated on `commerce.report_loyalty.read`, a permission of its own (not implied by `reporting.dashboard.read` or by the source-domain permission).
+
+- **operationId**: `getReportsCommerceOperationalLoyalty`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name   | In    | Required | Type          | Description                                                                                                                          |
+| ------ | ----- | -------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `from` | query | no       | string (date) | Inclusive first report day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days. |
+| `to`   | query | no       | string (date) | Inclusive last report day (`YYYY-MM-DD`). Defaults to today in the report time zone.                                                 |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The report for the range.   | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/reports/commerce/operational-loyalty.csv` — Issue #296 (ADR-0035). The same loyalty report as a CSV (`text/csv`, one row per day and dimension, spreadsheet-formula-neutralised: a text cell starting with `=`, `+`, `-`, `@`, a tab or a carriage return is prefixed with `'`). Gated on `commerce.report_loyalty.export`, the high-risk `export` verb; the export is audited (family, range and row count — never a cell). A family whose feature is off returns a header row only.
+
+- **operationId**: `exportReportsCommerceOperationalLoyaltyCsv`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name   | In    | Required | Type          | Description                                                                                                                          |
+| ------ | ----- | -------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `from` | query | no       | string (date) | Inclusive first report day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days. |
+| `to`   | query | no       | string (date) | Inclusive last report day (`YYYY-MM-DD`). Defaults to today in the report time zone.                                                 |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The CSV file.               | string                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/reports/commerce/operational-stored-value` — Issue #296 (ADR-0035). The POS operational stored-value report over the inclusive day range: gift-card and store-credit movement per day, account kind and bucket, with the outstanding liability per kind at the start and end of the range, from the `commerce.pos_stored_value_daily` projection. While the tenant's `storedValue` feature is OFF the answer is `200` with `enabled: false` and no rows. Gated on `commerce.report_stored_value.read`, a permission of its own (not implied by `reporting.dashboard.read` or by the source-domain permission).
+
+- **operationId**: `getReportsCommerceOperationalStoredValue`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name   | In    | Required | Type          | Description                                                                                                                          |
+| ------ | ----- | -------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `from` | query | no       | string (date) | Inclusive first report day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days. |
+| `to`   | query | no       | string (date) | Inclusive last report day (`YYYY-MM-DD`). Defaults to today in the report time zone.                                                 |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The report for the range.   | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/reports/commerce/operational-stored-value.csv` — Issue #296 (ADR-0035). The same stored-value report as a CSV (`text/csv`, one row per day and dimension, spreadsheet-formula-neutralised: a text cell starting with `=`, `+`, `-`, `@`, a tab or a carriage return is prefixed with `'`). Gated on `commerce.report_stored_value.export`, the high-risk `export` verb; the export is audited (family, range and row count — never a cell). A family whose feature is off returns a header row only.
+
+- **operationId**: `exportReportsCommerceOperationalStoredValueCsv`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name   | In    | Required | Type          | Description                                                                                                                          |
+| ------ | ----- | -------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `from` | query | no       | string (date) | Inclusive first report day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days. |
+| `to`   | query | no       | string (date) | Inclusive last report day (`YYYY-MM-DD`). Defaults to today in the report time zone.                                                 |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The CSV file.               | string                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/reports/commerce/operational-tenders` — Issue #296 (ADR-0035). The POS operational tenders report over the inclusive day range: money movement per day, register and tender (payment and reversal counts and sums, net derived), from the `commerce.pos_tender_daily` projection over the payment-allocation ledger; each leg lands on the day it SETTLED in the report time zone, and pending or failed legs never count. It needs no tenant feature (payments exist in every tenant). Gated on `commerce.report_tenders.read`, a permission of its own (not implied by `reporting.dashboard.read` or by the source-domain permission).
+
+- **operationId**: `getReportsCommerceOperationalTenders`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name   | In    | Required | Type          | Description                                                                                                                          |
+| ------ | ----- | -------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `from` | query | no       | string (date) | Inclusive first report day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days. |
+| `to`   | query | no       | string (date) | Inclusive last report day (`YYYY-MM-DD`). Defaults to today in the report time zone.                                                 |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The report for the range.   | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/reports/commerce/operational-tenders.csv` — Issue #296 (ADR-0035). The same tenders report as a CSV (`text/csv`, one row per day and dimension, spreadsheet-formula-neutralised: a text cell starting with `=`, `+`, `-`, `@`, a tab or a carriage return is prefixed with `'`). Gated on `commerce.report_tenders.export`, the high-risk `export` verb; the export is audited (family, range and row count — never a cell). A family whose feature is off returns a header row only.
+
+- **operationId**: `exportReportsCommerceOperationalTendersCsv`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name   | In    | Required | Type          | Description                                                                                                                          |
+| ------ | ----- | -------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `from` | query | no       | string (date) | Inclusive first report day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days. |
+| `to`   | query | no       | string (date) | Inclusive last report day (`YYYY-MM-DD`). Defaults to today in the report time zone.                                                 |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The CSV file.               | string                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/reports/commerce/outstanding-balances` — Issue #285 (ADR-0025). Every order that still owes money (not cancelled/expired, `total - settled > 0`, `settled` re-derived from the payment-allocation ledger), largest balance first. `count`/`totalOutstanding` cover EVERY match; `items` is the first `limit`. Gated on `commerce.payments.read`.
 
 - **operationId**: `getReportsCommerceOutstandingBalances`

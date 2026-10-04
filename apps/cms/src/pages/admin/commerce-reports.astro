@@ -28,6 +28,7 @@
  * the wire keeps them as strings (ADR-0003); only the presentation formats.
  */
 import AdminLayout from "../../layouts/AdminLayout.astro";
+import CommerceOperationalReports from "../../components/CommerceOperationalReports.astro";
 import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
@@ -55,6 +56,21 @@ import {
   SALES_REPORT_PROJECTION_KEYS
 } from "../../modules/commerce/domain/sales-report-keys";
 import { SALES_REPORT_TIME_ZONE } from "../../modules/commerce/domain/sales-report-deltas";
+import {
+  fetchCashUpReport,
+  fetchExpenseReport,
+  fetchLoyaltyReport,
+  fetchStoredValueDailyReport,
+  fetchTenderReport
+} from "../../modules/commerce/application/operational-report-directory";
+import {
+  OPERATIONAL_REPORT_PROJECTION_KEYS,
+  POS_CASH_UP_VARIANCE_PROJECTION_KEY,
+  POS_EXPENSE_DAILY_PROJECTION_KEY,
+  POS_LOYALTY_DAILY_PROJECTION_KEY,
+  POS_STORED_VALUE_DAILY_PROJECTION_KEY,
+  POS_TENDER_DAILY_PROJECTION_KEY
+} from "../../modules/commerce/domain/operational-report-keys";
 import {
   listOutstandingBalances,
   listTenderMix,
@@ -89,6 +105,13 @@ const range = rangeValidation.valid
 const rangeErrors = rangeValidation.valid ? [] : rangeValidation.errors;
 
 const PRODUCT_LIMIT = 50;
+// The sales projections and the POS operational ones share this screen's
+// freshness and export-run panels; each projection is still listed only when
+// its own `requiredPermission` is held (projection-directory filters on it).
+const REPORT_PROJECTION_KEYS: readonly string[] = [
+  ...SALES_REPORT_PROJECTION_KEYS,
+  ...OPERATIONAL_REPORT_PROJECTION_KEYS
+];
 const OUTSTANDING_LIMIT = 50;
 
 const screen = await loadAdminScreen({
@@ -140,6 +163,86 @@ const screen = await loadAdminScreen({
         })
       : null;
 
+    // Issue #296 (ADR-0035) - the POS operational panels. Each family needs
+    // its OWN report permission on top of this screen's `reporting.dashboard
+    // .read` entry; a family the caller may not read is `null` (not rendered),
+    // and one whose source feature is off comes back `enabled: false` (also
+    // not rendered).
+    const canReadTenders = await can({
+      moduleKey: "commerce",
+      activityCode: "report_tenders",
+      action: "read"
+    });
+    const canExportTenders = await can({
+      moduleKey: "commerce",
+      activityCode: "report_tenders",
+      action: "export"
+    });
+    const canReadCashUps = await can({
+      moduleKey: "commerce",
+      activityCode: "report_cash_ups",
+      action: "read"
+    });
+    const canExportCashUps = await can({
+      moduleKey: "commerce",
+      activityCode: "report_cash_ups",
+      action: "export"
+    });
+    const canReadExpenses = await can({
+      moduleKey: "commerce",
+      activityCode: "report_expenses",
+      action: "read"
+    });
+    const canExportExpenses = await can({
+      moduleKey: "commerce",
+      activityCode: "report_expenses",
+      action: "export"
+    });
+    const canReadLoyalty = await can({
+      moduleKey: "commerce",
+      activityCode: "report_loyalty",
+      action: "read"
+    });
+    const canExportLoyalty = await can({
+      moduleKey: "commerce",
+      activityCode: "report_loyalty",
+      action: "export"
+    });
+    const canReadStoredValue = await can({
+      moduleKey: "commerce",
+      activityCode: "report_stored_value",
+      action: "read"
+    });
+    const canExportStoredValue = await can({
+      moduleKey: "commerce",
+      activityCode: "report_stored_value",
+      action: "export"
+    });
+    const operational = {
+      tenders: canReadTenders
+        ? await fetchTenderReport(tx, ssr.tenantId, range)
+        : null,
+      cashUps: canReadCashUps
+        ? await fetchCashUpReport(tx, ssr.tenantId, range)
+        : null,
+      expenses: canReadExpenses
+        ? await fetchExpenseReport(tx, ssr.tenantId, range)
+        : null,
+      loyalty: canReadLoyalty
+        ? await fetchLoyaltyReport(tx, ssr.tenantId, range)
+        : null,
+      storedValue: canReadStoredValue
+        ? await fetchStoredValueDailyReport(tx, ssr.tenantId, range)
+        : null,
+      canExport: {
+        tenders: canExportTenders,
+        cashUps: canExportCashUps,
+        expenses: canExportExpenses,
+        loyalty: canExportLoyalty,
+        storedValue: canExportStoredValue
+      }
+    };
+
     const projections = canReadProjections
       ? (
           await listProjectionSummariesForTenant(
@@ -148,16 +251,14 @@ const screen = await loadAdminScreen({
             auth.grantedPermissionKeys
           )
         ).filter((projection) =>
-          (SALES_REPORT_PROJECTION_KEYS as readonly string[]).includes(
-            projection.key
-          )
+          (REPORT_PROJECTION_KEYS as readonly string[]).includes(projection.key)
         )
       : [];
 
     const exportRuns = canReadExports
       ? (await listExportRuns(tx, ssr.tenantId))
           .filter((run) =>
-            (SALES_REPORT_PROJECTION_KEYS as readonly string[]).includes(
+            (REPORT_PROJECTION_KEYS as readonly string[]).includes(
               run.projectionKey
             )
           )
@@ -173,7 +274,8 @@ const screen = await loadAdminScreen({
       canTriggerExport,
       canReadExports,
       tenderMix,
-      outstanding
+      outstanding,
+      operational
     };
   },
   onError: (error) => {
@@ -199,6 +301,7 @@ const canTriggerExport =
 const canReadExports = screen.state === "allowed" && screen.data.canReadExports;
 const tenderMix = screen.state === "allowed" ? screen.data.tenderMix : null;
 const outstanding = screen.state === "allowed" ? screen.data.outstanding : null;
+const operational = screen.state === "allowed" ? screen.data.operational : null;
 
 const CURRENCY = "IDR";
 const money = (value: string) =>
@@ -219,7 +322,12 @@ const totals = daily.reduce(
 const PROJECTION_LABELS: Record<string, string> = {
   [SALES_DAILY_PROJECTION_KEY]: t("Sales by day"),
   [SALES_BY_PRODUCT_PROJECTION_KEY]: t("Sales by product"),
-  [SALES_BY_CATEGORY_PROJECTION_KEY]: t("Sales by category")
+  [SALES_BY_CATEGORY_PROJECTION_KEY]: t("Sales by category"),
+  [POS_TENDER_DAILY_PROJECTION_KEY]: t("Tender mix by register"),
+  [POS_CASH_UP_VARIANCE_PROJECTION_KEY]: t("Cash-up variance"),
+  [POS_EXPENSE_DAILY_PROJECTION_KEY]: t("Expenses by category"),
+  [POS_LOYALTY_DAILY_PROJECTION_KEY]: t("Loyalty points"),
+  [POS_STORED_VALUE_DAILY_PROJECTION_KEY]: t("Stored-value liability")
 };
 
 function formatAge(ageSeconds: number | null): string {
@@ -713,6 +821,14 @@ function formatTimestamp(value: Date | string | null): string {
             </table>
           </div>
         </section>
+      )}
+
+      {operational && (
+        <CommerceOperationalReports
+          reports={operational}
+          range={range}
+          locale={locale}
+        />
       )}
 
       {outstanding && (

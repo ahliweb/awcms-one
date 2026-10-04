@@ -7,6 +7,10 @@ import {
   EXPENSE_SUBJECT_DATA
 } from "./domain/expense-lifecycle";
 import {
+  OPERATIONAL_REPORT_DATA_LIFECYCLE,
+  OPERATIONAL_REPORT_SUBJECT_DATA
+} from "./domain/operational-report-lifecycle";
+import {
   REGISTER_DATA_LIFECYCLE,
   REGISTER_SUBJECT_DATA
 } from "./domain/register-lifecycle";
@@ -105,7 +109,17 @@ import {
   COMMERCE_ATTRIBUTE_PERMISSIONS,
   COMMERCE_LOYALTY_ACTIVITY_CODE,
   COMMERCE_LOYALTY_ADJUSTMENTS_ACTIVITY_CODE,
-  COMMERCE_LOYALTY_REDEMPTIONS_ACTIVITY_CODE
+  COMMERCE_LOYALTY_REDEMPTIONS_ACTIVITY_CODE,
+  COMMERCE_REPORT_TENDERS_ACTIVITY_CODE,
+  COMMERCE_REPORT_CASH_UPS_ACTIVITY_CODE,
+  COMMERCE_REPORT_EXPENSES_ACTIVITY_CODE,
+  COMMERCE_REPORT_LOYALTY_ACTIVITY_CODE,
+  COMMERCE_REPORT_STORED_VALUE_ACTIVITY_CODE,
+  COMMERCE_REPORT_TENDER_PERMISSIONS,
+  COMMERCE_REPORT_CASH_UP_PERMISSIONS,
+  COMMERCE_REPORT_EXPENSE_PERMISSIONS,
+  COMMERCE_REPORT_LOYALTY_PERMISSIONS,
+  COMMERCE_REPORT_STORED_VALUE_PERMISSIONS
 } from "./domain/commerce-permissions";
 import {
   COMMERCE_FLASH_SALE_ENDED_EVENT_TYPE,
@@ -143,6 +157,29 @@ import {
   SALES_ORDER_EVENTS_STREAM_KEY,
   SALES_REPORT_METRIC_KEYS
 } from "./domain/sales-report-keys";
+import {
+  OPERATIONAL_METRIC_KEYS,
+  OPERATIONAL_STREAM_KEYS,
+  POS_CASH_UP_VARIANCE_PROJECTION_KEY,
+  POS_EXPENSE_DAILY_PROJECTION_KEY,
+  POS_LOYALTY_DAILY_PROJECTION_KEY,
+  POS_STORED_VALUE_DAILY_PROJECTION_KEY,
+  POS_TENDER_DAILY_PROJECTION_KEY
+} from "./domain/operational-report-keys";
+import {
+  CASH_UP_CLOSE_SINK,
+  CASH_UP_CORRECTION_SINK,
+  CASH_UP_DIMENSIONAL,
+  EXPENSE_DIMENSIONAL,
+  EXPENSE_POSTED_SINK,
+  EXPENSE_REVERSED_SINK,
+  LOYALTY_DIMENSIONAL,
+  LOYALTY_SINK,
+  STORED_VALUE_DIMENSIONAL,
+  STORED_VALUE_SINK,
+  TENDER_DIMENSIONAL,
+  TENDER_SINK
+} from "./application/operational-report-projection";
 import {
   SALES_BY_CATEGORY_DIMENSIONAL,
   SALES_BY_CATEGORY_SINK,
@@ -230,6 +267,161 @@ function salesReportProjection(
     dimensional: input.dimensional
   };
 }
+
+/**
+ * Issue #296 (ADR-0035) - the five POS operational-report projections. One
+ * factory like {@link salesReportProjection}; each descriptor lists its own
+ * streams (cash-ups and expenses read two sources each) and the same list is
+ * its `rebuildSource`, so a rebuild resets and replays every cursor it owns.
+ * Each stream's scalar metric is a "rows consumed" counter whose `COUNT(*)`
+ * equivalent the engine's own reconciliation can evaluate with an equality
+ * match (a status or decision that is frozen once the cursor column is set),
+ * so it never reports a false drift for a row the stream legitimately skips.
+ */
+const OPERATIONAL_REPORT_RETENTION_CLASS =
+  "commerce.pos_tender_daily / _cash_up_variance / _expense_daily / _loyalty_daily / _stored_value_daily (this module's own dataLifecycle descriptors, cursor `day`, same 3650-day ceiling as the sales projections): derived, fully rebuildable aggregates over append-only (or write-once) ledgers - a rebuild after a source's own retention purge recomputes from surviving rows only, the same coupling reporting.access_audit_summary documents.";
+
+function operationalReportProjection(
+  input: Pick<
+    ProjectionDescriptor,
+    "key" | "description" | "dimensional" | "metricLabels"
+  > & {
+    streams: readonly ProjectionCursorStream[];
+    drillDownPath: string;
+    /** The family's own `.read` key: a caller holding only the coarse `reporting.projections.read` still cannot see a family it has no report permission for (the second guard layer, `projection-permission-filter.ts`). */
+    requiredPermission: string;
+  }
+): ProjectionDescriptor {
+  return {
+    key: input.key,
+    version: 1,
+    ownerModuleKey: "commerce",
+    scope: "tenant",
+    description: input.description,
+    source: { strategy: "cursor_table", streams: input.streams },
+    rebuildSource: { streams: input.streams },
+    metricLabels: input.metricLabels,
+    requiredPermission: input.requiredPermission,
+    freshness: SALES_REPORT_FRESHNESS,
+    drillDownPath: input.drillDownPath,
+    retentionClass: OPERATIONAL_REPORT_RETENTION_CLASS,
+    batchLimit: 500,
+    dimensional: input.dimensional
+  };
+}
+
+const TENDER_DAILY_STREAMS: readonly ProjectionCursorStream[] = [
+  {
+    streamKey: OPERATIONAL_STREAM_KEYS.allocations,
+    tableName: "awcms_commerce_report_src_allocations",
+    cursorColumn: "settled_at",
+    metrics: [
+      {
+        metricKey: OPERATIONAL_METRIC_KEYS.tenderSucceeded,
+        effect: "increment",
+        matchColumn: "status",
+        matchValue: "succeeded"
+      }
+    ],
+    dimensional: TENDER_SINK
+  }
+];
+
+const CASH_UP_STREAMS: readonly ProjectionCursorStream[] = [
+  {
+    streamKey: OPERATIONAL_STREAM_KEYS.closeRequests,
+    tableName: "awcms_commerce_report_src_close_decisions",
+    cursorColumn: "decided_at",
+    metrics: [
+      {
+        metricKey: OPERATIONAL_METRIC_KEYS.cashUpAuto,
+        effect: "increment",
+        matchColumn: "decision",
+        matchValue: "auto"
+      },
+      {
+        metricKey: OPERATIONAL_METRIC_KEYS.cashUpApproved,
+        effect: "increment",
+        matchColumn: "decision",
+        matchValue: "approved"
+      }
+    ],
+    dimensional: CASH_UP_CLOSE_SINK
+  },
+  {
+    streamKey: OPERATIONAL_STREAM_KEYS.corrections,
+    tableName: "awcms_commerce_register_corrections",
+    cursorColumn: "created_at",
+    metrics: [
+      { metricKey: OPERATIONAL_METRIC_KEYS.corrections, effect: "increment" }
+    ],
+    dimensional: CASH_UP_CORRECTION_SINK
+  }
+];
+
+const EXPENSE_DAILY_STREAMS: readonly ProjectionCursorStream[] = [
+  {
+    streamKey: OPERATIONAL_STREAM_KEYS.expensesPosted,
+    tableName: "awcms_commerce_report_src_expenses_posted",
+    cursorColumn: "posted_at",
+    metrics: [
+      {
+        metricKey: OPERATIONAL_METRIC_KEYS.expensePostedAuto,
+        effect: "increment",
+        matchColumn: "decision",
+        matchValue: "auto"
+      },
+      {
+        metricKey: OPERATIONAL_METRIC_KEYS.expensePostedApproved,
+        effect: "increment",
+        matchColumn: "decision",
+        matchValue: "approved"
+      }
+    ],
+    dimensional: EXPENSE_POSTED_SINK
+  },
+  {
+    streamKey: OPERATIONAL_STREAM_KEYS.expensesReversed,
+    tableName: "awcms_commerce_report_src_expenses_reversed",
+    cursorColumn: "reversed_at",
+    metrics: [
+      {
+        metricKey: OPERATIONAL_METRIC_KEYS.expenseReversed,
+        effect: "increment",
+        matchColumn: "status",
+        matchValue: "reversed"
+      }
+    ],
+    dimensional: EXPENSE_REVERSED_SINK
+  }
+];
+
+const LOYALTY_DAILY_STREAMS: readonly ProjectionCursorStream[] = [
+  {
+    streamKey: OPERATIONAL_STREAM_KEYS.loyaltyLedger,
+    tableName: "awcms_commerce_loyalty_ledger",
+    cursorColumn: "created_at",
+    metrics: [
+      { metricKey: OPERATIONAL_METRIC_KEYS.loyaltyEntries, effect: "increment" }
+    ],
+    dimensional: LOYALTY_SINK
+  }
+];
+
+const STORED_VALUE_DAILY_STREAMS: readonly ProjectionCursorStream[] = [
+  {
+    streamKey: OPERATIONAL_STREAM_KEYS.storedValueLedger,
+    tableName: "awcms_commerce_stored_value_ledger",
+    cursorColumn: "created_at",
+    metrics: [
+      {
+        metricKey: OPERATIONAL_METRIC_KEYS.storedValueEntries,
+        effect: "increment"
+      }
+    ],
+    dimensional: STORED_VALUE_SINK
+  }
+];
 
 /**
  * `commerce` (Issue #4, part of epic #1; brought to full product-model parity
@@ -345,6 +537,78 @@ export const commerceModule = defineModule({
       sink: SALES_BY_CATEGORY_SINK,
       dimensional: SALES_BY_CATEGORY_DIMENSIONAL,
       drillDownPath: "/api/v1/reports/commerce/sales-by-category"
+    }),
+    // Issue #296 (ADR-0035) - the five POS operational projections. Each is
+    // rebuildable from its source ledger, reconciles by control totals, and
+    // is read through `/api/v1/reports/commerce/operational-*`.
+    operationalReportProjection({
+      key: POS_TENDER_DAILY_PROJECTION_KEY,
+      description:
+        "Per-day, per-register, per-tender money movement from the payment-allocation ledger: payment and reversal counts and sums (net is derived), attributed to the day each leg SETTLED in the report time zone. A leg that settles after midnight lands on the settlement day; a pending or failed leg never counts.",
+      streams: TENDER_DAILY_STREAMS,
+      dimensional: TENDER_DIMENSIONAL,
+      metricLabels: {
+        [OPERATIONAL_METRIC_KEYS.tenderSucceeded]:
+          "Succeeded payment legs consumed"
+      },
+      requiredPermission: COMMERCE_REPORT_TENDER_PERMISSIONS.read,
+      drillDownPath: "/api/v1/reports/commerce/tender-mix"
+    }),
+    operationalReportProjection({
+      key: POS_CASH_UP_VARIANCE_PROJECTION_KEY,
+      description:
+        "Per register session and tender: the expected and counted amounts of the close that closed it (auto-approved or approved attempts only) plus the signed corrections applied after, attributed to the day the session closed. Variance is counted with corrections minus expected; negative is short.",
+      streams: CASH_UP_STREAMS,
+      dimensional: CASH_UP_DIMENSIONAL,
+      metricLabels: {
+        [OPERATIONAL_METRIC_KEYS.cashUpAuto]: "Auto-approved cash-ups consumed",
+        [OPERATIONAL_METRIC_KEYS.cashUpApproved]: "Approved cash-ups consumed",
+        [OPERATIONAL_METRIC_KEYS.corrections]: "Cash-up corrections consumed"
+      },
+      requiredPermission: COMMERCE_REPORT_CASH_UP_PERMISSIONS.read,
+      drillDownPath: "/api/v1/commerce/register-sessions"
+    }),
+    operationalReportProjection({
+      key: POS_EXPENSE_DAILY_PROJECTION_KEY,
+      description:
+        "Per business day, expense category and tender: posted expense counts and sums, with a reversal added to the reversed columns of the SAME day row its posting landed on (the day is the expense's occurred-on date, not an instant). Drafts, pending and cancelled expenses never count.",
+      streams: EXPENSE_DAILY_STREAMS,
+      dimensional: EXPENSE_DIMENSIONAL,
+      metricLabels: {
+        [OPERATIONAL_METRIC_KEYS.expensePostedAuto]:
+          "Auto-posted expenses consumed",
+        [OPERATIONAL_METRIC_KEYS.expensePostedApproved]:
+          "Approved expenses consumed",
+        [OPERATIONAL_METRIC_KEYS.expenseReversed]: "Expense reversals consumed"
+      },
+      requiredPermission: COMMERCE_REPORT_EXPENSE_PERMISSIONS.read,
+      drillDownPath: "/api/v1/commerce/expenses/summary"
+    }),
+    operationalReportProjection({
+      key: POS_LOYALTY_DAILY_PROJECTION_KEY,
+      description:
+        "Per day and bucket (earned, redeemed, expired, adjusted up/down, reversed up/down): entries and signed points from the append-only loyalty ledger, attributed to the day each entry was written. Outstanding points are the running sum of every bucket.",
+      streams: LOYALTY_DAILY_STREAMS,
+      dimensional: LOYALTY_DIMENSIONAL,
+      metricLabels: {
+        [OPERATIONAL_METRIC_KEYS.loyaltyEntries]:
+          "Loyalty ledger entries consumed"
+      },
+      requiredPermission: COMMERCE_REPORT_LOYALTY_PERMISSIONS.read,
+      drillDownPath: "/api/v1/commerce/loyalty/accounts"
+    }),
+    operationalReportProjection({
+      key: POS_STORED_VALUE_DAILY_PROJECTION_KEY,
+      description:
+        "Per day, account kind (gift card, store credit) and bucket (issued, loaded, redeemed, refunded, expired, adjusted up/down): entries and signed amounts from the append-only stored-value ledger. Outstanding liability is the running sum of every bucket.",
+      streams: STORED_VALUE_DAILY_STREAMS,
+      dimensional: STORED_VALUE_DIMENSIONAL,
+      metricLabels: {
+        [OPERATIONAL_METRIC_KEYS.storedValueEntries]:
+          "Stored-value ledger entries consumed"
+      },
+      requiredPermission: COMMERCE_REPORT_STORED_VALUE_PERMISSIONS.read,
+      drillDownPath: "/api/v1/reports/commerce/stored-value"
     })
   ],
   events: {
@@ -2509,6 +2773,9 @@ export const commerceModule = defineModule({
     // Issue #288 (ADR-0030) - the three closed-loop stored-value tables; see
     // `domain/stored-value-lifecycle.ts`.
     ...STORED_VALUE_DATA_LIFECYCLE,
+    // Issue #296 (ADR-0035) - the five POS operational-report projection
+    // tables; see `domain/operational-report-lifecycle.ts`.
+    ...OPERATIONAL_REPORT_DATA_LIFECYCLE,
     // Issue #286 (ADR-0029) - held sales, quotations (+ versions), work orders
     // (+ events) and documents; see `domain/documents-lifecycle.ts`. The
     // numbering sequences deliberately declare none.
@@ -3356,6 +3623,8 @@ export const commerceModule = defineModule({
     ...REGISTER_SUBJECT_DATA,
     // Issue #288 (ADR-0030) - see `domain/stored-value-lifecycle.ts`.
     ...STORED_VALUE_SUBJECT_DATA,
+    // Issue #296 (ADR-0035) - see `domain/operational-report-lifecycle.ts`.
+    ...OPERATIONAL_REPORT_SUBJECT_DATA,
     // Issue #286 (ADR-0029) - see `domain/documents-lifecycle.ts`.
     ...DOCUMENT_SUBJECT_DATA,
     // Issue #294 (ADR-0031) - see `domain/expense-lifecycle.ts`.
@@ -3918,6 +4187,63 @@ export const commerceModule = defineModule({
       action: "create",
       description:
         "Send a commercial document to a recipient other than the customer on file (Issue #295)"
+    },
+    // Issue #296 (ADR-0035) - the POS operational reports: read + the
+    // high-risk export, one pair per report family.
+    {
+      activityCode: COMMERCE_REPORT_TENDERS_ACTIVITY_CODE,
+      action: "read",
+      description: "Read the tender-mix operational report (Issue #296)"
+    },
+    {
+      activityCode: COMMERCE_REPORT_TENDERS_ACTIVITY_CODE,
+      action: "export",
+      description:
+        "Export the tender-mix operational report as CSV (Issue #296)"
+    },
+    {
+      activityCode: COMMERCE_REPORT_CASH_UPS_ACTIVITY_CODE,
+      action: "read",
+      description: "Read the cash-up variance operational report (Issue #296)"
+    },
+    {
+      activityCode: COMMERCE_REPORT_CASH_UPS_ACTIVITY_CODE,
+      action: "export",
+      description:
+        "Export the cash-up variance operational report as CSV (Issue #296)"
+    },
+    {
+      activityCode: COMMERCE_REPORT_EXPENSES_ACTIVITY_CODE,
+      action: "read",
+      description: "Read the expenses operational report (Issue #296)"
+    },
+    {
+      activityCode: COMMERCE_REPORT_EXPENSES_ACTIVITY_CODE,
+      action: "export",
+      description: "Export the expenses operational report as CSV (Issue #296)"
+    },
+    {
+      activityCode: COMMERCE_REPORT_LOYALTY_ACTIVITY_CODE,
+      action: "read",
+      description: "Read the loyalty-points operational report (Issue #296)"
+    },
+    {
+      activityCode: COMMERCE_REPORT_LOYALTY_ACTIVITY_CODE,
+      action: "export",
+      description:
+        "Export the loyalty-points operational report as CSV (Issue #296)"
+    },
+    {
+      activityCode: COMMERCE_REPORT_STORED_VALUE_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "Read the stored-value liability operational report (Issue #296)"
+    },
+    {
+      activityCode: COMMERCE_REPORT_STORED_VALUE_ACTIVITY_CODE,
+      action: "export",
+      description:
+        "Export the stored-value liability operational report as CSV (Issue #296)"
     },
     {
       activityCode: COMMERCE_BARCODES_ACTIVITY_CODE,

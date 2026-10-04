@@ -166,7 +166,10 @@ describe("commerce module descriptor — restore is declared for both activity c
         // Issue #295: document_deliveries read/create, document_delivery_overrides create.
         3 +
         // Issue #292: barcodes read/update.
-        2
+        2 +
+        // Issue #296: report_tenders / report_cash_ups / report_expenses /
+        // report_loyalty / report_stored_value, each read + export.
+        10
     );
 
     // Issue #291 — typed catalog attributes. `manage` (one high-risk action,

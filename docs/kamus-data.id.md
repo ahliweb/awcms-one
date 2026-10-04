@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:469e556c524e6bce2590476ce98424d32ea445c7a547c425b67c86f7f4bd9556 -->
+<!-- i18n-source-hash: sha256:13598a550c17eae87105db4bdd35001610e26de8403c42c62e7f81b8c31f7017 -->
 
 # Kamus data
 
@@ -296,6 +296,22 @@ Rancangan platform ini sendiri — tidak ada yang di-port dari toko lama. Status
 | payee | `payee_name` | Teks bebas; referensi pihak bertipe ditunda (ADR-0031 D8) |
 | fitur `expenses` | pengaturan modul commerce `features.expenses` (bawaan MATI) | Menyalakan seluruh permukaan pengeluaran; selama MENYALA mutasi laci `expense` mentah ditolak |
 | `commerce.expense_categories.*`, `commerce.expenses.*`, `commerce.expense_postings.*`, `commerce.expense_reversals.approve`, `commerce.expense_receipts.*` | `awcms_permissions` (`sql/992`) | Dua belas kunci: kategori, baca / buat / edit / ekspor pengeluaran, ajukan / setujui posting, balik, baca / lampirkan struk |
+
+## Kosakata laporan operasional POS (issue #296, [ADR-0035](adr/0035-pos-operational-reports-are-commerce-projections-over-the-existing-ledgers-on-the-reporting-engine.md))
+
+| Istilah | Letaknya | Arti |
+| --- | --- | --- |
+| laporan operasional | lima proyeksi `commerce.pos_*` | Agregat per hari (atau per shift) atas buku besar yang sudah ada, dipelihara mesin `reporting`: dapat di-rebuild, direkonsiliasi, dipantau kesegarannya, dapat diekspor. Bukan sumber kebenaran — buku besarlah sumbernya |
+| keluarga laporan | `OPERATIONAL_REPORT_FAMILIES` (`domain/operational-report-keys.ts`) | `tenders`, `cash-ups`, `expenses`, `loyalty`, `stored-value`: satu proyeksi, satu gerbang fitur (atau tanpa), sepasang izin, sepasang rute |
+| hari penyelesaian | `awcms_commerce_report_tender_daily.day` | Hari `Asia/Jakarta` saat leg pembayaran **selesai** (`settled_at`) — leg gateway yang selesai lewat tengah malam mendarat di hari berikutnya; leg tertunda atau gagal tidak mendarat di mana pun |
+| hari tutup | `awcms_commerce_report_cash_up_tenders.day` | Hari sesi kasir **ditutup**; persetujuan atau koreksi yang datang kemudian ditambahkan ke hari ini |
+| selisih | laporan tutup kasir | `dihitung + koreksi − diharapkan` untuk satu metode pada satu shift tertutup; negatif berarti **kurang**, positif berarti **lebih** |
+| hari terjadi | `awcms_commerce_report_expense_daily.day` | Tanggal kalender yang diketik tenant pada pengeluaran — bukan instan, sehingga tanpa konversi zona waktu; pembalikan mendarat pada hari pembukuannya |
+| bucket | tabel loyalitas dan nilai tersimpan | `kind` buku besar (penyesuaian dan pembalikan dipisah menurut tanda entri): `earn`, `redeem`, `expire`, `adjustment_up/down`, `reversal_up/down`; `issue`, `load`, `redeem`, `refund`, `expire`, `adjust_up/down` |
+| beredar (poin / kewajiban) | pembuka, pergerakan dan penutup pada laporan loyalitas dan nilai tersimpan | Jumlah berjalan semua bucket sejak awal: poin yang masih terutang kepada pelanggan, uang yang masih ditahan di kartu dan kredit. `penutup = pembuka + pergerakan` |
+| view sumber | `awcms_commerce_report_src_*` | View `security_invoker` atas baris yang kolom kursornya terisi, agar pindaian rebuild mesin yang tidak aman-NULL tidak pernah melihat NULL (ADR-0035 D3) |
+| `commerce.report_tenders.*`, `…report_cash_ups.*`, `…report_expenses.*`, `…report_loyalty.*`, `…report_stored_value.*` | `awcms_permissions` (`sql/999`) | Sepuluh kunci: `read` dan `export` berisiko tinggi untuk setiap keluarga. Tidak ada yang tersirat oleh `reporting.dashboard.read` atau kunci domain sumber, dan tidak ada yang membuka baris sumber |
+| `operational_report.export` | aksi audit | Satu baris per ekspor CSV: keluarga, rentang, jumlah baris, tidak pernah isi sel |
 
 ## Kosakata barcode (issue #292, [ADR-0032](adr/0032-barcodes-are-a-derived-identifier-and-the-cashier-keyboard-layer-is-chord-only.md))
 
