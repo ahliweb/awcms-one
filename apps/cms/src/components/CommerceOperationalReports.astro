@@ -1,0 +1,572 @@
+---
+/**
+ * The POS operational-report panels (Issue #296, ADR-0035) on
+ * `/admin/commerce-reports`: tender mix by register, cash-up variance, expenses
+ * by category, loyalty points and the stored-value liability. Rendered from the
+ * five `commerce.pos_*` projections through
+ * `application/operational-report-directory.ts`; the page decides, per family,
+ * whether the caller holds the report's own permission and passes `null` for a
+ * family it may not read. A family whose source feature is OFF
+ * (`enabled: false`) renders nothing at all - hidden, not an error.
+ *
+ * Lives under `src/components/` (the convention for cross-page partials, see
+ * `CommerceMarketingTabs.astro`): `access-chokepoint-check.ts` reads every
+ * `.astro` under `pages/admin/` as a screen that must call `loadAdminScreen`.
+ * It does no loading of its own and holds no script: the CSV links are plain
+ * GET navigations to the real export routes, which re-check the export
+ * permission on their own.
+ */
+import { getTranslatorFor } from "../lib/i18n";
+import type { Locale } from "../lib/i18n/locales";
+import { formatCurrency, formatNumber } from "../lib/i18n/format";
+import {
+  commerceLabel,
+  createCommerceLabels
+} from "../lib/ui/commerce-admin-labels";
+import type {
+  CashUpReport,
+  ExpenseReport,
+  LoyaltyReport,
+  StoredValueReport,
+  TenderReport
+} from "../modules/commerce/application/operational-report-directory";
+
+export type OperationalReportsView = {
+  tenders: TenderReport | null;
+  cashUps: CashUpReport | null;
+  expenses: ExpenseReport | null;
+  loyalty: LoyaltyReport | null;
+  storedValue: StoredValueReport | null;
+  /** Which families the caller may export (its own `.export` key). */
+  canExport: {
+    tenders: boolean;
+    cashUps: boolean;
+    expenses: boolean;
+    loyalty: boolean;
+    storedValue: boolean;
+  };
+};
+
+const { reports, range, locale } = Astro.props as {
+  reports: OperationalReportsView;
+  range: { from: string; to: string };
+  locale: Locale;
+};
+
+const { t } = getTranslatorFor(locale);
+const labels = createCommerceLabels(t);
+
+const money = (value: string) =>
+  formatCurrency(locale, value, "IDR", { maximumFractionDigits: 0 });
+const count = (value: number) => formatNumber(locale, value);
+const points = (value: string) => formatNumber(locale, Number(value));
+
+const csvHref = (path: string) =>
+  `/api/v1/reports/commerce/${path}.csv?from=${encodeURIComponent(range.from)}&to=${encodeURIComponent(range.to)}`;
+
+const LOYALTY_BUCKET_LABELS: Record<string, string> = {
+  earn: t("Earned"),
+  redeem: t("Redeemed"),
+  expire: t("Expired"),
+  adjustment_up: t("Adjusted up"),
+  adjustment_down: t("Adjusted down"),
+  reversal_up: t("Reversed up"),
+  reversal_down: t("Reversed down")
+};
+
+const STORED_VALUE_BUCKET_LABELS: Record<string, string> = {
+  issue: t("Issued"),
+  load: t("Loaded"),
+  redeem: t("Redeemed"),
+  refund: t("Refunded"),
+  expire: t("Expired"),
+  adjust_up: t("Adjusted up"),
+  adjust_down: t("Adjusted down")
+};
+
+// The route folds every range into exact-cent summaries server-side; the panels
+// only render them (no client-side money arithmetic).
+const tenderRows = reports.tenders?.enabled ? reports.tenders.summary : [];
+const expenseRows = reports.expenses?.enabled ? reports.expenses.summary : [];
+const loyaltyBuckets = reports.loyalty?.enabled ? reports.loyalty.summary : [];
+const storedValueRows = reports.storedValue?.enabled
+  ? reports.storedValue.summary
+  : [];
+
+const varianceTone = (variance: string) =>
+  Number(variance) < 0
+    ? "danger"
+    : Number(variance) > 0
+      ? "warning"
+      : "success";
+const varianceLabel = (variance: string) =>
+  Number(variance) < 0
+    ? t("Short")
+    : Number(variance) > 0
+      ? t("Over")
+      : t("Balanced");
+---
+
+{reports.tenders?.enabled && (
+  <section
+    class="admin-section fade-in-up"
+    id="ops-tenders"
+    aria-labelledby="ops-tenders-title"
+  >
+    <h2 class="admin-section-title" id="ops-tenders-title">
+      {t("Tender mix by register")}
+      <span class="count-pill">{tenderRows.length}</span>
+    </h2>
+    <section class="admin-stat-card-grid" aria-label={t("Tender mix totals")}>
+      <div class="admin-stat-card">
+        <span class="admin-stat-card-label">{t("Received")}</span>
+        <span class="admin-stat-card-value" id="ops-tenders-received">
+          {money(reports.tenders.totalPayments)}
+        </span>
+      </div>
+      <div class="admin-stat-card">
+        <span class="admin-stat-card-label">{t("Given back")}</span>
+        <span class="admin-stat-card-value">
+          {money(reports.tenders.totalReversals)}
+        </span>
+      </div>
+      <div class="admin-stat-card">
+        <span class="admin-stat-card-label">{t("Net")}</span>
+        <span class="admin-stat-card-value">
+          {money(reports.tenders.totalNet)}
+        </span>
+      </div>
+    </section>
+    <div class="data-table-scroll">
+      <table class="data-table data-table--stack" id="ops-tenders-table">
+        <caption>
+          {t(
+            "Money received and given back per register and payment method, {from} to {to}, by the day each payment settled.",
+            { from: range.from, to: range.to }
+          )}
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">{t("Register")}</th>
+            <th scope="col">{t("Payment method")}</th>
+            <th scope="col">{t("Payments")}</th>
+            <th scope="col">{t("Received")}</th>
+            <th scope="col">{t("Given back")}</th>
+            <th scope="col">{t("Net")}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tenderRows.length === 0 ? (
+            <tr>
+              <td class="data-table-empty" colspan="6">
+                <div class="empty-state">
+                  <span class="empty-state-icon" aria-hidden="true">
+                    ◇
+                  </span>
+                  <span class="empty-state-title">
+                    {t("No payments settled in this range")}
+                  </span>
+                </div>
+              </td>
+            </tr>
+          ) : (
+            tenderRows.map((row) => (
+              <tr
+                data-ops-tender={`${row.registerId ?? "none"}|${row.tenderType}`}
+              >
+                <th scope="row" data-label={t("Register")}>
+                  {row.registerCode ?? t("No register")}
+                </th>
+                <td data-label={t("Payment method")}>
+                  {commerceLabel(labels.paymentTenderType, row.tenderType)}
+                </td>
+                <td data-label={t("Payments")}>{count(row.paymentCount)}</td>
+                <td data-label={t("Received")}>{money(row.payments)}</td>
+                <td data-label={t("Given back")}>{money(row.reversals)}</td>
+                <td data-label={t("Net")}>{money(row.net)}</td>
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
+    </div>
+    {reports.canExport.tenders && (
+      <p>
+        <a class="module-toggle" href={csvHref("operational-tenders")}>
+          {t("Download CSV")}
+        </a>
+      </p>
+    )}
+  </section>
+)}
+
+{reports.cashUps?.enabled && (
+  <section
+    class="admin-section fade-in-up"
+    id="ops-cash-ups"
+    aria-labelledby="ops-cash-ups-title"
+  >
+    <h2 class="admin-section-title" id="ops-cash-ups-title">
+      {t("Cash-up variance")}
+      <span class="count-pill">{reports.cashUps.sessionCount}</span>
+    </h2>
+    <section
+      class="admin-stat-card-grid"
+      aria-label={t("Cash-up variance totals")}
+    >
+      <div class="admin-stat-card">
+        <span class="admin-stat-card-label">{t("Short")}</span>
+        <span class="admin-stat-card-value" id="ops-cash-ups-short">
+          {money(reports.cashUps.totalShort)}
+        </span>
+      </div>
+      <div class="admin-stat-card">
+        <span class="admin-stat-card-label">{t("Over")}</span>
+        <span class="admin-stat-card-value">
+          {money(reports.cashUps.totalOver)}
+        </span>
+      </div>
+      <div class="admin-stat-card">
+        <span class="admin-stat-card-label">{t("Net variance")}</span>
+        <span class="admin-stat-card-value">
+          {money(reports.cashUps.totalVariance)}
+        </span>
+      </div>
+    </section>
+    <div class="data-table-scroll">
+      <table class="data-table data-table--stack" id="ops-cash-ups-table">
+        <caption>
+          {t(
+            "Expected against counted per closed shift and payment method, {from} to {to}, by the day the shift closed. Corrections are included in the counted figure.",
+            { from: range.from, to: range.to }
+          )}
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">{t("Day")}</th>
+            <th scope="col">{t("Register")}</th>
+            <th scope="col">{t("Cashier")}</th>
+            <th scope="col">{t("Payment method")}</th>
+            <th scope="col">{t("Expected")}</th>
+            <th scope="col">{t("Counted")}</th>
+            <th scope="col">{t("Variance")}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {reports.cashUps.items.length === 0 ? (
+            <tr>
+              <td class="data-table-empty" colspan="7">
+                <div class="empty-state">
+                  <span class="empty-state-icon" aria-hidden="true">
+                    ◇
+                  </span>
+                  <span class="empty-state-title">
+                    {t("No shifts closed in this range")}
+                  </span>
+                </div>
+              </td>
+            </tr>
+          ) : (
+            reports.cashUps.items.map((row) => (
+              <tr data-ops-cash-up={`${row.sessionId}|${row.tenderType}`}>
+                <th scope="row" data-label={t("Day")}>
+                  {row.day}
+                </th>
+                <td data-label={t("Register")}>
+                  {row.registerCode ?? t("No register")}
+                </td>
+                <td data-label={t("Cashier")}>
+                  <code>{row.cashierTenantUserId.slice(0, 8)}</code>
+                </td>
+                <td data-label={t("Payment method")}>
+                  {commerceLabel(labels.paymentTenderType, row.tenderType)}
+                </td>
+                <td data-label={t("Expected")}>{money(row.expected)}</td>
+                <td data-label={t("Counted")}>
+                  {money(row.countedWithCorrections)}
+                </td>
+                <td data-label={t("Variance")}>
+                  <span
+                    class="admin-status-pill"
+                    data-tone={varianceTone(row.variance)}
+                  >
+                    <span class="admin-status-pill-dot" aria-hidden="true" />
+                    {varianceLabel(row.variance)}
+                  </span>{" "}
+                  {money(row.variance)}
+                </td>
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
+    </div>
+    {reports.canExport.cashUps && (
+      <p>
+        <a class="module-toggle" href={csvHref("operational-cash-ups")}>
+          {t("Download CSV")}
+        </a>
+      </p>
+    )}
+  </section>
+)}
+
+{reports.expenses?.enabled && (
+  <section
+    class="admin-section fade-in-up"
+    id="ops-expenses"
+    aria-labelledby="ops-expenses-title"
+  >
+    <h2 class="admin-section-title" id="ops-expenses-title">
+      {t("Expenses by category")}
+      <span class="count-pill">{expenseRows.length}</span>
+    </h2>
+    <div class="data-table-scroll">
+      <table class="data-table data-table--stack" id="ops-expenses-table">
+        <caption>
+          {t(
+            "Posted expenses per category and payment method, {from} to {to}, by the date each expense occurred. A reversal is taken off the day it was posted on.",
+            { from: range.from, to: range.to }
+          )}
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">{t("Category")}</th>
+            <th scope="col">{t("Payment method")}</th>
+            <th scope="col">{t("Entries")}</th>
+            <th scope="col">{t("Posted")}</th>
+            <th scope="col">{t("Reversed")}</th>
+            <th scope="col">{t("Net")}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {expenseRows.length === 0 ? (
+            <tr>
+              <td class="data-table-empty" colspan="6">
+                <div class="empty-state">
+                  <span class="empty-state-icon" aria-hidden="true">
+                    ◇
+                  </span>
+                  <span class="empty-state-title">
+                    {t("No expenses posted in this range")}
+                  </span>
+                </div>
+              </td>
+            </tr>
+          ) : (
+            expenseRows.map((row) => (
+              <tr data-ops-expense={`${row.categoryId}|${row.tenderType}`}>
+                <th scope="row" data-label={t("Category")}>
+                  {row.categoryName}
+                </th>
+                <td data-label={t("Payment method")}>
+                  {commerceLabel(labels.paymentTenderType, row.tenderType)}
+                </td>
+                <td data-label={t("Entries")}>{count(row.postedCount)}</td>
+                <td data-label={t("Posted")}>{money(row.posted)}</td>
+                <td data-label={t("Reversed")}>{money(row.reversed)}</td>
+                <td data-label={t("Net")}>{money(row.net)}</td>
+              </tr>
+            ))
+          )}
+        </tbody>
+        {expenseRows.length > 0 && (
+          <tfoot>
+            <tr>
+              <th scope="row">{t("Total")}</th>
+              <td></td>
+              <td></td>
+              <td data-label={t("Posted")}>
+                {money(reports.expenses.totalPosted)}
+              </td>
+              <td data-label={t("Reversed")}>
+                {money(reports.expenses.totalReversed)}
+              </td>
+              <td data-label={t("Net")}>{money(reports.expenses.totalNet)}</td>
+            </tr>
+          </tfoot>
+        )}
+      </table>
+    </div>
+    {reports.canExport.expenses && (
+      <p>
+        <a class="module-toggle" href={csvHref("operational-expenses")}>
+          {t("Download CSV")}
+        </a>
+      </p>
+    )}
+  </section>
+)}
+
+{reports.loyalty?.enabled && (
+  <section
+    class="admin-section fade-in-up"
+    id="ops-loyalty"
+    aria-labelledby="ops-loyalty-title"
+  >
+    <h2 class="admin-section-title" id="ops-loyalty-title">
+      {t("Loyalty points")}
+    </h2>
+    <section
+      class="admin-stat-card-grid"
+      aria-label={t("Loyalty points totals")}
+    >
+      <div class="admin-stat-card">
+        <span class="admin-stat-card-label">{t("Outstanding at start")}</span>
+        <span class="admin-stat-card-value">
+          {points(reports.loyalty.openingPoints)}
+        </span>
+      </div>
+      <div class="admin-stat-card">
+        <span class="admin-stat-card-label">{t("Movement in range")}</span>
+        <span class="admin-stat-card-value">
+          {points(reports.loyalty.movementPoints)}
+        </span>
+      </div>
+      <div class="admin-stat-card">
+        <span class="admin-stat-card-label">{t("Outstanding at end")}</span>
+        <span class="admin-stat-card-value" id="ops-loyalty-closing">
+          {points(reports.loyalty.closingPoints)}
+        </span>
+      </div>
+    </section>
+    <div class="data-table-scroll">
+      <table class="data-table data-table--stack" id="ops-loyalty-table">
+        <caption>
+          {t(
+            "Points moved per kind, {from} to {to}, by the day each entry was written.",
+            { from: range.from, to: range.to }
+          )}
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">{t("Kind")}</th>
+            <th scope="col">{t("Entries")}</th>
+            <th scope="col">{t("Points")}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {loyaltyBuckets.length === 0 ? (
+            <tr>
+              <td class="data-table-empty" colspan="3">
+                <div class="empty-state">
+                  <span class="empty-state-icon" aria-hidden="true">
+                    ◇
+                  </span>
+                  <span class="empty-state-title">
+                    {t("No points moved in this range")}
+                  </span>
+                </div>
+              </td>
+            </tr>
+          ) : (
+            loyaltyBuckets.map((row) => (
+              <tr data-ops-loyalty={row.bucket}>
+                <th scope="row" data-label={t("Kind")}>
+                  {LOYALTY_BUCKET_LABELS[row.bucket] ?? row.bucket}
+                </th>
+                <td data-label={t("Entries")}>{count(row.entries)}</td>
+                <td data-label={t("Points")}>{points(row.points)}</td>
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
+    </div>
+    {reports.canExport.loyalty && (
+      <p>
+        <a class="module-toggle" href={csvHref("operational-loyalty")}>
+          {t("Download CSV")}
+        </a>
+      </p>
+    )}
+  </section>
+)}
+
+{reports.storedValue?.enabled && (
+  <section
+    class="admin-section fade-in-up"
+    id="ops-stored-value"
+    aria-labelledby="ops-stored-value-title"
+  >
+    <h2 class="admin-section-title" id="ops-stored-value-title">
+      {t("Stored-value liability")}
+    </h2>
+    <section
+      class="admin-stat-card-grid"
+      aria-label={t("Stored-value liability totals")}
+    >
+      <div class="admin-stat-card">
+        <span class="admin-stat-card-label">{t("Owed at end of range")}</span>
+        <span class="admin-stat-card-value" id="ops-stored-value-closing">
+          {money(reports.storedValue.totalClosing)}
+        </span>
+      </div>
+      {reports.storedValue.balances.map((balance) => (
+        <div
+          class="admin-stat-card"
+          data-ops-stored-value-kind={balance.accountKind}
+        >
+          <span class="admin-stat-card-label">
+            {commerceLabel(labels.storedValueKind, balance.accountKind)}
+          </span>
+          <span class="admin-stat-card-value">{money(balance.closing)}</span>
+        </div>
+      ))}
+    </section>
+    <div class="data-table-scroll">
+      <table class="data-table data-table--stack" id="ops-stored-value-table">
+        <caption>
+          {t(
+            "Gift-card and store-credit movement per kind, {from} to {to}, by the day each entry was written.",
+            { from: range.from, to: range.to }
+          )}
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">{t("Type")}</th>
+            <th scope="col">{t("Kind")}</th>
+            <th scope="col">{t("Entries")}</th>
+            <th scope="col">{t("Amount")}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {storedValueRows.length === 0 ? (
+            <tr>
+              <td class="data-table-empty" colspan="4">
+                <div class="empty-state">
+                  <span class="empty-state-icon" aria-hidden="true">
+                    ◇
+                  </span>
+                  <span class="empty-state-title">
+                    {t("No stored value moved in this range")}
+                  </span>
+                </div>
+              </td>
+            </tr>
+          ) : (
+            storedValueRows.map((row) => (
+              <tr data-ops-stored-value={`${row.accountKind}|${row.bucket}`}>
+                <th scope="row" data-label={t("Type")}>
+                  {commerceLabel(labels.storedValueKind, row.accountKind)}
+                </th>
+                <td data-label={t("Kind")}>
+                  {STORED_VALUE_BUCKET_LABELS[row.bucket] ?? row.bucket}
+                </td>
+                <td data-label={t("Entries")}>{count(row.entries)}</td>
+                <td data-label={t("Amount")}>{money(row.amount)}</td>
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
+    </div>
+    {reports.canExport.storedValue && (
+      <p>
+        <a class="module-toggle" href={csvHref("operational-stored-value")}>
+          {t("Download CSV")}
+        </a>
+      </p>
+    )}
+  </section>
+)}

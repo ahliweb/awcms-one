@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 26    |
-| Migrations                          | 246   |
-| `awcms_*` tables                    | 238   |
-| Tables with `FORCE` RLS             | 220   |
+| Migrations                          | 248   |
+| `awcms_*` tables                    | 243   |
+| Tables with `FORCE` RLS             | 225   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 667   |
-| Route files                         | 642   |
+| Test files                          | 671   |
+| Route files                         | 652   |
 | ADR                                 | 252   |
 
 ### Modules
@@ -297,6 +297,8 @@
 | 244 | `sql/995_awcms_commerce_returns_integration.sql`                            |
 | 245 | `sql/996_awcms_commerce_returns_permissions.sql`                            |
 | 246 | `sql/997_awcms_commerce_returns_worker_grants.sql`                          |
+| 247 | `sql/998_awcms_commerce_operational_reports_schema.sql`                     |
+| 248 | `sql/999_awcms_commerce_operational_reports_permissions.sql`                |
 
 ### Tables & Row-Level Security
 
@@ -386,6 +388,11 @@
 | `awcms_commerce_register_movements`         | `sql/970_awcms_commerce_register_schema.sql`               | yes | yes   |
 | `awcms_commerce_register_sessions`          | `sql/970_awcms_commerce_register_schema.sql`               | yes | yes   |
 | `awcms_commerce_registers`                  | `sql/970_awcms_commerce_register_schema.sql`               | yes | yes   |
+| `awcms_commerce_report_cash_up_tenders`     | `sql/998_awcms_commerce_operational_reports_schema.sql`    | yes | yes   |
+| `awcms_commerce_report_expense_daily`       | `sql/998_awcms_commerce_operational_reports_schema.sql`    | yes | yes   |
+| `awcms_commerce_report_loyalty_daily`       | `sql/998_awcms_commerce_operational_reports_schema.sql`    | yes | yes   |
+| `awcms_commerce_report_stored_value_daily`  | `sql/998_awcms_commerce_operational_reports_schema.sql`    | yes | yes   |
+| `awcms_commerce_report_tender_daily`        | `sql/998_awcms_commerce_operational_reports_schema.sql`    | yes | yes   |
 | `awcms_commerce_return_lines`               | `sql/994_awcms_commerce_returns_schema.sql`                | yes | yes   |
 | `awcms_commerce_returns`                    | `sql/994_awcms_commerce_returns_schema.sql`                | yes | yes   |
 | `awcms_commerce_reviews`                    | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
@@ -545,16 +552,16 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 521        |
+| `(root)`      | 523        |
 | `e2e`         | 21         |
-| `integration` | 124        |
+| `integration` | 126        |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 519   |
+| `/api/v1/**`    | 529   |
 | `/admin/**`     | 93    |
 | publik / anonim | 30    |
 

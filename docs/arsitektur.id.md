@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](arsitektur.md)
 
-<!-- i18n-source-hash: sha256:e7d342a268ac481d807c316bcd4d77323207944b45684d29ed70742f71ffc92b -->
+<!-- i18n-source-hash: sha256:bdf7f67af3399f408c76165e1797c7bc984b031e1ce7a6aa623482366d75919b -->
 
 # Arsitektur
 
@@ -214,6 +214,10 @@ Empat gagasan menjaga siklus dokumen agar tidak menjadi buku penjualan kedua.
 ## Pengeluaran sampai ke tutup kas hanya sebagai mutasi (issue #294, [ADR-0031](adr/0031-expenses-are-commerce-local-register-linked-petty-cash.md))
 
 Pengeluaran tidak pernah mengedit total tutup kas. Pengeluaran laci yang diposting menambahkan satu mutasi kas keluar `expense` lewat penulis YANG SAMA dengan rute mutasi manual, dan pembalikan menambahkan `correction` kas masuk penyeimbang — sehingga kas yang diharapkan hasil turunan shift (ADR-0028) bergerak karena sebuah mutasi ada, dan pengeluaran tercermin tepat satu kali secara konstruksi: baris pengeluaran dikunci lebih dulu, mutasi membawa `source_key` `expense:<id>:post` / `:reverse`, dan indeks unik parsial mengizinkan paling banyak satu mutasi keluar dan satu masuk per pengeluaran. Urutan kunci selalu baris pengeluaran (`FOR NO KEY UPDATE`) lalu sesi (`FOR SHARE`), tidak pernah sebaliknya, sehingga penutupan (yang mengambil sesi secara eksklusif) dan posting berjalan serial tanpa siklus. Shift yang sudah ditutup tidak pernah ditulis ulang: pembalikan setelah penutupan mendarat di sesi terbuka register yang sama atau ditolak. Modelnya sengaja lokal-commerce — tiga kata benda (kategori, pengeluaran, posting → mutasi) — agar modul keuangan hulu di masa depan dapat menyerapnya lewat adaptor, bukan mewarisi konvensi akuntansi yang tidak pernah dipilihnya.
+
+## Laporan operasional adalah proyeksi buku besar, bukan mesin analitik kedua (issue #296, [ADR-0035](adr/0035-pos-operational-reports-are-commerce-projections-over-the-existing-ledgers-on-the-reporting-engine.md))
+
+Laporan operasional POS memakai ulang mesin proyeksi modul `reporting` dari ujung ke ujung: `commerce` menyumbang lima `ProjectionDescriptor` (metode pembayaran, selisih tutup kasir, pengeluaran, loyalitas, nilai tersimpan) yang penampungnya meng-upsert baris harian aditif, yang rebuild-nya memutar ulang pemuat yang sama, dan yang rekonsiliasinya menjumlahkan pemuat yang sama atas seluruh sumber. Sumbernya adalah buku besar hanya-tambah atau tulis-sekali; bila fakta kuncinya NULL sampai terjadi (leg gateway tertunda, tutup kasir yang belum diputus, pengeluaran yang belum dibukukan) aliran membaca view `security_invoker` yang sempit atas baris yang kursornya terisi, karena pindaian rebuild mesin tidak dapat menerima kursor NULL. Bacaan buku besar langsung (`tender-mix`, `stored-value`) tetap sebagai penelusuran dan sebagai tolok ukur yang diuji terhadap proyeksi. Tidak ada yang menyentuh jalur pesanan; permintaan hanya pernah _membaca_ proyeksi.
 
 ## Satu hal lagi yang dilakukan server: memperbaiki halaman yang terbayangi
 

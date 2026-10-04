@@ -10379,3 +10379,96 @@ msgstr ""
 
 msgid "Your register session is not open, or it is not yours."
 msgstr ""
+
+msgid "Reversed up"
+msgstr ""
+
+msgid "Reversed down"
+msgstr ""
+
+msgid "Short"
+msgstr ""
+
+msgid "Over"
+msgstr ""
+
+msgid "Balanced"
+msgstr ""
+
+msgid "Tender mix by register"
+msgstr ""
+
+msgid "Tender mix totals"
+msgstr ""
+
+msgid "Money received and given back per register and payment method, {from} to {to}, by the day each payment settled."
+msgstr ""
+
+msgid "No payments settled in this range"
+msgstr ""
+
+msgid "No register"
+msgstr ""
+
+msgid "Cash-up variance"
+msgstr ""
+
+msgid "Cash-up variance totals"
+msgstr ""
+
+msgid "Net variance"
+msgstr ""
+
+msgid "Expected against counted per closed shift and payment method, {from} to {to}, by the day the shift closed. Corrections are included in the counted figure."
+msgstr ""
+
+msgid "Variance"
+msgstr ""
+
+msgid "No shifts closed in this range"
+msgstr ""
+
+msgid "Expenses by category"
+msgstr ""
+
+msgid "Posted expenses per category and payment method, {from} to {to}, by the date each expense occurred. A reversal is taken off the day it was posted on."
+msgstr ""
+
+msgid "Entries"
+msgstr ""
+
+msgid "No expenses posted in this range"
+msgstr ""
+
+msgid "Loyalty points totals"
+msgstr ""
+
+msgid "Outstanding at start"
+msgstr ""
+
+msgid "Movement in range"
+msgstr ""
+
+msgid "Outstanding at end"
+msgstr ""
+
+msgid "Points moved per kind, {from} to {to}, by the day each entry was written."
+msgstr ""
+
+msgid "No points moved in this range"
+msgstr ""
+
+msgid "Stored-value liability"
+msgstr ""
+
+msgid "Stored-value liability totals"
+msgstr ""
+
+msgid "Owed at end of range"
+msgstr ""
+
+msgid "Gift-card and store-credit movement per kind, {from} to {to}, by the day each entry was written."
+msgstr ""
+
+msgid "No stored value moved in this range"
+msgstr ""

@@ -90,7 +90,7 @@ async function enforcedTriples(
 }
 
 describe("commerce module descriptor — restore is declared for both activity codes", () => {
-  test("one hundred and four permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations/entitlements, three for reviews, one for whatsapp, three for campaigns, one for webhook_endpoints, one for pos, one for pos_due, three for payments, ten for registers/cash-up, two for loyalty and one each for loyalty_adjustments/loyalty_redemptions, and (Issue #291) read/manage for attributes plus export/import on products, seven for stored value, (Issue #292) two for barcodes, and (Issue #287) five for returns, refunds and offline refunds", () => {
+  test("one hundred and fourteen permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations/entitlements, three for reviews, one for whatsapp, three for campaigns, one for webhook_endpoints, one for pos, one for pos_due, three for payments, ten for registers/cash-up, two for loyalty and one each for loyalty_adjustments/loyalty_redemptions, and (Issue #291) read/manage for attributes plus export/import on products, seven for stored value, (Issue #292) two for barcodes, (Issue #287) five for returns, refunds and offline refunds, and (Issue #296) ten for the five operational-report resources", () => {
     // Issue #23: categories/products carry read/create/update/delete/restore.
     // Issue #26: flash_sales/vouchers/sliders/testimonials/popups carry
     // read/create/update/delete (soft delete only, no restore — the marketing
@@ -170,7 +170,10 @@ describe("commerce module descriptor — restore is declared for both activity c
         // Issue #292: barcodes read/update.
         2 +
         // Issue #287: returns read/create, refunds read/create, refunds_offline approve.
-        5
+        5 +
+        // Issue #296: report_tenders / report_cash_ups / report_expenses /
+        // report_loyalty / report_stored_value, each read + export.
+        10
     );
 
     // Issue #291 — typed catalog attributes. `manage` (one high-risk action,

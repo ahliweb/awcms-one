@@ -724,3 +724,49 @@ export const COMMERCE_BARCODE_PERMISSIONS = {
   read: "commerce.barcodes.read",
   update: "commerce.barcodes.update"
 } as const;
+
+/**
+ * POS operational reports (Issue #296, ADR-0035). Five activity codes - one per
+ * report family, each backed by its own projection - and two existing
+ * `AccessAction` verbs each (`read`, and the high-risk `export` because the
+ * file leaves the system): ten permissions, the upstream-owned union not
+ * widened. NONE is implied by `reporting.dashboard.read`, by the
+ * source-domain permission (`commerce.payments.read`, `commerce.expenses.read`,
+ * `commerce.register_sessions.read`, the loyalty and stored-value reads) or by
+ * each other: a report is an aggregate over a source, not the source, and "may
+ * see the day's tender mix" is a different grant from "may see who was short at
+ * close" (`report_cash_ups` names the cashier of record) or "may read the
+ * liability the tenant carries" (`report_stored_value`). The reverse also holds
+ * - holding a report key reveals no individual payment, expense, session or
+ * account row.
+ */
+export const COMMERCE_REPORT_TENDERS_ACTIVITY_CODE = "report_tenders";
+export const COMMERCE_REPORT_CASH_UPS_ACTIVITY_CODE = "report_cash_ups";
+export const COMMERCE_REPORT_EXPENSES_ACTIVITY_CODE = "report_expenses";
+export const COMMERCE_REPORT_LOYALTY_ACTIVITY_CODE = "report_loyalty";
+export const COMMERCE_REPORT_STORED_VALUE_ACTIVITY_CODE = "report_stored_value";
+
+export const COMMERCE_REPORT_TENDER_PERMISSIONS = {
+  read: "commerce.report_tenders.read",
+  export: "commerce.report_tenders.export"
+} as const;
+
+export const COMMERCE_REPORT_CASH_UP_PERMISSIONS = {
+  read: "commerce.report_cash_ups.read",
+  export: "commerce.report_cash_ups.export"
+} as const;
+
+export const COMMERCE_REPORT_EXPENSE_PERMISSIONS = {
+  read: "commerce.report_expenses.read",
+  export: "commerce.report_expenses.export"
+} as const;
+
+export const COMMERCE_REPORT_LOYALTY_PERMISSIONS = {
+  read: "commerce.report_loyalty.read",
+  export: "commerce.report_loyalty.export"
+} as const;
+
+export const COMMERCE_REPORT_STORED_VALUE_PERMISSIONS = {
+  read: "commerce.report_stored_value.read",
+  export: "commerce.report_stored_value.export"
+} as const;

@@ -300,13 +300,19 @@ describe("validateSalesByProductLimit", () => {
 });
 
 describe("registry pairing of dimensional sinks and hooks (Issue #117)", () => {
-  test("the three commerce descriptors validate as registered", () => {
+  test("the commerce descriptors validate as registered", () => {
     const result = validateProjectionRegistry([commerceModule]);
     expect(result.issues).toEqual([]);
     expect(result.descriptors.map((descriptor) => descriptor.key)).toEqual([
       "commerce.sales_daily",
       "commerce.sales_by_product",
-      "commerce.sales_by_category"
+      "commerce.sales_by_category",
+      // Issue #296 (ADR-0035) — the POS operational projections.
+      "commerce.pos_tender_daily",
+      "commerce.pos_cash_up_variance",
+      "commerce.pos_expense_daily",
+      "commerce.pos_loyalty_daily",
+      "commerce.pos_stored_value_daily"
     ]);
   });
 
