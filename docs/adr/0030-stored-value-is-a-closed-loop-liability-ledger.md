@@ -128,6 +128,6 @@ Three `dataLifecycle` descriptors (generic engine; five-year floor, ten-year cei
 - **Customer ownership enforced at redemption** — `customer_id` is informational today; the code is a bearer instrument.
 - **Refund to a lapsed card** (needs a reviewed re-activation policy) and **re-enabling an expired account**.
 - **Cash-out, transfer between accounts, third-party acceptance** — rejected pending a legal review and a new ADR.
-- **Selling a gift card as a catalogue product** (value issued by a paid order) and **store credit issued from a return** (#287 has no refund domain yet): issuance is an operator action today.
+- **Selling a gift card as a catalogue product** (value issued by a paid order) and **store credit issued from a return** (resolved by [ADR-0033](0033-returns-refunds-and-exchanges-are-additive-records-that-compensate-through-the-existing-ledgers.md) D6/D9: a refund can be redirected into store credit — it loads a named account or issues one for the order's customer, the code shown once): issuance of a card as a catalogue product is still an operator action.
 - **Bulk issue / CSV export of accounts**, a **per-program minimum load** and **denominated physical cards** — additive.
 - **A register-count hint** for card tenders in the cash-up (the screen shows them like any non-cash tender).

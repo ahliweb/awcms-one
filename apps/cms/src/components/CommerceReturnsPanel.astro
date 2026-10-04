@@ -1,0 +1,530 @@
+---
+/**
+ * CommerceReturnsPanel - the order detail's "Returns and refunds" section
+ * (Issue #287, ADR-0033): what has been returned against this order, each
+ * return's lines and refund legs, the return wizard, and the actions on an
+ * open refund leg.
+ *
+ * Lives under `src/components/`, never `src/pages/admin/` (see
+ * `CommerceConfirmDialog.astro` for why: a partial placed in the pages tree
+ * reads as a screen with no chokepoint). The hosting page owns the
+ * authorisation (`loadAdminScreen` claims the five returns permissions) and
+ * passes the verdicts in as props; the endpoints behind every control decide
+ * for themselves again.
+ *
+ * ## The two pieces of page chrome it relies on
+ *
+ * The page renders `CommerceConfirmDialog` (the provider-refund confirm) and
+ * `ReasonPanel` (the offline settlement's REQUIRED reason) once each, and
+ * calls `initReturnsPanel()` / `initReasonPanel()` from its own `<script>`.
+ * Neither is rendered here, so a page that already has one does not get two.
+ *
+ * ## Strings
+ *
+ * Every string is server-translated here and travels to the script as a
+ * `data-*` attribute - a client script cannot translate. Every enum goes
+ * through `commerce-admin-labels.ts`, and every stacked-table cell carries a
+ * translated `data-label` (issue #253). Nothing here renders the order's
+ * customer data.
+ */
+import { getTranslatorFor } from "../lib/i18n";
+import type { Locale } from "../lib/i18n/locales";
+import {
+  createCommerceLabels,
+  commerceLabel,
+  refundStatusTone,
+  returnStatusTone
+} from "../lib/ui/commerce-admin-labels";
+import type {
+  ReturnableLine,
+  ReturnRecord
+} from "../modules/commerce/application/return-records";
+import {
+  RETURN_DISPOSITIONS,
+  RETURN_REASONS
+} from "../modules/commerce/domain/returns";
+
+interface Props {
+  locale?: Locale | null | undefined;
+  orderId: string;
+  returns: ReturnRecord[];
+  lines: ReturnableLine[];
+  /** Whether the order's sale is paid or beyond - only then can goods be returned. */
+  returnable: boolean;
+  canCreate: boolean;
+  canExecute: boolean;
+  canOffline: boolean;
+  storedValueEnabled: boolean;
+  /** The order's shipping charge, and how much of it earlier returns refunded. */
+  shippingCost: string;
+  shippingRefunded: string;
+  drawer: { sessionId: string; registerCode: string } | null;
+}
+
+const {
+  locale,
+  orderId,
+  returns,
+  lines,
+  returnable,
+  canCreate,
+  canExecute,
+  canOffline,
+  storedValueEnabled,
+  shippingCost,
+  shippingRefunded,
+  drawer
+} = Astro.props;
+
+const { t } = getTranslatorFor(locale ?? undefined);
+const labels = createCommerceLabels(t);
+
+const eligible = lines.filter((line: ReturnableLine) => line.remaining > 0);
+const shippingLeft = (() => {
+  const left =
+    Math.round(Number(shippingCost) * 100) -
+    Math.round(Number(shippingRefunded) * 100);
+  return left > 0 ? (left / 100).toFixed(2) : "0.00";
+})();
+const canStart = canCreate && returnable && eligible.length > 0;
+const OPEN_LEG = new Set(["pending", "processing", "failed"]);
+---
+
+<section
+  id="order-returns"
+  class="admin-order-detail-panel"
+  data-order-id={orderId}
+  data-busy-label={t("Saving…")}
+  data-msg-generic={t(
+    "Could not record this. Check the entries and try again."
+  )}
+  data-msg-quantity={t(
+    "More units were requested than remain eligible to return."
+  )}
+  data-msg-incomplete={t(
+    "Choose a reason and what happens to the goods for every returned line."
+  )}
+  data-msg-none-selected={t("Enter a quantity for at least one line.")}
+  data-msg-not-returnable={t(
+    "Goods can only be returned against an order whose sale is paid."
+  )}
+  data-msg-exceeds={t(
+    "The refund is more than the order's payments can still give back."
+  )}
+  data-msg-shipping={t(
+    "The shipping refund is more than the shipping charged."
+  )}
+  data-msg-credit={t(
+    "Store credit cannot be issued for this refund (feature, program or customer)."
+  )}
+  data-msg-not-reversible={t(
+    "That payment cannot be refunded (for example a gift card that no longer accepts value)."
+  )}
+  data-msg-drawer={t("Your register session is not open, or it is not yours.")}
+  data-msg-gateway={t(
+    "No payment provider that can refund is connected. Settle this refund outside the system instead."
+  )}
+  data-msg-provider-failed={t(
+    "The payment provider did not complete the refund. Try again, or settle it outside the system."
+  )}
+  data-msg-disabled={t("Returns are not switched on for this shop.")}
+  data-text-no-refund={t(
+    "No refund now - the return and the stock are recorded; the refund can be added later."
+  )}
+  data-text-store-credit={t(
+    "Refund as store credit for the customer (a new code is shown once)."
+  )}
+  data-text-original-tender={t(
+    "Refund along the original payments, newest first."
+  )}
+>
+  <h2 class="admin-dashboard-panel-title">{t("Returns and refunds")}</h2>
+  <p
+    id="order-returns-error"
+    class="admin-create-error"
+    role="alert"
+    hidden
+  ></p>
+
+  {returns.length === 0 ? (
+    <p class="admin-stat-card-caption">
+      {t("No returns have been recorded for this order.")}
+    </p>
+  ) : (
+    returns.map((ret) => (
+      <article class="admin-order-return" data-return-id={ret.id}>
+        <h3>
+          <span class="cell-code">#{ret.id.slice(0, 8)}</span>{" "}
+          <span class="admin-status-pill" data-tone="neutral">
+            {commerceLabel(labels.returnKind, ret.kind)}
+          </span>{" "}
+          <span
+            class="admin-status-pill"
+            data-tone={returnStatusTone[ret.status] ?? "neutral"}
+            data-status={ret.status}
+          >
+            <span class="admin-status-pill-dot" aria-hidden="true" />
+            {commerceLabel(labels.returnStatus, ret.status)}
+          </span>
+        </h3>
+        <p class="cell-muted">
+          {ret.createdAt}
+          {ret.note && <> &mdash; {ret.note}</>}
+        </p>
+        <dl class="admin-order-return-totals">
+          <dt>{t("Goods")}</dt>
+          <dd>{ret.goodsGross}</dd>
+          <dt>{t("Discount released")}</dt>
+          <dd>−{ret.discountShare}</dd>
+          <dt>{t("Shipping refunded")}</dt>
+          <dd>{ret.shippingRefund}</dd>
+          <dt>{t("Refund total")}</dt>
+          <dd>
+            <strong>{ret.refundTotal}</strong>
+          </dd>
+        </dl>
+
+        <div class="data-table-scroll">
+          <table class="data-table data-table--stack">
+            <caption class="sr-only">{t("Returned lines")}</caption>
+            <thead>
+              <tr>
+                <th scope="col">{t("Qty")}</th>
+                <th scope="col">{t("Reason")}</th>
+                <th scope="col">{t("Stock")}</th>
+                <th scope="col">{t("Refund value")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {ret.lines.map((line) => (
+                <tr>
+                  <td data-label={t("Qty")}>{line.quantity}</td>
+                  <td data-label={t("Reason")}>
+                    {commerceLabel(labels.returnReason, line.reason)}
+                  </td>
+                  <td data-label={t("Stock")}>
+                    {commerceLabel(labels.returnDisposition, line.disposition)}
+                  </td>
+                  <td data-label={t("Refund value")}>{line.refundAmount}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {ret.refunds.length > 0 && (
+          <div class="data-table-scroll">
+            <table class="data-table data-table--stack">
+              <caption class="sr-only">{t("Refund legs")}</caption>
+              <thead>
+                <tr>
+                  <th scope="col">{t("Paid by")}</th>
+                  <th scope="col">{t("Amount")}</th>
+                  <th scope="col">{t("Goes to")}</th>
+                  <th scope="col">{t("Status")}</th>
+                  <th scope="col">{t("Actions")}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ret.refunds.map((leg) => (
+                  <tr data-refund-id={leg.id}>
+                    <td data-label={t("Paid by")}>{leg.tenderType}</td>
+                    <td data-label={t("Amount")}>{leg.amount}</td>
+                    <td data-label={t("Goes to")}>
+                      {commerceLabel(labels.refundDestination, leg.destination)}
+                    </td>
+                    <td data-label={t("Status")}>
+                      <span
+                        class="admin-status-pill"
+                        data-tone={refundStatusTone[leg.status] ?? "neutral"}
+                        data-status={leg.status}
+                      >
+                        <span
+                          class="admin-status-pill-dot"
+                          aria-hidden="true"
+                        />
+                        {commerceLabel(labels.refundStatus, leg.status)}
+                      </span>
+                      {leg.settledVia && (
+                        <span class="cell-muted">
+                          {" "}
+                          {commerceLabel(
+                            labels.refundSettledVia,
+                            leg.settledVia
+                          )}
+                        </span>
+                      )}
+                      {leg.failureCode && (
+                        <span class="cell-muted"> {leg.failureCode}</span>
+                      )}
+                    </td>
+                    <td data-label={t("Actions")}>
+                      {OPEN_LEG.has(leg.status) && canExecute && (
+                        <button
+                          type="button"
+                          class="btn-inline"
+                          data-refund-execute
+                          data-return-id={ret.id}
+                          data-refund-id={leg.id}
+                          data-confirm-title={t(
+                            "Send this refund to the payment provider?"
+                          )}
+                          data-confirm-message={t(
+                            "The provider is asked to return {amount} to the customer. Asking again is safe: the provider will not refund twice.",
+                            { amount: leg.amount }
+                          )}
+                          data-confirm-label={t("Send refund")}
+                        >
+                          {t("Send to provider")}
+                        </button>
+                      )}
+                      {OPEN_LEG.has(leg.status) && canOffline && (
+                        <button
+                          type="button"
+                          class="btn-inline btn-inline--danger"
+                          data-reason-title={t(
+                            "Refund made outside the system"
+                          )}
+                          data-reason-description={t(
+                            "Use this only when the money has already gone back to the customer by other means. Your reason is stored with the refund and audited."
+                          )}
+                          data-reason-action={`/api/v1/commerce/returns/${ret.id}/refunds/${leg.id}/offline`}
+                          data-reason-field="reason"
+                          data-reason-min-length="5"
+                          data-reason-max-length="500"
+                          data-reason-label={t("Record as refunded")}
+                          data-reason-danger
+                          data-reason-idempotent
+                        >
+                          {t("Settled outside")}
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </article>
+    ))
+  )}
+
+  {canExecute && drawer && (
+    <label class="admin-checkbox-label">
+      <input
+        type="checkbox"
+        name="executeFromDrawer"
+        value={drawer.sessionId}
+      />{" "}
+      {t("Pay cash refunds from my open register")} ({drawer.registerCode})
+    </label>
+  )}
+
+  {canStart && (
+    <p>
+      <button type="button" class="module-toggle" data-returns-open>
+        {t("Start a return")}
+      </button>
+    </p>
+  )}
+  {canCreate && returnable && eligible.length === 0 && (
+    <p class="admin-stat-card-caption">
+      {t("Every unit on this order has already been returned.")}
+    </p>
+  )}
+
+  {canStart && (
+    <dialog
+      id="order-return-wizard"
+      class="reason-panel returns-wizard"
+      aria-labelledby="order-return-wizard-title"
+      data-shipping-amount={Number(shippingLeft) > 0 ? shippingLeft : undefined}
+    >
+      <h2 id="order-return-wizard-title">{t("Return goods")}</h2>
+      <p
+        id="order-return-wizard-error"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      ></p>
+
+      <div data-returns-step="1">
+        <h3>{t("1. What is coming back?")}</h3>
+        <p class="form-hint">
+          {t(
+            "Enter how many units of each line are returned, why, and what happens to them. Only units set to restock become sellable again."
+          )}
+        </p>
+        <div class="data-table-scroll">
+          <table class="data-table data-table--stack">
+            <caption class="sr-only">{t("Lines that can be returned")}</caption>
+            <thead>
+              <tr>
+                <th scope="col">{t("Product")}</th>
+                <th scope="col">{t("Can return")}</th>
+                <th scope="col">{t("Qty")}</th>
+                <th scope="col">{t("Reason")}</th>
+                <th scope="col">{t("Stock")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {eligible.map((line) => (
+                <tr
+                  data-returns-line
+                  data-item-id={line.orderItemId}
+                  data-remaining={line.remaining}
+                  data-name={line.name}
+                >
+                  <td data-label={t("Product")}>
+                    {line.name}
+                    {line.variantName && (
+                      <span class="cell-muted"> {line.variantName}</span>
+                    )}
+                  </td>
+                  <td data-label={t("Can return")}>{line.remaining}</td>
+                  <td data-label={t("Qty")}>
+                    <input
+                      type="number"
+                      min="0"
+                      max={line.remaining}
+                      step="1"
+                      value="0"
+                      inputmode="numeric"
+                      data-returns-qty
+                      aria-label={t("Quantity to return")}
+                    />
+                  </td>
+                  <td data-label={t("Reason")}>
+                    <select data-returns-reason aria-label={t("Reason")}>
+                      <option value="">{t("Choose a reason…")}</option>
+                      {RETURN_REASONS.map((reason) => (
+                        <option value={reason}>
+                          {commerceLabel(labels.returnReason, reason)}
+                        </option>
+                      ))}
+                    </select>
+                  </td>
+                  <td data-label={t("Stock")}>
+                    <select
+                      data-returns-disposition
+                      aria-label={t("What happens to the goods")}
+                    >
+                      <option value="">{t("Choose…")}</option>
+                      {RETURN_DISPOSITIONS.map((disposition) => (
+                        <option value={disposition}>
+                          {commerceLabel(labels.returnDisposition, disposition)}
+                        </option>
+                      ))}
+                    </select>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div data-returns-step="2" hidden>
+        <h3>{t("2. Refund")}</h3>
+        <fieldset>
+          <legend>{t("Where does the money go?")}</legend>
+          <label class="admin-checkbox-label">
+            <input
+              type="radio"
+              name="refundMode"
+              value="original_tender"
+              checked
+            />{" "}
+            {t("Back along the original payments")}
+          </label>
+          {storedValueEnabled && (
+            <label class="admin-checkbox-label">
+              <input type="radio" name="refundMode" value="store_credit" />{" "}
+              {t("As store credit")}
+            </label>
+          )}
+          <label class="admin-checkbox-label">
+            <input type="radio" name="refundMode" value="none" />{" "}
+            {t("No refund now")}
+          </label>
+        </fieldset>
+        {Number(shippingLeft) > 0 && (
+          <label class="admin-checkbox-label">
+            <input type="checkbox" name="withShipping" />{" "}
+            {t("Also refund the shipping charged")} ({shippingLeft})
+          </label>
+        )}
+        {drawer && (
+          <label class="admin-checkbox-label">
+            <input type="checkbox" name="fromDrawer" value={drawer.sessionId} />{" "}
+            {t("Pay any cash refund from my open register")} (
+            {drawer.registerCode})
+          </label>
+        )}
+        <label class="admin-checkbox-label">
+          <input type="checkbox" name="exchange" />{" "}
+          {t("This is an exchange (link the replacement order afterwards)")}
+        </label>
+        <label for="order-return-note">
+          {t("Note (optional)")}
+          <textarea
+            id="order-return-note"
+            name="note"
+            rows="2"
+            maxlength="500"
+          />
+        </label>
+      </div>
+
+      <div data-returns-step="3" hidden>
+        <h3>{t("3. Review and confirm")}</h3>
+        <ul data-returns-review />
+        <p class="form-hint">
+          {t(
+            "Recording a return adds to the order's history; nothing already recorded is changed. The exact refund is calculated to the cent when you confirm."
+          )}
+        </p>
+        <label class="admin-checkbox-label">
+          <input type="checkbox" data-returns-confirm />{" "}
+          {t(
+            "I confirm the goods were received and this return may be recorded."
+          )}
+        </label>
+      </div>
+
+      <div data-returns-result hidden>
+        <h3>{t("Return recorded")}</h3>
+        <p>
+          {t(
+            "Store credit was issued. Give the customer this code now - it is shown only once and cannot be recovered."
+          )}
+        </p>
+        <p>
+          <code data-returns-credit-code />
+        </p>
+      </div>
+
+      <div class="admin-form-actions">
+        <button type="button" class="btn-inline" data-returns-cancel>
+          {t("Close")}
+        </button>
+        <button type="button" class="btn-inline" data-returns-back hidden>
+          {t("Back")}
+        </button>
+        <button type="button" class="module-toggle" data-returns-next>
+          {t("Next")}
+        </button>
+        <button
+          type="button"
+          class="module-toggle"
+          data-returns-submit
+          hidden
+          disabled
+        >
+          {t("Record return")}
+        </button>
+      </div>
+    </dialog>
+  )}
+</section>

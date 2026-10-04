@@ -158,6 +158,15 @@ import type { AdminConversationRecord } from "../../modules/commerce/application
 import type { CustomerAdminRecord } from "../../modules/commerce/application/customer-directory";
 import type { WebhookEndpointProvider } from "../../modules/commerce/application/webhook-endpoint-directory";
 import type {
+  RefundDestination,
+  RefundSettledVia,
+  RefundStatus,
+  ReturnDisposition,
+  ReturnKind,
+  ReturnReason,
+  ReturnStatus
+} from "../../modules/commerce/domain/returns";
+import type {
   LoyaltyEntryKind,
   LoyaltyProgramStatus
 } from "../../modules/commerce/domain/loyalty";
@@ -602,6 +611,54 @@ export function createCommerceLabels(t: Translator["t"]) {
     reversal: t("Reversal")
   } satisfies Record<LoyaltyEntryKind, string>;
 
+  /** Issue #287 (ADR-0033) - why goods came back. */
+  const returnReason = {
+    defective: t("Defective or faulty"),
+    wrong_item: t("Wrong item sent"),
+    not_as_described: t("Not as described"),
+    damaged_in_transit: t("Damaged in transit"),
+    changed_mind: t("Customer changed their mind"),
+    size_fit: t("Size or fit"),
+    duplicate_order: t("Duplicate order"),
+    other: t("Other reason")
+  } satisfies Record<ReturnReason, string>;
+
+  /** Issue #287 - what happens to a returned unit. Only `restock` makes it sellable again. */
+  const returnDisposition = {
+    restock: t("Restock (sellable again)"),
+    damaged: t("Damaged (written off)"),
+    quarantine: t("Quarantine (held, not sellable)")
+  } satisfies Record<ReturnDisposition, string>;
+
+  const returnKind = {
+    return: t("Return"),
+    exchange: t("Exchange")
+  } satisfies Record<ReturnKind, string>;
+
+  const returnStatus = {
+    open: t("Open"),
+    completed: t("Completed")
+  } satisfies Record<ReturnStatus, string>;
+
+  const refundStatus = {
+    pending: t("Waiting"),
+    processing: t("With the payment provider"),
+    succeeded: t("Refunded"),
+    failed: t("Failed")
+  } satisfies Record<RefundStatus, string>;
+
+  const refundDestination = {
+    original_tender: t("Original payment method"),
+    store_credit: t("Store credit")
+  } satisfies Record<RefundDestination, string>;
+
+  const refundSettledVia = {
+    ledger: t("Handed back / booked"),
+    provider: t("Payment provider"),
+    offline: t("Made outside the system"),
+    store_credit: t("Store credit")
+  } satisfies Record<RefundSettledVia, string>;
+
   /** Issue #289 — a loyalty program version's lifecycle. `draft`/`active` reuse existing msgids; `retired` is new. */
   const loyaltyProgramStatus = {
     draft: t("Draft"),
@@ -649,6 +706,13 @@ export function createCommerceLabels(t: Translator["t"]) {
     heldSaleStatus,
     documentType,
     loyaltyEntryKind,
+    returnReason,
+    returnDisposition,
+    returnKind,
+    returnStatus,
+    refundStatus,
+    refundDestination,
+    refundSettledVia,
     loyaltyProgramStatus,
     storedValueKind,
     storedValueAccountStatus,
@@ -677,6 +741,18 @@ export function commerceLabel<K extends string>(
 }
 
 /** Exact copy of `commerce-dashboard.astro`'s and `commerce-orders/[id].astro`'s own (identical) `STATUS_TONE`. */
+export const returnStatusTone: Record<ReturnStatus, CommerceTone> = {
+  open: "warning",
+  completed: "success"
+};
+
+export const refundStatusTone: Record<RefundStatus, CommerceTone> = {
+  pending: "warning",
+  processing: "info",
+  succeeded: "success",
+  failed: "danger"
+};
+
 export const orderStatusTone: Record<OrderStatus, CommerceTone> = {
   pending_payment: "warning",
   paid: "info",

@@ -10410,6 +10410,662 @@ paths:
         "409":
           description: "`DOCUMENT_INTEGRITY_FAILURE` or `FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
           content: *id001
+  /api/v1/commerce/orders/{id}/returns:
+    get:
+      operationId: listCommerceOrderReturns
+      tags:
+        - Commerce
+      summary: "Issue #287 (ADR-0033). The returns and exchanges recorded against one order, with their lines, refund legs and compensations. Gated on `commerce.returns.read` and the tenant's `returns` feature."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: "The returns, oldest first."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      returns:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceReturn"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED` - the tenant's `returns` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    post:
+      operationId: createCommerceReturn
+      tags:
+        - Commerce
+      summary: "Issue #287 (ADR-0033). Records goods accepted back against an order - a return or an exchange - and, optionally, its refund. Gated on `commerce.returns.create` (plus `commerce.refunds.create` and `commerce.payments.revoke` when `refund` is given) and the tenant's `returns` feature; requires `Idempotency-Key`."
+      description: >-
+        Quantities are bounded by what remains eligible per order line, under
+        the order-row lock with a database trigger as the second guard. Value
+        is exact to the cent (several partial returns of a line add up to the
+        line). `restock` lines go back into sellable stock through the
+        inventory port; `damaged` and `quarantine` are recorded and change no
+        sellable stock. With `refund`, the money is planned back along the
+        original payments newest first, each capped at what it can still give
+        back, and every leg that can settle now (cash, a manual refund, a gift
+        card, store credit) is settled in the same transaction; a gateway leg
+        is left `pending` for `.../refunds/{refundId}/execute`. Finalised
+        order history is never edited: only rows are added. A refusal writes
+        nothing. The `storeCredit.code` of a newly issued store credit is shown
+        ONLY in the response of the request that issued it.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - lines
+              properties:
+                kind:
+                  type: string
+                  enum:
+                    - return
+                    - exchange
+                  default: return
+                note:
+                  type: string
+                  nullable: true
+                  maxLength: 500
+                exchangeOrderId:
+                  type: string
+                  format: uuid
+                  nullable: true
+                  description: "`exchange` only: an existing replacement order (or link it later)."
+                lines:
+                  type: array
+                  minItems: 1
+                  maxItems: 50
+                  items:
+                    type: object
+                    required:
+                      - orderItemId
+                      - quantity
+                      - reason
+                      - disposition
+                    properties:
+                      orderItemId:
+                        type: string
+                        format: uuid
+                      quantity:
+                        type: integer
+                        minimum: 1
+                      reason:
+                        type: string
+                        enum:
+                          - defective
+                          - wrong_item
+                          - not_as_described
+                          - damaged_in_transit
+                          - changed_mind
+                          - size_fit
+                          - duplicate_order
+                          - other
+                      disposition:
+                        type: string
+                        enum:
+                          - restock
+                          - damaged
+                          - quarantine
+                      note:
+                        type: string
+                        nullable: true
+                        maxLength: 500
+                refund:
+                  type: object
+                  nullable: true
+                  description: "`null` = record the return and the stock effect only; no refund leg is made (add them later with `POST /returns/{id}/refunds`)."
+                  properties:
+                    destination:
+                      type: string
+                      enum:
+                        - original_tender
+                        - store_credit
+                      default: original_tender
+                      description: "A leg on a gift card / store credit payment always goes back to its own account."
+                    shippingRefund:
+                      type: string
+                      nullable: true
+                      description: "`numeric(14,2)` string; at most the shipping that was charged."
+                    registerSessionId:
+                      type: string
+                      format: uuid
+                      nullable: true
+                      description: "Cash legs only: the OPEN register session of the caller the cash is paid out of (ADR-0028 D2)."
+                    storeCreditAccountId:
+                      type: string
+                      format: uuid
+                      nullable: true
+                      description: "`store_credit` only: an existing account to load; omitted issues one new account."
+      responses:
+        "201":
+          description: "The return (or the stored replay) and the store credit it issued."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceReturnMutation"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`ORDER_NOT_RETURNABLE`, `RETURN_QUANTITY_EXCEEDED` (details: `orderItemId`, `requested`, `remaining`), `SHIPPING_REFUND_EXCEEDED`, `EXCHANGE_ORDER_INVALID`, `REFUND_EXCEEDS_REFUNDABLE`, `REFUND_NOT_REFUNDABLE`, `PAYMENT_NOT_REVERSIBLE`, `REGISTER_SESSION_NOT_OPEN`, `NOT_SESSION_CASHIER`, `STORE_CREDIT_UNAVAILABLE`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/returns:
+    get:
+      operationId: listCommerceReturns
+      tags:
+        - Commerce
+      summary: "Issue #287 (ADR-0033). The tenant's returns, newest first, keyset paged. Gated on `commerce.returns.read` and the tenant's `returns` feature."
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - open
+              - completed
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "A page of returns."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceReturn"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "400":
+          description: "`VALIDATION_ERROR`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`FEATURE_DISABLED` - the tenant's `returns` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/returns/reconcile:
+    get:
+      operationId: reconcileCommerceReturns
+      tags:
+        - Commerce
+      summary: "Issue #287 (ADR-0033). Read-only reconciliation of returns, refunds and the payment ledger. Gated on `commerce.refunds.read` and the tenant's `returns` feature."
+      description: >-
+        Reports an over-returned line, a settled refund with no matching
+        reversal, a refund-sourced reversal that belongs to no refund, a
+        payment refunded beyond its amount, a return whose money split differs
+        from its lines, a restock that disagrees with its disposition and an
+        open return that is fully refunded. Nothing is repaired. Bounded to 500
+        findings.
+      responses:
+        "200":
+          description: "The findings."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceReturnsReconcile"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`FEATURE_DISABLED` - the tenant's `returns` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/returns/{id}:
+    get:
+      operationId: getCommerceReturn
+      tags:
+        - Commerce
+      summary: "Issue #287 (ADR-0033). One return with its lines, refund legs and compensations. Gated on `commerce.returns.read` and the tenant's `returns` feature."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: "The return."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      return:
+                        $ref: "#/components/schemas/CommerceReturn"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED` - the tenant's `returns` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/returns/{id}/exchange-order:
+    post:
+      operationId: linkCommerceReturnExchangeOrder
+      tags:
+        - Commerce
+      summary: "Issue #287 (ADR-0033). Links the replacement order of an exchange to its return, once. Gated on `commerce.returns.create` and the tenant's `returns` feature; requires `Idempotency-Key`."
+      description: >-
+        An exchange is a return plus a SEPARATE new order created through the
+        normal order or POS path; the original order's lines are never edited.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - orderId
+              properties:
+                orderId:
+                  type: string
+                  format: uuid
+      responses:
+        "200":
+          description: "The return with its exchange order linked (or the replay)."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      return:
+                        $ref: "#/components/schemas/CommerceReturn"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`NOT_AN_EXCHANGE`, `EXCHANGE_ALREADY_LINKED`, `EXCHANGE_ORDER_INVALID`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/returns/{id}/refunds:
+    post:
+      operationId: createCommerceReturnRefunds
+      tags:
+        - Commerce
+      summary: "Issue #287 (ADR-0033). Plans and creates the refund legs for the part of a return that has none yet. Gated on `commerce.refunds.create` and `commerce.payments.revoke` and the tenant's `returns` feature; requires `Idempotency-Key`."
+      description: >-
+        Same `refund` object as on the return itself (the body may be that
+        object directly or `{ "refund": ... }`). Every leg that can settle now
+        is settled; a gateway leg is left `pending`.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refund:
+                  type: object
+                  nullable: true
+                  description: "`null` = record the return and the stock effect only; no refund leg is made (add them later with `POST /returns/{id}/refunds`)."
+                  properties:
+                    destination:
+                      type: string
+                      enum:
+                        - original_tender
+                        - store_credit
+                      default: original_tender
+                      description: "A leg on a gift card / store credit payment always goes back to its own account."
+                    shippingRefund:
+                      type: string
+                      nullable: true
+                      description: "`numeric(14,2)` string; at most the shipping that was charged."
+                    registerSessionId:
+                      type: string
+                      format: uuid
+                      nullable: true
+                      description: "Cash legs only: the OPEN register session of the caller the cash is paid out of (ADR-0028 D2)."
+                    storeCreditAccountId:
+                      type: string
+                      format: uuid
+                      nullable: true
+                      description: "`store_credit` only: an existing account to load; omitted issues one new account."
+      responses:
+        "201":
+          description: "The return (or the stored replay) and the store credit it issued."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceReturnMutation"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`NOTHING_TO_REFUND`, `REFUND_EXCEEDS_REFUNDABLE`, `REFUND_NOT_REFUNDABLE`, `PAYMENT_NOT_REVERSIBLE`, `REGISTER_SESSION_NOT_OPEN`, `NOT_SESSION_CASHIER`, `STORE_CREDIT_UNAVAILABLE`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/returns/{id}/refunds/{refundId}/execute:
+    post:
+      operationId: executeCommerceRefund
+      tags:
+        - Commerce
+      summary: "Issue #287 (ADR-0033). Settles one still-open refund leg: a gateway leg is sent to the payment provider (with NO database transaction open), any other open leg is settled in the ledger. Gated on `commerce.refunds.create` and `commerce.payments.revoke` and the tenant's `returns` feature; requires `Idempotency-Key`."
+      description: >-
+        The provider is given the refund leg's id as its idempotency key on
+        EVERY attempt, so a retry after a timeout can never refund twice. A
+        transport failure or a provider refusal leaves the leg `failed` (a
+        short `failureCode`, retryable); a provider answer of "accepted,
+        pending" leaves it `processing`. `503 GATEWAY_UNAVAILABLE` means no
+        adapter that can refund is configured: settle the leg with `.../offline`.
+        A settled or accepted answer is replayed under the key; a failure is not.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: refundId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                registerSessionId:
+                  type: string
+                  format: uuid
+                  nullable: true
+      responses:
+        "200":
+          description: "The leg after the attempt (`settled` says whether it is now booked)."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceRefundOutcome"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`REFUND_NOT_REFUNDABLE`, `PAYMENT_NOT_REVERSIBLE`, `REGISTER_SESSION_NOT_OPEN`, `NOT_SESSION_CASHIER`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "502":
+          description: "`PROVIDER_REFUND_FAILED` - the provider did not complete it (`details.failureCode`); retry or settle offline."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "503":
+          description: "`GATEWAY_UNAVAILABLE` - no adapter that can refund is configured; settle offline."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/returns/{id}/refunds/{refundId}/offline:
+    post:
+      operationId: settleCommerceRefundOffline
+      tags:
+        - Commerce
+      summary: "Issue #287 (ADR-0033). Settles a refund leg as made OUTSIDE the system, on the caller's attestation. Gated on the high-risk `commerce.refunds_offline.approve` AND `commerce.payments.revoke` and the tenant's `returns` feature; requires `Idempotency-Key`."
+      description: >-
+        For a leg the provider refused or no adapter can make. The stated
+        `reason` and the approver are stored on the leg and the settlement is
+        audited; the payment-ledger reversal and the proportional compensations
+        are booked exactly as for an automatic settlement.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: refundId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - reason
+              properties:
+                reason:
+                  type: string
+                  maxLength: 500
+      responses:
+        "200":
+          description: "The settled leg."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceRefundOutcome"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`REFUND_NOT_REFUNDABLE`, `PAYMENT_NOT_REVERSIBLE`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+
 components:
   schemas:
     CommerceStoredValueProgram:
@@ -14617,3 +15273,242 @@ components:
               type: object
               description: "The immutable render input: `schemaVersion`, `docType`, `number`, `issuedAt`, `seller`, `customer`, `order`, `lines`, `totals`, `payments`, `settlement`."
               additionalProperties: true
+    CommerceReturnLine:
+      type: object
+      description: "Issue #287 (ADR-0033) - one returned order line. Append-only."
+      properties:
+        id:
+          type: string
+          format: uuid
+        orderItemId:
+          type: string
+          format: uuid
+        productId:
+          type: string
+          format: uuid
+        variantId:
+          type: string
+          format: uuid
+          nullable: true
+        quantity:
+          type: integer
+        reason:
+          type: string
+        disposition:
+          type: string
+          enum:
+            - restock
+            - damaged
+            - quarantine
+        stockEffect:
+          type: integer
+          description: Units that went back into sellable stock (the quantity for `restock`, else 0).
+        goodsGross:
+          type: string
+        discountShare:
+          type: string
+        refundAmount:
+          type: string
+        note:
+          type: string
+          nullable: true
+    CommerceRefund:
+      type: object
+      description: "Issue #287 (ADR-0033) - one refund leg along one original payment. Identity and amount are frozen; only the settlement state moves."
+      properties:
+        id:
+          type: string
+          format: uuid
+        returnId:
+          type: string
+          format: uuid
+        orderId:
+          type: string
+          format: uuid
+        allocationId:
+          type: string
+          format: uuid
+          description: The succeeded payment this leg sends money back along.
+        tenderType:
+          type: string
+        amount:
+          type: string
+        destination:
+          type: string
+          enum:
+            - original_tender
+            - store_credit
+        status:
+          type: string
+          enum:
+            - pending
+            - processing
+            - succeeded
+            - failed
+        settledVia:
+          type: string
+          nullable: true
+          enum:
+            - ledger
+            - provider
+            - offline
+            - store_credit
+        attempts:
+          type: integer
+        failureCode:
+          type: string
+          nullable: true
+        reversalAllocationId:
+          type: string
+          format: uuid
+          nullable: true
+        storeCreditAccountId:
+          type: string
+          format: uuid
+          nullable: true
+        offlineReason:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        settledAt:
+          type: string
+          format: date-time
+          nullable: true
+    CommerceRefundCompensation:
+      type: object
+      description: "Issue #287 (ADR-0033) - a downstream effect of a settled refund (append-only)."
+      properties:
+        refundId:
+          type: string
+          format: uuid
+        kind:
+          type: string
+          enum:
+            - loyalty_reversal
+            - affiliate_adjustment
+            - store_credit_issue
+            - store_credit_load
+        points:
+          type: integer
+          nullable: true
+        amount:
+          type: string
+          nullable: true
+        refId:
+          type: string
+          format: uuid
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+    CommerceReturn:
+      type: object
+      description: "Issue #287 (ADR-0033) - a return or exchange of goods sold on one order."
+      properties:
+        id:
+          type: string
+          format: uuid
+        orderId:
+          type: string
+          format: uuid
+        kind:
+          type: string
+          enum:
+            - return
+            - exchange
+        status:
+          type: string
+          enum:
+            - open
+            - completed
+        note:
+          type: string
+          nullable: true
+        goodsGross:
+          type: string
+        discountShare:
+          type: string
+        shippingRefund:
+          type: string
+        refundTotal:
+          type: string
+          description: "`goodsGross - discountShare + shippingRefund`."
+        exchangeOrderId:
+          type: string
+          format: uuid
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+          nullable: true
+        lines:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceReturnLine"
+        refunds:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceRefund"
+        compensations:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceRefundCompensation"
+    CommerceReturnMutation:
+      type: object
+      properties:
+        return:
+          $ref: "#/components/schemas/CommerceReturn"
+        storeCredit:
+          type: object
+          nullable: true
+          description: "The store credit a refund issued. `code` is the plaintext, present ONLY in the response of the request that issued the account (a replay answers `codeRevealed: false`)."
+          properties:
+            accountId:
+              type: string
+              format: uuid
+            code:
+              type: string
+              nullable: true
+            codeRevealed:
+              type: boolean
+    CommerceRefundOutcome:
+      type: object
+      properties:
+        refund:
+          $ref: "#/components/schemas/CommerceRefund"
+        settled:
+          type: boolean
+        storeCredit:
+          type: object
+          nullable: true
+          additionalProperties: true
+    CommerceReturnsReconcile:
+      type: object
+      properties:
+        checkedReturns:
+          type: integer
+        findings:
+          type: array
+          items:
+            type: object
+            properties:
+              kind:
+                type: string
+                enum:
+                  - over_returned_line
+                  - settled_refund_without_reversal
+                  - reversal_without_refund
+                  - refund_exceeds_payment
+                  - return_refund_total_mismatch
+                  - restock_mismatch
+                  - open_return_fully_refunded
+              id:
+                type: string
+                format: uuid
+              detail:
+                type: string

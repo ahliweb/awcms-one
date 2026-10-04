@@ -118,6 +118,21 @@ Every route below is behind the tenant's `storedValue` feature flag (default OFF
 
 Redemption is a **tender**, not a route here: `POST commerce/pos/orders` (`tenders[]`) and `POST commerce/orders/{id}/payments` accept `tenderType: gift_card \| store_credit` with a `storedValueCode` (and only then); a refused card answers `404 STORED_VALUE_NOT_FOUND` (an unknown, other-kind or other-tenant code — one neutral answer), `409 STORED_VALUE_UNAVAILABLE` (`details.reason`: `UNAVAILABLE \| EXPIRED`), `409 STORED_VALUE_INSUFFICIENT` (`details.available`) or `429 STORED_VALUE_LOOKUP_THROTTLED` (30 lookups per minute per user), always before any row is written. A reversal of such a payment is `409 PAYMENT_NOT_REVERSIBLE` when the program disallows a refund back onto the card or the account cannot take it.
 
+## Owner API: returns, refunds and exchanges (issue #287, epic #281, [ADR-0033](adr/0033-returns-refunds-and-exchanges-are-additive-records-that-compensate-through-the-existing-ledgers.md))
+
+Gated on the tenant's `returns` feature (default **off**: every route answers `409 FEATURE_DISABLED`); every mutation requires `Idempotency-Key`. A refund also needs `commerce.payments.revoke`, checked through the same chokepoint.
+
+| Method | Path | Permission | Notes |
+| --- | --- | --- | --- |
+| `GET`/`POST` | `commerce/orders/{id}/returns` | `returns.read` / `returns.create` (+ `refunds.create`, `payments.revoke` when `refund` is given) | `POST { kind?, note?, exchangeOrderId?, lines: [{ orderItemId, quantity, reason, disposition }], refund?: { destination, shippingRefund?, registerSessionId?, storeCreditAccountId? } }` → `201 { return, storeCredit }` (`storeCredit.code` only in this response); `409 RETURN_QUANTITY_EXCEEDED`, `ORDER_NOT_RETURNABLE`, `REFUND_EXCEEDS_REFUNDABLE`, `SHIPPING_REFUND_EXCEEDED`, `STORE_CREDIT_UNAVAILABLE`, `PAYMENT_NOT_REVERSIBLE`, `REGISTER_SESSION_NOT_OPEN` |
+| `GET` | `commerce/returns` | `returns.read` | Keyset list (`?status=open\|completed&limit&cursor`) |
+| `GET` | `commerce/returns/{id}` | `returns.read` | One return with lines, refund legs and compensations; another tenant's id is the same `404` |
+| `POST` | `commerce/returns/{id}/refunds` | `refunds.create` + `payments.revoke` | Plans and creates the legs for the part with none yet; `409 NOTHING_TO_REFUND` |
+| `POST` | `commerce/returns/{id}/refunds/{refundId}/execute` | `refunds.create` + `payments.revoke` | Gateway leg → provider (no transaction open); `200` settled or processing, `502 PROVIDER_REFUND_FAILED`, `503 GATEWAY_UNAVAILABLE` |
+| `POST` | `commerce/returns/{id}/refunds/{refundId}/offline` | `refunds_offline.approve` + `payments.revoke` | `{ reason }` required; settles a leg made outside the system |
+| `POST` | `commerce/returns/{id}/exchange-order` | `returns.create` | `{ orderId }`; once; `409 NOT_AN_EXCHANGE`, `EXCHANGE_ALREADY_LINKED`, `EXCHANGE_ORDER_INVALID` |
+| `GET` | `commerce/returns/reconcile` | `refunds.read` | Read-only findings (over-returned line, settled refund without reversal, orphan refund reversal, over-refunded payment, total mismatch, restock mismatch, open-but-fully-refunded) |
+
 ## Storefront (anonymous) API — `/api/v1/commerce/storefront/*`
 
 Every route resolves its tenant from the request's `Origin`/`Host` against `awcms_tenant_domains` — never from a header the caller controls — answers the `OPTIONS` preflight, echoes the allowed origin verbatim (never `*`), sends `Vary: Origin`, grants no credentials, and rate-limits per IP (order creation also per normalised phone). See [ADR-0007](adr/0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.md) for why this exists instead of a runtime credential.

@@ -9589,3 +9589,255 @@ msgstr[0] "{count} perintah kerja"
 
 msgid "Quotations, work orders and documents"
 msgstr "Penawaran, perintah kerja, dan dokumen"
+
+msgid "1. What is coming back?"
+msgstr "1. Apa yang dikembalikan?"
+
+msgid "2. Refund"
+msgstr "2. Pengembalian dana"
+
+msgid "3. Review and confirm"
+msgstr "3. Tinjau dan konfirmasi"
+
+msgid "Also refund the shipping charged"
+msgstr "Kembalikan juga ongkos kirim yang dikenakan"
+
+msgid "As store credit"
+msgstr "Sebagai kredit toko"
+
+msgid "Back"
+msgstr "Kembali"
+
+msgid "Back along the original payments"
+msgstr "Kembali melalui pembayaran asal"
+
+msgid "Can return"
+msgstr "Dapat dikembalikan"
+
+msgid "Choose…"
+msgstr "Pilih…"
+
+msgid "Choose a reason…"
+msgstr "Pilih alasan…"
+
+msgid "Choose a reason and what happens to the goods for every returned line."
+msgstr "Pilih alasan dan nasib barang untuk setiap baris yang dikembalikan."
+
+msgid "Could not record this. Check the entries and try again."
+msgstr "Tidak dapat mencatat ini. Periksa isian lalu coba lagi."
+
+msgid "Could not save this action. Please try again."
+msgstr "Tindakan ini tidak dapat disimpan. Silakan coba lagi."
+
+msgid "Customer changed their mind"
+msgstr "Pelanggan berubah pikiran"
+
+msgid "Damaged in transit"
+msgstr "Rusak dalam pengiriman"
+
+msgid "Damaged (written off)"
+msgstr "Rusak (dihapusbukukan)"
+
+msgid "Defective or faulty"
+msgstr "Cacat atau rusak"
+
+msgid "Discount released"
+msgstr "Diskon yang dilepas"
+
+msgid "Duplicate order"
+msgstr "Pesanan ganda"
+
+msgid "Enter a quantity for at least one line."
+msgstr "Isi jumlah untuk setidaknya satu baris."
+
+msgid "Enter how many units of each line are returned, why, and what happens to them. Only units set to restock become sellable again."
+msgstr "Isi berapa unit tiap baris yang dikembalikan, alasannya, dan nasib barangnya. Hanya unit yang diset restok yang bisa dijual lagi."
+
+msgid "Every unit on this order has already been returned."
+msgstr "Semua unit pada pesanan ini sudah dikembalikan."
+
+msgid "Exchange"
+msgstr "Tukar barang"
+
+msgid "Goes to"
+msgstr "Tujuan"
+
+msgid "Goods"
+msgstr "Barang"
+
+msgid "Goods can only be returned against an order whose sale is paid."
+msgstr "Barang hanya dapat dikembalikan untuk pesanan yang penjualannya sudah dibayar."
+
+msgid "Handed back / booked"
+msgstr "Diserahkan / dibukukan"
+
+msgid "I confirm the goods were received and this return may be recorded."
+msgstr "Saya mengonfirmasi barang sudah diterima dan pengembalian ini boleh dicatat."
+
+msgid "Lines that can be returned"
+msgstr "Baris yang dapat dikembalikan"
+
+msgid "Made outside the system"
+msgstr "Dilakukan di luar sistem"
+
+msgid "More units were requested than remain eligible to return."
+msgstr "Unit yang diminta melebihi sisa yang masih boleh dikembalikan."
+
+msgid "Next"
+msgstr "Berikutnya"
+
+msgid "No payment provider that can refund is connected. Settle this refund outside the system instead."
+msgstr "Tidak ada penyedia pembayaran yang dapat mengembalikan dana. Selesaikan pengembalian ini di luar sistem."
+
+msgid "No refund now"
+msgstr "Tanpa pengembalian dana sekarang"
+
+msgid "No refund now - the return and the stock are recorded; the refund can be added later."
+msgstr "Tanpa pengembalian dana sekarang - pengembalian barang dan stok dicatat; dana dapat ditambahkan kemudian."
+
+msgid "No returns have been recorded for this order."
+msgstr "Belum ada pengembalian barang yang dicatat untuk pesanan ini."
+
+msgid "Not as described"
+msgstr "Tidak sesuai deskripsi"
+
+msgid "Original payment method"
+msgstr "Metode pembayaran asal"
+
+msgid "Other reason"
+msgstr "Alasan lain"
+
+msgid "Paid by"
+msgstr "Dibayar dengan"
+
+msgid "Pay any cash refund from my open register"
+msgstr "Bayar pengembalian tunai dari register saya yang terbuka"
+
+msgid "Pay cash refunds from my open register"
+msgstr "Bayar pengembalian tunai dari register saya yang terbuka"
+
+msgid "Payment provider"
+msgstr "Penyedia pembayaran"
+
+msgid "Quantity to return"
+msgstr "Jumlah yang dikembalikan"
+
+msgid "Quarantine (held, not sellable)"
+msgstr "Karantina (ditahan, tidak dijual)"
+
+msgid "Record as refunded"
+msgstr "Catat sebagai sudah dikembalikan"
+
+msgid "Recording a return adds to the order's history; nothing already recorded is changed. The exact refund is calculated to the cent when you confirm."
+msgstr "Mencatat pengembalian menambah riwayat pesanan; tidak ada catatan yang sudah ada diubah. Jumlah dana yang tepat dihitung hingga sen saat Anda mengonfirmasi."
+
+msgid "Record return"
+msgstr "Catat pengembalian"
+
+msgid "Refund along the original payments, newest first."
+msgstr "Kembalikan melalui pembayaran asal, dimulai dari yang terbaru."
+
+msgid "Refund as store credit for the customer (a new code is shown once)."
+msgstr "Kembalikan sebagai kredit toko untuk pelanggan (kode baru ditampilkan satu kali)."
+
+msgid "Refund legs"
+msgstr "Bagian pengembalian dana"
+
+msgid "Refund made outside the system"
+msgstr "Pengembalian dana dilakukan di luar sistem"
+
+msgid "Refund total"
+msgstr "Total pengembalian dana"
+
+msgid "Refund value"
+msgstr "Nilai pengembalian"
+
+msgid "Restock (sellable again)"
+msgstr "Restok (dapat dijual lagi)"
+
+msgid "Return"
+msgstr "Pengembalian"
+
+msgid "Returned lines"
+msgstr "Baris yang dikembalikan"
+
+msgid "Return goods"
+msgstr "Kembalikan barang"
+
+msgid "Return recorded"
+msgstr "Pengembalian dicatat"
+
+msgid "Returns and refunds"
+msgstr "Pengembalian barang dan dana"
+
+msgid "Returns are not switched on for this shop."
+msgstr "Fitur pengembalian belum diaktifkan untuk toko ini."
+
+msgid "Send refund"
+msgstr "Kirim pengembalian dana"
+
+msgid "Send this refund to the payment provider?"
+msgstr "Kirim pengembalian dana ini ke penyedia pembayaran?"
+
+msgid "Send to provider"
+msgstr "Kirim ke penyedia"
+
+msgid "Settled outside"
+msgstr "Diselesaikan di luar"
+
+msgid "Shipping refunded"
+msgstr "Ongkos kirim dikembalikan"
+
+msgid "Size or fit"
+msgstr "Ukuran atau kecocokan"
+
+msgid "Start a return"
+msgstr "Mulai pengembalian"
+
+msgid "Store credit cannot be issued for this refund (feature, program or customer)."
+msgstr "Kredit toko tidak dapat diterbitkan untuk pengembalian ini (fitur, program, atau pelanggan)."
+
+msgid "Store credit was issued. Give the customer this code now - it is shown only once and cannot be recovered."
+msgstr "Kredit toko diterbitkan. Berikan kode ini kepada pelanggan sekarang - hanya ditampilkan satu kali dan tidak dapat dipulihkan."
+
+msgid "Stored with the refund and recorded in the audit log."
+msgstr "Disimpan bersama pengembalian dana dan dicatat dalam log audit."
+
+msgid "That payment cannot be refunded (for example a gift card that no longer accepts value)."
+msgstr "Pembayaran itu tidak dapat dikembalikan (misalnya kartu hadiah yang tidak lagi menerima saldo)."
+
+msgid "The payment provider did not complete the refund. Try again, or settle it outside the system."
+msgstr "Penyedia pembayaran tidak menyelesaikan pengembalian dana. Coba lagi, atau selesaikan di luar sistem."
+
+msgid "The provider is asked to return {amount} to the customer. Asking again is safe: the provider will not refund twice."
+msgstr "Penyedia diminta mengembalikan {amount} kepada pelanggan. Meminta ulang aman: penyedia tidak akan mengembalikan dua kali."
+
+msgid "The refund is more than the order's payments can still give back."
+msgstr "Pengembalian dana melebihi yang masih dapat dikembalikan dari pembayaran pesanan."
+
+msgid "The shipping refund is more than the shipping charged."
+msgstr "Pengembalian ongkos kirim melebihi ongkos kirim yang dikenakan."
+
+msgid "This is an exchange (link the replacement order afterwards)"
+msgstr "Ini penukaran barang (kaitkan pesanan pengganti setelahnya)"
+
+msgid "Use this only when the money has already gone back to the customer by other means. Your reason is stored with the refund and audited."
+msgstr "Gunakan hanya bila uang sudah dikembalikan kepada pelanggan dengan cara lain. Alasan Anda disimpan bersama pengembalian dana dan diaudit."
+
+msgid "Waiting"
+msgstr "Menunggu"
+
+msgid "What happens to the goods"
+msgstr "Nasib barang"
+
+msgid "Where does the money go?"
+msgstr "Ke mana uangnya dikembalikan?"
+
+msgid "With the payment provider"
+msgstr "Di penyedia pembayaran"
+
+msgid "Wrong item sent"
+msgstr "Barang yang dikirim salah"
+
+msgid "Your register session is not open, or it is not yours."
+msgstr "Sesi register Anda tidak terbuka, atau bukan milik Anda."

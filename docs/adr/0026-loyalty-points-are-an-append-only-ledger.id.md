@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0026-loyalty-points-are-an-append-only-ledger.md)
 
-<!-- i18n-source-hash: sha256:8e43bd0cbe02e8929191cfcf5f3f6057bacf62dfccbc4a17982aea7238767185 -->
+<!-- i18n-source-hash: sha256:e6b6156b3c4fecb525797765a06e554a7a50939b0fbf8929790d288020639dcd -->
 
 # ADR-0026 — Poin loyalitas adalah buku besar append-only dengan saldo hasil proyeksi
 
@@ -87,7 +87,7 @@ Tiga deskriptor `dataLifecycle` (engine generik; batas bawah lima tahun, default
 
 - **Redeem ke harga checkout dan tender POS.** Redeem hanya mencatat pengurangan poin. Mengubah poin menjadi diskon membutuhkan model tender #285 dan keputusan tentang nilai sebuah poin; belum ada field `redeem_value`, daripada angka placeholder.
 - **Tier opsional.** Belum dibangun; bila nanti dibangun, tetap terpisah dari level harga `customer.level` kecuali pemetaannya diputuskan eksplisit.
-- **Kompensasi retur/refund per baris (#287).** Pembatalan hari ini seluruh order, saat pembatalan — satu-satunya event order kompensasi yang ada. Belum ada status/event order refunded.
+- **Kompensasi retur/refund (#287) — diselesaikan oleh [ADR-0033](0033-returns-refunds-and-exchanges-are-additive-records-that-compensate-through-the-existing-ledgers.md) D9.** Refund yang selesai membalik sebagian earn (`reverseEarnForRefund`, `reversal:refund:{id refund}`, `source_type = 'refund'`), dihitung dari jumlah refund kumulatif sehingga refund parsial bertambah tepat; pembatalan berikutnya hanya mengambil sisanya. Kompensasi berdasarkan uang yang dikembalikan, bukan per baris.
 - **Kelayakan kampanye/segmen/promosi (#280)**, **perolehan per baris** (`source_type`/`source_id` ledger setingkat order; kolom baris bersifat aditif), dan **aktivasi berjadwal ke depan** (butuh scheduler agar jujur tentang kapan versi mulai).
 - **Halaman UI storefront** untuk saldo dan riwayat (endpoint ada; halaman menyentuh matriks build-profile toko dan merupakan perubahan terpisah), **form edit draf** di layar admin (`PATCH` ada; layar membuat draf baru), dan tampilan **"segera kedaluwarsa"**.
 - **Skala replay.** Kedaluwarsa dan pembatalan memuat seluruh ledger akun bila ada yang jatuh tempo; gerbang `EXISTS` yang murah menjauhkannya dari jalur umum, dan checkpoint per akun berkala adalah tindak lanjutnya bila satu akun pernah memegang puluhan ribu baris.

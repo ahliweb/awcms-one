@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:e7ad5aeeda097277b5f0e912e7c6390239c3dd4d3be6acb51529dc405353fa5a -->
+<!-- i18n-source-hash: sha256:306b1a8da03e7e0a0b646256c17fa1ff9322683c950664cee0935d8aeb22b38a -->
 
 # API
 
@@ -119,6 +119,21 @@ Setiap rute di bawah berada di balik flag fitur `storedValue` tenant (default MA
 | `GET` | `reports/commerce/stored-value` | `commerce.stored_value.read` | `?from&to` (default 30 hari `Asia/Jakarta` terakhir): per jenis diterbitkan / diisi / ditukar / dikembalikan / disesuaikan naik & turun / kedaluwarsa / neto, ditambah terutang, beku pada nonaktif, lewat-batas-tertunda |
 
 Penukaran adalah **tender**, bukan rute di sini: `POST commerce/pos/orders` (`tenders[]`) dan `POST commerce/orders/{id}/payments` menerima `tenderType: gift_card \| store_credit` dengan `storedValueCode` (dan hanya itu); kartu yang ditolak dijawab `404 STORED_VALUE_NOT_FOUND` (kode tidak dikenal, jenis lain, atau milik tenant lain — satu jawaban netral), `409 STORED_VALUE_UNAVAILABLE` (`details.reason`: `UNAVAILABLE \| EXPIRED`), `409 STORED_VALUE_INSUFFICIENT` (`details.available`) atau `429 STORED_VALUE_LOOKUP_THROTTLED` (30 pencarian per menit per pengguna), selalu sebelum baris apa pun ditulis. Pembalikan pembayaran seperti itu adalah `409 PAYMENT_NOT_REVERSIBLE` bila program melarang pengembalian ke kartu atau akun tidak dapat menerimanya.
+
+## API owner: pengembalian barang, pengembalian dana, dan penukaran (issue #287, epik #281, [ADR-0033](adr/0033-returns-refunds-and-exchanges-are-additive-records-that-compensate-through-the-existing-ledgers.md))
+
+Dibatasi fitur `returns` tenant (default **mati**: setiap route menjawab `409 FEATURE_DISABLED`); setiap mutasi memerlukan `Idempotency-Key`. Refund juga memerlukan `commerce.payments.revoke`, diperiksa lewat chokepoint yang sama.
+
+| Metode | Path | Izin | Catatan |
+| --- | --- | --- | --- |
+| `GET`/`POST` | `commerce/orders/{id}/returns` | `returns.read` / `returns.create` (+ `refunds.create`, `payments.revoke` bila `refund` diberikan) | `POST { kind?, note?, exchangeOrderId?, lines: [{ orderItemId, quantity, reason, disposition }], refund?: { destination, shippingRefund?, registerSessionId?, storeCreditAccountId? } }` → `201 { return, storeCredit }` (`storeCredit.code` hanya di respons ini); `409 RETURN_QUANTITY_EXCEEDED`, `ORDER_NOT_RETURNABLE`, `REFUND_EXCEEDS_REFUNDABLE`, `SHIPPING_REFUND_EXCEEDED`, `STORE_CREDIT_UNAVAILABLE`, `PAYMENT_NOT_REVERSIBLE`, `REGISTER_SESSION_NOT_OPEN` |
+| `GET` | `commerce/returns` | `returns.read` | Daftar keyset (`?status=open\|completed&limit&cursor`) |
+| `GET` | `commerce/returns/{id}` | `returns.read` | Satu return dengan baris, bagian refund, dan kompensasi; id tenant lain adalah `404` yang sama |
+| `POST` | `commerce/returns/{id}/refunds` | `refunds.create` + `payments.revoke` | Merencanakan dan membuat bagian untuk yang belum punya; `409 NOTHING_TO_REFUND` |
+| `POST` | `commerce/returns/{id}/refunds/{refundId}/execute` | `refunds.create` + `payments.revoke` | Bagian gateway → penyedia (tanpa transaksi terbuka); `200` selesai atau diproses, `502 PROVIDER_REFUND_FAILED`, `503 GATEWAY_UNAVAILABLE` |
+| `POST` | `commerce/returns/{id}/refunds/{refundId}/offline` | `refunds_offline.approve` + `payments.revoke` | `{ reason }` wajib; menyelesaikan bagian yang dilakukan di luar sistem |
+| `POST` | `commerce/returns/{id}/exchange-order` | `returns.create` | `{ orderId }`; sekali; `409 NOT_AN_EXCHANGE`, `EXCHANGE_ALREADY_LINKED`, `EXCHANGE_ORDER_INVALID` |
+| `GET` | `commerce/returns/reconcile` | `refunds.read` | Temuan read-only (baris kelebihan kembali, refund selesai tanpa reversal, reversal refund yatim, pembayaran kelebihan refund, selisih total, selisih restock, terbuka-tapi-sudah-penuh-refund) |
 
 ## Storefront (anonim) API — `/api/v1/commerce/storefront/*`
 

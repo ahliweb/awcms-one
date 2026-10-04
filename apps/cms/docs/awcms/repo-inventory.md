@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 26    |
-| Migrations                          | 233   |
-| `awcms_*` tables                    | 231   |
-| Tables with `FORCE` RLS             | 213   |
+| Migrations                          | 237   |
+| `awcms_*` tables                    | 235   |
+| Tables with `FORCE` RLS             | 217   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 651   |
-| Route files                         | 616   |
+| Test files                          | 655   |
+| Route files                         | 624   |
 | ADR                                 | 252   |
 
 ### Modules
@@ -284,6 +284,10 @@
 | 231 | `sql/986_awcms_commerce_stored_value_payment_integration.sql`               |
 | 232 | `sql/987_awcms_commerce_stored_value_permissions.sql`                       |
 | 233 | `sql/988_awcms_commerce_stored_value_worker_grants.sql`                     |
+| 234 | `sql/994_awcms_commerce_returns_schema.sql`                                 |
+| 235 | `sql/995_awcms_commerce_returns_integration.sql`                            |
+| 236 | `sql/996_awcms_commerce_returns_permissions.sql`                            |
+| 237 | `sql/997_awcms_commerce_returns_worker_grants.sql`                          |
 
 ### Tables & Row-Level Security
 
@@ -362,12 +366,16 @@
 | `awcms_commerce_protected_media_links`      | `sql/939_awcms_commerce_protected_media_links_schema.sql`  | yes | yes   |
 | `awcms_commerce_quotation_versions`         | `sql/980_awcms_commerce_documents_schema.sql`              | yes | yes   |
 | `awcms_commerce_quotations`                 | `sql/980_awcms_commerce_documents_schema.sql`              | yes | yes   |
+| `awcms_commerce_refund_compensations`       | `sql/994_awcms_commerce_returns_schema.sql`                | yes | yes   |
+| `awcms_commerce_refunds`                    | `sql/994_awcms_commerce_returns_schema.sql`                | yes | yes   |
 | `awcms_commerce_register_close_lines`       | `sql/970_awcms_commerce_register_schema.sql`               | yes | yes   |
 | `awcms_commerce_register_close_requests`    | `sql/970_awcms_commerce_register_schema.sql`               | yes | yes   |
 | `awcms_commerce_register_corrections`       | `sql/970_awcms_commerce_register_schema.sql`               | yes | yes   |
 | `awcms_commerce_register_movements`         | `sql/970_awcms_commerce_register_schema.sql`               | yes | yes   |
 | `awcms_commerce_register_sessions`          | `sql/970_awcms_commerce_register_schema.sql`               | yes | yes   |
 | `awcms_commerce_registers`                  | `sql/970_awcms_commerce_register_schema.sql`               | yes | yes   |
+| `awcms_commerce_return_lines`               | `sql/994_awcms_commerce_returns_schema.sql`                | yes | yes   |
+| `awcms_commerce_returns`                    | `sql/994_awcms_commerce_returns_schema.sql`                | yes | yes   |
 | `awcms_commerce_reviews`                    | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
 | `awcms_commerce_sales_by_category`          | `sql/933_awcms_commerce_reporting_projections_schema.sql`  | yes | yes   |
 | `awcms_commerce_sales_by_product`           | `sql/933_awcms_commerce_reporting_projections_schema.sql`  | yes | yes   |
@@ -525,16 +533,16 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 511        |
+| `(root)`      | 514        |
 | `e2e`         | 21         |
-| `integration` | 118        |
+| `integration` | 119        |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 495   |
+| `/api/v1/**`    | 503   |
 | `/admin/**`     | 91    |
 | publik / anonim | 30    |
 

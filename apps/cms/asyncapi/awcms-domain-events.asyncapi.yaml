@@ -685,6 +685,36 @@ channels:
       `store_credit`), `entryKind`, the signed `amount`, the resulting
       `balanceAfter` and, for redeem/refund, `allocationId` - never the code
       (which is not stored), the customer, or the free-text reason.
+  awcms.commerce.return.recorded:
+    address: awcms.commerce.return.recorded
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      Goods were accepted back against an order (Issue #287, ADR-0033): a
+      return or exchange. Producer: `commerce/application/return-directory.ts`'s
+      `createReturn`, in the same transaction as the return rows, the stock
+      effect and the `order_events` row the sales-report projections read.
+      Aggregate: the return (`commerce.return`). Payload: `returnId`,
+      `orderId`, `kind`, `lines` (`orderItemId`, `quantity`, `reason`,
+      `disposition`, `refundAmount`), `goodsGross`, `discountShare`,
+      `shippingRefund`, `refundTotal` - never a name, phone or free-text note.
+  awcms.commerce.refund.settled:
+    address: awcms.commerce.refund.settled
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      One refund leg of a return reached `succeeded` (Issue #287, ADR-0033):
+      the payment-ledger reversal is booked and the proportional compensations
+      (loyalty points, affiliate commission, store credit) are applied.
+      Producer: `commerce/application/refund-settlement.ts`'s
+      `settleRefundLeg`, in the same transaction. Aggregate: the return
+      (`commerce.return`). Payload: `refundId`, `returnId`, `orderId`,
+      `allocationId`, `reversalAllocationId`, `tenderType`, `destination`,
+      `amount` and `settledVia` (`ledger` | `provider` | `offline` |
+      `store_credit`) - never a provider reference, name or phone. A failed
+      attempt is an audit event, not a domain event.
   awcms.commerce.quotation.accepted:
     address: awcms.commerce.quotation.accepted
     messages:
@@ -1147,6 +1177,18 @@ operations:
       $ref: "#/channels/awcms.commerce.stored_value.entry_recorded"
     messages:
       - $ref: "#/channels/awcms.commerce.stored_value.entry_recorded/messages/DomainEvent"
+  publishCommerceReturnRecorded:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.return.recorded"
+    messages:
+      - $ref: "#/channels/awcms.commerce.return.recorded/messages/DomainEvent"
+  publishCommerceRefundSettled:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.refund.settled"
+    messages:
+      - $ref: "#/channels/awcms.commerce.refund.settled/messages/DomainEvent"
 components:
   messages:
     DomainEvent:

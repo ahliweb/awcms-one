@@ -10827,6 +10827,54 @@ The order row is locked for the write, so two concurrent final payments cannot o
 | 404    | Resource not found.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | [`ApiError`](#standard-error-envelope) |
 | 409    | `IDEMPOTENCY_CONFLICT` (also a key reused against another order, or with a different amount), `REVERSAL_EXCEEDS_PAYMENT` (`details.reversible`), `PAYMENT_NOT_REVERSIBLE` (`details.reason`: `not_a_payment`, `not_succeeded`, `fully_reversed`; Issue #288: `stored_value_refund_not_allowed` — the program does not allow a refund back onto the card, there is no cash alternative — or `stored_value_account_unavailable` — the card is disabled, expired or gone), `REGISTER_SESSION_NOT_OPEN` (`details.status`) or `NOT_SESSION_CASHIER` for a `registerSessionId` that is not an open session of the caller. An unknown or other-tenant `registerSessionId` is `404`. | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/orders/{id}/returns` — Issue #287 (ADR-0033). The returns and exchanges recorded against one order, with their lines, refund legs and compensations. Gated on `commerce.returns.read` and the tenant's `returns` feature.
+
+- **operationId**: `listCommerceOrderReturns`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                                   | Schema                                 |
+| ------ | ----------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The returns, oldest first.                                                    | object                                 |
+| 401    | Missing or invalid session.                                                   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                   | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                           | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` - the tenant's `returns` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/orders/{id}/returns` — Issue #287 (ADR-0033). Records goods accepted back against an order - a return or an exchange - and, optionally, its refund. Gated on `commerce.returns.create` (plus `commerce.refunds.create` and `commerce.payments.revoke` when `refund` is given) and the tenant's `returns` feature; requires `Idempotency-Key`.
+
+- **operationId**: `createCommerceReturn`
+- **Security**: bearerAuth + tenantHeader
+
+Quantities are bounded by what remains eligible per order line, under the order-row lock with a database trigger as the second guard. Value is exact to the cent (several partial returns of a line add up to the line). `restock` lines go back into sellable stock through the inventory port; `damaged` and `quarantine` are recorded and change no sellable stock. With `refund`, the money is planned back along the original payments newest first, each capped at what it can still give back, and every leg that can settle now (cash, a manual refund, a gift card, store credit) is settled in the same transaction; a gateway leg is left `pending` for `.../refunds/{refundId}/execute`. Finalised order history is never edited: only rows are added. A refusal writes nothing. The `storeCredit.code` of a newly issued store credit is shown ONLY in the response of the request that issued it.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `id`              | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                                                                                                                                                                                                | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The return (or the stored replay) and the store credit it issued.                                                                                                                                                                                                                                                                                                          | object                                 |
+| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                                                                                                                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                                                                                | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                                                                                | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                                                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 409    | `ORDER_NOT_RETURNABLE`, `RETURN_QUANTITY_EXCEEDED` (details: `orderItemId`, `requested`, `remaining`), `SHIPPING_REFUND_EXCEEDED`, `EXCHANGE_ORDER_INVALID`, `REFUND_EXCEEDS_REFUNDABLE`, `REFUND_NOT_REFUNDABLE`, `PAYMENT_NOT_REVERSIBLE`, `REGISTER_SESSION_NOT_OPEN`, `NOT_SESSION_CASHIER`, `STORE_CREDIT_UNAVAILABLE`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED`. | [`ApiError`](#standard-error-envelope) |
+
 ### `PATCH /api/v1/commerce/orders/{id}/status` — Admin status transition, enforced through the legal-transition table (Issue 29). Gated on orders.update.
 
 - **operationId**: `updateCommerceOrderStatus`
@@ -11935,6 +11983,178 @@ One `section` column (`summary`, `tender`, `movement`, `correction`) keeps the w
 | 403    | Access denied by RBAC/ABAC.                                                                                     | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.                                                                                             | [`ApiError`](#standard-error-envelope) |
 | 409    | `REGISTER_HAS_ACTIVE_SESSION` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/returns` — Issue #287 (ADR-0033). The tenant's returns, newest first, keyset paged. Gated on `commerce.returns.read` and the tenant's `returns` feature.
+
+- **operationId**: `listCommerceReturns`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name     | In    | Required | Type                      | Description |
+| -------- | ----- | -------- | ------------------------- | ----------- |
+| `status` | query | no       | enum(`open`, `completed`) |             |
+| `limit`  | query | no       | integer                   |             |
+| `cursor` | query | no       | string                    |             |
+
+**Responses**
+
+| Status | Description                                                                   | Schema                                 |
+| ------ | ----------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | A page of returns.                                                            | object                                 |
+| 400    | `VALIDATION_ERROR`.                                                           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` - the tenant's `returns` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/returns/{id}` — Issue #287 (ADR-0033). One return with its lines, refund legs and compensations. Gated on `commerce.returns.read` and the tenant's `returns` feature.
+
+- **operationId**: `getCommerceReturn`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                                   | Schema                                 |
+| ------ | ----------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The return.                                                                   | object                                 |
+| 401    | Missing or invalid session.                                                   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                   | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                           | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` - the tenant's `returns` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/returns/{id}/exchange-order` — Issue #287 (ADR-0033). Links the replacement order of an exchange to its return, once. Gated on `commerce.returns.create` and the tenant's `returns` feature; requires `Idempotency-Key`.
+
+- **operationId**: `linkCommerceReturnExchangeOrder`
+- **Security**: bearerAuth + tenantHeader
+
+An exchange is a return plus a SEPARATE new order created through the normal order or POS path; the original order's lines are never edited.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `id`              | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                           | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The return with its exchange order linked (or the replay).                                                            | object                                 |
+| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                         | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | `NOT_AN_EXCHANGE`, `EXCHANGE_ALREADY_LINKED`, `EXCHANGE_ORDER_INVALID`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED`. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/returns/{id}/refunds` — Issue #287 (ADR-0033). Plans and creates the refund legs for the part of a return that has none yet. Gated on `commerce.refunds.create` and `commerce.payments.revoke` and the tenant's `returns` feature; requires `Idempotency-Key`.
+
+- **operationId**: `createCommerceReturnRefunds`
+- **Security**: bearerAuth + tenantHeader
+
+Same `refund` object as on the return itself (the body may be that object directly or `{ "refund": ... }`). Every leg that can settle now is settled; a gateway leg is left `pending`.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `id`              | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                                                        | Schema                                 |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The return (or the stored replay) and the store credit it issued.                                                                                                                                                                  | object                                 |
+| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                                                                                                      | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                | [`ApiError`](#standard-error-envelope) |
+| 409    | `NOTHING_TO_REFUND`, `REFUND_EXCEEDS_REFUNDABLE`, `REFUND_NOT_REFUNDABLE`, `PAYMENT_NOT_REVERSIBLE`, `REGISTER_SESSION_NOT_OPEN`, `NOT_SESSION_CASHIER`, `STORE_CREDIT_UNAVAILABLE`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED`. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/returns/{id}/refunds/{refundId}/execute` — Issue #287 (ADR-0033). Settles one still-open refund leg: a gateway leg is sent to the payment provider (with NO database transaction open), any other open leg is settled in the ledger. Gated on `commerce.refunds.create` and `commerce.payments.revoke` and the tenant's `returns` feature; requires `Idempotency-Key`.
+
+- **operationId**: `executeCommerceRefund`
+- **Security**: bearerAuth + tenantHeader
+
+The provider is given the refund leg's id as its idempotency key on EVERY attempt, so a retry after a timeout can never refund twice. A transport failure or a provider refusal leaves the leg `failed` (a short `failureCode`, retryable); a provider answer of "accepted, pending" leaves it `processing`. `503 GATEWAY_UNAVAILABLE` means no adapter that can refund is configured: settle the leg with `.../offline`. A settled or accepted answer is replayed under the key; a failure is not.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `id`              | path   | yes      | string (uuid) |             |
+| `refundId`        | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Request body** (optional): object
+
+**Responses**
+
+| Status | Description                                                                                                                                          | Schema                                 |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The leg after the attempt (`settled` says whether it is now booked).                                                                                 | object                                 |
+| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                          | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                  | [`ApiError`](#standard-error-envelope) |
+| 409    | `REFUND_NOT_REFUNDABLE`, `PAYMENT_NOT_REVERSIBLE`, `REGISTER_SESSION_NOT_OPEN`, `NOT_SESSION_CASHIER`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED`. | [`ApiError`](#standard-error-envelope) |
+| 502    | `PROVIDER_REFUND_FAILED` - the provider did not complete it (`details.failureCode`); retry or settle offline.                                        | [`ApiError`](#standard-error-envelope) |
+| 503    | `GATEWAY_UNAVAILABLE` - no adapter that can refund is configured; settle offline.                                                                    | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/returns/{id}/refunds/{refundId}/offline` — Issue #287 (ADR-0033). Settles a refund leg as made OUTSIDE the system, on the caller's attestation. Gated on the high-risk `commerce.refunds_offline.approve` AND `commerce.payments.revoke` and the tenant's `returns` feature; requires `Idempotency-Key`.
+
+- **operationId**: `settleCommerceRefundOffline`
+- **Security**: bearerAuth + tenantHeader
+
+For a leg the provider refused or no adapter can make. The stated `reason` and the approver are stored on the leg and the settlement is audited; the payment-ledger reversal and the proportional compensations are booked exactly as for an automatic settlement.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `id`              | path   | yes      | string (uuid) |             |
+| `refundId`        | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                      | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | The settled leg.                                                                                 | object                                 |
+| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                    | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                      | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                      | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                              | [`ApiError`](#standard-error-envelope) |
+| 409    | `REFUND_NOT_REFUNDABLE`, `PAYMENT_NOT_REVERSIBLE`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED`. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/returns/reconcile` — Issue #287 (ADR-0033). Read-only reconciliation of returns, refunds and the payment ledger. Gated on `commerce.refunds.read` and the tenant's `returns` feature.
+
+- **operationId**: `reconcileCommerceReturns`
+- **Security**: bearerAuth + tenantHeader
+
+Reports an over-returned line, a settled refund with no matching reversal, a refund-sourced reversal that belongs to no refund, a payment refunded beyond its amount, a return whose money split differs from its lines, a restock that disagrees with its disposition and an open return that is fully refunded. Nothing is repaired. Bounded to 500 findings.
+
+**Responses**
+
+| Status | Description                                                                   | Schema                                 |
+| ------ | ----------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The findings.                                                                 | object                                 |
+| 401    | Missing or invalid session.                                                   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` - the tenant's `returns` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/reviews` — Admin review moderation list (Issue 29). Keyset-paginated; optional status filter. Gated on reviews.read.
 
@@ -17198,7 +17418,7 @@ consumer/subscriber contract in this file).
 }
 ```
 
-### Channels (68)
+### Channels (70)
 
 - `awcms.blog-content.ad.created` — An advertisement was created. Documented contract only; producer is `pages/api/v1/blog/ads/index.ts`'s `blog-content.ad.created` log line.
 - `awcms.blog-content.ad.deleted` — An advertisement was soft-deleted. Documented contract only; producer is `pages/api/v1/blog/ads/[id].ts`'s `blog-content.ad.deleted` log line.
@@ -17246,10 +17466,12 @@ consumer/subscriber contract in this file).
 - `awcms.commerce.product.updated` — A product's fields other than `status` were changed. Producer: `commerce/application/product-directory.ts`'s `updateProduct`. Published alongside `commerce.product.status_changed` when a single `PATCH` changes both.
 - `awcms.commerce.quotation.accepted` — A quotation version was accepted and pinned (Issue #286, ADR-0029). Producer: `commerce/application/quotation-directory.ts`'s `applyQuotationAction`, in the same transaction as the status change. Aggregate: the quotation. Payload: `quotationId`, `number`, `acceptedVersion`, `total` - never the customer.
 - `awcms.commerce.quotation.converted` — An accepted quotation was converted into a commerce order through the ordinary POS order path (Issue #286, ADR-0029 D5). Producer: `commerce/application/quotation-directory.ts`'s `convertQuotation`, in the same transaction as the order. Fired once per quotation. Payload (the conversion's provenance): `quotationId`, `number`, `acceptedVersion`, `orderId`, `orderCode`, `quotedTotal`, `orderTotal`.
+- `awcms.commerce.refund.settled` — One refund leg of a return reached `succeeded` (Issue #287, ADR-0033): the payment-ledger reversal is booked and the proportional compensations (loyalty points, affiliate commission, store credit) are applied. Producer: `commerce/application/refund-settlement.ts`'s `settleRefundLeg`, in the same transaction. Aggregate: the return (`commerce.return`). Payload: `refundId`, `returnId`, `orderId`, `allocationId`, `reversalAllocationId`, `tenderType`, `destination`, `amount` and `settledVia` (`ledger` | `provider` | `offline` | `store_credit`) - never a provider reference, name or phone. A failed attempt is an audit event, not a domain event.
 - `awcms.commerce.register_session.closed` — A POS register session was closed (cash-up). Producer: `commerce/application/register-cash-up.ts`'s `closeRegisterSession` / `decideRegisterClose`, in the same transaction as the status change. Fired once per session, only when it actually reaches `closed` (a close awaiting approval, or a rejected one, does not fire it). Payload: `sessionId`, `registerId`, `varianceTotal`, `varianceGross`, `approvalRequired`, and per-tender `lines` (`tenderType`, `expected`, `counted`, `variance`).
 - `awcms.commerce.register_session.corrected` — A compensating correction was recorded against a closed register session; the original close request and lines are preserved untouched. Producer: `commerce/application/register-cash-up.ts`'s `recordRegisterCorrection`. Payload: `sessionId`, `correctionId`, and `adjustments` (`tenderType`, `adjustment`) - never the free-text reason.
 - `awcms.commerce.register_session.movement_recorded` — A cash drawer movement (cash in/out, safe drop, expense, transfer, correction) was recorded against an open register session. Producer: `commerce/application/register-session-directory.ts`'s `recordRegisterMovement`. Payload: `sessionId`, `movementId`, `movementType`, `direction`, `amount` - never the free-text reference or note.
 - `awcms.commerce.register_session.opened` — A POS register session was opened with an opening float (Issue #284, ADR-0028). Producer: `commerce/application/register-session-directory.ts`'s `openRegisterSession`, in the same transaction as the session row. Aggregate: the register session. Payload: `sessionId`, `registerId`, `openingFloat`, `cashierTenantUserId`.
+- `awcms.commerce.return.recorded` — Goods were accepted back against an order (Issue #287, ADR-0033): a return or exchange. Producer: `commerce/application/return-directory.ts`'s `createReturn`, in the same transaction as the return rows, the stock effect and the `order_events` row the sales-report projections read. Aggregate: the return (`commerce.return`). Payload: `returnId`, `orderId`, `kind`, `lines` (`orderItemId`, `quantity`, `reason`, `disposition`, `refundAmount`), `goodsGross`, `discountShare`, `shippingRefund`, `refundTotal` - never a name, phone or free-text note.
 - `awcms.commerce.review.published` — A pending review was moderated to `published` by an admin. Producer: `commerce/application/review-directory.ts`'s `moderateReview` — never fired on review creation, since a pending review is not yet a fact worth publishing to anyone.
 - `awcms.commerce.stored_value.entry_recorded` — A closed-loop stored-value ledger entry (gift card / store credit: issue, load, redeem, refund, adjust, expire, disable, enable) was appended. Producer: `commerce/application/stored-value-ledger.ts`'s `appendStoredValueEntry`, in the same transaction as the ledger insert (and, for redeem/refund, the payment-allocation row it mirrors). Aggregate: the stored-value account (`commerce.stored_value_account`). Payload: `entryId`, `accountId`, `accountKind` (`gift_card` | `store_credit`), `entryKind`, the signed `amount`, the resulting `balanceAfter` and, for redeem/refund, `allocationId` - never the code (which is not stored), the customer, or the free-text reason.
 - `awcms.commerce.voucher.redeemed` — A voucher's `used_count` was incremented by a real order. Producer: `commerce/application/order-directory.ts`'s `createOrderFromCart`, in the same transaction as the order that redeemed it.

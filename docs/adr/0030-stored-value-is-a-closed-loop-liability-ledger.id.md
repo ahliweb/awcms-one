@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0030-stored-value-is-a-closed-loop-liability-ledger.md)
 
-<!-- i18n-source-hash: sha256:be97351814fbfb3328358264a11d9afb799f47657ce55d4a1b9a579c82ecd8df -->
+<!-- i18n-source-hash: sha256:8fc3c3f5e1123a826a472efc0f55190888b8cce83084f4c27218769ce4961ce2 -->
 
 <!-- i18n-source-hash: sha256:placeholder -->
 
@@ -132,6 +132,6 @@ Tiga deskriptor `dataLifecycle` (mesin generik; lantai lima tahun, batas atas se
 - **Kepemilikan pelanggan ditegakkan saat penukaran** — `customer_id` bersifat informasional saat ini; kode adalah instrumen pembawa (bearer).
 - **Pengembalian dana ke kartu yang lewat batas** (butuh kebijakan reaktivasi yang ditinjau) dan **mengaktifkan kembali akun kedaluwarsa**.
 - **Tarik tunai, transfer antar akun, penerimaan pihak ketiga** — ditolak menunggu tinjauan hukum dan ADR baru.
-- **Menjual kartu hadiah sebagai produk katalog** (nilai diterbitkan oleh pesanan berbayar) dan **kredit toko dari retur** (#287 belum punya domain refund): penerbitan saat ini adalah tindakan operator.
+- **Menjual kartu hadiah sebagai produk katalog** (nilai diterbitkan oleh pesanan berbayar) dan **kredit toko dari retur** (diselesaikan oleh [ADR-0033](0033-returns-refunds-and-exchanges-are-additive-records-that-compensate-through-the-existing-ledgers.md) D6/D9: refund dapat dialihkan ke kredit toko — mengisi akun yang disebut atau menerbitkan satu untuk pelanggan pesanan, kodenya ditampilkan sekali): menjual kartu sebagai produk katalog tetap tindakan operator.
 - **Penerbitan massal / ekspor CSV akun**, **minimum isi per program**, dan **kartu fisik berdenominasi** — aditif.
 - **Petunjuk hitung register** untuk tender kartu pada cash-up (layar menampilkannya seperti tender non-tunai lain).

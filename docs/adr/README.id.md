@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:923e053c7a50d04564709c1a99a03fa052f19374613e14b915b212b9d3d359d8 -->
+<!-- i18n-source-hash: sha256:32ca5a40b6e554003a3a328eac2388863a9e40b0060e33fa28860ef43c109ec9 -->
 
 # Architecture Decision Records
 
@@ -48,6 +48,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0028](0028-pos-register-sessions-and-cash-up.md)                                                             | Sesi register POS dan tutup kas: jumlah yang seharusnya diturunkan dari ledger pembayaran, shift yang sudah ditutup tidak dapat diubah                                                          | Diterima                                                                                                                      |
 | [0029](0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md)  | Dokumen commerce: penjualan tertahan, penawaran, perintah kerja, dan struk/faktur adalah rekaman terpisah, dan dokumen bernomor adalah snapshot pesanan yang tidak dapat diubah                 | Diterima                                                                                                                      |
 | [0030](0030-stored-value-is-a-closed-loop-liability-ledger.md)                                                | Nilai tersimpan adalah ledger kewajiban closed-loop: kartu hadiah dan kredit toko adalah baris append-only, database yang menggerakkan saldo, kode ditampilkan sekali dan tidak pernah disimpan | Diterima                                                                                                                      |
+| [0033](0033-returns-refunds-and-exchanges-are-additive-records-that-compensate-through-the-existing-ledgers.md) | Pengembalian barang, pengembalian dana, dan penukaran adalah catatan tambahan yang mengompensasi lewat ledger yang sudah ada: tidak ada yang final diubah, uang kembali melalui pembayaran asal, penyedia dipanggil di luar setiap transaksi | Diterima |
 
 ## Mengapa penomoran dimulai dari 0001
 

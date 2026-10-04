@@ -1383,7 +1383,17 @@ export const READER_BUDGET_BYTES = 24_000;
  * build (both lineages' screens together); a measurement, not a sum of the two
  * "Final" figures above.
  */
-export const APP_BUDGET_BYTES = 381_700;
+/*
+ * **Raised to 387,500 B for Issue #287** (returns, refunds and exchanges,
+ * ADR-0033) - one panel, MEASURED 387,344 B on the build merged with main
+ * (up from 381,590 B): the order detail's returns panel and wizard script
+ * (`commerce-returns-client.ts`: the three-step wizard, the review step, the
+ * provider-refund action; every string a `data-*` attribute, the
+ * confirm dialog and the reason panel reused rather than re-implemented), the
+ * panel's few CSS rules, and ~170 new catalogue entries (the compiled
+ * Indonesian catalogue ships with every page). A measurement, not a sum.
+ */
+export const APP_BUDGET_BYTES = 387_500;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

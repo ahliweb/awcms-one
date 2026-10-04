@@ -712,6 +712,11 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/orders/[id]/returns/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/orders/[id]/status.ts",
       "workClass": "interactive",
       "source": "factory"
@@ -884,6 +889,41 @@
     {
       "path": "src/pages/api/v1/commerce/registers/index.ts",
       "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/returns/[id]/exchange-order.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/returns/[id]/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/returns/[id]/refunds/[refundId]/execute.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/returns/[id]/refunds/[refundId]/offline.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/returns/[id]/refunds/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/returns/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/returns/reconcile.ts",
+      "workClass": "reporting",
       "source": "factory"
     },
     {

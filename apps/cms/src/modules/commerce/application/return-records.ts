@@ -375,3 +375,55 @@ export async function fetchRefundForReturn(
   `) as RefundRow[];
   return rows[0] ? toRefundRecord(rows[0]) : null;
 }
+
+export type ReturnableLine = {
+  orderItemId: string;
+  name: string;
+  variantName: string | null;
+  sku: string | null;
+  unitPrice: string;
+  quantity: number;
+  returned: number;
+  /** Units still eligible to return (`quantity - returned`, never negative). */
+  remaining: number;
+};
+
+/**
+ * The lines of an order with how many units are still eligible to return - the
+ * return wizard's rows. One query, tenant-scoped; an unknown order is `[]`.
+ */
+export async function listReturnableLines(
+  tx: Bun.SQL,
+  tenantId: string,
+  orderId: string
+): Promise<ReturnableLine[]> {
+  const rows = (await tx`
+    SELECT i.id, i.name, i.variant_name, i.sku, i.unit_price, i.quantity,
+      COALESCE((
+        SELECT SUM(l.quantity) FROM awcms_commerce_return_lines l
+        WHERE l.tenant_id = i.tenant_id AND l.order_item_id = i.id
+      ), 0)::int AS returned
+    FROM awcms_commerce_order_items i
+    WHERE i.tenant_id = ${tenantId} AND i.order_id = ${orderId}
+      AND i.deleted_at IS NULL
+    ORDER BY i.created_at ASC, i.id ASC
+  `) as {
+    id: string;
+    name: string;
+    variant_name: string | null;
+    sku: string | null;
+    unit_price: string;
+    quantity: number;
+    returned: number;
+  }[];
+  return rows.map((row) => ({
+    orderItemId: row.id,
+    name: row.name,
+    variantName: row.variant_name,
+    sku: row.sku,
+    unitPrice: normalizeMoney(String(row.unit_price)),
+    quantity: Number(row.quantity),
+    returned: Number(row.returned),
+    remaining: Math.max(0, Number(row.quantity) - Number(row.returned))
+  }));
+}
