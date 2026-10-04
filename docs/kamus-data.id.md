@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:33511554f06acf30ac33979e1a214a3bdd67153d1f0ceddd20204ff27cbc8dbb -->
+<!-- i18n-source-hash: sha256:b07d2c419c0e851ba45ee6da543bf6d19f3269bc4ce5ca847ca933297bbf3934 -->
 
 # Kamus data
 
@@ -297,8 +297,43 @@ Rancangan platform ini sendiri — tidak ada yang di-port dari toko lama. Status
 | `cart` tertahan | `{ lines: [{ productId, variantId, quantity }], customer: { name, phone } \| null, notes }` | tanpa harga; dihapus menjadi `{}` saat penjualan meninggalkan `held` |
 | `pricing_context` versi penawaran | `engine`, `quotedAt`, `customerLevel`, `taxActive`, `taxPercent`, `shippingCost` | apa yang dipakai mesin kutipan, disimpan sebagai bukti |
 
+### Pengeluaran (issue #294, [ADR-0031](adr/0031-expenses-are-commerce-local-register-linked-petty-cash.md))
+
+| Istilah | Tempatnya | Arti |
+| --- | --- | --- |
+| pengeluaran (expense) | `awcms_commerce_expenses` | Kas kecil / biaya operasional lokal-commerce: kategori, jumlah yang tepat, metode pembayaran, tanggal, alasan, payee dan struk opsional. BUKAN entri buku besar — tidak ada akun atau baris jurnal |
+| kategori pengeluaran | `awcms_commerce_expense_categories` | `code` (unik per tenant tanpa membedakan huruf besar/kecil) dan `name`; dinonaktifkan, tidak pernah dihapus; kategori tidak aktif tidak menerima pengeluaran baru |
+| draft / menunggu persetujuan / diposting / dibalik / dibatalkan | `awcms_commerce_expenses.status` | `draft` dapat diedit; `pending_approval` diajukan di atas ambang dan menunggu orang kedua; `posted` berlaku; `reversed` dibatalkan dengan entri penyeimbang; `cancelled` adalah draf yang dibuang. `reversed` dan `cancelled` bersifat akhir |
+| pengeluaran laci | pengeluaran dengan `register_session_id` | Tunai yang dibayarkan dari sesi register yang terbuka; posting menambahkan mutasi kas keluar `expense` register |
+| mutasi posting / mutasi pembalikan | `awcms_commerce_register_movements.expense_id` | Mutasi `expense`/`out` yang ditambahkan posting, dan mutasi `correction`/`in` yang ditambahkan pembalikan; paling banyak satu masing-masing per pengeluaran. `reference`-nya adalah kode sistem `EXP-XXXXXXXX` |
+| ambang persetujuan | pengaturan modul commerce `expenses.approvalThreshold` (bawaan `"0.00"`) | Jumlah di atas mana posting memerlukan orang kedua; di dalamnya (inklusif) pengeluaran langsung diposting (`auto`) |
+| pemisahan tugas | `approver_check`, `decidePosting` | Pembuat tidak pernah dapat menyetujui pengeluarannya sendiri di atas ambang; pemberi persetujuan bukan pembuat maupun pengajunya |
+| struk | `receipt_media_object_id` | Objek pustaka media PRIVAT terverifikasi yang diunggah pelampir; hanya terlihat sebagai `hasReceipt`, dibaca kembali lewat `GET …/receipt-url` di bawah `commerce.expense_receipts.read` |
+| payee | `payee_name` | Teks bebas; referensi pihak bertipe ditunda (ADR-0031 D8) |
+| fitur `expenses` | pengaturan modul commerce `features.expenses` (bawaan MATI) | Menyalakan seluruh permukaan pengeluaran; selama MENYALA mutasi laci `expense` mentah ditolak |
+| `commerce.expense_categories.*`, `commerce.expenses.*`, `commerce.expense_postings.*`, `commerce.expense_reversals.approve`, `commerce.expense_receipts.*` | `awcms_permissions` (`sql/992`) | Dua belas kunci: kategori, baca / buat / edit / ekspor pengeluaran, ajukan / setujui posting, balik, baca / lampirkan struk |
+
 ## Kolom dan tabel yang ditunda — tidak di-porting
 
 - **Tabel RATE kurir RajaOngkir live sudah selesai** (issue #107, `sql/924` — `awcms_commerce_courier_destinations`/`_shipping_rates`, rate ter-cache yang divalidasi jalur pesanan, tidak pernah panggilan provider sinkron). Yang masih ditunda: pelacakan (TRACKING) kurir live (status paket yang sudah dikirim) — `shipping_method`/`shipping_service_name` pada order tetap label yang ditentukan merchant untuk metode `alternative`/`self_pickup`; rate pengiriman `courier` kini live, pelacakan pasca-kirimnya belum (tercatat sebagai follow-up di [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.id.md)).
 - **Catatan transaksi payment-gateway sudah selesai** — `awcms_commerce_payment_gateway_sessions`/`_payment_events` (`sql/926`, issue #110/#113), dibangun lewat outbox sesuai [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.id.md)/[ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.id.md). Ditunda: adapter Xendit di belakang port `PaymentGatewayProvider` yang sama (hari ini hanya `midtrans`/`log`).
 - **Upload media sungguhan untuk gambar produk, media slider, gambar bukti konfirmasi pembayaran, dan kreatif ad placement** — diselesaikan lewat mekanisme referensi/URL yang sudah ada milik `media_library`, tapi seed increment ini memakai SVG/PNG placeholder dan endpoint upload-bukti anonim adalah stub (`503 MEDIA_UNAVAILABLE`); ad placement butuh media object ter-verifikasi-R2 SUNGGUHAN (`mediaObjectId` wajib, bukan opsional), jadi langkah seed issue #57 tidak membuat satu pun dari 12 placement secara lokal — lihat [`docs/cms.md`](cms.id.md) dan [`docs/deployment.md`](deployment.id.md).
+
+## Kosakata pengiriman dokumen (issue #295, [ADR-0034](adr/0034-commercial-documents-are-delivered-through-the-existing-outboxes-as-transactional-messages-built-from-immutable-sources.md))
+
+Rancangan platform ini sendiri — tidak ada yang diporting dari toko lama. Status adalah `text` + `CHECK`, tidak pernah enum bawaan.
+
+| Field | Nilai / bentuk | Arti |
+| --- | --- | --- |
+| `target_type` pengiriman | `document`, `quotation_version`, `work_order` | apa yang dikirim; `targetId` pada API adalah id dokumen, id **penawaran** (dengan `version` opsional, bawaan versi saat ini), atau id perintah kerja |
+| `channel` pengiriman | `email`, `whatsapp` | outbox yang sudah ada tempat pesan masuk |
+| `purpose` pengiriman | `transactional` (satu-satunya nilai) | tidak pernah pemasaran; kampanye menyimpan predikat persetujuannya sendiri |
+| `recipient_source` pengiriman | `source_customer`, `override` | pelanggan yang disebut sumber, atau penerima yang diketik pemegang `commerce.document_delivery_overrides.create` |
+| `status` pengiriman | `queued`, `not_enqueued` | hanya hasil serah-terima |
+| `failure_reason` pengiriman | `RECIPIENT_SUPPRESSED`, `TEMPLATE_UNAVAILABLE` | mengapa pesan tidak diantrekan |
+| `template_key` / `template_version` pengiriman | `derived.transactional` (e-mail) / `commerce.document` (WhatsApp); `1` | kontrak berversi yang merendernya; dinaikkan saat daftar variabel atau redaksi berubah |
+| `content_hash` pengiriman | 64 hex huruf kecil | SHA-256 dari JSON kanonik variabel yang dikirim; sama untuk dua pengiriman dari satu sumber tak-berubah |
+| `recipient_masked` | `s*****@example.test`, `+62812•••7890` | satu-satunya bentuk penerima yang disimpan platform ini di luar baris outbox |
+| token tautan pribadi | `dl_` + 43 karakter base64url; disimpan sebagai `sha256:` + 64 hex | buram, kedaluwarsa paling lama 168 jam (bawaan 72), tidak pernah id dokumen |
+| status outbox (riwayat) | `queued`, `sending`, `sent`, `failed`, `retry_wait`, `cancelled`, `suppressed`; `null` bila tidak pernah dibuat atau sudah dipurge | keadaan hidup baris e-mail atau WhatsApp; WhatsApp memakai empat yang pertama |
+| variabel pesan netral | `documentLabel`, `documentNumber`, `storeName`, `body`, `link` | dipetakan ke `subject`/`body`/`actionUrl` milik `derived.transactional` untuk e-mail dan dipakai apa adanya oleh `commerce.document` untuk WhatsApp |

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0028-pos-register-sessions-and-cash-up.md)
 
-<!-- i18n-source-hash: sha256:97b521c5870feb2a4539486b105e4dad11a0d360507fbf8e4830a3cce02bc317 -->
+<!-- i18n-source-hash: sha256:f9994ffee0b3251f588c3512e32d53132e9978b3c7f5a493d9f828278c8c3fde -->
 
 <!-- i18n-source-hash: sha256:placeholder -->
 
@@ -59,7 +59,7 @@ Buka, mutasi, serah terima, penutupan, keputusan penutupan, dan koreksi mensyara
 
 ### D10 — Referensi pengeluaran adalah kait bertipe, bukan kolom yang menunjuk ke ketiadaan
 
-Mutasi `expense` membutuhkan `reference`, teks bebas saat ini. `reference_kind` (CHECK `IN ('free_text')`) adalah kait bertipenya: domain pengeluaran (#294) belum ada, dan kolom id yang merujuk tabel yang belum ada adalah klaim, bukan fitur (disiplin yang diterapkan ADR-0025 pada `store_credit`/`gift_card`). Migrasi yang mengirimkan tabel pengeluaran melebarkan CHECK dan menambah kolom id.
+Mutasi `expense` membutuhkan `reference`, teks bebas saat ini. `reference_kind` (CHECK `IN ('free_text')`) adalah kait bertipenya: domain pengeluaran (#294) belum ada, dan kolom id yang merujuk tabel yang belum ada adalah klaim, bukan fitur (disiplin yang diterapkan ADR-0025 pada `store_credit`/`gift_card`). Migrasi yang mengirimkan tabel pengeluaran melebarkan CHECK dan menambah kolom id. **Diselesaikan oleh [ADR-0031](0031-expenses-are-commerce-local-register-linked-petty-cash.md) (issue #294, `sql/991`):** `reference_kind` kini juga menerima `expense`, dengan `expense_id` ber-FK komposit; pengeluaran laci yang diposting menambah mutasi kas keluar `expense` dan pembaliknya mutasi kas masuk `correction` penyeimbang, keduanya lewat satu penulis mutasi. Mutasi `expense` mentah lewat rute manual hanya ditolak selama fitur `expenses` tenant menyala.
 
 ### D11 — Referensi aman-tenant, siklus hidup, data subjek
 
@@ -73,4 +73,4 @@ Semua referensi adalah FK komposit; dua induk (`registers`, `sessions`) membawa 
 
 ## Ditunda (sengaja tidak dibangun di sini)
 
-Domain pengeluaran (#294) dan referensi pengeluaran bertipe (D10); aktivitas ledger yang terlambat pada penjualan sesi yang sudah ditutup yang ditampilkan sebagai angka "dicatat setelah penutupan" di laporan (saat ini ada di ledger, tidak distempel, dan di luar semua tutup kas); tautan pasangan antara mutasi transfer-keluar dan transfer-masuk di dua register; hitung buta (layar menampilkan seharusnya di samping dihitung, sebagaimana diminta issue); override ambang per register dan ambang per metode; pemilih kasir untuk serah terima (formulir menerima id tenant-user — pemilih membutuhkan direktori staf yang tidak diberikan izin commerce); penghitungan pecahan (lembar/koin); operasi offline; proyeksi tutup kas untuk dasbor (laporan adalah agregat langsung atas tabel berindeks).
+~~Domain pengeluaran (#294) dan referensi pengeluaran bertipe (D10)~~ (diselesaikan oleh ADR-0031); aktivitas ledger yang terlambat pada penjualan sesi yang sudah ditutup yang ditampilkan sebagai angka "dicatat setelah penutupan" di laporan (saat ini ada di ledger, tidak distempel, dan di luar semua tutup kas); tautan pasangan antara mutasi transfer-keluar dan transfer-masuk di dua register; hitung buta (layar menampilkan seharusnya di samping dihitung, sebagaimana diminta issue); override ambang per register dan ambang per metode; pemilih kasir untuk serah terima (formulir menerima id tenant-user — pemilih membutuhkan direktori staf yang tidak diberikan izin commerce); penghitungan pecahan (lembar/koin); operasi offline; proyeksi tutup kas untuk dasbor (laporan adalah agregat langsung atas tabel berindeks).

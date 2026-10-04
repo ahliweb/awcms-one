@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:769755443ed431ebdca2a0a16d143035e0f9fbd66ce5a9d80e4f555672ee8706 -->
+<!-- i18n-source-hash: sha256:e25fdbfa589d03e75a1979562454eb5d0c2ead316c400d1907cf817e264946c2 -->
 
 # Skema basis data
 
@@ -286,6 +286,19 @@ erDiagram
 
 `document_sequences` sengaja tidak punya foreign key ke baris bernomor: ia adalah penghitung tempat nomor mereka berasal, dinaikkan dalam transaksi yang sama, dan baris penghitung hidup lebih lama dari dokumennya selama tahunnya masih berjalan. Tidak ada kolom yang ditambahkan ke `orders`: ia tidak pernah tahu tentang penawaran, perintah kerja, atau dokumen yang menunjuk kepadanya.
 
+## Pengeluaran: dua tabel dan referensi mutasi bertipe (`sql/990`–`993`, issue #294, [ADR-0031](adr/0031-expenses-are-commerce-local-register-linked-petty-cash.md))
+
+Dua tabel FORCE-RLS (kebijakan isolasi tenant dengan `WITH CHECK`, foreign key komposit `(tenant_id, …)` yang didukung `UNIQUE (tenant_id, id)`, setiap kolom FK diindeks, uang `numeric(14,2)`), ditambah `expense_id` pada mutasi register yang append-only.
+
+| Tabel | Isinya | Constraint penting |
+| --- | --- | --- |
+| `awcms_commerce_expense_categories` | `code`, `name`, `active`, stempel pembuat/pengubah, `deleted_at` (tidak pernah diisi — kursor retensi) | `UNIQUE (tenant_id, lower(code))`; CHECK panjang |
+| `awcms_commerce_expenses` | `category_id`, `status` (`draft \| pending_approval \| posted \| reversed \| cancelled`), `amount > 0`, `tender_type` (`cash \| manual_qris \| manual_bank_transfer`), `occurred_on date`, `description`, `payee_name`, `register_session_id`, `receipt_media_object_id`, stempel pembuat / pengaju / pemutus / pemosting / pembalik / pembuang beserta waktunya, `approval_threshold`, `decision` (`auto \| approved \| rejected`), `posted_movement_id`, `reversal_session_id`, `reversal_movement_id` | `register_session_id` ⇒ `tender_type = 'cash'`; pengeluaran yang diposting menyebut pemostingnya dan persetujuannya, dan memiliki mutasi tepat ketika dibayar dari laci; **`approver_check`: pemutus `approved` tidak pernah pembuatnya**; trigger siklus hidup menolak transisi tidak sah dan membekukan isi di luar `draft` (struk boleh ditambahkan sekali pada pengeluaran yang diposting/dibalik); **UNIQUE** parsial pada `receipt_media_object_id` (satu objek privat melayani satu pengeluaran); tanpa `DELETE` untuk `awcms_app` |
+| `awcms_commerce_register_movements` (kolom ditambahkan `sql/991`) | `reference_kind` kini `free_text \| expense`; `expense_id` (FK komposit) | `expense_shape_check`: jenis `expense` ⇔ `expense_id`, dan hanya `expense`/`out` (posting) atau `correction`/`in` (pembaliknya); **UNIQUE** parsial `(tenant_id, expense_id, direction)` — paling banyak satu mutasi keluar dan satu masuk per pengeluaran; tetap append-only |
+
+- **Hak akses.** `awcms_app` kehilangan `DELETE` pada kedua tabel baru (tetap `SELECT, INSERT, UPDATE`; trigger siklus hidup, bukan hak akses, yang membekukan baris yang diposting). `awcms_worker` tetap `SELECT, DELETE` (`sql/993`) untuk mesin retensi (`commerce.expense_categories`, `commerce.expenses`, lantai lima tahun, batas sepuluh tahun, dikunci pada `deleted_at` yang tidak pernah diisi). `security-readiness.ts` menegaskan himpunan persisnya dua arah.
+- **`sql/992`** menyemai dua belas kunci izin.
+
 ## Proyeksi laporan penjualan: tiga tabel turunan (`sql/933`)
 
 Issue #117, D7 kontrak #106 — read model dari tiga proyeksi reporting `cursor_table` yang disumbangkan `commerce` (`commerce.sales_daily`, `commerce.sales_by_product`, `commerce.sales_by_category`), dipelihara oleh worker milik mesin `reporting` dari `awcms_commerce_order_events` (lihat [`docs/cms.md`](cms.id.md) "Laporan penjualan" untuk aturan deltanya). Turunan dan sepenuhnya dapat dibangun ulang — tidak pernah ditulis jalur request, tidak pernah menjadi sumber kebenaran.
@@ -387,3 +400,33 @@ Ketiga puluh delapan tabel itu juga `unreachableBySubject: true` dalam deskripto
 ## Sengaja tidak ada di skema ini
 
 Pelacakan (tracking) kurir live (rate sudah selesai — `awcms_commerce_shipping_rates`/`_courier_destinations`, `sql/924` — tapi melacak status paket yang sudah dikirim belum; tercatat sebagai follow-up di [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.id.md)); adapter payment-gateway Xendit (port `PaymentGatewayProvider` dan CHECK `awcms_commerce_payment_gateway_sessions.provider` hari ini hanya mengizinkan `midtrans`/`log` — Xendit adalah follow-up di belakang port yang sama, ADR-0017); kolom `password_hash` di mana pun — akun pelanggan hanya-OTP by design ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md) D1), tidak pernah ada kata sandi untuk disimpan atau di-reset; kolom/endpoint `restore` untuk tabel marketing, order, customer, atau review mana pun.
+
+## Pengiriman dokumen: satu tabel (`sql/965`–`967`, issue #295, [ADR-0034](adr/0034-commercial-documents-are-delivered-through-the-existing-outboxes-as-transactional-messages-built-from-immutable-sources.md))
+
+Satu tabel FORCE-RLS yang **append-only**, `awcms_commerce_document_deliveries`: _permintaan_ untuk memasukkan satu dokumen komersial yang tidak dapat diubah ke outbox e-mail atau WhatsApp yang sudah ada. Ini bukan antrean dan tidak menyimpan isi pesan, nama pelanggan, atau penerima tak-tersamar.
+
+| Kelompok kolom | Bentuk | Catatan |
+| --- | --- | --- |
+| identitas | `id` (juga `correlation_id` baris outbox), `tenant_id`, `created_at` | `UNIQUE (tenant_id, id)`; referensi-diri `resend_of_id` adalah foreign key komposit `(tenant_id, …)` yang menyebut pengiriman yang diulang oleh kirim-ulang |
+| sumber | `target_type` (`document \| quotation_version \| work_order`) dan tepat satu dari `document_id`, `quotation_version_id`, `work_order_id`; `doc_number` | sebuah `CHECK` memastikan kolom terisi sesuai `target_type`; trigger `BEFORE INSERT` memeriksa sumber ada **di tenant penulis** dan `doc_number` adalah nomor aslinya (lihat catatan di bawah mengapa ini bukan foreign key) |
+| pesan | `channel` (`email \| whatsapp`), `purpose` (`CHECK (purpose = 'transactional')`), `locale`, `template_key`, `template_version`, `content_hash` (64 hex) | `content_hash` adalah SHA-256 dari variabel persis yang diserahkan ke outbox |
+| penerima | `recipient_source` (`source_customer \| override`), `recipient_masked` | hanya bentuk tersamar yang disimpan; alamat lengkap ada di baris outbox yang dibaca penyedia |
+| serah-terima | `status` (`queued \| not_enqueued`), `failure_reason` (`RECIPIENT_SUPPRESSED \| TEMPLATE_UNAVAILABLE`, terisi tepat saat `not_enqueued`) | apa yang terjadi setelah serah-terima **dibaca dari outbox**, tidak pernah disalin |
+| tautan pribadi | `link_token_hash` (`sha256:` + 64 hex, `UNIQUE` parsial), `link_expires_at` | keduanya null atau keduanya terisi; kedaluwarsa setelah `created_at` dan paling lama 168 jam; hanya untuk `target_type = 'document'` |
+| pelaku | `requested_by_tenant_user_id` | cap staf |
+
+- **Hak akses.** `awcms_app` hanya `SELECT, INSERT` (`UPDATE`/`DELETE` dicabut, dan trigger menolak penulisan ulang); `awcms_worker` punya `SELECT, DELETE` (`sql/967`) untuk mesin retensi. `security-readiness.ts` menegaskan kedua himpunan itu.
+- **Retensi.** Descriptor `system_event`: batas bawah sembilan puluh hari, batas atas tiga tahun, bawaan satu tahun.
+- **Join yang dibuat riwayat.** `awcms_email_messages` lewat `correlation_id = id::text` (dijangkau melalui indeks `(tenant_id, category, …)` yang sudah ada, kategorinya `derived.transactional`), dan `awcms_commerce_whatsapp_messages` lewat kunci yang sama, yang untuknya `sql/965` menambahkan indeks parsial `(tenant_id, correlation_id)`. Tidak ada tabel outbox yang mendapat kolom baru.
+- **Mengapa ketiga kolom sumber berupa trigger, bukan foreign key.** Tabel-tabelnya dibuat oleh `sql/980` ([ADR-0029](adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md)); rentang yang dicadangkan issue ini (965–969) terurut sebelum itu, sehingga pada basis data baru `FOREIGN KEY` tidak dapat dideklarasikan. Isi plpgsql diselesaikan saat dijalankan, jadi `awcms_commerce_document_deliveries_check_target()` menegakkan keberadaan sumber di tenant yang sama dan kebenaran nomor saat insert. Ia tidak dapat mencegah penghapusan sumber di kemudian hari, yang tidak dapat dilakukan peran runtime mana pun. Menggantinya dengan tiga foreign key komposit adalah perubahan satu migrasi bila rentang kelak dipotong ulang ([ADR-0034](adr/0034-commercial-documents-are-delivered-through-the-existing-outboxes-as-transactional-messages-built-from-immutable-sources.md) D8).
+- **`sql/966`** menanam ketiga kunci izin; `sql/968`–`969` ditahan dan tidak terpakai.
+
+```mermaid
+erDiagram
+  documents |o--o{ document_deliveries : "document_id (diperiksa trigger)"
+  quotation_versions |o--o{ document_deliveries : "quotation_version_id (diperiksa trigger)"
+  work_orders |o--o{ document_deliveries : "work_order_id (diperiksa trigger)"
+  document_deliveries |o--o{ document_deliveries : "resend_of_id (FK komposit)"
+  document_deliveries ||--o| email_messages : "correlation_id = id (membaca status hidup)"
+  document_deliveries ||--o| whatsapp_messages : "correlation_id = id (membaca status hidup)"
+```

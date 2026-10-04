@@ -43,6 +43,8 @@ export type CommerceFeatureKey =
   | "documents"
   | "loyalty"
   | "storedValue"
+  | "expenses"
+  | "documentDelivery"
   | "returns";
 
 export type CommerceFeatures = Readonly<Record<CommerceFeatureKey, boolean>>;
@@ -83,6 +85,17 @@ export const DEFAULT_COMMERCE_FEATURES: CommerceFeatures = {
   // must choose to accept; a tenant that never opens "Fitur" must see exactly
   // today's commerce.
   storedValue: false,
+  // Issue #294 (ADR-0031) — defaults OFF. Expenses are a brand-new surface
+  // with its own approval obligation; a tenant that never opens "Fitur" must
+  // see exactly today's store (and, with it OFF, a raw `expense` drawer
+  // movement stays what #284 made it).
+  expenses: false,
+  // Issue #295 (ADR-0034) - defaults OFF: sending a receipt, quotation or
+  // work-order notice to a customer is an outbound communication a tenant
+  // must opt into (it needs a working e-mail or WhatsApp channel, and it puts
+  // customer data on the wire). It also requires `documents`: there is
+  // nothing to deliver without it.
+  documentDelivery: false,
   // Issue #287 (ADR-0033) — also OFF. Returns and refunds put goods back into
   // stock and money back into customers' hands: new behaviour with a security
   // posture of its own (separately granted permissions, a provider call), so a
@@ -100,6 +113,8 @@ const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
   "register",
   "loyalty",
   "storedValue",
+  "expenses",
+  "documentDelivery",
   "returns"
 ];
 

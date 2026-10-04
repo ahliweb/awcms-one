@@ -296,8 +296,43 @@ This platform's own design — nothing here is ported from the legacy store. Sta
 | held `cart` | `{ lines: [{ productId, variantId, quantity }], customer: { name, phone } \| null, notes }` | no price; wiped to `{}` when the sale leaves `held` |
 | quotation version `pricing_context` | `engine`, `quotedAt`, `customerLevel`, `taxActive`, `taxPercent`, `shippingCost` | what the quote engine used, kept as evidence |
 
+### Expenses (issue #294, [ADR-0031](adr/0031-expenses-are-commerce-local-register-linked-petty-cash.md))
+
+| Term | Where it lives | Meaning |
+| --- | --- | --- |
+| expense | `awcms_commerce_expenses` | A commerce-local petty-cash / operating expense: category, exact amount, payment method, date, reason, optional payee and receipt. NOT a ledger entry — there are no accounts or journal lines |
+| expense category | `awcms_commerce_expense_categories` | A `code` (unique per tenant, case-insensitively) and `name`; deactivated, never deleted; an inactive category takes no new expense |
+| draft / pending approval / posted / reversed / cancelled | `awcms_commerce_expenses.status` | `draft` is editable; `pending_approval` is submitted above the threshold and waits for a second person; `posted` is in effect; `reversed` was undone by a compensating entry; `cancelled` is a discarded draft. `reversed` and `cancelled` are terminal |
+| drawer expense | an expense with `register_session_id` | Cash paid out of an open register session; posting appends a register `expense` cash-out movement |
+| posting movement / reversal movement | `awcms_commerce_register_movements.expense_id` | The `expense`/`out` movement a posting appended, and the `correction`/`in` movement a reversal appended; at most one of each per expense. Its `reference` is the system code `EXP-XXXXXXXX` |
+| approval threshold | commerce module setting `expenses.approvalThreshold` (default `"0.00"`) | The amount above which posting needs a second person; within it (inclusive) an expense posts outright (`auto`) |
+| segregation of duties | `approver_check`, `decidePosting` | The creator can never approve their own expense above the threshold; an approver is neither its creator nor its submitter |
+| receipt | `receipt_media_object_id` | A verified PRIVATE media-library object the attacher uploaded; exposed only as `hasReceipt`, read back through `GET …/receipt-url` under `commerce.expense_receipts.read` |
+| payee | `payee_name` | Free text; a typed party reference is deferred (ADR-0031 D8) |
+| `expenses` feature | commerce module settings `features.expenses` (default OFF) | Turns the whole expense surface on; while ON a raw `expense` drawer movement is refused |
+| `commerce.expense_categories.*`, `commerce.expenses.*`, `commerce.expense_postings.*`, `commerce.expense_reversals.approve`, `commerce.expense_receipts.*` | `awcms_permissions` (`sql/992`) | The twelve keys: categories, read / create / edit / export expenses, submit / approve a posting, reverse, read / attach a receipt |
+
 ## Deferred columns and tables — not ported
 
 - **A live RajaOngkir courier-RATE table is done** (issue #107, `sql/924` — `awcms_commerce_courier_destinations`/`_shipping_rates`, a cached rate the order path validates against, never a synchronous provider call). What is still deferred: live courier TRACKING (a shipped parcel's own status) — `shipping_method`/`shipping_service_name` on an order remain merchant-defined labels for the `alternative`/`self_pickup` methods; a `courier` shipment's rate is now live, its post-dispatch tracking is not (named as a follow-up in [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md)).
 - **A payment-gateway transaction record is done** — `awcms_commerce_payment_gateway_sessions`/`_payment_events` (`sql/926`, issues #110/#113), built through the outbox per [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md)/[ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md). Deferred: a Xendit adapter behind the same `PaymentGatewayProvider` port (`midtrans`/`log` only today).
 - **A real media upload for product images, slider media, payment-confirmation proof images, and ad-placement creatives** — resolved through `media_library`'s existing reference/URL mechanism, but this increment's seed uses placeholder SVGs/PNGs and the anonymous proof-upload endpoint is a stub (`503 MEDIA_UNAVAILABLE`); ad placements need a REAL R2-verified media object (`mediaObjectId` is required, not optional), so issue #57's seed step creates none of the 12 locally — see [`docs/cms.md`](cms.md) and [`docs/deployment.md`](deployment.md).
+
+## Document delivery vocabulary (issue #295, [ADR-0034](adr/0034-commercial-documents-are-delivered-through-the-existing-outboxes-as-transactional-messages-built-from-immutable-sources.md))
+
+This platform's own design — nothing here is ported from the legacy store. Statuses are `text` + `CHECK`, never a native enum.
+
+| Field | Values / shape | Meaning |
+| --- | --- | --- |
+| delivery `target_type` | `document`, `quotation_version`, `work_order` | what is delivered; the API's `targetId` is a document id, a **quotation** id (with an optional `version`, default current) or a work-order id |
+| delivery `channel` | `email`, `whatsapp` | the existing outbox the message goes into |
+| delivery `purpose` | `transactional` (the only value) | never marketing; campaigns keep their own consent predicate |
+| delivery `recipient_source` | `source_customer`, `override` | the customer the source names, or a recipient typed in by a holder of `commerce.document_delivery_overrides.create` |
+| delivery `status` | `queued`, `not_enqueued` | the hand-off outcome only |
+| delivery `failure_reason` | `RECIPIENT_SUPPRESSED`, `TEMPLATE_UNAVAILABLE` | why a message was not enqueued |
+| delivery `template_key` / `template_version` | `derived.transactional` (e-mail) / `commerce.document` (WhatsApp); `1` | the versioned contract that rendered it; bumped when the variable list or wording changes |
+| delivery `content_hash` | 64 lowercase hex | SHA-256 of the canonical JSON of the variables sent; equal for two sends of one immutable source |
+| `recipient_masked` | `s*****@example.test`, `+62812•••7890` | the only form of the recipient this platform stores outside the outbox row |
+| private link token | `dl_` + 43 base64url characters; stored as `sha256:` + 64 hex | opaque, expires within at most 168 hours (default 72), never a document id |
+| outbox status (history) | `queued`, `sending`, `sent`, `failed`, `retry_wait`, `cancelled`, `suppressed`; `null` when never created or purged | the live state of the e-mail or WhatsApp row; WhatsApp uses the first four |
+| neutral message variables | `documentLabel`, `documentNumber`, `storeName`, `body`, `link` | mapped onto `derived.transactional`'s `subject`/`body`/`actionUrl` for e-mail and used as-is by `commerce.document` for WhatsApp |

@@ -118,6 +118,27 @@ Every route below is behind the tenant's `storedValue` feature flag (default OFF
 
 Redemption is a **tender**, not a route here: `POST commerce/pos/orders` (`tenders[]`) and `POST commerce/orders/{id}/payments` accept `tenderType: gift_card \| store_credit` with a `storedValueCode` (and only then); a refused card answers `404 STORED_VALUE_NOT_FOUND` (an unknown, other-kind or other-tenant code — one neutral answer), `409 STORED_VALUE_UNAVAILABLE` (`details.reason`: `UNAVAILABLE \| EXPIRED`), `409 STORED_VALUE_INSUFFICIENT` (`details.available`) or `429 STORED_VALUE_LOOKUP_THROTTLED` (30 lookups per minute per user), always before any row is written. A reversal of such a payment is `409 PAYMENT_NOT_REVERSIBLE` when the program disallows a refund back onto the card or the account cannot take it.
 
+## Owner API: expenses (issue #294, epic #281, [ADR-0031](adr/0031-expenses-are-commerce-local-register-linked-petty-cash.md))
+
+Every route below is behind the tenant's `expenses` feature flag (default OFF — `409 FEATURE_DISABLED`; a drawer expense additionally needs `register`), requires a bearer/cookie session, and — for every mutation but the natural-idempotent draft `PATCH`, the category writes and the receipt attach — an **`Idempotency-Key`** header (`400 IDEMPOTENCY_REQUIRED`). Money is a `numeric(14,2)` STRING (never a JSON number). Twelve permissions, none implied by the register or POS keys. Another tenant's ids are the same `404` as unknown ones.
+
+| Method | Path | Permission | Notes |
+| --- | --- | --- | --- |
+| `GET`/`POST` | `commerce/expense-categories` | `commerce.expense_categories.read` / `.create` | List / define (`{ code, name }`; `409 EXPENSE_CATEGORY_CODE_TAKEN`) |
+| `GET`/`PATCH` | `commerce/expense-categories/{id}` | `….read` / `.update` | Rename, (de)activate; `code` is immutable |
+| `GET`/`POST` | `commerce/expenses` | `commerce.expenses.read` / `.create` | Keyset history (`?cursor&status&categoryId&registerSessionId&from&to`) / record a DRAFT `{ categoryId, amount, tenderType, occurredOn, description, payeeName?, registerSessionId? }` → `201` (a replay returns the same expense); `409 EXPENSE_CATEGORY_INACTIVE`, `REGISTER_SESSION_NOT_OPEN` |
+| `GET`/`PATCH` | `commerce/expenses/{id}` | `….read` / `.update` | One expense (a receipt is only `hasReceipt`) / edit a DRAFT — creator or supervisor only (`403 NOT_EXPENSE_OWNER`), `409 EXPENSE_NOT_DRAFT` otherwise |
+| `POST` | `commerce/expenses/{id}/post` | `commerce.expense_postings.create` | Within the threshold → posted (`auto`); above it, a poster who also holds `….approve` and did not create it → posted (`approved`), else `pending_approval`; a drawer expense appends its register movement (`409 REGISTER_SESSION_NOT_OPEN`); `409 EXPENSE_NOT_POSTABLE` for a non-draft |
+| `POST` | `commerce/expenses/{id}/decision` | `commerce.expense_postings.approve` | `{ decision: approve\|reject, note? }` (a note is required to reject → back to `draft`); `403 SEGREGATION_OF_DUTIES` for its creator or submitter; `409 EXPENSE_NOT_PENDING` |
+| `POST` | `commerce/expenses/{id}/reverse` | `commerce.expense_reversals.approve` | `{ reason }` → compensating movement for a drawer expense (own session if open, else the register's open session; `409 REGISTER_SESSION_REQUIRED` if none); `409 EXPENSE_NOT_REVERSIBLE` |
+| `POST` | `commerce/expenses/{id}/cancel` | `commerce.expenses.update` | Discard a DRAFT (terminal) |
+| `POST` | `commerce/expenses/{id}/receipt` | `commerce.expense_receipts.create` | `{ mediaObjectId }` — a verified private object the caller uploaded; `409 EXPENSE_RECEIPT_NOT_ELIGIBLE \| _ALREADY_USED \| _ALREADY_ATTACHED` |
+| `GET` | `commerce/expenses/{id}/receipt-url` | `commerce.expense_receipts.read` | Short-lived presigned GET, `Cache-Control: no-store`, audited as `media.download`; resolved server-side from the expense; `409 EXPENSE_RECEIPT_UNAVAILABLE` fails closed |
+| `GET` | `commerce/expenses/summary?from&to` | `commerce.expenses.read` | Posted and reversed totals by category and tender (exact cents), draft / pending counts; range required, ≤ 366 days |
+| `GET` | `commerce/expenses/export.csv?from&to` | `commerce.expenses.export` | One CSV, formula-neutralised, ≤ 10,000 rows (`X-Export-Truncated`), `no-store` |
+
+While the `expenses` feature is ON, `POST commerce/register-sessions/{id}/movements` with `movementType: "expense"` is `409 EXPENSE_REQUIRES_EXPENSE_RECORD` (a raw one would bypass the threshold); with the feature OFF it is unchanged.
+
 ## Owner API: returns, refunds and exchanges (issue #287, epic #281, [ADR-0033](adr/0033-returns-refunds-and-exchanges-are-additive-records-that-compensate-through-the-existing-ledgers.md))
 
 Gated on the tenant's `returns` feature (default **off**: every route answers `409 FEATURE_DISABLED`); every mutation requires `Idempotency-Key`. A refund also needs `commerce.payments.revoke`, checked through the same chokepoint.
@@ -312,6 +333,26 @@ A same-key/same-body repeat of `redeem`/`adjust` replays the stored `201`; same 
   stock: number, status: "draft" | "active" | "inactive" | "archived",
   label: string | null, labelColor: string | null,
   images: [{ id, publicUrl, sortOrder, altText }], variants: [{ id, name, value, sku, price, stock, ... }],
+  isFeatured: boolean, isRecommended: boolean, manualRating: string | null, manualSoldCount: number
+}
+```
+
+`price`, `priceLevel2/3/4`, `finalPrice`, and every money field on marketing/order shapes below are JSON **strings**, e.g. `"19999.00"`, never JSON numbers — see [ADR-0003](adr/0003-money-is-numeric-14-2-and-crosses-the-wire-as-a-string.md) and the `normalizeMoney` note in [`docs/pengujian.md`](pengujian.md).
+
+`Order` (storefront tracking read, `GET .../orders/{code}?phone=`):
+
+```
+{
+  orderCode: string, status: "pending_payment" | "paid" | "processing" | "shipped" | "completed" | "cancelled" | "expired",
+  paymentStatus: "unpaid" | "dp_paid" | "paid" | "refunded",
+  customer: { name, phone }, address: {...} | null,
+  items: [{ productId, variantId, name, variantName, sku, quantity, unitPrice, lineTotal }],
+  subtotal, discount, shipping, insuranceFee, tax, total: string,
+  timeline: [{ fromStatus, toStatus, actor, note, createdAt }],
+  expiresAt: string | null, paidAt/shippedAt/completedAt/cancelledAt: string | null
+}
+```
+
 ## Owner API: held sales, quotations, work orders, documents (issue #286, epic #281, [ADR-0029](adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md))
 
 Every route below is behind the tenant's `documents` feature flag (default OFF — `409 FEATURE_DISABLED`), requires a bearer/cookie session, and — for every mutation — an **`Idempotency-Key`** header (`400 IDEMPOTENCY_REQUIRED`; same key + same body replays the stored answer, same key + different body is `409 IDEMPOTENCY_CONFLICT`). An unknown id, a malformed id and another tenant's id are the same neutral `404`. Permission keys are resource-split and none is implied by `commerce.pos.create`; the contract is `openapi/modules/commerce.openapi.yaml`.
@@ -333,27 +374,7 @@ Every route below is behind the tenant's `documents` feature flag (default OFF �
 
 Events: `awcms.commerce.quotation.accepted`, `awcms.commerce.quotation.converted` (the conversion's provenance), `awcms.commerce.work_order.status_changed`, `awcms.commerce.document.issued`. Thirteen permission keys: `commerce.held_sales.{read,create,update,approve}`, `commerce.quotations.{read,create,update}`, `commerce.quotation_conversions.create`, `commerce.work_orders.{read,create,update}`, `commerce.documents.{read,create}`.
 
-  isFeatured: boolean, isRecommended: boolean, manualRating: string | null, manualSoldCount: number
-}
-```
-
-`price`, `priceLevel2/3/4`, `finalPrice`, and every money field on marketing/order shapes below are JSON **strings**, e.g. `"19999.00"`, never JSON numbers — see [ADR-0003](adr/0003-money-is-numeric-14-2-and-crosses-the-wire-as-a-string.md) and the `normalizeMoney` note in [`docs/pengujian.md`](pengujian.md).
-
-`Order` (storefront tracking read, `GET .../orders/{code}?phone=`):
-
-```
-{
-  orderCode: string, status: "pending_payment" | "paid" | "processing" | "shipped" | "completed" | "cancelled" | "expired",
-  paymentStatus: "unpaid" | "dp_paid" | "paid" | "refunded",
-  customer: { name, phone }, address: {...} | null,
-  items: [{ productId, variantId, name, variantName, sku, quantity, unitPrice, lineTotal }],
-  subtotal, discount, shipping, insuranceFee, tax, total: string,
-  timeline: [{ fromStatus, toStatus, actor, note, createdAt }],
-  expiresAt: string | null, paidAt/shippedAt/completedAt/cancelledAt: string | null
-}
-```
-
-## Authorization: 39 owner permissions (plus the increment-5 keys, since #285 `commerce.payments.{read,create,revoke}` and `commerce.pos_due.create`, since #288 seven stored-value keys: `commerce.stored_value_programs.{read,update}`, `commerce.stored_value.{read,create,update}`, `commerce.stored_value_adjustments.create`, `commerce.stored_value_reconcile.approve`, and since #284 ten register keys: `commerce.registers.{read,create,update}`, `commerce.register_sessions.{read,create,update,export}`, `commerce.register_cash_ups.{create,approve}`, `commerce.register_corrections.approve`)
+## Authorization: 39 owner permissions (plus the increment-5 keys, since #285 `commerce.payments.{read,create,revoke}` and `commerce.pos_due.create`, since #288 seven stored-value keys: `commerce.stored_value_programs.{read,update}`, `commerce.stored_value.{read,create,update}`, `commerce.stored_value_adjustments.create`, `commerce.stored_value_reconcile.approve`, and since #284 ten register keys: `commerce.registers.{read,create,update}`, `commerce.register_sessions.{read,create,update,export}`, `commerce.register_cash_ups.{create,approve}`, `commerce.register_corrections.approve`, and since #294 twelve expense keys: `commerce.expense_categories.{read,create,update}`, `commerce.expenses.{read,create,update,export}`, `commerce.expense_postings.{create,approve}`, `commerce.expense_reversals.approve`, `commerce.expense_receipts.{read,create}`)
 
 The `commerce` module declares 39 permission keys in total (10 + 22 + 7 below), grouped by the same three areas as its tables — a count too large for this document's own "spelled number matches a counted set" convention (`bun run audit:dokumen`'s linked-count check only recognises spelled numbers one through twenty), so it is stated here as a numeral instead of inside a guarded block.
 
@@ -367,9 +388,9 @@ Deliberately **no `create`/`delete` for `orders`/`customers`**: an order or cust
 
 The storefront (anonymous) API has **no permission keys at all** — its trust boundary is the Origin-bound tenant resolver, not RBAC/ABAC.
 
-## Domain events: nineteen
+## Domain events: twenty-seven
 
-All nineteen are registered in the three places `awcms` keeps in sync (`domain-event-runtime/domain/event-type-registry.ts`, `apps/cms/asyncapi/awcms-domain-events.asyncapi.yaml`, `commerce/module.ts`'s `events.publishes`):
+All twenty-seven are registered in the three places `awcms` keeps in sync (`domain-event-runtime/domain/event-type-registry.ts`, `apps/cms/asyncapi/awcms-domain-events.asyncapi.yaml`, `commerce/module.ts`'s `events.publishes`):
 
 | Aggregate             | Events                                                                                                                                |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
@@ -380,6 +401,10 @@ All nineteen are registered in the three places `awcms` keeps in sync (`domain-e
 | `commerce.review`     | `awcms.commerce.review.published`                                                                                                     |
 | `commerce.stored_value_account` | `awcms.commerce.stored_value.entry_recorded` — one event per ledger entry (issue, load, redeem, refund, adjust, expire, disable, enable) on the account aggregate (#288); ids, kinds, the signed amount and the resulting balance, never the code, the customer or the free-text reason |
 | `commerce.register_session` | `awcms.commerce.register_session.{opened,movement_recorded,closed,corrected}` — the shift's own ordered stream (#284); `closed` fires once, only when the session actually reaches `closed`; payloads carry ids/types/amounts/variance, never a movement's free-text reference/note or a close's reason |
+| `commerce.expense` | `awcms.commerce.expense.{posted,reversed}` — (#294) each fires once, when the status actually changes (a pending submission or a rejection does not fire `posted`); payloads carry ids, tender, amount and the movement id, never the free-text description, payee or reason |
+| `commerce.document_delivery` | `awcms.commerce.document.delivery_requested` — (#295) one per delivery request handed to the e-mail or WhatsApp outbox (or refused at the hand-off); ids, the document number, channel and hand-off status, never a recipient or message content |
+| `commerce.loyalty_account` | `awcms.commerce.loyalty.entry_recorded` — (#289) one event per ledger entry (earn, redeem, expire, adjustment, reversal); ids, kinds and points only |
+| `commerce.quotation` / `commerce.work_order` / `commerce.document` | `awcms.commerce.quotation.{accepted,converted}`, `awcms.commerce.work_order.status_changed`, `awcms.commerce.document.issued` — (#286) ids, numbers, statuses and amounts, never a customer name or free-text note |
 
 `categories` still publishes no domain events — the same choice `tenant_admin` makes for `awcms_offices`; a soft delete is an audit-log fact, not something a downstream consumer needs to react to.
 
@@ -394,6 +419,8 @@ All nineteen are registered in the three places `awcms` keeps in sync (`domain-e
 | `409`  | `INSUFFICIENT_TENDER`                                                                         | POS only (#116, widened by #285): the tenders do not cover the order total (unless `allowDue`); `details.shortfall` is the `numeric(14,2)` string difference |
 | `409`  | `OVERPAYMENT` / `REVERSAL_EXCEEDS_PAYMENT` / `PAYMENT_NOT_REVERSIBLE` / `PAYMENT_NOT_SETTLED`  | Payment ledger (#285): an amount above what is owed (only cash change may exceed it); a reversal above what remains reversible; a payment that cannot be reversed; a manual `-> paid` for an order that has legs but is not settled (an order with no leg gets one full-amount leg recorded instead). A reused `Idempotency-Key` aimed at another order, or with a different tender/amount, is `409 IDEMPOTENCY_CONFLICT`; `ORDER_PARTIALLY_SETTLED` (storefront gateway sessions) means money was already received, so no hosted checkout is offered |
 | `409`  | `FEATURE_DISABLED`                                                                            | An owner route of a feature the tenant turned off (#118) — inbox, campaigns, gateway, courier, and since #116 the POS routes, and since #284 every register route (the `register` flag defaults OFF; naming a `registerId` on a POS sale while it is off is the same refusal)                          |
+| `409`  | `EXPENSE_CATEGORY_INACTIVE` / `EXPENSE_NOT_DRAFT` / `EXPENSE_NOT_POSTABLE` / `EXPENSE_NOT_PENDING` / `EXPENSE_NOT_REVERSIBLE` / `EXPENSE_NOT_ATTACHABLE` / `EXPENSE_RECEIPT_NOT_ELIGIBLE` / `EXPENSE_RECEIPT_ALREADY_USED` / `EXPENSE_RECEIPT_ALREADY_ATTACHED` / `EXPENSE_RECEIPT_UNAVAILABLE` / `EXPENSE_CATEGORY_CODE_TAKEN` / `EXPENSE_REQUIRES_EXPENSE_RECORD` | Expenses (#294): the expense's state refuses the action (a category that is deactivated or duplicated, editing/posting/discarding a non-draft, deciding what is not pending, reversing what is not posted, a receipt that is not a verified private object the caller uploaded or is already in use or attached, a receipt that can no longer be issued, a raw `expense` drawer movement while the `expenses` feature is on) |
+| `403`  | `SEGREGATION_OF_DUTIES` / `NOT_EXPENSE_OWNER` | Expenses (#294): approving an expense you created or submitted; changing a draft that is not yours without being a supervisor |
 | `409`  | `REGISTER_SESSION_REQUIRED` / `REGISTER_SESSION_CLOSING` / `NOT_SESSION_CASHIER` / `REGISTER_SESSION_ALREADY_OPEN` / `REGISTER_SESSION_NOT_OPEN` / `REGISTER_SESSION_NOT_CLOSED` / `REGISTER_CLOSE_NOT_PENDING` / `REGISTER_CODE_TAKEN` / `REGISTER_HAS_ACTIVE_SESSION` / `REGISTER_INACTIVE` / `UNKNOWN_CASHIER` / `SAME_CASHIER` | Registers and cash-up (#284): the shift's state refuses the action (no open session for a POS sale, a session being counted, another cashier's drawer, a second open session on a register, a movement/close on a non-open session, a correction on a non-closed one, a decision with nothing pending, a duplicate register code, deactivating a register that has a live session, a handover to an unknown/inactive user or to the current cashier) |
 | `409`  | `ORDER_NOT_PAYABLE` / `ORDER_NOT_CANCELLABLE`                                                 | The order's current status does not legally allow the requested action                                                                                |
 | `404`  | `NOT_FOUND`                                                                                   | Unknown resource, or — on the storefront API — a neutral refusal covering "unknown order", "wrong phone", and "belongs to another tenant" identically |
@@ -422,3 +449,15 @@ The build credential's permission set is seeded by `tools/seed-borneojek-mart.ts
 ## Not built
 
 RajaOngkir courier rates are **done** ([issue #107](https://github.com/ahliweb/awcms-one/issues/107), D4 — schema, provider port + adapters, cached rates, `cart/quote`'s `destination`, order-creation validation, the admin courier settings section; see "Courier rates" above and [`docs/cms.md`](cms.md)). The storefront side is done too ([issue #109](https://github.com/ahliweb/awcms-one/issues/109)): `apps/storefront` calls `apps/cms`'s real endpoints now, no longer the stub fixture. The Midtrans Snap payment gateway is now **fully done** ([issue #110](https://github.com/ahliweb/awcms-one/issues/110) D2/D3 session half — schema, provider port + adapters, `createGatewaySession`'s two-transaction/idempotent shape, `cart/quote`'s `payment.method: "gateway"`, the storefront session-creation route, owner webhook-endpoint tokens, the admin gateway/webhook settings section; [issue #113](https://github.com/ahliweb/awcms-one/issues/113) webhook intake + `markOrderPaidBySystem` + `commerce:payments:reconcile` + the amount guard — see "Payment gateway" above and [`docs/cms.md`](cms.md)). The customer inbox is **done** as well ([issue #111](https://github.com/ahliweb/awcms-one/issues/111), D8 — see "Commerce inbox" above). Customer campaigns are **done** too ([issue #114](https://github.com/ahliweb/awcms-one/issues/114), D9 — see "Customer campaigns" above). Feature toggles and tiered pricing (D10, ADR-0016 D6's closure) are now **done** too ([issue #118](https://github.com/ahliweb/awcms-one/issues/118) — see [`docs/cms.md`](cms.md)). Sales reports ([issue #117](https://github.com/ahliweb/awcms-one/issues/117), D7) and POS ([issue #116](https://github.com/ahliweb/awcms-one/issues/116), D6 — see "Point of sale" above) are **done** as well, which empties `ROUTE_PARITY_EXEMPTIONS` again and closes every child of [issue #33](https://github.com/ahliweb/awcms-one/issues/33)'s contract ([ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md), issue #106). Customer accounts, login, and every authenticated storefront endpoint ([issue #32](https://github.com/ahliweb/awcms-one/issues/32)) are **done**: the contract ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md), issue #86, the "Customer accounts" table above) is fully implemented — OTP login/registration, `me`, `logout` ([issue #89](https://github.com/ahliweb/awcms-one/issues/89)), addresses/wishlist/order-history/review ([issue #91](https://github.com/ahliweb/awcms-one/issues/91)), and the affiliate program, both the shopper's own bearer-secured surface and the owner's moderation API ([issue #92](https://github.com/ahliweb/awcms-one/issues/92)). WhatsApp OTP/login (ADR-0016 D2's follow-up, ADR-0017 D5) is now also **done** ([issue #108](https://github.com/ahliweb/awcms-one/issues/108), the "WhatsApp outbox" section above) — a login-only channel for an EXISTING account, resolved by phone; registration stays e-mail OTP only, so a genuinely phone-only account (no e-mail at all) remains open, tracked in ADR-0016's own follow-up note. What ADR-0016's D6 explicitly deferred and is still not here: e-mail/phone change on an existing account, and phone verification. Tiered pricing at quote time (ADR-0017 D10's contract) is now **done** — #118, see above. A working payment-proof upload for an anonymous caller (`media_library`'s session flow needs an authenticated `actorTenantUserId`, which no guest checkout caller has).
+
+## Owner API: document delivery (issue #295, epic #281, [ADR-0034](adr/0034-commercial-documents-are-delivered-through-the-existing-outboxes-as-transactional-messages-built-from-immutable-sources.md))
+
+Both owner routes are behind the tenant's `documents` **and** `documentDelivery` feature flags (the latter defaults OFF — `409 FEATURE_DISABLED`, naming `documents` first when both are off) and require a session. The contract is `apps/cms/openapi/modules/commerce.openapi.yaml`.
+
+| Method | Path | Notes |
+| --- | --- | --- |
+| `POST` | `/api/v1/commerce/document-deliveries` | `commerce.document_deliveries.create`; requires `Idempotency-Key`. `{ targetType: document \| quotation_version \| work_order, targetId, version?, channel: email \| whatsapp, locale?: id \| en, recipient?, includeLink?, linkTtlHours? }` → `201` with the delivery (its `outbox.status` is `queued`). A replay of the same key returns the stored delivery and enqueues nothing; a **new key is a re-send** (`resendOfId`). `recipient` (any recipient other than the customer on file) needs `commerce.document_delivery_overrides.create` — `403 ACCESS_DENIED`, checked before the source is read. `includeLink` (documents only) adds an opaque private link, never returned |
+| `GET` | `/api/v1/commerce/document-deliveries?targetType=&targetId=` | `commerce.document_deliveries.read` — the source's history, newest first (at most 50), each entry with the outbox's live `status`, `providerMessageId`, `retryCount`, `lastError`. An unknown or foreign id is an empty list |
+| `GET` | `/api/v1/commerce/storefront/document-links/{token}` | **anonymous**; the token is the credential. The document's print page (`no-store`, `Content-Security-Policy: default-src 'none'`); unknown / malformed / foreign-tenant / feature-off → neutral `404`, expired → `410 LINK_EXPIRED`; per-IP rate limited |
+
+Errors on `POST`: `400 VALIDATION_ERROR` / `IDEMPOTENCY_REQUIRED`; `404` unknown source (the same for another tenant's); `409` `CHANNEL_UNAVAILABLE` (the channel's `EMAIL_ENABLED` / `COMMERCE_WHATSAPP_ENABLED` is off), `RECIPIENT_UNAVAILABLE`, `RECIPIENT_SUPPRESSED` and `TEMPLATE_UNAVAILABLE` (recorded as `not_enqueued`; `details` is the delivery), `SOURCE_NOT_DELIVERABLE` (a cancelled quotation), `DOCUMENT_INTEGRITY_FAILURE`, `IDEMPOTENCY_CONFLICT`, `FEATURE_DISABLED`; `429 DELIVERY_RATE_LIMITED` (five per source per rolling hour, `Retry-After: 3600`). Event: `awcms.commerce.document.delivery_requested`. Audit: `document_delivery.request`, `document_delivery.denied`, `document_delivery.link_opened`, `document_delivery.link_expired`. Three permission keys: `commerce.document_deliveries.{read,create}`, `commerce.document_delivery_overrides.create`.

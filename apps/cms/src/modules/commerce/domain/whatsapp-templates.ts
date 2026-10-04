@@ -17,10 +17,19 @@
  * from anywhere).
  */
 
+import {
+  DOCUMENT_DELIVERY_TEMPLATE_VARIABLES,
+  DOCUMENT_DELIVERY_WHATSAPP_BODY,
+  DOCUMENT_DELIVERY_WHATSAPP_TEMPLATE_KEY
+} from "./document-delivery";
+
 export const WHATSAPP_TEMPLATE_KEYS = [
   "commerce.customer_otp",
   "commerce.order_paid",
-  "commerce.campaign"
+  "commerce.campaign",
+  // Issue #295 (ADR-0034) - transactional delivery of a receipt, invoice,
+  // quotation version or work-order notice (`document-delivery.ts`).
+  DOCUMENT_DELIVERY_WHATSAPP_TEMPLATE_KEY
 ] as const;
 
 export type WhatsappTemplateKey = (typeof WHATSAPP_TEMPLATE_KEYS)[number];
@@ -61,6 +70,12 @@ const WHATSAPP_TEMPLATES: Record<
   "commerce.campaign": {
     variables: ["body", "storeName"],
     body: "{{body}}\n\n{{storeName}}"
+  },
+  // Issue #295 - the variable list and wording are the versioned contract of
+  // `DOCUMENT_DELIVERY_TEMPLATE_VERSION`; change one, bump the other.
+  [DOCUMENT_DELIVERY_WHATSAPP_TEMPLATE_KEY]: {
+    variables: DOCUMENT_DELIVERY_TEMPLATE_VARIABLES,
+    body: DOCUMENT_DELIVERY_WHATSAPP_BODY
   }
 };
 

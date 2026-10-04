@@ -763,7 +763,18 @@ export const RETIRED_TENANT_TABLE_PRIVILEGES: Record<string, string[]> = {
   awcms_commerce_returns: ["SELECT", "INSERT", "UPDATE"],
   awcms_commerce_return_lines: ["SELECT", "INSERT"],
   awcms_commerce_refunds: ["SELECT", "INSERT", "UPDATE"],
-  awcms_commerce_refund_compensations: ["SELECT", "INSERT"]
+  awcms_commerce_refund_compensations: ["SELECT", "INSERT"],
+  // Issue #294 / `sql/990`. The expense tables - NOT retired, written on every
+  // spend. An expense is a fiscal record of money that left the business, so
+  // the role that records one must not be able to erase it: DELETE is revoked
+  // on both. Both keep UPDATE - a category is renamed/deactivated, an expense
+  // moves through its status machine (draft -> pending -> posted -> reversed),
+  // frozen by sql/990's guard trigger rather than by privilege.
+  awcms_commerce_expense_categories: ["SELECT", "INSERT", "UPDATE"],
+  awcms_commerce_expenses: ["SELECT", "INSERT", "UPDATE"],
+  // Issue #295 / `sql/965`. Append-only delivery requests: written once by the
+  // sender role, never rewritten (trigger) and never deleted by it.
+  awcms_commerce_document_deliveries: ["SELECT", "INSERT"]
 };
 
 type RlsRow = {
@@ -1654,6 +1665,13 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // with `executionMode: 'generic'` (module.ts) purely so the table answers
   // `data-lifecycle:table-coverage:check` — `deleted_at` stays NULL forever
   // (sql/917's header), so the generic engine's SELECT + DELETE is granted
+  // Issue #294 (`sql/990`/`sql/993`): the two expense tables' `dataLifecycle`
+  // descriptors (`commerce/domain/expense-lifecycle.ts`) are `executionMode:
+  // "generic"` with `hard_delete`; the retention worker is the only role that
+  // may delete an expense row (awcms_app has had DELETE revoked), and both
+  // tables are unreachable by construction (`deleted_at` is never set).
+  awcms_commerce_expense_categories: ["SELECT", "DELETE"],
+  awcms_commerce_expenses: ["SELECT", "DELETE"],
   // but never actually matches a row in practice.
   awcms_commerce_customer_accounts: ["SELECT", "DELETE"],
   // Issue #267 (IRMbyDUS, sql/936/937): same shape as
@@ -1669,6 +1687,9 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // retention worker is the ONLY role that may delete a ledger row (awcms_app
   // has had DELETE revoked), and only past that ceiling.
   awcms_commerce_payment_allocations: ["SELECT", "DELETE"],
+  // Issue #295 (`sql/967`): the delivery-request table's generic hard_delete
+  // descriptor, executed by the retention worker only.
+  awcms_commerce_document_deliveries: ["SELECT", "DELETE"],
   // Issue #284 (`sql/970`/`sql/973`): the six POS register tables'
   // `dataLifecycle` descriptors (`commerce/domain/register-lifecycle.ts`) are
   // `executionMode: "generic"` with `hard_delete`; the retention worker is the

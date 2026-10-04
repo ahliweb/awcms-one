@@ -174,6 +174,17 @@ export const COMMERCE_WORK_ORDER_STATUS_CHANGED_EVENT_TYPE =
   "awcms.commerce.work_order.status_changed";
 export const COMMERCE_DOCUMENT_ISSUED_EVENT_TYPE =
   "awcms.commerce.document.issued";
+/**
+ * Issue #295 (ADR-0034): a delivery of a commercial document was REQUESTED -
+ * handed to the e-mail or WhatsApp outbox, or refused at the hand-off (a
+ * suppressed address). It says nothing about the provider's outcome, which
+ * lives in the outbox. The payload carries ids, the document number, the
+ * channel and the hand-off status - never a recipient or message content.
+ */
+export const COMMERCE_DOCUMENT_DELIVERY_REQUESTED_EVENT_TYPE =
+  "awcms.commerce.document.delivery_requested";
+export const COMMERCE_DOCUMENT_DELIVERY_AGGREGATE_TYPE =
+  "commerce.document_delivery";
 
 export const COMMERCE_QUOTATION_AGGREGATE_TYPE = "commerce.quotation";
 export const COMMERCE_WORK_ORDER_AGGREGATE_TYPE = "commerce.work_order";
@@ -197,7 +208,23 @@ export const COMMERCE_LOYALTY_ENTRY_RECORDED_EVENT_TYPE =
 export const COMMERCE_LOYALTY_ACCOUNT_AGGREGATE_TYPE =
   "commerce.loyalty_account";
 
+/**
+ * Expense events (Issue #294, ADR-0031). Both ride on the EXPENSE aggregate
+ * (`commerce.expense`, aggregate id = the expense id). `posted` fires once, only
+ * when an expense actually reaches `posted` (a pending submission or a
+ * rejection does not); `reversed` fires once. Payloads carry ids, the category
+ * id, the tender, the amount and the register session / movement ids - never
+ * the free-text description, payee or reason. Registered in
+ * `domain-event-runtime/domain/event-type-registry.ts` and
+ * `asyncapi/awcms-domain-events.asyncapi.yaml` in the same change.
+ */
+export const COMMERCE_EXPENSE_POSTED_EVENT_TYPE =
+  "awcms.commerce.expense.posted";
+export const COMMERCE_EXPENSE_REVERSED_EVENT_TYPE =
+  "awcms.commerce.expense.reversed";
+
 export const COMMERCE_ORDER_AGGREGATE_TYPE = "commerce.order";
+export const COMMERCE_EXPENSE_AGGREGATE_TYPE = "commerce.expense";
 export const COMMERCE_STORED_VALUE_ACCOUNT_AGGREGATE_TYPE =
   "commerce.stored_value_account";
 export const COMMERCE_REGISTER_SESSION_AGGREGATE_TYPE =

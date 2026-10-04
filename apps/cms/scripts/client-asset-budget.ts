@@ -1384,16 +1384,30 @@ export const READER_BUDGET_BYTES = 24_000;
  * "Final" figures above.
  */
 /*
- * **Raised to 387,500 B for Issue #287** (returns, refunds and exchanges,
- * ADR-0033) - one panel, MEASURED 387,344 B on the build merged with main
- * (up from 381,590 B): the order detail's returns panel and wizard script
- * (`commerce-returns-client.ts`: the three-step wizard, the review step, the
- * provider-refund action; every string a `data-*` attribute, the
- * confirm dialog and the reason panel reused rather than re-implemented), the
- * panel's few CSS rules, and ~170 new catalogue entries (the compiled
- * Indonesian catalogue ships with every page). A measurement, not a sum.
+ * **Final: 386,000 B when awcms-one#294 (petty cash and expenses, ADR-0031)
+ * was merged onto main after #286 and #288** — MEASURED 385,852 B on the
+ * merged build: the expenses screen (category/expense forms, the post /
+ * approve / reverse actions, the receipt attach field and the CSV export
+ * link) on top of 381,590 B; a measurement, not a sum.
  */
-export const APP_BUDGET_BYTES = 387_500;
+/*
+ * **Final: 391,100 B when awcms-one#295 (document delivery, ADR-0034) was
+ * merged onto main after #286, #288 and #294** — MEASURED 390,951 B on the
+ * merged build: the Deliver dialog and its client module on the documents
+ * screen, on top of 385,852 B; a measurement, not a sum.
+ */
+/*
+ * **Final: 396,800 B when awcms-one#287 (returns, refunds and exchanges,
+ * ADR-0033) was merged onto main after #286, #288, #294 and #295** — MEASURED
+ * 396,705 B on the merged build: the order detail's returns panel and wizard
+ * script (`commerce-returns-client.ts`: the three-step wizard, the review
+ * step, the provider-refund action; every string a `data-*` attribute, the
+ * confirm dialog and the reason panel reused rather than re-implemented), the
+ * panel's few CSS rules and ~170 new catalogue entries (the compiled
+ * Indonesian catalogue ships with every page), on top of 390,951 B; a
+ * measurement, not a sum.
+ */
+export const APP_BUDGET_BYTES = 396_800;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

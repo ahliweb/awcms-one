@@ -9630,6 +9630,296 @@ msgstr[1] ""
 msgid "Quotations, work orders and documents"
 msgstr ""
 
+msgid "Posted"
+msgstr ""
+
+msgid "QRIS (manual)"
+msgstr ""
+
+msgid "Bank transfer (manual)"
+msgstr ""
+
+msgid "Expenses"
+msgstr ""
+
+msgid "Record petty cash and operating expenses, approve the larger ones, and see them reflected in the drawer's cash-up."
+msgstr ""
+
+msgid "You do not have permission to view expenses."
+msgstr ""
+
+msgid "Expenses could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Expenses are turned off for this store."
+msgstr ""
+
+msgid "Could not record the expense. Please try again."
+msgstr ""
+
+msgid "The amount must be greater than zero, like 25000 or 25000.50."
+msgstr ""
+
+msgid "Choose the date the expense happened."
+msgstr ""
+
+msgid "An expense paid from the drawer must be paid in cash."
+msgstr ""
+
+msgid "That category is deactivated."
+msgstr ""
+
+msgid "The drawer session is not open, so it cannot take this expense."
+msgstr ""
+
+msgid "There is no open session on this register to take the cash back."
+msgstr ""
+
+msgid "Only the person who created this draft, or a supervisor, can change it."
+msgstr ""
+
+msgid "An expense cannot be approved by the person who created or submitted it."
+msgstr ""
+
+msgid "Only a draft can be changed."
+msgstr ""
+
+msgid "Enter the receipt's media object ID (a UUID)."
+msgstr ""
+
+msgid "A receipt must be a verified private file that you uploaded."
+msgstr ""
+
+msgid "That file is already used as a receipt or a protected download."
+msgstr ""
+
+msgid "The receipt could not be opened. Please try again."
+msgstr ""
+
+msgid "Category defined."
+msgstr ""
+
+msgid "A category with that code already exists."
+msgstr ""
+
+msgid "Could not save the category. Please try again."
+msgstr ""
+
+msgid "The threshold must be an amount like 50000 or 50000.50 (zero means every expense needs a second person)."
+msgstr ""
+
+msgid "Expense figures"
+msgstr ""
+
+msgid "Posted this month"
+msgstr ""
+
+msgid "Record an expense"
+msgstr ""
+
+msgid "Define an expense category below before recording an expense."
+msgstr ""
+
+msgid "Paid with"
+msgstr ""
+
+msgid "Paid to (optional)"
+msgstr ""
+
+msgid "Paid from drawer (optional)"
+msgstr ""
+
+msgid "Not from a drawer"
+msgstr ""
+
+msgid "A draft changes nothing yet. Post it to count it; an expense paid from the drawer then appears in that shift's cash-up."
+msgstr ""
+
+msgid "Filter expenses by status"
+msgstr ""
+
+msgid "Recorded by"
+msgstr ""
+
+msgid "No expenses yet"
+msgstr ""
+
+msgid "Record the first expense above."
+msgstr ""
+
+msgid "Drawer"
+msgstr ""
+
+msgid "Post"
+msgstr ""
+
+msgid "Discard this draft?"
+msgstr ""
+
+msgid "The draft is discarded and cannot be posted. Nothing was counted, so no cash-up changes."
+msgstr ""
+
+msgid "Reject this expense?"
+msgstr ""
+
+msgid "It goes back to a draft with your note, so it can be corrected and submitted again."
+msgstr ""
+
+msgid "Why is it rejected? (required)"
+msgstr ""
+
+msgid "Reverse this expense?"
+msgstr ""
+
+msgid "A compensating entry is added and the original is kept. If it was paid from a drawer, the cash goes back into an open session of that register."
+msgstr ""
+
+msgid "Reverse"
+msgstr ""
+
+msgid "Why is it reversed? (required)"
+msgstr ""
+
+msgid "View receipt"
+msgstr ""
+
+msgid "Attach a private receipt"
+msgstr ""
+
+msgid "Upload the receipt as a private file in the media library first, then enter its media object ID here."
+msgstr ""
+
+msgid "Attach"
+msgstr ""
+
+msgid "Receipt media object ID"
+msgstr ""
+
+msgid "Attach receipt"
+msgstr ""
+
+msgid "Older expenses"
+msgstr ""
+
+msgid "Export expenses"
+msgstr ""
+
+msgid "At most 366 days and 10,000 rows per file."
+msgstr ""
+
+msgid "Expense categories"
+msgstr ""
+
+msgid "Define category"
+msgstr ""
+
+msgid "Define the first category above."
+msgstr ""
+
+msgid "Deactivate this category?"
+msgstr ""
+
+msgid "A deactivated category accepts no new expense. Existing expenses and reports are kept."
+msgstr ""
+
+msgid "Expense approval threshold"
+msgstr ""
+
+msgid "An expense above this amount needs a second person: someone who can approve expenses and did not create or submit it. Zero means every expense does."
+msgstr ""
+
+msgid "{count} expense"
+msgid_plural "{count} expenses"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Petty cash and expenses"
+msgstr ""
+
+msgid "A cancelled quotation cannot be sent."
+msgstr ""
+
+msgid "{count} failed attempts"
+msgstr ""
+
+msgid "Deliver"
+msgstr ""
+
+msgid "Deliver {number}"
+msgstr ""
+
+msgid "Delivery history"
+msgstr ""
+
+msgid "Include a private link to the print view (expires in {hours} hours)"
+msgstr ""
+
+msgid "Message language"
+msgstr ""
+
+msgid "No message template is available; nothing was sent."
+msgstr ""
+
+msgid "Nothing has been sent yet."
+msgstr ""
+
+msgid "Not sent"
+msgstr ""
+
+msgid "Other recipient"
+msgstr ""
+
+msgid "Private link until {date}"
+msgstr ""
+
+msgid "Queued for delivery to {recipient}."
+msgstr ""
+
+msgid "Recipient"
+msgstr ""
+
+msgid "Re-sent"
+msgstr ""
+
+msgid "Send to a different recipient (optional)"
+msgstr ""
+
+msgid "That address has asked not to receive e-mail from this store; nothing was sent."
+msgstr ""
+
+msgid "The delivery history could not be loaded."
+msgstr ""
+
+msgid "The recipient is not valid for this channel."
+msgstr ""
+
+msgid "There is no usable e-mail address or phone number on file. Enter a recipient."
+msgstr ""
+
+msgid "The stored document no longer matches its checksum and cannot be sent."
+msgstr ""
+
+msgid "This delivery channel is not enabled on this deployment."
+msgstr ""
+
+msgid "This is a transactional message about the customer's own purchase, built from the saved copy of the document."
+msgstr ""
+
+msgid "Too many deliveries were requested for this document. Try again later."
+msgstr ""
+
+msgid "Waiting to be sent"
+msgstr ""
+
+msgid "Will retry"
+msgstr ""
+
+msgid "You are not allowed to send to that recipient."
+msgstr ""
+
+msgid "Send documents by e-mail and WhatsApp"
+msgstr ""
+
 msgid "1. What is coming back?"
 msgstr ""
 

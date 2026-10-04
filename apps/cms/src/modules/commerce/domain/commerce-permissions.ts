@@ -625,3 +625,89 @@ export const COMMERCE_REFUND_PERMISSIONS = {
 export const COMMERCE_REFUND_OFFLINE_PERMISSIONS = {
   approve: "commerce.refunds_offline.approve"
 } as const;
+
+/**
+ * Commerce-local petty cash and operational expenses (Issue #294, ADR-0031).
+ * Five activity codes, twelve permissions, each with its own enforcing route,
+ * and NONE implied by `commerce.register_sessions.update` or
+ * `commerce.pos.create` - being allowed to move cash in a drawer gives no
+ * authority to book, approve or reverse an expense (the resource-split rule
+ * ADR-0025 D9 and ADR-0028 D7 apply). Existing `AccessAction` verbs only; the
+ * upstream-owned union is not widened:
+ *
+ *   - `expense_categories`: `read`, `create`, `update` (rename / deactivate).
+ *   - `expenses`: `read` (list, detail, summary), `create` (a draft),
+ *     `update` (edit or discard a draft), `export` (the CSV - the platform's
+ *     high-risk verb, because the file leaves the system).
+ *   - `expense_postings`: `create` (submit a draft for posting; posts it
+ *     outright within the tenant threshold), `approve` (decide a pending
+ *     expense above it - high-risk, so a tenant may author SoD rules).
+ *   - `expense_reversals`: `approve` (reverse a posted expense with a
+ *     compensating entry; `approve` rather than `create` on purpose - a
+ *     reversal is a supervised amendment, and the high-risk verb is what puts
+ *     it under the action-time SoD check).
+ *   - `expense_receipts`: `read` (mint a short-lived presigned URL for the
+ *     PRIVATE receipt - separate from `expenses.read` because a receipt can
+ *     show a person's name or an account number), `create` (attach one).
+ */
+export const COMMERCE_EXPENSE_CATEGORIES_ACTIVITY_CODE = "expense_categories";
+export const COMMERCE_EXPENSES_ACTIVITY_CODE = "expenses";
+export const COMMERCE_EXPENSE_POSTINGS_ACTIVITY_CODE = "expense_postings";
+export const COMMERCE_EXPENSE_REVERSALS_ACTIVITY_CODE = "expense_reversals";
+export const COMMERCE_EXPENSE_RECEIPTS_ACTIVITY_CODE = "expense_receipts";
+
+export const COMMERCE_EXPENSE_CATEGORY_PERMISSIONS = {
+  read: "commerce.expense_categories.read",
+  create: "commerce.expense_categories.create",
+  update: "commerce.expense_categories.update"
+} as const;
+
+export const COMMERCE_EXPENSE_PERMISSIONS = {
+  read: "commerce.expenses.read",
+  create: "commerce.expenses.create",
+  update: "commerce.expenses.update",
+  export: "commerce.expenses.export"
+} as const;
+
+export const COMMERCE_EXPENSE_POSTING_PERMISSIONS = {
+  /** Submit a draft for posting. */
+  create: "commerce.expense_postings.create",
+  /** Approve/reject an expense above the tenant's threshold. */
+  approve: "commerce.expense_postings.approve"
+} as const;
+
+export const COMMERCE_EXPENSE_REVERSAL_PERMISSIONS = {
+  approve: "commerce.expense_reversals.approve"
+} as const;
+
+export const COMMERCE_EXPENSE_RECEIPT_PERMISSIONS = {
+  /** Mint a short-lived presigned GET for the private receipt. */
+  read: "commerce.expense_receipts.read",
+  /** Attach a private receipt to an expense. */
+  create: "commerce.expense_receipts.create"
+} as const;
+
+/**
+ * Transactional delivery of commercial documents (Issue #295, ADR-0034). Two
+ * activity codes, three permissions, existing `AccessAction` verbs only, none
+ * implied by `commerce.documents.*` / `quotations.*` / `work_orders.*` or by
+ * each other - being allowed to read a receipt is not being allowed to send it:
+ *
+ *   - `document_deliveries`: `read` (a source's delivery history); `create`
+ *     (send or re-send to the customer the source already names).
+ *   - `document_delivery_overrides`: `create` - send to a recipient the source
+ *     does NOT name. The one path by which a customer's purchase history can
+ *     be pointed at an arbitrary address, so it is its own key.
+ */
+export const COMMERCE_DOCUMENT_DELIVERIES_ACTIVITY_CODE = "document_deliveries";
+export const COMMERCE_DOCUMENT_DELIVERY_OVERRIDES_ACTIVITY_CODE =
+  "document_delivery_overrides";
+
+export const COMMERCE_DOCUMENT_DELIVERY_PERMISSIONS = {
+  read: "commerce.document_deliveries.read",
+  create: "commerce.document_deliveries.create"
+} as const;
+
+export const COMMERCE_DOCUMENT_DELIVERY_OVERRIDE_PERMISSIONS = {
+  create: "commerce.document_delivery_overrides.create"
+} as const;

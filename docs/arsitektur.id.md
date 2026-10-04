@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](arsitektur.md)
 
-<!-- i18n-source-hash: sha256:bbef3984a1cddb2b01a0820a4e24fe8daeba6c8f1af7c28f26ba7d595d128ec2 -->
+<!-- i18n-source-hash: sha256:e7d342a268ac481d807c316bcd4d77323207944b45684d29ed70742f71ffc92b -->
 
 # Arsitektur
 
@@ -211,6 +211,10 @@ Empat gagasan menjaga siklus dokumen agar tidak menjadi buku penjualan kedua.
 3. **Savepoint adalah satu-satunya cara membatalkan pekerjaan sambil tetap menjawab dengan sopan.** `defineTenantRoute` melakukan commit kecuali handler melempar error. Konversi harus membuat pesanan, membandingkan totalnya dengan yang ditawarkan, dan membatalkan pesanan bila berbeda *sambil menjawab `409`* — maka ia berjalan di dalam `tx.savepoint(...)` dan mengubah error harga yang dilempar menjadi sebuah hasil. Apa pun yang tidak boleh tersimpan namun tetap harus menghasilkan respons memakai bentuk ini.
 4. **Render adalah fungsi murni dari snapshot tersimpan yang di-hash.** `domain/documents.ts` merender json / text / html dari `awcms_commerce_documents.snapshot`; rute memverifikasi ulang `content_hash` (SHA-256 dari JSON kanonik) sebelum merender dan mengaudit setiap render. Mencetak ulang karena itu tidak dapat mengubah apa pun, dan snapshot yang dirusak ditolak, bukan dicetak. Kanal pengiriman akan mengonsumsi kontrak ini, bukan merender ulang.
 
+## Pengeluaran sampai ke tutup kas hanya sebagai mutasi (issue #294, [ADR-0031](adr/0031-expenses-are-commerce-local-register-linked-petty-cash.md))
+
+Pengeluaran tidak pernah mengedit total tutup kas. Pengeluaran laci yang diposting menambahkan satu mutasi kas keluar `expense` lewat penulis YANG SAMA dengan rute mutasi manual, dan pembalikan menambahkan `correction` kas masuk penyeimbang — sehingga kas yang diharapkan hasil turunan shift (ADR-0028) bergerak karena sebuah mutasi ada, dan pengeluaran tercermin tepat satu kali secara konstruksi: baris pengeluaran dikunci lebih dulu, mutasi membawa `source_key` `expense:<id>:post` / `:reverse`, dan indeks unik parsial mengizinkan paling banyak satu mutasi keluar dan satu masuk per pengeluaran. Urutan kunci selalu baris pengeluaran (`FOR NO KEY UPDATE`) lalu sesi (`FOR SHARE`), tidak pernah sebaliknya, sehingga penutupan (yang mengambil sesi secara eksklusif) dan posting berjalan serial tanpa siklus. Shift yang sudah ditutup tidak pernah ditulis ulang: pembalikan setelah penutupan mendarat di sesi terbuka register yang sama atau ditolak. Modelnya sengaja lokal-commerce — tiga kata benda (kategori, pengeluaran, posting → mutasi) — agar modul keuangan hulu di masa depan dapat menyerapnya lewat adaptor, bukan mewarisi konvensi akuntansi yang tidak pernah dipilihnya.
+
 ## Satu hal lagi yang dilakukan server: memperbaiki halaman yang terbayangi
 
 `apps/storefront/server/penyaji.mjs` tetap server berkas statis tanpa token API, tetapi kini melakukan satu penulisan ulang internal di luar dua lapisan pengalihan: di bawah `build.format: "file"`, halaman landing yang juga punya anak dipancarkan sebagai berkas **di samping** direktori bernama sama (`berita.html` di sebelah `berita/`), dan static handler `@astrojs/node` menulis ulang permintaan berbentuk direktori menjadi `index.html` yang tidak pernah ditulis build ini — sehingga `/berita`, `/video`, dan setiap `/rubrik/{slug}` menjawab 404 di situs yang disajikan padahal semua gerbang build hijau ([issue #75](https://github.com/ahliweb/awcms-one/issues/75)). Server menemukan halaman terbayangi itu sekali saat startup dan menulis ulang `req.url` menjadi `{path}.html` sebagai langkah **terakhir** sebelum adapter, setelah `/healthz`, redirect `/products`, dan kedua lapisan pengalihan lawas, sehingga tidak ada yang dilakukannya bisa membayangi sebuah pengalihan. Lihat [`docs/routing.id.md`](routing.id.md) dan [ADR-0013](adr/0013-rule-based-legacy-redirects-beside-the-row-based-map.md).
@@ -226,3 +230,14 @@ Yang ditangguhkan D6 [ADR-0016](adr/0016-customer-accounts-are-otp-verified-comm
 - [`docs/api.md`](api.id.md), [`docs/cms.md`](cms.id.md) — API commerce (owner dan anonim) dan alur kerja authoring/publishing di baliknya.
 - [`docs/routing.md`](routing.id.md) — peta URL publik lengkap.
 - [`knowledge/curated/monorepo-map.md`](../knowledge/curated/monorepo-map.md) — tata letak workspace, secara struktural, dijaga terpisah dari dokumen ini karena berkas itu menamai STRUKTUR dan dokumen ini menamai KEPUTUSAN di baliknya.
+
+## Pengiriman adalah permintaan di depan outbox yang sudah ada (issue #295, [ADR-0034](adr/0034-commercial-documents-are-delivered-through-the-existing-outboxes-as-transactional-messages-built-from-immutable-sources.md))
+
+Empat gagasan menjaga pengiriman dokumen agar tidak menjadi subsistem notifikasi ketiga.
+
+1. **Antreannya bukan milik kita.** `apps/cms/src/modules/commerce/application/document-delivery-directory.ts` mengantrekan ke `awcms_email_messages` (lewat `enqueueDirectAddressEmail` milik modul `email`) atau `awcms_commerce_whatsapp_messages` (lewat `enqueueWhatsappMessage`) di dalam transaksi pemanggil, dan tidak pernah memanggil penyedia. Kedua dispatcher yang ada yang memanggilnya, belakangan, di luar transaksi apa pun, dengan lease, retry, backoff, dan circuit breaker mereka sendiri.
+2. **Status dibaca, bukan disalin.** Baris permintaan append-only dan hanya menyatakan apakah serah-terima berhasil. Riwayat melakukan join ke outbox pada `correlation_id` bersama (id pengiriman), sehingga kegagalan penyedia muncul pada riwayat dokumen tanpa ada yang meng-update baris, dan keduanya tidak pernah bisa berselisih.
+3. **Pesan adalah fungsi dari sumber tersimpan.** Snapshot dokumen (hash diverifikasi ulang lebih dulu), satu versi penawaran, perintah kerja yang dibaca saat permintaan: kode pengiriman tidak membaca baris pesanan, harga, atau stok hidup, dan tes unit mengunci hal itu. Kirim ulang karena itu mengatakan persis apa yang dikatakan yang pertama, apa pun yang terjadi pada pesanan sejak itu; `content_hash` membuktikannya.
+4. **Idempotensi berada dalam transaksi yang sama dengan pengantrean.** Kunci yang diulang mengembalikan pengiriman tersimpan sebelum apa pun diantrekan; dua permintaan serentak dengan kunci sama berlomba pada insert idempotensi dan yang kalah melempar galat, membatalkan baris outbox-nya sendiri. Kunci baru adalah kirim ulang eksplisit yang menunjuk yang diulangnya.
+
+Satu fakta platform membentuk sisi e-mail: kategori e-mail `derived.*` hanya ada di proses yang mengimpor modul pendaftarnya, dan `bun run email:dispatch` tidak mengimpor kode commerce mana pun — sehingga dispatcher akan membuang semua variabel kategori turunan dan mengirim isi kosong. Pengiriman karena itu memakai kategori ekstensi **dasar** `derived.transactional`, yang terdaftar di mana-mana.

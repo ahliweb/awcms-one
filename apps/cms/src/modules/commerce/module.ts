@@ -1,6 +1,11 @@
 import { defineModule } from "../_shared/module-contract";
 import { DEFAULT_COMMERCE_FEATURES } from "./domain/commerce-features";
 import { DEFAULT_CASH_UP_APPROVAL_THRESHOLD } from "./domain/register";
+import { DEFAULT_EXPENSE_APPROVAL_THRESHOLD } from "./domain/expense";
+import {
+  EXPENSE_DATA_LIFECYCLE,
+  EXPENSE_SUBJECT_DATA
+} from "./domain/expense-lifecycle";
 import {
   REGISTER_DATA_LIFECYCLE,
   REGISTER_SUBJECT_DATA
@@ -58,6 +63,20 @@ import {
   COMMERCE_POS_DUE_PERMISSIONS,
   COMMERCE_PAYMENTS_ACTIVITY_CODE,
   COMMERCE_PAYMENT_PERMISSIONS,
+  COMMERCE_EXPENSE_CATEGORIES_ACTIVITY_CODE,
+  COMMERCE_EXPENSE_CATEGORY_PERMISSIONS,
+  COMMERCE_EXPENSES_ACTIVITY_CODE,
+  COMMERCE_EXPENSE_PERMISSIONS,
+  COMMERCE_EXPENSE_POSTINGS_ACTIVITY_CODE,
+  COMMERCE_EXPENSE_POSTING_PERMISSIONS,
+  COMMERCE_EXPENSE_REVERSALS_ACTIVITY_CODE,
+  COMMERCE_EXPENSE_REVERSAL_PERMISSIONS,
+  COMMERCE_EXPENSE_RECEIPTS_ACTIVITY_CODE,
+  COMMERCE_DOCUMENT_DELIVERIES_ACTIVITY_CODE,
+  COMMERCE_DOCUMENT_DELIVERY_PERMISSIONS,
+  COMMERCE_DOCUMENT_DELIVERY_OVERRIDES_ACTIVITY_CODE,
+  COMMERCE_DOCUMENT_DELIVERY_OVERRIDE_PERMISSIONS,
+  COMMERCE_EXPENSE_RECEIPT_PERMISSIONS,
   COMMERCE_REGISTERS_ACTIVITY_CODE,
   COMMERCE_REGISTER_PERMISSIONS,
   COMMERCE_REGISTER_SESSIONS_ACTIVITY_CODE,
@@ -119,6 +138,9 @@ import {
   COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE,
   COMMERCE_LOYALTY_ENTRY_RECORDED_EVENT_TYPE,
   COMMERCE_STORED_VALUE_ENTRY_RECORDED_EVENT_TYPE,
+  COMMERCE_EXPENSE_POSTED_EVENT_TYPE,
+  COMMERCE_EXPENSE_REVERSED_EVENT_TYPE,
+  COMMERCE_DOCUMENT_DELIVERY_REQUESTED_EVENT_TYPE,
   COMMERCE_RETURN_RECORDED_EVENT_TYPE,
   COMMERCE_REFUND_SETTLED_EVENT_TYPE
 } from "./domain/commerce-events";
@@ -360,6 +382,9 @@ export const commerceModule = defineModule({
       COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE,
       COMMERCE_LOYALTY_ENTRY_RECORDED_EVENT_TYPE,
       COMMERCE_STORED_VALUE_ENTRY_RECORDED_EVENT_TYPE,
+      COMMERCE_EXPENSE_POSTED_EVENT_TYPE,
+      COMMERCE_EXPENSE_REVERSED_EVENT_TYPE,
+      COMMERCE_DOCUMENT_DELIVERY_REQUESTED_EVENT_TYPE,
       COMMERCE_RETURN_RECORDED_EVENT_TYPE,
       COMMERCE_REFUND_SETTLED_EVENT_TYPE
     ]
@@ -544,7 +569,13 @@ export const commerceModule = defineModule({
       cashUp: {
         approvalThreshold: DEFAULT_CASH_UP_APPROVAL_THRESHOLD,
         allowSelfApproval: false
-      }
+      },
+      // Issue #294 (ADR-0031) - the expense amount above which posting needs
+      // a user holding `commerce.expense_postings.approve` who did not create
+      // the expense. `"0.00"` = every expense needs a second person (strict by
+      // default); read defensively by `domain/expense.ts`'s
+      // `resolveExpenseSettings`. Same shallow-merge rule as `cashUp`.
+      expenses: { approvalThreshold: DEFAULT_EXPENSE_APPROVAL_THRESHOLD }
     }
   },
   // Full CRUD screens: two as of Issue #23 (`src/pages/admin/commerce.astro`,
@@ -735,6 +766,16 @@ export const commerceModule = defineModule({
       order: 25,
       requiredPermission: "commerce.stored_value.read",
       requiredFeature: { moduleKey: "commerce", feature: "storedValue" }
+    },
+    // Issue #294 (ADR-0031) - petty cash and operational expenses. Gated on
+    // the expense-read permission and hidden the moment the tenant turns
+    // `features.expenses` off (it defaults OFF).
+    {
+      labelKey: "admin.layout.nav_commerce_expenses",
+      path: "/admin/commerce-expenses",
+      order: 26,
+      requiredPermission: "commerce.expenses.read",
+      requiredFeature: { moduleKey: "commerce", feature: "expenses" }
     }
   ],
   /**
@@ -2467,6 +2508,9 @@ export const commerceModule = defineModule({
     // (+ events) and documents; see `domain/documents-lifecycle.ts`. The
     // numbering sequences deliberately declare none.
     ...DOCUMENT_DATA_LIFECYCLE,
+    // Issue #294 (ADR-0031) - the two expense tables; see
+    // `domain/expense-lifecycle.ts`.
+    ...EXPENSE_DATA_LIFECYCLE,
     // Issue #287 (ADR-0033) - the four returns / refunds tables; see
     // `domain/returns-lifecycle.ts`.
     ...RETURNS_DATA_LIFECYCLE,
@@ -3312,6 +3356,8 @@ export const commerceModule = defineModule({
     ...STORED_VALUE_SUBJECT_DATA,
     // Issue #286 (ADR-0029) - see `domain/documents-lifecycle.ts`.
     ...DOCUMENT_SUBJECT_DATA,
+    // Issue #294 (ADR-0031) - see `domain/expense-lifecycle.ts`.
+    ...EXPENSE_SUBJECT_DATA,
     // Issue #287 (ADR-0033) - see `domain/returns-lifecycle.ts`.
     ...RETURNS_SUBJECT_DATA,
     {
@@ -3856,6 +3902,24 @@ export const commerceModule = defineModule({
         "Issue a numbered receipt or invoice document for a finalized order (Issue #286)"
     },
     {
+      activityCode: COMMERCE_DOCUMENT_DELIVERIES_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "Read the delivery history of a commercial document (Issue #295)"
+    },
+    {
+      activityCode: COMMERCE_DOCUMENT_DELIVERIES_ACTIVITY_CODE,
+      action: "create",
+      description:
+        "Send or re-send a commercial document to the customer on file by e-mail or WhatsApp (Issue #295)"
+    },
+    {
+      activityCode: COMMERCE_DOCUMENT_DELIVERY_OVERRIDES_ACTIVITY_CODE,
+      action: "create",
+      description:
+        "Send a commercial document to a recipient other than the customer on file (Issue #295)"
+    },
+    {
       activityCode: COMMERCE_RETURNS_ACTIVITY_CODE,
       action: "read",
       description:
@@ -3941,6 +4005,69 @@ export const commerceModule = defineModule({
       action: "create",
       description:
         "Redeem a customer's loyalty points at the counter or on their behalf (Issue #289)"
+    },
+    {
+      activityCode: COMMERCE_EXPENSE_CATEGORIES_ACTIVITY_CODE,
+      action: "read",
+      description: "List expense categories (Issue #294)"
+    },
+    {
+      activityCode: COMMERCE_EXPENSE_CATEGORIES_ACTIVITY_CODE,
+      action: "create",
+      description: "Define an expense category (Issue #294)"
+    },
+    {
+      activityCode: COMMERCE_EXPENSE_CATEGORIES_ACTIVITY_CODE,
+      action: "update",
+      description: "Rename or (de)activate an expense category (Issue #294)"
+    },
+    {
+      activityCode: COMMERCE_EXPENSES_ACTIVITY_CODE,
+      action: "read",
+      description: "List and read expenses and the expense summary (Issue #294)"
+    },
+    {
+      activityCode: COMMERCE_EXPENSES_ACTIVITY_CODE,
+      action: "create",
+      description: "Create a draft expense (Issue #294)"
+    },
+    {
+      activityCode: COMMERCE_EXPENSES_ACTIVITY_CODE,
+      action: "update",
+      description: "Edit or discard a draft expense (Issue #294)"
+    },
+    {
+      activityCode: COMMERCE_EXPENSES_ACTIVITY_CODE,
+      action: "export",
+      description: "Export expenses as CSV (Issue #294)"
+    },
+    {
+      activityCode: COMMERCE_EXPENSE_POSTINGS_ACTIVITY_CODE,
+      action: "create",
+      description: "Submit a draft expense for posting (Issue #294)"
+    },
+    {
+      activityCode: COMMERCE_EXPENSE_POSTINGS_ACTIVITY_CODE,
+      action: "approve",
+      description:
+        "Approve or reject an expense above the approval threshold (Issue #294)"
+    },
+    {
+      activityCode: COMMERCE_EXPENSE_REVERSALS_ACTIVITY_CODE,
+      action: "approve",
+      description:
+        "Reverse a posted expense with a compensating entry (Issue #294)"
+    },
+    {
+      activityCode: COMMERCE_EXPENSE_RECEIPTS_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "Issue a short-lived download URL for an expense receipt (Issue #294)"
+    },
+    {
+      activityCode: COMMERCE_EXPENSE_RECEIPTS_ACTIVITY_CODE,
+      action: "create",
+      description: "Attach a private receipt to an expense (Issue #294)"
     }
   ]
 });
@@ -3982,7 +4109,14 @@ export {
   COMMERCE_STORED_VALUE_PROGRAM_PERMISSIONS,
   COMMERCE_STORED_VALUE_PERMISSIONS,
   COMMERCE_STORED_VALUE_ADJUSTMENT_PERMISSIONS,
-  COMMERCE_STORED_VALUE_RECONCILE_PERMISSIONS
+  COMMERCE_STORED_VALUE_RECONCILE_PERMISSIONS,
+  COMMERCE_EXPENSE_CATEGORY_PERMISSIONS,
+  COMMERCE_EXPENSE_PERMISSIONS,
+  COMMERCE_EXPENSE_POSTING_PERMISSIONS,
+  COMMERCE_EXPENSE_REVERSAL_PERMISSIONS,
+  COMMERCE_EXPENSE_RECEIPT_PERMISSIONS,
+  COMMERCE_DOCUMENT_DELIVERY_PERMISSIONS,
+  COMMERCE_DOCUMENT_DELIVERY_OVERRIDE_PERMISSIONS
 };
 export {
   COMMERCE_LOYALTY_PERMISSIONS,

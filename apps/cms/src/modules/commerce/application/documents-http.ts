@@ -26,6 +26,26 @@ export function requireDocumentsFeature(
   return requireCommerceFeatureForOwnerRoute(tx, tenantId, "documents");
 }
 
+/**
+ * `409 FEATURE_DISABLED` unless BOTH the `documents` and the `documentDelivery`
+ * features are on (Issue #295, ADR-0034): there is nothing to deliver without
+ * the first, and sending is an opt-in on top of it. Documents is checked first
+ * so the answer names the more basic missing feature.
+ */
+export async function requireDocumentDeliveryFeature(
+  tx: Bun.SQL,
+  tenantId: string
+): Promise<Response | null> {
+  return (
+    (await requireCommerceFeatureForOwnerRoute(tx, tenantId, "documents")) ??
+    (await requireCommerceFeatureForOwnerRoute(
+      tx,
+      tenantId,
+      "documentDelivery"
+    ))
+  );
+}
+
 /** The neutral 404 for an unknown, malformed or other-tenant id - one answer for all three (no oracle). */
 export function notFoundResponse(what: string): Response {
   return fail(404, "RESOURCE_NOT_FOUND", `${what} not found.`);

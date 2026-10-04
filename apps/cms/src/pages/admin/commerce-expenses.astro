@@ -1,0 +1,1244 @@
+---
+/**
+ * Petty cash and operational expenses (Issue #294, epic #281, ADR-0031) - the
+ * one expenses screen. Panels, each gated on its own permission (the page's
+ * entry permission is `commerce.expenses.read`):
+ *
+ *   1. headline figures - posted this month, expenses awaiting approval;
+ *   2. RECORD an expense (`expenses.create`): category, amount, payment method,
+ *      date, reason, optional payee and - for cash - the open drawer session
+ *      the money came out of (only when the `register` feature is on);
+ *   3. the expenses table (status filter, newest first) with the actions each
+ *      row's STATUS and the viewer's permissions allow: post, discard, approve,
+ *      reject, reverse, attach / view the private receipt;
+ *   4. the CSV export of a date range (`expenses.export`) - a plain GET link,
+ *      no script;
+ *   5. the categories (`expense_categories.*`) and the tenant's approval
+ *      threshold (`module_management.settings.update` - a step up from
+ *      recording an expense, like the "Fitur" toggles).
+ *
+ * The whole screen sits behind the tenant's `expenses` feature (default OFF):
+ * with it off one notice points at the settings screen, matching the routes'
+ * own `409 FEATURE_DISABLED`. Nothing here computes money in the browser - the
+ * form posts the typed amount as a `numeric(14,2)` STRING and the server is the
+ * authority. Which buttons a row shows is a convenience, never a control: every
+ * endpoint re-checks its own permission, the draft's owner, and segregation of
+ * duties.
+ *
+ * Every string the client script shows is rendered by `t()` into a `data-*`
+ * attribute on `#expenses-root` and read from there (the script cannot
+ * translate), the same pattern `commerce-registers.astro` uses. Confirmations go
+ * through the shared `<dialog>` (`CommerceConfirmDialog`), never
+ * the browser's native prompt; a reason or a note is typed into that dialog's note field.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import CommerceConfirmDialog from "../../components/CommerceConfirmDialog.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import { formatCurrency, formatDateTime } from "../../lib/i18n/format";
+import { decodeKeysetCursor } from "../../modules/_shared/keyset-pagination";
+import { fetchCommerceFeatures } from "../../modules/commerce/application/commerce-feature-gate";
+import {
+  listExpenseCategories,
+  type ExpenseCategoryRecord
+} from "../../modules/commerce/application/expense-category-directory";
+import {
+  fetchExpenseApprovalThreshold,
+  fetchExpenseSummary,
+  listExpenses,
+  type ExpenseListPage,
+  type ExpenseSummary
+} from "../../modules/commerce/application/expense-directory";
+import {
+  listRegisterSessions,
+  type RegisterSessionRecord
+} from "../../modules/commerce/application/register-session-directory";
+import { MODULE_SETTINGS_UPDATE_GUARD } from "../../modules/module-management/application/module-settings";
+import {
+  EXPENSE_STATUSES,
+  EXPENSE_TENDER_TYPES,
+  type ExpenseStatus
+} from "../../modules/commerce/domain/expense";
+
+const ssr = Astro.locals.ssrContext!;
+const locale = Astro.locals.locale;
+const { t, tn } = getTranslatorFor(locale);
+
+const TIME_ZONE = "Asia/Jakarta";
+const money = (value: string): string =>
+  formatCurrency(locale, value, "IDR", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+const when = (iso: string | null): string =>
+  iso ? formatDateTime(locale, iso, TIME_ZONE) : "—";
+
+/** This page's own expense status labels and tones (kept local: the shared label module is a hot file). */
+const statusLabel: Record<ExpenseStatus, string> = {
+  draft: t("Draft"),
+  pending_approval: t("Awaiting approval"),
+  posted: t("Posted"),
+  reversed: t("Reversed"),
+  cancelled: t("Discarded")
+};
+const statusTone: Record<ExpenseStatus, string> = {
+  draft: "neutral",
+  pending_approval: "warning",
+  posted: "success",
+  reversed: "info",
+  cancelled: "neutral"
+};
+const tenderLabel: Record<string, string> = {
+  cash: t("Cash"),
+  manual_qris: t("QRIS (manual)"),
+  manual_bank_transfer: t("Bank transfer (manual)")
+};
+
+const statusParam = Astro.url.searchParams.get("status") ?? "";
+const statusFilter: ExpenseStatus | null = (
+  EXPENSE_STATUSES as readonly string[]
+).includes(statusParam)
+  ? (statusParam as ExpenseStatus)
+  : null;
+const cursorParam = Astro.url.searchParams.get("cursor");
+const cursor = cursorParam ? decodeKeysetCursor(cursorParam) : null;
+
+const now = new Date();
+const today = now.toISOString().slice(0, 10);
+const monthStart = `${today.slice(0, 8)}01`;
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "commerce",
+    activityCode: "expenses",
+    action: "read"
+  },
+  load: async ({ tx, can }) => {
+    const features = await fetchCommerceFeatures(tx, ssr.tenantId);
+    if (!features.expenses) {
+      return { expensesEnabled: false as const };
+    }
+    const canReadCategories = await can({
+      moduleKey: "commerce",
+      activityCode: "expense_categories",
+      action: "read"
+    });
+    const canCreateCategory = await can({
+      moduleKey: "commerce",
+      activityCode: "expense_categories",
+      action: "create"
+    });
+    const canUpdateCategory = await can({
+      moduleKey: "commerce",
+      activityCode: "expense_categories",
+      action: "update"
+    });
+    const canCreate = await can({
+      moduleKey: "commerce",
+      activityCode: "expenses",
+      action: "create"
+    });
+    const canUpdate = await can({
+      moduleKey: "commerce",
+      activityCode: "expenses",
+      action: "update"
+    });
+    const canExport = await can({
+      moduleKey: "commerce",
+      activityCode: "expenses",
+      action: "export"
+    });
+    const canPost = await can({
+      moduleKey: "commerce",
+      activityCode: "expense_postings",
+      action: "create"
+    });
+    const canApprove = await can({
+      moduleKey: "commerce",
+      activityCode: "expense_postings",
+      action: "approve"
+    });
+    const canReverse = await can({
+      moduleKey: "commerce",
+      activityCode: "expense_reversals",
+      action: "approve"
+    });
+    const canReadReceipt = await can({
+      moduleKey: "commerce",
+      activityCode: "expense_receipts",
+      action: "read"
+    });
+    const canAttachReceipt = await can({
+      moduleKey: "commerce",
+      activityCode: "expense_receipts",
+      action: "create"
+    });
+    const canReadSessions = features.register
+      ? await can({
+          moduleKey: "commerce",
+          activityCode: "register_sessions",
+          action: "read"
+        })
+      : false;
+    const canManageSettings = await can(MODULE_SETTINGS_UPDATE_GUARD);
+
+    const categories = await listExpenseCategories(tx, ssr.tenantId, {
+      includeInactive: true
+    });
+    const expenses = await listExpenses(tx, ssr.tenantId, cursor, {
+      status: statusFilter ?? undefined
+    });
+    const summary = await fetchExpenseSummary(tx, ssr.tenantId, {
+      from: monthStart,
+      to: today
+    });
+    const openSessions = canReadSessions
+      ? (
+          await listRegisterSessions(tx, ssr.tenantId, null, {
+            status: "open"
+          })
+        ).items
+      : [];
+    return {
+      expensesEnabled: true as const,
+      registerEnabled: features.register,
+      categories,
+      expenses,
+      summary,
+      openSessions,
+      approvalThreshold: await fetchExpenseApprovalThreshold(tx, ssr.tenantId),
+      canReadCategories,
+      canCreateCategory,
+      canUpdateCategory,
+      canCreate,
+      canUpdate,
+      canExport,
+      canPost,
+      canApprove,
+      canReverse,
+      canReadReceipt,
+      canAttachReceipt,
+      canManageSettings
+    };
+  },
+  onError: (error) => {
+    logAdminPageError("admin/commerce-expenses.astro: failed to load", error, {
+      correlationId: Astro.locals.correlationId
+    });
+  }
+});
+
+const allowed = screen.state === "allowed";
+const denied = screen.state === "denied";
+const loadError = screen.state === "error";
+const data = screen.state === "allowed" ? screen.data : null;
+const enabled = data?.expensesEnabled === true;
+const on = data && data.expensesEnabled === true ? data : null;
+const categories: ExpenseCategoryRecord[] = on?.categories ?? [];
+const activeCategories = categories.filter((category) => category.active);
+const expenses: ExpenseListPage | null = on?.expenses ?? null;
+const summary: ExpenseSummary | null = on?.summary ?? null;
+const openSessions: RegisterSessionRecord[] = on?.openSessions ?? [];
+const approvalThreshold = on?.approvalThreshold ?? "0.00";
+const registerEnabled = on?.registerEnabled === true;
+
+function filterHref(status: ExpenseStatus | null): string {
+  return status
+    ? `/admin/commerce-expenses?status=${status}`
+    : "/admin/commerce-expenses";
+}
+function nextHref(next: string): string {
+  const params = new URLSearchParams();
+  if (statusFilter) params.set("status", statusFilter);
+  params.set("cursor", next);
+  return `/admin/commerce-expenses?${params.toString()}`;
+}
+const staffLabel = (id: string | null): string =>
+  id === null ? "—" : id === ssr.tenantUserId ? t("You") : id.slice(0, 8);
+---
+
+<AdminLayout
+  title={t("Expenses")}
+  description={t(
+    "Record petty cash and operating expenses, approve the larger ones, and see them reflected in the drawer's cash-up."
+  )}
+>
+  {denied && (
+    <p class="state-notice fade-in-up" id="expenses-denied" role="status">
+      {t("You do not have permission to view expenses.")}
+    </p>
+  )}
+  {loadError && (
+    <p class="state-notice fade-in-up" id="expenses-error" role="alert">
+      {t("Expenses could not be loaded right now. Please try again later.")}
+    </p>
+  )}
+  {allowed && !enabled && (
+    <p
+      class="state-notice fade-in-up"
+      id="expenses-feature-disabled"
+      role="status"
+    >
+      {t("Expenses are turned off for this store.")}{" "}
+      <a class="quick-link" href="/admin/commerce-settings">
+        {t("Turn them on under Features in the store settings.")}
+      </a>
+    </p>
+  )}
+
+  {on && (
+    <div
+      id="expenses-root"
+      data-msg-create-failed={t(
+        "Could not record the expense. Please try again."
+      )}
+      data-msg-bad-amount={t(
+        "The amount must be greater than zero, like 25000 or 25000.50."
+      )}
+      data-msg-bad-date={t("Choose the date the expense happened.")}
+      data-msg-cash-only={t(
+        "An expense paid from the drawer must be paid in cash."
+      )}
+      data-msg-category-inactive={t("That category is deactivated.")}
+      data-msg-session-not-open={t(
+        "The drawer session is not open, so it cannot take this expense."
+      )}
+      data-msg-session-required={t(
+        "There is no open session on this register to take the cash back."
+      )}
+      data-msg-not-owner={t(
+        "Only the person who created this draft, or a supervisor, can change it."
+      )}
+      data-msg-sod={t(
+        "An expense cannot be approved by the person who created or submitted it."
+      )}
+      data-msg-not-draft={t("Only a draft can be changed.")}
+      data-msg-action-failed={t("That did not work. Please try again.")}
+      data-msg-reason-required={t("A reason is required.")}
+      data-msg-bad-media={t("Enter the receipt's media object ID (a UUID).")}
+      data-msg-media-not-eligible={t(
+        "A receipt must be a verified private file that you uploaded."
+      )}
+      data-msg-media-used={t(
+        "That file is already used as a receipt or a protected download."
+      )}
+      data-msg-receipt-failed={t(
+        "The receipt could not be opened. Please try again."
+      )}
+      data-msg-category-created={t("Category defined.")}
+      data-msg-code-taken={t("A category with that code already exists.")}
+      data-msg-category-failed={t(
+        "Could not save the category. Please try again."
+      )}
+      data-msg-bad-threshold={t(
+        "The threshold must be an amount like 50000 or 50000.50 (zero means every expense needs a second person)."
+      )}
+      data-msg-threshold-saved={t("Threshold saved.")}
+      data-msg-threshold-failed={t(
+        "Could not save the threshold. Please try again."
+      )}
+    >
+      <section
+        class="admin-dashboard-stats fade-in-up"
+        aria-label={t("Expense figures")}
+      >
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Posted this month")}</span>
+          <span class="admin-stat-card-value" id="expenses-stat-posted">
+            {summary ? money(summary.postedTotal) : "—"}
+          </span>
+        </div>
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Awaiting approval")}</span>
+          <span class="admin-stat-card-value" id="expenses-stat-pending">
+            {summary?.pendingApprovalCount ?? 0}
+          </span>
+        </div>
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Drafts")}</span>
+          <span class="admin-stat-card-value" id="expenses-stat-drafts">
+            {summary?.draftCount ?? 0}
+          </span>
+        </div>
+      </section>
+
+      <p
+        id="expenses-action-error"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      />
+
+      {on.canCreate && (
+        <section
+          class="admin-panel fade-in-up"
+          aria-labelledby="expenses-create-heading"
+        >
+          <h2 id="expenses-create-heading">{t("Record an expense")}</h2>
+          <p
+            id="expenses-create-error"
+            class="admin-create-error"
+            role="alert"
+            hidden
+          />
+          {activeCategories.length === 0 ? (
+            <p class="cell-muted" id="expenses-create-none">
+              {t(
+                "Define an expense category below before recording an expense."
+              )}
+            </p>
+          ) : (
+            <form id="expense-create-form" class="admin-create-form">
+              <label for="expense-create-category">
+                {t("Category")}
+                <select id="expense-create-category" name="categoryId" required>
+                  {activeCategories.map((category) => (
+                    <option value={category.id}>
+                      {category.code} · {category.name}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label for="expense-create-amount">
+                {t("Amount")}
+                <input
+                  id="expense-create-amount"
+                  name="amount"
+                  type="text"
+                  inputmode="decimal"
+                  autocomplete="off"
+                  required
+                />
+              </label>
+              <label for="expense-create-tender">
+                {t("Paid with")}
+                <select id="expense-create-tender" name="tenderType" required>
+                  {EXPENSE_TENDER_TYPES.map((tender) => (
+                    <option value={tender}>{tenderLabel[tender]}</option>
+                  ))}
+                </select>
+              </label>
+              <label for="expense-create-date">
+                {t("Date")}
+                <input
+                  id="expense-create-date"
+                  name="occurredOn"
+                  type="date"
+                  value={today}
+                  max={today}
+                  required
+                />
+              </label>
+              <label for="expense-create-description">
+                {t("Reason")}
+                <input
+                  id="expense-create-description"
+                  name="description"
+                  type="text"
+                  maxlength={500}
+                  required
+                />
+              </label>
+              <label for="expense-create-payee">
+                {t("Paid to (optional)")}
+                <input
+                  id="expense-create-payee"
+                  name="payeeName"
+                  type="text"
+                  maxlength={120}
+                  autocomplete="off"
+                />
+              </label>
+              {registerEnabled && (
+                <label for="expense-create-session">
+                  {t("Paid from drawer (optional)")}
+                  <select id="expense-create-session" name="registerSessionId">
+                    <option value="">{t("Not from a drawer")}</option>
+                    {openSessions.map((session) => (
+                      <option value={session.id}>
+                        {session.registerCode} · {session.registerName}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              )}
+              <button
+                type="submit"
+                class="module-toggle"
+                id="expense-create-submit"
+              >
+                {t("Save draft")}
+              </button>
+              <p class="form-hint">
+                {t(
+                  "A draft changes nothing yet. Post it to count it; an expense paid from the drawer then appears in that shift's cash-up."
+                )}
+              </p>
+            </form>
+          )}
+        </section>
+      )}
+
+      <section class="fade-in-up" aria-labelledby="expenses-list-heading">
+        <h2 id="expenses-list-heading">{t("Expenses")}</h2>
+        <nav
+          class="admin-segmented"
+          aria-label={t("Filter expenses by status")}
+        >
+          <a
+            href={filterHref(null)}
+            aria-current={statusFilter === null ? "page" : undefined}
+          >
+            {t("All")}
+          </a>
+          {EXPENSE_STATUSES.map((status) => (
+            <a
+              href={filterHref(status)}
+              aria-current={statusFilter === status ? "page" : undefined}
+            >
+              {statusLabel[status]}
+            </a>
+          ))}
+        </nav>
+        <div class="data-table-scroll">
+          <table class="data-table data-table--stack" id="expenses-table">
+            <caption>
+              {tn(
+                "{count} expense",
+                "{count} expenses",
+                expenses?.items.length ?? 0,
+                {
+                  count: expenses?.items.length ?? 0
+                }
+              )}
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">{t("Date")}</th>
+                <th scope="col">{t("Category")}</th>
+                <th scope="col">{t("Reason")}</th>
+                <th scope="col">{t("Amount")}</th>
+                <th scope="col">{t("Paid with")}</th>
+                <th scope="col">{t("Status")}</th>
+                <th scope="col">{t("Recorded by")}</th>
+                <th scope="col">{t("Actions")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {(expenses?.items.length ?? 0) === 0 ? (
+                <tr>
+                  <td class="data-table-empty" colspan={8}>
+                    <div class="empty-state">
+                      <span class="empty-state-icon" aria-hidden="true">
+                        ◇
+                      </span>
+                      <span class="empty-state-title">
+                        {t("No expenses yet")}
+                      </span>
+                      <span class="empty-state-text">
+                        {t("Record the first expense above.")}
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              ) : (
+                (expenses?.items ?? []).map((expense) => {
+                  const mine =
+                    expense.createdByTenantUserId === ssr.tenantUserId;
+                  const iSubmitted =
+                    expense.submittedByTenantUserId === ssr.tenantUserId;
+                  const canTouchDraft =
+                    expense.status === "draft" && (mine || on.canApprove);
+                  return (
+                    <tr data-expense-row={expense.id}>
+                      <td data-label={t("Date")}>{expense.occurredOn}</td>
+                      <td data-label={t("Category")}>
+                        {expense.categoryCode} · {expense.categoryName}
+                      </td>
+                      <td data-label={t("Reason")}>
+                        {expense.description}
+                        {expense.payeeName && (
+                          <span class="cell-muted"> — {expense.payeeName}</span>
+                        )}
+                        {expense.decisionNote && expense.status === "draft" && (
+                          <span class="cell-muted">
+                            {" "}
+                            ({t("Rejected")}: {expense.decisionNote})
+                          </span>
+                        )}
+                      </td>
+                      <td data-label={t("Amount")}>{money(expense.amount)}</td>
+                      <td data-label={t("Paid with")}>
+                        {tenderLabel[expense.tenderType]}
+                        {expense.registerSessionId && (
+                          <span class="cell-muted"> · {t("Drawer")}</span>
+                        )}
+                      </td>
+                      <td data-label={t("Status")}>
+                        <span
+                          class="admin-status-pill"
+                          data-tone={statusTone[expense.status]}
+                        >
+                          <span
+                            class="admin-status-pill-dot"
+                            aria-hidden="true"
+                          />
+                          {statusLabel[expense.status]}
+                        </span>
+                      </td>
+                      <td data-label={t("Recorded by")}>
+                        {staffLabel(expense.createdByTenantUserId)}
+                        <span class="cell-muted">
+                          {" "}
+                          · {when(expense.createdAt)}
+                        </span>
+                      </td>
+                      <td data-label={t("Actions")}>
+                        <span class="admin-row-actions">
+                          {expense.status === "draft" &&
+                            on.canPost &&
+                            canTouchDraft && (
+                              <button
+                                type="button"
+                                class="module-toggle expense-action"
+                                data-action="post"
+                                data-expense-id={expense.id}
+                              >
+                                {t("Post")}
+                              </button>
+                            )}
+                          {expense.status === "draft" &&
+                            on.canUpdate &&
+                            canTouchDraft && (
+                              <button
+                                type="button"
+                                class="module-toggle expense-action"
+                                data-action="cancel"
+                                data-expense-id={expense.id}
+                                data-confirm-title={t("Discard this draft?")}
+                                data-confirm-message={t(
+                                  "The draft is discarded and cannot be posted. Nothing was counted, so no cash-up changes."
+                                )}
+                                data-confirm-label={t("Discard")}
+                                data-confirm-danger="true"
+                              >
+                                {t("Discard")}
+                              </button>
+                            )}
+                          {expense.status === "pending_approval" &&
+                            on.canApprove &&
+                            !mine &&
+                            !iSubmitted && (
+                              <button
+                                type="button"
+                                class="module-toggle expense-action"
+                                data-action="approve"
+                                data-expense-id={expense.id}
+                              >
+                                {t("Approve")}
+                              </button>
+                            )}
+                          {expense.status === "pending_approval" &&
+                            on.canApprove && (
+                              <button
+                                type="button"
+                                class="module-toggle expense-action"
+                                data-action="reject"
+                                data-expense-id={expense.id}
+                                data-confirm-title={t("Reject this expense?")}
+                                data-confirm-message={t(
+                                  "It goes back to a draft with your note, so it can be corrected and submitted again."
+                                )}
+                                data-confirm-label={t("Reject")}
+                                data-confirm-danger="true"
+                                data-confirm-note-label={t(
+                                  "Why is it rejected? (required)"
+                                )}
+                                data-confirm-note-max-length="500"
+                              >
+                                {t("Reject")}
+                              </button>
+                            )}
+                          {expense.status === "posted" && on.canReverse && (
+                            <button
+                              type="button"
+                              class="module-toggle expense-action"
+                              data-action="reverse"
+                              data-expense-id={expense.id}
+                              data-confirm-title={t("Reverse this expense?")}
+                              data-confirm-message={t(
+                                "A compensating entry is added and the original is kept. If it was paid from a drawer, the cash goes back into an open session of that register."
+                              )}
+                              data-confirm-label={t("Reverse")}
+                              data-confirm-danger="true"
+                              data-confirm-note-label={t(
+                                "Why is it reversed? (required)"
+                              )}
+                              data-confirm-note-max-length="500"
+                            >
+                              {t("Reverse")}
+                            </button>
+                          )}
+                          {expense.hasReceipt && on.canReadReceipt && (
+                            <button
+                              type="button"
+                              class="module-toggle expense-action"
+                              data-action="receipt-view"
+                              data-expense-id={expense.id}
+                            >
+                              {t("View receipt")}
+                            </button>
+                          )}
+                          {!expense.hasReceipt &&
+                            on.canAttachReceipt &&
+                            (expense.status === "posted" ||
+                              expense.status === "reversed" ||
+                              canTouchDraft) && (
+                              <button
+                                type="button"
+                                class="module-toggle expense-action"
+                                data-action="receipt-attach"
+                                data-expense-id={expense.id}
+                                data-confirm-title={t(
+                                  "Attach a private receipt"
+                                )}
+                                data-confirm-message={t(
+                                  "Upload the receipt as a private file in the media library first, then enter its media object ID here."
+                                )}
+                                data-confirm-label={t("Attach")}
+                                data-confirm-note-label={t(
+                                  "Receipt media object ID"
+                                )}
+                                data-confirm-note-max-length="36"
+                              >
+                                {t("Attach receipt")}
+                              </button>
+                            )}
+                        </span>
+                      </td>
+                    </tr>
+                  );
+                })
+              )}
+            </tbody>
+          </table>
+        </div>
+        {expenses?.nextCursor && (
+          <p>
+            <a class="quick-link" href={nextHref(expenses.nextCursor)}>
+              {t("Older expenses")}
+            </a>
+          </p>
+        )}
+      </section>
+
+      {on.canExport && (
+        <section
+          class="admin-panel fade-in-up"
+          aria-labelledby="expenses-export-heading"
+        >
+          <h2 id="expenses-export-heading">{t("Export expenses")}</h2>
+          <form
+            id="expense-export-form"
+            class="admin-create-form"
+            method="get"
+            action="/api/v1/commerce/expenses/export.csv"
+          >
+            <label for="expense-export-from">
+              {t("From")}
+              <input
+                id="expense-export-from"
+                name="from"
+                type="date"
+                value={monthStart}
+                required
+              />
+            </label>
+            <label for="expense-export-to">
+              {t("To")}
+              <input
+                id="expense-export-to"
+                name="to"
+                type="date"
+                value={today}
+                required
+              />
+            </label>
+            <button
+              type="submit"
+              class="module-toggle"
+              id="expense-export-submit"
+            >
+              {t("Download CSV")}
+            </button>
+            <p class="form-hint">
+              {t("At most 366 days and 10,000 rows per file.")}
+            </p>
+          </form>
+        </section>
+      )}
+
+      {on.canReadCategories && (
+        <section
+          class="admin-panel fade-in-up"
+          aria-labelledby="expenses-categories-heading"
+        >
+          <h2 id="expenses-categories-heading">{t("Expense categories")}</h2>
+          <p
+            id="expenses-categories-error"
+            class="admin-create-error"
+            role="alert"
+            hidden
+          />
+          {on.canCreateCategory && (
+            <form id="expense-category-form" class="admin-create-form">
+              <label for="expense-category-code">
+                {t("Code")}
+                <input
+                  id="expense-category-code"
+                  name="code"
+                  type="text"
+                  maxlength={40}
+                  required
+                  autocomplete="off"
+                />
+              </label>
+              <label for="expense-category-name">
+                {t("Name")}
+                <input
+                  id="expense-category-name"
+                  name="name"
+                  type="text"
+                  maxlength={120}
+                  required
+                />
+              </label>
+              <button
+                type="submit"
+                class="module-toggle"
+                id="expense-category-submit"
+              >
+                {t("Define category")}
+              </button>
+            </form>
+          )}
+          <div class="data-table-scroll">
+            <table
+              class="data-table data-table--stack"
+              id="expense-categories-table"
+            >
+              <caption>
+                {tn(
+                  "{count} category",
+                  "{count} categories",
+                  categories.length,
+                  {
+                    count: categories.length
+                  }
+                )}
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">{t("Code")}</th>
+                  <th scope="col">{t("Name")}</th>
+                  <th scope="col">{t("Status")}</th>
+                  <th scope="col">{t("Actions")}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {categories.length === 0 ? (
+                  <tr>
+                    <td class="data-table-empty" colspan={4}>
+                      <div class="empty-state">
+                        <span class="empty-state-icon" aria-hidden="true">
+                          ◇
+                        </span>
+                        <span class="empty-state-title">
+                          {t("No categories yet")}
+                        </span>
+                        <span class="empty-state-text">
+                          {t("Define the first category above.")}
+                        </span>
+                      </div>
+                    </td>
+                  </tr>
+                ) : (
+                  categories.map((category) => (
+                    <tr data-category-row={category.id}>
+                      <td data-label={t("Code")}>{category.code}</td>
+                      <td data-label={t("Name")}>{category.name}</td>
+                      <td data-label={t("Status")}>
+                        <span
+                          class="admin-status-pill"
+                          data-tone={category.active ? "success" : "neutral"}
+                        >
+                          <span
+                            class="admin-status-pill-dot"
+                            aria-hidden="true"
+                          />
+                          {category.active ? t("Active") : t("Inactive")}
+                        </span>
+                      </td>
+                      <td data-label={t("Actions")}>
+                        {on.canUpdateCategory ? (
+                          <button
+                            type="button"
+                            class="module-toggle expense-category-toggle"
+                            data-category-id={category.id}
+                            data-next-active={
+                              category.active ? "false" : "true"
+                            }
+                            data-confirm-title={t("Deactivate this category?")}
+                            data-confirm-message={t(
+                              "A deactivated category accepts no new expense. Existing expenses and reports are kept."
+                            )}
+                            data-confirm-label={t("Deactivate")}
+                            data-confirm-danger="true"
+                            data-needs-confirm={
+                              category.active ? "true" : "false"
+                            }
+                          >
+                            {category.active
+                              ? t("Deactivate")
+                              : t("Reactivate")}
+                          </button>
+                        ) : (
+                          <span class="cell-muted">—</span>
+                        )}
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      )}
+
+      {on.canManageSettings && (
+        <section
+          class="admin-panel fade-in-up"
+          aria-labelledby="expenses-threshold-heading"
+        >
+          <h2 id="expenses-threshold-heading">
+            {t("Expense approval threshold")}
+          </h2>
+          <p class="form-hint">
+            {t(
+              "An expense above this amount needs a second person: someone who can approve expenses and did not create or submit it. Zero means every expense does."
+            )}
+          </p>
+          <p
+            id="expenses-threshold-error"
+            class="admin-create-error"
+            role="alert"
+            hidden
+          />
+          <p
+            id="expenses-threshold-success"
+            class="state-notice"
+            role="status"
+            hidden
+          />
+          <form id="expense-threshold-form" class="admin-create-form">
+            <label for="expense-threshold-input">
+              {t("Approval threshold")}
+              <input
+                id="expense-threshold-input"
+                name="approvalThreshold"
+                type="text"
+                inputmode="decimal"
+                autocomplete="off"
+                required
+                value={approvalThreshold}
+              />
+            </label>
+            <button
+              type="submit"
+              class="module-toggle"
+              id="expense-threshold-submit"
+            >
+              {t("Save threshold")}
+            </button>
+          </form>
+        </section>
+      )}
+    </div>
+  )}
+  <CommerceConfirmDialog locale={Astro.locals.locale} />
+</AdminLayout>
+
+<script>
+  import {
+    field,
+    messageBox,
+    onAction,
+    onSubmit,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+  import {
+    confirmFromTrigger,
+    confirmFromTriggerWithNote
+  } from "../../lib/ui/commerce-confirm-dialog-client";
+
+  const root = document.getElementById("expenses-root");
+  const msg = (key: string): string => root?.dataset[key] ?? "";
+
+  const MONEY = /^\d{1,12}(\.\d{1,2})?$/;
+  const UUID =
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+  const actionError = messageBox("expenses-action-error");
+  const createError = messageBox("expenses-create-error");
+  const categoriesError = messageBox("expenses-categories-error");
+  const thresholdError = messageBox("expenses-threshold-error");
+
+  const idempotent = (): Record<string, string> => ({
+    "Idempotency-Key": crypto.randomUUID()
+  });
+
+  /** One place maps an API error code to the sentence the operator sees. */
+  function failureMessage(errorCode: string | null): string {
+    switch (errorCode) {
+      case "EXPENSE_CATEGORY_INACTIVE":
+        return msg("msgCategoryInactive");
+      case "REGISTER_SESSION_NOT_OPEN":
+        return msg("msgSessionNotOpen");
+      case "REGISTER_SESSION_REQUIRED":
+        return msg("msgSessionRequired");
+      case "NOT_EXPENSE_OWNER":
+        return msg("msgNotOwner");
+      case "SEGREGATION_OF_DUTIES":
+        return msg("msgSod");
+      case "EXPENSE_NOT_DRAFT":
+        return msg("msgNotDraft");
+      case "EXPENSE_RECEIPT_NOT_ELIGIBLE":
+        return msg("msgMediaNotEligible");
+      case "EXPENSE_RECEIPT_ALREADY_USED":
+        return msg("msgMediaUsed");
+      default:
+        return msg("msgActionFailed");
+    }
+  }
+
+  onSubmit("expense-create-form", ({ data, submit }) => {
+    createError.clear();
+    const amount = field(data, "amount").trim();
+    if (!MONEY.test(amount) || Number(amount) === 0) {
+      createError.show(msg("msgBadAmount"));
+      return Promise.resolve();
+    }
+    const occurredOn = field(data, "occurredOn");
+    if (occurredOn === "") {
+      createError.show(msg("msgBadDate"));
+      return Promise.resolve();
+    }
+    const tenderType = field(data, "tenderType");
+    const sessionId = field(data, "registerSessionId");
+    if (sessionId !== "" && tenderType !== "cash") {
+      createError.show(msg("msgCashOnly"));
+      return Promise.resolve();
+    }
+    const payee = field(data, "payeeName").trim();
+    return (async () => {
+      if (submit) submit.disabled = true;
+      const result = await sendJson(
+        "POST",
+        "/api/v1/commerce/expenses",
+        {
+          categoryId: field(data, "categoryId"),
+          amount,
+          tenderType,
+          occurredOn,
+          description: field(data, "description").trim(),
+          payeeName: payee === "" ? null : payee,
+          registerSessionId: sessionId === "" ? null : sessionId
+        },
+        idempotent()
+      );
+      if (result.ok) {
+        window.location.reload();
+        return;
+      }
+      if (submit) submit.disabled = false;
+      createError.show(
+        result.errorCode === null || result.errorCode === "VALIDATION_ERROR"
+          ? msg("msgCreateFailed")
+          : failureMessage(result.errorCode)
+      );
+    })();
+  });
+
+  onAction(".expense-action", async (button) => {
+    const id = button.dataset.expenseId;
+    const action = button.dataset.action;
+    if (!id || !action) return;
+    actionError.clear();
+    const base = `/api/v1/commerce/expenses/${id}`;
+
+    let request: () => Promise<{ ok: boolean; errorCode: string | null }>;
+
+    if (action === "post") {
+      request = () => sendJson("POST", `${base}/post`, undefined, idempotent());
+    } else if (action === "approve") {
+      request = () =>
+        sendJson(
+          "POST",
+          `${base}/decision`,
+          { decision: "approve" },
+          idempotent()
+        );
+    } else if (action === "cancel") {
+      if (!(await confirmFromTrigger(button))) return;
+      request = () =>
+        sendJson("POST", `${base}/cancel`, undefined, idempotent());
+    } else if (action === "reject" || action === "reverse") {
+      const answer = await confirmFromTriggerWithNote(button);
+      if (answer === null) return;
+      if (answer.note === "") {
+        actionError.show(msg("msgReasonRequired"));
+        return;
+      }
+      request =
+        action === "reject"
+          ? () =>
+              sendJson(
+                "POST",
+                `${base}/decision`,
+                { decision: "reject", note: answer.note },
+                idempotent()
+              )
+          : () =>
+              sendJson(
+                "POST",
+                `${base}/reverse`,
+                { reason: answer.note },
+                idempotent()
+              );
+    } else if (action === "receipt-attach") {
+      const answer = await confirmFromTriggerWithNote(button);
+      if (answer === null) return;
+      if (!UUID.test(answer.note)) {
+        actionError.show(msg("msgBadMedia"));
+        return;
+      }
+      request = () =>
+        sendJson("POST", `${base}/receipt`, { mediaObjectId: answer.note });
+    } else if (action === "receipt-view") {
+      button.disabled = true;
+      try {
+        const response = await fetch(`${base}/receipt-url`, {
+          credentials: "same-origin",
+          headers: { Accept: "application/json" }
+        });
+        const payload = (await response.json().catch(() => null)) as {
+          data?: { url?: string };
+        } | null;
+        const url = payload?.data?.url;
+        if (response.ok && typeof url === "string") {
+          // The signed URL is short-lived and single purpose; open it without
+          // handing the new tab a reference back to this admin page.
+          window.open(url, "_blank", "noopener,noreferrer");
+        } else {
+          actionError.show(msg("msgReceiptFailed"));
+        }
+      } catch {
+        actionError.show(msg("msgReceiptFailed"));
+      }
+      button.disabled = false;
+      return;
+    } else {
+      return;
+    }
+
+    button.disabled = true;
+    const result = await request();
+    if (result.ok) {
+      window.location.reload();
+      return;
+    }
+    button.disabled = false;
+    actionError.show(failureMessage(result.errorCode));
+  });
+
+  onSubmit("expense-category-form", ({ data, submit }) => {
+    categoriesError.clear();
+    return (async () => {
+      if (submit) submit.disabled = true;
+      const result = await sendJson(
+        "POST",
+        "/api/v1/commerce/expense-categories",
+        {
+          code: field(data, "code").trim(),
+          name: field(data, "name").trim()
+        }
+      );
+      if (result.ok) {
+        window.location.reload();
+        return;
+      }
+      if (submit) submit.disabled = false;
+      categoriesError.show(
+        result.errorCode === "EXPENSE_CATEGORY_CODE_TAKEN"
+          ? msg("msgCodeTaken")
+          : msg("msgCategoryFailed")
+      );
+    })();
+  });
+
+  onAction(".expense-category-toggle", async (button) => {
+    const id = button.dataset.categoryId;
+    if (!id) return;
+    categoriesError.clear();
+    if (button.dataset.needsConfirm === "true") {
+      if (!(await confirmFromTrigger(button))) return;
+    }
+    button.disabled = true;
+    const result = await sendJson(
+      "PATCH",
+      `/api/v1/commerce/expense-categories/${id}`,
+      { active: button.dataset.nextActive === "true" }
+    );
+    if (result.ok) {
+      window.location.reload();
+      return;
+    }
+    button.disabled = false;
+    categoriesError.show(msg("msgCategoryFailed"));
+  });
+
+  onSubmit("expense-threshold-form", ({ data, submit }) => {
+    thresholdError.clear();
+    const success = document.getElementById("expenses-threshold-success");
+    if (success) success.hidden = true;
+    const approvalThreshold = field(data, "approvalThreshold").trim();
+    if (!MONEY.test(approvalThreshold)) {
+      thresholdError.show(msg("msgBadThreshold"));
+      return Promise.resolve();
+    }
+    return (async () => {
+      if (submit) submit.disabled = true;
+      // Through the GENERIC module-settings route, like the cash-up threshold:
+      // a shallow top-level merge, so the whole `expenses` object is sent and
+      // the sibling `features` / `cashUp` keys are untouched.
+      const result = await sendJson(
+        "PATCH",
+        "/api/v1/tenant/modules/commerce/settings",
+        { expenses: { approvalThreshold } }
+      );
+      if (submit) submit.disabled = false;
+      if (result.ok) {
+        if (success) {
+          success.textContent = msg("msgThresholdSaved");
+          success.hidden = false;
+        }
+        return;
+      }
+      thresholdError.show(msg("msgThresholdFailed"));
+    })();
+  });
+</script>
