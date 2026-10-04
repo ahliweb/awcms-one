@@ -28,6 +28,7 @@ describe("resolveCommerceFeatures", () => {
     expect(DEFAULT_COMMERCE_FEATURES.expenses).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.documentDelivery).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.returns).toBe(false);
+    expect(DEFAULT_COMMERCE_FEATURES.barcode).toBe(false);
     expect(
       Object.entries(DEFAULT_COMMERCE_FEATURES)
         .filter(
@@ -38,6 +39,7 @@ describe("resolveCommerceFeatures", () => {
             key !== "documents" &&
             key !== "expenses" &&
             key !== "documentDelivery" &&
+            key !== "barcode" &&
             key !== "returns"
         )
         .every(([, value]) => value === true)
@@ -66,6 +68,7 @@ describe("resolveCommerceFeatures", () => {
       storedValue: false,
       expenses: false,
       documentDelivery: false,
+      barcode: false,
       returns: false
     });
   });
@@ -84,6 +87,7 @@ describe("resolveCommerceFeatures", () => {
       storedValue: false,
       expenses: false,
       documentDelivery: false,
+      barcode: false,
       returns: false
     });
   });
@@ -109,6 +113,7 @@ describe("resolveCommerceFeatures", () => {
         storedValue: false,
         expenses: false,
         documentDelivery: false,
+        barcode: false,
         returns: false
       }
     });
@@ -124,6 +129,7 @@ describe("resolveCommerceFeatures", () => {
       storedValue: false,
       expenses: false,
       documentDelivery: false,
+      barcode: false,
       returns: false
     });
     // ...and the flags that default off can be turned on.
@@ -472,5 +478,13 @@ describe("toPublicRecord — feature composition (Issue #118)", () => {
       DEFAULT_COMMERCE_FEATURES
     );
     expect(withFeatureOn.shipping.courierEnabled).toBe(true);
+  });
+
+  test("barcode (Issue #292, ADR-0032) defaults OFF and can be turned on", () => {
+    expect(DEFAULT_COMMERCE_FEATURES.barcode).toBe(false);
+    expect(resolveCommerceFeatures({}).barcode).toBe(false);
+    expect(
+      resolveCommerceFeatures({ features: { barcode: true } }).barcode
+    ).toBe(true);
   });
 });

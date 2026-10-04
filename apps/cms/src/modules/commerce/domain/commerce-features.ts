@@ -45,6 +45,7 @@ export type CommerceFeatureKey =
   | "storedValue"
   | "expenses"
   | "documentDelivery"
+  | "barcode"
   | "returns";
 
 export type CommerceFeatures = Readonly<Record<CommerceFeatureKey, boolean>>;
@@ -96,6 +97,11 @@ export const DEFAULT_COMMERCE_FEATURES: CommerceFeatures = {
   // customer data on the wire). It also requires `documents`: there is
   // nothing to deliver without it.
   documentDelivery: false,
+  // Issue #292 (ADR-0032) - defaults OFF: barcode identity, label printing,
+  // the POS scan field and the cashier shortcut layer change what the counter
+  // screen does with a keystroke, so a tenant that never opens "Fitur" must
+  // see exactly today's POS.
+  barcode: false,
   // Issue #287 (ADR-0033) — also OFF. Returns and refunds put goods back into
   // stock and money back into customers' hands: new behaviour with a security
   // posture of its own (separately granted permissions, a provider call), so a
@@ -115,6 +121,7 @@ const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
   "storedValue",
   "expenses",
   "documentDelivery",
+  "barcode",
   "returns"
 ];
 

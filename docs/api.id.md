@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:d8bb4c9b137217355da83ff89f27ff361a5d59a564621bdcecbc90f460140c6b -->
+<!-- i18n-source-hash: sha256:a5c20ad3b2bc1933a5a806290e213d6857a7988849e64cfdcfe8968c6856ab93 -->
 
 # API
 
@@ -298,6 +298,16 @@ Satu berkas rute, dua handler (`apps/cms/src/pages/api/v1/commerce/pos/orders/in
 | --- | --- | --- | --- |
 | `GET` | `commerce/pos/orders` | `commerce.orders.read` | Riwayat POS: keyset (`?cursor`), terbaru dulu, hanya `channel = 'pos'`, 50 per halaman; `?dateFrom&dateTo` (inklusif; `YYYY-MM-DD` polos mencakup seluruh hari UTC) dan `?cashier=<uuid tenant user>`. Item adalah ringkasan daftar pesanan admin plus `paymentMethod` (`cash`\|`manual_qris`) dan `cashierTenantUserId` |
 | `POST` | `commerce/pos/orders` | `commerce.pos.create` | **Header `Idempotency-Key` wajib** (`400 IDEMPOTENCY_REQUIRED`). Body `{ customer?: {name?, phone?}, lines: [{productId, variantId?, quantity}], payment: {method: "cash"\|"manual_qris", amountTendered?}, notes? }` — `amountTendered` adalah STRING `numeric(14,2)`, wajib untuk `cash`, diabaikan untuk `manual_qris`. **Kontrak versi 2 (#285, aditif):** sebagai ganti `payment`, kirim `tenders: [{ tenderType: "cash"\|"manual_qris"\|"manual_bank_transfer", amount, reference? }]` (tidak pernah keduanya; `amount` non-tunai = diterapkan, `amount` tender tunai tunggal = diserahkan, kembalian hanya dari leg tunai) dan opsional `allowDue: true` (butuh `tenders`, telepon pelanggan, dan izin terpisah `commerce.pos_due.create`) untuk meninggalkan saldo terutang pada pesanan `pending_payment`. `201` juga membawa `payments[]` dan `settlement`; `409 OVERPAYMENT` untuk tender non-tunai di atas total. → `201` dengan record pesanan admin (`status: "paid"`, `channel: "pos"`, `shippingMethod: "self_pickup"`) plus `change` (string atau `null`), `amountTendered`, `cashierTenantUserId`; pengulangan kunci-sama/body-sama me-replay `201` yang sama. `400 VALIDATION_ERROR` (bentuk, atau `customer.phone` yang tidak dapat dinormalisasi — tidak pernah diam-diam jadi walk-in); `409 IDEMPOTENCY_CONFLICT` (kunci sama, body beda atau kasir beda); `409 CART_CHANGED` (`details.quote` — harga/stok suatu baris berubah); `409 INSUFFICIENT_TENDER` (`details.shortfall`) |
+
+## API pemilik: barcode (issue #292, epic #281, [ADR-0032](adr/0032-barcodes-are-a-derived-identifier-and-the-cashier-keyboard-layer-is-chord-only.md))
+
+Ketiga rute dibatasi oleh fitur `barcode` milik tenant (`409 FEATURE_DISABLED` saat mati — bawaannya MATI) dan izin yang dipisah per sumber daya.
+
+| Metode | Path | Catatan |
+| --- | --- | --- |
+| `GET` | `/api/v1/commerce/barcodes/lookup?code=` | `barcodes.read`. Menyelesaikan kode yang dipindai menjadi satu produk atau varian yang ditunjuknya di tenant pemanggil: `{ productId, variantId, name, variantLabel, sku, barcode, symbology, price, stock, status, requiresVariant, sellable }`. `requiresVariant` adalah induk polos dari produk yang punya varian hidup; `sellable` adalah aktif + ada stok + tanpa varian. Kode tak dikenal, terhapus lunak, dan milik tenant lain adalah `404` yang **sama**; kode hilang, terlalu panjang (> 48), atau tak dapat dicetak adalah `400` |
+| `GET` | `/api/v1/commerce/barcodes` | `barcodes.read`. Menomori produk (tanpa varian) dan varian, berurut nama: `?q=` (substring nama/SKU, atau barcode persis), `?barcode=with\|without`, `?page=` (bawaan 0, 50 per halaman) → `{ items, page, hasMore }` |
+| `PUT` | `/api/v1/commerce/barcodes` | `barcodes.update`. `{ productId, variantId?, barcode }` — `barcode` adalah string untuk menetapkan atau `null` untuk menghapus. `400` untuk id atau kode salah bentuk (kode numerik 8/12/13/14 digit butuh digit pemeriksa GTIN yang valid; awalan `<n>*` ditolak); `404` untuk id tak dikenal, id tenant lain, atau varian yang bukan milik produk yang disebut (satu jawaban netral); `409 BARCODE_DUPLICATE` bila produk atau varian hidup lain memegang kode itu. Idempoten secara alami sehingga tanpa `Idempotency-Key`; diaudit sebagai `update` pada `product` / `product_variant` |
 
 Tanpa telepon → penjualan dikaitkan ke satu baris pelanggan walk-in tenant (telepon sentinel `+620000000000`); dengan telepon → cari-atau-buat berdasarkan nomor yang dinormalisasi dan `level` pelanggan memberi harga penjualan. Jalur storefront (`GET storefront/orders/{code}?phone=`, `GET storefront/account/orders(/{code})`) tidak pernah mengembalikan pesanan `channel: "pos"`, dan `POST storefront/orders` menolak baik `payment.method: "cash"` maupun telepon sentinel. Pencarian produk untuk layar POS adalah `GET /api/v1/commerce/products?q=&status=active` yang sudah ada.
 

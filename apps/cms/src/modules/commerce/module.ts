@@ -94,6 +94,7 @@ import {
   COMMERCE_WORK_ORDERS_ACTIVITY_CODE,
   COMMERCE_WORK_ORDER_PERMISSIONS,
   COMMERCE_DOCUMENTS_ACTIVITY_CODE,
+  COMMERCE_BARCODES_ACTIVITY_CODE,
   COMMERCE_DOCUMENT_PERMISSIONS,
   COMMERCE_STORED_VALUE_PROGRAMS_ACTIVITY_CODE,
   COMMERCE_STORED_VALUE_PROGRAM_PERMISSIONS,
@@ -575,7 +576,13 @@ export const commerceModule = defineModule({
       // the expense. `"0.00"` = every expense needs a second person (strict by
       // default); read defensively by `domain/expense.ts`'s
       // `resolveExpenseSettings`. Same shallow-merge rule as `cashUp`.
-      expenses: { approvalThreshold: DEFAULT_EXPENSE_APPROVAL_THRESHOLD }
+      expenses: { approvalThreshold: DEFAULT_EXPENSE_APPROVAL_THRESHOLD },
+      // Issue #292 (ADR-0032) - the tenant's default POS keyboard shortcut
+      // overrides (`{ action: "Alt+Shift+S" }`), layered over the built-in map
+      // and under each cashier's own. Empty = the built-in map. Read
+      // defensively by `domain/pos-shortcuts.ts`'s `readTenantShortcutSettings`
+      // (an invalid or colliding entry is dropped, never trusted).
+      posShortcuts: {}
     }
   },
   // Full CRUD screens: two as of Issue #23 (`src/pages/admin/commerce.astro`,
@@ -776,6 +783,15 @@ export const commerceModule = defineModule({
       order: 26,
       requiredPermission: "commerce.expenses.read",
       requiredFeature: { moduleKey: "commerce", feature: "expenses" }
+    },
+    // Issue #292 (ADR-0032) - barcodes and label printing. Hidden the moment
+    // the tenant turns `features.barcode` off (it defaults OFF).
+    {
+      labelKey: "admin.layout.nav_commerce_labels",
+      path: "/admin/commerce-labels",
+      order: 27,
+      requiredPermission: "commerce.barcodes.read",
+      requiredFeature: { moduleKey: "commerce", feature: "barcode" }
     }
   ],
   /**
@@ -3918,6 +3934,18 @@ export const commerceModule = defineModule({
       action: "create",
       description:
         "Send a commercial document to a recipient other than the customer on file (Issue #295)"
+    },
+    {
+      activityCode: COMMERCE_BARCODES_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "Resolve a scanned barcode, browse the barcode catalogue and print label sheets (Issue #292)"
+    },
+    {
+      activityCode: COMMERCE_BARCODES_ACTIVITY_CODE,
+      action: "update",
+      description:
+        "Assign, change or clear the barcode of a product or variant (Issue #292)"
     },
     {
       activityCode: COMMERCE_RETURNS_ACTIVITY_CODE,

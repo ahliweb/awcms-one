@@ -11572,6 +11572,185 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/barcodes:
+    get:
+      operationId: listCommerceBarcodes
+      tags:
+        - Commerce
+      summary: "Issue #292 (ADR-0032). Pages the products (without variants) and variants of the tenant with their barcode. Gated on `commerce.barcodes.read`."
+      description: "Name-ordered, offset-paginated (an operator screen, not a hot path). `q` matches name/SKU by substring (LIKE metacharacters are literal) or a barcode exactly; `barcode=with|without` narrows to rows that do or do not carry one. Gated on the `barcode` feature."
+      parameters:
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+            maxLength: 100
+        - name: barcode
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - with
+              - without
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+      responses:
+        "200":
+          description: A page of catalogue rows.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceBarcodeRow"
+                      page:
+                        type: integer
+                      hasMore:
+                        type: boolean
+        "400":
+          description: "`VALIDATION_ERROR` (q too long, unknown barcode filter, malformed page)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`FEATURE_DISABLED` - the tenant's `barcode` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    put:
+      operationId: assignCommerceBarcode
+      tags:
+        - Commerce
+      summary: "Issue #292 (ADR-0032). Sets or clears the barcode of one product or variant. Gated on `commerce.barcodes.update`."
+      description: "`barcode` is required: a string to set, `null` to clear. A code is 1-48 printable ASCII characters without spaces; an all-digit code of 8, 12, 13 or 14 digits is a GTIN and needs a valid GS1 check digit; it may not start with a quantity prefix like `3*`. Unique per tenant among live products AND variants. Naturally idempotent (it sets state), so no `Idempotency-Key`. A variant id must belong to the named product. Audited as `update` on `product` / `product_variant`. Gated on the `barcode` feature."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - productId
+                - barcode
+              properties:
+                productId:
+                  type: string
+                  format: uuid
+                variantId:
+                  type: string
+                  format: uuid
+                  nullable: true
+                barcode:
+                  type: string
+                  nullable: true
+                  minLength: 1
+                  maxLength: 48
+      responses:
+        "200":
+          description: The updated catalogue row.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceBarcodeRow"
+        "400":
+          description: "`VALIDATION_ERROR` (malformed id, invalid barcode, bad GTIN check digit, missing `barcode` key)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: An unknown id, another tenant's id and a variant that does not belong to the named product - one neutral answer.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: "`BARCODE_DUPLICATE` (already used by another live product or variant of the tenant) or `FEATURE_DISABLED` - the tenant's `barcode` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/barcodes/lookup:
+    get:
+      operationId: lookupCommerceBarcode
+      tags:
+        - Commerce
+      summary: "Issue #292 (ADR-0032). Resolves a scanned barcode to the ONE product or variant it names in the caller's tenant. Gated on `commerce.barcodes.read`."
+      description: "An equality probe on the tenant's partial unique barcode index. A barcode is an identifier, not a credential: the caller is authorised first, and an unknown, soft-deleted and other-tenant code answer the same neutral `404`. `requiresVariant` is true for the bare parent of a product that has live variants; `sellable` is true only for an active, in-stock, variant-free row. Gated on the `barcode` feature."
+      parameters:
+        - name: code
+          in: query
+          required: true
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 48
+      responses:
+        "200":
+          description: The matching catalogue row with its sellability.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceBarcodeLookup"
+        "400":
+          description: "`VALIDATION_ERROR` (missing, over-long or non-printable code)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED` - the tenant's `barcode` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/orders/{id}/returns:
     get:
       operationId: listCommerceOrderReturns
@@ -17004,3 +17183,53 @@ components:
                 format: uuid
               detail:
                 type: string
+    CommerceBarcodeRow:
+      type: object
+      description: "Issue #292 (ADR-0032). A sellable catalogue row - a product without variants, or a variant - with its barcode. `symbology` is DERIVED from the code, never stored."
+      properties:
+        productId:
+          type: string
+          format: uuid
+        variantId:
+          type: string
+          format: uuid
+          nullable: true
+        name:
+          type: string
+        variantLabel:
+          type: string
+          nullable: true
+          description: "`<variant name>: <variant value>` for a variant row."
+        sku:
+          type: string
+          nullable: true
+        barcode:
+          type: string
+          nullable: true
+        symbology:
+          type: string
+          nullable: true
+          enum:
+            - ean13
+            - ean8
+            - upca
+            - gtin14
+            - code128
+        price:
+          type: string
+          description: "Effective selling price, a `numeric(14,2)` string (a variant's own price, else the product's discounted price)."
+        stock:
+          type: integer
+        status:
+          type: string
+    CommerceBarcodeLookup:
+      allOf:
+        - $ref: "#/components/schemas/CommerceBarcodeRow"
+        - type: object
+          properties:
+            requiresVariant:
+              type: boolean
+              description: True when the row is the bare parent of a product that has live variants - the cashier must pick a variant.
+            sellable:
+              type: boolean
+              description: True only for an active, in-stock row that does not require a variant.

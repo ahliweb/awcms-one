@@ -90,7 +90,7 @@ async function enforcedTriples(
 }
 
 describe("commerce module descriptor — restore is declared for both activity codes", () => {
-  test("one hundred and fifteen permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations/entitlements, three for reviews, one for whatsapp, three for campaigns, one for webhook_endpoints, one for pos, one for pos_due, three for payments, ten for registers/cash-up, two for loyalty and one each for loyalty_adjustments/loyalty_redemptions, and (Issue #291) read/manage for attributes plus export/import on products, seven for stored value, and (Issue #287) five for returns, refunds and offline refunds", () => {
+  test("one hundred and four permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations/entitlements, three for reviews, one for whatsapp, three for campaigns, one for webhook_endpoints, one for pos, one for pos_due, three for payments, ten for registers/cash-up, two for loyalty and one each for loyalty_adjustments/loyalty_redemptions, and (Issue #291) read/manage for attributes plus export/import on products, seven for stored value, (Issue #292) two for barcodes, and (Issue #287) five for returns, refunds and offline refunds", () => {
     // Issue #23: categories/products carry read/create/update/delete/restore.
     // Issue #26: flash_sales/vouchers/sliders/testimonials/popups carry
     // read/create/update/delete (soft delete only, no restore — the marketing
@@ -129,6 +129,7 @@ describe("commerce module descriptor — restore is declared for both activity c
     // register_corrections approve (ten keys, none implied by pos.create).
     // Issue #286: held_sales read/create/update/approve, quotations
     // read/create/update, quotation_conversions create, work_orders
+    // Issue #292: barcodes read/update (two keys, resource-split).
     // read/create/update, documents read/create (thirteen keys, resource-split).
     // Issue #288: stored_value_programs read/update, stored_value
     // read/create/update, stored_value_adjustments create and
@@ -166,6 +167,8 @@ describe("commerce module descriptor — restore is declared for both activity c
         12 +
         // Issue #295: document_deliveries read/create, document_delivery_overrides create.
         3 +
+        // Issue #292: barcodes read/update.
+        2 +
         // Issue #287: returns read/create, refunds read/create, refunds_offline approve.
         5
     );
@@ -435,6 +438,8 @@ describe("/admin/commerce-pos permission gates", () => {
     const declared = declaredTriples();
 
     expect([...pageKeys].sort()).toEqual([
+      // Issue #292 — the scan field needs the lookup key; also checked by the endpoint.
+      "commerce.barcodes.read",
       // Issue #286 — hold and resume a parked cart; also checked by the endpoints.
       "commerce.held_sales.create",
       "commerce.held_sales.update",

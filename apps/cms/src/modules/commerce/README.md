@@ -1256,6 +1256,15 @@ each insert under a `FOR UPDATE` lock on the account row. Points are integers
 store-credit or stored-value (that is a separate ledger, #288). The whole
 feature sits behind `features.loyalty`, default **OFF**.
 
+## Barcodes, labels, scanner input and cashier shortcuts - IMPLEMENTED (Issue #292, epic #281 - [ADR-0032](../../../../../docs/adr/0032-barcodes-are-a-derived-identifier-and-the-cashier-keyboard-layer-is-chord-only.md))
+
+Two nullable `barcode` columns (`sql/975`: products and variants), two permissions (`commerce.barcodes.{read,update}`, `sql/976`), no new table.
+
+- **Where the code is.** `domain/barcode.ts` (GTIN check digit, validation policy, Code 128 / EAN-13 / EAN-8 encoders, the SVG renderer, label options - pure), `domain/pos-scan.ts` (scan-field parsing and the `ScanBurstDetector`, fed explicit timestamps - pure), `domain/pos-shortcuts.ts` (combo policy, conflicts, defaults -> tenant -> user layering - pure), `application/barcode-directory.ts` (lookup, catalogue, assign, label rows), `application/barcode-http.ts` (guards, feature gate, the tenant shortcut setting), routes under `pages/api/v1/commerce/barcodes/`, the screen `pages/admin/commerce-labels.astro`, and the client half `src/lib/ui/pos-keyboard-client.ts` (the only place the POS screen's script reaches into: one `addScanned` hook, everything else is element ids).
+- **The rules a change must keep.** A barcode is an identifier, never authority: authorise the caller first. Symbology stays derived. Uniqueness is the database's job (partial indexes + the cross-table trigger); never replace the striped advisory lock with one lock per code (it exhausts the lock table in a bulk load). Lookup misses are one neutral `404`. Label SVG contains numbers only and tenant text is escaped, never `set:html`. A shortcut is a chord - never a bare character, never a browser-reserved key - and the detector never fires in a text field.
+- **Feature flag.** `features.barcode` defaults OFF (the third flag that does, after `register` and `documents`).
+- **Deferred.** Multiple barcodes per item, bundle barcodes (#290, blocked on #282), embedded price/weight barcodes, PDF label export, further symbologies, a tenant-level shortcut editor screen, a server-side per-user shortcut store.
+
 ## Document delivery — IMPLEMENTED (Issue #295, epic #281 — [ADR-0034](../../../../../docs/adr/0034-commercial-documents-are-delivered-through-the-existing-outboxes-as-transactional-messages-built-from-immutable-sources.md))
 
 One table (`sql/965`: `awcms_commerce_document_deliveries`), three permissions (`sql/966`), a worker purge grant (`sql/967`). No column was added to an existing table; one partial index was added to `awcms_commerce_whatsapp_messages` for the correlation-id join.
