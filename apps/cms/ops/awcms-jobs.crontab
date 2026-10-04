@@ -67,6 +67,24 @@ AWCMS_LOCK=/home/admin1/awcms-jobs/locks
 # re-run.
 */5 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-flash-sales-tick.lock $AWCMS_RUN_JOB commerce:flash-sales:tick >> $AWCMS_JOB_LOG/commerce-flash-sales-tick.log 2>&1
 
+# commerce — Expires every loyalty earn lot whose expires_at has passed across
+# every active tenant, appending one `expire` ledger entry per lot (a
+# zero-point marker when the lot was already fully spent) — never a delete or
+# an update (Issue #289). Idempotent: a lot with an expire entry is
+# anti-joined out of the next scan and cannot get a second one (unique index,
+# sql/950). Bounded: 200 accounts per tenant per run, each in its own short
+# transaction.
+10 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-loyalty-expire.lock $AWCMS_RUN_JOB commerce:loyalty:expire >> $AWCMS_JOB_LOG/commerce-loyalty-expire.log 2>&1
+
+# commerce — Recomputes every active tenant's loyalty balances from the
+# append-only ledger and reports any account whose projected balance/version
+# disagrees with it, plus any ledger row whose running balance_after is not
+# the running sum (Issue #289). READ-ONLY: it never writes — repair is the
+# authenticated POST /api/v1/commerce/loyalty/reconcile with repair:true.
+# Exits non-zero (status partial) when drift is found so the scheduler
+# surfaces it.
+40 2 * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-loyalty-reconcile.lock $AWCMS_RUN_JOB commerce:loyalty:reconcile >> $AWCMS_JOB_LOG/commerce-loyalty-reconcile.log 2>&1
+
 # commerce — Move every pending_payment order in every active tenant whose
 # expires_at has elapsed to expired, restocking its line items and
 # un-redeeming its voucher (if any). Idempotent — an order already moved out

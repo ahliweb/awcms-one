@@ -82,7 +82,7 @@
  * const { t } = getTranslatorFor(Astro.locals.locale);
  * const labels = createCommerceLabels(t);
  * // …
- * <span class="status-badge" data-tone={orderStatusTone[order.status] ?? "neutral"}>
+ * <span class="admin-status-pill" data-tone={orderStatusTone[order.status] ?? "neutral"}>
  *   {commerceLabel(labels.orderStatus, order.status)}
  * </span>
  * ```
@@ -116,6 +116,9 @@ import type {
 } from "../../modules/commerce/domain/payment-allocation";
 import type { ProductStatus } from "../../modules/commerce/domain/product-status";
 import type { ProductType } from "../../modules/commerce/domain/product-type";
+import type { AttributeAppliesTo } from "../../modules/commerce/domain/attribute-definition";
+import type { AttributeValueType } from "../../modules/commerce/domain/attribute-value";
+import type { ImportRowAction } from "../../modules/commerce/domain/catalog-import";
 import type {
   VoucherType,
   VoucherStatus
@@ -131,6 +134,18 @@ import type {
   RegisterMovementType,
   RegisterSessionStatus
 } from "../../modules/commerce/domain/register";
+import type {
+  HeldSaleStatus,
+  IssuedDocumentType,
+  QuotationStatus,
+  WorkOrderPriority,
+  WorkOrderStatus
+} from "../../modules/commerce/domain/documents";
+import type {
+  StoredValueAccountStatus,
+  StoredValueEntryKind,
+  StoredValueKind
+} from "../../modules/commerce/domain/stored-value";
 import type { PopupFrequency } from "../../modules/commerce/domain/popup-validation";
 import type { PaymentGatewayStatus } from "../../modules/commerce/domain/payment-gateway-provider";
 import type { ReviewStatus } from "../../modules/commerce/application/review-directory";
@@ -142,6 +157,10 @@ import type {
 import type { AdminConversationRecord } from "../../modules/commerce/application/conversation-directory";
 import type { CustomerAdminRecord } from "../../modules/commerce/application/customer-directory";
 import type { WebhookEndpointProvider } from "../../modules/commerce/application/webhook-endpoint-directory";
+import type {
+  LoyaltyEntryKind,
+  LoyaltyProgramStatus
+} from "../../modules/commerce/domain/loyalty";
 import type { ProjectionFreshnessStatus } from "../../modules/reporting/domain/freshness";
 import type { RebuildRunStatus } from "../../modules/reporting/application/rebuild-run-store";
 
@@ -227,7 +246,7 @@ export type PaymentGatewaySessionProvider = "midtrans" | "log";
  */
 export type PaymentEventOutcome = "applied" | "ignored" | "replay";
 
-/** CSS badge/pill tone name — the same small vocabulary every commerce admin screen's own `STATUS_TONE`/`FRESHNESS_VARIANT` map already uses (`data-tone`/`data-variant` on `.status-badge`/`.admin-status-pill`). */
+/** CSS badge/pill tone name — the same small vocabulary every commerce admin screen's own `STATUS_TONE`/`FRESHNESS_VARIANT` map already uses (`data-tone` on `.admin-status-pill`). */
 export type CommerceTone =
   "success" | "warning" | "info" | "primary" | "danger" | "neutral";
 
@@ -285,6 +304,31 @@ export function createCommerceLabels(t: Translator["t"]) {
     bundle: t("Bundle"),
     event: t("Event")
   } satisfies Record<ProductType, string>;
+
+  /** Issue #291 — a catalog attribute's value type (`domain/attribute-value.ts`). */
+  const attributeValueType = {
+    text: t("Text"),
+    integer: t("Whole number"),
+    decimal: t("Decimal number"),
+    boolean: t("Yes/No"),
+    date: t("Date"),
+    enum: t("Choice list")
+  } satisfies Record<AttributeValueType, string>;
+
+  /** Issue #291 — which catalog entity an attribute definition applies to. */
+  const attributeAppliesTo = {
+    product: t("Products"),
+    variant: t("Variants"),
+    both: t("Products and variants")
+  } satisfies Record<AttributeAppliesTo, string>;
+
+  /** Issue #291 — the catalog import dry-run's per-row verdict. */
+  const importRowAction = {
+    create: t("Create"),
+    update: t("Update"),
+    unchanged: t("Unchanged"),
+    error: t("Error")
+  } satisfies Record<ImportRowAction, string>;
 
   const voucherType = {
     percentage: t("Percentage"),
@@ -424,7 +468,9 @@ export function createCommerceLabels(t: Translator["t"]) {
     cash: t("Cash"),
     manual_qris: t("QRIS"),
     manual_bank_transfer: t("Bank transfer"),
-    gateway: t("Payment gateway")
+    gateway: t("Payment gateway"),
+    gift_card: t("Gift card"),
+    store_credit: t("Store credit")
   } satisfies Record<PaymentTenderType, string>;
 
   /** Issue #285 - a ledger row's own state; only `succeeded` legs count toward settlement. */
@@ -472,6 +518,74 @@ export function createCommerceLabels(t: Translator["t"]) {
     rejected: t("Rejected")
   } satisfies Record<RegisterCloseDecision, string>;
 
+  /** Issue #288 - the two kinds of closed-loop stored value (`domain/stored-value.ts`). Same wording as the `gift_card` / `store_credit` payment tenders. */
+  const storedValueKind = {
+    gift_card: t("Gift card"),
+    store_credit: t("Store credit")
+  } satisfies Record<StoredValueKind, string>;
+
+  /** Issue #288 - a stored-value account's status; `expired` is terminal. */
+  const storedValueAccountStatus = {
+    active: t("Active"),
+    disabled: t("Disabled"),
+    expired: t("Expired")
+  } satisfies Record<StoredValueAccountStatus, string>;
+
+  /** Issue #288 - what a stored-value ledger entry did to the balance. */
+  const storedValueEntryKind = {
+    issue: t("Issued"),
+    load: t("Loaded"),
+    redeem: t("Redeemed"),
+    refund: t("Refunded to card"),
+    adjust: t("Adjusted"),
+    expire: t("Expired"),
+    disable: t("Disabled"),
+    enable: t("Enabled")
+  } satisfies Record<StoredValueEntryKind, string>;
+
+  /** Issue #286 - a quotation's status (`domain/documents.ts`). */
+  const quotationStatus = {
+    draft: t("Draft"),
+    sent: t("Sent"),
+    accepted: t("Accepted"),
+    rejected: t("Rejected"),
+    expired: t("Expired"),
+    converted: t("Converted to order"),
+    cancelled: t("Cancelled")
+  } satisfies Record<QuotationStatus, string>;
+
+  /** Issue #286 - a work order's operational status. */
+  const workOrderStatus = {
+    received: t("Received"),
+    scheduled: t("Scheduled"),
+    in_progress: t("In progress"),
+    on_hold: t("On hold"),
+    ready: t("Ready"),
+    completed: t("Completed"),
+    cancelled: t("Cancelled")
+  } satisfies Record<WorkOrderStatus, string>;
+
+  const workOrderPriority = {
+    low: t("Low"),
+    normal: t("Normal"),
+    high: t("High"),
+    urgent: t("Urgent")
+  } satisfies Record<WorkOrderPriority, string>;
+
+  /** Issue #286 - a held (parked) sale's effective status. */
+  const heldSaleStatus = {
+    held: t("Held"),
+    resumed: t("Resumed"),
+    discarded: t("Discarded"),
+    expired: t("Expired")
+  } satisfies Record<HeldSaleStatus, string>;
+
+  /** Issue #286 - the two issuable legal documents. */
+  const documentType = {
+    receipt: t("Receipt"),
+    invoice: t("Invoice")
+  } satisfies Record<IssuedDocumentType, string>;
+
   /** `domain/order-status.ts`'s own header documents the domain meaning behind each of these three values — see {@link PaymentEventOutcome}'s own comment above. */
   const paymentEventOutcome = {
     applied: t("Applied"),
@@ -479,12 +593,31 @@ export function createCommerceLabels(t: Translator["t"]) {
     replay: t("Replay")
   } satisfies Record<PaymentEventOutcome, string>;
 
+  /** Issue #289 — the five ledger entry kinds of the loyalty points ledger. */
+  const loyaltyEntryKind = {
+    earn: t("Earned"),
+    redeem: t("Redeemed"),
+    expire: t("Expired"),
+    adjustment: t("Adjustment"),
+    reversal: t("Reversal")
+  } satisfies Record<LoyaltyEntryKind, string>;
+
+  /** Issue #289 — a loyalty program version's lifecycle. `draft`/`active` reuse existing msgids; `retired` is new. */
+  const loyaltyProgramStatus = {
+    draft: t("Draft"),
+    active: t("Active"),
+    retired: t("Retired")
+  } satisfies Record<LoyaltyProgramStatus, string>;
+
   return {
     orderStatus,
     paymentStatus,
     orderChannel,
     productStatus,
     productType,
+    attributeValueType,
+    attributeAppliesTo,
+    importRowAction,
     voucherType,
     campaignStatus,
     campaignChannel,
@@ -509,7 +642,17 @@ export function createCommerceLabels(t: Translator["t"]) {
     registerSessionStatus,
     registerMovementType,
     registerMovementDirection,
-    registerCloseDecision
+    registerCloseDecision,
+    quotationStatus,
+    workOrderStatus,
+    workOrderPriority,
+    heldSaleStatus,
+    documentType,
+    loyaltyEntryKind,
+    loyaltyProgramStatus,
+    storedValueKind,
+    storedValueAccountStatus,
+    storedValueEntryKind
   };
 }
 
@@ -553,6 +696,46 @@ export const registerSessionStatusTone: Record<
   closing: "warning",
   closed: "neutral",
   corrected: "info"
+};
+
+/** Issue #288 - a stored-value account's tone: active is live, disabled needs attention, expired is over. */
+export const storedValueAccountStatusTone: Record<
+  StoredValueAccountStatus,
+  CommerceTone
+> = {
+  active: "success",
+  disabled: "warning",
+  expired: "neutral"
+};
+
+/** Issue #286 - quotation tone: a live offer is info, an accepted/converted one is a success, a lapsed one a warning. */
+export const quotationStatusTone: Record<QuotationStatus, CommerceTone> = {
+  draft: "neutral",
+  sent: "info",
+  accepted: "success",
+  rejected: "danger",
+  expired: "warning",
+  converted: "success",
+  cancelled: "neutral"
+};
+
+/** Issue #286 - work-order tone. */
+export const workOrderStatusTone: Record<WorkOrderStatus, CommerceTone> = {
+  received: "neutral",
+  scheduled: "info",
+  in_progress: "info",
+  on_hold: "warning",
+  ready: "success",
+  completed: "success",
+  cancelled: "neutral"
+};
+
+/** Issue #286 - held-sale tone. */
+export const heldSaleStatusTone: Record<HeldSaleStatus, CommerceTone> = {
+  held: "info",
+  resumed: "success",
+  discarded: "neutral",
+  expired: "warning"
 };
 
 /** The affiliate half of `commerce-affiliates.astro`'s combined `STATUS_TONE`. */
@@ -599,4 +782,14 @@ export const reportRunStatusTone: Record<RebuildRunStatus, CommerceTone> = {
   completed: "success",
   failed: "danger",
   cancelled: "neutral"
+};
+
+/** Issue #289 — a draft is awaiting activation (warning), the open active version is success, a retired one is neutral. */
+export const loyaltyProgramStatusTone: Record<
+  LoyaltyProgramStatus,
+  CommerceTone
+> = {
+  draft: "warning",
+  active: "success",
+  retired: "neutral"
 };

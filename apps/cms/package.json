@@ -1,6 +1,6 @@
 {
   "name": "awcms",
-  "version": "10.3.0",
+  "version": "10.4.0",
   "private": true,
   "description": "AWCMS \u2014 basis/fondasi modular monolith untuk pengembangan ERP & solusi bisnis (Bun + Astro + PostgreSQL)",
   "license": "MIT",
@@ -62,6 +62,8 @@
     "blog:publish:scheduled": "bun scripts/blog-scheduled-publish.ts",
     "commerce:flash-sales:tick": "bun scripts/commerce-flash-sales-tick.ts",
     "commerce:orders:expire": "bun scripts/commerce-orders-expire.ts",
+    "commerce:loyalty:expire": "bun scripts/commerce-loyalty-expire.ts",
+    "commerce:loyalty:reconcile": "bun scripts/commerce-loyalty-reconcile.ts",
     "commerce:customer-auth:purge": "bun scripts/commerce-customer-auth-purge.ts",
     "commerce:shipping-rates:purge": "bun scripts/commerce-shipping-rates-purge.ts",
     "commerce:whatsapp:dispatch": "bun scripts/commerce-whatsapp-dispatch.ts",
@@ -194,6 +196,7 @@
     "docs:i18n:stamp:check": "bun scripts/docs-i18n-stamp.mjs --check"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@changesets/cli": "^3.0.3",
     "@playwright/test": "^1.63.0",
     "@types/bun": "^1.4.2",
@@ -208,7 +211,9 @@
     "js-yaml": "^4.3.2",
     "read-yaml-file": "^2.1.0",
     "smol-toml": "^1.7.1",
-    "svgo": "^4.1.0"
+    "svgo": "^4.1.0",
+    "devalue": "^5.9.4",
+    "undici": "^8.10.2"
   },
   "dependencies": {
     "@astrojs/node": "^11.1.6",

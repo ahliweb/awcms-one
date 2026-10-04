@@ -682,7 +682,109 @@ channels:
       Aggregate: the expense. Payload: `expenseId`, `categoryId`, `amount`,
       `tenderType`, `registerSessionId`, `reversalSessionId`, `movementId` -
       never the free-text reason.
+  awcms.commerce.loyalty.entry_recorded:
+    address: awcms.commerce.loyalty.entry_recorded
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A row was appended to the append-only loyalty points ledger (Issue
+      #289) — an earn for a paid order, a redemption, an expiry, a manual
+      adjustment or a reversal. Producer:
+      `commerce/application/loyalty-ledger.ts`'s `appendLedgerEntry`, in
+      the same transaction as the ledger insert and the account projection
+      update. Aggregate is the loyalty account; the payload carries
+      `entryId`, `customerId`, `kind`, signed integer `points`,
+      `balanceAfter` and `sourceType` — never a name, phone or free-text
+      reason.
+  awcms.commerce.stored_value.entry_recorded:
+    address: awcms.commerce.stored_value.entry_recorded
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A closed-loop stored-value ledger entry (gift card / store credit: issue,
+      load, redeem, refund, adjust, expire, disable, enable) was appended.
+      Producer: `commerce/application/stored-value-ledger.ts`'s
+      `appendStoredValueEntry`, in the same transaction as the ledger insert
+      (and, for redeem/refund, the payment-allocation row it mirrors).
+      Aggregate: the stored-value account (`commerce.stored_value_account`).
+      Payload: `entryId`, `accountId`, `accountKind` (`gift_card` |
+      `store_credit`), `entryKind`, the signed `amount`, the resulting
+      `balanceAfter` and, for redeem/refund, `allocationId` - never the code
+      (which is not stored), the customer, or the free-text reason.
+  awcms.commerce.quotation.accepted:
+    address: awcms.commerce.quotation.accepted
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A quotation version was accepted and pinned (Issue #286, ADR-0029).
+      Producer: `commerce/application/quotation-directory.ts`'s
+      `applyQuotationAction`, in the same transaction as the status change.
+      Aggregate: the quotation. Payload: `quotationId`, `number`,
+      `acceptedVersion`, `total` - never the customer.
+  awcms.commerce.quotation.converted:
+    address: awcms.commerce.quotation.converted
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      An accepted quotation was converted into a commerce order through the
+      ordinary POS order path (Issue #286, ADR-0029 D5). Producer:
+      `commerce/application/quotation-directory.ts`'s `convertQuotation`, in
+      the same transaction as the order. Fired once per quotation. Payload
+      (the conversion's provenance): `quotationId`, `number`,
+      `acceptedVersion`, `orderId`, `orderCode`, `quotedTotal`, `orderTotal`.
+  awcms.commerce.work_order.status_changed:
+    address: awcms.commerce.work_order.status_changed
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A work order moved to a new operational status (Issue #286, ADR-0029
+      D6). Producer: `commerce/application/work-order-directory.ts`'s
+      `updateWorkOrder`, in the same transaction as the status change and its
+      history row. Payload: `workOrderId`, `number`, `fromStatus`,
+      `toStatus`, `assigneeTenantUserId` - never the title, description or
+      note.
+  awcms.commerce.document.issued:
+    address: awcms.commerce.document.issued
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A numbered receipt or invoice document was issued for a finalized order
+      (Issue #286, ADR-0029 D1-D3): an immutable snapshot. Producer:
+      `commerce/application/document-directory.ts`'s `issueDocument`, in the
+      same transaction as the numbered row. Aggregate: the document. Payload:
+      `documentId`, `docType`, `number`, `sourceType`, `sourceId`,
+      `sourceVersion`, `total` - never the customer.
 operations:
+  publishCommerceQuotationAccepted:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.quotation.accepted"
+    messages:
+      - $ref: "#/channels/awcms.commerce.quotation.accepted/messages/DomainEvent"
+  publishCommerceQuotationConverted:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.quotation.converted"
+    messages:
+      - $ref: "#/channels/awcms.commerce.quotation.converted/messages/DomainEvent"
+  publishCommerceWorkOrderStatusChanged:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.work_order.status_changed"
+    messages:
+      - $ref: "#/channels/awcms.commerce.work_order.status_changed/messages/DomainEvent"
+  publishCommerceDocumentIssued:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.document.issued"
+    messages:
+      - $ref: "#/channels/awcms.commerce.document.issued/messages/DomainEvent"
   publishDomainEventRuntimeSampleRecorded:
     action: send
     channel:
@@ -959,6 +1061,18 @@ operations:
       $ref: "#/channels/awcms.commerce.product.created"
     messages:
       - $ref: "#/channels/awcms.commerce.product.created/messages/DomainEvent"
+  publishCommerceExpensePosted:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.expense.posted"
+    messages:
+      - $ref: "#/channels/awcms.commerce.expense.posted/messages/DomainEvent"
+  publishCommerceExpenseReversed:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.expense.reversed"
+    messages:
+      - $ref: "#/channels/awcms.commerce.expense.reversed/messages/DomainEvent"
   publishCommerceProductUpdated:
     action: send
     channel:
@@ -1061,18 +1175,18 @@ operations:
       $ref: "#/channels/awcms.commerce.register_session.corrected"
     messages:
       - $ref: "#/channels/awcms.commerce.register_session.corrected/messages/DomainEvent"
-  publishCommerceExpensePosted:
+  publishCommerceLoyaltyEntryRecorded:
     action: send
     channel:
-      $ref: "#/channels/awcms.commerce.expense.posted"
+      $ref: "#/channels/awcms.commerce.loyalty.entry_recorded"
     messages:
-      - $ref: "#/channels/awcms.commerce.expense.posted/messages/DomainEvent"
-  publishCommerceExpenseReversed:
+      - $ref: "#/channels/awcms.commerce.loyalty.entry_recorded/messages/DomainEvent"
+  publishCommerceStoredValueEntryRecorded:
     action: send
     channel:
-      $ref: "#/channels/awcms.commerce.expense.reversed"
+      $ref: "#/channels/awcms.commerce.stored_value.entry_recorded"
     messages:
-      - $ref: "#/channels/awcms.commerce.expense.reversed/messages/DomainEvent"
+      - $ref: "#/channels/awcms.commerce.stored_value.entry_recorded/messages/DomainEvent"
 components:
   messages:
     DomainEvent:

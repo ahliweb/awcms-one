@@ -725,6 +725,33 @@ export const RETIRED_TENANT_TABLE_PRIVILEGES: Record<string, string[]> = {
   awcms_commerce_register_close_requests: ["SELECT", "INSERT", "UPDATE"],
   awcms_commerce_register_close_lines: ["SELECT", "INSERT"],
   awcms_commerce_register_corrections: ["SELECT", "INSERT"],
+  // Issue #288 / `sql/985`. The closed-loop stored-value tables - NOT retired,
+  // written on every issue and redemption. A liability record must not be
+  // erasable by the role that runs the till: DELETE is revoked on all three.
+  // The ledger is pure append (a trigger refuses every UPDATE, and UPDATE is
+  // revoked too - the privilege error is the earlier, louder answer). The
+  // account keeps UPDATE for its projection (balance/version/status), which
+  // `sql/985`'s guard trigger confines to the ledger's own trigger; the program
+  // keeps it for configuration.
+  awcms_commerce_stored_value_programs: ["SELECT", "INSERT", "UPDATE"],
+  awcms_commerce_stored_value_accounts: ["SELECT", "INSERT", "UPDATE"],
+  awcms_commerce_stored_value_ledger: ["SELECT", "INSERT"],
+  // Issue #286 / `sql/980`. The document-lifecycle tables - NOT retired, written
+  // by the cashier / back-office role. A numbered legal document, a quotation
+  // version and a work-order history row are records the role that issues them
+  // must not be able to erase or rewrite: DELETE is revoked on all seven, and
+  // UPDATE as well on the three pure-append tables (versions, events,
+  // documents - their triggers would refuse it anyway, and the privilege error
+  // is the earlier, louder answer). The mutable headers keep UPDATE for their
+  // status machines (guard triggers freeze identity/provenance), and the
+  // sequence table keeps it for its one legal move: the counter +1.
+  awcms_commerce_document_sequences: ["SELECT", "INSERT", "UPDATE"],
+  awcms_commerce_held_sales: ["SELECT", "INSERT", "UPDATE"],
+  awcms_commerce_quotations: ["SELECT", "INSERT", "UPDATE"],
+  awcms_commerce_quotation_versions: ["SELECT", "INSERT"],
+  awcms_commerce_work_orders: ["SELECT", "INSERT", "UPDATE"],
+  awcms_commerce_work_order_events: ["SELECT", "INSERT"],
+  awcms_commerce_documents: ["SELECT", "INSERT"],
   // Issue #294 / `sql/990`. The expense tables - NOT retired, written on every
   // spend. An expense is a fiscal record of money that left the business, so
   // the role that records one must not be able to erase it: DELETE is revoked
@@ -1623,6 +1650,13 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // with `executionMode: 'generic'` (module.ts) purely so the table answers
   // `data-lifecycle:table-coverage:check` — `deleted_at` stays NULL forever
   // (sql/917's header), so the generic engine's SELECT + DELETE is granted
+  // Issue #294 (`sql/990`/`sql/993`): the two expense tables' `dataLifecycle`
+  // descriptors (`commerce/domain/expense-lifecycle.ts`) are `executionMode:
+  // "generic"` with `hard_delete`; the retention worker is the only role that
+  // may delete an expense row (awcms_app has had DELETE revoked), and both
+  // tables are unreachable by construction (`deleted_at` is never set).
+  awcms_commerce_expense_categories: ["SELECT", "DELETE"],
+  awcms_commerce_expenses: ["SELECT", "DELETE"],
   // but never actually matches a row in practice.
   awcms_commerce_customer_accounts: ["SELECT", "DELETE"],
   // Issue #267 (IRMbyDUS, sql/936/937): same shape as
@@ -1650,13 +1684,53 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_commerce_register_close_requests: ["SELECT", "DELETE"],
   awcms_commerce_register_close_lines: ["SELECT", "DELETE"],
   awcms_commerce_register_corrections: ["SELECT", "DELETE"],
-  // Issue #294 (`sql/990`/`sql/993`): the two expense tables' `dataLifecycle`
-  // descriptors (`commerce/domain/expense-lifecycle.ts`) are `executionMode:
-  // "generic"` with `hard_delete`; the retention worker is the only role that
-  // may delete an expense row (awcms_app has had DELETE revoked), and both
-  // tables are unreachable by construction (`deleted_at` is never set).
-  awcms_commerce_expense_categories: ["SELECT", "DELETE"],
-  awcms_commerce_expenses: ["SELECT", "DELETE"],
+  // Issue #286 (`sql/980`/`sql/982`): the document-lifecycle tables'
+  // `dataLifecycle` descriptors (`commerce/domain/documents-lifecycle.ts`) are
+  // `executionMode: "generic"` with `hard_delete`; the retention worker is the
+  // only role that may delete one of these rows (awcms_app has had DELETE
+  // revoked), past the ceiling. A sequence counter is included: allocation
+  // only touches the CURRENT UTC year's row, so one not bumped for 366+ days
+  // belongs to a finished year and removing it cannot restart a number.
+  awcms_commerce_document_sequences: ["SELECT", "DELETE"],
+  awcms_commerce_held_sales: ["SELECT", "DELETE"],
+  awcms_commerce_quotations: ["SELECT", "DELETE"],
+  awcms_commerce_quotation_versions: ["SELECT", "DELETE"],
+  awcms_commerce_work_orders: ["SELECT", "DELETE"],
+  awcms_commerce_work_order_events: ["SELECT", "DELETE"],
+  awcms_commerce_documents: ["SELECT", "DELETE"],
+  // Issue #291 (`sql/960`/`962`/`964`): catalog attributes. Definitions and
+  // values are soft-deleted (`deleted_at` cursor) and aged out by the generic
+  // purge engine, which needs SELECT + DELETE; an import batch is an
+  // append-only record purged by `created_at`.
+  awcms_commerce_attribute_definitions: ["SELECT", "DELETE"],
+  awcms_commerce_product_attribute_values: ["SELECT", "DELETE"],
+  awcms_commerce_catalog_import_batches: ["SELECT", "DELETE"],
+  // Issue #289 (sql/950/951): the loyalty tables. The domain-event dispatcher
+  // runs the order-paid earn / order-cancelled reversal consumers and the
+  // `commerce:loyalty:expire` job appends ledger rows, all as this role.
+  // programs: read + the generic purge of RETIRED versions (cursor
+  // `effective_to`, NULL for a draft/open version so a live rule never
+  // matches). accounts: create-or-lock (`FOR UPDATE` needs UPDATE) + project
+  // the balance + the generic purge of an account idle for the whole window.
+  // ledger: append + the retention purge's DELETE and NEVER UPDATE — it is
+  // append-only and sql/950's trigger rejects it regardless.
+  awcms_commerce_loyalty_programs: ["SELECT", "DELETE"],
+  awcms_commerce_loyalty_accounts: ["SELECT", "INSERT", "UPDATE", "DELETE"],
+  awcms_commerce_loyalty_ledger: ["SELECT", "INSERT", "DELETE"],
+  // Issue #289 (sql/951): the earn consumer reads the tenant's `commerce`
+  // feature flags (`features.loyalty`) through `fetchCommerceFeatures`.
+  // Tenant-RLS table; SELECT only.
+  awcms_module_settings: ["SELECT"],
+  // Issue #288 (`sql/985`/`sql/988`): the three stored-value tables'
+  // `dataLifecycle` descriptors (`commerce/domain/stored-value-lifecycle.ts`)
+  // are `executionMode: "generic"` with `hard_delete`; the retention worker is
+  // the only role that may delete a liability record (awcms_app has had DELETE
+  // revoked), the two parents are unreachable by construction (`deleted_at` is
+  // never set - the guard trigger forbids it) and the ledger only past the
+  // ten-year ceiling.
+  awcms_commerce_stored_value_programs: ["SELECT", "DELETE"],
+  awcms_commerce_stored_value_accounts: ["SELECT", "DELETE"],
+  awcms_commerce_stored_value_ledger: ["SELECT", "DELETE"],
   // Issue #268 (`sql/939`): the protected-media link table's `dataLifecycle`
   // descriptor (`commerce/module.ts`) is `executionMode: "generic"` with a
   // real, reachable `hard_delete` (unlike entitlements above, this one IS

@@ -45,6 +45,7 @@ import { loadAdminScreen } from "../../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../../lib/logging/error-log";
 import { decodeKeysetCursor } from "../../../modules/_shared/keyset-pagination";
 import { getTranslatorFor } from "../../../lib/i18n";
+import { omesOperationStatusLabel } from "../../../lib/i18n/labels/omes-operation";
 import { OMES_GUARDS } from "../../../modules/omes-control/domain/permissions";
 import {
   fetchBackups,
@@ -72,6 +73,17 @@ const STATUS_VARIANT: Record<string, string> = {
   verified: "success",
   failed: "danger"
 };
+
+/** `awcms_omes_backups.status` (sql/154) — one screen only. */
+const BACKUP_STATUS_LABEL: Record<string, string> = {
+  completed: t("Completed"),
+  in_progress: t("In progress"),
+  verified: t("Verified"),
+  failed: t("Failed")
+};
+function backupStatusLabel(value: string): string {
+  return BACKUP_STATUS_LABEL[value] ?? value;
+}
 
 const statusRaw = readParam("status");
 const statusFilter = (STATUS_OPTIONS as readonly string[]).includes(statusRaw)
@@ -205,16 +217,20 @@ const staleCount = backups.filter((backup) => !backup.fresh).length;
         class="admin-section fade-in-up"
         aria-label="OMES backup summary"
       >
-        <div class="stat-grid stagger-children">
-          <div class="stat-card">
-            <span class="stat-label">{t("Backups (this page)")}</span>
-            <span class="stat-value">{backups.length}</span>
+        <div class="admin-stat-card-grid stagger-children">
+          <div class="admin-stat-card">
+            <span class="admin-stat-card-label">
+              {t("Backups (this page)")}
+            </span>
+            <span class="admin-stat-card-value">{backups.length}</span>
           </div>
-          <div class="stat-card">
-            <span class="stat-label">{t("Not fresh (this page)")}</span>
-            <span class="stat-value">{staleCount}</span>
+          <div class="admin-stat-card">
+            <span class="admin-stat-card-label">
+              {t("Not fresh (this page)")}
+            </span>
+            <span class="admin-stat-card-value">{staleCount}</span>
             {staleCount > 0 && (
-              <span class="stat-hint">
+              <span class="admin-stat-card-caption">
                 {t(
                   "Older than the 24h freshness window, or its capture failed"
                 )}
@@ -251,7 +267,7 @@ const staleCount = backups.filter((backup) => !backup.fresh).length;
             </option>
             {STATUS_OPTIONS.map((value) => (
               <option value={value} selected={statusFilter === value}>
-                {value}
+                {backupStatusLabel(value)}
               </option>
             ))}
           </select>
@@ -295,51 +311,55 @@ const staleCount = backups.filter((backup) => !backup.fresh).length;
               ) : (
                 backups.map((backup) => (
                   <tr data-backup-row={backup.id}>
-                    <td data-label="Backup">
+                    <td data-label={t("Backup")}>
                       <span class="cell-code">{backup.backupId}</span>
                       <span class="cell-muted">
                         {" "}
                         · {t("Server")}: {backup.serverId}
                       </span>
                     </td>
-                    <td data-label="Status">
+                    <td data-label={t("Status")} data-status={backup.status}>
                       <span
-                        class="status-badge"
-                        data-variant={
-                          STATUS_VARIANT[backup.status] ?? "neutral"
-                        }
+                        class="admin-status-pill"
+                        data-tone={STATUS_VARIANT[backup.status] ?? "neutral"}
                       >
-                        <span class="status-dot" aria-hidden="true" />
-                        {backup.status}
+                        <span
+                          class="admin-status-pill-dot"
+                          aria-hidden="true"
+                        />
+                        {backupStatusLabel(backup.status)}
                       </span>
                       {!backup.fresh && (
-                        <span class="status-badge" data-variant="warning">
-                          <span class="status-dot" aria-hidden="true" />
+                        <span class="admin-status-pill" data-tone="warning">
+                          <span
+                            class="admin-status-pill-dot"
+                            aria-hidden="true"
+                          />
                           {t("not fresh")}
                         </span>
                       )}
                     </td>
-                    <td data-label="Recovery class">
+                    <td data-label={t("Recovery class")}>
                       <span class="cell-muted">
                         {recoveryClass(backup.manifest)}
                       </span>
                     </td>
-                    <td data-label="Size">
+                    <td data-label={t("Size")}>
                       <span class="cell-muted">
                         {formatSize(backup.sizeBytes)}
                       </span>
                     </td>
-                    <td data-label="Checksum">
+                    <td data-label={t("Checksum (SHA-256)")}>
                       {backup.checksumSha256 ? (
                         <span class="cell-code">{backup.checksumSha256}</span>
                       ) : (
                         <span class="cell-muted">—</span>
                       )}
                     </td>
-                    <td data-label="Captured">
+                    <td data-label={t("Captured")}>
                       <span class="cell-muted">{backup.capturedAt}</span>
                     </td>
-                    <td data-label="Manifest">
+                    <td data-label={t("Manifest")}>
                       <details>
                         <summary>{t("View manifest")}</summary>
                         <pre
@@ -349,7 +369,7 @@ const staleCount = backups.filter((backup) => !backup.fresh).length;
                       </details>
                     </td>
                     {canRestore && (
-                      <td data-label="Actions">
+                      <td data-label={t("Actions")}>
                         <button
                           type="button"
                           class="btn-inline btn-inline--danger backup-restore-btn"
@@ -432,17 +452,17 @@ const staleCount = backups.filter((backup) => !backup.fresh).length;
               ) : (
                 restoreRequests.map((request) => (
                   <tr data-restore-request-row={request.id}>
-                    <td data-label="Request">
+                    <td data-label={t("Request")}>
                       <span class="cell-code">{request.requestId}</span>
                       <span class="cell-muted">
                         {" "}
                         · {t("Server")}: {request.serverId}
                       </span>
                     </td>
-                    <td data-label="Status">
+                    <td data-label={t("Status")} data-status={request.status}>
                       <span
-                        class="status-badge"
-                        data-variant={
+                        class="admin-status-pill"
+                        data-tone={
                           request.status === "approved" ||
                           request.status === "completed"
                             ? "success"
@@ -452,14 +472,17 @@ const staleCount = backups.filter((backup) => !backup.fresh).length;
                               : "info"
                         }
                       >
-                        <span class="status-dot" aria-hidden="true" />
-                        {request.status}
+                        <span
+                          class="admin-status-pill-dot"
+                          aria-hidden="true"
+                        />
+                        {omesOperationStatusLabel(t, request.status)}
                       </span>
                     </td>
-                    <td data-label="Requested">
+                    <td data-label={t("Requested")}>
                       <span class="cell-muted">{request.createdAt}</span>
                     </td>
-                    <td data-label="Approval">
+                    <td data-label={t("Approval")}>
                       {request.workflowInstanceId ? (
                         <a class="quick-link" href={approvalsLink(request)}>
                           {t("View in Approvals")}
@@ -486,6 +509,7 @@ const staleCount = backups.filter((backup) => !backup.fresh).length;
     onAction,
     sendJson
   } from "../../../lib/ui/admin-form-client";
+  import { confirmAction } from "../../../lib/ui/confirm-dialog-client";
 
   const actionError = messageBox("omes-backups-action-error");
 
@@ -495,9 +519,9 @@ const staleCount = backups.filter((backup) => !backup.fresh).length;
     if (!backupId) return;
 
     if (
-      !window.confirm(
+      !(await confirmAction(
         `Restore server state from backup ${backupCode}? This is always destructive and requires an approved workflow decision before it can dispatch.`
-      )
+      ))
     ) {
       return;
     }

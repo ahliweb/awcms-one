@@ -249,23 +249,23 @@ const colCount = canConfigure ? 5 : 4;
           ) : (
             rows.map(({ role, granted, availableCount }) => (
               <tr>
-                <td data-label="Code">
+                <td data-label={t("Code")}>
                   <span class="cell-code">{role.roleCode}</span>
                 </td>
-                <td data-label="Name">{role.roleName}</td>
-                <td data-label="System">
+                <td data-label={t("Name")}>{role.roleName}</td>
+                <td data-label={t("System")}>
                   <span
-                    class="status-badge"
-                    data-variant={role.isSystem ? "warning" : "neutral"}
+                    class="admin-status-pill"
+                    data-tone={role.isSystem ? "warning" : "neutral"}
                   >
                     {role.isSystem ? "system" : "custom"}
                   </span>
                 </td>
-                <td data-label="Permissions">
+                <td data-label={t("Permissions")}>
                   <span class="cell-muted">{role.permissionCount}</span>
                 </td>
                 {canConfigure && (
-                  <td data-label="Actions" class="stacked-block">
+                  <td data-label={t("Actions")} class="stacked-block">
                     <div class="row-actions">
                       <button
                         type="button"
@@ -391,11 +391,11 @@ const colCount = canConfigure ? 5 : 4;
           <tbody>
             {deletedRoles.map((role) => (
               <tr>
-                <td data-label="Code">
+                <td data-label={t("Code")}>
                   <span class="cell-code">{role.roleCode}</span>
                 </td>
-                <td data-label="Name">{role.roleName}</td>
-                <td data-label="Actions" class="stacked-block">
+                <td data-label={t("Name")}>{role.roleName}</td>
+                <td data-label={t("Actions")} class="stacked-block">
                   <div class="row-actions">
                     <button
                       type="button"
@@ -433,6 +433,7 @@ const colCount = canConfigure ? 5 : 4;
     onSubmitAll,
     sendJson
   } from "../../lib/ui/admin-form-client";
+  import { confirmAction } from "../../lib/ui/confirm-dialog-client";
 
   const actionError = messageBox("roles-action-error");
   const createError = messageBox("role-create-error");
@@ -548,7 +549,7 @@ const colCount = canConfigure ? 5 : 4;
     }
 
     if (button.dataset.roleAction === "delete") {
-      if (!window.confirm(`Soft-delete role "${code}"?`)) return;
+      if (!(await confirmAction(`Soft-delete role "${code}"?`))) return;
       const reason = (
         window.prompt("Reason for deleting (optional)?") ?? ""
       ).trim();
@@ -569,7 +570,7 @@ const colCount = canConfigure ? 5 : 4;
     }
 
     if (button.dataset.roleAction === "restore") {
-      if (!window.confirm(`Restore role "${code}"?`)) return;
+      if (!(await confirmAction(`Restore role "${code}"?`))) return;
 
       await mutateAndReload(
         button,
@@ -584,7 +585,8 @@ const colCount = canConfigure ? 5 : 4;
     if (button.dataset.roleAction === "revoke") {
       const permissionId = button.dataset.permissionId;
       if (!permissionId) return;
-      if (!window.confirm("Remove this permission from the role?")) return;
+      if (!(await confirmAction("Remove this permission from the role?")))
+        return;
 
       await mutateAndReload(
         button,

@@ -32,6 +32,21 @@ Grouped by the same three areas [`docs/arsitektur.md`](arsitektur.md) and [ADR-0
 
 Pagination: keyset, newest-first by default (`sort=newest`), page size fixed at 100 server-side. `price_asc`/`price_desc`/`name` sorts return a single bounded page (`nextCursor: null`) rather than a keyset walk — a `cursor` combined with a non-`newest` sort is rejected 400.
 
+### Catalog attributes, import and export (issue #291, [ADR-0027](adr/0027-catalog-custom-attributes-are-typed-and-allowlisted.md))
+
+| Method | Path | Permission | Notes |
+| --- | --- | --- | --- |
+| `GET`/`POST` | `/api/v1/commerce/attributes` | `attributes.read` / `attributes.manage` | The tenant's attribute definitions (≤ 100, not paginated); `key` (slug) and `valueType` are fixed at creation |
+| `GET`/`PATCH`/`DELETE` | `/api/v1/commerce/attributes/{id}` | `attributes.read` / `.manage` | `PATCH` naming `key`/`valueType` is a 400; removing an in-use enum option or narrowing `appliesTo` under stored values is a 409 |
+| `GET` | `/api/v1/commerce/products/{id}/attributes` | `attributes.read` | The full (admin) attribute set plus the applicable definitions. Gated on `attributes.read`, **not** `products.read`: a storefront credential holds the latter |
+| `PUT` | `/api/v1/commerce/products/{id}/attributes` | `products.update` | `{ "attributes": { "<key>": <value> \| null } }`; `null` clears; one invalid value rejects the whole request, nothing written |
+| `PUT` | `/api/v1/commerce/products/{id}/variants/{variantId}/attributes` | `products.update` | The variant-level twin, definitions whose `appliesTo` covers variants |
+| `GET` | `/api/v1/commerce/products?attr=<key>:<op>:<value>` | `products.read` | Repeatable (≤ 5, AND-ed); `op` ∈ `eq`, `in`, `gte`, `lte`, `contains`. Public audience only: `filterable && visible_public` keys; an unknown, non-filterable or non-public key is one and the same 400. `q` also matches `searchable && visible_public` attributes |
+| `GET` | `/api/v1/commerce/products/export.csv` | `products.export` | RFC 4180, UTF-8 with BOM, formula-neutralised; ≤ 5000 rows (`X-AWCMS-Export-Truncated`) |
+| `POST` | `/api/v1/commerce/products/import?mode=dry_run\|apply` | `products.import` (+ `create` + `update` to apply) | Body is `text/csv`, ≤ 5 MiB and 5000 rows. Dry-run writes nothing; apply is all-or-nothing, needs `Idempotency-Key`, optional `expectedSha256` |
+
+Product responses (`GET /products`, `/{id}`, `/by-slug/{slug}`) gain an **additive** `attributes[]` on the product and on each variant: `{ key, label, labels, valueType, value, valueLabel }`, only `visible_public` values. `value` is a JSON number for `integer`, a decimal **string** for `decimal`, a boolean, an ISO `YYYY-MM-DD` string for `date`, and a string for `text`/`enum`. Numbers use digits and `.` only (`1,5` is a 400). Import errors: `422 IMPORT_VALIDATION_FAILED` (the plan has errors; `error.details` is the per-row report, nothing written), `409 IMPORT_CONFLICT` (a write-time conflict; nothing written), `409 IMPORT_FILE_MISMATCH`, `409 IDEMPOTENCY_CONFLICT`, `400 IDEMPOTENCY_REQUIRED`, `413`, `415`; definitions: `409 ATTRIBUTE_KEY_ALREADY_EXISTS`, `ATTRIBUTE_DEFINITION_LIMIT_REACHED`, `ATTRIBUTE_OPTION_IN_USE`, `ATTRIBUTE_APPLIES_TO_IN_USE`.
+
 ### Marketing (issue #26)
 
 | Family                         | Owner routes                                                                     | Public read model                                                                                                                                                                            |
@@ -82,6 +97,26 @@ Every route below is behind the tenant's `register` feature flag (default OFF �
 | `GET` | `commerce/register-sessions/{id}/report.csv` | `commerce.register_sessions.export` | The cash-up as one sectioned CSV, every cell spreadsheet-formula-neutralised; `Cache-Control: no-store` |
 
 The POS route (`POST commerce/pos/orders`) gains an optional **`registerId`**: REQUIRED while the `register` feature is on (the sale is attached to that register's open session, whose current cashier must be the caller — `404` unknown/foreign register, `409 REGISTER_SESSION_REQUIRED | REGISTER_SESSION_CLOSING | NOT_SESSION_CASHIER`, all before anything is written); with the feature off, sending it is `409 FEATURE_DISABLED` and nothing is stamped. The 201 gains `registerSessionId`.
+
+## Owner API: gift cards and store credit (issue #288, epic #281, [ADR-0030](adr/0030-stored-value-is-a-closed-loop-liability-ledger.md))
+
+Every route below is behind the tenant's `storedValue` feature flag (default OFF — `409 FEATURE_DISABLED`), requires a bearer/cookie session, and — for every mutation but the program PUT and the expiry sweep — an **`Idempotency-Key`** header (`400 IDEMPOTENCY_REQUIRED`). Money is a `numeric(14,2)` STRING; ledger amounts are signed. Seven permissions. A code is **never** returned except once, by the issuing response; everywhere else it is masked (`•••••••-•••••••-•••ABCD`). There is deliberately no public lookup or redeem endpoint.
+
+| Method | Path | Permission | Notes |
+| --- | --- | --- | --- |
+| `GET` | `commerce/stored-value/programs` | `commerce.stored_value_programs.read` | Both kinds; an unsaved one reports its disabled defaults (`configured: false`) |
+| `PUT` | `commerce/stored-value/programs/{kind}` | `commerce.stored_value_programs.update` | `{ enabled, allowRefundToAccount, expiryDays?, maxBalance? }`; `enabled` governs issuing/loading only — outstanding value stays redeemable |
+| `GET`/`POST` | `commerce/stored-value/accounts` | `commerce.stored_value.read` / `.create` | Keyset list (`?kind&status&customerId&last4&cursor`) / ISSUE `{ kind, amount, customerId?, expiresAt?, reason? }` → `201 { account, entry, code, codeRevealed }`; `409 STORED_VALUE_PROGRAM_DISABLED`, `STORED_VALUE_BALANCE_CEILING`; four concurrent requests with one key issue exactly one account |
+| `GET` | `commerce/stored-value/accounts/{id}` | `commerce.stored_value.read` | One account; another tenant's id is the same `404` |
+| `GET` | `commerce/stored-value/accounts/{id}/ledger` | `commerce.stored_value.read` | Append-only history, newest first (`?before=<account_seq>`) |
+| `POST` | `commerce/stored-value/accounts/{id}/load` | `commerce.stored_value.create` | `{ amount, reason? }` top-up → `201 { account, entry }`; `409 STORED_VALUE_PROGRAM_DISABLED \| _ACCOUNT_EXPIRED \| _ACCOUNT_UNAVAILABLE \| _BALANCE_CEILING` |
+| `POST` | `commerce/stored-value/accounts/{id}/adjust` | `commerce.stored_value_adjustments.create` | `{ amount (signed, non-zero), reason }`; never below zero (`409 STORED_VALUE_INSUFFICIENT`, `details.available`) |
+| `POST` | `commerce/stored-value/accounts/{id}/status` | `commerce.stored_value.update` | `{ action: disable \| enable, reason? }` (reason required to disable); `409 STORED_VALUE_STATUS_UNCHANGED` |
+| `POST` | `commerce/stored-value/expire` | `commerce.stored_value.update` | Releases lapsed balances in batches of 200 (`{ expired, released, more }`); idempotent |
+| `POST` | `commerce/stored-value/reconcile` | `commerce.stored_value.read` (+ `commerce.stored_value_reconcile.approve` for `repair: true`) | Findings: projection drift, ledger break, status drift, allocation mismatch; repair rebuilds only the projection |
+| `GET` | `reports/commerce/stored-value` | `commerce.stored_value.read` | `?from&to` (default last 30 `Asia/Jakarta` days): per kind issued / loaded / redeemed / refunded / adjusted up & down / expired / net, plus outstanding, frozen on disabled, lapsed-pending |
+
+Redemption is a **tender**, not a route here: `POST commerce/pos/orders` (`tenders[]`) and `POST commerce/orders/{id}/payments` accept `tenderType: gift_card \| store_credit` with a `storedValueCode` (and only then); a refused card answers `404 STORED_VALUE_NOT_FOUND` (an unknown, other-kind or other-tenant code — one neutral answer), `409 STORED_VALUE_UNAVAILABLE` (`details.reason`: `UNAVAILABLE \| EXPIRED`), `409 STORED_VALUE_INSUFFICIENT` (`details.available`) or `429 STORED_VALUE_LOOKUP_THROTTLED` (30 lookups per minute per user), always before any row is written. A reversal of such a payment is `409 PAYMENT_NOT_REVERSIBLE` when the program disallows a refund back onto the card or the account cannot take it.
 
 ## Owner API: expenses (issue #294, epic #281, [ADR-0031](adr/0031-expenses-are-commerce-local-register-linked-petty-cash.md))
 
@@ -249,6 +284,27 @@ One route file, two handlers (`apps/cms/src/pages/api/v1/commerce/pos/orders/ind
 
 No phone → the sale is attached to the tenant's single walk-in customer row (sentinel phone `+620000000000`); a phone → find-or-create by the normalised number and the customer's `level` prices the sale. The storefront paths (`GET storefront/orders/{code}?phone=`, `GET storefront/account/orders(/{code})`) never return a `channel: "pos"` order, and `POST storefront/orders` refuses both `payment.method: "cash"` and the sentinel phone. Product search for the POS screen is the existing `GET /api/v1/commerce/products?q=&status=active`.
 
+### Loyalty points ledger — implemented (#289, ADR-0026)
+
+All owner routes are `defineTenantRoute`, behind the tenant's `loyalty` feature flag (`409 FEATURE_DISABLED` when off; default **off**). The customer route is the anonymous-family bearer pattern (ADR-0016 D3) and answers the neutral `404` when the feature is off. Full design: [ADR-0026](adr/0026-loyalty-points-are-an-append-only-ledger.md); vocabulary: [`docs/kamus-data.md`](kamus-data.md).
+
+| Method | Path | Auth | Notes |
+| --- | --- | --- | --- |
+| `GET` / `POST` | `commerce/loyalty/programs` | `commerce.loyalty.read` / `.manage` | List every rule version, newest first / create a **draft** (version = max + 1 per tenant). Body `{name, earnUnitAmount (decimal string), earnPointsPerUnit (int), minOrderAmount?, maxPointsPerOrder?, expiryDays?, notes?}` |
+| `GET` / `PATCH` | `commerce/loyalty/programs/{id}` | `.read` / `.manage` | `PATCH` edits a **draft** only; an active or retired version is immutable (`409 PROGRAM_NOT_EDITABLE`) |
+| `POST` | `commerce/loyalty/programs/{id}/activate` | `.manage` (high-risk) | Activates a draft **now** and closes the open version in the same transaction (`409 PROGRAM_NOT_DRAFT` on a repeat) |
+| `POST` | `commerce/loyalty/programs/{id}/retire` | `.manage` | Ends the open active version now (`409 PROGRAM_NOT_ACTIVE` otherwise); points already earned are untouched |
+| `GET` | `commerce/loyalty/accounts` | `.read` | Keyset list (`?cursor&limit`), `?customerId=`, or the counter lookup `?phone=` (also returns a `customer` block with balance 0 for a customer with no account). Phones are masked |
+| `GET` | `commerce/loyalty/accounts/{customerId}` | `.read` | Name, masked phone, projected `balance`. Unknown/other-tenant customer is one `404` |
+| `GET` | `commerce/loyalty/accounts/{customerId}/ledger` | `.read` | The append-only history, newest first, keyset-paginated; staff view (actor and reason included) |
+| `POST` | `commerce/loyalty/accounts/{customerId}/redeem` | `commerce.loyalty_redemptions.create` | **`Idempotency-Key` required.** `{points (int >= 1), reason?}`. Runs under the account lock: `409 INSUFFICIENT_POINTS` (`details.balance`/`requested`) for the request that would overdraw. Records the points debit only — no discount |
+| `POST` | `commerce/loyalty/accounts/{customerId}/adjust` | `commerce.loyalty_adjustments.create` | **`Idempotency-Key` required.** `{points (non-zero int), reason (required, <= 500)}`. `409 WOULD_GO_NEGATIVE` for a deduction below zero. Audited |
+| `GET` | `commerce/loyalty/summary` | `.read` | `?from&to` (ISO instant or `YYYY-MM-DD`): `period.{earned,redeemed,expired,adjustmentsNet,reversed,net}` plus all-time `outstanding`, each a `SUM` over the ledger by `kind` |
+| `POST` | `commerce/loyalty/reconcile` | `.manage` (high-risk) | `{repair?: boolean}`. Reports projection drift and ledger breaks; `repair: true` rewrites only the drifted projections, one audit event each |
+| `GET` | `commerce/storefront/account/loyalty` | customer bearer | Own `balance`, the rule in force, and own history (`?cursor&limit`). The customer id comes only from the verified session; history items are `{id, kind, points, balanceAfter, expiresAt, createdAt}` |
+
+A same-key/same-body repeat of `redeem`/`adjust` replays the stored `201`; same key with a different body is `409 IDEMPOTENCY_CONFLICT`. Earn and reversal have **no route**: they run from the `order.paid` / `order.cancelled` domain events (`commerce.order_paid_loyalty_earner`, `commerce.order_cancelled_loyalty_reverser`), and expiry from the `commerce:loyalty:expire` job. Permissions added: `commerce.loyalty.{read,manage}`, `commerce.loyalty_adjustments.create`, `commerce.loyalty_redemptions.create`. Domain event added: `awcms.commerce.loyalty.entry_recorded` (aggregate `commerce.loyalty_account`).
+
 ## Request/response shapes
 
 `CommerceProduct` (owner and storefront reads share the same shape; fields added by #23 are additive):
@@ -262,9 +318,31 @@ No phone → the sale is attached to the tenant's single walk-in customer row (s
   stock: number, status: "draft" | "active" | "inactive" | "archived",
   label: string | null, labelColor: string | null,
   images: [{ id, publicUrl, sortOrder, altText }], variants: [{ id, name, value, sku, price, stock, ... }],
+## Owner API: held sales, quotations, work orders, documents (issue #286, epic #281, [ADR-0029](adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md))
+
+Every route below is behind the tenant's `documents` feature flag (default OFF — `409 FEATURE_DISABLED`), requires a bearer/cookie session, and — for every mutation — an **`Idempotency-Key`** header (`400 IDEMPOTENCY_REQUIRED`; same key + same body replays the stored answer, same key + different body is `409 IDEMPOTENCY_CONFLICT`). An unknown id, a malformed id and another tenant's id are the same neutral `404`. Permission keys are resource-split and none is implied by `commerce.pos.create`; the contract is `openapi/modules/commerce.openapi.yaml`.
+
+| Method | Path | Notes |
+| --- | --- | --- |
+| `GET`/`POST` | `/api/v1/commerce/held-sales` | `held_sales.read` / `.create`. `GET` lists the caller's own parked carts (`?status=`, `?scope=all` needs `held_sales.approve`); `POST` parks lines (no prices; `ttlHours` default 24, max 168; at most 50 active per cashier — `409 HELD_SALE_LIMIT`). No stock is reserved |
+| `POST` | `/api/v1/commerce/held-sales/{id}/resume` · `/discard` | `held_sales.update`; another cashier's cart is a `404` unless the caller also holds `held_sales.approve`. Resume is single-use and returns the cart's lines; `409 HELD_SALE_EXPIRED` / `HELD_SALE_NOT_HELD` |
+| `GET`/`POST` | `/api/v1/commerce/quotations` | `quotations.read` / `.create`. `POST { customer: { name, phone }, lines, validUntil?, notes? }` prices the lines server-side and freezes version 1; `409 CART_CHANGED` if a line cannot be priced |
+| `GET` | `/api/v1/commerce/quotations/{id}` | `quotations.read` — header plus every version (lines, totals, validity, pricing context, content hash) |
+| `POST` | `/api/v1/commerce/quotations/{id}/versions` | `quotations.create` — a revision (version N+1, back to `draft`); `409 QUOTATION_NOT_REVISABLE` |
+| `POST` | `/api/v1/commerce/quotations/{id}/actions/{send,accept,reject,cancel}` | `quotations.update`; `accept` pins the current version — `409 QUOTATION_EXPIRED` after its validity, `409 QUOTATION_STATUS_CONFLICT` for an illegal move |
+| `POST` | `/api/v1/commerce/quotations/{id}/convert` | `quotation_conversions.create` **and** `pos_due.create`; needs the `pos` feature. Creates the order through the POS path with the balance due; `409 QUOTATION_PRICE_CHANGED` (`quotedTotal`, `currentTotal`) unless `acceptPriceChange: true`; a retry or an already converted quotation answers `200` with the same order (`alreadyConverted`) |
+| `GET`/`POST` | `/api/v1/commerce/work-orders` | `work_orders.read` / `.create` — optionally `quotationId` (must be accepted) and `orderId`; an unknown or foreign reference is `400 VALIDATION_ERROR` |
+| `GET`/`PATCH` | `/api/v1/commerce/work-orders/{id}` | `work_orders.read` / `.update` — `PATCH { status?, note?, assigneeTenantUserId?, dueAt?, priority? }`; `409 WORK_ORDER_TRANSITION_ILLEGAL` / `WORK_ORDER_CLOSED` |
+| `GET`/`POST` | `/api/v1/commerce/documents` | `documents.read` / `.create`. `POST { orderId, docType: receipt \| invoice }` issues the next numbered snapshot (`201`), or returns the existing one (`200`, `alreadyIssued`); `409 ORDER_NOT_PAID` / `ORDER_NOT_FINAL` |
+| `GET` | `/api/v1/commerce/documents/{id}` | `documents.read` — the stored snapshot and hash |
+| `GET` | `/api/v1/commerce/documents/{id}/render?format=json\|text\|html&locale=id\|en` | `documents.read` — the render contract: a pure function of the stored snapshot (hash re-verified, `409 DOCUMENT_INTEGRITY_FAILURE`); `html` carries `Content-Security-Policy: default-src 'none'`, `nosniff`, `no-store`; every render is audited |
+
+Events: `awcms.commerce.quotation.accepted`, `awcms.commerce.quotation.converted` (the conversion's provenance), `awcms.commerce.work_order.status_changed`, `awcms.commerce.document.issued`. Thirteen permission keys: `commerce.held_sales.{read,create,update,approve}`, `commerce.quotations.{read,create,update}`, `commerce.quotation_conversions.create`, `commerce.work_orders.{read,create,update}`, `commerce.documents.{read,create}`.
+
   isFeatured: boolean, isRecommended: boolean, manualRating: string | null, manualSoldCount: number
 }
 ```
+| `commerce.expense` | `awcms.commerce.expense.{posted,reversed}` — (#294) each fires once, when the status actually changes (a pending submission or a rejection does not fire `posted`); payloads carry ids, tender, amount and the movement id, never the free-text description, payee or reason |
 
 `price`, `priceLevel2/3/4`, `finalPrice`, and every money field on marketing/order shapes below are JSON **strings**, e.g. `"19999.00"`, never JSON numbers — see [ADR-0003](adr/0003-money-is-numeric-14-2-and-crosses-the-wire-as-a-string.md) and the `normalizeMoney` note in [`docs/pengujian.md`](pengujian.md).
 
@@ -282,7 +360,7 @@ No phone → the sale is attached to the tenant's single walk-in customer row (s
 }
 ```
 
-## Authorization: 39 owner permissions (plus the increment-5 keys, since #285 `commerce.payments.{read,create,revoke}` and `commerce.pos_due.create`, since #284 ten register keys: `commerce.registers.{read,create,update}`, `commerce.register_sessions.{read,create,update,export}`, `commerce.register_cash_ups.{create,approve}`, `commerce.register_corrections.approve`, and since #294 twelve expense keys: `commerce.expense_categories.{read,create,update}`, `commerce.expenses.{read,create,update,export}`, `commerce.expense_postings.{create,approve}`, `commerce.expense_reversals.approve`, `commerce.expense_receipts.{read,create}`)
+## Authorization: 39 owner permissions (plus the increment-5 keys, since #285 `commerce.payments.{read,create,revoke}` and `commerce.pos_due.create`, since #288 seven stored-value keys: `commerce.stored_value_programs.{read,update}`, `commerce.stored_value.{read,create,update}`, `commerce.stored_value_adjustments.create`, `commerce.stored_value_reconcile.approve`, and since #284 ten register keys: `commerce.registers.{read,create,update}`, `commerce.register_sessions.{read,create,update,export}`, `commerce.register_cash_ups.{create,approve}`, `commerce.register_corrections.approve`, and since #294 twelve expense keys: `commerce.expense_categories.{read,create,update}`, `commerce.expenses.{read,create,update,export}`, `commerce.expense_postings.{create,approve}`, `commerce.expense_reversals.approve`, `commerce.expense_receipts.{read,create}`)
 
 The `commerce` module declares 39 permission keys in total (10 + 22 + 7 below), grouped by the same three areas as its tables — a count too large for this document's own "spelled number matches a counted set" convention (`bun run audit:dokumen`'s linked-count check only recognises spelled numbers one through twenty), so it is stated here as a numeral instead of inside a guarded block.
 
@@ -296,9 +374,9 @@ Deliberately **no `create`/`delete` for `orders`/`customers`**: an order or cust
 
 The storefront (anonymous) API has **no permission keys at all** — its trust boundary is the Origin-bound tenant resolver, not RBAC/ABAC.
 
-## Domain events: twenty
+## Domain events: twenty-one
 
-All twenty are registered in the three places `awcms` keeps in sync (`domain-event-runtime/domain/event-type-registry.ts`, `apps/cms/asyncapi/awcms-domain-events.asyncapi.yaml`, `commerce/module.ts`'s `events.publishes`):
+All twenty-one are registered in the three places `awcms` keeps in sync (`domain-event-runtime/domain/event-type-registry.ts`, `apps/cms/asyncapi/awcms-domain-events.asyncapi.yaml`, `commerce/module.ts`'s `events.publishes`):
 
 | Aggregate             | Events                                                                                                                                |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
@@ -307,7 +385,7 @@ All twenty are registered in the three places `awcms` keeps in sync (`domain-eve
 | `commerce.voucher`    | `awcms.commerce.voucher.redeemed` — pre-declared as a forward reference in #26, only actually fired once #29's order path redeems one |
 | `commerce.order`      | `awcms.commerce.order.{created,paid,status_changed,cancelled,expired}`, and since #285 `awcms.commerce.payment.{recorded,reversed}` (the payment ledger rides the ORDER aggregate: one ordered stream per order; ids/tender/amounts/resulting settlement, never a customer name/phone or payment reference) |
 | `commerce.review`     | `awcms.commerce.review.published`                                                                                                     |
-| `commerce.expense` | `awcms.commerce.expense.{posted,reversed}` — (#294) each fires once, when the status actually changes (a pending submission or a rejection does not fire `posted`); payloads carry ids, tender, amount and the movement id, never the free-text description, payee or reason |
+| `commerce.stored_value_account` | `awcms.commerce.stored_value.entry_recorded` — one event per ledger entry (issue, load, redeem, refund, adjust, expire, disable, enable) on the account aggregate (#288); ids, kinds, the signed amount and the resulting balance, never the code, the customer or the free-text reason |
 | `commerce.register_session` | `awcms.commerce.register_session.{opened,movement_recorded,closed,corrected}` — the shift's own ordered stream (#284); `closed` fires once, only when the session actually reaches `closed`; payloads carry ids/types/amounts/variance, never a movement's free-text reference/note or a close's reason |
 
 `categories` still publishes no domain events — the same choice `tenant_admin` makes for `awcms_offices`; a soft delete is an audit-log fact, not something a downstream consumer needs to react to.
@@ -321,7 +399,7 @@ All twenty are registered in the three places `awcms` keeps in sync (`domain-eve
 | `409`  | `CATEGORY_SLUG_ALREADY_EXISTS` / `PRODUCT_SLUG_ALREADY_EXISTS` / `PRODUCT_SKU_ALREADY_EXISTS` | A slug/SKU already taken by a live row in this tenant                                                                                                 |
 | `409`  | `CART_CHANGED`                                                                                | A storefront (or POS, #116) order-creation request's re-quote disagrees with the submitted cart; response carries a fresh `details.quote`             |
 | `409`  | `INSUFFICIENT_TENDER`                                                                         | POS only (#116, widened by #285): the tenders do not cover the order total (unless `allowDue`); `details.shortfall` is the `numeric(14,2)` string difference |
-| `409`  | `OVERPAYMENT` / `REVERSAL_EXCEEDS_PAYMENT` / `PAYMENT_NOT_REVERSIBLE` / `PAYMENT_NOT_SETTLED`  | Payment ledger (#285): an amount above what is owed (only cash change may exceed it); a reversal above what remains reversible; a payment that cannot be reversed; a manual `-> paid` before the ledger says the order is settled |
+| `409`  | `OVERPAYMENT` / `REVERSAL_EXCEEDS_PAYMENT` / `PAYMENT_NOT_REVERSIBLE` / `PAYMENT_NOT_SETTLED`  | Payment ledger (#285): an amount above what is owed (only cash change may exceed it); a reversal above what remains reversible; a payment that cannot be reversed; a manual `-> paid` for an order that has legs but is not settled (an order with no leg gets one full-amount leg recorded instead). A reused `Idempotency-Key` aimed at another order, or with a different tender/amount, is `409 IDEMPOTENCY_CONFLICT`; `ORDER_PARTIALLY_SETTLED` (storefront gateway sessions) means money was already received, so no hosted checkout is offered |
 | `409`  | `FEATURE_DISABLED`                                                                            | An owner route of a feature the tenant turned off (#118) — inbox, campaigns, gateway, courier, and since #116 the POS routes, and since #284 every register route (the `register` flag defaults OFF; naming a `registerId` on a POS sale while it is off is the same refusal)                          |
 | `409`  | `EXPENSE_CATEGORY_INACTIVE` / `EXPENSE_NOT_DRAFT` / `EXPENSE_NOT_POSTABLE` / `EXPENSE_NOT_PENDING` / `EXPENSE_NOT_REVERSIBLE` / `EXPENSE_NOT_ATTACHABLE` / `EXPENSE_RECEIPT_NOT_ELIGIBLE` / `EXPENSE_RECEIPT_ALREADY_USED` / `EXPENSE_RECEIPT_ALREADY_ATTACHED` / `EXPENSE_RECEIPT_UNAVAILABLE` / `EXPENSE_CATEGORY_CODE_TAKEN` / `EXPENSE_REQUIRES_EXPENSE_RECORD` | Expenses (#294): the expense's state refuses the action (a category that is deactivated or duplicated, editing/posting/discarding a non-draft, deciding what is not pending, reversing what is not posted, a receipt that is not a verified private object the caller uploaded or is already in use or attached, a receipt that can no longer be issued, a raw `expense` drawer movement while the `expenses` feature is on) |
 | `403`  | `SEGREGATION_OF_DUTIES` / `NOT_EXPENSE_OWNER` | Expenses (#294): approving an expense you created or submitted; changing a draft that is not yours without being a supervisor |

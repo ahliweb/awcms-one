@@ -46,7 +46,7 @@ const idEntries = flatten(idLabels);
 
 describe("createCommerceLabels", () => {
   test("returns a non-empty map for every enum (a vacuous pass is not a pass)", () => {
-    expect(Object.keys(idLabels).length).toBe(30);
+    expect(Object.keys(idLabels).length).toBe(43);
     for (const [, values] of Object.entries(idLabels)) {
       expect(Object.keys(values as object).length).toBeGreaterThan(0);
     }

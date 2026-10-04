@@ -1,0 +1,16 @@
+---
+"awcms": minor
+---
+
+feat(commerce): typed custom catalog attributes, safe attribute search/filtering and validated bulk CSV import/export (Issue #291, epic #281)
+
+New tables `awcms_commerce_attribute_definitions`, `awcms_commerce_product_attribute_values` (`sql/960`, FORCE RLS, composite tenant-safe FKs, value indexes chosen from measured query plans in `sql/963`), `awcms_commerce_catalog_import_batches` (`sql/964`), permissions seed `sql/961`, worker purge grants `sql/962`.
+
+- **Attribute definitions** — a tenant-authored schema: stable slug `key`, label + per-locale labels, type (`text`/`integer`/`decimal`/`boolean`/`date`/`enum`), a closed per-type `constraints` schema (no regex, no expressions), `searchable`/`filterable`/`visible_admin`/`visible_public` flags, applicable to products, variants or both. `key` and `valueType` are immutable. `GET/POST /api/v1/commerce/attributes`, `GET/PATCH/DELETE .../attributes/{id}` (`commerce.attributes.read`/`.manage`).
+- **Typed values, locale-independent** — a strict ASCII grammar (`1234.5`; `1,5` and `1.234,5` are refused, never guessed at), stored exactly as a scaled `bigint` (not a float, not a `numeric`: `int8` operators are leakproof, so a range filter can use a b-tree under FORCE RLS). `GET .../products/{id}/attributes` (`commerce.attributes.read`, so a storefront credential that only holds `products.read` cannot read back-office-only attributes), `PUT .../products/{id}/attributes` and `.../variants/{variantId}/attributes` (`commerce.products.update`).
+- **Safe filtering** — `GET /products?attr=<key>:<op>:<value>` (closed operator set `eq`/`in`/`gte`/`lte`/`contains`), plus free-text `q` over searchable attributes. The key is resolved to a definition id by the database and every operand is parsed with the typed grammar; each (type, operator) pair has one literal SQL template and the operands are bound parameters, so no SQL identifier or expression is ever built from a request. The public API answers the public audience only: `filterable && visible_public` keys, and only `visible_public` values (additive `attributes[]` on products and variants).
+- **CSV export** (`GET /products/export.csv`, `commerce.products.export`) — RFC 4180, UTF-8, formula-injection neutralised (cells starting with `= + - @ TAB CR` are prefixed with `'`), re-imports as all-unchanged.
+- **CSV import** (`POST /products/import?mode=dry_run|apply`, `commerce.products.import`, apply also needs `create` + `update`) — dry-run writes nothing and returns a per-row report; apply runs the same planner, is all-or-nothing (one savepoint), needs an `Idempotency-Key` (replay returns the original response; a batch row is the structural second guard), can be bound to the reviewed file with `expectedSha256`, matches on `sku`, never fetches anything and accepts no media column. Limits: 5000 rows, 5 MiB.
+- **Admin** — `/admin/commerce-attributes` (definition management), `/admin/commerce-catalog-import` (export, validate, review the report, apply), typed attribute inputs on each product and variant in `/admin/commerce`, attribute filters and an export link on the product list.
+
+Adds the `import` access action (high-risk, beside `export`). Existing product response fields are unchanged (the new `attributes` field is additive).

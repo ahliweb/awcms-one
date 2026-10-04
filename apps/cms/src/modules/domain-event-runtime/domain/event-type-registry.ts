@@ -126,6 +126,26 @@ export const COMMERCE_EXPENSE_POSTED_EVENT_TYPE =
   "awcms.commerce.expense.posted";
 export const COMMERCE_EXPENSE_REVERSED_EVENT_TYPE =
   "awcms.commerce.expense.reversed";
+/** Issue #286 (ADR-0029) — commerce document-lifecycle events. */
+export const COMMERCE_QUOTATION_ACCEPTED_EVENT_TYPE =
+  "awcms.commerce.quotation.accepted";
+export const COMMERCE_QUOTATION_CONVERTED_EVENT_TYPE =
+  "awcms.commerce.quotation.converted";
+export const COMMERCE_WORK_ORDER_STATUS_CHANGED_EVENT_TYPE =
+  "awcms.commerce.work_order.status_changed";
+export const COMMERCE_DOCUMENT_ISSUED_EVENT_TYPE =
+  "awcms.commerce.document.issued";
+
+/**
+ * Loyalty points ledger (Issue #289, ADR-0026) — ONE event type for every
+ * ledger row, `kind` in the payload.
+ */
+export const COMMERCE_LOYALTY_ENTRY_RECORDED_EVENT_TYPE =
+  "awcms.commerce.loyalty.entry_recorded";
+
+/** Issue #288 (ADR-0030) — closed-loop stored-value ledger. */
+export const COMMERCE_STORED_VALUE_ENTRY_RECORDED_EVENT_TYPE =
+  "awcms.commerce.stored_value.entry_recorded";
 
 export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
   [
@@ -284,6 +304,18 @@ export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
         "A compensating reversal was recorded against an earlier payment-allocation (a refund or a corrected entry). Producer: commerce/application/payment-allocation-directory.ts's recordPaymentReversal, in the same transaction as the ledger insert. Carries the order's resulting settlement; never moves the order lifecycle."
     },
     {
+      eventType: COMMERCE_EXPENSE_POSTED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "An expense reached posted (within the approval threshold, or approved by someone other than its creator). Producer: commerce/application/expense-posting.ts's postExpense / decideExpense, in the same transaction as the status change and - for a drawer-paid expense - the register expense movement. Fired once; a pending submission or a rejection does not fire it. Carries ids, tender, amount and the movement id - never the free-text description or payee."
+    },
+    {
+      eventType: COMMERCE_EXPENSE_REVERSED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A posted expense was reversed with a compensating entry. Producer: commerce/application/expense-posting.ts's reverseExpense, in the same transaction as the status change and - for a drawer-paid expense - the compensating register movement. Carries ids, tender, amount and the compensating movement id - never the free-text reason."
+    },
+    {
       eventType: COMMERCE_REGISTER_SESSION_OPENED_EVENT_TYPE,
       eventVersion: COMMERCE_EVENT_VERSION,
       description:
@@ -308,16 +340,40 @@ export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
         "A compensating correction was recorded against a closed register session (the original cash-up is preserved). Producer: commerce/application/register-cash-up.ts's recordRegisterCorrection. Carries the per-tender adjustments, never the free-text reason."
     },
     {
-      eventType: COMMERCE_EXPENSE_POSTED_EVENT_TYPE,
+      eventType: COMMERCE_STORED_VALUE_ENTRY_RECORDED_EVENT_TYPE,
       eventVersion: COMMERCE_EVENT_VERSION,
       description:
-        "An expense reached posted (within the approval threshold, or approved by someone other than its creator). Producer: commerce/application/expense-posting.ts's postExpense / decideExpense, in the same transaction as the status change and - for a drawer-paid expense - the register expense movement. Fired once; a pending submission or a rejection does not fire it. Carries ids, tender, amount and the movement id - never the free-text description or payee."
+        "A closed-loop stored-value ledger entry (gift card / store credit: issue, load, redeem, refund, adjust, expire, disable, enable) was appended. Producer: commerce/application/stored-value-ledger.ts's appendStoredValueEntry, in the same transaction as the ledger insert (and, for redeem/refund, the payment-allocation row it mirrors). Aggregate: the stored-value account. Carries ids, kinds, the signed amount and the resulting balance - never the code, the customer or the free-text reason."
     },
     {
-      eventType: COMMERCE_EXPENSE_REVERSED_EVENT_TYPE,
+      eventType: COMMERCE_QUOTATION_ACCEPTED_EVENT_TYPE,
       eventVersion: COMMERCE_EVENT_VERSION,
       description:
-        "A posted expense was reversed with a compensating entry. Producer: commerce/application/expense-posting.ts's reverseExpense, in the same transaction as the status change and - for a drawer-paid expense - the compensating register movement. Carries ids, tender, amount and the compensating movement id - never the free-text reason."
+        "A quotation version was accepted and pinned. Producer: commerce/application/quotation-directory.ts's applyQuotationAction, in the same transaction as the status change. Aggregate: the quotation. Carries the quotation number, the accepted version and its total - never the customer."
+    },
+    {
+      eventType: COMMERCE_QUOTATION_CONVERTED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "An accepted quotation was converted into a commerce order through the ordinary POS order path. Producer: commerce/application/quotation-directory.ts's convertQuotation, same transaction as the order. Carries the quotation id/number/accepted version and the resulting order id/code/total (provenance); fired once per quotation."
+    },
+    {
+      eventType: COMMERCE_WORK_ORDER_STATUS_CHANGED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A work order moved to a new operational status. Producer: commerce/application/work-order-directory.ts's updateWorkOrder, in the same transaction as the status change and its history row. Never carries the title, description or note."
+    },
+    {
+      eventType: COMMERCE_DOCUMENT_ISSUED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A numbered receipt or invoice document was issued for a finalized order (an immutable snapshot). Producer: commerce/application/document-directory.ts's issueDocument, in the same transaction as the numbered row. Carries the document type/number, the source order id and the total - never the customer."
+    },
+    {
+      eventType: COMMERCE_LOYALTY_ENTRY_RECORDED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A row was appended to the append-only loyalty points ledger (Issue #289) — an earn for a paid order, a redemption, an expiry, a manual adjustment or a reversal. Producer: commerce/application/loyalty-ledger.ts's appendLedgerEntry, in the same transaction as the ledger insert and the account projection update. Aggregate is the loyalty account; the payload carries entryId, customerId, kind, signed integer points, balanceAfter and sourceType — never a name, phone or free-text reason."
     }
   ];
 

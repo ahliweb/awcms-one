@@ -22,6 +22,9 @@ import {
   validateCreateProductInput,
   type CreateProductInput
 } from "../../../../../modules/commerce/domain/product-validation";
+import { attachPublicAttributes } from "../../../../../modules/commerce/application/attribute-value-directory";
+import { resolveAttributeFilterRequest } from "../../../../../modules/commerce/application/attribute-filter-sql";
+import { parseAttributeFilterParams } from "../../../../../modules/commerce/domain/attribute-filter";
 import { isProductStatus } from "../../../../../modules/commerce/domain/product-status";
 import { isProductSort } from "../../../../../modules/commerce/domain/product-sort";
 import { COMMERCE_PRODUCTS_ACTIVITY_CODE } from "../../../../../modules/commerce/domain/commerce-permissions";
@@ -53,6 +56,8 @@ function parseBooleanParam(
 type ListPrepared = {
   cursor: KeysetCursor | null;
   filters: ProductListFilters;
+  /** Raw `attr=<key>:<op>:<value>` params — shape-checked here, resolved against the tenant's definitions in the handler. */
+  attributeParams: string[];
 };
 
 /**
@@ -136,8 +141,18 @@ export const GET = defineTenantRoute({
       );
     }
 
+    // Issue #291 — `attr=<key>:<operator>:<value>`, repeatable. The shape is
+    // checked here (closed operator set, slug key, bounded count/length); the
+    // key is resolved against the tenant's definitions inside the handler.
+    const attributeParams = url.searchParams.getAll("attr");
+    const attributeShape = parseAttributeFilterParams(attributeParams);
+    if (!attributeShape.valid) {
+      return fail(400, "VALIDATION_ERROR", attributeShape.message);
+    }
+
     return {
       cursor,
+      attributeParams,
       filters: {
         categoryId: categoryIdParam ?? undefined,
         status: statusParam ?? undefined,
@@ -150,18 +165,32 @@ export const GET = defineTenantRoute({
   },
   authorize: READ_GUARD,
   handler: async ({ tx, tenantId, prepared }) => {
-    const page = await listProducts(
+    // This API is the catalog read model a storefront consumes with a machine
+    // credential, so it always speaks to the PUBLIC audience: only
+    // `filterable && visible_public` attributes may be filtered on and only
+    // `visible_public` values are returned (Issue #291).
+    const attributeFilters = await resolveAttributeFilterRequest(
       tx,
       tenantId,
-      prepared.cursor,
-      prepared.filters
+      prepared.attributeParams,
+      "public"
     );
-    const items = await attachProductRelations(
+    if (!attributeFilters.valid) {
+      return fail(400, "VALIDATION_ERROR", attributeFilters.message);
+    }
+
+    const page = await listProducts(tx, tenantId, prepared.cursor, {
+      ...prepared.filters,
+      attributeFilters: attributeFilters.filters,
+      attributeAudience: "public"
+    });
+    const withRelations = await attachProductRelations(
       tx,
       tenantId,
       mediaLibraryPortAdapter,
       page.items
     );
+    const items = await attachPublicAttributes(tx, tenantId, withRelations);
     return ok({ items, nextCursor: page.nextCursor });
   }
 });

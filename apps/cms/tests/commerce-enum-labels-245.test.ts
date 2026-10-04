@@ -109,7 +109,7 @@ describe("commerce-inbox.astro — conversation status in the list and the threa
     const source = await readFile(INBOX_PAGE, "utf8");
 
     expect(source).not.toContain(
-      '<span class="status-badge">{conversation.status}</span>'
+      '<span class="admin-status-pill">{conversation.status}</span>'
     );
     expect(source).toContain("data-status={conversation.status}");
     expect(
@@ -124,7 +124,7 @@ describe("commerce-inbox.astro — conversation status in the list and the threa
     const source = await readFile(INBOX_PAGE, "utf8");
 
     expect(source).not.toContain(
-      '<span class="status-badge">{thread.conversation.status}</span>'
+      '<span class="admin-status-pill">{thread.conversation.status}</span>'
     );
     expect(source).toContain("data-status={thread.conversation.status}");
     expect(
@@ -308,7 +308,7 @@ describe("commerce-pos.astro — the sale-history Status column is labelled", ()
     const source = await readFile(POS_PAGE, "utf8");
 
     expect(source).not.toContain(
-      '<span class="status-badge">{order.status}</span>'
+      '<span class="admin-status-pill">{order.status}</span>'
     );
     expect(source).toContain("data-status={order.status}");
     expect(
@@ -339,7 +339,7 @@ describe("commerce-campaigns.astro — channel/status are labelled in the list a
       '<td data-label="Channel">{campaign.channel}</td>'
     );
     expect(source).not.toContain(
-      '<span class="status-badge">{campaign.status}</span>'
+      '<span class="admin-status-pill">{campaign.status}</span>'
     );
     expect(source).toContain("data-channel={campaign.channel}");
     expect(
@@ -363,7 +363,7 @@ describe("commerce-campaigns.astro — channel/status are labelled in the list a
     expect(
       hasNormalized(
         source,
-        '{selected.channel} ·{" "} <span class="status-badge">{selected.status}</span>'
+        '{selected.channel} ·{" "} <span class="admin-status-pill">{selected.status}</span>'
       )
     ).toBe(false);
     expect(source).toContain("data-channel={selected.channel}");

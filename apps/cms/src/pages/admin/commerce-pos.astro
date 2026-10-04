@@ -74,6 +74,10 @@ import {
   listPosOrders,
   type PosOrderListPage
 } from "../../modules/commerce/application/pos-directory";
+import {
+  listHeldSales,
+  type HeldSaleRecord
+} from "../../modules/commerce/application/held-sale-directory";
 import { POS_WALK_IN_CUSTOMER_NAME } from "../../modules/commerce/domain/pos-order-validation";
 
 const ssr = Astro.locals.ssrContext!;
@@ -122,7 +126,7 @@ const screen = await loadAdminScreen({
   ssr,
   workClass: "interactive",
   authorize: [SALE_ENTRY, HISTORY_ENTRY, DUE_ENTRY],
-  load: async ({ tx, entry }) => {
+  load: async ({ tx, entry, can }) => {
     const features = await fetchCommerceFeatures(tx, ssr.tenantId);
     const canSell = entry[0] === true;
     const canReadHistory = entry[1] === true;
@@ -146,10 +150,43 @@ const screen = await loadAdminScreen({
             })
           ).items
         : [];
+    // Issue #286 (ADR-0029) - the cashier's OWN parked carts, only while the
+    // `documents` feature is on; resuming/holding need their own keys.
+    const heldAvailable =
+      features.pos && features.documents && canSell && tab === "sale";
+    const canHold =
+      heldAvailable &&
+      (await can({
+        moduleKey: "commerce",
+        activityCode: "held_sales",
+        action: "create"
+      }));
+    const canResumeHeld =
+      heldAvailable &&
+      (await can({
+        moduleKey: "commerce",
+        activityCode: "held_sales",
+        action: "update"
+      }));
+    const heldSales: HeldSaleRecord[] = canResumeHeld
+      ? (
+          await listHeldSales(
+            tx,
+            ssr.tenantId,
+            { actorTenantUserId: ssr.tenantUserId, all: false },
+            null,
+            "held"
+          )
+        ).items
+      : [];
     return {
       posEnabled: features.pos,
       registerEnabled: features.register,
+      storedValueEnabled: features.storedValue,
       registerSessions,
+      canHold,
+      canResumeHeld,
+      heldSales,
       canSell,
       canReadHistory,
       canSellOnCredit,
@@ -168,12 +205,18 @@ const denied = screen.state === "denied";
 const loadError = screen.state === "error";
 const posEnabled = allowed && screen.data.posEnabled;
 const registerEnabled = allowed && screen.data.registerEnabled;
+// Issue #288 - gift card / store credit tenders appear only while the tenant's
+// `storedValue` feature is on (the server refuses them otherwise).
+const storedValueEnabled = allowed && screen.data.storedValueEnabled;
 const registerSessions = allowed ? screen.data.registerSessions : [];
 const canSell = allowed && screen.data.canSell;
 const canReadHistory = allowed && screen.data.canReadHistory;
 // The checkbox is only a convenience: the endpoint re-checks `pos_due.create`.
 const canSellOnCredit = allowed && screen.data.canSellOnCredit && canSell;
 const history = allowed ? screen.data.history : null;
+const canHold = allowed && screen.data.canHold;
+const canResumeHeld = allowed && screen.data.canResumeHeld;
+const heldSales = allowed ? screen.data.heldSales : [];
 const cashierTenantUserId = ssr.tenantUserId;
 const storeName = ssr.display.tenantName?.trim() || "";
 
@@ -261,6 +304,15 @@ const tenderLabel = (method: string): string =>
       id="pos-sale"
       aria-labelledby="pos-sale-heading"
       data-walk-in-name={POS_WALK_IN_CUSTOMER_NAME}
+      data-msg-hold-failed={t("Could not hold the sale. Please try again.")}
+      data-msg-resume-failed={t(
+        "Could not resume the held sale. Please try again."
+      )}
+      data-msg-held-expired={t("That held sale has expired.")}
+      data-msg-held-gone={t("That held sale was already resumed or discarded.")}
+      data-msg-held-limit={t(
+        "Too many parked sales; resume or discard some first."
+      )}
       data-register-mode={registerEnabled ? "true" : "false"}
       data-msg-register-required={t("Choose the register you are selling on.")}
       data-msg-register-session-required={t(
@@ -296,6 +348,21 @@ const tenderLabel = (method: string): string =>
       data-msg-no-tender={t(
         "Add at least one payment line, or leave the balance due."
       )}
+      data-msg-code-required={t(
+        "Enter the gift card or credit code for that payment line."
+      )}
+      data-msg-sv-not-found={t(
+        "That gift card or credit code was not recognised."
+      )}
+      data-msg-sv-unavailable={t(
+        "That gift card or credit is disabled or has expired."
+      )}
+      data-msg-sv-insufficient={t(
+        "That gift card or credit does not have enough balance for the amount entered."
+      )}
+      data-msg-sv-throttled={t(
+        "Too many code lookups. Wait a moment and try again."
+      )}
       data-msg-feature-disabled={t(
         "Point of sale is turned off for this store."
       )}
@@ -309,6 +376,9 @@ const tenderLabel = (method: string): string =>
       data-label-cash={t("Cash")}
       data-label-qris={t("QRIS")}
       data-label-bank={t("Bank transfer")}
+      data-label-gift-card={t("Gift card")}
+      data-label-store-credit={t("Store credit")}
+      data-label-code={t("Gift card or credit code")}
       data-label-tender={t("Payment line")}
       data-label-amount={t("Amount")}
       data-label-amount-cash={t("Amount handed over")}
@@ -566,7 +636,29 @@ const tenderLabel = (method: string): string =>
             <button type="button" class="btn-inline" id="pos-clear">
               {t("Clear cart")}
             </button>
+            {canHold && (
+              <button type="button" class="btn-inline" id="pos-hold">
+                {t("Hold sale")}
+              </button>
+            )}
           </div>
+          {canResumeHeld && heldSales.length > 0 && (
+            <div class="admin-form-actions" id="pos-held">
+              <label for="pos-held-select">
+                {t("Held sales")}
+                <select id="pos-held-select">
+                  {heldSales.map((sale) => (
+                    <option value={sale.id}>
+                      {sale.label ?? sale.id.slice(0, 8)} · {sale.lineCount}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <button type="button" class="btn-inline" id="pos-resume">
+                {t("Resume held sale")}
+              </button>
+            </div>
+          )}
         </form>
       </div>
 
@@ -742,7 +834,7 @@ const tenderLabel = (method: string): string =>
                     {tenderLabel(order.paymentMethod)}
                   </td>
                   <td data-label={t("Status")}>
-                    <span class="status-badge" data-status={order.status}>
+                    <span class="admin-status-pill" data-status={order.status}>
                       {commerceLabel(labels.orderStatus, order.status)}
                     </span>
                   </td>
@@ -800,6 +892,12 @@ const tenderLabel = (method: string): string =>
         <option value="cash">{t("Cash")}</option>
         <option value="manual_qris">{t("QRIS")}</option>
         <option value="manual_bank_transfer">{t("Bank transfer")}</option>
+        {storedValueEnabled && (
+          <option value="gift_card">{t("Gift card")}</option>
+        )}
+        {storedValueEnabled && (
+          <option value="store_credit">{t("Store credit")}</option>
+        )}
       </select>
     </label>
     <label>
@@ -820,6 +918,17 @@ const tenderLabel = (method: string): string =>
         data-field="reference"
         maxlength="100"
         autocomplete="off"
+      />
+    </label>
+    <label data-field="code-wrap" hidden>
+      <span data-field="code-label"></span>
+      <input
+        type="text"
+        data-field="code"
+        maxlength="64"
+        autocomplete="off"
+        autocapitalize="characters"
+        spellcheck="false"
       />
     </label>
     <button
@@ -1048,6 +1157,8 @@ const tenderLabel = (method: string): string =>
     amount: string;
     tenderedAmount: string | null;
     changeAmount: string | null;
+    /** Issue #288 - the MASKED code of the gift card / credit a leg drew from; the plaintext is never stored or returned. */
+    storedValue?: { maskedCode: string } | null;
   };
 
   type PosOrderResponse = {
@@ -1186,9 +1297,15 @@ const tenderLabel = (method: string): string =>
     amount: HTMLInputElement;
     reference: HTMLInputElement;
     referenceWrap: HTMLElement;
+    code: HTMLInputElement;
+    codeWrap: HTMLElement;
     remove: HTMLButtonElement;
     amountLabel: HTMLElement;
   };
+
+  /** Issue #288 - a gift card / store credit line names its account by code. */
+  const isStoredValue = (type: string): boolean =>
+    type === "gift_card" || type === "store_credit";
   const tenderLines: TenderLine[] = [];
 
   function tenderLine(row: HTMLElement): TenderLine {
@@ -1200,6 +1317,8 @@ const tenderLabel = (method: string): string =>
       amount: q<HTMLInputElement>("amount"),
       reference: q<HTMLInputElement>("reference"),
       referenceWrap: q<HTMLElement>("reference-wrap"),
+      code: q<HTMLInputElement>("code"),
+      codeWrap: q<HTMLElement>("code-wrap"),
       remove: q<HTMLButtonElement>("remove"),
       amountLabel: q<HTMLElement>("amount-label")
     };
@@ -1213,7 +1332,10 @@ const tenderLabel = (method: string): string =>
       line.amountLabel.textContent = cash
         ? msg("labelAmountCash")
         : msg("labelAmount");
-      line.referenceWrap.hidden = cash;
+      const stored = isStoredValue(line.type.value);
+      line.referenceWrap.hidden = cash || stored;
+      line.codeWrap.hidden = !stored;
+      if (!stored) line.code.value = "";
       line.remove.textContent = msg("labelRemove");
       line.remove.setAttribute(
         "aria-label",
@@ -1240,6 +1362,10 @@ const tenderLabel = (method: string): string =>
     );
     if (methodLabel) methodLabel.textContent = msg("labelMethod");
     if (referenceLabel) referenceLabel.textContent = msg("labelReference");
+    const codeLabel = row.querySelector<HTMLElement>(
+      '[data-field="code-label"]'
+    );
+    if (codeLabel) codeLabel.textContent = msg("labelCode");
     line.type.value = type;
     line.type.addEventListener("change", syncTenderLines);
     line.amount.addEventListener("input", recomputeSummary);
@@ -1461,6 +1587,153 @@ const tenderLabel = (method: string): string =>
     renderCart();
   });
 
+  // Issue #286 (ADR-0029) - hold / resume. A held sale stores lines only (no
+  // prices, no stock reservation); resuming puts the lines back in the cart
+  // and the ordinary checkout re-prices them.
+  el<HTMLButtonElement>("pos-hold")?.addEventListener(
+    "click",
+    async (event) => {
+      saleError.clear();
+      if (cart.length === 0) {
+        saleError.show(msg("msgEmptyCart"));
+        return;
+      }
+      const button = event.currentTarget as HTMLButtonElement;
+      const unlock = lockElement(button, button.textContent ?? "");
+      try {
+        const name = (
+          el<HTMLInputElement>("pos-customer-name")?.value ?? ""
+        ).trim();
+        const phone = (
+          el<HTMLInputElement>("pos-customer-phone")?.value ?? ""
+        ).trim();
+        const notes = (
+          el<HTMLTextAreaElement>("pos-notes")?.value ?? ""
+        ).trim();
+        const registerId = registerEl?.value ?? "";
+        const { ok, errorCode } = await sendJsonForData(
+          "POST",
+          "/api/v1/commerce/held-sales",
+          {
+            lines: cart.map((line) => ({
+              productId: line.productId,
+              variantId: line.variantId,
+              quantity: line.quantity
+            })),
+            customer:
+              name || phone
+                ? { name: name || null, phone: phone || null }
+                : null,
+            notes: notes || null,
+            ...(registerId !== "" ? { registerId } : {})
+          },
+          { "Idempotency-Key": crypto.randomUUID() }
+        );
+        if (!ok) {
+          saleError.show(
+            errorCode === "HELD_SALE_LIMIT"
+              ? msg("msgHeldLimit")
+              : msg("msgHoldFailed")
+          );
+          return;
+        }
+        window.location.reload();
+      } finally {
+        unlock();
+      }
+    }
+  );
+
+  el<HTMLButtonElement>("pos-resume")?.addEventListener(
+    "click",
+    async (event) => {
+      saleError.clear();
+      const id = el<HTMLSelectElement>("pos-held-select")?.value ?? "";
+      if (id === "") return;
+      const button = event.currentTarget as HTMLButtonElement;
+      const unlock = lockElement(button, button.textContent ?? "");
+      try {
+        const { ok, errorCode, data } = await sendJsonForData<{
+          cart: {
+            lines: {
+              productId: string;
+              variantId: string | null;
+              quantity: number;
+            }[];
+            customer: { name: string | null; phone: string | null } | null;
+            notes: string | null;
+          };
+        }>(
+          "POST",
+          `/api/v1/commerce/held-sales/${id}/resume`,
+          {},
+          {
+            "Idempotency-Key": crypto.randomUUID()
+          }
+        );
+        if (!ok || !data) {
+          saleError.show(
+            errorCode === "HELD_SALE_EXPIRED"
+              ? msg("msgHeldExpired")
+              : errorCode === "HELD_SALE_NOT_HELD"
+                ? msg("msgHeldGone")
+                : msg("msgResumeFailed")
+          );
+          return;
+        }
+        // Re-read each product (price, stock, variants) rather than trusting
+        // anything stored: the cart comes back as ids and quantities only.
+        const hits = new Map<string, ProductHit>();
+        for (const line of data.cart.lines) {
+          if (hits.has(line.productId)) continue;
+          const response = await fetch(
+            `/api/v1/commerce/products/${line.productId}`,
+            {
+              credentials: "same-origin"
+            }
+          );
+          const payload = (await response.json().catch(() => null)) as {
+            success?: boolean;
+            data?: ProductHit;
+          } | null;
+          if (response.ok && payload?.success && payload.data) {
+            hits.set(line.productId, payload.data);
+          }
+        }
+        cart.length = 0;
+        for (const line of data.cart.lines) {
+          const hit = hits.get(line.productId);
+          if (!hit) continue;
+          const variant = hit.variants.find(
+            (entry) => entry.id === line.variantId
+          );
+          cart.push({
+            productId: hit.id,
+            variantId: line.variantId,
+            name: variant
+              ? `${hit.name} — ${variant.name}: ${variant.value}`
+              : hit.name,
+            price: variant?.price ?? hit.finalPrice,
+            stock: variant ? variant.stock : hit.stock,
+            quantity: line.quantity
+          });
+        }
+        const nameInput = el<HTMLInputElement>("pos-customer-name");
+        const phoneInput = el<HTMLInputElement>("pos-customer-phone");
+        const notesInput = el<HTMLTextAreaElement>("pos-notes");
+        if (nameInput) nameInput.value = data.cart.customer?.name ?? "";
+        if (phoneInput) phoneInput.value = data.cart.customer?.phone ?? "";
+        if (notesInput) notesInput.value = data.cart.notes ?? "";
+        el<HTMLElement>("pos-held")
+          ?.querySelector<HTMLOptionElement>(`option[value="${id}"]`)
+          ?.remove();
+        renderCart();
+      } finally {
+        unlock();
+      }
+    }
+  );
+
   function renderReceipt(order: PosOrderResponse): void {
     if (!receiptWrapper) return;
     const set = (name: string, text: string) => {
@@ -1492,7 +1765,9 @@ const tenderLabel = (method: string): string =>
       const methodNames: Record<string, string> = {
         cash: msg("labelCash"),
         manual_qris: msg("labelQris"),
-        manual_bank_transfer: msg("labelBank")
+        manual_bank_transfer: msg("labelBank"),
+        gift_card: msg("labelGiftCard"),
+        store_credit: msg("labelStoreCredit")
       };
       const addRow = (label: string, value: string) => {
         const dt = document.createElement("dt");
@@ -1506,7 +1781,9 @@ const tenderLabel = (method: string): string =>
           continue;
         }
         addRow(
-          methodNames[payment.tenderType] ?? payment.tenderType,
+          `${methodNames[payment.tenderType] ?? payment.tenderType}${
+            payment.storedValue ? ` ${payment.storedValue.maskedCode}` : ""
+          }`,
           payment.amount
         );
         if (payment.tenderedAmount !== null) {
@@ -1588,6 +1865,15 @@ const tenderLabel = (method: string): string =>
       saleError.show(msg("msgTwoCash"));
       return;
     }
+    if (
+      filled.some(
+        (line) =>
+          isStoredValue(line.type.value) && line.code.value.trim() === ""
+      )
+    ) {
+      saleError.show(msg("msgCodeRequired"));
+      return;
+    }
     if (plan.overpaid) {
       saleError.show(msg("msgOverpayment"));
       return;
@@ -1633,9 +1919,14 @@ const tenderLabel = (method: string): string =>
             tenderType: line.type.value,
             amount: fromCents(toCents(line.amount.value.trim())),
             reference:
-              line.type.value === "cash"
+              line.type.value === "cash" || isStoredValue(line.type.value)
                 ? null
-                : line.reference.value.trim() || null
+                : line.reference.value.trim() || null,
+            // Issue #288 - the code is sent once, in this request, and
+            // resolved server-side; it is never stored or echoed back.
+            ...(isStoredValue(line.type.value)
+              ? { storedValueCode: line.code.value.trim() }
+              : {})
           })),
           ...(allowDue ? { allowDue: true } : {}),
           ...(registerId !== "" ? { registerId } : {}),
@@ -1651,6 +1942,10 @@ const tenderLabel = (method: string): string =>
           OVERPAYMENT: msg("msgOverpayment"),
           ACCESS_DENIED: msg("msgDueDenied"),
           FEATURE_DISABLED: msg("msgFeatureDisabled"),
+          STORED_VALUE_NOT_FOUND: msg("msgSvNotFound"),
+          STORED_VALUE_UNAVAILABLE: msg("msgSvUnavailable"),
+          STORED_VALUE_INSUFFICIENT: msg("msgSvInsufficient"),
+          STORED_VALUE_LOOKUP_THROTTLED: msg("msgSvThrottled"),
           REGISTER_SESSION_REQUIRED: msg("msgRegisterSessionRequired"),
           REGISTER_SESSION_CLOSING: msg("msgRegisterSessionClosing"),
           NOT_SESSION_CASHIER: msg("msgNotSessionCashier"),

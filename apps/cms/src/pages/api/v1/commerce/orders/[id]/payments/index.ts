@@ -10,7 +10,10 @@
  * waits and then fails its own overpayment check — `409 OVERPAYMENT`), and the
  * leg that brings settlement to the order's release threshold moves the order
  * to `paid` through the one order-status machine. Staff may record `cash`,
- * `manual_qris` and `manual_bank_transfer`; a `gateway` leg is created only by
+ * `manual_qris`, `manual_bank_transfer` and — with the tenant's `storedValue`
+ * feature on (Issue #288) — `gift_card` / `store_credit`, which carry the
+ * plaintext `storedValueCode` (resolved to an account, never stored) and
+ * redeem it in the same transaction; a `gateway` leg is created only by
  * the hosted-checkout flow. For `cash`, `amount` is what the customer HANDED
  * OVER — the applied amount and the change are derived server-side.
  *
@@ -31,7 +34,11 @@ import {
   readJsonBody
 } from "../../../../../../../lib/security/request-body-limit";
 import { IdempotencyPayloadMismatchError } from "../../../../../../../modules/commerce/application/order-directory";
-import { fetchOrderPaymentSummary } from "../../../../../../../modules/commerce/application/payment-allocation-directory";
+import {
+  AllocationSourceKeyConflictError,
+  fetchOrderPaymentSummary
+} from "../../../../../../../modules/commerce/application/payment-allocation-directory";
+import { RegisterSessionClosingError } from "../../../../../../../modules/commerce/application/register-session-stamp";
 import { recordOwnerPayment } from "../../../../../../../modules/commerce/application/payment-recording";
 import {
   OverpaymentError,
@@ -39,6 +46,8 @@ import {
   type RecordPaymentInput
 } from "../../../../../../../modules/commerce/domain/payment-allocation";
 import { COMMERCE_PAYMENTS_ACTIVITY_CODE } from "../../../../../../../modules/commerce/domain/commerce-permissions";
+import { FeatureDisabledError } from "../../../../../../../modules/commerce/domain/commerce-features";
+import { storedValueTenderErrorResponse } from "../../../../../../../modules/commerce/application/stored-value-http";
 
 const READ_GUARD = {
   moduleKey: "commerce",
@@ -143,12 +152,18 @@ export const POST = defineTenantRoute<RecordPaymentInput>({
           "Idempotency-Key was already used with a different request."
         );
       }
-      if (error instanceof IdempotencyPayloadMismatchError) {
+      if (
+        error instanceof IdempotencyPayloadMismatchError ||
+        error instanceof AllocationSourceKeyConflictError
+      ) {
         return fail(
           409,
           "IDEMPOTENCY_CONFLICT",
           "Idempotency-Key was already used with a different request."
         );
+      }
+      if (error instanceof RegisterSessionClosingError) {
+        return fail(409, "REGISTER_SESSION_CLOSING", error.message);
       }
       if (error instanceof OverpaymentError) {
         return fail(
@@ -159,6 +174,15 @@ export const POST = defineTenantRoute<RecordPaymentInput>({
           { outstanding: error.outstanding, attempted: error.attempted }
         );
       }
+      if (error instanceof FeatureDisabledError) {
+        return fail(
+          409,
+          "FEATURE_DISABLED",
+          `The "${error.feature}" feature is disabled for this tenant.`
+        );
+      }
+      const storedValue = storedValueTenderErrorResponse(error);
+      if (storedValue) return storedValue;
       throw error;
     }
   }

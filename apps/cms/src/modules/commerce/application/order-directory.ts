@@ -99,8 +99,9 @@ import { fetchStoreSettings } from "./store-settings-directory";
 import { listLiveProductImagesByProductIds } from "./product-image-directory";
 import {
   fetchOrderPaymentSummary,
-  readOrderSettlement,
+  orderHoldsSettledMoney,
   recordPaymentAllocation,
+  settleOrderForManualPaid,
   resolveGatewayAllocation,
   type PaymentAllocationRecord,
   type ReleaseOrderFn
@@ -1485,17 +1486,33 @@ export async function updateOrderStatusByAdmin(
   note: string | null,
   correlationId?: string
 ): Promise<boolean> {
-  // Issue #285 (ADR-0025): `paid` is derived from the payment ledger, so a
-  // manual `-> paid` is refused (`PaymentNotSettledError`, 409
-  // `PAYMENT_NOT_SETTLED`) until the recorded money reaches the order's
-  // release threshold. In that case the order normally has ALREADY moved by
-  // itself when the last payment was recorded; the only status the operator
-  // can still ask for here is a no-op the status machine rejects anyway.
+  // Issue #285 (ADR-0025): `paid` is derived from the payment ledger. Under
+  // the order-row lock, an order with NO ledger leg at all (a COD / offline
+  // tenant that never used the ledger) gets one succeeded leg for the whole
+  // total recorded by this very change (the ledger then releases it), so the
+  // override keeps working and the books stay true; an order that HAS legs but
+  // is not settled is refused (`PaymentNotSettledError`, 409
+  // `PAYMENT_NOT_SETTLED`) -- record the missing payment instead.
   if (to === "paid") {
-    const settlement = await readOrderSettlement(tx, tenantId, orderId);
-    if (settlement && !settlement.releaseReached) {
-      throw new PaymentNotSettledError(settlement.view.outstanding);
+    const gate = await settleOrderForManualPaid(tx, tenantId, {
+      orderId,
+      actorTenantUserId,
+      release: makeOrderRelease(
+        tx,
+        tenantId,
+        "admin",
+        actorTenantUserId,
+        orderId,
+        correlationId
+      ),
+      note,
+      correlationId
+    });
+    if (gate.kind === "order_not_found") return false;
+    if (gate.kind === "not_settled") {
+      throw new PaymentNotSettledError(gate.outstanding);
     }
+    if (gate.kind === "recorded") return true;
   }
 
   const result = await transitionOrderStatus(
@@ -1518,6 +1535,11 @@ export async function expireOrderBySystem(
   orderId: string,
   correlationId?: string
 ): Promise<void> {
+  // Issue #285 (ADR-0025): an order that already holds received money is never
+  // expired — expiry restocks, and stock must not be released for an order the
+  // customer part-paid. It stays `pending_payment` with its balance on the
+  // outstanding-balances report for an operator to settle or cancel.
+  if (await orderHoldsSettledMoney(tx, tenantId, orderId)) return;
   await transitionOrderStatus(
     tx,
     tenantId,
@@ -1664,6 +1686,16 @@ export async function listExpirableOrderIds(
   const rows = (await tx`
     SELECT id FROM awcms_commerce_orders
     WHERE tenant_id = ${tenantId} AND status = 'pending_payment' AND expires_at IS NOT NULL AND expires_at <= ${now}
+      AND NOT EXISTS (
+        -- Issue #285: never expire an order that holds received money.
+        SELECT 1
+        FROM awcms_commerce_payment_allocations a
+        WHERE a.tenant_id = awcms_commerce_orders.tenant_id
+          AND a.order_id = awcms_commerce_orders.id
+          AND a.status = 'succeeded'
+        GROUP BY a.order_id
+        HAVING COALESCE(SUM(CASE WHEN a.kind = 'payment' THEN a.amount ELSE -a.amount END), 0) > 0
+      )
     ORDER BY expires_at ASC
     LIMIT ${limit}
     FOR UPDATE SKIP LOCKED
