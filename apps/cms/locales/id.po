@@ -9318,3 +9318,274 @@ msgstr "Buka kotak masuk persetujuan"
 
 msgid "Availability is advisory: the existing endpoints check permission, approval and state again when you send. Approval decisions are made only in the approval inbox."
 msgstr "Ketersediaan bersifat saran: endpoint yang sudah ada memeriksa izin, persetujuan, dan status lagi saat Anda mengirim. Keputusan persetujuan hanya dibuat di kotak masuk persetujuan."
+
+msgid "A cancelled or expired order cannot be documented."
+msgstr "Pesanan yang dibatalkan atau kedaluwarsa tidak dapat dibuatkan dokumen."
+
+msgid "A cancelled quotation cannot be offered or converted again."
+msgstr "Penawaran yang dibatalkan tidak dapat ditawarkan atau dikonversi lagi."
+
+msgid "Accept"
+msgstr "Terima"
+
+msgid "A completed or cancelled work order cannot change."
+msgstr "Perintah kerja yang selesai atau dibatalkan tidak dapat diubah."
+
+msgid "Add at least one product line."
+msgstr "Tambahkan minimal satu baris produk."
+
+msgid "Add line"
+msgstr "Tambah baris"
+
+msgid "A linked record could not be found. Check the quotation or order."
+msgstr "Data terkait tidak ditemukan. Periksa penawaran atau pesanannya."
+
+msgid "An order will be created at the current price, with the balance due."
+msgstr "Pesanan akan dibuat dengan harga saat ini, dengan sisa tagihan terutang."
+
+msgid "A numbered document is a permanent copy of the order. It cannot be edited or deleted."
+msgstr "Dokumen bernomor adalah salinan permanen pesanan. Tidak dapat diubah atau dihapus."
+
+msgid "A receipt needs a fully paid order."
+msgstr "Struk membutuhkan pesanan yang sudah lunas."
+
+msgid "Cancel quotation"
+msgstr "Batalkan penawaran"
+
+msgid "Cancel revision"
+msgstr "Batalkan revisi"
+
+msgid "Cancel this quotation?"
+msgstr "Batalkan penawaran ini?"
+
+msgid "Choose an order"
+msgstr "Pilih pesanan"
+
+msgid "Choose an order."
+msgstr "Pilih pesanan."
+
+msgid "Convert"
+msgstr "Konversi"
+
+msgid "Converted to order"
+msgstr "Dikonversi ke pesanan"
+
+msgid "Converting needs an open register session; open one in the POS first."
+msgstr "Konversi membutuhkan sesi register yang terbuka; buka satu di POS terlebih dahulu."
+
+msgid "Convert to an order?"
+msgstr "Konversi menjadi pesanan?"
+
+msgid "Convert to order"
+msgstr "Konversi ke pesanan"
+
+msgid "Could not hold the sale. Please try again."
+msgstr "Penjualan tidak dapat ditahan. Silakan coba lagi."
+
+msgid "Could not resume the held sale. Please try again."
+msgstr "Penjualan tertahan tidak dapat dilanjutkan. Silakan coba lagi."
+
+msgid "Create work order"
+msgstr "Buat perintah kerja"
+
+msgid "Customer name"
+msgstr "Nama pelanggan"
+
+msgid "Discard"
+msgstr "Buang"
+
+msgid "Discarded"
+msgstr "Dibuang"
+
+msgid "Discard this held sale?"
+msgstr "Buang penjualan tertahan ini?"
+
+msgid "Documents could not be loaded right now. Please try again later."
+msgstr "Dokumen tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Document sections"
+msgstr "Bagian dokumen"
+
+msgid "Document type"
+msgstr "Jenis dokumen"
+
+msgid "From accepted quotation (optional id)"
+msgstr "Dari penawaran yang diterima (id, opsional)"
+
+msgid "Held sales"
+msgstr "Penjualan tertahan"
+
+msgid "Hold sale"
+msgstr "Tahan penjualan"
+
+msgid "Invoice"
+msgstr "Faktur"
+
+msgid "Issue a document"
+msgstr "Terbitkan dokumen"
+
+msgid "Issue document"
+msgstr "Terbitkan dokumen"
+
+msgid "Move"
+msgstr "Pindahkan"
+
+msgid "Move to status"
+msgstr "Pindah ke status"
+
+msgid "New quotation"
+msgstr "Penawaran baru"
+
+msgid "New work order"
+msgstr "Perintah kerja baru"
+
+msgid "No documents yet"
+msgstr "Belum ada dokumen"
+
+msgid "No held sales"
+msgstr "Tidak ada penjualan tertahan"
+
+msgid "No quotations yet"
+msgstr "Belum ada penawaran"
+
+msgid "Normal"
+msgstr "Normal"
+
+msgid "No work orders yet"
+msgstr "Belum ada perintah kerja"
+
+msgid "Number"
+msgstr "Nomor"
+
+msgid "Older documents"
+msgstr "Dokumen lebih lama"
+
+msgid "Older held sales"
+msgstr "Penjualan tertahan lebih lama"
+
+msgid "Older quotations"
+msgstr "Penawaran lebih lama"
+
+msgid "Older work orders"
+msgstr "Perintah kerja lebih lama"
+
+msgid "One or more lines cannot be priced right now; check the products and quantities."
+msgstr "Satu atau lebih baris tidak dapat dihargai saat ini; periksa produk dan jumlahnya."
+
+msgid "On hold"
+msgstr "Ditahan"
+
+msgid "Only an accepted quotation can be converted into an order."
+msgstr "Hanya penawaran yang diterima yang dapat dikonversi menjadi pesanan."
+
+msgid "Parked carts keep no prices and reserve no stock. Resume one from the POS screen."
+msgstr "Keranjang tertahan tidak menyimpan harga dan tidak mencadangkan stok. Lanjutkan dari layar POS."
+
+msgid "Plain text"
+msgstr "Teks biasa"
+
+msgid "Print view"
+msgstr "Tampilan cetak"
+
+msgid "Quotations"
+msgstr "Penawaran"
+
+msgid "Quotations, work orders and documents are turned off for this store."
+msgstr "Penawaran, perintah kerja, dan dokumen dimatikan untuk toko ini."
+
+msgid "Quotations, work orders, receipts and invoices, and parked POS sales."
+msgstr "Penawaran, perintah kerja, struk dan faktur, serta penjualan POS yang tertahan."
+
+msgid "Ready"
+msgstr "Siap"
+
+msgid "Receipts and invoices"
+msgstr "Struk dan faktur"
+
+msgid "Reject this quotation?"
+msgstr "Tolak penawaran ini?"
+
+msgid "Resumed"
+msgstr "Dilanjutkan"
+
+msgid "Resume held sale"
+msgstr "Lanjutkan penjualan tertahan"
+
+msgid "Revise"
+msgstr "Revisi"
+
+msgid "Save quotation"
+msgstr "Simpan penawaran"
+
+msgid "Send"
+msgstr "Kirim"
+
+msgid "That action is not allowed in the current status."
+msgstr "Tindakan itu tidak diizinkan pada status saat ini."
+
+msgid "That did not work. Please try again."
+msgstr "Itu tidak berhasil. Silakan coba lagi."
+
+msgid "That held sale has expired."
+msgstr "Penjualan tertahan itu sudah kedaluwarsa."
+
+msgid "That held sale was already resumed or discarded."
+msgstr "Penjualan tertahan itu sudah dilanjutkan atau dibuang."
+
+msgid "That status change is not allowed from the current status."
+msgstr "Perubahan status itu tidak diizinkan dari status saat ini."
+
+msgid "The current price differs from the quoted price. Press Convert again to accept the current price."
+msgstr "Harga saat ini berbeda dari harga penawaran. Tekan Konversi lagi untuk menerima harga saat ini."
+
+msgid "The customer declined this offer. It cannot be accepted afterwards."
+msgstr "Pelanggan menolak penawaran ini. Penawaran tidak dapat diterima setelahnya."
+
+msgid "The parked cart is deleted and cannot be resumed."
+msgstr "Keranjang tertahan dihapus dan tidak dapat dilanjutkan."
+
+msgid "The quotation's validity period has passed; revise it to offer again."
+msgstr "Masa berlaku penawaran sudah lewat; revisi untuk menawarkan lagi."
+
+msgid "Too many parked sales; resume or discard some first."
+msgstr "Terlalu banyak penjualan tertahan; lanjutkan atau buang beberapa dahulu."
+
+msgid "Urgent"
+msgstr "Mendesak"
+
+msgid "Valid for (days)"
+msgstr "Berlaku selama (hari)"
+
+msgid "Valid until"
+msgstr "Berlaku hingga"
+
+msgid "View order"
+msgstr "Lihat pesanan"
+
+msgid "Work orders"
+msgstr "Perintah kerja"
+
+msgid "You do not have permission to view documents."
+msgstr "Anda tidak memiliki izin untuk melihat dokumen."
+
+msgid "You need the permission to sell on credit to convert a quotation."
+msgstr "Anda membutuhkan izin menjual secara kredit untuk mengonversi penawaran."
+
+msgid "{count} document"
+msgid_plural "{count} documents"
+msgstr[0] "{count} dokumen"
+
+msgid "{count} held sale"
+msgid_plural "{count} held sales"
+msgstr[0] "{count} penjualan tertahan"
+
+msgid "{count} quotation"
+msgid_plural "{count} quotations"
+msgstr[0] "{count} penawaran"
+
+msgid "{count} work order"
+msgid_plural "{count} work orders"
+msgstr[0] "{count} perintah kerja"
+
+msgid "Quotations, work orders and documents"
+msgstr "Penawaran, perintah kerja, dan dokumen"

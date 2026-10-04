@@ -66,6 +66,11 @@ import { deriveTableRlsStates } from "./lib/table-rls-states";
  */
 export const NO_SUBJECT_DATA: readonly { table: string; reason: string }[] = [
   {
+    table: "awcms_commerce_document_sequences",
+    reason:
+      "Issue #286, ADR-0029 D3. One counter row per (tenant, doc_type, year): an integer that says how many quotations, work orders, receipts or invoices a tenant numbered in a year. No actor, customer, order or author column - a counter cannot be traced back to any one person, and erasing a person leaves the count unchanged, correctly: the document was issued."
+  },
+  {
     table: "awcms_commerce_sales_daily",
     reason:
       "Issue #117 (ADR-0017 D7). One row per (tenant, day): a paid-order count and four money sums, derived by the `reporting` projection engine from `awcms_commerce_order_events`. No customer, order, actor or author column — an aggregate over a day cannot be traced back to any one person, and the subject-facing facts it summarises (the orders themselves) are answered by `commerce.commerce_orders`' own descriptor. Erasing a customer leaves a day's total unchanged, correctly: the sale happened."

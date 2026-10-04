@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:7fd85a655600a2b1e778c72654b0fef980719c26cdb9e8f91631490780e82220 -->
+<!-- i18n-source-hash: sha256:a5e8d2cc86668de7e7bab0aa74e36157924f2e18d2cd4d214f12695574afd31a -->
 
 # Kamus data
 
@@ -262,6 +262,24 @@ Atribut kustom **bertipe** buatan tenant — desain milik platform ini sendiri (
 | terutang (outstanding) | turunan | Jumlah setiap entri ledger suatu jenis — yang dihutang; di antaranya `disabledBalance` beku dan `lapsedPendingRelease` melewati kedaluwarsa tetapi belum dilepas sweep |
 | fitur `storedValue` | pengaturan modul commerce `features.storedValue` (default MATI) | Menyalakan seluruh permukaan; saat mati, tender kartu ditolak sebelum apa pun ditulis |
 | `commerce.stored_value_programs.*`, `commerce.stored_value.*`, `commerce.stored_value_adjustments.create`, `commerce.stored_value_reconcile.approve` | `awcms_permissions` (`sql/987`) | Tujuh kunci; menukar adalah tender pembayaran, bukan salah satunya |
+
+## Kosakata dokumen commerce (issue #286, [ADR-0029](adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md))
+
+Rancangan platform ini sendiri — tidak ada yang di-port dari toko lama. Status adalah `text` + `CHECK`, tidak pernah enum bawaan.
+
+| Bidang | Nilai / bentuk | Arti |
+| --- | --- | --- |
+| `status` penjualan tertahan | `held`, `resumed`, `discarded`, `expired` | `expired` bersifat *efektif*: baris `held` yang melewati `expires_at` terbaca `expired` sebelum ada yang menyimpannya |
+| `status` penawaran | `draft`, `sent`, `accepted`, `rejected`, `expired`, `converted`, `cancelled` | `sent` yang melewati `valid_until` versi saat ini terbaca `expired`; `accepted` menyematkan `accepted_version`; `converted` membawa `converted_order_id` |
+| `status` perintah kerja | `received`, `scheduled`, `in_progress`, `on_hold`, `ready`, `completed`, `cancelled` | `completed` dan `cancelled` adalah terminal |
+| `priority` perintah kerja | `low`, `normal`, `high`, `urgent` | |
+| `doc_type` dokumen | `receipt`, `invoice` | dokumen komersial — bukan faktur piutang dan bukan faktur pajak |
+| `number` | `QUO-`, `WO-`, `RCP-`, `INV-` + tahun UTC + penghitung enam digit, mis. `INV-2026-000042` | tanpa celah per tenant, jenis, dan tahun; tidak pernah dipakai ulang |
+| asal-usul dokumen | `source_type` `order`, `source_id`, `source_version` `1` | pesanan adalah versi tunggalnya sendiri: baris dan totalnya ditulis sekali |
+| `content_hash` | 64 heksadesimal huruf kecil | SHA-256 dari JSON kanonik (kunci terurut) isi tersimpan; dihitung ulang sebelum setiap render |
+| `snapshot` dokumen | `schemaVersion`, `docType`, `number`, `issuedAt`, `currency`, `seller`, `customer`, `order`, `lines`, `totals`, `payments`, `settlement` | `payments` adalah leg ledger yang berhasil saat terbit (tender, jenis, jumlah, waktu — tanpa referensi penyedia, tanpa id staf); informasional, ledger tetap otoritas |
+| `cart` tertahan | `{ lines: [{ productId, variantId, quantity }], customer: { name, phone } \| null, notes }` | tanpa harga; dihapus menjadi `{}` saat penjualan meninggalkan `held` |
+| `pricing_context` versi penawaran | `engine`, `quotedAt`, `customerLevel`, `taxActive`, `taxPercent`, `shippingCost` | apa yang dipakai mesin kutipan, disimpan sebagai bukti |
 
 ## Kolom dan tabel yang ditunda — tidak di-porting
 

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:fee87edf671ecd75d6af102f0b11da6825edef31c334186fb281e27f0f816627 -->
+<!-- i18n-source-hash: sha256:923e053c7a50d04564709c1a99a03fa052f19374613e14b915b212b9d3d359d8 -->
 
 # Architecture Decision Records
 
@@ -46,6 +46,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0026](0026-loyalty-points-are-an-append-only-ledger.md)                                                      | Poin loyalitas adalah buku besar append-only dengan saldo hasil proyeksi                                                                                                                        | Diterima                                                                                                                      |
 | [0027](0027-catalog-custom-attributes-are-typed-and-allowlisted.md)                                           | Atribut kustom katalog bertipe dan di-allowlist, dan impor massal adalah validasi-lalu-terapkan                                                                                                 | Diterima                                                                                                                      |
 | [0028](0028-pos-register-sessions-and-cash-up.md)                                                             | Sesi register POS dan tutup kas: jumlah yang seharusnya diturunkan dari ledger pembayaran, shift yang sudah ditutup tidak dapat diubah                                                          | Diterima                                                                                                                      |
+| [0029](0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md)  | Dokumen commerce: penjualan tertahan, penawaran, perintah kerja, dan struk/faktur adalah rekaman terpisah, dan dokumen bernomor adalah snapshot pesanan yang tidak dapat diubah                 | Diterima                                                                                                                      |
 | [0030](0030-stored-value-is-a-closed-loop-liability-ledger.md)                                                | Nilai tersimpan adalah ledger kewajiban closed-loop: kartu hadiah dan kredit toko adalah baris append-only, database yang menggerakkan saldo, kode ditampilkan sekali dan tidak pernah disimpan | Diterima                                                                                                                      |
 
 ## Mengapa penomoran dimulai dari 0001

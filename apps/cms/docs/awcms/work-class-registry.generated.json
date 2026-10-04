@@ -567,6 +567,21 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/documents/[id]/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/documents/[id]/render.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/documents/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/entitlements/[id]/revoke.ts",
       "workClass": "interactive",
       "source": "factory"
@@ -598,6 +613,21 @@
     },
     {
       "path": "src/pages/api/v1/commerce/flash-sales/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/held-sales/[id]/discard.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/held-sales/[id]/resume.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/held-sales/index.ts",
       "workClass": "interactive",
       "source": "factory"
     },
@@ -778,6 +808,31 @@
     },
     {
       "path": "src/pages/api/v1/commerce/products/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/quotations/[id]/actions/[action].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/quotations/[id]/convert.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/quotations/[id]/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/quotations/[id]/versions.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/quotations/index.ts",
       "workClass": "interactive",
       "source": "factory"
     },
@@ -968,6 +1023,16 @@
     },
     {
       "path": "src/pages/api/v1/commerce/whatsapp/messages/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/work-orders/[id].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/work-orders/index.ts",
       "workClass": "interactive",
       "source": "factory"
     },

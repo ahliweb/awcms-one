@@ -1354,7 +1354,36 @@ export const READER_BUDGET_BYTES = 24_000;
  * 366,601 B plus the gift-card / store-credit screens and tender lines,
  * +7,638 B); a measurement, not a sum of the two figures above.
  */
-export const APP_BUDGET_BYTES = 374_300;
+/**
+ * **Raised for Issue #286 (measured 307,774 B on its own baseline of 300,423 B; superseded by the re-measure below)** (held sales, quotations, work orders
+ * and receipt/invoice documents, ADR-0029) - one new admin screen and a small
+ * addition to one. The growth is exactly their client scripts plus the screens'
+ * share of `admin-screens.css`, no new shared primitive and no new CSS file:
+ * `commerce-documents.astro` (the line editor, the revise prefill, the
+ * send/accept/reject/cancel/convert actions with the price-changed second
+ * press, the work-order mover, the document issue form and the held-sale
+ * discard - every mutation through `admin-form-client.ts`'s `onSubmit`/
+ * `onAction`/`sendJson`/`messageBox` and the shared confirm dialog, every string
+ * reaching the script as a `data-msg-*` attribute), and the hold/resume pair in
+ * `commerce-pos.astro`'s existing island (it re-reads each product through the
+ * catalogue API rather than trusting anything stored, which is most of its
+ * weight). Measured clean build: 307,774 B (up from 300,423 B); the
+ * largest-file checks still pass. 308,000 keeps the same tight "measured +
+ * small margin" convention as every raise above; re-measure on the next
+ * commerce screen and tighten if the real total sits well below this.
+ *
+ * **Final: 374,100 B when awcms-one#286 (commerce documents) was merged onto
+ * #284, #285, #289 and #291** — MEASURED 373,952 B on the merged build
+ * (#284's 366,601 B plus the documents screen and the POS hold/resume pair,
+ * +7,351 B); a measurement, not a sum.
+ */
+/*
+ * **Final: 381,700 B when awcms-one#288 (stored value) was merged onto main
+ * after #286 (commerce documents) landed** — MEASURED 381,590 B on the merged
+ * build (both lineages' screens together); a measurement, not a sum of the two
+ * "Final" figures above.
+ */
+export const APP_BUDGET_BYTES = 381_700;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

@@ -121,6 +121,16 @@ export const COMMERCE_REGISTER_SESSION_CLOSED_EVENT_TYPE =
   "awcms.commerce.register_session.closed";
 export const COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE =
   "awcms.commerce.register_session.corrected";
+/** Issue #286 (ADR-0029) — commerce document-lifecycle events. */
+export const COMMERCE_QUOTATION_ACCEPTED_EVENT_TYPE =
+  "awcms.commerce.quotation.accepted";
+export const COMMERCE_QUOTATION_CONVERTED_EVENT_TYPE =
+  "awcms.commerce.quotation.converted";
+export const COMMERCE_WORK_ORDER_STATUS_CHANGED_EVENT_TYPE =
+  "awcms.commerce.work_order.status_changed";
+export const COMMERCE_DOCUMENT_ISSUED_EVENT_TYPE =
+  "awcms.commerce.document.issued";
+
 /**
  * Loyalty points ledger (Issue #289, ADR-0026) — ONE event type for every
  * ledger row, `kind` in the payload.
@@ -317,6 +327,30 @@ export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
       eventVersion: COMMERCE_EVENT_VERSION,
       description:
         "A closed-loop stored-value ledger entry (gift card / store credit: issue, load, redeem, refund, adjust, expire, disable, enable) was appended. Producer: commerce/application/stored-value-ledger.ts's appendStoredValueEntry, in the same transaction as the ledger insert (and, for redeem/refund, the payment-allocation row it mirrors). Aggregate: the stored-value account. Carries ids, kinds, the signed amount and the resulting balance - never the code, the customer or the free-text reason."
+    },
+    {
+      eventType: COMMERCE_QUOTATION_ACCEPTED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A quotation version was accepted and pinned. Producer: commerce/application/quotation-directory.ts's applyQuotationAction, in the same transaction as the status change. Aggregate: the quotation. Carries the quotation number, the accepted version and its total - never the customer."
+    },
+    {
+      eventType: COMMERCE_QUOTATION_CONVERTED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "An accepted quotation was converted into a commerce order through the ordinary POS order path. Producer: commerce/application/quotation-directory.ts's convertQuotation, same transaction as the order. Carries the quotation id/number/accepted version and the resulting order id/code/total (provenance); fired once per quotation."
+    },
+    {
+      eventType: COMMERCE_WORK_ORDER_STATUS_CHANGED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A work order moved to a new operational status. Producer: commerce/application/work-order-directory.ts's updateWorkOrder, in the same transaction as the status change and its history row. Never carries the title, description or note."
+    },
+    {
+      eventType: COMMERCE_DOCUMENT_ISSUED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A numbered receipt or invoice document was issued for a finalized order (an immutable snapshot). Producer: commerce/application/document-directory.ts's issueDocument, in the same transaction as the numbered row. Carries the document type/number, the source order id and the total - never the customer."
     },
     {
       eventType: COMMERCE_LOYALTY_ENTRY_RECORDED_EVENT_TYPE,

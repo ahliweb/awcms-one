@@ -234,6 +234,40 @@ Three FORCE-RLS tables (tenant-isolation policy with `WITH CHECK`, composite `(t
 - **Privileges.** `awcms_app` loses `DELETE` on all three and `UPDATE` on the ledger; `awcms_worker` keeps `SELECT, DELETE` (`sql/988`) for the retention engine (`commerce.stored_value_*`, five-year floor, ten-year ceiling; the two parents key on a never-set `deleted_at`, the ledger on `created_at`). `security-readiness.ts` asserts the exact sets both ways.
 - **`sql/987`** seeds the seven permission keys; `sql/989` is held and unused.
 
+## Commerce documents: seven tables (`sql/980`–`982`, issue #286, [ADR-0029](adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md))
+
+Seven FORCE-RLS tables (tenant-isolation policy with `WITH CHECK`, composite `(tenant_id, …)` foreign keys backed by `UNIQUE (tenant_id, id)`, every FK column indexed, money `numeric(14,2)`), plus one `UNIQUE (tenant_id, id)` index on `awcms_commerce_customers` to anchor a composite FK. No existing table gained a column.
+
+| Table | What it holds | Notable constraints |
+| --- | --- | --- |
+| `awcms_commerce_document_sequences` | One counter per `(tenant_id, doc_type, period)` — `doc_type` `quotation \| work_order \| receipt \| invoice`, `period` a four-digit UTC year, `last_number` | `UNIQUE (tenant_id, doc_type, period)`; a guard trigger allows only `last_number + 1` per update and freezes everything else; `awcms_app` cannot `DELETE`; retention cursor `updated_at` with a 366-day floor — safe because allocation only touches the current UTC year's row |
+| `awcms_commerce_held_sales` | A parked cart: `owner_tenant_user_id`, optional composite-FK `register_id`, `label`, `cart` jsonb (lines, customer, notes — no prices), `line_count 1..100`, `status` (`held \| resumed \| discarded \| expired`), `held_at`, `expires_at > held_at` | a `CHECK` pins a non-`held` row to `cart = '{}'` (the cart is wiped when the sale leaves `held`); a guard trigger freezes owner, register, expiry and size; retention cursor `held_at` |
+| `awcms_commerce_quotations` | The header: `number`, `customer_id` (composite FK), `status`, `current_version`, `accepted_version`/`accepted_at`/`accepted_by`, `decision_note`, `converted_order_id` (composite FK to orders), `deleted_at` (never set — the retention cursor) | `UNIQUE (tenant_id, number)`; **partial `UNIQUE (tenant_id, converted_order_id)`** — one order per quotation; the status/accept/converted `CHECK`s; a guard trigger enforces the legal edges, a revision (`current_version + 1`, back to `draft`, only from draft/sent/expired), the pinned accepted version and the set-once conversion |
+| `awcms_commerce_quotation_versions` | An append-only priced snapshot: `version`, `valid_until > created_at`, `lines` jsonb (1..100), `subtotal`/`discount`/`tax`/`total`, `customer` jsonb, `pricing_context` jsonb, `notes`, `content_hash` (64 hex) | `UNIQUE (tenant_id, quotation_id, version)`; append-only trigger and revoked `UPDATE`/`DELETE` |
+| `awcms_commerce_work_orders` | An operational job: `number`, `title`, `description`, `status`, `priority`, composite-FK `customer_id`, `quotation_id` + `quotation_version` (a composite FK to the real version row), `order_id` (composite FK), `assignee_tenant_user_id`, `due_at`, `completed_at`/`cancelled_at`, `deleted_at` (never set) | `UNIQUE (tenant_id, number)`; `quotation_id` and `quotation_version` set together; `completed_at`/`cancelled_at` set exactly with their status; a guard trigger enforces the status machine, freezes provenance and the number, and lets `order_id` be attached once; holds **no money** |
+| `awcms_commerce_work_order_events` | The append-only history: `seq` (identity — the order of events), `from_status` (NULL for the first), `to_status`, `note`, actor stamp | append-only trigger and revoked `UPDATE`/`DELETE`; read back in `seq` order |
+| `awcms_commerce_documents` | An immutable numbered snapshot: `doc_type` (`receipt \| invoice`), `number`, the provenance triple `source_type` (`order`) / `source_id` (composite FK) / `source_version` (1), the money copy (`subtotal`, `discount`, `shipping_cost`, `insurance_fee`, `tax`, `total`), `snapshot` jsonb, `content_hash`, issuer stamp, `issued_at` | `UNIQUE (tenant_id, number)` and **`UNIQUE (tenant_id, doc_type, source_type, source_id)`** — one receipt and one invoice per order; a `BEFORE INSERT` trigger verifies the money equals the order's (discount = order + voucher), refuses a cancelled/expired order and a receipt for an unpaid one; append-only trigger and revoked `UPDATE`/`DELETE` |
+
+- **Privileges.** `awcms_app` loses `DELETE` on all seven (and `UPDATE` on versions, events and documents); `awcms_worker` keeps `SELECT, DELETE` on all seven (`sql/982`) for the retention engine. `security-readiness.ts` asserts the exact sets both ways.
+- **Retention.** Documents `financial_tax` (five-year floor, ten-year ceiling); quotations, versions, work orders and events one-year floor / ten-year ceiling (the three that other rows point at keyed on the never-set `deleted_at`, so a purge cannot orphan a foreign key); held sales a 7–90 day window.
+- **`sql/981`** seeds the thirteen permission keys; `sql/983`–`984` are held and unused.
+
+```mermaid
+erDiagram
+  orders ||--o{ documents : "source_id (composite FK); one receipt + one invoice"
+  orders |o--o| quotations : "converted_order_id (set once, unique)"
+  orders |o--o{ work_orders : "order_id (set once)"
+  customers |o--o{ quotations : "customer_id"
+  customers |o--o{ work_orders : "customer_id"
+  quotations ||--|{ quotation_versions : "append-only, one per revision"
+  quotation_versions |o--o{ work_orders : "(quotation_id, quotation_version)"
+  work_orders ||--|{ work_order_events : "append-only history (seq)"
+  registers |o--o{ held_sales : "register_id"
+  document_sequences }o--|| tenants : "one counter per (type, UTC year)"
+```
+
+`document_sequences` has no foreign key to the numbered rows on purpose: it is the counter their numbers come from, bumped in the same transaction, and a counter row outlives its documents for as long as its year is current. No column was added to `orders`: it never learns about the quotations, work orders or documents that point at it.
+
 ## Sales-report projections: three derived tables (`sql/933`)
 
 Issue #117, contract #106's D7 — the read models of the three `cursor_table` reporting projections `commerce` contributes (`commerce.sales_daily`, `commerce.sales_by_product`, `commerce.sales_by_category`), maintained by the `reporting` engine's own worker from `awcms_commerce_order_events` (see [`docs/cms.md`](cms.md) "Sales reports" for the delta rules). Derived and fully rebuildable — never written by a request path, never a source of truth.

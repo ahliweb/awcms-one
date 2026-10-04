@@ -40,6 +40,7 @@ export type CommerceFeatureKey =
   | "gateway"
   | "courier"
   | "register"
+  | "documents"
   | "loyalty"
   | "storedValue";
 
@@ -64,6 +65,11 @@ export const DEFAULT_COMMERCE_FEATURES: CommerceFeatures = {
   // one ADDS an obligation (a POS sale needs an open register session), so a
   // tenant that never opens "Fitur" must see exactly today's POS.
   register: false,
+  // Issue #286 (ADR-0029) - the second flag that defaults OFF: held sales,
+  // quotations, work orders and numbered receipt/invoice documents are a whole
+  // new surface (and a numbering obligation once a document is issued), so a
+  // tenant that never opens "Fitur" must see exactly today's commerce module.
+  documents: false,
   // Issue #289 (ADR-0026 D2) — the one flag that defaults OFF. The five above
   // default ON because they gated behaviour that already existed; loyalty is
   // NEW behaviour that accrues points on every paid order and exposes a
@@ -79,6 +85,7 @@ export const DEFAULT_COMMERCE_FEATURES: CommerceFeatures = {
 };
 
 const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
+  "documents",
   "pos",
   "inbox",
   "campaigns",

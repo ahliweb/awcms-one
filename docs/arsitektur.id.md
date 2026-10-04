@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](arsitektur.md)
 
-<!-- i18n-source-hash: sha256:16ae61418d4532564690c8c0e33918642dfdfcf3b3cffba4216736d166ee43ec -->
+<!-- i18n-source-hash: sha256:79ca7ba123fb87700683da32c4581e478d6321d0a1b277a6bed3d3409b59d3ac -->
 
 # Arsitektur
 
@@ -197,6 +197,15 @@ Tutup kas tidak menyimpan total sendiri. Jumlah penutupan yang seharusnya per te
 ## Nilai tersimpan adalah kewajiban yang dijaga tetap tepat oleh database (issue #288, [ADR-0030](adr/0030-stored-value-is-a-closed-loop-liability-ledger.md))
 
 Kartu hadiah adalah uang terutang, jadi saldonya bukan field yang diedit fungsi aplikasi. Setiap perubahan adalah satu baris bertanda pada ledger append-only, dan satu-satunya yang menggerakkan `balance`/`version`/`status` akun adalah trigger `BEFORE INSERT` ledger sendiri — ia mengunci akun, menerapkan aturan jenis/status/kedaluwarsa, menolak apa pun yang turun di bawah nol, menomori entri, dan memperbarui proyeksi dalam transaksi yang menyisipkan; trigger kedua menolak edit lain atas kolom-kolom itu. Penukaran adalah tender pada ledger pembayaran ADR-0025: leg alokasi dan entri ledger cerminannya ditulis bersama (masing-masing menolak ada tanpa yang lain, lewat trigger dan trigger constraint tertangguh), tidak ada panggilan provider atau jaringan masuk ke transaksi, dan urutan kunci adalah baris pesanan → baris akun di mana-mana (akun `FOR NO KEY UPDATE`, karena alasan key-share FK yang sama dengan ADR-0025 D4); penjualan POS, yang belum punya baris pesanan, mengunci akunnya terurut menurut id dan menolak kartu yang buruk dalam preflight SEBELUM pesanan ada, sehingga tidak ada yang tertinggal (respons yang dikembalikan meng-commit; hanya error yang dilempar yang me-rollback). Kode yang dapat ditukar adalah nilai CSPRNG 100 bit yang hanya disimpan sebagai sha256 berlingkup tenant ditambah empat karakter terakhir, dikembalikan sekali saat penerbitan dan tidak ada di log, atribut audit, payload event, maupun baris idempotensi mana pun. Loop ditutup secara konstruksi: tidak ada di skema yang dapat menyatakan tarik tunai atau transfer.
+
+## Dokumen adalah snapshot, nomor adalah penghitung yang terikat transaksi (issue #286, [ADR-0029](adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md))
+
+Empat gagasan menjaga siklus dokumen agar tidak menjadi buku penjualan kedua.
+
+1. **Satu otoritas uang.** Penjualan tertahan menyimpan baris tanpa harga; versi penawaran menyimpan apa yang *ditawarkan*; perintah kerja tidak menyimpan uang; hanya pesanan dan ledger pembayarannya (ADR-0025) yang merupakan penjualan. Kolom uang dokumen adalah salinan, dan trigger `BEFORE INSERT` menolak dokumen yang `subtotal`, `discount`, `shipping_cost`, `insurance_fee`, `tax`, atau `total`-nya berbeda dari pesanannya. Penawaran dikonversi dengan memanggil `createPosOrder` sendiri — fungsi yang sama dengan yang dipakai kasir — dengan `allowDue` dan tanpa tender.
+2. **Nomor adalah penghitung yang dinaikkan dalam transaksi yang sama dengan baris pembawanya.** `application/document-numbering.ts` menjalankan satu `INSERT … ON CONFLICT DO UPDATE … RETURNING` pada `awcms_commerce_document_sequences (tenant_id, doc_type, period)`; kunci baris dipegang sampai commit, sehingga alokasi bersamaan mengantre dan mendapat nomor berurutan, dan rollback mengembalikan nomornya. Dua aturan membuatnya benar: alokasikan **paling akhir** (tidak ada langkah yang dapat gagal antara alokasi dan insert), dan jangan pernah *mengembalikan* respons gagal setelah mengalokasikan — `409` yang dikembalikan tetap meng-commit transaksi, hanya error yang dilempar yang me-rollback.
+3. **Savepoint adalah satu-satunya cara membatalkan pekerjaan sambil tetap menjawab dengan sopan.** `defineTenantRoute` melakukan commit kecuali handler melempar error. Konversi harus membuat pesanan, membandingkan totalnya dengan yang ditawarkan, dan membatalkan pesanan bila berbeda *sambil menjawab `409`* — maka ia berjalan di dalam `tx.savepoint(...)` dan mengubah error harga yang dilempar menjadi sebuah hasil. Apa pun yang tidak boleh tersimpan namun tetap harus menghasilkan respons memakai bentuk ini.
+4. **Render adalah fungsi murni dari snapshot tersimpan yang di-hash.** `domain/documents.ts` merender json / text / html dari `awcms_commerce_documents.snapshot`; rute memverifikasi ulang `content_hash` (SHA-256 dari JSON kanonik) sebelum merender dan mengaudit setiap render. Mencetak ulang karena itu tidak dapat mengubah apa pun, dan snapshot yang dirusak ditolak, bukan dicetak. Kanal pengiriman akan mengonsumsi kontrak ini, bukan merender ulang.
 
 ## Satu hal lagi yang dilakukan server: memperbaiki halaman yang terbayangi
 

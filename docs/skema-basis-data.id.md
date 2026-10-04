@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:2ff35cbc77d4fde562e7b51babfeb3ae3f327f6bb6067b6c3f8aa6f1152adfbf -->
+<!-- i18n-source-hash: sha256:6ca55055e0145a68c7b1c1c6d4b1f8c4ff30a09866f32265f6c17a4deaf9123c -->
 
 # Skema basis data
 
@@ -235,6 +235,40 @@ Tiga tabel FORCE-RLS (kebijakan isolasi tenant dengan `WITH CHECK`, foreign key 
 - **`sql/985`** juga membuat `awcms_commerce_customers (tenant_id, id)` sebagai target FK komposit (`IF NOT EXISTS`, indeks sama yang dibuat skema loyalti).
 - **Hak akses.** `awcms_app` kehilangan `DELETE` pada ketiganya dan `UPDATE` pada ledger; `awcms_worker` mempertahankan `SELECT, DELETE` (`sql/988`) untuk mesin retensi (`commerce.stored_value_*`, lantai lima tahun, batas atas sepuluh tahun; kedua induk berkursor `deleted_at` yang tidak pernah diisi, ledger berkursor `created_at`). `security-readiness.ts` menegaskan himpunan persisnya di kedua arah.
 - **`sql/987`** menyemai tujuh kunci izin; `sql/989` ditahan dan tidak dipakai.
+
+## Dokumen commerce: tujuh tabel (`sql/980`–`982`, issue #286, [ADR-0029](adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md))
+
+Tujuh tabel FORCE-RLS (kebijakan isolasi tenant dengan `WITH CHECK`, foreign key komposit `(tenant_id, …)` yang ditopang `UNIQUE (tenant_id, id)`, setiap kolom FK diindeks, uang `numeric(14,2)`), ditambah satu indeks `UNIQUE (tenant_id, id)` pada `awcms_commerce_customers` sebagai jangkar FK komposit. Tidak ada tabel yang sudah ada mendapat kolom.
+
+| Tabel | Isinya | Batasan penting |
+| --- | --- | --- |
+| `awcms_commerce_document_sequences` | Satu penghitung per `(tenant_id, doc_type, period)` — `doc_type` `quotation \| work_order \| receipt \| invoice`, `period` tahun UTC empat digit, `last_number` | `UNIQUE (tenant_id, doc_type, period)`; trigger penjaga hanya mengizinkan `last_number + 1` per pembaruan dan membekukan sisanya; `awcms_app` tidak dapat `DELETE`; kursor retensi `updated_at` dengan batas bawah 366 hari — aman karena alokasi hanya menyentuh baris tahun UTC saat ini |
+| `awcms_commerce_held_sales` | Keranjang yang diparkir: `owner_tenant_user_id`, `register_id` opsional (FK komposit), `label`, `cart` jsonb (baris, pelanggan, catatan — tanpa harga), `line_count 1..100`, `status` (`held \| resumed \| discarded \| expired`), `held_at`, `expires_at > held_at` | `CHECK` mengunci baris non-`held` pada `cart = '{}'` (keranjang dihapus saat penjualan meninggalkan `held`); trigger penjaga membekukan pemilik, register, kedaluwarsa, dan ukuran; kursor retensi `held_at` |
+| `awcms_commerce_quotations` | Header: `number`, `customer_id` (FK komposit), `status`, `current_version`, `accepted_version`/`accepted_at`/`accepted_by`, `decision_note`, `converted_order_id` (FK komposit ke pesanan), `deleted_at` (tidak pernah diisi — kursor retensi) | `UNIQUE (tenant_id, number)`; **`UNIQUE (tenant_id, converted_order_id)` parsial** — satu pesanan per penawaran; `CHECK` status/terima/konversi; trigger penjaga menegakkan sisi yang sah, revisi (`current_version + 1`, kembali ke `draft`, hanya dari draft/sent/expired), versi diterima yang tersemat, dan konversi yang diisi sekali |
+| `awcms_commerce_quotation_versions` | Snapshot berharga append-only: `version`, `valid_until > created_at`, `lines` jsonb (1..100), `subtotal`/`discount`/`tax`/`total`, `customer` jsonb, `pricing_context` jsonb, `notes`, `content_hash` (64 hex) | `UNIQUE (tenant_id, quotation_id, version)`; trigger append-only dan `UPDATE`/`DELETE` dicabut |
+| `awcms_commerce_work_orders` | Pekerjaan operasional: `number`, `title`, `description`, `status`, `priority`, `customer_id` (FK komposit), `quotation_id` + `quotation_version` (FK komposit ke baris versi yang nyata), `order_id` (FK komposit), `assignee_tenant_user_id`, `due_at`, `completed_at`/`cancelled_at`, `deleted_at` (tidak pernah diisi) | `UNIQUE (tenant_id, number)`; `quotation_id` dan `quotation_version` diisi bersamaan; `completed_at`/`cancelled_at` terisi tepat bersama statusnya; trigger penjaga menegakkan mesin status, membekukan asal-usul dan nomor, dan membiarkan `order_id` dipasang sekali; **tidak memuat uang** |
+| `awcms_commerce_work_order_events` | Riwayat append-only: `seq` (identity — urutan event), `from_status` (NULL untuk yang pertama), `to_status`, `note`, cap aktor | trigger append-only dan `UPDATE`/`DELETE` dicabut; dibaca menurut urutan `seq` |
+| `awcms_commerce_documents` | Snapshot bernomor yang tidak dapat diubah: `doc_type` (`receipt \| invoice`), `number`, tripel asal-usul `source_type` (`order`) / `source_id` (FK komposit) / `source_version` (1), salinan uang (`subtotal`, `discount`, `shipping_cost`, `insurance_fee`, `tax`, `total`), `snapshot` jsonb, `content_hash`, cap penerbit, `issued_at` | `UNIQUE (tenant_id, number)` dan **`UNIQUE (tenant_id, doc_type, source_type, source_id)`** — satu struk dan satu faktur per pesanan; trigger `BEFORE INSERT` memverifikasi uang sama dengan pesanan (diskon = pesanan + voucher), menolak pesanan dibatalkan/kedaluwarsa dan struk untuk pesanan belum lunas; trigger append-only dan `UPDATE`/`DELETE` dicabut |
+
+- **Hak akses.** `awcms_app` kehilangan `DELETE` pada ketujuhnya (dan `UPDATE` pada versi, event, dan dokumen); `awcms_worker` mempertahankan `SELECT, DELETE` pada ketujuhnya (`sql/982`) untuk mesin retensi. `security-readiness.ts` menegaskan himpunan persisnya di kedua arah.
+- **Retensi.** Dokumen `financial_tax` (batas bawah lima tahun, batas atas sepuluh tahun); penawaran, versi, perintah kerja, dan event batas bawah satu tahun / batas atas sepuluh tahun (tiga yang ditunjuk baris lain dikunci pada `deleted_at` yang tidak pernah diisi, sehingga pembersihan tidak dapat membuat yatim foreign key); penjualan tertahan jendela 7–90 hari.
+- **`sql/981`** menanam tiga belas kunci izin; `sql/983`–`984` ditahan dan tidak dipakai.
+
+```mermaid
+erDiagram
+  orders ||--o{ documents : "source_id (FK komposit); satu struk + satu faktur"
+  orders |o--o| quotations : "converted_order_id (diisi sekali, unik)"
+  orders |o--o{ work_orders : "order_id (diisi sekali)"
+  customers |o--o{ quotations : "customer_id"
+  customers |o--o{ work_orders : "customer_id"
+  quotations ||--|{ quotation_versions : "append-only, satu per revisi"
+  quotation_versions |o--o{ work_orders : "(quotation_id, quotation_version)"
+  work_orders ||--|{ work_order_events : "riwayat append-only (seq)"
+  registers |o--o{ held_sales : "register_id"
+  document_sequences }o--|| tenants : "satu penghitung per (jenis, tahun UTC)"
+```
+
+`document_sequences` sengaja tidak punya foreign key ke baris bernomor: ia adalah penghitung tempat nomor mereka berasal, dinaikkan dalam transaksi yang sama, dan baris penghitung hidup lebih lama dari dokumennya selama tahunnya masih berjalan. Tidak ada kolom yang ditambahkan ke `orders`: ia tidak pernah tahu tentang penawaran, perintah kerja, atau dokumen yang menunjuk kepadanya.
 
 ## Proyeksi laporan penjualan: tiga tabel turunan (`sql/933`)
 

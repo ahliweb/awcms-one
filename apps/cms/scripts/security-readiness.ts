@@ -735,7 +735,23 @@ export const RETIRED_TENANT_TABLE_PRIVILEGES: Record<string, string[]> = {
   // keeps it for configuration.
   awcms_commerce_stored_value_programs: ["SELECT", "INSERT", "UPDATE"],
   awcms_commerce_stored_value_accounts: ["SELECT", "INSERT", "UPDATE"],
-  awcms_commerce_stored_value_ledger: ["SELECT", "INSERT"]
+  awcms_commerce_stored_value_ledger: ["SELECT", "INSERT"],
+  // Issue #286 / `sql/980`. The document-lifecycle tables - NOT retired, written
+  // by the cashier / back-office role. A numbered legal document, a quotation
+  // version and a work-order history row are records the role that issues them
+  // must not be able to erase or rewrite: DELETE is revoked on all seven, and
+  // UPDATE as well on the three pure-append tables (versions, events,
+  // documents - their triggers would refuse it anyway, and the privilege error
+  // is the earlier, louder answer). The mutable headers keep UPDATE for their
+  // status machines (guard triggers freeze identity/provenance), and the
+  // sequence table keeps it for its one legal move: the counter +1.
+  awcms_commerce_document_sequences: ["SELECT", "INSERT", "UPDATE"],
+  awcms_commerce_held_sales: ["SELECT", "INSERT", "UPDATE"],
+  awcms_commerce_quotations: ["SELECT", "INSERT", "UPDATE"],
+  awcms_commerce_quotation_versions: ["SELECT", "INSERT"],
+  awcms_commerce_work_orders: ["SELECT", "INSERT", "UPDATE"],
+  awcms_commerce_work_order_events: ["SELECT", "INSERT"],
+  awcms_commerce_documents: ["SELECT", "INSERT"]
 };
 
 type RlsRow = {
@@ -1653,6 +1669,20 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_commerce_register_close_requests: ["SELECT", "DELETE"],
   awcms_commerce_register_close_lines: ["SELECT", "DELETE"],
   awcms_commerce_register_corrections: ["SELECT", "DELETE"],
+  // Issue #286 (`sql/980`/`sql/982`): the document-lifecycle tables'
+  // `dataLifecycle` descriptors (`commerce/domain/documents-lifecycle.ts`) are
+  // `executionMode: "generic"` with `hard_delete`; the retention worker is the
+  // only role that may delete one of these rows (awcms_app has had DELETE
+  // revoked), past the ceiling. A sequence counter is included: allocation
+  // only touches the CURRENT UTC year's row, so one not bumped for 366+ days
+  // belongs to a finished year and removing it cannot restart a number.
+  awcms_commerce_document_sequences: ["SELECT", "DELETE"],
+  awcms_commerce_held_sales: ["SELECT", "DELETE"],
+  awcms_commerce_quotations: ["SELECT", "DELETE"],
+  awcms_commerce_quotation_versions: ["SELECT", "DELETE"],
+  awcms_commerce_work_orders: ["SELECT", "DELETE"],
+  awcms_commerce_work_order_events: ["SELECT", "DELETE"],
+  awcms_commerce_documents: ["SELECT", "DELETE"],
   // Issue #291 (`sql/960`/`962`/`964`): catalog attributes. Definitions and
   // values are soft-deleted (`deleted_at` cursor) and aged out by the generic
   // purge engine, which needs SELECT + DELETE; an import batch is an

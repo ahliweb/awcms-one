@@ -262,6 +262,24 @@ Tenant-authored, **typed** custom attributes — this platform's own design (OSP
 | `storedValue` feature | commerce module settings `features.storedValue` (default OFF) | Turns the whole surface on; off, a card tender is refused before anything is written |
 | `commerce.stored_value_programs.*`, `commerce.stored_value.*`, `commerce.stored_value_adjustments.create`, `commerce.stored_value_reconcile.approve` | `awcms_permissions` (`sql/987`) | The seven keys; redeeming is a payment tender, not one of them |
 
+## Commerce document vocabulary (issue #286, [ADR-0029](adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md))
+
+This platform's own design — nothing here is ported from the legacy store. Statuses are `text` + `CHECK`, never a native enum.
+
+| Field | Values / shape | Meaning |
+| --- | --- | --- |
+| held sale `status` | `held`, `resumed`, `discarded`, `expired` | `expired` is *effective*: a `held` row past `expires_at` reads `expired` before anything persists it |
+| quotation `status` | `draft`, `sent`, `accepted`, `rejected`, `expired`, `converted`, `cancelled` | `sent` past the current version's `valid_until` reads `expired`; `accepted` pins `accepted_version`; `converted` carries `converted_order_id` |
+| work order `status` | `received`, `scheduled`, `in_progress`, `on_hold`, `ready`, `completed`, `cancelled` | `completed` and `cancelled` are terminal |
+| work order `priority` | `low`, `normal`, `high`, `urgent` | |
+| document `doc_type` | `receipt`, `invoice` | a commercial document — not an accounts-receivable invoice and not a tax invoice |
+| `number` | `QUO-`, `WO-`, `RCP-`, `INV-` + UTC year + a six-digit counter, e.g. `INV-2026-000042` | gapless per tenant, type and year; never reused |
+| document provenance | `source_type` `order`, `source_id`, `source_version` `1` | the order is its own single version: its lines and totals are written once |
+| `content_hash` | 64 lowercase hex | SHA-256 of the canonical JSON (sorted keys) of the stored content; recomputed before every render |
+| document `snapshot` | `schemaVersion`, `docType`, `number`, `issuedAt`, `currency`, `seller`, `customer`, `order`, `lines`, `totals`, `payments`, `settlement` | `payments` are the succeeded ledger legs at issue time (tender, kind, amount, time — no provider reference, no staff id); informational, the ledger stays the authority |
+| held `cart` | `{ lines: [{ productId, variantId, quantity }], customer: { name, phone } \| null, notes }` | no price; wiped to `{}` when the sale leaves `held` |
+| quotation version `pricing_context` | `engine`, `quotedAt`, `customerLevel`, `taxActive`, `taxPercent`, `shippingCost` | what the quote engine used, kept as evidence |
+
 ## Deferred columns and tables — not ported
 
 - **A live RajaOngkir courier-RATE table is done** (issue #107, `sql/924` — `awcms_commerce_courier_destinations`/`_shipping_rates`, a cached rate the order path validates against, never a synchronous provider call). What is still deferred: live courier TRACKING (a shipped parcel's own status) — `shipping_method`/`shipping_service_name` on an order remain merchant-defined labels for the `alternative`/`self_pickup` methods; a `courier` shipment's rate is now live, its post-dispatch tracking is not (named as a follow-up in [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md)).

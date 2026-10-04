@@ -24,11 +24,15 @@ describe("resolveCommerceFeatures", () => {
     expect(DEFAULT_COMMERCE_FEATURES.register).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.loyalty).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.storedValue).toBe(false);
+    expect(DEFAULT_COMMERCE_FEATURES.documents).toBe(false);
     expect(
       Object.entries(DEFAULT_COMMERCE_FEATURES)
         .filter(
           ([key]) =>
-            key !== "register" && key !== "loyalty" && key !== "storedValue"
+            key !== "register" &&
+            key !== "loyalty" &&
+            key !== "storedValue" &&
+            key !== "documents"
         )
         .every(([, value]) => value === true)
     ).toBe(true);
@@ -47,6 +51,7 @@ describe("resolveCommerceFeatures", () => {
     expect(resolved).toEqual({
       pos: false,
       inbox: true,
+      documents: false,
       campaigns: true,
       gateway: true,
       courier: true,
@@ -60,6 +65,7 @@ describe("resolveCommerceFeatures", () => {
     expect(DEFAULT_COMMERCE_FEATURES.loyalty).toBe(false);
     expect(resolveCommerceFeatures({ features: { loyalty: true } })).toEqual({
       pos: true,
+      documents: false,
       inbox: true,
       campaigns: true,
       gateway: true,
@@ -80,6 +86,7 @@ describe("resolveCommerceFeatures", () => {
   test("every flag can be turned off", () => {
     const resolved = resolveCommerceFeatures({
       features: {
+        documents: false,
         pos: false,
         inbox: false,
         campaigns: false,
@@ -91,6 +98,7 @@ describe("resolveCommerceFeatures", () => {
       }
     });
     expect(resolved).toEqual({
+      documents: false,
       pos: false,
       inbox: false,
       campaigns: false,
