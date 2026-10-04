@@ -382,3 +382,33 @@ Every one of the thirty-eight tables is also `unreachableBySubject: true` in the
 ## Deliberately not in this schema
 
 Live courier TRACKING (rate quoting is done — `awcms_commerce_shipping_rates`/`_courier_destinations`, `sql/924` — but tracking a shipped parcel's own status is not; named as a follow-up in [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md)); a Xendit payment-gateway adapter (the `PaymentGatewayProvider` port and `awcms_commerce_payment_gateway_sessions.provider` CHECK admit only `midtrans`/`log` today — Xendit is a follow-up behind the same port, ADR-0017); a `password_hash` column anywhere — customer accounts are OTP-only by design ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) D1), never a password to store or reset; a `restore` column/endpoint for any marketing, order, customer, or review table.
+
+## Document deliveries: one table (`sql/965`–`967`, issue #295, [ADR-0034](adr/0034-commercial-documents-are-delivered-through-the-existing-outboxes-as-transactional-messages-built-from-immutable-sources.md))
+
+One FORCE-RLS, **append-only** table, `awcms_commerce_document_deliveries`: the _request_ to put one immutable commercial document into the e-mail or WhatsApp outbox that already exists. It is not a queue and holds no message body, no customer name and no unmasked recipient.
+
+| Column group | Shape | Notes |
+| --- | --- | --- |
+| identity | `id` (also the outbox row's `correlation_id`), `tenant_id`, `created_at` | `UNIQUE (tenant_id, id)`; the self-reference `resend_of_id` is a composite `(tenant_id, …)` foreign key naming the delivery a re-send repeats |
+| source | `target_type` (`document \| quotation_version \| work_order`) and exactly one of `document_id`, `quotation_version_id`, `work_order_id`; `doc_number` | a `CHECK` makes the populated column match `target_type`; a `BEFORE INSERT` trigger checks the source exists **in the writer's tenant** and that `doc_number` is its real number (see the note below on why this is not a foreign key) |
+| message | `channel` (`email \| whatsapp`), `purpose` (`CHECK (purpose = 'transactional')`), `locale`, `template_key`, `template_version`, `content_hash` (64 hex) | `content_hash` is the SHA-256 of the exact variables handed to the outbox |
+| recipient | `recipient_source` (`source_customer \| override`), `recipient_masked` | only the masked form is stored; the full address exists in the outbox row the provider reads |
+| hand-off | `status` (`queued \| not_enqueued`), `failure_reason` (`RECIPIENT_SUPPRESSED \| TEMPLATE_UNAVAILABLE`, set exactly when `not_enqueued`) | what happens after the hand-off is **read from the outbox**, never copied |
+| private link | `link_token_hash` (`sha256:` + 64 hex, partial `UNIQUE`), `link_expires_at` | both null or both set; expiry is after `created_at` and at most 168 hours; only for `target_type = 'document'` |
+| actor | `requested_by_tenant_user_id` | a staff stamp |
+
+- **Privileges.** `awcms_app` has `SELECT, INSERT` only (`UPDATE`/`DELETE` revoked, and a trigger refuses any rewrite); `awcms_worker` has `SELECT, DELETE` (`sql/967`) for the retention engine. `security-readiness.ts` asserts both sets.
+- **Retention.** A `system_event` descriptor: ninety-day floor, three-year ceiling, one year by default.
+- **Joins the history makes.** `awcms_email_messages` by `correlation_id = id::text` (reached through its existing `(tenant_id, category, …)` index, the category being `derived.transactional`), and `awcms_commerce_whatsapp_messages` by the same key, for which `sql/965` adds `(tenant_id, correlation_id)` as a partial index. Neither outbox table gained a column.
+- **Why the three source columns are a trigger, not foreign keys.** Their tables are created by `sql/980` ([ADR-0029](adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md)); this issue's reserved range (965–969) sorts before it, so on a fresh database a `FOREIGN KEY` cannot be declared. A plpgsql body is resolved when it runs, so `awcms_commerce_document_deliveries_check_target()` enforces same-tenant existence and number truth at insert. It cannot stop a later delete of the source, which no runtime role can do. Replacing it with three composite foreign keys is a one-migration change if the range is ever re-cut ([ADR-0034](adr/0034-commercial-documents-are-delivered-through-the-existing-outboxes-as-transactional-messages-built-from-immutable-sources.md) D8).
+- **`sql/966`** seeds the three permission keys; `sql/968`–`969` are held and unused.
+
+```mermaid
+erDiagram
+  documents |o--o{ document_deliveries : "document_id (trigger-checked)"
+  quotation_versions |o--o{ document_deliveries : "quotation_version_id (trigger-checked)"
+  work_orders |o--o{ document_deliveries : "work_order_id (trigger-checked)"
+  document_deliveries |o--o{ document_deliveries : "resend_of_id (composite FK)"
+  document_deliveries ||--o| email_messages : "correlation_id = id (reads the live status)"
+  document_deliveries ||--o| whatsapp_messages : "correlation_id = id (reads the live status)"
+```

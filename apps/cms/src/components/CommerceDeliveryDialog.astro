@@ -1,0 +1,254 @@
+---
+/**
+ * CommerceDeliveryDialog - the "Deliver" dialog of the commerce documents
+ * screen (Issue #295, ADR-0034). One native `<dialog>`, rendered ONCE per page
+ * and driven by `commerce-delivery-dialog-client.ts`: a trigger button carries
+ * `data-delivery-target-type` / `-target-id` / `-number` (and, for a
+ * quotation, an optional `-version`), the client opens the dialog for it,
+ * loads that source's delivery history and, when the viewer may send, submits
+ * `POST /api/v1/commerce/document-deliveries`.
+ *
+ * Lives under `src/components/`, never `src/pages/admin/`: the access
+ * chokepoint gate reads every `.astro` file under `src/pages/admin` as a screen
+ * (see `CommerceConfirmDialog.astro` for the same reasoning).
+ *
+ * Every word the client shows comes from a `data-*` attribute rendered here by
+ * `t()`; the script cannot translate. The form is rendered only for a viewer
+ * holding `commerce.document_deliveries.create`, the recipient override only
+ * for one also holding `commerce.document_delivery_overrides.create`, and the
+ * history only for one holding `commerce.document_deliveries.read` - the same
+ * keys the routes enforce, so the UI never offers what the server would refuse.
+ * Raw `confirm()` is not used anywhere; there is no destructive action here
+ * (a delivery request is append-only and a re-send is just another request).
+ *
+ * Status is shown with the shared `.admin-status-pill` primitive; the history
+ * table is the shared `.data-table--stack` pattern with a `data-label` on every
+ * cell (set by the client from the same translated headings).
+ */
+import { getTranslatorFor } from "../lib/i18n";
+import type { Locale } from "../lib/i18n/locales";
+import { DEFAULT_LINK_TTL_HOURS } from "../modules/commerce/domain/document-delivery";
+
+interface Props {
+  locale?: Locale | null | undefined;
+  canCreate: boolean;
+  canOverride: boolean;
+  canRead: boolean;
+}
+
+const { locale, canCreate, canOverride, canRead } = Astro.props as Props;
+const { t } = getTranslatorFor(locale);
+---
+
+<dialog
+  id="delivery-dialog"
+  class="commerce-delivery-dialog"
+  aria-labelledby="delivery-dialog-title"
+  data-title={t("Deliver {number}")}
+  data-msg-queued={t("Queued for delivery to {recipient}.")}
+  data-msg-failed={t("That did not work. Please try again.")}
+  data-msg-forbidden={t("You are not allowed to send to that recipient.")}
+  data-msg-channel={t(
+    "This delivery channel is not enabled on this deployment."
+  )}
+  data-msg-no-recipient={t(
+    "There is no usable e-mail address or phone number on file. Enter a recipient."
+  )}
+  data-msg-suppressed={t(
+    "That address has asked not to receive e-mail from this store; nothing was sent."
+  )}
+  data-msg-template={t("No message template is available; nothing was sent.")}
+  data-msg-not-deliverable={t("A cancelled quotation cannot be sent.")}
+  data-msg-integrity={t(
+    "The stored document no longer matches its checksum and cannot be sent."
+  )}
+  data-msg-rate-limited={t(
+    "Too many deliveries were requested for this document. Try again later."
+  )}
+  data-msg-bad-recipient={t("The recipient is not valid for this channel.")}
+  data-msg-history-failed={t("The delivery history could not be loaded.")}
+  data-label-when={t("Requested")}
+  data-label-channel={t("Channel")}
+  data-label-recipient={t("Recipient")}
+  data-label-status={t("Status")}
+  data-label-detail={t("Details")}
+  data-channel-email={t("E-mail")}
+  data-channel-whatsapp={t("WhatsApp")}
+  data-status-queued={t("Waiting to be sent")}
+  data-status-sending={t("Sending")}
+  data-status-sent={t("Sent")}
+  data-status-failed={t("Failed")}
+  data-status-retry-wait={t("Will retry")}
+  data-status-cancelled={t("Cancelled")}
+  data-status-suppressed={t("Suppressed")}
+  data-status-not-enqueued={t("Not sent")}
+  data-status-unknown={t("Unknown")}
+  data-text-resend={t("Re-sent")}
+  data-text-retries={t("{count} failed attempts")}
+  data-text-link={t("Private link until {date}")}
+  data-text-override={t("Other recipient")}
+>
+  <div class="commerce-delivery-dialog-body">
+    <h2 id="delivery-dialog-title" class="commerce-delivery-dialog-title"></h2>
+    <p
+      id="delivery-dialog-notice"
+      class="admin-create-error"
+      role="alert"
+      hidden
+    ></p>
+    <p id="delivery-dialog-ok" class="form-hint" role="status" hidden></p>
+
+    {canCreate && (
+      <form id="delivery-form" class="admin-create-form">
+        <label for="delivery-channel">
+          {t("Channel")}
+          <select id="delivery-channel" name="channel">
+            <option value="email">{t("E-mail")}</option>
+            <option value="whatsapp">{t("WhatsApp")}</option>
+          </select>
+        </label>
+        <label for="delivery-locale">
+          {t("Message language")}
+          <select id="delivery-locale" name="locale">
+            <option value="id" selected={locale !== "en"}>
+              Bahasa Indonesia
+            </option>
+            <option value="en" selected={locale === "en"}>
+              English
+            </option>
+          </select>
+        </label>
+        {canOverride && (
+          <label for="delivery-recipient">
+            {t("Send to a different recipient (optional)")}
+            <input
+              id="delivery-recipient"
+              name="recipient"
+              type="text"
+              autocomplete="off"
+              maxlength="254"
+            />
+          </label>
+        )}
+        <label
+          for="delivery-link"
+          class="admin-toggle-row"
+          id="delivery-link-row"
+          hidden
+        >
+          <input id="delivery-link" name="includeLink" type="checkbox" />
+          {t(
+            "Include a private link to the print view (expires in {hours} hours)",
+            {
+              hours: DEFAULT_LINK_TTL_HOURS
+            }
+          )}
+        </label>
+        <p class="form-hint">
+          {t(
+            "This is a transactional message about the customer's own purchase, built from the saved copy of the document."
+          )}
+        </p>
+        <div class="commerce-delivery-dialog-actions">
+          <button type="button" class="btn-secondary" id="delivery-close">
+            {t("Close")}
+          </button>
+          <button type="submit" class="btn-primary">
+            {t("Send")}
+          </button>
+        </div>
+      </form>
+    )}
+
+    {canRead && (
+      <section aria-labelledby="delivery-history-heading">
+        <h3 id="delivery-history-heading">{t("Delivery history")}</h3>
+        <p id="delivery-history-empty" class="form-hint" hidden>
+          {t("Nothing has been sent yet.")}
+        </p>
+        <div class="data-table-scroll">
+          <table
+            class="data-table data-table--stack"
+            id="delivery-history"
+            hidden
+          >
+            <thead>
+              <tr>
+                <th scope="col">{t("Requested")}</th>
+                <th scope="col">{t("Channel")}</th>
+                <th scope="col">{t("Recipient")}</th>
+                <th scope="col">{t("Status")}</th>
+                <th scope="col">{t("Details")}</th>
+              </tr>
+            </thead>
+            <tbody id="delivery-history-body" />
+          </table>
+        </div>
+      </section>
+    )}
+
+    {!canCreate && (
+      <div class="commerce-delivery-dialog-actions">
+        <button type="button" class="btn-secondary" id="delivery-close">
+          {t("Close")}
+        </button>
+      </div>
+    )}
+  </div>
+</dialog>
+
+<style>
+  .commerce-delivery-dialog {
+    width: min(720px, 94vw);
+    max-width: none;
+    max-height: 88vh;
+    padding: 0;
+    margin: 6vh auto auto;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
+    color: var(--color-text);
+    box-shadow: var(--shadow-lg);
+    overflow: auto;
+  }
+
+  .commerce-delivery-dialog::backdrop {
+    background: var(--color-overlay);
+  }
+
+  .commerce-delivery-dialog-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+    padding: var(--sp-5);
+  }
+
+  .commerce-delivery-dialog-title {
+    margin: 0;
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-semibold);
+    line-height: var(--lh-snug);
+  }
+
+  .commerce-delivery-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--sp-2);
+  }
+
+  @media (max-width: 420px) {
+    .commerce-delivery-dialog {
+      width: 96vw;
+      margin: 3vh auto auto;
+    }
+
+    .commerce-delivery-dialog-actions {
+      flex-direction: column-reverse;
+    }
+
+    .commerce-delivery-dialog-actions .btn-secondary,
+    .commerce-delivery-dialog-actions .btn-primary {
+      width: 100%;
+    }
+  }
+</style>

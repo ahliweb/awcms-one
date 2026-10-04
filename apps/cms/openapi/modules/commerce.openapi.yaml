@@ -11404,6 +11404,174 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/document-deliveries:
+    get:
+      operationId: listCommerceDocumentDeliveries
+      tags:
+        - Commerce
+      summary: "Issue #295 (ADR-0034). The delivery history of one receipt, invoice, quotation or work order, newest first. Gated on `commerce.document_deliveries.read`."
+      description: "Each entry is the append-only REQUEST (who asked, which immutable source, which channel, the MASKED recipient, the template version, the content hash) joined with the live state of the existing e-mail or WhatsApp outbox row it produced (`outbox`: status, provider message id, retry count, last error) - read, never copied, so it cannot drift. For `targetType: quotation_version` the `targetId` is the quotation's id and the history spans every version. An unknown id and another tenant's id are the same empty list. Needs the `documents` and `documentDelivery` features."
+      parameters:
+        - name: targetType
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - document
+              - quotation_version
+              - work_order
+        - name: targetId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The history, newest first (at most 50 entries).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceDocumentDelivery"
+        "400":
+          description: "`VALIDATION_ERROR` (missing or malformed `targetType` / `targetId`)."
+          content: *id001
+        "401": *id002
+        "403": *id003
+        "409":
+          description: "`FEATURE_DISABLED` - the tenant's `documents` or `documentDelivery` feature is off (`documentDelivery` defaults OFF)."
+          content: *id001
+    post:
+      operationId: requestCommerceDocumentDelivery
+      tags:
+        - Commerce
+      summary: "Issue #295 (ADR-0034). Requests delivery of a receipt, invoice, quotation version or work-order notice by e-mail or WhatsApp. Gated on `commerce.document_deliveries.create`; requires `Idempotency-Key`."
+      description: "Transactional, not marketing: the message is built from the STORED source only (a document's snapshot after its SHA-256 is re-verified, a quotation version row, a work order read at the request) and enqueued into the channel's EXISTING outbox in this transaction; a dispatcher calls the provider later. The default recipient is the customer the source names; any other recipient needs `commerce.document_delivery_overrides.create` (checked before the source is read). A replay of the same `Idempotency-Key` returns the stored result and enqueues nothing; a NEW key is an explicit re-send (`resendOfId` names the delivery it repeats). `includeLink` (documents only) adds an opaque private link valid for `linkTtlHours` (default 72, at most 168) - only its SHA-256 is stored and it is never returned. At most 5 requests per source per rolling hour (`429 DELIVERY_RATE_LIMITED`). Emits `awcms.commerce.document.delivery_requested`; audited as `document_delivery.request` / `document_delivery.denied`."
+      parameters:
+        - *id004
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - targetType
+                - targetId
+                - channel
+              properties:
+                targetType:
+                  type: string
+                  enum:
+                    - document
+                    - quotation_version
+                    - work_order
+                targetId:
+                  type: string
+                  format: uuid
+                  description: A document id, a quotation id (with `version`) or a work-order id.
+                version:
+                  type: integer
+                  minimum: 1
+                  description: "`quotation_version` only; defaults to the current version."
+                channel:
+                  type: string
+                  enum:
+                    - email
+                    - whatsapp
+                locale:
+                  type: string
+                  enum:
+                    - id
+                    - en
+                  default: id
+                recipient:
+                  type: string
+                  description: "An address (`email`) or number (`whatsapp`) other than the customer on file. Needs `commerce.document_delivery_overrides.create`."
+                includeLink:
+                  type: boolean
+                  default: false
+                linkTtlHours:
+                  type: integer
+                  minimum: 1
+                  maximum: 168
+                  default: 72
+      responses:
+        "201":
+          description: The delivery request (or the stored replay). `outbox.status` is `queued` until a dispatcher moves it.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceDocumentDelivery"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content: *id001
+        "401": *id002
+        "403":
+          description: "`ACCESS_DENIED` - the caller lacks `commerce.document_deliveries.create`, or named a recipient without `commerce.document_delivery_overrides.create`."
+          content: *id001
+        "404": *id008
+        "409":
+          description: "`CHANNEL_UNAVAILABLE` (the channel is not enabled on this deployment), `RECIPIENT_UNAVAILABLE` (the source names no usable recipient for the channel), `RECIPIENT_SUPPRESSED` or `TEMPLATE_UNAVAILABLE` (`details` is the recorded, not-enqueued delivery), `SOURCE_NOT_DELIVERABLE` (a cancelled quotation), `DOCUMENT_INTEGRITY_FAILURE`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED`."
+          content: *id001
+        "429":
+          description: "`DELIVERY_RATE_LIMITED` - too many requests for this source in the rolling window; `Retry-After` is in seconds."
+          content: *id001
+  /api/v1/commerce/storefront/document-links/{token}:
+    get:
+      operationId: openCommerceDocumentLink
+      tags:
+        - Commerce
+      summary: "Issue #295 (ADR-0034 D6). Anonymous: opens the print page of a receipt or invoice through the opaque private link a delivery carried."
+      description: "The token IS the credential: 32 random bytes with a `dl_` prefix, only its SHA-256 stored, a hard expiry of at most 168 hours. The page is the stored snapshot rendered (hash re-verified), served `no-store` under a locked-down CSP. An unknown, malformed or other-tenant token and a disabled feature are the same neutral `404`; a known token past its expiry is `410 LINK_EXPIRED`. Every open (and every expired open) is audited without an actor or recipient."
+      security: []
+      parameters:
+        - name: token
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: The document's print page.
+          content:
+            text/html:
+              schema:
+                type: string
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "410":
+          description: "`LINK_EXPIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: Rate limited.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
 components:
   schemas:
     CommerceStoredValueProgram:
@@ -15816,3 +15984,129 @@ components:
           type: integer
         pendingApprovalCount:
           type: integer
+    CommerceDocumentDelivery:
+      type: object
+      description: "Issue #295 (ADR-0034). One append-only delivery REQUEST, with the live state of the outbox row it produced. Never carries the recipient (only a masked form), the message body, a customer name or the private link token."
+      required:
+        - id
+        - targetType
+        - targetId
+        - docNumber
+        - channel
+        - purpose
+        - recipientSource
+        - recipientMasked
+        - locale
+        - templateKey
+        - templateVersion
+        - contentHash
+        - status
+        - hasLink
+        - createdAt
+        - outbox
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Also the `correlation_id` of the outbox row.
+        targetType:
+          type: string
+          enum:
+            - document
+            - quotation_version
+            - work_order
+        targetId:
+          type: string
+          format: uuid
+        docNumber:
+          type: string
+        channel:
+          type: string
+          enum:
+            - email
+            - whatsapp
+        purpose:
+          type: string
+          enum:
+            - transactional
+        recipientSource:
+          type: string
+          enum:
+            - source_customer
+            - override
+        recipientMasked:
+          type: string
+        locale:
+          type: string
+          enum:
+            - id
+            - en
+        templateKey:
+          type: string
+        templateVersion:
+          type: integer
+        contentHash:
+          type: string
+          description: SHA-256 of the exact variables handed to the outbox; two sends of one immutable source have the same hash.
+        status:
+          type: string
+          enum:
+            - queued
+            - not_enqueued
+          description: The HAND-OFF outcome only; what happened after lives in `outbox`.
+        failureReason:
+          type: string
+          nullable: true
+          enum:
+            - RECIPIENT_SUPPRESSED
+            - TEMPLATE_UNAVAILABLE
+            - null
+        resendOfId:
+          type: string
+          format: uuid
+          nullable: true
+        hasLink:
+          type: boolean
+        linkExpiresAt:
+          type: string
+          format: date-time
+          nullable: true
+        requestedByTenantUserId:
+          type: string
+          format: uuid
+        createdAt:
+          type: string
+          format: date-time
+        outbox:
+          $ref: "#/components/schemas/CommerceDocumentDeliveryOutbox"
+    CommerceDocumentDeliveryOutbox:
+      type: object
+      description: "The live state of the e-mail or WhatsApp outbox row, read at response time."
+      properties:
+        status:
+          type: string
+          nullable: true
+          enum:
+            - queued
+            - sending
+            - sent
+            - failed
+            - retry_wait
+            - cancelled
+            - suppressed
+            - null
+          description: "`null` when the row was never created (`not_enqueued`) or has been purged by its own retention."
+        providerMessageId:
+          type: string
+          nullable: true
+        retryCount:
+          type: integer
+          description: Failed attempts so far.
+        lastError:
+          type: string
+          nullable: true
+          description: Already redacted by the dispatcher; truncated to 200 characters.
+        sentAt:
+          type: string
+          format: date-time
+          nullable: true

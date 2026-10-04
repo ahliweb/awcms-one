@@ -649,3 +649,28 @@ export const COMMERCE_EXPENSE_RECEIPT_PERMISSIONS = {
   /** Attach a private receipt to an expense. */
   create: "commerce.expense_receipts.create"
 } as const;
+
+/**
+ * Transactional delivery of commercial documents (Issue #295, ADR-0034). Two
+ * activity codes, three permissions, existing `AccessAction` verbs only, none
+ * implied by `commerce.documents.*` / `quotations.*` / `work_orders.*` or by
+ * each other - being allowed to read a receipt is not being allowed to send it:
+ *
+ *   - `document_deliveries`: `read` (a source's delivery history); `create`
+ *     (send or re-send to the customer the source already names).
+ *   - `document_delivery_overrides`: `create` - send to a recipient the source
+ *     does NOT name. The one path by which a customer's purchase history can
+ *     be pointed at an arbitrary address, so it is its own key.
+ */
+export const COMMERCE_DOCUMENT_DELIVERIES_ACTIVITY_CODE = "document_deliveries";
+export const COMMERCE_DOCUMENT_DELIVERY_OVERRIDES_ACTIVITY_CODE =
+  "document_delivery_overrides";
+
+export const COMMERCE_DOCUMENT_DELIVERY_PERMISSIONS = {
+  read: "commerce.document_deliveries.read",
+  create: "commerce.document_deliveries.create"
+} as const;
+
+export const COMMERCE_DOCUMENT_DELIVERY_OVERRIDE_PERMISSIONS = {
+  create: "commerce.document_delivery_overrides.create"
+} as const;

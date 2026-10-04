@@ -1390,7 +1390,13 @@ export const READER_BUDGET_BYTES = 24_000;
  * approve / reverse actions, the receipt attach field and the CSV export
  * link) on top of 381,590 B; a measurement, not a sum.
  */
-export const APP_BUDGET_BYTES = 386_000;
+/*
+ * **Final: 391,100 B when awcms-one#295 (document delivery, ADR-0034) was
+ * merged onto main after #286, #288 and #294** — MEASURED 390,951 B on the
+ * merged build: the Deliver dialog and its client module on the documents
+ * screen, on top of 385,852 B; a measurement, not a sum.
+ */
+export const APP_BUDGET_BYTES = 391_100;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](arsitektur.md)
 
-<!-- i18n-source-hash: sha256:e9c2f000dd93d9189b8a176c6bbfc4c264edee236342effac514a2f9da3f4a53 -->
+<!-- i18n-source-hash: sha256:96fd7cc66085f700d2933d5c00d023fd61b42806e57f8d30b60121d3b0f0a096 -->
 
 # Arsitektur
 
@@ -226,3 +226,14 @@ Yang ditangguhkan D6 [ADR-0016](adr/0016-customer-accounts-are-otp-verified-comm
 - [`docs/api.md`](api.id.md), [`docs/cms.md`](cms.id.md) — API commerce (owner dan anonim) dan alur kerja authoring/publishing di baliknya.
 - [`docs/routing.md`](routing.id.md) — peta URL publik lengkap.
 - [`knowledge/curated/monorepo-map.md`](../knowledge/curated/monorepo-map.md) — tata letak workspace, secara struktural, dijaga terpisah dari dokumen ini karena berkas itu menamai STRUKTUR dan dokumen ini menamai KEPUTUSAN di baliknya.
+
+## Pengiriman adalah permintaan di depan outbox yang sudah ada (issue #295, [ADR-0034](adr/0034-commercial-documents-are-delivered-through-the-existing-outboxes-as-transactional-messages-built-from-immutable-sources.md))
+
+Empat gagasan menjaga pengiriman dokumen agar tidak menjadi subsistem notifikasi ketiga.
+
+1. **Antreannya bukan milik kita.** `apps/cms/src/modules/commerce/application/document-delivery-directory.ts` mengantrekan ke `awcms_email_messages` (lewat `enqueueDirectAddressEmail` milik modul `email`) atau `awcms_commerce_whatsapp_messages` (lewat `enqueueWhatsappMessage`) di dalam transaksi pemanggil, dan tidak pernah memanggil penyedia. Kedua dispatcher yang ada yang memanggilnya, belakangan, di luar transaksi apa pun, dengan lease, retry, backoff, dan circuit breaker mereka sendiri.
+2. **Status dibaca, bukan disalin.** Baris permintaan append-only dan hanya menyatakan apakah serah-terima berhasil. Riwayat melakukan join ke outbox pada `correlation_id` bersama (id pengiriman), sehingga kegagalan penyedia muncul pada riwayat dokumen tanpa ada yang meng-update baris, dan keduanya tidak pernah bisa berselisih.
+3. **Pesan adalah fungsi dari sumber tersimpan.** Snapshot dokumen (hash diverifikasi ulang lebih dulu), satu versi penawaran, perintah kerja yang dibaca saat permintaan: kode pengiriman tidak membaca baris pesanan, harga, atau stok hidup, dan tes unit mengunci hal itu. Kirim ulang karena itu mengatakan persis apa yang dikatakan yang pertama, apa pun yang terjadi pada pesanan sejak itu; `content_hash` membuktikannya.
+4. **Idempotensi berada dalam transaksi yang sama dengan pengantrean.** Kunci yang diulang mengembalikan pengiriman tersimpan sebelum apa pun diantrekan; dua permintaan serentak dengan kunci sama berlomba pada insert idempotensi dan yang kalah melempar galat, membatalkan baris outbox-nya sendiri. Kunci baru adalah kirim ulang eksplisit yang menunjuk yang diulangnya.
+
+Satu fakta platform membentuk sisi e-mail: kategori e-mail `derived.*` hanya ada di proses yang mengimpor modul pendaftarnya, dan `bun run email:dispatch` tidak mengimpor kode commerce mana pun — sehingga dispatcher akan membuang semua variabel kategori turunan dan mengirim isi kosong. Pengiriman karena itu memakai kategori ekstensi **dasar** `derived.transactional`, yang terdaftar di mana-mana.

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:2cac5f6535a1a3a6fc59617a614eff8c8fd32b7d27d47e61902ace4b478da0a9 -->
+<!-- i18n-source-hash: sha256:f7e7d7a84ef029f05d221afcff3230f298da3ac7e7c2db4f71f4987b505d0f9d -->
 
 # Architecture Decision Records
 
@@ -44,6 +44,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0024](0024-awcms-one-is-template-only-derived-apps-own-their-backend.md)                                     | awcms-one hanya template; setiap aplikasi turunan memiliki backend dan runtime sendiri                                                                                                          | Diterima                                                                                                                      |
 | [0025](0025-payments-are-an-allocation-ledger-separate-from-order-status.md)                                  | Pembayaran adalah ledger alokasi append-only, terpisah dari status pesanan                                                                                                                      | Diterima                                                                                                                      |
 | [0031](0031-expenses-are-commerce-local-register-linked-petty-cash.md) | Pengeluaran adalah kas kecil lokal-commerce yang terhubung ke register, bukan buku besar: pengeluaran yang diposting menambah mutasi register dan tidak pernah mengedit tutup kas | Diterima |
+| [0034](0034-commercial-documents-are-delivered-through-the-existing-outboxes-as-transactional-messages-built-from-immutable-sources.md) | Dokumen komersial dikirim lewat outbox yang sudah ada, sebagai pesan transaksional yang disusun dari sumber yang tidak dapat diubah | Diterima |
 | [0026](0026-loyalty-points-are-an-append-only-ledger.md)                                                      | Poin loyalitas adalah buku besar append-only dengan saldo hasil proyeksi                                                                                                                        | Diterima                                                                                                                      |
 | [0027](0027-catalog-custom-attributes-are-typed-and-allowlisted.md)                                           | Atribut kustom katalog bertipe dan di-allowlist, dan impor massal adalah validasi-lalu-terapkan                                                                                                 | Diterima                                                                                                                      |
 | [0028](0028-pos-register-sessions-and-cash-up.md)                                                             | Sesi register POS dan tutup kas: jumlah yang seharusnya diturunkan dari ledger pembayaran, shift yang sudah ditutup tidak dapat diubah                                                          | Diterima                                                                                                                      |

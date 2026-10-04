@@ -8,11 +8,12 @@ import {
 } from "../src/modules/commerce/domain/whatsapp-templates";
 
 describe("whatsapp-templates — registry (Issue #108)", () => {
-  test("registers exactly the three D5/D7/D9 keys", () => {
+  test("registers exactly the three D5/D7/D9 keys plus the Issue #295 document key", () => {
     expect([...WHATSAPP_TEMPLATE_KEYS]).toEqual([
       "commerce.customer_otp",
       "commerce.order_paid",
-      "commerce.campaign"
+      "commerce.campaign",
+      "commerce.document"
     ]);
   });
 

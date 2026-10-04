@@ -1,0 +1,13 @@
+-- `data-lifecycle:archive-purge` runs as `awcms_worker` (`WORKER_DATABASE_URL`)
+-- and, for an `executionMode: "generic"` descriptor, issues a SELECT of
+-- candidates by `(tenant_id, <cursor>)` and a `hard_delete` DELETE. Issue
+-- #295's descriptor (`commerce/domain/documents-lifecycle.ts`, ADR-0034)
+-- declares exactly that shape for the delivery-request table, so the grants
+-- must exist (`data-lifecycle:worker-grants:check`) — `sql/982`'s reasoning.
+-- No UPDATE: the engine never rewrites these rows and `sql/965`'s append-only
+-- trigger would refuse it anyway.
+--
+-- The outbox rows the requests point at (`awcms_email_messages`,
+-- `awcms_commerce_whatsapp_messages`) keep their own retention, owned by the
+-- `email` module and by `commerce:whatsapp:purge`; this grant adds nothing there.
+GRANT SELECT, DELETE ON awcms_commerce_document_deliveries TO awcms_worker;

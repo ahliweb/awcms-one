@@ -87,6 +87,12 @@ const ALLOWED_PUBLIC_OPERATIONS = new Set([
   "finalizeCommerceStorefrontPaymentProofUploadSession",
   "cancelCommerceStorefrontOrder",
   "createCommerceStorefrontReview",
+  // commerce document delivery (Issue #295, ADR-0034 D6) - the private link a
+  // receipt/invoice message carries. The OPAQUE token (32 random bytes, sha256
+  // at rest, expiry capped at 168 hours) is the credential; the tenant comes
+  // from the request Origin/Host like every storefront route above; unknown,
+  // malformed, other-tenant and feature-off all answer the same neutral 404.
+  "openCommerceDocumentLink",
   // comments (ADR-0041, ported from awcms-micro Issue #271) — the public
   // comment surface is anonymous by design: a site visitor commenting on an
   // article has no session, and requiring one would make the module useless for
