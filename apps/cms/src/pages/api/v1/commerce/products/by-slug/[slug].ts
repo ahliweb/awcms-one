@@ -1,6 +1,7 @@
 import { fail, ok } from "../../../../../../modules/_shared/api-response";
 import { defineTenantRoute } from "../../../../../../modules/_shared/tenant-route";
 import { mediaLibraryPortAdapter } from "../../../../../../modules/media-library/application/media-library-port-adapter";
+import { attachPublicAttributes } from "../../../../../../modules/commerce/application/attribute-value-directory";
 import {
   attachProductRelations,
   fetchProductBySlug
@@ -41,7 +42,12 @@ export const GET = defineTenantRoute({
       mediaLibraryPortAdapter,
       [product]
     );
+    // Issue #291 — additive `attributes[]` (public, visible-only) on the
+    // product and on each variant.
+    const [withAttributes] = await attachPublicAttributes(tx, tenantId, [
+      withRelations!
+    ]);
 
-    return ok(withRelations);
+    return ok(withAttributes);
   }
 });

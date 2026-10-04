@@ -31,7 +31,10 @@ import {
   readJsonBody
 } from "../../../../../../../../lib/security/request-body-limit";
 import { IdempotencyPayloadMismatchError } from "../../../../../../../../modules/commerce/application/order-directory";
-import { ReversalExceedsPaymentError } from "../../../../../../../../modules/commerce/application/payment-allocation-directory";
+import {
+  AllocationSourceKeyConflictError,
+  ReversalExceedsPaymentError
+} from "../../../../../../../../modules/commerce/application/payment-allocation-directory";
 import { recordOwnerReversal } from "../../../../../../../../modules/commerce/application/payment-recording";
 import {
   validateRecordReversalInput,
@@ -102,9 +105,32 @@ export const POST = defineTenantRoute<RecordReversalInput>({
           "PAYMENT_NOT_REVERSIBLE",
           outcome.reason === "fully_reversed"
             ? "This payment has already been reversed in full."
-            : "Only a succeeded payment can be reversed.",
+            : outcome.reason === "stored_value_refund_not_allowed"
+              ? "The gift card / store credit program does not allow a refund back to the account."
+              : outcome.reason === "stored_value_account_unavailable"
+                ? "The gift card / store credit account cannot take value back (disabled, expired or unknown)."
+                : "Only a succeeded payment can be reversed.",
           {},
           { reason: outcome.reason }
+        );
+      }
+      if (outcome.kind === "register_session_not_found") {
+        return fail(404, "RESOURCE_NOT_FOUND", "Register session not found.");
+      }
+      if (outcome.kind === "register_session_not_open") {
+        return fail(
+          409,
+          "REGISTER_SESSION_NOT_OPEN",
+          "The register session is not open; a refund can only be paid from an open drawer.",
+          {},
+          { status: outcome.status }
+        );
+      }
+      if (outcome.kind === "register_session_not_cashier") {
+        return fail(
+          409,
+          "NOT_SESSION_CASHIER",
+          "Only the register session's current cashier can pay a refund from its drawer."
         );
       }
       return created(outcome.body);
@@ -121,7 +147,10 @@ export const POST = defineTenantRoute<RecordReversalInput>({
           "Idempotency-Key was already used with a different request."
         );
       }
-      if (error instanceof IdempotencyPayloadMismatchError) {
+      if (
+        error instanceof IdempotencyPayloadMismatchError ||
+        error instanceof AllocationSourceKeyConflictError
+      ) {
         return fail(
           409,
           "IDEMPOTENCY_CONFLICT",

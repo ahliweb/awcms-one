@@ -1,0 +1,138 @@
+---
+/**
+ * The type-specific constraint inputs of a catalog attribute definition form
+ * (Issue #291), shared by the create form and every row's edit form on
+ * `/admin/commerce-attributes`.
+ *
+ * Every group carries `data-constraint-for="<types>"`; on the create form
+ * `commerce-attributes-client.ts`'s `initAttributeTypeToggle` shows only the
+ * group of the selected type. An edit form never changes the type (it is
+ * immutable), so it passes `valueType` and the other groups are rendered
+ * `hidden` server-side. The grammar each input accepts is the server's
+ * (`domain/attribute-value.ts`) — the `inputmode`/`pattern` here only help the
+ * keyboard and the browser, and the API re-validates everything.
+ *
+ * Lives under `src/components/`, never `src/pages/admin/`: a partial under the
+ * pages tree reads to `access-chokepoint-check.ts` as an extra screen with no
+ * `loadAdminScreen`.
+ */
+import { getTranslatorFor } from "../lib/i18n";
+import { formatOptionsText } from "../lib/ui/commerce-attributes-client";
+import type { AttributeConstraints } from "../modules/commerce/domain/attribute-value";
+
+interface Props {
+  locale: string | undefined;
+  /** Unique per form on the page: prefixes every input id. */
+  idPrefix: string;
+  /** Set for an edit form (type fixed); omitted for the create form. */
+  valueType?: string;
+  constraints?: AttributeConstraints;
+}
+
+const { locale, idPrefix, valueType, constraints = {} } = Astro.props;
+const { t } = getTranslatorFor(locale);
+
+function hiddenFor(types: string): boolean {
+  return valueType !== undefined && !types.split(" ").includes(valueType);
+}
+---
+
+<div
+  class="constraint-group"
+  data-constraint-for="text"
+  hidden={hiddenFor("text")}
+>
+  <label for={`${idPrefix}-minLength`}>{t("Minimum length")}</label>
+  <input
+    id={`${idPrefix}-minLength`}
+    name="minLength"
+    type="text"
+    inputmode="numeric"
+    value={constraints.minLength ?? ""}
+    autocomplete="off"
+  />
+  <label for={`${idPrefix}-maxLength`}>{t("Maximum length")}</label>
+  <input
+    id={`${idPrefix}-maxLength`}
+    name="maxLength"
+    type="text"
+    inputmode="numeric"
+    value={constraints.maxLength ?? ""}
+    autocomplete="off"
+  />
+</div>
+
+<div
+  class="constraint-group"
+  data-constraint-for="integer decimal"
+  hidden={hiddenFor("integer decimal")}
+>
+  <label for={`${idPrefix}-min`}>{t("Minimum value")}</label>
+  <input
+    id={`${idPrefix}-min`}
+    name="min"
+    type="text"
+    inputmode="decimal"
+    value={valueType === "date" ? "" : (constraints.min ?? "")}
+    autocomplete="off"
+  />
+  <label for={`${idPrefix}-max`}>{t("Maximum value")}</label>
+  <input
+    id={`${idPrefix}-max`}
+    name="max"
+    type="text"
+    inputmode="decimal"
+    value={valueType === "date" ? "" : (constraints.max ?? "")}
+    autocomplete="off"
+  />
+</div>
+
+<div
+  class="constraint-group"
+  data-constraint-for="decimal"
+  hidden={hiddenFor("decimal")}
+>
+  <label for={`${idPrefix}-scale`}>{t("Decimal places (at most 6)")}</label>
+  <input
+    id={`${idPrefix}-scale`}
+    name="scale"
+    type="text"
+    inputmode="numeric"
+    value={constraints.scale ?? ""}
+    autocomplete="off"
+  />
+</div>
+
+<div
+  class="constraint-group"
+  data-constraint-for="date"
+  hidden={hiddenFor("date")}
+>
+  <label for={`${idPrefix}-dateMin`}>{t("Earliest date")}</label>
+  <input
+    id={`${idPrefix}-dateMin`}
+    name="dateMin"
+    type="date"
+    value={valueType === "date" ? (constraints.min ?? "") : ""}
+  />
+  <label for={`${idPrefix}-dateMax`}>{t("Latest date")}</label>
+  <input
+    id={`${idPrefix}-dateMax`}
+    name="dateMax"
+    type="date"
+    value={valueType === "date" ? (constraints.max ?? "") : ""}
+  />
+</div>
+
+<div
+  class="constraint-group"
+  data-constraint-for="enum"
+  hidden={hiddenFor("enum")}
+>
+  <label for={`${idPrefix}-options`}>
+    {t("Choices (one per line: value or value|Label)")}
+  </label>
+  <textarea id={`${idPrefix}-options`} name="options" rows="4">{
+    formatOptionsText(constraints.options ?? [])
+  }</textarea>
+</div>

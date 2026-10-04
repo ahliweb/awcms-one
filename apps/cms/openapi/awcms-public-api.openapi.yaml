@@ -7635,6 +7635,172 @@ paths:
           $ref: "#/components/responses/Forbidden"
         "404":
           $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/attributes:
+    get:
+      operationId: listCommerceAttributeDefinitions
+      tags:
+        - Commerce
+      summary: "Issue #291. Every live attribute definition of the tenant (sort_order, key). Not paginated: a tenant is capped at 100 definitions. Gated on attributes.read."
+      responses:
+        "200":
+          description: The tenant's attribute definitions.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceAttributeDefinition"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    post:
+      operationId: createCommerceAttributeDefinition
+      tags:
+        - Commerce
+      summary: "Issue #291. Create an attribute definition. `key` (a lowercase slug) and `valueType` are immutable. Gated on attributes.manage."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceAttributeDefinitionInput"
+      responses:
+        "201":
+          description: Definition created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceAttributeDefinition"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: ATTRIBUTE_KEY_ALREADY_EXISTS (the key is taken by a live definition) or ATTRIBUTE_DEFINITION_LIMIT_REACHED (100 live definitions).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/attributes/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    get:
+      operationId: getCommerceAttributeDefinition
+      tags:
+        - Commerce
+      summary: "Issue #291. Fetch one attribute definition. Gated on attributes.read."
+      responses:
+        "200":
+          description: The definition.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceAttributeDefinition"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    patch:
+      operationId: updateCommerceAttributeDefinition
+      tags:
+        - Commerce
+      summary: "Issue #291. Update label/labels/constraints/flags/appliesTo/sortOrder. A body naming `key` or `valueType` is a 400. Removing an enum option stored values still use (ATTRIBUTE_OPTION_IN_USE) or narrowing appliesTo under stored values (ATTRIBUTE_APPLIES_TO_IN_USE) is a 409. Narrowing other constraints does not rewrite stored values. Gated on attributes.manage."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceAttributeDefinitionInput"
+      responses:
+        "200":
+          description: The updated definition.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceAttributeDefinition"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: ATTRIBUTE_OPTION_IN_USE or ATTRIBUTE_APPLIES_TO_IN_USE.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    delete:
+      operationId: deleteCommerceAttributeDefinition
+      tags:
+        - Commerce
+      summary: "Issue #291. Soft delete (audited). The key becomes free to reuse; stored values stay in the database but are no longer read. Gated on attributes.manage."
+      responses:
+        "200":
+          description: Deleted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      deleted:
+                        type: boolean
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /api/v1/commerce/campaigns:
     get:
       operationId: listCommerceCampaigns
@@ -8991,6 +9157,937 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/expense-categories:
+    get:
+      operationId: listCommerceExpenseCategories
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). The tenant's expense categories, active first then by code (limit 200). Gated on `commerce.expense_categories.read` and the tenant's `expenses` feature (default OFF)."
+      parameters:
+        - name: includeInactive
+          in: query
+          required: false
+          description: "`false` hides deactivated categories; anything else (the default) lists them."
+          schema:
+            type: string
+      responses:
+        "200":
+          description: The categories.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceExpenseCategory"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    post:
+      operationId: createCommerceExpenseCategory
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). Defines an expense category. Gated on `commerce.expense_categories.create`; `code` is unique per tenant, case-insensitively."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - code
+                - name
+              properties:
+                code:
+                  type: string
+                  maxLength: 40
+                  description: Letters, digits, '.', '_' and '-'; starts with a letter or digit.
+                name:
+                  type: string
+                  maxLength: 120
+      responses:
+        "201":
+          description: The new category.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceExpenseCategory"
+        "400":
+          description: "`VALIDATION_ERROR`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`EXPENSE_CATEGORY_CODE_TAKEN` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/expense-categories/{id}:
+    get:
+      operationId: getCommerceExpenseCategory
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). One expense category. Gated on `commerce.expense_categories.read`. An unknown id and another tenant's id are the same 404."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The category.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceExpenseCategory"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    patch:
+      operationId: updateCommerceExpenseCategory
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). Renames or (de)activates a category; the code never changes. Gated on `commerce.expense_categories.update`. A deactivated category accepts no NEW expense; history stays readable."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  maxLength: 120
+                active:
+                  type: boolean
+      responses:
+        "200":
+          description: The updated category.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceExpenseCategory"
+        "400":
+          description: "`VALIDATION_ERROR`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/expenses:
+    get:
+      operationId: listCommerceExpenses
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). Expenses, keyset-paginated, newest first. Gated on `commerce.expenses.read` and the tenant's `expenses` feature (default OFF)."
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - draft
+              - pending_approval
+              - posted
+              - reversed
+              - cancelled
+        - name: categoryId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - name: registerSessionId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - name: from
+          in: query
+          required: false
+          description: Inclusive lower bound on `occurredOn` (YYYY-MM-DD).
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: false
+          description: Inclusive upper bound on `occurredOn` (YYYY-MM-DD).
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: One page of expenses (limit 50) with an opaque `nextCursor` (null on the last page).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceExpense"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "400":
+          description: "`VALIDATION_ERROR` (a malformed cursor, uuid, date or status)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    post:
+      operationId: createCommerceExpense
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). Records a DRAFT expense. Gated on `commerce.expenses.create`; requires `Idempotency-Key`."
+      description: A draft touches no register and no cash-up; posting is `/expenses/{id}/post`. A draft that names a `registerSessionId` must be paid in cash, name an OPEN session of this tenant, and additionally needs the `register` feature. Replaying the same key and body returns the same expense (201); a different body under that key is a conflict.
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - categoryId
+                - amount
+                - tenderType
+                - occurredOn
+                - description
+              properties:
+                categoryId:
+                  type: string
+                  format: uuid
+                amount:
+                  type: string
+                  description: "`numeric(14,2)` string, > 0 — never a JSON number."
+                tenderType:
+                  type: string
+                  enum:
+                    - cash
+                    - manual_qris
+                    - manual_bank_transfer
+                occurredOn:
+                  type: string
+                  format: date
+                  description: Not more than one day in the future.
+                description:
+                  type: string
+                  maxLength: 500
+                  description: The reason. Free text — never in audit, events or the cash-up.
+                payeeName:
+                  type: string
+                  nullable: true
+                  maxLength: 120
+                  description: Free text payee. A typed party reference is a documented follow-up (ADR-0031 D8).
+                registerSessionId:
+                  type: string
+                  format: uuid
+                  nullable: true
+                  description: The OPEN drawer session the cash came from (cash only; needs the `register` feature).
+      responses:
+        "201":
+          description: The draft (or the stored replay).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceExpense"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`EXPENSE_CATEGORY_INACTIVE`, `REGISTER_SESSION_NOT_OPEN`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF), or the `register` feature for a drawer expense."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/expenses/{id}:
+    get:
+      operationId: getCommerceExpense
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). One expense. Gated on `commerce.expenses.read`. An unknown id and another tenant's id are the same 404. A receipt is only ever a `hasReceipt` boolean here — read it through `/receipt-url`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The expense.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceExpense"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    patch:
+      operationId: updateCommerceExpense
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). Edits a DRAFT expense (any subset of the draft fields; `registerSessionId: null` detaches the drawer). Gated on `commerce.expenses.update`."
+      description: Only the draft's creator, or a supervisor (a caller who also holds `commerce.expense_postings.approve`), may edit it (`403 NOT_EXPENSE_OWNER`). A pending, posted, reversed or cancelled expense is frozen (`409 EXPENSE_NOT_DRAFT`), by the schema as well.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                categoryId:
+                  type: string
+                  format: uuid
+                amount:
+                  type: string
+                  description: "`numeric(14,2)` string, > 0 — never a JSON number."
+                tenderType:
+                  type: string
+                  enum:
+                    - cash
+                    - manual_qris
+                    - manual_bank_transfer
+                occurredOn:
+                  type: string
+                  format: date
+                  description: Not more than one day in the future.
+                description:
+                  type: string
+                  maxLength: 500
+                  description: The reason. Free text — never in audit, events or the cash-up.
+                payeeName:
+                  type: string
+                  nullable: true
+                  maxLength: 120
+                  description: Free text payee. A typed party reference is a documented follow-up (ADR-0031 D8).
+                registerSessionId:
+                  type: string
+                  format: uuid
+                  nullable: true
+                  description: The OPEN drawer session the cash came from (cash only; needs the `register` feature).
+      responses:
+        "200":
+          description: The updated draft.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceExpense"
+        "400":
+          description: "`VALIDATION_ERROR`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`EXPENSE_NOT_DRAFT` (`details.status`), `EXPENSE_CATEGORY_INACTIVE`, `REGISTER_SESSION_NOT_OPEN` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/expenses/{id}/cancel:
+    post:
+      operationId: cancelCommerceExpense
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). Discards a DRAFT expense (terminal `cancelled`). Gated on `commerce.expenses.update`; requires `Idempotency-Key`. Only the creator or a supervisor; a posted expense is reversed, never deleted."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: The cancelled expense (or the stored replay).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceExpense"
+        "400":
+          description: "`IDEMPOTENCY_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`EXPENSE_NOT_DRAFT` (`details.status`), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/expenses/{id}/decision:
+    post:
+      operationId: decideCommerceExpense
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). Approves or rejects a `pending_approval` expense. Gated on `commerce.expense_postings.approve` (a high-risk verb); requires `Idempotency-Key`."
+      description: "Segregation of duties: an expense cannot be approved by the person who created it or by the person who submitted it (`403 SEGREGATION_OF_DUTIES`, `details.reason`). Approving posts it — a drawer-paid expense appends its register movement with the APPROVER as the movement's actor, and `409 REGISTER_SESSION_NOT_OPEN` leaves it pending when the session has since closed. Rejecting needs a `note` and returns the expense to `draft`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - decision
+              properties:
+                decision:
+                  type: string
+                  enum:
+                    - approve
+                    - reject
+                note:
+                  type: string
+                  maxLength: 500
+                  description: Required when rejecting.
+      responses:
+        "200":
+          description: The expense and the outcome (or the stored replay).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceExpenseAction"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`EXPENSE_NOT_PENDING` (`details.status`), `REGISTER_SESSION_NOT_OPEN`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/expenses/{id}/post:
+    post:
+      operationId: postCommerceExpense
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). Submits a draft for posting. Gated on `commerce.expense_postings.create`; requires `Idempotency-Key`."
+      description: "Within the tenant's `expenses.approvalThreshold` the expense is posted outright (`outcome: posted`, decision `auto`). Above it, a caller who ALSO holds `commerce.expense_postings.approve` and did not create the expense posts it in one step (decision `approved`); anyone else leaves it `pending_approval` for a second person. Posting a drawer-paid expense appends a register `expense` cash-out movement to its session (409 `REGISTER_SESSION_NOT_OPEN` when it is not open) — it never edits a cash-up total — and emits `awcms.commerce.expense.posted` once. Idempotent: the same key replays the stored answer; a new key on an already-posted expense is `409 EXPENSE_NOT_POSTABLE`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: The expense and the outcome (or the stored replay).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceExpenseAction"
+        "400":
+          description: "`IDEMPOTENCY_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`EXPENSE_NOT_POSTABLE` (`details.status`), `EXPENSE_CATEGORY_INACTIVE`, `REGISTER_SESSION_NOT_OPEN`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/expenses/{id}/receipt:
+    post:
+      operationId: attachCommerceExpenseReceipt
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). Attaches a PRIVATE receipt (a media-library object) to an expense. Gated on `commerce.expense_receipts.create`."
+      description: "The object must exist in this tenant, be `visibility: private`, verified, and uploaded by the CALLER (a confused-deputy guard — otherwise any private object could be attached and read back); it must not already be a receipt or a product's protected download. In every attachable state only the expense's creator or a supervisor may attach (`403 NOT_EXPENSE_OWNER`); a draft's receipt may be replaced, a posted or reversed expense accepts one once and never replaces it. The object is never returned — read it through `/receipt-url`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - mediaObjectId
+              properties:
+                mediaObjectId:
+                  type: string
+                  format: uuid
+      responses:
+        "200":
+          description: "The expense (`hasReceipt: true`)."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceExpense"
+        "400":
+          description: "`VALIDATION_ERROR`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`EXPENSE_RECEIPT_NOT_ELIGIBLE`, `EXPENSE_RECEIPT_ALREADY_USED`, `EXPENSE_RECEIPT_ALREADY_ATTACHED`, `EXPENSE_NOT_ATTACHABLE` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/expenses/{id}/receipt-url:
+    get:
+      operationId: getCommerceExpenseReceiptUrl
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). A short-lived presigned GET URL for the expense's PRIVATE receipt. Gated on `commerce.expense_receipts.read` — not implied by `commerce.expenses.read`."
+      description: "Resolves the object server-side from THIS expense (never a caller-supplied media id), re-verifies on every call that it is still a verified private object, audits the issuance decision (`media.download`), and answers `Cache-Control: no-store`. Fails closed: no receipt is a 404, a public-by-mistake or unavailable object is `409 EXPENSE_RECEIPT_UNAVAILABLE`, an unconfigured storage is `502 PROVIDER_ERROR`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The URL and its expiry.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      expenseId:
+                        type: string
+                        format: uuid
+                      url:
+                        type: string
+                      expiresAt:
+                        type: string
+                        format: date-time
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`EXPENSE_RECEIPT_UNAVAILABLE` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "502":
+          description: "`PROVIDER_ERROR` — media storage is not configured."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/expenses/{id}/reverse:
+    post:
+      operationId: reverseCommerceExpense
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). Reverses a POSTED expense with a compensating entry. Gated on `commerce.expense_reversals.approve` (a high-risk verb); requires `Idempotency-Key` and a `reason`."
+      description: A drawer-paid expense appends a `correction` cash-IN movement for the same amount — to its own session when still open, else to the open session of the SAME register — and never edits the original movement or a closed cash-up. With no open session on the register it is refused (`409 REGISTER_SESSION_REQUIRED`). Emits `awcms.commerce.expense.reversed` once. A reversed expense is terminal.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - reason
+              properties:
+                reason:
+                  type: string
+                  maxLength: 500
+                  description: Free text. Kept on the expense; never in audit, events or the cash-up.
+      responses:
+        "200":
+          description: The expense and the outcome (or the stored replay).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceExpenseAction"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`EXPENSE_NOT_REVERSIBLE` (`details.status`), `REGISTER_SESSION_REQUIRED`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/expenses/export.csv:
+    get:
+      operationId: exportCommerceExpensesCsv
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). The expenses of a date range as CSV. Gated on `commerce.expenses.export` — the high-risk `export` verb; reading expenses grants none."
+      description: "Every cell is spreadsheet-formula-neutralised (a leading `=`, `+`, `-`, `@`, tab or carriage return is prefixed with `'`; a strictly numeric amount keeps its sign). No receipt URL, media key or customer datum appears. Bounded: at most 366 days and 10,000 rows; `X-Export-Truncated: true` says a longer range was cut, never silently. `Cache-Control: no-store`."
+      parameters:
+        - name: from
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: The CSV.
+          headers:
+            X-Export-Truncated:
+              schema:
+                type: string
+                enum:
+                  - "true"
+                  - "false"
+          content:
+            text/csv:
+              schema:
+                type: string
+        "400":
+          description: "`VALIDATION_ERROR` (a missing, malformed, inverted or over-long range)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/expenses/summary:
+    get:
+      operationId: getCommerceExpenseSummary
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). The expense summary of a date range: posted and reversed totals by category and tender, plus draft / pending counts. Gated on `commerce.expenses.read`."
+      description: Only POSTED expenses count as spent; REVERSED ones are reported beside them (never netted away); drafts and pending approvals are counted but belong to no total. All sums are exact `numeric(14,2)` strings (integer cents). `from` and `to` are required and the range spans at most 366 days.
+      parameters:
+        - name: from
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: The summary.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceExpenseSummary"
+        "400":
+          description: "`VALIDATION_ERROR` (a missing, malformed, inverted or over-long range)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/flash-sales:
     get:
       operationId: listCommerceFlashSales
@@ -9605,6 +10702,690 @@ paths:
         "409":
           description: "`HELD_SALE_EXPIRED` (the expiry is persisted), `HELD_SALE_NOT_HELD` (`details.status`), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF)."
           content: *a1
+  /api/v1/commerce/loyalty/accounts:
+    get:
+      operationId: listCommerceLoyaltyAccounts
+      tags:
+        - Commerce
+      summary: "Issue #289 (ADR-0026). Keyset list of loyalty accounts (newest first) with the customer's name and masked phone; `customerId` narrows to one customer and `phone` is the counter lookup, which also returns a `customer` block (balance 0 for a customer with no account yet). Gated on `commerce.loyalty.read`; `409 FEATURE_DISABLED` when the tenant's `loyalty` feature is off."
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            maximum: 50
+        - name: customerId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - name: phone
+          in: query
+          required: false
+          description: An Indonesian phone number in any common notation; normalised server-side. The walk-in sentinel customer is never returned.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: One page of loyalty accounts.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/LoyaltyAccount"
+                      nextCursor:
+                        type: string
+                        nullable: true
+                      customer:
+                        description: Present only for a `phone` lookup; `null` when no customer matches.
+                        nullable: true
+                        allOf:
+                          - $ref: "#/components/schemas/LoyaltyCustomerLookup"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: FEATURE_DISABLED — the tenant has not turned the `loyalty` feature on.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/loyalty/accounts/{customerId}:
+    get:
+      operationId: getCommerceLoyaltyAccount
+      tags:
+        - Commerce
+      summary: "Issue #289. One customer's loyalty position — name, masked phone and the projected balance (0 for a customer who has never earned). An unknown, deleted or other-tenant customer id is the same 404. Gated on `commerce.loyalty.read`."
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The customer's loyalty position.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      customerId:
+                        type: string
+                        format: uuid
+                      customerName:
+                        type: string
+                      customerPhoneMasked:
+                        type: string
+                      accountId:
+                        type: string
+                        format: uuid
+                        nullable: true
+                      balance:
+                        type: integer
+                        format: int64
+                      version:
+                        type: integer
+                        format: int64
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: FEATURE_DISABLED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/loyalty/accounts/{customerId}/adjust:
+    post:
+      operationId: adjustCommerceLoyaltyPoints
+      tags:
+        - Commerce
+      summary: "Issue #289. A manual signed points adjustment — its own permission (`commerce.loyalty_adjustments.create`), a MANDATORY `reason`, an audit event, and an `Idempotency-Key`. A negative adjustment cannot take the balance below zero (`409 WOULD_GO_NEGATIVE`); only a system reversal may."
+      description: Same key + same body replays the stored 201; same key + different body is `409 IDEMPOTENCY_CONFLICT`. Adjustments never expire.
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            maxLength: 128
+            pattern: ^[A-Za-z0-9._:-]+$
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - points
+                - reason
+              properties:
+                points:
+                  type: integer
+                  description: Signed, non-zero, within ±1,000,000,000,000.
+                reason:
+                  type: string
+                  maxLength: 500
+      responses:
+        "201":
+          description: Adjustment recorded (or replayed).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      entry:
+                        $ref: "#/components/schemas/LoyaltyLedgerEntry"
+                      balance:
+                        type: integer
+                        format: int64
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: FEATURE_DISABLED, WOULD_GO_NEGATIVE, or IDEMPOTENCY_CONFLICT.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/loyalty/accounts/{customerId}/ledger:
+    get:
+      operationId: listCommerceLoyaltyLedger
+      tags:
+        - Commerce
+      summary: "Issue #289. The customer's append-only points history, newest first, keyset-paginated. Staff view: carries the actor and the reason that the customer-facing history omits. Gated on `commerce.loyalty.read`."
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            maximum: 50
+      responses:
+        "200":
+          description: One page of ledger entries.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/LoyaltyLedgerEntry"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: FEATURE_DISABLED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/loyalty/accounts/{customerId}/redeem:
+    post:
+      operationId: redeemCommerceLoyaltyPoints
+      tags:
+        - Commerce
+      summary: "Issue #289. Redeem a customer's points at the counter or on their behalf. Gated on `commerce.loyalty_redemptions.create`; `Idempotency-Key` required. Runs under the account row lock, so concurrent redemptions cannot overdraw (`409 INSUFFICIENT_POINTS`)."
+      description: "Records the points DEBIT only. Converting points into a discount at checkout needs the tender model of #285 and is deferred (ADR-0026). Points past their `expiresAt` are expired first, under the same lock, so lapsed points can never be spent. Same key + same body replays the stored 201; same key + different body is `409 IDEMPOTENCY_CONFLICT`. A refused (insufficient) request is not recorded, so the same key can succeed after a top-up."
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            maxLength: 128
+            pattern: ^[A-Za-z0-9._:-]+$
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - points
+              properties:
+                points:
+                  type: integer
+                  minimum: 1
+                  description: A positive count of points to spend (the ledger row stores it negated).
+                reason:
+                  type: string
+                  nullable: true
+                  maxLength: 500
+      responses:
+        "201":
+          description: Points redeemed (or replayed).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      entry:
+                        $ref: "#/components/schemas/LoyaltyLedgerEntry"
+                      balance:
+                        type: integer
+                        format: int64
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: FEATURE_DISABLED, INSUFFICIENT_POINTS (details carry `balance` and `requested`), or IDEMPOTENCY_CONFLICT.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/loyalty/programs:
+    get:
+      operationId: listCommerceLoyaltyPrograms
+      tags:
+        - Commerce
+      summary: "Issue #289. Every loyalty program VERSION, newest first. Gated on `commerce.loyalty.read`."
+      responses:
+        "200":
+          description: The tenant's program versions.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/LoyaltyProgram"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: FEATURE_DISABLED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    post:
+      operationId: createCommerceLoyaltyProgram
+      tags:
+        - Commerce
+      summary: "Issue #289. Create a new DRAFT program version (version number = max + 1 per tenant). Gated on `commerce.loyalty.manage`."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoyaltyProgramInput"
+      responses:
+        "201":
+          description: Draft version created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/LoyaltyProgram"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: FEATURE_DISABLED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/loyalty/programs/{id}:
+    get:
+      operationId: getCommerceLoyaltyProgram
+      tags:
+        - Commerce
+      summary: "Issue #289. One program version. Gated on `commerce.loyalty.read`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The program version.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/LoyaltyProgram"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: FEATURE_DISABLED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    patch:
+      operationId: updateCommerceLoyaltyProgram
+      tags:
+        - Commerce
+      summary: "Issue #289. Edit a DRAFT program version. An active or retired version is immutable (a ledger row records the version it earned under) — `409 PROGRAM_NOT_EDITABLE`; a change of rules is a new version. Gated on `commerce.loyalty.manage`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Any non-empty subset of the create fields.
+              properties:
+                name:
+                  type: string
+                earnUnitAmount:
+                  type: string
+                earnPointsPerUnit:
+                  type: integer
+                minOrderAmount:
+                  type: string
+                maxPointsPerOrder:
+                  type: integer
+                  nullable: true
+                expiryDays:
+                  type: integer
+                  nullable: true
+                notes:
+                  type: string
+                  nullable: true
+      responses:
+        "200":
+          description: The updated draft.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/LoyaltyProgram"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: FEATURE_DISABLED or PROGRAM_NOT_EDITABLE.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/loyalty/programs/{id}/activate:
+    post:
+      operationId: activateCommerceLoyaltyProgram
+      tags:
+        - Commerce
+      summary: "Issue #289. Activate a draft version NOW: `effectiveFrom` = this instant, and the version open at that instant is closed (`effectiveTo` = this instant, `retired`) in the same transaction under a per-tenant lock. A high-risk `manage` action. A second call finds the version no longer a draft (`409 PROGRAM_NOT_DRAFT`)."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Version activated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      program:
+                        $ref: "#/components/schemas/LoyaltyProgram"
+                      closedVersion:
+                        type: integer
+                        nullable: true
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: FEATURE_DISABLED or PROGRAM_NOT_DRAFT.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/loyalty/programs/{id}/retire:
+    post:
+      operationId: retireCommerceLoyaltyProgram
+      tags:
+        - Commerce
+      summary: "Issue #289. End the open active version NOW. Orders paid afterwards earn nothing until another version is activated; points already earned are untouched. `409 PROGRAM_NOT_ACTIVE` for anything but the open active version."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Version retired.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/LoyaltyProgram"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: FEATURE_DISABLED or PROGRAM_NOT_ACTIVE.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/loyalty/reconcile:
+    post:
+      operationId: reconcileCommerceLoyalty
+      tags:
+        - Commerce
+      summary: "Issue #289. Recompute every account's balance from the ledger and report drift (projection disagrees with the ledger) and ledger breaks (a row whose running `balanceAfter` is not the running sum). `repair: true` additionally rewrites each drifted account's PROJECTION — never the ledger — with one audit event per repair. Gated on `commerce.loyalty.manage` (a high-risk action) in both modes."
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                repair:
+                  type: boolean
+                  default: false
+      responses:
+        "200":
+          description: The reconcile report.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/LoyaltyReconcileReport"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: FEATURE_DISABLED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/loyalty/summary:
+    get:
+      operationId: getCommerceLoyaltySummary
+      tags:
+        - Commerce
+      summary: "Issue #289. Earned / redeemed / expired / reversed / net for a window plus the all-time outstanding points, every figure SUMMED FROM THE LEDGER by `kind` so no point is counted twice. Gated on `commerce.loyalty.read`."
+      parameters:
+        - name: from
+          in: query
+          required: false
+          description: Inclusive lower bound. An ISO-8601 instant or a bare `YYYY-MM-DD` day (UTC).
+          schema:
+            type: string
+        - name: to
+          in: query
+          required: false
+          description: Exclusive upper bound for an instant; a bare `YYYY-MM-DD` day means through the end of that day (UTC).
+          schema:
+            type: string
+      responses:
+        "200":
+          description: The loyalty summary.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/LoyaltySummary"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: FEATURE_DISABLED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/orders:
     get:
       operationId: listCommerceOrders
@@ -9876,6 +11657,12 @@ paths:
                     - cash
                     - manual_qris
                     - manual_bank_transfer
+                    - gift_card
+                    - store_credit
+                storedValueCode:
+                  type: string
+                  maxLength: 64
+                  description: "Required for `gift_card` / `store_credit` (Issue #288, ADR-0030), forbidden otherwise: the plaintext code of the account to draw from (separators and case are ignored; the check character is verified). It is resolved to an account and discarded — never stored, logged, audited or echoed (the response shows only the masked code). Needs the tenant's `storedValue` feature (`409 FEATURE_DISABLED`)."
                 amount:
                   type: string
                   description: "`numeric(14,2)` string, > 0, never a JSON number. For `cash`, the amount handed over."
@@ -9915,7 +11702,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: "`IDEMPOTENCY_CONFLICT`, `OVERPAYMENT` (the amount exceeds what is still owed — `details.outstanding`/`details.attempted`) or `ORDER_NOT_PAYABLE` (a cancelled or expired order)."
+          description: "`IDEMPOTENCY_CONFLICT` (also a key reused against another order or with a different tender/amount), `OVERPAYMENT` (the amount exceeds what is still owed — `details.outstanding`/`details.attempted`), `ORDER_NOT_PAYABLE` (a cancelled or expired order) or `REGISTER_SESSION_CLOSING` (Issue #284: the POS sale's register session is counting/awaiting a supervisor, so the money would fall into no cash-up — retry once the close is decided)."
           content:
             application/json:
               schema:
@@ -9962,6 +11749,11 @@ paths:
                   type: string
                   maxLength: 500
                   description: The reason for the reversal (required).
+                registerSessionId:
+                  type: string
+                  format: uuid
+                  nullable: true
+                  description: "Issue #284 (ADR-0028 D2). The OPEN register session of the tenant, whose current cashier is the caller, that the refund is paid out of. The reversal leg is stamped with it, so THAT drawer's expected cash drops (a cash refund for a sale from an earlier, closed shift would otherwise lower no cash-up). Omitted = unchanged behaviour: the leg is stamped only with its own order's session while that is still open."
       responses:
         "201":
           description: Recorded (or replayed). `data.payment` is the new reversal row.
@@ -9989,7 +11781,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: "`IDEMPOTENCY_CONFLICT`, `REVERSAL_EXCEEDS_PAYMENT` (`details.reversible`) or `PAYMENT_NOT_REVERSIBLE` (`details.reason`: `not_a_payment`, `not_succeeded`, `fully_reversed`)."
+          description: "`IDEMPOTENCY_CONFLICT` (also a key reused against another order, or with a different amount), `REVERSAL_EXCEEDS_PAYMENT` (`details.reversible`), `PAYMENT_NOT_REVERSIBLE` (`details.reason`: `not_a_payment`, `not_succeeded`, `fully_reversed`; Issue #288: `stored_value_refund_not_allowed` — the program does not allow a refund back onto the card, there is no cash alternative — or `stored_value_account_unavailable` — the card is disabled, expired or gone), `REGISTER_SESSION_NOT_OPEN` (`details.status`) or `NOT_SESSION_CASHIER` for a `registerSessionId` that is not an open session of the caller. An unknown or other-tenant `registerSessionId` is `404`."
           content:
             application/json:
               schema:
@@ -10055,7 +11847,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: "`ILLEGAL_STATUS_TRANSITION` (the requested transition is not legal from the order's current status) or `PAYMENT_NOT_SETTLED` (Issue #285 — a manual `-> paid` while the payment-allocation ledger has not reached the order's release threshold; `details.outstanding` carries what is still owed. Record the payment with `POST /api/v1/commerce/orders/{id}/payments` and the order moves to `paid` by itself)."
+          description: "`ILLEGAL_STATUS_TRANSITION` (the requested transition is not legal from the order's current status) or `PAYMENT_NOT_SETTLED` (Issue #285 — a manual `-> paid` for an order that HAS payment-allocation legs but whose ledger has not reached the order's release threshold; `details.outstanding` carries what is still owed. Record the payment with `POST /api/v1/commerce/orders/{id}/payments` and the order moves to `paid` by itself. An order with NO ledger leg at all is not refused: the call records one full-amount succeeded leg and releases the order)."
           content:
             application/json:
               schema:
@@ -10395,7 +12187,7 @@ paths:
 
         ### Multi-tender (Issue #285, ADR-0025 — contract version 2)
 
-        Send EITHER the legacy `payment` object above (unchanged — adapted to exactly one payment-ledger leg) OR an explicit `tenders[]` array, never both. Each tender is `{ tenderType: cash | manual_qris | manual_bank_transfer, amount, reference? }`. For a NON-cash tender `amount` is the amount applied to the sale; for the (at most one) `cash` tender it is the amount HANDED OVER — the server subtracts every non-cash tender from the amount due first, applies cash to what is left, and derives the change from the cash leg ONLY (`change = handed - applied`, never negative, never offsetting a shortfall on another tender). Non-cash tenders summing above the total are `409 OVERPAYMENT`; tenders that do not cover the total are `409 INSUFFICIENT_TENDER` unless `allowDue` is `true`.
+        Send EITHER the legacy `payment` object above (unchanged — adapted to exactly one payment-ledger leg) OR an explicit `tenders[]` array, never both. Each tender is `{ tenderType: cash | manual_qris | manual_bank_transfer | gift_card | store_credit, amount, reference?, storedValueCode? }` (Issue #288: a stored-value tender carries the plaintext `storedValueCode`, is redeemed in the SAME transaction as the sale, and needs the tenant's `storedValue` feature). For a NON-cash tender `amount` is the amount applied to the sale; for the (at most one) `cash` tender it is the amount HANDED OVER — the server subtracts every non-cash tender from the amount due first, applies cash to what is left, and derives the change from the cash leg ONLY (`change = handed - applied`, never negative, never offsetting a shortfall on another tender). Non-cash tenders summing above the total are `409 OVERPAYMENT`; tenders that do not cover the total are `409 INSUFFICIENT_TENDER` unless `allowDue` is `true`.
 
         `allowDue: true` (requires `tenders[]`, a customer `phone`, and the SEPARATE permission `commerce.pos_due.create` in addition to `commerce.pos.create`) lets the sale finalize with a balance DUE: the order stays `pending_payment` (`paymentStatus` `unpaid`/`partially_paid`, no expiry) with `settlement.outstanding` explicit, and later payments (`POST /api/v1/commerce/orders/{id}/payments`) settle it. `tenders: []` with `allowDue: true` is a sale entirely on account.
 
@@ -10443,13 +12235,19 @@ paths:
                           - cash
                           - manual_qris
                           - manual_bank_transfer
+                          - gift_card
+                          - store_credit
                       amount:
                         type: string
-                        description: "`numeric(14,2)` string, > 0. Non-cash: applied to the sale. Cash: handed over (change derived server-side)."
+                        description: "`numeric(14,2)` string, > 0. Non-cash: applied to the sale. Cash: handed over (change derived server-side). A `gift_card` / `store_credit` amount is always explicit and can never exceed the total (change never applies to it)."
                       reference:
                         type: string
                         nullable: true
                         maxLength: 100
+                      storedValueCode:
+                        type: string
+                        maxLength: 64
+                        description: "Required for `gift_card` / `store_credit` (Issue #288, ADR-0030), forbidden otherwise; one code at most once per sale. Resolved to an account (neutral `404 STORED_VALUE_NOT_FOUND` for an unknown, other-tenant or other-kind code) and discarded: never stored, logged, audited, hashed into the idempotency key as plaintext, or returned. A refused card (`409 STORED_VALUE_UNAVAILABLE` / `STORED_VALUE_INSUFFICIENT`, `429 STORED_VALUE_LOOKUP_THROTTLED`) refuses the WHOLE sale before any row is written."
                 allowDue:
                   type: boolean
                   description: "Issue #285 — finalize with a balance due. Requires `tenders[]`, a customer phone, and `commerce.pos_due.create`."
@@ -10602,6 +12400,16 @@ paths:
           required: false
           schema:
             type: boolean
+        - name: attr
+          in: query
+          required: false
+          style: form
+          explode: true
+          description: "Issue #291 — repeatable typed attribute filter `attr=<key>:<operator>:<value>` (at most 5, AND-ed). `operator` is one of eq, in (comma-separated, at most 20), gte, lte (integer/decimal/date), contains (text). `key` must be a filterable, `visible_public` attribute; an unknown, non-filterable or non-public key is one and the same 400. The value is parsed with the attribute's typed grammar (a decimal uses a dot; `1,5` is a 400). A variant-level value matches its product. `q` additionally matches `searchable`, `visible_public` text/enum attributes."
+          schema:
+            type: array
+            items:
+              type: string
       responses:
         "200":
           description: Live products for the tenant (limit 100) matching every supplied filter, in the requested order, each with images[]/variants[] resolved, with an opaque nextCursor for the next page (null on the last page or for a non-newest sort).
@@ -10782,6 +12590,92 @@ paths:
                         type: string
                         enum:
                           - deleted
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/products/{id}/attributes:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    get:
+      operationId: getCommerceProductAttributes
+      tags:
+        - Commerce
+      summary: "Issue #291. The product's FULL (admin) attribute set — product-level and per-variant values of every visible_admin definition — plus the applicable definitions. Gated on attributes.read, not products.read, so a storefront machine credential holding products.read cannot read back-office-only attributes."
+      responses:
+        "200":
+          description: Definitions and values.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      definitions:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceAttributeDefinition"
+                      product:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceAttributeValue"
+                      variants:
+                        type: object
+                        additionalProperties:
+                          type: array
+                          items:
+                            $ref: "#/components/schemas/CommerceAttributeValue"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    put:
+      operationId: setCommerceProductAttributes
+      tags:
+        - Commerce
+      summary: "Issue #291. Set/clear the product's attribute values (`{attributes: {key: value|null}}`). Every value is parsed with the typed grammar (decimal: digits and a dot only, never a locale spelling; date: YYYY-MM-DD; enum: an exact option); one invalid entry rejects the whole request with nothing written. Gated on products.update."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceAttributeAssignments"
+      responses:
+        "200":
+          description: The keys whose stored value changed.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      changedKeys:
+                        type: array
+                        items:
+                          type: string
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -11252,6 +13146,58 @@ paths:
           $ref: "#/components/responses/Forbidden"
         "404":
           $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/products/{id}/variants/{variantId}/attributes:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: variantId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    put:
+      operationId: setCommerceVariantAttributes
+      tags:
+        - Commerce
+      summary: "Issue #291. Variant-level twin of PUT /products/{id}/attributes, restricted to definitions whose appliesTo covers variants; the variant must belong to the product. Gated on products.update."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceAttributeAssignments"
+      responses:
+        "200":
+          description: The keys whose stored value changed.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      changedKeys:
+                        type: array
+                        items:
+                          type: string
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /api/v1/commerce/products/by-slug/{slug}:
     get:
       operationId: getCommerceProductBySlug
@@ -11284,6 +13230,112 @@ paths:
           $ref: "#/components/responses/Forbidden"
         "404":
           $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/products/export.csv:
+    get:
+      operationId: exportCommerceProductsCsv
+      tags:
+        - Commerce
+      summary: "Issue #291. The live product catalog as RFC 4180 CSV (UTF-8 with BOM) — core columns plus one `attr:<key>` column per admin-visible product attribute. Every cell is formula-injection-neutralised (a cell starting with = + - @ TAB or CR is prefixed with `'`; a plain signed number is left as is). At most 5000 rows; `X-AWCMS-Export-Truncated: true` flags a larger catalog. costPrice and downloadLink are not exported. Gated on products.export."
+      responses:
+        "200":
+          description: The CSV file.
+          headers:
+            X-AWCMS-Export-Row-Count:
+              schema:
+                type: integer
+            X-AWCMS-Export-Truncated:
+              schema:
+                type: string
+                enum:
+                  - "true"
+                  - "false"
+          content:
+            text/csv:
+              schema:
+                type: string
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/products/import:
+    post:
+      operationId: importCommerceProductsCsv
+      tags:
+        - Commerce
+      summary: "Issue #291. Validate (mode=dry_run, the default — writes NOTHING) or apply (mode=apply) a product CSV. The body is the CSV itself (text/csv, UTF-8, at most 5 MiB and 5000 data rows). Rows match on `sku`: a live product with that SKU is updated, any other SKU creates one. apply is ALL-OR-NOTHING (422 IMPORT_VALIDATION_FAILED when the plan has any error, 409 IMPORT_CONFLICT on a write-time conflict — both leave the catalog untouched), needs `Idempotency-Key` (a replay with the same key and file returns the original response; the same key with a different file is 409 IDEMPOTENCY_CONFLICT), and needs products.import AND products.create AND products.update. `expectedSha256` (the dry-run's fileSha256) refuses a file that differs from the reviewed one (409 IMPORT_FILE_MISMATCH). No column accepts a media reference and nothing is fetched remotely. Gated on products.import."
+      parameters:
+        - name: mode
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - dry_run
+              - apply
+            default: dry_run
+        - name: expectedSha256
+          in: query
+          required: false
+          description: apply only — the fileSha256 of the dry-run report that was reviewed.
+          schema:
+            type: string
+            pattern: ^[0-9a-f]{64}$
+        - name: Idempotency-Key
+          in: header
+          required: false
+          description: Required for mode=apply.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          text/csv:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: The per-row report (dry-run), or the applied report with `batchId`.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceCatalogImportReport"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: IMPORT_FILE_MISMATCH, IMPORT_CONFLICT (details carry the report) or IDEMPOTENCY_CONFLICT.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "413":
+          description: The body exceeds 5 MiB.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "415":
+          description: The body is not text/csv.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: IMPORT_VALIDATION_FAILED — the file has errors; nothing was imported. `error.details` is the report.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/quotations:
     get:
       operationId: listCommerceQuotations
@@ -11791,7 +13843,7 @@ paths:
               properties:
                 counted:
                   type: object
-                  description: Counted amount per tender type (`cash`, `manual_qris`, `manual_bank_transfer`, `gateway`) — `numeric(14,2)` strings, >= 0.
+                  description: Counted amount per tender type (`cash`, `manual_qris`, `manual_bank_transfer`, `gateway`, `gift_card`, `store_credit`) — `numeric(14,2)` strings, >= 0.
                   additionalProperties:
                     type: string
                 varianceReason:
@@ -11894,7 +13946,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: "`REGISTER_CLOSE_NOT_PENDING` (`details.status`), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF)."
+          description: "`REGISTER_CLOSE_NOT_PENDING` (`details.status`), `SOD_MAKER_IS_CHECKER` (an approval by the user who requested the close, unless the tenant set `cashUp.allowSelfApproval`; rejecting your own count is allowed), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF)."
           content:
             application/json:
               schema:
@@ -11948,6 +14000,8 @@ paths:
                           - manual_qris
                           - manual_bank_transfer
                           - gateway
+                          - gift_card
+                          - store_credit
                       adjustment:
                         type: string
                         description: Signed, non-zero `numeric(14,2)` string (e.g. `-5000.00`).
@@ -12056,7 +14110,7 @@ paths:
       tags:
         - Commerce
       summary: "Issue #284 (ADR-0028). Records a cash drawer movement against an OPEN session. Gated on `commerce.register_sessions.update`; requires `Idempotency-Key`."
-      description: Append-only and cash only. `cash_in` is always `in`; `cash_out`, `safe_drop` and `expense` are always `out`; `transfer` and `correction` must say `direction`. An `expense`/`transfer` needs a `reference`, a `correction` a `note`. The `reference` is FREE TEXT today — the typed reference to the expenses domain (#294) is a documented hook, not yet a field. Only the session's current cashier may record one. Emits `awcms.commerce.register_session.movement_recorded` (never the free text).
+      description: "Append-only and cash only. `cash_in` is always `in`; `cash_out`, `safe_drop` and `expense` are always `out`; `transfer` and `correction` must say `direction`. An `expense`/`transfer` needs a `reference`, a `correction` a `note`. The `reference` here is FREE TEXT. Since Issue #294 (ADR-0031) a tenant whose `expenses` feature is ON records expenses through the expenses domain, whose posting appends the typed `expense` movement itself — so a raw `expense` movement is refused there (`409 EXPENSE_REQUIRES_EXPENSE_RECORD`): it would bypass the approval threshold. With the feature OFF (the default) nothing changes. Only the session's current cashier may record one. Emits `awcms.commerce.register_session.movement_recorded` (never the free text)."
       parameters:
         - name: id
           in: path
@@ -12132,7 +14186,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: "`REGISTER_SESSION_NOT_OPEN` (`details.status`), `NOT_SESSION_CASHIER`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF)."
+          description: "`REGISTER_SESSION_NOT_OPEN` (`details.status`), `NOT_SESSION_CASHIER`, `EXPENSE_REQUIRES_EXPENSE_RECORD` (an `expense` movement while the `expenses` feature is on), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF)."
           content:
             application/json:
               schema:
@@ -12884,6 +14938,659 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/stored-value/accounts:
+    get:
+      operationId: listCommerceStoredValueAccounts
+      tags:
+        - Commerce
+      summary: "Issue #288 (ADR-0030). Gift-card / store-credit accounts, newest first, keyset-paginated. Gated on `commerce.stored_value.read` and the tenant's `storedValue` feature."
+      description: "Every code is MASKED (`•••••••-•••••••-•••ABCD`): the plaintext is never stored. `last4` finds a card by the last four characters of its code."
+      parameters:
+        - name: kind
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - gift_card
+              - store_credit
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - active
+              - disabled
+              - expired
+        - name: customerId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - name: last4
+          in: query
+          required: false
+          schema:
+            type: string
+            minLength: 4
+            maxLength: 4
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: A page of accounts.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceStoredValueAccount"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "400":
+          description: "`VALIDATION_ERROR`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    post:
+      operationId: issueCommerceStoredValueAccount
+      tags:
+        - Commerce
+      summary: "Issue #288 (ADR-0030). Issues a gift card / store credit. Gated on `commerce.stored_value.create` and the tenant's `storedValue` feature; requires `Idempotency-Key`."
+      description: "Generates a CSPRNG code (20 characters from an unambiguous 32-symbol alphabet = 100 bits, plus one check character), stores ONLY its tenant-scoped hash and last four, appends the `issue` ledger entry, and returns the plaintext `code` ONCE, in this response. A replay (same key, same body) answers the same account with `code: null` and `codeRevealed: false`; a lost code is remedied by disabling the account and issuing a new one — the plaintext is never recoverable. The program for the kind must be enabled (`409 STORED_VALUE_PROGRAM_DISABLED`) and the amount within its balance ceiling (`409 STORED_VALUE_BALANCE_CEILING`). `expiresAt` overrides the program's default lifetime (`null` = never). Emits `awcms.commerce.stored_value.entry_recorded`."
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - kind
+                - amount
+              properties:
+                kind:
+                  type: string
+                  enum:
+                    - gift_card
+                    - store_credit
+                amount:
+                  type: string
+                  description: "`numeric(14,2)` string, > 0, never a JSON number."
+                customerId:
+                  type: string
+                  format: uuid
+                  nullable: true
+                  description: Optional ownership reference. Informational — the code is a bearer instrument and redemption does not require the customer.
+                expiresAt:
+                  type: string
+                  format: date-time
+                  nullable: true
+                reason:
+                  type: string
+                  nullable: true
+                  maxLength: 500
+      responses:
+        "201":
+          description: The new account and its plaintext code (shown once), or the stored replay without the code.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceStoredValueIssued"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`STORED_VALUE_PROGRAM_DISABLED`, `STORED_VALUE_BALANCE_CEILING` (`details.ceiling`), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/stored-value/accounts/{id}:
+    get:
+      operationId: getCommerceStoredValueAccount
+      tags:
+        - Commerce
+      summary: "Issue #288 (ADR-0030). One account. Gated on `commerce.stored_value.read` and the tenant's `storedValue` feature."
+      description: "Resolved tenant-scoped: an unknown id and another tenant's id are the same `404` (no BOLA oracle)."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The account.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceStoredValueAccount"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/stored-value/accounts/{id}/adjust:
+    post:
+      operationId: adjustCommerceStoredValueAccount
+      tags:
+        - Commerce
+      summary: "Issue #288 (ADR-0030). A reasoned manual correction of a balance, up or down. Gated on the SEPARATE `commerce.stored_value_adjustments.create` and the tenant's `storedValue` feature; requires `Idempotency-Key`."
+      description: "The ledger is append-only: this is a NEW `adjust` entry, never an edit. A downward adjustment can never take the balance below zero (`409 STORED_VALUE_INSUFFICIENT`, `details.available`); an expired account takes no entry at all. A disabled account still takes one (a frozen card can be corrected). The `reason` is stored on the ledger row and is never copied into the audit trail."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - amount
+                - reason
+              properties:
+                amount:
+                  type: string
+                  description: Signed, non-zero `numeric(14,2)` string (e.g. `-5000.00`).
+                reason:
+                  type: string
+                  minLength: 1
+                  maxLength: 500
+      responses:
+        "201":
+          description: The new entry and the account (or the stored replay).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceStoredValueMutation"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`STORED_VALUE_INSUFFICIENT`, `STORED_VALUE_ACCOUNT_EXPIRED`, `STORED_VALUE_ACCOUNT_UNAVAILABLE`, `STORED_VALUE_BALANCE_CEILING`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/stored-value/accounts/{id}/ledger:
+    get:
+      operationId: listCommerceStoredValueLedger
+      tags:
+        - Commerce
+      summary: "Issue #288 (ADR-0030). An account's append-only history, newest first. Gated on `commerce.stored_value.read` and the tenant's `storedValue` feature."
+      description: Keyset-paginated on the per-account sequence (`before`). Every entry shows its kind, signed amount, running balance and the payment allocation it mirrors, never the code.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: before
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        "200":
+          description: A page of ledger entries.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceStoredValueEntry"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "400":
+          description: "`VALIDATION_ERROR`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/stored-value/accounts/{id}/load:
+    post:
+      operationId: loadCommerceStoredValueAccount
+      tags:
+        - Commerce
+      summary: "Issue #288 (ADR-0030). Adds value to an existing account (a top-up). Gated on `commerce.stored_value.create` and the tenant's `storedValue` feature; requires `Idempotency-Key`."
+      description: A replay returns the original entry and never loads twice. Refused when the program is not enabled, the account is disabled or expired, or the balance would pass the program's ceiling.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - amount
+              properties:
+                amount:
+                  type: string
+                  description: "`numeric(14,2)` string, > 0."
+                reason:
+                  type: string
+                  nullable: true
+                  maxLength: 500
+      responses:
+        "201":
+          description: The new entry and the account (or the stored replay).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceStoredValueMutation"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`STORED_VALUE_PROGRAM_DISABLED`, `STORED_VALUE_ACCOUNT_EXPIRED`, `STORED_VALUE_ACCOUNT_UNAVAILABLE`, `STORED_VALUE_BALANCE_CEILING`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/stored-value/accounts/{id}/status:
+    post:
+      operationId: changeCommerceStoredValueAccountStatus
+      tags:
+        - Commerce
+      summary: "Issue #288 (ADR-0030). Disables or re-enables an account. Gated on `commerce.stored_value.update` and the tenant's `storedValue` feature; requires `Idempotency-Key`."
+      description: A disabled account refuses every redemption and refund but keeps its balance (still a liability); it is the remedy for a lost or stolen card. `expired` is terminal and is never set by hand. Recorded as a zero-amount `disable` / `enable` ledger entry. Disabling requires a `reason`.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - action
+              properties:
+                action:
+                  type: string
+                  enum:
+                    - disable
+                    - enable
+                reason:
+                  type: string
+                  nullable: true
+                  maxLength: 500
+      responses:
+        "201":
+          description: The new entry and the account (or the stored replay).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceStoredValueMutation"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`STORED_VALUE_STATUS_UNCHANGED`, `STORED_VALUE_ACCOUNT_EXPIRED`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/stored-value/expire:
+    post:
+      operationId: sweepCommerceStoredValueExpiry
+      tags:
+        - Commerce
+      summary: "Issue #288 (ADR-0030). Releases the balance of every lapsed account. Gated on `commerce.stored_value.update` and the tenant's `storedValue` feature."
+      description: "One `expire` ledger entry per account past its expiry, bounded to one batch (`more: true` = call again). Idempotent by construction (the entry's source key is the account and its expiry instant). The application never WAITS for this: an account about to be used is settled first, so a lapsed balance can never be spent however rarely this runs."
+      responses:
+        "200":
+          description: What the run released.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      expired:
+                        type: integer
+                      released:
+                        type: string
+                        description: "`numeric(14,2)` string."
+                      more:
+                        type: boolean
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/stored-value/programs:
+    get:
+      operationId: listCommerceStoredValuePrograms
+      tags:
+        - Commerce
+      summary: "Issue #288 (ADR-0030). The tenant's gift-card and store-credit program configuration. Gated on `commerce.stored_value_programs.read` and the tenant's `storedValue` feature."
+      description: "Always returns BOTH kinds; one the tenant never saved is reported with its disabled defaults (`configured: false`)."
+      responses:
+        "200":
+          description: Both programs.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceStoredValueProgram"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/stored-value/programs/{kind}:
+    put:
+      operationId: upsertCommerceStoredValueProgram
+      tags:
+        - Commerce
+      summary: "Issue #288 (ADR-0030). Creates or updates one kind's program. Gated on `commerce.stored_value_programs.update` and the tenant's `storedValue` feature."
+      description: "A PUT by nature (the same body leaves the same row), so it takes no `Idempotency-Key`; every change is audited. `enabled` governs ISSUING and LOADING only — value already outstanding stays redeemable when a program is switched off, because it is owed. When `allowRefundToAccount` is false a payment made with this kind of value cannot be reversed at all (closed loop: there is no cash alternative)."
+      parameters:
+        - name: kind
+          in: path
+          required: true
+          schema:
+            type: string
+            enum:
+              - gift_card
+              - store_credit
+      requestBody:
+        "200":
+          description: The saved program.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceStoredValueProgram"
+        "400":
+          description: "`VALIDATION_ERROR`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - enabled
+                - allowRefundToAccount
+              properties:
+                enabled:
+                  type: boolean
+                expiryDays:
+                  type: integer
+                  nullable: true
+                  minimum: 1
+                  maximum: 3650
+                  description: Default lifetime of a new account in days; `null` = never expires.
+                allowRefundToAccount:
+                  type: boolean
+                maxBalance:
+                  type: string
+                  nullable: true
+                  description: "`numeric(14,2)` string, > 0; `null` = no ceiling. Does not apply to a refund."
+  /api/v1/commerce/stored-value/reconcile:
+    post:
+      operationId: reconcileCommerceStoredValue
+      tags:
+        - Commerce
+      summary: "Issue #288 (ADR-0030). Compares every account's projected balance with its ledger, the ledger with itself and every redemption with its payment leg. `repair: false` needs `commerce.stored_value.read`; `repair: true` also needs `commerce.stored_value_reconcile.approve`."
+      description: "Read-only by default. `repair: true` rebuilds ONLY the `balance` and `version` of drifted accounts, under the account lock, auditing each. A ledger that contradicts itself, a status that disagrees with its entries and an unmatched redemption are REPORTED and never repaired. Bounded to 1000 findings per run (`truncated`)."
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                repair:
+                  type: boolean
+                  default: false
+      responses:
+        "200":
+          description: The findings.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceStoredValueReconcile"
+        "400":
+          description: "`VALIDATION_ERROR`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/storefront/account/addresses:
     get:
       operationId: listCommerceStorefrontAccountAddresses
@@ -13519,6 +16226,94 @@ paths:
           description: Revoked.
         "401":
           description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/loyalty:
+    get:
+      operationId: getCommerceStorefrontAccountLoyalty
+      tags:
+        - Commerce Accounts
+      summary: "Issue #289 (ADR-0026). The signed-in customer's OWN points balance, the earn rule currently in force, and their point history (newest first, keyset-paginated). The customer id is read ONLY from the verified bearer session — there is no identifier a caller can change to read another customer's ledger."
+      description: Each history item is `{ id, kind, points, balanceAfter, expiresAt, createdAt }` — never the staff actor, the free-text reason, the source order or the program id. A tenant that has not turned the `loyalty` feature on answers the neutral `404`, like every other disabled public case.
+      security:
+        - customerBearer: []
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            maximum: 50
+      responses:
+        "200":
+          description: Balance, earn rule and one page of history.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      balance:
+                        type: integer
+                        format: int64
+                      program:
+                        nullable: true
+                        description: The rule in force right now; `null` when no version is active.
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          earnUnitAmount:
+                            type: string
+                          earnPointsPerUnit:
+                            type: integer
+                          minOrderAmount:
+                            type: string
+                          maxPointsPerOrder:
+                            type: integer
+                            nullable: true
+                          expiryDays:
+                            type: integer
+                            nullable: true
+                      history:
+                        type: object
+                        properties:
+                          items:
+                            type: array
+                            items:
+                              $ref: "#/components/schemas/CustomerLoyaltyHistoryItem"
+                          nextCursor:
+                            type: string
+                            nullable: true
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "403":
+          description: ACCOUNT_BLOCKED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          description: Loyalty is not enabled for this store.
           content:
             application/json:
               schema:
@@ -14317,7 +17112,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: PAYMENT_NOT_APPLICABLE — the order's `paymentMethod` is not `gateway`, or its status is not `pending_payment`.
+          description: "`PAYMENT_NOT_APPLICABLE` — the order's `paymentMethod` is not `gateway`, or its status is not `pending_payment`; or `ORDER_PARTIALLY_SETTLED` (Issue #285, ADR-0025) — money has already been received against the order, so a hosted checkout (which charges the whole total) is neither created nor handed back; `details.outstanding` carries the balance, to be settled with a manual tender."
           content:
             application/json:
               schema:
@@ -21027,6 +23822,206 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/omes/mission-control/actions:
+    get:
+      tags:
+        - OMES Control Center
+      summary: Read the advisory action availability of one Mission Control object (ahliweb/omes#267)
+      description: 'ADVISORY ONLY - this endpoint authorizes nothing. Every action it lists is a shortcut to an EXISTING endpoint (POST /api/v1/omes/operations, POST /api/v1/omes/jobs/{id}/cancel, POST /api/v1/omes/jobs/{id}/approve, POST /api/v1/omes/backups/{id}/restore, or a link to the canonical /admin/approvals inbox), and each of those re-authorizes, rate-limits, applies the destructive-workflow gate, audits and enforces idempotency on its own; a forged direct POST without the permission is still a 403. The answer only tells the UI which buttons to enable and why a disabled one is disabled. Gated by omes_control.servers.read (the workspace gate); the target is read only if the viewer also holds its source''s own read permission. An unknown id, another tenant''s id and an object in a source the viewer may not read are indistinguishable (every action reason "not_found"). Per action: "available" mirrors exactly what the existing endpoint enforces (job cancel only while queued, requeue only while failed, plus the viewer''s permission); "advisories" (target_stale, target_decommissioned, backup_not_verified) are non-blocking warnings the endpoints do not enforce, shown in the preflight summary. "requires_approval" is true for stop, rollback and backup restore (workflow omes_control.destructive_operation). "body" is present for operation.* actions and is exactly what the Operations screen sends. Strict query validation: kind must be a Mission Control kind, id must match ^[A-Za-z0-9_.:-]{1,128}$, and any other parameter (command, shell, target, url, ...) is a 400 VALIDATION_ERROR. No new permission, operation name, table or executor.'
+      operationId: omesReadMissionControlActions
+      parameters:
+        - name: kind
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - server
+              - deployment
+              - job
+              - health_report
+              - backup
+              - hermes_subagent
+              - architecture_plane
+              - capability
+              - repository_milestone
+              - ai_privacy_posture
+              - approval_item
+        - name: id
+          in: query
+          required: true
+          description: The scene node's source_id.
+          schema:
+            type: string
+            pattern: ^[A-Za-z0-9_.:-]{1,128}$
+      responses:
+        "200":
+          description: Advisory availability for exactly the kind's candidate actions.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      actions:
+                        type: object
+                        properties:
+                          kind:
+                            type: string
+                          source_id:
+                            type: string
+                          advisory:
+                            type: boolean
+                            enum:
+                              - true
+                          actions:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                action:
+                                  type: string
+                                available:
+                                  type: boolean
+                                reason:
+                                  type: string
+                                  enum:
+                                    - available
+                                    - permission_denied
+                                    - state_not_eligible
+                                    - not_found
+                                    - historical_mode
+                                requires_approval:
+                                  type: boolean
+                                mutating:
+                                  type: boolean
+                                method:
+                                  type: string
+                                  enum:
+                                    - GET
+                                    - POST
+                                path:
+                                  type: string
+                                advisories:
+                                  type: array
+                                  items:
+                                    type: string
+                                    enum:
+                                      - target_stale
+                                      - target_decommissioned
+                                      - backup_not_verified
+                                body:
+                                  type: object
+                                  properties:
+                                    serverId:
+                                      type: string
+                                    operation:
+                                      type: string
+                                    deploymentId:
+                                      type: string
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/omes/mission-control/replay:
+    get:
+      tags:
+        - OMES Control Center
+      summary: Read one page of Mission Control replay evidence (ahliweb/omes#266)
+      description: "Gated by omes_control.servers.read, which only admits the viewer to the workspace; each source is then read only if the viewer also holds that source's own read permission (the same guards as the live scene). A source the viewer may not read contributes no events and is reported as a source_unavailable evidence gap. Returns one bounded, keyset-paginated page (at most 500 events) of the vendored mission-control-replay-window v1 shape (ADR-0031): a read projection over evidence existing tables already retain (Hermes orchestration events, health and backup snapshots, job and worker-result records, workflow decisions) - never a new event store or audit authority. Events are de-duplicated by (evidence_kind, evidence_id), ordered deterministically by (at, evidence_kind, evidence_id), and evidence recorded out of order is labelled late_arrival. Gaps are explicit (not_retained, retention_expired, source_unavailable, before_first_observation) and never interpolated. No raw payload, log, prompt or provider response is carried. The window may span at most 24 hours; from and to are required UTC instants with from earlier than to and to not in the future; cursor is the opaque next_cursor of the previous page; any other query parameter is a 400 VALIDATION_ERROR. An invalid page fails closed with 500 MISSION_CONTROL_REPLAY_INVALID."
+      operationId: omesReadMissionControlReplay
+      parameters:
+        - name: from
+          in: query
+          required: true
+          description: Window start, a UTC instant (2026-10-02T07:00:00Z).
+          schema:
+            type: string
+            pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$
+        - name: to
+          in: query
+          required: true
+          description: Window end (inclusive), a UTC instant; at most 24 hours after from, and not in the future.
+          schema:
+            type: string
+            pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$
+        - name: cursor
+          in: query
+          required: false
+          description: The opaque next_cursor of the previous page of the same window.
+          schema:
+            type: string
+            maxLength: 256
+            pattern: ^[A-Za-z0-9_-]+$
+      responses:
+        "200":
+          description: One replay page.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      window:
+                        type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/omes/mission-control/scene:
+    get:
+      tags:
+        - OMES Control Center
+      summary: Read the 3D Mission Control scene (ahliweb/omes#265)
+      description: 'Gated by omes_control.servers.read, which only admits the viewer to the workspace; each source is then included only if the viewer also holds that source''s own read permission (omes_control.deployments.read, jobs.read, backups.read, hermes_orchestration.read, architecture.read, ai_privacy.read, workflow.approval.read). A source the viewer may not read is reported with status "unavailable" and contributes no nodes. Returns the vendored mission-control-scene-view v1 shape (ADR-0031): a read-only, tenant-scoped, bounded (at most 500 nodes and 1000 relations; omitted counts are reported in "truncated") composition of references to records that existing screens own. It is a derived projection with no new permission, table, or action. An invalid composition fails closed with 500 MISSION_CONTROL_SCENE_INVALID.'
+      operationId: omesReadMissionControlScene
+      parameters:
+        - name: as_of
+          in: query
+          required: false
+          description: 'ahliweb/omes#266. A UTC instant (2026-10-02T08:00:00Z). Absent = the live scene. Present = the HISTORICAL scene that instant''s retained evidence proves (mode "historical", with evidence_gaps): each event-backed object is in the state of its latest evidence at or before as_of (evidence is read from the 24 hours before as_of for Hermes and health, and newest-first for backups, jobs and approvals), an object with no such evidence is absent, and current-only objects (servers, deployments, architecture, repository progress, AI privacy) are shown with freshness "unknown" and are never back-dated. Must not be in the future nor older than the retention horizon (the longest data-lifecycle retention of the replay sources, 90 days). It is the ONLY query parameter accepted; any other is a 400 VALIDATION_ERROR.'
+          schema:
+            type: string
+            pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$
+      responses:
+        "200":
+          description: The tenant's scene (live, or historical when as_of is given).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      scene:
+                        type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /api/v1/omes/operations:
     get:
       tags:
@@ -23236,6 +26231,56 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+  /api/v1/reports/commerce/stored-value:
+    get:
+      operationId: getCommerceStoredValueReport
+      tags:
+        - Commerce
+      summary: "Issue #288 (ADR-0030). The closed-loop liability report. Gated on `commerce.stored_value.read` and the tenant's `storedValue` feature."
+      description: "Per kind (`gift_card`, `store_credit`): what was issued, loaded, redeemed, refunded, adjusted (up and down kept apart) and expired over an inclusive range of `Asia/Jakarta` report days (default: the last 30, attributed to the day each entry was written), plus what is OUTSTANDING now (the sum of every ledger entry ever written), of which how much sits on disabled accounts and how much is lapsed but not yet released by the expiry sweep. Read straight off the append-only ledger."
+      parameters:
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: The report.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceStoredValueReport"
+        "400":
+          description: "`VALIDATION_ERROR`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/reports/commerce/tender-mix:
     get:
       operationId: getReportsCommerceTenderMix
@@ -31073,6 +34118,171 @@ components:
           nullable: true
         isDefault:
           type: boolean
+    CommerceAttributeAssignments:
+      type: object
+      required:
+        - attributes
+      properties:
+        attributes:
+          type: object
+          description: "`{ <key>: <value> | null }`. A value sets the attribute, `null` clears it, an absent key is untouched. Values are parsed with the typed grammar; one invalid entry rejects the whole request."
+          additionalProperties:
+            oneOf:
+              - type: string
+              - type: number
+              - type: boolean
+              - type: "null"
+    CommerceAttributeConstraints:
+      type: object
+      description: "Closed per-type schema — any other key is a 400. text: minLength, maxLength (<= 2000). integer/decimal: min, max (canonical decimal strings; integer up to 12 digits, decimal up to 12 integer + 6 fractional digits), decimal also scale (1..6). date: min, max (ISO dates). enum: options[] (value, label), case-insensitively unique. boolean: none."
+      properties:
+        minLength:
+          type: integer
+        maxLength:
+          type: integer
+        min:
+          type: string
+        max:
+          type: string
+        scale:
+          type: integer
+          minimum: 1
+          maximum: 6
+        options:
+          type: array
+          items:
+            type: object
+            required:
+              - value
+            properties:
+              value:
+                type: string
+                pattern: ^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$
+              label:
+                type: string
+    CommerceAttributeDefinition:
+      type: object
+      description: "Issue #291. A tenant-authored attribute schema. `key` and `valueType` are fixed at creation."
+      properties:
+        id:
+          type: string
+          format: uuid
+        key:
+          type: string
+          pattern: ^[a-z][a-z0-9_]{0,62}$
+        label:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        valueType:
+          $ref: "#/components/schemas/CommerceAttributeValueType"
+        constraints:
+          $ref: "#/components/schemas/CommerceAttributeConstraints"
+        appliesTo:
+          type: string
+          enum:
+            - product
+            - variant
+            - both
+        isSearchable:
+          type: boolean
+          description: Matched by the free-text `q` (text and enum types only).
+        isFilterable:
+          type: boolean
+          description: May be used in an `attr=` filter.
+        visibleAdmin:
+          type: boolean
+        visiblePublic:
+          type: boolean
+          description: Exposed on the catalog API and usable in its filters (needs isFilterable for filtering).
+        sortOrder:
+          type: integer
+          minimum: 0
+          maximum: 10000
+    CommerceAttributeDefinitionInput:
+      type: object
+      required:
+        - key
+        - label
+        - valueType
+      properties:
+        key:
+          type: string
+          pattern: ^[a-z][a-z0-9_]{0,62}$
+        label:
+          type: string
+          maxLength: 100
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        valueType:
+          $ref: "#/components/schemas/CommerceAttributeValueType"
+        constraints:
+          $ref: "#/components/schemas/CommerceAttributeConstraints"
+        appliesTo:
+          type: string
+          enum:
+            - product
+            - variant
+            - both
+          default: product
+        isSearchable:
+          type: boolean
+          default: false
+        isFilterable:
+          type: boolean
+          default: false
+        visibleAdmin:
+          type: boolean
+          default: true
+        visiblePublic:
+          type: boolean
+          default: false
+        sortOrder:
+          type: integer
+          default: 0
+    CommerceAttributeValue:
+      type: object
+      description: "Issue #291. One typed attribute value. `value` is a JSON number for `integer`, a decimal STRING for `decimal` (never a float), a boolean for `boolean`, an ISO `YYYY-MM-DD` string for `date`, and a string for `text`/`enum`."
+      required:
+        - key
+        - label
+        - valueType
+        - value
+      properties:
+        key:
+          type: string
+          pattern: ^[a-z][a-z0-9_]{0,62}$
+        label:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+          description: Per-locale labels (`en`, `id`, ...); `label` is the default.
+        valueType:
+          $ref: "#/components/schemas/CommerceAttributeValueType"
+        value:
+          oneOf:
+            - type: string
+            - type: number
+            - type: boolean
+        valueLabel:
+          type: string
+          nullable: true
+          description: An enum value's display label; null for every other type.
+    CommerceAttributeValueType:
+      type: string
+      enum:
+        - text
+        - integer
+        - decimal
+        - boolean
+        - date
+        - enum
     CommerceCampaign:
       type: object
       description: "Issue #114 (contract #106 ADR-0017 D9). A row of `awcms_commerce_campaigns` — a consent-gated mass e-mail/WhatsApp send. `recipientCount`/`sentCount` are populated once the campaign has actually been dispatched; both are `null` on a fresh `draft`."
@@ -31282,6 +34492,85 @@ components:
         quotedAt:
           type: string
           format: date-time
+    CommerceCatalogImportReport:
+      type: object
+      description: "Issue #291. The per-row report of a catalog CSV import. A dry-run and the apply of the same file produce the same `summary` and per-row `action`s."
+      properties:
+        mode:
+          type: string
+          enum:
+            - dry_run
+            - apply
+        valid:
+          type: boolean
+          description: True when nothing blocks an apply (no fatal error, no row error).
+        fileSha256:
+          type: string
+          description: SHA-256 of the uploaded bytes; send it back as `expectedSha256` to apply exactly the file that was reviewed.
+        rowCount:
+          type: integer
+        summary:
+          type: object
+          properties:
+            create:
+              type: integer
+            update:
+              type: integer
+            unchanged:
+              type: integer
+            error:
+              type: integer
+        fatalErrors:
+          type: array
+          description: File-level problems (unparsable CSV, bad header). When present, `rows` is empty.
+          items:
+            type: object
+            required:
+              - message
+            properties:
+              line:
+                type: integer
+              column:
+                type: string
+              message:
+                type: string
+        rows:
+          type: array
+          items:
+            type: object
+            properties:
+              row:
+                type: integer
+                description: 1-based data-row number (the first record after the header is row 1).
+              line:
+                type: integer
+                description: 1-based physical line in the file.
+              sku:
+                type: string
+                nullable: true
+              action:
+                type: string
+                enum:
+                  - create
+                  - update
+                  - unchanged
+                  - error
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    column:
+                      type: string
+                    message:
+                      type: string
+        rowsTruncated:
+          type: boolean
+          description: True when the file has more than 1000 rows and `rows` lists only the rows with errors (the counts in `summary` still cover every row).
+        batchId:
+          type: string
+          format: uuid
+          description: Set only on a successful apply.
     CommerceCategory:
       type: object
       properties:
@@ -31672,6 +34961,211 @@ components:
         updatedAt:
           type: string
           format: date-time
+    CommerceExpense:
+      type: object
+      description: "Issue #294 (ADR-0031) — an expense. Money is a `numeric(14,2)` string. A receipt is only a boolean; its object id and key never leave through this shape."
+      properties:
+        id:
+          type: string
+          format: uuid
+        categoryId:
+          type: string
+          format: uuid
+        categoryCode:
+          type: string
+        categoryName:
+          type: string
+        status:
+          type: string
+          enum:
+            - draft
+            - pending_approval
+            - posted
+            - reversed
+            - cancelled
+        amount:
+          type: string
+        tenderType:
+          type: string
+          enum:
+            - cash
+            - manual_qris
+            - manual_bank_transfer
+        occurredOn:
+          type: string
+          format: date
+        description:
+          type: string
+        payeeName:
+          type: string
+          nullable: true
+        registerSessionId:
+          type: string
+          format: uuid
+          nullable: true
+        hasReceipt:
+          type: boolean
+        createdByTenantUserId:
+          type: string
+          format: uuid
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        submittedByTenantUserId:
+          type: string
+          format: uuid
+          nullable: true
+        submittedAt:
+          type: string
+          format: date-time
+          nullable: true
+        approvalThreshold:
+          type: string
+          nullable: true
+          description: The tenant threshold in force when it was submitted / posted.
+        decision:
+          type: string
+          nullable: true
+          enum:
+            - auto
+            - approved
+            - rejected
+        decidedByTenantUserId:
+          type: string
+          format: uuid
+          nullable: true
+        decidedAt:
+          type: string
+          format: date-time
+          nullable: true
+        decisionNote:
+          type: string
+          nullable: true
+        postedByTenantUserId:
+          type: string
+          format: uuid
+          nullable: true
+        postedAt:
+          type: string
+          format: date-time
+          nullable: true
+        postedMovementId:
+          type: string
+          format: uuid
+          nullable: true
+          description: The register `expense` cash-out movement a drawer-paid posting produced.
+        reversedByTenantUserId:
+          type: string
+          format: uuid
+          nullable: true
+        reversedAt:
+          type: string
+          format: date-time
+          nullable: true
+        reversalReason:
+          type: string
+          nullable: true
+        reversalSessionId:
+          type: string
+          format: uuid
+          nullable: true
+        reversalMovementId:
+          type: string
+          format: uuid
+          nullable: true
+          description: The compensating register `correction` cash-in movement.
+        cancelledByTenantUserId:
+          type: string
+          format: uuid
+          nullable: true
+        cancelledAt:
+          type: string
+          format: date-time
+          nullable: true
+    CommerceExpenseAction:
+      type: object
+      description: "Issue #294 (ADR-0031) — what a post / decision / reversal answers (and what an idempotent replay returns)."
+      properties:
+        expense:
+          $ref: "#/components/schemas/CommerceExpense"
+        outcome:
+          type: string
+          enum:
+            - posted
+            - pending_approval
+            - rejected
+            - reversed
+    CommerceExpenseCategory:
+      type: object
+      description: "Issue #294 (ADR-0031) — an expense category."
+      properties:
+        id:
+          type: string
+          format: uuid
+        code:
+          type: string
+        name:
+          type: string
+        active:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    CommerceExpenseSummary:
+      type: object
+      description: "Issue #294 (ADR-0031) — a date range's expense totals, exact `numeric(14,2)` strings."
+      properties:
+        from:
+          type: string
+          format: date
+        to:
+          type: string
+          format: date
+        postedTotal:
+          type: string
+        reversedTotal:
+          type: string
+        byCategory:
+          type: array
+          items:
+            type: object
+            properties:
+              categoryId:
+                type: string
+                format: uuid
+              categoryCode:
+                type: string
+              categoryName:
+                type: string
+              postedTotal:
+                type: string
+              postedCount:
+                type: integer
+              reversedTotal:
+                type: string
+              reversedCount:
+                type: integer
+        byTender:
+          type: array
+          items:
+            type: object
+            properties:
+              tenderType:
+                type: string
+              postedTotal:
+                type: string
+              postedCount:
+                type: integer
+        draftCount:
+          type: integer
+        pendingApprovalCount:
+          type: integer
     CommerceFlashSale:
       type: object
       description: The editorial row. status is what the editor set (draft/scheduled) or what the tick job derived (active/ended) — see domain/flash-sale-status.ts.
@@ -32147,6 +35641,24 @@ components:
             - manual_qris
             - manual_bank_transfer
             - gateway
+            - gift_card
+            - store_credit
+        storedValue:
+          type: object
+          nullable: true
+          description: "Issue #288 — the gift-card / store-credit account a `gift_card`/`store_credit` leg drew from (or a reversal returned value to); `null` for every other tender. Only the MASKED code is ever shown."
+          properties:
+            accountId:
+              type: string
+              format: uuid
+            kind:
+              type: string
+              enum:
+                - gift_card
+                - store_credit
+            maskedCode:
+              type: string
+              example: •••••••-•••••••-•••AB2C
         amount:
           type: string
         status:
@@ -32512,6 +36024,11 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/CommerceProductVariant"
+        attributes:
+          type: array
+          description: "Issue #291 — additive. Typed custom attribute values set on this product that the tenant flagged `visible_public`, in the definitions' sort order. A consumer that predates attributes ignores the field; back-office-only attributes never appear here (read them through GET /products/{id}/attributes)."
+          items:
+            $ref: "#/components/schemas/CommerceAttributeValue"
     CommerceProductCreateInput:
       allOf:
         - $ref: "#/components/schemas/CommerceProductParityFields"
@@ -32802,6 +36319,11 @@ components:
           type: integer
         sortOrder:
           type: integer
+        attributes:
+          type: array
+          description: "Issue #291 — additive. Only `visible_public` attribute values set on this variant."
+          items:
+            $ref: "#/components/schemas/CommerceAttributeValue"
     CommerceProductVariantInput:
       type: object
       properties:
@@ -33029,6 +36551,8 @@ components:
                   - manual_qris
                   - manual_bank_transfer
                   - gateway
+                  - gift_card
+                  - store_credit
               payments:
                 type: string
               reversals:
@@ -33191,7 +36715,7 @@ components:
         reference:
           type: string
           nullable: true
-          description: Free text today; the typed reference to the expenses domain (#294) is a documented hook.
+          description: "Free text, or - for a movement an expense produced (Issue #294, ADR-0031) - the expense's short code (`EXP-XXXXXXXX`). The movement's link to its expense is a column, not part of this shape."
         note:
           type: string
           nullable: true
@@ -33531,6 +37055,314 @@ components:
           type: string
           format: date-time
           nullable: true
+    CommerceStoredValueAccount:
+      type: object
+      description: "Issue #288 (ADR-0030) — one gift card / store credit. The code is NEVER returned (only masked); `balance`, `version` and `status` are the projection of the ledger."
+      properties:
+        id:
+          type: string
+          format: uuid
+        programId:
+          type: string
+          format: uuid
+        kind:
+          type: string
+          enum:
+            - gift_card
+            - store_credit
+        status:
+          type: string
+          enum:
+            - active
+            - disabled
+            - expired
+        balance:
+          type: string
+          description: "`numeric(14,2)` string."
+        version:
+          type: integer
+          description: Number of ledger entries (the per-account sequence of the last one).
+        maskedCode:
+          type: string
+          example: •••••••-•••••••-•••AB2C
+        codeLast4:
+          type: string
+          minLength: 4
+          maxLength: 4
+        customerId:
+          type: string
+          format: uuid
+          nullable: true
+        expiresAt:
+          type: string
+          format: date-time
+          nullable: true
+        issuedByTenantUserId:
+          type: string
+          format: uuid
+          nullable: true
+        lastActivityAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    CommerceStoredValueEntry:
+      type: object
+      description: "Issue #288 (ADR-0030) — one append-only liability entry."
+      properties:
+        id:
+          type: string
+          format: uuid
+        accountId:
+          type: string
+          format: uuid
+        kind:
+          type: string
+          enum:
+            - issue
+            - load
+            - redeem
+            - refund
+            - adjust
+            - expire
+            - disable
+            - enable
+        amount:
+          type: string
+          description: Signed `numeric(14,2)` string (a redemption or expiry is negative).
+        accountSeq:
+          type: integer
+        balanceAfter:
+          type: string
+        allocationId:
+          type: string
+          format: uuid
+          nullable: true
+          description: The payment-allocation row a `redeem` / `refund` mirrors.
+        reason:
+          type: string
+          nullable: true
+        actorKind:
+          type: string
+          enum:
+            - tenant_user
+            - system
+        actorTenantUserId:
+          type: string
+          format: uuid
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+    CommerceStoredValueIssued:
+      type: object
+      description: "Issue #288 — the 201 body of an issue."
+      properties:
+        account:
+          $ref: "#/components/schemas/CommerceStoredValueAccount"
+        entry:
+          $ref: "#/components/schemas/CommerceStoredValueEntry"
+        code:
+          type: string
+          nullable: true
+          description: The plaintext code, `XXXXXXX-XXXXXXX-XXXXXXX`, present ONLY in the response to the request that created the account; `null` on a replay. Never stored.
+        codeRevealed:
+          type: boolean
+    CommerceStoredValueMutation:
+      type: object
+      description: "Issue #288 — the 201 body of a load / adjust / status change."
+      properties:
+        account:
+          $ref: "#/components/schemas/CommerceStoredValueAccount"
+        entry:
+          $ref: "#/components/schemas/CommerceStoredValueEntry"
+    CommerceStoredValueProgram:
+      type: object
+      description: "Issue #288 (ADR-0030) — per-tenant configuration of one kind of closed-loop stored value."
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+          description: "`null` until the tenant first saves the program."
+        kind:
+          type: string
+          enum:
+            - gift_card
+            - store_credit
+        configured:
+          type: boolean
+        enabled:
+          type: boolean
+        expiryDays:
+          type: integer
+          nullable: true
+        allowRefundToAccount:
+          type: boolean
+        maxBalance:
+          type: string
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+    CommerceStoredValueReconcile:
+      type: object
+      description: "Issue #288 — the result of a consistency check."
+      properties:
+        accountsChecked:
+          type: integer
+        truncated:
+          type: boolean
+        repaired:
+          type: integer
+        findings:
+          type: array
+          items:
+            type: object
+            properties:
+              accountId:
+                type: string
+                format: uuid
+              type:
+                type: string
+                enum:
+                  - projection_drift
+                  - status_drift
+                  - ledger_break
+                  - allocation_mismatch
+              detail:
+                type: string
+              repairable:
+                type: boolean
+              repaired:
+                type: boolean
+    CommerceStoredValueReport:
+      type: object
+      description: "Issue #288 — the closed-loop liability report."
+      properties:
+        from:
+          type: string
+          format: date
+        to:
+          type: string
+          format: date
+        timeZone:
+          type: string
+        kinds:
+          type: array
+          items:
+            type: object
+            properties:
+              kind:
+                type: string
+                enum:
+                  - gift_card
+                  - store_credit
+              issued:
+                type: object
+                description: "Value added in the period: issues + loads."
+                properties:
+                  count:
+                    type: integer
+                  amount:
+                    type: string
+                    description: "`numeric(14,2)` string, a positive magnitude."
+              loaded:
+                type: object
+                description: Of which top-ups.
+                properties:
+                  count:
+                    type: integer
+                  amount:
+                    type: string
+                    description: "`numeric(14,2)` string, a positive magnitude."
+              redeemed:
+                type: object
+                description: Value redeemed as a tender.
+                properties:
+                  count:
+                    type: integer
+                  amount:
+                    type: string
+                    description: "`numeric(14,2)` string, a positive magnitude."
+              refunded:
+                type: object
+                description: Value returned to an account by a payment reversal.
+                properties:
+                  count:
+                    type: integer
+                  amount:
+                    type: string
+                    description: "`numeric(14,2)` string, a positive magnitude."
+              adjustedUp:
+                type: object
+                description: Manual adjustments that added value.
+                properties:
+                  count:
+                    type: integer
+                  amount:
+                    type: string
+                    description: "`numeric(14,2)` string, a positive magnitude."
+              adjustedDown:
+                type: object
+                description: Manual adjustments that took value off.
+                properties:
+                  count:
+                    type: integer
+                  amount:
+                    type: string
+                    description: "`numeric(14,2)` string, a positive magnitude."
+              expired:
+                type: object
+                description: Value released because accounts lapsed.
+                properties:
+                  count:
+                    type: integer
+                  amount:
+                    type: string
+                    description: "`numeric(14,2)` string, a positive magnitude."
+              net:
+                type: string
+                description: Signed net change in the period (sum of every entry).
+              outstanding:
+                type: string
+                description: All-time, as of now — the sum of the ledger; what is owed.
+              disabledBalance:
+                type: string
+                description: Of `outstanding`, the value on disabled accounts.
+              lapsedPendingRelease:
+                type: string
+                description: Of `outstanding`, the value on accounts past their expiry that the sweep has not released yet.
+              accounts:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  active:
+                    type: integer
+                  disabled:
+                    type: integer
+                  expired:
+                    type: integer
+        totals:
+          type: object
+          properties:
+            issued:
+              type: string
+            redeemed:
+              type: string
+            refunded:
+              type: string
+            expired:
+              type: string
+            outstanding:
+              type: string
     CommerceStoreSettings:
       type: object
       description: The OWNER shape — a versioned settings document validated against domain/store-settings-validation.ts (unknown keys are rejected). Contains manual-bank account numbers and the QRIS media id; only settings.read may read it and it is never echoed on a public route.
@@ -33837,6 +37669,8 @@ components:
             - manual_qris
             - manual_bank_transfer
             - gateway
+            - gift_card
+            - store_credit
         paymentCount:
           type: integer
         payments:
@@ -34490,6 +38324,34 @@ components:
         marketingConsent:
           type: boolean
           description: "Issue #114 (contract #106 ADR-0017 D9). `true` when `marketing_consent_at` is non-null. A campaign's audience resolution only ever includes accounts where this is `true` — an account that never opts in is structurally unreachable, not merely filtered by convention."
+    CustomerLoyaltyHistoryItem:
+      type: object
+      description: "Issue #289 — the customer-facing projection of a ledger row: no staff actor, no free-text reason, no source order or program id."
+      properties:
+        id:
+          type: string
+          format: uuid
+        kind:
+          type: string
+          enum:
+            - earn
+            - redeem
+            - expire
+            - adjustment
+            - reversal
+        points:
+          type: integer
+          format: int64
+        balanceAfter:
+          type: integer
+          format: int64
+        expiresAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
     CustomerSession:
       type: object
       description: "Issue #86 (design only). A row of `awcms_commerce_customer_sessions` — never returned with its token; the token is minted once, at verify, and only its `sha256:` digest is ever stored (D3)."
@@ -35471,6 +39333,286 @@ components:
           type: string
           format: uri
           description: Must appear EXACTLY in the client's registered allow-list. https only, no query, no fragment.
+    LoyaltyAccount:
+      type: object
+      description: "Issue #289 — a customer's loyalty account. `balance` is a PROJECTION of the ledger (the sum of every row's points), kept in the same transaction as each ledger insert; it can be negative only after a reversal clawed back points that were already spent."
+      properties:
+        id:
+          type: string
+          format: uuid
+        customerId:
+          type: string
+          format: uuid
+        balance:
+          type: integer
+          format: int64
+        version:
+          type: integer
+          format: int64
+        customerName:
+          type: string
+        customerPhoneMasked:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    LoyaltyCustomerLookup:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        phoneMasked:
+          type: string
+        balance:
+          type: integer
+          format: int64
+          description: 0 for a customer with no account yet.
+    LoyaltyLedgerEntry:
+      type: object
+      description: "Issue #289 — one row of the append-only points ledger. `points` is a signed INTEGER: earn > 0, redeem < 0, expire <= 0 (0 marks a lot already fully spent), adjustment and reversal non-zero. `balanceAfter` is the account's running balance after this row."
+      properties:
+        id:
+          type: string
+          format: uuid
+        accountId:
+          type: string
+          format: uuid
+        accountSeq:
+          type: integer
+          format: int64
+        kind:
+          type: string
+          enum:
+            - earn
+            - redeem
+            - expire
+            - adjustment
+            - reversal
+        points:
+          type: integer
+          format: int64
+        balanceAfter:
+          type: integer
+          format: int64
+        programId:
+          type: string
+          format: uuid
+          nullable: true
+        sourceType:
+          type: string
+          enum:
+            - order
+            - expiry
+            - redemption
+            - manual
+        sourceId:
+          type: string
+          format: uuid
+          nullable: true
+        reversesEntryId:
+          type: string
+          format: uuid
+          nullable: true
+        expiresAt:
+          type: string
+          format: date-time
+          nullable: true
+        actorTenantUserId:
+          type: string
+          format: uuid
+          nullable: true
+        reason:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+    LoyaltyProgram:
+      type: object
+      description: "Issue #289 — one versioned, effective-dated earn rule. Eligible spend is the order's subtotal minus voucher discount (never shipping, insurance or tax); the points are `floor(spend / earnUnitAmount) * earnPointsPerUnit`, capped by `maxPointsPerOrder`. Rounding is always floor, recorded as `earnRounding`."
+      properties:
+        id:
+          type: string
+          format: uuid
+        version:
+          type: integer
+        name:
+          type: string
+        status:
+          type: string
+          enum:
+            - draft
+            - active
+            - retired
+        effectiveFrom:
+          type: string
+          format: date-time
+          nullable: true
+        effectiveTo:
+          type: string
+          format: date-time
+          nullable: true
+        earnUnitAmount:
+          type: string
+        earnPointsPerUnit:
+          type: integer
+        earnRounding:
+          type: string
+          enum:
+            - floor
+        minOrderAmount:
+          type: string
+        maxPointsPerOrder:
+          type: integer
+          nullable: true
+        expiryDays:
+          type: integer
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    LoyaltyProgramInput:
+      type: object
+      description: "Issue #289 — the create body of a loyalty program version. Points are integers; money is a numeric(14,2) STRING (ADR-0003)."
+      required:
+        - name
+        - earnUnitAmount
+        - earnPointsPerUnit
+      properties:
+        name:
+          type: string
+          maxLength: 200
+        earnUnitAmount:
+          type: string
+          description: Spend that earns one step of points. Greater than zero.
+        earnPointsPerUnit:
+          type: integer
+          minimum: 1
+          maximum: 1000000
+        minOrderAmount:
+          type: string
+          description: Eligible spend below this earns nothing. Defaults to "0.00".
+        maxPointsPerOrder:
+          type: integer
+          nullable: true
+          minimum: 1
+        expiryDays:
+          type: integer
+          nullable: true
+          minimum: 1
+          maximum: 3650
+          description: Points earned under this version lapse this many days after the order was paid; null = never.
+        notes:
+          type: string
+          nullable: true
+          maxLength: 1000
+    LoyaltyReconcileReport:
+      type: object
+      properties:
+        accountsChecked:
+          type: integer
+        drifted:
+          type: array
+          items:
+            type: object
+            properties:
+              accountId:
+                type: string
+                format: uuid
+              customerId:
+                type: string
+                format: uuid
+              projectedBalance:
+                type: integer
+                format: int64
+              ledgerBalance:
+                type: integer
+                format: int64
+              projectedVersion:
+                type: integer
+                format: int64
+              ledgerVersion:
+                type: integer
+                format: int64
+        ledgerBreaks:
+          type: array
+          items:
+            type: object
+            properties:
+              accountId:
+                type: string
+                format: uuid
+              badRows:
+                type: integer
+        unrepairable:
+          type: array
+          description: "Drifted accounts whose surviving ledger is not a complete history (it does not start at account_seq 1, has gaps, or is empty while the balance is not) because a retention purge aged early rows out. Reported, never repaired: SUM(ledger) is not their balance. A subset of drifted."
+          items:
+            type: object
+            properties:
+              accountId:
+                type: string
+                format: uuid
+              reason:
+                type: string
+                enum:
+                  - unrepairable_history_purged
+        repaired:
+          type: integer
+    LoyaltySummary:
+      type: object
+      description: "Issue #289 — ledger-summed figures. `net` = earned − redeemed − expired + adjustmentsNet − reversed. `outstanding` is the all-time sum of the ledger (not the projection), so it stays right if a projection has drifted."
+      properties:
+        from:
+          type: string
+          format: date-time
+          nullable: true
+        to:
+          type: string
+          format: date-time
+          nullable: true
+        period:
+          type: object
+          properties:
+            entries:
+              type: integer
+            earned:
+              type: integer
+              format: int64
+            redeemed:
+              type: integer
+              format: int64
+            expired:
+              type: integer
+              format: int64
+            adjustmentsNet:
+              type: integer
+              format: int64
+            reversed:
+              type: integer
+              format: int64
+            net:
+              type: integer
+              format: int64
+        outstanding:
+          type: integer
+          format: int64
+        accounts:
+          type: integer
+        accountsWithNegativeBalance:
+          type: integer
     MachineCredential:
       type: object
       description: A machine credential (ADR-0049; write class ADR-0092). Never carries the token or its hash — an operator tracing a leak needs to know which credential is alive and whether anything still uses it, and none of that requires secret material.

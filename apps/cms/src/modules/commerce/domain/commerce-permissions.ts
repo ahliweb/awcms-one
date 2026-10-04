@@ -71,7 +71,37 @@ export const COMMERCE_PRODUCT_PERMISSIONS = {
   /** Soft delete a product. */
   delete: "commerce.products.delete",
   /** Restore a soft-deleted product (Issue #23). */
-  restore: "commerce.products.restore"
+  restore: "commerce.products.restore",
+  /**
+   * Issue #291 — download the catalog as CSV (a bulk read of the whole
+   * catalog, hence the high-risk `export` action rather than plain `read`).
+   */
+  export: "commerce.products.export",
+  /**
+   * Issue #291 — dry-run and apply a catalog CSV import (a bulk write, hence
+   * the high-risk `import` action rather than `create`/`update`). The import
+   * additionally holds the caller to `create`/`update` per row implicitly: it
+   * calls the same `createProduct`/`updateProduct` directory functions a
+   * single-product request does, and the route requires BOTH
+   * `commerce.products.import` and — via the handler — `create` + `update`.
+   */
+  import: "commerce.products.import"
+} as const;
+
+/**
+ * Issue #291 — typed custom catalog attributes. `read` lists definitions;
+ * `manage` creates/updates/deletes them. `manage` (not separate
+ * create/update/delete) because a definition is schema, not data: one audience
+ * — whoever may reshape what every product's attributes validate against and
+ * what the public catalog API may expose — and a single high-risk action keeps
+ * the SoD hook on one key. Reading/writing a product's attribute VALUES reuses
+ * `commerce.products.read`/`.update` (see `COMMERCE_PRODUCT_PERMISSIONS`).
+ */
+export const COMMERCE_ATTRIBUTES_ACTIVITY_CODE = "attributes";
+
+export const COMMERCE_ATTRIBUTE_PERMISSIONS = {
+  read: "commerce.attributes.read",
+  manage: "commerce.attributes.manage"
 } as const;
 
 export type CommerceProductPermissionKey =
@@ -416,6 +446,57 @@ export const COMMERCE_REGISTER_CORRECTION_PERMISSIONS = {
 } as const;
 
 /**
+ * Closed-loop stored value — gift cards and store credit (Issue #288,
+ * ADR-0030). Five activity codes, seven permissions, each with its own
+ * enforcing route and NONE implied by `commerce.pos.create` /
+ * `commerce.payments.create` (redeeming is only ever a TENDER on a payment, so
+ * a cashier who can take a gift card as payment gets no authority to issue,
+ * load, adjust, disable or report on one). Existing `AccessAction` verbs only;
+ * the upstream-owned union is not widened (ADR-0025 D9's reasoning, again):
+ *
+ *   - `stored_value_programs`: `read`, `update` — the per-tenant program
+ *     configuration (enable, expiry, refund policy, balance ceiling).
+ *   - `stored_value`: `read` (accounts, ledger, the liability and reconcile
+ *     reports), `create` (ISSUE a card and LOAD value onto it - money INTO the
+ *     liability), `update` (disable / enable an account, run the expiry sweep).
+ *   - `stored_value_adjustments`: `create` - a reasoned manual correction of a
+ *     balance, deliberately SEPARATE from `stored_value.create`: a role that
+ *     may sell a card to a paying customer is not thereby trusted to edit a
+ *     balance by hand.
+ *   - `stored_value_reconcile`: `approve` - repair a drifted projection
+ *     (`approve` is the platform's high-risk verb, so a tenant may author SoD
+ *     rules against it).
+ */
+export const COMMERCE_STORED_VALUE_PROGRAMS_ACTIVITY_CODE =
+  "stored_value_programs";
+export const COMMERCE_STORED_VALUE_ACTIVITY_CODE = "stored_value";
+export const COMMERCE_STORED_VALUE_ADJUSTMENTS_ACTIVITY_CODE =
+  "stored_value_adjustments";
+export const COMMERCE_STORED_VALUE_RECONCILE_ACTIVITY_CODE =
+  "stored_value_reconcile";
+
+export const COMMERCE_STORED_VALUE_PROGRAM_PERMISSIONS = {
+  read: "commerce.stored_value_programs.read",
+  update: "commerce.stored_value_programs.update"
+} as const;
+
+export const COMMERCE_STORED_VALUE_PERMISSIONS = {
+  read: "commerce.stored_value.read",
+  /** Issue a card / credit and load value onto it. */
+  create: "commerce.stored_value.create",
+  /** Disable / enable an account; run the expiry sweep. */
+  update: "commerce.stored_value.update"
+} as const;
+
+export const COMMERCE_STORED_VALUE_ADJUSTMENT_PERMISSIONS = {
+  create: "commerce.stored_value_adjustments.create"
+} as const;
+
+export const COMMERCE_STORED_VALUE_RECONCILE_PERMISSIONS = {
+  approve: "commerce.stored_value_reconcile.approve"
+} as const;
+
+/**
  * The commerce document lifecycle (Issue #286, ADR-0029): held sales,
  * quotations, quotation->order conversion, work orders and numbered
  * receipt/invoice documents. Five activity codes, thirteen permissions, each
@@ -470,6 +551,103 @@ export const COMMERCE_WORK_ORDER_PERMISSIONS = {
 export const COMMERCE_DOCUMENT_PERMISSIONS = {
   read: "commerce.documents.read",
   create: "commerce.documents.create"
+} as const;
+
+/**
+ * Loyalty points ledger (Issue #289, ADR-0026 D9). Four permissions on three
+ * activity codes — NOT `commerce.loyalty.adjust`/`.redeem`: the
+ * `AccessAction` union (identity-access, upstream-owned) has no
+ * `adjust`/`redeem` member and widening it would add a divergence in an
+ * upstream file to every future subtree sync. A redemption and a manual
+ * adjustment are each the CREATION of a ledger row, so each is `create` on its
+ * own activity code — which also keeps them separately grantable (a cashier
+ * can redeem without being able to adjust, and neither implies `manage`).
+ *
+ * `manage` is already a high-risk action in `access-control.ts`
+ * (`HIGH_RISK_ACTIONS`), which is the right posture for activating a program
+ * version (it changes what every future order earns) and for repairing a
+ * balance projection.
+ */
+export const COMMERCE_LOYALTY_ACTIVITY_CODE = "loyalty";
+export const COMMERCE_LOYALTY_ADJUSTMENTS_ACTIVITY_CODE = "loyalty_adjustments";
+export const COMMERCE_LOYALTY_REDEMPTIONS_ACTIVITY_CODE = "loyalty_redemptions";
+
+export const COMMERCE_LOYALTY_PERMISSIONS = {
+  /** Programs, accounts, the ledger and the summary. */
+  read: "commerce.loyalty.read",
+  /** Create/edit/activate/retire program versions; repair a drifted projection. */
+  manage: "commerce.loyalty.manage"
+} as const;
+
+export const COMMERCE_LOYALTY_ADJUSTMENT_PERMISSIONS = {
+  /** A manual signed adjustment — mandatory reason. */
+  create: "commerce.loyalty_adjustments.create"
+} as const;
+
+export const COMMERCE_LOYALTY_REDEMPTION_PERMISSIONS = {
+  /** Redeem points at the counter (or for a customer). */
+  create: "commerce.loyalty_redemptions.create"
+} as const;
+
+/**
+ * Commerce-local petty cash and operational expenses (Issue #294, ADR-0031).
+ * Five activity codes, twelve permissions, each with its own enforcing route,
+ * and NONE implied by `commerce.register_sessions.update` or
+ * `commerce.pos.create` - being allowed to move cash in a drawer gives no
+ * authority to book, approve or reverse an expense (the resource-split rule
+ * ADR-0025 D9 and ADR-0028 D7 apply). Existing `AccessAction` verbs only; the
+ * upstream-owned union is not widened:
+ *
+ *   - `expense_categories`: `read`, `create`, `update` (rename / deactivate).
+ *   - `expenses`: `read` (list, detail, summary), `create` (a draft),
+ *     `update` (edit or discard a draft), `export` (the CSV - the platform's
+ *     high-risk verb, because the file leaves the system).
+ *   - `expense_postings`: `create` (submit a draft for posting; posts it
+ *     outright within the tenant threshold), `approve` (decide a pending
+ *     expense above it - high-risk, so a tenant may author SoD rules).
+ *   - `expense_reversals`: `approve` (reverse a posted expense with a
+ *     compensating entry; `approve` rather than `create` on purpose - a
+ *     reversal is a supervised amendment, and the high-risk verb is what puts
+ *     it under the action-time SoD check).
+ *   - `expense_receipts`: `read` (mint a short-lived presigned URL for the
+ *     PRIVATE receipt - separate from `expenses.read` because a receipt can
+ *     show a person's name or an account number), `create` (attach one).
+ */
+export const COMMERCE_EXPENSE_CATEGORIES_ACTIVITY_CODE = "expense_categories";
+export const COMMERCE_EXPENSES_ACTIVITY_CODE = "expenses";
+export const COMMERCE_EXPENSE_POSTINGS_ACTIVITY_CODE = "expense_postings";
+export const COMMERCE_EXPENSE_REVERSALS_ACTIVITY_CODE = "expense_reversals";
+export const COMMERCE_EXPENSE_RECEIPTS_ACTIVITY_CODE = "expense_receipts";
+
+export const COMMERCE_EXPENSE_CATEGORY_PERMISSIONS = {
+  read: "commerce.expense_categories.read",
+  create: "commerce.expense_categories.create",
+  update: "commerce.expense_categories.update"
+} as const;
+
+export const COMMERCE_EXPENSE_PERMISSIONS = {
+  read: "commerce.expenses.read",
+  create: "commerce.expenses.create",
+  update: "commerce.expenses.update",
+  export: "commerce.expenses.export"
+} as const;
+
+export const COMMERCE_EXPENSE_POSTING_PERMISSIONS = {
+  /** Submit a draft for posting. */
+  create: "commerce.expense_postings.create",
+  /** Approve/reject an expense above the tenant's threshold. */
+  approve: "commerce.expense_postings.approve"
+} as const;
+
+export const COMMERCE_EXPENSE_REVERSAL_PERMISSIONS = {
+  approve: "commerce.expense_reversals.approve"
+} as const;
+
+export const COMMERCE_EXPENSE_RECEIPT_PERMISSIONS = {
+  /** Mint a short-lived presigned GET for the private receipt. */
+  read: "commerce.expense_receipts.read",
+  /** Attach a private receipt to an expense. */
+  create: "commerce.expense_receipts.create"
 } as const;
 
 /**

@@ -115,14 +115,14 @@ The used-directly/no-derived-repo governance model (ADR-0034 §2/§3) is **uncha
 
 | Aspect                            | Value (generated)                                                                      | Source of truth                                                                         |
 | --------------------------------- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| Version                           | **10.3.0**                                                                             | `package.json`                                                                          |
+| Version                           | **10.4.0**                                                                             | `package.json`                                                                          |
 | Pending changesets (by bump type) | _run the command in the right-hand column_                                             | `grep -h '^"awcms":' .changeset/*.md \| sort \| uniq -c`                                |
-| Commits since the last release    | _run the command in the right-hand column_                                             | `git rev-list --count v10.3.0..HEAD`                                                    |
+| Commits since the last release    | _run the command in the right-hand column_                                             | `git rev-list --count v10.4.0..HEAD`                                                    |
 | Base modules                      | **26** (see the list in ARCHITECTURE.md)                                               | `src/modules/index.ts`                                                                  |
-| Migrations                        | **222** (`sql/001`–`982`)                                                              | `ls sql/`                                                                               |
-| ADR                               | **0000**–**0124** (`0000` = template; highest ADR status: **Accepted**)                | `ls docs/adr/`                                                                          |
-| Admin screens                     | **85** `.astro` files in `src/pages/admin/`; **0 of 26** modules without `navigation:` | `find src/pages/admin -name '*.astro'`, `grep -L 'navigation:' src/modules/*/module.ts` |
-| `.astro` files                    | **103** (56.974 lines) — on typechecking see §6                                        | `find src -name '*.astro'`                                                              |
+| Migrations                        | **240** (`sql/001`–`993`)                                                              | `ls sql/`                                                                               |
+| ADR                               | **0000**–**0125** (`0000` = template; highest ADR status: **Accepted**)                | `ls docs/adr/`                                                                          |
+| Admin screens                     | **91** `.astro` files in `src/pages/admin/`; **0 of 26** modules without `navigation:` | `find src/pages/admin -name '*.astro'`, `grep -L 'navigation:' src/modules/*/module.ts` |
+| `.astro` files                    | **114** (64.661 lines) — on typechecking see §6                                        | `find src -name '*.astro'`                                                              |
 | Gates                             | **61** in the `bun run check` chain                                                    | `scripts.check` in `package.json`, split on `&&`                                        |
 | Contracts                         | Modular per-module OpenAPI + AsyncAPI; `MODULE_CONTRACT_VERSION` **4.2.0**             | `openapi/`, `asyncapi/`, `_shared/module-contract.ts`                                   |
 

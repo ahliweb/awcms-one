@@ -61,6 +61,7 @@ import {
   NegativeCorrectedCountError,
   normalizeSignedMoney,
   resolveCashUpSettings,
+  type CashUpSettings,
   type CloseDecisionInput,
   type CloseSessionInput,
   type CorrectionRow,
@@ -162,12 +163,12 @@ export async function computeSessionExpected(
   };
 }
 
-async function readApprovalThreshold(
+async function readCashUpSettings(
   tx: Bun.SQL,
   tenantId: string
-): Promise<string> {
+): Promise<CashUpSettings> {
   const view = await fetchModuleSettingsView(tx, tenantId, "commerce");
-  return resolveCashUpSettings(view?.effective).approvalThreshold;
+  return resolveCashUpSettings(view?.effective);
 }
 
 // ---------------------------------------------------------------------------
@@ -387,7 +388,9 @@ export async function fetchRegisterCashUpReport(
     "cash",
     "manual_qris",
     "manual_bank_transfer",
-    "gateway"
+    "gateway",
+    "gift_card",
+    "store_credit"
   ];
   const tenders: ReportTenderLine[] = [...tenderTypes]
     .sort((a, b) => order.indexOf(a) - order.indexOf(b))
@@ -586,7 +589,8 @@ export async function closeRegisterSession(
     return { kind: "not_session_cashier" };
   }
 
-  const threshold = await readApprovalThreshold(tx, tenantId);
+  const cashUpSettings = await readCashUpSettings(tx, tenantId);
+  const threshold = cashUpSettings.approvalThreshold;
   const expected = await computeSessionExpected(tx, tenantId, session);
   let evaluation;
   try {
@@ -610,7 +614,13 @@ export async function closeRegisterSession(
 
   let decision: RegisterCloseDecision = "auto";
   if (evaluation.approvalRequired) {
-    decision = (await hasApprovePermission()) ? "approved" : "pending";
+    // Separation of duties (ADR-0028 D4): the closer holding `approve` does
+    // NOT approve their own variance unless the tenant opted in with
+    // `cashUp.allowSelfApproval`; by default another user decides.
+    decision =
+      cashUpSettings.allowSelfApproval && (await hasApprovePermission())
+        ? "approved"
+        : "pending";
   }
   const decidedNow = decision !== "pending";
   const decidedBy = decision === "approved" ? actorTenantUserId : null;
@@ -704,6 +714,8 @@ export async function closeRegisterSession(
 export type DecideRegisterCloseOutcome =
   | { kind: "not_found" }
   | { kind: "not_pending"; status: RegisterSessionStatus }
+  /** The decider is the user who requested the close and `cashUp.allowSelfApproval` is off. */
+  | { kind: "self_approval_forbidden" }
   | {
       kind: "approved" | "rejected" | "replayed";
       body: CloseRegisterSessionBody;
@@ -761,6 +773,17 @@ export async function decideRegisterClose(
   `) as RequestRow[];
   const pending = pendingRows[0];
   if (!pending) return { kind: "not_pending", status: session.status };
+
+  // Separation of duties: nobody approves a variance on a count they made
+  // themselves, unless the tenant opted in. (Rejecting your own pending count
+  // is allowed: it only sends the drawer back to be recounted.)
+  if (
+    input.decision === "approve" &&
+    pending.requested_by_tenant_user_id === actorTenantUserId &&
+    !(await readCashUpSettings(tx, tenantId)).allowSelfApproval
+  ) {
+    return { kind: "self_approval_forbidden" };
+  }
 
   const newDecision = input.decision === "approve" ? "approved" : "rejected";
   const decidedRows = (await tx`

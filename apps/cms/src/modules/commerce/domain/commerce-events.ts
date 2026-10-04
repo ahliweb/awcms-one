@@ -145,6 +145,20 @@ export const COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE =
   "awcms.commerce.register_session.corrected";
 
 /**
+ * Closed-loop stored-value ledger event (Issue #288, ADR-0030). ONE type for
+ * every ledger entry (issue, load, redeem, refund, adjust, expire, disable,
+ * enable), on the STORED-VALUE ACCOUNT aggregate (`commerce.stored_value_
+ * account`, aggregate id = the account id), so a consumer rebuilding "what
+ * happened to this card" reads one ordered stream and filters on `entryKind`.
+ * The payload carries ids, the kinds, the signed amount and the resulting
+ * balance — never the code, the customer, or the free-text reason.
+ * Registered in `domain-event-runtime/domain/event-type-registry.ts` and
+ * `asyncapi/awcms-domain-events.asyncapi.yaml` in the same change.
+ */
+export const COMMERCE_STORED_VALUE_ENTRY_RECORDED_EVENT_TYPE =
+  "awcms.commerce.stored_value.entry_recorded";
+
+/**
  * Document-lifecycle events (Issue #286, ADR-0029). Four facts a downstream
  * consumer (accounting, CRM, a notification) needs; held sales and ordinary
  * quotation/work-order edits are audit-only. Payloads carry ids, numbers,
@@ -176,7 +190,43 @@ export const COMMERCE_QUOTATION_AGGREGATE_TYPE = "commerce.quotation";
 export const COMMERCE_WORK_ORDER_AGGREGATE_TYPE = "commerce.work_order";
 export const COMMERCE_DOCUMENT_AGGREGATE_TYPE = "commerce.document";
 
+/**
+ * Loyalty points ledger (Issue #289, ADR-0026 D8). ONE event type for every
+ * ledger row — an earn, redemption, expiry, adjustment or reversal — with the
+ * `kind` in the payload, because every consumer that wants "the balance
+ * changed" wants all five and a consumer that wants only one filters on
+ * `kind` instead of subscribing five times. Fired from
+ * `application/loyalty-ledger.ts`'s `appendLedgerEntry`, the only writer, in
+ * the same transaction as the insert. The aggregate is the loyalty ACCOUNT
+ * (not the order or the customer), so per-aggregate ordering of an account's
+ * events matches its `account_seq` order. The payload carries no PII — never
+ * a name, phone, or the free-text `reason`.
+ */
+export const COMMERCE_LOYALTY_ENTRY_RECORDED_EVENT_TYPE =
+  "awcms.commerce.loyalty.entry_recorded";
+
+export const COMMERCE_LOYALTY_ACCOUNT_AGGREGATE_TYPE =
+  "commerce.loyalty_account";
+
+/**
+ * Expense events (Issue #294, ADR-0031). Both ride on the EXPENSE aggregate
+ * (`commerce.expense`, aggregate id = the expense id). `posted` fires once, only
+ * when an expense actually reaches `posted` (a pending submission or a
+ * rejection does not); `reversed` fires once. Payloads carry ids, the category
+ * id, the tender, the amount and the register session / movement ids - never
+ * the free-text description, payee or reason. Registered in
+ * `domain-event-runtime/domain/event-type-registry.ts` and
+ * `asyncapi/awcms-domain-events.asyncapi.yaml` in the same change.
+ */
+export const COMMERCE_EXPENSE_POSTED_EVENT_TYPE =
+  "awcms.commerce.expense.posted";
+export const COMMERCE_EXPENSE_REVERSED_EVENT_TYPE =
+  "awcms.commerce.expense.reversed";
+
 export const COMMERCE_ORDER_AGGREGATE_TYPE = "commerce.order";
+export const COMMERCE_EXPENSE_AGGREGATE_TYPE = "commerce.expense";
+export const COMMERCE_STORED_VALUE_ACCOUNT_AGGREGATE_TYPE =
+  "commerce.stored_value_account";
 export const COMMERCE_REGISTER_SESSION_AGGREGATE_TYPE =
   "commerce.register_session";
 export const COMMERCE_REVIEW_AGGREGATE_TYPE = "commerce.review";

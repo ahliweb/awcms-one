@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0025-payments-are-an-allocation-ledger-separate-from-order-status.md)
 
-<!-- i18n-source-hash: sha256:2efb1995c319de3b90ebf1d1f5e723cbff709bc3d4d4937077c9c94a321b06f0 -->
+<!-- i18n-source-hash: sha256:22779efec58e0d87aac112bbefa4f21658057db0533d156435bc611a78347b4c -->
 
 # ADR-0025 — Pembayaran adalah ledger alokasi append-only, terpisah dari status pesanan
 
@@ -68,8 +68,15 @@ Kedua referensi adalah FK komposit pada `(tenant_id, …)` (`UNIQUE (tenant_id, 
 ## Konsekuensi
 
 - Positif: pembayaran terbagi/terutang/dikembalikan bisa dinyatakan dan persis; "lunas" diturunkan dan tidak bisa diklaim tanpa uang tercatat; setiap pembayaran teraudit, idempoten, dan aman-replay; laporan tidak butuh angka karangan; pekerjaan loyalti/kartu hadiah/refund punya bentuk ledger untuk ditiru.
-- Biaya: konfirmasi transfer manual yang diterima untuk kurang dari total tidak lagi menandai pesanan lunas (saldo eksplisit); override `-> paid` manual ditolak (catat pembayarannya); satu kunci baris `FOR NO KEY UPDATE` tambahan per penulisan pembayaran; laporan adalah agregat langsung (dibatasi indeks `(tenant_id, created_at)`, proyeksi adalah jalan keluarnya).
+- Biaya: konfirmasi transfer manual yang diterima untuk kurang dari total tidak lagi menandai pesanan lunas (saldo eksplisit); override `-> paid` manual pada pesanan yang sudah punya leg ledger tetapi belum lunas ditolak (catat pembayarannya), sedangkan pada pesanan tanpa leg sama sekali ia mencatat sendiri satu leg manual senilai penuh (lihat "Perubahan perilaku" di bawah); pesanan yang memegang uang yang sudah diterima tidak pernah dikadaluarsakan oleh job kedaluwarsa dan tidak ditawari sesi gateway; satu kunci baris `FOR NO KEY UPDATE` tambahan per penulisan pembayaran; laporan adalah agregat langsung (dibatasi indeks `(tenant_id, created_at)`, proyeksi adalah jalan keluarnya).
 - Kompatibilitas: payload POS dan storefront single-tender legacy tetap bekerja; `payment_status` mendapat `partially_paid` (field OpenAPI berupa string biasa; label admin diperluas).
+
+## Perubahan perilaku (perbaikan tinjauan)
+
+- **`PATCH .../status -> paid` manual.** Diputuskan di bawah kunci baris pesanan (`FOR NO KEY UPDATE`, urutan kunci yang sama dengan setiap penulis): pesanan TANPA leg ledger sama sekali (tenant COD / offline yang tidak pernah memakai ledger) mendapat SATU leg berhasil senilai total penuh, sumber `admin`, kunci sumber `status-paid:{order id}` (replay tidak berefek), diaudit seperti pembayaran lain, dengan tender diambil dari `payment_method` pesanan (`cash`, `manual_qris`, `gateway` dengan provider `legacy` seperti backfill `sql/943`, selain itu `manual_bank_transfer`), lalu ledger merilis pesanan menjadi `paid`; pesanan DENGAN leg yang belum lunas tetap `409 PAYMENT_NOT_SETTLED` beserta jumlah terutang. Tidak perlu migrasi (jenis tender yang ada sudah cukup; `sql/944` tetap tak terpakai).
+- **Sesi gateway menolak pesanan yang sudah dibayar sebagian.** Sesi hosted-checkout menagih seluruh total pesanan, sehingga `createGatewaySession` tidak membuat maupun mengembalikan sesi bila `settled > 0`: `409 ORDER_PARTIALLY_SETTLED` dengan `details.outstanding`. Pemeriksaan diulang di transaksi persist (pembayaran bisa masuk saat panggilan provider berjalan). Leg gateway jumlah-parsial tetap ditunda; sisanya diselesaikan dengan tender manual.
+- **Kedaluwarsa tidak pernah menelantarkan uang yang diterima.** `listExpirableOrderIds` melewati, dan `expireOrderBySystem` memeriksa ulang di bawah kunci pesanan, setiap pesanan dengan `settled > 0`: tidak dikadaluarsakan dan tidak di-restock, serta tetap ada di laporan saldo terutang agar operator menyelesaikan atau membatalkannya.
+- **Konflik kunci sumber.** `source_key` ledger yang ditemukan pada pesanan yang sama hanya replay bila permintaannya SAMA (tender, serta jumlah atau tunai yang diserahkan untuk pembayaran; pembayaran yang dibalik dan jumlahnya untuk pembalikan). Kunci yang sudah dipakai untuk pesanan lain, atau permintaan berbeda, adalah `AllocationSourceKeyConflictError`, dipetakan ke `409 IDEMPOTENCY_CONFLICT` oleh rute pembayaran, pembalikan, dan POS.
 
 ## Ditunda (sengaja tidak dibangun di sini)
 

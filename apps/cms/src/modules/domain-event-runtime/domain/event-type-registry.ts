@@ -121,6 +121,11 @@ export const COMMERCE_REGISTER_SESSION_CLOSED_EVENT_TYPE =
   "awcms.commerce.register_session.closed";
 export const COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE =
   "awcms.commerce.register_session.corrected";
+/** Issue #294 (ADR-0031) — expense events. */
+export const COMMERCE_EXPENSE_POSTED_EVENT_TYPE =
+  "awcms.commerce.expense.posted";
+export const COMMERCE_EXPENSE_REVERSED_EVENT_TYPE =
+  "awcms.commerce.expense.reversed";
 /** Issue #286 (ADR-0029) — commerce document-lifecycle events. */
 export const COMMERCE_QUOTATION_ACCEPTED_EVENT_TYPE =
   "awcms.commerce.quotation.accepted";
@@ -133,6 +138,17 @@ export const COMMERCE_DOCUMENT_ISSUED_EVENT_TYPE =
 /** Issue #295 (ADR-0034) — a delivery of a commercial document was requested. */
 export const COMMERCE_DOCUMENT_DELIVERY_REQUESTED_EVENT_TYPE =
   "awcms.commerce.document.delivery_requested";
+
+/**
+ * Loyalty points ledger (Issue #289, ADR-0026) — ONE event type for every
+ * ledger row, `kind` in the payload.
+ */
+export const COMMERCE_LOYALTY_ENTRY_RECORDED_EVENT_TYPE =
+  "awcms.commerce.loyalty.entry_recorded";
+
+/** Issue #288 (ADR-0030) — closed-loop stored-value ledger. */
+export const COMMERCE_STORED_VALUE_ENTRY_RECORDED_EVENT_TYPE =
+  "awcms.commerce.stored_value.entry_recorded";
 
 export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
   [
@@ -291,6 +307,18 @@ export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
         "A compensating reversal was recorded against an earlier payment-allocation (a refund or a corrected entry). Producer: commerce/application/payment-allocation-directory.ts's recordPaymentReversal, in the same transaction as the ledger insert. Carries the order's resulting settlement; never moves the order lifecycle."
     },
     {
+      eventType: COMMERCE_EXPENSE_POSTED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "An expense reached posted (within the approval threshold, or approved by someone other than its creator). Producer: commerce/application/expense-posting.ts's postExpense / decideExpense, in the same transaction as the status change and - for a drawer-paid expense - the register expense movement. Fired once; a pending submission or a rejection does not fire it. Carries ids, tender, amount and the movement id - never the free-text description or payee."
+    },
+    {
+      eventType: COMMERCE_EXPENSE_REVERSED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A posted expense was reversed with a compensating entry. Producer: commerce/application/expense-posting.ts's reverseExpense, in the same transaction as the status change and - for a drawer-paid expense - the compensating register movement. Carries ids, tender, amount and the compensating movement id - never the free-text reason."
+    },
+    {
       eventType: COMMERCE_REGISTER_SESSION_OPENED_EVENT_TYPE,
       eventVersion: COMMERCE_EVENT_VERSION,
       description:
@@ -313,6 +341,18 @@ export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
       eventVersion: COMMERCE_EVENT_VERSION,
       description:
         "A compensating correction was recorded against a closed register session (the original cash-up is preserved). Producer: commerce/application/register-cash-up.ts's recordRegisterCorrection. Carries the per-tender adjustments, never the free-text reason."
+    },
+    {
+      eventType: COMMERCE_DOCUMENT_DELIVERY_REQUESTED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A delivery of a commercial document (receipt, invoice, quotation version, work-order notice) was requested: handed to the e-mail or WhatsApp outbox, or refused at the hand-off (suppressed address). Producer: commerce/application/document-delivery-directory.ts's requestDocumentDelivery, in the same transaction as the outbox row. Aggregate: the delivery request. Carries ids, the document number, the channel and the hand-off status - never a recipient or message content; the provider outcome lives in the outbox."
+    },
+    {
+      eventType: COMMERCE_STORED_VALUE_ENTRY_RECORDED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A closed-loop stored-value ledger entry (gift card / store credit: issue, load, redeem, refund, adjust, expire, disable, enable) was appended. Producer: commerce/application/stored-value-ledger.ts's appendStoredValueEntry, in the same transaction as the ledger insert (and, for redeem/refund, the payment-allocation row it mirrors). Aggregate: the stored-value account. Carries ids, kinds, the signed amount and the resulting balance - never the code, the customer or the free-text reason."
     },
     {
       eventType: COMMERCE_QUOTATION_ACCEPTED_EVENT_TYPE,
@@ -339,10 +379,10 @@ export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
         "A numbered receipt or invoice document was issued for a finalized order (an immutable snapshot). Producer: commerce/application/document-directory.ts's issueDocument, in the same transaction as the numbered row. Carries the document type/number, the source order id and the total - never the customer."
     },
     {
-      eventType: COMMERCE_DOCUMENT_DELIVERY_REQUESTED_EVENT_TYPE,
+      eventType: COMMERCE_LOYALTY_ENTRY_RECORDED_EVENT_TYPE,
       eventVersion: COMMERCE_EVENT_VERSION,
       description:
-        "A delivery of a commercial document (receipt, invoice, quotation version, work-order notice) was requested: handed to the e-mail or WhatsApp outbox, or refused at the hand-off (suppressed address). Producer: commerce/application/document-delivery-directory.ts's requestDocumentDelivery, in the same transaction as the outbox row. Aggregate: the delivery request. Carries ids, the document number, the channel and the hand-off status - never a recipient or message content; the provider outcome lives in the outbox."
+        "A row was appended to the append-only loyalty points ledger (Issue #289) — an earn for a paid order, a redemption, an expiry, a manual adjustment or a reversal. Producer: commerce/application/loyalty-ledger.ts's appendLedgerEntry, in the same transaction as the ledger insert and the account projection update. Aggregate is the loyalty account; the payload carries entryId, customerId, kind, signed integer points, balanceAfter and sourceType — never a name, phone or free-text reason."
     }
   ];
 

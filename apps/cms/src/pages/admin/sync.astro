@@ -199,6 +199,27 @@ const QUEUE_VARIANT: Record<string, string> = {
   failed: "danger"
 };
 
+/**
+ * `awcms_sync_nodes.status`, `awcms_sync_conflicts.status`, and
+ * `awcms_object_sync_queue.status` (sql/010-012) — three different columns,
+ * only used on this one screen, so one local map covers all three rather than
+ * three near-identical ones (their value sets don't overlap, so a stray key
+ * can never resolve to the wrong domain's label).
+ */
+const SYNC_STATUS_LABEL: Record<string, string> = {
+  active: t("Active"),
+  inactive: t("Inactive"),
+  open: t("Open"),
+  resolved: t("Resolved"),
+  pending: t("Pending"),
+  sending: t("Sending"),
+  sent: t("Sent"),
+  failed: t("Failed")
+};
+function syncStatusLabel(value: string): string {
+  return SYNC_STATUS_LABEL[value] ?? value;
+}
+
 function formatTimestamp(value: string | null): string {
   return value ?? "—";
 }
@@ -259,28 +280,32 @@ const queueColumns = canRetryQueue ? 7 : 6;
 
   {canSeeAnything && !loadError && (
     <section class="admin-section fade-in-up" aria-label="Sync summary">
-      <div class="stat-grid stagger-children">
+      <div class="admin-stat-card-grid stagger-children">
         {canReadNodes && (
-          <div class="stat-card">
-            <span class="stat-label">{t("Active nodes")}</span>
-            <span class="stat-value">
+          <div class="admin-stat-card">
+            <span class="admin-stat-card-label">{t("Active nodes")}</span>
+            <span class="admin-stat-card-value">
               {activeNodeCount}/{nodes.length}
             </span>
           </div>
         )}
         {canReadConflicts && (
-          <div class="stat-card">
-            <span class="stat-label">{t("Open conflicts")}</span>
-            <span class="stat-value">{openConflictCount}</span>
+          <div class="admin-stat-card">
+            <span class="admin-stat-card-label">{t("Open conflicts")}</span>
+            <span class="admin-stat-card-value">{openConflictCount}</span>
             {openConflictCount > 0 && (
-              <span class="stat-hint">{t("Each needs a human decision")}</span>
+              <span class="admin-stat-card-caption">
+                {t("Each needs a human decision")}
+              </span>
             )}
           </div>
         )}
         {canReadQueue && (
-          <div class="stat-card">
-            <span class="stat-label">{t("Failed objects (this page)")}</span>
-            <span class="stat-value">{failedQueueCount}</span>
+          <div class="admin-stat-card">
+            <span class="admin-stat-card-label">
+              {t("Failed objects (this page)")}
+            </span>
+            <span class="admin-stat-card-value">{failedQueueCount}</span>
           </div>
         )}
       </div>
@@ -336,34 +361,36 @@ const queueColumns = canRetryQueue ? 7 : 6;
             ) : (
               nodes.map((node) => (
                 <tr data-node-row={node.nodeId}>
-                  <td data-label="Node">
+                  <td data-label={t("Node")}>
                     <span class="cell-code">{node.nodeCode}</span>
                     <span class="cell-muted"> · {node.nodeName}</span>
                   </td>
-                  <td data-label="Status">
+                  <td data-label={t("Status")} data-status={node.status}>
                     <span
-                      class="status-badge"
-                      data-variant={
+                      class="admin-status-pill"
+                      data-tone={
                         node.status === "active" ? "success" : "neutral"
                       }
                     >
-                      <span class="status-dot" aria-hidden="true" />
-                      {node.status}
+                      <span class="admin-status-pill-dot" aria-hidden="true" />
+                      {syncStatusLabel(node.status)}
                     </span>
                   </td>
-                  <td data-label="Last push">
+                  <td data-label={t("Last push")}>
                     <span class="cell-muted">
                       {formatTimestamp(node.lastPushedAt)}
                     </span>
                   </td>
-                  <td data-label="Last pull">
+                  <td data-label={t("Last pull")}>
                     <span class="cell-muted">
                       {formatTimestamp(node.lastPulledAt)}
                     </span>
                   </td>
-                  <td data-label="Pull sequence">{node.lastPullSequence}</td>
+                  <td data-label={t("Pull sequence")}>
+                    {node.lastPullSequence}
+                  </td>
                   {canUpdateNodes && (
-                    <td data-label="Actions">
+                    <td data-label={t("Actions")}>
                       <div class="row-actions">
                         <button
                           type="button"
@@ -452,25 +479,25 @@ const queueColumns = canRetryQueue ? 7 : 6;
             ) : (
               conflicts.map((conflict) => (
                 <tr data-conflict-row={conflict.id}>
-                  <td data-label="Aggregate">
+                  <td data-label={t("Aggregate")}>
                     <span class="cell-code">{conflict.aggregateType}</span>
                     <span class="cell-muted"> · {conflict.aggregateId}</span>
                   </td>
-                  <td data-label="Type">
+                  <td data-label={t("Type")}>
                     <span class="cell-code">{conflict.conflictType}</span>
                   </td>
-                  <td data-label="Status">
+                  <td data-label={t("Status")} data-status={conflict.status}>
                     <span
-                      class="status-badge"
-                      data-variant={
+                      class="admin-status-pill"
+                      data-tone={
                         conflict.status === "open" ? "warning" : "success"
                       }
                     >
-                      <span class="status-dot" aria-hidden="true" />
-                      {conflict.status}
+                      <span class="admin-status-pill-dot" aria-hidden="true" />
+                      {syncStatusLabel(conflict.status)}
                     </span>
                   </td>
-                  <td data-label="Resolution">
+                  <td data-label={t("Resolution")}>
                     <span class="cell-code">{conflict.resolution ?? "—"}</span>
                     {conflict.resolutionNote && (
                       <span
@@ -479,10 +506,10 @@ const queueColumns = canRetryQueue ? 7 : 6;
                       />
                     )}
                   </td>
-                  <td data-label="Raised">
+                  <td data-label={t("Raised")}>
                     <span class="cell-muted">{conflict.createdAt}</span>
                   </td>
-                  <td data-label="Payload">
+                  <td data-label={t("Payload")}>
                     <details>
                       <summary>{t("Payload")}</summary>
                       {/* `set:text` rather than a child expression: <pre>
@@ -501,7 +528,7 @@ const queueColumns = canRetryQueue ? 7 : 6;
                     </details>
                   </td>
                   {canResolveConflicts && (
-                    <td data-label="Actions">
+                    <td data-label={t("Actions")}>
                       {conflict.status === "open" ? (
                         <div class="row-actions">
                           {RESOLUTION_OPTIONS.map((resolution) => (
@@ -589,32 +616,32 @@ const queueColumns = canRetryQueue ? 7 : 6;
             ) : (
               queue.map((entry) => (
                 <tr data-queue-row={entry.objectQueueId}>
-                  <td data-label="Object">
+                  <td data-label={t("Object")}>
                     <span class="cell-code">{entry.objectKey}</span>
                     <span class="cell-muted">
                       {" "}
                       · {formatBytes(entry.byteSize)}
                     </span>
                   </td>
-                  <td data-label="Node">
+                  <td data-label={t("Node")}>
                     <span class="cell-code">{entry.nodeCode}</span>
                   </td>
-                  <td data-label="Status">
+                  <td data-label={t("Status")} data-status={entry.status}>
                     <span
-                      class="status-badge"
-                      data-variant={QUEUE_VARIANT[entry.status] ?? "neutral"}
+                      class="admin-status-pill"
+                      data-tone={QUEUE_VARIANT[entry.status] ?? "neutral"}
                     >
-                      <span class="status-dot" aria-hidden="true" />
-                      {entry.status}
+                      <span class="admin-status-pill-dot" aria-hidden="true" />
+                      {syncStatusLabel(entry.status)}
                     </span>
                   </td>
-                  <td data-label="Retries">{entry.retryCount}</td>
-                  <td data-label="Next retry">
+                  <td data-label={t("Retries")}>{entry.retryCount}</td>
+                  <td data-label={t("Next retry")}>
                     <span class="cell-muted">
                       {formatTimestamp(entry.nextRetryAt)}
                     </span>
                   </td>
-                  <td data-label="Last error">
+                  <td data-label={t("Last error")}>
                     {/* Escaped via `set:text`, never parsed. */}
                     <span
                       class="cell-muted"
@@ -622,7 +649,7 @@ const queueColumns = canRetryQueue ? 7 : 6;
                     />
                   </td>
                   {canRetryQueue && (
-                    <td data-label="Actions">
+                    <td data-label={t("Actions")}>
                       <div class="row-actions">
                         {entry.status === "failed" ? (
                           <button
@@ -673,6 +700,7 @@ const queueColumns = canRetryQueue ? 7 : 6;
     onAction,
     sendJson
   } from "../../lib/ui/admin-form-client";
+  import { confirmAction } from "../../lib/ui/confirm-dialog-client";
 
   const actionError = messageBox("sync-action-error");
 
@@ -684,9 +712,9 @@ const queueColumns = canRetryQueue ? 7 : 6;
 
     if (
       nextStatus === "inactive" &&
-      !window.confirm(
+      !(await confirmAction(
         `Deactivate ${code}? It stops syncing immediately. Its queued objects and past conflicts are kept.`
-      )
+      ))
     ) {
       return;
     }
@@ -715,9 +743,9 @@ const queueColumns = canRetryQueue ? 7 : 6;
     // Resolving is a decision about which version of the data wins, and it
     // cannot be undone from this screen — confirm, then capture why.
     if (
-      !window.confirm(
+      !(await confirmAction(
         `Resolve this conflict as "${resolution}"? This decides which version of the data stands and cannot be undone here.`
-      )
+      ))
     ) {
       return;
     }

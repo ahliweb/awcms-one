@@ -197,7 +197,10 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
                     {commerceLabel(labels.campaignChannel, campaign.channel)}
                   </td>
                   <td data-label={t("Status")}>
-                    <span class="status-badge" data-status={campaign.status}>
+                    <span
+                      class="admin-status-pill"
+                      data-status={campaign.status}
+                    >
                       {commerceLabel(labels.campaignStatus, campaign.status)}
                     </span>
                   </td>
@@ -230,7 +233,7 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
               {commerceLabel(labels.campaignChannel, selected.channel)}
             </span>{" "}
             ·{" "}
-            <span class="status-badge" data-status={selected.status}>
+            <span class="admin-status-pill" data-status={selected.status}>
               {commerceLabel(labels.campaignStatus, selected.status)}
             </span>
           </h2>

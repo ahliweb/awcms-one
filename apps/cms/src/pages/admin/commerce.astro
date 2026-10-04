@@ -53,6 +53,19 @@ import {
   commerceLabel,
   createCommerceLabels
 } from "../../lib/ui/commerce-admin-labels";
+import CommerceAttributeInputs from "../../components/CommerceAttributeInputs.astro";
+import {
+  listAttributeDefinitions,
+  type AttributeDefinitionRecord
+} from "../../modules/commerce/application/attribute-definition-directory";
+import { resolveAttributeFilterRequest } from "../../modules/commerce/application/attribute-filter-sql";
+import {
+  loadAttributeSets,
+  type ProductAttributeSet
+} from "../../modules/commerce/application/attribute-value-directory";
+import { attributeAppliesToTarget } from "../../modules/commerce/domain/attribute-definition";
+import { resolveAttributeLabel } from "../../modules/commerce/domain/attribute-definition";
+import { ATTRIBUTE_FILTER_OPERATORS } from "../../modules/commerce/domain/attribute-filter";
 
 type AdminProductRow = ProductAdminRecord & {
   images: ProductImageDTO[];
@@ -99,12 +112,42 @@ const ssr = Astro.locals.ssrContext!;
 const { t, tn } = getTranslatorFor(Astro.locals.locale);
 const labels = createCommerceLabels(t);
 
+/** Issue #291 — one label per member of the CLOSED attribute-filter operator set. */
+const attributeOperatorLabels = {
+  eq: t("equals"),
+  in: t("is one of (comma-separated)"),
+  gte: t("is at least"),
+  lte: t("is at most"),
+  contains: t("contains")
+} satisfies Record<(typeof ATTRIBUTE_FILTER_OPERATORS)[number], string>;
+
 const url = new URL(Astro.request.url);
 const filterCategoryId = url.searchParams.get("categoryId") ?? "";
 const filterStatus = url.searchParams.get("status") ?? "";
 const filterQuery = url.searchParams.get("q") ?? "";
 const filterFeatured = url.searchParams.get("featured") === "true";
 const filterRecommended = url.searchParams.get("recommended") === "true";
+
+/**
+ * Issue #291 — up to three typed attribute filters, submitted as
+ * `af<N>Key`/`af<N>Op`/`af<N>Value` and turned into the same
+ * `attr=<key>:<operator>:<value>` grammar the API takes. A row with no key or
+ * no value is ignored; the grammar's own validators (closed operator set,
+ * definition-bound key, typed operand) decide the rest — nothing here builds
+ * SQL.
+ */
+const ATTRIBUTE_FILTER_SLOTS = 3;
+const attributeFilterInputs = Array.from(
+  { length: ATTRIBUTE_FILTER_SLOTS },
+  (_, index) => ({
+    key: url.searchParams.get(`af${index + 1}Key`) ?? "",
+    op: url.searchParams.get(`af${index + 1}Op`) ?? "eq",
+    value: url.searchParams.get(`af${index + 1}Value`) ?? ""
+  })
+);
+const attributeFilterParams = attributeFilterInputs
+  .filter((entry) => entry.key.length > 0 && entry.value.length > 0)
+  .map((entry) => `${entry.key}:${entry.op}:${entry.value}`);
 
 const screen = await loadAdminScreen({
   ssr,
@@ -115,6 +158,30 @@ const screen = await loadAdminScreen({
     action: "read"
   },
   load: async ({ tx, can }) => {
+    // Issue #291 — attribute definitions/values are an admin-only read
+    // (`attributes.read`): without it the screen is exactly what it was.
+    const canReadAttributes = await can({
+      moduleKey: "commerce",
+      activityCode: "attributes",
+      action: "read"
+    });
+    const attributeDefinitions = canReadAttributes
+      ? await listAttributeDefinitions(tx, ssr.tenantId, { audience: "admin" })
+      : [];
+
+    let attributeFilters: Awaited<
+      ReturnType<typeof resolveAttributeFilterRequest>
+    > = { valid: true, filters: [] };
+    if (canReadAttributes && attributeFilterParams.length > 0) {
+      attributeFilters = await resolveAttributeFilterRequest(
+        tx,
+        ssr.tenantId,
+        attributeFilterParams,
+        "admin"
+      );
+    }
+    const attributeFilterInvalid = !attributeFilters.valid;
+
     // One transaction, one awaited query at a time — see `offices.astro`'s
     // comment; nothing here runs in parallel.
     const page = await listProductsForAdmin(tx, ssr.tenantId, null, {
@@ -124,8 +191,21 @@ const screen = await loadAdminScreen({
       featured: url.searchParams.has("featured") ? filterFeatured : undefined,
       recommended: url.searchParams.has("recommended")
         ? filterRecommended
-        : undefined
+        : undefined,
+      attributeFilters: attributeFilters.valid ? attributeFilters.filters : [],
+      // A `products.read`-only operator searches the public attribute set,
+      // exactly like the storefront: a non-public value must not be probeable.
+      attributeAudience: canReadAttributes ? "admin" : "public"
     });
+    const attributeSets: Map<string, ProductAttributeSet> =
+      canReadAttributes && attributeDefinitions.length > 0
+        ? await loadAttributeSets(
+            tx,
+            ssr.tenantId,
+            page.items.map((product) => product.id),
+            "admin"
+          )
+        : new Map();
     const withRelations = (await attachProductRelations(
       tx,
       ssr.tenantId,
@@ -162,8 +242,17 @@ const screen = await loadAdminScreen({
     const mediaOptions = canUpdate
       ? (await listMediaObjects(tx, ssr.tenantId, { deletion: "live" })).items
       : [];
+    const canExport = await can({
+      moduleKey: "commerce",
+      activityCode: "products",
+      action: "export"
+    });
 
     return {
+      attributeDefinitions,
+      attributeSets,
+      attributeFilterInvalid,
+      canExport,
       products: withRelations,
       categories: categoryPage.items,
       deleted,
@@ -196,6 +285,23 @@ const totalProductCount = statusCounts
       0
     )
   : 0;
+const attributeDefinitions: AttributeDefinitionRecord[] =
+  screen.state === "allowed" ? screen.data.attributeDefinitions : [];
+const attributeSets: Map<string, ProductAttributeSet> =
+  screen.state === "allowed" ? screen.data.attributeSets : new Map();
+const attributeFilterInvalid =
+  screen.state === "allowed" && screen.data.attributeFilterInvalid;
+const canExport = screen.state === "allowed" && screen.data.canExport;
+const filterableDefinitions = attributeDefinitions.filter(
+  (definition) => definition.isFilterable
+);
+const productDefinitions = attributeDefinitions.filter((definition) =>
+  attributeAppliesToTarget(definition.appliesTo, "product")
+);
+const variantDefinitions = attributeDefinitions.filter((definition) =>
+  attributeAppliesToTarget(definition.appliesTo, "variant")
+);
+const emptyAttributeSet: ProductAttributeSet = { product: [], variants: {} };
 const canCreate = screen.state === "allowed" && screen.data.canCreate;
 const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
 const canDelete = screen.state === "allowed" && screen.data.canDelete;
@@ -314,7 +420,69 @@ const totalTableColumns = 6 + (showActions ? 2 : 0);
         {t("Recommended only")}
       </label>
 
+      {filterableDefinitions.length > 0 && (
+        <fieldset class="attribute-filters" id="attribute-filters">
+          <legend>{t("Attribute filters")}</legend>
+          {attributeFilterInputs.map((entry, index) => (
+            <div class="attribute-filter-row">
+              <label for={`filter-af${index + 1}Key`}>{t("Attribute")}</label>
+              <select
+                id={`filter-af${index + 1}Key`}
+                name={`af${index + 1}Key`}
+              >
+                <option value="">{t("Not filtered")}</option>
+                {filterableDefinitions.map((definition) => (
+                  <option
+                    value={definition.key}
+                    selected={definition.key === entry.key}
+                  >
+                    {resolveAttributeLabel(definition, Astro.locals.locale)}
+                  </option>
+                ))}
+              </select>
+              <label for={`filter-af${index + 1}Op`}>{t("Condition")}</label>
+              <select id={`filter-af${index + 1}Op`} name={`af${index + 1}Op`}>
+                {ATTRIBUTE_FILTER_OPERATORS.map((operator) => (
+                  <option value={operator} selected={operator === entry.op}>
+                    {attributeOperatorLabels[operator]}
+                  </option>
+                ))}
+              </select>
+              <label for={`filter-af${index + 1}Value`}>{t("Value")}</label>
+              <input
+                id={`filter-af${index + 1}Value`}
+                name={`af${index + 1}Value`}
+                type="text"
+                value={entry.value}
+                autocomplete="off"
+              />
+            </div>
+          ))}
+          {attributeFilterInvalid && (
+            <p
+              class="admin-create-error"
+              role="alert"
+              id="attribute-filter-error"
+            >
+              {t(
+                "The attribute filters could not be applied: check the attribute, the condition and that the value matches the attribute's type."
+              )}
+            </p>
+          )}
+        </fieldset>
+      )}
+
       <button type="submit">{t("Apply filters")}</button>
+      {canExport && (
+        <a
+          class="module-toggle"
+          id="product-export-link"
+          href="/api/v1/commerce/products/export.csv"
+          download="products.csv"
+        >
+          {t("Export CSV")}
+        </a>
+      )}
     </form>
   )}
 
@@ -623,13 +791,13 @@ const totalTableColumns = 6 + (showActions ? 2 : 0);
                   <td data-label={t("Stock")}>{product.stock}</td>
                   <td data-label={t("Status")}>
                     <span
-                      class="status-badge"
-                      data-variant={
+                      class="admin-status-pill"
+                      data-tone={
                         product.status === "active" ? "success" : "neutral"
                       }
                       data-product-status={product.status}
                     >
-                      <span class="status-dot" aria-hidden="true" />
+                      <span class="admin-status-pill-dot" aria-hidden="true" />
                       {commerceLabel(labels.productStatus, product.status)}
                     </span>
                   </td>
@@ -776,6 +944,50 @@ const totalTableColumns = 6 + (showActions ? 2 : 0);
                           <button type="submit">{t("Save")}</button>
                         </form>
 
+                        {productDefinitions.length > 0 && (
+                          <section class="admin-section">
+                            <h3 class="admin-section-title">
+                              {t("Attributes")}
+                              <span class="count-pill">
+                                {
+                                  (
+                                    attributeSets.get(product.id) ??
+                                    emptyAttributeSet
+                                  ).product.length
+                                }
+                              </span>
+                            </h3>
+                            <form
+                              class="admin-create-form attributes-form"
+                              data-product-id={product.id}
+                              data-failure={t(
+                                "Could not save the attributes. Check every value matches its type."
+                              )}
+                            >
+                              <p
+                                id={`attributes-error-${product.id}`}
+                                class="admin-create-error"
+                                role="alert"
+                                hidden
+                              />
+                              <CommerceAttributeInputs
+                                locale={Astro.locals.locale}
+                                idPrefix={`attr-${product.id}`}
+                                definitions={productDefinitions}
+                                values={
+                                  (
+                                    attributeSets.get(product.id) ??
+                                    emptyAttributeSet
+                                  ).product
+                                }
+                              />
+                              <button type="submit" data-busy={t("Saving…")}>
+                                {t("Save attributes")}
+                              </button>
+                            </form>
+                          </section>
+                        )}
+
                         <section class="admin-section">
                           <h3 class="admin-section-title">
                             {t("Images")}
@@ -857,6 +1069,43 @@ const totalTableColumns = 6 + (showActions ? 2 : 0);
                                 >
                                   {t("Remove")}
                                 </button>
+                                {variantDefinitions.length > 0 && (
+                                  <details class="admin-section">
+                                    <summary>{t("Attributes")}</summary>
+                                    <form
+                                      class="admin-create-form attributes-form"
+                                      data-product-id={product.id}
+                                      data-variant-id={variant.id}
+                                      data-failure={t(
+                                        "Could not save the attributes. Check every value matches its type."
+                                      )}
+                                    >
+                                      <p
+                                        id={`attributes-error-${variant.id}`}
+                                        class="admin-create-error"
+                                        role="alert"
+                                        hidden
+                                      />
+                                      <CommerceAttributeInputs
+                                        locale={Astro.locals.locale}
+                                        idPrefix={`attr-${variant.id}`}
+                                        definitions={variantDefinitions}
+                                        values={
+                                          (
+                                            attributeSets.get(product.id) ??
+                                            emptyAttributeSet
+                                          ).variants[variant.id] ?? []
+                                        }
+                                      />
+                                      <button
+                                        type="submit"
+                                        data-busy={t("Saving…")}
+                                      >
+                                        {t("Save attributes")}
+                                      </button>
+                                    </form>
+                                  </details>
+                                )}
                               </li>
                             ))}
                           </ul>
@@ -985,6 +1234,7 @@ const totalTableColumns = 6 + (showActions ? 2 : 0);
   } from "../../lib/ui/admin-form-client";
   import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
   import { initCommerceProductsBulk } from "../../lib/ui/commerce-products-bulk-client";
+  import { collectAttributeValues } from "../../lib/ui/commerce-attributes-client";
 
   function parseAdvancedFields(raw: string): Record<string, unknown> | null {
     const trimmed = raw.trim();
@@ -1172,6 +1422,27 @@ const totalTableColumns = 6 + (showActions ? 2 : 0);
         ),
       "Could not remove the variant. Please try again.",
       "Removing…"
+    );
+  });
+
+  // Issue #291 — typed attribute forms (one per product, one per variant).
+  // A blank control clears the attribute; the server validates every value
+  // against its definition's type and writes nothing if one is invalid.
+  onSubmitAll(".attributes-form", async ({ form, data, submit }) => {
+    const productId = form.dataset.productId;
+    const variantId = form.dataset.variantId;
+    if (!productId) return;
+    const rowError = messageBox(`attributes-error-${variantId ?? productId}`);
+    const path = variantId
+      ? `/api/v1/commerce/products/${productId}/variants/${variantId}/attributes`
+      : `/api/v1/commerce/products/${productId}/attributes`;
+
+    await mutateAndReload(
+      submit,
+      rowError,
+      () => sendJson("PUT", path, { attributes: collectAttributeValues(data) }),
+      form.dataset.failure ?? "",
+      submit?.dataset.busy
     );
   });
 

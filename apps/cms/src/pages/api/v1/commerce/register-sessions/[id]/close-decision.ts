@@ -65,6 +65,12 @@ export const POST = defineTenantRoute<CloseDecisionInput>({
             {},
             { status: outcome.status }
           );
+        case "self_approval_forbidden":
+          return fail(
+            409,
+            "SOD_MAKER_IS_CHECKER",
+            "The user who counted the drawer cannot approve their own variance."
+          );
         default:
           return ok(outcome.body);
       }

@@ -24,8 +24,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Pay this refund from my open register"
+msgstr ""
+
 #. Admin shell — skip link, drawer, topbar
 msgid "Skip to main content"
+msgstr ""
+
+msgid "This sale's register shift is being closed. Record the payment once the close is decided."
+msgstr ""
+
+msgid "Tick the box if cash leaves your open register for this refund (for a sale from an earlier shift); otherwise add a cash-out movement to the register session."
 msgstr ""
 
 msgid "Toggle navigation menu"
@@ -7271,6 +7280,311 @@ msgid "Record reversal"
 msgstr ""
 
 msgid "Reference (optional)"
+
+#. Catalog attributes, CSV import/export (Issue #291)
+msgid "A blank cell in a product column leaves that field unchanged (or uses the default for a new product). A blank cell in an attr: column clears that attribute."
+msgstr ""
+
+msgid "A choice that stored values still use cannot be removed."
+msgstr ""
+
+msgid "A row conflicted with the catalog while writing. Nothing was imported; validate the file again."
+msgstr ""
+
+msgid "Add a column named attr: followed by the attribute key for each product attribute (for example attr:weight). An unknown column rejects the file."
+msgstr ""
+
+msgid "Apply import"
+msgstr ""
+
+msgid "Apply this file? {create} products will be created and {update} updated. All rows are applied together, or none."
+msgstr ""
+
+msgid "Apply this import?"
+msgstr ""
+
+msgid "Applying the import…"
+msgstr ""
+
+msgid "At most {count} products are exported."
+msgstr ""
+
+msgid "At most {count} rows per file."
+msgstr ""
+
+msgid "Attribute"
+msgstr ""
+
+msgid "Attribute filters"
+msgstr ""
+
+msgid "Attribute {key} will be removed. Its stored values stay in the database but are no longer shown, and the key becomes free to reuse."
+msgstr ""
+
+msgid "Attributes"
+msgstr ""
+
+msgid "Attributes defined for this tenant will appear here."
+msgstr ""
+
+msgid "Behaviour"
+msgstr ""
+
+msgid "CSV file"
+msgstr ""
+
+msgid "Catalog import and export"
+msgstr ""
+
+msgid "Checking the file…"
+msgstr ""
+
+msgid "Choice list"
+msgstr ""
+
+msgid "Choices (one per line: value or value|Label)"
+msgstr ""
+
+msgid "Choose a CSV file first."
+msgstr ""
+
+msgid "Columns: sku (required), name, slug, type, status, categorySlug, price, discountPercent, stock, weightGrams, minPurchase, description, isFeatured, isRecommended."
+msgstr ""
+
+msgid "Condition"
+msgstr ""
+
+msgid "Could not create the attribute. Check the key is unique and every field is valid."
+msgstr ""
+
+msgid "Could not delete the attribute. Please try again."
+msgstr ""
+
+msgid "Could not save the attribute. Check every field is valid."
+msgstr ""
+
+msgid "Could not save the attributes. Check every value matches its type."
+msgstr ""
+
+msgid "Create"
+msgstr ""
+
+msgid "Create an attribute"
+msgstr ""
+
+msgid "Create attribute"
+msgstr ""
+
+msgid "Decimal number"
+msgstr ""
+
+msgid "Decimal places (at most 6)"
+msgstr ""
+
+msgid "Delete attribute"
+msgstr ""
+
+msgid "Delete this attribute?"
+msgstr ""
+
+msgid "Deleting…"
+msgstr ""
+
+msgid "Details"
+msgstr ""
+
+msgid "Digits and a dot only, for example 12.5."
+msgstr ""
+
+msgid "Digits only, for example 42."
+msgstr ""
+
+msgid "Download CSV"
+msgstr ""
+
+msgid "Download the catalog as CSV, or validate and apply a CSV import with a per-row report."
+msgstr ""
+
+msgid "Download the live product catalog as a CSV file (UTF-8). It includes one column per product attribute and re-imports without changes."
+msgstr ""
+
+msgid "Earliest date"
+
+msgid "Accounts checked"
+msgstr ""
+
+msgid "Activate this version?"
+msgstr ""
+
+msgid "Activate version"
+msgstr ""
+
+msgid "Adjust points"
+msgstr ""
+
+msgid "Adjustment"
+msgstr ""
+
+msgid "All-time figures, summed from the ledger."
+msgstr ""
+
+msgid "An account opens with a customer's first points."
+msgstr ""
+
+msgid "Balance after"
+msgstr ""
+
+msgid "Balance check"
+msgstr ""
+
+msgid "Balances out of step"
+msgstr ""
+
+msgid "Balances repaired"
+msgstr ""
+
+msgid "Create a draft and activate it to start awarding points."
+msgstr ""
+
+msgid "Create a program version"
+msgstr ""
+
+msgid "Customer balance"
+msgstr ""
+
+msgid "Customer lookup"
+msgstr ""
+
+msgid "Customer phone"
+msgstr ""
+
+msgid "Each out-of-step balance is rewritten from the ledger. The ledger itself is never changed."
+msgstr ""
+
+msgid "Earn rule"
+msgstr ""
+
+msgid "Earned"
+msgstr ""
+
+msgid "Effective"
+msgstr ""
+
+msgid "Every balance matches the ledger."
+msgstr ""
+
+msgid "Expiry"
+msgstr ""
+
+msgid "Find customer"
+msgstr ""
+
+msgid "Ledger rows that need review"
+msgstr ""
+
+msgid "Loyalty"
+msgstr ""
+
+msgid "Loyalty could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Loyalty points are turned off for this store. Turn them on under Store settings, Features."
+msgstr ""
+
+msgid "Loyalty points"
+msgstr ""
+
+msgid "Maximum points per order (optional)"
+msgstr ""
+
+msgid "Never"
+msgstr ""
+
+msgid "No customer found."
+msgstr ""
+
+msgid "No loyalty accounts yet"
+msgstr ""
+
+msgid "No points activity yet"
+msgstr ""
+
+msgid "No program versions yet"
+msgstr ""
+
+msgid "Older entries"
+msgstr ""
+
+msgid "Orders paid from now on will earn no points until another version is activated. Points already earned are not affected."
+msgstr ""
+
+msgid "Points"
+msgstr ""
+
+msgid "Points (negative to deduct)"
+msgstr ""
+
+msgid "Points earned"
+msgstr ""
+
+msgid "Points expire after days (optional)"
+msgstr ""
+
+msgid "Points expired"
+msgstr ""
+
+msgid "Points outstanding"
+msgstr ""
+
+msgid "Points per step"
+msgstr ""
+
+msgid "Points programs, customer balances and the append-only points ledger."
+msgstr ""
+
+msgid "Points redeemed"
+msgstr ""
+
+msgid "Points reversed"
+msgstr ""
+
+msgid "Points to redeem"
+msgstr ""
+
+msgid "Recently opened accounts"
+msgstr ""
+
+msgid "Recomputes every balance from the ledger and compares it with the stored balance. Checking changes nothing."
+msgstr ""
+
+msgid "Record adjustment"
+msgstr ""
+
+msgid "Redeem"
+msgstr ""
+
+msgid "Redeem points"
+msgstr ""
+
+msgid "Redeemed"
+msgstr ""
+
+msgid "Repair balances"
+msgstr ""
+
+msgid "Repair balances from the ledger?"
+msgstr ""
+
+msgid "Retire"
+msgstr ""
+
+msgid "Retire this version?"
+msgstr ""
+
+msgid "Retire version"
+msgstr ""
+
+msgid "Retired"
 msgstr ""
 
 msgid "Reversal"
@@ -7280,6 +7594,459 @@ msgid "Reversed"
 msgstr ""
 
 msgid "Ring up a counter sale — cash, QRIS or bank transfer, in one or more payments — and browse past POS sales."
+
+msgid "Run balance check"
+msgstr ""
+
+msgid "Some balances do not match the ledger."
+msgstr ""
+
+msgid "Spend per earning step"
+msgstr ""
+
+msgid "That is not a valid Indonesian phone number."
+msgstr ""
+
+msgid "Version {version} takes effect now and replaces the version currently in force. Orders paid from now on earn under it."
+msgstr ""
+
+msgid "Version {version} takes effect now. Orders paid from now on earn under it."
+msgstr ""
+
+msgid "You do not have permission to view loyalty."
+msgstr ""
+
+msgid "max {points} per order"
+msgstr ""
+
+msgid "open"
+msgstr ""
+
+msgid "points"
+msgstr ""
+
+msgid "{points} per {amount} spent"
+msgstr ""
+
+msgid "{count} account below zero"
+msgid_plural "{count} accounts below zero"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} day"
+msgid_plural "{count} days"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} entry shown"
+msgid_plural "{count} entries shown"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} point"
+msgid_plural "{count} points"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} program version"
+msgid_plural "{count} program versions"
+msgstr[0] ""
+msgstr[1] ""
+msgid "Delete {host}?"
+msgstr ""
+
+msgid "The hostname becomes reusable by any tenant once deleted."
+msgstr ""
+
+msgid "Recorded on the domain's audit row."
+msgstr ""
+
+msgid "Could not delete the domain. Please try again."
+msgstr ""
+
+msgid "Delete {label}?"
+msgstr ""
+
+msgid "Every reference to it stops resolving immediately — a published page pointing at it loses its image. Restore undoes this."
+msgstr ""
+
+msgid "Recorded on the media object's audit row."
+msgstr ""
+
+msgid "Could not delete the media object. Please try again."
+msgstr ""
+
+msgid "Pause {name}?"
+msgstr ""
+
+msgid "Its events keep being recorded and keep accruing as backlog — pausing stops delivery, not production."
+msgstr ""
+
+msgid "Replay this delivery?"
+msgstr ""
+
+msgid "Recorded in the audit trail."
+msgstr ""
+
+msgid "Could not complete this action. Please try again."
+msgstr ""
+
+msgid "Revoke this assignment?"
+msgstr ""
+
+msgid "Revoke this exception?"
+msgstr ""
+
+msgid "The override stops applying at the next decision."
+msgstr ""
+
+msgid "Suppress {email}?"
+msgstr ""
+
+msgid "Why is this address being suppressed? A suppressed address cannot be re-subscribed, including by the person who owns it."
+msgstr ""
+
+msgid "Recorded on the subscriber's audit row."
+msgstr ""
+
+msgid "Could not suppress the subscriber. Please try again."
+msgstr ""
+
+msgid "Disable module \"{name}\"?"
+msgstr ""
+
+msgid "This feature stops working for every user and visitor of this tenant until it is re-enabled. Its data is kept, not deleted."
+msgstr ""
+
+msgid "Recorded in the audit log."
+msgstr ""
+
+msgid "Could not disable the module. It may have dependencies that block this change."
+msgstr ""
+
+#. Admin enum/status labels (Issue #861, item 4 of #854)
+msgid "#"
+msgstr ""
+
+msgid "Abandoned"
+msgstr ""
+
+msgid "Accepted"
+msgstr ""
+
+msgid "active"
+msgstr ""
+
+msgid "Attached"
+msgstr ""
+
+msgid "Bounced"
+msgstr ""
+
+msgid "Complained"
+msgstr ""
+
+msgid "Critical"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "Dead letter"
+msgstr ""
+
+msgid "Decommissioned"
+msgstr ""
+
+msgid "Degraded"
+msgstr ""
+
+msgid "Delivered"
+msgstr ""
+
+msgid "Denied"
+msgstr ""
+
+msgid "Disclosed"
+msgstr ""
+
+msgid "Dispatched"
+msgstr ""
+
+msgid "Erasure"
+msgstr ""
+
+msgid "Export"
+msgstr ""
+
+msgid "File format"
+msgstr ""
+
+msgid "Filterable"
+msgstr ""
+
+msgid "Images and other media are not imported here: a media column rejects the file."
+msgstr ""
+
+msgid "Import"
+msgstr ""
+
+msgid "Included in free-text search (text and choice lists only)"
+msgstr ""
+
+msgid "Label (English)"
+msgstr ""
+
+msgid "Label (Indonesian)"
+msgstr ""
+
+msgid "Latest date"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Lowercase letters, digits and underscores, starting with a letter. It cannot be changed later."
+msgstr ""
+
+msgid "Maximum length"
+msgstr ""
+
+msgid "Maximum value"
+msgstr ""
+
+msgid "Maximum: {value}."
+msgstr ""
+
+msgid "Minimum length"
+msgstr ""
+
+msgid "Minimum value"
+msgstr ""
+
+msgid "Minimum: {value}."
+msgstr ""
+
+msgid "No attributes yet"
+msgstr ""
+
+msgid "Not filtered"
+msgstr ""
+
+msgid "Not set"
+msgstr ""
+
+msgid "Numbers use digits and a dot only (1234.5). A decimal comma or thousands separator is rejected. Dates are YYYY-MM-DD."
+msgstr ""
+
+msgid "Per-row report"
+msgstr ""
+
+msgid "Product attributes"
+msgstr ""
+
+msgid "Product attributes could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Products and variants"
+msgstr ""
+
+msgid "Result"
+msgstr ""
+
+msgid "Row"
+msgstr ""
+
+msgid "Rows are matched on the sku column: a product with that SKU is updated, any other SKU creates a product. Upload the file, validate it, then apply it."
+msgstr ""
+
+msgid "Save attributes"
+msgstr ""
+
+msgid "Searchable"
+msgstr ""
+
+msgid "Text"
+msgstr ""
+
+msgid "The attribute filters could not be applied: check the attribute, the condition and that the value matches the attribute's type."
+msgstr ""
+
+msgid "The file changed after it was validated. Validate it again before applying."
+msgstr ""
+
+msgid "The file has errors. Nothing was imported; fix the file and validate again."
+msgstr ""
+
+msgid "The file is valid. Review the report, then apply the import."
+msgstr ""
+
+msgid "The import was applied: {create} created, {update} updated, {unchanged} unchanged."
+msgstr ""
+
+msgid "The request failed. Please try again."
+msgstr ""
+
+msgid "This file is large, so only the rows with errors are listed. The counts above cover every row."
+msgstr ""
+
+msgid "This page could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Typed custom attributes for products and variants: define what can be recorded, how it is validated, and where it is searchable or visible."
+msgstr ""
+
+msgid "Unchanged"
+msgstr ""
+
+msgid "Update"
+msgstr ""
+
+msgid "Validate file"
+msgstr ""
+
+msgid "Visible in the admin"
+msgstr ""
+
+msgid "Visible on the storefront API"
+msgstr ""
+
+msgid "Whole number"
+msgstr ""
+
+msgid "Yes/No"
+msgstr ""
+
+msgid "You do not have permission to import or export the catalog."
+msgstr ""
+
+msgid "You do not have permission to view product attributes."
+msgstr ""
+
+msgid "contains"
+msgstr ""
+
+msgid "equals"
+msgstr ""
+
+msgid "is at least"
+msgstr ""
+
+msgid "is at most"
+msgstr ""
+
+msgid "is one of (comma-separated)"
+msgstr ""
+
+msgid "line {line}"
+msgstr ""
+
+msgid "{rows} rows checked: {create} to create, {update} to update, {unchanged} unchanged, {error} with errors."
+msgstr ""
+
+msgid "{count} attribute"
+msgid_plural "{count} attributes"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Catalog import/export"
+msgid "Failure"
+msgstr ""
+
+msgid "FCM"
+msgstr ""
+
+msgid "Head office"
+msgstr ""
+
+msgid "High"
+msgstr ""
+
+msgid "inactive"
+msgstr ""
+
+msgid "Info"
+msgstr ""
+
+msgid "In progress"
+msgstr ""
+
+msgid "In review"
+msgstr ""
+
+msgid "Interrupted"
+msgstr ""
+
+msgid "IP"
+msgstr ""
+
+msgid "Leased"
+msgstr ""
+
+msgid "Light"
+msgstr ""
+
+msgid "Low"
+msgstr ""
+
+msgid "Maintenance"
+msgstr ""
+
+msgid "Manual"
+msgstr ""
+
+msgid "Medium"
+msgstr ""
+
+msgid "Merged"
+msgstr ""
+
+msgid "Offline"
+msgstr ""
+
+msgid "Online"
+msgstr ""
+
+msgid "Organization"
+msgstr ""
+
+msgid "Orphaned"
+msgstr ""
+
+msgid "Partial"
+msgstr ""
+
+msgid "Pending approval"
+msgstr ""
+
+msgid "Pending upload"
+msgstr ""
+
+msgid "Pending verification"
+msgstr ""
+
+msgid "Person"
+msgstr ""
+
+msgid "Private"
+msgstr ""
+
+msgid "Reindex"
+msgstr ""
+
+msgid "Released"
+msgstr ""
+
+msgid "Resolved"
+msgstr ""
+
+msgid "Retry wait"
+msgstr ""
+
+msgid "Skipped"
+msgstr ""
+
+msgid "Starting"
 msgstr ""
 
 msgid "Succeeded"
@@ -7337,6 +8104,495 @@ msgid "Showing the {n} largest."
 msgstr ""
 
 msgid "Total still owed across {n} orders: {amount}."
+
+msgid "Success"
+msgstr ""
+
+msgid "Superseded"
+msgstr ""
+
+msgid "Unknown"
+msgstr ""
+
+msgid "Unlisted"
+msgstr ""
+
+msgid "Unsubscribed"
+msgstr ""
+
+msgid "Unverified"
+msgstr ""
+
+msgid "Uploaded"
+msgstr ""
+
+msgid "Validated"
+msgstr ""
+
+msgid "Verified"
+msgstr ""
+
+msgid "Warehouse"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+msgid "Web Push"
+msgstr ""
+
+#. Access-policy simulator verdict pill (Issue #864) — fallback when the
+#. decision had no matched policy to name.
+msgid "no policy matched"
+msgstr ""
+
+msgid "Legal holds, newest first"
+msgstr ""
+
+msgid "open-ended"
+msgstr ""
+
+msgid "No conflict"
+msgstr ""
+
+msgid "Subject:"
+msgstr ""
+
+msgid "Trigger:"
+msgstr ""
+
+msgid "Resolved via:"
+msgstr ""
+msgid "Awaiting redemption"
+msgstr ""
+
+msgid "{count} selected"
+msgstr ""
+
+msgid "Approve {count} selected comments?"
+msgstr ""
+
+msgid "Select all comments"
+msgstr ""
+
+msgid "Select comment from {author}"
+msgstr ""
+
+msgid "The bulk action failed."
+msgstr ""
+
+msgid "Bulk decision applied."
+msgstr ""
+
+msgid "Reason code for this decision:"
+msgstr ""
+
+msgid "A reason code is required to reject or mark spam."
+msgstr ""
+
+msgid "Anonymous"
+msgstr ""
+
+#. Mission Control 3D workspace (ahliweb/omes#265, ADR-0031)
+msgid "OMES Mission Control"
+msgstr ""
+
+msgid "Health report"
+msgstr ""
+
+msgid "Hermes subagent"
+msgstr ""
+
+msgid "Architecture plane"
+msgstr ""
+
+msgid "Capability"
+msgstr ""
+
+msgid "Repository milestone"
+msgstr ""
+
+msgid "Approval item"
+msgstr ""
+
+msgid "Agents"
+msgstr ""
+
+msgid "Infrastructure"
+msgstr ""
+
+msgid "Governance"
+msgstr ""
+
+msgid "AI privacy"
+msgstr ""
+
+msgid "OK"
+msgstr ""
+
+msgid "Informational"
+msgstr ""
+
+msgid "Live"
+msgstr ""
+
+msgid "Server inventory"
+msgstr ""
+
+msgid "Deployment view"
+msgstr ""
+
+msgid "Job status"
+msgstr ""
+
+msgid "Health readiness"
+msgstr ""
+
+msgid "Backup status"
+msgstr ""
+
+msgid "Hermes orchestration"
+msgstr ""
+
+msgid "Architecture view"
+msgstr ""
+
+msgid "Repository progress"
+msgstr ""
+
+msgid "Workflow approvals"
+msgstr ""
+
+msgid "Available"
+msgstr ""
+
+msgid "Unavailable"
+msgstr ""
+
+msgid "OMES"
+msgstr ""
+
+msgid "AWCMS"
+msgstr ""
+
+msgid "Open details"
+msgstr ""
+
+msgid "Open details for {name}"
+msgstr ""
+
+msgid "Observed {time}"
+msgstr ""
+
+msgid "Not observed"
+msgstr ""
+
+msgid "As of {time}"
+msgstr ""
+
+msgid "{shown} of {total} objects shown"
+msgstr ""
+
+msgid "{count} objects were left out to keep this view bounded. Use the canonical screens for the full list."
+msgstr ""
+
+msgid "Could not refresh the scene — showing the last known state, which may be out of date."
+msgstr ""
+
+msgid "The 3D view is unavailable in this browser. The object list below shows the same information."
+msgstr ""
+
+msgid "Mission Control"
+msgstr ""
+
+msgid "A read-only 3D view of OMES, Hermes and approval state, composed from the existing screens. The object list is the full, accessible equivalent."
+msgstr ""
+
+msgid "You do not have permission to view Mission Control."
+msgstr ""
+
+msgid "Mission Control could not be loaded right now. This is a problem reading it, not a healthy silence — please try again later."
+msgstr ""
+
+msgid "Additional workspace — the canonical details stay on the existing OMES screens. Every object links back to its screen."
+msgstr ""
+
+msgid "Live view"
+msgstr ""
+
+msgid "Historical view"
+msgstr ""
+
+msgid "Sources"
+msgstr ""
+
+msgid "Mission Control filters"
+msgstr ""
+
+msgid "Zone"
+msgstr ""
+
+msgid "All zones"
+msgstr ""
+
+msgid "All states"
+msgstr ""
+
+msgid "Reset view"
+msgstr ""
+
+msgid "Objects by zone"
+msgstr ""
+
+msgid "No objects to show"
+msgstr ""
+
+msgid "An empty scene is not a healthy scene — check the source status above. Sources you cannot read are omitted."
+msgstr ""
+
+msgid "Selected object"
+msgstr ""
+
+msgid "Select an object from the list or the scene to see its details."
+msgstr ""
+
+msgid "Source status"
+msgstr ""
+
+msgid "Source id"
+msgstr ""
+
+msgid "Source state"
+msgstr ""
+
+msgid "Visual state"
+msgstr ""
+
+msgid "Freshness"
+msgstr ""
+
+msgid "Observed at"
+msgstr ""
+
+msgid "Drag to orbit and scroll to zoom the 3D view. Keyboard: arrow keys move through the list, Enter selects an object, Escape clears the selection, 0 resets the view."
+msgstr ""
+
+#. Mission Control historical replay (ahliweb/omes#266, ADR-0031)
+msgid "Choose a start before the end, no more than 24 hours apart, and not in the future."
+msgstr ""
+
+msgid "Could not load the history for this range."
+msgstr ""
+
+msgid "Could not load the scene for this time. Still showing the scene as of {time}."
+msgstr ""
+
+msgid "Event {n} of {total} — {time}"
+msgstr ""
+
+msgid "Evidence gaps"
+msgstr ""
+
+msgid "Historical view. Showing recorded evidence as of {time}, not live state."
+msgstr ""
+
+msgid "Historical — {time}"
+msgstr ""
+
+msgid "History is unavailable right now. Showing the live view."
+msgstr ""
+
+msgid "History replay"
+msgstr ""
+
+msgid "Late arrival"
+msgstr ""
+
+msgid "Live view resumed. Showing current state."
+msgstr ""
+
+msgid "Load range"
+msgstr ""
+
+msgid "No evidence gaps were reported for this range."
+msgstr ""
+
+msgid "No evidence was retained in this range."
+msgstr ""
+
+msgid "Observed events"
+msgstr ""
+
+msgid "Play"
+msgstr ""
+
+msgid "Replay controls"
+msgstr ""
+
+msgid "Replay range"
+msgstr ""
+
+msgid "Replays recorded evidence only, at most 24 hours at a time. Objects whose source kept no history are shown as unknown, and gaps are listed rather than filled in. No actions are available in History."
+msgstr ""
+
+msgid "Return to live"
+msgstr ""
+
+msgid "Showing the first {count} events. Narrow the range to see the rest."
+msgstr ""
+
+msgid "Speed"
+msgstr ""
+
+msgid "Step back"
+msgstr ""
+
+msgid "Step forward"
+msgstr ""
+
+msgid "View mode"
+msgstr ""
+
+msgid "Window start"
+msgstr ""
+
+msgid "before the first retained observation"
+msgstr ""
+
+msgid "not retained: only current state exists"
+msgstr ""
+
+msgid "retention expired: older evidence was purged"
+msgstr ""
+
+msgid "source unavailable to you or unreadable"
+msgstr ""
+
+msgid "{source} — {reason} ({from} to {to})"
+msgstr ""
+
+#. Mission Control contextual actions and command palette items (ahliweb/omes#267, ADR-0031)
+msgid "Request status check"
+msgstr ""
+
+msgid "Request preflight check"
+msgstr ""
+
+msgid "Request start"
+msgstr ""
+
+msgid "Request stop"
+msgstr ""
+
+msgid "Request restart"
+msgstr ""
+
+msgid "Request update"
+msgstr ""
+
+msgid "Request backup"
+msgstr ""
+
+msgid "Request rollback"
+msgstr ""
+
+msgid "Cancel queued job"
+msgstr ""
+
+msgid "Approve failed job for retry"
+msgstr ""
+
+msgid "Request restore from this backup"
+msgstr ""
+
+msgid "Open in approval inbox"
+msgstr ""
+
+msgid "You do not hold the permission this action needs."
+msgstr ""
+
+msgid "The object's current state does not allow this action."
+msgstr ""
+
+msgid "The object could not be found."
+msgstr ""
+
+msgid "Not available in History."
+msgstr ""
+
+msgid "The target's last report is stale, so its current state is not confirmed. The request is still allowed."
+msgstr ""
+
+msgid "The target server is decommissioned. The request is still allowed."
+msgstr ""
+
+msgid "This backup is not marked completed or verified. The request is still allowed."
+msgstr ""
+
+msgid "Checking available actions…"
+msgstr ""
+
+msgid "Actions are unavailable right now. Use the canonical screen instead."
+msgstr ""
+
+msgid "No actions for this object."
+msgstr ""
+
+msgid "Approval required"
+msgstr ""
+
+msgid "Review before sending"
+msgstr ""
+
+msgid "Permission"
+msgstr ""
+
+msgid "Allowed for you (the server checks again when you send)"
+msgstr ""
+
+msgid "Required — nothing runs until a workflow decision is approved in the approval inbox"
+msgstr ""
+
+msgid "Not required"
+msgstr ""
+
+msgid "Existing endpoint"
+msgstr ""
+
+msgid "Idempotency-Key"
+msgstr ""
+
+msgid "Send request"
+msgstr ""
+
+msgid "Sending…"
+msgstr ""
+
+msgid "Send “{action}” for {target}? The server checks permission and approval again, and the outcome is not verified until the next refresh."
+msgstr ""
+
+msgid "Accepted — pending verification."
+msgstr ""
+
+msgid "Approval required — a workflow decision is pending in the approval inbox."
+msgstr ""
+
+msgid "Approval required, but this tenant has no active destructive-operation approval workflow. Nothing was recorded."
+msgstr ""
+
+msgid "Rejected by the server (HTTP {status}, {code}). Nothing was changed."
+msgstr ""
+
+msgid "Outcome unknown — check Operations (or Jobs, Backups) before retrying. A retry reuses the same Idempotency-Key, so it cannot duplicate a request the server already recorded."
+msgstr ""
+
+msgid "Open the record"
+msgstr ""
+
+msgid "Open approval inbox"
+msgstr ""
+
+msgid "Availability is advisory: the existing endpoints check permission, approval and state again when you send. Approval decisions are made only in the approval inbox."
 msgstr ""
 
 # Issue #284 (ADR-0028) — POS registers and cash-up.
@@ -7360,9 +8616,6 @@ msgid "A register with that code already exists."
 msgstr ""
 
 msgid "A user with approval permission has to decide this close."
-msgstr ""
-
-msgid "Adjustment"
 msgstr ""
 
 msgid "Adjustment (signed)"
@@ -7605,9 +8858,6 @@ msgstr ""
 msgid "Out"
 msgstr ""
 
-msgid "Pending approval"
-msgstr ""
-
 msgid "Per payment method"
 msgstr ""
 
@@ -7824,6 +9074,287 @@ msgstr ""
 msgid "Close attempts"
 msgstr ""
 
+#. Issue #288 — gift cards and store credit (ADR-0030)
+msgid "A reason is required."
+msgstr ""
+
+msgid "A refund goes back onto the same card"
+msgstr ""
+
+msgid "Accounts"
+msgstr ""
+
+msgid "Adjust the balance"
+msgstr ""
+
+msgid "Adjusted"
+msgstr ""
+
+msgid "Adjusted down"
+msgstr ""
+
+msgid "Adjusted up"
+msgstr ""
+
+msgid "All kinds"
+msgstr ""
+
+msgid "Balance"
+msgstr ""
+
+msgid "Balance ceiling"
+msgstr ""
+
+msgid "Balance differs from the ledger"
+msgstr ""
+
+msgid "By"
+msgstr ""
+
+msgid "Check and rebuild differing balances"
+msgstr ""
+
+msgid "Check balances"
+msgstr ""
+
+msgid "Code copied."
+msgstr ""
+
+msgid "Copy code"
+msgstr ""
+
+msgid "Could not copy; select the code and copy it by hand."
+msgstr ""
+
+msgid "Could not issue the card. Please try again."
+msgstr ""
+
+msgid "Could not run the check. Please try again."
+msgstr ""
+
+msgid "Could not run the expiry. Please try again."
+msgstr ""
+
+msgid "Could not save the change. Please try again."
+msgstr ""
+
+msgid "Could not save the program. Please try again."
+msgstr ""
+
+msgid "Differences found."
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+msgid "Enter the gift card or credit code for that payment line."
+msgstr ""
+
+msgid "Enter the gift card or credit code."
+msgstr ""
+
+msgid "Entry"
+msgstr ""
+
+msgid "Every balance agrees with its ledger."
+msgstr ""
+
+msgid "Expires after (days)"
+msgstr ""
+
+msgid "Expiry must be a whole number of days from 1 to 3650, or empty."
+msgstr ""
+
+msgid "Expiry run finished."
+msgstr ""
+
+msgid "Filter by kind"
+msgstr ""
+
+msgid "Frozen on disabled"
+msgstr ""
+
+msgid "Gift card"
+msgstr ""
+
+msgid "Gift card and store credit figures"
+msgstr ""
+
+msgid "Gift card or credit code"
+msgstr ""
+
+msgid "Gift card receipt"
+msgstr ""
+
+msgid "Gift cards and store credit"
+msgstr ""
+
+msgid "Gift cards and store credit are turned off for this store."
+msgstr ""
+
+msgid "Gift cards and store credit could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Issue"
+msgstr ""
+
+msgid "Issue a card or credit"
+msgstr ""
+
+msgid "Issue a card or credit above."
+msgstr ""
+
+msgid "Issue gift cards and store credit, track what is owed to cardholders, and keep the balances reconciled."
+msgstr ""
+
+msgid "Issued"
+msgstr ""
+
+msgid "It cannot be shown again. If it is lost, disable the account and issue a new one."
+msgstr ""
+
+msgid "Lapsed, not yet released"
+msgstr ""
+
+msgid "Ledger"
+msgstr ""
+
+msgid "Ledger disagrees with itself"
+msgstr ""
+
+msgid "Liability report"
+msgstr ""
+
+msgid "Load value"
+msgstr ""
+
+msgid "Loaded"
+msgstr ""
+
+msgid "Manage"
+msgstr ""
+
+msgid "Manage an account"
+msgstr ""
+
+msgid "No accounts yet"
+msgstr ""
+
+msgid "Older accounts"
+msgstr ""
+
+msgid "Owed now"
+msgstr ""
+
+msgid "Owed to cardholders"
+msgstr ""
+
+msgid "Present this code to redeem. Not exchangeable for cash."
+msgstr ""
+
+msgid "Program saved."
+msgstr ""
+
+msgid "Programs"
+msgstr ""
+
+msgid "Redemption without a matching ledger entry"
+msgstr ""
+
+msgid "Refunded to card"
+msgstr ""
+
+msgid "Release lapsed balances"
+msgstr ""
+
+msgid "Repaired balances."
+msgstr ""
+
+msgid "Save program"
+msgstr ""
+
+msgid "Show this code to the customer now"
+msgstr ""
+
+msgid "Status differs from the ledger"
+msgstr ""
+
+msgid "Store credit"
+msgstr ""
+
+msgid "That gift card or credit code was not recognised."
+msgstr ""
+
+msgid "That gift card or credit does not have enough balance for the amount entered."
+msgstr ""
+
+msgid "That gift card or credit is disabled or has expired."
+msgstr ""
+
+msgid "That kind is not enabled yet. Enable it under Programs first."
+msgstr ""
+
+msgid "That request was already used with different details. Reload and try again."
+msgstr ""
+
+msgid "That would pass the balance ceiling for this kind."
+msgstr ""
+
+msgid "That would take the balance below zero."
+msgstr ""
+
+msgid "The account is already in that state."
+msgstr ""
+
+msgid "The amount must be like 5000 or -5000.50 (negative takes value off), and not zero."
+msgstr ""
+
+msgid "The amount must be like 50000 or 50000.50, greater than zero."
+msgstr ""
+
+msgid "The ceiling must be an amount like 1000000 or empty."
+msgstr ""
+
+msgid "The check compares every balance with its ledger. A balance that differs can be rebuilt from the ledger; anything else is only reported."
+msgstr ""
+
+msgid "The code is shown once, right after you issue it - it is not stored, so copy or print it then."
+msgstr ""
+
+msgid "The print window was blocked by the browser."
+msgstr ""
+
+msgid "This account has expired; it takes no more entries."
+msgstr ""
+
+msgid "This account is disabled; enable it first, or choose Adjust."
+msgstr ""
+
+msgid "Too many code lookups. Wait a moment and try again."
+msgstr ""
+
+msgid "Turning a kind off stops new cards and top-ups; value already issued stays redeemable."
+msgstr ""
+
+msgid "Value issued and used per kind, {from} to {to}, by the day each entry was recorded."
+msgstr ""
+
+msgid "You do not have permission to view gift cards and store credit."
+msgstr ""
+
+msgid "{count} account"
+msgid_plural "{count} accounts"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} entry"
+msgid_plural "{count} entries"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Gift cards & credit"
+msgstr ""
+
 msgid "A cancelled or expired order cannot be documented."
 msgstr ""
 
@@ -7831,9 +9362,6 @@ msgid "A cancelled quotation cannot be offered or converted again."
 msgstr ""
 
 msgid "Accept"
-msgstr ""
-
-msgid "Accepted"
 msgstr ""
 
 msgid "A completed or cancelled work order cannot change."
@@ -7899,9 +9427,6 @@ msgstr ""
 msgid "Customer name"
 msgstr ""
 
-msgid "Customer phone"
-msgstr ""
-
 msgid "Discard"
 msgstr ""
 
@@ -7923,17 +9448,10 @@ msgstr ""
 msgid "From accepted quotation (optional id)"
 msgstr ""
 
-
 msgid "Held sales"
 msgstr ""
 
-msgid "High"
-msgstr ""
-
 msgid "Hold sale"
-msgstr ""
-
-msgid "In progress"
 msgstr ""
 
 msgid "Invoice"
@@ -7942,13 +9460,7 @@ msgstr ""
 msgid "Issue a document"
 msgstr ""
 
-msgid "Issued"
-msgstr ""
-
 msgid "Issue document"
-msgstr ""
-
-msgid "Low"
 msgstr ""
 
 msgid "Move"
@@ -8038,7 +9550,6 @@ msgstr ""
 msgid "Revise"
 msgstr ""
 
-
 msgid "Save quotation"
 msgstr ""
 
@@ -8119,6 +9630,212 @@ msgstr[1] ""
 msgid "Quotations, work orders and documents"
 msgstr ""
 
+msgid "Posted"
+msgstr ""
+
+msgid "QRIS (manual)"
+msgstr ""
+
+msgid "Bank transfer (manual)"
+msgstr ""
+
+msgid "Expenses"
+msgstr ""
+
+msgid "Record petty cash and operating expenses, approve the larger ones, and see them reflected in the drawer's cash-up."
+msgstr ""
+
+msgid "You do not have permission to view expenses."
+msgstr ""
+
+msgid "Expenses could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Expenses are turned off for this store."
+msgstr ""
+
+msgid "Could not record the expense. Please try again."
+msgstr ""
+
+msgid "The amount must be greater than zero, like 25000 or 25000.50."
+msgstr ""
+
+msgid "Choose the date the expense happened."
+msgstr ""
+
+msgid "An expense paid from the drawer must be paid in cash."
+msgstr ""
+
+msgid "That category is deactivated."
+msgstr ""
+
+msgid "The drawer session is not open, so it cannot take this expense."
+msgstr ""
+
+msgid "There is no open session on this register to take the cash back."
+msgstr ""
+
+msgid "Only the person who created this draft, or a supervisor, can change it."
+msgstr ""
+
+msgid "An expense cannot be approved by the person who created or submitted it."
+msgstr ""
+
+msgid "Only a draft can be changed."
+msgstr ""
+
+msgid "Enter the receipt's media object ID (a UUID)."
+msgstr ""
+
+msgid "A receipt must be a verified private file that you uploaded."
+msgstr ""
+
+msgid "That file is already used as a receipt or a protected download."
+msgstr ""
+
+msgid "The receipt could not be opened. Please try again."
+msgstr ""
+
+msgid "Category defined."
+msgstr ""
+
+msgid "A category with that code already exists."
+msgstr ""
+
+msgid "Could not save the category. Please try again."
+msgstr ""
+
+msgid "The threshold must be an amount like 50000 or 50000.50 (zero means every expense needs a second person)."
+msgstr ""
+
+msgid "Expense figures"
+msgstr ""
+
+msgid "Posted this month"
+msgstr ""
+
+msgid "Record an expense"
+msgstr ""
+
+msgid "Define an expense category below before recording an expense."
+msgstr ""
+
+msgid "Paid with"
+msgstr ""
+
+msgid "Paid to (optional)"
+msgstr ""
+
+msgid "Paid from drawer (optional)"
+msgstr ""
+
+msgid "Not from a drawer"
+msgstr ""
+
+msgid "A draft changes nothing yet. Post it to count it; an expense paid from the drawer then appears in that shift's cash-up."
+msgstr ""
+
+msgid "Filter expenses by status"
+msgstr ""
+
+msgid "Recorded by"
+msgstr ""
+
+msgid "No expenses yet"
+msgstr ""
+
+msgid "Record the first expense above."
+msgstr ""
+
+msgid "Drawer"
+msgstr ""
+
+msgid "Post"
+msgstr ""
+
+msgid "Discard this draft?"
+msgstr ""
+
+msgid "The draft is discarded and cannot be posted. Nothing was counted, so no cash-up changes."
+msgstr ""
+
+msgid "Reject this expense?"
+msgstr ""
+
+msgid "It goes back to a draft with your note, so it can be corrected and submitted again."
+msgstr ""
+
+msgid "Why is it rejected? (required)"
+msgstr ""
+
+msgid "Reverse this expense?"
+msgstr ""
+
+msgid "A compensating entry is added and the original is kept. If it was paid from a drawer, the cash goes back into an open session of that register."
+msgstr ""
+
+msgid "Reverse"
+msgstr ""
+
+msgid "Why is it reversed? (required)"
+msgstr ""
+
+msgid "View receipt"
+msgstr ""
+
+msgid "Attach a private receipt"
+msgstr ""
+
+msgid "Upload the receipt as a private file in the media library first, then enter its media object ID here."
+msgstr ""
+
+msgid "Attach"
+msgstr ""
+
+msgid "Receipt media object ID"
+msgstr ""
+
+msgid "Attach receipt"
+msgstr ""
+
+msgid "Older expenses"
+msgstr ""
+
+msgid "Export expenses"
+msgstr ""
+
+msgid "At most 366 days and 10,000 rows per file."
+msgstr ""
+
+msgid "Expense categories"
+msgstr ""
+
+msgid "Define category"
+msgstr ""
+
+msgid "Define the first category above."
+msgstr ""
+
+msgid "Deactivate this category?"
+msgstr ""
+
+msgid "A deactivated category accepts no new expense. Existing expenses and reports are kept."
+msgstr ""
+
+msgid "Expense approval threshold"
+msgstr ""
+
+msgid "An expense above this amount needs a second person: someone who can approve expenses and did not create or submit it. Zero means every expense does."
+msgstr ""
+
+msgid "{count} expense"
+msgid_plural "{count} expenses"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Petty cash and expenses"
+msgstr ""
+
 msgid "A cancelled quotation cannot be sent."
 msgstr ""
 
@@ -8132,9 +9849,6 @@ msgid "Deliver {number}"
 msgstr ""
 
 msgid "Delivery history"
-msgstr ""
-
-msgid "Details"
 msgstr ""
 
 msgid "Include a private link to the print view (expires in {hours} hours)"
@@ -8192,9 +9906,6 @@ msgid "This is a transactional message about the customer's own purchase, built 
 msgstr ""
 
 msgid "Too many deliveries were requested for this document. Try again later."
-msgstr ""
-
-msgid "Unknown"
 msgstr ""
 
 msgid "Waiting to be sent"

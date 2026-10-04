@@ -44,6 +44,7 @@ import "../../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../../lib/logging/error-log";
 import { getTranslatorFor } from "../../../lib/i18n";
+import { fetchCommerceFeatures } from "../../../modules/commerce/application/commerce-feature-gate";
 import {
   fetchOrderDetailForAdmin,
   toAdminOrderRecord
@@ -53,6 +54,7 @@ import {
   type OrderPaymentSummary
 } from "../../../modules/commerce/application/payment-allocation-directory";
 import { toCents } from "../../../modules/commerce/domain/price-calculation";
+import { findOpenSessionForCashier } from "../../../modules/commerce/application/register-session-directory";
 import { mediaLibraryPortAdapter } from "../../../modules/media-library/application/media-library-port-adapter";
 import {
   createCommerceLabels,
@@ -107,6 +109,10 @@ const screen = await loadAdminScreen({
     const canReadPayments = entry[1] === true;
     const canRecordPayment = entry[2] === true;
     const canRecordReversal = entry[3] === true;
+    // Issue #288 - gift card / store credit tenders only while the tenant's
+    // `storedValue` feature is on (the payments route refuses them otherwise).
+    const storedValueEnabled = (await fetchCommerceFeatures(tx, ssr.tenantId))
+      .storedValue;
     if (!orderId || !canReadOrder) {
       return {
         order: null,
@@ -114,7 +120,9 @@ const screen = await loadAdminScreen({
         canReadPayments,
         canRecordPayment,
         canRecordReversal,
-        payments: null as OrderPaymentSummary | null
+        storedValueEnabled,
+        payments: null as OrderPaymentSummary | null,
+        drawer: null as { sessionId: string; registerCode: string } | null
       };
     }
     const detail = await fetchOrderDetailForAdmin(
@@ -130,20 +138,31 @@ const screen = await loadAdminScreen({
         canReadPayments,
         canRecordPayment,
         canRecordReversal,
-        payments: null as OrderPaymentSummary | null
+        storedValueEnabled,
+        payments: null as OrderPaymentSummary | null,
+        drawer: null as { sessionId: string; registerCode: string } | null
       };
     }
     const record = await toAdminOrderRecord(tx, ssr.tenantId, detail);
     const payments = canReadPayments
       ? await fetchOrderPaymentSummary(tx, ssr.tenantId, orderId)
       : null;
+    // Issue #284 (ADR-0028 D2): a cashier with an open drawer can pay a refund
+    // from it, so today's expected cash drops instead of an earlier shift's.
+    const drawer =
+      canRecordReversal &&
+      (await fetchCommerceFeatures(tx, ssr.tenantId)).register
+        ? await findOpenSessionForCashier(tx, ssr.tenantId, ssr.tenantUserId)
+        : null;
     return {
       order: record,
       canReadOrder,
       canReadPayments,
       canRecordPayment,
       canRecordReversal,
-      payments
+      storedValueEnabled,
+      payments,
+      drawer
     };
   },
   onError: (error) => {
@@ -166,6 +185,9 @@ const canRecordPayment =
   screen.state === "allowed" && screen.data.canRecordPayment;
 const canRecordReversal =
   screen.state === "allowed" && screen.data.canRecordReversal;
+const storedValueEnabled =
+  screen.state === "allowed" && screen.data.storedValueEnabled;
+const drawer = screen.state === "allowed" ? screen.data.drawer : null;
 /** Succeeded payment legs that still have something left to reverse — the reversal form's choices. */
 const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
   if (leg.kind !== "payment" || leg.status !== "succeeded") return false;
@@ -290,6 +312,23 @@ const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
                 "That reversal is more than what is left of the payment."
               )}
               data-msg-not-reversible={t("That payment cannot be reversed.")}
+              data-msg-code-required={t("Enter the gift card or credit code.")}
+              data-msg-sv-not-found={t(
+                "That gift card or credit code was not recognised."
+              )}
+              data-msg-sv-unavailable={t(
+                "That gift card or credit is disabled or has expired."
+              )}
+              data-msg-sv-insufficient={t(
+                "That gift card or credit does not have enough balance for the amount entered."
+              )}
+              data-msg-sv-throttled={t(
+                "Too many code lookups. Wait a moment and try again."
+              )}
+
+              data-msg-closing={t(
+                "This sale's register shift is being closed. Record the payment once the close is decided."
+              )}
               data-msg-generic={t(
                 "Could not record this. Check the amount and try again."
               )}
@@ -367,6 +406,12 @@ const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
                               labels.paymentTenderType,
                               leg.tenderType
                             )}
+                            {leg.storedValue && (
+                              <span class="cell-muted">
+                                {" "}
+                                <code>{leg.storedValue.maskedCode}</code>
+                              </span>
+                            )}
                           </td>
                           <td data-label={t("Amount")}>
                             {leg.kind === "reversal" ? "−" : ""}
@@ -415,7 +460,31 @@ const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
                       <option value="manual_bank_transfer">
                         {t("Bank transfer")}
                       </option>
+                      {storedValueEnabled && (
+                        <option value="gift_card">{t("Gift card")}</option>
+                      )}
+                      {storedValueEnabled && (
+                        <option value="store_credit">
+                          {t("Store credit")}
+                        </option>
+                      )}
                     </select>
+                  </label>
+                  <label
+                    for="order-payment-code"
+                    id="order-payment-code-label"
+                    hidden
+                  >
+                    {t("Gift card or credit code")}
+                    <input
+                      type="text"
+                      id="order-payment-code"
+                      name="storedValueCode"
+                      maxlength="64"
+                      autocomplete="off"
+                      autocapitalize="characters"
+                      spellcheck="false"
+                    />
                   </label>
                   <label for="order-payment-amount">
                     {t("Amount received")}
@@ -493,6 +562,17 @@ const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
                       ))}
                     </select>
                   </label>
+                  {drawer && (
+                    <label class="admin-checkbox-label">
+                      <input
+                        type="checkbox"
+                        name="fromDrawer"
+                        value={drawer.sessionId}
+                      />{" "}
+                      {t("Pay this refund from my open register")} (
+                      {drawer.registerCode})
+                    </label>
+                  )}
                   <label for="order-reversal-amount">
                     {t("Amount to reverse (blank = all that is left)")}
                     <input
@@ -518,7 +598,12 @@ const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
                   <p class="form-hint">
                     {t(
                       "A reversal records that money was given back. It does not move the money and does not cancel the order."
-                    )}
+                    )}{" "}
+                    {drawer
+                      ? t(
+                          "Tick the box if cash leaves your open register for this refund (for a sale from an earlier shift); otherwise add a cash-out movement to the register session."
+                        )
+                      : ""}
                   </p>
                   <div class="admin-form-actions">
                     <button
@@ -620,7 +705,12 @@ const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
       OVERPAYMENT: m("msgOverpayment"),
       ORDER_NOT_PAYABLE: m("msgNotPayable"),
       REVERSAL_EXCEEDS_PAYMENT: m("msgExceeds"),
-      PAYMENT_NOT_REVERSIBLE: m("msgNotReversible")
+      PAYMENT_NOT_REVERSIBLE: m("msgNotReversible"),
+      STORED_VALUE_NOT_FOUND: m("msgSvNotFound"),
+      STORED_VALUE_UNAVAILABLE: m("msgSvUnavailable"),
+      STORED_VALUE_INSUFFICIENT: m("msgSvInsufficient"),
+      STORED_VALUE_LOOKUP_THROTTLED: m("msgSvThrottled"),
+      REGISTER_SESSION_CLOSING: m("msgClosing")
     };
     return map[code ?? ""] ?? m("msgGeneric");
   }
@@ -629,6 +719,16 @@ const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
     "order-payment-form"
   ) as HTMLFormElement | null;
   const paymentError = messageBox("order-payment-error");
+  /** Issue #288 - a gift card / store credit tender names its account by code. */
+  const isStoredValue = (type: string): boolean =>
+    type === "gift_card" || type === "store_credit";
+  const tenderSelect = document.getElementById(
+    "order-payment-tender"
+  ) as HTMLSelectElement | null;
+  const codeLabel = document.getElementById("order-payment-code-label");
+  tenderSelect?.addEventListener("change", () => {
+    if (codeLabel) codeLabel.hidden = !isStoredValue(tenderSelect.value);
+  });
   paymentForm?.addEventListener("submit", async (event) => {
     event.preventDefault();
     paymentError.clear();
@@ -636,6 +736,12 @@ const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
     const amount = String(data.get("amount") ?? "").trim();
     if (!MONEY.test(amount)) {
       paymentError.show(m("msgGeneric"));
+      return;
+    }
+    const tenderType = String(data.get("tenderType") ?? "cash");
+    const storedValueCode = String(data.get("storedValueCode") ?? "").trim();
+    if (isStoredValue(tenderType) && storedValueCode === "") {
+      paymentError.show(m("msgCodeRequired"));
       return;
     }
     const submit = document.getElementById(
@@ -648,10 +754,13 @@ const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
         "POST",
         `/api/v1/commerce/orders/${orderIdForPayments}/payments`,
         {
-          tenderType: String(data.get("tenderType") ?? "cash"),
+          tenderType,
           amount,
-          reference: String(data.get("reference") ?? "").trim() || null,
-          note: String(data.get("note") ?? "").trim() || null
+          reference: isStoredValue(tenderType)
+            ? null
+            : String(data.get("reference") ?? "").trim() || null,
+          note: String(data.get("note") ?? "").trim() || null,
+          ...(isStoredValue(tenderType) ? { storedValueCode } : {})
         },
         { "Idempotency-Key": crypto.randomUUID() }
       );
@@ -688,7 +797,11 @@ const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
       const { ok, errorCode } = await sendJsonForData(
         "POST",
         `/api/v1/commerce/orders/${orderIdForPayments}/payments/${encodeURIComponent(String(data.get("paymentId") ?? ""))}/reversals`,
-        { amount: amount === "" ? null : amount, note },
+        {
+          amount: amount === "" ? null : amount,
+          note,
+          registerSessionId: String(data.get("fromDrawer") ?? "") || null
+        },
         { "Idempotency-Key": crypto.randomUUID() }
       );
       if (!ok) {

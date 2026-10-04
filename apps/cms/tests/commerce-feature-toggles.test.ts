@@ -20,20 +20,29 @@ import { toPublicRecord } from "../src/modules/commerce/application/store-settin
 // ---------------------------------------------------------------------------
 
 describe("resolveCommerceFeatures", () => {
-  test("defaults every flag to true when settings are absent, except `register` (Issue #284), which adds an obligation and so defaults OFF", () => {
+  test("defaults every flag to true when settings are absent, except `register` (Issue #284) and `storedValue` (Issue #288), which add an obligation / a liability and so default OFF", () => {
     expect(DEFAULT_COMMERCE_FEATURES.register).toBe(false);
+    expect(DEFAULT_COMMERCE_FEATURES.loyalty).toBe(false);
+    expect(DEFAULT_COMMERCE_FEATURES.storedValue).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.documents).toBe(false);
+    expect(DEFAULT_COMMERCE_FEATURES.expenses).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.documentDelivery).toBe(false);
     expect(
       Object.entries(DEFAULT_COMMERCE_FEATURES)
         .filter(
           ([key]) =>
             key !== "register" &&
+            key !== "loyalty" &&
+            key !== "storedValue" &&
             key !== "documents" &&
+            key !== "expenses" &&
             key !== "documentDelivery"
         )
         .every(([, value]) => value === true)
     ).toBe(true);
+  });
+
+  test("defaults every pre-#289 flag to true (and loyalty, new in #289, to false) when settings are absent", () => {
     expect(resolveCommerceFeatures(undefined)).toEqual(
       DEFAULT_COMMERCE_FEATURES
     );
@@ -46,11 +55,31 @@ describe("resolveCommerceFeatures", () => {
     expect(resolved).toEqual({
       pos: false,
       inbox: true,
+      documents: false,
       campaigns: true,
       gateway: true,
       courier: true,
       register: false,
+      loyalty: false,
+      storedValue: false,
+      expenses: false,
+      documentDelivery: false
+    });
+  });
+
+  test("loyalty (Issue #289) defaults OFF and can be turned on without disturbing the other flags", () => {
+    expect(DEFAULT_COMMERCE_FEATURES.loyalty).toBe(false);
+    expect(resolveCommerceFeatures({ features: { loyalty: true } })).toEqual({
+      pos: true,
       documents: false,
+      inbox: true,
+      campaigns: true,
+      gateway: true,
+      courier: true,
+      register: false,
+      loyalty: true,
+      storedValue: false,
+      expenses: false,
       documentDelivery: false
     });
   });
@@ -65,29 +94,38 @@ describe("resolveCommerceFeatures", () => {
   test("every flag can be turned off", () => {
     const resolved = resolveCommerceFeatures({
       features: {
+        documents: false,
         pos: false,
         inbox: false,
         campaigns: false,
         gateway: false,
         courier: false,
         register: false,
-        documents: false,
+        loyalty: false,
+        storedValue: false,
+        expenses: false,
         documentDelivery: false
       }
     });
     expect(resolved).toEqual({
+      documents: false,
       pos: false,
       inbox: false,
       campaigns: false,
       gateway: false,
       courier: false,
       register: false,
-      documents: false,
+      loyalty: false,
+      storedValue: false,
+      expenses: false,
       documentDelivery: false
     });
-    // ...and the one flag that defaults off can be turned on.
+    // ...and the flags that default off can be turned on.
     expect(
       resolveCommerceFeatures({ features: { register: true } }).register
+    ).toBe(true);
+    expect(
+      resolveCommerceFeatures({ features: { storedValue: true } }).storedValue
     ).toBe(true);
   });
 });
