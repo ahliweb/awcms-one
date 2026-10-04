@@ -1396,7 +1396,15 @@ export const READER_BUDGET_BYTES = 24_000;
  * merged build: the Deliver dialog and its client module on the documents
  * screen, on top of 385,852 B; a measurement, not a sum.
  */
-export const APP_BUDGET_BYTES = 391_100;
+/*
+ * **Final: 405,000 B when awcms-one#292 (barcodes, labels and the cashier
+ * keyboard layer, ADR-0032) was merged onto main after #286, #288, #294 and
+ * #295** — MEASURED 404,920 B on the merged build: the labels screen and the
+ * POS scan/shortcut layer (which bundles `lib/ui/pos-keyboard-client.ts` and
+ * the pure `domain/pos-scan.ts`/`pos-shortcuts.ts`) on top of 390,951 B, the
+ * same ~14 kB the issue measured on its own baseline; a measurement, not a sum.
+ */
+export const APP_BUDGET_BYTES = 405_000;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

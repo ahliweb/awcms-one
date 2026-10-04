@@ -502,6 +502,16 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/barcodes/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/barcodes/lookup.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/campaigns/[id]/cancel.ts",
       "workClass": "interactive",
       "source": "factory"

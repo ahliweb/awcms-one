@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:8dab94bd876c08f354daaf94423fa41ad55a4c1d0b763817b43488a7a7448d6f -->
+<!-- i18n-source-hash: sha256:3b898a7b0d1346ab83a9533647837ebf5983af52408f9e3d158d1fc10d981b61 -->
 
 # `commerce`
 
@@ -1345,6 +1345,15 @@ fitur berada di balik `features.loyalty`, default **MATI**.
 
 | Bagian | Lokasi | Fungsinya |
 | ------ | ------ | --------- |
+
+## Barcode, label, input pemindai, dan pintasan kasir - TERIMPLEMENTASI (Issue #292, epic #281 - [ADR-0032](../../../../../docs/adr/0032-barcodes-are-a-derived-identifier-and-the-cashier-keyboard-layer-is-chord-only.md))
+
+Dua kolom `barcode` nullable (`sql/975`: produk dan varian), dua izin (`commerce.barcodes.{read,update}`, `sql/976`), tanpa tabel baru.
+
+- **Lokasi kode.** `domain/barcode.ts` (digit pemeriksa GTIN, kebijakan validasi, encoder Code 128 / EAN-13 / EAN-8, perender SVG, opsi label - murni), `domain/pos-scan.ts` (parsing kolom pindai dan `ScanBurstDetector`, diberi cap waktu eksplisit - murni), `domain/pos-shortcuts.ts` (kebijakan kombinasi, bentrok, pelapisan bawaan -> tenant -> pengguna - murni), `application/barcode-directory.ts` (lookup, katalog, penetapan, baris label), `application/barcode-http.ts` (guard, gerbang fitur, pengaturan pintasan tenant), rute di `pages/api/v1/commerce/barcodes/`, layar `pages/admin/commerce-labels.astro`, dan sisi klien `src/lib/ui/pos-keyboard-client.ts` (satu-satunya tempat skrip layar POS dijangkau: satu kait `addScanned`, sisanya id elemen).
+- **Aturan yang harus dijaga perubahan.** Barcode adalah pengenal, bukan otoritas: otorisasi pemanggil terlebih dahulu. Simbologi tetap diturunkan. Keunikan adalah tugas database (indeks parsial + trigger lintas tabel); jangan ganti advisory lock berstrip dengan satu lock per kode (menghabiskan tabel kunci pada pemuatan massal). Lookup yang meleset adalah satu `404` netral. SVG label hanya berisi angka dan teks tenant di-escape, tidak pernah `set:html`. Pintasan adalah kombinasi - tidak pernah karakter polos, tidak pernah tombol yang dicadangkan peramban - dan detektor tidak pernah aktif di kolom teks.
+- **Feature flag.** `features.barcode` bawaannya MATI (flag ketiga seperti itu, setelah `register` dan `documents`).
+- **Ditunda.** Beberapa barcode per barang, barcode bundel (#290, terblokir oleh #282), barcode dengan harga/berat tertanam, ekspor label PDF, simbologi lain, layar penyunting pintasan tingkat tenant, penyimpanan pintasan per pengguna di server.
 
 ## Pengiriman dokumen — TERIMPLEMENTASI (Issue #295, epic #281 — [ADR-0034](../../../../../docs/adr/0034-commercial-documents-are-delivered-through-the-existing-outboxes-as-transactional-messages-built-from-immutable-sources.md))
 

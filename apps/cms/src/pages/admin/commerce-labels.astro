@@ -1,0 +1,651 @@
+---
+/**
+ * Barcodes and labels (Issue #292, epic #281, ADR-0032). Entry is any-of
+ * `commerce.barcodes.read` (browse + print) / `commerce.barcodes.update`
+ * (assign), and the whole screen sits behind the tenant's `barcode` feature
+ * (default OFF): with it off the page renders one notice pointing at the
+ * settings screen, matching the routes' own `409 FEATURE_DISABLED`.
+ *
+ * Three jobs on one page, none of which needs a client island beyond the
+ * assign box and the print button:
+ *
+ * 1. Browse the products (without variants) and variants of the tenant, filter
+ *    by text or by "with / without a barcode" - a plain GET form.
+ * 2. Assign or clear a barcode per row - one `PUT /api/v1/commerce/barcodes`
+ *    each, the inline result announced through an `aria-live` region.
+ * 3. Select rows, choose a layout (columns, copies, label size, which of
+ *    name / price / SKU to print) and PREVIEW the sheet - a second plain GET
+ *    that renders the labels server-side, so the sheet is produced with no
+ *    script at all and "Print" is just `window.print()` over `@media print`
+ *    CSS that hides everything but the sheet.
+ *
+ * ## Why the labels are safe to render
+ *
+ * The bars are an SVG made only of numbers (`domain/barcode.ts`'s
+ * `renderBarcodeSvg`); every piece of tenant text (name, SKU, code, price) is an
+ * ordinary Astro expression, escaped by the framework - never `set:html`. The
+ * layout numbers reach the `style` attribute only after being clamped to
+ * integers by `parseLabelSheetOptions`. A code is rendered ONLY if it
+ * re-validates as a barcode, so a hand-edited database row cannot smuggle
+ * anything onto a label.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import { formatCurrency } from "../../lib/i18n/format";
+import { fetchCommerceFeatures } from "../../modules/commerce/application/commerce-feature-gate";
+import {
+  listBarcodeCatalog,
+  loadLabelRows,
+  BARCODE_CATALOG_PAGE_SIZE,
+  type BarcodeCatalogPage,
+  type BarcodeCatalogRow
+} from "../../modules/commerce/application/barcode-directory";
+import {
+  encodeBarcode,
+  LABEL_LIMITS,
+  parseLabelSheetOptions,
+  parseLabelTargets,
+  plannedLabelCount,
+  renderBarcodeSvg,
+  validateBarcode
+} from "../../modules/commerce/domain/barcode";
+
+const ssr = Astro.locals.ssrContext!;
+const locale = Astro.locals.locale;
+const { t, tn } = getTranslatorFor(locale);
+
+const READ_ENTRY = {
+  moduleKey: "commerce",
+  activityCode: "barcodes",
+  action: "read"
+} as const;
+const UPDATE_ENTRY = {
+  moduleKey: "commerce",
+  activityCode: "barcodes",
+  action: "update"
+} as const;
+
+const params = Astro.url.searchParams;
+const q = (params.get("q") ?? "").slice(0, 100);
+const barcodeFilterParam = params.get("barcode");
+const barcodeFilter =
+  barcodeFilterParam === "with" || barcodeFilterParam === "without"
+    ? barcodeFilterParam
+    : undefined;
+const pageParam = params.get("page") ?? "0";
+const page = /^\d{1,5}$/.test(pageParam) ? Number.parseInt(pageParam, 10) : 0;
+const options = parseLabelSheetOptions(params);
+const targets = parseLabelTargets(params.getAll("ids").join(","));
+const previewing = params.get("preview") === "1" && targets.length > 0;
+
+const money = (value: string): string =>
+  formatCurrency(locale, value, "IDR", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: [READ_ENTRY, UPDATE_ENTRY],
+  load: async ({ tx, entry }) => {
+    const features = await fetchCommerceFeatures(tx, ssr.tenantId);
+    const canRead = entry[0] === true;
+    const canUpdate = entry[1] === true;
+    const enabled = features.barcode;
+    const catalog: BarcodeCatalogPage | null =
+      enabled && canRead
+        ? await listBarcodeCatalog(tx, ssr.tenantId, {
+            q,
+            barcode: barcodeFilter,
+            page
+          })
+        : null;
+    const sheetRows: BarcodeCatalogRow[] =
+      enabled && canRead && previewing
+        ? await loadLabelRows(tx, ssr.tenantId, targets)
+        : [];
+    return { enabled, canRead, canUpdate, catalog, sheetRows };
+  },
+  onError: (error) => {
+    logAdminPageError("admin/commerce-labels.astro: failed to load", error, {
+      correlationId: Astro.locals.correlationId
+    });
+  }
+});
+
+const allowed = screen.state === "allowed";
+const denied = screen.state === "denied";
+const loadError = screen.state === "error";
+const data = screen.state === "allowed" ? screen.data : null;
+const enabled = data?.enabled === true;
+const canRead = data?.canRead === true;
+const canUpdate = data?.canUpdate === true;
+const catalog = data?.catalog ?? null;
+
+const rowKey = (row: BarcodeCatalogRow): string =>
+  `${row.productId}${row.variantId ? `:${row.variantId}` : ""}`;
+const rowName = (row: BarcodeCatalogRow): string =>
+  row.variantLabel ? `${row.name} - ${row.variantLabel}` : row.name;
+const selected = new Set(
+  targets.map(
+    (target) =>
+      `${target.productId}${target.variantId ? `:${target.variantId}` : ""}`
+  )
+);
+
+/** The labels to print: each sheet row repeated `copies` times, capped. */
+type Label = {
+  name: string;
+  sku: string | null;
+  price: string;
+  code: string | null;
+  svg: string | null;
+};
+const labelsToPrint: Label[] = [];
+if (previewing && data) {
+  const budget = plannedLabelCount(data.sheetRows.length, options);
+  outer: for (const row of data.sheetRows) {
+    const checked = row.barcode ? validateBarcode(row.barcode) : null;
+    const svg = checked?.valid
+      ? renderBarcodeSvg(encodeBarcode(checked.code))
+      : null;
+    for (let copy = 0; copy < options.copies; copy += 1) {
+      if (labelsToPrint.length >= budget) break outer;
+      labelsToPrint.push({
+        name: rowName(row),
+        sku: row.sku,
+        price: money(row.price),
+        code: checked?.valid ? checked.code : null,
+        svg
+      });
+    }
+  }
+}
+const sheetStyle = `--label-cols:${options.columns};--label-w:${options.widthMm}mm;--label-h:${options.heightMm}mm;`;
+
+function pageHref(next: number): string {
+  const link = new URLSearchParams();
+  if (q) link.set("q", q);
+  if (barcodeFilter) link.set("barcode", barcodeFilter);
+  if (next > 0) link.set("page", String(next));
+  const query = link.toString();
+  return `/admin/commerce-labels${query ? `?${query}` : ""}`;
+}
+---
+
+<AdminLayout
+  title={t("Barcodes and labels")}
+  description={t(
+    "Give products and variants a scannable barcode and print label sheets."
+  )}
+>
+  {denied && (
+    <p class="state-notice fade-in-up" id="labels-denied" role="status">
+      {t("You do not have permission to manage barcodes.")}
+    </p>
+  )}
+  {loadError && (
+    <p class="state-notice fade-in-up" id="labels-error" role="alert">
+      {t(
+        "The barcodes screen could not be loaded right now. Please try again later."
+      )}
+    </p>
+  )}
+  {allowed && !enabled && (
+    <p
+      class="state-notice fade-in-up"
+      id="labels-feature-disabled"
+      role="status"
+    >
+      {t("Barcodes and labels are turned off for this store.")}{" "}
+      <a class="quick-link" href="/admin/commerce-settings">
+        {t("Turn it on under Features in the store settings.")}
+      </a>
+    </p>
+  )}
+
+  {allowed && enabled && !canRead && (
+    <p class="state-notice fade-in-up" id="labels-read-denied" role="status">
+      {t("You do not have permission to read the barcode catalogue.")}
+    </p>
+  )}
+
+  {allowed && enabled && canRead && catalog && (
+    <section
+      class="fade-in-up"
+      id="labels-root"
+      aria-labelledby="labels-heading"
+      data-can-update={canUpdate ? "true" : "false"}
+      data-msg-saved={t("Barcode saved.")}
+      data-msg-cleared={t("Barcode cleared.")}
+      data-msg-duplicate={t(
+        "That barcode is already used by another product or variant."
+      )}
+      data-msg-invalid={t(
+        "That barcode is not valid. Use 1 to 48 visible characters; an 8, 12, 13 or 14 digit number must have a correct GTIN check digit."
+      )}
+      data-msg-failed={t("Could not save the barcode. Please try again.")}
+    >
+      <h2 id="labels-heading">{t("Barcodes and labels")}</h2>
+
+      <form method="get" class="admin-filter-form" role="search">
+        <label>
+          {t("Search")}
+          <input
+            type="search"
+            name="q"
+            value={q}
+            maxlength="100"
+            placeholder={t("Name, SKU or barcode")}
+          />
+        </label>
+        <label>
+          {t("Barcode")}
+          <select name="barcode">
+            <option value="" selected={!barcodeFilter}>
+              {t("All")}
+            </option>
+            <option value="with" selected={barcodeFilter === "with"}>
+              {t("With a barcode")}
+            </option>
+            <option value="without" selected={barcodeFilter === "without"}>
+              {t("Without a barcode")}
+            </option>
+          </select>
+        </label>
+        <button type="submit" class="module-toggle">
+          {t("Filter")}
+        </button>
+      </form>
+
+      <p
+        id="labels-status"
+        class="form-hint"
+        role="status"
+        aria-live="polite"
+      />
+
+      <form method="get" id="labels-layout-form" class="admin-form">
+        <input type="hidden" name="preview" value="1" />
+        <input type="hidden" name="layout" value="1" />
+        {q && <input type="hidden" name="q" value={q} />}
+        {barcodeFilter && (
+          <input type="hidden" name="barcode" value={barcodeFilter} />
+        )}
+        {page > 0 && <input type="hidden" name="page" value={String(page)} />}
+
+        <div class="data-table-scroll">
+          <table class="data-table data-table--stack" id="labels-table">
+            <caption class="sr-only">{t("Products and variants")}</caption>
+            <thead>
+              <tr>
+                <th scope="col">{t("Print")}</th>
+                <th scope="col">{t("Name")}</th>
+                <th scope="col">{t("SKU")}</th>
+                <th scope="col">{t("Price")}</th>
+                <th scope="col">{t("Barcode")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {catalog.items.length === 0 && (
+                <tr>
+                  <td colspan="5" class="cell-muted">
+                    {t("No products match.")}
+                  </td>
+                </tr>
+              )}
+              {catalog.items.map((row) => (
+                <tr data-row-key={rowKey(row)}>
+                  <td data-label={t("Print")}>
+                    <input
+                      type="checkbox"
+                      name="ids"
+                      value={rowKey(row)}
+                      checked={selected.has(rowKey(row))}
+                      aria-label={`${t("Print")}: ${rowName(row)}`}
+                    />
+                  </td>
+                  <td data-label={t("Name")}>{rowName(row)}</td>
+                  <td data-label={t("SKU")}>{row.sku ?? "—"}</td>
+                  <td data-label={t("Price")}>{money(row.price)}</td>
+                  <td data-label={t("Barcode")}>
+                    {canUpdate ? (
+                      <span class="labels-assign">
+                        <input
+                          type="text"
+                          class="labels-code-input"
+                          value={row.barcode ?? ""}
+                          maxlength="48"
+                          autocomplete="off"
+                          spellcheck="false"
+                          data-product-id={row.productId}
+                          data-variant-id={row.variantId ?? ""}
+                          data-original={row.barcode ?? ""}
+                          aria-label={`${t("Barcode")}: ${rowName(row)}`}
+                        />
+                        <button
+                          type="button"
+                          class="btn-inline"
+                          data-action="save-barcode"
+                        >
+                          {t("Save")}
+                        </button>
+                      </span>
+                    ) : (
+                      <span>{row.barcode ?? "—"}</span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <nav class="row-actions" aria-label={t("Pagination")}>
+          {page > 0 && (
+            <a class="quick-link" href={pageHref(page - 1)}>
+              {t("Previous page")}
+            </a>
+          )}
+          {catalog.hasMore && (
+            <a class="quick-link" href={pageHref(page + 1)}>
+              {t("Next page")}
+            </a>
+          )}
+        </nav>
+        <p class="form-hint">
+          {tn(
+            "Showing up to {count} row per page.",
+            "Showing up to {count} rows per page.",
+            BARCODE_CATALOG_PAGE_SIZE,
+            { count: BARCODE_CATALOG_PAGE_SIZE }
+          )}
+        </p>
+
+        <fieldset>
+          <legend>{t("Label layout")}</legend>
+          <label>
+            {t("Columns")}
+            <input
+              type="number"
+              name="columns"
+              min={LABEL_LIMITS.columns.min}
+              max={LABEL_LIMITS.columns.max}
+              value={options.columns}
+            />
+          </label>
+          <label>
+            {t("Copies of each label")}
+            <input
+              type="number"
+              name="copies"
+              min={LABEL_LIMITS.copies.min}
+              max={LABEL_LIMITS.copies.max}
+              value={options.copies}
+            />
+          </label>
+          <label>
+            {t("Label width (mm)")}
+            <input
+              type="number"
+              name="widthMm"
+              min={LABEL_LIMITS.widthMm.min}
+              max={LABEL_LIMITS.widthMm.max}
+              value={options.widthMm}
+            />
+          </label>
+          <label>
+            {t("Label height (mm)")}
+            <input
+              type="number"
+              name="heightMm"
+              min={LABEL_LIMITS.heightMm.min}
+              max={LABEL_LIMITS.heightMm.max}
+              value={options.heightMm}
+            />
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              name="showName"
+              value="1"
+              checked={options.showName}
+            />
+            {t("Print the name")}
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              name="showPrice"
+              value="1"
+              checked={options.showPrice}
+            />
+            {t("Print the price")}
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              name="showSku"
+              value="1"
+              checked={options.showSku}
+            />
+            {t("Print the SKU")}
+          </label>
+        </fieldset>
+        <button type="submit" class="module-toggle" id="labels-preview">
+          {t("Preview labels")}
+        </button>
+      </form>
+    </section>
+  )}
+
+  {allowed && enabled && canRead && previewing && (
+    <section
+      class="fade-in-up"
+      id="label-preview"
+      aria-labelledby="label-preview-heading"
+    >
+      <h2 id="label-preview-heading">{t("Label preview")}</h2>
+      {labelsToPrint.length === 0 ? (
+        <p class="cell-muted" role="status">
+          {t("None of the selected rows could be printed.")}
+        </p>
+      ) : (
+        <>
+          <p class="form-hint" role="status">
+            {tn(
+              "{count} label ready to print.",
+              "{count} labels ready to print.",
+              labelsToPrint.length,
+              { count: labelsToPrint.length }
+            )}
+          </p>
+          <button type="button" class="module-toggle" id="labels-print">
+            {t("Print labels")}
+          </button>
+        </>
+      )}
+      <div class="label-sheet" id="label-sheet" style={sheetStyle}>
+        {labelsToPrint.map((label) => (
+          <div class="label-cell">
+            {options.showName && <div class="label-name">{label.name}</div>}
+            {label.svg ? (
+              <div class="label-bars" set:html={label.svg} />
+            ) : (
+              <div class="label-missing">{t("No barcode")}</div>
+            )}
+            {label.code && <div class="label-code">{label.code}</div>}
+            {options.showSku && label.sku && (
+              <div class="label-sku">{label.sku}</div>
+            )}
+            {options.showPrice && <div class="label-price">{label.price}</div>}
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+</AdminLayout>
+
+<script>
+  import { sendJsonRequest } from "../../lib/ui/admin-form-client";
+
+  const root = document.getElementById("labels-root");
+  const status = document.getElementById("labels-status");
+  const msg = (key: string): string => root?.dataset[key] ?? "";
+
+  function announce(text: string): void {
+    if (status) status.textContent = text;
+  }
+
+  document.addEventListener("click", async (event) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+    const button = target.closest<HTMLButtonElement>(
+      'button[data-action="save-barcode"]'
+    );
+    if (!button || button.disabled) return;
+    const input = button
+      .closest(".labels-assign")
+      ?.querySelector<HTMLInputElement>(".labels-code-input");
+    if (!input) return;
+    const value = input.value.trim();
+    button.disabled = true;
+    const result = await sendJsonRequest("PUT", "/api/v1/commerce/barcodes", {
+      productId: input.dataset.productId,
+      variantId: input.dataset.variantId || null,
+      barcode: value === "" ? null : value
+    });
+    button.disabled = false;
+    if (result.ok) {
+      input.value = value;
+      input.dataset.original = value;
+      input.removeAttribute("aria-invalid");
+      announce(value === "" ? msg("msgCleared") : msg("msgSaved"));
+      return;
+    }
+    input.setAttribute("aria-invalid", "true");
+    input.focus();
+    announce(
+      result.errorCode === "BARCODE_DUPLICATE"
+        ? msg("msgDuplicate")
+        : result.errorCode === "VALIDATION_ERROR"
+          ? msg("msgInvalid")
+          : msg("msgFailed")
+    );
+  });
+
+  // Enter inside a code box saves it instead of submitting the print form.
+  document.addEventListener("keydown", (event) => {
+    const target = event.target;
+    if (
+      event.key === "Enter" &&
+      target instanceof HTMLInputElement &&
+      target.classList.contains("labels-code-input")
+    ) {
+      event.preventDefault();
+      target
+        .closest(".labels-assign")
+        ?.querySelector<HTMLButtonElement>('button[data-action="save-barcode"]')
+        ?.click();
+    }
+  });
+
+  document.getElementById("labels-print")?.addEventListener("click", () => {
+    window.print();
+  });
+</script>
+
+<style>
+  .labels-assign {
+    display: inline-flex;
+    gap: var(--sp-2);
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .labels-code-input {
+    min-width: 12rem;
+    font-family: ui-monospace, "Courier New", monospace;
+  }
+  .label-sheet {
+    display: grid;
+    grid-template-columns: repeat(var(--label-cols), var(--label-w));
+    gap: 2mm;
+    margin-top: var(--sp-3);
+    overflow-x: auto;
+  }
+  .label-cell {
+    box-sizing: border-box;
+    width: var(--label-w);
+    height: var(--label-h);
+    padding: 1.5mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    border: 1px dashed currentColor;
+    background: #fff;
+    color: #000;
+    text-align: center;
+    font-size: 8pt;
+    line-height: 1.15;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .label-name {
+    max-height: 2.4em;
+    overflow: hidden;
+    font-weight: 600;
+  }
+  .label-bars {
+    flex: 1 1 auto;
+    width: 100%;
+    min-height: 0;
+    margin: 1mm 0;
+  }
+  .label-bars :global(svg) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    fill: #000;
+  }
+  .label-code,
+  .label-sku {
+    font-family: ui-monospace, "Courier New", monospace;
+    font-size: 7pt;
+    letter-spacing: 0.05em;
+  }
+  .label-price {
+    font-weight: 700;
+    font-size: 9pt;
+  }
+  .label-missing {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    font-style: italic;
+  }
+  @media print {
+    :global(body) :global(*) {
+      visibility: hidden;
+    }
+    #label-sheet,
+    #label-sheet * {
+      visibility: visible;
+    }
+    #label-sheet {
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin: 0;
+      overflow: visible;
+    }
+    .label-cell {
+      border: 0;
+    }
+  }
+</style>

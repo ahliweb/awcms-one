@@ -9919,3 +9919,211 @@ msgstr ""
 
 msgid "Send documents by e-mail and WhatsApp"
 msgstr ""
+
+msgid "Showing up to {count} row per page."
+msgid_plural "Showing up to {count} rows per page."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} label ready to print."
+msgid_plural "{count} labels ready to print."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Barcodes and labels"
+msgstr ""
+
+msgid "Give products and variants a scannable barcode and print label sheets."
+msgstr ""
+
+msgid "You do not have permission to manage barcodes."
+msgstr ""
+
+msgid "The barcodes screen could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Barcodes and labels are turned off for this store."
+msgstr ""
+
+msgid "You do not have permission to read the barcode catalogue."
+msgstr ""
+
+msgid "Barcode saved."
+msgstr ""
+
+msgid "Barcode cleared."
+msgstr ""
+
+msgid "That barcode is already used by another product or variant."
+msgstr ""
+
+msgid "That barcode is not valid. Use 1 to 48 visible characters; an 8, 12, 13 or 14 digit number must have a correct GTIN check digit."
+msgstr ""
+
+msgid "Could not save the barcode. Please try again."
+msgstr ""
+
+msgid "Name, SKU or barcode"
+msgstr ""
+
+msgid "Barcode"
+msgstr ""
+
+msgid "With a barcode"
+msgstr ""
+
+msgid "Without a barcode"
+msgstr ""
+
+msgid "Print"
+msgstr ""
+
+msgid "Pagination"
+msgstr ""
+
+msgid "Previous page"
+msgstr ""
+
+msgid "Label layout"
+msgstr ""
+
+msgid "Copies of each label"
+msgstr ""
+
+msgid "Label width (mm)"
+msgstr ""
+
+msgid "Label height (mm)"
+msgstr ""
+
+msgid "Print the name"
+msgstr ""
+
+msgid "Print the price"
+msgstr ""
+
+msgid "Print the SKU"
+msgstr ""
+
+msgid "Preview labels"
+msgstr ""
+
+msgid "Label preview"
+msgstr ""
+
+msgid "None of the selected rows could be printed."
+msgstr ""
+
+msgid "Print labels"
+msgstr ""
+
+msgid "No barcode"
+msgstr ""
+
+msgid "Focus the scan field"
+msgstr ""
+
+msgid "Focus product search"
+msgstr ""
+
+msgid "Edit the quantity of a cart line"
+msgstr ""
+
+msgid "Remove a cart line"
+msgstr ""
+
+msgid "Go to the customer field"
+msgstr ""
+
+msgid "Go to the payment lines"
+msgstr ""
+
+msgid "Hold the sale"
+msgstr ""
+
+msgid "Resume a held sale"
+msgstr ""
+
+msgid "Finalize the sale"
+msgstr ""
+
+msgid "Print the receipt"
+msgstr ""
+
+msgid "Start a new sale"
+msgstr ""
+
+msgid "Show keyboard shortcuts"
+msgstr ""
+
+msgid "Could not look up that barcode. Please try again."
+msgstr ""
+
+msgid "No product has the barcode {code}."
+msgstr ""
+
+msgid "That is not a valid barcode. Use a code, or a quantity and a code like 3*CODE."
+msgstr ""
+
+msgid "{name} has variants; search for it and pick one."
+msgstr ""
+
+msgid "{name} is out of stock."
+msgstr ""
+
+msgid "{name} is not for sale."
+msgstr ""
+
+msgid "Only {stock} of {name} in stock."
+msgstr ""
+
+msgid "Added {quantity} x {name}."
+msgstr ""
+
+msgid "Removed {name}."
+msgstr ""
+
+msgid "Press keys…"
+msgstr ""
+
+msgid "Press the new key combination, or Escape to cancel."
+msgstr ""
+
+msgid "Cancelled. The shortcut is unchanged."
+msgstr ""
+
+msgid "A shortcut must include a modifier key such as Alt+Shift, or be a function key."
+msgstr ""
+
+msgid "That combination is reserved by the browser or your assistive technology. Try another."
+msgstr ""
+
+msgid "That combination is already used for: {action}."
+msgstr ""
+
+msgid "Shortcut saved on this device."
+msgstr ""
+
+msgid "Shortcuts reset to the store defaults."
+msgstr ""
+
+msgid "Scan a barcode"
+msgstr ""
+
+msgid "Scan, or type a code and press Enter. Use 3*CODE to add three."
+msgstr ""
+
+msgid "Keyboard shortcuts"
+msgstr ""
+
+msgid "These shortcuts work anywhere on the sale screen. Your changes are saved on this device only."
+msgstr ""
+
+msgid "Shortcut"
+msgstr ""
+
+msgid "Reset to store defaults"
+msgstr ""
+
+msgid "Barcodes, labels and cashier shortcuts"
+msgstr ""

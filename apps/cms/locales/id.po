@@ -9878,3 +9878,209 @@ msgstr "Anda tidak diizinkan mengirim ke penerima itu."
 
 msgid "Send documents by e-mail and WhatsApp"
 msgstr "Kirim dokumen lewat e-mail dan WhatsApp"
+
+msgid "Showing up to {count} row per page."
+msgid_plural "Showing up to {count} rows per page."
+msgstr[0] "Menampilkan hingga {count} baris per halaman."
+
+msgid "{count} label ready to print."
+msgid_plural "{count} labels ready to print."
+msgstr[0] "{count} label siap dicetak."
+
+msgid "Barcodes and labels"
+msgstr "Barcode dan label"
+
+msgid "Give products and variants a scannable barcode and print label sheets."
+msgstr "Beri produk dan varian barcode yang dapat dipindai, lalu cetak lembar label."
+
+msgid "You do not have permission to manage barcodes."
+msgstr "Anda tidak memiliki izin untuk mengelola barcode."
+
+msgid "The barcodes screen could not be loaded right now. Please try again later."
+msgstr "Layar barcode tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Barcodes and labels are turned off for this store."
+msgstr "Barcode dan label dinonaktifkan untuk toko ini."
+
+msgid "You do not have permission to read the barcode catalogue."
+msgstr "Anda tidak memiliki izin untuk membaca katalog barcode."
+
+msgid "Barcode saved."
+msgstr "Barcode disimpan."
+
+msgid "Barcode cleared."
+msgstr "Barcode dihapus."
+
+msgid "That barcode is already used by another product or variant."
+msgstr "Barcode itu sudah dipakai oleh produk atau varian lain."
+
+msgid "That barcode is not valid. Use 1 to 48 visible characters; an 8, 12, 13 or 14 digit number must have a correct GTIN check digit."
+msgstr "Barcode itu tidak valid. Gunakan 1 sampai 48 karakter yang terlihat; angka 8, 12, 13, atau 14 digit harus memiliki digit pemeriksa GTIN yang benar."
+
+msgid "Could not save the barcode. Please try again."
+msgstr "Barcode tidak dapat disimpan. Silakan coba lagi."
+
+msgid "Name, SKU or barcode"
+msgstr "Nama, SKU, atau barcode"
+
+msgid "Barcode"
+msgstr "Barcode"
+
+msgid "With a barcode"
+msgstr "Dengan barcode"
+
+msgid "Without a barcode"
+msgstr "Tanpa barcode"
+
+msgid "Print"
+msgstr "Cetak"
+
+msgid "Pagination"
+msgstr "Penomoran halaman"
+
+msgid "Previous page"
+msgstr "Halaman sebelumnya"
+
+msgid "Label layout"
+msgstr "Tata letak label"
+
+msgid "Copies of each label"
+msgstr "Salinan tiap label"
+
+msgid "Label width (mm)"
+msgstr "Lebar label (mm)"
+
+msgid "Label height (mm)"
+msgstr "Tinggi label (mm)"
+
+msgid "Print the name"
+msgstr "Cetak nama"
+
+msgid "Print the price"
+msgstr "Cetak harga"
+
+msgid "Print the SKU"
+msgstr "Cetak SKU"
+
+msgid "Preview labels"
+msgstr "Pratinjau label"
+
+msgid "Label preview"
+msgstr "Pratinjau label"
+
+msgid "None of the selected rows could be printed."
+msgstr "Tidak satu pun baris yang dipilih dapat dicetak."
+
+msgid "Print labels"
+msgstr "Cetak label"
+
+msgid "No barcode"
+msgstr "Tanpa barcode"
+
+msgid "Focus the scan field"
+msgstr "Fokus ke kolom pindai"
+
+msgid "Focus product search"
+msgstr "Fokus ke pencarian produk"
+
+msgid "Edit the quantity of a cart line"
+msgstr "Ubah jumlah pada baris keranjang"
+
+msgid "Remove a cart line"
+msgstr "Hapus baris keranjang"
+
+msgid "Go to the customer field"
+msgstr "Ke kolom pelanggan"
+
+msgid "Go to the payment lines"
+msgstr "Ke baris pembayaran"
+
+msgid "Hold the sale"
+msgstr "Tahan penjualan"
+
+msgid "Resume a held sale"
+msgstr "Lanjutkan penjualan yang ditahan"
+
+msgid "Finalize the sale"
+msgstr "Selesaikan penjualan"
+
+msgid "Print the receipt"
+msgstr "Cetak struk"
+
+msgid "Start a new sale"
+msgstr "Mulai penjualan baru"
+
+msgid "Show keyboard shortcuts"
+msgstr "Tampilkan pintasan keyboard"
+
+msgid "Could not look up that barcode. Please try again."
+msgstr "Barcode itu tidak dapat dicari. Silakan coba lagi."
+
+msgid "No product has the barcode {code}."
+msgstr "Tidak ada produk dengan barcode {code}."
+
+msgid "That is not a valid barcode. Use a code, or a quantity and a code like 3*CODE."
+msgstr "Itu bukan barcode yang valid. Gunakan kode, atau jumlah dan kode seperti 3*KODE."
+
+msgid "{name} has variants; search for it and pick one."
+msgstr "{name} memiliki varian; cari produknya lalu pilih salah satu."
+
+msgid "{name} is out of stock."
+msgstr "{name} stoknya habis."
+
+msgid "{name} is not for sale."
+msgstr "{name} tidak dijual."
+
+msgid "Only {stock} of {name} in stock."
+msgstr "Hanya {stock} {name} yang tersedia."
+
+msgid "Added {quantity} x {name}."
+msgstr "Ditambahkan {quantity} x {name}."
+
+msgid "Removed {name}."
+msgstr "{name} dihapus."
+
+msgid "Press keys…"
+msgstr "Tekan tombol…"
+
+msgid "Press the new key combination, or Escape to cancel."
+msgstr "Tekan kombinasi tombol baru, atau Escape untuk membatalkan."
+
+msgid "Cancelled. The shortcut is unchanged."
+msgstr "Dibatalkan. Pintasan tidak berubah."
+
+msgid "A shortcut must include a modifier key such as Alt+Shift, or be a function key."
+msgstr "Pintasan harus menyertakan tombol pengubah seperti Alt+Shift, atau berupa tombol fungsi."
+
+msgid "That combination is reserved by the browser or your assistive technology. Try another."
+msgstr "Kombinasi itu dicadangkan oleh peramban atau teknologi bantu Anda. Coba yang lain."
+
+msgid "That combination is already used for: {action}."
+msgstr "Kombinasi itu sudah dipakai untuk: {action}."
+
+msgid "Shortcut saved on this device."
+msgstr "Pintasan disimpan di perangkat ini."
+
+msgid "Shortcuts reset to the store defaults."
+msgstr "Pintasan dikembalikan ke bawaan toko."
+
+msgid "Scan a barcode"
+msgstr "Pindai barcode"
+
+msgid "Scan, or type a code and press Enter. Use 3*CODE to add three."
+msgstr "Pindai, atau ketik kode lalu tekan Enter. Gunakan 3*KODE untuk menambah tiga."
+
+msgid "Keyboard shortcuts"
+msgstr "Pintasan keyboard"
+
+msgid "These shortcuts work anywhere on the sale screen. Your changes are saved on this device only."
+msgstr "Pintasan ini berlaku di mana saja pada layar penjualan. Perubahan Anda hanya disimpan di perangkat ini."
+
+msgid "Shortcut"
+msgstr "Pintasan"
+
+msgid "Reset to store defaults"
+msgstr "Kembalikan ke bawaan toko"
+
+msgid "Barcodes, labels and cashier shortcuts"
+msgstr "Barcode, label, dan pintasan kasir"

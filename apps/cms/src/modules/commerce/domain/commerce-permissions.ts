@@ -674,3 +674,16 @@ export const COMMERCE_DOCUMENT_DELIVERY_PERMISSIONS = {
 export const COMMERCE_DOCUMENT_DELIVERY_OVERRIDE_PERMISSIONS = {
   create: "commerce.document_delivery_overrides.create"
 } as const;
+
+/**
+ * Issue #292 (ADR-0032) - barcode identity, label printing and scanner lookup.
+ * Resource-split: `read` resolves a scanned code, browses the barcode catalogue
+ * and renders a label sheet; `update` assigns, changes or clears a barcode.
+ * Neither is implied by `commerce.pos.create` or `commerce.products.update`.
+ */
+export const COMMERCE_BARCODES_ACTIVITY_CODE = "barcodes";
+
+export const COMMERCE_BARCODE_PERMISSIONS = {
+  read: "commerce.barcodes.read",
+  update: "commerce.barcodes.update"
+} as const;

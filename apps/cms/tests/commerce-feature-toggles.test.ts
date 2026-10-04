@@ -27,6 +27,7 @@ describe("resolveCommerceFeatures", () => {
     expect(DEFAULT_COMMERCE_FEATURES.documents).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.expenses).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.documentDelivery).toBe(false);
+    expect(DEFAULT_COMMERCE_FEATURES.barcode).toBe(false);
     expect(
       Object.entries(DEFAULT_COMMERCE_FEATURES)
         .filter(
@@ -36,7 +37,8 @@ describe("resolveCommerceFeatures", () => {
             key !== "storedValue" &&
             key !== "documents" &&
             key !== "expenses" &&
-            key !== "documentDelivery"
+            key !== "documentDelivery" &&
+            key !== "barcode"
         )
         .every(([, value]) => value === true)
     ).toBe(true);
@@ -63,7 +65,8 @@ describe("resolveCommerceFeatures", () => {
       loyalty: false,
       storedValue: false,
       expenses: false,
-      documentDelivery: false
+      documentDelivery: false,
+      barcode: false
     });
   });
 
@@ -80,7 +83,8 @@ describe("resolveCommerceFeatures", () => {
       loyalty: true,
       storedValue: false,
       expenses: false,
-      documentDelivery: false
+      documentDelivery: false,
+      barcode: false
     });
   });
 
@@ -104,7 +108,8 @@ describe("resolveCommerceFeatures", () => {
         loyalty: false,
         storedValue: false,
         expenses: false,
-        documentDelivery: false
+        documentDelivery: false,
+        barcode: false
       }
     });
     expect(resolved).toEqual({
@@ -118,7 +123,8 @@ describe("resolveCommerceFeatures", () => {
       loyalty: false,
       storedValue: false,
       expenses: false,
-      documentDelivery: false
+      documentDelivery: false,
+      barcode: false
     });
     // ...and the flags that default off can be turned on.
     expect(
@@ -466,5 +472,13 @@ describe("toPublicRecord — feature composition (Issue #118)", () => {
       DEFAULT_COMMERCE_FEATURES
     );
     expect(withFeatureOn.shipping.courierEnabled).toBe(true);
+  });
+
+  test("barcode (Issue #292, ADR-0032) defaults OFF and can be turned on", () => {
+    expect(DEFAULT_COMMERCE_FEATURES.barcode).toBe(false);
+    expect(resolveCommerceFeatures({}).barcode).toBe(false);
+    expect(
+      resolveCommerceFeatures({ features: { barcode: true } }).barcode
+    ).toBe(true);
   });
 });

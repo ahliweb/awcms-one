@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:4a52a34e378209f8eb1813c721b22b5f83d5643a52fa7e8fd4cfed1ff95e55a0 -->
+<!-- i18n-source-hash: sha256:469e556c524e6bce2590476ce98424d32ea445c7a547c425b67c86f7f4bd9556 -->
 
 # Kamus data
 
@@ -296,6 +296,18 @@ Rancangan platform ini sendiri — tidak ada yang di-port dari toko lama. Status
 | payee | `payee_name` | Teks bebas; referensi pihak bertipe ditunda (ADR-0031 D8) |
 | fitur `expenses` | pengaturan modul commerce `features.expenses` (bawaan MATI) | Menyalakan seluruh permukaan pengeluaran; selama MENYALA mutasi laci `expense` mentah ditolak |
 | `commerce.expense_categories.*`, `commerce.expenses.*`, `commerce.expense_postings.*`, `commerce.expense_reversals.approve`, `commerce.expense_receipts.*` | `awcms_permissions` (`sql/992`) | Dua belas kunci: kategori, baca / buat / edit / ekspor pengeluaran, ajukan / setujui posting, balik, baca / lampirkan struk |
+
+## Kosakata barcode (issue #292, [ADR-0032](adr/0032-barcodes-are-a-derived-identifier-and-the-cashier-keyboard-layer-is-chord-only.md))
+
+Rancangan platform ini sendiri - tidak ada yang dipindahkan dari toko lama.
+
+| Bidang | Nilai / bentuk | Arti |
+| --- | --- | --- |
+| `barcode` | 1-48 karakter ASCII yang dapat dicetak, tanpa spasi; bukan `<1-3 digit>*...` | pengenal produk atau varian, unik per tenant di antara baris hidup dari keduanya |
+| `symbology` (turunan) | `ean13`, `ean8`, `upca`, `gtin14`, `code128` | angka-saja 13 -> `ean13`, 8 -> `ean8`, 12 -> `upca` (dicetak sebagai EAN-13 dengan nol di depan), 14 -> `gtin14` (dicetak sebagai Code 128); selain itu -> `code128`. Kode numerik 8/12/13/14 digit harus memiliki digit pemeriksa GS1 yang valid |
+| `requiresVariant` / `sellable` (lookup) | boolean | `requiresVariant`: kode menunjuk induk polos dari produk yang punya varian hidup; `sellable`: aktif, ada stok, tidak butuh varian |
+| `features.barcode` | boolean, bawaan `false` | membatasi setiap rute barcode, kolom pindai dan lapisan pintasan POS, serta entri sidebar |
+| `posShortcuts` (pengaturan modul) | `{ aksi: kombinasi }` | penimpaan pintasan tenant; aksi `focusScan focusSearch editQuantity removeLine focusCustomer focusPayment hold resume finalize printReceipt newSale showHelp`; kombinasi adalah `Alt+Shift+<huruf atau angka>`, `F2`/`F4`/`F8`/`F9`, atau `Ctrl+Enter`/`Ctrl+Shift+Enter` |
 
 ## Kolom dan tabel yang ditunda — tidak di-porting
 

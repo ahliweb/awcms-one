@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:f7e7d7a84ef029f05d221afcff3230f298da3ac7e7c2db4f71f4987b505d0f9d -->
+<!-- i18n-source-hash: sha256:e07131da245788155c4f80cabd20a14e83bf59c4be56c688c314a50a6c3df704 -->
 
 # Architecture Decision Records
 
@@ -44,6 +44,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0024](0024-awcms-one-is-template-only-derived-apps-own-their-backend.md)                                     | awcms-one hanya template; setiap aplikasi turunan memiliki backend dan runtime sendiri                                                                                                          | Diterima                                                                                                                      |
 | [0025](0025-payments-are-an-allocation-ledger-separate-from-order-status.md)                                  | Pembayaran adalah ledger alokasi append-only, terpisah dari status pesanan                                                                                                                      | Diterima                                                                                                                      |
 | [0031](0031-expenses-are-commerce-local-register-linked-petty-cash.md) | Pengeluaran adalah kas kecil lokal-commerce yang terhubung ke register, bukan buku besar: pengeluaran yang diposting menambah mutasi register dan tidak pernah mengedit tutup kas | Diterima |
+| [0032](0032-barcodes-are-a-derived-identifier-and-the-cashier-keyboard-layer-is-chord-only.md) | Barcode adalah pengenal per tenant dengan simbologi turunan, label dirender di server, dan lapisan keyboard kasir hanya berbasis kombinasi tombol | Diterima |
 | [0034](0034-commercial-documents-are-delivered-through-the-existing-outboxes-as-transactional-messages-built-from-immutable-sources.md) | Dokumen komersial dikirim lewat outbox yang sudah ada, sebagai pesan transaksional yang disusun dari sumber yang tidak dapat diubah | Diterima |
 | [0026](0026-loyalty-points-are-an-append-only-ledger.md)                                                      | Poin loyalitas adalah buku besar append-only dengan saldo hasil proyeksi                                                                                                                        | Diterima                                                                                                                      |
 | [0027](0027-catalog-custom-attributes-are-typed-and-allowlisted.md)                                           | Atribut kustom katalog bertipe dan di-allowlist, dan impor massal adalah validasi-lalu-terapkan                                                                                                 | Diterima                                                                                                                      |

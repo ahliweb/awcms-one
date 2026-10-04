@@ -281,6 +281,17 @@ Two FORCE-RLS tables (tenant-isolation policy with `WITH CHECK`, composite `(ten
 - **Privileges.** `awcms_app` loses `DELETE` on both new tables (they keep `SELECT, INSERT, UPDATE`; the lifecycle trigger, not privilege, freezes a posted row). `awcms_worker` keeps `SELECT, DELETE` (`sql/993`) for the retention engine (`commerce.expense_categories`, `commerce.expenses`, five-year floor, ten-year ceiling, keyed on a never-set `deleted_at`). `security-readiness.ts` asserts the exact sets both ways.
 - **`sql/992`** seeds the twelve permission keys.
 
+## Barcodes: two columns, two indexes, one trigger (`sql/975`–`976`, issue #292, [ADR-0032](adr/0032-barcodes-are-a-derived-identifier-and-the-cashier-keyboard-layer-is-chord-only.md))
+
+No new table. `barcode text` (nullable) on `awcms_commerce_products` and `awcms_commerce_product_variants`, with `CHECK (barcode ~ '^[!-~]{1,48}$')` (printable ASCII, no spaces). The symbology is **not stored** — it is a pure function of the code (`domain/barcode.ts`).
+
+| Object | What it enforces |
+| --- | --- |
+| `awcms_commerce_products_tenant_barcode_key`, `awcms_commerce_product_variants_tenant_barcode_key` | partial `UNIQUE (tenant_id, barcode) WHERE deleted_at IS NULL AND barcode IS NOT NULL` — the same-table half of the rule, **and the lookup index** (a scan resolves with one equality probe; verified an index scan at 20,000 rows) |
+| `awcms_commerce_barcode_cross_guard()` + a `BEFORE INSERT OR UPDATE` trigger on each table | the cross-table half: a code held by a live row of the other table is refused (`unique_violation`, constraint `awcms_commerce_barcode_cross_table_key`), under `pg_advisory_xact_lock(918292, hash & 255)` — **256 stripes, not one lock per code**, because an advisory lock holds a slot of the shared lock table until commit and a 20,000-row bulk load died with `out of shared memory` under per-code locks. A soft-deleted row frees its code; **restoring** a row whose code was reused meanwhile comes back with `barcode = NULL` instead of failing |
+
+Two tenants may hold the same code. Row-level security, the tenant filter, soft delete and the retention descriptors are those of the rows the column lives on; no `dataLifecycle`/`subjectData` entry, worker grant or composite FK is added because no table is. Permissions: `commerce.barcodes.{read,update}` (`sql/976`).
+
 ## Sales-report projections: three derived tables (`sql/933`)
 
 Issue #117, contract #106's D7 — the read models of the three `cursor_table` reporting projections `commerce` contributes (`commerce.sales_daily`, `commerce.sales_by_product`, `commerce.sales_by_category`), maintained by the `reporting` engine's own worker from `awcms_commerce_order_events` (see [`docs/cms.md`](cms.md) "Sales reports" for the delta rules). Derived and fully rebuildable — never written by a request path, never a source of truth.
