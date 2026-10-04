@@ -52,6 +52,7 @@ import {
   POS_CASH_UP_VARIANCE_PROJECTION_KEY,
   POS_EXPENSE_DAILY_PROJECTION_KEY,
   POS_LOYALTY_DAILY_PROJECTION_KEY,
+  POS_RETURNS_DAILY_PROJECTION_KEY,
   POS_STORED_VALUE_DAILY_PROJECTION_KEY,
   POS_TENDER_DAILY_PROJECTION_KEY
 } from "../../src/modules/commerce/domain/operational-report-keys";
@@ -93,8 +94,12 @@ const DAY_1 = "2026-09-10";
 const DAY_2 = "2026-09-11";
 const WIDE = { from: "2026-09-01", to: "2026-09-30" };
 
-const DESCRIPTORS = commerceModule.reportingProjections!.filter((d) =>
-  (OPERATIONAL_REPORT_PROJECTION_KEYS as readonly string[]).includes(d.key)
+// The returns & refunds family (Issue #316) has its own integration file with
+// its own world; this one covers the five families of Issue #296.
+const DESCRIPTORS = commerceModule.reportingProjections!.filter(
+  (d) =>
+    (OPERATIONAL_REPORT_PROJECTION_KEYS as readonly string[]).includes(d.key) &&
+    d.key !== POS_RETURNS_DAILY_PROJECTION_KEY
 );
 const byKey = (key: string): ProjectionDescriptor =>
   DESCRIPTORS.find((d) => d.key === key)!;
@@ -804,7 +809,9 @@ suite("POS operational-report projections (Issue #296)", () => {
 
   test("the five descriptors are registered, tenant-scoped and gated on their own report permission", () => {
     expect(DESCRIPTORS.map((d) => d.key).sort()).toEqual(
-      [...OPERATIONAL_REPORT_PROJECTION_KEYS].sort()
+      OPERATIONAL_REPORT_PROJECTION_KEYS.filter(
+        (key) => key !== POS_RETURNS_DAILY_PROJECTION_KEY
+      ).sort()
     );
     for (const descriptor of DESCRIPTORS) {
       expect(descriptor.source.strategy).toBe("cursor_table");

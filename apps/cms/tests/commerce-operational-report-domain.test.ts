@@ -16,10 +16,14 @@ import {
   computeExpensePostedDelta,
   computeExpenseReversedDelta,
   computeLoyaltyDailyDelta,
+  computeRefundLegDelta,
+  computeReturnDelta,
+  computeReturnLineDelta,
   computeStoredValueDailyDelta,
   computeTenderDailyDelta,
   formatSignedCents,
-  OPERATIONAL_NO_REGISTER_ID
+  OPERATIONAL_NO_REGISTER_ID,
+  summariseDispositionUnits
 } from "../src/modules/commerce/domain/operational-report-deltas";
 import {
   OPERATIONAL_REPORT_FAMILIES,
@@ -29,6 +33,7 @@ import {
   serializeCashUpVarianceCsv,
   serializeExpenseReportCsv,
   serializeLoyaltyReportCsv,
+  serializeReturnsReportCsv,
   serializeStoredValueReportCsv,
   serializeTenderCsv
 } from "../src/modules/commerce/domain/operational-report-csv";
@@ -36,9 +41,11 @@ import type {
   CashUpReport,
   ExpenseReport,
   LoyaltyReport,
+  ReturnsReport,
   StoredValueReport,
   TenderReport
 } from "../src/modules/commerce/application/operational-report-directory";
+import { summariseReturns } from "../src/modules/commerce/application/operational-report-directory";
 import { validateProjectionRegistry } from "../src/modules/reporting/domain/projection-registry";
 
 const REGISTER = "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa";
@@ -483,7 +490,212 @@ describe("projection registry", () => {
       "cash-ups": "register",
       expenses: "expenses",
       loyalty: "loyalty",
-      "stored-value": "storedValue"
+      "stored-value": "storedValue",
+      returns: "returns"
     });
+  });
+});
+
+describe("returns & refunds deltas (Issue #316)", () => {
+  const recorded = new Date("2026-09-10T18:30:00.000Z"); // 01:30 next day in Asia/Jakarta
+
+  test("a return lands on its recorded local day, on the original sale's register, with its refund total in cents", () => {
+    expect(
+      computeReturnDelta({
+        kind: "return",
+        refundTotal: "12500.50",
+        createdAt: recorded,
+        registerId: REGISTER
+      })
+    ).toEqual({
+      day: "2026-09-11",
+      registerId: REGISTER,
+      section: "return",
+      bucket: "return",
+      detail: "",
+      count: 1,
+      units: 0,
+      cents: 1_250_050n
+    });
+  });
+
+  test("an unstamped sale lands on the no-register sentinel and an unknown kind is skipped", () => {
+    expect(
+      computeReturnDelta({
+        kind: "exchange",
+        refundTotal: "0.00",
+        createdAt: recorded,
+        registerId: null
+      })?.registerId
+    ).toBe(OPERATIONAL_NO_REGISTER_ID);
+    expect(
+      computeReturnDelta({
+        kind: "mystery",
+        refundTotal: "1.00",
+        createdAt: recorded,
+        registerId: null
+      })
+    ).toBeNull();
+  });
+
+  test("a returned line adds its units and refunded value to its disposition bucket", () => {
+    expect(
+      computeReturnLineDelta({
+        disposition: "damaged",
+        quantity: 3,
+        refundAmount: "9000.00",
+        createdAt: recorded,
+        registerId: REGISTER
+      })
+    ).toMatchObject({
+      section: "disposition",
+      bucket: "damaged",
+      count: 1,
+      units: 3,
+      cents: 900_000n
+    });
+    expect(
+      computeReturnLineDelta({
+        disposition: "lost",
+        quantity: 1,
+        refundAmount: "1.00",
+        createdAt: recorded,
+        registerId: null
+      })
+    ).toBeNull();
+  });
+
+  const leg = {
+    kind: "reversal",
+    status: "succeeded",
+    settledAt: new Date("2026-09-10T03:00:00.000Z"),
+    tenderType: "cash",
+    amount: "4000.00",
+    destination: "original_tender",
+    registerId: REGISTER
+  };
+
+  test("only a succeeded reversal that a refund points at is a refund leg", () => {
+    expect(computeRefundLegDelta(leg)).toEqual({
+      day: "2026-09-10",
+      registerId: REGISTER,
+      section: "refund",
+      bucket: "cash",
+      detail: "original_tender",
+      count: 1,
+      units: 0,
+      cents: 400_000n
+    });
+    expect(computeRefundLegDelta({ ...leg, kind: "payment" })).toBeNull();
+    expect(computeRefundLegDelta({ ...leg, status: "failed" })).toBeNull();
+    expect(computeRefundLegDelta({ ...leg, settledAt: null })).toBeNull();
+    // a cancellation reversal has no refund behind it: the tender report's, not this one's
+    expect(computeRefundLegDelta({ ...leg, destination: null })).toBeNull();
+  });
+
+  test("a store-credit refund keeps its destination apart from the tender it came from", () => {
+    expect(
+      computeRefundLegDelta({ ...leg, destination: "store_credit" })?.detail
+    ).toBe("store_credit");
+  });
+
+  test("restocked and written-off units are counted apart, quarantine neither", () => {
+    expect(
+      summariseDispositionUnits([
+        { bucket: "restock", units: 4 },
+        { bucket: "damaged", units: 2 },
+        { bucket: "quarantine", units: 1 },
+        { bucket: "restock", units: 1 }
+      ])
+    ).toEqual({ restocked: 5, writtenOff: 2, quarantined: 1 });
+  });
+
+  const returnsEnvelope = {
+    from: "2026-09-01",
+    to: "2026-09-30",
+    timeZone: "Asia/Jakarta",
+    enabled: true
+  };
+  const row = (
+    over: Partial<ReturnsReport["items"][number]>
+  ): ReturnsReport["items"][number] => ({
+    day: "2026-09-10",
+    registerId: null,
+    registerCode: null,
+    registerName: null,
+    section: "return",
+    bucket: "return",
+    detail: "",
+    count: 1,
+    units: 0,
+    amount: "0.00",
+    ...over
+  });
+
+  test("the range summary folds exact cents and splits refunds by destination", () => {
+    const folded = summariseReturns([
+      row({ amount: "0.10" }),
+      row({ day: "2026-09-11", amount: "0.20" }),
+      row({
+        section: "disposition",
+        bucket: "restock",
+        units: 2,
+        amount: "5.00"
+      }),
+      row({
+        section: "disposition",
+        bucket: "damaged",
+        units: 1,
+        amount: "2.50"
+      }),
+      row({
+        section: "refund",
+        bucket: "cash",
+        detail: "original_tender",
+        amount: "4.00"
+      }),
+      row({
+        section: "refund",
+        bucket: "cash",
+        detail: "store_credit",
+        amount: "1.25"
+      })
+    ]);
+    expect(folded.returnCount).toBe(2);
+    expect(folded.returnedValue).toBe("0.30");
+    expect(folded.refundedToTender).toBe("4.00");
+    expect(folded.refundedToStoreCredit).toBe("1.25");
+    expect(folded.refundedTotal).toBe("5.25");
+    expect(folded.restockedUnits).toBe(2);
+    expect(folded.writtenOffUnits).toBe(1);
+    expect(folded.quarantinedUnits).toBe(0);
+  });
+
+  test("the CSV is one long file and neutralises a tenant-typed register name", () => {
+    const report: ReturnsReport = {
+      ...returnsEnvelope,
+      items: [
+        row({
+          registerCode: "R1",
+          registerName: "=cmd|' /C calc'!A0",
+          amount: "10.00"
+        })
+      ],
+      summary: [],
+      returnCount: 1,
+      returnedValue: "10.00",
+      refundedTotal: "0.00",
+      refundedToTender: "0.00",
+      refundedToStoreCredit: "0.00",
+      restockedUnits: 0,
+      writtenOffUnits: 0,
+      quarantinedUnits: 0
+    };
+    const [header, line] = serializeReturnsReportCsv(report).split("\r\n");
+    expect(header).toBe(
+      "day,register_code,register_name,section,bucket,detail,count,units,amount"
+    );
+    expect(line!.startsWith("2026-09-10,R1,'=cmd|' /C calc'!A0,")).toBe(true);
+    expect(line!.endsWith(",return,return,,1,0,10.00")).toBe(true);
   });
 });

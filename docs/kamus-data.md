@@ -326,6 +326,8 @@ This platform's own design — nothing here is ported from the legacy store. Sta
 | outstanding (points / liability) | opening, movement and closing in the loyalty and stored-value reports | The running sum of every bucket since the beginning: points still owed to customers, money still held on cards and credit. `closing = opening + movement` |
 | source view | `awcms_commerce_report_src_*` | A `security_invoker` view of the rows whose cursor column is set, so the engine's NULL-unsafe rebuild scan never sees a NULL (ADR-0035 D3) |
 | `commerce.report_tenders.*`, `…report_cash_ups.*`, `…report_expenses.*`, `…report_loyalty.*`, `…report_stored_value.*` | `awcms_permissions` (`sql/999`) | The ten keys: `read` and the high-risk `export` for each family. None is implied by `reporting.dashboard.read` or by a source-domain key, and none opens a source row |
+| returns report sections | `awcms_commerce_report_returns_daily.section` (Issue #316) | `return` (a return or exchange recorded: count and refund total), `disposition` (a returned line by what happens to the units: `restock` = back on the shelf, `damaged` = written off, `quarantine` = held, neither), `refund` (a settled refund leg by tender and by destination `original_tender` / `store_credit`) |
+| `commerce.report_returns.*` | `awcms_permissions` (`sql/946`) | `read` and the high-risk `export` of the returns & refunds report; not implied by `commerce.returns.read` or `commerce.refunds.read`, and opens no individual return or refund |
 | `operational_report.export` | audit action | One row per CSV export: family, range, row count, never a cell |
 
 ## Barcode vocabulary (issue #292, [ADR-0032](adr/0032-barcodes-are-a-derived-identifier-and-the-cashier-keyboard-layer-is-chord-only.md))

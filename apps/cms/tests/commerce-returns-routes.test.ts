@@ -334,7 +334,11 @@ describe("single writers", () => {
 
   test("the migrations keep returns inside the reserved 994-997 band", async () => {
     const names = await readdir("sql");
-    const mine = names.filter((n) => /returns/.test(n)).sort();
+    // Issue #316's report migrations (945-946) summarise returns but cannot
+    // name the 994 tables, so they live in the #296 reserved band instead.
+    const mine = names
+      .filter((n) => /returns/.test(n) && !/returns_report/.test(n))
+      .sort();
     expect(mine).toEqual([
       "994_awcms_commerce_returns_schema.sql",
       "995_awcms_commerce_returns_integration.sql",

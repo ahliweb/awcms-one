@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](cms.md)
 
-<!-- i18n-source-hash: sha256:7f0666b691f14ac95aba0d63a2b59d33e7f1ab2d654fec5dc1280c1eacb9aefa -->
+<!-- i18n-source-hash: sha256:0f35fdff59911d6103ae49f56f66a8bbfe2681cbef407bf62e4941e8710e90a0 -->
 
 # CMS: authoring, publikasi, izin, audit, media, taksonomi
 
@@ -375,6 +375,7 @@ Lima `reportingProjections` `commerce` lagi, pada mesin dan kait dimensional yan
 - **Gerbang fitur.** `register`, `expenses`, `loyalty`, `storedValue` bawaannya MATI; keluarga yang fiturnya mati menjawab `200 enabled: false`, layar tidak menampilkan panel dan CSV hanya baris judul.
 - **Layar.** `/admin/commerce-reports` merender lima panel lewat `apps/cms/src/components/CommerceOperationalReports.astro`, masing-masing hanya untuk pemegang kunci `read` keluarganya; panel kesegaran dan lintasan ekspor juga mendaftar proyeksi baru. Uang dilipat di server dalam sen persis (larik `summary`).
 - **Tes.** `apps/cms/tests/commerce-operational-report-domain.test.ts` (aturan, batas zona waktu, penetralan CSV, registri), `apps/cms/tests/commerce-operational-report-permissions.test.ts` (sumber rute + `evaluateAccess`), dan dua berkas integrasi pada Postgres sungguhan: mesin (langsung sama dengan rebuild byte demi byte, rekonsiliasi mendeteksi perusakan dan penyimpangan, peristiwa terlambat, tenant kedua, fitur mati) dan rute (matriks izin, BOLA, CSV, audit).
+- **Retur & refund (isu #316).** Proyeksi keenam, `commerce.pos_returns_daily` (`sql/945`–`946`, tabel `awcms_commerce_report_returns_daily`), di balik fitur `returns` dan pasangan izin `commerce.report_returns.read|export`, dengan `GET /api/v1/reports/commerce/operational-returns` dan `.csv` serta panel di `/admin/commerce-reports`. Tiga aliran atas sumber berkursor NOT NULL (retur, baris retur, dan leg reversal buku besar pembayaran yang ditunjuk sebuah refund), sehingga tidak perlu view sumber; lihat adendum [ADR-0035](adr/0035-pos-operational-reports-are-commerce-projections-over-the-existing-ledgers-on-the-reporting-engine.md). Tes: `apps/cms/tests/integration/commerce-returns-report.integration.test.ts`.
 
 ## Toggle fitur dan harga bertingkat (issue #118, epik #33 C9, kontrak #106 D10, ADR-0016 D6)
 

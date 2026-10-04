@@ -5,7 +5,7 @@
  * the dashboard permission, the source-domain permission or another report.
  * Proven three ways, none a restatement of another:
  *
- *   1. the ten keys are declared by the module and each is enforced by exactly
+ *   1. the twelve keys are declared by the module and each is enforced by exactly
  *      the route meant to need it (read from the route SOURCE, the technique
  *      `commerce-expense-permissions.test.ts` uses);
  *   2. a REAL access evaluation (`evaluateAccess`) of role-shaped grants - a
@@ -30,6 +30,7 @@ import {
   COMMERCE_REPORT_CASH_UPS_ACTIVITY_CODE,
   COMMERCE_REPORT_EXPENSES_ACTIVITY_CODE,
   COMMERCE_REPORT_LOYALTY_ACTIVITY_CODE,
+  COMMERCE_REPORT_RETURNS_ACTIVITY_CODE,
   COMMERCE_REPORT_STORED_VALUE_ACTIVITY_CODE,
   COMMERCE_REPORT_TENDERS_ACTIVITY_CODE
 } from "../src/modules/commerce/domain/commerce-permissions";
@@ -39,6 +40,7 @@ const CASH_UPS = COMMERCE_REPORT_CASH_UPS_ACTIVITY_CODE;
 const EXPENSES = COMMERCE_REPORT_EXPENSES_ACTIVITY_CODE;
 const LOYALTY = COMMERCE_REPORT_LOYALTY_ACTIVITY_CODE;
 const STORED_VALUE = COMMERCE_REPORT_STORED_VALUE_ACTIVITY_CODE;
+const RETURNS = COMMERCE_REPORT_RETURNS_ACTIVITY_CODE;
 
 /** Route file -> the guard it enforces. */
 const ROUTES = {
@@ -51,7 +53,10 @@ const ROUTES = {
   "operational-loyalty.ts": [LOYALTY, "read"],
   "operational-loyalty.csv.ts": [LOYALTY, "export"],
   "operational-stored-value.ts": [STORED_VALUE, "read"],
-  "operational-stored-value.csv.ts": [STORED_VALUE, "export"]
+  "operational-stored-value.csv.ts": [STORED_VALUE, "export"],
+  // Issue #316 - the returns & refunds family.
+  "operational-returns.ts": [RETURNS, "read"],
+  "operational-returns.csv.ts": [RETURNS, "export"]
 } as const;
 
 const CONSTANT_TO_CODE: Record<string, string> = {
@@ -59,7 +64,8 @@ const CONSTANT_TO_CODE: Record<string, string> = {
   COMMERCE_REPORT_CASH_UPS_ACTIVITY_CODE: CASH_UPS,
   COMMERCE_REPORT_EXPENSES_ACTIVITY_CODE: EXPENSES,
   COMMERCE_REPORT_LOYALTY_ACTIVITY_CODE: LOYALTY,
-  COMMERCE_REPORT_STORED_VALUE_ACTIVITY_CODE: STORED_VALUE
+  COMMERCE_REPORT_STORED_VALUE_ACTIVITY_CODE: STORED_VALUE,
+  COMMERCE_REPORT_RETURNS_ACTIVITY_CODE: RETURNS
 };
 
 function guardsIn(source: string): Set<string> {
@@ -86,7 +92,7 @@ const declared = new Set(
 );
 
 describe("operational-report permissions are declared and each is enforced by its route", () => {
-  test("the module declares exactly the ten report permissions", () => {
+  test("the module declares exactly the twelve report permissions", () => {
     const reportKeys = [...declared].filter((key) =>
       key.startsWith("commerce.report_")
     );
@@ -114,6 +120,7 @@ describe("operational-report permissions are declared and each is enforced by it
       expect(source).not.toContain("COMMERCE_REGISTER_SESSIONS_ACTIVITY_CODE");
       expect(source).not.toContain("COMMERCE_EXPENSES_ACTIVITY_CODE");
       expect(source).not.toContain("COMMERCE_STORED_VALUE_ACTIVITY_CODE");
+      expect(source).not.toContain("COMMERCE_RETURNS_ACTIVITY_CODE");
     }
   });
 
@@ -131,11 +138,16 @@ describe("operational-report permissions are declared and each is enforced by it
     }
   });
 
-  test("the seed migration carries exactly the same ten rows", async () => {
-    const sql = await readFile(
-      "sql/999_awcms_commerce_operational_reports_permissions.sql",
-      "utf8"
-    );
+  test("the seed migrations (sql/999 and #316's sql/946) carry exactly the same twelve rows", async () => {
+    const sql =
+      (await readFile(
+        "sql/999_awcms_commerce_operational_reports_permissions.sql",
+        "utf8"
+      )) +
+      (await readFile(
+        "sql/946_awcms_commerce_returns_report_permissions.sql",
+        "utf8"
+      ));
     const seeded = [
       ...sql.matchAll(/\('commerce', '(report_[a-z_]+)', '([a-z]+)'/g)
     ].map((match) => `commerce.${match[1]}.${match[2]}`);
@@ -154,7 +166,8 @@ describe("operational-report permissions are declared and each is enforced by it
       "commerce.pos_cash_up_variance": "commerce.report_cash_ups.read",
       "commerce.pos_expense_daily": "commerce.report_expenses.read",
       "commerce.pos_loyalty_daily": "commerce.report_loyalty.read",
-      "commerce.pos_stored_value_daily": "commerce.report_stored_value.read"
+      "commerce.pos_stored_value_daily": "commerce.report_stored_value.read",
+      "commerce.pos_returns_daily": "commerce.report_returns.read"
     });
   });
 });
@@ -190,7 +203,7 @@ describe("role-shaped grants gain no authority beyond their own keys", () => {
     const reader = new Set(["commerce.report_tenders.read"]);
     expect(allowed(reader, TENDERS, "read")).toBe(true);
     expect(allowed(reader, TENDERS, "export")).toBe(false);
-    for (const other of [CASH_UPS, EXPENSES, LOYALTY, STORED_VALUE]) {
+    for (const other of [CASH_UPS, EXPENSES, LOYALTY, STORED_VALUE, RETURNS]) {
       expect(allowed(reader, other, "read")).toBe(false);
       expect(allowed(reader, other, "export")).toBe(false);
     }
@@ -205,7 +218,7 @@ describe("role-shaped grants gain no authority beyond their own keys", () => {
     ]);
     expect(allowed(bookkeeper, TENDERS, "export")).toBe(true);
     expect(allowed(bookkeeper, EXPENSES, "export")).toBe(true);
-    for (const other of [CASH_UPS, LOYALTY, STORED_VALUE]) {
+    for (const other of [CASH_UPS, LOYALTY, STORED_VALUE, RETURNS]) {
       expect(allowed(bookkeeper, other, "read")).toBe(false);
     }
   });
@@ -223,6 +236,8 @@ describe("role-shaped grants gain no authority beyond their own keys", () => {
       "commerce.register_cash_ups.approve",
       "commerce.stored_value.read",
       "commerce.loyalty.read",
+      "commerce.returns.read",
+      "commerce.refunds.read",
       "commerce.pos.create"
     ]);
     for (const key of EXPECTED_KEYS) {
@@ -238,7 +253,9 @@ describe("role-shaped grants gain no authority beyond their own keys", () => {
       "commerce.expenses.read",
       "commerce.register_sessions.read",
       "commerce.stored_value.read",
-      "commerce.loyalty.read"
+      "commerce.loyalty.read",
+      "commerce.returns.read",
+      "commerce.refunds.read"
     ]) {
       const { activityCode, action } = split(key);
       expect(allowed(everyReport, activityCode, action)).toBe(false);

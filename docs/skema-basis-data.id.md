@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:ce2b59755a1a0cea40dc8c3e6972cf78cb18ddd0b1e26d0929c3549df1b1651d -->
+<!-- i18n-source-hash: sha256:db474a177328e7ea3debcd845f11933bf874877c0a020cf447405d47fba6ed29 -->
 
 # Skema basis data
 
@@ -333,6 +333,7 @@ Model baca dari lima proyeksi `cursor_table` yang disumbangkan `commerce` di sam
 | `awcms_commerce_report_expense_daily` | `(tenant_id, day, category_id, tender_type)` | `category_name` (snapshot), `posted_count`, `posted`, `reversed_count`, `reversed` | `day` adalah tanggal `occurred_on` pengeluaran yang diketik (tanpa konversi zona waktu); pembalikan ditambahkan ke kolom `reversed*` baris yang sama |
 | `awcms_commerce_report_loyalty_daily` | `(tenant_id, day, bucket)` | `entries`, `points bigint` | `bucket` ∈ `earn`, `redeem`, `expire`, `adjustment_up/down`, `reversal_up/down` (CHECK). Poin beredar = jumlah berjalan |
 | `awcms_commerce_report_stored_value_daily` | `(tenant_id, day, account_kind, bucket)` | `entries`, `amount` | `account_kind` ∈ `gift_card`, `store_credit`; `bucket` ∈ `issue`, `load`, `redeem`, `refund`, `expire`, `adjust_up/down` (CHECK). Kewajiban beredar = jumlah berjalan per jenis |
+| `awcms_commerce_report_returns_daily` | `(tenant_id, day, register_id, section, bucket, detail)` | `entry_count`, `units`, `amount` | Issue #316 (`sql/945`, izin `sql/946`). `section` ∈ `return` (bucket `return`/`exchange`), `disposition` (bucket `restock`/`damaged`/`quarantine`, dengan `units`) dan `refund` (bucket metode pembayaran, `detail` `original_tender`/`store_credit`) — CHECK menetapkan kombinasi yang diizinkan; `detail` adalah `''` bila tak dipakai. Retur dan baris: hari pencatatan, register penjualan asal; leg refund: hari selesai. Tanpa rujukan ke depan, sehingga berurutan sebelum tabel retur `sql/994` |
 
 `register_id`, `category_id` dan kasir adalah **snapshot tanpa kunci asing** (sikap proyeksi penjualan): baris laporan adalah fakta historis dan pembersihan retensi sepuluh tahun atas kasir atau kategori tidak boleh terhalang oleh atau membatalkannya. Empat view `security_invoker` — `awcms_commerce_report_src_allocations`, `…_close_decisions`, `…_expenses_posted`, `…_expenses_reversed` — hanya menampilkan id, tenant, kursor dan satu kolom pencocok dari baris yang kursornya terisi, karena pindaian rebuild mesin tidak punya predikat `IS NOT NULL` (ADR-0035 D3); empat indeks kursor parsial pada tabel sumber melayaninya. `awcms_worker` memegang `SELECT, INSERT, UPDATE, DELETE` pada lima tabel dan `SELECT` pada view (dicerminkan di `WORKER_ROLE_GRANTS`). Retensi (batas atas 3650 hari, kursor `day`) dan data subjek (hanya uuid kasir) dideklarasikan di `domain/operational-report-lifecycle.ts`. `sql/999` menyemai sepuluh izin `commerce.report_*.read|export`.
 

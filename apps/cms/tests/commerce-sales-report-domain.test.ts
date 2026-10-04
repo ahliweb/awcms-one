@@ -312,7 +312,9 @@ describe("registry pairing of dimensional sinks and hooks (Issue #117)", () => {
       "commerce.pos_cash_up_variance",
       "commerce.pos_expense_daily",
       "commerce.pos_loyalty_daily",
-      "commerce.pos_stored_value_daily"
+      "commerce.pos_stored_value_daily",
+      // Issue #316 - the returns & refunds family.
+      "commerce.pos_returns_daily"
     ]);
   });
 

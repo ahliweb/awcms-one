@@ -1,8 +1,8 @@
 /**
- * `dataLifecycle` and `subjectData` descriptors for the five POS
- * operational-report projection tables (Issue #296, ADR-0035, sql/998),
- * declared once here and spread into `module.ts`'s two arrays - five
- * near-identical 40-line literals would be five places to forget one field.
+ * `dataLifecycle` and `subjectData` descriptors for the six POS
+ * operational-report projection tables (Issue #296, ADR-0035, sql/998; the returns table is sql/945, Issue
+ * #316), declared once here and spread into `module.ts`'s two arrays - six
+ * near-identical 40-line literals would be six places to forget one field.
  * Pure data, no imports beyond types.
  *
  * ## Retention
@@ -16,7 +16,7 @@
  *
  * ## Subject data
  *
- * Four of the five carry no person at all: per-day, per-bucket sums. The
+ * Five of the six carry no person at all: per-day, per-bucket sums. The
  * cash-up table names the cashier of record - STAFF, as a plain tenant-user
  * uuid stamp, never a customer - exactly as the register session it
  * summarises does, and is retained under the same fiscal obligation.
@@ -105,6 +105,12 @@ export const OPERATIONAL_REPORT_DATA_LIFECYCLE: HighVolumeTableDescriptor[] = [
     "awcms_commerce_report_stored_value_daily",
     "the primary key's own leading columns (sql/998)",
     "At most fourteen rows per day per tenant (two account kinds x seven buckets)."
+  ),
+  descriptor(
+    "commerce.pos_returns_daily",
+    "awcms_commerce_report_returns_daily",
+    "the primary key's own leading columns (sql/945)",
+    "Bounded by days x registers x (two return kinds + three dispositions + tenders x two destinations)."
   )
 ];
 
@@ -152,5 +158,9 @@ export const OPERATIONAL_REPORT_SUBJECT_DATA: SubjectDataDescriptor[] = [
   unreachable(
     "commerce.pos_stored_value_daily",
     "awcms_commerce_report_stored_value_daily"
+  ),
+  unreachable(
+    "commerce.pos_returns_daily",
+    "awcms_commerce_report_returns_daily"
   )
 ];

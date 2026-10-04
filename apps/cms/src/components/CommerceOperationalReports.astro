@@ -2,8 +2,8 @@
 /**
  * The POS operational-report panels (Issue #296, ADR-0035) on
  * `/admin/commerce-reports`: tender mix by register, cash-up variance, expenses
- * by category, loyalty points and the stored-value liability. Rendered from the
- * five `commerce.pos_*` projections through
+ * by category, loyalty points, the stored-value liability and (Issue #316)
+ * returns and refunds. Rendered from the six `commerce.pos_*` projections through
  * `application/operational-report-directory.ts`; the page decides, per family,
  * whether the caller holds the report's own permission and passes `null` for a
  * family it may not read. A family whose source feature is OFF
@@ -27,6 +27,7 @@ import type {
   CashUpReport,
   ExpenseReport,
   LoyaltyReport,
+  ReturnsReport,
   StoredValueReport,
   TenderReport
 } from "../modules/commerce/application/operational-report-directory";
@@ -37,6 +38,7 @@ export type OperationalReportsView = {
   expenses: ExpenseReport | null;
   loyalty: LoyaltyReport | null;
   storedValue: StoredValueReport | null;
+  returns: ReturnsReport | null;
   /** Which families the caller may export (its own `.export` key). */
   canExport: {
     tenders: boolean;
@@ -44,6 +46,7 @@ export type OperationalReportsView = {
     expenses: boolean;
     loyalty: boolean;
     storedValue: boolean;
+    returns: boolean;
   };
 };
 
@@ -92,6 +95,19 @@ const loyaltyBuckets = reports.loyalty?.enabled ? reports.loyalty.summary : [];
 const storedValueRows = reports.storedValue?.enabled
   ? reports.storedValue.summary
   : [];
+
+const returnsRows = reports.returns?.enabled ? reports.returns.summary : [];
+const RETURNS_SECTION_LABELS: Record<string, string> = {
+  return: t("Returns"),
+  disposition: t("Returned stock"),
+  refund: t("Refunds")
+};
+const returnsItemLabel = (row: { section: string; bucket: string }) =>
+  row.section === "return"
+    ? commerceLabel(labels.returnKind, row.bucket)
+    : row.section === "disposition"
+      ? commerceLabel(labels.returnDisposition, row.bucket)
+      : commerceLabel(labels.paymentTenderType, row.bucket);
 
 const varianceTone = (variance: string) =>
   Number(variance) < 0
@@ -564,6 +580,131 @@ const varianceLabel = (variance: string) =>
     {reports.canExport.storedValue && (
       <p>
         <a class="module-toggle" href={csvHref("operational-stored-value")}>
+          {t("Download CSV")}
+        </a>
+      </p>
+    )}
+  </section>
+)}
+
+{reports.returns?.enabled && (
+  <section
+    class="admin-section fade-in-up"
+    id="ops-returns"
+    aria-labelledby="ops-returns-title"
+  >
+    <h2 class="admin-section-title" id="ops-returns-title">
+      {t("Returns and refunds")}
+    </h2>
+    <section
+      class="admin-stat-card-grid"
+      aria-label={t("Returns and refunds totals")}
+    >
+      <div class="admin-stat-card">
+        <span class="admin-stat-card-label">{t("Returns recorded")}</span>
+        <span class="admin-stat-card-value" id="ops-returns-count">
+          {count(reports.returns.returnCount)}
+        </span>
+      </div>
+      <div class="admin-stat-card">
+        <span class="admin-stat-card-label">{t("Value returned")}</span>
+        <span class="admin-stat-card-value">
+          {money(reports.returns.returnedValue)}
+        </span>
+      </div>
+      <div class="admin-stat-card">
+        <span class="admin-stat-card-label">{t("Refunded")}</span>
+        <span class="admin-stat-card-value" id="ops-returns-refunded">
+          {money(reports.returns.refundedTotal)}
+        </span>
+      </div>
+      <div class="admin-stat-card">
+        <span class="admin-stat-card-label">
+          {t("Refunded to store credit")}
+        </span>
+        <span class="admin-stat-card-value">
+          {money(reports.returns.refundedToStoreCredit)}
+        </span>
+      </div>
+      <div class="admin-stat-card">
+        <span class="admin-stat-card-label">{t("Units restocked")}</span>
+        <span class="admin-stat-card-value" id="ops-returns-restocked">
+          {count(reports.returns.restockedUnits)}
+        </span>
+      </div>
+      <div class="admin-stat-card">
+        <span class="admin-stat-card-label">{t("Units written off")}</span>
+        <span class="admin-stat-card-value" id="ops-returns-written-off">
+          {count(reports.returns.writtenOffUnits)}
+        </span>
+      </div>
+      <div class="admin-stat-card">
+        <span class="admin-stat-card-label">{t("Units held back")}</span>
+        <span class="admin-stat-card-value">
+          {count(reports.returns.quarantinedUnits)}
+        </span>
+      </div>
+    </section>
+    <div class="data-table-scroll">
+      <table class="data-table data-table--stack" id="ops-returns-table">
+        <caption>
+          {t(
+            "Returns, returned stock and refunds paid back, {from} to {to}. A return counts on the day it was recorded, a refund on the day it settled.",
+            { from: range.from, to: range.to }
+          )}
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">{t("Type")}</th>
+            <th scope="col">{t("Kind")}</th>
+            <th scope="col">{t("Goes to")}</th>
+            <th scope="col">{t("Count")}</th>
+            <th scope="col">{t("Units")}</th>
+            <th scope="col">{t("Amount")}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {returnsRows.length === 0 ? (
+            <tr>
+              <td class="data-table-empty" colspan="6">
+                <div class="empty-state">
+                  <span class="empty-state-icon" aria-hidden="true">
+                    ◇
+                  </span>
+                  <span class="empty-state-title">
+                    {t("No returns or refunds in this range")}
+                  </span>
+                </div>
+              </td>
+            </tr>
+          ) : (
+            returnsRows.map((row) => (
+              <tr
+                data-ops-returns={`${row.section}|${row.bucket}|${row.detail}`}
+              >
+                <th scope="row" data-label={t("Type")}>
+                  {RETURNS_SECTION_LABELS[row.section] ?? row.section}
+                </th>
+                <td data-label={t("Kind")}>{returnsItemLabel(row)}</td>
+                <td data-label={t("Goes to")}>
+                  {row.detail === ""
+                    ? "—"
+                    : commerceLabel(labels.refundDestination, row.detail)}
+                </td>
+                <td data-label={t("Count")}>{count(row.count)}</td>
+                <td data-label={t("Units")}>
+                  {row.section === "disposition" ? count(row.units) : "—"}
+                </td>
+                <td data-label={t("Amount")}>{money(row.amount)}</td>
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
+    </div>
+    {reports.canExport.returns && (
+      <p>
+        <a class="module-toggle" href={csvHref("operational-returns")}>
           {t("Download CSV")}
         </a>
       </p>

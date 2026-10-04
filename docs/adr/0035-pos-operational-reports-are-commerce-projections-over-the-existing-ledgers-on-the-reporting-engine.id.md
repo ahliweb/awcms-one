@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0035-pos-operational-reports-are-commerce-projections-over-the-existing-ledgers-on-the-reporting-engine.md)
 
-<!-- i18n-source-hash: sha256:04bf2e2f403b5d72a2bb62501f75d6cc8f23922f9579dc059b3a18d406b8a8be -->
+<!-- i18n-source-hash: sha256:f92a4b3e8ee1c5ab4871b017631684a03d14194ab12c332b5cd6dac9ea9fd0f9 -->
 
 <!-- i18n-source-hash: sha256:placeholder -->
 
@@ -103,3 +103,13 @@ Jalur generik tidak berubah: kait `exportRows` tiap deskriptor menyuplai ekspor 
 - **Satu tabel generik `report_rows` berkunci keluarga dan peta dimensi JSON** — ditolak: menukar kolom uang bertipe dan keunikan yang ditegakkan kunci utama dengan migrasi yang lebih sedikit, dan jumlah aditif `bigint`/`numeric` atas kunci JSON adalah aritmetika yang tidak semestinya diminta diimprovisasi basis data.
 - **Izin baru `reports.operational.read`** — ditolak: satu kunci untuk lima kepekaan adalah bentuk "satu saklar untuk semuanya" yang hendak dihindari aturan terpisah-per-sumber-daya.
 - **Menambal pindaian rebuild mesin reporting** — dicatat di D3 sebagai usulan ke upstream.
+
+## Adendum — irisan retur sudah ada (Isu #316)
+
+Keluarga retur & refund yang dijanjikan kontrak D1 kini ada sebagai proyeksi keenam, `commerce.pos_returns_daily`, mengikuti lima bagian di atas tanpa mengubah mesin. Tiga keputusan diambil saat membangunnya dan dicatat di sini agar tidak ditemukan ulang:
+
+- **Tidak ada view baru, dan mengapa skemanya muat di pita yang dicadangkan.** Pita migrasi `945`–`949` berurutan sebelum `sql/970` (register) dan `sql/994` (tabel retur), sehingga migrasi di sana tidak boleh menyebut keduanya. `sql/945` karena itu hanya berisi tabel proyeksi (kolom biasa, FORCE RLS, grant worker) dan `sql/946` dua baris izin. Bahaya D3 tidak muncul: tabel retur dan baris retur punya kursor `created_at` yang NOT NULL sejak insert (dan sudah berindeks, `sql/994`), dan `settled_at` milik refund sendiri NULL selagi tertunda — tetapi baris REVERSAL buku besar pembayaran yang dibukukan refund yang selesai baru ada setelah uang berpindah. Aliran leg refund karena itu membaca view `awcms_commerce_report_src_allocations` yang sudah ada (kursor `settled_at`, `sql/998`) dan hanya menyimpan leg reversal yang ditunjuk sebuah refund lewat `reversal_allocation_id`; reversal pembatalan tidak punya refund di belakangnya dan tetap milik laporan tender.
+- **Satu tabel panjang, tiga aliran.** `awcms_commerce_report_returns_daily` berkunci `(tenant_id, day, register_id, section, bucket, detail)`: section `return` (bucket `return` atau `exchange`: jumlah dan total refund), `disposition` (bucket `restock`, `damaged` = dihapuskan, atau `quarantine`: baris, unit, nilai) dan `refund` (bucket metode pembayaran, detail `original_tender` atau `store_credit`: leg dan uang). Setiap kolom selain kunci bersifat aditif, sehingga aliran-aliran itu komutatif dan rebuild mereproduksi baris langsung byte demi byte. Retur dan barisnya diatribusikan ke register penjualan asal dan hari pencatatan; leg refund ke register sesi yang membayarkannya dan hari ia selesai. Amandemen hari penjualan asal oleh proyeksi penjualan (ADR-0033) tidak disentuh.
+- **Di balik fitur `returns`, izin `commerce.report_returns.read|export`.** `GET /api/v1/reports/commerce/operational-returns` dan `.csv` menjawab `200 enabled: false` selama fitur mati; CSV-nya satu berkas panjang dengan kolom `section` (dinetralkan dari formula, `no-store`, diaudit sebagai `operational_report.export`).
+
+Konsekuensi pada pita yang dicadangkan: `945`–`946` terpakai, `947`–`949` tetap bebas untuk tabel yang, seperti ini, tidak menyebut sumber ke depan.

@@ -1,0 +1,11 @@
+---
+"awcms": minor
+---
+
+feat(commerce): returns & refunds operational report as a reporting projection (Issue #316, follow-up to #296 and #287)
+
+One new `commerce` `reportingProjection`, `commerce.pos_returns_daily`, on the existing reporting engine (ADR-0035 D1's returns contract, no engine change): table `awcms_commerce_report_returns_daily` keyed `(tenant_id, day, register_id, section, bucket, detail)` (`sql/945`: FORCE RLS with `WITH CHECK`, CHECKs on the section/bucket/detail combinations, `awcms_worker` grant mirrored in `security-readiness.ts`; `sql/946`: two permission rows). Three streams, all over sources whose cursor is NOT NULL from insert, so no `security_invoker` view is needed: `awcms_commerce_returns` and `awcms_commerce_return_lines` (cursor `created_at`) and the payment ledger's succeeded reversal legs that a refund points at (read through the sql/998 `awcms_commerce_report_src_allocations` view, cursor `settled_at`). `945` sorts before the `sql/970`/`sql/994` source tables, which is why the migration names none of them.
+
+New endpoints (`reporting` work class, `?from&to` at most 366 days; the `returns` feature OFF answers `200` with `enabled: false`): `GET /api/v1/reports/commerce/operational-returns` (`commerce.report_returns.read`) and `.csv` (`commerce.report_returns.export`, high-risk; one long file with a `section` column, formula-neutralised via `csvCell`/`csvNumber`, `no-store`, audited as `operational_report.export`). `/admin/commerce-reports` renders a Returns and refunds panel through `CommerceOperationalReports.astro`. Two new permissions, existing `AccessAction` verbs only. Retention (cursor `day`, 3650 days) and subject-data descriptors in `domain/operational-report-lifecycle.ts`. No domain events added.
+
+Tests: domain rules, CSV and permission separation in `tests/commerce-operational-report-{domain,permissions}.test.ts`; `tests/integration/commerce-returns-report.integration.test.ts` (live = rebuild byte for byte with a NULL-cursor pending leg in the ledger, reconcile tamper and drift, late events, timezone boundary, store-credit destination, feature off, RLS) and the returns cases in `tests/integration/commerce-operational-reports-routes.integration.test.ts`.
