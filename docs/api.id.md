@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:6c2864e790e4e249e46cfa5732907609cf4433f8bc30818742f43db0a696bf86 -->
+<!-- i18n-source-hash: sha256:a5c20ad3b2bc1933a5a806290e213d6857a7988849e64cfdcfe8968c6856ab93 -->
 
 # API
 
@@ -140,6 +140,21 @@ Setiap rute di bawah berada di balik flag fitur `expenses` tenant (bawaan MATI �
 | `GET` | `commerce/expenses/export.csv?from&to` | `commerce.expenses.export` | Satu CSV, dinetralkan dari formula, ≤ 10.000 baris (`X-Export-Truncated`), `no-store` |
 
 Selama fitur `expenses` MENYALA, `POST commerce/register-sessions/{id}/movements` dengan `movementType: "expense"` adalah `409 EXPENSE_REQUIRES_EXPENSE_RECORD` (yang mentah akan melewati ambang); dengan fitur MATI tidak berubah.
+
+## API owner: pengembalian barang, pengembalian dana, dan penukaran (issue #287, epik #281, [ADR-0033](adr/0033-returns-refunds-and-exchanges-are-additive-records-that-compensate-through-the-existing-ledgers.md))
+
+Dibatasi fitur `returns` tenant (default **mati**: setiap route menjawab `409 FEATURE_DISABLED`); setiap mutasi memerlukan `Idempotency-Key`. Refund juga memerlukan `commerce.payments.revoke`, diperiksa lewat chokepoint yang sama.
+
+| Metode | Path | Izin | Catatan |
+| --- | --- | --- | --- |
+| `GET`/`POST` | `commerce/orders/{id}/returns` | `returns.read` / `returns.create` (+ `refunds.create`, `payments.revoke` bila `refund` diberikan) | `POST { kind?, note?, exchangeOrderId?, lines: [{ orderItemId, quantity, reason, disposition }], refund?: { destination, shippingRefund?, registerSessionId?, storeCreditAccountId? } }` → `201 { return, storeCredit }` (`storeCredit.code` hanya di respons ini); `409 RETURN_QUANTITY_EXCEEDED`, `ORDER_NOT_RETURNABLE`, `REFUND_EXCEEDS_REFUNDABLE`, `SHIPPING_REFUND_EXCEEDED`, `STORE_CREDIT_UNAVAILABLE`, `PAYMENT_NOT_REVERSIBLE`, `REGISTER_SESSION_NOT_OPEN` |
+| `GET` | `commerce/returns` | `returns.read` | Daftar keyset (`?status=open\|completed&limit&cursor`) |
+| `GET` | `commerce/returns/{id}` | `returns.read` | Satu return dengan baris, bagian refund, dan kompensasi; id tenant lain adalah `404` yang sama |
+| `POST` | `commerce/returns/{id}/refunds` | `refunds.create` + `payments.revoke` | Merencanakan dan membuat bagian untuk yang belum punya; `409 NOTHING_TO_REFUND` |
+| `POST` | `commerce/returns/{id}/refunds/{refundId}/execute` | `refunds.create` + `payments.revoke` | Bagian gateway → penyedia (tanpa transaksi terbuka); `200` selesai atau diproses, `502 PROVIDER_REFUND_FAILED`, `503 GATEWAY_UNAVAILABLE` |
+| `POST` | `commerce/returns/{id}/refunds/{refundId}/offline` | `refunds_offline.approve` + `payments.revoke` | `{ reason }` wajib; menyelesaikan bagian yang dilakukan di luar sistem |
+| `POST` | `commerce/returns/{id}/exchange-order` | `returns.create` | `{ orderId }`; sekali; `409 NOT_AN_EXCHANGE`, `EXCHANGE_ALREADY_LINKED`, `EXCHANGE_ORDER_INVALID` |
+| `GET` | `commerce/returns/reconcile` | `refunds.read` | Temuan read-only (baris kelebihan kembali, refund selesai tanpa reversal, reversal refund yatim, pembayaran kelebihan refund, selisih total, selisih restock, terbuka-tapi-sudah-penuh-refund) |
 
 ## Storefront (anonim) API — `/api/v1/commerce/storefront/*`
 

@@ -752,6 +752,18 @@ export const RETIRED_TENANT_TABLE_PRIVILEGES: Record<string, string[]> = {
   awcms_commerce_work_orders: ["SELECT", "INSERT", "UPDATE"],
   awcms_commerce_work_order_events: ["SELECT", "INSERT"],
   awcms_commerce_documents: ["SELECT", "INSERT"],
+  // Issue #287 / `sql/994`. Returns and refunds - NOT retired, written on every
+  // return. A refund is a fiscal record of money leaving the business, so the
+  // role that runs the till must not be able to erase one: DELETE is revoked
+  // on all four. The two append-only tables (return lines, compensations) lose
+  // UPDATE as well - their trigger would refuse it anyway, and the privilege
+  // error is the earlier, louder answer. `returns` keeps UPDATE for its status
+  // (open -> completed) and the one-time exchange link; `refunds` keeps it for
+  // its settlement state machine; both are confined by sql/994's guards.
+  awcms_commerce_returns: ["SELECT", "INSERT", "UPDATE"],
+  awcms_commerce_return_lines: ["SELECT", "INSERT"],
+  awcms_commerce_refunds: ["SELECT", "INSERT", "UPDATE"],
+  awcms_commerce_refund_compensations: ["SELECT", "INSERT"],
   // Issue #294 / `sql/990`. The expense tables - NOT retired, written on every
   // spend. An expense is a fiscal record of money that left the business, so
   // the role that records one must not be able to erase it: DELETE is revoked
@@ -1704,6 +1716,12 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_commerce_work_orders: ["SELECT", "DELETE"],
   awcms_commerce_work_order_events: ["SELECT", "DELETE"],
   awcms_commerce_documents: ["SELECT", "DELETE"],
+  // Issue #287 (`sql/997`): the four returns / refunds tables are purged by
+  // `created_at` once past the ten-year ceiling; SELECT + DELETE only.
+  awcms_commerce_returns: ["SELECT", "DELETE"],
+  awcms_commerce_return_lines: ["SELECT", "DELETE"],
+  awcms_commerce_refunds: ["SELECT", "DELETE"],
+  awcms_commerce_refund_compensations: ["SELECT", "DELETE"],
   // Issue #291 (`sql/960`/`962`/`964`): catalog attributes. Definitions and
   // values are soft-deleted (`deleted_at` cursor) and aged out by the generic
   // purge engine, which needs SELECT + DELETE; an import batch is an

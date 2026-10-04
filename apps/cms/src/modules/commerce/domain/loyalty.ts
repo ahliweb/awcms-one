@@ -48,7 +48,10 @@ export const LOYALTY_SOURCE_TYPES = [
   "order",
   "expiry",
   "redemption",
-  "manual"
+  "manual",
+  // Issue #287 (ADR-0033): a reversal compensating a REFUND of the order, in
+  // proportion to the money refunded; `source_id` is the refund's id.
+  "refund"
 ] as const;
 
 export type LoyaltySourceType = (typeof LOYALTY_SOURCE_TYPES)[number];

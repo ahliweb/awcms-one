@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](cms.md)
 
-<!-- i18n-source-hash: sha256:a0abcdd05d5326262012770f9072cd12c1481905d4e29a0d9887780ce7eb1891 -->
+<!-- i18n-source-hash: sha256:a41a2dc3c3a356d5bcc860c746e140edaf6088713cb740f4ab0195ffa1ff0ffe -->
 
 # CMS: authoring, publikasi, izin, audit, media, taksonomi
 
@@ -325,6 +325,18 @@ Flag `features` keenam, **`loyalty`, default `false`** — satu-satunya flag di 
 - **Layar.** `/admin/commerce-stored-value`: angka utama, form penerbitan dengan struk salin/cetak sekali-tampil, tabel akun (filter jenis/status, kode tersamar) dengan ledger akun terpilih, isi/sesuaikan/nonaktifkan/aktifkan, program, laporan kewajiban, sweep kedaluwarsa, dan pemeriksaan konsistensi. Layar POS dan detail pesanan mendapat baris tender kartu hadiah/kredit toko (hanya dengan fitur menyala).
 - **Flag fitur.** `features.storedValue`, default MATI: rute pemilik menjawab `409 FEATURE_DISABLED`, entri sidebar disembunyikan, dan tender kartu ditolak sebelum apa pun ditulis.
 - **Tes.** `apps/cms/tests/commerce-stored-value-domain.test.ts` (entropi/alfabet/karakter cek/hash kode, sen bertanda, aturan ledger dan tes properti 500 ledger, validasi), `commerce-stored-value-routes.test.ts` (satu penulis, pemisahan izin, "kode tidak pernah disimpan atau dilog", klaim layar, tanpa tarik tunai), dan terhadap Postgres sungguhan `apps/cms/tests/integration/commerce-stored-value.integration.test.ts` (kode tidak ada di tabel mana pun, penukaran yang benar-benar bersamaan, replay, saldo tidak cukup, pengembalian ke kartu asal, kedaluwarsa dan sweep, nonaktifkan/aktifkan, penolakan tingkat-database atas edit saldo langsung / overdraw / leg tak berpasangan, deteksi dan perbaikan penyimpangan reconcile, RLS/FK komposit/BOLA, laporan kewajiban, tender terbagi POS dengan kartu dan tunai).
+
+## Pengembalian barang, pengembalian dana, dan penukaran (issue #287, epik #281, [ADR-0033](adr/0033-returns-refunds-and-exchanges-are-additive-records-that-compensate-through-the-existing-ledgers.md))
+
+- **Model.** `awcms_commerce_returns` / `…_return_lines` / `…_refunds` / `…_refund_compensations`; sebuah return mencatat unit per baris pesanan dengan alasan dan disposisi wajib. Hanya unit `restock` kembali ke stok yang dapat dijual (`application/return-inventory-port.ts`); `damaged` dan `quarantine` dicatat.
+- **Catat.** `POST /api/v1/commerce/orders/{id}/returns` (`commerce.returns.create`, `Idempotency-Key`; dengan `refund` juga `commerce.refunds.create` dan `commerce.payments.revoke`): jumlah dibatasi sisa, nilai tepat hingga sen, refund direncanakan melalui pembayaran asal dari yang terbaru dan setiap bagian yang dapat selesai sekarang diselesaikan dalam transaksi yang sama (tunai — opsional dari register terbuka pemanggil —, refund manual, kartu hadiah, kredit toko dengan kode yang ditampilkan sekali). Penolakan tidak menulis apa pun.
+- **Refund gateway.** `POST …/returns/{id}/refunds/{refundId}/execute` mengklaim bagian, memanggil penyedia tanpa transaksi terbuka (id bagian adalah kunci idempotensi penyedia), lalu mencatat hasilnya; `503 GATEWAY_UNAVAILABLE` / `502 PROVIDER_REFUND_FAILED` membiarkan bagian dapat diulang. `…/offline` (`commerce.refunds_offline.approve` + `commerce.payments.revoke`, alasan wajib) menyelesaikan yang dilakukan di luar sistem.
+- **Refund susulan, penukaran, baca.** `POST …/returns/{id}/refunds` merencanakan bagian return yang belum punya bagian; `POST …/returns/{id}/exchange-order` menautkan pesanan pengganti sekali; `GET …/returns`, `…/returns/{id}`, `…/orders/{id}/returns`, `…/returns/reconcile`.
+- **Kompensasi.** Per bagian yang selesai, proporsional dan idempoten: poin loyalitas dibalik (`reversal:refund:{id}`), komisi afiliasi dikembalikan (`adjusted_amount`), kredit toko diisi atau diterbitkan.
+- **Laporan penjualan.** Return diumumkan pada `order_events` (`to_status = 'returned'`, `return_id`) dan dinetralkan oleh ketiga proyeksi; live sama dengan rebuild; pembatalan setelah return sebagian bernilai nol.
+- **Layar.** Panel dan wizard "Pengembalian barang dan dana" di detail pesanan (`components/CommerceReturnsPanel.astro`, `lib/ui/commerce-returns-client.ts`).
+- **Feature flag.** `features.returns`, default MATI.
+- **Tes.** `apps/cms/tests/commerce-returns-domain.test.ts` (properti dekomposisi sen, perencanaan refund, aritmetika proporsional, validator, netting laporan), `commerce-returns-routes.test.ts` (pemisahan izin, penulis tunggal, penempatan panggilan penyedia), `commerce-returns-client.test.ts`, dan `apps/cms/tests/integration/commerce-returns.integration.test.ts` (Postgres nyata: return sebagian/berulang/konkuren, disposisi, batas refund dan triggernya, retry/replay/offline penyedia, kredit toko, kompensasi loyalitas dan afiliasi, netting laporan dan paritas rebuild, RLS, BOLA, fitur-mati, idempotensi, penjaga append-only, reconcile, penukaran).
 
 ## Penawaran, perintah kerja, struk dan faktur, serta penjualan tertahan (issue #286, epik #281, [ADR-0029](adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md))
 

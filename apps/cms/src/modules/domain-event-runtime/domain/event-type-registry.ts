@@ -145,6 +145,11 @@ export const COMMERCE_DOCUMENT_DELIVERY_REQUESTED_EVENT_TYPE =
  */
 export const COMMERCE_LOYALTY_ENTRY_RECORDED_EVENT_TYPE =
   "awcms.commerce.loyalty.entry_recorded";
+/** Issue #287 (ADR-0033) — returns and refunds, both on the return aggregate. */
+export const COMMERCE_RETURN_RECORDED_EVENT_TYPE =
+  "awcms.commerce.return.recorded";
+export const COMMERCE_REFUND_SETTLED_EVENT_TYPE =
+  "awcms.commerce.refund.settled";
 
 /** Issue #288 (ADR-0030) — closed-loop stored-value ledger. */
 export const COMMERCE_STORED_VALUE_ENTRY_RECORDED_EVENT_TYPE =
@@ -383,6 +388,18 @@ export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
       eventVersion: COMMERCE_EVENT_VERSION,
       description:
         "A row was appended to the append-only loyalty points ledger (Issue #289) — an earn for a paid order, a redemption, an expiry, a manual adjustment or a reversal. Producer: commerce/application/loyalty-ledger.ts's appendLedgerEntry, in the same transaction as the ledger insert and the account projection update. Aggregate is the loyalty account; the payload carries entryId, customerId, kind, signed integer points, balanceAfter and sourceType — never a name, phone or free-text reason."
+    },
+    {
+      eventType: COMMERCE_RETURN_RECORDED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "Goods were accepted back against an order (Issue #287): a return or exchange with its lines, quantities, stock dispositions and the cents-exact value. Producer: commerce/application/return-directory.ts's createReturn, in the same transaction as the return rows, the stock effect and the order-event row the sales projections read. Aggregate is the return; the payload carries ids, kind, line counts and amounts - never a name, phone or free-text note."
+    },
+    {
+      eventType: COMMERCE_REFUND_SETTLED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "One refund leg of a return reached succeeded (Issue #287): the payment-ledger reversal is booked and the proportional compensations (loyalty points, affiliate commission, store credit) are applied. Producer: commerce/application/refund-settlement.ts, in the same transaction. Aggregate is the return; the payload carries ids, tender, destination, amount and how it settled (ledger / provider / offline / store_credit) - never a provider reference, name or phone."
     }
   ];
 

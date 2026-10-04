@@ -234,6 +234,22 @@ Three FORCE-RLS tables (tenant-isolation policy with `WITH CHECK`, composite `(t
 - **Privileges.** `awcms_app` loses `DELETE` on all three and `UPDATE` on the ledger; `awcms_worker` keeps `SELECT, DELETE` (`sql/988`) for the retention engine (`commerce.stored_value_*`, five-year floor, ten-year ceiling; the two parents key on a never-set `deleted_at`, the ledger on `created_at`). `security-readiness.ts` asserts the exact sets both ways.
 - **`sql/987`** seeds the seven permission keys; `sql/989` is held and unused.
 
+## Returns, refunds and exchanges: four tables and four integrations (`sql/994`–`997`, issue #287, [ADR-0033](adr/0033-returns-refunds-and-exchanges-are-additive-records-that-compensate-through-the-existing-ledgers.md))
+
+Four FORCE-RLS tables (tenant-isolation policy with `WITH CHECK`, composite `(tenant_id, …)` foreign keys, `numeric(14,2)` money):
+
+| Table | Purpose |
+| --- | --- |
+| `awcms_commerce_returns` | One return or exchange of goods sold on one order: `kind` (`return \| exchange`), `status` (`open \| completed`), the cents-exact split `goods_gross`, `discount_share`, `shipping_refund`, `refund_total` (a CHECK ties them), the one-time `exchange_order_id`, `source_key` (unique per tenant). Changes only `open → completed` and the exchange link. |
+| `awcms_commerce_return_lines` | Append-only: `order_item_id`, product/variant snapshots, `quantity`, `reason`, `disposition` (`restock \| damaged \| quarantine`), `stock_effect` (CHECK = quantity for `restock`, else 0), the line's `goods_gross` / `discount_share` / `refund_amount`. A `BEFORE INSERT` trigger locks the order item and refuses Σ quantity above the quantity sold. |
+| `awcms_commerce_refunds` | One refund leg along one succeeded payment allocation: `tender_type`, `amount`, `destination` (`original_tender \| store_credit`), `status` (`pending \| processing \| succeeded \| failed`), `settled_via`, `attempts`, `failure_code`, `reversal_allocation_id`, `store_credit_account_id`, the offline `offline_reason` / `offline_by_tenant_user_id`. Triggers cap active legs + reversals at the payment and confine updates to the status machine. |
+| `awcms_commerce_refund_compensations` | Append-only, unique per `(refund, kind)`: `loyalty_reversal` (points), `affiliate_adjustment`, `store_credit_issue` / `store_credit_load` (money), `ref_id`. |
+
+- **`sql/995`** adds `awcms_commerce_order_events.return_id` (nullable composite FK, `ON DELETE SET NULL (return_id)`) so a `returned` event can name its return for the sales projections; a trigger on `awcms_commerce_payment_allocations` capping Σ succeeded reversals at the payment (ADR-0025's cap, now also a table property); `source_type = 'refund'` on the loyalty ledger and the one-reversal-per-earn unique index narrowed to non-refund reversals; `awcms_commerce_affiliate_commissions.adjusted_amount` (`0 ≤ adjusted ≤ amount`).
+- `sql/994` also creates `UNIQUE (tenant_id, id)` on `awcms_commerce_order_items` as a composite-FK target.
+- **Privileges.** `awcms_app` loses `DELETE` on all four and `UPDATE` on the two append-only tables; `awcms_worker` keeps `SELECT, DELETE` (`sql/997`) for the retention engine (ten-year ceiling). Refund rows cascade from the allocation they refund.
+- **`sql/996`** seeds the five permission keys.
+
 ## Commerce documents: seven tables (`sql/980`–`982`, issue #286, [ADR-0029](adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md))
 
 Seven FORCE-RLS tables (tenant-isolation policy with `WITH CHECK`, composite `(tenant_id, …)` foreign keys backed by `UNIQUE (tenant_id, id)`, every FK column indexed, money `numeric(14,2)`), plus one `UNIQUE (tenant_id, id)` index on `awcms_commerce_customers` to anchor a composite FK. No existing table gained a column.

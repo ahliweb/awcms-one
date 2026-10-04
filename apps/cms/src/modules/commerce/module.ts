@@ -11,6 +11,10 @@ import {
   REGISTER_SUBJECT_DATA
 } from "./domain/register-lifecycle";
 import {
+  RETURNS_DATA_LIFECYCLE,
+  RETURNS_SUBJECT_DATA
+} from "./domain/returns-lifecycle";
+import {
   STORED_VALUE_DATA_LIFECYCLE,
   STORED_VALUE_SUBJECT_DATA
 } from "./domain/stored-value-lifecycle";
@@ -105,7 +109,10 @@ import {
   COMMERCE_ATTRIBUTE_PERMISSIONS,
   COMMERCE_LOYALTY_ACTIVITY_CODE,
   COMMERCE_LOYALTY_ADJUSTMENTS_ACTIVITY_CODE,
-  COMMERCE_LOYALTY_REDEMPTIONS_ACTIVITY_CODE
+  COMMERCE_LOYALTY_REDEMPTIONS_ACTIVITY_CODE,
+  COMMERCE_RETURNS_ACTIVITY_CODE,
+  COMMERCE_REFUNDS_ACTIVITY_CODE,
+  COMMERCE_REFUNDS_OFFLINE_ACTIVITY_CODE
 } from "./domain/commerce-permissions";
 import {
   COMMERCE_FLASH_SALE_ENDED_EVENT_TYPE,
@@ -134,7 +141,9 @@ import {
   COMMERCE_STORED_VALUE_ENTRY_RECORDED_EVENT_TYPE,
   COMMERCE_EXPENSE_POSTED_EVENT_TYPE,
   COMMERCE_EXPENSE_REVERSED_EVENT_TYPE,
-  COMMERCE_DOCUMENT_DELIVERY_REQUESTED_EVENT_TYPE
+  COMMERCE_DOCUMENT_DELIVERY_REQUESTED_EVENT_TYPE,
+  COMMERCE_RETURN_RECORDED_EVENT_TYPE,
+  COMMERCE_REFUND_SETTLED_EVENT_TYPE
 } from "./domain/commerce-events";
 import {
   SALES_BY_CATEGORY_PROJECTION_KEY,
@@ -376,7 +385,9 @@ export const commerceModule = defineModule({
       COMMERCE_STORED_VALUE_ENTRY_RECORDED_EVENT_TYPE,
       COMMERCE_EXPENSE_POSTED_EVENT_TYPE,
       COMMERCE_EXPENSE_REVERSED_EVENT_TYPE,
-      COMMERCE_DOCUMENT_DELIVERY_REQUESTED_EVENT_TYPE
+      COMMERCE_DOCUMENT_DELIVERY_REQUESTED_EVENT_TYPE,
+      COMMERCE_RETURN_RECORDED_EVENT_TYPE,
+      COMMERCE_REFUND_SETTLED_EVENT_TYPE
     ]
   },
   /**
@@ -2516,6 +2527,9 @@ export const commerceModule = defineModule({
     // Issue #294 (ADR-0031) - the two expense tables; see
     // `domain/expense-lifecycle.ts`.
     ...EXPENSE_DATA_LIFECYCLE,
+    // Issue #287 (ADR-0033) - the four returns / refunds tables; see
+    // `domain/returns-lifecycle.ts`.
+    ...RETURNS_DATA_LIFECYCLE,
     {
       key: "commerce.protected_media_links",
       tableName: "awcms_commerce_protected_media_links",
@@ -3360,6 +3374,8 @@ export const commerceModule = defineModule({
     ...DOCUMENT_SUBJECT_DATA,
     // Issue #294 (ADR-0031) - see `domain/expense-lifecycle.ts`.
     ...EXPENSE_SUBJECT_DATA,
+    // Issue #287 (ADR-0033) - see `domain/returns-lifecycle.ts`.
+    ...RETURNS_SUBJECT_DATA,
     {
       key: "commerce.protected_media_links",
       tableName: "awcms_commerce_protected_media_links",
@@ -3932,6 +3948,36 @@ export const commerceModule = defineModule({
         "Assign, change or clear the barcode of a product or variant (Issue #292)"
     },
     {
+      activityCode: COMMERCE_RETURNS_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "Read returns, exchanges, their lines and refund legs (Issue #287)"
+    },
+    {
+      activityCode: COMMERCE_RETURNS_ACTIVITY_CODE,
+      action: "create",
+      description:
+        "Record a return or exchange of goods sold on an order, and link an exchange's replacement order (Issue #287)"
+    },
+    {
+      activityCode: COMMERCE_REFUNDS_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "Read refund legs and the compensations a settled refund had (Issue #287)"
+    },
+    {
+      activityCode: COMMERCE_REFUNDS_ACTIVITY_CODE,
+      action: "create",
+      description:
+        "Settle a refund leg: hand back cash, book a manual refund, return value to a gift card, issue store credit or call the payment provider (Issue #287)"
+    },
+    {
+      activityCode: COMMERCE_REFUNDS_OFFLINE_ACTIVITY_CODE,
+      action: "approve",
+      description:
+        "Attest that a refund was made outside the system when the provider or adapter could not make it (Issue #287)"
+    },
+    {
       activityCode: COMMERCE_ENTITLEMENTS_ACTIVITY_CODE,
       action: "read",
       description:
@@ -4103,5 +4149,8 @@ export {
 export {
   COMMERCE_LOYALTY_PERMISSIONS,
   COMMERCE_LOYALTY_ADJUSTMENT_PERMISSIONS,
-  COMMERCE_LOYALTY_REDEMPTION_PERMISSIONS
+  COMMERCE_LOYALTY_REDEMPTION_PERMISSIONS,
+  COMMERCE_RETURN_PERMISSIONS,
+  COMMERCE_REFUND_PERMISSIONS,
+  COMMERCE_REFUND_OFFLINE_PERMISSIONS
 } from "./domain/commerce-permissions";

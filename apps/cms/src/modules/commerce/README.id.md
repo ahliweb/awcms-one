@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:3b898a7b0d1346ab83a9533647837ebf5983af52408f9e3d158d1fc10d981b61 -->
+<!-- i18n-source-hash: sha256:a4314aa0b20b10a73f3dfc4f4dd882df3bb6132940431c9e34cad320ea61a949 -->
 
 # `commerce`
 
@@ -1436,6 +1436,20 @@ Tiga tabel (`sql/985`: `awcms_commerce_stored_value_programs`, `…_accounts`, `
 - **Event.** `awcms.commerce.stored_value.entry_recorded` pada agregat `commerce.stored_value_account` (satu per entri ledger); audit `stored_value.*` / `stored_value_program.update` (id, jenis, uang — tidak pernah kode, pelanggan, atau teks bebas).
 - **Layar.** `/admin/commerce-stored-value`; baris tender kartu hadiah / kredit toko di `/admin/commerce-pos` dan `/admin/commerce-orders/[id]` (hanya dengan fitur menyala); toggle "Gift cards and store credit" di layar pengaturan.
 - **Ditunda.** Job kedaluwarsa terjadwal, pencarian/penukaran publik atau tampilan saldo pelanggan apa pun, pengembalian dana ke kartu yang lewat batas, tarik tunai/transfer (ditolak), menjual kartu sebagai produk katalog, kredit toko dari retur — lihat [ADR-0030](../../../../../docs/adr/0030-stored-value-is-a-closed-loop-liability-ledger.id.md).
+
+## Pengembalian barang, pengembalian dana, dan penukaran — TERIMPLEMENTASI (Issue #287, epik #281 — [ADR-0033](../../../../../docs/adr/0033-returns-refunds-and-exchanges-are-additive-records-that-compensate-through-the-existing-ledgers.md))
+
+Empat tabel (`sql/994`: `awcms_commerce_returns`, `…_return_lines`, `…_refunds`, `…_refund_compensations`), integrasi pada tabel yang ada (`sql/995`: `order_events.return_id`, trigger batas reversal ledger pembayaran, sumber `refund` loyalitas, `affiliate_commissions.adjusted_amount`), lima izin (`sql/996`) dan hak akses worker retensi (`sql/997`).
+
+- **Letak kode.** `domain/returns.ts` (kosakata, dekomposisi sen per unit, alokasi diskon sisa-terbesar, perencanaan refund, aritmetika proporsional, validator; murni), `domain/returns-lifecycle.ts` (deskriptor retensi / data subjek), `application/return-directory.ts` (buat, refund susulan, tautan penukaran, reconcile), `application/refund-settlement.ts` (menyelesaikan satu leg — satu-satunya tempat refund menjadi fakta), `application/refund-execution.ts` (panggilan penyedia di luar setiap transaksi; penyelesaian offline), `application/return-inventory-port.ts` (batas stok), `application/return-records.ts` (pembacaan), `application/return-http.ts` (satu pemetaan hasil → respons).
+- **Aturan yang harus dipertahankan perubahan.** Tidak ada yang final diubah: tak ada `UPDATE` pesanan, item pesanan, atau alokasi pembayaran (tes memindainya). Setiap penolakan diputuskan SEBELUM tulisan pertama (`checkRefundSettlement`) — route yang mengembalikan respons meng-commit transaksinya. Urutan kunci: baris pesanan → baris item pesanan (menurut id) → baris pembayaran / kartu hadiah / laci. Penyedia dipanggil dari tepat satu tempat dan tak pernah dengan transaksi terbuka; ia diberi id leg refund sebagai kunci idempotensinya pada setiap percobaan. Stok hanya disentuh port inventori; loyalitas hanya oleh `loyalty-ledger.ts`.
+- **Batas inventori.** Satu hitungan stok per produk/varian; baris `restock` kembali lewat `ReturnInventoryPort`, `damaged`/`quarantine` dicatat dan tak mengubah stok yang dapat dijual. #282 (multi-lokasi) menggantikan implementasi port.
+- **Feature flag.** `features.returns` (`domain/commerce-features.ts`) default MATI. Mati: route owner menjawab `409 FEATURE_DISABLED` dan detail pesanan tak menampilkan panel.
+- **Izin.** `commerce.returns.{read,create}`, `commerce.refunds.{read,create}`, `commerce.refunds_offline.approve` — hanya kata kerja `AccessAction` yang ada; leg refund juga memerlukan `commerce.payments.revoke`.
+- **Event.** `awcms.commerce.return.recorded`, `awcms.commerce.refund.settled` pada agregat `commerce.return`; audit `return.create`, `return.refund`, `return.link_exchange`, `refund.settle`.
+- **Layar.** Panel dan wizard "Pengembalian barang dan dana" di detail pesanan (`src/components/CommerceReturnsPanel.astro`, `src/lib/ui/commerce-returns-client.ts`); sakelar "Pengembalian barang, dana, dan penukaran" di layar pengaturan.
+- **Laporan penjualan.** `sales-report-deltas.ts` / `sales-report-projection.ts` menetralkan event pesanan `returned` (dan, untuk pembatalan berikutnya, retur sebelumnya) sehingga ketiga proyeksi tetap sama dengan rebuild.
+- **Ditunda.** Pergerakan stok multi-lokasi, refund pajak/asuransi otomatis, permintaan dari pelanggan, job refund terjadwal, membatalkan retur terbuka, laporan retur — lihat [ADR-0033](../../../../../docs/adr/0033-returns-refunds-and-exchanges-are-additive-records-that-compensate-through-the-existing-ledgers.md).
 
 ## Dengan sengaja tidak ada di sini
 

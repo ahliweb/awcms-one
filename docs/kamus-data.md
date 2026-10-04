@@ -262,6 +262,22 @@ Tenant-authored, **typed** custom attributes — this platform's own design (OSP
 | `storedValue` feature | commerce module settings `features.storedValue` (default OFF) | Turns the whole surface on; off, a card tender is refused before anything is written |
 | `commerce.stored_value_programs.*`, `commerce.stored_value.*`, `commerce.stored_value_adjustments.create`, `commerce.stored_value_reconcile.approve` | `awcms_permissions` (`sql/987`) | The seven keys; redeeming is a payment tender, not one of them |
 
+### Returns, refunds and exchanges (issue #287, [ADR-0033](adr/0033-returns-refunds-and-exchanges-are-additive-records-that-compensate-through-the-existing-ledgers.md))
+
+| Term | Where | Meaning |
+| --- | --- | --- |
+| return | `awcms_commerce_returns` | Goods accepted back against one order; `kind` `return` or `exchange`; `open` until every refund leg has settled, then `completed`. History: only that move and the one-time exchange link ever change |
+| return line | `awcms_commerce_return_lines` | Units of one order line that came back, with a `reason` (`defective`, `wrong_item`, `not_as_described`, `damaged_in_transit`, `changed_mind`, `size_fit`, `duplicate_order`, `other`) and a `disposition` |
+| disposition | return line | `restock` puts units back into sellable stock; `damaged` and `quarantine` are recorded and change no sellable stock |
+| `goods_gross` / `discount_share` / `refund_amount` | return line and return | The units' worth before discount, the order discount released with them, and their difference — what is refunded for the goods |
+| `shipping_refund` / `refund_total` | return | Shipping given back (capped at the shipping charged); `refund_total = goods_gross − discount_share + shipping_refund` |
+| refund (leg) | `awcms_commerce_refunds` | Money going back along ONE original payment; `destination` `original_tender` or `store_credit`; `status` `pending → processing → succeeded \| failed` (`failed → processing` is a retry) |
+| `settled_via` | refund | `ledger` (cash handed back / manual refund booked / value returned to a card), `provider`, `offline` (attested outside the system), `store_credit` |
+| compensation | `awcms_commerce_refund_compensations` | A downstream effect of a settled refund: loyalty points taken back, affiliate commission adjusted, store credit issued or loaded |
+| `adjusted_amount` | `awcms_commerce_affiliate_commissions` | The part of a commission given back by refunds; effective commission = `amount − adjusted_amount` |
+| `returns` feature | commerce module settings `features.returns` (default OFF) | Turns the whole surface on; off, every owner route answers `409 FEATURE_DISABLED` |
+| `commerce.returns.*`, `commerce.refunds.*`, `commerce.refunds_offline.approve` | `awcms_permissions` (`sql/996`) | The five keys; a refund also needs `commerce.payments.revoke` |
+
 ## Commerce document vocabulary (issue #286, [ADR-0029](adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md))
 
 This platform's own design — nothing here is ported from the legacy store. Statuses are `text` + `CHECK`, never a native enum.

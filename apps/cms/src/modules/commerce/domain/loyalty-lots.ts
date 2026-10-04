@@ -225,5 +225,52 @@ export function computeReversalPoints(
   const { lots } = replayLoyaltyLots(entries);
   const lot = lots.get(lotId);
   if (!lot) return 0;
-  return lot.points - lot.expired;
+  return Math.max(
+    0,
+    lot.points - lot.expired - pointsReversedFromLot(entries, lotId)
+  );
+}
+
+/**
+ * Points already taken back from the lot by earlier `reversal` entries
+ * (Issue #287: a partial refund reverses a PROPORTION of the lot, so a lot can
+ * be reversed several times before an order cancellation reverses the rest).
+ * A positive number; 0 for a lot nobody reversed.
+ */
+export function pointsReversedFromLot(
+  entries: readonly ReplayEntry[],
+  lotId: string
+): number {
+  let reversed = 0;
+  for (const entry of entries) {
+    if (entry.kind === "reversal" && entry.reversesEntryId === lotId) {
+      reversed += -entry.points;
+    }
+  }
+  return reversed;
+}
+
+/**
+ * The points a REFUND of `refundedCents` (cumulative, out of `totalCents`)
+ * must have taken back from the lot by now, less what was already taken back:
+ * `floor(lot points * refunded / total)` capped at what the lot can still
+ * give (its points, minus lapsed, minus already reversed). Exact at 100%.
+ */
+export function computeRefundReversalPoints(
+  entries: readonly ReplayEntry[],
+  lotId: string,
+  refundedCents: bigint,
+  totalCents: bigint
+): number {
+  const { lots } = replayLoyaltyLots(entries);
+  const lot = lots.get(lotId);
+  if (!lot || totalCents <= 0n || refundedCents <= 0n) return 0;
+  const alreadyReversed = pointsReversedFromLot(entries, lotId);
+  const target =
+    refundedCents >= totalCents
+      ? lot.points
+      : Number((BigInt(lot.points) * refundedCents) / totalCents);
+  const wanted = target - alreadyReversed;
+  const room = lot.points - lot.expired - alreadyReversed;
+  return Math.max(0, Math.min(wanted, room));
 }

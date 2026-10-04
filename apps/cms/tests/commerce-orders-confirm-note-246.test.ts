@@ -288,10 +288,10 @@ describe("commerce-orders.astro", () => {
 });
 
 describe("commerce-orders/[id].astro", () => {
-  test("has no window.confirm( call and does not render CommerceConfirmDialog (no status control on this page)", async () => {
+  test("has no window.confirm( call; CommerceConfirmDialog is rendered only for the returns panel's provider-refund action (Issue #287)", async () => {
     const code = await readCode(ORDER_DETAIL_PATH);
     expect(code).not.toContain("window.confirm(");
-    expect(code).not.toContain("CommerceConfirmDialog");
+    expect(code).toContain("CommerceReturnsPanel");
   });
 
   test("uses the shared orderStatusTone/commerceLabel instead of a local STATUS_TONE map", async () => {

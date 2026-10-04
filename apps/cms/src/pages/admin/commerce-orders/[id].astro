@@ -40,6 +40,9 @@
  * convention to read, not two.
  */
 import AdminLayout from "../../../layouts/AdminLayout.astro";
+import CommerceConfirmDialog from "../../../components/CommerceConfirmDialog.astro";
+import CommerceReturnsPanel from "../../../components/CommerceReturnsPanel.astro";
+import ReasonPanel from "../../../components/ReasonPanel.astro";
 import "../../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../../lib/logging/error-log";
@@ -55,6 +58,13 @@ import {
 } from "../../../modules/commerce/application/payment-allocation-directory";
 import { toCents } from "../../../modules/commerce/domain/price-calculation";
 import { findOpenSessionForCashier } from "../../../modules/commerce/application/register-session-directory";
+import {
+  listReturnableLines,
+  listReturnsForOrder,
+  type ReturnableLine,
+  type ReturnRecord
+} from "../../../modules/commerce/application/return-records";
+import { isReturnableOrderStatus } from "../../../modules/commerce/domain/returns";
 import { mediaLibraryPortAdapter } from "../../../modules/media-library/application/media-library-port-adapter";
 import {
   createCommerceLabels,
@@ -97,10 +107,64 @@ const PAYMENTS_REVOKE = {
   action: "revoke"
 } as const;
 
+/** Issue #287 - the returns panel's permissions, each claimed here (and enforced by the routes the panel calls). */
+const RETURNS_READ = {
+  moduleKey: "commerce",
+  activityCode: "returns",
+  action: "read"
+} as const;
+const RETURNS_CREATE = {
+  moduleKey: "commerce",
+  activityCode: "returns",
+  action: "create"
+} as const;
+const REFUNDS_READ = {
+  moduleKey: "commerce",
+  activityCode: "refunds",
+  action: "read"
+} as const;
+const REFUNDS_CREATE = {
+  moduleKey: "commerce",
+  activityCode: "refunds",
+  action: "create"
+} as const;
+const REFUNDS_OFFLINE_APPROVE = {
+  moduleKey: "commerce",
+  activityCode: "refunds_offline",
+  action: "approve"
+} as const;
+
+type ReturnsPanelData = {
+  enabled: boolean;
+  returns: ReturnRecord[];
+  lines: ReturnableLine[];
+  canCreate: boolean;
+  canExecute: boolean;
+  canOffline: boolean;
+};
+const NO_RETURNS: ReturnsPanelData = {
+  enabled: false,
+  returns: [],
+  lines: [],
+  canCreate: false,
+  canExecute: false,
+  canOffline: false
+};
+
 const screen = await loadAdminScreen({
   ssr,
   workClass: "interactive",
-  authorize: [ORDER_READ, PAYMENTS_READ, PAYMENTS_CREATE, PAYMENTS_REVOKE],
+  authorize: [
+    ORDER_READ,
+    PAYMENTS_READ,
+    PAYMENTS_CREATE,
+    PAYMENTS_REVOKE,
+    RETURNS_READ,
+    RETURNS_CREATE,
+    REFUNDS_READ,
+    REFUNDS_CREATE,
+    REFUNDS_OFFLINE_APPROVE
+  ],
   load: async ({ tx, entry }) => {
     // The entry is any-of; THIS page's subject is the order, so it still
     // needs `orders.read` itself — holding only a payments permission must
@@ -109,6 +173,12 @@ const screen = await loadAdminScreen({
     const canReadPayments = entry[1] === true;
     const canRecordPayment = entry[2] === true;
     const canRecordReversal = entry[3] === true;
+    const canReadReturns = entry[4] === true;
+    const canCreateReturns = entry[5] === true;
+    // A refund leg also needs `payments.revoke`; the panel hides the button
+    // unless the caller holds both (the route checks both again).
+    const canExecuteRefund = entry[7] === true && canRecordReversal;
+    const canOfflineRefund = entry[8] === true && canRecordReversal;
     // Issue #288 - gift card / store credit tenders only while the tenant's
     // `storedValue` feature is on (the payments route refuses them otherwise).
     const storedValueEnabled = (await fetchCommerceFeatures(tx, ssr.tenantId))
@@ -122,7 +192,8 @@ const screen = await loadAdminScreen({
         canRecordReversal,
         storedValueEnabled,
         payments: null as OrderPaymentSummary | null,
-        drawer: null as { sessionId: string; registerCode: string } | null
+        drawer: null as { sessionId: string; registerCode: string } | null,
+        returnsPanel: NO_RETURNS
       };
     }
     const detail = await fetchOrderDetailForAdmin(
@@ -140,7 +211,8 @@ const screen = await loadAdminScreen({
         canRecordReversal,
         storedValueEnabled,
         payments: null as OrderPaymentSummary | null,
-        drawer: null as { sessionId: string; registerCode: string } | null
+        drawer: null as { sessionId: string; registerCode: string } | null,
+        returnsPanel: NO_RETURNS
       };
     }
     const record = await toAdminOrderRecord(tx, ssr.tenantId, detail);
@@ -154,6 +226,18 @@ const screen = await loadAdminScreen({
       (await fetchCommerceFeatures(tx, ssr.tenantId)).register
         ? await findOpenSessionForCashier(tx, ssr.tenantId, ssr.tenantUserId)
         : null;
+    const features = await fetchCommerceFeatures(tx, ssr.tenantId);
+    const returnsPanel: ReturnsPanelData =
+      features.returns && canReadReturns
+        ? {
+            enabled: true,
+            returns: await listReturnsForOrder(tx, ssr.tenantId, orderId),
+            lines: await listReturnableLines(tx, ssr.tenantId, orderId),
+            canCreate: canCreateReturns,
+            canExecute: canExecuteRefund,
+            canOffline: canOfflineRefund
+          }
+        : NO_RETURNS;
     return {
       order: record,
       canReadOrder,
@@ -162,7 +246,8 @@ const screen = await loadAdminScreen({
       canRecordReversal,
       storedValueEnabled,
       payments,
-      drawer
+      drawer,
+      returnsPanel
     };
   },
   onError: (error) => {
@@ -188,6 +273,15 @@ const canRecordReversal =
 const storedValueEnabled =
   screen.state === "allowed" && screen.data.storedValueEnabled;
 const drawer = screen.state === "allowed" ? screen.data.drawer : null;
+const returnsPanel =
+  screen.state === "allowed" ? screen.data.returnsPanel : NO_RETURNS;
+const shippingRefunded = (() => {
+  const cents = returnsPanel.returns.reduce(
+    (sum, ret) => sum + BigInt(Math.round(Number(ret.shippingRefund) * 100)),
+    0n
+  );
+  return `${cents / 100n}.${(cents % 100n).toString().padStart(2, "0")}`;
+})();
 /** Succeeded payment legs that still have something left to reverse — the reversal form's choices. */
 const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
   if (leg.kind !== "payment" || leg.status !== "succeeded") return false;
@@ -619,6 +713,23 @@ const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
             </section>
           )}
 
+          {returnsPanel.enabled && order && (
+            <CommerceReturnsPanel
+              locale={Astro.locals.locale}
+              orderId={orderId}
+              returns={returnsPanel.returns}
+              lines={returnsPanel.lines}
+              returnable={isReturnableOrderStatus(order.status)}
+              canCreate={returnsPanel.canCreate}
+              canExecute={returnsPanel.canExecute}
+              canOffline={returnsPanel.canOffline}
+              storedValueEnabled={storedValueEnabled}
+              shippingCost={order.shippingCost}
+              shippingRefunded={shippingRefunded}
+              drawer={drawer}
+            />
+          )}
+
           <h2 class="admin-dashboard-panel-title">{t("Payment gateway")}</h2>
           <div
             class="order-gateway-panel"
@@ -660,6 +771,14 @@ const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
       </div>
     </div>
   )}
+  <CommerceConfirmDialog locale={Astro.locals.locale} />
+  <ReasonPanel
+    cancelLabel={t("Cancel")}
+    reasonLabel={t("Reason")}
+    reasonHint={t("Stored with the refund and recorded in the audit log.")}
+    defaultSubmitLabel={t("Confirm")}
+    defaultFailureMessage={t("Could not save this action. Please try again.")}
+  />
 </AdminLayout>
 
 <template id="order-gateway-panel-template">
@@ -813,6 +932,16 @@ const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
       unlock();
     }
   });
+</script>
+
+<script>
+  // Issue #287 - the returns panel: the return wizard and the provider-refund
+  // action, plus the offline settlement's required-reason panel.
+  import { initReasonPanel } from "../../../lib/ui/reason-panel-client";
+  import { initReturnsPanel } from "../../../lib/ui/commerce-returns-client";
+
+  initReturnsPanel();
+  initReasonPanel();
 </script>
 
 <script>
