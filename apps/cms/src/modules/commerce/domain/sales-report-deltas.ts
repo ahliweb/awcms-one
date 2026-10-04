@@ -32,6 +32,21 @@
  * (`cancelled -> refunded`) contributes nothing, because `cancelled` is not
  * a paid state, so an order can never be subtracted twice.
  *
+ * ## Returns (Issue #287, ADR-0033)
+ *
+ * A return does not move the order's status, so it announces itself on the
+ * same stream with one `order_events` row (`to_status = 'returned'`,
+ * `return_id` set). {@link resolveSalesDeltaDirection} maps it to `0` (it is
+ * not a status transition); the sinks route such a row to the `computeSalesReturn*`
+ * functions below, which SUBTRACT exactly what the return gave back: the goods
+ * (per product / category), the discount released with them, the shipping
+ * refunded, and the money (`refund_total`) from `net`. `orders_paid` is not
+ * touched - the order was paid; it simply has a smaller net. A later
+ * cancellation of a partly-returned order must subtract only what is left, so
+ * a `-1` event is netted with {@link netOfPriorReturns} over the returns whose
+ * events precede it in the stream - which makes a rebuild (replaying the
+ * stream) produce the same tables as the live pass.
+ *
  * ## Attribution day
  *
  * Every figure lands on the day of the order's `paid_at` (falling back to
@@ -83,6 +98,10 @@ export const SALES_REVERSAL_STATES: ReadonlySet<string> = new Set([
 export type SalesDeltaDirection = 1 | -1 | 0;
 
 export type SalesOrderEvent = {
+  /** The `order_events` row id, when known (orders the stream with `createdAt`). */
+  id?: string;
+  /** Issue #287: set on a `returned` row - the return it announces. */
+  returnId?: string | null;
   orderId: string;
   fromStatus: string | null;
   toStatus: string;
@@ -90,6 +109,8 @@ export type SalesOrderEvent = {
 };
 
 export type SalesOrderItemSnapshot = {
+  /** `order_items.id`; needed only to net earlier returns (Issue #287). */
+  orderItemId?: string;
   productId: string;
   productName: string;
   quantity: number;
@@ -319,4 +340,188 @@ export function accumulateSalesControlTotals(
   }
 
   return totals;
+}
+
+// ---------------------------------------------------------------------------
+// Returns (Issue #287, ADR-0033)
+// ---------------------------------------------------------------------------
+
+export type SalesReturnLineSnapshot = {
+  productId: string;
+  productName: string;
+  quantity: number;
+  /** `numeric(14,2)` string - the line's goods value before discount. */
+  goodsGross: string;
+  categoryId: string | null;
+  categoryName: string | null;
+};
+
+export type SalesReturnSnapshot = {
+  returnId: string;
+  orderId: string;
+  /** The order's `paid_at` - a return lands on the day its sale did. */
+  paidAt: Date | null;
+  goodsGross: string;
+  discountShare: string;
+  shippingRefund: string;
+  refundTotal: string;
+  lines: readonly SalesReturnLineSnapshot[];
+};
+
+/** The day a return's figures are attributed to: the order's `paid_at`, else the event's own timestamp. */
+export function resolveSalesReturnDay(
+  ret: Pick<SalesReturnSnapshot, "paidAt">,
+  event: Pick<SalesOrderEvent, "createdAt">
+): string {
+  return resolveSalesReportDay(ret.paidAt ?? event.createdAt);
+}
+
+/** A return subtracts its goods, discount, shipping and money; it removes no paid order. */
+export function computeSalesReturnDailyDelta(
+  ret: SalesReturnSnapshot,
+  day: string
+): SalesDailyDelta {
+  return {
+    day,
+    ordersPaid: 0,
+    grossCents: -toCents(ret.goodsGross),
+    discountCents: -toCents(ret.discountShare),
+    shippingCents: -toCents(ret.shippingRefund),
+    netCents: -toCents(ret.refundTotal)
+  };
+}
+
+export function computeSalesReturnProductDeltas(
+  ret: SalesReturnSnapshot,
+  day: string
+): SalesByProductDelta[] {
+  const byProduct = new Map<string, SalesByProductDelta>();
+  for (const line of ret.lines) {
+    const existing = byProduct.get(line.productId);
+    if (existing) {
+      existing.qty -= line.quantity;
+      existing.grossCents -= toCents(line.goodsGross);
+    } else {
+      byProduct.set(line.productId, {
+        day,
+        productId: line.productId,
+        productName: line.productName,
+        qty: -line.quantity,
+        grossCents: -toCents(line.goodsGross)
+      });
+    }
+  }
+  return Array.from(byProduct.values());
+}
+
+export function computeSalesReturnCategoryDeltas(
+  ret: SalesReturnSnapshot,
+  day: string
+): SalesByCategoryDelta[] {
+  const byCategory = new Map<string, SalesByCategoryDelta>();
+  for (const line of ret.lines) {
+    const categoryId = line.categoryId ?? SALES_REPORT_UNCATEGORISED_ID;
+    const categoryName =
+      line.categoryId === null
+        ? SALES_REPORT_UNCATEGORISED_NAME
+        : (line.categoryName ?? SALES_REPORT_UNCATEGORISED_NAME);
+    const existing = byCategory.get(categoryId);
+    if (existing) {
+      existing.qty -= line.quantity;
+      existing.grossCents -= toCents(line.goodsGross);
+    } else {
+      byCategory.set(categoryId, {
+        day,
+        categoryId,
+        categoryName,
+        qty: -line.quantity,
+        grossCents: -toCents(line.goodsGross)
+      });
+    }
+  }
+  return Array.from(byCategory.values());
+}
+
+/** Folds one return into the running control totals - the same three delta functions, summed. */
+export function accumulateSalesReturnControlTotals(
+  totals: SalesControlTotals,
+  ret: SalesReturnSnapshot,
+  day: string
+): SalesControlTotals {
+  const daily = computeSalesReturnDailyDelta(ret, day);
+  totals.grossCents += daily.grossCents;
+  totals.discountCents += daily.discountCents;
+  totals.shippingCents += daily.shippingCents;
+  totals.netCents += daily.netCents;
+  for (const line of computeSalesReturnProductDeltas(ret, day)) {
+    totals.itemQty += line.qty;
+    totals.itemGrossCents += line.grossCents;
+  }
+  return totals;
+}
+
+/** What earlier returns of an order already gave back (in stream order). */
+export type SalesPriorReturns = {
+  goodsGrossCents: bigint;
+  discountShareCents: bigint;
+  shippingRefundCents: bigint;
+  refundTotalCents: bigint;
+  byItem: ReadonlyMap<string, { quantity: number; goodsGrossCents: bigint }>;
+};
+
+export function emptySalesPriorReturns(): SalesPriorReturns {
+  return {
+    goodsGrossCents: 0n,
+    discountShareCents: 0n,
+    shippingRefundCents: 0n,
+    refundTotalCents: 0n,
+    byItem: new Map()
+  };
+}
+
+/**
+ * The order as it still stands after earlier returns: what a later `-1`
+ * (cancelled / refunded from a paid state) event must subtract, so a
+ * partly-returned order that is then cancelled nets to zero rather than going
+ * negative. The discount released is taken from `discount` first, then from
+ * `voucherDiscount`; every figure stays non-negative.
+ */
+export function netOfPriorReturns(
+  order: SalesOrderSnapshot,
+  prior: SalesPriorReturns
+): SalesOrderSnapshot {
+  const max0 = (v: bigint): bigint => (v < 0n ? 0n : v);
+  const discount = toCents(order.discount);
+  const takeFromDiscount =
+    prior.discountShareCents < discount ? prior.discountShareCents : discount;
+  const takeFromVoucher = prior.discountShareCents - takeFromDiscount;
+  return {
+    ...order,
+    subtotal: formatCentsDelta(
+      max0(toCents(order.subtotal) - prior.goodsGrossCents)
+    ),
+    discount: formatCentsDelta(discount - takeFromDiscount),
+    voucherDiscount: formatCentsDelta(
+      max0(toCents(order.voucherDiscount) - takeFromVoucher)
+    ),
+    shippingCost: formatCentsDelta(
+      max0(toCents(order.shippingCost) - prior.shippingRefundCents)
+    ),
+    total: formatCentsDelta(
+      max0(toCents(order.total) - prior.refundTotalCents)
+    ),
+    items: order.items.map((item) => {
+      const returned = item.orderItemId
+        ? prior.byItem.get(item.orderItemId)
+        : undefined;
+      if (!returned) return item;
+      return {
+        ...item,
+        quantity: Math.max(0, item.quantity - returned.quantity),
+        lineTotal: formatCentsDelta(
+          max0(toCents(item.lineTotal) - returned.goodsGrossCents)
+        )
+      };
+    })
+  };
 }

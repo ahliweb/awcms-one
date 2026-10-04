@@ -255,7 +255,7 @@ async function hydrate(
     SELECT ${tx.unsafe(REFUND_COLUMNS)}
     FROM awcms_commerce_refunds
     WHERE tenant_id = ${tenantId} AND return_id = ANY(${tx.array(ids, "uuid")}::uuid[])
-    ORDER BY created_at ASC, id ASC
+    ORDER BY created_at ASC, source_key ASC, id ASC
   `) as RefundRow[];
   const refundIds = refunds.map((row) => row.id);
   const compensations =

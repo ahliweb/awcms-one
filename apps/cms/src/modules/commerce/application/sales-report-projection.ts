@@ -47,15 +47,24 @@
  */
 import {
   accumulateSalesControlTotals,
+  accumulateSalesReturnControlTotals,
   computeSalesByCategoryDeltas,
   computeSalesByProductDeltas,
   computeSalesDailyDelta,
+  computeSalesReturnCategoryDeltas,
+  computeSalesReturnDailyDelta,
+  computeSalesReturnProductDeltas,
   emptySalesControlTotals,
+  emptySalesPriorReturns,
   formatCentsDelta,
+  netOfPriorReturns,
   resolveSalesAttributionDay,
   resolveSalesDeltaDirection,
+  resolveSalesReturnDay,
   type SalesOrderEvent,
-  type SalesOrderSnapshot
+  type SalesOrderSnapshot,
+  type SalesPriorReturns,
+  type SalesReturnSnapshot
 } from "../domain/sales-report-deltas";
 import {
   SALES_DAILY_CONTROL_KEYS,
@@ -73,7 +82,9 @@ export const SALES_EVENT_SELECT_COLUMNS = [
   "id",
   "order_id",
   "from_status",
-  "to_status"
+  "to_status",
+  // Issue #287: set on the `returned` row a return announces itself with.
+  "return_id"
 ] as const;
 
 type EventRow = {
@@ -81,12 +92,15 @@ type EventRow = {
   order_id: string;
   from_status: string | null;
   to_status: string;
+  return_id?: string | null;
   created_at: Date | string;
 };
 
 function toEvent(row: Record<string, unknown>): SalesOrderEvent {
   const raw = row as EventRow;
   return {
+    id: raw.id,
+    returnId: raw.return_id ?? null,
     orderId: raw.order_id,
     fromStatus: raw.from_status ?? null,
     toStatus: raw.to_status,
@@ -108,6 +122,7 @@ type OrderHeaderRow = {
 };
 
 type OrderItemRow = {
+  item_id: string;
   order_id: string;
   product_id: string;
   name: string;
@@ -141,7 +156,7 @@ export async function loadSalesOrderSnapshots(
   `) as OrderHeaderRow[];
 
   const items = (await tx`
-    SELECT oi.order_id, oi.product_id, oi.name, oi.quantity, oi.line_total,
+    SELECT oi.id AS item_id, oi.order_id, oi.product_id, oi.name, oi.quantity, oi.line_total,
       p.category_id, c.name AS category_name
     FROM awcms_commerce_order_items oi
     LEFT JOIN awcms_commerce_products p
@@ -176,6 +191,7 @@ export async function loadSalesOrderSnapshots(
     const snapshot = snapshots.get(item.order_id);
     if (!snapshot) continue;
     (snapshot.items as SalesOrderSnapshot["items"][number][]).push({
+      orderItemId: item.item_id,
       productId: item.product_id,
       productName: item.name,
       quantity: Number(item.quantity),
@@ -187,39 +203,253 @@ export async function loadSalesOrderSnapshots(
   return snapshots;
 }
 
-type EffectiveEvent = {
+type OrderEffect = {
+  kind: "order";
   event: SalesOrderEvent;
   direction: 1 | -1;
   order: SalesOrderSnapshot;
   day: string;
 };
 
-/** Filters a batch down to the events that change anything and pairs each with its order snapshot and attribution day. An event whose order header cannot be read (impossible under the FK, defensive) is skipped. */
+/** Issue #287: a return announced on the stream. */
+type ReturnEffect = {
+  kind: "return";
+  event: SalesOrderEvent;
+  ret: SalesReturnSnapshot;
+  day: string;
+};
+
+type EffectiveEvent = OrderEffect | ReturnEffect;
+
+type ReturnHeaderRow = {
+  id: string;
+  order_id: string;
+  goods_gross: string;
+  discount_share: string;
+  shipping_refund: string;
+  refund_total: string;
+  paid_at: Date | string | null;
+};
+
+type ReturnLineRow = {
+  return_id: string;
+  product_id: string;
+  name: string | null;
+  quantity: number;
+  goods_gross: string;
+  category_id: string | null;
+  category_name: string | null;
+};
+
+/**
+ * Immutable snapshots of the returns the batch's `returned` rows point at:
+ * header money, the order's `paid_at` (the attribution day) and the lines with
+ * their product and category (LEFT JOINs - a purged product reads as
+ * uncategorised rather than dropping the line). A return that a retention
+ * purge removed yields no snapshot and its event contributes nothing.
+ */
+export async function loadSalesReturnSnapshots(
+  tx: Bun.SQL,
+  tenantId: string,
+  returnIds: readonly string[]
+): Promise<Map<string, SalesReturnSnapshot>> {
+  const distinct = [...new Set(returnIds)];
+  if (distinct.length === 0) return new Map();
+  const headers = (await tx`
+    SELECT r.id, r.order_id, r.goods_gross, r.discount_share, r.shipping_refund,
+      r.refund_total, o.paid_at
+    FROM awcms_commerce_returns r
+    JOIN awcms_commerce_orders o ON o.tenant_id = r.tenant_id AND o.id = r.order_id
+    WHERE r.tenant_id = ${tenantId}
+      AND r.id = ANY(${tx.array(distinct, "uuid")}::uuid[])
+  `) as ReturnHeaderRow[];
+  const lines = (await tx`
+    SELECT l.return_id, l.product_id, oi.name, l.quantity, l.goods_gross,
+      p.category_id, c.name AS category_name
+    FROM awcms_commerce_return_lines l
+    LEFT JOIN awcms_commerce_order_items oi
+      ON oi.tenant_id = l.tenant_id AND oi.id = l.order_item_id
+    LEFT JOIN awcms_commerce_products p
+      ON p.id = l.product_id AND p.tenant_id = l.tenant_id
+    LEFT JOIN awcms_commerce_categories c
+      ON c.id = p.category_id AND c.tenant_id = p.tenant_id
+    WHERE l.tenant_id = ${tenantId}
+      AND l.return_id = ANY(${tx.array(distinct, "uuid")}::uuid[])
+    ORDER BY l.created_at ASC, l.id ASC
+  `) as ReturnLineRow[];
+  const snapshots = new Map<string, SalesReturnSnapshot>();
+  for (const header of headers) {
+    snapshots.set(header.id, {
+      returnId: header.id,
+      orderId: header.order_id,
+      paidAt:
+        header.paid_at === null
+          ? null
+          : header.paid_at instanceof Date
+            ? header.paid_at
+            : new Date(header.paid_at),
+      goodsGross: String(header.goods_gross),
+      discountShare: String(header.discount_share),
+      shippingRefund: String(header.shipping_refund),
+      refundTotal: String(header.refund_total),
+      lines: []
+    });
+  }
+  for (const line of lines) {
+    const snapshot = snapshots.get(line.return_id);
+    if (!snapshot) continue;
+    (snapshot.lines as SalesReturnSnapshot["lines"][number][]).push({
+      productId: line.product_id,
+      productName: line.name ?? "",
+      quantity: Number(line.quantity),
+      goodsGross: String(line.goods_gross),
+      categoryId: line.category_id ?? null,
+      categoryName: line.category_name ?? null
+    });
+  }
+  return snapshots;
+}
+
+/**
+ * What returns that precede THIS event in the stream already gave back, for a
+ * `-1` event (cancel / refund from a paid state). Ordered by the stream's own
+ * key `(created_at, id)`, resolved in SQL against the event row itself so no
+ * millisecond-truncated JS date is involved.
+ */
+async function loadPriorReturns(
+  tx: Bun.SQL,
+  tenantId: string,
+  orderId: string,
+  eventId: string
+): Promise<SalesPriorReturns> {
+  const rows = (await tx`
+    SELECT r.id AS return_id, r.goods_gross, r.discount_share, r.shipping_refund,
+      r.refund_total, l.order_item_id, l.quantity, l.goods_gross AS line_gross
+    FROM awcms_commerce_order_events e
+    JOIN awcms_commerce_returns r
+      ON r.tenant_id = e.tenant_id AND r.id = e.return_id
+    JOIN awcms_commerce_return_lines l
+      ON l.tenant_id = r.tenant_id AND l.return_id = r.id
+    WHERE e.tenant_id = ${tenantId} AND e.order_id = ${orderId}
+      AND e.return_id IS NOT NULL
+      AND (e.created_at, e.id) < (
+        SELECT created_at, id FROM awcms_commerce_order_events
+        WHERE tenant_id = ${tenantId} AND id = ${eventId}
+      )
+  `) as {
+    return_id: string;
+    goods_gross: string;
+    discount_share: string;
+    shipping_refund: string;
+    refund_total: string;
+    order_item_id: string;
+    quantity: number;
+    line_gross: string;
+  }[];
+  if (rows.length === 0) return emptySalesPriorReturns();
+  const seen = new Set<string>();
+  let goods = 0n;
+  let discount = 0n;
+  let shipping = 0n;
+  let refund = 0n;
+  const byItem = new Map<
+    string,
+    { quantity: number; goodsGrossCents: bigint }
+  >();
+  for (const row of rows) {
+    if (!seen.has(row.return_id)) {
+      seen.add(row.return_id);
+      goods += toCents(String(row.goods_gross));
+      discount += toCents(String(row.discount_share));
+      shipping += toCents(String(row.shipping_refund));
+      refund += toCents(String(row.refund_total));
+    }
+    const entry = byItem.get(row.order_item_id) ?? {
+      quantity: 0,
+      goodsGrossCents: 0n
+    };
+    entry.quantity += Number(row.quantity);
+    entry.goodsGrossCents += toCents(String(row.line_gross));
+    byItem.set(row.order_item_id, entry);
+  }
+  return {
+    goodsGrossCents: goods,
+    discountShareCents: discount,
+    shippingRefundCents: shipping,
+    refundTotalCents: refund,
+    byItem
+  };
+}
+
+/**
+ * Filters a batch down to the events that change anything and pairs each with
+ * its snapshot and attribution day, IN STREAM ORDER (so an upsert never meets
+ * a subtraction before the addition it undoes). An event whose order header
+ * cannot be read (impossible under the FK, defensive) is skipped; a `returned`
+ * row whose return was purged contributes nothing.
+ */
 async function resolveEffectiveEvents(
   tx: Bun.SQL,
   tenantId: string,
   rows: readonly Record<string, unknown>[]
 ): Promise<EffectiveEvent[]> {
-  const candidates: { event: SalesOrderEvent; direction: 1 | -1 }[] = [];
+  const candidates: {
+    event: SalesOrderEvent;
+    direction: 1 | -1 | 0;
+  }[] = [];
   for (const row of rows) {
     const event = toEvent(row);
+    if (event.returnId) {
+      candidates.push({ event, direction: 0 });
+      continue;
+    }
     const direction = resolveSalesDeltaDirection(event);
     if (direction !== 0) candidates.push({ event, direction });
   }
   if (candidates.length === 0) return [];
 
-  const snapshots = await loadSalesOrderSnapshots(
+  const orderIds = candidates
+    .filter((candidate) => !candidate.event.returnId)
+    .map((candidate) => candidate.event.orderId);
+  const snapshots = await loadSalesOrderSnapshots(tx, tenantId, orderIds);
+  const returns = await loadSalesReturnSnapshots(
     tx,
     tenantId,
-    candidates.map((candidate) => candidate.event.orderId)
+    candidates.flatMap((candidate) =>
+      candidate.event.returnId ? [candidate.event.returnId] : []
+    )
   );
 
   const effective: EffectiveEvent[] = [];
   for (const candidate of candidates) {
-    const order = snapshots.get(candidate.event.orderId);
+    if (candidate.event.returnId) {
+      const ret = returns.get(candidate.event.returnId);
+      if (!ret) continue;
+      effective.push({
+        kind: "return",
+        event: candidate.event,
+        ret,
+        day: resolveSalesReturnDay(ret, candidate.event)
+      });
+      continue;
+    }
+    let order = snapshots.get(candidate.event.orderId);
     if (!order) continue;
+    if (candidate.direction === -1 && candidate.event.id) {
+      order = netOfPriorReturns(
+        order,
+        await loadPriorReturns(
+          tx,
+          tenantId,
+          candidate.event.orderId,
+          candidate.event.id
+        )
+      );
+    }
     effective.push({
-      ...candidate,
+      kind: "order",
+      event: candidate.event,
+      direction: candidate.direction as 1 | -1,
       order,
       day: resolveSalesAttributionDay(order, candidate.event)
     });
@@ -236,12 +466,11 @@ export async function applySalesDailyBatch(
   tenantId: string,
   rows: readonly Record<string, unknown>[]
 ): Promise<void> {
-  for (const { order, direction, day } of await resolveEffectiveEvents(
-    tx,
-    tenantId,
-    rows
-  )) {
-    const delta = computeSalesDailyDelta(order, direction, day);
+  for (const effect of await resolveEffectiveEvents(tx, tenantId, rows)) {
+    const delta =
+      effect.kind === "return"
+        ? computeSalesReturnDailyDelta(effect.ret, effect.day)
+        : computeSalesDailyDelta(effect.order, effect.direction, effect.day);
     if (!delta) continue;
     await tx`
       INSERT INTO awcms_commerce_sales_daily
@@ -278,12 +507,16 @@ export async function applySalesByProductBatch(
   tenantId: string,
   rows: readonly Record<string, unknown>[]
 ): Promise<void> {
-  for (const { order, direction, day } of await resolveEffectiveEvents(
-    tx,
-    tenantId,
-    rows
-  )) {
-    for (const line of computeSalesByProductDeltas(order, direction, day)) {
+  for (const effect of await resolveEffectiveEvents(tx, tenantId, rows)) {
+    const lines =
+      effect.kind === "return"
+        ? computeSalesReturnProductDeltas(effect.ret, effect.day)
+        : computeSalesByProductDeltas(
+            effect.order,
+            effect.direction,
+            effect.day
+          );
+    for (const line of lines) {
       await tx`
         INSERT INTO awcms_commerce_sales_by_product
           (tenant_id, day, product_id, product_name, qty, gross)
@@ -315,12 +548,16 @@ export async function applySalesByCategoryBatch(
   tenantId: string,
   rows: readonly Record<string, unknown>[]
 ): Promise<void> {
-  for (const { order, direction, day } of await resolveEffectiveEvents(
-    tx,
-    tenantId,
-    rows
-  )) {
-    for (const line of computeSalesByCategoryDeltas(order, direction, day)) {
+  for (const effect of await resolveEffectiveEvents(tx, tenantId, rows)) {
+    const lines =
+      effect.kind === "return"
+        ? computeSalesReturnCategoryDeltas(effect.ret, effect.day)
+        : computeSalesByCategoryDeltas(
+            effect.order,
+            effect.direction,
+            effect.day
+          );
+    for (const line of lines) {
       await tx`
         INSERT INTO awcms_commerce_sales_by_category
           (tenant_id, day, category_id, category_name, qty, gross)
@@ -367,7 +604,7 @@ export async function computeSalesSourceControlTotals(
 
   for (;;) {
     const page = (await tx`
-      SELECT id, order_id, from_status, to_status, created_at
+      SELECT id, order_id, from_status, to_status, return_id, created_at
       FROM awcms_commerce_order_events
       WHERE tenant_id = ${tenantId}
         AND (
@@ -384,8 +621,12 @@ export async function computeSalesSourceControlTotals(
       tenantId,
       page as unknown as Record<string, unknown>[]
     );
-    for (const { event, order } of effective) {
-      accumulateSalesControlTotals(totals, event, order);
+    for (const effect of effective) {
+      if (effect.kind === "return") {
+        accumulateSalesReturnControlTotals(totals, effect.ret, effect.day);
+      } else {
+        accumulateSalesControlTotals(totals, effect.event, effect.order);
+      }
     }
 
     const last = page[page.length - 1]!;
