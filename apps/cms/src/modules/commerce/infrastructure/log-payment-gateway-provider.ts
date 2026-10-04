@@ -16,6 +16,8 @@
 import type {
   PaymentGatewayCreateSessionInput,
   PaymentGatewayProvider,
+  PaymentGatewayRefundInput,
+  PaymentGatewayRefundResult,
   PaymentGatewaySessionResult,
   PaymentGatewayStatusResult,
   PaymentGatewayWebhookResult
@@ -83,6 +85,22 @@ export function createLogPaymentGatewayProvider(
         elapsedMs >= LOG_PROVIDER_PAID_AFTER_MS ? "paid" : "pending";
 
       return { status, raw: { providerRef, elapsedMs } };
+    },
+
+    /**
+     * Issue #287: deterministic and idempotent by construction - the same
+     * `refundKey` always yields the same refund id and the same outcome, with
+     * no network call and no state, like the rest of this adapter.
+     */
+    async refund(
+      input: PaymentGatewayRefundInput
+    ): Promise<PaymentGatewayRefundResult> {
+      return {
+        status: "succeeded",
+        providerRefundId: `log-refund:${input.refundKey}`,
+        failureCode: null,
+        raw: { providerRef: input.providerRef, amount: input.amount }
+      };
     },
 
     // The `log` provider never receives a real provider signature — this is

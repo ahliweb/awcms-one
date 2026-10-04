@@ -588,3 +588,40 @@ export const COMMERCE_LOYALTY_REDEMPTION_PERMISSIONS = {
   /** Redeem points at the counter (or for a customer). */
   create: "commerce.loyalty_redemptions.create"
 } as const;
+
+/**
+ * Returns, refunds and exchanges (Issue #287, ADR-0033, `sql/996`). Five
+ * permissions on three activity codes, EXISTING verbs only (the upstream-owned
+ * `AccessAction` union is not widened - ADR-0025 D9's reasoning again):
+ *
+ *   - `returns`: `read` (list/read returns, lines, refund legs), `create`
+ *     (record a return or exchange and link an exchange's replacement order).
+ *   - `refunds`: `read` (refund legs and their compensations), `create`
+ *     (settle a leg: cash back, manual refund, value back onto a card, store
+ *     credit, or the payment provider). A leg ALSO needs
+ *     `commerce.payments.revoke` - taking money out of the books is the
+ *     high-risk act whichever screen performs it - which the handler checks
+ *     through the same chokepoint.
+ *   - `refunds_offline`: `approve` - attest that a refund the system could
+ *     not make (the provider refused it, no adapter is configured) was made
+ *     OUTSIDE it. `approve` is the platform's high-risk verb, so a tenant may
+ *     author separation-of-duties rules against it; it is deliberately not
+ *     implied by `refunds.create`.
+ */
+export const COMMERCE_RETURNS_ACTIVITY_CODE = "returns";
+export const COMMERCE_REFUNDS_ACTIVITY_CODE = "refunds";
+export const COMMERCE_REFUNDS_OFFLINE_ACTIVITY_CODE = "refunds_offline";
+
+export const COMMERCE_RETURN_PERMISSIONS = {
+  read: "commerce.returns.read",
+  create: "commerce.returns.create"
+} as const;
+
+export const COMMERCE_REFUND_PERMISSIONS = {
+  read: "commerce.refunds.read",
+  create: "commerce.refunds.create"
+} as const;
+
+export const COMMERCE_REFUND_OFFLINE_PERMISSIONS = {
+  approve: "commerce.refunds_offline.approve"
+} as const;

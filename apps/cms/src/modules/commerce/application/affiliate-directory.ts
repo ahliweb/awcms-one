@@ -16,7 +16,12 @@ import {
   keysetCursorCreatedAtSql,
   type KeysetCursor
 } from "../../_shared/keyset-pagination";
-import { normalizeMoney } from "../domain/price-calculation";
+import {
+  fromCents,
+  normalizeMoney,
+  toCents
+} from "../domain/price-calculation";
+import { proportionalCents } from "../domain/returns";
 import {
   computeCommissionAmount,
   computeCommissionBase,
@@ -109,7 +114,7 @@ async function fetchAffiliateStats(
   `) as { count: number }[];
 
   const sumRows = (await tx`
-    SELECT status, COALESCE(sum(amount), 0)::text AS total
+    SELECT status, COALESCE(sum(amount - adjusted_amount), 0)::text AS total
     FROM awcms_commerce_affiliate_commissions
     WHERE tenant_id = ${tenantId} AND affiliate_id = ${affiliateId}
     GROUP BY status
@@ -433,6 +438,113 @@ export async function voidAffiliateCommissionForOrder(
     attributes: { orderId },
     correlationId
   });
+}
+
+export type CommissionRefundAdjustment = {
+  commissionId: string;
+  /** The part given back by THIS refund, `numeric(14,2)`, > 0. */
+  delta: string;
+  /** Total given back so far (`amount - adjusted` is what remains owed). */
+  adjustedAmount: string;
+  /** `true` when the whole commission is now given back and it was still unpaid, so it was voided. */
+  voided: boolean;
+  /** `true` when the commission had already been paid out: the adjustment is a clawback owed, not a void. */
+  clawback: boolean;
+};
+
+/**
+ * Issue #287 (ADR-0033): gives back the share of an order's affiliate
+ * commission that a REFUND represents. The commission row's `amount` is a
+ * snapshot and is never rewritten; `adjusted_amount` accumulates what was
+ * given back, so the effective commission is `amount - adjusted_amount`.
+ *
+ * `cumulativeRefundedCents` is everything refunded on the order so far
+ * INCLUDING this refund, out of `orderTotalCents`; the adjustment applied is
+ * the difference between that cumulative target
+ * (`floor(amount * refunded / total)`) and what is already adjusted, so any
+ * sequence of partial refunds adds up to the whole commission exactly when the
+ * order is fully refunded. An unpaid (`pending` / `approved`) commission that
+ * is given back in full is voided; a `paid` one keeps its status and the
+ * adjustment is a clawback the operator settles with the affiliate (it shows
+ * in the refund's compensation log and the audit trail). Idempotent per
+ * refund through the caller's compensation row; calling it twice with the same
+ * cumulative figure adjusts nothing the second time.
+ *
+ * Returns `null` when the order has no commission or nothing more is due.
+ * Caller holds the order lock.
+ */
+export async function adjustAffiliateCommissionForRefund(
+  tx: Bun.SQL,
+  tenantId: string,
+  params: {
+    orderId: string;
+    cumulativeRefundedCents: bigint;
+    orderTotalCents: bigint;
+    correlationId?: string;
+  }
+): Promise<CommissionRefundAdjustment | null> {
+  const rows = (await tx`
+    SELECT id, amount, adjusted_amount, status
+    FROM awcms_commerce_affiliate_commissions
+    WHERE tenant_id = ${tenantId} AND order_id = ${params.orderId} AND status <> 'void'
+    FOR UPDATE
+  `) as {
+    id: string;
+    amount: string;
+    adjusted_amount: string;
+    status: CommissionStatus;
+  }[];
+  const row = rows[0];
+  if (!row) return null;
+
+  const amountCents = toCents(String(row.amount));
+  const adjustedCents = toCents(String(row.adjusted_amount));
+  const targetCents = proportionalCents(
+    amountCents,
+    params.cumulativeRefundedCents,
+    params.orderTotalCents
+  );
+  const deltaCents = targetCents - adjustedCents;
+  if (deltaCents <= 0n) return null;
+
+  const newAdjustedCents = adjustedCents + deltaCents;
+  const voided = newAdjustedCents >= amountCents && row.status !== "paid";
+  await tx`
+    UPDATE awcms_commerce_affiliate_commissions
+    SET adjusted_amount = ${fromCents(newAdjustedCents)},
+        status = ${voided ? "void" : row.status},
+        voided_at = ${voided ? new Date() : null},
+        updated_at = now()
+    WHERE tenant_id = ${tenantId} AND id = ${row.id}
+  `;
+
+  const clawback = row.status === "paid";
+  await recordAuditEvent(tx, {
+    tenantId,
+    moduleKey: AUDIT_MODULE_KEY,
+    action: "update",
+    resourceType: AUDIT_RESOURCE_TYPE_COMMISSION,
+    resourceId: row.id,
+    message: clawback
+      ? `Affiliate commission already paid: ${fromCents(deltaCents)} is owed back after a refund.`
+      : `Affiliate commission reduced by ${fromCents(deltaCents)} after a refund${voided ? " and voided" : ""}.`,
+    attributes: {
+      orderId: params.orderId,
+      delta: fromCents(deltaCents),
+      adjustedAmount: fromCents(newAdjustedCents),
+      voided,
+      clawback
+    },
+    correlationId: params.correlationId
+  });
+
+  return {
+    commissionId: row.id,
+    delta: fromCents(deltaCents),
+    adjustedAmount: fromCents(newAdjustedCents),
+    voided,
+    clawback
+  };
 }
 
 // ---------------------------------------------------------------------------

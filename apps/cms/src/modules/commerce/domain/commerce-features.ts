@@ -42,7 +42,8 @@ export type CommerceFeatureKey =
   | "register"
   | "documents"
   | "loyalty"
-  | "storedValue";
+  | "storedValue"
+  | "returns";
 
 export type CommerceFeatures = Readonly<Record<CommerceFeatureKey, boolean>>;
 
@@ -81,7 +82,12 @@ export const DEFAULT_COMMERCE_FEATURES: CommerceFeatures = {
   // which has accounting, consumer-protection and regulatory consequences it
   // must choose to accept; a tenant that never opens "Fitur" must see exactly
   // today's commerce.
-  storedValue: false
+  storedValue: false,
+  // Issue #287 (ADR-0033) — also OFF. Returns and refunds put goods back into
+  // stock and money back into customers' hands: new behaviour with a security
+  // posture of its own (separately granted permissions, a provider call), so a
+  // tenant chooses it. A tenant that never opens "Features" sees no change.
+  returns: false
 };
 
 const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
@@ -93,7 +99,8 @@ const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
   "courier",
   "register",
   "loyalty",
-  "storedValue"
+  "storedValue",
+  "returns"
 ];
 
 function isBoolean(value: unknown): value is boolean {
