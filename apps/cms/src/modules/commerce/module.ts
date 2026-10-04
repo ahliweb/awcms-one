@@ -122,6 +122,8 @@ import {
   COMMERCE_REPORT_EXPENSES_ACTIVITY_CODE,
   COMMERCE_REPORT_LOYALTY_ACTIVITY_CODE,
   COMMERCE_REPORT_STORED_VALUE_ACTIVITY_CODE,
+  COMMERCE_REPORT_RETURNS_ACTIVITY_CODE,
+  COMMERCE_REPORT_RETURN_PERMISSIONS,
   COMMERCE_REPORT_TENDER_PERMISSIONS,
   COMMERCE_REPORT_CASH_UP_PERMISSIONS,
   COMMERCE_REPORT_EXPENSE_PERMISSIONS,
@@ -172,6 +174,7 @@ import {
   POS_CASH_UP_VARIANCE_PROJECTION_KEY,
   POS_EXPENSE_DAILY_PROJECTION_KEY,
   POS_LOYALTY_DAILY_PROJECTION_KEY,
+  POS_RETURNS_DAILY_PROJECTION_KEY,
   POS_STORED_VALUE_DAILY_PROJECTION_KEY,
   POS_TENDER_DAILY_PROJECTION_KEY
 } from "./domain/operational-report-keys";
@@ -184,6 +187,10 @@ import {
   EXPENSE_REVERSED_SINK,
   LOYALTY_DIMENSIONAL,
   LOYALTY_SINK,
+  REFUND_LEGS_SINK,
+  RETURN_LINES_SINK,
+  RETURNS_DIMENSIONAL,
+  RETURNS_SINK,
   STORED_VALUE_DIMENSIONAL,
   STORED_VALUE_SINK,
   TENDER_DIMENSIONAL,
@@ -278,7 +285,7 @@ function salesReportProjection(
 }
 
 /**
- * Issue #296 (ADR-0035) - the five POS operational-report projections. One
+ * Issue #296 (ADR-0035) - the six POS (five from #296, returns from #316) operational-report projections. One
  * factory like {@link salesReportProjection}; each descriptor lists its own
  * streams (cash-ups and expenses read two sources each) and the same list is
  * its `rebuildSource`, so a rebuild resets and replays every cursor it owns.
@@ -288,7 +295,7 @@ function salesReportProjection(
  * so it never reports a false drift for a row the stream legitimately skips.
  */
 const OPERATIONAL_REPORT_RETENTION_CLASS =
-  "commerce.pos_tender_daily / _cash_up_variance / _expense_daily / _loyalty_daily / _stored_value_daily (this module's own dataLifecycle descriptors, cursor `day`, same 3650-day ceiling as the sales projections): derived, fully rebuildable aggregates over append-only (or write-once) ledgers - a rebuild after a source's own retention purge recomputes from surviving rows only, the same coupling reporting.access_audit_summary documents.";
+  "commerce.pos_tender_daily / _cash_up_variance / _expense_daily / _loyalty_daily / _stored_value_daily / _returns_daily (this module's own dataLifecycle descriptors, cursor `day`, same 3650-day ceiling as the sales projections): derived, fully rebuildable aggregates over append-only (or write-once) ledgers - a rebuild after a source's own retention purge recomputes from surviving rows only, the same coupling reporting.access_audit_summary documents.";
 
 function operationalReportProjection(
   input: Pick<
@@ -433,6 +440,55 @@ const STORED_VALUE_DAILY_STREAMS: readonly ProjectionCursorStream[] = [
 ];
 
 /**
+ * Issue #316 - the returns & refunds family: three streams, each over a source
+ * whose cursor is NOT NULL from insert, so no `security_invoker` view of its
+ * own (sql/945 could not name the sql/994 tables anyway). The refund-leg stream
+ * rides the sql/998 payment-allocation view and counts the same
+ * `status = 'succeeded'` rows its scalar reconciliation can evaluate; only the
+ * reversal legs a refund points at become report rows.
+ */
+const RETURNS_DAILY_STREAMS: readonly ProjectionCursorStream[] = [
+  {
+    streamKey: OPERATIONAL_STREAM_KEYS.returns,
+    tableName: "awcms_commerce_returns",
+    cursorColumn: "created_at",
+    metrics: [
+      {
+        metricKey: OPERATIONAL_METRIC_KEYS.returnsRecorded,
+        effect: "increment"
+      }
+    ],
+    dimensional: RETURNS_SINK
+  },
+  {
+    streamKey: OPERATIONAL_STREAM_KEYS.returnLines,
+    tableName: "awcms_commerce_return_lines",
+    cursorColumn: "created_at",
+    metrics: [
+      {
+        metricKey: OPERATIONAL_METRIC_KEYS.returnLinesRecorded,
+        effect: "increment"
+      }
+    ],
+    dimensional: RETURN_LINES_SINK
+  },
+  {
+    streamKey: OPERATIONAL_STREAM_KEYS.allocations,
+    tableName: "awcms_commerce_report_src_allocations",
+    cursorColumn: "settled_at",
+    metrics: [
+      {
+        metricKey: OPERATIONAL_METRIC_KEYS.refundLegsScanned,
+        effect: "increment",
+        matchColumn: "status",
+        matchValue: "succeeded"
+      }
+    ],
+    dimensional: REFUND_LEGS_SINK
+  }
+];
+
+/**
  * `commerce` (Issue #4, part of epic #1; brought to full product-model parity
  * by Issue #23, part of epic #21) — tenant-scoped product categories
  * (hierarchical, self-referencing) and products, ported from the legacy
@@ -547,7 +603,7 @@ export const commerceModule = defineModule({
       dimensional: SALES_BY_CATEGORY_DIMENSIONAL,
       drillDownPath: "/api/v1/reports/commerce/sales-by-category"
     }),
-    // Issue #296 (ADR-0035) - the five POS operational projections. Each is
+    // Issue #296 (ADR-0035) - the six POS operational projections. Each is
     // rebuildable from its source ledger, reconciles by control totals, and
     // is read through `/api/v1/reports/commerce/operational-*`.
     operationalReportProjection({
@@ -618,6 +674,24 @@ export const commerceModule = defineModule({
       },
       requiredPermission: COMMERCE_REPORT_STORED_VALUE_PERMISSIONS.read,
       drillDownPath: "/api/v1/reports/commerce/stored-value"
+    }),
+    // Issue #316 - the returns & refunds family (ADR-0035 D1's returns
+    // contract), gated on the `returns` feature.
+    operationalReportProjection({
+      key: POS_RETURNS_DAILY_PROJECTION_KEY,
+      description:
+        "Per day and register: returns and exchanges recorded (count and refund total), returned lines by stock disposition (restocked, damaged/written off, quarantined: lines, units, value) and settled refund legs by tender and destination (original tender or store credit). Returns and lines land on the day they were recorded and the register of the original sale; a refund leg on the day it settled.",
+      streams: RETURNS_DAILY_STREAMS,
+      dimensional: RETURNS_DIMENSIONAL,
+      metricLabels: {
+        [OPERATIONAL_METRIC_KEYS.returnsRecorded]: "Returns recorded consumed",
+        [OPERATIONAL_METRIC_KEYS.returnLinesRecorded]:
+          "Returned lines consumed",
+        [OPERATIONAL_METRIC_KEYS.refundLegsScanned]:
+          "Succeeded ledger legs scanned for refunds"
+      },
+      requiredPermission: COMMERCE_REPORT_RETURN_PERMISSIONS.read,
+      drillDownPath: "/api/v1/commerce/returns"
     })
   ],
   events: {
@@ -2784,7 +2858,7 @@ export const commerceModule = defineModule({
     // Issue #288 (ADR-0030) - the three closed-loop stored-value tables; see
     // `domain/stored-value-lifecycle.ts`.
     ...STORED_VALUE_DATA_LIFECYCLE,
-    // Issue #296 (ADR-0035) - the five POS operational-report projection
+    // Issue #296 (ADR-0035) - the six POS operational-report projection
     // tables; see `domain/operational-report-lifecycle.ts`.
     ...OPERATIONAL_REPORT_DATA_LIFECYCLE,
     // Issue #286 (ADR-0029) - held sales, quotations (+ versions), work orders
@@ -4260,6 +4334,19 @@ export const commerceModule = defineModule({
       action: "export",
       description:
         "Export the stored-value liability operational report as CSV (Issue #296)"
+    },
+    // Issue #316 - the returns & refunds family.
+    {
+      activityCode: COMMERCE_REPORT_RETURNS_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "Read the returns and refunds operational report (Issue #316)"
+    },
+    {
+      activityCode: COMMERCE_REPORT_RETURNS_ACTIVITY_CODE,
+      action: "export",
+      description:
+        "Export the returns and refunds operational report as CSV (Issue #316)"
     },
     {
       activityCode: COMMERCE_BARCODES_ACTIVITY_CODE,

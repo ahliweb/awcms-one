@@ -26,7 +26,8 @@ import {
   OPERATIONAL_NO_REGISTER_ID,
   SALES_REPORT_TIME_ZONE,
   cashUpVarianceCents,
-  formatSignedCents
+  formatSignedCents,
+  summariseDispositionUnits
 } from "../domain/operational-report-deltas";
 import {
   OPERATIONAL_REPORT_FAMILIES,
@@ -656,5 +657,175 @@ export async function fetchStoredValueDailyReport(
     })),
     balances,
     totalClosing: formatSignedCents(totalClosing)
+  };
+}
+
+// ---------------------------------------------------------------------------
+// returns & refunds (Issue #316)
+// ---------------------------------------------------------------------------
+
+export type ReturnsReportRow = {
+  day: string;
+  /** `null` for activity not taken on a register (online orders, back office). */
+  registerId: string | null;
+  registerCode: string | null;
+  registerName: string | null;
+  /** `return` | `disposition` | `refund`. */
+  section: string;
+  /** Return kind, stock disposition, or the refund's tender. */
+  bucket: string;
+  /** `original_tender` | `store_credit` for a refund; `''` otherwise. */
+  detail: string;
+  count: number;
+  /** Units of a `disposition` row; `0` elsewhere. */
+  units: number;
+  amount: string;
+};
+
+export type ReturnsSummaryRow = Omit<
+  ReturnsReportRow,
+  "day" | "registerId" | "registerCode" | "registerName"
+>;
+
+export type ReturnsReport = ReportEnvelope & {
+  items: ReturnsReportRow[];
+  /** `items` folded over the whole range per section, bucket and detail (exact cents). */
+  summary: ReturnsSummaryRow[];
+  returnCount: number;
+  /** Refund total promised by the returns recorded in the range. */
+  returnedValue: string;
+  /** Money that actually went back (settled refund legs), by any destination. */
+  refundedTotal: string;
+  /** The part of `refundedTotal` that went to the original tender. */
+  refundedToTender: string;
+  /** The part of `refundedTotal` redirected into store credit. */
+  refundedToStoreCredit: string;
+  restockedUnits: number;
+  /** Units written off (disposition `damaged`). */
+  writtenOffUnits: number;
+  quarantinedUnits: number;
+};
+
+export async function fetchReturnsReport(
+  tx: Bun.SQL,
+  tenantId: string,
+  range: SalesReportRange
+): Promise<ReturnsReport> {
+  if (!(await isOperationalFamilyEnabled(tx, tenantId, "returns"))) {
+    return {
+      ...envelope(range, false),
+      items: [],
+      summary: [],
+      returnCount: 0,
+      returnedValue: "0.00",
+      refundedTotal: "0.00",
+      refundedToTender: "0.00",
+      refundedToStoreCredit: "0.00",
+      restockedUnits: 0,
+      writtenOffUnits: 0,
+      quarantinedUnits: 0
+    };
+  }
+  const rows = (await tx`
+    SELECT to_char(t.day, 'YYYY-MM-DD') AS day, t.register_id,
+      r.code AS register_code, r.name AS register_name, t.section, t.bucket,
+      t.detail, t.entry_count, t.units, t.amount::text AS amount
+    FROM awcms_commerce_report_returns_daily t
+    LEFT JOIN awcms_commerce_registers r
+      ON r.tenant_id = t.tenant_id AND r.id = t.register_id
+    WHERE t.tenant_id = ${tenantId}
+      AND t.day >= ${range.from}::date AND t.day <= ${range.to}::date
+    ORDER BY t.day ASC, r.code ASC NULLS FIRST, t.section ASC, t.bucket ASC,
+      t.detail ASC
+  `) as {
+    day: string;
+    register_id: string;
+    register_code: string | null;
+    register_name: string | null;
+    section: string;
+    bucket: string;
+    detail: string;
+    entry_count: number;
+    units: number;
+    amount: string;
+  }[];
+  const items = rows.map((row): ReturnsReportRow => ({
+    day: row.day,
+    registerId:
+      row.register_id === OPERATIONAL_NO_REGISTER_ID ? null : row.register_id,
+    registerCode: row.register_code,
+    registerName: row.register_name,
+    section: row.section,
+    bucket: row.bucket,
+    detail: row.detail,
+    count: Number(row.entry_count),
+    units: Number(row.units),
+    amount: money(row.amount)
+  }));
+  return {
+    ...envelope(range, true),
+    items,
+    ...summariseReturns(items)
+  };
+}
+
+/** Folds the per-day rows over the range, in exact integer cents. */
+export function summariseReturns(
+  items: readonly ReturnsReportRow[]
+): Omit<ReturnsReport, keyof ReportEnvelope | "items"> {
+  const folded = new Map<string, ReturnsSummaryRow & { cents: bigint }>();
+  let returnCount = 0;
+  let returnedValue = 0n;
+  let refundedToTender = 0n;
+  let refundedToStoreCredit = 0n;
+  for (const item of items) {
+    const key = `${item.section}|${item.bucket}|${item.detail}`;
+    const entry = folded.get(key) ?? {
+      section: item.section,
+      bucket: item.bucket,
+      detail: item.detail,
+      count: 0,
+      units: 0,
+      amount: "0.00",
+      cents: 0n
+    };
+    const cents = signedToCents(item.amount);
+    entry.count += item.count;
+    entry.units += item.units;
+    entry.cents += cents;
+    folded.set(key, entry);
+    if (item.section === "return") {
+      returnCount += item.count;
+      returnedValue += cents;
+    } else if (item.section === "refund") {
+      if (item.detail === "store_credit") refundedToStoreCredit += cents;
+      else refundedToTender += cents;
+    }
+  }
+  const units = summariseDispositionUnits(
+    items
+      .filter((item) => item.section === "disposition")
+      .map((item) => ({ bucket: item.bucket, units: item.units }))
+  );
+  return {
+    summary: [...folded.values()]
+      .sort(
+        (a, b) =>
+          a.section.localeCompare(b.section) ||
+          a.bucket.localeCompare(b.bucket) ||
+          a.detail.localeCompare(b.detail)
+      )
+      .map(({ cents, ...entry }) => ({
+        ...entry,
+        amount: formatSignedCents(cents)
+      })),
+    returnCount,
+    returnedValue: formatSignedCents(returnedValue),
+    refundedTotal: formatSignedCents(refundedToTender + refundedToStoreCredit),
+    refundedToTender: formatSignedCents(refundedToTender),
+    refundedToStoreCredit: formatSignedCents(refundedToStoreCredit),
+    restockedUnits: units.restocked,
+    writtenOffUnits: units.writtenOff,
+    quarantinedUnits: units.quarantined
   };
 }

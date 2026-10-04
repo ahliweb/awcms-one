@@ -1,5 +1,5 @@
 /**
- * Stable identifiers of the five POS operational-report projections
+ * Stable identifiers of the six POS operational-report projections
  * `commerce` contributes to the `reporting` engine (Issue #296, ADR-0035) -
  * the same role `sales-report-keys.ts` plays for the three sales projections.
  * Pure constants; the descriptors live in `commerce/module.ts`
@@ -25,12 +25,15 @@ export const POS_LOYALTY_DAILY_PROJECTION_KEY = "commerce.pos_loyalty_daily";
 export const POS_STORED_VALUE_DAILY_PROJECTION_KEY =
   "commerce.pos_stored_value_daily";
 
+export const POS_RETURNS_DAILY_PROJECTION_KEY = "commerce.pos_returns_daily";
+
 export const OPERATIONAL_REPORT_PROJECTION_KEYS = [
   POS_TENDER_DAILY_PROJECTION_KEY,
   POS_CASH_UP_VARIANCE_PROJECTION_KEY,
   POS_EXPENSE_DAILY_PROJECTION_KEY,
   POS_LOYALTY_DAILY_PROJECTION_KEY,
-  POS_STORED_VALUE_DAILY_PROJECTION_KEY
+  POS_STORED_VALUE_DAILY_PROJECTION_KEY,
+  POS_RETURNS_DAILY_PROJECTION_KEY
 ] as const;
 
 export type OperationalReportProjectionKey =
@@ -44,7 +47,9 @@ export const OPERATIONAL_STREAM_KEYS = {
   expensesPosted: "expenses_posted",
   expensesReversed: "expenses_reversed",
   loyaltyLedger: "loyalty_ledger",
-  storedValueLedger: "stored_value_ledger"
+  storedValueLedger: "stored_value_ledger",
+  returns: "returns",
+  returnLines: "return_lines"
 } as const;
 
 /** The scalar "rows consumed" counters each stream keeps in the engine's own metrics (what the generic projection card shows and the engine's own `COUNT(*)` reconciliation checks). */
@@ -57,7 +62,10 @@ export const OPERATIONAL_METRIC_KEYS = {
   expensePostedApproved: "expenses_posted_approved",
   expenseReversed: "expenses_reversed",
   loyaltyEntries: "loyalty_entries",
-  storedValueEntries: "stored_value_entries"
+  storedValueEntries: "stored_value_entries",
+  returnsRecorded: "returns_recorded",
+  returnLinesRecorded: "return_lines_recorded",
+  refundLegsScanned: "refund_ledger_legs_succeeded"
 } as const;
 
 /** Reconciliation keys of the dimensional control totals (integers: counts, points, or money in cents). */
@@ -92,15 +100,26 @@ export const STORED_VALUE_CONTROL_KEYS = {
   netCents: "stored_value_net_cents"
 } as const;
 
+export const RETURNS_CONTROL_KEYS = {
+  returnCount: "returns_count",
+  returnCents: "returns_cents",
+  lineCount: "return_lines_count",
+  lineUnits: "return_lines_units",
+  lineCents: "return_lines_cents",
+  refundCount: "refund_legs_count",
+  refundCents: "refund_legs_cents"
+} as const;
+
 /** The report families the read routes, CSV exports and the screen expose. Each maps 1:1 to a projection. */
 export type OperationalReportFamily =
-  "tenders" | "cash-ups" | "expenses" | "loyalty" | "stored-value";
+  "tenders" | "cash-ups" | "expenses" | "loyalty" | "stored-value" | "returns";
 
 export type OperationalReportFamilyDefinition = {
   family: OperationalReportFamily;
   projectionKey: OperationalReportProjectionKey;
   /** The commerce feature that must be ON for the family to show anything; `null` when the source exists in every tenant (payments). */
-  feature: "register" | "expenses" | "loyalty" | "storedValue" | null;
+  feature:
+    "register" | "expenses" | "loyalty" | "storedValue" | "returns" | null;
 };
 
 export const OPERATIONAL_REPORT_FAMILIES: readonly OperationalReportFamilyDefinition[] =
@@ -129,5 +148,10 @@ export const OPERATIONAL_REPORT_FAMILIES: readonly OperationalReportFamilyDefini
       family: "stored-value",
       projectionKey: POS_STORED_VALUE_DAILY_PROJECTION_KEY,
       feature: "storedValue"
+    },
+    {
+      family: "returns",
+      projectionKey: POS_RETURNS_DAILY_PROJECTION_KEY,
+      feature: "returns"
     }
   ];

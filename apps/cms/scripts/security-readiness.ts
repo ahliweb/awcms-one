@@ -1810,6 +1810,8 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
     "UPDATE",
     "DELETE"
   ],
+  // Issue #316 (sql/945) - the returns & refunds report table, same grant.
+  awcms_commerce_report_returns_daily: ["SELECT", "INSERT", "UPDATE", "DELETE"],
   // ...and the four `security_invoker` source views the streams with a
   // nullable cursor read (sql/998): SELECT only, the engine never writes them.
   awcms_commerce_report_src_allocations: ["SELECT"],

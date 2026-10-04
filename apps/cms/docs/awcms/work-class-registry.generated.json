@@ -1767,6 +1767,16 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/reports/commerce/operational-returns.csv.ts",
+      "workClass": "reporting",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/reports/commerce/operational-returns.ts",
+      "workClass": "reporting",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/reports/commerce/operational-stored-value.csv.ts",
       "workClass": "reporting",
       "source": "factory"

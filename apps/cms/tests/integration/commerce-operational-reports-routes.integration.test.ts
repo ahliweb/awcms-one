@@ -46,6 +46,8 @@ import { GET as loyaltyJson } from "../../src/pages/api/v1/reports/commerce/oper
 import { GET as loyaltyCsv } from "../../src/pages/api/v1/reports/commerce/operational-loyalty.csv";
 import { GET as storedValueJson } from "../../src/pages/api/v1/reports/commerce/operational-stored-value";
 import { GET as storedValueCsv } from "../../src/pages/api/v1/reports/commerce/operational-stored-value.csv";
+import { GET as returnsJson } from "../../src/pages/api/v1/reports/commerce/operational-returns";
+import { GET as returnsCsv } from "../../src/pages/api/v1/reports/commerce/operational-returns.csv";
 
 const OWNER_PASSWORD = "integration-test-owner-password";
 const RANGE = "?from=2026-09-01&to=2026-09-30";
@@ -169,7 +171,8 @@ const JSON_ROUTES = [
   ["cash-ups", cashUpsJson, "operational-cash-ups"],
   ["expenses", expensesJson, "operational-expenses"],
   ["loyalty", loyaltyJson, "operational-loyalty"],
-  ["stored-value", storedValueJson, "operational-stored-value"]
+  ["stored-value", storedValueJson, "operational-stored-value"],
+  ["returns", returnsJson, "operational-returns"]
 ] as const;
 
 const CSV_ROUTES = [
@@ -177,7 +180,8 @@ const CSV_ROUTES = [
   ["cash-ups", cashUpsCsv, "operational-cash-ups"],
   ["expenses", expensesCsv, "operational-expenses"],
   ["loyalty", loyaltyCsv, "operational-loyalty"],
-  ["stored-value", storedValueCsv, "operational-stored-value"]
+  ["stored-value", storedValueCsv, "operational-stored-value"],
+  ["returns", returnsCsv, "operational-returns"]
 ] as const;
 
 const FAMILY_KEYS = {
@@ -185,7 +189,8 @@ const FAMILY_KEYS = {
   "cash-ups": "report_cash_ups",
   expenses: "report_expenses",
   loyalty: "report_loyalty",
-  "stored-value": "report_stored_value"
+  "stored-value": "report_stored_value",
+  returns: "report_returns"
 } as const;
 
 /** Rows in the five projection tables, with one value per tenant that tells them apart. */
@@ -228,6 +233,18 @@ async function seedProjectionRows(
     VALUES (${tenantId}, '2026-09-10', 'gift_card', 'issue', ${scale},
       ${(scale * 500).toFixed(2)})
   `;
+  // Issue #316 - the register name is tenant-typed, so the CSV must neutralise it.
+  const named = (await admin`
+    INSERT INTO awcms_commerce_registers (tenant_id, code, name)
+    VALUES (${tenantId}, 'R2', '=cmd|''/C calc''!A0')
+    RETURNING id
+  `) as { id: string }[];
+  await admin`
+    INSERT INTO awcms_commerce_report_returns_daily
+      (tenant_id, day, register_id, section, bucket, detail, entry_count, units, amount)
+    VALUES (${tenantId}, '2026-09-10', ${named[0]!.id}, 'refund', 'cash',
+      'original_tender', ${scale}, 0, ${(scale * 250).toFixed(2)})
+  `;
 }
 
 async function setAllFeatures(owner: Principal, on: boolean) {
@@ -246,7 +263,8 @@ async function setAllFeatures(owner: Principal, on: boolean) {
         register: on,
         expenses: on,
         loyalty: on,
-        storedValue: on
+        storedValue: on,
+        returns: on
       }
     }
   });
@@ -278,7 +296,7 @@ suite("POS operational reports through the route handlers (Issue #296)", () => {
     await resetHandlerDatabase();
   });
 
-  test("the owner reads all five families; a family whose feature is off is 200 enabled=false and empty, never an error", async () => {
+  test("the owner reads all six families; a family whose feature is off is 200 enabled=false and empty, never an error", async () => {
     if (skipUnlessHandlerReady()) return;
     const owner = await bootstrapOwner();
     await seedProjectionRows(owner.tenantId, 3);
@@ -360,7 +378,9 @@ suite("POS operational reports through the route handlers (Issue #296)", () => {
       "commerce.register_sessions.read",
       "commerce.register_sessions.export",
       "commerce.stored_value.read",
-      "commerce.loyalty.read"
+      "commerce.loyalty.read",
+      "commerce.returns.read",
+      "commerce.refunds.read"
     ]);
     for (const [, handler, path] of JSON_ROUTES) {
       const result = await invoke<Envelope>(handler, {
@@ -523,6 +543,63 @@ suite("POS operational reports through the route handlers (Issue #296)", () => {
       rowCount: 1
     });
     // The audit row carries counts and the range - never a cell.
+    expect(JSON.stringify(audit[0])).not.toContain("calc");
+  });
+
+  test("the returns CSV (Issue #316): needs report_returns.export, is one long file, neutralises the register name and is audited", async () => {
+    if (skipUnlessHandlerReady()) return;
+    const owner = await bootstrapOwner();
+    await seedProjectionRows(owner.tenantId, 2);
+    expect((await setAllFeatures(owner, true)).status).toBe(200);
+
+    const reader = await seedPrincipal(owner.tenantId, "returns-reader", [
+      "commerce.report_returns.read"
+    ]);
+    const call = (who: Principal) =>
+      returnsCsv({
+        request: new Request(
+          `http://integration.test/api/v1/reports/commerce/operational-returns.csv${RANGE}`,
+          { headers: headers(who) }
+        ),
+        url: new URL(
+          `http://integration.test/api/v1/reports/commerce/operational-returns.csv${RANGE}`
+        ),
+        params: {},
+        locals: { correlationId: "corr-316" },
+        cookies: createCookieJar(),
+        clientAddress: "127.0.0.1"
+      } as never);
+    expect((await call(reader)).status).toBe(403);
+
+    const exporter = await seedPrincipal(owner.tenantId, "returns-exporter", [
+      "commerce.report_returns.export"
+    ]);
+    const result = await call(exporter);
+    expect(result.status).toBe(200);
+    expect(result.headers.get("cache-control")).toBe("no-store");
+    expect(result.headers.get("content-disposition")).toContain(
+      "pos-returns-2026-09-01-2026-09-30.csv"
+    );
+    const lines = (await result.text()).trimEnd().split("\r\n");
+    expect(lines[0]).toBe(
+      "day,register_code,register_name,section,bucket,detail,count,units,amount"
+    );
+    expect(lines[1]).toBe(
+      "2026-09-10,R2,'=cmd|'/C calc'!A0,refund,cash,original_tender,2,0,500.00"
+    );
+    const audit = (await getHandlerAdminSql()`
+      SELECT actor_tenant_user_id, attributes FROM awcms_audit_events
+      WHERE tenant_id = ${owner.tenantId} AND action = 'operational_report.export'
+    `) as {
+      actor_tenant_user_id: string;
+      attributes: Record<string, unknown>;
+    }[];
+    expect(audit).toHaveLength(1);
+    expect(audit[0]!.actor_tenant_user_id).toBe(exporter.tenantUserId);
+    expect(audit[0]!.attributes).toMatchObject({
+      family: "returns",
+      rowCount: 1
+    });
     expect(JSON.stringify(audit[0])).not.toContain("calc");
   });
 

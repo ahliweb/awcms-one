@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:c641ca041eadd890e67ef86c3f7943fd714f07e7622f02ca5d8045af623e4de7 -->
+<!-- i18n-source-hash: sha256:9367b5fb4fdd69dc093273942cdc12f68ab9cd9775cc64b17b57b8a494787b33 -->
 
 # `commerce`
 
@@ -1467,7 +1467,9 @@ Lima `reportingProjections` lagi pada mekanisme laporan penjualan di atas (tanpa
 | Retensi / data subjek | `domain/operational-report-lifecycle.ts`                                                                                                         | Kursor `day`, batas atas 3650 hari; tabel tutup kasir memuat uuid kasir (staf)                                                                                                                                                                                                                     |
 | Tes                   | `tests/commerce-operational-report-{domain,permissions}.test.ts`, `tests/integration/commerce-operational-reports{,-routes}.integration.test.ts` | Aturan dan batas zona waktu; pemisahan izin; langsung = rebuild byte demi byte, penyimpangan dan perusakan terdeteksi rekonsiliasi, peristiwa terlambat, fitur mati, RLS, BOLA, CSV dan audit                                                                                                      |
 
-**Ditunda dengan menyebut nama:** saldo/mutasi/stok menipis (#282), penerimaan (#283), pajak (#293), margin, diskon, paket (#290), dan irisan retur (#287) — kontrak yang diikuti irisan retur ada di ADR-0035 D1.
+**Irisan retur & refund — SUDAH ADA (Isu #316).** Proyeksi keenam, `commerce.pos_returns_daily` (`sql/945` tabel + grant worker, `sql/946` pasangan `commerce.report_returns.read|export`), mengikuti kontrak ADR-0035 D1 dan adendumnya. Tiga aliran ke satu tabel panjang `awcms_commerce_report_returns_daily` (`(day, register_id, section, bucket, detail)`): `awcms_commerce_returns` (`section = return`: retur dan penukaran tercatat, dengan total refund), `awcms_commerce_return_lines` (`section = disposition`: baris, unit, dan nilai menurut `restock` / `damaged` = dihapuskan / `quarantine`) dan leg reversal buku besar pembayaran yang ditunjuk sebuah refund (`section = refund`: leg dan uang menurut metode dan menurut `original_tender` / `store_credit`). Pemuat `loadReturnDeltas`, `loadReturnLineDeltas`, `loadRefundLegDeltas` ada di `application/operational-report-projection.ts` dan memberi makan sink sekaligus total kontrol; aturannya `computeReturnDelta`, `computeReturnLineDelta`, `computeRefundLegDelta` di `domain/operational-report-deltas.ts`. Tidak ada view `security_invoker` baru: kursor sumbernya NOT NULL sejak insert, dan aliran refund membaca view alokasi sql/998. Di balik fitur `returns` (`enabled: false` selama mati); rute `operational-returns` dan `.csv`; panel di `/admin/commerce-reports`. Tes: `tests/integration/commerce-returns-report.integration.test.ts`.
+
+**Ditunda dengan menyebut nama:** saldo/mutasi/stok menipis (#282), penerimaan (#283), pajak (#293), margin, diskon, dan paket (#290) — lihat ADR-0035 D1.
 
 ## Dengan sengaja tidak ada di sini
 

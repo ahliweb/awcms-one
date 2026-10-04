@@ -745,6 +745,10 @@ export const COMMERCE_REPORT_CASH_UPS_ACTIVITY_CODE = "report_cash_ups";
 export const COMMERCE_REPORT_EXPENSES_ACTIVITY_CODE = "report_expenses";
 export const COMMERCE_REPORT_LOYALTY_ACTIVITY_CODE = "report_loyalty";
 export const COMMERCE_REPORT_STORED_VALUE_ACTIVITY_CODE = "report_stored_value";
+// Issue #316 - the returns & refunds family (ADR-0035 D1's returns contract).
+// A sixth pair on the same footing: not implied by `commerce.returns.read`
+// (which opens individual returns, lines and refund legs) nor the reverse.
+export const COMMERCE_REPORT_RETURNS_ACTIVITY_CODE = "report_returns";
 
 export const COMMERCE_REPORT_TENDER_PERMISSIONS = {
   read: "commerce.report_tenders.read",
@@ -769,4 +773,9 @@ export const COMMERCE_REPORT_LOYALTY_PERMISSIONS = {
 export const COMMERCE_REPORT_STORED_VALUE_PERMISSIONS = {
   read: "commerce.report_stored_value.read",
   export: "commerce.report_stored_value.export"
+} as const;
+
+export const COMMERCE_REPORT_RETURN_PERMISSIONS = {
+  read: "commerce.report_returns.read",
+  export: "commerce.report_returns.export"
 } as const;

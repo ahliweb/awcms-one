@@ -1,6 +1,6 @@
 /**
  * POS operational-report projection sinks and hooks - Issue #296 (ADR-0035).
- * The DB half of the five `commerce.pos_*` `cursor_table` projections
+ * The DB half of the six `commerce.pos_*` `cursor_table` projections
  * `commerce/module.ts` contributes to the `reporting` engine: every function
  * here takes the ENGINE's transaction (`tx`) and is called by
  * `reporting/application/projection-incremental-worker.ts`,
@@ -42,6 +42,7 @@ import {
   CASH_UP_CONTROL_KEYS,
   EXPENSE_CONTROL_KEYS,
   LOYALTY_CONTROL_KEYS,
+  RETURNS_CONTROL_KEYS,
   STORED_VALUE_CONTROL_KEYS,
   TENDER_CONTROL_KEYS
 } from "../domain/operational-report-keys";
@@ -52,6 +53,9 @@ import {
   computeExpensePostedDelta,
   computeExpenseReversedDelta,
   computeLoyaltyDailyDelta,
+  computeRefundLegDelta,
+  computeReturnDelta,
+  computeReturnLineDelta,
   computeStoredValueDailyDelta,
   computeTenderDailyDelta,
   formatSignedCents,
@@ -59,6 +63,7 @@ import {
   type CashUpSessionFact,
   type ExpenseDailyDelta,
   type LoyaltyDailyDelta,
+  type ReturnsDailyDelta,
   type StoredValueDailyDelta,
   type TenderDailyDelta
 } from "../domain/operational-report-deltas";
@@ -1001,6 +1006,306 @@ export const STORED_VALUE_DIMENSIONAL: ProjectionDimensionalContract = {
     `) as Record<string, unknown>[];
     return {
       columns: ["day", "account_kind", "bucket", "entries", "amount"],
+      rows
+    };
+  }
+};
+
+// ---------------------------------------------------------------------------
+// returns & refunds - commerce.pos_returns_daily (three streams, Issue #316)
+// ---------------------------------------------------------------------------
+
+function mergeReturns(deltas: ReturnsDailyDelta[]): ReturnsDailyDelta[] {
+  return mergeBy(
+    deltas,
+    (d) => `${d.day}|${d.registerId}|${d.section}|${d.bucket}|${d.detail}`,
+    (into, from) => {
+      into.count += from.count;
+      into.units += from.units;
+      into.cents += from.cents;
+    }
+  );
+}
+
+/** Returns stream: one `return`/`exchange` row per return, on the register of the original sale. */
+export async function loadReturnDeltas(
+  tx: Bun.SQL,
+  tenantId: string,
+  ids: readonly string[]
+): Promise<ReturnsDailyDelta[]> {
+  if (ids.length === 0) return [];
+  const rows = (await tx`
+    SELECT r.kind, r.refund_total::text AS refund_total, r.created_at,
+      s.register_id
+    FROM awcms_commerce_returns r
+    JOIN awcms_commerce_orders o
+      ON o.tenant_id = r.tenant_id AND o.id = r.order_id
+    LEFT JOIN awcms_commerce_register_sessions s
+      ON s.tenant_id = o.tenant_id AND s.id = o.register_session_id
+    WHERE r.tenant_id = ${tenantId}
+      AND r.id = ANY(${tx.array([...ids], "uuid")}::uuid[])
+  `) as {
+    kind: string;
+    refund_total: string;
+    created_at: Date | string;
+    register_id: string | null;
+  }[];
+  const deltas: ReturnsDailyDelta[] = [];
+  for (const row of rows) {
+    const delta = computeReturnDelta({
+      kind: row.kind,
+      refundTotal: row.refund_total,
+      createdAt: toDate(row.created_at),
+      registerId: row.register_id
+    });
+    if (delta) deltas.push(delta);
+  }
+  return mergeReturns(deltas);
+}
+
+/** Return-lines stream: one `disposition` row per returned line. */
+export async function loadReturnLineDeltas(
+  tx: Bun.SQL,
+  tenantId: string,
+  ids: readonly string[]
+): Promise<ReturnsDailyDelta[]> {
+  if (ids.length === 0) return [];
+  const rows = (await tx`
+    SELECT l.disposition, l.quantity, l.refund_amount::text AS refund_amount,
+      l.created_at, s.register_id
+    FROM awcms_commerce_return_lines l
+    JOIN awcms_commerce_orders o
+      ON o.tenant_id = l.tenant_id AND o.id = l.order_id
+    LEFT JOIN awcms_commerce_register_sessions s
+      ON s.tenant_id = o.tenant_id AND s.id = o.register_session_id
+    WHERE l.tenant_id = ${tenantId}
+      AND l.id = ANY(${tx.array([...ids], "uuid")}::uuid[])
+  `) as {
+    disposition: string;
+    quantity: number;
+    refund_amount: string;
+    created_at: Date | string;
+    register_id: string | null;
+  }[];
+  const deltas: ReturnsDailyDelta[] = [];
+  for (const row of rows) {
+    const delta = computeReturnLineDelta({
+      disposition: row.disposition,
+      quantity: Number(row.quantity),
+      refundAmount: row.refund_amount,
+      createdAt: toDate(row.created_at),
+      registerId: row.register_id
+    });
+    if (delta) deltas.push(delta);
+  }
+  return mergeReturns(deltas);
+}
+
+/**
+ * Refund-leg stream: the ids are payment-ledger legs (the sql/998 view, cursor
+ * `settled_at`); only a succeeded REVERSAL that a refund points at counts. The
+ * destination comes from that refund, the register from the leg's own session.
+ */
+export async function loadRefundLegDeltas(
+  tx: Bun.SQL,
+  tenantId: string,
+  ids: readonly string[]
+): Promise<ReturnsDailyDelta[]> {
+  if (ids.length === 0) return [];
+  const rows = (await tx`
+    SELECT a.kind, a.status, a.settled_at, a.tender_type,
+      a.amount::text AS amount, f.destination, s.register_id
+    FROM awcms_commerce_payment_allocations a
+    JOIN awcms_commerce_refunds f
+      ON f.tenant_id = a.tenant_id AND f.reversal_allocation_id = a.id
+    LEFT JOIN awcms_commerce_register_sessions s
+      ON s.tenant_id = a.tenant_id AND s.id = a.register_session_id
+    WHERE a.tenant_id = ${tenantId}
+      AND a.id = ANY(${tx.array([...ids], "uuid")}::uuid[])
+  `) as {
+    kind: string;
+    status: string;
+    settled_at: Date | string | null;
+    tender_type: string;
+    amount: string;
+    destination: string | null;
+    register_id: string | null;
+  }[];
+  const deltas: ReturnsDailyDelta[] = [];
+  for (const row of rows) {
+    const delta = computeRefundLegDelta({
+      kind: row.kind,
+      status: row.status,
+      settledAt: toNullableDate(row.settled_at),
+      tenderType: row.tender_type,
+      amount: row.amount,
+      destination: row.destination,
+      registerId: row.register_id
+    });
+    if (delta) deltas.push(delta);
+  }
+  return mergeReturns(deltas);
+}
+
+export async function applyReturnsDeltas(
+  tx: Bun.SQL,
+  tenantId: string,
+  deltas: readonly ReturnsDailyDelta[]
+): Promise<void> {
+  for (const delta of deltas) {
+    await tx`
+      INSERT INTO awcms_commerce_report_returns_daily
+        (tenant_id, day, register_id, section, bucket, detail, entry_count,
+         units, amount)
+      VALUES (
+        ${tenantId}, ${delta.day}::date, ${delta.registerId}, ${delta.section},
+        ${delta.bucket}, ${delta.detail}, ${delta.count}, ${delta.units},
+        ${formatSignedCents(delta.cents)}::numeric
+      )
+      ON CONFLICT (tenant_id, day, register_id, section, bucket, detail) DO UPDATE SET
+        entry_count = awcms_commerce_report_returns_daily.entry_count + EXCLUDED.entry_count,
+        units = awcms_commerce_report_returns_daily.units + EXCLUDED.units,
+        amount = awcms_commerce_report_returns_daily.amount + EXCLUDED.amount,
+        updated_at = now()
+    `;
+  }
+}
+
+export const RETURNS_SINK: ProjectionDimensionalSink = {
+  selectColumns: SINK_SELECT_COLUMNS,
+  applyBatch: async (tx, tenantId, rows) =>
+    applyReturnsDeltas(
+      tx,
+      tenantId,
+      await loadReturnDeltas(tx, tenantId, idsOf(rows))
+    )
+};
+
+export const RETURN_LINES_SINK: ProjectionDimensionalSink = {
+  selectColumns: SINK_SELECT_COLUMNS,
+  applyBatch: async (tx, tenantId, rows) =>
+    applyReturnsDeltas(
+      tx,
+      tenantId,
+      await loadReturnLineDeltas(tx, tenantId, idsOf(rows))
+    )
+};
+
+export const REFUND_LEGS_SINK: ProjectionDimensionalSink = {
+  selectColumns: SINK_SELECT_COLUMNS,
+  applyBatch: async (tx, tenantId, rows) =>
+    applyReturnsDeltas(
+      tx,
+      tenantId,
+      await loadRefundLegDeltas(tx, tenantId, idsOf(rows))
+    )
+};
+
+const RETURNS_SOURCE: SourceWalk = {
+  table: "awcms_commerce_returns",
+  cursorColumn: "created_at"
+};
+
+const RETURN_LINES_SOURCE: SourceWalk = {
+  table: "awcms_commerce_return_lines",
+  cursorColumn: "created_at"
+};
+
+const REFUND_LEGS_SOURCE: SourceWalk = {
+  table: "awcms_commerce_report_src_allocations",
+  cursorColumn: "settled_at"
+};
+
+export const RETURNS_DIMENSIONAL: ProjectionDimensionalContract = {
+  resetForTenant: async (tx, tenantId) => {
+    await tx`DELETE FROM awcms_commerce_report_returns_daily WHERE tenant_id = ${tenantId}`;
+  },
+  readProjectionTotals: async (tx, tenantId) => {
+    const [row] = (await tx`
+      SELECT
+        COALESCE(SUM(entry_count) FILTER (WHERE section = 'return'), 0)::text AS return_count,
+        COALESCE(SUM(amount) FILTER (WHERE section = 'return'), 0)::text AS return_amount,
+        COALESCE(SUM(entry_count) FILTER (WHERE section = 'disposition'), 0)::text AS line_count,
+        COALESCE(SUM(units) FILTER (WHERE section = 'disposition'), 0)::text AS line_units,
+        COALESCE(SUM(amount) FILTER (WHERE section = 'disposition'), 0)::text AS line_amount,
+        COALESCE(SUM(entry_count) FILTER (WHERE section = 'refund'), 0)::text AS refund_count,
+        COALESCE(SUM(amount) FILTER (WHERE section = 'refund'), 0)::text AS refund_amount
+      FROM awcms_commerce_report_returns_daily
+      WHERE tenant_id = ${tenantId}
+    `) as Record<string, unknown>[];
+    return {
+      [RETURNS_CONTROL_KEYS.returnCount]: Number(row?.return_count ?? 0),
+      [RETURNS_CONTROL_KEYS.returnCents]: sumToNumber(row?.return_amount),
+      [RETURNS_CONTROL_KEYS.lineCount]: Number(row?.line_count ?? 0),
+      [RETURNS_CONTROL_KEYS.lineUnits]: Number(row?.line_units ?? 0),
+      [RETURNS_CONTROL_KEYS.lineCents]: sumToNumber(row?.line_amount),
+      [RETURNS_CONTROL_KEYS.refundCount]: Number(row?.refund_count ?? 0),
+      [RETURNS_CONTROL_KEYS.refundCents]: sumToNumber(row?.refund_amount)
+    };
+  },
+  computeSourceTotals: async (tx, tenantId) => {
+    const totals = {
+      returnCount: 0,
+      returnCents: 0n,
+      lineCount: 0,
+      lineUnits: 0,
+      lineCents: 0n,
+      refundCount: 0,
+      refundCents: 0n
+    };
+    const fold = (deltas: readonly ReturnsDailyDelta[]) => {
+      for (const delta of deltas) {
+        if (delta.section === "return") {
+          totals.returnCount += delta.count;
+          totals.returnCents += delta.cents;
+        } else if (delta.section === "disposition") {
+          totals.lineCount += delta.count;
+          totals.lineUnits += delta.units;
+          totals.lineCents += delta.cents;
+        } else {
+          totals.refundCount += delta.count;
+          totals.refundCents += delta.cents;
+        }
+      }
+    };
+    await walkSource(tx, tenantId, RETURNS_SOURCE, async (ids) =>
+      fold(await loadReturnDeltas(tx, tenantId, ids))
+    );
+    await walkSource(tx, tenantId, RETURN_LINES_SOURCE, async (ids) =>
+      fold(await loadReturnLineDeltas(tx, tenantId, ids))
+    );
+    await walkSource(tx, tenantId, REFUND_LEGS_SOURCE, async (ids) =>
+      fold(await loadRefundLegDeltas(tx, tenantId, ids))
+    );
+    return {
+      [RETURNS_CONTROL_KEYS.returnCount]: totals.returnCount,
+      [RETURNS_CONTROL_KEYS.returnCents]: Number(totals.returnCents),
+      [RETURNS_CONTROL_KEYS.lineCount]: totals.lineCount,
+      [RETURNS_CONTROL_KEYS.lineUnits]: totals.lineUnits,
+      [RETURNS_CONTROL_KEYS.lineCents]: Number(totals.lineCents),
+      [RETURNS_CONTROL_KEYS.refundCount]: totals.refundCount,
+      [RETURNS_CONTROL_KEYS.refundCents]: Number(totals.refundCents)
+    };
+  },
+  exportRows: async (tx, tenantId) => {
+    const rows = (await tx`
+      SELECT to_char(day, 'YYYY-MM-DD') AS day, register_id, section, bucket,
+        detail, entry_count, units, amount::text AS amount
+      FROM awcms_commerce_report_returns_daily
+      WHERE tenant_id = ${tenantId}
+      ORDER BY day ASC, register_id ASC, section ASC, bucket ASC, detail ASC
+    `) as Record<string, unknown>[];
+    return {
+      columns: [
+        "day",
+        "register_id",
+        "section",
+        "bucket",
+        "detail",
+        "entry_count",
+        "units",
+        "amount"
+      ],
       rows
     };
   }

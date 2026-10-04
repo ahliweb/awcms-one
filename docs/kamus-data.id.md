@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:f4a95436b0067c563543c9534e86b221d57ab59fcdaf0e63205f22faa6b31441 -->
+<!-- i18n-source-hash: sha256:098eaf85f5a4a26f326387c74da677b446af80aaf95859d1b0c9e416ffe68069 -->
 
 # Kamus data
 
@@ -327,6 +327,8 @@ Rancangan platform ini sendiri — tidak ada yang di-port dari toko lama. Status
 | beredar (poin / kewajiban) | pembuka, pergerakan dan penutup pada laporan loyalitas dan nilai tersimpan | Jumlah berjalan semua bucket sejak awal: poin yang masih terutang kepada pelanggan, uang yang masih ditahan di kartu dan kredit. `penutup = pembuka + pergerakan` |
 | view sumber | `awcms_commerce_report_src_*` | View `security_invoker` atas baris yang kolom kursornya terisi, agar pindaian rebuild mesin yang tidak aman-NULL tidak pernah melihat NULL (ADR-0035 D3) |
 | `commerce.report_tenders.*`, `…report_cash_ups.*`, `…report_expenses.*`, `…report_loyalty.*`, `…report_stored_value.*` | `awcms_permissions` (`sql/999`) | Sepuluh kunci: `read` dan `export` berisiko tinggi untuk setiap keluarga. Tidak ada yang tersirat oleh `reporting.dashboard.read` atau kunci domain sumber, dan tidak ada yang membuka baris sumber |
+| bagian laporan retur | `awcms_commerce_report_returns_daily.section` (Issue #316) | `return` (retur atau penukaran tercatat: jumlah dan total refund), `disposition` (baris retur menurut nasib unitnya: `restock` = kembali ke rak, `damaged` = dihapuskan, `quarantine` = ditahan, bukan keduanya), `refund` (leg refund yang selesai menurut metode dan tujuan `original_tender` / `store_credit`) |
+| `commerce.report_returns.*` | `awcms_permissions` (`sql/946`) | `read` dan `export` berisiko tinggi untuk laporan retur & refund; tidak tersirat oleh `commerce.returns.read` atau `commerce.refunds.read`, dan tidak membuka retur atau refund individual |
 | `operational_report.export` | aksi audit | Satu baris per ekspor CSV: keluarga, rentang, jumlah baris, tidak pernah isi sel |
 
 ## Kosakata barcode (issue #292, [ADR-0032](adr/0032-barcodes-are-a-derived-identifier-and-the-cashier-keyboard-layer-is-chord-only.md))

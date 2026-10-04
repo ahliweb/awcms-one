@@ -1,5 +1,5 @@
 /**
- * CSV serialisation of the POS operational reports (Issue #296, ADR-0035) -
+ * CSV serialisation of the POS operational reports (Issue #296, ADR-0035; #316) -
  * pure, no I/O. Every cell goes through the cash-up CSV's `csvCell`
  * (formula-neutralising: a leading `=`, `+`, `-`, `@`, tab or carriage return
  * is prefixed with a single quote, then RFC 4180 quoting) and every strictly
@@ -17,6 +17,7 @@ import type {
   CashUpReport,
   ExpenseReport,
   LoyaltyReport,
+  ReturnsReport,
   StoredValueReport,
   TenderReport
 } from "../application/operational-report-directory";
@@ -156,6 +157,36 @@ export function serializeStoredValueReportCsv(
       csvCell(row.accountKind),
       csvCell(row.bucket),
       csvNumber(String(row.entries)),
+      csvNumber(row.amount)
+    ])
+  );
+}
+
+/** One long file: `section` says what `bucket`/`detail`/`count`/`units`/`amount` mean on that row (see sql/945). */
+export const RETURNS_REPORT_CSV_COLUMNS = [
+  "day",
+  "register_code",
+  "register_name",
+  "section",
+  "bucket",
+  "detail",
+  "count",
+  "units",
+  "amount"
+] as const;
+
+export function serializeReturnsReportCsv(report: ReturnsReport): string {
+  return serialise(
+    RETURNS_REPORT_CSV_COLUMNS,
+    report.items.map((row) => [
+      csvCell(row.day),
+      csvCell(row.registerCode),
+      csvCell(row.registerName),
+      csvCell(row.section),
+      csvCell(row.bucket),
+      csvCell(row.detail),
+      csvNumber(String(row.count)),
+      csvNumber(String(row.units)),
       csvNumber(row.amount)
     ])
   );

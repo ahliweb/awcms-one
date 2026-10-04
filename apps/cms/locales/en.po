@@ -10472,3 +10472,42 @@ msgstr ""
 
 msgid "No stored value moved in this range"
 msgstr ""
+
+msgid "Returns and refunds totals"
+msgstr ""
+
+msgid "Returns recorded"
+msgstr ""
+
+msgid "Value returned"
+msgstr ""
+
+msgid "Refunded to store credit"
+msgstr ""
+
+msgid "Units restocked"
+msgstr ""
+
+msgid "Units written off"
+msgstr ""
+
+msgid "Units held back"
+msgstr ""
+
+msgid "Returned stock"
+msgstr ""
+
+msgid "Returns"
+msgstr ""
+
+msgid "Refunds"
+msgstr ""
+
+msgid "Units"
+msgstr ""
+
+msgid "Returns, returned stock and refunds paid back, {from} to {to}. A return counts on the day it was recorded, a refund on the day it settled."
+msgstr ""
+
+msgid "No returns or refunds in this range"
+msgstr ""

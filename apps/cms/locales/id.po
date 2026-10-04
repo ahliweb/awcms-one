@@ -10429,3 +10429,42 @@ msgstr "Pergerakan kartu hadiah dan kredit toko per jenis, {from} sampai {to}, m
 
 msgid "No stored value moved in this range"
 msgstr "Tidak ada nilai tersimpan bergerak pada rentang ini"
+
+msgid "Returns and refunds totals"
+msgstr "Total retur dan pengembalian dana"
+
+msgid "Returns recorded"
+msgstr "Retur tercatat"
+
+msgid "Value returned"
+msgstr "Nilai yang diretur"
+
+msgid "Refunded to store credit"
+msgstr "Dikembalikan ke kredit toko"
+
+msgid "Units restocked"
+msgstr "Unit dimasukkan kembali ke stok"
+
+msgid "Units written off"
+msgstr "Unit dihapuskan"
+
+msgid "Units held back"
+msgstr "Unit ditahan"
+
+msgid "Returned stock"
+msgstr "Stok retur"
+
+msgid "Returns"
+msgstr "Retur"
+
+msgid "Refunds"
+msgstr "Pengembalian dana"
+
+msgid "Units"
+msgstr "Unit"
+
+msgid "Returns, returned stock and refunds paid back, {from} to {to}. A return counts on the day it was recorded, a refund on the day it settled."
+msgstr "Retur, stok retur, dan pengembalian dana yang dibayarkan, {from} sampai {to}. Retur dihitung pada hari dicatat, pengembalian dana pada hari diselesaikan."
+
+msgid "No returns or refunds in this range"
+msgstr "Tidak ada retur atau pengembalian dana pada rentang ini"

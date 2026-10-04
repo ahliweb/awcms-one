@@ -50,6 +50,25 @@
  * signed sum; OUTSTANDING is the sum of every bucket ever (the ledger's own
  * definition of a balance), read as a cumulative at query time.
  *
+ * ### returns - `commerce.pos_returns_daily` (Issue #316)
+ * Three streams into one long table, every one over a source whose cursor is
+ * NOT NULL from insert. (1) `awcms_commerce_returns`, cursor `created_at`: a
+ * return or exchange adds one to its `return`/`exchange` bucket and its refund
+ * total (goods - discount + shipping) to the amount. (2) `awcms_commerce_
+ * return_lines`, cursor `created_at`, append-only: a line adds one line, its
+ * units and its refunded value to its disposition bucket (`restock` = put back
+ * on the shelf, `damaged` = written off, `quarantine` = held). (3) the payment
+ * ledger's succeeded REVERSAL legs that a refund booked (the existing
+ * `settled_at` stream; a reversal with no refund behind it - an order
+ * cancellation - is the tender report's, not this one's): one refund leg, its
+ * money, by the tender it went back by and whether it went to the original
+ * tender or into store credit. Returns and lines land on the day they were
+ * RECORDED and on the register of the original sale; a refund leg lands on the
+ * day it SETTLED and the register of the session that paid it out. Nothing
+ * here is signed: a refund is its own positive column, never a negative sale.
+ * The original sale's day is amended by the sales projections (ADR-0033), not
+ * by this one.
+ *
  * ## Late events
  *
  * Every figure lands on the day the source fact carries, never on the day it
@@ -385,4 +404,131 @@ export function computeStoredValueDailyDelta(
     entries: 1,
     cents
   };
+}
+
+// ---------------------------------------------------------------------------
+// returns & refunds (Issue #316)
+// ---------------------------------------------------------------------------
+
+export const RETURN_KINDS = ["return", "exchange"] as const;
+/** `restock` = back on the shelf; `damaged` = written off; `quarantine` = held, neither. */
+export const RETURN_DISPOSITIONS = [
+  "restock",
+  "damaged",
+  "quarantine"
+] as const;
+export const REFUND_DESTINATIONS = ["original_tender", "store_credit"] as const;
+export type ReturnsReportSection = "return" | "disposition" | "refund";
+
+export type ReturnsDailyDelta = {
+  day: string;
+  registerId: string;
+  section: ReturnsReportSection;
+  bucket: string;
+  /** `''` where the section has no third dimension. */
+  detail: string;
+  count: number;
+  units: number;
+  cents: bigint;
+};
+
+export type ReturnFact = {
+  kind: string;
+  /** `numeric(14,2)` string: goods - discount + shipping. */
+  refundTotal: string;
+  createdAt: Date;
+  /** Register of the ORIGINAL sale's session, `null` when not a register sale. */
+  registerId: string | null;
+};
+
+export function computeReturnDelta(fact: ReturnFact): ReturnsDailyDelta | null {
+  if (!(RETURN_KINDS as readonly string[]).includes(fact.kind)) return null;
+  return {
+    day: resolveSalesReportDay(fact.createdAt),
+    registerId: fact.registerId ?? OPERATIONAL_NO_REGISTER_ID,
+    section: "return",
+    bucket: fact.kind,
+    detail: "",
+    count: 1,
+    units: 0,
+    cents: signedToCents(fact.refundTotal)
+  };
+}
+
+export type ReturnLineFact = {
+  disposition: string;
+  quantity: number;
+  /** `numeric(14,2)` string: the line's goods minus its discount share. */
+  refundAmount: string;
+  createdAt: Date;
+  registerId: string | null;
+};
+
+export function computeReturnLineDelta(
+  fact: ReturnLineFact
+): ReturnsDailyDelta | null {
+  if (!(RETURN_DISPOSITIONS as readonly string[]).includes(fact.disposition)) {
+    return null;
+  }
+  return {
+    day: resolveSalesReportDay(fact.createdAt),
+    registerId: fact.registerId ?? OPERATIONAL_NO_REGISTER_ID,
+    section: "disposition",
+    bucket: fact.disposition,
+    detail: "",
+    count: 1,
+    units: fact.quantity,
+    cents: signedToCents(fact.refundAmount)
+  };
+}
+
+export type RefundLegFact = {
+  /** The ledger leg's kind: only `reversal` can be a refund. */
+  kind: string;
+  status: string;
+  settledAt: Date | null;
+  tenderType: string;
+  amount: string;
+  /** The refund the reversal leg belongs to; `null` when none points at it (a cancellation reversal). */
+  destination: string | null;
+  registerId: string | null;
+};
+
+export function computeRefundLegDelta(
+  fact: RefundLegFact
+): ReturnsDailyDelta | null {
+  if (
+    fact.kind !== "reversal" ||
+    fact.status !== "succeeded" ||
+    fact.settledAt === null ||
+    fact.destination === null ||
+    !(REFUND_DESTINATIONS as readonly string[]).includes(fact.destination)
+  ) {
+    return null;
+  }
+  return {
+    day: resolveSalesReportDay(fact.settledAt),
+    registerId: fact.registerId ?? OPERATIONAL_NO_REGISTER_ID,
+    section: "refund",
+    bucket: fact.tenderType,
+    detail: fact.destination,
+    count: 1,
+    units: 0,
+    cents: signedToCents(fact.amount)
+  };
+}
+
+/** Stock the business got back (`restock`) against stock it wrote off (`damaged`), from the disposition rows of a range. */
+export function summariseDispositionUnits(
+  rows: readonly { bucket: string; units: number }[]
+): { restocked: number; writtenOff: number; quarantined: number } {
+  let restocked = 0;
+  let writtenOff = 0;
+  let quarantined = 0;
+  for (const row of rows) {
+    if (row.bucket === "restock") restocked += row.units;
+    else if (row.bucket === "damaged") writtenOff += row.units;
+    else if (row.bucket === "quarantine") quarantined += row.units;
+  }
+  return { restocked, writtenOff, quarantined };
 }

@@ -60,6 +60,7 @@ import {
   fetchCashUpReport,
   fetchExpenseReport,
   fetchLoyaltyReport,
+  fetchReturnsReport,
   fetchStoredValueDailyReport,
   fetchTenderReport
 } from "../../modules/commerce/application/operational-report-directory";
@@ -68,6 +69,7 @@ import {
   POS_CASH_UP_VARIANCE_PROJECTION_KEY,
   POS_EXPENSE_DAILY_PROJECTION_KEY,
   POS_LOYALTY_DAILY_PROJECTION_KEY,
+  POS_RETURNS_DAILY_PROJECTION_KEY,
   POS_STORED_VALUE_DAILY_PROJECTION_KEY,
   POS_TENDER_DAILY_PROJECTION_KEY
 } from "../../modules/commerce/domain/operational-report-keys";
@@ -218,6 +220,16 @@ const screen = await loadAdminScreen({
       activityCode: "report_stored_value",
       action: "export"
     });
+    const canReadReturns = await can({
+      moduleKey: "commerce",
+      activityCode: "report_returns",
+      action: "read"
+    });
+    const canExportReturns = await can({
+      moduleKey: "commerce",
+      activityCode: "report_returns",
+      action: "export"
+    });
     const operational = {
       tenders: canReadTenders
         ? await fetchTenderReport(tx, ssr.tenantId, range)
@@ -234,12 +246,16 @@ const screen = await loadAdminScreen({
       storedValue: canReadStoredValue
         ? await fetchStoredValueDailyReport(tx, ssr.tenantId, range)
         : null,
+      returns: canReadReturns
+        ? await fetchReturnsReport(tx, ssr.tenantId, range)
+        : null,
       canExport: {
         tenders: canExportTenders,
         cashUps: canExportCashUps,
         expenses: canExportExpenses,
         loyalty: canExportLoyalty,
-        storedValue: canExportStoredValue
+        storedValue: canExportStoredValue,
+        returns: canExportReturns
       }
     };
 
@@ -327,7 +343,8 @@ const PROJECTION_LABELS: Record<string, string> = {
   [POS_CASH_UP_VARIANCE_PROJECTION_KEY]: t("Cash-up variance"),
   [POS_EXPENSE_DAILY_PROJECTION_KEY]: t("Expenses by category"),
   [POS_LOYALTY_DAILY_PROJECTION_KEY]: t("Loyalty points"),
-  [POS_STORED_VALUE_DAILY_PROJECTION_KEY]: t("Stored-value liability")
+  [POS_STORED_VALUE_DAILY_PROJECTION_KEY]: t("Stored-value liability"),
+  [POS_RETURNS_DAILY_PROJECTION_KEY]: t("Returns and refunds")
 };
 
 function formatAge(ageSeconds: number | null): string {
