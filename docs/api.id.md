@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:e01ca61ed8a794dadc2256765f9a1bccf8eea86c167f0ad6f546f5d7f0a538b0 -->
+<!-- i18n-source-hash: sha256:9371574d71068e5b1126433fa2b0da416af880059c34937fc0ccff5d3c05f5fb -->
 
 # API
 
@@ -320,6 +320,26 @@ Pengulangan `redeem`/`adjust` dengan kunci dan body yang sama me-replay `201` ya
   stock: number, status: "draft" | "active" | "inactive" | "archived",
   label: string | null, labelColor: string | null,
   images: [{ id, publicUrl, sortOrder, altText }], variants: [{ id, name, value, sku, price, stock, ... }],
+  isFeatured: boolean, isRecommended: boolean, manualRating: string | null, manualSoldCount: number
+}
+```
+
+`price`, `priceLevel2/3/4`, `finalPrice`, dan setiap field uang pada bentuk pemasaran/pesanan di bawah adalah JSON **string**, mis. `"19999.00"`, tidak pernah angka JSON — lihat [ADR-0003](adr/0003-money-is-numeric-14-2-and-crosses-the-wire-as-a-string.id.md) dan catatan `normalizeMoney` di [`docs/pengujian.md`](pengujian.id.md).
+
+`Order` (pembacaan pelacakan storefront, `GET .../orders/{code}?phone=`):
+
+```
+{
+  orderCode: string, status: "pending_payment" | "paid" | "processing" | "shipped" | "completed" | "cancelled" | "expired",
+  paymentStatus: "unpaid" | "dp_paid" | "paid" | "refunded",
+  customer: { name, phone }, address: {...} | null,
+  items: [{ productId, variantId, name, variantName, sku, quantity, unitPrice, lineTotal }],
+  subtotal, discount, shipping, insuranceFee, tax, total: string,
+  timeline: [{ fromStatus, toStatus, actor, note, createdAt }],
+  expiresAt: string | null, paidAt/shippedAt/completedAt/cancelledAt: string | null
+}
+```
+
 ## API pemilik: penjualan tertahan, penawaran, perintah kerja, dokumen (issue #286, epik #281, [ADR-0029](adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md))
 
 Setiap rute di bawah berada di balik feature flag `documents` milik tenant (bawaan MATI — `409 FEATURE_DISABLED`), membutuhkan sesi bearer/cookie, dan — untuk setiap mutasi — header **`Idempotency-Key`** (`400 IDEMPOTENCY_REQUIRED`; kunci sama + body sama memutar ulang jawaban tersimpan, kunci sama + body berbeda adalah `409 IDEMPOTENCY_CONFLICT`). Id yang tidak dikenal, id yang salah format, dan id milik tenant lain adalah `404` netral yang sama. Kunci izin dipisah per sumber daya dan tidak ada yang tersirat dari `commerce.pos.create`; kontraknya adalah `openapi/modules/commerce.openapi.yaml`.
@@ -341,27 +361,6 @@ Setiap rute di bawah berada di balik feature flag `documents` milik tenant (bawa
 
 Event: `awcms.commerce.quotation.accepted`, `awcms.commerce.quotation.converted` (asal-usul konversi), `awcms.commerce.work_order.status_changed`, `awcms.commerce.document.issued`. Tiga belas kunci izin: `commerce.held_sales.{read,create,update,approve}`, `commerce.quotations.{read,create,update}`, `commerce.quotation_conversions.create`, `commerce.work_orders.{read,create,update}`, `commerce.documents.{read,create}`.
 
-  isFeatured: boolean, isRecommended: boolean, manualRating: string | null, manualSoldCount: number
-}
-```
-| `commerce.expense` | `awcms.commerce.expense.{posted,reversed}` — (#294) masing-masing terbit sekali, ketika status benar-benar berubah (pengajuan tertunda atau penolakan tidak menerbitkan `posted`); payload membawa id, metode, jumlah, dan id mutasi, tidak pernah deskripsi, payee, atau alasan teks bebas |
-
-`price`, `priceLevel2/3/4`, `finalPrice`, dan setiap field uang pada bentuk pemasaran/pesanan di bawah adalah JSON **string**, mis. `"19999.00"`, tidak pernah angka JSON — lihat [ADR-0003](adr/0003-money-is-numeric-14-2-and-crosses-the-wire-as-a-string.id.md) dan catatan `normalizeMoney` di [`docs/pengujian.md`](pengujian.id.md).
-
-`Order` (pembacaan pelacakan storefront, `GET .../orders/{code}?phone=`):
-
-```
-{
-  orderCode: string, status: "pending_payment" | "paid" | "processing" | "shipped" | "completed" | "cancelled" | "expired",
-  paymentStatus: "unpaid" | "dp_paid" | "paid" | "refunded",
-  customer: { name, phone }, address: {...} | null,
-  items: [{ productId, variantId, name, variantName, sku, quantity, unitPrice, lineTotal }],
-  subtotal, discount, shipping, insuranceFee, tax, total: string,
-  timeline: [{ fromStatus, toStatus, actor, note, createdAt }],
-  expiresAt: string | null, paidAt/shippedAt/completedAt/cancelledAt: string | null
-}
-```
-
 ## Otorisasi: 39 izin owner (ditambah kunci increment-5, sejak #285 `commerce.payments.{read,create,revoke}` dan `commerce.pos_due.create`, sejak #288 tujuh kunci nilai tersimpan: `commerce.stored_value_programs.{read,update}`, `commerce.stored_value.{read,create,update}`, `commerce.stored_value_adjustments.create`, `commerce.stored_value_reconcile.approve`, dan sejak #284 sepuluh kunci register: `commerce.registers.{read,create,update}`, `commerce.register_sessions.{read,create,update,export}`, `commerce.register_cash_ups.{create,approve}`, `commerce.register_corrections.approve`, dan sejak #294 dua belas kunci pengeluaran: `commerce.expense_categories.{read,create,update}`, `commerce.expenses.{read,create,update,export}`, `commerce.expense_postings.{create,approve}`, `commerce.expense_reversals.approve`, `commerce.expense_receipts.{read,create}`)
 
 Modul `commerce` mendeklarasikan 39 kunci izin secara total (10 + 22 + 7 di bawah), dikelompokkan berdasarkan tiga area yang sama dengan tabelnya — jumlah yang terlalu besar untuk konvensi "angka yang dieja cocok dengan set yang dihitung" milik dokumen ini sendiri (pengecekan hitungan-tertaut milik `bun run audit:dokumen` hanya mengenali angka yang dieja satu sampai dua puluh), sehingga di sini dinyatakan sebagai angka numeral, bukan di dalam blok terjaga.
@@ -376,9 +375,9 @@ Sengaja **tanpa `create`/`delete` untuk `orders`/`customers`**: baris pesanan at
 
 API storefront (anonim) sama sekali **tidak punya kunci izin** — batas kepercayaannya adalah tenant resolver yang Origin-bound, bukan RBAC/ABAC.
 
-## Domain event: dua puluh satu
+## Domain event: dua puluh tujuh
 
-Kedua puluh satu event terdaftar di tiga tempat yang dijaga selaras `awcms` (`domain-event-runtime/domain/event-type-registry.ts`, `apps/cms/asyncapi/awcms-domain-events.asyncapi.yaml`, `events.publishes` milik `commerce/module.ts`):
+Kedua puluh tujuh event terdaftar di tiga tempat yang dijaga selaras `awcms` (`domain-event-runtime/domain/event-type-registry.ts`, `apps/cms/asyncapi/awcms-domain-events.asyncapi.yaml`, `events.publishes` milik `commerce/module.ts`):
 
 | Agregat               | Event                                                                                                                                                         |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -389,6 +388,10 @@ Kedua puluh satu event terdaftar di tiga tempat yang dijaga selaras `awcms` (`do
 | `commerce.review`     | `awcms.commerce.review.published`                                                                                                                             |
 | `commerce.stored_value_account` | `awcms.commerce.stored_value.entry_recorded` — satu event per entri ledger (issue, load, redeem, refund, adjust, expire, disable, enable) pada agregat akun (#288); id, jenis, jumlah bertanda, dan saldo hasilnya, tidak pernah kode, pelanggan, atau alasan teks bebas |
 | `commerce.register_session` | `awcms.commerce.register_session.{opened,movement_recorded,closed,corrected}` — aliran berurutan shift itu sendiri (#284); `closed` dipicu sekali, hanya ketika sesi benar-benar mencapai `closed`; payload membawa id/tipe/jumlah/selisih, tidak pernah referensi/catatan teks bebas mutasi atau alasan penutupan |
+| `commerce.expense` | `awcms.commerce.expense.{posted,reversed}` — (#294) masing-masing terbit sekali, ketika status benar-benar berubah (pengajuan tertunda atau penolakan tidak menerbitkan `posted`); payload membawa id, metode, jumlah, dan id mutasi, tidak pernah deskripsi, payee, atau alasan teks bebas |
+| `commerce.document_delivery` | `awcms.commerce.document.delivery_requested` — (#295) satu per permintaan pengiriman yang diserahkan ke outbox e-mail atau WhatsApp (atau ditolak saat penyerahan); id, nomor dokumen, kanal dan status penyerahan, tidak pernah penerima atau isi pesan |
+| `commerce.loyalty_account` | `awcms.commerce.loyalty.entry_recorded` — (#289) satu event per entri buku besar (earn, redeem, expire, adjustment, reversal); hanya id, jenis, dan poin |
+| `commerce.quotation` / `commerce.work_order` / `commerce.document` | `awcms.commerce.quotation.{accepted,converted}`, `awcms.commerce.work_order.status_changed`, `awcms.commerce.document.issued` — (#286) id, nomor, status, dan jumlah, tidak pernah nama pelanggan atau catatan teks bebas |
 
 `categories` masih tidak mempublikasikan domain event apa pun — pilihan yang sama diambil `tenant_admin` untuk `awcms_offices`; soft delete adalah fakta log-audit, bukan sesuatu yang perlu direaksi konsumen hilir.
 

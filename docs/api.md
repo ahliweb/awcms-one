@@ -318,6 +318,26 @@ A same-key/same-body repeat of `redeem`/`adjust` replays the stored `201`; same 
   stock: number, status: "draft" | "active" | "inactive" | "archived",
   label: string | null, labelColor: string | null,
   images: [{ id, publicUrl, sortOrder, altText }], variants: [{ id, name, value, sku, price, stock, ... }],
+  isFeatured: boolean, isRecommended: boolean, manualRating: string | null, manualSoldCount: number
+}
+```
+
+`price`, `priceLevel2/3/4`, `finalPrice`, and every money field on marketing/order shapes below are JSON **strings**, e.g. `"19999.00"`, never JSON numbers — see [ADR-0003](adr/0003-money-is-numeric-14-2-and-crosses-the-wire-as-a-string.md) and the `normalizeMoney` note in [`docs/pengujian.md`](pengujian.md).
+
+`Order` (storefront tracking read, `GET .../orders/{code}?phone=`):
+
+```
+{
+  orderCode: string, status: "pending_payment" | "paid" | "processing" | "shipped" | "completed" | "cancelled" | "expired",
+  paymentStatus: "unpaid" | "dp_paid" | "paid" | "refunded",
+  customer: { name, phone }, address: {...} | null,
+  items: [{ productId, variantId, name, variantName, sku, quantity, unitPrice, lineTotal }],
+  subtotal, discount, shipping, insuranceFee, tax, total: string,
+  timeline: [{ fromStatus, toStatus, actor, note, createdAt }],
+  expiresAt: string | null, paidAt/shippedAt/completedAt/cancelledAt: string | null
+}
+```
+
 ## Owner API: held sales, quotations, work orders, documents (issue #286, epic #281, [ADR-0029](adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md))
 
 Every route below is behind the tenant's `documents` feature flag (default OFF — `409 FEATURE_DISABLED`), requires a bearer/cookie session, and — for every mutation — an **`Idempotency-Key`** header (`400 IDEMPOTENCY_REQUIRED`; same key + same body replays the stored answer, same key + different body is `409 IDEMPOTENCY_CONFLICT`). An unknown id, a malformed id and another tenant's id are the same neutral `404`. Permission keys are resource-split and none is implied by `commerce.pos.create`; the contract is `openapi/modules/commerce.openapi.yaml`.
@@ -339,27 +359,6 @@ Every route below is behind the tenant's `documents` feature flag (default OFF �
 
 Events: `awcms.commerce.quotation.accepted`, `awcms.commerce.quotation.converted` (the conversion's provenance), `awcms.commerce.work_order.status_changed`, `awcms.commerce.document.issued`. Thirteen permission keys: `commerce.held_sales.{read,create,update,approve}`, `commerce.quotations.{read,create,update}`, `commerce.quotation_conversions.create`, `commerce.work_orders.{read,create,update}`, `commerce.documents.{read,create}`.
 
-  isFeatured: boolean, isRecommended: boolean, manualRating: string | null, manualSoldCount: number
-}
-```
-| `commerce.expense` | `awcms.commerce.expense.{posted,reversed}` — (#294) each fires once, when the status actually changes (a pending submission or a rejection does not fire `posted`); payloads carry ids, tender, amount and the movement id, never the free-text description, payee or reason |
-
-`price`, `priceLevel2/3/4`, `finalPrice`, and every money field on marketing/order shapes below are JSON **strings**, e.g. `"19999.00"`, never JSON numbers — see [ADR-0003](adr/0003-money-is-numeric-14-2-and-crosses-the-wire-as-a-string.md) and the `normalizeMoney` note in [`docs/pengujian.md`](pengujian.md).
-
-`Order` (storefront tracking read, `GET .../orders/{code}?phone=`):
-
-```
-{
-  orderCode: string, status: "pending_payment" | "paid" | "processing" | "shipped" | "completed" | "cancelled" | "expired",
-  paymentStatus: "unpaid" | "dp_paid" | "paid" | "refunded",
-  customer: { name, phone }, address: {...} | null,
-  items: [{ productId, variantId, name, variantName, sku, quantity, unitPrice, lineTotal }],
-  subtotal, discount, shipping, insuranceFee, tax, total: string,
-  timeline: [{ fromStatus, toStatus, actor, note, createdAt }],
-  expiresAt: string | null, paidAt/shippedAt/completedAt/cancelledAt: string | null
-}
-```
-
 ## Authorization: 39 owner permissions (plus the increment-5 keys, since #285 `commerce.payments.{read,create,revoke}` and `commerce.pos_due.create`, since #288 seven stored-value keys: `commerce.stored_value_programs.{read,update}`, `commerce.stored_value.{read,create,update}`, `commerce.stored_value_adjustments.create`, `commerce.stored_value_reconcile.approve`, and since #284 ten register keys: `commerce.registers.{read,create,update}`, `commerce.register_sessions.{read,create,update,export}`, `commerce.register_cash_ups.{create,approve}`, `commerce.register_corrections.approve`, and since #294 twelve expense keys: `commerce.expense_categories.{read,create,update}`, `commerce.expenses.{read,create,update,export}`, `commerce.expense_postings.{create,approve}`, `commerce.expense_reversals.approve`, `commerce.expense_receipts.{read,create}`)
 
 The `commerce` module declares 39 permission keys in total (10 + 22 + 7 below), grouped by the same three areas as its tables — a count too large for this document's own "spelled number matches a counted set" convention (`bun run audit:dokumen`'s linked-count check only recognises spelled numbers one through twenty), so it is stated here as a numeral instead of inside a guarded block.
@@ -374,9 +373,9 @@ Deliberately **no `create`/`delete` for `orders`/`customers`**: an order or cust
 
 The storefront (anonymous) API has **no permission keys at all** — its trust boundary is the Origin-bound tenant resolver, not RBAC/ABAC.
 
-## Domain events: twenty-one
+## Domain events: twenty-seven
 
-All twenty-one are registered in the three places `awcms` keeps in sync (`domain-event-runtime/domain/event-type-registry.ts`, `apps/cms/asyncapi/awcms-domain-events.asyncapi.yaml`, `commerce/module.ts`'s `events.publishes`):
+All twenty-seven are registered in the three places `awcms` keeps in sync (`domain-event-runtime/domain/event-type-registry.ts`, `apps/cms/asyncapi/awcms-domain-events.asyncapi.yaml`, `commerce/module.ts`'s `events.publishes`):
 
 | Aggregate             | Events                                                                                                                                |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
@@ -387,6 +386,10 @@ All twenty-one are registered in the three places `awcms` keeps in sync (`domain
 | `commerce.review`     | `awcms.commerce.review.published`                                                                                                     |
 | `commerce.stored_value_account` | `awcms.commerce.stored_value.entry_recorded` — one event per ledger entry (issue, load, redeem, refund, adjust, expire, disable, enable) on the account aggregate (#288); ids, kinds, the signed amount and the resulting balance, never the code, the customer or the free-text reason |
 | `commerce.register_session` | `awcms.commerce.register_session.{opened,movement_recorded,closed,corrected}` — the shift's own ordered stream (#284); `closed` fires once, only when the session actually reaches `closed`; payloads carry ids/types/amounts/variance, never a movement's free-text reference/note or a close's reason |
+| `commerce.expense` | `awcms.commerce.expense.{posted,reversed}` — (#294) each fires once, when the status actually changes (a pending submission or a rejection does not fire `posted`); payloads carry ids, tender, amount and the movement id, never the free-text description, payee or reason |
+| `commerce.document_delivery` | `awcms.commerce.document.delivery_requested` — (#295) one per delivery request handed to the e-mail or WhatsApp outbox (or refused at the hand-off); ids, the document number, channel and hand-off status, never a recipient or message content |
+| `commerce.loyalty_account` | `awcms.commerce.loyalty.entry_recorded` — (#289) one event per ledger entry (earn, redeem, expire, adjustment, reversal); ids, kinds and points only |
+| `commerce.quotation` / `commerce.work_order` / `commerce.document` | `awcms.commerce.quotation.{accepted,converted}`, `awcms.commerce.work_order.status_changed`, `awcms.commerce.document.issued` — (#286) ids, numbers, statuses and amounts, never a customer name or free-text note |
 
 `categories` still publishes no domain events — the same choice `tenant_admin` makes for `awcms_offices`; a soft delete is an audit-log fact, not something a downstream consumer needs to react to.
 
