@@ -20,6 +20,7 @@ import {
   OverpaymentError,
   planTenders,
   releaseThresholdCents,
+  orderPaymentMethodToTender,
   tenderToOrderPaymentMethod,
   toSettlementView,
   validatePosTenders,
@@ -462,8 +463,8 @@ describe("validateRecordPaymentInput", () => {
     });
   });
 
-  test("a gateway tender cannot be typed by staff, and neither can an unknown one", () => {
-    for (const tenderType of ["gateway", "store_credit", "", 5, undefined]) {
+  test("a gateway tender cannot be typed by staff, and neither can an unknown one (store_credit / gift_card joined the recordable tenders with Issue #288 and need a code)", () => {
+    for (const tenderType of ["gateway", "voucher", "", 5, undefined]) {
       const result = validateRecordPaymentInput(
         { tenderType, amount: "1.00" },
         KEY
@@ -613,5 +614,17 @@ describe("small mappers", () => {
     expect(confirmationMethodToTender("manual_bank")).toBe(
       "manual_bank_transfer"
     );
+  });
+});
+
+describe("orderPaymentMethodToTender (manual mark-paid, ADR-0025 review fix)", () => {
+  test("maps each order payment method to the ledger tender that fits it", () => {
+    expect(orderPaymentMethodToTender("cash")).toBe("cash");
+    expect(orderPaymentMethodToTender("manual_qris")).toBe("manual_qris");
+    expect(orderPaymentMethodToTender("gateway")).toBe("gateway");
+    expect(orderPaymentMethodToTender("manual_bank")).toBe(
+      "manual_bank_transfer"
+    );
+    expect(orderPaymentMethodToTender("dp")).toBe("manual_bank_transfer");
   });
 });

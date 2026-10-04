@@ -155,6 +155,19 @@ export const POST: APIRoute = async ({ request, params, clientAddress }) => {
     );
   }
 
+  if (result.kind === "partially_settled") {
+    // Issue #285 (ADR-0025): part of the order is already paid; a hosted
+    // checkout would charge the full total again, so none is offered.
+    return fail(
+      409,
+      "ORDER_PARTIALLY_SETTLED",
+      "Part of this order has already been paid; the balance cannot be paid through the online gateway.",
+      {},
+      { outstanding: result.outstanding },
+      corsHeaders
+    );
+  }
+
   if (result.kind === "gateway_unavailable") {
     return fail(
       503,

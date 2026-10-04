@@ -9429,6 +9429,82 @@ Proves the parts of the chain nothing else can see — that the VAPID key pair m
 
 Catalog slice of the re-platformed storefront (commerce module, Issue #4, epic #1) — tenant-scoped product categories (hierarchical, self-referencing parent) and products (physical/digital/service/subscription), ported from the legacy MySQL commerce_bj_mart schema's core catalog columns. price is numeric(14,2) and crosses the wire as a string, never a JSON number, so money arithmetic never drifts through binary floating point. A product's lifecycle status (draft/active/inactive/archived) travels through the same PATCH as every other field and is checked against a legal-transition table before any write. Categories have no status and no re-parenting via update — a hierarchy position is set once, at creation. This slice ships no restore endpoint: a soft-deleted row is retained (for the FK integrity of anything still referencing it) but not exposed for recovery here.
 
+### `GET /api/v1/commerce/attributes` — Issue #291. Every live attribute definition of the tenant (sort_order, key). Not paginated: a tenant is capped at 100 definitions. Gated on attributes.read.
+
+- **operationId**: `listCommerceAttributeDefinitions`
+- **Security**: bearerAuth + tenantHeader
+
+**Responses**
+
+| Status | Description                         | Schema                                 |
+| ------ | ----------------------------------- | -------------------------------------- |
+| 200    | The tenant's attribute definitions. | object                                 |
+| 401    | Missing or invalid session.         | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.         | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/attributes` — Issue #291. Create an attribute definition. `key` (a lowercase slug) and `valueType` are immutable. Gated on attributes.manage.
+
+- **operationId**: `createCommerceAttributeDefinition`
+- **Security**: bearerAuth + tenantHeader
+
+**Request body** (required): [`CommerceAttributeDefinitionInput`](#schema-commerceattributedefinitioninput)
+
+**Responses**
+
+| Status | Description                                                                                                                        | Schema                                 |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Definition created.                                                                                                                | object                                 |
+| 400    | Validation error.                                                                                                                  | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 409    | ATTRIBUTE_KEY_ALREADY_EXISTS (the key is taken by a live definition) or ATTRIBUTE_DEFINITION_LIMIT_REACHED (100 live definitions). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/attributes/{id}` — Issue #291. Fetch one attribute definition. Gated on attributes.read.
+
+- **operationId**: `getCommerceAttributeDefinition`
+- **Security**: bearerAuth + tenantHeader
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The definition.             | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/attributes/{id}` — Issue #291. Update label/labels/constraints/flags/appliesTo/sortOrder. A body naming `key` or `valueType` is a 400. Removing an enum option stored values still use (ATTRIBUTE_OPTION_IN_USE) or narrowing appliesTo under stored values (ATTRIBUTE_APPLIES_TO_IN_USE) is a 409. Narrowing other constraints does not rewrite stored values. Gated on attributes.manage.
+
+- **operationId**: `updateCommerceAttributeDefinition`
+- **Security**: bearerAuth + tenantHeader
+
+**Request body** (required): [`CommerceAttributeDefinitionInput`](#schema-commerceattributedefinitioninput)
+
+**Responses**
+
+| Status | Description                                             | Schema                                 |
+| ------ | ------------------------------------------------------- | -------------------------------------- |
+| 200    | The updated definition.                                 | object                                 |
+| 400    | Validation error.                                       | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                             | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                             | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                     | [`ApiError`](#standard-error-envelope) |
+| 409    | ATTRIBUTE_OPTION_IN_USE or ATTRIBUTE_APPLIES_TO_IN_USE. | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/commerce/attributes/{id}` — Issue #291. Soft delete (audited). The key becomes free to reuse; stored values stay in the database but are no longer read. Gated on attributes.manage.
+
+- **operationId**: `deleteCommerceAttributeDefinition`
+- **Security**: bearerAuth + tenantHeader
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Deleted.                    | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/barcodes` — Issue #292 (ADR-0032). Pages the products (without variants) and variants of the tenant with their barcode. Gated on `commerce.barcodes.read`.
 
 - **operationId**: `listCommerceBarcodes`
@@ -9919,6 +9995,57 @@ Sets deleted_at; the slug is freed for reuse. Restore it with POST /api/v1/comme
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/document-deliveries` — Issue #295 (ADR-0034). The delivery history of one receipt, invoice, quotation or work order, newest first. Gated on `commerce.document_deliveries.read`.
+
+- **operationId**: `listCommerceDocumentDeliveries`
+- **Security**: bearerAuth + tenantHeader
+
+Each entry is the append-only REQUEST (who asked, which immutable source, which channel, the MASKED recipient, the template version, the content hash) joined with the live state of the existing e-mail or WhatsApp outbox row it produced (`outbox`: status, provider message id, retry count, last error) - read, never copied, so it cannot drift. For `targetType: quotation_version` the `targetId` is the quotation's id and the history spans every version. An unknown id and another tenant's id are the same empty list. Needs the `documents` and `documentDelivery` features.
+
+**Parameters**
+
+| Name         | In    | Required | Type                                                | Description |
+| ------------ | ----- | -------- | --------------------------------------------------- | ----------- |
+| `targetType` | query | yes      | enum(`document`, `quotation_version`, `work_order`) |             |
+| `targetId`   | query | yes      | string (uuid)                                       |             |
+
+**Responses**
+
+| Status | Description                                                                                                           | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The history, newest first (at most 50 entries).                                                                       | object                                 |
+| 400    | `VALIDATION_ERROR` (missing or malformed `targetType` / `targetId`).                                                  | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` - the tenant's `documents` or `documentDelivery` feature is off (`documentDelivery` defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/document-deliveries` — Issue #295 (ADR-0034). Requests delivery of a receipt, invoice, quotation version or work-order notice by e-mail or WhatsApp. Gated on `commerce.document_deliveries.create`; requires `Idempotency-Key`.
+
+- **operationId**: `requestCommerceDocumentDelivery`
+- **Security**: bearerAuth + tenantHeader
+
+Transactional, not marketing: the message is built from the STORED source only (a document's snapshot after its SHA-256 is re-verified, a quotation version row, a work order read at the request) and enqueued into the channel's EXISTING outbox in this transaction; a dispatcher calls the provider later. The default recipient is the customer the source names; any other recipient needs `commerce.document_delivery_overrides.create` (checked before the source is read). A replay of the same `Idempotency-Key` returns the stored result and enqueues nothing; a NEW key is an explicit re-send (`resendOfId` names the delivery it repeats). `includeLink` (documents only) adds an opaque private link valid for `linkTtlHours` (default 72, at most 168) - only its SHA-256 is stored and it is never returned. At most 5 requests per source per rolling hour (`429 DELIVERY_RATE_LIMITED`). Emits `awcms.commerce.document.delivery_requested`; audited as `document_delivery.request` / `document_delivery.denied`.
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description |
+| ----------------- | ------ | -------- | ------ | ----------- |
+| `Idempotency-Key` | header | yes      | string |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                                                                                                                                                                                                               | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The delivery request (or the stored replay). `outbox.status` is `queued` until a dispatcher moves it.                                                                                                                                                                                                                                                                                     | object                                 |
+| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                                                                                                                                                                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 403    | `ACCESS_DENIED` - the caller lacks `commerce.document_deliveries.create`, or named a recipient without `commerce.document_delivery_overrides.create`.                                                                                                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | `CHANNEL_UNAVAILABLE` (the channel is not enabled on this deployment), `RECIPIENT_UNAVAILABLE` (the source names no usable recipient for the channel), `RECIPIENT_SUPPRESSED` or `TEMPLATE_UNAVAILABLE` (`details` is the recorded, not-enqueued delivery), `SOURCE_NOT_DELIVERABLE` (a cancelled quotation), `DOCUMENT_INTEGRITY_FAILURE`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED`. | [`ApiError`](#standard-error-envelope) |
+| 429    | `DELIVERY_RATE_LIMITED` - too many requests for this source in the rolling window; `Retry-After` is in seconds.                                                                                                                                                                                                                                                                           | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/documents` — Issue #286 (ADR-0029). Lists receipt and invoice documents, newest first. Gated on `commerce.documents.read`.
 
 - **operationId**: `listCommerceDocuments`
@@ -10064,6 +10191,387 @@ A pure function of the STORED snapshot: reprinting never mutates the document, a
 | 403    | Access denied by RBAC/ABAC.                | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.                        | [`ApiError`](#standard-error-envelope) |
 | 409    | This entitlement has already been revoked. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/expense-categories` — Issue #294 (ADR-0031). The tenant's expense categories, active first then by code (limit 200). Gated on `commerce.expense_categories.read` and the tenant's `expenses` feature (default OFF).
+
+- **operationId**: `listCommerceExpenseCategories`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name              | In    | Required | Type   | Description                                                                   |
+| ----------------- | ----- | -------- | ------ | ----------------------------------------------------------------------------- |
+| `includeInactive` | query | no       | string | `false` hides deactivated categories; anything else (the default) lists them. |
+
+**Responses**
+
+| Status | Description                                                           | Schema                                 |
+| ------ | --------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The categories.                                                       | object                                 |
+| 401    | Missing or invalid session.                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                           | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/expense-categories` — Issue #294 (ADR-0031). Defines an expense category. Gated on `commerce.expense_categories.create`; `code` is unique per tenant, case-insensitively.
+
+- **operationId**: `createCommerceExpenseCategory`
+- **Security**: bearerAuth + tenantHeader
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                            | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 201    | The new category.                                                                                      | object                                 |
+| 400    | `VALIDATION_ERROR`.                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                            | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                            | [`ApiError`](#standard-error-envelope) |
+| 409    | `EXPENSE_CATEGORY_CODE_TAKEN` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/expense-categories/{id}` — Issue #294 (ADR-0031). One expense category. Gated on `commerce.expense_categories.read`. An unknown id and another tenant's id are the same 404.
+
+- **operationId**: `getCommerceExpenseCategory`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                           | Schema                                 |
+| ------ | --------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The category.                                                         | object                                 |
+| 401    | Missing or invalid session.                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/expense-categories/{id}` — Issue #294 (ADR-0031). Renames or (de)activates a category; the code never changes. Gated on `commerce.expense_categories.update`. A deactivated category accepts no NEW expense; history stays readable.
+
+- **operationId**: `updateCommerceExpenseCategory`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                           | Schema                                 |
+| ------ | --------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The updated category.                                                 | object                                 |
+| 400    | `VALIDATION_ERROR`.                                                   | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/expenses` — Issue #294 (ADR-0031). Expenses, keyset-paginated, newest first. Gated on `commerce.expenses.read` and the tenant's `expenses` feature (default OFF).
+
+- **operationId**: `listCommerceExpenses`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name                | In    | Required | Type                                                                 | Description                                         |
+| ------------------- | ----- | -------- | -------------------------------------------------------------------- | --------------------------------------------------- |
+| `cursor`            | query | no       | string                                                               |                                                     |
+| `status`            | query | no       | enum(`draft`, `pending_approval`, `posted`, `reversed`, `cancelled`) |                                                     |
+| `categoryId`        | query | no       | string (uuid)                                                        |                                                     |
+| `registerSessionId` | query | no       | string (uuid)                                                        |                                                     |
+| `from`              | query | no       | string (date)                                                        | Inclusive lower bound on `occurredOn` (YYYY-MM-DD). |
+| `to`                | query | no       | string (date)                                                        | Inclusive upper bound on `occurredOn` (YYYY-MM-DD). |
+
+**Responses**
+
+| Status | Description                                                                          | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | One page of expenses (limit 50) with an opaque `nextCursor` (null on the last page). | object                                 |
+| 400    | `VALIDATION_ERROR` (a malformed cursor, uuid, date or status).                       | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                          | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF).                | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/expenses` — Issue #294 (ADR-0031). Records a DRAFT expense. Gated on `commerce.expenses.create`; requires `Idempotency-Key`.
+
+- **operationId**: `createCommerceExpense`
+- **Security**: bearerAuth + tenantHeader
+
+A draft touches no register and no cash-up; posting is `/expenses/{id}/post`. A draft that names a `registerSessionId` must be paid in cash, name an OPEN session of this tenant, and additionally needs the `register` feature. Replaying the same key and body returns the same expense (201); a different body under that key is a conflict.
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description |
+| ----------------- | ------ | -------- | ------ | ----------- |
+| `Idempotency-Key` | header | yes      | string |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                               | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The draft (or the stored replay).                                                                                                                                                                         | object                                 |
+| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | `EXPENSE_CATEGORY_INACTIVE`, `REGISTER_SESSION_NOT_OPEN`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF), or the `register` feature for a drawer expense. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/expenses/{id}` — Issue #294 (ADR-0031). One expense. Gated on `commerce.expenses.read`. An unknown id and another tenant's id are the same 404. A receipt is only ever a `hasReceipt` boolean here — read it through `/receipt-url`.
+
+- **operationId**: `getCommerceExpense`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                           | Schema                                 |
+| ------ | --------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The expense.                                                          | object                                 |
+| 401    | Missing or invalid session.                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/expenses/{id}` — Issue #294 (ADR-0031). Edits a DRAFT expense (any subset of the draft fields; `registerSessionId: null` detaches the drawer). Gated on `commerce.expenses.update`.
+
+- **operationId**: `updateCommerceExpense`
+- **Security**: bearerAuth + tenantHeader
+
+Only the draft's creator, or a supervisor (a caller who also holds `commerce.expense_postings.approve`), may edit it (`403 NOT_EXPENSE_OWNER`). A pending, posted, reversed or cancelled expense is frozen (`409 EXPENSE_NOT_DRAFT`), by the schema as well.
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                               | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The updated draft.                                                                                                                                                        | object                                 |
+| 400    | `VALIDATION_ERROR`.                                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | `EXPENSE_NOT_DRAFT` (`details.status`), `EXPENSE_CATEGORY_INACTIVE`, `REGISTER_SESSION_NOT_OPEN` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/expenses/{id}/cancel` — Issue #294 (ADR-0031). Discards a DRAFT expense (terminal `cancelled`). Gated on `commerce.expenses.update`; requires `Idempotency-Key`. Only the creator or a supervisor; a posted expense is reversed, never deleted.
+
+- **operationId**: `cancelCommerceExpense`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `id`              | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Responses**
+
+| Status | Description                                                                                                                             | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The cancelled expense (or the stored replay).                                                                                           | object                                 |
+| 400    | `IDEMPOTENCY_REQUIRED`.                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 409    | `EXPENSE_NOT_DRAFT` (`details.status`), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/expenses/{id}/decision` — Issue #294 (ADR-0031). Approves or rejects a `pending_approval` expense. Gated on `commerce.expense_postings.approve` (a high-risk verb); requires `Idempotency-Key`.
+
+- **operationId**: `decideCommerceExpense`
+- **Security**: bearerAuth + tenantHeader
+
+Segregation of duties: an expense cannot be approved by the person who created it or by the person who submitted it (`403 SEGREGATION_OF_DUTIES`, `details.reason`). Approving posts it — a drawer-paid expense appends its register movement with the APPROVER as the movement's actor, and `409 REGISTER_SESSION_NOT_OPEN` leaves it pending when the session has since closed. Rejecting needs a `note` and returns the expense to `draft`.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `id`              | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                            | Schema                                 |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The expense and the outcome (or the stored replay).                                                                                                                    | object                                 |
+| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                                          | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 409    | `EXPENSE_NOT_PENDING` (`details.status`), `REGISTER_SESSION_NOT_OPEN`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/expenses/{id}/post` — Issue #294 (ADR-0031). Submits a draft for posting. Gated on `commerce.expense_postings.create`; requires `Idempotency-Key`.
+
+- **operationId**: `postCommerceExpense`
+- **Security**: bearerAuth + tenantHeader
+
+Within the tenant's `expenses.approvalThreshold` the expense is posted outright (`outcome: posted`, decision `auto`). Above it, a caller who ALSO holds `commerce.expense_postings.approve` and did not create the expense posts it in one step (decision `approved`); anyone else leaves it `pending_approval` for a second person. Posting a drawer-paid expense appends a register `expense` cash-out movement to its session (409 `REGISTER_SESSION_NOT_OPEN` when it is not open) — it never edits a cash-up total — and emits `awcms.commerce.expense.posted` once. Idempotent: the same key replays the stored answer; a new key on an already-posted expense is `409 EXPENSE_NOT_POSTABLE`.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `id`              | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                          | Schema                                 |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The expense and the outcome (or the stored replay).                                                                                                                                                  | object                                 |
+| 400    | `IDEMPOTENCY_REQUIRED`.                                                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                          | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                  | [`ApiError`](#standard-error-envelope) |
+| 409    | `EXPENSE_NOT_POSTABLE` (`details.status`), `EXPENSE_CATEGORY_INACTIVE`, `REGISTER_SESSION_NOT_OPEN`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/expenses/{id}/receipt` — Issue #294 (ADR-0031). Attaches a PRIVATE receipt (a media-library object) to an expense. Gated on `commerce.expense_receipts.create`.
+
+- **operationId**: `attachCommerceExpenseReceipt`
+- **Security**: bearerAuth + tenantHeader
+
+The object must exist in this tenant, be `visibility: private`, verified, and uploaded by the CALLER (a confused-deputy guard — otherwise any private object could be attached and read back); it must not already be a receipt or a product's protected download. In every attachable state only the expense's creator or a supervisor may attach (`403 NOT_EXPENSE_OWNER`); a draft's receipt may be replaced, a posted or reversed expense accepts one once and never replaces it. The object is never returned — read it through `/receipt-url`.
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                           | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The expense (`hasReceipt: true`).                                                                                                                                                                     | object                                 |
+| 400    | `VALIDATION_ERROR`.                                                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | `EXPENSE_RECEIPT_NOT_ELIGIBLE`, `EXPENSE_RECEIPT_ALREADY_USED`, `EXPENSE_RECEIPT_ALREADY_ATTACHED`, `EXPENSE_NOT_ATTACHABLE` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/expenses/{id}/receipt-url` — Issue #294 (ADR-0031). A short-lived presigned GET URL for the expense's PRIVATE receipt. Gated on `commerce.expense_receipts.read` — not implied by `commerce.expenses.read`.
+
+- **operationId**: `getCommerceExpenseReceiptUrl`
+- **Security**: bearerAuth + tenantHeader
+
+Resolves the object server-side from THIS expense (never a caller-supplied media id), re-verifies on every call that it is still a verified private object, audits the issuance decision (`media.download`), and answers `Cache-Control: no-store`. Fails closed: no receipt is a 404, a public-by-mistake or unavailable object is `409 EXPENSE_RECEIPT_UNAVAILABLE`, an unconfigured storage is `502 PROVIDER_ERROR`.
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                                                            | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | The URL and its expiry.                                                                                | object                                 |
+| 401    | Missing or invalid session.                                                                            | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                            | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 409    | `EXPENSE_RECEIPT_UNAVAILABLE` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+| 502    | `PROVIDER_ERROR` — media storage is not configured.                                                    | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/expenses/{id}/reverse` — Issue #294 (ADR-0031). Reverses a POSTED expense with a compensating entry. Gated on `commerce.expense_reversals.approve` (a high-risk verb); requires `Idempotency-Key` and a `reason`.
+
+- **operationId**: `reverseCommerceExpense`
+- **Security**: bearerAuth + tenantHeader
+
+A drawer-paid expense appends a `correction` cash-IN movement for the same amount — to its own session when still open, else to the open session of the SAME register — and never edits the original movement or a closed cash-up. With no open session on the register it is refused (`409 REGISTER_SESSION_REQUIRED`). Emits `awcms.commerce.expense.reversed` once. A reversed expense is terminal.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `id`              | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                               | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The expense and the outcome (or the stored replay).                                                                                                                       | object                                 |
+| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | `EXPENSE_NOT_REVERSIBLE` (`details.status`), `REGISTER_SESSION_REQUIRED`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/expenses/export.csv` — Issue #294 (ADR-0031). The expenses of a date range as CSV. Gated on `commerce.expenses.export` — the high-risk `export` verb; reading expenses grants none.
+
+- **operationId**: `exportCommerceExpensesCsv`
+- **Security**: bearerAuth + tenantHeader
+
+Every cell is spreadsheet-formula-neutralised (a leading `=`, `+`, `-`, `@`, tab or carriage return is prefixed with `'`; a strictly numeric amount keeps its sign). No receipt URL, media key or customer datum appears. Bounded: at most 366 days and 10,000 rows; `X-Export-Truncated: true` says a longer range was cut, never silently. `Cache-Control: no-store`.
+
+**Parameters**
+
+| Name   | In    | Required | Type          | Description |
+| ------ | ----- | -------- | ------------- | ----------- |
+| `from` | query | yes      | string (date) |             |
+| `to`   | query | yes      | string (date) |             |
+
+**Responses**
+
+| Status | Description                                                             | Schema                                 |
+| ------ | ----------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The CSV.                                                                | string                                 |
+| 400    | `VALIDATION_ERROR` (a missing, malformed, inverted or over-long range). | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                             | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                             | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF).   | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/expenses/summary` — Issue #294 (ADR-0031). The expense summary of a date range: posted and reversed totals by category and tender, plus draft / pending counts. Gated on `commerce.expenses.read`.
+
+- **operationId**: `getCommerceExpenseSummary`
+- **Security**: bearerAuth + tenantHeader
+
+Only POSTED expenses count as spent; REVERSED ones are reported beside them (never netted away); drafts and pending approvals are counted but belong to no total. All sums are exact `numeric(14,2)` strings (integer cents). `from` and `to` are required and the range spans at most 366 days.
+
+**Parameters**
+
+| Name   | In    | Required | Type          | Description |
+| ------ | ----- | -------- | ------------- | ----------- |
+| `from` | query | yes      | string (date) |             |
+| `to`   | query | yes      | string (date) |             |
+
+**Responses**
+
+| Status | Description                                                             | Schema                                 |
+| ------ | ----------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The summary.                                                            | object                                 |
+| 400    | `VALIDATION_ERROR` (a missing, malformed, inverted or over-long range). | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                             | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                             | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF).   | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/flash-sales` — List flash sales (Issue 26). Keyset-paginated, newest first. Gated on flash_sales.read.
 
@@ -10371,6 +10879,290 @@ Single-use: the cart's lines (and optional customer and notes) are returned once
 | 404    | An unknown id, another tenant's id AND another cashier's cart (unless the caller holds `commerce.held_sales.approve`) - one neutral answer.                                                       | [`ApiError`](#standard-error-envelope) |
 | 409    | `HELD_SALE_EXPIRED` (the expiry is persisted), `HELD_SALE_NOT_HELD` (`details.status`), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/loyalty/accounts` — Issue #289 (ADR-0026). Keyset list of loyalty accounts (newest first) with the customer's name and masked phone; `customerId` narrows to one customer and `phone` is the counter lookup, which also returns a `customer` block (balance 0 for a customer with no account yet). Gated on `commerce.loyalty.read`; `409 FEATURE_DISABLED` when the tenant's `loyalty` feature is off.
+
+- **operationId**: `listCommerceLoyaltyAccounts`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name         | In    | Required | Type          | Description                                                                                                                 |
+| ------------ | ----- | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `cursor`     | query | no       | string        |                                                                                                                             |
+| `limit`      | query | no       | integer       |                                                                                                                             |
+| `customerId` | query | no       | string (uuid) |                                                                                                                             |
+| `phone`      | query | no       | string        | An Indonesian phone number in any common notation; normalised server-side. The walk-in sentinel customer is never returned. |
+
+**Responses**
+
+| Status | Description                                                            | Schema                                 |
+| ------ | ---------------------------------------------------------------------- | -------------------------------------- |
+| 200    | One page of loyalty accounts.                                          | object                                 |
+| 400    | Validation error.                                                      | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                            | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                            | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED — the tenant has not turned the `loyalty` feature on. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/loyalty/accounts/{customerId}` — Issue #289. One customer's loyalty position — name, masked phone and the projected balance (0 for a customer who has never earned). An unknown, deleted or other-tenant customer id is the same 404. Gated on `commerce.loyalty.read`.
+
+- **operationId**: `getCommerceLoyaltyAccount`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name         | In   | Required | Type          | Description |
+| ------------ | ---- | -------- | ------------- | ----------- |
+| `customerId` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                      | Schema                                 |
+| ------ | -------------------------------- | -------------------------------------- |
+| 200    | The customer's loyalty position. | object                                 |
+| 400    | Validation error.                | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.      | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.      | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.              | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED.                | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/loyalty/accounts/{customerId}/adjust` — Issue #289. A manual signed points adjustment — its own permission (`commerce.loyalty_adjustments.create`), a MANDATORY `reason`, an audit event, and an `Idempotency-Key`. A negative adjustment cannot take the balance below zero (`409 WOULD_GO_NEGATIVE`); only a system reversal may.
+
+- **operationId**: `adjustCommerceLoyaltyPoints`
+- **Security**: bearerAuth + tenantHeader
+
+Same key + same body replays the stored 201; same key + different body is `409 IDEMPOTENCY_CONFLICT`. Adjustments never expire.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `customerId`      | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                   | Schema                                 |
+| ------ | ------------------------------------------------------------- | -------------------------------------- |
+| 201    | Adjustment recorded (or replayed).                            | object                                 |
+| 400    | Validation error.                                             | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                   | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                           | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED, WOULD_GO_NEGATIVE, or IDEMPOTENCY_CONFLICT. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/loyalty/accounts/{customerId}/ledger` — Issue #289. The customer's append-only points history, newest first, keyset-paginated. Staff view: carries the actor and the reason that the customer-facing history omits. Gated on `commerce.loyalty.read`.
+
+- **operationId**: `listCommerceLoyaltyLedger`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name         | In    | Required | Type          | Description |
+| ------------ | ----- | -------- | ------------- | ----------- |
+| `customerId` | path  | yes      | string (uuid) |             |
+| `cursor`     | query | no       | string        |             |
+| `limit`      | query | no       | integer       |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | One page of ledger entries. | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED.           | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/loyalty/accounts/{customerId}/redeem` — Issue #289. Redeem a customer's points at the counter or on their behalf. Gated on `commerce.loyalty_redemptions.create`; `Idempotency-Key` required. Runs under the account row lock, so concurrent redemptions cannot overdraw (`409 INSUFFICIENT_POINTS`).
+
+- **operationId**: `redeemCommerceLoyaltyPoints`
+- **Security**: bearerAuth + tenantHeader
+
+Records the points DEBIT only. Converting points into a discount at checkout needs the tender model of #285 and is deferred (ADR-0026). Points past their `expiresAt` are expired first, under the same lock, so lapsed points can never be spent. Same key + same body replays the stored 201; same key + different body is `409 IDEMPOTENCY_CONFLICT`. A refused (insufficient) request is not recorded, so the same key can succeed after a top-up.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `customerId`      | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                               | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Points redeemed (or replayed).                                                                            | object                                 |
+| 400    | Validation error.                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                               | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                               | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED, INSUFFICIENT_POINTS (details carry `balance` and `requested`), or IDEMPOTENCY_CONFLICT. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/loyalty/programs` — Issue #289. Every loyalty program VERSION, newest first. Gated on `commerce.loyalty.read`.
+
+- **operationId**: `listCommerceLoyaltyPrograms`
+- **Security**: bearerAuth + tenantHeader
+
+**Responses**
+
+| Status | Description                    | Schema                                 |
+| ------ | ------------------------------ | -------------------------------------- |
+| 200    | The tenant's program versions. | object                                 |
+| 401    | Missing or invalid session.    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.    | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED.              | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/loyalty/programs` — Issue #289. Create a new DRAFT program version (version number = max + 1 per tenant). Gated on `commerce.loyalty.manage`.
+
+- **operationId**: `createCommerceLoyaltyProgram`
+- **Security**: bearerAuth + tenantHeader
+
+**Request body** (required): [`LoyaltyProgramInput`](#schema-loyaltyprograminput)
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 201    | Draft version created.      | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED.           | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/loyalty/programs/{id}` — Issue #289. One program version. Gated on `commerce.loyalty.read`.
+
+- **operationId**: `getCommerceLoyaltyProgram`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The program version.        | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED.           | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/loyalty/programs/{id}` — Issue #289. Edit a DRAFT program version. An active or retired version is immutable (a ledger row records the version it earned under) — `409 PROGRAM_NOT_EDITABLE`; a change of rules is a new version. Gated on `commerce.loyalty.manage`.
+
+- **operationId**: `updateCommerceLoyaltyProgram`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                               | Schema                                 |
+| ------ | ----------------------------------------- | -------------------------------------- |
+| 200    | The updated draft.                        | object                                 |
+| 400    | Validation error.                         | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.               | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.               | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                       | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED or PROGRAM_NOT_EDITABLE. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/loyalty/programs/{id}/activate` — Issue #289. Activate a draft version NOW: `effectiveFrom` = this instant, and the version open at that instant is closed (`effectiveTo` = this instant, `retired`) in the same transaction under a per-tenant lock. A high-risk `manage` action. A second call finds the version no longer a draft (`409 PROGRAM_NOT_DRAFT`).
+
+- **operationId**: `activateCommerceLoyaltyProgram`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                            | Schema                                 |
+| ------ | -------------------------------------- | -------------------------------------- |
+| 200    | Version activated.                     | object                                 |
+| 400    | Validation error.                      | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.            | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.            | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                    | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED or PROGRAM_NOT_DRAFT. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/loyalty/programs/{id}/retire` — Issue #289. End the open active version NOW. Orders paid afterwards earn nothing until another version is activated; points already earned are untouched. `409 PROGRAM_NOT_ACTIVE` for anything but the open active version.
+
+- **operationId**: `retireCommerceLoyaltyProgram`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                             | Schema                                 |
+| ------ | --------------------------------------- | -------------------------------------- |
+| 200    | Version retired.                        | object                                 |
+| 400    | Validation error.                       | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.             | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.             | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                     | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED or PROGRAM_NOT_ACTIVE. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/loyalty/reconcile` — Issue #289. Recompute every account's balance from the ledger and report drift (projection disagrees with the ledger) and ledger breaks (a row whose running `balanceAfter` is not the running sum). `repair: true` additionally rewrites each drifted account's PROJECTION — never the ledger — with one audit event per repair. Gated on `commerce.loyalty.manage` (a high-risk action) in both modes.
+
+- **operationId**: `reconcileCommerceLoyalty`
+- **Security**: bearerAuth + tenantHeader
+
+**Request body** (optional): object
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The reconcile report.       | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED.           | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/loyalty/summary` — Issue #289. Earned / redeemed / expired / reversed / net for a window plus the all-time outstanding points, every figure SUMMED FROM THE LEDGER by `kind` so no point is counted twice. Gated on `commerce.loyalty.read`.
+
+- **operationId**: `getCommerceLoyaltySummary`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name   | In    | Required | Type   | Description                                                                                            |
+| ------ | ----- | -------- | ------ | ------------------------------------------------------------------------------------------------------ |
+| `from` | query | no       | string | Inclusive lower bound. An ISO-8601 instant or a bare `YYYY-MM-DD` day (UTC).                           |
+| `to`   | query | no       | string | Exclusive upper bound for an instant; a bare `YYYY-MM-DD` day means through the end of that day (UTC). |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The loyalty summary.        | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED.           | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/orders` — Admin order list (Issue 29). Keyset-paginated, newest first; optional status/paymentStatus filters. Gated on orders.read.
 
 - **operationId**: `listCommerceOrders`
@@ -10499,14 +11291,14 @@ The order row is locked for the write, so two concurrent final payments cannot o
 
 **Responses**
 
-| Status | Description                                                                                                                                                                      | Schema                                 |
-| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 201    | Recorded (or replayed).                                                                                                                                                          | object                                 |
-| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                                                    | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                                                                                                                                      | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                                                                                                                                      | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.                                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
-| 409    | `IDEMPOTENCY_CONFLICT`, `OVERPAYMENT` (the amount exceeds what is still owed — `details.outstanding`/`details.attempted`) or `ORDER_NOT_PAYABLE` (a cancelled or expired order). | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                                                                                                                                                                                         | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Recorded (or replayed).                                                                                                                                                                                                                                                                                                                                                                                                                             | object                                 |
+| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                                                                                                                                                                                                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                                                                                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                                                                                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                                                                                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 409    | `IDEMPOTENCY_CONFLICT` (also a key reused against another order or with a different tender/amount), `OVERPAYMENT` (the amount exceeds what is still owed — `details.outstanding`/`details.attempted`), `ORDER_NOT_PAYABLE` (a cancelled or expired order) or `REGISTER_SESSION_CLOSING` (Issue #284: the POS sale's register session is counting/awaiting a supervisor, so the money would fall into no cash-up — retry once the close is decided). | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/orders/{id}/payments/{paymentId}/reversals` — Issue #285 (ADR-0025). Records a compensating reversal of (part of) a succeeded payment — the ledger is append-only, so a refund or a corrected entry is a NEW row, never an edit. Gated on `commerce.payments.revoke` (the platform's high-risk verb); requires `Idempotency-Key`.
 
@@ -10527,14 +11319,14 @@ The order row is locked for the write, so two concurrent final payments cannot o
 
 **Responses**
 
-| Status | Description                                                                                                                                                                   | Schema                                 |
-| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 201    | Recorded (or replayed). `data.payment` is the new reversal row.                                                                                                               | object                                 |
-| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.                                                                                                                                                           | [`ApiError`](#standard-error-envelope) |
-| 409    | `IDEMPOTENCY_CONFLICT`, `REVERSAL_EXCEEDS_PAYMENT` (`details.reversible`) or `PAYMENT_NOT_REVERSIBLE` (`details.reason`: `not_a_payment`, `not_succeeded`, `fully_reversed`). | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Recorded (or replayed). `data.payment` is the new reversal row.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | object                                 |
+| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 409    | `IDEMPOTENCY_CONFLICT` (also a key reused against another order, or with a different amount), `REVERSAL_EXCEEDS_PAYMENT` (`details.reversible`), `PAYMENT_NOT_REVERSIBLE` (`details.reason`: `not_a_payment`, `not_succeeded`, `fully_reversed`; Issue #288: `stored_value_refund_not_allowed` — the program does not allow a refund back onto the card, there is no cash alternative — or `stored_value_account_unavailable` — the card is disabled, expired or gone), `REGISTER_SESSION_NOT_OPEN` (`details.status`) or `NOT_SESSION_CASHIER` for a `registerSessionId` that is not an open session of the caller. An unknown or other-tenant `registerSessionId` is `404`. | [`ApiError`](#standard-error-envelope) |
 
 ### `PATCH /api/v1/commerce/orders/{id}/status` — Admin status transition, enforced through the legal-transition table (Issue 29). Gated on orders.update.
 
@@ -10551,14 +11343,14 @@ The order row is locked for the write, so two concurrent final payments cannot o
 
 **Responses**
 
-| Status | Description                                                                                                                                                                                                                                                                                                                                                                                                       | Schema                                 |
-| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 200    | Status updated.                                                                                                                                                                                                                                                                                                                                                                                                   | object                                 |
-| 400    | Validation error.                                                                                                                                                                                                                                                                                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.                                                                                                                                                                                                                                                                                                                                                                                               | [`ApiError`](#standard-error-envelope) |
-| 409    | `ILLEGAL_STATUS_TRANSITION` (the requested transition is not legal from the order's current status) or `PAYMENT_NOT_SETTLED` (Issue #285 — a manual `-> paid` while the payment-allocation ledger has not reached the order's release threshold; `details.outstanding` carries what is still owed. Record the payment with `POST /api/v1/commerce/orders/{id}/payments` and the order moves to `paid` by itself). | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Schema                                 |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Status updated.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 409    | `ILLEGAL_STATUS_TRANSITION` (the requested transition is not legal from the order's current status) or `PAYMENT_NOT_SETTLED` (Issue #285 — a manual `-> paid` for an order that HAS payment-allocation legs but whose ledger has not reached the order's release threshold; `details.outstanding` carries what is still owed. Record the payment with `POST /api/v1/commerce/orders/{id}/payments` and the order moves to `paid` by itself. An order with NO ledger leg at all is not refused: the call records one full-amount succeeded leg and releases the order). | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/orders/export.csv` — Admin CSV export of the most recent orders (Issue 29, bounded to ~2000 rows). Gated on orders.read.
 
@@ -10720,7 +11512,7 @@ Requires `Idempotency-Key`. `orders.channel` is set `pos`; `order_events` record
 
 ### Multi-tender (Issue #285, ADR-0025 — contract version 2)
 
-Send EITHER the legacy `payment` object above (unchanged — adapted to exactly one payment-ledger leg) OR an explicit `tenders[]` array, never both. Each tender is `{ tenderType: cash | manual_qris | manual_bank_transfer, amount, reference? }`. For a NON-cash tender `amount` is the amount applied to the sale; for the (at most one) `cash` tender it is the amount HANDED OVER — the server subtracts every non-cash tender from the amount due first, applies cash to what is left, and derives the change from the cash leg ONLY (`change = handed - applied`, never negative, never offsetting a shortfall on another tender). Non-cash tenders summing above the total are `409 OVERPAYMENT`; tenders that do not cover the total are `409 INSUFFICIENT_TENDER` unless `allowDue` is `true`.
+Send EITHER the legacy `payment` object above (unchanged — adapted to exactly one payment-ledger leg) OR an explicit `tenders[]` array, never both. Each tender is `{ tenderType: cash | manual_qris | manual_bank_transfer | gift_card | store_credit, amount, reference?, storedValueCode? }` (Issue #288: a stored-value tender carries the plaintext `storedValueCode`, is redeemed in the SAME transaction as the sale, and needs the tenant's `storedValue` feature). For a NON-cash tender `amount` is the amount applied to the sale; for the (at most one) `cash` tender it is the amount HANDED OVER — the server subtracts every non-cash tender from the amount due first, applies cash to what is left, and derives the change from the cash leg ONLY (`change = handed - applied`, never negative, never offsetting a shortfall on another tender). Non-cash tenders summing above the total are `409 OVERPAYMENT`; tenders that do not cover the total are `409 INSUFFICIENT_TENDER` unless `allowDue` is `true`.
 
 `allowDue: true` (requires `tenders[]`, a customer `phone`, and the SEPARATE permission `commerce.pos_due.create` in addition to `commerce.pos.create`) lets the sale finalize with a balance DUE: the order stays `pending_payment` (`paymentStatus` `unpaid`/`partially_paid`, no expiry) with `settlement.outstanding` explicit, and later payments (`POST /api/v1/commerce/orders/{id}/payments`) settle it. `tenders: []` with `allowDue: true` is a sale entirely on account.
 
@@ -10752,15 +11544,16 @@ The 201 carries `payments` (every ledger row — one per tender, for the receipt
 
 **Parameters**
 
-| Name          | In    | Required | Type                                              | Description                                                                                                                                                                                      |
-| ------------- | ----- | -------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `cursor`      | query | no       | string                                            | Opaque cursor from a previous response's nextCursor. Only meaningful with the default sort=newest; combined with any other sort it is rejected with 400. A malformed value is rejected with 400. |
-| `categoryId`  | query | no       | string (uuid)                                     |                                                                                                                                                                                                  |
-| `status`      | query | no       | enum(`draft`, `active`, `inactive`, `archived`)   |                                                                                                                                                                                                  |
-| `q`           | query | no       | string                                            | Case-insensitive substring match on name or sku (trigram-indexed).                                                                                                                               |
-| `sort`        | query | no       | enum(`newest`, `price_asc`, `price_desc`, `name`) | Defaults to newest. price_asc/price_desc/name return a single bounded page (no nextCursor) rather than a keyset walk — see domain/product-sort.ts.                                               |
-| `featured`    | query | no       | boolean                                           |                                                                                                                                                                                                  |
-| `recommended` | query | no       | boolean                                           |                                                                                                                                                                                                  |
+| Name          | In    | Required | Type                                              | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ------------- | ----- | -------- | ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `cursor`      | query | no       | string                                            | Opaque cursor from a previous response's nextCursor. Only meaningful with the default sort=newest; combined with any other sort it is rejected with 400. A malformed value is rejected with 400.                                                                                                                                                                                                                                                                                                                                                                       |
+| `categoryId`  | query | no       | string (uuid)                                     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `status`      | query | no       | enum(`draft`, `active`, `inactive`, `archived`)   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `q`           | query | no       | string                                            | Case-insensitive substring match on name or sku (trigram-indexed).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `sort`        | query | no       | enum(`newest`, `price_asc`, `price_desc`, `name`) | Defaults to newest. price_asc/price_desc/name return a single bounded page (no nextCursor) rather than a keyset walk — see domain/product-sort.ts.                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `featured`    | query | no       | boolean                                           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `recommended` | query | no       | boolean                                           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `attr`        | query | no       | array of string                                   | Issue #291 — repeatable typed attribute filter `attr=<key>:<operator>:<value>` (at most 5, AND-ed). `operator` is one of eq, in (comma-separated, at most 20), gte, lte (integer/decimal/date), contains (text). `key` must be a filterable, `visible_public` attribute; an unknown, non-filterable or non-public key is one and the same 400. The value is parsed with the attribute's typed grammar (a decimal uses a dot; `1,5` is a 400). A variant-level value matches its product. `q` additionally matches `searchable`, `visible_public` text/enum attributes. |
 
 **Responses**
 
@@ -10855,6 +11648,37 @@ Sets deleted_at; the sku and slug are freed for reuse. Restore it with POST /api
 | 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/products/{id}/attributes` — Issue #291. The product's FULL (admin) attribute set — product-level and per-variant values of every visible_admin definition — plus the applicable definitions. Gated on attributes.read, not products.read, so a storefront machine credential holding products.read cannot read back-office-only attributes.
+
+- **operationId**: `getCommerceProductAttributes`
+- **Security**: bearerAuth + tenantHeader
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Definitions and values.     | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `PUT /api/v1/commerce/products/{id}/attributes` — Issue #291. Set/clear the product's attribute values (`{attributes: {key: value|null}}`). Every value is parsed with the typed grammar (decimal: digits and a dot only, never a locale spelling; date: YYYY-MM-DD; enum: an exact option); one invalid entry rejects the whole request with nothing written. Gated on products.update.
+
+- **operationId**: `setCommerceProductAttributes`
+- **Security**: bearerAuth + tenantHeader
+
+**Request body** (required): [`CommerceAttributeAssignments`](#schema-commerceattributeassignments)
+
+**Responses**
+
+| Status | Description                          | Schema                                 |
+| ------ | ------------------------------------ | -------------------------------------- |
+| 200    | The keys whose stored value changed. | object                                 |
+| 400    | Validation error.                    | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.          | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                  | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/products/{id}/images` — Attach a media object to a product (Issue 23). Gated on products.update.
 
@@ -11067,6 +11891,23 @@ Upsert on `(tenant_id, product_id)` — at most one link per product (`sql/939`)
 | 403    | Access denied by RBAC/ABAC.   | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.           | [`ApiError`](#standard-error-envelope) |
 
+### `PUT /api/v1/commerce/products/{id}/variants/{variantId}/attributes` — Issue #291. Variant-level twin of PUT /products/{id}/attributes, restricted to definitions whose appliesTo covers variants; the variant must belong to the product. Gated on products.update.
+
+- **operationId**: `setCommerceVariantAttributes`
+- **Security**: bearerAuth + tenantHeader
+
+**Request body** (required): [`CommerceAttributeAssignments`](#schema-commerceattributeassignments)
+
+**Responses**
+
+| Status | Description                          | Schema                                 |
+| ------ | ------------------------------------ | -------------------------------------- |
+| 200    | The keys whose stored value changed. | object                                 |
+| 400    | Validation error.                    | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.          | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                  | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/products/by-slug/{slug}` — Fetch one product by its URL slug (Issue 23) — the storefront's detail fetch.
 
 - **operationId**: `getCommerceProductBySlug`
@@ -11086,6 +11927,47 @@ Upsert on `(tenant_id, product_id)` — at most one link per product (`sql/939`)
 | 401    | Missing or invalid session.                        | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC.                        | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.                                | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/products/export.csv` — Issue #291. The live product catalog as RFC 4180 CSV (UTF-8 with BOM) — core columns plus one `attr:<key>` column per admin-visible product attribute. Every cell is formula-injection-neutralised (a cell starting with = + - @ TAB or CR is prefixed with `'`; a plain signed number is left as is). At most 5000 rows; `X-AWCMS-Export-Truncated: true` flags a larger catalog. costPrice and downloadLink are not exported. Gated on products.export.
+
+- **operationId**: `exportCommerceProductsCsv`
+- **Security**: bearerAuth + tenantHeader
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The CSV file.               | string                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/products/import` — Issue #291. Validate (mode=dry_run, the default — writes NOTHING) or apply (mode=apply) a product CSV. The body is the CSV itself (text/csv, UTF-8, at most 5 MiB and 5000 data rows). Rows match on `sku`: a live product with that SKU is updated, any other SKU creates one. apply is ALL-OR-NOTHING (422 IMPORT_VALIDATION_FAILED when the plan has any error, 409 IMPORT_CONFLICT on a write-time conflict — both leave the catalog untouched), needs `Idempotency-Key` (a replay with the same key and file returns the original response; the same key with a different file is 409 IDEMPOTENCY_CONFLICT), and needs products.import AND products.create AND products.update. `expectedSha256` (the dry-run's fileSha256) refuses a file that differs from the reviewed one (409 IMPORT_FILE_MISMATCH). No column accepts a media reference and nothing is fetched remotely. Gated on products.import.
+
+- **operationId**: `importCommerceProductsCsv`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name              | In     | Required | Type                     | Description                                                          |
+| ----------------- | ------ | -------- | ------------------------ | -------------------------------------------------------------------- |
+| `mode`            | query  | no       | enum(`dry_run`, `apply`) |                                                                      |
+| `expectedSha256`  | query  | no       | string                   | apply only — the fileSha256 of the dry-run report that was reviewed. |
+| `Idempotency-Key` | header | no       | string                   | Required for mode=apply.                                             |
+
+**Request body** (required): string
+
+**Responses**
+
+| Status | Description                                                                                          | Schema                                 |
+| ------ | ---------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The per-row report (dry-run), or the applied report with `batchId`.                                  | object                                 |
+| 400    | Validation error.                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                          | [`ApiError`](#standard-error-envelope) |
+| 409    | IMPORT_FILE_MISMATCH, IMPORT_CONFLICT (details carry the report) or IDEMPOTENCY_CONFLICT.            | [`ApiError`](#standard-error-envelope) |
+| 413    | The body exceeds 5 MiB.                                                                              | [`ApiError`](#standard-error-envelope) |
+| 415    | The body is not text/csv.                                                                            | [`ApiError`](#standard-error-envelope) |
+| 422    | IMPORT_VALIDATION_FAILED — the file has errors; nothing was imported. `error.details` is the report. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/quotations` — Issue #286 (ADR-0029). Lists quotations, newest first. Gated on `commerce.quotations.read`.
 
@@ -11360,14 +12242,14 @@ The expected amount per tender is DERIVED (opening float + the session's stamped
 
 **Responses**
 
-| Status | Description                                                                                                                                               | Schema                                 |
-| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 200    | The outcome (`closed` after an approval, `reopened` after a rejection) and the report (or the stored replay).                                             | object                                 |
-| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                             | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                                                                                                               | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                                                                                                               | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
-| 409    | `REGISTER_CLOSE_NOT_PENDING` (`details.status`), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                                                                | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The outcome (`closed` after an approval, `reopened` after a rejection) and the report (or the stored replay).                                                                                                                                                                                                              | object                                 |
+| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                                                                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                                | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                                | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 409    | `REGISTER_CLOSE_NOT_PENDING` (`details.status`), `SOD_MAKER_IS_CHECKER` (an approval by the user who requested the close, unless the tenant set `cashUp.allowSelfApproval`; rejecting your own count is allowed), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/register-sessions/{id}/corrections` — Issue #284 (ADR-0028). Posts a compensating correction to a CLOSED session. Gated on `commerce.register_corrections.approve` (a high-risk verb); requires `Idempotency-Key`.
 
@@ -11428,7 +12310,7 @@ Allowed for the session's CURRENT cashier, or for a supervisor holding `commerce
 - **operationId**: `recordCommerceRegisterMovement`
 - **Security**: bearerAuth + tenantHeader
 
-Append-only and cash only. `cash_in` is always `in`; `cash_out`, `safe_drop` and `expense` are always `out`; `transfer` and `correction` must say `direction`. An `expense`/`transfer` needs a `reference`, a `correction` a `note`. The `reference` is FREE TEXT today — the typed reference to the expenses domain (#294) is a documented hook, not yet a field. Only the session's current cashier may record one. Emits `awcms.commerce.register_session.movement_recorded` (never the free text).
+Append-only and cash only. `cash_in` is always `in`; `cash_out`, `safe_drop` and `expense` are always `out`; `transfer` and `correction` must say `direction`. An `expense`/`transfer` needs a `reference`, a `correction` a `note`. The `reference` here is FREE TEXT. Since Issue #294 (ADR-0031) a tenant whose `expenses` feature is ON records expenses through the expenses domain, whose posting appends the typed `expense` movement itself — so a raw `expense` movement is refused there (`409 EXPENSE_REQUIRES_EXPENSE_RECORD`): it would bypass the approval threshold. With the feature OFF (the default) nothing changes. Only the session's current cashier may record one. Emits `awcms.commerce.register_session.movement_recorded` (never the free text).
 
 **Parameters**
 
@@ -11441,14 +12323,14 @@ Append-only and cash only. `cash_in` is always `in`; `cash_out`, `safe_drop` and
 
 **Responses**
 
-| Status | Description                                                                                                                                                                     | Schema                                 |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 201    | The movement (or the stored replay).                                                                                                                                            | object                                 |
-| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.                                                                                                                                                             | [`ApiError`](#standard-error-envelope) |
-| 409    | `REGISTER_SESSION_NOT_OPEN` (`details.status`), `NOT_SESSION_CASHIER`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                   | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The movement (or the stored replay).                                                                                                                                                                                                                                          | object                                 |
+| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 409    | `REGISTER_SESSION_NOT_OPEN` (`details.status`), `NOT_SESSION_CASHIER`, `EXPENSE_REQUIRES_EXPENSE_RECORD` (an `expense` movement while the `expenses` feature is on), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/register-sessions/{id}/report.csv` — Issue #284 (ADR-0028). The session's cash-up as CSV: summary, per-tender expected/counted/difference, every movement and every correction. Gated on `commerce.register_sessions.export` (the platform's high-risk `export` verb).
 
@@ -11806,6 +12688,259 @@ One `section` column (`summary`, `tender`, `movement`, `correction`) keeps the w
 | 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/stored-value/accounts` — Issue #288 (ADR-0030). Gift-card / store-credit accounts, newest first, keyset-paginated. Gated on `commerce.stored_value.read` and the tenant's `storedValue` feature.
+
+- **operationId**: `listCommerceStoredValueAccounts`
+- **Security**: bearerAuth + tenantHeader
+
+Every code is MASKED (`•••••••-•••••••-•••ABCD`): the plaintext is never stored. `last4` finds a card by the last four characters of its code.
+
+**Parameters**
+
+| Name         | In    | Required | Type                                  | Description |
+| ------------ | ----- | -------- | ------------------------------------- | ----------- |
+| `kind`       | query | no       | enum(`gift_card`, `store_credit`)     |             |
+| `status`     | query | no       | enum(`active`, `disabled`, `expired`) |             |
+| `customerId` | query | no       | string (uuid)                         |             |
+| `last4`      | query | no       | string                                |             |
+| `cursor`     | query | no       | string                                |             |
+
+**Responses**
+
+| Status | Description                                                                       | Schema                                 |
+| ------ | --------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | A page of accounts.                                                               | object                                 |
+| 400    | `VALIDATION_ERROR`.                                                               | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                       | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/stored-value/accounts` — Issue #288 (ADR-0030). Issues a gift card / store credit. Gated on `commerce.stored_value.create` and the tenant's `storedValue` feature; requires `Idempotency-Key`.
+
+- **operationId**: `issueCommerceStoredValueAccount`
+- **Security**: bearerAuth + tenantHeader
+
+Generates a CSPRNG code (20 characters from an unambiguous 32-symbol alphabet = 100 bits, plus one check character), stores ONLY its tenant-scoped hash and last four, appends the `issue` ledger entry, and returns the plaintext `code` ONCE, in this response. A replay (same key, same body) answers the same account with `code: null` and `codeRevealed: false`; a lost code is remedied by disabling the account and issuing a new one — the plaintext is never recoverable. The program for the kind must be enabled (`409 STORED_VALUE_PROGRAM_DISABLED`) and the amount within its balance ceiling (`409 STORED_VALUE_BALANCE_CEILING`). `expiresAt` overrides the program's default lifetime (`null` = never). Emits `awcms.commerce.stored_value.entry_recorded`.
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description |
+| ----------------- | ------ | -------- | ------ | ----------- |
+| `Idempotency-Key` | header | yes      | string |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                      | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 201    | The new account and its plaintext code (shown once), or the stored replay without the code.                                                                                                      | object                                 |
+| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                      | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                      | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 409    | `STORED_VALUE_PROGRAM_DISABLED`, `STORED_VALUE_BALANCE_CEILING` (`details.ceiling`), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/stored-value/accounts/{id}` — Issue #288 (ADR-0030). One account. Gated on `commerce.stored_value.read` and the tenant's `storedValue` feature.
+
+- **operationId**: `getCommerceStoredValueAccount`
+- **Security**: bearerAuth + tenantHeader
+
+Resolved tenant-scoped: an unknown id and another tenant's id are the same `404` (no BOLA oracle).
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                                       | Schema                                 |
+| ------ | --------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The account.                                                                      | object                                 |
+| 401    | Missing or invalid session.                                                       | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                       | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                               | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/stored-value/accounts/{id}/adjust` — Issue #288 (ADR-0030). A reasoned manual correction of a balance, up or down. Gated on the SEPARATE `commerce.stored_value_adjustments.create` and the tenant's `storedValue` feature; requires `Idempotency-Key`.
+
+- **operationId**: `adjustCommerceStoredValueAccount`
+- **Security**: bearerAuth + tenantHeader
+
+The ledger is append-only: this is a NEW `adjust` entry, never an edit. A downward adjustment can never take the balance below zero (`409 STORED_VALUE_INSUFFICIENT`, `details.available`); an expired account takes no entry at all. A disabled account still takes one (a frozen card can be corrected). The `reason` is stored on the ledger row and is never copied into the audit trail.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `id`              | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                                                                  | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The new entry and the account (or the stored replay).                                                                                                                                                                                        | object                                 |
+| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                                                                                                                | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                  | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                  | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                          | [`ApiError`](#standard-error-envelope) |
+| 409    | `STORED_VALUE_INSUFFICIENT`, `STORED_VALUE_ACCOUNT_EXPIRED`, `STORED_VALUE_ACCOUNT_UNAVAILABLE`, `STORED_VALUE_BALANCE_CEILING`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/stored-value/accounts/{id}/ledger` — Issue #288 (ADR-0030). An account's append-only history, newest first. Gated on `commerce.stored_value.read` and the tenant's `storedValue` feature.
+
+- **operationId**: `listCommerceStoredValueLedger`
+- **Security**: bearerAuth + tenantHeader
+
+Keyset-paginated on the per-account sequence (`before`). Every entry shows its kind, signed amount, running balance and the payment allocation it mirrors, never the code.
+
+**Parameters**
+
+| Name     | In    | Required | Type          | Description |
+| -------- | ----- | -------- | ------------- | ----------- |
+| `id`     | path  | yes      | string (uuid) |             |
+| `before` | query | no       | integer       |             |
+
+**Responses**
+
+| Status | Description                                                                       | Schema                                 |
+| ------ | --------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | A page of ledger entries.                                                         | object                                 |
+| 400    | `VALIDATION_ERROR`.                                                               | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                       | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                       | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                               | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/stored-value/accounts/{id}/load` — Issue #288 (ADR-0030). Adds value to an existing account (a top-up). Gated on `commerce.stored_value.create` and the tenant's `storedValue` feature; requires `Idempotency-Key`.
+
+- **operationId**: `loadCommerceStoredValueAccount`
+- **Security**: bearerAuth + tenantHeader
+
+A replay returns the original entry and never loads twice. Refused when the program is not enabled, the account is disabled or expired, or the balance would pass the program's ceiling.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `id`              | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                                                                      | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 201    | The new entry and the account (or the stored replay).                                                                                                                                                                                            | object                                 |
+| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                                                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                      | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                      | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 409    | `STORED_VALUE_PROGRAM_DISABLED`, `STORED_VALUE_ACCOUNT_EXPIRED`, `STORED_VALUE_ACCOUNT_UNAVAILABLE`, `STORED_VALUE_BALANCE_CEILING`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/stored-value/accounts/{id}/status` — Issue #288 (ADR-0030). Disables or re-enables an account. Gated on `commerce.stored_value.update` and the tenant's `storedValue` feature; requires `Idempotency-Key`.
+
+- **operationId**: `changeCommerceStoredValueAccountStatus`
+- **Security**: bearerAuth + tenantHeader
+
+A disabled account refuses every redemption and refund but keeps its balance (still a liability); it is the remedy for a lost or stolen card. `expired` is terminal and is never set by hand. Recorded as a zero-amount `disable` / `enable` ledger entry. Disabling requires a `reason`.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `id`              | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                                  | Schema                                 |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The new entry and the account (or the stored replay).                                                                                                                        | object                                 |
+| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                                                | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                  | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                  | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                          | [`ApiError`](#standard-error-envelope) |
+| 409    | `STORED_VALUE_STATUS_UNCHANGED`, `STORED_VALUE_ACCOUNT_EXPIRED`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/stored-value/expire` — Issue #288 (ADR-0030). Releases the balance of every lapsed account. Gated on `commerce.stored_value.update` and the tenant's `storedValue` feature.
+
+- **operationId**: `sweepCommerceStoredValueExpiry`
+- **Security**: bearerAuth + tenantHeader
+
+One `expire` ledger entry per account past its expiry, bounded to one batch (`more: true` = call again). Idempotent by construction (the entry's source key is the account and its expiry instant). The application never WAITS for this: an account about to be used is settled first, so a lapsed balance can never be spent however rarely this runs.
+
+**Responses**
+
+| Status | Description                                                                       | Schema                                 |
+| ------ | --------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | What the run released.                                                            | object                                 |
+| 401    | Missing or invalid session.                                                       | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/stored-value/programs` — Issue #288 (ADR-0030). The tenant's gift-card and store-credit program configuration. Gated on `commerce.stored_value_programs.read` and the tenant's `storedValue` feature.
+
+- **operationId**: `listCommerceStoredValuePrograms`
+- **Security**: bearerAuth + tenantHeader
+
+Always returns BOTH kinds; one the tenant never saved is reported with its disabled defaults (`configured: false`).
+
+**Responses**
+
+| Status | Description                                                                       | Schema                                 |
+| ------ | --------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Both programs.                                                                    | object                                 |
+| 401    | Missing or invalid session.                                                       | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `PUT /api/v1/commerce/stored-value/programs/{kind}` — Issue #288 (ADR-0030). Creates or updates one kind's program. Gated on `commerce.stored_value_programs.update` and the tenant's `storedValue` feature.
+
+- **operationId**: `upsertCommerceStoredValueProgram`
+- **Security**: bearerAuth + tenantHeader
+
+A PUT by nature (the same body leaves the same row), so it takes no `Idempotency-Key`; every change is audited. `enabled` governs ISSUING and LOADING only — value already outstanding stays redeemable when a program is switched off, because it is owed. When `allowRefundToAccount` is false a payment made with this kind of value cannot be reversed at all (closed loop: there is no cash alternative).
+
+**Parameters**
+
+| Name   | In   | Required | Type                              | Description |
+| ------ | ---- | -------- | --------------------------------- | ----------- |
+| `kind` | path | yes      | enum(`gift_card`, `store_credit`) |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description | Schema |
+| ------ | ----------- | ------ |
+
+### `POST /api/v1/commerce/stored-value/reconcile` — Issue #288 (ADR-0030). Compares every account's projected balance with its ledger, the ledger with itself and every redemption with its payment leg. `repair: false` needs `commerce.stored_value.read`; `repair: true` also needs `commerce.stored_value_reconcile.approve`.
+
+- **operationId**: `reconcileCommerceStoredValue`
+- **Security**: bearerAuth + tenantHeader
+
+Read-only by default. `repair: true` rebuilds ONLY the `balance` and `version` of drifted accounts, under the account lock, auditing each. A ledger that contradicts itself, a status that disagrees with its entries and an unmatched redemption are REPORTED and never repaired. Bounded to 1000 findings per run (`truncated`).
+
+**Request body** (optional): object
+
+**Responses**
+
+| Status | Description                                                                       | Schema                                 |
+| ------ | --------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The findings.                                                                     | object                                 |
+| 400    | `VALIDATION_ERROR`.                                                               | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                       | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
 ### `POST /api/v1/commerce/storefront/cart/quote` — Anonymous, cross-origin cart quote (Issue 29, `commerce-storefront-endpoints.md`). Tenant resolved from the request Origin/Host — no bearer, no permission check. Read-only. Issue #118 (ADR-0016 D6): an OPTIONAL `Authorization: Bearer <customer session token>` is accepted (never required) — when present and valid, and the account's own `commerce.customers.level` is 2, 3, or 4, every line is priced at that tier's `price_level_{n}` (falling back to `price` when the merchant never set that tier), so the price shown here always matches the price `POST .../orders` charges the same account moments later.
 
 - **operationId**: `quoteCommerceStorefrontCart`
@@ -11821,6 +12956,28 @@ One `section` column (`summary`, `tender`, `movement`, `correction`) keeps the w
 | 400    | Validation error.                                                                                                         | [`ApiError`](#standard-error-envelope) |
 | 404    | Unresolvable tenant, disabled module, or a rate-limited caller — the same neutral body (contract's own anti-oracle rule). | [`ApiError`](#standard-error-envelope) |
 | 429    | Rate limited.                                                                                                             | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/storefront/document-links/{token}` — Issue #295 (ADR-0034 D6). Anonymous: opens the print page of a receipt or invoice through the opaque private link a delivery carried.
+
+- **operationId**: `openCommerceDocumentLink`
+- **Security**: none (public endpoint)
+
+The token IS the credential: 32 random bytes with a `dl_` prefix, only its SHA-256 stored, a hard expiry of at most 168 hours. The page is the stored snapshot rendered (hash re-verified), served `no-store` under a locked-down CSP. An unknown, malformed or other-tenant token and a disabled feature are the same neutral `404`; a known token past its expiry is `410 LINK_EXPIRED`. Every open (and every expired open) is audited without an actor or recipient.
+
+**Parameters**
+
+| Name    | In   | Required | Type   | Description |
+| ------- | ---- | -------- | ------ | ----------- |
+| `token` | path | yes      | string |             |
+
+**Responses**
+
+| Status | Description                | Schema                                 |
+| ------ | -------------------------- | -------------------------------------- |
+| 200    | The document's print page. | string                                 |
+| 404    | Resource not found.        | [`ApiError`](#standard-error-envelope) |
+| 410    | `LINK_EXPIRED`.            | [`ApiError`](#standard-error-envelope) |
+| 429    | Rate limited.              | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/storefront/orders` — Anonymous order creation (Issue 29), with an optional customer bearer (Issue #91). Idempotent by the client-supplied idempotencyKey; re-quotes the cart inside the write transaction. No permission check required — a valid bearer is accepted, never required.
 
@@ -11923,14 +13080,14 @@ Issue #91 (implemented, contract #86): an OPTIONAL `Authorization: Bearer <custo
 
 **Responses**
 
-| Status | Description                                                                                                    | Schema                                 |
-| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 201    | Session created (or the still-live session for this order was returned).                                       | object                                 |
-| 400    | Validation error.                                                                                              | [`ApiError`](#standard-error-envelope) |
-| 401    | UNAUTHENTICATED — an Authorization header was present but not a live session.                                  | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.                                                                                            | [`ApiError`](#standard-error-envelope) |
-| 409    | PAYMENT_NOT_APPLICABLE — the order's `paymentMethod` is not `gateway`, or its status is not `pending_payment`. | [`ApiError`](#standard-error-envelope) |
-| 503    | GATEWAY_UNAVAILABLE — `COMMERCE_PAYMENT_GATEWAY=none`, unset, or the provider call itself failed/timed out.    | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                                                                                                                                       | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Session created (or the still-live session for this order was returned).                                                                                                                                                                                                                                                                                                                          | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                                                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED — an Authorization header was present but not a live session.                                                                                                                                                                                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 409    | `PAYMENT_NOT_APPLICABLE` — the order's `paymentMethod` is not `gateway`, or its status is not `pending_payment`; or `ORDER_PARTIALLY_SETTLED` (Issue #285, ADR-0025) — money has already been received against the order, so a hosted checkout (which charges the whole total) is neither created nor handed back; `details.outstanding` carries the balance, to be settled with a manual tender. | [`ApiError`](#standard-error-envelope) |
+| 503    | GATEWAY_UNAVAILABLE — `COMMERCE_PAYMENT_GATEWAY=none`, unset, or the provider call itself failed/timed out.                                                                                                                                                                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/storefront/orders/{orderCode}/payment-proof/upload-sessions` — Reserved for a future increment (Issue 29) — always 503 MEDIA_UNAVAILABLE today. See the module README for why.
 
@@ -12490,6 +13647,30 @@ Legal status edges: received -> scheduled | in_progress | cancelled; scheduled -
 | 401    | Missing or invalid session.          | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC.          | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/reports/commerce/stored-value` — Issue #288 (ADR-0030). The closed-loop liability report. Gated on `commerce.stored_value.read` and the tenant's `storedValue` feature.
+
+- **operationId**: `getCommerceStoredValueReport`
+- **Security**: bearerAuth + tenantHeader
+
+Per kind (`gift_card`, `store_credit`): what was issued, loaded, redeemed, refunded, adjusted (up and down kept apart) and expired over an inclusive range of `Asia/Jakarta` report days (default: the last 30, attributed to the day each entry was written), plus what is OUTSTANDING now (the sum of every ledger entry ever written), of which how much sits on disabled accounts and how much is lapsed but not yet released by the expiry sweep. Read straight off the append-only ledger.
+
+**Parameters**
+
+| Name   | In    | Required | Type          | Description |
+| ------ | ----- | -------- | ------------- | ----------- |
+| `from` | query | no       | string (date) |             |
+| `to`   | query | no       | string (date) |             |
+
+**Responses**
+
+| Status | Description                                                                       | Schema                                 |
+| ------ | --------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The report.                                                                       | object                                 |
+| 400    | `VALIDATION_ERROR`.                                                               | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                       | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/reports/commerce/tender-mix` — Issue #285 (ADR-0025). Money movement by tender over the inclusive day range, read straight off the payment-allocation ledger (the source of truth — no second projection): payments, reversals and net per tender, plus range totals. Each leg is attributed to the report day it was RECORDED (a refund is the day of the refund); only `succeeded` legs count; a tender with no activity is absent. Gated on `commerce.payments.read`.
 
 - **operationId**: `getReportsCommerceTenderMix`
@@ -12773,6 +13954,30 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 | ------ | ---------------- | -------------------------------------- |
 | 204    | Revoked.         |                                        |
 | 401    | UNAUTHENTICATED. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/storefront/account/loyalty` — Issue #289 (ADR-0026). The signed-in customer's OWN points balance, the earn rule currently in force, and their point history (newest first, keyset-paginated). The customer id is read ONLY from the verified bearer session — there is no identifier a caller can change to read another customer's ledger.
+
+- **operationId**: `getCommerceStorefrontAccountLoyalty`
+- **Security**: customerBearer
+
+Each history item is `{ id, kind, points, balanceAfter, expiresAt, createdAt }` — never the staff actor, the free-text reason, the source order or the program id. A tenant that has not turned the `loyalty` feature on answers the neutral `404`, like every other disabled public case.
+
+**Parameters**
+
+| Name     | In    | Required | Type    | Description |
+| -------- | ----- | -------- | ------- | ----------- |
+| `cursor` | query | no       | string  |             |
+| `limit`  | query | no       | integer |             |
+
+**Responses**
+
+| Status | Description                                 | Schema                                 |
+| ------ | ------------------------------------------- | -------------------------------------- |
+| 200    | Balance, earn rule and one page of history. | object                                 |
+| 400    | Validation error.                           | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.                            | [`ApiError`](#standard-error-envelope) |
+| 403    | ACCOUNT_BLOCKED.                            | [`ApiError`](#standard-error-envelope) |
+| 404    | Loyalty is not enabled for this store.      | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/storefront/account/me` — Issue #89 (implemented, contract #86). The signed-in customer account (D1).
 
@@ -13468,6 +14673,75 @@ Gated by omes_control.jobs.cancel. Only a queued job may be cancelled — a leas
 | 403    | Access denied by RBAC/ABAC.                                                                                                 | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.                                                                                                         | [`ApiError`](#standard-error-envelope) |
 | 409    | Job is not queued (JOB_NOT_CANCELLABLE), or the Idempotency-Key was reused with a different request (IDEMPOTENCY_CONFLICT). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/omes/mission-control/actions` — Read the advisory action availability of one Mission Control object (ahliweb/omes#267)
+
+- **operationId**: `omesReadMissionControlActions`
+- **Security**: bearerAuth + tenantHeader
+
+ADVISORY ONLY - this endpoint authorizes nothing. Every action it lists is a shortcut to an EXISTING endpoint (POST /api/v1/omes/operations, POST /api/v1/omes/jobs/{id}/cancel, POST /api/v1/omes/jobs/{id}/approve, POST /api/v1/omes/backups/{id}/restore, or a link to the canonical /admin/approvals inbox), and each of those re-authorizes, rate-limits, applies the destructive-workflow gate, audits and enforces idempotency on its own; a forged direct POST without the permission is still a 403. The answer only tells the UI which buttons to enable and why a disabled one is disabled. Gated by omes_control.servers.read (the workspace gate); the target is read only if the viewer also holds its source's own read permission. An unknown id, another tenant's id and an object in a source the viewer may not read are indistinguishable (every action reason "not_found"). Per action: "available" mirrors exactly what the existing endpoint enforces (job cancel only while queued, requeue only while failed, plus the viewer's permission); "advisories" (target_stale, target_decommissioned, backup_not_verified) are non-blocking warnings the endpoints do not enforce, shown in the preflight summary. "requires_approval" is true for stop, rollback and backup restore (workflow omes_control.destructive_operation). "body" is present for operation.* actions and is exactly what the Operations screen sends. Strict query validation: kind must be a Mission Control kind, id must match ^[A-Za-z0-9_.:-]{1,128}$, and any other parameter (command, shell, target, url, ...) is a 400 VALIDATION_ERROR. No new permission, operation name, table or executor.
+
+**Parameters**
+
+| Name   | In    | Required | Type                                                                                                                                                                                 | Description                 |
+| ------ | ----- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------- |
+| `kind` | query | yes      | enum(`server`, `deployment`, `job`, `health_report`, `backup`, `hermes_subagent`, `architecture_plane`, `capability`, `repository_milestone`, `ai_privacy_posture`, `approval_item`) |                             |
+| `id`   | query | yes      | string                                                                                                                                                                               | The scene node's source_id. |
+
+**Responses**
+
+| Status | Description                                                     | Schema                                 |
+| ------ | --------------------------------------------------------------- | -------------------------------------- |
+| 200    | Advisory availability for exactly the kind's candidate actions. | object                                 |
+| 400    | Validation error.                                               | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                     | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/omes/mission-control/replay` — Read one page of Mission Control replay evidence (ahliweb/omes#266)
+
+- **operationId**: `omesReadMissionControlReplay`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by omes_control.servers.read, which only admits the viewer to the workspace; each source is then read only if the viewer also holds that source's own read permission (the same guards as the live scene). A source the viewer may not read contributes no events and is reported as a source_unavailable evidence gap. Returns one bounded, keyset-paginated page (at most 500 events) of the vendored mission-control-replay-window v1 shape (ADR-0031): a read projection over evidence existing tables already retain (Hermes orchestration events, health and backup snapshots, job and worker-result records, workflow decisions) - never a new event store or audit authority. Events are de-duplicated by (evidence_kind, evidence_id), ordered deterministically by (at, evidence_kind, evidence_id), and evidence recorded out of order is labelled late_arrival. Gaps are explicit (not_retained, retention_expired, source_unavailable, before_first_observation) and never interpolated. No raw payload, log, prompt or provider response is carried. The window may span at most 24 hours; from and to are required UTC instants with from earlier than to and to not in the future; cursor is the opaque next_cursor of the previous page; any other query parameter is a 400 VALIDATION_ERROR. An invalid page fails closed with 500 MISSION_CONTROL_REPLAY_INVALID.
+
+**Parameters**
+
+| Name     | In    | Required | Type   | Description                                                                                |
+| -------- | ----- | -------- | ------ | ------------------------------------------------------------------------------------------ |
+| `from`   | query | yes      | string | Window start, a UTC instant (2026-10-02T07:00:00Z).                                        |
+| `to`     | query | yes      | string | Window end (inclusive), a UTC instant; at most 24 hours after from, and not in the future. |
+| `cursor` | query | no       | string | The opaque next_cursor of the previous page of the same window.                            |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | One replay page.            | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/omes/mission-control/scene` — Read the 3D Mission Control scene (ahliweb/omes#265)
+
+- **operationId**: `omesReadMissionControlScene`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by omes_control.servers.read, which only admits the viewer to the workspace; each source is then included only if the viewer also holds that source's own read permission (omes_control.deployments.read, jobs.read, backups.read, hermes_orchestration.read, architecture.read, ai_privacy.read, workflow.approval.read). A source the viewer may not read is reported with status "unavailable" and contributes no nodes. Returns the vendored mission-control-scene-view v1 shape (ADR-0031): a read-only, tenant-scoped, bounded (at most 500 nodes and 1000 relations; omitted counts are reported in "truncated") composition of references to records that existing screens own. It is a derived projection with no new permission, table, or action. An invalid composition fails closed with 500 MISSION_CONTROL_SCENE_INVALID.
+
+**Parameters**
+
+| Name    | In    | Required | Type   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| ------- | ----- | -------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `as_of` | query | no       | string | ahliweb/omes#266. A UTC instant (2026-10-02T08:00:00Z). Absent = the live scene. Present = the HISTORICAL scene that instant's retained evidence proves (mode "historical", with evidence_gaps): each event-backed object is in the state of its latest evidence at or before as_of (evidence is read from the 24 hours before as_of for Hermes and health, and newest-first for backups, jobs and approvals), an object with no such evidence is absent, and current-only objects (servers, deployments, architecture, repository progress, AI privacy) are shown with freshness "unknown" and are never back-dated. Must not be in the future nor older than the retention horizon (the longest data-lifecycle retention of the replay sources, 90 days). It is the ONLY query parameter accepted; any other is a 400 VALIDATION_ERROR. |
+
+**Responses**
+
+| Status | Description                                                   | Schema                                 |
+| ------ | ------------------------------------------------------------- | -------------------------------------- |
+| 200    | The tenant's scene (live, or historical when as_of is given). | object                                 |
+| 400    | Validation error.                                             | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                   | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/omes/operations` — List submitted operation requests
 
@@ -14416,6 +15690,107 @@ Per-tenant comment configuration. Every numeric bound mirrors a CHECK constraint
   "turnstileEnabled": false,
   "notifyOnReply": false
 }
+```
+
+### Schema: CommerceAttributeAssignments
+
+| Field        | Type   | Required | Nullable | Description                                                                                                                                                                                    |
+| ------------ | ------ | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `attributes` | object | yes      | no       | `{ <key>: <value> \| null }`. A value sets the attribute, `null` clears it, an absent key is untouched. Values are parsed with the typed grammar; one invalid entry rejects the whole request. |
+
+**Example**
+
+```json
+{
+  "attributes": "(operation-specific payload)"
+}
+```
+
+### Schema: CommerceAttributeConstraints
+
+Closed per-type schema — any other key is a 400. text: minLength, maxLength (<= 2000). integer/decimal: min, max (canonical decimal strings; integer up to 12 digits, decimal up to 12 integer + 6 fractional digits), decimal also scale (1..6). date: min, max (ISO dates). enum: options[] (value, label), case-insensitively unique. boolean: none.
+
+| Field       | Type            | Required | Nullable | Description |
+| ----------- | --------------- | -------- | -------- | ----------- |
+| `minLength` | integer         | no       | no       |             |
+| `maxLength` | integer         | no       | no       |             |
+| `min`       | string          | no       | no       |             |
+| `max`       | string          | no       | no       |             |
+| `scale`     | integer         | no       | no       |             |
+| `options`   | array of object | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "minLength": 0,
+  "maxLength": 0,
+  "min": "string",
+  "max": "string",
+  "scale": 1,
+  "options": [
+    {
+      "value": "string",
+      "label": "string"
+    }
+  ]
+}
+```
+
+### Schema: CommerceAttributeDefinitionInput
+
+| Field           | Type                                                                   | Required | Nullable | Description |
+| --------------- | ---------------------------------------------------------------------- | -------- | -------- | ----------- |
+| `key`           | string                                                                 | yes      | no       |             |
+| `label`         | string                                                                 | yes      | no       |             |
+| `labels`        | object                                                                 | no       | no       |             |
+| `valueType`     | [`CommerceAttributeValueType`](#schema-commerceattributevaluetype)     | yes      | no       |             |
+| `constraints`   | [`CommerceAttributeConstraints`](#schema-commerceattributeconstraints) | no       | no       |             |
+| `appliesTo`     | enum(`product`, `variant`, `both`)                                     | no       | no       |             |
+| `isSearchable`  | boolean                                                                | no       | no       |             |
+| `isFilterable`  | boolean                                                                | no       | no       |             |
+| `visibleAdmin`  | boolean                                                                | no       | no       |             |
+| `visiblePublic` | boolean                                                                | no       | no       |             |
+| `sortOrder`     | integer                                                                | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "key": "string",
+  "label": "string",
+  "labels": "(operation-specific payload)",
+  "valueType": "text",
+  "constraints": {
+    "minLength": 0,
+    "maxLength": 0,
+    "min": "string",
+    "max": "string",
+    "scale": 1,
+    "options": [
+      {
+        "value": "string",
+        "label": "string"
+      }
+    ]
+  },
+  "appliesTo": "product",
+  "isSearchable": false,
+  "isFilterable": false,
+  "visibleAdmin": false,
+  "visiblePublic": false,
+  "sortOrder": 0
+}
+```
+
+### Schema: CommerceAttributeValueType
+
+Enum values: `text`, `integer`, `decimal`, `boolean`, `date`, `enum`.
+
+**Example**
+
+```json
+"text"
 ```
 
 ### Schema: CommerceCartQuoteLine
@@ -15552,6 +16927,34 @@ Unparseable entries are refused at issuance. At request time an unreadable entry
 }
 ```
 
+### Schema: LoyaltyProgramInput
+
+Issue #289 — the create body of a loyalty program version. Points are integers; money is a numeric(14,2) STRING (ADR-0003).
+
+| Field               | Type    | Required | Nullable | Description                                                                                   |
+| ------------------- | ------- | -------- | -------- | --------------------------------------------------------------------------------------------- |
+| `name`              | string  | yes      | no       |                                                                                               |
+| `earnUnitAmount`    | string  | yes      | no       | Spend that earns one step of points. Greater than zero.                                       |
+| `earnPointsPerUnit` | integer | yes      | no       |                                                                                               |
+| `minOrderAmount`    | string  | no       | no       | Eligible spend below this earns nothing. Defaults to "0.00".                                  |
+| `maxPointsPerOrder` | integer | no       | yes      |                                                                                               |
+| `expiryDays`        | integer | no       | yes      | Points earned under this version lapse this many days after the order was paid; null = never. |
+| `notes`             | string  | no       | yes      |                                                                                               |
+
+**Example**
+
+```json
+{
+  "name": "string",
+  "earnUnitAmount": "string",
+  "earnPointsPerUnit": 1,
+  "minOrderAmount": "string",
+  "maxPointsPerOrder": 1,
+  "expiryDays": 1,
+  "notes": "string"
+}
+```
+
 ### Schema: MediaRightsUpdateRequest
 
 At least one field. `null` clears; an omitted field is left alone.
@@ -16318,7 +17721,7 @@ consumer/subscriber contract in this file).
 }
 ```
 
-### Channels (66)
+### Channels (71)
 
 - `awcms.blog-content.ad.created` — An advertisement was created. Documented contract only; producer is `pages/api/v1/blog/ads/index.ts`'s `blog-content.ad.created` log line.
 - `awcms.blog-content.ad.deleted` — An advertisement was soft-deleted. Documented contract only; producer is `pages/api/v1/blog/ads/[id].ts`'s `blog-content.ad.deleted` log line.
@@ -16350,9 +17753,13 @@ consumer/subscriber contract in this file).
 - `awcms.comments.comment.approved` — A comment became publicly visible, either by auto-approval under the thread policy or by a moderator's approve decision. Producers: `comments/application/comment-service.ts`'s `submitComment` and `comments/application/comment-moderation.ts`'s `moderateComment`. The reply-notification consumer keys off THIS event rather than `comment.submitted`, so a comment still held for moderation never triggers a notification.
 - `awcms.comments.comment.submitted` — A comment was submitted against a published, public commentable resource (ADR-0041). Producer: `comments/application/comment-service.ts`'s `submitComment`. The payload carries opaque references only — comment and thread id, resource type, the server-derived public URL, and the resulting status. Never the body text, the author address, or any identity hash.
 - `awcms.comments.reply.created` — A submitted comment was a reply to an existing comment. Producer: `comments/application/comment-service.ts`'s `submitComment`, published alongside `comment.submitted` so a consumer can distinguish thread replies without re-reading the row. The recipient address is resolved from encrypted storage by the dispatcher at send time and is never carried here.
+- `awcms.commerce.document.delivery_requested` — A delivery of a commercial document (receipt, invoice, quotation version or work-order notice) was requested (Issue #295, ADR-0034): handed to the e-mail or commerce WhatsApp outbox, or refused at the hand-off (a suppressed address). Producer: `commerce/application/document-delivery-directory.ts`'s `requestDocumentDelivery`, in the same transaction as the outbox row. Aggregate: the delivery request. Payload: `deliveryId`, `targetType`, `targetId`, `docNumber`, `channel`, `status` (`queued` or `not_enqueued`), `failureReason` - never a recipient or message content; the provider outcome lives in the outbox, not in this event.
 - `awcms.commerce.document.issued` — A numbered receipt or invoice document was issued for a finalized order (Issue #286, ADR-0029 D1-D3): an immutable snapshot. Producer: `commerce/application/document-directory.ts`'s `issueDocument`, in the same transaction as the numbered row. Aggregate: the document. Payload: `documentId`, `docType`, `number`, `sourceType`, `sourceId`, `sourceVersion`, `total` - never the customer.
+- `awcms.commerce.expense.posted` — An expense reached `posted` (Issue #294, ADR-0031): within the tenant's approval threshold, or approved by someone other than its creator. Producer: `commerce/application/expense-posting.ts`'s `postExpense` / `decideExpense`, in the same transaction as the status change and - for a drawer-paid expense - the register `expense` movement. Aggregate: the expense (`commerce.expense`). Fired once; a pending submission or a rejection does not fire it. Payload: `expenseId`, `categoryId`, `amount`, `tenderType`, `registerSessionId`, `movementId`, `decision` - never the free-text description or payee.
+- `awcms.commerce.expense.reversed` — A posted expense was reversed with a compensating entry (Issue #294, ADR-0031). Producer: `commerce/application/expense-posting.ts`'s `reverseExpense`, in the same transaction as the status change and - for a drawer-paid expense - the compensating register movement. Aggregate: the expense. Payload: `expenseId`, `categoryId`, `amount`, `tenderType`, `registerSessionId`, `reversalSessionId`, `movementId` - never the free-text reason.
 - `awcms.commerce.flash_sale.ended` — A flash sale's derived status crossed into `ended` (`now()` passed `ends_at`). Producer: `commerce/application/flash-sale-directory.ts`'s `tickFlashSalesForTenant`, run by the scheduled `commerce:flash-sales:tick` job.
 - `awcms.commerce.flash_sale.started` — A flash sale's derived status crossed into `active` (`now()` entered `[starts_at, ends_at]`). Producer: `commerce/application/flash-sale-directory.ts`'s `tickFlashSalesForTenant`, run by the scheduled `commerce:flash-sales:tick` job — never a direct admin `PATCH`.
+- `awcms.commerce.loyalty.entry_recorded` — A row was appended to the append-only loyalty points ledger (Issue #289) — an earn for a paid order, a redemption, an expiry, a manual adjustment or a reversal. Producer: `commerce/application/loyalty-ledger.ts`'s `appendLedgerEntry`, in the same transaction as the ledger insert and the account projection update. Aggregate is the loyalty account; the payload carries `entryId`, `customerId`, `kind`, signed integer `points`, `balanceAfter` and `sourceType` — never a name, phone or free-text reason.
 - `awcms.commerce.order.cancelled` — An order was cancelled, by the customer (while `pending_payment`) or an admin. Producer: `commerce/application/order-directory.ts`'s `transitionOrderStatus`, published alongside `commerce.order.status_changed`; its line items are restocked and any redeemed voucher un-redeemed in the same transaction.
 - `awcms.commerce.order.created` — An order was created via the anonymous storefront checkout path. Producer: `commerce/application/order-directory.ts`'s `createOrderFromCart`, in the same transaction as the order/order-items insert, the stock/flash-sale-quota decrement, and (when a voucher was used) its redemption.
 - `awcms.commerce.order.expired` — A `pending_payment` order's payment window elapsed. Producer: `commerce/application/order-directory.ts`'s `transitionOrderStatus`, run by the scheduled `commerce:orders:expire` job; its line items are restocked and any redeemed voucher un-redeemed in the same transaction.
@@ -16370,6 +17777,7 @@ consumer/subscriber contract in this file).
 - `awcms.commerce.register_session.movement_recorded` — A cash drawer movement (cash in/out, safe drop, expense, transfer, correction) was recorded against an open register session. Producer: `commerce/application/register-session-directory.ts`'s `recordRegisterMovement`. Payload: `sessionId`, `movementId`, `movementType`, `direction`, `amount` - never the free-text reference or note.
 - `awcms.commerce.register_session.opened` — A POS register session was opened with an opening float (Issue #284, ADR-0028). Producer: `commerce/application/register-session-directory.ts`'s `openRegisterSession`, in the same transaction as the session row. Aggregate: the register session. Payload: `sessionId`, `registerId`, `openingFloat`, `cashierTenantUserId`.
 - `awcms.commerce.review.published` — A pending review was moderated to `published` by an admin. Producer: `commerce/application/review-directory.ts`'s `moderateReview` — never fired on review creation, since a pending review is not yet a fact worth publishing to anyone.
+- `awcms.commerce.stored_value.entry_recorded` — A closed-loop stored-value ledger entry (gift card / store credit: issue, load, redeem, refund, adjust, expire, disable, enable) was appended. Producer: `commerce/application/stored-value-ledger.ts`'s `appendStoredValueEntry`, in the same transaction as the ledger insert (and, for redeem/refund, the payment-allocation row it mirrors). Aggregate: the stored-value account (`commerce.stored_value_account`). Payload: `entryId`, `accountId`, `accountKind` (`gift_card` | `store_credit`), `entryKind`, the signed `amount`, the resulting `balanceAfter` and, for redeem/refund, `allocationId` - never the code (which is not stored), the customer, or the free-text reason.
 - `awcms.commerce.voucher.redeemed` — A voucher's `used_count` was incremented by a real order. Producer: `commerce/application/order-directory.ts`'s `createOrderFromCart`, in the same transaction as the order that redeemed it.
 - `awcms.commerce.work_order.status_changed` — A work order moved to a new operational status (Issue #286, ADR-0029 D6). Producer: `commerce/application/work-order-directory.ts`'s `updateWorkOrder`, in the same transaction as the status change and its history row. Payload: `workOrderId`, `number`, `fromStatus`, `toStatus`, `assigneeTenantUserId` - never the title, description or note.
 - `awcms.domain-event-runtime.sample.recorded` — Reference/example event used to exercise the domain-event-runtime outbox, dispatcher, ordering, retry/backoff, dead-letter, and replay mechanism end-to-end. Real producer modules publish their OWN event types the same way, via `appendDomainEvent` — this one is intentionally self-contained rather than tied to another module's business logic in this foundation module (see `src/modules/domain-event-runtime/domain/event-type-registry.ts`'s own doc comment). Producer: any caller of `application/append-domain-event.ts`'s `appendDomainEvent` for this event type; consumers: `infrastructure/consumer-registry.ts`'s two reference consumers (a same-process cross-module audit projector and a self-contained read-model activity-rollup projection).

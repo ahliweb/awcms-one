@@ -123,6 +123,10 @@ const commerceFeatures =
         courier: true,
         register: false,
         documents: false,
+        loyalty: false,
+        storedValue: false,
+        expenses: false,
+        documentDelivery: false,
         barcode: false
       };
 const FEATURE_TOGGLES = [
@@ -131,8 +135,15 @@ const FEATURE_TOGGLES = [
   { key: "campaigns", label: "Campaigns" },
   { key: "gateway", label: "Payment gateway" },
   { key: "courier", label: "Courier rates" },
-  { key: "register", label: "POS registers and cash-up" },
   { key: "documents", label: "Quotations, work orders and documents" },
+  { key: "register", label: "POS registers and cash-up" },
+  { key: "loyalty", label: "Loyalty points" },
+  { key: "storedValue", label: "Gift cards and store credit" },
+  { key: "expenses", label: "Petty cash and expenses" },
+  {
+    key: "documentDelivery",
+    label: "Send documents by e-mail and WhatsApp"
+  },
   { key: "barcode", label: "Barcodes, labels and cashier shortcuts" }
 ] as const;
 /** `${public CMS origin}/api/v1/commerce/webhooks/midtrans/{token}` — the URL shape to paste into Midtrans, per contract #106 D2. The token itself is filled in client-side, once, right after creation. */

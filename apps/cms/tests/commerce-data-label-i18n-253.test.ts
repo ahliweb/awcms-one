@@ -56,11 +56,13 @@ const COMMERCE_ADMIN_PAGES = [
   "src/pages/admin/commerce-popup.astro",
   "src/pages/admin/commerce-pos.astro",
   "src/pages/admin/commerce-reports.astro",
+  "src/pages/admin/commerce-expenses.astro",
   "src/pages/admin/commerce-registers.astro",
   "src/pages/admin/commerce-registers/[id].astro",
   "src/pages/admin/commerce-reviews.astro",
   "src/pages/admin/commerce-settings.astro",
   "src/pages/admin/commerce-sliders.astro",
+  "src/pages/admin/commerce-stored-value.astro",
   "src/pages/admin/commerce-testimonials.astro",
   "src/pages/admin/commerce-vouchers.astro",
   "src/pages/admin/commerce-whatsapp.astro"

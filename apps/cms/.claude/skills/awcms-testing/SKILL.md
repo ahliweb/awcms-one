@@ -44,6 +44,18 @@ flowchart TB
   E[Security & Performance] --> D[API contract - OpenAPI/AsyncAPI] --> C[Integration - migration/posting/transfer] --> B[Unit - pure logic]
 ```
 
+None of the layers here is a real browser, and none can be: a `bun test`
+process has no DOM, no CSS cascade, no `<dialog>` top layer, and no
+`prefers-reduced-motion`/anti-aliased pixel rendering — exactly the surface
+axe needs to catch a `color-contrast`/`label`/`link-name` violation. That
+top-of-pyramid layer (real browser E2E, including the automated
+`@axe-core/playwright` accessibility smoke, Issue #877) is owned entirely by
+the `awcms-browser-test` skill and run via `bun run test:e2e`, never via
+`bun test` — see that skill before writing or changing anything under
+`tests/e2e/`. That includes the responsive overflow sweep
+(`responsive-360.e2e.ts`, Issue #884), which covers 360px, 640×360 (200%
+zoom of a 1280×720 desktop), 768px (tablet portrait) and 1024px.
+
 ## Unit test targets
 
 ABAC evaluator · profile resolver · soft delete/restore guard · product price selection · stock movement calc · checkout total · idempotency service · posting guard · VAT calc · warehouse transfer state machine · cycle count variance · HMAC signature · AI tool policy.

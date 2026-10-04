@@ -318,6 +318,32 @@ export async function lockSessionExclusive(
   return toLocked(rows[0]);
 }
 
+/**
+ * The open session whose current cashier is `tenantUserId`, if any (a cashier
+ * holds at most one drawer at a time in practice; the oldest wins if not).
+ * Read-only, no lock: it only offers the admin order screen a default for
+ * "pay this refund from my drawer"; the reversal API re-checks everything
+ * under the session lock.
+ */
+export async function findOpenSessionForCashier(
+  tx: Bun.SQL,
+  tenantId: string,
+  tenantUserId: string
+): Promise<{ sessionId: string; registerCode: string } | null> {
+  const rows = (await tx`
+    SELECT s.id, r.code
+    FROM awcms_commerce_register_sessions s
+    JOIN awcms_commerce_registers r
+      ON r.tenant_id = s.tenant_id AND r.id = s.register_id
+    WHERE s.tenant_id = ${tenantId} AND s.status = 'open'
+      AND s.current_cashier_tenant_user_id = ${tenantUserId}
+      AND s.deleted_at IS NULL
+    ORDER BY s.opened_at ASC
+    LIMIT 1
+  `) as { id: string; code: string }[];
+  return rows[0] ? { sessionId: rows[0].id, registerCode: rows[0].code } : null;
+}
+
 // ---------------------------------------------------------------------------
 // The POS gate
 // ---------------------------------------------------------------------------
@@ -508,6 +534,93 @@ export async function openRegisterSession(
 // Movements
 // ---------------------------------------------------------------------------
 
+export type AppendRegisterMovementInput = {
+  tenantId: string;
+  actorTenantUserId: string;
+  sessionId: string;
+  movementType: RegisterMovementType;
+  direction: RegisterMovementDirection;
+  amount: string;
+  reference: string | null;
+  note: string | null;
+  /** The row-level idempotency key (`UNIQUE (tenant_id, source_key)`). */
+  sourceKey: string;
+  /** Set (with `expenseId`) only by the expenses domain (Issue #294, ADR-0031). */
+  expenseId?: string;
+  correlationId?: string;
+};
+
+/**
+ * The ONE place a drawer movement is written - the manual movement route and
+ * the expenses domain (Issue #294: a posted drawer expense is an `expense`
+ * cash-out, its reversal a `correction` cash-in) both come through here, so the
+ * audit row and the `movement_recorded` event are identical for both and a
+ * cash-up total is only ever changed by a movement, never edited directly.
+ *
+ * The CALLER owns every precondition: it holds the session lock (`FOR SHARE`
+ * at least), has checked the session is `open` (`sql/970`'s trigger is the
+ * backstop), and has dealt with idempotency. Append-only; the free-text
+ * reference/note never reach the audit row or the event.
+ */
+export async function appendRegisterMovement(
+  tx: Bun.SQL,
+  input: AppendRegisterMovementInput
+): Promise<RegisterMovementRecord> {
+  const { tenantId, actorTenantUserId, sessionId, correlationId } = input;
+  const expenseId = input.expenseId ?? null;
+  const referenceKind = expenseId === null ? "free_text" : "expense";
+  const rows = (await tx`
+    INSERT INTO awcms_commerce_register_movements (
+      tenant_id, session_id, movement_type, direction, amount, reference_kind, reference,
+      note, actor_tenant_user_id, source_key, expense_id
+    )
+    VALUES (
+      ${tenantId}, ${sessionId}, ${input.movementType}, ${input.direction}, ${input.amount},
+      ${referenceKind}, ${input.reference}, ${input.note}, ${actorTenantUserId},
+      ${input.sourceKey}, ${expenseId}
+    )
+    RETURNING ${tx.unsafe(MOVEMENT_COLUMNS)}
+  `) as MovementRow[];
+  const movement = toMovementRecord(rows[0]!);
+
+  // Money, type and ids only - never the free-text reference/note (a person's
+  // name or a bank reference can hide there).
+  await recordAuditEvent(tx, {
+    tenantId,
+    actorTenantUserId,
+    moduleKey: AUDIT_MODULE_KEY,
+    action: "register_session.movement",
+    resourceType: AUDIT_RESOURCE_TYPE,
+    resourceId: sessionId,
+    message: `Drawer movement recorded: ${movement.movementType} ${movement.direction} ${movement.amount}.`,
+    attributes: {
+      movementId: movement.id,
+      movementType: movement.movementType,
+      direction: movement.direction,
+      amount: movement.amount,
+      ...(expenseId === null ? {} : { expenseId })
+    },
+    correlationId
+  });
+  await appendDomainEvent(tx, tenantId, {
+    eventType: COMMERCE_REGISTER_SESSION_MOVEMENT_RECORDED_EVENT_TYPE,
+    eventVersion: COMMERCE_EVENT_VERSION,
+    aggregateType: COMMERCE_REGISTER_SESSION_AGGREGATE_TYPE,
+    aggregateId: sessionId,
+    producerModule: PRODUCER_MODULE,
+    correlationId,
+    actorTenantUserId,
+    payload: {
+      sessionId,
+      movementId: movement.id,
+      movementType: movement.movementType,
+      direction: movement.direction,
+      amount: movement.amount
+    }
+  });
+  return movement;
+}
+
 export type RecordRegisterMovementOutcome =
   | { kind: "not_found" }
   | { kind: "session_not_open"; status: RegisterSessionStatus }
@@ -579,52 +692,17 @@ export async function recordRegisterMovement(
     return { kind: "replayed", movement: toMovementRecord(prior[0]) };
   }
 
-  const rows = (await tx`
-    INSERT INTO awcms_commerce_register_movements (
-      tenant_id, session_id, movement_type, direction, amount, reference, note,
-      actor_tenant_user_id, source_key
-    )
-    VALUES (
-      ${tenantId}, ${sessionId}, ${input.movementType}, ${input.direction}, ${input.amount},
-      ${input.reference}, ${input.note}, ${actorTenantUserId}, ${sourceKey}
-    )
-    RETURNING ${tx.unsafe(MOVEMENT_COLUMNS)}
-  `) as MovementRow[];
-  const movement = toMovementRecord(rows[0]!);
-
-  // Money, type and ids only - never the free-text reference/note (a person's
-  // name or a bank reference can hide there).
-  await recordAuditEvent(tx, {
+  const movement = await appendRegisterMovement(tx, {
     tenantId,
     actorTenantUserId,
-    moduleKey: AUDIT_MODULE_KEY,
-    action: "register_session.movement",
-    resourceType: AUDIT_RESOURCE_TYPE,
-    resourceId: sessionId,
-    message: `Drawer movement recorded: ${movement.movementType} ${movement.direction} ${movement.amount}.`,
-    attributes: {
-      movementId: movement.id,
-      movementType: movement.movementType,
-      direction: movement.direction,
-      amount: movement.amount
-    },
+    sessionId,
+    movementType: input.movementType,
+    direction: input.direction,
+    amount: input.amount,
+    reference: input.reference,
+    note: input.note,
+    sourceKey,
     correlationId
-  });
-  await appendDomainEvent(tx, tenantId, {
-    eventType: COMMERCE_REGISTER_SESSION_MOVEMENT_RECORDED_EVENT_TYPE,
-    eventVersion: COMMERCE_EVENT_VERSION,
-    aggregateType: COMMERCE_REGISTER_SESSION_AGGREGATE_TYPE,
-    aggregateId: sessionId,
-    producerModule: PRODUCER_MODULE,
-    correlationId,
-    actorTenantUserId,
-    payload: {
-      sessionId,
-      movementId: movement.id,
-      movementType: movement.movementType,
-      direction: movement.direction,
-      amount: movement.amount
-    }
   });
 
   await saveIdempotencyRecord(

@@ -206,6 +206,7 @@ const screen = await loadAdminScreen({
       tenantShortcuts,
       posEnabled: features.pos,
       registerEnabled: features.register,
+      storedValueEnabled: features.storedValue,
       registerSessions,
       canHold,
       canResumeHeld,
@@ -228,6 +229,9 @@ const denied = screen.state === "denied";
 const loadError = screen.state === "error";
 const posEnabled = allowed && screen.data.posEnabled;
 const registerEnabled = allowed && screen.data.registerEnabled;
+// Issue #288 - gift card / store credit tenders appear only while the tenant's
+// `storedValue` feature is on (the server refuses them otherwise).
+const storedValueEnabled = allowed && screen.data.storedValueEnabled;
 const registerSessions = allowed ? screen.data.registerSessions : [];
 const canSell = allowed && screen.data.canSell;
 const canReadHistory = allowed && screen.data.canReadHistory;
@@ -420,6 +424,21 @@ const tenderLabel = (method: string): string =>
       data-msg-no-tender={t(
         "Add at least one payment line, or leave the balance due."
       )}
+      data-msg-code-required={t(
+        "Enter the gift card or credit code for that payment line."
+      )}
+      data-msg-sv-not-found={t(
+        "That gift card or credit code was not recognised."
+      )}
+      data-msg-sv-unavailable={t(
+        "That gift card or credit is disabled or has expired."
+      )}
+      data-msg-sv-insufficient={t(
+        "That gift card or credit does not have enough balance for the amount entered."
+      )}
+      data-msg-sv-throttled={t(
+        "Too many code lookups. Wait a moment and try again."
+      )}
       data-msg-feature-disabled={t(
         "Point of sale is turned off for this store."
       )}
@@ -433,6 +452,9 @@ const tenderLabel = (method: string): string =>
       data-label-cash={t("Cash")}
       data-label-qris={t("QRIS")}
       data-label-bank={t("Bank transfer")}
+      data-label-gift-card={t("Gift card")}
+      data-label-store-credit={t("Store credit")}
+      data-label-code={t("Gift card or credit code")}
       data-label-tender={t("Payment line")}
       data-label-amount={t("Amount")}
       data-label-amount-cash={t("Amount handed over")}
@@ -928,7 +950,7 @@ const tenderLabel = (method: string): string =>
                     {tenderLabel(order.paymentMethod)}
                   </td>
                   <td data-label={t("Status")}>
-                    <span class="status-badge" data-status={order.status}>
+                    <span class="admin-status-pill" data-status={order.status}>
                       {commerceLabel(labels.orderStatus, order.status)}
                     </span>
                   </td>
@@ -1047,6 +1069,12 @@ const tenderLabel = (method: string): string =>
         <option value="cash">{t("Cash")}</option>
         <option value="manual_qris">{t("QRIS")}</option>
         <option value="manual_bank_transfer">{t("Bank transfer")}</option>
+        {storedValueEnabled && (
+          <option value="gift_card">{t("Gift card")}</option>
+        )}
+        {storedValueEnabled && (
+          <option value="store_credit">{t("Store credit")}</option>
+        )}
       </select>
     </label>
     <label>
@@ -1067,6 +1095,17 @@ const tenderLabel = (method: string): string =>
         data-field="reference"
         maxlength="100"
         autocomplete="off"
+      />
+    </label>
+    <label data-field="code-wrap" hidden>
+      <span data-field="code-label"></span>
+      <input
+        type="text"
+        data-field="code"
+        maxlength="64"
+        autocomplete="off"
+        autocapitalize="characters"
+        spellcheck="false"
       />
     </label>
     <button
@@ -1314,6 +1353,8 @@ const tenderLabel = (method: string): string =>
     amount: string;
     tenderedAmount: string | null;
     changeAmount: string | null;
+    /** Issue #288 - the MASKED code of the gift card / credit a leg drew from; the plaintext is never stored or returned. */
+    storedValue?: { maskedCode: string } | null;
   };
 
   type PosOrderResponse = {
@@ -1452,9 +1493,15 @@ const tenderLabel = (method: string): string =>
     amount: HTMLInputElement;
     reference: HTMLInputElement;
     referenceWrap: HTMLElement;
+    code: HTMLInputElement;
+    codeWrap: HTMLElement;
     remove: HTMLButtonElement;
     amountLabel: HTMLElement;
   };
+
+  /** Issue #288 - a gift card / store credit line names its account by code. */
+  const isStoredValue = (type: string): boolean =>
+    type === "gift_card" || type === "store_credit";
   const tenderLines: TenderLine[] = [];
 
   function tenderLine(row: HTMLElement): TenderLine {
@@ -1466,6 +1513,8 @@ const tenderLabel = (method: string): string =>
       amount: q<HTMLInputElement>("amount"),
       reference: q<HTMLInputElement>("reference"),
       referenceWrap: q<HTMLElement>("reference-wrap"),
+      code: q<HTMLInputElement>("code"),
+      codeWrap: q<HTMLElement>("code-wrap"),
       remove: q<HTMLButtonElement>("remove"),
       amountLabel: q<HTMLElement>("amount-label")
     };
@@ -1479,7 +1528,10 @@ const tenderLabel = (method: string): string =>
       line.amountLabel.textContent = cash
         ? msg("labelAmountCash")
         : msg("labelAmount");
-      line.referenceWrap.hidden = cash;
+      const stored = isStoredValue(line.type.value);
+      line.referenceWrap.hidden = cash || stored;
+      line.codeWrap.hidden = !stored;
+      if (!stored) line.code.value = "";
       line.remove.textContent = msg("labelRemove");
       line.remove.setAttribute(
         "aria-label",
@@ -1506,6 +1558,10 @@ const tenderLabel = (method: string): string =>
     );
     if (methodLabel) methodLabel.textContent = msg("labelMethod");
     if (referenceLabel) referenceLabel.textContent = msg("labelReference");
+    const codeLabel = row.querySelector<HTMLElement>(
+      '[data-field="code-label"]'
+    );
+    if (codeLabel) codeLabel.textContent = msg("labelCode");
     line.type.value = type;
     line.type.addEventListener("change", syncTenderLines);
     line.amount.addEventListener("input", recomputeSummary);
@@ -1925,7 +1981,9 @@ const tenderLabel = (method: string): string =>
       const methodNames: Record<string, string> = {
         cash: msg("labelCash"),
         manual_qris: msg("labelQris"),
-        manual_bank_transfer: msg("labelBank")
+        manual_bank_transfer: msg("labelBank"),
+        gift_card: msg("labelGiftCard"),
+        store_credit: msg("labelStoreCredit")
       };
       const addRow = (label: string, value: string) => {
         const dt = document.createElement("dt");
@@ -1939,7 +1997,9 @@ const tenderLabel = (method: string): string =>
           continue;
         }
         addRow(
-          methodNames[payment.tenderType] ?? payment.tenderType,
+          `${methodNames[payment.tenderType] ?? payment.tenderType}${
+            payment.storedValue ? ` ${payment.storedValue.maskedCode}` : ""
+          }`,
           payment.amount
         );
         if (payment.tenderedAmount !== null) {
@@ -2021,6 +2081,15 @@ const tenderLabel = (method: string): string =>
       saleError.show(msg("msgTwoCash"));
       return;
     }
+    if (
+      filled.some(
+        (line) =>
+          isStoredValue(line.type.value) && line.code.value.trim() === ""
+      )
+    ) {
+      saleError.show(msg("msgCodeRequired"));
+      return;
+    }
     if (plan.overpaid) {
       saleError.show(msg("msgOverpayment"));
       return;
@@ -2066,9 +2135,14 @@ const tenderLabel = (method: string): string =>
             tenderType: line.type.value,
             amount: fromCents(toCents(line.amount.value.trim())),
             reference:
-              line.type.value === "cash"
+              line.type.value === "cash" || isStoredValue(line.type.value)
                 ? null
-                : line.reference.value.trim() || null
+                : line.reference.value.trim() || null,
+            // Issue #288 - the code is sent once, in this request, and
+            // resolved server-side; it is never stored or echoed back.
+            ...(isStoredValue(line.type.value)
+              ? { storedValueCode: line.code.value.trim() }
+              : {})
           })),
           ...(allowDue ? { allowDue: true } : {}),
           ...(registerId !== "" ? { registerId } : {}),
@@ -2084,6 +2158,10 @@ const tenderLabel = (method: string): string =>
           OVERPAYMENT: msg("msgOverpayment"),
           ACCESS_DENIED: msg("msgDueDenied"),
           FEATURE_DISABLED: msg("msgFeatureDisabled"),
+          STORED_VALUE_NOT_FOUND: msg("msgSvNotFound"),
+          STORED_VALUE_UNAVAILABLE: msg("msgSvUnavailable"),
+          STORED_VALUE_INSUFFICIENT: msg("msgSvInsufficient"),
+          STORED_VALUE_LOOKUP_THROTTLED: msg("msgSvThrottled"),
           REGISTER_SESSION_REQUIRED: msg("msgRegisterSessionRequired"),
           REGISTER_SESSION_CLOSING: msg("msgRegisterSessionClosing"),
           NOT_SESSION_CASHIER: msg("msgNotSessionCashier"),

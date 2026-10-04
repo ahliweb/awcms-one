@@ -85,6 +85,9 @@ export type AccessAction =
   | "rebuild"
   | "analyze"
   | "export"
+  // Catalog bulk import (Issue #291): the dry-run/apply of a product CSV. A
+  // bulk catalog write, high-risk like `export` is for the bulk read.
+  | "import"
   // MFA administration (Issue #184): `reset` disables another user's factor
   // (high-risk); `configure` sets the tenant MFA enforcement policy.
   | "reset"
@@ -155,7 +158,7 @@ export type AccessAction =
   // self-attest it cleared for publication. Classified HIGH-RISK below: see
   // that Set's own comment for why.
   | "adjudicate_rights"
-  // Media library (Issue #268, `sql/169`): `download` issues a short-lived
+  // Media library (Issue #268, `sql/881`): `download` issues a short-lived
   // presigned GET URL for a media object (public or private). Deliberately
   // NOT high-risk: it neither deletes nor irreversibly changes any data —
   // the URL itself expires within `NEWS_MEDIA_R2_MAX_PRESIGNED_DOWNLOAD_TTL_SECONDS`
@@ -312,6 +315,7 @@ const HIGH_RISK_ACTIONS: ReadonlySet<AccessAction> = new Set([
   "revoke",
   "rebuild",
   "export",
+  "import",
   "archive",
   // Data lifecycle (ADR-0037): releasing a legal hold removes a data-protection
   // safeguard — see the `AccessAction` union's own comment for `release`.

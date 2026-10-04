@@ -6,6 +6,8 @@
 
 **awcms-one** is a Bun/Astro/PostgreSQL commerce-and-news platform, and a [GitHub template](#use-this-as-a-template) other applications start from. Its own live deployment re-platforms the borneojek-mart commerce store — PHP/Laravel/MySQL/React-Inertia — onto Bun, Astro, and PostgreSQL under row-level security, a genuine re-platform rather than a refactor (no Laravel code carried over; the source schema is read from the live `commerce_bj_mart` MySQL database and re-expressed as AWCMS module tables — see [issue #1](https://github.com/ahliweb/awcms-one/issues/1)).
 
+> **Template-only runtime rule:** applications created from `awcms-one` own and run their **own backend, database, migrations, secrets, domains and deployment** in their own repository. This repository is a template/reference implementation, **not a shared production backend** for derived products. A consumer requirement may be promoted back here only after it is generalized into a reusable template capability. See [ADR-0024](docs/adr/0024-awcms-one-is-template-only-derived-apps-own-their-backend.md).
+
 ## Screenshots
 
 An above-the-fold crop of the home page, one per build profile — the same three `SITE_PROFILE` shapes [`docs/template.md`](docs/template.md) documents in full.

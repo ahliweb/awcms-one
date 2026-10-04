@@ -210,7 +210,11 @@ type CloseBody = { outcome: string; report: ReportBody };
 
 const key = () => ({ "idempotency-key": crypto.randomUUID() });
 
-async function enableRegisters(owner: Principal, threshold = "50.00") {
+async function enableRegisters(
+  owner: Principal,
+  threshold = "50.00",
+  allowSelfApproval = true
+) {
   return invoke<Envelope>(patchModuleSettings, {
     method: "PATCH",
     path: "/api/v1/tenant/modules/commerce/settings",
@@ -225,7 +229,7 @@ async function enableRegisters(owner: Principal, threshold = "50.00") {
         courier: true,
         register: true
       },
-      cashUp: { approvalThreshold: threshold }
+      cashUp: { approvalThreshold: threshold, allowSelfApproval }
     }
   });
 }
@@ -829,6 +833,46 @@ suite(
       expect(closed.body.data.report.closeRequests[0]).toMatchObject({
         decision: "approved"
       });
+    });
+
+    test("by default (cashUp.allowSelfApproval off) an approve-holder's own large variance waits, and they cannot decide it themselves (409 SOD_MAKER_IS_CHECKER)", async () => {
+      if (skipUnlessHandlerReady()) return;
+      const owner = await bootstrapOwner();
+      await enableRegisters(owner, "50.00", false);
+      const registerId = await newRegister(owner);
+      const supervisor = await seedPrincipal(owner.tenantId, "supervisor", [
+        ...CASHIER_PERMISSIONS,
+        "commerce.register_cash_ups.approve"
+      ]);
+      const sessionId = (await open(supervisor, registerId)).body.data.id;
+      const closed = await close(
+        supervisor,
+        sessionId,
+        { cash: "99000.00" },
+        "short a lot"
+      );
+      expect(closed.status).toBe(200);
+      expect(closed.body.data.outcome).toBe("pending_approval");
+
+      const self = await invoke<Envelope>(postDecision, {
+        method: "POST",
+        path: `/api/v1/commerce/register-sessions/${sessionId}/close-decision`,
+        headers: headers(supervisor, key()),
+        params: { id: sessionId },
+        body: { decision: "approve" }
+      });
+      expect(self.status).toBe(409);
+      expect(self.body.error?.code).toBe("SOD_MAKER_IS_CHECKER");
+
+      const byOwner = await invoke<Envelope<CloseBody>>(postDecision, {
+        method: "POST",
+        path: `/api/v1/commerce/register-sessions/${sessionId}/close-decision`,
+        headers: headers(owner, key()),
+        params: { id: sessionId },
+        body: { decision: "approve" }
+      });
+      expect(byOwner.status).toBe(200);
+      expect(byOwner.body.data.report.session.status).toBe("closed");
     });
 
     test("a POS-only user holds none of the register permissions", async () => {

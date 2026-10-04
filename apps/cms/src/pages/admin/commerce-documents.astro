@@ -26,6 +26,7 @@
  */
 import AdminLayout from "../../layouts/AdminLayout.astro";
 import CommerceConfirmDialog from "../../components/CommerceConfirmDialog.astro";
+import CommerceDeliveryDialog from "../../components/CommerceDeliveryDialog.astro";
 import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
@@ -113,6 +114,14 @@ const NO_CAN: Can = {
   heldApprove: false
 };
 
+/** Issue #295 (ADR-0034): the delivery dialog's own keys, all false while the `documentDelivery` feature is off. */
+type DeliveryCan = { read: boolean; create: boolean; override: boolean };
+const NO_DELIVERY_CAN: DeliveryCan = {
+  read: false,
+  create: false,
+  override: false
+};
+
 const screen = await loadAdminScreen({
   ssr,
   workClass: "interactive",
@@ -127,6 +136,7 @@ const screen = await loadAdminScreen({
       return {
         enabled: false as const,
         can: NO_CAN,
+        deliveryCan: NO_DELIVERY_CAN,
         quotations: null as QuotationListPage | null,
         workOrders: null as WorkOrderListPage | null,
         documents: null as DocumentListPage | null,
@@ -192,6 +202,25 @@ const screen = await loadAdminScreen({
         action: "approve"
       })
     };
+    const deliveryCan: DeliveryCan = features.documentDelivery
+      ? {
+          read: await can({
+            moduleKey: "commerce",
+            activityCode: "document_deliveries",
+            action: "read"
+          }),
+          create: await can({
+            moduleKey: "commerce",
+            activityCode: "document_deliveries",
+            action: "create"
+          }),
+          override: await can({
+            moduleKey: "commerce",
+            activityCode: "document_delivery_overrides",
+            action: "create"
+          })
+        }
+      : NO_DELIVERY_CAN;
     const now = new Date();
     const quotations =
       tab === "quotations" && perms.quotationsRead
@@ -241,6 +270,7 @@ const screen = await loadAdminScreen({
     return {
       enabled: true as const,
       can: perms,
+      deliveryCan,
       quotations,
       workOrders,
       documents,
@@ -262,6 +292,9 @@ const loadError = screen.state === "error";
 const data = screen.state === "allowed" ? screen.data : null;
 const enabled = data?.enabled === true;
 const can = data?.can ?? NO_CAN;
+const deliveryCan = data?.deliveryCan ?? NO_DELIVERY_CAN;
+/** The Deliver button and dialog exist only when the viewer may do something in them. */
+const canDeliver = deliveryCan.read || deliveryCan.create;
 const quotations = data?.quotations ?? null;
 const workOrders = data?.workOrders ?? null;
 const documents = data?.documents ?? null;
@@ -615,6 +648,18 @@ const cashierLabel = (id: string): string =>
                                 {t("Revise")}
                               </button>
                             )}
+                          {canDeliver && quotation.status !== "cancelled" && (
+                            <button
+                              type="button"
+                              class="btn-inline delivery-open"
+                              data-delivery-target-type="quotation_version"
+                              data-delivery-target-id={quotation.id}
+                              data-delivery-version={quotation.currentVersion}
+                              data-delivery-number={quotation.number}
+                            >
+                              {t("Deliver")}
+                            </button>
+                          )}
                           {can.convert && quotation.status === "accepted" && (
                             <button
                               type="button"
@@ -803,6 +848,19 @@ const cashierLabel = (id: string): string =>
                               </button>
                             </div>
                           )}
+                        {canDeliver && (
+                          <div class="row-actions">
+                            <button
+                              type="button"
+                              class="btn-inline delivery-open"
+                              data-delivery-target-type="work_order"
+                              data-delivery-target-id={workOrder.id}
+                              data-delivery-number={workOrder.number}
+                            >
+                              {t("Deliver")}
+                            </button>
+                          </div>
+                        )}
                       </td>
                     </tr>
                   ))
@@ -921,6 +979,17 @@ const cashierLabel = (id: string): string =>
                           >
                             {t("Plain text")}
                           </a>
+                          {canDeliver && (
+                            <button
+                              type="button"
+                              class="btn-inline delivery-open"
+                              data-delivery-target-type="document"
+                              data-delivery-target-id={document.id}
+                              data-delivery-number={document.number}
+                            >
+                              {t("Deliver")}
+                            </button>
+                          )}
                         </div>
                       </td>
                     </tr>
@@ -1045,6 +1114,14 @@ const cashierLabel = (id: string): string =>
   )}
 
   <CommerceConfirmDialog locale={Astro.locals.locale} />
+  {allowed && enabled && canDeliver && (
+    <CommerceDeliveryDialog
+      locale={Astro.locals.locale}
+      canCreate={deliveryCan.create}
+      canOverride={deliveryCan.override}
+      canRead={deliveryCan.read}
+    />
+  )}
 </AdminLayout>
 
 <script>
@@ -1056,6 +1133,9 @@ const cashierLabel = (id: string): string =>
     sendJson
   } from "../../lib/ui/admin-form-client";
   import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
+  import { initDeliveryDialog } from "../../lib/ui/commerce-delivery-dialog-client";
+
+  initDeliveryDialog();
 
   const root = document.getElementById("documents-root");
   const msg = (key: string): string => root?.dataset[key] ?? "";
