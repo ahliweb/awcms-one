@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:c75568c3b4eba77ecad6e0feed12bb68b1d2b751c49cf39c739726c18a099609 -->
+<!-- i18n-source-hash: sha256:6ca55055e0145a68c7b1c1c6d4b1f8c4ff30a09866f32265f6c17a4deaf9123c -->
 
 # Skema basis data
 
@@ -220,6 +220,21 @@ Enam tabel FORCE-RLS (kebijakan isolasi tenant dengan `WITH CHECK`, FK komposit 
 - **Kolom stempel (`sql/971`).** `awcms_commerce_orders.register_session_id` (CHECK: hanya `channel = 'pos'`; trigger mengisinya sekali saat INSERT, hanya terhadap sesi `open`, dan menolak perubahan berikutnya) dan `awcms_commerce_payment_allocations.register_session_id` (trigger mensyaratkannya sama dengan sesi pesanan leg itu sendiri dan sesi itu `open`; penjaga append-only ledger, yang diganti `sql/971`, membekukannya). Keduanya NULL untuk setiap baris yang dicatat di luar sesi terbuka — langkah expand, tidak ada yang perlu di-backfill.
 - **Hak istimewa.** `awcms_app` kehilangan `DELETE` pada keenamnya; tiga tabel murni-tambah (mutasi, baris penutupan, koreksi) juga kehilangan `UPDATE`. `awcms_worker` mempertahankan `SELECT, DELETE` (`sql/973`) untuk mesin retensi (`commerce.register_*`, batas bawah lima tahun, batas atas sepuluh tahun; dua induk berkursor `deleted_at` yang tidak pernah diset, empat anak berkursor `created_at`). `security-readiness.ts` menegaskan himpunan yang persis di kedua arah.
 - **`sql/972`** men-seed sepuluh kunci izin; `sql/974` ditahan dan tidak dipakai.
+
+## Kartu hadiah dan kredit toko: tiga tabel, satu kolom pada ledger pembayaran (`sql/985`–`988`, issue #288, [ADR-0030](adr/0030-stored-value-is-a-closed-loop-liability-ledger.md))
+
+Tiga tabel FORCE-RLS (kebijakan isolasi tenant dengan `WITH CHECK`, foreign key komposit `(tenant_id, …)` yang didukung `UNIQUE (tenant_id, id)`, setiap kolom FK diindeks, uang `numeric(14,2)`), ditambah `awcms_commerce_payment_allocations.stored_value_account_id`.
+
+| Tabel | Isinya | Constraint penting |
+| --- | --- | --- |
+| `awcms_commerce_stored_value_programs` | Konfigurasi per tenant per jenis: `enabled`, `expiry_days` (1–3650 atau NULL), `allow_refund_to_account`, `max_balance` (> 0 atau NULL), stempel pengubah, `deleted_at` (tidak pernah diisi — kursor retensi) | `UNIQUE (tenant_id, kind)` dan `UNIQUE (tenant_id, id, kind)`; trigger penjaga mengunci `kind` dan `deleted_at`; `awcms_app` tidak punya `DELETE` |
+| `awcms_commerce_stored_value_accounts` | Satu kartu/kredit: `kind`, `code_hash` (`sha256:`+64 hex) dan `code_last4`, `customer_id` opsional, `status` (`active \| disabled \| expired`), `balance >= 0`, `version`, `expires_at`, stempel penerbit, `last_activity_at`, `deleted_at` (tidak pernah diisi) | FK komposit `(tenant_id, program_id, kind)` mengunci jenis ke program; **`UNIQUE (tenant_id, code_hash)`**; `version > 0 OR balance = 0`; penjaga insert (dibuat kosong dan aktif); **trigger constraint tertangguh** mewajibkan entri ledger `issue` saat COMMIT; penjaga update membekukan kolom identitas dan membiarkan `balance`/`version`/`status` berubah hanya dari dalam trigger ledger (`pg_trigger_depth() >= 2`) atau, untuk `balance`/`version`, bila nilai barunya persis sebesar jumlah ledger |
+| `awcms_commerce_stored_value_ledger` | Fakta append-only: `kind` (`issue \| load \| redeem \| refund \| adjust \| expire \| disable \| enable`), `amount` bertanda, `account_seq`, `balance_after`, `allocation_id`, `reason`, `source_key`, stempel pelaku, `created_at` (`clock_timestamp()`), identity `entry_seq` | CHECK tanda per jenis; `allocation_id` jika dan hanya jika `redeem`/`refund`; alasan untuk `adjust`/`disable`; `UNIQUE (tenant_id, source_key)`, `UNIQUE (account_id, account_seq)`, satu `issue` per akun, satu entri per alokasi; FK komposit ke akun dan alokasi pembayaran; **trigger `BEFORE INSERT` `awcms_commerce_stored_value_ledger_apply` adalah satu-satunya penulis proyeksi akun** (mengunci akun `FOR NO KEY UPDATE`, menerapkan aturan status/kedaluwarsa, menolak saldo negatif atau yang melewati batas, menetapkan `account_seq`/`balance_after`, memeriksa `redeem`/`refund` mencerminkan alokasi berhasil dengan akun, tender, dan jumlah yang sama); trigger menolak setiap `UPDATE`, `awcms_app` tidak punya `UPDATE` maupun `DELETE` |
+
+- **`sql/986`** melebarkan ledger pembayaran: `tender_type` mendapat `gift_card`/`store_credit`; `stored_value_account_id` (FK komposit, dibekukan penjaga append-only yang diganti) diisi tepat untuk kedua tender itu (CHECK) dan tidak pernah bersama `provider_reference`; **trigger constraint tertangguh** menolak leg nilai tersimpan yang mencapai COMMIT tanpa entri ledger cerminannya; CHECK `awcms_commerce_orders.payment_method` di-drop dan ditambahkan lagi dengan kedua nilai (petunjuk ringkasan lama).
+- **`sql/985`** juga membuat `awcms_commerce_customers (tenant_id, id)` sebagai target FK komposit (`IF NOT EXISTS`, indeks sama yang dibuat skema loyalti).
+- **Hak akses.** `awcms_app` kehilangan `DELETE` pada ketiganya dan `UPDATE` pada ledger; `awcms_worker` mempertahankan `SELECT, DELETE` (`sql/988`) untuk mesin retensi (`commerce.stored_value_*`, lantai lima tahun, batas atas sepuluh tahun; kedua induk berkursor `deleted_at` yang tidak pernah diisi, ledger berkursor `created_at`). `security-readiness.ts` menegaskan himpunan persisnya di kedua arah.
+- **`sql/987`** menyemai tujuh kunci izin; `sql/989` ditahan dan tidak dipakai.
 
 ## Dokumen commerce: tujuh tabel (`sql/980`–`982`, issue #286, [ADR-0029](adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md))
 

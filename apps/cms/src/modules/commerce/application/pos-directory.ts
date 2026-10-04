@@ -102,9 +102,17 @@ import {
 import {
   planTenders,
   tenderToOrderPaymentMethod,
+  type OrderPaymentMethodHint,
   type TenderInput,
   type TenderPlan
 } from "../domain/payment-allocation";
+import { isStoredValueTender } from "../domain/stored-value";
+import {
+  preflightStoredValueLegs,
+  redactTendersForHash,
+  resolveStoredValueAccounts
+} from "./stored-value-tender";
+import { StoredValueInvariantError } from "./stored-value-ledger";
 import { fromCents, toCents } from "../domain/price-calculation";
 import {
   COMMERCE_EVENT_VERSION,
@@ -224,9 +232,7 @@ function adaptLegacyPayment(
 }
 
 /** The legacy `orders.payment_method` summary hint: the tender with the largest applied amount (first on a tie); `cash` when nothing was tendered at all. */
-function summaryPaymentMethod(
-  plan: TenderPlan
-): "cash" | "manual_qris" | "manual_bank" | "gateway" {
+function summaryPaymentMethod(plan: TenderPlan): OrderPaymentMethodHint {
   let best: TenderPlan["legs"][number] | null = null;
   for (const leg of plan.legs) {
     if (best === null || toCents(leg.amount) > toCents(best.amount)) best = leg;
@@ -265,7 +271,11 @@ export async function createPosOrder(
     // `undefined` drops out of the hash, so a LEGACY request hashes exactly
     // as it did before Issue #285 (a replay across the deploy still matches).
     payment: input.payment ?? undefined,
-    tenders: input.tenders ?? undefined,
+    // Issue #288 - a gift-card / store-credit code is replaced by its
+    // tenant-scoped hash: the idempotency table must never hold anything
+    // derived from the plaintext by a weaker function. A tender without a code
+    // hashes exactly as before.
+    tenders: redactTendersForHash(tenantId, input.tenders),
     allowDue: input.allowDue ? true : undefined,
     // Issue #284 - `undefined` drops out, so a request without a register
     // hashes exactly as before.
@@ -391,6 +401,44 @@ export async function createPosOrder(
   }
   const change = plan.changeAmount;
   const amountTendered = plan.cashTendered;
+
+  // Issue #288 (ADR-0030) - stored-value tenders. Resolve each code to its
+  // account, then lock every account involved and refuse (with a typed error,
+  // BEFORE any row of this sale exists) whatever cannot be redeemed in full.
+  // The locks last to the end of this transaction, so nothing can spend the
+  // card between this check and the redemption below; the order does not
+  // exist yet, so no other transaction can hold or want a lock on it
+  // (lock order stays order -> account everywhere it can matter).
+  const storedValueLegs = plan.legs.flatMap((leg, index) =>
+    isStoredValueTender(leg.tenderType) && leg.storedValueCode
+      ? [{ index, leg, code: leg.storedValueCode }]
+      : []
+  );
+  const storedValueAccountByLeg = new Map<number, string>();
+  if (storedValueLegs.length > 0) {
+    if (!features.storedValue) throw new FeatureDisabledError("storedValue");
+    const accountIds = await resolveStoredValueAccounts(
+      tx,
+      tenantId,
+      actorTenantUserId,
+      storedValueLegs.map(({ leg, code }) => ({
+        tenderType: leg.tenderType as "gift_card" | "store_credit",
+        code
+      }))
+    );
+    storedValueLegs.forEach(({ index }, position) => {
+      storedValueAccountByLeg.set(index, accountIds[position]!);
+    });
+    await preflightStoredValueLegs(
+      tx,
+      tenantId,
+      storedValueLegs.map(({ index, leg }) => ({
+        accountId: storedValueAccountByLeg.get(index)!,
+        tenderType: leg.tenderType as "gift_card" | "store_credit",
+        amount: leg.amount
+      }))
+    );
+  }
 
   let orderId = "";
   let orderCode = "";
@@ -526,13 +574,14 @@ export async function createPosOrder(
   );
   const releaseNote = "POS counter sale — paid at the register.";
   for (const [index, leg] of plan.legs.entries()) {
-    await recordPaymentAllocation(tx, tenantId, {
+    const outcome = await recordPaymentAllocation(tx, tenantId, {
       orderId,
       tenderType: leg.tenderType,
       amount: leg.amount,
       providerReference: leg.reference,
       tenderedAmount: leg.tenderedAmount,
       changeAmount: leg.changeAmount,
+      storedValueAccountId: storedValueAccountByLeg.get(index) ?? null,
       source: "pos",
       sourceKey: `pos:${input.idempotencyKey}:${index}`,
       actor: { kind: "tenant_user", tenantUserId: actorTenantUserId },
@@ -542,6 +591,14 @@ export async function createPosOrder(
       releaseNote,
       correlationId
     });
+    if (outcome.kind === "stored_value_refused") {
+      // Unreachable while the preflight above holds its locks; if it ever
+      // fires, throw (never return a response): the unmapped error rolls the
+      // whole sale back instead of committing a half-settled one.
+      throw new StoredValueInvariantError(
+        `A stored-value leg was refused after the preflight (${outcome.refusal}).`
+      );
+    }
   }
   if (plan.legs.length === 0 && toCents(quote.total) === 0n) {
     // A free sale (total 0.00) owes nothing and has no leg to write: settled

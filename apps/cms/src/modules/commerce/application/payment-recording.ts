@@ -39,6 +39,16 @@ import {
   makeOrderRelease
 } from "./order-directory";
 import {
+  isStoredValueTender,
+  hashStoredValueCode
+} from "../domain/stored-value";
+import { FeatureDisabledError } from "../domain/commerce-features";
+import { fetchCommerceFeatures } from "./commerce-feature-gate";
+import {
+  refusalToError,
+  resolveStoredValueAccounts
+} from "./stored-value-tender";
+import {
   recordPaymentAllocation,
   recordPaymentReversal,
   type PaymentAllocationRecord
@@ -86,7 +96,12 @@ export async function recordOwnerPayment(
     tenderType: input.tenderType,
     amount: input.amount,
     reference: input.reference,
-    note: input.note
+    note: input.note,
+    // Issue #288 - the plaintext code never enters the hash; `undefined`
+    // drops out, so a payload without one hashes exactly as before.
+    storedValueCodeHash: input.storedValueCode
+      ? hashStoredValueCode(tenantId, input.storedValueCode)
+      : undefined
   });
 
   const existing = await findIdempotencyRecord(
@@ -106,11 +121,29 @@ export async function recordOwnerPayment(
   }
 
   const isCash = input.tenderType === "cash";
+
+  // Issue #288 (ADR-0030) - a stored-value tender names its account by code;
+  // resolve it (throttled, one neutral not-found for every failure) before
+  // the ledger takes the order lock.
+  let storedValueAccountId: string | null = null;
+  if (isStoredValueTender(input.tenderType)) {
+    const features = await fetchCommerceFeatures(tx, tenantId);
+    if (!features.storedValue) throw new FeatureDisabledError("storedValue");
+    const resolved = await resolveStoredValueAccounts(
+      tx,
+      tenantId,
+      actorTenantUserId,
+      [{ tenderType: input.tenderType, code: input.storedValueCode ?? "" }]
+    );
+    storedValueAccountId = resolved[0] ?? null;
+  }
+
   const outcome = await recordPaymentAllocation(tx, tenantId, {
     orderId,
     tenderType: input.tenderType,
     amount: input.amount,
     ...(isCash ? { cashHanded: input.amount } : {}),
+    storedValueAccountId,
     providerReference: input.reference,
     note: input.note,
     source: "admin",
@@ -133,6 +166,11 @@ export async function recordOwnerPayment(
   if (outcome.kind === "order_not_found") return { kind: "order_not_found" };
   if (outcome.kind === "order_not_payable") {
     return { kind: "order_not_payable", orderStatus: outcome.orderStatus };
+  }
+  if (outcome.kind === "stored_value_refused") {
+    // Nothing was written (the ledger decides before it inserts), so the
+    // typed error maps to a plain response with no partial state to commit.
+    throw refusalToError(outcome.refusal, outcome.available, input.amount);
   }
   if (outcome.kind === "nothing_to_settle") {
     // Unreachable: this call never sets `clampToOutstanding`.
@@ -170,7 +208,12 @@ export type RecordOwnerReversalOutcome =
   | { kind: "register_session_not_cashier" }
   | {
       kind: "not_reversible";
-      reason: "not_a_payment" | "not_succeeded" | "fully_reversed";
+      reason:
+        | "not_a_payment"
+        | "not_succeeded"
+        | "fully_reversed"
+        | "stored_value_refund_not_allowed"
+        | "stored_value_account_unavailable";
     }
   | { kind: "created" | "replayed"; body: PaymentMutationRecord };
 

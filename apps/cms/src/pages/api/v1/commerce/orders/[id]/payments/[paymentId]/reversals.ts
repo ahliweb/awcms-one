@@ -105,7 +105,11 @@ export const POST = defineTenantRoute<RecordReversalInput>({
           "PAYMENT_NOT_REVERSIBLE",
           outcome.reason === "fully_reversed"
             ? "This payment has already been reversed in full."
-            : "Only a succeeded payment can be reversed.",
+            : outcome.reason === "stored_value_refund_not_allowed"
+              ? "The gift card / store credit program does not allow a refund back to the account."
+              : outcome.reason === "stored_value_account_unavailable"
+                ? "The gift card / store credit account cannot take value back (disabled, expired or unknown)."
+                : "Only a succeeded payment can be reversed.",
           {},
           { reason: outcome.reason }
         );

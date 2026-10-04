@@ -145,6 +145,20 @@ export const COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE =
   "awcms.commerce.register_session.corrected";
 
 /**
+ * Closed-loop stored-value ledger event (Issue #288, ADR-0030). ONE type for
+ * every ledger entry (issue, load, redeem, refund, adjust, expire, disable,
+ * enable), on the STORED-VALUE ACCOUNT aggregate (`commerce.stored_value_
+ * account`, aggregate id = the account id), so a consumer rebuilding "what
+ * happened to this card" reads one ordered stream and filters on `entryKind`.
+ * The payload carries ids, the kinds, the signed amount and the resulting
+ * balance — never the code, the customer, or the free-text reason.
+ * Registered in `domain-event-runtime/domain/event-type-registry.ts` and
+ * `asyncapi/awcms-domain-events.asyncapi.yaml` in the same change.
+ */
+export const COMMERCE_STORED_VALUE_ENTRY_RECORDED_EVENT_TYPE =
+  "awcms.commerce.stored_value.entry_recorded";
+
+/**
  * Document-lifecycle events (Issue #286, ADR-0029). Four facts a downstream
  * consumer (accounting, CRM, a notification) needs; held sales and ordinary
  * quotation/work-order edits are audit-only. Payloads carry ids, numbers,
@@ -184,6 +198,8 @@ export const COMMERCE_LOYALTY_ACCOUNT_AGGREGATE_TYPE =
   "commerce.loyalty_account";
 
 export const COMMERCE_ORDER_AGGREGATE_TYPE = "commerce.order";
+export const COMMERCE_STORED_VALUE_ACCOUNT_AGGREGATE_TYPE =
+  "commerce.stored_value_account";
 export const COMMERCE_REGISTER_SESSION_AGGREGATE_TYPE =
   "commerce.register_session";
 export const COMMERCE_REVIEW_AGGREGATE_TYPE = "commerce.review";

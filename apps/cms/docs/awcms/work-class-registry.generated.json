@@ -927,6 +927,56 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/stored-value/accounts/[id]/adjust.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/stored-value/accounts/[id]/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/stored-value/accounts/[id]/ledger.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/stored-value/accounts/[id]/load.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/stored-value/accounts/[id]/status.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/stored-value/accounts/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/stored-value/expire.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/stored-value/programs/[kind].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/stored-value/programs/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/stored-value/reconcile.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/testimonials/[id].ts",
       "workClass": "interactive",
       "source": "factory"
@@ -1588,6 +1638,11 @@
     },
     {
       "path": "src/pages/api/v1/reports/commerce/sales-daily.ts",
+      "workClass": "reporting",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/reports/commerce/stored-value.ts",
       "workClass": "reporting",
       "source": "factory"
     },

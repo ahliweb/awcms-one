@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:3f0375d8885fcb60f6c1aeb82a8a89c504fcf3db92c69cdc2ec8e1ec112d57bf -->
+<!-- i18n-source-hash: sha256:e7ad5aeeda097277b5f0e912e7c6390239c3dd4d3be6acb51529dc405353fa5a -->
 
 # API
 
@@ -99,6 +99,26 @@ Setiap rute di bawah ini berada di belakang flag fitur `register` milik tenant (
 | `GET` | `commerce/register-sessions/{id}/report.csv` | `commerce.register_sessions.export` | Tutup kas sebagai satu CSV bersekat, setiap sel dinetralkan dari formula spreadsheet; `Cache-Control: no-store` |
 
 Rute POS (`POST commerce/pos/orders`) mendapat **`registerId`** opsional: WAJIB selama fitur `register` nyala (penjualan dilekatkan ke sesi terbuka register itu, yang kasir saat ini-nya harus pemanggil — `404` register tak dikenal/milik tenant lain, `409 REGISTER_SESSION_REQUIRED | REGISTER_SESSION_CLOSING | NOT_SESSION_CASHIER`, semuanya sebelum apa pun ditulis); dengan fitur mati, mengirimnya adalah `409 FEATURE_DISABLED` dan tidak ada yang distempel. 201 mendapat `registerSessionId`.
+
+## API pemilik: kartu hadiah dan kredit toko (issue #288, epik #281, [ADR-0030](adr/0030-stored-value-is-a-closed-loop-liability-ledger.md))
+
+Setiap rute di bawah berada di balik flag fitur `storedValue` tenant (default MATI — `409 FEATURE_DISABLED`), memerlukan sesi bearer/cookie, dan — untuk setiap mutasi kecuali PUT program dan sweep kedaluwarsa — header **`Idempotency-Key`** (`400 IDEMPOTENCY_REQUIRED`). Uang adalah STRING `numeric(14,2)`; jumlah ledger bertanda. Tujuh izin. Kode **tidak pernah** dikembalikan kecuali sekali, oleh respons penerbitan; di tempat lain ia tersamar (`•••••••-•••••••-•••ABCD`). Sengaja tidak ada endpoint pencarian atau penukaran publik.
+
+| Metode | Path | Izin | Catatan |
+| --- | --- | --- | --- |
+| `GET` | `commerce/stored-value/programs` | `commerce.stored_value_programs.read` | Kedua jenis; yang belum disimpan melaporkan default-nya yang nonaktif (`configured: false`) |
+| `PUT` | `commerce/stored-value/programs/{kind}` | `commerce.stored_value_programs.update` | `{ enabled, allowRefundToAccount, expiryDays?, maxBalance? }`; `enabled` hanya mengatur penerbitan/pengisian — nilai yang beredar tetap dapat ditukar |
+| `GET`/`POST` | `commerce/stored-value/accounts` | `commerce.stored_value.read` / `.create` | Daftar keyset (`?kind&status&customerId&last4&cursor`) / TERBITKAN `{ kind, amount, customerId?, expiresAt?, reason? }` → `201 { account, entry, code, codeRevealed }`; `409 STORED_VALUE_PROGRAM_DISABLED`, `STORED_VALUE_BALANCE_CEILING`; empat permintaan bersamaan dengan satu kunci menerbitkan tepat satu akun |
+| `GET` | `commerce/stored-value/accounts/{id}` | `commerce.stored_value.read` | Satu akun; id tenant lain adalah `404` yang sama |
+| `GET` | `commerce/stored-value/accounts/{id}/ledger` | `commerce.stored_value.read` | Riwayat append-only, terbaru dulu (`?before=<account_seq>`) |
+| `POST` | `commerce/stored-value/accounts/{id}/load` | `commerce.stored_value.create` | `{ amount, reason? }` isi saldo → `201 { account, entry }`; `409 STORED_VALUE_PROGRAM_DISABLED \| _ACCOUNT_EXPIRED \| _ACCOUNT_UNAVAILABLE \| _BALANCE_CEILING` |
+| `POST` | `commerce/stored-value/accounts/{id}/adjust` | `commerce.stored_value_adjustments.create` | `{ amount (bertanda, tidak nol), reason }`; tidak pernah di bawah nol (`409 STORED_VALUE_INSUFFICIENT`, `details.available`) |
+| `POST` | `commerce/stored-value/accounts/{id}/status` | `commerce.stored_value.update` | `{ action: disable \| enable, reason? }` (alasan wajib untuk menonaktifkan); `409 STORED_VALUE_STATUS_UNCHANGED` |
+| `POST` | `commerce/stored-value/expire` | `commerce.stored_value.update` | Melepas saldo yang lewat batas dalam batch 200 (`{ expired, released, more }`); idempoten |
+| `POST` | `commerce/stored-value/reconcile` | `commerce.stored_value.read` (+ `commerce.stored_value_reconcile.approve` untuk `repair: true`) | Temuan: penyimpangan proyeksi, keretakan ledger, penyimpangan status, ketidakcocokan alokasi; perbaikan hanya membangun ulang proyeksi |
+| `GET` | `reports/commerce/stored-value` | `commerce.stored_value.read` | `?from&to` (default 30 hari `Asia/Jakarta` terakhir): per jenis diterbitkan / diisi / ditukar / dikembalikan / disesuaikan naik & turun / kedaluwarsa / neto, ditambah terutang, beku pada nonaktif, lewat-batas-tertunda |
+
+Penukaran adalah **tender**, bukan rute di sini: `POST commerce/pos/orders` (`tenders[]`) dan `POST commerce/orders/{id}/payments` menerima `tenderType: gift_card \| store_credit` dengan `storedValueCode` (dan hanya itu); kartu yang ditolak dijawab `404 STORED_VALUE_NOT_FOUND` (kode tidak dikenal, jenis lain, atau milik tenant lain — satu jawaban netral), `409 STORED_VALUE_UNAVAILABLE` (`details.reason`: `UNAVAILABLE \| EXPIRED`), `409 STORED_VALUE_INSUFFICIENT` (`details.available`) atau `429 STORED_VALUE_LOOKUP_THROTTLED` (30 pencarian per menit per pengguna), selalu sebelum baris apa pun ditulis. Pembalikan pembayaran seperti itu adalah `409 PAYMENT_NOT_REVERSIBLE` bila program melarang pengembalian ke kartu atau akun tidak dapat menerimanya.
 
 ## Storefront (anonim) API — `/api/v1/commerce/storefront/*`
 
@@ -279,26 +299,6 @@ Pengulangan `redeem`/`adjust` dengan kunci dan body yang sama me-replay `201` ya
   stock: number, status: "draft" | "active" | "inactive" | "archived",
   label: string | null, labelColor: string | null,
   images: [{ id, publicUrl, sortOrder, altText }], variants: [{ id, name, value, sku, price, stock, ... }],
-  isFeatured: boolean, isRecommended: boolean, manualRating: string | null, manualSoldCount: number
-}
-```
-
-`price`, `priceLevel2/3/4`, `finalPrice`, dan setiap field uang pada bentuk pemasaran/pesanan di bawah adalah JSON **string**, mis. `"19999.00"`, tidak pernah angka JSON — lihat [ADR-0003](adr/0003-money-is-numeric-14-2-and-crosses-the-wire-as-a-string.id.md) dan catatan `normalizeMoney` di [`docs/pengujian.md`](pengujian.id.md).
-
-`Order` (pembacaan pelacakan storefront, `GET .../orders/{code}?phone=`):
-
-```
-{
-  orderCode: string, status: "pending_payment" | "paid" | "processing" | "shipped" | "completed" | "cancelled" | "expired",
-  paymentStatus: "unpaid" | "dp_paid" | "paid" | "refunded",
-  customer: { name, phone }, address: {...} | null,
-  items: [{ productId, variantId, name, variantName, sku, quantity, unitPrice, lineTotal }],
-  subtotal, discount, shipping, insuranceFee, tax, total: string,
-  timeline: [{ fromStatus, toStatus, actor, note, createdAt }],
-  expiresAt: string | null, paidAt/shippedAt/completedAt/cancelledAt: string | null
-}
-```
-
 ## API pemilik: penjualan tertahan, penawaran, perintah kerja, dokumen (issue #286, epik #281, [ADR-0029](adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md))
 
 Setiap rute di bawah berada di balik feature flag `documents` milik tenant (bawaan MATI — `409 FEATURE_DISABLED`), membutuhkan sesi bearer/cookie, dan — untuk setiap mutasi — header **`Idempotency-Key`** (`400 IDEMPOTENCY_REQUIRED`; kunci sama + body sama memutar ulang jawaban tersimpan, kunci sama + body berbeda adalah `409 IDEMPOTENCY_CONFLICT`). Id yang tidak dikenal, id yang salah format, dan id milik tenant lain adalah `404` netral yang sama. Kunci izin dipisah per sumber daya dan tidak ada yang tersirat dari `commerce.pos.create`; kontraknya adalah `openapi/modules/commerce.openapi.yaml`.
@@ -320,7 +320,27 @@ Setiap rute di bawah berada di balik feature flag `documents` milik tenant (bawa
 
 Event: `awcms.commerce.quotation.accepted`, `awcms.commerce.quotation.converted` (asal-usul konversi), `awcms.commerce.work_order.status_changed`, `awcms.commerce.document.issued`. Tiga belas kunci izin: `commerce.held_sales.{read,create,update,approve}`, `commerce.quotations.{read,create,update}`, `commerce.quotation_conversions.create`, `commerce.work_orders.{read,create,update}`, `commerce.documents.{read,create}`.
 
-## Otorisasi: 39 izin owner (ditambah kunci increment-5, sejak #285 `commerce.payments.{read,create,revoke}` dan `commerce.pos_due.create`, dan sejak #284 sepuluh kunci register: `commerce.registers.{read,create,update}`, `commerce.register_sessions.{read,create,update,export}`, `commerce.register_cash_ups.{create,approve}`, `commerce.register_corrections.approve`)
+  isFeatured: boolean, isRecommended: boolean, manualRating: string | null, manualSoldCount: number
+}
+```
+
+`price`, `priceLevel2/3/4`, `finalPrice`, dan setiap field uang pada bentuk pemasaran/pesanan di bawah adalah JSON **string**, mis. `"19999.00"`, tidak pernah angka JSON — lihat [ADR-0003](adr/0003-money-is-numeric-14-2-and-crosses-the-wire-as-a-string.id.md) dan catatan `normalizeMoney` di [`docs/pengujian.md`](pengujian.id.md).
+
+`Order` (pembacaan pelacakan storefront, `GET .../orders/{code}?phone=`):
+
+```
+{
+  orderCode: string, status: "pending_payment" | "paid" | "processing" | "shipped" | "completed" | "cancelled" | "expired",
+  paymentStatus: "unpaid" | "dp_paid" | "paid" | "refunded",
+  customer: { name, phone }, address: {...} | null,
+  items: [{ productId, variantId, name, variantName, sku, quantity, unitPrice, lineTotal }],
+  subtotal, discount, shipping, insuranceFee, tax, total: string,
+  timeline: [{ fromStatus, toStatus, actor, note, createdAt }],
+  expiresAt: string | null, paidAt/shippedAt/completedAt/cancelledAt: string | null
+}
+```
+
+## Otorisasi: 39 izin owner (ditambah kunci increment-5, sejak #285 `commerce.payments.{read,create,revoke}` dan `commerce.pos_due.create`, sejak #288 tujuh kunci nilai tersimpan: `commerce.stored_value_programs.{read,update}`, `commerce.stored_value.{read,create,update}`, `commerce.stored_value_adjustments.create`, `commerce.stored_value_reconcile.approve`, dan sejak #284 sepuluh kunci register: `commerce.registers.{read,create,update}`, `commerce.register_sessions.{read,create,update,export}`, `commerce.register_cash_ups.{create,approve}`, `commerce.register_corrections.approve`)
 
 Modul `commerce` mendeklarasikan 39 kunci izin secara total (10 + 22 + 7 di bawah), dikelompokkan berdasarkan tiga area yang sama dengan tabelnya — jumlah yang terlalu besar untuk konvensi "angka yang dieja cocok dengan set yang dihitung" milik dokumen ini sendiri (pengecekan hitungan-tertaut milik `bun run audit:dokumen` hanya mengenali angka yang dieja satu sampai dua puluh), sehingga di sini dinyatakan sebagai angka numeral, bukan di dalam blok terjaga.
 
@@ -334,9 +354,9 @@ Sengaja **tanpa `create`/`delete` untuk `orders`/`customers`**: baris pesanan at
 
 API storefront (anonim) sama sekali **tidak punya kunci izin** — batas kepercayaannya adalah tenant resolver yang Origin-bound, bukan RBAC/ABAC.
 
-## Domain event: delapan belas
+## Domain event: sembilan belas
 
-Kedelapan belas event terdaftar di tiga tempat yang dijaga selaras `awcms` (`domain-event-runtime/domain/event-type-registry.ts`, `apps/cms/asyncapi/awcms-domain-events.asyncapi.yaml`, `events.publishes` milik `commerce/module.ts`):
+Kesembilan belas event terdaftar di tiga tempat yang dijaga selaras `awcms` (`domain-event-runtime/domain/event-type-registry.ts`, `apps/cms/asyncapi/awcms-domain-events.asyncapi.yaml`, `events.publishes` milik `commerce/module.ts`):
 
 | Agregat               | Event                                                                                                                                                         |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -345,6 +365,7 @@ Kedelapan belas event terdaftar di tiga tempat yang dijaga selaras `awcms` (`dom
 | `commerce.voucher`    | `awcms.commerce.voucher.redeemed` — dideklarasikan lebih dulu sebagai forward reference di #26, baru benar-benar dipicu begitu jalur pesanan #29 menebus satu |
 | `commerce.order`      | `awcms.commerce.order.{created,paid,status_changed,cancelled,expired}`, dan sejak #285 `awcms.commerce.payment.{recorded,reversed}` (ledger pembayaran berjalan pada agregat PESANAN: satu aliran berurutan per pesanan; id/tender/jumlah/penyelesaian hasilnya, tidak pernah nama/telepon pelanggan atau referensi pembayaran) |
 | `commerce.review`     | `awcms.commerce.review.published`                                                                                                                             |
+| `commerce.stored_value_account` | `awcms.commerce.stored_value.entry_recorded` — satu event per entri ledger (issue, load, redeem, refund, adjust, expire, disable, enable) pada agregat akun (#288); id, jenis, jumlah bertanda, dan saldo hasilnya, tidak pernah kode, pelanggan, atau alasan teks bebas |
 | `commerce.register_session` | `awcms.commerce.register_session.{opened,movement_recorded,closed,corrected}` — aliran berurutan shift itu sendiri (#284); `closed` dipicu sekali, hanya ketika sesi benar-benar mencapai `closed`; payload membawa id/tipe/jumlah/selisih, tidak pernah referensi/catatan teks bebas mutasi atau alasan penutupan |
 
 `categories` masih tidak mempublikasikan domain event apa pun — pilihan yang sama diambil `tenant_admin` untuk `awcms_offices`; soft delete adalah fakta log-audit, bukan sesuatu yang perlu direaksi konsumen hilir.

@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 26    |
-| Migrations                          | 229   |
-| `awcms_*` tables                    | 228   |
-| Tables with `FORCE` RLS             | 210   |
+| Migrations                          | 233   |
+| `awcms_*` tables                    | 231   |
+| Tables with `FORCE` RLS             | 213   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 647   |
-| Route files                         | 604   |
+| Test files                          | 651   |
+| Route files                         | 616   |
 | ADR                                 | 252   |
 
 ### Modules
@@ -280,6 +280,10 @@
 | 227 | `sql/980_awcms_commerce_documents_schema.sql`                               |
 | 228 | `sql/981_awcms_commerce_documents_permissions.sql`                          |
 | 229 | `sql/982_awcms_commerce_documents_worker_grants.sql`                        |
+| 230 | `sql/985_awcms_commerce_stored_value_schema.sql`                            |
+| 231 | `sql/986_awcms_commerce_stored_value_payment_integration.sql`               |
+| 232 | `sql/987_awcms_commerce_stored_value_permissions.sql`                       |
+| 233 | `sql/988_awcms_commerce_stored_value_worker_grants.sql`                     |
 
 ### Tables & Row-Level Security
 
@@ -371,6 +375,9 @@
 | `awcms_commerce_shipping_rates`             | `sql/924_awcms_commerce_shipping_rates_schema.sql`         | yes | yes   |
 | `awcms_commerce_sliders`                    | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
 | `awcms_commerce_store_settings`             | `sql/910_awcms_commerce_store_settings.sql`                | yes | yes   |
+| `awcms_commerce_stored_value_accounts`      | `sql/985_awcms_commerce_stored_value_schema.sql`           | yes | yes   |
+| `awcms_commerce_stored_value_ledger`        | `sql/985_awcms_commerce_stored_value_schema.sql`           | yes | yes   |
+| `awcms_commerce_stored_value_programs`      | `sql/985_awcms_commerce_stored_value_schema.sql`           | yes | yes   |
 | `awcms_commerce_testimonials`               | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
 | `awcms_commerce_vouchers`                   | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
 | `awcms_commerce_webhook_endpoints`          | `sql/926_awcms_commerce_payment_gateway_schema.sql`        | yes | yes   |
@@ -518,17 +525,17 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 509        |
+| `(root)`      | 511        |
 | `e2e`         | 21         |
-| `integration` | 116        |
+| `integration` | 118        |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 484   |
-| `/admin/**`     | 90    |
+| `/api/v1/**`    | 495   |
+| `/admin/**`     | 91    |
 | publik / anonim | 30    |
 
 <!-- END GENERATED: repo-inventory -->

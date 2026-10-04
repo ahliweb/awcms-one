@@ -463,8 +463,8 @@ describe("validateRecordPaymentInput", () => {
     });
   });
 
-  test("a gateway tender cannot be typed by staff, and neither can an unknown one", () => {
-    for (const tenderType of ["gateway", "store_credit", "", 5, undefined]) {
+  test("a gateway tender cannot be typed by staff, and neither can an unknown one (store_credit / gift_card joined the recordable tenders with Issue #288 and need a code)", () => {
+    for (const tenderType of ["gateway", "voucher", "", 5, undefined]) {
       const result = validateRecordPaymentInput(
         { tenderType, amount: "1.00" },
         KEY

@@ -1334,6 +1334,25 @@ export const READER_BUDGET_BYTES = 24_000;
  * merged onto #285, #289 and #291** — MEASURED 366,601 B on the merged build
  * (#285's 359,316 B plus the register screens, +7,285 B); a measurement, not
  * a sum.
+ *
+ * **Raised to 308,300 B for Issue #288** (gift cards and store credit,
+ * ADR-0030) - one new admin screen and two touched, re-MEASURED rather than
+ * summed. `commerce-stored-value.astro`'s client script is 6,386 B (issue form
+ * with the one-time copy/print receipt - the print window is built with DOM
+ * calls, never `innerHTML` -, the manage form, the programs forms, the expiry
+ * sweep and the consistency check), and the gift-card/store-credit tender line
+ * (code field, per-type labels, the four refusal messages) added about 1.2 kB
+ * across `commerce-pos.astro`'s existing island and the order detail's payment
+ * form, plus the screen's share of `admin-screens.css`. Every mutation goes
+ * through `admin-form-client.ts` (`onSubmit`/`onSubmitAll`/`onAction`/
+ * `sendJson`/`sendJsonForData`/`messageBox`); every string reaches the script
+ * as a `data-msg-*` attribute (SSR-only catalogue entries add nothing here).
+ * Measured clean build: 308,061 B (up from 300,423 B).
+ *
+ * **Final: 374,300 B when awcms-one#288 (stored value) was merged onto #284,
+ * #285, #289 and #291** - MEASURED 374,239 B on the merged build (#284's
+ * 366,601 B plus the gift-card / store-credit screens and tender lines,
+ * +7,638 B); a measurement, not a sum of the two figures above.
  */
 /**
  * **Raised for Issue #286 (measured 307,774 B on its own baseline of 300,423 B; superseded by the re-measure below)** (held sales, quotations, work orders
@@ -1358,7 +1377,13 @@ export const READER_BUDGET_BYTES = 24_000;
  * (#284's 366,601 B plus the documents screen and the POS hold/resume pair,
  * +7,351 B); a measurement, not a sum.
  */
-export const APP_BUDGET_BYTES = 374_100;
+/*
+ * **Final: 381,700 B when awcms-one#288 (stored value) was merged onto main
+ * after #286 (commerce documents) landed** — MEASURED 381,590 B on the merged
+ * build (both lineages' screens together); a measurement, not a sum of the two
+ * "Final" figures above.
+ */
+export const APP_BUDGET_BYTES = 381_700;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.
