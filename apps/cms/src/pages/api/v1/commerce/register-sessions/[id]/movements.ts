@@ -6,8 +6,12 @@
  * are append-only and cash only; the acting user must be the session's
  * current cashier (`409 NOT_SESSION_CASHIER`), and a session that is not open
  * accepts none (`409 REGISTER_SESSION_NOT_OPEN`). An `expense` movement's
- * `reference` is free text today - the typed reference to the expenses domain
- * (#294) is a documented hook, not yet a field.
+ * `reference` here is free text. Since Issue #294 (ADR-0031) a tenant whose
+ * `expenses` feature is ON records expenses through the expenses domain, whose
+ * posting appends the typed `expense` movement itself - so a raw `expense`
+ * movement is refused there (`409 EXPENSE_REQUIRES_EXPENSE_RECORD`): it would
+ * bypass the approval threshold. With the feature OFF (the default) nothing
+ * changes.
  */
 import { created, fail } from "../../../../../../modules/_shared/api-response";
 import { defineTenantRoute } from "../../../../../../modules/_shared/tenant-route";
@@ -17,6 +21,7 @@ import {
   requireIdempotencyKey,
   requireRegisterFeature
 } from "../../../../../../modules/commerce/application/register-http";
+import { fetchCommerceFeatures } from "../../../../../../modules/commerce/application/commerce-feature-gate";
 import { recordRegisterMovement } from "../../../../../../modules/commerce/application/register-session-directory";
 import {
   isUuid,
@@ -44,6 +49,19 @@ export const POST = defineTenantRoute<RecordMovementInput>({
   handler: async ({ tx, tenantId, auth, params, prepared, locals }) => {
     const gate = await requireRegisterFeature(tx, tenantId);
     if (gate) return gate;
+    // Issue #294 (ADR-0031 D6): once the tenant uses the expenses domain, an
+    // `expense` drawer movement is produced ONLY by posting an expense - a raw
+    // one here would bypass the approval threshold and segregation of duties.
+    if (
+      prepared.movementType === "expense" &&
+      (await fetchCommerceFeatures(tx, tenantId)).expenses
+    ) {
+      return fail(
+        409,
+        "EXPENSE_REQUIRES_EXPENSE_RECORD",
+        "This tenant records expenses through the expenses feature; post an expense instead of a raw expense movement."
+      );
+    }
     if (!isUuid(params.id)) {
       return fail(404, "RESOURCE_NOT_FOUND", "Register session not found.");
     }

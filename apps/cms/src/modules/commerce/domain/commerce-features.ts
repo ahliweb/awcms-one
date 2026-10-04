@@ -42,7 +42,8 @@ export type CommerceFeatureKey =
   | "register"
   | "documents"
   | "loyalty"
-  | "storedValue";
+  | "storedValue"
+  | "expenses";
 
 export type CommerceFeatures = Readonly<Record<CommerceFeatureKey, boolean>>;
 
@@ -81,7 +82,12 @@ export const DEFAULT_COMMERCE_FEATURES: CommerceFeatures = {
   // which has accounting, consumer-protection and regulatory consequences it
   // must choose to accept; a tenant that never opens "Fitur" must see exactly
   // today's commerce.
-  storedValue: false
+  storedValue: false,
+  // Issue #294 (ADR-0031) — defaults OFF. Expenses are a brand-new surface
+  // with its own approval obligation; a tenant that never opens "Fitur" must
+  // see exactly today's store (and, with it OFF, a raw `expense` drawer
+  // movement stays what #284 made it).
+  expenses: false
 };
 
 const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
@@ -93,7 +99,8 @@ const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
   "courier",
   "register",
   "loyalty",
-  "storedValue"
+  "storedValue",
+  "expenses"
 ];
 
 function isBoolean(value: unknown): value is boolean {

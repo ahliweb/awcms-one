@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:a5e8d2cc86668de7e7bab0aa74e36157924f2e18d2cd4d214f12695574afd31a -->
+<!-- i18n-source-hash: sha256:1edf225fed35b942c7f00fec50ea1877661d1ae32670760a3f9b51ba4bd2d61f -->
 
 # Kamus data
 
@@ -280,6 +280,22 @@ Rancangan platform ini sendiri — tidak ada yang di-port dari toko lama. Status
 | `snapshot` dokumen | `schemaVersion`, `docType`, `number`, `issuedAt`, `currency`, `seller`, `customer`, `order`, `lines`, `totals`, `payments`, `settlement` | `payments` adalah leg ledger yang berhasil saat terbit (tender, jenis, jumlah, waktu — tanpa referensi penyedia, tanpa id staf); informasional, ledger tetap otoritas |
 | `cart` tertahan | `{ lines: [{ productId, variantId, quantity }], customer: { name, phone } \| null, notes }` | tanpa harga; dihapus menjadi `{}` saat penjualan meninggalkan `held` |
 | `pricing_context` versi penawaran | `engine`, `quotedAt`, `customerLevel`, `taxActive`, `taxPercent`, `shippingCost` | apa yang dipakai mesin kutipan, disimpan sebagai bukti |
+
+### Pengeluaran (issue #294, [ADR-0031](adr/0031-expenses-are-commerce-local-register-linked-petty-cash.md))
+
+| Istilah | Tempatnya | Arti |
+| --- | --- | --- |
+| pengeluaran (expense) | `awcms_commerce_expenses` | Kas kecil / biaya operasional lokal-commerce: kategori, jumlah yang tepat, metode pembayaran, tanggal, alasan, payee dan struk opsional. BUKAN entri buku besar — tidak ada akun atau baris jurnal |
+| kategori pengeluaran | `awcms_commerce_expense_categories` | `code` (unik per tenant tanpa membedakan huruf besar/kecil) dan `name`; dinonaktifkan, tidak pernah dihapus; kategori tidak aktif tidak menerima pengeluaran baru |
+| draft / menunggu persetujuan / diposting / dibalik / dibatalkan | `awcms_commerce_expenses.status` | `draft` dapat diedit; `pending_approval` diajukan di atas ambang dan menunggu orang kedua; `posted` berlaku; `reversed` dibatalkan dengan entri penyeimbang; `cancelled` adalah draf yang dibuang. `reversed` dan `cancelled` bersifat akhir |
+| pengeluaran laci | pengeluaran dengan `register_session_id` | Tunai yang dibayarkan dari sesi register yang terbuka; posting menambahkan mutasi kas keluar `expense` register |
+| mutasi posting / mutasi pembalikan | `awcms_commerce_register_movements.expense_id` | Mutasi `expense`/`out` yang ditambahkan posting, dan mutasi `correction`/`in` yang ditambahkan pembalikan; paling banyak satu masing-masing per pengeluaran. `reference`-nya adalah kode sistem `EXP-XXXXXXXX` |
+| ambang persetujuan | pengaturan modul commerce `expenses.approvalThreshold` (bawaan `"0.00"`) | Jumlah di atas mana posting memerlukan orang kedua; di dalamnya (inklusif) pengeluaran langsung diposting (`auto`) |
+| pemisahan tugas | `approver_check`, `decidePosting` | Pembuat tidak pernah dapat menyetujui pengeluarannya sendiri di atas ambang; pemberi persetujuan bukan pembuat maupun pengajunya |
+| struk | `receipt_media_object_id` | Objek pustaka media PRIVAT terverifikasi yang diunggah pelampir; hanya terlihat sebagai `hasReceipt`, dibaca kembali lewat `GET …/receipt-url` di bawah `commerce.expense_receipts.read` |
+| payee | `payee_name` | Teks bebas; referensi pihak bertipe ditunda (ADR-0031 D8) |
+| fitur `expenses` | pengaturan modul commerce `features.expenses` (bawaan MATI) | Menyalakan seluruh permukaan pengeluaran; selama MENYALA mutasi laci `expense` mentah ditolak |
+| `commerce.expense_categories.*`, `commerce.expenses.*`, `commerce.expense_postings.*`, `commerce.expense_reversals.approve`, `commerce.expense_receipts.*` | `awcms_permissions` (`sql/992`) | Dua belas kunci: kategori, baca / buat / edit / ekspor pengeluaran, ajukan / setujui posting, balik, baca / lampirkan struk |
 
 ## Kolom dan tabel yang ditunda — tidak di-porting
 

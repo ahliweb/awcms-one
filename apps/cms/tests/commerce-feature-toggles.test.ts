@@ -25,6 +25,7 @@ describe("resolveCommerceFeatures", () => {
     expect(DEFAULT_COMMERCE_FEATURES.loyalty).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.storedValue).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.documents).toBe(false);
+    expect(DEFAULT_COMMERCE_FEATURES.expenses).toBe(false);
     expect(
       Object.entries(DEFAULT_COMMERCE_FEATURES)
         .filter(
@@ -32,7 +33,8 @@ describe("resolveCommerceFeatures", () => {
             key !== "register" &&
             key !== "loyalty" &&
             key !== "storedValue" &&
-            key !== "documents"
+            key !== "documents" &&
+            key !== "expenses"
         )
         .every(([, value]) => value === true)
     ).toBe(true);
@@ -57,7 +59,8 @@ describe("resolveCommerceFeatures", () => {
       courier: true,
       register: false,
       loyalty: false,
-      storedValue: false
+      storedValue: false,
+      expenses: false
     });
   });
 
@@ -72,7 +75,8 @@ describe("resolveCommerceFeatures", () => {
       courier: true,
       register: false,
       loyalty: true,
-      storedValue: false
+      storedValue: false,
+      expenses: false
     });
   });
 
@@ -94,7 +98,8 @@ describe("resolveCommerceFeatures", () => {
         courier: false,
         register: false,
         loyalty: false,
-        storedValue: false
+        storedValue: false,
+        expenses: false
       }
     });
     expect(resolved).toEqual({
@@ -106,7 +111,8 @@ describe("resolveCommerceFeatures", () => {
       courier: false,
       register: false,
       loyalty: false,
-      storedValue: false
+      storedValue: false,
+      expenses: false
     });
     // ...and the flags that default off can be turned on.
     expect(

@@ -1383,7 +1383,14 @@ export const READER_BUDGET_BYTES = 24_000;
  * build (both lineages' screens together); a measurement, not a sum of the two
  * "Final" figures above.
  */
-export const APP_BUDGET_BYTES = 381_700;
+/*
+ * **Final: 386,000 B when awcms-one#294 (petty cash and expenses, ADR-0031)
+ * was merged onto main after #286 and #288** — MEASURED 385,852 B on the
+ * merged build: the expenses screen (category/expense forms, the post /
+ * approve / reverse actions, the receipt attach field and the CSV export
+ * link) on top of 381,590 B; a measurement, not a sum.
+ */
+export const APP_BUDGET_BYTES = 386_000;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

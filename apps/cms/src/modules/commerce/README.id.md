@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:c5b58f1d4271634ec264c64749c8693b34ce8d9cc565d1e2f287bedcaa055233 -->
+<!-- i18n-source-hash: sha256:f1e6e678521d0ea9377bcdab54b9b9d850669f6510b78c7c1ab408a4371ad5f1 -->
 
 # `commerce`
 
@@ -1318,7 +1318,7 @@ Enam tabel (`sql/970`: `awcms_commerce_registers`, `…_register_sessions`, `…
 - **Izin.** `commerce.registers.{read,create,update}`, `commerce.register_sessions.{read,create,update,export}`, `commerce.register_cash_ups.{create,approve}`, `commerce.register_corrections.approve` — hanya verba `AccessAction` yang sudah ada; tidak ada yang tersirat dari `commerce.pos.create`.
 - **Event.** `awcms.commerce.register_session.{opened,movement_recorded,closed,corrected}` pada agregat `commerce.register_session`; audit `register.*` / `register_session.*` (uang, tipe, id — tidak pernah teks bebas).
 - **Layar.** `/admin/commerce-registers`, `/admin/commerce-registers/[id]`, banner register di `/admin/commerce-pos` (lihat panduan cms di root awcms-one, [panduan modul commerce](../../../../../docs/cms.id.md)).
-- **Ditunda.** Domain pengeluaran (#294) dan referensi bertipe pada mutasi pengeluaran (`reference_kind` adalah kaitnya), angka "dicatat setelah penutupan" untuk aktivitas ledger terlambat, ambang per register, pemilih kasir untuk serah terima — lihat [ADR-0028](../../../../../docs/adr/0028-pos-register-sessions-and-cash-up.md).
+- **Ditunda.** Angka "dicatat setelah penutupan" untuk aktivitas ledger terlambat, ambang per register, pemilih kasir untuk serah terima — lihat [ADR-0028](../../../../../docs/adr/0028-pos-register-sessions-and-cash-up.md).
 
 ## Siklus dokumen: penjualan tertahan, penawaran, perintah kerja, struk, dan faktur — SUDAH DIIMPLEMENTASIKAN (Issue #286, epik #281 — [ADR-0029](../../../../../docs/adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.id.md))
 
@@ -1431,3 +1431,15 @@ Tiga tabel (`sql/985`: `awcms_commerce_stored_value_programs`, `…_accounts`, `
   pencarian ber-ranking — `site_search` adalah modul pencarian
   lintas-konten base ini, dan `commerce` tidak berintegrasi dengannya di
   peningkatan ini.
+
+## Pengeluaran: kas kecil lokal-commerce — TERIMPLEMENTASI (Issue #294, epik #281 — [ADR-0031](../../../../../docs/adr/0031-expenses-are-commerce-local-register-linked-petty-cash.md))
+
+Dua tabel (`sql/990`: `awcms_commerce_expense_categories`, `awcms_commerce_expenses`), referensi pengeluaran bertipe pada mutasi register (`sql/991`: `reference_kind = 'expense'` + `expense_id`, indeks unik parsial paling banyak satu mutasi keluar dan satu masuk per pengeluaran), dua belas izin (`sql/992`), grant purge worker (`sql/993`).
+
+- **Letak kodenya.** `domain/expense.ts` (kosakata, validator, keputusan persetujuan dan SoD, pengaturan ambang, pelipatan laporan sen yang tepat — murni), `domain/expense-csv.ts` (CSV yang dinetralkan dari formula, memakai helper CSV tutup kas), `domain/expense-lifecycle.ts` (deskriptor `dataLifecycle` / `subjectData`), `application/expense-category-directory.ts`, `application/expense-directory.ts` (pembacaan, draf, pembuangan, struk, ringkasan, ekspor), `application/expense-posting.ts` (post, decide, reverse — satu-satunya kode yang menulis mutasi register untuk pengeluaran, lewat `appendRegisterMovement` di `register-session-directory.ts`), `application/expense-http.ts` (gerbang fitur dan satu-satunya pemetaan penolakan-ke-HTTP).
+- **Aturan yang harus dijaga perubahan.** Pengeluaran tidak pernah mengedit total tutup kas — ia menambahkan mutasi (keluar saat posting, `correction` masuk penyeimbang saat pembalikan) dan tidak lebih; urutan kunci baris pengeluaran, lalu sesi, selalu; setiap mutasi mengunci dulu dan membaca penyimpanan idempotensi sesudahnya; isi dibekukan begitu baris meninggalkan `draft` (trigger); pembuat tidak pernah menyetujui pengeluarannya sendiri (CHECK dan kode); struk adalah objek media privat, terverifikasi, milik pengunggah, sekali pakai yang diselesaikan dari pengeluaran, tidak pernah dari id yang diberikan pemanggil; payload audit dan event membawa uang dan id, tidak pernah deskripsi, payee, catatan, atau alasan.
+- **Flag fitur.** `features.expenses` bawaannya MATI (pengeluaran laci juga memerlukan `register`); ambangnya `expenses.approvalThreshold` di pengaturan modul (bawaan ketat `0.00`; nilai rusak kembali ke sana). Selama MENYALA, rute mutasi manual menolak `movementType: "expense"`.
+- **Izin.** `commerce.expense_categories.{read,create,update}`, `commerce.expenses.{read,create,update,export}`, `commerce.expense_postings.{create,approve}`, `commerce.expense_reversals.approve`, `commerce.expense_receipts.{read,create}` — hanya kata kerja `AccessAction` yang ada.
+- **Event.** `awcms.commerce.expense.{posted,reversed}` pada agregat `commerce.expense`; audit `expense.*` / `expense_category.*`.
+- **Layar.** `/admin/commerce-expenses` (lihat panduan cms akar awcms-one, [panduan modul commerce](../../../../../docs/cms.md)).
+- **Ditunda.** Referensi payee/pihak bertipe, beberapa struk per pengeluaran dan kontrol unggah di layar, pengeluaran berulang, ambang per kategori — lihat [ADR-0031](../../../../../docs/adr/0031-expenses-are-commerce-local-register-linked-petty-cash.md).

@@ -9589,3 +9589,208 @@ msgstr[0] "{count} perintah kerja"
 
 msgid "Quotations, work orders and documents"
 msgstr "Penawaran, perintah kerja, dan dokumen"
+
+msgid "Posted"
+msgstr "Diposting"
+
+msgid "QRIS (manual)"
+msgstr "QRIS (manual)"
+
+msgid "Bank transfer (manual)"
+msgstr "Transfer bank (manual)"
+
+msgid "Expenses"
+msgstr "Pengeluaran"
+
+msgid "Record petty cash and operating expenses, approve the larger ones, and see them reflected in the drawer's cash-up."
+msgstr "Catat kas kecil dan biaya operasional, setujui yang besar, dan lihat dampaknya pada tutup kas laci."
+
+msgid "You do not have permission to view expenses."
+msgstr "Anda tidak memiliki izin untuk melihat pengeluaran."
+
+msgid "Expenses could not be loaded right now. Please try again later."
+msgstr "Pengeluaran tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Expenses are turned off for this store."
+msgstr "Pengeluaran dinonaktifkan untuk toko ini."
+
+msgid "Could not record the expense. Please try again."
+msgstr "Pengeluaran tidak dapat dicatat. Silakan coba lagi."
+
+msgid "The amount must be greater than zero, like 25000 or 25000.50."
+msgstr "Jumlah harus lebih dari nol, misalnya 25000 atau 25000.50."
+
+msgid "Choose the date the expense happened."
+msgstr "Pilih tanggal terjadinya pengeluaran."
+
+msgid "An expense paid from the drawer must be paid in cash."
+msgstr "Pengeluaran yang dibayar dari laci harus dibayar tunai."
+
+msgid "That category is deactivated."
+msgstr "Kategori itu dinonaktifkan."
+
+msgid "The drawer session is not open, so it cannot take this expense."
+msgstr "Sesi laci tidak terbuka, sehingga tidak dapat menampung pengeluaran ini."
+
+msgid "There is no open session on this register to take the cash back."
+msgstr "Tidak ada sesi terbuka pada register ini untuk menerima kembali uang tunai."
+
+msgid "Only the person who created this draft, or a supervisor, can change it."
+msgstr "Hanya pembuat draf ini, atau seorang supervisor, yang dapat mengubahnya."
+
+msgid "An expense cannot be approved by the person who created or submitted it."
+msgstr "Pengeluaran tidak dapat disetujui oleh orang yang membuat atau mengajukannya."
+
+msgid "Only a draft can be changed."
+msgstr "Hanya draf yang dapat diubah."
+
+msgid "Enter the receipt's media object ID (a UUID)."
+msgstr "Masukkan ID objek media struk (sebuah UUID)."
+
+msgid "A receipt must be a verified private file that you uploaded."
+msgstr "Struk harus berupa berkas privat terverifikasi yang Anda unggah."
+
+msgid "That file is already used as a receipt or a protected download."
+msgstr "Berkas itu sudah dipakai sebagai struk atau unduhan terlindungi."
+
+msgid "The receipt could not be opened. Please try again."
+msgstr "Struk tidak dapat dibuka. Silakan coba lagi."
+
+msgid "Category defined."
+msgstr "Kategori ditetapkan."
+
+msgid "A category with that code already exists."
+msgstr "Kategori dengan kode itu sudah ada."
+
+msgid "Could not save the category. Please try again."
+msgstr "Kategori tidak dapat disimpan. Silakan coba lagi."
+
+msgid "The threshold must be an amount like 50000 or 50000.50 (zero means every expense needs a second person)."
+msgstr "Ambang batas harus berupa jumlah seperti 50000 atau 50000.50 (nol berarti setiap pengeluaran memerlukan orang kedua)."
+
+msgid "Expense figures"
+msgstr "Angka pengeluaran"
+
+msgid "Posted this month"
+msgstr "Diposting bulan ini"
+
+msgid "Record an expense"
+msgstr "Catat pengeluaran"
+
+msgid "Define an expense category below before recording an expense."
+msgstr "Tetapkan kategori pengeluaran di bawah sebelum mencatat pengeluaran."
+
+msgid "Paid with"
+msgstr "Dibayar dengan"
+
+msgid "Paid to (optional)"
+msgstr "Dibayarkan kepada (opsional)"
+
+msgid "Paid from drawer (optional)"
+msgstr "Dibayar dari laci (opsional)"
+
+msgid "Not from a drawer"
+msgstr "Bukan dari laci"
+
+msgid "A draft changes nothing yet. Post it to count it; an expense paid from the drawer then appears in that shift's cash-up."
+msgstr "Draf belum mengubah apa pun. Posting agar dihitung; pengeluaran yang dibayar dari laci kemudian muncul pada tutup kas shift tersebut."
+
+msgid "Filter expenses by status"
+msgstr "Saring pengeluaran menurut status"
+
+msgid "Recorded by"
+msgstr "Dicatat oleh"
+
+msgid "No expenses yet"
+msgstr "Belum ada pengeluaran"
+
+msgid "Record the first expense above."
+msgstr "Catat pengeluaran pertama di atas."
+
+msgid "Drawer"
+msgstr "Laci"
+
+msgid "Post"
+msgstr "Posting"
+
+msgid "Discard this draft?"
+msgstr "Buang draf ini?"
+
+msgid "The draft is discarded and cannot be posted. Nothing was counted, so no cash-up changes."
+msgstr "Draf dibuang dan tidak dapat diposting. Belum ada yang dihitung, sehingga tutup kas tidak berubah."
+
+msgid "Reject this expense?"
+msgstr "Tolak pengeluaran ini?"
+
+msgid "It goes back to a draft with your note, so it can be corrected and submitted again."
+msgstr "Kembali menjadi draf dengan catatan Anda, sehingga dapat diperbaiki dan diajukan lagi."
+
+msgid "Why is it rejected? (required)"
+msgstr "Mengapa ditolak? (wajib)"
+
+msgid "Reverse this expense?"
+msgstr "Balik pengeluaran ini?"
+
+msgid "A compensating entry is added and the original is kept. If it was paid from a drawer, the cash goes back into an open session of that register."
+msgstr "Entri penyeimbang ditambahkan dan entri asli tetap disimpan. Jika dibayar dari laci, uang tunai kembali ke sesi terbuka register tersebut."
+
+msgid "Reverse"
+msgstr "Balik"
+
+msgid "Why is it reversed? (required)"
+msgstr "Mengapa dibalik? (wajib)"
+
+msgid "View receipt"
+msgstr "Lihat struk"
+
+msgid "Attach a private receipt"
+msgstr "Lampirkan struk privat"
+
+msgid "Upload the receipt as a private file in the media library first, then enter its media object ID here."
+msgstr "Unggah struk sebagai berkas privat di pustaka media terlebih dahulu, lalu masukkan ID objek medianya di sini."
+
+msgid "Attach"
+msgstr "Lampirkan"
+
+msgid "Receipt media object ID"
+msgstr "ID objek media struk"
+
+msgid "Attach receipt"
+msgstr "Lampirkan struk"
+
+msgid "Older expenses"
+msgstr "Pengeluaran yang lebih lama"
+
+msgid "Export expenses"
+msgstr "Ekspor pengeluaran"
+
+msgid "At most 366 days and 10,000 rows per file."
+msgstr "Paling banyak 366 hari dan 10.000 baris per berkas."
+
+msgid "Expense categories"
+msgstr "Kategori pengeluaran"
+
+msgid "Define category"
+msgstr "Tetapkan kategori"
+
+msgid "Define the first category above."
+msgstr "Tetapkan kategori pertama di atas."
+
+msgid "Deactivate this category?"
+msgstr "Nonaktifkan kategori ini?"
+
+msgid "A deactivated category accepts no new expense. Existing expenses and reports are kept."
+msgstr "Kategori yang dinonaktifkan tidak menerima pengeluaran baru. Pengeluaran dan laporan yang ada tetap disimpan."
+
+msgid "Expense approval threshold"
+msgstr "Ambang persetujuan pengeluaran"
+
+msgid "An expense above this amount needs a second person: someone who can approve expenses and did not create or submit it. Zero means every expense does."
+msgstr "Pengeluaran di atas jumlah ini memerlukan orang kedua: seseorang yang dapat menyetujui pengeluaran dan tidak membuat atau mengajukannya. Nol berarti setiap pengeluaran."
+
+msgid "{count} expense"
+msgid_plural "{count} expenses"
+msgstr[0] "{count} pengeluaran"
+
+msgid "Petty cash and expenses"
+msgstr "Kas kecil dan pengeluaran"

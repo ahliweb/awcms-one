@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](arsitektur.md)
 
-<!-- i18n-source-hash: sha256:79ca7ba123fb87700683da32c4581e478d6321d0a1b277a6bed3d3409b59d3ac -->
+<!-- i18n-source-hash: sha256:e9c2f000dd93d9189b8a176c6bbfc4c264edee236342effac514a2f9da3f4a53 -->
 
 # Arsitektur
 
@@ -206,6 +206,10 @@ Empat gagasan menjaga siklus dokumen agar tidak menjadi buku penjualan kedua.
 2. **Nomor adalah penghitung yang dinaikkan dalam transaksi yang sama dengan baris pembawanya.** `application/document-numbering.ts` menjalankan satu `INSERT … ON CONFLICT DO UPDATE … RETURNING` pada `awcms_commerce_document_sequences (tenant_id, doc_type, period)`; kunci baris dipegang sampai commit, sehingga alokasi bersamaan mengantre dan mendapat nomor berurutan, dan rollback mengembalikan nomornya. Dua aturan membuatnya benar: alokasikan **paling akhir** (tidak ada langkah yang dapat gagal antara alokasi dan insert), dan jangan pernah *mengembalikan* respons gagal setelah mengalokasikan — `409` yang dikembalikan tetap meng-commit transaksi, hanya error yang dilempar yang me-rollback.
 3. **Savepoint adalah satu-satunya cara membatalkan pekerjaan sambil tetap menjawab dengan sopan.** `defineTenantRoute` melakukan commit kecuali handler melempar error. Konversi harus membuat pesanan, membandingkan totalnya dengan yang ditawarkan, dan membatalkan pesanan bila berbeda *sambil menjawab `409`* — maka ia berjalan di dalam `tx.savepoint(...)` dan mengubah error harga yang dilempar menjadi sebuah hasil. Apa pun yang tidak boleh tersimpan namun tetap harus menghasilkan respons memakai bentuk ini.
 4. **Render adalah fungsi murni dari snapshot tersimpan yang di-hash.** `domain/documents.ts` merender json / text / html dari `awcms_commerce_documents.snapshot`; rute memverifikasi ulang `content_hash` (SHA-256 dari JSON kanonik) sebelum merender dan mengaudit setiap render. Mencetak ulang karena itu tidak dapat mengubah apa pun, dan snapshot yang dirusak ditolak, bukan dicetak. Kanal pengiriman akan mengonsumsi kontrak ini, bukan merender ulang.
+
+## Pengeluaran sampai ke tutup kas hanya sebagai mutasi (issue #294, [ADR-0031](adr/0031-expenses-are-commerce-local-register-linked-petty-cash.md))
+
+Pengeluaran tidak pernah mengedit total tutup kas. Pengeluaran laci yang diposting menambahkan satu mutasi kas keluar `expense` lewat penulis YANG SAMA dengan rute mutasi manual, dan pembalikan menambahkan `correction` kas masuk penyeimbang — sehingga kas yang diharapkan hasil turunan shift (ADR-0028) bergerak karena sebuah mutasi ada, dan pengeluaran tercermin tepat satu kali secara konstruksi: baris pengeluaran dikunci lebih dulu, mutasi membawa `source_key` `expense:<id>:post` / `:reverse`, dan indeks unik parsial mengizinkan paling banyak satu mutasi keluar dan satu masuk per pengeluaran. Urutan kunci selalu baris pengeluaran (`FOR NO KEY UPDATE`) lalu sesi (`FOR SHARE`), tidak pernah sebaliknya, sehingga penutupan (yang mengambil sesi secara eksklusif) dan posting berjalan serial tanpa siklus. Shift yang sudah ditutup tidak pernah ditulis ulang: pembalikan setelah penutupan mendarat di sesi terbuka register yang sama atau ditolak. Modelnya sengaja lokal-commerce — tiga kata benda (kategori, pengeluaran, posting → mutasi) — agar modul keuangan hulu di masa depan dapat menyerapnya lewat adaptor, bukan mewarisi konvensi akuntansi yang tidak pernah dipilihnya.
 
 ## Satu hal lagi yang dilakukan server: memperbaiki halaman yang terbayangi
 

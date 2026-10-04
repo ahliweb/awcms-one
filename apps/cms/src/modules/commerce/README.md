@@ -1231,7 +1231,7 @@ Six tables (`sql/970`: `awcms_commerce_registers`, `…_register_sessions`, `…
 - **Permissions.** `commerce.registers.{read,create,update}`, `commerce.register_sessions.{read,create,update,export}`, `commerce.register_cash_ups.{create,approve}`, `commerce.register_corrections.approve` — existing `AccessAction` verbs only; none implied by `commerce.pos.create`.
 - **Events.** `awcms.commerce.register_session.{opened,movement_recorded,closed,corrected}` on the `commerce.register_session` aggregate; audit `register.*` / `register_session.*` (money, types, ids — never free text).
 - **Screens.** `/admin/commerce-registers`, `/admin/commerce-registers/[id]`, the register banner on `/admin/commerce-pos` (see the awcms-one root's cms guide, [commerce module guide](../../../../../docs/cms.md)).
-- **Deferred.** The expenses domain (#294) and the typed reference on an expense movement (`reference_kind` is the hook), a "recorded after close" figure for late ledger activity, a per-register threshold, a cashier picker for handover — see [ADR-0028](../../../../../docs/adr/0028-pos-register-sessions-and-cash-up.md).
+- **Deferred.** A "recorded after close" figure for late ledger activity, a per-register threshold, a cashier picker for handover — see [ADR-0028](../../../../../docs/adr/0028-pos-register-sessions-and-cash-up.md).
 
 ## Document lifecycle: held sales, quotations, work orders, receipts and invoices — IMPLEMENTED (Issue #286, epic #281 — [ADR-0029](../../../../../docs/adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md))
 
@@ -1340,3 +1340,15 @@ Three tables (`sql/985`: `awcms_commerce_stored_value_programs`, `…_accounts`,
   (`sql/907`) is substring search, not a ranked search index — `site_search`
   is this base's cross-content search module, and `commerce` does not
   integrate with it in this increment.
+
+## Expenses: commerce-local petty cash — IMPLEMENTED (Issue #294, epic #281 — [ADR-0031](../../../../../docs/adr/0031-expenses-are-commerce-local-register-linked-petty-cash.md))
+
+Two tables (`sql/990`: `awcms_commerce_expense_categories`, `awcms_commerce_expenses`), the typed expense reference on register movements (`sql/991`: `reference_kind = 'expense'` + `expense_id`, a partial unique index of at most one out and one in movement per expense), twelve permissions (`sql/992`), worker purge grants (`sql/993`).
+
+- **Where the code is.** `domain/expense.ts` (vocabulary, validators, the approval decision and SoD, the threshold setting, exact-cent report folding — pure), `domain/expense-csv.ts` (formula-neutralised CSV, reusing the cash-up CSV's helpers), `domain/expense-lifecycle.ts` (`dataLifecycle` / `subjectData` descriptors), `application/expense-category-directory.ts`, `application/expense-directory.ts` (reads, drafts, discard, receipts, summary, export), `application/expense-posting.ts` (post, decide, reverse — the only code that writes a register movement for an expense, through `appendRegisterMovement` in `register-session-directory.ts`), `application/expense-http.ts` (the feature gate and the one refusal-to-HTTP mapping).
+- **The rules a change must keep.** An expense never edits a cash-up total — it appends a movement (out on posting, a compensating `correction` in on reversal) and nothing else; lock order is expense row, then session, always; every mutation locks first and reads the idempotency store after; content is frozen once a row leaves `draft` (trigger); a creator never approves their own expense (CHECK and code); a receipt is a private, verified, uploader-owned, single-use media object resolved from the expense, never from a caller-supplied id; audit and event payloads carry money and ids, never the description, payee, note or reason.
+- **Feature flag.** `features.expenses` defaults OFF (a drawer expense also needs `register`); the threshold is `expenses.approvalThreshold` in the module settings (strict `0.00` default; a corrupt value falls back to it). While ON, the manual movement route refuses `movementType: "expense"`.
+- **Permissions.** `commerce.expense_categories.{read,create,update}`, `commerce.expenses.{read,create,update,export}`, `commerce.expense_postings.{create,approve}`, `commerce.expense_reversals.approve`, `commerce.expense_receipts.{read,create}` — existing `AccessAction` verbs only.
+- **Events.** `awcms.commerce.expense.{posted,reversed}` on the `commerce.expense` aggregate; audit `expense.*` / `expense_category.*`.
+- **Screen.** `/admin/commerce-expenses` (see the awcms-one root's cms guide, [commerce module guide](../../../../../docs/cms.md)).
+- **Deferred.** A typed payee/party reference, several receipts per expense and an upload control on the screen, recurring expenses, per-category thresholds — see [ADR-0031](../../../../../docs/adr/0031-expenses-are-commerce-local-register-linked-petty-cash.md).

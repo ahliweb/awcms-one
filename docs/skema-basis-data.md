@@ -268,6 +268,19 @@ erDiagram
 
 `document_sequences` has no foreign key to the numbered rows on purpose: it is the counter their numbers come from, bumped in the same transaction, and a counter row outlives its documents for as long as its year is current. No column was added to `orders`: it never learns about the quotations, work orders or documents that point at it.
 
+## Expenses: two tables and a typed movement reference (`sql/990`–`993`, issue #294, [ADR-0031](adr/0031-expenses-are-commerce-local-register-linked-petty-cash.md))
+
+Two FORCE-RLS tables (tenant-isolation policy with `WITH CHECK`, composite `(tenant_id, …)` foreign keys backed by `UNIQUE (tenant_id, id)`, every FK column indexed, money `numeric(14,2)`), plus `expense_id` on the append-only register movements.
+
+| Table | What it holds | Notable constraints |
+| --- | --- | --- |
+| `awcms_commerce_expense_categories` | `code`, `name`, `active`, creator/updater stamps, `deleted_at` (never set — the retention cursor) | `UNIQUE (tenant_id, lower(code))`; length CHECKs |
+| `awcms_commerce_expenses` | `category_id`, `status` (`draft \| pending_approval \| posted \| reversed \| cancelled`), `amount > 0`, `tender_type` (`cash \| manual_qris \| manual_bank_transfer`), `occurred_on date`, `description`, `payee_name`, `register_session_id`, `receipt_media_object_id`, the creator / submitter / decider / poster / reverser / canceller stamps with timestamps, `approval_threshold`, `decision` (`auto \| approved \| rejected`), `posted_movement_id`, `reversal_session_id`, `reversal_movement_id` | `register_session_id` ⇒ `tender_type = 'cash'`; a posted expense names its poster and approval, and has a movement exactly when drawer-paid; **`approver_check`: an `approved` decider is never the creator**; a lifecycle trigger refuses illegal transitions and freezes content outside `draft` (a receipt may be added once to a posted/reversed expense); partial **UNIQUE** on `receipt_media_object_id` (one private object serves one expense); no `DELETE` for `awcms_app` |
+| `awcms_commerce_register_movements` (columns added by `sql/991`) | `reference_kind` now `free_text \| expense`; `expense_id` (composite FK) | `expense_shape_check`: `expense` kind ⇔ `expense_id`, and only `expense`/`out` (the posting) or `correction`/`in` (its reversal); partial **UNIQUE `(tenant_id, expense_id, direction)`** — at most one out and one in movement per expense; still append-only |
+
+- **Privileges.** `awcms_app` loses `DELETE` on both new tables (they keep `SELECT, INSERT, UPDATE`; the lifecycle trigger, not privilege, freezes a posted row). `awcms_worker` keeps `SELECT, DELETE` (`sql/993`) for the retention engine (`commerce.expense_categories`, `commerce.expenses`, five-year floor, ten-year ceiling, keyed on a never-set `deleted_at`). `security-readiness.ts` asserts the exact sets both ways.
+- **`sql/992`** seeds the twelve permission keys.
+
 ## Sales-report projections: three derived tables (`sql/933`)
 
 Issue #117, contract #106's D7 — the read models of the three `cursor_table` reporting projections `commerce` contributes (`commerce.sales_daily`, `commerce.sales_by_product`, `commerce.sales_by_category`), maintained by the `reporting` engine's own worker from `awcms_commerce_order_events` (see [`docs/cms.md`](cms.md) "Sales reports" for the delta rules). Derived and fully rebuildable — never written by a request path, never a source of truth.

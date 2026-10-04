@@ -751,7 +751,15 @@ export const RETIRED_TENANT_TABLE_PRIVILEGES: Record<string, string[]> = {
   awcms_commerce_quotation_versions: ["SELECT", "INSERT"],
   awcms_commerce_work_orders: ["SELECT", "INSERT", "UPDATE"],
   awcms_commerce_work_order_events: ["SELECT", "INSERT"],
-  awcms_commerce_documents: ["SELECT", "INSERT"]
+  awcms_commerce_documents: ["SELECT", "INSERT"],
+  // Issue #294 / `sql/990`. The expense tables - NOT retired, written on every
+  // spend. An expense is a fiscal record of money that left the business, so
+  // the role that records one must not be able to erase it: DELETE is revoked
+  // on both. Both keep UPDATE - a category is renamed/deactivated, an expense
+  // moves through its status machine (draft -> pending -> posted -> reversed),
+  // frozen by sql/990's guard trigger rather than by privilege.
+  awcms_commerce_expense_categories: ["SELECT", "INSERT", "UPDATE"],
+  awcms_commerce_expenses: ["SELECT", "INSERT", "UPDATE"]
 };
 
 type RlsRow = {
@@ -1642,6 +1650,13 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // with `executionMode: 'generic'` (module.ts) purely so the table answers
   // `data-lifecycle:table-coverage:check` — `deleted_at` stays NULL forever
   // (sql/917's header), so the generic engine's SELECT + DELETE is granted
+  // Issue #294 (`sql/990`/`sql/993`): the two expense tables' `dataLifecycle`
+  // descriptors (`commerce/domain/expense-lifecycle.ts`) are `executionMode:
+  // "generic"` with `hard_delete`; the retention worker is the only role that
+  // may delete an expense row (awcms_app has had DELETE revoked), and both
+  // tables are unreachable by construction (`deleted_at` is never set).
+  awcms_commerce_expense_categories: ["SELECT", "DELETE"],
+  awcms_commerce_expenses: ["SELECT", "DELETE"],
   // but never actually matches a row in practice.
   awcms_commerce_customer_accounts: ["SELECT", "DELETE"],
   // Issue #267 (IRMbyDUS, sql/936/937): same shape as
