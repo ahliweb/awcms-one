@@ -230,3 +230,24 @@ export const COMMERCE_STORED_VALUE_ACCOUNT_AGGREGATE_TYPE =
 export const COMMERCE_REGISTER_SESSION_AGGREGATE_TYPE =
   "commerce.register_session";
 export const COMMERCE_REVIEW_AGGREGATE_TYPE = "commerce.review";
+
+/**
+ * Returns and refunds (Issue #287, ADR-0033). Two event types, both on the
+ * RETURN aggregate:
+ *
+ *   - `return.recorded` when goods were accepted back - the lines, quantities
+ *     and value, never a customer name, phone or free-text note.
+ *   - `refund.settled` when one refund leg reached `succeeded` - ids, tender,
+ *     destination, amount and how it settled (`ledger` / `provider` /
+ *     `offline` / `store_credit`). A failed attempt is an audit event, not a
+ *     domain event: nothing downstream changed.
+ *
+ * Registered in `domain-event-runtime/domain/event-type-registry.ts`,
+ * `module.ts`'s `events.publishes` and
+ * `asyncapi/awcms-domain-events.asyncapi.yaml` in the same change.
+ */
+export const COMMERCE_RETURN_RECORDED_EVENT_TYPE =
+  "awcms.commerce.return.recorded";
+export const COMMERCE_REFUND_SETTLED_EVENT_TYPE =
+  "awcms.commerce.refund.settled";
+export const COMMERCE_RETURN_AGGREGATE_TYPE = "commerce.return";

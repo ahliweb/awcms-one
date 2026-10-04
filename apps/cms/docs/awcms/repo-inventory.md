@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 26    |
-| Migrations                          | 244   |
-| `awcms_*` tables                    | 239   |
-| Tables with `FORCE` RLS             | 221   |
+| Migrations                          | 248   |
+| `awcms_*` tables                    | 243   |
+| Tables with `FORCE` RLS             | 225   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 667   |
-| Route files                         | 644   |
+| Test files                          | 671   |
+| Route files                         | 652   |
 | ADR                                 | 252   |
 
 ### Modules
@@ -293,8 +293,12 @@
 | 240 | `sql/991_awcms_commerce_expenses_register_link.sql`                         |
 | 241 | `sql/992_awcms_commerce_expenses_permissions.sql`                           |
 | 242 | `sql/993_awcms_commerce_expenses_worker_grants.sql`                         |
-| 243 | `sql/998_awcms_commerce_operational_reports_schema.sql`                     |
-| 244 | `sql/999_awcms_commerce_operational_reports_permissions.sql`                |
+| 243 | `sql/994_awcms_commerce_returns_schema.sql`                                 |
+| 244 | `sql/995_awcms_commerce_returns_integration.sql`                            |
+| 245 | `sql/996_awcms_commerce_returns_permissions.sql`                            |
+| 246 | `sql/997_awcms_commerce_returns_worker_grants.sql`                          |
+| 247 | `sql/998_awcms_commerce_operational_reports_schema.sql`                     |
+| 248 | `sql/999_awcms_commerce_operational_reports_permissions.sql`                |
 
 ### Tables & Row-Level Security
 
@@ -376,6 +380,8 @@
 | `awcms_commerce_protected_media_links`      | `sql/939_awcms_commerce_protected_media_links_schema.sql`  | yes | yes   |
 | `awcms_commerce_quotation_versions`         | `sql/980_awcms_commerce_documents_schema.sql`              | yes | yes   |
 | `awcms_commerce_quotations`                 | `sql/980_awcms_commerce_documents_schema.sql`              | yes | yes   |
+| `awcms_commerce_refund_compensations`       | `sql/994_awcms_commerce_returns_schema.sql`                | yes | yes   |
+| `awcms_commerce_refunds`                    | `sql/994_awcms_commerce_returns_schema.sql`                | yes | yes   |
 | `awcms_commerce_register_close_lines`       | `sql/970_awcms_commerce_register_schema.sql`               | yes | yes   |
 | `awcms_commerce_register_close_requests`    | `sql/970_awcms_commerce_register_schema.sql`               | yes | yes   |
 | `awcms_commerce_register_corrections`       | `sql/970_awcms_commerce_register_schema.sql`               | yes | yes   |
@@ -387,6 +393,8 @@
 | `awcms_commerce_report_loyalty_daily`       | `sql/998_awcms_commerce_operational_reports_schema.sql`    | yes | yes   |
 | `awcms_commerce_report_stored_value_daily`  | `sql/998_awcms_commerce_operational_reports_schema.sql`    | yes | yes   |
 | `awcms_commerce_report_tender_daily`        | `sql/998_awcms_commerce_operational_reports_schema.sql`    | yes | yes   |
+| `awcms_commerce_return_lines`               | `sql/994_awcms_commerce_returns_schema.sql`                | yes | yes   |
+| `awcms_commerce_returns`                    | `sql/994_awcms_commerce_returns_schema.sql`                | yes | yes   |
 | `awcms_commerce_reviews`                    | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
 | `awcms_commerce_sales_by_category`          | `sql/933_awcms_commerce_reporting_projections_schema.sql`  | yes | yes   |
 | `awcms_commerce_sales_by_product`           | `sql/933_awcms_commerce_reporting_projections_schema.sql`  | yes | yes   |
@@ -544,16 +552,16 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 520        |
+| `(root)`      | 523        |
 | `e2e`         | 21         |
-| `integration` | 125        |
+| `integration` | 126        |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 521   |
+| `/api/v1/**`    | 529   |
 | `/admin/**`     | 93    |
 | publik / anonim | 30    |
 

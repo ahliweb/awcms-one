@@ -63,6 +63,35 @@ export type PaymentGatewayWebhookResult = {
   status: PaymentGatewayStatus;
 };
 
+/**
+ * Issue #287 (ADR-0033) - return money to the payer along the original
+ * payment. `refundKey` is the idempotency key sent to the provider: the SAME
+ * key for every attempt of one refund leg (the refund row's id), so a retry
+ * after a timeout or a crash can never refund twice.
+ */
+export type PaymentGatewayRefundInput = {
+  /** The provider-facing order id of the payment being refunded (`awcms_commerce_payment_allocations.provider_reference`). */
+  providerRef: string;
+  /** Decimal string, e.g. `"25000.00"`. */
+  amount: string;
+  refundKey: string;
+  /** Short, non-personal reason text for the provider's own records. */
+  reason: string;
+};
+
+export type PaymentGatewayRefundResult = {
+  /**
+   * `succeeded`: the provider confirms the money is going back (or already
+   * went). `pending`: accepted, will settle later - the leg stays
+   * `processing` and a retry asks again. `failed`: refused.
+   */
+  status: "succeeded" | "pending" | "failed";
+  providerRefundId: string | null;
+  /** A short machine code for `failed` (never a raw provider message). */
+  failureCode: string | null;
+  raw: unknown;
+};
+
 export interface PaymentGatewayProvider {
   createSession(
     input: PaymentGatewayCreateSessionInput
@@ -71,4 +100,13 @@ export interface PaymentGatewayProvider {
   verifyWebhook(
     input: PaymentGatewayWebhookInput
   ): Promise<PaymentGatewayWebhookResult>;
+  /**
+   * Optional (Issue #287): an adapter that cannot refund simply omits it, and
+   * the refund leg is settled through the offline path by an operator holding
+   * `commerce.refunds_offline.approve`. Called ONLY with no database
+   * transaction open (`application/refund-execution.ts`).
+   */
+  refund?(
+    input: PaymentGatewayRefundInput
+  ): Promise<PaymentGatewayRefundResult>;
 }

@@ -35,6 +35,8 @@ import { verifyMidtransSignature } from "../domain/midtrans-signature";
 import type {
   PaymentGatewayCreateSessionInput,
   PaymentGatewayProvider,
+  PaymentGatewayRefundInput,
+  PaymentGatewayRefundResult,
   PaymentGatewaySessionResult,
   PaymentGatewayStatusResult,
   PaymentGatewayWebhookInput,
@@ -66,6 +68,14 @@ export type MidtransProviderConfig = {
 type SnapCreateTransactionResponse = {
   token?: string;
   redirect_url?: string;
+};
+
+type MidtransRefundResponse = {
+  status_code?: string;
+  status_message?: string;
+  refund_key?: string;
+  refund_chargeback_id?: number | string;
+  transaction_status?: string;
 };
 
 type MidtransStatusResponse = {
@@ -226,6 +236,68 @@ export function createMidtransProvider(
           body.transaction_status ?? "pending",
           body.fraud_status ?? null
         ),
+        raw: body
+      };
+    },
+
+    /**
+     * Issue #287 (ADR-0033): `POST {statusBaseUrl}/v2/{order_id}/refund/online/direct`
+     * with `{refund_key, amount, reason}` - Midtrans's "direct refund", which
+     * works for cards and the e-wallets alike and de-duplicates on
+     * `refund_key`, so a retry of the same leg can never refund twice. The
+     * HTTP layer is guarded like every other call here (timeout + circuit
+     * breaker); a business refusal arrives as HTTP 200 with a non-2xx
+     * `status_code` in the body and is reported as `failed` with a SHORT
+     * machine code - the raw provider message never leaves this adapter.
+     */
+    async refund(
+      input: PaymentGatewayRefundInput
+    ): Promise<PaymentGatewayRefundResult> {
+      const response = await guardedFetch("midtrans.refund", () =>
+        fetch(
+          `${statusBaseUrl}/v2/${encodeURIComponent(input.providerRef)}/refund/online/direct`,
+          {
+            method: "POST",
+            headers: {
+              authorization,
+              "content-type": "application/json",
+              accept: "application/json"
+            },
+            body: JSON.stringify({
+              refund_key: input.refundKey,
+              amount: Number.parseFloat(input.amount),
+              reason: input.reason.slice(0, 200)
+            })
+          }
+        )
+      );
+
+      let body: MidtransRefundResponse;
+      try {
+        body = (await response.json()) as MidtransRefundResponse;
+      } catch {
+        throw new PaymentGatewayProviderCallFailedError(
+          "Midtrans refund returned an unparseable body."
+        );
+      }
+
+      const code = body.status_code ?? "";
+      const providerRefundId =
+        body.refund_chargeback_id !== undefined
+          ? String(body.refund_chargeback_id)
+          : (body.refund_key ?? input.refundKey);
+      if (/^2\d\d$/.test(code)) {
+        return {
+          status: code === "201" ? "pending" : "succeeded",
+          providerRefundId,
+          failureCode: null,
+          raw: body
+        };
+      }
+      return {
+        status: "failed",
+        providerRefundId: null,
+        failureCode: `MIDTRANS_${code || "UNKNOWN"}`,
         raw: body
       };
     },

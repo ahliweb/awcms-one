@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:dcd657d617194f1ecdeab51cbe6a28fff60904fed8f00f2a5ced1c25e8fe135a -->
+<!-- i18n-source-hash: sha256:ce2b59755a1a0cea40dc8c3e6972cf78cb18ddd0b1e26d0929c3549df1b1651d -->
 
 # Skema basis data
 
@@ -235,6 +235,22 @@ Tiga tabel FORCE-RLS (kebijakan isolasi tenant dengan `WITH CHECK`, foreign key 
 - **`sql/985`** juga membuat `awcms_commerce_customers (tenant_id, id)` sebagai target FK komposit (`IF NOT EXISTS`, indeks sama yang dibuat skema loyalti).
 - **Hak akses.** `awcms_app` kehilangan `DELETE` pada ketiganya dan `UPDATE` pada ledger; `awcms_worker` mempertahankan `SELECT, DELETE` (`sql/988`) untuk mesin retensi (`commerce.stored_value_*`, lantai lima tahun, batas atas sepuluh tahun; kedua induk berkursor `deleted_at` yang tidak pernah diisi, ledger berkursor `created_at`). `security-readiness.ts` menegaskan himpunan persisnya di kedua arah.
 - **`sql/987`** menyemai tujuh kunci izin; `sql/989` ditahan dan tidak dipakai.
+
+## Pengembalian barang, pengembalian dana, dan penukaran: empat tabel dan empat integrasi (`sql/994`–`997`, issue #287, [ADR-0033](adr/0033-returns-refunds-and-exchanges-are-additive-records-that-compensate-through-the-existing-ledgers.md))
+
+Empat tabel FORCE-RLS (kebijakan isolasi tenant dengan `WITH CHECK`, foreign key komposit `(tenant_id, …)`, uang `numeric(14,2)`):
+
+| Tabel | Tujuan |
+| --- | --- |
+| `awcms_commerce_returns` | Satu pengembalian atau penukaran barang yang dijual pada satu pesanan: `kind` (`return \| exchange`), `status` (`open \| completed`), pemisahan tepat sen `goods_gross`, `discount_share`, `shipping_refund`, `refund_total` (diikat CHECK), `exchange_order_id` sekali-set, `source_key` (unik per tenant). Hanya berubah `open → completed` dan tautan penukaran. |
+| `awcms_commerce_return_lines` | Append-only: `order_item_id`, snapshot produk/varian, `quantity`, `reason`, `disposition` (`restock \| damaged \| quarantine`), `stock_effect` (CHECK = quantity untuk `restock`, selain itu 0), `goods_gross` / `discount_share` / `refund_amount` baris itu. Trigger `BEFORE INSERT` mengunci item pesanan dan menolak Σ jumlah di atas jumlah terjual. |
+| `awcms_commerce_refunds` | Satu bagian pengembalian dana pada satu alokasi pembayaran yang berhasil: `tender_type`, `amount`, `destination` (`original_tender \| store_credit`), `status` (`pending \| processing \| succeeded \| failed`), `settled_via`, `attempts`, `failure_code`, `reversal_allocation_id`, `store_credit_account_id`, `offline_reason` / `offline_by_tenant_user_id` untuk offline. Trigger membatasi bagian aktif + reversal pada pembayaran dan mengurung update ke mesin status. |
+| `awcms_commerce_refund_compensations` | Append-only, unik per `(refund, kind)`: `loyalty_reversal` (poin), `affiliate_adjustment`, `store_credit_issue` / `store_credit_load` (uang), `ref_id`. |
+
+- **`sql/995`** menambahkan `awcms_commerce_order_events.return_id` (FK komposit nullable, `ON DELETE SET NULL (return_id)`) agar event `returned` dapat menamai pengembaliannya untuk proyeksi penjualan; trigger pada `awcms_commerce_payment_allocations` yang membatasi Σ reversal berhasil pada pembayaran (batas ADR-0025, kini juga sifat tabel); `source_type = 'refund'` pada ledger loyalitas dan indeks unik satu-reversal-per-earn dipersempit untuk reversal non-refund; `awcms_commerce_affiliate_commissions.adjusted_amount` (`0 ≤ adjusted ≤ amount`).
+- `sql/994` juga membuat `UNIQUE (tenant_id, id)` pada `awcms_commerce_order_items` sebagai target foreign key komposit.
+- **Hak akses.** `awcms_app` kehilangan `DELETE` pada keempatnya dan `UPDATE` pada dua tabel append-only; `awcms_worker` mempertahankan `SELECT, DELETE` (`sql/997`) untuk mesin retensi (batas atas sepuluh tahun). Baris refund ikut terhapus bersama alokasi yang dikembalikannya.
+- **`sql/996`** menyemai lima kunci izin.
 
 ## Dokumen commerce: tujuh tabel (`sql/980`–`982`, issue #286, [ADR-0029](adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md))
 

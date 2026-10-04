@@ -592,6 +592,66 @@ export async function checkStoredValueRefundable(
     : { ok: false, refusal: "stored_value_account_unavailable" };
 }
 
+export type StoredValueLoadRefusal =
+  | "NOT_FOUND"
+  | "KIND_MISMATCH"
+  | "PROGRAM_DISABLED"
+  | "UNAVAILABLE"
+  | "EXPIRED"
+  | "BALANCE_CEILING";
+
+/**
+ * Locks the account and decides whether `amount` can be LOADED onto it now -
+ * without writing the load (Issue #287: a refund into store credit decides
+ * every refusal before it writes the payment-ledger reversal). The mirror of
+ * {@link checkStoredValueRedeemable}: wrong kind, a switched-off program,
+ * disabled / expired / lapsed account and the balance ceiling are refusals.
+ */
+export async function checkStoredValueLoadable(
+  tx: Bun.SQL,
+  tenantId: string,
+  params: {
+    accountId: string;
+    kind: StoredValueKind;
+    /** `numeric(14,2)` string, > 0. */
+    amount: string;
+  }
+): Promise<{ ok: true } | { ok: false; refusal: StoredValueLoadRefusal }> {
+  let account = await lockStoredValueAccount(tx, tenantId, params.accountId);
+  if (!account) return { ok: false, refusal: "NOT_FOUND" };
+  if (account.kind !== params.kind) {
+    return { ok: false, refusal: "KIND_MISMATCH" };
+  }
+  if (!account.program.enabled) {
+    return { ok: false, refusal: "PROGRAM_DISABLED" };
+  }
+  account = await settleLapse(tx, tenantId, account);
+  const amountCents = signedToCents(params.amount);
+  const verdict = evaluateEntry(
+    stateOf(account),
+    "load",
+    amountCents,
+    account.dbNow
+  );
+  if (!verdict.ok) {
+    return {
+      ok: false,
+      refusal:
+        verdict.refusal === "ACCOUNT_EXPIRED" ||
+        verdict.refusal === "ACCOUNT_LAPSED"
+          ? "EXPIRED"
+          : "UNAVAILABLE"
+    };
+  }
+  if (
+    account.program.maxBalance !== null &&
+    verdict.next.balanceCents > signedToCents(account.program.maxBalance)
+  ) {
+    return { ok: false, refusal: "BALANCE_CEILING" };
+  }
+  return { ok: true };
+}
+
 type MirrorParams = {
   accountId: string;
   allocationId: string;

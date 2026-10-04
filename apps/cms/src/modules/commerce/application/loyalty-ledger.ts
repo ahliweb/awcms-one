@@ -70,6 +70,7 @@ import {
 } from "../domain/loyalty";
 import { computeEarnPoints, computeExpiresAt } from "../domain/loyalty-earn";
 import {
+  computeRefundReversalPoints,
   computeReversalPoints,
   findExpirableLots,
   type ReplayEntry
@@ -681,6 +682,92 @@ export async function reverseEarnForCancelledOrder(
     idempotencyKey: reversalKey,
     reversesEntryId: earn.id,
     correlationId
+  });
+
+  return result.inserted
+    ? { kind: "reversed", entry: result.entry }
+    : { kind: "already_reversed", entry: result.entry };
+}
+
+// ---------------------------------------------------------------------------
+// Reversal (order partially / fully refunded) - Issue #287, ADR-0033
+// ---------------------------------------------------------------------------
+
+export type RefundReverseOutcome =
+  | { kind: "reversed"; entry: LoyaltyLedgerEntry }
+  | { kind: "already_reversed"; entry: LoyaltyLedgerEntry }
+  | { kind: "no_earn" }
+  | { kind: "nothing_to_reverse" };
+
+/**
+ * Takes back the share of an order's earn that a REFUND represents - the one
+ * writer of refund-sourced reversals, so the earn/redeem/reversal arithmetic
+ * stays in this file. `cumulativeRefundedCents` is everything refunded on the
+ * order so far INCLUDING this refund, out of `orderTotalCents`; the entry
+ * written is the difference between that cumulative target and what earlier
+ * refunds already took back, so any sequence of partial refunds adds up to
+ * the earn exactly when the order is fully refunded - and a later
+ * cancellation (`reverseEarnForCancelledOrder`) takes only what is left.
+ *
+ * Idempotent: the entry's key is `reversal:refund:{refundId}`, so a replay of
+ * the same refund finds the row and writes nothing. Like the cancellation
+ * reversal it runs regardless of the `loyalty` feature flag (turning loyalty
+ * off must not strand the points of an order that is later refunded), and it
+ * may drive the balance negative (ADR-0026 D6): points already spent are
+ * clawed back.
+ */
+export async function reverseEarnForRefund(
+  tx: Bun.SQL,
+  tenantId: string,
+  params: {
+    orderId: string;
+    refundId: string;
+    cumulativeRefundedCents: bigint;
+    orderTotalCents: bigint;
+    asOf: Date;
+    correlationId?: string;
+  }
+): Promise<RefundReverseOutcome> {
+  const reversalKey = `reversal:refund:${params.refundId}`;
+  const earnRows = (await tx`
+    SELECT id, account_id
+    FROM awcms_commerce_loyalty_ledger
+    WHERE tenant_id = ${tenantId} AND idempotency_key = ${`earn:order:${params.orderId}`}
+  `) as { id: string; account_id: string }[];
+  const earn = earnRows[0];
+  if (!earn) return { kind: "no_earn" };
+
+  const account = await lockAccountById(tx, tenantId, earn.account_id);
+  if (!account) return { kind: "no_earn" };
+
+  const prior = await findEntryByKey(tx, tenantId, reversalKey);
+  if (prior) return { kind: "already_reversed", entry: prior };
+
+  await expireDueLotsForLockedAccount(
+    tx,
+    tenantId,
+    account,
+    params.asOf,
+    params.correlationId
+  );
+
+  const entries = await loadReplayEntries(tx, tenantId, account.id);
+  const points = computeRefundReversalPoints(
+    entries,
+    earn.id,
+    params.cumulativeRefundedCents,
+    params.orderTotalCents
+  );
+  if (points <= 0) return { kind: "nothing_to_reverse" };
+
+  const result = await appendLedgerEntry(tx, tenantId, account, {
+    kind: "reversal",
+    points: -points,
+    sourceType: "refund",
+    sourceId: params.refundId,
+    idempotencyKey: reversalKey,
+    reversesEntryId: earn.id,
+    correlationId: params.correlationId
   });
 
   return result.inserted

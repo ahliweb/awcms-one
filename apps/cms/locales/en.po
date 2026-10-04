@@ -10128,6 +10128,258 @@ msgstr ""
 msgid "Barcodes, labels and cashier shortcuts"
 msgstr ""
 
+msgid "1. What is coming back?"
+msgstr ""
+
+msgid "2. Refund"
+msgstr ""
+
+msgid "3. Review and confirm"
+msgstr ""
+
+msgid "Also refund the shipping charged"
+msgstr ""
+
+msgid "As store credit"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "Back along the original payments"
+msgstr ""
+
+msgid "Can return"
+msgstr ""
+
+msgid "Choose…"
+msgstr ""
+
+msgid "Choose a reason…"
+msgstr ""
+
+msgid "Choose a reason and what happens to the goods for every returned line."
+msgstr ""
+
+msgid "Could not record this. Check the entries and try again."
+msgstr ""
+
+msgid "Could not save this action. Please try again."
+msgstr ""
+
+msgid "Customer changed their mind"
+msgstr ""
+
+msgid "Damaged in transit"
+msgstr ""
+
+msgid "Damaged (written off)"
+msgstr ""
+
+msgid "Defective or faulty"
+msgstr ""
+
+msgid "Discount released"
+msgstr ""
+
+msgid "Duplicate order"
+msgstr ""
+
+msgid "Enter a quantity for at least one line."
+msgstr ""
+
+msgid "Enter how many units of each line are returned, why, and what happens to them. Only units set to restock become sellable again."
+msgstr ""
+
+msgid "Every unit on this order has already been returned."
+msgstr ""
+
+msgid "Exchange"
+msgstr ""
+
+msgid "Goes to"
+msgstr ""
+
+msgid "Goods"
+msgstr ""
+
+msgid "Goods can only be returned against an order whose sale is paid."
+msgstr ""
+
+msgid "Handed back / booked"
+msgstr ""
+
+msgid "I confirm the goods were received and this return may be recorded."
+msgstr ""
+
+msgid "Lines that can be returned"
+msgstr ""
+
+msgid "Made outside the system"
+msgstr ""
+
+msgid "More units were requested than remain eligible to return."
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid "No payment provider that can refund is connected. Settle this refund outside the system instead."
+msgstr ""
+
+msgid "No refund now"
+msgstr ""
+
+msgid "No refund now - the return and the stock are recorded; the refund can be added later."
+msgstr ""
+
+msgid "No returns have been recorded for this order."
+msgstr ""
+
+msgid "Not as described"
+msgstr ""
+
+msgid "Original payment method"
+msgstr ""
+
+msgid "Other reason"
+msgstr ""
+
+msgid "Paid by"
+msgstr ""
+
+msgid "Pay any cash refund from my open register"
+msgstr ""
+
+msgid "Pay cash refunds from my open register"
+msgstr ""
+
+msgid "Payment provider"
+msgstr ""
+
+msgid "Quantity to return"
+msgstr ""
+
+msgid "Quarantine (held, not sellable)"
+msgstr ""
+
+msgid "Record as refunded"
+msgstr ""
+
+msgid "Recording a return adds to the order's history; nothing already recorded is changed. The exact refund is calculated to the cent when you confirm."
+msgstr ""
+
+msgid "Record return"
+msgstr ""
+
+msgid "Refund along the original payments, newest first."
+msgstr ""
+
+msgid "Refund as store credit for the customer (a new code is shown once)."
+msgstr ""
+
+msgid "Refund legs"
+msgstr ""
+
+msgid "Refund made outside the system"
+msgstr ""
+
+msgid "Refund total"
+msgstr ""
+
+msgid "Refund value"
+msgstr ""
+
+msgid "Restock (sellable again)"
+msgstr ""
+
+msgid "Return"
+msgstr ""
+
+msgid "Returned lines"
+msgstr ""
+
+msgid "Return goods"
+msgstr ""
+
+msgid "Return recorded"
+msgstr ""
+
+msgid "Returns and refunds"
+msgstr ""
+
+msgid "Returns are not switched on for this shop."
+msgstr ""
+
+msgid "Send refund"
+msgstr ""
+
+msgid "Send this refund to the payment provider?"
+msgstr ""
+
+msgid "Send to provider"
+msgstr ""
+
+msgid "Settled outside"
+msgstr ""
+
+msgid "Shipping refunded"
+msgstr ""
+
+msgid "Size or fit"
+msgstr ""
+
+msgid "Start a return"
+msgstr ""
+
+msgid "Store credit cannot be issued for this refund (feature, program or customer)."
+msgstr ""
+
+msgid "Store credit was issued. Give the customer this code now - it is shown only once and cannot be recovered."
+msgstr ""
+
+msgid "Stored with the refund and recorded in the audit log."
+msgstr ""
+
+msgid "That payment cannot be refunded (for example a gift card that no longer accepts value)."
+msgstr ""
+
+msgid "The payment provider did not complete the refund. Try again, or settle it outside the system."
+msgstr ""
+
+msgid "The provider is asked to return {amount} to the customer. Asking again is safe: the provider will not refund twice."
+msgstr ""
+
+msgid "The refund is more than the order's payments can still give back."
+msgstr ""
+
+msgid "The shipping refund is more than the shipping charged."
+msgstr ""
+
+msgid "This is an exchange (link the replacement order afterwards)"
+msgstr ""
+
+msgid "Use this only when the money has already gone back to the customer by other means. Your reason is stored with the refund and audited."
+msgstr ""
+
+msgid "Waiting"
+msgstr ""
+
+msgid "What happens to the goods"
+msgstr ""
+
+msgid "Where does the money go?"
+msgstr ""
+
+msgid "With the payment provider"
+msgstr ""
+
+msgid "Wrong item sent"
+msgstr ""
+
+msgid "Your register session is not open, or it is not yours."
+msgstr ""
+
 msgid "Reversed up"
 msgstr ""
 

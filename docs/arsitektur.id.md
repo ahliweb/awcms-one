@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](arsitektur.md)
 
-<!-- i18n-source-hash: sha256:820f4eeed404a0ee839359b005d0b0c81a31babf819a9bb43c5bdefcd88eb50b -->
+<!-- i18n-source-hash: sha256:bdf7f67af3399f408c76165e1797c7bc984b031e1ce7a6aa623482366d75919b -->
 
 # Arsitektur
 
@@ -197,6 +197,10 @@ Tutup kas tidak menyimpan total sendiri. Jumlah penutupan yang seharusnya per te
 ## Nilai tersimpan adalah kewajiban yang dijaga tetap tepat oleh database (issue #288, [ADR-0030](adr/0030-stored-value-is-a-closed-loop-liability-ledger.md))
 
 Kartu hadiah adalah uang terutang, jadi saldonya bukan field yang diedit fungsi aplikasi. Setiap perubahan adalah satu baris bertanda pada ledger append-only, dan satu-satunya yang menggerakkan `balance`/`version`/`status` akun adalah trigger `BEFORE INSERT` ledger sendiri — ia mengunci akun, menerapkan aturan jenis/status/kedaluwarsa, menolak apa pun yang turun di bawah nol, menomori entri, dan memperbarui proyeksi dalam transaksi yang menyisipkan; trigger kedua menolak edit lain atas kolom-kolom itu. Penukaran adalah tender pada ledger pembayaran ADR-0025: leg alokasi dan entri ledger cerminannya ditulis bersama (masing-masing menolak ada tanpa yang lain, lewat trigger dan trigger constraint tertangguh), tidak ada panggilan provider atau jaringan masuk ke transaksi, dan urutan kunci adalah baris pesanan → baris akun di mana-mana (akun `FOR NO KEY UPDATE`, karena alasan key-share FK yang sama dengan ADR-0025 D4); penjualan POS, yang belum punya baris pesanan, mengunci akunnya terurut menurut id dan menolak kartu yang buruk dalam preflight SEBELUM pesanan ada, sehingga tidak ada yang tertinggal (respons yang dikembalikan meng-commit; hanya error yang dilempar yang me-rollback). Kode yang dapat ditukar adalah nilai CSPRNG 100 bit yang hanya disimpan sebagai sha256 berlingkup tenant ditambah empat karakter terakhir, dikembalikan sekali saat penerbitan dan tidak ada di log, atribut audit, payload event, maupun baris idempotensi mana pun. Loop ditutup secara konstruksi: tidak ada di skema yang dapat menyatakan tarik tunai atau transfer.
+
+## Pengembalian menambah baris dan mengompensasi lewat ledger yang sudah ada (issue #287, [ADR-0033](adr/0033-returns-refunds-and-exchanges-are-additive-records-that-compensate-through-the-existing-ledgers.md))
+
+Pengembalian tidak pernah mengubah riwayat: ia menambah sebuah return, barisnya, bagian refund, satu baris reversal di ledger pembayaran, dan satu baris `returned` di stream event pesanan — dan setiap angka dapat direkonstruksi darinya. Tiga kegagalan klasik masing-masing ditolak dua kali, sekali oleh aplikasi di bawah kunci pesanan dan sekali oleh database: unit lebih banyak dari yang dijual (trigger yang mengunci baris pesanan dan menjumlah), uang lebih banyak dari pembayaran (trigger pada bagian refund dan pada reversal ledger pembayaran), dan refund dua kali (id bagian adalah kunci idempotensi penyedia, `UNIQUE (tenant_id, source_key)` adalah penjaga kedua). Inventori adalah port dengan satu implementasi saat ini (hitungan stok tunggal), sehingga ledger multi-lokasi #282 menggantikan satu berkas. Adapter gateway dipanggil di antara dua transaksi pendek, tidak pernah di dalam salah satunya; laporan penjualan mengurangkan pengembalian pada stream yang sudah dibacanya, sehingga rebuild sama dengan tabel live.
 
 ## Dokumen adalah snapshot, nomor adalah penghitung yang terikat transaksi (issue #286, [ADR-0029](adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md))
 

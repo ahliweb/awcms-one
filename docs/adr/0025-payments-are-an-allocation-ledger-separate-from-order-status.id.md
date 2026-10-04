@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0025-payments-are-an-allocation-ledger-separate-from-order-status.md)
 
-<!-- i18n-source-hash: sha256:22779efec58e0d87aac112bbefa4f21658057db0533d156435bc611a78347b4c -->
+<!-- i18n-source-hash: sha256:5620813d4019ce9d85c64688285fa3944456c30cfca1008c260b353bca811921 -->
 
 # ADR-0025 — Pembayaran adalah ledger alokasi append-only, terpisah dari status pesanan
 
@@ -80,4 +80,4 @@ Kedua referensi adalah FK komposit pada `(tenant_id, …)` (`UNIQUE (tenant_id, 
 
 ## Ditunda (sengaja tidak dibangun di sini)
 
-Tender kredit toko / kartu hadiah (#288/#289); refund provider otomatis dan perubahan pesanan/fulfilment yang digerakkan refund; leg gateway untuk kurang dari seluruh total (sesi jumlah-parsial, yang juga memerlukan penjaga jumlah membandingkan dengan saldo terutang); proyeksi tender-mix; "saldo terutang" yang menghadap pelanggan di halaman pesanan storefront; rekonsiliasi laci-kas/shift per tender.
+Tender kredit toko / kartu hadiah (#288/#289); refund provider otomatis (**dibangun oleh [ADR-0033](0033-returns-refunds-and-exchanges-are-additive-records-that-compensate-through-the-existing-ledgers.md) D6: leg gateway dikirim ke penyedia di luar transaksi apa pun, dan trigger database kini juga membatasi Σ reversal pada pembayaran**) dan perubahan pesanan/fulfilment yang digerakkan refund (tetap keputusan manusia); leg gateway untuk kurang dari seluruh total (sesi jumlah-parsial, yang juga memerlukan penjaga jumlah membandingkan dengan saldo terutang); proyeksi tender-mix; "saldo terutang" yang menghadap pelanggan di halaman pesanan storefront; rekonsiliasi laci-kas/shift per tender.

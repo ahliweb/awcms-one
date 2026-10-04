@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:13598a550c17eae87105db4bdd35001610e26de8403c42c62e7f81b8c31f7017 -->
+<!-- i18n-source-hash: sha256:f4a95436b0067c563543c9534e86b221d57ab59fcdaf0e63205f22faa6b31441 -->
 
 # Kamus data
 
@@ -262,6 +262,22 @@ Atribut kustom **bertipe** buatan tenant — desain milik platform ini sendiri (
 | terutang (outstanding) | turunan | Jumlah setiap entri ledger suatu jenis — yang dihutang; di antaranya `disabledBalance` beku dan `lapsedPendingRelease` melewati kedaluwarsa tetapi belum dilepas sweep |
 | fitur `storedValue` | pengaturan modul commerce `features.storedValue` (default MATI) | Menyalakan seluruh permukaan; saat mati, tender kartu ditolak sebelum apa pun ditulis |
 | `commerce.stored_value_programs.*`, `commerce.stored_value.*`, `commerce.stored_value_adjustments.create`, `commerce.stored_value_reconcile.approve` | `awcms_permissions` (`sql/987`) | Tujuh kunci; menukar adalah tender pembayaran, bukan salah satunya |
+
+### Pengembalian barang, pengembalian dana, dan penukaran (issue #287, [ADR-0033](adr/0033-returns-refunds-and-exchanges-are-additive-records-that-compensate-through-the-existing-ledgers.md))
+
+| Istilah | Lokasi | Arti |
+| --- | --- | --- |
+| return (pengembalian) | `awcms_commerce_returns` | Barang yang diterima kembali atas satu pesanan; `kind` `return` atau `exchange`; `open` sampai semua bagian dana selesai, lalu `completed`. Riwayat: hanya perpindahan itu dan tautan penukaran sekali-set yang berubah |
+| return line | `awcms_commerce_return_lines` | Unit satu baris pesanan yang kembali, dengan `reason` (`defective`, `wrong_item`, `not_as_described`, `damaged_in_transit`, `changed_mind`, `size_fit`, `duplicate_order`, `other`) dan `disposition` |
+| disposition | return line | `restock` mengembalikan unit ke stok yang dapat dijual; `damaged` dan `quarantine` dicatat dan tidak mengubah stok yang dapat dijual |
+| `goods_gross` / `discount_share` / `refund_amount` | return line dan return | Nilai unit sebelum diskon, diskon pesanan yang dilepas bersamanya, dan selisihnya — yang dikembalikan untuk barang |
+| `shipping_refund` / `refund_total` | return | Ongkos kirim yang dikembalikan (dibatasi ongkos kirim yang dikenakan); `refund_total = goods_gross − discount_share + shipping_refund` |
+| refund (bagian) | `awcms_commerce_refunds` | Uang yang kembali melalui SATU pembayaran asal; `destination` `original_tender` atau `store_credit`; `status` `pending → processing → succeeded \| failed` (`failed → processing` adalah percobaan ulang) |
+| `settled_via` | refund | `ledger` (tunai diserahkan / refund manual dibukukan / nilai dikembalikan ke kartu), `provider`, `offline` (diatestasi di luar sistem), `store_credit` |
+| compensation | `awcms_commerce_refund_compensations` | Efek turunan dari refund yang selesai: poin loyalitas diambil kembali, komisi afiliasi disesuaikan, kredit toko diterbitkan atau diisi |
+| `adjusted_amount` | `awcms_commerce_affiliate_commissions` | Bagian komisi yang dikembalikan oleh refund; komisi efektif = `amount − adjusted_amount` |
+| fitur `returns` | pengaturan modul commerce `features.returns` (default MATI) | Menyalakan seluruh permukaan; saat mati, semua route owner menjawab `409 FEATURE_DISABLED` |
+| `commerce.returns.*`, `commerce.refunds.*`, `commerce.refunds_offline.approve` | `awcms_permissions` (`sql/996`) | Lima kunci; refund juga memerlukan `commerce.payments.revoke` |
 
 ## Kosakata dokumen commerce (issue #286, [ADR-0029](adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md))
 
