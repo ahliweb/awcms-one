@@ -63,8 +63,9 @@ BEGIN
   WHERE tenant_id = NEW.tenant_id AND id = NEW.reverses_allocation_id
   FOR NO KEY UPDATE;
   IF NOT FOUND THEN
-    RAISE EXCEPTION 'awcms_commerce_payment_allocations: reversed payment % not found', NEW.reverses_allocation_id
-      USING ERRCODE = 'foreign_key_violation';
+    -- No such payment in this tenant: let the composite foreign key refuse the
+    -- row with its own, standard error (a cross-tenant reference lands here).
+    RETURN NEW;
   END IF;
   SELECT COALESCE(SUM(amount), 0) INTO already
   FROM awcms_commerce_payment_allocations
