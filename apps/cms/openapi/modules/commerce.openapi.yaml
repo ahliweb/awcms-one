@@ -12179,6 +12179,60 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/inventory/items:
+    get:
+      operationId: lookupCommerceInventoryItems
+      tags:
+        - Commerce
+      summary: "Issue #283 (ADR-0038 addendum). Resolves a SKU or name to the ledger reference a procurement line must carry. Gated on `commerce.inventory.read`."
+      description: >-
+        Lists the live stock units - a live variant (`commerce.variant`) or a
+        live product with no live variant (`commerce.product`) - with the exact
+        `itemType`, `itemRef` and `unitCode` to put on a procurement document
+        line. A product that has live variants is not a stock unit and is not
+        listed. Keyset-paged, at most 50 per page. Works in either stock mode.
+      parameters:
+        - name: q
+          in: query
+          required: false
+          description: Case-insensitive contains-match on SKU, product name or variant value.
+          schema:
+            type: string
+            maxLength: 100
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+            maxLength: 300
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+            default: 20
+      responses:
+        "200":
+          description: One page of stock units.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceInventoryItemPage"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /api/v1/commerce/inventory/reconciliation:
     get:
       operationId: reconcileCommerceInventory
@@ -12190,6 +12244,13 @@ paths:
         variant), the `stock` column with `max(0, floor(ledger on-hand))`. One
         keyset page per call; follow `nextCursor` until it is null. Nothing is
         repaired. `409 NOT_LEDGER_MODE` for a store still on the counter.
+
+        The FIRST page (no `cursor`) also carries `orphans` (Issue #283): the
+        non-zero `commerce.*` ledger balances at the sales location that name no
+        live stock unit - a procurement receipt posted for a variant that does
+        not exist, for a product that has variants, under another unit code, or
+        under an unknown `commerce.*` item type. Capped at 100 with `truncated`.
+        Continuation pages return `orphans: null`.
       parameters:
         - name: cursor
           in: query
@@ -12218,7 +12279,7 @@ paths:
                     enum:
                       - true
                   data:
-                    $ref: "#/components/schemas/CommerceInventoryReconciliation"
+                    $ref: "#/components/schemas/CommerceInventoryReconciliationReport"
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -13037,6 +13098,99 @@ components:
         nextCursor:
           type: string
           nullable: true
+    CommerceInventoryItem:
+      type: object
+      required:
+        - itemType
+        - itemRef
+        - sku
+        - name
+        - variantName
+        - unitCode
+      properties:
+        itemType:
+          type: string
+          enum:
+            - commerce.product
+            - commerce.variant
+        itemRef:
+          type: string
+          format: uuid
+        sku:
+          type: string
+          nullable: true
+        name:
+          type: string
+          description: The product's name (for a variant, its parent product).
+        variantName:
+          type: string
+          nullable: true
+          description: The variant's value, e.g. `M`; null for a product-level unit.
+        unitCode:
+          type: string
+          enum:
+            - unit
+    CommerceInventoryItemPage:
+      type: object
+      required:
+        - items
+        - nextCursor
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceInventoryItem"
+        nextCursor:
+          type: string
+          nullable: true
+    CommerceInventoryOrphan:
+      type: object
+      required:
+        - itemType
+        - itemRef
+        - unitCode
+        - onHand
+        - reason
+      properties:
+        itemType:
+          type: string
+        itemRef:
+          type: string
+        unitCode:
+          type: string
+        onHand:
+          type: string
+          description: The ledger balance at the sales location (decimal string).
+        reason:
+          type: string
+          enum:
+            - not_found
+            - product_has_variants
+            - wrong_unit
+            - unknown_item_type
+    CommerceInventoryOrphanReport:
+      type: object
+      required:
+        - items
+        - truncated
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceInventoryOrphan"
+        truncated:
+          type: boolean
+    CommerceInventoryReconciliationReport:
+      allOf:
+        - $ref: "#/components/schemas/CommerceInventoryReconciliation"
+        - type: object
+          required:
+            - orphans
+          properties:
+            orphans:
+              nullable: true
+              allOf:
+                - $ref: "#/components/schemas/CommerceInventoryOrphanReport"
     CommerceInventoryResync:
       allOf:
         - $ref: "#/components/schemas/CommerceInventoryReconciliation"
@@ -15296,12 +15450,37 @@ components:
                 percent:
                   type: integer
             tax:
-              type: object
-              properties:
-                active:
-                  type: boolean
-                percent:
-                  type: integer
+              oneOf:
+                - type: object
+                  description: "Issue #324 — flat mode: tax is `percent` of the subtotal less the voucher discount."
+                  required:
+                    - mode
+                    - active
+                    - percent
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - flat
+                    active:
+                      type: boolean
+                    percent:
+                      type: integer
+                - type: object
+                  description: "Issue #324 — engine mode: tax is computed by the tax module. The `active` and `percent` fields are NOT present in engine mode."
+                  required:
+                    - mode
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - engine
+                    inclusive:
+                      type: boolean
+                      nullable: true
+                      description: "Whether the tax is already included in the line prices (not added to the total). Omitted if not cheaply available."
+              discriminator:
+                propertyName: mode
             insurance:
               type: object
               properties:

@@ -54,6 +54,7 @@ import {
 } from "../src/modules/commerce/domain/store-settings-validation";
 import { toPublicRecord } from "../src/modules/commerce/application/store-settings-directory";
 import type { MediaLibraryPort } from "../src/modules/_shared/ports/media-library-port";
+import { DEFAULT_COMMERCE_FEATURES } from "../src/modules/commerce/domain/commerce-features";
 
 const T0 = new Date("2026-09-16T10:00:00.000Z");
 const BEFORE = new Date("2026-09-16T09:00:00.000Z");
@@ -770,5 +771,55 @@ describe("toPublicRecord — the public subset is a security boundary", () => {
       { level: 3, name: "Agen" },
       { level: 4, name: "Distributor" }
     ]);
+  });
+
+  test("Issue #324 — in flat tax mode, the public tax field includes mode, active, and percent", async () => {
+    const validated = validateStoreSettingsInput(LIVE_SETTINGS);
+    expect(validated.valid).toBe(true);
+    if (!validated.valid) return;
+
+    const record = await toPublicRecord(
+      null as unknown as Bun.SQL,
+      "tenant",
+      validated.value,
+      fakePort,
+      false,
+      false,
+      false,
+      DEFAULT_COMMERCE_FEATURES,
+      false,
+      "flat" // taxMode
+    );
+
+    expect(record.payment.tax).toEqual({
+      mode: "flat",
+      active: false,
+      percent: 11
+    });
+  });
+
+  test("Issue #324 — in engine tax mode, the public tax field includes mode but not active or percent", async () => {
+    const validated = validateStoreSettingsInput(LIVE_SETTINGS);
+    expect(validated.valid).toBe(true);
+    if (!validated.valid) return;
+
+    const record = await toPublicRecord(
+      null as unknown as Bun.SQL,
+      "tenant",
+      validated.value,
+      fakePort,
+      false,
+      false,
+      false,
+      DEFAULT_COMMERCE_FEATURES,
+      false,
+      "engine" // taxMode
+    );
+
+    expect(record.payment.tax).toEqual({
+      mode: "engine"
+    });
+    expect((record.payment.tax as any).active).toBeUndefined();
+    expect((record.payment.tax as any).percent).toBeUndefined();
   });
 });

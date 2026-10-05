@@ -46,6 +46,8 @@ import {
 import type { CreateOrderInput } from "../../src/modules/commerce/domain/order-request-validation";
 import type { CreatePosOrderInput } from "../../src/modules/commerce/domain/pos-order-validation";
 import type { CreateReturnInput } from "../../src/modules/commerce/domain/returns";
+import { SALES_REPORT_TIME_ZONE } from "../../src/modules/commerce/domain/sales-report-deltas";
+import { businessDateInTimeZone } from "../../src/modules/commerce/domain/tax-adapter";
 import { validateCreateOrderInput } from "../../src/modules/commerce/domain/order-request-validation";
 import { validateStoreSettingsInput } from "../../src/modules/commerce/domain/store-settings-validation";
 import { mediaLibraryPortAdapter } from "../../src/modules/media-library/application/media-library-port-adapter";
@@ -573,8 +575,18 @@ suite("commerce tax adapter integration (Issue #293)", () => {
     ]);
     const rowBefore = await orderRow(TENANT_A, before.id);
 
-    // A new rate (5 %) takes effect TOMORROW.
-    const tomorrow = new Date(Date.now() + DAY).toISOString().slice(0, 10);
+    // A new rate (5 %) takes effect TOMORROW — the day after the order's own
+    // tax date, which is the store's business date in Asia/Jakarta, NOT the
+    // UTC date (between 17:00 and 24:00 UTC they differ, and a UTC "tomorrow"
+    // equals the order's tax date, which the module rightly refuses as
+    // backdated).
+    const orderTaxDate = businessDateInTimeZone(
+      new Date(),
+      SALES_REPORT_TIME_ZONE
+    );
+    const tomorrow = new Date(Date.parse(`${orderTaxDate}T00:00:00Z`) + DAY)
+      .toISOString()
+      .slice(0, 10);
 
     await inTenant(TENANT_A, async (tx) => {
       const draft = await createDraftVersion(tx, TENANT_A, STAFF, {

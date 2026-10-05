@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:00ecd1be0a898c6fff4933e5e12c8169ff24bc64386673e89a6f310cfeb218cc -->
+<!-- i18n-source-hash: sha256:03725837bb41a08d588a72909fb5952eb204b69b6643962245612bf7eb850518 -->
 
 # `commerce`
 
@@ -1480,6 +1480,7 @@ Lima `reportingProjections` lagi pada mekanisme laporan penjualan di atas (tanpa
 - **Cut-over.** `application/commerce-inventory-cutover.ts` + `scripts/commerce-inventory-cutover.ts` (`bun run commerce:inventory:cutover`, dry-run secara bawaan). Opening tidak ada di port, sehingga skrip (composition root) menyerahkan inti posting modul inventori sebagai callback.
 - **API operator.** `GET /api/v1/commerce/inventory`, `GET …/reconciliation`, `POST …/resync`, `POST …/rollback` (`application/commerce-inventory-reconciliation.ts`; `commerce.inventory.read` / `.configure`).
 - **Suntingan.** `assertStockWritable` di direktori produk/varian dan galat baris saat-rencana di impor CSV menolak perubahan stok pada mode `ledger` (`409 STOCK_MANAGED_BY_INVENTORY`).
+- **Procurement (#283).** `procurement` hulu adalah konsumennya; commerce hanya menambah konvensi, pencarian, dan pemeriksaan. Baris pengadaan yang menambah stok barang commerce memakai `itemType` `commerce.variant` (uuid varian) atau `commerce.product` (uuid produk tanpa varian aktif), satuan `unit`, di lokasi penjualan (atau di tempat lain lalu `transfer`); `GET /api/v1/commerce/inventory/items?q=` (`application/commerce-inventory-items.ts`, `commerce.inventory.read`, keyset, maks 50) menerjemahkan SKU ke rujukan itu. Penerimaan tenant `counter` tidak mengubah stok commerce - lakukan cut-over lebih dulu. Halaman pertama rekonsiliasi juga melaporkan `orphans` (`listLedgerOrphans`: saldo `commerce.*` non-nol di lokasi penjualan yang tak menunjuk unit aktif; satu-satunya `SELECT` baca-saja pada `awcms_inventory_balances`, karena port hanya membaca satu saldo). Laporan penerimaan adalah proyeksi `procurement.*` hulu. Tes: `tests/integration/commerce-procurement-stock-flow.integration.test.ts`, `…/commerce-inventory-items-routes.integration.test.ts`.
 - **Tes.** `tests/commerce-inventory-domain.test.ts`, `tests/commerce-inventory-permissions.test.ts`, `tests/integration/commerce-inventory-adapter.integration.test.ts`.
 
 ## Pajak: persentase tetap, atau modul `tax` — TERIMPLEMENTASI (Issue #293, epik #281 — [ADR-0039](../../../../../docs/adr/0039-commerce-tax-is-computed-by-the-tax-module-behind-a-per-tenant-mode.md))

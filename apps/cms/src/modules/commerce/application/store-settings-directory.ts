@@ -305,7 +305,9 @@ export type StoreSettingsPublicRecord = {
     manualBank: { active: boolean; banks: { bankName: string }[] };
     manualQris: { active: boolean };
     downPayment: { active: boolean; percent: number };
-    tax: { active: boolean; percent: number };
+    tax:
+      | { mode: "flat"; active: boolean; percent: number }
+      | { mode: "engine"; inclusive?: boolean };
     insurance: { active: boolean; ratePercent: string; minFee: string };
     /**
      * Issue #29 — whether the public payment-proof upload path
@@ -368,6 +370,11 @@ export type StoreSettingsPublicRecord = {
  * holder names, and the QRIS media id NEVER appear here — only
  * `banks[].bankName` and `manualQris.active` cross into this shape, per the
  * contract's own note.
+ *
+ * Issue #324 — the public tax field is a discriminated union based on the
+ * tenant's tax mode: flat mode exposes `{ mode: "flat", active, percent }`,
+ * engine mode exposes `{ mode: "engine", inclusive?: boolean }` without percent
+ * or active.
  */
 export async function toPublicRecord(
   tx: Bun.SQL,
@@ -396,7 +403,9 @@ export async function toPublicRecord(
   /** Issue #118 — `resolveCommerceFeatures(...)`'s result, passed in for the same "no live settings lookup inside a pure-ish function" reason every other `*Configured` parameter here is. Defaults to every flag ON (`DEFAULT_COMMERCE_FEATURES`) — a caller that never adopts this parameter (an existing test literal) keeps computing the SAME `gatewayEnabled`/`courierEnabled` it always did. */
   features: CommerceFeatures = DEFAULT_COMMERCE_FEATURES,
   /** Issue #118 — `isWhatsappProviderConfigured()`, passed in for the same reason. */
-  whatsappProviderConfigured: boolean = false
+  whatsappProviderConfigured: boolean = false,
+  /** Issue #324 — the tenant's tax mode (`"flat"` | `"engine"`, the default). Passed in for the same reason every other `*Configured` parameter here is, so a test can control it without querying the database. */
+  taxMode: "flat" | "engine" = "flat"
 ): Promise<StoreSettingsPublicRecord> {
   const mediaIds = [
     settings.logoMediaObjectId,
@@ -421,6 +430,18 @@ export async function toPublicRecord(
   const faviconResolved = settings.faviconMediaObjectId
     ? resolved.get(settings.faviconMediaObjectId)
     : undefined;
+
+  // Issue #324 — construct the tax object based on the tenant's tax mode.
+  // In flat mode, expose the active and percent fields. In engine mode,
+  // omit them and add a mode discriminator.
+  const taxField: StoreSettingsPublicRecord["payment"]["tax"] =
+    taxMode === "engine"
+      ? { mode: "engine" }
+      : {
+          mode: "flat",
+          active: settings.payment.tax.active,
+          percent: settings.payment.tax.percent
+        };
 
   return {
     storeName: settings.storeName,
@@ -466,7 +487,7 @@ export async function toPublicRecord(
       },
       manualQris: { active: settings.payment.manualQris.active },
       downPayment: settings.payment.downPayment,
-      tax: settings.payment.tax,
+      tax: taxField,
       insurance: settings.payment.insurance,
       proofUpload: false,
       gatewayEnabled:

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:3cdd7f5d05af7bf2105a066f32e9a13b3f832ff8758a0c26548fecc2ea08a562 -->
+<!-- i18n-source-hash: sha256:a1327b504b1c981ce483b08e1f2f5218e2c274825c9cc62538949914d1bb1a37 -->
 
 # Deployment
 
@@ -348,6 +348,10 @@ Tenant dimulai di `counter` (satu hitungan stok per produk/varian seperti hari i
 6. **Pantau.** `GET /api/v1/commerce/inventory/reconciliation` seharusnya melaporkan `drift` kosong; `POST …/inventory/resync` memperbaiki halaman yang menyimpang dari ledger. Sejak itu perubahan stok adalah penerimaan, penyesuaian, atau transfer di `/admin/inventory`; suntingan produk/varian atau CSV yang mengubah `stock` dijawab `409 STOCK_MANAGED_BY_INVENTORY`.
 
 **Rollback.** `POST /api/v1/commerce/inventory/rollback` (`commerce.inventory.configure`) mengembalikan mode ke `counter`; cache sudah memegang hitungan terakhir hasil ledger dan jalur penghitung melanjutkan darinya. Jangan menonaktifkan lokasi penjualan selagi tenant di ledger: setiap penjualan dan restock akan dijawab `409 INVENTORY_UNAVAILABLE` dan job kedaluwarsa akan membiarkan pesanan tertunda.
+
+### Menerima barang ke lokasi penjualan (issue #283)
+
+Pembelian dan penerimaan adalah modul `procurement` hulu (pemasok, dokumen `receive` / `supplier_return` / `requisition` / `transfer`). Agar penerimaan menggerakkan stok **etalase**: (1) **lakukan cut-over ke mode `ledger` lebih dulu** (di atas) - pada tenant `counter` penerimaan tercatat di ledger tetapi tidak pernah sampai ke stok commerce; (2) aktifkan modul `procurement` dan jalankan `bun run identity-access:permissions:backfill` agar pemilik yang sudah ada menerima izin `procurement.*`; (3) posting penerimaan **di lokasi penjualan**, atau di gudang lalu dokumen `transfer` ke lokasi penjualan (penerimaan di lokasi lain tidak mengubah etalase); (4) tiap baris memakai `itemType` `commerce.variant` (uuid varian) atau `commerce.product` (uuid produk tanpa varian), satuan `unit` - temukan uuid dengan `GET /api/v1/commerce/inventory/items?q=<sku atau nama>` (`commerce.inventory.read`); (5) biarkan `bun run domain-events:dispatch` berjalan, yang membawa penerimaan ke cache. Rujukan yang salah tidak gagal: ledger menerimanya. `GET /api/v1/commerce/inventory/reconciliation` mendaftarkan saldo seperti itu di `orphans` (`not_found`, `product_has_variants`, `wrong_unit`, `unknown_item_type`); balikkan dokumennya dan posting ulang dengan rujukan yang benar.
 
 ## Topologi produksi (issue #150, ADR-0019)
 

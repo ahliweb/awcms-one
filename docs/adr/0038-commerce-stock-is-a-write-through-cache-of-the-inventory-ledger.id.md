@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0038-commerce-stock-is-a-write-through-cache-of-the-inventory-ledger.md)
 
-<!-- i18n-source-hash: sha256:bc2d8fd3112179d168133dd2f937dbfa66395bf8a16d9e4636f95d21d1bfe807 -->
+<!-- i18n-source-hash: sha256:846b137adee478d8d2dcfbb4eda59938ddb134f17aa6e22ff001d04a18d49217 -->
 
 <!-- i18n-source-hash: sha256:placeholder -->
 
@@ -117,3 +117,17 @@ ADR-0035 D1 menunda "saldo stok, riwayat mutasi stok, dan kandidat stok menipis"
 - **Cut-over:** dry-run tidak mengubah apa pun; eksekusi yang ditolak atau gagal digulung balik sebagai satu transaksi. Perintah `commerce:inventory:cutover` adalah no-op setelah commit.
 - **Skema:** `sql/947` bersifat tambahan (dua kolom nullable/ber-default, dua constraint, satu indeks, dua baris izin, hibah) dan tidak mengubah perilaku yang ada selama mode `counter`; rollback deployment ke kode lama membiarkan kolom tidak aktif.
 - **Baris ledger** bersifat append-only secara desain dan tidak dihapus oleh rollback; menghapusnya adalah keputusan kelas-restore (hulu `inventory-ledger.md` §8).
+
+## Adendum — pengadaan (#283)
+
+Issue [#283](https://github.com/ahliweb/awcms-one/issues/283) (pembelian dan penerimaan barang) dipenuhi oleh modul `procurement` hulu (ADR-0128: pemasok, dokumen `receive` / `supplier_return` / `requisition` / `transfer`, ambang persetujuan, proyeksi `procurement.receiving` dan `procurement.suppliers`, OpenAPI/AsyncAPI, RLS/ABAC) di atas ledger inventori yang sama yang diadaptasi ADR ini. Adendum ini hanya mencatat apa yang ditambahkan commerce; ini bukan keputusan baru tentang ledger.
+
+**Konvensi rujukan item.** Ledger tidak pernah mencari `itemRef`, sehingga baris pengadaan yang menambah stok barang commerce harus menamai unit stok persis seperti definisi D2: `itemType` `commerce.variant` dengan uuid varian, atau `commerce.product` dengan uuid produk yang **tidak punya varian aktif**; `unitCode` `unit`; diposting di **lokasi penjualan** (atau di lokasi lain lalu dipindahkan masuk dengan dokumen `transfer`). Produk yang punya varian tidak pernah menjadi unit stok. `GET /api/v1/commerce/inventory/items?q=<sku atau nama>` (`commerce.inventory.read`, keyset, paling banyak 50) menerjemahkan SKU atau nama menjadi `{ itemType, itemRef, sku, name, variantName, unitCode }` untuk tepat unit-unit itu, sehingga petugas (atau pemilih hulu kelak) tidak perlu mengetik uuid. Penegakannya lewat deteksi, bukan kait ke dalam procurement: ledger memang tidak punya katalog (D2), dan penjaga di dalam kode procurement milik hulu akan menjadi divergensi.
+
+**Counter versus ledger.** Penerimaan pengadaan diposting ke ledger pada kedua mode, tetapi hanya tenant berstatus `ledger` yang punya proyektor cache yang membawanya ke etalase (D4). Pada tenant `counter`, penerimaan tercatat di ledger dan **tidak mengubah stok commerce** - keduanya buku terpisah, dan rekonsiliasi (yang membandingkan cache dengan ledger) wajar menjawab `409 NOT_LEDGER_MODE` alih-alih drift. Inilah alasan menjalankan cut-over (D5) sebelum menerima barang lewat procurement.
+
+**Deteksi yatim.** Pemeriksaan drift pada rekonsiliasi menelusuri unit milik commerce, sehingga saldo ledger yang tidak ditunjuk unit mana pun tak terlihat olehnya. `GET .../inventory/reconciliation` kini juga mengembalikan, pada halaman pertama, bagian `orphans`: saldo `commerce.*` non-nol di lokasi penjualan yang rujukannya `not_found` (tak ada varian/produk aktif), `product_has_variants` (unit stok yang salah), `wrong_unit`, atau `unknown_item_type`; dibatasi 100 dengan penanda `truncated`. Port hanya membaca satu saldo, jadi mendaftarkannya adalah `SELECT` baca-saja pada `awcms_inventory_balances` di `commerce-inventory-reconciliation.ts` - satu-satunya tempat commerce membaca tabel inventori, dan tidak menulis satu pun (worker sudah memegang hibah itu, `sql/947`). Mengusulkan metode port `listBalances` ke hulu akan menghapusnya. Tidak diperlukan migrasi.
+
+**Pelaporan.** Tidak ada yang baru: proyeksi `procurement.receiving` / `procurement.suppliers` hulu dan laporan langsungnya adalah laporan penerimaan, satu proyeksi per fakta. Ini menggantikan catatan "irisan penerimaan" ADR-0035 D1 untuk #283.
+
+**Operasional.** Tenant yang sudah ada menjalankan `identity-access:permissions:backfill` untuk menerima izin `procurement.*`; lihat `docs/deployment.md`.

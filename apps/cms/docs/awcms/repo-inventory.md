@@ -12,8 +12,8 @@
 | `awcms_*` tables                    | 261   |
 | Tables with `FORCE` RLS             | 243   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 702   |
-| Route files                         | 699   |
+| Test files                          | 704   |
+| Route files                         | 700   |
 | ADR                                 | 260   |
 
 ### Modules
@@ -589,14 +589,14 @@
 | ------------- | ---------- |
 | `(root)`      | 541        |
 | `e2e`         | 25         |
-| `integration` | 135        |
+| `integration` | 137        |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 573   |
+| `/api/v1/**`    | 574   |
 | `/admin/**`     | 96    |
 | publik / anonim | 30    |
 
