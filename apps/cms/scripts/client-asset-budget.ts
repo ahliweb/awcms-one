@@ -1495,7 +1495,16 @@ export const READER_BUDGET_BYTES = 24_000;
  * bundle and the compiled Indonesian catalogue are not additive across
  * lineages.
  */
-export const APP_BUDGET_BYTES = 433_800;
+/*
+ * **Final: 433,900 B for awcms-one#293 (commerce tax adapter, ADR-0039) on top
+ * of the v10.5.0 sync** — MEASURED 433,813 B on the build: the product form's
+ * Tax category field (one input in each of the create and edit forms and one
+ * payload key in the existing page script), the store settings screen's
+ * read-only tax-mode badge, and the eight new catalogue entries (the compiled
+ * Indonesian catalogue ships with every page), on top of 433,723 B; a
+ * measurement, not a sum. No new client script or module.
+ */
+export const APP_BUDGET_BYTES = 433_900;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.
