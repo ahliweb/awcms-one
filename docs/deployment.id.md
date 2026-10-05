@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:da01eda3cfe033dac2178935b4efe3e116f16938489af6563514386e797c98d0 -->
+<!-- i18n-source-hash: sha256:cdcddb5eb8656954e68c9ba80d02ac5d3b120e361c1f2b9d248b9fd928f7b1cc -->
 
 # Deployment
 
@@ -335,6 +335,19 @@ Dua keputusan bentuk di `redirects.json` ada semata karena cara CMS dan storefro
 ### `newsletter_subscribers`, dan semua yang lain yang tidak pernah dibaca exporter ini
 
 `newsletter_subscribers` dihitung dan dilaporkan, tidak pernah diimpor — tidak ada catatan persetujuan yang bertahan dari formulir pendaftaran lawas. `users`, `counter`, `renungan_rmd`, `tanya_jawab`, dan `foto_berita` (tabel galeri) sama sekali tidak pernah dibaca — lihat tabel pemetaan `docs/kamus-data.md` untuk alasan masing-masing dikecualikan.
+
+## Memindahkan stok commerce sebuah tenant ke ledger inventori (issue #282, [ADR-0038](adr/0038-commerce-stock-is-a-write-through-cache-of-the-inventory-ledger.md))
+
+Tenant dimulai di `counter` (satu hitungan stok per produk/varian seperti hari ini). Memindahkannya ke ledger `inventory` hulu adalah satu perintah operator per tenant; tidak ada yang berubah pada deployment dan tidak perlu downtime.
+
+1. **Deploy** rilis (menerapkan `sql/947`; mode bawaan `counter`, sehingga belum ada yang berubah). Untuk tenant yang lebih tua dari izinnya, jalankan `bun run identity-access:permissions:backfill` agar owner-nya mendapat `commerce.inventory.{read,configure}` (dan kunci `inventory.*` hulu, `sql/170`).
+2. **Aktifkan modul `inventory`** untuk tenant (cut-over menolak bila tidak; `commerce` kini bergantung padanya) dan buat **lokasi penjualan** di `/admin/inventory` (aktif). Satu lokasi, tempat commerce menjual.
+3. **Dry-run.** `cd apps/cms && bun run commerce:inventory:cutover --tenant <uuid-tenant> --location <uuid-lokasi>`. Ia menjalankan seluruh jalur — kunci mode eksklusif, satu `opening` per unit stok, flip, verifikasi — lalu **menggulung baliknya**, mencetak jumlah unit/opening/nol. Unit berstok nol tidak mendapat opening (ledger menolak mutasi nol dan saldo yang belum bergerak terbaca `0`); produk yang punya varian bukan unit, varian-variannya yang unit.
+4. **Commit.** Jalankan ulang dengan `--commit`. Dalam satu transaksi ia memposting opening (sumber `{commerce_inventory_opening, <tenantId>, <itemRef>}`), mengatur `inventory_mode = 'ledger'` dan lokasi, dan memverifikasi `stock` setiap unit terhadap ledger; selisih apa pun membatalkan dan menggulung balik. Pesanan yang sedang berjalan selesai dulu dan yang baru menunggu kunci; tidak perlu mengosongkan lalu lintas. Eksekusi kedua menjawab "sudah mode ledger".
+5. **Dispatcher.** Pastikan `bun run domain-events:dispatch` berjalan (sudah wajib untuk loyalty dan entitlement): ia membawa `commerce.inventory_stock_cache_projector` yang menjaga hitungan etalase tetap benar ketika penerimaan, penyesuaian, atau transfer diposting di luar commerce. Sebelum berjalan, cache tertinggal oleh mutasi semacam itu; ledger tetap menolak penjualan berlebih.
+6. **Pantau.** `GET /api/v1/commerce/inventory/reconciliation` seharusnya melaporkan `drift` kosong; `POST …/inventory/resync` memperbaiki halaman yang menyimpang dari ledger. Sejak itu perubahan stok adalah penerimaan, penyesuaian, atau transfer di `/admin/inventory`; suntingan produk/varian atau CSV yang mengubah `stock` dijawab `409 STOCK_MANAGED_BY_INVENTORY`.
+
+**Rollback.** `POST /api/v1/commerce/inventory/rollback` (`commerce.inventory.configure`) mengembalikan mode ke `counter`; cache sudah memegang hitungan terakhir hasil ledger dan jalur penghitung melanjutkan darinya. Jangan menonaktifkan lokasi penjualan selagi tenant di ledger: setiap penjualan dan restock akan dijawab `409 INVENTORY_UNAVAILABLE` dan job kedaluwarsa akan membiarkan pesanan tertunda.
 
 ## Topologi produksi (issue #150, ADR-0019)
 

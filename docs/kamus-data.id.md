@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:098eaf85f5a4a26f326387c74da677b446af80aaf95859d1b0c9e416ffe68069 -->
+<!-- i18n-source-hash: sha256:bbac989f161b8d0fbf5e3ec1227c1ee39e77f40d0c14813e313627a8e3bfaf36 -->
 
 # Kamus data
 
@@ -41,7 +41,7 @@ Daftar kolom lawas **dicatat dari basis data `commerce_bj_mart` yang live pada 2
 | `price_level_2`/`_3`/`_4`                                          | `price_level_2`/`_3`/`_4`                             | Harga bertingkat berdasarkan level pelanggan                                      | `numeric(14,2)`, nullable                                                                                                   |
 | `cost_price`                                                       | `cost_price`                                          | Biaya satuan khusus-admin, untuk pelaporan margin                                 | `numeric(14,2)`, nullable — tidak pernah ada di model baca publik                                                           |
 | `discount_percent`                                                 | `discount_percent`                                    | Diskon yang diterapkan pada `price`                                               | Integer 0–100                                                                                                               |
-| `stock`                                                            | `stock`                                               | Unit yang tersedia                                                                | Integer non-negatif                                                                                                         |
+| `stock`                                                            | `stock`                                               | Unit yang tersedia                                                                | Integer non-negatif; pada mode inventori `ledger` ia adalah cache write-through ledger ([ADR-0038](adr/0038-commerce-stock-is-a-write-through-cache-of-the-inventory-ledger.md)) |
 | `status`                                                           | `status`                                              | Status siklus-hidup                                                               | `draft`, `active`, `inactive`, `archived` — lihat [`docs/cms.md`](cms.id.md)                                                |
 | `label`/`label_color`                                              | `label`/`label_color`                                 | Lencana merchandising dan warna latarnya                                          | Teks bebas / string hex, nullable                                                                                           |
 | `min_purchase`                                                     | `min_purchase`                                        | Kuantitas order minimum untuk produk ini                                          | Integer, `>= 1`                                                                                                             |
@@ -269,6 +269,9 @@ Atribut kustom **bertipe** buatan tenant — desain milik platform ini sendiri (
 | --- | --- | --- |
 | return (pengembalian) | `awcms_commerce_returns` | Barang yang diterima kembali atas satu pesanan; `kind` `return` atau `exchange`; `open` sampai semua bagian dana selesai, lalu `completed`. Riwayat: hanya perpindahan itu dan tautan penukaran sekali-set yang berubah |
 | return line | `awcms_commerce_return_lines` | Unit satu baris pesanan yang kembali, dengan `reason` (`defective`, `wrong_item`, `not_as_described`, `damaged_in_transit`, `changed_mind`, `size_fit`, `duplicate_order`, `other`) dan `disposition` |
+| mode inventori | `awcms_commerce_store_settings.inventory_mode` | `counter` (stok adalah otoritas) atau `ledger` (ledger inventori hulu adalah otoritas, dan `stock` adalah cache write-through darinya) — [ADR-0038](adr/0038-commerce-stock-is-a-write-through-cache-of-the-inventory-ledger.md) |
+| unit stok | adaptor inventori | Varian hidup, atau produk hidup tanpa varian hidup; item ledger-nya `commerce.variant` / `commerce.product` dengan uuid barisnya dan unit `unit` |
+| lokasi penjualan | `awcms_commerce_store_settings.inventory_location_id` | Lokasi inventori tempat commerce menjual pada mode `ledger` |
 | disposition | return line | `restock` mengembalikan unit ke stok yang dapat dijual; `damaged` dan `quarantine` dicatat dan tidak mengubah stok yang dapat dijual |
 | `goods_gross` / `discount_share` / `refund_amount` | return line dan return | Nilai unit sebelum diskon, diskon pesanan yang dilepas bersamanya, dan selisihnya — yang dikembalikan untuk barang |
 | `shipping_refund` / `refund_total` | return | Ongkos kirim yang dikembalikan (dibatasi ongkos kirim yang dikenakan); `refund_total = goods_gross − discount_share + shipping_refund` |

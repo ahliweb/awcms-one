@@ -1,0 +1,9 @@
+---
+"awcms": minor
+---
+
+feat(commerce): adapter over the inventory ledger — `ledger` mode, atomic cut-over, stock cache (Issue #282, ADR-0038)
+
+`sql/947` adds `inventory_mode` (`counter` default | `ledger`), `inventory_location_id` (composite FK to `awcms_inventory_locations`) and `inventory_mode_changed_at` to `awcms_commerce_store_settings`, the `commerce.inventory.{read,configure}` permissions and the `awcms_worker` inventory grants (SELECT on settings/locations, SELECT/INSERT/UPDATE on balances, SELECT/INSERT on movements, INSERT on low-stock signals, and a column-level `UPDATE (updated_at)` on locations so the posting core's `FOR SHARE` works). In `ledger` mode `application/commerce-inventory.ts` posts every stock change through `InventoryLedgerPort` inside the caller's transaction: `sale` for order and POS lines (`commerce_order`, order id, item id), `sale_return` for cancel/expiry (`commerce_order_restock`) and a return's restock (`ledgerInventoryPort`, `commerce_return`), sorted by `(itemType, itemRef)`, each unit of work in a savepoint, and writes `stock` through as `max(0, floor(balanceAfter))`. The mode is read under a shared advisory lock that the cut-over and rollback take exclusively. `modeAwareInventoryPort` is the new `ReturnInventoryPort` default.
+
+`bun run commerce:inventory:cutover` (dry-run by default) posts openings and flips the mode in one verified transaction. The `commerce.inventory_stock_cache_projector` consumer (a local divergence in `domain-event-runtime/infrastructure/consumer-registry.ts`) refreshes the cache for movements posted by other modules. Admin stock edits and CSV stock changes are refused with `409 STOCK_MANAGED_BY_INVENTORY` in `ledger` mode. New endpoints `GET /api/v1/commerce/inventory`, `GET …/reconciliation`, `POST …/resync`, `POST …/rollback`; a settings reset in `ledger` mode no longer stamps `deleted_at`. `commerce` depends on `inventory`.
