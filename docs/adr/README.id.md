@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:8bf63ec03cba41347f37e6019bcb8186d7b45ccdcaac41bdbae2c2d130bd3f61 -->
+<!-- i18n-source-hash: sha256:e39129246997631de72c56fcb80d698cc21693a03874f0a65830c3740d39a959 -->
 
 # Architecture Decision Records
 
@@ -53,6 +53,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0033](0033-returns-refunds-and-exchanges-are-additive-records-that-compensate-through-the-existing-ledgers.md) | Pengembalian barang, pengembalian dana, dan penukaran adalah catatan tambahan yang mengompensasi lewat ledger yang sudah ada: tidak ada yang final diubah, uang kembali melalui pembayaran asal, penyedia dipanggil di luar setiap transaksi | Diterima |
 | [0034](0034-commercial-documents-are-delivered-through-the-existing-outboxes-as-transactional-messages-built-from-immutable-sources.md) | Dokumen komersial dikirim lewat outbox yang sudah ada, sebagai pesan transaksional yang disusun dari sumber yang tidak dapat diubah | Diterima |
 | [0035](0035-pos-operational-reports-are-commerce-projections-over-the-existing-ledgers-on-the-reporting-engine.md) | Laporan operasional POS adalah proyeksi commerce di atas buku besar yang sudah ada, pada mesin reporting yang sudah ada | Diterima |
+| [0037](0037-the-commerce-migration-band-is-allocated-gap-first-and-widened-upstream.md) | Pita migrasi commerce dialokasikan celah-dulu, dan diperluas upstream | Diterima |
 
 ## Mengapa penomoran dimulai dari 0001
 
