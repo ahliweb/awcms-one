@@ -15333,12 +15333,37 @@ components:
                 percent:
                   type: integer
             tax:
-              type: object
-              properties:
-                active:
-                  type: boolean
-                percent:
-                  type: integer
+              oneOf:
+                - type: object
+                  description: "Issue #324 — flat mode: tax is `percent` of the subtotal less the voucher discount."
+                  required:
+                    - mode
+                    - active
+                    - percent
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - flat
+                    active:
+                      type: boolean
+                    percent:
+                      type: integer
+                - type: object
+                  description: "Issue #324 — engine mode: tax is computed by the tax module. The `active` and `percent` fields are NOT present in engine mode."
+                  required:
+                    - mode
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - engine
+                    inclusive:
+                      type: boolean
+                      nullable: true
+                      description: "Whether the tax is already included in the line prices (not added to the total). Omitted if not cheaply available."
+              discriminator:
+                propertyName: mode
             insurance:
               type: object
               properties:
