@@ -11144,6 +11144,104 @@ Single-use: the cart's lines (and optional customer and notes) are returned once
 | 404    | An unknown id, another tenant's id AND another cashier's cart (unless the caller holds `commerce.held_sales.approve`) - one neutral answer.                                                       | [`ApiError`](#standard-error-envelope) |
 | 409    | `HELD_SALE_EXPIRED` (the expiry is persisted), `HELD_SALE_NOT_HELD` (`details.status`), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/inventory` — Issue #282 (ADR-0038). Which stock authority the store runs on: `counter` or `ledger`, and the sales location the ledger is posted at. Gated on `commerce.inventory.read`.
+
+- **operationId**: `getCommerceInventoryMode`
+- **Security**: bearerAuth + tenantHeader
+
+`counter` (the default) is the single stock count on each product or variant. `ledger` means the upstream inventory ledger is authoritative and `stock` is a write-through cache of it. The flip to `ledger` is the operator command `bun run commerce:inventory:cutover`; the way back is `POST /api/v1/commerce/inventory/rollback`.
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The mode.                   | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/inventory/items` — Issue #283 (ADR-0038 addendum). Resolves a SKU or name to the ledger reference a procurement line must carry. Gated on `commerce.inventory.read`.
+
+- **operationId**: `lookupCommerceInventoryItems`
+- **Security**: bearerAuth + tenantHeader
+
+Lists the live stock units - a live variant (`commerce.variant`) or a live product with no live variant (`commerce.product`) - with the exact `itemType`, `itemRef` and `unitCode` to put on a procurement document line. A product that has live variants is not a stock unit and is not listed. Keyset-paged, at most 50 per page. Works in either stock mode.
+
+**Parameters**
+
+| Name     | In    | Required | Type    | Description                                                            |
+| -------- | ----- | -------- | ------- | ---------------------------------------------------------------------- |
+| `q`      | query | no       | string  | Case-insensitive contains-match on SKU, product name or variant value. |
+| `cursor` | query | no       | string  |                                                                        |
+| `limit`  | query | no       | integer |                                                                        |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | One page of stock units.    | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/inventory/reconciliation` — Issue #282 (ADR-0038). The stock units whose cache disagrees with the inventory ledger at the sales location. Gated on `commerce.inventory.read`.
+
+- **operationId**: `reconcileCommerceInventory`
+- **Security**: bearerAuth + tenantHeader
+
+Compares, per stock unit (a live variant, or a live product with no live variant), the `stock` column with `max(0, floor(ledger on-hand))`. One keyset page per call; follow `nextCursor` until it is null. Nothing is repaired. `409 NOT_LEDGER_MODE` for a store still on the counter.
+The FIRST page (no `cursor`) also carries `orphans` (Issue #283): the non-zero `commerce.*` ledger balances at the sales location that name no live stock unit - a procurement receipt posted for a variant that does not exist, for a product that has variants, under another unit code, or under an unknown `commerce.*` item type. Capped at 100 with `truncated`. Continuation pages return `orphans: null`.
+
+**Parameters**
+
+| Name     | In    | Required | Type    | Description |
+| -------- | ----- | -------- | ------- | ----------- |
+| `cursor` | query | no       | string  |             |
+| `limit`  | query | no       | integer |             |
+
+**Responses**
+
+| Status | Description                                                       | Schema                                 |
+| ------ | ----------------------------------------------------------------- | -------------------------------------- |
+| 200    | One page of drift.                                                | object                                 |
+| 400    | Validation error.                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                       | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | `NOT_LEDGER_MODE` - the store still runs on the commerce counter. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/inventory/resync` — Issue #282 (ADR-0038). Rewrites the stock cache of every drifted unit on one page from the inventory ledger. Gated on `commerce.inventory.configure` (high-risk).
+
+- **operationId**: `resyncCommerceInventory`
+- **Security**: bearerAuth + tenantHeader
+
+The ledger is always the truth: only the cache is rewritten, and the body can never carry a stock count (only `cursor` and `limit`, to page). Naturally idempotent - it sets state - so it carries no `Idempotency-Key`. Audited as a warning. Repeat with `nextCursor` until it is null. `409 NOT_LEDGER_MODE` for a store still on the counter.
+
+**Request body** (optional): object
+
+**Responses**
+
+| Status | Description                                                       | Schema                                 |
+| ------ | ----------------------------------------------------------------- | -------------------------------------- |
+| 200    | The page that was scanned and how many units were repaired.       | object                                 |
+| 400    | Validation error.                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                       | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | `NOT_LEDGER_MODE` - the store still runs on the commerce counter. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/inventory/rollback` — Issue #282 (ADR-0038). Puts the stock authority back on the commerce counter. Gated on `commerce.inventory.configure` (high-risk).
+
+- **operationId**: `rollbackCommerceInventory`
+- **Security**: bearerAuth + tenantHeader
+
+No body. Waits for every in-flight stock write, then sets the mode to `counter`; the cache already holds the last ledger-derived counts, so the counter paths resume from them. Naturally idempotent: a store already on the counter answers `changed: false`. Audited as a warning. There is no matching "switch to ledger" endpoint - that flip needs the opening movements posted in the same transaction (`bun run commerce:inventory:cutover`).
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Whether the mode changed.   | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/loyalty/accounts` — Issue #289 (ADR-0026). Keyset list of loyalty accounts (newest first) with the customer's name and masked phone; `customerId` narrows to one customer and `phone` is the counter lookup, which also returns a `customer` block (balance 0 for a customer with no account yet). Gated on `commerce.loyalty.read`; `409 FEATURE_DISABLED` when the tenant's `loyalty` feature is off.
 
 - **operationId**: `listCommerceLoyaltyAccounts`
@@ -11886,13 +11984,13 @@ The 201 carries `payments` (every ledger row — one per tender, for the receipt
 
 **Responses**
 
-| Status | Description                                                                                                               | Schema                                 |
-| ------ | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 201    | Product created.                                                                                                          | object                                 |
-| 400    | Validation error.                                                                                                         | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                                                                               | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                                                                               | [`ApiError`](#standard-error-envelope) |
-| 409    | slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS). | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                                                                                     | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Product created.                                                                                                                                                                                                                                                                                                                                | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 409    | slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS). In `ledger` inventory mode (ADR-0038) a request that would CHANGE a stock count is refused with STOCK_MANAGED_BY_INVENTORY; sending the value the row already holds is accepted, and a create may only start at zero. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/products/{id}` — Fetch one product, with images[]/variants[] resolved.
 
@@ -11931,14 +12029,14 @@ There is no dedicated status-transition endpoint — status travels through this
 
 **Responses**
 
-| Status | Description                                                                                                               | Schema                                 |
-| ------ | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 200    | Product updated.                                                                                                          | object                                 |
-| 400    | Validation error.                                                                                                         | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                                                                               | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                                                                               | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.                                                                                                       | [`ApiError`](#standard-error-envelope) |
-| 409    | slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS). | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                                                                                     | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Product updated.                                                                                                                                                                                                                                                                                                                                | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 409    | slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS). In `ledger` inventory mode (ADR-0038) a request that would CHANGE a stock count is refused with STOCK_MANAGED_BY_INVENTORY; sending the value the row already holds is accepted, and a create may only start at zero. | [`ApiError`](#standard-error-envelope) |
 
 ### `DELETE /api/v1/commerce/products/{id}` — Soft-delete a product (audited).
 
@@ -12126,13 +12224,13 @@ Upsert on `(tenant_id, product_id)` — at most one link per product (`sql/939`)
 
 **Responses**
 
-| Status | Description                                                                                                               | Schema                                 |
-| ------ | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 200    | Product restored.                                                                                                         | object                                 |
-| 401    | Missing or invalid session.                                                                                               | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                                                                               | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.                                                                                                       | [`ApiError`](#standard-error-envelope) |
-| 409    | slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS). | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                                                                                     | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Product restored.                                                                                                                                                                                                                                                                                                                               | object                                 |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 409    | slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS). In `ledger` inventory mode (ADR-0038) a request that would CHANGE a stock count is refused with STOCK_MANAGED_BY_INVENTORY; sending the value the row already holds is accepted, and a create may only start at zero. | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/products/{id}/variants` — Add a variant to a product (Issue 23). Gated on products.update.
 
@@ -12149,14 +12247,14 @@ Upsert on `(tenant_id, product_id)` — at most one link per product (`sql/939`)
 
 **Responses**
 
-| Status | Description                                                                                   | Schema                                 |
-| ------ | --------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 201    | Product variant created.                                                                      | object                                 |
-| 400    | Validation error.                                                                             | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                                                   | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                                                   | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.                                                                           | [`ApiError`](#standard-error-envelope) |
-| 409    | sku is already used by a live product or variant in this tenant (VARIANT_SKU_ALREADY_EXISTS). | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                                                         | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Product variant created.                                                                                                                                                                                                                                                                                            | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 409    | sku is already used by a live product or variant in this tenant (VARIANT_SKU_ALREADY_EXISTS). In `ledger` inventory mode (ADR-0038) a request that would CHANGE a stock count is refused with STOCK_MANAGED_BY_INVENTORY; sending the value the row already holds is accepted, and a create may only start at zero. | [`ApiError`](#standard-error-envelope) |
 
 ### `PATCH /api/v1/commerce/products/{id}/variants/{variantId}` — Edit a product variant (Issue 23).
 
@@ -12174,14 +12272,14 @@ Upsert on `(tenant_id, product_id)` — at most one link per product (`sql/939`)
 
 **Responses**
 
-| Status | Description                                                                                   | Schema                                 |
-| ------ | --------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 200    | Product variant updated.                                                                      | object                                 |
-| 400    | Validation error.                                                                             | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                                                   | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                                                   | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.                                                                           | [`ApiError`](#standard-error-envelope) |
-| 409    | sku is already used by a live product or variant in this tenant (VARIANT_SKU_ALREADY_EXISTS). | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                                                         | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Product variant updated.                                                                                                                                                                                                                                                                                            | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 409    | sku is already used by a live product or variant in this tenant (VARIANT_SKU_ALREADY_EXISTS). In `ledger` inventory mode (ADR-0038) a request that would CHANGE a stock count is refused with STOCK_MANAGED_BY_INVENTORY; sending the value the row already holds is accepted, and a create may only start at zero. | [`ApiError`](#standard-error-envelope) |
 
 ### `DELETE /api/v1/commerce/products/{id}/variants/{variantId}` — Soft-delete a product variant (audited) (Issue 23).
 
@@ -13475,15 +13573,15 @@ Issue #91 (implemented, contract #86): an OPTIONAL `Authorization: Bearer <custo
 
 **Responses**
 
-| Status | Description                                                                                                                                | Schema                                 |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
-| 200    | The idempotency key was seen before; the same order is returned.                                                                           | object                                 |
-| 201    | Order created.                                                                                                                             | object                                 |
-| 400    | Validation error.                                                                                                                          | [`ApiError`](#standard-error-envelope) |
-| 401    | UNAUTHENTICATED — an Authorization header was present but not a live session (Issue #91).                                                  | [`ApiError`](#standard-error-envelope) |
-| 404    | Unresolvable tenant, disabled module, or a rate-limited caller.                                                                            | [`ApiError`](#standard-error-envelope) |
-| 409    | CART_CHANGED — a line's price/stock/shipping/payment method changed since it was last quoted; `error.details.quote` carries a fresh quote. | [`ApiError`](#standard-error-envelope) |
-| 429    | Rate limited (per IP and per normalised phone).                                                                                            | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                                                                                                                       | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The idempotency key was seen before; the same order is returned.                                                                                                                                                                                                                                                                                                                  | object                                 |
+| 201    | Order created.                                                                                                                                                                                                                                                                                                                                                                    | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED — an Authorization header was present but not a live session (Issue #91).                                                                                                                                                                                                                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 404    | Unresolvable tenant, disabled module, or a rate-limited caller.                                                                                                                                                                                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | CART_CHANGED — a line's price/stock/shipping/payment method changed since it was last quoted (in `ledger` inventory mode this includes the inventory ledger refusing the last unit); `error.details.quote` carries a fresh quote. INVENTORY_UNAVAILABLE — the store's inventory location is missing, inactive or counts the item in another unit (ADR-0038); nothing was written. | [`ApiError`](#standard-error-envelope) |
+| 429    | Rate limited (per IP and per normalised phone).                                                                                                                                                                                                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/storefront/orders/{orderCode}` — Anonymous order tracking (Issue 29). orderCode + phone is the credential; an unknown code, a wrong phone, and another tenant's order all answer the same neutral 404.
 
@@ -13520,11 +13618,11 @@ Issue #91 (implemented, contract #86): an OPTIONAL `Authorization: Bearer <custo
 
 **Responses**
 
-| Status | Description            | Schema                                 |
-| ------ | ---------------------- | -------------------------------------- |
-| 200    | Order cancelled.       | object                                 |
-| 404    | Resource not found.    | [`ApiError`](#standard-error-envelope) |
-| 409    | ORDER_NOT_CANCELLABLE. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Order cancelled.                                                                                                           | object                                 |
+| 404    | Resource not found.                                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 409    | ORDER_NOT_CANCELLABLE, or INVENTORY_UNAVAILABLE (ADR-0038) when the inventory ledger refuses the restock; nothing changed. | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/storefront/orders/{orderCode}/payment-confirmations` — Anonymous payment confirmation submission (Issue 29). Accepted without a proof image — see payment.proofUpload on the public store-settings read model.
 
@@ -17618,6 +17716,28 @@ Enum values: `text`, `integer`, `decimal`, `boolean`, `date`, `enum`.
 "text"
 ```
 
+### Schema: CommerceBundleComponentInput
+
+Name the component either by `productId` (+ optional `variantId`) or by `sku` - a live product's or variant's SKU, resolved server-side inside the tenant (the admin form's `SKU x quantity` lines). An unknown SKU is refused exactly like an unknown product id.
+
+| Field       | Type          | Required | Nullable | Description                           |
+| ----------- | ------------- | -------- | -------- | ------------------------------------- |
+| `sku`       | string        | no       | no       |                                       |
+| `productId` | string (uuid) | no       | no       |                                       |
+| `variantId` | string (uuid) | no       | yes      |                                       |
+| `quantity`  | integer       | yes      | no       | Units of the component in ONE bundle. |
+
+**Example**
+
+```json
+{
+  "sku": "string",
+  "productId": "00000000-0000-0000-0000-000000000000",
+  "variantId": "00000000-0000-0000-0000-000000000000",
+  "quantity": 1
+}
+```
+
 ### Schema: CommerceCartQuoteLine
 
 Issue 29 — a resolved cart line, request or response shape depending on context.
@@ -17906,6 +18026,7 @@ _No properties declared._
   ],
   "subscriptionPeriod": "day",
   "downloadLink": "string",
+  "taxCategoryCode": "string",
   "allowDp": false,
   "allowFreeShipping": false,
   "variantAttributes": [
@@ -17916,6 +18037,17 @@ _No properties declared._
   ],
   "isFeatured": false,
   "isRecommended": false,
+  "kind": "standard",
+  "bundlePricing": "fixed",
+  "bundleDiscountPercent": "string",
+  "bundleComponents": [
+    {
+      "sku": "string",
+      "productId": "00000000-0000-0000-0000-000000000000",
+      "variantId": "00000000-0000-0000-0000-000000000000",
+      "quantity": 1
+    }
+  ],
   "categoryId": "00000000-0000-0000-0000-000000000000",
   "type": "physical",
   "sku": "string",
@@ -17935,36 +18067,41 @@ _No properties declared._
 
 Fields Issue 23 adds on top of Issue 4's catalog core — shared by the create and update request bodies below.
 
-| Field                 | Type                                                                              | Required | Nullable | Description                                                                                                                           |
-| --------------------- | --------------------------------------------------------------------------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `priceLevel2`         | string                                                                            | no       | yes      | numeric(14,2) as a decimal string.                                                                                                    |
-| `priceLevel3`         | string                                                                            | no       | yes      |                                                                                                                                       |
-| `priceLevel4`         | string                                                                            | no       | yes      |                                                                                                                                       |
-| `costPrice`           | string                                                                            | no       | yes      | Admin-only — never present on a GET response's CommerceProduct.                                                                       |
-| `minPurchase`         | integer                                                                           | no       | no       |                                                                                                                                       |
-| `weightGrams`         | integer                                                                           | no       | no       |                                                                                                                                       |
-| `manualRating`        | string                                                                            | no       | yes      | numeric(2,1) as a decimal string, "0.0"-"5.0".                                                                                        |
-| `manualSoldCount`     | integer                                                                           | no       | no       |                                                                                                                                       |
-| `withInsurance`       | boolean                                                                           | no       | no       |                                                                                                                                       |
-| `insuranceRequired`   | boolean                                                                           | no       | no       |                                                                                                                                       |
-| `insuranceFee`        | string                                                                            | no       | yes      |                                                                                                                                       |
-| `promoBannerShow`     | boolean                                                                           | no       | no       |                                                                                                                                       |
-| `promoBannerTitle`    | string                                                                            | no       | yes      |                                                                                                                                       |
-| `promoBannerSubtitle` | string                                                                            | no       | yes      |                                                                                                                                       |
-| `promoBannerBadge`    | string                                                                            | no       | yes      |                                                                                                                                       |
-| `promoBannerIcon`     | string                                                                            | no       | yes      |                                                                                                                                       |
-| `promoBannerColor`    | string                                                                            | no       | yes      |                                                                                                                                       |
-| `sizeChartType`       | enum(`none`, `image`, `table`)                                                    | no       | no       |                                                                                                                                       |
-| `sizeChartMediaId`    | string (uuid)                                                                     | no       | yes      | Required when sizeChartType is "image"; must be null otherwise.                                                                       |
-| `sizeChartDetails`    | object                                                                            | no       | yes      | Required when sizeChartType is "table"; must be null otherwise. Arbitrary JSON (object/array), capped at 20000 serialized characters. |
-| `serviceForm`         | array of [`CommerceServiceFormField`](#schema-commerceserviceformfield)           | no       | yes      |                                                                                                                                       |
-| `subscriptionPeriod`  | enum(`day`, `week`, `month`, `year`)                                              | no       | yes      |                                                                                                                                       |
-| `downloadLink`        | string                                                                            | no       | yes      |                                                                                                                                       |
-| `allowDp`             | boolean                                                                           | no       | no       |                                                                                                                                       |
-| `allowFreeShipping`   | boolean                                                                           | no       | no       |                                                                                                                                       |
-| `variantAttributes`   | array of [`CommerceVariantAttributeGroup`](#schema-commercevariantattributegroup) | no       | yes      |                                                                                                                                       |
-| `isFeatured`          | boolean                                                                           | no       | no       |                                                                                                                                       |
-| `isRecommended`       | boolean                                                                           | no       | no       |                                                                                                                                       |
+| Field                   | Type                                                                              | Required | Nullable | Description                                                                                                                                                                                                                                                                                                                                            |
+| ----------------------- | --------------------------------------------------------------------------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `priceLevel2`           | string                                                                            | no       | yes      | numeric(14,2) as a decimal string.                                                                                                                                                                                                                                                                                                                     |
+| `priceLevel3`           | string                                                                            | no       | yes      |                                                                                                                                                                                                                                                                                                                                                        |
+| `priceLevel4`           | string                                                                            | no       | yes      |                                                                                                                                                                                                                                                                                                                                                        |
+| `costPrice`             | string                                                                            | no       | yes      | Admin-only — never present on a GET response's CommerceProduct.                                                                                                                                                                                                                                                                                        |
+| `minPurchase`           | integer                                                                           | no       | no       |                                                                                                                                                                                                                                                                                                                                                        |
+| `weightGrams`           | integer                                                                           | no       | no       |                                                                                                                                                                                                                                                                                                                                                        |
+| `manualRating`          | string                                                                            | no       | yes      | numeric(2,1) as a decimal string, "0.0"-"5.0".                                                                                                                                                                                                                                                                                                         |
+| `manualSoldCount`       | integer                                                                           | no       | no       |                                                                                                                                                                                                                                                                                                                                                        |
+| `withInsurance`         | boolean                                                                           | no       | no       |                                                                                                                                                                                                                                                                                                                                                        |
+| `insuranceRequired`     | boolean                                                                           | no       | no       |                                                                                                                                                                                                                                                                                                                                                        |
+| `insuranceFee`          | string                                                                            | no       | yes      |                                                                                                                                                                                                                                                                                                                                                        |
+| `promoBannerShow`       | boolean                                                                           | no       | no       |                                                                                                                                                                                                                                                                                                                                                        |
+| `promoBannerTitle`      | string                                                                            | no       | yes      |                                                                                                                                                                                                                                                                                                                                                        |
+| `promoBannerSubtitle`   | string                                                                            | no       | yes      |                                                                                                                                                                                                                                                                                                                                                        |
+| `promoBannerBadge`      | string                                                                            | no       | yes      |                                                                                                                                                                                                                                                                                                                                                        |
+| `promoBannerIcon`       | string                                                                            | no       | yes      |                                                                                                                                                                                                                                                                                                                                                        |
+| `promoBannerColor`      | string                                                                            | no       | yes      |                                                                                                                                                                                                                                                                                                                                                        |
+| `sizeChartType`         | enum(`none`, `image`, `table`)                                                    | no       | no       |                                                                                                                                                                                                                                                                                                                                                        |
+| `sizeChartMediaId`      | string (uuid)                                                                     | no       | yes      | Required when sizeChartType is "image"; must be null otherwise.                                                                                                                                                                                                                                                                                        |
+| `sizeChartDetails`      | object                                                                            | no       | yes      | Required when sizeChartType is "table"; must be null otherwise. Arbitrary JSON (object/array), capped at 20000 serialized characters.                                                                                                                                                                                                                  |
+| `serviceForm`           | array of [`CommerceServiceFormField`](#schema-commerceserviceformfield)           | no       | yes      |                                                                                                                                                                                                                                                                                                                                                        |
+| `subscriptionPeriod`    | enum(`day`, `week`, `month`, `year`)                                              | no       | yes      |                                                                                                                                                                                                                                                                                                                                                        |
+| `downloadLink`          | string                                                                            | no       | yes      |                                                                                                                                                                                                                                                                                                                                                        |
+| `taxCategoryCode`       | string                                                                            | no       | yes      | Issue #293 (ADR-0039) — the product's tax class: a tax rule category code (`tax` module, ADR-0127). null/blank = standard (the rule version's fallback rule). Product level only — a variant never differs in tax class. Used only in `engine` tax mode; admin-only (never on the public `CommerceProduct`).                                           |
+| `allowDp`               | boolean                                                                           | no       | no       |                                                                                                                                                                                                                                                                                                                                                        |
+| `allowFreeShipping`     | boolean                                                                           | no       | no       |                                                                                                                                                                                                                                                                                                                                                        |
+| `variantAttributes`     | array of [`CommerceVariantAttributeGroup`](#schema-commercevariantattributegroup) | no       | yes      |                                                                                                                                                                                                                                                                                                                                                        |
+| `isFeatured`            | boolean                                                                           | no       | no       |                                                                                                                                                                                                                                                                                                                                                        |
+| `isRecommended`         | boolean                                                                           | no       | no       |                                                                                                                                                                                                                                                                                                                                                        |
+| `kind`                  | enum(`standard`, `bundle`)                                                        | no       | no       | Issue #290 (ADR-0036) — `bundle` makes this product a kit sold as ONE line whose stock movement is its components'. A bundle has no variants, no stock of its own (`stock` must be 0 or absent), is not a service product and is not flash-sale eligible. Distinct from the descriptive `type: bundle` (issue #266), which carries no stock semantics. |
+| `bundlePricing`         | enum(`fixed`, `derived`)                                                          | no       | no       | `fixed` = the bundle product's own price; `derived` = sum of the components' list prices x quantity, less `bundleDiscountPercent`, rounded half-up to the cent. Bundles only.                                                                                                                                                                          |
+| `bundleDiscountPercent` | string                                                                            | no       | yes      | A percentage from 0 to 100 with at most two decimals (a number or a decimal string is accepted; returned as a `numeric(5,2)` string). `derived` pricing only.                                                                                                                                                                                          |
+| `bundleComponents`      | array of [`CommerceBundleComponentInput`](#schema-commercebundlecomponentinput)   | no       | no       | Replaces the bundle's component lines (omit to leave them unchanged). 1-20 lines; a component is never itself a bundle (no nesting); a component product with live variants must name a variant.                                                                                                                                                       |
 
 **Example**
 
@@ -18001,6 +18138,7 @@ Fields Issue 23 adds on top of Issue 4's catalog core — shared by the create a
   ],
   "subscriptionPeriod": "day",
   "downloadLink": "string",
+  "taxCategoryCode": "string",
   "allowDp": false,
   "allowFreeShipping": false,
   "variantAttributes": [
@@ -18010,7 +18148,18 @@ Fields Issue 23 adds on top of Issue 4's catalog core — shared by the create a
     }
   ],
   "isFeatured": false,
-  "isRecommended": false
+  "isRecommended": false,
+  "kind": "standard",
+  "bundlePricing": "fixed",
+  "bundleDiscountPercent": "string",
+  "bundleComponents": [
+    {
+      "sku": "string",
+      "productId": "00000000-0000-0000-0000-000000000000",
+      "variantId": "00000000-0000-0000-0000-000000000000",
+      "quantity": 1
+    }
+  ]
 }
 ```
 
@@ -18053,6 +18202,7 @@ _No properties declared._
   ],
   "subscriptionPeriod": "day",
   "downloadLink": "string",
+  "taxCategoryCode": "string",
   "allowDp": false,
   "allowFreeShipping": false,
   "variantAttributes": [
@@ -18063,6 +18213,17 @@ _No properties declared._
   ],
   "isFeatured": false,
   "isRecommended": false,
+  "kind": "standard",
+  "bundlePricing": "fixed",
+  "bundleDiscountPercent": "string",
+  "bundleComponents": [
+    {
+      "sku": "string",
+      "productId": "00000000-0000-0000-0000-000000000000",
+      "variantId": "00000000-0000-0000-0000-000000000000",
+      "quantity": 1
+    }
+  ],
   "categoryId": "00000000-0000-0000-0000-000000000000",
   "type": "physical",
   "sku": "string",
@@ -18203,26 +18364,28 @@ Every field of CommerceSliderCreateInput, all optional.
 
 The OWNER shape — a versioned settings document validated against domain/store-settings-validation.ts (unknown keys are rejected). Contains manual-bank account numbers and the QRIS media id; only settings.read may read it and it is never echoed on a public route.
 
-| Field                     | Type            | Required | Nullable | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| ------------------------- | --------------- | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `schemaVersion`           | enum(`1`)       | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| `storeName`               | string          | yes      | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| `tagline`                 | string          | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| `logoMediaObjectId`       | string (uuid)   | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| `faviconMediaObjectId`    | string (uuid)   | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| `address`                 | string          | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| `phone`                   | string          | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| `whatsapp`                | string          | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| `email`                   | string          | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| `mapsEmbedUrl`            | string          | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| `faqs`                    | array of object | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| `social`                  | object          | no       | no       | facebook/instagram/tiktok/x/youtube/linkedin, each a URL or null.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| `customerLevels`          | array of object | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| `shipping`                | object          | no       | no       | alternativeServices[] {id,name,cost}, selfPickup, courierEnabled, pinpointEnabled, freeShipping {active,minOrder,maxDiscount}, originCityName, originSubdistrictName, courier: {enabled, originDestinationId, couriers: string[]} (Issue #106 ADR-0017 D4, implemented by #107) — `originDestinationId` is the RajaOngkir destination id resolved once for the store's own shipping origin; `couriers` names which provider courier codes (e.g. `jne`, `sicepat`) are offered; `enabled` is the courier-rate integration's own on/off switch.                                                  |
-| `payment`                 | object          | no       | no       | manualBank {active, accounts[] {bankName, accountNumber, accountHolder}}, manualQris {active, mediaObjectId}, downPayment {active, percent}, tax {active, percent}, insurance {active, ratePercent, minFee}. Gains `gateway: {enabled}` (Issue #106 ADR-0017 D3/D10; the #110 half — schema, provider, session route, webhook-endpoint tokens — implemented; #118 (BjekMart Features flag) still pending) — the store-level ON/OFF switch; `COMMERCE_PAYMENT_GATEWAY` (env, per deployment) must ALSO be a real gateway for the method to actually appear, per D1's env-only-credentials rule. |
-| `promoSection`            | object          | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| `meta`                    | object          | no       | no       | home/contact, each {title, description} (nullable).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| `affiliateCommissionRate` | string          | no       | yes      | Issue #92 — numeric(5,2) as a string, 0-100, two decimals. A real column, not part of this jsonb document (sql/921's header) — included here on the wire only. null means the affiliate program is OFF for this tenant; a non-null value both turns it on and is the rate a NEW enrolment copies.                                                                                                                                                                                                                                                                                              |
+| Field                     | Type                   | Required | Nullable | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ------------------------- | ---------------------- | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `schemaVersion`           | enum(`1`)              | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `storeName`               | string                 | yes      | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `tagline`                 | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `logoMediaObjectId`       | string (uuid)          | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `faviconMediaObjectId`    | string (uuid)          | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `address`                 | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `phone`                   | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `whatsapp`                | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `email`                   | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `mapsEmbedUrl`            | string                 | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `faqs`                    | array of object        | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `social`                  | object                 | no       | no       | facebook/instagram/tiktok/x/youtube/linkedin, each a URL or null.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `customerLevels`          | array of object        | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `shipping`                | object                 | no       | no       | alternativeServices[] {id,name,cost}, selfPickup, courierEnabled, pinpointEnabled, freeShipping {active,minOrder,maxDiscount}, originCityName, originSubdistrictName, courier: {enabled, originDestinationId, couriers: string[]} (Issue #106 ADR-0017 D4, implemented by #107) — `originDestinationId` is the RajaOngkir destination id resolved once for the store's own shipping origin; `couriers` names which provider courier codes (e.g. `jne`, `sicepat`) are offered; `enabled` is the courier-rate integration's own on/off switch.                                                  |
+| `payment`                 | object                 | no       | no       | manualBank {active, accounts[] {bankName, accountNumber, accountHolder}}, manualQris {active, mediaObjectId}, downPayment {active, percent}, tax {active, percent}, insurance {active, ratePercent, minFee}. Gains `gateway: {enabled}` (Issue #106 ADR-0017 D3/D10; the #110 half — schema, provider, session route, webhook-endpoint tokens — implemented; #118 (BjekMart Features flag) still pending) — the store-level ON/OFF switch; `COMMERCE_PAYMENT_GATEWAY` (env, per deployment) must ALSO be a real gateway for the method to actually appear, per D1's env-only-credentials rule. |
+| `promoSection`            | object                 | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `meta`                    | object                 | no       | no       | home/contact, each {title, description} (nullable).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `affiliateCommissionRate` | string                 | no       | yes      | Issue #92 — numeric(5,2) as a string, 0-100, two decimals. A real column, not part of this jsonb document (sql/921's header) — included here on the wire only. null means the affiliate program is OFF for this tenant; a non-null value both turns it on and is the rate a NEW enrolment copies.                                                                                                                                                                                                                                                                                              |
+| `taxMode`                 | enum(`flat`, `engine`) | no       | no       | Issue #293 (ADR-0039) — READ-ONLY on the wire (a `PUT` carrying it is refused as an unrecognised field). `flat` (the default): tax is `payment.tax.percent` of the subtotal less the voucher discount. `engine`: the `tax` module prices carts and finalises a snapshot per order. A real column on the store-settings row (sql/948), flipped only by the audited `commerce:tax:cutover` tooling.                                                                                                                                                                                              |
+| `taxProfileCode`          | string                 | no       | no       | Issue #293 — the tax module profile used in `engine` mode (default `store-default`). Read-only.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
 **Example**
 
@@ -18261,7 +18424,9 @@ The OWNER shape — a versioned settings document validated against domain/store
     "items": ["(operation-specific payload)"]
   },
   "meta": "(operation-specific payload)",
-  "affiliateCommissionRate": "string"
+  "affiliateCommissionRate": "string",
+  "taxMode": "flat",
+  "taxProfileCode": "string"
 }
 ```
 

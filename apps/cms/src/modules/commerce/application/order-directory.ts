@@ -42,7 +42,12 @@
  * payment confirmation WITHOUT a proof image is still fully accepted
  * (`createPaymentConfirmation` below never requires one).
  */
+import {
+  finaliseOrderTax,
+  reverseOrderTaxForCancellation
+} from "./tax-adapter-directory";
 import { createHash } from "node:crypto";
+import { log } from "../../../lib/logging/logger";
 import { withTenantOrThrow } from "../../../lib/database/tenant-context";
 import { recordAuditEvent } from "../../logging/application/audit-log";
 import { appendDomainEvent } from "../../domain-event-runtime/application/append-domain-event";
@@ -91,11 +96,29 @@ import {
 } from "../domain/commerce-events";
 import { buildCartQuote } from "./cart-quote-service";
 import {
+  loadComponentFactsByItem,
+  lockBundleComponentStock,
+  restockBundleComponentCounters,
+  quoteHasBundle,
+  sellBundleLine
+} from "./bundle-directory";
+import { expandBundleLines } from "../domain/bundle";
+import {
   fetchCustomerById,
   findOrCreateCustomerByPhone,
   saveCustomerAddress
 } from "./customer-directory";
 import { fetchStoreSettings } from "./store-settings-directory";
+import {
+  InventoryLedgerRefusedError,
+  postOrderRestock,
+  postOrderSale,
+  refreshStockCache,
+  resolveInventoryConfig,
+  withInventorySavepoint,
+  type InventoryConfig,
+  type SaleLine
+} from "./commerce-inventory";
 import { listLiveProductImagesByProductIds } from "./product-image-directory";
 import {
   fetchOrderPaymentSummary,
@@ -797,6 +820,72 @@ export async function createOrderFromCart(
   input: CreateOrderInput,
   now: Date = new Date(),
   correlationId?: string,
+  accountCustomerId?: string
+): Promise<CreateOrderOutcome> {
+  // Issue #282 (ADR-0038 D2) - the stock authority. `counter` is today's path,
+  // untouched. In `ledger` mode every order write runs in a SAVEPOINT: a ledger
+  // refusal (the last unit sold a millisecond ago) is a thrown error so the
+  // header, the items and the lines already posted roll back together, and is
+  // answered exactly as the counter path answers an out-of-stock cart -
+  // `cart_changed` - after the cache is re-read from the ledger so the fresh
+  // quote tells the truth.
+  const inventory = await resolveInventoryConfig(tx, tenantId);
+  if (inventory.mode === "counter") {
+    return createOrderFromCartWrite(
+      tx,
+      tenantId,
+      mediaPort,
+      input,
+      now,
+      correlationId,
+      accountCustomerId,
+      inventory
+    );
+  }
+
+  const attempt = (db: Bun.SQL) =>
+    createOrderFromCartWrite(
+      db,
+      tenantId,
+      mediaPort,
+      input,
+      now,
+      correlationId,
+      accountCustomerId,
+      inventory
+    );
+  const guarded = (): Promise<CreateOrderOutcome> =>
+    withInventorySavepoint(tx, inventory, attempt);
+
+  try {
+    return await guarded();
+  } catch (error) {
+    if (
+      !(error instanceof InventoryLedgerRefusedError) ||
+      error.kind !== "insufficient_stock"
+    ) {
+      throw error;
+    }
+    await refreshStockCache(tx, tenantId, inventory.locationId, [error.item]);
+  }
+
+  try {
+    return await guarded();
+  } catch (error) {
+    if (error instanceof InventoryLedgerRefusedError && error.quote) {
+      return { kind: "cart_changed", quote: error.quote };
+    }
+    throw error;
+  }
+}
+
+async function createOrderFromCartWrite(
+  tx: Bun.SQL,
+  tenantId: string,
+  mediaPort: MediaLibraryPort,
+  input: CreateOrderInput,
+  now: Date,
+  correlationId: string | undefined,
   /**
    * Issue #91 — set by the route ONLY after a valid bearer session was
    * presented (`requireCustomerSession`). When present, the order's
@@ -808,7 +897,8 @@ export async function createOrderFromCart(
    * create a SECOND, unrelated guest row for the same phone if it differs
    * from the account's own) is never called in this branch.
    */
-  accountCustomerId?: string
+  accountCustomerId: string | undefined,
+  inventory: InventoryConfig
 ): Promise<CreateOrderOutcome> {
   const requestHash = computeRequestHash({
     action: IDEMPOTENCY_SCOPE,
@@ -864,26 +954,37 @@ export async function createOrderFromCart(
       ? (accountCustomer.level as 1 | 2 | 3 | 4)
       : null;
 
-  const quote = await buildCartQuote(
-    tx,
-    tenantId,
-    mediaPort,
-    {
-      lines: input.lines,
-      shipping: input.shipping,
-      voucherCode: input.voucherCode,
-      insurance: input.insurance,
-      // Issue #107 — the re-quote inside THIS write transaction never calls
-      // a live provider (no `providerSql` argument below): a chosen
-      // courier option is only ever honoured against an ALREADY-cached
-      // rate, keyed off the delivery address's own district code.
-      destination: input.address
-        ? { districtCode: input.address.districtCode }
-        : null,
-      customerLevel
-    },
-    now
-  );
+  const requote = (): ReturnType<typeof buildCartQuote> =>
+    buildCartQuote(
+      tx,
+      tenantId,
+      mediaPort,
+      {
+        lines: input.lines,
+        shipping: input.shipping,
+        voucherCode: input.voucherCode,
+        insurance: input.insurance,
+        // Issue #107 — the re-quote inside THIS write transaction never calls
+        // a live provider (no `providerSql` argument below): a chosen
+        // courier option is only ever honoured against an ALREADY-cached
+        // rate, keyed off the delivery address's own district code.
+        destination: input.address
+          ? { districtCode: input.address.districtCode }
+          : null,
+        customerLevel
+      },
+      now
+    );
+  let quote = await requote();
+  // Issue #290 (ADR-0036 D6) - `counter` mode: a bundle's components are locked
+  // (ascending id) and the cart re-quoted against the locked counts, so a sale
+  // that lost the race for the last component unit answers `cart_changed`
+  // before any row of the order exists. `ledger` mode needs neither: the
+  // ledger post is the guard.
+  if (inventory.mode === "counter" && quoteHasBundle(quote)) {
+    await lockBundleComponentStock(tx, tenantId, quote);
+    quote = await requote();
+  }
 
   const paymentAvailable = quote.paymentMethods.some(
     (method) => method.method === input.payment.method && method.available
@@ -929,9 +1030,15 @@ export async function createOrderFromCart(
     affiliateId
   );
 
+  // Issue #282 - in `ledger` mode the order items are collected here and sold
+  // out of the ledger after the loop (sorted, so concurrent orders lock balances
+  // in one global order); in `counter` mode the counter is decremented inline.
+  const ledgerLines: SaleLine[] = [];
+
   // Sequential — one reserved `tx` connection (`tenant-route.ts`'s header).
+  const orderItemIds: string[] = [];
   for (const line of quote.lines) {
-    await tx`
+    const itemRows = (await tx`
       INSERT INTO awcms_commerce_order_items (
         tenant_id, order_id, product_id, variant_id, flash_sale_id,
         name, variant_name, sku, unit_price, quantity, weight_grams,
@@ -942,9 +1049,28 @@ export async function createOrderFromCart(
         ${line.name}, ${line.variantName}, ${line.sku}, ${line.unitPrice}, ${line.quantity},
         ${line.weightGrams}, ${line.serviceFormValues}::jsonb, ${line.lineTotal}
       )
-    `;
+      RETURNING id
+    `) as { id: string }[];
+    orderItemIds.push(itemRows[0]!.id);
 
-    if (line.variantId) {
+    if (line.bundle) {
+      // Issue #290 - the bundle line moves no stock itself; its components do.
+      await sellBundleLine(
+        tx,
+        tenantId,
+        inventory.mode,
+        itemRows[0]!.id,
+        { ...line, bundle: line.bundle },
+        ledgerLines
+      );
+    } else if (inventory.mode === "ledger") {
+      ledgerLines.push({
+        lineId: itemRows[0]!.id,
+        productId: line.productId,
+        variantId: line.variantId,
+        quantity: line.quantity
+      });
+    } else if (line.variantId) {
       await tx`
         UPDATE awcms_commerce_product_variants
         SET stock = stock - ${line.quantity}, updated_at = now()
@@ -970,6 +1096,34 @@ export async function createOrderFromCart(
       `;
     }
   }
+
+  if (inventory.mode === "ledger") {
+    try {
+      await postOrderSale(tx, tenantId, inventory, header.id, ledgerLines, {
+        actorTenantUserId: null,
+        correlationId
+      });
+    } catch (error) {
+      // The wrapper rolls the savepoint back; the quote rides along so a
+      // second refusal can still answer `cart_changed`.
+      if (error instanceof InventoryLedgerRefusedError) error.quote = quote;
+      throw error;
+    }
+  }
+
+  // Issue #293 (ADR-0039) — engine mode: finalise this order's tax snapshot
+  // and link it; a no-op in flat mode.
+  await finaliseOrderTax(tx, tenantId, {
+    orderId: header.id,
+    items: quote.lines.map((line, index) => ({
+      orderItemId: orderItemIds[index]!,
+      productId: line.productId
+    })),
+    quote,
+    now,
+    actorTenantUserId: null,
+    correlationId
+  });
 
   if (quote.voucher?.valid) {
     await tx`
@@ -1336,7 +1490,23 @@ async function transitionOrderStatus(
       actorTenantUserId,
       payload: eventPayload
     });
-    await restockCancelledOrRefreshedOrder(tx, tenantId, orderId);
+    await restockCancelledOrRefreshedOrder(
+      tx,
+      tenantId,
+      orderId,
+      actorTenantUserId ?? null,
+      correlationId
+    );
+    await reverseOrderTaxForCancellation(
+      tx,
+      tenantId,
+      actorTenantUserId ?? null,
+      {
+        orderId,
+        reason: "order_cancelled",
+        correlationId
+      }
+    );
     // Issue #92 — a defensive no-op under the current order-status graph
     // (`completed` has no outgoing edge), kept for a future
     // refund/cancel-after-completion path. See `affiliate-directory.ts`'s
@@ -1362,7 +1532,23 @@ async function transitionOrderStatus(
       producerModule: PRODUCER_MODULE,
       payload: eventPayload
     });
-    await restockCancelledOrRefreshedOrder(tx, tenantId, orderId);
+    await restockCancelledOrRefreshedOrder(
+      tx,
+      tenantId,
+      orderId,
+      actorTenantUserId ?? null,
+      correlationId
+    );
+    await reverseOrderTaxForCancellation(
+      tx,
+      tenantId,
+      actorTenantUserId ?? null,
+      {
+        orderId,
+        reason: "order_expired",
+        correlationId
+      }
+    );
   }
 
   await appendDomainEvent(tx, tenantId, {
@@ -1385,27 +1571,77 @@ async function transitionOrderStatus(
 async function restockCancelledOrRefreshedOrder(
   tx: Bun.SQL,
   tenantId: string,
-  orderId: string
+  orderId: string,
+  actorTenantUserId: string | null = null,
+  correlationId?: string
 ): Promise<void> {
+  const inventory = await resolveInventoryConfig(tx, tenantId);
   const items = (await tx`
-    SELECT product_id, variant_id, quantity, flash_sale_id
+    SELECT id, product_id, variant_id, quantity, flash_sale_id
     FROM awcms_commerce_order_items
     WHERE tenant_id = ${tenantId} AND order_id = ${orderId} AND deleted_at IS NULL
   `) as {
+    id: string;
     product_id: string;
     variant_id: string | null;
     quantity: number;
     flash_sale_id: string | null;
   }[];
 
+  // Issue #290 - a bundle line has no stock of its own: its immutable component
+  // snapshot says which component units to put back (empty for a standard line).
+  const bundleFacts = await loadComponentFactsByItem(
+    tx,
+    tenantId,
+    items.map((item) => item.id)
+  );
+
+  // Issue #282 - `ledger` mode puts the units back through the port (a
+  // `sale_return`, sorted, in this transaction); `counter` mode is unchanged.
+  if (inventory.mode === "ledger") {
+    await postOrderRestock(
+      tx,
+      tenantId,
+      inventory,
+      orderId,
+      expandBundleLines(
+        items.map((item) => ({
+          lineId: item.id,
+          productId: item.product_id,
+          variantId: item.variant_id,
+          quantity: item.quantity
+        })),
+        bundleFacts
+      ),
+      { actorTenantUserId, correlationId }
+    );
+  }
+
+  // `counter` mode: a bundle line's components go back to their own counters
+  // (ascending id, the order the sale decremented them in).
+  if (inventory.mode === "counter" && bundleFacts.size > 0) {
+    await restockBundleComponentCounters(
+      tx,
+      tenantId,
+      items
+        .filter((item) => bundleFacts.has(item.id))
+        .map((item) => ({
+          quantity: item.quantity,
+          components: bundleFacts.get(item.id)!
+        }))
+    );
+  }
+
   for (const item of items) {
-    if (item.variant_id) {
+    if (bundleFacts.has(item.id)) {
+      // The bundle line itself restocks nothing: its components did, above.
+    } else if (inventory.mode === "counter" && item.variant_id) {
       await tx`
         UPDATE awcms_commerce_product_variants
         SET stock = stock + ${item.quantity}, updated_at = now()
         WHERE tenant_id = ${tenantId} AND id = ${item.variant_id}
       `;
-    } else {
+    } else if (inventory.mode === "counter") {
       await tx`
         UPDATE awcms_commerce_products
         SET stock = stock + ${item.quantity}, updated_at = now()
@@ -1459,15 +1695,20 @@ export async function cancelOrderByCustomer(
     throw new OrderNotCancellableError();
   }
 
-  await transitionOrderStatus(
-    tx,
-    tenantId,
-    undefined,
-    "customer",
-    detail.id,
-    "cancelled",
-    reason,
-    correlationId
+  // Issue #282 - a `ledger`-mode restock that the ledger refuses rolls the
+  // whole cancellation back (savepoint) and surfaces as a clean 409.
+  const inventory = await resolveInventoryConfig(tx, tenantId);
+  await withInventorySavepoint(tx, inventory, (db) =>
+    transitionOrderStatus(
+      db,
+      tenantId,
+      undefined,
+      "customer",
+      detail.id,
+      "cancelled",
+      reason,
+      correlationId
+    )
   );
 
   const refreshed = await fetchOrderDetailByWhere(tx, tenantId, mediaPort, {
@@ -1515,15 +1756,18 @@ export async function updateOrderStatusByAdmin(
     if (gate.kind === "recorded") return true;
   }
 
-  const result = await transitionOrderStatus(
-    tx,
-    tenantId,
-    actorTenantUserId,
-    "admin",
-    orderId,
-    to,
-    note,
-    correlationId
+  const inventory = await resolveInventoryConfig(tx, tenantId);
+  const result = await withInventorySavepoint(tx, inventory, (db) =>
+    transitionOrderStatus(
+      db,
+      tenantId,
+      actorTenantUserId,
+      "admin",
+      orderId,
+      to,
+      note,
+      correlationId
+    )
   );
   return result !== null;
 }
@@ -1894,11 +2138,38 @@ export async function expireOrdersForTenant(
         now,
         batchLimit
       );
+      // Issue #282 - in `ledger` mode each order expires in its own savepoint:
+      // a ledger refusal on the restock (the sales location was deactivated)
+      // leaves THAT order pending for the next tick instead of aborting the
+      // whole tenant's batch.
+      const inventory = await resolveInventoryConfig(tx, tenantId);
+      let expiredCount = 0;
       for (const orderId of orderIds) {
-        await expireOrderBySystem(tx, tenantId, orderId, correlationId);
+        if (inventory.mode === "counter") {
+          await expireOrderBySystem(tx, tenantId, orderId, correlationId);
+          expiredCount += 1;
+          continue;
+        }
+        try {
+          await withInventorySavepoint(tx, inventory, (sp) =>
+            expireOrderBySystem(sp, tenantId, orderId, correlationId)
+          );
+          expiredCount += 1;
+        } catch (error) {
+          if (!(error instanceof InventoryLedgerRefusedError)) throw error;
+          log(
+            "warning",
+            "Order expiry skipped: the inventory ledger refused the restock.",
+            {
+              tenantId,
+              orderId,
+              reason: error.kind
+            }
+          );
+        }
       }
       return {
-        expiredCount: orderIds.length,
+        expiredCount,
         partial: orderIds.length === batchLimit
       };
     },

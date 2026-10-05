@@ -66,7 +66,9 @@ export type PaymentSettings = {
   manualBank: { active: boolean; banks: { bankName: string }[] };
   manualQris: { active: boolean };
   downPayment: { active: boolean; percent: number };
-  tax: { active: boolean; percent: number };
+  tax:
+    | { mode: "flat"; active: boolean; percent: number }
+    | { mode: "engine"; inclusive?: boolean };
   insurance: { active: boolean; ratePercent: string; minFee: string };
   /**
    * Added by #29 to `GET /api/v1/commerce/store-settings/public`

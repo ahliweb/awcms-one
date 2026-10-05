@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0037-the-commerce-migration-band-is-allocated-gap-first-and-widened-upstream.md)
 
-<!-- i18n-source-hash: sha256:ece0d1591a6d56a5b7a0661f1beeef30255f28c4dc0fea1e158f49576991f411 -->
+<!-- i18n-source-hash: sha256:94b1b9ec079a5c716f566b84261a70fd3673ae56f9825dfaace4293cf1d8c67c -->
 
 # ADR-0037 — Pita migrasi commerce dialokasikan celah-dulu, dan diperluas upstream
 
@@ -21,12 +21,12 @@ Tiga isu terbuka sekarang membutuhkan migrasi, karena upstream `ahliweb/awcms` v
 
 #283 (pengadaan) mungkin membutuhkan satu lagi.
 
-Jumlah slot bebas bukan kendala pengikat. **Urutan** adalah. `apps/cms/scripts/db-migrate.ts` (upstream, tidak pernah disunting di sini) menerapkan setiap berkas *yang belum diterapkan* dalam urutan leksikal. Berkas yang ditempatkan dalam celah karenanya berjalan pada dua titik berbeda dalam dua basis data berbeda:
+Jumlah slot bebas bukan kendala pengikat. **Urutan** adalah. `apps/cms/scripts/db-migrate.ts` (upstream, tidak pernah disunting di sini) menerapkan setiap berkas _yang belum diterapkan_ dalam urutan leksikal. Berkas yang ditempatkan dalam celah karenanya berjalan pada dua titik berbeda dalam dua basis data berbeda:
 
-| Basis data                                 | Saat `948_…` baru berjalan                   |
-| ---------------------------------------- | -------------------------------------------------------- |
+| Basis data                                   | Saat `948_…` baru berjalan                                  |
+| -------------------------------------------- | ----------------------------------------------------------- |
 | Segar (CI, aplikasi turunan baru, pemulihan) | Sebelum `949`–`999`, di tempat leksikal-nya                 |
-| Sudah dimigrasikan melewati `999`              | Setelah `999`, karena semuanya di bawahnya sudah diterapkan |
+| Sudah dimigrasikan melewati `999`            | Setelah `999`, karena semuanya di bawahnya sudah diterapkan |
 
 Migrasi celah yang merujuk pada objek yang dibuat berkas bernomor lebih tinggi karenanya bekerja pada setiap basis data yang ada dan gagal pada setiap basis data segar. Ia juga bisa diterapkan tetapi berperilaku berbeda, misalnya blok `DO` yang menguji keberadaan tabel. Tidak ada nomor bebas yang berada di atas `989`. Apa pun yang harus merujuk tabel retur (`994`–`997`) atau tabel laporan operasional (`998`, `999`) tidak memiliki slot valid yang tersisa.
 
@@ -34,16 +34,16 @@ Migrasi celah yang merujuk pada objek yang dibuat berkas bernomor lebih tinggi k
 
 **D1. Alokasikan celah secara eksplisit, menurut isu.** Dicatat di sini dan tidak di tempat lain:
 
-| Nomor                | Pemilik                                                        |
-| ------------------- | ------------------------------------------------------------ |
-| `947`               | #282 — adaptor inventori commerce                            |
-| `948`               | #293 — adaptor pajak commerce                                  |
-| `949`               | #283 — integrasi pengadaan, jika membutuhkan migrasi      |
-| `953`–`959`         | #290 — bundel / item kit (tidak berubah dari rencana #281)    |
+| Nomor               | Pemilik                                                          |
+| ------------------- | ---------------------------------------------------------------- |
+| `947`               | #282 — adaptor inventori commerce (terpakai)                     |
+| `948`               | #293 — adaptor pajak commerce (terpakai)                         |
+| `949`               | Pita pool yang tidak dialokasikan (#283 tidak butuh migrasi)     |
+| `953`–`955`         | #290 — bundel / item kit (terpakai); `956`–`959` kembali ke pool |
 | `968`, `969`        | Pita pool yang tidak dialokasikan                                |
 | `977`–`979`         | Pita pool yang tidak dialokasikan                                |
-| `983`, `984`, `989` | Pita pool yang tidak dialokasikan                                  |
-| `900`, `944`        | Ditahan. Diambil hanya dengan amandemen ADR ini                          |
+| `983`, `984`, `989` | Pita pool yang tidak dialokasikan                                |
+| `900`, `944`        | Ditahan. Diambil hanya dengan amandemen ADR ini                  |
 
 Isu kemudian mengambil nomor pool terendah yang memenuhi D2. Ia mencatat alokasi dengan mengamandemen tabel ini dalam perubahan yang sama.
 
@@ -53,13 +53,13 @@ Isu kemudian mengambil nomor pool terendah yang memenuhi D2. Ia mencatat alokasi
 
 ### Opsi yang dipertimbangkan
 
-| Opsi                                                                                    | Penilaian                                                                                                                                                                                                                                                                                                       |
-| ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Alokasi celah-dulu sekarang, perluasan empat digit upstream** (dipilih)                       | Ia membuka blokir #282, #283, #290 dan #293 hari ini. Masing-masing telah diperiksa bergantung hanya pada `901`–`905` (katalog dan pesanan), upstream `169`–`175` dan tabel pengaturan, tidak pernah pada `994`–`999`. CI basis data segar menegakkan aturan pengurutan. Perbaikan yang tahan lama mendarat di mana pelari hidup.                                                                          |
+| Opsi                                                                                   | Penilaian                                                                                                                                                                                                                                                                                                                                                                                |
+| -------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Alokasi celah-dulu sekarang, perluasan empat digit upstream** (dipilih)              | Ia membuka blokir #282, #283, #290 dan #293 hari ini. Masing-masing telah diperiksa bergantung hanya pada `901`–`905` (katalog dan pesanan), upstream `169`–`175` dan tabel pengaturan, tidak pernah pada `994`–`999`. CI basis data segar menegakkan aturan pengurutan. Perbaikan yang tahan lama mendarat di mana pelari hidup.                                                        |
 | Pakai ulang awalan (`999_awcms_commerce_z_…`), andalkan pengurutan dalam-awalan pelari | Ia bekerja secara mekanis, karena pelari tidak mewajibkan awalan unik dan tes rentang menerimanya. Tetapi urutan kemudian bergantung pada ejaan alfabet sisa nama, yang tidak ada yang baca sebagai sinyal pengurutan. ADR-0015 menolak persis pendekatan "dokumentasikan pengikat leksikal" ini. Dalam pita kami sendiri ia kurang berbahaya, tetapi sama kuatnya tidak jelas. Ditolak. |
-| Tambal `MIGRATION_FILE_PATTERN` secara lokal                                                    | Satu perbedaan pendirian pada berkas upstream satu-satunya yang setiap penerapan jalankan. Ditolak oleh ADR-0015 dan masih ditolak.                                                                                                                                                                                                                   |
-| Beri nomor ulang migrasi commerce yang ada untuk membuka ruang di atas                        | Checksum migrasi yang diterapkan tidak dapat berubah dan setiap basis data yang diterapkan memberi kunci mereka menurut nama. Setiap operator perlu rename buku besar, biaya sama dengan `db:commerce:renumber` sekali-saja ADR-0015, dan ia hanya membeli beberapa lusin slot. Ditolak.                                                                  |
-| Lipat beberapa kekhawatiran ke dalam satu berkas migrasi                                             | Masih diizinkan, dan didorong, di mana kekhawatiran dikirim dalam satu PR. Ia mengurangi permintaan tetapi tidak menghilangkan kendala pengurutan. Pelengkap, bukan alternatif.                                                                                                                            |
+| Tambal `MIGRATION_FILE_PATTERN` secara lokal                                           | Satu perbedaan pendirian pada berkas upstream satu-satunya yang setiap penerapan jalankan. Ditolak oleh ADR-0015 dan masih ditolak.                                                                                                                                                                                                                                                      |
+| Beri nomor ulang migrasi commerce yang ada untuk membuka ruang di atas                 | Checksum migrasi yang diterapkan tidak dapat berubah dan setiap basis data yang diterapkan memberi kunci mereka menurut nama. Setiap operator perlu rename buku besar, biaya sama dengan `db:commerce:renumber` sekali-saja ADR-0015, dan ia hanya membeli beberapa lusin slot. Ditolak.                                                                                                 |
+| Lipat beberapa kekhawatiran ke dalam satu berkas migrasi                               | Masih diizinkan, dan didorong, di mana kekhawatiran dikirim dalam satu PR. Ia mengurangi permintaan tetapi tidak menghilangkan kendala pengurutan. Pelengkap, bukan alternatif.                                                                                                                                                                                                          |
 
 ## Konsekuensi
 

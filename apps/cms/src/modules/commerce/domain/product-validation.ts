@@ -1,5 +1,10 @@
 import { PRODUCT_TYPES, type ProductType } from "./product-type";
 import {
+  validateBundleDefinitionFields,
+  type BundleDefinitionFields
+} from "./bundle";
+import { TAX_CATEGORY_CODE_PATTERN } from "./tax-adapter";
+import {
   reconcileSizeChart,
   SIZE_CHART_TYPES,
   type SizeChartType
@@ -120,6 +125,33 @@ function validateOptionalBoundedText(
   return normalizeOptionalText(value);
 }
 
+/** Issue #293 (ADR-0039): absent = unchanged, `null`/blank = standard, else a tax-module category code. */
+function validateTaxCategoryCode(
+  value: unknown,
+  errors: ValidationError[]
+): string | null | undefined {
+  if (value === undefined) return undefined;
+  if (value === null) return null;
+  if (typeof value !== "string") {
+    errors.push({
+      field: "taxCategoryCode",
+      message: "taxCategoryCode must be a string, or null."
+    });
+    return undefined;
+  }
+  const trimmed = value.trim();
+  if (trimmed === "") return null;
+  if (!TAX_CATEGORY_CODE_PATTERN.test(trimmed)) {
+    errors.push({
+      field: "taxCategoryCode",
+      message:
+        "taxCategoryCode must be 1-63 characters: lowercase letters, digits, dot, underscore or hyphen, starting with a letter or digit."
+    });
+    return undefined;
+  }
+  return trimmed;
+}
+
 function validateBoolean(
   value: unknown,
   field: string,
@@ -163,12 +195,14 @@ type ProductParityFields = {
   serviceForm: ServiceFormField[] | null;
   subscriptionPeriod: SubscriptionPeriod | null;
   downloadLink: string | null;
+  /** Issue #293 (ADR-0039) — a tax rule category code; `null` = standard (the version's fallback rule). */
+  taxCategoryCode?: string | null;
   allowDp: boolean;
   allowFreeShipping: boolean;
   variantAttributes: VariantAttributeGroup[] | null;
   isFeatured: boolean;
   isRecommended: boolean;
-};
+} & BundleDefinitionFields;
 
 /**
  * Validates every Issue #23 field COMMON to create/update, filling `value`
@@ -422,6 +456,12 @@ function validateParityFields(
   );
   if (downloadLink !== undefined) value.downloadLink = downloadLink;
 
+  const taxCategoryCode = validateTaxCategoryCode(
+    record.taxCategoryCode,
+    errors
+  );
+  if (taxCategoryCode !== undefined) value.taxCategoryCode = taxCategoryCode;
+
   if (record.allowDp !== undefined) {
     value.allowDp = validateBoolean(record.allowDp, "allowDp", false, errors);
   }
@@ -461,6 +501,9 @@ function validateParityFields(
       errors
     );
   }
+
+  // Issue #290 (ADR-0036) - kind, pricing strategy, discount and components.
+  Object.assign(value, validateBundleDefinitionFields(record, errors));
 
   return value;
 }
@@ -671,11 +714,16 @@ export function validateCreateProductInput(
       serviceForm: parity.serviceForm ?? null,
       subscriptionPeriod: parity.subscriptionPeriod ?? null,
       downloadLink: parity.downloadLink ?? null,
+      taxCategoryCode: parity.taxCategoryCode ?? null,
       allowDp: parity.allowDp ?? false,
       allowFreeShipping: parity.allowFreeShipping ?? true,
       variantAttributes: parity.variantAttributes ?? null,
       isFeatured: parity.isFeatured ?? false,
-      isRecommended: parity.isRecommended ?? false
+      isRecommended: parity.isRecommended ?? false,
+      kind: parity.kind ?? "standard",
+      bundlePricing: parity.bundlePricing ?? "fixed",
+      bundleDiscountPercent: parity.bundleDiscountPercent ?? null,
+      bundleComponents: parity.bundleComponents
     }
   };
 }

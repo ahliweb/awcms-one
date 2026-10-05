@@ -707,6 +707,31 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/inventory/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/inventory/items.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/inventory/reconciliation.ts",
+      "workClass": "reporting",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/inventory/resync.ts",
+      "workClass": "reporting",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/inventory/rollback.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/loyalty/accounts/[customerId]/adjust.ts",
       "workClass": "interactive",
       "source": "factory"

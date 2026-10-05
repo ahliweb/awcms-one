@@ -11422,3 +11422,51 @@ msgstr "Mutasi stok"
 
 msgid "Partner access grants"
 msgstr "Akses yang diberikan kepada mitra"
+
+msgid "Tax category"
+msgstr "Kategori pajak"
+
+msgid "standard"
+msgstr "standar"
+
+msgid "A tax rule category code. Leave blank for the standard rate."
+msgstr "Kode kategori aturan pajak. Kosongkan untuk tarif standar."
+
+msgid "Tax: rules engine"
+msgstr "Pajak: mesin aturan"
+
+msgid "Tax: flat percentage"
+msgstr "Pajak: persentase tetap"
+
+msgid "Tax is computed by the tax module from effective-dated rules; the payment.tax percentage below is not used."
+msgstr "Pajak dihitung oleh modul pajak dari aturan berlaku-tanggal; persentase payment.tax di bawah tidak dipakai."
+
+msgid "Tax is the flat percentage below (payment.tax). An operator can move this store to effective-dated rules."
+msgstr "Pajak adalah persentase tetap di bawah (payment.tax). Operator dapat memindahkan toko ini ke aturan berlaku-tanggal."
+
+msgid "Tax rules"
+msgstr "Aturan pajak"
+
+msgid "This product is a bundle (a kit of other products)"
+msgstr "Produk ini adalah paket (kumpulan produk lain)"
+
+msgid "Bundle pricing"
+msgstr "Harga paket"
+
+msgid "Fixed: the price above"
+msgstr "Tetap: harga di atas"
+
+msgid "Derived: components' prices, less the discount"
+msgstr "Turunan: harga komponen, dikurangi diskon"
+
+msgid "Bundle discount percent"
+msgstr "Persen diskon paket"
+
+msgid "Bundle contents"
+msgstr "Isi paket"
+
+msgid "Each line must be a SKU, optionally followed by x and a quantity."
+msgstr "Setiap baris harus berupa SKU, boleh diikuti x dan jumlah."
+
+msgid "One component per line: SKU x quantity. A bundle has no stock of its own; it is sold as one line and its components' stock moves."
+msgstr "Satu komponen per baris: SKU x jumlah. Paket tidak punya stok sendiri; ia dijual sebagai satu baris dan stok komponennya yang bergerak."

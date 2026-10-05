@@ -2,6 +2,8 @@ import { recordAuditEvent } from "../../logging/application/audit-log";
 import { applyConsumerEffectOnce } from "../application/consumer-effect";
 import type { DomainEventConsumerDefinition } from "../domain/consumer-types";
 import {
+  INVENTORY_EVENT_VERSION,
+  INVENTORY_MOVEMENT_POSTED_EVENT_TYPE,
   SAMPLE_RECORDED_EVENT_TYPE,
   SAMPLE_RECORDED_EVENT_VERSION
 } from "../domain/event-type-registry";
@@ -17,6 +19,10 @@ import {
   earnPointsForPaidOrder,
   reverseEarnForCancelledOrder
 } from "../../commerce/application/loyalty-ledger";
+import {
+  INVENTORY_STOCK_CACHE_PROJECTOR_CONSUMER_NAME,
+  projectStockCacheFromMovement
+} from "../../commerce/application/commerce-inventory-cache-projector";
 
 /**
  * Two representative consumers ("provide at least two representative
@@ -312,13 +318,47 @@ export const orderCancelledLoyaltyReverserConsumer: DomainEventConsumerDefinitio
     }
   };
 
+/**
+ * `commerce` module consumer (Issue #282, ADR-0038 D4) - the third deliberate
+ * `domain_event_runtime -> commerce` edge in this file (same documented
+ * exception as the two above; `tests/module-boundary.test.ts`). It keeps
+ * commerce's `stock` write-through cache true when a movement is posted by
+ * something other than commerce (a receipt, an adjustment, a transfer).
+ *
+ * Re-reads the CURRENT ledger balance through `InventoryLedgerPort` instead of
+ * trusting the payload, acts only for a tenant in `ledger` mode, the sales
+ * location and a `commerce.*` item - see the projector's own header. A LOCAL
+ * DIVERGENCE from upstream's file: on a subtree-sync conflict keep both
+ * lineages and re-run `tests/integration/commerce-inventory-adapter`.
+ */
+export const inventoryStockCacheProjectorConsumer: DomainEventConsumerDefinition =
+  {
+    name: INVENTORY_STOCK_CACHE_PROJECTOR_CONSUMER_NAME,
+    description:
+      "commerce module consumer - refreshes the stock write-through cache of a commerce product or variant when an inventory movement is posted at the store's sales location by something other than commerce (Issue #282).",
+    eventTypes: [INVENTORY_MOVEMENT_POSTED_EVENT_TYPE],
+    eventVersions: [INVENTORY_EVENT_VERSION],
+    handler: async (tx, event, ctx) => {
+      await applyConsumerEffectOnce(
+        tx,
+        ctx.tenantId,
+        INVENTORY_STOCK_CACHE_PROJECTOR_CONSUMER_NAME,
+        event.id,
+        async () => {
+          await projectStockCacheFromMovement(tx, ctx.tenantId, event.payload);
+        }
+      );
+    }
+  };
+
 const BASE_DOMAIN_EVENT_CONSUMERS: readonly DomainEventConsumerDefinition[] = [
   sampleAuditProjectorConsumer,
   activityRollupProjectorConsumer,
   eventActivityProjectorConsumer,
   orderPaidEntitlementGrantorConsumer,
   orderPaidLoyaltyEarnerConsumer,
-  orderCancelledLoyaltyReverserConsumer
+  orderCancelledLoyaltyReverserConsumer,
+  inventoryStockCacheProjectorConsumer
 ];
 
 /**

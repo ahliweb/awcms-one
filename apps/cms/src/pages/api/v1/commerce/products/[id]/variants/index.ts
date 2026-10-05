@@ -17,6 +17,7 @@ import {
   type CreateProductVariantInput
 } from "../../../../../../../modules/commerce/domain/product-variant-validation";
 import { COMMERCE_PRODUCTS_ACTIVITY_CODE } from "../../../../../../../modules/commerce/domain/commerce-permissions";
+import { inventoryErrorResponse } from "../../../../../../../modules/commerce/application/commerce-inventory-http";
 
 const UPDATE_GUARD = {
   moduleKey: "commerce",
@@ -71,6 +72,8 @@ export const POST = defineTenantRoute({
         return fail(409, "VARIANT_SKU_ALREADY_EXISTS", error.message);
       }
 
+      const inventoryFailure = inventoryErrorResponse(error);
+      if (inventoryFailure) return inventoryFailure;
       throw error;
     }
   }

@@ -19,7 +19,7 @@ Three open issues now need migrations, because upstream `ahliweb/awcms` v10.5.0 
 
 #283 (procurement) may need one more.
 
-The number of free slots is not the binding constraint. **Order** is. `apps/cms/scripts/db-migrate.ts` (upstream, never edited here) applies every *unapplied* file in lexical order. A file placed in a gap therefore runs at two different points in two different databases:
+The number of free slots is not the binding constraint. **Order** is. `apps/cms/scripts/db-migrate.ts` (upstream, never edited here) applies every _unapplied_ file in lexical order. A file placed in a gap therefore runs at two different points in two different databases:
 
 | Database                                 | When a new `948_…` runs                                  |
 | ---------------------------------------- | -------------------------------------------------------- |
@@ -32,16 +32,16 @@ A gap migration that references an object created by a higher-numbered file ther
 
 **D1. Allocate the gaps explicitly, by issue.** Recorded here and nowhere else:
 
-| Number(s)           | Owner                                                        |
-| ------------------- | ------------------------------------------------------------ |
-| `947`               | #282 — commerce inventory adapter                            |
-| `948`               | #293 — commerce tax adapter                                  |
-| `949`               | #283 — procurement integration, if it needs a migration      |
-| `953`–`959`         | #290 — bundles / item kits (unchanged from the #281 plan)    |
-| `968`, `969`        | Unallocated pool                                             |
-| `977`–`979`         | Unallocated pool                                             |
-| `983`, `984`, `989` | Unallocated pool                                             |
-| `900`, `944`        | Held back. Taken only with an amendment to this ADR          |
+| Number(s)           | Owner                                                       |
+| ------------------- | ----------------------------------------------------------- |
+| `947`               | #282 — commerce inventory adapter (used)                    |
+| `948`               | #293 — commerce tax adapter (used)                          |
+| `949`               | Unallocated pool (#283 needed no migration)                 |
+| `953`–`955`         | #290 — bundles / item kits (used); `956`–`959` back to pool |
+| `968`, `969`        | Unallocated pool                                            |
+| `977`–`979`         | Unallocated pool                                            |
+| `983`, `984`, `989` | Unallocated pool                                            |
+| `900`, `944`        | Held back. Taken only with an amendment to this ADR         |
 
 A later issue takes the lowest pool number that satisfies D2. It records the allocation by amending this table in the same change.
 
@@ -51,13 +51,13 @@ A later issue takes the lowest pool number that satisfies D2. It records the all
 
 ### Options considered
 
-| Option                                                                                    | Assessment                                                                                                                                                                                                                                                                                                       |
-| ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Gap-first allocation now, four-digit widening upstream** (chosen)                       | It unblocks #282, #283, #290 and #293 today. Each has been checked to depend only on `901`–`905` (catalog and orders), upstream `169`–`175` and the settings tables, never on `994`–`999`. Fresh-database CI enforces the ordering rule. The durable fix lands where the runner lives.                                                                          |
+| Option                                                                                    | Assessment                                                                                                                                                                                                                                                                                                                                                                                         |
+| ----------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Gap-first allocation now, four-digit widening upstream** (chosen)                       | It unblocks #282, #283, #290 and #293 today. Each has been checked to depend only on `901`–`905` (catalog and orders), upstream `169`–`175` and the settings tables, never on `994`–`999`. Fresh-database CI enforces the ordering rule. The durable fix lands where the runner lives.                                                                                                             |
 | Reuse a prefix (`999_awcms_commerce_z_…`), relying on the runner's within-prefix ordering | It works mechanically, because the runner does not require prefixes to be unique and the range test accepts it. But the order then depends on the alphabetical spelling of the rest of the name, which nobody reads as an ordering signal. ADR-0015 rejected exactly this "document the lexical tie-break" approach. Within our own band it is less dangerous, but it is just as opaque. Rejected. |
-| Patch `MIGRATION_FILE_PATTERN` locally                                                    | A standing divergence on the one upstream file every deployment runs. Rejected by ADR-0015 and still rejected.                                                                                                                                                                                                   |
-| Renumber the existing commerce migrations to open space at the top                        | The checksums of applied migrations are immutable and every deployed database keys them by name. Every operator would need a ledger rename, the same cost as ADR-0015's one-off `db:commerce:renumber`, and it buys only a few dozen slots. Rejected.                                                                  |
-| Fold several concerns into one migration file                                             | Still allowed, and encouraged, where the concerns ship in one PR. It reduces demand but does not remove the ordering constraint. A complement, not an alternative.                                                                                                                                            |
+| Patch `MIGRATION_FILE_PATTERN` locally                                                    | A standing divergence on the one upstream file every deployment runs. Rejected by ADR-0015 and still rejected.                                                                                                                                                                                                                                                                                     |
+| Renumber the existing commerce migrations to open space at the top                        | The checksums of applied migrations are immutable and every deployed database keys them by name. Every operator would need a ledger rename, the same cost as ADR-0015's one-off `db:commerce:renumber`, and it buys only a few dozen slots. Rejected.                                                                                                                                              |
+| Fold several concerns into one migration file                                             | Still allowed, and encouraged, where the concerns ship in one PR. It reduces demand but does not remove the ordering constraint. A complement, not an alternative.                                                                                                                                                                                                                                 |
 
 ## Consequences
 

@@ -10,6 +10,12 @@
  * N+1 — the same discipline `product-directory.ts`'s `attachProductRelations`
  * already follows.
  */
+import { resolveCartTaxContext } from "./tax-adapter-directory";
+import { fetchResolvedBundleComponents } from "./bundle-directory";
+import {
+  computeBundleAvailability,
+  computeDerivedBundlePrice
+} from "../domain/bundle";
 import { fetchStoreSettings } from "./store-settings-directory";
 import type {
   MediaLibraryPort,
@@ -66,6 +72,10 @@ type ProductSnapshotRow = {
   allow_dp: boolean;
   allow_free_shipping: boolean;
   service_form: ServiceFormField[] | null;
+  /** Issue #290 (ADR-0036). */
+  kind: string;
+  bundle_pricing: string;
+  bundle_discount_percent: string | null;
 };
 
 type VariantSnapshotRow = {
@@ -101,7 +111,8 @@ async function fetchProductSnapshots(
     SELECT id, slug, name, sku, price, price_level_2, price_level_3,
            price_level_4, discount_percent, stock, status,
            min_purchase, weight_grams, with_insurance, insurance_required,
-           allow_dp, allow_free_shipping, service_form
+           allow_dp, allow_free_shipping, service_form,
+           kind, bundle_pricing, bundle_discount_percent
     FROM awcms_commerce_products
     WHERE tenant_id = ${tenantId}
       AND id = ANY(${tx.array([...new Set(productIds)], "uuid")}::uuid[])
@@ -391,8 +402,23 @@ export async function buildCartQuote(
       ? await mediaPort.resolveMediaReferences(tx, tenantId, mediaIds)
       : new Map<string, ResolvedMediaReferenceDTO>();
 
+  // Issue #290 (ADR-0036 D3/D4) - a bundle is folded into an ordinary product
+  // snapshot: its `stock` is the computed availability, and `derived` pricing
+  // replaces the price (no tier, no percentage-off column; the bundle's own
+  // discount is already in the derived figure).
+  const bundleComponents = await fetchResolvedBundleComponents(
+    tx,
+    tenantId,
+    [...productRows.values()]
+      .filter((row) => row.kind === "bundle")
+      .map((row) => row.id)
+  );
+
   const products = new Map<string, CartQuoteProductSnapshot>();
   for (const [id, row] of productRows) {
+    const components =
+      row.kind === "bundle" ? (bundleComponents.get(id) ?? []) : null;
+    const derived = components !== null && row.bundle_pricing === "derived";
     const mediaObjectId = firstImageMediaIdByProduct.get(id);
     const resolved = mediaObjectId
       ? resolvedMedia.get(mediaObjectId)
@@ -402,12 +428,14 @@ export async function buildCartQuote(
       slug: row.slug,
       name: row.name,
       sku: row.sku,
-      price: row.price,
-      priceLevel2: row.price_level_2,
-      priceLevel3: row.price_level_3,
-      priceLevel4: row.price_level_4,
-      discountPercent: row.discount_percent,
-      stock: row.stock,
+      price: derived
+        ? computeDerivedBundlePrice(components, row.bundle_discount_percent)
+        : row.price,
+      priceLevel2: derived ? null : row.price_level_2,
+      priceLevel3: derived ? null : row.price_level_3,
+      priceLevel4: derived ? null : row.price_level_4,
+      discountPercent: derived ? 0 : row.discount_percent,
+      stock: components ? computeBundleAvailability(components) : row.stock,
       status: row.status as ProductStatus,
       minPurchase: row.min_purchase,
       weightGrams: row.weight_grams,
@@ -417,7 +445,14 @@ export async function buildCartQuote(
       allowFreeShipping: row.allow_free_shipping,
       serviceForm: row.service_form,
       imageUrl: resolved?.publicUrl ?? null,
-      imageAlt: resolved?.altText ?? null
+      imageAlt: resolved?.altText ?? null,
+      ...(components
+        ? {
+            bundle: {
+              components: components.map(({ stock: _stock, ...rest }) => rest)
+            }
+          }
+        : {})
     });
   }
 
@@ -479,7 +514,10 @@ export async function buildCartQuote(
     // `isPaymentGatewayProviderConfigured` never touches the database, and
     // `quoteCart` only ever multiplies it against
     // `storeSettings.payment.gateway.enabled`.
-    gatewayProviderConfigured: isPaymentGatewayProviderConfigured()
+    gatewayProviderConfigured: isPaymentGatewayProviderConfigured(),
+    // Issue #293 (ADR-0039) — `{ mode: "flat" }` (the default; nothing else is
+    // queried) or the tax module's version + the products' categories.
+    tax: await resolveCartTaxContext(tx, tenantId, productIds, now)
   };
 
   return quoteCart(

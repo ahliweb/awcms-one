@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](arsitektur.md)
 
-<!-- i18n-source-hash: sha256:bdf7f67af3399f408c76165e1797c7bc984b031e1ce7a6aa623482366d75919b -->
+<!-- i18n-source-hash: sha256:ef4dacb0106ac4575603dad6867727b58d1873d7a94cdf6dc385c7f37663584b -->
 
 # Arsitektur
 
@@ -218,6 +218,10 @@ Pengeluaran tidak pernah mengedit total tutup kas. Pengeluaran laci yang diposti
 ## Laporan operasional adalah proyeksi buku besar, bukan mesin analitik kedua (issue #296, [ADR-0035](adr/0035-pos-operational-reports-are-commerce-projections-over-the-existing-ledgers-on-the-reporting-engine.md))
 
 Laporan operasional POS memakai ulang mesin proyeksi modul `reporting` dari ujung ke ujung: `commerce` menyumbang lima `ProjectionDescriptor` (metode pembayaran, selisih tutup kasir, pengeluaran, loyalitas, nilai tersimpan) yang penampungnya meng-upsert baris harian aditif, yang rebuild-nya memutar ulang pemuat yang sama, dan yang rekonsiliasinya menjumlahkan pemuat yang sama atas seluruh sumber. Sumbernya adalah buku besar hanya-tambah atau tulis-sekali; bila fakta kuncinya NULL sampai terjadi (leg gateway tertunda, tutup kasir yang belum diputus, pengeluaran yang belum dibukukan) aliran membaca view `security_invoker` yang sempit atas baris yang kursornya terisi, karena pindaian rebuild mesin tidak dapat menerima kursor NULL. Bacaan buku besar langsung (`tender-mix`, `stored-value`) tetap sebagai penelusuran dan sebagai tolok ukur yang diuji terhadap proyeksi. Tidak ada yang menyentuh jalur pesanan; permintaan hanya pernah _membaca_ proyeksi.
+
+## Stok adalah cache dari sebuah ledger, begitu tenant menyatakannya (isu #282, [ADR-0038](adr/0038-commerce-stock-is-a-write-through-cache-of-the-inventory-ledger.md))
+
+Commerce menyimpan stok sebagai satu bilangan bulat pada baris yang dijual. Tenant kini dapat memindahkannya ke ledger multi-lokasi hulu, dan keputusan yang membuatnya aman adalah mempertahankan bilangan bulat itu: pada mode `ledger` **ledger adalah otoritas dan `stock` adalah cache write-through darinya**, sehingga etalase, kutipan keranjang, kasir, dan setiap daftar admin membaca persis yang mereka baca sebelumnya. Setiap perubahan stok lewat port dalam-proses ledger di dalam transaksi pemanggil (terurut, sehingga keranjang konkuren tidak dapat deadlock; dalam savepoint, sehingga penolakan menggulung balik seluruh pesanan dan pembeli tetap mendapat `CART_CHANGED`), cache ditulis dari saldo yang dikembalikan posting, dan mutasi yang diposting pihak lain — penerimaan pemasok — mencapai cache lewat konsumen domain-event yang membaca ulang ledger dan tidak pernah memercayai payload. Peralihannya atomik (opening dan flip mode dalam satu transaksi di bawah kunci per tenant, diverifikasi sebelum commit) dan dapat dibalik (satu panggilan; cache sudah benar). Alternatif yang ditolak: mempertahankan penghitung sebagai otoritas dan menulis ganda — penerimaan yang diposting modul yang tidak tahu penghitung akan membuatnya menyimpang diam-diam.
 
 ## Satu hal lagi yang dilakukan server: memperbaiki halaman yang terbayangi
 

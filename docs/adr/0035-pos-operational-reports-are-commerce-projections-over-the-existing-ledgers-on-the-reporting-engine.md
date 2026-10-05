@@ -109,3 +109,7 @@ The returns & refunds family promised by D1's contract now exists as a sixth pro
 - **Gated on the `returns` feature, permissions `commerce.report_returns.read|export`.** `GET /api/v1/reports/commerce/operational-returns` and `.csv` answer `200 enabled: false` while the feature is off; the CSV is one long file with a `section` column (formula-neutralised, `no-store`, audited as `operational_report.export`).
 
 Reserved-band consequence: `945`–`946` are used, `947`–`949` remain free for a table that, like this one, names no forward source.
+
+## Addendum — low stock is upstream's projection (Issue #282, ADR-0038)
+
+D1 above deferred "low-stock candidates" to #282 and noted they would be commerce's own slice. [ADR-0038](0038-commerce-stock-is-a-write-through-cache-of-the-inventory-ledger.md) D8 supersedes that note: upstream's `inventory.low_stock` projection, on the same reporting engine, is the low-stock report and `/admin/inventory` is the balance and movement history, so commerce builds no stock report family (one projection per fact).

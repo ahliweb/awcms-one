@@ -779,3 +779,20 @@ export const COMMERCE_REPORT_RETURN_PERMISSIONS = {
   read: "commerce.report_returns.read",
   export: "commerce.report_returns.export"
 } as const;
+
+/**
+ * The commerce inventory adapter (Issue #282, ADR-0038). Two keys, existing
+ * `AccessAction` verbs only. `read` opens the stock-authority status and the
+ * cache reconciliation; `configure` (high-risk) is the one authority for the two
+ * writes that change what the storefront reads - the rollback to counter mode
+ * and the resync of the stock cache from the ledger. Neither is implied by
+ * `commerce.products.*` (a product editor may not move the stock authority),
+ * and neither opens any inventory-ledger permission (`inventory.*` guards the
+ * ledger itself).
+ */
+export const COMMERCE_INVENTORY_ACTIVITY_CODE = "inventory";
+
+export const COMMERCE_INVENTORY_PERMISSIONS = {
+  read: "commerce.inventory.read",
+  configure: "commerce.inventory.configure"
+} as const;

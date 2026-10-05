@@ -40,6 +40,9 @@
  * Finalised order history is never edited: no order, order item or payment row
  * is updated. A return only ever ADDS rows.
  */
+import { loadComponentFactsByItem } from "./bundle-directory";
+import { componentSourceLine } from "../domain/bundle";
+import { reverseOrderTaxForReturn } from "./tax-adapter-directory";
 import { appendDomainEvent } from "../../domain-event-runtime/application/append-domain-event";
 import { recordAuditEvent } from "../../logging/application/audit-log";
 import {
@@ -64,11 +67,15 @@ import {
   type CreateReturnRefundInput,
   type RefundablePayment
 } from "../domain/returns";
+import {
+  resolveInventoryConfig,
+  withInventorySavepoint
+} from "./commerce-inventory";
 import { IdempotencyPayloadMismatchError } from "./order-directory";
 import { lockOrderForSettlement } from "./payment-allocation-directory";
 import { fetchCommerceFeatures } from "./commerce-feature-gate";
 import {
-  singleCountInventoryPort,
+  modeAwareInventoryPort,
   type ReturnInventoryPort
 } from "./return-inventory-port";
 import {
@@ -96,7 +103,7 @@ export type ReturnDeps = {
   inventory: ReturnInventoryPort;
 };
 
-const DEFAULT_DEPS: ReturnDeps = { inventory: singleCountInventoryPort };
+const DEFAULT_DEPS: ReturnDeps = { inventory: modeAwareInventoryPort };
 
 export type CreateReturnOutcome =
   | { kind: "feature_disabled" }
@@ -358,6 +365,35 @@ export async function createReturn(
   correlationId?: string,
   deps: ReturnDeps = DEFAULT_DEPS
 ): Promise<CreateReturnOutcome> {
+  // Issue #282 (ADR-0038 D2): in `ledger` mode the whole return runs in a
+  // savepoint, so a ledger refusal on the restock rolls the return rows back and
+  // the route's 409 leaves nothing half-written.
+  const inventory = await resolveInventoryConfig(tx, tenantId);
+
+  return withInventorySavepoint(tx, inventory, (db) =>
+    createReturnWrite(
+      db,
+      tenantId,
+      actorTenantUserId,
+      orderId,
+      input,
+      now,
+      correlationId,
+      deps
+    )
+  );
+}
+
+async function createReturnWrite(
+  tx: Bun.SQL,
+  tenantId: string,
+  actorTenantUserId: string,
+  orderId: string,
+  input: CreateReturnInput,
+  now: Date,
+  correlationId: string | undefined,
+  deps: ReturnDeps
+): Promise<CreateReturnOutcome> {
   const features = await fetchCommerceFeatures(tx, tenantId);
   if (!features.returns) return { kind: "feature_disabled" };
 
@@ -563,6 +599,7 @@ export async function createReturn(
   const returnId = returnRows[0]!.id;
 
   const stockLines = [];
+  const lineOfReturnLine = new Map<string, string>();
   for (const { line, item, value } of valued) {
     const inserted = (await tx`
       INSERT INTO awcms_commerce_return_lines (
@@ -579,7 +616,9 @@ export async function createReturn(
       )
       RETURNING id
     `) as { id: string }[];
+    lineOfReturnLine.set(inserted[0]!.id, item.id);
     stockLines.push({
+      returnId,
       returnLineId: inserted[0]!.id,
       productId: item.product_id,
       variantId: item.variant_id,
@@ -588,8 +627,65 @@ export async function createReturn(
     });
   }
 
-  const stock = await deps.inventory.applyReturn(tx, tenantId, stockLines);
-  const expectedRestock = stockLines
+  // Issue #293 (ADR-0039) — engine mode: reverse the returned units' tax from
+  // the order's ORIGINAL snapshot (a no-op for flat-mode / pre-cut-over orders).
+  const taxReversal = await reverseOrderTaxForReturn(
+    tx,
+    tenantId,
+    actorTenantUserId,
+    {
+      orderId,
+      returnId,
+      lines: valued.map(({ line, item }) => ({
+        orderItemId: item.id,
+        quantity: line.quantity
+      })),
+      correlationId
+    }
+  );
+  if (taxReversal.kind === "invalid") {
+    throw new RefundInvariantError(
+      `The tax reversal for return ${returnId} was refused: ${taxReversal.message}`
+    );
+  }
+
+  // Issue #290 (ADR-0036 D6) - a bundle is returned in WHOLE bundle units; its
+  // restock disposition applies to every component, each component being its
+  // own port line `<returnLineId>:c<position>` x quantity per bundle. The
+  // return line, its value and its tax reversal stay on the bundle line.
+  const bundleFacts = await loadComponentFactsByItem(
+    tx,
+    tenantId,
+    valued.map(({ item }) => item.id)
+  );
+  const portLines: typeof stockLines = [];
+  for (const line of stockLines) {
+    const components = bundleFacts.get(
+      lineOfReturnLine.get(line.returnLineId)!
+    );
+    if (!components || components.length === 0) {
+      portLines.push(line);
+      continue;
+    }
+    for (const component of components) {
+      portLines.push({
+        ...line,
+        returnLineId: componentSourceLine(
+          line.returnLineId,
+          component.position
+        ),
+        productId: component.productId,
+        variantId: component.variantId,
+        quantity: component.quantityPerBundle * line.quantity
+      });
+    }
+  }
+
+  const stock = await deps.inventory.applyReturn(tx, tenantId, portLines, {
+    actorTenantUserId,
+    correlationId
+  });
+  const expectedRestock = portLines
     .filter((line) => line.disposition === "restock")
     .reduce((sum, line) => sum + line.quantity, 0);
   if (stock.restockedUnits !== expectedRestock) {

@@ -11,6 +11,7 @@ import {
   saveAffiliateCommissionRate,
   saveStoreSettings
 } from "../../../../../modules/commerce/application/store-settings-directory";
+import { fetchTaxAdapterConfig } from "../../../../../modules/commerce/application/tax-adapter-directory";
 import {
   validateStoreSettingsInput,
   type StoreSettingsData
@@ -34,11 +35,19 @@ export const GET = defineTenantRoute({
   workClass: "interactive",
   authorize: READ_GUARD,
   handler: async ({ tx, tenantId }) => {
-    const [settings, affiliateCommissionRate] = await Promise.all([
+    const [settings, affiliateCommissionRate, taxAdapter] = await Promise.all([
       fetchStoreSettings(tx, tenantId),
-      fetchAffiliateCommissionRate(tx, tenantId)
+      fetchAffiliateCommissionRate(tx, tenantId),
+      fetchTaxAdapterConfig(tx, tenantId)
     ]);
-    return ok({ ...settings, affiliateCommissionRate });
+    // Issue #293 (ADR-0039): the tax mode is READ-ONLY here — it is flipped only by
+    // the audited cut-over tooling (`commerce:tax:cutover`), never by this PUT.
+    return ok({
+      ...settings,
+      affiliateCommissionRate,
+      taxMode: taxAdapter.mode,
+      taxProfileCode: taxAdapter.profileCode
+    });
   }
 });
 

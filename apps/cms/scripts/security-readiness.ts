@@ -764,6 +764,11 @@ export const RETIRED_TENANT_TABLE_PRIVILEGES: Record<string, string[]> = {
   awcms_commerce_return_lines: ["SELECT", "INSERT"],
   awcms_commerce_refunds: ["SELECT", "INSERT", "UPDATE"],
   awcms_commerce_refund_compensations: ["SELECT", "INSERT"],
+  // Issue #290 / `sql/954`. The bundle snapshot of an order line - written once
+  // when the order is placed, never changed: DELETE and UPDATE are revoked (the
+  // trigger would refuse the UPDATE anyway). A purged order item cascades its
+  // rows away under the constraint owner's rights.
+  awcms_commerce_order_item_components: ["SELECT", "INSERT"],
   // Issue #294 / `sql/990`. The expense tables - NOT retired, written on every
   // spend. An expense is a fiscal record of money that left the business, so
   // the role that records one must not be able to erase it: DELETE is revoked
@@ -1538,7 +1543,11 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // snapshots, DELETE to remove them. No UPDATE — a snapshot is never edited,
   // and the immutability trigger refuses to delete anything younger than 1826
   // days no matter what this role is granted.
-  awcms_tax_snapshots: ["SELECT", "DELETE"],
+  // Issue #293 (ADR-0039, sql/948) widens it for `commerce:orders:expire`, which
+  // reverses an expired engine-mode order's tax: INSERT for the `reversal` row,
+  // UPDATE only so `SELECT ... FOR UPDATE` may lock the original sale (the
+  // trigger still refuses every real UPDATE for every role).
+  awcms_tax_snapshots: ["SELECT", "INSERT", "UPDATE", "DELETE"],
   // ADR-0042 — edge-cache:purge (sql/068): SELECT claimable rows, UPDATE to
   // take the lease and record the outcome, DELETE to prune rows that completed
   // outside the retention window (the job really does prune — this is not a
@@ -1744,6 +1753,11 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_commerce_return_lines: ["SELECT", "DELETE"],
   awcms_commerce_refunds: ["SELECT", "DELETE"],
   awcms_commerce_refund_compensations: ["SELECT", "DELETE"],
+  // Issue #290 (`sql/955`): the bundle snapshot is read by the expiry restock
+  // and aged out by `created_at`; the component definitions are aged out by
+  // `deleted_at` (a live line is never a candidate). SELECT + DELETE only.
+  awcms_commerce_order_item_components: ["SELECT", "DELETE"],
+  awcms_commerce_bundle_components: ["SELECT", "DELETE"],
   // Issue #291 (`sql/960`/`962`/`964`): catalog attributes. Definitions and
   // values are soft-deleted (`deleted_at` cursor) and aged out by the generic
   // purge engine, which needs SELECT + DELETE; an import batch is an
@@ -1891,7 +1905,22 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // (`bun run reporting:projections:refresh`) and writes exclusively to its own
   // `awcms_reporting_projection_*` tables. No purge exists for this append-only
   // table, so no DELETE (ADR-0126 §7).
-  awcms_inventory_low_stock_signals: ["SELECT"],
+  // Issue #282 (sql/947) widens it to SELECT + INSERT: `commerce:orders:expire`
+  // restocks an expired order as `awcms_worker`, and in `ledger` mode that is a
+  // `sale_return` posted through the inventory port, which records the
+  // low-stock transition when a balance recovers.
+  awcms_inventory_low_stock_signals: ["SELECT", "INSERT"],
+  // Issue #282 (sql/947). The same restock, and the stock-cache projector
+  // (`domain-events:dispatch`), need exactly what the posting core touches and
+  // nothing wider: the policy and the location (SELECT), the balance (SELECT,
+  // INSERT, UPDATE - never DELETE) and the append-only movement (SELECT,
+  // INSERT). `awcms_inventory_locations` also carries a COLUMN-level UPDATE on
+  // `updated_at` (row-lock clauses need an UPDATE privilege); it is not a table
+  // privilege, so it does not appear here.
+  awcms_inventory_settings: ["SELECT"],
+  awcms_inventory_locations: ["SELECT"],
+  awcms_inventory_balances: ["SELECT", "INSERT", "UPDATE"],
+  awcms_inventory_movements: ["SELECT", "INSERT"],
   // Issue #888 (sql/174). SELECT only: the reporting engine's projection worker
   // reads the document-event log as `awcms_worker` (ADR-0128 §7).
   awcms_procurement_document_events: ["SELECT"]

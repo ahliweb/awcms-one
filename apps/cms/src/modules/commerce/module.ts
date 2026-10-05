@@ -99,6 +99,7 @@ import {
   COMMERCE_WORK_ORDER_PERMISSIONS,
   COMMERCE_DOCUMENTS_ACTIVITY_CODE,
   COMMERCE_BARCODES_ACTIVITY_CODE,
+  COMMERCE_INVENTORY_ACTIVITY_CODE,
   COMMERCE_DOCUMENT_PERMISSIONS,
   COMMERCE_STORED_VALUE_PROGRAMS_ACTIVITY_CODE,
   COMMERCE_STORED_VALUE_PROGRAM_PERMISSIONS,
@@ -547,12 +548,22 @@ export const commerceModule = defineModule({
     // `profile_identity` for, and for the same reason: one masking rule,
     // not a second copy that eventually disagrees with the first.
     "profile_identity",
+    // Issue #282 (ADR-0038) - `application/commerce-inventory.ts` posts every
+    // stock change of a `ledger`-mode tenant through `inventory`'s in-process
+    // `InventoryLedgerPort` adapter, and `sql/947` holds a composite FK to its
+    // locations. `inventory` does not depend on `commerce`, so this is a DAG edge.
+    "inventory",
     // Issue #107 — `application/shipping-rate-directory.ts`'s
     // `resolveDestination` calls `getRegionByCode`
     // (`idn_admin_regions/application/region-lookup.ts`) to turn a
     // tenant's own district code into the district/city name pair a
     // courier provider's destination search needs.
-    "idn_admin_regions"
+    "idn_admin_regions",
+    // Issue #293 (ADR-0039) — `application/tax-adapter-directory.ts` and
+    // `domain/tax-adapter.ts` call the `tax` module's calculator, rule-version
+    // resolver and snapshot finalise/reverse functions in process (the accepted
+    // pattern, as with `email`); `tax` never depends on commerce.
+    "tax"
   ],
   type: "domain",
   isCore: false,
@@ -1749,6 +1760,93 @@ export const commerceModule = defineModule({
           columns: ["tenant_id", "deleted_at"],
           purpose:
             "awcms_commerce_order_items_tenant_deleted_idx (sql/913) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.bundle_components",
+      tableName: "awcms_commerce_bundle_components",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "deleted_at",
+      // Issue #290 (ADR-0036). A bundle's component lines. A LIVE line has
+      // `deleted_at IS NULL`, so the generic purge engine can never reach one;
+      // only a line an edit REPLACED (soft-deleted) ages out, after the window
+      // below. The window is the catalog family's "wide, a mistaken edit is
+      // often noticed late" range.
+      retentionClass: "system_event",
+      retentionMinDays: 30,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 365,
+      partition: {
+        eligible: false,
+        rationale:
+          "At most 20 live lines per bundle product, admin-authored; replaced lines are short-lived. A catalog table, nowhere near partition-worthy."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A bundle's definition is the merchant's own catalog description, reconstructible from their records; what a SOLD bundle was made of is the order's immutable snapshot (commerce.order_item_components), not this table."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only implemented mode; safe because the cursor column (deleted_at) is NULL for every live line, so a live line is never a purge candidate."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "deleted_at"],
+          purpose:
+            "awcms_commerce_bundle_components_tenant_deleted_idx (sql/953) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.order_item_components",
+      tableName: "awcms_commerce_order_item_components",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      // Issue #290 (ADR-0036). Append-only snapshot of a bundle order line's
+      // components: no `deleted_at` column, so the cursor is `created_at`, the
+      // same exception `commerce.order_events` takes. It is part of the order
+      // record and follows its parent line's retention (ten years, the same
+      // ceiling as `commerce.order_items`); a purged order item cascades its rows
+      // away (sql/954), so this engine rarely reaches one.
+      cursorColumn: "created_at",
+      retentionClass: "system_event",
+      retentionMinDays: 365,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 3650,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by its parent order line: at most 20 rows per bundle line."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A per-line snapshot of a parent order this module never soft-deletes in practice; it is what a later restock or return reads."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "Same practically-unreachable shape as its parent order line (commerce.order_items); the rows also cascade with it."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "created_at"],
+          purpose:
+            "awcms_commerce_order_item_components_tenant_created_idx (sql/954) — the (tenant, cursor) composite the generic purge engine filters + orders by."
         }
       ],
       batchLimit: 5000,
@@ -3433,6 +3531,28 @@ export const commerceModule = defineModule({
         "A line item's own product/variant/price/quantity snapshot — names no person directly, but is part of the same order record as commerce.orders and inherits its reasoning."
     },
     {
+      key: "commerce.order_item_components",
+      tableName: "awcms_commerce_order_item_components",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "Issue #290 — the component snapshot of a bundle order line (product ids, text as sold, units, allocated value). Names no person; part of the same order record as commerce.order_items and inherits its reasoning."
+    },
+    {
+      key: "commerce.bundle_components",
+      tableName: "awcms_commerce_bundle_components",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "Issue #290 — a bundle's definition (which products and how many). Catalog description the tenant authored; actor_tenant_user_id is the last editor, an administrative-act stamp retained like the audit log, not subject data."
+    },
+    {
       key: "commerce.order_events",
       tableName: "awcms_commerce_order_events",
       ownerModuleKey: "commerce",
@@ -4359,6 +4479,18 @@ export const commerceModule = defineModule({
       action: "update",
       description:
         "Assign, change or clear the barcode of a product or variant (Issue #292)"
+    },
+    {
+      activityCode: COMMERCE_INVENTORY_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "Read the stock-ledger mode and the stock-cache reconciliation (Issue #282)"
+    },
+    {
+      activityCode: COMMERCE_INVENTORY_ACTIVITY_CODE,
+      action: "configure",
+      description:
+        "Roll the stock authority back to counter mode and resync the stock cache from the ledger (Issue #282)"
     },
     {
       activityCode: COMMERCE_RETURNS_ACTIVITY_CODE,

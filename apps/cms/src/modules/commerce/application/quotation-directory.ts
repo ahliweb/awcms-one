@@ -375,6 +375,16 @@ async function priceLines(
       customerLevel,
       taxActive: quote.tax.active,
       taxPercent: quote.tax.percent,
+      // Issue #293 (ADR-0039) — evidence of WHICH rule version priced an
+      // engine-mode quote; absent in flat mode, so flat hashes are unchanged.
+      ...(quote.tax.engine
+        ? {
+            taxMode: quote.tax.mode,
+            taxProfileCode: quote.tax.engine.profileCode,
+            taxVersionNo: quote.tax.engine.versionNo,
+            taxDate: quote.tax.engine.taxDate
+          }
+        : {}),
       shippingCost: quote.shipping?.cost ?? "0.00"
     }
   };

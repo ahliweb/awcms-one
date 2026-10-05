@@ -22,6 +22,8 @@ import {
   type UpdateProductInput
 } from "../../../../../modules/commerce/domain/product-validation";
 import { COMMERCE_PRODUCTS_ACTIVITY_CODE } from "../../../../../modules/commerce/domain/commerce-permissions";
+import { BundleDefinitionInvalidError } from "../../../../../modules/commerce/application/bundle-directory";
+import { inventoryErrorResponse } from "../../../../../modules/commerce/application/commerce-inventory-http";
 
 const READ_GUARD = {
   moduleKey: "commerce",
@@ -169,6 +171,18 @@ export const PATCH = defineTenantRoute({
         return fail(409, "PRODUCT_SKU_ALREADY_EXISTS", error.message);
       }
 
+      if (error instanceof BundleDefinitionInvalidError) {
+        return fail(
+          400,
+          "VALIDATION_ERROR",
+          "Product update input is invalid.",
+          {},
+          error.errors
+        );
+      }
+
+      const inventoryFailure = inventoryErrorResponse(error);
+      if (inventoryFailure) return inventoryFailure;
       throw error;
     }
   }

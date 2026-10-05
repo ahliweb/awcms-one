@@ -15,6 +15,11 @@
  */
 import { recordAuditEvent } from "../../logging/application/audit-log";
 import { computeFinalPrice, normalizeMoney } from "../domain/price-calculation";
+import { fetchResolvedBundleComponents } from "./bundle-directory";
+import {
+  computeBundleAvailability,
+  computeDerivedBundlePrice
+} from "../domain/bundle";
 import {
   LABEL_LIMITS,
   validateBarcode,
@@ -99,6 +104,53 @@ function toCatalogRow(row: CatalogDbRow): BarcodeCatalogRow {
 }
 
 /**
+ * Issue #290 (ADR-0036 D7): a bundle is found by its own barcode like any
+ * product, but its `stock` column is always 0 and its price may be derived, so
+ * the figures a cashier or a label needs are the COMPUTED ones: availability
+ * from the components and, for `derived` pricing, the derived price.
+ */
+async function applyBundleFigures<T extends BarcodeCatalogRow>(
+  tx: Bun.SQL,
+  tenantId: string,
+  rows: readonly T[]
+): Promise<T[]> {
+  const productIds = [...new Set(rows.map((row) => row.productId))];
+  if (productIds.length === 0) return [...rows];
+  const bundles = (await tx`
+    SELECT id, bundle_pricing, bundle_discount_percent
+    FROM awcms_commerce_products
+    WHERE tenant_id = ${tenantId} AND kind = 'bundle'
+      AND id = ANY(${tx.array(productIds, "uuid")}::uuid[])
+  `) as {
+    id: string;
+    bundle_pricing: string;
+    bundle_discount_percent: string | null;
+  }[];
+  if (bundles.length === 0) return [...rows];
+
+  const components = await fetchResolvedBundleComponents(
+    tx,
+    tenantId,
+    bundles.map((bundle) => bundle.id)
+  );
+  const byId = new Map(bundles.map((bundle) => [bundle.id, bundle]));
+
+  return rows.map((row) => {
+    const bundle = byId.get(row.productId);
+    if (!bundle) return row;
+    const parts = components.get(bundle.id) ?? [];
+    return {
+      ...row,
+      stock: computeBundleAvailability(parts),
+      price:
+        bundle.bundle_pricing === "derived"
+          ? computeDerivedBundlePrice(parts, bundle.bundle_discount_percent)
+          : row.price
+    };
+  });
+}
+
+/**
  * The one catalogue row a scanned `code` names, or `null`. A variant wins over
  * a product only in the impossible case of both holding the code (`sql/975`'s
  * trigger makes that unrepresentable).
@@ -134,7 +186,9 @@ export async function lookupBarcode(
   `) as CatalogDbRow[];
   const row = rows[0];
   if (!row) return null;
-  const record = toCatalogRow(row);
+  const record = (
+    await applyBundleFigures(tx, tenantId, [toCatalogRow(row)])
+  )[0]!;
   const requiresVariant = row.variant_id === null && row.has_variants === true;
   return {
     ...record,
@@ -216,7 +270,11 @@ export async function listBarcodeCatalog(
     OFFSET ${page * BARCODE_CATALOG_PAGE_SIZE}
   `) as CatalogDbRow[];
   return {
-    items: rows.slice(0, BARCODE_CATALOG_PAGE_SIZE).map(toCatalogRow),
+    items: await applyBundleFigures(
+      tx,
+      tenantId,
+      rows.slice(0, BARCODE_CATALOG_PAGE_SIZE).map(toCatalogRow)
+    ),
     page,
     hasMore: rows.length > BARCODE_CATALOG_PAGE_SIZE
   };
@@ -258,8 +316,11 @@ export async function loadLabelRows(
       AND p.deleted_at IS NULL
   `) as CatalogDbRow[];
   const byKey = new Map<string, BarcodeCatalogRow>();
-  for (const row of rows) {
-    const record = toCatalogRow(row);
+  for (const record of await applyBundleFigures(
+    tx,
+    tenantId,
+    rows.map(toCatalogRow)
+  )) {
     byKey.set(`${record.productId}:${record.variantId ?? ""}`, record);
   }
   const ordered: BarcodeCatalogRow[] = [];

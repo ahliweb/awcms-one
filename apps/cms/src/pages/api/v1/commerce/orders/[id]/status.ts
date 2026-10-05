@@ -14,6 +14,7 @@ import {
   ORDER_STATUSES,
   type OrderStatus
 } from "../../../../../../modules/commerce/domain/order-status";
+import { inventoryErrorResponse } from "../../../../../../modules/commerce/application/commerce-inventory-http";
 
 /** `PATCH /api/v1/commerce/orders/{id}/status` — admin status transition, enforced through `domain/order-status.ts`'s legal-transition table (Issue #29). */
 const UPDATE_GUARD = {
@@ -88,6 +89,8 @@ export const PATCH = defineTenantRoute({
           error.errors
         );
       }
+      const inventoryFailure = inventoryErrorResponse(error);
+      if (inventoryFailure) return inventoryFailure;
       throw error;
     }
   }
