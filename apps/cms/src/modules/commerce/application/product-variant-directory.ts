@@ -1,5 +1,6 @@
 import { normalizeMoney } from "../domain/price-calculation";
 import { recordAuditEvent } from "../../logging/application/audit-log";
+import { assertStockWritable } from "./commerce-inventory";
 import type {
   CreateProductVariantInput,
   UpdateProductVariantInput
@@ -176,6 +177,9 @@ export async function createProductVariant(
     if (!available) throw new DuplicateVariantSkuError(input.sku);
   }
 
+  // Issue #282 (ADR-0038 D6) - a new variant starts at zero in `ledger` mode.
+  await assertStockWritable(tx, tenantId, input.stock, 0);
+
   let rows: ProductVariantRow[];
   try {
     rows = (await tx`
@@ -247,6 +251,9 @@ export async function updateProductVariant(
     );
     if (!available) throw new DuplicateVariantSkuError(nextSku);
   }
+
+  // Issue #282 (ADR-0038 D6) - refused in `ledger` mode when it would CHANGE the count.
+  await assertStockWritable(tx, tenantId, input.stock, existing.stock);
 
   let rows: ProductVariantRow[];
   try {

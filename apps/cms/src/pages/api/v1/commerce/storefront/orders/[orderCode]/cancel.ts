@@ -20,6 +20,7 @@ import { commercePreflightResponse } from "../../../../../../../modules/commerce
 import { withPublicCommerceTenant } from "../../../../../../../modules/commerce/application/public-commerce-tenant";
 import { normalizePhoneNumber } from "../../../../../../../modules/commerce/domain/phone-normalisation";
 import { validateCancelOrderInput } from "../../../../../../../modules/commerce/domain/public-request-validation";
+import { inventoryErrorResponse } from "../../../../../../../modules/commerce/application/commerce-inventory-http";
 
 /** `POST /api/v1/commerce/storefront/orders/{orderCode}/cancel` (Issue #29) — anonymous, only while `pending_payment` (`domain/order-status.ts`). */
 const RATE_LIMIT_MAX = parsePositiveIntSetting(
@@ -115,6 +116,8 @@ export const POST: APIRoute = async ({ params, request, clientAddress }) => {
         vary: "Origin"
       });
     }
+    const inventoryFailure = inventoryErrorResponse(error, { vary: "Origin" });
+    if (inventoryFailure) return inventoryFailure;
     throw error;
   }
 };

@@ -99,6 +99,7 @@ import {
   COMMERCE_WORK_ORDER_PERMISSIONS,
   COMMERCE_DOCUMENTS_ACTIVITY_CODE,
   COMMERCE_BARCODES_ACTIVITY_CODE,
+  COMMERCE_INVENTORY_ACTIVITY_CODE,
   COMMERCE_DOCUMENT_PERMISSIONS,
   COMMERCE_STORED_VALUE_PROGRAMS_ACTIVITY_CODE,
   COMMERCE_STORED_VALUE_PROGRAM_PERMISSIONS,
@@ -547,6 +548,11 @@ export const commerceModule = defineModule({
     // `profile_identity` for, and for the same reason: one masking rule,
     // not a second copy that eventually disagrees with the first.
     "profile_identity",
+    // Issue #282 (ADR-0038) - `application/commerce-inventory.ts` posts every
+    // stock change of a `ledger`-mode tenant through `inventory`'s in-process
+    // `InventoryLedgerPort` adapter, and `sql/947` holds a composite FK to its
+    // locations. `inventory` does not depend on `commerce`, so this is a DAG edge.
+    "inventory",
     // Issue #107 — `application/shipping-rate-directory.ts`'s
     // `resolveDestination` calls `getRegionByCode`
     // (`idn_admin_regions/application/region-lookup.ts`) to turn a
@@ -4359,6 +4365,18 @@ export const commerceModule = defineModule({
       action: "update",
       description:
         "Assign, change or clear the barcode of a product or variant (Issue #292)"
+    },
+    {
+      activityCode: COMMERCE_INVENTORY_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "Read the stock-ledger mode and the stock-cache reconciliation (Issue #282)"
+    },
+    {
+      activityCode: COMMERCE_INVENTORY_ACTIVITY_CODE,
+      action: "configure",
+      description:
+        "Roll the stock authority back to counter mode and resync the stock cache from the ledger (Issue #282)"
     },
     {
       activityCode: COMMERCE_RETURNS_ACTIVITY_CODE,

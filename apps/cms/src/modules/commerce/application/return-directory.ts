@@ -64,11 +64,15 @@ import {
   type CreateReturnRefundInput,
   type RefundablePayment
 } from "../domain/returns";
+import {
+  resolveInventoryConfig,
+  withInventorySavepoint
+} from "./commerce-inventory";
 import { IdempotencyPayloadMismatchError } from "./order-directory";
 import { lockOrderForSettlement } from "./payment-allocation-directory";
 import { fetchCommerceFeatures } from "./commerce-feature-gate";
 import {
-  singleCountInventoryPort,
+  modeAwareInventoryPort,
   type ReturnInventoryPort
 } from "./return-inventory-port";
 import {
@@ -96,7 +100,7 @@ export type ReturnDeps = {
   inventory: ReturnInventoryPort;
 };
 
-const DEFAULT_DEPS: ReturnDeps = { inventory: singleCountInventoryPort };
+const DEFAULT_DEPS: ReturnDeps = { inventory: modeAwareInventoryPort };
 
 export type CreateReturnOutcome =
   | { kind: "feature_disabled" }
@@ -358,6 +362,35 @@ export async function createReturn(
   correlationId?: string,
   deps: ReturnDeps = DEFAULT_DEPS
 ): Promise<CreateReturnOutcome> {
+  // Issue #282 (ADR-0038 D2): in `ledger` mode the whole return runs in a
+  // savepoint, so a ledger refusal on the restock rolls the return rows back and
+  // the route's 409 leaves nothing half-written.
+  const inventory = await resolveInventoryConfig(tx, tenantId);
+
+  return withInventorySavepoint(tx, inventory, (db) =>
+    createReturnWrite(
+      db,
+      tenantId,
+      actorTenantUserId,
+      orderId,
+      input,
+      now,
+      correlationId,
+      deps
+    )
+  );
+}
+
+async function createReturnWrite(
+  tx: Bun.SQL,
+  tenantId: string,
+  actorTenantUserId: string,
+  orderId: string,
+  input: CreateReturnInput,
+  now: Date,
+  correlationId: string | undefined,
+  deps: ReturnDeps
+): Promise<CreateReturnOutcome> {
   const features = await fetchCommerceFeatures(tx, tenantId);
   if (!features.returns) return { kind: "feature_disabled" };
 
@@ -580,6 +613,7 @@ export async function createReturn(
       RETURNING id
     `) as { id: string }[];
     stockLines.push({
+      returnId,
       returnLineId: inserted[0]!.id,
       productId: item.product_id,
       variantId: item.variant_id,
@@ -588,7 +622,10 @@ export async function createReturn(
     });
   }
 
-  const stock = await deps.inventory.applyReturn(tx, tenantId, stockLines);
+  const stock = await deps.inventory.applyReturn(tx, tenantId, stockLines, {
+    actorTenantUserId,
+    correlationId
+  });
   const expectedRestock = stockLines
     .filter((line) => line.disposition === "restock")
     .reduce((sum, line) => sum + line.quantity, 0);

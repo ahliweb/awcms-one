@@ -40,6 +40,7 @@ import {
   validateCreateReturnInput,
   type CreateReturnInput
 } from "../../../../../../../modules/commerce/domain/returns";
+import { inventoryErrorResponse } from "../../../../../../../modules/commerce/application/commerce-inventory-http";
 
 const REFUND_CREATE_GUARD = {
   moduleKey: "commerce",
@@ -125,6 +126,8 @@ export const POST = defineTenantRoute<CreateReturnInput>({
     } catch (error) {
       const mapped = idempotencyErrorResponse(error);
       if (mapped) return mapped;
+      const inventoryFailure = inventoryErrorResponse(error);
+      if (inventoryFailure) return inventoryFailure;
       throw error;
     }
   }

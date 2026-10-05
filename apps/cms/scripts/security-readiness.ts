@@ -1891,7 +1891,22 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // (`bun run reporting:projections:refresh`) and writes exclusively to its own
   // `awcms_reporting_projection_*` tables. No purge exists for this append-only
   // table, so no DELETE (ADR-0126 §7).
-  awcms_inventory_low_stock_signals: ["SELECT"],
+  // Issue #282 (sql/947) widens it to SELECT + INSERT: `commerce:orders:expire`
+  // restocks an expired order as `awcms_worker`, and in `ledger` mode that is a
+  // `sale_return` posted through the inventory port, which records the
+  // low-stock transition when a balance recovers.
+  awcms_inventory_low_stock_signals: ["SELECT", "INSERT"],
+  // Issue #282 (sql/947). The same restock, and the stock-cache projector
+  // (`domain-events:dispatch`), need exactly what the posting core touches and
+  // nothing wider: the policy and the location (SELECT), the balance (SELECT,
+  // INSERT, UPDATE - never DELETE) and the append-only movement (SELECT,
+  // INSERT). `awcms_inventory_locations` also carries a COLUMN-level UPDATE on
+  // `updated_at` (row-lock clauses need an UPDATE privilege); it is not a table
+  // privilege, so it does not appear here.
+  awcms_inventory_settings: ["SELECT"],
+  awcms_inventory_locations: ["SELECT"],
+  awcms_inventory_balances: ["SELECT", "INSERT", "UPDATE"],
+  awcms_inventory_movements: ["SELECT", "INSERT"],
   // Issue #888 (sql/174). SELECT only: the reporting engine's projection worker
   // reads the document-event log as `awcms_worker` (ADR-0128 §7).
   awcms_procurement_document_events: ["SELECT"]

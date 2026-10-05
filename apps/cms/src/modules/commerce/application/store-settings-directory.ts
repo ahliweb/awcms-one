@@ -1,4 +1,5 @@
 import { recordAuditEvent } from "../../logging/application/audit-log";
+import { readInventoryConfig } from "./commerce-inventory";
 import type { MediaLibraryPort } from "../../_shared/ports/media-library-port";
 import { normalizeMoney } from "../domain/price-calculation";
 import {
@@ -163,12 +164,27 @@ export async function resetStoreSettings(
   actorTenantUserId: string,
   correlationId?: string
 ): Promise<boolean> {
-  const rows = (await tx`
-    UPDATE awcms_commerce_store_settings
-    SET deleted_at = now(), updated_at = now()
-    WHERE tenant_id = ${tenantId} AND deleted_at IS NULL
-    RETURNING tenant_id
-  `) as { tenant_id: string }[];
+  // Issue #282 (ADR-0038 D1) - this row also carries the tenant's stock
+  // authority (`inventory_mode`). A stamped row is hard-purged by the retention
+  // engine once it ages out, which would silently put a ledger-authoritative
+  // tenant back on the counter. So in `ledger` mode a reset REPLACES the blob
+  // with the defaults and never stamps `deleted_at`: same visible result.
+  const inventory = await readInventoryConfig(tx, tenantId);
+  const rows =
+    inventory.mode === "ledger"
+      ? ((await tx`
+          UPDATE awcms_commerce_store_settings
+          SET settings = ${buildDefaultStoreSettings(await fetchTenantName(tx, tenantId))}::jsonb,
+              updated_at = now()
+          WHERE tenant_id = ${tenantId} AND deleted_at IS NULL
+          RETURNING tenant_id
+        `) as { tenant_id: string }[])
+      : ((await tx`
+          UPDATE awcms_commerce_store_settings
+          SET deleted_at = now(), updated_at = now()
+          WHERE tenant_id = ${tenantId} AND deleted_at IS NULL
+          RETURNING tenant_id
+        `) as { tenant_id: string }[]);
 
   if (rows.length === 0) return false;
 

@@ -1,4 +1,5 @@
 import { recordAuditEvent } from "../../logging/application/audit-log";
+import { assertStockWritable } from "./commerce-inventory";
 import {
   keysetCursorCreatedAtSql,
   encodeKeysetCursor,
@@ -647,6 +648,10 @@ export async function createProduct(
     if (!category) throw new ProductCategoryNotFoundError();
   }
 
+  // Issue #282 (ADR-0038 D6) - in `ledger` mode a new product starts at zero;
+  // opening stock is a ledger movement, not a column.
+  await assertStockWritable(tx, tenantId, input.stock, 0);
+
   let rows: ProductRow[];
 
   try {
@@ -807,6 +812,9 @@ export async function updateProduct(
   if (!sizeChart.valid) {
     throw new InvalidSizeChartFieldsError(sizeChart.errors);
   }
+
+  // Issue #282 (ADR-0038 D6) - refused in `ledger` mode when it would CHANGE the count.
+  await assertStockWritable(tx, tenantId, input.stock, existing.stock);
 
   let rows: ProductRow[];
 

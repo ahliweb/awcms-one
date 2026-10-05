@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:e2b461d64ec709975db5b7e45d2280ccc6212632c6f9444bfdf9663a05b24495 -->
+<!-- i18n-source-hash: sha256:1f35065314264023ffbb1d940cf15c536a1f0babc4f8403c4138557f967a022a -->
 
 # Scripts AWCMS
 
@@ -27,7 +27,7 @@ lalu membangun duplikatnya.
 
 <!-- Dihasilkan `bun run scripts:inventory:generate`. JANGAN diedit tangan. -->
 
-141 target menjalankan berkas di `scripts/`; 57 di antaranya
+142 target menjalankan berkas di `scripts/`; 57 di antaranya
 ada di rantai `bun run check` (kolom **Gate**), sisanya dijalankan manual,
 terjadwal, atau oleh workflow CI tertentu.
 
@@ -73,6 +73,7 @@ terjadwal, atau oleh workflow CI tertentu.
 | `commerce:customer-auth:purge`            | `commerce-customer-auth-purge.ts`              | —    |
 | `commerce:deploy:preflight`               | `commerce-deploy-preflight.ts`                 | —    |
 | `commerce:flash-sales:tick`               | `commerce-flash-sales-tick.ts`                 | —    |
+| `commerce:inventory:cutover`              | `commerce-inventory-cutover.ts`                | —    |
 | `commerce:loyalty:expire`                 | `commerce-loyalty-expire.ts`                   | —    |
 | `commerce:loyalty:reconcile`              | `commerce-loyalty-reconcile.ts`                | —    |
 | `commerce:orders:expire`                  | `commerce-orders-expire.ts`                    | —    |

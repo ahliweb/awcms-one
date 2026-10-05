@@ -35,6 +35,11 @@ import { createHash } from "node:crypto";
 
 import { recordAuditEvent } from "../../logging/application/audit-log";
 import {
+  readInventoryConfig,
+  StockManagedByInventoryError
+} from "./commerce-inventory";
+import { STOCK_MANAGED_BY_INVENTORY_MESSAGE } from "../domain/commerce-inventory";
+import {
   validateAttributeAssignments,
   type AttributeAssignment
 } from "../domain/attribute-assignment";
@@ -238,6 +243,10 @@ export async function planCatalogImport(
     `) as { id: string; slug: string }[];
     for (const row of rows) categoryBySlug.set(row.slug, row.id);
   }
+  // Issue #282 (ADR-0038 D6) - in `ledger` mode a `stock` cell may not change
+  // a count (an unchanged value passes), and a new product starts at zero.
+  const ledgerOwnsStock =
+    (await readInventoryConfig(tx, tenantId)).mode === "ledger";
   const currentValues = await loadCanonicalProductValues(
     tx,
     tenantId,
@@ -375,6 +384,12 @@ export async function planCatalogImport(
             }
           }
           updateInput = changedUpdateFields(validation.value, existing);
+          if (ledgerOwnsStock && updateInput.stock !== undefined) {
+            errors.push({
+              column: "stock",
+              message: STOCK_MANAGED_BY_INVENTORY_MESSAGE
+            });
+          }
         }
       } else {
         const validation = validateCreateProductInput(body);
@@ -387,6 +402,12 @@ export async function planCatalogImport(
           }
         } else {
           createInput = validation.value;
+          if (ledgerOwnsStock && validation.value.stock !== 0) {
+            errors.push({
+              column: "stock",
+              message: STOCK_MANAGED_BY_INVENTORY_MESSAGE
+            });
+          }
           if (knownStatus !== null && knownStatus !== "draft") {
             const transition = applyProductStatus("draft", knownStatus);
             if (!transition.valid) {
@@ -652,6 +673,7 @@ class RowWriteError extends Error {
 function isExpectedWriteConflict(error: unknown): boolean {
   return (
     error instanceof RowWriteError ||
+    error instanceof StockManagedByInventoryError ||
     error instanceof DuplicateProductSlugError ||
     error instanceof DuplicateProductSkuError ||
     error instanceof ProductCategoryNotFoundError ||

@@ -11144,6 +11144,79 @@ Single-use: the cart's lines (and optional customer and notes) are returned once
 | 404    | An unknown id, another tenant's id AND another cashier's cart (unless the caller holds `commerce.held_sales.approve`) - one neutral answer.                                                       | [`ApiError`](#standard-error-envelope) |
 | 409    | `HELD_SALE_EXPIRED` (the expiry is persisted), `HELD_SALE_NOT_HELD` (`details.status`), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/inventory` — Issue #282 (ADR-0038). Which stock authority the store runs on: `counter` or `ledger`, and the sales location the ledger is posted at. Gated on `commerce.inventory.read`.
+
+- **operationId**: `getCommerceInventoryMode`
+- **Security**: bearerAuth + tenantHeader
+
+`counter` (the default) is the single stock count on each product or variant. `ledger` means the upstream inventory ledger is authoritative and `stock` is a write-through cache of it. The flip to `ledger` is the operator command `bun run commerce:inventory:cutover`; the way back is `POST /api/v1/commerce/inventory/rollback`.
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The mode.                   | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/inventory/reconciliation` — Issue #282 (ADR-0038). The stock units whose cache disagrees with the inventory ledger at the sales location. Gated on `commerce.inventory.read`.
+
+- **operationId**: `reconcileCommerceInventory`
+- **Security**: bearerAuth + tenantHeader
+
+Compares, per stock unit (a live variant, or a live product with no live variant), the `stock` column with `max(0, floor(ledger on-hand))`. One keyset page per call; follow `nextCursor` until it is null. Nothing is repaired. `409 NOT_LEDGER_MODE` for a store still on the counter.
+
+**Parameters**
+
+| Name     | In    | Required | Type    | Description |
+| -------- | ----- | -------- | ------- | ----------- |
+| `cursor` | query | no       | string  |             |
+| `limit`  | query | no       | integer |             |
+
+**Responses**
+
+| Status | Description                                                       | Schema                                 |
+| ------ | ----------------------------------------------------------------- | -------------------------------------- |
+| 200    | One page of drift.                                                | object                                 |
+| 400    | Validation error.                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                       | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | `NOT_LEDGER_MODE` - the store still runs on the commerce counter. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/inventory/resync` — Issue #282 (ADR-0038). Rewrites the stock cache of every drifted unit on one page from the inventory ledger. Gated on `commerce.inventory.configure` (high-risk).
+
+- **operationId**: `resyncCommerceInventory`
+- **Security**: bearerAuth + tenantHeader
+
+The ledger is always the truth: only the cache is rewritten, and the body can never carry a stock count (only `cursor` and `limit`, to page). Naturally idempotent - it sets state - so it carries no `Idempotency-Key`. Audited as a warning. Repeat with `nextCursor` until it is null. `409 NOT_LEDGER_MODE` for a store still on the counter.
+
+**Request body** (optional): object
+
+**Responses**
+
+| Status | Description                                                       | Schema                                 |
+| ------ | ----------------------------------------------------------------- | -------------------------------------- |
+| 200    | The page that was scanned and how many units were repaired.       | object                                 |
+| 400    | Validation error.                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                       | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | `NOT_LEDGER_MODE` - the store still runs on the commerce counter. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/inventory/rollback` — Issue #282 (ADR-0038). Puts the stock authority back on the commerce counter. Gated on `commerce.inventory.configure` (high-risk).
+
+- **operationId**: `rollbackCommerceInventory`
+- **Security**: bearerAuth + tenantHeader
+
+No body. Waits for every in-flight stock write, then sets the mode to `counter`; the cache already holds the last ledger-derived counts, so the counter paths resume from them. Naturally idempotent: a store already on the counter answers `changed: false`. Audited as a warning. There is no matching "switch to ledger" endpoint - that flip needs the opening movements posted in the same transaction (`bun run commerce:inventory:cutover`).
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Whether the mode changed.   | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/loyalty/accounts` — Issue #289 (ADR-0026). Keyset list of loyalty accounts (newest first) with the customer's name and masked phone; `customerId` narrows to one customer and `phone` is the counter lookup, which also returns a `customer` block (balance 0 for a customer with no account yet). Gated on `commerce.loyalty.read`; `409 FEATURE_DISABLED` when the tenant's `loyalty` feature is off.
 
 - **operationId**: `listCommerceLoyaltyAccounts`
@@ -11886,13 +11959,13 @@ The 201 carries `payments` (every ledger row — one per tender, for the receipt
 
 **Responses**
 
-| Status | Description                                                                                                               | Schema                                 |
-| ------ | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 201    | Product created.                                                                                                          | object                                 |
-| 400    | Validation error.                                                                                                         | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                                                                               | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                                                                               | [`ApiError`](#standard-error-envelope) |
-| 409    | slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS). | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                                                                                     | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Product created.                                                                                                                                                                                                                                                                                                                                | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 409    | slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS). In `ledger` inventory mode (ADR-0038) a request that would CHANGE a stock count is refused with STOCK_MANAGED_BY_INVENTORY; sending the value the row already holds is accepted, and a create may only start at zero. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/products/{id}` — Fetch one product, with images[]/variants[] resolved.
 
@@ -11931,14 +12004,14 @@ There is no dedicated status-transition endpoint — status travels through this
 
 **Responses**
 
-| Status | Description                                                                                                               | Schema                                 |
-| ------ | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 200    | Product updated.                                                                                                          | object                                 |
-| 400    | Validation error.                                                                                                         | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                                                                               | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                                                                               | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.                                                                                                       | [`ApiError`](#standard-error-envelope) |
-| 409    | slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS). | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                                                                                     | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Product updated.                                                                                                                                                                                                                                                                                                                                | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 409    | slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS). In `ledger` inventory mode (ADR-0038) a request that would CHANGE a stock count is refused with STOCK_MANAGED_BY_INVENTORY; sending the value the row already holds is accepted, and a create may only start at zero. | [`ApiError`](#standard-error-envelope) |
 
 ### `DELETE /api/v1/commerce/products/{id}` — Soft-delete a product (audited).
 
@@ -12126,13 +12199,13 @@ Upsert on `(tenant_id, product_id)` — at most one link per product (`sql/939`)
 
 **Responses**
 
-| Status | Description                                                                                                               | Schema                                 |
-| ------ | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 200    | Product restored.                                                                                                         | object                                 |
-| 401    | Missing or invalid session.                                                                                               | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                                                                               | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.                                                                                                       | [`ApiError`](#standard-error-envelope) |
-| 409    | slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS). | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                                                                                     | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Product restored.                                                                                                                                                                                                                                                                                                                               | object                                 |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 409    | slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS). In `ledger` inventory mode (ADR-0038) a request that would CHANGE a stock count is refused with STOCK_MANAGED_BY_INVENTORY; sending the value the row already holds is accepted, and a create may only start at zero. | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/products/{id}/variants` — Add a variant to a product (Issue 23). Gated on products.update.
 
@@ -12149,14 +12222,14 @@ Upsert on `(tenant_id, product_id)` — at most one link per product (`sql/939`)
 
 **Responses**
 
-| Status | Description                                                                                   | Schema                                 |
-| ------ | --------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 201    | Product variant created.                                                                      | object                                 |
-| 400    | Validation error.                                                                             | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                                                   | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                                                   | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.                                                                           | [`ApiError`](#standard-error-envelope) |
-| 409    | sku is already used by a live product or variant in this tenant (VARIANT_SKU_ALREADY_EXISTS). | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                                                         | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Product variant created.                                                                                                                                                                                                                                                                                            | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 409    | sku is already used by a live product or variant in this tenant (VARIANT_SKU_ALREADY_EXISTS). In `ledger` inventory mode (ADR-0038) a request that would CHANGE a stock count is refused with STOCK_MANAGED_BY_INVENTORY; sending the value the row already holds is accepted, and a create may only start at zero. | [`ApiError`](#standard-error-envelope) |
 
 ### `PATCH /api/v1/commerce/products/{id}/variants/{variantId}` — Edit a product variant (Issue 23).
 
@@ -12174,14 +12247,14 @@ Upsert on `(tenant_id, product_id)` — at most one link per product (`sql/939`)
 
 **Responses**
 
-| Status | Description                                                                                   | Schema                                 |
-| ------ | --------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 200    | Product variant updated.                                                                      | object                                 |
-| 400    | Validation error.                                                                             | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                                                   | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                                                   | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.                                                                           | [`ApiError`](#standard-error-envelope) |
-| 409    | sku is already used by a live product or variant in this tenant (VARIANT_SKU_ALREADY_EXISTS). | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                                                         | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Product variant updated.                                                                                                                                                                                                                                                                                            | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 409    | sku is already used by a live product or variant in this tenant (VARIANT_SKU_ALREADY_EXISTS). In `ledger` inventory mode (ADR-0038) a request that would CHANGE a stock count is refused with STOCK_MANAGED_BY_INVENTORY; sending the value the row already holds is accepted, and a create may only start at zero. | [`ApiError`](#standard-error-envelope) |
 
 ### `DELETE /api/v1/commerce/products/{id}/variants/{variantId}` — Soft-delete a product variant (audited) (Issue 23).
 
@@ -13475,15 +13548,15 @@ Issue #91 (implemented, contract #86): an OPTIONAL `Authorization: Bearer <custo
 
 **Responses**
 
-| Status | Description                                                                                                                                | Schema                                 |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
-| 200    | The idempotency key was seen before; the same order is returned.                                                                           | object                                 |
-| 201    | Order created.                                                                                                                             | object                                 |
-| 400    | Validation error.                                                                                                                          | [`ApiError`](#standard-error-envelope) |
-| 401    | UNAUTHENTICATED — an Authorization header was present but not a live session (Issue #91).                                                  | [`ApiError`](#standard-error-envelope) |
-| 404    | Unresolvable tenant, disabled module, or a rate-limited caller.                                                                            | [`ApiError`](#standard-error-envelope) |
-| 409    | CART_CHANGED — a line's price/stock/shipping/payment method changed since it was last quoted; `error.details.quote` carries a fresh quote. | [`ApiError`](#standard-error-envelope) |
-| 429    | Rate limited (per IP and per normalised phone).                                                                                            | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                                                                                                                       | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The idempotency key was seen before; the same order is returned.                                                                                                                                                                                                                                                                                                                  | object                                 |
+| 201    | Order created.                                                                                                                                                                                                                                                                                                                                                                    | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED — an Authorization header was present but not a live session (Issue #91).                                                                                                                                                                                                                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 404    | Unresolvable tenant, disabled module, or a rate-limited caller.                                                                                                                                                                                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | CART_CHANGED — a line's price/stock/shipping/payment method changed since it was last quoted (in `ledger` inventory mode this includes the inventory ledger refusing the last unit); `error.details.quote` carries a fresh quote. INVENTORY_UNAVAILABLE — the store's inventory location is missing, inactive or counts the item in another unit (ADR-0038); nothing was written. | [`ApiError`](#standard-error-envelope) |
+| 429    | Rate limited (per IP and per normalised phone).                                                                                                                                                                                                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/storefront/orders/{orderCode}` — Anonymous order tracking (Issue 29). orderCode + phone is the credential; an unknown code, a wrong phone, and another tenant's order all answer the same neutral 404.
 
@@ -13520,11 +13593,11 @@ Issue #91 (implemented, contract #86): an OPTIONAL `Authorization: Bearer <custo
 
 **Responses**
 
-| Status | Description            | Schema                                 |
-| ------ | ---------------------- | -------------------------------------- |
-| 200    | Order cancelled.       | object                                 |
-| 404    | Resource not found.    | [`ApiError`](#standard-error-envelope) |
-| 409    | ORDER_NOT_CANCELLABLE. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Order cancelled.                                                                                                           | object                                 |
+| 404    | Resource not found.                                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 409    | ORDER_NOT_CANCELLABLE, or INVENTORY_UNAVAILABLE (ADR-0038) when the inventory ledger refuses the restock; nothing changed. | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/storefront/orders/{orderCode}/payment-confirmations` — Anonymous payment confirmation submission (Issue 29). Accepted without a proof image — see payment.proofUpload on the public store-settings read model.
 

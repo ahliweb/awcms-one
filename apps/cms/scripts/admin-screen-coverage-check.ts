@@ -147,7 +147,23 @@ export const DELIBERATELY_UNSCREENED: Readonly<Record<string, string>> = {
   "commerce.entitlements.read":
     "Issue #267 — API-only this PR; a list+revoke admin screen is reasonable follow-up work, not required for the entitlement grant/check/revoke surface to be correct",
   "commerce.entitlements.update":
-    "Issue #267 — API-only this PR; gates POST .../entitlements/{id}/revoke, called directly today, not from an admin screen"
+    "Issue #267 — API-only this PR; gates POST .../entitlements/{id}/revoke, called directly today, not from an admin screen",
+
+  // Issue #282 (ADR-0038). The stock-authority status, the cache
+  // reconciliation, the resync and the rollback to counter mode are an
+  // OPERATOR surface around a one-off migration, not a daily screen: the
+  // cut-over itself is a CLI (`bun run commerce:inventory:cutover`, it posts
+  // the openings and flips the mode in one transaction, which no browser
+  // request should do), and the only recurring need - "is the storefront count
+  // still the ledger's?" - is answered by the upstream `/admin/inventory`
+  // balances screen, which is the authority these only mirror. A reconciliation
+  // panel on `/admin/commerce-settings` is reasonable follow-up work; it would
+  // add client script against the asset budget for a surface used a handful of
+  // times per tenant.
+  "commerce.inventory.read":
+    "Issue #282 — operator/API surface around a CLI cut-over; the ledger's own screen is /admin/inventory, a commerce reconciliation panel is follow-up work",
+  "commerce.inventory.configure":
+    "Issue #282 — gates POST .../inventory/resync and .../inventory/rollback, called by an operator during and after the cut-over, not from a daily screen"
 
   // `idn_admin_regions.region.read` USED to sit here ("lookup API for other
   // modules' forms; /admin/idn-regions drives dataset.* instead"). Issue #767

@@ -417,7 +417,7 @@ paths:
         "403":
           $ref: "#/components/responses/Forbidden"
         "409":
-          description: slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS).
+          description: slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS). In `ledger` inventory mode (ADR-0038) a request that would CHANGE a stock count is refused with STOCK_MANAGED_BY_INVENTORY; sending the value the row already holds is accepted, and a create may only start at zero.
           content:
             application/json:
               schema:
@@ -934,7 +934,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS).
+          description: slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS). In `ledger` inventory mode (ADR-0038) a request that would CHANGE a stock count is refused with STOCK_MANAGED_BY_INVENTORY; sending the value the row already holds is accepted, and a create may only start at zero.
           content:
             application/json:
               schema:
@@ -1015,7 +1015,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS).
+          description: slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS). In `ledger` inventory mode (ADR-0038) a request that would CHANGE a stock count is refused with STOCK_MANAGED_BY_INVENTORY; sending the value the row already holds is accepted, and a create may only start at zero.
           content:
             application/json:
               schema:
@@ -1330,7 +1330,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: sku is already used by a live product or variant in this tenant (VARIANT_SKU_ALREADY_EXISTS).
+          description: sku is already used by a live product or variant in this tenant (VARIANT_SKU_ALREADY_EXISTS). In `ledger` inventory mode (ADR-0038) a request that would CHANGE a stock count is refused with STOCK_MANAGED_BY_INVENTORY; sending the value the row already holds is accepted, and a create may only start at zero.
           content:
             application/json:
               schema:
@@ -1383,7 +1383,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: sku is already used by a live product or variant in this tenant (VARIANT_SKU_ALREADY_EXISTS).
+          description: sku is already used by a live product or variant in this tenant (VARIANT_SKU_ALREADY_EXISTS). In `ledger` inventory mode (ADR-0038) a request that would CHANGE a stock count is refused with STOCK_MANAGED_BY_INVENTORY; sending the value the row already holds is accepted, and a create may only start at zero.
           content:
             application/json:
               schema:
@@ -5396,7 +5396,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "409":
-          description: CART_CHANGED — a line's price/stock/shipping/payment method changed since it was last quoted; `error.details.quote` carries a fresh quote.
+          description: CART_CHANGED — a line's price/stock/shipping/payment method changed since it was last quoted (in `ledger` inventory mode this includes the inventory ledger refusing the last unit); `error.details.quote` carries a fresh quote. INVENTORY_UNAVAILABLE — the store's inventory location is missing, inactive or counts the item in another unit (ADR-0038); nothing was written.
           content:
             application/json:
               schema:
@@ -5611,7 +5611,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: ORDER_NOT_CANCELLABLE.
+          description: ORDER_NOT_CANCELLABLE, or INVENTORY_UNAVAILABLE (ADR-0038) when the inventory ledger refuses the restock; nothing changed.
           content:
             application/json:
               schema:
@@ -12149,6 +12149,178 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/inventory:
+    get:
+      operationId: getCommerceInventoryMode
+      tags:
+        - Commerce
+      summary: "Issue #282 (ADR-0038). Which stock authority the store runs on: `counter` or `ledger`, and the sales location the ledger is posted at. Gated on `commerce.inventory.read`."
+      description: >-
+        `counter` (the default) is the single stock count on each product or
+        variant. `ledger` means the upstream inventory ledger is authoritative
+        and `stock` is a write-through cache of it. The flip to `ledger` is the
+        operator command `bun run commerce:inventory:cutover`; the way back is
+        `POST /api/v1/commerce/inventory/rollback`.
+      responses:
+        "200":
+          description: The mode.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceInventoryMode"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/inventory/reconciliation:
+    get:
+      operationId: reconcileCommerceInventory
+      tags:
+        - Commerce
+      summary: "Issue #282 (ADR-0038). The stock units whose cache disagrees with the inventory ledger at the sales location. Gated on `commerce.inventory.read`."
+      description: >-
+        Compares, per stock unit (a live variant, or a live product with no live
+        variant), the `stock` column with `max(0, floor(ledger on-hand))`. One
+        keyset page per call; follow `nextCursor` until it is null. Nothing is
+        repaired. `409 NOT_LEDGER_MODE` for a store still on the counter.
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+            maxLength: 300
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 500
+            default: 200
+      responses:
+        "200":
+          description: One page of drift.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceInventoryReconciliation"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`NOT_LEDGER_MODE` - the store still runs on the commerce counter."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/inventory/resync:
+    post:
+      operationId: resyncCommerceInventory
+      tags:
+        - Commerce
+      summary: "Issue #282 (ADR-0038). Rewrites the stock cache of every drifted unit on one page from the inventory ledger. Gated on `commerce.inventory.configure` (high-risk)."
+      description: >-
+        The ledger is always the truth: only the cache is rewritten, and the
+        body can never carry a stock count (only `cursor` and `limit`, to page).
+        Naturally idempotent - it sets state - so it carries no
+        `Idempotency-Key`. Audited as a warning. Repeat with `nextCursor` until
+        it is null. `409 NOT_LEDGER_MODE` for a store still on the counter.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                cursor:
+                  type: string
+                  maxLength: 300
+                limit:
+                  type: integer
+                  minimum: 1
+                  maximum: 500
+      responses:
+        "200":
+          description: The page that was scanned and how many units were repaired.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceInventoryResync"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`NOT_LEDGER_MODE` - the store still runs on the commerce counter."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/inventory/rollback:
+    post:
+      operationId: rollbackCommerceInventory
+      tags:
+        - Commerce
+      summary: "Issue #282 (ADR-0038). Puts the stock authority back on the commerce counter. Gated on `commerce.inventory.configure` (high-risk)."
+      description: >-
+        No body. Waits for every in-flight stock write, then sets the mode to
+        `counter`; the cache already holds the last ledger-derived counts, so the
+        counter paths resume from them. Naturally idempotent: a store already on
+        the counter answers `changed: false`. Audited as a warning. There is no
+        matching "switch to ledger" endpoint - that flip needs the opening
+        movements posted in the same transaction (`bun run
+        commerce:inventory:cutover`).
+      responses:
+        "200":
+          description: Whether the mode changed.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    required:
+                      - changed
+                    properties:
+                      changed:
+                        type: boolean
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /api/v1/commerce/orders/{id}/returns:
     get:
       operationId: listCommerceOrderReturns
@@ -12786,6 +12958,94 @@ paths:
                 $ref: "#/components/schemas/ApiError"
 components:
   schemas:
+    CommerceInventoryMode:
+      type: object
+      required:
+        - mode
+        - locationId
+        - changedAt
+      properties:
+        mode:
+          type: string
+          enum:
+            - counter
+            - ledger
+        locationId:
+          type: string
+          format: uuid
+          nullable: true
+          description: The inventory location commerce sells from; null in counter mode.
+        changedAt:
+          type: string
+          format: date-time
+          nullable: true
+    CommerceInventoryDrift:
+      type: object
+      required:
+        - itemType
+        - itemRef
+        - sku
+        - name
+        - cached
+        - expected
+        - ledgerOnHand
+      properties:
+        itemType:
+          type: string
+          enum:
+            - commerce.product
+            - commerce.variant
+        itemRef:
+          type: string
+          format: uuid
+        sku:
+          type: string
+          nullable: true
+        name:
+          type: string
+        cached:
+          type: integer
+          description: The `stock` column as it stands.
+        expected:
+          type: integer
+          description: "`max(0, floor(ledger on-hand))`."
+        ledgerOnHand:
+          type: string
+          description: The ledger balance, as the ledger states it (decimal string).
+    CommerceInventoryReconciliation:
+      type: object
+      required:
+        - mode
+        - locationId
+        - scanned
+        - drift
+        - nextCursor
+      properties:
+        mode:
+          type: string
+          enum:
+            - ledger
+        locationId:
+          type: string
+          format: uuid
+        scanned:
+          type: integer
+        drift:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceInventoryDrift"
+        nextCursor:
+          type: string
+          nullable: true
+    CommerceInventoryResync:
+      allOf:
+        - $ref: "#/components/schemas/CommerceInventoryReconciliation"
+        - type: object
+          required:
+            - repaired
+          properties:
+            repaired:
+              type: integer
     CommerceStoredValueProgram:
       type: object
       description: "Issue #288 (ADR-0030) — per-tenant configuration of one kind of closed-loop stored value."
