@@ -73,6 +73,7 @@
  * "bind the hash to the resource" rule): two cashiers who happen to reuse
  * one key value can never have the second replay the first's sale.
  */
+import { finaliseOrderTax } from "./tax-adapter-directory";
 import { recordAuditEvent } from "../../logging/application/audit-log";
 import { appendDomainEvent } from "../../domain-event-runtime/application/append-domain-event";
 import {
@@ -471,8 +472,9 @@ export async function createPosOrder(
   }
 
   // Sequential — one reserved `tx` connection (`tenant-route.ts`'s header).
+  const orderItemIds: string[] = [];
   for (const line of quote.lines) {
-    await tx`
+    const insertedItem = (await tx`
       INSERT INTO awcms_commerce_order_items (
         tenant_id, order_id, product_id, variant_id, flash_sale_id,
         name, variant_name, sku, unit_price, quantity, weight_grams, line_total
@@ -482,7 +484,9 @@ export async function createPosOrder(
         ${line.name}, ${line.variantName}, ${line.sku}, ${line.unitPrice}, ${line.quantity},
         ${line.weightGrams}, ${line.lineTotal}
       )
-    `;
+      RETURNING id
+    `) as { id: string }[];
+    orderItemIds.push(insertedItem[0]!.id);
 
     if (line.variantId) {
       await tx`
@@ -510,6 +514,20 @@ export async function createPosOrder(
       `;
     }
   }
+
+  // Issue #293 (ADR-0039) — engine mode: finalise this sale's tax snapshot and
+  // link it; a no-op in flat mode.
+  await finaliseOrderTax(tx, tenantId, {
+    orderId,
+    items: quote.lines.map((line, index) => ({
+      orderItemId: orderItemIds[index]!,
+      productId: line.productId
+    })),
+    quote,
+    now,
+    actorTenantUserId,
+    correlationId
+  });
 
   // Initial `order_events` row — actor `"admin"` (a POS sale is staff-rung,
   // never `"customer"`), mirroring `createOrderFromCart`'s own insert shape.

@@ -146,7 +146,7 @@ const PRODUCT_COLUMNS = `
   size_chart_type, size_chart_media_id, size_chart_details,
   service_form, subscription_period, download_link,
   allow_dp, allow_free_shipping, variant_attributes,
-  is_featured, is_recommended
+  is_featured, is_recommended, tax_category_code
 `;
 
 type ProductRow = {
@@ -192,6 +192,7 @@ type ProductRow = {
   variant_attributes: VariantAttributeGroup[] | null;
   is_featured: boolean;
   is_recommended: boolean;
+  tax_category_code: string | null;
 };
 
 /**
@@ -271,6 +272,8 @@ export type ProductAdminRecord = ProductRecord & {
    * reason: a public route cannot return it by accident.
    */
   downloadLink: string | null;
+  /** Issue #293 (ADR-0039) — the tax rule category; `null` = standard. Admin-only: never on the public read model. */
+  taxCategoryCode: string | null;
 };
 
 function toRecord(row: ProductRow): ProductRecord {
@@ -325,7 +328,8 @@ function toAdminRecord(row: ProductRow): ProductAdminRecord {
   return {
     ...toRecord(row),
     costPrice: normalizeMoney(row.cost_price),
-    downloadLink: row.download_link
+    downloadLink: row.download_link,
+    taxCategoryCode: row.tax_category_code
   };
 }
 
@@ -662,7 +666,7 @@ export async function createProduct(
         size_chart_type, size_chart_media_id, size_chart_details,
         service_form, subscription_period, download_link,
         allow_dp, allow_free_shipping, variant_attributes,
-        is_featured, is_recommended
+        is_featured, is_recommended, tax_category_code
       )
       VALUES (
         ${tenantId}, ${input.categoryId}, ${input.type}, ${input.sku}, ${input.name},
@@ -677,7 +681,7 @@ export async function createProduct(
         ${input.sizeChartType}, ${input.sizeChartMediaId}, ${input.sizeChartDetails}::jsonb,
         ${input.serviceForm}::jsonb, ${input.subscriptionPeriod}, ${input.downloadLink},
         ${input.allowDp}, ${input.allowFreeShipping}, ${input.variantAttributes}::jsonb,
-        ${input.isFeatured}, ${input.isRecommended}
+        ${input.isFeatured}, ${input.isRecommended}, ${input.taxCategoryCode ?? null}
       )
       RETURNING ${tx.unsafe(PRODUCT_COLUMNS)}
     `) as ProductRow[];
@@ -855,6 +859,7 @@ export async function updateProduct(
         variant_attributes = ${input.variantAttributes === undefined ? existing.variantAttributes : input.variantAttributes}::jsonb,
         is_featured = ${input.isFeatured ?? existing.isFeatured},
         is_recommended = ${input.isRecommended ?? existing.isRecommended},
+        tax_category_code = ${input.taxCategoryCode === undefined ? existing.taxCategoryCode : input.taxCategoryCode},
         updated_at = now()
       WHERE tenant_id = ${tenantId} AND id = ${productId} AND deleted_at IS NULL
       RETURNING ${tx.unsafe(PRODUCT_COLUMNS)}

@@ -42,6 +42,10 @@
  * payment confirmation WITHOUT a proof image is still fully accepted
  * (`createPaymentConfirmation` below never requires one).
  */
+import {
+  finaliseOrderTax,
+  reverseOrderTaxForCancellation
+} from "./tax-adapter-directory";
 import { createHash } from "node:crypto";
 import { withTenantOrThrow } from "../../../lib/database/tenant-context";
 import { recordAuditEvent } from "../../logging/application/audit-log";
@@ -930,8 +934,9 @@ export async function createOrderFromCart(
   );
 
   // Sequential — one reserved `tx` connection (`tenant-route.ts`'s header).
+  const orderItemIds: string[] = [];
   for (const line of quote.lines) {
-    await tx`
+    const insertedItem = (await tx`
       INSERT INTO awcms_commerce_order_items (
         tenant_id, order_id, product_id, variant_id, flash_sale_id,
         name, variant_name, sku, unit_price, quantity, weight_grams,
@@ -942,7 +947,9 @@ export async function createOrderFromCart(
         ${line.name}, ${line.variantName}, ${line.sku}, ${line.unitPrice}, ${line.quantity},
         ${line.weightGrams}, ${line.serviceFormValues}::jsonb, ${line.lineTotal}
       )
-    `;
+      RETURNING id
+    `) as { id: string }[];
+    orderItemIds.push(insertedItem[0]!.id);
 
     if (line.variantId) {
       await tx`
@@ -970,6 +977,20 @@ export async function createOrderFromCart(
       `;
     }
   }
+
+  // Issue #293 (ADR-0039) — engine mode: finalise this order's tax snapshot
+  // and link it; a no-op in flat mode.
+  await finaliseOrderTax(tx, tenantId, {
+    orderId: header.id,
+    items: quote.lines.map((line, index) => ({
+      orderItemId: orderItemIds[index]!,
+      productId: line.productId
+    })),
+    quote,
+    now,
+    actorTenantUserId: null,
+    correlationId
+  });
 
   if (quote.voucher?.valid) {
     await tx`
@@ -1337,6 +1358,16 @@ async function transitionOrderStatus(
       payload: eventPayload
     });
     await restockCancelledOrRefreshedOrder(tx, tenantId, orderId);
+    await reverseOrderTaxForCancellation(
+      tx,
+      tenantId,
+      actorTenantUserId ?? null,
+      {
+        orderId,
+        reason: "order_cancelled",
+        correlationId
+      }
+    );
     // Issue #92 — a defensive no-op under the current order-status graph
     // (`completed` has no outgoing edge), kept for a future
     // refund/cancel-after-completion path. See `affiliate-directory.ts`'s
@@ -1363,6 +1394,16 @@ async function transitionOrderStatus(
       payload: eventPayload
     });
     await restockCancelledOrRefreshedOrder(tx, tenantId, orderId);
+    await reverseOrderTaxForCancellation(
+      tx,
+      tenantId,
+      actorTenantUserId ?? null,
+      {
+        orderId,
+        reason: "order_expired",
+        correlationId
+      }
+    );
   }
 
   await appendDomainEvent(tx, tenantId, {

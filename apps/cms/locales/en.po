@@ -11461,3 +11461,27 @@ msgstr ""
 
 msgid "Partner access grants"
 msgstr ""
+
+msgid "Tax category"
+msgstr ""
+
+msgid "standard"
+msgstr ""
+
+msgid "A tax rule category code. Leave blank for the standard rate."
+msgstr ""
+
+msgid "Tax: rules engine"
+msgstr ""
+
+msgid "Tax: flat percentage"
+msgstr ""
+
+msgid "Tax is computed by the tax module from effective-dated rules; the payment.tax percentage below is not used."
+msgstr ""
+
+msgid "Tax is the flat percentage below (payment.tax). An operator can move this store to effective-dated rules."
+msgstr ""
+
+msgid "Tax rules"
+msgstr ""

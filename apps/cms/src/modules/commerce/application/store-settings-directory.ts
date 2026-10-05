@@ -163,9 +163,18 @@ export async function resetStoreSettings(
   actorTenantUserId: string,
   correlationId?: string
 ): Promise<boolean> {
+  // Issue #293 (ADR-0039): an engine-mode row carries the tenant's tax mode in
+  // real columns; stamping it for purge would let retention erase that mode and
+  // silently put the tenant back on the flat percentage. Reset the blob in place.
   const rows = (await tx`
     UPDATE awcms_commerce_store_settings
-    SET deleted_at = now(), updated_at = now()
+    SET deleted_at = CASE WHEN tax_mode = 'engine' THEN NULL ELSE now() END,
+        settings = CASE
+          WHEN tax_mode = 'engine'
+            THEN ${buildDefaultStoreSettings(await fetchTenantName(tx, tenantId))}::jsonb
+          ELSE settings
+        END,
+        updated_at = now()
     WHERE tenant_id = ${tenantId} AND deleted_at IS NULL
     RETURNING tenant_id
   `) as { tenant_id: string }[];

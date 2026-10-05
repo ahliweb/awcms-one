@@ -10,6 +10,7 @@
  * N+1 — the same discipline `product-directory.ts`'s `attachProductRelations`
  * already follows.
  */
+import { resolveCartTaxContext } from "./tax-adapter-directory";
 import { fetchStoreSettings } from "./store-settings-directory";
 import type {
   MediaLibraryPort,
@@ -479,7 +480,10 @@ export async function buildCartQuote(
     // `isPaymentGatewayProviderConfigured` never touches the database, and
     // `quoteCart` only ever multiplies it against
     // `storeSettings.payment.gateway.enabled`.
-    gatewayProviderConfigured: isPaymentGatewayProviderConfigured()
+    gatewayProviderConfigured: isPaymentGatewayProviderConfigured(),
+    // Issue #293 (ADR-0039) — `{ mode: "flat" }` (the default; nothing else is
+    // queried) or the tax module's version + the products' categories.
+    tax: await resolveCartTaxContext(tx, tenantId, productIds, now)
   };
 
   return quoteCart(
