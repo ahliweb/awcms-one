@@ -14052,7 +14052,7 @@ components:
           type: boolean
         finalPrice:
           type: string
-          description: price after discountPercent off, computed server-side in integer cents (domain/price-calculation.ts) — never a float.
+          description: "price after discountPercent off, computed server-side in integer cents (domain/price-calculation.ts) — never a float. For a `derived`-priced bundle (Issue #290) it is the derived price (components' list prices x quantity, less `bundleDiscountPercent`)."
         averageRating:
           type: string
           nullable: true

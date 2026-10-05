@@ -42,6 +42,7 @@ import {
   attachProductRelations
 } from "../../src/modules/commerce/application/product-directory";
 import { BundleDefinitionInvalidError } from "../../src/modules/commerce/application/bundle-directory";
+import { lookupBarcode } from "../../src/modules/commerce/application/barcode-directory";
 import { createReturn } from "../../src/modules/commerce/application/return-directory";
 import { saveStoreSettings } from "../../src/modules/commerce/application/store-settings-directory";
 import { runTaxCutoverForTenant } from "../../src/modules/commerce/application/tax-cutover";
@@ -804,7 +805,7 @@ suite("commerce bundles integration (Issue #290)", () => {
       expect(replaced?.kind).toBe("bundle");
       const rows = (await getAdminSql()`
         SELECT component_product_id, quantity FROM awcms_commerce_bundle_components
-        WHERE bundle_product_id = ${plain.id}
+        WHERE bundle_product_id = ${plain.id} AND deleted_at IS NULL
       `) as { component_product_id: string; quantity: number }[];
       expect(rows).toEqual([{ component_product_id: b, quantity: 4 }]);
 
@@ -820,7 +821,8 @@ suite("commerce bundles integration (Issue #290)", () => {
       );
       expect(back?.kind).toBe("standard");
       const left = (await getAdminSql()`
-        SELECT count(*)::int AS n FROM awcms_commerce_bundle_components WHERE bundle_product_id = ${plain.id}
+        SELECT count(*)::int AS n FROM awcms_commerce_bundle_components
+        WHERE bundle_product_id = ${plain.id} AND deleted_at IS NULL
       `) as { n: number }[];
       expect(left[0]!.n).toBe(0);
     }, 60000);
@@ -1079,6 +1081,32 @@ suite("commerce bundles integration (Issue #290)", () => {
       expect(await stockOf(a)).toBe(8);
       expect(await stockOf(b)).toBe(9);
       expect(await stockOf(bundle)).toBe(0);
+    }, 60000);
+
+    test("a bundle is found by its own barcode with computed availability and the derived price", async () => {
+      const a = await seedProduct(TENANT_A, "10000.00", 9);
+      const bundle = await seedBundle(
+        TENANT_A,
+        "999.00",
+        [{ productId: a, quantity: 3 }],
+        { pricing: "derived", discount: "10.00" }
+      );
+      await getAdminSql()`UPDATE awcms_commerce_products SET barcode = '8991234567890' WHERE id = ${bundle}`;
+      const hit = await inTenant(TENANT_A, (tx) =>
+        lookupBarcode(tx, TENANT_A, "8991234567890")
+      );
+      expect(hit).toMatchObject({
+        productId: bundle,
+        stock: 3,
+        price: "27000.00",
+        sellable: true
+      });
+      // The component runs out: the bundle is no longer sellable at the till.
+      await getAdminSql()`UPDATE awcms_commerce_products SET stock = 2 WHERE id = ${a}`;
+      const out = await inTenant(TENANT_A, (tx) =>
+        lookupBarcode(tx, TENANT_A, "8991234567890")
+      );
+      expect(out).toMatchObject({ stock: 0, sellable: false });
     }, 60000);
 
     test("a POS sale of a bundle sells the components and out-of-stock is PosCartChangedError", async () => {

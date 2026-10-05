@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:00537084e3801531fde087f5ece9214b54c72d552f52905a1ac5f3484d7d8ed4 -->
+<!-- i18n-source-hash: sha256:89fd728e6f8f588094c15fe81615602409116347136e4b3aeac997d8f57f1287 -->
 
 # Kamus data
 
@@ -360,6 +360,18 @@ Rancangan platform ini sendiri - tidak ada yang dipindahkan dari toko lama.
 | `tax.mode` / `tax.inclusive` / `tax.error` / `tax.engine` | respons `POST /api/v1/commerce/storefront/cart/quote`                                                                   | Tambahan atas `active`/`percent`/`amount`: siapa yang menghitung; pajak sudah di dalam harga baris dan tidak ditambahkan ke `total`; kode penolakan modul pajak (keranjang tidak dapat checkout); versi yang dipakai                                             |
 | `store-default`                                           | profil cut-over                                                                                                         | Satu aturan cadangan pada persentase toko (`taxable`, satu komponen `net`; `exempt` bila mati), `exclusive`, `half_up`, skala 2, tingkat `document`                                                                                                              |
 | `tax_mode.update`                                         | `awcms_audit_events.action` (modul `commerce`, kritis)                                                                  | Pengalihan teraudit, ke kedua arah, ditulis oleh `commerce:tax:cutover`                                                                                                                                                                                          |
+
+## Kosakata bundel (issue #290, [ADR-0036](adr/0036-bundles-are-component-stocked-products-sold-as-one-line.md))
+
+| Istilah | Di mana | Arti |
+| --- | --- | --- |
+| `kind` | `awcms_commerce_products.kind` (`sql/953`); buat/ubah/baca produk | `standard` (bawaan) atau `bundle`: produk tersusun dari komponen, dijual sebagai satu baris, tanpa varian dan tanpa stok sendiri. Berbeda dari `type = 'bundle'` (issue #266), tipe deskriptif tanpa semantik stok |
+| `bundlePricing` / `bundleDiscountPercent` | `awcms_commerce_products.bundle_pricing` (`fixed` \| `derived`), `.bundle_discount_percent` (`numeric(5,2)`, hanya derived) | `fixed` = harga produk sendiri; `derived` = Σ harga satuan daftar komponen × kuantitas, dikurangi persen, half-up ke sen. `finalPrice` publik bundel derived membawa angka turunan |
+| `bundleComponents` / `bundle.components` | `awcms_commerce_bundle_components`; `POST/PATCH /products` (id, atau `sku`), `bundle` pada model baca | 1–20 baris: produk komponen, varian komponen opsional (wajib bila produk punya varian aktif), `quantity` per bundel, `position`. Komponen tidak pernah berupa bundel |
+| ketersediaan | `stock` model baca untuk bundel; `availableStock` baris penawaran | `min atas komponen dari floor(stok komponen / kuantitas)`; tidak pernah disimpan (kolom bernilai `0`) |
+| snapshot komponen | `awcms_commerce_order_item_components` (`sql/954`) | Satu baris immutable per komponen dari baris pesanan bundel: id, `sku`, `name`, `variant_name`, `quantity_per_bundle`, `quantity_total`, `allocated_value` (total baris dibagi menurut nilai daftar, sisa-terbesar, Σ = total baris) |
+| baris sumber komponen | `awcms_inventory_movements.source_line` | `<orderItemId>:c<position>` untuk penjualan atau restock pesanan, `<returnLineId>:c<position>` untuk restock retur |
+| `bundle.define` | `awcms_audit_events.action` (modul `commerce`) | Definisi bundel disimpan (kind, harga, jumlah komponen; hanya id dan hitungan) |
 
 ## Kolom dan tabel yang ditunda — tidak di-porting
 

@@ -1,12 +1,21 @@
--- Issue #290 (ADR-0036) — `awcms_worker` grants for the bundle snapshot.
+-- Issue #290 (ADR-0036) — `awcms_worker` grants for the bundle tables.
 --
 -- `commerce:orders:expire` restocks an expired order as `awcms_worker`; for a
 -- bundle line it must read the order's component snapshot to know which
 -- component units to put back (the stock writes themselves are the existing
--- product/variant grants and, in ledger mode, sql/947's). The retention engine
--- (`commerce.order_item_components`, cursor `created_at`, `hard_delete`) needs
--- SELECT + DELETE. No INSERT/UPDATE: the worker never writes a snapshot.
+-- product/variant grants and, in ledger mode, sql/947's).
 --
--- The component DEFINITIONS (awcms_commerce_bundle_components) are
--- admin-authored and bounded (<= 20 per bundle); the worker never touches them.
+-- Both tables are retention targets (`data-lifecycle:archive-purge` runs as
+-- `awcms_worker` and, for an `executionMode: "generic"` descriptor, SELECTs
+-- candidates by `(tenant_id, <cursor>)` and `hard_delete`s them):
+--
+--   * `commerce.order_item_components` - cursor `created_at`, ten years, the
+--     order record's own horizon;
+--   * `commerce.bundle_components` - cursor `deleted_at`: a LIVE line has
+--     `deleted_at IS NULL` so the purge predicate can never match one; only a
+--     line an edit replaced ages out.
+--
+-- SELECT + DELETE only: the worker never writes either table (no INSERT, no
+-- UPDATE - `sql/954`'s trigger would refuse the update anyway).
 GRANT SELECT, DELETE ON awcms_commerce_order_item_components TO awcms_worker;
+GRANT SELECT, DELETE ON awcms_commerce_bundle_components TO awcms_worker;

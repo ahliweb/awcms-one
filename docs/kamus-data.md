@@ -360,6 +360,18 @@ This platform's own design - nothing here is ported from the legacy store.
 | `store-default`                                           | the cut-over's profile                                                                                               | One fallback rule at the store's percentage (`taxable`, one `net` component; `exempt` when off), `exclusive`, `half_up`, scale 2, `document` level                                                                                                           |
 | `tax_mode.update`                                         | `awcms_audit_events.action` (module `commerce`, critical)                                                            | The audited flip, in either direction, written by `commerce:tax:cutover`                                                                                                                                                                                     |
 
+## Bundle vocabulary (issue #290, [ADR-0036](adr/0036-bundles-are-component-stocked-products-sold-as-one-line.md))
+
+| Term | Where | Meaning |
+| --- | --- | --- |
+| `kind` | `awcms_commerce_products.kind` (`sql/953`); product create/update/read | `standard` (default) or `bundle`: a product made of components, sold as one line, with no variants and no stock of its own. Distinct from `type = 'bundle'` (issue #266), a descriptive type with no stock semantics |
+| `bundlePricing` / `bundleDiscountPercent` | `awcms_commerce_products.bundle_pricing` (`fixed` \| `derived`), `.bundle_discount_percent` (`numeric(5,2)`, derived only) | `fixed` = the product's own price; `derived` = Σ component list unit price × quantity, less the percent, half-up to the cent. A derived bundle's public `finalPrice` carries the derived figure |
+| `bundleComponents` / `bundle.components` | `awcms_commerce_bundle_components`; `POST/PATCH /products` (ids, or `sku`), the read model's `bundle` | 1–20 lines: component product, optional component variant (required when the product has live variants), `quantity` per bundle, `position`. A component is never itself a bundle |
+| availability | the read model's `stock` for a bundle; the quote line's `availableStock` | `min over components of floor(component stock / quantity)`; never stored (the column is `0`) |
+| component snapshot | `awcms_commerce_order_item_components` (`sql/954`) | One immutable row per component of a bundle order line: ids, `sku`, `name`, `variant_name`, `quantity_per_bundle`, `quantity_total`, `allocated_value` (the line total split by list value, largest remainder, Σ = line total) |
+| component source line | `awcms_inventory_movements.source_line` | `<orderItemId>:c<position>` for a sale or order restock, `<returnLineId>:c<position>` for a return restock |
+| `bundle.define` | `awcms_audit_events.action` (module `commerce`) | A bundle definition was saved (kind, pricing, component count; ids and counts only) |
+
 ## Deferred columns and tables — not ported
 
 - **A live RajaOngkir courier-RATE table is done** (issue #107, `sql/924` — `awcms_commerce_courier_destinations`/`_shipping_rates`, a cached rate the order path validates against, never a synchronous provider call). What is still deferred: live courier TRACKING (a shipped parcel's own status) — `shipping_method`/`shipping_service_name` on an order remain merchant-defined labels for the `alternative`/`self_pickup` methods; a `courier` shipment's rate is now live, its post-dispatch tracking is not (named as a follow-up in [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md)).

@@ -98,6 +98,10 @@ CREATE TABLE IF NOT EXISTS awcms_commerce_bundle_components (
   -- The staff member who last saved the definition; informational, no FK (a
   -- tenant user may be anonymised) - the audit log is the evidence.
   actor_tenant_user_id uuid,
+  -- An edit replaces the component list: the replaced lines are SOFT-deleted
+  -- (the generic retention engine's cursor, like every catalog table), never
+  -- read again, and aged out by the purge. A LIVE line is never a candidate.
+  deleted_at timestamptz,
   CONSTRAINT awcms_commerce_bundle_components_bundle_fk
     FOREIGN KEY (tenant_id, bundle_product_id)
     REFERENCES awcms_commerce_products (tenant_id, id),
@@ -118,7 +122,8 @@ CREATE TABLE IF NOT EXISTS awcms_commerce_bundle_components (
 );
 
 CREATE UNIQUE INDEX IF NOT EXISTS awcms_commerce_bundle_components_position_key
-  ON awcms_commerce_bundle_components (tenant_id, bundle_product_id, position);
+  ON awcms_commerce_bundle_components (tenant_id, bundle_product_id, position)
+  WHERE deleted_at IS NULL;
 
 -- One line per (component product, variant) in a bundle; NULL variants compare
 -- equal through the COALESCE so "the product itself" is also unique.
@@ -128,13 +133,17 @@ CREATE UNIQUE INDEX IF NOT EXISTS awcms_commerce_bundle_components_target_key
     bundle_product_id,
     component_product_id,
     COALESCE(component_variant_id, '00000000-0000-0000-0000-000000000000'::uuid)
-  );
+  )
+  WHERE deleted_at IS NULL;
 
 -- FK indexes (db:fk-index) and the "is this product a component anywhere?" read.
 CREATE INDEX IF NOT EXISTS awcms_commerce_bundle_components_component_idx
   ON awcms_commerce_bundle_components (tenant_id, component_product_id);
 CREATE INDEX IF NOT EXISTS awcms_commerce_bundle_components_variant_idx
   ON awcms_commerce_bundle_components (component_variant_id, component_product_id);
+-- The (tenant, cursor) composite the generic purge engine filters + orders by.
+CREATE INDEX IF NOT EXISTS awcms_commerce_bundle_components_tenant_deleted_idx
+  ON awcms_commerce_bundle_components (tenant_id, deleted_at);
 
 ALTER TABLE awcms_commerce_bundle_components ENABLE ROW LEVEL SECURITY;
 ALTER TABLE awcms_commerce_bundle_components FORCE ROW LEVEL SECURITY;
@@ -159,6 +168,12 @@ DECLARE
   existing_lines integer;
   variant_deleted timestamptz;
 BEGIN
+  -- A line being soft-deleted (replaced by an edit) is on its way out and is
+  -- not re-checked: the component product may itself have been deleted since.
+  IF NEW.deleted_at IS NOT NULL THEN
+    RETURN NEW;
+  END IF;
+
   SELECT kind INTO bundle_kind
   FROM awcms_commerce_products
   WHERE tenant_id = NEW.tenant_id AND id = NEW.bundle_product_id
@@ -203,7 +218,8 @@ BEGIN
   IF TG_OP = 'INSERT' THEN
     SELECT count(*) INTO existing_lines
     FROM awcms_commerce_bundle_components
-    WHERE tenant_id = NEW.tenant_id AND bundle_product_id = NEW.bundle_product_id;
+    WHERE tenant_id = NEW.tenant_id AND bundle_product_id = NEW.bundle_product_id
+      AND deleted_at IS NULL;
     IF existing_lines >= 20 THEN
       RAISE EXCEPTION 'awcms_commerce_bundle_components: a bundle has at most 20 component lines'
         USING ERRCODE = 'check_violation';
@@ -240,6 +256,7 @@ BEGIN
     IF EXISTS (
       SELECT 1 FROM awcms_commerce_bundle_components
       WHERE tenant_id = NEW.tenant_id AND component_product_id = NEW.id
+        AND deleted_at IS NULL
     ) THEN
       RAISE EXCEPTION 'awcms_commerce_products: product % is a component of a bundle and cannot become one (no nesting)', NEW.id
         USING ERRCODE = 'check_violation';
@@ -255,6 +272,7 @@ BEGIN
     IF EXISTS (
       SELECT 1 FROM awcms_commerce_bundle_components
       WHERE tenant_id = NEW.tenant_id AND bundle_product_id = NEW.id
+        AND deleted_at IS NULL
     ) THEN
       RAISE EXCEPTION 'awcms_commerce_products: bundle % still has components; remove them first', NEW.id
         USING ERRCODE = 'check_violation';

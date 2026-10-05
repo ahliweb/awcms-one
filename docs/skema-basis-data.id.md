@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:6f1b93a62ef2a8031fdc36478f1a3b3a46947efc2cb2e3750e8583efe87aad11 -->
+<!-- i18n-source-hash: sha256:f0a1382b801b24ad2ac1779610843a24a318792323cd8fe12e057731dc2f57ad -->
 
 # Skema basis data
 
@@ -400,6 +400,19 @@ Migrasi `961` menyemai `commerce.attributes.{read,manage}` dan `commerce.product
 | `awcms_commerce_orders`         | `tax_snapshot_id uuid` (nullable) — FK komposit `(tenant_id, tax_snapshot_id)` -> `awcms_tax_snapshots (tenant_id, id)`, `ON DELETE SET NULL (tax_snapshot_id)`; `UNIQUE (tenant_id, tax_snapshot_id) WHERE tax_snapshot_id IS NOT NULL` parsial | Snapshot yang difinalkan untuk pesanan pada mode engine; `NULL` untuk pesanan mode flat dan sebelum cut-over. Satu snapshot milik paling banyak satu pesanan. Pembalikan (retur, pembatalan, kedaluwarsa) adalah snapshot `reversal` di buku besar pajak yang dikunci oleh id retur/pesanan, sehingga **tidak ada kolom pada retur atau refund** yang diperlukan (migration-numbering ADR 0037 D2: migrasi ini tidak menyebut tabel `994`–`999`) |
 
 `sql/948` juga memberi `awcms_worker` `INSERT, UPDATE` pada `awcms_tax_snapshots` (job kedaluwarsa membalik pajak pesanan yang kedaluwarsa; `UPDATE` hanya memungkinkan `SELECT ... FOR UPDATE` mengunci yang asli — pemicu append-only tetap menolak setiap pembaruan sungguhan), ditegaskan di `security-readiness.ts`.
+
+## Bundel: tiga kolom, dua tabel, empat trigger (`sql/953`–`955`, issue #290, [ADR-0036](adr/0036-bundles-are-component-stocked-products-sold-as-one-line.md))
+
+| Objek | Bentuk | Catatan |
+| --- | --- | --- |
+| `awcms_commerce_products` | `kind text NOT NULL DEFAULT 'standard'` (`CHECK IN ('standard','bundle')`), `bundle_pricing text NOT NULL DEFAULT 'fixed'` (`CHECK IN ('fixed','derived')`), `bundle_discount_percent numeric(5,2)` (0–100, hanya derived) | Satu `CHECK` mengikatnya: bundel punya `stock = 0` dan tanpa `service_form`; produk standar membawa nilai bawaan. Dua indeks target FK komposit `(tenant_id, id)` pada produk dan `(id, product_id)` pada varian dibuat di sini dengan nama yang juga dipakai `sql/960` (`IF NOT EXISTS`), sehingga berkas ini tidak bergantung pada apa pun di atas 948 |
+| `awcms_commerce_bundle_components` | `(id, tenant_id, bundle_product_id, position smallint 1–20, component_product_id, component_variant_id?, quantity 1–10000, created_at, updated_at, actor_tenant_user_id?, deleted_at?)` | RLS `FORCE` + kebijakan tenant; FK komposit `(tenant_id, bundle_product_id)` dan `(tenant_id, component_product_id)` -> produk, `(component_variant_id, component_product_id)` -> varian; `UNIQUE (tenant, bundel, position)` parsial dan `UNIQUE (tenant, bundel, produk komponen, COALESCE(varian, nil))`, keduanya `WHERE deleted_at IS NULL`; bundel tidak bisa menyebut dirinya (`CHECK`). Edit men-soft-delete baris yang diganti (`deleted_at`, kursor mesin purge; baris hidup tidak pernah menjadi kandidat purge); deskriptor `dataLifecycle` dan `subjectData` terdaftar |
+| `awcms_commerce_order_item_components` | `(id, tenant_id, order_item_id, position, component_product_id, component_variant_id?, sku?, name, variant_name?, quantity_per_bundle, quantity_total, allocated_value numeric(14,2), created_at)` (`sql/954`) | RLS `FORCE`; FK komposit `(tenant_id, order_item_id)` -> item pesanan `ON DELETE CASCADE` (kunci `(tenant_id, id)` yang juga dibuat sql/994 dibuat di sini lebih dulu); `UNIQUE (tenant, item pesanan, position)`; `UPDATE`/`DELETE` dicabut dari `awcms_app` dan trigger menolak update. Deskriptor `dataLifecycle` (kursor `created_at`, sepuluh tahun) dan `subjectData` terdaftar |
+| trigger `awcms_commerce_bundle_components_guard` | `BEFORE INSERT OR UPDATE` pada komponen | Baris bundel harus berupa bundel (dikunci `FOR NO KEY UPDATE`); baris komponen dikunci `FOR SHARE` dan harus hidup serta **bukan bundel** (tanpa nesting); produk dengan varian aktif harus menyebut varian, dan varian harus hidup; paling banyak 20 baris |
+| trigger `awcms_commerce_products_kind_guard` | `BEFORE UPDATE OF kind` pada produk | Menolak produk dengan varian aktif, produk yang dipakai sebagai komponen, atau produk di flash sale menjadi bundel; dan bundel yang masih punya komponen menjadi standar |
+| trigger `awcms_commerce_bundle_no_variants_guard` / `awcms_commerce_bundle_no_flash_sale_guard` | `BEFORE INSERT` pada varian / produk flash sale | Bundel tidak bisa punya varian dan tidak bisa disebut flash sale |
+
+`sql/955` memberi `awcms_worker` `SELECT, DELETE` pada kedua tabel (restock kedaluwarsa membaca snapshot; mesin retensi memurge keduanya); `security-readiness.ts` mencatat `SELECT, INSERT` role aplikasi pada snapshot dan `SELECT, DELETE` worker pada keduanya.
 
 ## Row-level security: `ENABLE` dan `FORCE`, terbukti di bawah role tak-berhak-istimewa
 

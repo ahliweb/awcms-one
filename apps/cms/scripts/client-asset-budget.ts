@@ -1504,7 +1504,18 @@ export const READER_BUDGET_BYTES = 24_000;
  * Indonesian catalogue ships with every page), on top of 433,723 B; a
  * measurement, not a sum. No new client script or module.
  */
-export const APP_BUDGET_BYTES = 433_900;
+/*
+ * **Final: 434,700 B for awcms-one#290 (commerce bundles, ADR-0036) on top of
+ * the #293 figure above** — MEASURED 434,568 B on the build (433,813 B before
+ * it): the product form's Bundle fieldset (a toggle, a pricing select, a
+ * discount input and a `SKU x quantity` textarea in each of the create and
+ * edit forms), a small `bundleBody` helper in the existing page script, the
+ * 40-line pure `lib/ui/commerce-bundle-form.ts` line parser, and the eight new
+ * catalogue entries (the compiled Indonesian catalogue ships with every
+ * page); a measurement, not a sum (+755 B). No new screen and no picker
+ * script: the contents editor is a plain textarea the server resolves.
+ */
+export const APP_BUDGET_BYTES = 434_700;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

@@ -14,6 +14,7 @@ import {
   buildBundleSnapshot,
   componentLockOrder,
   computeBundleAvailability,
+  computeDerivedBundlePrice,
   expandBundleLines,
   validateBundleState,
   validateComponentTargets,
@@ -130,7 +131,7 @@ export async function fetchResolvedBundleComponents(
       ON p.tenant_id = c.tenant_id AND p.id = c.component_product_id
     LEFT JOIN awcms_commerce_product_variants v
       ON v.tenant_id = c.tenant_id AND v.id = c.component_variant_id
-    WHERE c.tenant_id = ${tenantId}
+    WHERE c.tenant_id = ${tenantId} AND c.deleted_at IS NULL
       AND c.bundle_product_id = ANY(${tx.array([...new Set(bundleIds)], "uuid")}::uuid[])
     ORDER BY c.bundle_product_id, c.position
   `) as ComponentRow[];
@@ -163,8 +164,9 @@ export type BundleDTO = {
 
 /**
  * Attaches `bundle` to the bundle products among `products` and replaces their
- * `stock` with the computed availability (D4), so every existing reader of a
- * product's `stock` keeps working. A standard product passes through with
+ * `stock` with the computed availability (D4) and, for `derived` pricing, their
+ * `finalPrice` with the derived price, so every existing reader of a product's
+ * `stock`/`finalPrice` keeps working. A standard product passes through with
  * `bundle: null`.
  */
 export async function attachBundles<
@@ -172,6 +174,7 @@ export async function attachBundles<
     id: string;
     kind: ProductKind;
     stock: number;
+    finalPrice: string;
     bundlePricing: BundlePricing;
     bundleDiscountPercent: string | null;
   }
@@ -191,6 +194,14 @@ export async function attachBundles<
     return {
       ...product,
       stock: computeBundleAvailability(components),
+      // A `derived` bundle's price is the sum of its components (less the
+      // percent); `finalPrice` is what every storefront reader renders, so it
+      // carries that figure. The raw `price` column is left alone: the admin
+      // form edits it and must not write a derived number back.
+      finalPrice:
+        product.bundlePricing === "derived"
+          ? computeDerivedBundlePrice(components, product.bundleDiscountPercent)
+          : product.finalPrice,
       bundle: {
         pricing: product.bundlePricing,
         discountPercent: product.bundleDiscountPercent,
@@ -368,6 +379,7 @@ export async function applyBundleDefinition(
     const counted = (await tx`
       SELECT count(*)::int AS n FROM awcms_commerce_bundle_components
       WHERE tenant_id = ${tenantId} AND bundle_product_id = ${productId}
+        AND deleted_at IS NULL
     `) as { n: number }[];
     existingCount = Number(counted[0]!.n);
   }
@@ -412,8 +424,10 @@ export async function applyBundleDefinition(
     // A bundle turned back into a standard product loses its components first.
     if (wasBundle && write.kind === "standard") {
       await tx`
-        DELETE FROM awcms_commerce_bundle_components
+        UPDATE awcms_commerce_bundle_components
+        SET deleted_at = now(), updated_at = now()
         WHERE tenant_id = ${tenantId} AND bundle_product_id = ${productId}
+          AND deleted_at IS NULL
       `;
     }
 
@@ -429,8 +443,10 @@ export async function applyBundleDefinition(
 
     if (write.kind === "bundle" && resolved !== undefined) {
       await tx`
-        DELETE FROM awcms_commerce_bundle_components
+        UPDATE awcms_commerce_bundle_components
+        SET deleted_at = now(), updated_at = now()
         WHERE tenant_id = ${tenantId} AND bundle_product_id = ${productId}
+          AND deleted_at IS NULL
       `;
       for (const [index, component] of resolved.entries()) {
         await tx`

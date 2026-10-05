@@ -8,11 +8,11 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 29    |
-| Migrations                          | 259   |
-| `awcms_*` tables                    | 259   |
-| Tables with `FORCE` RLS             | 241   |
+| Migrations                          | 262   |
+| `awcms_*` tables                    | 261   |
+| Tables with `FORCE` RLS             | 243   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 699   |
+| Test files                          | 702   |
 | Route files                         | 699   |
 | ADR                                 | 260   |
 
@@ -281,38 +281,41 @@
 | 225 | `sql/950_awcms_commerce_loyalty_schema.sql`                                 |
 | 226 | `sql/951_awcms_commerce_loyalty_worker_grants.sql`                          |
 | 227 | `sql/952_awcms_commerce_loyalty_permissions.sql`                            |
-| 228 | `sql/960_awcms_commerce_attributes_schema.sql`                              |
-| 229 | `sql/961_awcms_commerce_attributes_permissions.sql`                         |
-| 230 | `sql/962_awcms_commerce_attributes_worker_grants.sql`                       |
-| 231 | `sql/963_awcms_commerce_attributes_value_indexes.sql`                       |
-| 232 | `sql/964_awcms_commerce_catalog_import_batches.sql`                         |
-| 233 | `sql/965_awcms_commerce_document_deliveries_schema.sql`                     |
-| 234 | `sql/966_awcms_commerce_document_deliveries_permissions.sql`                |
-| 235 | `sql/967_awcms_commerce_document_deliveries_worker_grants.sql`              |
-| 236 | `sql/970_awcms_commerce_register_schema.sql`                                |
-| 237 | `sql/971_awcms_commerce_register_stamping.sql`                              |
-| 238 | `sql/972_awcms_commerce_register_permissions.sql`                           |
-| 239 | `sql/973_awcms_commerce_register_worker_grants.sql`                         |
-| 240 | `sql/974_awcms_commerce_register_reversal_stamp.sql`                        |
-| 241 | `sql/975_awcms_commerce_barcodes_schema.sql`                                |
-| 242 | `sql/976_awcms_commerce_barcodes_permissions.sql`                           |
-| 243 | `sql/980_awcms_commerce_documents_schema.sql`                               |
-| 244 | `sql/981_awcms_commerce_documents_permissions.sql`                          |
-| 245 | `sql/982_awcms_commerce_documents_worker_grants.sql`                        |
-| 246 | `sql/985_awcms_commerce_stored_value_schema.sql`                            |
-| 247 | `sql/986_awcms_commerce_stored_value_payment_integration.sql`               |
-| 248 | `sql/987_awcms_commerce_stored_value_permissions.sql`                       |
-| 249 | `sql/988_awcms_commerce_stored_value_worker_grants.sql`                     |
-| 250 | `sql/990_awcms_commerce_expenses_schema.sql`                                |
-| 251 | `sql/991_awcms_commerce_expenses_register_link.sql`                         |
-| 252 | `sql/992_awcms_commerce_expenses_permissions.sql`                           |
-| 253 | `sql/993_awcms_commerce_expenses_worker_grants.sql`                         |
-| 254 | `sql/994_awcms_commerce_returns_schema.sql`                                 |
-| 255 | `sql/995_awcms_commerce_returns_integration.sql`                            |
-| 256 | `sql/996_awcms_commerce_returns_permissions.sql`                            |
-| 257 | `sql/997_awcms_commerce_returns_worker_grants.sql`                          |
-| 258 | `sql/998_awcms_commerce_operational_reports_schema.sql`                     |
-| 259 | `sql/999_awcms_commerce_operational_reports_permissions.sql`                |
+| 228 | `sql/953_awcms_commerce_bundles_schema.sql`                                 |
+| 229 | `sql/954_awcms_commerce_bundles_order_snapshot.sql`                         |
+| 230 | `sql/955_awcms_commerce_bundles_worker_grants.sql`                          |
+| 231 | `sql/960_awcms_commerce_attributes_schema.sql`                              |
+| 232 | `sql/961_awcms_commerce_attributes_permissions.sql`                         |
+| 233 | `sql/962_awcms_commerce_attributes_worker_grants.sql`                       |
+| 234 | `sql/963_awcms_commerce_attributes_value_indexes.sql`                       |
+| 235 | `sql/964_awcms_commerce_catalog_import_batches.sql`                         |
+| 236 | `sql/965_awcms_commerce_document_deliveries_schema.sql`                     |
+| 237 | `sql/966_awcms_commerce_document_deliveries_permissions.sql`                |
+| 238 | `sql/967_awcms_commerce_document_deliveries_worker_grants.sql`              |
+| 239 | `sql/970_awcms_commerce_register_schema.sql`                                |
+| 240 | `sql/971_awcms_commerce_register_stamping.sql`                              |
+| 241 | `sql/972_awcms_commerce_register_permissions.sql`                           |
+| 242 | `sql/973_awcms_commerce_register_worker_grants.sql`                         |
+| 243 | `sql/974_awcms_commerce_register_reversal_stamp.sql`                        |
+| 244 | `sql/975_awcms_commerce_barcodes_schema.sql`                                |
+| 245 | `sql/976_awcms_commerce_barcodes_permissions.sql`                           |
+| 246 | `sql/980_awcms_commerce_documents_schema.sql`                               |
+| 247 | `sql/981_awcms_commerce_documents_permissions.sql`                          |
+| 248 | `sql/982_awcms_commerce_documents_worker_grants.sql`                        |
+| 249 | `sql/985_awcms_commerce_stored_value_schema.sql`                            |
+| 250 | `sql/986_awcms_commerce_stored_value_payment_integration.sql`               |
+| 251 | `sql/987_awcms_commerce_stored_value_permissions.sql`                       |
+| 252 | `sql/988_awcms_commerce_stored_value_worker_grants.sql`                     |
+| 253 | `sql/990_awcms_commerce_expenses_schema.sql`                                |
+| 254 | `sql/991_awcms_commerce_expenses_register_link.sql`                         |
+| 255 | `sql/992_awcms_commerce_expenses_permissions.sql`                           |
+| 256 | `sql/993_awcms_commerce_expenses_worker_grants.sql`                         |
+| 257 | `sql/994_awcms_commerce_returns_schema.sql`                                 |
+| 258 | `sql/995_awcms_commerce_returns_integration.sql`                            |
+| 259 | `sql/996_awcms_commerce_returns_permissions.sql`                            |
+| 260 | `sql/997_awcms_commerce_returns_worker_grants.sql`                          |
+| 261 | `sql/998_awcms_commerce_operational_reports_schema.sql`                     |
+| 262 | `sql/999_awcms_commerce_operational_reports_permissions.sql`                |
 
 ### Tables & Row-Level Security
 
@@ -355,6 +358,7 @@
 | `awcms_commerce_affiliate_commissions`      | `sql/921_awcms_commerce_affiliates_schema.sql`             | yes | yes   |
 | `awcms_commerce_affiliates`                 | `sql/921_awcms_commerce_affiliates_schema.sql`             | yes | yes   |
 | `awcms_commerce_attribute_definitions`      | `sql/960_awcms_commerce_attributes_schema.sql`             | yes | yes   |
+| `awcms_commerce_bundle_components`          | `sql/953_awcms_commerce_bundles_schema.sql`                | yes | yes   |
 | `awcms_commerce_campaign_recipients`        | `sql/929_awcms_commerce_campaigns_schema.sql`              | yes | yes   |
 | `awcms_commerce_campaigns`                  | `sql/929_awcms_commerce_campaigns_schema.sql`              | yes | yes   |
 | `awcms_commerce_catalog_import_batches`     | `sql/964_awcms_commerce_catalog_import_batches.sql`        | yes | yes   |
@@ -380,6 +384,7 @@
 | `awcms_commerce_loyalty_programs`           | `sql/950_awcms_commerce_loyalty_schema.sql`                | yes | yes   |
 | `awcms_commerce_messages`                   | `sql/927_awcms_commerce_conversations_schema.sql`          | yes | yes   |
 | `awcms_commerce_order_events`               | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
+| `awcms_commerce_order_item_components`      | `sql/954_awcms_commerce_bundles_order_snapshot.sql`        | yes | yes   |
 | `awcms_commerce_order_items`                | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
 | `awcms_commerce_orders`                     | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
 | `awcms_commerce_payment_allocations`        | `sql/940_awcms_commerce_payment_allocations_schema.sql`    | yes | yes   |
@@ -582,9 +587,9 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 539        |
+| `(root)`      | 541        |
 | `e2e`         | 25         |
-| `integration` | 134        |
+| `integration` | 135        |
 | `unit`        | 1          |
 
 ### Routes

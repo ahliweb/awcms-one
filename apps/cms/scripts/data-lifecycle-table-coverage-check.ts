@@ -94,11 +94,6 @@ export const BOUNDED_BY_DESIGN: readonly {
   reason: string;
 }[] = [
   {
-    table: "awcms_commerce_bundle_components",
-    reason:
-      "ADR-0036 (issue #290). Every row is AUTHORED by an administrator composing a bundle, never accumulated by traffic: at most 20 lines per bundle product (a trigger and a CHECK enforce it), a bundle is an admin-created product, and an edit replaces the lines rather than appending, so the ceiling is (bundle products x 20) — a catalog table. The order-time record of what a bundle was made of is awcms_commerce_order_item_components, which does have a retention descriptor."
-  },
-  {
     table: "awcms_site_profile",
     reason:
       "ADR-0102. At most ONE row per tenant, by primary key — the row is upserted, never appended, so the table's ceiling IS `awcms_tenants` and no request path or job can add a second. Nothing here is traffic-generated: every value is typed by an administrator on `/admin/site-profile`. An age-based purge would be actively WRONG rather than merely unnecessary, for the same reason it is wrong for `awcms_principal_preferences`: `executionMode: 'generic'` deletes by age with no status predicate, so a newsroom that set its editorial address two years ago and has not touched it since — the healthy case — would have its masthead, footer and contact block silently emptied for being OLD. The row has no natural expiry and its age says nothing about whether it is still wanted; deleting it would blank the published contact details of a live site. Erasure is not a question here either: this is the PUBLISHER's own published identity, deliberately public, not a data subject's personal data — which is exactly why the audit row for a change records which fields are set and never their values."

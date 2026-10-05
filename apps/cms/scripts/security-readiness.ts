@@ -1754,8 +1754,10 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_commerce_refunds: ["SELECT", "DELETE"],
   awcms_commerce_refund_compensations: ["SELECT", "DELETE"],
   // Issue #290 (`sql/955`): the bundle snapshot is read by the expiry restock
-  // and aged out by `created_at`; SELECT + DELETE only.
+  // and aged out by `created_at`; the component definitions are aged out by
+  // `deleted_at` (a live line is never a candidate). SELECT + DELETE only.
   awcms_commerce_order_item_components: ["SELECT", "DELETE"],
+  awcms_commerce_bundle_components: ["SELECT", "DELETE"],
   // Issue #291 (`sql/960`/`962`/`964`): catalog attributes. Definitions and
   // values are soft-deleted (`deleted_at` cursor) and aged out by the generic
   // purge engine, which needs SELECT + DELETE; an import batch is an

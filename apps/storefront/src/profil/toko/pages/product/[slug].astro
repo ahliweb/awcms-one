@@ -397,6 +397,20 @@ const detailPayload = {
           </div>
         )}
 
+        {product.bundle && product.bundle.components.length > 0 && (
+          <div class="bundle-contents">
+            <h2 class="section-title">Isi paket</h2>
+            <ul class="bundle-list" data-bundle-contents>
+              {product.bundle.components.map((component) => (
+                <li>
+                  {component.quantity} × {component.name}
+                  {component.variantName ? ` (${component.variantName})` : ""}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         {product.sizeChartType !== "none" && (
           <div class="size-chart-box">
             <h2 class="section-title">Size chart</h2>

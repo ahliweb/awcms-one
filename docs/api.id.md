@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:a47bd56acfe9c3655a7d308d09c0c4a89382a2a0a3f2d95939bde4ce0f212cf1 -->
+<!-- i18n-source-hash: sha256:9f0e40823368f918783cff8d0f169b3e2f0a5465a51f2d13fe49c658a732db4b -->
 
 # API
 
@@ -48,6 +48,10 @@ Paginasi: keyset, terbaru lebih dulu secara default (`sort=newest`), ukuran hala
 | `POST` | `/api/v1/commerce/products/import?mode=dry_run\|apply` | `products.import` (+ `create` + `update` untuk apply) | Body `text/csv`, ≤ 5 MiB dan 5000 baris. Dry-run tidak menulis apa pun; apply semua-atau-tidak-sama-sekali, butuh `Idempotency-Key`, `expectedSha256` opsional |
 
 Respons produk (`GET /products`, `/{id}`, `/by-slug/{slug}`) mendapat `attributes[]` **aditif** pada produk dan setiap varian: `{ key, label, labels, valueType, value, valueLabel }`, hanya nilai `visible_public`. `value` adalah angka JSON untuk `integer`, **string** desimal untuk `decimal`, boolean, string ISO `YYYY-MM-DD` untuk `date`, dan string untuk `text`/`enum`. Angka hanya memakai digit dan `.` (`1,5` adalah 400). Error impor: `422 IMPORT_VALIDATION_FAILED` (rencana memiliki error; `error.details` adalah laporan per baris, tidak ada yang ditulis), `409 IMPORT_CONFLICT` (konflik saat-tulis; tidak ada yang ditulis), `409 IMPORT_FILE_MISMATCH`, `409 IDEMPOTENCY_CONFLICT`, `400 IDEMPOTENCY_REQUIRED`, `413`, `415`; definisi: `409 ATTRIBUTE_KEY_ALREADY_EXISTS`, `ATTRIBUTE_DEFINITION_LIMIT_REACHED`, `ATTRIBUTE_OPTION_IN_USE`, `ATTRIBUTE_APPLIES_TO_IN_USE`.
+
+### Bundel (issue #290, [ADR-0036](adr/0036-bundles-are-component-stocked-products-sold-as-one-line.md))
+
+Tanpa route baru dan tanpa izin baru: bundel adalah produk, sehingga `commerce.products.*` yang mengaturnya. `POST /products` dan `PATCH /products/{id}` tambahan menerima `kind` (`standard` \| `bundle`), `bundlePricing` (`fixed` \| `derived`), `bundleDiscountPercent` (0–100, dua desimal, hanya derived) dan `bundleComponents` (1–20 baris `{ productId, variantId?, quantity }` atau `{ sku, quantity }`, menggantikan daftar; komponen tidak pernah berupa bundel, dan produk dengan varian aktif harus menyebut salah satunya). `stock` bundel harus `0`/tidak ada dan ia tidak bisa menjadi produk jasa, punya varian, atau masuk flash sale: setiap penolakan adalah `400 VALIDATION_ERROR` dengan galat per field (komponen yang tidak dikenal, dihapus, atau lintas tenant mendapat pesan yang sama). Pembacaan produk mendapat `kind`, `bundlePricing`, `bundleDiscountPercent` dan `bundle` (`pricing`, `discountPercent`, `components[]` berisi id, SKU, nama, dan unit — tidak pernah harga pokok atau hitungan stok); untuk bundel `stock` adalah ketersediaan hitungan dan, bila derived, `finalPrice` adalah harga turunan. Baris penawaran keranjang untuk bundel membawa `bundle.components[]`; pesanan menyimpan SATU baris untuknya.
 
 ### Marketing (issue #26)
 

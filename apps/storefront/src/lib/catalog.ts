@@ -119,6 +119,27 @@ export type CommerceProductImage = {
   sortOrder: number;
 };
 
+/**
+ * One component line of a bundle (Issue #290, ADR-0036): what ONE bundle
+ * contains. No stock count, no cost; `quantity` is the units per bundle.
+ */
+export type CommerceBundleComponent = {
+  position: number;
+  productId: string;
+  variantId: string | null;
+  sku: string | null;
+  name: string;
+  variantName: string | null;
+  quantity: number;
+};
+
+/** A bundle's pricing strategy and contents; `null`/absent on a standard product. */
+export type CommerceBundle = {
+  pricing: "fixed" | "derived";
+  discountPercent: string | null;
+  components: CommerceBundleComponent[];
+};
+
 /** `ProductVariantDTO`, verbatim — `imageUrl` (not `imageMediaObjectId`) is the URL to render for this variant. */
 export type CommerceProductVariant = {
   id: string;
@@ -198,6 +219,13 @@ export type CommerceProduct = {
   finalPrice: string;
   averageRating: string | null;
   soldCount: number;
+  /**
+   * Issue #290 - optional so a CMS that predates bundles still type-checks.
+   * For a `bundle`, `stock` is the COMPUTED availability and, when derived,
+   * `finalPrice` the derived price: nothing here is recomputed.
+   */
+  kind?: "standard" | "bundle";
+  bundle?: CommerceBundle | null;
   images: CommerceProductImage[];
   variants: CommerceProductVariant[];
 };

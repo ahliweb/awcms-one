@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:98d5d2f3e8809334dee9f499a15a63b05fead75490961f1dc5db9b06dff0a0a2 -->
+<!-- i18n-source-hash: sha256:00ecd1be0a898c6fff4933e5e12c8169ff24bc64386673e89a6f310cfeb218cc -->
 
 # `commerce`
 
@@ -1353,7 +1353,7 @@ Dua kolom `barcode` nullable (`sql/975`: produk dan varian), dua izin (`commerce
 - **Lokasi kode.** `domain/barcode.ts` (digit pemeriksa GTIN, kebijakan validasi, encoder Code 128 / EAN-13 / EAN-8, perender SVG, opsi label - murni), `domain/pos-scan.ts` (parsing kolom pindai dan `ScanBurstDetector`, diberi cap waktu eksplisit - murni), `domain/pos-shortcuts.ts` (kebijakan kombinasi, bentrok, pelapisan bawaan -> tenant -> pengguna - murni), `application/barcode-directory.ts` (lookup, katalog, penetapan, baris label), `application/barcode-http.ts` (guard, gerbang fitur, pengaturan pintasan tenant), rute di `pages/api/v1/commerce/barcodes/`, layar `pages/admin/commerce-labels.astro`, dan sisi klien `src/lib/ui/pos-keyboard-client.ts` (satu-satunya tempat skrip layar POS dijangkau: satu kait `addScanned`, sisanya id elemen).
 - **Aturan yang harus dijaga perubahan.** Barcode adalah pengenal, bukan otoritas: otorisasi pemanggil terlebih dahulu. Simbologi tetap diturunkan. Keunikan adalah tugas database (indeks parsial + trigger lintas tabel); jangan ganti advisory lock berstrip dengan satu lock per kode (menghabiskan tabel kunci pada pemuatan massal). Lookup yang meleset adalah satu `404` netral. SVG label hanya berisi angka dan teks tenant di-escape, tidak pernah `set:html`. Pintasan adalah kombinasi - tidak pernah karakter polos, tidak pernah tombol yang dicadangkan peramban - dan detektor tidak pernah aktif di kolom teks.
 - **Feature flag.** `features.barcode` bawaannya MATI (flag ketiga seperti itu, setelah `register` dan `documents`).
-- **Ditunda.** Beberapa barcode per barang, barcode bundel (#290, terblokir oleh #282), barcode dengan harga/berat tertanam, ekspor label PDF, simbologi lain, layar penyunting pintasan tingkat tenant, penyimpanan pintasan per pengguna di server.
+- **Ditunda.** Beberapa barcode per barang, barcode bundel kini adalah barcode milik produk bundel itu sendiri (#290), barcode dengan harga/berat tertanam, ekspor label PDF, simbologi lain, layar penyunting pintasan tingkat tenant, penyimpanan pintasan per pengguna di server.
 
 ## Pengiriman dokumen — TERIMPLEMENTASI (Issue #295, epic #281 — [ADR-0034](../../../../../docs/adr/0034-commercial-documents-are-delivered-through-the-existing-outboxes-as-transactional-messages-built-from-immutable-sources.md))
 
@@ -1469,7 +1469,7 @@ Lima `reportingProjections` lagi pada mekanisme laporan penjualan di atas (tanpa
 
 **Irisan retur & refund — SUDAH ADA (Isu #316).** Proyeksi keenam, `commerce.pos_returns_daily` (`sql/945` tabel + grant worker, `sql/946` pasangan `commerce.report_returns.read|export`), mengikuti kontrak ADR-0035 D1 dan adendumnya. Tiga aliran ke satu tabel panjang `awcms_commerce_report_returns_daily` (`(day, register_id, section, bucket, detail)`): `awcms_commerce_returns` (`section = return`: retur dan penukaran tercatat, dengan total refund), `awcms_commerce_return_lines` (`section = disposition`: baris, unit, dan nilai menurut `restock` / `damaged` = dihapuskan / `quarantine`) dan leg reversal buku besar pembayaran yang ditunjuk sebuah refund (`section = refund`: leg dan uang menurut metode dan menurut `original_tender` / `store_credit`). Pemuat `loadReturnDeltas`, `loadReturnLineDeltas`, `loadRefundLegDeltas` ada di `application/operational-report-projection.ts` dan memberi makan sink sekaligus total kontrol; aturannya `computeReturnDelta`, `computeReturnLineDelta`, `computeRefundLegDelta` di `domain/operational-report-deltas.ts`. Tidak ada view `security_invoker` baru: kursor sumbernya NOT NULL sejak insert, dan aliran refund membaca view alokasi sql/998. Di balik fitur `returns` (`enabled: false` selama mati); rute `operational-returns` dan `.csv`; panel di `/admin/commerce-reports`. Tes: `tests/integration/commerce-returns-report.integration.test.ts`.
 
-**Ditunda dengan menyebut nama:** penerimaan (#283), margin, diskon, dan paket (#290) — lihat ADR-0035 D1 (saldo/mutasi/stok menipis adalah layar dan proyeksi `inventory` hulu, ADR-0038 D8; pajak adalah laporan milik modul `tax` sendiri, ADR-0039 D5).
+**Ditunda dengan menyebut nama:** penerimaan (#283), margin, diskon, dan laporan bundel (#290 mengirim bundel; laporannya ditunda, ADR-0036 D8) — lihat ADR-0035 D1 (saldo/mutasi/stok menipis adalah layar dan proyeksi `inventory` hulu, ADR-0038 D8; pajak adalah laporan milik modul `tax` sendiri, ADR-0039 D5).
 
 ## Otoritas stok: counter atau ledger inventori — TERIMPLEMENTASI (Issue #282, epik #281 — [ADR-0038](../../../../../docs/adr/0038-commerce-stock-is-a-write-through-cache-of-the-inventory-ledger.md))
 
@@ -1500,6 +1500,16 @@ Lima `reportingProjections` lagi pada mekanisme laporan penjualan di atas (tanpa
 - **Laporan pajak adalah milik modul pajak** (`tax.snapshot_activity`, `GET /api/v1/tax/reports/reconciliation`), bukan irisan commerce (ADR-0039 D5). Proyeksi penjualan tetap membaca kolom `tax` pesanan, yang pada mode engine adalah angka snapshot.
 - **Celah yang diketahui.** Retur tidak mengembalikan pajak ke pelanggan (ADR-0033: `refund_total` adalah barang − diskon + ongkir, dikunci `CHECK`); mode engine membaliknya hanya di buku besar pajak.
 - **Netralitas regulasi.** Tidak ada tarif yang ditegaskan di sini; perubahan tarif atau regulasi adalah versi berlaku-tanggal baru yang disusun di `/admin/tax` (ADR-0039 D6). Ekspor Coretax / e-Faktur di luar cakupan.
+
+## Bundel: kit barang yang stoknya lewat komponennya — TERIMPLEMENTASI (Issue #290, epik #281 — [ADR-0036](../../../../../docs/adr/0036-bundles-are-component-stocked-products-sold-as-one-line.md))
+
+- **Model.** Bundel adalah produk dengan `kind = 'bundle'` (`sql/953`); tanpa varian, tanpa stok sendiri (kolom ditahan di `0`; model baca melaporkan ketersediaan hitungan sebagai `stock`), bukan produk jasa, dan tidak layak flash sale. 1–20 komponennya adalah baris `awcms_commerce_bundle_components` (FK tenant komposit, RLS FORCE). **Tanpa nesting**: trigger menolak komponen yang berupa bundel dan produk komponen yang menjadi bundel, sehingga siklus tidak mungkin ada. (Jangan tertukar dengan `type = 'bundle'` dari issue #266, tipe deskriptif tanpa semantik stok.)
+- **Harga.** `bundle_pricing` `fixed` (harga produk sendiri) atau `derived` (Σ harga daftar komponen × kuantitas dikurangi `bundle_discount_percent`, half-up ke sen) — `domain/bundle.ts`, sen bilangan bulat. `finalPrice` publik bundel derived membawa harga turunan; `price` dibiarkan.
+- **Satu baris, satu snapshot.** `application/cart-quote-service.ts` melipat bundel ke snapshot produknya (`stock` = `min floor(stok komponen / kuantitas)`); bundel dijual sebagai SATU item pesanan, plus baris append-only `awcms_commerce_order_item_components` (`sql/954`: unit, teks saat terjual, `allocated_value` dibagi dengan sisa-terbesar, Σ = total baris) yang ditulis `sellBundleLine` di `application/bundle-directory.ts`.
+- **Stok.** Baris bundel tidak menggerakkan apa pun; komponennya yang bergerak. `counter`: komponen dikunci (`FOR NO KEY UPDATE`, produk lalu varian, id menaik), keranjang ditawar ulang terhadap hitungan terkunci, baru dikurangi. `ledger`: satu `sale` per komponen lewat seam ADR-0038, baris sumber `<orderItemId>:c<position>`, diurutkan bersama baris lain dalam savepoint yang sama. Batal/kedaluwarsa (`commerce_order_restock`) dan retur bundel utuh (`commerce_return`, `<returnLineId>:c<position>`) membaca snapshot, bukan definisi saat ini.
+- **Pajak.** Satu baris, dipajaki menurut kategori pajak produk bundel sendiri (kelas per komponen ditunda).
+- **Admin.** Formulir produk punya sakelar Bundle, strategi harga, persen diskon, dan textarea isi `SKU x jumlah` (`lib/ui/commerce-bundle-form.ts`); `POST/PATCH /products` menerima `kind`, `bundlePricing`, `bundleDiscountPercent`, dan `bundleComponents` (id atau SKU). Tanpa izin baru. Pencarian POS dan pemindaian barcode menemukan bundel seperti produk lain; halaman produk etalase mendaftar "Isi paket".
+- **Tes.** `tests/commerce-bundles-domain.test.ts`, `tests/commerce-bundle-form.test.ts`, `tests/integration/commerce-bundles.integration.test.ts`; etalase (workspace `apps/storefront`, tes build-smoke `paket-build-smoke`).
 
 ## Dengan sengaja tidak ada di sini
 

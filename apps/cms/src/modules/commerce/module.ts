@@ -1768,6 +1768,49 @@ export const commerceModule = defineModule({
       executionMode: "generic"
     },
     {
+      key: "commerce.bundle_components",
+      tableName: "awcms_commerce_bundle_components",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "deleted_at",
+      // Issue #290 (ADR-0036). A bundle's component lines. A LIVE line has
+      // `deleted_at IS NULL`, so the generic purge engine can never reach one;
+      // only a line an edit REPLACED (soft-deleted) ages out, after the window
+      // below. The window is the catalog family's "wide, a mistaken edit is
+      // often noticed late" range.
+      retentionClass: "system_event",
+      retentionMinDays: 30,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 365,
+      partition: {
+        eligible: false,
+        rationale:
+          "At most 20 live lines per bundle product, admin-authored; replaced lines are short-lived. A catalog table, nowhere near partition-worthy."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A bundle's definition is the merchant's own catalog description, reconstructible from their records; what a SOLD bundle was made of is the order's immutable snapshot (commerce.order_item_components), not this table."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only implemented mode; safe because the cursor column (deleted_at) is NULL for every live line, so a live line is never a purge candidate."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "deleted_at"],
+          purpose:
+            "awcms_commerce_bundle_components_tenant_deleted_idx (sql/953) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "generic"
+    },
+    {
       key: "commerce.order_item_components",
       tableName: "awcms_commerce_order_item_components",
       ownerModuleKey: "commerce",

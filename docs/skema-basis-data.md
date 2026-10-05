@@ -399,6 +399,19 @@ Migration `961` seeds `commerce.attributes.{read,manage}` and `commerce.products
 
 `sql/948` also grants `awcms_worker` `INSERT, UPDATE` on `awcms_tax_snapshots` (the expiry job reverses an expired order's tax; `UPDATE` only lets `SELECT ... FOR UPDATE` lock the original — the append-only trigger still refuses every real update), asserted in `security-readiness.ts`.
 
+## Bundles: three columns, two tables, four triggers (`sql/953`–`955`, issue #290, [ADR-0036](adr/0036-bundles-are-component-stocked-products-sold-as-one-line.md))
+
+| Object | Shape | Notes |
+| --- | --- | --- |
+| `awcms_commerce_products` | `kind text NOT NULL DEFAULT 'standard'` (`CHECK IN ('standard','bundle')`), `bundle_pricing text NOT NULL DEFAULT 'fixed'` (`CHECK IN ('fixed','derived')`), `bundle_discount_percent numeric(5,2)` (0–100, derived only) | One `CHECK` ties them: a bundle has `stock = 0` and no `service_form`; a standard product carries the defaults. The two composite-FK target indexes `(tenant_id, id)` on products and `(id, product_id)` on variants are created here under the names `sql/960` also uses (`IF NOT EXISTS`), so this file depends on nothing above 948 |
+| `awcms_commerce_bundle_components` | `(id, tenant_id, bundle_product_id, position smallint 1–20, component_product_id, component_variant_id?, quantity 1–10000, created_at, updated_at, actor_tenant_user_id?, deleted_at?)` | `FORCE` RLS + tenant policy; composite FKs `(tenant_id, bundle_product_id)` and `(tenant_id, component_product_id)` -> products, `(component_variant_id, component_product_id)` -> variants; partial `UNIQUE (tenant, bundle, position)` and `UNIQUE (tenant, bundle, component product, COALESCE(variant, nil))`, both `WHERE deleted_at IS NULL`; a bundle cannot name itself (`CHECK`). An edit soft-deletes the replaced lines (`deleted_at`, the purge engine's cursor; a live line is never a purge candidate); a `dataLifecycle` and a `subjectData` descriptor are registered |
+| `awcms_commerce_order_item_components` | `(id, tenant_id, order_item_id, position, component_product_id, component_variant_id?, sku?, name, variant_name?, quantity_per_bundle, quantity_total, allocated_value numeric(14,2), created_at)` (`sql/954`) | `FORCE` RLS; composite FK `(tenant_id, order_item_id)` -> order items `ON DELETE CASCADE` (the `(tenant_id, id)` key sql/994 also creates is made here first); `UNIQUE (tenant, order item, position)`; `UPDATE`/`DELETE` revoked from `awcms_app` and a trigger refuses an update. A `dataLifecycle` descriptor (cursor `created_at`, ten years) and `subjectData` descriptor are registered |
+| trigger `awcms_commerce_bundle_components_guard` | `BEFORE INSERT OR UPDATE` on components | The bundle row must be a bundle (locked `FOR NO KEY UPDATE`); the component row is locked `FOR SHARE` and must be live and **not a bundle** (no nesting); a product with live variants must name a variant, and the variant must be live; at most 20 lines |
+| trigger `awcms_commerce_products_kind_guard` | `BEFORE UPDATE OF kind` on products | Refuses a product with live variants, a product used as a component, or a product in a flash sale becoming a bundle; and a bundle that still has components becoming standard |
+| triggers `awcms_commerce_bundle_no_variants_guard` / `awcms_commerce_bundle_no_flash_sale_guard` | `BEFORE INSERT` on variants / flash-sale products | A bundle cannot have variants and cannot be named by a flash sale |
+
+`sql/955` grants `awcms_worker` `SELECT, DELETE` on both tables (the expiry restock reads the snapshot; the retention engine ages both); `security-readiness.ts` records the application role's `SELECT, INSERT` on the snapshot and the worker's `SELECT, DELETE` on both.
+
 ## Row-level security: `ENABLE` and `FORCE`, proven under the unprivileged role
 
 Every table above carries `ALTER TABLE ... ENABLE ROW LEVEL SECURITY` **and** `ALTER TABLE ... FORCE ROW LEVEL SECURITY`, with one tenant-isolation policy each:
