@@ -10293,9 +10293,9 @@ Transactional, not marketing: the message is built from the STORED source only (
 
 **Parameters**
 
-| Name              | In     | Required | Type   | Description |
-| ----------------- | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key` | header | yes      | string |             |
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -10345,9 +10345,9 @@ The document is a frozen snapshot of the order (seller, customer, lines, totals,
 
 **Parameters**
 
-| Name              | In     | Required | Type   | Description |
-| ----------------- | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key` | header | yes      | string |             |
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -11077,9 +11077,9 @@ Stores the cart's lines (`productId`, `variantId`, `quantity`), an optional cust
 
 **Parameters**
 
-| Name              | In     | Required | Type   | Description |
-| ----------------- | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key` | header | yes      | string |             |
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -11103,10 +11103,10 @@ Same ownership rule, idempotency and errors as `resume`; the cart is wiped and n
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Responses**
 
@@ -11128,10 +11128,10 @@ Single-use: the cart's lines (and optional customer and notes) are returned once
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Responses**
 
@@ -12315,9 +12315,9 @@ The lines are priced by the ordinary quote engine (self-pickup, the customer's t
 
 **Parameters**
 
-| Name              | In     | Required | Type   | Description |
-| ----------------- | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key` | header | yes      | string |             |
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -12363,11 +12363,11 @@ Each version carries its lines, totals, validity, pricing context and content ha
 
 **Parameters**
 
-| Name              | In     | Required | Type                                       | Description |
-| ----------------- | ------ | -------- | ------------------------------------------ | ----------- |
-| `id`              | path   | yes      | string (uuid)                              |             |
-| `action`          | path   | yes      | enum(`send`, `accept`, `reject`, `cancel`) |             |
-| `Idempotency-Key` | header | yes      | string                                     |             |
+| Name              | In     | Required | Type                                       | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid)                              |                                                                                                                                                                                                                 |
+| `action`          | path   | yes      | enum(`send`, `accept`, `reject`, `cancel`) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string                                     | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (optional): object
 
@@ -12391,10 +12391,10 @@ The order is written by the ordinary POS order path (`channel: pos`, `allowDue`,
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (optional): object
 
@@ -12419,10 +12419,10 @@ Re-prices the new lines and freezes them as version N+1 with their own validity;
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -13981,9 +13981,9 @@ Optionally from an ACCEPTED (or converted) quotation - the accepted version beco
 
 **Parameters**
 
-| Name              | In     | Required | Type   | Description |
-| ----------------- | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key` | header | yes      | string |             |
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -14029,10 +14029,10 @@ Legal status edges: received -> scheduled | in_progress | cancelled; scheduled -
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
