@@ -552,7 +552,12 @@ export const commerceModule = defineModule({
     // (`idn_admin_regions/application/region-lookup.ts`) to turn a
     // tenant's own district code into the district/city name pair a
     // courier provider's destination search needs.
-    "idn_admin_regions"
+    "idn_admin_regions",
+    // Issue #293 (ADR-0039) — `application/tax-adapter-directory.ts` and
+    // `domain/tax-adapter.ts` call the `tax` module's calculator, rule-version
+    // resolver and snapshot finalise/reverse functions in process (the accepted
+    // pattern, as with `email`); `tax` never depends on commerce.
+    "tax"
   ],
   type: "domain",
   isCore: false,
