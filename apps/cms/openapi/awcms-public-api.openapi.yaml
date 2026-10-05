@@ -37865,6 +37865,38 @@ components:
           type: object
         tax:
           type: object
+          description: "`active`/`percent`/`amount` are the pre-#293 shape. Issue #293 (ADR-0039) adds `mode` (`flat` | `engine`: who computed it), `inclusive` (the tax is already inside the line prices and is NOT added to `total`; engine mode only), `error` (a `tax` module refusal code such as `TAX_RULE_VERSION_NOT_FOUND` when the engine could not answer — `canCheckout` is then false, never an untaxed sale) and `engine` ({profileCode, versionNo, ruleVersionId, taxDate}, null in flat mode). In engine mode `percent` is the fallback rule's first component rate, for display only; `amount` is the engine's figure."
+          properties:
+            active:
+              type: boolean
+            percent:
+              type: number
+            amount:
+              type: string
+            mode:
+              type: string
+              enum:
+                - flat
+                - engine
+            inclusive:
+              type: boolean
+            error:
+              type: string
+              nullable: true
+            engine:
+              type: object
+              nullable: true
+              properties:
+                profileCode:
+                  type: string
+                versionNo:
+                  type: integer
+                ruleVersionId:
+                  type: string
+                  nullable: true
+                taxDate:
+                  type: string
+                  format: date
         discount:
           type: string
         total:
@@ -40088,6 +40120,12 @@ components:
         downloadLink:
           type: string
           nullable: true
+        taxCategoryCode:
+          type: string
+          nullable: true
+          maxLength: 63
+          pattern: ^[a-z0-9][a-z0-9_.-]{0,62}$
+          description: "Issue #293 (ADR-0039) — the product's tax class: a tax rule category code (`tax` module, ADR-0127). null/blank = standard (the rule version's fallback rule). Product level only — a variant never differs in tax class. Used only in `engine` tax mode; admin-only (never on the public `CommerceProduct`)."
         allowDp:
           type: boolean
           default: false
@@ -41582,6 +41620,17 @@ components:
           type: string
           nullable: true
           description: "Issue #92 — numeric(5,2) as a string, 0-100, two decimals. A real column, not part of this jsonb document (sql/921's header) — included here on the wire only. null means the affiliate program is OFF for this tenant; a non-null value both turns it on and is the rate a NEW enrolment copies."
+        taxMode:
+          type: string
+          enum:
+            - flat
+            - engine
+          readOnly: true
+          description: "Issue #293 (ADR-0039) — READ-ONLY on the wire (a `PUT` carrying it is refused as an unrecognised field). `flat` (the default): tax is `payment.tax.percent` of the subtotal less the voucher discount. `engine`: the `tax` module prices carts and finalises a snapshot per order. A real column on the store-settings row (sql/948), flipped only by the audited `commerce:tax:cutover` tooling."
+        taxProfileCode:
+          type: string
+          readOnly: true
+          description: "Issue #293 — the tax module profile used in `engine` mode (default `store-default`). Read-only."
     CommerceStoreSettingsPublic:
       type: object
       description: The subset a storefront may publish — the contract awcms-one's storefront builds against. Never carries an account number, account holder or QRIS payload.

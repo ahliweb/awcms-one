@@ -1,0 +1,16 @@
+---
+bump: minor
+type: structure
+impact: public
+---
+
+# Commerce tax moves onto the `tax` module, per tenant (issue #293, ADR-0039)
+
+Until now a store's tax was one number, `payment.tax.percent`, applied once to `subtotal - voucher discount`. Upstream AWCMS's generic `tax` module (`awcms` ADR-0127, arrived with the v10.5.0 sync) can express what that number cannot — a rate that changes on a date, exempt and zero-rated categories, prices that already include tax, and a refund that takes back exactly the tax that was charged. This change is the adapter, behind a per-tenant mode so nobody moves until an operator moves them: `flat` (the default) is the existing arithmetic byte for byte, `engine` asks the module.
+
+- New: `awcms_commerce_store_settings.tax_mode` / `tax_profile_code`, `awcms_commerce_products.tax_category_code` and `awcms_commerce_orders.tax_snapshot_id` (a composite FK to the tax snapshot ledger), all in `apps/cms/sql/948_awcms_commerce_tax_adapter.sql` — nullable or defaulted, nothing backfilled. `commerce` now declares `tax` in its module dependencies.
+- In `engine` mode the cart, POS and quotation quote use the module's calculator (the store's `Asia/Jakarta` business date picks the effective-dated version); a voucher is allocated across the lines in cents so, with the same percentage, the engine equals the flat figure exactly — proven by a seeded property test. A storefront or POS order finalises exactly one tax snapshot in its own transaction and stores its id; a return reverses the returned units' tax, and a cancelled or expired order the rest, from the ORIGINAL snapshot, never from today's rule. A tax the engine cannot answer blocks checkout instead of selling untaxed.
+- New ops-only `bun run commerce:tax:cutover` (dry-run by default; `--commit`, `--tenant`, `--sample`, `--since`, `--rollback`): derives the `store-default` version from the current settings, re-prices the tenant's recent orders in shadow and **refuses to flip unless every one matches to the cent**. The flip and its rollback are audited (`tax_mode.update`). Runbook: `docs/deployment.md`, including `bun run identity-access:permissions:backfill` so existing tenants' owners hold the `tax.*` permissions.
+- Additive API shapes: the cart quote's `tax` gains `mode`, `inclusive`, `error` and `engine`; admin store settings `GET` gains the read-only `taxMode` / `taxProfileCode`; product create/update/admin read gain `taxCategoryCode`. The product form has a Tax category field; store settings shows the mode.
+- `awcms_worker` gains `INSERT, UPDATE` on `awcms_tax_snapshots` so the expiry job can reverse an expired engine order's tax (the append-only trigger still refuses real updates); a settings reset no longer stamps an engine-mode row for purge.
+- Not here, by decision: no commerce tax report (the module's snapshot ledger and reconciliation report are the tax report, superseding ADR-0035 D1's note for #293); no country profile or rate (a rate change is a new effective-dated version authored in `/admin/tax`); no change to refund arithmetic (a return still does not repay tax to the customer — it is reversed in the tax ledger only); Coretax / e-Faktur export is an upstream follow-up.

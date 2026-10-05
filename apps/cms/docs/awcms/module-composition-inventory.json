@@ -71,7 +71,8 @@
         "module_management",
         "email",
         "profile_identity",
-        "idn_admin_regions"
+        "idn_admin_regions",
+        "tax"
       ],
       "capabilitiesProvided": [],
       "capabilitiesConsumed": [],
