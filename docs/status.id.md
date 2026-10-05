@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](status.md)
 
-<!-- i18n-source-hash: sha256:908414005cdf22d28fce4d13267c8584045893dff4f8865ac64f47f3b106a0f7 -->
+<!-- i18n-source-hash: sha256:b0cdbc850925fdf84c21b93c7ec80b6f3a26b39fe58a517bf8387a26399d58c3 -->
 
 # Status
 
@@ -69,6 +69,10 @@ Issue #295 (epic #281) mengirim struk, faktur, versi penawaran, atau pemberitahu
 ## Barcode, label, input pemindai, dan pintasan kasir ([ADR-0032](adr/0032-barcodes-are-a-derived-identifier-and-the-cashier-keyboard-layer-is-chord-only.md))
 
 Issue #292 (epic #281) memberi produk atau varian sebuah **barcode** dan memberi meja kasir cara yang mengutamakan keyboard untuk memakainya. Kodenya berada di kolom `barcode` nullable pada `awcms_commerce_products` dan `…_product_variants` (`sql/975`), unik per tenant di antara baris hidup dari kedua tabel (indeks unik parsial ditambah trigger lintas tabel di bawah advisory lock berstrip); kode numerik 8/12/13/14 digit adalah GTIN dan memerlukan digit pemeriksa yang valid, selain itu adalah kode internal Code 128 bebas, dan simbologi diturunkan, tidak pernah disimpan. `GET /api/v1/commerce/barcodes/lookup` menyelesaikan pindaian menjadi satu baris (satu `404` netral untuk kode tak dikenal, terhapus, dan milik tenant lain), `PUT /api/v1/commerce/barcodes` menetapkan, dan `/admin/commerce-labels` menelusuri, menetapkan, dan mencetak lembar label yang dirender server hanya dari angka (encoder Code 128 dan EAN-13/EAN-8, tanpa dependensi baru; cetak peramban). Pada layar POS tersedia kolom pindai, detektor semburan pemindai cepat global yang tidak pernah aktif di kolom teks, dan lapisan pintasan yang dapat dikonfigurasi dan hanya berbasis kombinasi tombol (bawaan tenant, penimpaan pribadi disimpan di peramban) dengan dialog bantuan/ikat-ulang yang terlihat. Dua izin yang dipisah per sumber daya (`commerce.barcodes.{read,update}`), dan seluruh permukaan berada di balik feature flag `barcode` yang **bawaannya MATI**; alur mouse/sentuh yang ada tidak berubah.
+
+## Inventory, tax, dan procurement: modul upstream kini ada di `apps/cms`
+
+Sinkronisasi subtree v10.5.0 ([issue #319](https://github.com/ahliweb/awcms-one/issues/319)) membawa tiga modul milik upstream (`awcms`) ke `apps/cms`: `inventory` (buku besar stok multi-lokasi, ADR-0126, `sql/169`–`170`), `tax` (kalkulasi pajak netral yurisdiksi, ADR-0127, `sql/171`–`173`) dan `procurement` (dokumen pemasok, penerimaan, dan transfer, ADR-0128, `sql/174`–`175`), masing-masing dengan layar admin, fragmen OpenAPI, dan izinnya. Modul-modul itu tersedia di sana tetapi **belum dihubungkan ke `commerce`**: commerce tetap memakai stok sederhana dan harga inklusif pajaknya sendiri, dan adapter yang akan mengarahkan pergerakan stok, pajak, dan penerimaan commerce lewat modul-modul ini tetap dilacak di [#282](https://github.com/ahliweb/awcms-one/issues/282) (stok multi-lokasi), [#293](https://github.com/ahliweb/awcms-one/issues/293) (pajak) dan [#283](https://github.com/ahliweb/awcms-one/issues/283) (pembelian/penerimaan). Sinkronisasi ini juga memindahkan setiap parameter OpenAPI `Idempotency-Key` commerce ke komponen bersama upstream (ADR-0129) dan memberi tabel admin commerce region `.data-table-scroll` yang dapat difokus dan bernama.
 
 ## `apps/storefront` — profil build (ADR-0018)
 
