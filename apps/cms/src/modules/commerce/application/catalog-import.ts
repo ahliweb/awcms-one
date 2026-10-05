@@ -77,6 +77,7 @@ import {
   applyAttributeAssignments,
   loadCanonicalProductValues
 } from "./attribute-value-directory";
+import { BundleDefinitionInvalidError } from "./bundle-directory";
 import {
   createProduct,
   DuplicateProductSkuError,
@@ -674,6 +675,7 @@ function isExpectedWriteConflict(error: unknown): boolean {
   return (
     error instanceof RowWriteError ||
     error instanceof StockManagedByInventoryError ||
+    error instanceof BundleDefinitionInvalidError ||
     error instanceof DuplicateProductSlugError ||
     error instanceof DuplicateProductSkuError ||
     error instanceof ProductCategoryNotFoundError ||

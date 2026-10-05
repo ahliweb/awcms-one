@@ -96,6 +96,14 @@ import {
 } from "../domain/commerce-events";
 import { buildCartQuote } from "./cart-quote-service";
 import {
+  loadComponentFactsByItem,
+  lockBundleComponentStock,
+  restockBundleComponentCounters,
+  quoteHasBundle,
+  sellBundleLine
+} from "./bundle-directory";
+import { expandBundleLines } from "../domain/bundle";
+import {
   fetchCustomerById,
   findOrCreateCustomerByPhone,
   saveCustomerAddress
@@ -946,26 +954,37 @@ async function createOrderFromCartWrite(
       ? (accountCustomer.level as 1 | 2 | 3 | 4)
       : null;
 
-  const quote = await buildCartQuote(
-    tx,
-    tenantId,
-    mediaPort,
-    {
-      lines: input.lines,
-      shipping: input.shipping,
-      voucherCode: input.voucherCode,
-      insurance: input.insurance,
-      // Issue #107 — the re-quote inside THIS write transaction never calls
-      // a live provider (no `providerSql` argument below): a chosen
-      // courier option is only ever honoured against an ALREADY-cached
-      // rate, keyed off the delivery address's own district code.
-      destination: input.address
-        ? { districtCode: input.address.districtCode }
-        : null,
-      customerLevel
-    },
-    now
-  );
+  const requote = (): ReturnType<typeof buildCartQuote> =>
+    buildCartQuote(
+      tx,
+      tenantId,
+      mediaPort,
+      {
+        lines: input.lines,
+        shipping: input.shipping,
+        voucherCode: input.voucherCode,
+        insurance: input.insurance,
+        // Issue #107 — the re-quote inside THIS write transaction never calls
+        // a live provider (no `providerSql` argument below): a chosen
+        // courier option is only ever honoured against an ALREADY-cached
+        // rate, keyed off the delivery address's own district code.
+        destination: input.address
+          ? { districtCode: input.address.districtCode }
+          : null,
+        customerLevel
+      },
+      now
+    );
+  let quote = await requote();
+  // Issue #290 (ADR-0036 D6) - `counter` mode: a bundle's components are locked
+  // (ascending id) and the cart re-quoted against the locked counts, so a sale
+  // that lost the race for the last component unit answers `cart_changed`
+  // before any row of the order exists. `ledger` mode needs neither: the
+  // ledger post is the guard.
+  if (inventory.mode === "counter" && quoteHasBundle(quote)) {
+    await lockBundleComponentStock(tx, tenantId, quote);
+    quote = await requote();
+  }
 
   const paymentAvailable = quote.paymentMethods.some(
     (method) => method.method === input.payment.method && method.available
@@ -1034,7 +1053,17 @@ async function createOrderFromCartWrite(
     `) as { id: string }[];
     orderItemIds.push(itemRows[0]!.id);
 
-    if (inventory.mode === "ledger") {
+    if (line.bundle) {
+      // Issue #290 - the bundle line moves no stock itself; its components do.
+      await sellBundleLine(
+        tx,
+        tenantId,
+        inventory.mode,
+        itemRows[0]!.id,
+        { ...line, bundle: line.bundle },
+        ledgerLines
+      );
+    } else if (inventory.mode === "ledger") {
       ledgerLines.push({
         lineId: itemRows[0]!.id,
         productId: line.productId,
@@ -1559,6 +1588,14 @@ async function restockCancelledOrRefreshedOrder(
     flash_sale_id: string | null;
   }[];
 
+  // Issue #290 - a bundle line has no stock of its own: its immutable component
+  // snapshot says which component units to put back (empty for a standard line).
+  const bundleFacts = await loadComponentFactsByItem(
+    tx,
+    tenantId,
+    items.map((item) => item.id)
+  );
+
   // Issue #282 - `ledger` mode puts the units back through the port (a
   // `sale_return`, sorted, in this transaction); `counter` mode is unchanged.
   if (inventory.mode === "ledger") {
@@ -1567,18 +1604,38 @@ async function restockCancelledOrRefreshedOrder(
       tenantId,
       inventory,
       orderId,
-      items.map((item) => ({
-        lineId: item.id,
-        productId: item.product_id,
-        variantId: item.variant_id,
-        quantity: item.quantity
-      })),
+      expandBundleLines(
+        items.map((item) => ({
+          lineId: item.id,
+          productId: item.product_id,
+          variantId: item.variant_id,
+          quantity: item.quantity
+        })),
+        bundleFacts
+      ),
       { actorTenantUserId, correlationId }
     );
   }
 
+  // `counter` mode: a bundle line's components go back to their own counters
+  // (ascending id, the order the sale decremented them in).
+  if (inventory.mode === "counter" && bundleFacts.size > 0) {
+    await restockBundleComponentCounters(
+      tx,
+      tenantId,
+      items
+        .filter((item) => bundleFacts.has(item.id))
+        .map((item) => ({
+          quantity: item.quantity,
+          components: bundleFacts.get(item.id)!
+        }))
+    );
+  }
+
   for (const item of items) {
-    if (inventory.mode === "counter" && item.variant_id) {
+    if (bundleFacts.has(item.id)) {
+      // The bundle line itself restocks nothing: its components did, above.
+    } else if (inventory.mode === "counter" && item.variant_id) {
       await tx`
         UPDATE awcms_commerce_product_variants
         SET stock = stock + ${item.quantity}, updated_at = now()

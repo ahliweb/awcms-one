@@ -1,0 +1,12 @@
+-- Issue #290 (ADR-0036) — `awcms_worker` grants for the bundle snapshot.
+--
+-- `commerce:orders:expire` restocks an expired order as `awcms_worker`; for a
+-- bundle line it must read the order's component snapshot to know which
+-- component units to put back (the stock writes themselves are the existing
+-- product/variant grants and, in ledger mode, sql/947's). The retention engine
+-- (`commerce.order_item_components`, cursor `created_at`, `hard_delete`) needs
+-- SELECT + DELETE. No INSERT/UPDATE: the worker never writes a snapshot.
+--
+-- The component DEFINITIONS (awcms_commerce_bundle_components) are
+-- admin-authored and bounded (<= 20 per bundle); the worker never touches them.
+GRANT SELECT, DELETE ON awcms_commerce_order_item_components TO awcms_worker;

@@ -337,6 +337,9 @@ async function flashSaleExists(
 }
 
 /** `productId` live, AND (when set) `variantId` live and belonging to THAT product — one round trip covers both, mirroring `product-variant-directory.ts`'s own existence check shape. */
+// Issue #290 (ADR-0036): a bundle has no stock of its own and is not flash-sale
+// eligible - the `kind = 'standard'` filter below refuses it exactly like an
+// unknown product.
 async function productAndVariantReferenceValid(
   tx: Bun.SQL,
   tenantId: string,
@@ -346,6 +349,7 @@ async function productAndVariantReferenceValid(
   const productRows = (await tx`
     SELECT 1 FROM awcms_commerce_products
     WHERE tenant_id = ${tenantId} AND id = ${productId} AND deleted_at IS NULL
+      AND kind = 'standard'
   `) as unknown[];
   if (productRows.length === 0) return false;
 

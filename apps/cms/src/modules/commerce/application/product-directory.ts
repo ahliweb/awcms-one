@@ -1,6 +1,13 @@
 import { recordAuditEvent } from "../../logging/application/audit-log";
 import { assertStockWritable } from "./commerce-inventory";
 import {
+  applyBundleDefinition,
+  attachBundles,
+  BundleDefinitionInvalidError,
+  type BundleDTO
+} from "./bundle-directory";
+import type { BundlePricing, ProductKind } from "../domain/bundle";
+import {
   keysetCursorCreatedAtSql,
   encodeKeysetCursor,
   type KeysetCursor
@@ -147,7 +154,8 @@ const PRODUCT_COLUMNS = `
   size_chart_type, size_chart_media_id, size_chart_details,
   service_form, subscription_period, download_link,
   allow_dp, allow_free_shipping, variant_attributes,
-  is_featured, is_recommended, tax_category_code
+  is_featured, is_recommended, tax_category_code,
+  kind, bundle_pricing, bundle_discount_percent
 `;
 
 type ProductRow = {
@@ -194,6 +202,9 @@ type ProductRow = {
   is_featured: boolean;
   is_recommended: boolean;
   tax_category_code: string | null;
+  kind: string;
+  bundle_pricing: string;
+  bundle_discount_percent: string | null;
 };
 
 /**
@@ -252,6 +263,15 @@ export type ProductRecord = {
   averageRating: string | null;
   /** = `manualSoldCount`. */
   soldCount: number;
+  /**
+   * Issue #290 (ADR-0036): `standard`, or `bundle` - a product made of
+   * components, with no variants and no stock column of its own (the public
+   * read model reports its COMPUTED availability as `stock`).
+   */
+  kind: ProductKind;
+  bundlePricing: BundlePricing;
+  /** `numeric(5,2)` text; `derived` bundles only. */
+  bundleDiscountPercent: string | null;
 };
 
 /**
@@ -321,7 +341,10 @@ function toRecord(row: ProductRow): ProductRecord {
     isRecommended: row.is_recommended,
     finalPrice: computeFinalPrice(row.price, row.discount_percent),
     averageRating: row.manual_rating,
-    soldCount: row.manual_sold_count
+    soldCount: row.manual_sold_count,
+    kind: row.kind as ProductKind,
+    bundlePricing: row.bundle_pricing as BundlePricing,
+    bundleDiscountPercent: row.bundle_discount_percent
   };
 }
 
@@ -711,6 +734,25 @@ export async function createProduct(
     throw error;
   }
 
+  // Issue #290 (ADR-0036) - the bundle part of the definition. It runs on the
+  // freshly inserted row, before the audit/event writes, and a refusal is a
+  // 400 whose transaction is rolled back with the insert.
+  if (input.kind === "bundle" || input.bundleComponents !== undefined) {
+    await applyBundleDefinition(tx, tenantId, actorTenantUserId, rows[0]!.id, {
+      kind: input.kind ?? "standard",
+      pricing: input.bundlePricing ?? "fixed",
+      discountPercent: input.bundleDiscountPercent ?? null,
+      components: input.bundleComponents,
+      stock: input.stock,
+      hasServiceForm: input.serviceForm !== null
+    });
+    rows = (await tx`
+      SELECT ${tx.unsafe(PRODUCT_COLUMNS)}
+      FROM awcms_commerce_products
+      WHERE tenant_id = ${tenantId} AND id = ${rows[0]!.id}
+    `) as ProductRow[];
+  }
+
   const record = toRecord(rows[0]!);
 
   await recordAuditEvent(tx, {
@@ -768,6 +810,26 @@ export async function updateProduct(
   // leave it untouched when the caller does not send it.
   const existing = await fetchProductByIdForAdmin(tx, tenantId, productId);
   if (!existing) return null;
+
+  // Issue #290 - a bundle has no stock of its own and is not a service product;
+  // refused here, before the UPDATE below could trip the table's CHECK.
+  if (existing.kind === "bundle") {
+    const early: { field: string; message: string }[] = [];
+    if (input.stock !== undefined && input.stock !== 0) {
+      early.push({
+        field: "stock",
+        message:
+          "A bundle has no stock of its own: its availability is computed from its components."
+      });
+    }
+    if (input.serviceForm !== undefined && input.serviceForm !== null) {
+      early.push({
+        field: "serviceForm",
+        message: "A bundle cannot be a service product."
+      });
+    }
+    if (early.length > 0) throw new BundleDefinitionInvalidError(early);
+  }
 
   if (input.categoryId !== undefined && input.categoryId !== null) {
     const category = await fetchCategoryById(tx, tenantId, input.categoryId);
@@ -892,6 +954,38 @@ export async function updateProduct(
   }
 
   if (rows.length === 0) return null;
+
+  // Issue #290 (ADR-0036) - the bundle part of the definition, over the MERGED
+  // next state. Only when the patch touches it, or the product already is a
+  // bundle (whose no-stock / no-service-form rules must keep holding).
+  const bundleTouched =
+    input.kind !== undefined ||
+    input.bundlePricing !== undefined ||
+    input.bundleDiscountPercent !== undefined ||
+    input.bundleComponents !== undefined;
+  if (bundleTouched || existing.kind === "bundle") {
+    await applyBundleDefinition(tx, tenantId, actorTenantUserId, productId, {
+      kind: input.kind ?? existing.kind,
+      pricing: input.bundlePricing ?? existing.bundlePricing,
+      discountPercent:
+        input.bundleDiscountPercent !== undefined
+          ? input.bundleDiscountPercent
+          : existing.bundleDiscountPercent,
+      components: input.bundleComponents,
+      // A product becoming a bundle is zeroed by the write; only an explicit
+      // non-zero `stock` in the patch is refused.
+      stock: input.stock ?? (input.kind === "bundle" ? 0 : existing.stock),
+      hasServiceForm:
+        (input.serviceForm === undefined
+          ? existing.serviceForm
+          : input.serviceForm) !== null
+    });
+    rows = (await tx`
+      SELECT ${tx.unsafe(PRODUCT_COLUMNS)}
+      FROM awcms_commerce_products
+      WHERE tenant_id = ${tenantId} AND id = ${productId}
+    `) as ProductRow[];
+  }
 
   const record = toRecord(rows[0]!);
 
@@ -1133,6 +1227,8 @@ export type ProductWithRelations = ProductRecord & {
    * resolvable — the same three-way silence `images[].publicUrl` keeps.
    */
   sizeChartImageUrl: string | null;
+  /** Issue #290 - the bundle's pricing and contents; `null` for a standard product. */
+  bundle: BundleDTO | null;
 };
 
 function toImageDTO(
@@ -1239,7 +1335,11 @@ export async function attachProductRelations(
     variantsByProduct.set(row.product_id, list);
   }
 
-  return products.map((product) => ({
+  // Issue #290 - a bundle's `stock` becomes its computed availability here, so
+  // every reader of the catalog read model keeps reading `stock`.
+  const bundled = await attachBundles(tx, tenantId, products);
+
+  return bundled.map((product) => ({
     ...product,
     images: imagesByProduct.get(product.id) ?? [],
     variants: variantsByProduct.get(product.id) ?? [],

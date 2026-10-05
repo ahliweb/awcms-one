@@ -91,6 +91,8 @@ function toRecord(row: ProductVariantRow): ProductVariantRecord {
   };
 }
 
+// Issue #290 (ADR-0036): a bundle has no variants, so a bundle product is
+// reported exactly like an unknown one (`kind = 'standard'`).
 async function productExists(
   tx: Bun.SQL,
   tenantId: string,
@@ -99,6 +101,7 @@ async function productExists(
   const rows = (await tx`
     SELECT 1 FROM awcms_commerce_products
     WHERE tenant_id = ${tenantId} AND id = ${productId} AND deleted_at IS NULL
+      AND kind = 'standard'
   `) as unknown[];
   return rows.length > 0;
 }

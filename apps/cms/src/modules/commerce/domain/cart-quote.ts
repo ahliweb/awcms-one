@@ -62,6 +62,7 @@ import type {
   CartLineStatus
 } from "./commerce-order-types";
 import type { StoreSettingsData } from "./store-settings-validation";
+import type { BundleLineComponent } from "./bundle";
 import {
   computeEngineTax,
   fallbackRatePercent,
@@ -140,6 +141,14 @@ export type CartQuoteProductSnapshot = {
   serviceForm: ServiceFormField[] | null;
   imageUrl: string | null;
   imageAlt: string | null;
+  /**
+   * Issue #290 (ADR-0036) - set for a bundle only. The caller has already
+   * folded the bundle into this snapshot: `stock` is the computed
+   * availability and, for `derived` pricing, `price` is the derived price with
+   * `discountPercent` 0 and no tier prices. A bundle is one line: the
+   * components ride along so the order can snapshot them.
+   */
+  bundle?: { components: BundleLineComponent[] } | null;
 };
 
 export type CartQuoteVariantSnapshot = {
@@ -217,6 +226,8 @@ export type CartQuoteLineResult = {
   minPurchase: number | null;
   serviceFormErrors: { fieldId: string; message: string }[] | null;
   serviceFormValues: Record<string, string> | null;
+  /** Issue #290 (ADR-0036) - present only on a bundle line: what one bundle is made of. */
+  bundle?: { components: BundleLineComponent[] };
 };
 
 export type CartQuoteShippingOption = {
@@ -500,7 +511,10 @@ function resolveLine(
     availableStock,
     minPurchase: product.minPurchase,
     serviceFormErrors: serviceFormErrors.length > 0 ? serviceFormErrors : null,
-    serviceFormValues: input.serviceFormValues
+    serviceFormValues: input.serviceFormValues,
+    ...(product.bundle
+      ? { bundle: { components: product.bundle.components } }
+      : {})
   };
 }
 

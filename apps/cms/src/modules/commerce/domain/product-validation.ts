@@ -1,4 +1,8 @@
 import { PRODUCT_TYPES, type ProductType } from "./product-type";
+import {
+  validateBundleDefinitionFields,
+  type BundleDefinitionFields
+} from "./bundle";
 import { TAX_CATEGORY_CODE_PATTERN } from "./tax-adapter";
 import {
   reconcileSizeChart,
@@ -198,7 +202,7 @@ type ProductParityFields = {
   variantAttributes: VariantAttributeGroup[] | null;
   isFeatured: boolean;
   isRecommended: boolean;
-};
+} & BundleDefinitionFields;
 
 /**
  * Validates every Issue #23 field COMMON to create/update, filling `value`
@@ -498,6 +502,9 @@ function validateParityFields(
     );
   }
 
+  // Issue #290 (ADR-0036) - kind, pricing strategy, discount and components.
+  Object.assign(value, validateBundleDefinitionFields(record, errors));
+
   return value;
 }
 
@@ -712,7 +719,11 @@ export function validateCreateProductInput(
       allowFreeShipping: parity.allowFreeShipping ?? true,
       variantAttributes: parity.variantAttributes ?? null,
       isFeatured: parity.isFeatured ?? false,
-      isRecommended: parity.isRecommended ?? false
+      isRecommended: parity.isRecommended ?? false,
+      kind: parity.kind ?? "standard",
+      bundlePricing: parity.bundlePricing ?? "fixed",
+      bundleDiscountPercent: parity.bundleDiscountPercent ?? null,
+      bundleComponents: parity.bundleComponents
     }
   };
 }

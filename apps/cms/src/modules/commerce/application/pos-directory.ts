@@ -129,6 +129,11 @@ import {
   COMMERCE_ORDER_CREATED_EVENT_TYPE
 } from "../domain/commerce-events";
 import { buildCartQuote } from "./cart-quote-service";
+import {
+  lockBundleComponentStock,
+  quoteHasBundle,
+  sellBundleLine
+} from "./bundle-directory";
 import { fetchCommerceFeatures } from "./commerce-feature-gate";
 import { FeatureDisabledError } from "../domain/commerce-features";
 import { gateSaleToRegisterSession } from "./register-session-directory";
@@ -411,25 +416,33 @@ async function createPosOrderWrite(
       ? (customer.level as CustomerLevel)
       : null;
 
-  const quote = await buildCartQuote(
-    tx,
-    tenantId,
-    mediaPort,
-    {
-      lines: input.lines.map((line) => ({
-        productId: line.productId,
-        variantId: line.variantId,
-        quantity: line.quantity,
-        serviceFormValues: null
-      })),
-      shipping: { method: "self_pickup" },
-      voucherCode: null,
-      insurance: false,
-      destination: null,
-      customerLevel
-    },
-    now
-  );
+  const requote = (): ReturnType<typeof buildCartQuote> =>
+    buildCartQuote(
+      tx,
+      tenantId,
+      mediaPort,
+      {
+        lines: input.lines.map((line) => ({
+          productId: line.productId,
+          variantId: line.variantId,
+          quantity: line.quantity,
+          serviceFormValues: null
+        })),
+        shipping: { method: "self_pickup" },
+        voucherCode: null,
+        insurance: false,
+        destination: null,
+        customerLevel
+      },
+      now
+    );
+  let quote = await requote();
+  // Issue #290 - `counter` mode locks a bundle's components and re-quotes (see
+  // `createOrderFromCartWrite`); a short component answers `PosCartChangedError`.
+  if (inventory.mode === "counter" && quoteHasBundle(quote)) {
+    await lockBundleComponentStock(tx, tenantId, quote);
+    quote = await requote();
+  }
 
   // `canCheckout` is lines-only (every line `status: "ok"`): `quote.shipping`
   // may legitimately be `null` when the tenant never enabled self-pickup in
@@ -544,7 +557,17 @@ async function createPosOrderWrite(
     `) as { id: string }[];
     orderItemIds.push(itemRows[0]!.id);
 
-    if (inventory.mode === "ledger") {
+    if (line.bundle) {
+      // Issue #290 - the bundle line moves no stock itself; its components do.
+      await sellBundleLine(
+        tx,
+        tenantId,
+        inventory.mode,
+        itemRows[0]!.id,
+        { ...line, bundle: line.bundle },
+        ledgerLines
+      );
+    } else if (inventory.mode === "ledger") {
       ledgerLines.push({
         lineId: itemRows[0]!.id,
         productId: line.productId,

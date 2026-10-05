@@ -40,6 +40,8 @@
  * Finalised order history is never edited: no order, order item or payment row
  * is updated. A return only ever ADDS rows.
  */
+import { loadComponentFactsByItem } from "./bundle-directory";
+import { componentSourceLine } from "../domain/bundle";
 import { reverseOrderTaxForReturn } from "./tax-adapter-directory";
 import { appendDomainEvent } from "../../domain-event-runtime/application/append-domain-event";
 import { recordAuditEvent } from "../../logging/application/audit-log";
@@ -597,6 +599,7 @@ async function createReturnWrite(
   const returnId = returnRows[0]!.id;
 
   const stockLines = [];
+  const lineOfReturnLine = new Map<string, string>();
   for (const { line, item, value } of valued) {
     const inserted = (await tx`
       INSERT INTO awcms_commerce_return_lines (
@@ -613,6 +616,7 @@ async function createReturnWrite(
       )
       RETURNING id
     `) as { id: string }[];
+    lineOfReturnLine.set(inserted[0]!.id, item.id);
     stockLines.push({
       returnId,
       returnLineId: inserted[0]!.id,
@@ -645,11 +649,43 @@ async function createReturnWrite(
     );
   }
 
-  const stock = await deps.inventory.applyReturn(tx, tenantId, stockLines, {
+  // Issue #290 (ADR-0036 D6) - a bundle is returned in WHOLE bundle units; its
+  // restock disposition applies to every component, each component being its
+  // own port line `<returnLineId>:c<position>` x quantity per bundle. The
+  // return line, its value and its tax reversal stay on the bundle line.
+  const bundleFacts = await loadComponentFactsByItem(
+    tx,
+    tenantId,
+    valued.map(({ item }) => item.id)
+  );
+  const portLines: typeof stockLines = [];
+  for (const line of stockLines) {
+    const components = bundleFacts.get(
+      lineOfReturnLine.get(line.returnLineId)!
+    );
+    if (!components || components.length === 0) {
+      portLines.push(line);
+      continue;
+    }
+    for (const component of components) {
+      portLines.push({
+        ...line,
+        returnLineId: componentSourceLine(
+          line.returnLineId,
+          component.position
+        ),
+        productId: component.productId,
+        variantId: component.variantId,
+        quantity: component.quantityPerBundle * line.quantity
+      });
+    }
+  }
+
+  const stock = await deps.inventory.applyReturn(tx, tenantId, portLines, {
     actorTenantUserId,
     correlationId
   });
-  const expectedRestock = stockLines
+  const expectedRestock = portLines
     .filter((line) => line.disposition === "restock")
     .reduce((sum, line) => sum + line.quantity, 0);
   if (stock.restockedUnits !== expectedRestock) {
