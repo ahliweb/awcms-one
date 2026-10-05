@@ -155,6 +155,39 @@ export const COMMERCE_REFUND_SETTLED_EVENT_TYPE =
 export const COMMERCE_STORED_VALUE_ENTRY_RECORDED_EVENT_TYPE =
   "awcms.commerce.stored_value.entry_recorded";
 
+/**
+ * `inventory` (ADR-0126). Declared here — not imported from
+ * `inventory/domain/inventory-events.ts` — for the same reason as `comments`
+ * above: this foundation module must not depend on a domain module. The
+ * literals are kept identical by the AsyncAPI parity gate.
+ */
+export const INVENTORY_EVENT_VERSION = "1.0";
+export const INVENTORY_MOVEMENT_POSTED_EVENT_TYPE =
+  "awcms.inventory.movement.posted";
+export const INVENTORY_STOCK_LOW_EVENT_TYPE = "awcms.inventory.stock.low";
+
+/**
+ * `tax` (ADR-0127). Declared here — not imported from `tax/domain/tax-events.ts` —
+ * for the same reason as `comments` above: this foundation module must not depend
+ * on a domain module. The AsyncAPI parity gate keeps the literals identical.
+ */
+export const TAX_EVENT_VERSION = "1.0";
+export const TAX_RULE_VERSION_PUBLISHED_EVENT_TYPE =
+  "awcms.tax.rule_version.published";
+export const TAX_SNAPSHOT_FINALISED_EVENT_TYPE = "awcms.tax.snapshot.finalised";
+export const TAX_SNAPSHOT_REVERSED_EVENT_TYPE = "awcms.tax.snapshot.reversed";
+
+/**
+ * `procurement` (ADR-0128). Declared here — not imported from
+ * `procurement/domain/procurement-events.ts` — for the same reason as
+ * `inventory` above. The literals are kept identical by the AsyncAPI parity gate.
+ */
+export const PROCUREMENT_EVENT_VERSION = "1.0";
+export const PROCUREMENT_DOCUMENT_FINALISED_EVENT_TYPE =
+  "awcms.procurement.document.finalised";
+export const PROCUREMENT_DOCUMENT_REVERSED_EVENT_TYPE =
+  "awcms.procurement.document.reversed";
+
 export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
   [
     {
@@ -400,6 +433,48 @@ export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
       eventVersion: COMMERCE_EVENT_VERSION,
       description:
         "One refund leg of a return reached succeeded (Issue #287): the payment-ledger reversal is booked and the proportional compensations (loyalty points, affiliate commission, store credit) are applied. Producer: commerce/application/refund-settlement.ts, in the same transaction. Aggregate is the return; the payload carries ids, tender, destination, amount and how it settled (ledger / provider / offline / store_credit) - never a provider reference, name or phone."
+    },
+    {
+      eventType: INVENTORY_MOVEMENT_POSTED_EVENT_TYPE,
+      eventVersion: INVENTORY_EVENT_VERSION,
+      description:
+        "A stock movement was posted to the append-only inventory ledger and its balance updated, in one transaction. Carries opaque item and source references and decimal-string quantities only — never a note or anything identifying a person. Ordered per balance (location + item)."
+    },
+    {
+      eventType: INVENTORY_STOCK_LOW_EVENT_TYPE,
+      eventVersion: INVENTORY_EVENT_VERSION,
+      description:
+        "A stock balance crossed to or below its low-stock threshold — by a movement or by a threshold change. Published once per downward crossing, not on every movement while the balance stays low."
+    },
+    {
+      eventType: TAX_RULE_VERSION_PUBLISHED_EVENT_TYPE,
+      eventVersion: TAX_EVENT_VERSION,
+      description:
+        "A tax rule version was published and became the rule in force from its effective date; carries the id of the predecessor version whose window it closed, if any. Identifiers, codes and dates only."
+    },
+    {
+      eventType: TAX_SNAPSHOT_FINALISED_EVENT_TYPE,
+      eventVersion: TAX_EVENT_VERSION,
+      description:
+        "A document's tax was finalised into an immutable snapshot. Carries the opaque document reference, the rule version it was computed under and decimal-string totals — no customer data."
+    },
+    {
+      eventType: TAX_SNAPSHOT_REVERSED_EVENT_TYPE,
+      eventVersion: TAX_EVENT_VERSION,
+      description:
+        "A finalised document's tax was reversed (refund/return) from its original snapshot. Totals are negative decimal strings; carries the original snapshot id."
+    },
+    {
+      eventType: PROCUREMENT_DOCUMENT_FINALISED_EVENT_TYPE,
+      eventVersion: PROCUREMENT_EVENT_VERSION,
+      description:
+        "A procurement document (receive, supplier return, requisition or transfer) was finalised and its inventory movements posted through the ledger, in one transaction. Carries opaque ids, the document number and decimal-string cost only — never a supplier name, identifier, note or reason."
+    },
+    {
+      eventType: PROCUREMENT_DOCUMENT_REVERSED_EVENT_TYPE,
+      eventVersion: PROCUREMENT_EVENT_VERSION,
+      description:
+        "A finalised procurement document was reversed: compensating inventory movements were posted and the document marked reversed, in one transaction. Same payload shape as document.finalised."
     }
   ];
 

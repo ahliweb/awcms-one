@@ -166,7 +166,12 @@ const { t } = getTranslatorFor(locale);
         <p id="delivery-history-empty" class="form-hint" hidden>
           {t("Nothing has been sent yet.")}
         </p>
-        <div class="data-table-scroll">
+        <div
+          class="data-table-scroll"
+          role="region"
+          tabindex="0"
+          aria-label={t("Delivery history")}
+        >
           <table
             class="data-table data-table--stack"
             id="delivery-history"

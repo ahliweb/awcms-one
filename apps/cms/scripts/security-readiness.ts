@@ -774,7 +774,24 @@ export const RETIRED_TENANT_TABLE_PRIVILEGES: Record<string, string[]> = {
   awcms_commerce_expenses: ["SELECT", "INSERT", "UPDATE"],
   // Issue #295 / `sql/965`. Append-only delivery requests: written once by the
   // sender role, never rewritten (trigger) and never deleted by it.
-  awcms_commerce_document_deliveries: ["SELECT", "INSERT"]
+  awcms_commerce_document_deliveries: ["SELECT", "INSERT"],
+  // ADR-0126 / `sql/169`. NOT retired — the append-only stock ledger and its
+  // low-stock signals. A finalised movement is corrected by a compensating
+  // movement, never edited, so the runtime keeps exactly the two verbs posting
+  // needs; a row trigger refuses UPDATE/DELETE as the second layer.
+  awcms_inventory_movements: ["SELECT", "INSERT"],
+  awcms_inventory_low_stock_signals: ["SELECT", "INSERT"],
+  // Balances are UPDATEd by every posting and by rebuild, but never DELETEd: a
+  // balance row is the lock target for "the last unit", and deleting one under
+  // a waiting poster would let two rows for the same key exist.
+  awcms_inventory_balances: ["SELECT", "INSERT", "UPDATE"],
+  // ADR-0128 / `sql/174`. NOT retired — procurement documents and suppliers are
+  // never DELETEd (cancel/reverse/soft-delete instead); a trigger refuses
+  // DELETE as the second layer. The link and event tables are append-only.
+  awcms_procurement_suppliers: ["SELECT", "INSERT", "UPDATE"],
+  awcms_procurement_documents: ["SELECT", "INSERT", "UPDATE"],
+  awcms_procurement_document_movements: ["SELECT", "INSERT"],
+  awcms_procurement_document_events: ["SELECT", "INSERT"]
 };
 
 type RlsRow = {
@@ -1517,6 +1534,11 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // `active`, `unsubscribed` or `suppressed` row is never touched by it at all —
   // an unsubscribe record is what answers a later complaint.
   awcms_newsletter_subscribers: ["SELECT", "DELETE"],
+  // ADR-0127 — data-lifecycle:archive-purge (sql/172): SELECT to find aged tax
+  // snapshots, DELETE to remove them. No UPDATE — a snapshot is never edited,
+  // and the immutability trigger refuses to delete anything younger than 1826
+  // days no matter what this role is granted.
+  awcms_tax_snapshots: ["SELECT", "DELETE"],
   // ADR-0042 — edge-cache:purge (sql/068): SELECT claimable rows, UPDATE to
   // take the lease and record the outcome, DELETE to prune rows that completed
   // outside the retention window (the job really does prune — this is not a
@@ -1863,7 +1885,16 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // on the config table too, for the generic data-lifecycle retention purge
   // (sql/166's own header comment on why a hard_delete descriptor needs it).
   awcms_omes_repository_progress_config: ["SELECT", "DELETE"],
-  awcms_omes_repository_progress: ["SELECT", "INSERT", "UPDATE", "DELETE"]
+  awcms_omes_repository_progress: ["SELECT", "INSERT", "UPDATE", "DELETE"],
+  // Issue #887 (sql/169). SELECT only: the reporting engine's incremental
+  // projection worker reads the low-stock transition log as `awcms_worker`
+  // (`bun run reporting:projections:refresh`) and writes exclusively to its own
+  // `awcms_reporting_projection_*` tables. No purge exists for this append-only
+  // table, so no DELETE (ADR-0126 §7).
+  awcms_inventory_low_stock_signals: ["SELECT"],
+  // Issue #888 (sql/174). SELECT only: the reporting engine's projection worker
+  // reads the document-event log as `awcms_worker` (ADR-0128 §7).
+  awcms_procurement_document_events: ["SELECT"]
 };
 
 /**

@@ -513,7 +513,12 @@ const cashierLabel = (id: string): string =>
               </button>
             </div>
           </template>
-          <div class="data-table-scroll">
+          <div
+            class="data-table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label={t("New quotation")}
+          >
             <table class="data-table data-table--stack" id="quotations-table">
               <caption>
                 {tn(
@@ -754,7 +759,12 @@ const cashierLabel = (id: string): string =>
               </button>
             </form>
           )}
-          <div class="data-table-scroll">
+          <div
+            class="data-table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label={t("New work order")}
+          >
             <table class="data-table data-table--stack" id="work-orders-table">
               <caption>
                 {tn(
@@ -920,7 +930,12 @@ const cashierLabel = (id: string): string =>
               </button>
             </form>
           )}
-          <div class="data-table-scroll">
+          <div
+            class="data-table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label={t("Issue a document")}
+          >
             <table class="data-table data-table--stack" id="documents-table">
               <caption>
                 {tn(
@@ -1022,7 +1037,12 @@ const cashierLabel = (id: string): string =>
             role="alert"
             hidden
           />
-          <div class="data-table-scroll">
+          <div
+            class="data-table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label={t("Held sales")}
+          >
             <table class="data-table data-table--stack" id="held-table">
               <caption>
                 {tn(

@@ -153,7 +153,12 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
 
   {canRead && !loadError && (
     <div class="fade-in-up">
-      <div class="data-table-scroll">
+      <div
+        class="data-table-scroll"
+        role="region"
+        tabindex="0"
+        aria-label={t("New campaign")}
+      >
         <table
           class="data-table data-table--stack"
           id="commerce-campaigns-table"

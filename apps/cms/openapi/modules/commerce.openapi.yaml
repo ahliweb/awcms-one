@@ -758,7 +758,7 @@ paths:
       operationId: importCommerceProductsCsv
       tags:
         - Commerce
-      summary: "Issue #291. Validate (mode=dry_run, the default — writes NOTHING) or apply (mode=apply) a product CSV. The body is the CSV itself (text/csv, UTF-8, at most 5 MiB and 5000 data rows). Rows match on `sku`: a live product with that SKU is updated, any other SKU creates one. apply is ALL-OR-NOTHING (422 IMPORT_VALIDATION_FAILED when the plan has any error, 409 IMPORT_CONFLICT on a write-time conflict — both leave the catalog untouched), needs `Idempotency-Key` (a replay with the same key and file returns the original response; the same key with a different file is 409 IDEMPOTENCY_CONFLICT), and needs products.import AND products.create AND products.update. `expectedSha256` (the dry-run's fileSha256) refuses a file that differs from the reviewed one (409 IMPORT_FILE_MISMATCH). No column accepts a media reference and nothing is fetched remotely. Gated on products.import."
+      summary: "Issue #291. Validate (mode=dry_run, the default — writes NOTHING) or apply (mode=apply) a product CSV. The body is the CSV itself (text/csv, UTF-8, at most 5 MiB and 5000 data rows). Rows match on `sku`: a live product with that SKU is updated, any other SKU creates one. apply is ALL-OR-NOTHING (422 IMPORT_VALIDATION_FAILED when the plan has any error, 409 IMPORT_CONFLICT on a write-time conflict — both leave the catalog untouched), needs `Idempotency-Key` (a replay with the same key and file returns the original response; the same key with a different file is 409 IDEMPOTENCY_CONFLICT), and needs products.import AND products.create AND products.update. `expectedSha256` (the dry-run's fileSha256) refuses a file that differs from the reviewed one (409 IMPORT_FILE_MISMATCH). No column accepts a media reference and nothing is fetched remotely. Gated on products.import. The shared `Idempotency-Key` component (ADR-0129) is declared required for every operation that takes it; this route enforces the key for mode=apply only, and a mode=dry_run request may omit it."
       parameters:
         - name: mode
           in: query
@@ -776,12 +776,7 @@ paths:
           schema:
             type: string
             pattern: "^[0-9a-f]{64}$"
-        - name: Idempotency-Key
-          in: header
-          required: false
-          description: Required for mode=apply.
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -1042,11 +1037,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -1112,11 +1103,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       responses:
         "200":
           description: Unlinked (or already unlinked — same response either way).
@@ -3343,13 +3330,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
-            maxLength: 128
-            pattern: "^[A-Za-z0-9._:-]+$"
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -3481,13 +3462,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
-            maxLength: 128
-            pattern: "^[A-Za-z0-9._:-]+$"
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -4080,11 +4055,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -4183,11 +4154,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -4530,11 +4497,7 @@ paths:
         `409 IDEMPOTENCY_CONFLICT`. Emits
         `awcms.commerce.register_session.opened`.
       parameters:
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -4653,11 +4616,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -4747,11 +4706,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -4829,11 +4784,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -4903,11 +4854,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -4980,11 +4927,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -7547,11 +7490,7 @@ paths:
         meaning (the cash leg's change / the cash handed over, `null` when the
         sale had no cash leg).
       parameters:
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -7857,11 +7796,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -9407,11 +9342,7 @@ paths:
         default lifetime (`null` = never). Emits
         `awcms.commerce.stored_value.entry_recorded`.
       parameters:
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -9597,11 +9528,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -9670,11 +9597,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -9743,11 +9666,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -10025,12 +9944,7 @@ paths:
       summary: "Issue #286 (ADR-0029). Parks a POS cart as a held sale. Gated on `commerce.held_sales.create`; requires `Idempotency-Key`."
       description: Stores the cart's lines (`productId`, `variantId`, `quantity`), an optional customer and notes - never a price and never a stock reservation. Expires `ttlHours` after parking (default 24, at most 168). A cashier may have at most 50 active held sales (`409 HELD_SALE_LIMIT`). Audited as `held_sale.hold`.
       parameters:
-        - &id004
-          name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -10129,7 +10043,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - *id004
+        - $ref: "#/components/parameters/IdempotencyKey"
       responses:
         "200":
           description: The resumed sale with its cart (or the stored replay).
@@ -10164,7 +10078,7 @@ paths:
       description: Same ownership rule, idempotency and errors as `resume`; the cart is wiped and not returned. Audited as `held_sale.discard`.
       parameters:
         - *id005
-        - *id004
+        - $ref: "#/components/parameters/IdempotencyKey"
       responses:
         "200":
           description: The discarded sale (or the stored replay).
@@ -10248,7 +10162,7 @@ paths:
       summary: "Issue #286 (ADR-0029). Creates a quotation (version 1). Gated on `commerce.quotations.create`; requires `Idempotency-Key`."
       description: The lines are priced by the ordinary quote engine (self-pickup, the customer's tier) and frozen into an immutable version with a validity (`validUntil`, default 14 days, at most 180) and a SHA-256. The customer is found or created by phone. Takes the next gapless `QUO-<year>-<counter>` number. No stock is reserved.
       parameters:
-        - *id004
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -10339,7 +10253,7 @@ paths:
       description: Re-prices the new lines and freezes them as version N+1 with their own validity; earlier versions are never edited and the quotation returns to `draft` (a revised offer must be sent and accepted again). Allowed from `draft`, `sent` and `expired`.
       parameters:
         - *id005
-        - *id004
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -10399,7 +10313,7 @@ paths:
               - accept
               - reject
               - cancel
-        - *id004
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: false
         content:
@@ -10443,7 +10357,7 @@ paths:
       description: "The order is written by the ordinary POS order path (`channel: pos`, `allowDue`, no tenders) at TODAY's price and stock, so it is created with the whole total due and paid later through the payment ledger. If its total differs from the accepted version's the request rolls back and answers `409 QUOTATION_PRICE_CHANGED` with both totals, unless `acceptPriceChange: true`. Converting an already converted quotation (any key, any caller) answers `200` with the existing order and `alreadyConverted: true`. With the `register` feature on, `registerId` is required. Needs the `documents` and `pos` features. Emits `awcms.commerce.quotation.converted` (the provenance: quotation id/number/accepted version -> order id/code)."
       parameters:
         - *id005
-        - *id004
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: false
         content:
@@ -10557,7 +10471,7 @@ paths:
       summary: "Issue #286 (ADR-0029). Creates a work order. Gated on `commerce.work_orders.create`; requires `Idempotency-Key`."
       description: Optionally from an ACCEPTED (or converted) quotation - the accepted version becomes its provenance - and/or linked to an existing order. Takes the next gapless `WO-<year>-<counter>` number. A work order holds no money. An unknown or other-tenant customer / quotation / order is rejected identically (`400 VALIDATION_ERROR` naming only the field sent).
       parameters:
-        - *id004
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -10661,7 +10575,7 @@ paths:
       description: "Legal status edges: received -> scheduled | in_progress | cancelled; scheduled -> in_progress | on_hold | cancelled; in_progress -> on_hold | ready | cancelled; on_hold -> in_progress | cancelled; ready -> completed | in_progress. A status move writes a history row and emits `awcms.commerce.work_order.status_changed`. A completed or cancelled work order accepts nothing."
       parameters:
         - *id005
-        - *id004
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -10779,7 +10693,7 @@ paths:
       summary: "Issue #286 (ADR-0029). Issues a numbered, immutable receipt or invoice for a finalized order. Gated on `commerce.documents.create`; requires `Idempotency-Key`."
       description: "The document is a frozen snapshot of the order (seller, customer, lines, totals, the payments as the ledger showed them) with the next gapless `RCP-` / `INV-<year>-<counter>` number and a SHA-256 of the snapshot; its money is verified equal to the order's. It is NOT an accounts-receivable invoice and carries no payment state of its own. One receipt and one invoice per order: issuing again answers `200` with the existing document and `alreadyIssued: true`. An invoice needs an order that took effect (`409 ORDER_NOT_FINAL` for a cancelled or expired one); a receipt additionally needs it fully paid (`409 ORDER_NOT_PAID`). Emits `awcms.commerce.document.issued`."
       parameters:
-        - *id004
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -11207,11 +11121,7 @@ paths:
         needs the `register` feature. Replaying the same key and body returns
         the same expense (201); a different body under that key is a conflict.
       parameters:
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -11436,11 +11346,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       responses:
         "200":
           description: "The expense and the outcome (or the stored replay)."
@@ -11494,11 +11400,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -11569,11 +11471,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -11632,11 +11530,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       responses:
         "200":
           description: "The cancelled expense (or the stored replay)."
@@ -11965,7 +11859,7 @@ paths:
       summary: "Issue #295 (ADR-0034). Requests delivery of a receipt, invoice, quotation version or work-order notice by e-mail or WhatsApp. Gated on `commerce.document_deliveries.create`; requires `Idempotency-Key`."
       description: "Transactional, not marketing: the message is built from the STORED source only (a document's snapshot after its SHA-256 is re-verified, a quotation version row, a work order read at the request) and enqueued into the channel's EXISTING outbox in this transaction; a dispatcher calls the provider later. The default recipient is the customer the source names; any other recipient needs `commerce.document_delivery_overrides.create` (checked before the source is read). A replay of the same `Idempotency-Key` returns the stored result and enqueues nothing; a NEW key is an explicit re-send (`resendOfId` names the delivery it repeats). `includeLink` (documents only) adds an opaque private link valid for `linkTtlHours` (default 72, at most 168) - only its SHA-256 is stored and it is never returned. At most 5 requests per source per rolling hour (`429 DELIVERY_RATE_LIMITED`). Emits `awcms.commerce.document.delivery_requested`; audited as `document_delivery.request` / `document_delivery.denied`."
       parameters:
-        - *id004
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -12325,11 +12219,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -12611,11 +12501,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -12680,11 +12566,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -12777,11 +12659,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: false
         content:
@@ -12861,11 +12739,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:

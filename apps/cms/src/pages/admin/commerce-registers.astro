@@ -361,7 +361,12 @@ const cashierLabel = (id: string): string =>
             </a>
           ))}
         </nav>
-        <div class="data-table-scroll">
+        <div
+          class="data-table-scroll"
+          role="region"
+          tabindex="0"
+          aria-label={t("Sessions")}
+        >
           <table
             class="data-table data-table--stack"
             id="registers-sessions-table"
@@ -506,7 +511,12 @@ const cashierLabel = (id: string): string =>
               </button>
             </form>
           )}
-          <div class="data-table-scroll">
+          <div
+            class="data-table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label={t("Register definitions")}
+          >
             <table
               class="data-table data-table--stack"
               id="registers-defs-table"

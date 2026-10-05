@@ -149,7 +149,12 @@ function filterHref(next: { status?: string; unread?: string }): string {
       </nav>
 
       <div class="admin-two-pane">
-        <div class="admin-two-pane-list data-table-scroll">
+        <div
+          class="admin-two-pane-list data-table-scroll"
+          role="region"
+          tabindex="0"
+          aria-label={t("Inbox")}
+        >
           <table class="data-table data-table--stack" id="commerce-inbox-table">
             <caption>
               {tn(

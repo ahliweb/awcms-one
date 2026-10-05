@@ -20,11 +20,14 @@ import { formDraftsModule } from "./form-drafts/module";
 import { siteSearchModule } from "./site-search/module";
 import { newsletterModule } from "./newsletter/module";
 import { siteProfileModule } from "./site-profile/module";
+import { taxModule } from "./tax/module";
 import { commentsModule } from "./comments/module";
 import { idnAdminRegionsModule } from "./idn-admin-regions/module";
 import { pushDeliveryModule } from "./push-delivery/module";
 import { commerceModule } from "./commerce/module";
 import { omesControlModule } from "./omes-control/module";
+import { inventoryModule } from "./inventory/module";
+import { procurementModule } from "./procurement/module";
 
 /**
  * The reviewed BASE registry. Every module below is reviewed, in-repo code.
@@ -129,6 +132,9 @@ const baseModules: ModuleDescriptor[] = [
   // that ordering rather than trusting this comment.
   newsletterModule,
   siteProfileModule,
+  // ADR-0127 (Issue #889): jurisdiction-neutral tax calculation. Listed after
+  // `reporting`/`domain_event_runtime`/`logging`, which it depends on.
+  taxModule,
   // Ported from awcms-micro (Issue #271, ADR-0041), Gelombang-1 of
   // docs/awcms/absorb-awcms-micro-roadmap.md: moderation-first commenting over
   // PUBLISHED, PUBLIC resources. Depends only on tenant_admin/identity_access
@@ -176,7 +182,24 @@ const baseModules: ModuleDescriptor[] = [
   // backup verification, and host execution audit projections.
   // Depends only on tenant_admin/identity_access (both above), so the DAG stays acyclic.
   // See src/modules/omes-control/module.ts's `description`.
-  omesControlModule
+  omesControlModule,
+  // Admitted by ADR-0126 (Issue #887): a generic multi-location stock ledger —
+  // append-only movements, derived balances, reconciliation, a negative-stock
+  // policy and a low-stock projection — that a commerce/POS/storefront module
+  // adopts through `_shared/ports/inventory-ledger-port.ts` instead of keeping
+  // its own counter. Depends on tenant_admin/identity_access/logging/
+  // domain_event_runtime/reporting (all above), so the DAG stays acyclic; nothing
+  // depends on it. API-first: no admin screen yet. See
+  // src/modules/inventory/module.ts's `description`.
+  inventoryModule,
+  // Admitted by ADR-0128 (Issue #888): suppliers, receiving, supplier returns,
+  // requisitions and location transfers whose stock effects are posted ONLY
+  // through the inventory ledger's port. Depends on tenant_admin/identity_access/
+  // profile_identity/logging/domain_event_runtime/reporting/inventory (all
+  // above), so the DAG stays acyclic; nothing depends on it. workflow_approval
+  // is an optional soft integration, not a dependency. API-first: no admin
+  // screen yet. See src/modules/procurement/module.ts's `description`.
+  procurementModule
 ];
 
 /**

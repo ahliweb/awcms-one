@@ -877,3 +877,73 @@ a.admin-segmented-option {
    one of this file's `commerce*.astro` screens and carries no
    `commerce.*` permission). Out of this change's ownership boundary; see the
    PR description. */
+/* Detail readout and a read-only JSON block (Issue #894 — /admin/tax). Both use
+   the same surface/text pairing every other card does, so neither adds a new
+   foreground/background combination. `min-width: 0` plus the wrapping rules are
+   what keep a long profile code or a wide definition from forcing the page to
+   scroll sideways at 360px. */
+.admin-detail-list {
+  display: grid;
+  grid-template-columns: minmax(8rem, max-content) minmax(0, 1fr);
+  gap: var(--sp-1, 0.25rem) var(--sp-4, 1rem);
+  margin: 0 0 var(--sp-4, 1rem);
+}
+
+.admin-detail-list dt {
+  font-weight: 600;
+}
+
+.admin-detail-list dd {
+  margin: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.admin-code-block {
+  margin: 0 0 var(--sp-4, 1rem);
+  padding: var(--sp-3, 0.75rem);
+  overflow-x: auto;
+  max-width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md, 6px);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--fs-sm);
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2, 0.5rem);
+}
+
+/* Structured tax-definition editor (Issue #901) and the procurement document
+   line editor (Issue #905, `.line-editor`): the same stacked fieldset rows.
+   Fieldsets default to `min-width: min-content`, which would push a 360px
+   viewport sideways. */
+:is(.tax-editor, .line-editor) fieldset {
+  min-width: 0;
+  margin: 0 0 var(--sp-3, 0.75rem);
+  padding: var(--sp-3, 0.75rem);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md, 6px);
+}
+
+:is(.tax-editor, .line-editor) label {
+  display: block;
+  margin-bottom: var(--sp-2, 0.5rem);
+}
+
+:is(.tax-editor, .line-editor) :is(input, select) {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Inside `.admin-create-form` every button is a solid primary one, so the
+   remove buttons take the solid danger pair the form's own error banner uses
+   (`.admin-create-error`) rather than red text on a blue fill. */
+:is(.tax-editor, .line-editor) .btn-inline.btn-inline--danger {
+  background: var(--color-danger-strong);
+  color: var(--color-primary-contrast);
+}

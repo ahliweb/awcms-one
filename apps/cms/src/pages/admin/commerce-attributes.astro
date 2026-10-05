@@ -209,7 +209,12 @@ const canManage = screen.state === "allowed" && screen.data.canManage;
   )}
 
   {canRead && !loadError && (
-    <div class="data-table-scroll fade-in-up">
+    <div
+      class="data-table-scroll fade-in-up"
+      role="region"
+      tabindex="0"
+      aria-label={t("Product attributes")}
+    >
       <table
         class="data-table data-table--stack"
         id="commerce-attributes-table"

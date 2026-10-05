@@ -4105,6 +4105,12 @@ msgstr ""
 msgid "Site profile"
 msgstr ""
 
+msgid "Inventory"
+msgstr ""
+
+msgid "Procurement"
+msgstr ""
+
 msgid "Who this site is, as a reader sees it: masthead, footer, editorial address and contact details."
 msgstr ""
 
@@ -9094,6 +9100,15 @@ msgid "Adjusted down"
 msgstr ""
 
 msgid "Adjusted up"
+
+# ADR-0127 — the `tax` module display name (module registry; the admin screens are a follow-up).
+
+# Issue #894 — the /admin/inventory and /admin/tax screens.
+
+msgid "A balance at or below its threshold is flagged and published as a low-stock signal. Leave the threshold empty to remove it."
+msgstr ""
+
+msgid "A draft changes nothing until it is published. Using an existing profile code adds the next version of that profile; a new code starts a new profile. This product ships no country profile: the rates and categories are yours to supply and verify."
 msgstr ""
 
 msgid "All kinds"
@@ -9440,6 +9455,107 @@ msgid "Documents could not be loaded right now. Please try again later."
 msgstr ""
 
 msgid "Document sections"
+
+msgid "All locations"
+msgstr ""
+
+msgid "Allow negative stock"
+msgstr ""
+
+msgid "All types"
+msgstr ""
+
+msgid "An adjustment changes stock without a business document behind it, so its reason is the audit trail. Use a negative quantity to remove stock."
+msgstr ""
+
+msgid "A new version must take effect after the latest published version of its profile."
+msgstr ""
+
+msgid "A version cannot take effect in the past, or on a day that already has finalised documents."
+msgstr ""
+
+msgid "Away from zero"
+msgstr ""
+
+msgid "Back to the snapshot list"
+msgstr ""
+
+msgid "Balances"
+msgstr ""
+
+msgid "By component"
+msgstr ""
+
+msgid "By rule version"
+msgstr ""
+
+msgid "By treatment"
+msgstr ""
+
+msgid "Ceiling"
+msgstr ""
+
+msgid "Check the fields and the definition. The server rejected something in them."
+msgstr ""
+
+msgid "Check the values you entered and try again."
+msgstr ""
+
+msgid "Choose a period and run the report."
+msgstr ""
+
+msgid "Component"
+msgstr ""
+
+msgid "Consistent: {count} balance rows were checked and none drifted."
+msgstr ""
+
+msgid "Could not load inventory. Please try again."
+msgstr ""
+
+msgid "Could not load tax. Please try again."
+msgstr ""
+
+msgid "Could not save that. Please try again."
+msgstr ""
+
+msgid "{count} balances are negative although their policy forbids it."
+msgstr ""
+
+msgid "Country (ISO 3166-1 alpha-2, optional)"
+msgstr ""
+
+msgid "Create a draft version"
+msgstr ""
+
+msgid "Currency"
+msgstr ""
+
+msgid "Currency (ISO 4217)"
+msgstr ""
+
+msgid "Current published version"
+msgstr ""
+
+msgid "Damaged goods"
+msgstr ""
+
+msgid "Deactivate {code}? Nothing can be posted to it until it is reactivated. Its history and balances stay."
+msgstr ""
+
+msgid "Default policy"
+msgstr ""
+
+msgid "Definition"
+msgstr ""
+
+msgid "Definition (JSON)"
+msgstr ""
+
+msgid "Document"
+msgstr ""
+
+msgid "Document id"
 msgstr ""
 
 msgid "Document type"
@@ -9772,6 +9888,218 @@ msgid "Reverse this expense?"
 msgstr ""
 
 msgid "A compensating entry is added and the original is kept. If it was paid from a drawer, the cash goes back into an open session of that register."
+
+msgid "Effective from"
+msgstr ""
+
+msgid "Exempt"
+msgstr ""
+
+msgid "Floor"
+msgstr ""
+
+msgid "Forbid negative stock"
+msgstr ""
+
+msgid "From location"
+msgstr ""
+
+msgid "From location id"
+msgstr ""
+
+msgid "Gross total"
+msgstr ""
+
+msgid "Half down"
+msgstr ""
+
+msgid "Half even (banker's)"
+msgstr ""
+
+msgid "Half up"
+msgstr ""
+
+msgid "Inherit the tenant default"
+msgstr ""
+
+msgid "In stock"
+msgstr ""
+
+msgid "Integrity: {count} documents were re-added and all agree."
+msgstr ""
+
+msgid "Integrity: {lines} documents disagree on their line sums and {components} on their component sums, out of {count} checked."
+msgstr ""
+
+msgid "Inventory sections"
+msgstr ""
+
+msgid "Item reference"
+msgstr ""
+
+msgid "Item type"
+msgstr ""
+
+msgid "Jurisdiction"
+msgstr ""
+
+msgid "Jurisdiction code"
+msgstr ""
+
+msgid "Latest version"
+msgstr ""
+
+msgid "Ledger sum"
+msgstr ""
+
+msgid "Location"
+msgstr ""
+
+msgid "Location id"
+msgstr ""
+
+msgid "Locations"
+msgstr ""
+
+msgid "Loss or theft"
+msgstr ""
+
+msgid "Lower-case letters, digits, dots, underscores and hyphens. The code is unique per tenant and cannot be changed."
+msgstr ""
+
+msgid "Low stock"
+msgstr ""
+
+msgid "Low stock only"
+msgstr ""
+
+msgid "Low-stock threshold"
+msgstr ""
+
+msgid "Movement history"
+msgstr ""
+
+msgid "Movements"
+msgstr ""
+
+msgid "Movement type"
+msgstr ""
+
+msgid "Moves stock between two locations as a balanced pair: one movement out and one in, posted together or not at all."
+msgstr ""
+
+msgid "Negative-stock policy"
+msgstr ""
+
+msgid "Net of reversals"
+msgstr ""
+
+msgid "Net total"
+msgstr ""
+
+msgid "No balance is at or below its low-stock threshold."
+msgstr ""
+
+msgid "No default has been set, so the safe default (forbid) applies."
+msgstr ""
+
+msgid "No movements match. The ledger is empty or the filter excludes everything."
+msgstr ""
+
+msgid "No rule profile exists yet. A profile comes into being with its first draft version."
+msgstr ""
+
+msgid "No rule version matches."
+msgstr ""
+
+msgid "No snapshot falls in this period."
+msgstr ""
+
+msgid "No snapshot matches. A snapshot is written when a consumer finalises a document."
+msgstr ""
+
+msgid "No stock has been posted yet. Post an opening balance or an adjustment to start the ledger."
+msgstr ""
+
+msgid "No stock location is registered yet."
+msgstr ""
+
+msgid "Not enough stock, and the negative-stock policy forbids going below zero."
+msgstr ""
+
+msgid "Notes (optional)"
+msgstr ""
+
+msgid "Not found. Reload the page."
+msgstr ""
+
+msgid "Older movements"
+msgstr ""
+
+msgid "Older snapshots"
+msgstr ""
+
+msgid "Older versions"
+msgstr ""
+
+msgid "On hand"
+msgstr ""
+
+msgid "Opening balance"
+msgstr ""
+
+msgid "Per document"
+msgstr ""
+
+msgid "Per line"
+msgstr ""
+
+msgid "Post adjustment"
+msgstr ""
+
+msgid "Post an adjustment"
+msgstr ""
+
+msgid "Posts an equal and opposite adjustment. The original row stays in the ledger, and an adjustment can be reversed only once."
+msgstr ""
+
+msgid "Pricing"
+msgstr ""
+
+msgid "Profile code"
+msgstr ""
+
+msgid "Profile (optional)"
+msgstr ""
+
+msgid "{profile} v{version}"
+msgstr ""
+
+msgid "Publish {profile} v{version}? It becomes the rule that documents are computed under from {date}, closes the previous version at that date, and can never be edited or unpublished."
+msgstr ""
+
+msgid "Quantity change"
+msgstr ""
+
+msgid "Read-only proof that every stored balance equals the sum of its movements. It changes nothing."
+msgstr ""
+
+msgid "Receive"
+msgstr ""
+
+msgid "Reconciliation report"
+msgstr ""
+
+msgid "Recorded on the compensating movement and the audit log."
+msgstr ""
+
+msgid "Region (optional)"
+msgstr ""
+
+msgid "Register a location"
+msgstr ""
+
+msgid "Register location"
 msgstr ""
 
 msgid "Reverse"
@@ -10510,4 +10838,626 @@ msgid "Returns, returned stock and refunds paid back, {from} to {to}. A return c
 msgstr ""
 
 msgid "No returns or refunds in this range"
+
+msgid "Reverse adjustment"
+msgstr ""
+
+msgid "Reverses"
+msgstr ""
+
+msgid "(reverses {id})"
+msgstr ""
+
+msgid "Reverse this adjustment"
+msgstr ""
+
+msgid "Rounding"
+msgstr ""
+
+msgid "Rounding decimal places (0 to 6)"
+msgstr ""
+
+msgid "Rounding level"
+msgstr ""
+
+msgid "Rounding mode"
+msgstr ""
+
+msgid "Rule profiles"
+msgstr ""
+
+msgid "Rules"
+msgstr ""
+
+msgid "Rule version"
+msgstr ""
+
+msgid "Rule versions"
+msgstr ""
+
+msgid "Run reconciliation"
+msgstr ""
+
+msgid "Run report"
+msgstr ""
+
+msgid "Sale"
+msgstr ""
+
+msgid "Sale return"
+msgstr ""
+
+msgid "Save default"
+msgstr ""
+
+msgid "{scale} decimal places"
+msgstr ""
+
+msgid "Set a low-stock threshold"
+msgstr ""
+
+msgid "Signal"
+msgstr ""
+
+msgid "Snapshots"
+msgstr ""
+
+msgid "Stock balances"
+msgstr ""
+
+msgid "Stock count correction"
+msgstr ""
+
+msgid "Stock found"
+msgstr ""
+
+msgid "Stock locations"
+msgstr ""
+
+msgid "Stock locations, balances and the append-only movement ledger. A balance is always the sum of its movements, so nothing here edits one: stock changes by posting an adjustment or a transfer, and a mistake is corrected by a compensating movement."
+msgstr ""
+
+msgid "Stored balance"
+msgstr ""
+
+msgid "Supplier return"
+msgstr ""
+
+msgid "Taxable"
+msgstr ""
+
+msgid "Tax added on top (exclusive)"
+msgstr ""
+
+msgid "Tax by component"
+msgstr ""
+
+msgid "Tax date"
+msgstr ""
+
+msgid "Tax included in price (inclusive)"
+msgstr ""
+
+msgid "Tax sections"
+msgstr ""
+
+msgid "Tax snapshots"
+msgstr ""
+
+msgid "Tax total"
+msgstr ""
+
+msgid "Tenant default negative-stock policy"
+msgstr ""
+
+msgid "That conflicts with the current state. Reload the page and try again."
+msgstr ""
+
+msgid "That item is stocked in a different unit at this location."
+msgstr ""
+
+msgid "That location is inactive. Reactivate it before posting."
+msgstr ""
+
+msgid "That movement cannot be reversed. It may already have been."
+msgstr ""
+
+msgid "That rule version was not found."
+msgstr ""
+
+msgid "That snapshot was not found."
+msgstr ""
+
+msgid "That version is already published."
+msgstr ""
+
+msgid "The definition is not valid JSON."
+msgstr ""
+
+msgid "The list is truncated; more drift may exist."
+msgstr ""
+
+msgid "The period is not valid. The end must not be before the start, and it may span at most {days} days."
+msgstr ""
+
+msgid "To location"
+msgstr ""
+
+msgid "To location id"
+msgstr ""
+
+msgid "Totals of the finalised snapshots for a tax-date period, by rule version, component and treatment, net of reversals. The integrity block re-adds every stored document from its own lines and reports any that disagree. The period may span at most {days} days."
+msgstr ""
+
+msgid "Toward zero"
+msgstr ""
+
+msgid "Transfer in"
+msgstr ""
+
+msgid "Transfer out"
+msgstr ""
+
+msgid "Transfer stock"
+msgstr ""
+
+msgid "Treatment"
+msgstr ""
+
+msgid "Treatment is one of {treatments}; a component basis is one of {bases}. The server validates every field and refuses an unknown one."
+msgstr ""
+
+msgid "Unit"
+msgstr ""
+
+msgid "Versioned tax rule profiles, the finalised tax snapshots they produced, and a reconciliation of the two. Tax is always computed by the server from a published rule version; nothing here lets anyone type an amount."
+msgstr ""
+
+msgid "Versions"
+msgstr ""
+
+msgid "Whether stock may silently go below zero. A location can override this; one that does not follows the default below."
+msgstr ""
+
+msgid "You do not have permission to do that."
+msgstr ""
+
+msgid "You do not have permission to view inventory."
+msgstr ""
+
+msgid "You do not have permission to view tax."
+msgstr ""
+
+msgid "Zero-rated"
+msgstr ""
+
+msgid "Add category"
+msgstr ""
+
+msgid "Add component"
+msgstr ""
+
+msgid "Add rule"
+msgstr ""
+
+msgid "Applies to category"
+msgstr ""
+
+msgid "A taxable rule needs at least one component."
+msgstr ""
+
+msgid "Basis"
+msgstr ""
+
+msgid "{code} (not declared above)"
+msgstr ""
+
+msgid "{count} balance rows were repaired. Reload the page to see them."
+msgstr ""
+
+msgid "Definition (JSON), advanced"
+msgstr ""
+
+msgid "Drift found in {count} balance rows. Repair them with a balance rebuild."
+msgstr ""
+
+msgid "e.g. 7.5"
+msgstr ""
+
+msgid "Fallback (any other category)"
+msgstr ""
+
+msgid "Location id (optional)"
+msgstr ""
+
+msgid "More drifted balances remain than one run repairs. Run the rebuild again."
+msgstr ""
+
+msgid "Name of {code}"
+msgstr ""
+
+msgid "Net amount"
+msgstr ""
+
+msgid "Net plus earlier components (stacked)"
+msgstr ""
+
+msgid "No office"
+msgstr ""
+
+msgid "Nothing to repair: no balance had drifted."
+msgstr ""
+
+msgid "Office"
+msgstr ""
+
+msgid "Office id"
+msgstr ""
+
+msgid "Office of {code}"
+msgstr ""
+
+msgid "Rate (percent, exact decimal)"
+msgstr ""
+
+msgid "Rebuild balances"
+msgstr ""
+
+msgid "Rebuild the stored balances from the ledger? Every drifted balance is overwritten with the ledger sum. This is audited and cannot be undone, but the ledger itself is never changed."
+msgstr ""
+
+msgid "Repairs drifted balances from the movement ledger: each stored balance is reset to the sum of its movements. It never accepts a quantity, so it cannot assert a balance. Run the reconciliation first; the repair is audited."
+msgstr ""
+
+msgid "Save details"
+msgstr ""
+
+msgid "Tax components"
+msgstr ""
+
+msgid "That office does not exist in this organisation. Pick another."
+msgstr ""
+
+msgid "The JSON cannot be shown as rows. Edit it below; the server validates it."
+msgstr ""
+
+msgid "Discard the JSON and start the structured editor"
+msgstr ""
+
+# Issue #905 — the /admin/procurement screen.
+
+msgid "Requisition"
+msgstr ""
+
+msgid "Location transfer"
+msgstr ""
+
+msgid "Finalised"
+msgstr ""
+
+msgid "Waiting for approval"
+msgstr ""
+
+msgid "Tax ID"
+msgstr ""
+
+msgid "Business ID"
+msgstr ""
+
+msgid "Payment reference"
+msgstr ""
+
+msgid "Contact reference"
+msgstr ""
+
+msgid "Suppliers"
+msgstr ""
+
+msgid "Approval policy"
+msgstr ""
+
+msgid "Suppliers, receiving, supplier returns, requisitions and location transfers over the stock ledger. A document moves no stock until it is finalised, and finalising posts its movements through the ledger: nothing here edits a balance, and a mistake is corrected by reversing the document."
+msgstr ""
+
+msgid "You do not have permission to view procurement."
+msgstr ""
+
+msgid "Could not load procurement. Please try again."
+msgstr ""
+
+msgid "A supplier with that vendor code already exists."
+msgstr ""
+
+msgid "That supplier still has draft or submitted documents. Finalise or cancel them first."
+msgstr ""
+
+msgid "That supplier is deleted. Restore it before editing."
+msgstr ""
+
+msgid "That supplier is inactive, blocked or deleted and cannot take part in a document."
+msgstr ""
+
+msgid "That supplier does not exist."
+msgstr ""
+
+msgid "That stock location does not exist in this organisation."
+msgstr ""
+
+msgid "The document is no longer in a state that allows that. Reload the page."
+msgstr ""
+
+msgid "Not enough stock, and the negative-stock policy forbids going below zero. Nothing was posted."
+msgstr ""
+
+msgid "An item is stocked in a different unit at that location. Nothing was posted."
+msgstr ""
+
+msgid "A stock location is inactive. Reactivate it before posting."
+msgstr ""
+
+msgid "The document is waiting for approval and cannot be finalised yet."
+msgstr ""
+
+msgid "The approval workflow rejected this document. Cancel it instead."
+msgstr ""
+
+msgid "This document needs approval, but no workflow named procurement.document_approval is published. Nothing was submitted."
+msgstr ""
+
+msgid "A live document already uses that external reference for this supplier."
+msgstr ""
+
+msgid "This action must be performed by a tenant user."
+msgstr ""
+
+msgid "Procurement sections"
+msgstr ""
+
+msgid "That document does not exist, or you cannot read it."
+msgstr ""
+
+msgid "That supplier does not exist or has been deleted."
+msgstr ""
+
+msgid "Back to the list"
+msgstr ""
+
+msgid "Show deleted suppliers"
+msgstr ""
+
+msgid "Register a supplier"
+msgstr ""
+
+msgid "Vendor code"
+msgstr ""
+
+msgid "Letters, digits, dots, underscores and hyphens. Unique per organisation, ignoring case."
+msgstr ""
+
+msgid "Tags"
+msgstr ""
+
+msgid "Separate categories and tags with commas. Lower-case letters, digits, dots, underscores and hyphens."
+msgstr ""
+
+msgid "Register supplier"
+msgstr ""
+
+msgid "No supplier matches. Register one to start."
+msgstr ""
+
+msgid "Open {code}"
+msgstr ""
+
+msgid "Back to the suppliers"
+msgstr ""
+
+msgid "Save supplier"
+msgstr ""
+
+msgid "Delete {code}? Its documents keep referencing it, and it can be restored later."
+msgstr ""
+
+msgid "Delete supplier"
+msgstr ""
+
+msgid "Identifiers and references"
+msgstr ""
+
+msgid "Tax and business identifiers and payment or contact references are shown masked. Revealing one is a separate permission and is recorded in the audit log."
+msgstr ""
+
+msgid "This supplier has no identifier or reference yet."
+msgstr ""
+
+msgid "Value (masked)"
+msgstr ""
+
+msgid "Reveal this value in clear text? The disclosure is recorded in the audit log."
+msgstr ""
+
+msgid "Reveal"
+msgstr ""
+
+msgid "Remove this identifier or reference?"
+msgstr ""
+
+msgid "Revealed value"
+msgstr ""
+
+msgid "Shown once. It is not stored, and it disappears when you hide it, after a minute, or when you leave the page."
+msgstr ""
+
+msgid "Hide"
+msgstr ""
+
+msgid "Add an identifier or reference"
+msgstr ""
+
+msgid "Add identifier"
+msgstr ""
+
+msgid "New draft document"
+msgstr ""
+
+msgid "A draft moves no stock. Submit it to freeze its lines, then finalise it to post the movements through the stock ledger."
+msgstr ""
+
+msgid "Supplier"
+msgstr ""
+
+msgid "Supplier id"
+msgstr ""
+
+msgid "Destination location"
+msgstr ""
+
+msgid "Source location"
+msgstr ""
+
+msgid "Source location id"
+msgstr ""
+
+msgid "External reference"
+msgstr ""
+
+msgid "Document date"
+msgstr ""
+
+msgid "Remove line {n}"
+msgstr ""
+
+msgid "Line {n}"
+msgstr ""
+
+msgid "Quantity and cost are exact decimals (up to 6 decimals). A receipt and a supplier return need a unit cost; an item appears once per document."
+msgstr ""
+
+msgid "Add a line"
+msgstr ""
+
+msgid "Item name"
+msgstr ""
+
+msgid "Unit cost"
+msgstr ""
+
+msgid "No document matches. Create a draft to start."
+msgstr ""
+
+msgid "Total cost"
+msgstr ""
+
+msgid "Back to the documents"
+msgstr ""
+
+msgid "{count} ledger movements are linked to this document."
+msgstr ""
+
+msgid "Submit this document? Its lines are frozen, and an approval may be started."
+msgstr ""
+
+msgid "Finalise this document? Its stock movements are posted to the ledger, all lines or none, and the document can no longer be edited."
+msgstr ""
+
+msgid "Finalise"
+msgstr ""
+
+msgid "Cancel this document"
+msgstr ""
+
+msgid "No stock was moved, so nothing is compensated. The document is kept, marked cancelled."
+msgstr ""
+
+msgid "Cancel document"
+msgstr ""
+
+msgid "Reverse this document"
+msgstr ""
+
+msgid "Posts compensating stock movements. The original movements stay in the ledger, and a document can be reversed only once."
+msgstr ""
+
+msgid "Reverse document"
+msgstr ""
+
+msgid "When a submitted document's total cost reaches the threshold, it needs approval before it can be finalised, through the workflow named {key}. With no threshold, approval is off. The threshold is cost-based, so a document without a cost, a requisition and a transfer never need it. A change applies only to documents submitted afterwards."
+msgstr ""
+
+msgid "Approval is off."
+msgstr ""
+
+msgid "Documents with a total cost of {threshold} or more need approval."
+msgstr ""
+
+msgid "An exact decimal with up to 6 decimals. Leave empty to turn approval off."
+msgstr ""
+
+msgid "Document date range"
+msgstr ""
+
+msgid "The date range is not valid. Use real dates, with From not after To."
+msgstr ""
+
+msgid "Documents by kind and status"
+msgstr ""
+
+msgid "No document falls in this range."
+msgstr ""
+
+msgid "Activity per supplier"
+msgstr ""
+
+msgid "No supplier activity falls in this range."
+msgstr ""
+
+msgid "Receipts finalised"
+msgstr ""
+
+msgid "Returns finalised"
+msgstr ""
+
+msgid "Open documents"
+msgstr ""
+
+msgid "Received cost"
+msgstr ""
+
+msgid "Returned cost"
+msgstr ""
+
+msgid "Read-only proof that every finalised or reversed document agrees with the stock ledger: the right movements, of the right type, at the right location, in the right quantity. It changes nothing."
+msgstr ""
+
+msgid "Reconciled: {documents} documents and {lines} lines were checked and all agree with the ledger."
+msgstr ""
+
+msgid "Discrepancies found. {documents} documents and {lines} lines were checked."
+msgstr ""
+
+msgid "{count} ledger movements carry a procurement identity with no document line behind them."
+msgstr ""
+
+msgid "The list is truncated; more discrepancies may exist."
+msgstr ""
+
+msgid "Expected movements"
+msgstr ""
+
+msgid "Linked movements"
+msgstr ""
+
+msgid "Matching movements"
+msgstr ""
+
+msgid "Recorded on the document and in the audit log."
+msgstr ""
+
+msgid "Destination location id"
+msgstr ""
+
+msgid "Stock movements"
+msgstr ""
+
+msgid "Partner access grants"
 msgstr ""

@@ -511,7 +511,12 @@ function formatTimestamp(value: Date | string | null): string {
             </button>
           )}
         </h2>
-        <div class="data-table-scroll">
+        <div
+          class="data-table-scroll"
+          role="region"
+          tabindex="0"
+          aria-label={t("Sales by day")}
+        >
           <table class="data-table data-table--stack" id="sales-daily-table">
             <caption>
               {t("Paid orders per day, {from} to {to}.", {
@@ -635,7 +640,12 @@ function formatTimestamp(value: Date | string | null): string {
             </button>
           )}
         </h2>
-        <div class="data-table-scroll">
+        <div
+          class="data-table-scroll"
+          role="region"
+          tabindex="0"
+          aria-label={t("Sales by product")}
+        >
           <table
             class="data-table data-table--stack"
             id="sales-by-product-table"
@@ -700,7 +710,12 @@ function formatTimestamp(value: Date | string | null): string {
             </button>
           )}
         </h2>
-        <div class="data-table-scroll">
+        <div
+          class="data-table-scroll"
+          role="region"
+          tabindex="0"
+          aria-label={t("Sales by category")}
+        >
           <table
             class="data-table data-table--stack"
             id="sales-by-category-table"
@@ -760,7 +775,12 @@ function formatTimestamp(value: Date | string | null): string {
             {t("Payments by tender")}
             <span class="count-pill">{tenderMix.items.length}</span>
           </h2>
-          <div class="data-table-scroll">
+          <div
+            class="data-table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label={t("Payments by tender")}
+          >
             <table
               class="data-table data-table--stack"
               id="sales-tender-mix-table"
@@ -870,7 +890,12 @@ function formatTimestamp(value: Date | string | null): string {
               </>
             )}
           </p>
-          <div class="data-table-scroll">
+          <div
+            class="data-table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label={t("Outstanding balances")}
+          >
             <table
               class="data-table data-table--stack"
               id="sales-outstanding-table"
@@ -950,7 +975,12 @@ function formatTimestamp(value: Date | string | null): string {
               {t("Schedule recurring exports")}
             </a>
           </p>
-          <div class="data-table-scroll">
+          <div
+            class="data-table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label={t("Recent CSV exports")}
+          >
             <table
               class="data-table data-table--stack"
               id="sales-export-runs-table"
