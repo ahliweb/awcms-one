@@ -35,6 +35,42 @@ const ROOT = process.cwd();
 
 type AnyRecord = Record<string, unknown>;
 
+/**
+ * ADR-0129 (Issue #896): the `Idempotency-Key` header parameter moved from 93
+ * inline declarations to the shared `components.parameters.IdempotencyKey`, and
+ * gained the runtime bound (`minLength`/`maxLength`/`pattern`). That is the ONE
+ * reviewed change to the frozen pre-migration contract, so the equivalence
+ * checks below set that single parameter aside on BOTH sides (the inline
+ * declaration in the snapshot, the `$ref` in the bundle) instead of editing the
+ * snapshot. The component itself is pinned in
+ * `tests/openapi-idempotency-key-component.test.ts`.
+ */
+const IDEMPOTENCY_KEY_REF = "#/components/parameters/IdempotencyKey";
+
+function withoutIdempotencyKeyParameter(value: unknown): unknown {
+  if (Array.isArray(value)) {
+    return value
+      .filter((entry) => {
+        const e = entry as AnyRecord | null;
+        return !(
+          e &&
+          typeof e === "object" &&
+          (e.$ref === IDEMPOTENCY_KEY_REF ||
+            (e.in === "header" && e.name === "Idempotency-Key"))
+        );
+      })
+      .map(withoutIdempotencyKeyParameter);
+  }
+  if (value && typeof value === "object") {
+    const out: AnyRecord = {};
+    for (const [k, v] of Object.entries(value as AnyRecord)) {
+      out[k] = withoutIdempotencyKeyParameter(v);
+    }
+    return out;
+  }
+  return value;
+}
+
 function sortDeep(value: unknown): unknown {
   if (Array.isArray(value)) return value.map(sortDeep);
   if (value && typeof value === "object") {
@@ -274,11 +310,21 @@ describe("openapi bundle — contract equivalence to pre-migration monolith", ()
     for (const key of ["security", "info", "servers"] as const) {
       expect(sortDeep(after[key])).toEqual(sortDeep(before[key]));
     }
-    for (const key of ["parameters", "responses"] as const) {
+    for (const key of ["responses"] as const) {
       expect(sortDeep((after.components as AnyRecord)[key])).toEqual(
         sortDeep((before.components as AnyRecord)[key])
       );
     }
+    // Root parameters: frozen, EXCEPT the deliberately admitted shared
+    // `IdempotencyKey` component (ADR-0129) — the only addition allowed.
+    const afterParameters = {
+      ...((after.components as AnyRecord).parameters as AnyRecord)
+    };
+    expect(afterParameters.IdempotencyKey).toBeDefined();
+    delete afterParameters.IdempotencyKey;
+    expect(sortDeep(afterParameters)).toEqual(
+      sortDeep((before.components as AnyRecord).parameters)
+    );
 
     // `securitySchemes` gets the same additive-only treatment as tags below,
     // not byte equality — Issue #89 (contract #86/ADR-0016) adds
@@ -338,11 +384,16 @@ describe("openapi bundle — contract equivalence to pre-migration monolith", ()
       if (pathKey in INTENTIONALLY_EVOLVED_PATHS) {
         // Additive-only: the frozen contract must still be fully contained.
         expect(
-          isAdditiveSuperset(beforePaths[pathKey], afterPaths[pathKey])
+          isAdditiveSuperset(
+            withoutIdempotencyKeyParameter(beforePaths[pathKey]),
+            withoutIdempotencyKeyParameter(afterPaths[pathKey])
+          )
         ).toBe(true);
       } else {
-        expect(sortDeep(afterPaths[pathKey])).toEqual(
-          sortDeep(beforePaths[pathKey])
+        expect(
+          sortDeep(withoutIdempotencyKeyParameter(afterPaths[pathKey]))
+        ).toEqual(
+          sortDeep(withoutIdempotencyKeyParameter(beforePaths[pathKey]))
         );
       }
     }
@@ -432,6 +483,10 @@ describe("openapi bundle — contract equivalence to pre-migration monolith", ()
       "Domain Event Runtime",
       "Form Drafts",
       "Indonesia Regions",
+      // "Inventory" (inventory, ADR-0126, Issue #887) — genuinely new surface:
+      // the multi-location stock ledger (locations, movements, adjustments,
+      // transfers, balances, reconciliation). Nothing here is anonymous.
+      "Inventory",
       "News Media",
       "News Portal Ad Placements",
       "News Portal Homepage Sections",
@@ -452,6 +507,10 @@ describe("openapi bundle — contract equivalence to pre-migration monolith", ()
       // diagnostics, cancel and delivery probe. Genuinely new surface, unlike
       // the four below it whose operations had been in the bundle for releases
       // under tags the root catalog never declared.
+      // "Procurement" (procurement, ADR-0128, Issue #888) — genuinely new
+      // surface: suppliers, receiving/return/requisition/transfer documents,
+      // reconciliation and reports. Nothing here is anonymous.
+      "Procurement",
       "Push Delivery",
       "SEO & Distribution",
       // "Site Profile" (site_profile, ADR-0102, Issue #596) — genuinely new
@@ -459,6 +518,10 @@ describe("openapi bundle — contract equivalence to pre-migration monolith", ()
       // composed read a build client uses. Nothing here is anonymous.
       "Site Profile",
       "Site Search",
+      // "Tax" (tax, ADR-0127, Issue #889) — genuinely new surface: the
+      // jurisdiction-neutral calculator (quote, snapshot, reversal), rule-version
+      // authoring and the reconciliation report. Nothing here is anonymous.
+      "Tax",
       "Tenant Domains",
       "Theming",
       "Visitor Analytics"

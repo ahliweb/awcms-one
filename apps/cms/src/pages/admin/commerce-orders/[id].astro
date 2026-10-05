@@ -336,7 +336,12 @@ const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
       <div class="admin-order-detail-grid">
         <div class="admin-order-detail-panel">
           <h2 class="admin-dashboard-panel-title">{t("Lines")}</h2>
-          <div class="data-table-scroll">
+          <div
+            class="data-table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label={t("Lines")}
+          >
             <table class="data-table data-table--stack">
               <caption class="sr-only">{t("Order lines")}</caption>
               <thead>
@@ -473,7 +478,12 @@ const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
                   {t("No payments recorded for this order yet.")}
                 </p>
               ) : (
-                <div class="data-table-scroll">
+                <div
+                  class="data-table-scroll"
+                  role="region"
+                  tabindex="0"
+                  aria-label={t("Payments")}
+                >
                   <table class="data-table data-table--stack">
                     <caption class="sr-only">{t("Payment ledger")}</caption>
                     <thead>

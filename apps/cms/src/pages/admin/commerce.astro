@@ -719,7 +719,12 @@ const totalTableColumns = 6 + (showActions ? 2 : 0);
   }
 
   {canRead && !loadError && (
-    <div class="data-table-scroll fade-in-up">
+    <div
+      class="data-table-scroll fade-in-up"
+      role="region"
+      tabindex="0"
+      aria-label={t("Products")}
+    >
       <table class="data-table data-table--stack" id="commerce-products-table">
         <caption>
           {tn("{count} product", "{count} products", products.length, {
@@ -1159,7 +1164,12 @@ const totalTableColumns = 6 + (showActions ? 2 : 0);
         {t("Deleted products")}
         <span class="count-pill">{deletedProducts.length}</span>
       </h2>
-      <div class="data-table-scroll">
+      <div
+        class="data-table-scroll"
+        role="region"
+        tabindex="0"
+        aria-label={t("Deleted products")}
+      >
         <table class="data-table data-table--stack" id="deleted-products-table">
           <thead>
             <tr>

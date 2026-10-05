@@ -341,7 +341,12 @@ const ruleText = (program: (typeof programs)[number]) =>
   )}
 
   {canRead && !loadError && view !== null && (
-    <div class="data-table-scroll fade-in-up">
+    <div
+      class="data-table-scroll fade-in-up"
+      role="region"
+      tabindex="0"
+      aria-label={t("Loyalty")}
+    >
       <table class="data-table data-table--stack" id="loyalty-programs-table">
         <caption>
           {tn(
@@ -588,7 +593,12 @@ const ruleText = (program: (typeof programs)[number]) =>
           )}
 
           {ledger !== null && (
-            <div class="data-table-scroll">
+            <div
+              class="data-table-scroll"
+              role="region"
+              tabindex="0"
+              aria-label={t("Customer lookup")}
+            >
               <table
                 class="data-table data-table--stack"
                 id="loyalty-ledger-table"
@@ -662,7 +672,12 @@ const ruleText = (program: (typeof programs)[number]) =>
         </div>
       )}
 
-      <div class="data-table-scroll">
+      <div
+        class="data-table-scroll"
+        role="region"
+        tabindex="0"
+        aria-label={t("Loyalty")}
+      >
         <table class="data-table data-table--stack" id="loyalty-accounts-table">
           <caption>{t("Recently opened accounts")}</caption>
           <thead>

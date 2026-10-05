@@ -92,7 +92,10 @@ describe("the returns permissions", () => {
     const source = await read(
       `${SRC}/modules/identity-access/domain/access-control.ts`
     );
-    for (const verb of ["refund", "return", "reverse", "restock"]) {
+    // `reverse` is deliberately not in this list since the v10.5.0 sync
+    // (awcms-one#319): upstream's `procurement` module (ADR-0128) added it as a
+    // generic verb. The returns permissions below still use none of it.
+    for (const verb of ["refund", "return", "restock"]) {
       expect(source).not.toMatch(new RegExp(`\\|\\s*"${verb}"`));
     }
   });

@@ -360,7 +360,12 @@ const cashTender =
             )}
           </p>
         )}
-        <div class="data-table-scroll">
+        <div
+          class="data-table-scroll"
+          role="region"
+          tabindex="0"
+          aria-label={t("Expected, counted and difference")}
+        >
           <table
             class="data-table data-table--stack"
             id="session-tenders-table"
@@ -515,7 +520,12 @@ const cashTender =
             </button>
           </form>
         )}
-        <div class="data-table-scroll">
+        <div
+          class="data-table-scroll"
+          role="region"
+          tabindex="0"
+          aria-label={t("Drawer movements")}
+        >
           <table
             class="data-table data-table--stack"
             id="session-movements-table"
@@ -652,7 +662,12 @@ const cashTender =
             hidden
           />
           <form id="cashup-form">
-            <div class="data-table-scroll">
+            <div
+              class="data-table-scroll"
+              role="region"
+              tabindex="0"
+              aria-label={t("Cash up")}
+            >
               <table class="data-table data-table--stack" id="cashup-table">
                 <caption>{t("Count per payment method")}</caption>
                 <thead>
@@ -803,7 +818,12 @@ const cashTender =
       {report.closeRequests.length > 0 && (
         <section class="fade-in-up" aria-labelledby="session-requests-heading">
           <h2 id="session-requests-heading">{t("Close attempts")}</h2>
-          <div class="data-table-scroll">
+          <div
+            class="data-table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label={t("Close attempts")}
+          >
             <table
               class="data-table data-table--stack"
               id="session-requests-table"
@@ -924,7 +944,12 @@ const cashTender =
               </button>
             </form>
           )}
-          <div class="data-table-scroll">
+          <div
+            class="data-table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label={t("Corrections")}
+          >
             <table
               class="data-table data-table--stack"
               id="session-corrections-table"

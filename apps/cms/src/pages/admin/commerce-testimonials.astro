@@ -163,7 +163,12 @@ const showActions = canUpdate || canDelete;
   )}
 
   {canRead && !loadError && (
-    <div class="data-table-scroll fade-in-up">
+    <div
+      class="data-table-scroll fade-in-up"
+      role="region"
+      tabindex="0"
+      aria-label={t("Testimonials")}
+    >
       <table
         class="data-table data-table--stack"
         id="commerce-testimonials-table"

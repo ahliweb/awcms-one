@@ -167,7 +167,12 @@ const pendingCommissionTotal = commissions
   )}
 
   {canRead && !loadError && (
-    <div class="data-table-scroll fade-in-up">
+    <div
+      class="data-table-scroll fade-in-up"
+      role="region"
+      tabindex="0"
+      aria-label={t("Affiliates")}
+    >
       <table
         class="data-table data-table--stack"
         id="commerce-affiliates-table"
@@ -282,7 +287,12 @@ const pendingCommissionTotal = commissions
   )}
 
   {canRead && canReadCommissions && !loadError && (
-    <div class="data-table-scroll fade-in-up">
+    <div
+      class="data-table-scroll fade-in-up"
+      role="region"
+      tabindex="0"
+      aria-label={t("Affiliates")}
+    >
       <table
         class="data-table data-table--stack"
         id="commerce-affiliate-commissions-table"

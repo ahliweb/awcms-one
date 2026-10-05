@@ -212,7 +212,12 @@ const ACTION_ITEM_LABEL: Record<string, string> = {
 
       <section aria-label={t("Recent orders")}>
         <h2 class="admin-dashboard-panel-title">{t("Recent orders")}</h2>
-        <div class="data-table-scroll">
+        <div
+          class="data-table-scroll"
+          role="region"
+          tabindex="0"
+          aria-label={t("Recent orders")}
+        >
           <table class="data-table data-table--stack">
             <caption class="sr-only">{t("Recent orders")}</caption>
             <thead>

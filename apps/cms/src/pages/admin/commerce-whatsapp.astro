@@ -110,7 +110,12 @@ const statusOptions: WhatsappMessageStatus[] = [
         </select>
       </form>
 
-      <div class="data-table-scroll">
+      <div
+        class="data-table-scroll"
+        role="region"
+        tabindex="0"
+        aria-label={t("Messages")}
+      >
         <table class="data-table data-table--stack">
           <thead>
             <tr>

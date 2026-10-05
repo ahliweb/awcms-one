@@ -82,12 +82,13 @@ echoed back in every response's `meta` object
 
 ### Standard parameters
 
-| Name            | Header/query                 | Required | Type   | Description                                                                          |
-| --------------- | ---------------------------- | -------- | ------ | ------------------------------------------------------------------------------------ |
-| `CorrelationId` | `X-Correlation-ID` (header)  | no       | string |                                                                                      |
-| `SyncNodeId`    | `X-AWCMS-Node-ID` (header)   | yes      | string | Node code identifying the calling sync node (auto-registers on first contact).       |
-| `SyncTimestamp` | `X-AWCMS-Timestamp` (header) | yes      | string | ISO-8601 timestamp of the request, validated against the allowed skew (anti-replay). |
-| `SyncSignature` | `X-AWCMS-Signature` (header) | yes      | string | HMAC-SHA256 signature over "<timestamp>.<body>".                                     |
+| Name             | Header/query                 | Required | Type   | Description                                                                                                                                                                                                     |
+| ---------------- | ---------------------------- | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CorrelationId`  | `X-Correlation-ID` (header)  | no       | string |                                                                                                                                                                                                                 |
+| `IdempotencyKey` | `Idempotency-Key` (header)   | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `SyncNodeId`     | `X-AWCMS-Node-ID` (header)   | yes      | string | Node code identifying the calling sync node (auto-registers on first contact).                                                                                                                                  |
+| `SyncTimestamp`  | `X-AWCMS-Timestamp` (header) | yes      | string | ISO-8601 timestamp of the request, validated against the allowed skew (anti-replay).                                                                                                                            |
+| `SyncSignature`  | `X-AWCMS-Signature` (header) | yes      | string | HMAC-SHA256 signature over "<timestamp>.<body>".                                                                                                                                                                |
 
 ### Standard success envelope
 
@@ -395,10 +396,10 @@ Gated by tenant_admin.tenant_provisioning.create, which is scope: platform. Crea
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Request body** (required): object
 
@@ -602,11 +603,11 @@ Gated by tenant_domain.domains.set_primary. Requires Idempotency-Key. Atomically
 
 **Parameters**
 
-| Name               | In     | Required | Type          | Description |
-| ------------------ | ------ | -------- | ------------- | ----------- |
-| `id`               | path   | yes      | string (uuid) |             |
-| `Idempotency-Key`  | header | yes      | string        |             |
-| `X-Correlation-ID` | header | no       | string        |             |
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -628,11 +629,11 @@ Gated by tenant_domain.domains.verify. Requires Idempotency-Key. Resolves the TX
 
 **Parameters**
 
-| Name               | In     | Required | Type          | Description |
-| ------------------ | ------ | -------- | ------------- | ----------- |
-| `id`               | path   | yes      | string (uuid) |             |
-| `Idempotency-Key`  | header | yes      | string        |             |
-| `X-Correlation-ID` | header | no       | string        |             |
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -2045,9 +2046,9 @@ Grants a subject a role/permission context restricted to one business scope. The
 
 **Parameters**
 
-| Name              | In     | Required | Type   | Description |
-| ----------------- | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key` | header | yes      | string |             |
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -2071,10 +2072,10 @@ Revokes an active business-scope assignment (transitions it to `revoked`; append
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -2146,9 +2147,9 @@ Requests a bounded-lifetime, scope-bound exception to a registered SoD rule (`st
 
 **Parameters**
 
-| Name              | In     | Required | Type   | Description |
-| ----------------- | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key` | header | yes      | string |             |
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -2175,10 +2176,10 @@ Requires `Idempotency-Key`; audited at `critical` severity.
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (optional): object
 
@@ -2202,10 +2203,10 @@ Rejects a pending exception — the safe outcome (the conflict stays denied). Ga
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (optional): object
 
@@ -2229,10 +2230,10 @@ Revokes a previously approved exception, ending the override early (immediately 
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -2283,10 +2284,10 @@ Inviting and GRANTING A ROLE are two authorities: a body naming `roleIds` additi
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `X-Correlation-ID` | header | no       | string |             |
-| `Idempotency-Key`  | header | yes      | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): [`CreateInvitationInput`](#schema-createinvitationinput)
 
@@ -3051,10 +3052,10 @@ Counterpart of `DELETE /api/v1/profiles/{id}` (ADR-0058 §A). Clears `deleted_at
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Responses**
 
@@ -3855,11 +3856,11 @@ High-risk — requires Idempotency-Key. 409 for any non-draft (published/retired
 
 **Parameters**
 
-| Name               | In     | Required | Type          | Description |
-| ------------------ | ------ | -------- | ------------- | ----------- |
-| `id`               | path   | yes      | string (uuid) |             |
-| `Idempotency-Key`  | header | yes      | string        |             |
-| `X-Correlation-ID` | header | no       | string        |             |
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
 
 **Request body** (optional): object
 
@@ -3903,11 +3904,11 @@ Transitions draft to active, retiring any previously-active version of the same 
 
 **Parameters**
 
-| Name               | In     | Required | Type          | Description |
-| ------------------ | ------ | -------- | ------------- | ----------- |
-| `id`               | path   | yes      | string (uuid) |             |
-| `Idempotency-Key`  | header | yes      | string        |             |
-| `X-Correlation-ID` | header | no       | string        |             |
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -3927,11 +3928,11 @@ Transitions draft to active, retiring any previously-active version of the same 
 
 **Parameters**
 
-| Name               | In     | Required | Type          | Description |
-| ------------------ | ------ | -------- | ------------- | ----------- |
-| `id`               | path   | yes      | string (uuid) |             |
-| `Idempotency-Key`  | header | yes      | string        |             |
-| `X-Correlation-ID` | header | no       | string        |             |
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -3997,10 +3998,10 @@ A tenant user can only delegate their OWN standing. High-risk — requires Idemp
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Request body** (required): object
 
@@ -4021,11 +4022,11 @@ A tenant user can only delegate their OWN standing. High-risk — requires Idemp
 
 **Parameters**
 
-| Name               | In     | Required | Type          | Description |
-| ------------------ | ------ | -------- | ------------- | ----------- |
-| `id`               | path   | yes      | string (uuid) |             |
-| `Idempotency-Key`  | header | yes      | string        |             |
-| `X-Correlation-ID` | header | no       | string        |             |
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
 
 **Request body** (optional): object
 
@@ -4067,11 +4068,11 @@ A tenant user can only delegate their OWN standing. High-risk — requires Idemp
 
 **Parameters**
 
-| Name               | In     | Required | Type          | Description |
-| ------------------ | ------ | -------- | ------------- | ----------- |
-| `id`               | path   | yes      | string (uuid) |             |
-| `Idempotency-Key`  | header | yes      | string        |             |
-| `X-Correlation-ID` | header | no       | string        |             |
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
 
 **Request body** (required): object
 
@@ -4120,11 +4121,11 @@ The task completes only once its quorum rule is satisfied; the instance advances
 
 **Parameters**
 
-| Name               | In     | Required | Type          | Description |
-| ------------------ | ------ | -------- | ------------- | ----------- |
-| `id`               | path   | yes      | string (uuid) |             |
-| `Idempotency-Key`  | header | yes      | string        |             |
-| `X-Correlation-ID` | header | no       | string        |             |
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
 
 **Request body** (required): object
 
@@ -4146,11 +4147,11 @@ The task completes only once its quorum rule is satisfied; the instance advances
 
 **Parameters**
 
-| Name               | In     | Required | Type          | Description |
-| ------------------ | ------ | -------- | ------------- | ----------- |
-| `id`               | path   | yes      | string (uuid) |             |
-| `Idempotency-Key`  | header | yes      | string        |             |
-| `X-Correlation-ID` | header | no       | string        |             |
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
 
 **Request body** (required): object
 
@@ -4172,11 +4173,11 @@ The task completes only once its quorum rule is satisfied; the instance advances
 
 **Parameters**
 
-| Name               | In     | Required | Type          | Description |
-| ------------------ | ------ | -------- | ------------- | ----------- |
-| `id`               | path   | yes      | string (uuid) |             |
-| `Idempotency-Key`  | header | yes      | string        |             |
-| `X-Correlation-ID` | header | no       | string        |             |
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
 
 **Request body** (required): object
 
@@ -4204,10 +4205,10 @@ Requires Idempotency-Key. email.notification.create for every request; email.ann
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Request body** (required): object
 
@@ -4647,10 +4648,10 @@ Module-contributed read-model projection extension to Management Reporting — l
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Request body** (required): object
 
@@ -4672,11 +4673,11 @@ Module-contributed read-model projection extension to Management Reporting — l
 
 **Parameters**
 
-| Name               | In     | Required | Type          | Description |
-| ------------------ | ------ | -------- | ------------- | ----------- |
-| `id`               | path   | yes      | string (uuid) |             |
-| `Idempotency-Key`  | header | yes      | string        |             |
-| `X-Correlation-ID` | header | no       | string        |             |
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
 
 **Request body** (required): object
 
@@ -4742,10 +4743,10 @@ Module-contributed read-model projection extension to Management Reporting — l
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Request body** (required): object
 
@@ -4809,11 +4810,11 @@ Module-contributed read-model projection extension to Management Reporting — l
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `key`              | path   | yes      | string |             |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `key`              | path   | yes      | string |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Request body** (required): object
 
@@ -4835,11 +4836,11 @@ Module-contributed read-model projection extension to Management Reporting — l
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `key`              | path   | yes      | string |             |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `key`              | path   | yes      | string |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -4985,10 +4986,10 @@ Transactional, versioned domain-event outbox and dispatcher admin API — read-o
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -5082,10 +5083,10 @@ Save the single draft config for a chosen theme (bounded, validated design token
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Request body** (required): [`ThemeConfigRequest`](#schema-themeconfigrequest)
 
@@ -5132,10 +5133,10 @@ Publish the current draft as a new IMMUTABLE version and make it the live look (
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -5156,10 +5157,10 @@ Clear the active theme pointer so the site falls back to the default theme; publ
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -5180,10 +5181,10 @@ Move the active pointer to an earlier published version of this tenant (never mu
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Request body** (required): object
 
@@ -5257,10 +5258,10 @@ Gated by media_library.enforcement.enable. High-risk, requires Idempotency-Key. 
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -5331,11 +5332,11 @@ Gated by media_library.media.verify. High-risk, requires Idempotency-Key. Verifi
 
 **Parameters**
 
-| Name               | In     | Required | Type          | Description |
-| ------------------ | ------ | -------- | ------------- | ----------- |
-| `id`               | path   | yes      | string (uuid) |             |
-| `Idempotency-Key`  | header | yes      | string        |             |
-| `X-Correlation-ID` | header | no       | string        |             |
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
 
 **Request body** (optional): [`FinalizeNewsMediaUploadSessionRequest`](#schema-finalizenewsmediauploadsessionrequest)
 
@@ -5400,11 +5401,11 @@ A soft-deleted object and an unknown id both answer 404.
 
 **Parameters**
 
-| Name               | In     | Required | Type          | Description |
-| ------------------ | ------ | -------- | ------------- | ----------- |
-| `id`               | path   | yes      | string (uuid) |             |
-| `Idempotency-Key`  | header | yes      | string        |             |
-| `X-Correlation-ID` | header | no       | string        |             |
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
 
 **Request body** (required): [`MediaRightsUpdateRequest`](#schema-mediarightsupdaterequest)
 
@@ -5434,11 +5435,11 @@ An already-deleted object and an unknown id both answer 404 — a distinct "alre
 
 **Parameters**
 
-| Name               | In     | Required | Type          | Description |
-| ------------------ | ------ | -------- | ------------- | ----------- |
-| `id`               | path   | yes      | string (uuid) |             |
-| `Idempotency-Key`  | header | yes      | string        |             |
-| `X-Correlation-ID` | header | no       | string        |             |
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
 
 **Request body** (required): [`SoftDeleteMediaObjectRequest`](#schema-softdeletemediaobjectrequest)
 
@@ -5496,11 +5497,11 @@ The object must ALREADY be soft-deleted — purging a live object answers 404 ra
 
 **Parameters**
 
-| Name               | In     | Required | Type          | Description |
-| ------------------ | ------ | -------- | ------------- | ----------- |
-| `id`               | path   | yes      | string (uuid) |             |
-| `Idempotency-Key`  | header | yes      | string        |             |
-| `X-Correlation-ID` | header | no       | string        |             |
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -5526,11 +5527,11 @@ Restoring an object that is NOT soft-deleted answers 404 rather than succeeding 
 
 **Parameters**
 
-| Name               | In     | Required | Type          | Description |
-| ------------------ | ------ | -------- | ------------- | ----------- |
-| `id`               | path   | yes      | string (uuid) |             |
-| `Idempotency-Key`  | header | yes      | string        |             |
-| `X-Correlation-ID` | header | no       | string        |             |
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -6138,10 +6139,10 @@ Gated by blog_content.pages.archive (ADR-0057). High-risk, requires Idempotency-
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -6163,10 +6164,10 @@ Gated by blog_content.pages.publish (ADR-0057). High-risk, requires Idempotency-
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -6189,10 +6190,10 @@ Gated by blog_content.pages.purge (ADR-0057). High-risk, irreversible, requires 
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -6237,10 +6238,10 @@ Gated by blog_content.pages.restore (ADR-0057). High-risk, requires Idempotency-
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -6442,10 +6443,10 @@ Gated by blog_content.posts.archive. High-risk, requires Idempotency-Key.
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -6490,10 +6491,10 @@ Gated by blog_content.posts.publish (no ownership carve-out). High-risk, require
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -6516,10 +6517,10 @@ Gated by blog_content.posts.purge. High-risk, irreversible, requires Idempotency
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -6564,10 +6565,10 @@ Gated by blog_content.posts.restore. High-risk, requires Idempotency-Key.
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -6635,10 +6636,10 @@ Gated by blog_content.revisions.restore. High-risk, requires Idempotency-Key. Re
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -6661,10 +6662,10 @@ Gated by blog_content.posts.schedule. High-risk, requires Idempotency-Key. Same 
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Request body** (required): object
 
@@ -7522,10 +7523,10 @@ Gated by visitor_analytics.retention.purge. Destructive, high-risk: requires Ide
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -7690,11 +7691,11 @@ Gated by idn_admin_regions.dataset.configure. High-risk, `Idempotency-Key` requi
 
 **Parameters**
 
-| Name               | In     | Required | Type          | Description   |
-| ------------------ | ------ | -------- | ------------- | ------------- |
-| `id`               | path   | yes      | string (uuid) | Dataset UUID. |
-| `Idempotency-Key`  | header | yes      | string        |               |
-| `X-Correlation-ID` | header | no       | string        |               |
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) | Dataset UUID.                                                                                                                                                                                                   |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -7716,10 +7717,10 @@ Gated by idn_admin_regions.dataset.restore. High-risk, `Idempotency-Key` require
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -7846,10 +7847,10 @@ Gated by data_lifecycle.legal_hold.create. High-risk mutation: requires Idempote
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Request body** (required): [`DataLifecycleCreateLegalHoldRequest`](#schema-datalifecyclecreatelegalholdrequest)
 
@@ -7872,11 +7873,11 @@ Gated by data_lifecycle.legal_hold.release — a DISTINCT permission from create
 
 **Parameters**
 
-| Name               | In     | Required | Type          | Description |
-| ------------------ | ------ | -------- | ------------- | ----------- |
-| `id`               | path   | yes      | string (uuid) |             |
-| `Idempotency-Key`  | header | yes      | string        |             |
-| `X-Correlation-ID` | header | no       | string        |             |
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
 
 **Request body** (required): [`DataLifecycleReleaseLegalHoldRequest`](#schema-datalifecyclereleaselegalholdrequest)
 
@@ -7970,11 +7971,11 @@ ADR-0094 Decision 3. Gated by data_lifecycle.subject_erasure.approve — a DIFFE
 
 **Parameters**
 
-| Name               | In     | Required | Type          | Description |
-| ------------------ | ------ | -------- | ------------- | ----------- |
-| `id`               | path   | yes      | string (uuid) |             |
-| `Idempotency-Key`  | header | yes      | string        |             |
-| `X-Correlation-ID` | header | no       | string        |             |
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
 
 **Request body** (required): [`DataLifecycleSubjectDecisionInput`](#schema-datalifecyclesubjectdecisioninput)
 
@@ -7998,10 +7999,10 @@ ADR-0094 Decision 3. Gated by data_lifecycle.subject_erasure.create and it ERASE
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Request body** (required): [`DataLifecycleSubjectRequestInput`](#schema-datalifecyclesubjectrequestinput)
 
@@ -8025,10 +8026,10 @@ ADR-0094. Gated by data_lifecycle.subject_request.export — its OWN permission,
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Request body** (required): [`DataLifecycleSubjectRequestInput`](#schema-datalifecyclesubjectrequestinput)
 
@@ -8078,10 +8079,10 @@ Gated by seo_distribution.config.update. High-risk mutation — rewrites the pub
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Request body** (required): [`SeoConfigUpdateRequest`](#schema-seoconfigupdaterequest)
 
@@ -8203,10 +8204,10 @@ High-risk: requires an Idempotency-Key, audited. The target is validated through
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Request body** (required): [`SeoRedirectCreateRequest`](#schema-seoredirectcreaterequest)
 
@@ -8304,11 +8305,11 @@ activate | deactivate | archive | restore | purge. Idempotency-keyed, audited. p
 
 **Parameters**
 
-| Name               | In     | Required | Type          | Description |
-| ------------------ | ------ | -------- | ------------- | ----------- |
-| `id`               | path   | yes      | string (uuid) |             |
-| `Idempotency-Key`  | header | yes      | string        |             |
-| `X-Correlation-ID` | header | no       | string        |             |
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
 
 **Request body** (required): object
 
@@ -8332,10 +8333,10 @@ Turn an old→new public path change into an audited redirect PROPOSAL (inactive
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Request body** (required): object
 
@@ -8358,10 +8359,10 @@ Validate + safety-check up to 200 rules. dryRun: true returns a per-item report 
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Request body** (required): object
 
@@ -8406,10 +8407,10 @@ High-risk (the legacy-blog toggle changes public routing intent): requires an Id
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Request body** (required): [`SeoRedirectSettings`](#schema-seoredirectsettings)
 
@@ -8571,10 +8572,10 @@ High-risk: hands the payload to a domain action, so an Idempotency-Key is requir
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Responses**
 
@@ -8622,10 +8623,10 @@ Gated by `site_search.index.rebuild` — a HIGH-RISK action: it deletes every on
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -8646,10 +8647,10 @@ Gated by `site_search.index.reconcile`. Upserts the tenant's currently public do
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -8741,10 +8742,10 @@ Gated by `site_search.settings.update`. Changes what the PUBLIC search surface r
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Request body** (required): [`SiteSearchSettingsUpdateRequest`](#schema-sitesearchsettingsupdaterequest)
 
@@ -8875,6 +8876,270 @@ The row is KEPT. "This person asked to stop, on this date" is what answers a lat
 | 400    | Validation error.                                    | [`ApiError`](#standard-error-envelope)                       |
 | 429    | Too many requests from this source (`RATE_LIMITED`). | [`ApiError`](#standard-error-envelope)                       |
 
+## Tax
+
+Generic, jurisdiction-neutral tax calculation (tax module, Issue #889, ADR-0127). Versioned rule profiles with half-open effective windows (published windows never overlap per profile — enforced in the database), categories, a jurisdiction/scope reference, inclusive and exclusive pricing, multiple stacked or compound components, an explicit rounding mode/scale/level, and exempt vs zero-rated kept distinct. ONE pure calculator on exact bigint-rational arithmetic (no floating point; every amount, quantity and rate is a decimal STRING) behind a stateless quote and an idempotent finalise. SERVER-AUTHORITATIVE: no request accepts a tax amount, and a payload that names one is refused with 400 TAX_AMOUNT_NOT_ACCEPTED rather than ignored. A finalised document's tax is an APPEND-ONLY snapshot carrying a copy of the rule version it was computed under, so updating a rule never changes a historical document, and a refund or return is computed from the original snapshot alone, never from today's rule. Publishing a rule version and reversing a snapshot are high-risk, idempotency-keyed and audited; both, and finalising, emit domain events through the outbox. Ships no country profile: that needs a verified regulatory mapping first.
+
+### `POST /api/v1/tax/quote` — Compute tax for a set of lines (stateless)
+
+- **operationId**: `taxQuote`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `tax.calculations.analyze` (read-only, not high-risk). The ONE calculator every quote, POS and storefront caller uses. SERVER- AUTHORITATIVE: the body carries quantities, unit prices, discounts and a category per line — never a tax amount; a field that names one is refused with `400 TAX_AMOUNT_NOT_ACCEPTED`. The rule version is the published one in force on `taxDate` (a calendar date supplied by the caller, never the server's clock). Records nothing — no snapshot, event or audit row — so no `Idempotency-Key`. `422 TAX_RULE_VERSION_NOT_FOUND` when no published version covers the date, `422 TAX_RULE_NOT_FOUND` when a line's category has no rule and there is no fallback, `422 TAX_INPUT_INVALID` for a bad amount or one too large to store (a line or document figure of 10^18 or more — the same refusal `/snapshots` gives). The pricing mode is the RULE VERSION's: a `pricingMode` in the body is refused as an unrecognised field. Exact arithmetic throughout; see docs/awcms/tax-calculation.md.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description |
+| ------------------ | ------ | -------- | ------ | ----------- |
+| `X-Correlation-ID` | header | no       | string |             |
+
+**Request body** (required): [`TaxQuoteRequest`](#schema-taxquoterequest)
+
+**Responses**
+
+| Status | Description                                                                | Schema                                 |
+| ------ | -------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The computed tax.                                                          | object                                 |
+| 400    | Validation error.                                                          | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                | [`ApiError`](#standard-error-envelope) |
+| 422    | `TAX_RULE_VERSION_NOT_FOUND`, `TAX_RULE_NOT_FOUND` or `TAX_INPUT_INVALID`. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/tax/reports/reconciliation` — Tax reconciliation for a period
+
+- **operationId**: `taxReconciliationReport`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `tax.reports.read`. What was finalised and reversed between two TAX DATES (inclusive calendar dates, at most 366 days), by rule version, component and treatment, netted per currency, plus an `integrity` block that checks every snapshot in the period against its own lines (line sums vs document totals, component sums vs tax total). Aggregated in SQL, so the response grows with the number of profiles and components, never with the number of documents. The counting projection `tax.snapshot_activity` on the reporting engine is the freshness-tracked companion; this is its drill-down.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `from`             | query  | yes      | string (date) |             |
+| `to`               | query  | yes      | string (date) |             |
+| `profileCode`      | query  | no       | string        |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The reconciliation report.  | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/tax/rule-versions` — List this tenant's tax rule versions
+
+- **operationId**: `taxRuleVersionList`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `tax.rules.read`. Newest first, keyset-paginated (`data.nextCursor`). Optional filters: `profileCode`, `status` (`draft` | `published`). Tenant-scoped (withTenant + RLS FORCE).
+
+**Parameters**
+
+| Name               | In     | Required | Type                       | Description |
+| ------------------ | ------ | -------- | -------------------------- | ----------- |
+| `profileCode`      | query  | no       | string                     |             |
+| `status`           | query  | no       | enum(`draft`, `published`) |             |
+| `cursor`           | query  | no       | string                     |             |
+| `X-Correlation-ID` | header | no       | string                     |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | A page of rule versions.    | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/tax/rule-versions` — Author a draft tax rule version
+
+- **operationId**: `taxRuleVersionCreate`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `tax.rules.configure` (high-risk). Creates a DRAFT — it is not resolved by any quote or snapshot until published. The version number is assigned by the server (next for the profile). Requires an `Idempotency-Key` (a retry must not mint a second draft) and is audited. The definition is validated strictly: a taxable rule needs at least one component, exempt and zero-rated rules must have none, every category a rule names must be declared, a category has one rule, and there is at most one fallback rule (`categoryCode: null`).
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`TaxRuleVersionInput`](#schema-taxruleversioninput)
+
+**Responses**
+
+| Status | Description                                                | Schema                                                     |
+| ------ | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| 200    | Idempotent replay of an earlier create.                    | [`TaxRuleVersionEnvelope`](#schema-taxruleversionenvelope) |
+| 201    | Draft created.                                             | [`TaxRuleVersionEnvelope`](#schema-taxruleversionenvelope) |
+| 400    | Validation error.                                          | [`ApiError`](#standard-error-envelope)                     |
+| 401    | Missing or invalid session.                                | [`ApiError`](#standard-error-envelope)                     |
+| 403    | Access denied by RBAC/ABAC.                                | [`ApiError`](#standard-error-envelope)                     |
+| 409    | Idempotency-Key was already used with a different request. | [`ApiError`](#standard-error-envelope)                     |
+
+### `GET /api/v1/tax/rule-versions/{id}` — Read one tax rule version with its full definition
+
+- **operationId**: `taxRuleVersionRead`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `tax.rules.read`. The definition plus the version's pricing, rounding mode, scale and level are everything the pure calculator needs, so this is also the document an offline client caches. A malformed `id` answers 404.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `id`               | path   | yes      | string (uuid) |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                                     |
+| ------ | --------------------------- | ---------------------------------------------------------- |
+| 200    | The rule version.           | [`TaxRuleVersionEnvelope`](#schema-taxruleversionenvelope) |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope)                     |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope)                     |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope)                     |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope)                     |
+
+### `POST /api/v1/tax/rule-versions/{id}/publish` — Publish a draft tax rule version
+
+- **operationId**: `taxRuleVersionPublish`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `tax.rules.publish` (high-risk), separately grantable from authoring: this is the act that changes what every sale on or after `effectiveFrom` is taxed at. Requires an `Idempotency-Key`; audited at `critical`; emits `awcms.tax.rule_version.published` through the outbox. A version must take effect STRICTLY AFTER the latest published version of its profile, which it ends (409 `TAX_VERSION_OUT_OF_ORDER` otherwise) — there is no publishing into the past: besides that ordering rule, a version may not take effect before the SERVER's date (`now()` from the database, UTC) nor on or before a tax date already finalised under its profile (`409 TAX_VERSION_BACKDATED`). A published version is immutable: it never changes a document already finalised, and a rule edit is a new version. Concurrent publishes for one profile serialise on a database lock; published windows can never overlap (enforced by a trigger).
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Responses**
+
+| Status | Description                                                                                                     | Schema                                                     |
+| ------ | --------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| 200    | Published (or an idempotent replay).                                                                            | [`TaxRuleVersionEnvelope`](#schema-taxruleversionenvelope) |
+| 400    | Validation error.                                                                                               | [`ApiError`](#standard-error-envelope)                     |
+| 401    | Missing or invalid session.                                                                                     | [`ApiError`](#standard-error-envelope)                     |
+| 403    | Access denied by RBAC/ABAC.                                                                                     | [`ApiError`](#standard-error-envelope)                     |
+| 404    | Resource not found.                                                                                             | [`ApiError`](#standard-error-envelope)                     |
+| 409    | `IDEMPOTENCY_CONFLICT`, `TAX_VERSION_ALREADY_PUBLISHED`, `TAX_VERSION_OUT_OF_ORDER` or `TAX_VERSION_BACKDATED`. | [`ApiError`](#standard-error-envelope)                     |
+
+### `GET /api/v1/tax/snapshots` — List tax snapshots
+
+- **operationId**: `taxSnapshotList`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `tax.snapshots.read`. Newest first, keyset-paginated (`data.nextCursor`). Filters: `documentType`, `documentId`, `kind`.
+
+**Parameters**
+
+| Name               | In     | Required | Type                     | Description |
+| ------------------ | ------ | -------- | ------------------------ | ----------- |
+| `documentType`     | query  | no       | string                   |             |
+| `documentId`       | query  | no       | string                   |             |
+| `kind`             | query  | no       | enum(`sale`, `reversal`) |             |
+| `cursor`           | query  | no       | string                   |             |
+| `X-Correlation-ID` | header | no       | string                   |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | A page of snapshots.        | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/tax/snapshots` — Finalise a document's tax into an immutable snapshot
+
+- **operationId**: `taxSnapshotFinalise`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `tax.snapshots.create`. The server computes the tax exactly as `/quote` does and writes it, with a copy of the rule version it used, into an APPEND-ONLY row (enforced by a database trigger): nothing about the rules can change that document afterwards, and a refund is computed from this row alone. Idempotent two ways — the required `Idempotency-Key` replays the stored response, and the natural key `(documentType, documentId)` returns the existing snapshot (200) when the SAME request is repeated even under a new key, and `409 TAX_DOCUMENT_ALREADY_FINALISED` when a DIFFERENT request names an already-finalised document. Audited; emits `awcms.tax.snapshot.finalised` through the outbox. Like `/quote`, a body that names a tax amount is refused with `400 TAX_AMOUNT_NOT_ACCEPTED`, a `pricingMode` is refused as an unrecognised field, and an oversized figure is `422 TAX_INPUT_INVALID`. A `taxDate` outside the server-date window (default 7 days back, 1 forward) additionally needs `tax.snapshots.backdate` (high-risk) and is otherwise `403 TAX_BACKDATE_PERMISSION_REQUIRED` — never accepted silently.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`TaxSnapshotRequest`](#schema-taxsnapshotrequest)
+
+**Responses**
+
+| Status | Description                                                                | Schema                                               |
+| ------ | -------------------------------------------------------------------------- | ---------------------------------------------------- |
+| 200    | Replay of an earlier finalise (same key, or same document and request).    | [`TaxSnapshotEnvelope`](#schema-taxsnapshotenvelope) |
+| 201    | Snapshot created.                                                          | [`TaxSnapshotEnvelope`](#schema-taxsnapshotenvelope) |
+| 400    | Validation error.                                                          | [`ApiError`](#standard-error-envelope)               |
+| 401    | Missing or invalid session.                                                | [`ApiError`](#standard-error-envelope)               |
+| 403    | Access denied by RBAC/ABAC.                                                | [`ApiError`](#standard-error-envelope)               |
+| 409    | `IDEMPOTENCY_CONFLICT` or `TAX_DOCUMENT_ALREADY_FINALISED`.                | [`ApiError`](#standard-error-envelope)               |
+| 422    | `TAX_RULE_VERSION_NOT_FOUND`, `TAX_RULE_NOT_FOUND` or `TAX_INPUT_INVALID`. | [`ApiError`](#standard-error-envelope)               |
+
+### `GET /api/v1/tax/snapshots/{id}` — Read one tax snapshot with its lines
+
+- **operationId**: `taxSnapshotRead`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `tax.snapshots.read`. Returns the document's lines and totals and names the rule version it was computed under (`ruleVersionId`, `versionNo`) but does NOT embed the rule definition: reading rules is `tax.rules.read`, a different power from reading a document. The definition is `GET /api/v1/tax/rule-versions/{id}` away for a caller entitled to it, and is the same content because a published version is immutable. A malformed `id` answers 404.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `id`               | path   | yes      | string (uuid) |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                               |
+| ------ | --------------------------- | ---------------------------------------------------- |
+| 200    | The snapshot.               | [`TaxSnapshotEnvelope`](#schema-taxsnapshotenvelope) |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope)               |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope)               |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope)               |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope)               |
+
+### `POST /api/v1/tax/snapshots/{id}/reverse` — Reverse (refund / return) all or part of a finalised document's tax
+
+- **operationId**: `taxSnapshotReverse`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `tax.snapshots.reverse` (HIGH-RISK). Computed from the ORIGINAL snapshot — its recorded quantities and amounts and nothing else; no rule table is consulted, so a refund of last year's sale reverses the tax that was CHARGED whatever the rate is now. The body names lines and quantities returned (omit `lines` to reverse everything not yet returned) — never an amount. Partial reversals cap at what has not yet been reversed; the one that completes a line takes the exact remainder; concurrent reversals of one sale serialise on a row lock with a database trigger as backstop, so the total refunded can never exceed the total charged. Amounts in the result are NEGATIVE. Requires an `Idempotency-Key`; `documentId` is the reversal's own document (a refund id) and is unique per tenant, so a retry under a fresh key replays. `taxDate` is the period the reversal is reported in: the SERVER's date when omitted (never the original's), and a stated date outside the server-date window needs `tax.snapshots.backdate` (`403 TAX_BACKDATE_PERMISSION_REQUIRED` otherwise). A malformed `id` answers 404. Audited at `critical`; emits `awcms.tax.snapshot.reversed` through the outbox.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`TaxReversalRequest`](#schema-taxreversalrequest)
+
+**Responses**
+
+| Status | Description                                                                                                              | Schema                                               |
+| ------ | ------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------- |
+| 200    | Replay of an earlier reversal.                                                                                           | [`TaxSnapshotEnvelope`](#schema-taxsnapshotenvelope) |
+| 201    | Reversal recorded.                                                                                                       | [`TaxSnapshotEnvelope`](#schema-taxsnapshotenvelope) |
+| 400    | Validation error.                                                                                                        | [`ApiError`](#standard-error-envelope)               |
+| 401    | Missing or invalid session.                                                                                              | [`ApiError`](#standard-error-envelope)               |
+| 403    | Access denied by RBAC/ABAC.                                                                                              | [`ApiError`](#standard-error-envelope)               |
+| 404    | Resource not found.                                                                                                      | [`ApiError`](#standard-error-envelope)               |
+| 409    | `IDEMPOTENCY_CONFLICT` or `TAX_DOCUMENT_ALREADY_FINALISED` (the reversal document id was used with a different request). | [`ApiError`](#standard-error-envelope)               |
+| 422    | `TAX_REVERSAL_INVALID` — an unknown line, more than was sold and not yet returned, or nothing left to reverse.           | [`ApiError`](#standard-error-envelope)               |
+
 ## Site Profile
 
 Per-tenant SITE CHROME (site_profile module, Issue #596, ADR-0102) — the masthead tagline, footer copyright line, logo and favicon, editorial address, contact email/phone/WhatsApp, and social profile links that every public page renders. Before it, a footer, masthead, contact page and Organization JSON-LD node all had to hard-code the publisher's identity in frontend source, which made a second tenant impossible without a fork. The boundary against seo_distribution is deliberate: awcms_seo_tenant_settings keeps what CRAWLERS see (og:site_name, the JSON-LD Organization node, the default og:image) because each is an SEO output consumed by a meta-tag renderer, while this module owns what PEOPLE read. Nothing is duplicated across the two, so no value can drift, and consumers are never asked to know the split — GET /api/v1/site-profile/composed merges both halves for build clients. Social link URLs are REFUSED rather than sanitized unless absolute http(s), because they are rendered as <a href> on every public page. read and update are separately grantable: changing what every page's contact block says is a different power from reading it. Nothing here is anonymous — 'public read' means the public site's BUILDER can read it, not that anyone can.
@@ -8910,10 +9175,10 @@ Gated by `site_profile.profile.update`, separately grantable from `.read` becaus
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Request body** (required): [`SiteProfileWriteInput`](#schema-siteprofilewriteinput)
 
@@ -8987,9 +9252,9 @@ RESPONSES ARE DELIBERATELY UNIFORM. An unresolved resource, a disabled module, a
 
 **Parameters**
 
-| Name              | In     | Required | Type   | Description |
-| ----------------- | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key` | header | yes      | string |             |
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): [`SubmitCommentRequest`](#schema-submitcommentrequest)
 
@@ -9102,10 +9367,10 @@ Requires `comments.moderation.archive`. Only an APPROVED comment can be archived
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Responses**
 
@@ -9128,10 +9393,10 @@ This is the only moderator transition with no way back through the API: `deleted
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Responses**
 
@@ -9152,10 +9417,10 @@ This is the only moderator transition with no way back through the API: `deleted
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -9179,10 +9444,10 @@ Requires `comments.moderation.restore`. Moves the comment back to `pending` for 
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Responses**
 
@@ -9203,9 +9468,9 @@ Guarded by the same permission the single-comment action requires. Each comment 
 
 **Parameters**
 
-| Name              | In     | Required | Type   | Description |
-| ----------------- | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key` | header | yes      | string |             |
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -9268,9 +9533,9 @@ Requires `comments.settings.update`. A partial body is merged over the current s
 
 **Parameters**
 
-| Name              | In     | Required | Type   | Description |
-| ----------------- | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key` | header | yes      | string |             |
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): [`CommentSettings`](#schema-commentsettings)
 
@@ -9915,10 +10180,10 @@ Sets deleted_at; the slug is freed for reuse. Restore it with POST /api/v1/comme
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -10309,9 +10574,9 @@ A draft touches no register and no cash-up; posting is `/expenses/{id}/post`. A 
 
 **Parameters**
 
-| Name              | In     | Required | Type   | Description |
-| ----------------- | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key` | header | yes      | string |             |
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -10380,10 +10645,10 @@ Only the draft's creator, or a supervisor (a caller who also holds `commerce.exp
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Responses**
 
@@ -10405,10 +10670,10 @@ Segregation of duties: an expense cannot be approved by the person who created i
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -10432,10 +10697,10 @@ Within the tenant's `expenses.approvalThreshold` the expense is posted outright 
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Responses**
 
@@ -10507,10 +10772,10 @@ A drawer-paid expense appends a `correction` cash-IN movement for the same amoun
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -10934,10 +11199,10 @@ Same key + same body replays the stored 201; same key + different body is `409 I
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `customerId`      | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `customerId`      | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -10985,10 +11250,10 @@ Records the points DEBIT only. Converting points into a discount at checkout nee
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `customerId`      | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `customerId`      | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -11282,10 +11547,10 @@ The order row is locked for the write, so two concurrent final payments cannot o
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -11309,11 +11574,11 @@ The order row is locked for the write, so two concurrent final payments cannot o
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `paymentId`       | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `paymentId`       | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -11358,10 +11623,10 @@ Quantities are bounded by what remains eligible per order line, under the order-
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -11568,9 +11833,9 @@ The 201 carries `payments` (every ledger row — one per tender, for the receipt
 
 **Parameters**
 
-| Name              | In     | Required | Type   | Description |
-| ----------------- | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key` | header | yes      | string |             |
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -11807,10 +12072,10 @@ Upsert on `(tenant_id, product_id)` — at most one link per product (`sql/939`)
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -11831,10 +12096,10 @@ Upsert on `(tenant_id, product_id)` — at most one link per product (`sql/939`)
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Responses**
 
@@ -11989,18 +12254,18 @@ Upsert on `(tenant_id, product_id)` — at most one link per product (`sql/939`)
 | 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/products/import` — Issue #291. Validate (mode=dry_run, the default — writes NOTHING) or apply (mode=apply) a product CSV. The body is the CSV itself (text/csv, UTF-8, at most 5 MiB and 5000 data rows). Rows match on `sku`: a live product with that SKU is updated, any other SKU creates one. apply is ALL-OR-NOTHING (422 IMPORT_VALIDATION_FAILED when the plan has any error, 409 IMPORT_CONFLICT on a write-time conflict — both leave the catalog untouched), needs `Idempotency-Key` (a replay with the same key and file returns the original response; the same key with a different file is 409 IDEMPOTENCY_CONFLICT), and needs products.import AND products.create AND products.update. `expectedSha256` (the dry-run's fileSha256) refuses a file that differs from the reviewed one (409 IMPORT_FILE_MISMATCH). No column accepts a media reference and nothing is fetched remotely. Gated on products.import.
+### `POST /api/v1/commerce/products/import` — Issue #291. Validate (mode=dry_run, the default — writes NOTHING) or apply (mode=apply) a product CSV. The body is the CSV itself (text/csv, UTF-8, at most 5 MiB and 5000 data rows). Rows match on `sku`: a live product with that SKU is updated, any other SKU creates one. apply is ALL-OR-NOTHING (422 IMPORT_VALIDATION_FAILED when the plan has any error, 409 IMPORT_CONFLICT on a write-time conflict — both leave the catalog untouched), needs `Idempotency-Key` (a replay with the same key and file returns the original response; the same key with a different file is 409 IDEMPOTENCY_CONFLICT), and needs products.import AND products.create AND products.update. `expectedSha256` (the dry-run's fileSha256) refuses a file that differs from the reviewed one (409 IMPORT_FILE_MISMATCH). No column accepts a media reference and nothing is fetched remotely. Gated on products.import. The shared `Idempotency-Key` component (ADR-0129) is declared required for every operation that takes it; this route enforces the key for mode=apply only, and a mode=dry_run request may omit it.
 
 - **operationId**: `importCommerceProductsCsv`
 - **Security**: bearerAuth + tenantHeader
 
 **Parameters**
 
-| Name              | In     | Required | Type                     | Description                                                          |
-| ----------------- | ------ | -------- | ------------------------ | -------------------------------------------------------------------- |
-| `mode`            | query  | no       | enum(`dry_run`, `apply`) |                                                                      |
-| `expectedSha256`  | query  | no       | string                   | apply only — the fileSha256 of the dry-run report that was reviewed. |
-| `Idempotency-Key` | header | no       | string                   | Required for mode=apply.                                             |
+| Name              | In     | Required | Type                     | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `mode`            | query  | no       | enum(`dry_run`, `apply`) |                                                                                                                                                                                                                 |
+| `expectedSha256`  | query  | no       | string                   | apply only — the fileSha256 of the dry-run report that was reviewed.                                                                                                                                            |
+| `Idempotency-Key` | header | yes      | string                   | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): string
 
@@ -12205,9 +12470,9 @@ One ACTIVE (open/closing) session per register: a second open is `409 REGISTER_S
 
 **Parameters**
 
-| Name              | In     | Required | Type   | Description |
-| ----------------- | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key` | header | yes      | string |             |
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -12254,10 +12519,10 @@ The expected amount per tender is DERIVED (opening float + the session's stamped
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -12281,10 +12546,10 @@ The expected amount per tender is DERIVED (opening float + the session's stamped
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -12308,10 +12573,10 @@ A closed session is immutable: a correction adds signed per-tender `adjustment`s
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -12335,10 +12600,10 @@ Allowed for the session's CURRENT cashier, or for a supervisor holding `commerce
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -12362,10 +12627,10 @@ Append-only and cash only. `cash_in` is always `in`; `cash_out`, `safe_drop` and
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -12538,10 +12803,10 @@ An exchange is a return plus a SEPARATE new order created through the normal ord
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -12565,10 +12830,10 @@ Same `refund` object as on the return itself (the body may be that object direct
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -12592,11 +12857,11 @@ The provider is given the refund leg's id as its idempotency key on EVERY attemp
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `refundId`        | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `refundId`        | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (optional): object
 
@@ -12622,11 +12887,11 @@ For a leg the provider refused or no adapter can make. The stated `reason` and t
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `refundId`        | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `refundId`        | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -12944,9 +13209,9 @@ Generates a CSPRNG code (20 characters from an unambiguous 32-symbol alphabet = 
 
 **Parameters**
 
-| Name              | In     | Required | Type   | Description |
-| ----------------- | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key` | header | yes      | string |             |
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -12993,10 +13258,10 @@ The ledger is append-only: this is a NEW `adjust` entry, never an edit. A downwa
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -13045,10 +13310,10 @@ A replay returns the original entry and never loads twice. Refused when the prog
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -13072,10 +13337,10 @@ A disabled account refuses every redemption and refund but keeps its balance (st
 
 **Parameters**
 
-| Name              | In     | Required | Type          | Description |
-| ----------------- | ------ | -------- | ------------- | ----------- |
-| `id`              | path   | yes      | string (uuid) |             |
-| `Idempotency-Key` | header | yes      | string        |             |
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -14812,10 +15077,10 @@ Gated by omes_control.ai_privacy.approve. A RESTRICTED classification resolving 
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Request body** (required): object
 
@@ -14925,11 +15190,11 @@ Gated by omes_control.backups.restore. Always-destructive: routes through the ca
 
 **Parameters**
 
-| Name               | In     | Required | Type          | Description |
-| ------------------ | ------ | -------- | ------------- | ----------- |
-| `id`               | path   | yes      | string (uuid) |             |
-| `Idempotency-Key`  | header | yes      | string        |             |
-| `X-Correlation-ID` | header | no       | string        |             |
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -15103,11 +15368,11 @@ Gated by omes_control.jobs.approve. Only a failed job may be requeued — refuse
 
 **Parameters**
 
-| Name               | In     | Required | Type          | Description |
-| ------------------ | ------ | -------- | ------------- | ----------- |
-| `id`               | path   | yes      | string (uuid) |             |
-| `Idempotency-Key`  | header | yes      | string        |             |
-| `X-Correlation-ID` | header | no       | string        |             |
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -15129,11 +15394,11 @@ Gated by omes_control.jobs.cancel. Only a queued job may be cancelled — a leas
 
 **Parameters**
 
-| Name               | In     | Required | Type          | Description |
-| ------------------ | ------ | -------- | ------------- | ----------- |
-| `id`               | path   | yes      | string (uuid) |             |
-| `Idempotency-Key`  | header | yes      | string        |             |
-| `X-Correlation-ID` | header | no       | string        |             |
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -15248,10 +15513,10 @@ Guarded per-operation: status/preflight require deployments.read; start/stop/res
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Request body** (required): object
 
@@ -15342,9 +15607,9 @@ Gated by omes_control.repository_progress.configure (a NEW permission — see sq
 
 **Parameters**
 
-| Name              | In     | Required | Type   | Description |
-| ----------------- | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key` | header | yes      | string |             |
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Request body** (required): object
 
@@ -15367,9 +15632,9 @@ Gated by omes_control.repository_progress.configure. Also clears any existing pr
 
 **Parameters**
 
-| Name              | In     | Required | Type   | Description |
-| ----------------- | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key` | header | yes      | string |             |
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
 
 **Responses**
 
@@ -15412,10 +15677,10 @@ Gated by omes_control.servers.register. Records registration INTENT only (status
 
 **Parameters**
 
-| Name               | In     | Required | Type   | Description |
-| ------------------ | ------ | -------- | ------ | ----------- |
-| `Idempotency-Key`  | header | yes      | string |             |
-| `X-Correlation-ID` | header | no       | string |             |
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
 
 **Request body** (required): object
 
@@ -15461,11 +15726,11 @@ Gated by omes_control.servers.delete. Soft delete — flips status to decommissi
 
 **Parameters**
 
-| Name               | In     | Required | Type          | Description |
-| ------------------ | ------ | -------- | ------------- | ----------- |
-| `id`               | path   | yes      | string (uuid) |             |
-| `Idempotency-Key`  | header | yes      | string        |             |
-| `X-Correlation-ID` | header | no       | string        |             |
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -15487,11 +15752,11 @@ Gated by omes_control.enrollments.manage. The raw challenge is returned exactly 
 
 **Parameters**
 
-| Name               | In     | Required | Type          | Description |
-| ------------------ | ------ | -------- | ------------- | ----------- |
-| `id`               | path   | yes      | string (uuid) |             |
-| `Idempotency-Key`  | header | yes      | string        |             |
-| `X-Correlation-ID` | header | no       | string        |             |
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -15514,12 +15779,12 @@ Gated by omes_control.enrollments.manage. Requires Idempotency-Key, audited.
 
 **Parameters**
 
-| Name               | In     | Required | Type          | Description |
-| ------------------ | ------ | -------- | ------------- | ----------- |
-| `id`               | path   | yes      | string (uuid) |             |
-| `workerId`         | path   | yes      | string        |             |
-| `Idempotency-Key`  | header | yes      | string        |             |
-| `X-Correlation-ID` | header | no       | string        |             |
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `workerId`         | path   | yes      | string        |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
 
 **Responses**
 
@@ -15649,6 +15914,1094 @@ Gated by omes_control.enrollments.manage. Requires Idempotency-Key, audited.
 | ------ | ----------------------------------------- | -------------------------------------- |
 | 200    | recorded, duplicate_ignored, or rejected. | unknown                                |
 | 429    | Rate-limited per (tenant, worker).        | [`ApiError`](#standard-error-envelope) |
+
+## Inventory
+
+A generic, auditable multi-location STOCK LEDGER (inventory module, Issue #887, ADR-0126) that any domain module — commerce, POS, storefront — adopts as its inventory authority instead of keeping its own stock counter. Stock locations; IMMUTABLE finalised movements (opening, receive, sale, sale_return, supplier_return, transfer_out/transfer_in, adjustment) that are append-only by trigger and by privileges and corrected only by compensating movements; a per-(location,item) balance that is a read model always equal to the sum of its movements, with a reconciliation that proves it and a rebuild that repairs a drifted row FROM the ledger; a negative-stock policy per tenant and location; low-stock thresholds with a projection on the reporting engine. Item references are an OPAQUE (itemType, itemRef) supplied by the consumer — never a foreign key to any catalogue. Every posting carries an idempotent source identity (type, id, line) and an Idempotency-Key; replaying either returns the ORIGINAL movement. A transfer is always a balanced out/in pair posted in one transaction. A client can NEVER assert a balance: no operation accepts one, and a body that names onHand/balanceAfter is a 400. adjust, transfer and rebuild are high-risk, separately grantable, and audited.
+
+### `POST /api/v1/inventory/adjustments` — Post a stock adjustment
+
+- **operationId**: `inventoryAdjustmentPost`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `inventory.movements.adjust` (HIGH-RISK). The one movement type that carries its own sign (`quantityDelta`) and the only way to change stock without a business document behind it, so `reasonCode` is REQUIRED — the reason is the audit trail. Requires an Idempotency-Key; audited at warning severity. Undo it with the reversal endpoint, never by editing a row (the ledger is append-only).
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`InventoryAdjustmentInput`](#schema-inventoryadjustmentinput)
+
+**Responses**
+
+| Status | Description                                                                                    | Schema                                                   |
+| ------ | ---------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| 200    | Replay of an adjustment already posted under this source identity.                             | [`InventoryPostResponse`](#schema-inventorypostresponse) |
+| 201    | The adjustment was posted.                                                                     | [`InventoryPostResponse`](#schema-inventorypostresponse) |
+| 400    | Validation error.                                                                              | [`ApiError`](#standard-error-envelope)                   |
+| 401    | Missing or invalid session.                                                                    | [`ApiError`](#standard-error-envelope)                   |
+| 403    | Access denied by RBAC/ABAC.                                                                    | [`ApiError`](#standard-error-envelope)                   |
+| 404    | Stock location not found (LOCATION_NOT_FOUND).                                                 | [`ApiError`](#standard-error-envelope)                   |
+| 409    | IDEMPOTENCY_CONFLICT, SOURCE_CONFLICT, INSUFFICIENT_STOCK, UNIT_MISMATCH or LOCATION_INACTIVE. | [`ApiError`](#standard-error-envelope)                   |
+
+### `POST /api/v1/inventory/adjustments/{id}/reversal` — Reverse a stock adjustment with a compensating one
+
+- **operationId**: `inventoryAdjustmentReverse`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `inventory.movements.adjust` (HIGH-RISK). Posts an equal and opposite adjustment linked by `reversesMovementId`; the original row is never touched. Only an ADJUSTMENT is reversible (`409 NOT_REVERSIBLE` otherwise, and a reversal cannot itself be reversed) — every other type already has its natural counterpart. The source identity is derived from the target, so a retry is a `200 replayed: true`, and one adjustment can be reversed at most once. The reversal can itself be refused with `INSUFFICIENT_STOCK` when the stock the adjustment added has since been sold. Requires an Idempotency-Key; audited at warning severity.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                    | Schema                                                   |
+| ------ | ------------------------------------------------------------------------------ | -------------------------------------------------------- |
+| 200    | Replay of the reversal already posted for this adjustment.                     | [`InventoryPostResponse`](#schema-inventorypostresponse) |
+| 201    | The reversal was posted.                                                       | [`InventoryPostResponse`](#schema-inventorypostresponse) |
+| 400    | Validation error.                                                              | [`ApiError`](#standard-error-envelope)                   |
+| 401    | Missing or invalid session.                                                    | [`ApiError`](#standard-error-envelope)                   |
+| 403    | Access denied by RBAC/ABAC.                                                    | [`ApiError`](#standard-error-envelope)                   |
+| 404    | Resource not found.                                                            | [`ApiError`](#standard-error-envelope)                   |
+| 409    | IDEMPOTENCY_CONFLICT, NOT_REVERSIBLE, INSUFFICIENT_STOCK or LOCATION_INACTIVE. | [`ApiError`](#standard-error-envelope)                   |
+
+### `GET /api/v1/inventory/balances` — List stock balances (and the live low-stock list)
+
+- **operationId**: `inventoryBalancesList`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `inventory.balances.read`. Keyset paginated by `(location, item)`. `lowStockOnly=true` is the live, authoritative low-stock list — the detail behind the `inventory.low_stock` reporting projection. Read-only by construction: there is no write verb on this resource, because a balance is derived from movements.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `locationId`       | query  | no       | string (uuid) |             |
+| `itemType`         | query  | no       | string        |             |
+| `itemRef`          | query  | no       | string        |             |
+| `lowStockOnly`     | query  | no       | boolean       |             |
+| `cursor`           | query  | no       | string        |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | A page of balances.         | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/inventory/balances/rebuild` — Repair drifted balances from the ledger
+
+- **operationId**: `inventoryBalancesRebuild`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `inventory.balances.rebuild` (HIGH-RISK). Recomputes each drifted balance FROM the movement ledger — the request carries no quantity, so this cannot be used to assert a balance, and a body naming anything but `locationId` is a 400. Idempotent: a second call finds nothing to repair. Bounded per call (`truncated: true` means call again). Requires an Idempotency-Key; audited at CRITICAL severity with the before/after of every repaired key.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+
+**Request body** (optional): object
+
+**Responses**
+
+| Status | Description                                                | Schema                                 |
+| ------ | ---------------------------------------------------------- | -------------------------------------- |
+| 200    | The rebuild report.                                        | object                                 |
+| 400    | Validation error.                                          | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                | [`ApiError`](#standard-error-envelope) |
+| 409    | Idempotency-Key was already used with a different request. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/inventory/balances/reconciliation` — Prove every balance equals the sum of its movements
+
+- **operationId**: `inventoryBalancesReconcile`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `inventory.balances.reconcile`. Read-only. `consistent: true` is the invariant the whole module rests on; `drift` lists every (location, item) where the balance disagrees with the ledger, including a key that has movements but no balance row. `negativeUnderForbid` counts balances that are negative although their location's policy forbids it — ledger and balance can agree perfectly and still describe a state the policy rules out. Bounded per call (`truncated`).
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `locationId`       | query  | no       | string (uuid) |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The reconciliation report.  | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `PUT /api/v1/inventory/balances/threshold` — Set or clear a low-stock threshold
+
+- **operationId**: `inventoryThresholdSet`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `inventory.policy.configure`. Touches `lowStockThreshold` and NOTHING else — the on-hand quantity is not a field of this request and a body that names one is a 400. A threshold change can move a balance across the low-stock line; that transition is recorded in the same transaction and a downward crossing is published as `awcms.inventory.stock.low`. Requires an Idempotency-Key; audited.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`InventoryThresholdInput`](#schema-inventorythresholdinput)
+
+**Responses**
+
+| Status | Description                                    | Schema                                 |
+| ------ | ---------------------------------------------- | -------------------------------------- |
+| 200    | The balance with its new threshold.            | object                                 |
+| 400    | Validation error.                              | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                    | [`ApiError`](#standard-error-envelope) |
+| 404    | Stock location not found (LOCATION_NOT_FOUND). | [`ApiError`](#standard-error-envelope) |
+| 409    | IDEMPOTENCY_CONFLICT or UNIT_MISMATCH.         | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/inventory/locations` — List stock locations
+
+- **operationId**: `inventoryLocationsList`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `inventory.locations.read`. By code, keyset paginated (`after` = the last code of the previous page). Tenant-scoped (withTenant + RLS FORCE).
+
+**Parameters**
+
+| Name               | In     | Required | Type                       | Description |
+| ------------------ | ------ | -------- | -------------------------- | ----------- |
+| `status`           | query  | no       | enum(`active`, `inactive`) |             |
+| `after`            | query  | no       | string                     |             |
+| `limit`            | query  | no       | integer                    |             |
+| `X-Correlation-ID` | header | no       | string                     |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | A page of stock locations.  | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/inventory/locations` — Register a stock location
+
+- **operationId**: `inventoryLocationCreate`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `inventory.locations.create`. No Idempotency-Key, deliberately: the `(tenant, code)` unique key already turns a retried create into `409 LOCATION_CODE_CONFLICT`. `officeId` must name an office of this tenant (`422 OFFICE_NOT_FOUND` otherwise). Audited. A location is never deleted — its movements are ledger rows that must keep a place to point at; it is deactivated instead.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description |
+| ------------------ | ------ | -------- | ------ | ----------- |
+| `X-Correlation-ID` | header | no       | string |             |
+
+**Request body** (required): [`InventoryLocationCreateInput`](#schema-inventorylocationcreateinput)
+
+**Responses**
+
+| Status | Description                                                         | Schema                                 |
+| ------ | ------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The created location.                                               | object                                 |
+| 400    | Validation error.                                                   | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                         | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                         | [`ApiError`](#standard-error-envelope) |
+| 409    | A location with this code already exists (LOCATION_CODE_CONFLICT).  | [`ApiError`](#standard-error-envelope) |
+| 422    | officeId does not name an office in this tenant (OFFICE_NOT_FOUND). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/inventory/locations/{id}` — Read one stock location
+
+- **operationId**: `inventoryLocationRead`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `inventory.locations.read`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `id`               | path   | yes      | string (uuid) |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The location.               | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/inventory/locations/{id}` — Rename, re-attach or (de)activate a stock location
+
+- **operationId**: `inventoryLocationUpdate`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `inventory.locations.update`. An INACTIVE location refuses new postings (`409 LOCATION_INACTIVE`) and keeps its history readable. `negativeStockPolicy` is NOT accepted here — it is a different power with its own endpoint and permission, and naming it is a 400. Audited; a status change is audited at warning severity.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `id`               | path   | yes      | string (uuid) |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Request body** (required): [`InventoryLocationUpdateInput`](#schema-inventorylocationupdateinput)
+
+**Responses**
+
+| Status | Description                                                         | Schema                                 |
+| ------ | ------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The updated location.                                               | object                                 |
+| 400    | Validation error.                                                   | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                         | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                         | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                 | [`ApiError`](#standard-error-envelope) |
+| 422    | officeId does not name an office in this tenant (OFFICE_NOT_FOUND). | [`ApiError`](#standard-error-envelope) |
+
+### `PUT /api/v1/inventory/locations/{id}/negative-stock-policy` — Set a location's negative-stock policy override
+
+- **operationId**: `inventoryLocationPolicySet`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `inventory.policy.configure` — it decides whether `movements.create` may take a balance below zero, so granting "rename a location" must not grant it. `null` removes the override (inherit the tenant default). Requires an Idempotency-Key; audited at warning severity with the before/after value.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                | Schema                                 |
+| ------ | ---------------------------------------------------------- | -------------------------------------- |
+| 200    | The location with its new override.                        | object                                 |
+| 400    | Validation error.                                          | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                        | [`ApiError`](#standard-error-envelope) |
+| 409    | Idempotency-Key was already used with a different request. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/inventory/movements` — List the stock movement ledger
+
+- **operationId**: `inventoryMovementsList`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `inventory.movements.read`. Newest first, keyset paginated on `(createdAt, id)` with an opaque `cursor`.
+
+**Parameters**
+
+| Name               | In     | Required | Type                                                     | Description |
+| ------------------ | ------ | -------- | -------------------------------------------------------- | ----------- |
+| `locationId`       | query  | no       | string (uuid)                                            |             |
+| `itemType`         | query  | no       | string                                                   |             |
+| `itemRef`          | query  | no       | string                                                   |             |
+| `movementType`     | query  | no       | [`InventoryMovementType`](#schema-inventorymovementtype) |             |
+| `sourceType`       | query  | no       | string                                                   |             |
+| `sourceId`         | query  | no       | string                                                   |             |
+| `transferId`       | query  | no       | string (uuid)                                            |             |
+| `cursor`           | query  | no       | string                                                   |             |
+| `X-Correlation-ID` | header | no       | string                                                   |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | A page of movements.        | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/inventory/movements` — Post one caller-attested stock movement
+
+- **operationId**: `inventoryMovementPost`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `inventory.movements.create`. Types accepted here: `receive`, `sale`, `sale_return`, `supplier_return` — the request carries a POSITIVE quantity and the type decides direction. Openings, adjustments and transfers have their own endpoints and permissions (an opening states a starting quantity with no document behind it, so it needs `movements.adjust`).
+
+The ledger TRUSTS the `source` identity the caller supplies: it can prove a document was not posted twice, never that the document exists. Verifying the source is the consumer's duty. `source.type` `reversal` is reserved for the server.
+
+`occurredAt` may not be in the future (beyond a few minutes of clock skew) nor older than the backdating window (`INVENTORY_BACKDATE_WINDOW_DAYS`, default 7) unless the caller also holds `movements.adjust` (`403 BACKDATE_REQUIRES_ADJUST`).
+
+Two independent guards, both required: the `Idempotency-Key` header deduplicates a retried HTTP request, and the `source` identity `(type, id, line)` deduplicates the BUSINESS document — posting the same identity again under a different key returns the ORIGINAL movement with `replayed: true` (200), while the same identity with a different payload is `409 SOURCE_CONFLICT`.
+
+Refusals write nothing: `409 INSUFFICIENT_STOCK` (the negative-stock policy forbids going below zero), `409 UNIT_MISMATCH` (the ledger never converts units), `409 LOCATION_INACTIVE`, `404 LOCATION_NOT_FOUND`, `422 QUANTITY_OUT_OF_RANGE` (the balance would exceed numeric(20,6)). `INSUFFICIENT_STOCK` carries the requested quantity but NOT the on-hand balance, and no response carries a running balance: that is `balances.read`. Two concurrent attempts on the last unit cannot both succeed. There is no field by which a client can state a balance.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`InventoryMovementPostInput`](#schema-inventorymovementpostinput)
+
+**Responses**
+
+| Status | Description                                                                                                                                 | Schema                                                   |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| 200    | The source identity was already posted with this payload; these are the ORIGINAL movements (`replayed: true`).                              | [`InventoryPostResponse`](#schema-inventorypostresponse) |
+| 201    | The movement was posted.                                                                                                                    | [`InventoryPostResponse`](#schema-inventorypostresponse) |
+| 400    | Validation error.                                                                                                                           | [`ApiError`](#standard-error-envelope)                   |
+| 401    | Missing or invalid session.                                                                                                                 | [`ApiError`](#standard-error-envelope)                   |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                 | [`ApiError`](#standard-error-envelope)                   |
+| 404    | Stock location not found (LOCATION_NOT_FOUND).                                                                                              | [`ApiError`](#standard-error-envelope)                   |
+| 409    | IDEMPOTENCY_CONFLICT, SOURCE_CONFLICT, INSUFFICIENT_STOCK, UNIT_MISMATCH, OPENING_NOT_FIRST or LOCATION_INACTIVE — `error.code` says which. | [`ApiError`](#standard-error-envelope)                   |
+
+### `GET /api/v1/inventory/movements/{id}` — Read one ledger row
+
+- **operationId**: `inventoryMovementRead`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `inventory.movements.read`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `id`               | path   | yes      | string (uuid) |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The movement.               | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/inventory/openings` — Post an opening balance
+
+- **operationId**: `inventoryOpeningPost`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `inventory.movements.adjust` (HIGH-RISK) — NOT `create`. An opening states the STARTING quantity of an item at a location out of a stated number, with no business document to cross-check, which is the same kind of power as an adjustment. Once per (location, item) and only as its first movement (`409 OPENING_NOT_FIRST`). The body is a movement WITHOUT `movementType`; naming one is a 400. Requires an Idempotency-Key and a `source` identity; audited at warning severity.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`InventoryOpeningInput`](#schema-inventoryopeninginput)
+
+**Responses**
+
+| Status | Description                                                                                   | Schema                                                   |
+| ------ | --------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| 200    | Replay of an opening already posted under this source identity.                               | [`InventoryPostResponse`](#schema-inventorypostresponse) |
+| 201    | The opening was posted.                                                                       | [`InventoryPostResponse`](#schema-inventorypostresponse) |
+| 400    | Validation error.                                                                             | [`ApiError`](#standard-error-envelope)                   |
+| 401    | Missing or invalid session.                                                                   | [`ApiError`](#standard-error-envelope)                   |
+| 403    | Access denied by RBAC/ABAC.                                                                   | [`ApiError`](#standard-error-envelope)                   |
+| 404    | Stock location not found (LOCATION_NOT_FOUND).                                                | [`ApiError`](#standard-error-envelope)                   |
+| 409    | IDEMPOTENCY_CONFLICT, SOURCE_CONFLICT, OPENING_NOT_FIRST, UNIT_MISMATCH or LOCATION_INACTIVE. | [`ApiError`](#standard-error-envelope)                   |
+| 422    | QUANTITY_OUT_OF_RANGE.                                                                        | [`ApiError`](#standard-error-envelope)                   |
+
+### `GET /api/v1/inventory/policy` — Read the tenant default negative-stock policy
+
+- **operationId**: `inventoryPolicyRead`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `inventory.policy.read`. `isImplicitDefault` is true when the tenant never stored a value and the safe default (`forbid`) applies. The effective policy of a location is its own override, else this default.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description |
+| ------------------ | ------ | -------- | ------ | ----------- |
+| `X-Correlation-ID` | header | no       | string |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The tenant default.         | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `PUT /api/v1/inventory/policy` — Set the tenant default negative-stock policy
+
+- **operationId**: `inventoryPolicySet`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `inventory.policy.configure`. Requires an Idempotency-Key; audited at warning severity with the before/after value.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                | Schema                                 |
+| ------ | ---------------------------------------------------------- | -------------------------------------- |
+| 200    | The stored default.                                        | object                                 |
+| 400    | Validation error.                                          | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                | [`ApiError`](#standard-error-envelope) |
+| 409    | Idempotency-Key was already used with a different request. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/inventory/transfers` — Transfer stock between two locations
+
+- **operationId**: `inventoryTransferPost`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `inventory.movements.transfer` (HIGH-RISK). Posts a BALANCED out/in pair in ONE transaction (out leg first in the response), both legs validated against locked state before either is written, so a refused transfer leaves nothing behind. A deferred constraint trigger in the database independently refuses to commit anything that is not exactly one out leg and one in leg netting to zero. Replaying the same source identity returns the ORIGINAL pair. Requires an Idempotency-Key; audited at warning severity.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`InventoryTransferInput`](#schema-inventorytransferinput)
+
+**Responses**
+
+| Status | Description                                                                                    | Schema                                                   |
+| ------ | ---------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| 200    | Replay of a transfer already posted under this source identity.                                | [`InventoryPostResponse`](#schema-inventorypostresponse) |
+| 201    | The transfer pair was posted.                                                                  | [`InventoryPostResponse`](#schema-inventorypostresponse) |
+| 400    | Validation error.                                                                              | [`ApiError`](#standard-error-envelope)                   |
+| 401    | Missing or invalid session.                                                                    | [`ApiError`](#standard-error-envelope)                   |
+| 403    | Access denied by RBAC/ABAC.                                                                    | [`ApiError`](#standard-error-envelope)                   |
+| 404    | A stock location was not found (LOCATION_NOT_FOUND).                                           | [`ApiError`](#standard-error-envelope)                   |
+| 409    | IDEMPOTENCY_CONFLICT, SOURCE_CONFLICT, INSUFFICIENT_STOCK, UNIT_MISMATCH or LOCATION_INACTIVE. | [`ApiError`](#standard-error-envelope)                   |
+
+## Procurement
+
+Suppliers, receiving, supplier returns, stock requisitions and location transfers (procurement module, Issue #888, ADR-0128) on top of the inventory ledger. A supplier is a business role that may reference the canonical profile_identity party, with vendor code, status, categories/tags and SENSITIVE tax/business identifiers and payment/contact references that are masked in every response and revealed only by one audited, separately permissioned operation. A document (receive, supplier_return, requisition, transfer) has line snapshots of SKU, name, unit and exact-decimal cost and a lifecycle draft -> submitted -> finalised | cancelled, finalised -> reversed enforced by a database trigger; finalised documents are immutable and nothing is deleted. Finalise posts inventory movements THROUGH THE LEDGER'S PORT (never a balance), all lines or none and idempotently; reversal posts compensating movements; a requisition or transfer is a paired ledger transfer. Optional threshold approval through workflow_approval (fail closed). finalise, reverse, cancel and reveal are high-risk, separately grantable, and audited.
+
+### `GET /api/v1/procurement/documents` — List procurement documents
+
+- **operationId**: `procurementDocumentsList`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `procurement.documents.read`. Newest first, keyset paginated. Lines are in the single-document read.
+
+**Parameters**
+
+| Name               | In     | Required | Type                                                             | Description                                                    |
+| ------------------ | ------ | -------- | ---------------------------------------------------------------- | -------------------------------------------------------------- |
+| `mode`             | query  | no       | enum(`receive`, `supplier_return`, `requisition`, `transfer`)    |                                                                |
+| `status`           | query  | no       | enum(`draft`, `submitted`, `finalised`, `cancelled`, `reversed`) |                                                                |
+| `supplierId`       | query  | no       | string (uuid)                                                    |                                                                |
+| `locationId`       | query  | no       | string (uuid)                                                    | Matches either the document's location or its source location. |
+| `cursor`           | query  | no       | string                                                           |                                                                |
+| `X-Correlation-ID` | header | no       | string                                                           |                                                                |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | A page of documents.        | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/procurement/documents` — Create a draft document
+
+- **operationId**: `procurementDocumentCreate`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `procurement.documents.create`. Nothing a draft says touches stock. Lifecycle state, stamps, supplier snapshots and totals are server-derived: a body naming one is a 400. `receive` and `supplier_return` need `supplierId` and a `unitCost` on every line (the approval threshold is cost-based); `requisition`/`transfer` need `sourceLocationId` and forbid `supplierId`. Requires an Idempotency-Key. A supplier's `externalReference` can be live on one document per mode (`409 DUPLICATE_EXTERNAL_REFERENCE`).
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`ProcurementDocumentInput`](#schema-procurementdocumentinput)
+
+**Responses**
+
+| Status | Description                                                                 | Schema                                 |
+| ------ | --------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The draft.                                                                  | object                                 |
+| 400    | Validation error.                                                           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                 | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                 | [`ApiError`](#standard-error-envelope) |
+| 409    | IDEMPOTENCY_CONFLICT, SUPPLIER_UNAVAILABLE or DUPLICATE_EXTERNAL_REFERENCE. | [`ApiError`](#standard-error-envelope) |
+| 422    | LOCATION_NOT_FOUND or SUPPLIER_NOT_FOUND.                                   | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/procurement/documents/{id}` — Read a document with its lines and ledger movements
+
+- **operationId**: `procurementDocumentGet`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `procurement.documents.read`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `id`               | path   | yes      | string (uuid) |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The document.               | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `PUT /api/v1/procurement/documents/{id}` — Replace a draft's header and lines
+
+- **operationId**: `procurementDocumentReplace`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `procurement.documents.update`. Same body as create; `mode` must match the stored mode and cannot change (`409 MODE_IMMUTABLE`). `409 INVALID_STATE` once the document has left draft — the database also refuses it.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `id`               | path   | yes      | string (uuid) |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Request body** (required): [`ProcurementDocumentInput`](#schema-procurementdocumentinput)
+
+**Responses**
+
+| Status | Description                                                                          | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | The draft.                                                                           | object                                 |
+| 400    | Validation error.                                                                    | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                          | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                  | [`ApiError`](#standard-error-envelope) |
+| 409    | INVALID_STATE, MODE_IMMUTABLE, SUPPLIER_UNAVAILABLE or DUPLICATE_EXTERNAL_REFERENCE. | [`ApiError`](#standard-error-envelope) |
+| 422    | LOCATION_NOT_FOUND or SUPPLIER_NOT_FOUND.                                            | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/procurement/documents/{id}/cancel` — Cancel a draft or submitted document
+
+- **operationId**: `procurementDocumentCancel`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `procurement.documents.cancel` (HIGH-RISK). No stock was ever moved, so nothing is compensated; a `finalised` document is reversed instead (`409 INVALID_STATE`). A pending approval is cancelled with it. Requires an Idempotency-Key and a reason. Audited at warning severity.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`ProcurementReasonRequired`](#schema-procurementreasonrequired)
+
+**Responses**
+
+| Status | Description                            | Schema                                 |
+| ------ | -------------------------------------- | -------------------------------------- |
+| 200    | The cancelled document.                | object                                 |
+| 400    | Validation error.                      | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.            | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.            | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                    | [`ApiError`](#standard-error-envelope) |
+| 409    | INVALID_STATE or IDEMPOTENCY_CONFLICT. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/procurement/documents/{id}/finalise` — Finalise a document — post its inventory movements
+
+- **operationId**: `procurementDocumentFinalise`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `procurement.documents.finalise` (HIGH-RISK). Posts the document's movements THROUGH THE LEDGER'S PORT (never writing a balance), all lines or none, each under the identity (source type, document id, line, operation), then marks it `finalised`. Idempotent twice over: the Idempotency-Key is bound to the request hash, and finalising an already `finalised` document answers `200 replayed: true` posting NOTHING (even under a new key). A refusal on any line (`INSUFFICIENT_STOCK`, `LOCATION_INACTIVE`, `UNIT_MISMATCH`…) rolls every line back and leaves the document `submitted`. A document needing approval cannot be finalised until approved (`409 APPROVAL_PENDING` / `APPROVAL_REJECTED`). Audited at warning severity; ledger rows carry the request's correlation id; publishes `awcms.procurement.document.finalised`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Responses**
+
+| Status | Description                                                                                                                                                              | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | Replay: already finalised, nothing posted.                                                                                                                               | object                                 |
+| 201    | Finalised.                                                                                                                                                               | object                                 |
+| 400    | Validation error.                                                                                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                      | [`ApiError`](#standard-error-envelope) |
+| 409    | INVALID_STATE, APPROVAL_PENDING, APPROVAL_REJECTED, SUPPLIER_UNAVAILABLE, INSUFFICIENT_STOCK, LOCATION_INACTIVE, UNIT_MISMATCH, SOURCE_CONFLICT or IDEMPOTENCY_CONFLICT. | [`ApiError`](#standard-error-envelope) |
+| 422    | LOCATION_NOT_FOUND or QUANTITY_OUT_OF_RANGE.                                                                                                                             | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/procurement/documents/{id}/reversal` — Reverse a finalised document with compensating movements
+
+- **operationId**: `procurementDocumentReverse`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `procurement.documents.reverse` (HIGH-RISK, separately grantable from `finalise`). Posts the opposite movements through the ledger (a receipt becomes a supplier return, a supplier return a receipt, a transfer a transfer back) under distinct `*_reversal` source identities and marks the document `reversed`. The original movements are never touched. May be refused by the ledger (`INSUFFICIENT_STOCK` when the received stock was since sold and the policy forbids negative stock): nothing is posted and the document stays `finalised`. Reversing a `reversed` document is `200 replayed: true`. Requires an Idempotency-Key and a reason; audited at critical severity; publishes `awcms.procurement.document.reversed`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`ProcurementReasonRequired`](#schema-procurementreasonrequired)
+
+**Responses**
+
+| Status | Description                                                                                                   | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Replay: already reversed.                                                                                     | object                                 |
+| 201    | Reversed.                                                                                                     | object                                 |
+| 400    | Validation error.                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 409    | INVALID_STATE, INSUFFICIENT_STOCK, LOCATION_INACTIVE, UNIT_MISMATCH, SOURCE_CONFLICT or IDEMPOTENCY_CONFLICT. | [`ApiError`](#standard-error-envelope) |
+| 422    | LOCATION_NOT_FOUND or QUANTITY_OUT_OF_RANGE.                                                                  | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/procurement/documents/{id}/submit` — Submit a draft
+
+- **operationId**: `procurementDocumentSubmit`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `procurement.documents.submit`. Freezes the lines (database trigger), computes the total cost in SQL and, when the tenant's approval threshold is set and reached, starts a `workflow_approval` instance under the workflow key `procurement.document_approval`. With no published definition (or `workflow` disabled) the submit is REFUSED with `409 APPROVAL_WORKFLOW_NOT_CONFIGURED` — fail closed, nothing submitted. Requires an Idempotency-Key.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Responses**
+
+| Status | Description                                                                                               | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The submitted document.                                                                                   | object                                 |
+| 400    | Validation error.                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                               | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                               | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | INVALID_STATE, APPROVAL_WORKFLOW_NOT_CONFIGURED, APPROVAL_WORKFLOW_MISCONFIGURED or SUPPLIER_UNAVAILABLE. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/procurement/documents/reconciliation` — Reconcile finalised documents against the inventory ledger
+
+- **operationId**: `procurementDocumentsReconcile`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `procurement.documents.reconcile`. Read-only. Proves per (document, line, operation) that the ledger recorded exactly the documented movements — number, type, location, quantity and source identity — and that no ledger row carries a procurement source identity without a document line behind it. `?documentId=` scopes it to one document. The scan is the proof and is not bounded; the discrepancy list is (200).
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `documentId`       | query  | no       | string (uuid) |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The reconciliation report.  | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/procurement/policy` — Read the approval threshold
+
+- **operationId**: `procurementPolicyGet`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `procurement.policy.read`. `approvalThreshold` null means approval is off.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description |
+| ------------------ | ------ | -------- | ------ | ----------- |
+| `X-Correlation-ID` | header | no       | string |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The policy.                 | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `PUT /api/v1/procurement/policy` — Set the approval threshold
+
+- **operationId**: `procurementPolicySet`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `procurement.policy.configure` (HIGH-RISK). A decimal, or null to turn approval off. Affects only documents submitted AFTER the change. Requires an Idempotency-Key; audited at warning severity.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The policy.                 | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 409    | IDEMPOTENCY_CONFLICT.       | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/procurement/reports/receiving` — Documents and cost per mode and status
+
+- **operationId**: `procurementReportReceiving`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `procurement.reports.read`. At most 20 rows. The live view behind the `procurement.receiving` reporting projection.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description               |
+| ------------------ | ------ | -------- | ------------- | ------------------------- |
+| `from`             | query  | no       | string (date) | Document date, inclusive. |
+| `to`               | query  | no       | string (date) | Document date, inclusive. |
+| `X-Correlation-ID` | header | no       | string        |                           |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Summary rows.               | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/procurement/reports/suppliers` — Per-supplier receiving volume and cost
+
+- **operationId**: `procurementReportSuppliers`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `procurement.reports.read`. Finalised receipts, supplier returns, reversals and open documents per supplier, with exact-decimal cost, within optional document dates. Keyset paginated. The live view behind the `procurement.suppliers` reporting projection.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description               |
+| ------------------ | ------ | -------- | ------------- | ------------------------- |
+| `from`             | query  | no       | string (date) | Document date, inclusive. |
+| `to`               | query  | no       | string (date) | Document date, inclusive. |
+| `cursor`           | query  | no       | string        |                           |
+| `X-Correlation-ID` | header | no       | string        |                           |
+
+**Responses**
+
+| Status | Description                  | Schema                                 |
+| ------ | ---------------------------- | -------------------------------------- |
+| 200    | A page of supplier activity. | object                                 |
+| 400    | Validation error.            | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.  | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.  | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/procurement/suppliers` — List suppliers
+
+- **operationId**: `procurementSuppliersList`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `procurement.suppliers.read`. Newest first, keyset paginated (`cursor`). Identifiers and payment/contact references are NEVER in this response. Soft-deleted suppliers are hidden unless `includeDeleted=true`, which additionally needs `procurement.suppliers.restore` (403 otherwise). Tenant-scoped (withTenant + RLS FORCE).
+
+**Parameters**
+
+| Name               | In     | Required | Type                                  | Description |
+| ------------------ | ------ | -------- | ------------------------------------- | ----------- |
+| `status`           | query  | no       | enum(`active`, `inactive`, `blocked`) |             |
+| `category`         | query  | no       | string                                |             |
+| `tag`              | query  | no       | string                                |             |
+| `includeDeleted`   | query  | no       | boolean                               |             |
+| `cursor`           | query  | no       | string                                |             |
+| `X-Correlation-ID` | header | no       | string                                |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | A page of suppliers.        | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/procurement/suppliers` — Register a supplier
+
+- **operationId**: `procurementSupplierCreate`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `procurement.suppliers.create`. `profileId` optionally references the canonical `profile_identity` party (identity is owned there, not copied). No Idempotency-Key: the case-insensitive (tenant, vendor code) unique key turns a retried create into `409 VENDOR_CODE_CONFLICT`. Audited.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description |
+| ------------------ | ------ | -------- | ------ | ----------- |
+| `X-Correlation-ID` | header | no       | string |             |
+
+**Request body** (required): [`ProcurementSupplierCreate`](#schema-procurementsuppliercreate)
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 201    | The supplier.               | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 409    | VENDOR_CODE_CONFLICT.       | [`ApiError`](#standard-error-envelope) |
+| 422    | PROFILE_NOT_FOUND.          | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/procurement/suppliers/{id}` — Read a supplier
+
+- **operationId**: `procurementSupplierGet`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `procurement.suppliers.read`. A soft-deleted supplier is a 404.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `id`               | path   | yes      | string (uuid) |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The supplier.               | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/procurement/suppliers/{id}` — Edit a supplier
+
+- **operationId**: `procurementSupplierUpdate`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `procurement.suppliers.update`. Rename, change status, attach/detach the canonical party (`profileId`: null detaches), replace categories/tags. Documents already written keep the supplier name they snapshotted. Audited with the changed field NAMES, never values.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `id`               | path   | yes      | string (uuid) |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Request body** (required): [`ProcurementSupplierUpdate`](#schema-procurementsupplierupdate)
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The supplier.               | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+| 409    | SUPPLIER_DELETED.           | [`ApiError`](#standard-error-envelope) |
+| 422    | PROFILE_NOT_FOUND.          | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/procurement/suppliers/{id}` — Soft-delete a supplier
+
+- **operationId**: `procurementSupplierDelete`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `procurement.suppliers.delete` (HIGH-RISK). Soft delete with an optional `{reason}` body; refused with `409 SUPPLIER_HAS_OPEN_DOCUMENTS` while a draft or submitted document references it. Documents keep referencing the row. Audited at warning severity.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `id`               | path   | yes      | string (uuid) |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Request body** (optional): [`ProcurementReason`](#schema-procurementreason)
+
+**Responses**
+
+| Status | Description                                      | Schema                                 |
+| ------ | ------------------------------------------------ | -------------------------------------- |
+| 200    | The deleted supplier.                            | object                                 |
+| 400    | Validation error.                                | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                      | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                      | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                              | [`ApiError`](#standard-error-envelope) |
+| 409    | SUPPLIER_DELETED or SUPPLIER_HAS_OPEN_DOCUMENTS. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/procurement/suppliers/{id}/identifiers` — List a supplier's identifiers (MASKED)
+
+- **operationId**: `procurementSupplierIdentifiersList`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `procurement.suppliers.read`. Tax/business identifiers and payment/contact references, with `maskedValue` ONLY — the response type has no field that can carry a value. The value is returned solely by the audited `reveal` operation.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `id`               | path   | yes      | string (uuid) |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The identifiers, masked.    | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/procurement/suppliers/{id}/identifiers` — Add a supplier identifier or reference
+
+- **operationId**: `procurementSupplierIdentifierAdd`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `procurement.suppliers.update`. Stored normalized with a lookup hash and a masked display value; the response carries the MASKED value only. `classification` is derived (`sensitive` for tax/business identifiers, `confidential` otherwise). The add is IDEMPOTENT, so re-adding a value the supplier already holds returns the same `201` uniform acknowledgement (type, label, maskedValue, classification; no id, no timestamp) as a fresh add (and audits nothing), so a caller without `suppliers.reveal` cannot use this operation as a value-equality oracle. Audited with the identifier type and classification, never the value.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `id`               | path   | yes      | string (uuid) |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Request body** (required): [`ProcurementIdentifierCreate`](#schema-procurementidentifiercreate)
+
+**Responses**
+
+| Status | Description                                                               | Schema                                 |
+| ------ | ------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Uniform acknowledgement, identical for a fresh and an already-held value. | object                                 |
+| 400    | Validation error.                                                         | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                               | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                               | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | SUPPLIER_DELETED.                                                         | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/procurement/suppliers/{id}/identifiers/{identifierId}` — Remove a supplier identifier or reference
+
+- **operationId**: `procurementSupplierIdentifierRemove`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `procurement.suppliers.update`. Audited at warning severity (identifier id, type and classification, never the value).
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `id`               | path   | yes      | string (uuid) |             |
+| `identifierId`     | path   | yes      | string (uuid) |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Removed.                    | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/procurement/suppliers/{id}/identifiers/{identifierId}/reveal` — Reveal ONE supplier identifier in clear text
+
+- **operationId**: `procurementSupplierIdentifierReveal`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `procurement.suppliers.reveal` (HIGH-RISK) — NOT implied by `suppliers.read` or `.update`. The ONLY operation that returns an identifier value. Writes a warning-severity audit row naming the identifier (never the value) in the same transaction, and the response is `Cache-Control: no-store`. POST so no cache or proxy treats it as a replayable read.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `id`               | path   | yes      | string (uuid) |             |
+| `identifierId`     | path   | yes      | string (uuid) |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Responses**
+
+| Status | Description                         | Schema                                 |
+| ------ | ----------------------------------- | -------------------------------------- |
+| 200    | The identifier including its value. | object                                 |
+| 400    | Validation error.                   | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.         | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.         | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                 | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/procurement/suppliers/{id}/restore` — Restore a soft-deleted supplier
+
+- **operationId**: `procurementSupplierRestore`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `procurement.suppliers.restore` (HIGH-RISK). Audited at warning severity.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `id`               | path   | yes      | string (uuid) |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The restored supplier.      | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+| 409    | NOT_DELETED.                | [`ApiError`](#standard-error-envelope) |
 
 ## Schema appendix
 
@@ -17353,6 +18706,312 @@ sectionType cannot be changed after creation — omit it, do not send the old or
 }
 ```
 
+### Schema: InventoryAdjustmentInput
+
+_No properties declared._
+
+**Example**
+
+```json
+{
+  "itemType": null,
+  "itemRef": null,
+  "unitCode": null,
+  "locationId": "00000000-0000-0000-0000-000000000000",
+  "quantityDelta": "12.5",
+  "reasonCode": "string",
+  "source": {
+    "type": "string",
+    "id": "string",
+    "line": "string"
+  },
+  "occurredAt": "2026-01-01T00:00:00.000Z",
+  "note": "string"
+}
+```
+
+### Schema: InventoryItemRef
+
+| Field      | Type   | Required | Nullable | Description                                                                                                                                                                   |
+| ---------- | ------ | -------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `itemType` | string | yes      | no       | The consumer's namespace for the item, e.g. `commerce.variant`. Lower case. Deliberately opaque — there is no foreign key to any catalogue.                                   |
+| `itemRef`  | string | yes      | no       | Opaque, stable reference chosen by the consumer. `A-Za-z0-9_.:-` only (no `/`, `+`, `=`), at most 200 characters, and never credential-shaped (a JWT-looking value is a 400). |
+| `unitCode` | string | no       | no       | The item's single stock unit at a location. The ledger refuses a different unit rather than converting. Defaults to `unit`.                                                   |
+
+**Example**
+
+```json
+{
+  "itemType": "string",
+  "itemRef": "string",
+  "unitCode": "string"
+}
+```
+
+### Schema: InventoryLocationCreateInput
+
+| Field      | Type          | Required | Nullable | Description |
+| ---------- | ------------- | -------- | -------- | ----------- |
+| `code`     | string        | yes      | no       |             |
+| `name`     | string        | yes      | no       |             |
+| `officeId` | string (uuid) | no       | yes      |             |
+
+**Example**
+
+```json
+{
+  "code": "string",
+  "name": "string",
+  "officeId": "00000000-0000-0000-0000-000000000000"
+}
+```
+
+### Schema: InventoryLocationUpdateInput
+
+| Field      | Type                       | Required | Nullable | Description |
+| ---------- | -------------------------- | -------- | -------- | ----------- |
+| `name`     | string                     | no       | no       |             |
+| `officeId` | string (uuid)              | no       | yes      |             |
+| `status`   | enum(`active`, `inactive`) | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "name": "string",
+  "officeId": "00000000-0000-0000-0000-000000000000",
+  "status": "active"
+}
+```
+
+### Schema: InventoryMovement
+
+| Field                  | Type                                                     | Required | Nullable | Description                                                                                                                                                                                       |
+| ---------------------- | -------------------------------------------------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                   | string (uuid)                                            | no       | no       |                                                                                                                                                                                                   |
+| `locationId`           | string (uuid)                                            | no       | no       |                                                                                                                                                                                                   |
+| `itemType`             | string                                                   | no       | no       |                                                                                                                                                                                                   |
+| `itemRef`              | string                                                   | no       | no       |                                                                                                                                                                                                   |
+| `unitCode`             | string                                                   | no       | no       |                                                                                                                                                                                                   |
+| `movementType`         | [`InventoryMovementType`](#schema-inventorymovementtype) | no       | no       |                                                                                                                                                                                                   |
+| `operation`            | string                                                   | no       | no       | Server-derived half of the source identity; `reversal` for a reversal.                                                                                                                            |
+| `quantityDelta`        | [`InventoryQuantity`](#schema-inventoryquantity)         | no       | no       |                                                                                                                                                                                                   |
+| `source`               | object                                                   | no       | no       |                                                                                                                                                                                                   |
+| `transferId`           | string (uuid)                                            | no       | yes      |                                                                                                                                                                                                   |
+| `reversesMovementId`   | string (uuid)                                            | no       | yes      |                                                                                                                                                                                                   |
+| `reversedByMovementId` | string (uuid)                                            | no       | yes      | The reversal that compensated this adjustment, or null when it has not been reversed. Populated by the movement listing and detail reads; a movement returned by a posting response carries null. |
+| `reasonCode`           | string                                                   | no       | yes      |                                                                                                                                                                                                   |
+| `note`                 | string                                                   | no       | yes      |                                                                                                                                                                                                   |
+| `occurredAt`           | string (date-time)                                       | no       | no       |                                                                                                                                                                                                   |
+| `createdAt`            | string (date-time)                                       | no       | no       |                                                                                                                                                                                                   |
+| `actorTenantUserId`    | string (uuid)                                            | no       | yes      |                                                                                                                                                                                                   |
+| `correlationId`        | string                                                   | no       | yes      |                                                                                                                                                                                                   |
+
+**Example**
+
+```json
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "locationId": "00000000-0000-0000-0000-000000000000",
+  "itemType": "string",
+  "itemRef": "string",
+  "unitCode": "string",
+  "movementType": "opening",
+  "operation": "string",
+  "quantityDelta": "12.5",
+  "source": {
+    "type": "string",
+    "id": "string",
+    "line": "string"
+  },
+  "transferId": "00000000-0000-0000-0000-000000000000",
+  "reversesMovementId": "00000000-0000-0000-0000-000000000000",
+  "reversedByMovementId": "00000000-0000-0000-0000-000000000000",
+  "reasonCode": "string",
+  "note": "string",
+  "occurredAt": "2026-01-01T00:00:00.000Z",
+  "createdAt": "2026-01-01T00:00:00.000Z",
+  "actorTenantUserId": "00000000-0000-0000-0000-000000000000",
+  "correlationId": "string"
+}
+```
+
+### Schema: InventoryMovementPostInput
+
+_No properties declared._
+
+**Example**
+
+```json
+{
+  "itemType": null,
+  "itemRef": null,
+  "unitCode": null,
+  "locationId": "00000000-0000-0000-0000-000000000000",
+  "movementType": "receive",
+  "quantity": "12.5",
+  "source": {
+    "type": "string",
+    "id": "string",
+    "line": "string"
+  },
+  "occurredAt": "2026-01-01T00:00:00.000Z",
+  "reasonCode": "string",
+  "note": "string"
+}
+```
+
+### Schema: InventoryMovementType
+
+Enum values: `opening`, `receive`, `sale`, `sale_return`, `supplier_return`, `transfer_out`, `transfer_in`, `adjustment`.
+
+**Example**
+
+```json
+"opening"
+```
+
+### Schema: InventoryOpeningInput
+
+_No properties declared._
+
+**Example**
+
+```json
+{
+  "itemType": null,
+  "itemRef": null,
+  "unitCode": null,
+  "locationId": "00000000-0000-0000-0000-000000000000",
+  "quantity": "12.5",
+  "source": {
+    "type": "string",
+    "id": "string",
+    "line": "string"
+  },
+  "occurredAt": "2026-01-01T00:00:00.000Z",
+  "reasonCode": "string",
+  "note": "string"
+}
+```
+
+### Schema: InventoryPostResponse
+
+| Field     | Type         | Required | Nullable | Description |
+| --------- | ------------ | -------- | -------- | ----------- |
+| `success` | enum(`true`) | no       | no       |             |
+| `data`    | object       | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "success": true,
+  "data": {
+    "replayed": false,
+    "movements": [
+      {
+        "id": "00000000-0000-0000-0000-000000000000",
+        "locationId": "00000000-0000-0000-0000-000000000000",
+        "itemType": "string",
+        "itemRef": "string",
+        "unitCode": "string",
+        "movementType": "opening",
+        "operation": "string",
+        "quantityDelta": "12.5",
+        "source": {
+          "type": "string",
+          "id": "string",
+          "line": "string"
+        },
+        "transferId": "00000000-0000-0000-0000-000000000000",
+        "reversesMovementId": "00000000-0000-0000-0000-000000000000",
+        "reversedByMovementId": "00000000-0000-0000-0000-000000000000",
+        "reasonCode": "string",
+        "note": "string",
+        "occurredAt": "2026-01-01T00:00:00.000Z",
+        "createdAt": "2026-01-01T00:00:00.000Z",
+        "actorTenantUserId": "00000000-0000-0000-0000-000000000000",
+        "correlationId": "string"
+      }
+    ]
+  }
+}
+```
+
+### Schema: InventoryQuantity
+
+An exact decimal as TEXT, never a float: `numeric(20,6)` in the database, at most 14 integer digits and 6 fractional digits, no exponent notation. A JSON number is accepted on input when it round-trips to a plain decimal; every response carries the canonical string (no trailing zeros).
+
+An exact decimal as TEXT, never a float: `numeric(20,6)` in the database, at most 14 integer digits and 6 fractional digits, no exponent notation. A JSON number is accepted on input when it round-trips to a plain decimal; every response carries the canonical string (no trailing zeros).
+
+**Example**
+
+```json
+"12.5"
+```
+
+### Schema: InventorySource
+
+Idempotent source identity: the business document behind a movement. Posting the same identity twice returns the ORIGINAL result.
+
+| Field  | Type   | Required | Nullable | Description |
+| ------ | ------ | -------- | -------- | ----------- |
+| `type` | string | yes      | no       |             |
+| `id`   | string | yes      | no       |             |
+| `line` | string | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "type": "string",
+  "id": "string",
+  "line": "string"
+}
+```
+
+### Schema: InventoryThresholdInput
+
+_No properties declared._
+
+**Example**
+
+```json
+{
+  "itemType": null,
+  "itemRef": null,
+  "unitCode": null,
+  "locationId": "00000000-0000-0000-0000-000000000000",
+  "lowStockThreshold": "string"
+}
+```
+
+### Schema: InventoryTransferInput
+
+_No properties declared._
+
+**Example**
+
+```json
+{
+  "itemType": null,
+  "itemRef": null,
+  "unitCode": null,
+  "fromLocationId": "00000000-0000-0000-0000-000000000000",
+  "toLocationId": "00000000-0000-0000-0000-000000000000",
+  "quantity": "12.5",
+  "source": {
+    "type": "string",
+    "id": "string",
+    "line": "string"
+  },
+  "occurredAt": "2026-01-01T00:00:00.000Z",
+  "reasonCode": "string",
+  "note": "string"
+}
+```
+
 ### Schema: IssueMachineCredentialRequest
 
 | Field                   | Type                              | Required | Nullable | Description                                                                                                                                                                        |
@@ -17743,6 +19402,186 @@ One node of a CLOSED Portable Text vocabulary (ADR-0100). _type is one of block,
 }
 ```
 
+### Schema: ProcurementDecimal
+
+An exact decimal as TEXT, never a float: at most 14 integer digits and 6 fractional digits, no exponent notation. A JSON number is accepted on input when it round-trips to a plain decimal; responses carry the canonical string (no trailing zeros).
+
+An exact decimal as TEXT, never a float: at most 14 integer digits and 6 fractional digits, no exponent notation. A JSON number is accepted on input when it round-trips to a plain decimal; responses carry the canonical string (no trailing zeros).
+
+**Example**
+
+```json
+"12.5"
+```
+
+### Schema: ProcurementDocumentInput
+
+| Field               | Type                                                            | Required | Nullable | Description                                                                     |
+| ------------------- | --------------------------------------------------------------- | -------- | -------- | ------------------------------------------------------------------------------- |
+| `mode`              | enum(`receive`, `supplier_return`, `requisition`, `transfer`)   | yes      | no       |                                                                                 |
+| `supplierId`        | string (uuid)                                                   | no       | no       | Required for receive/supplier_return, forbidden otherwise.                      |
+| `locationId`        | string (uuid)                                                   | yes      | no       | Where stock arrives (receive/requisition/transfer) or leaves (supplier_return). |
+| `sourceLocationId`  | string (uuid)                                                   | no       | no       | Required for requisition/transfer (where stock leaves), forbidden otherwise.    |
+| `externalReference` | string                                                          | no       | yes      |                                                                                 |
+| `documentDate`      | string (date)                                                   | no       | yes      |                                                                                 |
+| `notes`             | string                                                          | no       | yes      |                                                                                 |
+| `currencyCode`      | string                                                          | no       | no       |                                                                                 |
+| `lines`             | array of [`ProcurementLineInput`](#schema-procurementlineinput) | yes      | no       |                                                                                 |
+
+**Example**
+
+```json
+{
+  "mode": "receive",
+  "supplierId": "00000000-0000-0000-0000-000000000000",
+  "locationId": "00000000-0000-0000-0000-000000000000",
+  "sourceLocationId": "00000000-0000-0000-0000-000000000000",
+  "externalReference": "string",
+  "documentDate": "2026-01-01",
+  "notes": "string",
+  "currencyCode": "string",
+  "lines": [
+    {
+      "itemType": "string",
+      "itemRef": "string",
+      "sku": "string",
+      "itemName": "string",
+      "unitCode": "string",
+      "quantity": "12.5",
+      "unitCost": "12.5"
+    }
+  ]
+}
+```
+
+### Schema: ProcurementIdentifierCreate
+
+| Field   | Type                                                             | Required | Nullable | Description |
+| ------- | ---------------------------------------------------------------- | -------- | -------- | ----------- |
+| `type`  | [`ProcurementIdentifierType`](#schema-procurementidentifiertype) | yes      | no       |             |
+| `value` | string                                                           | yes      | no       |             |
+| `label` | string                                                           | no       | yes      |             |
+
+**Example**
+
+```json
+{
+  "type": "tax_id",
+  "value": "string",
+  "label": "string"
+}
+```
+
+### Schema: ProcurementIdentifierType
+
+Enum values: `tax_id`, `business_id`, `payment_ref`, `contact_ref`, `other`.
+
+**Example**
+
+```json
+"tax_id"
+```
+
+### Schema: ProcurementLineInput
+
+| Field      | Type                                                           | Required | Nullable | Description                                                                                |
+| ---------- | -------------------------------------------------------------- | -------- | -------- | ------------------------------------------------------------------------------------------ |
+| `itemType` | string                                                         | yes      | no       |                                                                                            |
+| `itemRef`  | string                                                         | yes      | no       | Opaque ledger reference, `A-Za-z0-9_.:-`, never credential-shaped.                         |
+| `sku`      | string                                                         | yes      | no       | Snapshot of the SKU.                                                                       |
+| `itemName` | string                                                         | yes      | no       | Snapshot of the item name.                                                                 |
+| `unitCode` | string                                                         | no       | no       | Unit of measure; defaults to `unit`. The ledger refuses a mismatch rather than converting. |
+| `quantity` | [`ProcurementDecimal`](#schema-procurementdecimal) \\\| number | yes      | no       |                                                                                            |
+| `unitCost` | [`ProcurementDecimal`](#schema-procurementdecimal) \\\| number | no       | yes      | Required for `receive` and `supplier_return` (the approval threshold is cost-based).       |
+
+**Example**
+
+```json
+{
+  "itemType": "string",
+  "itemRef": "string",
+  "sku": "string",
+  "itemName": "string",
+  "unitCode": "string",
+  "quantity": "12.5",
+  "unitCost": "12.5"
+}
+```
+
+### Schema: ProcurementReason
+
+| Field    | Type   | Required | Nullable | Description |
+| -------- | ------ | -------- | -------- | ----------- |
+| `reason` | string | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "reason": "string"
+}
+```
+
+### Schema: ProcurementReasonRequired
+
+| Field    | Type   | Required | Nullable | Description |
+| -------- | ------ | -------- | -------- | ----------- |
+| `reason` | string | yes      | no       |             |
+
+**Example**
+
+```json
+{
+  "reason": "string"
+}
+```
+
+### Schema: ProcurementSupplierCreate
+
+| Field        | Type                                  | Required | Nullable | Description |
+| ------------ | ------------------------------------- | -------- | -------- | ----------- |
+| `vendorCode` | string                                | yes      | no       |             |
+| `name`       | string                                | yes      | no       |             |
+| `status`     | enum(`active`, `inactive`, `blocked`) | no       | no       |             |
+| `profileId`  | string (uuid)                         | no       | yes      |             |
+| `categories` | array of string                       | no       | no       |             |
+| `tags`       | array of string                       | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "vendorCode": "string",
+  "name": "string",
+  "status": "active",
+  "profileId": "00000000-0000-0000-0000-000000000000",
+  "categories": ["string"],
+  "tags": ["string"]
+}
+```
+
+### Schema: ProcurementSupplierUpdate
+
+| Field        | Type                                  | Required | Nullable | Description |
+| ------------ | ------------------------------------- | -------- | -------- | ----------- |
+| `name`       | string                                | no       | no       |             |
+| `status`     | enum(`active`, `inactive`, `blocked`) | no       | no       |             |
+| `profileId`  | string (uuid)                         | no       | yes      |             |
+| `categories` | array of string                       | no       | no       |             |
+| `tags`       | array of string                       | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "name": "string",
+  "status": "active",
+  "profileId": "00000000-0000-0000-0000-000000000000",
+  "categories": ["string"],
+  "tags": ["string"]
+}
+```
+
 ### Schema: PushMessageStatus
 
 Enum values: `queued`, `retry_wait`, `sending`, `sent`, `failed`, `cancelled`.
@@ -18075,6 +19914,697 @@ Every field is optional — an omitted field keeps its current value.
 }
 ```
 
+### Schema: TaxComponentResult
+
+| Field         | Type                               | Required | Nullable | Description |
+| ------------- | ---------------------------------- | -------- | -------- | ----------- |
+| `code`        | string                             | no       | no       |             |
+| `name`        | string                             | no       | no       |             |
+| `rate`        | string                             | no       | no       |             |
+| `basis`       | enum(`net`, `cumulative`)          | no       | no       |             |
+| `taxableBase` | [`TaxDecimal`](#schema-taxdecimal) | no       | no       |             |
+| `taxAmount`   | [`TaxDecimal`](#schema-taxdecimal) | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "code": "string",
+  "name": "string",
+  "rate": "string",
+  "basis": "net",
+  "taxableBase": "10.50",
+  "taxAmount": "10.50"
+}
+```
+
+### Schema: TaxComponentRule
+
+| Field   | Type                      | Required | Nullable | Description                                                                                                                                                            |
+| ------- | ------------------------- | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `code`  | string                    | yes      | no       |                                                                                                                                                                        |
+| `name`  | string                    | yes      | no       |                                                                                                                                                                        |
+| `rate`  | string                    | yes      | no       | Percent as a decimal string, at most six decimals, 0 to 1000.                                                                                                          |
+| `basis` | enum(`net`, `cumulative`) | no       | no       | `net` applies the rate to the line's net amount. `cumulative` applies it to net PLUS every earlier component's tax in declaration order — the stacked / compound case. |
+
+**Example**
+
+```json
+{
+  "code": "string",
+  "name": "string",
+  "rate": "11",
+  "basis": "net"
+}
+```
+
+### Schema: TaxComponentTotal
+
+| Field       | Type                               | Required | Nullable | Description |
+| ----------- | ---------------------------------- | -------- | -------- | ----------- |
+| `code`      | string                             | no       | no       |             |
+| `name`      | string                             | no       | no       |             |
+| `taxAmount` | [`TaxDecimal`](#schema-taxdecimal) | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "code": "string",
+  "name": "string",
+  "taxAmount": "10.50"
+}
+```
+
+### Schema: TaxDecimal
+
+A plain decimal STRING — never a JSON number. No exponent, no sign prefix other than `-`, no separators.
+
+A plain decimal STRING — never a JSON number. No exponent, no sign prefix other than `-`, no separators.
+
+**Example**
+
+```json
+"10.50"
+```
+
+### Schema: TaxLineInput
+
+| Field          | Type                               | Required | Nullable | Description                                                                                                    |
+| -------------- | ---------------------------------- | -------- | -------- | -------------------------------------------------------------------------------------------------------------- |
+| `lineRef`      | string                             | yes      | no       | The caller's own reference for the line, unique within the request. Echoed back, and the key a reversal names. |
+| `categoryCode` | string                             | no       | yes      |                                                                                                                |
+| `quantity`     | [`TaxDecimal`](#schema-taxdecimal) | yes      | no       | Greater than zero, at most six decimals.                                                                       |
+| `unitPrice`    | [`TaxDecimal`](#schema-taxdecimal) | yes      | no       | Net per unit under exclusive pricing, gross per unit under inclusive. At most six decimals.                    |
+| `discount`     | [`TaxDecimal`](#schema-taxdecimal) | no       | no       | Total discount on the line, in currency. Defaults to "0".                                                      |
+
+**Example**
+
+```json
+{
+  "lineRef": "string",
+  "categoryCode": "string",
+  "quantity": "10.50",
+  "unitPrice": "10.50",
+  "discount": "10.50"
+}
+```
+
+### Schema: TaxLineResult
+
+| Field             | Type                                                        | Required | Nullable | Description                    |
+| ----------------- | ----------------------------------------------------------- | -------- | -------- | ------------------------------ |
+| `lineNo`          | integer                                                     | no       | no       |                                |
+| `lineRef`         | string                                                      | no       | no       |                                |
+| `originalLineRef` | string                                                      | no       | no       | Present on a reversal's lines. |
+| `categoryCode`    | string                                                      | no       | yes      |                                |
+| `treatment`       | enum(`taxable`, `exempt`, `zero_rated`)                     | no       | no       |                                |
+| `quantity`        | string                                                      | no       | no       |                                |
+| `unitPrice`       | string                                                      | no       | no       |                                |
+| `discount`        | string                                                      | no       | no       |                                |
+| `netAmount`       | [`TaxDecimal`](#schema-taxdecimal)                          | no       | no       |                                |
+| `taxAmount`       | [`TaxDecimal`](#schema-taxdecimal)                          | no       | no       |                                |
+| `grossAmount`     | [`TaxDecimal`](#schema-taxdecimal)                          | no       | no       |                                |
+| `components`      | array of [`TaxComponentResult`](#schema-taxcomponentresult) | no       | no       |                                |
+
+**Example**
+
+```json
+{
+  "lineNo": 0,
+  "lineRef": "string",
+  "originalLineRef": "string",
+  "categoryCode": "string",
+  "treatment": "taxable",
+  "quantity": "string",
+  "unitPrice": "string",
+  "discount": "string",
+  "netAmount": "10.50",
+  "taxAmount": "10.50",
+  "grossAmount": "10.50",
+  "components": [
+    {
+      "code": "string",
+      "name": "string",
+      "rate": "string",
+      "basis": "net",
+      "taxableBase": "10.50",
+      "taxAmount": "10.50"
+    }
+  ]
+}
+```
+
+### Schema: TaxQuoteRequest
+
+| Field         | Type                                            | Required | Nullable | Description                                                                                                                          |
+| ------------- | ----------------------------------------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `profileCode` | string                                          | yes      | no       |                                                                                                                                      |
+| `taxDate`     | string (date)                                   | yes      | no       | The calendar date the supply happened — the caller's to state, never the server's clock. Selects the rule version in force that day. |
+| `lines`       | array of [`TaxLineInput`](#schema-taxlineinput) | yes      | no       |                                                                                                                                      |
+
+**Example**
+
+```json
+{
+  "profileCode": "string",
+  "taxDate": "2026-01-01",
+  "lines": [
+    {
+      "lineRef": "string",
+      "categoryCode": "string",
+      "quantity": "10.50",
+      "unitPrice": "10.50",
+      "discount": "10.50"
+    }
+  ]
+}
+```
+
+### Schema: TaxReversalRequest
+
+| Field        | Type            | Required | Nullable | Description                                                                                                                                                                 |
+| ------------ | --------------- | -------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `documentId` | string          | yes      | no       | The reversal's own document reference (a refund id); same opaque charset as a snapshot's `documentId`.                                                                      |
+| `taxDate`    | string (date)   | no       | no       | The period the reversal is reported in. The SERVER's date when omitted (never the original's). A stated date outside the server-date window needs `tax.snapshots.backdate`. |
+| `reason`     | string          | no       | no       |                                                                                                                                                                             |
+| `lines`      | array of object | no       | no       | Omit to reverse everything not yet returned.                                                                                                                                |
+
+**Example**
+
+```json
+{
+  "documentId": "string",
+  "taxDate": "2026-01-01",
+  "reason": "string",
+  "lines": [
+    {
+      "lineRef": "string",
+      "quantity": "10.50"
+    }
+  ]
+}
+```
+
+### Schema: TaxRule
+
+| Field          | Type                                                    | Required | Nullable | Description                                                                                                                                                                          |
+| -------------- | ------------------------------------------------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `categoryCode` | string                                                  | no       | yes      | Null is the FALLBACK rule for lines whose category has no rule of its own (at most one).                                                                                             |
+| `treatment`    | enum(`taxable`, `exempt`, `zero_rated`)                 | yes      | no       | `taxable` needs at least one component. `exempt` and `zero_rated` must have none and are kept distinct because they are different lines on a return, not because the amount differs. |
+| `components`   | array of [`TaxComponentRule`](#schema-taxcomponentrule) | no       | no       |                                                                                                                                                                                      |
+
+**Example**
+
+```json
+{
+  "categoryCode": "string",
+  "treatment": "taxable",
+  "components": [
+    {
+      "code": "string",
+      "name": "string",
+      "rate": "11",
+      "basis": "net"
+    }
+  ]
+}
+```
+
+### Schema: TaxRuleDefinition
+
+| Field        | Type                                  | Required | Nullable | Description |
+| ------------ | ------------------------------------- | -------- | -------- | ----------- |
+| `categories` | array of object                       | yes      | no       |             |
+| `rules`      | array of [`TaxRule`](#schema-taxrule) | yes      | no       |             |
+
+**Example**
+
+```json
+{
+  "categories": [
+    {
+      "code": "string",
+      "name": "string",
+      "description": "string"
+    }
+  ],
+  "rules": [
+    {
+      "categoryCode": "string",
+      "treatment": "taxable",
+      "components": []
+    }
+  ]
+}
+```
+
+### Schema: TaxRuleVersion
+
+_No properties declared._
+
+**Example**
+
+```json
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "profileCode": "string",
+  "versionNo": 0,
+  "status": "draft",
+  "name": "string",
+  "jurisdictionCode": "string",
+  "countryCode": "string",
+  "regionCode": "string",
+  "currencyCode": "string",
+  "pricingMode": "exclusive",
+  "roundingMode": "string",
+  "roundingScale": 0,
+  "roundingLevel": "line",
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-01-01",
+  "notes": "string",
+  "createdAt": "2026-01-01T00:00:00.000Z",
+  "createdBy": "00000000-0000-0000-0000-000000000000",
+  "publishedAt": "2026-01-01T00:00:00.000Z",
+  "publishedBy": "00000000-0000-0000-0000-000000000000",
+  "definition": {
+    "categories": [
+      {
+        "code": "string",
+        "name": "string",
+        "description": "string"
+      }
+    ],
+    "rules": [
+      {
+        "categoryCode": "string",
+        "treatment": "taxable",
+        "components": []
+      }
+    ]
+  }
+}
+```
+
+### Schema: TaxRuleVersionEnvelope
+
+| Field     | Type                                       | Required | Nullable | Description |
+| --------- | ------------------------------------------ | -------- | -------- | ----------- |
+| `success` | enum(`true`)                               | no       | no       |             |
+| `data`    | [`TaxRuleVersion`](#schema-taxruleversion) | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "00000000-0000-0000-0000-000000000000",
+    "profileCode": "string",
+    "versionNo": 0,
+    "status": "draft",
+    "name": "string",
+    "jurisdictionCode": "string",
+    "countryCode": "string",
+    "regionCode": "string",
+    "currencyCode": "string",
+    "pricingMode": "exclusive",
+    "roundingMode": "string",
+    "roundingScale": 0,
+    "roundingLevel": "line",
+    "effectiveFrom": "2026-01-01",
+    "effectiveTo": "2026-01-01",
+    "notes": "string",
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "createdBy": "00000000-0000-0000-0000-000000000000",
+    "publishedAt": "2026-01-01T00:00:00.000Z",
+    "publishedBy": "00000000-0000-0000-0000-000000000000",
+    "definition": {
+      "categories": [],
+      "rules": []
+    }
+  }
+}
+```
+
+### Schema: TaxRuleVersionInput
+
+| Field              | Type                                                                        | Required | Nullable | Description                                                                                                                                                                 |
+| ------------------ | --------------------------------------------------------------------------- | -------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `profileCode`      | string                                                                      | yes      | no       | The profile this is a version OF. Tenant-named.                                                                                                                             |
+| `name`             | string                                                                      | yes      | no       |                                                                                                                                                                             |
+| `jurisdictionCode` | string                                                                      | yes      | no       | Opaque, tenant-defined jurisdiction/scope code. The core ships no country list and no country's law.                                                                        |
+| `countryCode`      | string                                                                      | no       | no       |                                                                                                                                                                             |
+| `regionCode`       | string                                                                      | no       | no       |                                                                                                                                                                             |
+| `currencyCode`     | string                                                                      | yes      | no       |                                                                                                                                                                             |
+| `pricingMode`      | enum(`exclusive`, `inclusive`)                                              | yes      | no       |                                                                                                                                                                             |
+| `roundingMode`     | enum(`half_up`, `half_down`, `half_even`, `up`, `down`, `ceiling`, `floor`) | yes      | no       | `half_up` / `half_down` are symmetric about zero. `half_even` is banker's rounding. `up` / `down` are away from / toward zero; `ceiling` / `floor` are toward +/- infinity. |
+| `roundingScale`    | integer                                                                     | yes      | no       | Decimal places amounts are rounded to.                                                                                                                                      |
+| `roundingLevel`    | enum(`line`, `document`)                                                    | yes      | no       | `line` rounds each line's tax alone and sums. `document` sums the exact tax per component, rounds ONCE, and apportions back to the lines by largest remainder.              |
+| `effectiveFrom`    | string (date)                                                               | yes      | no       | Inclusive calendar date.                                                                                                                                                    |
+| `notes`            | string                                                                      | no       | no       |                                                                                                                                                                             |
+| `definition`       | [`TaxRuleDefinition`](#schema-taxruledefinition)                            | yes      | no       |                                                                                                                                                                             |
+
+**Example**
+
+```json
+{
+  "profileCode": "string",
+  "name": "string",
+  "jurisdictionCode": "string",
+  "countryCode": "string",
+  "regionCode": "string",
+  "currencyCode": "string",
+  "pricingMode": "exclusive",
+  "roundingMode": "half_up",
+  "roundingScale": 0,
+  "roundingLevel": "line",
+  "effectiveFrom": "2026-01-01",
+  "notes": "string",
+  "definition": {
+    "categories": [
+      {
+        "code": "string",
+        "name": "string",
+        "description": "string"
+      }
+    ],
+    "rules": [
+      {
+        "categoryCode": "string",
+        "treatment": "taxable",
+        "components": []
+      }
+    ]
+  }
+}
+```
+
+### Schema: TaxRuleVersionSummary
+
+A rule version without its `definition` (up to 256 KiB). What a list returns; the body comes from the detail endpoint.
+
+| Field              | Type                           | Required | Nullable | Description                                         |
+| ------------------ | ------------------------------ | -------- | -------- | --------------------------------------------------- |
+| `id`               | string (uuid)                  | no       | no       |                                                     |
+| `profileCode`      | string                         | no       | no       |                                                     |
+| `versionNo`        | integer                        | no       | no       |                                                     |
+| `status`           | enum(`draft`, `published`)     | no       | no       |                                                     |
+| `name`             | string                         | no       | no       |                                                     |
+| `jurisdictionCode` | string                         | no       | no       |                                                     |
+| `countryCode`      | string                         | no       | yes      |                                                     |
+| `regionCode`       | string                         | no       | yes      |                                                     |
+| `currencyCode`     | string                         | no       | no       |                                                     |
+| `pricingMode`      | enum(`exclusive`, `inclusive`) | no       | no       |                                                     |
+| `roundingMode`     | string                         | no       | no       |                                                     |
+| `roundingScale`    | integer                        | no       | no       |                                                     |
+| `roundingLevel`    | enum(`line`, `document`)       | no       | no       |                                                     |
+| `effectiveFrom`    | string (date)                  | no       | no       |                                                     |
+| `effectiveTo`      | string (date)                  | no       | yes      | EXCLUSIVE end of the window; null while open-ended. |
+| `notes`            | string                         | no       | yes      |                                                     |
+| `createdAt`        | string (date-time)             | no       | no       |                                                     |
+| `createdBy`        | string (uuid)                  | no       | yes      |                                                     |
+| `publishedAt`      | string (date-time)             | no       | yes      |                                                     |
+| `publishedBy`      | string (uuid)                  | no       | yes      |                                                     |
+
+**Example**
+
+```json
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "profileCode": "string",
+  "versionNo": 0,
+  "status": "draft",
+  "name": "string",
+  "jurisdictionCode": "string",
+  "countryCode": "string",
+  "regionCode": "string",
+  "currencyCode": "string",
+  "pricingMode": "exclusive",
+  "roundingMode": "string",
+  "roundingScale": 0,
+  "roundingLevel": "line",
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-01-01",
+  "notes": "string",
+  "createdAt": "2026-01-01T00:00:00.000Z",
+  "createdBy": "00000000-0000-0000-0000-000000000000",
+  "publishedAt": "2026-01-01T00:00:00.000Z",
+  "publishedBy": "00000000-0000-0000-0000-000000000000"
+}
+```
+
+### Schema: TaxSnapshot
+
+_No properties declared._
+
+**Example**
+
+```json
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "kind": "sale",
+  "documentType": "string",
+  "documentId": "string",
+  "originalSnapshotId": "00000000-0000-0000-0000-000000000000",
+  "ruleVersionId": "00000000-0000-0000-0000-000000000000",
+  "profileCode": "string",
+  "versionNo": 0,
+  "taxDate": "2026-01-01",
+  "currencyCode": "string",
+  "pricingMode": "exclusive",
+  "roundingMode": "string",
+  "roundingScale": 0,
+  "roundingLevel": "line",
+  "netTotal": "10.50",
+  "taxTotal": "10.50",
+  "grossTotal": "10.50",
+  "componentTotals": [
+    {
+      "code": "string",
+      "name": "string",
+      "taxAmount": "10.50"
+    }
+  ],
+  "treatmentTotals": [
+    {
+      "treatment": "taxable",
+      "netAmount": "10.50",
+      "taxAmount": "10.50",
+      "grossAmount": "10.50"
+    }
+  ],
+  "reason": "string",
+  "createdAt": "2026-01-01T00:00:00.000Z",
+  "createdBy": "00000000-0000-0000-0000-000000000000",
+  "lines": [
+    {
+      "lineNo": 0,
+      "lineRef": "string",
+      "originalLineRef": "string",
+      "categoryCode": "string",
+      "treatment": "taxable",
+      "quantity": "string",
+      "unitPrice": "string",
+      "discount": "string",
+      "netAmount": "10.50",
+      "taxAmount": "10.50",
+      "grossAmount": "10.50",
+      "components": []
+    }
+  ]
+}
+```
+
+### Schema: TaxSnapshotEnvelope
+
+| Field     | Type                                 | Required | Nullable | Description |
+| --------- | ------------------------------------ | -------- | -------- | ----------- |
+| `success` | enum(`true`)                         | no       | no       |             |
+| `data`    | [`TaxSnapshot`](#schema-taxsnapshot) | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "00000000-0000-0000-0000-000000000000",
+    "kind": "sale",
+    "documentType": "string",
+    "documentId": "string",
+    "originalSnapshotId": "00000000-0000-0000-0000-000000000000",
+    "ruleVersionId": "00000000-0000-0000-0000-000000000000",
+    "profileCode": "string",
+    "versionNo": 0,
+    "taxDate": "2026-01-01",
+    "currencyCode": "string",
+    "pricingMode": "exclusive",
+    "roundingMode": "string",
+    "roundingScale": 0,
+    "roundingLevel": "line",
+    "netTotal": "10.50",
+    "taxTotal": "10.50",
+    "grossTotal": "10.50",
+    "componentTotals": [
+      {
+        "code": "string",
+        "name": "string",
+        "taxAmount": null
+      }
+    ],
+    "treatmentTotals": [
+      {
+        "treatment": "taxable",
+        "netAmount": null,
+        "taxAmount": null,
+        "grossAmount": null
+      }
+    ],
+    "reason": "string",
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "createdBy": "00000000-0000-0000-0000-000000000000",
+    "lines": [
+      {
+        "lineNo": 0,
+        "lineRef": "string",
+        "originalLineRef": "string",
+        "categoryCode": "string",
+        "treatment": "taxable",
+        "quantity": "string",
+        "unitPrice": "string",
+        "discount": "string",
+        "netAmount": null,
+        "taxAmount": null,
+        "grossAmount": null,
+        "components": []
+      }
+    ]
+  }
+}
+```
+
+### Schema: TaxSnapshotRequest
+
+| Field          | Type                                            | Required | Nullable | Description                                                                                                                                                                                                                                                      |
+| -------------- | ----------------------------------------------- | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `profileCode`  | string                                          | yes      | no       |                                                                                                                                                                                                                                                                  |
+| `taxDate`      | string (date)                                   | yes      | no       | The calendar date the supply happened. Bounded against the SERVER's date (default 7 days back, 1 day forward, configurable): outside that window the caller must also hold `tax.snapshots.backdate`, and gets `403 TAX_BACKDATE_PERMISSION_REQUIRED` without it. |
+| `documentType` | string                                          | yes      | no       | The consumer's document kind (order, invoice, receipt...). Opaque.                                                                                                                                                                                               |
+| `documentId`   | string                                          | yes      | no       | The consumer's document reference: an opaque handle of letters, digits and `. _ : / -` (no spaces, markup or control characters, never trimmed). No customer data is stored. Finalised once per (documentType, documentId).                                      |
+| `lines`        | array of [`TaxLineInput`](#schema-taxlineinput) | yes      | no       |                                                                                                                                                                                                                                                                  |
+
+**Example**
+
+```json
+{
+  "profileCode": "string",
+  "taxDate": "2026-01-01",
+  "documentType": "string",
+  "documentId": "string",
+  "lines": [
+    {
+      "lineRef": "string",
+      "categoryCode": "string",
+      "quantity": "10.50",
+      "unitPrice": "10.50",
+      "discount": "10.50"
+    }
+  ]
+}
+```
+
+### Schema: TaxSnapshotSummary
+
+A snapshot without its `lines` (up to 500 per document). What a list returns; the lines come from the detail endpoint. The rule definition the snapshot was computed under is never returned here — read the version (`ruleVersionId`) with `tax.rules.read`.
+
+| Field                | Type                                                      | Required | Nullable | Description                                                                                                         |
+| -------------------- | --------------------------------------------------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------- |
+| `id`                 | string (uuid)                                             | no       | no       |                                                                                                                     |
+| `kind`               | enum(`sale`, `reversal`)                                  | no       | no       | `sale` is a finalised document (non-negative amounts). `reversal` is a refund/return of one (non-positive amounts). |
+| `documentType`       | string                                                    | no       | no       |                                                                                                                     |
+| `documentId`         | string                                                    | no       | no       |                                                                                                                     |
+| `originalSnapshotId` | string (uuid)                                             | no       | yes      |                                                                                                                     |
+| `ruleVersionId`      | string (uuid)                                             | no       | no       |                                                                                                                     |
+| `profileCode`        | string                                                    | no       | no       |                                                                                                                     |
+| `versionNo`          | integer                                                   | no       | no       |                                                                                                                     |
+| `taxDate`            | string (date)                                             | no       | no       |                                                                                                                     |
+| `currencyCode`       | string                                                    | no       | no       |                                                                                                                     |
+| `pricingMode`        | enum(`exclusive`, `inclusive`)                            | no       | no       |                                                                                                                     |
+| `roundingMode`       | string                                                    | no       | no       |                                                                                                                     |
+| `roundingScale`      | integer                                                   | no       | no       |                                                                                                                     |
+| `roundingLevel`      | enum(`line`, `document`)                                  | no       | no       |                                                                                                                     |
+| `netTotal`           | [`TaxDecimal`](#schema-taxdecimal)                        | no       | no       |                                                                                                                     |
+| `taxTotal`           | [`TaxDecimal`](#schema-taxdecimal)                        | no       | no       |                                                                                                                     |
+| `grossTotal`         | [`TaxDecimal`](#schema-taxdecimal)                        | no       | no       |                                                                                                                     |
+| `componentTotals`    | array of [`TaxComponentTotal`](#schema-taxcomponenttotal) | no       | no       |                                                                                                                     |
+| `treatmentTotals`    | array of [`TaxTreatmentTotal`](#schema-taxtreatmenttotal) | no       | no       |                                                                                                                     |
+| `reason`             | string                                                    | no       | yes      |                                                                                                                     |
+| `createdAt`          | string (date-time)                                        | no       | no       |                                                                                                                     |
+| `createdBy`          | string (uuid)                                             | no       | yes      |                                                                                                                     |
+
+**Example**
+
+```json
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "kind": "sale",
+  "documentType": "string",
+  "documentId": "string",
+  "originalSnapshotId": "00000000-0000-0000-0000-000000000000",
+  "ruleVersionId": "00000000-0000-0000-0000-000000000000",
+  "profileCode": "string",
+  "versionNo": 0,
+  "taxDate": "2026-01-01",
+  "currencyCode": "string",
+  "pricingMode": "exclusive",
+  "roundingMode": "string",
+  "roundingScale": 0,
+  "roundingLevel": "line",
+  "netTotal": "10.50",
+  "taxTotal": "10.50",
+  "grossTotal": "10.50",
+  "componentTotals": [
+    {
+      "code": "string",
+      "name": "string",
+      "taxAmount": "10.50"
+    }
+  ],
+  "treatmentTotals": [
+    {
+      "treatment": "taxable",
+      "netAmount": "10.50",
+      "taxAmount": "10.50",
+      "grossAmount": "10.50"
+    }
+  ],
+  "reason": "string",
+  "createdAt": "2026-01-01T00:00:00.000Z",
+  "createdBy": "00000000-0000-0000-0000-000000000000"
+}
+```
+
+### Schema: TaxTreatmentTotal
+
+| Field         | Type                                    | Required | Nullable | Description |
+| ------------- | --------------------------------------- | -------- | -------- | ----------- |
+| `treatment`   | enum(`taxable`, `exempt`, `zero_rated`) | no       | no       |             |
+| `netAmount`   | [`TaxDecimal`](#schema-taxdecimal)      | no       | no       |             |
+| `taxAmount`   | [`TaxDecimal`](#schema-taxdecimal)      | no       | no       |             |
+| `grossAmount` | [`TaxDecimal`](#schema-taxdecimal)      | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "treatment": "taxable",
+  "netAmount": "10.50",
+  "taxAmount": "10.50",
+  "grossAmount": "10.50"
+}
+```
+
 ### Schema: ThemeConfigRequest
 
 A tenant's DATA-only theme configuration. Every key/value is validated against the chosen theme descriptor; unknown tokens/slots/assets/sections are rejected, and token values are validated by rejection against strict CSS grammars (no url()/expression()/@import/javascript:/comment-breakout).
@@ -18193,7 +20723,7 @@ consumer/subscriber contract in this file).
 }
 ```
 
-### Channels (73)
+### Channels (80)
 
 - `awcms.blog-content.ad.created` — An advertisement was created. Documented contract only; producer is `pages/api/v1/blog/ads/index.ts`'s `blog-content.ad.created` log line.
 - `awcms.blog-content.ad.deleted` — An advertisement was soft-deleted. Documented contract only; producer is `pages/api/v1/blog/ads/[id].ts`'s `blog-content.ad.deleted` log line.
@@ -18260,6 +20790,13 @@ consumer/subscriber contract in this file).
 - `awcms.email.message.queued` — An email message was enqueued into `awcms_email_messages`. Documented contract only, same convention as `database.pool.saturated` — the concrete producer is the structured JSON logger, invoked from `email/application/announcement-directory.ts`'s `enqueueAnnouncement` (`email.message.queued` log line).
 - `awcms.email.message.sent` — The email dispatcher (`bun run email:dispatch`) delivered a message through the configured provider. Documented contract only; producer is the structured JSON logger (`email/application/email-dispatch.ts`'s `email.dispatch.sent` log line).
 - `awcms.email.message.suppressed` — The email dispatcher found a claimed message's recipient newly present on `awcms_email_suppression_list` (added after enqueue, before dispatch) and skipped the provider call entirely. Documented contract only; producer is the structured JSON logger (`email/application/email-dispatch.ts`'s `email.dispatch.suppressed` log line).
+- `awcms.inventory.movement.posted` — A stock movement was posted to the append-only inventory ledger and its balance updated, in ONE transaction (ADR-0126, Issue #887). Producer: `inventory/application/inventory-ledger.ts`'s posting core, shared by `postMovement`, `postAdjustment`, `reverseAdjustment` and `postTransfer` (a transfer publishes one event per leg). Published in the same commit as the movement, so a rolled-back posting publishes nothing; a REPLAY of an already-posted source identity publishes nothing either. Ordered per balance (`order_key` = location + item). The payload carries opaque item and source references and decimal-string quantities only — `movementId`, `locationId`, `itemType`, `itemRef`, `unitCode`, `movementType`, `operation`, `quantityDelta`, `balanceAfter`, `sourceType`, `sourceId`, `sourceLine`, `transferId`, `reversesMovementId`. Never the free-text note and never anything identifying a person.
+- `awcms.inventory.stock.low` — A stock balance crossed to or below its low-stock threshold (ADR-0126, Issue #887) — by a movement or by a threshold change. Producer: `inventory/application/inventory-ledger.ts`'s `recordLowStockTransition`. Published ONCE per downward crossing, not on every movement while the balance stays low, and never for the recovery (that is recorded in the signals table the reporting projection reads). Payload: `locationId`, `itemType`, `itemRef`, `onHand`, `threshold`, `movementId` (null when a threshold change caused it).
+- `awcms.procurement.document.finalised` — A procurement document (receive, supplier_return, requisition or transfer) was finalised and its inventory movements posted through the ledger's port (ADR-0128, Issue #888), in one transaction. Producer: `procurement/application/procurement-posting.ts`'s `finaliseDocument`. Published once per document — a replayed finalise posts and publishes nothing. Payload: `documentId`, `documentNo`, `mode`, `supplierId`, `locationId`, `sourceLocationId`, `currencyCode`, `totalCost` (decimal string), `lineCount`, `movementCount`. Never a supplier name, an identifier, a note or a reason.
+- `awcms.procurement.document.reversed` — A finalised procurement document was reversed: compensating inventory movements were posted and the document marked reversed (ADR-0128, Issue #888), in one transaction. Producer: `procurement/application/procurement-posting.ts`'s `reverseDocument`. Same payload shape as `document.finalised`.
+- `awcms.tax.rule_version.published` — A tax rule version was published and became the rule in force from its effective date (ADR-0127). Producer: `tax/application/tax-event-publisher.ts`'s `publishRuleVersionPublishedEvent`, called by `POST /api/v1/tax/rule-versions/{id}/publish` inside the same transaction as the publish. Ordered per profile (`orderKey` `tax.profile:<code>`). The payload carries identifiers, codes and dates only — `ruleVersionId`, `profileCode`, `versionNo`, `jurisdictionCode`, `effectiveFrom`, and `closedVersionId` (the predecessor whose window this ended, or null).
+- `awcms.tax.snapshot.finalised` — A document's tax was finalised into an immutable snapshot (ADR-0127). Producer: `tax/application/tax-event-publisher.ts`'s `publishSnapshotEvent`, called by `POST /api/v1/tax/snapshots` only when a NEW snapshot is written — an idempotent replay publishes nothing. The payload carries the opaque document reference, the rule version used, the tax date and decimal-string totals; no customer data of any kind.
+- `awcms.tax.snapshot.reversed` — A finalised document's tax was reversed from its original snapshot (refund or return, ADR-0127). Producer: `publishSnapshotEvent`, called by `POST /api/v1/tax/snapshots/{id}/reverse` only when a NEW reversal is written. Same payload shape as `snapshot.finalised`; the totals are negative decimal strings and `originalSnapshotId` is set.
 - `awcms.workflow.delegation.created` — A workflow delegation/substitute assignment was created. Producer: `workflow-approval/application/workflow-delegation-directory.ts`'s `createWorkflowDelegation`.
 - `awcms.workflow.delegation.revoked` — A workflow delegation/substitute assignment was revoked. Producer: `workflow-approval/application/workflow-delegation-directory.ts`'s `revokeWorkflowDelegation`.
 - `awcms.workflow.instance.advanced` — A workflow instance's active task was decided (or force-decided) and the instance advanced to its next node(s), without yet reaching a terminal outcome. Producer: `workflow-approval/application/workflow-instance-decision.ts`'s `completeApprovalTaskAndAdvance`.

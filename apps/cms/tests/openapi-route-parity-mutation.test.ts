@@ -92,7 +92,11 @@ describe("api-docs generator determinism", () => {
     const first = await buildApiReferenceMarkdown(ROOT);
     const second = await buildApiReferenceMarkdown(ROOT);
     expect(second).toBe(first);
-  });
+    // Two full generations of the merged (upstream + commerce) spec take ~5 s,
+    // right at bun's default test timeout; the explicit bound is a local
+    // divergence from upstream (awcms-one#319), not a performance regression
+    // tolerated silently.
+  }, 30_000);
 
   test("the reference contains the standard envelope and every module section", async () => {
     const md = await buildApiReferenceMarkdown(ROOT);

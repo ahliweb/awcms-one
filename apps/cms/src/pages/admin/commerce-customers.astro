@@ -75,7 +75,12 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
   )}
 
   {canRead && !loadError && (
-    <div class="data-table-scroll fade-in-up">
+    <div
+      class="data-table-scroll fade-in-up"
+      role="region"
+      tabindex="0"
+      aria-label={t("Customers")}
+    >
       <table class="data-table data-table--stack" id="commerce-customers-table">
         <caption>
           {tn("{count} customer", "{count} customers", customers.length, {

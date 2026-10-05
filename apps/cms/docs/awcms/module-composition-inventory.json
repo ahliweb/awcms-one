@@ -1,5 +1,5 @@
 {
-  "moduleCount": 26,
+  "moduleCount": 29,
   "valid": true,
   "issueCount": 0,
   "modules": [
@@ -190,6 +190,28 @@
       "deploymentProfiles": null
     },
     {
+      "key": "inventory",
+      "name": "Inventory",
+      "version": "0.1.0",
+      "status": "active",
+      "type": "domain",
+      "dependencies": [
+        "tenant_admin",
+        "identity_access",
+        "logging",
+        "domain_event_runtime",
+        "reporting"
+      ],
+      "capabilitiesProvided": [],
+      "capabilitiesConsumed": [],
+      "permissionCount": 12,
+      "navigationCount": 1,
+      "jobCount": 0,
+      "hasHealthCheck": false,
+      "hasReadinessCheck": false,
+      "deploymentProfiles": null
+    },
+    {
       "key": "logging",
       "name": "Logging & Audit Trail",
       "version": "1.0.0",
@@ -271,6 +293,30 @@
       "permissionCount": 18,
       "navigationCount": 15,
       "jobCount": 1,
+      "hasHealthCheck": false,
+      "hasReadinessCheck": false,
+      "deploymentProfiles": null
+    },
+    {
+      "key": "procurement",
+      "name": "Procurement",
+      "version": "0.1.0",
+      "status": "active",
+      "type": "domain",
+      "dependencies": [
+        "tenant_admin",
+        "identity_access",
+        "profile_identity",
+        "logging",
+        "domain_event_runtime",
+        "reporting",
+        "inventory"
+      ],
+      "capabilitiesProvided": [],
+      "capabilitiesConsumed": [],
+      "permissionCount": 17,
+      "navigationCount": 1,
+      "jobCount": 0,
       "hasHealthCheck": false,
       "hasReadinessCheck": false,
       "deploymentProfiles": null
@@ -405,6 +451,29 @@
       "permissionCount": 6,
       "navigationCount": 1,
       "jobCount": 2,
+      "hasHealthCheck": false,
+      "hasReadinessCheck": false,
+      "deploymentProfiles": null
+    },
+    {
+      "key": "tax",
+      "name": "Tax",
+      "version": "0.1.0",
+      "status": "active",
+      "type": "domain",
+      "dependencies": [
+        "tenant_admin",
+        "identity_access",
+        "module_management",
+        "domain_event_runtime",
+        "reporting",
+        "logging"
+      ],
+      "capabilitiesProvided": [],
+      "capabilitiesConsumed": [],
+      "permissionCount": 9,
+      "navigationCount": 1,
+      "jobCount": 0,
       "hasHealthCheck": false,
       "hasReadinessCheck": false,
       "deploymentProfiles": null

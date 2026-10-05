@@ -256,7 +256,12 @@ const canApply =
         hidden
       ></ul>
 
-      <div class="data-table-scroll">
+      <div
+        class="data-table-scroll"
+        role="region"
+        tabindex="0"
+        aria-label={t("Import")}
+      >
         <table
           class="data-table data-table--stack"
           id="catalog-import-report"
