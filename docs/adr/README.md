@@ -51,6 +51,7 @@ What does **not** need an ADR: adding a field within an already-decided schema, 
 | [0033](0033-returns-refunds-and-exchanges-are-additive-records-that-compensate-through-the-existing-ledgers.md) | Returns, refunds and exchanges are additive records that compensate through the existing ledgers: nothing finalised is edited, money goes back along the original payment, the provider is called outside every transaction | Accepted |
 | [0034](0034-commercial-documents-are-delivered-through-the-existing-outboxes-as-transactional-messages-built-from-immutable-sources.md) | Commercial documents are delivered through the existing outboxes, as transactional messages built from immutable sources | Accepted |
 | [0035](0035-pos-operational-reports-are-commerce-projections-over-the-existing-ledgers-on-the-reporting-engine.md) | POS operational reports are commerce projections over the existing ledgers, on the existing reporting engine | Accepted |
+| [0038](0038-commerce-stock-is-a-write-through-cache-of-the-inventory-ledger.md) | Commerce stock is a write-through cache of the inventory ledger: a per-tenant mode, an atomic cut-over, and one reconciliation | Accepted |
 
 ## Why the numbering starts at 0001
 
