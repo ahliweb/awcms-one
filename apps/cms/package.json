@@ -72,6 +72,7 @@
     "commerce:campaigns:dispatch": "bun scripts/commerce-campaigns-dispatch.ts",
     "commerce:whatsapp:purge": "bun scripts/commerce-whatsapp-purge.ts",
     "commerce:deploy:preflight": "bun scripts/commerce-deploy-preflight.ts",
+    "commerce:tax:cutover": "bun scripts/commerce-tax-cutover.ts",
     "blog:portable-text:backfill": "bun scripts/blog-portable-text-backfill.ts",
     "blog:legacy:import": "bun scripts/blog-legacy-import.ts",
     "blog:legacy:redirects:import": "bun scripts/blog-legacy-redirects-import.ts",

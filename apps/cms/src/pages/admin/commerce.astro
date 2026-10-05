@@ -580,6 +580,20 @@ const totalTableColumns = 6 + (showActions ? 2 : 0);
         value="0"
       />
 
+      <label for="create-taxCategoryCode">{t("Tax category")}</label>
+      <input
+        id="create-taxCategoryCode"
+        name="taxCategoryCode"
+        type="text"
+        maxlength="63"
+        pattern="[a-z0-9][a-z0-9_.\-]*"
+        placeholder={t("standard")}
+        aria-describedby="create-taxCategoryCode-hint"
+      />
+      <p id="create-taxCategoryCode-hint" class="admin-field-hint">
+        {t("A tax rule category code. Leave blank for the standard rate.")}
+      </p>
+
       <label for="create-description">{t("Description")}</label>
       <textarea id="create-description" name="description" />
 
@@ -919,6 +933,15 @@ const totalTableColumns = 6 + (showActions ? 2 : 0);
                             type="number"
                             min="0"
                             value={product.weightGrams}
+                          />
+                          <label>{t("Tax category")}</label>
+                          <input
+                            name="taxCategoryCode"
+                            type="text"
+                            maxlength="63"
+                            pattern="[a-z0-9][a-z0-9_.\-]*"
+                            placeholder={t("standard")}
+                            value={product.taxCategoryCode ?? ""}
                           />
                           <label>{t("Description")}</label>
                           <textarea name="description">
@@ -1288,6 +1311,7 @@ const totalTableColumns = 6 + (showActions ? 2 : 0);
           description: field(data, "description") || null,
           isFeatured: data.get("isFeatured") !== null,
           isRecommended: data.get("isRecommended") !== null,
+          taxCategoryCode: field(data, "taxCategoryCode") || null,
           ...advanced
         }),
       "Could not create the product. Check the required fields and try again."
@@ -1357,6 +1381,7 @@ const totalTableColumns = 6 + (showActions ? 2 : 0);
           description: field(data, "description") || null,
           isFeatured: data.get("isFeatured") !== null,
           isRecommended: data.get("isRecommended") !== null,
+          taxCategoryCode: field(data, "taxCategoryCode") || null,
           ...advanced
         }),
       "Could not save the product. Please try again."

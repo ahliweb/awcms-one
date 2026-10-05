@@ -42,6 +42,10 @@
  * payment confirmation WITHOUT a proof image is still fully accepted
  * (`createPaymentConfirmation` below never requires one).
  */
+import {
+  finaliseOrderTax,
+  reverseOrderTaxForCancellation
+} from "./tax-adapter-directory";
 import { createHash } from "node:crypto";
 import { log } from "../../../lib/logging/logger";
 import { withTenantOrThrow } from "../../../lib/database/tenant-context";
@@ -1013,6 +1017,7 @@ async function createOrderFromCartWrite(
   const ledgerLines: SaleLine[] = [];
 
   // Sequential — one reserved `tx` connection (`tenant-route.ts`'s header).
+  const orderItemIds: string[] = [];
   for (const line of quote.lines) {
     const itemRows = (await tx`
       INSERT INTO awcms_commerce_order_items (
@@ -1027,6 +1032,7 @@ async function createOrderFromCartWrite(
       )
       RETURNING id
     `) as { id: string }[];
+    orderItemIds.push(itemRows[0]!.id);
 
     if (inventory.mode === "ledger") {
       ledgerLines.push({
@@ -1075,6 +1081,20 @@ async function createOrderFromCartWrite(
       throw error;
     }
   }
+
+  // Issue #293 (ADR-0039) — engine mode: finalise this order's tax snapshot
+  // and link it; a no-op in flat mode.
+  await finaliseOrderTax(tx, tenantId, {
+    orderId: header.id,
+    items: quote.lines.map((line, index) => ({
+      orderItemId: orderItemIds[index]!,
+      productId: line.productId
+    })),
+    quote,
+    now,
+    actorTenantUserId: null,
+    correlationId
+  });
 
   if (quote.voucher?.valid) {
     await tx`
@@ -1448,6 +1468,16 @@ async function transitionOrderStatus(
       actorTenantUserId ?? null,
       correlationId
     );
+    await reverseOrderTaxForCancellation(
+      tx,
+      tenantId,
+      actorTenantUserId ?? null,
+      {
+        orderId,
+        reason: "order_cancelled",
+        correlationId
+      }
+    );
     // Issue #92 — a defensive no-op under the current order-status graph
     // (`completed` has no outgoing edge), kept for a future
     // refund/cancel-after-completion path. See `affiliate-directory.ts`'s
@@ -1479,6 +1509,16 @@ async function transitionOrderStatus(
       orderId,
       actorTenantUserId ?? null,
       correlationId
+    );
+    await reverseOrderTaxForCancellation(
+      tx,
+      tenantId,
+      actorTenantUserId ?? null,
+      {
+        orderId,
+        reason: "order_expired",
+        correlationId
+      }
     );
   }
 

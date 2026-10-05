@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0038-commerce-stock-is-a-write-through-cache-of-the-inventory-ledger.md)
 
-<!-- i18n-source-hash: sha256:abf6b59eec5ce06e740868bf26ee5b6b6101a9bbe49057f4b1f5cf92ce1acc30 -->
+<!-- i18n-source-hash: sha256:bc2d8fd3112179d168133dd2f937dbfa66395bf8a16d9e4636f95d21d1bfe807 -->
 
 <!-- i18n-source-hash: sha256:placeholder -->
 
@@ -78,7 +78,7 @@ ADR-0035 D1 menunda "saldo stok, riwayat mutasi stok, dan kandidat stok menipis"
 
 ### D10 — Deskriptor modul
 
-`commerce.dependencies` mendeklarasikan `inventory`; `inventory` tidak bergantung balik, sehingga ini tepi DAG. Tepi registri-konsumen adalah pengecualian terdokumentasi yang sudah ada pada uji batas modul.
+`commerce.dependencies` mendeklarasikan `inventory`; `inventory` tidak bergantung balik, sehingga ini tepi DAG. Tepi registri-konsumen adalah pengecualian terdokumentasi yang sudah ada pada uji batas modul. Karena `module_management` menjaga dependensi modul yang aktif tetap terpenuhi, tenant yang sebelumnya menonaktifkan `inventory` secara eksplisit tidak dapat mengaktifkan ulang `commerce` sebelum mengaktifkan `inventory`, dan `inventory` tidak dapat dinonaktifkan selama `commerce` aktif. Tenant tanpa baris `awcms_tenant_modules` untuk `inventory` (bawaan) tidak terdampak, dan perilaku tetap diatur oleh mode per tenant, sehingga tenant yang tidak pernah cut-over tidak pernah memanggil `inventory`.
 
 ## Opsi yang dipertimbangkan
 

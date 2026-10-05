@@ -74,7 +74,7 @@ ADR-0035 D1 deferred "stock balance, stock movement history and low-stock candid
 
 ### D10 — Module descriptor
 
-`commerce.dependencies` declares `inventory`; `inventory` does not depend back, so it is a DAG edge. The consumer-registry edge is the existing documented exception to the module-boundary test.
+`commerce.dependencies` declares `inventory`; `inventory` does not depend back, so it is a DAG edge. The consumer-registry edge is the existing documented exception to the module-boundary test. Because `module_management` keeps an enabled module's dependencies satisfied, a tenant that had explicitly disabled `inventory` cannot re-enable `commerce` until it enables `inventory`, and `inventory` cannot be disabled while `commerce` is active. A tenant with no `awcms_tenant_modules` row for `inventory` (the default) is unaffected, and behaviour is still governed by the per-tenant mode, so a tenant that never cuts over never calls `inventory`.
 
 ## Options considered
 

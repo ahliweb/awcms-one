@@ -40,6 +40,7 @@
  * Finalised order history is never edited: no order, order item or payment row
  * is updated. A return only ever ADDS rows.
  */
+import { reverseOrderTaxForReturn } from "./tax-adapter-directory";
 import { appendDomainEvent } from "../../domain-event-runtime/application/append-domain-event";
 import { recordAuditEvent } from "../../logging/application/audit-log";
 import {
@@ -620,6 +621,28 @@ async function createReturnWrite(
       quantity: line.quantity,
       disposition: line.disposition
     });
+  }
+
+  // Issue #293 (ADR-0039) — engine mode: reverse the returned units' tax from
+  // the order's ORIGINAL snapshot (a no-op for flat-mode / pre-cut-over orders).
+  const taxReversal = await reverseOrderTaxForReturn(
+    tx,
+    tenantId,
+    actorTenantUserId,
+    {
+      orderId,
+      returnId,
+      lines: valued.map(({ line, item }) => ({
+        orderItemId: item.id,
+        quantity: line.quantity
+      })),
+      correlationId
+    }
+  );
+  if (taxReversal.kind === "invalid") {
+    throw new RefundInvariantError(
+      `The tax reversal for return ${returnId} was refused: ${taxReversal.message}`
+    );
   }
 
   const stock = await deps.inventory.applyReturn(tx, tenantId, stockLines, {

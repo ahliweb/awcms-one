@@ -72,7 +72,8 @@
         "email",
         "profile_identity",
         "inventory",
-        "idn_admin_regions"
+        "idn_admin_regions",
+        "tax"
       ],
       "capabilitiesProvided": [],
       "capabilitiesConsumed": [],

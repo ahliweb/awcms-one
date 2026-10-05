@@ -73,6 +73,7 @@
  * "bind the hash to the resource" rule): two cashiers who happen to reuse
  * one key value can never have the second replay the first's sale.
  */
+import { finaliseOrderTax } from "./tax-adapter-directory";
 import { recordAuditEvent } from "../../logging/application/audit-log";
 import {
   InventoryLedgerRefusedError,
@@ -527,6 +528,7 @@ async function createPosOrderWrite(
   const ledgerLines: SaleLine[] = [];
 
   // Sequential — one reserved `tx` connection (`tenant-route.ts`'s header).
+  const orderItemIds: string[] = [];
   for (const line of quote.lines) {
     const itemRows = (await tx`
       INSERT INTO awcms_commerce_order_items (
@@ -540,6 +542,7 @@ async function createPosOrderWrite(
       )
       RETURNING id
     `) as { id: string }[];
+    orderItemIds.push(itemRows[0]!.id);
 
     if (inventory.mode === "ledger") {
       ledgerLines.push({
@@ -587,6 +590,20 @@ async function createPosOrderWrite(
       throw error;
     }
   }
+
+  // Issue #293 (ADR-0039) — engine mode: finalise this sale's tax snapshot and
+  // link it; a no-op in flat mode.
+  await finaliseOrderTax(tx, tenantId, {
+    orderId,
+    items: quote.lines.map((line, index) => ({
+      orderItemId: orderItemIds[index]!,
+      productId: line.productId
+    })),
+    quote,
+    now,
+    actorTenantUserId,
+    correlationId
+  });
 
   // Initial `order_events` row — actor `"admin"` (a POS sale is staff-rung,
   // never `"customer"`), mirroring `createOrderFromCart`'s own insert shape.

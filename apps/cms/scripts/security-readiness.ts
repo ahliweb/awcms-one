@@ -1538,7 +1538,11 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // snapshots, DELETE to remove them. No UPDATE — a snapshot is never edited,
   // and the immutability trigger refuses to delete anything younger than 1826
   // days no matter what this role is granted.
-  awcms_tax_snapshots: ["SELECT", "DELETE"],
+  // Issue #293 (ADR-0039, sql/948) widens it for `commerce:orders:expire`, which
+  // reverses an expired engine-mode order's tax: INSERT for the `reversal` row,
+  // UPDATE only so `SELECT ... FOR UPDATE` may lock the original sale (the
+  // trigger still refuses every real UPDATE for every role).
+  awcms_tax_snapshots: ["SELECT", "INSERT", "UPDATE", "DELETE"],
   // ADR-0042 — edge-cache:purge (sql/068): SELECT claimable rows, UPDATE to
   // take the lease and record the outcome, DELETE to prune rows that completed
   // outside the retention window (the job really does prune — this is not a
