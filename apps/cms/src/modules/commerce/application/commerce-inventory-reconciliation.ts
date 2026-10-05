@@ -14,6 +14,22 @@
  * Both operations are keyset-paged over the units (default 200, at most 500 per
  * call) because each unit costs one balance read; the response carries the next
  * cursor. The ledger is always the truth: a resync only ever rewrites `stock`.
+ *
+ * ## Orphans (Issue #283, ADR-0038 addendum)
+ *
+ * The other direction: ledger balances at the sales location whose `commerce.*`
+ * reference names no stock unit - a procurement receipt posted for a variant
+ * that does not exist (or was deleted), for a product that has variants (the
+ * wrong stock unit), under another unit code, or under an item type commerce
+ * does not define. Nothing in the catalogue points at such a balance, so the
+ * cache projector ignores it and the stock is invisible to the storefront.
+ *
+ * The port reads ONE balance, so listing them cannot go through it. This is a
+ * read-only SELECT of `awcms_inventory_balances` - the same derived table the
+ * port's `getOnHand` reads and `sql/947` already grants to the worker - and the
+ * only place commerce touches an inventory table; it never writes one. Proposing
+ * a `listBalances` port method upstream would remove it. Reported on the first
+ * page only (cursor = null), capped at `ORPHAN_LIMIT` with a `truncated` flag.
  */
 import {
   COMMERCE_PRODUCT_ITEM_TYPE,
@@ -62,8 +78,108 @@ export type ReconciliationPage = {
   nextCursor: string | null;
 };
 
+export const ORPHAN_LIMIT = 100;
+
+export type OrphanReason =
+  "not_found" | "product_has_variants" | "wrong_unit" | "unknown_item_type";
+
+export type LedgerOrphan = {
+  itemType: string;
+  itemRef: string;
+  unitCode: string;
+  /** The ledger balance at the sales location, as the ledger states it. */
+  onHand: string;
+  reason: OrphanReason;
+};
+
+export type OrphanReport = {
+  items: LedgerOrphan[];
+  /** More than `ORPHAN_LIMIT` orphans exist; the first `ORPHAN_LIMIT` (by item) are listed. */
+  truncated: boolean;
+};
+
+export type ReconciliationReport = ReconciliationPage & {
+  /** Reported on the first page only; `null` on a continuation page. */
+  orphans: OrphanReport | null;
+};
+
 export type ReconciliationOutcome =
-  ReconciliationPage | { kind: "not_ledger_mode" } | { kind: "invalid_cursor" };
+  | ReconciliationReport
+  | { kind: "not_ledger_mode" }
+  | { kind: "invalid_cursor" };
+
+const UUID_SQL_PATTERN =
+  "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$";
+
+/** Non-zero `commerce.*` balances at the sales location that name no live stock unit. */
+export async function listLedgerOrphans(
+  tx: Bun.SQL,
+  tenantId: string,
+  locationId: string
+): Promise<OrphanReport> {
+  const rows = (await tx`
+    WITH bal AS (
+      SELECT item_type, item_ref, unit_code, on_hand,
+             CASE WHEN item_ref ~* ${UUID_SQL_PATTERN} THEN item_ref::uuid END AS ref_id
+      FROM awcms_inventory_balances
+      WHERE tenant_id = ${tenantId} AND location_id = ${locationId}
+        AND item_type LIKE 'commerce.%' AND on_hand <> 0
+    ), classified AS (
+      SELECT b.item_type, b.item_ref, b.unit_code, trim_scale(b.on_hand)::text AS on_hand,
+        CASE
+          WHEN b.item_type = ${COMMERCE_VARIANT_ITEM_TYPE} THEN
+            CASE
+              WHEN NOT EXISTS (
+                SELECT 1 FROM awcms_commerce_product_variants v
+                JOIN awcms_commerce_products p
+                  ON p.tenant_id = v.tenant_id AND p.id = v.product_id
+                WHERE v.tenant_id = ${tenantId} AND v.id = b.ref_id
+                  AND v.deleted_at IS NULL AND p.deleted_at IS NULL
+              ) THEN 'not_found'
+              WHEN b.unit_code <> ${COMMERCE_STOCK_UNIT_CODE} THEN 'wrong_unit'
+            END
+          WHEN b.item_type = ${COMMERCE_PRODUCT_ITEM_TYPE} THEN
+            CASE
+              WHEN NOT EXISTS (
+                SELECT 1 FROM awcms_commerce_products p
+                WHERE p.tenant_id = ${tenantId} AND p.id = b.ref_id
+                  AND p.deleted_at IS NULL
+              ) THEN 'not_found'
+              WHEN EXISTS (
+                SELECT 1 FROM awcms_commerce_product_variants v
+                WHERE v.tenant_id = ${tenantId} AND v.product_id = b.ref_id
+                  AND v.deleted_at IS NULL
+              ) THEN 'product_has_variants'
+              WHEN b.unit_code <> ${COMMERCE_STOCK_UNIT_CODE} THEN 'wrong_unit'
+            END
+          ELSE 'unknown_item_type'
+        END AS reason
+      FROM bal b
+    )
+    SELECT item_type, item_ref, unit_code, on_hand, reason
+    FROM classified
+    WHERE reason IS NOT NULL
+    ORDER BY item_type, item_ref
+    LIMIT ${ORPHAN_LIMIT + 1}
+  `) as {
+    item_type: string;
+    item_ref: string;
+    unit_code: string;
+    on_hand: string;
+    reason: OrphanReason;
+  }[];
+
+  return {
+    items: rows.slice(0, ORPHAN_LIMIT).map((row) => ({
+      itemType: row.item_type,
+      itemRef: row.item_ref,
+      unitCode: row.unit_code,
+      onHand: row.on_hand,
+      reason: row.reason
+    })),
+    truncated: rows.length > ORPHAN_LIMIT
+  };
+}
 
 /** `itemType|itemRef` - both halves are free of `|` (item types are a dotted slug, refs are uuids). */
 function parseCursor(cursor: string | null): [string, string] | null | "bad" {
@@ -168,7 +284,7 @@ export function clampLimit(limit: number | null): number {
   return Math.min(Math.max(Math.trunc(limit), 1), RECONCILIATION_MAX_LIMIT);
 }
 
-/** `GET /inventory/reconciliation`: the units whose cache disagrees with the ledger, one page. */
+/** `GET /inventory/reconciliation`: the units whose cache disagrees with the ledger, one page, plus (first page) the orphaned ledger balances. */
 export async function reconcileStockCache(
   tx: Bun.SQL,
   tenantId: string,
@@ -181,7 +297,15 @@ export async function reconcileStockCache(
   const result = await scan(tx, tenantId, config.locationId, cursor, limit);
   if (result === "bad") return { kind: "invalid_cursor" };
 
-  return { mode: "ledger", locationId: config.locationId, ...result.page };
+  return {
+    mode: "ledger",
+    locationId: config.locationId,
+    ...result.page,
+    orphans:
+      cursor === null
+        ? await listLedgerOrphans(tx, tenantId, config.locationId)
+        : null
+  };
 }
 
 export type ResyncOutcome =

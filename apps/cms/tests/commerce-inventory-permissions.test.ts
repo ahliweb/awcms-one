@@ -37,7 +37,7 @@ describe("commerce inventory permissions", () => {
   test("the read routes use the read guard and the two writes the configure guard", async () => {
     const read = async (file: string) =>
       readFile(`src/pages/api/v1/commerce/inventory/${file}.ts`, "utf8");
-    for (const file of ["index", "reconciliation"]) {
+    for (const file of ["index", "items", "reconciliation"]) {
       expect(await read(file)).toContain("INVENTORY_READ_GUARD");
       expect(await read(file)).not.toContain("INVENTORY_CONFIGURE_GUARD");
     }

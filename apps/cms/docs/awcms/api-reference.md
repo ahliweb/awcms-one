@@ -11159,12 +11159,37 @@ Single-use: the cart's lines (and optional customer and notes) are returned once
 | 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/inventory/items` — Issue #283 (ADR-0038 addendum). Resolves a SKU or name to the ledger reference a procurement line must carry. Gated on `commerce.inventory.read`.
+
+- **operationId**: `lookupCommerceInventoryItems`
+- **Security**: bearerAuth + tenantHeader
+
+Lists the live stock units - a live variant (`commerce.variant`) or a live product with no live variant (`commerce.product`) - with the exact `itemType`, `itemRef` and `unitCode` to put on a procurement document line. A product that has live variants is not a stock unit and is not listed. Keyset-paged, at most 50 per page. Works in either stock mode.
+
+**Parameters**
+
+| Name     | In    | Required | Type    | Description                                                            |
+| -------- | ----- | -------- | ------- | ---------------------------------------------------------------------- |
+| `q`      | query | no       | string  | Case-insensitive contains-match on SKU, product name or variant value. |
+| `cursor` | query | no       | string  |                                                                        |
+| `limit`  | query | no       | integer |                                                                        |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | One page of stock units.    | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/inventory/reconciliation` — Issue #282 (ADR-0038). The stock units whose cache disagrees with the inventory ledger at the sales location. Gated on `commerce.inventory.read`.
 
 - **operationId**: `reconcileCommerceInventory`
 - **Security**: bearerAuth + tenantHeader
 
 Compares, per stock unit (a live variant, or a live product with no live variant), the `stock` column with `max(0, floor(ledger on-hand))`. One keyset page per call; follow `nextCursor` until it is null. Nothing is repaired. `409 NOT_LEDGER_MODE` for a store still on the counter.
+The FIRST page (no `cursor`) also carries `orphans` (Issue #283): the non-zero `commerce.*` ledger balances at the sales location that name no live stock unit - a procurement receipt posted for a variant that does not exist, for a product that has variants, under another unit code, or under an unknown `commerce.*` item type. Capped at 100 with `truncated`. Continuation pages return `orphans: null`.
 
 **Parameters**
 

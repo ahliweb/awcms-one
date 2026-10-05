@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:00537084e3801531fde087f5ece9214b54c72d552f52905a1ac5f3484d7d8ed4 -->
+<!-- i18n-source-hash: sha256:fc5c1ec54bf3cd2ab784d69849a65117c96b4a84d52610dd31e0440bd0b34696 -->
 
 # Kamus data
 
@@ -274,6 +274,7 @@ Atribut kustom **bertipe** buatan tenant — desain milik platform ini sendiri (
 | mode inventori                                                                 | `awcms_commerce_store_settings.inventory_mode`              | `counter` (stok adalah otoritas) atau `ledger` (ledger inventori hulu adalah otoritas, dan `stock` adalah cache write-through darinya) — [ADR-0038](adr/0038-commerce-stock-is-a-write-through-cache-of-the-inventory-ledger.md) |
 | unit stok                                                                      | adaptor inventori                                           | Varian hidup, atau produk hidup tanpa varian hidup; item ledger-nya `commerce.variant` / `commerce.product` dengan uuid barisnya dan unit `unit`                                                                                 |
 | lokasi penjualan                                                               | `awcms_commerce_store_settings.inventory_location_id`       | Lokasi inventori tempat commerce menjual pada mode `ledger`                                                                                                                                                                      |
+| rujukan item ledger                                                            | baris pengadaan / ledger inventori                          | `commerce.variant` + uuid varian, atau `commerce.product` + uuid produk tanpa varian aktif, satuan `unit`; diterjemahkan dari SKU oleh `GET /api/v1/commerce/inventory/items` (#283, adendum ADR-0038)                           |
 | disposition                                                                    | return line                                                 | `restock` mengembalikan unit ke stok yang dapat dijual; `damaged` dan `quarantine` dicatat dan tidak mengubah stok yang dapat dijual                                                                                             |
 | `goods_gross` / `discount_share` / `refund_amount`                             | return line dan return                                      | Nilai unit sebelum diskon, diskon pesanan yang dilepas bersamanya, dan selisihnya — yang dikembalikan untuk barang                                                                                                               |
 | `shipping_refund` / `refund_total`                                             | return                                                      | Ongkos kirim yang dikembalikan (dibatasi ongkos kirim yang dikenakan); `refund_total = goods_gross − discount_share + shipping_refund`                                                                                           |
