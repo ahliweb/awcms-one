@@ -155,11 +155,14 @@ describe("openapi bundle — fragment resolver", () => {
     );
   });
 
+  // awcms-one divergence (#319): two full bundles of the merged document (upstream's
+  // modules plus `commerce`, ~1.7 MB) take ~10 s on a loaded runner, past bun's 5 s
+  // default; the explicit timeout is the only change.
   test("bundling twice produces byte-identical output (idempotent)", async () => {
     const first = await bundleOpenApi(ROOT);
     const second = await bundleOpenApi(ROOT);
     expect(second).toBe(first);
-  });
+  }, 60_000);
 
   test("committed bundle matches freshly generated bundle (not hand-edited/stale)", async () => {
     const committed = await readFile(
