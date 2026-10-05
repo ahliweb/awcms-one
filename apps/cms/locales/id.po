@@ -11446,3 +11446,27 @@ msgstr "Pajak adalah persentase tetap di bawah (payment.tax). Operator dapat mem
 
 msgid "Tax rules"
 msgstr "Aturan pajak"
+
+msgid "This product is a bundle (a kit of other products)"
+msgstr "Produk ini adalah paket (kumpulan produk lain)"
+
+msgid "Bundle pricing"
+msgstr "Harga paket"
+
+msgid "Fixed: the price above"
+msgstr "Tetap: harga di atas"
+
+msgid "Derived: components' prices, less the discount"
+msgstr "Turunan: harga komponen, dikurangi diskon"
+
+msgid "Bundle discount percent"
+msgstr "Persen diskon paket"
+
+msgid "Bundle contents"
+msgstr "Isi paket"
+
+msgid "Each line must be a SKU, optionally followed by x and a quantity."
+msgstr "Setiap baris harus berupa SKU, boleh diikuti x dan jumlah."
+
+msgid "One component per line: SKU x quantity. A bundle has no stock of its own; it is sold as one line and its components' stock moves."
+msgstr "Satu komponen per baris: SKU x jumlah. Paket tidak punya stok sendiri; ia dijual sebagai satu baris dan stok komponennya yang bergerak."

@@ -1768,6 +1768,50 @@ export const commerceModule = defineModule({
       executionMode: "generic"
     },
     {
+      key: "commerce.order_item_components",
+      tableName: "awcms_commerce_order_item_components",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      // Issue #290 (ADR-0036). Append-only snapshot of a bundle order line's
+      // components: no `deleted_at` column, so the cursor is `created_at`, the
+      // same exception `commerce.order_events` takes. It is part of the order
+      // record and follows its parent line's retention (ten years, the same
+      // ceiling as `commerce.order_items`); a purged order item cascades its rows
+      // away (sql/954), so this engine rarely reaches one.
+      cursorColumn: "created_at",
+      retentionClass: "system_event",
+      retentionMinDays: 365,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 3650,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by its parent order line: at most 20 rows per bundle line."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A per-line snapshot of a parent order this module never soft-deletes in practice; it is what a later restock or return reads."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "Same practically-unreachable shape as its parent order line (commerce.order_items); the rows also cascade with it."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "created_at"],
+          purpose:
+            "awcms_commerce_order_item_components_tenant_created_idx (sql/954) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "generic"
+    },
+    {
       key: "commerce.order_events",
       tableName: "awcms_commerce_order_events",
       ownerModuleKey: "commerce",
@@ -3442,6 +3486,28 @@ export const commerceModule = defineModule({
       erasure: "retain_under_obligation",
       rationale:
         "A line item's own product/variant/price/quantity snapshot — names no person directly, but is part of the same order record as commerce.orders and inherits its reasoning."
+    },
+    {
+      key: "commerce.order_item_components",
+      tableName: "awcms_commerce_order_item_components",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "Issue #290 — the component snapshot of a bundle order line (product ids, text as sold, units, allocated value). Names no person; part of the same order record as commerce.order_items and inherits its reasoning."
+    },
+    {
+      key: "commerce.bundle_components",
+      tableName: "awcms_commerce_bundle_components",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "Issue #290 — a bundle's definition (which products and how many). Catalog description the tenant authored; actor_tenant_user_id is the last editor, an administrative-act stamp retained like the audit log, not subject data."
     },
     {
       key: "commerce.order_events",

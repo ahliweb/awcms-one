@@ -764,6 +764,11 @@ export const RETIRED_TENANT_TABLE_PRIVILEGES: Record<string, string[]> = {
   awcms_commerce_return_lines: ["SELECT", "INSERT"],
   awcms_commerce_refunds: ["SELECT", "INSERT", "UPDATE"],
   awcms_commerce_refund_compensations: ["SELECT", "INSERT"],
+  // Issue #290 / `sql/954`. The bundle snapshot of an order line - written once
+  // when the order is placed, never changed: DELETE and UPDATE are revoked (the
+  // trigger would refuse the UPDATE anyway). A purged order item cascades its
+  // rows away under the constraint owner's rights.
+  awcms_commerce_order_item_components: ["SELECT", "INSERT"],
   // Issue #294 / `sql/990`. The expense tables - NOT retired, written on every
   // spend. An expense is a fiscal record of money that left the business, so
   // the role that records one must not be able to erase it: DELETE is revoked
@@ -1748,6 +1753,9 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_commerce_return_lines: ["SELECT", "DELETE"],
   awcms_commerce_refunds: ["SELECT", "DELETE"],
   awcms_commerce_refund_compensations: ["SELECT", "DELETE"],
+  // Issue #290 (`sql/955`): the bundle snapshot is read by the expiry restock
+  // and aged out by `created_at`; SELECT + DELETE only.
+  awcms_commerce_order_item_components: ["SELECT", "DELETE"],
   // Issue #291 (`sql/960`/`962`/`964`): catalog attributes. Definitions and
   // values are soft-deleted (`deleted_at` cursor) and aged out by the generic
   // purge engine, which needs SELECT + DELETE; an import batch is an

@@ -66,10 +66,14 @@ import {
 import { attributeAppliesToTarget } from "../../modules/commerce/domain/attribute-definition";
 import { resolveAttributeLabel } from "../../modules/commerce/domain/attribute-definition";
 import { ATTRIBUTE_FILTER_OPERATORS } from "../../modules/commerce/domain/attribute-filter";
+import { formatBundleLines } from "../../lib/ui/commerce-bundle-form";
+import type { BundleDTO } from "../../modules/commerce/application/bundle-directory";
 
 type AdminProductRow = ProductAdminRecord & {
   images: ProductImageDTO[];
   variants: ProductVariantDTO[];
+  /** Issue #290 - a bundle's pricing and contents; `null` for a standard product. */
+  bundle: BundleDTO | null;
 };
 
 /** The long tail of Issue #23's parity fields, edited as one JSON object rather than thirty individual controls — see this file's header. */
@@ -580,6 +584,48 @@ const totalTableColumns = 6 + (showActions ? 2 : 0);
         value="0"
       />
 
+      <fieldset class="admin-fieldset">
+        <legend>{t("Bundle")}</legend>
+        <label>
+          <input type="checkbox" name="kind" value="bundle" />
+          {t("This product is a bundle (a kit of other products)")}
+        </label>
+        <label for="create-bundlePricing">{t("Bundle pricing")}</label>
+        <select id="create-bundlePricing" name="bundlePricing">
+          <option value="fixed">{t("Fixed: the price above")}</option>
+          <option value="derived">
+            {t("Derived: components' prices, less the discount")}
+          </option>
+        </select>
+        <label for="create-bundleDiscountPercent">
+          {t("Bundle discount percent")}
+        </label>
+        <input
+          id="create-bundleDiscountPercent"
+          name="bundleDiscountPercent"
+          type="text"
+          inputmode="decimal"
+          autocomplete="off"
+          placeholder="0.00"
+        />
+        <label for="create-bundleComponents">{t("Bundle contents")}</label>
+        <textarea
+          id="create-bundleComponents"
+          name="bundleComponents"
+          rows="4"
+          placeholder="SKU-001 x 2"
+          data-invalid={t(
+            "Each line must be a SKU, optionally followed by x and a quantity."
+          )}
+          aria-describedby="create-bundleComponents-hint"
+        ></textarea>
+        <p id="create-bundleComponents-hint" class="admin-field-hint">
+          {t(
+            "One component per line: SKU x quantity. A bundle has no stock of its own; it is sold as one line and its components' stock moves."
+          )}
+        </p>
+      </fieldset>
+
       <label for="create-taxCategoryCode">{t("Tax category")}</label>
       <input
         id="create-taxCategoryCode"
@@ -934,6 +980,54 @@ const totalTableColumns = 6 + (showActions ? 2 : 0);
                             min="0"
                             value={product.weightGrams}
                           />
+                          <fieldset class="admin-fieldset">
+                            <legend>{t("Bundle")}</legend>
+                            <label>
+                              <input
+                                type="checkbox"
+                                name="kind"
+                                value="bundle"
+                                checked={product.kind === "bundle"}
+                              />
+                              {t(
+                                "This product is a bundle (a kit of other products)"
+                              )}
+                            </label>
+                            <label>{t("Bundle pricing")}</label>
+                            <select name="bundlePricing">
+                              <option
+                                value="fixed"
+                                selected={product.bundlePricing === "fixed"}
+                              >
+                                {t("Fixed: the price above")}
+                              </option>
+                              <option
+                                value="derived"
+                                selected={product.bundlePricing === "derived"}
+                              >
+                                {t(
+                                  "Derived: components' prices, less the discount"
+                                )}
+                              </option>
+                            </select>
+                            <label>{t("Bundle discount percent")}</label>
+                            <input
+                              name="bundleDiscountPercent"
+                              type="text"
+                              inputmode="decimal"
+                              autocomplete="off"
+                              value={product.bundleDiscountPercent ?? ""}
+                            />
+                            <label>{t("Bundle contents")}</label>
+                            <textarea
+                              name="bundleComponents"
+                              rows="4"
+                              placeholder="SKU-001 x 2"
+                              data-invalid={t(
+                                "Each line must be a SKU, optionally followed by x and a quantity."
+                              )}
+                            >{product.bundle ? formatBundleLines(product.bundle.components) : ""}</textarea>
+                          </fieldset>
                           <label>{t("Tax category")}</label>
                           <input
                             name="taxCategoryCode"
@@ -1268,6 +1362,35 @@ const totalTableColumns = 6 + (showActions ? 2 : 0);
   import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
   import { initCommerceProductsBulk } from "../../lib/ui/commerce-products-bulk-client";
   import { collectAttributeValues } from "../../lib/ui/commerce-attributes-client";
+  import { parseBundleLines } from "../../lib/ui/commerce-bundle-form";
+
+  /**
+   * Issue #290 - the bundle part of the create/edit body: only `kind` for a
+   * plain product (its save is unchanged); for a bundle the pricing, discount
+   * and the `SKU x quantity` lines (the server resolves the SKUs). A string is
+   * the (translated) message for lines that cannot be parsed.
+   */
+  function bundleBody(
+    form: HTMLFormElement,
+    data: FormData
+  ): Record<string, unknown> | string {
+    if (data.get("kind") === null) return { kind: "standard" };
+    const lines = parseBundleLines(field(data, "bundleComponents"));
+    if (lines === null) {
+      return (
+        form.querySelector<HTMLElement>("[name=bundleComponents]")?.dataset
+          .invalid ?? ""
+      );
+    }
+    const discount = field(data, "bundleDiscountPercent");
+    return {
+      kind: "bundle",
+      bundlePricing: field(data, "bundlePricing") || "fixed",
+      bundleDiscountPercent: discount === "" ? null : discount,
+      bundleComponents: lines,
+      stock: 0
+    };
+  }
 
   function parseAdvancedFields(raw: string): Record<string, unknown> | null {
     const trimmed = raw.trim();
@@ -1284,12 +1407,17 @@ const totalTableColumns = 6 + (showActions ? 2 : 0);
 
   const createError = messageBox("product-create-error");
 
-  onSubmit("product-create-form", async ({ data, submit }) => {
+  onSubmit("product-create-form", async ({ form, data, submit }) => {
     const advanced = parseAdvancedFields(field(data, "advancedFields"));
     if (advanced === null) {
       createError.show(
         "Advanced fields must be valid JSON (an object), or left blank."
       );
+      return;
+    }
+    const bundle = bundleBody(form, data);
+    if (typeof bundle === "string") {
+      createError.show(bundle);
       return;
     }
 
@@ -1312,7 +1440,8 @@ const totalTableColumns = 6 + (showActions ? 2 : 0);
           isFeatured: data.get("isFeatured") !== null,
           isRecommended: data.get("isRecommended") !== null,
           taxCategoryCode: field(data, "taxCategoryCode") || null,
-          ...advanced
+          ...advanced,
+          ...bundle
         }),
       "Could not create the product. Check the required fields and try again."
     );
@@ -1362,6 +1491,11 @@ const totalTableColumns = 6 + (showActions ? 2 : 0);
       rowError.show("Advanced fields must be valid JSON (an object).");
       return;
     }
+    const bundle = bundleBody(form, data);
+    if (typeof bundle === "string") {
+      rowError.show(bundle);
+      return;
+    }
 
     await mutateAndReload(
       submit,
@@ -1382,7 +1516,8 @@ const totalTableColumns = 6 + (showActions ? 2 : 0);
           isFeatured: data.get("isFeatured") !== null,
           isRecommended: data.get("isRecommended") !== null,
           taxCategoryCode: field(data, "taxCategoryCode") || null,
-          ...advanced
+          ...advanced,
+          ...bundle
         }),
       "Could not save the product. Please try again."
     );

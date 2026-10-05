@@ -66,6 +66,9 @@ import {
   workerRoleActivated
 } from "./harness";
 
+const refused = (statement: Promise<unknown>): Promise<Error> =>
+  assertRejected(statement, "the statement");
+
 const suite = integrationEnabled ? describe : describe.skip;
 
 const TENANT_A = "a1a1a1a1-a1a1-4a1a-8a1a-a1a1a1a1a290";
@@ -455,7 +458,7 @@ suite("commerce bundles integration (Issue #290)", () => {
       const bundleB = await seedProduct(TENANT_B, "1500.00", 0, {
         kind: "bundle"
       });
-      await assertRejected(
+      await refused(
         getAdminSql()`
           INSERT INTO awcms_commerce_bundle_components
             (tenant_id, bundle_product_id, position, component_product_id, quantity)
@@ -463,7 +466,7 @@ suite("commerce bundles integration (Issue #290)", () => {
         `
       );
       // ... and the app role cannot write another tenant's row at all (RLS WITH CHECK).
-      await assertRejected(
+      await refused(
         inTenant(
           TENANT_B,
           (tx) => tx`
@@ -483,7 +486,7 @@ suite("commerce bundles integration (Issue #290)", () => {
       const outer = await seedProduct(TENANT_A, "2000.00", 0, {
         kind: "bundle"
       });
-      await assertRejected(
+      await refused(
         getAdminSql()`
           INSERT INTO awcms_commerce_bundle_components
             (tenant_id, bundle_product_id, position, component_product_id, quantity)
@@ -491,13 +494,13 @@ suite("commerce bundles integration (Issue #290)", () => {
         `
       );
       // `part` is used as a component, so it cannot become a bundle.
-      await assertRejected(
+      await refused(
         getAdminSql()`
           UPDATE awcms_commerce_products SET kind = 'bundle' WHERE id = ${part}
         `
       );
       // A bundle cannot name itself.
-      await assertRejected(
+      await refused(
         getAdminSql()`
           INSERT INTO awcms_commerce_bundle_components
             (tenant_id, bundle_product_id, position, component_product_id, quantity)
@@ -505,7 +508,7 @@ suite("commerce bundles integration (Issue #290)", () => {
         `
       );
       // A bundle that still has components cannot be turned back into a product.
-      await assertRejected(
+      await refused(
         getAdminSql()`
           UPDATE awcms_commerce_products SET kind = 'standard' WHERE id = ${inner}
         `
@@ -517,21 +520,21 @@ suite("commerce bundles integration (Issue #290)", () => {
       const bundle = await seedBundle(TENANT_A, "1500.00", [
         { productId: part, quantity: 1 }
       ]);
-      await assertRejected(
+      await refused(
         getAdminSql()`
           INSERT INTO awcms_commerce_product_variants (tenant_id, product_id, name, value)
           VALUES (${TENANT_A}, ${bundle}, 'Ukuran', 'S')
         `
       );
-      await assertRejected(
+      await refused(
         getAdminSql()`UPDATE awcms_commerce_products SET stock = 3 WHERE id = ${bundle}`
       );
-      await assertRejected(
+      await refused(
         getAdminSql()`
           UPDATE awcms_commerce_products SET service_form = '[]'::jsonb WHERE id = ${bundle}
         `
       );
-      await assertRejected(
+      await refused(
         inTenant(TENANT_A, (tx) =>
           createFlashSale(tx, TENANT_A, STAFF, {
             name: "Flash",
@@ -561,7 +564,7 @@ suite("commerce bundles integration (Issue #290)", () => {
         `;
       }
       const extra = await seedProduct(TENANT_A, "10.00", 5);
-      await assertRejected(
+      await refused(
         getAdminSql()`
           INSERT INTO awcms_commerce_bundle_components
             (tenant_id, bundle_product_id, position, component_product_id, quantity)
@@ -577,14 +580,14 @@ suite("commerce bundles integration (Issue #290)", () => {
       const bundle = await seedProduct(TENANT_A, "60000.00", 0, {
         kind: "bundle"
       });
-      await assertRejected(
+      await refused(
         getAdminSql()`
           INSERT INTO awcms_commerce_bundle_components
             (tenant_id, bundle_product_id, position, component_product_id, quantity)
           VALUES (${TENANT_A}, ${bundle}, 1, ${shirt}, 1)
         `
       );
-      await assertRejected(
+      await refused(
         getAdminSql()`
           INSERT INTO awcms_commerce_bundle_components
             (tenant_id, bundle_product_id, position, component_product_id, component_variant_id, quantity)
@@ -630,6 +633,63 @@ suite("commerce bundles integration (Issue #290)", () => {
       ]);
       // The column itself is never anything but 0.
       expect(await stockOf(bundle.id)).toBe(0);
+    }, 60000);
+
+    test("components named by SKU resolve to the product or the variant; an unknown SKU is a field error", async () => {
+      const a = await seedProduct(TENANT_A, "10000.00", 9);
+      const shirt = await seedProduct(TENANT_A, "50000.00", 0);
+      const small = await seedVariant(TENANT_A, shirt, 4, "S");
+      await getAdminSql()`UPDATE awcms_commerce_product_variants SET sku = 'SHIRT-S' WHERE id = ${small}`;
+      const skuOf =
+        (await getAdminSql()`SELECT sku FROM awcms_commerce_products WHERE id = ${a}`) as {
+          sku: string;
+        }[];
+
+      const bundle = await inTenant(TENANT_A, (tx) =>
+        createProduct(tx, TENANT_A, STAFF, {
+          ...BASE_PRODUCT,
+          kind: "bundle",
+          bundleComponents: [
+            { sku: skuOf[0]!.sku, quantity: 2 },
+            { sku: "SHIRT-S", quantity: 1 }
+          ]
+        })
+      );
+      const rows = (await getAdminSql()`
+        SELECT position, component_product_id, component_variant_id, quantity
+        FROM awcms_commerce_bundle_components WHERE bundle_product_id = ${bundle.id} ORDER BY position
+      `) as {
+        position: number;
+        component_product_id: string;
+        component_variant_id: string | null;
+        quantity: number;
+      }[];
+      expect(rows).toEqual([
+        {
+          position: 1,
+          component_product_id: a,
+          component_variant_id: null,
+          quantity: 2
+        },
+        {
+          position: 2,
+          component_product_id: shirt,
+          component_variant_id: small,
+          quantity: 1
+        }
+      ]);
+
+      await expect(
+        inTenant(TENANT_A, (tx) =>
+          createProduct(tx, TENANT_A, STAFF, {
+            ...BASE_PRODUCT,
+            sku: "SKU-N9",
+            slug: "paket-n9",
+            kind: "bundle",
+            bundleComponents: [{ sku: "NOPE", quantity: 1 }]
+          })
+        )
+      ).rejects.toBeInstanceOf(BundleDefinitionInvalidError);
     }, 60000);
 
     test("refuses stock on a bundle, nesting, an unknown component and a missing variant with field errors", async () => {
@@ -942,7 +1002,7 @@ suite("commerce bundles integration (Issue #290)", () => {
       expect(await snapshotOf(items[0]!.id)).toEqual(before);
 
       // The snapshot rows are append-only for the application role.
-      await assertRejected(
+      await refused(
         inTenant(
           TENANT_A,
           (tx) => tx`
@@ -951,7 +1011,7 @@ suite("commerce bundles integration (Issue #290)", () => {
           `
         )
       );
-      await assertRejected(
+      await refused(
         inTenant(
           TENANT_A,
           (tx) => tx`

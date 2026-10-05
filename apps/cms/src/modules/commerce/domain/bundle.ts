@@ -57,6 +57,25 @@ export type BundleComponentInput = {
   quantity: number;
 };
 
+/**
+ * A component named by SKU instead of ids (the admin form's "SKU x quantity"
+ * lines): the server resolves it to the product - or, for a variant SKU, the
+ * variant and its product - inside the same tenant transaction. SKUs are unique
+ * across a tenant's live products and variants (sql/905).
+ */
+export type BundleComponentSkuInput = { sku: string; quantity: number };
+
+export type BundleComponentRequest =
+  BundleComponentInput | BundleComponentSkuInput;
+
+export function isSkuComponent(
+  component: BundleComponentRequest
+): component is BundleComponentSkuInput {
+  return "sku" in component;
+}
+
+const MAX_COMPONENT_SKU_LENGTH = 64;
+
 const UUID_PATTERN =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
@@ -92,7 +111,7 @@ export type BundleDefinitionFields = {
   bundlePricing?: BundlePricing;
   /** `numeric(5,2)` text, or `null` to clear. */
   bundleDiscountPercent?: string | null;
-  bundleComponents?: BundleComponentInput[];
+  bundleComponents?: BundleComponentRequest[];
 };
 
 /**
@@ -158,7 +177,7 @@ export function validateBundleDefinitionFields(
         message: `A bundle has at most ${MAX_BUNDLE_COMPONENTS} component lines.`
       });
     } else {
-      const components: BundleComponentInput[] = [];
+      const components: BundleComponentRequest[] = [];
       raw.forEach((entry, index) => {
         const field = `bundleComponents[${index}]`;
         if (typeof entry !== "object" || entry === null) {
@@ -166,6 +185,31 @@ export function validateBundleDefinitionFields(
           return;
         }
         const item = entry as Record<string, unknown>;
+        if (item.productId === undefined && item.sku !== undefined) {
+          const sku = typeof item.sku === "string" ? item.sku.trim() : "";
+          const qty = item.quantity;
+          const skuOk =
+            sku.length > 0 && sku.length <= MAX_COMPONENT_SKU_LENGTH;
+          const qtyOk =
+            typeof qty === "number" &&
+            Number.isInteger(qty) &&
+            qty >= 1 &&
+            qty <= MAX_COMPONENT_QUANTITY;
+          if (!skuOk) {
+            errors.push({
+              field: `${field}.sku`,
+              message: `sku must be 1-${MAX_COMPONENT_SKU_LENGTH} characters.`
+            });
+          }
+          if (!qtyOk) {
+            errors.push({
+              field: `${field}.quantity`,
+              message: `quantity must be an integer from 1 to ${MAX_COMPONENT_QUANTITY}.`
+            });
+          }
+          if (skuOk && qtyOk) components.push({ sku, quantity: qty as number });
+          return;
+        }
         const productOk =
           typeof item.productId === "string" &&
           UUID_PATTERN.test(item.productId);

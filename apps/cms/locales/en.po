@@ -11485,3 +11485,27 @@ msgstr ""
 
 msgid "Tax rules"
 msgstr ""
+
+msgid "This product is a bundle (a kit of other products)"
+msgstr ""
+
+msgid "Bundle pricing"
+msgstr ""
+
+msgid "Fixed: the price above"
+msgstr ""
+
+msgid "Derived: components' prices, less the discount"
+msgstr ""
+
+msgid "Bundle discount percent"
+msgstr ""
+
+msgid "Bundle contents"
+msgstr ""
+
+msgid "Each line must be a SKU, optionally followed by x and a quantity."
+msgstr ""
+
+msgid "One component per line: SKU x quantity. A bundle has no stock of its own; it is sold as one line and its components' stock moves."
+msgstr ""

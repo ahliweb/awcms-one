@@ -17,7 +17,9 @@ import {
   expandBundleLines,
   validateBundleState,
   validateComponentTargets,
+  isSkuComponent,
   type BundleComponentInput,
+  type BundleComponentRequest,
   type BundleLineComponent,
   type BundlePricing,
   type ComponentProductFacts,
@@ -241,13 +243,75 @@ async function fetchComponentFacts(
   return facts;
 }
 
+/**
+ * Turns SKU-named components into product/variant ids. A SKU that is not a
+ * live product or variant of this tenant resolves to nothing and is reported
+ * with the same message as an unknown product id.
+ */
+async function resolveComponentRequests(
+  tx: Bun.SQL,
+  tenantId: string,
+  requests: readonly BundleComponentRequest[]
+): Promise<{ components: BundleComponentInput[]; errors: FieldError[] }> {
+  const skus = requests.filter(isSkuComponent).map((c) => c.sku);
+  const byProductSku = new Map<string, string>();
+  const byVariantSku = new Map<
+    string,
+    { productId: string; variantId: string }
+  >();
+  if (skus.length > 0) {
+    const list = tx.array([...new Set(skus)], "text");
+    const products = (await tx`
+      SELECT id, sku FROM awcms_commerce_products
+      WHERE tenant_id = ${tenantId} AND sku = ANY(${list}::text[]) AND deleted_at IS NULL
+    `) as { id: string; sku: string }[];
+    for (const row of products) byProductSku.set(row.sku, row.id);
+    const variants = (await tx`
+      SELECT id, product_id, sku FROM awcms_commerce_product_variants
+      WHERE tenant_id = ${tenantId} AND sku = ANY(${list}::text[]) AND deleted_at IS NULL
+    `) as { id: string; product_id: string; sku: string }[];
+    for (const row of variants) {
+      byVariantSku.set(row.sku, {
+        productId: row.product_id,
+        variantId: row.id
+      });
+    }
+  }
+
+  const components: BundleComponentInput[] = [];
+  const errors: FieldError[] = [];
+  requests.forEach((request, index) => {
+    if (!isSkuComponent(request)) {
+      components.push(request);
+      return;
+    }
+    const variant = byVariantSku.get(request.sku);
+    const productId = byProductSku.get(request.sku);
+    if (variant) {
+      components.push({ ...variant, quantity: request.quantity });
+    } else if (productId) {
+      components.push({
+        productId,
+        variantId: null,
+        quantity: request.quantity
+      });
+    } else {
+      errors.push({
+        field: `bundleComponents[${index}].sku`,
+        message: "The component product was not found."
+      });
+    }
+  });
+  return { components, errors };
+}
+
 export type BundleDefinitionWrite = {
   /** The product's kind AFTER this write. */
   kind: ProductKind;
   pricing: BundlePricing;
   discountPercent: string | null;
-  /** `undefined` = leave the components as they are. */
-  components: BundleComponentInput[] | undefined;
+  /** `undefined` = leave the components as they are. Ids, or SKUs the server resolves. */
+  components: BundleComponentRequest[] | undefined;
   /** The product's stock and service form AFTER this write. */
   stock: number;
   hasServiceForm: boolean;
@@ -287,6 +351,18 @@ export async function applyBundleDefinition(
   const row = current[0];
   if (!row) return;
 
+  let resolved: BundleComponentInput[] | undefined;
+  const resolutionErrors: FieldError[] = [];
+  if (write.components !== undefined) {
+    const result = await resolveComponentRequests(
+      tx,
+      tenantId,
+      write.components
+    );
+    resolved = result.components;
+    resolutionErrors.push(...result.errors);
+  }
+
   let existingCount = 0;
   if (write.components === undefined) {
     const counted = (await tx`
@@ -309,19 +385,18 @@ export async function applyBundleDefinition(
     discountPercent: write.discountPercent,
     stock: write.stock,
     hasServiceForm: write.hasServiceForm,
-    components: write.components ?? null,
+    components: resolved ?? null,
     componentCount
   });
+  errors.push(...resolutionErrors);
 
-  if (write.kind === "bundle" && write.components !== undefined) {
+  if (write.kind === "bundle" && resolved !== undefined) {
     const facts = await fetchComponentFacts(
       tx,
       tenantId,
-      write.components.map((component) => component.productId)
+      resolved.map((component) => component.productId)
     );
-    errors.push(
-      ...validateComponentTargets(productId, write.components, facts)
-    );
+    errors.push(...validateComponentTargets(productId, resolved, facts));
   }
   if (errors.length > 0) throw new BundleDefinitionInvalidError(errors);
 
@@ -352,12 +427,12 @@ export async function applyBundleDefinition(
       WHERE tenant_id = ${tenantId} AND id = ${productId}
     `;
 
-    if (write.kind === "bundle" && write.components !== undefined) {
+    if (write.kind === "bundle" && resolved !== undefined) {
       await tx`
         DELETE FROM awcms_commerce_bundle_components
         WHERE tenant_id = ${tenantId} AND bundle_product_id = ${productId}
       `;
-      for (const [index, component] of write.components.entries()) {
+      for (const [index, component] of resolved.entries()) {
         await tx`
           INSERT INTO awcms_commerce_bundle_components (
             tenant_id, bundle_product_id, position, component_product_id,
