@@ -115,14 +115,14 @@ The used-directly/no-derived-repo governance model (ADR-0034 §2/§3) is **uncha
 
 | Aspect                            | Value (generated)                                                                      | Source of truth                                                                         |
 | --------------------------------- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| Version                           | **10.4.0**                                                                             | `package.json`                                                                          |
+| Version                           | **10.5.0**                                                                             | `package.json`                                                                          |
 | Pending changesets (by bump type) | _run the command in the right-hand column_                                             | `grep -h '^"awcms":' .changeset/*.md \| sort \| uniq -c`                                |
-| Commits since the last release    | _run the command in the right-hand column_                                             | `git rev-list --count v10.4.0..HEAD`                                                    |
-| Base modules                      | **26** (see the list in ARCHITECTURE.md)                                               | `src/modules/index.ts`                                                                  |
-| Migrations                        | **250** (`sql/001`–`999`)                                                              | `ls sql/`                                                                               |
-| ADR                               | **0000**–**0125** (`0000` = template; highest ADR status: **Accepted**)                | `ls docs/adr/`                                                                          |
-| Admin screens                     | **92** `.astro` files in `src/pages/admin/`; **0 of 26** modules without `navigation:` | `find src/pages/admin -name '*.astro'`, `grep -L 'navigation:' src/modules/*/module.ts` |
-| `.astro` files                    | **117** (67.037 lines) — on typechecking see §6                                        | `find src -name '*.astro'`                                                              |
+| Commits since the last release    | _run the command in the right-hand column_                                             | `git rev-list --count v10.5.0..HEAD`                                                    |
+| Base modules                      | **29** (see the list in ARCHITECTURE.md)                                               | `src/modules/index.ts`                                                                  |
+| Migrations                        | **263** (`sql/001`–`1000`)                                                             | `ls sql/`                                                                               |
+| ADR                               | **0000**–**0130** (`0000` = template; highest ADR status: **Accepted**)                | `ls docs/adr/`                                                                          |
+| Admin screens                     | **95** `.astro` files in `src/pages/admin/`; **0 of 29** modules without `navigation:` | `find src/pages/admin -name '*.astro'`, `grep -L 'navigation:' src/modules/*/module.ts` |
+| `.astro` files                    | **120** (74.081 lines) — on typechecking see §6                                        | `find src -name '*.astro'`                                                              |
 | Gates                             | **61** in the `bun run check` chain                                                    | `scripts.check` in `package.json`, split on `&&`                                        |
 | Contracts                         | Modular per-module OpenAPI + AsyncAPI; `MODULE_CONTRACT_VERSION` **4.2.0**             | `openapi/`, `asyncapi/`, `_shared/module-contract.ts`                                   |
 
@@ -201,7 +201,7 @@ pioneered directly here after the ADR-0047 freeze.)
 
 ## 3. What is already done (do not rebuild it)
 
-- **26 modules** registered with `FORCE` RLS, DB role separation
+- **29 modules** registered with `FORCE` RLS, DB role separation
   (`awcms_app`/`awcms_worker`/`awcms_setup`), admin SSR read+write (Issue #166/#171).
 - **Advanced auth**: MFA TOTP + session-assurance/step-up (`sql/024`), tenant-aware
   OIDC/SSO + SSRF guard + break-glass (`sql/025`/`026`), profile-aware Turnstile bot
@@ -390,6 +390,17 @@ pioneered directly here after the ADR-0047 freeze.)
   §Baseline/§Obsidian workflow/§Security and privacy.
 
 ## 4. Backlog / next steps
+
+- **PROCUREMENT (#888, ADR-0128) — follow-ups recorded by its security audit.**
+  Not done, on purpose, each with a reason: (1) **step-up and a rate limit on
+  `suppliers.reveal`** (audited and `no-store`, but a holder can enumerate at API
+  speed); (2) **a stricter permission for payment/contact references**, and
+  **soft-delete of identifiers** (removal is a hard, audited `DELETE`); (3)
+  **keyed hashing and at-rest encryption of `normalized_value`** (the hash is
+  the unkeyed one shared with `profile_identity`; it needs a key-management
+  decision for both); (4) **mode/quantity-based approval gating** (the
+  threshold is cost-based and covers `receive`/`supplier_return` only);
+  (5) **actor-bound idempotency in `inventory`** (procurement binds it).
 
 - **DEPENDENCY & MERGE-QUEUE ROUND — 24 September 2026: a dependency sweep that
   found a live privilege breach in `main`, and two bumps that were unmergeable

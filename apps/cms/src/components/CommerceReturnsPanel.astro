@@ -178,13 +178,20 @@ const OPEN_LEG = new Set(["pending", "processing", "failed"]);
           <dd>−{ret.discountShare}</dd>
           <dt>{t("Shipping refunded")}</dt>
           <dd>{ret.shippingRefund}</dd>
+          <dt>{t("Tax refunded")}</dt>
+          <dd>{ret.taxRefund}</dd>
           <dt>{t("Refund total")}</dt>
           <dd>
             <strong>{ret.refundTotal}</strong>
           </dd>
         </dl>
 
-        <div class="data-table-scroll">
+        <div
+          class="data-table-scroll"
+          role="region"
+          tabindex="0"
+          aria-label={t("Returns and refunds")}
+        >
           <table class="data-table data-table--stack">
             <caption class="sr-only">{t("Returned lines")}</caption>
             <thead>
@@ -213,7 +220,12 @@ const OPEN_LEG = new Set(["pending", "processing", "failed"]);
         </div>
 
         {ret.refunds.length > 0 && (
-          <div class="data-table-scroll">
+          <div
+            class="data-table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label={t("Returns and refunds")}
+          >
             <table class="data-table data-table--stack">
               <caption class="sr-only">{t("Refund legs")}</caption>
               <thead>
@@ -356,7 +368,12 @@ const OPEN_LEG = new Set(["pending", "processing", "failed"]);
             "Enter how many units of each line are returned, why, and what happens to them. Only units set to restock become sellable again."
           )}
         </p>
-        <div class="data-table-scroll">
+        <div
+          class="data-table-scroll"
+          role="region"
+          tabindex="0"
+          aria-label={t("1. What is coming back?")}
+        >
           <table class="data-table data-table--stack">
             <caption class="sr-only">{t("Lines that can be returned")}</caption>
             <thead>

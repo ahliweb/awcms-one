@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:e2b461d64ec709975db5b7e45d2280ccc6212632c6f9444bfdf9663a05b24495 -->
+<!-- i18n-source-hash: sha256:33e6a8cc542adb75129e3a7b090da9a16cbeb5d19adc0a03cca2abd2acc07574 -->
 
 # Scripts AWCMS
 
@@ -27,7 +27,7 @@ lalu membangun duplikatnya.
 
 <!-- Dihasilkan `bun run scripts:inventory:generate`. JANGAN diedit tangan. -->
 
-141 target menjalankan berkas di `scripts/`; 57 di antaranya
+143 target menjalankan berkas di `scripts/`; 57 di antaranya
 ada di rantai `bun run check` (kolom **Gate**), sisanya dijalankan manual,
 terjadwal, atau oleh workflow CI tertentu.
 
@@ -73,11 +73,13 @@ terjadwal, atau oleh workflow CI tertentu.
 | `commerce:customer-auth:purge`            | `commerce-customer-auth-purge.ts`              | —    |
 | `commerce:deploy:preflight`               | `commerce-deploy-preflight.ts`                 | —    |
 | `commerce:flash-sales:tick`               | `commerce-flash-sales-tick.ts`                 | —    |
+| `commerce:inventory:cutover`              | `commerce-inventory-cutover.ts`                | —    |
 | `commerce:loyalty:expire`                 | `commerce-loyalty-expire.ts`                   | —    |
 | `commerce:loyalty:reconcile`              | `commerce-loyalty-reconcile.ts`                | —    |
 | `commerce:orders:expire`                  | `commerce-orders-expire.ts`                    | —    |
 | `commerce:payments:reconcile`             | `commerce-payments-reconcile.ts`               | —    |
 | `commerce:shipping-rates:purge`           | `commerce-shipping-rates-purge.ts`             | —    |
+| `commerce:tax:cutover`                    | `commerce-tax-cutover.ts`                      | —    |
 | `commerce:whatsapp:dispatch`              | `commerce-whatsapp-dispatch.ts`                | —    |
 | `commerce:whatsapp:purge`                 | `commerce-whatsapp-purge.ts`                   | —    |
 | `config:env:coverage:check`               | `env-contract-coverage-check.ts`               | ✅   |

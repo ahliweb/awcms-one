@@ -11,6 +11,7 @@ import { isShippingRateProviderConfigured } from "../../../../../modules/commerc
 import { isPaymentGatewayProviderConfigured } from "../../../../../modules/commerce/infrastructure/payment-gateway-provider-resolver";
 import { isWhatsappProviderConfigured } from "../../../../../modules/commerce/infrastructure/whatsapp-provider-resolver";
 import { fetchCommerceFeatures } from "../../../../../modules/commerce/application/commerce-feature-gate";
+import { fetchTaxAdapterConfig } from "../../../../../modules/commerce/application/tax-adapter-directory";
 
 const READ_GUARD = {
   moduleKey: "commerce",
@@ -29,11 +30,13 @@ export const GET = defineTenantRoute({
   workClass: "interactive",
   authorize: READ_GUARD,
   handler: async ({ tx, tenantId }) => {
-    const [settings, affiliateCommissionRate, features] = await Promise.all([
-      fetchStoreSettings(tx, tenantId),
-      fetchAffiliateCommissionRate(tx, tenantId),
-      fetchCommerceFeatures(tx, tenantId)
-    ]);
+    const [settings, affiliateCommissionRate, features, taxConfig] =
+      await Promise.all([
+        fetchStoreSettings(tx, tenantId),
+        fetchAffiliateCommissionRate(tx, tenantId),
+        fetchCommerceFeatures(tx, tenantId),
+        fetchTaxAdapterConfig(tx, tenantId)
+      ]);
     return ok(
       await toPublicRecord(
         tx,
@@ -44,7 +47,8 @@ export const GET = defineTenantRoute({
         isShippingRateProviderConfigured(),
         isPaymentGatewayProviderConfigured(),
         features,
-        isWhatsappProviderConfigured()
+        isWhatsappProviderConfigured(),
+        taxConfig.mode
       )
     );
   }

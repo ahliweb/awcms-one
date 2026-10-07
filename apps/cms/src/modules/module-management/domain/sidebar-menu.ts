@@ -110,6 +110,11 @@ export const DEFAULT_MODULE_TYPE: Readonly<Record<string, string>> = {
   // Issue #598 — a subscriber list is audience engagement, not content: it is
   // about who is reached, not about what is published.
   newsletter: "engagement",
+  // ADR-0127. Placed even though the module declares NO navigation yet (the
+  // rule-authoring screens are a recorded follow-up): this map must cover every
+  // registered module, so its first screen lands in `commerce` rather than
+  // silently in `general`.
+  tax: "commerce",
   // Operations / observability. `workflow` (the `workflow-approval` directory)
   // has no counterpart in awcms-micro, so it is absent from the map this was
   // ported from — the completeness assertion in
@@ -129,6 +134,15 @@ export const DEFAULT_MODULE_TYPE: Readonly<Record<string, string>> = {
   // ADR-0122 (ahliweb/omes#196). Placed even though the module declares NO navigation yet:
   // this map must cover every registered module so its first screen lands in operations.
   omes_control: "operations",
+  // ADR-0126 (Issue #887). Placed even though the module declares NO navigation
+  // yet (API-first; admin screens are a recorded follow-up): this map must cover
+  // every registered module so its first screen lands in the commerce section
+  // rather than silently in `general`.
+  inventory: "commerce",
+  // ADR-0128 (Issue #888). Placed even though the module declares NO navigation
+  // yet (API-first; admin screens are a recorded follow-up): this map must cover
+  // every registered module so its first screen lands in the commerce section.
+  procurement: "commerce",
   // Master reference data. This module DOES declare navigation now
   // (`/admin/idn-regions`, landed with ADR-0053/PR #332). The comment that used
   // to sit here said its operator screen lived in awcms-astro per ADR-0047 —
@@ -286,6 +300,9 @@ export const SIDEBAR_LABELS: Readonly<Record<string, string>> = {
   "admin.layout.nav_commerce_catalog_import": "Catalog import/export",
   "admin.layout.nav_commerce_loyalty": "Loyalty",
   "admin.layout.nav_commerce_stored_value": "Gift cards & credit",
+  "admin.layout.nav_inventory": "Inventory",
+  "admin.layout.nav_tax": "Tax",
+  "admin.layout.nav_procurement": "Procurement",
   "admin.layout.nav_omes_overview": "OMES overview",
   "admin.layout.nav_omes_servers": "OMES servers",
   "admin.layout.nav_omes_deployments": "OMES deployments",
@@ -414,6 +431,9 @@ export const DEFAULT_SIDEBAR_ICONS: Readonly<Record<string, string>> = {
   "admin.layout.nav_commerce_catalog_import": "inbox",
   "admin.layout.nav_commerce_loyalty": "tag",
   "admin.layout.nav_commerce_stored_value": "tag",
+  "admin.layout.nav_inventory": "layers",
+  "admin.layout.nav_tax": "doc",
+  "admin.layout.nav_procurement": "layers",
   "admin.layout.nav_omes_overview": "dashboard",
   "admin.layout.nav_omes_servers": "monitor",
   "admin.layout.nav_omes_deployments": "layers",

@@ -95,7 +95,7 @@ const COMPOSE_PRODUCTION_PATH = path.resolve(
   "compose.production.yaml"
 );
 
-const MIGRATION_FILE_PATTERN = /^(\d{3})_awcms_([a-z0-9_]+)\.sql$/;
+const MIGRATION_FILE_PATTERN = /^(\d{3,4})_awcms_([a-z0-9_]+)\.sql$/;
 
 function migrationFileNames(): string[] {
   return readdirSync(SQL_DIR)

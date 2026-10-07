@@ -278,7 +278,12 @@ function pageHref(next: number): string {
         )}
         {page > 0 && <input type="hidden" name="page" value={String(page)} />}
 
-        <div class="data-table-scroll">
+        <div
+          class="data-table-scroll"
+          role="region"
+          tabindex="0"
+          aria-label={t("Barcodes and labels")}
+        >
           <table class="data-table data-table--stack" id="labels-table">
             <caption class="sr-only">{t("Products and variants")}</caption>
             <thead>

@@ -1089,6 +1089,75 @@ export const READER_BUDGET_BYTES = 24_000;
  * ```
  *
  * 295,259 is the measured value with no added margin.
+ *
+ * **Raised for Issue #894** (the `/admin/inventory` and `/admin/tax` screens
+ * that flipped both modules to `active`). Two new admin screens each ship the
+ * one client script a screen with mutations needs, and they are not per-screen
+ * duplication of the shared lifecycle: both import `admin-form-client.ts`
+ * (already in the shared chunk), `confirm-dialog-client.ts` and
+ * `reason-panel-client.ts`, and add only the screen's own request bodies and
+ * error mapping. The new shared file is `admin-idempotency-key.ts` (143 B, one
+ * `Idempotency-Key` per same-body retry), which exists so those two screens
+ * and the next one do not each carry a copy. Measured actual total:
+ *
+ * ```
+ * before (295,259 ceiling)   295,259 B
+ * + inventory script          3,493 B
+ * + tax script                1,788 B
+ * + idempotency helper          143 B
+ * + admin-screens.css rules    ~590 B (detail list, code block, checkbox label)
+ * after                      301,273 B (measured actual total)
+ * ```
+ *
+ * 301,273 is the measured value with no added margin.
+ *
+ * **Raised for Issue #901** (the structured tax-definition editor, the
+ * location rename / office-link control and the balance-rebuild action). The
+ * editor is the bulk of it and is genuinely new client behaviour, not a copy of
+ * a shared lifecycle: it builds a categories / rules / components row editor
+ * with `createElement` (no `innerHTML`, so no CSP exposure and no markup
+ * strings to carry), keeps focus and accessible names across add / remove, and
+ * round-trips the JSON textarea. The pure model (`tax-definition-model.ts`) is
+ * split out so it is unit-tested rather than trimmed. Measured actual total:
+ *
+ * ```
+ * before (301,273 ceiling)   301,273 B
+ * + tax script (editor)       6,664 B
+ * + inventory script          1,029 B
+ * + admin-screens.css rules     413 B
+ * + editor guard + reset       247 B
+ * after                      309,626 B (measured actual total)
+ * ```
+ *
+ * 309,626 is the measured value with no added margin.
+ *
+ * **Raised for Issue #905** (the `/admin/procurement` screen that flipped
+ * `procurement` to `active`). One screen script, and it is not per-screen
+ * duplication of the shared lifecycle: it imports `admin-form-client.ts`,
+ * `confirm-dialog-client.ts`, `reason-panel-client.ts` and
+ * `admin-idempotency-key.ts` (all already shared) and adds only what is the
+ * screen's own: the supplier and identifier requests, the audited reveal (one
+ * live region that clears itself), the document line editor (cloned from a
+ * `<template>`, no `innerHTML`), the mode-dependent field toggling, and the
+ * error-code-to-message map for a module with sixteen distinct refusals. The
+ * body shaping is the pure `procurement-document-model.ts`, unit-tested. The
+ * line editor reuses the tax editor's fieldset CSS rather than adding a copy.
+ * Measured actual total:
+ *
+ * ```
+ * before (309,626 ceiling)   309,626 B
+ * + procurement script        8,532 B
+ * + admin-screens.css rules      72 B
+ * after                      318,230 B (measured actual total)
+ * ```
+ *
+ * 318,230 is the measured value with no added margin.
+ *
+ * **Raised for Issue #907** (keyboard-focusable scroll regions): one shared
+ * `.data-table-scroll:focus-visible` rule in `admin.css`, not per-screen CSS
+ * (the `role`/`tabindex`/`aria-*` attributes live in server-rendered HTML and
+ * weigh nothing here). Measured actual total, no added margin: 318,319 B
+ * (+89 B on 318,230 = 318,319).
  */
 /**
  * **Raised to 254,500 B in awcms-one (subtree sync of awcms#813, issue
@@ -1415,7 +1484,38 @@ export const READER_BUDGET_BYTES = 24_000;
  * catalogue ships with every page), on top of 404,920 B; a measurement, not a
  * sum.
  */
-export const APP_BUDGET_BYTES = 410_700;
+/*
+ * **Final: 433,800 B at the v10.5.0 subtree sync (awcms-one#319)** — MEASURED
+ * 433,723 B on the merged build. Upstream sits at 318,319 B after its
+ * `inventory`, `tax` and `procurement` admin screens (#894, #901, #905, #907
+ * above); this embed's commerce lineage is +115,404 B over that, against
+ * +115,441 B (410,700 - 295,259) at the #300 sync, so a plain sum would have
+ * predicted 433,760 B.
+ * The measurement is the figure, not the sum: the shared `AdminLayout` CSS
+ * bundle and the compiled Indonesian catalogue are not additive across
+ * lineages.
+ */
+/*
+ * **Final: 433,900 B for awcms-one#293 (commerce tax adapter, ADR-0039) on top
+ * of the v10.5.0 sync** — MEASURED 433,813 B on the build: the product form's
+ * Tax category field (one input in each of the create and edit forms and one
+ * payload key in the existing page script), the store settings screen's
+ * read-only tax-mode badge, and the eight new catalogue entries (the compiled
+ * Indonesian catalogue ships with every page), on top of 433,723 B; a
+ * measurement, not a sum. No new client script or module.
+ */
+/*
+ * **Final: 434,700 B for awcms-one#290 (commerce bundles, ADR-0036) on top of
+ * the #293 figure above** — MEASURED 434,568 B on the build (433,813 B before
+ * it): the product form's Bundle fieldset (a toggle, a pricing select, a
+ * discount input and a `SKU x quantity` textarea in each of the create and
+ * edit forms), a small `bundleBody` helper in the existing page script, the
+ * 40-line pure `lib/ui/commerce-bundle-form.ts` line parser, and the eight new
+ * catalogue entries (the compiled Indonesian catalogue ships with every
+ * page); a measurement, not a sum (+755 B). No new screen and no picker
+ * script: the contents editor is a plain textarea the server resolves.
+ */
+export const APP_BUDGET_BYTES = 434_700;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

@@ -73,7 +73,16 @@
  * "bind the hash to the resource" rule): two cashiers who happen to reuse
  * one key value can never have the second replay the first's sale.
  */
+import { finaliseOrderTax } from "./tax-adapter-directory";
 import { recordAuditEvent } from "../../logging/application/audit-log";
+import {
+  InventoryLedgerRefusedError,
+  postOrderSale,
+  resolveInventoryConfig,
+  withInventorySavepoint,
+  type InventoryConfig,
+  type SaleLine
+} from "./commerce-inventory";
 import { appendDomainEvent } from "../../domain-event-runtime/application/append-domain-event";
 import {
   computeRequestHash,
@@ -120,6 +129,11 @@ import {
   COMMERCE_ORDER_CREATED_EVENT_TYPE
 } from "../domain/commerce-events";
 import { buildCartQuote } from "./cart-quote-service";
+import {
+  lockBundleComponentStock,
+  quoteHasBundle,
+  sellBundleLine
+} from "./bundle-directory";
 import { fetchCommerceFeatures } from "./commerce-feature-gate";
 import { FeatureDisabledError } from "../domain/commerce-features";
 import { gateSaleToRegisterSession } from "./register-session-directory";
@@ -263,6 +277,48 @@ export async function createPosOrder(
   now: Date = new Date(),
   correlationId?: string
 ): Promise<CreatePosOrderOutcome> {
+  // Issue #282 (ADR-0038 D2): in `ledger` mode the whole sale runs in a
+  // savepoint, so a ledger refusal leaves no half-written order behind and the
+  // route's 409 (which the handler's commit then honours) is safe.
+  const inventory = await resolveInventoryConfig(tx, tenantId);
+
+  try {
+    return await withInventorySavepoint(tx, inventory, (db) =>
+      createPosOrderWrite(
+        db,
+        tenantId,
+        actorTenantUserId,
+        mediaPort,
+        input,
+        now,
+        correlationId,
+        inventory
+      )
+    );
+  } catch (error) {
+    // Out of stock is the answer the cashier already gets for a cart that
+    // changed; any other refusal is an operator's problem (409 from the route).
+    if (
+      error instanceof InventoryLedgerRefusedError &&
+      error.kind === "insufficient_stock" &&
+      error.quote
+    ) {
+      throw new PosCartChangedError(error.quote);
+    }
+    throw error;
+  }
+}
+
+async function createPosOrderWrite(
+  tx: Bun.SQL,
+  tenantId: string,
+  actorTenantUserId: string,
+  mediaPort: MediaLibraryPort,
+  input: CreatePosOrderInput,
+  now: Date,
+  correlationId: string | undefined,
+  inventory: InventoryConfig
+): Promise<CreatePosOrderOutcome> {
   const requestHash = computeRequestHash({
     action: IDEMPOTENCY_SCOPE,
     actorTenantUserId,
@@ -360,25 +416,33 @@ export async function createPosOrder(
       ? (customer.level as CustomerLevel)
       : null;
 
-  const quote = await buildCartQuote(
-    tx,
-    tenantId,
-    mediaPort,
-    {
-      lines: input.lines.map((line) => ({
-        productId: line.productId,
-        variantId: line.variantId,
-        quantity: line.quantity,
-        serviceFormValues: null
-      })),
-      shipping: { method: "self_pickup" },
-      voucherCode: null,
-      insurance: false,
-      destination: null,
-      customerLevel
-    },
-    now
-  );
+  const requote = (): ReturnType<typeof buildCartQuote> =>
+    buildCartQuote(
+      tx,
+      tenantId,
+      mediaPort,
+      {
+        lines: input.lines.map((line) => ({
+          productId: line.productId,
+          variantId: line.variantId,
+          quantity: line.quantity,
+          serviceFormValues: null
+        })),
+        shipping: { method: "self_pickup" },
+        voucherCode: null,
+        insurance: false,
+        destination: null,
+        customerLevel
+      },
+      now
+    );
+  let quote = await requote();
+  // Issue #290 - `counter` mode locks a bundle's components and re-quotes (see
+  // `createOrderFromCartWrite`); a short component answers `PosCartChangedError`.
+  if (inventory.mode === "counter" && quoteHasBundle(quote)) {
+    await lockBundleComponentStock(tx, tenantId, quote);
+    quote = await requote();
+  }
 
   // `canCheckout` is lines-only (every line `status: "ok"`): `quote.shipping`
   // may legitimately be `null` when the tenant never enabled self-pickup in
@@ -470,9 +534,16 @@ export async function createPosOrder(
     }
   }
 
+  // Issue #282 (ADR-0038 D2) - the stock authority. A POS sale is a commerce
+  // order with order items, so in `ledger` mode it posts the SAME
+  // `{commerce_order, orderId, orderItemId}` identity a storefront order does,
+  // and the cancel/expiry restock finds it there.
+  const ledgerLines: SaleLine[] = [];
+
   // Sequential — one reserved `tx` connection (`tenant-route.ts`'s header).
+  const orderItemIds: string[] = [];
   for (const line of quote.lines) {
-    await tx`
+    const itemRows = (await tx`
       INSERT INTO awcms_commerce_order_items (
         tenant_id, order_id, product_id, variant_id, flash_sale_id,
         name, variant_name, sku, unit_price, quantity, weight_grams, line_total
@@ -482,9 +553,28 @@ export async function createPosOrder(
         ${line.name}, ${line.variantName}, ${line.sku}, ${line.unitPrice}, ${line.quantity},
         ${line.weightGrams}, ${line.lineTotal}
       )
-    `;
+      RETURNING id
+    `) as { id: string }[];
+    orderItemIds.push(itemRows[0]!.id);
 
-    if (line.variantId) {
+    if (line.bundle) {
+      // Issue #290 - the bundle line moves no stock itself; its components do.
+      await sellBundleLine(
+        tx,
+        tenantId,
+        inventory.mode,
+        itemRows[0]!.id,
+        { ...line, bundle: line.bundle },
+        ledgerLines
+      );
+    } else if (inventory.mode === "ledger") {
+      ledgerLines.push({
+        lineId: itemRows[0]!.id,
+        productId: line.productId,
+        variantId: line.variantId,
+        quantity: line.quantity
+      });
+    } else if (line.variantId) {
       await tx`
         UPDATE awcms_commerce_product_variants
         SET stock = stock - ${line.quantity}, updated_at = now()
@@ -510,6 +600,33 @@ export async function createPosOrder(
       `;
     }
   }
+
+  if (inventory.mode === "ledger") {
+    try {
+      await postOrderSale(tx, tenantId, inventory, orderId, ledgerLines, {
+        actorTenantUserId,
+        correlationId
+      });
+    } catch (error) {
+      // The wrapper rolls the savepoint back and answers; the quote rides along.
+      if (error instanceof InventoryLedgerRefusedError) error.quote = quote;
+      throw error;
+    }
+  }
+
+  // Issue #293 (ADR-0039) — engine mode: finalise this sale's tax snapshot and
+  // link it; a no-op in flat mode.
+  await finaliseOrderTax(tx, tenantId, {
+    orderId,
+    items: quote.lines.map((line, index) => ({
+      orderItemId: orderItemIds[index]!,
+      productId: line.productId
+    })),
+    quote,
+    now,
+    actorTenantUserId,
+    correlationId
+  });
 
   // Initial `order_events` row — actor `"admin"` (a POS sale is staff-rung,
   // never `"customer"`), mirroring `createOrderFromCart`'s own insert shape.

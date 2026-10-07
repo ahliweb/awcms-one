@@ -417,7 +417,7 @@ paths:
         "403":
           $ref: "#/components/responses/Forbidden"
         "409":
-          description: slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS).
+          description: slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS). In `ledger` inventory mode (ADR-0038) a request that would CHANGE a stock count is refused with STOCK_MANAGED_BY_INVENTORY; sending the value the row already holds is accepted, and a create may only start at zero.
           content:
             application/json:
               schema:
@@ -758,7 +758,7 @@ paths:
       operationId: importCommerceProductsCsv
       tags:
         - Commerce
-      summary: "Issue #291. Validate (mode=dry_run, the default — writes NOTHING) or apply (mode=apply) a product CSV. The body is the CSV itself (text/csv, UTF-8, at most 5 MiB and 5000 data rows). Rows match on `sku`: a live product with that SKU is updated, any other SKU creates one. apply is ALL-OR-NOTHING (422 IMPORT_VALIDATION_FAILED when the plan has any error, 409 IMPORT_CONFLICT on a write-time conflict — both leave the catalog untouched), needs `Idempotency-Key` (a replay with the same key and file returns the original response; the same key with a different file is 409 IDEMPOTENCY_CONFLICT), and needs products.import AND products.create AND products.update. `expectedSha256` (the dry-run's fileSha256) refuses a file that differs from the reviewed one (409 IMPORT_FILE_MISMATCH). No column accepts a media reference and nothing is fetched remotely. Gated on products.import."
+      summary: "Issue #291. Validate (mode=dry_run, the default — writes NOTHING) or apply (mode=apply) a product CSV. The body is the CSV itself (text/csv, UTF-8, at most 5 MiB and 5000 data rows). Rows match on `sku`: a live product with that SKU is updated, any other SKU creates one. apply is ALL-OR-NOTHING (422 IMPORT_VALIDATION_FAILED when the plan has any error, 409 IMPORT_CONFLICT on a write-time conflict — both leave the catalog untouched), needs `Idempotency-Key` (a replay with the same key and file returns the original response; the same key with a different file is 409 IDEMPOTENCY_CONFLICT), and needs products.import AND products.create AND products.update. `expectedSha256` (the dry-run's fileSha256) refuses a file that differs from the reviewed one (409 IMPORT_FILE_MISMATCH). No column accepts a media reference and nothing is fetched remotely. Gated on products.import. The shared `Idempotency-Key` component (ADR-0129) is declared required for every operation that takes it; this route enforces the key for mode=apply only, and a mode=dry_run request may omit it."
       parameters:
         - name: mode
           in: query
@@ -776,12 +776,7 @@ paths:
           schema:
             type: string
             pattern: "^[0-9a-f]{64}$"
-        - name: Idempotency-Key
-          in: header
-          required: false
-          description: Required for mode=apply.
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -939,7 +934,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS).
+          description: slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS). In `ledger` inventory mode (ADR-0038) a request that would CHANGE a stock count is refused with STOCK_MANAGED_BY_INVENTORY; sending the value the row already holds is accepted, and a create may only start at zero.
           content:
             application/json:
               schema:
@@ -1020,7 +1015,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS).
+          description: slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS). In `ledger` inventory mode (ADR-0038) a request that would CHANGE a stock count is refused with STOCK_MANAGED_BY_INVENTORY; sending the value the row already holds is accepted, and a create may only start at zero.
           content:
             application/json:
               schema:
@@ -1042,11 +1037,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -1112,11 +1103,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       responses:
         "200":
           description: Unlinked (or already unlinked — same response either way).
@@ -1343,7 +1330,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: sku is already used by a live product or variant in this tenant (VARIANT_SKU_ALREADY_EXISTS).
+          description: sku is already used by a live product or variant in this tenant (VARIANT_SKU_ALREADY_EXISTS). In `ledger` inventory mode (ADR-0038) a request that would CHANGE a stock count is refused with STOCK_MANAGED_BY_INVENTORY; sending the value the row already holds is accepted, and a create may only start at zero.
           content:
             application/json:
               schema:
@@ -1396,7 +1383,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: sku is already used by a live product or variant in this tenant (VARIANT_SKU_ALREADY_EXISTS).
+          description: sku is already used by a live product or variant in this tenant (VARIANT_SKU_ALREADY_EXISTS). In `ledger` inventory mode (ADR-0038) a request that would CHANGE a stock count is refused with STOCK_MANAGED_BY_INVENTORY; sending the value the row already holds is accepted, and a create may only start at zero.
           content:
             application/json:
               schema:
@@ -3343,13 +3330,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
-            maxLength: 128
-            pattern: "^[A-Za-z0-9._:-]+$"
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -3481,13 +3462,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
-            maxLength: 128
-            pattern: "^[A-Za-z0-9._:-]+$"
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -4080,11 +4055,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -4183,11 +4154,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -4530,11 +4497,7 @@ paths:
         `409 IDEMPOTENCY_CONFLICT`. Emits
         `awcms.commerce.register_session.opened`.
       parameters:
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -4653,11 +4616,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -4747,11 +4706,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -4829,11 +4784,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -4903,11 +4854,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -4980,11 +4927,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -5453,7 +5396,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "409":
-          description: CART_CHANGED — a line's price/stock/shipping/payment method changed since it was last quoted; `error.details.quote` carries a fresh quote.
+          description: CART_CHANGED — a line's price/stock/shipping/payment method changed since it was last quoted (in `ledger` inventory mode this includes the inventory ledger refusing the last unit); `error.details.quote` carries a fresh quote. INVENTORY_UNAVAILABLE — the store's inventory location is missing, inactive or counts the item in another unit (ADR-0038); nothing was written.
           content:
             application/json:
               schema:
@@ -5668,7 +5611,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: ORDER_NOT_CANCELLABLE.
+          description: ORDER_NOT_CANCELLABLE, or INVENTORY_UNAVAILABLE (ADR-0038) when the inventory ledger refuses the restock; nothing changed.
           content:
             application/json:
               schema:
@@ -7547,11 +7490,7 @@ paths:
         meaning (the cash leg's change / the cash handed over, `null` when the
         sale had no cash leg).
       parameters:
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -7857,11 +7796,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -9407,11 +9342,7 @@ paths:
         default lifetime (`null` = never). Emits
         `awcms.commerce.stored_value.entry_recorded`.
       parameters:
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -9597,11 +9528,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -9670,11 +9597,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -9743,11 +9666,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -10025,12 +9944,7 @@ paths:
       summary: "Issue #286 (ADR-0029). Parks a POS cart as a held sale. Gated on `commerce.held_sales.create`; requires `Idempotency-Key`."
       description: Stores the cart's lines (`productId`, `variantId`, `quantity`), an optional customer and notes - never a price and never a stock reservation. Expires `ttlHours` after parking (default 24, at most 168). A cashier may have at most 50 active held sales (`409 HELD_SALE_LIMIT`). Audited as `held_sale.hold`.
       parameters:
-        - &id004
-          name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -10129,7 +10043,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - *id004
+        - $ref: "#/components/parameters/IdempotencyKey"
       responses:
         "200":
           description: The resumed sale with its cart (or the stored replay).
@@ -10164,7 +10078,7 @@ paths:
       description: Same ownership rule, idempotency and errors as `resume`; the cart is wiped and not returned. Audited as `held_sale.discard`.
       parameters:
         - *id005
-        - *id004
+        - $ref: "#/components/parameters/IdempotencyKey"
       responses:
         "200":
           description: The discarded sale (or the stored replay).
@@ -10248,7 +10162,7 @@ paths:
       summary: "Issue #286 (ADR-0029). Creates a quotation (version 1). Gated on `commerce.quotations.create`; requires `Idempotency-Key`."
       description: The lines are priced by the ordinary quote engine (self-pickup, the customer's tier) and frozen into an immutable version with a validity (`validUntil`, default 14 days, at most 180) and a SHA-256. The customer is found or created by phone. Takes the next gapless `QUO-<year>-<counter>` number. No stock is reserved.
       parameters:
-        - *id004
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -10339,7 +10253,7 @@ paths:
       description: Re-prices the new lines and freezes them as version N+1 with their own validity; earlier versions are never edited and the quotation returns to `draft` (a revised offer must be sent and accepted again). Allowed from `draft`, `sent` and `expired`.
       parameters:
         - *id005
-        - *id004
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -10399,7 +10313,7 @@ paths:
               - accept
               - reject
               - cancel
-        - *id004
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: false
         content:
@@ -10443,7 +10357,7 @@ paths:
       description: "The order is written by the ordinary POS order path (`channel: pos`, `allowDue`, no tenders) at TODAY's price and stock, so it is created with the whole total due and paid later through the payment ledger. If its total differs from the accepted version's the request rolls back and answers `409 QUOTATION_PRICE_CHANGED` with both totals, unless `acceptPriceChange: true`. Converting an already converted quotation (any key, any caller) answers `200` with the existing order and `alreadyConverted: true`. With the `register` feature on, `registerId` is required. Needs the `documents` and `pos` features. Emits `awcms.commerce.quotation.converted` (the provenance: quotation id/number/accepted version -> order id/code)."
       parameters:
         - *id005
-        - *id004
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: false
         content:
@@ -10557,7 +10471,7 @@ paths:
       summary: "Issue #286 (ADR-0029). Creates a work order. Gated on `commerce.work_orders.create`; requires `Idempotency-Key`."
       description: Optionally from an ACCEPTED (or converted) quotation - the accepted version becomes its provenance - and/or linked to an existing order. Takes the next gapless `WO-<year>-<counter>` number. A work order holds no money. An unknown or other-tenant customer / quotation / order is rejected identically (`400 VALIDATION_ERROR` naming only the field sent).
       parameters:
-        - *id004
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -10661,7 +10575,7 @@ paths:
       description: "Legal status edges: received -> scheduled | in_progress | cancelled; scheduled -> in_progress | on_hold | cancelled; in_progress -> on_hold | ready | cancelled; on_hold -> in_progress | cancelled; ready -> completed | in_progress. A status move writes a history row and emits `awcms.commerce.work_order.status_changed`. A completed or cancelled work order accepts nothing."
       parameters:
         - *id005
-        - *id004
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -10779,7 +10693,7 @@ paths:
       summary: "Issue #286 (ADR-0029). Issues a numbered, immutable receipt or invoice for a finalized order. Gated on `commerce.documents.create`; requires `Idempotency-Key`."
       description: "The document is a frozen snapshot of the order (seller, customer, lines, totals, the payments as the ledger showed them) with the next gapless `RCP-` / `INV-<year>-<counter>` number and a SHA-256 of the snapshot; its money is verified equal to the order's. It is NOT an accounts-receivable invoice and carries no payment state of its own. One receipt and one invoice per order: issuing again answers `200` with the existing document and `alreadyIssued: true`. An invoice needs an order that took effect (`409 ORDER_NOT_FINAL` for a cancelled or expired one); a receipt additionally needs it fully paid (`409 ORDER_NOT_PAID`). Emits `awcms.commerce.document.issued`."
       parameters:
-        - *id004
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -11207,11 +11121,7 @@ paths:
         needs the `register` feature. Replaying the same key and body returns
         the same expense (201); a different body under that key is a conflict.
       parameters:
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -11436,11 +11346,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       responses:
         "200":
           description: "The expense and the outcome (or the stored replay)."
@@ -11494,11 +11400,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -11569,11 +11471,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -11632,11 +11530,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       responses:
         "200":
           description: "The cancelled expense (or the stored replay)."
@@ -11965,7 +11859,7 @@ paths:
       summary: "Issue #295 (ADR-0034). Requests delivery of a receipt, invoice, quotation version or work-order notice by e-mail or WhatsApp. Gated on `commerce.document_deliveries.create`; requires `Idempotency-Key`."
       description: "Transactional, not marketing: the message is built from the STORED source only (a document's snapshot after its SHA-256 is re-verified, a quotation version row, a work order read at the request) and enqueued into the channel's EXISTING outbox in this transaction; a dispatcher calls the provider later. The default recipient is the customer the source names; any other recipient needs `commerce.document_delivery_overrides.create` (checked before the source is read). A replay of the same `Idempotency-Key` returns the stored result and enqueues nothing; a NEW key is an explicit re-send (`resendOfId` names the delivery it repeats). `includeLink` (documents only) adds an opaque private link valid for `linkTtlHours` (default 72, at most 168) - only its SHA-256 is stored and it is never returned. At most 5 requests per source per rolling hour (`429 DELIVERY_RATE_LIMITED`). Emits `awcms.commerce.document.delivery_requested`; audited as `document_delivery.request` / `document_delivery.denied`."
       parameters:
-        - *id004
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -12255,6 +12149,239 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/inventory:
+    get:
+      operationId: getCommerceInventoryMode
+      tags:
+        - Commerce
+      summary: "Issue #282 (ADR-0038). Which stock authority the store runs on: `counter` or `ledger`, and the sales location the ledger is posted at. Gated on `commerce.inventory.read`."
+      description: >-
+        `counter` (the default) is the single stock count on each product or
+        variant. `ledger` means the upstream inventory ledger is authoritative
+        and `stock` is a write-through cache of it. The flip to `ledger` is the
+        operator command `bun run commerce:inventory:cutover`; the way back is
+        `POST /api/v1/commerce/inventory/rollback`.
+      responses:
+        "200":
+          description: The mode.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceInventoryMode"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/inventory/items:
+    get:
+      operationId: lookupCommerceInventoryItems
+      tags:
+        - Commerce
+      summary: "Issue #283 (ADR-0038 addendum). Resolves a SKU or name to the ledger reference a procurement line must carry. Gated on `commerce.inventory.read`."
+      description: >-
+        Lists the live stock units - a live variant (`commerce.variant`) or a
+        live product with no live variant (`commerce.product`) - with the exact
+        `itemType`, `itemRef` and `unitCode` to put on a procurement document
+        line. A product that has live variants is not a stock unit and is not
+        listed. Keyset-paged, at most 50 per page. Works in either stock mode.
+      parameters:
+        - name: q
+          in: query
+          required: false
+          description: Case-insensitive contains-match on SKU, product name or variant value.
+          schema:
+            type: string
+            maxLength: 100
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+            maxLength: 300
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+            default: 20
+      responses:
+        "200":
+          description: One page of stock units.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceInventoryItemPage"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/inventory/reconciliation:
+    get:
+      operationId: reconcileCommerceInventory
+      tags:
+        - Commerce
+      summary: "Issue #282 (ADR-0038). The stock units whose cache disagrees with the inventory ledger at the sales location. Gated on `commerce.inventory.read`."
+      description: >-
+        Compares, per stock unit (a live variant, or a live product with no live
+        variant), the `stock` column with `max(0, floor(ledger on-hand))`. One
+        keyset page per call; follow `nextCursor` until it is null. Nothing is
+        repaired. `409 NOT_LEDGER_MODE` for a store still on the counter.
+
+        The FIRST page (no `cursor`) also carries `orphans` (Issue #283): the
+        non-zero `commerce.*` ledger balances at the sales location that name no
+        live stock unit - a procurement receipt posted for a variant that does
+        not exist, for a product that has variants, under another unit code, or
+        under an unknown `commerce.*` item type. Capped at 100 with `truncated`.
+        Continuation pages return `orphans: null`.
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+            maxLength: 300
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 500
+            default: 200
+      responses:
+        "200":
+          description: One page of drift.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceInventoryReconciliationReport"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`NOT_LEDGER_MODE` - the store still runs on the commerce counter."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/inventory/resync:
+    post:
+      operationId: resyncCommerceInventory
+      tags:
+        - Commerce
+      summary: "Issue #282 (ADR-0038). Rewrites the stock cache of every drifted unit on one page from the inventory ledger. Gated on `commerce.inventory.configure` (high-risk)."
+      description: >-
+        The ledger is always the truth: only the cache is rewritten, and the
+        body can never carry a stock count (only `cursor` and `limit`, to page).
+        Naturally idempotent - it sets state - so it carries no
+        `Idempotency-Key`. Audited as a warning. Repeat with `nextCursor` until
+        it is null. `409 NOT_LEDGER_MODE` for a store still on the counter.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                cursor:
+                  type: string
+                  maxLength: 300
+                limit:
+                  type: integer
+                  minimum: 1
+                  maximum: 500
+      responses:
+        "200":
+          description: The page that was scanned and how many units were repaired.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceInventoryResync"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`NOT_LEDGER_MODE` - the store still runs on the commerce counter."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/inventory/rollback:
+    post:
+      operationId: rollbackCommerceInventory
+      tags:
+        - Commerce
+      summary: "Issue #282 (ADR-0038). Puts the stock authority back on the commerce counter. Gated on `commerce.inventory.configure` (high-risk)."
+      description: >-
+        No body. Waits for every in-flight stock write, then sets the mode to
+        `counter`; the cache already holds the last ledger-derived counts, so the
+        counter paths resume from them. Naturally idempotent: a store already on
+        the counter answers `changed: false`. Audited as a warning. There is no
+        matching "switch to ledger" endpoint - that flip needs the opening
+        movements posted in the same transaction (`bun run
+        commerce:inventory:cutover`).
+      responses:
+        "200":
+          description: Whether the mode changed.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    required:
+                      - changed
+                    properties:
+                      changed:
+                        type: boolean
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /api/v1/commerce/orders/{id}/returns:
     get:
       operationId: listCommerceOrderReturns
@@ -12325,11 +12452,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -12611,11 +12734,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -12680,11 +12799,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -12777,11 +12892,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: false
         content:
@@ -12861,11 +12972,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: Idempotency-Key
-          in: header
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         required: true
         content:
@@ -12912,6 +13019,187 @@ paths:
                 $ref: "#/components/schemas/ApiError"
 components:
   schemas:
+    CommerceInventoryMode:
+      type: object
+      required:
+        - mode
+        - locationId
+        - changedAt
+      properties:
+        mode:
+          type: string
+          enum:
+            - counter
+            - ledger
+        locationId:
+          type: string
+          format: uuid
+          nullable: true
+          description: The inventory location commerce sells from; null in counter mode.
+        changedAt:
+          type: string
+          format: date-time
+          nullable: true
+    CommerceInventoryDrift:
+      type: object
+      required:
+        - itemType
+        - itemRef
+        - sku
+        - name
+        - cached
+        - expected
+        - ledgerOnHand
+      properties:
+        itemType:
+          type: string
+          enum:
+            - commerce.product
+            - commerce.variant
+        itemRef:
+          type: string
+          format: uuid
+        sku:
+          type: string
+          nullable: true
+        name:
+          type: string
+        cached:
+          type: integer
+          description: The `stock` column as it stands.
+        expected:
+          type: integer
+          description: "`max(0, floor(ledger on-hand))`."
+        ledgerOnHand:
+          type: string
+          description: The ledger balance, as the ledger states it (decimal string).
+    CommerceInventoryReconciliation:
+      type: object
+      required:
+        - mode
+        - locationId
+        - scanned
+        - drift
+        - nextCursor
+      properties:
+        mode:
+          type: string
+          enum:
+            - ledger
+        locationId:
+          type: string
+          format: uuid
+        scanned:
+          type: integer
+        drift:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceInventoryDrift"
+        nextCursor:
+          type: string
+          nullable: true
+    CommerceInventoryItem:
+      type: object
+      required:
+        - itemType
+        - itemRef
+        - sku
+        - name
+        - variantName
+        - unitCode
+      properties:
+        itemType:
+          type: string
+          enum:
+            - commerce.product
+            - commerce.variant
+        itemRef:
+          type: string
+          format: uuid
+        sku:
+          type: string
+          nullable: true
+        name:
+          type: string
+          description: The product's name (for a variant, its parent product).
+        variantName:
+          type: string
+          nullable: true
+          description: The variant's value, e.g. `M`; null for a product-level unit.
+        unitCode:
+          type: string
+          enum:
+            - unit
+    CommerceInventoryItemPage:
+      type: object
+      required:
+        - items
+        - nextCursor
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceInventoryItem"
+        nextCursor:
+          type: string
+          nullable: true
+    CommerceInventoryOrphan:
+      type: object
+      required:
+        - itemType
+        - itemRef
+        - unitCode
+        - onHand
+        - reason
+      properties:
+        itemType:
+          type: string
+        itemRef:
+          type: string
+        unitCode:
+          type: string
+        onHand:
+          type: string
+          description: The ledger balance at the sales location (decimal string).
+        reason:
+          type: string
+          enum:
+            - not_found
+            - product_has_variants
+            - wrong_unit
+            - unknown_item_type
+    CommerceInventoryOrphanReport:
+      type: object
+      required:
+        - items
+        - truncated
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceInventoryOrphan"
+        truncated:
+          type: boolean
+    CommerceInventoryReconciliationReport:
+      allOf:
+        - $ref: "#/components/schemas/CommerceInventoryReconciliation"
+        - type: object
+          required:
+            - orphans
+          properties:
+            orphans:
+              nullable: true
+              allOf:
+                - $ref: "#/components/schemas/CommerceInventoryOrphanReport"
+    CommerceInventoryResync:
+      allOf:
+        - $ref: "#/components/schemas/CommerceInventoryReconciliation"
+        - type: object
+          required:
+            - repaired
+          properties:
+            repaired:
+              type: integer
     CommerceStoredValueProgram:
       type: object
       description: "Issue #288 (ADR-0030) — per-tenant configuration of one kind of closed-loop stored value."
@@ -13536,6 +13824,12 @@ components:
         downloadLink:
           type: string
           nullable: true
+        taxCategoryCode:
+          type: string
+          nullable: true
+          maxLength: 63
+          pattern: "^[a-z0-9][a-z0-9_.-]{0,62}$"
+          description: "Issue #293 (ADR-0039) — the product's tax class: a tax rule category code (`tax` module, ADR-0127). null/blank = standard (the rule version's fallback rule). Product level only — a variant never differs in tax class. Used only in `engine` tax mode; admin-only (never on the public `CommerceProduct`)."
         allowDp:
           type: boolean
           default: false
@@ -13553,6 +13847,104 @@ components:
         isRecommended:
           type: boolean
           default: false
+        kind:
+          type: string
+          enum:
+            - standard
+            - bundle
+          default: standard
+          description: "Issue #290 (ADR-0036) — `bundle` makes this product a kit sold as ONE line whose stock movement is its components'. A bundle has no variants, no stock of its own (`stock` must be 0 or absent), is not a service product and is not flash-sale eligible. Distinct from the descriptive `type: bundle` (issue #266), which carries no stock semantics."
+        bundlePricing:
+          type: string
+          enum:
+            - fixed
+            - derived
+          default: fixed
+          description: "`fixed` = the bundle product's own price; `derived` = sum of the components' list prices x quantity, less `bundleDiscountPercent`, rounded half-up to the cent. Bundles only."
+        bundleDiscountPercent:
+          type: string
+          nullable: true
+          description: "A percentage from 0 to 100 with at most two decimals (a number or a decimal string is accepted; returned as a `numeric(5,2)` string). `derived` pricing only."
+        bundleComponents:
+          type: array
+          minItems: 1
+          maxItems: 20
+          description: "Replaces the bundle's component lines (omit to leave them unchanged). 1-20 lines; a component is never itself a bundle (no nesting); a component product with live variants must name a variant."
+          items:
+            $ref: "#/components/schemas/CommerceBundleComponentInput"
+    CommerceBundleComponentInput:
+      type: object
+      description: "Name the component either by `productId` (+ optional `variantId`) or by `sku` - a live product's or variant's SKU, resolved server-side inside the tenant (the admin form's `SKU x quantity` lines). An unknown SKU is refused exactly like an unknown product id."
+      required:
+        - quantity
+      properties:
+        sku:
+          type: string
+          minLength: 1
+          maxLength: 64
+        productId:
+          type: string
+          format: uuid
+        variantId:
+          type: string
+          format: uuid
+          nullable: true
+        quantity:
+          type: integer
+          minimum: 1
+          maximum: 10000
+          description: Units of the component in ONE bundle.
+    CommerceBundleComponent:
+      type: object
+      required:
+        - position
+        - productId
+        - variantId
+        - sku
+        - name
+        - variantName
+        - quantity
+      properties:
+        position:
+          type: integer
+          minimum: 1
+          maximum: 20
+        productId:
+          type: string
+          format: uuid
+        variantId:
+          type: string
+          format: uuid
+          nullable: true
+        sku:
+          type: string
+          nullable: true
+        name:
+          type: string
+        variantName:
+          type: string
+          nullable: true
+        quantity:
+          type: integer
+    CommerceBundle:
+      type: object
+      required:
+        - pricing
+        - discountPercent
+        - components
+      properties:
+        pricing:
+          type: string
+          enum:
+            - fixed
+            - derived
+        discountPercent:
+          type: string
+          nullable: true
+        components:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceBundleComponent"
     CommerceProductCreateInput:
       allOf:
         - $ref: "#/components/schemas/CommerceProductParityFields"
@@ -13814,7 +14206,7 @@ components:
           type: boolean
         finalPrice:
           type: string
-          description: price after discountPercent off, computed server-side in integer cents (domain/price-calculation.ts) — never a float.
+          description: "price after discountPercent off, computed server-side in integer cents (domain/price-calculation.ts) — never a float. For a `derived`-priced bundle (Issue #290) it is the derived price (components' list prices x quantity, less `bundleDiscountPercent`)."
         averageRating:
           type: string
           nullable: true
@@ -13822,6 +14214,25 @@ components:
         soldCount:
           type: integer
           description: "= manualSoldCount (until #29 lands orders)."
+        kind:
+          type: string
+          enum:
+            - standard
+            - bundle
+          description: "Issue #290 (ADR-0036). A `bundle` is one product made of components; its `stock` here is the COMPUTED availability (min over components of floor(component stock / quantity)), never a stored count."
+        bundlePricing:
+          type: string
+          enum:
+            - fixed
+            - derived
+        bundleDiscountPercent:
+          type: string
+          nullable: true
+        bundle:
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/CommerceBundle"
+          description: "Issue #290. The bundle's pricing and contents (no cost price, no stock counts); null for a standard product."
         images:
           type: array
           items:
@@ -14897,6 +15308,17 @@ components:
           type: string
           nullable: true
           description: "Issue #92 — numeric(5,2) as a string, 0-100, two decimals. A real column, not part of this jsonb document (sql/921's header) — included here on the wire only. null means the affiliate program is OFF for this tenant; a non-null value both turns it on and is the rate a NEW enrolment copies."
+        taxMode:
+          type: string
+          enum:
+            - flat
+            - engine
+          readOnly: true
+          description: "Issue #293 (ADR-0039) — READ-ONLY on the wire (a `PUT` carrying it is refused as an unrecognised field). `flat` (the default): tax is `payment.tax.percent` of the subtotal less the voucher discount. `engine`: the `tax` module prices carts and finalises a snapshot per order. A real column on the store-settings row (sql/948), flipped only by the audited `commerce:tax:cutover` tooling."
+        taxProfileCode:
+          type: string
+          readOnly: true
+          description: "Issue #293 — the tax module profile used in `engine` mode (default `store-default`). Read-only."
     CommerceStoreSettingsPublic:
       type: object
       description: The subset a storefront may publish — the contract awcms-one's storefront builds against. Never carries an account number, account holder or QRIS payload.
@@ -15028,12 +15450,37 @@ components:
                 percent:
                   type: integer
             tax:
-              type: object
-              properties:
-                active:
-                  type: boolean
-                percent:
-                  type: integer
+              oneOf:
+                - type: object
+                  description: "Issue #324 — flat mode: tax is `percent` of the subtotal less the voucher discount."
+                  required:
+                    - mode
+                    - active
+                    - percent
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - flat
+                    active:
+                      type: boolean
+                    percent:
+                      type: integer
+                - type: object
+                  description: "Issue #324 — engine mode: tax is computed by the tax module. The `active` and `percent` fields are NOT present in engine mode."
+                  required:
+                    - mode
+                  properties:
+                    mode:
+                      type: string
+                      enum:
+                        - engine
+                    inclusive:
+                      type: boolean
+                      nullable: true
+                      description: "Whether the tax is already included in the line prices (not added to the total). Omitted if not cheaply available."
+              discriminator:
+                propertyName: mode
             insurance:
               type: object
               properties:
@@ -15197,6 +15644,36 @@ components:
               minPurchase:
                 type: integer
                 nullable: true
+              bundle:
+                type: object
+                description: "Issue #290 (ADR-0036). Present on a bundle line only: what ONE bundle is made of. The line is a single line at the bundle's price; its stock check is the computed availability."
+                properties:
+                  components:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        position:
+                          type: integer
+                        productId:
+                          type: string
+                          format: uuid
+                        variantId:
+                          type: string
+                          format: uuid
+                          nullable: true
+                        sku:
+                          type: string
+                          nullable: true
+                        name:
+                          type: string
+                        variantName:
+                          type: string
+                          nullable: true
+                        quantityPerBundle:
+                          type: integer
+                        unitPrice:
+                          type: string
         subtotal:
           type: string
         weightGrams:
@@ -15243,6 +15720,38 @@ components:
           type: object
         tax:
           type: object
+          description: "`active`/`percent`/`amount` are the pre-#293 shape. Issue #293 (ADR-0039) adds `mode` (`flat` | `engine`: who computed it), `inclusive` (the tax is already inside the line prices and is NOT added to `total`; engine mode only), `error` (a `tax` module refusal code such as `TAX_RULE_VERSION_NOT_FOUND` when the engine could not answer — `canCheckout` is then false, never an untaxed sale) and `engine` ({profileCode, versionNo, ruleVersionId, taxDate}, null in flat mode). In engine mode `percent` is the fallback rule's first component rate, for display only; `amount` is the engine's figure."
+          properties:
+            active:
+              type: boolean
+            percent:
+              type: number
+            amount:
+              type: string
+            mode:
+              type: string
+              enum:
+                - flat
+                - engine
+            inclusive:
+              type: boolean
+            error:
+              type: string
+              nullable: true
+            engine:
+              type: object
+              nullable: true
+              properties:
+                profileCode:
+                  type: string
+                versionNo:
+                  type: integer
+                ruleVersionId:
+                  type: string
+                  nullable: true
+                taxDate:
+                  type: string
+                  format: date
         discount:
           type: string
         total:
@@ -18094,9 +18603,12 @@ components:
           type: string
         shippingRefund:
           type: string
+        taxRefund:
+          type: string
+          description: "The tax charged on the returned units, refunded with them (Issue #323): the order tax prorated per unit (flat mode, or an order with no tax snapshot), the reversal snapshot's tax total (engine mode, exclusive pricing), or `0.00` under inclusive pricing (the tax is already inside the goods value)."
         refundTotal:
           type: string
-          description: "`goodsGross - discountShare + shippingRefund`."
+          description: "`goodsGross - discountShare + shippingRefund + taxRefund`."
         exchangeOrderId:
           type: string
           format: uuid

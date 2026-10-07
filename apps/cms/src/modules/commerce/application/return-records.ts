@@ -85,6 +85,8 @@ export type ReturnRecord = {
   goodsGross: string;
   discountShare: string;
   shippingRefund: string;
+  /** The tax charged on the returned units, refunded with them (Issue #323). */
+  taxRefund: string;
   refundTotal: string;
   exchangeOrderId: string | null;
   createdAt: string;
@@ -103,6 +105,7 @@ type ReturnRow = {
   goods_gross: string;
   discount_share: string;
   shipping_refund: string;
+  tax_refund: string;
   refund_total: string;
   exchange_order_id: string | null;
   created_at: Date;
@@ -154,7 +157,7 @@ type CompensationRow = {
 };
 
 export const RETURN_COLUMNS = `id, order_id, kind, status, note, goods_gross, discount_share,
-  shipping_refund, refund_total, exchange_order_id, created_at, completed_at`;
+  shipping_refund, tax_refund, refund_total, exchange_order_id, created_at, completed_at`;
 
 export const REFUND_COLUMNS = `id, return_id, order_id, allocation_id, tender_type, amount, destination,
   status, settled_via, attempts, failure_code, reversal_allocation_id, store_credit_account_id,
@@ -227,6 +230,7 @@ function toReturnRecord(
     goodsGross: normalizeMoney(String(row.goods_gross)),
     discountShare: normalizeMoney(String(row.discount_share)),
     shippingRefund: normalizeMoney(String(row.shipping_refund)),
+    taxRefund: normalizeMoney(String(row.tax_refund)),
     refundTotal: normalizeMoney(String(row.refund_total)),
     exchangeOrderId: row.exchange_order_id,
     createdAt: row.created_at.toISOString(),

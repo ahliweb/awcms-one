@@ -51,6 +51,7 @@ import {
   COMMERCE_POS_DUE_ACTIVITY_CODE,
   COMMERCE_QUOTATION_CONVERSIONS_ACTIVITY_CODE
 } from "../../../../../../modules/commerce/domain/commerce-permissions";
+import { inventoryErrorResponse } from "../../../../../../modules/commerce/application/commerce-inventory-http";
 
 const CREATE_GUARD = {
   moduleKey: "commerce",
@@ -216,6 +217,8 @@ export const POST = defineTenantRoute<ConvertQuotationInput>({
             );
         }
       }
+      const inventoryFailure = inventoryErrorResponse(error);
+      if (inventoryFailure) return inventoryFailure;
       throw error;
     }
   }

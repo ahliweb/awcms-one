@@ -187,7 +187,39 @@ export type AccessAction =
   // merely reading or applying forward.
   | "register"
   | "operate"
-  | "rollback";
+  | "rollback"
+  // Inventory (`inventory`, ADR-0126, Issue #887): `adjust` posts a stock
+  // adjustment or reverses one — the only change to stock with no business
+  // document behind it (a count correction, shrinkage), hence separately
+  // grantable from `movements.create`. `transfer` moves stock between two
+  // locations, changing two balances at once. Both are classified high-risk
+  // below. (`read`/`create`/`update`/`configure`/`reconcile`/`rebuild` for
+  // inventory reuse existing union members.)
+  | "adjust"
+  | "transfer"
+  // Tax (ADR-0127): `reverse` refunds/returns a finalised document's tax from its
+  // original snapshot — a negative financial posting, so HIGH-RISK like
+  // `cancel`. Separate from `snapshots.create` because finalising a sale and
+  // refunding it are different powers. (`publish`/`configure`/`analyze` reuse
+  // existing members.)
+  | "reverse"
+  // Tax (ADR-0127): `backdate` posts a snapshot or reversal with a tax date
+  // outside the server-date window — into a period that may already be reported.
+  // HIGH-RISK, and a different power from `snapshots.create`.
+  | "backdate"
+  // Procurement (`procurement`, ADR-0128, Issue #888): `submit` freezes a draft
+  // document and starts the optional approval (not high-risk: it moves no stock
+  // and is reversible by cancel). `finalise` POSTS inventory movements through
+  // the ledger; `reveal` returns a supplier tax/business identifier in clear
+  // text. `finalise` and `reveal` are high-risk below, so the action-time SoD
+  // check is available the moment a tenant authors a maker/checker rule over
+  // them. `reverse` (also procurement's compensating-movement action) is the
+  // member Tax added above and is reused, not redeclared.
+  // (`read`/`create`/`update`/`delete`/`restore`/`cancel`/`configure`/
+  // `reconcile` reuse existing members.)
+  | "submit"
+  | "finalise"
+  | "reveal";
 
 export type AccessRequest = {
   moduleKey: string;
@@ -339,7 +371,23 @@ const HIGH_RISK_ACTIONS: ReadonlySet<AccessAction> = new Set([
   // of the three.
   "register",
   "operate",
-  "rollback"
+  "rollback",
+  // Inventory (ADR-0126): a stock adjustment has no business document behind
+  // it, and a transfer changes two balances at once — both are named high-risk
+  // actions in AGENTS.md ("stock adjustment", "warehouse transfer"). Marking
+  // them makes the action-time SoD check available the moment a tenant authors a
+  // rule (e.g. "whoever posts adjustments may not also run balance rebuilds").
+  "adjust",
+  "transfer",
+  // Tax (ADR-0127): a reversal posts a negative tax document; a back-dated
+  // post lands in a period that may already be reported.
+  "reverse",
+  "backdate",
+  // Procurement (ADR-0128): finalising a document moves stock (reversing one
+  // reuses Tax's `reverse` above), and revealing a supplier identifier
+  // discloses sensitive data.
+  "finalise",
+  "reveal"
 ]);
 
 export function isHighRiskAction(action: AccessAction): boolean {

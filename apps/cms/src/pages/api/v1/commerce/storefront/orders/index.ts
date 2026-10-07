@@ -25,6 +25,7 @@ import { withPublicCommerceTenant } from "../../../../../../modules/commerce/app
 import { requireCustomerSession } from "../../../../../../modules/commerce/application/customer-session-auth";
 import { validateCreateOrderInput } from "../../../../../../modules/commerce/domain/order-request-validation";
 import { normalizePhoneNumber } from "../../../../../../modules/commerce/domain/phone-normalisation";
+import { inventoryErrorResponse } from "../../../../../../modules/commerce/application/commerce-inventory-http";
 
 /**
  * `POST /api/v1/commerce/storefront/orders` (Issue #29) — anonymous,
@@ -249,6 +250,8 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     if (error instanceof IdempotencyPayloadMismatchError) {
       return fail(409, "IDEMPOTENCY_CONFLICT", error.message);
     }
+    const inventoryFailure = inventoryErrorResponse(error, { vary: "Origin" });
+    if (inventoryFailure) return inventoryFailure;
     throw error;
   }
 };

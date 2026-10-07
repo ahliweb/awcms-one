@@ -29,6 +29,7 @@ import {
   fetchAffiliateCommissionRate,
   fetchStoreSettings
 } from "../../modules/commerce/application/store-settings-directory";
+import { fetchTaxAdapterConfig } from "../../modules/commerce/application/tax-adapter-directory";
 import { listWebhookEndpoints } from "../../modules/commerce/application/webhook-endpoint-directory";
 import { fetchCommerceFeatures } from "../../modules/commerce/application/commerce-feature-gate";
 import { MODULE_SETTINGS_UPDATE_GUARD } from "../../modules/module-management/application/module-settings";
@@ -47,9 +48,10 @@ const screen = await loadAdminScreen({
     action: "read"
   },
   load: async ({ tx, can }) => {
-    const [settings, affiliateCommissionRate] = await Promise.all([
+    const [settings, affiliateCommissionRate, taxAdapter] = await Promise.all([
       fetchStoreSettings(tx, ssr.tenantId),
-      fetchAffiliateCommissionRate(tx, ssr.tenantId)
+      fetchAffiliateCommissionRate(tx, ssr.tenantId),
+      fetchTaxAdapterConfig(tx, ssr.tenantId)
     ]);
     const canUpdate = await can({
       moduleKey: "commerce",
@@ -82,6 +84,7 @@ const screen = await loadAdminScreen({
     return {
       settings,
       affiliateCommissionRate,
+      taxAdapter,
       canUpdate,
       canManageWebhookEndpoints,
       webhookEndpoints,
@@ -105,6 +108,11 @@ const loadError = screen.state === "error";
 const settings = screen.state === "allowed" ? screen.data.settings : null;
 const affiliateCommissionRate =
   screen.state === "allowed" ? screen.data.affiliateCommissionRate : null;
+// Issue #293 (ADR-0039) — read-only: only the audited cut-over tooling flips it.
+const taxAdapter =
+  screen.state === "allowed"
+    ? screen.data.taxAdapter
+    : { mode: "flat" as const, profileCode: "store-default" };
 const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
 const canManageWebhookEndpoints =
   screen.state === "allowed" && screen.data.canManageWebhookEndpoints;
@@ -235,6 +243,21 @@ const COURIER_OPTIONS = [
 
   {canRead && !loadError && settings && (
     <section id="store-settings-section">
+      <p class="state-notice fade-in-up" id="settings-tax-mode">
+        <span class="count-pill" id="settings-tax-mode-badge">
+          {taxAdapter.mode === "engine"
+            ? t("Tax: rules engine")
+            : t("Tax: flat percentage")}
+        </span>{" "}
+        {taxAdapter.mode === "engine"
+          ? t(
+              "Tax is computed by the tax module from effective-dated rules; the payment.tax percentage below is not used."
+            )
+          : t(
+              "Tax is the flat percentage below (payment.tax). An operator can move this store to effective-dated rules."
+            )}{" "}
+        <a href="/admin/tax">{t("Tax rules")}</a>
+      </p>
       <form id="store-settings-form" class="admin-create-form fade-in-up">
         <p class="form-legend">{t("Store identity")}</p>
         <p
@@ -538,7 +561,12 @@ const COURIER_OPTIONS = [
         data-url-base={webhookUrlBase}
       />
 
-      <div class="data-table-scroll fade-in-up">
+      <div
+        class="data-table-scroll fade-in-up"
+        role="region"
+        tabindex="0"
+        aria-label={t("Store settings")}
+      >
         <table
           class="data-table data-table--stack"
           id="webhook-endpoints-table"

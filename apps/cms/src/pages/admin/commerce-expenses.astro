@@ -504,7 +504,12 @@ const staffLabel = (id: string | null): string =>
             </a>
           ))}
         </nav>
-        <div class="data-table-scroll">
+        <div
+          class="data-table-scroll"
+          role="region"
+          tabindex="0"
+          aria-label={t("Expenses")}
+        >
           <table class="data-table data-table--stack" id="expenses-table">
             <caption>
               {tn(
@@ -826,7 +831,12 @@ const staffLabel = (id: string | null): string =>
               </button>
             </form>
           )}
-          <div class="data-table-scroll">
+          <div
+            class="data-table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label={t("Expense categories")}
+          >
             <table
               class="data-table data-table--stack"
               id="expense-categories-table"

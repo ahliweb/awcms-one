@@ -156,7 +156,12 @@ const showActions = canUpdate || canDelete;
   )}
 
   {canRead && !loadError && (
-    <div class="data-table-scroll fade-in-up">
+    <div
+      class="data-table-scroll fade-in-up"
+      role="region"
+      tabindex="0"
+      aria-label={t("Product categories")}
+    >
       <table
         class="data-table data-table--stack"
         id="commerce-categories-table"
@@ -281,7 +286,12 @@ const showActions = canUpdate || canDelete;
         {t("Deleted categories")}
         <span class="count-pill">{deletedCategories.length}</span>
       </h2>
-      <div class="data-table-scroll">
+      <div
+        class="data-table-scroll"
+        role="region"
+        tabindex="0"
+        aria-label={t("Deleted categories")}
+      >
         <table
           class="data-table data-table--stack"
           id="deleted-categories-table"

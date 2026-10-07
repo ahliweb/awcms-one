@@ -28,6 +28,8 @@ import { parseAttributeFilterParams } from "../../../../../modules/commerce/doma
 import { isProductStatus } from "../../../../../modules/commerce/domain/product-status";
 import { isProductSort } from "../../../../../modules/commerce/domain/product-sort";
 import { COMMERCE_PRODUCTS_ACTIVITY_CODE } from "../../../../../modules/commerce/domain/commerce-permissions";
+import { BundleDefinitionInvalidError } from "../../../../../modules/commerce/application/bundle-directory";
+import { inventoryErrorResponse } from "../../../../../modules/commerce/application/commerce-inventory-http";
 
 const READ_GUARD = {
   moduleKey: "commerce",
@@ -255,6 +257,18 @@ export const POST = defineTenantRoute({
         return fail(409, "PRODUCT_SKU_ALREADY_EXISTS", error.message);
       }
 
+      if (error instanceof BundleDefinitionInvalidError) {
+        return fail(
+          400,
+          "VALIDATION_ERROR",
+          "Product creation input is invalid.",
+          {},
+          error.errors
+        );
+      }
+
+      const inventoryFailure = inventoryErrorResponse(error);
+      if (inventoryFailure) return inventoryFailure;
       throw error;
     }
   }

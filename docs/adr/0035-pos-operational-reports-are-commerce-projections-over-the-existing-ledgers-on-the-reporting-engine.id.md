@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0035-pos-operational-reports-are-commerce-projections-over-the-existing-ledgers-on-the-reporting-engine.md)
 
-<!-- i18n-source-hash: sha256:f92a4b3e8ee1c5ab4871b017631684a03d14194ab12c332b5cd6dac9ea9fd0f9 -->
+<!-- i18n-source-hash: sha256:dc39bbb239b817ac6db1436f661f718d558eddcb3469a3102e78827266ad084e -->
 
 <!-- i18n-source-hash: sha256:placeholder -->
 
@@ -113,3 +113,7 @@ Keluarga retur & refund yang dijanjikan kontrak D1 kini ada sebagai proyeksi kee
 - **Di balik fitur `returns`, izin `commerce.report_returns.read|export`.** `GET /api/v1/reports/commerce/operational-returns` dan `.csv` menjawab `200 enabled: false` selama fitur mati; CSV-nya satu berkas panjang dengan kolom `section` (dinetralkan dari formula, `no-store`, diaudit sebagai `operational_report.export`).
 
 Konsekuensi pada pita yang dicadangkan: `945`–`946` terpakai, `947`–`949` tetap bebas untuk tabel yang, seperti ini, tidak menyebut sumber ke depan.
+
+## Adendum — stok menipis adalah proyeksi hulu (Issue #282, ADR-0038)
+
+D1 di atas menunda "kandidat stok menipis" ke #282 dan mencatat bahwa itu akan menjadi irisan commerce sendiri. [ADR-0038](0038-commerce-stock-is-a-write-through-cache-of-the-inventory-ledger.md) D8 menggantikan catatan itu: proyeksi `inventory.low_stock` hulu, pada mesin reporting yang sama, adalah laporan stok menipis dan `/admin/inventory` adalah saldo dan riwayat mutasi, sehingga commerce tidak membangun keluarga laporan stok (satu proyeksi per fakta).

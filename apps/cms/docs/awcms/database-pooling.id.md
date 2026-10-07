@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](database-pooling.md)
 
-<!-- i18n-source-hash: sha256:4f069960621f2a3f181edfc1bb4358e26f666a869c9a859a5749fea7587d2bff -->
+<!-- i18n-source-hash: sha256:6d39f1c891810406cb7753c9ace4fef0640c3d23d0ddafda32fafa0f768c9e36 -->
 
 # Database Connection Pooling and Backpressure
 
@@ -170,6 +170,13 @@ Alur:
      caller mengirim `tenantId` yang tidak ada) tidak dihitung sebagai
      kegagalan infra — mencegah beberapa request dengan input invalid
      membuka breaker aplikasi-lebar.
+   - `Bun.SQL.PostgresError` dengan SQLSTATE kelas `54` (program limit
+     exceeded — `54000`, mis. ukuran baris indeks melebihi batas btree akibat
+     nilai caller-supplied yang terlalu panjang) — properti input, bukan
+     kesehatan database. `Idempotency-Key` dibatasi di middleware (1 sampai 255
+     karakter ASCII yang terlihat, terdokumentasi di kontrak sebagai komponen
+     bersama `components.parameters.IdempotencyKey`, ADR-0129); pengecualian ini adalah pertahanan berlapis
+     untuk nilai tanpa batas lainnya.
    - `Bun.SQL.PostgresError` dengan SQLSTATE kelas `22` (data exception —
      `22P02` invalid_text_representation, `22003` numeric_value_out_of_range,
      dst.) — generalisasi dari kelas `23` di atas, sama-sama "input caller

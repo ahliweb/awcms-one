@@ -609,7 +609,12 @@ const tenderLabel = (method: string): string =>
             aria-label={t("Search results")}
           />
 
-          <div class="data-table-scroll">
+          <div
+            class="data-table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label={t("Cash register")}
+          >
             <table class="data-table" id="pos-cart-table">
               <caption>{t("Cart")}</caption>
               <thead>
@@ -898,7 +903,12 @@ const tenderLabel = (method: string): string =>
         </button>
       </form>
 
-      <div class="data-table-scroll">
+      <div
+        class="data-table-scroll"
+        role="region"
+        tabindex="0"
+        aria-label={t("History")}
+      >
         <table class="data-table data-table--stack" id="pos-history-table">
           <caption>
             {tn("{count} POS sale", "{count} POS sales", history.items.length, {

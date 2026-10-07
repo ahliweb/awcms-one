@@ -222,10 +222,15 @@ describe("validateProjectionRegistry (Issue #753)", () => {
     // (Issue #117) — the first descriptors contributed by a module OTHER than
     // `reporting`, which is the shape this registry exists for — plus
     // `commerce`'s five POS operational projections (Issue #296) and its
-    // returns & refunds one (Issue #316).
-    expect(result.descriptors.length).toBe(12);
+    // returns & refunds one (Issue #316). Upstream's `inventory.low_stock`
+    // (ADR-0126), `tax.snapshot_activity` (ADR-0127) and the two
+    // `procurement.*` counters (ADR-0128) bring the total to 16.
+    expect(result.descriptors.length).toBe(16);
     expect(
       result.descriptors.filter((d) => d.ownerModuleKey === "commerce").length
     ).toBe(9);
+    expect(result.descriptors.map((d) => d.key)).toContain(
+      "tax.snapshot_activity"
+    );
   });
 });

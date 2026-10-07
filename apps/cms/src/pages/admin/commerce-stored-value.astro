@@ -491,7 +491,12 @@ const actorLabel = (id: string | null): string =>
             </a>
           ))}
         </nav>
-        <div class="data-table-scroll">
+        <div
+          class="data-table-scroll"
+          role="region"
+          tabindex="0"
+          aria-label={t("Accounts")}
+        >
           <table class="data-table data-table--stack" id="sv-accounts-table">
             <caption>
               {tn(
@@ -655,7 +660,12 @@ const actorLabel = (id: string | null): string =>
             {commerceLabel(labels.storedValueKind, selected.kind)} ·{" "}
             {t("Balance")} {money(selected.balance)}
           </p>
-          <div class="data-table-scroll">
+          <div
+            class="data-table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label={t("Ledger")}
+          >
             <table class="data-table data-table--stack" id="sv-ledger-table">
               <caption>
                 {tn(
@@ -800,7 +810,12 @@ const actorLabel = (id: string | null): string =>
         aria-labelledby="sv-report-heading"
       >
         <h2 id="sv-report-heading">{t("Liability report")}</h2>
-        <div class="data-table-scroll">
+        <div
+          class="data-table-scroll"
+          role="region"
+          tabindex="0"
+          aria-label={t("Liability report")}
+        >
           <table class="data-table data-table--stack" id="sv-report-table">
             <caption>
               {t(

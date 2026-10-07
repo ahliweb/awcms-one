@@ -92,7 +92,10 @@ describe("the returns permissions", () => {
     const source = await read(
       `${SRC}/modules/identity-access/domain/access-control.ts`
     );
-    for (const verb of ["refund", "return", "reverse", "restock"]) {
+    // `reverse` is deliberately not in this list since the v10.5.0 sync
+    // (awcms-one#319): upstream's `procurement` module (ADR-0128) added it as a
+    // generic verb. The returns permissions below still use none of it.
+    for (const verb of ["refund", "return", "restock"]) {
       expect(source).not.toMatch(new RegExp(`\\|\\s*"${verb}"`));
     }
   });
@@ -339,7 +342,10 @@ describe("single writers", () => {
     const mine = names
       .filter((n) => /returns/.test(n) && !/returns_report/.test(n))
       .sort();
+    // `1000` is issue #323's tax refund: it alters the 994 table, so under
+    // ADR-0037 D2 it takes the next four-digit number rather than a gap number.
     expect(mine).toEqual([
+      "1000_awcms_commerce_returns_tax_refund.sql",
       "994_awcms_commerce_returns_schema.sql",
       "995_awcms_commerce_returns_integration.sql",
       "996_awcms_commerce_returns_permissions.sql",

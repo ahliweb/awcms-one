@@ -54,7 +54,7 @@
  * Three streams into one long table, every one over a source whose cursor is
  * NOT NULL from insert. (1) `awcms_commerce_returns`, cursor `created_at`: a
  * return or exchange adds one to its `return`/`exchange` bucket and its refund
- * total (goods - discount + shipping) to the amount. (2) `awcms_commerce_
+ * total (goods - discount + shipping + tax) to the amount. (2) `awcms_commerce_
  * return_lines`, cursor `created_at`, append-only: a line adds one line, its
  * units and its refunded value to its disposition bucket (`restock` = put back
  * on the shelf, `damaged` = written off, `quarantine` = held). (3) the payment
@@ -434,7 +434,7 @@ export type ReturnsDailyDelta = {
 
 export type ReturnFact = {
   kind: string;
-  /** `numeric(14,2)` string: goods - discount + shipping. */
+  /** `numeric(14,2)` string: goods - discount + shipping + tax (Issue #323). */
   refundTotal: string;
   createdAt: Date;
   /** Register of the ORIGINAL sale's session, `null` when not a register sale. */

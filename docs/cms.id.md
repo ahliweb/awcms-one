@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](cms.md)
 
-<!-- i18n-source-hash: sha256:0f35fdff59911d6103ae49f56f66a8bbfe2681cbef407bf62e4941e8710e90a0 -->
+<!-- i18n-source-hash: sha256:f1ca24361c3b8b87cf46edbe2b8332379a48bb0915284f3f86ed876d68452e5d -->
 
 # CMS: authoring, publikasi, izin, audit, media, taksonomi
 
@@ -337,6 +337,15 @@ Flag `features` keenam, **`loyalty`, default `false`** — satu-satunya flag di 
 - **Layar.** Panel dan wizard "Pengembalian barang dan dana" di detail pesanan (`components/CommerceReturnsPanel.astro`, `lib/ui/commerce-returns-client.ts`).
 - **Feature flag.** `features.returns`, default MATI.
 - **Tes.** `apps/cms/tests/commerce-returns-domain.test.ts` (properti dekomposisi sen, perencanaan refund, aritmetika proporsional, validator, netting laporan), `commerce-returns-routes.test.ts` (pemisahan izin, penulis tunggal, penempatan panggilan penyedia), `commerce-returns-client.test.ts`, dan `apps/cms/tests/integration/commerce-returns.integration.test.ts` (Postgres nyata: return sebagian/berulang/konkuren, disposisi, batas refund dan triggernya, retry/replay/offline penyedia, kredit toko, kompensasi loyalitas dan afiliasi, netting laporan dan paritas rebuild, RLS, BOLA, fitur-mati, idempotensi, penjaga append-only, reconcile, penukaran).
+
+## Otoritas stok: counter atau ledger inventori (isu #282, epik #281, [ADR-0038](adr/0038-commerce-stock-is-a-write-through-cache-of-the-inventory-ledger.md))
+
+- **Mode.** `awcms_commerce_store_settings.inventory_mode` — `counter` (bawaan) atau `ledger` — dengan lokasi penjualan `inventory_location_id` (`sql/947`). `counter` adalah satu hitungan stok yang selalu dibawa tiap produk/varian; `ledger` menjadikan ledger `inventory` hulu sebagai otoritas dan `stock` sebagai cache write-through darinya. Setiap pembaca (etalase, kutipan keranjang, POS, barcode, daftar admin) tetap membaca `stock`.
+- **Di mana stok bergerak.** `application/commerce-inventory.ts` adalah satu-satunya berkas yang tahu ledger: pembuatan pesanan dan penjualan POS memposting `sale` per baris (`commerce_order`, id pesanan, id item pesanan), batal/kedaluwarsa memposting `sale_return` (`commerce_order_restock`), restock retur memposting `sale_return` (`commerce_return`, id retur, id baris retur) lewat `ledgerInventoryPort`, dan `modeAwareInventoryPort` adalah bawaan retur. Baris diurutkan menurut `(itemType, itemRef)`; setiap unit kerja penggerak stok berjalan dalam savepoint sehingga penolakan ledger tidak meninggalkan apa pun (`cart_changed` / `PosCartChangedError` untuk stok habis, `409 INVENTORY_UNAVAILABLE` selain itu).
+- **Perawatan cache.** Posting menulis `max(0, floor(balanceAfter))`; konsumen `commerce.inventory_stock_cache_projector` membaca ulang ledger ketika mutasi diposting di lokasi penjualan oleh pihak lain; `GET …/inventory/reconciliation` menemukan drift dan `POST …/inventory/resync` memperbaikinya.
+- **Cut-over.** `bun run commerce:inventory:cutover` (dry-run secara bawaan, `--commit`, `--tenant`, `--location`): opening plus flip dalam satu transaksi di bawah kunci mode eksklusif per tenant, diverifikasi sebelum commit; jalan baliknya `POST …/inventory/rollback`. Runbook di [`docs/deployment.md`](deployment.id.md).
+- **Suntingan.** Pada mode `ledger`, suntingan produk/varian, pembuatan dengan stok, atau perubahan stok CSV adalah `409 STOCK_MANAGED_BY_INVENTORY`.
+- **Belum ada layar admin** untuk mode, rekonsiliasi, atau resync (`commerce.inventory.{read,configure}` dicatat sebagai permukaan API/operator); stok menipis adalah proyeksi `inventory.low_stock` hulu.
 
 ## Penawaran, perintah kerja, struk dan faktur, serta penjualan tertahan (issue #286, epik #281, [ADR-0029](adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md))
 

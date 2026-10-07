@@ -153,7 +153,12 @@ const varianceLabel = (variance: string) =>
         </span>
       </div>
     </section>
-    <div class="data-table-scroll">
+    <div
+      class="data-table-scroll"
+      role="region"
+      tabindex="0"
+      aria-label={t("Tender mix by register")}
+    >
       <table class="data-table data-table--stack" id="ops-tenders-table">
         <caption>
           {t(
@@ -249,7 +254,12 @@ const varianceLabel = (variance: string) =>
         </span>
       </div>
     </section>
-    <div class="data-table-scroll">
+    <div
+      class="data-table-scroll"
+      role="region"
+      tabindex="0"
+      aria-label={t("Cash-up variance")}
+    >
       <table class="data-table data-table--stack" id="ops-cash-ups-table">
         <caption>
           {t(
@@ -337,7 +347,12 @@ const varianceLabel = (variance: string) =>
       {t("Expenses by category")}
       <span class="count-pill">{expenseRows.length}</span>
     </h2>
-    <div class="data-table-scroll">
+    <div
+      class="data-table-scroll"
+      role="region"
+      tabindex="0"
+      aria-label={t("Expenses by category")}
+    >
       <table class="data-table data-table--stack" id="ops-expenses-table">
         <caption>
           {t(
@@ -446,7 +461,12 @@ const varianceLabel = (variance: string) =>
         </span>
       </div>
     </section>
-    <div class="data-table-scroll">
+    <div
+      class="data-table-scroll"
+      role="region"
+      tabindex="0"
+      aria-label={t("Loyalty points")}
+    >
       <table class="data-table data-table--stack" id="ops-loyalty-table">
         <caption>
           {t(
@@ -530,7 +550,12 @@ const varianceLabel = (variance: string) =>
         </div>
       ))}
     </section>
-    <div class="data-table-scroll">
+    <div
+      class="data-table-scroll"
+      role="region"
+      tabindex="0"
+      aria-label={t("Stored-value liability")}
+    >
       <table class="data-table data-table--stack" id="ops-stored-value-table">
         <caption>
           {t(
@@ -645,7 +670,12 @@ const varianceLabel = (variance: string) =>
         </span>
       </div>
     </section>
-    <div class="data-table-scroll">
+    <div
+      class="data-table-scroll"
+      role="region"
+      tabindex="0"
+      aria-label={t("Returns and refunds")}
+    >
       <table class="data-table data-table--stack" id="ops-returns-table">
         <caption>
           {t(

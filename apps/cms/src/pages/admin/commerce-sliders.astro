@@ -161,7 +161,12 @@ const showActions = canUpdate || canDelete;
   )}
 
   {canRead && !loadError && (
-    <div class="data-table-scroll fade-in-up">
+    <div
+      class="data-table-scroll fade-in-up"
+      role="region"
+      tabindex="0"
+      aria-label={t("Home sliders")}
+    >
       <table class="data-table data-table--stack" id="commerce-sliders-table">
         <caption>
           {tn("{count} slider", "{count} sliders", sliders.length, {

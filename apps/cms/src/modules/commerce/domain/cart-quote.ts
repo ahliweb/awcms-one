@@ -62,6 +62,13 @@ import type {
   CartLineStatus
 } from "./commerce-order-types";
 import type { StoreSettingsData } from "./store-settings-validation";
+import type { BundleLineComponent } from "./bundle";
+import {
+  computeEngineTax,
+  fallbackRatePercent,
+  versionTaxesAnything,
+  type CartQuoteTaxContext
+} from "./tax-adapter";
 
 export type CartQuoteLineInput = {
   productId: string;
@@ -134,6 +141,14 @@ export type CartQuoteProductSnapshot = {
   serviceForm: ServiceFormField[] | null;
   imageUrl: string | null;
   imageAlt: string | null;
+  /**
+   * Issue #290 (ADR-0036) - set for a bundle only. The caller has already
+   * folded the bundle into this snapshot: `stock` is the computed
+   * availability and, for `derived` pricing, `price` is the derived price with
+   * `discountPercent` 0 and no tier prices. A bundle is one line: the
+   * components ride along so the order can snapshot them.
+   */
+  bundle?: { components: BundleLineComponent[] } | null;
 };
 
 export type CartQuoteVariantSnapshot = {
@@ -178,6 +193,14 @@ export type CartQuoteContext = {
    * (absent -> `gateway.available` is always `false`).
    */
   gatewayProviderConfigured?: boolean;
+  /**
+   * Issue #293 (ADR-0039) — how tax is priced. Absent = `{ mode: "flat" }`: the
+   * pre-#293 `percent` of `subtotal - voucher discount`, byte for byte. In
+   * `engine` mode the caller (`cart-quote-service.ts`) has already resolved the
+   * tax module's published version for the store's business date, so this
+   * function stays pure.
+   */
+  tax?: CartQuoteTaxContext;
 };
 
 export type CartQuoteLineResult = {
@@ -203,6 +226,8 @@ export type CartQuoteLineResult = {
   minPurchase: number | null;
   serviceFormErrors: { fieldId: string; message: string }[] | null;
   serviceFormValues: Record<string, string> | null;
+  /** Issue #290 (ADR-0036) - present only on a bundle line: what one bundle is made of. */
+  bundle?: { components: BundleLineComponent[] };
 };
 
 export type CartQuoteShippingOption = {
@@ -225,6 +250,29 @@ export type CartQuoteVoucherResult = {
   reason: string | null;
 } | null;
 
+/**
+ * `active`/`percent`/`amount` are the pre-#293 shape every consumer already
+ * reads. The rest is additive (Issue #293): `mode` says who computed it,
+ * `inclusive` that the tax is already inside the line prices (so it is NOT added
+ * to `total`), `error` the tax module's refusal code when the engine could not
+ * answer (the cart then cannot check out — never silently untaxed), and
+ * `engine` the version that was used.
+ */
+export type CartQuoteTax = {
+  active: boolean;
+  percent: number;
+  amount: string;
+  mode: "flat" | "engine";
+  inclusive: boolean;
+  error: string | null;
+  engine: {
+    profileCode: string;
+    versionNo: number;
+    ruleVersionId: string | null;
+    taxDate: string;
+  } | null;
+};
+
 export type CartQuoteResult = {
   lines: CartQuoteLineResult[];
   subtotal: string;
@@ -244,7 +292,7 @@ export type CartQuoteResult = {
     selected: boolean;
     fee: string;
   };
-  tax: { active: boolean; percent: number; amount: string };
+  tax: CartQuoteTax;
   discount: string;
   total: string;
   downPayment: { available: boolean; percent: number; amount: string };
@@ -463,7 +511,10 @@ function resolveLine(
     availableStock,
     minPurchase: product.minPurchase,
     serviceFormErrors: serviceFormErrors.length > 0 ? serviceFormErrors : null,
-    serviceFormValues: input.serviceFormValues
+    serviceFormValues: input.serviceFormValues,
+    ...(product.bundle
+      ? { bundle: { components: product.bundle.components } }
+      : {})
   };
 }
 
@@ -719,13 +770,87 @@ export function quoteCart(
   const insuranceFee = fromCents(insuranceFeeCents);
 
   // -- Tax ---------------------------------------------------------------
-  const taxActive = context.storeSettings.payment.tax.active;
-  const taxPercent = context.storeSettings.payment.tax.percent;
-  const taxableCents = subtotalCents - voucherDiscountCents;
-  const taxAmountCents = taxActive
-    ? (taxableCents * BigInt(taxPercent) + 50n) / 100n
-    : 0n;
-  const taxAmount = fromCents(taxAmountCents);
+  // Flat mode (the default, and every tenant until the Issue #293 cut-over) is
+  // the original single multiplication, untouched. Engine mode asks the tax
+  // module over the same inputs (`domain/tax-adapter.ts`).
+  let tax: CartQuoteTax;
+  let taxAddedCents: bigint;
+  const taxContext = context.tax ?? { mode: "flat" as const };
+
+  if (taxContext.mode === "engine") {
+    const priced = lines.filter(
+      (line) =>
+        line.status === "ok" ||
+        line.status === "quantity_reduced" ||
+        line.status === "min_purchase"
+    );
+    const outcome = computeEngineTax(
+      taxContext.version,
+      taxContext.profileCode,
+      taxContext.taxDate,
+      priced.map((line, index) => ({
+        lineRef: String(index + 1),
+        categoryCode:
+          taxContext.categoryByProductId.get(line.productId) ?? null,
+        quantity: line.quantity,
+        unitPrice: line.unitPrice,
+        lineTotal: line.lineTotal
+      })),
+      voucherDiscountCents
+    );
+
+    if (outcome.ok) {
+      const inclusive = outcome.figure.inclusive;
+      taxAddedCents = inclusive ? 0n : outcome.figure.amountCents;
+      tax = {
+        active: taxContext.version
+          ? versionTaxesAnything(taxContext.version)
+          : false,
+        percent: taxContext.version
+          ? fallbackRatePercent(taxContext.version)
+          : 0,
+        amount: fromCents(outcome.figure.amountCents),
+        mode: "engine",
+        inclusive,
+        error: null,
+        engine: {
+          profileCode: taxContext.profileCode,
+          versionNo: taxContext.version!.versionNo,
+          ruleVersionId: taxContext.version!.ruleVersionId,
+          taxDate: taxContext.taxDate
+        }
+      };
+    } else {
+      taxAddedCents = 0n;
+      tax = {
+        active: true,
+        percent: 0,
+        amount: "0.00",
+        mode: "engine",
+        inclusive: false,
+        error: outcome.code,
+        engine: null
+      };
+    }
+  } else {
+    const taxActive = context.storeSettings.payment.tax.active;
+    const taxPercent = context.storeSettings.payment.tax.percent;
+    const taxableCents = subtotalCents - voucherDiscountCents;
+    const taxAmountCents = taxActive
+      ? (taxableCents * BigInt(taxPercent) + 50n) / 100n
+      : 0n;
+
+    taxAddedCents = taxAmountCents;
+    tax = {
+      active: taxActive,
+      percent: taxPercent,
+      amount: fromCents(taxAmountCents),
+      mode: "flat",
+      inclusive: false,
+      error: null,
+      engine: null
+    };
+  }
 
   // -- Total ---------------------------------------------------------------
   const totalCents =
@@ -733,7 +858,7 @@ export function quoteCart(
     voucherDiscountCents +
     shippingCents +
     insuranceFeeCents +
-    taxAmountCents;
+    taxAddedCents;
   const total = fromCents(totalCents < 0n ? 0n : totalCents);
 
   // -- Down payment -------------------------------------------------------
@@ -764,8 +889,11 @@ export function quoteCart(
     }
   ];
 
+  // A tax the engine could not answer blocks checkout: never an untaxed sale.
   const canCheckout =
-    lines.length > 0 && lines.every((line) => line.status === "ok");
+    lines.length > 0 &&
+    lines.every((line) => line.status === "ok") &&
+    tax.error === null;
 
   return {
     lines,
@@ -781,7 +909,7 @@ export function quoteCart(
       selected: insuranceSelected,
       fee: insuranceFee
     },
-    tax: { active: taxActive, percent: taxPercent, amount: taxAmount },
+    tax,
     discount,
     total,
     downPayment: {

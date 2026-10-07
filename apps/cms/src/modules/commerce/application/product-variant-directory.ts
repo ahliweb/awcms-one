@@ -1,5 +1,6 @@
 import { normalizeMoney } from "../domain/price-calculation";
 import { recordAuditEvent } from "../../logging/application/audit-log";
+import { assertStockWritable } from "./commerce-inventory";
 import type {
   CreateProductVariantInput,
   UpdateProductVariantInput
@@ -90,6 +91,8 @@ function toRecord(row: ProductVariantRow): ProductVariantRecord {
   };
 }
 
+// Issue #290 (ADR-0036): a bundle has no variants, so a bundle product is
+// reported exactly like an unknown one (`kind = 'standard'`).
 async function productExists(
   tx: Bun.SQL,
   tenantId: string,
@@ -98,6 +101,7 @@ async function productExists(
   const rows = (await tx`
     SELECT 1 FROM awcms_commerce_products
     WHERE tenant_id = ${tenantId} AND id = ${productId} AND deleted_at IS NULL
+      AND kind = 'standard'
   `) as unknown[];
   return rows.length > 0;
 }
@@ -176,6 +180,9 @@ export async function createProductVariant(
     if (!available) throw new DuplicateVariantSkuError(input.sku);
   }
 
+  // Issue #282 (ADR-0038 D6) - a new variant starts at zero in `ledger` mode.
+  await assertStockWritable(tx, tenantId, input.stock, 0);
+
   let rows: ProductVariantRow[];
   try {
     rows = (await tx`
@@ -247,6 +254,9 @@ export async function updateProductVariant(
     );
     if (!available) throw new DuplicateVariantSkuError(nextSku);
   }
+
+  // Issue #282 (ADR-0038 D6) - refused in `ledger` mode when it would CHANGE the count.
+  await assertStockWritable(tx, tenantId, input.stock, existing.stock);
 
   let rows: ProductVariantRow[];
   try {

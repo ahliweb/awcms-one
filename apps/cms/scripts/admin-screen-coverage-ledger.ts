@@ -132,5 +132,30 @@ export const NOT_YET_SCREENED: readonly string[] = [
   "omes_control.jobs.cancel",
   "omes_control.jobs.read",
   "omes_control.servers.delete",
-  "omes_control.servers.register"
+  "omes_control.servers.register",
+
+  // inventory (1) — ADR-0126 / Issue #887. `/admin/inventory` (Issue #894)
+  // claimed ten, and Issue #901 the eleventh: `balances.rebuild` is now a
+  // guarded, confirmed screen action (it rewrites balances FROM the ledger and
+  // carries no quantity, so it cannot assert one). What remains is
+  // `movements.create`, which posts caller-attested sale/receive/return
+  // movements, where "verifying the document is the consumer duty". Not a
+  // decision yet, so it stays on the shrink-only list.
+  "inventory.movements.create",
+
+  // tax (4) — ADR-0127 / Issue #889. `/admin/tax` (Issue #894) claimed the rule,
+  // snapshot-read and report keys. The four left are consumer actions — a
+  // storefront or POS quotes, finalises, refunds and (with a second permission)
+  // backdates a document; no operator composes one in a browser.
+  "tax.calculations.analyze",
+  "tax.snapshots.backdate",
+  "tax.snapshots.create",
+  "tax.snapshots.reverse",
+
+  // procurement (1) — ADR-0128 / Issue #888. `/admin/procurement` (Issue #905)
+  // claimed the other sixteen. What remains is editing a DRAFT in place
+  // (`PUT /documents/{id}`): the screen creates a draft and, for a mistake,
+  // cancels it and enters a new one, so this stays on the shrink-only list until
+  // a draft editor is a decision.
+  "procurement.documents.update"
 ];
