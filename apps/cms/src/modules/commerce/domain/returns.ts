@@ -26,6 +26,19 @@
  * The order discount is spread over lines by the largest-remainder method on
  * integer cents, so the shares sum to the order discount exactly.
  *
+ * ## Tax (Issue #323)
+ *
+ * The tax charged on a returned unit is refunded with it. In flat mode (and
+ * for an order with no tax snapshot) the order's stored tax is prorated with
+ * the SAME two steps: {@link allocateOrderTax} spreads it over the lines
+ * (largest remainder, weighted by each line's value AFTER its discount share -
+ * the base the tax was charged on), then {@link computeReturnValue} takes the
+ * returned units' share of the line's tax with the same first-units-carry-the-
+ * cents rule. The tax refunded by every return of an order therefore never
+ * exceeds the order's tax and equals it exactly once every unit has gone back.
+ * In engine mode the figure is the tax module's reversal snapshot instead
+ * (`tax-adapter-directory.ts`); see ADR-0033's tax addendum.
+ *
  * ## Refund planning
  *
  * A refund goes back along the payments that funded the order, newest first,
@@ -178,11 +191,27 @@ export function allocateOrderDiscount(
   return shares;
 }
 
+/**
+ * The order's tax (cents) allocated to each line, weighted by the line's
+ * `lineNetCents` (line total minus its discount share). Reuses
+ * {@link allocateOrderDiscount} - one allocation, not a second one: the shares
+ * sum to `min(tax, Σ net)` and never exceed their line. A negative or zero tax
+ * allocates nothing.
+ */
+export function allocateOrderTax(
+  lineNetCents: readonly bigint[],
+  taxCents: bigint
+): bigint[] {
+  return allocateOrderDiscount(lineNetCents, taxCents > 0n ? taxCents : 0n);
+}
+
 export type ReturnValueInput = {
   /** The line's total, `order_items.line_total` (pre-discount). */
   lineTotalCents: bigint;
   /** The part of the order discount allocated to this line ({@link allocateOrderDiscount}). */
   lineDiscountCents: bigint;
+  /** The part of the order's tax allocated to this line ({@link allocateOrderTax}); omitted = 0 (inclusive pricing / no tax). */
+  lineTaxCents?: bigint;
   /** Units sold on the line. */
   quantity: number;
   /** Units of this line already returned. */
@@ -194,7 +223,10 @@ export type ReturnValueInput = {
 export type ReturnValue = {
   goodsGrossCents: bigint;
   discountShareCents: bigint;
+  /** Goods minus discount - the line's refund value BEFORE tax (`return_lines.refund_amount`). */
   refundCents: bigint;
+  /** The prorated tax of the returned units (flat decomposition); 0 when no `lineTaxCents`. */
+  taxCents: bigint;
 };
 
 /** Value of returning `returning` more units of a line. @throws {RangeError} more than remains. */
@@ -221,10 +253,17 @@ export function computeReturnValue(input: ReturnValueInput): ReturnValue {
     input.alreadyReturned,
     input.returning
   );
+  const tax = sumUnitCents(
+    input.lineTaxCents ?? 0n,
+    input.quantity,
+    input.alreadyReturned,
+    input.returning
+  );
   return {
     goodsGrossCents: goods,
     discountShareCents: discount,
-    refundCents: goods - discount
+    refundCents: goods - discount,
+    taxCents: tax
   };
 }
 

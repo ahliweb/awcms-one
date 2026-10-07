@@ -11225,6 +11225,9 @@ msgstr "Diselesaikan di luar"
 msgid "Shipping refunded"
 msgstr "Ongkos kirim dikembalikan"
 
+msgid "Tax refunded"
+msgstr "Pajak dikembalikan"
+
 msgid "Size or fit"
 msgstr "Ukuran atau kecocokan"
 

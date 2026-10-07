@@ -2939,6 +2939,7 @@ export const ID_CATALOG: CompiledCatalog = {
   "Tax included in price (inclusive)": ["Pajak sudah termasuk harga (inklusif)"],
   "Tax is computed by the tax module from effective-dated rules; the payment.tax percentage below is not used.": ["Pajak dihitung oleh modul pajak dari aturan berlaku-tanggal; persentase payment.tax di bawah tidak dipakai."],
   "Tax is the flat percentage below (payment.tax). An operator can move this store to effective-dated rules.": ["Pajak adalah persentase tetap di bawah (payment.tax). Operator dapat memindahkan toko ini ke aturan berlaku-tanggal."],
+  "Tax refunded": ["Pajak dikembalikan"],
   "Tax rules": ["Aturan pajak"],
   "Tax sections": ["Bagian pajak"],
   "Tax snapshots": ["Snapshot pajak"],

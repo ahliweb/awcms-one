@@ -8,11 +8,11 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 29    |
-| Migrations                          | 262   |
+| Migrations                          | 263   |
 | `awcms_*` tables                    | 261   |
 | Tables with `FORCE` RLS             | 243   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 705   |
+| Test files                          | 706   |
 | Route files                         | 700   |
 | ADR                                 | 262   |
 
@@ -316,6 +316,7 @@
 | 260 | `sql/997_awcms_commerce_returns_worker_grants.sql`                          |
 | 261 | `sql/998_awcms_commerce_operational_reports_schema.sql`                     |
 | 262 | `sql/999_awcms_commerce_operational_reports_permissions.sql`                |
+| 263 | `sql/1000_awcms_commerce_returns_tax_refund.sql`                            |
 
 ### Tables & Row-Level Security
 
@@ -589,7 +590,7 @@
 | ------------- | ---------- |
 | `(root)`      | 542        |
 | `e2e`         | 25         |
-| `integration` | 137        |
+| `integration` | 138        |
 | `unit`        | 1          |
 
 ### Routes

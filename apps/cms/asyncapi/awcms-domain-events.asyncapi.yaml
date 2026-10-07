@@ -822,7 +822,8 @@ channels:
       Aggregate: the return (`commerce.return`). Payload: `returnId`,
       `orderId`, `kind`, `lines` (`orderItemId`, `quantity`, `reason`,
       `disposition`, `refundAmount`), `goodsGross`, `discountShare`,
-      `shippingRefund`, `refundTotal` - never a name, phone or free-text note.
+      `shippingRefund`, `taxRefund`, `refundTotal` - never a name, phone or
+      free-text note.
   awcms.commerce.refund.settled:
     address: awcms.commerce.refund.settled
     messages:

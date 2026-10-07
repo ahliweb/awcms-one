@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0037-the-commerce-migration-band-is-allocated-gap-first-and-widened-upstream.md)
 
-<!-- i18n-source-hash: sha256:94b1b9ec079a5c716f566b84261a70fd3673ae56f9825dfaace4293cf1d8c67c -->
+<!-- i18n-source-hash: sha256:c0c299a249c07605cd0c854072335fda50aad432eefd347b49ac9a9768d3ebb6 -->
 
 # ADR-0037 — Pita migrasi commerce dialokasikan celah-dulu, dan diperluas upstream
 
@@ -34,18 +34,21 @@ Migrasi celah yang merujuk pada objek yang dibuat berkas bernomor lebih tinggi k
 
 **D1. Alokasikan celah secara eksplisit, menurut isu.** Dicatat di sini dan tidak di tempat lain:
 
-| Nomor               | Pemilik                                                          |
-| ------------------- | ---------------------------------------------------------------- |
-| `947`               | #282 — adaptor inventori commerce (terpakai)                     |
-| `948`               | #293 — adaptor pajak commerce (terpakai)                         |
-| `949`               | Pita pool yang tidak dialokasikan (#283 tidak butuh migrasi)     |
-| `953`–`955`         | #290 — bundel / item kit (terpakai); `956`–`959` kembali ke pool |
-| `968`, `969`        | Pita pool yang tidak dialokasikan                                |
-| `977`–`979`         | Pita pool yang tidak dialokasikan                                |
-| `983`, `984`, `989` | Pita pool yang tidak dialokasikan                                |
-| `900`, `944`        | Ditahan. Diambil hanya dengan amandemen ADR ini                  |
+| Nomor               | Pemilik                                                                                                      |
+| ------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `947`               | #282 — adaptor inventori commerce (terpakai)                                                                 |
+| `948`               | #293 — adaptor pajak commerce (terpakai)                                                                     |
+| `949`               | Pita pool yang tidak dialokasikan (#283 tidak butuh migrasi)                                                 |
+| `953`–`955`         | #290 — bundel / item kit (terpakai); `956`–`959` kembali ke pool                                             |
+| `968`, `969`        | Pita pool yang tidak dialokasikan                                                                            |
+| `977`–`979`         | Pita pool yang tidak dialokasikan                                                                            |
+| `983`, `984`, `989` | Pita pool yang tidak dialokasikan                                                                            |
+| `900`, `944`        | Ditahan. Diambil hanya dengan amandemen ADR ini                                                              |
+| `1000`–`9999`       | Pita lanjutan (D3 sudah masuk): diambil berurutan, bukan celah. `1000` — #323, refund pajak retur (terpakai) |
 
 Isu kemudian mengambil nomor pool terendah yang memenuhi D2. Ia mencatat alokasi dengan mengamandemen tabel ini dalam perubahan yang sama.
+
+**Amandemen (isu #323).** D3 sudah masuk: `db-migrate.ts` upstream mengurutkan prefiks empat digit secara numerik (ADR-0130 `awcms` upstream, disinkronkan oleh #329) dan `commerce-migrations-range.test.ts` menerima `900`–`9999`. Perubahan yang mengubah tabel retur atau laporan `994`–`999` tidak dapat mengambil nomor celah (D2), jadi ia mengambil nomor berikutnya mulai dari `1000`. #323 (refund pajak pada retur) mengambil `1000`, yang mengubah tabel retur `994` dan pemicu penjaganya. Nomor lanjutan bebas berikutnya adalah `1001`.
 
 **D2. Migrasi celah hanya boleh bergantung pada objek yang dibuat berkas bernomor lebih rendah.** Itu mencakup setiap tabel, kolom, fungsi, tipe, pemberian peran dan baris izin yang dirujuknya, termasuk yang disentuh pemicu atau blok `DO`. Upstream `001`–`899` dan pita `880`–`899` repo ini selalu diurutkan lebih rendah, jadi selalu aman. Pemeriksaan yang menegakkan ini adalah yang sudah berjalan: `local-ci/check-cms` memigrasikan PostgreSQL 18 **segar** dari `001` pada setiap PR, jadi referensi maju gagal CI daripada penerapan. Perubahan yang tidak bisa memenuhi D2 tidak mendapat nomor celah. Ia menunggu D3.
 

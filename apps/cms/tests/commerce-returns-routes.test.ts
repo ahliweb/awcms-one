@@ -342,7 +342,10 @@ describe("single writers", () => {
     const mine = names
       .filter((n) => /returns/.test(n) && !/returns_report/.test(n))
       .sort();
+    // `1000` is issue #323's tax refund: it alters the 994 table, so under
+    // ADR-0037 D2 it takes the next four-digit number rather than a gap number.
     expect(mine).toEqual([
+      "1000_awcms_commerce_returns_tax_refund.sql",
       "994_awcms_commerce_returns_schema.sql",
       "995_awcms_commerce_returns_integration.sql",
       "996_awcms_commerce_returns_permissions.sql",

@@ -59,6 +59,7 @@ import { fromCents, toCents } from "../domain/price-calculation";
 import {
   RETURN_ORDER_EVENT_STATUS,
   allocateOrderDiscount,
+  allocateOrderTax,
   computeReturnValue,
   isReturnableOrderStatus,
   planRefundLegs,
@@ -122,11 +123,29 @@ export type CreateReturnOutcome =
   | { kind: "refund_refused"; refusal: SettleRefundRefusal }
   | { kind: "created" | "replayed"; body: ReturnMutationBody };
 
+/** Carries a refusal out of the engine-mode savepoint so the reversal inside it rolls back. */
+class ReturnRefusalSignal extends Error {
+  readonly outcome: CreateReturnOutcome;
+  constructor(outcome: CreateReturnOutcome) {
+    super("return refused");
+    this.name = "ReturnRefusalSignal";
+    this.outcome = outcome;
+  }
+}
+
+/** `|amount|` in cents of a `numeric` string; a reversal snapshot carries NEGATIVE amounts. */
+function absCents(amount: string): bigint {
+  const cents = toCents(amount.startsWith("-") ? amount.slice(1) : amount);
+  return cents;
+}
+
 type OrderFacts = {
   subtotal: string;
   discount: string;
   voucher_discount: string;
   shipping_cost: string;
+  tax: string;
+  tax_snapshot_id: string | null;
 };
 
 type ItemRow = {
@@ -457,7 +476,8 @@ async function createReturnWrite(
   // --- the order's lines and what is still eligible --------------------------
   const facts = (
     (await tx`
-      SELECT subtotal, discount, voucher_discount, shipping_cost
+      SELECT subtotal, discount, voucher_discount, shipping_cost, tax,
+             tax_snapshot_id
       FROM awcms_commerce_orders
       WHERE tenant_id = ${tenantId} AND id = ${orderId}
     `) as OrderFacts[]
@@ -502,10 +522,25 @@ async function createReturnWrite(
     items.map((item, index) => [item.id, discountShares[index]!])
   );
 
+  // Issue #323 - the order's tax prorated over its lines, weighted by each
+  // line's value after its discount share (the base the tax was charged on).
+  // Used for flat mode and for an order with no tax snapshot; an engine order
+  // takes the reversal snapshot's figure instead (below).
+  const taxShares = allocateOrderTax(
+    items.map(
+      (item, index) => toCents(String(item.line_total)) - discountShares[index]!
+    ),
+    toCents(String(facts.tax))
+  );
+  const taxByItem = new Map(
+    items.map((item, index) => [item.id, taxShares[index]!])
+  );
+
   const valued = [];
   let goodsGross = 0n;
   let discountShare = 0n;
   let lineRefund = 0n;
+  let proratedTax = 0n;
   for (const line of input.lines) {
     const item = itemById.get(line.orderItemId)!;
     const already = returnedByItem.get(item.id) ?? 0;
@@ -521,6 +556,7 @@ async function createReturnWrite(
     const value = computeReturnValue({
       lineTotalCents: toCents(String(item.line_total)),
       lineDiscountCents: discountByItem.get(item.id)!,
+      lineTaxCents: taxByItem.get(item.id)!,
       quantity: Number(item.quantity),
       alreadyReturned: already,
       returning: line.quantity
@@ -528,6 +564,7 @@ async function createReturnWrite(
     goodsGross += value.goodsGrossCents;
     discountShare += value.discountShareCents;
     lineRefund += value.refundCents;
+    proratedTax += value.taxCents;
     valued.push({ line, item, value });
   }
 
@@ -552,8 +589,6 @@ async function createReturnWrite(
       };
     }
   }
-  const refundTotal = lineRefund + shippingRefundCents;
-
   // --- exchange link ---------------------------------------------------------
   if (input.exchangeOrderId !== null) {
     const exchange = (await tx`
@@ -566,37 +601,111 @@ async function createReturnWrite(
     }
   }
 
-  // --- the refund plan and every refusal, before the first write ------------
-  let legs: PlannedLeg[] = [];
-  if (input.refund && refundTotal > 0n) {
-    const planned = await planAndVetRefund(
-      tx,
-      tenantId,
-      orderId,
-      refundTotal,
-      input.refund,
-      actorTenantUserId
-    );
-    if (!planned.ok) return planned.outcome;
-    legs = planned.legs;
+  // --- the tax refund, the refund plan and every refusal, before the first
+  // durable write -------------------------------------------------------------
+  // The return's id is minted up front because an engine-mode reversal is keyed
+  // by it (`documentId = return:<id>`) and its tax total is part of the amount
+  // the refund is planned for.
+  const returnId = crypto.randomUUID();
+  const reversalLines = valued.map(({ line, item }) => ({
+    orderItemId: item.id,
+    quantity: line.quantity
+  }));
+  const resolveTaxAndPlan = async (
+    db: Bun.SQL
+  ): Promise<
+    | {
+        ok: true;
+        taxRefundCents: bigint;
+        refundTotal: bigint;
+        legs: PlannedLeg[];
+      }
+    | { ok: false; outcome: CreateReturnOutcome }
+  > => {
+    let taxRefundCents = proratedTax;
+    if (facts.tax_snapshot_id !== null) {
+      // Engine mode: reverse the returned units' tax from the order's ORIGINAL
+      // snapshot (ADR-0039) and refund exactly that figure.
+      const taxReversal = await reverseOrderTaxForReturn(
+        db,
+        tenantId,
+        actorTenantUserId,
+        { orderId, returnId, lines: reversalLines, correlationId }
+      );
+      if (taxReversal.kind === "invalid") {
+        throw new RefundInvariantError(
+          `The tax reversal for return ${returnId} was refused: ${taxReversal.message}`
+        );
+      }
+      if (taxReversal.kind !== "skipped") {
+        // Inclusive pricing: the tax is inside the goods value already refunded.
+        taxRefundCents =
+          taxReversal.snapshot.pricingMode === "inclusive"
+            ? 0n
+            : absCents(taxReversal.snapshot.taxTotal);
+      }
+    }
+    const refundTotal = lineRefund + shippingRefundCents + taxRefundCents;
+    let legs: PlannedLeg[] = [];
+    if (input.refund && refundTotal > 0n) {
+      const planned = await planAndVetRefund(
+        db,
+        tenantId,
+        orderId,
+        refundTotal,
+        input.refund,
+        actorTenantUserId
+      );
+      if (!planned.ok) return planned;
+      legs = planned.legs;
+    }
+    return { ok: true, taxRefundCents, refundTotal, legs };
+  };
+  // An engine-mode reversal is a write, and a refusal returns normally (the
+  // route commits): do it in a savepoint that a refusal rolls back.
+  let resolved: Awaited<ReturnType<typeof resolveTaxAndPlan>>;
+  const savepointable = tx as Bun.TransactionSQL;
+  if (
+    facts.tax_snapshot_id !== null &&
+    typeof savepointable.savepoint === "function"
+  ) {
+    try {
+      resolved = await savepointable.savepoint(async (sp) => {
+        const attempt = await resolveTaxAndPlan(sp);
+        if (!attempt.ok) throw new ReturnRefusalSignal(attempt.outcome);
+        return attempt;
+      });
+    } catch (error) {
+      if (error instanceof ReturnRefusalSignal) {
+        return error.outcome;
+      }
+      throw error;
+    }
+  } else {
+    resolved = await resolveTaxAndPlan(tx);
   }
+  if (!resolved.ok) return resolved.outcome;
+  const { taxRefundCents, refundTotal, legs } = resolved;
 
   // --- writes ----------------------------------------------------------------
   const returnRows = (await tx`
     INSERT INTO awcms_commerce_returns (
       tenant_id, order_id, kind, status, note, goods_gross, discount_share,
-      shipping_refund, refund_total, exchange_order_id, source_key,
-      actor_tenant_user_id
+      shipping_refund, tax_refund, refund_total, exchange_order_id, source_key,
+      actor_tenant_user_id, id
     )
     VALUES (
       ${tenantId}, ${orderId}, ${input.kind}, 'open', ${input.note},
       ${fromCents(goodsGross)}, ${fromCents(discountShare)},
-      ${fromCents(shippingRefundCents)}, ${fromCents(refundTotal)},
-      ${input.exchangeOrderId}, ${sourceKey}, ${actorTenantUserId}
+      ${fromCents(shippingRefundCents)}, ${fromCents(taxRefundCents)},
+      ${fromCents(refundTotal)},
+      ${input.exchangeOrderId}, ${sourceKey}, ${actorTenantUserId}, ${returnId}
     )
     RETURNING id
   `) as { id: string }[];
-  const returnId = returnRows[0]!.id;
+  if (returnRows[0]!.id !== returnId) {
+    throw new RefundInvariantError("The return row did not take its id.");
+  }
 
   const stockLines = [];
   const lineOfReturnLine = new Map<string, string>();
@@ -625,28 +734,6 @@ async function createReturnWrite(
       quantity: line.quantity,
       disposition: line.disposition
     });
-  }
-
-  // Issue #293 (ADR-0039) — engine mode: reverse the returned units' tax from
-  // the order's ORIGINAL snapshot (a no-op for flat-mode / pre-cut-over orders).
-  const taxReversal = await reverseOrderTaxForReturn(
-    tx,
-    tenantId,
-    actorTenantUserId,
-    {
-      orderId,
-      returnId,
-      lines: valued.map(({ line, item }) => ({
-        orderItemId: item.id,
-        quantity: line.quantity
-      })),
-      correlationId
-    }
-  );
-  if (taxReversal.kind === "invalid") {
-    throw new RefundInvariantError(
-      `The tax reversal for return ${returnId} was refused: ${taxReversal.message}`
-    );
   }
 
   // Issue #290 (ADR-0036 D6) - a bundle is returned in WHOLE bundle units; its
@@ -742,6 +829,7 @@ async function createReturnWrite(
       units: valued.reduce((sum, v) => sum + v.line.quantity, 0),
       restockedUnits: stock.restockedUnits,
       goodsGross: fromCents(goodsGross),
+      taxRefund: fromCents(taxRefundCents),
       refundTotal: fromCents(refundTotal),
       refundLegs: legs.length
     },
@@ -770,6 +858,7 @@ async function createReturnWrite(
       goodsGross: fromCents(goodsGross),
       discountShare: fromCents(discountShare),
       shippingRefund: fromCents(shippingRefundCents),
+      taxRefund: fromCents(taxRefundCents),
       refundTotal: fromCents(refundTotal)
     }
   });

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:03725837bb41a08d588a72909fb5952eb204b69b6643962245612bf7eb850518 -->
+<!-- i18n-source-hash: sha256:b00f2f4fc8aaa9d4cc29bf12d51666290f31357955639a4e72a28f1c100b18a7 -->
 
 # `commerce`
 
@@ -1499,7 +1499,7 @@ Lima `reportingProjections` lagi pada mekanisme laporan penjualan di atas (tanpa
 | Tes        | `tests/commerce-tax-adapter.test.ts`, `tests/integration/commerce-tax-adapter.integration.test.ts`                                                                 | Paritas (2.000 + 500 keranjang berbenih), alokasi, kategori, harga inklusif, penolakan; flat tidak berubah, cut-over/penolakan/rollback, satu snapshot per pesanan storefront dan POS, pemutaran ulang, imutabilitas riwayat, pembalikan retur/pembatalan/kedaluwarsa (peran worker), RLS dan FK komposit, pajak dari klien diabaikan                                                                                     |
 
 - **Laporan pajak adalah milik modul pajak** (`tax.snapshot_activity`, `GET /api/v1/tax/reports/reconciliation`), bukan irisan commerce (ADR-0039 D5). Proyeksi penjualan tetap membaca kolom `tax` pesanan, yang pada mode engine adalah angka snapshot.
-- **Celah yang diketahui.** Retur tidak mengembalikan pajak ke pelanggan (ADR-0033: `refund_total` adalah barang − diskon + ongkir, dikunci `CHECK`); mode engine membaliknya hanya di buku besar pajak.
+- **Refund pajak (isu #323).** Retur mengembalikan pajak yang dikenakan pada unit yang dikembalikan: `refund_total = goods_gross − discount_share + shipping_refund + tax_refund` (`sql/1000`). Mode flat (dan pesanan tanpa snapshot pajak) memprorata pajak pesanan per unit dengan dekomposisi yang sama seperti barang dan diskon; mode engine dengan harga eksklusif mengembalikan persis total pajak snapshot pembalikan, sehingga uang dan buku besar pajak sama; harga inklusif tidak menambah apa pun (pajak sudah ada di nilai barang). Lihat adendum pajak ADR-0033. Biaya asuransi tetap tidak dikembalikan.
 - **Netralitas regulasi.** Tidak ada tarif yang ditegaskan di sini; perubahan tarif atau regulasi adalah versi berlaku-tanggal baru yang disusun di `/admin/tax` (ADR-0039 D6). Ekspor Coretax / e-Faktur di luar cakupan.
 
 ## Bundel: kit barang yang stoknya lewat komponennya — TERIMPLEMENTASI (Issue #290, epik #281 — [ADR-0036](../../../../../docs/adr/0036-bundles-are-component-stocked-products-sold-as-one-line.md))

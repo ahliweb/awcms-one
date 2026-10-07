@@ -10654,6 +10654,9 @@ msgstr ""
 msgid "Shipping refunded"
 msgstr ""
 
+msgid "Tax refunded"
+msgstr ""
+
 msgid "Size or fit"
 msgstr ""
 

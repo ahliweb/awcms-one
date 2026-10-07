@@ -112,11 +112,11 @@ describe("discoverMigrationFiles", () => {
     );
   });
 
-  test("the repo's own sql/ keeps its byte-identical lexical order", async () => {
+  test("the repo's own sql/ keeps its numeric-prefix order (identical to lexical while every name is three digits)", async () => {
     const onDisk = (await readdir(MIGRATIONS_DIR)).filter((name) =>
       name.endsWith(".sql")
     );
-    const lexical = [...onDisk].sort((a, b) => a.localeCompare(b));
+    const lexical = [...onDisk].sort(compareMigrationNames);
     const applied = (await discoverMigrationFiles(MIGRATIONS_DIR)).map(
       (m) => m.name
     );

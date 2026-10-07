@@ -41383,9 +41383,12 @@ components:
           type: string
         shippingRefund:
           type: string
+        taxRefund:
+          type: string
+          description: "The tax charged on the returned units, refunded with them (Issue #323): the order tax prorated per unit (flat mode, or an order with no tax snapshot), the reversal snapshot's tax total (engine mode, exclusive pricing), or `0.00` under inclusive pricing (the tax is already inside the goods value)."
         refundTotal:
           type: string
-          description: "`goodsGross - discountShare + shippingRefund`."
+          description: "`goodsGross - discountShare + shippingRefund + taxRefund`."
         exchangeOrderId:
           type: string
           format: uuid

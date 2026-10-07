@@ -9,6 +9,7 @@ import { describe, expect, test } from "bun:test";
 import {
   MAX_RETURN_LINES,
   allocateOrderDiscount,
+  allocateOrderTax,
   computeReturnValue,
   isReturnableOrderStatus,
   planRefundLegs,
@@ -91,6 +92,67 @@ describe("order discount allocation", () => {
     expect(allocateOrderDiscount([500n, 500n], 9999n)).toEqual([500n, 500n]);
     expect(allocateOrderDiscount([500n, 500n], 0n)).toEqual([0n, 0n]);
     expect(allocateOrderDiscount([0n, 0n], 100n)).toEqual([0n, 0n]);
+  });
+});
+
+describe("tax refund decomposition (Issue #323)", () => {
+  test("the order tax is allocated over line values by largest remainder and sums exactly", () => {
+    const shares = allocateOrderTax([10_000n, 3_333n, 1n], 1_234n);
+    expect(shares.reduce((sum, v) => sum + v, 0n)).toBe(1_234n);
+    expect(allocateOrderTax([5_000n, 5_000n], 0n)).toEqual([0n, 0n]);
+    expect(allocateOrderTax([5_000n, 5_000n], -50n)).toEqual([0n, 0n]);
+    expect(allocateOrderTax([0n, 0n], 100n)).toEqual([0n, 0n]);
+  });
+
+  test("returns of a line in any split refund exactly the line's tax once every unit is back, and never more before", () => {
+    const lineTax = 11_000n; // 110.00 over 3 units
+    const parts = [1, 1, 1].map(
+      (returning, index) =>
+        computeReturnValue({
+          lineTotalCents: 99_999n,
+          lineDiscountCents: 0n,
+          lineTaxCents: lineTax,
+          quantity: 3,
+          alreadyReturned: index,
+          returning
+        }).taxCents
+    );
+    expect(parts).toEqual([3_667n, 3_667n, 3_666n]);
+    expect(parts.reduce((sum, v) => sum + v, 0n)).toBe(lineTax);
+
+    // Splitting 1 + 2 or 2 + 1 gives the same total.
+    const oneTwo =
+      computeReturnValue({
+        lineTotalCents: 99_999n,
+        lineDiscountCents: 0n,
+        lineTaxCents: lineTax,
+        quantity: 3,
+        alreadyReturned: 0,
+        returning: 1
+      }).taxCents +
+      computeReturnValue({
+        lineTotalCents: 99_999n,
+        lineDiscountCents: 0n,
+        lineTaxCents: lineTax,
+        quantity: 3,
+        alreadyReturned: 1,
+        returning: 2
+      }).taxCents;
+    expect(oneTwo).toBe(lineTax);
+  });
+
+  test("no lineTaxCents means no tax refund; goods and discount are unchanged", () => {
+    const value = computeReturnValue({
+      lineTotalCents: 10_000n,
+      lineDiscountCents: 1_000n,
+      quantity: 2,
+      alreadyReturned: 0,
+      returning: 1
+    });
+    expect(value.taxCents).toBe(0n);
+    expect(value.refundCents).toBe(
+      value.goodsGrossCents - value.discountShareCents
+    );
   });
 });
 

@@ -32,18 +32,21 @@ A gap migration that references an object created by a higher-numbered file ther
 
 **D1. Allocate the gaps explicitly, by issue.** Recorded here and nowhere else:
 
-| Number(s)           | Owner                                                       |
-| ------------------- | ----------------------------------------------------------- |
-| `947`               | #282 — commerce inventory adapter (used)                    |
-| `948`               | #293 — commerce tax adapter (used)                          |
-| `949`               | Unallocated pool (#283 needed no migration)                 |
-| `953`–`955`         | #290 — bundles / item kits (used); `956`–`959` back to pool |
-| `968`, `969`        | Unallocated pool                                            |
-| `977`–`979`         | Unallocated pool                                            |
-| `983`, `984`, `989` | Unallocated pool                                            |
-| `900`, `944`        | Held back. Taken only with an amendment to this ADR         |
+| Number(s)           | Owner                                                                                                |
+| ------------------- | ---------------------------------------------------------------------------------------------------- |
+| `947`               | #282 — commerce inventory adapter (used)                                                             |
+| `948`               | #293 — commerce tax adapter (used)                                                                   |
+| `949`               | Unallocated pool (#283 needed no migration)                                                          |
+| `953`–`955`         | #290 — bundles / item kits (used); `956`–`959` back to pool                                          |
+| `968`, `969`        | Unallocated pool                                                                                     |
+| `977`–`979`         | Unallocated pool                                                                                     |
+| `983`, `984`, `989` | Unallocated pool                                                                                     |
+| `900`, `944`        | Held back. Taken only with an amendment to this ADR                                                  |
+| `1000`–`9999`       | Continuation band (D3 landed): taken in order, never a gap. `1000` — #323, returns tax refund (used) |
 
 A later issue takes the lowest pool number that satisfies D2. It records the allocation by amending this table in the same change.
+
+**Amendment (issue #323).** D3 has landed: upstream's `db-migrate.ts` orders four-digit prefixes numerically (upstream `awcms` ADR-0130, synced by #329) and `commerce-migrations-range.test.ts` accepts `900`–`9999`. A change that alters a `994`–`999` returns or report table cannot take a gap number (D2), so it takes the next number from `1000` upward. #323 (the tax refund on a return) took `1000`, which alters the `994` returns table and its guard triggers. The next free continuation number is `1001`.
 
 **D2. A gap migration may depend only on objects created by lower-numbered files.** That covers every table, column, function, type, role grant and permission row it references, including the ones a trigger or a `DO` block touches. Upstream's `001`–`899` and this repo's `880`–`899` band always sort lower, so they are always safe. The check that enforces this is the one that already runs: `local-ci/check-cms` migrates a **fresh** PostgreSQL 18 from `001` on every PR, so a forward reference fails CI rather than a deployment. A change that cannot satisfy D2 does not get a gap number. It waits for D3.
 
