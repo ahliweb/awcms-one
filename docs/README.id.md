@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:8635526b75d9ef6eec9c667653ea318e8d3461a6f89d9ce3c7782d633d58ec9d -->
+<!-- i18n-source-hash: sha256:a5436bd5cf02af16f262769ed7a1aa4e510b3e6a354f62926a6b9c793bbd76d1 -->
 
 # Dokumentasi
 
@@ -25,6 +25,7 @@ Dokumentasi arsitektur, skema, API, alur kerja CMS, perilaku storefront, penguji
 | [`alur-kerja-pengembangan.md`](alur-kerja-pengembangan.id.md) | Branching, pengaturan branch protection nyata, changeset, pemotongan rilis |
 | [`rilis.md`](rilis.id.md) | Runbook rilis end-to-end: changeset ke tag, `release:images`, `release:publish`, bukti, verifikasi konsumen |
 | [`template.md`](template.id.md) | Menggunakan awcms-one sebagai template: `template:init`, matriks profil build, seed per profil, BjekMart sebagai contoh referensi |
+| [`aw-business-platform-dor.md`](aw-business-platform-dor.id.md) | Pelacak Definition of Ready untuk epik #280 (AW Business Platform): sepuluh artefak DoR, keputusan pemilik, isu Wave A yang diusulkan |
 
 ## Apa yang tidak diduplikasi direktori ini
 

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:4883a024f4c4a0f3d0c95e0428e000257dea97a9d0ae50349ea887c8854b05cc -->
+<!-- i18n-source-hash: sha256:2cd9888ce44a48717f0f22d2b059fd15a1df366d8b29721ff2d87122dce0d5d0 -->
 
 # Architecture Decision Records
 
@@ -58,6 +58,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0037](0037-the-commerce-migration-band-is-allocated-gap-first-and-widened-upstream.md) | Pita migrasi commerce dialokasikan celah-dulu, dan diperluas upstream | Diterima |
 | [0038](0038-commerce-stock-is-a-write-through-cache-of-the-inventory-ledger.md)                                                         | Stok commerce adalah cache write-through dari ledger inventori: mode per tenant, cut-over atomik, dan satu rekonsiliasi                                                                                                                      | Diterima                                                                                                                      |
 | [0039](0039-commerce-tax-is-computed-by-the-tax-module-behind-a-per-tenant-mode.md)                                                     | Pajak commerce dihitung oleh modul `tax`, di belakang mode per tenant                                                                                                                                                                        | Diterima                                                                                                                      |
+| [0040](0040-aw-business-platform-capability-ownership-and-boundaries.md) | AW Business Platform: kepemilikan kapabilitas dan batasnya (upstream lebih dulu, adaptor awcms-one, repositori konsumen) | Diusulkan |
 
 ## Mengapa penomoran dimulai dari 0001
 

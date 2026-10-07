@@ -23,6 +23,7 @@ Architecture, schema, API, CMS workflow, storefront behaviour, testing, deployme
 | [`alur-kerja-pengembangan.md`](alur-kerja-pengembangan.md) | Branching, real branch protection settings, changesets, the release cut |
 | [`rilis.md`](rilis.md) | The end-to-end release runbook: changesets to tag, `release:images`, `release:publish`, evidence, consumer verification |
 | [`template.md`](template.md) | Using awcms-one as a template: `template:init`, the build-profile matrix, per-profile seeds, BjekMart as the reference example |
+| [`aw-business-platform-dor.md`](aw-business-platform-dor.md) | Definition of Ready tracker for epic #280 (AW Business Platform): the ten DoR artifacts, owner decisions, proposed Wave A issues |
 
 ## What this directory does not duplicate
 
