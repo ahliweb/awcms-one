@@ -2,6 +2,118 @@
 
 Every entry below is folded from `.changesets/` by `bun run release`, which also tags the release. The version is `MAJOR.MINOR.PATCH`, tagged `vX.Y.Z`; the next version is the largest `bump` declared among the changesets a release folds (see [`.changesets/README.md`](.changesets/README.md)) — never a level chosen at release time from a list of file names.
 
+## [0.16.0] — 2026-10-07
+
+### Commerce bundles: item kits stocked through their components (issue #290, ADR-0036)
+
+A shop can now sell a set - "two coffees and a syrup at one price" - without a stock counter on the set that somebody keeps in step by hand. A bundle is a **product with `kind = 'bundle'`**: no variants, no stock of its own, not a service product, not flash-sale eligible, and made of 1-20 component lines (a product, a variant when that product has live variants, and a quantity per bundle). **Nesting is refused by trigger**, so a cycle cannot exist. Decision and rejected alternatives: `docs/adr/0036-bundles-are-component-stocked-products-sold-as-one-line.md`.
+
+- New: `sql/953` to `sql/955` under `apps/cms` - `kind` / `bundle_pricing` / `bundle_discount_percent` on `awcms_commerce_products`, `awcms_commerce_bundle_components` (composite tenant FKs, FORCE RLS, the nesting/variant/flash-sale triggers), the append-only `awcms_commerce_order_item_components` snapshot, and the `awcms_worker` grant the expiry restock needs. Existing tenants need no backfill; every product is `standard`.
+- Pricing is `fixed` (the product's own price) or `derived` (the components' list prices x quantity, less a percent, half-up to the cent). Availability is `min floor(component stock / quantity)` and is reported as the bundle's `stock`, so the storefront, POS search and barcode scan need no new field.
+- A bundle sells as **one order line** with an immutable component snapshot (units, text as sold, the line value split across components to the cent). The components - never the bundle - move stock: a counter decrement after locking and re-quoting in `counter` mode, a `sale` per component with source line `<orderItemId>:c<position>` through the inventory adapter in `ledger` mode. Cancel, expiry and a whole-bundle return put exactly those components back from the snapshot; editing the bundle afterwards changes nothing about an old order. Tax is one line by the bundle's own category.
+- API: `POST`/`PATCH /api/v1/commerce/products` accept `kind`, `bundlePricing`, `bundleDiscountPercent` and `bundleComponents` (ids or SKUs); product reads gain `kind`, `bundlePricing`, `bundleDiscountPercent` and `bundle`; a cart quote line for a bundle carries `bundle.components`. No new permission (`commerce.products.*`).
+- Admin: a Bundle toggle, pricing strategy, discount and a `SKU x quantity` contents textarea on the product form. Storefront: an "Isi paket" list on the product page.
+- Not here (recorded in the ADR): per-component tax classes, partial component return, a bundle report, nested bundles, a cart-level combined component check in `counter` mode.
+- **Backward compatible.** Nothing changes for an existing product or order.
+
+### Commerce stock on the upstream inventory ledger (issue #282, ADR-0038)
+
+A tenant's commerce stock was one integer on each product and variant. Upstream AWCMS now ships a multi-location stock ledger (module `inventory`, embedded by the v10.5.0 sync), and a store can move onto it **without a second source of truth**: in the new `ledger` mode the ledger is authoritative and `stock` becomes a write-through cache of it, so the storefront, cart quote, POS, barcodes and admin lists read exactly what they read before. The default, `counter`, is today's behaviour byte for byte. Decision and rejected alternatives: `docs/adr/0038-commerce-stock-is-a-write-through-cache-of-the-inventory-ledger.md`; operator runbook in `docs/deployment.md`.
+
+- New: `apps/cms/sql/947_awcms_commerce_inventory_adapter.sql` — `inventory_mode` / `inventory_location_id` (composite FK to the inventory location) / `inventory_mode_changed_at` on `awcms_commerce_store_settings`, two `commerce.inventory.{read,configure}` permissions, and the `awcms_worker` inventory grants the expiry job and the cache projector need (a column-level `UPDATE (updated_at)` on locations, never a table-level one). Existing tenants run `bun run identity-access:permissions:backfill` to receive the permissions.
+- New: `bun run commerce:inventory:cutover --tenant <id> --location <id> [--commit]` — dry-run by default; one transaction posts an `opening` per stock unit, flips the mode and verifies, behind an exclusive per-tenant mode lock. A second run is refused.
+- In `ledger` mode an order or POS sale posts `sale`, a cancel/expiry restock and a return's restock post `sale_return`, through the ledger port inside the caller's transaction, sorted against deadlocks and in a savepoint: an out-of-stock cart is still `409 CART_CHANGED` / `PosCartChangedError` with nothing written, and eight parallel orders for the last unit sell exactly one. Any other ledger refusal is `409 INVENTORY_UNAVAILABLE`.
+- A movement made by something else (a receipt, an adjustment, a transfer) reaches the cache through the new `commerce.inventory_stock_cache_projector` consumer, which re-reads the ledger and never trusts the payload. This is a recorded local divergence in `consumer-registry.ts` (see `AGENTS.md`).
+- A product/variant edit, a create with stock, or a CSV stock change that would change a count is `409 STOCK_MANAGED_BY_INVENTORY` in `ledger` mode (the unchanged value is accepted).
+- New endpoints: `GET /api/v1/commerce/inventory`, `GET …/inventory/reconciliation`, `POST …/inventory/resync`, `POST …/inventory/rollback` (`commerce.inventory.read` / `.configure`). `commerce` now declares a dependency on `inventory`.
+- Low stock is upstream's `inventory.low_stock` projection, not a commerce report (supersedes the ADR-0035 D1 note for #282).
+- **Backward compatible, opt-in per tenant.** Nothing changes until an operator runs the cut-over; `POST …/inventory/rollback` returns a tenant to the counter.
+
+### Procurement feeds commerce stock (issue #283, ADR-0038 addendum)
+
+Upstream `awcms`'s `procurement` module (suppliers, receiving, supplier returns, requisitions, transfers; upstream ADR-0128) already posts to the inventory ledger. This change makes it work with commerce stock on a tenant in `ledger` mode, with no new table or migration:
+
+- **Convention.** A procurement line stocking commerce goods uses `itemType` `commerce.variant` (variant uuid) or `commerce.product` (uuid of a product with no live variant), unit `unit`, at the sales location (or another location and then a `transfer`). New `GET /api/v1/commerce/inventory/items?q=<sku or name>` (`commerce.inventory.read`, keyset-paged, at most 50) resolves a SKU or name to `{ itemType, itemRef, sku, name, variantName, unitCode }`.
+- **Orphan detection.** `GET /api/v1/commerce/inventory/reconciliation` now also returns, on its first page, `orphans`: non-zero `commerce.*` ledger balances at the sales location naming no live unit (`not_found`, `product_has_variants`, `wrong_unit`, `unknown_item_type`), capped at 100 with `truncated`.
+- **Counter mode.** A procurement receipt on a `counter` tenant stays in the ledger and does not change commerce stock - cut over to `ledger` first (runbook in `docs/deployment.md`; existing tenants run `identity-access:permissions:backfill` for `procurement.*`).
+- **Reporting.** Upstream's `procurement.receiving` / `procurement.suppliers` projections are the receiving reports (supersedes the ADR-0035 D1 note for #283).
+- **Backward compatible.** The `orphans` field is additive; nothing changes for a tenant that never uses procurement.
+
+### Commerce tax moves onto the `tax` module, per tenant (issue #293, ADR-0039)
+
+Until now a store's tax was one number, `payment.tax.percent`, applied once to `subtotal - voucher discount`. Upstream AWCMS's generic `tax` module (`awcms` ADR-0127, arrived with the v10.5.0 sync) can express what that number cannot — a rate that changes on a date, exempt and zero-rated categories, prices that already include tax, and a refund that takes back exactly the tax that was charged. This change is the adapter, behind a per-tenant mode so nobody moves until an operator moves them: `flat` (the default) is the existing arithmetic byte for byte, `engine` asks the module.
+
+- New: `awcms_commerce_store_settings.tax_mode` / `tax_profile_code`, `awcms_commerce_products.tax_category_code` and `awcms_commerce_orders.tax_snapshot_id` (a composite FK to the tax snapshot ledger), all in `apps/cms/sql/948_awcms_commerce_tax_adapter.sql` — nullable or defaulted, nothing backfilled. `commerce` now declares `tax` in its module dependencies.
+- In `engine` mode the cart, POS and quotation quote use the module's calculator (the store's `Asia/Jakarta` business date picks the effective-dated version); a voucher is allocated across the lines in cents so, with the same percentage, the engine equals the flat figure exactly — proven by a seeded property test. A storefront or POS order finalises exactly one tax snapshot in its own transaction and stores its id; a return reverses the returned units' tax, and a cancelled or expired order the rest, from the ORIGINAL snapshot, never from today's rule. A tax the engine cannot answer blocks checkout instead of selling untaxed.
+- New ops-only `bun run commerce:tax:cutover` (dry-run by default; `--commit`, `--tenant`, `--sample`, `--since`, `--rollback`): derives the `store-default` version from the current settings, re-prices the tenant's recent orders in shadow and **refuses to flip unless every one matches to the cent**. The flip and its rollback are audited (`tax_mode.update`). Runbook: `docs/deployment.md`, including `bun run identity-access:permissions:backfill` so existing tenants' owners hold the `tax.*` permissions.
+- Additive API shapes: the cart quote's `tax` gains `mode`, `inclusive`, `error` and `engine`; admin store settings `GET` gains the read-only `taxMode` / `taxProfileCode`; product create/update/admin read gain `taxCategoryCode`. The product form has a Tax category field; store settings shows the mode.
+- `awcms_worker` gains `INSERT, UPDATE` on `awcms_tax_snapshots` so the expiry job can reverse an expired engine order's tax (the append-only trigger still refuses real updates); a settings reset no longer stamps an engine-mode row for purge.
+- Not here, by decision: no commerce tax report (the module's snapshot ledger and reconciliation report are the tax report, superseding ADR-0035 D1's note for #293); no country profile or rate (a rate change is a new effective-dated version authored in `/admin/tax`); no change to refund arithmetic (a return still does not repay tax to the customer — it is reversed in the tax ledger only); Coretax / e-Faktur export is an upstream follow-up.
+
+### Sync the AWCMS subtree to v10.5.0 (`1558faa`)
+
+`apps/cms` now embeds `ahliweb/awcms` at v10.5.0 (14 upstream commits since
+`cfc2df9a`): three new upstream modules — `inventory` (multi-location stock
+ledger, `sql/169`–`170`), `tax` (jurisdiction-neutral tax calculation,
+`sql/171`–`173`) and `procurement` (supplier, receiving and transfer
+documents, `sql/174`–`175`) with their admin screens — the `Idempotency-Key`
+header as one shared OpenAPI parameter component, and a focusable named
+`.data-table-scroll` region on every admin table. Merged with a merge commit,
+as every subtree sync must be.
+
+- The new modules are available in `apps/cms` but not yet wired into
+  `commerce`; the adapters stay tracked in #282, #293 and #283.
+- Commerce OpenAPI fragments reference upstream's shared `Idempotency-Key`
+  parameter instead of declaring their own, and every commerce admin data
+  table gained the focusable named scroll region.
+- **Operator action:** run `bun run db:migrate` — seven new upstream migrations
+  (`sql/169`–`175`) apply; no renumbering is needed (this repo's media-library
+  migrations already sit in the `880` band).
+- `apps/cms/scripts/client-asset-budget.ts`'s `APP_BUDGET_BYTES` is 433,800 B
+  (measured 433,723 B on the merged build).
+- `apps/cms/tests/openapi-bundle.test.ts`'s idempotency test carries an explicit 60 s
+  timeout: two bundles of the merged document exceed bun's 5 s default under
+  the full-suite load.
+
+### Public store-settings tax field now discriminates between flat and engine tax modes
+
+Issue #324 — the `payment.tax` field in the public store-settings DTO (`GET /api/v1/commerce/store-settings/public`) is now a discriminated union based on the tenant's tax mode (ADR-0039):
+
+- **Flat mode** (default): `{ mode: "flat", active: boolean, percent: number }` — additive `mode` field; existing consumers remain unaffected.
+- **Engine mode**: `{ mode: "engine", inclusive?: boolean }` — omits `active` and `percent` fields, exposes only the mode discriminator.
+
+A storefront that needs to display the tax rate should check the `mode` field and render the percent only for `mode: "flat"`. The OpenAPI schema for `CommerceStoreSettingsPublic` is updated to describe this discriminated union.
+
+### A return refunds the tax on the returned units (issue #323, ADR-0033 addendum)
+
+A return's `refund_total` was goods less discount plus shipping, pinned by a `CHECK` with no tax term. The customer was never given back the tax charged on the units they returned (flat mode), and in engine mode (ADR-0039) the tax ledger reversed an amount the refund money did not include. A return now carries a `tax_refund` component and `refund_total` is `goods_gross - discount_share + shipping_refund + tax_refund`.
+
+- New: `sql/1000_awcms_commerce_returns_tax_refund.sql` (the first number of the four-digit continuation band, ADR-0037 amended). It adds `awcms_commerce_returns.tax_refund` (default `0.00`, so every existing return stays valid), re-adds the amounts `CHECK` by name with the extra term, adds `tax_refund` to the immutable columns of the update guard, and makes the insert guard refuse a return that would refund more tax than the order was charged.
+- Flat mode (and an engine-mode order with no tax snapshot): the order's tax is prorated per unit with the same decomposition as goods and discount (`allocateOrderTax` reuses `allocateOrderDiscount`; units carry leftover cents first), so the parts of every return of an order add up to the order's tax to the cent and the order's whole total is back once every unit is returned.
+- Engine mode, exclusive pricing: `tax_refund` is exactly the reversal snapshot's tax total, so the money refunded and the tax ledger agree. Inclusive pricing adds nothing (the tax is inside the goods value already refunded); the ledger still reverses it.
+- The reversal now happens before the refund is planned and, in engine mode, inside a savepoint that a refused refund rolls back, so a refusal leaves no reversal snapshot behind. A replayed `Idempotency-Key` still reverses and refunds nothing twice.
+- The refund legs, the payment-ledger reversals, the loyalty and affiliate compensations, the sales-report projections and the returns report (`returnedValue` equals `refundedTotal`) all follow `refund_total`; no projection table changed.
+- API: return records and `awcms.commerce.return.recorded` gain `taxRefund`; `refundTotal` now includes it. Admin: the returns panel shows "Tax refunded". No new client script.
+- Not changed: the insurance fee is still not refunded; `return_lines.refund_amount` stays goods less discount.
+- **Backward compatible** for stored data. A client that recomputed `refundTotal` as goods - discount + shipping must add `taxRefund`.
+
+### `apps/cms` synced to upstream `526b3bbf`: four-digit migration prefixes
+
+Issue #329: the embedded AWCMS moves one commit past v10.5.0 to `526b3bbf` (ahliweb/awcms#911, upstream ADR-0130). `db-migrate` now accepts a three- or four-digit prefix and applies files in numeric order. Existing three-digit order is unchanged.
+
+Per ADR-0037 D3, `apps/cms/tests/commerce-migrations-range.test.ts` widens the commerce band to `900`–`9999` in the same change. A commerce migration that cannot take a gap number continues at `1000`. No existing file is renamed, and no deployed database needs a ledger change.
+
+### Root `overrides` close four new transitive advisories
+
+Advisories published on 6–7 October 2026 turned `bun audit` and `apps/cms`'s `deps:audit:check` red on every branch, `main` included. Each is closed by a root `package.json` `overrides` entry, which is the only place a Bun workspace honours overrides:
+
+- `sharp` `^0.35.5` (GHSA-wq5f-xc86-pv6w, high, via `astro`)
+- `shell-quote` `^1.12.0` (GHSA-pqg4-j6r4-53mv, critical, via `@changesets/cli` › `launch-editor`; development-only)
+- `source-map-js` `^1.2.2` (GHSA-68fv-2mgg-jv7q, high, via `astro` › `unifont`)
+- `smol-toml` `^1.9.0` (GHSA-r4xh-jqrq-34v2, moderate, via `@astrojs/internal-helpers`)
+
+`apps/cms/package.json` is upstream's own file and is not edited. The same entries are worth proposing upstream to `ahliweb/awcms`, after which the root entries can go.
+
 ## [0.15.0] — 2026-10-04
 
 ### Close the devalue/fast-uri advisories; accept the unfixable http-cache-semantics one with a date
