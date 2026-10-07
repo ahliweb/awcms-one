@@ -56,6 +56,7 @@ What does **not** need an ADR: adding a field within an already-decided schema, 
 | [0037](0037-the-commerce-migration-band-is-allocated-gap-first-and-widened-upstream.md) | The commerce migration band is allocated gap-first, and widened upstream | Accepted |
 | [0038](0038-commerce-stock-is-a-write-through-cache-of-the-inventory-ledger.md)                                                         | Commerce stock is a write-through cache of the inventory ledger: a per-tenant mode, an atomic cut-over, and one reconciliation                                                                                              | Accepted                                                                                                                   |
 | [0039](0039-commerce-tax-is-computed-by-the-tax-module-behind-a-per-tenant-mode.md)                                                     | Commerce tax is computed by the `tax` module, behind a per-tenant mode                                                                                                                                                      | Accepted                                                                                                                   |
+| [0040](0040-aw-business-platform-capability-ownership-and-boundaries.md) | AW Business Platform: capability ownership and boundaries (upstream first, awcms-one adapters, consumer repositories) | Proposed |
 
 ## Why the numbering starts at 0001
 
