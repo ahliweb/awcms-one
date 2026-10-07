@@ -2,8 +2,6 @@
 
 <!-- i18n-source-hash: sha256:1502b9632e361fa5922de9bbd7c4646bb47323bd675e08d154bec5d96466c9cd -->
 
-<!-- i18n-source-hash: sha256:placeholder -->
-
 # AW Business Platform — pelacak Definition of Ready
 
 Melacak epik [#280](https://github.com/ahliweb/awcms-one/issues/280) menuju Definition of Ready (DoR, epik §15). **Tidak ada yang diimplementasikan dari epik ini sampai DoR tercapai** — tanpa modul, migrasi, jalur OpenAPI, atau scaffold. Penempatan setiap kapabilitas diputuskan di [ADR-0040](adr/0040-aw-business-platform-capability-ownership-and-boundaries.md) (Diusulkan); halaman ini menyatakan apa yang harus ada, di mana ia dihasilkan, dan apa yang hanya dapat diputuskan pemilik produk.
