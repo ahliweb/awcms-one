@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](aw-business-platform-dor.md)
 
-<!-- i18n-source-hash: sha256:1502b9632e361fa5922de9bbd7c4646bb47323bd675e08d154bec5d96466c9cd -->
+<!-- i18n-source-hash: sha256:d07da81f8220d036c2d91c37d4750be9ac9efe653155555e90a356e8d2930d7a -->
 
 # AW Business Platform — pelacak Definition of Ready
 
@@ -41,51 +41,51 @@ Melacak epik [#280](https://github.com/ahliweb/awcms-one/issues/280) menuju Defi
 | O11 | Apakah lapisan orkestrasi notifikasi (preferensi, fallback, status lintas-kanal) diinginkan sama sekali                                                                                              | ADR-0040 menundanya; admission memerlukan kasus nilai tertulis                                                      | Wave F           |
 | O12 | Identitas pelanggan: tetap menjadikan commerce otoritas pelanggan tanpa batas, atau merencanakan harmonisasi `profile_identity`                                                                      | Memengaruhi referensi pelanggan Booking dan join Workforce-ke-CRM                                                   | DoR 4            |
 
-## Wave A: isu anak yang diusulkan
+## Wave A: isu anak
 
 Daftar keputusan di atas menggerbang isi, bukan isu-isu ini: merekalah pekerjaan yang menghasilkan artefak DoR. Butir Wave A 5 (batas faktur) tidak punya isu sendiri karena [ADR-0029](adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md) sudah menyelesaikannya; sisanya dicatat di [ADR-0040](adr/0040-aw-business-platform-capability-ownership-and-boundaries.md) D6. Setiap isu menyebut repositori yang akan memuat pekerjaannya.
 
-### A1. awcms-one: terima ADR-0040 dan jawab keputusan pemilik
+### A1. awcms-one: terima ADR-0040 dan jawab keputusan pemilik — [#335](https://github.com/ahliweb/awcms-one/issues/335)
 
 Repo: `ahliweb/awcms-one`. Bergantung pada: tidak ada.
 Tinjau ADR-0040 (Diusulkan) dan putuskan O0. Catat jawaban O1 sampai O12 yang dibutuhkan untuk DoR di pelacak ini. Tutup butir Wave A 1 dari #280 dan butir 5 lewat rujukan ke ADR-0029. Hasil: ADR-0040 menjadi Diterima (atau diamandemen dan dinyatakan ulang), status pelacak diperbarui.
 
-### A2. ahliweb/awcms: admission modul untuk domain `booking` generik
+### A2. ahliweb/awcms: admission modul untuk domain `booking` generik — [ahliweb/awcms#915](https://github.com/ahliweb/awcms/issues/915)
 
 Repo: `ahliweb/awcms`. Bergantung pada: A1.
 Tulis ADR admission dan paket desain (PRD-lite, state machine, ERD, matriks izin dan RLS, kontrak adaptor), meniru `inventory`, `tax`, dan `procurement`. Harus mencakup resource dan kapasitas, jadwal dan pengecualian dengan semantik zona waktu dan interval yang eksplisit, hold dengan kedaluwarsa, siklus hidup reservasi dengan riwayat append-only, dan strategi pencegahan double-booking yang terbukti dengan tes slot-terakhir-konkuren yang diwajibkan. Tanpa dependensi commerce. Tanpa kode sampai paket diterima.
 
-### A3. ahliweb/awcms: admission modul untuk `hr_payroll` (workforce dulu, payroll kemudian)
+### A3. ahliweb/awcms: admission modul untuk `hr_payroll` (workforce dulu, payroll kemudian) — [ahliweb/awcms#916](https://github.com/ahliweb/awcms/issues/916)
 
 Repo: `ahliweb/awcms`. Bergantung pada: A1.
 ADR admission dan paket desain untuk kepegawaian (referensi profil, tidak pernah master identitas kedua), kehadiran, shift, dan port ketersediaan untuk Booking; lalu aturan komisi dan buku besar akrual; lalu payroll dengan kunci periode, SoD, dan aturan berlaku-tanggal yang netral yurisdiksi. Putuskan mekanisme referensi identitas (port party-directory yang disebut di dokumen upstream tidak ada di tree ini: perlu diverifikasi). Nyatakan apa yang di luar (akuntansi, dokumen fiskal). Payroll dapat menjadi fase kemudian dari admission yang sama.
 
-### A4. ahliweb/awcms: kapabilitas pengiriman generik, promosi WhatsApp, dan Telegram opsional
+### A4. ahliweb/awcms: kapabilitas pengiriman generik, promosi WhatsApp, dan Telegram opsional — [ahliweb/awcms#917](https://github.com/ahliweb/awcms/issues/917)
 
 Repo: `ahliweb/awcms`. Bergantung pada: A1, O10, O11.
 Bandingkan mempromosikan pengiriman WhatsApp menjadi kapabilitas upstream generik dengan membuka port pengiriman yang stabil sementara commerce tetap menjadi adaptor. Tentukan kelas tujuan, independensi persetujuan, dan aturan kegagalan penyedia (tanpa I/O jaringan di dalam transaksi basis data). Telegram bawaan mati dan tidak pernah menjadi cadangan untuk payroll atau PII. Orkestrasi di luar kecuali kasus nilai ditulis. Tanpa outbox kedua.
 
-### A5. ahliweb/awcms: kontrak lintas-domain, port, dan pendaftaran konsumen
+### A5. ahliweb/awcms: kontrak lintas-domain, port, dan pendaftaran konsumen — [ahliweb/awcms#918](https://github.com/ahliweb/awcms/issues/918)
 
 Repo: `ahliweb/awcms`. Bergantung pada: A2, A3.
 Saat ini konsumen event domain adalah daftar statis di dalam `domain_event_runtime` yang mengimpor commerce. Spesifikasikan mekanisme pendaftaran konsumen generik agar modul upstream generik dan adaptor hilir dapat mendaftar tanpa impor upstream-ke-konsumen. Spesifikasikan port kapabilitas dan skema event AsyncAPI untuk booking, workforce, dan pengiriman (nama sementara), idempotensi per konsumen, pemakaian outbox/inbox. Ini penghalang teknis pertama bagi setiap adaptor.
 
-### A6. awcms-one: blueprint platform dan PRD untuk CRM, adaptor commerce, dan analitik
+### A6. awcms-one: blueprint platform dan PRD untuk CRM, adaptor commerce, dan analitik — [#336](https://github.com/ahliweb/awcms-one/issues/336)
 
 Repo: `ahliweb/awcms-one`. Bergantung pada: A1, O1 sampai O3.
 Hasilkan artefak DoR 1 dan 2 tingkat platform: persona, alur kerja, non-goal, cerita pengguna dan hasil dengan MoSCoW. Mencakup definisi segmen, kelayakan dan penebusan loyalti, perilaku adaptor booking-commerce (uang muka sebagai alokasi pembayaran, koordinasi refund), konteks layanan POS. Hanya dokumen.
 
-### A7. awcms-one: kontrak metrik untuk analitik Booking, CRM, dan workforce
+### A7. awcms-one: kontrak metrik untuk analitik Booking, CRM, dan workforce — [#337](https://github.com/ahliweb/awcms-one/issues/337)
 
 Repo: `ahliweb/awcms-one`. Bergantung pada: A6, O8.
 Tentukan pembilang, penyebut, filter status, jendela zona waktu, dan perilaku event terlambat untuk pendapatan (kotor, diskon, refund, bersih), okupansi, utilisasi, retensi (kohort dan jendela eksplisit), dan produktivitas pegawai (hanya fakta bisnis yang transparan). Tandai proyeksi mana yang dimiliki upstream beserta modulnya dan mana yang lintas-domain di sini, pada mesin `reporting`. Tanpa penyimpanan analitik kedua.
 
-### A8. awcms-one: model ancaman, analisis privasi, dan keberlakuan regulasi untuk adaptor
+### A8. awcms-one: model ancaman, analisis privasi, dan keberlakuan regulasi untuk adaptor — [#338](https://github.com/ahliweb/awcms-one/issues/338)
 
 Repo: `ahliweb/awcms-one`. Bergantung pada: A1, O5, O6.
 Cakup alur lintas-domain: endpoint booking publik, pengamatan pembayaran, pengingat, event akrual komisi, dan batas penyedia. Tambahkan catatan keberlakuan regulasi untuk UU PDP, PP 71/2019, ketenagakerjaan dan payroll, serta pembayaran (§13 epik sebagai masukan, bukan kesimpulan hukum) dan format pemetaan kontrol (kontrol, implementasi, tes, bukti, SOP, pemantauan) tanpa mengklaim kepatuhan. Model ancaman per domain untuk Booking dan `hr_payroll` adalah bagian A2 dan A3.
 
-### A9. awcms-one: tinjauan lintas-spesifikasi DoR dan pembuatan isu Wave B sampai F
+### A9. awcms-one: tinjauan lintas-spesifikasi DoR dan pembuatan isu Wave B sampai F — [#339](https://github.com/ahliweb/awcms-one/issues/339)
 
 Repo: `ahliweb/awcms-one`. Bergantung pada: A2 sampai A8.
 Jalankan tinjauan lintas-spesifikasi (artefak DoR 9) dan periksa gerbang ADR-0040 D7. Bila lolos, buat isu anak Wave B sampai F menurut #280 bagian 16, masing-masing atomik, sadar-dependensi, dan menargetkan repositori yang akan memuat kodenya. Sebelum itu tidak ada isu implementasi yang dibuka.

@@ -39,51 +39,51 @@ Tracks epic [#280](https://github.com/ahliweb/awcms-one/issues/280) toward its D
 | O11 | Whether a notification-orchestration layer (preferences, fallback, cross-channel status) is wanted at all                                                                           | ADR-0040 defers it; admission needs a written value case                                               | Wave F    |
 | O12 | Customer identity: keep commerce as the customer authority indefinitely, or plan the `profile_identity` harmonisation                                                               | Affects Booking's customer reference and Workforce-to-CRM joins                                        | DoR 4     |
 
-## Wave A: proposed child issues
+## Wave A: child issues
 
 The decision list above gates content, not these issues: they are the work that produces the DoR artifacts. Wave A item 5 (invoice boundary) has no issue of its own because [ADR-0029](adr/0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md) already settles it; what remains is recorded in [ADR-0040](adr/0040-aw-business-platform-capability-ownership-and-boundaries.md) D6. Each issue names the repository that will contain the work.
 
-### A1. awcms-one: accept ADR-0040 and answer the owner decisions
+### A1. awcms-one: accept ADR-0040 and answer the owner decisions — [#335](https://github.com/ahliweb/awcms-one/issues/335)
 
 Repo: `ahliweb/awcms-one`. Depends on: none.
 Review ADR-0040 (Proposed) and decide O0. Record the answers to O1 to O12 that are needed for DoR in this tracker. Close Wave A item 1 of #280 and item 5 by reference to ADR-0029. Deliverable: ADR-0040 set to Accepted (or amended and re-stated), tracker statuses updated.
 
-### A2. ahliweb/awcms: module admission for a generic `booking` domain
+### A2. ahliweb/awcms: module admission for a generic `booking` domain — [ahliweb/awcms#915](https://github.com/ahliweb/awcms/issues/915)
 
 Repo: `ahliweb/awcms`. Depends on: A1.
 Write the admission ADR and design pack (PRD-lite, state machine, ERD, permissions and RLS matrix, adapter contract), modelled on `inventory`, `tax` and `procurement`. Must cover resource and capacity, schedule and exceptions with explicit timezone and interval semantics, holds with expiry, reservation lifecycle with append-only history, and a proven double-booking prevention strategy with the required concurrent-final-slot test. No commerce dependency. No code until the pack is accepted.
 
-### A3. ahliweb/awcms: module admission for `hr_payroll` (workforce first, payroll second)
+### A3. ahliweb/awcms: module admission for `hr_payroll` (workforce first, payroll second) — [ahliweb/awcms#916](https://github.com/ahliweb/awcms/issues/916)
 
 Repo: `ahliweb/awcms`. Depends on: A1.
 Admission ADR and design pack for employment (profile reference, never a second identity master), attendance, shift and an availability port for Booking; then the commission rule and accrual ledger; then payroll with period lock, SoD and effective-dated, jurisdiction-neutral rules. Decide the identity-reference mechanism (the party-directory port cited in upstream docs is not in this tree: to verify). State what stays out (accounting, fiscal documents). Payroll can be a later phase of the same admission.
 
-### A4. ahliweb/awcms: generic delivery capability, WhatsApp promotion and optional Telegram
+### A4. ahliweb/awcms: generic delivery capability, WhatsApp promotion and optional Telegram — [ahliweb/awcms#917](https://github.com/ahliweb/awcms/issues/917)
 
 Repo: `ahliweb/awcms`. Depends on: A1, O10, O11.
 Compare promoting WhatsApp delivery to a generic upstream capability against exposing a stable delivery port while commerce stays the adapter. Define purpose classes, consent independence and provider failure rules (no network I/O inside a database transaction). Telegram is off by default and never a fallback for payroll or PII. Orchestration is out unless a value case is written. No second outbox.
 
-### A5. ahliweb/awcms: cross-domain contracts, ports and consumer registration
+### A5. ahliweb/awcms: cross-domain contracts, ports and consumer registration — [ahliweb/awcms#918](https://github.com/ahliweb/awcms/issues/918)
 
 Repo: `ahliweb/awcms`. Depends on: A2, A3.
 Today domain-event consumers are a static list inside `domain_event_runtime` that imports commerce. Specify a generic consumer-registration mechanism so generic upstream modules and downstream adapters can register without an upstream-to-consumer import. Specify capability ports and AsyncAPI event schemas for booking, workforce and delivery (names provisional), idempotency per consumer, outbox/inbox use. This is the first technical blocker for every adapter.
 
-### A6. awcms-one: platform blueprint and PRD for CRM, commerce adapters and analytics
+### A6. awcms-one: platform blueprint and PRD for CRM, commerce adapters and analytics — [#336](https://github.com/ahliweb/awcms-one/issues/336)
 
 Repo: `ahliweb/awcms-one`. Depends on: A1, O1 to O3.
 Produce DoR artifacts 1 and 2 for the platform level: personas, workflows, non-goals, user stories and outcomes with MoSCoW. Covers segment definitions, loyalty eligibility and redemption, booking-commerce adapter behaviour (deposit as payment allocation, refund coordination), POS service context. Docs only.
 
-### A7. awcms-one: metric contracts for Booking, CRM and workforce analytics
+### A7. awcms-one: metric contracts for Booking, CRM and workforce analytics — [#337](https://github.com/ahliweb/awcms-one/issues/337)
 
 Repo: `ahliweb/awcms-one`. Depends on: A6, O8.
 Define numerator, denominator, status filters, timezone window and late-event behaviour for revenue (gross, discounts, refunds, net), occupancy, utilization, retention (explicit cohort and window) and employee productivity (transparent business facts only). Mark which projections are owned upstream with their module and which are cross-domain here, on the `reporting` engine. No second analytics store.
 
-### A8. awcms-one: threat model, privacy analysis and regulatory applicability for the adapters
+### A8. awcms-one: threat model, privacy analysis and regulatory applicability for the adapters — [#338](https://github.com/ahliweb/awcms-one/issues/338)
 
 Repo: `ahliweb/awcms-one`. Depends on: A1, O5, O6.
 Cover the cross-domain flows: public booking endpoints, payment observation, reminders, commission accrual events, and the provider boundaries. Add the regulatory applicability notes for UU PDP, PP 71/2019, labor and payroll and payments (the epic's §13 as inputs, not legal conclusions) and the control mapping format (control, implementation, test, evidence, SOP, monitoring) without claiming compliance. Per-domain threat models for Booking and `hr_payroll` are part of A2 and A3.
 
-### A9. awcms-one: DoR cross-spec review and Wave B to F issue generation
+### A9. awcms-one: DoR cross-spec review and Wave B to F issue generation — [#339](https://github.com/ahliweb/awcms-one/issues/339)
 
 Repo: `ahliweb/awcms-one`. Depends on: A2 to A8.
 Run the cross-spec review (DoR artifact 9) and check the ADR-0040 D7 gate. When it passes, create the Wave B to F child issues per #280 section 16, each atomic, dependency-aware and targeted at the repository that will contain the code. Until then no implementation issue is opened.
