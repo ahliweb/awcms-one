@@ -1382,7 +1382,19 @@ suite("commerce bundles integration (Issue #290)", () => {
         ).status
       ).toBe("cut_over");
 
-      const outcome = await place([{ productId: bundle, quantity: 1 }]);
+      // The cutover publishes version 1 effective from the database server's
+      // own UTC date, so the sale is placed on the real clock: the fixed
+      // `NOW` above predates any version once the calendar moves past it.
+      const outcome = await inTenant(TENANT_A, (tx) =>
+        createOrderFromCart(
+          tx,
+          TENANT_A,
+          mediaLibraryPortAdapter,
+          orderInput([{ productId: bundle, quantity: 1 }]),
+          new Date(),
+          "corr-bundle"
+        )
+      );
       expect(outcome.kind).toBe("created");
       if (outcome.kind !== "created") return;
       // 11 % of the bundle's 30000.00, once - not of its components.
