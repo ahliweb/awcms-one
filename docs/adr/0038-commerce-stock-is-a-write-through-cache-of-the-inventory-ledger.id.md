@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0038-commerce-stock-is-a-write-through-cache-of-the-inventory-ledger.md)
 
-<!-- i18n-source-hash: sha256:846b137adee478d8d2dcfbb4eda59938ddb134f17aa6e22ff001d04a18d49217 -->
+<!-- i18n-source-hash: sha256:267963d5969b1389a911854067e897eb1da3050757cea7b7d1783e232dd7c7fe -->
 
 <!-- i18n-source-hash: sha256:placeholder -->
 
@@ -126,7 +126,7 @@ Issue [#283](https://github.com/ahliweb/awcms-one/issues/283) (pembelian dan pen
 
 **Counter versus ledger.** Penerimaan pengadaan diposting ke ledger pada kedua mode, tetapi hanya tenant berstatus `ledger` yang punya proyektor cache yang membawanya ke etalase (D4). Pada tenant `counter`, penerimaan tercatat di ledger dan **tidak mengubah stok commerce** - keduanya buku terpisah, dan rekonsiliasi (yang membandingkan cache dengan ledger) wajar menjawab `409 NOT_LEDGER_MODE` alih-alih drift. Inilah alasan menjalankan cut-over (D5) sebelum menerima barang lewat procurement.
 
-**Deteksi yatim.** Pemeriksaan drift pada rekonsiliasi menelusuri unit milik commerce, sehingga saldo ledger yang tidak ditunjuk unit mana pun tak terlihat olehnya. `GET .../inventory/reconciliation` kini juga mengembalikan, pada halaman pertama, bagian `orphans`: saldo `commerce.*` non-nol di lokasi penjualan yang rujukannya `not_found` (tak ada varian/produk aktif), `product_has_variants` (unit stok yang salah), `wrong_unit`, atau `unknown_item_type`; dibatasi 100 dengan penanda `truncated`. Port hanya membaca satu saldo, jadi mendaftarkannya adalah `SELECT` baca-saja pada `awcms_inventory_balances` di `commerce-inventory-reconciliation.ts` - satu-satunya tempat commerce membaca tabel inventori, dan tidak menulis satu pun (worker sudah memegang hibah itu, `sql/947`). Mengusulkan metode port `listBalances` ke hulu akan menghapusnya. Tidak diperlukan migrasi.
+**Deteksi yatim.** Pemeriksaan drift pada rekonsiliasi menelusuri unit milik commerce, sehingga saldo ledger yang tidak ditunjuk unit mana pun tak terlihat olehnya. `GET .../inventory/reconciliation` kini juga mengembalikan, pada halaman pertama, bagian `orphans`: saldo `commerce.*` non-nol di lokasi penjualan yang rujukannya `not_found` (tak ada varian/produk aktif), `product_has_variants` (unit stok yang salah), `wrong_unit`, atau `unknown_item_type`; dibatasi 100 dengan penanda `truncated`. Yatim didaftarkan lewat `InventoryLedgerPort.listBalances` (awcms#913 hulu: berhalaman keyset, awalan `commerce.`, hanya non-nol, 500 per halaman) dan tiap halaman diklasifikasikan terhadap tabel milik commerce dalam satu kueri, di `commerce-inventory-reconciliation.ts`; commerce tidak lagi membaca tabel inventori mana pun (sebelumnya berupa `SELECT` baca-saja pada `awcms_inventory_balances`, saat port belum bisa mendaftar). Penelusuran berhenti pada 101 yatim atau setelah 100 halaman (`ORPHAN_SCAN_MAX_PAGES`, 50.000 saldo), dan mencapai batas pindai itu juga menyalakan `truncated`. Tidak diperlukan migrasi; hibah `SELECT` worker pada `awcms_inventory_balances` di `sql/947` kini tak dipakai commerce tetapi dibiarkan, karena hibah tidak dicabut dalam rilis patch.
 
 **Pelaporan.** Tidak ada yang baru: proyeksi `procurement.receiving` / `procurement.suppliers` hulu dan laporan langsungnya adalah laporan penerimaan, satu proyeksi per fakta. Ini menggantikan catatan "irisan penerimaan" ADR-0035 D1 untuk #283.
 

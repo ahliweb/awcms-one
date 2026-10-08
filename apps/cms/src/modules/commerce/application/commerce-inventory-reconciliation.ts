@@ -24,12 +24,11 @@
  * does not define. Nothing in the catalogue points at such a balance, so the
  * cache projector ignores it and the stock is invisible to the storefront.
  *
- * The port reads ONE balance, so listing them cannot go through it. This is a
- * read-only SELECT of `awcms_inventory_balances` - the same derived table the
- * port's `getOnHand` reads and `sql/947` already grants to the worker - and the
- * only place commerce touches an inventory table; it never writes one. Proposing
- * a `listBalances` port method upstream would remove it. Reported on the first
- * page only (cursor = null), capped at `ORPHAN_LIMIT` with a `truncated` flag.
+ * They are listed through `InventoryLedgerPort.listBalances` (keyset-paged,
+ * `commerce.` prefix, non-zero only) and classified against commerce's own
+ * tables page by page; commerce reads no inventory table. Reported on the first
+ * page only (cursor = null), capped at `ORPHAN_LIMIT` with a `truncated` flag,
+ * which is also set when the scan stops at `ORPHAN_SCAN_MAX_PAGES` pages.
  */
 import {
   COMMERCE_PRODUCT_ITEM_TYPE,
@@ -44,6 +43,7 @@ import {
   readInventoryConfig,
   writeStockCache
 } from "./commerce-inventory";
+import type { InventoryBalanceListItem } from "../../_shared/ports/inventory-ledger-port";
 import { recordAuditEvent } from "../../logging/application/audit-log";
 
 export const RECONCILIATION_DEFAULT_LIMIT = 200;
@@ -111,21 +111,44 @@ export type ReconciliationOutcome =
 const UUID_SQL_PATTERN =
   "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$";
 
-/** Non-zero `commerce.*` balances at the sales location that name no live stock unit. */
-export async function listLedgerOrphans(
+/** Page size for the port's `listBalances` (its maximum). */
+const ORPHAN_SCAN_PAGE_SIZE = 500;
+/**
+ * Bound on port pages walked per report (100 x 500 = 50,000 non-zero
+ * `commerce.*` balances). A location with more than that and fewer than
+ * `ORPHAN_LIMIT + 1` orphans stops here and reports `truncated: true`, so one
+ * reconciliation request can never become an unbounded sweep.
+ */
+export const ORPHAN_SCAN_MAX_PAGES = 100;
+
+type OrphanClassification = { ord: number | string; reason: OrphanReason };
+
+/** Classifies one port page against the commerce tables in a single query. */
+async function classifyBalances(
   tx: Bun.SQL,
   tenantId: string,
-  locationId: string
-): Promise<OrphanReport> {
-  const rows = (await tx`
+  items: InventoryBalanceListItem[]
+): Promise<OrphanClassification[]> {
+  return (await tx`
     WITH bal AS (
-      SELECT item_type, item_ref, unit_code, on_hand,
-             CASE WHEN item_ref ~* ${UUID_SQL_PATTERN} THEN item_ref::uuid END AS ref_id
-      FROM awcms_inventory_balances
-      WHERE tenant_id = ${tenantId} AND location_id = ${locationId}
-        AND item_type LIKE 'commerce.%' AND on_hand <> 0
+      SELECT t.ord, t.item_type, t.unit_code,
+             CASE WHEN t.item_ref ~* ${UUID_SQL_PATTERN} THEN t.item_ref::uuid END AS ref_id
+      FROM unnest(
+        ${tx.array(
+          items.map((item) => item.itemType),
+          "text"
+        )}::text[],
+        ${tx.array(
+          items.map((item) => item.itemRef),
+          "text"
+        )}::text[],
+        ${tx.array(
+          items.map((item) => item.unitCode),
+          "text"
+        )}::text[]
+      ) WITH ORDINALITY AS t(item_type, item_ref, unit_code, ord)
     ), classified AS (
-      SELECT b.item_type, b.item_ref, b.unit_code, trim_scale(b.on_hand)::text AS on_hand,
+      SELECT b.ord,
         CASE
           WHEN b.item_type = ${COMMERCE_VARIANT_ITEM_TYPE} THEN
             CASE
@@ -156,28 +179,66 @@ export async function listLedgerOrphans(
         END AS reason
       FROM bal b
     )
-    SELECT item_type, item_ref, unit_code, on_hand, reason
-    FROM classified
-    WHERE reason IS NOT NULL
-    ORDER BY item_type, item_ref
-    LIMIT ${ORPHAN_LIMIT + 1}
-  `) as {
-    item_type: string;
-    item_ref: string;
-    unit_code: string;
-    on_hand: string;
-    reason: OrphanReason;
-  }[];
+    SELECT ord, reason FROM classified WHERE reason IS NOT NULL
+    ORDER BY ord
+  `) as OrphanClassification[];
+}
+
+/**
+ * Non-zero `commerce.*` balances at the sales location that name no live stock
+ * unit. Pages `InventoryLedgerPort.listBalances` (ordered by item type, item
+ * ref, so the orphans come out in report order with no re-sort) and classifies
+ * each page in one query; stops at `ORPHAN_LIMIT + 1` orphans or after
+ * `ORPHAN_SCAN_MAX_PAGES` pages, whichever is first.
+ */
+export async function listLedgerOrphans(
+  tx: Bun.SQL,
+  tenantId: string,
+  locationId: string
+): Promise<OrphanReport> {
+  const port = commerceInventoryPort();
+  const orphans: LedgerOrphan[] = [];
+  let after: string | undefined;
+  let exhausted = false;
+
+  for (
+    let page = 0;
+    page < ORPHAN_SCAN_MAX_PAGES && orphans.length <= ORPHAN_LIMIT;
+    page += 1
+  ) {
+    const result = await port.listBalances(tx, tenantId, {
+      locationId,
+      itemTypePrefix: "commerce.",
+      nonZeroOnly: true,
+      limit: ORPHAN_SCAN_PAGE_SIZE,
+      after
+    });
+
+    if (result.items.length > 0) {
+      for (const row of await classifyBalances(tx, tenantId, result.items)) {
+        const item = result.items[Number(row.ord) - 1]!;
+        orphans.push({
+          itemType: item.itemType,
+          itemRef: item.itemRef,
+          unitCode: item.unitCode,
+          onHand: item.onHand,
+          reason: row.reason
+        });
+      }
+    }
+
+    if (result.next === null) {
+      exhausted = true;
+      break;
+    }
+
+    after = result.next;
+  }
 
   return {
-    items: rows.slice(0, ORPHAN_LIMIT).map((row) => ({
-      itemType: row.item_type,
-      itemRef: row.item_ref,
-      unitCode: row.unit_code,
-      onHand: row.on_hand,
-      reason: row.reason
-    })),
-    truncated: rows.length > ORPHAN_LIMIT
+    items: orphans.slice(0, ORPHAN_LIMIT),
+    // Either more orphans than the cap, or the scan cap was hit before the end.
+    truncated: orphans.length > ORPHAN_LIMIT || !exhausted
   };
 }
 
