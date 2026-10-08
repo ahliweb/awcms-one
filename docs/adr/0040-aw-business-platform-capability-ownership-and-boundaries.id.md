@@ -1,12 +1,12 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0040-aw-business-platform-capability-ownership-and-boundaries.md)
 
-<!-- i18n-source-hash: sha256:7d66f911a0d8146a621898ea1619f164cd0315b1667cb95f2a71df5d63c18d6e -->
+<!-- i18n-source-hash: sha256:96dbe59e3caac06b4f97f21b15bae7906f4fc8b2f74ea389ad21f28da54ce980 -->
 
 # ADR-0040 — AW Business Platform: kepemilikan kapabilitas dan batasnya
 
-- **Status:** Diusulkan
-- **Tanggal:** 7 Oktober 2026
-- **Pengambil keputusan:** ahliweb (persetujuan pemilik atas batas platform masih menunggu; lihat "Keputusan pemilik" di [`docs/aw-business-platform-dor.md`](../aw-business-platform-dor.id.md))
+- **Status:** Diterima (8 Oktober 2026, keputusan pemilik O0, [#335](https://github.com/ahliweb/awcms-one/issues/335))
+- **Tanggal:** 7 Oktober 2026 (diusulkan); 8 Oktober 2026 (diterima)
+- **Pengambil keputusan:** ahliweb (keputusan pemilik O0 menerima ADR ini apa adanya; keputusan pemilik O1 sampai O12 lainnya masih terbuka di [`docs/aw-business-platform-dor.md`](../aw-business-platform-dor.id.md))
 - **Terkait:** isu [#280](https://github.com/ahliweb/awcms-one/issues/280) (epik, butir Wave A 1); [#297](https://github.com/ahliweb/awcms-one/issues/297) dan [ADR-0024](0024-awcms-one-is-template-only-derived-apps-own-their-backend.md) (kepemilikan hanya-template); [ADR-0016](0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) (akun pelanggan); [ADR-0017](0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md) (penyedia milik commerce, kampanye, WhatsApp); [ADR-0025](0025-payments-are-an-allocation-ledger-separate-from-order-status.md) (buku besar pembayaran); [ADR-0026](0026-loyalty-points-are-an-append-only-ledger.md) (loyalti); [ADR-0028](0028-pos-register-sessions-and-cash-up.md) (register); [ADR-0029](0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md) (batas struk/faktur); [ADR-0033](0033-returns-refunds-and-exchanges-are-additive-records-that-compensate-through-the-existing-ledgers.md) (pengembalian); [ADR-0034](0034-commercial-documents-are-delivered-through-the-existing-outboxes-as-transactional-messages-built-from-immutable-sources.md) (pengiriman dokumen); [ADR-0035](0035-pos-operational-reports-are-commerce-projections-over-the-existing-ledgers-on-the-reporting-engine.md) (laporan operasional); [ADR-0036](0036-bundles-are-component-stocked-products-sold-as-one-line.md) (bundel); [ADR-0037](0037-the-commerce-migration-band-is-allocated-gap-first-and-widened-upstream.md) (pita migrasi); [ADR-0038](0038-commerce-stock-is-a-write-through-cache-of-the-inventory-ledger.md) (adaptor inventaris); [ADR-0039](0039-commerce-tax-is-computed-by-the-tax-module-behind-a-per-tenant-mode.md) (adaptor pajak); upstream `awcms` ADR-0126 / ADR-0127 / ADR-0128 (inventory, tax, dan procurement diterima sebagai modul generik) dan `awcms` ADR-0034 (modul domain boleh hidup di template upstream); `apps/cms/docs/awcms/21_module_admission_governance.md` (pohon keputusan admission modul).
 
 ## Konteks
@@ -122,13 +122,17 @@ Butir Wave A 5 karenanya **tidak memerlukan ADR sendiri**. Sisanya kecil dan dic
 
 Tidak ada isu anak implementasi yang dibuka, dan tidak ada modul, migrasi, atau jalur OpenAPI yang ditambahkan, sampai semua berikut terpenuhi:
 
-1. ADR ini Diterima oleh pemilik (D1, D2, dan D4 bertahan atau diamandemen).
+1. ADR ini Diterima oleh pemilik (D1, D2, dan D4 bertahan atau diamandemen). **Terpenuhi pada 8 Oktober 2026:** keputusan pemilik O0 ([#335](https://github.com/ahliweb/awcms-one/issues/335)) menerima ADR apa adanya, sehingga D1, D2, dan D4 bertahan tanpa amandemen.
 2. Isu admission upstream untuk `booking` dan untuk keluarga `hr_payroll` ada di `ahliweb/awcms` beserta paket desainnya, mengikuti pola paket desain inventory, tax, dan procurement di bawah `apps/cms/docs/awcms/`.
 3. Mekanisme pendaftaran konsumen event domain generik (D3) dan pertanyaan port pengiriman memiliki keputusan upstream yang diterima.
 4. Sepuluh artefak DoR di [`docs/aw-business-platform-dor.md`](../aw-business-platform-dor.id.md) masing-masing terpenuhi atau secara eksplisit dikesampingkan pemilik, dan keputusan pemilik yang tercantum di sana sudah dijawab.
 5. Setiap jalur OpenAPI yang digabung mendahului handler-nya disebut di `ROUTE_PARITY_EXEMPTIONS` dalam `apps/cms/scripts/api-spec-check.ts` bersama isu yang mendaratkannya, dan dihapus sebelum epiknya ditutup (`AGENTS.md`).
 
 Butir Wave B yang hanya bergantung pada `commerce` (definisi segmen, kelayakan loyalti) boleh dibuka lebih awal, setelah D1 dan D2 diterima dan artefak DoR untuk CRM (blueprint, PRD, model ancaman, definisi metrik) ada, karena tidak memerlukan modul upstream. Semua yang menyentuh Booking, Workforce, atau promosi notifikasi menunggu butir 2 atau 3.
+
+## Catatan keputusan
+
+- **8 Oktober 2026, keputusan pemilik O0 ([#335](https://github.com/ahliweb/awcms-one/issues/335)):** ADR-0040 diterima apa adanya. D1, D2, dan D4 bertahan tanpa amandemen: Booking, keluarga `hr_payroll`, dan kapabilitas pengiriman generik adalah upstream-lebih-dulu di `ahliweb/awcms` (isu [#915](https://github.com/ahliweb/awcms/issues/915) sampai [#918](https://github.com/ahliweb/awcms/issues/918)). Penerimaan ini hanya menetapkan penempatan. Ia tidak menjawab keputusan pemilik O1 sampai O12, dan kondisi gerbang D7 lainnya (2 sampai 5) belum terpenuhi.
 
 ## Opsi yang dipertimbangkan
 
