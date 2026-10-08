@@ -2,6 +2,28 @@
 
 Every entry below is folded from `.changesets/` by `bun run release`, which also tags the release. The version is `MAJOR.MINOR.PATCH`, tagged `vX.Y.Z`; the next version is the largest `bump` declared among the changesets a release folds (see [`.changesets/README.md`](.changesets/README.md)) — never a level chosen at release time from a list of file names.
 
+## [0.16.1] — 2026-10-08
+
+### AW Business Platform: capability ownership ADR and DoR tracker (epic #280, Wave A)
+
+Documentation only; no code, migration or module is added. ADR-0040 (Proposed) re-validates the epic's reuse/extend/new matrix against the current tree and places each capability: upstream `ahliweb/awcms` first (Booking, `hr_payroll`, generic delivery), awcms-one adapters after the upstream sync, consumer repositories for vertical semantics. It also records that ADR-0029 already settles the invoice boundary.
+
+- New: `docs/adr/0040-aw-business-platform-capability-ownership-and-boundaries.md` and its Indonesian mirror; ADR index rows added.
+- New: `docs/aw-business-platform-dor.md` (and mirror), the ten DoR artifacts with owner repository, status and owner decisions, plus the proposed Wave A child issues.
+- `docs/status.md` "Not here yet" and `docs/README.md` point to the tracker.
+
+### Commerce orphan detection reads balances through the inventory port
+
+`listLedgerOrphans` (the `orphans` section of the stock reconciliation) no longer `SELECT`s `awcms_inventory_balances` directly. It pages `InventoryLedgerPort.listBalances` (synced from upstream awcms#913) and classifies each page against commerce's own tables in one query, so commerce no longer reads any inventory table. The report is unchanged: same reasons, same ordering, same `ORPHAN_LIMIT` cap.
+
+- The walk is bounded at `ORPHAN_SCAN_MAX_PAGES` (100 pages of 500 balances); stopping at that cap sets `truncated: true`, which the old unbounded query never needed.
+- The `sql/947` worker `SELECT` grant on `awcms_inventory_balances` is now unused by commerce and is deliberately left in place.
+- ADR-0038's "Orphan detection" paragraph and the commerce README are updated.
+
+### apps/cms synced to ahliweb/awcms a0dabcd9
+
+`apps/cms` now carries upstream `main` at `a0dabcd9`: the `sharp`, `shell-quote` and `source-map-js` advisory fixes (ahliweb/awcms#920) and `InventoryLedgerPort.listBalances`, a paged, read-only listing of ledger balances (ahliweb/awcms#913). No new migration, no conflict beyond the regenerated `apps/cms/docs/awcms/repo-inventory.md`.
+
 ## [0.16.0] — 2026-10-07
 
 ### Commerce bundles: item kits stocked through their components (issue #290, ADR-0036)
