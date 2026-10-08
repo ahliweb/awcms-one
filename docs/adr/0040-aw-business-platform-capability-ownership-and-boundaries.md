@@ -2,9 +2,9 @@
 
 # ADR-0040 — AW Business Platform: capability ownership and boundaries
 
-- **Status:** Proposed
-- **Date:** 7 October 2026
-- **Decision maker:** ahliweb (owner sign-off on the platform boundary is pending; see "Owner decisions" in [`docs/aw-business-platform-dor.md`](../aw-business-platform-dor.md))
+- **Status:** Accepted (8 October 2026, owner decision O0, [#335](https://github.com/ahliweb/awcms-one/issues/335))
+- **Date:** 7 October 2026 (proposed); 8 October 2026 (accepted)
+- **Decision maker:** ahliweb (owner decision O0 accepted this ADR as written; the remaining owner decisions O1 to O12 are still open in [`docs/aw-business-platform-dor.md`](../aw-business-platform-dor.md))
 - **Related:** issue [#280](https://github.com/ahliweb/awcms-one/issues/280) (epic, Wave A item 1); [#297](https://github.com/ahliweb/awcms-one/issues/297) and [ADR-0024](0024-awcms-one-is-template-only-derived-apps-own-their-backend.md) (template-only ownership); [ADR-0016](0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) (customer accounts); [ADR-0017](0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md) (commerce-owned providers, campaigns, WhatsApp); [ADR-0025](0025-payments-are-an-allocation-ledger-separate-from-order-status.md) (payment ledger); [ADR-0026](0026-loyalty-points-are-an-append-only-ledger.md) (loyalty); [ADR-0028](0028-pos-register-sessions-and-cash-up.md) (registers); [ADR-0029](0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md) (receipt/invoice boundary); [ADR-0033](0033-returns-refunds-and-exchanges-are-additive-records-that-compensate-through-the-existing-ledgers.md) (returns); [ADR-0034](0034-commercial-documents-are-delivered-through-the-existing-outboxes-as-transactional-messages-built-from-immutable-sources.md) (document delivery); [ADR-0035](0035-pos-operational-reports-are-commerce-projections-over-the-existing-ledgers-on-the-reporting-engine.md) (operational reports); [ADR-0036](0036-bundles-are-component-stocked-products-sold-as-one-line.md) (bundles); [ADR-0037](0037-the-commerce-migration-band-is-allocated-gap-first-and-widened-upstream.md) (migration band); [ADR-0038](0038-commerce-stock-is-a-write-through-cache-of-the-inventory-ledger.md) (inventory adapter); [ADR-0039](0039-commerce-tax-is-computed-by-the-tax-module-behind-a-per-tenant-mode.md) (tax adapter); upstream `awcms` ADR-0126 / ADR-0127 / ADR-0128 (inventory, tax and procurement admitted as generic modules) and `awcms` ADR-0034 (domain modules may live in the upstream template); `apps/cms/docs/awcms/21_module_admission_governance.md` (module admission decision tree).
 
 ## Context
@@ -120,13 +120,17 @@ Wave A item 5 therefore **does not need its own ADR**. What remains is small and
 
 No implementation child issue is opened, and no module, migration or OpenAPI path is added, until all of the following hold:
 
-1. This ADR is Accepted by the owner (D1, D2 and D4 stand or are amended).
+1. This ADR is Accepted by the owner (D1, D2 and D4 stand or are amended). **Satisfied on 8 October 2026:** owner decision O0 ([#335](https://github.com/ahliweb/awcms-one/issues/335)) accepted the ADR as written, so D1, D2 and D4 stand unamended.
 2. The upstream admission issues for `booking` and for the `hr_payroll` family exist in `ahliweb/awcms` with their design packs, following the pattern of the inventory, tax and procurement design packs under `apps/cms/docs/awcms/`.
 3. The generic domain-event consumer-registration mechanism (D3) and the delivery-port question have an accepted upstream decision.
 4. The ten DoR artifacts in [`docs/aw-business-platform-dor.md`](../aw-business-platform-dor.md) are each satisfied or explicitly waived by the owner, and the owner decisions listed there are answered.
 5. Any OpenAPI path merged ahead of its handler is named in `ROUTE_PARITY_EXEMPTIONS` in `apps/cms/scripts/api-spec-check.ts` with the issue that lands it, and removed before its epic closes (`AGENTS.md`).
 
 Wave B items that depend only on `commerce` (segment definitions, loyalty eligibility) may be opened earlier, once D1 and D2 are accepted and the DoR artifacts for CRM (blueprint, PRD, threat model, metric definitions) exist, because they need no upstream module. Everything that touches Booking, Workforce or notification promotion waits for item 2 or 3.
+
+## Decision record
+
+- **8 October 2026, owner decision O0 ([#335](https://github.com/ahliweb/awcms-one/issues/335)):** ADR-0040 is accepted as written. D1, D2 and D4 stand unamended: Booking, the `hr_payroll` family and a generic delivery capability are upstream-first in `ahliweb/awcms` (issues [#915](https://github.com/ahliweb/awcms/issues/915) to [#918](https://github.com/ahliweb/awcms/issues/918)). This acceptance settles placement only. It does not answer owner decisions O1 to O12, and the other D7 gate conditions (2 to 5) remain unmet.
 
 ## Options considered
 
