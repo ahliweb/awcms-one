@@ -2,6 +2,24 @@
 
 Every entry below is folded from `.changesets/` by `bun run release`, which also tags the release. The version is `MAJOR.MINOR.PATCH`, tagged `vX.Y.Z`; the next version is the largest `bump` declared among the changesets a release folds (see [`.changesets/README.md`](.changesets/README.md)) — never a level chosen at release time from a list of file names.
 
+## [0.16.2] — 2026-10-08
+
+### ADR-0040 accepted by the owner
+
+Owner decision O0 on issue #335 accepted ADR-0040 (AW Business Platform capability ownership and boundaries) as written: D1, D2 and D4 stand unamended, so Booking, the `hr_payroll` family and generic delivery stay upstream-first in `ahliweb/awcms` (#915 to #918).
+
+- ADR-0040 and its Indonesian mirror are set to Accepted with a decision record; the ADR index row follows.
+- `docs/aw-business-platform-dor.md` drops the answered O0 row and marks Wave A item A1 done. O1 to O12 remain open, and A6 to A8 stay blocked on them.
+- Documentation only: no code, module, migration or OpenAPI path is added (ADR-0040 D7).
+
+### Sync `apps/cms` to upstream AWCMS v10.6.0
+
+`apps/cms` now embeds `ahliweb/awcms` `main` at `61507bb7` (AWCMS v10.6.0), two commits past the previous sync (`a0dabcd9`).
+
+- `idn-admin-regions` dataset rollback (ahliweb/awcms#914, #922): `now()` is the transaction start, so the active dataset could be stamped equal to or earlier than the one it superseded, and the strict `activated_at <` filter then found nothing to roll back to. Rollback now takes the latest superseded dataset by `(activated_at, id)` with no comparison. Covered by a new integration test.
+- Version bump to 10.6.0 with upstream's `CHANGELOG.md` and `PROJECT_STATE` updates. No new migrations, no dependency changes.
+- No standing local divergence was resolved or added. The only conflict was in `apps/cms/docs/PROJECT_STATE.md` and its Indonesian mirror (upstream's version and release-note rows against this embed's module and migration counts); both lineages were kept and the mirror restamped.
+
 ## [0.16.1] — 2026-10-08
 
 ### AW Business Platform: capability ownership ADR and DoR tracker (epic #280, Wave A)
