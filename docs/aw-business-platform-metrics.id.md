@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](aw-business-platform-metrics.md)
 
-<!-- i18n-source-hash: sha256:ec6d5593a3183db78721d721b0c0fff634e331f7c04a51966e3a30eb97c25daa -->
+<!-- i18n-source-hash: sha256:54d7b56b746ebf8c81f19ed1d4dda91edc3c8ac3b9174a4a554376097faf37f3 -->
 
 # AW Business Platform — kontrak metrik
 
@@ -248,6 +248,18 @@ Dua hal yang dipertegas contoh ini. Pertama, peristiwa kedua C2 adalah pembelian
 ### 6.4 Bentuk proyeksi
 
 Retensi **bukan** counter murni yang hanya naik, karena satu peristiwa dapat memindahkan pelanggan antar kohort. Proyeksi lintas-domain karenanya menyimpan, per tenant dan pelanggan, hanya dua instan peristiwa memenuhi syarat paling awal (pertama dan kedua) dan menurunkan tally kohort darinya saat dibaca atau pada rebuild terbatas. Ini adalah tabel di penyimpanan proyeksi engine `reporting`, bukan penyimpanan kedua; tidak memuat nama atau kontak, dan barisnya dihapus saat pelanggan dianonimkan. Bila kontrak deskriptor engine tidak dapat mengekspresikan baris per-pelanggan berkunci, itu adalah **penghambat bagi isu build** dan diajukan ke upstream, tidak diakali dengan penyimpanan eksternal (ADR-0040 D5.2).
+
+### 6.5 Catatan implementasi: separuh khusus-commerce (isu #364)
+
+**Dibangun 11 Oktober 2026 ([#364](https://github.com/ahliweb/awcms-one/issues/364), [ADR-0044](adr/0044-customer-retention-is-a-per-customer-recompute-projection-on-the-reporting-engine.md)).** Sub-tampilan milik commerce yang disebut di tabel kontrak ("hanya pesanan") dikirim sebagai descriptor `reporting` `commerce.customer_retention`. Kontrak dimensional-sink mesin mampu mengungkapkan baris per-pelanggan berkunci pada 6.4, sehingga klausul penghalang tidak terpicu dan tidak ada penyimpanan eksternal. Masukan booking (booking terkonfirmasi sebagai peristiwa pertama atau kedua) **belum** dibangun; ia memperluas fakta hitung-ulang setelah Wave C. Pilihan yang diambil saat kontrak membiarkannya terbuka:
+
+- **Hitung ulang, bukan naikkan.** Baris pelanggan diturunkan ulang dari pesanan pelanggan saat ini setiap kali salah satunya dibayar, dibatalkan, diretur, atau di-refund, sehingga refund pembelian pertama menyerahkan kohort ke pesanan berikutnya dan pembelian ulang yang dibatalkan berhenti dihitung; rebuild mereproduksi tabel live byte demi byte.
+- **Peristiwa kedua tepat setelah yang pertama.** Dua pesanan pada instan yang sama adalah dua pesanan tetapi bukan pembelian ulang. "Dalam 90 hari" adalah `<= 90 × 24 jam` dan dievaluasi saat baca, tidak disimpan.
+- **Pesanan berkualifikasi** = `paid_at` terisi, status siklus hidup berbayar, dan `payment_status` bukan `refunded` (refund sebagian tetap berkualifikasi, refund penuh mengeluarkan pesanan).
+- **Unlinked (Q7).** Setiap pesanan commerce memiliki id pelanggan (checkout tamu membuat atau memakai ulang pelanggan berdasarkan telepon), sehingga populasi unlinked adalah placeholder walk-in POS anonim: pesanan berkualifikasinya dilaporkan satu kali sebagai `unlinkedOrders` dan tidak masuk kohort mana pun.
+- **Pengecualian terblokir, terpurge, dan walk-in diterapkan saat baca** (join ke tabel pelanggan), tidak dipanggang ke baris tersimpan, karena berubah tanpa event apa pun. Akun uji dan internal bukan konsep commerce dan tidak dimodelkan.
+- **Restatement (Q1).** Perubahan pada kohort setelah akhir bulannya ditambah 35 hari dicatat dan ditandai "dikoreksi"; pembelian ulang yang muncul saat kohort masih matang adalah pengisian biasa dan bukan.
+- **Visibilitas.** `commerce.report_retention.read|export` (tidak tersirat oleh kunci dashboard atau pelanggan), fitur `retention` per tenant bawaan MATI, hanya jumlah, tanpa persentase di bawah 20 pelanggan.
 
 ## 7. Produktivitas karyawan
 

@@ -224,11 +224,12 @@ describe("validateProjectionRegistry (Issue #753)", () => {
     // `commerce`'s five POS operational projections (Issue #296) and its
     // returns & refunds one (Issue #316). Upstream's `inventory.low_stock`
     // (ADR-0126), `tax.snapshot_activity` (ADR-0127) and the two
-    // `procurement.*` counters (ADR-0128) bring the total to 16.
-    expect(result.descriptors.length).toBe(16);
+    // `procurement.*` counters (ADR-0128) bring the total to 16, and
+    // `commerce`'s customer-retention projection (Issue #364) to 17.
+    expect(result.descriptors.length).toBe(17);
     expect(
       result.descriptors.filter((d) => d.ownerModuleKey === "commerce").length
-    ).toBe(9);
+    ).toBe(10);
     expect(result.descriptors.map((d) => d.key)).toContain(
       "tax.snapshot_activity"
     );

@@ -749,6 +749,11 @@ export const COMMERCE_REPORT_STORED_VALUE_ACTIVITY_CODE = "report_stored_value";
 // A sixth pair on the same footing: not implied by `commerce.returns.read`
 // (which opens individual returns, lines and refund legs) nor the reverse.
 export const COMMERCE_REPORT_RETURNS_ACTIVITY_CODE = "report_returns";
+// Issue #364 (ADR-0044) - the customer-retention report. Not implied by
+// `commerce.customers.read` (which opens individual customers), by
+// `reporting.dashboard.read`, or by another report key: counting how many
+// customers came back is not listing who they are.
+export const COMMERCE_REPORT_RETENTION_ACTIVITY_CODE = "report_retention";
 
 export const COMMERCE_REPORT_TENDER_PERMISSIONS = {
   read: "commerce.report_tenders.read",
@@ -778,6 +783,11 @@ export const COMMERCE_REPORT_STORED_VALUE_PERMISSIONS = {
 export const COMMERCE_REPORT_RETURN_PERMISSIONS = {
   read: "commerce.report_returns.read",
   export: "commerce.report_returns.export"
+} as const;
+
+export const COMMERCE_REPORT_RETENTION_PERMISSIONS = {
+  read: "commerce.report_retention.read",
+  export: "commerce.report_retention.export"
 } as const;
 
 /**

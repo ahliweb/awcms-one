@@ -247,6 +247,18 @@ Two points the example makes concrete. First, C2's second event was a repeat but
 
 Retention is **not** a pure increment-only counter, because an event can move a customer between cohorts. The cross-domain projection therefore keeps, per tenant and customer, only the two earliest qualifying event instants (a first and a second) and derives the cohort tallies from them at read or on a bounded rebuild. This is a table on the `reporting` engine's projection storage, not a second store; it holds no name or contact, and its rows are removed on customer anonymisation. If the engine's descriptor contract cannot express a keyed per-customer row, that is a **blocker for the build issue** and is raised upstream, not worked around with an external store (ADR-0040 D5.2).
 
+### 6.5 Implementation note: commerce-only half (issue #364)
+
+**Built 11 October 2026 ([#364](https://github.com/ahliweb/awcms-one/issues/364), [ADR-0044](adr/0044-customer-retention-is-a-per-customer-recompute-projection-on-the-reporting-engine.md)).** The commerce-owned sub-view named in the contract table ("orders only") ships as the `reporting` descriptor `commerce.customer_retention`. The engine's dimensional-sink contract expresses the keyed per-customer row of 6.4, so the blocker clause did not trigger and no external store exists. The booking input (a confirmed booking as a first or second event) is **not** built; it extends the recompute's facts after Wave C. Where the build made a choice the contract left open:
+
+- **Recompute, not increment.** A customer's row is re-derived from their current orders whenever one of them is paid, cancelled, returned or refunded, so a refund of the first purchase hands the cohort to the next order and a cancelled repeat stops counting; a rebuild reproduces the live table byte for byte.
+- **Second event strictly after the first.** Two orders at the same instant are two orders but not a repeat. "Within 90 days" is `<= 90 × 24 h` and is evaluated at read, not stored.
+- **Qualifying order** = `paid_at` set, a paid lifecycle state, and `payment_status` not `refunded` (a partial refund still qualifies, a full one removes the order).
+- **Unlinked (Q7).** Every commerce order has a customer id (a guest checkout creates or reuses the customer by phone), so the unlinked population is the anonymous POS walk-in placeholder: its qualifying orders are reported once as `unlinkedOrders` and sit in no cohort.
+- **Blocked, purged and walk-in exclusions are applied at read** (a join to the customer table), not baked into the stored rows, because they change without any event. Test and internal accounts are not a commerce concept and are not modelled.
+- **Restatement (Q1).** A change to a cohort after its month end plus 35 days is logged and flagged "restated"; a repeat that appears while the cohort is still maturing is ordinary filling-in and is not.
+- **Visibility.** `commerce.report_retention.read|export` (not implied by the dashboard or customer keys), a per-tenant `retention` feature defaulting OFF, counts only, no percentage under 20 customers.
+
 ## 7. Employee productivity
 
 ### 7.1 What it is, and what it is not

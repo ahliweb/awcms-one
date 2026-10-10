@@ -1854,6 +1854,22 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_commerce_report_src_close_decisions: ["SELECT"],
   awcms_commerce_report_src_expenses_posted: ["SELECT"],
   awcms_commerce_report_src_expenses_reversed: ["SELECT"],
+  // Issue #364 (sql/1020) - the customer-retention projection: both tables are
+  // written by the sink (recompute = upsert or delete) and purged by the
+  // generic engine; the reversal-leg view is read-only.
+  awcms_commerce_report_retention_customers: [
+    "SELECT",
+    "INSERT",
+    "UPDATE",
+    "DELETE"
+  ],
+  awcms_commerce_report_retention_restated: [
+    "SELECT",
+    "INSERT",
+    "UPDATE",
+    "DELETE"
+  ],
+  awcms_commerce_report_src_retention_reversals: ["SELECT"],
   awcms_commerce_payment_events: ["SELECT", "DELETE"],
   awcms_commerce_webhook_endpoints: ["SELECT", "DELETE"],
   // omes_control — the generic data_lifecycle purge engine (sql/154's

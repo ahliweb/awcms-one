@@ -46,7 +46,8 @@ export type CommerceFeatureKey =
   | "expenses"
   | "documentDelivery"
   | "barcode"
-  | "returns";
+  | "returns"
+  | "retention";
 
 export type CommerceFeatures = Readonly<Record<CommerceFeatureKey, boolean>>;
 
@@ -106,7 +107,11 @@ export const DEFAULT_COMMERCE_FEATURES: CommerceFeatures = {
   // stock and money back into customers' hands: new behaviour with a security
   // posture of its own (separately granted permissions, a provider call), so a
   // tenant chooses it. A tenant that never opens "Features" sees no change.
-  returns: false
+  returns: false,
+  // Issue #364 (ADR-0044) - OFF. The customer-retention report is a new admin
+  // surface over a new per-customer projection; a tenant that never opens
+  // "Features" must see exactly today's reports screen.
+  retention: false
 };
 
 const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
@@ -122,7 +127,8 @@ const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
   "expenses",
   "documentDelivery",
   "barcode",
-  "returns"
+  "returns",
+  "retention"
 ];
 
 function isBoolean(value: unknown): value is boolean {
