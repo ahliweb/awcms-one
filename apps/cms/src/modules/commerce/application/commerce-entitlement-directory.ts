@@ -52,8 +52,8 @@ function toCommerceEntitlement(row: EntitlementRow): CommerceEntitlement {
 /**
  * Grants one entitlement per DISTINCT product on a paid order — called from
  * the `commerce.order_paid_entitlement_grantor` consumer
- * (`domain-event-runtime/infrastructure/consumer-registry.ts`), itself
- * wrapped in `applyConsumerEffectOnce` by that consumer's own handler (the
+ * (declared in `commerce/module.ts` `domainEventConsumers`, ADR-0134), itself
+ * wrapped in `applyConsumerEffectOnce` by the runtime registry (the
  * per-(consumer, event) idempotency marker). This function ADDITIONALLY
  * inserts with `ON CONFLICT (tenant_id, source_order_id, product_id) DO
  * NOTHING` — the row-level idempotency guard `sql/936`'s header documents —

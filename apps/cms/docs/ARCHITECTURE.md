@@ -50,7 +50,7 @@ src/modules/<module>/
   (enumeration-safe, single-use, revokes every session), self-registration
   with admin approval (OFF by default), tenant user membership, base RBAC/ABAC.
 - **`module_management`** (`isCore`) — DB-backed module registry: descriptor sync, per-tenant enable/disable, non-secret settings, permission sync, navigation, job registry, health/readiness.
-- **`domain_event_runtime`** — transactional domain-event outbox/dispatcher, versioning, multi-consumer, dead-letter + audited replay.
+- **`domain_event_runtime`** — transactional domain-event outbox/dispatcher, versioning, multi-consumer (consumers are declared in each owning module's descriptor, `domainEventConsumers`, and the registry is built from them — [ADR-0134](adr/0134-descriptor-declared-domain-event-consumers.md)), dead-letter + audited replay.
 - **`sync_storage`** — offline-first sync nodes, HMAC-signed anti-replay outbox/inbox, conflict tracking, object upload queue.
 - **`workflow_approval`** — versioned workflow-definition engine (draft/publish/retire), node graph (approval/condition/parallel/join/notify), quorum, delegation, escalation.
 - **`email`** — provider-neutral email service (Mailketing + `log` adapter), template management, outbox dispatcher, mass announcements.
@@ -370,6 +370,8 @@ queued/sent/failed/suppressed/cancelled) — published through
 `appendDomainEvent` in the same business transaction (ADR-0006, same-commit
 outbox write) and delivered by `bun run domain-events:dispatch` with
 per-order-key ordering, backoff, dead-letter + audited replay.
+
+A separate, **provisional** document, `asyncapi/provisional/awcms-cross-domain-events.provisional.asyncapi.yaml`, holds the schemas of events for modules that do not exist yet (booking, hr_payroll, WhatsApp delivery). It is not part of the live contract, is emitted by no code, and is gated by `bun run asyncapi:provisional:check`; an event lives in exactly one of the two files. See [`docs/awcms/cross-domain-contracts.md`](awcms/cross-domain-contracts.md).
 
 ## Migration
 
