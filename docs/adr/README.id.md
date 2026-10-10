@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:95b482436917bd1d507db79166905eb0f220b84e7ab5b375e6e6767d1d83553f -->
+<!-- i18n-source-hash: sha256:40340a6bb0a3ca5c9657ec3e592668ba2626cfdefd2ed610c2a7ea1457f4b3b1 -->
 
 # Architecture Decision Records
 
@@ -59,6 +59,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0038](0038-commerce-stock-is-a-write-through-cache-of-the-inventory-ledger.md)                                                         | Stok commerce adalah cache write-through dari ledger inventori: mode per tenant, cut-over atomik, dan satu rekonsiliasi                                                                                                                      | Diterima                                                                                                                      |
 | [0039](0039-commerce-tax-is-computed-by-the-tax-module-behind-a-per-tenant-mode.md)                                                     | Pajak commerce dihitung oleh modul `tax`, di belakang mode per tenant                                                                                                                                                                        | Diterima                                                                                                                      |
 | [0040](0040-aw-business-platform-capability-ownership-and-boundaries.md)                                                                | AW Business Platform: kepemilikan kapabilitas dan batasnya (upstream lebih dulu, adaptor awcms-one, repositori konsumen)                                                                                                                     | Diterima                                                                                                                      |
+| [0041](0041-gateway-deposit-sessions-and-mixed-tenders-on-one-order.md)                                                                 | Sesi deposit gateway dan tender campuran pada satu pesanan (meninjau ulang ADR-0025 D7)                                                                                                                                                      | Diterima                                                                                                                      |
 
 ## Mengapa penomoran dimulai dari 0001
 
