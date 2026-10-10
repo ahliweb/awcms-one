@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:4a667663bbdedd373850026af5da99013ab62a5f6c6f69bb707e72c1fd0ff049 -->
+<!-- i18n-source-hash: sha256:1198915221a18c341d9610c231d406c6a2d3fdf600aed0371583e370313ec601 -->
 
 # Dokumentasi
 
@@ -26,6 +26,9 @@ Dokumentasi arsitektur, skema, API, alur kerja CMS, perilaku storefront, penguji
 | [`rilis.md`](rilis.id.md)                                       | Runbook rilis end-to-end: changeset ke tag, `release:images`, `release:publish`, bukti, verifikasi konsumen                                                                                                                 |
 | [`template.md`](template.id.md)                                 | Menggunakan awcms-one sebagai template: `template:init`, matriks profil build, seed per profil, BjekMart sebagai contoh referensi                                                                                           |
 | [`aw-business-platform-dor.md`](aw-business-platform-dor.id.md) | Pelacak Definition of Ready untuk epik #280 (AW Business Platform): sepuluh artefak DoR, keputusan pemilik, isu Wave A                                                                                                      |
+| [`aw-business-platform-prd.md`](aw-business-platform-prd.id.md) | Blueprint platform dan PRD untuk bagian milik awcms-one dari epik #280: persona, alur kerja, non-tujuan, cerita pengguna, hasil, MoSCoW |
+| [`aw-business-platform-metrics.md`](aw-business-platform-metrics.id.md) | Kontrak metrik untuk epik #280: pendapatan, okupansi, utilisasi, retensi, produktivitas karyawan, dan angka vertikal pertama |
+| [`aw-business-platform-threat-model.md`](aw-business-platform-threat-model.id.md) | Model ancaman adaptor, analisis privasi, catatan keberlakuan regulasi, dan pemetaan kontrol untuk epik #280 |
 
 ## Apa yang tidak diduplikasi direktori ini
 
