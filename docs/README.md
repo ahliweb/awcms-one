@@ -28,6 +28,7 @@ Architecture, schema, API, CMS workflow, storefront behaviour, testing, deployme
 | [`aw-business-platform-metrics.md`](aw-business-platform-metrics.md)               | Metric contracts for epic #280: revenue, occupancy, utilization, retention, employee productivity, and the first-vertical figures                                                                                                                          |
 | [`aw-business-platform-threat-model.md`](aw-business-platform-threat-model.md)     | Adapter threat model, privacy analysis, regulatory applicability notes and control mapping for epic #280                                                                                                                                                   |
 | [`booking-commerce-adapter-data-model.md`](booking-commerce-adapter-data-model.md) | Proposed (not migrated) ERD and data dictionary for the booking-commerce adapter tables, and the rule that the customer is derived through the order                                                                                                       |
+| [`booking-commerce-access-matrix.md`](booking-commerce-access-matrix.md)           | Proposed (not registered) RBAC / ABAC / RLS matrix for the commerce-side roles that touch bookings, and who may override a policy-computed refund                                                                                                          |
 
 ## What this directory does not duplicate
 

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:803de93cd999771cb209424a49c91fde5f9ef098183c72d802f3aa39cc525ba4 -->
+<!-- i18n-source-hash: sha256:4b347c4c28cd4d69f87d53eb0aac40d90a916635212bd70c25630a8a2a984e8b -->
 
 # Dokumentasi
 
@@ -30,6 +30,7 @@ Dokumentasi arsitektur, skema, API, alur kerja CMS, perilaku storefront, penguji
 | [`aw-business-platform-metrics.md`](aw-business-platform-metrics.id.md)               | Kontrak metrik untuk epik #280: pendapatan, okupansi, utilisasi, retensi, produktivitas karyawan, dan angka vertikal pertama                                                                                                |
 | [`aw-business-platform-threat-model.md`](aw-business-platform-threat-model.id.md)     | Model ancaman adaptor, analisis privasi, catatan keberlakuan regulasi, dan pemetaan kontrol untuk epik #280                                                                                                                 |
 | [`booking-commerce-adapter-data-model.md`](booking-commerce-adapter-data-model.id.md) | Usulan (belum dimigrasi) ERD dan kamus data tabel adapter booking-commerce, dan aturan bahwa pelanggan diturunkan lewat pesanan                                                                                             |
+| [`booking-commerce-access-matrix.md`](booking-commerce-access-matrix.id.md)           | Usulan (belum terdaftar) matriks RBAC / ABAC / RLS untuk peran sisi commerce yang menyentuh booking, dan siapa yang boleh menimpa refund hasil hitung kebijakan                                                             |
 
 ## Apa yang tidak diduplikasi direktori ini
 
