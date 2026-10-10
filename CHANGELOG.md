@@ -2,6 +2,32 @@
 
 Every entry below is folded from `.changesets/` by `bun run release`, which also tags the release. The version is `MAJOR.MINOR.PATCH`, tagged `vX.Y.Z`; the next version is the largest `bump` declared among the changesets a release folds (see [`.changesets/README.md`](.changesets/README.md)) — never a level chosen at release time from a list of file names.
 
+## [0.16.3] — 2026-10-10
+
+### AW Business Platform Wave A documents and owner decisions
+
+The owner answered decisions O1 to O12 for epic #280 on 10 October 2026. They also chose an upstream Booking v1 scope change for nightly stays (W0, ahliweb/awcms#931). The awcms-one Wave A documents were written from these decisions:
+
+- `docs/aw-business-platform-prd.md`: platform blueprint and PRD for the awcms-one-owned parts (A6, #336).
+- `docs/aw-business-platform-metrics.md`: metric contracts for revenue, occupancy, utilization, retention and productivity (A7, #337).
+- `docs/aw-business-platform-threat-model.md`: adapter threat model, privacy analysis and regulatory applicability notes. It makes no compliance claim (A8, #338).
+- `docs/aw-business-platform-dor.md`: records the answers and the A9 cross-spec review (#339).
+  - Verdict: the ADR-0040 D7 full gate is not passed. DoR artifacts 4, 5, 7 and 8 are tracked in #356 to #359, with #353 to #355 as further prerequisites.
+  - Under the D7 carve-out, the commerce-only Wave B issues #360 to #364 are open.
+  - #339 stays open as the gate tracker.
+- The `awcms-one-commerce` skill now says that commerce domain-event consumers are declared in the module descriptor (ADR-0134 in `apps/cms/docs/adr/`), not in upstream's `consumer-registry.ts`.
+
+This change is documentation only: it adds no code, module, migration or OpenAPI path (ADR-0040 D7).
+
+### Sync apps/cms to AWCMS v10.7.0 and adopt descriptor-declared domain-event consumers
+
+Subtree sync of `apps/cms` from upstream `66c74273` (AWCMS v10.7.0, 7 commits; issue #347). No new migration.
+
+- Upstream ADR-0134 (ahliweb/awcms#926): consumers are declared in `ModuleDescriptor.domainEventConsumers` (module contract 4.2.0) and the runtime builds its registry from the composed module list; the new `domain-events:consumers:check` gate is in the `apps/cms` check chain.
+- This repo's standing divergence in `domain-event-runtime/infrastructure/consumer-registry.ts` is **retired**: upstream's file is taken unchanged and the four `commerce` consumers (`commerce.order_paid_entitlement_grantor`, `commerce.order_paid_loyalty_earner`, `commerce.order_cancelled_loyalty_reverser`, `commerce.inventory_stock_cache_projector`) are declared in the commerce module descriptor with unchanged names. The `domain_event_runtime -> commerce` module-boundary exception is gone.
+- Wave A design packs for booking, hr_payroll and delivery plus provisional cross-domain AsyncAPI events arrive as documentation.
+- `AGENTS.md` / `AGENTS.id.md` "Last sync" row and divergence list, and `docs/aw-business-platform-dor.md` DoR item 9, are updated.
+
 ## [0.16.2] — 2026-10-08
 
 ### ADR-0040 accepted by the owner
