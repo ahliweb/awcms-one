@@ -120,7 +120,7 @@ The used-directly/no-derived-repo governance model (ADR-0034 §2/§3) is **uncha
 | Commits since the last release    | _run the command in the right-hand column_                                             | `git rev-list --count v10.7.0..HEAD`                                                    |
 | Base modules                      | **29** (see the list in ARCHITECTURE.md)                                               | `src/modules/index.ts`                                                                  |
 | Migrations                        | **263** (`sql/001`–`1000`)                                                             | `ls sql/`                                                                               |
-| ADR                               | **0000**–**0134** (`0000` = template; highest ADR status: **Accepted**)                | `ls docs/adr/`                                                                          |
+| ADR                               | **0000**–**0135** (`0000` = template; highest ADR status: **Accepted**)                | `ls docs/adr/`                                                                          |
 | Admin screens                     | **95** `.astro` files in `src/pages/admin/`; **0 of 29** modules without `navigation:` | `find src/pages/admin -name '*.astro'`, `grep -L 'navigation:' src/modules/*/module.ts` |
 | `.astro` files                    | **120** (74.081 lines) — on typechecking see §6                                        | `find src -name '*.astro'`                                                              |
 | Gates                             | **63** in the `bun run check` chain                                                    | `scripts.check` in `package.json`, split on `&&`                                        |
@@ -405,11 +405,17 @@ pioneered directly here after the ADR-0047 freeze.)
   phase-1 PR creates its `_shared/ports` file and moves its events from the
   provisional file to the live contract (the gate forces "exactly one place").
 
-  **Owner decisions are still open, and the packs record them as open, not
-  decided:** O1–O3, O5, O8, O9, O12 (booking); O1, O4–O7 (hr; payroll is
-  additionally gated on at-rest encryption plus security and legal review);
-  O10 Telegram deferred, O11 orchestration not admitted (delivery). Read the
-  pack's "Open questions" before writing a migration.
+  **Owner decisions (answered 2026-10-10 in the awcms-one DoR).** Recorded in
+  the packs where they bind: booking O8 and O12 (holds excluded from occupancy;
+  commerce stays the customer authority, so no `customer_profile_id`); hr O4
+  (Indonesian profile consumer-owned), O6 (geolocation only, off by default,
+  own ADR still needed) and O7 (SoD configurable per tenant; needs an ADR-0132
+  amendment and has an open sub-question O7a; payroll is additionally gated on
+  at-rest encryption plus security review). Delivery O10/O11: Telegram and
+  orchestration are wanted by the owner but are still not admitted here; each
+  needs its own ADR/issue. Booking O2 (first vertical hotel / villa / rental) is answered and admits day-granularity stays into v1 through ADR-0135 (Issue #931); O1, O3, O5 and
+  O9 are not yet reconciled into the packs. Read the pack's open-questions table
+  before writing a migration.
 
   **Two things to know before touching the consumer registry (#926).**
   Consumers run regardless of module `status`: an earlier draft that skipped

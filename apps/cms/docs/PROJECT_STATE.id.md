@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](PROJECT_STATE.md)
 
-<!-- i18n-source-hash: sha256:f513302117f940b1809e49a7fe72247a31558b311b728e730218ce2e478ae991 -->
+<!-- i18n-source-hash: sha256:0ec6873abfc34de94d44f464a0a9219f77a8fabd7c64d5597d68fe08c8639a52 -->
 
 # AWCMS — Project State & Continuation
 
@@ -121,7 +121,7 @@ Model tata kelola dipakai-langsung/tanpa-repo-turunan (ADR-0034 §2/§3) **tidak
 | Commit sejak rilis terakhir        | _jalankan perintah di kolom kanan_                                                    | `git rev-list --count v10.7.0..HEAD`                                                    |
 | Modul base                         | **29** (lihat daftar di ARCHITECTURE.md)                                              | `src/modules/index.ts`                                                                  |
 | Migrasi                            | **263** (`sql/001`–`1000`)                                                            | `ls sql/`                                                                               |
-| ADR                                | **0000**–**0134** (`0000` = template; status ADR tertinggi: **Accepted**)             | `ls docs/adr/`                                                                          |
+| ADR                                | **0000**–**0135** (`0000` = template; status ADR tertinggi: **Accepted**)             | `ls docs/adr/`                                                                          |
 | Layar admin                        | **95** berkas `.astro` di `src/pages/admin/`; **0 dari 29** modul tanpa `navigation:` | `find src/pages/admin -name '*.astro'`, `grep -L 'navigation:' src/modules/*/module.ts` |
 | Berkas `.astro`                    | **120** (74.081 baris) — soal typecheck lihat §6                                      | `find src -name '*.astro'`                                                              |
 | Gerbang                            | **63** di rantai `bun run check`                                                      | `scripts.check` di `package.json`, dipisah pada `&&`                                    |
@@ -408,11 +408,16 @@ knowledge:check` (`graph:artifacts:check` + dry run `--check` sync wrapper)
   modul membuat berkas `_shared/ports`-nya dan memindahkan event-nya dari berkas
   provisional ke kontrak hidup (gerbang memaksa "tepat di satu tempat").
 
-  **Keputusan pemilik masih terbuka, dan pack mencatatnya sebagai terbuka, bukan
-  diputuskan:** O1–O3, O5, O8, O9, O12 (booking); O1, O4–O7 (hr; payroll juga
-  digerbangi enkripsi at-rest serta review keamanan dan hukum); O10 Telegram
-  ditunda, O11 orkestrasi tidak diterima (delivery). Baca bagian "Open
-  questions" pack sebelum menulis migrasi.
+  **Keputusan pemilik (dijawab 2026-10-10 di DoR awcms-one).** Dicatat di
+  pack tempat ia mengikat: booking O8 dan O12 (hold tidak dihitung dalam
+  occupancy; commerce tetap otoritas pelanggan, sehingga tanpa
+  `customer_profile_id`); hr O4 (profil Indonesia milik konsumen), O6 (geolokasi
+  saja, mati secara default, tetap butuh ADR sendiri) dan O7 (SoD dapat
+  dikonfigurasi per tenant; butuh amandemen ADR-0132 dan punya sub-pertanyaan
+  terbuka O7a; payroll juga digerbangi enkripsi at-rest serta review keamanan).
+  Delivery O10/O11: Telegram dan orkestrasi diinginkan pemilik tetapi belum
+  diterima di sini; masing-masing butuh ADR/isu sendiri. O2 booking (vertikal pertama hotel / vila / rental) terjawab dan memasukkan menginap berbasis hari ke v1 lewat ADR-0135 (Issue #931); O1, O3, O5, dan O9 belum direkonsiliasi ke pack. Baca tabel
+  pertanyaan terbuka pack sebelum menulis migrasi.
 
   **Dua hal sebelum menyentuh registry consumer (#926).** Consumer berjalan
   apa pun `status` modulnya: draf awal yang melewati modul `disabled`
