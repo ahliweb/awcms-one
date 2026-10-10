@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:33e6a8cc542adb75129e3a7b090da9a16cbeb5d19adc0a03cca2abd2acc07574 -->
+<!-- i18n-source-hash: sha256:5d49584fa1e3f68c6f64dc143c66af58e27853bd0082138f09af1925843a33a4 -->
 
 # Scripts AWCMS
 
@@ -27,7 +27,7 @@ lalu membangun duplikatnya.
 
 <!-- Dihasilkan `bun run scripts:inventory:generate`. JANGAN diedit tangan. -->
 
-143 target menjalankan berkas di `scripts/`; 57 di antaranya
+145 target menjalankan berkas di `scripts/`; 59 di antaranya
 ada di rantai `bun run check` (kolom **Gate**), sisanya dijalankan manual,
 terjadwal, atau oleh workflow CI tertentu.
 
@@ -48,6 +48,7 @@ terjadwal, atau oleh workflow CI tertentu.
 | `api:docs:generate`                       | `api-docs-generate.ts`                         | —    |
 | `api:spec:check`                          | `api-spec-check.ts`                            | ✅   |
 | `api:tenant-route:check`                  | `tenant-route-factory-check.ts`                | ✅   |
+| `asyncapi:provisional:check`              | `asyncapi-provisional-check.ts`                | ✅   |
 | `blog:ads:drop-readiness`                 | `blog-ads-drop-readiness.ts`                   | —    |
 | `blog:ads:ingest`                         | `blog-ads-ingest.ts`                           | —    |
 | `blog:legacy:article-paths`               | `blog-legacy-article-paths.ts`                 | —    |
@@ -102,6 +103,7 @@ terjadwal, atau oleh workflow CI tertentu.
 | `design:token-contrast:check`             | `design-token-contrast-check.ts`               | ✅   |
 | `docs:i18n:stamp`                         | `docs-i18n-stamp.mjs`                          | —    |
 | `docs:i18n:stamp:check`                   | `docs-i18n-stamp.mjs`                          | ✅   |
+| `domain-events:consumers:check`           | `domain-event-consumers-check.ts`              | ✅   |
 | `domain-events:deliveries:purge`          | `domain-event-deliveries-purge.ts`             | —    |
 | `domain-events:dispatch`                  | `domain-events-dispatch.ts`                    | —    |
 | `edge-cache:purge`                        | `edge-cache-purge.ts`                          | —    |

@@ -62,10 +62,7 @@ import {
 } from "../../src/modules/commerce/application/loyalty-program-directory";
 import { fetchCommerceFeatures } from "../../src/modules/commerce/application/commerce-feature-gate";
 import { POS_WALK_IN_CUSTOMER_SENTINEL_PHONE } from "../../src/modules/commerce/domain/phone-normalisation";
-import {
-  orderCancelledLoyaltyReverserConsumer,
-  orderPaidLoyaltyEarnerConsumer
-} from "../../src/modules/domain-event-runtime/infrastructure/consumer-registry";
+import { listDomainEventConsumers } from "../../src/modules/domain-event-runtime/infrastructure/consumer-registry";
 import type { DomainEventForHandler } from "../../src/modules/domain-event-runtime/domain/consumer-types";
 import { updateModuleSettings } from "../../src/modules/module-management/application/module-settings";
 import type { LoyaltyProgramInput } from "../../src/modules/commerce/domain/loyalty-validation";
@@ -80,6 +77,14 @@ import {
   teardownIntegrationDatabase,
   workerRoleActivated
 } from "./harness";
+
+// ADR-0134: commerce declares its consumers in its own descriptor; look it up by name.
+const orderPaidLoyaltyEarnerConsumer = listDomainEventConsumers().find(
+  (consumer) => consumer.name === "commerce.order_paid_loyalty_earner"
+)!;
+const orderCancelledLoyaltyReverserConsumer = listDomainEventConsumers().find(
+  (consumer) => consumer.name === "commerce.order_cancelled_loyalty_reverser"
+)!;
 
 const suite = integrationEnabled ? describe : describe.skip;
 

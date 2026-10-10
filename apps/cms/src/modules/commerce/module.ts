@@ -160,8 +160,17 @@ import {
   COMMERCE_EXPENSE_REVERSED_EVENT_TYPE,
   COMMERCE_DOCUMENT_DELIVERY_REQUESTED_EVENT_TYPE,
   COMMERCE_RETURN_RECORDED_EVENT_TYPE,
-  COMMERCE_REFUND_SETTLED_EVENT_TYPE
+  COMMERCE_REFUND_SETTLED_EVENT_TYPE,
+  COMMERCE_EVENT_VERSION,
+  COMMERCE_ORDER_PAID_ENTITLEMENT_GRANTOR_CONSUMER_NAME,
+  COMMERCE_ORDER_PAID_LOYALTY_EARNER_CONSUMER_NAME,
+  COMMERCE_ORDER_CANCELLED_LOYALTY_REVERSER_CONSUMER_NAME,
+  COMMERCE_INVENTORY_STOCK_CACHE_PROJECTOR_CONSUMER_NAME
 } from "./domain/commerce-events";
+import {
+  INVENTORY_EVENT_VERSION,
+  INVENTORY_MOVEMENT_POSTED_EVENT_TYPE
+} from "../domain-event-runtime/domain/event-type-registry";
 import {
   SALES_BY_CATEGORY_PROJECTION_KEY,
   SALES_BY_PRODUCT_PROJECTION_KEY,
@@ -704,6 +713,86 @@ export const commerceModule = defineModule({
       requiredPermission: COMMERCE_REPORT_RETURN_PERMISSIONS.read,
       drillDownPath: "/api/v1/commerce/returns"
     })
+  ],
+  /**
+   * ADR-0134 - this module's domain-event consumers, declared HERE rather than
+   * in `domain-event-runtime`'s registry file (which retired the standing
+   * `domain_event_runtime -> commerce` import and its module-boundary
+   * exception, issue #347). Consumer NAMES are unchanged from the static
+   * registry they replace: they key delivery rows and the effect ledger.
+   *
+   * All four use the default `runtime_effect_once` idempotency: the registry
+   * wraps `handle` in `applyConsumerEffectOnce`, so `handle` is the side
+   * effect only and MUST NOT call it. The directory functions keep their own
+   * independent natural-key guards (`ON CONFLICT ... DO NOTHING`, the loyalty
+   * ledger's `earn:order:<id>` idempotency key). `handle` lazily imports its
+   * implementation so the descriptor stays import-light.
+   */
+  domainEventConsumers: [
+    {
+      name: COMMERCE_ORDER_PAID_ENTITLEMENT_GRANTOR_CONSUMER_NAME,
+      description:
+        "commerce module consumer - grants one awcms_commerce_entitlements row per distinct product on an order the moment it turns paid (Issue #267, IRMbyDUS).",
+      eventTypes: [COMMERCE_ORDER_PAID_EVENT_TYPE],
+      eventVersions: [COMMERCE_EVENT_VERSION],
+      handle: async (tx, event, ctx) => {
+        const { grantEntitlementsForPaidOrder } =
+          await import("./application/commerce-entitlement-directory");
+        await grantEntitlementsForPaidOrder(
+          tx,
+          ctx.tenantId,
+          event.aggregateId,
+          ctx.correlationId
+        );
+      }
+    },
+    {
+      name: COMMERCE_ORDER_PAID_LOYALTY_EARNER_CONSUMER_NAME,
+      description:
+        "commerce module consumer - earns loyalty points for an order the moment it turns paid, exactly once per order, from server-side order facts only (Issue #289).",
+      eventTypes: [COMMERCE_ORDER_PAID_EVENT_TYPE],
+      eventVersions: [COMMERCE_EVENT_VERSION],
+      handle: async (tx, event, ctx) => {
+        const { earnPointsForPaidOrder } =
+          await import("./application/loyalty-ledger");
+        await earnPointsForPaidOrder(
+          tx,
+          ctx.tenantId,
+          event.aggregateId,
+          ctx.correlationId
+        );
+      }
+    },
+    {
+      name: COMMERCE_ORDER_CANCELLED_LOYALTY_REVERSER_CONSUMER_NAME,
+      description:
+        "commerce module consumer - reverses (compensating entry, never a delete) the loyalty points an order earned when that order is cancelled (Issue #289).",
+      eventTypes: [COMMERCE_ORDER_CANCELLED_EVENT_TYPE],
+      eventVersions: [COMMERCE_EVENT_VERSION],
+      handle: async (tx, event, ctx) => {
+        const { reverseEarnForCancelledOrder } =
+          await import("./application/loyalty-ledger");
+        await reverseEarnForCancelledOrder(
+          tx,
+          ctx.tenantId,
+          event.aggregateId,
+          new Date(),
+          ctx.correlationId
+        );
+      }
+    },
+    {
+      name: COMMERCE_INVENTORY_STOCK_CACHE_PROJECTOR_CONSUMER_NAME,
+      description:
+        "commerce module consumer - refreshes the stock write-through cache of a commerce product or variant when an inventory movement is posted at the store's sales location by something other than commerce (Issue #282).",
+      eventTypes: [INVENTORY_MOVEMENT_POSTED_EVENT_TYPE],
+      eventVersions: [INVENTORY_EVENT_VERSION],
+      handle: async (tx, event, ctx) => {
+        const { projectStockCacheFromMovement } =
+          await import("./application/commerce-inventory-cache-projector");
+        await projectStockCacheFromMovement(tx, ctx.tenantId, event.payload);
+      }
+    }
   ],
   events: {
     asyncApiPath: "asyncapi/awcms-domain-events.asyncapi.yaml",

@@ -39,7 +39,7 @@ import {
   revokeEntitlementByAdmin,
   verifyEntitlement
 } from "../../src/modules/commerce/application/commerce-entitlement-directory";
-import { orderPaidEntitlementGrantorConsumer } from "../../src/modules/domain-event-runtime/infrastructure/consumer-registry";
+import { listDomainEventConsumers } from "../../src/modules/domain-event-runtime/infrastructure/consumer-registry";
 import type { DomainEventForHandler } from "../../src/modules/domain-event-runtime/domain/consumer-types";
 import {
   getAdminSql,
@@ -49,6 +49,11 @@ import {
   setupIntegrationDatabase,
   teardownIntegrationDatabase
 } from "./harness";
+
+// ADR-0134: commerce declares its consumers in its own descriptor; look it up by name.
+const orderPaidEntitlementGrantorConsumer = listDomainEventConsumers().find(
+  (consumer) => consumer.name === "commerce.order_paid_entitlement_grantor"
+)!;
 
 const suite = integrationEnabled ? describe : describe.skip;
 
