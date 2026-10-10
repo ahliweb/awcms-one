@@ -1,0 +1,353 @@
+🇬🇧 English (source) · 🇮🇩 [Bahasa Indonesia](aw-business-platform-metrics.id.md)
+
+# AW Business Platform — metric contracts
+
+DoR artifact 6 (analytics part) of epic [#280](https://github.com/ahliweb/awcms-one/issues/280), delivered by [#337](https://github.com/ahliweb/awcms-one/issues/337) (Wave A, A7). Tracker: [`aw-business-platform-dor.md`](aw-business-platform-dor.md). Placement: [ADR-0040](adr/0040-aw-business-platform-capability-ownership-and-boundaries.md).
+
+**This is a specification, not an implementation.** No module, migration, OpenAPI path, AsyncAPI channel or DDL is created or implied (ADR-0040 D7). Table, counter and projection names below are conceptual; they become real only when a build issue lands them. The platform PRD and the threat model are separate DoR artifacts, produced in parallel; this page refers to them in plain words and does not depend on them.
+
+## 1. Why metric contracts come first
+
+A number on a dashboard is only as trustworthy as its definition. "Occupancy" can mean three different things depending on whether a hold counts, and "revenue" can mean four. A projection built before the definition is fixed bakes in one guess, and the first correction is a rebuild that changes history. The booking design pack says this itself: the counters are chosen first because they are the inputs of every candidate definition, and the definitions are owner decision O8 ([`awcms/booking.md`](https://github.com/ahliweb/awcms/blob/main/docs/awcms/booking.md), §7.2). O8 is now answered; this page writes the answers down precisely enough to build and test against.
+
+### 1.1 Rules that apply to every KPI
+
+1. **One analytics store: the `reporting` engine (ADR-0040 D5.2).** Every KPI is a projection descriptor on the existing `reporting` engine, either owned by the upstream module that owns the source events, or a cross-domain projection owned here. There is no warehouse, no second metrics database, no spreadsheet-of-record. A figure that cannot be expressed as a projection plus a live, re-authorized detail query does not ship.
+2. **Counters only increase.** The engine clamps a decrement at zero (`reporting` README, "Projections"), so a metric is a set of monotonic counters over append-only events, and every ratio or net figure is computed at read. A rebuild from the event stream reproduces the same figures; that property is the acceptance test of every projection ("rebuild equals live", the same property `commerce.sales_daily` already has).
+3. **Day windows are `Asia/Jakarta` (O8).** A "day" is the half-open interval `[00:00, 24:00)` in `Asia/Jakarta`, which is UTC+7 with no daylight saving. Instants are stored and exchanged in UTC (RFC 3339); only the bucket label is local. The existing sales report already does this with a code constant (`SALES_REPORT_TIME_ZONE`); a deployment elsewhere changes the constant and rebuilds. A night-based figure (section 5) uses the **property's** local calendar, which is `Asia/Jakarta` only for properties in WIB; see Q3.
+4. **Money is integer cents internally, `numeric(14,2)` at rest, a string on the wire** (ADR-0003). Rounding is applied once, at the line, never to a sum, and never by float. Percentages are computed at read from two integer counters and rendered to one decimal place using round-half-up; the stored counters are never rounded.
+5. **Late events restate the original day by default.** A compensating event (refund, cancellation, amendment) carries a reference to the fact it compensates and lands on **that fact's** attribution day, so a day's net is a true net and a rebuild matches. A separate "by event day" view exists only where a cash-oriented reader needs it (revenue, section 3.6), and is labelled as such. Consequence: a **closed** period can change. See section 1.2.
+6. **Detail is live and re-authorized; the projection is the dashboard figure only.** A projection never carries a customer name, contact, note or free text (the booking events already forbid it). Drilling into "which resource, which day, which customer" is a live query that re-checks the caller's permission and scope.
+7. **Every KPI states its owner.** "Upstream" projections are specified in `ahliweb/awcms` and arrive by subtree sync; "here" projections are cross-domain (they join facts from two or more modules, or from `commerce`) and are specified in this repository ([ADR-0024](adr/0024-awcms-one-is-template-only-derived-apps-own-their-backend.md)). A cross-domain projection reads the other modules only through their events and ports, never their tables (ADR-0040).
+
+### 1.2 Period close and restatement
+
+Reporting periods are not locked by this specification (a general ledger and period close are non-goals, O9). Instead:
+
+- Each KPI card shows a **freshness** timestamp (the engine already exposes staleness signals).
+- A day older than the **restatement window** (proposed: 35 days; see Q1) is flagged "restated" in the UI if a late event changed it after the window passed. The figure is still corrected, never frozen, because freezing would make the dashboard disagree with the ledger it is derived from.
+- Exports carry an `as_of` instant. A finance reader who needs a number that never moves takes an export, not a live card.
+
+## 2. Decision provenance
+
+| Decision                                                                                                                                        | Source                                                                                                         | Status               |
+| ----------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------- |
+| Occupancy excludes holds; holds are a separate pipeline figure                                                                                  | Owner decision O8, 10 October 2026                                                                             | Answered             |
+| Utilization is a separate metric from occupancy                                                                                                 | O8                                                                                                             | Answered             |
+| Retention window N = 90 days (repeat purchase or booking within 90 days of first)                                                               | O8                                                                                                             | Answered             |
+| Revenue reported gross, then discounts, then refunds, then net; net is the headline                                                             | O8                                                                                                             | Answered             |
+| Day windows in `Asia/Jakarta`                                                                                                                   | O8                                                                                                             | Answered             |
+| Productivity: transparent business facts only; visible to the employee, their supervisor and HR; governance review before any consequential use | O8, recorded as the agent recommendation that followed the text of issue #337; the owner may amend             | Answered, amendable  |
+| First vertical is hotel / villa / rental, with multi-night capacity                                                                             | O2                                                                                                             | Answered             |
+| Analytics metric contracts needed for CRM and Booking KPIs are in scope                                                                         | O3 (they serve the MUST items)                                                                                 | Answered             |
+| Geolocation-only attendance evidence, off by default                                                                                            | O6                                                                                                             | Answered; affects 7  |
+| Commerce stays the customer authority                                                                                                           | O12                                                                                                            | Answered; affects 6  |
+| No accounting, no fiscal documents, no payment-service activity                                                                                 | O9                                                                                                             | Answered; limits 3   |
+| One analytics store, the `reporting` engine                                                                                                     | ADR-0040 D5.2                                                                                                  | Accepted             |
+| Cohort anchor = first purchase **or** booking, whichever is earlier                                                                             | Issue #337 text ("cohort = first purchase or booking"); the exact tie-break below is this page's specification | Specified here       |
+| Restatement window of 35 days, "net" excluding tax and shipping, property time zone, partial-night rules                                        | **Not** an owner decision; proposals of this page                                                              | Open: Q1, Q2, Q3, Q4 |
+
+Nothing else on this page is a new decision. Where a rule below goes beyond O8 it is marked **(proposed)** and listed in section 9.
+
+## 3. Revenue
+
+### 3.1 What it answers
+
+"How much did the business earn from what it sold or rented in this period, after discounts and after money given back?" It is the headline of the finance and owner dashboards.
+
+### 3.2 The four figures
+
+Revenue is **always reported as the four-step waterfall**, in this order, and **net is the headline**:
+
+| Step         | Figure                                                                                                                                                                               |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1. Gross     | Value of goods and services at list price, before any discount, for orders that reached a paid state (commerce) and for booking charges that reached paid (via the adapter)          |
+| 2. Discounts | Every reduction applied before payment: line discounts, voucher discounts, and loyalty or store-credit redemptions that the order recorded as a price reduction, as positive numbers |
+| 3. Refunds   | Value given back after payment: return refunds and cancellation reversals of a paid order, as positive numbers                                                                       |
+| 4. Net       | Gross − Discounts − Refunds                                                                                                                                                          |
+
+Shipping, insurance and tax are **not** inside the waterfall; they are three further columns shown beside it (section 3.5). This differs from the current `commerce.sales_daily`, whose `net` is the order `total` (what the customer paid, shipping and tax included). The existing column keeps its meaning for the existing screens; the headline net is a **new, differently named** figure (working name `net_revenue`) so that neither number silently changes under a reader. See Q2.
+
+### 3.3 Contract table
+
+| Attribute                             | Contract                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Definition                            | Net revenue = gross − discounts − refunds, per attribution day, per currency                                                                                                                                                                                                                                                                                                                                                 |
+| Numerator                             | Sum of the signed waterfall for the period (it is a sum, not a ratio)                                                                                                                                                                                                                                                                                                                                                        |
+| Denominator                           | None. Derived ratios shown beside it (discount rate = discounts ÷ gross; refund rate = refunds ÷ gross) use **gross** as the denominator and show nothing when gross is zero                                                                                                                                                                                                                                                 |
+| Inclusion / status filters            | Commerce orders whose first paid transition happened (`paid`, then `processing`, `shipped`, `completed` keep it). Booking charges only through the booking-to-commerce adapter, as paid commerce orders; the booking status alone never creates revenue (payment state is not in the booking module, upstream design pack)                                                                                                   |
+| Exclusions                            | Unpaid, expired and cancelled-before-payment orders; held and unconfirmed bookings; failed payment legs; walk-in sentinel customer is **included** (a sale is revenue) but excluded from retention; internal or test tenants never aggregate across tenants; gift-card and store-credit **issuance** is a liability, not revenue (O9: no ledger); stored value **spent** is revenue when the order is paid                   |
+| Timezone and window                   | Attribution day = the order's `paid_at` in `Asia/Jakarta`; a refund or reversal lands on the **same day row as its payment**, as the existing sales report does                                                                                                                                                                                                                                                              |
+| Late events and backdated corrections | A refund after period close restates the original paid day (its refund column rises, net falls). The refund's own date is also kept, so a "by refund day" cash view can be drawn without a second source. A refund after a cancellation contributes nothing, so an order is never subtracted twice (existing rule). A partial return subtracts exactly what was given back; a later cancellation subtracts only what is left |
+| Currency and rounding                 | One currency per tenant in v1 (IDR). Integer cents, no float. Rounding at the line, once. A multi-currency tenant is out of scope until a build issue says otherwise; a projection never sums two currencies                                                                                                                                                                                                                 |
+| Projection owner                      | **Here (cross-domain).** Orders, payment ledger and returns are `commerce` facts (ADR-0025, ADR-0033), so the commerce sales projections stay the source. The booking-sourced portion is a cross-domain projection that joins a booking reservation to its commerce order through the adapter's opaque reference pair, and adds no revenue of its own                                                                        |
+| Source facts (conceptual)             | Order status transitions (paid, cancelled, refunded, returned), order header and line amounts, payment allocations (payment and reversal legs), return and refund records, booking reservation and the adapter reference to its order                                                                                                                                                                                        |
+| Reuse of what exists                  | The sales daily, by-product and by-category projections already implement attribution day, reversal on the same day and return netting. The waterfall extends their columns; it does not replace them                                                                                                                                                                                                                        |
+| Privacy and visibility                | Aggregated totals need the reporting read permission; per-customer or per-order detail is a live, re-authorized query. Revenue by cashier or by staff is **not** a revenue view; it belongs to the productivity rules of section 7                                                                                                                                                                                           |
+
+### 3.4 Late-event cases, worked
+
+| Case                                                   | Effect                                                                                                                                                                               |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Order paid 30 Sep 23:50 WIB, refunded in full 3 Oct    | 30 Sep: gross 100, refunds 100, net 0. 3 Oct is unchanged in the standard view; the "by refund day" cash view shows 100 out on 3 Oct                                                 |
+| Order paid at 00:10 WIB on 1 Oct (17:10 UTC on 30 Sep) | Counts on 1 Oct. The UTC date is irrelevant                                                                                                                                          |
+| Order cancelled before payment                         | Nothing in any column                                                                                                                                                                |
+| Booking amended to fewer nights after payment          | The adapter issues a partial refund or a credit through commerce returns; revenue changes only through that refund, on the original paid day. The booking module never edits revenue |
+| Gateway reports a refund twice                         | One refund row: idempotency keys on the ledger make the second a no-op                                                                                                               |
+
+### 3.5 Companion columns
+
+Shipping, insurance and tax collected are displayed beside net so that "what the customer paid" can be reconciled to the payment ledger: `customer_paid = net_revenue + shipping + insurance + tax` for an order with no returns. This reconciliation is a required control total of the projection (the engine's source reconciliation). Tax figures are informational; **no fiscal document is produced** (O9).
+
+### 3.6 Views
+
+Default view: by attribution (paid) day. Cash view: by settlement day of the payment legs (this is what the existing tender report already is). The two are never mixed in one chart.
+
+## 4. Occupancy
+
+### 4.1 What it answers
+
+"Of the capacity that could have been sold, how much is committed to confirmed customers?" Occupancy is a **commitment** measure.
+
+### 4.2 Contract table
+
+| Attribute                             | Contract                                                                                                                                                                                                                                                                                                                                                                                              |
+| ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Definition                            | Occupied units ÷ available units, for a stated interval and a stated set of resources                                                                                                                                                                                                                                                                                                                 |
+| Numerator                             | For a night-based resource: the count of resource-nights (a unit occupied for a night) held by reservations in status `confirmed`, `checked_in` or `completed`. For a time-based resource: the confirmed unit-time inside the interval, counted in whole units at each instant, per section 4.4                                                                                                       |
+| Denominator                           | Available units over the same interval: unit count × nights (or the schedule-expanded available time), **less** maintenance or blocked closures declared in the schedule exceptions (proposed; see Q4 for the owner's confirmation). A unit is never removed from the denominator because it is occupied                                                                                              |
+| Inclusion / status filters            | `confirmed`, `checked_in`, `completed` count. A `checked_in` or `completed` reservation counts for the nights it actually spans; a shortened stay (early check-out) counts the nights stayed once amended                                                                                                                                                                                             |
+| Exclusions                            | **Holds (`held`) are excluded (O8).** `expired`, `cancelled`, `rescheduled` (the superseded record), `no_show` are excluded. A `no_show` is still reported separately because it is the rooms that were committed and not used; it is not occupancy                                                                                                                                                   |
+| Holds as a pipeline figure            | Reported **separately**, never added: `held_units` (and the value at stake, when priced) for the interval, with the oldest hold age. Label: "pipeline". It is a leading indicator; it is never summed with occupancy to make a bigger percentage                                                                                                                                                      |
+| Timezone and window                   | Night-based: the night of date D is the interval from the property's check-in time on D to its check-out time on D+1, labelled D; its calendar is the **property's** time zone. Time-based: instants are UTC, bucketed by `Asia/Jakarta` day for display. Window is half-open `[start, end)`; a booking ending at 11:00 and one starting at 11:00 share a boundary and do not overlap (upstream rule) |
+| Late events and backdated corrections | A confirmation made after the stay date, a reschedule, or an amendment is applied by the reservation events; the affected nights are restated. Occupancy for a **past** date is computed from the reservations that were confirmed for it, not from the status at the time a user looked. A cancelled confirmed stay removes its nights (this is the `released_seconds` counter)                      |
+| Currency and rounding                 | Not monetary. A percentage is shown to one decimal place; the integer counters are stored. A value above 100% is a data defect, and the projection raises a reconciliation mismatch rather than clamping it                                                                                                                                                                                           |
+| Projection owner                      | **Upstream: the Booking module.** Specified in the booking design pack (§7.2) as `booking.reservations` and `booking.time` counters; the occupancy definition completes that pack. Cross-domain additions (occupancy by channel or by segment) are projections here                                                                                                                                   |
+| Source facts (conceptual)             | Reservation lifecycle events, reservation allocations (unit, interval), schedule and closure exceptions, resource unit count                                                                                                                                                                                                                                                                          |
+| Privacy and visibility                | Aggregate occupancy is a management figure. The resource-level calendar is a live, re-authorized query. No guest name or contact appears in a projection or its events                                                                                                                                                                                                                                |
+
+### 4.3 Why holds are excluded
+
+A hold is a promise the business made to itself, not a commitment by the customer. Counting it inflates the figure for the minutes or hours until it expires, and a high count of expiring holds then looks like a high occupancy that collapses. Excluding it makes occupancy conservative and monotonic with real commitments; the hold pipeline answers the other question ("how much could be confirmed soon") with its own number.
+
+### 4.4 Counting rule for time-based resources
+
+For a time-based resource with `U` units, the occupied figure over an interval is the integral of `min(confirmed allocations at t, U)` over the interval, in unit-seconds; the denominator is `U` × the available seconds. The booking pack's `booked_seconds` and `released_seconds` counters give the numerator as `booked − released`, which already includes only confirmed allocations. Buffers (setup and clean-up) are **not** part of the numerator: they are blocked time, not sold time (see utilization, section 5, for how they enter).
+
+## 5. Utilization
+
+### 5.1 What it answers
+
+"Of the time a resource or person was **available to work**, how much was spent doing the sold activity?" Occupancy asks about sold capacity; utilization asks about **productive use**. They use different numerators and different denominators, so they are two metrics and never one number with two labels (O8).
+
+### 5.2 Contract table
+
+| Attribute                             | Contract                                                                                                                                                                                                                                                                                                                                           |
+| ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Definition                            | Time actually used for the sold activity ÷ time available for it, for a resource (a room, a chair, a bay) or for a staff member                                                                                                                                                                                                                    |
+| Numerator                             | **Used time:** for a resource, the seconds between `checked_in` and `completed` of its reservations (actual use). For staff, the seconds of assigned, attended service. Where actual timestamps do not exist (no check-in), the **booked** seconds are used and the figure is labelled "booked utilization"; the two are never mixed in one series |
+| Denominator                           | **Available time:** the schedule expansion (resource opening hours, or the staff member's scheduled shift) over the interval, **minus** closures, approved leave and blocked time. Setup and clean-up buffers are inside available time and outside used time, so they lower utilization honestly                                                  |
+| Inclusion / status filters            | Reservations that reached `checked_in` or `completed` for actual-use utilization. For booked utilization: `confirmed`, `checked_in`, `completed`                                                                                                                                                                                                   |
+| Exclusions                            | Holds, cancelled, expired, no-show (no use happened). Time outside any schedule (a resource with no opening hours has no denominator and shows "not applicable", never 0%). For staff: time on approved leave and public holidays configured as non-working                                                                                        |
+| Timezone and window                   | Schedules are written in local wall-clock time of the resource's IANA zone and expanded to UTC instants by the upstream pure function; the display bucket is the `Asia/Jakarta` day for WIB resources. Overnight shifts and stays are attributed by the instant, and a day bucket receives the overlap of the interval with `[00:00, 24:00)`       |
+| Late events and backdated corrections | An attendance correction approved after the fact (staff) or an amended check-out time (resource) changes used time for its day; the day is restated. A schedule edit changes **future** available time only: past denominators are computed from the schedule version in force on that day (effective dating), so history does not move            |
+| Currency and rounding                 | Not monetary. Seconds are the unit; the ratio is shown to one decimal place. A ratio above 100% (overtime, overlapping assignments) is shown as is and flagged, never clamped silently                                                                                                                                                             |
+| Projection owner                      | **Resource utilization: upstream, Booking** (`booking.time` counters and the live utilization report in the pack). **Staff utilization: cross-domain, here**, because it joins the Booking staff assignments with the Workforce availability port and shifts; neither module may read the other's tables                                           |
+| Source facts (conceptual)             | Reservation check-in and completion events; staff assignment records; schedule expansion; workforce working intervals, approved leave and attendance corrections (through the availability port)                                                                                                                                                   |
+| Privacy and visibility                | Resource utilization is a management figure. **Staff utilization is a productivity fact about a person** and is governed entirely by section 7: visible to the person, their supervisor and HR only, and never used for a consequential decision without the review                                                                                |
+
+### 5.3 Worked example: occupancy versus utilization
+
+A treatment room is open 09:00-17:00 (8 h = 28,800 s of available time) on one day. Each treatment needs 15 minutes of set-up and 15 minutes of clean-up (the buffers). Four bookings exist:
+
+| Booking | Service interval | Status      | Notes                            |
+| ------- | ---------------- | ----------- | -------------------------------- |
+| A       | 09:30-10:30      | `completed` | used 09:32-10:25 (53 min actual) |
+| B       | 11:30-12:30      | `completed` | used exactly as booked (60 min)  |
+| C       | 14:00-15:00      | `no_show`   | nobody came                      |
+| D       | 15:30-16:30      | `held`      | hold, not yet confirmed          |
+
+Occupancy (time-based, committed, buffers excluded, holds and no-shows excluded): A and B count at their **service intervals as booked**, 3,600 s each = 7,200 s. 7,200 ÷ 28,800 = **25.0%**.
+
+Hold pipeline (separate figure): D = 3,600 s = **12.5%** of the day's capacity, reported as "pipeline", not added to occupancy. Adding it would show 37.5%, which is the figure O8 forbids.
+
+No-show (separate figure): C = 3,600 s = 12.5% of capacity committed and unused.
+
+Utilization (actual use over available time): used time = A 53 min (3,180 s) + B 60 min (3,600 s) = 6,780 s. 6,780 ÷ 28,800 = **23.5%** (23.54 rounded to one decimal).
+
+The two figures differ (25.0% against 23.5%) because occupancy counts what was committed and utilization counts what actually happened: A started two minutes late and finished seven minutes early. Buffers are in neither numerator: the 15 + 15 minutes of set-up and clean-up around each of the two served bookings (2 × 1,800 s = 3,600 s) stay inside the available time, which is why utilization is honest about the room's real working day. Shown together on one card, each with its own definition as the caption, the two figures answer two questions: "how full is the book" and "how well was the room used".
+
+## 6. Retention
+
+### 6.1 What it answers
+
+"Of the customers who started with us in a month, how many came back within 90 days?" It is a **customer** metric, so its identity comes from the customer authority, which is commerce (O12); `profile_identity` harmonisation is a separate future ADR and is not assumed.
+
+### 6.2 Contract table
+
+| Attribute                             | Contract                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Definition                            | 90-day repeat rate of a **cohort**: the share of the cohort that made at least one further qualifying purchase or booking within 90 days of its first                                                                                                                                                                                                                                                                                |
+| Cohort                                | A customer belongs to the cohort of the **calendar month (`Asia/Jakarta`) of their first qualifying event**, where the first qualifying event is the earliest of: a paid commerce order, or a **confirmed** booking (stay date is irrelevant; the confirmation instant is the anchor). A customer is in exactly one cohort, once, forever                                                                                            |
+| Numerator                             | Cohort customers with at least one **second** qualifying event whose instant is after the first and **within 90 days** (the first event's instant + 90 × 24 h, inclusive of the final instant)                                                                                                                                                                                                                                       |
+| Denominator                           | Cohort size: all customers whose first qualifying event fell in the cohort month. A cohort whose 90-day window has not fully elapsed is shown as **immature** (greyed, with the percentage so far labelled "to date"); it is never presented as final                                                                                                                                                                                |
+| Inclusion / status filters            | Qualifying event = a commerce order that reached paid and was **not fully refunded or cancelled afterwards**, or a booking reservation that reached `confirmed` and was not cancelled, expired or rescheduled away (the replacement reservation counts once). The second event must be a **distinct** order or reservation: items of the same order do not make a repeat                                                             |
+| Exclusions                            | The walk-in sentinel customer (a shared placeholder, not a person); blocked or anonymised customers after anonymisation (they leave the denominator on the next rebuild and the cohort restates); fully refunded first purchases (the customer never really started); test and internal accounts; guests with no resolvable customer authority id (counted as "unlinked", reported separately, not guessed from contact data)        |
+| Timezone and window                   | Cohort month by `Asia/Jakarta` calendar. The 90-day window is 90 × 24 h of absolute time from the first event, not 90 calendar days (no daylight saving applies; if a deployment ever differs, the rule is still absolute time). N is configuration-free in v1: **90**                                                                                                                                                               |
+| Late events and backdated corrections | A late-arriving or backdated event can move a customer's first event earlier (a booking entered after a later order) and so **move them between cohorts**; the projection must support this by recomputing from the customer's event history, not by incrementing counters (see 6.4). A refund of the first purchase after the fact removes the customer from the cohort on rebuild. A repeat that is later cancelled stops counting |
+| Currency and rounding                 | Not monetary. A rate is shown to one decimal place; counts are integers. A cohort under 20 customers shows counts, not a percentage (small-number rule, to avoid over-reading noise and to avoid re-identification)                                                                                                                                                                                                                  |
+| Projection owner                      | **Here (cross-domain).** It joins commerce orders and Booking reservations on the commerce customer id carried in the adapter's opaque reference; neither module can compute it alone. Commerce-only retention (orders only) is a commerce-owned sub-view                                                                                                                                                                            |
+| Source facts (conceptual)             | Order paid, order cancelled and refunded events with the customer id; reservation confirmed, cancelled, expired and rescheduled events with the adapter's customer reference                                                                                                                                                                                                                                                         |
+| Privacy and visibility                | Cohort aggregates for management with the reporting read permission. A drill-down to customer lists (who did not return, for a win-back segment) is a **CRM segment** built from the same definition, behind the CRM permissions and the customer's marketing consent; the projection itself holds counts only                                                                                                                       |
+
+### 6.3 Worked example: cohorts
+
+Customers and their qualifying events (all `Asia/Jakarta`; "B" = confirmed booking, "O" = paid order):
+
+| Customer | First event                       | Second event | Days between | Cohort | Repeat within 90 d?               |
+| -------- | --------------------------------- | ------------ | ------------ | ------ | --------------------------------- |
+| C1       | 3 Jan (O)                         | 20 Feb (B)   | 48           | Jan    | yes                               |
+| C2       | 10 Jan (B)                        | 10 May (O)   | 120          | Jan    | no                                |
+| C3       | 15 Jan (O)                        | none         | n/a          | Jan    | no                                |
+| C4       | 28 Jan (B)                        | 28 Apr (B)   | 90           | Jan    | yes (day 90 is inside, 90 × 24 h) |
+| C5       | 2 Feb (O)                         | 12 Feb (O)   | 10           | Feb    | yes                               |
+| C6       | 9 Feb (B)                         | none         | n/a          | Feb    | no                                |
+| C7       | 21 Feb (O), then refunded in full | n/a          | n/a          | none   | excluded                          |
+
+January cohort: C1, C2, C3, C4 = 4 customers; repeat within 90 days: C1, C4 = 2. **Retention = 2 ÷ 4 = 50.0%.** (With fewer than 20 customers the UI would show "2 of 4" rather than a percentage; the arithmetic is shown for the example.) February cohort: C5, C6 = 2 customers; C7 never started. Repeats: C5 = 1. **1 ÷ 2 = 50.0%**. The cohort is immature until 90 days after the last day of its month (28 Feb + 90 d = 29 May), so before that date it displays "to date".
+
+Two points the example makes concrete. First, C2's second event was a repeat but outside the window: it is a later purchase but not a 90-day repeat; a longer window is a separate configuration, not a different truth. Second, C1 and C3 both started in January and are indistinguishable at that moment; only the history after their first event separates them, which is why the projection recomputes per customer.
+
+### 6.4 Projection shape
+
+Retention is **not** a pure increment-only counter, because an event can move a customer between cohorts. The cross-domain projection therefore keeps, per tenant and customer, only the two earliest qualifying event instants (a first and a second) and derives the cohort tallies from them at read or on a bounded rebuild. This is a table on the `reporting` engine's projection storage, not a second store; it holds no name or contact, and its rows are removed on customer anonymisation. If the engine's descriptor contract cannot express a keyed per-customer row, that is a **blocker for the build issue** and is raised upstream, not worked around with an external store (ADR-0040 D5.2).
+
+## 7. Employee productivity
+
+### 7.1 What it is, and what it is not
+
+Productivity here means **transparent business facts about an employee's work**, shown as they are. It is **not** a score, a rank, an index, a "performance rating" or a prediction. No model produces it, no weight combines it, and no figure is derived that the employee could not recompute from the facts listed.
+
+### 7.2 Hard rule: governance review before any consequential use
+
+> **No productivity figure may be used for a consequential decision about an employee without a recorded governance review first.** A consequential decision includes pay or commission changes, discipline, promotion, demotion, scheduling penalties, termination, and ranking employees against one another. The review is a written record by the tenant (who reviewed, what was decided, the legal basis, the date), kept in the audit trail. Until that record exists for a stated purpose, the figures are for **transparency and self-management only**. This is a platform rule, not a configuration option: the platform exposes no feature that automates a consequential action from these figures, and it does not provide a per-employee ranking view.
+
+This is O8 (as recommended to the owner, amendable) and is the minimum. The legal analysis of employee monitoring under Indonesian law (including the personal-data law) belongs to the threat model and privacy analysis (separate DoR artifact) and to the tenant's own counsel; the platform is the processor for employee data of a tenant (O5).
+
+### 7.3 Contract table
+
+| Attribute                             | Contract                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Definition                            | A **fixed list of business facts** per employee per period, each shown with its own definition, never combined. The v1 list (conceptual; changing it needs this page changed): (a) services or bookings completed, as staff assignments that reached `completed`; (b) sales count and sales value attributed to the employee at the point of sale (cashier or seller of record), shown as the waterfall of section 3; (c) hours worked, from approved attendance; (d) scheduled hours and attended hours; (e) staff utilization from section 5; (f) corrections requested and approved (a count, no judgement) |
+| Numerator / denominator               | Each fact is its own count or sum. The only ratios are the ones already defined (utilization, section 5). **No composite ratio** is defined, and none may be added without a recorded governance review and a change to this page                                                                                                                                                                                                                                                                                                                                                                              |
+| Inclusion / status filters            | Facts count only in their completed, approved states (assignment `completed`, order paid and not reversed, attendance approved). A sale later refunded is netted on its original day, as in section 3                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Exclusions                            | Time on approved leave and public holidays; work of a different employment context; commission and pay amounts (these are payroll data, not productivity facts, and are never shown on this surface); any evidence beyond the list: **no keystroke, screen, photo, biometric or device fingerprint data, ever**; geolocation is attendance evidence only (O6, off by default per tenant, purpose-limited) and is **never** a productivity input or shown alongside these figures                                                                                                                               |
+| Timezone and window                   | `Asia/Jakarta` day buckets; weekly and monthly roll-ups by the same calendar. A shift that crosses midnight is attributed by the instants of the attendance events (overlap with each day)                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Late events and backdated corrections | An approved attendance correction, a refund or a reassigned booking restates the affected period, and the change is visible to the employee in the same view ("restated on <date>"); nothing is silently rewritten. An unapproved correction does not count                                                                                                                                                                                                                                                                                                                                                    |
+| Currency and rounding                 | Sales values follow section 3. Hours are shown in hours and minutes from stored seconds; no rounding up of worked time anywhere in the projection                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Projection owner                      | **Here (cross-domain)**: it joins Workforce attendance and shifts, Booking staff assignments and commerce orders by the staff reference. The Workforce-only facts (hours, corrections) are an upstream `hr_workforce` projection if that module chooses to publish them; Booking-only facts (assignments completed) are upstream Booking's                                                                                                                                                                                                                                                                     |
+| Source facts (conceptual)             | Attendance events and approved corrections; shift assignments; staff assignments and their completion; order seller or cashier of record and payment events                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Privacy and visibility                | **Visible to exactly three audiences:** (1) the employee, for their own figures; (2) their supervisor, within the supervisor's office scope (the descendant-scope rule the Workforce pack defines); (3) HR. Nobody else, including tenant administrators by default, finance readers and schedulers, sees a per-employee figure. Each read is audited; HR and supervisor reads are logged with the reader's identity and the employee. Aggregates across employees (a team total) may be shown to managers only if no individual can be inferred (minimum group size 5; proposed, Q5)                          |
+| Employee rights and transparency      | The employee sees the **same figures, the same definitions and the same restatement notes** as their supervisor, so there is no hidden score. A disputed fact is corrected through the attendance-correction or order-correction workflow, not by editing a projection                                                                                                                                                                                                                                                                                                                                         |
+
+### 7.4 What this means for design
+
+- There is no leaderboard and no "top performer" badge. A screen that sorts employees by a productivity fact is out of scope.
+- Productivity data does not flow into the payroll or commission modules automatically. Commission, if any, is a separate, rule-based, versioned accrual (the Workforce and Payroll design); a human reads a fact and decides under the review, not a pipeline.
+- Retention of the underlying facts follows the lifecycle of their source (attendance, orders). The projection holds nothing the source does not.
+
+## 8. The first vertical: hotel, villa and rental (O2)
+
+The first consumer shape is multi-night accommodation and rentals (rooms, villas, vehicles by the day). This changes the _unit of capacity_ from time to **nights** and needs the metric vocabulary of that trade, defined on top of the sections above.
+
+### 8.1 Night-based capacity
+
+- A **resource-night** is one unit (a room, a villa, a rental car) for one night, from the property's check-in time on date D to its check-out time on D+1, labelled D. A 3-night stay checking in 10 Oct and out on 13 Oct holds the nights of 10, 11 and 12 Oct. The check-out date itself is **not** a night (half-open interval, the same rule as everywhere).
+- The property's `check-in` and `check-out` times are configuration of the offering or schedule, in the property's IANA zone. Same-day turnover is allowed by the half-open rule; the cleaning gap is a buffer.
+- A night is **available** unless the unit is blocked for maintenance or owner use in the schedule exceptions. Blocked nights leave the denominator (Q4).
+
+### 8.2 The hospitality figures
+
+All are definitions over the contracts above, not new stores. Each is computed per property, per room type and for a date range.
+
+| Figure                               | Definition                                                                      | Notes                                                                                                                            |
+| ------------------------------------ | ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| Occupancy rate                       | Occupied resource-nights ÷ available resource-nights (section 4)                | Holds excluded (O8); `no_show` excluded                                                                                          |
+| Average daily rate (ADR)             | Net room revenue ÷ occupied resource-nights                                     | Net as in section 3 (room charges only, after discount and refund); undefined when occupied nights are 0                         |
+| Revenue per available night (RevPAN) | Net room revenue ÷ available resource-nights; equals occupancy × ADR            | The analogue of the trade's RevPAR; the name `RevPAN` is used here because the unit is a night of a unit, not necessarily a room |
+| Length of stay (average)             | Occupied resource-nights ÷ number of confirmed stays                            | Counted for stays that overlap the date range, in the range only                                                                 |
+| Lead time                            | Days between confirmation and check-in, per stay                                | Informational; shown as a median, not a mean                                                                                     |
+| Cancellation and no-show rate        | Cancelled (or `no_show`) confirmed stays ÷ confirmed stays created in the range | Late cancellations are flagged by the upstream `late_cancelled` counter                                                          |
+| Hold pipeline                        | Held resource-nights and their value, with oldest hold age                      | Separate from occupancy (O8)                                                                                                     |
+
+### 8.3 Worked example: a villa, one week
+
+One villa, the 7 nights of 12-18 October. The night of the 15th is blocked for maintenance, so **available nights = 6**.
+
+| Stay        | Nights (labelled by date) | Count       | Gross (IDR) | Discount | Refund  | Net (IDR) |
+| ----------- | ------------------------- | ----------- | ----------- | -------- | ------- | --------- |
+| R1          | 12, 13, 14                | 3           | 3,000,000   | 0        | 0       | 3,000,000 |
+| R2          | 16, 17                    | 2           | 2,500,000   | 250,000  | 100,000 | 2,150,000 |
+| R3 (`held`) | 18                        | pipeline: 1 | not revenue | n/a      | n/a     | n/a       |
+
+R2's 10% discount was applied at payment and the 100,000 partial refund was issued after the stay; both attribute to R2's original paid day.
+
+- Occupied nights = R1 (3) + R2 (2) = 5. Occupancy = 5 / 6 = **83.3%**. If the maintenance block were not removed from the denominator it would be 5 / 7 = 71.4%; the choice matters, which is why Q4 asks the owner to confirm.
+- Revenue waterfall: gross 5,500,000, discounts 250,000, refunds 100,000, **net 5,150,000**.
+- ADR = 5,150,000 / 5 = **1,030,000**.
+- RevPAN = 5,150,000 / 6 = **858,333** (858,333.33 at display; the stored counters are 5,150,000 and 6).
+- Check: occupancy x ADR = (5/6) x 1,030,000 = 858,333.
+- Pipeline: R3 = 1 held night, on its own line; it is not in occupancy (it would otherwise read 6 / 6 = 100.0%).
+- Average length of stay = 5 / 2 = 2.5 nights.
+
+### 8.4 Utilization in this vertical
+
+For a night-based unit, **utilization is not a separate headline** the way it is for a treatment room: a unit is either occupied for a night or not, so night utilization equals occupancy, and showing both would invite confusion. In this vertical, utilization applies to **staff and shared resources** (housekeeping, a pool, a shuttle), where time-based used-over-available time is meaningful. Where a night-based figure and a time-based figure for the same unit both exist, the owner's rule stands: they are separate metrics, labelled, never merged.
+
+### 8.5 Channels and segments
+
+Occupancy and net revenue may be sliced by booking channel (direct, adapter-supplied source) and by customer segment (a CRM segment). A slice is a **dimension on the same counters**, not a second projection family, and a slice with fewer than 5 customers is shown as an aggregate to avoid identifying a guest.
+
+## 9. Open questions
+
+These are proposals of this page, not owner decisions (the O-series is complete for this artifact). Each must be answered or accepted before the projection that depends on it is built.
+
+| #   | Question                                                                                                                                                                           | Recommended default                                                | Blocks                       |
+| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ---------------------------- |
+| Q1  | Restatement window for the "restated" flag                                                                                                                                         | 35 days (covers a monthly close plus a gateway refund cycle)       | Revenue card UX              |
+| Q2  | Headline net excludes shipping, insurance and tax, so it differs from the existing `net` (order total). Confirm a new `net_revenue` column rather than redefining the existing one | New column; the existing one keeps its meaning                     | Revenue projection extension |
+| Q3  | Night calendar of a property outside WIB                                                                                                                                           | The property's own IANA zone; `Asia/Jakarta` is the tenant default | Night-based occupancy        |
+| Q4  | Does the occupancy denominator exclude maintenance and owner-blocked nights?                                                                                                       | Yes: they are not saleable. Report the blocked count beside it     | Occupancy                    |
+| Q5  | Minimum group size for a team aggregate of productivity                                                                                                                            | 5                                                                  | Productivity aggregates      |
+| Q6  | Is a confirmed booking with a deposit but no commerce order revenue? (This page says revenue exists only through commerce, so no)                                                  | Revenue follows the commerce order and payment ledger only         | Booking-to-commerce adapter  |
+| Q7  | Whether a customer who first appears as a _guest_ (no commerce customer id) can be linked later for retention                                                                      | Not before the O12 identity ADR; show as "unlinked"                | Retention                    |
+
+## 10. Where each projection lives
+
+| KPI                                 | Upstream-owned (module)                                    | Cross-domain, owned here                                                              | Engine      |
+| ----------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------- | ----------- |
+| Revenue waterfall (orders)          | none                                                       | Extends the existing commerce sales projections (already commerce-owned in this repo) | `reporting` |
+| Revenue waterfall (booking-sourced) | none                                                       | Join of reservation and its commerce order through the adapter reference              | `reporting` |
+| Occupancy, hold pipeline, no-show   | Booking (`booking.reservations`, `booking.time`)           | Slices by channel and segment                                                         | `reporting` |
+| Resource utilization                | Booking (live report + `booking.time`)                     | none                                                                                  | `reporting` |
+| Staff utilization                   | Workforce availability facts (port)                        | Join of Booking staff assignments with the availability port                          | `reporting` |
+| Retention                           | none                                                       | Per-customer earliest-two-events projection joining orders and reservations           | `reporting` |
+| Employee productivity facts         | `hr_workforce` (hours, corrections); Booking (assignments) | Joined, audited, three-audience view                                                  | `reporting` |
+
+A cross-domain projection here depends on upstream **events and ports** and nothing else. If an upstream event lacks a field a contract above needs (for example the customer reference on a reservation event, or the seller of record on an order event), the gap is raised upstream as a change request, not fixed with a private copy of the data.
+
+## 11. What each build issue must prove
+
+A projection built from this page is accepted only with tests for:
+
+1. **Rebuild equals live** for the KPI's counters, and a reconciliation control total against the source (the engine's source reconciliation).
+2. **Each late-event case** in the KPI's contract table (a refund after close, an amended booking, a corrected attendance), including that nothing is counted twice.
+3. **Holds excluded** from occupancy, and present in the pipeline figure.
+4. **Occupancy and utilization computed separately** on the worked example of section 5.3 and the villa example of section 8.3, with these exact numbers.
+5. **Retention cohort assignment** on the example of section 6.3, including the day-90 boundary and the fully refunded first purchase.
+6. **Visibility**: a person outside the three audiences receives no productivity figure; a supervisor outside the scope receives none for that employee; every read is audited.
+7. **No second store**: the projection registers as a `reporting` descriptor and writes only the engine's own tables.
+
+## Out of scope for this page
+
+The platform PRD (stories, MoSCoW), the threat model and privacy analysis, the ERD and the RBAC/ABAC/RLS matrix are separate DoR artifacts. Accounting, fiscal documents and payment-service activity are non-goals (O9), so no KPI here is a ledger balance, a tax figure of record or a cash position.
