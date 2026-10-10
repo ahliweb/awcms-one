@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](aw-business-platform-prd.md)
 
-<!-- i18n-source-hash: sha256:e71934a670a47d01579571945e032b62d082aa4a907a2aec06e9865b7ba8355c -->
+<!-- i18n-source-hash: sha256:62fdf514c37ad16245e9be138b071fb9b50e593adff3af91c53140debc628a7b -->
 
 # AW Business Platform — blueprint platform dan PRD (bagian milik awcms-one)
 
@@ -332,6 +332,8 @@ Target adalah ambang penerimaan untuk rilis pertama tiap butir, untuk dikonfirma
 | Q8  | Poin dan deposit yang dapat dikembalikan pada satu pesanan     | **Ditolak di v1.** Checkout dan POS menolak kombinasi ke dua arah (ADR-0041 D8), sehingga tidak perlu aturan urutan refund.                                                                                                                                           | 4.6, L3               |
 | Q9  | Jendela pembatalan: default tenant atau per produk             | **Per produk, dengan default seluruh tenant** untuk produk tanpa kebijakan sendiri.                                                                                                                                                                                   | A5                    |
 | Q10 | Izin minimum, dan siapa yang boleh menimpa refund hasil hitung | **Hanya izin manajer atau keuangan, dengan autentikasi ulang step-up, alasan wajib, dan event audit; tidak pernah di atas jumlah yang dibayar.** Himpunan izin persona selebihnya adalah artefak DoR 5 (W6, [#357](https://github.com/ahliweb/awcms-one/issues/357)). | 4.2, A5               |
+
+Layar yang menerapkan Q1 sampai Q3, Q8, Q9, dan Q10 (uang muka ditampilkan sebagai total / dibayar / sisa, tanpa poin pada pesanan beruang muka, tanpa label deposit jaminan, jendela pembatalan per produk, override khusus staf) dispesifikasikan di [`booking-ux-flows.md`](booking-ux-flows.id.md); dokumen itu spesifikasi desain dan tidak ada isinya yang dibangun.
 
 ## 10. Dependensi dan urutan
 

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:1198915221a18c341d9610c231d406c6a2d3fdf600aed0371583e370313ec601 -->
+<!-- i18n-source-hash: sha256:1f779413846e51e9dc2cafe62d11e74fe7c4a921ac97cc2adff2cd8b88ea902e -->
 
 # Dokumentasi
 
@@ -29,6 +29,7 @@ Dokumentasi arsitektur, skema, API, alur kerja CMS, perilaku storefront, penguji
 | [`aw-business-platform-prd.md`](aw-business-platform-prd.id.md) | Blueprint platform dan PRD untuk bagian milik awcms-one dari epik #280: persona, alur kerja, non-tujuan, cerita pengguna, hasil, MoSCoW |
 | [`aw-business-platform-metrics.md`](aw-business-platform-metrics.id.md) | Kontrak metrik untuk epik #280: pendapatan, okupansi, utilisasi, retensi, produktivitas karyawan, dan angka vertikal pertama |
 | [`aw-business-platform-threat-model.md`](aw-business-platform-threat-model.id.md) | Model ancaman adaptor, analisis privasi, catatan keberlakuan regulasi, dan pemetaan kontrol untuk epik #280 |
+| [`booking-ux-flows.md`](booking-ux-flows.id.md) | Spesifikasi desain (belum dibangun) alur pemesanan menginap di storefront, pembayaran uang muka, tampilan pembatalan dan pengembalian dana, dan check-in kasir, dengan aturan aksesibilitas, 360px, dan profil build |
 
 ## Apa yang tidak diduplikasi direktori ini
 

@@ -27,6 +27,7 @@ Architecture, schema, API, CMS workflow, storefront behaviour, testing, deployme
 | [`aw-business-platform-prd.md`](aw-business-platform-prd.md) | Platform blueprint and PRD for the awcms-one-owned parts of epic #280: personas, workflows, non-goals, user stories, outcomes, MoSCoW |
 | [`aw-business-platform-metrics.md`](aw-business-platform-metrics.md) | Metric contracts for epic #280: revenue, occupancy, utilization, retention, employee productivity, and the first-vertical figures |
 | [`aw-business-platform-threat-model.md`](aw-business-platform-threat-model.md) | Adapter threat model, privacy analysis, regulatory applicability notes and control mapping for epic #280 |
+| [`booking-ux-flows.md`](booking-ux-flows.md) | Design spec (not built) for the stay-booking storefront flow, deposit payment, cancellation and refund view, and cashier check-in, with accessibility, 360px and build-profile rules |
 
 ## What this directory does not duplicate
 
