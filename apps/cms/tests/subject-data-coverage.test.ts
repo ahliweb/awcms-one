@@ -405,14 +405,15 @@ describe("the plan binds the RIGHT id, which is the whole point of two kinds", (
 });
 
 describe("the contract version records the addition", () => {
-  test("MINOR bump: `anonymizedColumns` was added (ADR-0108)", () => {
+  test("MINOR bumps: `anonymizedColumns` (ADR-0108, 4.1.0), then `domainEventConsumers` (ADR-0134, 4.2.0)", () => {
     // 4.0.0 was wave 2 — a widened erasure union plus a retyped `tenantColumn`,
     // both MAJOR because the consumers that matter are exhaustive switches.
     // 4.1.0 adds an OPTIONAL field, so MINOR by this contract's own rule; the
     // behaviour change it carries is in the erasure executor, and every
-    // `anonymize` descriptor was updated in the same change. 4.2.0 (Issue
-    // #117) added the optional dimensional-projection fields — MINOR again,
-    // and unrelated to subject data; this pin only records the floor.
+    // `anonymize` descriptor was updated in the same change.
+    // 4.2.0 (ADR-0134) adds another OPTIONAL field, `domainEventConsumers`;
+    // nothing about subject data changes, so this only tracks the live version. (Issue #117 added the optional
+    // dimensional-projection fields under the same 4.2.0; unrelated to subject data.)
     expect(MODULE_CONTRACT_VERSION).toBe("4.2.0");
   });
 });
