@@ -6,6 +6,8 @@ DoR artifact 3 of epic [#280](https://github.com/ahliweb/awcms-one/issues/280), 
 
 > **Not legal advice, and no compliance claim.** This document is an engineering input. Sections 6 and 7 list regulations and standards that a qualified Indonesian counsel and the deployment's owner must assess for the real deployment and business model. Nothing here states that any deployment complies with, or is certified against, any law or standard. **Nothing described in this document is implemented**: it is a design-time analysis of adapters that do not exist yet, and every control status below is "planned". ADR-0040 D7 forbids a module, migration, OpenAPI path or DDL until the Definition of Ready is met; this document adds none.
 
+**Related:** [Platform PRD](aw-business-platform-prd.md), [Metric contracts](aw-business-platform-metrics.md); [DoR tracker](aw-business-platform-dor.md) (cross-spec review, A9).
+
 ## 1. Scope, and what is deliberately not here
 
 **In scope:** the awcms-one side of the cross-domain flows, that is the adapters and consumers that join the upstream Booking and Workforce engines to this repository's `commerce` module, and the outbound/inbound provider boundaries those flows use.

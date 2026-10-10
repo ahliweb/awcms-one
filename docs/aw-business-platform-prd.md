@@ -6,6 +6,8 @@ Definition of Ready (DoR) artifacts 1 (blueprint) and 2 (PRD) of epic [#280](htt
 
 It does not claim legal compliance. Where a rule touches personal data, payments or labour law, it states a design constraint; whether that satisfies a regulation is for the regulatory-applicability work (A8, [#338](https://github.com/ahliweb/awcms-one/issues/338)) and counsel.
 
+**Related:** [Metric contracts](aw-business-platform-metrics.md), [Adapter threat model](aw-business-platform-threat-model.md); [DoR tracker](aw-business-platform-dor.md) (cross-spec review, A9).
+
 ## 1. Purpose and placement
 
 The AW Business Platform adds booking, workforce, payroll, notification and analytics capabilities around the commerce store. [ADR-0040](adr/0040-aw-business-platform-capability-ownership-and-boundaries.md) D1 and D4 decided who owns what. This document covers **only the parts that live in this repository**:

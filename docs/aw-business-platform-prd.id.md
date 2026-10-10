@@ -1,12 +1,14 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](aw-business-platform-prd.md)
 
-<!-- i18n-source-hash: sha256:b12d2a46f570b028d49486fa689d9277dc59da801742ef5ed13e3cab9522b0d2 -->
+<!-- i18n-source-hash: sha256:ac1c53575eaa0556706f6617e72ac45c03e7656df7eb90610965dfdcdce30f0b -->
 
 # AW Business Platform — blueprint platform dan PRD (bagian milik awcms-one)
 
 Artefak Definition of Ready (DoR) 1 (blueprint) dan 2 (PRD) dari epik [#280](https://github.com/ahliweb/awcms-one/issues/280), pada tingkat platform, untuk [#336](https://github.com/ahliweb/awcms-one/issues/336) (butir Wave A A6). Pelacak: [`aw-business-platform-dor.md`](aw-business-platform-dor.id.md). **Ini adalah spesifikasi, bukan implementasi:** tidak menambah modul, migrasi, jalur OpenAPI, atau definisi tabel ([ADR-0040](adr/0040-aw-business-platform-capability-ownership-and-boundaries.id.md) D7). Nama tabel, port, dan event di bawah adalah gambaran maksud, bukan kontrak, sampai isu masing-masing mendarat.
 
 Dokumen ini tidak mengklaim kepatuhan hukum. Bila sebuah aturan menyangkut data pribadi, pembayaran, atau hukum ketenagakerjaan, ia menyatakan batasan desain; apakah itu memenuhi suatu regulasi adalah urusan pekerjaan keberlakuan regulasi (A8, [#338](https://github.com/ahliweb/awcms-one/issues/338)) dan penasihat hukum.
+
+**Terkait:** [Kontrak metrik](aw-business-platform-metrics.id.md), [Model ancaman adaptor](aw-business-platform-threat-model.id.md); [pelacak DoR](aw-business-platform-dor.id.md) (tinjauan lintas-spesifikasi, A9).
 
 ## 1. Tujuan dan penempatan
 

@@ -24,6 +24,9 @@ Architecture, schema, API, CMS workflow, storefront behaviour, testing, deployme
 | [`rilis.md`](rilis.md)                                       | The end-to-end release runbook: changesets to tag, `release:images`, `release:publish`, evidence, consumer verification                                                                                                                                    |
 | [`template.md`](template.md)                                 | Using awcms-one as a template: `template:init`, the build-profile matrix, per-profile seeds, BjekMart as the reference example                                                                                                                             |
 | [`aw-business-platform-dor.md`](aw-business-platform-dor.md) | Definition of Ready tracker for epic #280 (AW Business Platform): the ten DoR artifacts, owner decisions, Wave A issues                                                                                                                                    |
+| [`aw-business-platform-prd.md`](aw-business-platform-prd.md) | Platform blueprint and PRD for the awcms-one-owned parts of epic #280: personas, workflows, non-goals, user stories, outcomes, MoSCoW |
+| [`aw-business-platform-metrics.md`](aw-business-platform-metrics.md) | Metric contracts for epic #280: revenue, occupancy, utilization, retention, employee productivity, and the first-vertical figures |
+| [`aw-business-platform-threat-model.md`](aw-business-platform-threat-model.md) | Adapter threat model, privacy analysis, regulatory applicability notes and control mapping for epic #280 |
 
 ## What this directory does not duplicate
 
