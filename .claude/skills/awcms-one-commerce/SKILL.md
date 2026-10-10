@@ -48,6 +48,7 @@ Read [ADR-0007](../../../docs/adr/0007-cart-and-checkout-stay-static-the-browser
 
 - New admin screen: follow `awcms-ui-screen`; gate its `read` view on the matching `commerce.<resource>.read` permission via `loadAdminScreen`, and make sure `admin:screen-coverage:check` sees every permission your change adds claimed somewhere.
 - New domain event: follow `awcms-new-event`; register it in `module.ts`'s `events.publishes`, `domain-event-runtime/domain/event-type-registry.ts`, and `apps/cms/asyncapi/awcms-domain-events.asyncapi.yaml` in the **same** change — a forward-declared event with no registration (`voucher.redeemed` was declared a full increment before it was ever fired) is fine; a fired event with no registration is not.
+- New domain-event consumer: declare it in `module.ts`'s own `domainEventConsumers` (ADR-0134 in `apps/cms/docs/adr/`), never in `domain-event-runtime/infrastructure/consumer-registry.ts`, which is upstream's file, taken unchanged since issue #347. Keep the default `runtime_effect_once` idempotency: the registry wraps `handle` in `applyConsumerEffectOnce`, so `handle` is the side effect only and must not call it. Load the implementation with a lazy `import()` as the existing four consumers do, and add the name to `apps/cms/tests/domain-event-consumer-declarations.test.ts`. A shipped consumer's name is permanent, because it keys delivery rows and the effect ledger; `domain-events:consumers:check` rejects a rename.
 
 ### Admin screen composition (2026-09 redesign, issue #171)
 
