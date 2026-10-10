@@ -21,7 +21,7 @@ Memory agent Claude Code disimpan di `~/.claude/projects/<slug-cwd>/memory/` —
 - Repo ini **publik**. Jangan pernah menulis secret/kredensial nyata ke memory — nilai seperti `awcms_password` adalah placeholder yang sama dengan `.env.example` dan memang sudah publik.
 - `MEMORY.md` adalah indeks yang dimuat tiap sesi; file lain dimuat sesuai relevansi.
 
-**Jumlah memory saat snapshot terakhir: 130.**
+**Jumlah memory saat snapshot terakhir: 132.**
 
 ## Sengaja TIDAK disertakan
 
@@ -41,6 +41,7 @@ Konsekuensi yang disengaja: `MEMORY.md` dan beberapa memory lain **tetap** meruj
 
 `````markdown
 - [ATURAN: keluarga = template dipakai-langsung](awcms-family-direct-use-rule.md) — ADR-0034/0035: template SEJAJAR, TIDAK ada repo derivatif
+- [Konektor MCP sengaja DITUTUP — belum diperlukan](mcp-connectors-not-needed-yet.md) — Slack/Linear/Notion/+64 di `deniedMcpServers`; JANGAN sarankan otorisasi; buka ulang hanya atas izin
 - [PENGEMBANGAN hanya di awcms + awcms-astro](awcms-mini-freeze-foundation-here.md) — ADR-0055: mini/micro = ARSIP; kapabilitas dibangun di sini lewat ADR admission
 - [WAJIB: otorisasi lewat authorizeInTransaction](awcms-authorize-chokepoint-rule.md) — ADR-0063 gerbang per-HANDLER; `ownershipGrant` MELEBARKAN; `blog/posts/[id].ts` BUKAN pola benar
 - [Token bearer APA PUN dapat skema 77 endpoint](awcms-api-body-auth-boundary.md) — `prepare` sebelum otorisasi; gerbang STATIS buta (297/305 palsu); sapuan API bisa me-LOGOUT dirinya
@@ -122,6 +123,7 @@ Konsekuensi yang disengaja: `MEMORY.md` dan beberapa memory lain **tetap** meruj
 - [CodeQL `js/bad-tag-filter` menandai SATU bentuk per putaran](codeql-bad-tag-filter-iterates.md) — tambal sekaligus `</script(?:[\s/][^>]*)?>`
 - [Merge PR dependabot](awcms-dependabot-merge-notes.md) — `package.json` & workflow TAK exempt gate changeset; astro bump memerahkan `family:conformance`
 - [Antrean merge WAJIB serial](awcms-serial-merge-queue-tax.md) — auto-merge MATI + up-to-date wajib; update-branch paralel MEMBAKAR CI; resolusi rebase = KEDUA sisi per baris lalu regenerasi
+- [Penanda konflik DISAMARKAN prettier](rebase-markers-survive-prettier.md) — jadi `> > > > >`; cek penanda SEBELUM format, jangan rantai `;` ke `rebase --continue`
 - [Hazard branch subagent](awcms-subagent-branch-hazard.md) — verifikasi `git branch --show-current` SEBELUM commit
 - [Subagent MENDELEGASI ULANG → agen yatim](subagent-redelegation-orphans.md) — 2 dari 4 lapor "selesai" tanpa kerja; anak tak bisa di-`TaskStop`; larang spawn di prompt, cek commit count
 - [Hazard cwd Bash lintas-repo](bash-cwd-persists-cross-repo-audit-hazard.md) — `cd` persisten antar panggilan; pakai path absolut; `isolation:"worktree"` IKUT cwd itu → buat worktree sendiri
@@ -7739,6 +7741,55 @@ institusi/branding Lentera sebagai seed data tenant, bukan konstanta kode
 ([[awcms-family-direct-use-rule]]).
 `````
 
+<!-- memory-file: mcp-connectors-not-needed-yet.md -->
+
+`````markdown
+---
+name: mcp-connectors-not-needed-yet
+description: "Slack, Linear, Notion, Atlassian, Asana, GitHub-plugin, Canva and 60 other MCP connectors are DELIBERATELY blocked (deniedMcpServers) as NOT YET NEEDED — do not suggest authorizing them"
+metadata:
+  node_type: memory
+  type: user
+  modified: 2026-10-08T02:42:16.964Z
+---
+
+On 8 October 2026, the user asked for the MCP connectors that need authentication
+(Slack, Linear, Notion, and the rest) to be closed and documented as **not yet
+needed**. They are not broken and nothing was left half-done: they are **switched
+off on purpose**.
+
+**Where:** `~/.claude/settings.json` → `deniedMcpServers`, 132 `serverUrl`
+patterns for 67 hosts (`https://host` + `https://host/*`; the `/*` form alone
+does not match a bare URL such as `https://mcp.box.com`). Backup before the
+change: `~/.claude/settings.json.bak-2026-10-08`. The host list was derived from
+`~/.claude/plugins/synced/*/.mcp.json` (plugins synced from claude.ai) plus the
+claude.ai Canva connector. The plugins themselves remain ENABLED, so their skills
+(`engineering:code-review`, etc.) keep working; only their MCP servers are
+blocked.
+
+**Still active, on purpose:** Claude Docs, Gmail, Google Calendar, Google Drive,
+Figma (connected claude.ai connectors), Shopify, and the bio-research servers
+that need no login (biorxiv, chembl, c-trials, pubmed, consensus, opentargets).
+`pdf-viewer` (local `npx`) is not blocked either.
+
+**Why:** the user's work (awcms, awcms-astro, servers) needs none of them yet.
+Each one still pinged an endpoint and showed "needs authentication" at the start
+of every session.
+
+**How to apply:**
+- Do NOT suggest authorizing these connectors in the session report. Don't list
+  them as "needs authentication" either; they are blocked on purpose.
+- When a task truly needs one (e.g. Linear for an issue tracker), say that it is
+  blocked by this decision and ask first. To re-enable it, remove both of its
+  `serverUrl` entries from `deniedMcpServers`, then authorize it via the
+  claude.ai connector settings or `/mcp`.
+- A new connector synced later from claude.ai (a new host) is NOT on this list.
+  Add it if the user wants the same treatment.
+- Don't block `mcp.figma.com` or `*.googleapis.com` (Gmail/Calendar/Drive):
+  the same URLs serve claude.ai connectors that are connected and in use. Note
+  that `bigquery.googleapis.com` IS blocked (plugin server, not used).
+`````
+
 <!-- memory-file: npm-lockfile-gates-are-blind.md -->
 
 `````markdown
@@ -7882,6 +7933,45 @@ lain dari [[awcms-gate-checks-matrix-not-need]].
 
 Cek cepat sebelum menambah grant worker: kalau statementnya `ON CONFLICT`
 atau `UPDATE … WHERE`, ia butuh SELECT.
+`````
+
+<!-- memory-file: rebase-markers-survive-prettier.md -->
+
+`````markdown
+---
+name: rebase-markers-survive-prettier
+description: "Penanda konflik yang lolos ke `bun run format` DISAMARKAN prettier jadi `> > > > > > >` — grep `^>>>>>>>` tak lagi melihatnya; jangan rantai `resolve && format && rebase --continue` tanpa cek di antaranya"
+metadata:
+  node_type: memory
+  type: feedback
+  modified: 2026-10-08T11:25:21.722Z
+---
+
+8 Oktober 2026, saat merge serial PR ADR paralel (#928 di atas #925/#926/#927):
+skrip Python resolusi konflik **gagal di tengah** (assert pada `README.id.md`,
+nama berkas mirror berbeda), tetapi perintah berikutnya di baris yang sama
+tetap jalan (`; bun run format; git add -A && git rebase --continue`).
+Hasilnya commit dengan penanda konflik di tiga berkas. Lebih buruk lagi,
+**prettier memformat penanda markdown itu menjadi blockquote bersarang
+`> > > > > > > c0c89eb9 (...)`**, sehingga `grep '^>>>>>>> '` melaporkan bersih.
+
+**Why:** konflik indeks ADR/README terjadi di SETIAP PR ADR paralel. Resolusinya
+selalu diskrip, dan satu skrip yang gagal diam-diam lalu diformat akan
+menghasilkan dokumen rusak yang terlihat sah.
+
+**How to apply:**
+- Pisahkan langkah: jalankan resolusi, lalu **cek penanda SEBELUM format**
+  (`grep -rln '^<<<<<<< \|^=======$\|^>>>>>>> '`), dan baru `rebase --continue`
+  bila kosong. Pakai `set -e` atau `&&`, jangan `;`, di rantai itu.
+- Setelah format, cek juga bentuk yang disamarkan: `grep -rn '^> > > > '`.
+- Bila sudah telanjur ter-commit, lebih bersih **reset ke branch remote
+  pra-rebase lalu rebase ulang** daripada menambal di atas teks yang sudah
+  diformat ulang.
+- Untuk tabel indeks (`docs/adr/README*`, `docs/awcms/README*`) yang bentrok
+  karena prettier meratakan ulang kolom: ambil versi main, lalu SISIPKAN baris
+  branch setelah baris anker (urut nomor), dan regenerasi PROJECT_STATE §2 /
+  `repo-inventory.md` dengan generatornya. Lihat [[awcms-generated-artifact-merge-drift]],
+  [[awcms-serial-merge-queue-tax]].
 `````
 
 <!-- memory-file: seputarborneo-legacy-site-is-on-this-machine.md -->

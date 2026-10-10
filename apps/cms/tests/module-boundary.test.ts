@@ -95,8 +95,8 @@ async function directoryKeyMap(): Promise<Map<string, string>> {
  * Modules every other module may call directly without declaring it.
  *
  * `logging` only. Audit logging is cross-cutting infrastructure: five modules
- * call `recordAuditEvent` directly today, and `consumer-registry.ts` documents
- * that as "the same cross-module call other modules already make directly".
+ * call `recordAuditEvent` directly today, and the domain-event runtime's
+ * reference audit projector is one of them.
  * Requiring a declaration would add a dependency edge from nearly every module
  * to one leaf and say nothing a reader did not already know.
  *
@@ -114,39 +114,6 @@ const DOCUMENTED_EXCEPTIONS: {
   to: string;
   reason: string;
 }[] = [
-  {
-    from: "domain_event_runtime",
-    to: "reporting",
-    reason:
-      "`infrastructure/consumer-registry.ts` is designated THE cross-module " +
-      "wiring point by `module-contract.ts`'s ProjectionEventSource docs, and " +
-      "registers a consumer that increments a `reporting` projection. It cannot " +
-      "be a `dependencies` edge: `reporting` already declares " +
-      "`domain_event_runtime`, so declaring the reverse is a cycle. It is not a " +
-      "capability either — that would require a port in `_shared/ports/`, and " +
-      "the registry is a static array read at publish time from inside " +
-      "`appendDomainEvent`, so a port would relocate the concrete import rather " +
-      "than remove it. Revisit if consumer registration ever becomes lazy."
-  },
-  {
-    from: "domain_event_runtime",
-    to: "commerce",
-    reason:
-      "Issue #267 (IRMbyDUS entitlement module). Same shape as the " +
-      "`domain_event_runtime -> reporting` entry immediately above: " +
-      "`infrastructure/consumer-registry.ts` registers " +
-      "`orderPaidEntitlementGrantorConsumer`, which calls " +
-      "`commerce/application/commerce-entitlement-directory.ts`'s " +
-      "`grantEntitlementsForPaidOrder`. It cannot be a `dependencies` edge — " +
-      "`commerce` already declares `domain_event_runtime` (to publish " +
-      "`order.paid` itself via `appendDomainEvent`), so declaring the reverse " +
-      "is a cycle. Safe against a FILE-level cycle for the same reason the " +
-      "entry above is: `commerce-entitlement-directory.ts` imports nothing " +
-      "from `domain_event_runtime` back (it takes an already-open `tx`); only " +
-      "OTHER commerce files (e.g. `order-directory.ts`'s own " +
-      "`appendDomainEvent` call) import this module, and that is the " +
-      "pre-existing declared direction, not a new one this consumer creates."
-  },
   {
     from: "tenant_admin",
     to: "identity_access",

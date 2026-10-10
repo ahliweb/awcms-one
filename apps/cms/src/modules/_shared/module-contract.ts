@@ -4,6 +4,8 @@
  * `module.ts`, never user/tenant-controlled, never carries a runtime secret.
  */
 
+import type { ModuleDomainEventConsumer } from "./domain-event-consumer-contract";
+
 /** Descriptive category only — not itself an authorization or enable/disable mechanism. */
 export type ModuleType = "base" | "system" | "domain" | "integration";
 
@@ -300,6 +302,17 @@ export type ModuleDescriptor = {
    */
   reportingProjections?: ProjectionDescriptor[];
   /**
+   * Domain-event consumers this module OWNS (ADR-0134, Issue #918) — see
+   * `ModuleDomainEventConsumer` in `domain-event-consumer-contract.ts`. Same
+   * "module declares its own array, a central engine reads `listModules()`"
+   * shape as the rest of this contract: `domain_event_runtime` builds its
+   * consumer registry from every module's array
+   * (`domain-event-runtime/domain/consumer-declarations.ts`), validated by
+   * `bun run domain-events:consumers:check`. A declaring module must list
+   * `domain_event_runtime` in `dependencies` (the runtime itself excepted).
+   */
+  domainEventConsumers?: ModuleDomainEventConsumer[];
+  /**
    * High-volume table lifecycle descriptors this module owns (ported from
    * awcms-micro Issue #745, ADR-0037) — see `HighVolumeTableDescriptor`'s own
    * doc comment below. Same "module declares its own array, a central engine
@@ -399,7 +412,7 @@ export type ModuleDescriptor = {
  */
 export type ProjectionScope = "tenant" | "global";
 
-/** One event type/version this projection's steady-state updates consume via a `domain_event_runtime` consumer — the actual consumer entry lives in `domain-event-runtime/infrastructure/consumer-registry.ts` (the cross-module wiring point). `eventVersion` is a STRING (e.g. `"1.0"`), matching `DomainEventEnvelope.eventVersion`. */
+/** One event type/version this projection's steady-state updates consume via a `domain_event_runtime` consumer — the actual consumer entry is declared in the SAME module's `domainEventConsumers` (ADR-0134). `eventVersion` is a STRING (e.g. `"1.0"`), matching `DomainEventEnvelope.eventVersion`. */
 export type ProjectionEventSource = {
   eventType: string;
   eventVersion: string;
@@ -500,7 +513,7 @@ export type ProjectionSourceContract =
   | {
       strategy: "domain_event";
       events: readonly ProjectionEventSource[];
-      /** Must match the `DomainEventConsumerDefinition.name` registered for this projection in `domain-event-runtime/infrastructure/consumer-registry.ts`. */
+      /** Must match the `DomainEventConsumerDefinition.name` declared for this projection in the owning module's `domainEventConsumers`. */
       consumerName: string;
     };
 
@@ -1301,6 +1314,14 @@ export type SubjectDataDescriptor = {
  *
  * No `ModuleDescriptor` field was removed and every wave-1 descriptor stays
  * valid unchanged.
+ *
+ * `4.2.0` (ADR-0134, Issue #918) — added the optional
+ * `ModuleDescriptor.domainEventConsumers` field plus the
+ * `ModuleDomainEventConsumer` family (`domain-event-consumer-contract.ts`).
+ * MINOR: purely additive, no existing descriptor changes meaning. It is a
+ * behaviour change for module AUTHORS, though: a domain-event consumer is now
+ * declared in the owning module's descriptor instead of being appended to
+ * `domain-event-runtime/infrastructure/consumer-registry.ts`.
  *
  * `4.1.0` (ADR-0108) — added the optional
  * `SubjectDataDescriptor.anonymizedColumns` and NARROWED the documented meaning

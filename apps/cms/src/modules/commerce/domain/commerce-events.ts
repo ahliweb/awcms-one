@@ -24,6 +24,22 @@
  */
 export const COMMERCE_EVENT_VERSION = "1.0";
 
+/**
+ * Names of the `commerce` module's domain-event consumers (declared in
+ * `commerce/module.ts` `domainEventConsumers`, ADR-0134). A consumer name is the
+ * delivery row's `consumer_name`, the effect-ledger key and a metrics label:
+ * NEVER rename a shipped one. Kept here, dependency-free, so the descriptor
+ * stays import-light.
+ */
+export const COMMERCE_ORDER_PAID_ENTITLEMENT_GRANTOR_CONSUMER_NAME =
+  "commerce.order_paid_entitlement_grantor";
+export const COMMERCE_ORDER_PAID_LOYALTY_EARNER_CONSUMER_NAME =
+  "commerce.order_paid_loyalty_earner";
+export const COMMERCE_ORDER_CANCELLED_LOYALTY_REVERSER_CONSUMER_NAME =
+  "commerce.order_cancelled_loyalty_reverser";
+export const COMMERCE_INVENTORY_STOCK_CACHE_PROJECTOR_CONSUMER_NAME =
+  "commerce.inventory_stock_cache_projector";
+
 export const COMMERCE_PRODUCT_CREATED_EVENT_TYPE =
   "awcms.commerce.product.created";
 export const COMMERCE_PRODUCT_UPDATED_EVENT_TYPE =

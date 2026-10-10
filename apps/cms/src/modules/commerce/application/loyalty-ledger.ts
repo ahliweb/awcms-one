@@ -31,7 +31,7 @@
  * transactions, and nothing here touches `application/order-directory.ts`,
  * `pos-directory.ts`, cart pricing or the payment webhook paths: earn and
  * reversal are driven purely by the `order.paid`/`order.cancelled` domain
- * events (see `domain-event-runtime/infrastructure/consumer-registry.ts`).
+ * events (see `commerce/module.ts` `domainEventConsumers`).
  * Wiring a redemption into checkout pricing needs #285's tender model and is
  * deferred (ADR-0026 Deferred).
  */
