@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](ARCHITECTURE.md)
 
-<!-- i18n-source-hash: sha256:4604090ad8efef9d27f94053d11133820ba13efd43ab156bc82c2ea03d75e5ee -->
+<!-- i18n-source-hash: sha256:d0792d0bbd85756d0a1a0092de7b42a40419d6375c907e2a2fd35d30d25cac54 -->
 
 # Arsitektur AWCMS
 
@@ -52,7 +52,7 @@ src/modules/<module>/
   (enumeration-safe, single-use, mencabut semua sesi), self-registration
   ber-persetujuan admin (default MATI), tenant user membership, RBAC/ABAC dasar.
 - **`module_management`** (`isCore`) — registry modul berbasis DB: sync descriptor, enable/disable per tenant, settings non-secret, sinkron permission, navigation, job registry, health/readiness.
-- **`domain_event_runtime`** — outbox/dispatcher domain event transaksional, versi, multi-consumer, dead-letter + replay ter-audit.
+- **`domain_event_runtime`** — outbox/dispatcher domain event transaksional, versi, multi-consumer (consumer dideklarasikan di descriptor modul pemiliknya, `domainEventConsumers`, dan registry dibangun darinya — [ADR-0134](adr/0134-descriptor-declared-domain-event-consumers.id.md)), dead-letter + replay ter-audit.
 - **`sync_storage`** — node sync offline-first, outbox/inbox HMAC-signed anti-replay, conflict tracking, antrian upload objek.
 - **`workflow_approval`** — engine workflow definisi ber-versi (draft/publish/retire), node graph (approval/condition/parallel/join/notify), quorum, delegasi, eskalasi.
 - **`email`** — layanan email provider-neutral (Mailketing + `log` adapter), template management, dispatcher outbox, pengumuman massal.
@@ -372,6 +372,8 @@ queued/sent/failed/suppressed/cancelled) — dipublikasikan lewat
 `appendDomainEvent` di transaksi bisnis yang sama (ADR-0006, same-commit
 outbox write) dan dikirim `bun run domain-events:dispatch` dengan
 per-order-key ordering, backoff, dead-letter + replay ter-audit.
+
+Dokumen **provisional** yang terpisah, `asyncapi/provisional/awcms-cross-domain-events.provisional.asyncapi.yaml`, menyimpan skema event untuk modul yang belum ada (booking, hr_payroll, pengiriman WhatsApp). Ia bukan bagian dari kontrak live, tidak diterbitkan kode mana pun, dan digerbangi `bun run asyncapi:provisional:check`; sebuah event hidup di tepat satu dari dua berkas. Lihat [`docs/awcms/cross-domain-contracts.md`](awcms/cross-domain-contracts.md).
 
 ## Migration
 

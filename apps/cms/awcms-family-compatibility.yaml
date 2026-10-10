@@ -52,11 +52,16 @@ family:
 # FAMILY_OWNED_CONTRACT_VERSIONS in src/modules/_shared/family-contract.ts and
 # given teeth by a SEMANTIC contract test that goes RED if the control drifts.
 contracts:
-  # 4.2.0 sejak Issue #117 (kontrak #106 / ADR-0017 D7): field opsional
-  # `ProjectionCursorStream.dimensional` dan `ProjectionDescriptor.dimensional`
-  # DITAMBAHKAN — proyeksi reporting berdimensi (per hari/produk/kategori) di
-  # tabel milik modul penyumbang, bukan hanya counter skalar mesin. Penambahan
-  # murni (setiap deskriptor lama tetap valid tanpa perubahan), jadi MINOR.
+  # 4.2.0 sejak ADR-0134 (Issue #918): field opsional
+  # `ModuleDescriptor.domainEventConsumers` DITAMBAHKAN (penambahan murni, jadi
+  # MINOR). Konsumen domain-event kini dideklarasikan di descriptor modul
+  # PEMILIKNYA dan registry runtime dibangun dari daftar modul tergabung —
+  # bukan lagi ditambahkan ke `consumer-registry.ts`.
+  #
+  # Catatan awcms-one: Issue #117 (kontrak #106 / ADR-0017 D7) juga menambah
+  # field opsional `ProjectionCursorStream.dimensional` dan
+  # `ProjectionDescriptor.dimensional` pada 4.2.0 yang sama (proyeksi reporting
+  # berdimensi). Kedua penambahan murni dan saling lepas, jadi satu nomor MINOR.
   # 4.1.0 sejak ADR-0108: field opsional
   # `SubjectDataDescriptor.anonymizedColumns` DITAMBAHKAN (penambahan murni,
   # jadi MINOR) dan makna terdokumentasi `redactedColumns` DIPERSEMPIT menjadi

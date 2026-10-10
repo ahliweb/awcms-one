@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](PROJECT_STATE.md)
 
-<!-- i18n-source-hash: sha256:3c390ab4752f0248b9d625235c6296c3b62e11b902702b296f82c381f74e8293 -->
+<!-- i18n-source-hash: sha256:f513302117f940b1809e49a7fe72247a31558b311b728e730218ce2e478ae991 -->
 
 # AWCMS — Project State & Continuation
 
@@ -116,15 +116,15 @@ Model tata kelola dipakai-langsung/tanpa-repo-turunan (ADR-0034 §2/§3) **tidak
 
 | Aspek                              | Nilai (ter-generate)                                                                  | Sumber kebenaran                                                                        |
 | ---------------------------------- | ------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| Versi                              | **10.6.0**                                                                            | `package.json`                                                                          |
+| Versi                              | **10.7.0**                                                                            | `package.json`                                                                          |
 | Changeset menunggu (per tipe bump) | _jalankan perintah di kolom kanan_                                                    | `grep -h '^"awcms":' .changeset/*.md \| sort \| uniq -c`                                |
-| Commit sejak rilis terakhir        | _jalankan perintah di kolom kanan_                                                    | `git rev-list --count v10.6.0..HEAD`                                                    |
+| Commit sejak rilis terakhir        | _jalankan perintah di kolom kanan_                                                    | `git rev-list --count v10.7.0..HEAD`                                                    |
 | Modul base                         | **29** (lihat daftar di ARCHITECTURE.md)                                              | `src/modules/index.ts`                                                                  |
 | Migrasi                            | **263** (`sql/001`–`1000`)                                                            | `ls sql/`                                                                               |
-| ADR                                | **0000**–**0130** (`0000` = template; status ADR tertinggi: **Accepted**)             | `ls docs/adr/`                                                                          |
+| ADR                                | **0000**–**0134** (`0000` = template; status ADR tertinggi: **Accepted**)             | `ls docs/adr/`                                                                          |
 | Layar admin                        | **95** berkas `.astro` di `src/pages/admin/`; **0 dari 29** modul tanpa `navigation:` | `find src/pages/admin -name '*.astro'`, `grep -L 'navigation:' src/modules/*/module.ts` |
 | Berkas `.astro`                    | **120** (74.081 baris) — soal typecheck lihat §6                                      | `find src -name '*.astro'`                                                              |
-| Gerbang                            | **61** di rantai `bun run check`                                                      | `scripts.check` di `package.json`, dipisah pada `&&`                                    |
+| Gerbang                            | **63** di rantai `bun run check`                                                      | `scripts.check` di `package.json`, dipisah pada `&&`                                    |
 | Kontrak                            | OpenAPI modular per-modul + AsyncAPI; `MODULE_CONTRACT_VERSION` **4.2.0**             | `openapi/`, `asyncapi/`, `_shared/module-contract.ts`                                   |
 
 <!-- project-state-inventory:selesai -->
@@ -394,6 +394,35 @@ knowledge:check` (`graph:artifacts:check` + dry run `--check` sync wrapper)
 
 ## 4. Backlog / langkah berikutnya
 
+- **AW BUSINESS PLATFORM WAVE A — 8 Oktober 2026 (v10.7.0): #915–#918 selesai
+  di hulu, pada hari yang sama ADR-0040 hilir diterima (awcms-one#335, O0).**
+
+  Empat admission, semuanya dokumen kecuali ADR-0134: ADR-0131 booking (#927,
+  `docs/awcms/booking.md`), ADR-0132 keluarga hr_payroll (#928,
+  `docs/awcms/hr-payroll.md`), ADR-0133 `whatsapp_delivery` generik (#925),
+  ADR-0134 consumer domain-event yang dideklarasikan di descriptor (#926, kode),
+  dan kontrak lintas-domain (#929, `docs/awcms/cross-domain-contracts.md` + 22
+  event provisional di `asyncapi/provisional/`, digerbangi
+  `asyncapi:provisional:check`). **Belum ada kode modul, migrasi, maupun path
+  OpenAPI/AsyncAPI hidup untuk booking, hr, atau WhatsApp.** PR fase 1 setiap
+  modul membuat berkas `_shared/ports`-nya dan memindahkan event-nya dari berkas
+  provisional ke kontrak hidup (gerbang memaksa "tepat di satu tempat").
+
+  **Keputusan pemilik masih terbuka, dan pack mencatatnya sebagai terbuka, bukan
+  diputuskan:** O1–O3, O5, O8, O9, O12 (booking); O1, O4–O7 (hr; payroll juga
+  digerbangi enkripsi at-rest serta review keamanan dan hukum); O10 Telegram
+  ditunda, O11 orkestrasi tidak diterima (delivery). Baca bagian "Open
+  questions" pack sebelum menulis migrasi.
+
+  **Dua hal sebelum menyentuh registry consumer (#926).** Consumer berjalan
+  apa pun `status` modulnya: draf awal yang melewati modul `disabled`
+  menelantarkan delivery tertunda, merusak replay, dan menghilangkan event,
+  lalu dihapus setelah review keamanan. Registry dibangun ulang setiap
+  panggilan (tanpa cache berbasis identitas array). Gerbang CI adalah penjaga
+  utama terhadap komposisi rusak; throw runtime di dalam transaksi produsen
+  hanya cadangan (tidak ada jalur validasi saat boot). Tindak lanjut: kategori
+  e-mail yang dideklarasikan di descriptor.
+
 - **PUTARAN ISSUE — 8 Oktober 2026 (v10.6.0): dua perbaikan, satu pemblokir
   yang ditemukan di jalan, dan empat issue desain yang sengaja tidak dimulai.**
 
@@ -415,7 +444,7 @@ knowledge:check` (`graph:artifacts:check` + dry run `--check` sync wrapper)
   `deps:audit:check` di `main` dan memblokir setiap PR. Ditutup lewat
   `overrides`.
 
-  **TIDAK dimulai, sengaja: #915 booking, #916 hr_payroll, #917 delivery,
+  **DIGANTIKAN pada hari yang sama (lihat entri Wave A di atas): TIDAK dimulai, sengaja: #915 booking, #916 hr_payroll, #917 delivery,
   #918 registrasi consumer (awcms-one#280 Wave A).** Setiap issue bergerbang
   "tidak sebelum pemilik hilir menerima ADR-0040". Per 8 Oktober 2026, ADR-0040
   awcms-one masih `Diusulkan`. Cek ulang statusnya sebelum mengambil salah

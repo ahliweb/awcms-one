@@ -4,9 +4,8 @@
  * a movement is posted by something other than commerce - a procurement receipt,
  * an inventory adjustment, a transfer, a reversal.
  *
- * Registered in `domain-event-runtime/infrastructure/consumer-registry.ts` on
- * `awcms.inventory.movement.posted` as `commerce.inventory_stock_cache_projector`
- * (a recorded local divergence from upstream; see the root `AGENTS.md`).
+ * Declared in `commerce/module.ts` `domainEventConsumers` (ADR-0134) on
+ * `awcms.inventory.movement.posted` as `commerce.inventory_stock_cache_projector`.
  *
  * ## It never trusts the payload's order
  *
@@ -25,6 +24,7 @@
  * It runs as `awcms_worker` (`bun run domain-events:dispatch`), which `sql/947`
  * grants SELECT on the ledger balance and the settings it reads.
  */
+import { COMMERCE_INVENTORY_STOCK_CACHE_PROJECTOR_CONSUMER_NAME } from "../domain/commerce-events";
 import {
   COMMERCE_STOCK_UNIT_CODE,
   cacheValueFromBalance,
@@ -37,7 +37,7 @@ import {
 } from "./commerce-inventory";
 
 export const INVENTORY_STOCK_CACHE_PROJECTOR_CONSUMER_NAME =
-  "commerce.inventory_stock_cache_projector";
+  COMMERCE_INVENTORY_STOCK_CACHE_PROJECTOR_CONSUMER_NAME;
 
 /** Returns whether a cache row was considered (for tests); never throws for an event it does not own. */
 export async function projectStockCacheFromMovement(
