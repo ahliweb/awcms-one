@@ -1,12 +1,14 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](aw-business-platform-metrics.md)
 
-<!-- i18n-source-hash: sha256:4b55c1ed3390446a55cfe2de3f8648d9958fb2bb8b290ed15b984b7ca0c07198 -->
+<!-- i18n-source-hash: sha256:9e6746a6ee6587048077ee9aab8828b37fd1ad721c1243f260616c12021ace46 -->
 
 # AW Business Platform — kontrak metrik
 
 Artefak DoR 6 (bagian analitik) dari epik [#280](https://github.com/ahliweb/awcms-one/issues/280), dikerjakan oleh [#337](https://github.com/ahliweb/awcms-one/issues/337) (Wave A, A7). Pelacak: [`aw-business-platform-dor.md`](aw-business-platform-dor.md). Penempatan: [ADR-0040](adr/0040-aw-business-platform-capability-ownership-and-boundaries.md).
 
 **Ini spesifikasi, bukan implementasi.** Tidak ada modul, migrasi, path OpenAPI, kanal AsyncAPI, atau DDL yang dibuat atau diisyaratkan (ADR-0040 D7). Nama tabel, counter, dan proyeksi di bawah bersifat konseptual; baru menjadi nyata saat sebuah isu build mendaratkannya. PRD platform dan model ancaman adalah artefak DoR terpisah yang dibuat paralel; halaman ini menyebutnya dengan kata biasa dan tidak bergantung padanya.
+
+**Terkait:** [PRD platform](aw-business-platform-prd.id.md), [Model ancaman adaptor](aw-business-platform-threat-model.id.md); [pelacak DoR](aw-business-platform-dor.id.md) (tinjauan lintas-spesifikasi, A9).
 
 ## 1. Mengapa kontrak metrik didahulukan
 

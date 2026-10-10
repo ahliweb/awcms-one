@@ -6,6 +6,8 @@ DoR artifact 6 (analytics part) of epic [#280](https://github.com/ahliweb/awcms-
 
 **This is a specification, not an implementation.** No module, migration, OpenAPI path, AsyncAPI channel or DDL is created or implied (ADR-0040 D7). Table, counter and projection names below are conceptual; they become real only when a build issue lands them. The platform PRD and the threat model are separate DoR artifacts, produced in parallel; this page refers to them in plain words and does not depend on them.
 
+**Related:** [Platform PRD](aw-business-platform-prd.md), [Adapter threat model](aw-business-platform-threat-model.md); [DoR tracker](aw-business-platform-dor.md) (cross-spec review, A9).
+
 ## 1. Why metric contracts come first
 
 A number on a dashboard is only as trustworthy as its definition. "Occupancy" can mean three different things depending on whether a hold counts, and "revenue" can mean four. A projection built before the definition is fixed bakes in one guess, and the first correction is a rebuild that changes history. The booking design pack says this itself: the counters are chosen first because they are the inputs of every candidate definition, and the definitions are owner decision O8 ([`awcms/booking.md`](https://github.com/ahliweb/awcms/blob/main/docs/awcms/booking.md), §7.2). O8 is now answered; this page writes the answers down precisely enough to build and test against.
