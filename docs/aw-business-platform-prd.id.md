@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](aw-business-platform-prd.md)
 
-<!-- i18n-source-hash: sha256:62fdf514c37ad16245e9be138b071fb9b50e593adff3af91c53140debc628a7b -->
+<!-- i18n-source-hash: sha256:23a1cb1389bb5cadee8dc19b1008173ce7394aac9f8d2a782f5724a1b7b01f52 -->
 
 # AW Business Platform — blueprint platform dan PRD (bagian milik awcms-one)
 
@@ -75,7 +75,7 @@ Akses persona adalah himpunan izin, bukan nama peran: izin commerce mengikuti ko
 
 ## 3. Vertikal pertama: hotel, vila, dan rental (O2)
 
-O2 memilih hotel / vila / rental, tanpa terikat repositori konsumen yang ada. Paket upstream semula mengeluarkan kasus ini dari v1 ("menginap per malam (hari check-in/check-out) di luar v1", booking.md bagian 11, O2). Itu tidak lagi berlaku: pada 10 Oktober 2026 upstream memasukkan menginap berbasis hari (per malam) ke Booking v1 lewat [ADR-0135](https://github.com/ahliweb/awcms/blob/main/docs/adr/0135-day-granularity-stays-admitted-into-booking-v1.md) (ahliweb/awcms#931; sumber daya punya mode pemesanan `slot` atau `stay`, menginap adalah interval tanggal lokal setengah-terbuka, dan batasan eksklusi deklaratif kedua pada tanggal mencegah pemesanan ganda). **Upstream-lah** yang memodelkan menginap dan kapasitas multi-malam; PRD ini hanya mencatat implikasinya bagi adaptor, karena adaptor adalah tempat uang bertemu semua itu:
+O2 memilih hotel / vila / rental, tanpa terikat repositori konsumen yang ada. Paket upstream semula mengeluarkan kasus ini dari v1 ("menginap per malam (hari check-in/check-out) di luar v1", booking.md bagian 11, O2). Itu tidak lagi berlaku: pada 10 Oktober 2026 upstream memasukkan menginap berbasis hari (per malam) ke Booking v1 lewat [ADR-0135](../apps/cms/docs/adr/0135-day-granularity-stays-admitted-into-booking-v1.md) (ahliweb/awcms#931; sumber daya punya mode pemesanan `slot` atau `stay`, menginap adalah interval tanggal lokal setengah-terbuka, dan batasan eksklusi deklaratif kedua pada tanggal mencegah pemesanan ganda). **Upstream-lah** yang memodelkan menginap dan kapasitas multi-malam; PRD ini hanya mencatat implikasinya bagi adaptor, karena adaptor adalah tempat uang bertemu semua itu:
 
 - **Menginap multi-malam adalah satu reservasi, satu pesanan.** Pesanan terkait membawa satu baris layanan untuk menginap itu (jawaban pemilik Q1: malam adalah **kuantitas satu produk layanan per malam**; produk adalah harga satu malam dan total pesanan adalah harga itu dikali jumlah malam). Adaptor tidak boleh memecah menginap menjadi pesanan per malam.
 - **Deposit adalah sebagian dari total yang lebih besar.** Menginap beberapa malam lazimnya dibayar sebagian di muka. Pesanan commerce sudah mendukung uang muka (ADR-0025 D3: `dp_amount`, status `dp_paid`, sisa terutang eksplisit), jadi deposit adalah alokasi pembayaran pada pesanan terkait, bukan konsep baru (ADR-0040 D5.9).
@@ -337,7 +337,7 @@ Layar yang menerapkan Q1 sampai Q3, Q8, Q9, dan Q10 (uang muka ditampilkan sebag
 
 ## 10. Dependensi dan urutan
 
-- Mekanisme konsumen yang dideklarasikan lewat deskriptor ([ADR-0134](https://github.com/ahliweb/awcms/blob/main/docs/adr/0134-descriptor-declared-domain-event-consumers.md), `ModuleDescriptor.domainEventConsumers`) **sudah ada di `apps/cms` repositori ini** sejak sinkronisasi AWCMS v10.7.0, dan konsumen commerce memakainya. Modul `booking` upstream, termasuk menginap berbasis harinya ([ADR-0135](https://github.com/ahliweb/awcms/blob/main/docs/adr/0135-day-granularity-stays-admitted-into-booking-v1.md)), **belum ada di `apps/cms`**; ia harus tiba lewat sinkronisasi subtree sebelum adaptor dibangun (ADR-0040 D7 butir 2). Perubahan sesi deposit dan peristiwa pelunasan ADR-0041 adalah pekerjaan commerce dan juga harus mendarat lebih dulu.
+- Mekanisme konsumen yang dideklarasikan lewat deskriptor ([ADR-0134](https://github.com/ahliweb/awcms/blob/main/docs/adr/0134-descriptor-declared-domain-event-consumers.md), `ModuleDescriptor.domainEventConsumers`) **sudah ada di `apps/cms` repositori ini** sejak sinkronisasi AWCMS v10.7.0, dan konsumen commerce memakainya. Modul `booking` upstream, termasuk menginap berbasis harinya ([ADR-0135](../apps/cms/docs/adr/0135-day-granularity-stays-admitted-into-booking-v1.md)), **belum ada di `apps/cms`**; ia harus tiba lewat sinkronisasi subtree sebelum adaptor dibangun (ADR-0040 D7 butir 2). Perubahan sesi deposit dan peristiwa pelunasan ADR-0041 adalah pekerjaan commerce dan juga harus mendarat lebih dulu.
 - Definisi segmen dan kelayakan/penukaran loyalti hanya bergantung pada commerce dan, menurut ADR-0040 D7, dapat dibuka lebih dulu setelah artefak DoR CRM (blueprint, PRD ini, model ancaman, definisi metrik) ada.
 - Adaptor bergantung pada pembayaran (sudah ada), retur (sudah ada), dan loyalti (sudah ada); ia tidak menambah skema ke Booking dan hanya sedikit catatan sisi commerce, untuk dirancang di artefak DoR 4.
 

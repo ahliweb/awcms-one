@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](aw-business-platform-metrics.md)
 
-<!-- i18n-source-hash: sha256:ec6d5593a3183db78721d721b0c0fff634e331f7c04a51966e3a30eb97c25daa -->
+<!-- i18n-source-hash: sha256:d49223090c973ba7c28a8beba0363e1549760028978f68177770aa67ce5c753d -->
 
 # AW Business Platform — kontrak metrik
 
@@ -10,7 +10,7 @@ Artefak DoR 6 (bagian analitik) dari epik [#280](https://github.com/ahliweb/awcm
 
 **Terkait:** [PRD platform](aw-business-platform-prd.id.md), [Model ancaman adaptor](aw-business-platform-threat-model.id.md); [pelacak DoR](aw-business-platform-dor.id.md) (tinjauan lintas-spesifikasi, A9).
 
-**Diamendemen 10 Oktober 2026 ([#355](https://github.com/ahliweb/awcms-one/issues/355)).** Pemilik menerima setiap default yang direkomendasikan di bagian 9 (Q1 sampai Q7). Pendapatan untuk pesanan deposit diputuskan di bagian 3.7 (temuan X6), angka loyalti didefinisikan di bagian 12 (temuan X5), daftar istilah adalah bagian 13, dan pernyataan yang usang akibat sinkronisasi AWCMS v10.7.0 dan [ADR-0135](https://github.com/ahliweb/awcms/blob/main/docs/adr/0135-day-granularity-stays-admitted-into-booking-v1.md) upstream dikoreksi (temuan X8). Deposit mengikuti [ADR-0041](adr/0041-gateway-deposit-sessions-and-mixed-tenders-on-one-order.id.md).
+**Diamendemen 10 Oktober 2026 ([#355](https://github.com/ahliweb/awcms-one/issues/355)).** Pemilik menerima setiap default yang direkomendasikan di bagian 9 (Q1 sampai Q7). Pendapatan untuk pesanan deposit diputuskan di bagian 3.7 (temuan X6), angka loyalti didefinisikan di bagian 12 (temuan X5), daftar istilah adalah bagian 13, dan pernyataan yang usang akibat sinkronisasi AWCMS v10.7.0 dan [`awcms` ADR-0135](../apps/cms/docs/adr/0135-day-granularity-stays-admitted-into-booking-v1.md) upstream dikoreksi (temuan X8). Deposit mengikuti [ADR-0041](adr/0041-gateway-deposit-sessions-and-mixed-tenders-on-one-order.id.md).
 
 ## 1. Mengapa kontrak metrik didahulukan
 
@@ -290,7 +290,7 @@ Bentuk konsumen pertama adalah akomodasi multi-malam dan rental (kamar, vila, ke
 ### 8.1 Kapasitas berbasis malam
 
 - Satu **resource-malam** adalah satu unit (kamar, vila, mobil sewa) untuk satu malam, dari jam check-in properti pada tanggal D sampai jam check-out pada D+1, berlabel D. Menginap 3 malam dengan check-in 10 Okt dan check-out 13 Okt memegang malam 10, 11, dan 12 Okt. Tanggal check-out sendiri **bukan** malam (interval setengah-terbuka, aturan yang sama di mana-mana).
-- Upstream memasukkan menginap per malam ke Booking v1 ([ADR-0135](https://github.com/ahliweb/awcms/blob/main/docs/adr/0135-day-granularity-stays-admitted-into-booking-v1.md), 10 Oktober 2026): menginap adalah interval setengah-terbuka dari **tanggal kalender lokal** dalam zona IANA sumber daya, dan satuan okupansi adalah (unit, malam). **Jam** check-in dan check-out menjelaskan kapan tamu boleh tiba dan harus pergi; ia menurunkan instan tampilan dan batas waktu serta bukan bagian dari apa yang tidak boleh tumpang tindih. Malam berlabel D di halaman ini adalah malam-tanggal itu; di mana pun bagian 4 berbicara tentang jam check-in dan check-out, ia menjelaskan malam yang sama untuk tampilan.
+- Upstream memasukkan menginap per malam ke Booking v1 ([`awcms` ADR-0135](../apps/cms/docs/adr/0135-day-granularity-stays-admitted-into-booking-v1.md), 10 Oktober 2026): menginap adalah interval setengah-terbuka dari **tanggal kalender lokal** dalam zona IANA sumber daya, dan satuan okupansi adalah (unit, malam). **Jam** check-in dan check-out menjelaskan kapan tamu boleh tiba dan harus pergi; ia menurunkan instan tampilan dan batas waktu serta bukan bagian dari apa yang tidak boleh tumpang tindih. Malam berlabel D di halaman ini adalah malam-tanggal itu; di mana pun bagian 4 berbicara tentang jam check-in dan check-out, ia menjelaskan malam yang sama untuk tampilan.
 - Jam `check-in` dan `check-out` properti adalah konfigurasi penawaran atau jadwal, dalam zona IANA properti. Pergantian di hari yang sama diizinkan oleh aturan setengah-terbuka; jeda pembersihan adalah buffer.
 - Satu malam **tersedia** kecuali unit diblokir untuk pemeliharaan atau pemakaian pemilik di pengecualian jadwal. Malam terblokir keluar dari penyebut (Q4).
 

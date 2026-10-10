@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](booking-ux-flows.md)
 
-<!-- i18n-source-hash: sha256:33d2ea0981bcdf14c2d1e9cde6683cadd7bb34c14b2819c5f9065b99b8d77ed8 -->
+<!-- i18n-source-hash: sha256:9a6bf1c56689a4597a38976298a5358c2a4eddce8ee50d32c683f194d75b2e4d -->
 
 <!-- i18n-source-hash: sha256:0 -->
 
@@ -19,7 +19,7 @@ Dalam cakupan: empat permukaan untuk vertikal pertama (menginap per malam hotel,
 Aturan dasar yang diwarisi setiap layar:
 
 1. **Storefront tidak menghitung uang.** Setiap angka (harga per malam, total, uang muka, sudah dibayar, sisa pembayaran, pengembalian) berasal dari server, diformat hanya melalui jalur `formatPrice()` yang ada ([`ui-ux.md`](ui-ux.md), "Price presentation"). Halaman boleh mengurangi dua angka server hanya untuk menampilkan angka yang juga dikembalikan server; tidak pernah mengirim balik jumlah hasil hitungan. Kontrol C-07 (penjaga jumlah uang muka) dan C-10 (jumlah pengembalian dihitung server) menjadi alasannya.
-2. **Malam adalah aritmetika tanggal, dari server.** Menginap adalah interval tanggal lokal setengah terbuka `[check-in, check-out)` dalam zona waktu IANA properti ([ADR-0135 upstream](https://github.com/ahliweb/awcms/blob/main/docs/adr/0135-day-granularity-stays-admitted-into-booking-v1.md) bagian 2): check-in inklusif, check-out eksklusif, malam = check-out dikurangi check-in, paling banyak 366. Zona waktu peramban tidak pernah dipakai menafsirkan tanggal menginap; pemilih bekerja pada string tanggal (`YYYY-MM-DD`) dan melabeli zona properti. Pergantian di hari yang sama sah (tamu boleh check-in pada hari tamu lain check-out), sehingga tanggal yang merupakan check-out orang lain dapat dipilih sebagai check-in.
+2. **Malam adalah aritmetika tanggal, dari server.** Menginap adalah interval tanggal lokal setengah terbuka `[check-in, check-out)` dalam zona waktu IANA properti (`awcms` [ADR-0135 upstream](../apps/cms/docs/adr/0135-day-granularity-stays-admitted-into-booking-v1.md) bagian 2): check-in inklusif, check-out eksklusif, malam = check-out dikurangi check-in, paling banyak 366. Zona waktu peramban tidak pernah dipakai menafsirkan tanggal menginap; pemilih bekerja pada string tanggal (`YYYY-MM-DD`) dan melabeli zona properti. Pergantian di hari yang sama sah (tamu boleh check-in pada hari tamu lain check-out), sehingga tanggal yang merupakan check-out orang lain dapat dipilih sebagai check-in.
 3. **Malam adalah kuantitas satu produk layanan per malam** (jawaban pemilik Q1): pesanan punya satu baris, kuantitas = malam, sehingga "2 malam x Rp 500.000 = Rp 1.000.000" persis yang dikembalikan server, bukan hitungan klien.
 4. **Bahasa Indonesia adalah bahasa utama, tanpa syarat** ([`ui-ux.md`](ui-ux.md), "Language"); kolom Inggris di bawah untuk penerjemah dan mirror Inggris dokumen ini, bukan locale storefront kedua.
 5. **Autentikasi adalah sesi bearer yang ada** ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) D3, kontrol C-04): token opak `cs_` di `localStorage`, dikirim sebagai `Authorization: Bearer`, melalui `apps/storefront/src/lib/akun-sesi.ts` dan `apps/storefront/src/lib/akun-klien.ts`; tidak pernah cookie, dan CORS tidak mendapat header kredensial. `401 UNAUTHENTICATED` dari rute pemesanan mana pun menghapus sesi dan mengarahkan tamu ke masuk, lalu kembali (bagian 7). Tidak ada bentuk sesi kedua.
@@ -316,8 +316,14 @@ Pada setiap profil build tetap statis dan profil tanpa pemesanan tidak membawa s
 | Balapan pembayaran terlambat / hold kedaluwarsa | C-08                             | 3.2 (baris terakhir)                                            |
 | Idempotensi pengembalian, jumlah server         | C-10                             | 4.2                                                             |
 | Pemisahan tugas pada pengembalian offline       | C-11                             | 4.2 (offline), 4.3                                              |
+| Penebusan tidak digabung dengan uang muka       | C-33                             | 3.1 (kontrol poin disembunyikan pada pesanan uang muka)         |
+| Pencarian POS: kode plus pelanggan, miss netral | C-34                             | 5.1                                                             |
+| Pemisahan izin POS                              | C-35                             | 5.1, 5.2                                                        |
+| Integritas jendela reschedule dan pembatalan    | C-37                             | 4.1 (jendela; layar reschedule tidak dirinci di sini)           |
+| Kontrol override pengembalian                   | C-40                             | 4.3                                                             |
+| Penahanan no-show hanya menurut kebijakan       | C-41                             | 4.1 (baris no-show; tindakan staf tidak dirinci di sini)        |
 
-Model ancaman pada branch ini berhenti di C-24, sehingga tidak ada kontrol lebih lanjut (misalnya rentang C-37 sampai C-41) yang dikutip; bila kontrol demikian masuk, bagian ini mendapat barisnya.
+Kontrol C-25 sampai C-41 berasal dari adendum model ancaman ([#354](https://github.com/ahliweb/awcms-one/issues/354)). Rujukan bagian di kolom kanan adalah bagian terdekat yang memuat perilaku tiap kontrol; tabel ini alat keterlacakan dan teks kontrol di model ancaman adalah yang berwenang.
 
 ## 10. Keputusan yang belum dicatat (asumsi untuk dikonfirmasi)
 
