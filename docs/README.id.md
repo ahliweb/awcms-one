@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:7a5b0fcfff57c519ff0bed3cb1dbbf58a48b2fc644d5fe92b2e5daaa406cf002 -->
+<!-- i18n-source-hash: sha256:7055b3a5a6e6edbad5149d2f5b26c6a54f5b4cbc5a4f56d3036c1661f2095b7d -->
 
 # Dokumentasi
 
@@ -29,6 +29,7 @@ Dokumentasi arsitektur, skema, API, alur kerja CMS, perilaku storefront, penguji
 | [`aw-business-platform-prd.md`](aw-business-platform-prd.id.md)                       | Blueprint platform dan PRD untuk bagian milik awcms-one dari epik #280: persona, alur kerja, non-tujuan, cerita pengguna, hasil, MoSCoW                                                                                     |
 | [`aw-business-platform-metrics.md`](aw-business-platform-metrics.id.md)               | Kontrak metrik untuk epik #280: pendapatan, okupansi, utilisasi, retensi, produktivitas karyawan, dan angka vertikal pertama                                                                                                |
 | [`aw-business-platform-threat-model.md`](aw-business-platform-threat-model.id.md)     | Model ancaman adaptor, analisis privasi, catatan keberlakuan regulasi, dan pemetaan kontrol untuk epik #280                                                                                                                 |
+| [`booking-ux-flows.md`](booking-ux-flows.id.md)                                       | Spesifikasi desain (belum dibangun) alur pemesanan menginap di storefront, pembayaran uang muka, tampilan pembatalan dan pengembalian dana, dan check-in kasir, dengan aturan aksesibilitas, 360px, dan profil build        |
 | [`booking-commerce-adapter-data-model.md`](booking-commerce-adapter-data-model.id.md) | Usulan (belum dimigrasi) ERD dan kamus data tabel adapter booking-commerce, dan aturan bahwa pelanggan diturunkan lewat pesanan                                                                                             |
 | [`booking-commerce-access-matrix.md`](booking-commerce-access-matrix.id.md)           | Usulan (belum terdaftar) matriks RBAC / ABAC / RLS untuk peran sisi commerce yang menyentuh booking, dan siapa yang boleh menimpa refund hasil hitung kebijakan                                                             |
 | [`booking-commerce-adapter-contracts.md`](booking-commerce-adapter-contracts.id.md)   | Draf kontrak OpenAPI dan AsyncAPI (belum live) adapter booking-commerce, termasuk event yang dikonsumsi dan diterbitkan                                                                                                     |
