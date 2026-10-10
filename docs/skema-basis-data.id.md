@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:7a35ae5e11e56554a8340069a8b0c347c0c07c3c4c34d3c0d0f335e777de02e1 -->
+<!-- i18n-source-hash: sha256:a188e242aa6fafe673db84c99be0c3787ef2d1c68b0bebeaf8dcb010a91a979b -->
 
 # Skema basis data
 
@@ -479,3 +479,7 @@ erDiagram
   document_deliveries ||--o| email_messages : "correlation_id = id (membaca status hidup)"
   document_deliveries ||--o| whatsapp_messages : "correlation_id = id (membaca status hidup)"
 ```
+
+## Diusulkan (belum dimigrasi): tabel adapter booking-commerce
+
+Enam tabel `awcms_commerce_*` yang diusulkan (tautan offering-ke-produk, tautan reservasi-ke-pesanan, kebijakan deposit per produk, kebijakan pembatalan berversi beserta jendelanya, dan catatan keputusan refund booking) ditentukan di [`booking-commerce-adapter-data-model.md`](booking-commerce-adapter-data-model.id.md), lengkap dengan ERD, kolom, batasan, dan RLS. **Tidak satu pun ada:** tanpa migrasi, rute, atau kode (ADR-0040 D7), dan nomornya diambil mulai `sql/1001` saat implementasi menurut ADR-0037. Satu aturan yang ditetapkan halaman itu untuk skema ini: pelanggan sebuah reservasi diturunkan melalui pesanan yang tertaut dan tidak pernah disimpan di tabel adapter.

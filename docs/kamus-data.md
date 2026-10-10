@@ -398,3 +398,15 @@ This platform's own design — nothing here is ported from the legacy store. Sta
 | private link token                           | `dl_` + 43 base64url characters; stored as `sha256:` + 64 hex                                                       | opaque, expires within at most 168 hours (default 72), never a document id                                                                    |
 | outbox status (history)                      | `queued`, `sending`, `sent`, `failed`, `retry_wait`, `cancelled`, `suppressed`; `null` when never created or purged | the live state of the e-mail or WhatsApp row; WhatsApp uses the first four                                                                    |
 | neutral message variables                    | `documentLabel`, `documentNumber`, `storeName`, `body`, `link`                                                      | mapped onto `derived.transactional`'s `subject`/`body`/`actionUrl` for e-mail and used as-is by `commerce.document` for WhatsApp              |
+
+## Booking-commerce adapter vocabulary (proposed, not migrated; issue #356)
+
+Nothing below exists in the tree. The terms are defined, with their tables and columns, in [`booking-commerce-adapter-data-model.md`](booking-commerce-adapter-data-model.md).
+
+| Term                | Proposed where                                      | Meaning                                                                                                                                                               |
+| ------------------- | --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| offering link       | `awcms_commerce_booking_offering_links`             | The reference from a Booking offering to a commerce service product; `quantity_basis` `nights` means the order line quantity is the number of nights                  |
+| reservation link    | `awcms_commerce_booking_reservation_links`          | The pair joining one reservation to one order line; holds identifiers and a lifecycle flag only. The customer is derived through its order, never stored              |
+| deposit policy      | `awcms_commerce_product_deposit_policies`           | Per-product percentage or fixed deposit; no row = full payment; no tenant default. Snapshotted on the order as `dp_amount`                                            |
+| cancellation policy | `awcms_commerce_cancellation_policies` / `_windows` | Versioned list of "at least N hours before start, refund P%" windows; a row with no product is the tenant default                                                     |
+| refund decision     | `awcms_commerce_booking_refund_decisions`           | Append-only record of the computed refund, any manager or finance override (reason, step-up, never above the amount paid) and the return that carries the refund legs |
