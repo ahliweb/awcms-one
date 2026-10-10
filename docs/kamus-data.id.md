@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:612ac943e69b8efdbcd0e059a461ff5c1f129803b530cac3a26206ccc55d0b77 -->
+<!-- i18n-source-hash: sha256:f8db20fa52e3348af69493d1d576b53804bb10cff5a76d33f9d2da847cc03dd4 -->
 
 # Kamus data
 
@@ -399,3 +399,15 @@ Rancangan platform ini sendiri — tidak ada yang diporting dari toko lama. Stat
 | token tautan pribadi                           | `dl_` + 43 karakter base64url; disimpan sebagai `sha256:` + 64 hex                                                                 | buram, kedaluwarsa paling lama 168 jam (bawaan 72), tidak pernah id dokumen                                                                          |
 | status outbox (riwayat)                        | `queued`, `sending`, `sent`, `failed`, `retry_wait`, `cancelled`, `suppressed`; `null` bila tidak pernah dibuat atau sudah dipurge | keadaan hidup baris e-mail atau WhatsApp; WhatsApp memakai empat yang pertama                                                                        |
 | variabel pesan netral                          | `documentLabel`, `documentNumber`, `storeName`, `body`, `link`                                                                     | dipetakan ke `subject`/`body`/`actionUrl` milik `derived.transactional` untuk e-mail dan dipakai apa adanya oleh `commerce.document` untuk WhatsApp  |
+
+## Kosakata adapter booking-commerce (diusulkan, belum dimigrasi; issue #356)
+
+Tidak ada yang di bawah ini di tree. Istilahnya didefinisikan, beserta tabel dan kolomnya, di [`booking-commerce-adapter-data-model.md`](booking-commerce-adapter-data-model.id.md).
+
+| Istilah              | Diusulkan di                                        | Arti                                                                                                                                                                    |
+| -------------------- | --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| tautan offering      | `awcms_commerce_booking_offering_links`             | Rujukan dari offering Booking ke produk layanan commerce; `quantity_basis` `nights` berarti kuantitas baris pesanan adalah jumlah malam                                 |
+| tautan reservasi     | `awcms_commerce_booking_reservation_links`          | Pasangan yang menggabungkan satu reservasi ke satu baris pesanan; hanya memuat pengenal dan penanda siklus hidup. Pelanggan diturunkan lewat pesanannya, tidak disimpan |
+| kebijakan deposit    | `awcms_commerce_product_deposit_policies`           | Deposit persentase atau tetap per produk; tanpa baris = bayar penuh; tanpa default tenant. Dipotret pada pesanan sebagai `dp_amount`                                    |
+| kebijakan pembatalan | `awcms_commerce_cancellation_policies` / `_windows` | Daftar berversi jendela "sedikitnya N jam sebelum mulai, refund P%"; baris tanpa produk adalah default tenant                                                           |
+| keputusan refund     | `awcms_commerce_booking_refund_decisions`           | Catatan append-only refund terhitung, penimpaan manajer atau finance (alasan, step-up, tidak pernah di atas jumlah dibayar) dan return yang membawa leg refund          |

@@ -477,3 +477,7 @@ erDiagram
   document_deliveries ||--o| email_messages : "correlation_id = id (reads the live status)"
   document_deliveries ||--o| whatsapp_messages : "correlation_id = id (reads the live status)"
 ```
+
+## Proposed (not migrated): booking-commerce adapter tables
+
+Six proposed `awcms_commerce_*` tables (offering-to-product link, reservation-to-order link, per-product deposit policy, versioned cancellation policy and its windows, and a booking refund decision record) are specified in [`booking-commerce-adapter-data-model.md`](booking-commerce-adapter-data-model.md), with an ERD, columns, constraints and RLS. **None exists:** no migration, route or code (ADR-0040 D7), and their numbers are taken from `sql/1001` onward at implementation per ADR-0037. The one rule that page fixes for this schema: the customer of a reservation is derived through the linked order and is never stored on an adapter table.
