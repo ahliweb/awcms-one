@@ -11663,3 +11663,21 @@ msgstr "Segmen tidak dapat diubah lagi, tetapi versinya disimpan agar kampanye l
 
 msgid "Retire segment"
 msgstr "Pensiunkan segmen"
+
+msgid "Loyalty eligibility by segment"
+msgstr "Kelayakan loyalitas berdasarkan segmen"
+
+msgid "Everyone"
+msgstr "Semua orang"
+
+msgid "Eligibility"
+msgstr "Kelayakan"
+
+msgid "Restrict to a segment (optional)"
+msgstr "Batasi ke satu segmen (opsional)"
+
+msgid "{name} · version {version}"
+msgstr "{name} · versi {version}"
+
+msgid "Only members of the chosen segment earn points. The segment's latest version is pinned when you save, so editing the segment later does not change this program."
+msgstr "Hanya anggota segmen yang dipilih yang mendapat poin. Versi terbaru segmen dikunci saat Anda menyimpan, sehingga mengubah segmen nanti tidak mengubah program ini."

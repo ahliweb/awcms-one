@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:06477dc8eee9536dbf8a54785fa7fa878e2ed8a1f235a46213d549033c19911a -->
+<!-- i18n-source-hash: sha256:4ea857793e4ac9a84144dbdd98b1ccc734c7a21e0a0543a6573c681a816c5841 -->
 
 # Kamus data
 
@@ -338,6 +338,16 @@ Rancangan platform ini sendiri — tidak ada yang di-port dari toko lama. Status
 | fitur `segments`                                                                      | pengaturan modul commerce `features.segments` (bawaan MATI)                                                                                                     |
 | `SEGMENT_EVALUATION_LIMITS`                                                           | `domain/segment.ts`: batas waktu statement 5 detik, 2 evaluasi per tenant, 1 per aktor, 30 pratinjau per aktor per menit, halaman 100, contoh 10, ekspor 10.000 |
 | `commerce.segments.*`, `commerce.segment_previews.read`, `commerce.segment_members.*` | `awcms_permissions` (`sql/1003`)                                                                                                                                |
+
+### Kelayakan loyalitas berdasarkan segmen (issue #361, amandemen [ADR-0042](adr/0042-crm-segments-are-immutable-versioned-closed-vocabulary-rules-evaluated-on-demand.md))
+
+| Istilah                 | Di mana                                                                                                                                                                  |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| segmen kelayakan        | `awcms_commerce_loyalty_programs.eligibility_segment_id` + `eligibility_segment_version` (NULL = semua orang mendapat poin); tak dapat diubah setelah program bukan draf |
+| versi terkunci          | versi segmen yang disimpan pada program: yang diminta, atau versi terbaru segmen saat disimpan; tidak pernah digeser suntingan segmen kemudian                           |
+| fitur `loyaltySegments` | pengaturan modul commerce `features.loyaltySegments` (bawaan MATI); menerapkan pembatasan saat earn; menetapkannya juga membutuhkan `segments`                           |
+| `not_in_segment`        | alasan lewati `EarnOutcome`: program dibatasi dan pelanggan bukan anggota versi segmen yang tercatat; tidak ada yang ditulis                                             |
+| `SEGMENT_NOT_FOUND`     | `422` pada pembuatan atau penyuntingan program: segmen atau versi tidak dikenal, milik tenant lain, dipensiunkan, atau tidak ada, tanpa dibedakan                        |
 
 ## Kosakata laporan operasional POS (issue #296, [ADR-0035](adr/0035-pos-operational-reports-are-commerce-projections-over-the-existing-ledgers-on-the-reporting-engine.md))
 

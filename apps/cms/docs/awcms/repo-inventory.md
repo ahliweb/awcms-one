@@ -8,11 +8,11 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 29    |
-| Migrations                          | 267   |
+| Migrations                          | 268   |
 | `awcms_*` tables                    | 263   |
 | Tables with `FORCE` RLS             | 245   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 714   |
+| Test files                          | 716   |
 | Route files                         | 706   |
 | ADR                                 | 272   |
 
@@ -321,6 +321,7 @@
 | 265 | `sql/1002_awcms_commerce_segments_evaluation_indexes.sql`                   |
 | 266 | `sql/1003_awcms_commerce_segments_permissions.sql`                          |
 | 267 | `sql/1004_awcms_commerce_segments_worker_grants.sql`                        |
+| 268 | `sql/1005_awcms_commerce_loyalty_segment_eligibility.sql`                   |
 
 ### Tables & Row-Level Security
 
@@ -594,9 +595,9 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 547        |
+| `(root)`      | 548        |
 | `e2e`         | 25         |
-| `integration` | 141        |
+| `integration` | 142        |
 | `unit`        | 1          |
 
 ### Routes

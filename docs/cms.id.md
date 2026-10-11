@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](cms.md)
 
-<!-- i18n-source-hash: sha256:7b9890c6c427f667c31579c9eb8c7c1f2e459f45700f634e2cb97f07bbd9efad -->
+<!-- i18n-source-hash: sha256:e3d1436f12234449073425c2ddbe97c1a6627c2c8314a40b9c4f85029d31d325 -->
 
 # CMS: authoring, publikasi, izin, audit, media, taksonomi
 
@@ -375,6 +375,14 @@ Flag `features` keenam, **`loyalty`, default `false`** — satu-satunya flag di 
 - **Batas.** Aturan boleh bersarang empat tingkat, memuat 25 kondisi, dan memakai tiga jendela berbeda; evaluasi yang berjalan lebih dari lima detik dibatalkan ("terlalu berat"), dua boleh berjalan per toko dan satu per orang pada satu waktu, dan pratinjau dibatasi 30 per menit.
 - **Layar.** `/admin/commerce-segments` — definisikan segmen dengan hingga enam kondisi (atau tempel aturan bersarang sebagai JSON), daftar, serta aturan, versi, pratinjau, pelanggan, dan suntingan satu segmen. Ia berada di balik fitur `segments` (bawaan MATI; _Segmen pelanggan_ di Fitur pada pengaturan toko).
 - **Pengujian.** `apps/cms/tests/commerce-segment-domain.test.ts` (kosakata tertutup, batas, string injeksi, penyembunyian, topeng, CSV), `commerce-feature-toggles.test.ts`, dan terhadap Postgres sungguhan `apps/cms/tests/integration/commerce-segments.integration.test.ts` (setiap bidang dan AND / OR / NOT, pengecualian, jendela dan as-of, ketakbisaubahan versi, hapus-menjaga-versi, isolasi tenant, batas waktu dan konkurensi, dan pengukuran pratinjau 100.000 pelanggan) dan `commerce-segments-routes.integration.test.ts` (sakelar, pemisahan izin, validasi, 404 lintas tenant, audit).
+
+### Kelayakan loyalitas berdasarkan segmen (issue #361, amandemen [ADR-0042](adr/0042-crm-segments-are-immutable-versioned-closed-vocabulary-rules-evaluated-on-demand.md))
+
+- **Apa itu.** Versi program loyalitas dapat dibatasi ke satu segmen pelanggan, sehingga hanya anggota segmen itu yang mendapat poin di bawahnya. Biarkan pada _Semua orang_ dan tidak ada yang berubah.
+- **Menyalakannya.** Pengaturan commerce → Fitur → _Kelayakan loyalitas berdasarkan segmen_ (**bawaan MATI**); juga membutuhkan _Segmen pelanggan_ dan _Poin loyalitas_. Bila mati, program yang sudah menyebut segmen membayar semua orang seperti sebelumnya; menyalakannya menerapkan pembatasan mulai pesanan lunas berikutnya, tanpa pengisian ulang dan tanpa penarikan kembali.
+- **Di layar Loyalitas.** Formulir _Buat versi program_ mendapat _Batasi ke satu segmen (opsional)_, hanya tampil bila fitur menyala dan Anda boleh membaca segmen, dan tabel program mendapat kolom _Kelayakan_ ("{segmen} · versi N", atau _Semua orang_). Versi terbaru segmen dikunci saat Anda menyimpan: menyunting segmen kemudian menambah versi segmen baru dan tidak mengubah program yang mencatat versi lama, sehingga earn lampau tetap dapat dijelaskan. Pembatasan hanya dapat diubah selama program masih draf.
+- **Siapa yang tidak pernah mendapat poin.** Pelanggan walk-in, pelanggan terblokir dan terhapus, apa pun aturannya (aturan `NOT` tidak dapat mengembalikan mereka). Keanggotaan dinilai pada waktu bayar pesanan. Persetujuan kanal tidak terkait dan tidak tersentuh.
+- **Tes.** `apps/cms/tests/commerce-loyalty-segment-eligibility.test.ts` dan, terhadap database nyata, `apps/cms/tests/integration/commerce-loyalty-segment-eligibility.integration.test.ts` (17 tes: yang layak mendapat poin, yang tidak layak tidak, versi tercatat, segmen disunting setelah earn, fitur mati, pengecualian, lintas tenant, replay, dan predikat satu-pelanggan sama dengan evaluator penuh untuk sebelas bentuk aturan).
 
 ## Barcode, label, input pemindai, dan pintasan kasir (issue #292, epic #281, [ADR-0032](adr/0032-barcodes-are-a-derived-identifier-and-the-cashier-keyboard-layer-is-chord-only.md))
 

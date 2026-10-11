@@ -161,6 +161,10 @@ Every route below is behind the tenant's `segments` feature flag (default OFF â€
 
 Evaluation is bounded: `422 SEGMENT_TOO_EXPENSIVE` (cancelled at the 5 s statement timeout), `429 SEGMENT_EVALUATION_BUSY` (2 per tenant, 1 per actor; `Retry-After`) and `429 RATE_LIMITED` (30 previews per actor per minute). Walk-in, blocked and erased customers are never counted or listed. Seven permission keys: `commerce.segments.{read,create,update,delete}`, `commerce.segment_previews.read`, `commerce.segment_members.{read,export}`. No domain event is published yet.
 
+### Loyalty program eligibility by segment (issue #361)
+
+`POST commerce/loyalty/programs` and `PATCH commerce/loyalty/programs/{id}` accept `eligibilitySegmentId` (uuid, or `null` to clear) and optionally `eligibilitySegmentVersion`; `GET` returns both on every program. Setting a segment needs the tenant's `loyaltySegments` **and** `segments` features (`409 FEATURE_DISABLED`, both default OFF) and `commerce.segments.read` in addition to `commerce.loyalty.manage`; an unknown, foreign, retired or non-existent segment or version is `422 SEGMENT_NOT_FOUND`. Omitting the version pins the segment's latest at save time, and the pair is immutable once the program is activated. Clearing needs only `commerce.loyalty.manage`. No new route.
+
 ## Owner API: returns, refunds and exchanges (issue #287, epic #281, [ADR-0033](adr/0033-returns-refunds-and-exchanges-are-additive-records-that-compensate-through-the-existing-ledgers.md))
 
 Gated on the tenant's `returns` feature (default **off**: every route answers `409 FEATURE_DISABLED`); every mutation requires `Idempotency-Key`. A refund also needs `commerce.payments.revoke`, checked through the same chokepoint.

@@ -311,6 +311,10 @@ Two FORCE-RLS tables (tenant-isolation policy with `WITH CHECK`, a composite `(t
 - **`sql/1003`** seeds the seven permission keys; **`sql/1004`** gives `awcms_worker` `SELECT, DELETE` for the retention descriptors (practically unreachable: `deleted_at` is never set, so a version a consumer recorded is never purged).
 - **Evaluation reads, and writes nothing.** It joins `awcms_commerce_customers` to the customer accounts, the loyalty accounts and one grouped scan of paid orders; none of them gains a column.
 
+### Loyalty eligibility by segment: two columns on the program (`sql/1005`, issue #361, [ADR-0042](adr/0042-crm-segments-are-immutable-versioned-closed-vocabulary-rules-evaluated-on-demand.md) amendment)
+
+`awcms_commerce_loyalty_programs` gains `eligibility_segment_id uuid` and `eligibility_segment_version integer`, both NULL by default ("every customer earns", today's behaviour). A `CHECK` makes them set together or not at all; a composite foreign key `(tenant_id, eligibility_segment_id, eligibility_segment_version)` to `awcms_commerce_segment_versions (tenant_id, segment_id, version)` makes a cross-tenant or non-existent reference impossible (RESTRICT: segments are only retired). A `BEFORE UPDATE` trigger refuses any change to the pair once the program's status is no longer `draft`. A partial index covers the FK. No grant changes: `awcms_worker` already reads the segment tables (`sql/1004`). The append-only loyalty ledger is untouched; a past earn is explained through its `program_id`.
+
 ## Barcodes: two columns, two indexes, one trigger (`sql/975`–`976`, issue #292, [ADR-0032](adr/0032-barcodes-are-a-derived-identifier-and-the-cashier-keyboard-layer-is-chord-only.md))
 
 No new table. `barcode text` (nullable) on `awcms_commerce_products` and `awcms_commerce_product_variants`, with `CHECK (barcode ~ '^[!-~]{1,48}$')` (printable ASCII, no spaces). The symbology is **not stored** — it is a pure function of the code (`domain/barcode.ts`).

@@ -76,6 +76,7 @@ import {
   type ReplayEntry
 } from "../domain/loyalty-lots";
 import { fetchEffectiveProgramAt } from "./loyalty-program-directory";
+import { decideProgramEligibility } from "./loyalty-eligibility";
 
 const PRODUCER_MODULE = "commerce";
 const AUDIT_MODULE_KEY = "commerce";
@@ -501,8 +502,25 @@ export type EarnOutcome =
         | "walk_in_customer"
         | "customer_unavailable"
         | "no_effective_program"
+        | "not_in_segment"
         | "zero_points";
     };
+
+/** Whether the order's earn row already exists (the replay guard for the eligibility check). */
+async function earnEntryExists(
+  tx: Bun.SQL,
+  tenantId: string,
+  orderId: string
+): Promise<boolean> {
+  const rows = (await tx`
+    SELECT 1 AS present
+    FROM awcms_commerce_loyalty_ledger
+    WHERE tenant_id = ${tenantId}
+      AND idempotency_key = ${`earn:order:${orderId}`}
+    LIMIT 1
+  `) as { present: number }[];
+  return rows.length > 0;
+}
 
 /**
  * Earns points for one paid order — called from the
@@ -565,6 +583,29 @@ export async function earnPointsForPaidOrder(
   const paidAt = order.paid_at === null ? new Date() : new Date(order.paid_at);
   const program = await fetchEffectiveProgramAt(tx, tenantId, paidAt);
   if (!program) return { kind: "skipped", reason: "no_effective_program" };
+
+  // Issue #361 (ADR-0042 amendment, PRD L1): a program version restricted to a
+  // segment pays only that segment's members. Applied only while the tenant's
+  // `loyaltySegments` feature is ON (OFF = today's behaviour: everyone earns).
+  // A replay of an order that already earned skips the check and falls through
+  // to the idempotent append below, so a customer who has since left the
+  // segment still sees "already earned", not a false skip.
+  if (
+    features.loyaltySegments &&
+    program.eligibilitySegmentId !== null &&
+    !(await earnEntryExists(tx, tenantId, orderId))
+  ) {
+    const decision = await decideProgramEligibility(
+      tx,
+      tenantId,
+      program,
+      order.customer_id,
+      paidAt
+    );
+    if (decision.kind === "not_member") {
+      return { kind: "skipped", reason: "not_in_segment" };
+    }
+  }
 
   const points = computeEarnPoints(
     {

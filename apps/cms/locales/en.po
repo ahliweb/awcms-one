@@ -11703,3 +11703,21 @@ msgstr ""
 
 msgid "Retire segment"
 msgstr ""
+
+msgid "Loyalty eligibility by segment"
+msgstr ""
+
+msgid "Everyone"
+msgstr ""
+
+msgid "Eligibility"
+msgstr ""
+
+msgid "Restrict to a segment (optional)"
+msgstr ""
+
+msgid "{name} · version {version}"
+msgstr ""
+
+msgid "Only members of the chosen segment earn points. The segment's latest version is pinned when you save, so editing the segment later does not change this program."
+msgstr ""

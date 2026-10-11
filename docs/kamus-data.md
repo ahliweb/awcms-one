@@ -338,6 +338,16 @@ This platform's own design — nothing here is ported from the legacy store. Sta
 | `SEGMENT_EVALUATION_LIMITS`                                                           | `domain/segment.ts`: 5 s statement timeout, 2 evaluations per tenant, 1 per actor, 30 previews per actor per minute, page 100, sample 10, export 10,000 |
 | `commerce.segments.*`, `commerce.segment_previews.read`, `commerce.segment_members.*` | `awcms_permissions` (`sql/1003`)                                                                                                                        |
 
+### Loyalty eligibility by segment (issue #361, [ADR-0042](adr/0042-crm-segments-are-immutable-versioned-closed-vocabulary-rules-evaluated-on-demand.md) amendment)
+
+| Term                      | Where it lives                                                                                                                                              |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| eligibility segment       | `awcms_commerce_loyalty_programs.eligibility_segment_id` + `eligibility_segment_version` (NULL = everyone earns); immutable once the program is not a draft |
+| pinned version            | the segment version stored on the program: the one asked for, else the segment's latest at save time; never moved by a later segment edit                   |
+| `loyaltySegments` feature | commerce module settings `features.loyaltySegments` (default OFF); applies the restriction at earn time; setting one also needs `segments`                  |
+| `not_in_segment`          | `EarnOutcome` skip reason: the program is restricted and the customer is not a member of the recorded segment version; nothing is written                   |
+| `SEGMENT_NOT_FOUND`       | `422` on a program create or edit: unknown, foreign, retired or non-existent segment or version, indistinguishably                                          |
+
 ## POS operational-report vocabulary (issue #296, [ADR-0035](adr/0035-pos-operational-reports-are-commerce-projections-over-the-existing-ledgers-on-the-reporting-engine.md))
 
 | Term                                                                                                                   | Where it lives                                                        | Meaning                                                                                                                                                                                                                                                                                                               |

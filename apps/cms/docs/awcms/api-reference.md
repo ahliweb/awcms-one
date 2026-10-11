@@ -11380,7 +11380,7 @@ Records the points DEBIT only. Converting points into a discount at checkout nee
 | 403    | Access denied by RBAC/ABAC.    | [`ApiError`](#standard-error-envelope) |
 | 409    | FEATURE_DISABLED.              | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/loyalty/programs` — Issue #289. Create a new DRAFT program version (version number = max + 1 per tenant). Gated on `commerce.loyalty.manage`.
+### `POST /api/v1/commerce/loyalty/programs` — Issue #289. Create a new DRAFT program version (version number = max + 1 per tenant). Gated on `commerce.loyalty.manage`. Issue #361: the body may restrict the version to a CRM segment (`eligibilitySegmentId`), which additionally needs the `loyaltySegments` and `segments` features and `commerce.segments.read`; the segment version is pinned at save time and recorded on the program.
 
 - **operationId**: `createCommerceLoyaltyProgram`
 - **Security**: bearerAuth + tenantHeader
@@ -11389,13 +11389,14 @@ Records the points DEBIT only. Converting points into a discount at checkout nee
 
 **Responses**
 
-| Status | Description                 | Schema                                 |
-| ------ | --------------------------- | -------------------------------------- |
-| 201    | Draft version created.      | object                                 |
-| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
-| 409    | FEATURE_DISABLED.           | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                       | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Draft version created.                                                                                            | object                                 |
+| 400    | Validation error.                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED (`loyalty`, or - when a segment is named - `loyaltySegments` or `segments`).                     | [`ApiError`](#standard-error-envelope) |
+| 422    | `SEGMENT_NOT_FOUND` (Issue #361) - the segment does not exist in this tenant, is retired, or has no such version. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/loyalty/programs/{id}` — Issue #289. One program version. Gated on `commerce.loyalty.read`.
 
@@ -11419,7 +11420,7 @@ Records the points DEBIT only. Converting points into a discount at checkout nee
 | 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
 | 409    | FEATURE_DISABLED.           | [`ApiError`](#standard-error-envelope) |
 
-### `PATCH /api/v1/commerce/loyalty/programs/{id}` — Issue #289. Edit a DRAFT program version. An active or retired version is immutable (a ledger row records the version it earned under) — `409 PROGRAM_NOT_EDITABLE`; a change of rules is a new version. Gated on `commerce.loyalty.manage`.
+### `PATCH /api/v1/commerce/loyalty/programs/{id}` — Issue #289. Edit a DRAFT program version. An active or retired version is immutable (a ledger row records the version it earned under) — `409 PROGRAM_NOT_EDITABLE`; a change of rules is a new version (the segment restriction of Issue #361 is part of the rules). Gated on `commerce.loyalty.manage`.
 
 - **operationId**: `updateCommerceLoyaltyProgram`
 - **Security**: bearerAuth + tenantHeader
@@ -11434,14 +11435,15 @@ Records the points DEBIT only. Converting points into a discount at checkout nee
 
 **Responses**
 
-| Status | Description                               | Schema                                 |
-| ------ | ----------------------------------------- | -------------------------------------- |
-| 200    | The updated draft.                        | object                                 |
-| 400    | Validation error.                         | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.               | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.               | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.                       | [`ApiError`](#standard-error-envelope) |
-| 409    | FEATURE_DISABLED or PROGRAM_NOT_EDITABLE. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                           | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The updated draft.                                                                                                    | object                                 |
+| 400    | Validation error.                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED (`loyalty`, or - when a segment is named - `loyaltySegments` or `segments`) or PROGRAM_NOT_EDITABLE. | [`ApiError`](#standard-error-envelope) |
+| 422    | `SEGMENT_NOT_FOUND` (Issue #361) - the segment does not exist in this tenant, is retired, or has no such version.     | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/loyalty/programs/{id}/activate` — Issue #289. Activate a draft version NOW: `effectiveFrom` = this instant, and the version open at that instant is closed (`effectiveTo` = this instant, `retired`) in the same transaction under a per-tenant lock. A high-risk `manage` action. A second call finds the version no longer a draft (`409 PROGRAM_NOT_DRAFT`).
 
@@ -19484,15 +19486,17 @@ Unparseable entries are refused at issuance. At request time an unreadable entry
 
 Issue #289 — the create body of a loyalty program version. Points are integers; money is a numeric(14,2) STRING (ADR-0003).
 
-| Field               | Type    | Required | Nullable | Description                                                                                   |
-| ------------------- | ------- | -------- | -------- | --------------------------------------------------------------------------------------------- |
-| `name`              | string  | yes      | no       |                                                                                               |
-| `earnUnitAmount`    | string  | yes      | no       | Spend that earns one step of points. Greater than zero.                                       |
-| `earnPointsPerUnit` | integer | yes      | no       |                                                                                               |
-| `minOrderAmount`    | string  | no       | no       | Eligible spend below this earns nothing. Defaults to "0.00".                                  |
-| `maxPointsPerOrder` | integer | no       | yes      |                                                                                               |
-| `expiryDays`        | integer | no       | yes      | Points earned under this version lapse this many days after the order was paid; null = never. |
-| `notes`             | string  | no       | yes      |                                                                                               |
+| Field                       | Type          | Required | Nullable | Description                                                                                                                                                                                                                                                                                                                                                         |
+| --------------------------- | ------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`                      | string        | yes      | no       |                                                                                                                                                                                                                                                                                                                                                                     |
+| `earnUnitAmount`            | string        | yes      | no       | Spend that earns one step of points. Greater than zero.                                                                                                                                                                                                                                                                                                             |
+| `earnPointsPerUnit`         | integer       | yes      | no       |                                                                                                                                                                                                                                                                                                                                                                     |
+| `minOrderAmount`            | string        | no       | no       | Eligible spend below this earns nothing. Defaults to "0.00".                                                                                                                                                                                                                                                                                                        |
+| `maxPointsPerOrder`         | integer       | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                     |
+| `expiryDays`                | integer       | no       | yes      | Points earned under this version lapse this many days after the order was paid; null = never.                                                                                                                                                                                                                                                                       |
+| `notes`                     | string        | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                     |
+| `eligibilitySegmentId`      | string (uuid) | no       | yes      | Issue #361 (ADR-0042 amendment). Restrict the version to a CRM segment: only the segment's members earn under it. `null` or absent = every customer earns. Setting it needs the tenant's `loyaltySegments` AND `segments` features and `commerce.segments.read` (`409 FEATURE_DISABLED`, `403`); an unknown, foreign or retired segment is `422 SEGMENT_NOT_FOUND`. |
+| `eligibilitySegmentVersion` | integer       | no       | yes      | Issue #361. The segment version to pin; omitted with an id = the segment's latest version at save time. Needs `eligibilitySegmentId`.                                                                                                                                                                                                                               |
 
 **Example**
 
@@ -19504,7 +19508,9 @@ Issue #289 — the create body of a loyalty program version. Points are integers
   "minOrderAmount": "string",
   "maxPointsPerOrder": 1,
   "expiryDays": 1,
-  "notes": "string"
+  "notes": "string",
+  "eligibilitySegmentId": "00000000-0000-0000-0000-000000000000",
+  "eligibilitySegmentVersion": 1
 }
 ```
 

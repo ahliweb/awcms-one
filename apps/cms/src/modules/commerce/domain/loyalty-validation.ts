@@ -116,9 +116,59 @@ export type LoyaltyProgramInput = {
   maxPointsPerOrder: number | null;
   expiryDays: number | null;
   notes: string | null;
+  /** Issue #361: restrict the version to a CRM segment. `null` = every customer earns. */
+  eligibilitySegmentId: string | null;
+  /** The segment version to pin; `null` with an id = pin the segment's latest version at save time. */
+  eligibilitySegmentVersion: number | null;
 };
 
 export type LoyaltyProgramPatch = Partial<LoyaltyProgramInput>;
+
+const SEGMENT_ID_PATTERN =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+/**
+ * Reads the two optional eligibility fields. `undefined` = not mentioned;
+ * `{ id: null, version: null }` = explicitly cleared (a version with no id is
+ * refused: a version alone names nothing).
+ */
+function readEligibility(
+  body: Record<string, unknown>,
+  errors: ValidationError[]
+): { id: string | null; version: number | null } | undefined {
+  const rawId = body.eligibilitySegmentId;
+  const rawVersion = body.eligibilitySegmentVersion;
+  if (rawId === undefined && rawVersion === undefined) return undefined;
+  if (rawId === undefined || rawId === null) {
+    if (rawVersion !== undefined && rawVersion !== null) {
+      errors.push({
+        field: "eligibilitySegmentVersion",
+        message: "eligibilitySegmentVersion needs an eligibilitySegmentId."
+      });
+      return undefined;
+    }
+    return { id: null, version: null };
+  }
+  if (typeof rawId !== "string" || !SEGMENT_ID_PATTERN.test(rawId)) {
+    errors.push({
+      field: "eligibilitySegmentId",
+      message: "eligibilitySegmentId must be a segment id (uuid) or null."
+    });
+    return undefined;
+  }
+  let version: number | null = null;
+  if (rawVersion !== undefined && rawVersion !== null) {
+    version = parseIntegerInRange(
+      rawVersion,
+      "eligibilitySegmentVersion",
+      1,
+      1_000_000,
+      errors
+    );
+    if (version === null) return undefined;
+  }
+  return { id: rawId.toLowerCase(), version };
+}
 
 function readNotes(
   value: unknown,
@@ -205,6 +255,7 @@ export function validateCreateLoyaltyProgram(
   }
 
   const notes = readNotes(body.notes, errors);
+  const eligibility = readEligibility(body, errors);
 
   if (
     errors.length > 0 ||
@@ -224,7 +275,9 @@ export function validateCreateLoyaltyProgram(
       minOrderAmount,
       maxPointsPerOrder,
       expiryDays,
-      notes: notes ?? null
+      notes: notes ?? null,
+      eligibilitySegmentId: eligibility?.id ?? null,
+      eligibilitySegmentVersion: eligibility?.version ?? null
     }
   };
 }
@@ -316,6 +369,12 @@ export function validateLoyaltyProgramPatch(
 
   const notes = readNotes(body.notes, errors);
   if (notes !== undefined) patch.notes = notes;
+
+  const eligibility = readEligibility(body, errors);
+  if (eligibility !== undefined) {
+    patch.eligibilitySegmentId = eligibility.id;
+    patch.eligibilitySegmentVersion = eligibility.version;
+  }
 
   if (errors.length === 0 && Object.keys(patch).length === 0) {
     errors.push({
