@@ -17,6 +17,7 @@ import {
 import { withTenantOrThrow } from "../../src/lib/database/tenant-context";
 import {
   cancelCampaign,
+  countCampaignAudience,
   createCampaign,
   fetchCampaign
 } from "../../src/modules/commerce/application/campaign-directory";
@@ -275,6 +276,89 @@ suite("commerce campaigns integration (Issue #114)", () => {
     expect(whatsappMessages.some((m) => m.to_phone === "+6281300000012")).toBe(
       false
     );
+  }, 30000);
+
+  test("audience.levels (issue #402): preview counts and dispatch reach exactly the customers at the chosen price levels", async () => {
+    const levelOne = await seedAccount(TENANT_A, "+6281300000050", true);
+    const levelTwo = await seedAccount(TENANT_A, "+6281300000051", true);
+    const levelThree = await seedAccount(TENANT_A, "+6281300000052", true);
+    const levelTwoNoConsent = await seedAccount(
+      TENANT_A,
+      "+6281300000053",
+      false
+    );
+    await inTenant(TENANT_A, async (tx) => {
+      for (const [account, level] of [
+        [levelOne, 1],
+        [levelTwo, 2],
+        [levelThree, 3],
+        [levelTwoNoConsent, 2]
+      ] as const) {
+        await tx`
+          UPDATE awcms_commerce_customers SET level = ${level}
+          WHERE tenant_id = ${TENANT_A} AND id = ${account.customerId}
+        `;
+      }
+    });
+
+    // One level (single element) and two levels (the multi-element case that
+    // failed with "insufficient data left in message").
+    for (const [levels, expected] of [
+      [[2], [levelTwo.customerId]],
+      [
+        [2, 3],
+        [levelTwo.customerId, levelThree.customerId]
+      ]
+    ] as const) {
+      const audience = {
+        levels: [...levels],
+        hasAccount: null,
+        lastOrderSince: null
+      };
+      const count = await inTenant(TENANT_A, (tx) =>
+        countCampaignAudience(tx, TENANT_A, "whatsapp", audience)
+      );
+      expect(count).toBe(expected.length);
+
+      const campaign = await inTenant(TENANT_A, (tx) =>
+        createCampaign(
+          tx,
+          TENANT_A,
+          ACTOR_ID,
+          {
+            channel: "whatsapp",
+            audience,
+            subject: null,
+            body: "Hi {{name}}"
+          },
+          "test-correlation-levels"
+        )
+      );
+      await inTenant(
+        TENANT_A,
+        (tx) => tx`
+        UPDATE awcms_commerce_campaigns
+        SET status = 'scheduled', scheduled_at = now()
+        WHERE tenant_id = ${TENANT_A} AND id = ${campaign.id}
+      `
+      );
+      const result = await dispatchCampaignQueue(getRuntimeSql(), TENANT_A, {
+        correlationId: "dispatch-levels"
+      });
+      expect(result.sent).toBe(1);
+      expect(result.recipientsEnqueued).toBe(expected.length);
+
+      const recipients = (await inTenant(
+        TENANT_A,
+        (tx) => tx`
+        SELECT customer_id FROM awcms_commerce_campaign_recipients
+        WHERE tenant_id = ${TENANT_A} AND campaign_id = ${campaign.id}
+      `
+      )) as { customer_id: string }[];
+      expect(recipients.map((r) => r.customer_id).sort()).toEqual(
+        [...expected].sort()
+      );
+    }
   }, 30000);
 
   test("cancel stops further dispatch — a cancelled campaign is never fanned out", async () => {
