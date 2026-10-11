@@ -28,6 +28,7 @@ describe("resolveCommerceFeatures", () => {
     expect(DEFAULT_COMMERCE_FEATURES.expenses).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.documentDelivery).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.returns).toBe(false);
+    expect(DEFAULT_COMMERCE_FEATURES.retention).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.barcode).toBe(false);
     expect(
       Object.entries(DEFAULT_COMMERCE_FEATURES)
@@ -40,7 +41,8 @@ describe("resolveCommerceFeatures", () => {
             key !== "expenses" &&
             key !== "documentDelivery" &&
             key !== "barcode" &&
-            key !== "returns"
+            key !== "returns" &&
+            key !== "retention"
         )
         .every(([, value]) => value === true)
     ).toBe(true);
@@ -69,7 +71,8 @@ describe("resolveCommerceFeatures", () => {
       expenses: false,
       documentDelivery: false,
       barcode: false,
-      returns: false
+      returns: false,
+      retention: false
     });
   });
 
@@ -88,7 +91,8 @@ describe("resolveCommerceFeatures", () => {
       expenses: false,
       documentDelivery: false,
       barcode: false,
-      returns: false
+      returns: false,
+      retention: false
     });
   });
 
@@ -114,7 +118,8 @@ describe("resolveCommerceFeatures", () => {
         expenses: false,
         documentDelivery: false,
         barcode: false,
-        returns: false
+        returns: false,
+        retention: false
       }
     });
     expect(resolved).toEqual({
@@ -130,7 +135,8 @@ describe("resolveCommerceFeatures", () => {
       expenses: false,
       documentDelivery: false,
       barcode: false,
-      returns: false
+      returns: false,
+      retention: false
     });
     // ...and the flags that default off can be turned on.
     expect(

@@ -14418,6 +14418,46 @@ Legal status edges: received -> scheduled | in_progress | cancelled; scheduled -
 | 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/reports/commerce/retention` — Issue #364 (ADR-0044; metrics spec section 6). The 90-day repeat rate of each customer cohort - the `Asia/Jakarta` calendar month of a customer's first qualifying paid order - for the last `months` cohort months, from the `commerce.customer_retention` projection. A qualifying order is paid and not fully refunded or cancelled afterwards; the repeat must be a distinct order whose instant is after the first and within 90 x 24 hours of it (the final instant is inside). Counts only: no customer id, name or contact is ever returned. A cohort whose window has not fully elapsed is `mature: false` (shown "to date"); a cohort under 20 customers has `rateShown: false` and a `null` percentage; a closed cohort changed by a late event after the 35-day restatement window is `restated: true`. Blocked and purged customers and the walk-in placeholder are outside every cohort; the placeholder's orders are `unlinkedOrders`. While the tenant's `retention` feature is OFF (the default) the answer is `200` with `enabled: false` and no cohorts. Gated on `commerce.report_retention.read`, a permission of its own (not implied by `reporting.dashboard.read` or `commerce.customers.read`).
+
+- **operationId**: `getReportsCommerceRetention`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name     | In    | Required | Type    | Description                                                                                       |
+| -------- | ----- | -------- | ------- | ------------------------------------------------------------------------------------------------- |
+| `months` | query | no       | integer | How many cohort months to return, counting back from the current one. Defaults to 12; at most 36. |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The cohort table.           | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/reports/commerce/retention.csv` — Issue #364 (ADR-0044). The same cohort table as a CSV (`text/csv`; aggregates only - month, counts, the rate withheld below 20 customers, a final/to_date status; spreadsheet-formula-neutralised). Gated on `commerce.report_retention.export`, the high-risk `export` verb; the export is audited as `retention_report.export` (month span and row count, never a cell). A tenant whose `retention` feature is off gets a header row only.
+
+- **operationId**: `exportReportsCommerceRetentionCsv`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name     | In    | Required | Type    | Description                                                   |
+| -------- | ----- | -------- | ------- | ------------------------------------------------------------- |
+| `months` | query | no       | integer | How many cohort months to return. Defaults to 12; at most 36. |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The CSV file.               | string                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/reports/commerce/sales-by-category` — Issue #117 (contract #106, ADR-0017 D7). The `commerce.sales_by_category` projection grouped over the inclusive day range — quantity and gross per product category from paid orders, reversals subtracted, attributed through the product's category at processing time; lines whose product has no category are returned as one bucket with `categoryId: null`. Gated on `reporting.dashboard.read`.
 
 - **operationId**: `getReportsCommerceSalesByCategory`

@@ -1422,6 +1422,16 @@ Five more `reportingProjections` (plus the returns one, below) on the sales-repo
 - **Admin.** The product form has a Bundle toggle, a pricing strategy, a discount percent and a `SKU x quantity` contents textarea (`lib/ui/commerce-bundle-form.ts`); `POST/PATCH /products` take `kind`, `bundlePricing`, `bundleDiscountPercent` and `bundleComponents` (ids or SKUs). No new permission. POS search and barcode scan find a bundle like any product; the storefront product page lists "Isi paket".
 - **Tests.** `tests/commerce-bundles-domain.test.ts`, `tests/commerce-bundle-form.test.ts`, `tests/integration/commerce-bundles.integration.test.ts`; storefront (workspace `apps/storefront`, the `paket-build-smoke` build-smoke test).
 
+## Customer retention — IMPLEMENTED (Issue #364, epic #280 — [ADR-0044](../../../../../docs/adr/0044-customer-retention-is-a-per-customer-recompute-projection-on-the-reporting-engine.md))
+
+The commerce-only half of the metrics spec's section 6 ([metric contracts](../../../../../docs/aw-business-platform-metrics.md)): the 90-day repeat rate of customer cohorts, as the `reporting` projection `commerce.customer_retention` (`sql/1020`–`1021`). No second analytics store, no engine change, no domain event or consumer.
+
+- **Where the code is.** `domain/retention.ts` (qualifying order, per-customer derivation, cohort months and windows, tallies, restatement rule, control totals, range — pure), `application/retention-projection.ts` (the two cursor-stream sinks and the dimensional hooks — the DB half), `application/retention-report-directory.ts` (the read), `domain/retention-csv.ts`, `domain/retention-lifecycle.ts`, `src/pages/api/v1/reports/commerce/retention{,.csv}.ts`, `src/components/CommerceRetentionReport.astro`.
+- **The rules a change must keep.** The sink RECOMPUTES a customer from their current orders; it never applies a delta (a late event moves a customer between cohorts). The blocked, purged and walk-in exclusions are applied at READ (a join), not stored. "Within 90 days" is `<= 90 × 24 h` evaluated at read. The restatement log is written only while no rebuild run is `running` and is left alone by a rebuild's reset.
+- **Feature flag.** `features.retention` defaults OFF: the routes answer `200 enabled: false`, the panel is hidden, the CSV is a header row.
+- **Permissions.** `commerce.report_retention.{read,export}`, not implied by `reporting.dashboard.read` or `commerce.customers.read`. Every CSV is audited (`retention_report.export`).
+- **Deferred.** The booking input (after Wave C), a CRM win-back list, a configurable N, `profile_identity` harmonisation of customer ids.
+
 ## Deliberately not here
 
 - **No restore for the marketing tables, nor for orders/customers/reviews.**

@@ -11473,3 +11473,48 @@ msgstr "Setiap baris harus berupa SKU, boleh diikuti x dan jumlah."
 
 msgid "One component per line: SKU x quantity. A bundle has no stock of its own; it is sold as one line and its components' stock moves."
 msgstr "Satu komponen per baris: SKU x jumlah. Paket tidak punya stok sendiri; ia dijual sebagai satu baris dan stok komponennya yang bergerak."
+
+msgid "Customer retention"
+msgstr "Retensi pelanggan"
+
+msgid "Retention notes"
+msgstr "Catatan retensi"
+
+msgid "Repeat window"
+msgstr "Jendela pesan ulang"
+
+msgid "{days} days"
+msgstr "{days} hari"
+
+msgid "Unlinked orders"
+msgstr "Pesanan tanpa identitas"
+
+msgid "Customers grouped by the month of their first paid order, and how many of them ordered again within {days} days. Cohorts under {min} customers show counts only. Walk-in sales without a customer are unlinked and in no cohort."
+msgstr "Pelanggan dikelompokkan menurut bulan pesanan berbayar pertama mereka, beserta jumlah yang memesan lagi dalam {days} hari. Kohort di bawah {min} pelanggan hanya menampilkan jumlah. Penjualan langsung tanpa pelanggan tidak terhubung dan tidak masuk kohort mana pun."
+
+msgid "Cohort"
+msgstr "Kohort"
+
+msgid "Came back"
+msgstr "Kembali memesan"
+
+msgid "Retention"
+msgstr "Retensi"
+
+msgid "No customer cohorts yet"
+msgstr "Belum ada kohort pelanggan"
+
+msgid "{repeaters} of {size}"
+msgstr "{repeaters} dari {size}"
+
+msgid "Final"
+msgstr "Final"
+
+msgid "To date"
+msgstr "Sampai saat ini"
+
+msgid "Restated"
+msgstr "Dikoreksi"
+
+msgid "Customer retention report"
+msgstr "Laporan retensi pelanggan"

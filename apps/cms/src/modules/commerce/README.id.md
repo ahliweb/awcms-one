@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:5ee1bccc506b584e00ef410d4da87f4790b83ecc64f41b5967851210da6cbee2 -->
+<!-- i18n-source-hash: sha256:bc9fdbe14064fd131f18ac1e9f519e589b18a7fe2ed75333cf8a3fa56b8993d4 -->
 
 # `commerce`
 
@@ -1511,6 +1511,16 @@ Lima `reportingProjections` lagi pada mekanisme laporan penjualan di atas (tanpa
 - **Pajak.** Satu baris, dipajaki menurut kategori pajak produk bundel sendiri (kelas per komponen ditunda).
 - **Admin.** Formulir produk punya sakelar Bundle, strategi harga, persen diskon, dan textarea isi `SKU x jumlah` (`lib/ui/commerce-bundle-form.ts`); `POST/PATCH /products` menerima `kind`, `bundlePricing`, `bundleDiscountPercent`, dan `bundleComponents` (id atau SKU). Tanpa izin baru. Pencarian POS dan pemindaian barcode menemukan bundel seperti produk lain; halaman produk etalase mendaftar "Isi paket".
 - **Tes.** `tests/commerce-bundles-domain.test.ts`, `tests/commerce-bundle-form.test.ts`, `tests/integration/commerce-bundles.integration.test.ts`; etalase (workspace `apps/storefront`, tes build-smoke `paket-build-smoke`).
+
+## Retensi pelanggan — TERIMPLEMENTASI (Issue #364, epik #280 — [ADR-0044](../../../../../docs/adr/0044-customer-retention-is-a-per-customer-recompute-projection-on-the-reporting-engine.md))
+
+Separuh khusus-commerce dari bagian 6 spesifikasi metrik ([kontrak metrik](../../../../../docs/aw-business-platform-metrics.md)): tingkat pembelian ulang 90 hari dari kohort pelanggan, sebagai proyeksi `reporting` `commerce.customer_retention` (`sql/1020`–`1021`). Tanpa penyimpanan analitik kedua, tanpa perubahan mesin, tanpa domain event atau consumer.
+
+- **Lokasi kode.** `domain/retention.ts` (pesanan berkualifikasi, penurunan per pelanggan, bulan dan jendela kohort, tally, aturan restatement, total kontrol, rentang — murni), `application/retention-projection.ts` (kedua sink aliran kursor dan hook dimensional — sisi DB), `application/retention-report-directory.ts` (pembacaan), `domain/retention-csv.ts`, `domain/retention-lifecycle.ts`, `src/pages/api/v1/reports/commerce/retention{,.csv}.ts`, `src/components/CommerceRetentionReport.astro`.
+- **Aturan yang harus dijaga perubahan.** Sink MENGHITUNG ULANG pelanggan dari pesanan mereka saat ini; tidak pernah menerapkan delta (peristiwa terlambat memindahkan pelanggan antar kohort). Pengecualian terblokir, terpurge, dan walk-in diterapkan saat BACA (join), tidak disimpan. "Dalam 90 hari" adalah `<= 90 × 24 jam` dievaluasi saat baca. Log restatement hanya ditulis selama tidak ada run rebuild `running` dan dibiarkan oleh reset rebuild.
+- **Feature flag.** `features.retention` bawaan MATI: rute menjawab `200 enabled: false`, panel disembunyikan, CSV hanya baris header.
+- **Izin.** `commerce.report_retention.{read,export}`, tidak tersirat oleh `reporting.dashboard.read` atau `commerce.customers.read`. Setiap CSV diaudit (`retention_report.export`).
+- **Ditunda.** Masukan booking (setelah Wave C), daftar win-back CRM, N yang dapat dikonfigurasi, harmonisasi id pelanggan lewat `profile_identity`.
 
 ## Dengan sengaja tidak ada di sini
 

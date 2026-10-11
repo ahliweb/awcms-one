@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 29    |
-| Migrations                          | 263   |
-| `awcms_*` tables                    | 261   |
-| Tables with `FORCE` RLS             | 243   |
+| Migrations                          | 265   |
+| `awcms_*` tables                    | 263   |
+| Tables with `FORCE` RLS             | 245   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 710   |
-| Route files                         | 700   |
+| Test files                          | 713   |
+| Route files                         | 702   |
 | ADR                                 | 272   |
 
 ### Modules
@@ -317,6 +317,8 @@
 | 261 | `sql/998_awcms_commerce_operational_reports_schema.sql`                     |
 | 262 | `sql/999_awcms_commerce_operational_reports_permissions.sql`                |
 | 263 | `sql/1000_awcms_commerce_returns_tax_refund.sql`                            |
+| 264 | `sql/1020_awcms_commerce_retention_projection_schema.sql`                   |
+| 265 | `sql/1021_awcms_commerce_retention_projection_permissions.sql`              |
 
 ### Tables & Row-Level Security
 
@@ -411,6 +413,8 @@
 | `awcms_commerce_report_cash_up_tenders`     | `sql/998_awcms_commerce_operational_reports_schema.sql`    | yes | yes   |
 | `awcms_commerce_report_expense_daily`       | `sql/998_awcms_commerce_operational_reports_schema.sql`    | yes | yes   |
 | `awcms_commerce_report_loyalty_daily`       | `sql/998_awcms_commerce_operational_reports_schema.sql`    | yes | yes   |
+| `awcms_commerce_report_retention_customers` | `sql/1020_awcms_commerce_retention_projection_schema.sql`  | yes | yes   |
+| `awcms_commerce_report_retention_restated`  | `sql/1020_awcms_commerce_retention_projection_schema.sql`  | yes | yes   |
 | `awcms_commerce_report_returns_daily`       | `sql/945_awcms_commerce_returns_report_schema.sql`         | yes | yes   |
 | `awcms_commerce_report_stored_value_daily`  | `sql/998_awcms_commerce_operational_reports_schema.sql`    | yes | yes   |
 | `awcms_commerce_report_tender_daily`        | `sql/998_awcms_commerce_operational_reports_schema.sql`    | yes | yes   |
@@ -588,16 +592,16 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 545        |
+| `(root)`      | 546        |
 | `e2e`         | 25         |
-| `integration` | 139        |
+| `integration` | 141        |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 574   |
+| `/api/v1/**`    | 576   |
 | `/admin/**`     | 96    |
 | publik / anonim | 30    |
 

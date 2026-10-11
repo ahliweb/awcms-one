@@ -9070,6 +9070,80 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+  /api/v1/reports/commerce/retention:
+    get:
+      operationId: getReportsCommerceRetention
+      tags:
+        - Commerce
+      summary: 'Issue #364 (ADR-0044; metrics spec section 6). The 90-day repeat rate of each customer cohort - the `Asia/Jakarta` calendar month of a customer''s first qualifying paid order - for the last `months` cohort months, from the `commerce.customer_retention` projection. A qualifying order is paid and not fully refunded or cancelled afterwards; the repeat must be a distinct order whose instant is after the first and within 90 x 24 hours of it (the final instant is inside). Counts only: no customer id, name or contact is ever returned. A cohort whose window has not fully elapsed is `mature: false` (shown "to date"); a cohort under 20 customers has `rateShown: false` and a `null` percentage; a closed cohort changed by a late event after the 35-day restatement window is `restated: true`. Blocked and purged customers and the walk-in placeholder are outside every cohort; the placeholder''s orders are `unlinkedOrders`. While the tenant''s `retention` feature is OFF (the default) the answer is `200` with `enabled: false` and no cohorts. Gated on `commerce.report_retention.read`, a permission of its own (not implied by `reporting.dashboard.read` or `commerce.customers.read`).'
+      parameters:
+        - name: months
+          in: query
+          required: false
+          description: "How many cohort months to return, counting back from the current one. Defaults to 12; at most 36."
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 36
+            default: 12
+      responses:
+        "200":
+          description: The cohort table.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceRetentionReport"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/reports/commerce/retention.csv:
+    get:
+      operationId: exportReportsCommerceRetentionCsv
+      tags:
+        - Commerce
+      summary: "Issue #364 (ADR-0044). The same cohort table as a CSV (`text/csv`; aggregates only - month, counts, the rate withheld below 20 customers, a final/to_date status; spreadsheet-formula-neutralised). Gated on `commerce.report_retention.export`, the high-risk `export` verb; the export is audited as `retention_report.export` (month span and row count, never a cell). A tenant whose `retention` feature is off gets a header row only."
+      parameters:
+        - name: months
+          in: query
+          required: false
+          description: "How many cohort months to return. Defaults to 12; at most 36."
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 36
+            default: 12
+      responses:
+        "200":
+          description: The CSV file.
+          headers:
+            Content-Disposition:
+              schema:
+                type: string
+            Cache-Control:
+              schema:
+                type: string
+                enum:
+                  - no-store
+          content:
+            text/csv:
+              schema:
+                type: string
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /api/v1/reports/commerce/outstanding-balances:
     get:
       operationId: getReportsCommerceOutstandingBalances
@@ -17252,6 +17326,98 @@ components:
           type: integer
         amount:
           type: string
+    CommerceRetentionCohort:
+      type: object
+      description: "Issue #364 (ADR-0044). One customer cohort - the `Asia/Jakarta` calendar month of its members' first qualifying paid order."
+      required:
+        - cohortMonth
+        - size
+        - repeaters
+        - mature
+        - maturesAt
+        - rateShown
+        - ratePercent
+        - restated
+        - restatedAt
+      properties:
+        cohortMonth:
+          type: string
+          format: date
+          description: First day of the cohort month (`YYYY-MM-01`).
+        size:
+          type: integer
+          description: Customers in the cohort.
+        repeaters:
+          type: integer
+          description: Cohort customers with a second distinct qualifying order after the first and within 90 x 24 hours of it.
+        mature:
+          type: boolean
+          description: '`true` once every member''s 90-day window has elapsed; otherwise the figure is "to date".'
+        maturesAt:
+          type: string
+          format: date-time
+        rateShown:
+          type: boolean
+          description: "`false` for a cohort under 20 customers: counts only, no percentage."
+        ratePercent:
+          type: string
+          nullable: true
+          description: "`repeaters / size` as a percentage to one decimal place (round half up), or `null` when `rateShown` is false."
+        restated:
+          type: boolean
+          description: A late event changed this cohort after its 35-day restatement window closed.
+        restatedAt:
+          type: string
+          format: date-time
+          nullable: true
+    CommerceRetentionReport:
+      type: object
+      description: "Issue #364 (ADR-0044). The customer-retention report."
+      required:
+        - enabled
+        - timeZone
+        - windowDays
+        - minCohortForRate
+        - restatementWindowDays
+        - asOf
+        - from
+        - to
+        - cohorts
+        - unlinkedOrders
+      properties:
+        enabled:
+          type: boolean
+          description: "`false` while the `retention` feature is off: everything below is then empty."
+        timeZone:
+          type: string
+          description: The cohort calendar (`Asia/Jakarta`).
+        windowDays:
+          type: integer
+          description: The repeat window N (90 in v1, configuration-free).
+        minCohortForRate:
+          type: integer
+          description: Cohorts smaller than this show counts, not a percentage.
+        restatementWindowDays:
+          type: integer
+        asOf:
+          type: string
+          format: date-time
+          description: The instant the report was computed at; maturity is relative to it.
+        from:
+          type: string
+          format: date
+          description: First cohort month asked for (`YYYY-MM-01`).
+        to:
+          type: string
+          format: date
+          description: Last cohort month asked for (`YYYY-MM-01`).
+        cohorts:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceRetentionCohort"
+        unlinkedOrders:
+          type: integer
+          description: Qualifying orders of the anonymous walk-in placeholder, all time, outside every cohort.
     CommerceOperationalReturnsReport:
       type: object
       description: "Issue #316 — the returns and refunds report."

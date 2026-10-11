@@ -11512,3 +11512,48 @@ msgstr ""
 
 msgid "One component per line: SKU x quantity. A bundle has no stock of its own; it is sold as one line and its components' stock moves."
 msgstr ""
+
+msgid "Customer retention"
+msgstr ""
+
+msgid "Retention notes"
+msgstr ""
+
+msgid "Repeat window"
+msgstr ""
+
+msgid "{days} days"
+msgstr ""
+
+msgid "Unlinked orders"
+msgstr ""
+
+msgid "Customers grouped by the month of their first paid order, and how many of them ordered again within {days} days. Cohorts under {min} customers show counts only. Walk-in sales without a customer are unlinked and in no cohort."
+msgstr ""
+
+msgid "Cohort"
+msgstr ""
+
+msgid "Came back"
+msgstr ""
+
+msgid "Retention"
+msgstr ""
+
+msgid "No customer cohorts yet"
+msgstr ""
+
+msgid "{repeaters} of {size}"
+msgstr ""
+
+msgid "Final"
+msgstr ""
+
+msgid "To date"
+msgstr ""
+
+msgid "Restated"
+msgstr ""
+
+msgid "Customer retention report"
+msgstr ""

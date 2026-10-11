@@ -29,6 +29,7 @@
  */
 import AdminLayout from "../../layouts/AdminLayout.astro";
 import CommerceOperationalReports from "../../components/CommerceOperationalReports.astro";
+import CommerceRetentionReport from "../../components/CommerceRetentionReport.astro";
 import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
@@ -64,6 +65,8 @@ import {
   fetchStoredValueDailyReport,
   fetchTenderReport
 } from "../../modules/commerce/application/operational-report-directory";
+import { fetchRetentionReport } from "../../modules/commerce/application/retention-report-directory";
+import { RETENTION_PROJECTION_KEY } from "../../modules/commerce/domain/retention";
 import {
   OPERATIONAL_REPORT_PROJECTION_KEYS,
   POS_CASH_UP_VARIANCE_PROJECTION_KEY,
@@ -112,7 +115,8 @@ const PRODUCT_LIMIT = 50;
 // its own `requiredPermission` is held (projection-directory filters on it).
 const REPORT_PROJECTION_KEYS: readonly string[] = [
   ...SALES_REPORT_PROJECTION_KEYS,
-  ...OPERATIONAL_REPORT_PROJECTION_KEYS
+  ...OPERATIONAL_REPORT_PROJECTION_KEYS,
+  RETENTION_PROJECTION_KEY
 ];
 const OUTSTANDING_LIMIT = 50;
 
@@ -259,6 +263,25 @@ const screen = await loadAdminScreen({
       }
     };
 
+    // Issue #364 (ADR-0044) - the customer-retention panel: its own read key,
+    // hidden while the tenant's `retention` feature is off (the default).
+    const canReadRetention = await can({
+      moduleKey: "commerce",
+      activityCode: "report_retention",
+      action: "read"
+    });
+    const canExportRetention = await can({
+      moduleKey: "commerce",
+      activityCode: "report_retention",
+      action: "export"
+    });
+    const retention = canReadRetention
+      ? {
+          report: await fetchRetentionReport(tx, ssr.tenantId, { months: 12 }),
+          canExport: canExportRetention
+        }
+      : null;
+
     const projections = canReadProjections
       ? (
           await listProjectionSummariesForTenant(
@@ -291,7 +314,8 @@ const screen = await loadAdminScreen({
       canReadExports,
       tenderMix,
       outstanding,
-      operational
+      operational,
+      retention
     };
   },
   onError: (error) => {
@@ -318,6 +342,7 @@ const canReadExports = screen.state === "allowed" && screen.data.canReadExports;
 const tenderMix = screen.state === "allowed" ? screen.data.tenderMix : null;
 const outstanding = screen.state === "allowed" ? screen.data.outstanding : null;
 const operational = screen.state === "allowed" ? screen.data.operational : null;
+const retention = screen.state === "allowed" ? screen.data.retention : null;
 
 const CURRENCY = "IDR";
 const money = (value: string) =>
@@ -867,6 +892,8 @@ function formatTimestamp(value: Date | string | null): string {
           locale={locale}
         />
       )}
+
+      <CommerceRetentionReport view={retention} locale={locale} />
 
       {outstanding && (
         <section
