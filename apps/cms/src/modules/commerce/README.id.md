@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:bc9fdbe14064fd131f18ac1e9f519e589b18a7fe2ed75333cf8a3fa56b8993d4 -->
+<!-- i18n-source-hash: sha256:fadccaed22d78f00185b9a7cc79942aa071685f9a4f407d2ad04f9514153edfc -->
 
 # `commerce`
 
@@ -1546,6 +1546,7 @@ Separuh khusus-commerce dari bagian 6 spesifikasi metrik ([kontrak metrik](../..
 - **Feature flag.** `features.retention` bawaan MATI: rute menjawab `200 enabled: false`, panel disembunyikan, CSV hanya baris header.
 - **Izin.** `commerce.report_retention.{read,export}`, tidak tersirat oleh `reporting.dashboard.read` atau `commerce.customers.read`. Setiap CSV diaudit (`retention_report.export`).
 - **Ditunda.** Masukan booking (setelah Wave C), daftar win-back CRM, N yang dapat dikonfigurasi, harmonisasi id pelanggan lewat `profile_identity`.
+
 ## Segmen CRM — TERIMPLEMENTASI (Issue #360, epik #280 — [ADR-0042](../../../../../docs/adr/0042-crm-segments-are-immutable-versioned-closed-vocabulary-rules-evaluated-on-demand.md))
 
 Di balik bendera `features.segments` (bawaan MATI). Segmen adalah aturan tersimpan, bernama, berversi atas pelanggan; keanggotaan diturunkan sesuai permintaan dan tidak pernah disimpan.

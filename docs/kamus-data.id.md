@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:a58ca65f853bcd9d808588a373074e8be2eb5db804d12b2d799cab9ecada56b7 -->
+<!-- i18n-source-hash: sha256:0c440242622b1885e73097ae75ed95841949f1d795b2fcce10852c96acbb8a47 -->
 
 # Kamus data
 
@@ -205,19 +205,19 @@ Desain milik platform ini sendiri — "rewards" OSPOS menjadi inspirasi, tidak a
 
 ## Kosakata penukaran loyalitas (isu #363, [ADR-0043](adr/0043-loyalty-points-are-redeemed-as-a-server-priced-discount-line-written-with-the-ledger-debit.md))
 
-| Istilah | Di mana | Arti |
-| --- | --- | --- |
-| penukaran (redemption) | `awcms_commerce_loyalty_redemptions` | Memakai poin pada pesanan: catatan tulis-sekali yang memasangkan satu baris buku besar `redeem` dengan diskon yang dibelinya. Satu per pesanan |
-| nilai poin / `rupiah_per_point` | `awcms_commerce_loyalty_redemption_settings` | Jumlah rupiah bulat nilai satu poin, per tenant. **Tanpa nilai bawaan**: tanpa baris = penukaran tidak tersedia |
-| batas / `max_goods_percent` | sama | Batas atas persen bulat opsional atas bagian dasar barang yang boleh dibayar dengan poin |
-| dasar barang | `awcms_commerce_loyalty_redemptions.goods_basis` | `subtotal − diskon voucher`, minimal nol. Ongkos kirim, asuransi, dan pajak tidak pernah termasuk |
-| `loyalty_discount` | `awcms_commerce_orders` | Diskon poin pada header pesanan; `total` sudah bersih darinya. Terpisah dari `discount`/`voucher_discount` |
-| `restore` | `kind` buku besar | Baris kompensasi yang mengembalikan poin yang ditukar (pesanan dibatalkan atau kedaluwarsa, atau refund selesai); lot baru dengan kedaluwarsa tercepat yang dikonsumsi penukaran |
-| `loyaltyRedemption: { points }` | badan permintaan pesanan storefront dan penjualan POS | Satu-satunya angka penukaran yang dikirim klien. Kunci lain adalah `400` |
-| `features.loyaltyRedemption` | pengaturan modul `commerce` | Sakelar tenant untuk memakai poin, bawaan **false**, terlepas dari `features.loyalty` |
-| `LOYALTY_REDEMPTION_UNAVAILABLE`, `_REQUIRES_ACCOUNT`, `_REQUIRES_CUSTOMER`, `_DEPOSIT_CONFLICT`, `_EXCEEDS_LIMIT`, `_CUSTOMER_UNAVAILABLE`, `INSUFFICIENT_POINTS` | kode galat `409` | Penolakan stabil sebuah penukaran; semuanya ditemukan sebelum baris pesanan apa pun ditulis |
-| `redeem:<accountId>:order:<key>` / `redeem:<accountId>:pos:<key>` | `idempotency_key` buku besar | Identitas idempotensi penukaran (ADR-0026 D4 dengan kanal sebagai ruang nama kunci klien) |
-| `restore:order:<orderId>` / `restore:refund:<refundId>` | `idempotency_key` buku besar | Identitas pengembalian itu sendiri, berbeda dari penukaran yang dibatalkannya |
+| Istilah                                                                                                                                                            | Di mana                                               | Arti                                                                                                                                                                             |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| penukaran (redemption)                                                                                                                                             | `awcms_commerce_loyalty_redemptions`                  | Memakai poin pada pesanan: catatan tulis-sekali yang memasangkan satu baris buku besar `redeem` dengan diskon yang dibelinya. Satu per pesanan                                   |
+| nilai poin / `rupiah_per_point`                                                                                                                                    | `awcms_commerce_loyalty_redemption_settings`          | Jumlah rupiah bulat nilai satu poin, per tenant. **Tanpa nilai bawaan**: tanpa baris = penukaran tidak tersedia                                                                  |
+| batas / `max_goods_percent`                                                                                                                                        | sama                                                  | Batas atas persen bulat opsional atas bagian dasar barang yang boleh dibayar dengan poin                                                                                         |
+| dasar barang                                                                                                                                                       | `awcms_commerce_loyalty_redemptions.goods_basis`      | `subtotal − diskon voucher`, minimal nol. Ongkos kirim, asuransi, dan pajak tidak pernah termasuk                                                                                |
+| `loyalty_discount`                                                                                                                                                 | `awcms_commerce_orders`                               | Diskon poin pada header pesanan; `total` sudah bersih darinya. Terpisah dari `discount`/`voucher_discount`                                                                       |
+| `restore`                                                                                                                                                          | `kind` buku besar                                     | Baris kompensasi yang mengembalikan poin yang ditukar (pesanan dibatalkan atau kedaluwarsa, atau refund selesai); lot baru dengan kedaluwarsa tercepat yang dikonsumsi penukaran |
+| `loyaltyRedemption: { points }`                                                                                                                                    | badan permintaan pesanan storefront dan penjualan POS | Satu-satunya angka penukaran yang dikirim klien. Kunci lain adalah `400`                                                                                                         |
+| `features.loyaltyRedemption`                                                                                                                                       | pengaturan modul `commerce`                           | Sakelar tenant untuk memakai poin, bawaan **false**, terlepas dari `features.loyalty`                                                                                            |
+| `LOYALTY_REDEMPTION_UNAVAILABLE`, `_REQUIRES_ACCOUNT`, `_REQUIRES_CUSTOMER`, `_DEPOSIT_CONFLICT`, `_EXCEEDS_LIMIT`, `_CUSTOMER_UNAVAILABLE`, `INSUFFICIENT_POINTS` | kode galat `409`                                      | Penolakan stabil sebuah penukaran; semuanya ditemukan sebelum baris pesanan apa pun ditulis                                                                                      |
+| `redeem:<accountId>:order:<key>` / `redeem:<accountId>:pos:<key>`                                                                                                  | `idempotency_key` buku besar                          | Identitas idempotensi penukaran (ADR-0026 D4 dengan kanal sebagai ruang nama kunci klien)                                                                                        |
+| `restore:order:<orderId>` / `restore:refund:<refundId>`                                                                                                            | `idempotency_key` buku besar                          | Identitas pengembalian itu sendiri, berbeda dari penukaran yang dibatalkannya                                                                                                    |
 
 ## Kosakata atribut katalog (issue #291)
 

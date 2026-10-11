@@ -13,6 +13,6 @@ Why the design is what it is (ADR-0042): a segment turns a rule into a list of p
 - Migrations `sql/1001`–`1004`: `awcms_commerce_segments` and `awcms_commerce_segment_versions` (FORCE RLS, composite FKs, immutability trigger, no UPDATE/DELETE for the app role on versions), one partial covering index on `awcms_commerce_orders`, seven permission keys, worker grants.
 - Seven resource-split permissions: `commerce.segments.{read,create,update,delete}`, `commerce.segment_previews.read` (count only, no customer permission), `commerce.segment_members.{read,export}` (each also requires `commerce.customers.read`). Existing tenants do not gain them retroactively.
 - New endpoints under `/api/v1/commerce/segments`: list/define, get/rename-and-version/retire, `preview`, `{id}/members`, `{id}/export.csv`. A count under five is withheld; the as-of instant is the server's; walk-in, blocked and erased customers are never members; consent stays independent of membership.
-- Admin screen `/admin/commerce-segments` and a *Customer segments* toggle under Features; sidebar entry hidden while the feature is off.
+- Admin screen `/admin/commerce-segments` and a _Customer segments_ toggle under Features; sidebar entry hidden while the feature is off.
 - Measured on 100,000 customers (about 250,000 paid orders): preview p95 between 0.3 s and 1.2 s against the 3 s target (M7).
 - Not built here: wiring a segment into a loyalty program version (#361) or a campaign audience (#362), booking-derived fields (after Wave C), domain events.

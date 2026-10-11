@@ -1516,28 +1516,21 @@ export const READER_BUDGET_BYTES = 24_000;
  * script: the contents editor is a plain textarea the server resolves.
  */
 /*
- * **Final: 440,300 B for awcms-one#360 (CRM segments, ADR-0042) on top of the
- * #290 figure above** — MEASURED 440,169 B on the build (434,568 B before it):
- * the new `/admin/commerce-segments` screen's page script (a condition
- * builder that narrows each row's operators to its field, the preview /
- * member-list / edit / retire handlers, and the member-row renderer built with
- * `textContent`) plus its stylesheet share and the sixty-three new catalogue
- * entries (the compiled Indonesian catalogue ships with every page); a
- * measurement, not a sum (+5,601 B). The screen reuses the shared form helpers
- * and the confirm dialog; nothing was hand-copied from another screen.
+ * **Final: 441,800 B for the Wave B integration of awcms-one#360 (CRM
+ * segments, ADR-0042), #363 (loyalty point redemption, ADR-0043) and #364
+ * (customer retention, ADR-0044), on top of the #290 figure above** —
+ * MEASURED 441,687 B on the build merged from all three (434,568 B before
+ * them): #360's `/admin/commerce-segments` screen (a condition builder that
+ * narrows each row's operators to its field, the preview / member-list / edit
+ * / retire handlers, a member-row renderer built with `textContent`, its
+ * stylesheet share), #363's "Spend loyalty points" field in the POS page
+ * script, "Point value" form on the loyalty screen and points line on the
+ * order screen, and the new catalogue entries of all three (the compiled
+ * Indonesian catalogue ships with every page); #364's panel on the existing
+ * reports screen added nothing measurable. A measurement of the merged build,
+ * not a sum of the three branches' figures; the budget sits 113 B above it.
  */
-/*
- * **Final: 436,200 B for awcms-one#363 (loyalty point redemption, ADR-0043) on
- * top of the #290 figure above** — MEASURED 436,086 B on the build (434,568 B
- * before it, so +1,518 B; the budget sat 132 B above that figure): the POS
- * screen's "Spend loyalty points" field and its estimate/validation/error
- * mapping in the existing page script (the largest part, about 1.1 kB), the
- * loyalty screen's "Point value" form (a handler in the existing script), the
- * order screen's points line, and the 23 new catalogue entries (the compiled
- * Indonesian catalogue ships with every page); a measurement, not a sum. No
- * new screen and no new script file.
- */
-export const APP_BUDGET_BYTES = 436_200;
+export const APP_BUDGET_BYTES = 441_800;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.
