@@ -18,6 +18,7 @@ import {
 } from "./address-validation";
 import type { CartQuoteLineInput, CartQuoteShippingInput } from "./cart-quote";
 import type { PaymentMethod } from "./commerce-order-types";
+import { readLoyaltyRedemptionInput } from "./loyalty-redemption";
 
 export type { ValidationError };
 type ValidationResult<T> =
@@ -48,6 +49,12 @@ export type CreateOrderInput = {
    * today without a 400, and #92 does not have to touch this validator.
    */
   affiliateCode: string | null;
+  /**
+   * Issue #363 (ADR-0043) - whole loyalty points to spend on this order, or
+   * `null`. The ONLY redemption figure a client sends; the discount, the rate
+   * and the account are the server's. Needs a verified bearer session.
+   */
+  loyaltyRedemption?: { points: number } | null;
 };
 
 /**
@@ -308,6 +315,9 @@ export function validateCreateOrderInput(
     }
   }
 
+  const redemption = readLoyaltyRedemptionInput(record.loyaltyRedemption);
+  if (!redemption.ok) errors.push(...redemption.errors);
+
   if (errors.length > 0) return { valid: false, errors };
 
   return {
@@ -322,7 +332,11 @@ export function validateCreateOrderInput(
       voucherCode,
       insurance,
       notes,
-      affiliateCode
+      affiliateCode,
+      loyaltyRedemption:
+        redemption.ok && redemption.points !== null
+          ? { points: redemption.points }
+          : null
     }
   };
 }

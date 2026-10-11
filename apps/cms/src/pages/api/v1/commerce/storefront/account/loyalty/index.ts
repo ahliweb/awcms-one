@@ -15,7 +15,9 @@ import {
   LOYALTY_LEDGER_MAX_LIMIT,
   type CustomerLoyaltyOverview
 } from "../../../../../../../modules/commerce/application/loyalty-ledger";
+import { fetchRedemptionTerms } from "../../../../../../../modules/commerce/application/loyalty-redemption";
 import { readPageParams } from "../../../../../../../modules/commerce/application/loyalty-route-support";
+import type { RedemptionRate } from "../../../../../../../modules/commerce/domain/loyalty-redemption";
 import { commercePreflightResponse } from "../../../../../../../modules/commerce/application/public-commerce-preflight";
 import { withPublicCommerceTenant } from "../../../../../../../modules/commerce/application/public-commerce-tenant";
 
@@ -27,6 +29,9 @@ import { withPublicCommerceTenant } from "../../../../../../../modules/commerce/
  * ONLY from the verified session, never from a query parameter or the path,
  * so there is no identifier a caller could change to read another customer's
  * ledger (BOLA by construction), and every query below filters on it.
+ *
+ * Issue #363: the response also carries `redemption` - the tenant's point value
+ * and cap when points can be spent at checkout, else `null`.
  *
  * What a customer sees is deliberately narrower than the staff ledger: each
  * history item is `{ id, kind, points, balanceAfter, expiresAt, createdAt }` —
@@ -54,7 +59,10 @@ type Outcome =
   | { kind: "blocked" }
   | { kind: "not_found" }
   | { kind: "validation_error"; message: string }
-  | { kind: "page"; body: CustomerLoyaltyOverview };
+  | {
+      kind: "page";
+      body: CustomerLoyaltyOverview & { redemption: RedemptionRate | null };
+    };
 
 export const GET: APIRoute = async ({ request, url, clientAddress }) => {
   const clientIp = resolveClientIp(request, clientAddress);
@@ -101,16 +109,23 @@ export const GET: APIRoute = async ({ request, url, clientAddress }) => {
         return { kind: "not_found" };
       }
 
+      const overview = await fetchCustomerLoyaltyOverview(
+        tx,
+        tenant.tenantId,
+        // The customer comes ONLY from the verified session.
+        authOutcome.account.customerId,
+        { cursor: page.cursor, limit: page.limit },
+        new Date()
+      );
       return {
         kind: "page",
-        body: await fetchCustomerLoyaltyOverview(
-          tx,
-          tenant.tenantId,
-          // The customer comes ONLY from the verified session.
-          authOutcome.account.customerId,
-          { cursor: page.cursor, limit: page.limit },
-          new Date()
-        )
+        body: {
+          ...overview,
+          // Issue #363 (ADR-0043): what a point is worth, or `null` when
+          // spending is unavailable (off, or the tenant never set a value) -
+          // one answer for both. Display only: the order route recomputes.
+          redemption: await fetchRedemptionTerms(tx, tenant.tenantId)
+        }
       };
     }
   );

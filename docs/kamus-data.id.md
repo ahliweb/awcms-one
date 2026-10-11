@@ -203,6 +203,22 @@ Desain milik platform ini sendiri — "rewards" OSPOS menjadi inspirasi, tidak a
 | `commerce.loyalty.{read,manage}`, `commerce.loyalty_adjustments.create`, `commerce.loyalty_redemptions.create` | `awcms_permissions` (`sql/952`)                                           | Empat izin pada tiga kode aktivitas — bukan `loyalty.adjust`/`.redeem`, karena `AccessAction` milik upstream                                                                                                                                                                                                                                                                               |
 | `awcms.commerce.loyalty.entry_recorded`                                                                        | domain event                                                              | Satu event per baris ledger; agregat `commerce.loyalty_account`; payload membawa `kind`, `points` bertanda, `balanceAfter`, `sourceType`, tidak pernah PII                                                                                                                                                                                                                                 |
 
+## Kosakata penukaran loyalitas (isu #363, [ADR-0043](adr/0043-loyalty-points-are-redeemed-as-a-server-priced-discount-line-written-with-the-ledger-debit.md))
+
+| Istilah | Di mana | Arti |
+| --- | --- | --- |
+| penukaran (redemption) | `awcms_commerce_loyalty_redemptions` | Memakai poin pada pesanan: catatan tulis-sekali yang memasangkan satu baris buku besar `redeem` dengan diskon yang dibelinya. Satu per pesanan |
+| nilai poin / `rupiah_per_point` | `awcms_commerce_loyalty_redemption_settings` | Jumlah rupiah bulat nilai satu poin, per tenant. **Tanpa nilai bawaan**: tanpa baris = penukaran tidak tersedia |
+| batas / `max_goods_percent` | sama | Batas atas persen bulat opsional atas bagian dasar barang yang boleh dibayar dengan poin |
+| dasar barang | `awcms_commerce_loyalty_redemptions.goods_basis` | `subtotal − diskon voucher`, minimal nol. Ongkos kirim, asuransi, dan pajak tidak pernah termasuk |
+| `loyalty_discount` | `awcms_commerce_orders` | Diskon poin pada header pesanan; `total` sudah bersih darinya. Terpisah dari `discount`/`voucher_discount` |
+| `restore` | `kind` buku besar | Baris kompensasi yang mengembalikan poin yang ditukar (pesanan dibatalkan atau kedaluwarsa, atau refund selesai); lot baru dengan kedaluwarsa tercepat yang dikonsumsi penukaran |
+| `loyaltyRedemption: { points }` | badan permintaan pesanan storefront dan penjualan POS | Satu-satunya angka penukaran yang dikirim klien. Kunci lain adalah `400` |
+| `features.loyaltyRedemption` | pengaturan modul `commerce` | Sakelar tenant untuk memakai poin, bawaan **false**, terlepas dari `features.loyalty` |
+| `LOYALTY_REDEMPTION_UNAVAILABLE`, `_REQUIRES_ACCOUNT`, `_REQUIRES_CUSTOMER`, `_DEPOSIT_CONFLICT`, `_EXCEEDS_LIMIT`, `_CUSTOMER_UNAVAILABLE`, `INSUFFICIENT_POINTS` | kode galat `409` | Penolakan stabil sebuah penukaran; semuanya ditemukan sebelum baris pesanan apa pun ditulis |
+| `redeem:<accountId>:order:<key>` / `redeem:<accountId>:pos:<key>` | `idempotency_key` buku besar | Identitas idempotensi penukaran (ADR-0026 D4 dengan kanal sebagai ruang nama kunci klien) |
+| `restore:order:<orderId>` / `restore:refund:<refundId>` | `idempotency_key` buku besar | Identitas pengembalian itu sendiri, berbeda dari penukaran yang dibatalkannya |
+
 ## Kosakata atribut katalog (issue #291)
 
 Atribut kustom **bertipe** buatan tenant — desain milik platform ini sendiri (atribut item yang dapat diperluas milik OSPOS adalah pemicunya; tidak ada yang di-porting dari `commerce_bj_mart`, yang tidak memilikinya). Keputusan: [ADR-0027](adr/0027-catalog-custom-attributes-are-typed-and-allowlisted.md).

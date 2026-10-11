@@ -295,8 +295,12 @@ export async function issueDocument(
     includePayments: true
   });
   const settings = await fetchStoreSettings(tx, tenantId);
+  // Issue #363: everything the customer did not pay in money, the points
+  // discount included (`sql/1011` teaches the match trigger the same sum).
   const discount = fromCents(
-    toCents(detail.discount) + toCents(detail.voucherDiscount)
+    toCents(detail.discount) +
+      toCents(detail.voucherDiscount) +
+      toCents(detail.loyaltyDiscount)
   );
 
   const allocated = await allocateDocumentNumber(

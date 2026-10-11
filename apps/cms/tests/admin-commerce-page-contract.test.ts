@@ -455,6 +455,9 @@ describe("/admin/commerce-pos permission gates", () => {
       // Issue #286 — hold and resume a parked cart; also checked by the endpoints.
       "commerce.held_sales.create",
       "commerce.held_sales.update",
+      // Issue #363 — the "spend loyalty points" field is shown only to a
+      // cashier who may redeem; also checked by the endpoint.
+      "commerce.loyalty_redemptions.create",
       "commerce.orders.read",
       "commerce.pos.create",
       // Issue #285 — the credit-sale checkbox; also checked by the endpoint.
@@ -482,6 +485,16 @@ describe("/admin/commerce-pos permission gates", () => {
       "pos_due"
     );
     expect([...enforcedDue]).toEqual(["commerce.pos_due.create"]);
+    // Issue #363 — `loyaltyRedemption` needs a THIRD permission (separate from
+    // loyalty adjustments), enforced the same way.
+    const enforcedRedeem = await enforcedTriples(
+      POS_ROUTES,
+      "COMMERCE_LOYALTY_REDEMPTIONS_ACTIVITY_CODE",
+      "loyalty_redemptions"
+    );
+    expect([...enforcedRedeem]).toEqual([
+      "commerce.loyalty_redemptions.create"
+    ]);
   });
 
   test("the page never writes raw SQL — the sale posts to the guarded POS endpoint with an Idempotency-Key", async () => {

@@ -9,7 +9,11 @@
  *      customer's balance, their append-only history, and the redeem / adjust
  *      forms (each gated by its OWN permission);
  *   4. a read-only reconcile check, with an explicit, confirmed "repair" when
- *      it finds a drifted balance projection.
+ *      it finds a drifted balance projection;
+ *   5. the point value (Issue #363, ADR-0043): what one point is worth in
+ *      rupiah and the optional cap on the share of the goods subtotal payable
+ *      in points. There is no default - until a value is saved, points cannot
+ *      be spent at checkout or the POS.
  *
  * Real data only: every figure is `fetchLoyaltySummary` summing the ledger or
  * a row from one of the three loyalty tables. The panel is hidden by the
@@ -42,6 +46,7 @@ import {
   listLoyaltyAccounts
 } from "../../modules/commerce/application/loyalty-ledger";
 import { listLoyaltyPrograms } from "../../modules/commerce/application/loyalty-program-directory";
+import { fetchRedemptionSettings } from "../../modules/commerce/application/loyalty-redemption";
 import { decodeKeysetCursor } from "../../modules/_shared/keyset-pagination";
 import { normalizePhoneNumber } from "../../modules/commerce/domain/phone-normalisation";
 import { SALES_REPORT_TIME_ZONE } from "../../modules/commerce/domain/sales-report-deltas";
@@ -97,6 +102,7 @@ const screen = await loadAdminScreen({
       action: "create"
     });
 
+    const redemptionSettings = await fetchRedemptionSettings(tx, ssr.tenantId);
     const summary = await fetchLoyaltySummary(tx, ssr.tenantId, {});
     const programs = await listLoyaltyPrograms(tx, ssr.tenantId);
     const accounts = await listLoyaltyAccounts(tx, ssr.tenantId, {}, null, 10);
@@ -135,6 +141,8 @@ const screen = await loadAdminScreen({
       canManage,
       canAdjust,
       canRedeem,
+      redemptionEnabled: features.loyaltyRedemption,
+      redemptionSettings,
       summary,
       programs,
       accounts,
@@ -160,6 +168,22 @@ const canManage = view?.canManage ?? false;
 const canAdjust = view?.canAdjust ?? false;
 const canRedeem = view?.canRedeem ?? false;
 const summary = view?.summary ?? null;
+const redemptionEnabled = view?.redemptionEnabled ?? false;
+const redemptionSettings = view?.redemptionSettings ?? null;
+const redemptionStatus =
+  redemptionSettings === null
+    ? {
+        tone: "warning",
+        text: t("No point value set: points cannot be spent")
+      }
+    : redemptionEnabled
+      ? { tone: "success", text: t("Points can be spent") }
+      : {
+          tone: "neutral",
+          text: t(
+            "Point value set, but spending points is turned off under Store settings, Features"
+          )
+        };
 const programs = view?.programs ?? [];
 const accounts = view?.accounts.items ?? [];
 const customer = view?.customer ?? null;
@@ -242,6 +266,12 @@ const ruleText = (program: (typeof programs)[number]) =>
           <span class="admin-stat-card-label">{t("Points reversed")}</span>
           <span class="admin-stat-card-value">
             {count(summary.period.reversed)}
+          </span>
+        </div>
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Points restored")}</span>
+          <span class="admin-stat-card-value">
+            {count(summary.period.restored)}
           </span>
         </div>
       </section>
@@ -329,6 +359,98 @@ const ruleText = (program: (typeof programs)[number]) =>
         {t("Create draft")}
       </button>
     </form>
+  )}
+
+  {canRead && !loadError && view !== null && (
+    <section
+      class="admin-dashboard-panel fade-in-up"
+      aria-label={t("Point value")}
+      id="loyalty-redemption-panel"
+    >
+      <h2 class="admin-dashboard-panel-title">{t("Point value")}</h2>
+      <p class="admin-stat-card-caption">
+        {t(
+          "What one point is worth when a customer spends points at checkout or the counter. Shipping and tax can never be paid with points."
+        )}
+      </p>
+      <p>
+        <span
+          class="admin-status-pill"
+          data-tone={redemptionStatus.tone}
+          id="loyalty-redemption-status"
+        >
+          <span class="admin-status-pill-dot" aria-hidden="true" />
+          {redemptionStatus.text}
+        </span>
+      </p>
+      {redemptionSettings !== null && (
+        <dl id="loyalty-redemption-current">
+          <dt>{t("Rupiah per point")}</dt>
+          <dd id="loyalty-redemption-current-rate">
+            {money(String(redemptionSettings.rupiahPerPoint))}
+          </dd>
+          <dt>{t("Share of the goods payable in points")}</dt>
+          <dd id="loyalty-redemption-current-cap">
+            {redemptionSettings.maxGoodsPercent === null
+              ? t("No cap")
+              : `${redemptionSettings.maxGoodsPercent}%`}
+          </dd>
+        </dl>
+      )}
+      {canManage && (
+        <form id="loyalty-redemption-form" class="admin-create-form">
+          <p
+            id="loyalty-redemption-error"
+            class="admin-create-error"
+            role="alert"
+            hidden
+          />
+          <label for="loyalty-redemption-rate">{t("Rupiah per point")}</label>
+          <input
+            id="loyalty-redemption-rate"
+            name="rupiahPerPoint"
+            type="number"
+            min="1"
+            max="1000000"
+            step="1"
+            required
+            value={redemptionSettings?.rupiahPerPoint ?? ""}
+          />
+          <label for="loyalty-redemption-cap">
+            {t(
+              "Maximum share of the goods payable in points, percent (optional)"
+            )}
+          </label>
+          <input
+            id="loyalty-redemption-cap"
+            name="maxGoodsPercent"
+            type="number"
+            min="1"
+            max="100"
+            step="1"
+            value={redemptionSettings?.maxGoodsPercent ?? ""}
+          />
+          <button type="submit" id="loyalty-redemption-submit">
+            {t("Save point value")}
+          </button>
+          {redemptionSettings !== null && (
+            <button
+              type="button"
+              class="module-toggle"
+              id="loyalty-redemption-clear"
+              data-confirm-title={t("Remove the point value?")}
+              data-confirm-message={t(
+                "Points can no longer be spent until a new value is saved. Orders that already used points keep their discount."
+              )}
+              data-confirm-label={t("Remove point value")}
+              data-confirm-danger="true"
+            >
+              {t("Remove point value")}
+            </button>
+          )}
+        </form>
+      )}
+    </section>
   )}
 
   {canRead && !loadError && view !== null && (
@@ -820,6 +942,30 @@ const ruleText = (program: (typeof programs)[number]) =>
           notes: blankToNull(field(data, "notes"))
         }),
       "Could not create the program version. Check the values and try again."
+    );
+  });
+
+  const redemptionError = messageBox("loyalty-redemption-error");
+  onSubmit("loyalty-redemption-form", async ({ data, submit }) => {
+    await mutateAndReload(
+      submit,
+      redemptionError,
+      () =>
+        sendJson("PUT", "/api/v1/commerce/loyalty/redemption-settings", {
+          rupiahPerPoint: Number(field(data, "rupiahPerPoint")),
+          maxGoodsPercent: optionalInteger(field(data, "maxGoodsPercent"))
+        }),
+      "Could not save the point value. Check the values and try again."
+    );
+  });
+  onAction("#loyalty-redemption-clear", async (button) => {
+    if (!(await confirmFromTrigger(button))) return;
+    await mutateAndReload(
+      button,
+      redemptionError,
+      () => sendJson("DELETE", "/api/v1/commerce/loyalty/redemption-settings"),
+      "Could not remove the point value. Please try again.",
+      "Removing…"
     );
   });
 

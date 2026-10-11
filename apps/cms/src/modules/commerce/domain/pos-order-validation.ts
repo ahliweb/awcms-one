@@ -30,6 +30,7 @@ import {
   validatePosTenders,
   type TenderInput
 } from "./payment-allocation";
+import { readLoyaltyRedemptionInput } from "./loyalty-redemption";
 import { fromCents, toCents } from "./price-calculation";
 import { isUuid } from "./register";
 
@@ -113,6 +114,14 @@ export type CreatePosOrderInput = {
    * (`409 FEATURE_DISABLED`) rather than silently not attaching the sale.
    */
   registerId?: string | null;
+  /**
+   * Issue #363 (ADR-0043) - whole loyalty points to spend on this sale, or
+   * `null`. The account is the CUSTOMER ALREADY ATTACHED to the sale by its
+   * phone - never a field of the request - and the discount is computed by the
+   * server. Needs `commerce.loyalty_redemptions.create` on top of the POS
+   * permission.
+   */
+  loyaltyRedemption?: { points: number } | null;
   notes: string | null;
 };
 
@@ -404,6 +413,9 @@ export function validateCreatePosOrderInput(
   }
   const notes = optionalText(record.notes, 1000);
 
+  const redemption = readLoyaltyRedemptionInput(record.loyaltyRedemption);
+  if (!redemption.ok) errors.push(...redemption.errors);
+
   // `amountTendered` vs. the order total is NOT checked here — the total is
   // only known after the transaction's own re-quote (`buildCartQuote`
   // inside `createPosOrder`); `computeChange` below is what rejects an
@@ -421,6 +433,12 @@ export function validateCreatePosOrderInput(
       tenders,
       allowDue,
       registerId,
+      // `undefined` drops out of the idempotency hash, so a request without
+      // redemption hashes exactly as it did before Issue #363.
+      loyaltyRedemption:
+        redemption.ok && redemption.points !== null
+          ? { points: redemption.points }
+          : undefined,
       notes
     }
   };

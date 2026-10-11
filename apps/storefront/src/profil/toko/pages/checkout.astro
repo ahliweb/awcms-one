@@ -219,6 +219,21 @@ const pinpointEnabled = storeSettings.shipping?.pinpointEnabled ?? false;
           <input type="text" id="voucher-code" name="voucherCode" autocomplete="off" />
         </div>
 
+        <div class="toko-field" data-points-field hidden>
+          <label for="loyalty-points">Pakai poin loyalitas (opsional)</label>
+          <input
+            type="number"
+            id="loyalty-points"
+            name="loyaltyRedemption.points"
+            min="1"
+            step="1"
+            inputmode="numeric"
+            autocomplete="off"
+          />
+          <p class="toko-field-hint" data-points-hint aria-live="polite"></p>
+          <p class="toko-field-error" data-error-for="loyaltyRedemption.points"></p>
+        </div>
+
         <div class="toko-field">
           <label for="order-notes">Catatan pesanan (opsional)</label>
           <textarea id="order-notes" name="notes" rows="2"></textarea>

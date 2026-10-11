@@ -11708,3 +11708,75 @@ msgstr "Segmen tidak dapat diubah lagi, tetapi versinya disimpan agar kampanye l
 
 msgid "Retire segment"
 msgstr "Pensiunkan segmen"
+
+msgid "Loyalty points cannot be spent at this store right now."
+msgstr "Poin loyalitas tidak dapat dipakai di toko ini saat ini."
+
+msgid "Maximum share of the goods payable in points, percent (optional)"
+msgstr "Bagian maksimum barang yang boleh dibayar dengan poin, persen (opsional)"
+
+msgid "Needs the customer's phone. One point is worth {amount}; the server works out the discount from the goods, never the shipping or tax."
+msgstr "Perlu nomor telepon pelanggan. Satu poin bernilai {amount}; server menghitung diskon dari barang, tidak pernah dari ongkos kirim atau pajak."
+
+msgid "No cap"
+msgstr "Tanpa batas"
+
+msgid "No point value set: points cannot be spent"
+msgstr "Nilai poin belum diatur: poin tidak dapat dipakai"
+
+msgid "Points can be spent"
+msgstr "Poin dapat dipakai"
+
+msgid "Points can no longer be spent until a new value is saved. Orders that already used points keep their discount."
+msgstr "Poin tidak dapat dipakai lagi sampai nilai baru disimpan. Pesanan yang sudah memakai poin tetap mempertahankan diskonnya."
+
+msgid "Points discount"
+msgstr "Diskon poin"
+
+msgid "Points restored"
+msgstr "Poin dikembalikan"
+
+msgid "Point value"
+msgstr "Nilai poin"
+
+msgid "Point value set, but spending points is turned off under Store settings, Features"
+msgstr "Nilai poin sudah diatur, tetapi pemakaian poin dimatikan di Pengaturan toko, Fitur"
+
+msgid "Remove point value"
+msgstr "Hapus nilai poin"
+
+msgid "Remove the point value?"
+msgstr "Hapus nilai poin?"
+
+msgid "Rupiah per point"
+msgstr "Rupiah per poin"
+
+msgid "Save point value"
+msgstr "Simpan nilai poin"
+
+msgid "Share of the goods payable in points"
+msgstr "Bagian barang yang dapat dibayar dengan poin"
+
+msgid "Spending loyalty points needs the customer's phone number."
+msgstr "Memakai poin loyalitas memerlukan nomor telepon pelanggan."
+
+msgid "Spend loyalty points (optional)"
+msgstr "Pakai poin loyalitas (opsional)"
+
+msgid "That many points is worth more than the goods allow. Enter fewer points."
+msgstr "Poin sebanyak itu bernilai lebih dari yang diizinkan untuk barangnya. Masukkan poin lebih sedikit."
+
+msgid "The customer does not have enough points."
+msgstr "Pelanggan tidak memiliki cukup poin."
+
+msgid "This customer cannot spend loyalty points."
+msgstr "Pelanggan ini tidak dapat memakai poin loyalitas."
+
+msgid "What one point is worth when a customer spends points at checkout or the counter. Shipping and tax can never be paid with points."
+msgstr "Nilai satu poin saat pelanggan memakai poin di checkout atau kasir. Ongkos kirim dan pajak tidak pernah dapat dibayar dengan poin."
+
+msgid "You do not have permission to spend loyalty points."
+msgstr "Anda tidak memiliki izin untuk memakai poin loyalitas."
+
+msgid "Spend loyalty points at checkout and the POS"
+msgstr "Pakai poin loyalitas di checkout dan POS"

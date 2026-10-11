@@ -219,6 +219,12 @@ export type CreateOrderRequest = {
    * commission is later attributed.
    */
   affiliateCode: string | null;
+  /**
+   * Issue #363 (ADR-0043) - whole loyalty points to spend on this order, only
+   * with a bearer session. The ONLY redemption figure sent: the CMS takes the
+   * account from the session and computes the discount itself.
+   */
+  loyaltyRedemption?: { points: number } | null;
 };
 
 export type OrderStatus =
@@ -268,6 +274,10 @@ export type Order = {
   insuranceFee: string;
   tax: string;
   total: string;
+  /** Issue #363 - the discount a points redemption gave (`"0.00"` when none); `total` is already net of it. */
+  loyaltyDiscount?: string;
+  /** Issue #363 - whole points the order spent (0 when none). */
+  loyaltyPointsRedeemed?: number;
   downPayment: { amount: string; paid: boolean } | null;
   paymentInstructions: {
     method: string;

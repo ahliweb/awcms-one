@@ -3319,6 +3319,95 @@ export const commerceModule = defineModule({
       executionMode: "generic"
     },
     {
+      key: "commerce.loyalty_redemption_settings",
+      tableName: "awcms_commerce_loyalty_redemption_settings",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      // Issue #363 / ADR-0043. One row per tenant: what a loyalty point is
+      // worth. The cursor is `updated_at`, so only a point value nobody has
+      // touched for the whole window (default and ceiling ten years) is ever
+      // eligible - and a deleted value FAILS CLOSED: redemption becomes
+      // unavailable until a tenant administrator sets it again, never a
+      // default. Every redemption row snapshots the terms it used, so nothing
+      // already given is affected by the purge.
+      cursorColumn: "updated_at",
+      retentionClass: "financial_tax",
+      retentionMinDays: 1825,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 3650,
+      partition: {
+        eligible: false,
+        rationale:
+          "At most one row per tenant (primary key, sql/1010) - bounded by awcms_tenants."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "Tiny, human-authored configuration; ordinary backup/restore is the artefact."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only mode, run as awcms_worker. Reaches only a point value untouched for the whole window (default ten years); deleting it makes redemption unavailable (fail closed), it never invents a value."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "updated_at"],
+          purpose:
+            "awcms_commerce_loyalty_redemption_settings_tenant_updated_idx (sql/1010) - the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.loyalty_redemptions",
+      tableName: "awcms_commerce_loyalty_redemptions",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      // Issue #363 / ADR-0043. The write-once discount line of a points
+      // redemption: it records a discount actually given on an order, so it
+      // is a fiscal record of the same class as the ledger row it pairs with
+      // (floor five years, default and ceiling ten). Its ledger FK is ON
+      // DELETE CASCADE (sql/1010): a ledger purge batch can never be blocked
+      // by, or split from, its redemption.
+      cursorColumn: "created_at",
+      retentionClass: "financial_tax",
+      retentionMinDays: 1825,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 3650,
+      partition: {
+        eligible: false,
+        rationale:
+          "At most one row per order that spent points (unique index, sql/1010) - bounded by commerce.orders."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "The generic engine's only implemented artefact is ordinary backup/restore; no standalone archive exists yet for this table."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only mode, run as awcms_worker (the only role that may DELETE here - awcms_app is REVOKEd UPDATE and DELETE by sql/1010 and a trigger rejects every UPDATE). Rows are deleted whole and only past the retention window (default ten years)."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "created_at"],
+          purpose:
+            "awcms_commerce_loyalty_redemptions_tenant_created_idx (sql/1010) - the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "generic"
+    },
+    {
       key: "commerce.loyalty_programs",
       tableName: "awcms_commerce_loyalty_programs",
       ownerModuleKey: "commerce",
@@ -4081,6 +4170,28 @@ export const commerceModule = defineModule({
       erasure: "retain_under_obligation",
       rationale:
         "Issue #289 — rows are keyed to account_id -> customer_id -> commerce.customers, which carries no tenant_user/identity/profile/principal id (ADR-0016 D1), so this engine's subject vocabulary cannot reach them. actor_tenant_user_id names the STAFF member of a manual adjustment/redemption for attribution only (audit-log posture), not a data subject. The ledger is append-only and retained under the fiscal-record obligation: rewriting or erasing a row would falsify every later balance_after, which is exactly what an append-only ledger exists to prevent."
+    },
+    {
+      key: "commerce.loyalty_redemptions",
+      tableName: "awcms_commerce_loyalty_redemptions",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "Issue #363 - the discount line of a points redemption: an order id, a loyalty account id, a ledger entry id and figures (points, rate, discount). The order and the account resolve to commerce.customers, which carries no tenant_user/identity/profile/principal id (ADR-0016 D1), so this engine's subject vocabulary cannot reach the row. actor_tenant_user_id names the STAFF cashier for attribution only (audit-log posture). Write-once and retained under the fiscal-record obligation: it is the evidence of a discount given on a taxable sale."
+    },
+    {
+      key: "commerce.loyalty_redemption_settings",
+      tableName: "awcms_commerce_loyalty_redemption_settings",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "Issue #363 - one row per tenant: what a loyalty point is worth in rupiah and an optional cap. The tenant's own business configuration; names nobody. updated_by_tenant_user_id names the STAFF author for attribution only. Retained because every redemption row snapshots the figures it used, and the change history lives in the audit log."
     },
     {
       key: "commerce.attribute_definitions",

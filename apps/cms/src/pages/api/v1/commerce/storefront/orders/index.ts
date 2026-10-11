@@ -26,6 +26,8 @@ import { requireCustomerSession } from "../../../../../../modules/commerce/appli
 import { validateCreateOrderInput } from "../../../../../../modules/commerce/domain/order-request-validation";
 import { normalizePhoneNumber } from "../../../../../../modules/commerce/domain/phone-normalisation";
 import { inventoryErrorResponse } from "../../../../../../modules/commerce/application/commerce-inventory-http";
+import { LoyaltyIdempotencyConflictError } from "../../../../../../modules/commerce/application/loyalty-ledger";
+import { loyaltyRefusalResponse } from "../../../../../../modules/commerce/application/loyalty-redemption-http";
 
 /**
  * `POST /api/v1/commerce/storefront/orders` (Issue #29) — anonymous,
@@ -212,6 +214,11 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       );
     }
 
+    if (result.kind === "loyalty_refused") {
+      // Issue #363 (ADR-0043) - found before any row of the order was written.
+      return loyaltyRefusalResponse(result.refusal, corsHeaders);
+    }
+
     if (result.kind === "cart_changed") {
       return fail(
         409,
@@ -249,6 +256,13 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     }
     if (error instanceof IdempotencyPayloadMismatchError) {
       return fail(409, "IDEMPOTENCY_CONFLICT", error.message);
+    }
+    if (error instanceof LoyaltyIdempotencyConflictError) {
+      return fail(
+        409,
+        "IDEMPOTENCY_CONFLICT",
+        "idempotencyKey was already used with a different request."
+      );
     }
     const inventoryFailure = inventoryErrorResponse(error, { vary: "Origin" });
     if (inventoryFailure) return inventoryFailure;

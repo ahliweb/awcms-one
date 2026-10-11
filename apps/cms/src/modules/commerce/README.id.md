@@ -1346,6 +1346,31 @@ fitur berada di balik `features.loyalty`, default **MATI**.
 | Bagian | Lokasi | Fungsinya |
 | ------ | ------ | --------- |
 
+## Penukaran poin loyalitas — SUDAH DIIMPLEMENTASIKAN (Issue #363 — [ADR-0043](../../../../../docs/adr/0043-loyalty-points-are-redeemed-as-a-server-priced-discount-line-written-with-the-ledger-debit.md))
+
+Memakai poin pada pesanan, di balik **`features.loyaltyRedemption`** (bawaan
+**MATI**, terlepas dari `features.loyalty`) dan nilai poin yang ditetapkan
+tenant **tanpa nilai bawaan** (`awcms_commerce_loyalty_redemption_settings`).
+Menutup butir penukaran yang ditunda ADR-0026.
+
+| Bagian      | Lokasi                                                                                                                                                                                         | Fungsi                                                                                                                                                            |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Skema       | `sql/1010`–`1012`                                                                                                                                                                              | Tabel pengaturan, `awcms_commerce_loyalty_redemptions` tulis-sekali, `orders.loyalty_discount`, jenis buku besar `restore`, CHECK poin-plus-deposit, hibah worker |
+| Harga murni | `domain/loyalty-redemption.ts`                                                                                                                                                                 | `computeRedemptionDiscount` (sen bulat, batas barang, batas persen), `pointsToHaveRestored`, validator permintaan/pengaturan, kode galat stabil                   |
+| Aplikasi    | `application/loyalty-redemption.ts`, `loyalty-redemption-http.ts`                                                                                                                              | `prepareRedemption` (sebelum baris pesanan), `commitRedemption` (sesudahnya), `restoreRedemptionForOrder` / `…ForRefund`, CRUD pengaturan, `fetchRedemptionTerms` |
+| Pengawatan  | `order-directory.ts` (pesanan storefront, batal/kedaluwarsa), `pos-directory.ts`, `refund-settlement.ts`, `return-directory.ts`, `loyalty-ledger.ts` (dasar perolehan, pemindaian kedaluwarsa) | Masing-masing membaca atau menulis `loyalty_discount`                                                                                                             |
+| Rute        | `loyalty/redemption-settings.ts`; `loyaltyRedemption` pada `storefront/orders` dan `pos/orders`                                                                                                | Pengaturan di bawah `loyalty.read`/`.manage`; POS juga perlu `loyalty_redemptions.create`                                                                         |
+| Layar       | `admin/commerce-loyalty.astro` ("Nilai poin"), `admin/commerce-pos.astro` ("Pakai poin loyalitas")                                                                                             |                                                                                                                                                                   |
+| Uji         | `tests/commerce-loyalty-redemption.test.ts`, `tests/integration/commerce-loyalty-redemption.integration.test.ts`                                                                               | Murni, dan Postgres sungguhan (pemutaran ulang, bentrok, saldo minus, paralel, manipulasi, batas, ongkos kirim/pajak, deposit, kepemilikan, RLS, pengembalian)    |
+
+**Aturan yang perlu diketahui sebelum mengubah apa pun**
+
+- Klien mengirim **hanya poin utuh**. Kunci lain di `loyaltyRedemption` adalah `400`; akun berasal dari sesi bearer (storefront) atau pelanggan yang dikaitkan ke penjualan (POS), tidak pernah dari permintaan.
+- Penolakan ditemukan **sebelum** baris pesanan ada (`prepareRedemption` mengunci akun `FOR UPDATE` dan menahannya sampai akhir transaksi); `commitRedemption` berjalan setelah penyisipan dan tidak dapat gagal karena saldo. Jangan menambah penolakan di antara penyisipan dan komit.
+- Poin membayar barang, bukan pajak: pajak tetap dihitung dari `subtotal − diskon voucher`. Ongkos kirim dan asuransi berada di luar dasar barang.
+- Membatalkan atau mengedaluwarsakan pesanan mengembalikan dalam transaksi yang sama (`restore:order:<id>`); refund mengembalikan `floor(points × refund / total)` dikurangi yang sudah dikembalikan (`restore:refund:<id>`), dari uang tunai yang dibayar. `restore` adalah lot dengan kedaluwarsa tercepat yang dikonsumsi penukaran.
+- Poin dan deposit yang dapat dikembalikan tidak pernah berbagi pesanan (`409` dan CHECK basis data). Dasar perolehan tidak memuat diskon poin.
+
 ## Barcode, label, input pemindai, dan pintasan kasir - TERIMPLEMENTASI (Issue #292, epic #281 - [ADR-0032](../../../../../docs/adr/0032-barcodes-are-a-derived-identifier-and-the-cashier-keyboard-layer-is-chord-only.md))
 
 Dua kolom `barcode` nullable (`sql/975`: produk dan varian), dua izin (`commerce.barcodes.{read,update}`, `sql/976`), tanpa tabel baru.

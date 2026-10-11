@@ -8,12 +8,12 @@
 | Aspect | Value |
 | ----- | ----- |
 | Registered modules | 29 |
-| Migrations | 269 |
-| `awcms_*` tables | 265 |
-| Tables with `FORCE` RLS | 247 |
+| Migrations | 272 |
+| `awcms_*` tables | 267 |
+| Tables with `FORCE` RLS | 249 |
 | RLS-free tables (global, by design) | 18 |
-| Test files | 717 |
-| Route files | 708 |
+| Test files | 719 |
+| Route files | 709 |
 | ADR | 272 |
 
 ### Modules
@@ -321,8 +321,11 @@
 | 265 | `sql/1002_awcms_commerce_segments_evaluation_indexes.sql` |
 | 266 | `sql/1003_awcms_commerce_segments_permissions.sql` |
 | 267 | `sql/1004_awcms_commerce_segments_worker_grants.sql` |
-| 268 | `sql/1020_awcms_commerce_retention_projection_schema.sql` |
-| 269 | `sql/1021_awcms_commerce_retention_projection_permissions.sql` |
+| 268 | `sql/1010_awcms_commerce_loyalty_redemption_schema.sql` |
+| 269 | `sql/1011_awcms_commerce_loyalty_redemption_ledger.sql` |
+| 270 | `sql/1012_awcms_commerce_loyalty_redemption_worker_grants.sql` |
+| 271 | `sql/1020_awcms_commerce_retention_projection_schema.sql` |
+| 272 | `sql/1021_awcms_commerce_retention_projection_permissions.sql` |
 
 ### Tables & Row-Level Security
 
@@ -389,6 +392,8 @@
 | `awcms_commerce_loyalty_accounts` | `sql/950_awcms_commerce_loyalty_schema.sql` | yes | yes |
 | `awcms_commerce_loyalty_ledger` | `sql/950_awcms_commerce_loyalty_schema.sql` | yes | yes |
 | `awcms_commerce_loyalty_programs` | `sql/950_awcms_commerce_loyalty_schema.sql` | yes | yes |
+| `awcms_commerce_loyalty_redemption_settings` | `sql/1010_awcms_commerce_loyalty_redemption_schema.sql` | yes | yes |
+| `awcms_commerce_loyalty_redemptions` | `sql/1010_awcms_commerce_loyalty_redemption_schema.sql` | yes | yes |
 | `awcms_commerce_messages` | `sql/927_awcms_commerce_conversations_schema.sql` | yes | yes |
 | `awcms_commerce_order_events` | `sql/913_awcms_commerce_customers_orders_schema.sql` | yes | yes |
 | `awcms_commerce_order_item_components` | `sql/954_awcms_commerce_bundles_order_snapshot.sql` | yes | yes |
@@ -598,16 +603,16 @@
 
 | Directory | Test files |
 | --------- | ---------- |
-| `(root)` | 548 |
+| `(root)` | 549 |
 | `e2e` | 25 |
-| `integration` | 143 |
+| `integration` | 144 |
 | `unit` | 1 |
 
 ### Routes
 
 | Surface | Files |
 | ------- | ----- |
-| `/api/v1/**` | 581 |
+| `/api/v1/**` | 582 |
 | `/admin/**` | 97 |
 | publik / anonim | 30 |
 
