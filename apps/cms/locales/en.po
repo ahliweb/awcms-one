@@ -11512,3 +11512,194 @@ msgstr ""
 
 msgid "One component per line: SKU x quantity. A bundle has no stock of its own; it is sold as one line and its components' stock moves."
 msgstr ""
+
+msgid "{count} segment"
+msgid_plural "{count} segments"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Price level"
+msgstr ""
+
+msgid "Has an account"
+msgstr ""
+
+msgid "Has an e-mail address"
+msgstr ""
+
+msgid "Customer since"
+msgstr ""
+
+msgid "Number of paid orders"
+msgstr ""
+
+msgid "Paid spend"
+msgstr ""
+
+msgid "Last paid order"
+msgstr ""
+
+msgid "First paid order"
+msgstr ""
+
+msgid "Loyalty points balance"
+msgstr ""
+
+msgid "is"
+msgstr ""
+
+msgid "is one of (comma separated)"
+msgstr ""
+
+msgid "at least"
+msgstr ""
+
+msgid "more than"
+msgstr ""
+
+msgid "at most"
+msgstr ""
+
+msgid "less than"
+msgstr ""
+
+msgid "is before"
+msgstr ""
+
+msgid "is after"
+msgstr ""
+
+msgid "never happened"
+msgstr ""
+
+msgid "Customer segments"
+msgstr ""
+
+msgid "Group customers by rules you can save, version and count - without copying any customer data."
+msgstr ""
+
+msgid "You do not have permission to view customer segments."
+msgstr ""
+
+msgid "Customer segments could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Customer segments are turned off for this store."
+msgstr ""
+
+msgid "The rules are not valid. Check the highlighted condition."
+msgstr ""
+
+msgid "The advanced rules are not valid JSON."
+msgstr ""
+
+msgid "Add at least one condition."
+msgstr ""
+
+msgid "A segment with that name already exists."
+msgstr ""
+
+msgid "This segment changed since you opened it. Reload the page and apply your edit again."
+msgstr ""
+
+msgid "A retired segment cannot be edited."
+msgstr ""
+
+msgid "Too many segment evaluations are running. Try again in a moment."
+msgstr ""
+
+msgid "This segment is too expensive to evaluate. Use fewer conditions or shorter windows."
+msgstr ""
+
+msgid "Too many previews. Wait a moment and try again."
+msgstr ""
+
+msgid "Fewer than 5 customers match."
+msgstr ""
+
+msgid "{count} customers match."
+msgstr ""
+
+msgid "As of"
+msgstr ""
+
+msgid "No customers match."
+msgstr ""
+
+msgid "New segment"
+msgstr ""
+
+msgid "A customer is included when"
+msgstr ""
+
+msgid "all the conditions are true"
+msgstr ""
+
+msgid "any of the conditions is true"
+msgstr ""
+
+msgid "Conditions"
+msgstr ""
+
+msgid "Dates are YYYY-MM-DD, or a whole number of days ago. Money is a plain number such as 150000.00."
+msgstr ""
+
+msgid "Condition field"
+msgstr ""
+
+msgid "(unused)"
+msgstr ""
+
+msgid "Condition operator"
+msgstr ""
+
+msgid "Condition value"
+msgstr ""
+
+msgid "Window in days (orders and spend only)"
+msgstr ""
+
+msgid "days"
+msgstr ""
+
+msgid "Advanced: write the rules as JSON"
+msgstr ""
+
+msgid "Rules (JSON)"
+msgstr ""
+
+msgid "Save segment"
+msgstr ""
+
+msgid "Preview count"
+msgstr ""
+
+msgid "No segments yet"
+msgstr ""
+
+msgid "Define one above to get started."
+msgstr ""
+
+msgid "Rules (version {version})"
+msgstr ""
+
+msgid "Show customers"
+msgstr ""
+
+msgid "Customers in this segment"
+msgstr ""
+
+msgid "Show more"
+msgstr ""
+
+msgid "Rules (JSON) - saving changed rules adds a new version"
+msgstr ""
+
+msgid "Retire this segment?"
+msgstr ""
+
+msgid "The segment can no longer be edited, but its versions are kept so past campaigns stay explainable."
+msgstr ""
+
+msgid "Retire segment"
+msgstr ""

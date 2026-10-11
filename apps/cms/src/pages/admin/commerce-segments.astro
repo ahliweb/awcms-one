@@ -1,0 +1,959 @@
+---
+/**
+ * Customer segments (Issue #360, ADR-0042, PRD stories S1/S2/S4) - define a
+ * saved, versioned set of rules over customers, count how many match, and -
+ * only for a viewer who may read customers - look at who. The page's entry
+ * permission is `commerce.segments.read`; every panel is gated on its own:
+ *
+ *   1. DEFINE (`segments.create`): a name, a match mode (all / any) and up to
+ *      six conditions picked from the closed vocabulary. An "Advanced" box
+ *      takes the rule JSON directly for nested AND / OR / NOT.
+ *   2. the segment list (definitions only - never a customer);
+ *   3. one segment (`?id=`): its versions (a rule edit adds a NEW one, never
+ *      changes an old one), a COUNT preview (`segment_previews.read`; below five
+ *      shown as "fewer than 5"), the members (`segment_members.read` AND
+ *      `customers.read`; masked) and the CSV export (`segment_members.export`).
+ *
+ * The whole screen sits behind the tenant's `segments` feature (default OFF):
+ * with it off one notice points at the settings screen, matching the routes'
+ * own `409 FEATURE_DISABLED`. Which buttons show is a convenience, never a
+ * control: every endpoint re-checks its own permission, and the SERVER builds
+ * every query from the closed vocabulary - nothing here ever sends SQL.
+ *
+ * Every string the client script shows is rendered by `t()` into a `data-*`
+ * attribute on `#segments-root` and read from there (the script cannot
+ * translate). Member rows are built with `textContent`, never `innerHTML`.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import CommerceConfirmDialog from "../../components/CommerceConfirmDialog.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import { formatDateTime } from "../../lib/i18n/format";
+import { fetchCommerceFeatures } from "../../modules/commerce/application/commerce-feature-gate";
+import {
+  fetchSegment,
+  listSegments
+} from "../../modules/commerce/application/segment-directory";
+import { isUuid } from "../../modules/commerce/domain/register";
+
+const ssr = Astro.locals.ssrContext!;
+const locale = Astro.locals.locale;
+const { t, tn } = getTranslatorFor(locale);
+
+const TIME_ZONE = "Asia/Jakarta";
+const when = (iso: string | null): string =>
+  iso ? formatDateTime(locale, iso, TIME_ZONE) : "—";
+
+const idParam = Astro.url.searchParams.get("id");
+const selectedId = idParam && isUuid(idParam) ? idParam : null;
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "commerce",
+    activityCode: "segments",
+    action: "read"
+  },
+  load: async ({ tx, can }) => {
+    const features = await fetchCommerceFeatures(tx, ssr.tenantId);
+    if (!features.segments) {
+      return { segmentsEnabled: false as const };
+    }
+    const canCreate = await can({
+      moduleKey: "commerce",
+      activityCode: "segments",
+      action: "create"
+    });
+    const canUpdate = await can({
+      moduleKey: "commerce",
+      activityCode: "segments",
+      action: "update"
+    });
+    const canDelete = await can({
+      moduleKey: "commerce",
+      activityCode: "segments",
+      action: "delete"
+    });
+    const canPreview = await can({
+      moduleKey: "commerce",
+      activityCode: "segment_previews",
+      action: "read"
+    });
+    const canReadMembers =
+      (await can({
+        moduleKey: "commerce",
+        activityCode: "segment_members",
+        action: "read"
+      })) &&
+      (await can({
+        moduleKey: "commerce",
+        activityCode: "customers",
+        action: "read"
+      }));
+    const canExport =
+      (await can({
+        moduleKey: "commerce",
+        activityCode: "segment_members",
+        action: "export"
+      })) &&
+      (await can({
+        moduleKey: "commerce",
+        activityCode: "customers",
+        action: "read"
+      }));
+    const page = await listSegments(tx, ssr.tenantId, null, true);
+    const selected = selectedId
+      ? await fetchSegment(tx, ssr.tenantId, selectedId)
+      : null;
+    return {
+      segmentsEnabled: true as const,
+      segments: page.items,
+      selected,
+      canCreate,
+      canUpdate,
+      canDelete,
+      canPreview,
+      canReadMembers,
+      canExport
+    };
+  },
+  onError: (error) => {
+    logAdminPageError("admin/commerce-segments.astro: failed to load", error, {
+      correlationId: Astro.locals.correlationId
+    });
+  }
+});
+
+const allowed = screen.state === "allowed";
+const denied = screen.state === "denied";
+const loadError = screen.state === "error";
+const data = screen.state === "allowed" ? screen.data : null;
+const enabled = data?.segmentsEnabled === true;
+const on = data && data.segmentsEnabled === true ? data : null;
+const segments = on?.segments ?? [];
+const selected = on?.selected ?? null;
+const latest = selected?.versions[0] ?? null;
+
+const FIELD_OPTIONS = [
+  { value: "level", label: t("Price level") },
+  { value: "has_account", label: t("Has an account") },
+  { value: "has_email", label: t("Has an e-mail address") },
+  { value: "customer_since", label: t("Customer since") },
+  { value: "order_count", label: t("Number of paid orders") },
+  { value: "paid_spend", label: t("Paid spend") },
+  { value: "last_order_date", label: t("Last paid order") },
+  { value: "first_order_date", label: t("First paid order") },
+  { value: "loyalty_balance", label: t("Loyalty points balance") }
+] as const;
+
+/** Each operator and the fields it applies to; the script hides the rest. */
+const OPERATOR_OPTIONS = [
+  {
+    value: "eq",
+    label: t("is"),
+    fields: "level,has_account,has_email,order_count,loyalty_balance"
+  },
+  { value: "in", label: t("is one of (comma separated)"), fields: "level" },
+  {
+    value: "gte",
+    label: t("at least"),
+    fields: "order_count,paid_spend,loyalty_balance"
+  },
+  {
+    value: "gt",
+    label: t("more than"),
+    fields: "order_count,paid_spend,loyalty_balance"
+  },
+  {
+    value: "lte",
+    label: t("at most"),
+    fields: "order_count,paid_spend,loyalty_balance"
+  },
+  {
+    value: "lt",
+    label: t("less than"),
+    fields: "order_count,paid_spend,loyalty_balance"
+  },
+  {
+    value: "before",
+    label: t("is before"),
+    fields: "customer_since,last_order_date,first_order_date"
+  },
+  {
+    value: "after",
+    label: t("is after"),
+    fields: "customer_since,last_order_date,first_order_date"
+  },
+  {
+    value: "never",
+    label: t("never happened"),
+    fields: "last_order_date,first_order_date"
+  }
+] as const;
+
+const CONDITION_ROWS = [0, 1, 2, 3, 4, 5];
+---
+
+<AdminLayout
+  title={t("Customer segments")}
+  description={t(
+    "Group customers by rules you can save, version and count - without copying any customer data."
+  )}
+>
+  {denied && (
+    <p class="state-notice fade-in-up" id="segments-denied" role="status">
+      {t("You do not have permission to view customer segments.")}
+    </p>
+  )}
+  {loadError && (
+    <p class="state-notice fade-in-up" id="segments-error" role="alert">
+      {t(
+        "Customer segments could not be loaded right now. Please try again later."
+      )}
+    </p>
+  )}
+  {allowed && !enabled && (
+    <p
+      class="state-notice fade-in-up"
+      id="segments-feature-disabled"
+      role="status"
+    >
+      {t("Customer segments are turned off for this store.")}{" "}
+      <a class="quick-link" href="/admin/commerce-settings">
+        {t("Turn them on under Features in the store settings.")}
+      </a>
+    </p>
+  )}
+
+  {on && (
+    <div
+      id="segments-root"
+      data-msg-failed={t("That did not work. Please try again.")}
+      data-msg-invalid={t(
+        "The rules are not valid. Check the highlighted condition."
+      )}
+      data-msg-bad-json={t("The advanced rules are not valid JSON.")}
+      data-msg-no-conditions={t("Add at least one condition.")}
+      data-msg-name-taken={t("A segment with that name already exists.")}
+      data-msg-conflict={t(
+        "This segment changed since you opened it. Reload the page and apply your edit again."
+      )}
+      data-msg-retired={t("A retired segment cannot be edited.")}
+      data-msg-busy={t(
+        "Too many segment evaluations are running. Try again in a moment."
+      )}
+      data-msg-too-expensive={t(
+        "This segment is too expensive to evaluate. Use fewer conditions or shorter windows."
+      )}
+      data-msg-rate-limited={t(
+        "Too many previews. Wait a moment and try again."
+      )}
+      data-msg-fewer-than-5={t("Fewer than 5 customers match.")}
+      data-msg-count={t("{count} customers match.")}
+      data-msg-as-of={t("As of")}
+      data-msg-no-members={t("No customers match.")}
+    >
+      <p
+        id="segments-action-error"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      ></p>
+
+      {on.canCreate && (
+        <form
+          id="segment-create-form"
+          class="admin-panel fade-in-up"
+          aria-labelledby="segment-create-heading"
+        >
+          <h2 id="segment-create-heading">{t("New segment")}</h2>
+          <label for="segment-create-name">{t("Name")}</label>
+          <input
+            type="text"
+            id="segment-create-name"
+            name="name"
+            maxlength={120}
+            required
+          />
+          <label for="segment-create-description">{t("Description")}</label>
+          <input
+            type="text"
+            id="segment-create-description"
+            name="description"
+            maxlength={500}
+          />
+          <label for="segment-create-mode">
+            {t("A customer is included when")}
+          </label>
+          <select id="segment-create-mode" name="mode">
+            <option value="and">{t("all the conditions are true")}</option>
+            <option value="or">{t("any of the conditions is true")}</option>
+          </select>
+
+          <fieldset>
+            <legend>{t("Conditions")}</legend>
+            <p class="cell-muted">
+              {t(
+                "Dates are YYYY-MM-DD, or a whole number of days ago. Money is a plain number such as 150000.00."
+              )}
+            </p>
+            {CONDITION_ROWS.map((index) => (
+              <div class="row-actions segment-condition" data-condition-row>
+                <label class="visually-hidden" for={`segment-field-${index}`}>
+                  {t("Condition field")}
+                </label>
+                <select id={`segment-field-${index}`} data-role="field">
+                  <option value="">{t("(unused)")}</option>
+                  {FIELD_OPTIONS.map((option) => (
+                    <option value={option.value}>{option.label}</option>
+                  ))}
+                </select>
+                <label class="visually-hidden" for={`segment-op-${index}`}>
+                  {t("Condition operator")}
+                </label>
+                <select id={`segment-op-${index}`} data-role="op">
+                  {OPERATOR_OPTIONS.map((option) => (
+                    <option value={option.value} data-fields={option.fields}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+                <label class="visually-hidden" for={`segment-value-${index}`}>
+                  {t("Condition value")}
+                </label>
+                <input
+                  type="text"
+                  id={`segment-value-${index}`}
+                  data-role="value"
+                  maxlength={40}
+                />
+                <label class="visually-hidden" for={`segment-window-${index}`}>
+                  {t("Window in days (orders and spend only)")}
+                </label>
+                <input
+                  type="number"
+                  id={`segment-window-${index}`}
+                  data-role="window"
+                  min="1"
+                  max="3650"
+                  placeholder={t("days")}
+                />
+              </div>
+            ))}
+          </fieldset>
+
+          <details>
+            <summary>{t("Advanced: write the rules as JSON")}</summary>
+            <label for="segment-create-json">{t("Rules (JSON)")}</label>
+            <textarea id="segment-create-json" name="rulesJson" rows={8} />
+          </details>
+
+          <div class="row-actions">
+            <button
+              type="submit"
+              class="module-toggle"
+              id="segment-create-submit"
+            >
+              {t("Save segment")}
+            </button>
+            {on.canPreview && (
+              <button
+                type="button"
+                class="module-toggle"
+                id="segment-create-preview"
+              >
+                {t("Preview count")}
+              </button>
+            )}
+            <span
+              id="segment-create-preview-result"
+              class="cell-muted"
+              role="status"
+            ></span>
+          </div>
+        </form>
+      )}
+
+      <div class="fade-in-up">
+        <div
+          class="data-table-scroll"
+          role="region"
+          tabindex="0"
+          aria-label={t("Customer segments")}
+        >
+          <table
+            class="data-table data-table--stack"
+            id="commerce-segments-table"
+          >
+            <caption>
+              {tn("{count} segment", "{count} segments", segments.length, {
+                count: segments.length
+              })}
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">{t("Name")}</th>
+                <th scope="col">{t("Status")}</th>
+                <th scope="col">{t("Version")}</th>
+                <th scope="col">{t("Updated")}</th>
+                <th scope="col">{t("Open")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {segments.length === 0 ? (
+                <tr>
+                  <td class="data-table-empty" colspan={5}>
+                    <div class="empty-state">
+                      <span class="empty-state-icon" aria-hidden="true">
+                        ◇
+                      </span>
+                      <span class="empty-state-title">
+                        {t("No segments yet")}
+                      </span>
+                      <span class="empty-state-text">
+                        {t("Define one above to get started.")}
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              ) : (
+                segments.map((segment) => (
+                  <tr data-segment-row={segment.id}>
+                    <td data-label={t("Name")}>{segment.name}</td>
+                    <td data-label={t("Status")}>
+                      <span
+                        class="admin-status-pill"
+                        data-tone={
+                          segment.status === "active" ? "success" : "neutral"
+                        }
+                      >
+                        {segment.status === "active"
+                          ? t("Active")
+                          : t("Retired")}
+                      </span>
+                    </td>
+                    <td data-label={t("Version")}>{segment.latestVersion}</td>
+                    <td data-label={t("Updated")}>{when(segment.updatedAt)}</td>
+                    <td data-label={t("Open")}>
+                      <a href={`/admin/commerce-segments?id=${segment.id}`}>
+                        {t("View")}
+                      </a>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {selected && latest && (
+        <section
+          class="admin-panel fade-in-up"
+          aria-labelledby="segment-detail-heading"
+          id="segment-detail"
+          data-segment-id={selected.id}
+          data-latest-version={selected.latestVersion}
+        >
+          <h2 id="segment-detail-heading">
+            {selected.name}{" "}
+            <span
+              class="admin-status-pill"
+              data-tone={selected.status === "active" ? "success" : "neutral"}
+            >
+              {selected.status === "active" ? t("Active") : t("Retired")}
+            </span>
+          </h2>
+          {selected.description && <p>{selected.description}</p>}
+
+          <h3>{t("Rules (version {version})", { version: latest.version })}</h3>
+          <pre
+            id="segment-detail-rules"
+            tabindex="0"
+          >{JSON.stringify(latest.rules, null, 2)}</pre>
+
+          {on.canPreview && (
+            <div class="row-actions">
+              <button
+                type="button"
+                class="module-toggle"
+                id="segment-preview-btn"
+              >
+                {t("Preview count")}
+              </button>
+              <span
+                id="segment-preview-result"
+                class="cell-muted"
+                role="status"
+              ></span>
+            </div>
+          )}
+
+          {on.canReadMembers && (
+            <div>
+              <div class="row-actions">
+                <button
+                  type="button"
+                  class="module-toggle"
+                  id="segment-members-btn"
+                >
+                  {t("Show customers")}
+                </button>
+                {on.canExport && (
+                  <a
+                    class="quick-link"
+                    id="segment-export-link"
+                    href={`/api/v1/commerce/segments/${selected.id}/export.csv?version=${latest.version}`}
+                  >
+                    {t("Export CSV")}
+                  </a>
+                )}
+              </div>
+              <div
+                class="data-table-scroll"
+                role="region"
+                tabindex="0"
+                aria-label={t("Customers in this segment")}
+                id="segment-members-region"
+                hidden
+              >
+                <table
+                  class="data-table data-table--stack"
+                  id="segment-members-table"
+                >
+                  <thead>
+                    <tr>
+                      <th scope="col">{t("Name")}</th>
+                      <th scope="col">{t("Phone")}</th>
+                      <th scope="col">{t("E-mail")}</th>
+                      <th scope="col">{t("Price level")}</th>
+                    </tr>
+                  </thead>
+                  <tbody id="segment-members-body"></tbody>
+                </table>
+              </div>
+              <button
+                type="button"
+                class="module-toggle"
+                id="segment-members-more"
+                hidden
+              >
+                {t("Show more")}
+              </button>
+            </div>
+          )}
+
+          <h3>{t("Versions")}</h3>
+          <div
+            class="data-table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label={t("Versions")}
+          >
+            <table
+              class="data-table data-table--stack"
+              id="segment-versions-table"
+            >
+              <thead>
+                <tr>
+                  <th scope="col">{t("Version")}</th>
+                  <th scope="col">{t("Conditions")}</th>
+                  <th scope="col">{t("Created")}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {selected.versions.map((version) => (
+                  <tr data-version-row={version.version}>
+                    <td data-label={t("Version")}>{version.version}</td>
+                    <td data-label={t("Conditions")}>{version.nodeCount}</td>
+                    <td data-label={t("Created")}>{when(version.createdAt)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {on.canUpdate && selected.status === "active" && (
+            <form id="segment-edit-form" class="admin-create-form">
+              <h3>{t("Edit")}</h3>
+              <label for="segment-edit-name">{t("Name")}</label>
+              <input
+                type="text"
+                id="segment-edit-name"
+                name="name"
+                maxlength={120}
+                value={selected.name}
+                required
+              />
+              <label for="segment-edit-json">
+                {t("Rules (JSON) - saving changed rules adds a new version")}
+              </label>
+              <textarea
+                id="segment-edit-json"
+                name="rulesJson"
+                rows={10}
+                required
+              >{JSON.stringify(latest.rules, null, 2)}</textarea>
+              <div class="row-actions">
+                <button
+                  type="submit"
+                  class="module-toggle"
+                  id="segment-edit-submit"
+                >
+                  {t("Save")}
+                </button>
+              </div>
+            </form>
+          )}
+
+          {on.canDelete && selected.status === "active" && (
+            <div class="row-actions">
+              <button
+                type="button"
+                class="module-toggle"
+                id="segment-delete-btn"
+                data-confirm-title={t("Retire this segment?")}
+                data-confirm-message={t(
+                  "The segment can no longer be edited, but its versions are kept so past campaigns stay explainable."
+                )}
+                data-confirm-label={t("Retire segment")}
+                data-confirm-danger="true"
+              >
+                {t("Retire")}
+              </button>
+            </div>
+          )}
+        </section>
+      )}
+    </div>
+  )}
+  <CommerceConfirmDialog locale={Astro.locals.locale} />
+</AdminLayout>
+
+<script>
+  import {
+    field,
+    messageBox,
+    onAction,
+    onSubmit,
+    sendJson,
+    sendJsonForData
+  } from "../../lib/ui/admin-form-client";
+  import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
+
+  const root = document.getElementById("segments-root");
+  const msg = (key: string): string => root?.dataset[key] ?? "";
+  const actionError = messageBox("segments-action-error");
+
+  const DATE_FIELDS = ["customer_since", "last_order_date", "first_order_date"];
+  const WINDOWED = ["order_count", "paid_spend"];
+
+  function failureMessage(errorCode: string | null): string {
+    switch (errorCode) {
+      case "VALIDATION_ERROR":
+        return msg("msgInvalid");
+      case "SEGMENT_NAME_TAKEN":
+        return msg("msgNameTaken");
+      case "SEGMENT_VERSION_CONFLICT":
+        return msg("msgConflict");
+      case "SEGMENT_RETIRED":
+        return msg("msgRetired");
+      case "SEGMENT_EVALUATION_BUSY":
+        return msg("msgBusy");
+      case "SEGMENT_TOO_EXPENSIVE":
+        return msg("msgTooExpensive");
+      case "RATE_LIMITED":
+        return msg("msgRateLimited");
+      default:
+        return msg("msgFailed");
+    }
+  }
+
+  /** Narrow each condition row's operator list to the operators its field accepts. */
+  function syncRow(row: HTMLElement): void {
+    const fieldSelect = row.querySelector<HTMLSelectElement>(
+      '[data-role="field"]'
+    );
+    const opSelect = row.querySelector<HTMLSelectElement>('[data-role="op"]');
+    const windowInput = row.querySelector<HTMLInputElement>(
+      '[data-role="window"]'
+    );
+    const valueInput = row.querySelector<HTMLInputElement>(
+      '[data-role="value"]'
+    );
+    if (!fieldSelect || !opSelect) return;
+    const chosen = fieldSelect.value;
+    let firstAllowed: string | null = null;
+    for (const option of Array.from(opSelect.options)) {
+      const allowed = (option.dataset.fields ?? "").split(",").includes(chosen);
+      option.hidden = !allowed;
+      option.disabled = !allowed;
+      if (allowed && firstAllowed === null) firstAllowed = option.value;
+    }
+    if (opSelect.selectedOptions[0]?.disabled && firstAllowed !== null) {
+      opSelect.value = firstAllowed;
+    }
+    if (windowInput) windowInput.disabled = !WINDOWED.includes(chosen);
+    if (valueInput) valueInput.disabled = opSelect.value === "never";
+  }
+
+  function dateValue(raw: string): unknown {
+    const text = raw.trim();
+    if (/^\d+$/.test(text)) return { daysAgo: Number(text) };
+    if (/^\d{4}-\d{2}-\d{2}$/.test(text)) return `${text}T00:00:00Z`;
+    return text;
+  }
+
+  function rowToNode(row: HTMLElement): Record<string, unknown> | null {
+    const chosen =
+      row.querySelector<HTMLSelectElement>('[data-role="field"]')?.value ?? "";
+    if (chosen === "") return null;
+    const op =
+      row.querySelector<HTMLSelectElement>('[data-role="op"]')?.value ?? "eq";
+    const raw =
+      row.querySelector<HTMLInputElement>('[data-role="value"]')?.value ?? "";
+    const windowRaw =
+      row.querySelector<HTMLInputElement>('[data-role="window"]')?.value ?? "";
+    const node: Record<string, unknown> = { field: chosen, op };
+    if (op !== "never") {
+      if (chosen === "level") {
+        node.value =
+          op === "in"
+            ? raw.split(",").map((part) => Number(part.trim()))
+            : Number(raw);
+      } else if (chosen === "has_account" || chosen === "has_email") {
+        node.value =
+          raw.trim().toLowerCase() === "true" ||
+          raw.trim().toLowerCase() === "yes";
+      } else if (DATE_FIELDS.includes(chosen)) {
+        node.value = dateValue(raw);
+      } else if (chosen === "paid_spend") {
+        node.value = raw.trim();
+      } else {
+        node.value = Number(raw);
+      }
+    }
+    if (WINDOWED.includes(chosen) && windowRaw !== "")
+      node.windowDays = Number(windowRaw);
+    return node;
+  }
+
+  /** The rules the create form describes: the advanced JSON when filled in, else the condition rows. */
+  function collectRules(form: HTMLFormElement): unknown | null {
+    const json = field(new FormData(form), "rulesJson").trim();
+    if (json !== "") {
+      try {
+        return JSON.parse(json);
+      } catch {
+        actionError.show(msg("msgBadJson"));
+        return null;
+      }
+    }
+    const nodes = Array.from(
+      form.querySelectorAll<HTMLElement>("[data-condition-row]")
+    )
+      .map(rowToNode)
+      .filter((node): node is Record<string, unknown> => node !== null);
+    if (nodes.length === 0) {
+      actionError.show(msg("msgNoConditions"));
+      return null;
+    }
+    const mode = field(new FormData(form), "mode") === "or" ? "or" : "and";
+    return { [mode]: nodes };
+  }
+
+  for (const row of Array.from(
+    document.querySelectorAll<HTMLElement>("[data-condition-row]")
+  )) {
+    row.addEventListener("change", () => syncRow(row));
+    syncRow(row);
+  }
+
+  type Count = { suppressed: boolean; count: number | null };
+  type Member = {
+    id: string;
+    name: string;
+    phoneMasked: string;
+    emailMasked: string | null;
+    level: number;
+  };
+  type Preview = { asOf: string; count: Count };
+
+  function describePreview(preview: Preview): string {
+    const text = preview.count.suppressed
+      ? msg("msgFewerThan5")
+      : msg("msgCount").replace("{count}", String(preview.count.count ?? 0));
+    return `${text} (${msg("msgAsOf")} ${new Date(preview.asOf).toLocaleString()})`;
+  }
+
+  onSubmit("segment-create-form", async ({ form, data, submit }) => {
+    actionError.clear();
+    const rules = collectRules(form);
+    if (rules === null) return;
+    if (submit) submit.disabled = true;
+    const description = field(data, "description").trim();
+    const result = await sendJsonForData<{ id: string }>(
+      "POST",
+      "/api/v1/commerce/segments",
+      {
+        name: field(data, "name").trim(),
+        description: description === "" ? null : description,
+        rules
+      }
+    );
+    if (result.ok && result.data) {
+      window.location.assign(`/admin/commerce-segments?id=${result.data.id}`);
+      return;
+    }
+    actionError.show(failureMessage(result.errorCode));
+    if (submit) submit.disabled = false;
+  });
+
+  onAction("#segment-create-preview", async () => {
+    const form = document.getElementById(
+      "segment-create-form"
+    ) as HTMLFormElement | null;
+    const out = document.getElementById("segment-create-preview-result");
+    if (!form || !out) return;
+    actionError.clear();
+    const rules = collectRules(form);
+    if (rules === null) return;
+    out.textContent = "…";
+    const result = await sendJsonForData<Preview>(
+      "POST",
+      "/api/v1/commerce/segments/preview",
+      { rules }
+    );
+    if (result.ok && result.data) {
+      out.textContent = describePreview(result.data);
+    } else {
+      out.textContent = "";
+      actionError.show(failureMessage(result.errorCode));
+    }
+  });
+
+  onAction("#segment-preview-btn", async () => {
+    const detail = document.getElementById("segment-detail");
+    const out = document.getElementById("segment-preview-result");
+    const id = detail?.dataset.segmentId;
+    if (!id || !out) return;
+    actionError.clear();
+    out.textContent = "…";
+    const result = await sendJsonForData<Preview>(
+      "POST",
+      "/api/v1/commerce/segments/preview",
+      { segmentId: id }
+    );
+    if (result.ok && result.data) {
+      out.textContent = describePreview(result.data);
+    } else {
+      out.textContent = "";
+      actionError.show(failureMessage(result.errorCode));
+    }
+  });
+
+  let nextCursor: string | null = null;
+
+  async function loadMembers(): Promise<void> {
+    const detail = document.getElementById("segment-detail");
+    const body = document.getElementById("segment-members-body");
+    const region = document.getElementById("segment-members-region");
+    const more = document.getElementById("segment-members-more");
+    const id = detail?.dataset.segmentId;
+    if (!id || !body || !region || !more) return;
+    actionError.clear();
+    const query = new URLSearchParams({ limit: "50" });
+    if (nextCursor) query.set("cursor", nextCursor);
+    const response = await fetch(
+      `/api/v1/commerce/segments/${id}/members?${query.toString()}`,
+      { credentials: "same-origin" }
+    );
+    const payload = (await response.json().catch(() => null)) as {
+      success?: boolean;
+      data?: { items: Member[]; nextCursor: string | null };
+      error?: { code?: string };
+    } | null;
+    if (!response.ok || payload?.success !== true || !payload.data) {
+      actionError.show(failureMessage(payload?.error?.code ?? null));
+      return;
+    }
+    region.hidden = false;
+    if (payload.data.items.length === 0 && body.childElementCount === 0) {
+      const row = document.createElement("tr");
+      const cell = document.createElement("td");
+      cell.colSpan = 4;
+      cell.textContent = msg("msgNoMembers");
+      row.appendChild(cell);
+      body.appendChild(row);
+    }
+    for (const member of payload.data.items) {
+      const row = document.createElement("tr");
+      for (const text of [
+        member.name,
+        member.phoneMasked,
+        member.emailMasked ?? "—",
+        String(member.level)
+      ]) {
+        const cell = document.createElement("td");
+        cell.textContent = text;
+        row.appendChild(cell);
+      }
+      body.appendChild(row);
+    }
+    nextCursor = payload.data.nextCursor;
+    more.hidden = nextCursor === null;
+  }
+
+  onAction("#segment-members-btn", async () => {
+    const body = document.getElementById("segment-members-body");
+    if (body) body.replaceChildren();
+    nextCursor = null;
+    await loadMembers();
+  });
+  onAction("#segment-members-more", loadMembers);
+
+  onSubmit("segment-edit-form", async ({ data, submit }) => {
+    actionError.clear();
+    const detail = document.getElementById("segment-detail");
+    const id = detail?.dataset.segmentId;
+    const baseVersion = Number(detail?.dataset.latestVersion ?? "0");
+    if (!id) return;
+    let rules: unknown;
+    try {
+      rules = JSON.parse(field(data, "rulesJson"));
+    } catch {
+      actionError.show(msg("msgBadJson"));
+      return;
+    }
+    if (submit) submit.disabled = true;
+    const result = await sendJson("PATCH", `/api/v1/commerce/segments/${id}`, {
+      baseVersion,
+      name: field(data, "name").trim(),
+      rules
+    });
+    if (result.ok) {
+      window.location.reload();
+      return;
+    }
+    actionError.show(failureMessage(result.errorCode));
+    if (submit) submit.disabled = false;
+  });
+
+  onAction("#segment-delete-btn", async (button) => {
+    const detail = document.getElementById("segment-detail");
+    const id = detail?.dataset.segmentId;
+    if (!id) return;
+    const confirmed = await confirmFromTrigger(button);
+    if (!confirmed) return;
+    actionError.clear();
+    const result = await sendJson("DELETE", `/api/v1/commerce/segments/${id}`);
+    if (result.ok) {
+      window.location.assign("/admin/commerce-segments");
+      return;
+    }
+    actionError.show(failureMessage(result.errorCode));
+  });
+</script>

@@ -11473,3 +11473,193 @@ msgstr "Setiap baris harus berupa SKU, boleh diikuti x dan jumlah."
 
 msgid "One component per line: SKU x quantity. A bundle has no stock of its own; it is sold as one line and its components' stock moves."
 msgstr "Satu komponen per baris: SKU x jumlah. Paket tidak punya stok sendiri; ia dijual sebagai satu baris dan stok komponennya yang bergerak."
+
+msgid "{count} segment"
+msgid_plural "{count} segments"
+msgstr[0] "{count} segmen"
+
+msgid "Price level"
+msgstr "Level harga"
+
+msgid "Has an account"
+msgstr "Memiliki akun"
+
+msgid "Has an e-mail address"
+msgstr "Memiliki alamat e-mail"
+
+msgid "Customer since"
+msgstr "Pelanggan sejak"
+
+msgid "Number of paid orders"
+msgstr "Jumlah pesanan lunas"
+
+msgid "Paid spend"
+msgstr "Total belanja lunas"
+
+msgid "Last paid order"
+msgstr "Pesanan lunas terakhir"
+
+msgid "First paid order"
+msgstr "Pesanan lunas pertama"
+
+msgid "Loyalty points balance"
+msgstr "Saldo poin loyalitas"
+
+msgid "is"
+msgstr "adalah"
+
+msgid "is one of (comma separated)"
+msgstr "salah satu dari (pisahkan dengan koma)"
+
+msgid "at least"
+msgstr "minimal"
+
+msgid "more than"
+msgstr "lebih dari"
+
+msgid "at most"
+msgstr "maksimal"
+
+msgid "less than"
+msgstr "kurang dari"
+
+msgid "is before"
+msgstr "sebelum"
+
+msgid "is after"
+msgstr "setelah"
+
+msgid "never happened"
+msgstr "tidak pernah terjadi"
+
+msgid "Customer segments"
+msgstr "Segmen pelanggan"
+
+msgid "Group customers by rules you can save, version and count - without copying any customer data."
+msgstr "Kelompokkan pelanggan dengan aturan yang dapat disimpan, diberi versi, dan dihitung - tanpa menyalin data pelanggan."
+
+msgid "You do not have permission to view customer segments."
+msgstr "Anda tidak memiliki izin untuk melihat segmen pelanggan."
+
+msgid "Customer segments could not be loaded right now. Please try again later."
+msgstr "Segmen pelanggan tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Customer segments are turned off for this store."
+msgstr "Segmen pelanggan dimatikan untuk toko ini."
+
+msgid "The rules are not valid. Check the highlighted condition."
+msgstr "Aturan tidak valid. Periksa kondisi yang ditandai."
+
+msgid "The advanced rules are not valid JSON."
+msgstr "Aturan lanjutan bukan JSON yang valid."
+
+msgid "Add at least one condition."
+msgstr "Tambahkan minimal satu kondisi."
+
+msgid "A segment with that name already exists."
+msgstr "Segmen dengan nama itu sudah ada."
+
+msgid "This segment changed since you opened it. Reload the page and apply your edit again."
+msgstr "Segmen ini berubah sejak Anda membukanya. Muat ulang halaman lalu terapkan kembali perubahan Anda."
+
+msgid "A retired segment cannot be edited."
+msgstr "Segmen yang sudah dipensiunkan tidak dapat diubah."
+
+msgid "Too many segment evaluations are running. Try again in a moment."
+msgstr "Terlalu banyak evaluasi segmen sedang berjalan. Coba lagi sebentar lagi."
+
+msgid "This segment is too expensive to evaluate. Use fewer conditions or shorter windows."
+msgstr "Segmen ini terlalu berat untuk dievaluasi. Gunakan lebih sedikit kondisi atau jendela waktu yang lebih pendek."
+
+msgid "Too many previews. Wait a moment and try again."
+msgstr "Terlalu banyak pratinjau. Tunggu sebentar lalu coba lagi."
+
+msgid "Fewer than 5 customers match."
+msgstr "Kurang dari 5 pelanggan yang cocok."
+
+msgid "{count} customers match."
+msgstr "{count} pelanggan cocok."
+
+msgid "As of"
+msgstr "Per"
+
+msgid "No customers match."
+msgstr "Tidak ada pelanggan yang cocok."
+
+msgid "New segment"
+msgstr "Segmen baru"
+
+msgid "A customer is included when"
+msgstr "Seorang pelanggan masuk jika"
+
+msgid "all the conditions are true"
+msgstr "semua kondisi terpenuhi"
+
+msgid "any of the conditions is true"
+msgstr "salah satu kondisi terpenuhi"
+
+msgid "Conditions"
+msgstr "Kondisi"
+
+msgid "Dates are YYYY-MM-DD, or a whole number of days ago. Money is a plain number such as 150000.00."
+msgstr "Tanggal berformat YYYY-MM-DD, atau bilangan bulat hari yang lalu. Uang berupa angka biasa seperti 150000.00."
+
+msgid "Condition field"
+msgstr "Bidang kondisi"
+
+msgid "(unused)"
+msgstr "(tidak dipakai)"
+
+msgid "Condition operator"
+msgstr "Operator kondisi"
+
+msgid "Condition value"
+msgstr "Nilai kondisi"
+
+msgid "Window in days (orders and spend only)"
+msgstr "Jendela dalam hari (hanya untuk pesanan dan belanja)"
+
+msgid "days"
+msgstr "hari"
+
+msgid "Advanced: write the rules as JSON"
+msgstr "Lanjutan: tulis aturan sebagai JSON"
+
+msgid "Rules (JSON)"
+msgstr "Aturan (JSON)"
+
+msgid "Save segment"
+msgstr "Simpan segmen"
+
+msgid "Preview count"
+msgstr "Pratinjau jumlah"
+
+msgid "No segments yet"
+msgstr "Belum ada segmen"
+
+msgid "Define one above to get started."
+msgstr "Buat satu di atas untuk memulai."
+
+msgid "Rules (version {version})"
+msgstr "Aturan (versi {version})"
+
+msgid "Show customers"
+msgstr "Tampilkan pelanggan"
+
+msgid "Customers in this segment"
+msgstr "Pelanggan dalam segmen ini"
+
+msgid "Show more"
+msgstr "Tampilkan lebih banyak"
+
+msgid "Rules (JSON) - saving changed rules adds a new version"
+msgstr "Aturan (JSON) - menyimpan aturan yang berubah menambah versi baru"
+
+msgid "Retire this segment?"
+msgstr "Pensiunkan segmen ini?"
+
+msgid "The segment can no longer be edited, but its versions are kept so past campaigns stay explainable."
+msgstr "Segmen tidak dapat diubah lagi, tetapi versinya disimpan agar kampanye lampau tetap dapat dijelaskan."
+
+msgid "Retire segment"
+msgstr "Pensiunkan segmen"
