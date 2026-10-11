@@ -174,15 +174,17 @@ None of the following exists. They are the tests this matrix implies, in the sha
 5. An override test: no permission, no step-up, stale step-up, missing reason, `final_refund` above `amount_paid`, and a replay all refuse or return the same row; success writes exactly one critical audit event [C-40].
 6. A regression that a cashier and a scheduler cannot reach the override, and that holding `commerce.refunds_offline.approve` alone does not allow it [C-11, C-35, C-40].
 
-## 10. Open points for the adapter ADR
+## 10. Open points: resolved by the adapter ADR
 
-Recorded, not decided, because each needs a code-level check that a docs-only change cannot make:
+**Resolved by [ADR-0045](adr/0045-booking-commerce-adapter.md) (11 October 2026).** No permission is registered by this page; the answers below are applied by the implementation issues.
 
-1. **O-1. Business scope on an offering.** Whether a Booking offering carries a business scope that the scheduler's assignment can be checked against, or whether the scheduler is tenant-wide in v1.
-2. **O-2. Actor of a customer-initiated refund leg.** A customer's cancel executes legs that the existing returns route gates on `commerce.refunds.create` and `commerce.payments.revoke` for a staff caller. The proposal is a system actor under the decision row's authority; the adapter ADR must confirm that this does not weaken the existing routes' checks and that it appears in the audit log as a system actor.
-3. **O-3. Step-up wiring.** Where the step-up check sits in a commerce handler, its TTL for this action, and the user-facing challenge (the admin UI belongs to W8, [#359](https://github.com/ahliweb/awcms-one/issues/359)).
-4. **O-4. Granularity of `commerce.booking_reservation_links.cancel`.** Whether a customer's own cancel needs a staff-visible distinction in the audit (it is recorded through `actor_kind`), and whether staff cancel is a high-risk verb for all cancels or only past a refund threshold (the threat model F3 mentions a tenant threshold).
-5. **O-5. Report keys.** Section 3 cites `commerce.report_returns.read`, `commerce.report_tenders.read` and `commerce.report_loyalty.read`; whether a dedicated booking report family is wanted belongs to the metrics work, not here.
+| #   | Open point                                   | Resolution                                                                                                                                                                                               |
+| --- | -------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| O-1 | Business scope on an offering                | D11: tenant-wide in v1, exactly as scoped as Booking; branch scope follows upstream `awcms` ADR-0128 L5                                                                                                  |
+| O-2 | Actor of a customer-initiated refund leg     | D9: an internal service under a system actor, entered only from the adapter's cancel path; it plans legs and never approves an offline settlement; audit records `system` initiated by `customer`        |
+| O-3 | Step-up wiring                               | D10: a handler-level check after the permission check and before the transaction, through `identity-access`'s step-up evaluation and its platform TTL; no commerce TTL; only the override needs it in v1 |
+| O-4 | Granularity of `...reservation_links.cancel` | D12: one permission, high-risk classification, `actor_kind` distinguishes customer, staff and system; no refund-threshold approval in v1. Owner may revise                                               |
+| O-5 | Report keys                                  | D13: reuse `commerce.report_returns.read`, `commerce.report_tenders.read`, `commerce.report_loyalty.read`; no booking report family from the adapter                                                     |
 
 ## 11. What this document is not
 

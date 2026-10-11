@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](booking-commerce-access-matrix.md)
 
-<!-- i18n-source-hash: sha256:f42c05fd17c642d44ba800dcbfb8fc1ed600b77eabd9e1f35b8435af219a451f -->
+<!-- i18n-source-hash: sha256:a90474c7341d449fd3700c9093fc0d8501261889e2559d2b04a8959ad61f14aa -->
 
 # Adapter booking-commerce — matriks RBAC / ABAC / RLS
 
@@ -176,15 +176,17 @@ Tidak satu pun yang berikut ada. Ini adalah pengujian yang disiratkan matriks in
 5. Pengujian override: tanpa izin, tanpa step-up, step-up basi, tanpa alasan, `final_refund` di atas `amount_paid`, dan pengulangan, semuanya menolak atau mengembalikan baris yang sama; keberhasilan menulis tepat satu peristiwa audit kritis [C-40].
 6. Regresi bahwa kasir dan penjadwal tidak dapat menjangkau override, dan bahwa memegang `commerce.refunds_offline.approve` saja tidak mengizinkannya [C-11, C-35, C-40].
 
-## 10. Poin terbuka untuk ADR adapter
+## 10. Poin terbuka: diselesaikan oleh ADR adapter
 
-Dicatat, tidak diputuskan, karena masing-masing memerlukan pemeriksaan kode yang tidak dapat dilakukan perubahan khusus dokumen:
+**Diselesaikan oleh [ADR-0045](adr/0045-booking-commerce-adapter.id.md) (11 Oktober 2026).** Halaman ini tidak mendaftarkan izin apa pun; jawaban di bawah diterapkan oleh issue implementasi.
 
-1. **O-1. Business scope pada penawaran.** Apakah penawaran Booking membawa business scope yang dapat dicek terhadap penugasan penjadwal, atau penjadwal bersifat tenant-wide di v1.
-2. **O-2. Aktor leg refund yang dimulai pelanggan.** Pembatalan pelanggan mengeksekusi leg yang oleh route retur yang ada dijaga dengan `commerce.refunds.create` dan `commerce.payments.revoke` untuk pemanggil staf. Usulannya adalah aktor sistem di bawah otoritas baris keputusan; ADR adapter harus memastikan hal ini tidak melemahkan pemeriksaan route yang ada dan muncul di log audit sebagai aktor sistem.
-3. **O-3. Pemasangan step-up.** Di mana pemeriksaan step-up berada di handler commerce, TTL-nya untuk aksi ini, dan tantangan yang tampil bagi pengguna (UI admin milik W8, [#359](https://github.com/ahliweb/awcms-one/issues/359)).
-4. **O-4. Granularitas `commerce.booking_reservation_links.cancel`.** Apakah pembatalan oleh pelanggan sendiri memerlukan pembeda yang terlihat staf di audit (tercatat lewat `actor_kind`), dan apakah pembatalan staf adalah kata kerja berisiko tinggi untuk semua pembatalan atau hanya di atas ambang refund (F3 model ancaman menyebut ambang tenant).
-5. **O-5. Kunci laporan.** Bagian 3 mengutip `commerce.report_returns.read`, `commerce.report_tenders.read` dan `commerce.report_loyalty.read`; apakah keluarga laporan booking khusus diinginkan adalah urusan pekerjaan metrik, bukan di sini.
+| #   | Titik terbuka                                 | Penyelesaian                                                                                                                                                                                                        |
+| --- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| O-1 | Lingkup bisnis pada penawaran                 | D11: seluruh tenant di v1, persis selingkup Booking; lingkup cabang mengikuti ADR-0128 L5 `awcms` hulu                                                                                                              |
+| O-2 | Aktor tungkai refund atas inisiatif pelanggan | D9: layanan internal di bawah aktor sistem, dimasuki hanya dari jalur pembatalan adapter; merencanakan tungkai dan tidak pernah menyetujui penyelesaian offline; audit mencatat `system` yang diinisiasi `customer` |
+| O-3 | Pengkabelan step-up                           | D10: pemeriksaan tingkat handler setelah pemeriksaan izin dan sebelum transaksi, lewat evaluasi step-up `identity-access` dan TTL platformnya; tanpa TTL commerce; hanya penimpaan yang membutuhkannya di v1        |
+| O-4 | Granularitas `...reservation_links.cancel`    | D12: satu izin, klasifikasi berisiko tinggi, `actor_kind` membedakan pelanggan, staf, dan sistem; tanpa persetujuan ambang refund di v1. Pemilik dapat merevisi                                                     |
+| O-5 | Kunci laporan                                 | D13: memakai ulang `commerce.report_returns.read`, `commerce.report_tenders.read`, `commerce.report_loyalty.read`; adapter tidak menambah keluarga laporan booking                                                  |
 
 ## 11. Yang bukan dokumen ini
 
