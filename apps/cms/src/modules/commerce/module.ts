@@ -3,6 +3,10 @@ import { DEFAULT_COMMERCE_FEATURES } from "./domain/commerce-features";
 import { DEFAULT_CASH_UP_APPROVAL_THRESHOLD } from "./domain/register";
 import { DEFAULT_EXPENSE_APPROVAL_THRESHOLD } from "./domain/expense";
 import {
+  SEGMENT_DATA_LIFECYCLE,
+  SEGMENT_SUBJECT_DATA
+} from "./domain/segment-lifecycle";
+import {
   EXPENSE_DATA_LIFECYCLE,
   EXPENSE_SUBJECT_DATA
 } from "./domain/expense-lifecycle";
@@ -129,7 +133,13 @@ import {
   COMMERCE_REPORT_CASH_UP_PERMISSIONS,
   COMMERCE_REPORT_EXPENSE_PERMISSIONS,
   COMMERCE_REPORT_LOYALTY_PERMISSIONS,
-  COMMERCE_REPORT_STORED_VALUE_PERMISSIONS
+  COMMERCE_REPORT_STORED_VALUE_PERMISSIONS,
+  COMMERCE_SEGMENTS_ACTIVITY_CODE,
+  COMMERCE_SEGMENT_PERMISSIONS,
+  COMMERCE_SEGMENT_PREVIEWS_ACTIVITY_CODE,
+  COMMERCE_SEGMENT_PREVIEW_PERMISSIONS,
+  COMMERCE_SEGMENT_MEMBERS_ACTIVITY_CODE,
+  COMMERCE_SEGMENT_MEMBER_PERMISSIONS
 } from "./domain/commerce-permissions";
 import {
   COMMERCE_FLASH_SALE_ENDED_EVENT_TYPE,
@@ -1230,6 +1240,16 @@ export const commerceModule = defineModule({
       order: 27,
       requiredPermission: "commerce.barcodes.read",
       requiredFeature: { moduleKey: "commerce", feature: "barcode" }
+    },
+    // Issue #360 (ADR-0042) - CRM segments. Gated on the segment-read
+    // permission and hidden the moment the tenant turns `features.segments`
+    // off (it defaults OFF).
+    {
+      labelKey: "admin.layout.nav_commerce_segments",
+      path: "/admin/commerce-segments",
+      order: 28,
+      requiredPermission: "commerce.segments.read",
+      requiredFeature: { moduleKey: "commerce", feature: "segments" }
     }
   ],
   /**
@@ -3055,6 +3075,9 @@ export const commerceModule = defineModule({
     // Issue #294 (ADR-0031) - the two expense tables; see
     // `domain/expense-lifecycle.ts`.
     ...EXPENSE_DATA_LIFECYCLE,
+    // Issue #360 (ADR-0042) - the two CRM segment tables; see
+    // `domain/segment-lifecycle.ts`.
+    ...SEGMENT_DATA_LIFECYCLE,
     // Issue #287 (ADR-0033) - the four returns / refunds tables; see
     // `domain/returns-lifecycle.ts`.
     ...RETURNS_DATA_LIFECYCLE,
@@ -3926,6 +3949,8 @@ export const commerceModule = defineModule({
     ...DOCUMENT_SUBJECT_DATA,
     // Issue #294 (ADR-0031) - see `domain/expense-lifecycle.ts`.
     ...EXPENSE_SUBJECT_DATA,
+    // Issue #360 (ADR-0042) - see `domain/segment-lifecycle.ts`.
+    ...SEGMENT_SUBJECT_DATA,
     // Issue #287 (ADR-0033) - see `domain/returns-lifecycle.ts`.
     ...RETURNS_SUBJECT_DATA,
     {
@@ -4730,6 +4755,44 @@ export const commerceModule = defineModule({
       activityCode: COMMERCE_EXPENSE_RECEIPTS_ACTIVITY_CODE,
       action: "create",
       description: "Attach a private receipt to an expense (Issue #294)"
+    },
+    {
+      activityCode: COMMERCE_SEGMENTS_ACTIVITY_CODE,
+      action: "read",
+      description: "List and read CRM segments and their versions (Issue #360)"
+    },
+    {
+      activityCode: COMMERCE_SEGMENTS_ACTIVITY_CODE,
+      action: "create",
+      description: "Define a CRM segment (Issue #360)"
+    },
+    {
+      activityCode: COMMERCE_SEGMENTS_ACTIVITY_CODE,
+      action: "update",
+      description:
+        "Rename a CRM segment or add a version of its rules (Issue #360)"
+    },
+    {
+      activityCode: COMMERCE_SEGMENTS_ACTIVITY_CODE,
+      action: "delete",
+      description: "Retire a CRM segment, keeping its versions (Issue #360)"
+    },
+    {
+      activityCode: COMMERCE_SEGMENT_PREVIEWS_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "Preview how many customers a segment rule matches (Issue #360)"
+    },
+    {
+      activityCode: COMMERCE_SEGMENT_MEMBERS_ACTIVITY_CODE,
+      action: "read",
+      description: "List the customers a segment version matches (Issue #360)"
+    },
+    {
+      activityCode: COMMERCE_SEGMENT_MEMBERS_ACTIVITY_CODE,
+      action: "export",
+      description:
+        "Export the customers a segment version matches as CSV (Issue #360)"
     }
   ]
 });
@@ -4778,7 +4841,10 @@ export {
   COMMERCE_EXPENSE_REVERSAL_PERMISSIONS,
   COMMERCE_EXPENSE_RECEIPT_PERMISSIONS,
   COMMERCE_DOCUMENT_DELIVERY_PERMISSIONS,
-  COMMERCE_DOCUMENT_DELIVERY_OVERRIDE_PERMISSIONS
+  COMMERCE_DOCUMENT_DELIVERY_OVERRIDE_PERMISSIONS,
+  COMMERCE_SEGMENT_PERMISSIONS,
+  COMMERCE_SEGMENT_PREVIEW_PERMISSIONS,
+  COMMERCE_SEGMENT_MEMBER_PERMISSIONS
 };
 export {
   COMMERCE_LOYALTY_PERMISSIONS,

@@ -777,6 +777,12 @@ export const RETIRED_TENANT_TABLE_PRIVILEGES: Record<string, string[]> = {
   // frozen by sql/990's guard trigger rather than by privilege.
   awcms_commerce_expense_categories: ["SELECT", "INSERT", "UPDATE"],
   awcms_commerce_expenses: ["SELECT", "INSERT", "UPDATE"],
+  // Issue #360 / `sql/1001`. The CRM segment tables - NOT retired. A segment
+  // head is renamed / retired (UPDATE) but never deleted by the app; a version
+  // is APPEND-ONLY (no UPDATE, no DELETE: an edit is a new version, and a
+  // version a past campaign or earn recorded must stay explainable).
+  awcms_commerce_segments: ["SELECT", "INSERT", "UPDATE"],
+  awcms_commerce_segment_versions: ["SELECT", "INSERT"],
   // Issue #295 / `sql/965`. Append-only delivery requests: written once by the
   // sender role, never rewritten (trigger) and never deleted by it.
   awcms_commerce_document_deliveries: ["SELECT", "INSERT"],
@@ -1703,6 +1709,13 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // tables are unreachable by construction (`deleted_at` is never set).
   awcms_commerce_expense_categories: ["SELECT", "DELETE"],
   awcms_commerce_expenses: ["SELECT", "DELETE"],
+  // Issue #360 (`sql/1001`/`sql/1004`): the two segment tables'
+  // `dataLifecycle` descriptors (`commerce/domain/segment-lifecycle.ts`) are
+  // `executionMode: "generic"` with `hard_delete`; `awcms_app` has had DELETE
+  // revoked and the cursor (`deleted_at`) is never set, so the purge predicate
+  // cannot match a referenced version.
+  awcms_commerce_segments: ["SELECT", "DELETE"],
+  awcms_commerce_segment_versions: ["SELECT", "DELETE"],
   // but never actually matches a row in practice.
   awcms_commerce_customer_accounts: ["SELECT", "DELETE"],
   // Issue #267 (IRMbyDUS, sql/936/937): same shape as

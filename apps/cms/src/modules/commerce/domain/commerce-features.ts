@@ -46,7 +46,8 @@ export type CommerceFeatureKey =
   | "expenses"
   | "documentDelivery"
   | "barcode"
-  | "returns";
+  | "returns"
+  | "segments";
 
 export type CommerceFeatures = Readonly<Record<CommerceFeatureKey, boolean>>;
 
@@ -106,7 +107,12 @@ export const DEFAULT_COMMERCE_FEATURES: CommerceFeatures = {
   // stock and money back into customers' hands: new behaviour with a security
   // posture of its own (separately granted permissions, a provider call), so a
   // tenant chooses it. A tenant that never opens "Features" sees no change.
-  returns: false
+  returns: false,
+  // Issue #360 (ADR-0042) - OFF. CRM segments are a new surface that turns a
+  // rule into a list of customers (disclosure and evaluation-cost risks of its
+  // own, threat model F8), so a tenant chooses it. A tenant that never opens
+  // "Features" sees no change: no route answers, no sidebar entry shows.
+  segments: false
 };
 
 const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
@@ -122,7 +128,8 @@ const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
   "expenses",
   "documentDelivery",
   "barcode",
-  "returns"
+  "returns",
+  "segments"
 ];
 
 function isBoolean(value: unknown): value is boolean {
