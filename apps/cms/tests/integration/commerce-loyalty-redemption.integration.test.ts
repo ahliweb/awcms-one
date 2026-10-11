@@ -1147,7 +1147,9 @@ suite("loyalty redemption integration (Issue #363)", () => {
         minOrderAmount: "0.00",
         maxPointsPerOrder: null,
         expiryDays: 5,
-        notes: null
+        notes: null,
+        eligibilitySegmentId: null,
+        eligibilitySegmentVersion: null
       });
       await activateLoyaltyProgram(
         tx,
@@ -1314,7 +1316,9 @@ suite("loyalty redemption integration (Issue #363)", () => {
         minOrderAmount: "0.00",
         maxPointsPerOrder: null,
         expiryDays: null,
-        notes: null
+        notes: null,
+        eligibilitySegmentId: null,
+        eligibilitySegmentVersion: null
       });
       await activateLoyaltyProgram(
         tx,
