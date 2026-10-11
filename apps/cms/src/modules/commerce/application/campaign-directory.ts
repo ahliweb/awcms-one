@@ -356,7 +356,11 @@ export async function resolveCampaignAudiencePage(
 ): Promise<AudienceRow[]> {
   if (audience.hasAccount === false) return [];
 
-  const levels = audience.levels.length > 0 ? audience.levels : null;
+  // Bound as a typed text array and cast; a bare JS array mis-binds ("insufficient data left in message").
+  const levels =
+    audience.levels.length > 0
+      ? tx.array(audience.levels.map(String), "text")
+      : null;
   const lastOrderSince = audience.lastOrderSince;
   const channelIsEmail = channel === "email";
 
@@ -370,7 +374,7 @@ export async function resolveCampaignAudiencePage(
       AND a.deleted_at IS NULL
       AND a.status = 'active'
       AND a.marketing_consent_at IS NOT NULL
-      AND (${levels}::int[] IS NULL OR c.level = ANY(${levels}::int[]))
+      AND (${levels}::text[] IS NULL OR c.level = ANY(${levels}::text[]::int[]))
       AND (
         ${lastOrderSince}::timestamptz IS NULL
         OR EXISTS (
@@ -404,7 +408,11 @@ export async function countCampaignAudience(
 ): Promise<number> {
   if (audience.hasAccount === false) return 0;
 
-  const levels = audience.levels.length > 0 ? audience.levels : null;
+  // Bound as a typed text array and cast; a bare JS array mis-binds ("insufficient data left in message").
+  const levels =
+    audience.levels.length > 0
+      ? tx.array(audience.levels.map(String), "text")
+      : null;
   const lastOrderSince = audience.lastOrderSince;
   const channelIsEmail = channel === "email";
 
@@ -418,7 +426,7 @@ export async function countCampaignAudience(
       AND a.deleted_at IS NULL
       AND a.status = 'active'
       AND a.marketing_consent_at IS NOT NULL
-      AND (${levels}::int[] IS NULL OR c.level = ANY(${levels}::int[]))
+      AND (${levels}::text[] IS NULL OR c.level = ANY(${levels}::text[]::int[]))
       AND (
         ${lastOrderSince}::timestamptz IS NULL
         OR EXISTS (

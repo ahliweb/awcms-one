@@ -8,7 +8,7 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 29    |
-| Migrations                          | 274   |
+| Migrations                          | 275   |
 | `awcms_*` tables                    | 267   |
 | Tables with `FORCE` RLS             | 249   |
 | RLS-free tables (global, by design) | 18    |
@@ -326,8 +326,9 @@
 | 270 | `sql/1010_awcms_commerce_loyalty_redemption_schema.sql`                     |
 | 271 | `sql/1011_awcms_commerce_loyalty_redemption_ledger.sql`                     |
 | 272 | `sql/1012_awcms_commerce_loyalty_redemption_worker_grants.sql`              |
-| 273 | `sql/1020_awcms_commerce_retention_projection_schema.sql`                   |
-| 274 | `sql/1021_awcms_commerce_retention_projection_permissions.sql`              |
+| 273 | `sql/1013_awcms_commerce_campaign_dispatch_worker_grants.sql`               |
+| 274 | `sql/1020_awcms_commerce_retention_projection_schema.sql`                   |
+| 275 | `sql/1021_awcms_commerce_retention_projection_permissions.sql`              |
 
 ### Tables & Row-Level Security
 

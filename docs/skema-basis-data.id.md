@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:d623e38214244f7330059022a23fe14c21387a08d2c1fb78086323a533619dd6 -->
+<!-- i18n-source-hash: sha256:1b4b48c0e1df0537a8ff6f5e4cec7131e11d4c5f9a8b03c02d9c8d6faf4adb8a -->
 
 # Skema basis data
 
@@ -173,6 +173,8 @@ Issue #114, D9 kontrak #106 — pengiriman massal e-mail/WhatsApp bergerbang con
 | `awcms_commerce_campaign_recipients`                                                   | `campaign_id NOT NULL` (FK), `customer_id NOT NULL` (FK), `address_masked NOT NULL` (alamat e-mail/telepon tersamar SAJA, tidak pernah alamat mentah), `status NOT NULL` (`CHECK IN ('queued','enqueued','skipped')`, default `queued`), `outbox_ref` (nullable), `UNIQUE (campaign_id, customer_id)`                                                                                                                                                                                                                       | Satu baris per penerima yang terselesaikan — buku besar keteresumeannya/audit yang diandalkan pengiriman parsial. Constraint `UNIQUE` plus `ON CONFLICT DO NOTHING` saat penyisipan inilah yang membuat pemulihan-dari-crash dispatcher aman diulang; `NOT EXISTS` milik `resolveCampaignAudiencePage` sendiri terhadap tabel ini yang membuat cursor lanjutannya benar tanpa kolom cursor terpisah pada baris kampanye |
 
 Kedua tabel baru: RLS `ENABLE`+`FORCE`, kebijakan isolasi-tenant, indeks FK. Deskriptor `dataLifecycle` milik `commerce.campaigns` memakai kursor `deleted_at` yang biasa; `commerce.campaign_recipients`, karena append-only per kampanye, memakai `created_at` — bentuk yang sama dengan `commerce.messages` di atas. Seed katalog permission: `sql/930` (`commerce.campaigns.{read,update,send}`).
+
+`sql/1013` (isu #403) membuat dispatcher dapat berjalan sebagai role `awcms_worker` yang least-privilege, seperti di produksi: `INSERT` pada `awcms_email_templates` (seed lazy per-tenant untuk templat `derived.commerce_campaign`), `awcms_email_messages` (outbox e-mail) dan `awcms_commerce_whatsapp_messages` (outbox WhatsApp). Tidak ada yang lain ditambahkan; `SELECT` sudah dimiliki pada tiap tabel.
 
 ## Payment gateway: sesi, buku besar event, token webhook-endpoint (`sql/926`)
 
