@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](booking-ux-flows.md)
 
-<!-- i18n-source-hash: sha256:9a6bf1c56689a4597a38976298a5358c2a4eddce8ee50d32c683f194d75b2e4d -->
+<!-- i18n-source-hash: sha256:1123ab82a5eaf1f63a4269abed60dd97c0199105dae0064f7f6be449ab9f34b8 -->
 
 <!-- i18n-source-hash: sha256:0 -->
 
@@ -237,7 +237,7 @@ Permukaan ini ada di POS (sesi register dan cash-up dari ADR-0028 tidak berubah,
 1. **Cari reservasi**: pindai atau ketik referensi pemesanan, atau cari menurut nama/telepon tamu dan tanggal kedatangan. Pencarian hanya menampilkan reservasi tenant sendiri (C-01); referensi yang tidak ditemukan menampilkan "Reservasi tidak ditemukan" tanpa petunjuk tentang tenant lain.
 2. **Buka baris layanan**: POS menampilkan kartu reservasi: tamu, unit/kamar, tanggal dan malam, pill status, dan tiga baris uang (total, sudah dibayar, **sisa pembayaran**), dengan kosakata identik bagian 3.1. Kartu menaut ke pesanan.
 3. **Terima sisa pembayaran**: kasir menerima sisa lewat jalur tender eksplisit yang ada (ADR-0025 D8), dengan tender apa pun dan tender terpisah; sisa adalah angka server dan entri tender menolak jumlah di atasnya. Penukaran poin dan deposit jaminan yang dikembalikan tidak ditawarkan (Q8 dan Q3).
-4. **Check-in**: aktif bila reservasi `confirmed`. Apakah check-in dengan sisa belum dibayar diizinkan adalah **kebijakan tenant**, keputusan yang belum dicatat pemilik; spesifikasi ini menunjukkan kedua varian dalam satu kontrol: bila kebijakan mewajibkan sisa lunas dulu, "Check-in" nonaktif dengan alasan terlihat "Lunasi sisa pembayaran dulu" di sampingnya; bila tidak, check-in aktif dan sisa tetap terlihat. Menunggu keputusan; lihat bagian 10.
+4. **Check-in**: aktif bila reservasi `confirmed`. Apakah check-in dengan sisa belum dibayar diizinkan adalah **kebijakan tenant**, keputusan yang belum dicatat pemilik; spesifikasi ini menunjukkan kedua varian dalam satu kontrol: bila kebijakan mewajibkan sisa lunas dulu, "Check-in" nonaktif dengan alasan terlihat "Lunasi sisa pembayaran dulu" di sampingnya; bila tidak, check-in aktif dan sisa tetap terlihat. Diputuskan oleh [ADR-0045](adr/0045-booking-commerce-adapter.id.md) D19: pengaturan tenant `checkin_requires_settlement`, bawaan `false` (diizinkan), pemilik dapat merevisi.
 5. **Check-out**: `checked_in` menjadi `completed` lewat kontrol yang sama. Penginapan yang dipersingkat saat check-out adalah pengembalian parsial baris layanan (PRD bagian 3; ADR-0033 D2), dimulai dari pesanan, tidak pernah mengedit pesanan final.
 6. **Kuitansi**: kuitansi/faktur bernomor adalah dokumen pesanan lewat siklus dokumen yang ada (ADR-0029); layar menawarkan cetak dan kirim.
 
@@ -327,7 +327,7 @@ Kontrol C-25 sampai C-41 berasal dari adendum model ancaman ([#354](https://gith
 
 ## 10. Keputusan yang belum dicatat (asumsi untuk dikonfirmasi)
 
-1. **Check-in dengan sisa belum dibayar**: kebijakan tenant (blokir atau izinkan) bukan jawaban pemilik; bagian 5.1 menunjukkan kedua varian dan pemilik fase 1 memutuskan sebelum build.
+1. **Check-in dengan sisa belum dibayar**: diselesaikan oleh [ADR-0045](adr/0045-booking-commerce-adapter.id.md) D19. Pengaturan tenant `checkin_requires_settlement` (bawaan `false`: diizinkan, sisa tetap terlihat) ditegakkan server dengan `BALANCE_NOT_SETTLED`; bagian 5.1 menunjukkan kedua varian dan pemilik dapat merevisi bawaannya.
 2. **Panjang hold dan aturan perpanjangan**: hitung mundur menampilkan apa pun yang ditetapkan server; angka 15 menit dalam teks hanya ilustrasi, dan apakah satu perpanjangan diizinkan adalah keputusan Booking/adapter.
 3. **Stepper tamu/unit dan menginap multi-unit**: penginapan berada pada satu unit di v1 (ADR-0135 upstream `awcms` bagian 4); pemesanan multi-kamar tidak dispesifikasikan di sini.
 4. **Nama rute** adalah usulan; implementer fase 1 menetapkannya dan memperbarui [`routing.md`](routing.md) serta matriks profil dalam perubahan yang sama.

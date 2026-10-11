@@ -278,15 +278,20 @@ This follows from three accepted decisions: O12 (commerce stays the customer aut
 - The upstream rows are linked by identifiers only, so a Booking export and a commerce export cannot be re-joined without both tenants' RLS contexts.
 - `awcms_worker` needs `SELECT, DELETE` on the history tables (decisions, policy versions) for the lifecycle engine and nothing else; no worker needs the override columns.
 
-## 7. Open points the adapter ADR must settle
+## 7. Open points: resolved by the adapter ADR
 
-These are recorded, not decided, because each needs a code-level or upstream check that docs cannot do.
+**Resolved by [ADR-0045](adr/0045-booking-commerce-adapter.md) (11 October 2026).** This page stays a proposal; the answers below change the proposal as stated and are applied by the implementation issues, not here.
 
-1. **Refund legs and `awcms_commerce_refunds.return_id NOT NULL`.** Today every refund leg belongs to a `return` ("goods accepted back", ADR-0033), and `refund_total = goods_gross − discount_share + shipping_refund + tax_refund`. A booking cancellation returns no goods. The decision table references a `return_id`, which assumes the adapter creates a `return` of kind `return` whose single "line" is the service order line, with `goods_gross` equal to the final refund. If the owner or the adapter ADR prefers a distinct kind (for example `cancellation`) the `awcms_commerce_returns` kind CHECK widens instead; this is the main schema-level open point.
-2. **Reconciling `allow_dp` with the deposit policy row** (section 4.3) and where the admin field lives.
-3. **Whether Booking's offering table exposes `UNIQUE (tenant_id, id)`** for the composite foreign keys (section 4.1, 4.2), and the final names after the Booking migrations land (the upstream pack says names may be adjusted by migration review).
-4. **The reschedule difference vehicle** (supplementary order versus new line), Q4.
-5. **Migration order.** All tables depend on the upstream Booking tables being migrated, which they are by number (upstream owns `001`–`899`), and on each other as drawn; allocation follows ADR-0037 (a gap number may depend only on lower-numbered objects; otherwise continue from `1001`).
+| #   | Open point                              | Resolution                                                                                                                                                                               |
+| --- | --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | Refund legs and `return_id NOT NULL`    | D4: a new returns `kind = 'cancellation'` (the kind CHECK widens); one line on the service item; no restock path                                                                         |
+| 2   | `allow_dp` versus the deposit policy    | D5: the policy row is the only authority; `allow_dp` is a mirror kept in step by the same write; legacy rows are backfilled once                                                         |
+| 3   | Booking's composite unique keys         | D2: composite FK is kept; verifying `UNIQUE (tenant_id, id)` in the migrated Booking schema is a precondition of #378                                                                    |
+| 4   | The reschedule difference vehicle       | D7: a supplementary order for a positive difference; v1 admits only equal-duration reschedules (difference zero); a `role` column on the link comes with the follow-up. Owner may revise |
+| 5   | Migration order                         | Unchanged: dependency order, numbers per ADR-0037 from `1001`, allocated at implementation                                                                                               |
+| 6   | "No active policy" refund default (4.4) | D6: refund `0` with a setup warning and a quote. Owner may revise                                                                                                                        |
+| 7   | One product to one offering (4.1)       | D1: 1:1 while active, both partial unique indexes stay                                                                                                                                   |
+| 8   | External customer reference (5.1)       | D3: Booking's `external_customer_ref` stays unset                                                                                                                                        |
 
 ## 8. What this document is not
 

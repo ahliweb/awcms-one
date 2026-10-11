@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](booking-commerce-adapter-data-model.md)
 
-<!-- i18n-source-hash: sha256:f55b8f16034fc1401033000952bbbad7ffd757a4557b296f3d247c0455a2f3ba -->
+<!-- i18n-source-hash: sha256:ad543774cb202efdbe43dca869ec3a5cf1a0e3417bde94b921e44d5fea7f2d80 -->
 
 # Adapter booking-commerce — usulan ERD dan kamus data
 
@@ -280,15 +280,20 @@ Ini mengikuti tiga keputusan yang diterima: O12 (commerce tetap otoritas pelangg
 - Baris upstream ditautkan hanya lewat pengenal, sehingga ekspor Booking dan ekspor commerce tidak dapat digabung ulang tanpa konteks RLS kedua tenant.
 - `awcms_worker` membutuhkan `SELECT, DELETE` pada tabel riwayat (keputusan, versi kebijakan) untuk mesin siklus data dan tidak lebih; tidak ada worker yang membutuhkan kolom penimpaan.
 
-## 7. Titik terbuka yang harus diselesaikan ADR adapter
+## 7. Titik terbuka: diselesaikan oleh ADR adapter
 
-Dicatat, tidak diputuskan, karena masing-masing membutuhkan pemeriksaan tingkat kode atau upstream yang tidak dapat dilakukan dokumen.
+**Diselesaikan oleh [ADR-0045](adr/0045-booking-commerce-adapter.id.md) (11 Oktober 2026).** Halaman ini tetap usulan; jawaban di bawah mengubah usulan sebagaimana tertulis dan diterapkan oleh issue implementasi, bukan di sini.
 
-1. **Leg refund dan `awcms_commerce_refunds.return_id NOT NULL`.** Saat ini setiap leg refund milik sebuah `return` ("barang diterima kembali", ADR-0033), dan `refund_total = goods_gross − discount_share + shipping_refund + tax_refund`. Pembatalan booking tidak mengembalikan barang. Tabel keputusan merujuk `return_id`, yang mengandaikan adapter membuat `return` berjenis `return` dengan satu "baris" berupa baris pesanan layanan, `goods_gross` sama dengan refund akhir. Bila pemilik atau ADR adapter lebih memilih jenis tersendiri (misalnya `cancellation`), CHECK jenis `awcms_commerce_returns` yang diperlebar; ini titik terbuka tingkat-skema utama.
-2. **Merekonsiliasi `allow_dp` dengan baris kebijakan deposit** (bagian 4.3) dan di mana field admin berada.
-3. **Apakah tabel offering Booking menyediakan `UNIQUE (tenant_id, id)`** untuk foreign key komposit (bagian 4.1, 4.2), dan nama akhir setelah migrasi Booking mendarat (pack upstream menyatakan nama dapat disesuaikan review migrasi).
-4. **Kendaraan selisih reschedule** (pesanan tambahan versus baris baru), Q4.
-5. **Urutan migrasi.** Semua tabel bergantung pada tabel Booking upstream yang sudah termigrasi, yang terjadi menurut nomor (upstream memiliki `001`–`899`), dan satu sama lain seperti digambar; alokasi mengikuti ADR-0037 (nomor celah hanya boleh bergantung pada objek bernomor lebih rendah; selain itu lanjut dari `1001`).
+| #   | Titik terbuka                               | Penyelesaian                                                                                                                                                                           |
+| --- | ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | Tungkai refund dan `return_id NOT NULL`     | D4: `kind = 'cancellation'` baru pada retur (CHECK jenis dilebarkan); satu baris pada item layanan; tanpa jalur restok                                                                 |
+| 2   | `allow_dp` versus kebijakan deposit         | D5: baris kebijakan satu-satunya otoritas; `allow_dp` cermin yang dijaga sejajar oleh penulisan yang sama; baris lama di-backfill sekali                                               |
+| 3   | Kunci unik komposit Booking                 | D2: FK komposit dipertahankan; memverifikasi `UNIQUE (tenant_id, id)` pada skema Booking yang termigrasi adalah prasyarat #378                                                         |
+| 4   | Wahana selisih reschedule                   | D7: pesanan tambahan untuk selisih positif; v1 hanya menerima reschedule berdurasi sama (selisih nol); kolom `role` pada tautan menyusul bersama tindak lanjut. Pemilik dapat merevisi |
+| 5   | Urutan migrasi                              | Tidak berubah: urutan ketergantungan, nomor menurut ADR-0037 mulai `1001`, dialokasikan saat implementasi                                                                              |
+| 6   | Bawaan refund "tanpa kebijakan aktif" (4.4) | D6: refund `0` dengan peringatan penyiapan dan kuotasi. Pemilik dapat merevisi                                                                                                         |
+| 7   | Satu produk ke satu penawaran (4.1)         | D1: 1:1 selama aktif, kedua indeks unik parsial tetap                                                                                                                                  |
+| 8   | Referensi pelanggan eksternal (5.1)         | D3: `external_customer_ref` Booking tetap kosong                                                                                                                                       |
 
 ## 8. Yang bukan dokumen ini
 

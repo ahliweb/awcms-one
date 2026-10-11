@@ -233,7 +233,7 @@ The surface lives in the POS (a register session and cash-up from ADR-0028 are u
 1. **Find the reservation**: scan or type a booking reference or search by guest name/phone and arrival date. The search shows only the tenant's own reservations (C-01); a reference not found shows "Reservasi tidak ditemukan" with no hint about other tenants.
 2. **Open the service line**: the POS shows a reservation card: guest, unit/room, dates and nights, status pill, and the three money rows (total, paid so far, **balance due**), identical in vocabulary to section 3.1. The card links the order.
 3. **Collect the balance**: the cashier takes the balance through the existing explicit-tenders path (ADR-0025 D8), with any tender and with split tenders; the balance due is the server's figure and the tender entry rejects an amount above it. Points redemption and a refundable security deposit are not offered (Q8 and Q3).
-4. **Check in**: enabled when the reservation is `confirmed`. Whether check-in with an unpaid balance is allowed is **tenant policy**, a decision the owner has not recorded; this spec shows both variants in one control: if the policy requires the balance first, "Check-in" is disabled with the visible reason "Lunasi sisa pembayaran dulu" next to it; otherwise check-in is enabled and the balance stays visible. Pending decision; see section 10.
+4. **Check in**: enabled when the reservation is `confirmed`. Whether check-in with an unpaid balance is allowed is **tenant policy**, a decision the owner has not recorded; this spec shows both variants in one control: if the policy requires the balance first, "Check-in" is disabled with the visible reason "Lunasi sisa pembayaran dulu" next to it; otherwise check-in is enabled and the balance stays visible. Decided by [ADR-0045](adr/0045-booking-commerce-adapter.md) D19: a tenant setting `checkin_requires_settlement`, default `false` (allowed), owner may revise.
 5. **Check-out**: `checked_in` becomes `completed` through the same control. A stay shortened at check-out is a partial return of the service line (PRD section 3; ADR-0033 D2), started from the order, never an edit of the finalised order.
 6. **Receipt**: the numbered receipt/invoice is the order's document through the existing document lifecycle (ADR-0029); the screen offers print and send.
 
@@ -323,7 +323,7 @@ Controls C-25 to C-41 come from the threat-model addendum ([#354](https://github
 
 ## 10. Decisions not recorded (assumptions to confirm)
 
-1. **Check-in with an unpaid balance**: tenant policy (block or allow) is not an owner answer; section 5.1 shows both variants and the phase-1 owner decides before build.
+1. **Check-in with an unpaid balance**: resolved by [ADR-0045](adr/0045-booking-commerce-adapter.md) D19. A tenant setting `checkin_requires_settlement` (default `false`: allowed, balance stays visible) is enforced by the server with `BALANCE_NOT_SETTLED`; section 5.1 shows both variants and the owner may revise the default.
 2. **Hold length and the extension rule**: the countdown shows whatever the server sets; the 15-minute figure in copy is illustrative, and whether one extension is allowed is a Booking/adapter decision.
 3. **Guests/units stepper and multi-unit stays**: a stay is on one unit in v1 (upstream `awcms` ADR-0135 section 4); multi-room bookings are not specified here.
 4. **Route names** are proposals; the phase-1 implementer fixes them and updates [`routing.md`](routing.md) and the profile matrix in the same change.
