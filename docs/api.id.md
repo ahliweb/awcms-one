@@ -165,6 +165,10 @@ Setiap rute di bawah ini berada di balik bendera fitur `segments` milik tenant (
 
 Evaluasi dibatasi: `422 SEGMENT_TOO_EXPENSIVE` (dibatalkan pada batas waktu statement 5 detik), `429 SEGMENT_EVALUATION_BUSY` (2 per tenant, 1 per aktor; `Retry-After`) dan `429 RATE_LIMITED` (30 pratinjau per aktor per menit). Pelanggan walk-in, terblokir, dan terhapus tidak pernah dihitung atau didaftar. Tujuh kunci izin: `commerce.segments.{read,create,update,delete}`, `commerce.segment_previews.read`, `commerce.segment_members.{read,export}`. Belum ada domain event yang diterbitkan.
 
+### Kelayakan program loyalitas berdasarkan segmen (issue #361)
+
+`POST commerce/loyalty/programs` dan `PATCH commerce/loyalty/programs/{id}` menerima `eligibilitySegmentId` (uuid, atau `null` untuk menghapus) dan opsional `eligibilitySegmentVersion`; `GET` mengembalikan keduanya pada setiap program. Menetapkan segmen membutuhkan fitur `loyaltySegments` **dan** `segments` milik tenant (`409 FEATURE_DISABLED`, keduanya bawaan MATI) dan `commerce.segments.read` selain `commerce.loyalty.manage`; segmen atau versi yang tidak dikenal, milik tenant lain, dipensiunkan, atau tidak ada adalah `422 SEGMENT_NOT_FOUND`. Bila versi dihilangkan, versi terbaru segmen dikunci saat disimpan, dan pasangan itu tak dapat diubah setelah program diaktifkan. Menghapus hanya butuh `commerce.loyalty.manage`. Tidak ada rute baru.
+
 ## API owner: pengembalian barang, pengembalian dana, dan penukaran (issue #287, epik #281, [ADR-0033](adr/0033-returns-refunds-and-exchanges-are-additive-records-that-compensate-through-the-existing-ledgers.md))
 
 Dibatasi fitur `returns` tenant (default **mati**: setiap route menjawab `409 FEATURE_DISABLED`); setiap mutasi memerlukan `Idempotency-Key`. Refund juga memerlukan `commerce.payments.revoke`, diperiksa lewat chokepoint yang sama.

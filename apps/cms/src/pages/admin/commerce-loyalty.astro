@@ -47,6 +47,7 @@ import {
 } from "../../modules/commerce/application/loyalty-ledger";
 import { listLoyaltyPrograms } from "../../modules/commerce/application/loyalty-program-directory";
 import { fetchRedemptionSettings } from "../../modules/commerce/application/loyalty-redemption";
+import { listSegments } from "../../modules/commerce/application/segment-directory";
 import { decodeKeysetCursor } from "../../modules/_shared/keyset-pagination";
 import { normalizePhoneNumber } from "../../modules/commerce/domain/phone-normalisation";
 import { SALES_REPORT_TIME_ZONE } from "../../modules/commerce/domain/sales-report-deltas";
@@ -103,6 +104,28 @@ const screen = await loadAdminScreen({
     });
 
     const redemptionSettings = await fetchRedemptionSettings(tx, ssr.tenantId);
+    // Issue #361: the eligibility picker and column exist only while the
+    // tenant has opted into `loyaltySegments` (and `segments`) and the viewer
+    // may read segments; otherwise the screen is exactly today's.
+    const segmentEligibility =
+      features.loyaltySegments && features.segments
+        ? await can({
+            moduleKey: "commerce",
+            activityCode: "segments",
+            action: "read"
+          })
+        : false;
+    const segments = segmentEligibility
+      ? (await listSegments(tx, ssr.tenantId, null, true)).items.map(
+          (segment) => ({
+            id: segment.id,
+            name: segment.name,
+            latestVersion: segment.latestVersion,
+            retired: segment.status === "retired"
+          })
+        )
+      : [];
+
     const summary = await fetchLoyaltySummary(tx, ssr.tenantId, {});
     const programs = await listLoyaltyPrograms(tx, ssr.tenantId);
     const accounts = await listLoyaltyAccounts(tx, ssr.tenantId, {}, null, 10);
@@ -143,6 +166,8 @@ const screen = await loadAdminScreen({
       canRedeem,
       redemptionEnabled: features.loyaltyRedemption,
       redemptionSettings,
+      segmentEligibility,
+      segments,
       summary,
       programs,
       accounts,
@@ -167,6 +192,24 @@ const view = data !== null && data.enabled === true ? data : null;
 const canManage = view?.canManage ?? false;
 const canAdjust = view?.canAdjust ?? false;
 const canRedeem = view?.canRedeem ?? false;
+const segmentEligibility = view?.segmentEligibility ?? false;
+const segmentOptions = view?.segments ?? [];
+// A program that recorded a segment shows it even after the feature is turned
+// off or the viewer cannot read segments; the name is a courtesy, the id and
+// version are the record.
+const showEligibility =
+  segmentEligibility ||
+  (view?.programs ?? []).some((program) => program.eligibilitySegmentId);
+const eligibilityText = (program: (typeof programs)[number]) => {
+  if (program.eligibilitySegmentId === null) return t("Everyone");
+  const known = segmentOptions.find(
+    (segment) => segment.id === program.eligibilitySegmentId
+  );
+  return t("{name} · version {version}", {
+    name: known?.name ?? program.eligibilitySegmentId.slice(0, 8),
+    version: String(program.eligibilitySegmentVersion ?? "")
+  });
+};
 const summary = view?.summary ?? null;
 const redemptionEnabled = view?.redemptionEnabled ?? false;
 const redemptionSettings = view?.redemptionSettings ?? null;
@@ -352,6 +395,36 @@ const ruleText = (program: (typeof programs)[number]) =>
         step="1"
       />
 
+      {segmentEligibility && (
+        <>
+          <label for="loyalty-segment">
+            {t("Restrict to a segment (optional)")}
+          </label>
+          <select
+            id="loyalty-segment"
+            name="eligibilitySegmentId"
+            aria-describedby="loyalty-segment-hint"
+          >
+            <option value="">{t("Everyone")}</option>
+            {segmentOptions
+              .filter((segment) => !segment.retired)
+              .map((segment) => (
+                <option value={segment.id}>
+                  {t("{name} · version {version}", {
+                    name: segment.name,
+                    version: String(segment.latestVersion)
+                  })}
+                </option>
+              ))}
+          </select>
+          <p id="loyalty-segment-hint" class="form-hint">
+            {t(
+              "Only members of the chosen segment earn points. The segment's latest version is pinned when you save, so editing the segment later does not change this program."
+            )}
+          </p>
+        </>
+      )}
+
       <label for="loyalty-notes">{t("Notes")}</label>
       <input id="loyalty-notes" name="notes" type="text" autocomplete="off" />
 
@@ -487,6 +560,7 @@ const ruleText = (program: (typeof programs)[number]) =>
             <th scope="col">{t("Status")}</th>
             <th scope="col">{t("Earn rule")}</th>
             <th scope="col">{t("Minimum order")}</th>
+            {showEligibility && <th scope="col">{t("Eligibility")}</th>}
             <th scope="col">{t("Expiry")}</th>
             <th scope="col">{t("Effective")}</th>
             {canManage && <th scope="col">{t("Actions")}</th>}
@@ -495,7 +569,10 @@ const ruleText = (program: (typeof programs)[number]) =>
         <tbody>
           {programs.length === 0 ? (
             <tr>
-              <td class="data-table-empty" colspan={canManage ? 8 : 7}>
+              <td
+                class="data-table-empty"
+                colspan={(canManage ? 8 : 7) + (showEligibility ? 1 : 0)}
+              >
                 <div class="empty-state">
                   <span class="empty-state-icon" aria-hidden="true">
                     ◇
@@ -534,6 +611,11 @@ const ruleText = (program: (typeof programs)[number]) =>
                 <td data-label={t("Minimum order")}>
                   {money(program.minOrderAmount)}
                 </td>
+                {showEligibility && (
+                  <td data-label={t("Eligibility")}>
+                    {eligibilityText(program)}
+                  </td>
+                )}
                 <td data-label={t("Expiry")}>
                   {program.expiryDays === null
                     ? t("Never")
@@ -939,7 +1021,11 @@ const ruleText = (program: (typeof programs)[number]) =>
           minOrderAmount: field(data, "minOrderAmount") || "0.00",
           maxPointsPerOrder: optionalInteger(field(data, "maxPointsPerOrder")),
           expiryDays: optionalInteger(field(data, "expiryDays")),
-          notes: blankToNull(field(data, "notes"))
+          notes: blankToNull(field(data, "notes")),
+          // Issue #361: only sent when the picker exists and a segment is chosen.
+          ...(field(data, "eligibilitySegmentId")
+            ? { eligibilitySegmentId: field(data, "eligibilitySegmentId") }
+            : {})
         }),
       "Could not create the program version. Check the values and try again."
     );

@@ -71,6 +71,8 @@ type ProgramRow = {
   max_points_per_order: number | null;
   expiry_days: number | null;
   notes: string | null;
+  eligibility_segment_id: string | null;
+  eligibility_segment_version: number | null;
   created_at: Date | string;
   updated_at: Date | string;
 };
@@ -99,6 +101,11 @@ function toProgram(row: ProgramRow): LoyaltyProgram {
         : assertPoints(row.max_points_per_order, "max_points_per_order"),
     expiryDays: row.expiry_days === null ? null : Number(row.expiry_days),
     notes: row.notes,
+    eligibilitySegmentId: row.eligibility_segment_id,
+    eligibilitySegmentVersion:
+      row.eligibility_segment_version === null
+        ? null
+        : Number(row.eligibility_segment_version),
     createdAt: toIso(row.created_at),
     updatedAt: toIso(row.updated_at)
   };
@@ -112,7 +119,8 @@ export async function listLoyaltyPrograms(
   const rows = (await tx`
     SELECT id, version, name, status, effective_from, effective_to,
       earn_unit_amount, earn_points_per_unit, earn_rounding, min_order_amount,
-      max_points_per_order, expiry_days, notes, created_at, updated_at
+      max_points_per_order, expiry_days, notes, eligibility_segment_id,
+      eligibility_segment_version, created_at, updated_at
     FROM awcms_commerce_loyalty_programs
     WHERE tenant_id = ${tenantId}
     ORDER BY version DESC
@@ -128,7 +136,8 @@ export async function fetchLoyaltyProgram(
   const rows = (await tx`
     SELECT id, version, name, status, effective_from, effective_to,
       earn_unit_amount, earn_points_per_unit, earn_rounding, min_order_amount,
-      max_points_per_order, expiry_days, notes, created_at, updated_at
+      max_points_per_order, expiry_days, notes, eligibility_segment_id,
+      eligibility_segment_version, created_at, updated_at
     FROM awcms_commerce_loyalty_programs
     WHERE tenant_id = ${tenantId} AND id = ${programId}
   `) as ProgramRow[];
@@ -149,7 +158,8 @@ export async function fetchEffectiveProgramAt(
   const rows = (await tx`
     SELECT id, version, name, status, effective_from, effective_to,
       earn_unit_amount, earn_points_per_unit, earn_rounding, min_order_amount,
-      max_points_per_order, expiry_days, notes, created_at, updated_at
+      max_points_per_order, expiry_days, notes, eligibility_segment_id,
+      eligibility_segment_version, created_at, updated_at
     FROM awcms_commerce_loyalty_programs
     WHERE tenant_id = ${tenantId} AND status IN ('active', 'retired')
     ORDER BY version DESC
@@ -173,6 +183,7 @@ export async function createLoyaltyProgram(
     INSERT INTO awcms_commerce_loyalty_programs (
       tenant_id, version, name, status, earn_unit_amount, earn_points_per_unit,
       min_order_amount, max_points_per_order, expiry_days, notes,
+      eligibility_segment_id, eligibility_segment_version,
       created_by_tenant_user_id
     ) VALUES (
       ${tenantId},
@@ -180,11 +191,14 @@ export async function createLoyaltyProgram(
          FROM awcms_commerce_loyalty_programs WHERE tenant_id = ${tenantId}),
       ${input.name}, 'draft', ${input.earnUnitAmount}, ${input.earnPointsPerUnit},
       ${input.minOrderAmount}, ${input.maxPointsPerOrder}::integer,
-      ${input.expiryDays}::integer, ${input.notes}::text, ${actorTenantUserId}
+      ${input.expiryDays}::integer, ${input.notes}::text,
+      ${input.eligibilitySegmentId}::uuid, ${input.eligibilitySegmentVersion}::integer,
+      ${actorTenantUserId}
     )
     RETURNING id, version, name, status, effective_from, effective_to,
       earn_unit_amount, earn_points_per_unit, earn_rounding, min_order_amount,
-      max_points_per_order, expiry_days, notes, created_at, updated_at
+      max_points_per_order, expiry_days, notes, eligibility_segment_id,
+      eligibility_segment_version, created_at, updated_at
   `) as ProgramRow[];
   const program = toProgram(rows[0]!);
 
@@ -196,10 +210,46 @@ export async function createLoyaltyProgram(
     resourceType: AUDIT_RESOURCE_TYPE,
     resourceId: program.id,
     message: `Loyalty program version ${program.version} created (draft).`,
-    attributes: { version: program.version },
+    attributes: {
+      version: program.version,
+      eligibilitySegmentId: program.eligibilitySegmentId,
+      eligibilitySegmentVersion: program.eligibilitySegmentVersion
+    },
     correlationId
   });
   return program;
+}
+
+export type EligibilityReference = {
+  segmentId: string;
+  version: number;
+};
+
+/**
+ * Resolves the segment a program is to be restricted to (Issue #361): the
+ * segment must exist in this tenant and be live (a retired segment is not a
+ * choice for a NEW restriction, though a program that already recorded it
+ * keeps it), and the version is the one asked for or, when omitted, the
+ * segment's latest AT THIS INSTANT - the pinned number is what gets stored, so
+ * a later edit of the segment never moves the program. `null` for an unknown,
+ * foreign-tenant, retired or non-existent id/version, indistinguishably.
+ */
+export async function resolveEligibilityReference(
+  tx: Bun.SQL,
+  tenantId: string,
+  segmentId: string,
+  version: number | null
+): Promise<EligibilityReference | null> {
+  const rows = (await tx`
+    SELECT v.version
+    FROM awcms_commerce_segments s
+    JOIN awcms_commerce_segment_versions v
+      ON v.tenant_id = s.tenant_id AND v.segment_id = s.id
+      AND v.version = COALESCE(${version}::int, s.latest_version)
+    WHERE s.tenant_id = ${tenantId} AND s.id = ${segmentId}
+      AND s.retired_at IS NULL
+  `) as { version: number }[];
+  return rows[0] ? { segmentId, version: Number(rows[0].version) } : null;
 }
 
 export type UpdateProgramResult =
@@ -231,7 +281,15 @@ export async function updateLoyaltyProgram(
         : existing.maxPointsPerOrder,
     expiryDays:
       patch.expiryDays !== undefined ? patch.expiryDays : existing.expiryDays,
-    notes: patch.notes !== undefined ? patch.notes : existing.notes
+    notes: patch.notes !== undefined ? patch.notes : existing.notes,
+    eligibilitySegmentId:
+      patch.eligibilitySegmentId !== undefined
+        ? patch.eligibilitySegmentId
+        : existing.eligibilitySegmentId,
+    eligibilitySegmentVersion:
+      patch.eligibilitySegmentId !== undefined
+        ? (patch.eligibilitySegmentVersion ?? null)
+        : existing.eligibilitySegmentVersion
   };
 
   const rows = (await tx`
@@ -241,11 +299,14 @@ export async function updateLoyaltyProgram(
       min_order_amount = ${next.minOrderAmount},
       max_points_per_order = ${next.maxPointsPerOrder}::integer,
       expiry_days = ${next.expiryDays}::integer, notes = ${next.notes}::text,
+      eligibility_segment_id = ${next.eligibilitySegmentId}::uuid,
+      eligibility_segment_version = ${next.eligibilitySegmentVersion}::integer,
       updated_at = now()
     WHERE tenant_id = ${tenantId} AND id = ${programId} AND status = 'draft'
     RETURNING id, version, name, status, effective_from, effective_to,
       earn_unit_amount, earn_points_per_unit, earn_rounding, min_order_amount,
-      max_points_per_order, expiry_days, notes, created_at, updated_at
+      max_points_per_order, expiry_days, notes, eligibility_segment_id,
+      eligibility_segment_version, created_at, updated_at
   `) as ProgramRow[];
   if (!rows[0]) return { kind: "not_draft" };
   const program = toProgram(rows[0]);
@@ -258,7 +319,12 @@ export async function updateLoyaltyProgram(
     resourceType: AUDIT_RESOURCE_TYPE,
     resourceId: program.id,
     message: `Loyalty program version ${program.version} edited.`,
-    attributes: { version: program.version, fields: Object.keys(patch) },
+    attributes: {
+      version: program.version,
+      fields: Object.keys(patch),
+      eligibilitySegmentId: program.eligibilitySegmentId,
+      eligibilitySegmentVersion: program.eligibilitySegmentVersion
+    },
     correlationId
   });
   return { kind: "updated", program };
@@ -322,7 +388,8 @@ export async function activateLoyaltyProgram(
     WHERE tenant_id = ${tenantId} AND id = ${programId} AND status = 'draft'
     RETURNING id, version, name, status, effective_from, effective_to,
       earn_unit_amount, earn_points_per_unit, earn_rounding, min_order_amount,
-      max_points_per_order, expiry_days, notes, created_at, updated_at
+      max_points_per_order, expiry_days, notes, eligibility_segment_id,
+      eligibility_segment_version, created_at, updated_at
   `) as ProgramRow[];
   const program = toProgram(rows[0]!);
 
@@ -334,7 +401,12 @@ export async function activateLoyaltyProgram(
     resourceType: AUDIT_RESOURCE_TYPE,
     resourceId: program.id,
     message: `Loyalty program version ${program.version} activated${closedVersion === null ? "" : `, replacing version ${closedVersion}`}.`,
-    attributes: { version: program.version, closedVersion },
+    attributes: {
+      version: program.version,
+      closedVersion,
+      eligibilitySegmentId: program.eligibilitySegmentId,
+      eligibilitySegmentVersion: program.eligibilitySegmentVersion
+    },
     correlationId
   });
   return { kind: "activated", program, closedVersion };
@@ -369,7 +441,8 @@ export async function retireLoyaltyProgram(
     WHERE tenant_id = ${tenantId} AND id = ${programId} AND status = 'active'
     RETURNING id, version, name, status, effective_from, effective_to,
       earn_unit_amount, earn_points_per_unit, earn_rounding, min_order_amount,
-      max_points_per_order, expiry_days, notes, created_at, updated_at
+      max_points_per_order, expiry_days, notes, eligibility_segment_id,
+      eligibility_segment_version, created_at, updated_at
   `) as ProgramRow[];
   const program = toProgram(rows[0]!);
 

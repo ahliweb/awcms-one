@@ -265,9 +265,15 @@ function factsJoin(
   tenantId: string,
   stats: SegmentRuleStats,
   bound: Bound,
-  needs: SegmentNeeds
+  needs: SegmentNeeds,
+  customerId: string | null
 ) {
   if (!needs.facts) return tx``;
+  // Single-customer evaluation (#361) narrows the grouped scan to ONE
+  // customer's orders (`awcms_commerce_orders_customer_idx`), so deciding one
+  // earn never reads the tenant's whole order history.
+  const onlyCustomer =
+    customerId === null ? tx`` : tx`AND o.customer_id = ${customerId}::uuid`;
   const w0 = stats.windows[0] ?? null;
   const w1 = stats.windows[1] ?? null;
   const w2 = stats.windows[2] ?? null;
@@ -296,6 +302,7 @@ function factsJoin(
         AND o.deleted_at IS NULL
         AND o.status <> ALL(${tx.array([...NON_REVENUE_STATUSES], "text")}::text[])
         AND o.paid_at <= ${bound.asOf}::timestamptz
+        ${onlyCustomer}
       GROUP BY o.customer_id
     ) f ON f.customer_id = c.id`;
 }
@@ -320,6 +327,8 @@ export type SegmentQueryInput = {
   stats: SegmentRuleStats;
   /** ISO instant chosen by the SERVER; never a client value. */
   asOf: string;
+  /** Narrow the evaluation to one customer (#361). Omitted = the whole tenant. */
+  customerId?: string;
 };
 
 /** The `FROM ... WHERE ...` tail every evaluation shares (`c` = customers). */
@@ -328,10 +337,11 @@ function segmentTail(tx: Bun.SQL, input: SegmentQueryInput) {
   const needs = segmentNeeds(input.node);
   return tx`
     FROM awcms_commerce_customers c
-    ${factsJoin(tx, input.tenantId, input.stats, bound, needs)}
+    ${factsJoin(tx, input.tenantId, input.stats, bound, needs, input.customerId ?? null)}
     ${accountsJoin(tx, needs)}
     ${loyaltyJoin(tx, needs)}
     WHERE ${eligibilityPredicate(tx, input.tenantId)}
+      ${input.customerId === undefined ? tx`` : tx`AND c.id = ${input.customerId}::uuid`}
       AND ${nodePredicate(tx, input.node, input.stats, bound)}`;
 }
 
@@ -370,4 +380,24 @@ export async function selectSegmentMatches(
     LIMIT ${limit}
   `) as SegmentMemberRow[];
   return rows.map((row) => ({ ...row, level: Number(row.level) }));
+}
+
+/**
+ * Whether ONE customer is a member (Issue #361, ADR-0042 amendment): the same
+ * eligibility predicate and the same fixed templates as a full evaluation,
+ * narrowed to `input.customerId` by primary key, so the cost is one customer's
+ * orders and not the tenant's. A walk-in, blocked or erased customer is never a
+ * member, exactly as in a list.
+ */
+export async function isCustomerSegmentMember(
+  tx: Bun.SQL,
+  input: SegmentQueryInput & { customerId: string }
+): Promise<boolean> {
+  const rows = (await tx`
+    SELECT EXISTS (
+      SELECT 1
+      ${segmentTail(tx, input)}
+    ) AS member
+  `) as { member: boolean }[];
+  return rows[0]?.member === true;
 }

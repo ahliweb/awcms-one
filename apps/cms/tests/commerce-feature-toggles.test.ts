@@ -46,7 +46,9 @@ describe("resolveCommerceFeatures", () => {
             key !== "barcode" &&
             key !== "returns" &&
             key !== "retention" &&
-            key !== "segments"
+            key !== "segments",
+            key !== "segments" &&
+            key !== "loyaltySegments"
         )
         .every(([, value]) => value === true)
     ).toBe(true);
@@ -78,7 +80,8 @@ describe("resolveCommerceFeatures", () => {
       barcode: false,
       returns: false,
       retention: false,
-      segments: false
+      segments: false,
+      loyaltySegments: false
     });
   });
 
@@ -100,7 +103,8 @@ describe("resolveCommerceFeatures", () => {
       barcode: false,
       returns: false,
       retention: false,
-      segments: false
+      segments: false,
+      loyaltySegments: false
     });
   });
 
@@ -142,7 +146,8 @@ describe("resolveCommerceFeatures", () => {
         barcode: false,
         returns: false,
         retention: false,
-        segments: false
+        segments: false,
+        loyaltySegments: false
       }
     });
     expect(resolved).toEqual({
@@ -161,7 +166,8 @@ describe("resolveCommerceFeatures", () => {
       barcode: false,
       returns: false,
       retention: false,
-      segments: false
+      segments: false,
+      loyaltySegments: false
     });
     // ...and the flags that default off can be turned on.
     expect(
@@ -527,6 +533,19 @@ describe("toPublicRecord — feature composition (Issue #118)", () => {
     );
     expect(
       resolveCommerceFeatures({ features: { segments: true } }).segments
+    ).toBe(true);
+  });
+
+  test("loyaltySegments (Issue #361, ADR-0042 amendment) defaults OFF, can be turned on, and a tenant that saved a settings row before the flag existed still reads OFF", () => {
+    expect(DEFAULT_COMMERCE_FEATURES.loyaltySegments).toBe(false);
+    expect(resolveCommerceFeatures({}).loyaltySegments).toBe(false);
+    expect(
+      resolveCommerceFeatures({ features: { loyalty: true, segments: true } })
+        .loyaltySegments
+    ).toBe(false);
+    expect(
+      resolveCommerceFeatures({ features: { loyaltySegments: true } })
+        .loyaltySegments
     ).toBe(true);
   });
 });

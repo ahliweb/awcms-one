@@ -11346,7 +11346,7 @@ paths:
       operationId: createCommerceLoyaltyProgram
       tags:
         - Commerce
-      summary: "Issue #289. Create a new DRAFT program version (version number = max + 1 per tenant). Gated on `commerce.loyalty.manage`."
+      summary: "Issue #289. Create a new DRAFT program version (version number = max + 1 per tenant). Gated on `commerce.loyalty.manage`. Issue #361: the body may restrict the version to a CRM segment (`eligibilitySegmentId`), which additionally needs the `loyaltySegments` and `segments` features and `commerce.segments.read`; the segment version is pinned at save time and recorded on the program."
       requestBody:
         required: true
         content:
@@ -11374,7 +11374,13 @@ paths:
         "403":
           $ref: "#/components/responses/Forbidden"
         "409":
-          description: FEATURE_DISABLED.
+          description: FEATURE_DISABLED (`loyalty`, or - when a segment is named - `loyaltySegments` or `segments`).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: "`SEGMENT_NOT_FOUND` (Issue #361) - the segment does not exist in this tenant, is retired, or has no such version."
           content:
             application/json:
               schema:
@@ -11424,7 +11430,7 @@ paths:
       operationId: updateCommerceLoyaltyProgram
       tags:
         - Commerce
-      summary: "Issue #289. Edit a DRAFT program version. An active or retired version is immutable (a ledger row records the version it earned under) — `409 PROGRAM_NOT_EDITABLE`; a change of rules is a new version. Gated on `commerce.loyalty.manage`."
+      summary: "Issue #289. Edit a DRAFT program version. An active or retired version is immutable (a ledger row records the version it earned under) — `409 PROGRAM_NOT_EDITABLE`; a change of rules is a new version (the segment restriction of Issue #361 is part of the rules). Gated on `commerce.loyalty.manage`."
       parameters:
         - name: id
           in: path
@@ -11457,6 +11463,15 @@ paths:
                 notes:
                   type: string
                   nullable: true
+                eligibilitySegmentId:
+                  type: string
+                  format: uuid
+                  nullable: true
+                  description: "Issue #361. Restrict to a segment, or `null` to clear the restriction. Same rules as on create (`LoyaltyProgramInput`)."
+                eligibilitySegmentVersion:
+                  type: integer
+                  nullable: true
+                  minimum: 1
       responses:
         "200":
           description: The updated draft.
@@ -11480,7 +11495,13 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: FEATURE_DISABLED or PROGRAM_NOT_EDITABLE.
+          description: FEATURE_DISABLED (`loyalty`, or - when a segment is named - `loyaltySegments` or `segments`) or PROGRAM_NOT_EDITABLE.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: "`SEGMENT_NOT_FOUND` (Issue #361) - the segment does not exist in this tenant, is retired, or has no such version."
           content:
             application/json:
               schema:
@@ -45610,6 +45631,14 @@ components:
         notes:
           type: string
           nullable: true
+        eligibilitySegmentId:
+          type: string
+          format: uuid
+          nullable: true
+          description: "Issue #361. The CRM segment this version is restricted to, recorded with the pinned `eligibilitySegmentVersion` so a past earn is explainable; `null` = every customer earns. Immutable once the version leaves draft (database trigger, `sql/1005`)."
+        eligibilitySegmentVersion:
+          type: integer
+          nullable: true
         createdAt:
           type: string
           format: date-time
@@ -45651,6 +45680,16 @@ components:
           type: string
           nullable: true
           maxLength: 1000
+        eligibilitySegmentId:
+          type: string
+          format: uuid
+          nullable: true
+          description: "Issue #361 (ADR-0042 amendment). Restrict the version to a CRM segment: only the segment's members earn under it. `null` or absent = every customer earns. Setting it needs the tenant's `loyaltySegments` AND `segments` features and `commerce.segments.read` (`409 FEATURE_DISABLED`, `403`); an unknown, foreign or retired segment is `422 SEGMENT_NOT_FOUND`."
+        eligibilitySegmentVersion:
+          type: integer
+          nullable: true
+          minimum: 1
+          description: "Issue #361. The segment version to pin; omitted with an id = the segment's latest version at save time. Needs `eligibilitySegmentId`."
     LoyaltyReconcileReport:
       type: object
       properties:

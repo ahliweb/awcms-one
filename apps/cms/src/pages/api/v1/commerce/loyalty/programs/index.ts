@@ -9,6 +9,7 @@ import {
   readJsonBody
 } from "../../../../../../lib/security/request-body-limit";
 import { requireCommerceFeatureForOwnerRoute } from "../../../../../../modules/commerce/application/commerce-feature-gate";
+import { resolveEligibilityRequest } from "../../../../../../modules/commerce/application/loyalty-eligibility-http";
 import {
   createLoyaltyProgram,
   listLoyaltyPrograms
@@ -70,7 +71,7 @@ export const POST = defineTenantRoute<LoyaltyProgramInput>({
     return validation.value;
   },
   authorize: MANAGE_GUARD,
-  handler: async ({ tx, tenantId, auth, prepared, locals }) => {
+  handler: async ({ tx, tenantId, auth, prepared, locals, tokenHash, now }) => {
     const gate = await requireCommerceFeatureForOwnerRoute(
       tx,
       tenantId,
@@ -78,12 +79,27 @@ export const POST = defineTenantRoute<LoyaltyProgramInput>({
     );
     if (gate) return gate;
 
+    // Issue #361: a request that names a segment needs the segment features
+    // and `commerce.segments.read`, and stores the pinned version.
+    const eligibility = await resolveEligibilityRequest(
+      tx,
+      tenantId,
+      tokenHash,
+      now,
+      prepared
+    );
+    if (eligibility.kind === "refused") return eligibility.response;
+
     return created(
       await createLoyaltyProgram(
         tx,
         tenantId,
         auth.context.tenantUserId,
-        prepared,
+        {
+          ...prepared,
+          eligibilitySegmentId: eligibility.reference?.segmentId ?? null,
+          eligibilitySegmentVersion: eligibility.reference?.version ?? null
+        },
         locals.correlationId
       )
     );

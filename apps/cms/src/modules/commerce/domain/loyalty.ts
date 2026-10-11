@@ -173,6 +173,9 @@ export type LoyaltyProgram = {
   maxPointsPerOrder: number | null;
   expiryDays: number | null;
   notes: string | null;
+  /** Issue #361: the CRM segment (and its immutable version) this version is restricted to; `null` = every customer earns. */
+  eligibilitySegmentId: string | null;
+  eligibilitySegmentVersion: number | null;
   createdAt: string;
   updatedAt: string;
 };

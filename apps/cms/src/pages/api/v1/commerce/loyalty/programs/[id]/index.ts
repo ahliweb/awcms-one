@@ -5,6 +5,7 @@ import {
   readJsonBody
 } from "../../../../../../../lib/security/request-body-limit";
 import { requireCommerceFeatureForOwnerRoute } from "../../../../../../../modules/commerce/application/commerce-feature-gate";
+import { resolveEligibilityRequest } from "../../../../../../../modules/commerce/application/loyalty-eligibility-http";
 import { UUID_PATTERN } from "../../../../../../../modules/commerce/application/loyalty-route-support";
 import {
   fetchLoyaltyProgram,
@@ -76,7 +77,16 @@ export const PATCH = defineTenantRoute<LoyaltyProgramPatch>({
     return validation.value;
   },
   authorize: MANAGE_GUARD,
-  handler: async ({ tx, tenantId, auth, params, prepared, locals }) => {
+  handler: async ({
+    tx,
+    tenantId,
+    auth,
+    params,
+    prepared,
+    locals,
+    tokenHash,
+    now
+  }) => {
     const gate = await requireCommerceFeatureForOwnerRoute(
       tx,
       tenantId,
@@ -89,12 +99,30 @@ export const PATCH = defineTenantRoute<LoyaltyProgramPatch>({
       return fail(400, "VALIDATION_ERROR", "id must be a valid uuid.");
     }
 
+    // Issue #361: see the create route.
+    const eligibility = await resolveEligibilityRequest(
+      tx,
+      tenantId,
+      tokenHash,
+      now,
+      prepared
+    );
+    if (eligibility.kind === "refused") return eligibility.response;
+    const patch = { ...prepared };
+    if (eligibility.reference === undefined) {
+      delete patch.eligibilitySegmentId;
+      delete patch.eligibilitySegmentVersion;
+    } else {
+      patch.eligibilitySegmentId = eligibility.reference?.segmentId ?? null;
+      patch.eligibilitySegmentVersion = eligibility.reference?.version ?? null;
+    }
+
     const result = await updateLoyaltyProgram(
       tx,
       tenantId,
       auth.context.tenantUserId,
       id,
-      prepared,
+      patch,
       locals.correlationId
     );
     if (result.kind === "not_found") {

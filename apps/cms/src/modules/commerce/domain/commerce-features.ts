@@ -49,7 +49,8 @@ export type CommerceFeatureKey =
   | "barcode"
   | "returns"
   | "retention"
-  | "segments";
+  | "segments"
+  | "loyaltySegments";
 
 export type CommerceFeatures = Readonly<Record<CommerceFeatureKey, boolean>>;
 
@@ -124,7 +125,13 @@ export const DEFAULT_COMMERCE_FEATURES: CommerceFeatures = {
   // rule into a list of customers (disclosure and evaluation-cost risks of its
   // own, threat model F8), so a tenant chooses it. A tenant that never opens
   // "Features" sees no change: no route answers, no sidebar entry shows.
-  segments: false
+  segments: false,
+  // Issue #361 (ADR-0042 amendment) - OFF. Restricting a loyalty program
+  // version to a CRM segment changes who earns points, so a tenant chooses it.
+  // With it OFF every program earns for every customer exactly as before, and
+  // a restriction already recorded on a program is not applied. Setting a
+  // restriction additionally needs `loyalty` and `segments` ON.
+  loyaltySegments: false
 };
 
 const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
@@ -143,7 +150,8 @@ const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
   "barcode",
   "returns",
   "retention",
-  "segments"
+  "segments",
+  "loyaltySegments"
 ];
 
 function isBoolean(value: unknown): value is boolean {
