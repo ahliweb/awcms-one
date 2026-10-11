@@ -1366,13 +1366,17 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // `sql/022` gave the worker exactly what the DISPATCHER needs and nothing
   // more, which was right; the purge is a second worker entrypoint with a
   // different job, so it needs the verb the first one was deliberately denied.
-  awcms_email_messages: ["SELECT", "UPDATE", "DELETE"],
+  // INSERT added by `sql/1013` (Issue #403): the campaign dispatcher enqueues
+  // direct-address e-mail as the worker.
+  awcms_email_messages: ["SELECT", "INSERT", "UPDATE", "DELETE"],
   // SELECT added by `sql/127`: the insert carries `ON CONFLICT ON CONSTRAINT
   // …_unique_attempt DO NOTHING`, and PostgreSQL reads the arbiter to decide a
   // conflict — so INSERT alone raises `permission denied`. Proven in production
   // by an email that WAS delivered and then failed to be recorded.
   awcms_email_delivery_attempts: ["INSERT", "DELETE", "SELECT"],
-  awcms_email_templates: ["SELECT"],
+  // INSERT added by `sql/1013` (Issue #403): the campaign dispatcher lazily
+  // seeds the tenant's derived e-mail template (`ON CONFLICT DO NOTHING`).
+  awcms_email_templates: ["SELECT", "INSERT"],
   awcms_email_suppression_list: ["SELECT"],
   awcms_workflow_tasks: ["SELECT", "UPDATE"],
   awcms_workflow_instances: ["SELECT"],
@@ -1693,7 +1697,9 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // (SELECT/UPDATE, the claim/finalize lease) and commerce:whatsapp:purge
   // (DELETE, terminal rows past retention) both run as awcms_worker,
   // mirroring the email outbox's own split (sql/022/sql/127).
-  awcms_commerce_whatsapp_messages: ["SELECT", "UPDATE", "DELETE"],
+  // INSERT added by `sql/1013` (Issue #403): the campaign dispatcher enqueues
+  // WhatsApp messages as the worker.
+  awcms_commerce_whatsapp_messages: ["SELECT", "INSERT", "UPDATE", "DELETE"],
   // SELECT needed for the same ON CONFLICT arbiter read sql/127's header
   // documents for awcms_email_delivery_attempts.
   awcms_commerce_whatsapp_delivery_attempts: ["SELECT", "INSERT", "DELETE"],

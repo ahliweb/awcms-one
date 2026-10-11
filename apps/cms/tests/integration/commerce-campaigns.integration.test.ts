@@ -277,6 +277,72 @@ suite("commerce campaigns integration (Issue #114)", () => {
     );
   }, 30000);
 
+  test("one dispatch tick runs end to end as the real awcms_worker role, on both channels (issue #403)", async () => {
+    const { workerRoleActivated, getWorkerRoleSql } = await import("./harness");
+    // The harness activates the worker role in every database it builds; if it
+    // ever did not, this test would silently stop proving the worker's grants.
+    expect(workerRoleActivated).toBe(true);
+
+    await seedAccount(TENANT_A, "+6281300000060", true);
+    const ids: string[] = [];
+    for (const channel of ["email", "whatsapp"] as const) {
+      const campaign = await inTenant(TENANT_A, (tx) =>
+        createCampaign(
+          tx,
+          TENANT_A,
+          ACTOR_ID,
+          {
+            channel,
+            audience: { levels: [], hasAccount: null, lastOrderSince: null },
+            subject: channel === "email" ? "Hello {{name}}" : null,
+            body: "Hi {{name}}, welcome to {{storeName}}"
+          },
+          "test-correlation-worker"
+        )
+      );
+      ids.push(campaign.id);
+    }
+    await inTenant(
+      TENANT_A,
+      (tx) => tx`
+      UPDATE awcms_commerce_campaigns
+      SET status = 'scheduled', scheduled_at = now()
+      WHERE tenant_id = ${TENANT_A} AND id IN (${ids[0]!}, ${ids[1]!})
+    `
+    );
+    const admin = getAdminSql();
+    const countTemplates = async (): Promise<number> =>
+      (
+        (await admin`
+      SELECT count(*)::int AS n FROM awcms_email_templates
+      WHERE tenant_id = ${TENANT_A} AND template_key = 'derived.commerce_campaign'
+    `) as { n: number }[]
+      )[0]!.n;
+    // No template row exists yet: the first e-mail dispatch auto-seeds the
+    // tenant's derived template - the INSERT the worker used to lack.
+    expect(await countTemplates()).toBe(0);
+
+    const result = await dispatchCampaignQueue(getWorkerRoleSql(), TENANT_A, {
+      correlationId: "dispatch-as-worker"
+    });
+    expect(result.claimed).toBe(2);
+    expect(result.sent).toBe(2);
+    expect(result.recipientsEnqueued).toBe(2);
+
+    expect(await countTemplates()).toBeGreaterThan(0);
+    const emails = (await admin`
+      SELECT count(*)::int AS n FROM awcms_email_messages
+      WHERE tenant_id = ${TENANT_A} AND template_key = 'derived.commerce_campaign'
+    `) as { n: number }[];
+    expect(emails[0]!.n).toBe(1);
+    const whatsapp = (await admin`
+      SELECT count(*)::int AS n FROM awcms_commerce_whatsapp_messages
+      WHERE tenant_id = ${TENANT_A} AND template_key = 'commerce.campaign'
+        AND to_phone = '+6281300000060'
+    `) as { n: number }[];
+    expect(whatsapp[0]!.n).toBe(1);
+  }, 30000);
+
   test("cancel stops further dispatch — a cancelled campaign is never fanned out", async () => {
     await seedAccount(TENANT_A, "+6281300000020", true);
     await seedAccount(TENANT_A, "+6281300000021", true);

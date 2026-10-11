@@ -172,6 +172,8 @@ Issue #114, contract #106's D9 — a consent-gated mass e-mail/WhatsApp send.
 
 Both new tables: RLS `ENABLE`+`FORCE`, tenant-isolation policy, FK indexes. `commerce.campaigns`'s `dataLifecycle` descriptor uses the usual `deleted_at` cursor; `commerce.campaign_recipients`, being append-only per campaign, uses `created_at` instead — the same `commerce.messages` shape just above. Permission catalog seed: `sql/930` (`commerce.campaigns.{read,update,send}`).
 
+`sql/1013` (issue #403) lets the dispatcher run as the least-privilege `awcms_worker` role it runs as in production: `INSERT` on `awcms_email_templates` (the lazy per-tenant seed of the `derived.commerce_campaign` template), `awcms_email_messages` (the e-mail outbox) and `awcms_commerce_whatsapp_messages` (the WhatsApp outbox). Nothing else is added; `SELECT` was already held on each table.
+
 ## Payment gateway: sessions, event ledger, webhook-endpoint tokens (`sql/926`)
 
 Issue #110, contract #106's D2/D3 — a hosted-checkout session table, a replay-protection ledger for inbound provider webhooks, and the tenant-scoped webhook-endpoint tokens D2's bootstrap lookup resolves. The webhook INTAKE route that writes `payment_events` (`POST /api/v1/commerce/webhooks/{provider}/{endpointToken}`) and the `commerce:payments:reconcile` job landed in issue #113; `sql/934` then widened `outcome`'s CHECK to add `amount_mismatch` (see below).
