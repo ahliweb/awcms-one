@@ -13083,6 +13083,191 @@ Reports an over-returned line, a settled refund with no matching reversal, a ref
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/segments` — Issue #360 (ADR-0042). CRM segments, keyset-paginated, newest first. Definitions only - never a customer. Gated on `commerce.segments.read` and the tenant's `segments` feature (default OFF).
+
+- **operationId**: `listCommerceSegments`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name             | In    | Required | Type    | Description                                                     |
+| ---------------- | ----- | -------- | ------- | --------------------------------------------------------------- |
+| `cursor`         | query | no       | string  |                                                                 |
+| `includeRetired` | query | no       | boolean | `true` adds retired segments; the default lists live ones only. |
+
+**Responses**
+
+| Status | Description                                                                          | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | One page of segments (limit 50) with an opaque `nextCursor` (null on the last page). | object                                 |
+| 400    | Validation error.                                                                    | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                          | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` - the `segments` feature is off (it defaults OFF).                | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/segments` — Issue #360 (ADR-0042). Define a segment: a name and a rule tree in the closed vocabulary. Creates version 1. Gated on `commerce.segments.create` and the tenant's `segments` feature.
+
+- **operationId**: `createCommerceSegment`
+- **Security**: bearerAuth + tenantHeader
+
+The rule tree is validated against the closed vocabulary (PRD 6.1, owner answer Q7): an unknown field, operator or key, a value of the wrong type, a depth above 4, more than 25 nodes, more than 10 children in a group, more than 3 distinct windows or more than 8 KiB of JSON is a 400 whose `details` name the offending path (`rules.and[1].field`). A key outside `name`, `description`, `rules` - a `tenantId`, for instance - is refused by name, never honoured. The stored rules are the canonical form.
+
+**Request body** (required): [`CommerceSegmentInput`](#schema-commercesegmentinput)
+
+**Responses**
+
+| Status | Description                                                                                                                                     | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The segment, with its version 1.                                                                                                                | object                                 |
+| 400    | Validation error.                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` (the `segments` feature is off) or `SEGMENT_NAME_TAKEN` (a live segment already has this name, compared case-insensitively). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/segments/{id}` — Issue #360 (ADR-0042). One segment with its versions (rules only, newest first, at most 100). Gated on `commerce.segments.read`. An unknown id and another tenant's id are the same 404.
+
+- **operationId**: `getCommerceSegment`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                           | Schema                                 |
+| ------ | --------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The segment and its versions.                                         | object                                 |
+| 401    | Missing or invalid session.                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` - the `segments` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/segments/{id}` — Issue #360 (ADR-0042, PRD S1). Rename a segment and/or add a NEW version of its rules - an existing version is never changed. Must carry the `baseVersion` the edit started from. Gated on `commerce.segments.update`.
+
+- **operationId**: `updateCommerceSegment`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): [`CommerceSegmentUpdate`](#schema-commercesegmentupdate)
+
+**Responses**
+
+| Status | Description                                                                                                                                                              | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | The segment; `latestVersion` rose by one when `rules` was sent.                                                                                                          | object                                 |
+| 400    | Validation error.                                                                                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                      | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED`, `SEGMENT_VERSION_CONFLICT` (`details.latestVersion` is the current one - a stale tab or a double submit), `SEGMENT_RETIRED` or `SEGMENT_NAME_TAKEN`. | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/commerce/segments/{id}` — Issue #360 (ADR-0042). Retire a segment. Every version is KEPT so a past campaign or earn that recorded `(segment, version)` stays explainable (control C-29). Gated on `commerce.segments.delete` (high-risk).
+
+- **operationId**: `retireCommerceSegment`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                | Schema                                 |
+| ------ | ---------------------------------------------------------- | -------------------------------------- |
+| 200    | The retired segment, with all its versions.                | object                                 |
+| 401    | Missing or invalid session.                                | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                        | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` or `SEGMENT_RETIRED` (already retired). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/segments/{id}/export.csv` — Issue #360 (ADR-0042, control C-27). The members of a segment version as CSV. Gated on `commerce.segment_members.export` - the high-risk `export` verb; reading members grants none - AND `commerce.customers.read`.
+
+- **operationId**: `exportCommerceSegmentMembersCsv`
+- **Security**: bearerAuth + tenantHeader
+
+Every cell is spreadsheet-formula-neutralised; phone and e-mail are the masked forms a list shows. Bounded: at most 10,000 rows with `X-Export-Truncated: true` when more existed - never a silent cut. `Cache-Control: no-store`. The export is audited at `warning` severity with the actor, the version and the row count.
+
+**Parameters**
+
+| Name      | In    | Required | Type          | Description |
+| --------- | ----- | -------- | ------------- | ----------- |
+| `id`      | path  | yes      | string (uuid) |             |
+| `version` | query | no       | integer       |             |
+
+**Responses**
+
+| Status | Description                                                                | Schema                                 |
+| ------ | -------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The CSV.                                                                   | string                                 |
+| 400    | Validation error.                                                          | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                        | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` - the `segments` feature is off (it defaults OFF).      | [`ApiError`](#standard-error-envelope) |
+| 422    | `SEGMENT_TOO_EXPENSIVE` - the rule was cancelled at the statement timeout. | [`ApiError`](#standard-error-envelope) |
+| 429    | `SEGMENT_EVALUATION_BUSY`; `Retry-After` is set.                           | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/segments/{id}/members` — Issue #360 (ADR-0042, PRD S4). The customers a segment version matches, keyset-paged by customer id, masked. Gated on `commerce.segment_members.read` AND `commerce.customers.read` (403 without the second).
+
+- **operationId**: `listCommerceSegmentMembers`
+- **Security**: bearerAuth + tenantHeader
+
+Walk-in, blocked and erased customers are never members. Fields are the customer's name, masked phone, masked e-mail and price level. Every page is audited (actor, version, count - never who). Bounded like a preview (422 `SEGMENT_TOO_EXPENSIVE`, 429 `SEGMENT_EVALUATION_BUSY`). Each page is evaluated at the server's current instant.
+
+**Parameters**
+
+| Name      | In    | Required | Type          | Description                                     |
+| --------- | ----- | -------- | ------------- | ----------------------------------------------- |
+| `id`      | path  | yes      | string (uuid) |                                                 |
+| `version` | query | no       | integer       | The version to evaluate; the latest by default. |
+| `cursor`  | query | no       | string        |                                                 |
+| `limit`   | query | no       | integer       |                                                 |
+
+**Responses**
+
+| Status | Description                                                                | Schema                                 |
+| ------ | -------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | One page of masked members.                                                | object                                 |
+| 400    | Validation error.                                                          | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                        | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` - the `segments` feature is off (it defaults OFF).      | [`ApiError`](#standard-error-envelope) |
+| 422    | `SEGMENT_TOO_EXPENSIVE` - the rule was cancelled at the statement timeout. | [`ApiError`](#standard-error-envelope) |
+| 429    | `SEGMENT_EVALUATION_BUSY`; `Retry-After` is set.                           | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/segments/preview` — Issue #360 (ADR-0042, PRD S2). How many customers a rule matches. Body: `{ rules }` (unsaved) OR `{ segmentId, version? }` (saved). Gated on `commerce.segment_previews.read` and the tenant's `segments` feature.
+
+- **operationId**: `previewCommerceSegment`
+- **Security**: bearerAuth + tenantHeader
+
+Read-only and bounded (control C-26): at most 2 concurrent evaluations per tenant and 1 per actor (429 `SEGMENT_EVALUATION_BUSY`), a 5 s statement timeout (422 `SEGMENT_TOO_EXPENSIVE`), and 30 previews per actor per minute (429 `RATE_LIMITED`). The answer carries the SERVER's `asOf` instant; the request has no such field and one is refused by name. A count below 5 is withheld: `count` is `{ suppressed: true, count: null, label: "fewer_than_5" }` (control C-27). `sample` (at most 10 masked customers, never pageable) is present only for a caller who also holds `commerce.segment_members.read` and `commerce.customers.read`; otherwise it is null and no customer permission is needed. The walk-in placeholder, blocked and erased customers are never counted.
+
+**Request body** (required): [`CommerceSegmentPreviewRequest`](#schema-commercesegmentpreviewrequest)
+
+**Responses**
+
+| Status | Description                                                                                                           | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The count (suppressed under 5), the as-of instant and, for a caller who may see members, a bounded masked sample.     | object                                 |
+| 400    | Validation error.                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` - the `segments` feature is off (it defaults OFF).                                                 | [`ApiError`](#standard-error-envelope) |
+| 422    | `SEGMENT_TOO_EXPENSIVE` - the rule took longer than the statement timeout to evaluate and was cancelled.              | [`ApiError`](#standard-error-envelope) |
+| 429    | `SEGMENT_EVALUATION_BUSY` (too many evaluations running) or `RATE_LIMITED` (too many previews); `Retry-After` is set. | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/shipping/destinations` — Issue #107 (contract #106 D4) — owner-only courier-provider destination name search, backing the admin origin-destination picker in the courier settings screen. Gated on settings.update (the same permission store-settings PUT requires).
 
 - **operationId**: `searchCommerceShippingDestinations`
@@ -18273,6 +18458,78 @@ _No properties declared._
   "stock": 0,
   "weightGrams": 0,
   "sortOrder": 0
+}
+```
+
+### Schema: CommerceSegmentInput
+
+| Field         | Type                                                   | Required | Nullable | Description |
+| ------------- | ------------------------------------------------------ | -------- | -------- | ----------- |
+| `name`        | string                                                 | yes      | no       |             |
+| `description` | string                                                 | no       | yes      |             |
+| `rules`       | [`CommerceSegmentRules`](#schema-commercesegmentrules) | yes      | no       |             |
+
+**Example**
+
+```json
+{
+  "name": "string",
+  "description": "string",
+  "rules": "(operation-specific payload)"
+}
+```
+
+### Schema: CommerceSegmentPreviewRequest
+
+Either `rules`, or `segmentId` (with an optional `version`) - never both. There is no `asOf`: the server chooses it.
+
+| Field       | Type                                                   | Required | Nullable | Description |
+| ----------- | ------------------------------------------------------ | -------- | -------- | ----------- |
+| `rules`     | [`CommerceSegmentRules`](#schema-commercesegmentrules) | no       | no       |             |
+| `segmentId` | string (uuid)                                          | no       | no       |             |
+| `version`   | integer                                                | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "rules": "(operation-specific payload)",
+  "segmentId": "00000000-0000-0000-0000-000000000000",
+  "version": 1
+}
+```
+
+### Schema: CommerceSegmentRules
+
+A rule tree in the CLOSED vocabulary (PRD 6.1; owner answer Q7 - no booking-derived field). A node has exactly one of `and` / `or` (arrays of 1..10 nodes), `not` (one node) or `field`. A leaf is `{ field, op, value?, windowDays? }`. Fields and their operators: `level` (eq, in; 1..4), `has_account` / `has_email` (eq; boolean), `customer_since` (before, after; a date value), `order_count` (eq, gt, gte, lt, lte; integer 0..1000000; optional `windowDays`), `paid_spend` (gt, gte, lt, lte; a `numeric(14,2)` STRING; optional `windowDays`), `last_order_date` / `first_order_date` (before, after with a date value, or never with no value), `loyalty_balance` (eq, gt, gte, lt, lte; integer points). A date value is an ISO 8601 date-time with a zone, or `{ "daysAgo": 0..3650 }` resolved against the server's as-of. Bounds: depth 4, 25 nodes, 3 distinct windows (1..3650 days), 8 KiB. "Paid order" means a live order with `paid_at` set, not cancelled or expired, paid at or before the as-of; spend is the sum of order totals.
+
+A rule tree in the CLOSED vocabulary (PRD 6.1; owner answer Q7 - no booking-derived field). A node has exactly one of `and` / `or` (arrays of 1..10 nodes), `not` (one node) or `field`. A leaf is `{ field, op, value?, windowDays? }`. Fields and their operators: `level` (eq, in; 1..4), `has_account` / `has_email` (eq; boolean), `customer_since` (before, after; a date value), `order_count` (eq, gt, gte, lt, lte; integer 0..1000000; optional `windowDays`), `paid_spend` (gt, gte, lt, lte; a `numeric(14,2)` STRING; optional `windowDays`), `last_order_date` / `first_order_date` (before, after with a date value, or never with no value), `loyalty_balance` (eq, gt, gte, lt, lte; integer points). A date value is an ISO 8601 date-time with a zone, or `{ "daysAgo": 0..3650 }` resolved against the server's as-of. Bounds: depth 4, 25 nodes, 3 distinct windows (1..3650 days), 8 KiB. "Paid order" means a live order with `paid_at` set, not cancelled or expired, paid at or before the as-of; spend is the sum of order totals.
+
+**Example**
+
+```json
+{}
+```
+
+### Schema: CommerceSegmentUpdate
+
+At least one of `name`, `description`, `rules` besides `baseVersion`.
+
+| Field         | Type                                                   | Required | Nullable | Description                                                                   |
+| ------------- | ------------------------------------------------------ | -------- | -------- | ----------------------------------------------------------------------------- |
+| `baseVersion` | integer                                                | yes      | no       | The version this edit started from; must equal the segment's `latestVersion`. |
+| `name`        | string                                                 | no       | no       |                                                                               |
+| `description` | string                                                 | no       | yes      |                                                                               |
+| `rules`       | [`CommerceSegmentRules`](#schema-commercesegmentrules) | no       | no       |                                                                               |
+
+**Example**
+
+```json
+{
+  "baseVersion": 1,
+  "name": "string",
+  "description": "string",
+  "rules": "(operation-specific payload)"
 }
 ```
 
