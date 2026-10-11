@@ -38,6 +38,83 @@ export type CampaignAudience = {
 
 export type ValidationError = { field: string; message: string };
 
+/**
+ * Issue #362 (ADR-0042 Amendment) - a campaign may take a CRM segment as its
+ * audience. `segmentVersion` null means "the segment's latest version at the
+ * moment the draft is saved": the application pins it then, so a later edit of
+ * the segment never changes what this campaign sends to (C-29).
+ */
+export type CampaignSegmentRequest = {
+  segmentId: string;
+  segmentVersion: number | null;
+};
+
+const UUID_PATTERN =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+type SegmentFieldsResult =
+  | { valid: true; segment: CampaignSegmentRequest | null | undefined }
+  | { valid: false; errors: ValidationError[] };
+
+/**
+ * `segmentId` / `segmentVersion` from a create or update body. `undefined`
+ * means "not mentioned" (an update leaves the pin alone); `null` (update only)
+ * detaches the segment. A version without an id is refused. A segment audience
+ * and the legacy filters are mutually exclusive, which the callers enforce
+ * against the audience they hold.
+ */
+function readSegmentFields(
+  input: Record<string, unknown>
+): SegmentFieldsResult {
+  const errors: ValidationError[] = [];
+  const rawId = input.segmentId;
+  const rawVersion = input.segmentVersion;
+
+  if (rawId === undefined && rawVersion === undefined) {
+    return { valid: true, segment: undefined };
+  }
+  if (rawId === null && (rawVersion === undefined || rawVersion === null)) {
+    return { valid: true, segment: null };
+  }
+  if (typeof rawId !== "string" || !UUID_PATTERN.test(rawId)) {
+    errors.push({
+      field: "segmentId",
+      message: "segmentId must be a segment id (UUID), or null to detach."
+    });
+  }
+  let version: number | null = null;
+  if (rawVersion !== undefined && rawVersion !== null) {
+    if (
+      typeof rawVersion !== "number" ||
+      !Number.isInteger(rawVersion) ||
+      rawVersion < 1
+    ) {
+      errors.push({
+        field: "segmentVersion",
+        message: "segmentVersion must be a positive integer."
+      });
+    } else {
+      version = rawVersion;
+    }
+  }
+  if (errors.length > 0) return { valid: false, errors };
+  return {
+    valid: true,
+    segment: { segmentId: rawId as string, segmentVersion: version }
+  };
+}
+
+function audienceIsEmpty(audience: CampaignAudience): boolean {
+  return (
+    audience.levels.length === 0 &&
+    audience.hasAccount === null &&
+    audience.lastOrderSince === null
+  );
+}
+
+const SEGMENT_EXCLUSIVE_MESSAGE =
+  "A segment is the whole audience: clear audience.levels, audience.hasAccount and audience.lastOrderSince, or detach the segment.";
+
 const MAX_SUBJECT_LENGTH = 200;
 const MAX_BODY_LENGTH = 4000;
 const MIN_BODY_LENGTH = 1;
@@ -121,6 +198,8 @@ export type CreateCampaignInput = {
   audience: CampaignAudience;
   subject: string | null;
   body: string;
+  /** Issue #362: set only when the campaign's audience is a segment. */
+  segment?: CampaignSegmentRequest;
 };
 
 export type ValidateCreateResult =
@@ -153,6 +232,25 @@ export function validateCreateCampaignInput(
 
   const audienceResult = validateCampaignAudience(input.audience);
   if (!audienceResult.valid) errors.push(...audienceResult.errors);
+
+  const segmentResult = readSegmentFields(input);
+  let segment: CampaignSegmentRequest | undefined;
+  if (!segmentResult.valid) {
+    errors.push(...segmentResult.errors);
+  } else if (segmentResult.segment === null) {
+    errors.push({
+      field: "segmentId",
+      message: "segmentId must be a segment id (UUID)."
+    });
+  } else if (segmentResult.segment !== undefined) {
+    segment = segmentResult.segment;
+    if (audienceResult.valid && !audienceIsEmpty(audienceResult.value)) {
+      errors.push({
+        field: "audience",
+        message: SEGMENT_EXCLUSIVE_MESSAGE
+      });
+    }
+  }
 
   const rawSubject = input.subject;
   let subject: string | null = null;
@@ -199,7 +297,8 @@ export function validateCreateCampaignInput(
         ? audienceResult.value
         : { levels: [], hasAccount: null, lastOrderSince: null },
       subject,
-      body: body as string
+      body: body as string,
+      ...(segment ? { segment } : {})
     }
   };
 }
@@ -208,6 +307,8 @@ export type UpdateCampaignInput = {
   audience?: CampaignAudience;
   subject?: string | null;
   body?: string;
+  /** Issue #362: undefined leaves the pin alone, null detaches it, a request (re)pins it. */
+  segment?: CampaignSegmentRequest | null;
 };
 
 export type ValidateUpdateResult =
@@ -232,6 +333,20 @@ export function validateUpdateCampaignInput(
     const audienceResult = validateCampaignAudience(input.audience);
     if (!audienceResult.valid) errors.push(...audienceResult.errors);
     else value.audience = audienceResult.value;
+  }
+
+  const segmentResult = readSegmentFields(input);
+  if (!segmentResult.valid) {
+    errors.push(...segmentResult.errors);
+  } else if (segmentResult.segment !== undefined) {
+    value.segment = segmentResult.segment;
+    if (
+      segmentResult.segment !== null &&
+      value.audience !== undefined &&
+      !audienceIsEmpty(value.audience)
+    ) {
+      errors.push({ field: "audience", message: SEGMENT_EXCLUSIVE_MESSAGE });
+    }
   }
 
   if (input.subject !== undefined) {

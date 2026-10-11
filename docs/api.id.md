@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:a9e887bee12766b66a6ec68a0f0ee52ced1b6b506d1d9e3855d6a1520a126d25 -->
+<!-- i18n-source-hash: sha256:375384035d310102764285b6d3e8b30e07022d19d0196a75f74b1f45bbb5425a -->
 
 # API
 
@@ -168,6 +168,19 @@ Evaluasi dibatasi: `422 SEGMENT_TOO_EXPENSIVE` (dibatalkan pada batas waktu stat
 ### Kelayakan program loyalitas berdasarkan segmen (issue #361)
 
 `POST commerce/loyalty/programs` dan `PATCH commerce/loyalty/programs/{id}` menerima `eligibilitySegmentId` (uuid, atau `null` untuk menghapus) dan opsional `eligibilitySegmentVersion`; `GET` mengembalikan keduanya pada setiap program. Menetapkan segmen membutuhkan fitur `loyaltySegments` **dan** `segments` milik tenant (`409 FEATURE_DISABLED`, keduanya bawaan MATI) dan `commerce.segments.read` selain `commerce.loyalty.manage`; segmen atau versi yang tidak dikenal, milik tenant lain, dipensiunkan, atau tidak ada adalah `422 SEGMENT_NOT_FOUND`. Bila versi dihilangkan, versi terbaru segmen dikunci saat disimpan, dan pasangan itu tak dapat diubah setelah program diaktifkan. Menghapus hanya butuh `commerce.loyalty.manage`. Tidak ada rute baru.
+
+## API pemilik: kampanye dengan audiens segmen (issue #362, epic #280, [Amendemen ADR-0042](adr/0042-crm-segments-are-immutable-versioned-closed-vocabulary-rules-evaluated-on-demand.id.md))
+
+Rute kampanye yang ada (`commerce/campaigns`, `.../{id}`, `.../preview`, `.../send`, `.../cancel`) mendapat audiens segmen opsional. Permintaan tanpa `segmentId` berperilaku persis seperti sebelumnya. Di balik **tiga** fitur yang semuanya harus aktif (selain itu `409 FEATURE_DISABLED`): `campaigns`, `segments` dan `campaignSegmentAudience` (bawaan MATI).
+
+| Rute                                   | Yang berubah                                                                                                                                                                                                             | Syarat tambahan                                                                                                                                                                          |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `POST commerce/campaigns`              | body menerima `segmentId` dan `segmentVersion` opsional; segmen adalah seluruh audiens sehingga `audience` tidak boleh berisi filter; versi dikunci (terbaru bila tidak disebut)                                         | `commerce.segments.read` selain `commerce.campaigns.update`; `404` untuk segmen atau versi yang tak dikenal atau milik tenant lain, `409 SEGMENT_RETIRED` untuk segmen yang dipensiunkan |
+| `PATCH commerce/campaigns/{id}`        | `segmentId` melampirkan / mengunci ulang (mengosongkan filter); `segmentId: null` melepas lalu mewajibkan `audience`; filter pada kampanye yang mempertahankan segmennya adalah `400`                                    | sama seperti membuat saat melampirkan                                                                                                                                                    |
+| `POST commerce/campaigns/{id}/preview` | untuk kampanye segmen: `{ recipientCount, suppressed, label?, segment, asOf }` - anggota yang boleh dihubungi kampanye (persetujuan, akun aktif, alamat kanal), `recipientCount: null` dan `suppressed: true` di bawah 5 | `commerce.segment_previews.read`; `422 SEGMENT_TOO_EXPENSIVE`, `429 SEGMENT_EVALUATION_BUSY` / `RATE_LIMITED`                                                                            |
+| `POST commerce/campaigns/{id}/send`    | memeriksa ulang ketiga fitur dan bahwa audiens dapat dievaluasi saat enqueue; persetujuan diperiksa lagi oleh dispatcher pada setiap halaman                                                                             | `409 FEATURE_DISABLED` / `SEGMENT_UNAVAILABLE`, `422 SEGMENT_TOO_EXPENSIVE`, `429 SEGMENT_EVALUATION_BUSY`                                                                               |
+
+Catatan kampanye memuat `segment: { id, version, asOf }` (null untuk kampanye lama; `asOf` null sampai dispatcher pertama kali mengklaimnya) dan `countsSuppressed`. Tidak ada kunci izin baru dan tidak ada rute baru.
 
 ## API owner: pengembalian barang, pengembalian dana, dan penukaran (issue #287, epik #281, [ADR-0033](adr/0033-returns-refunds-and-exchanges-are-additive-records-that-compensate-through-the-existing-ledgers.md))
 

@@ -6,6 +6,13 @@
  * Follows `commerce-inbox.astro`'s "list + detail on one page via a query
  * param" shape and `commerce-vouchers.astro`'s create-form-above-the-list
  * convention.
+ *
+ * Issue #362 (ADR-0042 Amendment): when the tenant has turned on `campaigns`,
+ * `segments` and `campaignSegmentAudience` AND the viewer may read segments,
+ * the create form offers a segment as the audience. The campaign records the
+ * segment version it was pinned to and, once dispatched, the as-of it was
+ * evaluated at; both show in the detail panel. A segment-campaign's count under
+ * five is withheld, never printed as a number.
  */
 import AdminLayout from "../../layouts/AdminLayout.astro";
 import CommerceConfirmDialog from "../../components/CommerceConfirmDialog.astro";
@@ -21,6 +28,12 @@ import {
   fetchCampaign,
   listCampaigns
 } from "../../modules/commerce/application/campaign-directory";
+import { firstDisabledSegmentAudienceFeature } from "../../modules/commerce/application/campaign-segment-audience";
+import { fetchCommerceFeatures } from "../../modules/commerce/application/commerce-feature-gate";
+import {
+  fetchSegment,
+  listSegments
+} from "../../modules/commerce/application/segment-directory";
 
 const ssr = Astro.locals.ssrContext!;
 const { t, tn } = getTranslatorFor(Astro.locals.locale);
@@ -54,7 +67,35 @@ const screen = await loadAdminScreen({
         ? await fetchCampaign(tx, ssr.tenantId, selectedId)
         : null;
 
-    return { campaigns: page.items, canUpdate, canSend, selected };
+    // Issue #362: the segment picker exists only when all three flags are on and
+    // the viewer may read segments; otherwise this screen is today's screen.
+    const features = await fetchCommerceFeatures(tx, ssr.tenantId);
+    const segmentAudienceOn =
+      firstDisabledSegmentAudienceFeature(features) === null;
+    const canReadSegments =
+      segmentAudienceOn &&
+      (await can({
+        moduleKey: "commerce",
+        activityCode: "segments",
+        action: "read"
+      }));
+    const segmentChoices = canReadSegments
+      ? (await listSegments(tx, ssr.tenantId, null, false)).items
+      : [];
+    const selectedSegmentName =
+      canReadSegments && selected?.segment
+        ? ((await fetchSegment(tx, ssr.tenantId, selected.segment.id))?.name ??
+          null)
+        : null;
+
+    return {
+      campaigns: page.items,
+      canUpdate,
+      canSend,
+      selected,
+      segmentChoices,
+      selectedSegmentName
+    };
   },
   onError: (error) => {
     logAdminPageError(
@@ -71,6 +112,10 @@ const campaigns = screen.state === "allowed" ? screen.data.campaigns : [];
 const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
 const canSend = screen.state === "allowed" && screen.data.canSend;
 const selected = screen.state === "allowed" ? screen.data.selected : null;
+const segmentChoices =
+  screen.state === "allowed" ? screen.data.segmentChoices : [];
+const selectedSegmentName =
+  screen.state === "allowed" ? screen.data.selectedSegmentName : null;
 ---
 
 <AdminLayout
@@ -127,6 +172,33 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
           "Use {{name}} and {{storeName}} — the only variables the message may interpolate."
         )}
       />
+
+      {segmentChoices.length > 0 && (
+        <div>
+          <label for="campaign-create-segment">
+            {t("Audience: customer segment")}
+          </label>
+          <select
+            id="campaign-create-segment"
+            name="segment"
+            aria-describedby="campaign-create-segment-help"
+          >
+            <option value="">
+              {t("No segment (use the customer levels below)")}
+            </option>
+            {segmentChoices.map((segment) => (
+              <option value={segment.id}>
+                {segment.name} · v{segment.latestVersion}
+              </option>
+            ))}
+          </select>
+          <p id="campaign-create-segment-help" class="cell-muted">
+            {t(
+              "Only segment members who agreed to marketing messages are sent to. The segment version is fixed when the draft is created; the levels below are ignored when a segment is chosen."
+            )}
+          </p>
+        </div>
+      )}
 
       <fieldset>
         <legend>{t("Audience: customer levels (all if none checked)")}</legend>
@@ -210,9 +282,15 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
                     </span>
                   </td>
                   <td data-label={t("Recipients")}>
-                    {campaign.recipientCount ?? "—"}
+                    {campaign.countsSuppressed
+                      ? t("Fewer than 5")
+                      : (campaign.recipientCount ?? "—")}
                   </td>
-                  <td data-label={t("Sent")}>{campaign.sentCount ?? "—"}</td>
+                  <td data-label={t("Sent")}>
+                    {campaign.countsSuppressed
+                      ? t("Fewer than 5")
+                      : (campaign.sentCount ?? "—")}
+                  </td>
                   <td data-label={t("Created")}>{campaign.createdAt}</td>
                   <td data-label={t("Open")}>
                     <a href={`/admin/commerce-campaigns?id=${campaign.id}`}>
@@ -242,6 +320,15 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
               {commerceLabel(labels.campaignStatus, selected.status)}
             </span>
           </h2>
+
+          {selected.segment && (
+            <p id="campaign-segment-info" class="cell-muted">
+              <strong>{t("Segment")}:</strong>{" "}
+              {selectedSegmentName ?? t("(segment)")} · v
+              {selected.segment.version} · <strong>{t("Evaluated at")}:</strong>{" "}
+              {selected.segment.asOf ?? t("(not sent yet)")}
+            </p>
+          )}
 
           {canUpdate && selected.status === "draft" ? (
             <form id="campaign-edit-form" data-campaign-id={selected.id}>
@@ -293,6 +380,19 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
               class="module-toggle"
               id="campaign-preview-btn"
               data-campaign-id={selected.id}
+              data-label-suppressed={t("Fewer than 5 recipients")}
+              data-label-busy={t(
+                "Too many audience checks are running. Try again shortly."
+              )}
+              data-label-expensive={t(
+                "This segment is too expensive to count. Narrow its rule and try again."
+              )}
+              data-label-denied={t(
+                "You do not have permission to preview a segment audience."
+              )}
+              data-label-disabled={t(
+                "Sending to a segment is turned off for this store."
+              )}
             >
               {t("Preview audience")}
             </button>
@@ -372,7 +472,9 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
   onSubmit("campaign-create-form", ({ form, data, submit }) => {
     const channel = field(data, "channel");
     const subjectRaw = field(data, "subject");
-    const levels = collectLevels(form);
+    const segmentId = field(data, "segment");
+    // A segment is the whole audience: the levels are not sent with it.
+    const levels = segmentId.length > 0 ? [] : collectLevels(form);
 
     return mutateAndReload(
       submit,
@@ -382,7 +484,8 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
           channel,
           subject: subjectRaw.length > 0 ? subjectRaw : null,
           body: field(data, "body"),
-          audience: { levels, hasAccount: null, lastOrderSince: null }
+          audience: { levels, hasAccount: null, lastOrderSince: null },
+          ...(segmentId.length > 0 ? { segmentId } : {})
         }),
       "Could not create the campaign. Please try again.",
       "Creating…"
@@ -413,15 +516,29 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
     const result = document.getElementById("campaign-preview-result");
     if (result) result.textContent = "…";
 
-    const response = await sendJsonForData<{ recipientCount: number }>(
-      "POST",
-      `/api/v1/commerce/campaigns/${id}/preview`
-    );
+    const response = await sendJsonForData<{
+      recipientCount: number | null;
+      suppressed?: boolean;
+    }>("POST", `/api/v1/commerce/campaigns/${id}/preview`);
 
     if (result) {
-      result.textContent = response.ok
-        ? `${response.data?.recipientCount ?? 0} recipient(s)`
-        : "Could not preview the audience.";
+      const labels = button.dataset;
+      if (response.ok) {
+        // A segment campaign under five is withheld, not printed as a number.
+        result.textContent = response.data?.suppressed
+          ? (labels.labelSuppressed ?? "")
+          : `${response.data?.recipientCount ?? 0} recipient(s)`;
+      } else if (response.errorCode === "SEGMENT_EVALUATION_BUSY") {
+        result.textContent = labels.labelBusy ?? "";
+      } else if (response.errorCode === "SEGMENT_TOO_EXPENSIVE") {
+        result.textContent = labels.labelExpensive ?? "";
+      } else if (response.errorCode === "FEATURE_DISABLED") {
+        result.textContent = labels.labelDisabled ?? "";
+      } else if (response.errorCode === "ACCESS_DENIED") {
+        result.textContent = labels.labelDenied ?? "";
+      } else {
+        result.textContent = "Could not preview the audience.";
+      }
     }
   });
 

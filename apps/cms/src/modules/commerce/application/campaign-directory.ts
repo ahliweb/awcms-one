@@ -27,6 +27,7 @@ import {
   utcMicrosecondTextSql,
   type KeysetCursor
 } from "../../_shared/keyset-pagination";
+import { suppressSmallCount } from "../domain/segment-rules";
 import type {
   CampaignAudience,
   CampaignChannel,
@@ -59,6 +60,16 @@ type CampaignRow = {
   sent_at: Date | null;
   recipient_count: number | null;
   created_at: Date;
+  segment_id: string | null;
+  segment_version: number | null;
+  segment_as_of: Date | null;
+};
+
+/** Issue #362: the segment version a campaign targets and the as-of it was evaluated at (null until the dispatcher first claims it). */
+export type CampaignSegmentRecord = {
+  id: string;
+  version: number;
+  asOf: string | null;
 };
 
 export type CampaignRecord = {
@@ -70,6 +81,10 @@ export type CampaignRecord = {
   status: CampaignStatus;
   recipientCount: number | null;
   sentCount: number | null;
+  /** Issue #362: true when a count under five is withheld (segment campaigns only, C-27); the count is then null. */
+  countsSuppressed: boolean;
+  /** Issue #362: null for a campaign using the legacy audience filters. */
+  segment: CampaignSegmentRecord | null;
   createdAt: string;
 };
 
@@ -88,6 +103,13 @@ async function toRecord(
     `) as { sent_count: number }[];
     sentCount = rows[0]?.sent_count ?? 0;
   }
+  // Issue #362 (C-27): a segment campaign's counts are the size of a segment,
+  // so a small one is withheld exactly as the segment's own preview does it.
+  // A legacy campaign's counts are untouched.
+  const isSegment = row.segment_id !== null;
+  const hide = (count: number | null): boolean =>
+    isSegment && count !== null && suppressSmallCount(count).suppressed;
+  const suppressed = hide(row.recipient_count) || hide(sentCount);
   return {
     id: row.id,
     channel: row.channel,
@@ -95,8 +117,17 @@ async function toRecord(
     subject: row.subject,
     body: row.body,
     status: row.status,
-    recipientCount: row.recipient_count,
-    sentCount,
+    recipientCount: hide(row.recipient_count) ? null : row.recipient_count,
+    sentCount: hide(sentCount) ? null : sentCount,
+    countsSuppressed: suppressed,
+    segment:
+      row.segment_id !== null && row.segment_version !== null
+        ? {
+            id: row.segment_id,
+            version: Number(row.segment_version),
+            asOf: row.segment_as_of?.toISOString() ?? null
+          }
+        : null,
     createdAt: row.created_at.toISOString()
   };
 }
@@ -127,6 +158,7 @@ export async function listCampaigns(
   const rows = (await tx`
     SELECT id, channel, audience, subject, body, status, scheduled_at,
            sent_at, recipient_count, created_at,
+           segment_id, segment_version, segment_as_of,
            ${tx.unsafe(utcMicrosecondTextSql("created_at"))} AS sort_cursor
     FROM awcms_commerce_campaigns
     WHERE tenant_id = ${tenantId} AND deleted_at IS NULL
@@ -158,7 +190,8 @@ export async function fetchCampaign(
 ): Promise<CampaignRecord | null> {
   const rows = (await tx`
     SELECT id, channel, audience, subject, body, status, scheduled_at,
-           sent_at, recipient_count, created_at
+           sent_at, recipient_count, created_at,
+           segment_id, segment_version, segment_as_of
     FROM awcms_commerce_campaigns
     WHERE tenant_id = ${tenantId} AND id = ${campaignId} AND deleted_at IS NULL
   `) as CampaignRow[];
@@ -172,18 +205,23 @@ export async function createCampaign(
   tenantId: string,
   actorTenantUserId: string,
   input: CreateCampaignInput,
-  correlationId?: string
+  correlationId?: string,
+  /** Issue #362: the already-resolved segment pin, or omitted/null for a legacy-audience campaign. */
+  segmentPin: { segmentId: string; version: number } | null = null
 ): Promise<CampaignRecord> {
   const rows = (await tx`
     INSERT INTO awcms_commerce_campaigns (
-      tenant_id, channel, subject, body, audience, status, created_by
+      tenant_id, channel, subject, body, audience, status, created_by,
+      segment_id, segment_version
     )
     VALUES (
       ${tenantId}, ${input.channel}, ${input.subject}, ${input.body},
-      ${input.audience}::jsonb, 'draft', ${actorTenantUserId}
+      ${input.audience}::jsonb, 'draft', ${actorTenantUserId},
+      ${segmentPin?.segmentId ?? null}::uuid, ${segmentPin?.version ?? null}::int
     )
     RETURNING id, channel, audience, subject, body, status, scheduled_at,
-              sent_at, recipient_count, created_at
+              sent_at, recipient_count, created_at,
+              segment_id, segment_version, segment_as_of
   `) as CampaignRow[];
   const row = rows[0]!;
 
@@ -194,7 +232,16 @@ export async function createCampaign(
     resourceType: AUDIT_RESOURCE_TYPE,
     resourceId: row.id,
     message: "Campaign created.",
-    attributes: { actorTenantUserId, channel: input.channel },
+    attributes: {
+      actorTenantUserId,
+      channel: input.channel,
+      ...(segmentPin
+        ? {
+            segmentId: segmentPin.segmentId,
+            segmentVersion: segmentPin.version
+          }
+        : {})
+    },
     correlationId
   });
 
@@ -213,7 +260,10 @@ export async function updateCampaign(
   actorTenantUserId: string,
   campaignId: string,
   input: UpdateCampaignInput,
-  correlationId?: string
+  correlationId?: string,
+  /** Issue #362: `undefined` leaves the segment pin alone, `null` detaches it, a pin (re)attaches it. */
+  segmentPin:
+    { segmentId: string; version: number } | null | undefined = undefined
 ): Promise<UpdateCampaignOutcome> {
   const existingRows = (await tx`
     SELECT status FROM awcms_commerce_campaigns
@@ -222,8 +272,18 @@ export async function updateCampaign(
   if (existingRows.length === 0) return { kind: "not_found" };
   if (existingRows[0]!.status !== "draft") return { kind: "not_editable" };
 
-  const audience =
-    input.audience !== undefined ? JSON.stringify(input.audience) : null;
+  // A segment is the whole audience (ADR-0042 Amendment): attaching one clears
+  // the legacy filters (a body that also sends filters is refused earlier).
+  const attaching = segmentPin !== undefined && segmentPin !== null;
+  const detaching = segmentPin === null;
+  const touchSegment = segmentPin !== undefined;
+
+  // Bound as an OBJECT: `JSON.stringify(...)` here stored the filters as a JSON
+  // string scalar (`jsonb_typeof = 'string'`), which the dispatcher then read as
+  // an audience with no `levels` (found by the #362 route tests).
+  const audience: CampaignAudience | null = attaching
+    ? { levels: [], hasAccount: null, lastOrderSince: null }
+    : (input.audience ?? null);
   const hasSubject = input.subject !== undefined;
   const hasBody = input.body !== undefined;
 
@@ -231,12 +291,15 @@ export async function updateCampaign(
     UPDATE awcms_commerce_campaigns
     SET
       audience = COALESCE(${audience}::jsonb, audience),
+      segment_id = CASE WHEN ${touchSegment} THEN ${segmentPin?.segmentId ?? null}::uuid ELSE segment_id END,
+      segment_version = CASE WHEN ${touchSegment} THEN ${segmentPin?.version ?? null}::int ELSE segment_version END,
       subject = CASE WHEN ${hasSubject} THEN ${input.subject ?? null} ELSE subject END,
       body = CASE WHEN ${hasBody} THEN ${input.body ?? null} ELSE body END,
       updated_at = now()
     WHERE tenant_id = ${tenantId} AND id = ${campaignId} AND status = 'draft'
     RETURNING id, channel, audience, subject, body, status, scheduled_at,
-              sent_at, recipient_count, created_at
+              sent_at, recipient_count, created_at,
+              segment_id, segment_version, segment_as_of
   `) as CampaignRow[];
   if (rows.length === 0) return { kind: "not_found" };
 
@@ -247,7 +310,16 @@ export async function updateCampaign(
     resourceType: AUDIT_RESOURCE_TYPE,
     resourceId: campaignId,
     message: "Campaign edited.",
-    attributes: { actorTenantUserId },
+    attributes: {
+      actorTenantUserId,
+      ...(attaching
+        ? {
+            segmentId: segmentPin.segmentId,
+            segmentVersion: segmentPin.version
+          }
+        : {}),
+      ...(detaching ? { segmentDetached: true } : {})
+    },
     correlationId
   });
 
@@ -396,7 +468,8 @@ export async function sendCampaign(
     WHERE tenant_id = ${tenantId} AND id = ${campaignId}
       AND status IN ('draft', 'scheduled') AND deleted_at IS NULL
     RETURNING id, channel, audience, subject, body, status, scheduled_at,
-              sent_at, recipient_count, created_at
+              sent_at, recipient_count, created_at,
+              segment_id, segment_version, segment_as_of
   `) as CampaignRow[];
 
   if (rows.length === 0) {
@@ -449,7 +522,8 @@ export async function cancelCampaign(
     WHERE tenant_id = ${tenantId} AND id = ${campaignId}
       AND status IN ('draft', 'scheduled', 'sending') AND deleted_at IS NULL
     RETURNING id, channel, audience, subject, body, status, scheduled_at,
-              sent_at, recipient_count, created_at
+              sent_at, recipient_count, created_at,
+              segment_id, segment_version, segment_as_of
   `) as CampaignRow[];
 
   if (rows.length === 0) {

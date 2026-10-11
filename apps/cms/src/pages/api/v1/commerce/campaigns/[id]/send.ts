@@ -11,6 +11,12 @@ import {
 import { sendCampaign } from "../../../../../../modules/commerce/application/campaign-directory";
 import { COMMERCE_CAMPAIGNS_ACTIVITY_CODE } from "../../../../../../modules/commerce/domain/commerce-permissions";
 import { requireCommerceFeatureForOwnerRoute } from "../../../../../../modules/commerce/application/commerce-feature-gate";
+import {
+  countCampaignSegmentAudience,
+  fetchCampaignSegmentState,
+  requireCampaignSegmentAudienceFeature
+} from "../../../../../../modules/commerce/application/campaign-segment-audience";
+import { audienceRefusalResponse } from "../../../../../../modules/commerce/application/campaign-segment-http";
 
 const IDEMPOTENCY_SCOPE = "commerce_campaign_send";
 
@@ -44,7 +50,7 @@ export const POST = defineTenantRoute<Prepared>({
     return { idempotencyKey };
   },
   authorize: SEND_GUARD,
-  handler: async ({ tx, tenantId, auth, params, prepared, locals }) => {
+  handler: async ({ tx, tenantId, auth, params, prepared, locals, now }) => {
     const gate = await requireCommerceFeatureForOwnerRoute(
       tx,
       tenantId,
@@ -74,6 +80,37 @@ export const POST = defineTenantRoute<Prepared>({
       return jsonResponse(existing.responseBody, {
         status: existing.responseStatus
       });
+    }
+
+    // Issue #362: a segment campaign is checked when it is ENQUEUED, not only
+    // when it is dispatched. The feature may have been switched off since the
+    // draft was written, and the audience must be evaluable inside the bounds
+    // (ADR-0042 D5) - a `busy` / `too expensive` answer surfaces here as the
+    // stable 429 / 422 instead of as a campaign that silently never sends.
+    // Consent is part of that evaluation; it is checked again, per page, when
+    // the dispatcher fans the campaign out. A legacy campaign skips all of it.
+    const state = await fetchCampaignSegmentState(tx, tenantId, campaignId);
+    if (
+      state?.pin &&
+      (state.status === "draft" || state.status === "scheduled")
+    ) {
+      const featureGate = await requireCampaignSegmentAudienceFeature(
+        tx,
+        tenantId
+      );
+      if (featureGate) return featureGate;
+      const counted = await countCampaignSegmentAudience(
+        tx,
+        { tenantId, actorTenantUserId: auth.context.tenantUserId, now },
+        state.pin,
+        state.channel
+      );
+      if (counted.kind !== "ok") {
+        return (
+          audienceRefusalResponse(counted) ??
+          fail(500, "INTERNAL_ERROR", "Segment evaluation failed.")
+        );
+      }
     }
 
     const outcome = await sendCampaign(

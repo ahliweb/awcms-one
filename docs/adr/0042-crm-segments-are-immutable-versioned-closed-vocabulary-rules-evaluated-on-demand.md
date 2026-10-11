@@ -111,3 +111,40 @@ Issue [#361](https://github.com/ahliweb/awcms-one/issues/361) is the first consu
 **A6 - A second feature, off by default.** `loyaltySegments` (commerce settings, **default OFF**) is separate from `segments` and `loyalty`: with it off, a program that recorded a restriction pays everyone exactly as before, and turning it on applies the restriction from the next order, with no back-fill and no claw-back (the same non-retroactivity ADR-0026 D2 gives `loyalty`). **Setting** a restriction additionally needs `segments` on and `commerce.segments.read` (checked through the access chokepoint); an unknown, foreign, retired or non-existent segment or version is the one answer `422 SEGMENT_NOT_FOUND`. Clearing a restriction needs only `commerce.loyalty.manage`. Creating, editing and activating a program audit the segment id and version.
 
 **Not built here.** Booking-originated earn (L2) waits for X3 ([#355](https://github.com/ahliweb/awcms-one/issues/355)); campaign audiences are [#362](https://github.com/ahliweb/awcms-one/issues/362); a per-program preview of "who would earn" is not offered (the segment screen's count already answers it).
+
+## Amendment (#362) - 11 October 2026: a campaign may take a segment as its audience
+
+Issue [#362](https://github.com/ahliweb/awcms-one/issues/362) wires D9's seam into the existing campaign flow (PRD S3 and S4; threat model C-12, C-28, C-29). It changes none of D1 to D11; it records what the consumer does with them. Migration `sql/1007`.
+
+### A1 - A third feature flag, default OFF, and a fourth permission check
+
+`features.campaignSegmentAudience` defaults **OFF**. A segment audience also needs `campaigns` and `segments` on, so a tenant that enabled segments to look at them does not thereby start sending to them. Any of the three off answers `409 FEATURE_DISABLED` on the routes that take a segment, and a segment campaign whose flag was switched off after the draft was written is not sent (A5). A request without `segmentId` never reaches this code, so every existing client and every existing campaign behaves as before. Aiming a campaign at a segment additionally needs `commerce.segments.read` (a campaign editor may not read segment definitions by being one); a segment campaign's count needs `commerce.segment_previews.read`. No new permission key is added.
+
+### A2 - The campaign is pinned to a segment VERSION and records the as-of it was evaluated at (C-29)
+
+`awcms_commerce_campaigns` gains `segment_id`, `segment_version` and `segment_as_of` (all NULL for a legacy campaign), with a composite foreign key to `awcms_commerce_segment_versions (tenant_id, segment_id, version)`: a campaign can only name a version of its own tenant's segment, and a referenced version can never be deleted. The version is pinned when the draft is written (the latest when the request names none); because versions are immutable, editing or retiring the segment afterwards changes nothing about what the campaign sends to or records. `segment_as_of` is stamped **once, by the dispatcher's claim** (`COALESCE(segment_as_of, now())`), so every page of one send, over however many ticks, evaluates the rule at one instant and the rule's relative windows mean the same thing on the first page and the last. The campaign record returns `segment: { id, version, asOf }`.
+
+### A3 - No second customer store: the existing recipient ledger is the only list
+
+The dispatcher still resolves "the next 200 messageable customers not yet recorded in `awcms_commerce_campaign_recipients`" inside the existing claim (`FOR UPDATE SKIP LOCKED`), page and finalise phases; only the page resolver differs. The segment's rule is evaluated by the D5-bounded evaluator and the campaign's reach (the customer's own active account, `marketing_consent_at IS NOT NULL`, an address on the channel, not yet a recipient) is appended **after** the rule in the same statement, so it can only remove people. Nothing is materialised: no members table, no cohort snapshot (D10 still holds - a recipient row is the ledger a send always had). Each page repeats the evaluation, which costs one scan of the tenant's paid orders per page; the scan is index-only (`sql/1002`), a run drains at most 25 pages per campaign, and the evaluation is bounded exactly like a preview.
+
+### A4 - Consent is independent of membership, checked at enqueue and at dispatch (C-12, C-28)
+
+Membership never implies consent. At **enqueue** (the send call, and every page that inserts recipient and outbox rows) an opted-out member is not selected, so it never gets a recipient or an outbox row, and the count shown beforehand excludes it. At **dispatch** the audience is re-evaluated when each page runs, not once at send time, so consent withdrawn after the send call is honoured. The evaluator's eligibility exclusions (walk-in placeholder, blocked, erased) still apply before the rule, so a `NOT` rule cannot resurrect them. The window between a page's read and its commit is one transaction, the same as every campaign before it.
+
+### A5 - Refusals defer, they never finalise, and surface as stable codes
+
+- **At send** (the enqueue): the three features must still be on and the audience must be evaluable within the D5 bound; `busy` is `429 SEGMENT_EVALUATION_BUSY`, `too_expensive` is `422 SEGMENT_TOO_EXPENSIVE`, a version that can no longer be read is `409 SEGMENT_UNAVAILABLE`. A campaign that could never be evaluated therefore fails visibly when it is sent, not silently afterwards. The same codes come from the campaign preview.
+- **At dispatch**: a page that is `busy`, `too expensive`, whose segment cannot be read, or whose tenant switched the flag off enqueues nothing and is **deferred** - the loop stops for this run and the campaign stays `sending` for the next tick. An empty page is the only signal that the audience is drained, so a refusal can never mark a campaign `sent`. The dispatch script stops re-claiming a campaign in the same run once a page was deferred and reports `segmentPagesDeferred`. A campaign that stays deferred is visible as `sending` and can be cancelled.
+- A segment is the **whole** audience: a body that names a segment and legacy filters is refused, attaching clears the filters, and detaching a segment requires the filters it should fall back to (so a detach cannot widen a campaign to every consented account).
+
+### A6 - Small groups stay withheld on the campaign too (C-27)
+
+A campaign reader must not be able to difference a narrow segment into a person any more than a segment reader. For a segment campaign the preview count and the recorded `recipientCount` / `sentCount` under five are withheld (`null`, `countsSuppressed: true`, `fewer_than_5`). A legacy campaign's counts stay exact.
+
+### Consequences
+
+- Positive: S3's campaign half exists with no new customer store and the same resumable, claimable dispatcher; a past send is explained by `(segment, version, asOf)`; consent and exclusions are structural (part of the page query), not a convention a consumer has to remember.
+- Cost: a segment campaign pays one bounded evaluation per page; a campaign deferred by a persistently expensive rule needs a human to cancel or narrow it; three flags must be on.
+- Compatibility: additive. Three nullable columns, one foreign key, one partial index; legacy campaigns, their audience filters and their counts are unchanged.
+- Found on the way, fixed here: `updateCampaign` bound the audience as `JSON.stringify(...)::jsonb`, which stores a JSON string scalar rather than an object, so any legacy PATCH of the audience left a campaign the dispatcher could not read. It now binds the object. (The legacy `levels` filter also fails to bind a non-empty array; that is a separate, untouched defect.)

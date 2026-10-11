@@ -331,8 +331,16 @@ export type SegmentQueryInput = {
   customerId?: string;
 };
 
-/** The `FROM ... WHERE ...` tail every evaluation shares (`c` = customers). */
-function segmentTail(tx: Bun.SQL, input: SegmentQueryInput) {
+/**
+ * The `FROM ... WHERE ...` tail every evaluation shares (`c` = customers).
+ * `reach` (Issue #362) narrows the members to the ones a campaign may message;
+ * it is appended AFTER the rule, so it can only ever remove people.
+ */
+function segmentTail(
+  tx: Bun.SQL,
+  input: SegmentQueryInput,
+  reach: CampaignReach | null = null
+) {
   const bound: Bound = { asOf: input.asOf };
   const needs = segmentNeeds(input.node);
   return tx`
@@ -340,9 +348,90 @@ function segmentTail(tx: Bun.SQL, input: SegmentQueryInput) {
     ${factsJoin(tx, input.tenantId, input.stats, bound, needs, input.customerId ?? null)}
     ${accountsJoin(tx, needs)}
     ${loyaltyJoin(tx, needs)}
+    ${reach ? reachJoin(tx) : tx``}
     WHERE ${eligibilityPredicate(tx, input.tenantId)}
       ${input.customerId === undefined ? tx`` : tx`AND c.id = ${input.customerId}::uuid`}
-      AND ${nodePredicate(tx, input.node, input.stats, bound)}`;
+      AND ${nodePredicate(tx, input.node, input.stats, bound)}
+      ${reach ? reachPredicate(tx, input.tenantId, reach) : tx``}`;
+}
+
+// ---------------------------------------------------------------------------
+// Campaign reach (Issue #362, ADR-0042 Amendment, threat model C-12 / C-28)
+// ---------------------------------------------------------------------------
+
+/** What a campaign adds on top of segment membership: a channel and, for a dispatch page, the recipients already recorded. */
+export type CampaignReach = {
+  channel: "email" | "whatsapp";
+  /** When set, customers already recorded as recipients of this campaign are skipped - the resume cursor. */
+  campaignId: string | null;
+};
+
+/**
+ * Membership is NOT consent. The customer's own account is joined here, under
+ * its own alias (`ca`) so it cannot be confused with the rule's optional `a`
+ * join, and the predicate below requires the opt-in timestamp. A customer with
+ * no account has no consent and is structurally unreachable.
+ */
+function reachJoin(tx: Bun.SQL) {
+  return tx`
+    JOIN awcms_commerce_customer_accounts ca
+      ON ca.tenant_id = c.tenant_id AND ca.customer_id = c.id`;
+}
+
+function reachPredicate(tx: Bun.SQL, tenantId: string, reach: CampaignReach) {
+  const channelIsEmail = reach.channel === "email";
+  return tx`
+      AND ca.deleted_at IS NULL
+      AND ca.status = 'active'
+      AND ca.marketing_consent_at IS NOT NULL
+      AND (
+        (${channelIsEmail} AND ca.email_normalized IS NOT NULL AND ca.email_normalized <> '')
+        OR (NOT ${channelIsEmail} AND c.phone IS NOT NULL AND c.phone <> '')
+      )
+      ${
+        reach.campaignId
+          ? tx`AND NOT EXISTS (
+        SELECT 1 FROM awcms_commerce_campaign_recipients r
+        WHERE r.tenant_id = ${tenantId} AND r.campaign_id = ${reach.campaignId}
+          AND r.customer_id = c.id
+      )`
+          : tx``
+      }`;
+}
+
+export type CampaignAudienceRow = {
+  customer_id: string;
+  name: string;
+  phone: string;
+  email: string | null;
+};
+
+/** How many members of the segment the campaign may message (consent, status, channel address). */
+export async function countSegmentCampaignAudience(
+  tx: Bun.SQL,
+  input: SegmentQueryInput,
+  channel: CampaignReach["channel"]
+): Promise<number> {
+  const rows = (await tx`
+    SELECT count(*)::int AS total
+    ${segmentTail(tx, input, { channel, campaignId: null })}
+  `) as { total: number }[];
+  return Number(rows[0]?.total ?? 0);
+}
+
+/** One page (ascending customer id) of the messageable members not yet recorded for `campaignId`. */
+export async function selectSegmentCampaignAudiencePage(
+  tx: Bun.SQL,
+  input: SegmentQueryInput,
+  reach: { channel: CampaignReach["channel"]; campaignId: string },
+  limit: number
+): Promise<CampaignAudienceRow[]> {
+  return (await tx`
+    SELECT c.id AS customer_id, c.name, c.phone, ca.email_normalized AS email
+    ${segmentTail(tx, input, reach)}
+    ORDER BY c.id ASC
+    LIMIT ${limit}
+  `) as CampaignAudienceRow[];
 }
 
 /** How many customers the rule matches. */

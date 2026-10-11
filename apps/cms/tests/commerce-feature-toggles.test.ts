@@ -32,6 +32,7 @@ describe("resolveCommerceFeatures", () => {
     expect(DEFAULT_COMMERCE_FEATURES.retention).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.barcode).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.segments).toBe(false);
+    expect(DEFAULT_COMMERCE_FEATURES.campaignSegmentAudience).toBe(false);
     expect(
       Object.entries(DEFAULT_COMMERCE_FEATURES)
         .filter(
@@ -46,9 +47,9 @@ describe("resolveCommerceFeatures", () => {
             key !== "barcode" &&
             key !== "returns" &&
             key !== "retention" &&
-            key !== "segments",
             key !== "segments" &&
-            key !== "loyaltySegments"
+            key !== "loyaltySegments" &&
+            key !== "campaignSegmentAudience"
         )
         .every(([, value]) => value === true)
     ).toBe(true);
@@ -81,7 +82,8 @@ describe("resolveCommerceFeatures", () => {
       returns: false,
       retention: false,
       segments: false,
-      loyaltySegments: false
+      loyaltySegments: false,
+      campaignSegmentAudience: false
     });
   });
 
@@ -104,7 +106,8 @@ describe("resolveCommerceFeatures", () => {
       returns: false,
       retention: false,
       segments: false,
-      loyaltySegments: false
+      loyaltySegments: false,
+      campaignSegmentAudience: false
     });
   });
 
@@ -147,7 +150,8 @@ describe("resolveCommerceFeatures", () => {
         returns: false,
         retention: false,
         segments: false,
-        loyaltySegments: false
+        loyaltySegments: false,
+        campaignSegmentAudience: false
       }
     });
     expect(resolved).toEqual({
@@ -167,7 +171,8 @@ describe("resolveCommerceFeatures", () => {
       returns: false,
       retention: false,
       segments: false,
-      loyaltySegments: false
+      loyaltySegments: false,
+      campaignSegmentAudience: false
     });
     // ...and the flags that default off can be turned on.
     expect(
@@ -546,6 +551,19 @@ describe("toPublicRecord — feature composition (Issue #118)", () => {
     expect(
       resolveCommerceFeatures({ features: { loyaltySegments: true } })
         .loyaltySegments
+    ).toBe(true);
+  });
+
+  test("campaignSegmentAudience (Issue #362, ADR-0042 Amendment) defaults OFF, can be turned on, and a tenant that saved a settings row before the flag existed still reads OFF", () => {
+    expect(DEFAULT_COMMERCE_FEATURES.campaignSegmentAudience).toBe(false);
+    expect(resolveCommerceFeatures({}).campaignSegmentAudience).toBe(false);
+    expect(
+      resolveCommerceFeatures({ features: { segments: true } })
+        .campaignSegmentAudience
+    ).toBe(false);
+    expect(
+      resolveCommerceFeatures({ features: { campaignSegmentAudience: true } })
+        .campaignSegmentAudience
     ).toBe(true);
   });
 });

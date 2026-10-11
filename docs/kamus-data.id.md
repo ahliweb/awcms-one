@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:0c440242622b1885e73097ae75ed95841949f1d795b2fcce10852c96acbb8a47 -->
+<!-- i18n-source-hash: sha256:f310cea9dc2fa9faaa2935b3d5e9573da2df3df77fa7c843fe295f354ab7429c -->
 
 # Kamus data
 
@@ -463,3 +463,15 @@ Tidak ada yang di bawah ini di tree. Istilahnya didefinisikan, beserta tabel dan
 | kebijakan deposit    | `awcms_commerce_product_deposit_policies`           | Deposit persentase atau tetap per produk; tanpa baris = bayar penuh; tanpa default tenant. Dipotret pada pesanan sebagai `dp_amount`                                    |
 | kebijakan pembatalan | `awcms_commerce_cancellation_policies` / `_windows` | Daftar berversi jendela "sedikitnya N jam sebelum mulai, refund P%"; baris tanpa produk adalah default tenant                                                           |
 | keputusan refund     | `awcms_commerce_booking_refund_decisions`           | Catatan append-only refund terhitung, penimpaan manajer atau finance (alasan, step-up, tidak pernah di atas jumlah dibayar) dan return yang membawa leg refund          |
+
+### Audiens segmen kampanye (issue #362, [Amendemen ADR-0042](adr/0042-crm-segments-are-immutable-versioned-closed-vocabulary-rules-evaluated-on-demand.id.md))
+
+| Istilah                         | Letaknya                                                                                                                                                     |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| audiens segmen                  | kampanye dengan `awcms_commerce_campaigns.segment_id` terisi; segmen adalah seluruh audiens, tidak pernah digabung dengan filter lama                        |
+| versi terkunci                  | `segment_version`, ditetapkan saat draf ditulis; versi tak dapat diubah, sehingga edit kemudian tidak mengubah kampanye                                      |
+| as-of kampanye                  | `segment_as_of`, instan server saat audiens dievaluasi; diisi oleh klaim pertama dispatcher                                                                  |
+| jangkauan                       | yang ditambahkan kampanye pada keanggotaan segmen: akun aktif milik pelanggan, `marketing_consent_at IS NOT NULL`, alamat pada kanal, belum menjadi penerima |
+| halaman tertunda                | halaman segmen yang ditolak dispatcher (sibuk, terlalu mahal, fitur mati, segmen tak terbaca); tidak ada yang di-enqueue dan kampanye tetap `sending`        |
+| fitur `campaignSegmentAudience` | pengaturan modul commerce `features.campaignSegmentAudience` (bawaan MATI; juga butuh `campaigns` dan `segments`)                                            |
+| `countsSuppressed`              | pada kampanye segmen, true bila `recipientCount` / `sentCount` disembunyikan karena di bawah 5                                                               |

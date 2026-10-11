@@ -31,6 +31,7 @@ async function main() {
     let totalEnqueued = 0;
     let totalSkipped = 0;
     let totalCancelled = 0;
+    let totalDeferred = 0;
 
     for (const tenant of tenants) {
       for (let pass = 0; pass < MAX_PASSES_PER_TENANT; pass += 1) {
@@ -43,8 +44,11 @@ async function main() {
         totalEnqueued += result.recipientsEnqueued;
         totalSkipped += result.recipientsSkipped;
         totalCancelled += result.cancelledMidFlight;
+        totalDeferred += result.segmentPagesDeferred;
 
-        if (result.claimed === 0) {
+        // A refused segment page (Issue #362) is retried on the NEXT run, not
+        // by re-claiming the same campaign nine more times in this one.
+        if (result.claimed === 0 || result.segmentPagesDeferred > 0) {
           break;
         }
       }
@@ -54,7 +58,7 @@ async function main() {
       `commerce:campaigns:dispatch complete — correlationId=${correlationId} ` +
         `tenants=${tenants.length} claimed=${totalClaimed} sent=${totalSent} ` +
         `recipientsEnqueued=${totalEnqueued} recipientsSkipped=${totalSkipped} ` +
-        `cancelledMidFlight=${totalCancelled}`
+        `cancelledMidFlight=${totalCancelled} segmentPagesDeferred=${totalDeferred}`
     );
   } catch (error) {
     logScriptFailure("commerce:campaigns:dispatch FAILED", error);

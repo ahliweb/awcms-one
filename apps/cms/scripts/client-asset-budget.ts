@@ -1516,21 +1516,23 @@ export const READER_BUDGET_BYTES = 24_000;
  * script: the contents editor is a plain textarea the server resolves.
  */
 /*
- * **Final: 441,800 B for the Wave B integration of awcms-one#360 (CRM
- * segments, ADR-0042), #363 (loyalty point redemption, ADR-0043) and #364
+ * **Final: 442,200 B for the Wave B integration of awcms-one#360 (CRM
+ * segments, ADR-0042), #361 (loyalty segment eligibility), #362 (campaign
+ * segment audience), #363 (loyalty point redemption, ADR-0043) and #364
  * (customer retention, ADR-0044), on top of the #290 figure above** —
- * MEASURED 441,687 B on the build merged from all three (434,568 B before
+ * MEASURED 442,109 B on the build merged from all five (434,568 B before
  * them): #360's `/admin/commerce-segments` screen (a condition builder that
  * narrows each row's operators to its field, the preview / member-list / edit
  * / retire handlers, a member-row renderer built with `textContent`, its
  * stylesheet share), #363's "Spend loyalty points" field in the POS page
  * script, "Point value" form on the loyalty screen and points line on the
- * order screen, and the new catalogue entries of all three (the compiled
+ * order screen, the #361 eligibility picker and column on the loyalty screen, the #362
+ * campaign segment picker, and the new catalogue entries of all five (the compiled
  * Indonesian catalogue ships with every page); #364's panel on the existing
  * reports screen added nothing measurable. A measurement of the merged build,
- * not a sum of the three branches' figures; the budget sits 113 B above it.
+ * not a sum of the three branches' figures; the budget sits 91 B above it.
  */
-export const APP_BUDGET_BYTES = 441_800;
+export const APP_BUDGET_BYTES = 442_200;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.
