@@ -20,6 +20,10 @@
  *                     lot already fully consumed when it fell due
  *   adjustment  != 0  a manual correction — attributable, reason mandatory
  *   reversal    != 0  the compensating entry for ONE earn (an order cancelled)
+ *   restore     > 0   the compensating entry for ONE redeem (Issue #363): points
+ *                     given back when the order they paid for is cancelled or
+ *                     refunded; a new lot, with the soonest expiry the redeem
+ *                     had consumed
  *
  * The same rules are CHECK constraints in `sql/950`; {@link isValidEntrySign}
  * is the pure statement of them so the application never relies on a database
@@ -31,7 +35,10 @@ export const LOYALTY_ENTRY_KINDS = [
   "redeem",
   "expire",
   "adjustment",
-  "reversal"
+  "reversal",
+  // Issue #363 (ADR-0043): gives back points a cancelled/refunded order had
+  // spent - the compensating row for ONE `redeem`.
+  "restore"
 ] as const;
 
 export type LoyaltyEntryKind = (typeof LOYALTY_ENTRY_KINDS)[number];
@@ -119,6 +126,8 @@ export function isValidEntrySign(
     case "adjustment":
     case "reversal":
       return points !== 0;
+    case "restore":
+      return points > 0;
   }
 }
 
@@ -164,6 +173,9 @@ export type LoyaltyProgram = {
   maxPointsPerOrder: number | null;
   expiryDays: number | null;
   notes: string | null;
+  /** Issue #361: the CRM segment (and its immutable version) this version is restricted to; `null` = every customer earns. */
+  eligibilitySegmentId: string | null;
+  eligibilitySegmentVersion: number | null;
   createdAt: string;
   updatedAt: string;
 };

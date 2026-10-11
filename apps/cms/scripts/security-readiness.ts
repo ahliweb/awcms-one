@@ -777,6 +777,12 @@ export const RETIRED_TENANT_TABLE_PRIVILEGES: Record<string, string[]> = {
   // frozen by sql/990's guard trigger rather than by privilege.
   awcms_commerce_expense_categories: ["SELECT", "INSERT", "UPDATE"],
   awcms_commerce_expenses: ["SELECT", "INSERT", "UPDATE"],
+  // Issue #360 / `sql/1001`. The CRM segment tables - NOT retired. A segment
+  // head is renamed / retired (UPDATE) but never deleted by the app; a version
+  // is APPEND-ONLY (no UPDATE, no DELETE: an edit is a new version, and a
+  // version a past campaign or earn recorded must stay explainable).
+  awcms_commerce_segments: ["SELECT", "INSERT", "UPDATE"],
+  awcms_commerce_segment_versions: ["SELECT", "INSERT"],
   // Issue #295 / `sql/965`. Append-only delivery requests: written once by the
   // sender role, never rewritten (trigger) and never deleted by it.
   awcms_commerce_document_deliveries: ["SELECT", "INSERT"],
@@ -1703,6 +1709,13 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // tables are unreachable by construction (`deleted_at` is never set).
   awcms_commerce_expense_categories: ["SELECT", "DELETE"],
   awcms_commerce_expenses: ["SELECT", "DELETE"],
+  // Issue #360 (`sql/1001`/`sql/1004`): the two segment tables'
+  // `dataLifecycle` descriptors (`commerce/domain/segment-lifecycle.ts`) are
+  // `executionMode: "generic"` with `hard_delete`; `awcms_app` has had DELETE
+  // revoked and the cursor (`deleted_at`) is never set, so the purge predicate
+  // cannot match a referenced version.
+  awcms_commerce_segments: ["SELECT", "DELETE"],
+  awcms_commerce_segment_versions: ["SELECT", "DELETE"],
   // but never actually matches a row in practice.
   awcms_commerce_customer_accounts: ["SELECT", "DELETE"],
   // Issue #267 (IRMbyDUS, sql/936/937): same shape as
@@ -1777,6 +1790,14 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_commerce_loyalty_programs: ["SELECT", "DELETE"],
   awcms_commerce_loyalty_accounts: ["SELECT", "INSERT", "UPDATE", "DELETE"],
   awcms_commerce_loyalty_ledger: ["SELECT", "INSERT", "DELETE"],
+  // Issue #363 (sql/1012): the write-once discount line of a points
+  // redemption. The order-expiry job reads it to find the points an expired
+  // order had spent (and gives them back as a `restore` ledger row); DELETE is
+  // the generic retention purge. No INSERT/UPDATE: the table is created and
+  // frozen by request-time roles only.
+  awcms_commerce_loyalty_redemptions: ["SELECT", "DELETE"],
+  // Issue #363 (sql/1012): the tenant's point value - retention purge only.
+  awcms_commerce_loyalty_redemption_settings: ["SELECT", "DELETE"],
   // Issue #289 (sql/951): the earn consumer reads the tenant's `commerce`
   // feature flags (`features.loyalty`) through `fetchCommerceFeatures`.
   // Tenant-RLS table; SELECT only.
@@ -1854,6 +1875,22 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_commerce_report_src_close_decisions: ["SELECT"],
   awcms_commerce_report_src_expenses_posted: ["SELECT"],
   awcms_commerce_report_src_expenses_reversed: ["SELECT"],
+  // Issue #364 (sql/1020) - the customer-retention projection: both tables are
+  // written by the sink (recompute = upsert or delete) and purged by the
+  // generic engine; the reversal-leg view is read-only.
+  awcms_commerce_report_retention_customers: [
+    "SELECT",
+    "INSERT",
+    "UPDATE",
+    "DELETE"
+  ],
+  awcms_commerce_report_retention_restated: [
+    "SELECT",
+    "INSERT",
+    "UPDATE",
+    "DELETE"
+  ],
+  awcms_commerce_report_src_retention_reversals: ["SELECT"],
   awcms_commerce_payment_events: ["SELECT", "DELETE"],
   awcms_commerce_webhook_endpoints: ["SELECT", "DELETE"],
   // omes_control — the generic data_lifecycle purge engine (sql/154's

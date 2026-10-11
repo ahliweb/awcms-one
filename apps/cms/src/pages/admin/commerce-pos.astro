@@ -65,6 +65,8 @@ import {
   createCommerceLabels
 } from "../../lib/ui/commerce-admin-labels";
 import { decodeKeysetCursor } from "../../modules/_shared/keyset-pagination";
+import { formatCurrency } from "../../lib/i18n/format";
+import { fetchRedemptionTerms } from "../../modules/commerce/application/loyalty-redemption";
 import { fetchCommerceFeatures } from "../../modules/commerce/application/commerce-feature-gate";
 import {
   listRegisterSessions,
@@ -200,10 +202,24 @@ const screen = await loadAdminScreen({
     const tenantShortcuts = barcodeAvailable
       ? await fetchTenantShortcutOverrides(tx, ssr.tenantId)
       : {};
+    // Issue #363 (ADR-0043) - the "spend points" field appears only for a
+    // cashier who may redeem, while the tenant has both features on AND has set
+    // a point value. The terms are display-only: the server recomputes.
+    const loyaltyTerms =
+      features.loyalty &&
+      features.loyaltyRedemption &&
+      (await can({
+        moduleKey: "commerce",
+        activityCode: "loyalty_redemptions",
+        action: "create"
+      }))
+        ? await fetchRedemptionTerms(tx, ssr.tenantId)
+        : null;
     return {
       barcodeAvailable,
       canLookup,
       tenantShortcuts,
+      loyaltyTerms,
       posEnabled: features.pos,
       registerEnabled: features.register,
       storedValueEnabled: features.storedValue,
@@ -232,6 +248,7 @@ const registerEnabled = allowed && screen.data.registerEnabled;
 // Issue #288 - gift card / store credit tenders appear only while the tenant's
 // `storedValue` feature is on (the server refuses them otherwise).
 const storedValueEnabled = allowed && screen.data.storedValueEnabled;
+const loyaltyTerms = allowed ? screen.data.loyaltyTerms : null;
 const registerSessions = allowed ? screen.data.registerSessions : [];
 const canSell = allowed && screen.data.canSell;
 const canReadHistory = allowed && screen.data.canReadHistory;
@@ -443,6 +460,25 @@ const tenderLabel = (method: string): string =>
         "Point of sale is turned off for this store."
       )}
       data-msg-invalid-phone={t("The customer phone number is not valid.")}
+      data-loyalty-rate={
+        loyaltyTerms ? String(loyaltyTerms.rupiahPerPoint) : ""
+      }
+      data-msg-points-phone={t(
+        "Spending loyalty points needs the customer's phone number."
+      )}
+      data-msg-points-denied={t(
+        "You do not have permission to spend loyalty points."
+      )}
+      data-msg-points-unavailable={t(
+        "Loyalty points cannot be spent at this store right now."
+      )}
+      data-msg-points-limit={t(
+        "That many points is worth more than the goods allow. Enter fewer points."
+      )}
+      data-msg-points-insufficient={t(
+        "The customer does not have enough points."
+      )}
+      data-msg-points-customer={t("This customer cannot spend loyalty points.")}
       data-msg-generic={t("Could not complete the sale. Please try again.")}
       data-msg-search-failed={t("Product search failed. Please try again.")}
       data-msg-no-results={t("No products match.")}
@@ -684,6 +720,35 @@ const tenderLabel = (method: string): string =>
                 "Leave the phone blank for a walk-in customer. A phone finds or creates the customer and applies their price level."
               )}
             </p>
+            {loyaltyTerms && (
+              <label for="pos-loyalty-points">
+                {t("Spend loyalty points (optional)")}
+                <input
+                  type="number"
+                  id="pos-loyalty-points"
+                  name="loyaltyPoints"
+                  min="1"
+                  step="1"
+                  inputmode="numeric"
+                  autocomplete="off"
+                />
+              </label>
+            )}
+            {loyaltyTerms && (
+              <p class="form-hint" id="pos-loyalty-hint">
+                {t(
+                  "Needs the customer's phone. One point is worth {amount}; the server works out the discount from the goods, never the shipping or tax.",
+                  {
+                    amount: formatCurrency(
+                      Astro.locals.locale,
+                      String(loyaltyTerms.rupiahPerPoint),
+                      "IDR",
+                      { maximumFractionDigits: 0 }
+                    )
+                  }
+                )}
+              </p>
+            )}
           </fieldset>
 
           <fieldset>
@@ -705,6 +770,14 @@ const tenderLabel = (method: string): string =>
               aria-live="polite"
               aria-label={t("Payment summary")}
             >
+              {loyaltyTerms && <dt>{t("Points discount")}</dt>}
+              {loyaltyTerms && (
+                <dd>
+                  <output class="pos-money" id="pos-sum-points">
+                    0.00
+                  </output>
+                </dd>
+              )}
               <dt>{t("Total")}</dt>
               <dd>
                 <output class="pos-money" id="pos-sum-total">
@@ -826,6 +899,10 @@ const tenderLabel = (method: string): string =>
             <dd data-receipt="subtotal" />
             <dt>{t("Tax")}</dt>
             <dd data-receipt="tax" />
+            <dt data-receipt="points-label" hidden>
+              {t("Points discount")}
+            </dt>
+            <dd data-receipt="points" hidden />
             <dt>{t("Total")}</dt>
             <dd data-receipt="total" />
           </dl>
@@ -1374,6 +1451,8 @@ const tenderLabel = (method: string): string =>
     subtotal: string;
     tax: string;
     total: string;
+    /** Issue #363 - the points discount; `"0.00"` when none. */
+    loyaltyDiscount?: string;
     change: string | null;
     amountTendered: string | null;
     settlement: { outstanding: string };
@@ -1612,7 +1691,12 @@ const tenderLabel = (method: string): string =>
    * server adds store tax and its own plan is what the receipt prints.
    */
   function planFromLines(): Plan {
-    const totalCents = cartSubtotalCents();
+    // Issue #363 - the points discount ESTIMATE (points x the point value, the
+    // same integer arithmetic the server uses); the server's figure, bounded
+    // by the goods and the tenant's cap, is the one that counts.
+    const gross = cartSubtotalCents();
+    const discount = pointsDiscountCents();
+    const totalCents = discount >= gross ? 0n : gross - discount;
     let nonCash = 0n;
     let cashHanded = 0n;
     let cashCount = 0;
@@ -1648,8 +1732,26 @@ const tenderLabel = (method: string): string =>
     };
   }
 
+  const pointsInput = el<HTMLInputElement>("pos-loyalty-points");
+  const sumPointsEl = el<HTMLElement>("pos-sum-points");
+  const loyaltyRate = Number(root?.dataset.loyaltyRate ?? "");
+
+  /** The whole points typed, or 0 for none / not a positive whole number. */
+  function pointsEntered(): number {
+    const raw = pointsInput?.value.trim() ?? "";
+    if (!/^\d{1,12}$/.test(raw)) return 0;
+    const value = Number(raw);
+    return Number.isSafeInteger(value) && value > 0 ? value : 0;
+  }
+  function pointsDiscountCents(): bigint {
+    if (!Number.isInteger(loyaltyRate) || loyaltyRate < 1) return 0n;
+    return BigInt(pointsEntered()) * BigInt(loyaltyRate) * 100n;
+  }
+  pointsInput?.addEventListener("input", () => recomputeSummary());
+
   function recomputeSummary(): void {
     const plan = planFromLines();
+    if (sumPointsEl) sumPointsEl.textContent = fromCents(pointsDiscountCents());
     if (sumTotalEl) sumTotalEl.textContent = fromCents(plan.totalCents);
     if (sumAppliedEl) {
       sumAppliedEl.textContent = fromCents(
@@ -1978,6 +2080,15 @@ const tenderLabel = (method: string): string =>
     );
     set("subtotal", order.subtotal);
     set("tax", order.tax);
+    const pointsDiscount = order.loyaltyDiscount ?? "0.00";
+    const hasPoints = toCents(pointsDiscount) > 0n;
+    for (const name of ["points-label", "points"]) {
+      const node = receiptWrapper.querySelector<HTMLElement>(
+        `[data-receipt="${name}"]`
+      );
+      if (node) node.hidden = !hasPoints;
+    }
+    set("points", hasPoints ? `-${pointsDiscount}` : "");
     set("total", order.total);
     set("change", order.change ?? "—");
 
@@ -2079,6 +2190,13 @@ const tenderLabel = (method: string): string =>
       return;
     }
 
+    const points = pointsEntered();
+    if (points > 0 && phone === "") {
+      saleError.show(msg("msgPointsPhone"));
+      el<HTMLInputElement>("pos-customer-phone")?.focus();
+      return;
+    }
+
     const plan = planFromLines();
     const filled = tenderLines.filter(
       (line) => line.amount.value.trim() !== ""
@@ -2156,6 +2274,10 @@ const tenderLabel = (method: string): string =>
           })),
           ...(allowDue ? { allowDue: true } : {}),
           ...(registerId !== "" ? { registerId } : {}),
+          // Issue #363 - the ONLY figure sent: whole points. The account is
+          // the customer the phone above identifies; the discount is the
+          // server's.
+          ...(points > 0 ? { loyaltyRedemption: { points } } : {}),
           notes: notes || null
         },
         { "Idempotency-Key": idempotencyKey }
@@ -2166,7 +2288,15 @@ const tenderLabel = (method: string): string =>
           CART_CHANGED: msg("msgCartChanged"),
           INSUFFICIENT_TENDER: msg("msgInsufficient"),
           OVERPAYMENT: msg("msgOverpayment"),
-          ACCESS_DENIED: msg("msgDueDenied"),
+          ACCESS_DENIED:
+            points > 0 && !allowDue
+              ? msg("msgPointsDenied")
+              : msg("msgDueDenied"),
+          LOYALTY_REDEMPTION_UNAVAILABLE: msg("msgPointsUnavailable"),
+          LOYALTY_REDEMPTION_REQUIRES_CUSTOMER: msg("msgPointsPhone"),
+          LOYALTY_REDEMPTION_EXCEEDS_LIMIT: msg("msgPointsLimit"),
+          LOYALTY_REDEMPTION_CUSTOMER_UNAVAILABLE: msg("msgPointsCustomer"),
+          INSUFFICIENT_POINTS: msg("msgPointsInsufficient"),
           FEATURE_DISABLED: msg("msgFeatureDisabled"),
           STORED_VALUE_NOT_FOUND: msg("msgSvNotFound"),
           STORED_VALUE_UNAVAILABLE: msg("msgSvUnavailable"),

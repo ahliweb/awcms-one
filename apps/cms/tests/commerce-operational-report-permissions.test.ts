@@ -93,8 +93,12 @@ const declared = new Set(
 
 describe("operational-report permissions are declared and each is enforced by its route", () => {
   test("the module declares exactly the twelve report permissions", () => {
-    const reportKeys = [...declared].filter((key) =>
-      key.startsWith("commerce.report_")
+    // Issue #364's `report_retention` pair is a different family (cohorts, not
+    // POS operational rows) and is pinned by commerce-retention-domain.test.ts.
+    const reportKeys = [...declared].filter(
+      (key) =>
+        key.startsWith("commerce.report_") &&
+        !key.startsWith("commerce.report_retention.")
     );
     expect(reportKeys.sort()).toEqual([...EXPECTED_KEYS].sort());
   });

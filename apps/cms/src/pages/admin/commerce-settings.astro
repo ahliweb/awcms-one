@@ -132,11 +132,16 @@ const commerceFeatures =
         register: false,
         documents: false,
         loyalty: false,
+        loyaltyRedemption: false,
         storedValue: false,
         expenses: false,
         documentDelivery: false,
         barcode: false,
-        returns: false
+        returns: false,
+        retention: false,
+        segments: false,
+        loyaltySegments: false,
+        campaignSegmentAudience: false
       };
 const FEATURE_TOGGLES = [
   { key: "pos", label: "Point of sale (POS)" },
@@ -147,6 +152,10 @@ const FEATURE_TOGGLES = [
   { key: "documents", label: "Quotations, work orders and documents" },
   { key: "register", label: "POS registers and cash-up" },
   { key: "loyalty", label: "Loyalty points" },
+  {
+    key: "loyaltyRedemption",
+    label: "Spend loyalty points at checkout and the POS"
+  },
   { key: "storedValue", label: "Gift cards and store credit" },
   { key: "expenses", label: "Petty cash and expenses" },
   {
@@ -154,7 +163,14 @@ const FEATURE_TOGGLES = [
     label: "Send documents by e-mail and WhatsApp"
   },
   { key: "barcode", label: "Barcodes, labels and cashier shortcuts" },
-  { key: "returns", label: "Returns, refunds and exchanges" }
+  { key: "returns", label: "Returns, refunds and exchanges" },
+  { key: "retention", label: "Customer retention report" },
+  { key: "segments", label: "Customer segments" },
+  { key: "loyaltySegments", label: "Loyalty eligibility by segment" },
+  {
+    key: "campaignSegmentAudience",
+    label: "Send campaigns to a customer segment"
+  }
 ] as const;
 /** `${public CMS origin}/api/v1/commerce/webhooks/midtrans/{token}` — the URL shape to paste into Midtrans, per contract #106 D2. The token itself is filled in client-side, once, right after creation. */
 const webhookUrlBase = `${resolveRequestOrigin(Astro.url, Astro.request)}/api/v1/commerce/webhooks/midtrans`;

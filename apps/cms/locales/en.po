@@ -11512,3 +11512,371 @@ msgstr ""
 
 msgid "One component per line: SKU x quantity. A bundle has no stock of its own; it is sold as one line and its components' stock moves."
 msgstr ""
+
+msgid "Customer retention"
+msgstr ""
+
+msgid "Retention notes"
+msgstr ""
+
+msgid "Repeat window"
+msgstr ""
+
+msgid "{days} days"
+msgstr ""
+
+msgid "Unlinked orders"
+msgstr ""
+
+msgid "Customers grouped by the month of their first paid order, and how many of them ordered again within {days} days. Cohorts under {min} customers show counts only. Walk-in sales without a customer are unlinked and in no cohort."
+msgstr ""
+
+msgid "Cohort"
+msgstr ""
+
+msgid "Came back"
+msgstr ""
+
+msgid "Retention"
+msgstr ""
+
+msgid "No customer cohorts yet"
+msgstr ""
+
+msgid "{repeaters} of {size}"
+msgstr ""
+
+msgid "Final"
+msgstr ""
+
+msgid "To date"
+msgstr ""
+
+msgid "Restated"
+msgstr ""
+
+msgid "Customer retention report"
+msgstr ""
+
+msgid "{count} segment"
+msgid_plural "{count} segments"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Price level"
+msgstr ""
+
+msgid "Has an account"
+msgstr ""
+
+msgid "Has an e-mail address"
+msgstr ""
+
+msgid "Customer since"
+msgstr ""
+
+msgid "Number of paid orders"
+msgstr ""
+
+msgid "Paid spend"
+msgstr ""
+
+msgid "Last paid order"
+msgstr ""
+
+msgid "First paid order"
+msgstr ""
+
+msgid "Loyalty points balance"
+msgstr ""
+
+msgid "is"
+msgstr ""
+
+msgid "is one of (comma separated)"
+msgstr ""
+
+msgid "at least"
+msgstr ""
+
+msgid "more than"
+msgstr ""
+
+msgid "at most"
+msgstr ""
+
+msgid "less than"
+msgstr ""
+
+msgid "is before"
+msgstr ""
+
+msgid "is after"
+msgstr ""
+
+msgid "never happened"
+msgstr ""
+
+msgid "Customer segments"
+msgstr ""
+
+msgid "Group customers by rules you can save, version and count - without copying any customer data."
+msgstr ""
+
+msgid "You do not have permission to view customer segments."
+msgstr ""
+
+msgid "Customer segments could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Customer segments are turned off for this store."
+msgstr ""
+
+msgid "The rules are not valid. Check the highlighted condition."
+msgstr ""
+
+msgid "The advanced rules are not valid JSON."
+msgstr ""
+
+msgid "Add at least one condition."
+msgstr ""
+
+msgid "A segment with that name already exists."
+msgstr ""
+
+msgid "This segment changed since you opened it. Reload the page and apply your edit again."
+msgstr ""
+
+msgid "A retired segment cannot be edited."
+msgstr ""
+
+msgid "Too many segment evaluations are running. Try again in a moment."
+msgstr ""
+
+msgid "This segment is too expensive to evaluate. Use fewer conditions or shorter windows."
+msgstr ""
+
+msgid "Too many previews. Wait a moment and try again."
+msgstr ""
+
+msgid "Fewer than 5 customers match."
+msgstr ""
+
+msgid "{count} customers match."
+msgstr ""
+
+msgid "As of"
+msgstr ""
+
+msgid "No customers match."
+msgstr ""
+
+msgid "New segment"
+msgstr ""
+
+msgid "A customer is included when"
+msgstr ""
+
+msgid "all the conditions are true"
+msgstr ""
+
+msgid "any of the conditions is true"
+msgstr ""
+
+msgid "Conditions"
+msgstr ""
+
+msgid "Dates are YYYY-MM-DD, or a whole number of days ago. Money is a plain number such as 150000.00."
+msgstr ""
+
+msgid "Condition field"
+msgstr ""
+
+msgid "(unused)"
+msgstr ""
+
+msgid "Condition operator"
+msgstr ""
+
+msgid "Condition value"
+msgstr ""
+
+msgid "Window in days (orders and spend only)"
+msgstr ""
+
+msgid "days"
+msgstr ""
+
+msgid "Advanced: write the rules as JSON"
+msgstr ""
+
+msgid "Rules (JSON)"
+msgstr ""
+
+msgid "Save segment"
+msgstr ""
+
+msgid "Preview count"
+msgstr ""
+
+msgid "No segments yet"
+msgstr ""
+
+msgid "Define one above to get started."
+msgstr ""
+
+msgid "Rules (version {version})"
+msgstr ""
+
+msgid "Show customers"
+msgstr ""
+
+msgid "Customers in this segment"
+msgstr ""
+
+msgid "Show more"
+msgstr ""
+
+msgid "Rules (JSON) - saving changed rules adds a new version"
+msgstr ""
+
+msgid "Retire this segment?"
+msgstr ""
+
+msgid "The segment can no longer be edited, but its versions are kept so past campaigns stay explainable."
+msgstr ""
+
+msgid "Retire segment"
+msgstr ""
+
+msgid "Loyalty points cannot be spent at this store right now."
+msgstr ""
+
+msgid "Maximum share of the goods payable in points, percent (optional)"
+msgstr ""
+
+msgid "Needs the customer's phone. One point is worth {amount}; the server works out the discount from the goods, never the shipping or tax."
+msgstr ""
+
+msgid "No cap"
+msgstr ""
+
+msgid "No point value set: points cannot be spent"
+msgstr ""
+
+msgid "Points can be spent"
+msgstr ""
+
+msgid "Points can no longer be spent until a new value is saved. Orders that already used points keep their discount."
+msgstr ""
+
+msgid "Points discount"
+msgstr ""
+
+msgid "Points restored"
+msgstr ""
+
+msgid "Point value"
+msgstr ""
+
+msgid "Point value set, but spending points is turned off under Store settings, Features"
+msgstr ""
+
+msgid "Remove point value"
+msgstr ""
+
+msgid "Remove the point value?"
+msgstr ""
+
+msgid "Rupiah per point"
+msgstr ""
+
+msgid "Save point value"
+msgstr ""
+
+msgid "Share of the goods payable in points"
+msgstr ""
+
+msgid "Spending loyalty points needs the customer's phone number."
+msgstr ""
+
+msgid "Spend loyalty points (optional)"
+msgstr ""
+
+msgid "That many points is worth more than the goods allow. Enter fewer points."
+msgstr ""
+
+msgid "The customer does not have enough points."
+msgstr ""
+
+msgid "This customer cannot spend loyalty points."
+msgstr ""
+
+msgid "What one point is worth when a customer spends points at checkout or the counter. Shipping and tax can never be paid with points."
+msgstr ""
+
+msgid "You do not have permission to spend loyalty points."
+msgstr ""
+
+msgid "Spend loyalty points at checkout and the POS"
+msgstr ""
+
+msgid "Loyalty eligibility by segment"
+msgstr ""
+
+msgid "Everyone"
+msgstr ""
+
+msgid "Eligibility"
+msgstr ""
+
+msgid "Restrict to a segment (optional)"
+msgstr ""
+
+msgid "{name} · version {version}"
+msgstr ""
+
+msgid "Only members of the chosen segment earn points. The segment's latest version is pinned when you save, so editing the segment later does not change this program."
+msgstr ""
+
+msgid "Audience: customer segment"
+msgstr ""
+
+msgid "No segment (use the customer levels below)"
+msgstr ""
+
+msgid "Only segment members who agreed to marketing messages are sent to. The segment version is fixed when the draft is created; the levels below are ignored when a segment is chosen."
+msgstr ""
+
+msgid "Fewer than 5"
+msgstr ""
+
+msgid "Segment"
+msgstr ""
+
+msgid "(segment)"
+msgstr ""
+
+msgid "Evaluated at"
+msgstr ""
+
+msgid "(not sent yet)"
+msgstr ""
+
+msgid "Fewer than 5 recipients"
+msgstr ""
+
+msgid "Too many audience checks are running. Try again shortly."
+msgstr ""
+
+msgid "This segment is too expensive to count. Narrow its rule and try again."
+msgstr ""
+
+msgid "You do not have permission to preview a segment audience."
+msgstr ""
+
+msgid "Sending to a segment is turned off for this store."
+msgstr ""
+
+msgid "Send campaigns to a customer segment"
+msgstr ""

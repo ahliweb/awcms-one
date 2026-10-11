@@ -1,0 +1,155 @@
+---
+/**
+ * The customer-retention panel (Issue #364, ADR-0044; metrics spec section 6)
+ * on `/admin/commerce-reports`: one row per cohort - the Asia/Jakarta calendar
+ * month of a customer's first paid order - with how many customers it holds and
+ * how many came back within 90 days. Rendered from the `commerce.
+ * customer_retention` projection through `application/retention-report-
+ * directory.ts`; the page passes `null` when the caller lacks
+ * `commerce.report_retention.read`, and a tenant whose `retention` feature is
+ * OFF (the default) comes back `enabled: false` - both render nothing at all,
+ * hidden rather than an error.
+ *
+ * Three honesty rules from the spec show up here: a cohort whose 90-day window
+ * has not fully elapsed is "To date", never final; a cohort under 20 customers
+ * shows counts and no percentage; a closed cohort that a late event changed is
+ * flagged "Restated". Walk-in sales with no customer identity are listed once,
+ * as "Unlinked orders", and are in no cohort.
+ *
+ * Lives under `src/components/` like `CommerceOperationalReports.astro`
+ * (`access-chokepoint-check.ts` reads every `.astro` under `pages/admin/` as a
+ * screen that must call `loadAdminScreen`). It does no loading of its own and
+ * holds no script: the CSV link is a plain GET navigation to the real export
+ * route, which re-checks the export permission on its own.
+ */
+import { getTranslatorFor } from "../lib/i18n";
+import type { Locale } from "../lib/i18n/locales";
+import { formatNumber } from "../lib/i18n/format";
+import type { RetentionReport } from "../modules/commerce/application/retention-report-directory";
+
+export type RetentionReportView = {
+  report: RetentionReport;
+  canExport: boolean;
+};
+
+const { view, locale } = Astro.props as {
+  view: RetentionReportView | null;
+  locale: Locale;
+};
+
+const { t } = getTranslatorFor(locale);
+const count = (value: number) => formatNumber(locale, value);
+const report = view?.report ?? null;
+const rows = report?.enabled ? report.cohorts : [];
+// The screen reads the route's default span (12 cohort months), so the link
+// carries no `months` and the file always matches what the table shows.
+const csvHref = "/api/v1/reports/commerce/retention.csv";
+---
+
+{report?.enabled && (
+  <section
+    class="admin-section fade-in-up"
+    id="ops-retention"
+    aria-labelledby="ops-retention-title"
+  >
+    <h2 class="admin-section-title" id="ops-retention-title">
+      {t("Customer retention")}
+      <span class="count-pill">{rows.length}</span>
+    </h2>
+    <section class="admin-stat-card-grid" aria-label={t("Retention notes")}>
+      <div class="admin-stat-card">
+        <span class="admin-stat-card-label">{t("Repeat window")}</span>
+        <span class="admin-stat-card-value" id="ops-retention-window">
+          {t("{days} days", { days: String(report.windowDays) })}
+        </span>
+      </div>
+      <div class="admin-stat-card">
+        <span class="admin-stat-card-label">{t("Unlinked orders")}</span>
+        <span class="admin-stat-card-value" id="ops-retention-unlinked">
+          {count(report.unlinkedOrders)}
+        </span>
+      </div>
+    </section>
+    <div
+      class="data-table-scroll"
+      role="region"
+      tabindex="0"
+      aria-label={t("Customer retention")}
+    >
+      <table class="data-table data-table--stack" id="ops-retention-table">
+        <caption>
+          {t(
+            "Customers grouped by the month of their first paid order, and how many of them ordered again within {days} days. Cohorts under {min} customers show counts only. Walk-in sales without a customer are unlinked and in no cohort.",
+            {
+              days: String(report.windowDays),
+              min: String(report.minCohortForRate)
+            }
+          )}
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">{t("Cohort")}</th>
+            <th scope="col">{t("Customers")}</th>
+            <th scope="col">{t("Came back")}</th>
+            <th scope="col">{t("Retention")}</th>
+            <th scope="col">{t("Status")}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.length === 0 ? (
+            <tr>
+              <td class="data-table-empty" colspan="5">
+                <div class="empty-state">
+                  <span class="empty-state-icon" aria-hidden="true">
+                    ◇
+                  </span>
+                  <span class="empty-state-title">
+                    {t("No customer cohorts yet")}
+                  </span>
+                </div>
+              </td>
+            </tr>
+          ) : (
+            rows.map((cohort) => (
+              <tr data-ops-retention={cohort.cohortMonth}>
+                <th scope="row" data-label={t("Cohort")}>
+                  {cohort.cohortMonth.slice(0, 7)}
+                </th>
+                <td data-label={t("Customers")}>{count(cohort.size)}</td>
+                <td data-label={t("Came back")}>{count(cohort.repeaters)}</td>
+                <td data-label={t("Retention")}>
+                  {cohort.ratePercent === null
+                    ? t("{repeaters} of {size}", {
+                        repeaters: String(cohort.repeaters),
+                        size: String(cohort.size)
+                      })
+                    : `${cohort.ratePercent}%`}
+                </td>
+                <td data-label={t("Status")}>
+                  <span
+                    class="admin-status-pill"
+                    data-tone={cohort.mature ? "success" : "warning"}
+                  >
+                    {cohort.mature ? t("Final") : t("To date")}
+                  </span>
+                  {cohort.restated && (
+                    <span class="admin-status-pill" data-tone="danger">
+                      {t("Restated")}
+                    </span>
+                  )}
+                </td>
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
+    </div>
+    {view?.canExport && (
+      <p>
+        <a class="module-toggle" href={csvHref}>
+          {t("Download CSV")}
+        </a>
+      </p>
+    )}
+  </section>
+)}

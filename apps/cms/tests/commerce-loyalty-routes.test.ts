@@ -93,6 +93,7 @@ describe("owner loyalty routes", () => {
       "programs/[id]/retire.ts",
       "programs/index.ts",
       "reconcile.ts",
+      "redemption-settings.ts",
       "summary.ts"
     ]);
   });

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:40340a6bb0a3ca5c9657ec3e592668ba2626cfdefd2ed610c2a7ea1457f4b3b1 -->
+<!-- i18n-source-hash: sha256:fbc48276c2faaa01b555618088b88404018f4395d9eea98e07a07b269178a1bb -->
 
 # Architecture Decision Records
 
@@ -60,6 +60,9 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0039](0039-commerce-tax-is-computed-by-the-tax-module-behind-a-per-tenant-mode.md)                                                     | Pajak commerce dihitung oleh modul `tax`, di belakang mode per tenant                                                                                                                                                                        | Diterima                                                                                                                      |
 | [0040](0040-aw-business-platform-capability-ownership-and-boundaries.md)                                                                | AW Business Platform: kepemilikan kapabilitas dan batasnya (upstream lebih dulu, adaptor awcms-one, repositori konsumen)                                                                                                                     | Diterima                                                                                                                      |
 | [0041](0041-gateway-deposit-sessions-and-mixed-tenders-on-one-order.md)                                                                 | Sesi deposit gateway dan tender campuran pada satu pesanan (meninjau ulang ADR-0025 D7)                                                                                                                                                      | Diterima                                                                                                                      |
+| [0042](0042-crm-segments-are-immutable-versioned-closed-vocabulary-rules-evaluated-on-demand.md)                                        | Segmen CRM adalah aturan berversi yang tak dapat diubah dalam kosakata tertutup, dievaluasi sesuai permintaan dan tidak pernah disimpan sebagai daftar anggota                                                                               | Diterima                                                                                                                      |
+| [0043](0043-loyalty-points-are-redeemed-as-a-server-priced-discount-line-written-with-the-ledger-debit.md)                              | Poin loyalitas ditukar sebagai baris diskon berharga-server, ditulis dalam transaksi yang sama dengan debit buku besar (menutup penukaran tertunda ADR-0026)                                                                                 | Diterima                                                                                                                      |
+| [0044](0044-customer-retention-is-a-per-customer-recompute-projection-on-the-reporting-engine.md)                                       | Retensi pelanggan adalah proyeksi hitung-ulang per pelanggan di mesin `reporting` (separuh khusus-commerce dari bagian 6 metrik)                                                                                                             | Diterima                                                                                                                      |
 
 ## Mengapa penomoran dimulai dari 0001
 

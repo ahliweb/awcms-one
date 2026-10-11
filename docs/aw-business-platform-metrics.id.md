@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](aw-business-platform-metrics.md)
 
-<!-- i18n-source-hash: sha256:d49223090c973ba7c28a8beba0363e1549760028978f68177770aa67ce5c753d -->
+<!-- i18n-source-hash: sha256:6562a60c84255827560b476968af7935e19c19534c46a54be212db9116c0a02f -->
 
 # AW Business Platform — kontrak metrik
 

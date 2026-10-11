@@ -90,7 +90,7 @@ async function enforcedTriples(
 }
 
 describe("commerce module descriptor — restore is declared for both activity codes", () => {
-  test("one hundred and thirty-one permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations/entitlements, three for reviews, one for whatsapp, three for campaigns, one for webhook_endpoints, one for pos, one for pos_due, three for payments, ten for registers/cash-up, two for loyalty and one each for loyalty_adjustments/loyalty_redemptions, and (Issue #291) read/manage for attributes plus export/import on products, seven for stored value, (Issue #292) two for barcodes, (Issue #287) five for returns, refunds and offline refunds, and (Issue #296) ten for the five operational-report resources, and (Issue #316) two for report_returns, and (Issue #282) two for inventory", () => {
+  test("one hundred and forty permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations/entitlements, three for reviews, one for whatsapp, three for campaigns, one for webhook_endpoints, one for pos, one for pos_due, three for payments, ten for registers/cash-up, two for loyalty and one each for loyalty_adjustments/loyalty_redemptions, and (Issue #291) read/manage for attributes plus export/import on products, seven for stored value, (Issue #292) two for barcodes, (Issue #287) five for returns, refunds and offline refunds, and (Issue #296) ten for the five operational-report resources, and (Issue #316) two for report_returns, and (Issue #282) two for inventory, and (Issue #364) two for report_retention, and (Issue #360) seven for segments, segment_previews and segment_members", () => {
     // Issue #23: categories/products carry read/create/update/delete/restore.
     // Issue #26: flash_sales/vouchers/sliders/testimonials/popups carry
     // read/create/update/delete (soft delete only, no restore — the marketing
@@ -177,7 +177,12 @@ describe("commerce module descriptor — restore is declared for both activity c
         // Issue #316: report_returns, read + export.
         2 +
         // Issue #282: inventory read + configure.
-        2
+        2 +
+        // Issue #364: report_retention, read + export.
+        2 +
+        // Issue #360: segments read/create/update/delete, segment_previews
+        // read, segment_members read/export.
+        7
     );
 
     // Issue #291 — typed catalog attributes. `manage` (one high-risk action,
@@ -450,6 +455,9 @@ describe("/admin/commerce-pos permission gates", () => {
       // Issue #286 — hold and resume a parked cart; also checked by the endpoints.
       "commerce.held_sales.create",
       "commerce.held_sales.update",
+      // Issue #363 — the "spend loyalty points" field is shown only to a
+      // cashier who may redeem; also checked by the endpoint.
+      "commerce.loyalty_redemptions.create",
       "commerce.orders.read",
       "commerce.pos.create",
       // Issue #285 — the credit-sale checkbox; also checked by the endpoint.
@@ -477,6 +485,16 @@ describe("/admin/commerce-pos permission gates", () => {
       "pos_due"
     );
     expect([...enforcedDue]).toEqual(["commerce.pos_due.create"]);
+    // Issue #363 — `loyaltyRedemption` needs a THIRD permission (separate from
+    // loyalty adjustments), enforced the same way.
+    const enforcedRedeem = await enforcedTriples(
+      POS_ROUTES,
+      "COMMERCE_LOYALTY_REDEMPTIONS_ACTIVITY_CODE",
+      "loyalty_redemptions"
+    );
+    expect([...enforcedRedeem]).toEqual([
+      "commerce.loyalty_redemptions.create"
+    ]);
   });
 
   test("the page never writes raw SQL — the sale posts to the guarded POS endpoint with an Idempotency-Key", async () => {

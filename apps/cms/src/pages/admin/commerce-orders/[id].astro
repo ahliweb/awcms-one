@@ -73,7 +73,7 @@ import {
 } from "../../../lib/ui/commerce-admin-labels";
 
 const ssr = Astro.locals.ssrContext!;
-const { t } = getTranslatorFor(Astro.locals.locale);
+const { t, tn } = getTranslatorFor(Astro.locals.locale);
 const labels = createCommerceLabels(t);
 
 const orderId = Astro.params.id ?? "";
@@ -378,6 +378,21 @@ const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
               <span>{t("Discount")}</span>
               <span>{order.discount}</span>
             </li>
+            {order.loyaltyPointsRedeemed > 0 && (
+              <li id="order-loyalty-discount">
+                <span>{t("Points discount")}</span>
+                <span>
+                  {order.loyaltyDiscount}
+                  {" · "}
+                  {tn(
+                    "{count} point",
+                    "{count} points",
+                    order.loyaltyPointsRedeemed,
+                    { count: order.loyaltyPointsRedeemed }
+                  )}
+                </span>
+              </li>
+            )}
             <li>
               <span>{t("Shipping")}</span>
               <span>{order.shippingCost}</span>

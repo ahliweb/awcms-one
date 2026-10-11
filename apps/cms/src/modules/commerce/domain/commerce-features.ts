@@ -42,11 +42,16 @@ export type CommerceFeatureKey =
   | "register"
   | "documents"
   | "loyalty"
+  | "loyaltyRedemption"
   | "storedValue"
   | "expenses"
   | "documentDelivery"
   | "barcode"
-  | "returns";
+  | "returns"
+  | "retention"
+  | "segments"
+  | "loyaltySegments"
+  | "campaignSegmentAudience";
 
 export type CommerceFeatures = Readonly<Record<CommerceFeatureKey, boolean>>;
 
@@ -80,6 +85,12 @@ export const DEFAULT_COMMERCE_FEATURES: CommerceFeatures = {
   // customer-visible balance, so a tenant must choose it. A tenant that never
   // opens the "Features" section therefore sees no change at all.
   loyalty: false,
+  // Issue #363 (ADR-0043) - defaults OFF, and means nothing without `loyalty`:
+  // turning points into a discount on an order is money, so a tenant that has
+  // loyalty on (earning points) still chooses separately whether those points
+  // can be spent. Even when ON it does nothing until the tenant sets a point
+  // value - there is no default value (owner answer Q6).
+  loyaltyRedemption: false,
   // Issue #288 (ADR-0030) — the second flag that defaults OFF. Stored value is
   // a liability the tenant takes on (money held that is not yet revenue),
   // which has accounting, consumer-protection and regulatory consequences it
@@ -106,7 +117,28 @@ export const DEFAULT_COMMERCE_FEATURES: CommerceFeatures = {
   // stock and money back into customers' hands: new behaviour with a security
   // posture of its own (separately granted permissions, a provider call), so a
   // tenant chooses it. A tenant that never opens "Features" sees no change.
-  returns: false
+  returns: false,
+  // Issue #364 (ADR-0044) - OFF. The customer-retention report is a new admin
+  // surface over a new per-customer projection; a tenant that never opens
+  // "Features" must see exactly today's reports screen.
+  retention: false,
+  // Issue #360 (ADR-0042) - OFF. CRM segments are a new surface that turns a
+  // rule into a list of customers (disclosure and evaluation-cost risks of its
+  // own, threat model F8), so a tenant chooses it. A tenant that never opens
+  // "Features" sees no change: no route answers, no sidebar entry shows.
+  segments: false,
+  // Issue #361 (ADR-0042 amendment) - OFF. Restricting a loyalty program
+  // version to a CRM segment changes who earns points, so a tenant chooses it.
+  // With it OFF every program earns for every customer exactly as before, and
+  // a restriction already recorded on a program is not applied. Setting a
+  // restriction additionally needs `loyalty` and `segments` ON.
+  loyaltySegments: false,
+  // Issue #362 (ADR-0042 Amendment) - OFF. Aiming a mass e-mail / WhatsApp send
+  // at a CRM segment is new outbound-communication behaviour on top of the
+  // `segments` surface, so a tenant that enabled segments to look at them does
+  // not thereby start sending to them. It needs `campaigns` and `segments`
+  // too. A tenant that never opens "Features" keeps today's campaigns.
+  campaignSegmentAudience: false
 };
 
 const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
@@ -118,11 +150,16 @@ const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
   "courier",
   "register",
   "loyalty",
+  "loyaltyRedemption",
   "storedValue",
   "expenses",
   "documentDelivery",
   "barcode",
-  "returns"
+  "returns",
+  "retention",
+  "segments",
+  "loyaltySegments",
+  "campaignSegmentAudience"
 ];
 
 function isBoolean(value: unknown): value is boolean {

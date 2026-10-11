@@ -17,6 +17,7 @@
  */
 import { bacaSesi, hapusSesi } from "./akun-sesi";
 import type { Akun } from "./akun-kontrak";
+import { parsePoinAkun, type PoinAkun } from "./poin-kontrak";
 import { kirimPermintaan, TokoApiError } from "./toko-permintaan";
 import type { Order } from "./toko-klien";
 
@@ -109,6 +110,23 @@ export function ambilProfil(): Promise<{ account: Akun }> {
   return denganPembersihanSesi(() =>
     kirimPermintaan<{ account: Akun }>("/account/me", "GET", undefined, authHeader())
   );
+}
+
+/**
+ * `GET …/account/loyalty?limit=1` - bearer (issue #363, ADR-0043). Only what
+ * checkout needs: the shopper's own points balance and what a point is worth
+ * at checkout (`redemption: null` when points cannot be spent). Rejects with a
+ * `TokoApiError` - the neutral `404` while the tenant has loyalty off - and
+ * with `PoinAkun`-shaped data otherwise; a malformed body is a plain `Error`,
+ * so the caller treats it like "not available" rather than trusting it.
+ */
+export async function ambilPoin(): Promise<PoinAkun> {
+  const data = await denganPembersihanSesi(() =>
+    kirimPermintaan<unknown>("/account/loyalty?limit=1", "GET", undefined, authHeader())
+  );
+  const parsed = parsePoinAkun(data);
+  if (!parsed) throw new Error("Respons poin loyalitas tidak dikenali.");
+  return parsed;
 }
 
 /**

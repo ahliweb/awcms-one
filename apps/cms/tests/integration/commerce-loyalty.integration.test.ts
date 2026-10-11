@@ -186,7 +186,9 @@ const PROGRAM: LoyaltyProgramInput = {
   minOrderAmount: "0.00",
   maxPointsPerOrder: null,
   expiryDays: null,
-  notes: null
+  notes: null,
+  eligibilitySegmentId: null,
+  eligibilitySegmentVersion: null
 };
 
 async function activeProgram(

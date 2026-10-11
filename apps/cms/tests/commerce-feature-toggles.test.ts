@@ -23,24 +23,33 @@ describe("resolveCommerceFeatures", () => {
   test("defaults every flag to true when settings are absent, except `register` (Issue #284) and `storedValue` (Issue #288), `loyalty` (Issue #289) and `returns` (Issue #287), which add an obligation / a liability and so default OFF", () => {
     expect(DEFAULT_COMMERCE_FEATURES.register).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.loyalty).toBe(false);
+    expect(DEFAULT_COMMERCE_FEATURES.loyaltyRedemption).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.storedValue).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.documents).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.expenses).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.documentDelivery).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.returns).toBe(false);
+    expect(DEFAULT_COMMERCE_FEATURES.retention).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.barcode).toBe(false);
+    expect(DEFAULT_COMMERCE_FEATURES.segments).toBe(false);
+    expect(DEFAULT_COMMERCE_FEATURES.campaignSegmentAudience).toBe(false);
     expect(
       Object.entries(DEFAULT_COMMERCE_FEATURES)
         .filter(
           ([key]) =>
             key !== "register" &&
             key !== "loyalty" &&
+            key !== "loyaltyRedemption" &&
             key !== "storedValue" &&
             key !== "documents" &&
             key !== "expenses" &&
             key !== "documentDelivery" &&
             key !== "barcode" &&
-            key !== "returns"
+            key !== "returns" &&
+            key !== "retention" &&
+            key !== "segments" &&
+            key !== "loyaltySegments" &&
+            key !== "campaignSegmentAudience"
         )
         .every(([, value]) => value === true)
     ).toBe(true);
@@ -65,11 +74,16 @@ describe("resolveCommerceFeatures", () => {
       courier: true,
       register: false,
       loyalty: false,
+      loyaltyRedemption: false,
       storedValue: false,
       expenses: false,
       documentDelivery: false,
       barcode: false,
-      returns: false
+      returns: false,
+      retention: false,
+      segments: false,
+      loyaltySegments: false,
+      campaignSegmentAudience: false
     });
   });
 
@@ -84,12 +98,30 @@ describe("resolveCommerceFeatures", () => {
       courier: true,
       register: false,
       loyalty: true,
+      loyaltyRedemption: false,
       storedValue: false,
       expenses: false,
       documentDelivery: false,
       barcode: false,
-      returns: false
+      returns: false,
+      retention: false,
+      segments: false,
+      loyaltySegments: false,
+      campaignSegmentAudience: false
     });
+  });
+
+  test("loyaltyRedemption (Issue #363, ADR-0043) defaults OFF, independently of loyalty, and can be turned on", () => {
+    expect(DEFAULT_COMMERCE_FEATURES.loyaltyRedemption).toBe(false);
+    expect(resolveCommerceFeatures({}).loyaltyRedemption).toBe(false);
+    // Turning loyalty on does not turn spending on.
+    expect(
+      resolveCommerceFeatures({ features: { loyalty: true } }).loyaltyRedemption
+    ).toBe(false);
+    expect(
+      resolveCommerceFeatures({ features: { loyaltyRedemption: true } })
+        .loyaltyRedemption
+    ).toBe(true);
   });
 
   test("a non-boolean stored value for a key falls back to that key's default rather than propagating garbage", () => {
@@ -110,11 +142,16 @@ describe("resolveCommerceFeatures", () => {
         courier: false,
         register: false,
         loyalty: false,
+        loyaltyRedemption: false,
         storedValue: false,
         expenses: false,
         documentDelivery: false,
         barcode: false,
-        returns: false
+        returns: false,
+        retention: false,
+        segments: false,
+        loyaltySegments: false,
+        campaignSegmentAudience: false
       }
     });
     expect(resolved).toEqual({
@@ -126,11 +163,16 @@ describe("resolveCommerceFeatures", () => {
       courier: false,
       register: false,
       loyalty: false,
+      loyaltyRedemption: false,
       storedValue: false,
       expenses: false,
       documentDelivery: false,
       barcode: false,
-      returns: false
+      returns: false,
+      retention: false,
+      segments: false,
+      loyaltySegments: false,
+      campaignSegmentAudience: false
     });
     // ...and the flags that default off can be turned on.
     expect(
@@ -485,6 +527,43 @@ describe("toPublicRecord — feature composition (Issue #118)", () => {
     expect(resolveCommerceFeatures({}).barcode).toBe(false);
     expect(
       resolveCommerceFeatures({ features: { barcode: true } }).barcode
+    ).toBe(true);
+  });
+
+  test("segments (Issue #360, ADR-0042) defaults OFF, can be turned on, and a tenant that saved a settings row before the flag existed still reads OFF", () => {
+    expect(DEFAULT_COMMERCE_FEATURES.segments).toBe(false);
+    expect(resolveCommerceFeatures({}).segments).toBe(false);
+    expect(resolveCommerceFeatures({ features: { pos: true } }).segments).toBe(
+      false
+    );
+    expect(
+      resolveCommerceFeatures({ features: { segments: true } }).segments
+    ).toBe(true);
+  });
+
+  test("loyaltySegments (Issue #361, ADR-0042 amendment) defaults OFF, can be turned on, and a tenant that saved a settings row before the flag existed still reads OFF", () => {
+    expect(DEFAULT_COMMERCE_FEATURES.loyaltySegments).toBe(false);
+    expect(resolveCommerceFeatures({}).loyaltySegments).toBe(false);
+    expect(
+      resolveCommerceFeatures({ features: { loyalty: true, segments: true } })
+        .loyaltySegments
+    ).toBe(false);
+    expect(
+      resolveCommerceFeatures({ features: { loyaltySegments: true } })
+        .loyaltySegments
+    ).toBe(true);
+  });
+
+  test("campaignSegmentAudience (Issue #362, ADR-0042 Amendment) defaults OFF, can be turned on, and a tenant that saved a settings row before the flag existed still reads OFF", () => {
+    expect(DEFAULT_COMMERCE_FEATURES.campaignSegmentAudience).toBe(false);
+    expect(resolveCommerceFeatures({}).campaignSegmentAudience).toBe(false);
+    expect(
+      resolveCommerceFeatures({ features: { segments: true } })
+        .campaignSegmentAudience
+    ).toBe(false);
+    expect(
+      resolveCommerceFeatures({ features: { campaignSegmentAudience: true } })
+        .campaignSegmentAudience
     ).toBe(true);
   });
 });

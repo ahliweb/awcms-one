@@ -3,6 +3,10 @@ import { DEFAULT_COMMERCE_FEATURES } from "./domain/commerce-features";
 import { DEFAULT_CASH_UP_APPROVAL_THRESHOLD } from "./domain/register";
 import { DEFAULT_EXPENSE_APPROVAL_THRESHOLD } from "./domain/expense";
 import {
+  SEGMENT_DATA_LIFECYCLE,
+  SEGMENT_SUBJECT_DATA
+} from "./domain/segment-lifecycle";
+import {
   EXPENSE_DATA_LIFECYCLE,
   EXPENSE_SUBJECT_DATA
 } from "./domain/expense-lifecycle";
@@ -10,6 +14,20 @@ import {
   OPERATIONAL_REPORT_DATA_LIFECYCLE,
   OPERATIONAL_REPORT_SUBJECT_DATA
 } from "./domain/operational-report-lifecycle";
+import {
+  RETENTION_DATA_LIFECYCLE,
+  RETENTION_SUBJECT_DATA
+} from "./domain/retention-lifecycle";
+import {
+  RETENTION_METRIC_KEYS,
+  RETENTION_PROJECTION_KEY,
+  RETENTION_STREAM_KEYS
+} from "./domain/retention";
+import {
+  RETENTION_DIMENSIONAL,
+  RETENTION_EVENT_SINK,
+  RETENTION_REVERSAL_SINK
+} from "./application/retention-projection";
 import {
   REGISTER_DATA_LIFECYCLE,
   REGISTER_SUBJECT_DATA
@@ -125,11 +143,19 @@ import {
   COMMERCE_REPORT_STORED_VALUE_ACTIVITY_CODE,
   COMMERCE_REPORT_RETURNS_ACTIVITY_CODE,
   COMMERCE_REPORT_RETURN_PERMISSIONS,
+  COMMERCE_REPORT_RETENTION_ACTIVITY_CODE,
+  COMMERCE_REPORT_RETENTION_PERMISSIONS,
   COMMERCE_REPORT_TENDER_PERMISSIONS,
   COMMERCE_REPORT_CASH_UP_PERMISSIONS,
   COMMERCE_REPORT_EXPENSE_PERMISSIONS,
   COMMERCE_REPORT_LOYALTY_PERMISSIONS,
-  COMMERCE_REPORT_STORED_VALUE_PERMISSIONS
+  COMMERCE_REPORT_STORED_VALUE_PERMISSIONS,
+  COMMERCE_SEGMENTS_ACTIVITY_CODE,
+  COMMERCE_SEGMENT_PERMISSIONS,
+  COMMERCE_SEGMENT_PREVIEWS_ACTIVITY_CODE,
+  COMMERCE_SEGMENT_PREVIEW_PERMISSIONS,
+  COMMERCE_SEGMENT_MEMBERS_ACTIVITY_CODE,
+  COMMERCE_SEGMENT_MEMBER_PERMISSIONS
 } from "./domain/commerce-permissions";
 import {
   COMMERCE_FLASH_SALE_ENDED_EVENT_TYPE,
@@ -499,6 +525,45 @@ const RETURNS_DAILY_STREAMS: readonly ProjectionCursorStream[] = [
 ];
 
 /**
+ * Issue #364 (ADR-0044) - the customer-retention projection's two streams: the
+ * order-event log (a transition into `paid`, a cancellation, a return) and the
+ * payment ledger's settled reversal legs (a hand-booked refund moves
+ * `payment_status` with no order event). Both feed the SAME recompute sink; the
+ * scalar counters are "rows consumed" `COUNT(*)` equivalents the engine's own
+ * reconciliation can evaluate.
+ */
+const RETENTION_STREAMS: readonly ProjectionCursorStream[] = [
+  {
+    streamKey: RETENTION_STREAM_KEYS.orderEvents,
+    tableName: "awcms_commerce_order_events",
+    cursorColumn: "created_at",
+    metrics: [
+      {
+        metricKey: RETENTION_METRIC_KEYS.paidEvents,
+        effect: "increment",
+        matchColumn: "to_status",
+        matchValue: "paid"
+      }
+    ],
+    dimensional: RETENTION_EVENT_SINK
+  },
+  {
+    streamKey: RETENTION_STREAM_KEYS.reversalLegs,
+    tableName: "awcms_commerce_report_src_retention_reversals",
+    cursorColumn: "settled_at",
+    metrics: [
+      {
+        metricKey: RETENTION_METRIC_KEYS.reversalLegs,
+        effect: "increment",
+        matchColumn: "status",
+        matchValue: "succeeded"
+      }
+    ],
+    dimensional: RETENTION_REVERSAL_SINK
+  }
+];
+
+/**
  * `commerce` (Issue #4, part of epic #1; brought to full product-model parity
  * by Issue #23, part of epic #21) — tenant-scoped product categories
  * (hierarchical, self-referencing) and products, ported from the legacy
@@ -712,7 +777,32 @@ export const commerceModule = defineModule({
       },
       requiredPermission: COMMERCE_REPORT_RETURN_PERMISSIONS.read,
       drillDownPath: "/api/v1/commerce/returns"
-    })
+    }),
+    // Issue #364 (ADR-0044; metrics spec section 6) - commerce-only customer
+    // retention: one row per customer holding the two earliest qualifying
+    // instants, recomputed from the customer's orders, never incremented.
+    {
+      key: RETENTION_PROJECTION_KEY,
+      version: 1,
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      description:
+        "Per customer: the earliest qualifying paid order and the earliest one strictly after it (a qualifying order is paid and not fully refunded or cancelled), the Asia/Jakarta calendar month of the first as the customer's cohort, and the count of qualifying orders. Recomputed from the customer's current orders whenever one of them is paid, cancelled, returned or refunded, so a late event moves the customer between cohorts. The 90-day repeat rate per cohort is derived at read; the row holds no name or contact.",
+      source: { strategy: "cursor_table", streams: RETENTION_STREAMS },
+      rebuildSource: { streams: RETENTION_STREAMS },
+      metricLabels: {
+        [RETENTION_METRIC_KEYS.paidEvents]: "Paid order events consumed",
+        [RETENTION_METRIC_KEYS.reversalLegs]:
+          "Settled payment reversal legs consumed"
+      },
+      requiredPermission: COMMERCE_REPORT_RETENTION_PERMISSIONS.read,
+      freshness: SALES_REPORT_FRESHNESS,
+      drillDownPath: "/api/v1/reports/commerce/retention",
+      retentionClass:
+        "commerce.customer_retention / commerce.customer_retention_restated (this module's own dataLifecycle descriptors, cursor `cohort_month`, the same 3650-day ceiling as the order ledger): derived, fully rebuildable per-customer rows - a rebuild after the source's own retention purge recomputes from surviving orders only.",
+      batchLimit: 500,
+      dimensional: RETENTION_DIMENSIONAL
+    }
   ],
   /**
    * ADR-0134 - this module's domain-event consumers, declared HERE rather than
@@ -1230,6 +1320,16 @@ export const commerceModule = defineModule({
       order: 27,
       requiredPermission: "commerce.barcodes.read",
       requiredFeature: { moduleKey: "commerce", feature: "barcode" }
+    },
+    // Issue #360 (ADR-0042) - CRM segments. Gated on the segment-read
+    // permission and hidden the moment the tenant turns `features.segments`
+    // off (it defaults OFF).
+    {
+      labelKey: "admin.layout.nav_commerce_segments",
+      path: "/admin/commerce-segments",
+      order: 28,
+      requiredPermission: "commerce.segments.read",
+      requiredFeature: { moduleKey: "commerce", feature: "segments" }
     }
   ],
   /**
@@ -3048,6 +3148,9 @@ export const commerceModule = defineModule({
     // Issue #296 (ADR-0035) - the six POS operational-report projection
     // tables; see `domain/operational-report-lifecycle.ts`.
     ...OPERATIONAL_REPORT_DATA_LIFECYCLE,
+    // Issue #364 (ADR-0044) - the two customer-retention projection tables;
+    // see `domain/retention-lifecycle.ts`.
+    ...RETENTION_DATA_LIFECYCLE,
     // Issue #286 (ADR-0029) - held sales, quotations (+ versions), work orders
     // (+ events) and documents; see `domain/documents-lifecycle.ts`. The
     // numbering sequences deliberately declare none.
@@ -3055,6 +3158,9 @@ export const commerceModule = defineModule({
     // Issue #294 (ADR-0031) - the two expense tables; see
     // `domain/expense-lifecycle.ts`.
     ...EXPENSE_DATA_LIFECYCLE,
+    // Issue #360 (ADR-0042) - the two CRM segment tables; see
+    // `domain/segment-lifecycle.ts`.
+    ...SEGMENT_DATA_LIFECYCLE,
     // Issue #287 (ADR-0033) - the four returns / refunds tables; see
     // `domain/returns-lifecycle.ts`.
     ...RETURNS_DATA_LIFECYCLE,
@@ -3210,6 +3316,95 @@ export const commerceModule = defineModule({
       batchLimit: 5000,
       backupRestoreNotes:
         "Included in ordinary full-database backup/restore; no standalone archive artifact. Rebuilt from the ledger by commerce:loyalty:reconcile.",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.loyalty_redemption_settings",
+      tableName: "awcms_commerce_loyalty_redemption_settings",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      // Issue #363 / ADR-0043. One row per tenant: what a loyalty point is
+      // worth. The cursor is `updated_at`, so only a point value nobody has
+      // touched for the whole window (default and ceiling ten years) is ever
+      // eligible - and a deleted value FAILS CLOSED: redemption becomes
+      // unavailable until a tenant administrator sets it again, never a
+      // default. Every redemption row snapshots the terms it used, so nothing
+      // already given is affected by the purge.
+      cursorColumn: "updated_at",
+      retentionClass: "financial_tax",
+      retentionMinDays: 1825,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 3650,
+      partition: {
+        eligible: false,
+        rationale:
+          "At most one row per tenant (primary key, sql/1010) - bounded by awcms_tenants."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "Tiny, human-authored configuration; ordinary backup/restore is the artefact."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only mode, run as awcms_worker. Reaches only a point value untouched for the whole window (default ten years); deleting it makes redemption unavailable (fail closed), it never invents a value."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "updated_at"],
+          purpose:
+            "awcms_commerce_loyalty_redemption_settings_tenant_updated_idx (sql/1010) - the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.loyalty_redemptions",
+      tableName: "awcms_commerce_loyalty_redemptions",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      // Issue #363 / ADR-0043. The write-once discount line of a points
+      // redemption: it records a discount actually given on an order, so it
+      // is a fiscal record of the same class as the ledger row it pairs with
+      // (floor five years, default and ceiling ten). Its ledger FK is ON
+      // DELETE CASCADE (sql/1010): a ledger purge batch can never be blocked
+      // by, or split from, its redemption.
+      cursorColumn: "created_at",
+      retentionClass: "financial_tax",
+      retentionMinDays: 1825,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 3650,
+      partition: {
+        eligible: false,
+        rationale:
+          "At most one row per order that spent points (unique index, sql/1010) - bounded by commerce.orders."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "The generic engine's only implemented artefact is ordinary backup/restore; no standalone archive exists yet for this table."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only mode, run as awcms_worker (the only role that may DELETE here - awcms_app is REVOKEd UPDATE and DELETE by sql/1010 and a trigger rejects every UPDATE). Rows are deleted whole and only past the retention window (default ten years)."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "created_at"],
+          purpose:
+            "awcms_commerce_loyalty_redemptions_tenant_created_idx (sql/1010) - the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
       executionMode: "generic"
     },
     {
@@ -3922,10 +4117,14 @@ export const commerceModule = defineModule({
     ...STORED_VALUE_SUBJECT_DATA,
     // Issue #296 (ADR-0035) - see `domain/operational-report-lifecycle.ts`.
     ...OPERATIONAL_REPORT_SUBJECT_DATA,
+    // Issue #364 (ADR-0044) - see `domain/retention-lifecycle.ts`.
+    ...RETENTION_SUBJECT_DATA,
     // Issue #286 (ADR-0029) - see `domain/documents-lifecycle.ts`.
     ...DOCUMENT_SUBJECT_DATA,
     // Issue #294 (ADR-0031) - see `domain/expense-lifecycle.ts`.
     ...EXPENSE_SUBJECT_DATA,
+    // Issue #360 (ADR-0042) - see `domain/segment-lifecycle.ts`.
+    ...SEGMENT_SUBJECT_DATA,
     // Issue #287 (ADR-0033) - see `domain/returns-lifecycle.ts`.
     ...RETURNS_SUBJECT_DATA,
     {
@@ -3971,6 +4170,28 @@ export const commerceModule = defineModule({
       erasure: "retain_under_obligation",
       rationale:
         "Issue #289 — rows are keyed to account_id -> customer_id -> commerce.customers, which carries no tenant_user/identity/profile/principal id (ADR-0016 D1), so this engine's subject vocabulary cannot reach them. actor_tenant_user_id names the STAFF member of a manual adjustment/redemption for attribution only (audit-log posture), not a data subject. The ledger is append-only and retained under the fiscal-record obligation: rewriting or erasing a row would falsify every later balance_after, which is exactly what an append-only ledger exists to prevent."
+    },
+    {
+      key: "commerce.loyalty_redemptions",
+      tableName: "awcms_commerce_loyalty_redemptions",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "Issue #363 - the discount line of a points redemption: an order id, a loyalty account id, a ledger entry id and figures (points, rate, discount). The order and the account resolve to commerce.customers, which carries no tenant_user/identity/profile/principal id (ADR-0016 D1), so this engine's subject vocabulary cannot reach the row. actor_tenant_user_id names the STAFF cashier for attribution only (audit-log posture). Write-once and retained under the fiscal-record obligation: it is the evidence of a discount given on a taxable sale."
+    },
+    {
+      key: "commerce.loyalty_redemption_settings",
+      tableName: "awcms_commerce_loyalty_redemption_settings",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "Issue #363 - one row per tenant: what a loyalty point is worth in rupiah and an optional cap. The tenant's own business configuration; names nobody. updated_by_tenant_user_id names the STAFF author for attribution only. Retained because every redemption row snapshots the figures it used, and the change history lives in the audit log."
     },
     {
       key: "commerce.attribute_definitions",
@@ -4557,6 +4778,18 @@ export const commerceModule = defineModule({
       description:
         "Export the returns and refunds operational report as CSV (Issue #316)"
     },
+    // Issue #364 (ADR-0044) - the customer-retention report.
+    {
+      activityCode: COMMERCE_REPORT_RETENTION_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "Read the customer-retention (90-day repeat rate) report (Issue #364)"
+    },
+    {
+      activityCode: COMMERCE_REPORT_RETENTION_ACTIVITY_CODE,
+      action: "export",
+      description: "Export the customer-retention report as CSV (Issue #364)"
+    },
     {
       activityCode: COMMERCE_BARCODES_ACTIVITY_CODE,
       action: "read",
@@ -4730,6 +4963,44 @@ export const commerceModule = defineModule({
       activityCode: COMMERCE_EXPENSE_RECEIPTS_ACTIVITY_CODE,
       action: "create",
       description: "Attach a private receipt to an expense (Issue #294)"
+    },
+    {
+      activityCode: COMMERCE_SEGMENTS_ACTIVITY_CODE,
+      action: "read",
+      description: "List and read CRM segments and their versions (Issue #360)"
+    },
+    {
+      activityCode: COMMERCE_SEGMENTS_ACTIVITY_CODE,
+      action: "create",
+      description: "Define a CRM segment (Issue #360)"
+    },
+    {
+      activityCode: COMMERCE_SEGMENTS_ACTIVITY_CODE,
+      action: "update",
+      description:
+        "Rename a CRM segment or add a version of its rules (Issue #360)"
+    },
+    {
+      activityCode: COMMERCE_SEGMENTS_ACTIVITY_CODE,
+      action: "delete",
+      description: "Retire a CRM segment, keeping its versions (Issue #360)"
+    },
+    {
+      activityCode: COMMERCE_SEGMENT_PREVIEWS_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "Preview how many customers a segment rule matches (Issue #360)"
+    },
+    {
+      activityCode: COMMERCE_SEGMENT_MEMBERS_ACTIVITY_CODE,
+      action: "read",
+      description: "List the customers a segment version matches (Issue #360)"
+    },
+    {
+      activityCode: COMMERCE_SEGMENT_MEMBERS_ACTIVITY_CODE,
+      action: "export",
+      description:
+        "Export the customers a segment version matches as CSV (Issue #360)"
     }
   ]
 });
@@ -4778,7 +5049,10 @@ export {
   COMMERCE_EXPENSE_REVERSAL_PERMISSIONS,
   COMMERCE_EXPENSE_RECEIPT_PERMISSIONS,
   COMMERCE_DOCUMENT_DELIVERY_PERMISSIONS,
-  COMMERCE_DOCUMENT_DELIVERY_OVERRIDE_PERMISSIONS
+  COMMERCE_DOCUMENT_DELIVERY_OVERRIDE_PERMISSIONS,
+  COMMERCE_SEGMENT_PERMISSIONS,
+  COMMERCE_SEGMENT_PREVIEW_PERMISSIONS,
+  COMMERCE_SEGMENT_MEMBER_PERMISSIONS
 };
 export {
   COMMERCE_LOYALTY_PERMISSIONS,

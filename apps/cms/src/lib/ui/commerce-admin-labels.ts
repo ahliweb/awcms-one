@@ -602,13 +602,14 @@ export function createCommerceLabels(t: Translator["t"]) {
     replay: t("Replay")
   } satisfies Record<PaymentEventOutcome, string>;
 
-  /** Issue #289 — the five ledger entry kinds of the loyalty points ledger. */
+  /** Issue #289 — the ledger entry kinds of the loyalty points ledger (`restore`: Issue #363). */
   const loyaltyEntryKind = {
     earn: t("Earned"),
     redeem: t("Redeemed"),
     expire: t("Expired"),
     adjustment: t("Adjustment"),
-    reversal: t("Reversal")
+    reversal: t("Reversal"),
+    restore: t("Points restored")
   } satisfies Record<LoyaltyEntryKind, string>;
 
   /** Issue #287 (ADR-0033) - why goods came back. */

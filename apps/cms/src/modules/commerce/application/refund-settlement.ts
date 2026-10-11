@@ -56,6 +56,7 @@ import type { RefundSettledVia } from "../domain/returns";
 import { fetchCommerceFeatures } from "./commerce-feature-gate";
 import { adjustAffiliateCommissionForRefund } from "./affiliate-directory";
 import { reverseEarnForRefund } from "./loyalty-ledger";
+import { restoreRedemptionForRefund } from "./loyalty-redemption";
 import {
   lockOrderForSettlement,
   recordPaymentReversal,
@@ -565,6 +566,18 @@ export async function settleRefundLeg(
         loyalty.entry.id
       );
     }
+
+    // Issue #363 (ADR-0043 D9) - an order that spent points gets back the share
+    // of them the money refunded represents (cash paid is `header.total`, which
+    // is already net of the points discount). Its own source identity,
+    // `restore:refund:<refundId>`, so a replay restores nothing twice.
+    await restoreRedemptionForRefund(tx, tenantId, {
+      orderId: header.id,
+      refundId: params.refundId,
+      cumulativeRefundedCents,
+      orderTotalCents,
+      correlationId: params.correlationId
+    });
 
     const affiliate = await adjustAffiliateCommissionForRefund(tx, tenantId, {
       orderId: header.id,

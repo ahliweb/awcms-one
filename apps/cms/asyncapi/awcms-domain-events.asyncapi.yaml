@@ -786,7 +786,8 @@ channels:
     description: >-
       A row was appended to the append-only loyalty points ledger (Issue
       #289) — an earn for a paid order, a redemption, an expiry, a manual
-      adjustment or a reversal. Producer:
+      adjustment, a reversal or (Issue #363) a restore of redeemed points
+      when the order is cancelled or refunded. Producer:
       `commerce/application/loyalty-ledger.ts`'s `appendLedgerEntry`, in
       the same transaction as the ledger insert and the account projection
       update. Aggregate is the loyalty account; the payload carries
