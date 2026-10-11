@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:a188e242aa6fafe673db84c99be0c3787ef2d1c68b0bebeaf8dcb010a91a979b -->
+<!-- i18n-source-hash: sha256:b4d60f9b9f32f9cec80310d6d2bafd5dc2b3d032cd339299d5869b1c15898f81 -->
 
 # Skema basis data
 
@@ -298,6 +298,20 @@ Dua tabel FORCE-RLS (kebijakan isolasi tenant dengan `WITH CHECK`, foreign key k
 
 - **Hak akses.** `awcms_app` kehilangan `DELETE` pada kedua tabel baru (tetap `SELECT, INSERT, UPDATE`; trigger siklus hidup, bukan hak akses, yang membekukan baris yang diposting). `awcms_worker` tetap `SELECT, DELETE` (`sql/993`) untuk mesin retensi (`commerce.expense_categories`, `commerce.expenses`, lantai lima tahun, batas sepuluh tahun, dikunci pada `deleted_at` yang tidak pernah diisi). `security-readiness.ts` menegaskan himpunan persisnya dua arah.
 - **`sql/992`** menyemai dua belas kunci izin.
+
+## Segmen CRM: dua tabel dan satu indeks (`sql/1001`–`1004`, issue #360, [ADR-0042](adr/0042-crm-segments-are-immutable-versioned-closed-vocabulary-rules-evaluated-on-demand.md))
+
+Dua tabel FORCE-RLS (kebijakan isolasi tenant dengan `WITH CHECK`, foreign key komposit `(tenant_id, segment_id)` yang ditopang `UNIQUE (tenant_id, id)`, setiap kolom FK diindeks). **Tidak ada tabel anggota**: segmen menyimpan aturan dan keanggotaan diturunkan sesuai permintaan.
+
+| Tabel                             | Isinya                                                                                                                                                                                                                                                                                       |
+| --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `awcms_commerce_segments`         | Kepala yang dapat diubah: `name` (unik per tenant di antara segmen hidup, tak peka huruf besar-kecil), `description`, `latest_version`, `retired_at` / `retired_by_tenant_user_id` (hapus berarti pensiun), stempel pembuat dan pengubah, `deleted_at` (tidak pernah diisi — kursor retensi) |
+| `awcms_commerce_segment_versions` | Satu baris TAK DAPAT DIUBAH per versi: `version`, `rules jsonb` (pohon aturan kosakata tertutup, hanya skalar bertipe, bentuk kanonik), `node_count`, `depth`, stempel pembuat, `deleted_at` (tidak pernah diisi). `UNIQUE (tenant_id, segment_id, version)`                                 |
+
+- **Ketakbisaubahan.** `awcms_app` kehilangan `UPDATE` dan `DELETE` pada tabel versi dan `DELETE` pada kepala; sebuah trigger juga menolak `UPDATE` versi dari peran mana pun. Trigger kedua pada kepala membekukan identitas dan pembuat, membiarkan `latest_version` hanya maju, dan menjaga segmen yang pensiun tetap pensiun. `CHECK` membatasi aturan tersimpan (objek, paling banyak 16 KiB, 1–25 simpul, kedalaman 0–4).
+- **`sql/1002`** menambah satu indeks cakupan parsial pada tabel pesanan yang ada, `awcms_commerce_orders_tenant_paid_facts_idx (tenant_id, paid_at) INCLUDE (customer_id, total, status) WHERE paid_at IS NOT NULL AND deleted_at IS NULL`, agar pemindaian terkelompok pesanan lunas yang dilakukan evaluasi segmen bersifat hanya-indeks.
+- **`sql/1003`** mengisi tujuh kunci izin; **`sql/1004`** memberi `awcms_worker` `SELECT, DELETE` untuk deskriptor retensi (praktis tak terjangkau: `deleted_at` tidak pernah diisi, sehingga versi yang dicatat konsumen tidak pernah dipurge).
+- **Evaluasi hanya membaca.** Ia menggabungkan `awcms_commerce_customers` dengan akun pelanggan, akun loyalitas, dan satu pemindaian terkelompok pesanan lunas; tak satu pun mendapat kolom baru.
 
 ## Barcode: dua kolom, dua indeks, satu trigger (`sql/975`–`976`, issue #292, [ADR-0032](adr/0032-barcodes-are-a-derived-identifier-and-the-cashier-keyboard-layer-is-chord-only.md))
 

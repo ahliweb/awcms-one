@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:f8db20fa52e3348af69493d1d576b53804bb10cff5a76d33f9d2da847cc03dd4 -->
+<!-- i18n-source-hash: sha256:06477dc8eee9536dbf8a54785fa7fa878e2ed8a1f235a46213d549033c19911a -->
 
 # Kamus data
 
@@ -319,6 +319,25 @@ Rancangan platform ini sendiri — tidak ada yang di-port dari toko lama. Status
 | payee                                                                                                                                                      | `payee_name`                                                             | Teks bebas; referensi pihak bertipe ditunda (ADR-0031 D8)                                                                                                                                                                                    |
 | fitur `expenses`                                                                                                                                           | pengaturan modul commerce `features.expenses` (bawaan MATI)              | Menyalakan seluruh permukaan pengeluaran; selama MENYALA mutasi laci `expense` mentah ditolak                                                                                                                                                |
 | `commerce.expense_categories.*`, `commerce.expenses.*`, `commerce.expense_postings.*`, `commerce.expense_reversals.approve`, `commerce.expense_receipts.*` | `awcms_permissions` (`sql/992`)                                          | Dua belas kunci: kategori, baca / buat / edit / ekspor pengeluaran, ajukan / setujui posting, balik, baca / lampirkan struk                                                                                                                  |
+
+### Segmen CRM (issue #360, [ADR-0042](adr/0042-crm-segments-are-immutable-versioned-closed-vocabulary-rules-evaluated-on-demand.md))
+
+| Istilah                                                                               | Letaknya                                                                                                                                                        |
+| ------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| segmen                                                                                | `awcms_commerce_segments` (kepala); segmen tidak menyimpan anggota                                                                                              |
+| versi segmen                                                                          | `awcms_commerce_segment_versions` (tak dapat diubah); konsumen mencatat `(segment_id, version)`                                                                 |
+| segmen pensiun                                                                        | `awcms_commerce_segments.retired_at` — sebuah penghapusan; setiap versi tetap disimpan                                                                          |
+| pohon aturan                                                                          | `awcms_commerce_segment_versions.rules`; kosakata `FIELD_SPECS` di `domain/segment-rules.ts`                                                                    |
+| bidang aturan                                                                         | `level`, `has_account`, `has_email`, `customer_since`, `order_count`, `paid_spend`, `last_order_date`, `first_order_date`, `loyalty_balance`                    |
+| pesanan lunas (untuk aturan)                                                          | pesanan hidup dengan `paid_at` terisi, status bukan `cancelled` / `expired`, dibayar pada atau sebelum as-of; belanja adalah jumlah `total`                     |
+| jendela                                                                               | `windowDays` pada `order_count` / `paid_spend` (1–3650); dihitung mundur dari as-of                                                                             |
+| as-of                                                                                 | instan SERVER saat hasil dievaluasi; dikembalikan bersama hasil, tidak pernah diberikan klien                                                                   |
+| pelanggan layak                                                                       | hidup, `status = 'active'`, bukan placeholder walk-in POS — diterapkan sebelum aturan apa pun                                                                   |
+| penyembunyian kelompok kecil                                                          | jumlah di bawah 5 adalah `{ suppressed: true, count: null, label: "fewer_than_5" }`                                                                             |
+| `baseVersion`                                                                         | versi tempat suntingan bermula; ketidakcocokan adalah `409 SEGMENT_VERSION_CONFLICT`                                                                            |
+| fitur `segments`                                                                      | pengaturan modul commerce `features.segments` (bawaan MATI)                                                                                                     |
+| `SEGMENT_EVALUATION_LIMITS`                                                           | `domain/segment.ts`: batas waktu statement 5 detik, 2 evaluasi per tenant, 1 per aktor, 30 pratinjau per aktor per menit, halaman 100, contoh 10, ekspor 10.000 |
+| `commerce.segments.*`, `commerce.segment_previews.read`, `commerce.segment_members.*` | `awcms_permissions` (`sql/1003`)                                                                                                                                |
 
 ## Kosakata laporan operasional POS (issue #296, [ADR-0035](adr/0035-pos-operational-reports-are-commerce-projections-over-the-existing-ledgers-on-the-reporting-engine.md))
 
