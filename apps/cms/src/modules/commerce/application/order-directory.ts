@@ -65,7 +65,23 @@ import type {
   MediaLibraryPort,
   ResolvedMediaReferenceDTO
 } from "../../_shared/ports/media-library-port";
-import { normalizeMoney, toCents } from "../domain/price-calculation";
+import {
+  fromCents,
+  normalizeMoney,
+  toCents
+} from "../domain/price-calculation";
+import {
+  goodsBasisCents,
+  LOYALTY_REDEMPTION_ERROR_CODES
+} from "../domain/loyalty-redemption";
+import {
+  commitRedemption,
+  fetchRedemptionForOrder,
+  prepareRedemption,
+  restoreRedemptionForOrder,
+  type PreparedRedemption,
+  type RedemptionRefusal
+} from "./loyalty-redemption";
 import {
   normalizePhoneNumber,
   maskPhone,
@@ -222,6 +238,8 @@ type OrderHeaderRow = {
   insurance_fee: string;
   tax: string;
   total: string;
+  /** Issue #363 - the points-redemption discount; `total` is already net of it. */
+  loyalty_discount: string;
   dp_amount: string | null;
   notes: string | null;
   paid_at: Date | null;
@@ -300,6 +318,10 @@ export type OrderDetail = {
   insuranceFee: string;
   tax: string;
   total: string;
+  /** Issue #363 (ADR-0043) - the points-redemption discount (`"0.00"` when none); `total` is already net of it. */
+  loyaltyDiscount: string;
+  /** Issue #363 - whole points the order spent (0 when none). */
+  loyaltyPointsRedeemed: number;
   dpAmount: string | null;
   notes: string | null;
   paidAt: string | null;
@@ -345,7 +367,7 @@ async function fetchOrderDetailByWhere(
           SELECT o.id, o.order_code, o.customer_id, o.status, o.payment_method, o.payment_status,
                  o.channel, o.shipping_method, o.shipping_service_name, o.shipping_cost, o.address,
                  o.subtotal, o.discount, o.voucher_code, o.voucher_discount, o.insurance_fee,
-                 o.tax, o.total, o.dp_amount, o.notes, o.paid_at, o.shipped_at, o.completed_at,
+                 o.tax, o.total, o.loyalty_discount, o.dp_amount, o.notes, o.paid_at, o.shipped_at, o.completed_at,
                  o.cancelled_at, o.expires_at, o.created_at,
                  c.name AS customer_name, c.phone AS customer_phone, c.email AS customer_email
           FROM awcms_commerce_orders o
@@ -356,7 +378,7 @@ async function fetchOrderDetailByWhere(
           SELECT o.id, o.order_code, o.customer_id, o.status, o.payment_method, o.payment_status,
                  o.channel, o.shipping_method, o.shipping_service_name, o.shipping_cost, o.address,
                  o.subtotal, o.discount, o.voucher_code, o.voucher_discount, o.insurance_fee,
-                 o.tax, o.total, o.dp_amount, o.notes, o.paid_at, o.shipped_at, o.completed_at,
+                 o.tax, o.total, o.loyalty_discount, o.dp_amount, o.notes, o.paid_at, o.shipped_at, o.completed_at,
                  o.cancelled_at, o.expires_at, o.created_at,
                  c.name AS customer_name, c.phone AS customer_phone, c.email AS customer_email
           FROM awcms_commerce_orders o
@@ -425,6 +447,9 @@ async function fetchOrderDetailByWhere(
     insuranceFee: normalizeMoney(header.insurance_fee),
     tax: normalizeMoney(header.tax),
     total: normalizeMoney(header.total),
+    loyaltyDiscount: normalizeMoney(String(header.loyalty_discount)),
+    loyaltyPointsRedeemed:
+      (await fetchRedemptionForOrder(tx, tenantId, header.id))?.points ?? 0,
     dpAmount:
       header.dp_amount !== null ? normalizeMoney(header.dp_amount) : null,
     notes: header.notes,
@@ -509,6 +534,10 @@ export type PublicOrderRecord = {
   insuranceFee: string;
   tax: string;
   total: string;
+  /** Issue #363 - the points-redemption discount (`"0.00"` when none); `total` is already net of it. */
+  loyaltyDiscount: string;
+  /** Issue #363 - whole points the order spent (0 when none). */
+  loyaltyPointsRedeemed: number;
   downPayment: { amount: string; paid: boolean } | null;
   paymentInstructions: {
     method: string;
@@ -628,6 +657,8 @@ export async function toPublicOrderRecord(
     insuranceFee: detail.insuranceFee,
     tax: detail.tax,
     total: detail.total,
+    loyaltyDiscount: detail.loyaltyDiscount,
+    loyaltyPointsRedeemed: detail.loyaltyPointsRedeemed,
     downPayment:
       detail.dpAmount !== null
         ? {
@@ -721,7 +752,16 @@ export type CreateOrderOutcome =
    * `CART_CHANGED` for a stale shipping selection).
    */
   | { kind: "cart_changed"; quote: CartQuoteResult }
-  | { kind: "invalid_phone" };
+  | { kind: "invalid_phone" }
+  /**
+   * Issue #363 (ADR-0043) - the points redemption could not be honoured. Found
+   * BEFORE any row of the order was written, so nothing is half-built.
+   */
+  | { kind: "loyalty_refused"; refusal: OrderLoyaltyRefusal };
+
+export type OrderLoyaltyRefusal =
+  | RedemptionRefusal
+  | { code: typeof LOYALTY_REDEMPTION_ERROR_CODES.requiresAccount };
 
 async function insertOrderWithRetryableCode(
   tx: Bun.SQL,
@@ -731,7 +771,9 @@ async function insertOrderWithRetryableCode(
   quote: CartQuoteResult,
   now: Date,
   expiresAt: Date,
-  affiliateId: string | null
+  affiliateId: string | null,
+  /** Issue #363 - the total actually due (net of points) and the discount line. */
+  pricing: { total: string; loyaltyDiscount: string }
 ): Promise<OrderHeaderRow> {
   const addressJson = input.address
     ? {
@@ -764,7 +806,7 @@ async function insertOrderWithRetryableCode(
           tenant_id, order_code, customer_id, status, payment_method, payment_status,
           shipping_method, shipping_service_name, shipping_cost, address,
           subtotal, discount, voucher_code, voucher_discount, insurance_fee, tax, total,
-          dp_amount, notes, expires_at, affiliate_id
+          loyalty_discount, dp_amount, notes, expires_at, affiliate_id
         )
         VALUES (
           ${tenantId}, ${orderCode}, ${customerId}, 'pending_payment', ${input.payment.method}, 'unpaid',
@@ -772,13 +814,13 @@ async function insertOrderWithRetryableCode(
           ${quote.shipping?.name ?? null}, ${quote.shipping?.cost ?? "0.00"}, ${addressJson}::jsonb,
           ${quote.subtotal}, ${quote.discount}, ${quote.voucher?.code ?? null},
           ${quote.voucher?.valid ? quote.voucher.discount : "0.00"},
-          ${quote.insurance.fee}, ${quote.tax.amount}, ${quote.total},
-          ${dpAmount}, ${input.notes}, ${expiresAt}, ${affiliateId}
+          ${quote.insurance.fee}, ${quote.tax.amount}, ${pricing.total},
+          ${pricing.loyaltyDiscount}, ${dpAmount}, ${input.notes}, ${expiresAt}, ${affiliateId}
         )
         RETURNING id, order_code, customer_id, status, payment_method, payment_status,
                   shipping_method, shipping_service_name, shipping_cost, address,
                   subtotal, discount, voucher_code, voucher_discount, insurance_fee, tax, total,
-                  dp_amount, notes, paid_at, shipped_at, completed_at, cancelled_at, expires_at, created_at
+                  loyalty_discount, dp_amount, notes, paid_at, shipped_at, completed_at, cancelled_at, expires_at, created_at
       `) as Omit<
         OrderHeaderRow,
         "customer_name" | "customer_phone" | "customer_email"
@@ -909,7 +951,11 @@ async function createOrderFromCartWrite(
     payment: input.payment,
     voucherCode: input.voucherCode,
     insurance: input.insurance,
-    notes: input.notes
+    notes: input.notes,
+    // Issue #363 - `undefined` drops out of the hash, so an order without
+    // redemption hashes exactly as it did before, and the SAME key with a
+    // different points figure is an `IDEMPOTENCY_CONFLICT`.
+    loyaltyRedemption: input.loyaltyRedemption ?? undefined
   });
 
   const existing = await findIdempotencyRecord(
@@ -995,6 +1041,61 @@ async function createOrderFromCartWrite(
     return { kind: "cart_changed", quote };
   }
 
+  // Issue #363 (ADR-0043) - points. Prepared BEFORE any row of the order is
+  // written: a refusal is a returned 4xx, which commits, so it must leave
+  // nothing behind. The customer is the bearer session's own account customer
+  // (`accountCustomerId`), never anything the request named.
+  let redemption: PreparedRedemption | null = null;
+  if (input.loyaltyRedemption) {
+    if (!accountCustomer) {
+      return {
+        kind: "loyalty_refused",
+        refusal: { code: LOYALTY_REDEMPTION_ERROR_CODES.requiresAccount }
+      };
+    }
+    const prepared = await prepareRedemption(tx, tenantId, {
+      customerId: accountCustomer.id,
+      points: input.loyaltyRedemption.points,
+      goodsBasisCents: goodsBasisCents(quote.subtotal, quote.discount),
+      clientKey: `order:${input.idempotencyKey}`,
+      depositOrder: input.payment.method === "dp",
+      now,
+      correlationId
+    });
+    if (!prepared.ok) {
+      return { kind: "loyalty_refused", refusal: prepared.refusal };
+    }
+    redemption = prepared.prepared;
+
+    // The account lock was only just taken: a concurrent request with this
+    // very idempotency key may have committed while we waited for it.
+    const raced = await findIdempotencyRecord(
+      tx,
+      tenantId,
+      IDEMPOTENCY_SCOPE,
+      input.idempotencyKey
+    );
+    if (raced) {
+      if (raced.requestHash !== requestHash) {
+        throw new IdempotencyPayloadMismatchError();
+      }
+      return {
+        kind: "replayed",
+        order: raced.responseBody as PublicOrderRecord
+      };
+    }
+  }
+  const quotedTotalCents = toCents(quote.total);
+  const redemptionCents = redemption?.discountCents ?? 0n;
+  if (redemptionCents > quotedTotalCents) {
+    // Unreachable: the discount is bounded by the goods, which the total contains.
+    throw new Error("A points discount cannot exceed the order total.");
+  }
+  const pricing = {
+    total: fromCents(quotedTotalCents - redemptionCents),
+    loyaltyDiscount: fromCents(redemptionCents)
+  };
+
   const settings = await fetchStoreSettings(tx, tenantId);
   const expiresAt = new Date(
     now.getTime() + settings.orders.expiryHours * 60 * 60 * 1000
@@ -1027,8 +1128,18 @@ async function createOrderFromCartWrite(
     quote,
     now,
     expiresAt,
-    affiliateId
+    affiliateId,
+    pricing
   );
+
+  if (redemption) {
+    await commitRedemption(tx, tenantId, redemption, {
+      orderId: header.id,
+      channel: "storefront",
+      actorTenantUserId: null,
+      correlationId
+    });
+  }
 
   // Issue #282 - in `ledger` mode the order items are collected here and sold
   // out of the ledger after the loop (sorted, so concurrent orders lock balances
@@ -1174,7 +1285,7 @@ async function createOrderFromCartWrite(
     resourceType: AUDIT_RESOURCE_TYPE,
     resourceId: header.id,
     message: `Order ${header.order_code} created via storefront checkout.`,
-    attributes: { orderCode: header.order_code, total: quote.total },
+    attributes: { orderCode: header.order_code, total: pricing.total },
     correlationId
   });
 
@@ -1188,9 +1299,26 @@ async function createOrderFromCartWrite(
     payload: {
       orderId: header.id,
       orderCode: header.order_code,
-      total: quote.total
+      total: pricing.total
     }
   });
+
+  // Issue #363 (ADR-0043 D7) - points covered the whole bill (the goods, with
+  // no shipping, insurance or tax left): nothing remains to collect and no
+  // payment leg can ever be recorded for Rp 0, so the order would otherwise sit
+  // in `pending_payment` until it expired and handed the points back. Settled
+  // by definition, it is released directly - the POS does the same for a free
+  // sale - through the one status transition, after the items exist.
+  if (redemption && toCents(pricing.total) === 0n) {
+    await makeOrderRelease(
+      tx,
+      tenantId,
+      "system",
+      undefined,
+      header.id,
+      correlationId
+    )("Paid in full with loyalty points.");
+  }
 
   const detail = await fetchOrderDetailByWhere(tx, tenantId, mediaPort, {
     id: header.id
@@ -1497,6 +1625,9 @@ async function transitionOrderStatus(
       actorTenantUserId ?? null,
       correlationId
     );
+    // Issue #363 - points the order spent go back, once, as a compensating
+    // ledger row (`restore:order:<id>`), in this same transaction.
+    await restoreRedemptionForOrder(tx, tenantId, orderId, correlationId);
     await reverseOrderTaxForCancellation(
       tx,
       tenantId,
@@ -1539,6 +1670,7 @@ async function transitionOrderStatus(
       actorTenantUserId ?? null,
       correlationId
     );
+    await restoreRedemptionForOrder(tx, tenantId, orderId, correlationId);
     await reverseOrderTaxForCancellation(
       tx,
       tenantId,

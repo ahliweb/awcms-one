@@ -32,8 +32,9 @@
  * `pos-directory.ts`, cart pricing or the payment webhook paths: earn and
  * reversal are driven purely by the `order.paid`/`order.cancelled` domain
  * events (see `commerce/module.ts` `domainEventConsumers`).
- * Wiring a redemption into checkout pricing needs #285's tender model and is
- * deferred (ADR-0026 Deferred).
+ * Issue #363 (ADR-0043) later wired redemption into checkout and the POS from
+ * `application/loyalty-redemption.ts`, which still writes the ledger ONLY
+ * through {@link appendLedgerEntry}; this file stays the single writer.
  */
 import { withTenantOrThrow } from "../../../lib/database/tenant-context";
 import { appendDomainEvent } from "../../domain-event-runtime/application/append-domain-event";
@@ -75,6 +76,7 @@ import {
   findExpirableLots,
   type ReplayEntry
 } from "../domain/loyalty-lots";
+import { fromCents, toCents } from "../domain/price-calculation";
 import { fetchEffectiveProgramAt } from "./loyalty-program-directory";
 
 const PRODUCER_MODULE = "commerce";
@@ -162,7 +164,7 @@ function toLedgerEntry(row: LedgerRow): LoyaltyLedgerEntry {
   };
 }
 
-async function findEntryByKey(
+export async function findEntryByKey(
   tx: Bun.SQL,
   tenantId: string,
   idempotencyKey: string
@@ -394,7 +396,7 @@ export async function appendLedgerEntry(
 // Replay support (expiry / reversal arithmetic)
 // ---------------------------------------------------------------------------
 
-async function loadReplayEntries(
+export async function loadReplayEntries(
   tx: Bun.SQL,
   tenantId: string,
   accountId: string
@@ -450,7 +452,7 @@ export async function expireDueLotsForLockedAccount(
     FROM awcms_commerce_loyalty_ledger e
     WHERE e.tenant_id = ${tenantId}
       AND e.account_id = ${account.id}
-      AND e.kind = 'earn'
+      AND e.kind IN ('earn', 'restore')
       AND e.expires_at IS NOT NULL
       AND e.expires_at <= ${asOf}
       AND NOT EXISTS (
@@ -529,7 +531,7 @@ export async function earnPointsForPaidOrder(
   if (!features.loyalty) return { kind: "skipped", reason: "feature_disabled" };
 
   const orderRows = (await tx`
-    SELECT o.id, o.status, o.subtotal, o.discount, o.paid_at, o.customer_id,
+    SELECT o.id, o.status, o.subtotal, o.discount, o.loyalty_discount, o.paid_at, o.customer_id,
       c.phone AS customer_phone, c.status AS customer_status,
       c.deleted_at AS customer_deleted_at
     FROM awcms_commerce_orders o
@@ -541,6 +543,7 @@ export async function earnPointsForPaidOrder(
     status: string;
     subtotal: string;
     discount: string;
+    loyalty_discount: string;
     paid_at: Date | string | null;
     customer_id: string;
     customer_phone: string;
@@ -573,7 +576,15 @@ export async function earnPointsForPaidOrder(
       minOrderAmount: program.minOrderAmount,
       maxPointsPerOrder: program.maxPointsPerOrder
     },
-    { subtotal: String(order.subtotal), discount: String(order.discount) }
+    {
+      subtotal: String(order.subtotal),
+      // Issue #363 (ADR-0043 D8): spend paid for with points is not rewarded
+      // again, or redeeming and re-earning would mint points from nothing.
+      discount: fromCents(
+        toCents(String(order.discount)) +
+          toCents(String(order.loyalty_discount))
+      )
+    }
   );
   if (points <= 0) return { kind: "skipped", reason: "zero_points" };
 
@@ -1070,7 +1081,7 @@ export async function expireDueLoyaltyPointsForTenant(
         SELECT DISTINCT e.account_id
         FROM awcms_commerce_loyalty_ledger e
         WHERE e.tenant_id = ${tenantId}
-          AND e.kind = 'earn'
+          AND e.kind IN ('earn', 'restore')
           AND e.expires_at IS NOT NULL
           AND e.expires_at <= ${asOf}
           AND NOT EXISTS (
@@ -1334,7 +1345,9 @@ export type LoyaltySummary = {
     adjustmentsNet: number;
     /** Points taken back by reversals (a magnitude). */
     reversed: number;
-    /** `earned - redeemed - expired + adjustmentsNet - reversed`. */
+    /** Points given back by `restore` rows when an order that spent them was cancelled or refunded (Issue #363). */
+    restored: number;
+    /** `earned - redeemed - expired + adjustmentsNet - reversed + restored`. */
     net: number;
   };
   /** Σ of every ledger row ever — the authoritative points in circulation. */
@@ -1377,6 +1390,7 @@ export async function fetchLoyaltySummary(
   const expired = -(sums.expire ?? 0);
   const adjustmentsNet = sums.adjustment ?? 0;
   const reversed = -(sums.reversal ?? 0);
+  const restored = sums.restore ?? 0;
 
   const totals = (await tx`
     SELECT
@@ -1403,7 +1417,8 @@ export async function fetchLoyaltySummary(
       expired,
       adjustmentsNet,
       reversed,
-      net: earned - redeemed - expired + adjustmentsNet - reversed
+      restored,
+      net: earned - redeemed - expired + adjustmentsNet - reversed + restored
     },
     outstanding: Number(total.outstanding),
     accounts: Number(total.accounts),

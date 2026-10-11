@@ -1256,6 +1256,31 @@ each insert under a `FOR UPDATE` lock on the account row. Points are integers
 store-credit or stored-value (that is a separate ledger, #288). The whole
 feature sits behind `features.loyalty`, default **OFF**.
 
+## Loyalty point redemption — IMPLEMENTED (Issue #363 — [ADR-0043](../../../../../docs/adr/0043-loyalty-points-are-redeemed-as-a-server-priced-discount-line-written-with-the-ledger-debit.md))
+
+Spending points on an order, behind **`features.loyaltyRedemption`** (default
+**OFF**, independent of `features.loyalty`) and a tenant-set point value with
+**no default** (`awcms_commerce_loyalty_redemption_settings`). Closes
+ADR-0026's deferred redemption item.
+
+| Piece        | Where                                                                                                                                                                   | What it does                                                                                                                                                       |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Schema       | `sql/1010`–`1012`                                                                                                                                                       | Settings table, write-once `awcms_commerce_loyalty_redemptions`, `orders.loyalty_discount`, the `restore` ledger kind, the points-plus-deposit CHECK, worker grant |
+| Pure pricing | `domain/loyalty-redemption.ts`                                                                                                                                          | `computeRedemptionDiscount` (integer cents, goods bound, cap), `pointsToHaveRestored`, request/settings validators, stable error codes                             |
+| Application  | `application/loyalty-redemption.ts`, `loyalty-redemption-http.ts`                                                                                                       | `prepareRedemption` (before the order row), `commitRedemption` (after it), `restoreRedemptionForOrder` / `…ForRefund`, settings CRUD, `fetchRedemptionTerms`       |
+| Wiring       | `order-directory.ts` (storefront order, cancel/expire), `pos-directory.ts`, `refund-settlement.ts`, `return-directory.ts`, `loyalty-ledger.ts` (earn base, expiry scan) | Each reads or writes `loyalty_discount`                                                                                                                            |
+| Routes       | `loyalty/redemption-settings.ts`; `loyaltyRedemption` on `storefront/orders` and `pos/orders`                                                                           | Settings under `loyalty.read`/`.manage`; POS needs `loyalty_redemptions.create` too                                                                                |
+| Screens      | `admin/commerce-loyalty.astro` ("Point value"), `admin/commerce-pos.astro` ("Spend loyalty points")                                                                     |                                                                                                                                                                    |
+| Tests        | `tests/commerce-loyalty-redemption.test.ts`, `tests/integration/commerce-loyalty-redemption.integration.test.ts`                                                        | Pure, and real Postgres (replay, conflict, overdraw, parallel, tamper, cap, shipping/tax, deposit, ownership, RLS, restore)                                        |
+
+**Rules worth knowing before you change anything**
+
+- The client sends **only whole points**. Any other key in `loyaltyRedemption` is a `400`; the account comes from the bearer session (storefront) or the customer attached to the sale (POS), never the request.
+- Refusals are found **before** the order row exists (`prepareRedemption` locks the account `FOR UPDATE` and keeps it to the end of the transaction); `commitRedemption` runs after the insert and cannot fail for a balance reason. Never add a refusal between the insert and the commit.
+- Points pay for goods, not tax: tax stays computed on `subtotal − voucher discount`. Shipping and insurance are outside the goods basis.
+- Cancelling or expiring an order restores in the same transaction (`restore:order:<id>`); a refund restores `floor(points × refunded / total)` less what was restored (`restore:refund:<id>`), from cash paid. A `restore` is a lot with the soonest expiry the redemption had consumed.
+- Points and a refundable deposit never share an order (a `409` and a database CHECK). The earn base excludes the points discount.
+
 ## Barcodes, labels, scanner input and cashier shortcuts - IMPLEMENTED (Issue #292, epic #281 - [ADR-0032](../../../../../docs/adr/0032-barcodes-are-a-derived-identifier-and-the-cashier-keyboard-layer-is-chord-only.md))
 
 Two nullable `barcode` columns (`sql/975`: products and variants), two permissions (`commerce.barcodes.{read,update}`, `sql/976`), no new table.

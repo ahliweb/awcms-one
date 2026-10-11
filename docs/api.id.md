@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:fb0a503028f6f57e784c8b441a9d32197e11eeed96c80f625f33d7701c396a52 -->
+<!-- i18n-source-hash: sha256:a982f220f3fb95727bb1f5f3474284f5b5cd356c42187582a38387893afd4365 -->
 
 # API
 
@@ -353,6 +353,17 @@ Semua route pemilik memakai `defineTenantRoute`, di balik feature flag `loyalty`
 | `GET`           | `commerce/storefront/account/loyalty`           | bearer pelanggan                      | `balance` milik sendiri, aturan yang berlaku, dan riwayat milik sendiri (`?cursor&limit`). Id pelanggan hanya dari sesi terverifikasi; item riwayat `{id, kind, points, balanceAfter, expiresAt, createdAt}`                          |
 
 Pengulangan `redeem`/`adjust` dengan kunci dan body yang sama me-replay `201` yang tersimpan; kunci sama dengan body berbeda adalah `409 IDEMPOTENCY_CONFLICT`. Perolehan dan pembatalan **tidak punya route**: keduanya berjalan dari domain event `order.paid` / `order.cancelled` (`commerce.order_paid_loyalty_earner`, `commerce.order_cancelled_loyalty_reverser`), dan kedaluwarsa dari job `commerce:loyalty:expire`. Izin yang ditambahkan: `commerce.loyalty.{read,manage}`, `commerce.loyalty_adjustments.create`, `commerce.loyalty_redemptions.create`. Domain event yang ditambahkan: `awcms.commerce.loyalty.entry_recorded` (agregat `commerce.loyalty_account`).
+
+### Memakai poin pada pesanan — terimplementasi (#363, ADR-0043)
+
+Klien memakai poin dengan menambahkan **`loyaltyRedemption: { points }`** (bilangan bulat positif — satu-satunya angka yang dikirimnya; kunci lain adalah `400`) ke `POST commerce/storefront/orders` (perlu bearer pelanggan; akunnya adalah milik sesi) atau ke `POST commerce/pos/orders` (akunnya adalah pelanggan yang dikaitkan ke penjualan lewat `customer.phone`; perlu `commerce.loyalty_redemptions.create` di samping `commerce.pos.create`; penjualan walk-in tidak dapat menukar). Server yang menetapkan harga: `discount = points × rupiah-per-poin`, dibatasi oleh barang (`subtotal − diskon voucher`) dan batas opsional tenant; ongkos kirim, asuransi, dan pajak tetap dibayar dengan uang. Catatan pesanan bertambah `loyaltyDiscount` dan `loyaltyPointsRedeemed`, dan `total` bersih dari diskon. Setiap penolakan adalah `409` yang ditemukan sebelum baris apa pun ditulis: `LOYALTY_REDEMPTION_UNAVAILABLE` (fitur mati, loyalitas mati, atau nilai poin belum diatur), `LOYALTY_REDEMPTION_REQUIRES_ACCOUNT`, `LOYALTY_REDEMPTION_REQUIRES_CUSTOMER`, `LOYALTY_REDEMPTION_DEPOSIT_CONFLICT`, `LOYALTY_REDEMPTION_EXCEEDS_LIMIT` (`details.reason`, `details.maxPoints`), `LOYALTY_REDEMPTION_CUSTOMER_UNAVAILABLE`, `INSUFFICIENT_POINTS` (`details.balance`, `details.requested`). Pemutaran ulang pesanan mengembalikan pesanan yang sama dan mendebit sekali; kunci sama dengan `loyaltyRedemption` berbeda adalah `409 IDEMPOTENCY_CONFLICT`.
+
+| Metode                   | Jalur                                   | Autentikasi                         | Catatan                                                                                                                                                         |
+| ------------------------ | --------------------------------------- | ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `GET` / `PUT` / `DELETE` | `commerce/loyalty/redemption-settings`  | `commerce.loyalty.read` / `.manage` | Nilai poin tenant: `{rupiahPerPoint (int 1..1 000 000), maxGoodsPercent (int 1..100 atau null)}`. `GET` menjawab `{settings: null}` sampai ditetapkan — tidak ada nilai bawaan. `PUT`/`DELETE` diaudit. `409 FEATURE_DISABLED` selama `loyalty` mati |
+| `GET`                    | `commerce/storefront/account/loyalty`   | bearer pelanggan                    | Kini juga membawa `redemption: {rupiahPerPoint, maxGoodsPercent} \| null` — nilai satu poin di checkout, `null` bila pemakaian poin tidak tersedia (hanya tampilan) |
+
+Membatalkan atau mengedaluwarsakan pesanan belum bayar mengembalikan poin dalam transaksi yang sama (`restore:order:<orderId>`); refund yang selesai mengembalikan bagian proporsionalnya (`restore:refund:<refundId>`). Keduanya tidak punya rute.
 
 ## Bentuk request/respons
 

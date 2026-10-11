@@ -132,6 +132,7 @@ const commerceFeatures =
         register: false,
         documents: false,
         loyalty: false,
+        loyaltyRedemption: false,
         storedValue: false,
         expenses: false,
         documentDelivery: false,
@@ -147,6 +148,10 @@ const FEATURE_TOGGLES = [
   { key: "documents", label: "Quotations, work orders and documents" },
   { key: "register", label: "POS registers and cash-up" },
   { key: "loyalty", label: "Loyalty points" },
+  {
+    key: "loyaltyRedemption",
+    label: "Spend loyalty points at checkout and the POS"
+  },
   { key: "storedValue", label: "Gift cards and store credit" },
   { key: "expenses", label: "Petty cash and expenses" },
   {

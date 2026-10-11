@@ -11247,7 +11247,7 @@ paths:
       tags:
         - Commerce
       summary: "Issue #289. Redeem a customer's points at the counter or on their behalf. Gated on `commerce.loyalty_redemptions.create`; `Idempotency-Key` required. Runs under the account row lock, so concurrent redemptions cannot overdraw (`409 INSUFFICIENT_POINTS`)."
-      description: "Records the points DEBIT only. Converting points into a discount at checkout needs the tender model of #285 and is deferred (ADR-0026). Points past their `expiresAt` are expired first, under the same lock, so lapsed points can never be spent. Same key + same body replays the stored 201; same key + different body is `409 IDEMPOTENCY_CONFLICT`. A refused (insufficient) request is not recorded, so the same key can succeed after a top-up."
+      description: "Records the points DEBIT only, with no order: it is the manual, out-of-band spend (for example a reward handed over outside a sale). Spending points AS A DISCOUNT on an order is done by the order itself - `loyaltyRedemption` on `POST /api/v1/commerce/storefront/orders` and on `POST /api/v1/commerce/pos/orders` (Issue #363, ADR-0043). Points past their `expiresAt` are expired first, under the same lock, so lapsed points can never be spent. Same key + same body replays the stored 201; same key + different body is `409 IDEMPOTENCY_CONFLICT`. A refused (insufficient) request is not recorded, so the same key can succeed after a top-up."
       parameters:
         - name: customerId
           in: path
@@ -11605,6 +11605,126 @@ paths:
                     $ref: "#/components/schemas/LoyaltyReconcileReport"
         "400":
           $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: FEATURE_DISABLED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/loyalty/redemption-settings:
+    get:
+      operationId: getCommerceLoyaltyRedemptionSettings
+      tags:
+        - Commerce
+      summary: "Issue #363 (ADR-0043). The tenant's loyalty point value and cap, or `null` when none was ever set. Gated on `commerce.loyalty.read`."
+      description: There is no default value. Until the tenant sets one, points cannot be spent at checkout or the POS.
+      responses:
+        "200":
+          description: The settings, or `null`.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      settings:
+                        $ref: "#/components/schemas/LoyaltyRedemptionSettings"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: FEATURE_DISABLED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    put:
+      operationId: putCommerceLoyaltyRedemptionSettings
+      tags:
+        - Commerce
+      summary: "Issue #363 (ADR-0043). Set or change what one point is worth (whole rupiah) and the optional cap on the share of the goods subtotal payable in points. Gated on `commerce.loyalty.manage`; audited with the old and new figures."
+      description: "A change affects only orders created afterwards: each redemption snapshots the rate and cap it used."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - rupiahPerPoint
+              properties:
+                rupiahPerPoint:
+                  type: integer
+                  minimum: 1
+                  maximum: 1000000
+                maxGoodsPercent:
+                  type: integer
+                  minimum: 1
+                  maximum: 100
+                  nullable: true
+                  description: Omitted or `null` for no cap.
+      responses:
+        "200":
+          description: The saved settings.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      settings:
+                        $ref: "#/components/schemas/LoyaltyRedemptionSettings"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: FEATURE_DISABLED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    delete:
+      operationId: deleteCommerceLoyaltyRedemptionSettings
+      tags:
+        - Commerce
+      summary: "Issue #363 (ADR-0043). Remove the point value: points can no longer be spent until a new value is saved. Orders that already used points keep their discount. Gated on `commerce.loyalty.manage`."
+      responses:
+        "200":
+          description: Whether a value was removed.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      removed:
+                        type: boolean
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -12637,6 +12757,10 @@ paths:
         `allowDue: true` (requires `tenders[]`, a customer `phone`, and the SEPARATE permission `commerce.pos_due.create` in addition to `commerce.pos.create`) lets the sale finalize with a balance DUE: the order stays `pending_payment` (`paymentStatus` `unpaid`/`partially_paid`, no expiry) with `settlement.outstanding` explicit, and later payments (`POST /api/v1/commerce/orders/{id}/payments`) settle it. `tenders: []` with `allowDue: true` is a sale entirely on account.
 
         The 201 carries `payments` (every ledger row — one per tender, for the receipt) and `settlement`; `change`/`amountTendered` keep their legacy meaning (the cash leg's change / the cash handed over, `null` when the sale had no cash leg).
+
+        ### Spending loyalty points (Issue #363, ADR-0043)
+
+        `loyaltyRedemption: { points }` spends the points of the customer already attached to the sale by `customer.phone` - never an account id from the request - as a discount line on the goods. The server computes the discount (`points * rupiah_per_point`, integer cents), bounded by the goods subtotal and the tenant's optional cap, and the tenders must then cover the total NET of it (`loyaltyDiscount` on the response). It needs the tenant's `loyalty` and `loyaltyRedemption` features, a point value set by the tenant, and the SEPARATE permission `commerce.loyalty_redemptions.create` in addition to `commerce.pos.create`. A walk-in sale (no phone) cannot redeem. The debit and the discount commit together or not at all.
       parameters:
         - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
@@ -12692,6 +12816,8 @@ paths:
                 allowDue:
                   type: boolean
                   description: "Issue #285 — finalize with a balance due. Requires `tenders[]`, a customer phone, and `commerce.pos_due.create`."
+                loyaltyRedemption:
+                  $ref: "#/components/schemas/CommerceLoyaltyRedemptionRequest"
                 registerId:
                   type: string
                   format: uuid
@@ -12780,7 +12906,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: "`FEATURE_DISABLED` (the tenant turned `pos` off, #118), `IDEMPOTENCY_CONFLICT` (same key, different payload), `CART_CHANGED` (a line's price/stock changed since it was priced — `details.quote` carries the fresh quote), `INSUFFICIENT_TENDER` (the tenders do not cover the total — `details.shortfall`) or `OVERPAYMENT` (non-cash tenders exceed the total — `details.outstanding`/`details.attempted`) or, with the `register` feature on (Issue #284), `REGISTER_SESSION_REQUIRED` (the register has no open session), `REGISTER_SESSION_CLOSING` or `NOT_SESSION_CASHIER`. `403` also covers `allowDue: true` without `commerce.pos_due.create`; `404` an unknown or other-tenant `registerId`."
+          description: "`FEATURE_DISABLED` (the tenant turned `pos` off, #118), `IDEMPOTENCY_CONFLICT` (same key, different payload), `CART_CHANGED` (a line's price/stock changed since it was priced — `details.quote` carries the fresh quote), `INSUFFICIENT_TENDER` (the tenders do not cover the total — `details.shortfall`) or `OVERPAYMENT` (non-cash tenders exceed the total — `details.outstanding`/`details.attempted`) or, with the `register` feature on (Issue #284), `REGISTER_SESSION_REQUIRED` (the register has no open session), `REGISTER_SESSION_CLOSING` or `NOT_SESSION_CASHIER`. `403` also covers `allowDue: true` without `commerce.pos_due.create` and, with `loyaltyRedemption` (Issue #363), a caller without `commerce.loyalty_redemptions.create`; `404` an unknown or other-tenant `registerId`. With `loyaltyRedemption`: `LOYALTY_REDEMPTION_UNAVAILABLE`, `LOYALTY_REDEMPTION_REQUIRES_CUSTOMER` (a walk-in sale has no account), `LOYALTY_REDEMPTION_EXCEEDS_LIMIT`, `LOYALTY_REDEMPTION_CUSTOMER_UNAVAILABLE` or `INSUFFICIENT_POINTS`."
           content:
             application/json:
               schema:
@@ -17078,6 +17204,17 @@ paths:
                       balance:
                         type: integer
                         format: int64
+                      redemption:
+                        nullable: true
+                        description: "Issue #363 (ADR-0043). What a point is worth at checkout, or `null` when spending points is unavailable (the feature is off, or the tenant never set a value - one answer for both). For display only: the order route recomputes the discount."
+                        type: object
+                        properties:
+                          rupiahPerPoint:
+                            type: integer
+                          maxGoodsPercent:
+                            type: integer
+                            nullable: true
+                            description: The cap on the share of the goods subtotal payable in points; `null` for no cap.
                       program:
                         nullable: true
                         description: The rule in force right now; `null` when no version is active.
@@ -17693,7 +17830,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "409":
-          description: CART_CHANGED — a line's price/stock/shipping/payment method changed since it was last quoted (in `ledger` inventory mode this includes the inventory ledger refusing the last unit); `error.details.quote` carries a fresh quote. INVENTORY_UNAVAILABLE — the store's inventory location is missing, inactive or counts the item in another unit (ADR-0038); nothing was written.
+          description: "CART_CHANGED — a line's price/stock/shipping/payment method changed since it was last quoted (in `ledger` inventory mode this includes the inventory ledger refusing the last unit); `error.details.quote` carries a fresh quote. INVENTORY_UNAVAILABLE — the store's inventory location is missing, inactive or counts the item in another unit (ADR-0038); nothing was written. With `loyaltyRedemption` (Issue #363): LOYALTY_REDEMPTION_UNAVAILABLE, LOYALTY_REDEMPTION_REQUIRES_ACCOUNT, LOYALTY_REDEMPTION_DEPOSIT_CONFLICT, LOYALTY_REDEMPTION_EXCEEDS_LIMIT (details carry `reason` and `maxPoints`), LOYALTY_REDEMPTION_CUSTOMER_UNAVAILABLE or INSUFFICIENT_POINTS (details carry `balance` and `requested`) - each found before any row of the order was written."
           content:
             application/json:
               schema:
@@ -38464,6 +38601,8 @@ components:
           type: string
           nullable: true
           description: "Issue #86 (design only). Optional `?ref=` referral code captured by the storefront; ignored if it matches the ordering customer's own affiliate code (self-referral yields no commission — D5)."
+        loyaltyRedemption:
+          $ref: "#/components/schemas/CommerceLoyaltyRedemptionRequest"
     CommerceCustomer:
       type: object
       description: Issue 29 — admin customer record.
@@ -39302,6 +39441,17 @@ components:
           properties:
             repaired:
               type: integer
+    CommerceLoyaltyRedemptionRequest:
+      type: object
+      nullable: true
+      description: "Issue #363 (ADR-0043). Spend whole loyalty points on this order. The ONLY figure a client sends: the discount, the point value and the account are the server's (any other key is a `400`). Needs a valid customer bearer - the points are those of the signed-in account and no other. Refused with a stable `409` code: `LOYALTY_REDEMPTION_UNAVAILABLE` (feature off or no point value set), `LOYALTY_REDEMPTION_REQUIRES_ACCOUNT`, `LOYALTY_REDEMPTION_DEPOSIT_CONFLICT` (a down-payment order), `LOYALTY_REDEMPTION_EXCEEDS_LIMIT` (details: `reason`, `maxPoints`), `INSUFFICIENT_POINTS` (details: `balance`, `requested`). Replayed with the order by its `idempotencyKey`."
+      required:
+        - points
+      properties:
+        points:
+          type: integer
+          minimum: 1
+          description: Whole points to spend.
     CommerceOperationalCashUpRow:
       type: object
       description: "Issue #296 — one closed shift and tender. `variance` = `countedWithCorrections` − `expected`; negative is short."
@@ -39852,6 +40002,14 @@ components:
           type: string
         total:
           type: string
+          description: "The amount due. Net of `loyaltyDiscount` (Issue #363)."
+        loyaltyDiscount:
+          type: string
+          description: "Issue #363 - the discount a points redemption gave on this order, `numeric(14,2)` string (`0.00` when none). Goods only: shipping, insurance and tax are never paid with points."
+        loyaltyPointsRedeemed:
+          type: integer
+          format: int64
+          description: "Issue #363 - whole points the order spent (0 when none)."
         downPayment:
           type: object
           nullable: true
@@ -43071,6 +43229,7 @@ components:
             - expire
             - adjustment
             - reversal
+            - restore
         points:
           type: integer
           format: int64
@@ -44568,7 +44727,7 @@ components:
           description: 0 for a customer with no account yet.
     LoyaltyLedgerEntry:
       type: object
-      description: "Issue #289 — one row of the append-only points ledger. `points` is a signed INTEGER: earn > 0, redeem < 0, expire <= 0 (0 marks a lot already fully spent), adjustment and reversal non-zero. `balanceAfter` is the account's running balance after this row."
+      description: "Issue #289 — one row of the append-only points ledger. `points` is a signed INTEGER: earn > 0, redeem < 0, expire <= 0 (0 marks a lot already fully spent), adjustment and reversal non-zero, restore > 0 (Issue #363: points given back when the order they paid for is cancelled or refunded; `reversesEntryId` names the `redeem` row it compensates and `expiresAt` the soonest expiry that redemption had consumed). `balanceAfter` is the account's running balance after this row."
       properties:
         id:
           type: string
@@ -44587,6 +44746,7 @@ components:
             - expire
             - adjustment
             - reversal
+            - restore
         points:
           type: integer
           format: int64
@@ -44604,6 +44764,7 @@ components:
             - expiry
             - redemption
             - manual
+            - refund
         sourceId:
           type: string
           format: uuid
@@ -44764,9 +44925,24 @@ components:
                   - unrepairable_history_purged
         repaired:
           type: integer
+    LoyaltyRedemptionSettings:
+      type: object
+      nullable: true
+      description: "Issue #363 (ADR-0043). What a loyalty point is worth when spent on an order. `null` when the tenant never set one (there is no default)."
+      properties:
+        rupiahPerPoint:
+          type: integer
+          description: Whole rupiah one point is worth.
+        maxGoodsPercent:
+          type: integer
+          nullable: true
+          description: Cap on the share of the goods subtotal (subtotal less voucher discount) payable in points; `null` for no cap.
+        updatedAt:
+          type: string
+          format: date-time
     LoyaltySummary:
       type: object
-      description: "Issue #289 — ledger-summed figures. `net` = earned − redeemed − expired + adjustmentsNet − reversed. `outstanding` is the all-time sum of the ledger (not the projection), so it stays right if a projection has drifted."
+      description: "Issue #289 — ledger-summed figures. `net` = earned − redeemed − expired + adjustmentsNet − reversed + restored. `outstanding` is the all-time sum of the ledger (not the projection), so it stays right if a projection has drifted."
       properties:
         from:
           type: string
@@ -44796,6 +44972,10 @@ components:
             reversed:
               type: integer
               format: int64
+            restored:
+              type: integer
+              format: int64
+              description: "Issue #363 - points given back by `restore` rows (a cancelled or refunded order that had spent points)."
             net:
               type: integer
               format: int64

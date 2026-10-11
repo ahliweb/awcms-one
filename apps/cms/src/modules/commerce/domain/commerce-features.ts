@@ -42,6 +42,7 @@ export type CommerceFeatureKey =
   | "register"
   | "documents"
   | "loyalty"
+  | "loyaltyRedemption"
   | "storedValue"
   | "expenses"
   | "documentDelivery"
@@ -80,6 +81,12 @@ export const DEFAULT_COMMERCE_FEATURES: CommerceFeatures = {
   // customer-visible balance, so a tenant must choose it. A tenant that never
   // opens the "Features" section therefore sees no change at all.
   loyalty: false,
+  // Issue #363 (ADR-0043) - defaults OFF, and means nothing without `loyalty`:
+  // turning points into a discount on an order is money, so a tenant that has
+  // loyalty on (earning points) still chooses separately whether those points
+  // can be spent. Even when ON it does nothing until the tenant sets a point
+  // value - there is no default value (owner answer Q6).
+  loyaltyRedemption: false,
   // Issue #288 (ADR-0030) — the second flag that defaults OFF. Stored value is
   // a liability the tenant takes on (money held that is not yet revenue),
   // which has accounting, consumer-protection and regulatory consequences it
@@ -118,6 +125,7 @@ const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
   "courier",
   "register",
   "loyalty",
+  "loyaltyRedemption",
   "storedValue",
   "expenses",
   "documentDelivery",

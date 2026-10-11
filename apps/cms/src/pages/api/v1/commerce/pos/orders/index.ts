@@ -29,6 +29,7 @@ import {
   listPosOrders,
   PosCartChangedError,
   PosDueRequiresCustomerError,
+  PosLoyaltyRefusedError,
   PosRegisterSessionError
 } from "../../../../../../modules/commerce/application/pos-directory";
 import {
@@ -45,11 +46,14 @@ import {
   type CreatePosOrderInput
 } from "../../../../../../modules/commerce/domain/pos-order-validation";
 import {
+  COMMERCE_LOYALTY_REDEMPTIONS_ACTIVITY_CODE,
   COMMERCE_ORDERS_ACTIVITY_CODE,
   COMMERCE_POS_ACTIVITY_CODE,
   COMMERCE_POS_DUE_ACTIVITY_CODE
 } from "../../../../../../modules/commerce/domain/commerce-permissions";
 import { inventoryErrorResponse } from "../../../../../../modules/commerce/application/commerce-inventory-http";
+import { LoyaltyIdempotencyConflictError } from "../../../../../../modules/commerce/application/loyalty-ledger";
+import { loyaltyRefusalResponse } from "../../../../../../modules/commerce/application/loyalty-redemption-http";
 
 const READ_GUARD = {
   moduleKey: "commerce",
@@ -75,6 +79,19 @@ const CREATE_GUARD = {
 const DUE_GUARD = {
   moduleKey: "commerce",
   activityCode: COMMERCE_POS_DUE_ACTIVITY_CODE,
+  action: "create"
+} as const;
+
+/**
+ * Issue #363 (ADR-0043, threat-model C-32) - spending a customer's points at
+ * the counter is a different authority from ringing up a sale, and from
+ * adjusting a balance (`commerce.loyalty_adjustments.create`): a cashier who may
+ * sell may not thereby spend anyone's points. Made in the handler, through the
+ * same chokepoint, only when the body asks to redeem.
+ */
+const LOYALTY_REDEEM_GUARD = {
+  moduleKey: "commerce",
+  activityCode: COMMERCE_LOYALTY_REDEMPTIONS_ACTIVITY_CODE,
   action: "create"
 } as const;
 
@@ -212,6 +229,17 @@ export const POST = defineTenantRoute<CreatePosOrderInput>({
       if (!dueAuth.allowed) return dueAuth.denied;
     }
 
+    if (prepared.loyaltyRedemption) {
+      const redeemAuth = await authorizeInTransaction(
+        tx,
+        tenantId,
+        tokenHash,
+        now,
+        LOYALTY_REDEEM_GUARD
+      );
+      if (!redeemAuth.allowed) return redeemAuth.denied;
+    }
+
     try {
       const outcome = await createPosOrder(
         tx,
@@ -255,13 +283,17 @@ export const POST = defineTenantRoute<CreatePosOrderInput>({
       }
       if (
         error instanceof IdempotencyPayloadMismatchError ||
-        error instanceof AllocationSourceKeyConflictError
+        error instanceof AllocationSourceKeyConflictError ||
+        error instanceof LoyaltyIdempotencyConflictError
       ) {
         return fail(
           409,
           "IDEMPOTENCY_CONFLICT",
           "Idempotency-Key was already used with a different request."
         );
+      }
+      if (error instanceof PosLoyaltyRefusedError) {
+        return loyaltyRefusalResponse(error.refusal);
       }
       if (error instanceof PosCartChangedError) {
         return fail(

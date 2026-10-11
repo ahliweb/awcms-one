@@ -782,6 +782,11 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/loyalty/redemption-settings.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/loyalty/summary.ts",
       "workClass": "interactive",
       "source": "factory"

@@ -11512,3 +11512,75 @@ msgstr ""
 
 msgid "One component per line: SKU x quantity. A bundle has no stock of its own; it is sold as one line and its components' stock moves."
 msgstr ""
+
+msgid "Loyalty points cannot be spent at this store right now."
+msgstr ""
+
+msgid "Maximum share of the goods payable in points, percent (optional)"
+msgstr ""
+
+msgid "Needs the customer's phone. One point is worth {amount}; the server works out the discount from the goods, never the shipping or tax."
+msgstr ""
+
+msgid "No cap"
+msgstr ""
+
+msgid "No point value set: points cannot be spent"
+msgstr ""
+
+msgid "Points can be spent"
+msgstr ""
+
+msgid "Points can no longer be spent until a new value is saved. Orders that already used points keep their discount."
+msgstr ""
+
+msgid "Points discount"
+msgstr ""
+
+msgid "Points restored"
+msgstr ""
+
+msgid "Point value"
+msgstr ""
+
+msgid "Point value set, but spending points is turned off under Store settings, Features"
+msgstr ""
+
+msgid "Remove point value"
+msgstr ""
+
+msgid "Remove the point value?"
+msgstr ""
+
+msgid "Rupiah per point"
+msgstr ""
+
+msgid "Save point value"
+msgstr ""
+
+msgid "Share of the goods payable in points"
+msgstr ""
+
+msgid "Spending loyalty points needs the customer's phone number."
+msgstr ""
+
+msgid "Spend loyalty points (optional)"
+msgstr ""
+
+msgid "That many points is worth more than the goods allow. Enter fewer points."
+msgstr ""
+
+msgid "The customer does not have enough points."
+msgstr ""
+
+msgid "This customer cannot spend loyalty points."
+msgstr ""
+
+msgid "What one point is worth when a customer spends points at checkout or the counter. Shipping and tax can never be paid with points."
+msgstr ""
+
+msgid "You do not have permission to spend loyalty points."
+msgstr ""
+
+msgid "Spend loyalty points at checkout and the POS"
+msgstr ""

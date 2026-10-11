@@ -1777,6 +1777,14 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_commerce_loyalty_programs: ["SELECT", "DELETE"],
   awcms_commerce_loyalty_accounts: ["SELECT", "INSERT", "UPDATE", "DELETE"],
   awcms_commerce_loyalty_ledger: ["SELECT", "INSERT", "DELETE"],
+  // Issue #363 (sql/1012): the write-once discount line of a points
+  // redemption. The order-expiry job reads it to find the points an expired
+  // order had spent (and gives them back as a `restore` ledger row); DELETE is
+  // the generic retention purge. No INSERT/UPDATE: the table is created and
+  // frozen by request-time roles only.
+  awcms_commerce_loyalty_redemptions: ["SELECT", "DELETE"],
+  // Issue #363 (sql/1012): the tenant's point value - retention purge only.
+  awcms_commerce_loyalty_redemption_settings: ["SELECT", "DELETE"],
   // Issue #289 (sql/951): the earn consumer reads the tenant's `commerce`
   // feature flags (`features.loyalty`) through `fetchCommerceFeatures`.
   // Tenant-RLS table; SELECT only.

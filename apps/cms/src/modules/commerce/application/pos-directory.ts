@@ -124,6 +124,16 @@ import {
 import { StoredValueInvariantError } from "./stored-value-ledger";
 import { fromCents, toCents } from "../domain/price-calculation";
 import {
+  goodsBasisCents,
+  LOYALTY_REDEMPTION_ERROR_CODES
+} from "../domain/loyalty-redemption";
+import {
+  commitRedemption,
+  prepareRedemption,
+  type PreparedRedemption,
+  type RedemptionRefusal
+} from "./loyalty-redemption";
+import {
   COMMERCE_EVENT_VERSION,
   COMMERCE_ORDER_AGGREGATE_TYPE,
   COMMERCE_ORDER_CREATED_EVENT_TYPE
@@ -254,6 +264,26 @@ function summaryPaymentMethod(plan: TenderPlan): OrderPaymentMethodHint {
   return best ? tenderToOrderPaymentMethod(best.tenderType) : "cash";
 }
 
+/**
+ * Issue #363 (ADR-0043) - the points redemption on a counter sale could not be
+ * honoured. Thrown BEFORE any row of the order exists (the route maps it to a
+ * `409`, like `PosCartChangedError`); all it can leave behind is what every
+ * earlier refusal in this function leaves - the find-or-create of the sale's
+ * customer - plus the idempotent lazy-expiry rows.
+ */
+export type PosLoyaltyRefusal =
+  | RedemptionRefusal
+  | { code: typeof LOYALTY_REDEMPTION_ERROR_CODES.requiresCustomer };
+
+export class PosLoyaltyRefusedError extends Error {
+  readonly refusal: PosLoyaltyRefusal;
+  constructor(refusal: PosLoyaltyRefusal) {
+    super(`Loyalty redemption refused (${refusal.code}).`);
+    this.name = "PosLoyaltyRefusedError";
+    this.refusal = refusal;
+  }
+}
+
 export type CreatePosOrderOutcome =
   | { kind: "replayed"; order: PosOrderRecord }
   | { kind: "created"; order: PosOrderRecord }
@@ -336,6 +366,9 @@ async function createPosOrderWrite(
     // Issue #284 - `undefined` drops out, so a request without a register
     // hashes exactly as before.
     registerId: input.registerId ?? undefined,
+    // Issue #363 - `undefined` drops out, so a sale without points hashes
+    // exactly as before.
+    loyaltyRedemption: input.loyaltyRedemption ?? undefined,
     notes: input.notes
   });
 
@@ -457,9 +490,53 @@ async function createPosOrderWrite(
   // `OverpaymentError` when non-cash tenders exceed the total — the route maps
   // them to a `409`, never silently records a negative change or hides a
   // shortfall behind another tender's change. A legacy QRIS payload is exact.
+  // Issue #363 (ADR-0043) - points. The account is the customer ALREADY
+  // attached to this sale by its phone, never a request field; a walk-in sale
+  // has none. Prepared before any order row exists (it locks the account to
+  // the end of this transaction), and the amount due the tenders must cover is
+  // the total net of the points discount.
+  let redemption: PreparedRedemption | null = null;
+  if (input.loyaltyRedemption) {
+    if (isWalkIn) {
+      throw new PosLoyaltyRefusedError({
+        code: LOYALTY_REDEMPTION_ERROR_CODES.requiresCustomer
+      });
+    }
+    const prepared = await prepareRedemption(tx, tenantId, {
+      customerId: customer.id,
+      points: input.loyaltyRedemption.points,
+      goodsBasisCents: goodsBasisCents(quote.subtotal, quote.discount),
+      clientKey: `pos:${input.idempotencyKey}`,
+      depositOrder: false,
+      now,
+      correlationId
+    });
+    if (!prepared.ok) throw new PosLoyaltyRefusedError(prepared.refusal);
+    redemption = prepared.prepared;
+
+    // A concurrent request with this very idempotency key may have committed
+    // while we waited for the account lock: replay it.
+    const raced = await findIdempotencyRecord(
+      tx,
+      tenantId,
+      IDEMPOTENCY_SCOPE,
+      input.idempotencyKey
+    );
+    if (raced) {
+      if (raced.requestHash !== requestHash) {
+        throw new IdempotencyPayloadMismatchError();
+      }
+      return { kind: "replayed", order: raced.responseBody as PosOrderRecord };
+    }
+  }
+  const payableTotal = fromCents(
+    toCents(quote.total) - (redemption?.discountCents ?? 0n)
+  );
+  const loyaltyDiscount = fromCents(redemption?.discountCents ?? 0n);
+
   const tenders: TenderInput[] =
     input.tenders ?? adaptLegacyPayment(input.payment!);
-  const plan = planTenders(quote.total, tenders, { allowDue: input.allowDue });
+  const plan = planTenders(payableTotal, tenders, { allowDue: input.allowDue });
   if (toCents(plan.dueAmount) > 0n && isWalkIn) {
     throw new PosDueRequiresCustomerError();
   }
@@ -513,12 +590,12 @@ async function createPosOrderWrite(
         INSERT INTO awcms_commerce_orders (
           tenant_id, order_code, customer_id, status, payment_method, payment_status,
           shipping_method, shipping_cost, subtotal, discount, insurance_fee, tax, total,
-          notes, channel, pos_cashier_tenant_user_id, register_session_id
+          loyalty_discount, notes, channel, pos_cashier_tenant_user_id, register_session_id
         )
         VALUES (
           ${tenantId}, ${candidateCode}, ${customer.id}, 'pending_payment', ${summaryPaymentMethod(plan)}, 'unpaid',
           'self_pickup', '0.00', ${quote.subtotal}, ${quote.discount}, ${quote.insurance.fee}, ${quote.tax.amount},
-          ${quote.total}, ${input.notes}, 'pos', ${actorTenantUserId}, ${registerSessionId}
+          ${payableTotal}, ${loyaltyDiscount}, ${input.notes}, 'pos', ${actorTenantUserId}, ${registerSessionId}
         )
         RETURNING id, order_code
       `) as { id: string; order_code: string }[];
@@ -532,6 +609,15 @@ async function createPosOrderWrite(
         error.constraint === ORDER_CODE_CONSTRAINT;
       if (!isCollision || attempt === MAX_ORDER_CODE_ATTEMPTS - 1) throw error;
     }
+  }
+
+  if (redemption) {
+    await commitRedemption(tx, tenantId, redemption, {
+      orderId,
+      channel: "pos",
+      actorTenantUserId,
+      correlationId
+    });
   }
 
   // Issue #282 (ADR-0038 D2) - the stock authority. A POS sale is a commerce
@@ -647,7 +733,8 @@ async function createPosOrderWrite(
     message: `POS sale ${orderCode} rung up at the counter (${plan.legs.map((leg) => leg.tenderType).join(" + ") || "on account"}).`,
     attributes: {
       orderCode,
-      total: quote.total,
+      total: payableTotal,
+      loyaltyDiscount,
       method: summaryPaymentMethod(plan),
       tenders: plan.legs.map((leg) => ({
         tenderType: leg.tenderType,
@@ -671,7 +758,7 @@ async function createPosOrderWrite(
     producerModule: PRODUCER_MODULE,
     correlationId,
     actorTenantUserId,
-    payload: { orderId, orderCode, total: quote.total, channel: "pos" }
+    payload: { orderId, orderCode, total: payableTotal, channel: "pos" }
   });
 
   // Settle: one ledger leg per planned tender, in order (non-cash first, the
@@ -717,7 +804,7 @@ async function createPosOrderWrite(
       );
     }
   }
-  if (plan.legs.length === 0 && toCents(quote.total) === 0n) {
+  if (plan.legs.length === 0 && toCents(payableTotal) === 0n) {
     // A free sale (total 0.00) owes nothing and has no leg to write: settled
     // by definition, so it is released directly.
     await release(releaseNote);

@@ -143,6 +143,7 @@ type OrderFacts = {
   subtotal: string;
   discount: string;
   voucher_discount: string;
+  loyalty_discount: string;
   shipping_cost: string;
   tax: string;
   tax_snapshot_id: string | null;
@@ -476,8 +477,8 @@ async function createReturnWrite(
   // --- the order's lines and what is still eligible --------------------------
   const facts = (
     (await tx`
-      SELECT subtotal, discount, voucher_discount, shipping_cost, tax,
-             tax_snapshot_id
+      SELECT subtotal, discount, voucher_discount, loyalty_discount,
+             shipping_cost, tax, tax_snapshot_id
       FROM awcms_commerce_orders
       WHERE tenant_id = ${tenantId} AND id = ${orderId}
     `) as OrderFacts[]
@@ -516,7 +517,12 @@ async function createReturnWrite(
 
   const discountShares = allocateOrderDiscount(
     items.map((item) => toCents(String(item.line_total))),
-    toCents(String(facts.discount)) + toCents(String(facts.voucher_discount))
+    // Issue #363 - the points discount is part of what the customer did NOT
+    // pay in money, so a refund (computed on cash paid) shares it over the
+    // returned lines exactly like a voucher.
+    toCents(String(facts.discount)) +
+      toCents(String(facts.voucher_discount)) +
+      toCents(String(facts.loyalty_discount))
   );
   const discountByItem = new Map(
     items.map((item, index) => [item.id, discountShares[index]!])

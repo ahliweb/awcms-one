@@ -1515,7 +1515,18 @@ export const READER_BUDGET_BYTES = 24_000;
  * page); a measurement, not a sum (+755 B). No new screen and no picker
  * script: the contents editor is a plain textarea the server resolves.
  */
-export const APP_BUDGET_BYTES = 434_700;
+/*
+ * **Final: 436,200 B for awcms-one#363 (loyalty point redemption, ADR-0043) on
+ * top of the #290 figure above** — MEASURED 436,086 B on the build (434,568 B
+ * before it, so +1,518 B; the budget sat 132 B above that figure): the POS
+ * screen's "Spend loyalty points" field and its estimate/validation/error
+ * mapping in the existing page script (the largest part, about 1.1 kB), the
+ * loyalty screen's "Point value" form (a handler in the existing script), the
+ * order screen's points line, and the 23 new catalogue entries (the compiled
+ * Indonesian catalogue ships with every page); a measurement, not a sum. No
+ * new screen and no new script file.
+ */
+export const APP_BUDGET_BYTES = 436_200;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

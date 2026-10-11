@@ -23,6 +23,7 @@ describe("resolveCommerceFeatures", () => {
   test("defaults every flag to true when settings are absent, except `register` (Issue #284) and `storedValue` (Issue #288), `loyalty` (Issue #289) and `returns` (Issue #287), which add an obligation / a liability and so default OFF", () => {
     expect(DEFAULT_COMMERCE_FEATURES.register).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.loyalty).toBe(false);
+    expect(DEFAULT_COMMERCE_FEATURES.loyaltyRedemption).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.storedValue).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.documents).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.expenses).toBe(false);
@@ -35,6 +36,7 @@ describe("resolveCommerceFeatures", () => {
           ([key]) =>
             key !== "register" &&
             key !== "loyalty" &&
+            key !== "loyaltyRedemption" &&
             key !== "storedValue" &&
             key !== "documents" &&
             key !== "expenses" &&
@@ -65,6 +67,7 @@ describe("resolveCommerceFeatures", () => {
       courier: true,
       register: false,
       loyalty: false,
+      loyaltyRedemption: false,
       storedValue: false,
       expenses: false,
       documentDelivery: false,
@@ -84,12 +87,26 @@ describe("resolveCommerceFeatures", () => {
       courier: true,
       register: false,
       loyalty: true,
+      loyaltyRedemption: false,
       storedValue: false,
       expenses: false,
       documentDelivery: false,
       barcode: false,
       returns: false
     });
+  });
+
+  test("loyaltyRedemption (Issue #363, ADR-0043) defaults OFF, independently of loyalty, and can be turned on", () => {
+    expect(DEFAULT_COMMERCE_FEATURES.loyaltyRedemption).toBe(false);
+    expect(resolveCommerceFeatures({}).loyaltyRedemption).toBe(false);
+    // Turning loyalty on does not turn spending on.
+    expect(
+      resolveCommerceFeatures({ features: { loyalty: true } }).loyaltyRedemption
+    ).toBe(false);
+    expect(
+      resolveCommerceFeatures({ features: { loyaltyRedemption: true } })
+        .loyaltyRedemption
+    ).toBe(true);
   });
 
   test("a non-boolean stored value for a key falls back to that key's default rather than propagating garbage", () => {
@@ -110,6 +127,7 @@ describe("resolveCommerceFeatures", () => {
         courier: false,
         register: false,
         loyalty: false,
+        loyaltyRedemption: false,
         storedValue: false,
         expenses: false,
         documentDelivery: false,
@@ -126,6 +144,7 @@ describe("resolveCommerceFeatures", () => {
       courier: false,
       register: false,
       loyalty: false,
+      loyaltyRedemption: false,
       storedValue: false,
       expenses: false,
       documentDelivery: false,

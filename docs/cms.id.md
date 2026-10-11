@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](cms.md)
 
-<!-- i18n-source-hash: sha256:f1ca24361c3b8b87cf46edbe2b8332379a48bb0915284f3f86ed876d68452e5d -->
+<!-- i18n-source-hash: sha256:038fed2b74b3843f61d0ece46b0c822b4b890d4801c65611b0556540c4690728 -->
 
 # CMS: authoring, publikasi, izin, audit, media, taksonomi
 
@@ -301,6 +301,7 @@ Flag `features` keenam, **`loyalty`, default `false`** — satu-satunya flag di 
 - **Program** adalah versi. Buat draf, aktifkan (segera; menutup versi yang terbuka dalam transaksi yang sama), pensiunkan. Versi aktif atau pensiun tidak pernah diedit.
 - **Layar admin** `/admin/commerce-loyalty` (`commerce-loyalty.astro`, `loadAdminScreen`, pintu masuk `commerce.loyalty.read`, entri sidebar disembunyikan selama flag mati): angka kunci hasil penjumlahan ledger, versi program dengan aktifkan/pensiunkan berdialog konfirmasi, pencarian pelanggan lewat telepon (atau dari daftar akun terbaru) dengan ledger pelanggan itu plus form redeem dan adjust — masing-masing hanya tampil bagi pemegang izinnya sendiri — dan pemeriksaan saldo hanya-baca yang perbaikannya butuh langkah kedua yang eksplisit dan dikonfirmasi. Kunjungan langsung saat flag mati menyatakannya, bukan menampilkan tabel kosong.
 - **Pelanggan** `GET /api/v1/commerce/storefront/account/loyalty` (sesi bearer; id pelanggan hanya dari sesi). Belum ada halaman storefront untuknya.
+- **Memakai poin (isu #363, [ADR-0043](adr/0043-loyalty-points-are-redeemed-as-a-server-priced-discount-line-written-with-the-ledger-debit.md)).** `loyaltyRedemption: {points}` pada pesanan storefront (bearer) atau penjualan POS (pelanggan yang dikaitkan lewat telepon) menjadi baris diskon berharga-server: `prepareRedemption` mengunci akun dan menolak sebelum baris pesanan apa pun ada, `commitRedemption` menambahkan baris `redeem` dan catatan tulis-sekali `awcms_commerce_loyalty_redemptions` sesudahnya, dan `orders.total` bersih dari `orders.loyalty_discount`. Bendera kedua, **`features.loyaltyRedemption`, bawaan MATI**, dan nilai poin tenant (`/admin/commerce-loyalty`, "Nilai poin": rupiah bulat per poin dan batas opsional) **tanpa nilai bawaan** — sampai ditetapkan, penukaran tidak tersedia. Pesanan yang dibatalkan atau kedaluwarsa mengembalikan poinnya dalam transaksi yang sama (jenis buku besar `restore`); refund mengembalikan bagian proporsional. Layar POS mendapat bidang "Pakai poin loyalitas" untuk kasir yang memegang `commerce.loyalty_redemptions.create`; checkout storefront mendapat bidang poin opsional untuk pembeli yang sudah masuk (`poin-kontrak.ts`).
 - **Reconcile.** `commerce:loyalty:reconcile` (harian) hanya-baca dan keluar non-nol pada saldo yang drift atau baris ledger yang saldo berjalannya tidak cocok. Perbaikan hanya menulis ulang proyeksi, diaudit per akun.
 - **Tes.** `apps/cms/tests/commerce-loyalty-{earn,lots,validation,routes}.test.ts` (murni) dan `apps/cms/tests/integration/commerce-loyalty.integration.test.ts` (Postgres nyata, termasuk perolehan dan kedaluwarsa yang dijalankan sebagai role `awcms_worker` sungguhan).
 

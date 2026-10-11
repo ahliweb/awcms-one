@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:a188e242aa6fafe673db84c99be0c3787ef2d1c68b0bebeaf8dcb010a91a979b -->
+<!-- i18n-source-hash: sha256:a3071a7082ade5bb9bd7aad7aa15c2c737f66438964c227d8e9a3e1b3216316a -->
 
 # Skema basis data
 
@@ -348,6 +348,19 @@ Issue #289 ([ADR-0026](adr/0026-loyalty-points-are-an-append-only-ledger.md)). P
 | `awcms_commerce_loyalty_ledger`   | `account_id`, `account_seq` (1,2,3… per akun, ditetapkan di bawah kunci), `kind` (`earn`/`redeem`/`expire`/`adjustment`/`reversal`), `points bigint` (bertanda), `balance_after`, `program_id`, `source_type`/`source_id`, `idempotency_key` (unik per tenant), `reverses_entry_id`, `expires_at`, `actor_tenant_user_id`, `reason`, `created_at default clock_timestamp()` | Append-only: `awcms_app` dicabut `UPDATE`/`DELETE` dan trigger menolak setiap `UPDATE`. CHECK: tanda per jenis (earn > 0, redeem < 0, expire <= 0, adjustment/reversal <> 0), reversal menyebut targetnya, hanya earn yang membawa `expires_at`, adjustment punya aktor dan alasan tidak kosong. Indeks unik parsial: satu `reversal` per entri asal, satu penanda `expire` per lot perolehan (`source_id`). FK komposit `(tenant_id, id)` ke accounts/programs/dirinya sendiri (`reverses_entry_id`, `ON DELETE CASCADE`). `source_id` sengaja tanpa FK — ledger hidup lebih lama dari order yang dipurge |
 
 Ketiganya: RLS `ENABLE`+`FORCE` dengan kebijakan isolasi tenant standar. `awcms_worker` (dispatcher, job kedaluwarsa, purge generik) memegang programs `SELECT, DELETE`, accounts `SELECT, INSERT, UPDATE, DELETE`, ledger `SELECT, INSERT, DELETE` (tidak pernah `UPDATE`), dan — baru untuk worker — `SELECT` pada `awcms_module_settings`, karena consumer perolehan membaca `features.loyalty`. Retensi: tiga deskriptor `dataLifecycle` (batas bawah 5 tahun, default dan batas atas 10) yang cursor-nya (`created_at`, `updated_at`, `effective_to`) hanya menjangkau baris yang sudah mati; ketiganya `unreachableBySubject`/`retain_under_obligation`.
+
+## Penukaran poin loyalitas: dua tabel, satu kolom, satu jenis buku besar (`sql/1010`–`1012`)
+
+Isu #363 ([ADR-0043](adr/0043-loyalty-points-are-redeemed-as-a-server-priced-discount-line-written-with-the-ledger-debit.md)). Penukaran adalah baris diskon pada pesanan ditambah baris `redeem` pada buku besar poin, dikomit bersama.
+
+| Objek | Kolom kunci | Catatan |
+| --- | --- | --- |
+| `awcms_commerce_loyalty_redemption_settings` | `tenant_id` (kunci primer — paling banyak satu baris per tenant), `rupiah_per_point integer` (`1..1 000 000`), `max_goods_percent integer` (`1..100`, null = tanpa batas), `updated_by_tenant_user_id` | **Tanpa baris = penukaran tidak tersedia; tidak ada nilai bawaan.** Diubah dengan `commerce.loyalty.manage`, diaudit dengan angka lama dan baru. Retensi: deskriptor generik sendiri pada `updated_at` (nilai poin yang dipurge gagal tertutup: penukaran menjadi tidak tersedia) |
+| `awcms_commerce_loyalty_redemptions` | `order_id` (unik per tenant), `account_id`, `ledger_entry_id` (unik per tenant, `ON DELETE CASCADE`), `channel` (`storefront`/`pos`), `points bigint > 0`, `rupiah_per_point` dan `max_goods_percent` (ketentuan yang berlaku, dicuplik), `goods_basis`, `discount numeric(14,2)`, `restore_expires_at`, `actor_tenant_user_id`, `created_at` | **Tulis-sekali** (pemicu menolak setiap `UPDATE`; `awcms_app` dicabut `UPDATE`/`DELETE`). CHECK: `discount = points × rupiah_per_point` (pembulatan tidak dapat mencetak nilai), `discount <= goods_basis`, `discount × 100 <= goods_basis × max_goods_percent` bila batas berlaku. FK komposit `(tenant_id, …)` ke pesanan dan akun. Retensi: `financial_tax`, batas bawah 5 tahun, bawaan dan batas atas 10 |
+| `awcms_commerce_orders.loyalty_discount` | `numeric(14,2) NOT NULL DEFAULT 0`, `CHECK >= 0` | Diskon yang sama pada header; `total` sudah bersih darinya. **Tidak** dilebur ke `discount`/`voucher_discount`. `awcms_commerce_orders_loyalty_no_deposit_check` (`loyalty_discount = 0 OR dp_amount IS NULL OR dp_amount >= total`) membuat poin dan deposit yang dapat dikembalikan mustahil pada satu pesanan (jawaban pemilik Q8) |
+| `awcms_commerce_loyalty_ledger` | `kind = 'restore'` baru | `points > 0`; menyebut `redeem` yang dikompensasi di `reverses_entry_id`; `source_type` `order` (dibatalkan/kedaluwarsa) atau `refund`, dengan kunci `restore:order:<orderId>` / `restore:refund:<refundId>`; membawa `expires_at` seperti `earn` (kedaluwarsa tercepat dari lot yang dikonsumsi penukaran). Indeks kedaluwarsa melebar ke `kind IN ('earn','restore')`. `sql/1011` juga mengganti pemicu pencocok dokumen agar `discount` dokumen terbit memuat diskon poin |
+
+`sql/1012` memberi `awcms_worker` `SELECT, DELETE` pada tabel penukaran (job kedaluwarsa pesanan membacanya untuk mengembalikan poin; purge generik menghapus) dan `SELECT, DELETE` pada tabel pengaturan hanya untuk purge retensi.
 
 ## Atribut katalog: definisi, nilai, batch impor (`sql/960`–`sql/964`)
 

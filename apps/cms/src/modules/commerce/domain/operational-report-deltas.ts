@@ -337,6 +337,11 @@ export function classifyLoyaltyBucket(
         : points > 0n
           ? "reversal_up"
           : "reversal_down";
+    case "restore":
+      // Issue #363: a restore is the positive compensating row of a redeem, so
+      // it reads in the same "reversed up" bucket a positive reversal does -
+      // the bucket vocabulary (and its table CHECK, sql/998) is unchanged.
+      return points > 0n ? "reversal_up" : null;
     default:
       return null;
   }

@@ -13,8 +13,9 @@
  *
  * ## The allocation rules
  *
- *   - every positive entry (earn, positive adjustment, positive reversal)
- *     opens a lot of that many points; only an `earn` may carry an `expiresAt`;
+ *   - every positive entry (earn, positive adjustment, positive reversal,
+ *     restore) opens a lot of that many points; only an `earn` and a `restore`
+ *     (Issue #363) may carry an `expiresAt`;
  *   - a debit (negative `points`) consumes lots EARLIEST-EXPIRY FIRST (lots
  *     that never expire last, ties by `accountSeq`), skipping a lot that had
  *     ALREADY expired at the debit's own instant (`expiresAt <= createdAt`) —
@@ -119,6 +120,9 @@ export function replayLoyaltyLots(
     const atMs = toMs(entry.createdAt);
 
     if (entry.points > 0) {
+      // Any positive entry opens a lot: an earn, a positive adjustment, a
+      // positive reversal and (Issue #363) a `restore` - the last two carry
+      // the `expiresAt` of the lot they give back.
       lots.set(entry.id, {
         lotId: entry.id,
         points: entry.points,
@@ -273,4 +277,47 @@ export function computeRefundReversalPoints(
   const wanted = target - alreadyReversed;
   const room = lot.points - lot.expired - alreadyReversed;
   return Math.max(0, Math.min(wanted, room));
+}
+
+/**
+ * Issue #363 (ADR-0043 D7). The soonest expiry among the lots a debit of
+ * `points` consumes if it is made at `atMs`: the same earliest-expiry-first,
+ * skip-already-lapsed allocation `replayLoyaltyLots` applies to a debit. `null`
+ * when no consumed lot expires (every one was permanent) or when there is
+ * nothing to consume. A redemption records this; the `restore` row that gives
+ * the points back copies it, so spending then cancelling cannot turn points
+ * that were about to lapse into permanent ones.
+ *
+ * Pure and read-only: it works on the replay's own lot state and does not
+ * mutate the entries.
+ */
+export function soonestExpiryConsumedBy(
+  entries: readonly ReplayEntry[],
+  points: number,
+  atMs: number
+): Date | null {
+  const { lots } = replayLoyaltyLots(entries);
+  const seqOf = new Map<string, number>();
+  for (const entry of entries) seqOf.set(entry.id, entry.accountSeq);
+
+  const candidates = [...lots.values()]
+    .filter(
+      (lot) =>
+        lot.remaining > 0 &&
+        (lot.expiresAtMs === null || lot.expiresAtMs > atMs)
+    )
+    .sort((a, b) => expiryOrder(a, b, seqOf));
+
+  let left = points;
+  let soonest: number | null = null;
+  for (const lot of candidates) {
+    if (left <= 0) break;
+    const take = Math.min(lot.remaining, left);
+    left -= take;
+    if (take > 0 && lot.expiresAtMs !== null) {
+      soonest =
+        soonest === null ? lot.expiresAtMs : Math.min(soonest, lot.expiresAtMs);
+    }
+  }
+  return soonest === null ? null : new Date(soonest);
 }

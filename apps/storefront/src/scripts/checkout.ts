@@ -24,7 +24,14 @@ import { previewIndonesianPhone } from "../lib/telepon";
 import { buildWhatsappCartMessage, buildWhatsappUrl } from "../lib/wa-fallback";
 import { PESANAN_PHONE_KEY } from "../lib/pesanan-sesi";
 import { bacaSesi } from "../lib/akun-sesi";
-import { ambilAlamat, type Alamat } from "../lib/akun-klien";
+import { ambilAlamat, ambilPoin, type Alamat } from "../lib/akun-klien";
+import {
+  bacaPoinInput,
+  bolehPakaiPoin,
+  perkiraanDiskonPoin,
+  pesanKesalahanPoin,
+  type PoinAkun
+} from "../lib/poin-kontrak";
 import { bacaKodeAfiliasi } from "../lib/afiliasi-kontrak";
 import { applyRegionSelection, wireCascadingRegionSelects } from "../lib/wilayah-region-select";
 
@@ -238,6 +245,50 @@ if (root) {
       });
     }
 
+    // --- loyalty points (issue #363, ADR-0043) -------------------------------
+    //
+    // Shown only to a signed-in shopper whose store lets points be spent AND
+    // who has some. The number typed is the ONLY thing sent; the CMS takes the
+    // account from the bearer session and computes the discount itself, so the
+    // estimate below is a courtesy and never an input to the order.
+
+    const pointsField = formEl.querySelector<HTMLElement>("[data-points-field]");
+    const pointsInput = formEl.querySelector<HTMLInputElement>('[name="loyaltyRedemption.points"]');
+    const pointsHint = formEl.querySelector<HTMLElement>("[data-points-hint]");
+    let poinAkun: PoinAkun | null = null;
+
+    function renderPointsHint(): void {
+      if (!pointsHint || !poinAkun?.redemption) return;
+      const rate = poinAkun.redemption.rupiahPerPoint;
+      const cap = poinAkun.redemption.maxGoodsPercent;
+      const typed = pointsInput ? bacaPoinInput(pointsInput.value) : null;
+      const parts = [
+        `Saldo Anda ${poinAkun.balance} poin; 1 poin = ${formatPrice(String(rate))}.`,
+        cap === null
+          ? "Poin hanya membayar harga barang, tidak ongkos kirim atau pajak."
+          : `Poin membayar maksimal ${cap}% harga barang, tidak ongkos kirim atau pajak.`
+      ];
+      if (typed !== null && !Number.isNaN(typed)) {
+        parts.push(`Perkiraan potongan: ${formatPrice(String(perkiraanDiskonPoin(typed, rate)))}.`);
+      }
+      pointsHint.textContent = parts.join(" ");
+    }
+
+    if (sesi && pointsField) {
+      ambilPoin()
+        .then((poin) => {
+          if (!bolehPakaiPoin(poin)) return;
+          poinAkun = poin;
+          pointsField.hidden = false;
+          renderPointsHint();
+        })
+        .catch(() => {
+          // Loyalty off (the neutral 404), unreachable, or malformed: the
+          // field simply never appears and checkout is exactly what it was.
+        });
+      pointsInput?.addEventListener("input", renderPointsHint);
+    }
+
     // --- shipping / insurance -------------------------------------------------
 
     const shippingOptionsEl = formEl.querySelector<HTMLElement>("[data-shipping-options]");
@@ -439,6 +490,7 @@ if (root) {
       if (field.startsWith("address.")) return "address";
       if (field === "shipping") return "shipping";
       if (field.startsWith("payment.")) return "payment";
+      if (field.startsWith("loyaltyRedemption.")) return "payment";
       return null;
     }
 
@@ -482,6 +534,22 @@ if (root) {
               "Keranjang berubah (harga atau stok) sejak terakhir Anda lihat — opsi telah diperbarui, silakan periksa kembali.";
           }
           showStep("shipping");
+          return;
+        }
+
+        // Issue #363 - a points refusal is answered before any row of the
+        // order was written, so the shopper simply corrects the number (or
+        // clears it) and submits again with the same cart.
+        const pointsMessage = pesanKesalahanPoin(error.code, error.details);
+        if (pointsMessage) {
+          const target = formEl.querySelector<HTMLElement>('[data-error-for="loyaltyRedemption.points"]');
+          if (target) target.textContent = pointsMessage;
+          if (submitErrorEl && submitErrorMessageEl) {
+            submitErrorEl.hidden = false;
+            submitErrorMessageEl.textContent = pointsMessage;
+          }
+          showStep("payment");
+          pointsInput?.focus();
           return;
         }
 
@@ -535,6 +603,25 @@ if (root) {
       const notes = String(data.get("notes") ?? "").trim();
       const voucherCode = String(data.get("voucherCode") ?? "").trim();
 
+      // Issue #363 - blank means no redemption; a typed value that is not a
+      // positive whole number never reaches the network; points and a
+      // down-payment order cannot be combined (the CMS refuses it too).
+      const typedPoints = pointsInput && !pointsField?.hidden ? bacaPoinInput(pointsInput.value) : null;
+      const pointsError = formEl.querySelector<HTMLElement>('[data-error-for="loyaltyRedemption.points"]');
+      if (pointsError) pointsError.textContent = "";
+      if (typedPoints !== null && Number.isNaN(typedPoints)) {
+        if (pointsError) pointsError.textContent = "Masukkan jumlah poin berupa bilangan bulat positif.";
+        showStep("payment");
+        pointsInput?.focus();
+        return;
+      }
+      if (typedPoints !== null && selectedPaymentMethod === "dp") {
+        if (pointsError) pointsError.textContent = pesanKesalahanPoin("LOYALTY_REDEMPTION_DEPOSIT_CONFLICT");
+        showStep("payment");
+        pointsInput?.focus();
+        return;
+      }
+
       const request: CreateOrderRequest = {
         idempotencyKey: currentCart.id,
         customer: {
@@ -571,7 +658,8 @@ if (root) {
         // `bacaKodeAfiliasi` already drops one that has aged out. The CMS
         // ignores an unknown/suspended code (#86's D5), so this never
         // blocks checkout regardless of what it resolves to.
-        affiliateCode: bacaKodeAfiliasi()?.code ?? null
+        affiliateCode: bacaKodeAfiliasi()?.code ?? null,
+        ...(typedPoints !== null ? { loyaltyRedemption: { points: typedPoints } } : {})
       };
 
       submitting = true;
