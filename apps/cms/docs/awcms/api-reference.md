@@ -9863,16 +9863,20 @@ An equality probe on the tenant's partial unique barcode index. A barcode is an 
 - **operationId**: `createCommerceCampaign`
 - **Security**: bearerAuth + tenantHeader
 
+Issue #362 (ADR-0042 Amendment): `segmentId` (with an optional `segmentVersion`) makes a CRM segment the WHOLE audience, so `audience` must then carry no filter. It needs the tenant's `campaigns`, `segments` and `campaignSegmentAudience` features (the last defaults OFF) and, in addition to `commerce.campaigns.update`, `commerce.segments.read`. The segment version is pinned at creation (the latest when `segmentVersion` is omitted) and recorded on the campaign. A body without `segmentId` behaves exactly as before.
+
 **Request body** (required): object
 
 **Responses**
 
-| Status | Description                        | Schema                                 |
-| ------ | ---------------------------------- | -------------------------------------- |
-| 201    | Campaign created, `status: draft`. | object                                 |
-| 400    | Validation error.                  | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.        | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.        | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                        | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 201    | Campaign created, `status: draft`.                                                                                                                                 | object                                 |
+| 400    | Validation error.                                                                                                                                                  | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 404    | Issue #362. `RESOURCE_NOT_FOUND` - the segment (or the pinned version) does not exist for this tenant; another tenant's segment is the same answer.                | [`ApiError`](#standard-error-envelope) |
+| 409    | Issue #362. `FEATURE_DISABLED` (one of `campaigns`, `segments`, `campaignSegmentAudience` is off) or `SEGMENT_RETIRED` (a retired segment cannot be newly chosen). | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/campaigns/{id}` — Issue #114 (contract #106 ADR-0017 D9). One campaign. Gated on `commerce.campaigns.read`.
 
@@ -9899,6 +9903,8 @@ An equality probe on the tenant's partial unique barcode index. A barcode is an 
 - **operationId**: `updateCommerceCampaign`
 - **Security**: bearerAuth + tenantHeader
 
+Issue #362: `segmentId` attaches (re-pins) a segment as the whole audience and clears the legacy filters; `segmentId: null` detaches it and then REQUIRES `audience` (so the audience is never silently widened to every consented account); `audience` filters on a campaign that keeps its segment are refused. Attaching has the same feature and permission requirements as creating.
+
 **Parameters**
 
 | Name | In   | Required | Type          | Description |
@@ -9909,14 +9915,14 @@ An equality probe on the tenant's partial unique barcode index. A barcode is an 
 
 **Responses**
 
-| Status | Description                          | Schema                                 |
-| ------ | ------------------------------------ | -------------------------------------- |
-| 200    | Updated.                             | object                                 |
-| 400    | Validation error.                    | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.          | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.          | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.                  | [`ApiError`](#standard-error-envelope) |
-| 409    | CAMPAIGN_NOT_EDITABLE — not `draft`. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                           | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Updated.                                                                                                              | object                                 |
+| 400    | Validation error.                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | CAMPAIGN_NOT_EDITABLE — not `draft`; or (Issue #362) `FEATURE_DISABLED` / `SEGMENT_RETIRED` when attaching a segment. | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/campaigns/{id}/cancel` — Issue #114 (contract #106 ADR-0017 D9). Cancel a campaign before (or while) it sends; already-dispatched recipient rows are not un-sent. Gated on `commerce.campaigns.send`.
 
@@ -9944,6 +9950,8 @@ An equality probe on the tenant's partial unique barcode index. A barcode is an 
 - **operationId**: `previewCommerceCampaign`
 - **Security**: bearerAuth + tenantHeader
 
+Issue #362: for a campaign whose audience is a segment the count is the segment's members the campaign may message (consent, active account, address on the channel), evaluated under the segment evaluation bounds. It additionally needs `commerce.segment_previews.read` and the segment-audience features; a count under five is withheld (`recipientCount: null`, `suppressed: true`, `label: fewer_than_5`); the answer carries the segment id, version and the server's `asOf`. A legacy campaign answers `{ recipientCount }` exactly as before.
+
 **Parameters**
 
 | Name | In   | Required | Type          | Description |
@@ -9952,18 +9960,23 @@ An equality probe on the tenant's partial unique barcode index. A barcode is an 
 
 **Responses**
 
-| Status | Description                 | Schema                                 |
-| ------ | --------------------------- | -------------------------------------- |
-| 200    | The audience count.         | object                                 |
-| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                         | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The audience count.                                                                                                                 | object                                 |
+| 401    | Missing or invalid session.                                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 409    | Issue #362. `FEATURE_DISABLED` (segment campaigns only) or `SEGMENT_UNAVAILABLE` (the pinned version can no longer be read).        | [`ApiError`](#standard-error-envelope) |
+| 422    | Issue #362. `SEGMENT_TOO_EXPENSIVE` - the segment is too expensive to evaluate within the bound (ADR-0042 D5).                      | [`ApiError`](#standard-error-envelope) |
+| 429    | Issue #362. `SEGMENT_EVALUATION_BUSY` (retry after the `Retry-After` seconds) or `RATE_LIMITED` (previews are throttled per actor). | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/campaigns/{id}/send` — Issue #114 (contract #106 ADR-0017 D9). Moves the campaign to `scheduled` (scheduled_at = now); the `commerce:campaigns:dispatch` job then resolves the audience, creates one `awcms_commerce_campaign_recipients` row per recipient, and fans the rows out into the e-mail/WhatsApp outboxes. Gated on `commerce.campaigns.send`; `Idempotency-Key` required.
 
 - **operationId**: `sendCommerceCampaign`
 - **Security**: bearerAuth + tenantHeader
 
+Issue #362: a campaign whose audience is a segment is checked when it is ENQUEUED - the three features must still be on and the audience must be evaluable within the bound (`422 SEGMENT_TOO_EXPENSIVE`, `429 SEGMENT_EVALUATION_BUSY` instead of a campaign that silently never sends). Consent is part of every audience page the dispatcher evaluates, so it is checked again at dispatch; the dispatcher stamps the campaign's `segment.asOf` on first claim. A refused page is deferred and the campaign stays `sending` for the next run.
+
 **Parameters**
 
 | Name | In   | Required | Type          | Description |
@@ -9972,13 +9985,15 @@ An equality probe on the tenant's partial unique barcode index. A barcode is an 
 
 **Responses**
 
-| Status | Description                                                                      | Schema                                 |
-| ------ | -------------------------------------------------------------------------------- | -------------------------------------- |
-| 200    | Campaign moved to `sending` (or `sent`, once every recipient row is dispatched). | object                                 |
-| 401    | Missing or invalid session.                                                      | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                                      | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.                                                              | [`ApiError`](#standard-error-envelope) |
-| 409    | CAMPAIGN_NOT_SENDABLE — not `draft`/`scheduled`.                                 | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                 | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Campaign moved to `sending` (or `sent`, once every recipient row is dispatched).                            | object                                 |
+| 401    | Missing or invalid session.                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 409    | CAMPAIGN_NOT_SENDABLE — not `draft`/`scheduled`; or (Issue #362) `FEATURE_DISABLED`, `SEGMENT_UNAVAILABLE`. | [`ApiError`](#standard-error-envelope) |
+| 422    | Issue #362. `SEGMENT_TOO_EXPENSIVE`.                                                                        | [`ApiError`](#standard-error-envelope) |
+| 429    | Issue #362. `SEGMENT_EVALUATION_BUSY`.                                                                      | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/categories` — List categories for the current tenant — keyset-paginated, newest first.
 

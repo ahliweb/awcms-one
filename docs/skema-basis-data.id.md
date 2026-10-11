@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:b4d60f9b9f32f9cec80310d6d2bafd5dc2b3d032cd339299d5869b1c15898f81 -->
+<!-- i18n-source-hash: sha256:151ec7f64b68264cbfebf8045224e5fdc0d74d1621c270f7508a651eb3116672 -->
 
 # Skema basis data
 
@@ -312,6 +312,19 @@ Dua tabel FORCE-RLS (kebijakan isolasi tenant dengan `WITH CHECK`, foreign key k
 - **`sql/1002`** menambah satu indeks cakupan parsial pada tabel pesanan yang ada, `awcms_commerce_orders_tenant_paid_facts_idx (tenant_id, paid_at) INCLUDE (customer_id, total, status) WHERE paid_at IS NOT NULL AND deleted_at IS NULL`, agar pemindaian terkelompok pesanan lunas yang dilakukan evaluasi segmen bersifat hanya-indeks.
 - **`sql/1003`** mengisi tujuh kunci izin; **`sql/1004`** memberi `awcms_worker` `SELECT, DELETE` untuk deskriptor retensi (praktis tak terjangkau: `deleted_at` tidak pernah diisi, sehingga versi yang dicatat konsumen tidak pernah dipurge).
 - **Evaluasi hanya membaca.** Ia menggabungkan `awcms_commerce_customers` dengan akun pelanggan, akun loyalitas, dan satu pemindaian terkelompok pesanan lunas; tak satu pun mendapat kolom baru.
+
+## Audiens segmen kampanye: tiga kolom pada kampanye (`sql/1007`, issue #362, [Amendemen ADR-0042](adr/0042-crm-segments-are-immutable-versioned-closed-vocabulary-rules-evaluated-on-demand.id.md))
+
+Tidak ada tabel baru, tidak ada tabel anggota. `awcms_commerce_campaigns` mendapat tiga kolom nullable, semuanya NULL untuk kampanye yang memakai filter audiens lama:
+
+| Kolom             | Isinya                                                                                                    |
+| ----------------- | --------------------------------------------------------------------------------------------------------- |
+| `segment_id`      | Segmen CRM yang dituju kampanye ini                                                                       |
+| `segment_version` | Versi segmen tak-berubah yang dikunci saat draf ditulis                                                   |
+| `segment_as_of`   | Instan server saat audiens dievaluasi; diisi sekali oleh klaim pertama dispatcher dan tidak pernah diubah |
+
+- `CHECK` menjaga `segment_id` dan `segment_version` tetap berpasangan dan menolak `segment_as_of` yang berdiri sendiri; foreign key komposit `(tenant_id, segment_id, segment_version)` ke `awcms_commerce_segment_versions` berarti kampanye hanya dapat menyebut versi segmen milik tenantnya sendiri dan versi yang dirujuk tidak pernah dapat dihapus. Indeks parsial mendukung key itu.
+- Audiens tetap diselesaikan per halaman terhadap `awcms_commerce_campaign_recipients` (buku lanjut yang selalu dimiliki sebuah pengiriman); `awcms_app` dan `awcms_worker` tidak butuh grant baru.
 
 ## Barcode: dua kolom, dua indeks, satu trigger (`sql/975`–`976`, issue #292, [ADR-0032](adr/0032-barcodes-are-a-derived-identifier-and-the-cashier-keyboard-layer-is-chord-only.md))
 

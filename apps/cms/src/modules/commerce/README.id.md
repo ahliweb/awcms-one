@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:a0cd7e0ce72f64a711531ecac885c3510b823c18921c1edcc1079266d6454b7f -->
+<!-- i18n-source-hash: sha256:10190a4e3138105971a1d87736be43629416fa818abd25d8481f8842e812944a -->
 
 # `commerce`
 
@@ -1556,3 +1556,18 @@ Dua tabel (`sql/990`: `awcms_commerce_expense_categories`, `awcms_commerce_expen
 - **Event.** `awcms.commerce.expense.{posted,reversed}` pada agregat `commerce.expense`; audit `expense.*` / `expense_category.*`.
 - **Layar.** `/admin/commerce-expenses` (lihat panduan cms akar awcms-one, [panduan modul commerce](../../../../../docs/cms.md)).
 - **Ditunda.** Referensi payee/pihak bertipe, beberapa struk per pengeluaran dan kontrol unggah di layar, pengeluaran berulang, ambang per kategori — lihat [ADR-0031](../../../../../docs/adr/0031-expenses-are-commerce-local-register-linked-petty-cash.md).
+
+## Segmen CRM sebagai audiens kampanye - TERIMPLEMENTASI (Issue #362, epic #280 - [Amendemen ADR-0042](../../../../../docs/adr/0042-crm-segments-are-immutable-versioned-closed-vocabulary-rules-evaluated-on-demand.id.md))
+
+Di balik `features.campaignSegmentAudience` (bawaan MATI; juga butuh `campaigns` dan `segments`). Kampanye dapat menyebut segmen sebagai seluruh audiensnya; dispatcher tetap menelusuri buku penerima yang ada.
+
+| Lapisan  | Letak                                                                                                                                                                                                             | Catatan                                                                                                                                                                                                                       |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Skema    | `sql/1007`                                                                                                                                                                                                        | `segment_id`, `segment_version`, `segment_as_of` pada `awcms_commerce_campaigns`; FK komposit ke versi yang tak berubah                                                                                                       |
+| Aplikasi | `application/campaign-segment-audience.ts`                                                                                                                                                                        | Gerbang tiga sakelar, penguncian versi, hitungan berbatas, dan penyelesai halaman dispatcher (ditunda, tidak pernah difinalisasi, pada setiap penolakan)                                                                      |
+| SQL      | `application/segment-sql.ts` (`CampaignReach`)                                                                                                                                                                    | Persetujuan, akun aktif, alamat kanal dan kursor lanjut ditambahkan SETELAH aturan, sehingga jangkauan hanya dapat mengurangi orang                                                                                           |
+| HTTP     | `application/campaign-segment-http.ts`, `src/pages/api/v1/commerce/campaigns/**`                                                                                                                                  | `commerce.segments.read` untuk memilih segmen, `commerce.segment_previews.read` untuk hitungannya, pemetaan penolakan                                                                                                         |
+| Dispatch | `application/campaign-dispatch.ts`                                                                                                                                                                                | Klaim mengisi `segment_as_of` sekali; halaman tertunda membuat kampanye tetap `sending`                                                                                                                                       |
+| Uji      | `tests/commerce-campaign-segment-audience.test.ts`, `tests/integration/commerce-campaign-segment-audience.integration.test.ts`, `tests/integration/commerce-campaign-segment-audience-routes.integration.test.ts` | Validasi dan kontrak statis; penyelesaian, persetujuan saat enqueue dan dispatch, pengecualian, versi dan as-of, kampanye lama tidak berubah, sakelar mati, lintas-tenant, dispatch yang dapat dilanjutkan; rute, izin, audit |
+
+Aturan yang harus dijaga perubahan di sini: persetujuan dan pengecualian tetap bagian kueri halaman; jangan pernah memmaterialisasi daftar pelanggan kedua; halaman yang ditolak menunda, tidak pernah memfinalisasi; kampanye lama (tanpa segmen) memakai penyelesai lama tanpa disentuh.

@@ -11663,3 +11663,45 @@ msgstr "Segmen tidak dapat diubah lagi, tetapi versinya disimpan agar kampanye l
 
 msgid "Retire segment"
 msgstr "Pensiunkan segmen"
+
+msgid "Audience: customer segment"
+msgstr "Audiens: segmen pelanggan"
+
+msgid "No segment (use the customer levels below)"
+msgstr "Tanpa segmen (gunakan level pelanggan di bawah)"
+
+msgid "Only segment members who agreed to marketing messages are sent to. The segment version is fixed when the draft is created; the levels below are ignored when a segment is chosen."
+msgstr "Pesan hanya dikirim ke anggota segmen yang telah menyetujui pesan pemasaran. Versi segmen dikunci saat draf dibuat; level di bawah diabaikan bila segmen dipilih."
+
+msgid "Fewer than 5"
+msgstr "Kurang dari 5"
+
+msgid "Segment"
+msgstr "Segmen"
+
+msgid "(segment)"
+msgstr "(segmen)"
+
+msgid "Evaluated at"
+msgstr "Dievaluasi pada"
+
+msgid "(not sent yet)"
+msgstr "(belum dikirim)"
+
+msgid "Fewer than 5 recipients"
+msgstr "Kurang dari 5 penerima"
+
+msgid "Too many audience checks are running. Try again shortly."
+msgstr "Terlalu banyak pengecekan audiens yang berjalan. Coba lagi sebentar lagi."
+
+msgid "This segment is too expensive to count. Narrow its rule and try again."
+msgstr "Segmen ini terlalu berat untuk dihitung. Persempit aturannya lalu coba lagi."
+
+msgid "You do not have permission to preview a segment audience."
+msgstr "Anda tidak memiliki izin untuk melihat pratinjau audiens segmen."
+
+msgid "Sending to a segment is turned off for this store."
+msgstr "Pengiriman ke segmen dimatikan untuk toko ini."
+
+msgid "Send campaigns to a customer segment"
+msgstr "Kirim kampanye ke segmen pelanggan"

@@ -11703,3 +11703,45 @@ msgstr ""
 
 msgid "Retire segment"
 msgstr ""
+
+msgid "Audience: customer segment"
+msgstr ""
+
+msgid "No segment (use the customer levels below)"
+msgstr ""
+
+msgid "Only segment members who agreed to marketing messages are sent to. The segment version is fixed when the draft is created; the levels below are ignored when a segment is chosen."
+msgstr ""
+
+msgid "Fewer than 5"
+msgstr ""
+
+msgid "Segment"
+msgstr ""
+
+msgid "(segment)"
+msgstr ""
+
+msgid "Evaluated at"
+msgstr ""
+
+msgid "(not sent yet)"
+msgstr ""
+
+msgid "Fewer than 5 recipients"
+msgstr ""
+
+msgid "Too many audience checks are running. Try again shortly."
+msgstr ""
+
+msgid "This segment is too expensive to count. Narrow its rule and try again."
+msgstr ""
+
+msgid "You do not have permission to preview a segment audience."
+msgstr ""
+
+msgid "Sending to a segment is turned off for this store."
+msgstr ""
+
+msgid "Send campaigns to a customer segment"
+msgstr ""

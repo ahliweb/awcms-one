@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0042-crm-segments-are-immutable-versioned-closed-vocabulary-rules-evaluated-on-demand.md)
 
-<!-- i18n-source-hash: sha256:f0c12ac94ce0d136b2b7638faceabc748fe42ce4936b711cfae74b0acb5be283 -->
+<!-- i18n-source-hash: sha256:64ccaeea6089a106f585ba9c7f3b880d729aa12c449ac25e6e5cb281384b83bf -->
 
 <!-- i18n-source-hash: sha256:placeholder -->
 
@@ -97,3 +97,40 @@ Membuat, versi baru, ganti nama, pensiun, pembacaan daftar anggota, dan ekspor m
 ## Ditunda (sengaja tidak dibangun di sini)
 
 Bidang turunan booking (menginap selesai, tanggal menginap terakhir) - setelah Gelombang C, lewat event adaptor sendiri, masing-masing dengan ADR-nya (jawaban pemilik Q7); menyambungkan segmen ke versi program loyalitas (#361) dan audiens kampanye (#362); irisan analitik per segmen (metrik bagian 8.5) sebagai konsumen; snapshot kohort atau cache hasil; evaluasi ulang terjadwal atau digerakkan event; pembangun aturan visual untuk grup bersarang (layar menawarkan pembangun semua / salah satu yang datar dan kotak JSON); domain event untuk perubahan segmen.
+
+## Amendemen (#362) - 11 Oktober 2026: kampanye dapat memakai segmen sebagai audiensnya
+
+Issue [#362](https://github.com/ahliweb/awcms-one/issues/362) menyambungkan seam D9 ke alur kampanye yang sudah ada (PRD S3 dan S4; model ancaman C-12, C-28, C-29). Amendemen ini tidak mengubah D1 sampai D11; ia mencatat apa yang dilakukan konsumen dengannya. Migrasi `sql/1007`.
+
+### A1 - Sakelar fitur ketiga, bawaan MATI, dan pemeriksaan izin keempat
+
+`features.campaignSegmentAudience` bawaannya **MATI**. Audiens segmen juga membutuhkan `campaigns` dan `segments` aktif, sehingga tenant yang mengaktifkan segmen hanya untuk melihatnya tidak otomatis mulai mengirim ke segmen itu. Bila salah satu dari ketiganya mati, rute yang menerima segmen menjawab `409 FEATURE_DISABLED`, dan kampanye segmen yang sakelarnya dimatikan setelah draf ditulis tidak dikirim (A5). Permintaan tanpa `segmentId` tidak pernah masuk ke kode ini, sehingga setiap klien dan kampanye yang ada berperilaku seperti sebelumnya. Mengarahkan kampanye ke segmen juga membutuhkan `commerce.segments.read` (editor kampanye tidak boleh membaca definisi segmen hanya karena ia editor); hitungan kampanye segmen membutuhkan `commerce.segment_previews.read`. Tidak ada kunci izin baru.
+
+### A2 - Kampanye dikunci pada VERSI segmen dan mencatat as-of evaluasinya (C-29)
+
+`awcms_commerce_campaigns` mendapat `segment_id`, `segment_version` dan `segment_as_of` (semuanya NULL untuk kampanye lama), dengan foreign key komposit ke `awcms_commerce_segment_versions (tenant_id, segment_id, version)`: kampanye hanya dapat menyebut versi segmen milik tenantnya sendiri, dan versi yang dirujuk tidak pernah dapat dihapus. Versi dikunci saat draf ditulis (versi terbaru bila permintaan tidak menyebut); karena versi tak dapat diubah, mengedit atau mempensiunkan segmen sesudahnya tidak mengubah ke mana kampanye mengirim maupun apa yang dicatatnya. `segment_as_of` diisi **sekali, oleh klaim dispatcher** (`COALESCE(segment_as_of, now())`), sehingga setiap halaman satu pengiriman, selama berapa tick pun, mengevaluasi aturan pada satu instan yang sama dan jendela relatif aturan bermakna sama di halaman pertama dan terakhir. Catatan kampanye mengembalikan `segment: { id, version, asOf }`.
+
+### A3 - Tidak ada penyimpanan pelanggan kedua: buku penerima yang ada adalah satu-satunya daftar
+
+Dispatcher tetap menyelesaikan "200 pelanggan berikutnya yang dapat dihubungi dan belum tercatat di `awcms_commerce_campaign_recipients`" di dalam fase klaim (`FOR UPDATE SKIP LOCKED`), halaman dan finalisasi yang sudah ada; hanya penyelesai halamannya yang berbeda. Aturan segmen dievaluasi oleh evaluator berbatas D5, dan jangkauan kampanye (akun aktif milik pelanggan, `marketing_consent_at IS NOT NULL`, alamat pada kanal, belum menjadi penerima) ditambahkan **setelah** aturan dalam pernyataan yang sama, sehingga hanya dapat mengurangi orang. Tidak ada yang dimaterialisasi: tidak ada tabel anggota, tidak ada snapshot kohort (D10 tetap berlaku - baris penerima adalah buku besar yang selalu dimiliki sebuah pengiriman). Setiap halaman mengulang evaluasi, yang berbiaya satu pemindaian pesanan lunas tenant per halaman; pemindaian itu index-only (`sql/1002`), satu run menguras paling banyak 25 halaman per kampanye, dan evaluasinya berbatas persis seperti pratinjau.
+
+### A4 - Persetujuan independen dari keanggotaan, diperiksa saat enqueue dan saat dispatch (C-12, C-28)
+
+Keanggotaan tidak pernah berarti persetujuan. Saat **enqueue** (panggilan kirim, dan setiap halaman yang menyisipkan baris penerima dan outbox) anggota yang menolak tidak dipilih, sehingga ia tidak pernah mendapat baris penerima maupun outbox, dan hitungan yang ditampilkan sebelumnya mengecualikannya. Saat **dispatch** audiens dievaluasi ulang ketika tiap halaman berjalan, bukan sekali saat kirim, sehingga persetujuan yang ditarik setelah panggilan kirim dihormati. Pengecualian kelayakan evaluator (placeholder walk-in, diblokir, terhapus) tetap berlaku sebelum aturan, sehingga aturan `NOT` tidak dapat menghidupkan mereka kembali. Jeda antara pembacaan halaman dan commit-nya adalah satu transaksi, sama seperti setiap kampanye sebelumnya.
+
+### A5 - Penolakan menunda, tidak pernah memfinalisasi, dan muncul sebagai kode yang stabil
+
+- **Saat kirim** (enqueue): ketiga fitur harus tetap aktif dan audiens harus dapat dievaluasi dalam batas D5; `busy` adalah `429 SEGMENT_EVALUATION_BUSY`, `too_expensive` adalah `422 SEGMENT_TOO_EXPENSIVE`, versi yang tak lagi dapat dibaca adalah `409 SEGMENT_UNAVAILABLE`. Kampanye yang tak mungkin dievaluasi karenanya gagal secara terlihat ketika dikirim, bukan diam-diam sesudahnya. Kode yang sama datang dari pratinjau kampanye.
+- **Saat dispatch**: halaman yang `busy`, `too expensive`, yang segmennya tak dapat dibaca, atau yang tenantnya mematikan sakelar tidak meng-enqueue apa pun dan **ditunda** - loop berhenti untuk run ini dan kampanye tetap `sending` untuk tick berikutnya. Halaman kosong adalah satu-satunya tanda audiens habis, sehingga penolakan tidak pernah dapat menandai kampanye `sent`. Skrip dispatch berhenti mengklaim ulang kampanye dalam run yang sama setelah satu halaman ditunda dan melaporkan `segmentPagesDeferred`. Kampanye yang tetap tertunda terlihat sebagai `sending` dan dapat dibatalkan.
+- Segmen adalah **seluruh** audiens: isi permintaan yang menyebut segmen sekaligus filter lama ditolak, melampirkan segmen mengosongkan filter, dan melepas segmen mewajibkan filter pengganti (agar pelepasan tidak melebarkan kampanye ke semua akun yang setuju).
+
+### A6 - Kelompok kecil tetap disembunyikan pada kampanye juga (C-27)
+
+Pembaca kampanye tidak boleh dapat membedakan segmen sempit menjadi seseorang, sama seperti pembaca segmen. Untuk kampanye segmen, hitungan pratinjau serta `recipientCount` / `sentCount` di bawah lima disembunyikan (`null`, `countsSuppressed: true`, `fewer_than_5`). Hitungan kampanye lama tetap eksak.
+
+### Konsekuensi
+
+- Positif: separuh kampanye dari S3 ada tanpa penyimpanan pelanggan baru dan dengan dispatcher yang sama yang dapat dilanjutkan dan diklaim; pengiriman lampau dijelaskan oleh `(segmen, versi, asOf)`; persetujuan dan pengecualian bersifat struktural (bagian dari kueri halaman), bukan konvensi yang harus diingat konsumen.
+- Biaya: kampanye segmen membayar satu evaluasi berbatas per halaman; kampanye yang tertunda oleh aturan yang terus mahal membutuhkan manusia untuk membatalkan atau mempersempitnya; tiga sakelar harus aktif.
+- Kompatibilitas: aditif. Tiga kolom nullable, satu foreign key, satu indeks parsial; kampanye lama, filter audiensnya dan hitungannya tidak berubah.
+- Ditemukan di tengah jalan, diperbaiki di sini: `updateCampaign` mengikat audiens sebagai `JSON.stringify(...)::jsonb`, yang menyimpan skalar string JSON, bukan objek, sehingga setiap PATCH audiens lama meninggalkan kampanye yang tak dapat dibaca dispatcher. Kini ia mengikat objeknya. (Filter `levels` lama juga gagal mengikat array yang tidak kosong; itu cacat terpisah yang tidak disentuh.)

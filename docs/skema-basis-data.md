@@ -311,6 +311,19 @@ Two FORCE-RLS tables (tenant-isolation policy with `WITH CHECK`, a composite `(t
 - **`sql/1003`** seeds the seven permission keys; **`sql/1004`** gives `awcms_worker` `SELECT, DELETE` for the retention descriptors (practically unreachable: `deleted_at` is never set, so a version a consumer recorded is never purged).
 - **Evaluation reads, and writes nothing.** It joins `awcms_commerce_customers` to the customer accounts, the loyalty accounts and one grouped scan of paid orders; none of them gains a column.
 
+## Campaign segment audience: three columns on the campaign (`sql/1007`, issue #362, [ADR-0042 Amendment](adr/0042-crm-segments-are-immutable-versioned-closed-vocabulary-rules-evaluated-on-demand.md))
+
+No new table, no table of members. `awcms_commerce_campaigns` gains three nullable columns, all NULL for a campaign that uses the legacy audience filters:
+
+| Column            | What it holds                                                                                                      |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `segment_id`      | The CRM segment this campaign targets                                                                              |
+| `segment_version` | The immutable segment version it is pinned to when the draft is written                                            |
+| `segment_as_of`   | The server instant the audience was evaluated at; stamped once, by the dispatcher's first claim, and never changed |
+
+- A `CHECK` keeps `segment_id` and `segment_version` together and refuses a stray `segment_as_of`; a composite foreign key `(tenant_id, segment_id, segment_version)` to `awcms_commerce_segment_versions` means a campaign can only name a version of its own tenant's segment and a referenced version can never be deleted. A partial index backs the key.
+- The audience itself is still resolved page by page against `awcms_commerce_campaign_recipients` (the resume ledger a send always had); `awcms_app` and `awcms_worker` need no new grant.
+
 ## Barcodes: two columns, two indexes, one trigger (`sql/975`–`976`, issue #292, [ADR-0032](adr/0032-barcodes-are-a-derived-identifier-and-the-cashier-keyboard-layer-is-chord-only.md))
 
 No new table. `barcode text` (nullable) on `awcms_commerce_products` and `awcms_commerce_product_variants`, with `CHECK (barcode ~ '^[!-~]{1,48}$')` (printable ASCII, no spaces). The symbology is **not stored** — it is a pure function of the code (`domain/barcode.ts`).

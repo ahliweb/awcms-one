@@ -36,6 +36,19 @@
  *    it `sent` with `sent_at = now()` and `recipient_count` = the total
  *    recipient row count.
  *
+ * ## A segment audience (Issue #362, ADR-0042 Amendment)
+ *
+ * A campaign that names a CRM segment (`segment_id`) takes the SAME three
+ * phases; only the page resolver differs (`campaign-segment-audience.ts`).
+ * The CLAIM stamps `segment_as_of = now()` the first time and never changes
+ * it, so every page of one send, over however many ticks, evaluates the rule at
+ * one instant. A page whose evaluation is refused (busy, too expensive, the
+ * feature switched off, the segment unreadable) is DEFERRED: nothing is
+ * enqueued, the loop stops for this run, and - the point - the campaign is NOT
+ * treated as drained, so it stays `sending` for the next tick instead of being
+ * marked `sent`. Consent is part of every page's query, so it is checked when a
+ * recipient is enqueued, on every page, at the moment that page runs.
+ *
  * `MAX_PAGES_PER_CAMPAIGN_PER_RUN` bounds a single script invocation's work
  * per campaign so one huge audience cannot starve every OTHER tenant's
  * dispatch tick — a partially-drained campaign is simply picked up again
@@ -65,6 +78,11 @@ import {
   resolveCampaignAudiencePage,
   CAMPAIGN_AUDIENCE_PAGE_SIZE
 } from "./campaign-directory";
+import {
+  resolveSegmentAudiencePage,
+  type CampaignSegmentPin,
+  type DeferralReason
+} from "./campaign-segment-audience";
 import { enqueueWhatsappMessage } from "./whatsapp-enqueue";
 
 const MODULE_KEY = "commerce";
@@ -133,7 +151,27 @@ type ClaimedCampaignRow = {
   audience: CampaignAudience;
   subject: string | null;
   body: string;
+  segment_id: string | null;
+  segment_version: number | null;
+  segment_as_of: Date | null;
 };
+
+function segmentPinOf(
+  campaign: ClaimedCampaignRow
+): (CampaignSegmentPin & { asOf: string }) | null {
+  if (
+    campaign.segment_id === null ||
+    campaign.segment_version === null ||
+    campaign.segment_as_of === null
+  ) {
+    return null;
+  }
+  return {
+    segmentId: campaign.segment_id,
+    version: Number(campaign.segment_version),
+    asOf: new Date(campaign.segment_as_of).toISOString()
+  };
+}
 
 /** CLAIM phase — see this file's header. */
 async function claimDueCampaigns(
@@ -147,7 +185,11 @@ async function claimDueCampaigns(
     async (tx) => {
       const rows = await tx`
         UPDATE awcms_commerce_campaigns
-        SET status = 'sending', updated_at = now()
+        SET status = 'sending', updated_at = now(),
+            segment_as_of = CASE
+              WHEN segment_id IS NULL THEN NULL
+              ELSE COALESCE(segment_as_of, now())
+            END
         WHERE id IN (
           SELECT id FROM awcms_commerce_campaigns
           WHERE tenant_id = ${tenantId}
@@ -161,7 +203,8 @@ async function claimDueCampaigns(
           FOR UPDATE SKIP LOCKED
         )
         AND status IN ('scheduled', 'sending')
-        RETURNING id, channel, audience, subject, body
+        RETURNING id, channel, audience, subject, body,
+                  segment_id, segment_version, segment_as_of
       `;
       return rows as unknown as ClaimedCampaignRow[];
     },
@@ -192,6 +235,8 @@ type DispatchPageResult = {
   inserted: number;
   enqueued: number;
   skipped: number;
+  /** Issue #362: set when a segment page was refused; the audience is NOT drained. */
+  deferred?: DeferralReason;
 };
 
 /** PAGE phase — one page, in one short transaction (recipient insert + outbox enqueue happen together, same "never let an insert outlive its own enqueue" discipline `conversation-directory.ts`'s reply path already follows). */
@@ -205,14 +250,45 @@ async function dispatchOnePage(
     sql,
     tenantId,
     async (tx) => {
-      const page = await resolveCampaignAudiencePage(
-        tx,
-        tenantId,
-        campaign.id,
-        campaign.channel,
-        campaign.audience,
-        CAMPAIGN_AUDIENCE_PAGE_SIZE
-      );
+      const pin = segmentPinOf(campaign);
+      let page;
+      if (campaign.segment_id !== null) {
+        // A segment campaign with no usable pin is a row written around the
+        // application; it defers rather than guessing an audience.
+        if (!pin) {
+          return {
+            inserted: 0,
+            enqueued: 0,
+            skipped: 0,
+            deferred: "segment_missing"
+          };
+        }
+        const segmentPage = await resolveSegmentAudiencePage(tx, {
+          tenantId,
+          campaignId: campaign.id,
+          channel: campaign.channel,
+          pin,
+          pageSize: CAMPAIGN_AUDIENCE_PAGE_SIZE
+        });
+        if (segmentPage.kind === "deferred") {
+          return {
+            inserted: 0,
+            enqueued: 0,
+            skipped: 0,
+            deferred: segmentPage.reason
+          };
+        }
+        page = segmentPage.rows;
+      } else {
+        page = await resolveCampaignAudiencePage(
+          tx,
+          tenantId,
+          campaign.id,
+          campaign.channel,
+          campaign.audience,
+          CAMPAIGN_AUDIENCE_PAGE_SIZE
+        );
+      }
       if (page.length === 0) return { inserted: 0, enqueued: 0, skipped: 0 };
 
       const storeName = await tenantStoreName(tx, tenantId);
@@ -325,6 +401,8 @@ async function finalizeSent(
 }
 
 export type DispatchCampaignQueueResult = {
+  /** Issue #362: segment pages refused this run (busy, too expensive, feature off, segment unreadable). */
+  segmentPagesDeferred: number;
   claimed: number;
   pagesProcessed: number;
   recipientsEnqueued: number;
@@ -341,6 +419,7 @@ export async function dispatchCampaignQueue(
 ): Promise<DispatchCampaignQueueResult> {
   const correlationId = options.correlationId ?? crypto.randomUUID();
   const result: DispatchCampaignQueueResult = {
+    segmentPagesDeferred: 0,
     claimed: 0,
     pagesProcessed: 0,
     recipientsEnqueued: 0,
@@ -382,6 +461,18 @@ export async function dispatchCampaignQueue(
         campaign,
         correlationId
       );
+      if (pageResult.deferred) {
+        // Not drained, not an error: leave the campaign `sending`.
+        result.segmentPagesDeferred += 1;
+        log("warning", "commerce.campaigns.dispatch.segment_page_deferred", {
+          correlationId,
+          tenantId,
+          moduleKey: MODULE_KEY,
+          campaignId: campaign.id,
+          reason: pageResult.deferred
+        });
+        break;
+      }
       result.pagesProcessed += 1;
       result.recipientsEnqueued += pageResult.enqueued;
       result.recipientsSkipped += pageResult.skipped;

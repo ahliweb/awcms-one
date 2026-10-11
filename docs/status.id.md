@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](status.md)
 
-<!-- i18n-source-hash: sha256:efe6645a7761e1d219083f3d841617e5d37c93c75f7c7e904c3068e957d12e14 -->
+<!-- i18n-source-hash: sha256:583b2829c5bd7e93bf05d82e50a6c05fddef426f35d88b03d38ca59bfec4f019 -->
 
 # Status
 
@@ -136,3 +136,7 @@ Media (fotografi produk, hero artikel, kreatif iklan) diresolusi lewat `GET /api
 - Baseline visual-regression yang di-commit untuk screenshot Playwright di atas — sebuah keputusan yang disengaja (reviewer membuka artifact CI dan melihat sendiri, bukan byte-diff yang menggerbangi jalankan), bukan celah.
 
 Lihat [`docs/arsitektur.md`](arsitektur.id.md), [`docs/cms.md`](cms.id.md), dan [`docs/skema-basis-data.md`](skema-basis-data.id.md) untuk apa yang ditunda masing-masing dokumen area secara lebih detail.
+
+## Audiens segmen kampanye: segmen sebagai audiens, persetujuan tetap independen ([Amendemen ADR-0042](adr/0042-crm-segments-are-immutable-versioned-closed-vocabulary-rules-evaluated-on-demand.id.md))
+
+Di balik sakelar ketiga per tenant, `campaignSegmentAudience` (bawaan **MATI**; juga butuh `campaigns` dan `segments`), kampanye dapat memakai segmen CRM sebagai seluruh audiensnya. `sql/1007` menambah tiga kolom nullable pada kampanye - segmen, versi tak-berubah yang dikuncinya, dan as-of saat dispatcher pertama kali mengevaluasinya - sehingga pengiriman lampau dijelaskan oleh `(segmen, versi, asOf)`. Tidak ada penyimpanan pelanggan kedua: dispatcher yang sama (dapat dilanjutkan, `FOR UPDATE SKIP LOCKED`) menelusuri segmen dengan persetujuan, akun aktif dan alamat kanal pelanggan sebagai bagian kueri halaman, sehingga anggota yang menolak ditolak saat enqueue dan lagi saat dispatch, dan pelanggan walk-in, diblokir dan terhapus tidak pernah dituju. Evaluasi yang ditolak (sibuk, terlalu mahal, sakelar dimatikan) menunda halaman dan membiarkan kampanye `sending`; saat kirim dan pratinjau muncul sebagai `422 SEGMENT_TOO_EXPENSIVE` / `429 SEGMENT_EVALUATION_BUSY`. Hitungan di bawah lima disembunyikan pada kampanye. Kampanye yang ada dan filter audiensnya tidak berubah. Lihat [`api.md`](api.id.md) dan [`cms.md`](cms.id.md).

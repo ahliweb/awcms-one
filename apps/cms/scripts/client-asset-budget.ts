@@ -1526,7 +1526,16 @@ export const READER_BUDGET_BYTES = 24_000;
  * measurement, not a sum (+5,601 B). The screen reuses the shared form helpers
  * and the confirm dialog; nothing was hand-copied from another screen.
  */
-export const APP_BUDGET_BYTES = 440_300;
+/*
+ * **Final: 440,600 B for awcms-one#362 (campaigns with a segment audience,
+ * ADR-0042 Amendment) on top of the #360 figure above** - MEASURED 440,506 B
+ * on the build (440,169 B before it): the campaign screen's segment picker and
+ * pinned-segment line, the preview button's suppressed / busy / too-expensive
+ * handling in the existing page script, the Features toggle, and the fourteen
+ * new catalogue entries (the compiled Indonesian catalogue ships with every
+ * page); a measurement, not a sum (+337 B). No new client script.
+ */
+export const APP_BUDGET_BYTES = 440_600;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

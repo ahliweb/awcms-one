@@ -47,7 +47,8 @@ export type CommerceFeatureKey =
   | "documentDelivery"
   | "barcode"
   | "returns"
-  | "segments";
+  | "segments"
+  | "campaignSegmentAudience";
 
 export type CommerceFeatures = Readonly<Record<CommerceFeatureKey, boolean>>;
 
@@ -112,7 +113,13 @@ export const DEFAULT_COMMERCE_FEATURES: CommerceFeatures = {
   // rule into a list of customers (disclosure and evaluation-cost risks of its
   // own, threat model F8), so a tenant chooses it. A tenant that never opens
   // "Features" sees no change: no route answers, no sidebar entry shows.
-  segments: false
+  segments: false,
+  // Issue #362 (ADR-0042 Amendment) - OFF. Aiming a mass e-mail / WhatsApp send
+  // at a CRM segment is new outbound-communication behaviour on top of the
+  // `segments` surface, so a tenant that enabled segments to look at them does
+  // not thereby start sending to them. It needs `campaigns` and `segments`
+  // too. A tenant that never opens "Features" keeps today's campaigns.
+  campaignSegmentAudience: false
 };
 
 const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
@@ -129,7 +136,8 @@ const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
   "documentDelivery",
   "barcode",
   "returns",
-  "segments"
+  "segments",
+  "campaignSegmentAudience"
 ];
 
 function isBoolean(value: unknown): value is boolean {

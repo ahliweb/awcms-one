@@ -429,3 +429,15 @@ Nothing below exists in the tree. The terms are defined, with their tables and c
 | deposit policy      | `awcms_commerce_product_deposit_policies`           | Per-product percentage or fixed deposit; no row = full payment; no tenant default. Snapshotted on the order as `dp_amount`                                            |
 | cancellation policy | `awcms_commerce_cancellation_policies` / `_windows` | Versioned list of "at least N hours before start, refund P%" windows; a row with no product is the tenant default                                                     |
 | refund decision     | `awcms_commerce_booking_refund_decisions`           | Append-only record of the computed refund, any manager or finance override (reason, step-up, never above the amount paid) and the return that carries the refund legs |
+
+### Campaign segment audience (issue #362, [ADR-0042 Amendment](adr/0042-crm-segments-are-immutable-versioned-closed-vocabulary-rules-evaluated-on-demand.md))
+
+| Term                              | Where it lives                                                                                                                                                    |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| segment audience                  | a campaign with `awcms_commerce_campaigns.segment_id` set; the segment is the whole audience, never combined with the legacy filters                              |
+| pinned version                    | `segment_version`, fixed when the draft is written; versions are immutable, so a later edit never changes the campaign                                            |
+| campaign as-of                    | `segment_as_of`, the server instant the audience was evaluated at; set by the dispatcher's first claim                                                            |
+| reach                             | what a campaign adds to segment membership: the customer's own active account, `marketing_consent_at IS NOT NULL`, an address on the channel, not yet a recipient |
+| deferred page                     | a segment page the dispatcher refused (busy, too expensive, feature off, segment unreadable); nothing is enqueued and the campaign stays `sending`                |
+| `campaignSegmentAudience` feature | commerce module settings `features.campaignSegmentAudience` (default OFF; also needs `campaigns` and `segments`)                                                  |
+| `countsSuppressed`                | on a segment campaign, true when `recipientCount` / `sentCount` is withheld because it is under 5                                                                 |
