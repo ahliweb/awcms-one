@@ -137,7 +137,8 @@ const commerceFeatures =
         documentDelivery: false,
         barcode: false,
         returns: false,
-        retention: false
+        retention: false,
+        segments: false
       };
 const FEATURE_TOGGLES = [
   { key: "pos", label: "Point of sale (POS)" },
@@ -156,7 +157,8 @@ const FEATURE_TOGGLES = [
   },
   { key: "barcode", label: "Barcodes, labels and cashier shortcuts" },
   { key: "returns", label: "Returns, refunds and exchanges" },
-  { key: "retention", label: "Customer retention report" }
+  { key: "retention", label: "Customer retention report" },
+  { key: "segments", label: "Customer segments" }
 ] as const;
 /** `${public CMS origin}/api/v1/commerce/webhooks/midtrans/{token}` — the URL shape to paste into Midtrans, per contract #106 D2. The token itself is filled in client-side, once, right after creation. */
 const webhookUrlBase = `${resolveRequestOrigin(Astro.url, Astro.request)}/api/v1/commerce/webhooks/midtrans`;

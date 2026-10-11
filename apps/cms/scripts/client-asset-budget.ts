@@ -1515,7 +1515,18 @@ export const READER_BUDGET_BYTES = 24_000;
  * page); a measurement, not a sum (+755 B). No new screen and no picker
  * script: the contents editor is a plain textarea the server resolves.
  */
-export const APP_BUDGET_BYTES = 434_700;
+/*
+ * **Final: 440,300 B for awcms-one#360 (CRM segments, ADR-0042) on top of the
+ * #290 figure above** — MEASURED 440,169 B on the build (434,568 B before it):
+ * the new `/admin/commerce-segments` screen's page script (a condition
+ * builder that narrows each row's operators to its field, the preview /
+ * member-list / edit / retire handlers, and the member-row renderer built with
+ * `textContent`) plus its stylesheet share and the sixty-three new catalogue
+ * entries (the compiled Indonesian catalogue ships with every page); a
+ * measurement, not a sum (+5,601 B). The screen reuses the shared form helpers
+ * and the confirm dialog; nothing was hand-copied from another screen.
+ */
+export const APP_BUDGET_BYTES = 440_300;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

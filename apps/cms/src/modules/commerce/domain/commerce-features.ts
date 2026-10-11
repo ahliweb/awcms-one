@@ -47,7 +47,8 @@ export type CommerceFeatureKey =
   | "documentDelivery"
   | "barcode"
   | "returns"
-  | "retention";
+  | "retention"
+  | "segments";
 
 export type CommerceFeatures = Readonly<Record<CommerceFeatureKey, boolean>>;
 
@@ -111,7 +112,12 @@ export const DEFAULT_COMMERCE_FEATURES: CommerceFeatures = {
   // Issue #364 (ADR-0044) - OFF. The customer-retention report is a new admin
   // surface over a new per-customer projection; a tenant that never opens
   // "Features" must see exactly today's reports screen.
-  retention: false
+  retention: false,
+  // Issue #360 (ADR-0042) - OFF. CRM segments are a new surface that turns a
+  // rule into a list of customers (disclosure and evaluation-cost risks of its
+  // own, threat model F8), so a tenant chooses it. A tenant that never opens
+  // "Features" sees no change: no route answers, no sidebar entry shows.
+  segments: false
 };
 
 const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
@@ -128,7 +134,8 @@ const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
   "documentDelivery",
   "barcode",
   "returns",
-  "retention"
+  "retention",
+  "segments"
 ];
 
 function isBoolean(value: unknown): value is boolean {

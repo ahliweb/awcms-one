@@ -297,6 +297,20 @@ Two FORCE-RLS tables (tenant-isolation policy with `WITH CHECK`, composite `(ten
 - **Privileges.** `awcms_app` loses `DELETE` on both new tables (they keep `SELECT, INSERT, UPDATE`; the lifecycle trigger, not privilege, freezes a posted row). `awcms_worker` keeps `SELECT, DELETE` (`sql/993`) for the retention engine (`commerce.expense_categories`, `commerce.expenses`, five-year floor, ten-year ceiling, keyed on a never-set `deleted_at`). `security-readiness.ts` asserts the exact sets both ways.
 - **`sql/992`** seeds the twelve permission keys.
 
+## CRM segments: two tables and one index (`sql/1001`–`1004`, issue #360, [ADR-0042](adr/0042-crm-segments-are-immutable-versioned-closed-vocabulary-rules-evaluated-on-demand.md))
+
+Two FORCE-RLS tables (tenant-isolation policy with `WITH CHECK`, a composite `(tenant_id, segment_id)` foreign key backed by `UNIQUE (tenant_id, id)`, every FK column indexed). There is **no table of members**: a segment stores rules and membership is derived on demand.
+
+| Table                             | What it holds                                                                                                                                                                                                                                                     |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `awcms_commerce_segments`         | The mutable head: `name` (unique per tenant among live segments, case-insensitively), `description`, `latest_version`, `retired_at` / `retired_by_tenant_user_id` (a delete retires), creator and updater stamps, `deleted_at` (never set — the retention cursor) |
+| `awcms_commerce_segment_versions` | One IMMUTABLE row per version: `version`, `rules jsonb` (a closed-vocabulary rule tree, typed scalars only, canonical form), `node_count`, `depth`, creator stamp, `deleted_at` (never set). `UNIQUE (tenant_id, segment_id, version)`                            |
+
+- **Immutability.** `awcms_app` loses `UPDATE` and `DELETE` on the versions table and `DELETE` on the head; a trigger also refuses any `UPDATE` of a version from every role. A second trigger on the head freezes identity and creator, lets `latest_version` only move forward and keeps a retired segment retired. `CHECK`s bound the stored rule (an object, at most 16 KiB, 1–25 nodes, depth 0–4).
+- **`sql/1002`** adds one partial covering index on the existing orders table, `awcms_commerce_orders_tenant_paid_facts_idx (tenant_id, paid_at) INCLUDE (customer_id, total, status) WHERE paid_at IS NOT NULL AND deleted_at IS NULL`, so the grouped scan of paid orders segment evaluation does is index-only.
+- **`sql/1003`** seeds the seven permission keys; **`sql/1004`** gives `awcms_worker` `SELECT, DELETE` for the retention descriptors (practically unreachable: `deleted_at` is never set, so a version a consumer recorded is never purged).
+- **Evaluation reads, and writes nothing.** It joins `awcms_commerce_customers` to the customer accounts, the loyalty accounts and one grouped scan of paid orders; none of them gains a column.
+
 ## Barcodes: two columns, two indexes, one trigger (`sql/975`–`976`, issue #292, [ADR-0032](adr/0032-barcodes-are-a-derived-identifier-and-the-cashier-keyboard-layer-is-chord-only.md))
 
 No new table. `barcode text` (nullable) on `awcms_commerce_products` and `awcms_commerce_product_variants`, with `CHECK (barcode ~ '^[!-~]{1,48}$')` (printable ASCII, no spaces). The symbology is **not stored** — it is a pure function of the code (`domain/barcode.ts`).

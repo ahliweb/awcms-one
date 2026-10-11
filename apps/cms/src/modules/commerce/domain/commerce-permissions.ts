@@ -806,3 +806,39 @@ export const COMMERCE_INVENTORY_PERMISSIONS = {
   read: "commerce.inventory.read",
   configure: "commerce.inventory.configure"
 } as const;
+
+/**
+ * CRM segments (Issue #360, ADR-0042, threat model control C-27). Resource-
+ * split on purpose - define, count, list and export are four different powers:
+ *
+ *   - `segments`: `read` (list and read definitions and their versions - rules
+ *     only, never a customer), `create`, `update` (rename, or add a version of
+ *     the rules), `delete` (retire; keeps every version - high-risk).
+ *   - `segment_previews`: `read` - a COUNT-only preview. Needs no customer
+ *     permission: a count names nobody, and below five it is withheld.
+ *   - `segment_members`: `read` (list the matching customers - the routes
+ *     additionally require `commerce.customers.read`) and `export` (the CSV -
+ *     the platform's high-risk verb, because the file leaves the system; also
+ *     requires `commerce.customers.read`).
+ *
+ * Existing `AccessAction` verbs only; the upstream-owned union is not widened.
+ */
+export const COMMERCE_SEGMENTS_ACTIVITY_CODE = "segments";
+export const COMMERCE_SEGMENT_PREVIEWS_ACTIVITY_CODE = "segment_previews";
+export const COMMERCE_SEGMENT_MEMBERS_ACTIVITY_CODE = "segment_members";
+
+export const COMMERCE_SEGMENT_PERMISSIONS = {
+  read: "commerce.segments.read",
+  create: "commerce.segments.create",
+  update: "commerce.segments.update",
+  delete: "commerce.segments.delete"
+} as const;
+
+export const COMMERCE_SEGMENT_PREVIEW_PERMISSIONS = {
+  read: "commerce.segment_previews.read"
+} as const;
+
+export const COMMERCE_SEGMENT_MEMBER_PERMISSIONS = {
+  read: "commerce.segment_members.read",
+  export: "commerce.segment_members.export"
+} as const;

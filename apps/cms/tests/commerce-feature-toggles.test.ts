@@ -30,6 +30,7 @@ describe("resolveCommerceFeatures", () => {
     expect(DEFAULT_COMMERCE_FEATURES.returns).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.retention).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.barcode).toBe(false);
+    expect(DEFAULT_COMMERCE_FEATURES.segments).toBe(false);
     expect(
       Object.entries(DEFAULT_COMMERCE_FEATURES)
         .filter(
@@ -42,7 +43,8 @@ describe("resolveCommerceFeatures", () => {
             key !== "documentDelivery" &&
             key !== "barcode" &&
             key !== "returns" &&
-            key !== "retention"
+            key !== "retention" &&
+            key !== "segments"
         )
         .every(([, value]) => value === true)
     ).toBe(true);
@@ -72,7 +74,8 @@ describe("resolveCommerceFeatures", () => {
       documentDelivery: false,
       barcode: false,
       returns: false,
-      retention: false
+      retention: false,
+      segments: false
     });
   });
 
@@ -92,7 +95,8 @@ describe("resolveCommerceFeatures", () => {
       documentDelivery: false,
       barcode: false,
       returns: false,
-      retention: false
+      retention: false,
+      segments: false
     });
   });
 
@@ -119,7 +123,8 @@ describe("resolveCommerceFeatures", () => {
         documentDelivery: false,
         barcode: false,
         returns: false,
-        retention: false
+        retention: false,
+        segments: false
       }
     });
     expect(resolved).toEqual({
@@ -136,7 +141,8 @@ describe("resolveCommerceFeatures", () => {
       documentDelivery: false,
       barcode: false,
       returns: false,
-      retention: false
+      retention: false,
+      segments: false
     });
     // ...and the flags that default off can be turned on.
     expect(
@@ -491,6 +497,17 @@ describe("toPublicRecord — feature composition (Issue #118)", () => {
     expect(resolveCommerceFeatures({}).barcode).toBe(false);
     expect(
       resolveCommerceFeatures({ features: { barcode: true } }).barcode
+    ).toBe(true);
+  });
+
+  test("segments (Issue #360, ADR-0042) defaults OFF, can be turned on, and a tenant that saved a settings row before the flag existed still reads OFF", () => {
+    expect(DEFAULT_COMMERCE_FEATURES.segments).toBe(false);
+    expect(resolveCommerceFeatures({}).segments).toBe(false);
+    expect(resolveCommerceFeatures({ features: { pos: true } }).segments).toBe(
+      false
+    );
+    expect(
+      resolveCommerceFeatures({ features: { segments: true } }).segments
     ).toBe(true);
   });
 });

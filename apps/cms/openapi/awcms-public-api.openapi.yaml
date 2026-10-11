@@ -15381,6 +15381,411 @@ paths:
           $ref: "#/components/responses/Forbidden"
         "404":
           $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/segments:
+    get:
+      operationId: listCommerceSegments
+      tags:
+        - Commerce
+      summary: "Issue #360 (ADR-0042). CRM segments, keyset-paginated, newest first. Definitions only - never a customer. Gated on `commerce.segments.read` and the tenant's `segments` feature (default OFF)."
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: includeRetired
+          in: query
+          required: false
+          description: "`true` adds retired segments; the default lists live ones only."
+          schema:
+            type: boolean
+      responses:
+        "200":
+          description: One page of segments (limit 50) with an opaque `nextCursor` (null on the last page).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceSegment"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`FEATURE_DISABLED` - the `segments` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    post:
+      operationId: createCommerceSegment
+      tags:
+        - Commerce
+      summary: "Issue #360 (ADR-0042). Define a segment: a name and a rule tree in the closed vocabulary. Creates version 1. Gated on `commerce.segments.create` and the tenant's `segments` feature."
+      description: "The rule tree is validated against the closed vocabulary (PRD 6.1, owner answer Q7): an unknown field, operator or key, a value of the wrong type, a depth above 4, more than 25 nodes, more than 10 children in a group, more than 3 distinct windows or more than 8 KiB of JSON is a 400 whose `details` name the offending path (`rules.and[1].field`). A key outside `name`, `description`, `rules` - a `tenantId`, for instance - is refused by name, never honoured. The stored rules are the canonical form."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceSegmentInput"
+      responses:
+        "201":
+          description: The segment, with its version 1.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceSegmentDetail"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`FEATURE_DISABLED` (the `segments` feature is off) or `SEGMENT_NAME_TAKEN` (a live segment already has this name, compared case-insensitively)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/segments/{id}:
+    get:
+      operationId: getCommerceSegment
+      tags:
+        - Commerce
+      summary: "Issue #360 (ADR-0042). One segment with its versions (rules only, newest first, at most 100). Gated on `commerce.segments.read`. An unknown id and another tenant's id are the same 404."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The segment and its versions.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceSegmentDetail"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED` - the `segments` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    patch:
+      operationId: updateCommerceSegment
+      tags:
+        - Commerce
+      summary: "Issue #360 (ADR-0042, PRD S1). Rename a segment and/or add a NEW version of its rules - an existing version is never changed. Must carry the `baseVersion` the edit started from. Gated on `commerce.segments.update`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceSegmentUpdate"
+      responses:
+        "200":
+          description: The segment; `latestVersion` rose by one when `rules` was sent.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceSegmentDetail"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED`, `SEGMENT_VERSION_CONFLICT` (`details.latestVersion` is the current one - a stale tab or a double submit), `SEGMENT_RETIRED` or `SEGMENT_NAME_TAKEN`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    delete:
+      operationId: retireCommerceSegment
+      tags:
+        - Commerce
+      summary: "Issue #360 (ADR-0042). Retire a segment. Every version is KEPT so a past campaign or earn that recorded `(segment, version)` stays explainable (control C-29). Gated on `commerce.segments.delete` (high-risk)."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The retired segment, with all its versions.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceSegmentDetail"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED` or `SEGMENT_RETIRED` (already retired)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/segments/{id}/export.csv:
+    get:
+      operationId: exportCommerceSegmentMembersCsv
+      tags:
+        - Commerce
+      summary: "Issue #360 (ADR-0042, control C-27). The members of a segment version as CSV. Gated on `commerce.segment_members.export` - the high-risk `export` verb; reading members grants none - AND `commerce.customers.read`."
+      description: "Every cell is spreadsheet-formula-neutralised; phone and e-mail are the masked forms a list shows. Bounded: at most 10,000 rows with `X-Export-Truncated: true` when more existed - never a silent cut. `Cache-Control: no-store`. The export is audited at `warning` severity with the actor, the version and the row count."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: version
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        "200":
+          description: The CSV.
+          headers:
+            X-Export-Truncated:
+              schema:
+                type: string
+                enum:
+                  - "true"
+                  - "false"
+            X-Segment-As-Of:
+              description: The server instant the export was evaluated at.
+              schema:
+                type: string
+                format: date-time
+          content:
+            text/csv:
+              schema:
+                type: string
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED` - the `segments` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: "`SEGMENT_TOO_EXPENSIVE` - the rule was cancelled at the statement timeout."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: "`SEGMENT_EVALUATION_BUSY`; `Retry-After` is set."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/segments/{id}/members:
+    get:
+      operationId: listCommerceSegmentMembers
+      tags:
+        - Commerce
+      summary: "Issue #360 (ADR-0042, PRD S4). The customers a segment version matches, keyset-paged by customer id, masked. Gated on `commerce.segment_members.read` AND `commerce.customers.read` (403 without the second)."
+      description: Walk-in, blocked and erased customers are never members. Fields are the customer's name, masked phone, masked e-mail and price level. Every page is audited (actor, version, count - never who). Bounded like a preview (422 `SEGMENT_TOO_EXPENSIVE`, 429 `SEGMENT_EVALUATION_BUSY`). Each page is evaluated at the server's current instant.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: version
+          in: query
+          required: false
+          description: The version to evaluate; the latest by default.
+          schema:
+            type: integer
+            minimum: 1
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 50
+      responses:
+        "200":
+          description: One page of masked members.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceSegmentMembersPage"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED` - the `segments` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: "`SEGMENT_TOO_EXPENSIVE` - the rule was cancelled at the statement timeout."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: "`SEGMENT_EVALUATION_BUSY`; `Retry-After` is set."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/segments/preview:
+    post:
+      operationId: previewCommerceSegment
+      tags:
+        - Commerce
+      summary: "Issue #360 (ADR-0042, PRD S2). How many customers a rule matches. Body: `{ rules }` (unsaved) OR `{ segmentId, version? }` (saved). Gated on `commerce.segment_previews.read` and the tenant's `segments` feature."
+      description: 'Read-only and bounded (control C-26): at most 2 concurrent evaluations per tenant and 1 per actor (429 `SEGMENT_EVALUATION_BUSY`), a 5 s statement timeout (422 `SEGMENT_TOO_EXPENSIVE`), and 30 previews per actor per minute (429 `RATE_LIMITED`). The answer carries the SERVER''s `asOf` instant; the request has no such field and one is refused by name. A count below 5 is withheld: `count` is `{ suppressed: true, count: null, label: "fewer_than_5" }` (control C-27). `sample` (at most 10 masked customers, never pageable) is present only for a caller who also holds `commerce.segment_members.read` and `commerce.customers.read`; otherwise it is null and no customer permission is needed. The walk-in placeholder, blocked and erased customers are never counted.'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceSegmentPreviewRequest"
+      responses:
+        "200":
+          description: The count (suppressed under 5), the as-of instant and, for a caller who may see members, a bounded masked sample.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceSegmentPreview"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED` - the `segments` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: "`SEGMENT_TOO_EXPENSIVE` - the rule took longer than the statement timeout to evaluate and was cancelled."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: "`SEGMENT_EVALUATION_BUSY` (too many evaluations running) or `RATE_LIMITED` (too many previews); `Retry-After` is set."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/shipping/destinations:
     get:
       operationId: searchCommerceShippingDestinations
@@ -41734,6 +42139,214 @@ components:
           type: string
         net:
           type: string
+    CommerceSegment:
+      type: object
+      required:
+        - id
+        - name
+        - status
+        - latestVersion
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        status:
+          type: string
+          enum:
+            - active
+            - retired
+        latestVersion:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        retiredAt:
+          type: string
+          format: date-time
+          nullable: true
+    CommerceSegmentCount:
+      type: object
+      required:
+        - suppressed
+        - count
+      properties:
+        suppressed:
+          type: boolean
+          description: True when fewer than 5 customers match; the number is then withheld.
+        count:
+          type: integer
+          nullable: true
+        label:
+          type: string
+          enum:
+            - fewer_than_5
+    CommerceSegmentDetail:
+      allOf:
+        - $ref: "#/components/schemas/CommerceSegment"
+        - type: object
+          required:
+            - versions
+          properties:
+            versions:
+              type: array
+              description: Newest first, at most 100. Immutable.
+              items:
+                $ref: "#/components/schemas/CommerceSegmentVersion"
+    CommerceSegmentInput:
+      type: object
+      required:
+        - name
+        - rules
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 120
+        description:
+          type: string
+          nullable: true
+          maxLength: 500
+        rules:
+          $ref: "#/components/schemas/CommerceSegmentRules"
+    CommerceSegmentMember:
+      type: object
+      required:
+        - id
+        - name
+        - phoneMasked
+        - level
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        phoneMasked:
+          type: string
+        emailMasked:
+          type: string
+          nullable: true
+        level:
+          type: integer
+    CommerceSegmentMembersPage:
+      type: object
+      required:
+        - segmentId
+        - version
+        - asOf
+        - items
+      properties:
+        segmentId:
+          type: string
+          format: uuid
+        version:
+          type: integer
+        asOf:
+          type: string
+          format: date-time
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceSegmentMember"
+        nextCursor:
+          type: string
+          nullable: true
+    CommerceSegmentPreview:
+      type: object
+      required:
+        - asOf
+        - count
+      properties:
+        segment:
+          type: object
+          nullable: true
+          properties:
+            id:
+              type: string
+              format: uuid
+            version:
+              type: integer
+        asOf:
+          type: string
+          format: date-time
+          description: The SERVER instant every time-relative operand was resolved against.
+        count:
+          $ref: "#/components/schemas/CommerceSegmentCount"
+        sample:
+          type: array
+          nullable: true
+          description: At most 10 masked customers; null unless the caller holds `commerce.segment_members.read` and `commerce.customers.read`.
+          items:
+            $ref: "#/components/schemas/CommerceSegmentMember"
+    CommerceSegmentPreviewRequest:
+      type: object
+      additionalProperties: false
+      description: "Either `rules`, or `segmentId` (with an optional `version`) - never both. There is no `asOf`: the server chooses it."
+      properties:
+        rules:
+          $ref: "#/components/schemas/CommerceSegmentRules"
+        segmentId:
+          type: string
+          format: uuid
+        version:
+          type: integer
+          minimum: 1
+    CommerceSegmentRules:
+      type: object
+      description: 'A rule tree in the CLOSED vocabulary (PRD 6.1; owner answer Q7 - no booking-derived field). A node has exactly one of `and` / `or` (arrays of 1..10 nodes), `not` (one node) or `field`. A leaf is `{ field, op, value?, windowDays? }`. Fields and their operators: `level` (eq, in; 1..4), `has_account` / `has_email` (eq; boolean), `customer_since` (before, after; a date value), `order_count` (eq, gt, gte, lt, lte; integer 0..1000000; optional `windowDays`), `paid_spend` (gt, gte, lt, lte; a `numeric(14,2)` STRING; optional `windowDays`), `last_order_date` / `first_order_date` (before, after with a date value, or never with no value), `loyalty_balance` (eq, gt, gte, lt, lte; integer points). A date value is an ISO 8601 date-time with a zone, or `{ "daysAgo": 0..3650 }` resolved against the server''s as-of. Bounds: depth 4, 25 nodes, 3 distinct windows (1..3650 days), 8 KiB. "Paid order" means a live order with `paid_at` set, not cancelled or expired, paid at or before the as-of; spend is the sum of order totals.'
+      additionalProperties: true
+    CommerceSegmentUpdate:
+      type: object
+      required:
+        - baseVersion
+      additionalProperties: false
+      description: At least one of `name`, `description`, `rules` besides `baseVersion`.
+      properties:
+        baseVersion:
+          type: integer
+          minimum: 1
+          description: The version this edit started from; must equal the segment's `latestVersion`.
+        name:
+          type: string
+          minLength: 1
+          maxLength: 120
+        description:
+          type: string
+          nullable: true
+          maxLength: 500
+        rules:
+          $ref: "#/components/schemas/CommerceSegmentRules"
+    CommerceSegmentVersion:
+      type: object
+      required:
+        - version
+        - rules
+        - nodeCount
+        - depth
+        - createdAt
+      properties:
+        version:
+          type: integer
+        rules:
+          $ref: "#/components/schemas/CommerceSegmentRules"
+        nodeCount:
+          type: integer
+        depth:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
     CommerceServiceFormField:
       type: object
       required:
