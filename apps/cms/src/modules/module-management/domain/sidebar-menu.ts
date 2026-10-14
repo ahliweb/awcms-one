@@ -131,6 +131,9 @@ export const DEFAULT_MODULE_TYPE: Readonly<Record<string, string>> = {
   // first screen from landing silently in `general` — a real section, so the
   // mistake would render as a plausible sidebar rather than as a gap.
   push_delivery: "operations",
+  // ADR-0133 (Issue #963). The sibling channel of push_delivery and email, so it
+  // sits beside push in operations; the map must cover every registered module.
+  whatsapp_delivery: "operations",
   // ADR-0122 (ahliweb/omes#196). Placed even though the module declares NO navigation yet:
   // this map must cover every registered module so its first screen lands in operations.
   omes_control: "operations",
@@ -143,6 +146,18 @@ export const DEFAULT_MODULE_TYPE: Readonly<Record<string, string>> = {
   // yet (API-first; admin screens are a recorded follow-up): this map must cover
   // every registered module so its first screen lands in the commerce section.
   procurement: "commerce",
+  // ADR-0132 (Issue #945). Placed even though the module declares NO navigation
+  // yet (`experimental`, no admin screen): this map must cover every registered
+  // module so its first screen lands with the people/identity screens rather
+  // than silently in `general`.
+  hr_workforce: "identity",
+  // ADR-0131 (Issue #937). Placed even though the module declares NO navigation
+  // yet (foundation slice, `experimental`): this map must cover every registered
+  // module so its first screen lands in the commerce section.
+  booking: "commerce",
+  // ADR-0132 (Issue #950). Placed even though the module declares NO navigation
+  // yet (`experimental`, no admin screen); see hr_workforce above.
+  hr_commission: "identity",
   // Master reference data. This module DOES declare navigation now
   // (`/admin/idn-regions`, landed with ADR-0053/PR #332). The comment that used
   // to sit here said its operator screen lived in awcms-astro per ADR-0047 —
@@ -259,6 +274,7 @@ export const SIDEBAR_LABELS: Readonly<Record<string, string>> = {
   "admin.layout.nav_approvals": "Approvals",
   "admin.layout.nav_domain_events": "Domain events",
   "admin.layout.nav_push_notifications": "Push notifications",
+  "admin.layout.nav_whatsapp": "WhatsApp delivery",
   "admin.layout.nav_sync": "Sync & storage",
   "admin.layout.nav_profiles": "Profiles",
   "admin.layout.nav_users": "Users",
@@ -382,6 +398,7 @@ export const DEFAULT_SIDEBAR_ICONS: Readonly<Record<string, string>> = {
   "admin.layout.nav_comments": "chat",
   "admin.layout.nav_newsletter": "mail",
   "admin.layout.nav_push_notifications": "bell",
+  "admin.layout.nav_whatsapp": "chat",
   // Operations.
   "admin.layout.nav_visitor_analytics": "chart",
   "admin.layout.nav_data_lifecycle": "database",

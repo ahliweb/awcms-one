@@ -219,7 +219,36 @@ export type AccessAction =
   // `reconcile` reuse existing members.)
   | "submit"
   | "finalise"
-  | "reveal";
+  | "reveal"
+  // WhatsApp delivery (`whatsapp_delivery`, ADR-0133, Issue #963): `withdraw`
+  // records a recipient's marketing opt-out. Deliberately NOT high-risk and a
+  // separate action from `consents.create`: withdrawing consent is protective
+  // (it can only stop messages), so it must be grantable to a front-desk role
+  // that may not record an opt-in. (`read`/`create`/`delete`/`cancel` reuse
+  // existing members.)
+  | "withdraw"
+  // Booking (`booking`, ADR-0131, Issue #937): the reservation transition verbs.
+  // `confirm`, `reschedule`, `check_in`, `complete` and `no_show` are NOT
+  // high-risk: each is reversible by cancel or compensated by an event.
+  // `override` lifts a business rule (book or reschedule outside schedule hours
+  // or lead time) and is high-risk below; it never overrides the allocation
+  // exclusion constraint. (`read`/`create`/`update`/`delete`/`restore`/`cancel`/
+  // `release`/`configure`/`reconcile` reuse existing members.)
+  | "confirm"
+  | "reschedule"
+  | "check_in"
+  | "complete"
+  | "no_show"
+  | "override"
+  // HR commission (`hr_commission`, ADR-0132, Issue #951): `pay` records that a
+  // payable commission accrual has been paid. High-risk and a different power
+  // from `release` (making it payable). `accrue` posts an accrual — a payable
+  // earnings claim on a person's behalf — and is high-risk so the action-time SoD
+  // check is available over who may post, approve and pay. (`read`/`approve`/
+  // `release`/`cancel` for accruals reuse existing members; `cancel` is the
+  // design's void.)
+  | "pay"
+  | "accrue";
 
 export type AccessRequest = {
   moduleKey: string;
@@ -387,7 +416,13 @@ const HIGH_RISK_ACTIONS: ReadonlySet<AccessAction> = new Set([
   // reuses Tax's `reverse` above), and revealing a supplier identifier
   // discloses sensitive data.
   "finalise",
-  "reveal"
+  "reveal",
+  // Booking (ADR-0131): an override lifts a scheduling business rule, so the
+  // action-time SoD check is available the moment a tenant authors a rule.
+  "override",
+  // HR commission (ADR-0132): recording a payment is a financial posting.
+  "pay",
+  "accrue"
 ]);
 
 export function isHighRiskAction(action: AccessAction): boolean {
