@@ -7225,6 +7225,12 @@ msgstr "Hanya satu baris tunai yang diizinkan per penjualan."
 msgid "Overpaid (to refund)"
 msgstr "Kelebihan bayar (perlu dikembalikan)"
 
+msgid "Deposit (release threshold)"
+msgstr "Deposit (batas rilis)"
+
+msgid "Fully settled on"
+msgstr "Lunas pada"
+
 msgid "Partially paid"
 msgstr "Dibayar sebagian"
 

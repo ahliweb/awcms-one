@@ -110,6 +110,8 @@ export const COMMERCE_REVIEW_PUBLISHED_EVENT_TYPE =
 /** Issue #285 (ADR-0025) — payment-allocation ledger events. */
 export const COMMERCE_PAYMENT_RECORDED_EVENT_TYPE =
   "awcms.commerce.payment.recorded";
+/** Issue #379 (ADR-0041 D7) — a deposit order's settlement reached its total. */
+export const COMMERCE_ORDER_SETTLED_EVENT_TYPE = "awcms.commerce.order.settled";
 export const COMMERCE_PAYMENT_REVERSED_EVENT_TYPE =
   "awcms.commerce.payment.reversed";
 /** Issue #284 (ADR-0028) — POS register-session events. */
@@ -337,6 +339,12 @@ export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
       eventVersion: COMMERCE_EVENT_VERSION,
       description:
         "A payment-allocation ledger leg became a succeeded payment against an order (an operator-recorded tender, a POS tender, an accepted manual-transfer confirmation, or a confirmed gateway leg). Producer: commerce/application/payment-allocation-directory.ts's recordPaymentAllocation / resolveGatewayAllocation, in the same transaction as the ledger write. Carries the order's resulting settlement (paid/outstanding/paymentStatus); a pending gateway leg and the sql/943 backfill do not fire it."
+    },
+    {
+      eventType: COMMERCE_ORDER_SETTLED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "Settlement of a deposit order (payment_method dp, dp_amount below the total) reached the total (Issue #379, ADR-0041 D7). Producer: commerce/application/payment-allocation-directory.ts's finalizeSettlement, in the same transaction as the ledger write that made the outstanding amount zero. Fires for a deposit order only: order.paid fires for it at the deposit, so this is the fact that says it is fully paid, and the loyalty earner reacts to it. A whole-total order fires none. Carries orderId, orderCode, total, deposit and settledAt - never a customer name/phone or a payment reference."
     },
     {
       eventType: COMMERCE_PAYMENT_REVERSED_EVENT_TYPE,

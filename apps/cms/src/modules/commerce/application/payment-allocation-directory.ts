@@ -55,6 +55,7 @@ import {
 import {
   COMMERCE_EVENT_VERSION,
   COMMERCE_ORDER_AGGREGATE_TYPE,
+  COMMERCE_ORDER_SETTLED_EVENT_TYPE,
   COMMERCE_PAYMENT_RECORDED_EVENT_TYPE,
   COMMERCE_PAYMENT_REVERSED_EVENT_TYPE
 } from "../domain/commerce-events";
@@ -70,14 +71,18 @@ import {
   isStoredValueTender,
   maskStoredValueCode
 } from "../domain/stored-value";
+import { isDepositOrder } from "../domain/gateway-deposit";
 import {
   computeSettlement,
+  deriveSettledAt,
   derivePaymentStatus,
   hasReachedRelease,
+  releaseThresholdCents,
   orderPaymentMethodToTender,
   OverpaymentError,
   toSettlementView,
   type LedgerRow,
+  type SettledAtRow,
   type PaymentAllocationKind,
   type PaymentAllocationSource,
   type PaymentAllocationStatus,
@@ -226,7 +231,7 @@ async function hydrateStoredValue(
   return records;
 }
 
-type OrderLedgerHeader = {
+export type OrderLedgerHeader = {
   id: string;
   orderCode: string;
   status: string;
@@ -306,6 +311,55 @@ async function readLedgerRows(
   }));
 }
 
+/**
+ * Issue #379 - locks the order row (`FOR NO KEY UPDATE`, like every ledger
+ * writer) and returns it with the net amount settled so far, for the gateway
+ * session directory to compute a deposit/balance session's expected amount
+ * under the same lock the ledger uses. `null` for an unknown order.
+ */
+export async function lockOrderAndReadSettledCents(
+  tx: Bun.SQL,
+  tenantId: string,
+  orderId: string
+): Promise<{ header: OrderLedgerHeader; settledCents: bigint } | null> {
+  const header = await lockOrderForSettlement(tx, tenantId, orderId);
+  if (!header) return null;
+  const { settlement } = settlementOf(
+    header,
+    await readLedgerRows(tx, tenantId, header.id)
+  );
+  return { header, settledCents: settlement.settledCents };
+}
+
+/** The settled time of the leg that brought `orderId` to its total (see `deriveSettledAt`); `null` while anything is owed. */
+export async function readOrderSettledAt(
+  tx: Bun.SQL,
+  tenantId: string,
+  orderId: string,
+  total: string
+): Promise<string | null> {
+  const rows = (await tx`
+    SELECT kind, status, amount, settled_at
+    FROM awcms_commerce_payment_allocations
+    WHERE tenant_id = ${tenantId} AND order_id = ${orderId} AND status = 'succeeded'
+    ORDER BY entry_seq ASC
+  `) as {
+    kind: string;
+    status: string;
+    amount: string;
+    settled_at: Date | null;
+  }[];
+  return deriveSettledAt(
+    total,
+    rows.map((row): SettledAtRow => ({
+      kind: row.kind as PaymentAllocationKind,
+      status: row.status as PaymentAllocationStatus,
+      amount: normalizeMoney(row.amount),
+      settledAt: row.settled_at ? row.settled_at.toISOString() : null
+    }))
+  );
+}
+
 function settlementOf(
   header: OrderLedgerHeader,
   rows: readonly LedgerRow[]
@@ -327,7 +381,8 @@ async function finalizeSettlement(
   tenantId: string,
   header: OrderLedgerHeader,
   release: ReleaseOrderFn | null,
-  releaseNote: string
+  releaseNote: string,
+  correlationId?: string
 ): Promise<{ view: SettlementView; released: boolean }> {
   const rows = await readLedgerRows(tx, tenantId, header.id);
   const { settlement, paymentStatus } = settlementOf(header, rows);
@@ -352,6 +407,37 @@ async function finalizeSettlement(
     WHERE tenant_id = ${tenantId} AND id = ${header.id}
       AND payment_status IS DISTINCT FROM ${paymentStatus}
   `;
+
+  // Issue #379 (ADR-0041 D7): a DEPOSIT order is `paid` at its deposit, so
+  // `order.paid` cannot say "fully paid"; this event does - once, from the
+  // ledger write that takes the cached status to `paid`, in this transaction.
+  // A whole-total order fires `order.paid` at full settlement already and gets
+  // none (nothing changes for a tenant that never takes a deposit).
+  if (
+    paymentStatus === "paid" &&
+    header.paymentStatus !== "paid" &&
+    settlement.settledCents > 0n &&
+    isDepositOrder(header)
+  ) {
+    const settledAt =
+      (await readOrderSettledAt(tx, tenantId, header.id, header.total)) ??
+      new Date().toISOString();
+    await appendDomainEvent(tx, tenantId, {
+      eventType: COMMERCE_ORDER_SETTLED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      aggregateType: COMMERCE_ORDER_AGGREGATE_TYPE,
+      aggregateId: header.id,
+      producerModule: PRODUCER_MODULE,
+      correlationId,
+      payload: {
+        orderId: header.id,
+        orderCode: header.orderCode,
+        total: header.total,
+        deposit: fromCents(releaseThresholdCents(header)),
+        settledAt
+      }
+    });
+  }
 
   return { view: toSettlementView(settlement, paymentStatus), released };
 }
@@ -445,11 +531,30 @@ export async function fetchOrderPaymentSummary(
       amount: a.amount
     }))
   );
+  const plainView = toSettlementView(settlement, paymentStatus);
   return {
     orderId: order.id,
     orderCode: order.order_code,
     orderStatus: order.status,
-    settlement: toSettlementView(settlement, paymentStatus),
+    // Issue #379 (ADR-0041 D6): the deposit-aware fields, derived here from the
+    // same rows and never stored.
+    settlement: {
+      ...plainView,
+      deposit: fromCents(releaseThresholdCents(header)),
+      balanceDue: plainView.outstanding,
+      settledAt:
+        settlement.outstandingCents === 0n && settlement.settledCents > 0n
+          ? deriveSettledAt(
+              header.total,
+              allocations.map((a) => ({
+                kind: a.kind,
+                status: a.status,
+                amount: a.amount,
+                settledAt: a.settledAt
+              }))
+            )
+          : null
+    },
     allocations
   };
 }
@@ -921,7 +1026,8 @@ export async function recordPaymentAllocation(
     tenantId,
     header,
     params.release,
-    params.releaseNote
+    params.releaseNote,
+    params.correlationId
   );
 
   await announcePayment(
@@ -1156,7 +1262,25 @@ export async function resolveGatewayAllocation(
     };
   }
 
-  const amount = normalizeMoney(params.grossAmount ?? header.total);
+  // Issue #379 (ADR-0041 D2): a deposit/balance leg is recorded at the amount
+  // its session was created to collect (the server's figure, which the guard
+  // has already matched to the provider's report), never the order total. A
+  // `full` session, and a session created before `sql/1025`, are recorded
+  // exactly as before: the reported amount, else the order total.
+  const sessionRows = (await tx`
+    SELECT purpose, expected_amount
+    FROM awcms_commerce_payment_gateway_sessions
+    WHERE tenant_id = ${tenantId} AND provider = ${params.provider}
+      AND provider_ref = ${params.providerReference}
+  `) as { purpose: string; expected_amount: string | null }[];
+  const sessionAmount =
+    sessionRows[0] &&
+    sessionRows[0].purpose !== "full" &&
+    sessionRows[0].expected_amount !== null
+      ? normalizeMoney(sessionRows[0].expected_amount)
+      : null;
+  const amount =
+    sessionAmount ?? normalizeMoney(params.grossAmount ?? header.total);
   let allocation: PaymentAllocationRecord;
 
   if (existing && existing.status === "pending") {
@@ -1206,7 +1330,8 @@ export async function resolveGatewayAllocation(
     tenantId,
     header,
     params.release,
-    params.releaseNote
+    params.releaseNote,
+    params.correlationId
   );
 
   await announcePayment(
