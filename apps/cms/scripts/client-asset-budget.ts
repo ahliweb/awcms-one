@@ -1545,7 +1545,17 @@ export const READER_BUDGET_BYTES = 24_000;
  * reports screen added nothing measurable. A measurement of the merged build,
  * not a sum of the three branches' figures; the budget sits 91 B above it.
  */
-export const APP_BUDGET_BYTES = 442_200;
+/*
+ * **Final: 444,300 B at the 4f061a5 subtree sync (awcms-one#409)** - MEASURED
+ * 444,225 B on the merged build. Upstream sits at 320,435 B after its
+ * `/admin/whatsapp` screen script (#963, above, +2,116 B on 318,319 B); this
+ * embed's commerce lineage is +123,790 B over that, exactly the +123,790 B
+ * (442,109 - 318,319) it was before the sync, so here the measurement and a plain
+ * sum (442,109 + 2,116) agree. The other new upstream modules (`booking`,
+ * `hr_workforce`, `hr_commission`) have no admin screen and added no client
+ * asset. The measurement is the figure, not the sum.
+ */
+export const APP_BUDGET_BYTES = 444_300;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.
