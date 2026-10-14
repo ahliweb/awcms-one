@@ -163,21 +163,25 @@ export async function resetStoreSettings(
   actorTenantUserId: string,
   correlationId?: string
 ): Promise<boolean> {
-  // Issue #282 (ADR-0038 D1) and issue #293 (ADR-0039): this row also carries
-  // the tenant's stock authority (`inventory_mode`) and tax mode (`tax_mode`)
-  // in real columns. A stamped row is hard-purged by the retention engine once
-  // it ages out, which would silently put a ledger-authoritative tenant back on
-  // the counter or an engine tenant back on the flat percentage. So while
-  // either mode is non-default a reset REPLACES the blob with the defaults in
-  // place and never stamps `deleted_at`: same visible result.
+  // Issue #282 (ADR-0038 D1), issue #293 (ADR-0039) and issue #392: this row
+  // also carries the tenant's stock authority (`inventory_mode`), tax mode
+  // (`tax_mode`) and WhatsApp delivery mode (`whatsapp_mode`) in real columns. A
+  // stamped row is hard-purged by the retention engine once it ages out, which
+  // would silently put a ledger-authoritative tenant back on the counter, an
+  // engine tenant back on the flat percentage, or an `upstream` WhatsApp tenant
+  // back on the legacy queue. So while any mode is non-default a reset REPLACES
+  // the blob with the defaults in place and never stamps `deleted_at`: same
+  // visible result.
   const rows = (await tx`
     UPDATE awcms_commerce_store_settings
     SET deleted_at = CASE
-          WHEN tax_mode = 'engine' OR inventory_mode = 'ledger' THEN NULL
+          WHEN tax_mode = 'engine' OR inventory_mode = 'ledger'
+               OR whatsapp_mode = 'upstream' THEN NULL
           ELSE now()
         END,
         settings = CASE
           WHEN tax_mode = 'engine' OR inventory_mode = 'ledger'
+               OR whatsapp_mode = 'upstream'
             THEN ${buildDefaultStoreSettings(await fetchTenantName(tx, tenantId))}::jsonb
           ELSE settings
         END,

@@ -106,3 +106,18 @@ export function renderWhatsappTemplate(
 
   return rendered;
 }
+
+/**
+ * The variable allow-list and wording of one commerce template (Issue #392).
+ * `domain/whatsapp-upstream-templates.ts` registers these same definitions with
+ * `whatsapp_delivery`, so the wording is single-sourced while both modes exist
+ * and an `upstream` message cannot say something a `legacy` one does not.
+ */
+export function whatsappTemplateDefinition(templateKey: WhatsappTemplateKey): {
+  readonly variables: readonly string[];
+  readonly body: string;
+} {
+  const { variables, body } = WHATSAPP_TEMPLATES[templateKey];
+
+  return { variables, body };
+}

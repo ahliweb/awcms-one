@@ -105,10 +105,16 @@ import { contentHash, renderDocument } from "../domain/documents";
 import { maskPhone } from "../domain/phone-normalisation";
 import { normalizeMoney } from "../domain/price-calculation";
 import { isWhatsappChannelEnabled } from "../domain/whatsapp-config";
+import { documentDeliveryFailureReason } from "../domain/whatsapp-enqueue-types";
 import { fetchDocument } from "./document-directory";
 import { IdempotencyPayloadMismatchError } from "./order-directory";
 import { fetchStoreSettings } from "./store-settings-directory";
-import { enqueueWhatsappMessage } from "./whatsapp-enqueue";
+import {
+  enqueueWhatsappMessage,
+  isWhatsappChannelAvailable
+} from "./whatsapp-enqueue";
+import { readLegacyWhatsappStatesByCorrelation } from "./whatsapp-message-directory";
+import { readUpstreamWhatsappStates } from "./whatsapp-upstream-status";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE = "document_delivery";
@@ -414,6 +420,23 @@ export function isDeliveryChannelEnabled(
     : env.EMAIL_ENABLED === "true";
 }
 
+/**
+ * The tenant-aware form (Issue #392): the WhatsApp channel asks the flag of the
+ * queue the tenant's mode points at (`legacy`: `COMMERCE_WHATSAPP_ENABLED`,
+ * `upstream`: `WHATSAPP_ENABLED`), so a delivery is never recorded as `queued`
+ * for a queue no dispatcher drains. E-mail is unchanged.
+ */
+export async function isDeliveryChannelEnabledForTenant(
+  tx: Bun.SQL,
+  tenantId: string,
+  channel: DeliveryChannel,
+  env: NodeJS.ProcessEnv = process.env
+): Promise<boolean> {
+  return channel === "whatsapp"
+    ? isWhatsappChannelAvailable(tx, tenantId, env)
+    : isDeliveryChannelEnabled(channel, env);
+}
+
 function resolveLinkBaseUrl(env: NodeJS.ProcessEnv = process.env): string {
   const override = env.COMMERCE_DOCUMENT_LINK_BASE_URL?.trim();
   return override && override.length > 0
@@ -633,7 +656,9 @@ export async function requestDocumentDelivery(
   const { source } = loaded;
 
   // 4. The channel must be one a dispatcher will actually service.
-  if (!isDeliveryChannelEnabled(input.channel, env)) {
+  if (
+    !(await isDeliveryChannelEnabledForTenant(tx, tenantId, input.channel, env))
+  ) {
     return deny(tx, context, input, "CHANNEL_UNAVAILABLE", source.docNumber);
   }
 
@@ -712,14 +737,23 @@ export async function requestDocumentDelivery(
     );
   } else {
     templateKey = DOCUMENT_DELIVERY_WHATSAPP_TEMPLATE_KEY;
-    await enqueueWhatsappMessage(tx, {
+    const queued = await enqueueWhatsappMessage(tx, {
       tenantId,
       toPhone: recipient,
       templateKey: DOCUMENT_DELIVERY_WHATSAPP_TEMPLATE_KEY,
       variables: message.variables,
-      correlationId: deliveryId
+      correlationId: deliveryId,
+      idempotencyKey: `document:${deliveryId}`
     });
-    enqueue = { enqueued: true };
+    // `legacy` always enqueues. In `upstream` mode the queue can refuse or
+    // suppress; the delivery is then recorded `not_enqueued`, like a suppressed
+    // e-mail address, and no private link is stored for it.
+    enqueue = queued.enqueued
+      ? { enqueued: true }
+      : {
+          enqueued: false,
+          reason: documentDeliveryFailureReason(queued.reason)
+        };
   }
 
   const status: DeliveryStatus = enqueue.enqueued ? "queued" : "not_enqueued";
@@ -909,29 +943,35 @@ async function readOutboxStates(
     }
   }
   if (whatsappIds.length > 0) {
-    const found = (await tx`
-      SELECT correlation_id, status, provider_ref, attempts, last_error, sent_at
-      FROM awcms_commerce_whatsapp_messages
-      WHERE tenant_id = ${tenantId}
-        AND correlation_id = ANY(${tx.array(whatsappIds, "text")}::text[])
-    `) as {
-      correlation_id: string;
-      status: string;
-      provider_ref: string | null;
-      attempts: number;
-      last_error: string | null;
-      sent_at: Date | null;
-    }[];
-    for (const row of found) {
-      result.set(row.correlation_id, {
+    // The legacy queue first (the statement the history has always run), then
+    // the `upstream` queue for every id it does not hold: a delivery requested
+    // while the tenant was in `upstream` mode left through the port (Issue #392),
+    // one requested before that is still a legacy row. A tenant that never
+    // leaves `legacy` finds every id in the first read and never reaches the
+    // second.
+    const legacy = await readLegacyWhatsappStatesByCorrelation(
+      tx,
+      tenantId,
+      whatsappIds
+    );
+    for (const [correlationId, row] of legacy) {
+      result.set(correlationId, {
         status: row.status as OutboxStatus,
-        providerMessageId: row.provider_ref,
-        // Both dispatchers count FAILED attempts only (a success never bumps
-        // the counter), so `attempts` here and `retry_count` above mean the same.
-        retryCount: Number(row.attempts),
-        lastError: truncate(row.last_error),
-        sentAt: row.sent_at ? row.sent_at.toISOString() : null
+        providerMessageId: row.providerMessageId,
+        retryCount: row.retryCount,
+        lastError: truncate(row.lastError),
+        sentAt: row.sentAt
       });
+    }
+    const missing = whatsappIds.filter((id) => !legacy.has(id));
+    if (missing.length > 0) {
+      const upstream = await readUpstreamWhatsappStates(tx, tenantId, missing);
+      for (const [correlationId, row] of upstream) {
+        result.set(correlationId, {
+          ...row,
+          lastError: truncate(row.lastError)
+        });
+      }
     }
   }
   return result;

@@ -340,14 +340,21 @@ async function dispatchOnePage(
         } else {
           addressMasked = maskPhone(recipient.phone);
           if (recipient.phone) {
-            await enqueueWhatsappMessage(tx, {
+            // `idempotencyKey` is the (campaign, customer) pair the recipient
+            // table is unique on. `legacy` ignores it. In `upstream` mode it
+            // makes a replayed page answer `duplicate` instead of queueing the
+            // message twice, and the queue can REFUSE a recipient (no recorded
+            // WhatsApp opt-in, opted out, rate limited): that recipient is
+            // `skipped`, exactly like a suppressed e-mail address.
+            const result = await enqueueWhatsappMessage(tx, {
               tenantId,
               toPhone: recipient.phone,
               templateKey: "commerce.campaign",
               variables: { body: renderedBody, storeName },
-              correlationId
+              correlationId,
+              idempotencyKey: `campaign:${campaign.id}:${recipient.customer_id}`
             });
-            enqueued = true;
+            enqueued = result.enqueued;
           }
         }
 

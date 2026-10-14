@@ -1,5 +1,10 @@
 import { defineModule } from "../_shared/module-contract";
 import { DEFAULT_COMMERCE_FEATURES } from "./domain/commerce-features";
+// Side-effect import (Issue #392): registers the `commerce.*` WhatsApp templates
+// with `whatsapp_delivery`, so wherever the module graph is loaded - the CMS
+// server, the admin template list - they are present. The dispatch process
+// imports the same file from `scripts/whatsapp-dispatch.ts`.
+import "./domain/whatsapp-upstream-templates";
 import { DEFAULT_CASH_UP_APPROVAL_THRESHOLD } from "./domain/register";
 import { DEFAULT_EXPENSE_APPROVAL_THRESHOLD } from "./domain/expense";
 import {
@@ -639,6 +644,26 @@ export const commerceModule = defineModule({
     // pattern, as with `email`); `tax` never depends on commerce.
     "tax"
   ],
+  /**
+   * Issue #392 (ADR-0133 section 6 phase 2) - a tenant in `upstream` WhatsApp
+   * mode sends through `whatsapp_delivery`'s port (`application/whatsapp-upstream-enqueue.ts`),
+   * and `domain/whatsapp-upstream-templates.ts` registers the `commerce.*`
+   * templates with it. A source-level relationship that deliberately does NOT
+   * imply lifecycle ordering, so it is a `capabilities.consumes` entry and not a
+   * `dependencies` one: a hard dependency would make commerce un-enableable for a
+   * tenant that has not enabled `whatsapp_delivery`, and the default (`legacy`)
+   * mode never touches it. `optional` because the capability simply is not used
+   * until a tenant's mode is `upstream`.
+   */
+  capabilities: {
+    consumes: [
+      {
+        capability: "whatsapp_delivery",
+        providedBy: "whatsapp_delivery",
+        optional: true
+      }
+    ]
+  },
   type: "domain",
   isCore: false,
   api: {

@@ -47,7 +47,7 @@ import {
   type CustomerAccountRecord,
   type OtpIdentifierColumn
 } from "./customer-account-store";
-import { isWhatsappOtpChannelAvailable } from "./whatsapp-otp-channel-adapter";
+import { isWhatsappOtpChannelAvailableForTenant } from "./whatsapp-otp-channel-adapter";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE_OTP = "customer_otp";
@@ -272,7 +272,10 @@ export async function requestCustomerOtp(
 
   const purpose = input.purpose as OtpPurpose;
 
-  if (via === "whatsapp" && !isWhatsappOtpChannelAvailable(env)) {
+  if (
+    via === "whatsapp" &&
+    !(await isWhatsappOtpChannelAvailableForTenant(tx, tenantId, env))
+  ) {
     return { kind: "channel_unavailable" };
   }
 
