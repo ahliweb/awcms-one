@@ -21,7 +21,7 @@ import { ciDefinitionHash } from "../lib/hash.ts";
 import { resolveRepo, resolveToken } from "../lib/github.ts";
 import { orchestrate } from "../lib/orchestrate.ts";
 import { lockFilePath, resultKey, resultsDir } from "../lib/state-dir.ts";
-import { fetchPullRequestInfo } from "../lib/fork.ts";
+import { fetchPullRequestInfo, ghApiJson } from "../lib/fork.ts";
 
 interface OpenPr {
   number: number;
@@ -29,19 +29,13 @@ interface OpenPr {
 }
 
 async function listOpenPrs(repoRoot: string): Promise<OpenPr[]> {
-  const proc = Bun.spawn(["gh", "pr", "list", "--state", "open", "--json", "number,headRefOid", "--limit", "100"], {
-    cwd: repoRoot,
-    stdout: "pipe",
-    stderr: "pipe"
-  });
-  const [stdout, stderr, exitCode] = await Promise.all([
-    new Response(proc.stdout).text(),
-    new Response(proc.stderr).text(),
-    proc.exited
-  ]);
-  if (exitCode !== 0) throw new Error(`gh pr list failed: ${stderr.trim()}`);
-  const parsed = JSON.parse(stdout) as Array<{ number: number; headRefOid: string }>;
-  return parsed.map((p) => ({ number: p.number, headSha: p.headRefOid }));
+  // REST, not `gh pr list` (GraphQL): see fork.ts's ghApiJson.
+  const { owner, repo } = resolveRepo(repoRoot);
+  const parsed = (await ghApiJson(`repos/${owner}/${repo}/pulls?state=open&per_page=100`, repoRoot)) as Array<{
+    number: number;
+    head: { sha: string };
+  }>;
+  return parsed.map((p) => ({ number: p.number, headSha: p.head.sha }));
 }
 
 function hasRecordedResult(key: string): boolean {
