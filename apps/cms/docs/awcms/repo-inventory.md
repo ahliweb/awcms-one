@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 33    |
-| Migrations                          | 290   |
+| Migrations                          | 291   |
 | `awcms_*` tables                    | 291   |
 | Tables with `FORCE` RLS             | 273   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 753   |
-| Route files                         | 743   |
+| Test files                          | 756   |
+| Route files                         | 744   |
 | ADR                                 | 282   |
 
 ### Modules
@@ -348,6 +348,7 @@
 | 288 | `sql/1020_awcms_commerce_retention_projection_schema.sql`                   |
 | 289 | `sql/1021_awcms_commerce_retention_projection_permissions.sql`              |
 | 290 | `sql/1027_awcms_commerce_whatsapp_mode.sql`                                 |
+| 291 | `sql/1028_awcms_commerce_whatsapp_mode_permissions.sql`                     |
 
 ### Tables & Row-Level Security
 
@@ -649,16 +650,16 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 568        |
+| `(root)`      | 569        |
 | `e2e`         | 25         |
-| `integration` | 159        |
+| `integration` | 161        |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 615   |
+| `/api/v1/**`    | 616   |
 | `/admin/**`     | 98    |
 | publik / anonim | 30    |
 

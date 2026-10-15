@@ -15457,6 +15457,46 @@ Masked phone only (`toPhoneMasked`) — never the raw `to_phone`.
 | 401    | Missing or invalid session.           | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC.           | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/whatsapp/mode` — Issue #393 (ADR-0047 Cutover). Which queue the tenant's NEW WhatsApp messages go to, and the drain state of both queues. Gated on `commerce.whatsapp_mode.read`.
+
+- **operationId**: `getCommerceWhatsappMode`
+- **Security**: bearerAuth + tenantHeader
+
+`mode` is `legacy` (commerce's own outbox, drained by `commerce:whatsapp:dispatch`) or `upstream` (the `whatsapp_delivery` queue, drained by `whatsapp:dispatch`). `queues` counts each queue's rows per status and how many are still work; `channel` is what THIS process knows about whether each channel would be serviced; `flip` is what a flip to the other mode would be refused for right now (warnings are assumed acknowledged, so only blockers decide `allowed`). Reads a snapshot and takes no lock: a flip re-reads everything under the exclusive mode lock.
+
+**Responses**
+
+| Status | Description                   | Schema                                 |
+| ------ | ----------------------------- | -------------------------------------- |
+| 200    | The mode and the drain state. | object                                 |
+| 401    | Missing or invalid session.   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.   | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/whatsapp/mode` — Issue #393 (ADR-0047 Cutover). Flips the tenant's WhatsApp delivery mode, or dry-runs the flip. Gated on `commerce.whatsapp_mode.manage` (high-risk).
+
+- **operationId**: `flipCommerceWhatsappMode`
+- **Security**: bearerAuth + tenantHeader
+
+A tenant is in exactly one mode at a time (ADR-0133 section 6). Under the exclusive per-tenant mode lock the flip is refused `409` while the queue being LEFT holds a non-terminal row for the tenant (`DRAIN_PENDING`), while the queue being ENTERED cannot send (`TARGET_CHANNEL_UNAVAILABLE`: its enable flag is off, the `whatsapp_delivery` module is off for the tenant, the recipient-hash key ring or the provider is unusable), and, for a flip into `upstream`, until the differences between the queues are acknowledged (`WARNINGS_NOT_ACKNOWLEDGED`). `from` makes the request conditional on the current mode (`MODE_CHANGED`). A refusal writes only an audit event of the refused attempt and carries the full evidence record in `error.details`. No row is ever copied between queues; the old dispatcher drains the old one. A flip to the mode the tenant is already in answers `200` with `outcome: unchanged` and writes nothing. A real flip requires a recent step-up (`403 STEP_UP_REQUIRED`) and an `Idempotency-Key`; a `dryRun` needs neither, runs the same decision and writes nothing, not even an audit event. The same rule runs from the CLI as `bun run commerce:whatsapp:cutover`.
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): [`CommerceWhatsappModeFlipRequest`](#schema-commercewhatsappmodefliprequest)
+
+**Responses**
+
+| Status | Description                                                                                                                                                              | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | The evidence record: `outcome` is `flipped`, `would_flip` (dry run) or `unchanged`.                                                                                      | object                                 |
+| 400    | Validation error.                                                                                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied, or `STEP_UP_REQUIRED` (the session has no recent second-factor proof), or a segregation-of-duties conflict.                                               | [`ApiError`](#standard-error-envelope) |
+| 409    | Refused: `MODE_CHANGED`, `DRAIN_PENDING`, `TARGET_CHANNEL_UNAVAILABLE`, `WARNINGS_NOT_ACKNOWLEDGED` (`error.details` is the evidence record), or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+
 ## OMES Control Center
 
 Owner/operator API for OMES projections and safe operations (omes_control module, ADR-0122, Issue ahliweb/omes#198) — tenant-scoped fleet overview, server registration/decommission, enrollment-challenge issuance/revocation, desired-vs-observed deployment views, allowlisted safe-operation submission (with destructive operations routed through the canonical workflow-approval engine), worker job listing/cancel/retry-approval, health/backup/audit projections. AWCMS only ever records intent against OMES-owned capability evidence stored server-side — it never executes arbitrary shell/SSH, reads host files directly, or reads Hermes private state. Host/deployment execution is exclusively OMES's own pull worker (ahliweb/omes#199, out of scope here).
@@ -20351,6 +20391,28 @@ Every field optional; status may move between active and inactive.
   "status": "active",
   "startsAt": "2026-01-01T00:00:00.000Z",
   "endsAt": "2026-01-01T00:00:00.000Z"
+}
+```
+
+### Schema: CommerceWhatsappModeFlipRequest
+
+| Field                 | Type                       | Required | Nullable | Description                                                                                                   |
+| --------------------- | -------------------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------- |
+| `to`                  | enum(`legacy`, `upstream`) | yes      | no       |                                                                                                               |
+| `reason`              | string                     | yes      | no       | Why. Recorded in the audit event and the evidence.                                                            |
+| `from`                | enum(`legacy`, `upstream`) | no       | no       | The mode the caller believes the tenant is in; a mismatch is refused MODE_CHANGED.                            |
+| `acknowledgeWarnings` | boolean                    | no       | no       | Required true for a flip into upstream, which always carries warnings (ADR-0047 known gaps).                  |
+| `dryRun`              | boolean                    | no       | no       | Run the decision and write nothing (no mode change, no audit event). Needs no Idempotency-Key and no step-up. |
+
+**Example**
+
+```json
+{
+  "to": "legacy",
+  "reason": "string",
+  "from": "legacy",
+  "acknowledgeWarnings": false,
+  "dryRun": false
 }
 ```
 
