@@ -123,6 +123,7 @@ import {
   COMMERCE_DOCUMENTS_ACTIVITY_CODE,
   COMMERCE_BARCODES_ACTIVITY_CODE,
   COMMERCE_INVENTORY_ACTIVITY_CODE,
+  COMMERCE_WHATSAPP_MODE_ACTIVITY_CODE,
   COMMERCE_DOCUMENT_PERMISSIONS,
   COMMERCE_STORED_VALUE_PROGRAMS_ACTIVITY_CODE,
   COMMERCE_STORED_VALUE_PROGRAM_PERMISSIONS,
@@ -4838,6 +4839,18 @@ export const commerceModule = defineModule({
       action: "configure",
       description:
         "Roll the stock authority back to counter mode and resync the stock cache from the ledger (Issue #282)"
+    },
+    {
+      activityCode: COMMERCE_WHATSAPP_MODE_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "Read the tenant WhatsApp delivery mode and the drain state of both queues (Issue #393)"
+    },
+    {
+      activityCode: COMMERCE_WHATSAPP_MODE_ACTIVITY_CODE,
+      action: "manage",
+      description:
+        "Flip the tenant WhatsApp delivery mode between the legacy and upstream queues, or dry-run the flip (Issue #393)"
     },
     {
       activityCode: COMMERCE_RETURNS_ACTIVITY_CODE,

@@ -13,6 +13,12 @@ import {
   type KeysetCursor
 } from "../../_shared/keyset-pagination";
 
+import {
+  LEGACY_TERMINAL_STATUSES,
+  buildQueueDrain,
+  type QueueDrain
+} from "../domain/whatsapp-cutover";
+
 export const WHATSAPP_MESSAGE_LIST_LIMIT = 100;
 
 export type WhatsappMessageStatus = "queued" | "sending" | "sent" | "failed";
@@ -176,4 +182,39 @@ export async function readLegacyWhatsappStatesByCorrelation(
   }
 
   return result;
+}
+
+/**
+ * The legacy queue's state for one tenant, for the guarded mode flip (Issue
+ * #393): the row count per status, how many are still work (every status that is
+ * not terminal, so an unknown future status blocks rather than slips through) and
+ * the age of the oldest one. A read; the flip holds the exclusive mode lock when
+ * it calls this, so no new legacy row can appear between this answer and the
+ * commit.
+ */
+export async function summarizeLegacyWhatsappQueue(
+  tx: Bun.SQL,
+  tenantId: string
+): Promise<QueueDrain> {
+  const counts = (await tx`
+    SELECT status, count(*) AS count
+    FROM awcms_commerce_whatsapp_messages
+    WHERE tenant_id = ${tenantId}
+    GROUP BY status
+  `) as { status: string; count: string | number }[];
+
+  const oldest = (await tx`
+    SELECT floor(extract(epoch FROM (now() - min(created_at))))::bigint AS age_seconds
+    FROM awcms_commerce_whatsapp_messages
+    WHERE tenant_id = ${tenantId}
+      AND status <> ALL(${tx.array([...LEGACY_TERMINAL_STATUSES], "text")}::text[])
+  `) as { age_seconds: string | number | null }[];
+
+  const age = oldest[0]?.age_seconds;
+
+  return buildQueueDrain(
+    Object.fromEntries(counts.map((row) => [row.status, Number(row.count)])),
+    LEGACY_TERMINAL_STATUSES,
+    age === null || age === undefined ? null : Number(age)
+  );
 }

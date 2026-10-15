@@ -842,3 +842,17 @@ export const COMMERCE_SEGMENT_MEMBER_PERMISSIONS = {
   read: "commerce.segment_members.read",
   export: "commerce.segment_members.export"
 } as const;
+
+/**
+ * Issue #393 (ADR-0047 "Cutover") - the guarded per-tenant WhatsApp mode flip.
+ * `read` shows the mode and the drain state of both queues; `manage` (high-risk)
+ * flips it or dry-runs a flip. Two keys because "may see where messages go" is
+ * not "may move every OTP and receipt of the tenant to the other queue", and a
+ * single high-risk key keeps the segregation-of-duties hook on one name.
+ */
+export const COMMERCE_WHATSAPP_MODE_ACTIVITY_CODE = "whatsapp_mode";
+
+export const COMMERCE_WHATSAPP_MODE_PERMISSIONS = {
+  read: "commerce.whatsapp_mode.read",
+  manage: "commerce.whatsapp_mode.manage"
+} as const;
