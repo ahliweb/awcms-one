@@ -71,14 +71,22 @@ export async function enqueueWhatsappMessage(
 /**
  * Whether the tenant's WhatsApp channel would actually be serviced by a
  * dispatcher: the legacy flag in `legacy` mode, the queue's in `upstream` mode.
- * Reads the mode without the write lock (nothing is written here).
+ * Reads the mode without the write lock (nothing is written here), and only when
+ * the answer depends on it: with both flags off, or both on, every mode answers
+ * the same, so a deployment that has not turned the queue on is asked nothing of
+ * the database (and a `legacy` deployment behaves exactly as before the mode).
  */
 export async function isWhatsappChannelAvailable(
   tx: Bun.SQL,
   tenantId: string,
   env: NodeJS.ProcessEnv = process.env
 ): Promise<boolean> {
+  const legacyOn = isWhatsappChannelEnabled(env);
+  const upstreamOn = isWhatsappEnabled(env);
+
+  if (legacyOn === upstreamOn) return legacyOn;
+
   return (await readWhatsappMode(tx, tenantId)) === "upstream"
-    ? isWhatsappEnabled(env)
-    : isWhatsappChannelEnabled(env);
+    ? upstreamOn
+    : legacyOn;
 }

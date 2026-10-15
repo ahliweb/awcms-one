@@ -92,7 +92,13 @@
         "tax"
       ],
       "capabilitiesProvided": [],
-      "capabilitiesConsumed": [],
+      "capabilitiesConsumed": [
+        {
+          "capability": "whatsapp_delivery",
+          "providedBy": "whatsapp_delivery",
+          "optional": true
+        }
+      ],
       "permissionCount": 140,
       "navigationCount": 27,
       "jobCount": 10,

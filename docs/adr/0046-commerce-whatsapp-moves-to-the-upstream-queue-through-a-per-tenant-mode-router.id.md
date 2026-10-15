@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0046-commerce-whatsapp-moves-to-the-upstream-queue-through-a-per-tenant-mode-router.md)
 
-<!-- i18n-source-hash: sha256:428a1aae4267b99e5b5e67be2b472493583f72e843bd9aba8111f7bb92756315 -->
+<!-- i18n-source-hash: sha256:26d3da92a5df6e0e87e6d3a84e0c7be13bfbc722b289dae6da9557ffbd8edc0d -->
 
 # ADR-0046 — WhatsApp commerce pindah ke antrean upstream lewat router mode per tenant
 
@@ -21,7 +21,7 @@ Upstream mempromosikan pengiriman WhatsApp menjadi modul generik, `whatsapp_deli
 
 **D3 — Mode dibaca di bawah advisory lock bersama; tidak ada penulis dalam perubahan ini.** `resolveWhatsappMode` mengambil `pg_advisory_xact_lock_shared` sebelum membaca, sehingga jawabannya tidak berubah di tengah transaksi. `lockWhatsappModeExclusive` adalah titik sambung untuk #393: flip mengambilnya, menolak selama antrean legacy memiliki baris non-terminal (`queued`, `sending`, `retry_wait`), melakukan upsert baris pengaturan, menulis kolom, dan mengaudit. #392 hanya mengatur kolom dalam pengujian, lewat SQL.
 
-**D4 — `legacy` identik byte demi byte.** INSERT, kolom, dan nilai yang sama; field input baru yang opsional `idempotencyKey` diabaikan olehnya. Dikunci oleh uji unit tingkat pernyataan dan uji integrasi tingkat baris. Satu-satunya pekerjaan tambahan pada mode legacy adalah satu lock dan satu `SELECT` mode per enqueue, dan satu `SELECT` untuk ketersediaan kanal.
+**D4 — `legacy` identik byte demi byte.** INSERT, kolom, dan nilai yang sama; field input baru yang opsional `idempotencyKey` diabaikan olehnya. Dikunci oleh uji unit tingkat pernyataan dan uji integrasi tingkat baris. Satu-satunya pekerjaan tambahan pada mode legacy adalah satu lock dan satu `SELECT` mode per enqueue, dan, hanya ketika tepat satu dari dua flag kanal aktif, satu `SELECT` mode untuk ketersediaan kanal.
 
 **D5 — `upstream` memetakan setiap pesan ke template terdaftar.** `commerce.customer_otp` adalah `security` (variabel rahasia `code`, `expiresAt` = sekarang ditambah masa berlaku kode itu sendiri), `commerce.order_paid` dan `commerce.document` adalah `transactional`, `commerce.campaign` adalah `marketing`. Redaksi dan daftar variabel adalah milik registri legacy, dibaca lewat satu accessor, sehingga kedua mode tidak dapat berbeda. Penerima adalah alamat (pelanggan commerce tidak memiliki profil `profile_identity`). Correlation id adalah milik pemanggil. Penolakan atau suppression dikembalikan sebagai `enqueued: false` dengan alasan, tidak pernah dilempar.
 

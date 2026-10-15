@@ -4,7 +4,10 @@ import { join, resolve } from "node:path";
 import { describe, expect, test } from "bun:test";
 
 import { enqueueLegacyWhatsappMessage } from "../src/modules/commerce/application/whatsapp-enqueue-legacy";
-import { enqueueWhatsappMessage } from "../src/modules/commerce/application/whatsapp-enqueue";
+import {
+  enqueueWhatsappMessage,
+  isWhatsappChannelAvailable
+} from "../src/modules/commerce/application/whatsapp-enqueue";
 import {
   otpExpiresAt,
   toEnqueueResult,
@@ -157,6 +160,54 @@ describe("a tenant in `legacy` mode is untouched (Issue #392, M9)", () => {
     expect(calls[1]!.values).toEqual([TENANT]);
     // A tenant with no settings row (the mode select answered nothing) is `legacy`.
     expect(result).toMatchObject({ id: "row-9", enqueued: true });
+  });
+});
+
+describe("channel availability asks the database only when the mode matters (Issue #392)", () => {
+  const exploding = new Proxy(
+    {},
+    {
+      get() {
+        throw new Error("the database must not be touched");
+      },
+      apply() {
+        throw new Error("the database must not be touched");
+      }
+    }
+  ) as unknown as Bun.SQL;
+  const env = (over: Record<string, string>) => over as NodeJS.ProcessEnv;
+
+  test("both flags off, or both on, are the same answer in either mode", async () => {
+    expect(await isWhatsappChannelAvailable(exploding, TENANT, env({}))).toBe(
+      false
+    );
+    expect(
+      await isWhatsappChannelAvailable(
+        exploding,
+        TENANT,
+        env({ COMMERCE_WHATSAPP_ENABLED: "true", WHATSAPP_ENABLED: "true" })
+      )
+    ).toBe(true);
+  });
+
+  test("one flag on follows the tenant's mode", async () => {
+    const txIn = (mode: string) =>
+      (() => Promise.resolve([{ whatsapp_mode: mode }])) as unknown as Bun.SQL;
+    const legacyOnly = env({ COMMERCE_WHATSAPP_ENABLED: "true" });
+    const upstreamOnly = env({ WHATSAPP_ENABLED: "true" });
+
+    expect(
+      await isWhatsappChannelAvailable(txIn("legacy"), TENANT, legacyOnly)
+    ).toBe(true);
+    expect(
+      await isWhatsappChannelAvailable(txIn("upstream"), TENANT, legacyOnly)
+    ).toBe(false);
+    expect(
+      await isWhatsappChannelAvailable(txIn("legacy"), TENANT, upstreamOnly)
+    ).toBe(false);
+    expect(
+      await isWhatsappChannelAvailable(txIn("upstream"), TENANT, upstreamOnly)
+    ).toBe(true);
   });
 });
 
