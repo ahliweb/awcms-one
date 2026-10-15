@@ -1112,7 +1112,7 @@ suite("transactional document delivery (Issue #295)", () => {
   async function useUpstreamQueue(tenantId: string) {
     process.env.WHATSAPP_ENABLED = "true";
     process.env.WHATSAPP_PROVIDER = "log";
-    process.env.WHATSAPP_RECIPIENT_HASH_KEYS = `k1:${Buffer.alloc(32, 7).toString("base64")}`;
+    process.env.WHATSAPP_RECIPIENT_HASH_KEYS = `k1:${Buffer.from(Array.from({ length: 32 }, (_, i) => (i * 13 + 7) % 251)).toString("base64")}`;
     await getHandlerAdminSql()`
       INSERT INTO awcms_commerce_store_settings (tenant_id, whatsapp_mode, whatsapp_mode_changed_at)
       VALUES (${tenantId}, 'upstream', now())
