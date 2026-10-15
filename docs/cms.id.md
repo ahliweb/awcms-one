@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](cms.md)
 
-<!-- i18n-source-hash: sha256:1786f39d3614d1bdc8d5d711f6a14cbe742f0935c67605fb7d5f937683f16a73 -->
+<!-- i18n-source-hash: sha256:1a926ee21994d442b5b21e82039bf271fc4e76e89a3459de14727aad98871cde -->
 
 # CMS: authoring, publikasi, izin, audit, media, taksonomi
 
@@ -79,7 +79,7 @@ Dua pasangan batas laju yang bisa diatur lewat env mengatur permukaan ini: `COMM
 
 Tindak lanjut WhatsApp dari D2: `POST /account/otp/request` menerima `via?: "email"|"whatsapp"` (default `email`). `via: "whatsapp"` mewajibkan `phone` (dinormalisasi ke E.164), hanya pernah mendukung `purpose: "login"` (pendaftaran tetap hanya OTP e-mail — kombinasi `register` adalah `400 VALIDATION_ERROR`), dan menjawab `409 CHANNEL_UNAVAILABLE` — diperiksa dan dijawab SEBELUM baris OTP pernah diterbitkan — saat `COMMERCE_WHATSAPP_ENABLED` bukan `"true"` (fakta konfigurasi, bukan oracle enumerasi baru: tidak bergantung pada apakah telepon yang diberikan benar-benar punya akun). `POST /account/otp/verify` menerima `phone` sebagai alternatif `email` (saling eksklusif), menyelesaikan akun lewat telepon baris pelanggannya (`findAccountByPhone`), bukan lewat e-mail — "login lewat WhatsApp" hanya pernah mengautentikasi akun yang sudah ada.
 
-Kode dikirim lewat outbox provider kedua yang dimodelkan persis seperti `email` (`awcms_commerce_whatsapp_messages`/`_delivery_attempts`, `sql/925`), didispatch oleh `bun run commerce:whatsapp:dispatch` (claim/send/finalize, lease, circuit breaker, backoff — bentuk sama seperti `email:dispatch`) terhadap `COMMERCE_WHATSAPP_PROVIDER` yang di-resolve (`fonnte`, `meta`, atau `log` untuk dev/CI — satu-satunya adapter yang menulis kode ke baris log). `GET /api/v1/commerce/whatsapp/messages` (`commerce.whatsapp.read`) dan `/admin/commerce-whatsapp` memberi operator diagnostik baca-saja atas outbox — telepon tersamar saja, tidak pernah nomor asli/isi pesan yang dirender/kode.
+Kode dikirim lewat outbox provider kedua yang dimodelkan persis seperti `email` (`awcms_commerce_whatsapp_messages`/`_delivery_attempts`, `sql/925`), didispatch oleh `bun run commerce:whatsapp:dispatch` (claim/send/finalize, lease, circuit breaker, backoff — bentuk sama seperti `email:dispatch`) terhadap `COMMERCE_WHATSAPP_PROVIDER` yang di-resolve (`fonnte`, `meta`, atau `log` untuk dev/CI — satu-satunya adapter yang menulis kode ke baris log). `GET /api/v1/commerce/whatsapp/messages` (`commerce.whatsapp.read`) dan `/admin/commerce-whatsapp` memberi operator diagnostik baca-saja atas outbox — telepon tersamar saja, tidak pernah nomor asli/isi pesan yang dirender/kode. Sejak issue #393 sebuah tenant dapat dipindahkan ke antrean upstream `whatsapp_delivery` oleh `bun run commerce:whatsapp:cutover` atau `POST /api/v1/commerce/whatsapp/mode` — hanya ketika outbox legacy tidak memegang pesan yang sedang berjalan ([ADR-0047](adr/0047-commerce-whatsapp-moves-to-the-upstream-queue-through-a-per-tenant-mode-router.md) "Cutover", runbook di [`deployment.md`](deployment.md)).
 
 ## Sumber daya akun pelanggan (Issue #91, kontrak #86/ADR-0016)
 

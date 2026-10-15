@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:a1327b504b1c981ce483b08e1f2f5218e2c274825c9cc62538949914d1bb1a37 -->
+<!-- i18n-source-hash: sha256:1f59107f709210e5a3718101c54a45bb849f490d002237f671f193fc2206a900 -->
 
 # Deployment
 
@@ -352,6 +352,48 @@ Tenant dimulai di `counter` (satu hitungan stok per produk/varian seperti hari i
 ### Menerima barang ke lokasi penjualan (issue #283)
 
 Pembelian dan penerimaan adalah modul `procurement` hulu (pemasok, dokumen `receive` / `supplier_return` / `requisition` / `transfer`). Agar penerimaan menggerakkan stok **etalase**: (1) **lakukan cut-over ke mode `ledger` lebih dulu** (di atas) - pada tenant `counter` penerimaan tercatat di ledger tetapi tidak pernah sampai ke stok commerce; (2) aktifkan modul `procurement` dan jalankan `bun run identity-access:permissions:backfill` agar pemilik yang sudah ada menerima izin `procurement.*`; (3) posting penerimaan **di lokasi penjualan**, atau di gudang lalu dokumen `transfer` ke lokasi penjualan (penerimaan di lokasi lain tidak mengubah etalase); (4) tiap baris memakai `itemType` `commerce.variant` (uuid varian) atau `commerce.product` (uuid produk tanpa varian), satuan `unit` - temukan uuid dengan `GET /api/v1/commerce/inventory/items?q=<sku atau nama>` (`commerce.inventory.read`); (5) biarkan `bun run domain-events:dispatch` berjalan, yang membawa penerimaan ke cache. Rujukan yang salah tidak gagal: ledger menerimanya. `GET /api/v1/commerce/inventory/reconciliation` mendaftarkan saldo seperti itu di `orphans` (`not_found`, `product_has_variants`, `wrong_unit`, `unknown_item_type`); balikkan dokumennya dan posting ulang dengan rujukan yang benar.
+
+## Memindahkan WhatsApp commerce sebuah tenant ke antrean upstream (issue #393, [ADR-0047](adr/0047-commerce-whatsapp-moves-to-the-upstream-queue-through-a-per-tenant-mode-router.md) "Cutover")
+
+Tenant mulai pada mode `legacy`: OTP, struk, dan kampanyenya masuk ke outbox milik commerce sendiri (`awcms_commerce_whatsapp_messages`, dikuras `commerce:whatsapp:dispatch`). Memindahkannya ke antrean upstream `whatsapp_delivery` adalah satu perintah operator per tenant, tanpa downtime dan tanpa baris yang disalin: dispatcher lama menguras yang sudah terantre, hanya pesan baru yang masuk ke antrean baru, dan perintah menolak sampai antrean lama tidak memegang apa pun yang sedang berjalan. Tenant berada tepat dalam satu mode pada satu waktu.
+
+**Sebelum tenant pertama (sekali per deployment).**
+
+1. **Deploy** rilisnya (`sql/1028` menyemai `commerce.whatsapp_mode.{read,manage}`; setiap tenant tetap `legacy`). Untuk tenant yang lebih tua dari izin ini jalankan `bun run identity-access:permissions:backfill`.
+2. **Konfigurasikan kanal upstream** di lingkungan CMS DAN sidecar jobs: `WHATSAPP_ENABLED=true`, `WHATSAPP_PROVIDER` (`fonnte`, `meta`, atau `log`) beserta kredensialnya, dan `WHATSAPP_RECIPIENT_HASH_KEYS` (`openssl rand -base64 32`, lihat `apps/cms/.env.example`). Pastikan `whatsapp:dispatch` berjalan (setiap 2 menit, `whatsapp:queue:purge` di sampingnya). **Biarkan `COMMERCE_WHATSAPP_ENABLED=true` dan `commerce:whatsapp:dispatch` tetap berjalan**: keduanya menguras baris legacy setiap tenant, sudah di-flip atau belum.
+3. **Aktifkan modul `whatsapp_delivery`** untuk tenant.
+4. **Putuskan celah yang diketahui** ([ADR-0047](adr/0047-commerce-whatsapp-moves-to-the-upstream-queue-through-a-per-tenant-mode-router.md)): kampanye butuh opt-in tiap penerima di penyimpanan consent upstream (`/admin/whatsapp`), jadi impor dulu nomor tenant yang opt-in atau terima bahwa tidak ada kampanye WhatsApp yang terkirim; `WHATSAPP_PROVIDER=meta` menggagalkan setiap pesan commerce sampai template membawa identitas template provider, jadi pakai `fonnte` atau tunggu itu; struk multi-baris yang panjang diratakan dan dipotong pada 1.000 karakter; batas lajunya berbeda (10 per penerima per jam, 5 untuk OTP, 2.000 per tenant).
+
+**Per tenant.** Jalankan perintah dari `apps/cms` **dengan berkas lingkungan yang sama dengan job `whatsapp:dispatch`** (pemeriksaan kanal membaca lingkungan proses yang menjalankannya), sebagai role web (`DATABASE_URL` = `awcms_app`).
+
+```bash
+# 1. Di mana tenant sekarang, dan apa yang akan dihadapi flip saat ini?
+bun run commerce:whatsapp:cutover --tenant <tenant-uuid> --status
+
+# 2. Latihan. Tidak menulis apa pun (tanpa perubahan mode, tanpa audit event). Baca peringatannya, lalu tambahkan --ack-warnings.
+bun run commerce:whatsapp:cutover --tenant <tenant-uuid> --to upstream --reason "Cutover gelombang 1" --ack-warnings --dry-run
+
+# 3. Terapkan. --wait melakukan polling (dry run, setiap 5 dtk) sampai antrean legacy kosong, lalu membuat satu percobaan sungguhan.
+bun run commerce:whatsapp:cutover --tenant <tenant-uuid> --to upstream --reason "Cutover gelombang 1" --ack-warnings --wait 600 \
+  --operator "<nama Anda>" | tee evidence-<tenant-uuid>.json
+```
+
+Keluarannya SATU dokumen JSON di stdout (simpan bersama catatan perubahan) dan satu kalimat di stderr. Kode keluar 0 = di-flip, akan di-flip, atau sudah di mode itu; 1 = ditolak; 2 = penggunaan salah atau tenant tidak dikenal. Keputusan yang sama adalah `POST /api/v1/commerce/whatsapp/mode` (`{ "to", "reason", "from"?, "acknowledgeWarnings"?, "dryRun"? }`, `Idempotency-Key`, step-up terbaru untuk flip sungguhan) dan `GET` untuk status; keduanya diaudit di bawah `commerce.whatsapp_mode.{read,manage}`.
+
+**Arti sebuah penolakan.** Flip ditolak, dan hanya percobaan yang ditolak yang diaudit, ketika:
+
+| `refusal.code` | Penyebab | Yang dilakukan |
+| --- | --- | --- |
+| `DRAIN_PENDING` | Antrean yang ditinggalkan memegang baris non-terminal. Catatan memberi jumlah per status dan umur baris tertua. | Tunggu dispatcher lama (`commerce:whatsapp:dispatch` setiap 2 menit), atau pakai `--wait`. Baris yang tertahan `queued` dengan `next_attempt_at` yang jauh adalah gangguan provider: perbaiki provider, jangan di-flip mengitarinya. |
+| `TARGET_CHANNEL_UNAVAILABLE` | Antrean yang dimasuki tidak dapat mengirim: flag aktifnya mati, modul mati untuk tenant, key ring hash penerima atau provider tidak ada. `blockers` mendaftar semua penyebab. | Perbaiki lingkungan atau aktifkan modul, lalu jalankan ulang. |
+| `WARNINGS_NOT_ACKNOWLEDGED` | Flip ke `upstream` selalu membawa peringatan (`warnings` mendaftarnya). | Baca, lalu ulangi dengan `--ack-warnings`. |
+| `MODE_CHANGED` | `--from <mode>` tidak cocok dengan mode tenant saat ini. | Baca ulang mode. |
+
+**Catatan bukti** (`awcms.commerce.whatsapp_mode_flip/v1`): `tenantId`, `from`, `to`, `outcome` (`flipped`, `would_flip`, `unchanged`, `refused`), `dryRun`, `reason`, `at`, `surface` (`cli`/`api`) dan `operator`, `queues.legacy` dan `queues.upstream` (`countsByStatus`, `nonTerminal`, `oldestNonTerminalAgeSeconds`), `channel` (flag, NAMA provider, tidak pernah kredensial), `consent` (`commerceMarketingOptIns`, `upstreamGrantedConsents`), `blockers`, `warnings`, `warningsAcknowledged`, `refusal`, `auditEventId` (baris `awcms_audit_events`, `whatsapp_mode.flip` atau `whatsapp_mode.flip_refused`), dan `correlationId`.
+
+**Setelah flip.** (1) Kirim satu OTP sungguhan ke nomor yang Anda pegang dan pastikan tiba; flip tidak memverifikasi kredensial. (2) `GET /api/v1/commerce/whatsapp/mode` (atau `--status`) harus menunjukkan `mode: upstream` dan `queues.legacy.nonTerminal: 0`; baris legacy tetap sebagai riwayat sampai `commerce:whatsapp:purge` menghapusnya setelah masa retensi. (3) Pantau `/admin/whatsapp` untuk pesan pertama tenant. Layar WhatsApp commerce tetap hanya menampilkan baris legacy.
+
+**Rollback.** `bun run commerce:whatsapp:cutover --tenant <uuid> --to legacy --reason "<mengapa>" --wait 600` (atau `POST` dengan `"to": "legacy"`). Simetris: ditolak sampai antrean **upstream** tidak memegang baris non-terminal untuk tenant (dihitung seluruh tenant, jadi tenant yang juga mengantre pengingat booking menunggu pengingat itu juga), dan ditolak selama `COMMERCE_WHATSAPP_ENABLED` mati. Tidak ada override: jika dispatcher upstream mati, nyalakan dan biarkan antrean terkuras atau kedaluwarsa, baru rollback. Pesan yang sudah ada di antrean upstream tidak pernah disalin kembali.
 
 ## Topologi produksi (issue #150, ADR-0019)
 

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:375384035d310102764285b6d3e8b30e07022d19d0196a75f74b1f45bbb5425a -->
+<!-- i18n-source-hash: sha256:e03bad5790e9fa055a0a51c11a0c7b12b8be1be2a3c48e8949cc46365469b3a0 -->
 
 # API
 
@@ -300,6 +300,15 @@ Diagnostik sisi pemilik, digerbangi `commerce.whatsapp.read`:
 | ------ | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
 | `GET`  | `commerce/whatsapp/messages?status=` | Keyset, terbaru dulu; telepon tersamar (`toPhoneMasked`) saja — tidak pernah nomor asli, isi pesan yang dirender, atau kode OTP |
 
+### Mode pengiriman WhatsApp — terimplementasi (#393, [ADR-0047](adr/0047-commerce-whatsapp-moves-to-the-upstream-queue-through-a-per-tenant-mode-router.md) "Cutover")
+
+Ke antrean mana pesan WhatsApp BARU sebuah tenant pergi (`legacy`: outbox commerce; `upstream`: antrean `whatsapp_delivery`), dan flip terjaga di antara keduanya. Aturan yang sama berjalan dari CLI sebagai `bun run commerce:whatsapp:cutover` (runbook di [`docs/deployment.md`](deployment.md)). Dua rute pada `/api/v1/commerce/whatsapp/mode`, sisi owner dan default-deny:
+
+| Method | Path | Catatan |
+| ------ | ---- | ------- |
+| `GET`  | `/api/v1/commerce/whatsapp/mode` | `whatsapp_mode.read`. `{ mode, changedAt, queues: { legacy, upstream }, channel, consent, flip: { to, allowed, blockers, warnings } }`; setiap antrean adalah `{ countsByStatus, nonTerminal, oldestNonTerminalAgeSeconds }`. Membaca snapshot, tanpa lock |
+| `POST` | `/api/v1/commerce/whatsapp/mode` | `whatsapp_mode.manage` (berisiko tinggi). Body `{ to: "legacy" \| "upstream", reason, from?, acknowledgeWarnings?, dryRun? }` (field tak dikenal ditolak). Flip sungguhan mewajibkan `Idempotency-Key` dan step-up terbaru (`403 STEP_UP_REQUIRED`); `dryRun` tidak butuh keduanya dan tidak menulis apa pun. `200` adalah catatan bukti (`outcome` `flipped`, `would_flip`, atau `unchanged`); `409` membawanya di `error.details` dengan `MODE_CHANGED`, `DRAIN_PENDING` (antrean yang ditinggalkan memegang baris non-terminal), `TARGET_CHANNEL_UNAVAILABLE` (antrean yang dimasuki tidak dapat mengirim), atau `WARNINGS_NOT_ACKNOWLEDGED` (ke `upstream`); `409 IDEMPOTENCY_CONFLICT` untuk kunci yang dipakai ulang dengan body lain. Pemutaran ulang kunci yang sama mengembalikan bukti tersimpan dan tidak menulis apa pun. Diaudit sebagai warning (`whatsapp_mode.flip`; penolakan `whatsapp_mode.flip_refused`) |
+
 ### Kotak masuk komersial — sudah diimplementasikan (#111, kontrak #106/ADR-0017 D8)
 
 `awcms_commerce_conversations`/`awcms_commerce_messages` (`apps/cms/sql/927_awcms_commerce_conversations_schema.sql`) — satu thread per akun pelanggan terverifikasi (ADR-0016), tidak pernah pelanggan guest. `unread_for_store`/`unread_for_customer` adalah dua boolean independen yang dijaga selaras dengan setiap penyisipan pesan; field kontrak `Percakapan.unreadForCustomer` milik storefront sendiri melintas sebagai `0|1`, bukan hitungan sungguhan.
@@ -452,7 +461,7 @@ Setiap rute di bawah berada di balik feature flag `documents` milik tenant (bawa
 
 Event: `awcms.commerce.quotation.accepted`, `awcms.commerce.quotation.converted` (asal-usul konversi), `awcms.commerce.work_order.status_changed`, `awcms.commerce.document.issued`. Tiga belas kunci izin: `commerce.held_sales.{read,create,update,approve}`, `commerce.quotations.{read,create,update}`, `commerce.quotation_conversions.create`, `commerce.work_orders.{read,create,update}`, `commerce.documents.{read,create}`.
 
-## Otorisasi: 39 izin owner (ditambah kunci increment-5, sejak #285 `commerce.payments.{read,create,revoke}` dan `commerce.pos_due.create`, sejak #288 tujuh kunci nilai tersimpan: `commerce.stored_value_programs.{read,update}`, `commerce.stored_value.{read,create,update}`, `commerce.stored_value_adjustments.create`, `commerce.stored_value_reconcile.approve`, dan sejak #284 sepuluh kunci register: `commerce.registers.{read,create,update}`, `commerce.register_sessions.{read,create,update,export}`, `commerce.register_cash_ups.{create,approve}`, `commerce.register_corrections.approve`, dan sejak #294 dua belas kunci pengeluaran: `commerce.expense_categories.{read,create,update}`, `commerce.expenses.{read,create,update,export}`, `commerce.expense_postings.{create,approve}`, `commerce.expense_reversals.approve`, `commerce.expense_receipts.{read,create}`, dan sejak #282 dua kunci inventori: `commerce.inventory.{read,configure}`)
+## Otorisasi: 39 izin owner (ditambah kunci increment-5, sejak #285 `commerce.payments.{read,create,revoke}` dan `commerce.pos_due.create`, sejak #288 tujuh kunci nilai tersimpan: `commerce.stored_value_programs.{read,update}`, `commerce.stored_value.{read,create,update}`, `commerce.stored_value_adjustments.create`, `commerce.stored_value_reconcile.approve`, dan sejak #284 sepuluh kunci register: `commerce.registers.{read,create,update}`, `commerce.register_sessions.{read,create,update,export}`, `commerce.register_cash_ups.{create,approve}`, `commerce.register_corrections.approve`, dan sejak #294 dua belas kunci pengeluaran: `commerce.expense_categories.{read,create,update}`, `commerce.expenses.{read,create,update,export}`, `commerce.expense_postings.{create,approve}`, `commerce.expense_reversals.approve`, `commerce.expense_receipts.{read,create}`, dan sejak #282 dua kunci inventori: `commerce.inventory.{read,configure}`, dan sejak #393 dua kunci mode WhatsApp: `commerce.whatsapp_mode.{read,manage}`)
 
 Modul `commerce` mendeklarasikan 39 kunci izin secara total (10 + 22 + 7 di bawah), dikelompokkan berdasarkan tiga area yang sama dengan tabelnya — jumlah yang terlalu besar untuk konvensi "angka yang dieja cocok dengan set yang dihitung" milik dokumen ini sendiri (pengecekan hitungan-tertaut milik `bun run audit:dokumen` hanya mengenali angka yang dieja satu sampai dua puluh), sehingga di sini dinyatakan sebagai angka numeral, bukan di dalam blok terjaga.
 

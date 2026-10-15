@@ -790,9 +790,29 @@ them. In `upstream` mode a refusal comes back as `enqueued: false` with a
 reason, channel availability asks `WHATSAPP_ENABLED` instead of
 `COMMERCE_WHATSAPP_ENABLED`, and the document-delivery history reads the
 queue back by correlation id. The dispatcher, purge and admin screens above
-stay for legacy rows. Nothing sets the mode yet; the guarded flip is #393.
+stay for legacy rows.
 `tests/commerce-whatsapp-upstream-boundary.test.ts` fails if a file on the
 upstream path names a legacy table, provider or dispatcher.
+
+**The guarded flip (Issue #393, ADR-0047 "Cutover").**
+`application/whatsapp-mode-flip.ts` is the ONE writer of `whatsapp_mode`:
+`flipWhatsappMode(tx, tenantId, actor, target, { reason, expected?,
+acknowledgeWarnings?, dryRun? })`, called by both `bun run
+commerce:whatsapp:cutover` (`scripts/commerce-whatsapp-cutover.ts`; `--status`,
+`--to`, `--reason`, `--dry-run`, `--ack-warnings`) and `GET` / `POST
+/api/v1/commerce/whatsapp/mode` (`commerce.whatsapp_mode.read` / `.manage`,
+`sql/1028`; a real flip needs a step-up and an `Idempotency-Key`). Under the
+exclusive mode lock it refuses (`409`) while the queue being LEFT holds a
+non-terminal row (legacy: `queued`, `sending`; upstream, for the reverse flip:
+also `retry_wait`, counted through `whatsapp_delivery`'s own
+`summarizeWhatsappQueue`), while the queue being ENTERED cannot send (its flag
+is off, the `whatsapp_delivery` module is off for the tenant, no recipient-hash
+key ring, no provider) and, for a flip into `upstream`, until the ADR-0047
+known gaps are acknowledged. A refusal writes only the audit event of the
+refused attempt; a flip writes the mode and one audit event; a dry run writes
+nothing. Every attempt returns an evidence record (queue counts per status,
+oldest age, blockers, warnings, audit event id). The rule itself is the pure
+`domain/whatsapp-cutover.ts`.
 
 `POST .../account/otp/request` accepts `via?: "email"|"whatsapp"` (default
 `email`). `via: "whatsapp"` requires `phone` (E.164 via `domain/
