@@ -2017,7 +2017,26 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // Issue #937 (sql/180). SELECT only: the reporting engine's projection worker
   // will read the reservation-event log as `awcms_worker` (ADR-0131 section
   // 7.2); it writes exclusively to its own `awcms_reporting_projection_*` tables.
-  awcms_booking_reservation_events: ["SELECT"]
+  awcms_booking_reservation_events: ["SELECT"],
+  // Issue #391 (sql/1031, ADR-0046): the `commerce.order_paid_commission_attributor`
+  // consumer, run by `domain-events:dispatch` as `awcms_worker`. It reads this
+  // module's two commission-attribution tables, and the posting core of
+  // `hr_commission`'s `CommissionAccrualPort` runs in ITS transaction with ITS
+  // privileges: SELECT + INSERT on the accrual (and its birth-trigger log row),
+  // SELECT on the rule and the employment, plus a COLUMN-level UPDATE on `id` of
+  // those two (their `FOR SHARE` reads need an UPDATE privilege; it is not a
+  // table privilege, so it does not appear here - the inventory locations'
+  // precedent above). Never UPDATE or DELETE on an accrual: the worker cannot
+  // approve, void, pay or rewrite one. `awcms_tenant_settings` (the tenant's time
+  // zone) and `awcms_tenant_modules` (is `hr_commission` on) are SELECT only.
+  awcms_commerce_commission_settings: ["SELECT"],
+  awcms_commerce_commission_staff_links: ["SELECT"],
+  awcms_hr_commission_accruals: ["SELECT", "INSERT"],
+  awcms_hr_commission_transitions: ["SELECT", "INSERT"],
+  awcms_hr_commission_rules: ["SELECT"],
+  awcms_hr_employments: ["SELECT"],
+  awcms_tenant_settings: ["SELECT"],
+  awcms_tenant_modules: ["SELECT"]
 };
 
 /**

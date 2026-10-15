@@ -39,6 +39,9 @@ export const COMMERCE_ORDER_CANCELLED_LOYALTY_REVERSER_CONSUMER_NAME =
   "commerce.order_cancelled_loyalty_reverser";
 export const COMMERCE_INVENTORY_STOCK_CACHE_PROJECTOR_CONSUMER_NAME =
   "commerce.inventory_stock_cache_projector";
+/** Issue #391 (ADR-0046): reports a paid counter sale to the `hr_commission` ledger. */
+export const COMMERCE_ORDER_PAID_COMMISSION_ATTRIBUTOR_CONSUMER_NAME =
+  "commerce.order_paid_commission_attributor";
 
 export const COMMERCE_PRODUCT_CREATED_EVENT_TYPE =
   "awcms.commerce.product.created";

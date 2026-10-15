@@ -10124,6 +10124,101 @@ Sets deleted_at; the slug is freed for reuse. Restore it with POST /api/v1/comme
 | 404    | Resource not found.                                                                     | [`ApiError`](#standard-error-envelope) |
 | 409    | slug is already taken by a live category in this tenant (CATEGORY_SLUG_ALREADY_EXISTS). | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/commission/settings` — Issue #391 (ADR-0046). Whether employee-commission sale attribution is on for the tenant, which `hr_commission` rule key it applies and the source type that rule declares. Gated on `commerce.commission_settings.read`.
+
+- **operationId**: `getCommerceCommissionSettings`
+- **Security**: bearerAuth + tenantHeader
+
+OFF by default: a tenant that never saved settings answers `enabled: false` with no rule key and `updatedAt: null`.
+
+**Responses**
+
+| Status | Description                    | Schema                                 |
+| ------ | ------------------------------ | -------------------------------------- |
+| 200    | The settings, or the defaults. | object                                 |
+| 401    | Missing or invalid session.    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.    | [`ApiError`](#standard-error-envelope) |
+
+### `PUT /api/v1/commerce/commission/settings` — Issue #391 (ADR-0046). Switch commission attribution on or off and name the `hr_commission` rule it applies. Gated on `commerce.commission_settings.manage` (a high-risk action); audited with the old and new values. An upsert, so a replay is harmless.
+
+- **operationId**: `putCommerceCommissionSettings`
+- **Security**: bearerAuth + tenantHeader
+
+Takes effect for orders paid afterwards. Switching it on requires a `ruleKey`; the key is stored, not looked up, because commerce never reads the commission tables - a key with no published version in force on a sale's date makes the ledger refuse that sale (audited as `commerce.commission.attribution_refused`).
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The saved settings.         | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/commission/staff-links` — Issue #391 (ADR-0046). Which employment earns the commission of which login's counter (POS) sales, newest first (at most 200). Live links only unless `includeRetired=true`. Gated on `commerce.commission_staff_links.read`.
+
+- **operationId**: `listCommerceCommissionStaffLinks`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name             | In    | Required | Type    | Description |
+| ---------------- | ----- | -------- | ------- | ----------- |
+| `includeRetired` | query | no       | boolean |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The links.                  | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/commission/staff-links` — Issue #391 (ADR-0046). Link a login (tenant user) to the `hr_workforce` employment that earns the commission of its counter sales. Gated on `commerce.commission_staff_links.manage` (a high-risk action); audited.
+
+- **operationId**: `createCommerceCommissionStaffLink`
+- **Security**: bearerAuth + tenantHeader
+
+The employment id is opaque to commerce: it is not checked against `hr_workforce` here, the commission ledger validates it when an accrual is written. A login has at most one LIVE link and an employment at most one (`409` otherwise). An unknown tenant user and another tenant's are the same `404`.
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                               | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The new link.                                                                                             | object                                 |
+| 400    | Validation error.                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                               | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                               | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | `COMMISSION_LOGIN_ALREADY_LINKED` or `COMMISSION_EMPLOYMENT_ALREADY_LINKED` - retire the live link first. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/commission/staff-links/{id}/retire` — Issue #391 (ADR-0046). End a staff link: sales paid afterwards are no longer attributed to that employment. A link is retired, never deleted, and a retired link is final. Gated on `commerce.commission_staff_links.manage` (a high-risk action); audited.
+
+- **operationId**: `retireCommerceCommissionStaffLink`
+- **Security**: bearerAuth + tenantHeader
+
+A sale already reported keeps the accrual it produced. Retiring an already-retired link is `409`, so a retry cannot be mistaken for a second effect.
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                        | Schema                                 |
+| ------ | ---------------------------------- | -------------------------------------- |
+| 200    | The retired link.                  | object                                 |
+| 401    | Missing or invalid session.        | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.        | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                | [`ApiError`](#standard-error-envelope) |
+| 409    | `COMMISSION_LINK_ALREADY_RETIRED`. | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/conversations` — Issue #111 (contract #106 D8). Staff list of every customer conversation, newest-activity-first, keyset-paginated. Gated on `commerce.conversations.read`.
 
 - **operationId**: `listCommerceConversations`

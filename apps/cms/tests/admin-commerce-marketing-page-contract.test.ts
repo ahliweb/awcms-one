@@ -23,6 +23,20 @@ import { describe, expect, test } from "bun:test";
 import { listModules } from "../src/modules";
 import { NOT_YET_SCREENED } from "../scripts/admin-screen-coverage-ledger";
 
+/**
+ * Commerce permissions that are API-first on purpose: declared, enforced by
+ * routes and documented in OpenAPI, with no admin screen yet (Issue #391,
+ * ADR-0046). They sit on the shrink-only `NOT_YET_SCREENED` ledger until a
+ * screen claims them; this set may only shrink, and a key that gains a screen
+ * must leave both.
+ */
+const API_FIRST_COMMERCE_KEYS: ReadonlySet<string> = new Set([
+  "commerce.commission_settings.read",
+  "commerce.commission_settings.manage",
+  "commerce.commission_staff_links.read",
+  "commerce.commission_staff_links.manage"
+]);
+
 type Triple = `${string}.${string}.${string}`;
 
 type Screen = {
@@ -175,7 +189,10 @@ async function enforcedTriples(screen: Screen): Promise<Set<Triple>> {
 describe("commerce marketing screens (Issue #26)", () => {
   test("none of the marketing activity codes' permissions remain on NOT_YET_SCREENED", () => {
     expect(
-      NOT_YET_SCREENED.filter((key) => key.startsWith("commerce."))
+      NOT_YET_SCREENED.filter(
+        (key) =>
+          key.startsWith("commerce.") && !API_FIRST_COMMERCE_KEYS.has(key)
+      )
     ).toEqual([]);
   });
 
