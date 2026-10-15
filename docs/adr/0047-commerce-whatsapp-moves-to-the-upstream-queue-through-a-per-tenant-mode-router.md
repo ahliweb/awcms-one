@@ -1,6 +1,6 @@
-🇬🇧 English (source) · 🇮🇩 [Bahasa Indonesia](0046-commerce-whatsapp-moves-to-the-upstream-queue-through-a-per-tenant-mode-router.id.md)
+🇬🇧 English (source) · 🇮🇩 [Bahasa Indonesia](0047-commerce-whatsapp-moves-to-the-upstream-queue-through-a-per-tenant-mode-router.id.md)
 
-# ADR-0046 — Commerce WhatsApp moves to the upstream queue through a per-tenant mode router
+# ADR-0047 — Commerce WhatsApp moves to the upstream queue through a per-tenant mode router
 
 - **Status:** Accepted
 - **Date:** 14 October 2026

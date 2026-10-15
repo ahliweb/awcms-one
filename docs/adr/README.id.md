@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:c83efb7f780a25fd6027245b986cf715017c7147d4aff8220085dd82d7fbbc9b -->
+<!-- i18n-source-hash: sha256:b3c8f6e0428bcb622632cb69b41c1b513722d27c55d4f5ec5e4ca67bbbc2e727 -->
 
 # Architecture Decision Records
 
@@ -64,7 +64,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0043](0043-loyalty-points-are-redeemed-as-a-server-priced-discount-line-written-with-the-ledger-debit.md)                              | Poin loyalitas ditukar sebagai baris diskon berharga-server, ditulis dalam transaksi yang sama dengan debit buku besar (menutup penukaran tertunda ADR-0026)                                                                                 | Diterima                                                                                                                      |
 | [0044](0044-customer-retention-is-a-per-customer-recompute-projection-on-the-reporting-engine.md)                                       | Retensi pelanggan adalah proyeksi hitung-ulang per pelanggan di mesin `reporting` (separuh khusus-commerce dari bagian 6 metrik)                                                                                                             | Diterima                                                                                                                      |
 | [0045](0045-booking-commerce-adapter.md)                                                                                                | Adapter booking-commerce: bentuk tautan, tungkai refund pembatalan, waktu penimpaan, aktor dan step-up, kode galat dan nama consumer yang dibekukan                                                                                          | Diterima                                                                                                                      |
-| [0046](0046-commerce-whatsapp-moves-to-the-upstream-queue-through-a-per-tenant-mode-router.md)                                          | WhatsApp commerce pindah ke antrean upstream lewat router mode per tenant (default legacy, `upstream` lewat `WhatsappDeliveryPort`)                                                                                                          | Diterima                                                                                                                      |
+| [0047](0047-commerce-whatsapp-moves-to-the-upstream-queue-through-a-per-tenant-mode-router.md)                                          | WhatsApp commerce pindah ke antrean upstream lewat router mode per tenant (default legacy, `upstream` lewat `WhatsappDeliveryPort`)                                                                                                          | Diterima                                                                                                                      |
 
 ## Mengapa penomoran dimulai dari 0001
 

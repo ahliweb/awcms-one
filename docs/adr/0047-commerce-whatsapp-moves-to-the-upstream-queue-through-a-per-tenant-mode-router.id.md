@@ -1,8 +1,8 @@
-🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0046-commerce-whatsapp-moves-to-the-upstream-queue-through-a-per-tenant-mode-router.md)
+🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0047-commerce-whatsapp-moves-to-the-upstream-queue-through-a-per-tenant-mode-router.md)
 
-<!-- i18n-source-hash: sha256:26d3da92a5df6e0e87e6d3a84e0c7be13bfbc722b289dae6da9557ffbd8edc0d -->
+<!-- i18n-source-hash: sha256:74a137ce4ae440124fa74505e223445f98b2a09a419d348beaada1c2ce96d6fb -->
 
-# ADR-0046 — WhatsApp commerce pindah ke antrean upstream lewat router mode per tenant
+# ADR-0047 — WhatsApp commerce pindah ke antrean upstream lewat router mode per tenant
 
 - **Status:** Accepted
 - **Tanggal:** 14 Oktober 2026

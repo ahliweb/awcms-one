@@ -775,7 +775,7 @@ ONE gate, `COMMERCE_WHATSAPP_ENABLED === "true"` — the same condition
 `dispatchWhatsappQueue` uses to decide whether to claim anything at all.
 
 **A per-tenant mode: `legacy` or `upstream` (Issue #392, ADR-0133 section 6
-phase 2, [ADR-0046](../../../../../docs/adr/0046-commerce-whatsapp-moves-to-the-upstream-queue-through-a-per-tenant-mode-router.md)).**
+phase 2, [ADR-0047](../../../../../docs/adr/0047-commerce-whatsapp-moves-to-the-upstream-queue-through-a-per-tenant-mode-router.md)).**
 `whatsapp-enqueue.ts` is now a router with the same signature: it reads
 `awcms_commerce_store_settings.whatsapp_mode` (`sql/1027`, default `legacy`;
 `application/whatsapp-mode.ts`, read under a shared advisory lock) and calls

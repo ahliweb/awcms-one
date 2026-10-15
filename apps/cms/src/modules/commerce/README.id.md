@@ -834,7 +834,7 @@ sama yang dipakai `dispatchWhatsappQueue` untuk memutuskan apakah akan
 mengklaim apa pun sama sekali.
 
 **Mode per tenant: `legacy` atau `upstream` (Issue #392, ADR-0133 bagian 6
-fase 2, [ADR-0046](../../../../../docs/adr/0046-commerce-whatsapp-moves-to-the-upstream-queue-through-a-per-tenant-mode-router.md)).**
+fase 2, [ADR-0047](../../../../../docs/adr/0047-commerce-whatsapp-moves-to-the-upstream-queue-through-a-per-tenant-mode-router.md)).**
 `whatsapp-enqueue.ts` kini adalah router dengan signature yang sama: ia
 membaca `awcms_commerce_store_settings.whatsapp_mode` (`sql/1027`, default
 `legacy`; `application/whatsapp-mode.ts`, dibaca di bawah advisory lock
