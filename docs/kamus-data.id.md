@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:f310cea9dc2fa9faaa2935b3d5e9573da2df3df77fa7c843fe295f354ab7429c -->
+<!-- i18n-source-hash: sha256:9a4708a534d8fb5d8ee6c1e3410c31d1c1847cdfb164f8f121043c0ce54f7a36 -->
 
 # Kamus data
 
@@ -426,6 +426,25 @@ Rancangan platform ini sendiri - tidak ada yang dipindahkan dari toko lama.
 | snapshot komponen                         | `awcms_commerce_order_item_components` (`sql/954`)                                                                          | Satu baris immutable per komponen dari baris pesanan bundel: id, `sku`, `name`, `variant_name`, `quantity_per_bundle`, `quantity_total`, `allocated_value` (total baris dibagi menurut nilai daftar, sisa-terbesar, Σ = total baris) |
 | baris sumber komponen                     | `awcms_inventory_movements.source_line`                                                                                     | `<orderItemId>:c<position>` untuk penjualan atau restock pesanan, `<returnLineId>:c<position>` untuk restock retur                                                                                                                   |
 | `bundle.define`                           | `awcms_audit_events.action` (modul `commerce`)                                                                              | Definisi bundel disimpan (kind, harga, jumlah komponen; hanya id dan hitungan)                                                                                                                                                       |
+
+## Kosakata atribusi komisi (isu #391, [ADR-0046](adr/0046-commission-attribution-adapter-reports-paid-counter-sales-to-the-hr-commission-ledger.id.md))
+
+Sisi commerce dalam melaporkan penjualan kasir yang sudah dibayar ke buku besar `hr_commission` milik upstream. Commerce menyimpan **pengenal dan sebuah sakelar, tidak pernah jumlah, tarif atau status akrual**; semua itu ada di `hr_commission`. Jangan dikacaukan dengan komisi afiliasi (`awcms_commerce_affiliates`, penerima manfaat eksternal).
+
+| Istilah | Di mana | Arti |
+| --- | --- | --- |
+| pengaturan komisi | `awcms_commerce_commission_settings` | Satu baris per tenant: `enabled` (bawaan **false**), `rule_key`, `source_type`. CHECK melarang `enabled` tanpa `rule_key`; tidak ada kunci aturan bawaan |
+| `rule_key` | sama | Kunci aturan `hr_commission` yang sudah diterbitkan tenant. Kode huruf kecil; disimpan, tidak pernah dicari commerce |
+| `source_type` | sama | Bawaan `commerce_order_line`. Harus sama dengan `sourceType` yang dideklarasikan aturan, atau buku besar menolak dengan `source_type_mismatch` |
+| tautan staf | `awcms_commerce_commission_staff_links` | Menggabungkan login (`tenant_user_id`) dengan employment `hr_workforce` (`employment_id`, **buram**: tanpa foreign key, tanpa pembacaan). Paling banyak satu tautan HIDUP per login dan per employment; dipensiunkan (`retired_at`), tidak pernah dihapus |
+| cap kasir | `awcms_commerce_orders.pos_cashier_tenant_user_id` | Login yang mencatat penjualan kasir, dicap dari sesi terautentikasi (`sql/931`). Satu-satunya sumber "siapa yang menjual": tidak pernah kolom request |
+| identitas sumber | kunci unik buku besar | `(tipe sumber, id pesanan, id baris pesanan)` ditambah employment: satu akrual per baris berapa pun event pesanan-dibayar diputar ulang |
+| jumlah dasar | dilaporkan per baris | Total baris dikurangi bagian proporsional `discount` + `loyalty_discount` (sen bilangan bulat, alokasi sisa-terbesar modul retur). Tidak pernah ongkos kirim, asuransi atau pajak |
+| `occurredOn` | dilaporkan per baris | `paid_at` pesanan sebagai tanggal sipil di zona waktu tenant sendiri (`awcms_tenant_settings.timezone`) |
+| `commerce.order_paid_commission_attributor` | nama konsumer domain-event | Permanen: ia menjadi kunci baris pengiriman dan buku efek. Idempotensi bawaan `runtime_effect_once` |
+| `commerce.commission_settings.{read,manage}`, `commerce.commission_staff_links.{read,manage}` | `awcms_permissions` (`sql/1031`) | Empat izin pada dua activity code; `manage` berisiko tinggi |
+| `commerce.commission.{settings_updated,staff_link_created,staff_link_retired,attributed,attribution_refused,attribution_rejected}` | aksi audit | Tidak ada yang memuat jumlah, dasar, tarif, referensi sumber atau (untuk baris konsumer) id employment |
+| `COMMISSION_LOGIN_ALREADY_LINKED`, `COMMISSION_EMPLOYMENT_ALREADY_LINKED`, `COMMISSION_LINK_ALREADY_RETIRED` | kode error `409` | Penolakan stabil rute tautan staf |
 
 ## Kolom dan tabel yang ditunda — tidak di-porting
 
