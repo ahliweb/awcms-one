@@ -24,7 +24,8 @@ import { recordAuditEvent } from "../../logging/application/audit-log";
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../_shared/idempotency";
 import {
   encodeKeysetCursor,
@@ -315,7 +316,8 @@ export async function createExpenseDraft(
     tx,
     tenantId,
     CREATE_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -380,6 +382,7 @@ export async function createExpenseDraft(
     tenantId,
     CREATE_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     expense
@@ -557,7 +560,8 @@ export async function cancelExpenseDraft(
     tx,
     tenantId,
     CANCEL_SCOPE,
-    idempotencyKey
+    idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -605,6 +609,7 @@ export async function cancelExpenseDraft(
     tenantId,
     CANCEL_SCOPE,
     idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     200,
     expense

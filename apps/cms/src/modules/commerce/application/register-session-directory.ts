@@ -37,7 +37,8 @@ import { appendDomainEvent } from "../../domain-event-runtime/application/append
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../_shared/idempotency";
 import {
   encodeKeysetCursor,
@@ -439,7 +440,8 @@ export async function openRegisterSession(
     tx,
     tenantId,
     OPEN_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -523,6 +525,7 @@ export async function openRegisterSession(
     tenantId,
     OPEN_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     session
@@ -660,7 +663,8 @@ export async function recordRegisterMovement(
     tx,
     tenantId,
     MOVEMENT_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -710,6 +714,7 @@ export async function recordRegisterMovement(
     tenantId,
     MOVEMENT_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     movement
@@ -762,7 +767,8 @@ export async function handOverRegisterSession(
     tx,
     tenantId,
     HANDOVER_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -819,6 +825,7 @@ export async function handOverRegisterSession(
     tenantId,
     HANDOVER_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     200,
     updated

@@ -269,13 +269,21 @@ async function seedEmployment(tenantUserId: string | null): Promise<string> {
     VALUES (${env.tenantId}, 'person', ${`Employee ${employmentCounter}`})
     RETURNING id
   `) as { id: string }[];
-  const found = (await sql`
-    INSERT INTO awcms_hr_employments
-      (tenant_id, profile_id, employee_no, hired_on, tenant_user_id)
-    VALUES (${env.tenantId}, ${profile[0]!.id}, ${`E-${employmentCounter}`},
-            '2026-01-01', ${tenantUserId})
-    RETURNING id
-  `) as { id: string }[];
+  // Arbitrary logins here; the PS-14 link guard (#979) is bypassed for the insert.
+  await sql`ALTER TABLE awcms_hr_employments DISABLE TRIGGER awcms_hr_employments_link_guard_insert`;
+  let found: { id: string }[];
+
+  try {
+    found = (await sql`
+      INSERT INTO awcms_hr_employments
+        (tenant_id, profile_id, employee_no, hired_on, tenant_user_id)
+      VALUES (${env.tenantId}, ${profile[0]!.id}, ${`E-${employmentCounter}`},
+              '2026-01-01', ${tenantUserId})
+      RETURNING id
+    `) as { id: string }[];
+  } finally {
+    await sql`ALTER TABLE awcms_hr_employments ENABLE TRIGGER awcms_hr_employments_link_guard_insert`;
+  }
 
   return found[0]!.id;
 }
@@ -752,6 +760,62 @@ suite("hr_commission accrual HTTP surface (Issue #951)", () => {
       expect(refused.status).toBe(403);
       expect(refused.body.error!.code).toBe("APPROVE_OWN_ACCRUAL_FORBIDDEN");
       expect((await detail(id)).body.data!.accrual.status).toBe("pending");
+    });
+
+    test("an unlinked beneficiary employment is refused with 409 BENEFICIARY_LOGIN_UNRESOLVED, not 500 and not allowed (Issue #1019)", async () => {
+      if (!handlerReady) return;
+      const unlinked = await seedEmployment(null);
+      const created = await accrue(
+        saleBody({
+          employmentId: unlinked,
+          source: { type: "sale_line", ref: "ORD-UNLINKED" }
+        })
+      );
+
+      expect(created.status).toBe(201);
+
+      const id = created.body.data!.accrual.id;
+      const refused = await act("approve", id);
+
+      expect(refused.status).toBe(409);
+      expect(refused.body.error!.code).toBe("BENEFICIARY_LOGIN_UNRESOLVED");
+      expect((await detail(id)).body.data!.accrual.status).toBe("pending");
+    });
+
+    test("unlink -> self-approve -> relink is refused by the handler (Issue #1019)", async () => {
+      if (!handlerReady) return;
+      const id = await accrued("ORD-BYPASS");
+
+      await admin()`
+        UPDATE awcms_hr_employments SET tenant_user_id = NULL
+        WHERE id = ${employmentId}
+      `;
+
+      const selfApprove = await act("approve", id, beneficiary.token);
+
+      expect(selfApprove.status).toBe(403);
+      expect(selfApprove.body.error!.code).toBe(
+        "APPROVE_OWN_ACCRUAL_FORBIDDEN"
+      );
+
+      // The fixture's login belongs to another profile (sql/228 would refuse
+      // the re-link), so the guard is off for this one statement.
+      await admin().begin(async (tx) => {
+        await tx.unsafe(
+          "ALTER TABLE awcms_hr_employments DISABLE TRIGGER awcms_hr_employments_link_guard"
+        );
+        await tx`
+          UPDATE awcms_hr_employments SET tenant_user_id = ${beneficiary.tenantUserId}
+          WHERE id = ${employmentId}
+        `;
+        await tx.unsafe(
+          "ALTER TABLE awcms_hr_employments ENABLE TRIGGER awcms_hr_employments_link_guard"
+        );
+      });
+
+      expect((await act("approve", id, beneficiary.token)).status).toBe(403);
+      expect((await detail(id)).body.data!.accrual.status).toBe("pending");
+      expect((await act("approve", id)).status).toBe(200);
     });
 
     test("a voided accrual can never be paid, released or approved", async () => {
@@ -1241,6 +1305,134 @@ suite("hr_commission accrual HTTP surface (Issue #951)", () => {
 
       expect((await send()).status).toBe(200);
       expect((await send()).status).toBe(200);
+    });
+  });
+
+  describe("a replay is a READ of someone's earnings: it is audited, and fail-closed (#978 re-audit L-A)", () => {
+    const READ_KIND = "sensitive_read.commission_accrual";
+
+    async function readAuditsNaming(id: string): Promise<number> {
+      const rows = (await admin()`
+        SELECT count(*)::int AS n
+        FROM awcms_audit_events
+        WHERE tenant_id = ${env.tenantId}
+          AND action = ${READ_KIND}
+          AND attributes -> 'resourceIds' ? ${id}
+      `) as { n: number }[];
+
+      return rows[0]!.n;
+    }
+
+    test("the canonical-request replay (a NEW Idempotency-Key, outcome 'replayed') writes a read-audit row naming the accrual", async () => {
+      if (!handlerReady) return;
+      const first = await accrue(saleBody(), undefined, nextKey());
+      const id = first.body.data!.accrual.id;
+
+      expect(first.status).toBe(201);
+      // Creating is audited as an accrual, not as a read.
+      expect(await readAuditsNaming(id)).toBe(0);
+
+      const replay = await accrue(saleBody(), undefined, nextKey());
+
+      expect(replay.status).toBe(200);
+      expect(replay.body.data!.replayed).toBe(true);
+      expect(await readAuditsNaming(id)).toBe(1);
+
+      const row = (await admin()`
+        SELECT actor_tenant_user_id, message, attributes::text AS attributes
+        FROM awcms_audit_events
+        WHERE tenant_id = ${env.tenantId} AND action = ${READ_KIND}
+      `) as {
+        actor_tenant_user_id: string;
+        message: string;
+        attributes: string;
+      }[];
+
+      expect(row[0]!.actor_tenant_user_id).toBe(env.ownerTenantUserId);
+      // Ids and counts only: the amount the response carried is nowhere in it.
+      expect(row[0]!.attributes).not.toContain(
+        replay.body.data!.accrual.amount
+      );
+    });
+
+    test("the stored Idempotency-Key replay (the producer never runs) writes a read-audit row naming the accrual", async () => {
+      if (!handlerReady) return;
+      const key = nextKey();
+      const first = await accrue(saleBody(), undefined, key);
+      const id = first.body.data!.accrual.id;
+
+      expect(first.status).toBe(201);
+      expect(await readAuditsNaming(id)).toBe(0);
+
+      const replay = await accrue(saleBody(), undefined, key);
+
+      expect(replay.status).toBe(201);
+      expect(replay.body.data!.accrual.id).toBe(id);
+      expect(await readAuditsNaming(id)).toBe(1);
+    });
+
+    /** The handler's transaction aborts: no response, hence no accrual body, is ever produced. */
+    async function expectNoBody(
+      attempt: () => Promise<{ status: number; body: unknown }>
+    ): Promise<void> {
+      let produced: { status: number; body: unknown } | null = null;
+      let failure: unknown = null;
+
+      try {
+        produced = await attempt();
+      } catch (error) {
+        failure = error;
+      }
+
+      // Either the handler threw (the usual shape here) or it answered with a
+      // 5xx envelope; what it must never do is return the accrual.
+      if (produced) {
+        expect(produced.status).toBeGreaterThanOrEqual(500);
+        expect(JSON.stringify(produced.body)).not.toContain("accrual");
+      } else {
+        expect(String(failure)).toContain("zz_injected_failure");
+      }
+    }
+
+    async function withFailingReadAudit<T>(run: () => Promise<T>): Promise<T> {
+      // A constraint that every new row version violates: the counter upsert
+      // inside recordSensitiveRead fails, whatever the caller does.
+      await admin()`
+        ALTER TABLE awcms_sensitive_read_windows
+          ADD CONSTRAINT zz_injected_failure CHECK (false) NOT VALID
+      `;
+
+      try {
+        return await run();
+      } finally {
+        await admin()`
+          ALTER TABLE awcms_sensitive_read_windows
+            DROP CONSTRAINT zz_injected_failure
+        `;
+      }
+    }
+
+    test("fail-closed: when the audit fails the canonical replay returns NO accrual body", async () => {
+      if (!handlerReady) return;
+      const first = await accrue(saleBody(), undefined, nextKey());
+
+      expect(first.status).toBe(201);
+
+      await withFailingReadAudit(() =>
+        expectNoBody(() => accrue(saleBody(), undefined, nextKey()))
+      );
+    });
+
+    test("fail-closed: when the audit fails the stored-key replay returns NO accrual body", async () => {
+      if (!handlerReady) return;
+      const key = nextKey();
+      const first = await accrue(saleBody(), undefined, key);
+
+      expect(first.status).toBe(201);
+
+      await withFailingReadAudit(() =>
+        expectNoBody(() => accrue(saleBody(), undefined, key))
+      );
     });
   });
 });

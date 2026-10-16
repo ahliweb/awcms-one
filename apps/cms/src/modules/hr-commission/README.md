@@ -147,7 +147,12 @@ declares no `navigation`. It flips to `active` with its first screen.
   can approve, release or pay none of their own accrual; whoever created an
   accrual cannot approve it; whoever approved it cannot pay it (`403
 SEGREGATION_OF_DUTIES`, or `APPROVE_OWN_ACCRUAL_FORBIDDEN` for the beneficiary
-  approving). Void is not segregated. A test removes the trigger's guard and shows
+  approving). **The beneficiary is the login snapshotted when the accrual was
+  created (`beneficiary_tenant_user_id`, stamped by trigger, `sql/236`) AND the
+  employment's current login** (Issue #1019): unlinking the login and relinking it
+  around a self-approval gains nothing. With neither a linked login nor a snapshot,
+  approve, release and pay are refused (fail closed, `409
+BENEFICIARY_LOGIN_UNRESOLVED`; `sql/237`). Void is not segregated. A test removes the trigger's guard and shows
   the bypass succeeds.
 - **The log cannot diverge from the status.** `awcms_hr_commission_transitions` is
   written only by the accrual's own triggers (a direct insert is refused by
@@ -236,10 +241,26 @@ SEGREGATION_OF_DUTIES`, or `APPROVE_OWN_ACCRUAL_FORBIDDEN` for the beneficiary
   permission: the "employee sees their own accruals" path (an ownership grant on
   the employment's login) and the `office` business scope are follow-ups with the
   self-service surface.
-- **Exporting a person's accrual history** (tracked in issue #985) needs an employment-to-subject join the
-  registry's direct subject columns cannot express (the limit
-  `hr_workforce.employment_terms` records); the descriptor names only the actor
-  stamps and is `exportable: false` until that join exists.
+- **A person's accrual history is exported to that person** (Issue #1018,
+  ADR-0142): `hr_commission.accruals` reaches the beneficiary through
+  `employment_id` (`subjectVia`) and is `exportable: true`; the actor stamps are not
+  subject columns. Because earnings sit on the payroll boundary, the subject-export
+  route does **not** hand them out on `data_lifecycle.subject_request.export`
+  alone: the caller must ALSO hold `hr_commission.accruals.read`, otherwise the
+  table is withheld and named under `withheld` in the response (default-deny, also
+  for a replay of a stored export). Every read that does happen is recorded as a
+  sensitive read (ids and a count, never an amount). `hr_commission.transitions`
+  stays `exportable: false`: it needs a second hop and adds nothing about the
+  beneficiary the accrual does not carry. Whether earnings may be exported to the
+  subject at all is a product/legal decision recorded in the ADR-0142 addendum.
+  The join uses `profile_id` ONLY (a login mislinked to somebody else's employment
+  and later corrected would otherwise put that employment's accruals into the
+  login's export). The stored `Idempotency-Key` record keeps these rows as ids only
+  and a replay re-reads them under a fresh `accruals.read` check. The
+  `beneficiary_tenant_user_id` snapshot (`sql/236`) is a redacted column of the
+  export and is in no API response: the header comment of `sql/236` that says it
+  "is not exposed by any API" stays true only because of that redaction, and the
+  applied migration cannot be edited to say so.
 - **Retention: retained for the life of the tenant, no period asserted.** There is
   deliberately NO `dataLifecycle` descriptor for any of the three tables (a
   descriptor must assert a period and a purge mode, and nothing purges): the ledger

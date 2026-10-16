@@ -38,7 +38,8 @@ import { appendDomainEvent } from "../../domain-event-runtime/application/append
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../_shared/idempotency";
 import { fetchModuleSettingsView } from "../../module-management/application/module-settings";
 import {
@@ -570,7 +571,8 @@ export async function closeRegisterSession(
     tx,
     tenantId,
     CLOSE_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -698,6 +700,7 @@ export async function closeRegisterSession(
     tenantId,
     CLOSE_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     200,
     body
@@ -751,7 +754,8 @@ export async function decideRegisterClose(
     tx,
     tenantId,
     DECISION_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -849,6 +853,7 @@ export async function decideRegisterClose(
     tenantId,
     DECISION_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     200,
     body
@@ -897,7 +902,8 @@ export async function recordRegisterCorrection(
     tx,
     tenantId,
     CORRECT_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -993,6 +999,7 @@ export async function recordRegisterCorrection(
     tenantId,
     CORRECT_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     report

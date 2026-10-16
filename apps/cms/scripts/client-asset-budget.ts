@@ -1171,6 +1171,91 @@ export const READER_BUDGET_BYTES = 24_000;
  * **Raised again for Issue #963's security audit** (F3): the same screen script
  * gains the reinstate-over-opt-out fields (two body keys and one refusal message).
  * Measured actual total, no added margin: 320,435 B (+203 B on 320,232).
+ *
+ * **Raised for the `astro` 7.3.5 -> 7.3.8 bump** (Dependabot #991), with no source
+ * change at all. The build is byte-for-byte the same source; the bundler that
+ * `astro` pins re-minified the output differently, so individual files moved
+ * both ways (most screen scripts shrank by 5-35 B, `AuthBrandPanel.css` grew 24 B,
+ * `mission-control` grew 322 B, `blog-*` scripts grew ~18 B each) and the net
+ * across all app assets is +208 B. This is toolchain noise, not feature growth
+ * and not per-screen duplication, so there is nothing to recover by
+ * deduplicating. The previous ceiling was set with no margin, which is why a
+ * 208 B swing from a patch bump trips it. Measured actual total, no added
+ * margin: 320,643 B (+208 B on 320,435).
+ *
+ * **Raised for Issue #965** (the `/admin/telegram` screen that flipped
+ * `telegram_delivery` to `active`). One screen script of 1,897 B, and it is not
+ * per-screen duplication of the shared lifecycle: it imports `admin-form-client.ts`
+ * and `confirm-dialog-client.ts` (both already shared) and adds only the
+ * screen's own requests (request a link, confirm or reject "is this you?",
+ * unlink one's own chat, revoke a chat, switch the tenant on or off) and their
+ * error-code-to-message strings. No new stylesheet rules: it reuses the admin
+ * table, stat-card and status-pill classes. Measured actual total, no added
+ * margin: 322,540 B (+1,897 B on 320,643).
+ *
+ * **Raised again for Issue #965's security audit**: the same screen script now
+ * sends the `bindingId` the person was shown with "yes, this is me" and "no"
+ * (the server answers 409 if a newer chat replaced it) and words that refusal.
+ * Measured actual total, no added margin: 322,819 B (+279 B on 322,540).
+ *
+ * **Raised for Issue #942** (the six `/admin/booking/*` screens that flipped
+ * `booking` to `active`). Seven files, 9,478 B in all: six screen scripts
+ * (985 + 1,714 + 850 + 601 + 2,596 + 2,024 B) and ONE shared chunk of 708 B,
+ * `src/lib/ui/booking-admin-client.ts`, which carries the lifecycle every booking
+ * screen shares (a fresh `Idempotency-Key` per attempt, the translated messages
+ * the page renders as `data-msgs`, the error-code-to-message lookup) so that no
+ * screen script repeats it -- the Issue #552 lesson applied up front. The scripts
+ * import `admin-form-client.ts` and `confirm-dialog-client.ts` (already shared)
+ * and add only their own requests and form-to-body mapping. No new stylesheet
+ * rules: the screens reuse the admin table, status-pill, segmented-filter and
+ * timeline classes. Measured actual total, no added margin: 332,297 B (+9,478 B
+ * on 322,819).
+ *
+ * **Raised again for Issue #942's review**: +1,781 B (334,078 B in all). Three
+ * correctness fixes, not new screens: the seconds-to-minutes round trip no longer
+ * rewrites what the operator did not touch (the shared sender now reads each
+ * control's `data-initial` / `data-original` and a PATCH sends only the changed
+ * fields: `collectBody` in `booking-admin-client.ts`, the pure mapping in
+ * `src/lib/booking-admin-format.ts`), and the sender draws its key from the
+ * repo's `createIdempotencyKeySource` (`admin-idempotency-key.ts`) instead of a
+ * fresh UUID per click. The growth is the screens' own form-to-body mapping
+ * (resources 3,311 B, offerings 2,080 B, policy 938 B) and the shared sender
+ * (1,153 B); nothing is duplicated per screen. No stylesheet grew. Measured
+ * actual total, no added margin.
+ *
+ * **Raised for Issue #1004**: starting two-factor setup from a signed-in session
+ * now asks for the current password first, so the account screen script gains
+ * one small form handler and the error-code-to-message strings for it (wrong
+ * password, password missing, sign in again, rate limited). Not duplication:
+ * these words exist nowhere else. +722 B, measured on its own base
+ * (322,819 -> 323,541); stacked on #942: 334,800 B.
+ *
+ * **Raised for Issue #1008** (telegram_delivery post-merge hardening): +455 B
+ * (on its own base), all in the one `/admin/telegram` screen script. The
+ * confirm control now reads the 6-digit verification PIN from its own input,
+ * validates its shape and sends it with the `bindingId`, words the two new
+ * refusals (wrong PIN, too many wrong PINs), and the administrator revoke and
+ * the tenant switch send a fresh `Idempotency-Key` per click. One small markup
+ * block for the PIN field, no new stylesheet rule (it reuses `form-row`).
+ * Measured actual total, no added margin.
+ *
+ * **Raised again for Issue #1008's security audit**: +171 B.
+ * The same screen script now draws its `Idempotency-Key` from the repo's
+ * `createIdempotencyKeySource` (one key per distinct method + url + body, so a
+ * retry replays) instead of a fresh UUID per click; the import is the already
+ * shared `admin-idempotency-key.ts`. Measured actual total, no added margin.
+ *
+ * Stacked on #1004 (334,800 B): +626 B for #1008 in all, 335,426 B.
+ *
+ * **Raised for Issue #1018**: the subject-requests screen now says what an
+ * export did NOT contain for lack of permission (`withheld`, a payroll table the
+ * caller may not read) and what was cut short by the row cap (`truncatedTables`),
+ * and counts both in its summary; the strings arrive translated from the server
+ * as data attributes, so the script gains only the fill-in. The new lines reuse
+ * the existing list builder (it replaced the screen's own copy). +308 B, measured
+ * (334,800 -> 335,108 on its own base); no stylesheet grew.
+ *
+ * Stacked on #1008 (335,426 B): +308 B for #1018, 335,734 B.
  */
 /**
  * **Raised to 254,500 B in awcms-one (subtree sync of awcms#813, issue

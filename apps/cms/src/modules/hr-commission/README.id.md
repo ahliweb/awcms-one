@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:e5ba8102bd992acec070a39432e29fdadc498bda9ab5465c5239a82166ad6441 -->
+<!-- i18n-source-hash: sha256:199d6d7be6e4fe69806b035b3eda7d1cb037090cc3ab57e613624b8c0f297f90 -->
 
 # `hr_commission`
 
@@ -157,7 +157,12 @@ paid`, dan `voided` dari `pending` atau `approved`. Tiap sisi menstempel aktor d
   itu sendiri) tak dapat approve, release, atau pay akrualnya sendiri; pembuat
   akrual tak dapat menyetujuinya; penyetuju tak dapat membayarnya (`403
 SEGREGATION_OF_DUTIES`, atau `APPROVE_OWN_ACCRUAL_FORBIDDEN` untuk penerima yang
-  menyetujui). Void tidak dipisahkan. Sebuah tes menghapus guard trigger dan
+  menyetujui). **Penerima adalah login yang di-snapshot saat akrual dibuat
+  (`beneficiary_tenant_user_id`, distempel trigger, `sql/236`) DAN login employment
+  saat ini** (Issue #1019): melepas lalu menautkan kembali login di sekitar
+  persetujuan diri sendiri tidak memberi apa-apa. Bila tak ada login tertaut maupun
+  snapshot, approve, release, dan pay ditolak (fail closed, `409
+BENEFICIARY_LOGIN_UNRESOLVED`; `sql/237`). Void tidak dipisahkan. Sebuah tes menghapus guard trigger dan
   menunjukkan bypass-nya berhasil.
 - **Log tak dapat menyimpang dari status.** `awcms_hr_commission_transitions`
   ditulis hanya oleh trigger milik akrual (insert langsung ditolak oleh
@@ -249,10 +254,26 @@ SEGREGATION_OF_DUTIES`, atau `APPROVE_OWN_ACCRUAL_FORBIDDEN` untuk penerima yang
   permission biasa: jalur "karyawan melihat akrualnya sendiri" (ownership grant pada
   login employment) dan business scope `office` adalah tindak lanjut bersama
   permukaan swalayan.
-- **Mengekspor riwayat akrual seseorang** (dilacak di issue #985) membutuhkan join employment-ke-subjek yang
-  tak dapat diungkapkan kolom subjek langsung registri (batas yang dicatat
-  `hr_workforce.employment_terms`); descriptor hanya menamai stempel aktor dan
-  `exportable: false` sampai join itu ada.
+- **Riwayat akrual seseorang diekspor kepada orang itu** (Issue #1018,
+  ADR-0142): `hr_commission.accruals` menjangkau penerima lewat `employment_id`
+  (`subjectVia`) dan `exportable: true`; stempel aktor bukan kolom subjek. Karena
+  penghasilan berada di batas penggajian, rute ekspor subjek **tidak** menyerahkannya
+  hanya dengan `data_lifecycle.subject_request.export`: pemanggil juga harus memegang
+  `hr_commission.accruals.read`, jika tidak tabelnya ditahan dan disebut di
+  `withheld` pada respons (default-deny, juga untuk replay ekspor tersimpan). Setiap
+  pembacaan yang terjadi dicatat sebagai sensitive read (id dan jumlah, tak pernah
+  nominal). `hr_commission.transitions` tetap `exportable: false`: ia butuh lompatan
+  kedua dan tidak menambah apa pun tentang penerima yang belum dibawa akrual. Apakah
+  penghasilan boleh diekspor kepada subjek adalah keputusan produk/hukum yang tercatat
+  di adendum ADR-0142.
+  Join memakai `profile_id` SAJA (login yang salah tertaut ke employment orang lain
+  lalu dikoreksi akan memasukkan akrual employment itu ke ekspor login tersebut).
+  Catatan `Idempotency-Key` yang tersimpan hanya menyimpan id baris ini dan replay
+  membacanya ulang di bawah pemeriksaan `accruals.read` yang baru. Snapshot
+  `beneficiary_tenant_user_id` (`sql/236`) adalah kolom yang disamarkan pada ekspor
+  dan tidak ada di respons API mana pun: komentar header `sql/236` yang menyatakan
+  "tidak diekspos API apa pun" benar hanya karena penyamaran itu, dan migrasi yang
+  sudah diterapkan tidak dapat disunting untuk menyatakannya.
 - **Retensi: disimpan selama hidup tenant, tanpa periode yang diklaim.** Sengaja
   TIDAK ada descriptor `dataLifecycle` untuk ketiga tabel (descriptor harus
   mengklaim periode dan mode purge, dan tak ada yang mem-purge): tabel buku besar

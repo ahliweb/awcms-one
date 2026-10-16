@@ -57,6 +57,9 @@ import {
   getTenantAuthPolicy
 } from "../src/modules/identity-access/application/tenant-auth-policy";
 import { evaluateBreakGlassRequirement } from "../src/modules/identity-access/domain/tenant-sso-policy";
+import { mfaRequiredPermissionKeys } from "../src/modules/identity-access/domain/mfa-required-permissions";
+import { reportMfaRequiredPermissionHolders } from "../src/modules/identity-access/application/mfa-required-holders";
+import { isMfaFeatureEnabled } from "../src/lib/auth/mfa-config";
 import {
   evaluateAccess,
   isHighRiskAction
@@ -824,7 +827,15 @@ export const RETIRED_TENANT_TABLE_PRIVILEGES: Record<string, string[]> = {
   // and a trigger refuses it as the second layer.
   awcms_booking_resource_blocks: ["SELECT", "INSERT", "UPDATE"],
   awcms_booking_reservations: ["SELECT", "INSERT", "UPDATE"],
+  // Issue #943 (`sql/284`): reminder/confirmation intents. The runtime role only
+  // READS; the one writer of new rows is the SECURITY DEFINER function of
+  // `sql/285` (as the memberless `awcms_booking_reminders`), and the worker
+  // settles them. Never deleted: a trigger refuses it as the second layer.
+  awcms_booking_reminder_intents: ["SELECT"],
   awcms_booking_resource_allocations: ["SELECT", "INSERT", "UPDATE"],
+  // Issue #949 (`sql/305`): the person serving a claim; released with the
+  // allocation (UPDATE of released_* only, a trigger), never deleted.
+  awcms_booking_staff_assignments: ["SELECT", "INSERT", "UPDATE"],
   awcms_booking_reservation_items: ["SELECT", "INSERT"],
   awcms_booking_reservation_events: ["SELECT", "INSERT"],
   // ADR-0132 / `sql/182`. NOT retired — a rule ends by being retired (a status
@@ -840,7 +851,45 @@ export const RETIRED_TENANT_TABLE_PRIVILEGES: Record<string, string[]> = {
   // DELETE as the second layer. The transition log is append-only and written
   // only by the accrual's own triggers: INSERT and SELECT only.
   awcms_hr_commission_accruals: ["SELECT", "INSERT", "UPDATE"],
-  awcms_hr_commission_transitions: ["SELECT", "INSERT"]
+  awcms_hr_commission_transitions: ["SELECT", "INSERT"],
+  // ADR-0132 / `sql/198`. The events are APPEND-ONLY: awcms_app holds no UPDATE
+  // or DELETE (privilege), and a trigger refuses both as the second layer.
+  awcms_hr_attendance_events: ["SELECT", "INSERT"],
+  // NOT retired in the same way — a correction only ever changes its STATUS
+  // (a trigger allows exactly the status moves and nothing else) and is never
+  // deleted (privilege plus trigger).
+  awcms_hr_attendance_corrections: ["SELECT", "INSERT", "UPDATE"],
+  // ADR-0138 / `sql/306` (Issue #970). Geolocation evidence. The VERDICT rows,
+  // the published notice versions and the acknowledgements are APPEND-ONLY for
+  // awcms_app (no UPDATE or DELETE; a trigger refuses UPDATE for everyone, and
+  // a verdict leaves only through the retention engine as awcms_worker).
+  // Geofences are edited and soft-deleted, never DELETEd; the settings row is
+  // upserted, never deleted.
+  awcms_hr_attendance_location_evidence: ["SELECT", "INSERT"],
+  awcms_hr_geolocation_notices: ["SELECT", "INSERT"],
+  awcms_hr_geolocation_notice_acknowledgements: ["SELECT", "INSERT"],
+  awcms_hr_geofences: ["SELECT", "INSERT", "UPDATE"],
+  awcms_hr_geolocation_settings: ["SELECT", "INSERT", "UPDATE"],
+  // #999 / `sql/252`. NOT retired. The decision log is APPEND-ONLY: a decision
+  // is recorded once and never edited, because separation of duties (HR
+  // attendance corrections, #947) reads `decided_by` / `on_behalf_of` from it.
+  // An instance is never deleted, and its only legitimate UPDATE is the one
+  // `pending -> approved|rejected|cancelled` move; a trigger freezes a terminal
+  // instance and refuses DELETE on both as the second layer.
+  awcms_workflow_decisions: ["SELECT", "INSERT"],
+  awcms_workflow_instances: ["SELECT", "INSERT", "UPDATE"],
+  // #1032 / `sql/301`. The engine never deletes a task, a seat or a join arrival
+  // (it retires them by status). With DELETE open, a pending task could be
+  // erased from under a pending instance so that the verdict check saw "no
+  // approval needed".
+  awcms_workflow_tasks: ["SELECT", "INSERT", "UPDATE"],
+  awcms_workflow_task_assignments: ["SELECT", "INSERT", "UPDATE"],
+  awcms_workflow_join_arrivals: ["SELECT", "INSERT", "UPDATE"],
+  // #978 / `sql/224`. NOT retired — one counter row per (tenant, actor, module,
+  // kind) is overwritten in place each window, so the table is bounded by its
+  // primary key and never needs a purge. DELETE is revoked so an actor cannot
+  // erase the window that is coalescing their reads.
+  awcms_sensitive_read_windows: ["SELECT", "INSERT", "UPDATE"]
 };
 
 type RlsRow = {
@@ -1441,6 +1490,12 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // which runs as `awcms_worker`, can actually delete. Without it the purge ran,
   // reported success, and removed nothing.
   awcms_abac_decision_logs: ["DELETE", "SELECT"],
+  // Issue #1034 (sql/276) - the generic data_lifecycle purge hard-deletes
+  // idempotency records past their retention window. SELECT to find them,
+  // DELETE to remove them; never INSERT/UPDATE (records are written on the
+  // request path as `awcms_app`, and a worker that could write them could
+  // plant a replay).
+  awcms_idempotency_keys: ["DELETE", "SELECT"],
   // ADR-0084 (sql/110) — `identity-access:subscription-lifecycle` reads each
   // tenant's subscription and moves it one rung down the ladder. SELECT and
   // UPDATE only: INSERT would let a cron job put any tenant on any plan (the
@@ -1465,7 +1520,28 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_whatsapp_delivery_attempts: ["DELETE", "INSERT", "SELECT"],
   awcms_whatsapp_consents: ["SELECT"],
   awcms_whatsapp_suppressions: ["INSERT", "SELECT"],
-  awcms_identities: ["SELECT"],
+  // ADR-0140 (sql/216) — `telegram:dispatch` claims/updates queue rows, writes
+  // attempts, and ends (revokes/suspends) a binding whose principal is gone or
+  // whose chat Telegram reports unreachable, nulling its ciphertext; it reads the
+  // tenant switch but never writes it and NEVER inserts a binding or a link code
+  // (only the authenticated request and the webhook, as awcms_app, create them).
+  // `telegram:queue:purge` deletes terminal messages, spent attempts, revoked
+  // bindings and expired codes (the DELETEs are the ones to notice, per sql/091).
+  awcms_telegram_settings: ["SELECT"],
+  // SELECT is column-only since sql/304 (everything but `code_hash`): see WORKER_COLUMN_GRANTS.
+  awcms_telegram_link_codes: ["DELETE"],
+  // UPDATE here is COLUMN-scoped in sql/216 (status, the ciphertext, the captured
+  // display data and the revocation stamp; never chat_hash or principal_id), so the
+  // table-level matrix lists only DELETE and SELECT. The migration-grant parser
+  // reads table-level grants only; the column list is pinned by the Telegram
+  // integration tests (N2) instead.
+  // SELECT is column-only since sql/304 (everything but `pin_hash`): see WORKER_COLUMN_GRANTS.
+  awcms_telegram_bindings: ["DELETE"],
+  awcms_telegram_messages: ["DELETE", "INSERT", "SELECT", "UPDATE"],
+  awcms_telegram_delivery_attempts: ["DELETE", "INSERT", "SELECT"],
+  // `awcms_identities` is ABSENT on purpose: sql/304 (Issue #1078) revoked the
+  // table-wide SELECT sql/022 gave and re-granted six columns, none of them a
+  // credential. See WORKER_COLUMN_GRANTS and WORKER_CREDENTIAL_COLUMN_EXCEPTIONS.
   awcms_sync_nodes: ["SELECT"],
   // Issue #180 — identity-access:business-scope:expiry (sql/027): SELECT the
   // expiry backlog + refresh gauges, UPDATE elapsed assignments to expired,
@@ -1589,13 +1665,15 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_comments_comments: ["SELECT", "UPDATE"],
   awcms_comments_moderation_events: ["SELECT", "INSERT"],
   awcms_comments_abuse_events: ["SELECT", "DELETE"],
-  awcms_comments_reply_subscriptions: ["SELECT", "DELETE"],
+  // SELECT is column-only since sql/304: see WORKER_COLUMN_GRANTS.
+  awcms_comments_reply_subscriptions: ["DELETE"],
   // ADR-0103 — data-lifecycle:archive-purge (sql/139): the retention sweep for
   // `pending` rows nobody ever confirmed. SELECT to find them, DELETE to remove
   // them. No UPDATE: the job never changes a subscriber's STATE, and an
   // `active`, `unsubscribed` or `suppressed` row is never touched by it at all —
   // an unsubscribe record is what answers a later complaint.
-  awcms_newsletter_subscribers: ["SELECT", "DELETE"],
+  // SELECT is column-only since sql/304: see WORKER_COLUMN_GRANTS.
+  awcms_newsletter_subscribers: ["DELETE"],
   // ADR-0127 — data-lifecycle:archive-purge (sql/172): SELECT to find aged tax
   // snapshots, DELETE to remove them. No UPDATE — a snapshot is never edited,
   // and the immutability trigger refuses to delete anything younger than 1826
@@ -1615,14 +1693,16 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // The job's side effect is in Cloudflare, not here — it writes nothing back,
   // so the worker never gets write access to the hostname->tenant mapping that
   // decides whose content a visitor is served.
-  awcms_tenant_domains: ["SELECT"],
+  // `awcms_tenant_domains` SELECT is column-only since sql/304 (everything but
+  // `verification_token_hash`): see WORKER_COLUMN_GRANTS.
   // identity_access — the generic data_lifecycle purge engine over spent
   // password-reset tokens (sql/073, Gelombang 2 delta auth). SELECT (bounded
   // cursor scan) + DELETE only, the same shape as
   // `awcms_seo_not_found_observations` above. NO INSERT and NO UPDATE: issuing
   // a token and burning it are both request-path writes on awcms_app, and a
   // worker able to write here could mint a credential-recovery token.
-  awcms_password_reset_tokens: ["SELECT", "DELETE"],
+  // SELECT is column-only since sql/304: see WORKER_COLUMN_GRANTS.
+  awcms_password_reset_tokens: ["DELETE"],
   // identity_access — the same generic data_lifecycle purge over reviewed
   // self-registration requests (sql/074). SELECT + DELETE only: submitting is a
   // public-path write on awcms_app and approving/rejecting is an admin action,
@@ -1640,7 +1720,8 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // mailbox or rotate `token_hash` to a value it chose. The child
   // `awcms_invitation_policies` is deliberately absent: it goes with its parent
   // through `ON DELETE CASCADE`, which runs with the constraint owner's rights.
-  awcms_invitations: ["SELECT", "DELETE"],
+  // SELECT is column-only since sql/304: see WORKER_COLUMN_GRANTS.
+  awcms_invitations: ["DELETE"],
   // identity_access — the same generic purge over partner support-access grants
   // (`sql/117`). Added by `sql/129`, and found the way `awcms_invitations` above
   // was NOT: by running the job. `bun run data-lifecycle:archive-purge
@@ -1653,7 +1734,8 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // the purge. No UPDATE: the descriptor is `hard_delete`, and a worker able to
   // write here could extend a partner's reach into a tenant by moving
   // `expires_at` or clearing `revoked_at`.
-  awcms_delegated_access_grants: ["SELECT", "DELETE"],
+  // SELECT is column-only since sql/304: see WORKER_COLUMN_GRANTS.
+  awcms_delegated_access_grants: ["DELETE"],
   // data_lifecycle — the subject-request ledger (`sql/125`, ADR-0094). Same
   // story, same migration, same discovery. SELECT+DELETE only; the rows are
   // archived to JSONL before purge and the archive is written by the job, not
@@ -1956,7 +2038,8 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // SELECT/INSERT/UPDATE/DELETE it gave `awcms_app`; `sql/156` narrows it to
   // this.
   awcms_omes_servers: ["SELECT", "DELETE"],
-  awcms_omes_enrollments: ["SELECT", "DELETE"],
+  // SELECT is column-only since sql/304: see WORKER_COLUMN_GRANTS.
+  awcms_omes_enrollments: ["DELETE"],
   awcms_omes_deployments: ["SELECT", "DELETE"],
   awcms_omes_operation_requests: ["SELECT", "DELETE"],
   awcms_omes_jobs: ["SELECT", "DELETE"],
@@ -2017,7 +2100,36 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // Issue #937 (sql/180). SELECT only: the reporting engine's projection worker
   // will read the reservation-event log as `awcms_worker` (ADR-0131 section
   // 7.2); it writes exclusively to its own `awcms_reporting_projection_*` tables.
-  awcms_booking_reservation_events: ["SELECT"]
+  awcms_booking_reservation_events: ["SELECT"],
+  // Issue #943 (`sql/284`). `booking:reminders:dispatch` settles intents (UPDATE)
+  // and reads them; it does not INSERT (the DEFINER function of `sql/285` does)
+  // and it holds NO privilege on the reservation tables, which it reads only
+  // through the three narrow functions of `sql/285`. The UPDATE is COLUMN-scoped
+  // in `sql/284` (status, outcome_code, message_id, settled_at, attempts,
+  // reconciled_at, updated_at; never the identity of the debt), so the
+  // table-level matrix records SELECT only.
+  awcms_booking_reminder_intents: ["SELECT"],
+  // Issue #998 (sql/280). The domain-event dispatcher runs the
+  // `hr_workforce.attendance_correction_settler` consumer as `awcms_worker`:
+  // it applies a finished approval's verdict to an attendance correction
+  // exactly as `POST .../settle` does. Table-level verbs only here; the UPDATE
+  // it needs is COLUMN-scoped (corrections: status/decided_by/decided_at/
+  // updated_at; employments and workflow instances: updated_at, purely so
+  // `SELECT ... FOR SHARE` in the guard triggers is permitted) and column
+  // privileges are invisible to `has_table_privilege`. The events table is
+  // append-only (no UPDATE/DELETE); the database guard, not this grant, is what
+  // refuses a move the workflow's verdict does not support.
+  // The corrections and workflow-decisions grants are COLUMN-scoped SELECTs
+  // (neither `reason` nor `override_reason` is readable), so those two tables
+  // are deliberately absent from this table-level map.
+  awcms_hr_attendance_events: ["SELECT", "INSERT"],
+  // ADR-0138 / `sql/306`: the retention engine's generic hard_delete over the
+  // location-evidence verdicts. DELETE only at table level; its SELECT is
+  // COLUMN-scoped (id, tenant_id, evaluated_at: see WORKER_COLUMN_GRANTS), so a
+  // compromised worker cannot read a verdict, a band or an employment.
+  awcms_hr_attendance_location_evidence: ["DELETE"],
+  awcms_hr_workforce_settings: ["SELECT"],
+  awcms_hr_employments: ["SELECT"]
 };
 
 /**
@@ -2036,7 +2148,10 @@ export const SETUP_ROLE_GRANTS: Record<string, string[]> = {
   awcms_tenant_settings: ["INSERT"],
   awcms_offices: ["SELECT", "INSERT"],
   awcms_profiles: ["SELECT", "INSERT"],
-  awcms_identities: ["SELECT", "INSERT"],
+  // INSERT only since sql/310 (Issue #1082): the SELECT it used to hold was
+  // table-wide and so reached `password_hash`. What the wizard reads back is
+  // column-scoped: see SETUP_COLUMN_GRANTS.
+  awcms_identities: ["INSERT"],
   awcms_tenant_users: ["SELECT", "INSERT"],
   awcms_roles: ["SELECT", "INSERT"],
   awcms_role_permissions: ["INSERT"],
@@ -2050,9 +2165,214 @@ export const SETUP_ROLE_GRANTS: Record<string, string[]> = {
   awcms_access_policy_events: ["INSERT"]
 };
 
+/**
+ * COLUMN-ONLY grants `awcms_worker` holds: table -> privilege -> exact column
+ * list. `has_table_privilege` cannot see these (it is false for a column grant),
+ * so a column list that quietly grew by one (a `reason`, a `status`) passed the
+ * table-level matrix above untouched (audit M2 of #1044). "Column-only" means
+ * the columns the role holds the privilege on WITHOUT holding it table-wide.
+ *
+ * Pinned to `sql/280` (attendance settlement), `sql/284` (booking reminder intents), `sql/302` (requester notice) and
+ * `sql/304` (credential-column revoke, Issue #1078: every table whose table-wide
+ * SELECT reached a credential column now holds an explicit column list, and none
+ * of those lists contains a credential column).
+ * A table-wide grant elsewhere in `WORKER_ROLE_GRANTS` is not repeated here.
+ */
+export const WORKER_COLUMN_GRANTS: Record<
+  string,
+  Partial<Record<"SELECT" | "INSERT" | "UPDATE", string[]>>
+> = {
+  awcms_hr_attendance_corrections: {
+    SELECT: [
+      "id",
+      "tenant_id",
+      "employment_id",
+      "kind",
+      "target_event_id",
+      "proposed_kind",
+      "proposed_occurred_at",
+      "status",
+      "workflow_instance_id",
+      "requested_by",
+      "subject_tenant_user_id",
+      "decided_by",
+      "decided_at",
+      "created_at",
+      "updated_at"
+    ],
+    UPDATE: ["status", "decided_by", "decided_at", "updated_at"]
+  },
+  awcms_hr_employments: { UPDATE: ["updated_at"] },
+  // sql/284 (Issue #943): the booking reminder dispatcher settles an intent. The
+  // identity of the debt (reservation, kind, occurrence, due time) is not
+  // writable. Found unpinned by the column sweep added with Issue #1082.
+  awcms_booking_reminder_intents: {
+    UPDATE: [
+      "status",
+      "outcome_code",
+      "message_id",
+      "settled_at",
+      "attempts",
+      "reconciled_at",
+      "updated_at"
+    ]
+  },
+  awcms_workflow_instances: { UPDATE: ["updated_at"] },
+  awcms_workflow_decisions: {
+    SELECT: [
+      "id",
+      "tenant_id",
+      "workflow_task_id",
+      "decision",
+      "decided_by_tenant_user_id",
+      "on_behalf_of_tenant_user_id",
+      "is_administrative_override",
+      "created_at"
+    ]
+  },
+  awcms_email_messages: {
+    INSERT: [
+      "tenant_id",
+      "correlation_id",
+      "category",
+      "template_key",
+      "to_address",
+      "to_address_hash",
+      "to_address_masked",
+      "subject",
+      "variables",
+      "priority"
+    ]
+  },
+  // sql/306 (Issue #970): the generic purge's candidate selection and delete
+  // subquery need the key, the tenant and the cursor, nothing about the verdict.
+  awcms_hr_attendance_location_evidence: {
+    SELECT: ["id", "tenant_id", "evaluated_at"]
+  },
+  awcms_tenant_users: { SELECT: ["id", "tenant_id", "identity_id", "status"] },
+  awcms_profiles: { SELECT: ["id", "tenant_id", "display_name"] },
+  // ---- sql/304 (Issue #1078): no credential column in any list below ----
+  // workflow:escalations:dispatch (recipient resolution: status + login_identifier
+  // via profile_id) and reporting:projections:refresh (tenant_id + created_at).
+  awcms_identities: {
+    SELECT: [
+      "id",
+      "tenant_id",
+      "profile_id",
+      "status",
+      "login_identifier",
+      "created_at"
+    ]
+  },
+  // Generic hard_delete purge (data-lifecycle:archive-purge): id + tenant + cursor.
+  awcms_password_reset_tokens: { SELECT: ["id", "tenant_id", "created_at"] },
+  awcms_invitations: { SELECT: ["id", "tenant_id", "created_at"] },
+  awcms_delegated_access_grants: { SELECT: ["id", "tenant_id", "created_at"] },
+  awcms_omes_enrollments: { SELECT: ["id", "tenant_id", "created_at"] },
+  awcms_newsletter_subscribers: { SELECT: ["id", "tenant_id", "created_at"] },
+  // `confirmed` too: comments:retention filters `confirmed = false`.
+  awcms_comments_reply_subscriptions: {
+    SELECT: ["id", "tenant_id", "created_at", "confirmed"]
+  },
+  // Every column except the credential the job never reads.
+  awcms_tenant_domains: {
+    SELECT: [
+      "id",
+      "tenant_id",
+      "hostname",
+      "normalized_hostname",
+      "domain_type",
+      "route_mode",
+      "status",
+      "is_primary",
+      "redirect_to_primary",
+      "verification_method",
+      "verification_record_name",
+      "verification_record_value",
+      "verified_at",
+      "last_checked_at",
+      "created_at",
+      "updated_at",
+      "created_by",
+      "updated_by",
+      "deleted_at",
+      "deleted_by",
+      "delete_reason"
+    ]
+  },
+  awcms_telegram_link_codes: {
+    SELECT: [
+      "id",
+      "tenant_id",
+      "principal_id",
+      "expires_at",
+      "consumed_at",
+      "invalidated_at",
+      "created_at"
+    ]
+  },
+  awcms_telegram_bindings: {
+    // sql/216 + sql/288: the dispatcher and purge only END a binding.
+    UPDATE: [
+      "status",
+      "chat_ciphertext",
+      "display_name",
+      "username_masked",
+      "pending_expires_at",
+      "revoked_at",
+      "revoke_cause",
+      "revoked_by",
+      "updated_at",
+      "pin_hash"
+    ],
+    SELECT: [
+      "id",
+      "tenant_id",
+      "principal_id",
+      "status",
+      "chat_ciphertext",
+      "chat_hash",
+      "hash_key_id",
+      "chat_masked",
+      "display_name",
+      "username_masked",
+      "pending_expires_at",
+      "confirmed_at",
+      "revoked_at",
+      "revoke_cause",
+      "revoked_by",
+      "created_at",
+      "updated_at",
+      "pin_attempts"
+    ]
+  }
+};
+
+/**
+ * COLUMN-ONLY grants `awcms_setup` holds (`sql/310`, Issue #1082), pinned in both
+ * directions exactly as `WORKER_COLUMN_GRANTS` is. The only flow is the setup
+ * wizard's owner creation and principal link (`bootstrapPlatformTenant`):
+ *
+ * - `awcms_identities`: `SELECT (id, principal_id)` and `UPDATE (principal_id)`
+ *   for `UPDATE ... SET principal_id = $1 WHERE id = $2 AND principal_id IS NULL`
+ *   (`linkIdentityToPrincipal`). INSERT is table-level in SETUP_ROLE_GRANTS.
+ * - `awcms_principals`: NOTHING. The find-or-create of the owner's principal is
+ *   the SECURITY DEFINER `awcms_ensure_principal_id(text)`.
+ */
+export const SETUP_COLUMN_GRANTS: typeof WORKER_COLUMN_GRANTS = {
+  awcms_identities: {
+    SELECT: ["id", "principal_id"],
+    UPDATE: ["principal_id"]
+  }
+};
+
 export type WorkerSetupRoleGrantsPolicy = {
   worker: Record<string, string[]>;
   setup: Record<string, string[]>;
+  /** Optional: defaults to `WORKER_COLUMN_GRANTS`. */
+  workerColumns?: typeof WORKER_COLUMN_GRANTS;
+  /** Optional: defaults to `SETUP_COLUMN_GRANTS`. */
+  setupColumns?: typeof WORKER_COLUMN_GRANTS;
 };
 
 /**
@@ -2063,7 +2383,12 @@ export type WorkerSetupRoleGrantsPolicy = {
  * cross-file-leak trap the L2 test already documents).
  */
 export function defaultWorkerSetupRoleGrantsPolicy(): WorkerSetupRoleGrantsPolicy {
-  return { worker: WORKER_ROLE_GRANTS, setup: SETUP_ROLE_GRANTS };
+  return {
+    worker: WORKER_ROLE_GRANTS,
+    setup: SETUP_ROLE_GRANTS,
+    workerColumns: WORKER_COLUMN_GRANTS,
+    setupColumns: SETUP_COLUMN_GRANTS
+  };
 }
 
 const ALL_FOUR_PRIVILEGES = ["SELECT", "INSERT", "UPDATE", "DELETE"];
@@ -2188,6 +2513,106 @@ export async function checkWorkerSetupRoleGrants(
       }
     }
 
+    // Column-only grants (audit M2 of #1044): exact, both directions, for each
+    // provisioned role. The held side is a SWEEP of every awcms_% table, not a walk
+    // of the pinned tables: a column privilege on a table nobody pinned (a stray
+    // `SELECT (endpoint)` on push subscriptions, an `UPDATE (status)` on tenant
+    // users) is an over-grant too, and the table-level pass above cannot see it.
+    for (const { role, columns } of [
+      {
+        role: WORKER_ROLE,
+        columns: policy?.workerColumns ?? WORKER_COLUMN_GRANTS
+      },
+      {
+        role: SETUP_ROLE,
+        columns: policy?.setupColumns ?? SETUP_COLUMN_GRANTS
+      }
+    ]) {
+      if (!present.includes(role)) {
+        continue;
+      }
+
+      for (const privilege of ["SELECT", "INSERT", "UPDATE"] as const) {
+        const heldRows = (await sql`
+          SELECT c.relname AS table_name, a.attname AS column_name
+          FROM pg_attribute a
+          JOIN pg_class c ON c.oid = a.attrelid
+          JOIN pg_namespace n ON n.oid = c.relnamespace
+          WHERE c.relname LIKE 'awcms\\_%' AND c.relkind IN ('r', 'p')
+            AND n.nspname = current_schema()
+            AND a.attnum > 0 AND NOT a.attisdropped
+            AND has_column_privilege(${role}, c.oid, a.attnum, ${privilege})
+            AND NOT has_table_privilege(${role}, c.oid, ${privilege})
+          ORDER BY c.relname, a.attname
+        `) as { table_name: string; column_name: string }[];
+        const heldByTable = new Map<string, string[]>();
+
+        for (const row of heldRows) {
+          heldByTable.set(row.table_name, [
+            ...(heldByTable.get(row.table_name) ?? []),
+            row.column_name
+          ]);
+        }
+
+        const tables = new Set([
+          ...Object.keys(columns),
+          ...heldByTable.keys()
+        ]);
+
+        for (const table of tables) {
+          const expected = [...(columns[table]?.[privilege] ?? [])].sort();
+          const held = heldByTable.get(table) ?? [];
+          const extra = held.filter((column) => !expected.includes(column));
+          const missing = expected.filter((column) => !held.includes(column));
+
+          if (extra.length > 0) {
+            findings.push(
+              `${role} column grant over-granted: ${privilege} on ${table}(${extra.join(", ")}) is not in the pinned column list`
+            );
+          }
+          if (missing.length > 0) {
+            findings.push(
+              `${role} column grant under-granted: ${privilege} on ${table}(${missing.join(", ")}) is pinned but not held`
+            );
+          }
+        }
+      }
+    }
+
+    // The setup role's identity link is one-way (sql/310, Issue #1082): without
+    // the trigger and the restrictive policy, UPDATE (principal_id) is an account
+    // takeover. Pinned so that dropping either is a finding, not a silent loss.
+    if (present.includes(SETUP_ROLE)) {
+      const guard = (await sql`
+        SELECT
+          EXISTS (
+            SELECT 1 FROM pg_trigger t
+            WHERE t.tgrelid = to_regclass('awcms_identities')
+              AND t.tgname = 'awcms_identities_principal_link_once'
+              AND NOT t.tgisinternal AND t.tgenabled <> 'D'
+          ) AS has_trigger,
+          EXISTS (
+            SELECT 1 FROM pg_policy p
+            WHERE p.polrelid = to_regclass('awcms_identities')
+              AND p.polname = 'awcms_identities_setup_link_once'
+              AND NOT p.polpermissive AND p.polcmd = 'w'
+              AND p.polwithcheck IS NOT NULL AND p.polqual IS NOT NULL
+              AND p.polroles = ARRAY[to_regrole('awcms_setup')::oid]
+          ) AS has_policy
+      `) as { has_trigger: boolean; has_policy: boolean }[];
+
+      if (!guard[0]?.has_trigger) {
+        findings.push(
+          `awcms_identities trigger awcms_identities_principal_link_once is missing or disabled (a linked identity could be repointed to another principal)`
+        );
+      }
+      if (!guard[0]?.has_policy) {
+        findings.push(
+          `awcms_identities restrictive policy awcms_identities_setup_link_once (FOR UPDATE TO awcms_setup, USING and WITH CHECK) is missing`
+        );
+      }
+    }
+
     if (findings.length > 0) {
       return {
         name,
@@ -2218,6 +2643,480 @@ export async function checkWorkerSetupRoleGrants(
       severity,
       status: "fail",
       evidence: `Could not verify worker/setup role grants: ${errorMessage(error)}.`
+    };
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 7d. Worker roles cannot read a credential column (critical) — Issue #1078
+// ---------------------------------------------------------------------------
+
+/**
+ * The roles a job connects as. Today one (`awcms_worker`); a second unattended
+ * job role belongs here the day it is created, because the check below is only
+ * as wide as this list. The NOLOGIN, memberless SECURITY DEFINER OWNER roles
+ * (`awcms_delegated_expiry`, `awcms_telegram_bootstrap`, ...) are NOT job roles:
+ * nothing connects as them, they are reachable only through one narrow EXECUTE.
+ */
+export const WORKER_JOB_ROLES: readonly string[] = [WORKER_ROLE];
+
+/**
+ * Every role the credential-column check covers: the job roles plus the one-time
+ * setup role (`awcms_setup`, Issue #1082). Like a worker, an operator can
+ * activate it for LOGIN, and RLS trusts a session setting the caller picks, so
+ * it must not read a credential hash either.
+ */
+export const CREDENTIAL_CHECKED_ROLES: readonly string[] = [
+  ...WORKER_JOB_ROLES,
+  SETUP_ROLE
+];
+
+/**
+ * Credential-looking columns `awcms_setup` MAY read. EMPTY, on purpose and
+ * explicitly: the wizard creates the owner's identity and principal and never
+ * verifies a login, so it reads no credential column (sql/310). The worker
+ * exceptions below (push `auth_secret`, OMES `secret_ref`, telegram
+ * `chat_ciphertext`) are job-specific and do NOT extend to this role: they are
+ * checked against it as ordinary credential columns. Adding an entry here is a
+ * security decision.
+ */
+export const SETUP_CREDENTIAL_COLUMN_EXCEPTIONS: Readonly<
+  Record<string, string>
+> = {};
+
+/**
+ * EVERY column that holds a credential or a secret: a password hash, the hash or
+ * ciphertext of a token / code / PIN / challenge, an MFA secret, an OIDC client
+ * secret, an API client secret. `table.column`.
+ *
+ * A worker role must hold SELECT on NONE of these. Why SELECT on a hash is a
+ * breach: RLS trusts `app.current_tenant_id`, a session setting the caller picks,
+ * so anyone who can run SQL as the worker (a compromised job script, an
+ * injection in a worker query) can read every tenant's credential material.
+ *
+ * This list is the SINGLE place a new credential column is declared. It is held
+ * complete by `CREDENTIAL_LOOKING_COLUMN_PATTERN` below: a column whose name
+ * looks like a credential and is in neither this list nor
+ * `NON_CREDENTIAL_LOOKALIKES` fails the check, so forgetting to add one here is
+ * itself a finding rather than a silent gap.
+ */
+export const CREDENTIAL_COLUMNS: readonly string[] = [
+  "awcms_identities.password_hash",
+  "awcms_principals.password_hash",
+  "awcms_principals.selection_token_hash",
+  "awcms_sessions.token_hash",
+  "awcms_session_handoff_codes.code_hash",
+  "awcms_mfa_challenges.challenge_token_hash",
+  "awcms_identity_mfa_factors.secret_ciphertext",
+  "awcms_identity_mfa_recovery_codes.code_hash",
+  "awcms_principal_mfa_factors.secret_ciphertext",
+  "awcms_principal_mfa_recovery_codes.code_hash",
+  "awcms_password_reset_tokens.token_hash",
+  "awcms_invitations.token_hash",
+  "awcms_delegated_access_grants.access_code_hash",
+  "awcms_machine_credentials.token_hash",
+  "awcms_bff_clients.secret_hash",
+  "awcms_auth_providers.client_secret_ciphertext",
+  "awcms_omes_enrollments.enrollment_challenge_hash",
+  "awcms_newsletter_subscribers.confirmation_token_hash",
+  "awcms_newsletter_subscribers.unsubscribe_token_hash",
+  "awcms_comments_reply_subscriptions.unsubscribe_token_hash",
+  "awcms_telegram_link_codes.code_hash",
+  "awcms_telegram_bindings.pin_hash",
+  "awcms_tenant_domains.verification_token_hash",
+  "awcms_theming_preview_sessions.token_hash",
+  // OIDC login in flight: the PKCE verifier and nonce are one-time secrets.
+  "awcms_oidc_auth_requests.code_verifier",
+  "awcms_oidc_auth_requests.state_hash",
+  "awcms_oidc_auth_requests.nonce",
+  "awcms_principal_mfa_factors.enrollment_binding_hash",
+  "awcms_comments_reply_subscriptions.subscriber_email_encrypted",
+  // Keyed hashes of identifying values (NIK, NPWP, ...): an offline guessing
+  // oracle for a low-entropy identifier, so treated as credential material.
+  "awcms_profile_identifiers.value_hash",
+  "awcms_procurement_supplier_identifiers.value_hash"
+];
+
+/**
+ * Credential-looking columns a worker role MAY read, with the reason. Each is
+ * key material or a reference the job cannot work without, not a login
+ * credential, and each is named here so the exception is visible and reviewed
+ * rather than silently tolerated. Adding to this list is a security decision.
+ */
+export const WORKER_CREDENTIAL_COLUMN_EXCEPTIONS: Readonly<
+  Record<string, string>
+> = {
+  "awcms_push_subscriptions.auth_secret":
+    "push:dispatch needs the subscription's Web Push auth secret to encrypt the payload (sql/093)",
+  "awcms_omes_repository_progress_config.secret_ref":
+    "omes:repository-progress:poll resolves this REFERENCE (the name of a secret held outside the database) (sql/166)",
+  "awcms_telegram_bindings.chat_ciphertext":
+    "telegram:dispatch decrypts the chat id in-process to send; it is ciphertext under a key ring the worker already holds (sql/216)"
+};
+
+/**
+ * Column names that look like a credential to a name-based scan. Deliberately
+ * WIDE (any `_hash`, ciphertext, encrypted value, verifier, OTP, seed, salt or
+ * nonce): a new column of that shape is not assumed harmless, it forces a
+ * decision, either `CREDENTIAL_COLUMNS` or `NON_CREDENTIAL_LOOKALIKES` with a
+ * reason.
+ */
+export const CREDENTIAL_LOOKING_COLUMN_PATTERN =
+  /(password_hash|secret_hash|secret_ciphertext|client_secret|token_hash|code_hash|pin_hash|challenge_hash|auth_secret|secret_ref|recovery_code|_hash$|ciphertext|_encrypted|verifier|otp|seed|salt|nonce)/;
+
+/**
+ * Columns the pattern above matches that are NOT credentials, each with the
+ * reason, so the scan does not need a human to re-judge them every run.
+ */
+export const NON_CREDENTIAL_LOOKALIKES: Readonly<Record<string, string>> = {
+  "awcms_auth_providers.client_secret_env_var":
+    "the NAME of an environment variable, not its value (sql/025)",
+  "awcms_comments_abuse_events.fingerprint_hash":
+    "keyed hash of a request fingerprint for abuse counting; not a login secret",
+  "awcms_comments_abuse_events.ip_hash":
+    "keyed hash of a client IP for abuse counting; not a login secret",
+  "awcms_comments_comments.author_email_hash":
+    "keyed hash of a commenter address for matching; not a login secret",
+  "awcms_comments_comments.author_ip_hash":
+    "keyed hash of a client IP; not a login secret",
+  "awcms_comments_comments.user_agent_hash":
+    "hash of a user agent string; not a login secret",
+  "awcms_comments_reply_subscriptions.subscriber_email_hash":
+    "keyed hash of a subscriber address for de-duplication; the readable form is subscriber_email_encrypted (a credential column)",
+  "awcms_comments_reports.reporter_email_hash":
+    "keyed hash of a reporter address; not a login secret",
+  "awcms_comments_reports.reporter_ip_hash":
+    "keyed hash of a client IP; not a login secret",
+  "awcms_email_messages.to_address_hash":
+    "keyed hash of a recipient address for suppression matching; not a login secret",
+  "awcms_email_messages.variables_hash":
+    "integrity hash of the template variables; not a login secret",
+  "awcms_email_suppression_list.recipient_hash":
+    "keyed hash of a suppressed address; not a login secret",
+  "awcms_idempotency_keys.request_hash":
+    "keyed hash of the request body that binds a replay to its first request (ADR-0145); not a login secret",
+  "awcms_idn_admin_regions.source_row_hash":
+    "checksum of an imported public dataset row",
+  "awcms_newsletter_subscribers.consent_ip_hash":
+    "keyed hash of the IP recorded as consent evidence; not a login secret",
+  "awcms_omes_worker_nonces.nonce":
+    "a request replay-guard nonce recorded after use, not a credential: knowing a consumed nonce grants nothing",
+  "awcms_push_subscriptions.endpoint_hash":
+    "hash of the push endpoint URL used as a unique key; the endpoint itself is not a login secret",
+  "awcms_sessions.client_ip_hash":
+    "keyed hash of the client IP bound to a session; not the session token (token_hash is a credential column)",
+  "awcms_site_search_query_log.query_hash":
+    "hash of a search query for aggregation",
+  "awcms_tax_snapshots.input_hash":
+    "integrity hash of the tax computation input",
+  "awcms_telegram_bindings.chat_hash":
+    "keyed hash of the chat id used as a lookup/uniqueness key; the readable form is chat_ciphertext (a documented worker exception)",
+  "awcms_telegram_bindings.hash_key_id":
+    "identifier of the hash key ring entry used for chat_hash, not key material",
+  "awcms_theming_config_versions.config_hash":
+    "content hash of a theme configuration version",
+  "awcms_visit_events.ip_hash": "keyed hash of a visitor IP for analytics",
+  "awcms_visit_events.user_agent_hash":
+    "hash of a user agent string for analytics",
+  "awcms_visitor_sessions.ip_hash": "keyed hash of a visitor IP for analytics",
+  "awcms_visitor_sessions.user_agent_hash":
+    "hash of a user agent string for analytics",
+  "awcms_visitor_sessions.visitor_key_hash":
+    "keyed hash of an anonymous analytics visitor key; not an authentication session",
+  "awcms_whatsapp_consents.recipient_hash":
+    "keyed hash of a recipient number for consent matching; not a login secret",
+  "awcms_whatsapp_messages.recipient_hash":
+    "keyed hash of a recipient number; not a login secret",
+  "awcms_whatsapp_suppressions.recipient_hash":
+    "keyed hash of a suppressed number; not a login secret"
+};
+
+export type WorkerCredentialColumnPolicy = {
+  credentialColumns?: readonly string[];
+  /** Worker-job exceptions: apply to `WORKER_JOB_ROLES` only. */
+  exceptions?: Readonly<Record<string, string>>;
+  /** Setup-role exceptions: default `SETUP_CREDENTIAL_COLUMN_EXCEPTIONS` (none). */
+  setupExceptions?: Readonly<Record<string, string>>;
+  lookalikes?: Readonly<Record<string, string>>;
+  roles?: readonly string[];
+};
+
+/**
+ * Fails if ANY worker role can read ANY credential column.
+ *
+ * Judged with `has_column_privilege` per (role, column), which is true for a
+ * TABLE-level grant and a COLUMN-level grant alike. That is the point: the
+ * matrix check compares grants with a pinned list and would pass a matrix that
+ * listed a credential column; this one asks the database the one question that
+ * matters and does not read the matrix at all.
+ *
+ * Also fails on a credential-looking column in the catalog that is neither
+ * declared in `CREDENTIAL_COLUMNS` nor a named lookalike, so the list cannot go
+ * stale unnoticed, and on a listed column that does not exist (a typo would
+ * otherwise pass vacuously). A role that is not provisioned is skipped (opt-in
+ * split, as `checkWorkerSetupRoleGrants`).
+ */
+export async function checkWorkerCredentialColumnsUnreadable(
+  policy?: WorkerCredentialColumnPolicy
+): Promise<SecurityCheckResult> {
+  const name = "Worker and setup roles cannot read credential columns";
+  const severity: CheckSeverity = "critical";
+  const credentialColumns = policy?.credentialColumns ?? CREDENTIAL_COLUMNS;
+  const exceptions = policy?.exceptions ?? WORKER_CREDENTIAL_COLUMN_EXCEPTIONS;
+  const lookalikes = policy?.lookalikes ?? NON_CREDENTIAL_LOOKALIKES;
+  const setupExceptions =
+    policy?.setupExceptions ?? SETUP_CREDENTIAL_COLUMN_EXCEPTIONS;
+  const roles = policy?.roles ?? CREDENTIAL_CHECKED_ROLES;
+
+  try {
+    if (!process.env.DATABASE_URL) {
+      throw new Error("DATABASE_URL is not set.");
+    }
+
+    const sql = getDatabaseClient();
+    const findings: string[] = [];
+
+    const catalog = (
+      (await sql`
+        SELECT c.relname || '.' || a.attname AS qualified
+        FROM pg_attribute a
+        JOIN pg_class c ON c.oid = a.attrelid
+        JOIN pg_namespace n ON n.oid = c.relnamespace
+        WHERE c.relname LIKE 'awcms\\_%' AND c.relkind IN ('r', 'p')
+          AND n.nspname = current_schema()
+          AND a.attnum > 0 AND NOT a.attisdropped
+      `) as { qualified: string }[]
+    ).map((row) => row.qualified);
+    const present = new Set(catalog);
+
+    for (const column of credentialColumns) {
+      if (!present.has(column)) {
+        findings.push(
+          `${column} is listed in CREDENTIAL_COLUMNS but does not exist (renamed or dropped: update the list, a stale entry guards nothing)`
+        );
+      }
+    }
+
+    const declared = new Set([
+      ...credentialColumns,
+      ...Object.keys(lookalikes)
+    ]);
+    const lookingAlike = catalog.filter(
+      (qualified) =>
+        CREDENTIAL_LOOKING_COLUMN_PATTERN.test(qualified.split(".")[1]!) &&
+        !declared.has(qualified) &&
+        exceptions[qualified] === undefined
+    );
+
+    for (const column of lookingAlike) {
+      findings.push(
+        `${column} looks like a credential column but is in none of CREDENTIAL_COLUMNS, NON_CREDENTIAL_LOOKALIKES or the worker exceptions (classify it)`
+      );
+    }
+
+    for (const qualified of Object.keys(lookalikes)) {
+      if (!present.has(qualified)) {
+        findings.push(
+          `${qualified} is listed in NON_CREDENTIAL_LOOKALIKES but does not exist (stale)`
+        );
+      }
+    }
+
+    for (const qualified of Object.keys(exceptions)) {
+      if (!present.has(qualified)) {
+        findings.push(
+          `${qualified} is a documented worker exception but does not exist (stale)`
+        );
+      }
+    }
+
+    const provisioned: string[] = [];
+    // Declared credential columns plus anything unclassified-but-credential-
+    // looking, so a column classified late is covered the moment it exists.
+    const toCheck = [
+      ...new Set([
+        ...credentialColumns.filter((column) => present.has(column)),
+        ...lookingAlike
+      ])
+    ];
+
+    for (const role of roles) {
+      const exists = (await sql`
+        SELECT 1 AS present FROM pg_roles WHERE rolname = ${role}
+      `) as { present: number }[];
+
+      if (exists.length === 0) {
+        continue;
+      }
+
+      provisioned.push(role);
+
+      // The worker exceptions are for the worker jobs: any other role is checked
+      // against them too, minus its own (setup: none) exceptions.
+      const ownExceptions = WORKER_JOB_ROLES.includes(role)
+        ? exceptions
+        : setupExceptions;
+      const roleCheck = [
+        ...new Set([...toCheck, ...Object.keys(exceptions)])
+      ].filter(
+        (qualified) =>
+          present.has(qualified) && ownExceptions[qualified] === undefined
+      );
+
+      for (const qualified of roleCheck) {
+        const [table, column] = qualified.split(".") as [string, string];
+        const rows = (await sql`
+          SELECT has_column_privilege(${role}, ${table}, ${column}, 'SELECT') AS readable
+        `) as { readable: boolean }[];
+
+        if (rows[0]?.readable) {
+          findings.push(
+            `${role} can SELECT ${qualified}: this role must not read a credential column`
+          );
+        }
+      }
+    }
+
+    if (findings.length > 0) {
+      return {
+        name,
+        severity,
+        status: "fail",
+        evidence: `Credential exposure to worker/setup role(s): ${findings.join("; ")}. Fix with a migration that REVOKEs the table-level SELECT and re-GRANTs only the columns a named job or flow reads (sql/304 and sql/310 are the pattern).`
+      };
+    }
+
+    if (provisioned.length === 0) {
+      return {
+        name,
+        severity,
+        status: "pass",
+        evidence: `No worker role (${roles.join(", ")}) is provisioned — this deployment uses the DATABASE_URL fallback (opt-in, sql/022). Nothing to verify; not blocking.`
+      };
+    }
+
+    return {
+      name,
+      severity,
+      status: "pass",
+      evidence: `${provisioned.join(", ")} cannot SELECT any of the ${credentialColumns.length} declared credential columns (has_column_privilege, table-level and column-level); ${Object.keys(exceptions).length} documented exception(s); no unclassified credential-looking column.`
+    };
+  } catch (error) {
+    return {
+      name,
+      severity,
+      status: "fail",
+      evidence: `Could not verify worker credential-column access: ${errorMessage(error)}.`
+    };
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 7e. SECURITY DEFINER owner roles are NOLOGIN and memberless (critical) — #1078
+// ---------------------------------------------------------------------------
+
+/**
+ * Roles documented as the owners of narrow SECURITY DEFINER functions
+ * (sql/142, sql/217, sql/261, sql/303 ...). A definer function runs with its
+ * owner's privileges, which include column grants on credential columns
+ * (`awcms_delegated_expiry` holds `awcms_sessions.token_hash`). That is only
+ * safe while nothing can BE the owner: it must not be able to log in and must
+ * have no members, or the narrow EXECUTE is bypassed by simply connecting as it.
+ */
+export const DEFINER_OWNER_ROLES: readonly string[] = [
+  "awcms_booking_expiry",
+  "awcms_booking_lifecycle_counter",
+  "awcms_booking_reminders",
+  "awcms_delegated_expiry",
+  "awcms_domain_bootstrap",
+  // sql/306 (Issue #970): owns the operator-run erasure of one employment's
+  // location-evidence verdicts; DELETE and a two-column SELECT on that table.
+  "awcms_hr_geo_evidence_eraser",
+  "awcms_hr_workforce_lifecycle_counter",
+  "awcms_inventory_lifecycle_counter",
+  "awcms_partner_view",
+  "awcms_principal_ensure",
+  "awcms_principal_reach",
+  "awcms_procurement_lifecycle_counter",
+  "awcms_telegram_bootstrap"
+];
+
+export async function checkDefinerOwnerRolesNoLogin(
+  documentedOwners?: readonly string[]
+): Promise<SecurityCheckResult> {
+  const name = "SECURITY DEFINER owner roles are NOLOGIN and memberless";
+  const severity: CheckSeverity = "critical";
+  const documented = documentedOwners ?? DEFINER_OWNER_ROLES;
+
+  try {
+    if (!process.env.DATABASE_URL) {
+      throw new Error("DATABASE_URL is not set.");
+    }
+
+    const sql = getDatabaseClient();
+    const rows = (await sql`
+      SELECT r.rolname,
+             r.rolcanlogin, r.rolsuper, r.rolbypassrls,
+             (SELECT count(*)::int FROM pg_auth_members m WHERE m.roleid = r.oid) AS members
+      FROM pg_roles r
+      WHERE r.rolname = ANY(${sql.array([...documented], "text")})
+         OR r.oid IN (
+           SELECT p.proowner
+           FROM pg_proc p
+           JOIN pg_namespace n ON n.oid = p.pronamespace
+           WHERE p.prosecdef AND n.nspname = current_schema()
+             AND NOT EXISTS (
+               SELECT 1 FROM pg_depend d
+               WHERE d.classid = 'pg_proc'::regclass AND d.objid = p.oid
+                 AND d.deptype = 'e'
+             )
+         )
+      ORDER BY r.rolname
+    `) as {
+      rolname: string;
+      rolcanlogin: boolean;
+      rolsuper: boolean;
+      rolbypassrls: boolean;
+      members: number;
+    }[];
+
+    const findings: string[] = [];
+
+    for (const row of rows) {
+      if (row.rolcanlogin) {
+        findings.push(`${row.rolname} can LOG IN`);
+      }
+      if (row.members > 0) {
+        findings.push(`${row.rolname} has ${row.members} member(s)`);
+      }
+      if (row.rolsuper || row.rolbypassrls) {
+        findings.push(
+          `${row.rolname} is ${row.rolsuper ? "a SUPERUSER" : "BYPASSRLS"}`
+        );
+      }
+    }
+
+    if (findings.length > 0) {
+      return {
+        name,
+        severity,
+        status: "fail",
+        evidence: `A role that owns a SECURITY DEFINER function (or is a documented definer owner) must be NOLOGIN, NOSUPERUSER, NOBYPASSRLS and memberless, otherwise connecting as it bypasses the function's narrow EXECUTE: ${findings.join("; ")}.`
+      };
+    }
+
+    return {
+      name,
+      severity,
+      status: "pass",
+      evidence: `${rows.length} definer owner role(s) checked (${documented.length} documented plus every owner of a SECURITY DEFINER function in the schema): all NOLOGIN, non-super, non-BYPASSRLS, memberless.`
+    };
+  } catch (error) {
+    return {
+      name,
+      severity,
+      status: "fail",
+      evidence: `Could not verify SECURITY DEFINER owner roles: ${errorMessage(error)}.`
     };
   }
 }
@@ -2976,6 +3875,173 @@ export async function checkSsoBreakGlassReady(): Promise<SecurityCheckResult> {
 }
 
 // ---------------------------------------------------------------------------
+// Permissions that require an enrolled MFA factor (ADR-0141, finding PS-13)
+// ---------------------------------------------------------------------------
+
+/**
+ * ADR-0141 — if any module flags a permission `requiresMfaEnrolment`, a person
+ * can only exercise it after enrolling, and the chokepoint refuses everyone
+ * otherwise. With `AUTH_MFA_ENABLED` off nobody on the deployment CAN enrol, so
+ * every flagged action is refused for every person, permanently — by design
+ * (fail-closed; see `evaluateMfaEnrolmentRequirement`), and therefore a thing
+ * to find out before go-live and not from the first payroll approver.
+ *
+ * `critical` when it applies, because the control the module declared it needs
+ * cannot work at all; `pass` loudly when no module flags anything, which is the
+ * state this base ships in, so a silent pass cannot be mistaken for a check
+ * that stopped looking.
+ *
+ * Takes the flagged keys and env as parameters so the DEFECTIVE case is
+ * testable in a base that flags nothing.
+ */
+export function checkMfaEnrolmentAvailableForRequiredPermissions(
+  requiredKeys: ReadonlySet<string> = mfaRequiredPermissionKeys(),
+  env: NodeJS.ProcessEnv = process.env
+): SecurityCheckResult {
+  const name =
+    "MFA enrolment is available when a permission requires an enrolled factor";
+  const severity: CheckSeverity = "critical";
+
+  if (requiredKeys.size === 0) {
+    return {
+      name,
+      severity,
+      status: "pass",
+      evidence:
+        "No module declares `requiresMfaEnrolment`, so no permission needs an enrolled factor (ADR-0141: the mechanism ships inert). The moment a descriptor flags one — hr_payroll's payroll-critical permissions are the first expected user — this check requires AUTH_MFA_ENABLED=true, because with it off nobody can enrol and every flagged action is refused."
+    };
+  }
+
+  if (!isMfaFeatureEnabled(env)) {
+    return {
+      name,
+      severity,
+      status: "fail",
+      evidence: `${requiredKeys.size} permission(s) require an enrolled MFA factor but AUTH_MFA_ENABLED is not "true", so no person on this deployment can enrol and every one of them is refused for everyone (403 MFA_ENROLMENT_REQUIRED). Set AUTH_MFA_ENABLED=true and AUTH_MFA_SECRET_ENCRYPTION_KEY (see the MFA key check), then have the holders enrol.`
+    };
+  }
+
+  return {
+    name,
+    severity,
+    status: "pass",
+    evidence: `${requiredKeys.size} permission(s) require an enrolled MFA factor and AUTH_MFA_ENABLED=true, so a holder can enrol (the TOTP key itself is verified by its own check).`
+  };
+}
+
+/**
+ * ADR-0141 — the READINESS half of the requirement: which tenants have people
+ * who hold a flagged permission and have no active factor, and are therefore
+ * about to be refused. This is the early warning the grant-time refusal ADR-0141
+ * §2 declined to build would have been; it reports, it does not decide.
+ *
+ * ## `warning`, never `critical`
+ *
+ * An unenrolled holder is not a vulnerability — the chokepoint already refuses
+ * them, which is the whole point — it is a person who will be told to enrol, and
+ * during a rollout every holder is in that state at least once. A gate that
+ * blocked go-live on it would make enrolment a precondition of deploying, which
+ * is the lockout ADR-0141 exists to avoid. It names the tenants so an operator
+ * can ask those people to enrol first.
+ *
+ * ## One transaction per tenant, every active tenant, uncapped
+ *
+ * The reasons are `checkSsoBreakGlassReady`'s and are not repeated: tenant RLS
+ * means no cross-tenant read for the app role, a cap would let a tenant past the
+ * limit go unreported under a PASS, and a `withTenant` that returns a `Response`
+ * on an open circuit breaker must be treated as "cannot verify".
+ *
+ * Passes loudly when nothing is flagged, so a silent pass cannot be mistaken for
+ * a check that stopped looking.
+ */
+export async function checkMfaRequiredPermissionHolders(
+  options: { requiredKeys?: ReadonlySet<string> } = {}
+): Promise<SecurityCheckResult> {
+  const name =
+    "Holders of permissions that require an enrolled MFA factor are enrolled";
+  const severity: CheckSeverity = "warning";
+  const requiredKeys = options.requiredKeys ?? mfaRequiredPermissionKeys();
+
+  if (requiredKeys.size === 0) {
+    return {
+      name,
+      severity,
+      status: "pass",
+      evidence:
+        "No module declares `requiresMfaEnrolment`, so there is no holder to report (ADR-0141: the mechanism ships inert). The moment a descriptor flags a permission, this lists every tenant where a holder has no enrolled factor — run it BEFORE the module is enabled for tenants, not after the first refusal."
+    };
+  }
+
+  try {
+    if (!process.env.DATABASE_URL) {
+      throw new Error("DATABASE_URL is not set.");
+    }
+
+    const sql = getDatabaseClient();
+    const tenants = (await sql`
+      SELECT id FROM awcms_tenants WHERE status = 'active' ORDER BY id
+    `) as { id: string }[];
+    const now = new Date();
+
+    const flaggedTenants: string[] = [];
+    let unenrolledTotal = 0;
+    let holderTotal = 0;
+
+    for (const tenant of tenants) {
+      const report = await withTenantOrThrow(
+        sql,
+        tenant.id,
+        (tx) =>
+          reportMfaRequiredPermissionHolders(tx, tenant.id, now, {
+            requiredKeys
+          }),
+        { workClass: "maintenance" }
+      );
+
+      // `withTenantOrThrow` THROWS when the circuit breaker is open, which the
+      // catch below reports as "could not verify" — never as a clean tenant.
+      holderTotal += report.holderCount;
+
+      if (report.unenrolled.length > 0) {
+        unenrolledTotal += report.unenrolled.length;
+        flaggedTenants.push(
+          `${tenant.id} (${report.unenrolled.length} of ${report.holderCount} holder(s) not enrolled)`
+        );
+      }
+    }
+
+    if (flaggedTenants.length > 0) {
+      const shown = flaggedTenants.slice(0, 20);
+      const more =
+        flaggedTenants.length > shown.length
+          ? `; …and ${flaggedTenants.length - shown.length} more`
+          : "";
+
+      return {
+        name,
+        severity,
+        status: "fail",
+        evidence: `${unenrolledTotal} holder(s) across ${flaggedTenants.length} of ${tenants.length} active tenant(s) hold a permission that requires an enrolled MFA factor and have none: ${shown.join("; ")}${more}. They are refused with 403 MFA_ENROLMENT_REQUIRED until they enrol in their account settings (/admin/account); they are not locked out of anything else. A tenant with NO enrolled holder yet is bootstrapped the same way — its owner enrols first (docs/awcms/mfa-totp-step-up.md). This check reports, it does not decide.`
+      };
+    }
+
+    return {
+      name,
+      severity,
+      status: "pass",
+      evidence: `${tenants.length} active tenant(s) scanned; ${holderTotal} holder(s) of the ${requiredKeys.size} flagged permission(s) in tenants where the module is usable, and every one has an active factor (holders re-derived from the live grant sources, not from a stored list).`
+    };
+  } catch (error) {
+    return {
+      name,
+      severity,
+      status: "fail",
+      evidence: `Could not verify MFA enrolment of permission holders: ${errorMessage(error)}.`
+    };
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Cloudflare Turnstile configuration is complete when enabled (Issue #186) —
 // critical when misconfigured, informational when disabled intentionally
 // ---------------------------------------------------------------------------
@@ -3506,6 +4572,181 @@ export async function checkPlatformTenantIdentifiable(): Promise<SecurityCheckRe
   }
 }
 
+/**
+ * Employments whose linked login belongs to a DIFFERENT person than the
+ * employment (Issue #979, finding PS-14). The application and the
+ * `awcms_hr_employments_link_guard` trigger now refuse such a link, but a link
+ * made before that fix is never re-checked by either, and it is exactly the one
+ * that lets a login read someone else's own-scoped data (and, in phase 3,
+ * payslips). Returns employment ids only: no name, number or login.
+ */
+export async function reportMismatchedEmploymentLinks(
+  tx: Bun.SQL,
+  tenantId: string
+): Promise<string[]> {
+  const rows = (await tx`
+    SELECT e.id FROM awcms_hr_employments e
+    JOIN awcms_tenant_users tu
+      ON tu.tenant_id = e.tenant_id AND tu.id = e.tenant_user_id
+    JOIN awcms_identities i
+      ON i.tenant_id = tu.tenant_id AND i.id = tu.identity_id
+    WHERE e.tenant_id = ${tenantId} AND e.deleted_at IS NULL
+      AND i.profile_id IS DISTINCT FROM e.profile_id
+    ORDER BY e.id
+  `) as { id: string }[];
+
+  return rows.map((row) => row.id);
+}
+
+/**
+ * `warning`, not `critical`: it reports data that already exists, it does not
+ * decide, and a critical would block a deploy over rows an operator fixes by
+ * unlinking (`PUT .../employments/{id}/account` with `null`). One transaction
+ * per active tenant, uncapped scan, ids capped only in the evidence text — the
+ * reasons are `checkMfaRequiredPermissionHolders`'s. Passes loudly.
+ */
+export async function checkHrEmploymentLinksMatchProfile(): Promise<SecurityCheckResult> {
+  const name = "Employment account links belong to the employment's person";
+  const severity: CheckSeverity = "warning";
+
+  try {
+    if (!process.env.DATABASE_URL) {
+      throw new Error("DATABASE_URL is not set.");
+    }
+
+    const sql = getDatabaseClient();
+    const tenants = (await sql`
+      SELECT id FROM awcms_tenants WHERE status = 'active' ORDER BY id
+    `) as { id: string }[];
+    const flagged: string[] = [];
+    let total = 0;
+
+    for (const tenant of tenants) {
+      const ids = await withTenantOrThrow(
+        sql,
+        tenant.id,
+        (tx) => reportMismatchedEmploymentLinks(tx, tenant.id),
+        { workClass: "maintenance" }
+      );
+
+      if (ids.length > 0) {
+        total += ids.length;
+        flagged.push(
+          `tenant ${tenant.id}: ${ids.slice(0, 5).join(", ")}${ids.length > 5 ? ` …and ${ids.length - 5} more` : ""}`
+        );
+      }
+    }
+
+    if (flagged.length > 0) {
+      return {
+        name,
+        severity,
+        status: "fail",
+        evidence: `${total} employment(s) are linked to a login of a DIFFERENT person (ids only): ${flagged.slice(0, 20).join("; ")}. Each lets that login read the employment through the ownership grant. Unlink it with PUT /api/v1/hr-workforce/employments/{id}/account {"tenantUserId": null} (critical-audited) and re-link the right login. Issue #979 / PS-14.`
+      };
+    }
+
+    return {
+      name,
+      severity,
+      status: "pass",
+      evidence: `${tenants.length} active tenant(s) scanned; every linked employment's login belongs to the employment's person.`
+    };
+  } catch (error) {
+    return {
+      name,
+      severity,
+      status: "fail",
+      evidence: `Could not verify employment account links: ${errorMessage(error)}.`
+    };
+  }
+}
+
+/**
+ * Commission accruals the beneficiary approved, released or paid themselves
+ * (Issue #1019). Before `sql/236`/`sql/237` the separation-of-duties trigger
+ * compared against a NULL when the employment had no linked login, so a
+ * self-approval made through an unlink and relink passed. The snapshot only
+ * exists for accruals backfilled or born after the fix, so this finds the ones
+ * where the snapshot (or the backfilled link) equals a stamped actor. Ids only.
+ */
+export async function reportSelfSettledCommissionAccruals(
+  tx: Bun.SQL,
+  tenantId: string
+): Promise<string[]> {
+  const rows = (await tx`
+    SELECT id FROM awcms_hr_commission_accruals
+    WHERE tenant_id = ${tenantId}
+      AND beneficiary_tenant_user_id IS NOT NULL
+      AND beneficiary_tenant_user_id IN (approved_by, released_by, paid_by)
+    ORDER BY id
+  `) as { id: string }[];
+
+  return rows.map((row) => row.id);
+}
+
+/**
+ * `warning`, like the link check above: it reports rows that already exist and
+ * decides nothing. One transaction per active tenant under RLS, uncapped scan,
+ * ids capped only in the evidence text.
+ */
+export async function checkCommissionAccrualsNotSelfSettled(): Promise<SecurityCheckResult> {
+  const name = "Commission accruals were not settled by their own beneficiary";
+  const severity: CheckSeverity = "warning";
+
+  try {
+    if (!process.env.DATABASE_URL) {
+      throw new Error("DATABASE_URL is not set.");
+    }
+
+    const sql = getDatabaseClient();
+    const tenants = (await sql`
+      SELECT id FROM awcms_tenants WHERE status = 'active' ORDER BY id
+    `) as { id: string }[];
+    const flagged: string[] = [];
+    let total = 0;
+
+    for (const tenant of tenants) {
+      const ids = await withTenantOrThrow(
+        sql,
+        tenant.id,
+        (tx) => reportSelfSettledCommissionAccruals(tx, tenant.id),
+        { workClass: "maintenance" }
+      );
+
+      if (ids.length > 0) {
+        total += ids.length;
+        flagged.push(
+          `tenant ${tenant.id}: ${ids.slice(0, 5).join(", ")}${ids.length > 5 ? ` …and ${ids.length - 5} more` : ""}`
+        );
+      }
+    }
+
+    if (flagged.length > 0) {
+      return {
+        name,
+        severity,
+        status: "fail",
+        evidence: `${total} commission accrual(s) were approved, released or paid by the login of their own beneficiary (ids only): ${flagged.slice(0, 20).join("; ")}. They predate the snapshot fix (Issue #1019) and escaped separation of duties; review each with the payroll owner.`
+      };
+    }
+
+    return {
+      name,
+      severity,
+      status: "pass",
+      evidence: `${tenants.length} active tenant(s) scanned; no accrual was settled by its own beneficiary.`
+    };
+  } catch (error) {
+    return {
+      name,
+      severity,
+      status: "fail",
+      evidence: `Could not verify commission accrual separation of duties: ${errorMessage(error)}.`
+    };
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Orchestration
 // ---------------------------------------------------------------------------
@@ -3523,6 +4764,8 @@ export async function runSecurityReadinessChecks(): Promise<
     await checkLeastPrivilegeRoleProvisioned(),
     await checkRuntimeRoleGrants(),
     await checkWorkerSetupRoleGrants(),
+    await checkWorkerCredentialColumnsUnreadable(),
+    await checkDefinerOwnerRolesNoLogin(),
     checkAbacDefaultDeny(),
     checkDataLifecycleRegistryValid(),
     checkDataLifecycleLegalHoldReleaseSeparate(),
@@ -3536,6 +4779,10 @@ export async function runSecurityReadinessChecks(): Promise<
     checkEdgeCacheConfigured(),
     checkOnlineAuthSecurityReady(),
     await checkSsoBreakGlassReady(),
+    checkMfaEnrolmentAvailableForRequiredPermissions(),
+    await checkMfaRequiredPermissionHolders(),
+    await checkHrEmploymentLinksMatchProfile(),
+    await checkCommissionAccrualsNotSelfSettled(),
     checkTurnstileReady(),
     checkLoginRateLimitImplemented(),
     checkSecurityHeadersBuilt(),

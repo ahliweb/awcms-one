@@ -74,7 +74,11 @@ const BOOKING_TABLES = [
   "awcms_booking_reservation_items",
   "awcms_booking_resource_allocations",
   "awcms_booking_resource_blocks",
-  "awcms_booking_reservation_events"
+  "awcms_booking_reservation_events",
+  // Issue #943 (sql/284).
+  "awcms_booking_reminder_intents",
+  // Issue #949 (sql/305).
+  "awcms_booking_staff_assignments"
 ] as const;
 
 const ACTORS = new Map<string, string>();
@@ -378,6 +382,11 @@ suite("booking database invariants (Issue #937, ADR-0131)", () => {
           (tenant_id, reservation_id, seq, kind, to_status)
         VALUES (${TENANT_A}, ${booking.reservationId}, 1, 'created', 'held')
       `;
+      await getAdminSql()`
+        INSERT INTO awcms_booking_reminder_intents
+          (tenant_id, reservation_id, kind, occurrence, due_at)
+        VALUES (${TENANT_A}, ${booking.reservationId}, 'reminder', 1, now())
+      `;
 
       for (const table of BOOKING_TABLES) {
         const asA = await inTenant(
@@ -401,7 +410,10 @@ suite("booking database invariants (Issue #937, ADR-0131)", () => {
           table !== "awcms_booking_schedules" &&
           table !== "awcms_booking_schedule_exceptions" &&
           // Blocks are covered by booking-availability.integration.test.ts.
-          table !== "awcms_booking_resource_blocks"
+          table !== "awcms_booking_resource_blocks" &&
+          // Staff assignments are covered by
+          // booking-staff-availability.integration.test.ts (Issue #949).
+          table !== "awcms_booking_staff_assignments"
         ) {
           expect(asA[0]!.n).toBeGreaterThan(0);
         }

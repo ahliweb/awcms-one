@@ -25,7 +25,7 @@
  * otherwise a product is created.
  */
 import { ATTRIBUTE_KEY_PATTERN } from "./attribute-definition";
-import { unneutralizeCsvCell } from "./catalog-csv";
+import { restoreCsvCell } from "../../../lib/security/csv-formula";
 
 export const CORE_IMPORT_COLUMNS = [
   "sku",
@@ -144,7 +144,7 @@ export function readImportRow(
   const attributes: ImportRowCells["attributes"] = {};
 
   for (const column of columns) {
-    const cell = unneutralizeCsvCell(cells[column.index] ?? "");
+    const cell = restoreCsvCell(cells[column.index] ?? "");
     if (column.kind === "core") {
       const value = cell.trim();
       if (value.length > 0) core[column.name] = value;

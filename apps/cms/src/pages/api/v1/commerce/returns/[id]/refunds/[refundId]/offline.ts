@@ -30,7 +30,8 @@ import { isUuid } from "../../../../../../../../modules/commerce/domain/stored-v
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../../../../../../../modules/_shared/idempotency";
 import { IdempotencyPayloadMismatchError } from "../../../../../../../../modules/commerce/application/order-directory";
 
@@ -80,7 +81,8 @@ export const POST = defineTenantRoute<OfflineRefundInput>({
         tx,
         tenantId,
         SCOPE,
-        prepared.idempotencyKey
+        prepared.idempotencyKey,
+        userIdempotencyActor(auth.context.tenantUserId)
       );
       if (existing) {
         if (existing.requestHash !== requestHash) {
@@ -107,6 +109,7 @@ export const POST = defineTenantRoute<OfflineRefundInput>({
           tenantId,
           SCOPE,
           prepared.idempotencyKey,
+          userIdempotencyActor(auth.context.tenantUserId),
           requestHash,
           response.status,
           await response.clone().json()

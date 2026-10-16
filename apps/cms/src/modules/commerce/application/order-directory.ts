@@ -54,7 +54,8 @@ import { appendDomainEvent } from "../../domain-event-runtime/application/append
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  ANONYMOUS_IDEMPOTENCY_ACTOR
 } from "../../_shared/idempotency";
 import {
   keysetCursorCreatedAtSql,
@@ -962,7 +963,8 @@ async function createOrderFromCartWrite(
     tx,
     tenantId,
     IDEMPOTENCY_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    ANONYMOUS_IDEMPOTENCY_ACTOR
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -1073,7 +1075,8 @@ async function createOrderFromCartWrite(
       tx,
       tenantId,
       IDEMPOTENCY_SCOPE,
-      input.idempotencyKey
+      input.idempotencyKey,
+      ANONYMOUS_IDEMPOTENCY_ACTOR
     );
     if (raced) {
       if (raced.requestHash !== requestHash) {
@@ -1330,6 +1333,7 @@ async function createOrderFromCartWrite(
     tenantId,
     IDEMPOTENCY_SCOPE,
     input.idempotencyKey,
+    ANONYMOUS_IDEMPOTENCY_ACTOR,
     requestHash,
     201,
     publicRecord

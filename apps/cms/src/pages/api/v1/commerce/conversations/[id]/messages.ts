@@ -10,7 +10,8 @@ import {
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../../../../../modules/_shared/idempotency";
 import { postStoreReply } from "../../../../../../modules/commerce/application/conversation-directory";
 import { validateConversationMessageInput } from "../../../../../../modules/commerce/domain/conversation-validation";
@@ -86,7 +87,8 @@ export const POST = defineTenantRoute<Prepared>({
       tx,
       tenantId,
       IDEMPOTENCY_SCOPE,
-      prepared.idempotencyKey
+      prepared.idempotencyKey,
+      userIdempotencyActor(auth.context.tenantUserId)
     );
     if (existing) {
       if (existing.requestHash !== requestHash) {
@@ -123,6 +125,7 @@ export const POST = defineTenantRoute<Prepared>({
       tenantId,
       IDEMPOTENCY_SCOPE,
       prepared.idempotencyKey,
+      userIdempotencyActor(auth.context.tenantUserId),
       requestHash,
       201,
       successBody

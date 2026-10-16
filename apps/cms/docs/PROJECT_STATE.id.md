@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](PROJECT_STATE.md)
 
-<!-- i18n-source-hash: sha256:1102314145a32866809f1c10a9a2123b0ef37f74a8498f61b2f49ed59f1dc21b -->
+<!-- i18n-source-hash: sha256:1066372cad248bb794534a28ede52d21b8e9b3f460a2a0d6354789f7cb9e8cd3 -->
 
 # AWCMS — Project State & Continuation
 
@@ -114,18 +114,18 @@ Model tata kelola dipakai-langsung/tanpa-repo-turunan (ADR-0034 §2/§3) **tidak
 
 <!-- Dihasilkan `bun run project-state:inventory:generate`. JANGAN diedit tangan; gerbangnya `bun run project-state:inventory:check`. -->
 
-| Aspek                              | Nilai (ter-generate)                                                                                                               | Sumber kebenaran                                                                        |
-| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| Versi                              | **10.7.0**                                                                                                                         | `package.json`                                                                          |
-| Changeset menunggu (per tipe bump) | _jalankan perintah di kolom kanan_                                                                                                 | `grep -h '^"awcms":' .changeset/*.md \| sort \| uniq -c`                                |
-| Commit sejak rilis terakhir        | _jalankan perintah di kolom kanan_                                                                                                 | `git rev-list --count v10.7.0..HEAD`                                                    |
-| Modul base                         | **33** (lihat daftar di ARCHITECTURE.md)                                                                                           | `src/modules/index.ts`                                                                  |
-| Migrasi                            | **289** (`sql/001`–`1021`)                                                                                                         | `ls sql/`                                                                               |
-| ADR                                | **0000**–**0140** (`0000` = template; status ADR tertinggi: **Accepted**)                                                          | `ls docs/adr/`                                                                          |
-| Layar admin                        | **97** berkas `.astro` di `src/pages/admin/`; **3 dari 33** modul tanpa `navigation:` (`booking`, `hr-commission`, `hr-workforce`) | `find src/pages/admin -name '*.astro'`, `grep -L 'navigation:' src/modules/*/module.ts` |
-| Berkas `.astro`                    | **123** (76.649 baris) — soal typecheck lihat §6                                                                                   | `find src -name '*.astro'`                                                              |
-| Gerbang                            | **63** di rantai `bun run check`                                                                                                   | `scripts.check` di `package.json`, dipisah pada `&&`                                    |
-| Kontrak                            | OpenAPI modular per-modul + AsyncAPI; `MODULE_CONTRACT_VERSION` **4.2.0**                                                          | `openapi/`, `asyncapi/`, `_shared/module-contract.ts`                                   |
+| Aspek                              | Nilai (ter-generate)                                                                                                     | Sumber kebenaran                                                                        |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
+| Versi                              | **10.8.0**                                                                                                               | `package.json`                                                                          |
+| Changeset menunggu (per tipe bump) | _jalankan perintah di kolom kanan_                                                                                       | `grep -h '^"awcms":' .changeset/*.md \| sort \| uniq -c`                                |
+| Commit sejak rilis terakhir        | _jalankan perintah di kolom kanan_                                                                                       | `git rev-list --count v10.8.0..HEAD`                                                    |
+| Modul base                         | **34** (lihat daftar di ARCHITECTURE.md)                                                                                 | `src/modules/index.ts`                                                                  |
+| Migrasi                            | **328** (`sql/001`–`1032`)                                                                                               | `ls sql/`                                                                               |
+| ADR                                | **0000**–**0145** (`0000` = template; status ADR tertinggi: **Accepted**)                                                | `ls docs/adr/`                                                                          |
+| Layar admin                        | **104** berkas `.astro` di `src/pages/admin/`; **2 dari 34** modul tanpa `navigation:` (`hr-commission`, `hr-workforce`) | `find src/pages/admin -name '*.astro'`, `grep -L 'navigation:' src/modules/*/module.ts` |
+| Berkas `.astro`                    | **130** (81.651 baris) — soal typecheck lihat §6                                                                         | `find src -name '*.astro'`                                                              |
+| Gerbang                            | **67** di rantai `bun run check`                                                                                         | `scripts.check` di `package.json`, dipisah pada `&&`                                    |
+| Kontrak                            | OpenAPI modular per-modul + AsyncAPI; `MODULE_CONTRACT_VERSION` **4.6.0**                                                | `openapi/`, `asyncapi/`, `_shared/module-contract.ts`                                   |
 
 <!-- project-state-inventory:selesai -->
 
@@ -202,7 +202,7 @@ dirintis langsung di sini setelah pembekuan ADR-0047.)
 
 ## 3. Yang sudah selesai (jangan dibangun ulang)
 
-- **33 modul** terdaftar dengan RLS `FORCE`, pemisahan role DB
+- **34 modul** terdaftar dengan RLS `FORCE`, pemisahan role DB
   (`awcms_app`/`awcms_worker`/`awcms_setup`), admin SSR read+write (Issue #166/#171).
 - **Auth lanjutan**: MFA TOTP + session-assurance/step-up (`sql/024`), OIDC/SSO
   tenant-aware + SSRF guard + break-glass (`sql/025`/`026`), Turnstile bot protection
@@ -394,6 +394,76 @@ knowledge:check` (`graph:artifacts:check` + dry run `--check` sync wrapper)
 
 ## 4. Backlog / langkah berikutnya
 
+- **BUG HUNT IDENTITY_ACCESS — 16 Oktober 2026: 13 dari 15 grup perbaikan
+  masuk (#1057–#1069, docs #1070, pelacak #1055 ditutup); satu tindak lanjut
+  masih terbuka, #1056.** Bug hunt eksternal atas `src/modules/identity-access`
+  pada `78acbe8` mengonfirmasi 21 bug dan mengirim 15 grup perbaikan sebagai git
+  bundle. Bundle itu dibangun tanpa tsc, prettier, maupun Postgres, dan tes
+  regresinya memakai transaksi palsu. Pemeriksaan sebelum masuk:
+  - rebase ke main dan prettier, diterapkan per commit;
+  - `bun run check` penuh;
+  - terhadap Postgres 18.4, `tests/integration/` (2.025 lulus, 0 gagal) dan
+    17 suite DB lama (172 lulus, 0 gagal);
+  - review keamanan independen.
+
+  **Yang tidak masuk, dan alasannya:**
+  - **g03** (ganti kata sandi mencabut sesi lain sebelum epoch dinaikkan)
+    duplikat dari #1053 (#1035), yang sudah ada di main.
+  - **g07** (grant yang sudah lewat masa berlakunya memblokir pemberian ulang
+    role yang sama) **ditolak sebagai perbaikan**. Predikat pre-check-nya tidak
+    pernah sampai ke partial unique index `WHERE status = 'active'` (`sql/102`,
+    `sql/104`), jadi 409-nya tetap. Bug-nya sendiri nyata dan permanen, karena
+    tidak ada yang memindahkan baris `awcms_access_policies` ke `expired`. Opsi
+    dan rekomendasinya ada di #1056.
+
+  **Yang dikoreksi saat review:**
+  - g14 tidak terkompilasi: `savepoint` hanya ada di `Bun.TransactionSQL`.
+  - Changeset g08 kini memuat kueri upgrade untuk policy DSL tersimpan yang
+    memakai date-time tanpa offset. Policy seperti itu gagal-tertutup (deny)
+    setelah upgrade.
+
+  **Belum pernah diperiksa:** sekitar 60 dugaan berperingkat lebih rendah dari
+  bug hunt yang sama tidak pernah diberikan ke prover. Laporan bug hunt tidak ada
+  di repo, jadi contoh-contoh ini dicatat di sini agar tidak hilang:
+  - `evaluateAccess` melewati pemeriksaan scope saat field scope-nya cacat,
+    sehingga gagal-terbuka.
+  - `planEntitlementBackfill` memberi entitlement saat tanggalnya tidak valid.
+  - `isPasswordLoginDisabledForIdentity` mengabaikan `sso_required`.
+  - `validateForgotIdentifierInput` mengembalikan identifier tanpa di-trim.
+  - `revokeDelegatedAccess` membiarkan policy role tetap aktif.
+
+  Perlakukan masing-masing sebagai petunjuk, bukan temuan: cocokkan dulu dengan
+  kode dan tulis tes berbasis DB yang gagal sebelum memperbaikinya.
+
+- **PEMBANGUNAN BOOKING — irisan #937 sampai #941 dan #1012 (route buat/lepas
+  blok, `sql/240`/`sql/241`) sudah masuk; berikutnya #942
+  (layar admin, yang membuat modul bisa keluar dari `experimental`).** #937 skema (`sql/180`, `sql/181`), #938 availability
+  dan jadwal (`sql/186`), #939 alokator slot, hold dengan kedaluwarsa, dan
+  rekonsiliasi (`sql/200`: `booking:holds:expire` berjalan sebagai `awcms_worker`
+  lewat sapuan SECURITY DEFINER sempit), #940 stay dan malam terblokir lewat
+  alokator yang sama (`sql/204`), #941 route reservasi (`POST/GET /reservations`,
+  `confirm`, `cancel`, `reschedule`, `check-in`, `check-out`, `no-show`) dengan
+  `Idempotency-Key`, `override` berisiko tinggi sebagai pemeriksaan independen,
+  `BookingPort`, sembilan event pada dokumen AsyncAPI live, dan bawaan AMAN untuk
+  batas hold (5 per pelanggan, 500 per tenant; `NULL` di settings tak lagi
+  berarti tak terbatas). Dua migrasi kecil: `sql/208` (foreign key
+  `superseded_by_id` menjadi dapat ditangguhkan agar reschedule bisa
+  menggantikan reservasi lama sebelum penggantinya ada) dan `sql/209` (satu
+  fungsi fakta event, dan sapuan yang mengembalikan yang dikedaluwarsakannya agar
+  worker bisa menerbitkan `expired`). Peta dari paket ke kode ada di
+  [`awcms/booking.md`](awcms/booking.id.md) §13. Yang harus diketahui penerus:
+  (1) `placeHold` adalah klaim, `createReservation` / `transitionReservation` /
+  `rescheduleReservation` adalah transisinya, dan penolakan adalah nilai yang
+  dikembalikan yang harus dikembalikan SEBELUM menulis apa pun (`withTenant`
+  meng-commit 4xx yang dikembalikan); (2) kebenaran tak pernah bergantung pada
+  job `booking:holds:expire` (reklamasi malas menutup setiap klaim); (3) setiap
+  jalur pembuat hold (`extend` kelak, seri) harus mengambil kunci batas per tenant
+  sebelum menghitung; (4) bukti konkurensi adalah `booking-concurrency` /
+  `booking-stay` (lewat `placeHold`), dan `booking-reservation` /
+  `booking-reservation-api` (lewat transisi dan route sungguhan); (5) belum
+  dibangun: `extend`, route laporan dan rekonsiliasi,
+  `staff_assignments` (T8), proyeksi reporting.
+
 - **AW BUSINESS PLATFORM WAVE A — 8 Oktober 2026 (v10.7.0): #915–#918 selesai
   di hulu, pada hari yang sama ADR-0040 hilir diterima (awcms-one#335, O0).**
 
@@ -411,7 +481,7 @@ knowledge:check` (`graph:artifacts:check` + dry run `--check` sync wrapper)
   **Keputusan pemilik (dijawab 2026-10-10 di DoR awcms-one).** Dicatat di
   pack tempat ia mengikat: booking O8 dan O12 (hold tidak dihitung dalam
   occupancy; commerce tetap otoritas pelanggan, sehingga tanpa
-  `customer_profile_id`); hr O4 (profil Indonesia milik konsumen), O6 (geolokasi saja, mati secara default; diputuskan ADR-0138 sebagai bukti berupa verdict saja, implementasi #970) dan O7 (SoD dapat dikonfigurasi per tenant, diputuskan ADR-0136 termasuk sub-pertanyaan O7a, penegakan di #957; payroll juga digerbangi enkripsi rekening payout, diputuskan ADR-0137, serta review keamanan dan hukum #956). Delivery O10/O11: adaptor Telegram diterima hanya untuk notifikasi ops/staf oleh ADR-0140 (#964; implementasi #965, setelah helper enkripsi field ADR-0137); orkestrasi lintas kanal tidak diterima (ADR-0139, dengan pemicu pembukaan ulang). O2 booking (vertikal pertama hotel / vila / rental) terjawab dan memasukkan menginap berbasis hari ke v1 lewat ADR-0135 (Issue #931); O1, O3, O5, dan O9 belum direkonsiliasi ke pack. Baca tabel
+  `customer_profile_id`); hr O4 (profil Indonesia milik konsumen), O6 (geolokasi saja, mati secara default; diputuskan ADR-0138 sebagai bukti berupa verdict saja, implementasi #970) dan O7 (SoD dapat dikonfigurasi per tenant, diputuskan ADR-0136 termasuk sub-pertanyaan O7a, penegakan di #957; payroll juga digerbangi enkripsi rekening payout, diputuskan ADR-0137, serta review keamanan dan hukum #956). Delivery O10/O11: adaptor Telegram diterima hanya untuk notifikasi ops/staf oleh ADR-0140 (#964; diimplementasikan #965 sebagai modul `telegram_delivery`, tidak aktif di balik `TELEGRAM_ENABLED`, di atas helper enkripsi field ADR-0137); orkestrasi lintas kanal tidak diterima (ADR-0139, dengan pemicu pembukaan ulang). O2 booking (vertikal pertama hotel / vila / rental) terjawab dan memasukkan menginap berbasis hari ke v1 lewat ADR-0135 (Issue #931); O1, O3, O5, dan O9 belum direkonsiliasi ke pack. Baca tabel
   pertanyaan terbuka pack sebelum menulis migrasi.
 
   **Dua hal sebelum menyentuh registry consumer (#926).** Consumer berjalan
@@ -6215,7 +6285,7 @@ scope_id = tenant_id)`. Ini jawaban atas batas yang ADR-0080 tulis
      menolak setiap sesi yang tidak sedang `aal2`, dan orang tanpa faktor
      terdaftar tak akan pernah bisa mencapainya — tanpa syarat, setiap pengguna
      tanpa MFA permanen tak bisa mengganti passwordnya, dan yang paling butuh
-     justru yang baru tahu passwordnya bocor. Jebakan ADR-0058 §E berbaju lain.
+     justru yang baru tahu passwordnya bocor. Jebakan ADR-0141 §4 berbaju lain.
      Mutasi `if (mfa.enabled)` → `if (true)` memerahkan 4 test.
 
   **Temuan tentang #430 yang mengubah nilainya.** Mitigasi sementara yang
@@ -6467,7 +6537,7 @@ scope_id = tenant_id)`. Ini jawaban atas batas yang ADR-0080 tulis
   - **Permission `push_delivery.subscriptions.*`** — mendaftarkan perangkat
     sendiri adalah self-service; permission untuknya adalah tembok di depan
     fiturnya, dan aksi yang tak di-seed menolak semua orang termasuk owner
-    (jebakan latent-authz, ADR-0058 §E).
+    (jebakan latent-authz, skill `awcms-abac-guard`).
   - **Menetapkan `awcms_edge_cache_purges` ke salah satu dari tiga modul yang
     menulisnya** supaya gerbangnya hijau — deskriptor yang menyebut pemilik yang
     salah adalah klaim palsu yang terbaca sebagai keputusan.

@@ -521,6 +521,2158 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/booking/reservations:
+    get:
+      operationId: bookingReservationsList
+      tags:
+        - Booking
+      summary: List reservations
+      description: "Gated by `booking.reservations.read`. Newest first, keyset paginated (`cursor`). Filters: `status`, `lineageId` (every reservation of one booking across reschedules) and the adapter's natural key (`externalRefType` with `externalRef`, both or neither). The customer note is never returned (it is behind `booking.reservation_notes.read`). Tenant-scoped (withTenant + RLS FORCE)."
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - held
+              - confirmed
+              - checked_in
+              - completed
+              - cancelled
+              - rescheduled
+              - no_show
+              - expired
+        - name: lineageId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - name: externalRefType
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: externalRef
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: A page of reservations.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      reservations:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/BookingReservation"
+                      nextCursor:
+                        type: string
+                        nullable: true
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    post:
+      operationId: bookingReservationCreate
+      tags:
+        - Booking
+      summary: Place a hold or create a reservation
+      description: "Gated by `booking.reservations.create`. Places a HOLD (`held`, expiring on the database clock; `holdSeconds` is clamped to `[60, max_hold_seconds]`) or, when the offering confirms immediately, a `confirmed` reservation. The claim is won all-or-none under the database's exclusion constraints: a taken slot or night is `409 SLOT_UNAVAILABLE` and leaves nothing behind. The server owns the status, the interval (derived from the offering and `startsAt`, or from the `stay` dates in the resource's zone), the buffers and the expiry; a client never sends them. A body that names a payment field (`paid`, `deposit`, `amount`, `balance`, ...) is `400 PAYMENT_FIELD_NOT_ACCEPTED` naming the field, and any other unknown key is a `400 VALIDATION_ERROR`. Holds are capped per customer and per tenant (defaults 5 and 500, tenant-configurable; `429 HOLD_LIMIT_EXCEEDED`). Opening hours (`409 OUTSIDE_SCHEDULE`), lead time (`409 LEAD_TIME_VIOLATION`) and horizon (`409 HORIZON_EXCEEDED`) are refused unless `overridePolicy` is true AND the caller also holds the HIGH-RISK `booking.reservations.override`, checked first through the access chokepoint (action-time separation of duties applies), audited `critical`; an override never lifts a conflict. Requires an Idempotency-Key: replaying it returns the stored response and writes nothing; a fresh key against a live `externalRef` is `409 EXTERNAL_REF_IN_USE`. Audited; publishes `awcms.booking.reservation.created` and `.held` or `.confirmed` in the same transaction. Rejected requests write nothing."
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BookingCreateReservationInput"
+      responses:
+        "201":
+          description: "The reservation."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/BookingReservationCreated"
+                  meta:
+                    type: object
+        "400":
+          description: VALIDATION_ERROR, PAYMENT_FIELD_NOT_ACCEPTED, STAY_DATES_INVALID or IDEMPOTENCY_REQUIRED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: "RESOURCE_NOT_FOUND or OFFERING_NOT_FOUND (neutral: another tenant's id is the same answer as an unknown one)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: "SLOT_UNAVAILABLE, OUTSIDE_SCHEDULE, LEAD_TIME_VIOLATION, HORIZON_EXCEEDED, PARTY_SIZE_OUT_OF_RANGE, BOOKING_MODE_MISMATCH, MIN_STAY_VIOLATION, MAX_STAY_EXCEEDED, STAY_POOL_INCONSISTENT, EXTERNAL_REF_IN_USE, CONTENTION_RETRY or IDEMPOTENCY_CONFLICT."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: "QUANTITY_EXCEEDS_UNITS."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: "HOLD_LIMIT_EXCEEDED."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/booking/reservations/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    get:
+      operationId: bookingReservationGet
+      tags:
+        - Booking
+      summary: Read a reservation
+      description: "Gated by `booking.reservations.read`. The reservation with its items and its append-only transition history. The customer note is never returned (it is behind `booking.reservation_notes.read`). There is no ownership grant on this read: the customer is an opaque reference at the commerce authority, not a tenant user. An unknown id and another tenant's id are the same `404 RESERVATION_NOT_FOUND`. Tenant-scoped (withTenant + RLS FORCE)."
+      parameters:
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: "The reservation and its history."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/BookingReservationDetail"
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: "RESERVATION_NOT_FOUND."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/booking/reservations/{id}/confirm:
+    post:
+      operationId: bookingReservationConfirm
+      tags:
+        - Booking
+      summary: Confirm a held reservation
+      description: "Gated by `booking.reservations.confirm`. `held` -> `confirmed`; the hold expiry is cleared. Re-checks the hold has not expired under the reservation's row lock, on the DATABASE clock: an elapsed hold is `409 HOLD_EXPIRED` even when the sweep has not run, and so is one the sweep already expired. A confirm racing the sweep serialises on that lock and exactly one wins. Confirming a reservation that is already confirmed returns it with `replayed: true` and writes nothing, with any Idempotency-Key. Body: none (payment is the commerce layer's, which decides WHEN to ask for a confirm). Requires an Idempotency-Key; replaying it returns the stored response. Audited; publishes `awcms.booking.reservation.confirmed`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+      responses:
+        "200":
+          description: "The reservation after the transition, or unchanged with `replayed: true` when it was already in the target state."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/BookingReservationResult"
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: "RESERVATION_NOT_FOUND (an unknown id and another tenant's id are the same answer)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: "HOLD_EXPIRED, INVALID_STATE or IDEMPOTENCY_CONFLICT."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/booking/reservations/{id}/cancel:
+    post:
+      operationId: bookingReservationCancel
+      tags:
+        - Booking
+      summary: Cancel a held or confirmed reservation
+      description: "Gated by `booking.reservations.cancel`. `held` or `confirmed` -> `cancelled`, releasing every live allocation in the same transaction. `reasonCode` is an optional short code, never free text. A cancellation inside the offering's `cancellation_cutoff_seconds` of the start (the arrival instant for a stay) is recorded as `lateCancellation: true` on the reservation and the event; the module records the fact, any fee is the commerce layer's. Cancelling an already cancelled reservation returns it with `replayed: true` and writes nothing. Requires an Idempotency-Key; replaying it returns the stored response. Audited at warning severity; publishes `awcms.booking.reservation.cancelled`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BookingCancelInput"
+      responses:
+        "200":
+          description: "The reservation after the transition, or unchanged with `replayed: true` when it was already in the target state."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/BookingReservationResult"
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: "RESERVATION_NOT_FOUND (an unknown id and another tenant's id are the same answer)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: "INVALID_STATE or IDEMPOTENCY_CONFLICT."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/booking/reservations/{id}/reschedule:
+    post:
+      operationId: bookingReservationReschedule
+      tags:
+        - Booking
+      summary: Reschedule a confirmed reservation
+      description: "Gated by `booking.reservations.reschedule`. Moves a `confirmed` reservation to a new time (`startsAt`) or new dates (`stay`) in ONE transaction: the old allocations are released, the old reservation becomes `rescheduled` (naming its replacement in `supersededById`) and the replacement is inserted `confirmed` under the same `lineageId` with `rescheduledFromId` set, carrying the old customer reference, party, source, note and external reference. Moving or extending over one's own slot or nights does not conflict with itself. Intervals are never edited in place. ANY refusal (the new interval is taken, outside policy, contended) rolls everything back to the untouched original, which stays `confirmed` with its allocations live. `resourceId` or `poolId` moves it elsewhere; a reservation spanning several resources must say where it goes (`400 RESOURCE_REQUIRED`). `overridePolicy` lifts hours, lead time and horizon and additionally needs the HIGH-RISK `booking.reservations.override` (checked first; audited `critical`); it never lifts a conflict. Rescheduling an already rescheduled reservation to the same time returns the replacement with `replayed: true`. Requires an Idempotency-Key; replaying it returns the stored response. Audited at warning severity; publishes `awcms.booking.reservation.rescheduled` for the old reservation and `created` + `confirmed` for the replacement."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BookingRescheduleInput"
+      responses:
+        "200":
+          description: "The reservation after the transition, or unchanged with `replayed: true` when it was already in the target state."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/BookingReservationResult"
+                  meta:
+                    type: object
+        "400":
+          description: "VALIDATION_ERROR, PAYMENT_FIELD_NOT_ACCEPTED, STAY_DATES_INVALID, RESOURCE_REQUIRED (a reservation spanning several resources must say where it moves) or IDEMPOTENCY_REQUIRED."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: "RESERVATION_NOT_FOUND (an unknown id and another tenant's id are the same answer), or RESOURCE_NOT_FOUND / OFFERING_NOT_FOUND for a target resource, pool or offering that is not in this tenant."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: "SLOT_UNAVAILABLE, OUTSIDE_SCHEDULE, LEAD_TIME_VIOLATION, HORIZON_EXCEEDED, INVALID_STATE, BOOKING_MODE_MISMATCH, MIN_STAY_VIOLATION, MAX_STAY_EXCEEDED, STAY_POOL_INCONSISTENT, EXTERNAL_REF_IN_USE, PARTY_SIZE_OUT_OF_RANGE, CONTENTION_RETRY or IDEMPOTENCY_CONFLICT."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: "QUANTITY_EXCEEDS_UNITS."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/booking/reservations/{id}/check-in:
+    post:
+      operationId: bookingReservationCheckIn
+      tags:
+        - Booking
+      summary: Check a confirmed reservation in
+      description: "Gated by `booking.reservations.check_in`. `confirmed` -> `checked_in`; the allocations are kept. A stay is refused (`409 CHECK_IN_TOO_EARLY`) before its check-in DATE in the resource's time zone; there is deliberately no time-of-day check, an early arrival being a front-desk decision. Checking in a checked-in reservation returns it with `replayed: true` and writes nothing. Requires an Idempotency-Key; replaying it returns the stored response. Audited; publishes `awcms.booking.reservation.checked_in`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+      responses:
+        "200":
+          description: "The reservation after the transition, or unchanged with `replayed: true` when it was already in the target state."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/BookingReservationResult"
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: "RESERVATION_NOT_FOUND (an unknown id and another tenant's id are the same answer)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: "INVALID_STATE, CHECK_IN_TOO_EARLY or IDEMPOTENCY_CONFLICT."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/booking/reservations/{id}/check-out:
+    post:
+      operationId: bookingReservationCheckOut
+      tags:
+        - Booking
+      summary: Check a reservation out (complete it)
+      description: 'Gated by `booking.reservations.complete`. `checked_in` -> `completed` (the `complete` verb, "check-out" in the UI). The booked interval is NOT shrunk by an early departure: the allocations are kept, as for a slot. Completing a completed reservation returns it with `replayed: true` and writes nothing. Requires an Idempotency-Key; replaying it returns the stored response. Audited; publishes `awcms.booking.reservation.completed`.'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+      responses:
+        "200":
+          description: "The reservation after the transition, or unchanged with `replayed: true` when it was already in the target state."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/BookingReservationResult"
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: "RESERVATION_NOT_FOUND (an unknown id and another tenant's id are the same answer)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: "INVALID_STATE or IDEMPOTENCY_CONFLICT."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/booking/reservations/{id}/no-show:
+    post:
+      operationId: bookingReservationNoShow
+      tags:
+        - Booking
+      summary: Mark a confirmed reservation as a no-show
+      description: "Gated by `booking.reservations.no_show` (staff only: a customer-facing adapter credential is simply not granted it). `confirmed` -> `no_show`, marked BY A PERSON after the start plus `no_show_grace_seconds` (default 15 minutes; for a stay the start is the arrival instant); earlier is `409 NO_SHOW_TOO_EARLY`. There is no automatic no-show in v1: nothing else ever writes this state. The allocations are KEPT, so the slot is accounted as consumed. Marking a no-show twice returns the reservation with `replayed: true` and writes nothing. Requires an Idempotency-Key; replaying it returns the stored response. Audited at warning severity; publishes `awcms.booking.reservation.no_show`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+      responses:
+        "200":
+          description: "The reservation after the transition, or unchanged with `replayed: true` when it was already in the target state."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/BookingReservationResult"
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: "RESERVATION_NOT_FOUND (an unknown id and another tenant's id are the same answer)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: "INVALID_STATE, NO_SHOW_TOO_EARLY or IDEMPOTENCY_CONFLICT."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/booking/reports/occupancy:
+    get:
+      operationId: bookingReportsOccupancy
+      tags:
+        - Booking
+      summary: Occupancy of stay resources
+      description: "Occupied unit-nights of STAY resources per local night: one unit-night per unit and night (two nights on one unit are two, the same stay on three units is six). Occupied means a confirmed, checked-in or completed reservation claims the night; a no-show keeps its allocation but is not occupied. `heldUnitNights` is the hold PIPELINE for the same nights (live holds only), reported beside occupancy and never inside it; `blockedUnitNights` are the nights under an active block. The rate's denominator is all units active now (whether maintenance closures leave the denominator is still open under O8, hence `blockedUnitNights`). Gated by `booking.reports.read`. READ-ONLY and tenant-scoped (withTenant + RLS FORCE); never cached. Day windows are Asia/Jakarta, half-open. Holds are never part of occupancy (owner decision O8). No customer reference, note or amount is read or returned; there is no revenue figure (booking holds no price). A ratio or mean over fewer than five reservations is withheld (`suppressed: true`, `value: null`); counts are the tenant's own operational figures and are not anonymised (the reader already holds `booking.reports.read` on that tenant's data). The `booking.*` projections on the reporting engine are the all-time dashboard counters; this is the live, windowed detail they point at."
+      parameters:
+        - name: from
+          in: query
+          required: true
+          description: First local date (Asia/Jakarta), inclusive.
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: true
+          description: Last local date, exclusive; after `from`, at most 92 days later.
+          schema:
+            type: string
+            format: date
+        - name: resourceId
+          in: query
+          required: false
+          description: Narrow the report to one resource.
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: The report.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                enum:
+                  - private, no-store
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/BookingOccupancyReport"
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/booking/reports/utilization:
+    get:
+      operationId: bookingReportsUtilization
+      tags:
+        - Booking
+      summary: Utilization of slot resources
+      description: "Net-booked service seconds of SLOT resources over the seconds the schedule leaves open (times the active units), per Asia/Jakarta day. Buffers (setup/cleanup) and holds are excluded from booked; the denominator is the schedule expansion availability uses. A separate metric from occupancy, never averaged with it. Whether the denominator should exclude maintenance closures, and whether booked should be actual rather than booked time, are still open under O8. Gated by `booking.reports.read`. READ-ONLY and tenant-scoped (withTenant + RLS FORCE); never cached. Day windows are Asia/Jakarta, half-open. Holds are never part of occupancy (owner decision O8). No customer reference, note or amount is read or returned; there is no revenue figure (booking holds no price). A ratio over fewer than five reservations is withheld (`suppressed: true`, `value: null`). The `booking.*` projections on the reporting engine are the all-time dashboard counters; this is the live, windowed detail they point at."
+      parameters:
+        - name: from
+          in: query
+          required: true
+          description: First local date (Asia/Jakarta), inclusive.
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: true
+          description: Last local date, exclusive; after `from`, at most 92 days later.
+          schema:
+            type: string
+            format: date
+        - name: resourceId
+          in: query
+          required: false
+          description: Narrow the report to one resource.
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: The report.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                enum:
+                  - private, no-store
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/BookingUtilizationReport"
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/booking/reports/reservations:
+    get:
+      operationId: bookingReportsReservations
+      tags:
+        - Booking
+      summary: Hold pipeline, lead time, cancellation and no-show
+      description: "For a window of Asia/Jakarta days: the HOLD PIPELINE (holds placed, converted, expired, cancelled while held, plus the holds and units open right now), the LEAD TIME of the reservations confirmed in the window (starts_at minus the confirmation instant, in buckets and a mean) and the CANCELLATION and NO-SHOW outcomes of that same confirmation cohort. A reservation later rescheduled is left out of the cohort (its replacement has its own). The no-show rate is no_show over resolved arrivals (no_show + checked_in + completed). Gated by `booking.reports.read`. READ-ONLY and tenant-scoped (withTenant + RLS FORCE); never cached. Day windows are Asia/Jakarta, half-open. Holds are never part of occupancy (owner decision O8). No customer reference, note or amount is read or returned; there is no revenue figure (booking holds no price). A ratio over fewer than five reservations is withheld (`suppressed: true`, `value: null`). The `booking.*` projections on the reporting engine are the all-time dashboard counters; this is the live, windowed detail they point at."
+      parameters:
+        - name: from
+          in: query
+          required: true
+          description: First local date (Asia/Jakarta), inclusive.
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: true
+          description: Last local date, exclusive; after `from`, at most 92 days later.
+          schema:
+            type: string
+            format: date
+        - name: resourceId
+          in: query
+          required: false
+          description: Narrow the report to one resource.
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: The report.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                enum:
+                  - private, no-store
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/BookingReservationsReport"
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+  /api/v1/booking/blocks:
+    get:
+      operationId: bookingBlocksList
+      tags:
+        - Booking
+      summary: List blocked nights
+      description: "Gated by `booking.blocks.read`. Newest first, keyset paginated (`cursor`). Filters: `resourceId`, `unitId`, `status`. A block carries ids, local dates and a closed reason code -- no free text and no customer reference. Tenant-scoped (withTenant + RLS FORCE)."
+      parameters:
+        - name: resourceId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - name: unitId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - active
+              - released
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: A page of blocks.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      blocks:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/BookingBlock"
+                      nextCursor:
+                        type: string
+                        nullable: true
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    post:
+      operationId: bookingBlockCreate
+      tags:
+        - Booking
+      summary: Block nights of a stay resource
+      description: "Gated by `booking.blocks.create` (high-impact: it removes sellable inventory). Takes the half-open local date range `[fromDate, toDate)` (at most 366 nights, dates in the resource's zone) of ONE unit (`unitId`) or EVERY unit (absent or null) out of sale, for a closed `reasonCode`. A block is a HARD exclusion under the same constraint as a guest's nights: all-or-none, it never cancels a reservation, and a night already held by a live stay or another block is `409 BLOCK_CONFLICT` and writes nothing. `error.details.conflicts` names the conflicting reservations (number, status, dates; never a customer reference) and blocks only to a caller who ALSO holds `booking.reservations.read`. A resource-wide block also covers units added to the resource later. Elapsed, unswept holds on the covered units are expired first (lazy reclaim). Requires an Idempotency-Key; replaying it returns the stored response and never `BLOCK_CONFLICT` about its own block. Audited at warning severity (`booking.block.created`). Publishes no domain event in v1."
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BookingBlockInput"
+      responses:
+        "201":
+          description: The block, with the units holding its nights.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/BookingBlockResult"
+                  meta:
+                    type: object
+        "400":
+          description: "VALIDATION_ERROR, or STAY_DATES_INVALID (a malformed or out-of-order date, more than 366 nights, or a date the resource's zone does not have)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: "RESOURCE_NOT_FOUND or UNIT_NOT_FOUND."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: "BLOCK_CONFLICT (a live stay or another block holds a night; nothing was cancelled), BOOKING_MODE_MISMATCH (a slot resource has schedule exceptions instead), CONTENTION_RETRY or IDEMPOTENCY_CONFLICT."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/booking/blocks/{id}:
+    get:
+      operationId: bookingBlockGet
+      tags:
+        - Booking
+      summary: Read one block
+      description: "Gated by `booking.blocks.read`. An unknown id and another tenant's id are the same `404 BLOCK_NOT_FOUND`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: The block.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      block:
+                        $ref: "#/components/schemas/BookingBlock"
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: "BLOCK_NOT_FOUND (an unknown id and another tenant's id are the same answer)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/booking/blocks/{id}/release:
+    post:
+      operationId: bookingBlockRelease
+      tags:
+        - Booking
+      summary: Release a block and return its nights to sale
+      description: "Gated by `booking.blocks.release`. The block is locked and the database releases its allocation rows in the same statement, stamping the block's own release instant on them. Releasing an already released block returns it with `replayed: true` and writes nothing. The body is empty. Requires an Idempotency-Key; replaying it returns the stored response. Audited at info severity (`booking.block.released`). Publishes no domain event in v1."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+      responses:
+        "200":
+          description: "The released block, or unchanged with `replayed: true` when it was already released."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    allOf:
+                      - $ref: "#/components/schemas/BookingBlockResult"
+                      - type: object
+                        properties:
+                          releasedAllocations:
+                            type: integer
+                            description: Allocation rows released by THIS call (0 on a replay).
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: "BLOCK_NOT_FOUND (an unknown id and another tenant's id are the same answer)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: "IDEMPOTENCY_CONFLICT."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/booking/resources:
+    get:
+      operationId: bookingResourcesList
+      tags:
+        - Booking
+      summary: "List resources"
+      description: "Gated by `booking.resources.read`. This tenant's resources, newest first, keyset paginated (`cursor`). Filters: `status`, `bookingMode`, `poolId`, and `includeDeleted` / `onlyDeleted` (soft-deleted rows are hidden by default and need `booking.resources.restore` as well). Each row carries `capacity` and `activeUnits`; the units themselves are on the read of one resource. Tenant-scoped (withTenant + RLS FORCE)."
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - active
+              - inactive
+        - name: bookingMode
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - slot
+              - stay
+        - name: poolId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - name: includeDeleted
+          in: query
+          required: false
+          description: "true lists live and soft-deleted rows; needs `booking.resources.restore` as well (403 otherwise)."
+          schema:
+            type: boolean
+        - name: onlyDeleted
+          in: query
+          required: false
+          description: "true lists only soft-deleted rows; needs `booking.resources.restore` as well (403 otherwise)."
+          schema:
+            type: boolean
+        - name: cursor
+          in: query
+          required: false
+          description: "Opaque keyset cursor from the previous page."
+          schema:
+            type: string
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: "A page of resources."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      resources:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/BookingResource"
+                      nextCursor:
+                        type: string
+                        nullable: true
+
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    post:
+      operationId: bookingResourceCreate
+      tags:
+        - Booking
+      summary: "Create a resource and its units"
+      description: "Gated by `booking.resources.create`. Creates the resource and its `capacity` units (ordinals 1 to capacity, labelled from `unitLabels`) in ONE transaction. A stay resource needs `stayCheckInTime` and `stayCheckOutTime` (local times); a slot resource sends neither. `timezone` is an IANA name, never an offset. A duplicate `code` (case-insensitive) is `409 CODE_TAKEN`; an unknown or deleted `poolId` is `404 POOL_NOT_FOUND`. Requires an Idempotency-Key; a retry returns the SAME 201 and body and never `CODE_TAKEN` about its own row. Audited at info severity (`booking.resource.created`)."
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BookingResourceInput"
+      responses:
+        "201":
+          description: "The resource with its units."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    required:
+                      - resource
+                      - replayed
+                    properties:
+                      resource:
+                        $ref: "#/components/schemas/BookingResource"
+                      replayed:
+                        type: boolean
+
+                  meta:
+                    type: object
+        "400":
+          description: "VALIDATION_ERROR, TIMEZONE_INVALID or IDEMPOTENCY_REQUIRED."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: "POOL_NOT_FOUND."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: "CODE_TAKEN or IDEMPOTENCY_CONFLICT."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: "CONSTRAINT_VIOLATED (a database rule the validator did not state)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/booking/resources/{id}:
+    get:
+      operationId: bookingResourceGet
+      tags:
+        - Booking
+      summary: "Read one resource with its units"
+      description: "Gated by `booking.resources.read`. A soft-deleted resource is returned (with `deletedAt`) only to a holder of `booking.resources.restore`, so a screen can offer the restore; anyone else gets the neutral 404. An unknown id and another tenant's id are the same `404 RESOURCE_NOT_FOUND`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: "The resource and its units."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      resource:
+                        $ref: "#/components/schemas/BookingResource"
+
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: "RESOURCE_NOT_FOUND (an unknown id and another tenant's id are the same answer)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    patch:
+      operationId: bookingResourcePatch
+      tags:
+        - Booking
+      summary: "Edit a resource, its pool membership and its units"
+      description: "Gated by `booking.resources.update`. `code` is fixed. Editable: `name`, `kind`, `status`, `poolId` (a pool id, or null to leave the pool: this is the pool membership), `timezone`, `bookingMode`, the stay times, `sortOrder`, `capacity` (GROW only: new units are appended and a resource-wide block covers them) and `units` (relabel, activate or deactivate by unit id). Changing `bookingMode` to `slot` clears the stay times unless sent. The database refuses a `bookingMode` change while the resource has live allocations or active blocks (`409 BOOKING_MODE_IN_USE`), a `timezone` change while it has them (`409 TIMEZONE_IN_USE`) or an active schedule in the current zone (`409 SCHEDULE_TIMEZONE_MISMATCH`). Capacity never shrinks (`409 CAPACITY_REDUCTION_NOT_ALLOWED`: deactivate a unit instead). A refusal writes nothing. Requires an Idempotency-Key. Audited at info severity (`booking.resource.updated`)."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BookingResourcePatch"
+      responses:
+        "200":
+          description: "The resource with its units."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    required:
+                      - resource
+                      - replayed
+                    properties:
+                      resource:
+                        $ref: "#/components/schemas/BookingResource"
+                      replayed:
+                        type: boolean
+
+                  meta:
+                    type: object
+        "400":
+          description: "VALIDATION_ERROR, TIMEZONE_INVALID or IDEMPOTENCY_REQUIRED."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: "RESOURCE_NOT_FOUND, POOL_NOT_FOUND or UNIT_NOT_FOUND."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: "BOOKING_MODE_IN_USE, TIMEZONE_IN_USE, SCHEDULE_TIMEZONE_MISMATCH, CAPACITY_REDUCTION_NOT_ALLOWED, RESOURCE_DELETED, GUARD_REFUSED or IDEMPOTENCY_CONFLICT."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: "CONSTRAINT_VIOLATED."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    delete:
+      operationId: bookingResourceDelete
+      tags:
+        - Booking
+      summary: "Soft-delete a resource"
+      description: "Gated by `booking.resources.delete`. SOFT delete: reservations keep referencing the resource and nothing is removed. Refused with `409 RESOURCE_IN_USE` while a held, confirmed or checked-in reservation or an active block needs it (set `status` to `inactive` to stop selling instead). Deleting a deleted resource returns it with `replayed: true` and writes nothing. Requires an Idempotency-Key. Audited at warning severity (`booking.resource.deleted`)."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: "The deleted resource."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    required:
+                      - resource
+                      - replayed
+                    properties:
+                      resource:
+                        $ref: "#/components/schemas/BookingResource"
+                      replayed:
+                        type: boolean
+
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: "RESOURCE_NOT_FOUND."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: "RESOURCE_IN_USE or IDEMPOTENCY_CONFLICT."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/booking/resources/{id}/restore:
+    post:
+      operationId: bookingResourceRestore
+      tags:
+        - Booking
+      summary: "Restore a soft-deleted resource"
+      description: "Gated by `booking.resources.restore`. Restoring a live resource returns it with `replayed: true` and writes nothing. The body is empty. Requires an Idempotency-Key. Audited at info severity (`booking.resource.restored`)."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+
+      responses:
+        "200":
+          description: "The restored resource."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    required:
+                      - resource
+                      - replayed
+                    properties:
+                      resource:
+                        $ref: "#/components/schemas/BookingResource"
+                      replayed:
+                        type: boolean
+
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: "RESOURCE_NOT_FOUND."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: "IDEMPOTENCY_CONFLICT."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/booking/resource-pools:
+    get:
+      operationId: bookingResourcePoolsList
+      tags:
+        - Booking
+      summary: "List resource pools"
+      description: "Gated by `booking.resources.read` (pools are governed by the `resources` permissions). Newest first, keyset paginated (`cursor`); soft-deleted pools are hidden by default (`includeDeleted` / `onlyDeleted` need `booking.resources.restore` as well). Each carries its live `memberCount`. Tenant-scoped (withTenant + RLS FORCE)."
+      parameters:
+        - name: includeDeleted
+          in: query
+          required: false
+          description: "true lists live and soft-deleted rows; needs `booking.resources.restore` as well (403 otherwise)."
+          schema:
+            type: boolean
+        - name: onlyDeleted
+          in: query
+          required: false
+          description: "true lists only soft-deleted rows; needs `booking.resources.restore` as well (403 otherwise)."
+          schema:
+            type: boolean
+        - name: cursor
+          in: query
+          required: false
+          description: "Opaque keyset cursor from the previous page."
+          schema:
+            type: string
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: "A page of pools."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      pools:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/BookingResourcePool"
+                      nextCursor:
+                        type: string
+                        nullable: true
+
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    post:
+      operationId: bookingResourcePoolCreate
+      tags:
+        - Booking
+      summary: "Create a resource pool"
+      description: "Gated by `booking.resources.create`. A set of interchangeable resources; a resource joins a pool through its own `poolId`. A duplicate `code` (case-insensitive) is `409 CODE_TAKEN`. Requires an Idempotency-Key. Audited at info severity (`booking.pool.created`)."
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BookingResourcePoolInput"
+      responses:
+        "201":
+          description: "The pool."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    required:
+                      - pool
+                      - replayed
+                    properties:
+                      pool:
+                        $ref: "#/components/schemas/BookingResourcePool"
+                      replayed:
+                        type: boolean
+
+                  meta:
+                    type: object
+        "400":
+          description: "VALIDATION_ERROR or IDEMPOTENCY_REQUIRED."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "CODE_TAKEN or IDEMPOTENCY_CONFLICT."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/booking/resource-pools/{id}:
+    get:
+      operationId: bookingResourcePoolGet
+      tags:
+        - Booking
+      summary: "Read one pool with its members"
+      description: "Gated by `booking.resources.read`. Returns the pool with its live members (at most 500); a soft-deleted pool is returned (with `deletedAt`) only to a holder of `booking.resources.restore`, anyone else gets the neutral 404. An unknown id and another tenant's id are the same `404 POOL_NOT_FOUND`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: "The pool and its members."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      pool:
+                        $ref: "#/components/schemas/BookingResourcePool"
+
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: "POOL_NOT_FOUND."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    patch:
+      operationId: bookingResourcePoolPatch
+      tags:
+        - Booking
+      summary: "Rename a resource pool"
+      description: "Gated by `booking.resources.update`. `code` is fixed. `409 POOL_DELETED` for a deleted pool. Requires an Idempotency-Key. Audited at info severity (`booking.pool.updated`)."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BookingResourcePoolPatch"
+      responses:
+        "200":
+          description: "The pool."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    required:
+                      - pool
+                      - replayed
+                    properties:
+                      pool:
+                        $ref: "#/components/schemas/BookingResourcePool"
+                      replayed:
+                        type: boolean
+
+                  meta:
+                    type: object
+        "400":
+          description: "VALIDATION_ERROR or IDEMPOTENCY_REQUIRED."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: "POOL_NOT_FOUND."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: "POOL_DELETED or IDEMPOTENCY_CONFLICT."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    delete:
+      operationId: bookingResourcePoolDelete
+      tags:
+        - Booking
+      summary: "Soft-delete a resource pool"
+      description: "Gated by `booking.resources.delete`. SOFT delete. Refused with `409 POOL_NOT_EMPTY` while a live resource is a member. Deleting a deleted pool returns it with `replayed: true`. Requires an Idempotency-Key. Audited at warning severity (`booking.pool.deleted`)."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: "The deleted pool."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    required:
+                      - pool
+                      - replayed
+                    properties:
+                      pool:
+                        $ref: "#/components/schemas/BookingResourcePool"
+                      replayed:
+                        type: boolean
+
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: "POOL_NOT_FOUND."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: "POOL_NOT_EMPTY or IDEMPOTENCY_CONFLICT."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/booking/resource-pools/{id}/restore:
+    post:
+      operationId: bookingResourcePoolRestore
+      tags:
+        - Booking
+      summary: "Restore a soft-deleted resource pool"
+      description: "Gated by `booking.resources.restore`. Restoring a live pool returns it with `replayed: true`. The body is empty. Requires an Idempotency-Key. Audited at info severity (`booking.pool.restored`)."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+
+      responses:
+        "200":
+          description: "The restored pool."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    required:
+                      - pool
+                      - replayed
+                    properties:
+                      pool:
+                        $ref: "#/components/schemas/BookingResourcePool"
+                      replayed:
+                        type: boolean
+
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: "POOL_NOT_FOUND."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: "IDEMPOTENCY_CONFLICT."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/booking/offerings:
+    get:
+      operationId: bookingOfferingsList
+      tags:
+        - Booking
+      summary: "List service offerings"
+      description: "Gated by `booking.offerings.read`. Newest first, keyset paginated (`cursor`). Filters: `granularity`, `status`, and `includeDeleted` / `onlyDeleted` (soft-deleted rows are hidden by default and need `booking.offerings.restore` as well). An offering holds no price and no product id. Tenant-scoped (withTenant + RLS FORCE)."
+      parameters:
+        - name: granularity
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - time
+              - stay
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - active
+              - inactive
+        - name: includeDeleted
+          in: query
+          required: false
+          description: "true lists live and soft-deleted rows; needs `booking.offerings.restore` as well (403 otherwise)."
+          schema:
+            type: boolean
+        - name: onlyDeleted
+          in: query
+          required: false
+          description: "true lists only soft-deleted rows; needs `booking.offerings.restore` as well (403 otherwise)."
+          schema:
+            type: boolean
+        - name: cursor
+          in: query
+          required: false
+          description: "Opaque keyset cursor from the previous page."
+          schema:
+            type: string
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: "A page of offerings."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      offerings:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/BookingOffering"
+                      nextCursor:
+                        type: string
+                        nullable: true
+
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    post:
+      operationId: bookingOfferingCreate
+      tags:
+        - Booking
+      summary: "Create a service offering"
+      description: "Gated by `booking.offerings.create`. A `time` offering needs `durationSeconds` and `slotStepSeconds` (at least 300) and may set buffers; a `stay` offering needs `minNights` and `maxNights` (at most 366) and sends no time field. `maxParty` is at least `minParty`. A duplicate `code` (case-insensitive) is `409 CODE_TAKEN`. Requires an Idempotency-Key. Audited at info severity (`booking.offering.created`)."
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BookingOfferingInput"
+      responses:
+        "201":
+          description: "The offering."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    required:
+                      - offering
+                      - replayed
+                    properties:
+                      offering:
+                        $ref: "#/components/schemas/BookingOffering"
+                      replayed:
+                        type: boolean
+
+                  meta:
+                    type: object
+        "400":
+          description: "VALIDATION_ERROR or IDEMPOTENCY_REQUIRED."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "CODE_TAKEN or IDEMPOTENCY_CONFLICT."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: "CONSTRAINT_VIOLATED."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/booking/offerings/{id}:
+    get:
+      operationId: bookingOfferingGet
+      tags:
+        - Booking
+      summary: "Read one service offering"
+      description: "Gated by `booking.offerings.read`. A soft-deleted offering is returned (with `deletedAt`) only to a holder of `booking.offerings.restore`, anyone else gets the neutral 404. An unknown id and another tenant's id are the same `404 OFFERING_NOT_FOUND`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: "The offering."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      offering:
+                        $ref: "#/components/schemas/BookingOffering"
+
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: "OFFERING_NOT_FOUND."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    patch:
+      operationId: bookingOfferingPatch
+      tags:
+        - Booking
+      summary: "Edit a service offering"
+      description: "Gated by `booking.offerings.update`. `code` and `granularity` are fixed; the merged offering must still satisfy the shape of its granularity (`400 VALIDATION_ERROR` otherwise). Changes FUTURE bookings only: a reservation item keeps the snapshot it was made with. `409 OFFERING_DELETED` for a deleted offering. Requires an Idempotency-Key. Audited at info severity (`booking.offering.updated`)."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BookingOfferingPatch"
+      responses:
+        "200":
+          description: "The offering."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    required:
+                      - offering
+                      - replayed
+                    properties:
+                      offering:
+                        $ref: "#/components/schemas/BookingOffering"
+                      replayed:
+                        type: boolean
+
+                  meta:
+                    type: object
+        "400":
+          description: "VALIDATION_ERROR or IDEMPOTENCY_REQUIRED."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: "OFFERING_NOT_FOUND."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: "OFFERING_DELETED or IDEMPOTENCY_CONFLICT."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: "CONSTRAINT_VIOLATED."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    delete:
+      operationId: bookingOfferingDelete
+      tags:
+        - Booking
+      summary: "Soft-delete a service offering"
+      description: "Gated by `booking.offerings.delete`. SOFT delete; reservations keep their snapshot. Deleting a deleted offering returns it with `replayed: true`. Requires an Idempotency-Key. Audited at warning severity (`booking.offering.deleted`)."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: "The deleted offering."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    required:
+                      - offering
+                      - replayed
+                    properties:
+                      offering:
+                        $ref: "#/components/schemas/BookingOffering"
+                      replayed:
+                        type: boolean
+
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: "OFFERING_NOT_FOUND."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: "IDEMPOTENCY_CONFLICT."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/booking/offerings/{id}/restore:
+    post:
+      operationId: bookingOfferingRestore
+      tags:
+        - Booking
+      summary: "Restore a soft-deleted service offering"
+      description: "Gated by `booking.offerings.restore`. Restoring a live offering returns it with `replayed: true`. The body is empty. Requires an Idempotency-Key. Audited at info severity (`booking.offering.restored`)."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+
+      responses:
+        "200":
+          description: "The restored offering."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    required:
+                      - offering
+                      - replayed
+                    properties:
+                      offering:
+                        $ref: "#/components/schemas/BookingOffering"
+                      replayed:
+                        type: boolean
+
+                  meta:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: "OFFERING_NOT_FOUND."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: "IDEMPOTENCY_CONFLICT."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/booking/policy:
+    get:
+      operationId: bookingPolicyGet
+      tags:
+        - Booking
+      summary: "Read the booking policy"
+      description: "Gated by `booking.policy.read`. `policy` is what the tenant set (`null` where it did not, meaning the MODULE DEFAULT, not unlimited) and `effective` is what is in force. A tenant that never wrote a policy reads every field `null` and `updatedAt: null`."
+      parameters:
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: "The policy."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/BookingPolicy"
+                  meta:
+                    type: object
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    put:
+      operationId: bookingPolicyPut
+      tags:
+        - Booking
+      summary: "Replace the booking policy"
+      description: "Gated by `booking.policy.configure` (HIGH-RISK: it bounds how much inventory one actor can hold and how far ahead anyone can book). REPLACES the whole policy: every field must be present and `null` selects the module default (hold caps default to 5 per customer and 500 per tenant). Ranges: hold seconds 60 to 86400 with `defaultHoldSeconds` at most `maxHoldSeconds`; hold caps at least 1; `minLeadSeconds` at least 0; `maxHorizonDays` 1 to 3650; `noShowGraceSeconds` 0 to 2592000; `defaultTimezone` an IANA name. Changes FUTURE holds and searches only. Requires an Idempotency-Key; replaying it returns the stored response. Audited at critical severity (`booking.policy.configured`) with the before and after values. No MFA step-up: ADR-0141 flags payroll permissions only."
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BookingPolicyInput"
+      responses:
+        "200":
+          description: "The policy now in force."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    allOf:
+                      - $ref: "#/components/schemas/BookingPolicy"
+                      - type: object
+                        properties:
+                          replayed:
+                            type: boolean
+
+                  meta:
+                    type: object
+        "400":
+          description: "VALIDATION_ERROR (a missing or out-of-range field) or IDEMPOTENCY_REQUIRED."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "IDEMPOTENCY_CONFLICT."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: "CONSTRAINT_VIOLATED."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
 components:
   schemas:
     BookingLocalWindow:
@@ -724,6 +2876,19 @@ components:
         truncated:
           type: boolean
           description: True when more slots exist than `limit` returned.
+        staffAvailability:
+          type: string
+          enum:
+            - checked
+            - unchecked
+          description: |
+            `checked` when the resource names the people who serve it
+            (`required_staff_refs`) AND the workforce capability (`hr_workforce`)
+            is on for the tenant: every slot listed has at least one such person
+            working for the whole service interval and not already serving a live
+            claim. `unchecked` otherwise (no staff constraint at all). The answer
+            is advisory; a claim that finds no free person is refused
+            `SLOT_UNAVAILABLE` with nothing allocated.
     BookingStayAvailability:
       type: object
       properties:
@@ -784,3 +2949,1324 @@ components:
                 type: boolean
               detail:
                 type: string
+    BookingReservationStay:
+      type: object
+      properties:
+        checkInDate:
+          type: string
+          format: date
+        checkOutDate:
+          type: string
+          format: date
+        nights:
+          type: integer
+        timezone:
+          type: string
+    BookingReservationItem:
+      type: object
+      description: The immutable item snapshot (the offering as it was when booked).
+      properties:
+        lineNo:
+          type: integer
+        offeringId:
+          type: string
+          format: uuid
+        offeringCode:
+          type: string
+        offeringName:
+          type: string
+        granularity:
+          type: string
+          enum:
+            - time
+            - stay
+        startsAt:
+          type: string
+          format: date-time
+        endsAt:
+          type: string
+          format: date-time
+        quantity:
+          type: integer
+        stay:
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/BookingReservationStay"
+    BookingReservation:
+      type: object
+      description: A reservation. There is no price, deposit, balance or payment state anywhere in this module, and the customer note is never returned here.
+      properties:
+        id:
+          type: string
+          format: uuid
+        reservationNo:
+          type: string
+        lineageId:
+          type: string
+          format: uuid
+        rescheduledFromId:
+          type: string
+          format: uuid
+          nullable: true
+        supersededById:
+          type: string
+          format: uuid
+          nullable: true
+        status:
+          type: string
+          enum:
+            - held
+            - confirmed
+            - checked_in
+            - completed
+            - cancelled
+            - rescheduled
+            - no_show
+            - expired
+        partySize:
+          type: integer
+        startsAt:
+          type: string
+          format: date-time
+        endsAt:
+          type: string
+          format: date-time
+        holdExpiresAt:
+          type: string
+          format: date-time
+          nullable: true
+        source:
+          type: string
+        externalRefType:
+          type: string
+          nullable: true
+        externalRef:
+          type: string
+          nullable: true
+        externalCustomerRef:
+          type: string
+          nullable: true
+          description: The commerce authority's opaque customer token; never a name or a contact.
+        lateCancellation:
+          type: boolean
+        cancelReasonCode:
+          type: string
+          nullable: true
+        statusChangedAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+        resourceIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/BookingReservationItem"
+    BookingReservationEvent:
+      type: object
+      description: One row of the append-only transition history. `detail` holds closed keys (ids, instants, counts), never free text or personal data.
+      properties:
+        seq:
+          type: integer
+        kind:
+          type: string
+        fromStatus:
+          type: string
+          nullable: true
+        toStatus:
+          type: string
+        actorUserId:
+          type: string
+          format: uuid
+          nullable: true
+        reasonCode:
+          type: string
+          nullable: true
+        detail:
+          type: object
+          additionalProperties: true
+        occurredAt:
+          type: string
+          format: date-time
+    BookingReservationDetail:
+      type: object
+      properties:
+        reservation:
+          $ref: "#/components/schemas/BookingReservation"
+        events:
+          type: array
+          items:
+            $ref: "#/components/schemas/BookingReservationEvent"
+    BookingReservationResult:
+      type: object
+      properties:
+        reservation:
+          $ref: "#/components/schemas/BookingReservation"
+        replayed:
+          type: boolean
+          description: True when the reservation was already in the target state and nothing was written.
+        previous:
+          allOf:
+            - $ref: "#/components/schemas/BookingReservation"
+          description: A reschedule only - the superseded reservation, now `rescheduled`; `reservation` is its replacement.
+        policyLifted:
+          type: array
+          description: A reschedule only - the policy rules `booking.reservations.override` lifted.
+          items:
+            type: string
+            enum:
+              - OUTSIDE_SCHEDULE
+              - LEAD_TIME_VIOLATION
+              - HORIZON_EXCEEDED
+    BookingReservationCreated:
+      type: object
+      properties:
+        reservation:
+          $ref: "#/components/schemas/BookingReservation"
+        replayed:
+          type: boolean
+        policyLifted:
+          type: array
+          description: The policy rules the override lifted for this call; empty when none needed lifting.
+          items:
+            type: string
+            enum:
+              - OUTSIDE_SCHEDULE
+              - LEAD_TIME_VIOLATION
+              - HORIZON_EXCEEDED
+    BookingStayDates:
+      type: object
+      required:
+        - checkInDate
+        - checkOutDate
+      additionalProperties: false
+      properties:
+        checkInDate:
+          type: string
+          format: date
+          description: Local date in the resource's zone.
+        checkOutDate:
+          type: string
+          format: date
+          description: Exclusive; after `checkInDate`, at most 366 nights.
+    BookingCreateReservationInput:
+      type: object
+      additionalProperties: false
+      required:
+        - offeringId
+      description: Exactly one of `resourceId` or `poolId`, and exactly one of `startsAt` (a slot) or `stay` (a night range). A payment field is refused by name.
+      properties:
+        offeringId:
+          type: string
+          format: uuid
+        resourceId:
+          type: string
+          format: uuid
+        poolId:
+          type: string
+          format: uuid
+        startsAt:
+          type: string
+          format: date-time
+          description: RFC 3339 with an explicit offset or Z. Slot offerings only.
+        stay:
+          $ref: "#/components/schemas/BookingStayDates"
+        partySize:
+          type: integer
+          minimum: 1
+          maximum: 500
+          default: 1
+        quantity:
+          type: integer
+          minimum: 1
+          maximum: 500
+          default: 1
+          description: Units claimed at once, all-or-none.
+        holdSeconds:
+          type: number
+          description: Clamped to [60, max_hold_seconds].
+        externalCustomerRef:
+          type: string
+          nullable: true
+          description: The commerce authority's opaque customer token (no spaces, no '@'); null for a walk-in.
+        externalRef:
+          type: object
+          nullable: true
+          additionalProperties: false
+          required:
+            - type
+            - id
+          properties:
+            type:
+              type: string
+            id:
+              type: string
+        source:
+          type: string
+        customerNote:
+          type: string
+          nullable: true
+          maxLength: 500
+          description: Free text; classified, never logged, audited or put in an event.
+        overridePolicy:
+          type: boolean
+          default: false
+          description: Lift opening hours, lead time and horizon. Needs `booking.reservations.override` in addition.
+    BookingRescheduleInput:
+      type: object
+      additionalProperties: false
+      properties:
+        startsAt:
+          type: string
+          format: date-time
+        stay:
+          $ref: "#/components/schemas/BookingStayDates"
+        resourceId:
+          type: string
+          format: uuid
+        poolId:
+          type: string
+          format: uuid
+        overridePolicy:
+          type: boolean
+          default: false
+    BookingCancelInput:
+      type: object
+      additionalProperties: false
+      properties:
+        reasonCode:
+          type: string
+          nullable: true
+          description: A short lowercase code, never free text.
+    BookingSuppressedNumber:
+      type: object
+      description: A figure over a group of reservations; withheld (value null, suppressed true) when the group has fewer than five.
+      required:
+        - suppressed
+        - value
+      properties:
+        suppressed:
+          type: boolean
+        value:
+          type: number
+          nullable: true
+    BookingOccupancyDay:
+      type: object
+      required:
+        - date
+        - units
+        - occupiedUnitNights
+        - heldUnitNights
+        - blockedUnitNights
+        - occupancyRate
+      properties:
+        date:
+          type: string
+          format: date
+        units:
+          type: integer
+        occupiedUnitNights:
+          type: integer
+        heldUnitNights:
+          type: integer
+          description: The hold pipeline for this night. Never part of occupiedUnitNights or occupancyRate (O8).
+        blockedUnitNights:
+          type: integer
+        occupancyRate:
+          type: number
+          nullable: true
+    BookingOccupancyReport:
+      type: object
+      required:
+        - timezone
+        - from
+        - to
+        - resources
+        - truncated
+      properties:
+        timezone:
+          type: string
+          enum:
+            - Asia/Jakarta
+        from:
+          type: string
+          format: date
+        to:
+          type: string
+          format: date
+        truncated:
+          type: boolean
+          description: More than 200 resources matched; the first 200 are returned.
+        resources:
+          type: array
+          items:
+            type: object
+            required:
+              - resourceId
+              - code
+              - name
+              - units
+              - days
+              - totals
+            properties:
+              resourceId:
+                type: string
+                format: uuid
+              code:
+                type: string
+              name:
+                type: string
+              units:
+                type: integer
+              days:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BookingOccupancyDay"
+              totals:
+                type: object
+                required:
+                  - unitNights
+                  - occupiedUnitNights
+                  - heldUnitNights
+                  - blockedUnitNights
+                  - occupancyRate
+                properties:
+                  unitNights:
+                    type: integer
+                  occupiedUnitNights:
+                    type: integer
+                  heldUnitNights:
+                    type: integer
+                  blockedUnitNights:
+                    type: integer
+                  occupancyRate:
+                    type: number
+                    nullable: true
+    BookingUtilizationDay:
+      type: object
+      required:
+        - date
+        - bookedSeconds
+        - availableSeconds
+        - utilization
+      properties:
+        date:
+          type: string
+          format: date
+        bookedSeconds:
+          type: integer
+        availableSeconds:
+          type: integer
+        utilization:
+          type: number
+          nullable: true
+    BookingUtilizationReport:
+      type: object
+      required:
+        - timezone
+        - from
+        - to
+        - resources
+        - truncated
+      properties:
+        timezone:
+          type: string
+          enum:
+            - Asia/Jakarta
+        from:
+          type: string
+          format: date
+        to:
+          type: string
+          format: date
+        truncated:
+          type: boolean
+        resources:
+          type: array
+          items:
+            type: object
+            required:
+              - resourceId
+              - code
+              - name
+              - units
+              - days
+              - totals
+            properties:
+              resourceId:
+                type: string
+                format: uuid
+              code:
+                type: string
+              name:
+                type: string
+              units:
+                type: integer
+              days:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BookingUtilizationDay"
+              totals:
+                type: object
+                required:
+                  - bookedSeconds
+                  - availableSeconds
+                  - utilization
+                properties:
+                  bookedSeconds:
+                    type: integer
+                  availableSeconds:
+                    type: integer
+                  utilization:
+                    type: number
+                    nullable: true
+    BookingReservationsReport:
+      type: object
+      required:
+        - timezone
+        - from
+        - to
+        - windowStartsAt
+        - windowEndsAt
+        - pipeline
+        - leadTime
+        - outcomes
+      properties:
+        timezone:
+          type: string
+          enum:
+            - Asia/Jakarta
+        from:
+          type: string
+          format: date
+        to:
+          type: string
+          format: date
+        windowStartsAt:
+          type: string
+          format: date-time
+        windowEndsAt:
+          type: string
+          format: date-time
+        pipeline:
+          type: object
+          required:
+            - placed
+            - converted
+            - expired
+            - cancelledHeld
+            - conversionRate
+            - openHoldsNow
+            - heldUnitsNow
+          properties:
+            placed:
+              type: integer
+            converted:
+              type: integer
+            expired:
+              type: integer
+            cancelledHeld:
+              type: integer
+            conversionRate:
+              $ref: "#/components/schemas/BookingSuppressedNumber"
+            openHoldsNow:
+              type: integer
+            heldUnitsNow:
+              type: integer
+        leadTime:
+          type: object
+          required:
+            - reservations
+            - meanDays
+            - buckets
+          properties:
+            reservations:
+              type: integer
+            meanDays:
+              $ref: "#/components/schemas/BookingSuppressedNumber"
+            buckets:
+              type: array
+              items:
+                type: object
+                required:
+                  - key
+                  - reservations
+                properties:
+                  key:
+                    type: string
+                    enum:
+                      - same_day
+                      - 1_3_days
+                      - 4_7_days
+                      - 8_30_days
+                      - 31_plus_days
+                  reservations:
+                    type: integer
+        outcomes:
+          type: object
+          required:
+            - confirmed
+            - cancelled
+            - lateCancelled
+            - noShow
+            - arrived
+            - cancellationRate
+            - lateCancellationRate
+            - noShowRate
+          properties:
+            confirmed:
+              type: integer
+            cancelled:
+              type: integer
+            lateCancelled:
+              type: integer
+            noShow:
+              type: integer
+            arrived:
+              type: integer
+            cancellationRate:
+              $ref: "#/components/schemas/BookingSuppressedNumber"
+            lateCancellationRate:
+              $ref: "#/components/schemas/BookingSuppressedNumber"
+            noShowRate:
+              $ref: "#/components/schemas/BookingSuppressedNumber"
+    BookingBlockInput:
+      type: object
+      additionalProperties: false
+      required:
+        - resourceId
+        - fromDate
+        - toDate
+        - reasonCode
+      properties:
+        resourceId:
+          type: string
+          format: uuid
+        unitId:
+          type: string
+          format: uuid
+          nullable: true
+          description: One unit of the resource; null or absent blocks every unit (including units added later).
+        fromDate:
+          type: string
+          format: date
+          description: First blocked night, a local date in the resource's zone.
+        toDate:
+          type: string
+          format: date
+          description: Exclusive end (the day the unit is back in sale); at most 366 nights after fromDate.
+        reasonCode:
+          type: string
+          enum:
+            - maintenance
+            - owner_use
+            - other
+    BookingBlock:
+      type: object
+      required:
+        - id
+        - resourceId
+        - unitId
+        - fromDate
+        - toDate
+        - nights
+        - reasonCode
+        - status
+        - releasedAt
+        - createdAt
+        - unitIds
+      properties:
+        id:
+          type: string
+          format: uuid
+        resourceId:
+          type: string
+          format: uuid
+        unitId:
+          type: string
+          format: uuid
+          nullable: true
+          description: Null = every unit of the resource.
+        fromDate:
+          type: string
+          format: date
+        toDate:
+          type: string
+          format: date
+        nights:
+          type: integer
+        reasonCode:
+          type: string
+          enum:
+            - maintenance
+            - owner_use
+            - other
+        status:
+          type: string
+          enum:
+            - active
+            - released
+        releasedAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        unitIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Units holding a night of this block (the rows are kept after a release).
+    BookingBlockResult:
+      type: object
+      required:
+        - block
+        - replayed
+      properties:
+        block:
+          $ref: "#/components/schemas/BookingBlock"
+        replayed:
+          type: boolean
+    BookingResourceUnit:
+      type: object
+      required:
+        - id
+        - ordinal
+        - label
+        - status
+      properties:
+        id:
+          type: string
+          format: uuid
+        ordinal:
+          type: integer
+        label:
+          type: string
+          nullable: true
+        status:
+          type: string
+          enum:
+            - active
+            - inactive
+    BookingResource:
+      type: object
+      required:
+        - id
+        - code
+        - name
+        - kind
+        - status
+        - capacity
+        - activeUnits
+        - poolId
+        - timezone
+        - bookingMode
+        - stayCheckInTime
+        - stayCheckOutTime
+        - sortOrder
+        - createdAt
+        - updatedAt
+        - deletedAt
+      properties:
+        id:
+          type: string
+          format: uuid
+        code:
+          type: string
+        name:
+          type: string
+        kind:
+          type: string
+        status:
+          type: string
+          enum:
+            - active
+            - inactive
+        capacity:
+          type: integer
+          description: Number of unit rows; never shrinks.
+        activeUnits:
+          type: integer
+        poolId:
+          type: string
+          format: uuid
+          nullable: true
+        timezone:
+          type: string
+        bookingMode:
+          type: string
+          enum:
+            - slot
+            - stay
+        stayCheckInTime:
+          type: string
+          nullable: true
+          description: Local HH:MM:SS; stay resources only.
+        stayCheckOutTime:
+          type: string
+          nullable: true
+        sortOrder:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        deletedAt:
+          type: string
+          format: date-time
+          nullable: true
+        units:
+          type: array
+          description: Present on a read of one resource and on a write; absent in a list.
+          items:
+            $ref: "#/components/schemas/BookingResourceUnit"
+    BookingResourceInput:
+      type: object
+      additionalProperties: false
+      required:
+        - code
+        - name
+        - kind
+        - capacity
+        - timezone
+      properties:
+        code:
+          type: string
+          pattern: "^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$"
+        name:
+          type: string
+          minLength: 1
+          maxLength: 200
+        kind:
+          type: string
+          pattern: "^[a-z][a-z0-9_]{0,31}$"
+        capacity:
+          type: integer
+          minimum: 1
+          maximum: 500
+        poolId:
+          type: string
+          format: uuid
+          nullable: true
+        timezone:
+          type: string
+          example: Asia/Jakarta
+        bookingMode:
+          type: string
+          enum:
+            - slot
+            - stay
+          default: slot
+        stayCheckInTime:
+          type: string
+          nullable: true
+          example: "14:00"
+        stayCheckOutTime:
+          type: string
+          nullable: true
+          example: "12:00"
+        sortOrder:
+          type: integer
+          default: 0
+        status:
+          type: string
+          enum:
+            - active
+            - inactive
+          default: active
+        unitLabels:
+          type: array
+          maxItems: 500
+          items:
+            type: string
+            nullable: true
+            maxLength: 100
+    BookingResourcePatch:
+      type: object
+      additionalProperties: false
+      minProperties: 1
+      properties:
+        name:
+          type: string
+        kind:
+          type: string
+        status:
+          type: string
+          enum:
+            - active
+            - inactive
+        poolId:
+          type: string
+          format: uuid
+          nullable: true
+        timezone:
+          type: string
+        bookingMode:
+          type: string
+          enum:
+            - slot
+            - stay
+        stayCheckInTime:
+          type: string
+          nullable: true
+        stayCheckOutTime:
+          type: string
+          nullable: true
+        sortOrder:
+          type: integer
+        capacity:
+          type: integer
+          minimum: 1
+          maximum: 500
+          description: Grow only.
+        units:
+          type: array
+          maxItems: 500
+          items:
+            type: object
+            additionalProperties: false
+            required:
+              - id
+            properties:
+              id:
+                type: string
+                format: uuid
+              label:
+                type: string
+                nullable: true
+              status:
+                type: string
+                enum:
+                  - active
+                  - inactive
+    BookingResourcePool:
+      type: object
+      required:
+        - id
+        - code
+        - name
+        - allocationPolicy
+        - memberCount
+        - createdAt
+        - updatedAt
+        - deletedAt
+      properties:
+        id:
+          type: string
+          format: uuid
+        code:
+          type: string
+        name:
+          type: string
+        allocationPolicy:
+          type: string
+          enum:
+            - first_free
+        memberCount:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        deletedAt:
+          type: string
+          format: date-time
+          nullable: true
+        members:
+          type: array
+          description: "Present on a read of one pool: its live resources, at most 500."
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+              code:
+                type: string
+              name:
+                type: string
+              status:
+                type: string
+    BookingResourcePoolInput:
+      type: object
+      additionalProperties: false
+      required:
+        - code
+        - name
+      properties:
+        code:
+          type: string
+          pattern: "^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$"
+        name:
+          type: string
+          minLength: 1
+          maxLength: 200
+        allocationPolicy:
+          type: string
+          enum:
+            - first_free
+    BookingResourcePoolPatch:
+      type: object
+      additionalProperties: false
+      minProperties: 1
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 200
+        allocationPolicy:
+          type: string
+          enum:
+            - first_free
+    BookingOffering:
+      type: object
+      required:
+        - id
+        - code
+        - name
+        - granularity
+        - minParty
+        - maxParty
+        - confirmationMode
+        - status
+        - createdAt
+        - updatedAt
+        - deletedAt
+      properties:
+        id:
+          type: string
+          format: uuid
+        code:
+          type: string
+        name:
+          type: string
+        granularity:
+          type: string
+          enum:
+            - time
+            - stay
+        durationSeconds:
+          type: integer
+          nullable: true
+        setupSeconds:
+          type: integer
+          nullable: true
+        cleanupSeconds:
+          type: integer
+          nullable: true
+        slotStepSeconds:
+          type: integer
+          nullable: true
+          description: At least 300 for a time offering.
+        minNights:
+          type: integer
+          nullable: true
+        maxNights:
+          type: integer
+          nullable: true
+          maximum: 366
+        minParty:
+          type: integer
+          minimum: 1
+        maxParty:
+          type: integer
+          maximum: 500
+        confirmationMode:
+          type: string
+          enum:
+            - immediate
+            - hold_then_confirm
+        cancellationCutoffSeconds:
+          type: integer
+          nullable: true
+        minLeadSeconds:
+          type: integer
+          nullable: true
+        maxHorizonDays:
+          type: integer
+          nullable: true
+        status:
+          type: string
+          enum:
+            - active
+            - inactive
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        deletedAt:
+          type: string
+          format: date-time
+          nullable: true
+    BookingOfferingInput:
+      type: object
+      additionalProperties: false
+      required:
+        - code
+        - name
+        - granularity
+      properties:
+        code:
+          type: string
+          pattern: "^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$"
+        name:
+          type: string
+          minLength: 1
+          maxLength: 200
+        granularity:
+          type: string
+          enum:
+            - time
+            - stay
+        durationSeconds:
+          type: integer
+          nullable: true
+        setupSeconds:
+          type: integer
+          nullable: true
+        cleanupSeconds:
+          type: integer
+          nullable: true
+        slotStepSeconds:
+          type: integer
+          nullable: true
+          description: At least 300 for a time offering.
+        minNights:
+          type: integer
+          nullable: true
+        maxNights:
+          type: integer
+          nullable: true
+          maximum: 366
+        minParty:
+          type: integer
+          minimum: 1
+        maxParty:
+          type: integer
+          maximum: 500
+        confirmationMode:
+          type: string
+          enum:
+            - immediate
+            - hold_then_confirm
+        cancellationCutoffSeconds:
+          type: integer
+          nullable: true
+        minLeadSeconds:
+          type: integer
+          nullable: true
+        maxHorizonDays:
+          type: integer
+          nullable: true
+        status:
+          type: string
+          enum:
+            - active
+            - inactive
+    BookingOfferingPatch:
+      type: object
+      additionalProperties: false
+      minProperties: 1
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 200
+        durationSeconds:
+          type: integer
+          nullable: true
+        setupSeconds:
+          type: integer
+          nullable: true
+        cleanupSeconds:
+          type: integer
+          nullable: true
+        slotStepSeconds:
+          type: integer
+          nullable: true
+          description: At least 300 for a time offering.
+        minNights:
+          type: integer
+          nullable: true
+        maxNights:
+          type: integer
+          nullable: true
+          maximum: 366
+        minParty:
+          type: integer
+          minimum: 1
+        maxParty:
+          type: integer
+          maximum: 500
+        confirmationMode:
+          type: string
+          enum:
+            - immediate
+            - hold_then_confirm
+        cancellationCutoffSeconds:
+          type: integer
+          nullable: true
+        minLeadSeconds:
+          type: integer
+          nullable: true
+        maxHorizonDays:
+          type: integer
+          nullable: true
+        status:
+          type: string
+          enum:
+            - active
+            - inactive
+    BookingPolicyInput:
+      type: object
+      additionalProperties: false
+      required:
+        - defaultHoldSeconds
+        - maxHoldSeconds
+        - maxActiveHoldsPerCustomer
+        - maxActiveHoldsPerTenant
+        - minLeadSeconds
+        - maxHorizonDays
+        - noShowGraceSeconds
+        - defaultTimezone
+        - defaultCheckInTime
+        - defaultCheckOutTime
+      properties:
+        defaultHoldSeconds:
+          type: integer
+          nullable: true
+          minimum: 60
+          maximum: 86400
+        maxHoldSeconds:
+          type: integer
+          nullable: true
+          minimum: 60
+          maximum: 86400
+        maxActiveHoldsPerCustomer:
+          type: integer
+          nullable: true
+          minimum: 1
+        maxActiveHoldsPerTenant:
+          type: integer
+          nullable: true
+          minimum: 1
+        minLeadSeconds:
+          type: integer
+          nullable: true
+          minimum: 0
+        maxHorizonDays:
+          type: integer
+          nullable: true
+          minimum: 1
+          maximum: 3650
+        noShowGraceSeconds:
+          type: integer
+          nullable: true
+          minimum: 0
+          maximum: 2592000
+        defaultTimezone:
+          type: string
+          nullable: true
+        defaultCheckInTime:
+          type: string
+          nullable: true
+        defaultCheckOutTime:
+          type: string
+          nullable: true
+    BookingPolicy:
+      type: object
+      required:
+        - policy
+        - effective
+        - updatedAt
+      properties:
+        policy:
+          description: What the tenant set; null means the module default.
+          type: object
+          required:
+            - defaultHoldSeconds
+            - maxHoldSeconds
+            - maxActiveHoldsPerCustomer
+            - maxActiveHoldsPerTenant
+            - minLeadSeconds
+            - maxHorizonDays
+            - noShowGraceSeconds
+            - defaultTimezone
+            - defaultCheckInTime
+            - defaultCheckOutTime
+          properties:
+          defaultHoldSeconds:
+            type: integer
+            nullable: true
+            minimum: 60
+            maximum: 86400
+          maxHoldSeconds:
+            type: integer
+            nullable: true
+            minimum: 60
+            maximum: 86400
+          maxActiveHoldsPerCustomer:
+            type: integer
+            nullable: true
+            minimum: 1
+          maxActiveHoldsPerTenant:
+            type: integer
+            nullable: true
+            minimum: 1
+          minLeadSeconds:
+            type: integer
+            nullable: true
+            minimum: 0
+          maxHorizonDays:
+            type: integer
+            nullable: true
+            minimum: 1
+            maximum: 3650
+          noShowGraceSeconds:
+            type: integer
+            nullable: true
+            minimum: 0
+            maximum: 2592000
+          defaultTimezone:
+            type: string
+            nullable: true
+          defaultCheckInTime:
+            type: string
+            nullable: true
+          defaultCheckOutTime:
+            type: string
+            nullable: true
+        effective:
+          description: What is in force (the tenant value, or the module default where it is null).
+          type: object
+          properties:
+            defaultHoldSeconds:
+              type: integer
+            maxHoldSeconds:
+              type: integer
+            maxActiveHoldsPerCustomer:
+              type: integer
+            maxActiveHoldsPerTenant:
+              type: integer
+            minLeadSeconds:
+              type: integer
+            maxHorizonDays:
+              type: integer
+            noShowGraceSeconds:
+              type: integer
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true

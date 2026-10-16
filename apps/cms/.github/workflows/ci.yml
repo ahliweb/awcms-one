@@ -91,7 +91,7 @@ jobs:
       # memakai secret sungguhan sama sekali.
       - name: Upload failure diagnostics
         if: failure()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: quality-failure-diagnostics
           path: |
@@ -263,6 +263,14 @@ jobs:
         # connects to it directly and expects `sql/` already applied.
         run: bun run db:migrate
 
+      - name: Payroll catalog boundary (the migrated database)
+        # Issue #1077: the catalog half of the payroll boundary needs a database
+        # where every migration has run, so it cannot sit in `bun run check`
+        # (which has none). The same analysis runs, with its probes, in
+        # tests/integration/payroll-catalog-boundary.integration.test.ts; this
+        # step is the operator command against THIS migrated database.
+        run: bun run payroll:catalog-boundary:check
+
       - name: Run DB-gated integration tests
         # Scoped to `tests/integration/` (the harness-based suite, purpose-built
         # for concurrent execution against ITS OWN ephemeral per-run database —
@@ -323,6 +331,7 @@ jobs:
           tests/security-readiness-failclosed.test.ts
           tests/security-readiness-rls.test.ts
           tests/security-readiness-worker-setup-grants.test.ts
+          tests/security-readiness-worker-credential-columns.test.ts
           tests/sync-hmac-versioned.test.ts
           tests/tenant-selection-e2e.test.ts
           tests/turnstile-login-e2e.test.ts

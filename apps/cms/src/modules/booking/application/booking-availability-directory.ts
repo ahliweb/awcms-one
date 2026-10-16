@@ -73,6 +73,12 @@ export type SlotAnswer = {
   to: string;
   slots: { startsAt: string; endsAt: string; freeUnits: number }[];
   truncated: boolean;
+  /**
+   * `checked` when the staff port narrowed the answer (the resource names the
+   * people who serve it and `hr_workforce` is on); `unchecked` otherwise
+   * (booking.md section 10.3).
+   */
+  staffAvailability: "checked" | "unchecked";
 };
 
 export type StayAnswer = {
@@ -96,7 +102,7 @@ export type AvailabilityOutcome =
   | { outcome: "mode_mismatch"; message: string }
   | { outcome: "too_many_units"; units: number };
 
-async function loadSchedules(
+export async function loadSchedules(
   tx: Sql,
   tenantId: string,
   resourceId: string,
@@ -136,7 +142,7 @@ async function loadSchedules(
   }));
 }
 
-async function loadExceptions(
+export async function loadExceptions(
   tx: Sql,
   tenantId: string,
   resourceId: string,
@@ -324,9 +330,9 @@ export async function answerAvailability(
       occupied: occupiedByUnit.get(unit.id) ?? [],
       stays: []
     }));
-    const staffAllows = await staff.resolve({
+    const staffAllows = await staff.resolve(tx, {
       tenantId,
-      staffRole: null,
+      resourceId: resource.id,
       fromMs: request.fromMs,
       toMs: request.toMs
     });
@@ -368,7 +374,8 @@ export async function answerAvailability(
           endsAt: toIso(slot.endMs),
           freeUnits: slot.freeUnits
         })),
-        truncated: result.truncated
+        truncated: result.truncated,
+        staffAvailability: staffAllows ? "checked" : "unchecked"
       }
     };
   }
@@ -402,6 +409,10 @@ export async function answerAvailability(
     FROM awcms_booking_resource_allocations
     WHERE tenant_id = ${tenantId} AND resource_id = ${resource.id}
       AND released_at IS NULL AND granularity = 'stay'
+      -- A block's rows are read from the blocks table below (so the answer can
+      -- say BLOCKED rather than NO_UNIT_AVAILABLE); counting them here too would
+      -- turn every block into a booking.
+      AND block_id IS NULL
       AND stay_from < ${queryTo}::date AND stay_to > ${queryFrom}::date
   `) as { resource_unit_id: string; stay_from: string; stay_to: string }[];
   const staysByUnit = new Map<string, OccupiedStay[]>();

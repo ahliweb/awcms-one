@@ -20,7 +20,9 @@ Implementation reference for Issue #184 (epic #177). Module: `identity-access`. 
 ### 1.1 Enrollment
 
 ```
-POST /api/v1/auth/mfa/totp/enroll/start   (valid session; AUTH_MFA_ENABLED=true)
+POST /api/v1/auth/mfa/totp/enroll/start   { currentPassword }   (valid session + re-authentication, or an enrollment grant; AUTH_MFA_ENABLED=true)
+  -> a SESSION must re-authenticate (#1004): the CURRENT password (principal credential, else identity hash - the login rule), or an SSO session minted <= 5 min ago when the person works in no other tenant
+  -> the pending factor is bound to this session/grant and lives 10 minutes
   -> generate a 20-byte secret (CSPRNG), store a `pending` factor (encrypted secret)
   -> respond { secret (base32), otpauthUri }   # shown ONCE
 POST /api/v1/auth/mfa/totp/enroll/verify  { code }
@@ -28,6 +30,8 @@ POST /api/v1/auth/mfa/totp/enroll/verify  { code }
   -> generate 10 recovery codes, store hash-only
   -> respond { activated, recoveryCodes }       # shown ONCE
 ```
+
+**Re-authentication before enrolment (#1004, ADR-0141 §7).** A session alone cannot start enrolment: `currentPassword` is required (`400 PASSWORD_REQUIRED` / `INVALID_CREDENTIALS`, `403 REAUTHENTICATION_REQUIRED` for a stale SSO-only session, rate limited per source). The login-forced enrollment-grant path is unchanged. On activation the account owner is emailed a `system.security_notice` (needs the default templates seeded: `bun run email:templates:seed-defaults`) and a `critical` `mfa_enrolled` audit event is written; disabling a factor notifies too. A password holder can still enrol (they present the same password) but can no longer do so silently. `enroll/verify` is rate limited (per source and per session/grant), accepts only the session or grant that started the enrolment, and destroys the pending secret after 5 wrong codes (`429 MFA_ENROLLMENT_EXHAUSTED`). The notice goes to the mailbox of the account in the enrolling tenant only.
 
 Restarting `enroll/start` before verify discards the previous pending secret — only the last QR is valid once confirmed. `enroll/start` refuses when an `active` factor already exists (`409 MFA_ALREADY_ACTIVE`).
 
@@ -112,6 +116,31 @@ Besides the per-source rate limit and the per-challenge `failed_attempts` cap, e
 
 **Since ADR-0087 that lockout is GLOBAL**, because the counter is attached to the factor and the factor moved — the same consequence ADR-0086 took for passwords: an attacker who knows someone's password can lock that person's authenticator across every tenant at once. The ADR-0086 rule applies in full, so that trade-off is taken together with **all three** of its recovery levers, which are now global too: recovery codes, self-service `disable` + re-enrolment, and an administrative reset. Previously a factor lockout in tenant A could not be undone by an admin of tenant B; afterwards any of those three paths fully restores the person — recovery is better than before, not worse.
 
+### 1.7 Permissions that require an enrolled factor (ADR-0141)
+
+Step-up is **conditional** (§1.3): a person with no factor is not asked for one, because an unconditional `requireStepUp` would lock out everyone who has not enrolled. The consequence is that a person with no factor performs a high-risk action with no second factor at all. A module closes that for the permissions that matter by declaring them in its descriptor:
+
+```ts
+permissions: [
+  {
+    activityCode: "runs",
+    action: "approve",
+    description: "…",
+    requiresMfaEnrolment: true
+  }
+];
+```
+
+`authorizeInTransaction` then refuses that permission, **after** an ordinary allow and only ever as a deny, with `403 MFA_ENROLMENT_REQUIRED` (`details.reason`: `not_enrolled`, `enrolment_unavailable` or `machine_credential`) to anyone without an **active** factor. It asks whether a factor exists; it never demands a fresh proof. The module keeps its own conditional step-up on top, which is now always applicable to the people the gate admits.
+
+**Bootstrap — a tenant with no enrolled holder is not locked out.** Enrolment (`POST /auth/mfa/totp/enroll/start` then `/verify`) needs a session and no permission, and sits outside the chokepoint. So: the owner (or any holder) opens `/admin/account`, enrols, and the very next request is served — no restart, no administrator action, no tenant-policy change. Everything not flagged works throughout, which is what lets them reach that screen. Prerequisite: `AUTH_MFA_ENABLED=true` and `AUTH_MFA_SECRET_ENCRYPTION_KEY`; without them the refusal is `enrolment_unavailable` for **everyone** (fail-closed) and `security:readiness` fails its `critical` "MFA enrolment is available when a permission requires an enrolled factor" check. A sole holder who loses their device uses a recovery code (§4), then re-enrols.
+
+**Finding the people before they find the refusal.** `bun run security:readiness` lists, per tenant where the module is usable, the holders (any grant source) who have no active factor — ids and counts only. It is a `warning`: those people are refused, not a vulnerability, and each of them is asked to enrol once.
+
+**What the gate does not prove.** It proves a factor exists on the account, not that the account's owner holds it: someone holding an unenrolled holder's password can still enrol their own authenticator first (a session alone no longer can, and the owner is notified out of band; see §1.1 and ADR-0141 §7). Run the holders report **before enabling a module that flags permissions** so legitimate holders enrol first.
+
+This is a different lever from §1.5. The tenant policy decides who must enrol **to log in**; this decides which **permissions** cannot be exercised without enrolment. They compose and neither replaces the other.
+
 ## 2. Configuration / environment reference
 
 | Variable                         | Default                 | Description                                                                                            |
@@ -183,3 +212,7 @@ Never commit a key. Store it in a secrets manager / the deployment env, not the 
 - A.8.5 (secure authentication) — a second factor, assurance levels.
 - A.8.24 (cryptography) — secret encryption at rest, key management.
 - A.8.15 / A.5.28 (logging & evidence) — `mfa_*` audits including `critical` for an admin reset.
+
+### Factor status under the verify lock
+
+The per-factor verify row lock re-checks `status = 'active'`. A factor disabled between the unlocked read and the lock is treated as a non-match (`MFA_CHALLENGE_INVALID` / `MFA_INVALID_CODE`), and no lockout failure is counted. The replay-guard compare-and-swap and recovery-code consumption also require the factor to be active.

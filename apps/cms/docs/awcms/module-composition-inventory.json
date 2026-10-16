@@ -1,5 +1,5 @@
 {
-  "moduleCount": 33,
+  "moduleCount": 34,
   "valid": true,
   "issueCount": 0,
   "modules": [
@@ -38,15 +38,31 @@
     {
       "key": "booking",
       "name": "Booking",
-      "version": "0.1.0",
-      "status": "experimental",
+      "version": "0.3.0",
+      "status": "active",
       "type": null,
-      "dependencies": ["tenant_admin", "identity_access", "logging"],
-      "capabilitiesProvided": [],
-      "capabilitiesConsumed": [],
+      "dependencies": [
+        "tenant_admin",
+        "identity_access",
+        "logging",
+        "domain_event_runtime"
+      ],
+      "capabilitiesProvided": ["booking"],
+      "capabilitiesConsumed": [
+        {
+          "capability": "whatsapp_delivery",
+          "providedBy": "whatsapp_delivery",
+          "optional": true
+        },
+        {
+          "capability": "staff_availability",
+          "providedBy": "hr_workforce",
+          "optional": true
+        }
+      ],
       "permissionCount": 32,
-      "navigationCount": 0,
-      "jobCount": 0,
+      "navigationCount": 6,
+      "jobCount": 2,
       "hasHealthCheck": false,
       "hasReadinessCheck": false,
       "deploymentProfiles": null
@@ -139,7 +155,7 @@
       "status": "active",
       "type": null,
       "dependencies": ["tenant_admin", "profile_identity", "identity_access"],
-      "capabilitiesProvided": ["auth_notification"],
+      "capabilitiesProvided": ["auth_notification", "workflow_notification"],
       "capabilitiesConsumed": [],
       "permissionCount": 12,
       "navigationCount": 2,
@@ -186,10 +202,20 @@
       "version": "0.1.0",
       "status": "experimental",
       "type": "domain",
-      "dependencies": ["tenant_admin", "profile_identity"],
-      "capabilitiesProvided": [],
-      "capabilitiesConsumed": [],
-      "permissionCount": 16,
+      "dependencies": [
+        "tenant_admin",
+        "profile_identity",
+        "domain_event_runtime"
+      ],
+      "capabilitiesProvided": ["staff_availability"],
+      "capabilitiesConsumed": [
+        {
+          "capability": "workflow_notification",
+          "providedBy": "email",
+          "optional": true
+        }
+      ],
+      "permissionCount": 27,
       "navigationCount": 0,
       "jobCount": 0,
       "hasHealthCheck": false,
@@ -524,6 +550,22 @@
       "permissionCount": 9,
       "navigationCount": 1,
       "jobCount": 0,
+      "hasHealthCheck": false,
+      "hasReadinessCheck": false,
+      "deploymentProfiles": null
+    },
+    {
+      "key": "telegram_delivery",
+      "name": "Telegram Delivery",
+      "version": "0.1.0",
+      "status": "active",
+      "type": "system",
+      "dependencies": ["tenant_admin", "identity_access", "logging"],
+      "capabilitiesProvided": ["telegram_delivery"],
+      "capabilitiesConsumed": [],
+      "permissionCount": 6,
+      "navigationCount": 1,
+      "jobCount": 2,
       "hasHealthCheck": false,
       "hasReadinessCheck": false,
       "deploymentProfiles": null

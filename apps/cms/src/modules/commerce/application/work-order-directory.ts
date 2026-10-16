@@ -22,7 +22,8 @@ import { appendDomainEvent } from "../../domain-event-runtime/application/append
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../_shared/idempotency";
 import {
   encodeKeysetCursor,
@@ -246,7 +247,8 @@ export async function createWorkOrder(
     tx,
     tenantId,
     CREATE_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -349,6 +351,7 @@ export async function createWorkOrder(
     tenantId,
     CREATE_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     workOrder
@@ -399,7 +402,8 @@ export async function updateWorkOrder(
     tx,
     tenantId,
     UPDATE_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -494,6 +498,7 @@ export async function updateWorkOrder(
     tenantId,
     UPDATE_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     200,
     workOrder

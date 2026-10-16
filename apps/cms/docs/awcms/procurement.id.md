@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](procurement.md)
 
-<!-- i18n-source-hash: sha256:f222233bcd9d00eec4781edd7c2fbb58b18cc6df0b0f25276a9306e1540feb36 -->
+<!-- i18n-source-hash: sha256:8c5a46b87b601370de2421c4b19eeb152a877ee77c5dc4baf9e9536017e3b26f -->
 
 <!-- i18n-source-hash: sha256:pending -->
 
@@ -195,13 +195,13 @@ Untuk memberi tenant lama izin baru jalankan `bun run identity-access:permission
 
 Batasan yang dinyatakan eksplisit (ADR-0128):
 
-- **Reveal tanpa step-up dan tanpa rate limit.** Tak ada reveal saudara yang bisa ditiru (`profile_identity` tak punya reveal teks-polos; tak ada reveal lain yang membawa perlindungan itu), dan `requireStepUp` tanpa syarat adalah jebakan ADR-0058 §E. Reveal hanya diaudit, `no-store`, dan berizin sendiri.
+- **Reveal tanpa step-up dan tanpa rate limit.** Tak ada reveal saudara yang bisa ditiru (`profile_identity` tak punya reveal teks-polos; tak ada reveal lain yang membawa perlindungan itu), dan `requireStepUp` tanpa syarat adalah jebakan ADR-0141 §4. Reveal hanya diaudit, `no-store`, dan berizin sendiri.
 - **Ambang persetujuan berbasis biaya.** Dokumen berbiaya nol atau tak diisi, serta semua requisition dan transfer, melewatinya.
 - **Tanpa ABAC per-lokasi dan tanpa maker/checker bawaan.** Memisahkan `documents.submit` dari `documents.finalise` adalah kewajiban operator: tulis aturan SoD atas kedua aksi high-risk itu.
 - Saat anonimisasi, tautan `profile_id` pemasok **dipertahankan** (menunjuk profil teranonimkan); nama dagang dipertahankan di bawah kewajiban financial_tax.
 - Menambah identifier yang sudah dimiliki pemasok bersifat idempoten (`201` pengakuan seragam berisi tipe, label, nilai ter-mask, dan klasifikasi — tanpa id, tanpa timestamp — identik untuk nilai baru maupun yang sudah dimiliki, sehingga bukan oracle kesamaan); identifier pemasok soft-deleted tak terjangkau sampai dipulihkan; laporan pemasok memuat pemasok soft-deleted dengan `deleted: true`.
 
-- **Batas tingkat-DB aturan approval.** Basis data menolak `finalised`/`reversed` kecuali approval `not_required|approved` dan mengunci instance setelah submit, tetapi mempercayai aplikasi pada `draft → submitted`: ia tak dapat memastikan status `approved` yang ditulis saat submit berasal dari keputusan workflow sungguhan.
+- **Basis data mengikuti putusan mesin workflow (#1045, `sql/300`).** Pada `draft → submitted`, `approval_instance_id` yang terikat harus instance milik tenant ini, bertipe resource `procurement_document`, menyebut dokumen ini, diminta oleh pengaju, dan statusnya harus sama dengan `approval_status` yang dicatat (`pending`, atau putusan final bila workflow selesai saat dimulai); dokumen yang tak butuh approval tidak mengikat instance. Setiap perpindahan `approval_status` keluar dari `pending` setelahnya membaca ulang instance `FOR SHARE` dan mensyaratkan `approved` untuk `approved`, serta `rejected` atau `cancelled` untuk `rejected` (permintaan yang dibatalkan tak pernah menjadi persetujuan). Fungsi trigger mengunci `search_path` dan mengualifikasi skema tabel instance. Dengan demikian role runtime tak lagi dapat memalsukan approval lalu memfinalisasi.
 
 Tindak lanjut tercatat:
 

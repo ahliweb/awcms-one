@@ -5,7 +5,7 @@
  * request shapes the routes accept and holds the small pure helpers around a
  * member list.
  */
-import { csvCell } from "./register-cash-up-csv";
+import { csvCellForWrite } from "../../../lib/security/csv-formula";
 import { maskPhone } from "./phone-normalisation";
 import { isUuid } from "./register";
 import {
@@ -416,15 +416,19 @@ export const SEGMENT_MEMBER_CSV_COLUMNS = [
 export function serializeSegmentMembersCsv(
   members: readonly SegmentMemberDto[]
 ): string {
-  const lines = [SEGMENT_MEMBER_CSV_COLUMNS.join(",")];
+  const lines = [
+    SEGMENT_MEMBER_CSV_COLUMNS.map((column) => csvCellForWrite(column)).join(
+      ","
+    )
+  ];
   for (const member of members) {
     lines.push(
       [
-        csvCell(member.id),
-        csvCell(member.name),
-        csvCell(member.phoneMasked),
-        csvCell(member.emailMasked ?? ""),
-        csvCell(String(member.level))
+        csvCellForWrite(member.id),
+        csvCellForWrite(member.name),
+        csvCellForWrite(member.phoneMasked),
+        csvCellForWrite(member.emailMasked ?? ""),
+        csvCellForWrite(String(member.level))
       ].join(",")
     );
   }

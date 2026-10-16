@@ -39,7 +39,8 @@ import { appendDomainEvent } from "../../domain-event-runtime/application/append
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../_shared/idempotency";
 import {
   encodeKeysetCursor,
@@ -460,7 +461,8 @@ export async function createQuotation(
     tx,
     tenantId,
     CREATE_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -544,6 +546,7 @@ export async function createQuotation(
     tenantId,
     CREATE_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     quotation
@@ -593,7 +596,8 @@ export async function reviseQuotation(
     tx,
     tenantId,
     REVISE_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -667,6 +671,7 @@ export async function reviseQuotation(
     tenantId,
     REVISE_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     quotation
@@ -729,7 +734,8 @@ export async function applyQuotationAction(
     tx,
     tenantId,
     scope,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -838,6 +844,7 @@ export async function applyQuotationAction(
     tenantId,
     scope,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     200,
     quotation
@@ -932,7 +939,8 @@ export async function convertQuotation(
     tx,
     tenantId,
     CONVERT_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -1086,6 +1094,7 @@ export async function convertQuotation(
     tenantId,
     CONVERT_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     result

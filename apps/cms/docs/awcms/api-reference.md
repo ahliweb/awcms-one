@@ -1304,15 +1304,20 @@ Authorized by EITHER a live session OR an enrollment grant (X-AWCMS-MFA-Enrollme
 | ------------------------------ | ------ | -------- | ------ | ------------------------------------------------------------------------------------------------------ |
 | `X-AWCMS-MFA-Enrollment-Token` | header | no       | string | Enrollment grant token from a login that returned MFA_ENROLLMENT_REQUIRED; used in place of a session. |
 
+**Request body** (optional): object
+
 **Responses**
 
-| Status | Description                                            | Schema                                 |
-| ------ | ------------------------------------------------------ | -------------------------------------- |
-| 200    | Pending factor created; secret shown once.             | object                                 |
-| 401    | Missing or invalid session.                            | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                            | [`ApiError`](#standard-error-envelope) |
-| 409    | MFA already active for this account.                   | [`ApiError`](#standard-error-envelope) |
-| 500    | MFA encryption key is missing/invalid (misconfigured). | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                       | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Pending factor created; secret shown once.                                                                                                                                                        | object                                 |
+| 400    | PASSWORD_REQUIRED (a session, or a grant minted by a tenant switch or with no recorded origin, started without currentPassword), INVALID_CREDENTIALS (wrong currentPassword) or VALIDATION_ERROR. | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | MFA already active for this account.                                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 413    | Request body too large.                                                                                                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 429    | Too many enrolment attempts for this session/grant or source, or the person is locked out after failed password attempts (they count toward the same lockout as a failed login).                  | [`ApiError`](#standard-error-envelope) |
+| 500    | MFA encryption key is missing/invalid (misconfigured).                                                                                                                                            | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/auth/mfa/totp/enroll/verify` — Confirm a pending TOTP enrollment; activates the factor and returns recovery codes.
 
@@ -1331,14 +1336,15 @@ Authorized by EITHER a live session OR an enrollment grant. When authorized via 
 
 **Responses**
 
-| Status | Description                                                                                                                         | Schema                                 |
-| ------ | ----------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 200    | Factor activated; recovery codes shown once. token/expiresAt/assuranceLevel are present only when enrolled via an enrollment grant. | object                                 |
-| 400    | Validation error.                                                                                                                   | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                                                                                         | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                                                                                         | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.                                                                                                                 | [`ApiError`](#standard-error-envelope) |
-| 500    | MFA misconfigured.                                                                                                                  | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                 | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Factor activated; recovery codes shown once. token/expiresAt/assuranceLevel are present only when enrolled via an enrollment grant.                                                                                                                                         | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 429    | Rate limited per source and per session/grant, or MFA_ENROLLMENT_EXHAUSTED - five wrong codes destroyed the pending secret (a pending enrolment is also bound to the session or grant that started it, expires after 10 minutes, and is then reported as 404; start again). | [`ApiError`](#standard-error-envelope) |
+| 500    | MFA misconfigured.                                                                                                                                                                                                                                                          | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/auth/mfa/totp/verify` — Complete a login paused with MFA_REQUIRED by submitting a TOTP or recovery code.
 
@@ -1374,6 +1380,7 @@ The counterpart to /api/v1/auth/password/reset: that endpoint serves someone who
 A fresh second factor is required ONLY from callers who have one enrolled. Requiring aal2 unconditionally would permanently prevent every user without MFA from changing their password, and the users most likely to need to are the ones who just learned it leaked. The current password is the re-authentication for everyone; the second factor is additional for those who can supply it.
 On success the password is replaced, the lockout counters are cleared (whoever supplied the current password proved control of the credential), and every OTHER session of that identity is revoked — the calling one survives, because a password change that signs you out of the tab you changed it in reads as a failure and the security property is unaffected.
 Rate limited on the SOURCE despite being authenticated: `currentPassword` is a guessable secret, so this is a credential-guessing surface whenever a session is used by someone who does not know the password behind it. An identifier-keyed bucket would instead let anyone reaching the endpoint hold one person's own password change hostage.
+currentPassword is verified exactly as login verifies it (#1035): against the person's own credential once one exists, never against another tenant's stale per-tenant copy. A change replaces that credential for every tenant; the calling session keeps working and the person's sessions elsewhere end - except sessions of an identity in another tenant that was never linked to the person's record, which a change from here cannot reach (they end when that identity is next linked, for example by a reset or an enrolment, or when they expire).
 Audited on both the success and the failure, with the device shape and IP pseudonym, and with no password-shaped attribute — not even a length.
 
 **Parameters**
@@ -1386,14 +1393,14 @@ Audited on both the success and the failure, with the device shape and IP pseudo
 
 **Responses**
 
-| Status | Description                                                                                                     | Schema                                 |
-| ------ | --------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 200    | Password changed; the other sessions were revoked.                                                              | object                                 |
-| 400    | Validation failed, or currentPassword did not match (INVALID_CREDENTIALS).                                      | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                                                                     | [`ApiError`](#standard-error-envelope) |
-| 403    | MFA is enrolled and this session is not currently stepped up (STEP_UP_REQUIRED).                                | [`ApiError`](#standard-error-envelope) |
-| 409    | The tenant policy signs this identity in through SSO; there is no password to change (PASSWORD_LOGIN_DISABLED). | [`ApiError`](#standard-error-envelope) |
-| 429    | Too many password change attempts from this source.                                                             | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                       | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Password changed; the other sessions were revoked.                                                                                                                                                | object                                 |
+| 400    | Validation failed, or currentPassword did not match (INVALID_CREDENTIALS).                                                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 403    | MFA is enrolled and this session is not currently stepped up (STEP_UP_REQUIRED).                                                                                                                  | [`ApiError`](#standard-error-envelope) |
+| 409    | The tenant policy signs this identity in through SSO; there is no password to change (PASSWORD_LOGIN_DISABLED).                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 429    | Too many password change attempts from this source, or the person is locked out by failed password attempts (a wrong currentPassword counts toward the same principal lockout as a failed login). | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/auth/password/forgot` — Request a password reset link (account-enumeration-safe).
 
@@ -8022,7 +8029,7 @@ ADR-0094 Decision 3. Gated by data_lifecycle.subject_erasure.create and it ERASE
 - **operationId**: `dataLifecycleSubjectExport`
 - **Security**: bearerAuth + tenantHeader
 
-ADR-0094. Gated by data_lifecycle.subject_request.export — its OWN permission, because export and erasure are not one authority. Audited as a DISCLOSURE (action subject_data.disclosed, severity critical) rather than as a read, and a durable row lands in awcms_subject_requests in the same transaction. Requires Idempotency-Key and a stated reason. The response carries `unanswered`: the tables this report deliberately does not reach (global, or matchable by no column) with the reason each owning module wrote — a subject-access report that is incomplete and does not say so is worse than none, because it is signed. Answered PER TENANT (ADR-0094 Decision 1): there is no cross-tenant export.
+ADR-0094. Gated by data_lifecycle.subject_request.export — its OWN permission, because export and erasure are not one authority. A table inside the payroll data boundary (today the commission accruals, a person's earnings) additionally needs its own read permission (hr_commission.accruals.read); without it the table is WITHHELD and named under `withheld`, and a read that does happen is recorded as a sensitive read. The stored Idempotency-Key record keeps no payroll rows, only their ids: a replay re-checks the permission, re-reads those rows and records the read again, so a replay may differ from the first answer by having payroll tables withheld. Audited as a DISCLOSURE (action subject_data.disclosed, severity critical) rather than as a read, and a durable row lands in awcms_subject_requests in the same transaction. Requires Idempotency-Key and a stated reason. The response carries `unanswered`: the tables this report deliberately does not reach (global, or matchable by no column) with the reason each owning module wrote — a subject-access report that is incomplete and does not say so is worse than none, because it is signed. Answered PER TENANT (ADR-0094 Decision 1): there is no cross-tenant export.
 
 **Parameters**
 
@@ -8035,14 +8042,14 @@ ADR-0094. Gated by data_lifecycle.subject_request.export — its OWN permission,
 
 **Responses**
 
-| Status | Description                                                                     | Schema                                 |
-| ------ | ------------------------------------------------------------------------------- | -------------------------------------- |
-| 200    | The subject's data, or replay of a prior identical request.                     | object                                 |
-| 400    | Validation error.                                                               | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                                     | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                                     | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.                                                             | [`ApiError`](#standard-error-envelope) |
-| 409    | The Idempotency-Key was reused with a different request (IDEMPOTENCY_CONFLICT). | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | The subject's data, or replay of a prior identical request. On a replay the payroll-boundary tables are re-read under a fresh permission check and may come back under `withheld` instead. | object                                 |
+| 400    | Validation error.                                                                                                                                                                          | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 409    | The Idempotency-Key was reused with a different request (IDEMPOTENCY_CONFLICT).                                                                                                            | [`ApiError`](#standard-error-envelope) |
 
 ## SEO & Distribution
 
@@ -17400,6 +17407,193 @@ Gated by `procurement.suppliers.restore` (HIGH-RISK). Audited at warning severit
 
 The employment context (hr_workforce module, Issues #945 and #946, ADR-0132, phase 1 of the hr_* family). An employment REFERENCES a profile_identity party and never copies its name, contact or national id; no photo, biometric or device field exists (owner decision O6). Terms (office, manager, job title, type, status) are effective-dated and append-only, the manager chain is acyclic and bounded, terminated is terminal, and the database enforces one active employment per profile and per login. An employee reads their own employment through an ownership grant on the persisted login link; the link itself (assign), delete, restore and settings configure are high-risk, idempotency-keyed and audited. Shift templates are patterns (local start, elapsed duration, optional break, IANA zone); a shift assignment is one UTC half-open interval per employment, drafted, published (high-risk) and cancelled, with no overlap among non-cancelled rows per employment enforced by the database and no free-text or reason field (time off carries a coarse category only). An employee reads their own published schedule through an ownership grant. Attendance, commission and payroll are later phases.
 
+### `GET /api/v1/hr-workforce/attendance-corrections` — List attendance corrections
+
+- **operationId**: `hrWorkforceAttendanceCorrectionsList`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `hr_workforce.corrections.read`, EXCEPT `mine=true` (the corrections of every live employment of yours, a terminated one included) and `reports=true` (your reports', through the manager chain), which need no permission (ownership grants, ADR-0063). Newest first, keyset paginated. The list NEVER carries the sensitive `reason`; read one correction for it. Tenant-scoped (withTenant + RLS FORCE).
+
+**Parameters**
+
+| Name               | In     | Required | Type                                                 | Description |
+| ------------------ | ------ | -------- | ---------------------------------------------------- | ----------- |
+| `employmentId`     | query  | no       | string (uuid)                                        |             |
+| `status`           | query  | no       | enum(`pending`, `approved`, `rejected`, `withdrawn`) |             |
+| `mine`             | query  | no       | boolean                                              |             |
+| `reports`          | query  | no       | boolean                                              |             |
+| `cursor`           | query  | no       | string                                               |             |
+| `X-Correlation-ID` | header | no       | string                                               |             |
+
+**Responses**
+
+| Status | Description                        | Schema                                 |
+| ------ | ---------------------------------- | -------------------------------------- |
+| 200    | A page of corrections (no reason). | object                                 |
+| 400    | Validation error.                  | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.        | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.        | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/hr-workforce/attendance-corrections` — Request an attendance correction
+
+- **operationId**: `hrWorkforceAttendanceCorrectionCreate`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `hr_workforce.corrections.create`; the employment must be YOURS unless you also hold `hr_workforce.attendance.create`. Proposes adding a missing event (`kind: add`) or replacing one (`kind: replace` + `targetEventId`) with a mandatory `reason`. It NEVER edits the original: on approval a NEW event is appended that supersedes the old one. Approval is REQUIRED and fail-closed: with no published workflow under the tenant's correction workflow key (or `workflow` disabled for the tenant) -> 409 `APPROVAL_WORKFLOW_NOT_CONFIGURED` and nothing is created. A `proposedOccurredAt` further in the future than the tenant clock-skew bound is refused with 422 `ATTENDANCE_TIME_IN_FUTURE` and nothing is created (the event guard would refuse it at approval and the correction would stay pending for good). The workflow instance is started with NO facts. The reason is sensitive: it is never written to an audit row, an event or the workflow store. Requires an Idempotency-Key. Audited without the reason.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`HrAttendanceCorrectionInput`](#schema-hrattendancecorrectioninput)
+
+**Responses**
+
+| Status | Description                                                                                                                                     | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The pending correction, with its reason (the requester may read it).                                                                            | object                                 |
+| 400    | Validation error.                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 409    | IDEMPOTENCY_CONFLICT, CORRECTION_ALREADY_PENDING, TARGET_EVENT_SUPERSEDED, APPROVAL_WORKFLOW_NOT_CONFIGURED or APPROVAL_WORKFLOW_MISCONFIGURED. | [`ApiError`](#standard-error-envelope) |
+| 422    | EMPLOYMENT_NOT_FOUND, TARGET_EVENT_NOT_FOUND or ATTENDANCE_TIME_IN_FUTURE.                                                                      | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/hr-workforce/attendance-corrections/{id}` — Get an attendance correction
+
+- **operationId**: `hrWorkforceAttendanceCorrectionGet`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `hr_workforce.corrections.read`, EXCEPT for the REQUESTER, a workflow ASSIGNEE of its approval instance, the employee it is about and a supervisor above that employee (an ownership grant, ADR-0063). The sensitive `reason` is included only for the requester, an assignee, or a holder of `corrections.read`; a supervisor reading through the manager chain alone sees everything but the reason. A missing id and someone else's correction are both 403 to a caller without the permission.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `id`               | path   | yes      | string (uuid) |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Responses**
+
+| Status | Description                                   | Schema                                 |
+| ------ | --------------------------------------------- | -------------------------------------- |
+| 200    | The correction (reason only where permitted). | object                                 |
+| 400    | Validation error.                             | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                   | [`ApiError`](#standard-error-envelope) |
+| 404    | RESOURCE_NOT_FOUND.                           | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/hr-workforce/attendance-corrections/{id}/settle` — Apply the approval workflow verdict to a correction
+
+- **operationId**: `hrWorkforceAttendanceCorrectionSettle`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `hr_workforce.corrections.approve` (high-risk). The decision is made in `workflow_approval`; this materialises it: instance pending -> 409 `CORRECTION_STILL_PENDING`; approved -> the correction becomes `approved` and a NEW event superseding the old one is appended in the same transaction (the original is never edited); rejected / cancelled -> `rejected` / `withdrawn`. Normally this happens by itself: a domain-event consumer applies the verdict as soon as the workflow instance finishes, and this route is the manual fallback for a verdict it declined to apply. SEGREGATION OF DUTIES: the requester cannot settle their own APPROVED (or still pending) correction (the chokepoint's self-approval guard, 403); a `rejected` or `cancelled` verdict applies nothing, so the requester may close their own refused request; an approved instance with no human approving decision is 409 `CORRECTION_NO_APPROVER`; one the requester, or the employee the correction is about (the login linked when it was requested, and the one linked now), approved directly or as the delegator whose standing a delegate used, or that employee settling it, is 409 `CORRECTION_SELF_APPROVED`; the database refuses each of these too. Requires an Idempotency-Key. Audited (warning when approved) without the reason.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Responses**
+
+| Status | Description                                                                                                                                                                     | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The settled correction.                                                                                                                                                         | object                                 |
+| 400    | Validation error.                                                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 404    | RESOURCE_NOT_FOUND.                                                                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 409    | IDEMPOTENCY_CONFLICT, CORRECTION_NOT_PENDING, CORRECTION_STILL_PENDING, CORRECTION_NO_APPROVER, CORRECTION_SELF_APPROVED, TARGET_EVENT_SUPERSEDED or CORRECTION_NOT_APPLICABLE. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/hr-workforce/attendance-corrections/{id}/withdraw` — Withdraw a pending attendance correction
+
+- **operationId**: `hrWorkforceAttendanceCorrectionWithdraw`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `hr_workforce.corrections.cancel` (high-risk). The REQUESTER only withdraws a still-pending correction (its approval instance is cancelled first); someone else's and a missing id answer alike (404). Requires an Idempotency-Key. Audited without the reason.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Responses**
+
+| Status | Description                                                                 | Schema                                 |
+| ------ | --------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The withdrawn correction.                                                   | object                                 |
+| 400    | Validation error.                                                           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                 | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                 | [`ApiError`](#standard-error-envelope) |
+| 404    | RESOURCE_NOT_FOUND.                                                         | [`ApiError`](#standard-error-envelope) |
+| 409    | IDEMPOTENCY_CONFLICT, CORRECTION_NOT_PENDING or CORRECTION_ALREADY_DECIDED. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/hr-workforce/attendance-events` — List attendance events
+
+- **operationId**: `hrWorkforceAttendanceEventsList`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `hr_workforce.attendance.read` (every employee), EXCEPT `mine=true` (your OWN events, across EVERY live employment of yours, a terminated one included: a rehired person reads the old and the new) and `reports=true` (the events of the people who report to you through the current manager chain, at most ten levels; a soft-deleted employment is neither listed nor walked through), which need no permission (an ownership grant on the persisted login link / manager chain, ADR-0063; ABAC, scope and SoD still apply, and a machine credential never carries it). `mine` and `reports` cannot be combined, and an `employmentId` outside the chosen basis is 403. Newest claimed instant first, keyset paginated (`cursor`); `from` (inclusive) and `to` (exclusive) bound the claimed instant; `effective=true` hides an event a later approved correction replaced. Confidential behavioural data: no location, photo, device or network value exists. Tenant-scoped (withTenant + RLS FORCE). In the ALL-employee mode AND in the manager-chain `reports` mode the read is recorded as a sensitive read (`sensitive_read.attendance_events`: employment ids and a count, coalesced, attribute `mode`, Issue #1083); only `mine` is not.
+
+**Parameters**
+
+| Name               | In     | Required | Type               | Description |
+| ------------------ | ------ | -------- | ------------------ | ----------- |
+| `employmentId`     | query  | no       | string (uuid)      |             |
+| `from`             | query  | no       | string (date-time) |             |
+| `to`               | query  | no       | string (date-time) |             |
+| `effective`        | query  | no       | boolean            |             |
+| `mine`             | query  | no       | boolean            |             |
+| `reports`          | query  | no       | boolean            |             |
+| `cursor`           | query  | no       | string             |             |
+| `X-Correlation-ID` | header | no       | string             |             |
+
+**Responses**
+
+| Status | Description                  | Schema                                 |
+| ------ | ---------------------------- | -------------------------------------- |
+| 200    | A page of attendance events. | object                                 |
+| 400    | Validation error.            | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.  | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.  | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/hr-workforce/attendance-events` — Record an attendance event
+
+- **operationId**: `hrWorkforceAttendanceEventCreate`
+- **Security**: bearerAuth + tenantHeader
+
+`source: self` records YOUR OWN event and needs `hr_workforce.clock.create` plus an employment linked to your login (anything else is 403 whether the employment exists or not); `supervisor`, `kiosk` and `import` record for another employment and need `hr_workforce.attendance.create`. The SERVER clock decides `recordedAt`; `occurredAt` is bounded by the tenant clock-skew setting: in the future -> 422 `ATTENDANCE_TIME_IN_FUTURE`; for `self`/`supervisor`, older than the skew -> 422 `ATTENDANCE_BACKDATED` (request a correction); a `kiosk`/`import` replay is accepted up to seven days old (older -> 422 `ATTENDANCE_TOO_OLD`) and flagged `late` past fifteen minutes. A replay of the same `clientEventKey` for the same employment returns the ORIGINAL with 200 (a different event under a used key is 409 `CLIENT_EVENT_KEY_CONFLICT`). The body has NO photo, device or network field and an unknown field is refused. The ONE optional position field is `positionSample` (Issue #970, ADR-0138): only a `self` clock_in / clock_out may carry it (any other source or kind -> 400), the server evaluates it IN THE REQUEST against the geofences of the event's office and DISCARDS it (no coordinate, raw accuracy, address or device value is ever stored, logged or audited), and the response carries `locationVerdict` (`inside`, `outside` or `not_provided`; `null` while the tenant's switch is off, the default, when the sample is ignored). A declined / absent / too-coarse / unacknowledged sample is `not_provided` and never blocks clocking. Requires an Idempotency-Key. Audited when recorded for somebody else: every `supervisor` event, and a `kiosk`/`import` event flagged `late` (ids, kind, source and claimed instant only; the actor is the recorder); a `self` event and a punctual kiosk/import tap are not (high volume: the event is the record). The seven-day replay window is NOT an approval path: it exists for offline queues, which is why the stale ones leave a trace.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`HrAttendanceEventInput`](#schema-hrattendanceeventinput)
+
+**Responses**
+
+| Status | Description                                                                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | A replay of an already-recorded clientEventKey: the original event.                                            | object                                 |
+| 201    | The recorded event.                                                                                            | object                                 |
+| 400    | Validation error.                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 409    | IDEMPOTENCY_CONFLICT, CLIENT_EVENT_KEY_CONFLICT or EMPLOYMENT_TERMINATED.                                      | [`ApiError`](#standard-error-envelope) |
+| 422    | EMPLOYMENT_NOT_FOUND, OFFICE_NOT_FOUND, ATTENDANCE_TIME_IN_FUTURE, ATTENDANCE_BACKDATED or ATTENDANCE_TOO_OLD. | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/hr-workforce/employments` — List employments
 
 - **operationId**: `hrWorkforceEmploymentsList`
@@ -17511,7 +17705,7 @@ Gated by `hr_workforce.employments.delete` (high-risk). For an employment entere
 - **operationId**: `hrWorkforceEmploymentAccountAssign`
 - **Security**: bearerAuth + tenantHeader
 
-Gated by `hr_workforce.employments.assign` (high-risk). `{"tenantUserId": "<uuid>"}` links the login that IS this employee; `null` unlinks. This is the basis of self-service ownership. One active employment per login. The audit row records the login UUID (not PII) and the previous one. Requires an Idempotency-Key.
+Gated by `hr_workforce.employments.assign` (high-risk). `{"tenantUserId": "<uuid>"}` links the login that IS this employee; `null` unlinks. This is the basis of self-service ownership (and of payslip ownership in phase 3), so (finding PS-14, #979): the caller cannot link their OWN login to another person's employment (`403 SELF_LINK_FORBIDDEN`); the linked login must belong to the employment's person, i.e. its identity carries the employment's `profileId` (`422 PROFILE_MISMATCH`); and a RE-LINK (changing or removing an existing link, or linking again after an unlink) is audited at `critical` (a first link at `warning`) with the before and after login UUIDs and no free text, and, when the employment already has attendance history, requires the conditional step-up of ADR-0141 section 4 (`403 STEP_UP_REQUIRED` for an enrolled caller with a stale session; a caller with no enrolled factor is not locked out and the audit row records `not_enrolled`). Each refusal writes an `account_link_refused` audit row (reason code and UUIDs only); repeating the current link re-validates it. One active employment per login. Requires an Idempotency-Key.
 
 **Parameters**
 
@@ -17530,10 +17724,10 @@ Gated by `hr_workforce.employments.assign` (high-risk). `{"tenantUserId": "<uuid
 | 200    | The employment, with `replayed` true when the link was already as asked.           | object                                 |
 | 400    | Validation error.                                                                  | [`ApiError`](#standard-error-envelope) |
 | 401    | Missing or invalid session.                                                        | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                                        | [`ApiError`](#standard-error-envelope) |
+| 403    | ACCESS_DENIED, SELF_LINK_FORBIDDEN or STEP_UP_REQUIRED.                            | [`ApiError`](#standard-error-envelope) |
 | 404    | RESOURCE_NOT_FOUND.                                                                | [`ApiError`](#standard-error-envelope) |
 | 409    | IDEMPOTENCY_CONFLICT, EMPLOYMENT_DELETED, EMPLOYMENT_TERMINATED or ACCOUNT_IN_USE. | [`ApiError`](#standard-error-envelope) |
-| 422    | USER_NOT_FOUND.                                                                    | [`ApiError`](#standard-error-envelope) |
+| 422    | USER_NOT_FOUND or PROFILE_MISMATCH.                                                | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/hr-workforce/employments/{id}/restore` — Restore an employment
 
@@ -17614,6 +17808,314 @@ Gated by `hr_workforce.employments.update`. Appends the next terms from `effecti
 | 404    | RESOURCE_NOT_FOUND.                                                                                                           | [`ApiError`](#standard-error-envelope) |
 | 409    | IDEMPOTENCY_CONFLICT, EMPLOYMENT_DELETED, EMPLOYMENT_TERMINATED, TERMS_OUT_OF_ORDER, MANAGER_CYCLE or MANAGER_CHAIN_TOO_DEEP. | [`ApiError`](#standard-error-envelope) |
 | 422    | EFFECTIVE_BEFORE_HIRE, OFFICE_NOT_FOUND or MANAGER_NOT_FOUND.                                                                 | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/hr-workforce/geolocation/evidence` — List location-evidence verdicts
+
+- **operationId**: `hrWorkforceLocationEvidenceList`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `hr_workforce.attendance_evidence.read` (tenant-wide and HR-only: there is no supervisor scope or manager-chain read yet, and never a scheduler, cashier, marketer or payroll operator), EXCEPT `mine=true` (your OWN verdicts), which needs no permission beyond an employment linked to your login (an ownership grant, ADR-0063). An `employmentId` outside your own under `mine` is 403. Each read of OTHER people's verdicts is audited (the reader, the employment filter and a count, never a verdict). A verdict is a SUPPORTING INDICATOR for human review, never proof, and changes no pay, status or approval by itself. There is no coordinate to return: none is ever stored. Newest first, keyset paginated; `from`/`to` bound the evaluation instant. Responses are `no-store`.
+
+**Parameters**
+
+| Name               | In     | Required | Type               | Description |
+| ------------------ | ------ | -------- | ------------------ | ----------- |
+| `mine`             | query  | no       | boolean            |             |
+| `employmentId`     | query  | no       | string (uuid)      |             |
+| `eventId`          | query  | no       | string (uuid)      |             |
+| `from`             | query  | no       | string (date-time) |             |
+| `to`               | query  | no       | string (date-time) |             |
+| `cursor`           | query  | no       | string             |             |
+| `X-Correlation-ID` | header | no       | string             |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | A page of verdicts.         | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/hr-workforce/geolocation/geofences` — List geofences
+
+- **operationId**: `hrWorkforceGeofencesList`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `hr_workforce.geolocation_evidence.configure`. `officeId` narrows to one office; `includeDeleted=true` includes soft-deleted ones. A geofence is a place of business, not a person.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `officeId`         | query  | no       | string (uuid) |             |
+| `includeDeleted`   | query  | no       | boolean       |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The geofences.              | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/hr-workforce/geolocation/geofences` — Define a geofence
+
+- **operationId**: `hrWorkforceGeofenceCreate`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `hr_workforce.geolocation_evidence.configure` (high-risk). A circle (`latitude`, `longitude`, `radiusMeters` 50-5000) or a simple polygon (3-32 `[latitude, longitude]` vertices, no repeated vertex or crossing edge, at least 2,500 square metres, spanning at most 10 km) attached to a live office; at most 10 live geofences per office (409 `GEOFENCE_OFFICE_LIMIT`). Requires an Idempotency-Key. Audited at warning severity with ids, the revision and a geometry fingerprint, never coordinates.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`HrGeofenceInput`](#schema-hrgeofenceinput)
+
+**Responses**
+
+| Status | Description                                    | Schema                                 |
+| ------ | ---------------------------------------------- | -------------------------------------- |
+| 201    | The geofence.                                  | object                                 |
+| 400    | Validation error.                              | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                    | [`ApiError`](#standard-error-envelope) |
+| 409    | IDEMPOTENCY_CONFLICT or GEOFENCE_OFFICE_LIMIT. | [`ApiError`](#standard-error-envelope) |
+| 422    | OFFICE_NOT_FOUND.                              | [`ApiError`](#standard-error-envelope) |
+
+### `PUT /api/v1/hr-workforce/geolocation/geofences/{id}` — Replace a geofence
+
+- **operationId**: `hrWorkforceGeofenceReplace`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `hr_workforce.geolocation_evidence.configure` (high-risk). Replaces label, office and geometry of a LIVE geofence. Evidence already recorded keeps naming it; it cannot be re-evaluated because no coordinate was kept. Requires an Idempotency-Key. Audited at warning severity with ids, the revision and a geometry fingerprint, never coordinates.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`HrGeofenceInput`](#schema-hrgeofenceinput)
+
+**Responses**
+
+| Status | Description                                    | Schema                                 |
+| ------ | ---------------------------------------------- | -------------------------------------- |
+| 200    | The geofence.                                  | object                                 |
+| 400    | Validation error.                              | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                    | [`ApiError`](#standard-error-envelope) |
+| 404    | RESOURCE_NOT_FOUND.                            | [`ApiError`](#standard-error-envelope) |
+| 409    | IDEMPOTENCY_CONFLICT or GEOFENCE_OFFICE_LIMIT. | [`ApiError`](#standard-error-envelope) |
+| 422    | OFFICE_NOT_FOUND.                              | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/hr-workforce/geolocation/geofences/{id}` — Soft-delete a geofence
+
+- **operationId**: `hrWorkforceGeofenceDelete`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `hr_workforce.geolocation_evidence.configure` (high-risk). SOFT delete: a verdict that names the geofence keeps its reference. Refused 409 `GEOFENCE_LAST_WHILE_ENABLED` while geolocation evidence is enabled and this is the last live geofence. Requires an Idempotency-Key. Audited at warning severity.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Responses**
+
+| Status | Description                                                                    | Schema                                 |
+| ------ | ------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | The deleted geofence.                                                          | object                                 |
+| 400    | Validation error.                                                              | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                    | [`ApiError`](#standard-error-envelope) |
+| 404    | RESOURCE_NOT_FOUND.                                                            | [`ApiError`](#standard-error-envelope) |
+| 409    | IDEMPOTENCY_CONFLICT, GEOFENCE_ALREADY_DELETED or GEOFENCE_LAST_WHILE_ENABLED. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/hr-workforce/geolocation/geofences/{id}/restore` — Restore a geofence
+
+- **operationId**: `hrWorkforceGeofenceRestore`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `hr_workforce.geolocation_evidence.configure` (high-risk). Undoes a soft delete; refused 422 while its office is deleted. Requires an Idempotency-Key. Audited at warning severity.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Responses**
+
+| Status | Description                                                          | Schema                                 |
+| ------ | -------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The restored geofence.                                               | object                                 |
+| 400    | Validation error.                                                    | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                          | [`ApiError`](#standard-error-envelope) |
+| 404    | RESOURCE_NOT_FOUND.                                                  | [`ApiError`](#standard-error-envelope) |
+| 409    | IDEMPOTENCY_CONFLICT, GEOFENCE_NOT_DELETED or GEOFENCE_OFFICE_LIMIT. | [`ApiError`](#standard-error-envelope) |
+| 422    | OFFICE_NOT_FOUND.                                                    | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/hr-workforce/geolocation/notice` — Read the notice status for the caller's employment
+
+- **operationId**: `hrWorkforceGeolocationNoticeStatus`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `hr_workforce.clock.create` and an employment linked to the caller's login (anything else is 403). What the clock client needs BEFORE it offers a position: whether the tenant has the feature on, the accuracy ceiling, the current notice and whether this employee acknowledged it. While the feature is off, `enabled` is false and no notice is returned: the client must not ask for a position. `no-store`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `employmentId`     | query  | yes      | string (uuid) |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The status.                 | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/hr-workforce/geolocation/notice-acknowledgements` — Acknowledge the current notice
+
+- **operationId**: `hrWorkforceGeolocationNoticeAcknowledge`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `hr_workforce.clock.create` and an employment linked to the caller's login (anything else is 403). Records that the employee has seen the CURRENT notice version: evidence of notice, not a claim that consent is the lawful basis. A repeat is 200. Declining is simply not acknowledging: the employee still clocks in, with a `not_provided` verdict. Requires an Idempotency-Key.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`HrGeolocationAcknowledgeInput`](#schema-hrgeolocationacknowledgeinput)
+
+**Responses**
+
+| Status | Description                                 | Schema                                 |
+| ------ | ------------------------------------------- | -------------------------------------- |
+| 200    | Already acknowledged.                       | object                                 |
+| 201    | Acknowledged.                               | object                                 |
+| 400    | Validation error.                           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                 | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                 | [`ApiError`](#standard-error-envelope) |
+| 409    | IDEMPOTENCY_CONFLICT or NOTICE_NOT_CURRENT. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/hr-workforce/geolocation/notices` — List the notice versions
+
+- **operationId**: `hrWorkforceGeolocationNoticesList`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `hr_workforce.geolocation_evidence.configure`. Newest version first.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description |
+| ------------------ | ------ | -------- | ------ | ----------- |
+| `X-Correlation-ID` | header | no       | string |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The notice versions.        | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/hr-workforce/geolocation/notices` — Publish the next notice version
+
+- **operationId**: `hrWorkforceGeolocationNoticePublish`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `hr_workforce.geolocation_evidence.configure` (high-risk). Append-only, numbered per tenant; the text (locale -> text) is the tenant's: what is captured (a position at clock-in and clock-out only), why, who can see it, how long it is kept, and that declining does not stop clocking in. Publishing does NOT make it current: `PUT .../settings` with `noticeId` does. Requires an Idempotency-Key. Audited at warning severity (the version, never the text).
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`HrGeolocationNoticeInput`](#schema-hrgeolocationnoticeinput)
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 201    | The notice version.         | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 409    | IDEMPOTENCY_CONFLICT.       | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/hr-workforce/geolocation/settings` — Read the geolocation evidence settings
+
+- **operationId**: `hrWorkforceGeolocationSettingsGet`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `hr_workforce.geolocation_evidence.configure` (not granted to the tenant owner by default, ADR-0138 section 3). The switch is FALSE for every tenant until an authorised person enables it. Responses are `no-store`.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description |
+| ------------------ | ------ | -------- | ------ | ----------- |
+| `X-Correlation-ID` | header | no       | string |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The settings.               | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `PUT /api/v1/hr-workforce/geolocation/settings` — Switch geolocation attendance evidence on or off
+
+- **operationId**: `hrWorkforceGeolocationSettingsSet`
+- **Security**: bearerAuth + tenantHeader
+
+ENABLING needs `hr_workforce.geolocation_evidence.configure` (403 otherwise) and, in the resulting state, a DPIA reference + date (409 `GEOLOCATION_DPIA_REQUIRED`), a published notice (409 `GEOLOCATION_NOTICE_REQUIRED`) and at least one live geofence (409 `GEOLOCATION_GEOFENCE_REQUIRED`). DISABLING has no precondition, and a holder of `hr_workforce.settings.configure` may send a bare `{ "enabled": false }`; anything else needs the dedicated permission. An omitted field keeps its value; `null` clears `dpiaReference`, `dpiaRecordedOn` or `noticeId`. Requires an Idempotency-Key. Audited at CRITICAL severity when the switch flips (warning otherwise) with the before/after STATE and the actor, never a location. Pointing `noticeId` at a newer version re-requests every employee's acknowledgement.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`HrGeolocationSettingsInput`](#schema-hrgeolocationsettingsinput)
+
+**Responses**
+
+| Status | Description                                                                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The settings.                                                                                                  | object                                 |
+| 400    | Validation error.                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 409    | IDEMPOTENCY_CONFLICT, GEOLOCATION_DPIA_REQUIRED, GEOLOCATION_NOTICE_REQUIRED or GEOLOCATION_GEOFENCE_REQUIRED. | [`ApiError`](#standard-error-envelope) |
+| 422    | NOTICE_NOT_FOUND.                                                                                              | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/hr-workforce/settings` — Read the workforce settings
 
@@ -17897,6 +18399,59 @@ Gated by `hr_workforce.templates.delete` (high-risk). Soft delete; frees the cod
 | 404    | RESOURCE_NOT_FOUND.                       | [`ApiError`](#standard-error-envelope) |
 | 409    | IDEMPOTENCY_CONFLICT or TEMPLATE_DELETED. | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/hr-workforce/workforce-metrics/employees` — Workforce facts per employee
+
+- **operationId**: `hrWorkforceMetricsEmployeesList`
+- **Security**: bearerAuth + tenantHeader
+
+Transparent attendance, hours, shift-coverage and productivity FACTS per employee over a UTC window (`from` inclusive, `to` exclusive, both required, at most 31 days). Gated by `hr_workforce.workforce_metrics.read` (HR: every employee), EXCEPT `mine=true` (your OWN employments) and `reports=true` (your DIRECT reports only, one level, and only from when the reporting line began; a soft-deleted, terminated or re-assigned report, or a terminated manager, drops out), which need no permission (an ownership grant on the persisted login link / current manager link, ADR-0063; ABAC, scope and SoD still apply, and a machine credential never carries it). `mine` and `reports` cannot be combined, and an `employmentId` outside the chosen basis is 403, the same as an id that does not exist. Malformed input from a caller entitled to nothing is 403, not 400. Keyset paginated by employment id (`cursor`, 50 per page). There is NO composite score, ranking or flag; every figure is a count, minutes, or a ratio defined in `docs/awcms/workforce-metrics.md`. Reads attendance events (effective record only) and published work shifts only; no photo, biometric, device, location or payroll data exists in or is read by this surface. Never cached. Tenant-scoped (withTenant + RLS FORCE). The all-employee mode and the `reports` mode (the manager chain can make a director with no HR permission a reader of everyone) are recorded as a sensitive read (`sensitive_read.workforce_metrics`: the employment ids, a count and the `mode`, never a figure; coalesced per actor in a five-minute window, Issue #1083). Only the employee's own (`mine`) read is not recorded.
+
+**Parameters**
+
+| Name               | In     | Required | Type               | Description |
+| ------------------ | ------ | -------- | ------------------ | ----------- |
+| `from`             | query  | yes      | string (date-time) |             |
+| `to`               | query  | yes      | string (date-time) |             |
+| `employmentId`     | query  | no       | string (uuid)      |             |
+| `mine`             | query  | no       | boolean            |             |
+| `reports`          | query  | no       | boolean            |             |
+| `cursor`           | query  | no       | string (uuid)      |             |
+| `X-Correlation-ID` | header | no       | string             |             |
+
+**Responses**
+
+| Status | Description                             | Schema                                 |
+| ------ | --------------------------------------- | -------------------------------------- |
+| 200    | A page of per-employee workforce facts. | object                                 |
+| 400    | Validation error.                       | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.             | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.             | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/hr-workforce/workforce-metrics/groups` — Workforce aggregates per office, small groups withheld
+
+- **operationId**: `hrWorkforceMetricsGroupsList`
+- **Security**: bearerAuth + tenantHeader
+
+Per-OFFICE workforce aggregates (the office of each employee's current terms; `officeId: null` is no office assigned) over exactly ONE CLOSED UTC ISO week (`from` a Monday 00:00Z, `to` the next Monday); weeks are disjoint and never nest, so no two accepted windows can be subtracted to leave a slice. A calendar month, any other window, and a bucket that has not ended, is 400: free windows let two requests that differ by a tail slice isolate one person. Gated by `hr_workforce.workforce_metrics.analyze` (or `.read`); there is no ownership grant, an aggregate is not a person's own record. Returns NO individual row. A group with fewer than five CONTRIBUTING employees (at least four hours scheduled or worked in the bucket) is returned `suppressed: true` with no number at all; an employee under the four-hour floor is neither counted nor summed. A shown group reports only a contributor BAND (`5-9`, `10-19`, `20+`), never an exact count. There is deliberately no tenant-wide total, so a withheld group cannot be recovered by subtraction. Ratios are recomputed from the group sums, never averaged. 422 `WORKFORCE_METRICS_SCOPE_TOO_LARGE` when the tenant has more than 10000 employments (decided from a COUNT before any page is read). No composite score. Never cached. Tenant-scoped (withTenant + RLS FORCE). A suppressed group carries no `officeId` (Issue #1083, L2). The read is recorded as a sensitive read under the permission that actually granted it (`sensitive_read.workforce_metrics` for `.read`, `sensitive_read.workforce_metrics_aggregate` for `.analyze`; the group count and no ids). Residual: the offices that DO appear are the shown ones, so a caller who knows the tenant's offices by other means can infer by set difference which are withheld. Residual risk (documented, not enforced by an SoD rule): a caller who knows some members of a small group (as their supervisor through `?reports=true`, or because they can create or publish its shifts) can subtract them from a shown figure; do not combine `.analyze` with those over the same people (docs/awcms/workforce-metrics.md section 6).
+
+**Parameters**
+
+| Name               | In     | Required | Type               | Description |
+| ------------------ | ------ | -------- | ------------------ | ----------- |
+| `from`             | query  | yes      | string (date-time) |             |
+| `to`               | query  | yes      | string (date-time) |             |
+| `X-Correlation-ID` | header | no       | string             |             |
+
+**Responses**
+
+| Status | Description                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------- | -------------------------------------- |
+| 200    | Per-office aggregates; small groups withheld.                  | object                                 |
+| 400    | Validation error.                                              | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                    | [`ApiError`](#standard-error-envelope) |
+| 422    | The tenant has too many employments for one aggregate request. | [`ApiError`](#standard-error-envelope) |
+
 ## Booking
 
 Availability and schedules of the generic booking module (booking module, Issues #937 and #938, ADR-0131, ADR-0135): schedules written in local wall-clock time in an IANA zone, closures and override-hours exceptions, and a read-only availability search for slot resources (UTC half-open intervals, RFC 5545 gap and fold rules, setup and cleanup buffers, lead time and horizon) and stay resources (local date intervals, nights by date arithmetic, same-day turnover allowed, blocked nights as a hard exclusion, closures as a soft one). Availability persists and claims nothing and may be stale when read; the allocator's database exclusion constraints, not this surface, prevent a double booking. Rate limited per principal. No price, payment or customer name exists in the module.
@@ -17934,6 +18489,963 @@ Gated by `booking.availability.read`. READ-ONLY: persists and claims nothing, an
 | 409    | BOOKING_MODE_MISMATCH (from/to sent for a stay resource or offering, or checkInDate/checkOutDate for a slot one). | [`ApiError`](#standard-error-envelope) |
 | 422    | QUANTITY_EXCEEDS_UNITS.                                                                                           | [`ApiError`](#standard-error-envelope) |
 | 429    | RATE_LIMITED.                                                                                                     | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/booking/blocks` — List blocked nights
+
+- **operationId**: `bookingBlocksList`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.blocks.read`. Newest first, keyset paginated (`cursor`). Filters: `resourceId`, `unitId`, `status`. A block carries ids, local dates and a closed reason code -- no free text and no customer reference. Tenant-scoped (withTenant + RLS FORCE).
+
+**Parameters**
+
+| Name               | In     | Required | Type                       | Description |
+| ------------------ | ------ | -------- | -------------------------- | ----------- |
+| `resourceId`       | query  | no       | string (uuid)              |             |
+| `unitId`           | query  | no       | string (uuid)              |             |
+| `status`           | query  | no       | enum(`active`, `released`) |             |
+| `cursor`           | query  | no       | string                     |             |
+| `X-Correlation-ID` | header | no       | string                     |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | A page of blocks.           | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/booking/blocks` — Block nights of a stay resource
+
+- **operationId**: `bookingBlockCreate`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.blocks.create` (high-impact: it removes sellable inventory). Takes the half-open local date range `[fromDate, toDate)` (at most 366 nights, dates in the resource's zone) of ONE unit (`unitId`) or EVERY unit (absent or null) out of sale, for a closed `reasonCode`. A block is a HARD exclusion under the same constraint as a guest's nights: all-or-none, it never cancels a reservation, and a night already held by a live stay or another block is `409 BLOCK_CONFLICT` and writes nothing. `error.details.conflicts` names the conflicting reservations (number, status, dates; never a customer reference) and blocks only to a caller who ALSO holds `booking.reservations.read`. A resource-wide block also covers units added to the resource later. Elapsed, unswept holds on the covered units are expired first (lazy reclaim). Requires an Idempotency-Key; replaying it returns the stored response and never `BLOCK_CONFLICT` about its own block. Audited at warning severity (`booking.block.created`). Publishes no domain event in v1.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`BookingBlockInput`](#schema-bookingblockinput)
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                            | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 201    | The block, with the units holding its nights.                                                                                                                                                          | object                                 |
+| 400    | VALIDATION_ERROR, or STAY_DATES_INVALID (a malformed or out-of-order date, more than 366 nights, or a date the resource's zone does not have).                                                         | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 404    | RESOURCE_NOT_FOUND or UNIT_NOT_FOUND.                                                                                                                                                                  | [`ApiError`](#standard-error-envelope) |
+| 409    | BLOCK_CONFLICT (a live stay or another block holds a night; nothing was cancelled), BOOKING_MODE_MISMATCH (a slot resource has schedule exceptions instead), CONTENTION_RETRY or IDEMPOTENCY_CONFLICT. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/booking/blocks/{id}` — Read one block
+
+- **operationId**: `bookingBlockGet`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.blocks.read`. An unknown id and another tenant's id are the same `404 BLOCK_NOT_FOUND`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `id`               | path   | yes      | string (uuid) |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Responses**
+
+| Status | Description                                                                  | Schema                                 |
+| ------ | ---------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The block.                                                                   | object                                 |
+| 400    | Validation error.                                                            | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                  | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                  | [`ApiError`](#standard-error-envelope) |
+| 404    | BLOCK_NOT_FOUND (an unknown id and another tenant's id are the same answer). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/booking/blocks/{id}/release` — Release a block and return its nights to sale
+
+- **operationId**: `bookingBlockRelease`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.blocks.release`. The block is locked and the database releases its allocation rows in the same statement, stamping the block's own release instant on them. Releasing an already released block returns it with `replayed: true` and writes nothing. The body is empty. Requires an Idempotency-Key; replaying it returns the stored response. Audited at info severity (`booking.block.released`). Publishes no domain event in v1.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Request body** (optional): object
+
+**Responses**
+
+| Status | Description                                                                          | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | The released block, or unchanged with `replayed: true` when it was already released. | object                                 |
+| 400    | Validation error.                                                                    | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                          | [`ApiError`](#standard-error-envelope) |
+| 404    | BLOCK_NOT_FOUND (an unknown id and another tenant's id are the same answer).         | [`ApiError`](#standard-error-envelope) |
+| 409    | IDEMPOTENCY_CONFLICT.                                                                | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/booking/offerings` — List service offerings
+
+- **operationId**: `bookingOfferingsList`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.offerings.read`. Newest first, keyset paginated (`cursor`). Filters: `granularity`, `status`, and `includeDeleted` / `onlyDeleted` (soft-deleted rows are hidden by default and need `booking.offerings.restore` as well). An offering holds no price and no product id. Tenant-scoped (withTenant + RLS FORCE).
+
+**Parameters**
+
+| Name               | In     | Required | Type                       | Description                                                                                       |
+| ------------------ | ------ | -------- | -------------------------- | ------------------------------------------------------------------------------------------------- |
+| `granularity`      | query  | no       | enum(`time`, `stay`)       |                                                                                                   |
+| `status`           | query  | no       | enum(`active`, `inactive`) |                                                                                                   |
+| `includeDeleted`   | query  | no       | boolean                    | true lists live and soft-deleted rows; needs `booking.offerings.restore` as well (403 otherwise). |
+| `onlyDeleted`      | query  | no       | boolean                    | true lists only soft-deleted rows; needs `booking.offerings.restore` as well (403 otherwise).     |
+| `cursor`           | query  | no       | string                     | Opaque keyset cursor from the previous page.                                                      |
+| `X-Correlation-ID` | header | no       | string                     |                                                                                                   |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | A page of offerings.        | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/booking/offerings` — Create a service offering
+
+- **operationId**: `bookingOfferingCreate`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.offerings.create`. A `time` offering needs `durationSeconds` and `slotStepSeconds` (at least 300) and may set buffers; a `stay` offering needs `minNights` and `maxNights` (at most 366) and sends no time field. `maxParty` is at least `minParty`. A duplicate `code` (case-insensitive) is `409 CODE_TAKEN`. Requires an Idempotency-Key. Audited at info severity (`booking.offering.created`).
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`BookingOfferingInput`](#schema-bookingofferinginput)
+
+**Responses**
+
+| Status | Description                               | Schema                                 |
+| ------ | ----------------------------------------- | -------------------------------------- |
+| 201    | The offering.                             | object                                 |
+| 400    | VALIDATION_ERROR or IDEMPOTENCY_REQUIRED. | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.               | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.               | [`ApiError`](#standard-error-envelope) |
+| 409    | CODE_TAKEN or IDEMPOTENCY_CONFLICT.       | [`ApiError`](#standard-error-envelope) |
+| 422    | CONSTRAINT_VIOLATED.                      | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/booking/offerings/{id}` — Read one service offering
+
+- **operationId**: `bookingOfferingGet`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.offerings.read`. A soft-deleted offering is returned (with `deletedAt`) only to a holder of `booking.offerings.restore`, anyone else gets the neutral 404. An unknown id and another tenant's id are the same `404 OFFERING_NOT_FOUND`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `id`               | path   | yes      | string (uuid) |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The offering.               | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | OFFERING_NOT_FOUND.         | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/booking/offerings/{id}` — Edit a service offering
+
+- **operationId**: `bookingOfferingPatch`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.offerings.update`. `code` and `granularity` are fixed; the merged offering must still satisfy the shape of its granularity (`400 VALIDATION_ERROR` otherwise). Changes FUTURE bookings only: a reservation item keeps the snapshot it was made with. `409 OFFERING_DELETED` for a deleted offering. Requires an Idempotency-Key. Audited at info severity (`booking.offering.updated`).
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`BookingOfferingPatch`](#schema-bookingofferingpatch)
+
+**Responses**
+
+| Status | Description                               | Schema                                 |
+| ------ | ----------------------------------------- | -------------------------------------- |
+| 200    | The offering.                             | object                                 |
+| 400    | VALIDATION_ERROR or IDEMPOTENCY_REQUIRED. | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.               | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.               | [`ApiError`](#standard-error-envelope) |
+| 404    | OFFERING_NOT_FOUND.                       | [`ApiError`](#standard-error-envelope) |
+| 409    | OFFERING_DELETED or IDEMPOTENCY_CONFLICT. | [`ApiError`](#standard-error-envelope) |
+| 422    | CONSTRAINT_VIOLATED.                      | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/booking/offerings/{id}` — Soft-delete a service offering
+
+- **operationId**: `bookingOfferingDelete`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.offerings.delete`. SOFT delete; reservations keep their snapshot. Deleting a deleted offering returns it with `replayed: true`. Requires an Idempotency-Key. Audited at warning severity (`booking.offering.deleted`).
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The deleted offering.       | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | OFFERING_NOT_FOUND.         | [`ApiError`](#standard-error-envelope) |
+| 409    | IDEMPOTENCY_CONFLICT.       | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/booking/offerings/{id}/restore` — Restore a soft-deleted service offering
+
+- **operationId**: `bookingOfferingRestore`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.offerings.restore`. Restoring a live offering returns it with `replayed: true`. The body is empty. Requires an Idempotency-Key. Audited at info severity (`booking.offering.restored`).
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Request body** (optional): object
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The restored offering.      | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | OFFERING_NOT_FOUND.         | [`ApiError`](#standard-error-envelope) |
+| 409    | IDEMPOTENCY_CONFLICT.       | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/booking/policy` — Read the booking policy
+
+- **operationId**: `bookingPolicyGet`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.policy.read`. `policy` is what the tenant set (`null` where it did not, meaning the MODULE DEFAULT, not unlimited) and `effective` is what is in force. A tenant that never wrote a policy reads every field `null` and `updatedAt: null`.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description |
+| ------------------ | ------ | -------- | ------ | ----------- |
+| `X-Correlation-ID` | header | no       | string |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The policy.                 | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `PUT /api/v1/booking/policy` — Replace the booking policy
+
+- **operationId**: `bookingPolicyPut`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.policy.configure` (HIGH-RISK: it bounds how much inventory one actor can hold and how far ahead anyone can book). REPLACES the whole policy: every field must be present and `null` selects the module default (hold caps default to 5 per customer and 500 per tenant). Ranges: hold seconds 60 to 86400 with `defaultHoldSeconds` at most `maxHoldSeconds`; hold caps at least 1; `minLeadSeconds` at least 0; `maxHorizonDays` 1 to 3650; `noShowGraceSeconds` 0 to 2592000; `defaultTimezone` an IANA name. Changes FUTURE holds and searches only. Requires an Idempotency-Key; replaying it returns the stored response. Audited at critical severity (`booking.policy.configured`) with the before and after values. No MFA step-up: ADR-0141 flags payroll permissions only.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`BookingPolicyInput`](#schema-bookingpolicyinput)
+
+**Responses**
+
+| Status | Description                                                                 | Schema                                 |
+| ------ | --------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The policy now in force.                                                    | object                                 |
+| 400    | VALIDATION_ERROR (a missing or out-of-range field) or IDEMPOTENCY_REQUIRED. | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                 | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                 | [`ApiError`](#standard-error-envelope) |
+| 409    | IDEMPOTENCY_CONFLICT.                                                       | [`ApiError`](#standard-error-envelope) |
+| 422    | CONSTRAINT_VIOLATED.                                                        | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/booking/reports/occupancy` — Occupancy of stay resources
+
+- **operationId**: `bookingReportsOccupancy`
+- **Security**: bearerAuth + tenantHeader
+
+Occupied unit-nights of STAY resources per local night: one unit-night per unit and night (two nights on one unit are two, the same stay on three units is six). Occupied means a confirmed, checked-in or completed reservation claims the night; a no-show keeps its allocation but is not occupied. `heldUnitNights` is the hold PIPELINE for the same nights (live holds only), reported beside occupancy and never inside it; `blockedUnitNights` are the nights under an active block. The rate's denominator is all units active now (whether maintenance closures leave the denominator is still open under O8, hence `blockedUnitNights`). Gated by `booking.reports.read`. READ-ONLY and tenant-scoped (withTenant + RLS FORCE); never cached. Day windows are Asia/Jakarta, half-open. Holds are never part of occupancy (owner decision O8). No customer reference, note or amount is read or returned; there is no revenue figure (booking holds no price). A ratio or mean over fewer than five reservations is withheld (`suppressed: true`, `value: null`); counts are the tenant's own operational figures and are not anonymised (the reader already holds `booking.reports.read` on that tenant's data). The `booking.*` projections on the reporting engine are the all-time dashboard counters; this is the live, windowed detail they point at.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                      |
+| ------------------ | ------ | -------- | ------------- | ---------------------------------------------------------------- |
+| `from`             | query  | yes      | string (date) | First local date (Asia/Jakarta), inclusive.                      |
+| `to`               | query  | yes      | string (date) | Last local date, exclusive; after `from`, at most 92 days later. |
+| `resourceId`       | query  | no       | string (uuid) | Narrow the report to one resource.                               |
+| `X-Correlation-ID` | header | no       | string        |                                                                  |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The report.                 | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/booking/reports/reservations` — Hold pipeline, lead time, cancellation and no-show
+
+- **operationId**: `bookingReportsReservations`
+- **Security**: bearerAuth + tenantHeader
+
+For a window of Asia/Jakarta days: the HOLD PIPELINE (holds placed, converted, expired, cancelled while held, plus the holds and units open right now), the LEAD TIME of the reservations confirmed in the window (starts_at minus the confirmation instant, in buckets and a mean) and the CANCELLATION and NO-SHOW outcomes of that same confirmation cohort. A reservation later rescheduled is left out of the cohort (its replacement has its own). The no-show rate is no_show over resolved arrivals (no_show + checked_in + completed). Gated by `booking.reports.read`. READ-ONLY and tenant-scoped (withTenant + RLS FORCE); never cached. Day windows are Asia/Jakarta, half-open. Holds are never part of occupancy (owner decision O8). No customer reference, note or amount is read or returned; there is no revenue figure (booking holds no price). A ratio over fewer than five reservations is withheld (`suppressed: true`, `value: null`). The `booking.*` projections on the reporting engine are the all-time dashboard counters; this is the live, windowed detail they point at.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                      |
+| ------------------ | ------ | -------- | ------------- | ---------------------------------------------------------------- |
+| `from`             | query  | yes      | string (date) | First local date (Asia/Jakarta), inclusive.                      |
+| `to`               | query  | yes      | string (date) | Last local date, exclusive; after `from`, at most 92 days later. |
+| `resourceId`       | query  | no       | string (uuid) | Narrow the report to one resource.                               |
+| `X-Correlation-ID` | header | no       | string        |                                                                  |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The report.                 | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/booking/reports/utilization` — Utilization of slot resources
+
+- **operationId**: `bookingReportsUtilization`
+- **Security**: bearerAuth + tenantHeader
+
+Net-booked service seconds of SLOT resources over the seconds the schedule leaves open (times the active units), per Asia/Jakarta day. Buffers (setup/cleanup) and holds are excluded from booked; the denominator is the schedule expansion availability uses. A separate metric from occupancy, never averaged with it. Whether the denominator should exclude maintenance closures, and whether booked should be actual rather than booked time, are still open under O8. Gated by `booking.reports.read`. READ-ONLY and tenant-scoped (withTenant + RLS FORCE); never cached. Day windows are Asia/Jakarta, half-open. Holds are never part of occupancy (owner decision O8). No customer reference, note or amount is read or returned; there is no revenue figure (booking holds no price). A ratio over fewer than five reservations is withheld (`suppressed: true`, `value: null`). The `booking.*` projections on the reporting engine are the all-time dashboard counters; this is the live, windowed detail they point at.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                      |
+| ------------------ | ------ | -------- | ------------- | ---------------------------------------------------------------- |
+| `from`             | query  | yes      | string (date) | First local date (Asia/Jakarta), inclusive.                      |
+| `to`               | query  | yes      | string (date) | Last local date, exclusive; after `from`, at most 92 days later. |
+| `resourceId`       | query  | no       | string (uuid) | Narrow the report to one resource.                               |
+| `X-Correlation-ID` | header | no       | string        |                                                                  |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The report.                 | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/booking/reservations` — List reservations
+
+- **operationId**: `bookingReservationsList`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.reservations.read`. Newest first, keyset paginated (`cursor`). Filters: `status`, `lineageId` (every reservation of one booking across reschedules) and the adapter's natural key (`externalRefType` with `externalRef`, both or neither). The customer note is never returned (it is behind `booking.reservation_notes.read`). Tenant-scoped (withTenant + RLS FORCE).
+
+**Parameters**
+
+| Name               | In     | Required | Type                                                                                                   | Description |
+| ------------------ | ------ | -------- | ------------------------------------------------------------------------------------------------------ | ----------- |
+| `status`           | query  | no       | enum(`held`, `confirmed`, `checked_in`, `completed`, `cancelled`, `rescheduled`, `no_show`, `expired`) |             |
+| `lineageId`        | query  | no       | string (uuid)                                                                                          |             |
+| `externalRefType`  | query  | no       | string                                                                                                 |             |
+| `externalRef`      | query  | no       | string                                                                                                 |             |
+| `cursor`           | query  | no       | string                                                                                                 |             |
+| `X-Correlation-ID` | header | no       | string                                                                                                 |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | A page of reservations.     | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/booking/reservations` — Place a hold or create a reservation
+
+- **operationId**: `bookingReservationCreate`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.reservations.create`. Places a HOLD (`held`, expiring on the database clock; `holdSeconds` is clamped to `[60, max_hold_seconds]`) or, when the offering confirms immediately, a `confirmed` reservation. The claim is won all-or-none under the database's exclusion constraints: a taken slot or night is `409 SLOT_UNAVAILABLE` and leaves nothing behind. The server owns the status, the interval (derived from the offering and `startsAt`, or from the `stay` dates in the resource's zone), the buffers and the expiry; a client never sends them. A body that names a payment field (`paid`, `deposit`, `amount`, `balance`, ...) is `400 PAYMENT_FIELD_NOT_ACCEPTED` naming the field, and any other unknown key is a `400 VALIDATION_ERROR`. Holds are capped per customer and per tenant (defaults 5 and 500, tenant-configurable; `429 HOLD_LIMIT_EXCEEDED`). Opening hours (`409 OUTSIDE_SCHEDULE`), lead time (`409 LEAD_TIME_VIOLATION`) and horizon (`409 HORIZON_EXCEEDED`) are refused unless `overridePolicy` is true AND the caller also holds the HIGH-RISK `booking.reservations.override`, checked first through the access chokepoint (action-time separation of duties applies), audited `critical`; an override never lifts a conflict. Requires an Idempotency-Key: replaying it returns the stored response and writes nothing; a fresh key against a live `externalRef` is `409 EXTERNAL_REF_IN_USE`. Audited; publishes `awcms.booking.reservation.created` and `.held` or `.confirmed` in the same transaction. Rejected requests write nothing.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`BookingCreateReservationInput`](#schema-bookingcreatereservationinput)
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                                                                              | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The reservation.                                                                                                                                                                                                                                         | object                                 |
+| 400    | VALIDATION_ERROR, PAYMENT_FIELD_NOT_ACCEPTED, STAY_DATES_INVALID or IDEMPOTENCY_REQUIRED.                                                                                                                                                                | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 404    | RESOURCE_NOT_FOUND or OFFERING_NOT_FOUND (neutral: another tenant's id is the same answer as an unknown one).                                                                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 409    | SLOT_UNAVAILABLE, OUTSIDE_SCHEDULE, LEAD_TIME_VIOLATION, HORIZON_EXCEEDED, PARTY_SIZE_OUT_OF_RANGE, BOOKING_MODE_MISMATCH, MIN_STAY_VIOLATION, MAX_STAY_EXCEEDED, STAY_POOL_INCONSISTENT, EXTERNAL_REF_IN_USE, CONTENTION_RETRY or IDEMPOTENCY_CONFLICT. | [`ApiError`](#standard-error-envelope) |
+| 422    | QUANTITY_EXCEEDS_UNITS.                                                                                                                                                                                                                                  | [`ApiError`](#standard-error-envelope) |
+| 429    | HOLD_LIMIT_EXCEEDED.                                                                                                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/booking/reservations/{id}` — Read a reservation
+
+- **operationId**: `bookingReservationGet`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.reservations.read`. The reservation with its items and its append-only transition history. The customer note is never returned (it is behind `booking.reservation_notes.read`). There is no ownership grant on this read: the customer is an opaque reference at the commerce authority, not a tenant user. An unknown id and another tenant's id are the same `404 RESERVATION_NOT_FOUND`. Tenant-scoped (withTenant + RLS FORCE).
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description |
+| ------------------ | ------ | -------- | ------ | ----------- |
+| `X-Correlation-ID` | header | no       | string |             |
+
+**Responses**
+
+| Status | Description                      | Schema                                 |
+| ------ | -------------------------------- | -------------------------------------- |
+| 200    | The reservation and its history. | object                                 |
+| 400    | Validation error.                | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.      | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.      | [`ApiError`](#standard-error-envelope) |
+| 404    | RESERVATION_NOT_FOUND.           | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/booking/reservations/{id}/cancel` — Cancel a held or confirmed reservation
+
+- **operationId**: `bookingReservationCancel`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.reservations.cancel`. `held` or `confirmed` -> `cancelled`, releasing every live allocation in the same transaction. `reasonCode` is an optional short code, never free text. A cancellation inside the offering's `cancellation_cutoff_seconds` of the start (the arrival instant for a stay) is recorded as `lateCancellation: true` on the reservation and the event; the module records the fact, any fee is the commerce layer's. Cancelling an already cancelled reservation returns it with `replayed: true` and writes nothing. Requires an Idempotency-Key; replaying it returns the stored response. Audited at warning severity; publishes `awcms.booking.reservation.cancelled`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Request body** (optional): [`BookingCancelInput`](#schema-bookingcancelinput)
+
+**Responses**
+
+| Status | Description                                                                                                       | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The reservation after the transition, or unchanged with `replayed: true` when it was already in the target state. | object                                 |
+| 400    | Validation error.                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 404    | RESERVATION_NOT_FOUND (an unknown id and another tenant's id are the same answer).                                | [`ApiError`](#standard-error-envelope) |
+| 409    | INVALID_STATE or IDEMPOTENCY_CONFLICT.                                                                            | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/booking/reservations/{id}/check-in` — Check a confirmed reservation in
+
+- **operationId**: `bookingReservationCheckIn`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.reservations.check_in`. `confirmed` -> `checked_in`; the allocations are kept. A stay is refused (`409 CHECK_IN_TOO_EARLY`) before its check-in DATE in the resource's time zone; there is deliberately no time-of-day check, an early arrival being a front-desk decision. Checking in a checked-in reservation returns it with `replayed: true` and writes nothing. Requires an Idempotency-Key; replaying it returns the stored response. Audited; publishes `awcms.booking.reservation.checked_in`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Request body** (optional): object
+
+**Responses**
+
+| Status | Description                                                                                                       | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The reservation after the transition, or unchanged with `replayed: true` when it was already in the target state. | object                                 |
+| 400    | Validation error.                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 404    | RESERVATION_NOT_FOUND (an unknown id and another tenant's id are the same answer).                                | [`ApiError`](#standard-error-envelope) |
+| 409    | INVALID_STATE, CHECK_IN_TOO_EARLY or IDEMPOTENCY_CONFLICT.                                                        | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/booking/reservations/{id}/check-out` — Check a reservation out (complete it)
+
+- **operationId**: `bookingReservationCheckOut`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.reservations.complete`. `checked_in` -> `completed` (the `complete` verb, "check-out" in the UI). The booked interval is NOT shrunk by an early departure: the allocations are kept, as for a slot. Completing a completed reservation returns it with `replayed: true` and writes nothing. Requires an Idempotency-Key; replaying it returns the stored response. Audited; publishes `awcms.booking.reservation.completed`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Request body** (optional): object
+
+**Responses**
+
+| Status | Description                                                                                                       | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The reservation after the transition, or unchanged with `replayed: true` when it was already in the target state. | object                                 |
+| 400    | Validation error.                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 404    | RESERVATION_NOT_FOUND (an unknown id and another tenant's id are the same answer).                                | [`ApiError`](#standard-error-envelope) |
+| 409    | INVALID_STATE or IDEMPOTENCY_CONFLICT.                                                                            | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/booking/reservations/{id}/confirm` — Confirm a held reservation
+
+- **operationId**: `bookingReservationConfirm`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.reservations.confirm`. `held` -> `confirmed`; the hold expiry is cleared. Re-checks the hold has not expired under the reservation's row lock, on the DATABASE clock: an elapsed hold is `409 HOLD_EXPIRED` even when the sweep has not run, and so is one the sweep already expired. A confirm racing the sweep serialises on that lock and exactly one wins. Confirming a reservation that is already confirmed returns it with `replayed: true` and writes nothing, with any Idempotency-Key. Body: none (payment is the commerce layer's, which decides WHEN to ask for a confirm). Requires an Idempotency-Key; replaying it returns the stored response. Audited; publishes `awcms.booking.reservation.confirmed`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Request body** (optional): object
+
+**Responses**
+
+| Status | Description                                                                                                       | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The reservation after the transition, or unchanged with `replayed: true` when it was already in the target state. | object                                 |
+| 400    | Validation error.                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 404    | RESERVATION_NOT_FOUND (an unknown id and another tenant's id are the same answer).                                | [`ApiError`](#standard-error-envelope) |
+| 409    | HOLD_EXPIRED, INVALID_STATE or IDEMPOTENCY_CONFLICT.                                                              | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/booking/reservations/{id}/no-show` — Mark a confirmed reservation as a no-show
+
+- **operationId**: `bookingReservationNoShow`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.reservations.no_show` (staff only: a customer-facing adapter credential is simply not granted it). `confirmed` -> `no_show`, marked BY A PERSON after the start plus `no_show_grace_seconds` (default 15 minutes; for a stay the start is the arrival instant); earlier is `409 NO_SHOW_TOO_EARLY`. There is no automatic no-show in v1: nothing else ever writes this state. The allocations are KEPT, so the slot is accounted as consumed. Marking a no-show twice returns the reservation with `replayed: true` and writes nothing. Requires an Idempotency-Key; replaying it returns the stored response. Audited at warning severity; publishes `awcms.booking.reservation.no_show`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Request body** (optional): object
+
+**Responses**
+
+| Status | Description                                                                                                       | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The reservation after the transition, or unchanged with `replayed: true` when it was already in the target state. | object                                 |
+| 400    | Validation error.                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 404    | RESERVATION_NOT_FOUND (an unknown id and another tenant's id are the same answer).                                | [`ApiError`](#standard-error-envelope) |
+| 409    | INVALID_STATE, NO_SHOW_TOO_EARLY or IDEMPOTENCY_CONFLICT.                                                         | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/booking/reservations/{id}/reschedule` — Reschedule a confirmed reservation
+
+- **operationId**: `bookingReservationReschedule`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.reservations.reschedule`. Moves a `confirmed` reservation to a new time (`startsAt`) or new dates (`stay`) in ONE transaction: the old allocations are released, the old reservation becomes `rescheduled` (naming its replacement in `supersededById`) and the replacement is inserted `confirmed` under the same `lineageId` with `rescheduledFromId` set, carrying the old customer reference, party, source, note and external reference. Moving or extending over one's own slot or nights does not conflict with itself. Intervals are never edited in place. ANY refusal (the new interval is taken, outside policy, contended) rolls everything back to the untouched original, which stays `confirmed` with its allocations live. `resourceId` or `poolId` moves it elsewhere; a reservation spanning several resources must say where it goes (`400 RESOURCE_REQUIRED`). `overridePolicy` lifts hours, lead time and horizon and additionally needs the HIGH-RISK `booking.reservations.override` (checked first; audited `critical`); it never lifts a conflict. Rescheduling an already rescheduled reservation to the same time returns the replacement with `replayed: true`. Requires an Idempotency-Key; replaying it returns the stored response. Audited at warning severity; publishes `awcms.booking.reservation.rescheduled` for the old reservation and `created` + `confirmed` for the replacement.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`BookingRescheduleInput`](#schema-bookingrescheduleinput)
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                                                                                             | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The reservation after the transition, or unchanged with `replayed: true` when it was already in the target state.                                                                                                                                                       | object                                 |
+| 400    | VALIDATION_ERROR, PAYMENT_FIELD_NOT_ACCEPTED, STAY_DATES_INVALID, RESOURCE_REQUIRED (a reservation spanning several resources must say where it moves) or IDEMPOTENCY_REQUIRED.                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 404    | RESERVATION_NOT_FOUND (an unknown id and another tenant's id are the same answer), or RESOURCE_NOT_FOUND / OFFERING_NOT_FOUND for a target resource, pool or offering that is not in this tenant.                                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | SLOT_UNAVAILABLE, OUTSIDE_SCHEDULE, LEAD_TIME_VIOLATION, HORIZON_EXCEEDED, INVALID_STATE, BOOKING_MODE_MISMATCH, MIN_STAY_VIOLATION, MAX_STAY_EXCEEDED, STAY_POOL_INCONSISTENT, EXTERNAL_REF_IN_USE, PARTY_SIZE_OUT_OF_RANGE, CONTENTION_RETRY or IDEMPOTENCY_CONFLICT. | [`ApiError`](#standard-error-envelope) |
+| 422    | QUANTITY_EXCEEDS_UNITS.                                                                                                                                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/booking/resource-pools` — List resource pools
+
+- **operationId**: `bookingResourcePoolsList`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.resources.read` (pools are governed by the `resources` permissions). Newest first, keyset paginated (`cursor`); soft-deleted pools are hidden by default (`includeDeleted` / `onlyDeleted` need `booking.resources.restore` as well). Each carries its live `memberCount`. Tenant-scoped (withTenant + RLS FORCE).
+
+**Parameters**
+
+| Name               | In     | Required | Type    | Description                                                                                       |
+| ------------------ | ------ | -------- | ------- | ------------------------------------------------------------------------------------------------- |
+| `includeDeleted`   | query  | no       | boolean | true lists live and soft-deleted rows; needs `booking.resources.restore` as well (403 otherwise). |
+| `onlyDeleted`      | query  | no       | boolean | true lists only soft-deleted rows; needs `booking.resources.restore` as well (403 otherwise).     |
+| `cursor`           | query  | no       | string  | Opaque keyset cursor from the previous page.                                                      |
+| `X-Correlation-ID` | header | no       | string  |                                                                                                   |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | A page of pools.            | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/booking/resource-pools` — Create a resource pool
+
+- **operationId**: `bookingResourcePoolCreate`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.resources.create`. A set of interchangeable resources; a resource joins a pool through its own `poolId`. A duplicate `code` (case-insensitive) is `409 CODE_TAKEN`. Requires an Idempotency-Key. Audited at info severity (`booking.pool.created`).
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`BookingResourcePoolInput`](#schema-bookingresourcepoolinput)
+
+**Responses**
+
+| Status | Description                               | Schema                                 |
+| ------ | ----------------------------------------- | -------------------------------------- |
+| 201    | The pool.                                 | object                                 |
+| 400    | VALIDATION_ERROR or IDEMPOTENCY_REQUIRED. | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.               | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.               | [`ApiError`](#standard-error-envelope) |
+| 409    | CODE_TAKEN or IDEMPOTENCY_CONFLICT.       | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/booking/resource-pools/{id}` — Read one pool with its members
+
+- **operationId**: `bookingResourcePoolGet`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.resources.read`. Returns the pool with its live members (at most 500); a soft-deleted pool is returned (with `deletedAt`) only to a holder of `booking.resources.restore`, anyone else gets the neutral 404. An unknown id and another tenant's id are the same `404 POOL_NOT_FOUND`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `id`               | path   | yes      | string (uuid) |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The pool and its members.   | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | POOL_NOT_FOUND.             | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/booking/resource-pools/{id}` — Rename a resource pool
+
+- **operationId**: `bookingResourcePoolPatch`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.resources.update`. `code` is fixed. `409 POOL_DELETED` for a deleted pool. Requires an Idempotency-Key. Audited at info severity (`booking.pool.updated`).
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`BookingResourcePoolPatch`](#schema-bookingresourcepoolpatch)
+
+**Responses**
+
+| Status | Description                               | Schema                                 |
+| ------ | ----------------------------------------- | -------------------------------------- |
+| 200    | The pool.                                 | object                                 |
+| 400    | VALIDATION_ERROR or IDEMPOTENCY_REQUIRED. | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.               | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.               | [`ApiError`](#standard-error-envelope) |
+| 404    | POOL_NOT_FOUND.                           | [`ApiError`](#standard-error-envelope) |
+| 409    | POOL_DELETED or IDEMPOTENCY_CONFLICT.     | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/booking/resource-pools/{id}` — Soft-delete a resource pool
+
+- **operationId**: `bookingResourcePoolDelete`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.resources.delete`. SOFT delete. Refused with `409 POOL_NOT_EMPTY` while a live resource is a member. Deleting a deleted pool returns it with `replayed: true`. Requires an Idempotency-Key. Audited at warning severity (`booking.pool.deleted`).
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Responses**
+
+| Status | Description                             | Schema                                 |
+| ------ | --------------------------------------- | -------------------------------------- |
+| 200    | The deleted pool.                       | object                                 |
+| 400    | Validation error.                       | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.             | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.             | [`ApiError`](#standard-error-envelope) |
+| 404    | POOL_NOT_FOUND.                         | [`ApiError`](#standard-error-envelope) |
+| 409    | POOL_NOT_EMPTY or IDEMPOTENCY_CONFLICT. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/booking/resource-pools/{id}/restore` — Restore a soft-deleted resource pool
+
+- **operationId**: `bookingResourcePoolRestore`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.resources.restore`. Restoring a live pool returns it with `replayed: true`. The body is empty. Requires an Idempotency-Key. Audited at info severity (`booking.pool.restored`).
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Request body** (optional): object
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The restored pool.          | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | POOL_NOT_FOUND.             | [`ApiError`](#standard-error-envelope) |
+| 409    | IDEMPOTENCY_CONFLICT.       | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/booking/resources` — List resources
+
+- **operationId**: `bookingResourcesList`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.resources.read`. This tenant's resources, newest first, keyset paginated (`cursor`). Filters: `status`, `bookingMode`, `poolId`, and `includeDeleted` / `onlyDeleted` (soft-deleted rows are hidden by default and need `booking.resources.restore` as well). Each row carries `capacity` and `activeUnits`; the units themselves are on the read of one resource. Tenant-scoped (withTenant + RLS FORCE).
+
+**Parameters**
+
+| Name               | In     | Required | Type                       | Description                                                                                       |
+| ------------------ | ------ | -------- | -------------------------- | ------------------------------------------------------------------------------------------------- |
+| `status`           | query  | no       | enum(`active`, `inactive`) |                                                                                                   |
+| `bookingMode`      | query  | no       | enum(`slot`, `stay`)       |                                                                                                   |
+| `poolId`           | query  | no       | string (uuid)              |                                                                                                   |
+| `includeDeleted`   | query  | no       | boolean                    | true lists live and soft-deleted rows; needs `booking.resources.restore` as well (403 otherwise). |
+| `onlyDeleted`      | query  | no       | boolean                    | true lists only soft-deleted rows; needs `booking.resources.restore` as well (403 otherwise).     |
+| `cursor`           | query  | no       | string                     | Opaque keyset cursor from the previous page.                                                      |
+| `X-Correlation-ID` | header | no       | string                     |                                                                                                   |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | A page of resources.        | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/booking/resources` — Create a resource and its units
+
+- **operationId**: `bookingResourceCreate`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.resources.create`. Creates the resource and its `capacity` units (ordinals 1 to capacity, labelled from `unitLabels`) in ONE transaction. A stay resource needs `stayCheckInTime` and `stayCheckOutTime` (local times); a slot resource sends neither. `timezone` is an IANA name, never an offset. A duplicate `code` (case-insensitive) is `409 CODE_TAKEN`; an unknown or deleted `poolId` is `404 POOL_NOT_FOUND`. Requires an Idempotency-Key; a retry returns the SAME 201 and body and never `CODE_TAKEN` about its own row. Audited at info severity (`booking.resource.created`).
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key`  | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`BookingResourceInput`](#schema-bookingresourceinput)
+
+**Responses**
+
+| Status | Description                                                        | Schema                                 |
+| ------ | ------------------------------------------------------------------ | -------------------------------------- |
+| 201    | The resource with its units.                                       | object                                 |
+| 400    | VALIDATION_ERROR, TIMEZONE_INVALID or IDEMPOTENCY_REQUIRED.        | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                        | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                        | [`ApiError`](#standard-error-envelope) |
+| 404    | POOL_NOT_FOUND.                                                    | [`ApiError`](#standard-error-envelope) |
+| 409    | CODE_TAKEN or IDEMPOTENCY_CONFLICT.                                | [`ApiError`](#standard-error-envelope) |
+| 422    | CONSTRAINT_VIOLATED (a database rule the validator did not state). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/booking/resources/{id}` — Read one resource with its units
+
+- **operationId**: `bookingResourceGet`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.resources.read`. A soft-deleted resource is returned (with `deletedAt`) only to a holder of `booking.resources.restore`, so a screen can offer the restore; anyone else gets the neutral 404. An unknown id and another tenant's id are the same `404 RESOURCE_NOT_FOUND`.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `id`               | path   | yes      | string (uuid) |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Responses**
+
+| Status | Description                                                                     | Schema                                 |
+| ------ | ------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The resource and its units.                                                     | object                                 |
+| 400    | Validation error.                                                               | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                     | [`ApiError`](#standard-error-envelope) |
+| 404    | RESOURCE_NOT_FOUND (an unknown id and another tenant's id are the same answer). | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/booking/resources/{id}` — Edit a resource, its pool membership and its units
+
+- **operationId**: `bookingResourcePatch`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.resources.update`. `code` is fixed. Editable: `name`, `kind`, `status`, `poolId` (a pool id, or null to leave the pool: this is the pool membership), `timezone`, `bookingMode`, the stay times, `sortOrder`, `capacity` (GROW only: new units are appended and a resource-wide block covers them) and `units` (relabel, activate or deactivate by unit id). Changing `bookingMode` to `slot` clears the stay times unless sent. The database refuses a `bookingMode` change while the resource has live allocations or active blocks (`409 BOOKING_MODE_IN_USE`), a `timezone` change while it has them (`409 TIMEZONE_IN_USE`) or an active schedule in the current zone (`409 SCHEDULE_TIMEZONE_MISMATCH`). Capacity never shrinks (`409 CAPACITY_REDUCTION_NOT_ALLOWED`: deactivate a unit instead). A refusal writes nothing. Requires an Idempotency-Key. Audited at info severity (`booking.resource.updated`).
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Request body** (required): [`BookingResourcePatch`](#schema-bookingresourcepatch)
+
+**Responses**
+
+| Status | Description                                                                                                                                                | Schema                                 |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The resource with its units.                                                                                                                               | object                                 |
+| 400    | VALIDATION_ERROR, TIMEZONE_INVALID or IDEMPOTENCY_REQUIRED.                                                                                                | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                | [`ApiError`](#standard-error-envelope) |
+| 404    | RESOURCE_NOT_FOUND, POOL_NOT_FOUND or UNIT_NOT_FOUND.                                                                                                      | [`ApiError`](#standard-error-envelope) |
+| 409    | BOOKING_MODE_IN_USE, TIMEZONE_IN_USE, SCHEDULE_TIMEZONE_MISMATCH, CAPACITY_REDUCTION_NOT_ALLOWED, RESOURCE_DELETED, GUARD_REFUSED or IDEMPOTENCY_CONFLICT. | [`ApiError`](#standard-error-envelope) |
+| 422    | CONSTRAINT_VIOLATED.                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/booking/resources/{id}` — Soft-delete a resource
+
+- **operationId**: `bookingResourceDelete`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.resources.delete`. SOFT delete: reservations keep referencing the resource and nothing is removed. Refused with `409 RESOURCE_IN_USE` while a held, confirmed or checked-in reservation or an active block needs it (set `status` to `inactive` to stop selling instead). Deleting a deleted resource returns it with `replayed: true` and writes nothing. Requires an Idempotency-Key. Audited at warning severity (`booking.resource.deleted`).
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Responses**
+
+| Status | Description                              | Schema                                 |
+| ------ | ---------------------------------------- | -------------------------------------- |
+| 200    | The deleted resource.                    | object                                 |
+| 400    | Validation error.                        | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.              | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.              | [`ApiError`](#standard-error-envelope) |
+| 404    | RESOURCE_NOT_FOUND.                      | [`ApiError`](#standard-error-envelope) |
+| 409    | RESOURCE_IN_USE or IDEMPOTENCY_CONFLICT. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/booking/resources/{id}/restore` — Restore a soft-deleted resource
+
+- **operationId**: `bookingResourceRestore`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `booking.resources.restore`. Restoring a live resource returns it with `replayed: true` and writes nothing. The body is empty. Requires an Idempotency-Key. Audited at info severity (`booking.resource.restored`).
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ------------------ | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key`  | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `X-Correlation-ID` | header | no       | string        |                                                                                                                                                                                                                 |
+
+**Request body** (optional): object
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The restored resource.      | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | RESOURCE_NOT_FOUND.         | [`ApiError`](#standard-error-envelope) |
+| 409    | IDEMPOTENCY_CONFLICT.       | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/booking/schedule-exceptions` — List schedule exceptions
 
@@ -18422,7 +19934,7 @@ Gated by `hr_commission.accruals.read`.
 - **operationId**: `hrCommissionAccrualApprove`
 - **Security**: bearerAuth + tenantHeader
 
-Gated by `hr_commission.accruals.approve` (high-risk). `pending` -> `approved`. Segregation of duties, also enforced by a database trigger: the beneficiary (the employment's own login) cannot approve their own accrual (`403 APPROVE_OWN_ACCRUAL_FORBIDDEN`) and whoever created the accrual cannot approve it (`403 SEGREGATION_OF_DUTIES`). Body: none. Requires an Idempotency-Key; replaying it returns the stored response. A transition the status does not allow is 409 `ACCRUAL_INVALID_STATE`. Audited at warning severity (employment, rule key and version, from and to status; never an amount).
+Gated by `hr_commission.accruals.approve` (high-risk). `pending` -> `approved`. Segregation of duties, also enforced by a database trigger: the beneficiary (the employment's own login) cannot approve their own accrual (`403 APPROVE_OWN_ACCRUAL_FORBIDDEN`) and whoever created the accrual cannot approve it (`403 SEGREGATION_OF_DUTIES`). Body: none. Requires an Idempotency-Key; replaying it returns the stored response. A transition the status does not allow is 409 `ACCRUAL_INVALID_STATE`. Audited at warning severity (employment, rule key and version, from and to status; never an amount). The beneficiary is identified by the employment's login now AND the login snapshotted when the accrual was created, so unlinking the login changes nothing; when the employment has neither, the transition is refused as 409 `BENEFICIARY_LOGIN_UNRESOLVED` until a login is linked (fail closed).
 
 **Parameters**
 
@@ -18436,21 +19948,21 @@ Gated by `hr_commission.accruals.approve` (high-risk). `pending` -> `approved`. 
 
 **Responses**
 
-| Status | Description                                                        | Schema                                 |
-| ------ | ------------------------------------------------------------------ | -------------------------------------- |
-| 200    | The accrual after the transition.                                  | object                                 |
-| 400    | Validation error.                                                  | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                        | [`ApiError`](#standard-error-envelope) |
-| 403    | Forbidden, APPROVE_OWN_ACCRUAL_FORBIDDEN or SEGREGATION_OF_DUTIES. | [`ApiError`](#standard-error-envelope) |
-| 404    | RESOURCE_NOT_FOUND.                                                | [`ApiError`](#standard-error-envelope) |
-| 409    | IDEMPOTENCY_CONFLICT or ACCRUAL_INVALID_STATE.                     | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                  | Schema                                 |
+| ------ | ---------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The accrual after the transition.                                            | object                                 |
+| 400    | Validation error.                                                            | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                  | [`ApiError`](#standard-error-envelope) |
+| 403    | Forbidden, APPROVE_OWN_ACCRUAL_FORBIDDEN or SEGREGATION_OF_DUTIES.           | [`ApiError`](#standard-error-envelope) |
+| 404    | RESOURCE_NOT_FOUND.                                                          | [`ApiError`](#standard-error-envelope) |
+| 409    | IDEMPOTENCY_CONFLICT, ACCRUAL_INVALID_STATE or BENEFICIARY_LOGIN_UNRESOLVED. | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/hr-commission/accruals/{id}/pay` — Record that a payable accrual has been paid
 
 - **operationId**: `hrCommissionAccrualPay`
 - **Security**: bearerAuth + tenantHeader
 
-Gated by `hr_commission.accruals.pay` (high-risk). `payable` -> `paid`, terminal: an accrual is paid once. Whoever approved the accrual, and the beneficiary, cannot pay it (`403 SEGREGATION_OF_DUTIES`). Optional `paymentReference` is an opaque reference (a payout batch), never an account number. Requires an Idempotency-Key; replaying it returns the stored response. A transition the status does not allow is 409 `ACCRUAL_INVALID_STATE`. Audited at warning severity (employment, rule key and version, from and to status; never an amount).
+Gated by `hr_commission.accruals.pay` (high-risk). `payable` -> `paid`, terminal: an accrual is paid once. Whoever approved the accrual, and the beneficiary, cannot pay it (`403 SEGREGATION_OF_DUTIES`). Optional `paymentReference` is an opaque reference (a payout batch), never an account number. Requires an Idempotency-Key; replaying it returns the stored response. A transition the status does not allow is 409 `ACCRUAL_INVALID_STATE`. Audited at warning severity (employment, rule key and version, from and to status; never an amount). The beneficiary is identified by the employment's login now AND the login snapshotted when the accrual was created, so unlinking the login changes nothing; when the employment has neither, the transition is refused as 409 `BENEFICIARY_LOGIN_UNRESOLVED` until a login is linked (fail closed).
 
 **Parameters**
 
@@ -18464,21 +19976,21 @@ Gated by `hr_commission.accruals.pay` (high-risk). `payable` -> `paid`, terminal
 
 **Responses**
 
-| Status | Description                                    | Schema                                 |
-| ------ | ---------------------------------------------- | -------------------------------------- |
-| 200    | The accrual after the transition.              | object                                 |
-| 400    | Validation error.                              | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                    | [`ApiError`](#standard-error-envelope) |
-| 403    | Forbidden, or SEGREGATION_OF_DUTIES.           | [`ApiError`](#standard-error-envelope) |
-| 404    | RESOURCE_NOT_FOUND.                            | [`ApiError`](#standard-error-envelope) |
-| 409    | IDEMPOTENCY_CONFLICT or ACCRUAL_INVALID_STATE. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                  | Schema                                 |
+| ------ | ---------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The accrual after the transition.                                            | object                                 |
+| 400    | Validation error.                                                            | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                  | [`ApiError`](#standard-error-envelope) |
+| 403    | Forbidden, or SEGREGATION_OF_DUTIES.                                         | [`ApiError`](#standard-error-envelope) |
+| 404    | RESOURCE_NOT_FOUND.                                                          | [`ApiError`](#standard-error-envelope) |
+| 409    | IDEMPOTENCY_CONFLICT, ACCRUAL_INVALID_STATE or BENEFICIARY_LOGIN_UNRESOLVED. | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/hr-commission/accruals/{id}/release` — Release an approved accrual as payable
 
 - **operationId**: `hrCommissionAccrualRelease`
 - **Security**: bearerAuth + tenantHeader
 
-Gated by `hr_commission.accruals.release` (high-risk). `approved` -> `payable`: from here payroll may pay it. The beneficiary cannot release their own accrual (`403 SEGREGATION_OF_DUTIES`). Body: none. Requires an Idempotency-Key; replaying it returns the stored response. A transition the status does not allow is 409 `ACCRUAL_INVALID_STATE`. Audited at warning severity (employment, rule key and version, from and to status; never an amount).
+Gated by `hr_commission.accruals.release` (high-risk). `approved` -> `payable`: from here payroll may pay it. The beneficiary cannot release their own accrual (`403 SEGREGATION_OF_DUTIES`). Body: none. Requires an Idempotency-Key; replaying it returns the stored response. A transition the status does not allow is 409 `ACCRUAL_INVALID_STATE`. Audited at warning severity (employment, rule key and version, from and to status; never an amount). The beneficiary is identified by the employment's login now AND the login snapshotted when the accrual was created, so unlinking the login changes nothing; when the employment has neither, the transition is refused as 409 `BENEFICIARY_LOGIN_UNRESOLVED` until a login is linked (fail closed).
 
 **Parameters**
 
@@ -18492,14 +20004,14 @@ Gated by `hr_commission.accruals.release` (high-risk). `approved` -> `payable`: 
 
 **Responses**
 
-| Status | Description                                    | Schema                                 |
-| ------ | ---------------------------------------------- | -------------------------------------- |
-| 200    | The accrual after the transition.              | object                                 |
-| 400    | Validation error.                              | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                    | [`ApiError`](#standard-error-envelope) |
-| 403    | Forbidden, or SEGREGATION_OF_DUTIES.           | [`ApiError`](#standard-error-envelope) |
-| 404    | RESOURCE_NOT_FOUND.                            | [`ApiError`](#standard-error-envelope) |
-| 409    | IDEMPOTENCY_CONFLICT or ACCRUAL_INVALID_STATE. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                  | Schema                                 |
+| ------ | ---------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The accrual after the transition.                                            | object                                 |
+| 400    | Validation error.                                                            | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                  | [`ApiError`](#standard-error-envelope) |
+| 403    | Forbidden, or SEGREGATION_OF_DUTIES.                                         | [`ApiError`](#standard-error-envelope) |
+| 404    | RESOURCE_NOT_FOUND.                                                          | [`ApiError`](#standard-error-envelope) |
+| 409    | IDEMPOTENCY_CONFLICT, ACCRUAL_INVALID_STATE or BENEFICIARY_LOGIN_UNRESOLVED. | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/hr-commission/accruals/{id}/void` — Void a pending or approved accrual
 
@@ -18684,6 +20196,256 @@ Gated by `hr_commission.rules.retire` (high-risk). Withdraws a draft (abandoning
 | 403    | Access denied by RBAC/ABAC.                   | [`ApiError`](#standard-error-envelope) |
 | 404    | RESOURCE_NOT_FOUND.                           | [`ApiError`](#standard-error-envelope) |
 | 409    | IDEMPOTENCY_CONFLICT or RULE_ALREADY_RETIRED. | [`ApiError`](#standard-error-envelope) |
+
+## Telegram Delivery
+
+Operator and self-service surface of the optional Telegram delivery adapter (telegram_delivery module, ADR-0140, Issue #965), which carries OPERATIONAL AND STAFF ALERTS ONLY to staff who bound their own private chat. There is NO enqueue or send endpoint: queueing is a capability-port call (TelegramDeliveryPort) made in the consuming module's own transaction, and the provider is called only by the dispatcher job, outside any transaction (ADR-0006). A chat is bound by an audited, revocable handshake: a staff member requests a one-time code for themselves, opens it in a PRIVATE Telegram chat (the unauthenticated bot webhook, secret-verified before any work), and must then confirm the displayed Telegram name from their own authenticated session. The Telegram chat id is stored only as ciphertext plus a keyed hash and is never returned by any endpoint: chats are masked in every response and message bodies and variables are never returned. One queue per deployment, never a fallback for another channel (ADR-0139). Credentials are per deployment from the environment, never per tenant. Ships inert behind TELEGRAM_ENABLED and a per-tenant switch.
+
+### `GET /api/v1/telegram/bindings` — List the tenant's chat bindings.
+
+- **operationId**: `listTelegramBindings`
+- **Security**: bearerAuth + tenantHeader
+
+Newest first: the staff member (login masked), the state, when it was linked or ended and why, and a MASKED chat reference. Never a ciphertext, a hash or a full chat id. Bounded: `hasMore` says whether the list was cut. Requires `telegram_delivery.bindings.read`.
+
+**Parameters**
+
+| Name     | In    | Required | Type                                                     | Description                                                              |
+| -------- | ----- | -------- | -------------------------------------------------------- | ------------------------------------------------------------------------ |
+| `status` | query | no       | [`TelegramBindingStatus`](#schema-telegrambindingstatus) |                                                                          |
+| `limit`  | query | no       | integer                                                  | 1-200, default 50. Out-of-range values are REJECTED rather than clamped. |
+
+**Responses**
+
+| Status | Description                     | Schema                                 |
+| ------ | ------------------------------- | -------------------------------------- |
+| 200    | Bindings.                       | object                                 |
+| 401    | Missing or invalid session.     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.     | [`ApiError`](#standard-error-envelope) |
+| 422    | `status` or `limit` is invalid. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/telegram/bindings/{id}/revoke` — Revoke another staff member's Telegram binding.
+
+- **operationId**: `revokeTelegramBinding`
+- **Security**: bearerAuth + tenantHeader
+
+High-risk and audited at `warning`: it removes a person's alert channel. The stored chat id is erased and the binding's queue cancelled at once. `Idempotency-Key` required (Issue #1008): a retry with the same key replays the stored 200 instead of answering 404 for a binding the first call already ended; the same key with a different binding is a 409; a refusal is not stored. Without a key, revoking an ended binding finds nothing live and answers 404, one answer for "no such binding" and "already ended". A machine credential is refused with 403 (`INTERACTIVE_SESSION_REQUIRED`): the key is filed per acting person, and deactivating the principal ends its binding on the next sweep. Requires `telegram_delivery.bindings.revoke`.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+| `id`              | path   | yes      | string (uuid) | The binding id.                                                                                                                                                                                                 |
+
+**Responses**
+
+| Status | Description                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------- | -------------------------------------- |
+| 200    | The binding was revoked.                                       | object                                 |
+| 400    | Validation error.                                              | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                    | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                            | [`ApiError`](#standard-error-envelope) |
+| 409    | The Idempotency-Key was already used with a different request. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/telegram/bindings/me` — Your own Telegram binding.
+
+- **operationId**: `getOwnTelegramBinding`
+- **Security**: bearerAuth + tenantHeader
+
+The caller's live binding or `null`. While it is `pending_confirmation` it carries the Telegram display name and masked username the handshake captured, which is what lets the staff member answer "is this you?" from their own session; both are cleared on confirm, reject and expiry. `available` says whether linking is possible right now (deployment flag and tenant gate). `Cache-Control: no-store`. Requires `telegram_delivery.links.create`.
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The caller's binding.       | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/telegram/bindings/me/confirm` — Confirm that the Telegram chat that used your code is yours.
+
+- **operationId**: `confirmOwnTelegramBinding`
+- **Security**: bearerAuth + tenantHeader
+
+The ONLY transition to `active`, reachable only from the staff member's own authenticated session. A link code that was forwarded, phished or shoulder-surfed binds an attacker's chat at most to `pending_confirmation`. Confirming replaces any binding the person already had (audited as a re-bind, and one notice is queued to the new chat naming the tenant). The body names the chat the person was shown and carries the 6-digit PIN the bot sent to THAT chat when it received `/start` (proof of possession: the person has to read the PIN in the chat they are binding, Issue #1008). A different pending chat is a 409 (`TELEGRAM_BINDING_MISMATCH`). A wrong PIN is a 422 (`TELEGRAM_PIN_INVALID`, `details.attemptsLeft`) and is counted in the database; the fifth wrong PIN ends the pending binding and erases its chat id (423 `TELEGRAM_PIN_LOCKED`) and the person requests a new link. A pending binding created before PINs existed has none and cannot be confirmed. With nothing pending the answer is 404, so a double click cannot confirm twice. A machine credential is refused with 403 (`INTERACTIVE_SESSION_REQUIRED`). Requires `telegram_delivery.links.create`.
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                   | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The binding is active.                                                                                        | object                                 |
+| 401    | Missing or invalid session.                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 409    | The chat waiting for confirmation is not the one named (`TELEGRAM_BINDING_MISMATCH`).                         | [`ApiError`](#standard-error-envelope) |
+| 422    | The PIN is not right (`TELEGRAM_PIN_INVALID`); `error.details.attemptsLeft` is how many wrong answers remain. | [`ApiError`](#standard-error-envelope) |
+| 423    | Too many wrong PINs: the pending binding was ended (`TELEGRAM_PIN_LOCKED`).                                   | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/telegram/bindings/me/reject` — Reject the Telegram chat that used your code ("not me").
+
+- **operationId**: `rejectOwnTelegramBinding`
+- **Security**: bearerAuth + tenantHeader
+
+Ends the pending binding at once, erases its ciphertext and the captured display name, and audits it at `warning`: it means a link code reached somebody else's chat. The body names the chat the person was shown; a different pending chat is a 409 (`TELEGRAM_BINDING_MISMATCH`). A machine credential is refused with 403 (`INTERACTIVE_SESSION_REQUIRED`). Requires `telegram_delivery.links.create`.
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                           | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The pending binding was rejected.                                                     | object                                 |
+| 401    | Missing or invalid session.                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | The chat waiting for confirmation is not the one named (`TELEGRAM_BINDING_MISMATCH`). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/telegram/bindings/me/revoke` — Unlink your own Telegram chat.
+
+- **operationId**: `revokeOwnTelegramBinding`
+- **Security**: bearerAuth + tenantHeader
+
+Delivery stops at once: queued messages are cancelled and the stored chat id is erased in the same transaction. (`/stop` in the chat is the other way to leave.) No body. With nothing live the answer is 404. Requires `telegram_delivery.links.create`.
+
+**Responses**
+
+| Status | Description                         | Schema                                 |
+| ------ | ----------------------------------- | -------------------------------------- |
+| 200    | The caller's binding(s) were ended. | object                                 |
+| 401    | Missing or invalid session.         | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.         | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                 | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/telegram/diagnostics` — The tenant's Telegram queue - counts, recent messages, attempts.
+
+- **operationId**: `getTelegramDiagnostics`
+- **Security**: bearerAuth + tenantHeader
+
+One endpoint rather than three because the parts are only readable together: they come from ONE transaction. Bounded rather than paginated; the historical tail is removed by retention (`bun run telegram:queue:purge`), not browsed. No chat id, ciphertext, hash, body or variable is ever selected. `configured` reports the DEPLOYMENT's settings as booleans only (present and well-formed), never a value. Requires `telegram_delivery.messages.read`.
+
+**Parameters**
+
+| Name     | In    | Required | Type                                                     | Description                                                              |
+| -------- | ----- | -------- | -------------------------------------------------------- | ------------------------------------------------------------------------ |
+| `status` | query | no       | [`TelegramMessageStatus`](#schema-telegrammessagestatus) | Narrow the message list to one queue status.                             |
+| `limit`  | query | no       | integer                                                  | 1-200, default 50. Out-of-range values are REJECTED rather than clamped. |
+
+**Responses**
+
+| Status | Description                     | Schema                                 |
+| ------ | ------------------------------- | -------------------------------------- |
+| 200    | Telegram queue diagnostics.     | object                                 |
+| 401    | Missing or invalid session.     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.     | [`ApiError`](#standard-error-envelope) |
+| 422    | `status` or `limit` is invalid. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/telegram/links` — Request a one-time link code for yourself.
+
+- **operationId**: `createTelegramLink`
+- **Security**: bearerAuth + tenantHeader
+
+A staff member requests a code for THEMSELVES (there is no way to name another person). The code is 32 random bytes, base64url, returned ONCE inside a `https://t.me/<bot>?start=<code>` link; only its SHA-256 is stored. It expires in 10 minutes, works once, and a newer request invalidates the previous one. The response is `Cache-Control: no-store`. A per-person hourly limit applies. Opening the link in a PRIVATE Telegram chat creates a `pending_confirmation` binding that must then be confirmed from the staff member's own authenticated session (`POST /api/v1/telegram/bindings/me/confirm`). Deliberately NOT idempotency-keyed: a retry mints a replacement and invalidates the earlier code. Requires `telegram_delivery.links.create`.
+
+**Responses**
+
+| Status | Description                                                                                                          | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The link, shown once.                                                                                                | object                                 |
+| 401    | Missing or invalid session.                                                                                          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                          | [`ApiError`](#standard-error-envelope) |
+| 409    | Telegram is off at the deployment or tenant level (`TELEGRAM_DISABLED`).                                             | [`ApiError`](#standard-error-envelope) |
+| 429    | Too many link codes were requested (`RATE_LIMITED`).                                                                 | [`ApiError`](#standard-error-envelope) |
+| 503    | The deployment cannot create a binding safely (no bot username or key ring; fail closed) (`TELEGRAM_MISCONFIGURED`). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/telegram/settings` — The tenant's Telegram switch and the gates around it.
+
+- **operationId**: `getTelegramSettings`
+- **Security**: bearerAuth + tenantHeader
+
+The tenant setting plus the two other reasons nothing might be sent: Module Management (`moduleEnabled`) and the deployment flag (`deploymentEnabled`). Requires `telegram_delivery.messages.read`.
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Settings.                   | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `PUT /api/v1/telegram/settings` — Turn Telegram on or off for this tenant.
+
+- **operationId**: `setTelegramSettings`
+- **Security**: bearerAuth + tenantHeader
+
+High-risk (`configure`) and audited at `warning`. Turning it OFF ends every binding in the same transaction (the stored chat ids are erased and the queue cancelled), so a tenant that switches the channel off is not left holding encrypted chat ids. `Idempotency-Key` required (Issue #1008): the state is idempotent (it sets a value and writes no second audit row), but a retry's ANSWER (`changed`, `revokedBindings`) would differ from the first; with a key the retry replays the stored response, and the same key with a different `enabled` is a 409. A machine credential is refused with 403 (`INTERACTIVE_SESSION_REQUIRED`). The body is validated strictly: an unknown key is a 400. Requires `telegram_delivery.settings.configure`.
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------- | -------------------------------------- |
+| 200    | The new state.                                                 | object                                 |
+| 400    | Validation error.                                              | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                    | [`ApiError`](#standard-error-envelope) |
+| 409    | The Idempotency-Key was already used with a different request. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/telegram/templates` — The registered Telegram templates.
+
+- **operationId**: `listTelegramTemplates`
+- **Security**: bearerAuth + tenantHeader
+
+Key, version, the ONE purpose (`staff_ops`) and the typed variable allow-list. The wording is not returned: it is the owning module's copy. Requires `telegram_delivery.templates.read`.
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Registered templates.       | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/telegram/webhook` — Telegram's `message` updates (the bot webhook).
+
+- **operationId**: `receiveTelegramWebhook`
+- **Security**: none (public endpoint)
+
+The ONLY route of this module that is not authenticated by a session or machine credential, and it is not meant to be called by a browser or by a person. Telegram calls it after an operator registered it with `bun run telegram:webhook:register` (`allowed_updates=["message"]`). There is no tenant in the path (one bot per deployment); the tenant is resolved from the one-time code or from the binding found by the chat's keyed hash, never from the payload.
+
+Order of work: (1) `404` when `TELEGRAM_ENABLED` is not `true`; (2) the `X-Telegram-Bot-Api-Secret-Token` header is compared in constant time with `TELEGRAM_WEBHOOK_SECRET`, and a missing or wrong header (or an unset server secret) is a `401` with NO body, before any body is read or any database work is done; (3) the request-body limit, then a per-CHAT rate limit (an over-limit chat gets `200` with no reply, never `429`, and spends nothing else, so one noisy user cannot cause `429`s for everyone behind Telegram's few addresses), then a per-address rate limit; (4) two commands from a PRIVATE chat only, `/start <code>` and `/stop`. Everything else (any other text or command, media, edits, callback queries, groups, supergroups, channels) is `200` with no reply. The shared limiter fails OPEN when Redis is configured but unreachable, so the per-chat bucket is a fairness control, not a security boundary.
+
+A reply to `/start` and `/stop` is the HTTP response to this request (the Bot API's webhook-reply form: a JSON `sendMessage` method object), not an outbound call. The reply to a valid `/start` carries the one-time verification PIN (Issue #1008) that the staff member must type into the admin to confirm; only its keyed hash is stored. Both commands are idempotent by construction (a code is consumed atomically, so a replayed `/start` cannot mint a second PIN or binding), so no update id is stored.
+
+**Parameters**
+
+| Name                              | In     | Required | Type   | Description                                                          |
+| --------------------------------- | ------ | -------- | ------ | -------------------------------------------------------------------- |
+| `X-Telegram-Bot-Api-Secret-Token` | header | yes      | string | The `secret_token` given to `setWebhook`. Compared in constant time. |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                              | Schema                                 |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Handled or ignored. The body is `{}`, or a `sendMessage` method object carrying the fixed reply when the update was `/start` or `/stop`. | object                                 |
+| 400    | The body is not valid JSON.                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 401    | The secret header is missing or wrong. A generic envelope with no detail, and no work was done.                                          | [`ApiError`](#standard-error-envelope) |
+| 404    | Telegram is switched off on this deployment.                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 413    | The body exceeds the request-body limit.                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 429    | Rate limited, per address; repeated wrong secrets from one address are throttled the same way.                                           | [`ApiError`](#standard-error-envelope) |
+| 503    | A transient failure. Telegram retries; both commands are idempotent.                                                                     | [`ApiError`](#standard-error-envelope) |
 
 ## Schema appendix
 
@@ -19143,6 +20905,88 @@ Shared shape for POST /api/v1/blog/posts (all fields required) and PATCH /api/v1
 }
 ```
 
+### Schema: BookingBlockInput
+
+| Field        | Type                                      | Required | Nullable | Description                                                                               |
+| ------------ | ----------------------------------------- | -------- | -------- | ----------------------------------------------------------------------------------------- |
+| `resourceId` | string (uuid)                             | yes      | no       |                                                                                           |
+| `unitId`     | string (uuid)                             | no       | yes      | One unit of the resource; null or absent blocks every unit (including units added later). |
+| `fromDate`   | string (date)                             | yes      | no       | First blocked night, a local date in the resource's zone.                                 |
+| `toDate`     | string (date)                             | yes      | no       | Exclusive end (the day the unit is back in sale); at most 366 nights after fromDate.      |
+| `reasonCode` | enum(`maintenance`, `owner_use`, `other`) | yes      | no       |                                                                                           |
+
+**Example**
+
+```json
+{
+  "resourceId": "00000000-0000-0000-0000-000000000000",
+  "unitId": "00000000-0000-0000-0000-000000000000",
+  "fromDate": "2026-01-01",
+  "toDate": "2026-01-01",
+  "reasonCode": "maintenance"
+}
+```
+
+### Schema: BookingCancelInput
+
+| Field        | Type   | Required | Nullable | Description                              |
+| ------------ | ------ | -------- | -------- | ---------------------------------------- |
+| `reasonCode` | string | no       | yes      | A short lowercase code, never free text. |
+
+**Example**
+
+```json
+{
+  "reasonCode": "string"
+}
+```
+
+### Schema: BookingCreateReservationInput
+
+Exactly one of `resourceId` or `poolId`, and exactly one of `startsAt` (a slot) or `stay` (a night range). A payment field is refused by name.
+
+| Field                 | Type                                           | Required | Nullable | Description                                                                                   |
+| --------------------- | ---------------------------------------------- | -------- | -------- | --------------------------------------------------------------------------------------------- |
+| `offeringId`          | string (uuid)                                  | yes      | no       |                                                                                               |
+| `resourceId`          | string (uuid)                                  | no       | no       |                                                                                               |
+| `poolId`              | string (uuid)                                  | no       | no       |                                                                                               |
+| `startsAt`            | string (date-time)                             | no       | no       | RFC 3339 with an explicit offset or Z. Slot offerings only.                                   |
+| `stay`                | [`BookingStayDates`](#schema-bookingstaydates) | no       | no       |                                                                                               |
+| `partySize`           | integer                                        | no       | no       |                                                                                               |
+| `quantity`            | integer                                        | no       | no       | Units claimed at once, all-or-none.                                                           |
+| `holdSeconds`         | number                                         | no       | no       | Clamped to [60, max_hold_seconds].                                                            |
+| `externalCustomerRef` | string                                         | no       | yes      | The commerce authority's opaque customer token (no spaces, no '@'); null for a walk-in.       |
+| `externalRef`         | object                                         | no       | yes      |                                                                                               |
+| `source`              | string                                         | no       | no       |                                                                                               |
+| `customerNote`        | string                                         | no       | yes      | Free text; classified, never logged, audited or put in an event.                              |
+| `overridePolicy`      | boolean                                        | no       | no       | Lift opening hours, lead time and horizon. Needs `booking.reservations.override` in addition. |
+
+**Example**
+
+```json
+{
+  "offeringId": "00000000-0000-0000-0000-000000000000",
+  "resourceId": "00000000-0000-0000-0000-000000000000",
+  "poolId": "00000000-0000-0000-0000-000000000000",
+  "startsAt": "2026-01-01T00:00:00.000Z",
+  "stay": {
+    "checkInDate": "2026-01-01",
+    "checkOutDate": "2026-01-01"
+  },
+  "partySize": 1,
+  "quantity": 1,
+  "holdSeconds": 0,
+  "externalCustomerRef": "string",
+  "externalRef": {
+    "type": "string",
+    "id": "string"
+  },
+  "source": "string",
+  "customerNote": "string",
+  "overridePolicy": false
+}
+```
+
 ### Schema: BookingLocalWindow
 
 A local wall-clock window [from, to) in the schedule's zone; it never crosses midnight.
@@ -19158,6 +21002,257 @@ A local wall-clock window [from, to) in the schedule's zone; it never crosses mi
 {
   "from": "09:00",
   "to": "17:00"
+}
+```
+
+### Schema: BookingOfferingInput
+
+| Field                       | Type                                   | Required | Nullable | Description                       |
+| --------------------------- | -------------------------------------- | -------- | -------- | --------------------------------- |
+| `code`                      | string                                 | yes      | no       |                                   |
+| `name`                      | string                                 | yes      | no       |                                   |
+| `granularity`               | enum(`time`, `stay`)                   | yes      | no       |                                   |
+| `durationSeconds`           | integer                                | no       | yes      |                                   |
+| `setupSeconds`              | integer                                | no       | yes      |                                   |
+| `cleanupSeconds`            | integer                                | no       | yes      |                                   |
+| `slotStepSeconds`           | integer                                | no       | yes      | At least 300 for a time offering. |
+| `minNights`                 | integer                                | no       | yes      |                                   |
+| `maxNights`                 | integer                                | no       | yes      |                                   |
+| `minParty`                  | integer                                | no       | no       |                                   |
+| `maxParty`                  | integer                                | no       | no       |                                   |
+| `confirmationMode`          | enum(`immediate`, `hold_then_confirm`) | no       | no       |                                   |
+| `cancellationCutoffSeconds` | integer                                | no       | yes      |                                   |
+| `minLeadSeconds`            | integer                                | no       | yes      |                                   |
+| `maxHorizonDays`            | integer                                | no       | yes      |                                   |
+| `status`                    | enum(`active`, `inactive`)             | no       | no       |                                   |
+
+**Example**
+
+```json
+{
+  "code": "string",
+  "name": "string",
+  "granularity": "time",
+  "durationSeconds": 0,
+  "setupSeconds": 0,
+  "cleanupSeconds": 0,
+  "slotStepSeconds": 0,
+  "minNights": 0,
+  "maxNights": 0,
+  "minParty": 1,
+  "maxParty": 0,
+  "confirmationMode": "immediate",
+  "cancellationCutoffSeconds": 0,
+  "minLeadSeconds": 0,
+  "maxHorizonDays": 0,
+  "status": "active"
+}
+```
+
+### Schema: BookingOfferingPatch
+
+| Field                       | Type                                   | Required | Nullable | Description                       |
+| --------------------------- | -------------------------------------- | -------- | -------- | --------------------------------- |
+| `name`                      | string                                 | no       | no       |                                   |
+| `durationSeconds`           | integer                                | no       | yes      |                                   |
+| `setupSeconds`              | integer                                | no       | yes      |                                   |
+| `cleanupSeconds`            | integer                                | no       | yes      |                                   |
+| `slotStepSeconds`           | integer                                | no       | yes      | At least 300 for a time offering. |
+| `minNights`                 | integer                                | no       | yes      |                                   |
+| `maxNights`                 | integer                                | no       | yes      |                                   |
+| `minParty`                  | integer                                | no       | no       |                                   |
+| `maxParty`                  | integer                                | no       | no       |                                   |
+| `confirmationMode`          | enum(`immediate`, `hold_then_confirm`) | no       | no       |                                   |
+| `cancellationCutoffSeconds` | integer                                | no       | yes      |                                   |
+| `minLeadSeconds`            | integer                                | no       | yes      |                                   |
+| `maxHorizonDays`            | integer                                | no       | yes      |                                   |
+| `status`                    | enum(`active`, `inactive`)             | no       | no       |                                   |
+
+**Example**
+
+```json
+{
+  "name": "string",
+  "durationSeconds": 0,
+  "setupSeconds": 0,
+  "cleanupSeconds": 0,
+  "slotStepSeconds": 0,
+  "minNights": 0,
+  "maxNights": 0,
+  "minParty": 1,
+  "maxParty": 0,
+  "confirmationMode": "immediate",
+  "cancellationCutoffSeconds": 0,
+  "minLeadSeconds": 0,
+  "maxHorizonDays": 0,
+  "status": "active"
+}
+```
+
+### Schema: BookingPolicyInput
+
+| Field                       | Type    | Required | Nullable | Description |
+| --------------------------- | ------- | -------- | -------- | ----------- |
+| `defaultHoldSeconds`        | integer | yes      | yes      |             |
+| `maxHoldSeconds`            | integer | yes      | yes      |             |
+| `maxActiveHoldsPerCustomer` | integer | yes      | yes      |             |
+| `maxActiveHoldsPerTenant`   | integer | yes      | yes      |             |
+| `minLeadSeconds`            | integer | yes      | yes      |             |
+| `maxHorizonDays`            | integer | yes      | yes      |             |
+| `noShowGraceSeconds`        | integer | yes      | yes      |             |
+| `defaultTimezone`           | string  | yes      | yes      |             |
+| `defaultCheckInTime`        | string  | yes      | yes      |             |
+| `defaultCheckOutTime`       | string  | yes      | yes      |             |
+
+**Example**
+
+```json
+{
+  "defaultHoldSeconds": 60,
+  "maxHoldSeconds": 60,
+  "maxActiveHoldsPerCustomer": 1,
+  "maxActiveHoldsPerTenant": 1,
+  "minLeadSeconds": 0,
+  "maxHorizonDays": 1,
+  "noShowGraceSeconds": 0,
+  "defaultTimezone": "string",
+  "defaultCheckInTime": "string",
+  "defaultCheckOutTime": "string"
+}
+```
+
+### Schema: BookingRescheduleInput
+
+| Field            | Type                                           | Required | Nullable | Description |
+| ---------------- | ---------------------------------------------- | -------- | -------- | ----------- |
+| `startsAt`       | string (date-time)                             | no       | no       |             |
+| `stay`           | [`BookingStayDates`](#schema-bookingstaydates) | no       | no       |             |
+| `resourceId`     | string (uuid)                                  | no       | no       |             |
+| `poolId`         | string (uuid)                                  | no       | no       |             |
+| `overridePolicy` | boolean                                        | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "startsAt": "2026-01-01T00:00:00.000Z",
+  "stay": {
+    "checkInDate": "2026-01-01",
+    "checkOutDate": "2026-01-01"
+  },
+  "resourceId": "00000000-0000-0000-0000-000000000000",
+  "poolId": "00000000-0000-0000-0000-000000000000",
+  "overridePolicy": false
+}
+```
+
+### Schema: BookingResourceInput
+
+| Field              | Type                       | Required | Nullable | Description |
+| ------------------ | -------------------------- | -------- | -------- | ----------- |
+| `code`             | string                     | yes      | no       |             |
+| `name`             | string                     | yes      | no       |             |
+| `kind`             | string                     | yes      | no       |             |
+| `capacity`         | integer                    | yes      | no       |             |
+| `poolId`           | string (uuid)              | no       | yes      |             |
+| `timezone`         | string                     | yes      | no       |             |
+| `bookingMode`      | enum(`slot`, `stay`)       | no       | no       |             |
+| `stayCheckInTime`  | string                     | no       | yes      |             |
+| `stayCheckOutTime` | string                     | no       | yes      |             |
+| `sortOrder`        | integer                    | no       | no       |             |
+| `status`           | enum(`active`, `inactive`) | no       | no       |             |
+| `unitLabels`       | array of string            | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "code": "string",
+  "name": "string",
+  "kind": "string",
+  "capacity": 1,
+  "poolId": "00000000-0000-0000-0000-000000000000",
+  "timezone": "Asia/Jakarta",
+  "bookingMode": "slot",
+  "stayCheckInTime": "14:00",
+  "stayCheckOutTime": "12:00",
+  "sortOrder": 0,
+  "status": "active",
+  "unitLabels": ["string"]
+}
+```
+
+### Schema: BookingResourcePatch
+
+| Field              | Type                       | Required | Nullable | Description |
+| ------------------ | -------------------------- | -------- | -------- | ----------- |
+| `name`             | string                     | no       | no       |             |
+| `kind`             | string                     | no       | no       |             |
+| `status`           | enum(`active`, `inactive`) | no       | no       |             |
+| `poolId`           | string (uuid)              | no       | yes      |             |
+| `timezone`         | string                     | no       | no       |             |
+| `bookingMode`      | enum(`slot`, `stay`)       | no       | no       |             |
+| `stayCheckInTime`  | string                     | no       | yes      |             |
+| `stayCheckOutTime` | string                     | no       | yes      |             |
+| `sortOrder`        | integer                    | no       | no       |             |
+| `capacity`         | integer                    | no       | no       | Grow only.  |
+| `units`            | array of object            | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "name": "string",
+  "kind": "string",
+  "status": "active",
+  "poolId": "00000000-0000-0000-0000-000000000000",
+  "timezone": "string",
+  "bookingMode": "slot",
+  "stayCheckInTime": "string",
+  "stayCheckOutTime": "string",
+  "sortOrder": 0,
+  "capacity": 1,
+  "units": [
+    {
+      "id": "00000000-0000-0000-0000-000000000000",
+      "label": "string",
+      "status": "active"
+    }
+  ]
+}
+```
+
+### Schema: BookingResourcePoolInput
+
+| Field              | Type               | Required | Nullable | Description |
+| ------------------ | ------------------ | -------- | -------- | ----------- |
+| `code`             | string             | yes      | no       |             |
+| `name`             | string             | yes      | no       |             |
+| `allocationPolicy` | enum(`first_free`) | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "code": "string",
+  "name": "string",
+  "allocationPolicy": "first_free"
+}
+```
+
+### Schema: BookingResourcePoolPatch
+
+| Field              | Type               | Required | Nullable | Description |
+| ------------------ | ------------------ | -------- | -------- | ----------- |
+| `name`             | string             | no       | no       |             |
+| `allocationPolicy` | enum(`first_free`) | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "name": "string",
+  "allocationPolicy": "first_free"
 }
 ```
 
@@ -19245,6 +21340,22 @@ The closed rules schema. Only `weekly` is accepted; a weekday absent from it is 
 ```json
 {
   "weekly": "(operation-specific payload)"
+}
+```
+
+### Schema: BookingStayDates
+
+| Field          | Type          | Required | Nullable | Description                                         |
+| -------------- | ------------- | -------- | -------- | --------------------------------------------------- |
+| `checkInDate`  | string (date) | yes      | no       | Local date in the resource's zone.                  |
+| `checkOutDate` | string (date) | yes      | no       | Exclusive; after `checkInDate`, at most 366 nights. |
+
+**Example**
+
+```json
+{
+  "checkInDate": "2026-01-01",
+  "checkOutDate": "2026-01-01"
 }
 ```
 
@@ -20666,6 +22777,60 @@ sectionType cannot be changed after creation — omit it, do not send the old or
 }
 ```
 
+### Schema: HrAttendanceCorrectionInput
+
+| Field                | Type                                                      | Required | Nullable | Description                                  |
+| -------------------- | --------------------------------------------------------- | -------- | -------- | -------------------------------------------- |
+| `employmentId`       | string (uuid)                                             | yes      | no       |                                              |
+| `kind`               | enum(`add`, `replace`)                                    | yes      | no       |                                              |
+| `targetEventId`      | string (uuid)                                             | no       | no       | Required for `replace`, forbidden for `add`. |
+| `proposedKind`       | enum(`clock_in`, `clock_out`, `break_start`, `break_end`) | yes      | no       |                                              |
+| `proposedOccurredAt` | string (date-time)                                        | yes      | no       |                                              |
+| `reason`             | string                                                    | yes      | no       |                                              |
+
+**Example**
+
+```json
+{
+  "employmentId": "00000000-0000-0000-0000-000000000000",
+  "kind": "add",
+  "targetEventId": "00000000-0000-0000-0000-000000000000",
+  "proposedKind": "clock_in",
+  "proposedOccurredAt": "2026-01-01T00:00:00.000Z",
+  "reason": "string"
+}
+```
+
+### Schema: HrAttendanceEventInput
+
+| Field            | Type                                                      | Required | Nullable | Description                                                                                                                                                                        |
+| ---------------- | --------------------------------------------------------- | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `employmentId`   | string (uuid)                                             | yes      | no       |                                                                                                                                                                                    |
+| `kind`           | enum(`clock_in`, `clock_out`, `break_start`, `break_end`) | yes      | no       |                                                                                                                                                                                    |
+| `occurredAt`     | string (date-time)                                        | yes      | no       | A UTC instant ending in Z.                                                                                                                                                         |
+| `source`         | enum(`self`, `supervisor`, `kiosk`, `import`)             | yes      | no       |                                                                                                                                                                                    |
+| `clientEventKey` | string                                                    | yes      | no       |                                                                                                                                                                                    |
+| `officeId`       | string (uuid)                                             | no       | no       |                                                                                                                                                                                    |
+| `positionSample` | [`HrPositionSample`](#schema-hrpositionsample)            | no       | yes      | Optional, `self` clock_in / clock_out only (any other source or kind -> 400). Evaluated by the server in the request and discarded (ADR-0138). `null` or absent is a declined fix. |
+
+**Example**
+
+```json
+{
+  "employmentId": "00000000-0000-0000-0000-000000000000",
+  "kind": "clock_in",
+  "occurredAt": "2026-01-01T00:00:00.000Z",
+  "source": "self",
+  "clientEventKey": "string",
+  "officeId": "00000000-0000-0000-0000-000000000000",
+  "positionSample": {
+    "latitude": -90,
+    "longitude": -180,
+    "accuracyMeters": 0
+  }
+}
+```
+
 ### Schema: HrCommissionAccrual
 
 One commission earned by one employment from one source event. The monetary facts are immutable by trigger; only `status` and its stamps advance. `amount` is a fixed-scale decimal string.
@@ -20979,6 +23144,104 @@ _No properties declared._
   "jobTitle": "string",
   "employmentType": "permanent",
   "status": "active"
+}
+```
+
+### Schema: HrGeofenceInput
+
+| Field          | Type                      | Required | Nullable | Description |
+| -------------- | ------------------------- | -------- | -------- | ----------- |
+| `officeId`     | string (uuid)             | yes      | no       |             |
+| `label`        | string                    | yes      | no       |             |
+| `shape`        | enum(`circle`, `polygon`) | yes      | no       |             |
+| `latitude`     | number                    | no       | no       |             |
+| `longitude`    | number                    | no       | no       |             |
+| `radiusMeters` | integer                   | no       | no       |             |
+| `vertices`     | array of array of number  | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "officeId": "00000000-0000-0000-0000-000000000000",
+  "label": "string",
+  "shape": "circle",
+  "latitude": -90,
+  "longitude": -180,
+  "radiusMeters": 50,
+  "vertices": [[0]]
+}
+```
+
+### Schema: HrGeolocationAcknowledgeInput
+
+| Field          | Type          | Required | Nullable | Description |
+| -------------- | ------------- | -------- | -------- | ----------- |
+| `employmentId` | string (uuid) | yes      | no       |             |
+| `noticeId`     | string (uuid) | yes      | no       |             |
+
+**Example**
+
+```json
+{
+  "employmentId": "00000000-0000-0000-0000-000000000000",
+  "noticeId": "00000000-0000-0000-0000-000000000000"
+}
+```
+
+### Schema: HrGeolocationNoticeInput
+
+| Field   | Type   | Required | Nullable | Description |
+| ------- | ------ | -------- | -------- | ----------- |
+| `texts` | object | yes      | no       |             |
+
+**Example**
+
+```json
+{
+  "texts": "(operation-specific payload)"
+}
+```
+
+### Schema: HrGeolocationSettingsInput
+
+| Field                   | Type          | Required | Nullable | Description |
+| ----------------------- | ------------- | -------- | -------- | ----------- |
+| `enabled`               | boolean       | yes      | no       |             |
+| `accuracyCeilingMeters` | integer       | no       | no       |             |
+| `dpiaReference`         | string        | no       | yes      |             |
+| `dpiaRecordedOn`        | string (date) | no       | yes      |             |
+| `noticeId`              | string (uuid) | no       | yes      |             |
+
+**Example**
+
+```json
+{
+  "enabled": false,
+  "accuracyCeilingMeters": 10,
+  "dpiaReference": "string",
+  "dpiaRecordedOn": "2026-01-01",
+  "noticeId": "00000000-0000-0000-0000-000000000000"
+}
+```
+
+### Schema: HrPositionSample
+
+One position sample, evaluated by the server in the request and DISCARDED. It is never persisted, logged, audited, queued, cached or returned. Exactly these three numbers; an altitude, speed, heading, address or device value is refused.
+
+| Field            | Type   | Required | Nullable | Description |
+| ---------------- | ------ | -------- | -------- | ----------- |
+| `latitude`       | number | yes      | no       |             |
+| `longitude`      | number | yes      | no       |             |
+| `accuracyMeters` | number | yes      | no       |             |
+
+**Example**
+
+```json
+{
+  "latitude": -90,
+  "longitude": -180,
+  "accuracyMeters": 0
 }
 ```
 
@@ -23029,6 +25292,26 @@ A snapshot without its `lines` (up to 500 per document). What a list returns; th
 }
 ```
 
+### Schema: TelegramBindingStatus
+
+Enum values: `pending_confirmation`, `active`, `revoked`, `suspended`.
+
+**Example**
+
+```json
+"pending_confirmation"
+```
+
+### Schema: TelegramMessageStatus
+
+Enum values: `queued`, `retry_wait`, `sending`, `sent`, `failed`, `cancelled`, `expired`.
+
+**Example**
+
+```json
+"queued"
+```
+
 ### Schema: ThemeConfigRequest
 
 A tenant's DATA-only theme configuration. Every key/value is validated against the chosen theme descriptor; unknown tokens/slots/assets/sections are rejected, and token values are validated by rejection against strict CSS grammars (no url()/expression()/@import/javascript:/comment-breakout).
@@ -23203,7 +25486,7 @@ consumer/subscriber contract in this file).
 }
 ```
 
-### Channels (87)
+### Channels (96)
 
 - `awcms.blog-content.ad.created` — An advertisement was created. Documented contract only; producer is `pages/api/v1/blog/ads/index.ts`'s `blog-content.ad.created` log line.
 - `awcms.blog-content.ad.deleted` — An advertisement was soft-deleted. Documented contract only; producer is `pages/api/v1/blog/ads/[id].ts`'s `blog-content.ad.deleted` log line.
@@ -23232,6 +25515,15 @@ consumer/subscriber contract in this file).
 - `awcms.blog-content.widget.created` — A widget was created. Documented contract only; producer is `pages/api/v1/blog/widgets/index.ts`'s `blog-content.widget.created` log line.
 - `awcms.blog-content.widget.deleted` — A widget was soft-deleted. Documented contract only; producer is `pages/api/v1/blog/widgets/[id].ts`'s `blog-content.widget.deleted` log line.
 - `awcms.blog-content.widget.updated` — A widget was updated. Documented contract only; producer is `pages/api/v1/blog/widgets/[id].ts`'s `blog-content.widget.updated` log line.
+- `awcms.booking.reservation.cancelled` — Booking reservation event (ADR-0131, Issue #941; docs/awcms/booking.md section 7.4). A held or confirmed reservation was cancelled and its allocations released. Producer: `transitionReservation`. Same payload shape as `reservation.created`, plus `lateCancellation` (the module records the fact; any fee is the commerce layer's). The cancellation reason code is on the append-only history row, never in the event.
+- `awcms.booking.reservation.checked_in` — Booking reservation event (ADR-0131, Issue #941; docs/awcms/booking.md section 7.4). A confirmed reservation was checked in. Producer: `transitionReservation`. Same payload shape as `reservation.created`.
+- `awcms.booking.reservation.completed` — Booking reservation event (ADR-0131, Issue #941; docs/awcms/booking.md section 7.4). A checked-in reservation was completed (checked out). Producer: `transitionReservation`. Same payload shape as `reservation.created`.
+- `awcms.booking.reservation.confirmed` — Booking reservation event (ADR-0131, Issue #941; docs/awcms/booking.md section 7.4). A hold became confirmed (`previousStatus` held) or a reservation was created already confirmed (`previousStatus` null). Producer: `booking/application/booking-reservation-service.ts`'s `transitionReservation` and `placeHold`. Same payload shape as `reservation.created`.
+- `awcms.booking.reservation.created` — Booking reservation event (ADR-0131, Issue #941; docs/awcms/booking.md section 7.4). A reservation exists: held, or confirmed when the offering confirms immediately, or the confirmed replacement of a reschedule (then `rescheduledFromId` names the reservation it replaced). Producer: `booking/application/booking-hold-service.ts`'s `placeHold`, in the SAME transaction as the claim: a rolled-back or refused claim emits nothing. Payload: `reservationId`, `reservationNo`, `lineageId`, `status`, `previousStatus`, `startsAt`/`endsAt` (RFC 3339 UTC), `resourceIds`, `offeringIds`, `partySize`, `externalRefType`/`externalRef` (the adapter's own opaque pair), `stays` (additive, only when the reservation holds a stay: `resourceId`, `checkInDate`, `checkOutDate`, `nights`, `timezone`), `occurredAt`, `correlationId`. NEVER a customer name, contact, reference or note, a reason text, an actor in the payload (the envelope carries `actorTenantUserId` like every module's events) or any amount or payment state: the module stores none.
+- `awcms.booking.reservation.expired` — Booking reservation event (ADR-0131, Issue #941; docs/awcms/booking.md section 7.4). A hold expired and its allocations were released: found by the `booking:holds:expire` sweep (published in the sweep's own tenant transaction, `booking/application/booking-hold-expiry-job.ts`) or reclaimed by a claim that wanted its units (`booking-hold-expiry.ts`'s `reclaimExpiredHolds`). Same payload shape as `reservation.created`; `previousStatus` is held.
+- `awcms.booking.reservation.held` — Booking reservation event (ADR-0131, Issue #941; docs/awcms/booking.md section 7.4). A hold was placed; not emitted when the offering confirms immediately. Producer: `placeHold`. Same payload shape as `reservation.created`.
+- `awcms.booking.reservation.no_show` — Booking reservation event (ADR-0131, Issue #941; docs/awcms/booking.md section 7.4). A confirmed reservation was marked no-show by a person after its start plus the grace period (there is no automatic no-show). Producer: `transitionReservation`. Same payload shape as `reservation.created`.
+- `awcms.booking.reservation.rescheduled` — Booking reservation event (ADR-0131, Issue #941; docs/awcms/booking.md section 7.4). A confirmed reservation was superseded by its replacement in one transaction. Producer: `placeHold` with `replaces`, called by `rescheduleReservation`. Same payload shape as `reservation.created`, plus `supersededById` (the replacement); the replacement announces itself with `created` and `confirmed` carrying `rescheduledFromId`.
 - `awcms.comments.comment.approved` — A comment became publicly visible, either by auto-approval under the thread policy or by a moderator's approve decision. Producers: `comments/application/comment-service.ts`'s `submitComment` and `comments/application/comment-moderation.ts`'s `moderateComment`. The reply-notification consumer keys off THIS event rather than `comment.submitted`, so a comment still held for moderation never triggers a notification.
 - `awcms.comments.comment.submitted` — A comment was submitted against a published, public commentable resource (ADR-0041). Producer: `comments/application/comment-service.ts`'s `submitComment`. The payload carries opaque references only — comment and thread id, resource type, the server-derived public URL, and the resulting status. Never the body text, the author address, or any identity hash.
 - `awcms.comments.reply.created` — A submitted comment was a reply to an existing comment. Producer: `comments/application/comment-service.ts`'s `submitComment`, published alongside `comment.submitted` so a consumer can distinguish thread replies without re-reading the row. The recipient address is resolved from encrypted storage by the dispatcher at send time and is never carried here.

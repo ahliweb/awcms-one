@@ -64,11 +64,24 @@
  * assign each row a distinct, explicit `created_at` rather than relying
  * on the column's own `DEFAULT now()` (`tests/reporting-projection-
  * rebuild-lock.test.ts`'s `seedSourceRows` does exactly this).
+ *
+ * NARROWED (Issue #944): a page no longer ends inside a millisecond --
+ * `limit + 1` rows are read, and when the extra (lookahead) row shares the page's
+ * last millisecond `trimIncompleteTail` drops the page's rows of that millisecond,
+ * so they are read whole by the next pass. A source that writes
+ * several rows in one transaction (booking's history: `created` + `held`) is
+ * therefore safe at a page boundary. What remains is a FULL page whose rows all
+ * share ONE millisecond with the lookahead.
  */
+import {
+  computeRuleDelta,
+  ruleColumns
+} from "../domain/projection-metric-delta";
 import {
   applyCursorBoundarySafetyMargin,
   CURSOR_BOUNDARY_SAFETY_MARGIN_MS,
-  resolveProjectionLagSeconds
+  resolveProjectionLagSeconds,
+  trimIncompleteTail
 } from "../domain/cursor-boundary";
 import type {
   ProjectionCursorMetricRule,
@@ -89,6 +102,8 @@ import {
 } from "./projection-state-store";
 import { findRunningRebuild } from "./rebuild-run-store";
 
+import { assertNotPayrollTable } from "../../_shared/payroll-data-boundary";
+
 const TABLE_NAME_PATTERN = /^awcms_[a-z][a-z0-9_]*$/;
 const COLUMN_NAME_PATTERN = /^[a-z][a-z0-9_]*$/;
 
@@ -99,6 +114,12 @@ function assertSafeIdentifier(name: string, kind: "table" | "column"): string {
     throw new Error(
       `reporting projection engine: refusing to build SQL from an unsafe ${kind} identifier: ${JSON.stringify(name)}.`
     );
+  }
+
+  // Issue #978 (PS-18): defence in depth behind the registry gate — an engine
+  // must not read a payroll table even if a descriptor bypassed validation.
+  if (kind === "table") {
+    assertNotPayrollTable(name, "reporting projection engine");
   }
 
   return name;
@@ -112,19 +133,10 @@ function computeMetricDeltas(
   batchRows: readonly Record<string, unknown>[],
   metrics: readonly ProjectionCursorMetricRule[]
 ): MetricDelta[] {
-  return metrics.map((rule) => {
-    const matchingCount =
-      rule.matchColumn === undefined
-        ? batchRows.length
-        : batchRows.filter(
-            (row) => String(row[rule.matchColumn!]) === rule.matchValue
-          ).length;
-
-    return {
-      metricKey: rule.metricKey,
-      delta: rule.effect === "increment" ? matchingCount : -matchingCount
-    };
-  });
+  return metrics.map((rule) => ({
+    metricKey: rule.metricKey,
+    delta: computeRuleDelta(batchRows, rule)
+  }));
 }
 
 export type CursorStreamPassResult = {
@@ -162,13 +174,8 @@ export async function runCursorStreamPass(
   );
   const cursorColumn = assertSafeIdentifier(stream.cursorColumn, "column");
 
-  const matchColumns = Array.from(
-    new Set(
-      stream.metrics
-        .map((rule) => rule.matchColumn)
-        .filter((column): column is string => column !== undefined)
-        .map((column) => assertSafeIdentifier(column, "column"))
-    )
+  const matchColumns = ruleColumns(stream.metrics).map((column) =>
+    assertSafeIdentifier(column, "column")
   );
   // Issue #117 — a dimensional sink may need more of the row than the
   // match columns (order id, statuses, ...); same identifier allow-list.
@@ -211,27 +218,32 @@ export async function runCursorStreamPass(
       // a JS clock would make the bound depend on app/DB clock skew, and skew in
       // the wrong direction is silently no bound at all.
       const lagSeconds = resolveProjectionLagSeconds();
-      const rows = (
+      const fetched = (
         resumeAfterBound
           ? await tx.unsafe(
               `SELECT ${selectColumns.join(", ")} FROM ${tableName}
                WHERE ${tenantColumn} = $1 AND ${cursorColumn} >= $2
                  AND ${cursorColumn} <= now() - make_interval(secs => $3)
                ORDER BY ${cursorColumn} ASC LIMIT $4`,
-              [tenantId, resumeAfterBound, lagSeconds, batchLimit]
+              [tenantId, resumeAfterBound, lagSeconds, batchLimit + 1]
             )
           : await tx.unsafe(
               `SELECT ${selectColumns.join(", ")} FROM ${tableName}
                WHERE ${tenantColumn} = $1
                  AND ${cursorColumn} <= now() - make_interval(secs => $2)
                ORDER BY ${cursorColumn} ASC LIMIT $3`,
-              [tenantId, lagSeconds, batchLimit]
+              [tenantId, lagSeconds, batchLimit + 1]
             )
       ) as Record<string, unknown>[];
 
-      if (rows.length === 0) {
+      if (fetched.length === 0) {
         return { count: 0, skippedRebuildInProgress: false };
       }
+
+      // Never end a page inside a millisecond (Issue #944): the next pass resumes
+      // at `cursor + 1ms` and would skip the rest of that millisecond. The
+      // `limit + 1`th row is a lookahead, never processed.
+      const rows = trimIncompleteTail(fetched, cursorColumn, batchLimit);
 
       const deltas = computeMetricDeltas(rows, stream.metrics);
       await applyMetricDeltas(tx, tenantId, projectionKey, deltas);

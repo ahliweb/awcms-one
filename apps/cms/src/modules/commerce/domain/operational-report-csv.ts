@@ -21,15 +21,35 @@ import type {
   StoredValueReport,
   TenderReport
 } from "../application/operational-report-directory";
-import { csvCell, csvNumber } from "./register-cash-up-csv";
+import { csvCellForWrite } from "../../../lib/security/csv-formula";
+
+/** One cell before it is written: raw, and whether it is a `numeric(14,2)` figure carried as text. */
+type Cell = { value: string | null | undefined; numeric: boolean };
+
+const text = (value: string | null | undefined): Cell => ({
+  value,
+  numeric: false
+});
+const num = (value: string | null | undefined): Cell => ({
+  value,
+  numeric: true
+});
 
 function serialise(
   columns: readonly string[],
-  rows: readonly (readonly string[])[]
+  rows: readonly (readonly Cell[])[]
 ): string {
   return (
-    [columns.join(","), ...rows.map((row) => row.join(","))].join("\r\n") +
-    "\r\n"
+    [
+      columns.map((column) => csvCellForWrite(column)).join(","),
+      ...rows.map((row) =>
+        row
+          .map((cell) =>
+            csvCellForWrite(cell.value, { numericText: cell.numeric })
+          )
+          .join(",")
+      )
+    ].join("\r\n") + "\r\n"
   );
 }
 
@@ -49,15 +69,15 @@ export function serializeTenderCsv(report: TenderReport): string {
   return serialise(
     TENDER_CSV_COLUMNS,
     report.items.map((row) => [
-      csvCell(row.day),
-      csvCell(row.registerCode),
-      csvCell(row.registerName),
-      csvCell(row.tenderType),
-      csvNumber(String(row.paymentCount)),
-      csvNumber(row.payments),
-      csvNumber(String(row.reversalCount)),
-      csvNumber(row.reversals),
-      csvNumber(row.net)
+      text(row.day),
+      text(row.registerCode),
+      text(row.registerName),
+      text(row.tenderType),
+      num(String(row.paymentCount)),
+      num(row.payments),
+      num(String(row.reversalCount)),
+      num(row.reversals),
+      num(row.net)
     ])
   );
 }
@@ -79,16 +99,16 @@ export function serializeCashUpVarianceCsv(report: CashUpReport): string {
   return serialise(
     CASH_UP_CSV_COLUMNS_V2,
     report.items.map((row) => [
-      csvCell(row.day),
-      csvCell(row.sessionId),
-      csvCell(row.registerCode),
-      csvCell(row.registerName),
-      csvCell(row.cashierTenantUserId),
-      csvCell(row.tenderType),
-      csvNumber(row.expected),
-      csvNumber(row.counted),
-      csvNumber(row.adjustment),
-      csvNumber(row.variance)
+      text(row.day),
+      text(row.sessionId),
+      text(row.registerCode),
+      text(row.registerName),
+      text(row.cashierTenantUserId),
+      text(row.tenderType),
+      num(row.expected),
+      num(row.counted),
+      num(row.adjustment),
+      num(row.variance)
     ])
   );
 }
@@ -108,14 +128,14 @@ export function serializeExpenseReportCsv(report: ExpenseReport): string {
   return serialise(
     EXPENSE_REPORT_CSV_COLUMNS,
     report.items.map((row) => [
-      csvCell(row.day),
-      csvCell(row.categoryName),
-      csvCell(row.tenderType),
-      csvNumber(String(row.postedCount)),
-      csvNumber(row.posted),
-      csvNumber(String(row.reversedCount)),
-      csvNumber(row.reversed),
-      csvNumber(row.net)
+      text(row.day),
+      text(row.categoryName),
+      text(row.tenderType),
+      num(String(row.postedCount)),
+      num(row.posted),
+      num(String(row.reversedCount)),
+      num(row.reversed),
+      num(row.net)
     ])
   );
 }
@@ -131,10 +151,10 @@ export function serializeLoyaltyReportCsv(report: LoyaltyReport): string {
   return serialise(
     LOYALTY_REPORT_CSV_COLUMNS,
     report.items.map((row) => [
-      csvCell(row.day),
-      csvCell(row.bucket),
-      csvNumber(String(row.entries)),
-      csvNumber(row.points)
+      text(row.day),
+      text(row.bucket),
+      num(String(row.entries)),
+      num(row.points)
     ])
   );
 }
@@ -153,11 +173,11 @@ export function serializeStoredValueReportCsv(
   return serialise(
     STORED_VALUE_REPORT_CSV_COLUMNS,
     report.items.map((row) => [
-      csvCell(row.day),
-      csvCell(row.accountKind),
-      csvCell(row.bucket),
-      csvNumber(String(row.entries)),
-      csvNumber(row.amount)
+      text(row.day),
+      text(row.accountKind),
+      text(row.bucket),
+      num(String(row.entries)),
+      num(row.amount)
     ])
   );
 }
@@ -179,15 +199,15 @@ export function serializeReturnsReportCsv(report: ReturnsReport): string {
   return serialise(
     RETURNS_REPORT_CSV_COLUMNS,
     report.items.map((row) => [
-      csvCell(row.day),
-      csvCell(row.registerCode),
-      csvCell(row.registerName),
-      csvCell(row.section),
-      csvCell(row.bucket),
-      csvCell(row.detail),
-      csvNumber(String(row.count)),
-      csvNumber(String(row.units)),
-      csvNumber(row.amount)
+      text(row.day),
+      text(row.registerCode),
+      text(row.registerName),
+      text(row.section),
+      text(row.bucket),
+      text(row.detail),
+      num(String(row.count)),
+      num(String(row.units)),
+      num(row.amount)
     ])
   );
 }
