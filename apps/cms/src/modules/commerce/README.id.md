@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:b84c62b33db961842421a71bc23a678a59e77180f1047afe88ddd4cfb10b5e75 -->
+<!-- i18n-source-hash: sha256:001acd212a2386dcdb8a4716951c43d8a5c8e2e7478fcee59a7b46c9b5246c5b -->
 
 # `commerce`
 
@@ -175,6 +175,10 @@ pemeriksaan keberadaan sebelum-tulis lain di modul ini), dan indeks unik
 parsial DB pada `awcms_commerce_product_variants` sendiri tetap menjadi
 jaring pengaman race satu-tabel. Benturan muncul sebagai `409
 VARIANT_SKU_ALREADY_EXISTS`.
+
+## Savepoint untuk error pernyataan yang ditangkap
+
+**Pernyataan yang errornya ditangkap di dalam transaksi dijalankan dalam savepoint.** Pernyataan yang gagal (pelanggaran unik yang diubah menjadi `409`, `23514` dari trigger yang diubah menjadi `400`, tabrakan kode pesanan yang diulang dengan kandidat lain) membatalkan transaksi PostgreSQL tempatnya berjalan; bila handler lalu mengembalikan respons seperti biasa, transaksi di-commit, PostgreSQL menjawab `COMMIT` itu dengan `ROLLBACK`, dan semua penulisan sebelumnya dalam transaksi yang sama hilang. Bun 1.4.2 menganggapnya sukses begitu saja (handler melaporkan sukses untuk penulisan yang hilang); Bun 1.4.3 melempar `ERR_POSTGRES_COMMIT_ROLLED_BACK`. `inSavepoint(tx, async (sp) => ...)` di `application/savepoint.ts` membatasi pembatalan itu pada pernyataannya saja: jalankan pernyataan pada `sp`, tangkap `Bun.SQL.PostgresError` di luarnya, dan transaksi luar tetap dapat dipakai. Pernyataan yang errornya selalu merambat keluar dari callback transaksi tidak memerlukan savepoint (seluruh transaksi memang di-rollback). `tests/integration/commerce-caught-error-savepoints.integration.test.ts` mengunci perilakunya.
 
 ## Gambar dan varian (Issue #23)
 
