@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](status.md)
 
-<!-- i18n-source-hash: sha256:310cce3d799fb8aa9dc736687f8d86d1913553d0bc7071255258b23bd1d2a9dd -->
+<!-- i18n-source-hash: sha256:3d18e8ac645e3308d9418fb8f4e06167867eb892f53d6d1f7bffd9de88d9fcd5 -->
 
 # Status
 
@@ -102,7 +102,7 @@ Sinkronisasi ini adalah prasyarat adaptor commerce yang dilacak di [#391](https:
 
 Sinkronisasi subtree berikutnya ([issue #377](https://github.com/ahliweb/awcms-one/issues/377), 16 Oktober 2026) membawa `booking` ke bentuk akhirnya di upstream, sehingga `apps/cms` menjadi 34 modul terdaftar: alokator dan hold (ahliweb/awcms#939, jaminan anti-double-booking yang dipegang database), menginap dan blokir (#940), API reservasi dan `BookingPort` yang menjadi tumpuan konsumen (#941; hold, confirm, cancel, reschedule, dan quote tak mengikat, penolakan dikembalikan sebagai nilai, `Idempotency-Key` pada setiap mutasi), sembilan event domain `awcms.booking.reservation.*`, proyeksi pelaporan (#944), intent pengingat (#943), layar admin booking (#942), dan konsultasi ketersediaan staf (#949). Sinkronisasi yang sama membawa pelaporan dan geolokasi `hr_workforce`, modul `telegram_delivery` beserta port pengirimannya, pengerasan batas katalog `hr_payroll`, dan beberapa sapuan keamanan (kolom kredensial, grant kolom, `search_path` trigger, netralisasi formula CSV, idempotensi berlingkup aktor, ADR-0145).
 
-**Adaptor commerce untuk booking belum dibangun** (#378 dan seterusnya): `commerce` tidak memanggil `BookingPort`, tidak menjual sumber daya yang dapat dipesan, dan tidak ada layar atau rute commerce yang berubah. Sapuan memang mengubah kode `commerce`, secara internal: setiap catatan idempotensi kini menyebut aktornya, fungsi trigger commerce mengunci `search_path` (migrasi `1032`), ekspor CSV commerce memakai penulis bersama yang menetralkan formula (ekspor pesanan sebelumnya tidak punya), dan satu nama tabel commerce (`awcms_commerce_refund_compensations`) didaftarkan sebagai bukan data payroll. Lihat [`AGENTS.id.md`](../AGENTS.id.md) untuk divergensi tetap.
+**Adaptor commerce untuk booking belum dibangun** (#378 dan seterusnya): `commerce` tidak memanggil `BookingPort`, tidak menjual sumber daya yang dapat dipesan, dan tidak ada layar atau rute commerce yang berubah. Sapuan memang mengubah kode `commerce`, secara internal: setiap catatan idempotensi kini menyebut aktornya, fungsi trigger commerce mengunci `search_path` (migrasi `1032`), kategori e-mail dispatcher kampanye diizinkan lagi melewati guard insert-worker upstream yang baru (migrasi `1033`), tiga belas tabel laporan turunan dan pengaturan mendapat `id` pengganti yang dibutuhkan purge data-lifecycle (migrasi `1034`; retensinya tidak pernah bisa berjalan), ekspor CSV commerce memakai penulis bersama yang menetralkan formula (ekspor pesanan sebelumnya tidak punya), dan satu nama tabel commerce (`awcms_commerce_refund_compensations`) didaftarkan sebagai bukan data payroll. Lihat [`AGENTS.id.md`](../AGENTS.id.md) untuk divergensi tetap.
 
 ## `apps/storefront` — profil build (ADR-0018)
 
