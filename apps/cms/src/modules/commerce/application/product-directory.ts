@@ -55,6 +55,7 @@ import {
   listLiveProductVariantsByProductIds,
   type ProductVariantRow
 } from "./product-variant-directory";
+import { inSavepoint } from "./savepoint";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE = "product";
@@ -682,7 +683,10 @@ export async function createProduct(
   let rows: ProductRow[];
 
   try {
-    rows = (await tx`
+    rows = (await inSavepoint(
+      tx,
+      async (sp) =>
+        await sp`
       INSERT INTO awcms_commerce_products (
         tenant_id, category_id, type, sku, name, slug, description, digital_note,
         price, discount_percent, stock, status, label, label_color,
@@ -711,8 +715,9 @@ export async function createProduct(
         ${input.allowDp}, ${input.allowFreeShipping}, ${input.variantAttributes}::jsonb,
         ${input.isFeatured}, ${input.isRecommended}, ${input.taxCategoryCode ?? null}
       )
-      RETURNING ${tx.unsafe(PRODUCT_COLUMNS)}
-    `) as ProductRow[];
+      RETURNING ${sp.unsafe(PRODUCT_COLUMNS)}
+    `
+    )) as ProductRow[];
   } catch (error) {
     if (error instanceof Bun.SQL.PostgresError) {
       if (
@@ -885,7 +890,10 @@ export async function updateProduct(
   let rows: ProductRow[];
 
   try {
-    rows = (await tx`
+    rows = (await inSavepoint(
+      tx,
+      async (sp) =>
+        await sp`
       UPDATE awcms_commerce_products
       SET
         category_id = ${input.categoryId === undefined ? existing.categoryId : input.categoryId},
@@ -932,8 +940,9 @@ export async function updateProduct(
         tax_category_code = ${input.taxCategoryCode === undefined ? existing.taxCategoryCode : input.taxCategoryCode},
         updated_at = now()
       WHERE tenant_id = ${tenantId} AND id = ${productId} AND deleted_at IS NULL
-      RETURNING ${tx.unsafe(PRODUCT_COLUMNS)}
-    `) as ProductRow[];
+      RETURNING ${sp.unsafe(PRODUCT_COLUMNS)}
+    `
+    )) as ProductRow[];
   } catch (error) {
     if (error instanceof Bun.SQL.PostgresError) {
       if (
@@ -1138,12 +1147,16 @@ export async function restoreProduct(
   let rows: ProductRow[];
 
   try {
-    rows = (await tx`
+    rows = (await inSavepoint(
+      tx,
+      async (sp) =>
+        await sp`
       UPDATE awcms_commerce_products
       SET deleted_at = NULL, restored_at = now(), updated_at = now()
       WHERE tenant_id = ${tenantId} AND id = ${productId} AND deleted_at IS NOT NULL
-      RETURNING ${tx.unsafe(PRODUCT_COLUMNS)}
-    `) as ProductRow[];
+      RETURNING ${sp.unsafe(PRODUCT_COLUMNS)}
+    `
+    )) as ProductRow[];
   } catch (error) {
     if (error instanceof Bun.SQL.PostgresError) {
       if (

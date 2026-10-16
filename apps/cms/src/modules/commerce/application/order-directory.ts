@@ -154,6 +154,7 @@ import {
   resolveAffiliateForOrder,
   voidAffiliateCommissionForOrder
 } from "./affiliate-directory";
+import { inSavepoint } from "./savepoint";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE = "order";
@@ -801,7 +802,10 @@ async function insertOrderWithRetryableCode(
   for (let attempt = 0; attempt < MAX_ORDER_CODE_ATTEMPTS; attempt += 1) {
     const orderCode = generateOrderCode(now);
     try {
-      const rows = (await tx`
+      const rows = (await inSavepoint(
+        tx,
+        async (sp) =>
+          await sp`
         INSERT INTO awcms_commerce_orders (
           tenant_id, order_code, customer_id, status, payment_method, payment_status,
           shipping_method, shipping_service_name, shipping_cost, address,
@@ -821,7 +825,8 @@ async function insertOrderWithRetryableCode(
                   shipping_method, shipping_service_name, shipping_cost, address,
                   subtotal, discount, voucher_code, voucher_discount, insurance_fee, tax, total,
                   loyalty_discount, dp_amount, notes, paid_at, shipped_at, completed_at, cancelled_at, expires_at, created_at
-      `) as Omit<
+      `
+      )) as Omit<
         OrderHeaderRow,
         "customer_name" | "customer_phone" | "customer_email"
       >[];
