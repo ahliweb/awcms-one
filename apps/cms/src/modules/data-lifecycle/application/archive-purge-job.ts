@@ -166,11 +166,11 @@ async function runGenericArchivePass(
       const rows = (
         resumeAfterBound
           ? await tx.unsafe(
-              `SELECT * FROM ${tableName} WHERE ${tenantColumn} = $1 AND ${cursorColumn} < $2 AND ${cursorColumn} >= $3 ORDER BY ${cursorColumn} ASC LIMIT $4`,
+              `SELECT * FROM ${tableName} WHERE ${tenantColumn} = $1 AND ${cursorColumn} < $2::timestamptz AND ${cursorColumn} >= $3::timestamptz ORDER BY ${cursorColumn} ASC LIMIT $4`,
               [tenantId, cutoff, resumeAfterBound, descriptor.batchLimit]
             )
           : await tx.unsafe(
-              `SELECT * FROM ${tableName} WHERE ${tenantColumn} = $1 AND ${cursorColumn} < $2 ORDER BY ${cursorColumn} ASC LIMIT $3`,
+              `SELECT * FROM ${tableName} WHERE ${tenantColumn} = $1 AND ${cursorColumn} < $2::timestamptz ORDER BY ${cursorColumn} ASC LIMIT $3`,
               [tenantId, cutoff, descriptor.batchLimit]
             )
       ) as Record<string, unknown>[];
@@ -304,7 +304,7 @@ async function runGenericPurgePass(
         `DELETE FROM ${tableName}
          WHERE id IN (
            SELECT id FROM ${tableName}
-           WHERE ${tenantColumn} = $1 AND ${cursorColumn} < $2
+           WHERE ${tenantColumn} = $1 AND ${cursorColumn} < $2::timestamptz
              AND ($3::timestamptz IS NULL OR ${cursorColumn} <= $3)
            ORDER BY ${cursorColumn} ASC
            LIMIT $4

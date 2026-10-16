@@ -342,7 +342,7 @@ suite(
       }> {
         const rows = (await getAdminSql()`
           SELECT
-            has_table_privilege('awcms_worker', ${table}, 'SELECT') AS select,
+            has_any_column_privilege('awcms_worker', ${table}, 'SELECT') AS select,
             has_table_privilege('awcms_worker', ${table}, 'INSERT') AS insert,
             has_table_privilege('awcms_worker', ${table}, 'UPDATE') AS update,
             has_table_privilege('awcms_worker', ${table}, 'DELETE') AS del
@@ -357,6 +357,11 @@ suite(
       }
 
       /**
+       * `select` is `has_any_column_privilege`, not `has_table_privilege`: since
+       * upstream's `sql/304` (#1078) the worker reads `awcms_omes_enrollments`
+       * through a COLUMN-level grant (id, tenant_id, created_at - not the
+       * challenge hash), which the table-level function reports as false.
+       *
        * The exact assertion `sql/156` exists to make true forever. Thrown as
        * an Error (rather than using `expect` internally) so the negative test
        * below can deliberately provoke and inspect the failure without this

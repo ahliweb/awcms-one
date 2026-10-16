@@ -137,7 +137,11 @@ export async function planLifecycleDryRun(
     eligibleCount = rows[0]?.count ?? 0;
   } else {
     const eligibleRows = (await tx.unsafe(
-      `SELECT count(*)::int AS count FROM ${tableName} WHERE ${tenantColumn} = $1 AND ${cursorColumn} < $2`,
+      // awcms-one divergence (issue #377): `$2::timestamptz`. Bun.SQL binds a JS Date
+      // to a `date` cursor column (a commerce projection's `day`) as its
+      // `toString()`, which PostgreSQL rejects with 22007. The cast is a no-op for
+      // a timestamptz cursor. Same cast in archive-purge-job.ts.
+      `SELECT count(*)::int AS count FROM ${tableName} WHERE ${tenantColumn} = $1 AND ${cursorColumn} < $2::timestamptz`,
       [tenantId, cutoff]
     )) as { count: number }[];
     eligibleCount = eligibleRows[0]?.count ?? 0;
@@ -201,7 +205,7 @@ export async function planLifecycleDryRun(
   const archivedThroughBound = applyCursorBoundarySafetyMargin(archivedThrough);
 
   const archivedRows = (await tx.unsafe(
-    `SELECT count(*)::int AS count FROM ${tableName} WHERE ${tenantColumn} = $1 AND ${cursorColumn} < $2 AND ${cursorColumn} <= $3`,
+    `SELECT count(*)::int AS count FROM ${tableName} WHERE ${tenantColumn} = $1 AND ${cursorColumn} < $2::timestamptz AND ${cursorColumn} <= $3::timestamptz`,
     [tenantId, cutoff, archivedThroughBound]
   )) as { count: number }[];
   const archivedCount = archivedRows[0]?.count ?? 0;

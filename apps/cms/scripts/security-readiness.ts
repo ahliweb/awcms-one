@@ -1453,9 +1453,11 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // `sql/022` gave the worker exactly what the DISPATCHER needs and nothing
   // more, which was right; the purge is a second worker entrypoint with a
   // different job, so it needs the verb the first one was deliberately denied.
-  // INSERT added by `sql/1013` (Issue #403): the campaign dispatcher enqueues
-  // direct-address e-mail as the worker.
-  awcms_email_messages: ["SELECT", "INSERT", "UPDATE", "DELETE"],
+  // `sql/1013` (Issue #403) once added a TABLE-level INSERT here for the campaign
+  // dispatcher; `sql/1033` (Issue #377) revoked it again, because a table-level
+  // INSERT undoes the column-scoped grant of `sql/302` (see the column matrix
+  // below). The dispatcher's INSERT is that same ten-column grant.
+  awcms_email_messages: ["SELECT", "UPDATE", "DELETE"],
   // SELECT added by `sql/127`: the insert carries `ON CONFLICT ON CONSTRAINT
   // …_unique_attempt DO NOTHING`, and PostgreSQL reads the arbiter to decide a
   // conflict — so INSERT alone raises `permission denied`. Proven in production

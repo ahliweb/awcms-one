@@ -713,7 +713,7 @@ suite("commerce payment-allocation ledger (Issue #285)", () => {
       ).toBe(1);
     });
 
-    test("the same key with a different payload, another actor, or another order is a conflict", async () => {
+    test("the same key with a different payload or another order is a conflict; another actor's same key is its own namespace and still writes one row", async () => {
       const productId = await seedActiveProduct(TENANT_A);
       const order = await createStorefrontOrder(TENANT_A, productId);
       const other = await createStorefrontOrder(TENANT_A, productId);
@@ -723,9 +723,13 @@ suite("commerce payment-allocation ledger (Issue #285)", () => {
       await expect(
         pay(TENANT_A, order.id, { ...input, amount: "2600.00" })
       ).rejects.toBeInstanceOf(IdempotencyPayloadMismatchError);
-      await expect(
-        pay(TENANT_A, order.id, input, STAFF_2)
-      ).rejects.toBeInstanceOf(IdempotencyPayloadMismatchError);
+      // ADR-0145 (awcms-one#377): the idempotency store is actor-scoped, so a
+      // colleague reusing the key neither collides with it nor reads its stored
+      // response. The ledger's own `source_key` (`api:{key}`) is the second
+      // guard and answers the same order, same payload as a replay of the
+      // existing row: still one payment, never a second one.
+      const crossActor = await pay(TENANT_A, order.id, input, STAFF_2);
+      expect(crossActor.kind).toBe("replayed");
       await expect(pay(TENANT_A, other.id, input)).rejects.toBeInstanceOf(
         IdempotencyPayloadMismatchError
       );

@@ -16,6 +16,8 @@
  * Gated on `DATABASE_URL` (harness section Gating).
  */
 import { afterAll, beforeAll, describe, expect, test } from "bun:test";
+import { existsSync } from "node:fs";
+import path from "node:path";
 
 import {
   getAdminSql,
@@ -201,10 +203,27 @@ suite("idempotency keys retention (integration)", () => {
     const cutoff = new Date();
 
     // No row-level SELECT was granted: the table itself stays closed.
-    await expect(
-      (async () =>
-        await worker`SELECT count(*) FROM awcms_inventory_settings`)()
-    ).rejects.toThrow(/permission denied/i);
+    //
+    // awcms-one divergence (#377): on this embed `commerce`'s sql/947 grants the
+    // worker SELECT on the inventory tables ON PURPOSE - the ledger-mode stock
+    // consumer posts movements as `awcms_worker` and the posting core reads the
+    // tenant's negative-stock policy from this very table. So the probe holds
+    // only where that migration is absent (upstream's own tree); the count
+    // functions below, which never depend on the worker's table access, are
+    // still exercised in full.
+    if (
+      !existsSync(
+        path.join(
+          import.meta.dir,
+          "../../sql/947_awcms_commerce_inventory_adapter.sql"
+        )
+      )
+    ) {
+      await expect(
+        (async () =>
+          await worker`SELECT count(*) FROM awcms_inventory_settings`)()
+      ).rejects.toThrow(/permission denied/i);
+    }
 
     const count = async (tenant: string, table: string, asTenant = tenant) =>
       worker.begin(async (tx) => {
