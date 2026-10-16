@@ -1639,8 +1639,19 @@ export const READER_BUDGET_BYTES = 24_000;
  * sum (442,109 + 2,116) agree. The other new upstream modules (`booking`,
  * `hr_workforce`, `hr_commission`) have no admin screen and added no client
  * asset. The measurement is the figure, not the sum.
+ *
+ * **Raised to 458,800 B by the #377 sync (upstream `1b688c8`, AWCMS v10.8.0)**,
+ * MEASURED 458,746 B on the merged build - a measurement, not a sum. Upstream's
+ * own budget sits at 335,734 B (above, after its `/admin/booking` screens, the
+ * `hr_workforce` geolocation and attendance screens, the Telegram screen and
+ * the subject-requests change; it was 320,435 B at the #409 sync), so this
+ * embed's commerce lineage is +123,012 B over upstream, against +123,790 B at
+ * #409. The lineage got slightly SMALLER because the shared `AdminLayout` CSS
+ * bundle is not additive across lineages; no commerce screen changed its client
+ * script in this sync. The commerce CSV writers moved onto the shared
+ * `csvCellForWrite` (server code, no client byte).
  */
-export const APP_BUDGET_BYTES = 444_300;
+export const APP_BUDGET_BYTES = 458_800;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.
