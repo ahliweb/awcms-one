@@ -30,7 +30,6 @@ import {
   type ProductKind,
   type ResolvedComponent
 } from "../domain/bundle";
-import { inSavepoint } from "./savepoint";
 
 const AUDIT_MODULE_KEY = "commerce";
 
@@ -347,7 +346,7 @@ type CurrentBundleRow = {
  * before a bundle becomes standard, and `kind` is set before components exist.
  */
 export async function applyBundleDefinition(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   productId: string,
@@ -422,7 +421,7 @@ export async function applyBundleDefinition(
   if (unchanged) return;
 
   try {
-    await inSavepoint(tx, async (sp) => {
+    await tx.savepoint(async (sp) => {
       // A bundle turned back into a standard product loses its components first.
       if (wasBundle && write.kind === "standard") {
         await sp`

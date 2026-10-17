@@ -28,7 +28,6 @@ import type {
   UpdateFlashSaleProductInput
 } from "../domain/flash-sale-validation";
 import { listLiveProductImagesByProductIds } from "./product-image-directory";
-import { inSavepoint } from "./savepoint";
 
 const PRODUCER_MODULE = "commerce";
 /** Bounded per tenant per tick — a tenant's own flash-sale calendar is small (see `module.ts`'s `dataLifecycle` partition rationale), so this is generous headroom, not a real limit. */
@@ -154,7 +153,7 @@ export async function fetchFlashSaleById(
 }
 
 export async function createFlashSale(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   input: CreateFlashSaleInput,
@@ -163,8 +162,7 @@ export async function createFlashSale(
   let rows: FlashSaleRow[];
 
   try {
-    rows = (await inSavepoint(
-      tx,
+    rows = (await tx.savepoint(
       async (sp) =>
         await sp`
       INSERT INTO awcms_commerce_flash_sales (tenant_id, name, slug, starts_at, ends_at, status)
@@ -201,7 +199,7 @@ export async function createFlashSale(
 }
 
 export async function updateFlashSale(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   flashSaleId: string,
@@ -214,8 +212,7 @@ export async function updateFlashSale(
   let rows: FlashSaleRow[];
 
   try {
-    rows = (await inSavepoint(
-      tx,
+    rows = (await tx.savepoint(
       async (sp) =>
         await sp`
       UPDATE awcms_commerce_flash_sales
@@ -393,7 +390,7 @@ export async function listFlashSaleProducts(
  *   already on this sale.
  */
 export async function createFlashSaleProduct(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   flashSaleId: string,
@@ -416,8 +413,7 @@ export async function createFlashSaleProduct(
   let rows: FlashSaleProductRow[];
 
   try {
-    rows = (await inSavepoint(
-      tx,
+    rows = (await tx.savepoint(
       async (sp) =>
         await sp`
       INSERT INTO awcms_commerce_flash_sale_products

@@ -15,7 +15,6 @@ import type {
   VoucherStatus,
   VoucherType
 } from "../domain/voucher-validation";
-import { inSavepoint } from "./savepoint";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE = "voucher";
@@ -141,7 +140,7 @@ export async function fetchVoucherById(
 }
 
 export async function createVoucher(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   input: CreateVoucherInput,
@@ -150,8 +149,7 @@ export async function createVoucher(
   let rows: VoucherRow[];
 
   try {
-    rows = (await inSavepoint(
-      tx,
+    rows = (await tx.savepoint(
       async (sp) =>
         await sp`
       INSERT INTO awcms_commerce_vouchers (
@@ -195,7 +193,7 @@ export async function createVoucher(
 }
 
 export async function updateVoucher(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   voucherId: string,
@@ -208,8 +206,7 @@ export async function updateVoucher(
   let rows: VoucherRow[];
 
   try {
-    rows = (await inSavepoint(
-      tx,
+    rows = (await tx.savepoint(
       async (sp) =>
         await sp`
       UPDATE awcms_commerce_vouchers

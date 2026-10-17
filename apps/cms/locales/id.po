@@ -12908,9 +12908,6 @@ msgstr "Komisi Anda tidak dapat dimuat saat ini. Silakan coba lagi nanti."
 msgid "Commission status"
 msgstr "Status komisi"
 
-msgid "Amount"
-msgstr "Jumlah"
-
 msgid "No commission yet"
 msgstr "Belum ada komisi"
 
@@ -13003,9 +13000,6 @@ msgstr "Tidak ada data kepegawaian"
 
 msgid "Employments created through the API appear here."
 msgstr "Data kepegawaian yang dibuat melalui API muncul di sini."
-
-msgid "No"
-msgstr "Tidak"
 
 msgid "Requests that are waiting for a decision appear here."
 msgstr "Permintaan yang sedang menunggu keputusan muncul di sini."
@@ -13112,9 +13106,6 @@ msgstr "Sedang cuti"
 msgid "Payable"
 msgstr "Dapat dibayar"
 
-msgid "Paid"
-msgstr "Dibayar"
-
 msgid "Voided"
 msgstr "Dibatalkan"
 
@@ -13153,10 +13144,6 @@ msgstr[0] "{count} kejadian dalam 14 hari terakhir (UTC)"
 msgid "{count} request"
 msgid_plural "{count} requests"
 msgstr[0] "{count} permintaan"
-
-msgid "{count} commission"
-msgid_plural "{count} commissions"
-msgstr[0] "{count} komisi"
 
 msgid "{count} direct report"
 msgid_plural "{count} direct reports"

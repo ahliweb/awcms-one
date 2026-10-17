@@ -441,7 +441,7 @@ export type CreateQuotationOutcome =
   | { kind: "created" | "replayed"; quotation: QuotationDetail };
 
 export async function createQuotation(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   mediaPort: MediaLibraryPort,
@@ -905,7 +905,7 @@ async function orderSummary(
 }
 
 export async function convertQuotation(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   mediaPort: MediaLibraryPort,
@@ -1002,9 +1002,9 @@ export async function convertQuotation(
   // conversion that must not stand is undone by throwing inside the savepoint.
   let order: PosOrderRecord;
   try {
-    const inner = await (tx as Bun.TransactionSQL).savepoint(async (sp) => {
+    const inner = await tx.savepoint(async (sp) => {
       const outcome = await createPosOrder(
-        sp,
+        sp as Bun.TransactionSQL,
         tenantId,
         actorTenantUserId,
         mediaPort,

@@ -272,6 +272,8 @@ async function main() {
       `db:commerce:renumber complete — ${plan.rename.length} renamed`
     );
   } catch (error) {
+    // tx-swallow-ok: sql is a plain pooled client; the renaming transaction
+    // already rolled back inside begin().
     console.error(
       `db:commerce:renumber failed — ${safeErrorMessage(error, databaseUrl)}`
     );

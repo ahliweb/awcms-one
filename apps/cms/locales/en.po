@@ -12958,9 +12958,6 @@ msgstr ""
 msgid "Commission status"
 msgstr ""
 
-msgid "Amount"
-msgstr ""
-
 msgid "No commission yet"
 msgstr ""
 
@@ -13052,9 +13049,6 @@ msgid "No employments"
 msgstr ""
 
 msgid "Employments created through the API appear here."
-msgstr ""
-
-msgid "No"
 msgstr ""
 
 msgid "Requests that are waiting for a decision appear here."
@@ -13162,9 +13156,6 @@ msgstr ""
 msgid "Payable"
 msgstr ""
 
-msgid "Paid"
-msgstr ""
-
 msgid "Voided"
 msgstr ""
 
@@ -13204,11 +13195,6 @@ msgstr[1] ""
 
 msgid "{count} request"
 msgid_plural "{count} requests"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "{count} commission"
-msgid_plural "{count} commissions"
 msgstr[0] ""
 msgstr[1] ""
 

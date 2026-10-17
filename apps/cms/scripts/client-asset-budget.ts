@@ -1659,8 +1659,16 @@ export const READER_BUDGET_BYTES = 24_000;
  * bundle is not additive across lineages; no commerce screen changed its client
  * script in this sync. The commerce CSV writers moved onto the shared
  * `csvCellForWrite` (server code, no client byte).
+ *
+ * **Raised to 460,000 B by the #424 sync (upstream `c6a04a9`, AWCMS v10.9.0)**,
+ * MEASURED 459,910 B on the merged build - a measurement, not a sum. Upstream's
+ * own budget sits at 336,898 B (above: +1,164 B for the `/admin/hr/my-work`
+ * correction form and its shared `hr-self-service-client.ts`), and this
+ * embed's commerce lineage is +123,012 B over it, exactly as at #377 (here
+ * the measurement and a plain sum, 458,746 + 1,164, happen to agree). The
+ * savepoint changes in `commerce` are server code and added no client byte.
  */
-export const APP_BUDGET_BYTES = 458_800;
+export const APP_BUDGET_BYTES = 460_000;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

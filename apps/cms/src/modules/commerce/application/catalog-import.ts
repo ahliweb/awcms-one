@@ -534,7 +534,7 @@ export type ApplyCatalogImportResult =
  * matches the dry-run it reviewed.
  */
 export async function applyCatalogImport(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   csvText: string,

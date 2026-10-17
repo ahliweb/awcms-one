@@ -106,7 +106,7 @@ const byKey = (key: string): ProjectionDescriptor =>
 
 function inTenant<T>(
   tenantId: string,
-  fn: (tx: Bun.SQL) => Promise<T>
+  fn: (tx: Bun.TransactionSQL) => Promise<T>
 ): Promise<T> {
   return withTenantOrThrow(getRuntimeSql(), tenantId, fn);
 }
@@ -523,7 +523,9 @@ type StoredValueAccount = { id: string; seq: number };
  * exactly the rows the trigger would have written, at the instants this test
  * needs. The projection under test reads only those rows.
  */
-async function asFixtureTx<T>(fn: (tx: Bun.SQL) => Promise<T>): Promise<T> {
+async function asFixtureTx<T>(
+  fn: (tx: Bun.TransactionSQL) => Promise<T>
+): Promise<T> {
   return getAdminSql().begin(async (tx) => {
     await tx`SET LOCAL session_replication_role = replica`;
     return fn(tx);

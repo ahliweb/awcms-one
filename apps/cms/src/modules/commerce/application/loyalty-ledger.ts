@@ -648,6 +648,8 @@ export async function earnPointsForPaidOrder(
       correlationId
     });
   } catch (error) {
+    // tx-swallow-ok: LoyaltyIdempotencyConflictError comes from the key
+    // lookup, before any write, so the transaction is healthy.
     if (!(error instanceof LoyaltyIdempotencyConflictError)) throw error;
     // Thrown before any write (the key lookup precedes the INSERT), so the
     // transaction is intact. Redelivery cannot change the answer, so surface a

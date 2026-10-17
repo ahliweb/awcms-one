@@ -377,7 +377,7 @@ async function writeAndSettleLegs(
  *   (the transaction rolls back).
  */
 export async function createReturn(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   orderId: string,

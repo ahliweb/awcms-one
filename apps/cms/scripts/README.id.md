@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:f2f1baa4102053ce87f7529a0bc94d215b664eb2c9492d9197a4e0dd94d15701 -->
+<!-- i18n-source-hash: sha256:041cdbaa0346e70d314ef56fd08f414ab7b829d29b41341dc7c9b0f9ccc050c6 -->
 
 # Scripts AWCMS
 
@@ -27,7 +27,7 @@ lalu membangun duplikatnya.
 
 <!-- Dihasilkan `bun run scripts:inventory:generate`. JANGAN diedit tangan. -->
 
-147 target menjalankan berkas di `scripts/`; 64 di antaranya
+161 target menjalankan berkas di `scripts/`; 64 di antaranya
 ada di rantai `bun run check` (kolom **Gate**), sisanya dijalankan manual,
 terjadwal, atau oleh workflow CI tertentu.
 
@@ -74,6 +74,19 @@ terjadwal, atau oleh workflow CI tertentu.
 | `ci:local`                                | `ci-local.ts`                                  | —    |
 | `comments:resources:check`                | `comments-resources-check.ts`                  | ✅   |
 | `comments:retention`                      | `comments-retention.ts`                        | —    |
+| `commerce:campaigns:dispatch`             | `commerce-campaigns-dispatch.ts`               | —    |
+| `commerce:customer-auth:purge`            | `commerce-customer-auth-purge.ts`              | —    |
+| `commerce:deploy:preflight`               | `commerce-deploy-preflight.ts`                 | —    |
+| `commerce:flash-sales:tick`               | `commerce-flash-sales-tick.ts`                 | —    |
+| `commerce:inventory:cutover`              | `commerce-inventory-cutover.ts`                | —    |
+| `commerce:loyalty:expire`                 | `commerce-loyalty-expire.ts`                   | —    |
+| `commerce:loyalty:reconcile`              | `commerce-loyalty-reconcile.ts`                | —    |
+| `commerce:orders:expire`                  | `commerce-orders-expire.ts`                    | —    |
+| `commerce:payments:reconcile`             | `commerce-payments-reconcile.ts`               | —    |
+| `commerce:shipping-rates:purge`           | `commerce-shipping-rates-purge.ts`             | —    |
+| `commerce:tax:cutover`                    | `commerce-tax-cutover.ts`                      | —    |
+| `commerce:whatsapp:dispatch`              | `commerce-whatsapp-dispatch.ts`                | —    |
+| `commerce:whatsapp:purge`                 | `commerce-whatsapp-purge.ts`                   | —    |
 | `config:env:coverage:check`               | `env-contract-coverage-check.ts`               | ✅   |
 | `config:validate`                         | `validate-env.ts`                              | —    |
 | `contracts:omes:sync`                     | `sync-omes-contracts.ts`                       | —    |
@@ -82,6 +95,7 @@ terjadwal, atau oleh workflow CI tertentu.
 | `data-lifecycle:registry:check`           | `data-lifecycle-registry-check.ts`             | ✅   |
 | `data-lifecycle:table-coverage:check`     | `data-lifecycle-table-coverage-check.ts`       | ✅   |
 | `data-lifecycle:worker-grants:check`      | `data-lifecycle-worker-grants-check.ts`        | ✅   |
+| `db:commerce:renumber`                    | `commerce-migrations-renumber.ts`              | —    |
 | `db:fk-index:check`                       | `db-fk-index-check.ts`                         | ✅   |
 | `db:function-search-path:check`           | `db-function-search-path-check.ts`             | ✅   |
 | `db:jsonb-binding:check`                  | `jsonb-binding-check.ts`                       | ✅   |

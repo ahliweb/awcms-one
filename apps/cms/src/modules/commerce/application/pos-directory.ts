@@ -159,7 +159,6 @@ import {
 } from "./order-directory";
 import { recordPaymentAllocation } from "./payment-allocation-directory";
 import type { CartQuoteResult } from "../domain/cart-quote";
-import { inSavepoint } from "./savepoint";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE = "order";
@@ -301,7 +300,7 @@ export type CreatePosOrderOutcome =
  * @throws {InsufficientTenderError} cash tendered is less than the total.
  */
 export async function createPosOrder(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   mediaPort: MediaLibraryPort,
@@ -342,7 +341,7 @@ export async function createPosOrder(
 }
 
 async function createPosOrderWrite(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   mediaPort: MediaLibraryPort,
@@ -590,8 +589,7 @@ async function createPosOrderWrite(
   for (let attempt = 0; attempt < MAX_ORDER_CODE_ATTEMPTS; attempt += 1) {
     const candidateCode = generateOrderCode(now);
     try {
-      const rows = (await inSavepoint(
-        tx,
+      const rows = (await tx.savepoint(
         async (sp) =>
           await sp`
         INSERT INTO awcms_commerce_orders (

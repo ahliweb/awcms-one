@@ -61,7 +61,6 @@ import type {
   RegisterSessionStatus
 } from "../domain/register";
 import { IdempotencyPayloadMismatchError } from "./order-directory";
-import { inSavepoint } from "./savepoint";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE = "register_session";
@@ -416,7 +415,7 @@ export type OpenRegisterSessionOutcome =
  * @throws {IdempotencyPayloadMismatchError} same key, different payload.
  */
 export async function openRegisterSession(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   input: OpenSessionInput,
@@ -465,8 +464,7 @@ export async function openRegisterSession(
 
   let sessionId: string;
   try {
-    const rows = (await inSavepoint(
-      tx,
+    const rows = (await tx.savepoint(
       async (sp) =>
         await sp`
       INSERT INTO awcms_commerce_register_sessions (

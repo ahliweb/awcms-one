@@ -21,7 +21,6 @@ import {
   COMMERCE_REVIEW_AGGREGATE_TYPE,
   COMMERCE_REVIEW_PUBLISHED_EVENT_TYPE
 } from "../domain/commerce-events";
-import { inSavepoint } from "./savepoint";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE = "review";
@@ -53,7 +52,7 @@ export type CreateReviewOutcome =
  * in this branch.
  */
 export async function createReview(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   orderCode: string,
   phone: string,
@@ -96,8 +95,7 @@ export async function createReview(
 
   let rows: { id: string }[];
   try {
-    rows = (await inSavepoint(
-      tx,
+    rows = (await tx.savepoint(
       async (sp) =>
         await sp`
       INSERT INTO awcms_commerce_reviews (tenant_id, product_id, customer_id, order_id, rating, body)

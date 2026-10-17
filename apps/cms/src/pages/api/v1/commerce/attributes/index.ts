@@ -77,10 +77,13 @@ export const POST = defineTenantRoute({
       );
       return created(definition);
     } catch (error) {
-      // Same reasoning as `products/index.ts`: both errors are raised before
-      // anything is written (the limit check precedes the INSERT; the unique
-      // violation aborted the statement), so the commit `defineTenantRoute`
-      // performs on this normal return carries nothing.
+      // tx-swallow-ok: DuplicateAttributeKeyError,
+      // AttributeDefinitionLimitError are raised by application code before a
+      // write, or after the directory rolled its failed statement back to a
+      // savepoint, so the transaction is healthy.
+      // Same reasoning as `products/index.ts`: the limit check precedes the
+      // INSERT, and the unique violation was rolled back to a savepoint by the
+      // directory, so the transaction is still usable.
       if (error instanceof DuplicateAttributeKeyError) {
         return fail(409, "ATTRIBUTE_KEY_ALREADY_EXISTS", error.message);
       }

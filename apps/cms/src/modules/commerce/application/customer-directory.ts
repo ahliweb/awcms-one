@@ -17,7 +17,6 @@ import {
   type KeysetCursor
 } from "../../_shared/keyset-pagination";
 import { maskPhone } from "../domain/phone-normalisation";
-import { inSavepoint } from "./savepoint";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE = "customer";
@@ -68,7 +67,7 @@ function toAdminRecord(row: CustomerRow): CustomerAdminRecord {
  * and retries once (mirroring `createProduct`'s slug-collision handling).
  */
 export async function findOrCreateCustomerByPhone(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   name: string,
   phone: string,
@@ -85,8 +84,7 @@ export async function findOrCreateCustomerByPhone(
 
   let rows: CustomerRow[];
   try {
-    rows = (await inSavepoint(
-      tx,
+    rows = (await tx.savepoint(
       async (sp) =>
         await sp`
       INSERT INTO awcms_commerce_customers (tenant_id, name, phone, email)
