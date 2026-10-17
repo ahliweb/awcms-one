@@ -2220,6 +2220,7 @@ suite("booking allocator under real concurrency (Issue #939, ADR-0131)", () => {
           TRUNCATE awcms_booking_reservation_events, awcms_booking_resource_allocations,
                    awcms_booking_reservation_items, awcms_booking_reminder_intents,
                    awcms_booking_staff_assignments, awcms_booking_reservations
+          CASCADE
         `);
         await admin.unsafe(
           `ALTER TABLE awcms_booking_resource_allocations
