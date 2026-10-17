@@ -68,12 +68,21 @@ const ROUTES: Record<string, string[]> = {
   ],
   "commerce.booking_deposit_policies.update": [
     "src/pages/api/v1/commerce/products/[id]/deposit-policy.ts"
+  ],
+  // Issue #380 (sql/1041).
+  "commerce.booking_reservation_links.create": [
+    "src/pages/api/v1/commerce/booking/reservations/index.ts"
+  ],
+  "commerce.booking_reservation_links.read": [
+    "src/pages/api/v1/commerce/booking/reservations/[id].ts",
+    "src/pages/api/v1/commerce/booking/reconciliation.ts"
   ]
 };
 
 const CONSTANT_TO_CODE: Record<string, string> = {
   COMMERCE_BOOKING_OFFERING_LINKS_ACTIVITY_CODE: "booking_offering_links",
-  COMMERCE_BOOKING_DEPOSIT_POLICIES_ACTIVITY_CODE: "booking_deposit_policies"
+  COMMERCE_BOOKING_DEPOSIT_POLICIES_ACTIVITY_CODE: "booking_deposit_policies",
+  COMMERCE_BOOKING_RESERVATION_LINKS_ACTIVITY_CODE: "booking_reservation_links"
 };
 
 function guardsIn(source: string): Set<string> {
@@ -107,12 +116,17 @@ async function sourceFilesUnder(directory: string): Promise<string[]> {
 }
 
 describe("permissions (evidence item 1)", () => {
-  test("the five keys are declared by the module from the part file, and sql/1039 seeds exactly them with the same descriptions", async () => {
+  test("the seven keys are declared by the module from the part file, and sql/1039 + sql/1041 seed exactly them with the same descriptions", async () => {
     for (const key of EXPECTED_KEYS) expect(declared.has(key)).toBe(true);
-    const sql = await readFile(
-      "sql/1039_awcms_commerce_booking_adapter_permissions.sql",
-      "utf8"
-    );
+    const sql =
+      (await readFile(
+        "sql/1039_awcms_commerce_booking_adapter_permissions.sql",
+        "utf8"
+      )) +
+      (await readFile(
+        "sql/1041_awcms_commerce_booking_reservation_permissions.sql",
+        "utf8"
+      ));
     const seeded = [
       ...sql.matchAll(
         /\('commerce', '([a-z_]+)', '([a-z_]+)', '((?:[^']|'')*)'\)/g
@@ -156,7 +170,7 @@ describe("permissions (evidence item 1)", () => {
     for (const key of BOOKING_ADAPTER_PENDING_PERMISSIONS) {
       expect(declared.has(key), key).toBe(false);
     }
-    expect(BOOKING_ADAPTER_PENDING_PERMISSIONS).toHaveLength(10);
+    expect(BOOKING_ADAPTER_PENDING_PERMISSIONS).toHaveLength(8);
     // Reads, create and update are not high-risk (matrix section 2); cancel and
     // approve are, so registering the pending keys later classes them correctly
     // with no change to the upstream-owned AccessAction union.
@@ -260,10 +274,22 @@ describe("tables", () => {
 });
 
 describe("module wiring and boundary", () => {
-  test("the booking feature defaults OFF, and the part files carry the navigation and consumers (empty for now)", () => {
+  test("the booking feature defaults OFF, and the part files carry the navigation (empty) and the five consumers of Issue #380", () => {
     expect(DEFAULT_COMMERCE_FEATURES.booking).toBe(false);
     expect(BOOKING_ADAPTER_NAVIGATION).toEqual([]);
-    expect(BOOKING_ADAPTER_CONSUMERS).toEqual([]);
+    expect(BOOKING_ADAPTER_CONSUMERS.map((entry) => entry.name)).toEqual([
+      "commerce.booking_order_paid_confirmer",
+      "commerce.booking_expired_order_canceller",
+      "commerce.booking_cancelled_order_canceller",
+      "commerce.booking_order_cancelled_hold_releaser",
+      "commerce.booking_late_payment_flagger"
+    ]);
+    // The default idempotency (the runtime wraps `handle`); never self-managed.
+    for (const entry of BOOKING_ADAPTER_CONSUMERS) {
+      expect(entry.idempotency ?? "runtime_effect_once").toBe(
+        "runtime_effect_once"
+      );
+    }
     const settings = commerce.settings?.defaults as {
       features: Record<string, boolean>;
     };
@@ -294,7 +320,7 @@ describe("module wiring and boundary", () => {
     }
   });
 
-  test("the only read of a Booking table is the one offering lookup, and commerce writes none", async () => {
+  test("the only reads of a Booking table are the offering lookup and the reservation reads, and commerce writes none", async () => {
     const readers: string[] = [];
     for (const file of await sourceFilesUnder("src/modules/commerce")) {
       const source = await readFile(file, "utf8");
@@ -303,8 +329,9 @@ describe("module wiring and boundary", () => {
         /(?:INSERT\s+INTO|UPDATE|DELETE\s+FROM)\s+awcms_booking_/i
       );
     }
-    expect(readers).toEqual([
-      "src/modules/commerce/application/booking-offering-links.ts"
+    expect(readers.sort()).toEqual([
+      "src/modules/commerce/application/booking-offering-links.ts",
+      "src/modules/commerce/application/booking-reservation-reads.ts"
     ]);
   });
 

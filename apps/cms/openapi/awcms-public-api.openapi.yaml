@@ -10788,6 +10788,137 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/booking/reconciliation:
+    get:
+      operationId: getCommerceBookingReconciliation
+      tags:
+        - Commerce
+      summary: "Issue #380 (threat control C-09). The read-only booking reconciliation: active reservation links whose order's ledger and whose Booking reservation disagree - `paid_without_confirm` (money at or above the release threshold, reservation still held, expired or cancelled) and `confirmed_without_deposit` (reservation confirmed, ledger below the threshold). Writes and repairs nothing; bounded to 200 rows (`truncated`). Gated on `commerce.booking_reservation_links.read` and the tenant's `booking` feature."
+      responses:
+        "200":
+          description: The disagreeing pairs.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceBookingReconciliation"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`FEATURE_DISABLED` - the `booking` feature is off."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/booking/reservations:
+    post:
+      operationId: createCommerceBookingReservation
+      tags:
+        - Commerce
+      summary: "Issue #380 (ADR-0045 G2, G4, G5, G10; contracts 3.2). Hold a Booking slot or stay for a guest and create the commerce order from it in ONE idempotent call (the staff variant). Gated on `commerce.booking_reservation_links.create` and the tenant's `booking` feature; requires `Idempotency-Key`."
+      description: "The hold (through `BookingPort`, with the staff member as the acting user), the order and the reservation link are written in one transaction. The price is the linked product's (a body naming `price`, `amount`, `deposit` or `customerId` is a 400), the line quantity is the night count for a stay, and `dp_amount` is the product's deposit policy when `payment.method` is `dp`. The order expires with the hold. The `Idempotency-Key` is namespaced by the calling staff member and stored as the link's `client_key`: the same key and request replays the original (`200`, `replayed: true`), the same key with another request is `409 IDEMPOTENCY_CONFLICT`. A Booking refusal keeps Booking's code under `409` (`429` for `HOLD_LIMIT_EXCEEDED`) and writes nothing. `resourceId` is required in v1 (a pool is not offered)."
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceBookingReservationCreate"
+      responses:
+        "200":
+          description: "Idempotent replay: the original result with `replayed: true`."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceBookingReservationCreated"
+        "201":
+          description: Reservation held and order created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceBookingReservationCreated"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED`, `OFFERING_NOT_LINKED`, `OFFERING_NOT_LINKABLE`, `QUANTITY_BASIS_MISMATCH`, `BOOKING_SERVICE_ACTOR_NOT_CONFIGURED`, `CART_CHANGED` (the product is no longer sellable as priced), `PAYMENT_METHOD_UNAVAILABLE`, `IDEMPOTENCY_CONFLICT`, or a Booking refusal under its own code (`SLOT_UNAVAILABLE`, `OUTSIDE_SCHEDULE`, `LEAD_TIME_VIOLATION`, `HORIZON_EXCEEDED`, `PARTY_SIZE_OUT_OF_RANGE`, `QUANTITY_EXCEEDS_UNITS`, `BOOKING_MODE_MISMATCH`, `MIN_STAY_VIOLATION`, `MAX_STAY_EXCEEDED`, `STAY_DATES_INVALID`, `STAFF_UNAVAILABLE`, `EXTERNAL_REF_IN_USE`, `CONTENTION_RETRY`, `INVALID_STATE`)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: "`HOLD_LIMIT_EXCEEDED` - the per-customer or per-tenant live-hold ceiling of the Booking module."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/booking/reservations/{id}:
+    get:
+      operationId: getCommerceBookingReservation
+      tags:
+        - Commerce
+      summary: "Issue #380 (contracts 3.4). A reservation's link, its order code, Booking's status and dates, the ledger-derived settlement and the attention flag. `id` is Booking's reservation id. Gated on `commerce.booking_reservation_links.read` and the tenant's `booking` feature. An unknown id and another tenant's id are the same 404. The customer is never a field (finding X7)."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The reservation.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceBookingReservationView"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED` - the `booking` feature is off."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/campaigns:
     get:
       operationId: listCommerceCampaigns
@@ -21165,6 +21296,124 @@ paths:
           description: Removed (or already absent — idempotent).
         "401":
           description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/booking/reservations:
+    post:
+      operationId: createCommerceStorefrontBookingReservation
+      tags:
+        - Commerce
+      summary: "Issue #380 (ADR-0045 G2, G5, G15; contracts 3.2). Hold a slot or stay and create the order from it in one idempotent request. Anonymous, with an optional `customerBearer`; behind the `booking` feature (off = the neutral 404)."
+      description: "An OPTIONAL `Authorization: Bearer <customer session token>` (`customerBearer`, ADR-0016 D3): present and live → the order is the account's own and `guest` is ignored; present and dead → `401 UNAUTHENTICATED`; absent → a guest checkout that needs `guest.name` and `guest.phone` (anonymous guest checkout is allowed server-side, G15; a tenant that wants accounts only enforces it in its storefront). The required `Idempotency-Key` is namespaced by the acting account, or the guest's phone, and stored as the reservation link's `client_key`: the same key and request replays the original (`200`, `replayed: true`), the same key with another request is `409 IDEMPOTENCY_CONFLICT`. The body never names a price, amount, deposit or customer (400). Booking sees the tenant's service-account user as the acting user (G3). Rate-limited per IP and per phone like the ordinary order route."
+      security: []
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceBookingReservationCreate"
+      responses:
+        "200":
+          description: "Idempotent replay: the original result with `replayed: true`."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceBookingReservationCreated"
+        "201":
+          description: Reservation held and order created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceBookingReservationCreated"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: UNAUTHENTICATED - an Authorization header was present but not a live customer session.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "403":
+          description: "`ACCOUNT_BLOCKED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "As the staff route: `OFFERING_NOT_LINKED`, `OFFERING_NOT_LINKABLE`, `QUANTITY_BASIS_MISMATCH`, `BOOKING_SERVICE_ACTOR_NOT_CONFIGURED`, `CART_CHANGED`, `PAYMENT_METHOD_UNAVAILABLE`, `IDEMPOTENCY_CONFLICT`, or a Booking refusal under its own code."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: "`RATE_LIMITED`, or `HOLD_LIMIT_EXCEEDED` from the Booking module."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/booking/reservations/{orderCode}:
+    get:
+      operationId: getCommerceStorefrontBookingReservation
+      tags:
+        - Commerce
+      summary: "Issue #380 (contracts 3.4). A shopper's own reservation: Booking's status and dates and the ledger-derived settlement (deposit, balance due, settled time). Identified by a live `customerBearer` or by the order's `phone`; an unknown code, another customer's code and another tenant's code are one neutral 404. Never carries the staff attention flag."
+      security: []
+      parameters:
+        - name: orderCode
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: phone
+          in: query
+          required: false
+          description: Required unless a valid `customerBearer` is presented.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: The reservation view without staff-only fields.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceBookingReservationView"
+        "401":
+          description: UNAUTHENTICATED - a bearer was presented but is not a live customer session.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: Rate limited.
           content:
             application/json:
               schema:
@@ -47173,6 +47422,202 @@ components:
           enum:
             - nights
             - booking
+    CommerceBookingReconciliation:
+      type: object
+      description: "Issue #380 (C-09). Active reservation links whose order's ledger and whose Booking reservation disagree."
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              kind:
+                type: string
+                enum:
+                  - paid_without_confirm
+                  - confirmed_without_deposit
+              linkId:
+                type: string
+                format: uuid
+              orderId:
+                type: string
+                format: uuid
+              orderCode:
+                type: string
+              orderStatus:
+                type: string
+              reservationId:
+                type: string
+                format: uuid
+              reservationNo:
+                type: string
+              reservationStatus:
+                type: string
+              total:
+                type: string
+              threshold:
+                type: string
+                description: "The release threshold: `dp_amount` for a down-payment order, otherwise the total."
+              settled:
+                type: string
+              attentionReason:
+                type: string
+                nullable: true
+              attentionOpen:
+                type: boolean
+        truncated:
+          type: boolean
+    CommerceBookingReservationCreate:
+      type: object
+      description: "Issue #380. Exactly one of `stay` and `startsAt`, by the offering's granularity (`stay` for a night-based offering, `startsAt` for a time slot). No amount, price, deposit, total, order id or customer id is accepted (400)."
+      required:
+        - offeringId
+        - resourceId
+        - partySize
+        - payment
+      properties:
+        offeringId:
+          type: string
+          format: uuid
+        resourceId:
+          type: string
+          format: uuid
+        startsAt:
+          type: string
+          format: date-time
+          description: A slot's start, an RFC 3339 UTC instant ending in Z.
+        stay:
+          type: object
+          required:
+            - checkInDate
+            - checkOutDate
+          properties:
+            checkInDate:
+              type: string
+              format: date
+            checkOutDate:
+              type: string
+              format: date
+              description: Exclusive; the night count is the difference in days.
+        partySize:
+          type: integer
+          minimum: 1
+          maximum: 500
+        guest:
+          type: object
+          description: Required for an anonymous request and for the staff route; ignored when a live customerBearer is presented.
+          required:
+            - name
+            - phone
+          properties:
+            name:
+              type: string
+            phone:
+              type: string
+            email:
+              type: string
+              nullable: true
+        payment:
+          type: object
+          required:
+            - method
+          properties:
+            method:
+              type: string
+              enum:
+                - manual_bank
+                - manual_qris
+                - dp
+                - gateway
+        notes:
+          type: string
+          maxLength: 500
+    CommerceBookingReservationCreated:
+      type: object
+      description: "Issue #380. The hold and the order it created. No customer field."
+      properties:
+        replayed:
+          type: boolean
+        orderId:
+          type: string
+          format: uuid
+        orderCode:
+          type: string
+        reservation:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+            reservationNo:
+              type: string
+            status:
+              type: string
+              description: Booking's status (`held` right after the hold).
+            holdExpiresAt:
+              type: string
+              format: date-time
+              nullable: true
+            startsAt:
+              type: string
+              format: date-time
+            endsAt:
+              type: string
+              format: date-time
+        settlement:
+          $ref: "#/components/schemas/CommerceSettlement"
+    CommerceBookingReservationView:
+      type: object
+      description: "Issue #380. A reservation's view: Booking's facts, the order's code and status, the ledger-derived settlement. `attentionReason`/`attentionOpen` are present on the STAFF route only. `refund` stays null until the cancellation issue records decisions. No customer field."
+      properties:
+        reservationId:
+          type: string
+          format: uuid
+        reservationNo:
+          type: string
+        orderId:
+          type: string
+          format: uuid
+        orderCode:
+          type: string
+        orderStatus:
+          type: string
+        status:
+          type: string
+          description: Booking's reservation status.
+        linkStatus:
+          type: string
+          enum:
+            - active
+            - superseded
+            - released
+        holdExpiresAt:
+          type: string
+          format: date-time
+          nullable: true
+        startsAt:
+          type: string
+          format: date-time
+        endsAt:
+          type: string
+          format: date-time
+        settlement:
+          $ref: "#/components/schemas/CommerceSettlement"
+        attentionReason:
+          type: string
+          nullable: true
+          enum:
+            - deposit_after_expiry
+            - confirm_failed
+            - rescheduled_externally
+            - cancelled_externally_paid
+          description: Staff route only.
+        attentionOpen:
+          type: boolean
+          description: "Staff route only: a flag is raised and not yet resolved."
+        refund:
+          type: object
+          nullable: true
     CommerceBundle:
       type: object
       required:

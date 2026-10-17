@@ -14,6 +14,7 @@ import {
   ORDER_STATUSES,
   type OrderStatus
 } from "../../../../../../modules/commerce/domain/order-status";
+import { BookingOrderUseAdapterError } from "../../../../../../modules/commerce/application/booking-order-guards";
 import { inventoryErrorResponse } from "../../../../../../modules/commerce/application/commerce-inventory-http";
 
 /** `PATCH /api/v1/commerce/orders/{id}/status` — admin status transition, enforced through `domain/order-status.ts`'s legal-transition table (Issue #29). */
@@ -79,6 +80,11 @@ export const PATCH = defineTenantRoute({
           {},
           { outstanding: error.outstanding }
         );
+      }
+      if (error instanceof BookingOrderUseAdapterError) {
+        // Issue #380 (ADR-0045 G11): a paid booking order is cancelled through
+        // its reservation, never by the generic status edge.
+        return fail(409, "BOOKING_ORDER_USE_ADAPTER", error.message);
       }
       if (error instanceof IllegalOrderStatusTransitionError) {
         return fail(

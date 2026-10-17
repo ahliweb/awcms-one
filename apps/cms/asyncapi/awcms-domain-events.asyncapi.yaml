@@ -889,6 +889,23 @@ channels:
       reacts to it. A whole-total order fires none. Payload: `orderId`,
       `orderCode`, `total`, `deposit`, `settledAt` - never a customer
       name/phone or a payment reference.
+  awcms.commerce.booking_reservation_link.attention_raised:
+    address: awcms.commerce.booking_reservation_link.attention_raised
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      The booking adapter could not reconcile an order with its Booking
+      reservation on its own (Issue #380, ADR-0045 G7, threat controls
+      C-08/C-09): a deposit settled after the hold lapsed
+      (`deposit_after_expiry`), the confirmation was refused
+      (`confirm_failed`), or the reservation was cancelled or moved outside the
+      adapter while the order holds money (`cancelled_externally_paid`,
+      `rescheduled_externally`). Producer:
+      `commerce/application/booking-attention.ts`'s `raiseBookingAttention`, in
+      the same transaction as the flag on the reservation link; fired once per
+      open flag. Aggregate: the order. Payload: `orderId`, `reservationId`,
+      `reason` - never a customer name/phone, an amount or a payment reference.
   awcms.commerce.payment.reversed:
     address: awcms.commerce.payment.reversed
     messages:
@@ -1634,6 +1651,12 @@ operations:
       $ref: "#/channels/awcms.commerce.order.settled"
     messages:
       - $ref: "#/channels/awcms.commerce.order.settled/messages/DomainEvent"
+  publishCommerceBookingAttentionRaised:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.booking_reservation_link.attention_raised"
+    messages:
+      - $ref: "#/channels/awcms.commerce.booking_reservation_link.attention_raised/messages/DomainEvent"
   publishCommercePaymentReversed:
     action: send
     channel:

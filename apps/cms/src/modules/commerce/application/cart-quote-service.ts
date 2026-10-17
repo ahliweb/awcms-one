@@ -17,6 +17,7 @@ import {
   computeDerivedBundlePrice
 } from "../domain/bundle";
 import { fetchStoreSettings } from "./store-settings-directory";
+import type { DepositPolicySnapshot } from "../domain/booking-deposit-calc";
 import type {
   MediaLibraryPort,
   ResolvedMediaReferenceDTO
@@ -35,6 +36,7 @@ import {
   type CartQuoteVoucherRowLookup,
   type CustomerLevel
 } from "../domain/cart-quote";
+import { normalizeMoney } from "../domain/price-calculation";
 import type { ProductStatus } from "../domain/product-status";
 import type { ServiceFormField } from "../domain/service-form-validation";
 import { resolveShippingRateProvider } from "../infrastructure/shipping-rate-provider-resolver";
@@ -170,6 +172,65 @@ async function fetchActiveFlashSaleSnapshots(
     map.set(`${row.product_id}:${row.variant_id ?? ""}`, row);
   }
   return map;
+}
+
+/**
+ * Issue #380 (ADR-0041 D4) - the ACTIVE deposit policy of each product named,
+ * keyed by product id. A product without an active row is absent (paid in full,
+ * or the legacy store-wide rule, G10).
+ */
+async function fetchDepositPolicySnapshots(
+  tx: Bun.SQL,
+  tenantId: string,
+  productIds: readonly string[]
+): Promise<Map<string, DepositPolicySnapshot>> {
+  const map = new Map<string, DepositPolicySnapshot>();
+  if (productIds.length === 0) return map;
+
+  const rows = (await tx`
+    SELECT product_id, kind, percent, fixed_amount
+    FROM awcms_commerce_product_deposit_policies
+    WHERE tenant_id = ${tenantId}
+      AND retired_at IS NULL
+      AND product_id = ANY(${tx.array([...new Set(productIds)], "uuid")}::uuid[])
+  `) as {
+    product_id: string;
+    kind: "percent" | "fixed";
+    percent: string | null;
+    fixed_amount: string | null;
+  }[];
+
+  for (const row of rows) {
+    if (row.kind === "percent" && row.percent !== null) {
+      map.set(row.product_id, {
+        kind: "percent",
+        percent: normalizeMoney(row.percent)
+      });
+    } else if (row.kind === "fixed" && row.fixed_amount !== null) {
+      map.set(row.product_id, {
+        kind: "fixed",
+        fixedAmount: normalizeMoney(row.fixed_amount)
+      });
+    }
+  }
+  return map;
+}
+
+/** Issue #380 (ADR-0045 D1) - the products among `productIds` with an ACTIVE Booking offering link. */
+async function fetchBookingLinkedProductIds(
+  tx: Bun.SQL,
+  tenantId: string,
+  productIds: readonly string[]
+): Promise<Set<string>> {
+  if (productIds.length === 0) return new Set();
+  const rows = (await tx`
+    SELECT product_id
+    FROM awcms_commerce_booking_offering_links
+    WHERE tenant_id = ${tenantId}
+      AND status = 'active'
+      AND product_id = ANY(${tx.array([...new Set(productIds)], "uuid")}::uuid[])
+  `) as { product_id: string }[];
+  return new Set(rows.map((row) => row.product_id));
 }
 
 async function fetchVoucherRow(
@@ -365,6 +426,8 @@ export async function buildCartQuote(
     destination?: { districtCode: string } | null;
     /** Issue #118 — resolved by the CALLER (the storefront quote route from an optional Bearer, `order-directory.ts` from the account it already looked up); `null`/absent for an anonymous or level-1 caller. */
     customerLevel?: CustomerLevel | null;
+    /** Issue #380 - the hold-to-order path only: a booking-linked product is sellable and its stock counter is not consulted. */
+    bookingSale?: boolean;
   },
   now: Date = new Date(),
   providerSql?: Bun.SQL
@@ -386,6 +449,16 @@ export async function buildCartQuote(
     now
   );
   const storeSettings = await fetchStoreSettings(tx, tenantId);
+  const depositPolicies = await fetchDepositPolicySnapshots(
+    tx,
+    tenantId,
+    productIds
+  );
+  const bookingLinkedProductIds = await fetchBookingLinkedProductIds(
+    tx,
+    tenantId,
+    productIds
+  );
 
   const imageRows = await listLiveProductImagesByProductIds(tx, tenantId, [
     ...productRows.keys()
@@ -515,6 +588,9 @@ export async function buildCartQuote(
     // `quoteCart` only ever multiplies it against
     // `storeSettings.payment.gateway.enabled`.
     gatewayProviderConfigured: isPaymentGatewayProviderConfigured(),
+    depositPolicies,
+    bookingLinkedProductIds,
+    bookingSale: input.bookingSale ?? false,
     // Issue #293 (ADR-0039) — `{ mode: "flat" }` (the default; nothing else is
     // queried) or the tax module's version + the products' categories.
     tax: await resolveCartTaxContext(tx, tenantId, productIds, now)

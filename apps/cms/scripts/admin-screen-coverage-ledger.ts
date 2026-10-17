@@ -54,7 +54,7 @@ export const NOT_YET_SCREENED: readonly string[] = [
   "comments.settings.read",
   "comments.settings.update",
 
-  // commerce (5) - Issue #378 (ADR-0045) lands the booking adapter's
+  // commerce (7) - Issues #378 and #380 (ADR-0045) lands the booking adapter's
   // offering-link and deposit-policy ROUTES but, by its scope, no screen: the
   // admin screens arrive with the adapter's screen issues, which remove these
   // lines. Not a judgement that an operator should not drive them from a page.
@@ -63,6 +63,11 @@ export const NOT_YET_SCREENED: readonly string[] = [
   "commerce.booking_offering_links.create",
   "commerce.booking_offering_links.read",
   "commerce.booking_offering_links.update",
+  // Issue #380 (ADR-0045) - the hold-to-order, reservation-read and
+  // reconciliation ROUTES, and no screen (the screens arrive with the adapter's
+  // screen issues, which remove these lines).
+  "commerce.booking_reservation_links.create",
+  "commerce.booking_reservation_links.read",
 
   // email (6)
   "email.announcement.create",

@@ -149,3 +149,63 @@ export async function fetchReservationLinkCustomer(
     ? { linkId: row.id, orderId: row.order_id, customerId: row.customer_id }
     : null;
 }
+
+// ---------------------------------------------------------------------------
+// Issue #380 - the reservation reads (contracts section 3.4)
+// ---------------------------------------------------------------------------
+
+/** How a storefront caller proves the order is theirs: the bearer session's customer, or the order's own phone (C-05, C-32). */
+export type OwnReservationIdentity =
+  { kind: "customer"; customerId: string } | { kind: "phone"; phone: string };
+
+/**
+ * The link of the order `orderCode`, ONLY when it belongs to the caller. The
+ * ownership check is part of the query - the customer id compared to the
+ * server-resolved one, or the customer's phone to the normalised one the caller
+ * typed - so an unknown code, another customer's code and another tenant's code
+ * are one `null` (the route answers one neutral 404). The active link wins over
+ * a superseded or released one.
+ */
+export async function fetchReservationLinkForOrderCode(
+  tx: Bun.SQL,
+  tenantId: string,
+  orderCode: string,
+  identity: OwnReservationIdentity
+): Promise<ReservationLinkSummary | null> {
+  const customerId = identity.kind === "customer" ? identity.customerId : null;
+  const phone = identity.kind === "phone" ? identity.phone : null;
+  const rows = (await tx`
+    SELECT ${tx.unsafe(SUMMARY_COLUMNS)}
+    FROM awcms_commerce_booking_reservation_links l
+    JOIN awcms_commerce_orders o
+      ON o.tenant_id = l.tenant_id AND o.id = l.order_id
+    JOIN awcms_commerce_customers c
+      ON c.tenant_id = o.tenant_id AND c.id = o.customer_id
+    WHERE l.tenant_id = ${tenantId}
+      AND o.order_code = ${orderCode}
+      AND o.channel = 'storefront'
+      AND (
+        (${customerId}::uuid IS NOT NULL AND c.id = ${customerId}::uuid)
+        OR (${phone}::text IS NOT NULL AND c.phone = ${phone}::text)
+      )
+    ORDER BY (l.status = 'active') DESC, l.created_at DESC, l.id DESC
+    LIMIT 1
+  `) as SummaryRow[];
+  return rows[0] ? toSummary(rows[0]) : null;
+}
+
+/** The link of a Booking reservation, staff view (tenant-scoped by RLS and the predicate); the active one wins. */
+export async function fetchReservationLinkByReservationId(
+  tx: Bun.SQL,
+  tenantId: string,
+  reservationId: string
+): Promise<ReservationLinkSummary | null> {
+  const rows = (await tx`
+    SELECT ${tx.unsafe(SUMMARY_COLUMNS)}
+    FROM awcms_commerce_booking_reservation_links l
+    WHERE l.tenant_id = ${tenantId} AND l.reservation_id = ${reservationId}
+    ORDER BY (l.status = 'active') DESC, l.created_at DESC, l.id DESC
+    LIMIT 1
+  `) as SummaryRow[];
+  return rows[0] ? toSummary(rows[0]) : null;
+}
