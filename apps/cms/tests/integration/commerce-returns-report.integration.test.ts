@@ -174,7 +174,7 @@ function reconcile(tenantId: string) {
 /** Raw table rows (admin channel, `updated_at` excluded) to compare a rebuild against live rows byte for byte. */
 async function rawRows(tenantId: string): Promise<string> {
   const rows = await getAdminSql()`
-    SELECT to_jsonb(t) - 'updated_at' AS row
+    SELECT to_jsonb(t) - 'updated_at' - 'id' AS row
     FROM awcms_commerce_report_returns_daily t
     WHERE tenant_id = ${tenantId}
     ORDER BY day, register_id, section, bucket, detail
