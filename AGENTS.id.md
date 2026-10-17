@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](AGENTS.md)
 
-<!-- i18n-source-hash: sha256:8de29613c93b4361a4a0f16fde96077a095b02f972e543c4b0001c0d7bc05b9a -->
+<!-- i18n-source-hash: sha256:89b2faf6434c5f5df273cb23ec6d63153e6e392edf816836748b01ea4750964c -->
 
 # AGENTS.md — kontrak kerja awcms-one
 
@@ -87,6 +87,8 @@ Sumber `apps/cms` sendiri adalah pohon milik upstream, dibawa ke sini untuk alas
 
 - `apps/cms/src/modules/identity-access/domain/access-control.ts` dan `apps/cms/src/lib/ui/admin-form-client.ts` — impor CSV katalog milik issue #291. Union `AccessAction` mendapat `import`, diklasifikasikan berisiko tinggi di samping `export` (penulisan katalog massal layak mendapat bobot step-up dan audit yang sama dengan pembacaan massal), dan inti fetch admin bersama mendapat `sendTextRequest`, saudara `text/csv` dari `sendJsonRequest`, agar pemeriksaan amplop sukses tetap bersumber tunggal seperti yang diwajibkan `apps/cms/tests/admin-json-client-core.test.ts`. Bundel ter-commit `apps/cms/public/js/blog-preview-overlay.js` mengimpor inti tersebut dan ikut dibangun ulang: saat konflik, pertahankan kedua silsilah di dua berkas sumber, lalu jalankan ulang `bun run build:preview-overlay` di `apps/cms` alih-alih menggabungkan bundel secara manual. Kedua tambahan bersifat generik dan layak diusulkan ke upstream `ahliweb/awcms`.
 - `apps/cms/tests/openapi-bundle.test.ts` — **timeout-nya bukan lagi divergensi** sejak sinkronisasi #377: upstream v10.8.0 membawa timeout eksplisit 60 detik pada tes bundel dan pada `openapi-route-parity-mutation.test.ts` sendiri, dan embed ini memakai versi upstream. Yang masih dibawa berkas ini adalah izin aditif commerce untuk skema keamanan `customerBearer` (issue #89); pertahankan versi kita saat konflik.
+
+- `apps/cms/tests/integration/booking-concurrency.integration.test.ts` dan `booking-stay.integration.test.ts` — masing-masing satu kata: `CASCADE` pada `TRUNCATE` tabel-tabel Booking di tes "detects the defect" (T7, T13), yang menghapus sebuah exclusion constraint, menulis baris yang melanggarnya, lalu mengosongkan tabel untuk memulihkannya (issue #378). `awcms_commerce_booking_reservation_links` milik commerce memegang FK komposit ke `awcms_booking_reservations` yang diwajibkan ADR-0045 D2, dan PostgreSQL menolak `TRUNCATE` atas tabel yang dirujuk FK dari luar daftar itu, bahkan saat kosong. Pertahankan versi kita saat konflik; diusulkan ke upstream di #420 (butir 7), dan pensiun saat upstream mengadopsinya.
 
 - `apps/cms/tests/db-migrate-ordering.test.ts`, `apps/cms/tests/scripts-lib-extraction.test.ts` dan `apps/cms/tests/integration/omes-control-deployment-boundary.integration.test.ts` — tiga assertion yang ditulis ketika setiap nama migrasi tiga digit (`localeCompare` sebagai urutan yang diharapkan; pola berkas `\d{3}`). `sql/1000` isu #323 adalah nama empat digit pertama, dan runner upstream (ADR-0130) mengurutkan menurut prefiks numerik, sehingga dua yang pertama kini mengurutkan dengan `compareMigrationNames` dan yang ketiga menerima `\d{3,4}`. Pertahankan versi kita saat konflik; usulkan perubahan yang sama ke upstream, yang akan dipaksa melakukannya oleh migrasi empat digit pertamanya. `apps/cms/tests/commerce-returns-routes.test.ts` juga mendaftarkan `1000_awcms_commerce_returns_tax_refund.sql` di antara migrasi retur.
 
