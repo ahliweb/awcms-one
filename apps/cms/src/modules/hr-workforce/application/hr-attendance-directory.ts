@@ -85,7 +85,18 @@ export function parseAttendanceCursor(cursor: string): KeysetCursor | null {
 export type ReadBasis =
   | { mode: "all" }
   | { mode: "mine"; tenantUserId: string }
-  | { mode: "reports"; tenantUserId: string };
+  | { mode: "reports"; tenantUserId: string }
+  /**
+   * EXACTLY these employments. For a screen that has already resolved a
+   * narrower set than the manager chain (the supervisor screen reads direct
+   * reports only, Issue #952). Never built from a request parameter: the caller
+   * derives the ids from `directReportLinks`, which is bound to the caller.
+   *
+   * AUDIT: `auditEvidenceRead` (location evidence) records only basis `all`. A
+   * future `ids` caller that reads evidence, or any other sensitive surface,
+   * must record its own audit row: this basis does not record one for it.
+   */
+  | { mode: "ids"; employmentIds: readonly string[] };
 
 /**
  * Every live (not soft-deleted) employment of the caller, terminated ones
@@ -152,6 +163,10 @@ export async function employmentWithinBasis(
     ).includes(employmentId);
   }
 
+  if (basis.mode === "ids") {
+    return basis.employmentIds.includes(employmentId);
+  }
+
   return (await reportIdsOf(tx, tenantId, basis.tenantUserId)).includes(
     employmentId
   );
@@ -185,6 +200,10 @@ async function basisEmploymentIds(
 
   if (basis.mode === "mine") {
     return callerEmploymentIds(tx, tenantId, basis.tenantUserId);
+  }
+
+  if (basis.mode === "ids") {
+    return [...basis.employmentIds];
   }
 
   return reportIdsOf(tx, tenantId, basis.tenantUserId);
@@ -837,6 +856,10 @@ export async function createCorrection(
 
         instanceId = workflow.instanceId;
       } catch (error) {
+        // tx-swallow-ok: Raised by the workflow engine on a healthy
+        // transaction (WorkflowDefinitionNotActiveError /
+        // InvalidWorkflowFactsError are thrown after read-only checks; the
+        // engine catches no database error beneath them).
         if (error instanceof WorkflowDefinitionNotActiveError) {
           return { kind: "not_configured" };
         }
@@ -985,6 +1008,9 @@ export async function withdrawCorrection(
       correlationId: actor.correlationId
     });
   } catch (error) {
+    // tx-swallow-ok: WorkflowRecoveryError is raised by the engine after
+    // read-only checks, on a healthy transaction; the engine catches no
+    // database error beneath it.
     if (error instanceof WorkflowRecoveryError) {
       // Already decided (or cancelled) in the engine; `settle` reconciles it.
       return { outcome: "workflow_already_decided" };

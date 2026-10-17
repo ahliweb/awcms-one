@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:4eaac6db3803efdbc94d7d9b72532c3483cdbad5704fa11ac2f0874a58d8d5b2 -->
+<!-- i18n-source-hash: sha256:f2f1baa4102053ce87f7529a0bc94d215b664eb2c9492d9197a4e0dd94d15701 -->
 
 # Scripts AWCMS
 
@@ -27,7 +27,7 @@ lalu membangun duplikatnya.
 
 <!-- Dihasilkan `bun run scripts:inventory:generate`. JANGAN diedit tangan. -->
 
-159 target menjalankan berkas di `scripts/`; 63 di antaranya
+147 target menjalankan berkas di `scripts/`; 64 di antaranya
 ada di rantai `bun run check` (kolom **Gate**), sisanya dijalankan manual,
 terjadwal, atau oleh workflow CI tertentu.
 
@@ -74,19 +74,6 @@ terjadwal, atau oleh workflow CI tertentu.
 | `ci:local`                                | `ci-local.ts`                                  | —    |
 | `comments:resources:check`                | `comments-resources-check.ts`                  | ✅   |
 | `comments:retention`                      | `comments-retention.ts`                        | —    |
-| `commerce:campaigns:dispatch`             | `commerce-campaigns-dispatch.ts`               | —    |
-| `commerce:customer-auth:purge`            | `commerce-customer-auth-purge.ts`              | —    |
-| `commerce:deploy:preflight`               | `commerce-deploy-preflight.ts`                 | —    |
-| `commerce:flash-sales:tick`               | `commerce-flash-sales-tick.ts`                 | —    |
-| `commerce:inventory:cutover`              | `commerce-inventory-cutover.ts`                | —    |
-| `commerce:loyalty:expire`                 | `commerce-loyalty-expire.ts`                   | —    |
-| `commerce:loyalty:reconcile`              | `commerce-loyalty-reconcile.ts`                | —    |
-| `commerce:orders:expire`                  | `commerce-orders-expire.ts`                    | —    |
-| `commerce:payments:reconcile`             | `commerce-payments-reconcile.ts`               | —    |
-| `commerce:shipping-rates:purge`           | `commerce-shipping-rates-purge.ts`             | —    |
-| `commerce:tax:cutover`                    | `commerce-tax-cutover.ts`                      | —    |
-| `commerce:whatsapp:dispatch`              | `commerce-whatsapp-dispatch.ts`                | —    |
-| `commerce:whatsapp:purge`                 | `commerce-whatsapp-purge.ts`                   | —    |
 | `config:env:coverage:check`               | `env-contract-coverage-check.ts`               | ✅   |
 | `config:validate`                         | `validate-env.ts`                              | —    |
 | `contracts:omes:sync`                     | `sync-omes-contracts.ts`                       | —    |
@@ -95,13 +82,13 @@ terjadwal, atau oleh workflow CI tertentu.
 | `data-lifecycle:registry:check`           | `data-lifecycle-registry-check.ts`             | ✅   |
 | `data-lifecycle:table-coverage:check`     | `data-lifecycle-table-coverage-check.ts`       | ✅   |
 | `data-lifecycle:worker-grants:check`      | `data-lifecycle-worker-grants-check.ts`        | ✅   |
-| `db:commerce:renumber`                    | `commerce-migrations-renumber.ts`              | —    |
 | `db:fk-index:check`                       | `db-fk-index-check.ts`                         | ✅   |
 | `db:function-search-path:check`           | `db-function-search-path-check.ts`             | ✅   |
 | `db:jsonb-binding:check`                  | `jsonb-binding-check.ts`                       | ✅   |
 | `db:migrate`                              | `db-migrate.ts`                                | —    |
 | `db:pool:health`                          | `db-pool-health.ts`                            | —    |
 | `db:tenant-context:check`                 | `tenant-context-usage-check.ts`                | ✅   |
+| `db:transaction-swallow:check`            | `transaction-swallow-check.ts`                 | ✅   |
 | `db:work-class:check`                     | `work-class-registry-check.ts`                 | ✅   |
 | `db:work-class:generate`                  | `work-class-registry-generate.ts`              | —    |
 | `deps:audit:check`                        | `dependency-audit-check.ts`                    | ✅   |
@@ -161,6 +148,7 @@ terjadwal, atau oleh workflow CI tertentu.
 | `payroll:sql-boundary:check`              | `payroll-sql-boundary-check.ts`                | ✅   |
 | `project-state:inventory:check`           | `project-state-inventory.ts`                   | ✅   |
 | `project-state:inventory:generate`        | `project-state-inventory.ts`                   | —    |
+| `push:auth-secret:backfill`               | `push-auth-secret-backfill.ts`                 | —    |
 | `push:dispatch`                           | `push-dispatch.ts`                             | —    |
 | `push:queue:purge`                        | `push-queue-purge.ts`                          | —    |
 | `push:vapid:generate`                     | `push-vapid-generate.ts`                       | —    |

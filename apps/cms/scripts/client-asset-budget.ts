@@ -1256,6 +1256,15 @@ export const READER_BUDGET_BYTES = 24_000;
  * (334,800 -> 335,108 on its own base); no stylesheet grew.
  *
  * Stacked on #1008 (335,426 B): +308 B for #1018, 335,734 B.
+ *
+ * **Raised for Issue #952** (the five `/admin/hr/*` screens): +1,164 B, measured
+ * (335,734 -> 336,898 on its own base). Four of the five screens are server
+ * rendered with no script at all; the whole growth is the one script of
+ * `/admin/hr/my-work` (the correction request form: the replace-target toggle and
+ * the POST) plus its shared client, `src/lib/ui/hr-self-service-client.ts`, which
+ * only adds the `Idempotency-Key` source and the translated-message lookup on top
+ * of `admin-form-client.ts`. No stylesheet grew: the screens reuse the admin
+ * table, segmented-filter, stat-card and status-pill classes.
  */
 /**
  * **Raised to 254,500 B in awcms-one (subtree sync of awcms#813, issue
