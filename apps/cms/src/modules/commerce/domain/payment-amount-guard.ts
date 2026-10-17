@@ -54,6 +54,53 @@ export function checkPaymentAmount(
   return { ok: true };
 }
 
+/**
+ * Issue #379 (ADR-0041 D2) - the same integer-cent equality check, against the
+ * amount the SESSION was created to collect instead of the order's current
+ * total.
+ *
+ *   - `full`: the reported figure must equal the order's current total (exactly
+ *     the check above, so a whole-total order is as guarded as before this
+ *     change - an amended total or a stale callback still mismatches) AND, for a
+ *     session that carries one, the session's frozen `expected_amount`. A
+ *     session created before `sql/1025` has no `expected_amount` and is checked
+ *     against the order total alone.
+ *   - `deposit` / `balance`: the reported figure must equal the session's own
+ *     `expected_amount`, which must be greater than zero. The order total is
+ *     deliberately not consulted - a deposit is less than it by construction.
+ *
+ * "Equal" is both directions: a lower figure (a partial capture) and a higher
+ * one (a tampered or inflated callback) are each a mismatch.
+ */
+export function checkSessionPaymentAmount(
+  reportedGrossAmount: string,
+  session: { purpose: string; expectedAmount: string | null },
+  orderTotal: string
+): PaymentAmountCheck {
+  if (session.purpose === "full") {
+    const againstTotal = checkPaymentAmount(reportedGrossAmount, orderTotal);
+    if (!againstTotal.ok || session.expectedAmount === null) {
+      return againstTotal;
+    }
+    return checkPaymentAmount(reportedGrossAmount, session.expectedAmount);
+  }
+
+  const expected = session.expectedAmount;
+  if (
+    expected === null ||
+    !DECIMAL_PATTERN.test(expected) ||
+    toCents(expected) <= 0n
+  ) {
+    return {
+      ok: false,
+      reason: "unparseable",
+      reported: reportedGrossAmount,
+      expected: expected ?? ""
+    };
+  }
+  return checkPaymentAmount(reportedGrossAmount, expected);
+}
+
 /** Which mapped provider statuses count as a TERMINAL failure — the only case an amount-mismatched event still moves the gateway SESSION row (to `failed`); every other mismatch leaves the session as it was. */
 export function isTerminalFailureStatus(status: string): boolean {
   return status === "failed" || status === "expired";

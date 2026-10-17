@@ -349,7 +349,7 @@ components:
 
 ### 3.3 Deposit session (ADR-0041)
 
-Route 6 is an additive amendment to the existing `createCommerceStorefrontPaymentGatewaySession`: `purpose` defaults to `full`, so every existing caller is unchanged (ADR-0041 D3). The client asks for "pay the deposit" or "pay the balance" and supplies no amount.
+Route 6 is an additive amendment to the existing `createCommerceStorefrontPaymentGatewaySession`: `purpose` defaults to `full`, so every existing caller is unchanged (ADR-0041 D3). The client asks for "pay the deposit" or "pay the balance" and supplies no amount. _Implemented by #379 (the live contract is `docs/api.md` and the OpenAPI bundle): the response adds `purpose` and `expectedAmount` for a `deposit`/`balance` session only, a body naming an amount is `400`, the error codes are `PURPOSE_NOT_ALLOWED` and `SESSION_IN_PROGRESS`, and the staff route 7 is not built._
 
 ```yaml
 # DRAFT — not in the live spec. Amendment to an existing live operation, shown as the delta.
@@ -1207,8 +1207,9 @@ Booking refusals keep the code Booking gives them (the final union is fixed by B
 | `OFFERING_NOT_LINKED`                               | 409  | The offering has no active link to a product                                                                         |
 | `OFFERING_ALREADY_LINKED`, `PRODUCT_ALREADY_LINKED` | 409  | One active link per offering and per product                                                                         |
 | `PRODUCT_NOT_SERVICE`, `QUANTITY_BASIS_MISMATCH`    | 409  | The linked product is not `service`, or `quantityBasis` disagrees with the offering's granularity                    |
-| `POINTS_DEPOSIT_NOT_COMBINABLE`                     | 409  | ADR-0041 D8; its stable code is "defined in the implementation issue", this name is a proposal                       |
+| `POINTS_DEPOSIT_NOT_COMBINABLE`                     | 409  | ADR-0041 D8; the live stable code is `LOYALTY_REDEMPTION_DEPOSIT_CONFLICT` (#363), this name is superseded by it    |
 | `PURPOSE_NOT_ALLOWED`                               | 409  | A `deposit` or `balance` session on an order whose state or deposit policy does not admit it (ADR-0041 D1, D3)       |
+| `SESSION_IN_PROGRESS`                               | 409  | Another gateway session for the order is still live (one live session per order, ADR-0041 D5.1; fixed by #379)       |
 | `QUOTE_CHANGED`                                     | 409  | The recomputed refund differs from the figure the shopper acknowledged; nothing was cancelled                        |
 | `OVERRIDE_EXCEEDS_PAID`                             | 409  | `finalRefund` above the recomputed amount paid                                                                       |
 | `DECISION_ALREADY_EXECUTED`                         | 409  | The decision's refund legs are already planned; the amount can no longer change                                      |
@@ -1428,12 +1429,13 @@ channels:
   awcms.commerce.order.settled:
     address: awcms.commerce.order.settled
     description: >-
-      PROPOSED NAME (ADR-0041 D7; final name and payload are decided in #355).
-      Settlement on an order reached its total. Emitted exactly once, in the same
+      FIXED BY #379 (ADR-0041 D7, implemented): the name and the payload below.
+      Settlement of a DEPOSIT order reached its total. Emitted once, in the same
       transaction as the ledger write that makes outstanding zero, for a deposit
-      order and for a whole-total order alike. The loyalty earner reacts to
-      order.paid for a whole-total order and to this event for a deposit order,
-      under the existing earn source key so no order earns twice.
+      order only: a whole-total order fires none, its order.paid already means
+      fully paid. The loyalty earner reacts to order.paid for a whole-total order
+      and to this event for a deposit order, under the existing earn source key
+      so no order earns twice.
     messages: { OrderSettled: { $ref: "#/components/messages/OrderSettled" } }
   awcms.commerce.booking_refund.decided:
     address: awcms.commerce.booking_refund.decided
@@ -1478,17 +1480,14 @@ components:
               payload:
                 type: object
                 additionalProperties: false
-                required: [orderId, orderCode, total, settledAt, hadDeposit]
+                required: [orderId, orderCode, total, deposit, settledAt]
                 properties:
                   orderId: { type: string, format: uuid }
                   orderCode: { type: string }
                   total: { type: string }
                   settledAt: { type: string, format: date-time }
-                  hadDeposit:
-                    {
-                      type: boolean,
-                      description: "True when dp_amount was below total."
-                    }
+                  deposit:
+                    { type: string, description: "The order's dp_amount." }
     BookingRefundDecided:
       contentType: application/json
       payload:
@@ -1590,10 +1589,10 @@ The drafts above implement these threat-model controls ([threat model](aw-busine
 | 3   | Step-up wiring                    | D10: handler-level, platform TTL, existing `STEP_UP_REQUIRED`                                                                                                                                                         |
 | 4   | The reschedule difference vehicle | D7: `supplementary_order`; in v1 the amount is zero and the vehicle null (equal-duration reschedules only). Owner may revise                                                                                          |
 | 5   | Check-in with a balance due       | D19: a tenant setting `checkin_requires_settlement`, default `false`; `BALANCE_NOT_SETTLED` only when on. Owner may revise                                                                                            |
-| 6   | Name of the settlement event      | D16: fixed by #379 (ADR-0041 D7); no adapter consumer needs it; the `awcms.commerce.order.settled` channel in section 5 stays a placeholder                                                                           |
+| 6   | Name of the settlement event      | D16: `awcms.commerce.order.settled`, fixed and implemented by #379 (ADR-0041 D7), emitted for a deposit order only; no adapter consumer needs it; the section 5 channel is corrected to the shipped payload  |
 | 7   | Hold-to-order compensation        | D17: hold first, order second; on failure release the hold through the port; an unreleasable hold expires                                                                                                             |
 | 8   | Customer reschedule request       | D18: no customer route in v1; deferred to #359                                                                                                                                                                        |
-| -   | Error code names (section 4)      | D14: the adapter-owned set is frozen; the ADR-0041-domain codes are fixed by #379                                                                                                                                     |
+| -   | Error code names (section 4)      | D14: the adapter-owned set is frozen; the ADR-0041-domain codes are fixed by #379: `PURPOSE_NOT_ALLOWED`, `SESSION_IN_PROGRESS`                                                                                       |
 | -   | Consumer names (section 5)        | D15: the six `commerce.booking_*` names are frozen                                                                                                                                                                    |
 
 ## 8. What this document is not

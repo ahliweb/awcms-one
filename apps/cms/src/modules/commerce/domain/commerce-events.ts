@@ -139,6 +139,23 @@ export const COMMERCE_PAYMENT_REVERSED_EVENT_TYPE =
   "awcms.commerce.payment.reversed";
 
 /**
+ * Deposit-order settlement event (Issue #379, ADR-0041 D7, owner answer Q5).
+ * `awcms.commerce.order.settled` announces that settlement of a DEPOSIT order
+ * (`payment_method = 'dp'`, `dp_amount` below the total) has reached the total:
+ * emitted from the ledger write that makes the outstanding amount zero, in the
+ * same transaction, on the ORDER aggregate. `order.paid` fires for such an
+ * order at the deposit (the release threshold, ADR-0025 D3), so it cannot say
+ * "fully paid"; this event does, and it is what the loyalty earner reacts to
+ * for a deposit order (a deposit alone never earns). A whole-total order fires
+ * `order.paid` at full settlement already and gets NO settled event - nothing
+ * changes for a tenant that never takes a deposit. The payload carries ids,
+ * money and the settled time, never a customer name/phone or a payment
+ * reference. Registered in `domain-event-runtime/domain/event-type-registry.ts`
+ * and `asyncapi/awcms-domain-events.asyncapi.yaml` in the same change.
+ */
+export const COMMERCE_ORDER_SETTLED_EVENT_TYPE = "awcms.commerce.order.settled";
+
+/**
  * POS register-session events (Issue #284, ADR-0028). All four ride on the
  * REGISTER SESSION aggregate (`commerce.register_session`, aggregate id = the
  * session id), so a consumer rebuilding "what happened in this shift" reads

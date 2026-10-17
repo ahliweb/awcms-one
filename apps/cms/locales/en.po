@@ -7276,6 +7276,12 @@ msgstr ""
 msgid "Overpaid (to refund)"
 msgstr ""
 
+msgid "Deposit (release threshold)"
+msgstr ""
+
+msgid "Fully settled on"
+msgstr ""
+
 msgid "Partially paid"
 msgstr ""
 

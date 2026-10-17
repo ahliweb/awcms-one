@@ -8,7 +8,8 @@ import {
 import { SAMPLE_RECORDED_EVENT_TYPE } from "../src/modules/domain-event-runtime/domain/event-type-registry";
 import {
   COMMERCE_ORDER_CANCELLED_EVENT_TYPE,
-  COMMERCE_ORDER_PAID_EVENT_TYPE
+  COMMERCE_ORDER_PAID_EVENT_TYPE,
+  COMMERCE_ORDER_SETTLED_EVENT_TYPE
 } from "../src/modules/commerce/domain/commerce-events";
 
 describe("descriptor-built consumer registry", () => {
@@ -71,7 +72,18 @@ describe("descriptor-built consumer registry", () => {
   test("commerce.order_paid_loyalty_earner and commerce.order_cancelled_loyalty_reverser (Issue #289) are registered against exactly their order events", () => {
     const earner = getConsumerByName("commerce.order_paid_loyalty_earner");
     expect(earner).toBeDefined();
-    expect(earner!.eventTypes).toEqual([COMMERCE_ORDER_PAID_EVENT_TYPE]);
+    // Issue #379 (ADR-0041 D7): a deposit order earns only at full settlement,
+    // so the earner also hears the settled event; a whole-total order earns at
+    // order.paid exactly as before.
+    expect(earner!.eventTypes).toEqual([
+      COMMERCE_ORDER_PAID_EVENT_TYPE,
+      COMMERCE_ORDER_SETTLED_EVENT_TYPE
+    ]);
+    expect(
+      getConsumersForEventType(COMMERCE_ORDER_SETTLED_EVENT_TYPE).map(
+        (c) => c.name
+      )
+    ).toEqual(["commerce.order_paid_loyalty_earner"]);
 
     const reverser = getConsumerByName(
       "commerce.order_cancelled_loyalty_reverser"
