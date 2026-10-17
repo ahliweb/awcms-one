@@ -167,6 +167,22 @@ The `local-ci/security` leg (CodeQL CLI + gitleaks pinned by digest + `bun audit
 
 Unit coverage for the pure logic (the leg table, the Bun-pin comparison, the redaction patterns, the security-baseline matcher, the fork-refusal predicate, the CI-definition hash and state-directory keying) lives at the root: `tests/local-ci-legs.test.mjs`, `tests/local-ci-bun-pin.test.mjs`, `tests/local-ci-redact.test.mjs`, `tests/local-ci-baseline.test.mjs`, `tests/local-ci-fork.test.mjs`, `tests/local-ci-hash-and-state.test.mjs` — none of them touch docker, the network, or a real GitHub token, matching every other root gate test's own posture.
 
+## Load and concurrency benchmarks (issue #395)
+
+`bun run bench:commerce-load` (in `apps/cms`) is opt-in: it is not a `*.test.ts` and not in `bun run check`, so neither the normal gate chain nor `tests/integration/` runs it. It needs the same superuser `DATABASE_URL` the integration suite needs, pointed at a disposable PostgreSQL (the harness creates and drops its own throwaway database):
+
+```bash
+docker run -d --name pg-bench -p 55432:5432 -e POSTGRES_PASSWORD=postgres postgres:18.4
+cd apps/cms
+export DATABASE_URL=postgres://postgres:postgres@127.0.0.1:55432/postgres
+bun run bench:commerce-load --profile smoke            # seconds: invariants at small scale
+bun run bench:commerce-load --profile standard         # about two minutes: the recorded numbers
+bun run bench:commerce-load --only race,loyalty --json out.json
+docker rm -f pg-bench
+```
+
+It covers concurrent hold-to-order conversion, the expiry-versus-payment race, concurrent loyalty redemptions and the 100,000-customer segment preview (PRD M7). Invariants always fail the run; latency thresholds are enforced on `standard` unless `--no-thresholds`. Results, hardware and method: [`benchmarks-commerce-load.md`](benchmarks-commerce-load.md).
+
 ## Two things a contributor must know before writing a query here
 
 - **Money reads as `"0"`, not `"0.00"`, through a parameterised `Bun.SQL` query.** A stored `0.00` decodes as the text `"0"` when read through the extended protocol (a parameterised query) but as `"0.00"` through a simple query — every non-zero value keeps its scale either way. `normalizeMoney` (`apps/cms/src/modules/commerce/domain/price-calculation.ts`) exists specifically to make the wire shape independent of which protocol happened to serve the row; every `toRecord` in the commerce module passes every money field through it before it ever leaves the module (`null` passes through unchanged — an absent money value is `null` on the wire, never `"0.00"`). Apply it in the read path, never in arithmetic.
