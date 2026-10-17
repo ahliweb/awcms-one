@@ -1,12 +1,12 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](booking-commerce-adapter-data-model.md)
 
-<!-- i18n-source-hash: sha256:ad543774cb202efdbe43dca869ec3a5cf1a0e3417bde94b921e44d5fea7f2d80 -->
+<!-- i18n-source-hash: sha256:25b0c1c3496da71be1c09b9196b967c6677e2ab97a3fc850d2ece88f4e186d69 -->
 
 # Adapter booking-commerce — usulan ERD dan kamus data
 
 Artefak DoR 4 epic [#280](https://github.com/ahliweb/awcms-one/issues/280), item kerja W5 ([#356](https://github.com/ahliweb/awcms-one/issues/356)), dilacak di [`aw-business-platform-dor.md`](aw-business-platform-dor.id.md). Dokumen ini memperluas [`skema-basis-data.md`](skema-basis-data.id.md) dan [`kamus-data.md`](kamus-data.id.md) dengan tabel `awcms_commerce_*` yang akan ditambahkan adapter booking-commerce, dan menyelesaikan temuan lintas-spesifikasi X7: **pelanggan diturunkan melalui pesanan yang tertaut, tidak pernah disimpan di adapter.**
 
-> **Hanya usulan. Tidak ada yang sudah ada.** Dokumen ini tidak menambahkan migrasi, tabel, rute, path OpenAPI, atau kode ([ADR-0040](adr/0040-aw-business-platform-capability-ownership-and-boundaries.id.md) D7). Nama tabel dan kolom adalah usulan yang boleh disesuaikan review migrasi, sebagaimana pack Booking upstream menyatakan tentang ERD-nya sendiri. Nomor migrasi **tidak dialokasikan di sini**: setiap tabel di bawah mengambil nomor commerce bebas berikutnya mulai `sql/1001` menurut [ADR-0037](adr/0037-the-commerce-migration-band-is-allocated-gap-first-and-widened-upstream.id.md), dialokasikan saat implementasi, berurutan menurut ketergantungan. Jangan membaca halaman ini sebagai gambaran skema saat ini; [`status.md`](status.id.md) dan berkas di `apps/cms/sql/` yang melakukannya.
+> **Diimplementasikan oleh [issue #378](https://github.com/ahliweb/awcms-one/issues/378) (`sql/1035`–`1040`); baca bagian 9 untuk perbedaan tabel dari usulan ini.** Enam tabel, rute tautan offering dan kebijakan deposit, serta pengaturan akun layanan sudah ada; _perilaku_ reservasi, pembatalan, refund, dan override (hold-ke-pesanan, konsumen, kuotasi, refund, layar) belum, dan menyusul pada issue setelah #378 (ADR-0040 D7 masih berlaku untuk itu). Teks di bawah adalah spesifikasi asli dan tetap menjadi rujukan desain; bagian 9 mendaftar setiap deviasi. Skema saat ini dijelaskan oleh [`skema-basis-data.id.md`](skema-basis-data.id.md), [`status.id.md`](status.id.md) dan berkas di `apps/cms/sql/`.
 
 ## 1. Masukan dan aturan yang ditetapkannya
 
@@ -123,7 +123,7 @@ Konvensi, diwarisi dari [`skema-basis-data.md`](skema-basis-data.id.md) dan tabe
 - Tanpa kolom stempel aktor yang berlebihan: kolom aktor muncul hanya bila fakta itu adalah aktornya (penimpaan, keputusan).
 - Setiap tabel ikut `dataLifecycle` dan `unreachableBySubject` / `retain_under_obligation` seperti tabel commerce lain; tidak satu pun menyimpan nama, kontak, atau catatan teks bebas tentang seseorang (bagian 6).
 
-### 4.1 `awcms_commerce_booking_offering_links` (usulan)
+### 4.1 `awcms_commerce_booking_offering_links` (diimplementasikan, lihat bagian 9)
 
 Tautan dari offering Booking ke produk commerce (PRD A1). Sebuah rujukan, bukan penggabungan: baris kedua sisi tidak diubah (ADR-0040 D5.8).
 
@@ -142,7 +142,7 @@ Tautan dari offering Booking ke produk commerce (PRD A1). Sebuah rujukan, bukan 
 **RLS:** generik. Tanpa `DELETE` untuk peran aplikasi; melepas tautan adalah perubahan status, sehingga riwayat "dijual sebagai apa" tetap ada.
 **Tidak di sini:** tanpa harga, tanpa deposit, tanpa kebijakan. Harga ada di produk (Q1), deposit di baris kebijakannya.
 
-### 4.2 `awcms_commerce_booking_reservation_links` (usulan)
+### 4.2 `awcms_commerce_booking_reservation_links` (diimplementasikan, lihat bagian 9)
 
 Pasangan rujukan reservasi-ke-pesanan (PRD A2, A3, A6, A8). Satu-satunya tempat kedua konteks bertemu dalam data. Ia memuat **pengenal dan penanda siklus hidup, tidak lebih**.
 
@@ -166,7 +166,7 @@ Pasangan rujukan reservasi-ke-pesanan (PRD A2, A3, A6, A8). Satu-satunya tempat 
 **Dapat diubah:** hanya `status`, `attention_*`, dan `updated_at` yang berubah, lewat trigger; kolom lain adalah fakta beku.
 **Yang sengaja dihilangkan:** harga, deposit, status pembayaran, saldo, id pelanggan, nama, kontak, ukuran rombongan, tanggal. Tanggal dan ukuran rombongan milik Booking; uang milik pesanan dan buku alokasi. Pembaca melakukan join; adapter tidak pernah menyalin (ADR-0040 D5.9, kontrol model ancaman C-09 merekonsiliasi keduanya).
 
-### 4.3 `awcms_commerce_product_deposit_policies` (usulan)
+### 4.3 `awcms_commerce_product_deposit_policies` (diimplementasikan, lihat bagian 9)
 
 Kebijakan deposit per produk (ADR-0041 D4, Q2). **Produk tanpa baris dibayar penuh. Tidak ada baris, pengaturan, atau cadangan default tenant.**
 
@@ -183,7 +183,7 @@ Kebijakan deposit per produk (ADR-0041 D4, Q2). **Produk tanpa baris dibayar pen
 CHECK lintas-kolom mengikat `kind` ke tepat satu dari `percent`/`fixed_amount`. **Kebijakan dibaca saat pesanan dibuat dan hasilnya dipotret pada pesanan sebagai `dp_amount` yang sudah ada** (ambang rilis ADR-0025 D3); suntingan kebijakan kemudian tidak pernah mengubah pesanan yang ada, sehingga tabel tidak perlu versi dan `updated_at` plus log audit adalah riwayatnya. Produk dengan flag `allow_dp` (kolom yang ada) false tetapi punya baris kebijakan adalah kesalahan konfigurasi yang ditolak jalur tulis admin; merekonsiliasi `allow_dp` dengan tabel ini adalah pertanyaan implementasi (bagian 7).
 **RLS:** generik.
 
-### 4.4 `awcms_commerce_cancellation_policies` dan `awcms_commerce_cancellation_policy_windows` (usulan)
+### 4.4 `awcms_commerce_cancellation_policies` dan `awcms_commerce_cancellation_policy_windows` (diimplementasikan, lihat bagian 9)
 
 Kebijakan refund pembatalan (PRD A5, A7; Q9). Kebijakan **berversi dan tidak dapat diubah setelah aktif**: perubahan adalah versi baru, sehingga keputusan refund selalu dapat menyebut aturan persisnya.
 
@@ -215,7 +215,7 @@ Jendela dievaluasi dari `min_hours_before_start` terbesar dan yang pertama cocok
 **Urutan resolusi** saat keputusan: kebijakan aktif produk, jika tidak ada kebijakan aktif default tenant, jika tidak ada **tidak ada**: bagian dapat di-refund 0 dan `policy_source = 'none'` pada keputusan, dengan penimpaan manajer (4.5) tersedia. Jam diukur terhadap saat kedatangan reservasi dari Booking (menginap: `checkInAt` turunan), dalam jam penuh dibulatkan ke bawah, sehingga kalender Asia/Jakarta tidak pernah masuk ke aritmetika.
 **RLS:** generik pada kedua tabel. _Jumlah_ refund tidak pernah diambil dari request: ia dihitung di server dari baris ini dan buku alokasi (kontrol model ancaman C-10).
 
-### 4.5 `awcms_commerce_booking_refund_decisions` (usulan)
+### 4.5 `awcms_commerce_booking_refund_decisions` (diimplementasikan, lihat bagian 9)
 
 Satu catatan per pembatalan atau no-show: refund terhitung kebijakan, penimpaan apa pun, dan tautan ke leg refund (PRD A5, A7; Q10; kontrol C-10, C-11). Ini bukti untuk "mengapa jumlah ini di-refund". Ia **tidak memindahkan uang**: uang hanya bergerak lewat leg return dan refund yang ada (ADR-0033) dan buku alokasi (ADR-0025).
 
@@ -282,7 +282,7 @@ Ini mengikuti tiga keputusan yang diterima: O12 (commerce tetap otoritas pelangg
 
 ## 7. Titik terbuka: diselesaikan oleh ADR adapter
 
-**Diselesaikan oleh [ADR-0045](adr/0045-booking-commerce-adapter.id.md) (11 Oktober 2026).** Halaman ini tetap usulan; jawaban di bawah mengubah usulan sebagaimana tertulis dan diterapkan oleh issue implementasi, bukan di sini.
+**Diselesaikan oleh [ADR-0045](adr/0045-booking-commerce-adapter.id.md) (11 Oktober 2026).** Jawaban di bawah mengubah usulan sebagaimana tertulis dan diterapkan oleh issue implementasi (issue #378 menerapkan D1, D2, D5 dan poin terbuka miliknya; bagian 9).
 
 | #   | Titik terbuka                               | Penyelesaian                                                                                                                                                                           |
 | --- | ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -298,3 +298,20 @@ Ini mengikuti tiga keputusan yang diterima: O12 (commerce tetap otoritas pelangg
 ## 8. Yang bukan dokumen ini
 
 Bukan migrasi, bukan draf OpenAPI (itu W7, [#358](https://github.com/ahliweb/awcms-one/issues/358)), bukan matriks izin (W6, [#357](https://github.com/ahliweb/awcms-one/issues/357)), dan bukan spesifikasi UX (W8, [#359](https://github.com/ahliweb/awcms-one/issues/359)). Ia tidak mengubah [ADR-0041](adr/0041-gateway-deposit-sessions-and-mixed-tenders-on-one-order.id.md): kolom sesi `purpose` dan `expected_amount` serta trigger bekunya ditentukan di sana dan tidak diulang sebagai tabel adapter.
+
+## 9. Catatan implementasi (issue #378)
+
+Diimplementasikan di `sql/1035` (tautan offering dan reservasi), `sql/1036` (kebijakan deposit), `sql/1037` (kebijakan pembatalan dan jendelanya), `sql/1038` (keputusan refund), `sql/1039` (lima kunci izin yang punya rute) dan `sql/1040` (kolom akun layanan, grant worker, dan satu penguncian `search_path`). Deviasi dari spesifikasi di atas, semuanya disengaja:
+
+| #   | Bagian | Spesifikasi berkata                                                                 | Diimplementasikan                                                                                                                                                                                                                                                                                                                                    |
+| --- | ------ | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | 4.3    | `UNIQUE (tenant_id, product_id)`; "menghapus baris adalah pembaruan ke bayar penuh" | `awcms_app` tidak punya `DELETE` pada tabel adapter mana pun, sehingga penghapusan adalah **pensiun**: `retired_at`, dan keunikan berupa indeks unik parsial pada baris aktif. Baris yang dipensiunkan dibekukan; kebijakan berikutnya adalah baris baru                                                                                             |
+| 2   | 4.2    | kolom sebagaimana tercantum                                                         | menambah `request_hash` (ADR-0045 G5: `client_key` yang sama dengan permintaan berbeda adalah konflik) dan `deleted_at` (kursor mesin retensi, tidak pernah diset modul ini). Setiap tabel adapter membawa `deleted_at` atau, untuk keputusan hanya-tambah, memakai `created_at` sebagai kursornya                                                   |
+| 3   | 4.2    | `attention_reason IN ('deposit_after_expiry','confirm_failed')`                     | superset `deposit_after_expiry`, `confirm_failed`, `rescheduled_externally`, `cancelled_externally_paid` (G7), sehingga tidak ada issue berikutnya yang memperlebar CHECK. Alasan tetap ada setelah diselesaikan; penanda baru hanya dapat diangkat bila tidak ada yang terbuka                                                                      |
+| 4   | 4.1    | `product_id` "harus `type = 'service'`, diperiksa di aplikasi"                      | diperiksa di aplikasi **dan** oleh trigger insert (CHECK tidak dapat membaca tabel lain, trigger bisa). Kesesuaian `quantity_basis`/granularity offering dan aturan `confirmation_mode` (G9, `OFFERING_NOT_LINKABLE`) adalah pemeriksaan aplikasi, karena satu-satunya cara membacanya adalah tabel Booking (lihat 6)                                |
+| 5   | 4.5    | `return_id` diisi sekali                                                            | trigger membekukan semua kolom kecuali `return_id`, dan `awcms_app` hanya memegang grant kolom `UPDATE (return_id)`. Pelebaran CHECK `kind = 'cancellation'` pada return (D4) **tidak** ada di issue ini; itu milik issue leg refund                                                                                                                 |
+| 6   | 4.1    | "Booking dibaca lewat port-nya"                                                     | `BookingPort` tidak punya pembacaan offering (butuh port upstream U1). Satu-satunya pembacaan adalah `SELECT` `granularity`, `confirmation_mode`, dan `status` dari `awcms_booking_service_offerings`, dibatasi tenant, di `application/booking-offering-links.ts`; commerce tidak mengimpor apa pun dari modul `booking` dan tidak menulis tabelnya |
+| 7   | 7.2    | backfill `allow_dp` sekali                                                          | tidak ada yang dijalankan: tidak ada baris kebijakan sebelum `sql/1036` dan tidak ada yang dikarang (G10). Produk dengan `allow_dp = true` tanpa baris tetap memakai aturan uang muka seluruh toko; jalur tulis menjaga flag selaras mulai sekarang                                                                                                  |
+| 8   | 4.4    | kebijakan bawaan tenant dan kebijakan produk                                        | sebagaimana ditentukan; selain itu jendela hanya dapat ditambah selagi kebijakan masih draft, tabel jendela hanya-tambah bagi `awcms_app`, dan aktivasi ditolak kecuali bagian refund tidak pernah naik ketika pemberitahuan menyusut                                                                                                                |
+
+Baru juga, tidak ada di spesifikasi: fitur commerce `booking` (bawaan MATI), pengguna akun layanan per tenant `awcms_commerce_store_settings.booking_service_tenant_user_id` (G3), dan pembacaan penurunan pelanggan di `application/booking-reservation-links.ts` yang dijalankan tes dua-pelanggan-satu-tenant.

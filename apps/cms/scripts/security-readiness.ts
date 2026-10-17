@@ -1853,6 +1853,13 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // cannot match a referenced version.
   awcms_commerce_segments: ["SELECT", "DELETE"],
   awcms_commerce_segment_versions: ["SELECT", "DELETE"],
+  // Issue #378 (ADR-0045) - the booking adapter's six tables (sql/1040).
+  awcms_commerce_booking_offering_links: ["SELECT", "DELETE"],
+  awcms_commerce_booking_reservation_links: ["SELECT", "DELETE"],
+  awcms_commerce_product_deposit_policies: ["SELECT", "DELETE"],
+  awcms_commerce_cancellation_policies: ["SELECT", "DELETE"],
+  awcms_commerce_cancellation_policy_windows: ["SELECT", "DELETE"],
+  awcms_commerce_booking_refund_decisions: ["SELECT", "DELETE"],
   // but never actually matches a row in practice.
   awcms_commerce_customer_accounts: ["SELECT", "DELETE"],
   // Issue #267 (IRMbyDUS, sql/936/937): same shape as

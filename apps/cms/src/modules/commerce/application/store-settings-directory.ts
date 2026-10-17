@@ -169,15 +169,20 @@ export async function resetStoreSettings(
   // it ages out, which would silently put a ledger-authoritative tenant back on
   // the counter or an engine tenant back on the flat percentage. So while
   // either mode is non-default a reset REPLACES the blob with the defaults in
-  // place and never stamps `deleted_at`: same visible result.
+  // place and never stamps `deleted_at`: same visible result. The booking
+  // adapter's service-account user (Issue #378, ADR-0045 G3) is a real column
+  // for the same reason: a reset must not silently drop it by letting the
+  // retention engine purge the stamped row.
   const rows = (await tx`
     UPDATE awcms_commerce_store_settings
     SET deleted_at = CASE
-          WHEN tax_mode = 'engine' OR inventory_mode = 'ledger' THEN NULL
+          WHEN tax_mode = 'engine' OR inventory_mode = 'ledger'
+            OR booking_service_tenant_user_id IS NOT NULL THEN NULL
           ELSE now()
         END,
         settings = CASE
           WHEN tax_mode = 'engine' OR inventory_mode = 'ledger'
+            OR booking_service_tenant_user_id IS NOT NULL
             THEN ${buildDefaultStoreSettings(await fetchTenantName(tx, tenantId))}::jsonb
           ELSE settings
         END,

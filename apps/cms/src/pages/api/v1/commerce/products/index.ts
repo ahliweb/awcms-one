@@ -29,6 +29,7 @@ import { isProductStatus } from "../../../../../modules/commerce/domain/product-
 import { isProductSort } from "../../../../../modules/commerce/domain/product-sort";
 import { COMMERCE_PRODUCTS_ACTIVITY_CODE } from "../../../../../modules/commerce/domain/commerce-permissions";
 import { BundleDefinitionInvalidError } from "../../../../../modules/commerce/application/bundle-directory";
+import { AllowDpManagedByPolicyError } from "../../../../../modules/commerce/application/booking-deposit-policies";
 import { inventoryErrorResponse } from "../../../../../modules/commerce/application/commerce-inventory-http";
 
 const READ_GUARD = {
@@ -265,6 +266,10 @@ export const POST = defineTenantRoute({
           {},
           error.errors
         );
+      }
+
+      if (error instanceof AllowDpManagedByPolicyError) {
+        return fail(409, "ALLOW_DP_MANAGED_BY_POLICY", error.message);
       }
 
       const inventoryFailure = inventoryErrorResponse(error);

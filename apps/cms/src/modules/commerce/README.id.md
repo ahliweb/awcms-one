@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:70b6a8cc37da6d47ecfebf412953fc165c31dcd99477c7c7da455a47aac642ac -->
+<!-- i18n-source-hash: sha256:bbfebac8178e390317a53a779cca4975715d472767e21b7f6a7cda74b779d03d -->
 
 # `commerce`
 
@@ -1618,3 +1618,15 @@ Di balik `features.campaignSegmentAudience` (bawaan MATI; juga butuh `campaigns`
 | Uji      | `tests/commerce-campaign-segment-audience.test.ts`, `tests/integration/commerce-campaign-segment-audience.integration.test.ts`, `tests/integration/commerce-campaign-segment-audience-routes.integration.test.ts` | Validasi dan kontrak statis; penyelesaian, persetujuan saat enqueue dan dispatch, pengecualian, versi dan as-of, kampanye lama tidak berubah, sakelar mati, lintas-tenant, dispatch yang dapat dilanjutkan; rute, izin, audit |
 
 Aturan yang harus dijaga perubahan di sini: persetujuan dan pengecualian tetap bagian kueri halaman; jangan pernah memmaterialisasi daftar pelanggan kedua; halaman yang ditolak menunda, tidak pernah memfinalisasi; kampanye lama (tanpa segmen) memakai penyelesai lama tanpa disentuh.
+
+## Adapter booking-commerce, lapisan data dan konfigurasi - TERIMPLEMENTASI (Issue #378, epik #280 - [ADR-0045](../../../../../docs/adr/0045-booking-commerce-adapter.id.md))
+
+Adapter menjual reservasi Booking sebagai pesanan commerce biasa. Issue #378 membawa **tabel, konfigurasi, dan dua rute admin yang menulisnya**; tidak ada di sini yang menahan slot atau memindahkan uang. Semuanya di balik fitur `booking` milik tenant (**bawaan MATI**), dideklarasikan di `domain/commerce-features.ts`.
+
+- **Tabel** (`sql/1035`-`1038`, semua FORCE RLS, FK tenant komposit, primary key `id`, tanpa `DELETE` untuk `awcms_app`): `awcms_commerce_booking_offering_links`, `..._booking_reservation_links`, `..._product_deposit_policies`, `..._cancellation_policies` (+ `_windows`), dan `..._booking_refund_decisions`. Pelanggan sebuah reservasi **diturunkan melalui pesanan yang tertaut dan tidak disimpan di tabel adapter mana pun**; `application/booking-reservation-links.ts` adalah join-nya (`customer_id` adalah argumen, bukan input). Rujukan skema: [`skema-basis-data.id.md`](../../../../../docs/skema-basis-data.id.md); deviasi dari usulan: [`booking-commerce-adapter-data-model.id.md`](../../../../../docs/booking-commerce-adapter-data-model.id.md).
+- **Rute** (lihat [`api.id.md`](../../../../../docs/api.id.md)): `commerce/booking/offering-links` (`GET`, `POST`), `.../{id}` (`GET`, `PATCH` = lepas) dan `commerce/products/{id}/deposit-policy` (`GET`, `PUT`), lewat `application/booking-offering-links.ts` dan `application/booking-deposit-policies.ts`. Penautan menolak offering yang terkonfirmasi tanpa pembayaran (G9), produk non-layanan, `quantityBasis` yang tidak cocok, dan tautan aktif kedua di salah satu sisi, serta membutuhkan pengguna akun layanan di bawah.
+- **Pengguna akun layanan** (G3): `awcms_commerce_store_settings.booking_service_tenant_user_id`, ditulis lewat `PUT commerce/store-settings` (`bookingServiceTenantUserId`), dibaca `application/booking-adapter-settings.ts`. `BookingPort` mewajibkan `actorTenantUserId` pada setiap tulisan; checkout tamu, pembatalan pelanggan, dan konsumen tidak punya, sehingga tenant menamai satu. NULL atau tidak aktif berarti adapter menolak (`BOOKING_SERVICE_ACTOR_NOT_CONFIGURED`).
+- **`allow_dp`** mengikuti kebijakan deposit selama `booking` aktif (D5): penulisan kebijakan mengaturnya, dan penulisan produk yang mengubahnya secara manual adalah `409 ALLOW_DP_MANAGED_BY_POLICY` (`assertAllowDpWritable` di `product-directory.ts`).
+- **Pengkabelan modul**: `module.ts` menyebar empat berkas bagian dan issue adapter berikutnya mengedit **hanya itu**: `domain/booking-adapter-permissions.ts`, `domain/booking-adapter-lifecycle.ts`, `domain/booking-adapter-navigation.ts` (kosong), dan `application/booking-adapter-consumers.ts` (kosong). Booking adalah **kapabilitas** yang dikonsumsi (`capabilities.consumes`, opsional), bukan entri `dependencies`; commerce hanya mengimpor tipe `BookingPort` dari `_shared/ports/` dan membaca satu tabel Booking, sekali (`booking-offering-links.ts`, tiga kolom sebuah offering - butuh port upstream U1).
+- **Izin**: hanya lima kunci yang kini punya rute penegak (`commerce.booking_offering_links.{read,create,update}`, `commerce.booking_deposit_policies.{read,update}`); `tests/commerce-booking-adapter-contract.test.ts` mengunci sepuluh yang belum didaftarkan.
+- **Tidak ada di sini**: hold-ke-pesanan, aturan deposit di cart/quote, konsumen, kuotasi pembatalan dan refund, reschedule, no-show, check-in dengan saldo, dan semua layar.

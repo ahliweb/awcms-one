@@ -108,8 +108,14 @@
         "tax"
       ],
       "capabilitiesProvided": [],
-      "capabilitiesConsumed": [],
-      "permissionCount": 140,
+      "capabilitiesConsumed": [
+        {
+          "capability": "booking",
+          "providedBy": "booking",
+          "optional": true
+        }
+      ],
+      "permissionCount": 145,
       "navigationCount": 27,
       "jobCount": 10,
       "hasHealthCheck": false,

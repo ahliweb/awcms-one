@@ -13820,6 +13820,302 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/booking/offering-links:
+    get:
+      operationId: listCommerceBookingOfferingLinks
+      tags:
+        - Commerce
+      summary: "Issue #378 (ADR-0045 D1). The links between Booking offerings and service products, keyset-paginated, newest first. Identifiers and a status only - no price, no customer. Gated on `commerce.booking_offering_links.read` and the tenant's `booking` feature (default OFF)."
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          description: Opaque cursor from a previous response's nextCursor. A malformed value is rejected with 400.
+          schema:
+            type: string
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - active
+              - unlinked
+      responses:
+        "200":
+          description: "One page of links (limit 50) with an opaque `nextCursor` (null on the last page)."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceBookingOfferingLink"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`FEATURE_DISABLED` - the `booking` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    post:
+      operationId: createCommerceBookingOfferingLink
+      tags:
+        - Commerce
+      summary: "Issue #378 (ADR-0045 D1, D14, G3, G9). Link one Booking offering to one service product. Gated on `commerce.booking_offering_links.create` and the tenant's `booking` feature; requires `Idempotency-Key`."
+      description: >-
+        One offering has at most one active link and one product has at most one
+        active link. The product must be of type `service`; `quantityBasis` must
+        agree with the offering's granularity (`nights` for a stay offering,
+        `booking` for a time-slot offering); an offering that confirms without
+        payment (`confirmation_mode = immediate`) or is inactive cannot be sold;
+        and the tenant must have named an active service-account user in the
+        store settings (`bookingServiceTenantUserId`). A body naming a price, an
+        amount or a customer is a 400. The response carries a non-blocking
+        `NO_CANCELLATION_POLICY` warning when neither the product nor the tenant
+        has an active cancellation policy ("cancellations will refund nothing").
+        Booking is read for three facts (granularity, confirmation mode, status)
+        and is not altered.
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceBookingOfferingLinkInput"
+      responses:
+        "201":
+          description: "The link (or the original, on an idempotent replay)."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceBookingOfferingLinkCreated"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED`, `OFFERING_ALREADY_LINKED`, `PRODUCT_ALREADY_LINKED`, `PRODUCT_NOT_SERVICE`, `QUANTITY_BASIS_MISMATCH`, `OFFERING_NOT_LINKABLE`, `BOOKING_SERVICE_ACTOR_NOT_CONFIGURED` or `IDEMPOTENCY_CONFLICT`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/booking/offering-links/{id}:
+    get:
+      operationId: getCommerceBookingOfferingLink
+      tags:
+        - Commerce
+      summary: "Issue #378 (ADR-0045 D1). One offering link. Gated on `commerce.booking_offering_links.read` and the tenant's `booking` feature. An unknown id and another tenant's id are the same 404."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: "The link."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceBookingOfferingLink"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED` - the `booking` feature is off."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    patch:
+      operationId: updateCommerceBookingOfferingLink
+      tags:
+        - Commerce
+      summary: "Issue #378 (ADR-0045 D1). Unlink an offering (status active to unlinked) - the only transition; there is no delete. Past orders and reservation links are untouched. Gated on `commerce.booking_offering_links.update` and the tenant's `booking` feature; requires `Idempotency-Key`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - status
+              properties:
+                status:
+                  type: string
+                  enum:
+                    - unlinked
+      responses:
+        "200":
+          description: "The updated link (the stored row, unchanged, when it was already unlinked)."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceBookingOfferingLink"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED` or `IDEMPOTENCY_CONFLICT`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/products/{id}/deposit-policy:
+    get:
+      operationId: getCommerceProductDepositPolicy
+      tags:
+        - Commerce
+      summary: "Issue #378 (ADR-0045 D5, ADR-0041 D4). A product's deposit policy: the active policy, or null when the product is paid in full (there is no tenant default). Gated on `commerce.booking_deposit_policies.read` and the tenant's `booking` feature. An unknown id and another tenant's id are the same 404."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: "The product's deposit policy."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceProductDepositPolicy"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED` - the `booking` feature is off."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    put:
+      operationId: setCommerceProductDepositPolicy
+      tags:
+        - Commerce
+      summary: "Issue #378 (ADR-0045 D5). Set, replace or remove a product's deposit policy, keeping `allowDp` in step in the same transaction. Gated on `commerce.booking_deposit_policies.update` and the tenant's `booking` feature."
+      description: >-
+        `percent` is a share of the line's taxed total (rounded half up in
+        integer cents); `fixed` is an amount PER UNIT of quantity (per night for
+        a nightly product), capped at the line total when an order is created;
+        `full` removes the policy (the product is paid in full). The result is
+        snapshotted on an order as `dp_amount` at creation, so an edit never
+        alters an existing order. A body naming `amount` or `price` is a 400.
+        Naturally idempotent: writing the same policy again changes nothing.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceProductDepositPolicyInput"
+      responses:
+        "200":
+          description: "The product's deposit policy after the write."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceProductDepositPolicy"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED` - the `booking` feature is off."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+
 components:
   schemas:
     CommerceInventoryMode:
@@ -19956,3 +20252,138 @@ components:
         nextCursor:
           type: string
           nullable: true
+    CommerceBookingOfferingLink:
+      type: object
+      description: "Issue #378. Which Booking offering is sold as which service product: identifiers and a status only (no price, no customer)."
+      required:
+        - id
+        - offeringId
+        - productId
+        - quantityBasis
+        - status
+        - unlinkedAt
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: string
+          format: uuid
+        offeringId:
+          type: string
+          format: uuid
+        productId:
+          type: string
+          format: uuid
+        quantityBasis:
+          type: string
+          enum:
+            - nights
+            - booking
+          description: "`nights` for a stay offering (the line quantity is the night count), `booking` for a time-slot offering (quantity 1)."
+        status:
+          type: string
+          enum:
+            - active
+            - unlinked
+        unlinkedAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    CommerceBookingOfferingLinkCreated:
+      allOf:
+        - $ref: "#/components/schemas/CommerceBookingOfferingLink"
+        - type: object
+          required:
+            - warnings
+          properties:
+            warnings:
+              type: array
+              description: "Non-blocking findings (ADR-0045 D6)."
+              items:
+                type: string
+                enum:
+                  - NO_CANCELLATION_POLICY
+    CommerceBookingOfferingLinkInput:
+      type: object
+      additionalProperties: false
+      required:
+        - offeringId
+        - productId
+        - quantityBasis
+      properties:
+        offeringId:
+          type: string
+          format: uuid
+        productId:
+          type: string
+          format: uuid
+        quantityBasis:
+          type: string
+          enum:
+            - nights
+            - booking
+    CommerceProductDepositPolicyInput:
+      type: object
+      additionalProperties: false
+      required:
+        - kind
+      properties:
+        kind:
+          type: string
+          enum:
+            - full
+            - percent
+            - fixed
+        percent:
+          type: string
+          description: "Required when kind is `percent`: a decimal greater than 0 and at most 100, at most 2 places (a JSON number is also accepted)."
+        fixedAmount:
+          type: string
+          description: "Required when kind is `fixed`: a numeric(14,2) string greater than zero, PER UNIT of quantity (never a JSON number)."
+    CommerceProductDepositPolicy:
+      type: object
+      required:
+        - productId
+        - policy
+        - allowDp
+      properties:
+        productId:
+          type: string
+          format: uuid
+        policy:
+          type: object
+          nullable: true
+          description: "The active policy; null means the product is paid in full."
+          required:
+            - kind
+            - percent
+            - fixedAmount
+            - createdAt
+            - updatedAt
+          properties:
+            kind:
+              type: string
+              enum:
+                - percent
+                - fixed
+            percent:
+              type: string
+              nullable: true
+            fixedAmount:
+              type: string
+              nullable: true
+            createdAt:
+              type: string
+              format: date-time
+            updatedAt:
+              type: string
+              format: date-time
+        allowDp:
+          type: boolean
+          description: "The mirrored legacy flag, true exactly when a policy is active (ADR-0045 D5)."

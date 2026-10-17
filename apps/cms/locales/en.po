@@ -11909,6 +11909,8 @@ msgid "Sending to a segment is turned off for this store."
 msgstr ""
 
 msgid "Send campaigns to a customer segment"
+msgstr ""
+
 msgid "Waiting to retry"
 msgstr ""
 
@@ -12854,4 +12856,8 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Continue"
+msgstr ""
+
+# booking-adapter #378
+msgid "Sell Booking reservations (deposits, links)"
 msgstr ""

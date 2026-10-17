@@ -51,7 +51,8 @@ export type CommerceFeatureKey =
   | "retention"
   | "segments"
   | "loyaltySegments"
-  | "campaignSegmentAudience";
+  | "campaignSegmentAudience"
+  | "booking";
 
 export type CommerceFeatures = Readonly<Record<CommerceFeatureKey, boolean>>;
 
@@ -138,7 +139,17 @@ export const DEFAULT_COMMERCE_FEATURES: CommerceFeatures = {
   // `segments` surface, so a tenant that enabled segments to look at them does
   // not thereby start sending to them. It needs `campaigns` and `segments`
   // too. A tenant that never opens "Features" keeps today's campaigns.
-  campaignSegmentAudience: false
+  campaignSegmentAudience: false,
+  // Issue #378 (ADR-0045) - OFF. The booking-commerce adapter sells a Booking
+  // reservation as a commerce order: offering links, per-product deposit
+  // policies and (in later issues) holds, cancellations and refunds. It adds an
+  // obligation (a configured service-account user for the BookingPort), a money
+  // rule (a deposit policy replaces the store-wide down-payment for a product
+  // that has one) and a guard (a product with an active offering link is not
+  // sold through the ordinary cart), so a tenant chooses it. With it OFF no
+  // adapter route answers and `allow_dp` stays editable by hand exactly as
+  // before. Needs the Booking module enabled for the tenant.
+  booking: false
 };
 
 const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
@@ -159,7 +170,8 @@ const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
   "retention",
   "segments",
   "loyaltySegments",
-  "campaignSegmentAudience"
+  "campaignSegmentAudience",
+  "booking"
 ];
 
 function isBoolean(value: unknown): value is boolean {

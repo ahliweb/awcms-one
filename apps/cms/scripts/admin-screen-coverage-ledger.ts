@@ -54,6 +54,16 @@ export const NOT_YET_SCREENED: readonly string[] = [
   "comments.settings.read",
   "comments.settings.update",
 
+  // commerce (5) - Issue #378 (ADR-0045) lands the booking adapter's
+  // offering-link and deposit-policy ROUTES but, by its scope, no screen: the
+  // admin screens arrive with the adapter's screen issues, which remove these
+  // lines. Not a judgement that an operator should not drive them from a page.
+  "commerce.booking_deposit_policies.read",
+  "commerce.booking_deposit_policies.update",
+  "commerce.booking_offering_links.create",
+  "commerce.booking_offering_links.read",
+  "commerce.booking_offering_links.update",
+
   // email (6)
   "email.announcement.create",
   "email.message.cancel",
