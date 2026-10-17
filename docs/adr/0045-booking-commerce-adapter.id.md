@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0045-booking-commerce-adapter.md)
 
-<!-- i18n-source-hash: sha256:cd4d8c900fcd3d38d300dbbe8a331137b22dfede44ce910173a2c9ab6efbe699 -->
+<!-- i18n-source-hash: sha256:75e32093ca2f173e60a0ec5b0781b1c6b42eec54a6e61a8decf752b73aca0a33 -->
 
 # ADR-0045 — Adapter booking-commerce
 
@@ -287,3 +287,8 @@ Semua yang diusulkan draf di luar yang dibangun issue #378 (tabel, rute tautan o
 - **Event.** `awcms.commerce.booking_reservation_link.attention_raised` (kontrak 5.2) terdaftar di registri tipe event, dokumen AsyncAPI, dan `events.publishes`, sekali per flag terbuka, payload `{ orderId, reservationId, reason }`.
 - **Kendala deployment yang ditemukan saat membangun (U2).** Consumer memanggil `BookingPort` dari `domain-events:dispatch`; Booking menahan setiap hak tabel dari `awcms_worker` secara sengaja (worker dengan `UPDATE` pada reservasi dapat mengonfirmasi atau membatalkan booking), sehingga dengan `WORKER_DATABASE_URL` hak-minimal panggilan itu ditolak. Sampai hulu menyediakan confirm dan cancel yang dapat dipanggil worker (pasangan `SECURITY DEFINER` sempit seperti sapuan hold-nya), `domain-events:dispatch` harus berjalan dengan peran aplikasi. Tidak ada grant worker yang ditambahkan karena alasan itu; `sql/1042` tidak dipakai.
 - **Tidak ada di issue ini:** varian POS (`registerSessionId`), kuotasi pembatalan dan perencana leg refund, reschedule, no-show, check-in, pembacaan ketersediaan dan offering storefront, layar apa pun, dan consumer D15 yang tersisa (`booking_cancelled_refund_coordinator`, `booking_rescheduled_link_reconciler`, `booking_no_show_decision_recorder`).
+
+## Catatan implementasi (issue #384)
+
+- **Pembuktian, bukan perilaku.** Perolehan loyalitas untuk pesanan booking tidak memerlukan perubahan kode produksi: gerbang deposit #379 di `earnPointsForPaidOrder` dan pemicu `awcms.commerce.order.settled` sudah memberi poin pada pesanan deposit booking tepat sekali, saat pelunasan penuh, atas seluruh total, dengan kunci `earn:order:<orderId>` (D7; ADR-0026 D5 tidak berubah). `apps/cms/tests/integration/commerce-booking-loyalty.integration.test.ts` mencakup deposit saja (tanpa poin), pelunasan penuh (satu perolehan), pemutaran ulang kedua pemicu (satu perolehan), refund (baris kompensasi `reversal:refund:<refundId>`, aman diputar ulang, ADR-0033 D9), dan poin plus deposit (permintaan booking tidak punya bidang poin; CHECK `sql/1010` menolak kombinasinya, Q8 / C-33).
+- **Jalur refund.** Jalur retur generik menolak pesanan booking yang sudah dibayar (`BOOKING_ORDER_USE_ADAPTER`, #380), sehingga pembuktian refund menyelesaikan leg refund secara langsung. Jenis retur `cancellation` booking beserta cakupan loyalitasnya milik #381.
