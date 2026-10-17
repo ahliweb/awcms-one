@@ -10,6 +10,7 @@ import type {
   PopupFrequency,
   UpdatePopupInput
 } from "../domain/popup-validation";
+import { inSavepoint } from "./savepoint";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE = "popup";
@@ -133,7 +134,10 @@ export async function createPopup(
   let rows: PopupRow[];
 
   try {
-    rows = (await tx`
+    rows = (await inSavepoint(
+      tx,
+      async (sp) =>
+        await sp`
       INSERT INTO awcms_commerce_popups (
         tenant_id, title, body, media_object_id, link_url, button_text,
         frequency, is_active, starts_at, ends_at
@@ -143,8 +147,9 @@ export async function createPopup(
         ${input.linkUrl}, ${input.buttonText}, ${input.frequency}, ${input.isActive},
         ${input.startsAt}, ${input.endsAt}
       )
-      RETURNING ${tx.unsafe(POPUP_COLUMNS)}
-    `) as PopupRow[];
+      RETURNING ${sp.unsafe(POPUP_COLUMNS)}
+    `
+    )) as PopupRow[];
   } catch (error) {
     if (
       error instanceof Bun.SQL.PostgresError &&
@@ -187,7 +192,10 @@ export async function updatePopup(
   let rows: PopupRow[];
 
   try {
-    rows = (await tx`
+    rows = (await inSavepoint(
+      tx,
+      async (sp) =>
+        await sp`
       UPDATE awcms_commerce_popups
       SET
         title = ${input.title ?? existing.title},
@@ -201,8 +209,9 @@ export async function updatePopup(
         ends_at = ${input.endsAt === undefined ? (existing.endsAt ? new Date(existing.endsAt) : null) : input.endsAt},
         updated_at = now()
       WHERE tenant_id = ${tenantId} AND id = ${popupId} AND deleted_at IS NULL
-      RETURNING ${tx.unsafe(POPUP_COLUMNS)}
-    `) as PopupRow[];
+      RETURNING ${sp.unsafe(POPUP_COLUMNS)}
+    `
+    )) as PopupRow[];
   } catch (error) {
     if (
       error instanceof Bun.SQL.PostgresError &&

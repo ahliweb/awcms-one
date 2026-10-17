@@ -26,6 +26,7 @@ import {
   type BarcodeSymbology,
   type BarcodeTarget
 } from "../domain/barcode";
+import { inSavepoint } from "./savepoint";
 
 const AUDIT_MODULE_KEY = "commerce";
 
@@ -351,23 +352,24 @@ export async function assignBarcode(
 ): Promise<AssignBarcodeOutcome> {
   let updated: { id: string }[];
   try {
-    if (target.variantId === null) {
-      updated = (await tx`
-        UPDATE awcms_commerce_products
-        SET barcode = ${code}, updated_at = now()
-        WHERE tenant_id = ${tenantId} AND id = ${target.productId}
-          AND deleted_at IS NULL
-        RETURNING id
-      `) as { id: string }[];
-    } else {
-      updated = (await tx`
+    updated = await inSavepoint(tx, async (sp) => {
+      if (target.variantId === null) {
+        return (await sp`
+          UPDATE awcms_commerce_products
+          SET barcode = ${code}, updated_at = now()
+          WHERE tenant_id = ${tenantId} AND id = ${target.productId}
+            AND deleted_at IS NULL
+          RETURNING id
+        `) as { id: string }[];
+      }
+      return (await sp`
         UPDATE awcms_commerce_product_variants
         SET barcode = ${code}, updated_at = now()
         WHERE tenant_id = ${tenantId} AND id = ${target.variantId}
           AND product_id = ${target.productId} AND deleted_at IS NULL
         RETURNING id
       `) as { id: string }[];
-    }
+    });
   } catch (error) {
     if (
       error instanceof Bun.SQL.PostgresError &&

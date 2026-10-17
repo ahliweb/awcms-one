@@ -5,6 +5,7 @@ import type {
   CreateProductVariantInput,
   UpdateProductVariantInput
 } from "../domain/product-variant-validation";
+import { inSavepoint } from "./savepoint";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE = "product_variant";
@@ -185,7 +186,10 @@ export async function createProductVariant(
 
   let rows: ProductVariantRow[];
   try {
-    rows = (await tx`
+    rows = (await inSavepoint(
+      tx,
+      async (sp) =>
+        await sp`
       INSERT INTO awcms_commerce_product_variants (
         tenant_id, product_id, name, value, color_hex, image_media_object_id, sku,
         price, price_level_2, price_level_3, price_level_4, stock, weight_grams, sort_order
@@ -196,8 +200,9 @@ export async function createProductVariant(
         ${input.price}, ${input.priceLevel2}, ${input.priceLevel3}, ${input.priceLevel4},
         ${input.stock}, ${input.weightGrams}, ${input.sortOrder}
       )
-      RETURNING ${tx.unsafe(VARIANT_COLUMNS)}
-    `) as ProductVariantRow[];
+      RETURNING ${sp.unsafe(VARIANT_COLUMNS)}
+    `
+    )) as ProductVariantRow[];
   } catch (error) {
     if (
       error instanceof Bun.SQL.PostgresError &&
@@ -260,7 +265,10 @@ export async function updateProductVariant(
 
   let rows: ProductVariantRow[];
   try {
-    rows = (await tx`
+    rows = (await inSavepoint(
+      tx,
+      async (sp) =>
+        await sp`
       UPDATE awcms_commerce_product_variants
       SET
         name = ${input.name ?? existing.name},
@@ -278,8 +286,9 @@ export async function updateProductVariant(
         updated_at = now()
       WHERE tenant_id = ${tenantId} AND id = ${variantId} AND product_id = ${productId}
         AND deleted_at IS NULL
-      RETURNING ${tx.unsafe(VARIANT_COLUMNS)}
-    `) as ProductVariantRow[];
+      RETURNING ${sp.unsafe(VARIANT_COLUMNS)}
+    `
+    )) as ProductVariantRow[];
   } catch (error) {
     if (
       error instanceof Bun.SQL.PostgresError &&

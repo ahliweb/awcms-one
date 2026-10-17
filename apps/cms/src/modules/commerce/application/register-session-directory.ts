@@ -61,6 +61,7 @@ import type {
   RegisterSessionStatus
 } from "../domain/register";
 import { IdempotencyPayloadMismatchError } from "./order-directory";
+import { inSavepoint } from "./savepoint";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE = "register_session";
@@ -464,7 +465,10 @@ export async function openRegisterSession(
 
   let sessionId: string;
   try {
-    const rows = (await tx`
+    const rows = (await inSavepoint(
+      tx,
+      async (sp) =>
+        await sp`
       INSERT INTO awcms_commerce_register_sessions (
         tenant_id, register_id, opened_by_tenant_user_id, opening_float,
         current_cashier_tenant_user_id
@@ -474,7 +478,8 @@ export async function openRegisterSession(
         ${actorTenantUserId}
       )
       RETURNING id
-    `) as { id: string }[];
+    `
+    )) as { id: string }[];
     sessionId = rows[0]!.id;
   } catch (error) {
     if (
