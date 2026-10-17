@@ -1650,8 +1650,18 @@ export const READER_BUDGET_BYTES = 24_000;
  * bundle is not additive across lineages; no commerce screen changed its client
  * script in this sync. The commerce CSV writers moved onto the shared
  * `csvCellForWrite` (server code, no client byte).
+ *
+ * **Raised to 462,000 B by issue #385 (booking admin screens)**, MEASURED
+ * 461,999 B on the build (458,746 B before it) - a measurement of the build, not
+ * a sum: `/admin/commerce-booking-links` (create with a per-attempt
+ * `Idempotency-Key`, unlink through the shared confirm dialog, the
+ * carried-over no-policy notice), `/admin/commerce-booking-deposits` (the
+ * percent / fixed kind toggle and the policy body builder), the shared
+ * `commerce-booking-client` module, the service-account field in the settings
+ * script, the stylesheet share, and the new catalogue entries (the compiled
+ * Indonesian catalogue ships with every page). The budget sits 1 B above it.
  */
-export const APP_BUDGET_BYTES = 458_800;
+export const APP_BUDGET_BYTES = 462_000;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

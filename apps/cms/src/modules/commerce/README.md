@@ -1549,3 +1549,12 @@ Issue #380 lets a shopper or staff member hold a Booking slot or stay and get th
 - **Guards**: a product with an active offering link quotes as `unavailable` on the ordinary paths; a booking order that holds money is refused by the generic admin cancel, customer cancel and returns with `409 BOOKING_ORDER_USE_ADAPTER`.
 - **Operational**: the consumers call `BookingPort`, which `awcms_worker` cannot, so `domain-events:dispatch` runs with the application role (ADR-0045 notes, U2).
 - **Not here**: availability and offering reads (upstream U1), the POS variant, cancellation and refunds, reschedule, no-show, check-in, and every screen.
+
+## Booking-commerce adapter, admin screens - IMPLEMENTED (Issue #385, epic #280 - [ADR-0045](../../../../../docs/adr/0045-booking-commerce-adapter.md))
+
+Spec: [the booking UX flows](../../../../../docs/booking-ux-flows.md) section 11.
+
+- **Screens**: `src/pages/admin/commerce-booking-links.astro` (offering links: list, create, unlink; routes `commerce/booking/offering-links`), `src/pages/admin/commerce-booking-deposits.astro` (a service product's deposit policy; `PUT commerce/products/{id}/deposit-policy`), and the booking service-account field on `commerce-settings.astro` (`bookingServiceTenantUserId` through `PUT commerce/store-settings`, shown only while `booking` is on).
+- **Navigation**: both entries live in `domain/booking-adapter-navigation.ts`, gated by the read permission and `requiredFeature: { moduleKey: "commerce", feature: "booking" }`.
+- **Code**: `lib/ui/commerce-booking-client.ts` (the deposit body, the refusal-copy lookup), `listServiceProductDepositPolicies` in `application/booking-deposit-policies.ts`. The screens send the policy, never an amount; unlink uses the shared confirm dialog and an `Idempotency-Key`.
+- **Not here**: the cancellation-policy versions screen and the refund-override dialog (specified in section 11.4 and 11.5; they wait for the policy and cancel APIs of #381), and the reservation screens.

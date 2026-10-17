@@ -54,18 +54,12 @@ export const NOT_YET_SCREENED: readonly string[] = [
   "comments.settings.read",
   "comments.settings.update",
 
-  // commerce (7) - Issues #378 and #380 (ADR-0045) lands the booking adapter's
-  // offering-link and deposit-policy ROUTES but, by its scope, no screen: the
-  // admin screens arrive with the adapter's screen issues, which remove these
-  // lines. Not a judgement that an operator should not drive them from a page.
-  "commerce.booking_deposit_policies.read",
-  "commerce.booking_deposit_policies.update",
-  "commerce.booking_offering_links.create",
-  "commerce.booking_offering_links.read",
-  "commerce.booking_offering_links.update",
-  // Issue #380 (ADR-0045) - the hold-to-order, reservation-read and
-  // reconciliation ROUTES, and no screen (the screens arrive with the adapter's
-  // screen issues, which remove these lines).
+  // commerce (2) - Issues #378 and #380 (ADR-0045) landed the booking
+  // adapter's ROUTES ahead of its screens. Issue #385 built the offering-link
+  // (`/admin/commerce-booking-links`) and deposit-policy
+  // (`/admin/commerce-booking-deposits`) screens, which removed those five
+  // lines; what remains is the reservation-link surface, whose screens arrive
+  // with the adapter's reservation issues.
   "commerce.booking_reservation_links.create",
   "commerce.booking_reservation_links.read",
 
