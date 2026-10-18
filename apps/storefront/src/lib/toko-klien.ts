@@ -47,6 +47,7 @@
  * rather than duplicating it. This file's own public exports and behaviour
  * are unchanged by that split — see `toko-permintaan.ts`'s own docblock.
  */
+import type { KetersediaanMenginap, KuotaBooking, TawaranBooking } from "./booking-kontrak";
 import { kirimPermintaan } from "./toko-permintaan";
 export { TokoApiError } from "./toko-permintaan";
 export type { ValidationErrorDetail } from "./toko-permintaan";
@@ -434,12 +435,19 @@ export function finalizePaymentProofUpload(
 export function createGatewaySession(
   orderCode: string,
   phone: string | null,
-  bearerToken?: string
+  bearerToken?: string,
+  purpose?: "full" | "deposit" | "balance"
 ): Promise<GatewaySession> {
+  // Issue #386 (ADR-0041 D1): a booking order asks for "pay the deposit" /
+  // "pay the balance" and names NO amount - the server computes it. `full` is
+  // the server's default, so it is never sent (existing callers are unchanged).
+  const body: Record<string, string> = {};
+  if (phone) body.phone = phone;
+  if (purpose && purpose !== "full") body.purpose = purpose;
   return kirimPermintaan<GatewaySession>(
     `/orders/${encodeURIComponent(orderCode)}/payment-gateway/sessions`,
     "POST",
-    phone ? { phone } : {},
+    body,
     bearerToken ? { Authorization: `Bearer ${bearerToken}` } : undefined
   );
 }
@@ -466,4 +474,41 @@ export function submitReview(input: ReviewRequest, bearerToken?: string): Promis
     input,
     bearerToken ? { Authorization: `Bearer ${bearerToken}` } : undefined
   );
+}
+
+// ---------------------------------------------------------------------------
+// Issue #386 - the `toko` booking pages' anonymous reads (ADR-0045). Each is a
+// plain GET with no custom header unless a live session token is passed (then
+// only `Authorization`, which the quote and offerings preflights allow): the
+// optional bearer prices the unit at the signed-in customer's level, and a dead
+// or absent one is never a failure server-side. Nights, prices and totals are
+// whatever the server returns; nothing here computes them.
+// ---------------------------------------------------------------------------
+
+const bearerHeader = (bearerToken?: string): Record<string, string> | undefined =>
+  bearerToken ? { Authorization: `Bearer ${bearerToken}` } : undefined;
+
+/** `GET …/booking/offerings` - what the tenant sells online, with the resource ids to probe. `404` while the tenant's `booking` feature is off. */
+export function ambilTawaranBooking(bearerToken?: string): Promise<{ items: TawaranBooking[] }> {
+  return kirimPermintaan<{ items: TawaranBooking[] }>("/booking/offerings", "GET", undefined, bearerHeader(bearerToken));
+}
+
+/** `GET …/booking/availability` for a stay. `400` for a bad range, `404` for an offering that is not sold; a full range is a normal `available: false` answer. */
+export function ambilKetersediaanBooking(query: {
+  offeringId: string;
+  resourceId: string;
+  checkInDate: string;
+  checkOutDate: string;
+}): Promise<KetersediaanMenginap> {
+  const params = new URLSearchParams(query);
+  return kirimPermintaan<KetersediaanMenginap>(`/booking/availability?${params.toString()}`, "GET");
+}
+
+/** `GET …/booking/quote` - the server's nights, total and deposit for a stay. The page never sends a night count or an amount. */
+export function ambilKuotaBooking(
+  query: { offeringId: string; checkInDate: string; checkOutDate: string },
+  bearerToken?: string
+): Promise<KuotaBooking> {
+  const params = new URLSearchParams(query);
+  return kirimPermintaan<KuotaBooking>(`/booking/quote?${params.toString()}`, "GET", undefined, bearerHeader(bearerToken));
 }

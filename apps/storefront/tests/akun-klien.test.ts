@@ -15,6 +15,9 @@
  */
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import {
+  ambilReservasiSaya,
+  ambilReservasiSayaByKode,
+  buatReservasiBooking,
   ambilPercakapan,
   ambilPercakapanById,
   ambilProfil,
@@ -342,5 +345,77 @@ describe("akun-klien: issue #115 — conversations", () => {
     }) as unknown as typeof fetch;
     await expect(ambilPercakapan()).rejects.toThrow(TokoApiError);
     expect(fetchCalled).toBe(false);
+  });
+});
+
+describe("akun-klien: the booking reservations (issue #386)", () => {
+  const REQUEST = {
+    offeringId: "11111111-1111-4111-8111-111111111111",
+    resourceId: "22222222-2222-4222-8222-222222222222",
+    stay: { checkInDate: "2026-11-01", checkOutDate: "2026-11-03" },
+    partySize: 2,
+    payment: { method: "dp" as const },
+    notes: null
+  };
+
+  test("the hold is a bearer POST that carries the Idempotency-Key, and names no price, amount or customer", async () => {
+    simpanSesi(SESI_VALID);
+    mockFetch(201, { success: true, data: { replayed: false, orderCode: "BJM-1" } });
+
+    await buatReservasiBooking(REQUEST, "attempt-1");
+
+    expect(lastRequest?.url).toBe("https://cms.example.com/api/v1/commerce/storefront/booking/reservations");
+    expect(lastRequest?.init.method).toBe("POST");
+    expect(lastRequest?.init.credentials).toBe("omit");
+    const headers = lastRequest?.init.headers as Record<string, string>;
+    expect(headers.Authorization).toBe("Bearer cs_stub_1");
+    expect(headers["Idempotency-Key"]).toBe("attempt-1");
+    expect(headers["Content-Type"]).toBe("application/json");
+    const body = JSON.parse(String(lastRequest?.init.body));
+    expect(Object.keys(body).sort()).toEqual(["notes", "offeringId", "partySize", "payment", "resourceId", "stay"]);
+    expect(JSON.stringify(body)).not.toMatch(/amount|price|total|deposit|customer|nights/i);
+  });
+
+  test("with no stored session the hold fails BEFORE any request, as an UNAUTHENTICATED TokoApiError", async () => {
+    let fetchCalled = false;
+    globalThis.fetch = (async () => {
+      fetchCalled = true;
+      return new Response("{}");
+    }) as unknown as typeof fetch;
+
+    await expect(buatReservasiBooking(REQUEST, "attempt-1")).rejects.toMatchObject({ code: "UNAUTHENTICATED", status: 401 });
+    expect(fetchCalled).toBe(false);
+  });
+
+  test("a refusal keeps its code, and a 401 clears the stored session (no stale token left behind)", async () => {
+    simpanSesi(SESI_VALID);
+    mockFetch(409, { success: false, error: { code: "SLOT_UNAVAILABLE", message: "x" } });
+    await expect(buatReservasiBooking(REQUEST, "attempt-1")).rejects.toMatchObject({ code: "SLOT_UNAVAILABLE", status: 409 });
+
+    mockFetch(401, { success: false, error: { code: "UNAUTHENTICATED", message: "Sesi tidak valid." } });
+    await expect(buatReservasiBooking(REQUEST, "attempt-2")).rejects.toThrow(TokoApiError);
+
+    let fetchCalled = false;
+    globalThis.fetch = (async () => {
+      fetchCalled = true;
+      return new Response("{}");
+    }) as unknown as typeof fetch;
+    await expect(ambilReservasiSaya()).rejects.toThrow(TokoApiError);
+    expect(fetchCalled).toBe(false);
+  });
+
+  test("the own list is a bearer GET with a keyset cursor; one reservation is read by order code, encoded", async () => {
+    simpanSesi(SESI_VALID);
+    mockFetch(200, { success: true, data: { items: [], nextCursor: null } });
+    await ambilReservasiSaya();
+    expect(lastRequest?.url).toBe("https://cms.example.com/api/v1/commerce/storefront/booking/reservations");
+    expect((lastRequest?.init.headers as Record<string, string>).Authorization).toBe("Bearer cs_stub_1");
+
+    await ambilReservasiSaya("abc def");
+    expect(lastRequest?.url).toContain("?cursor=abc%20def");
+
+    mockFetch(200, { success: true, data: { orderCode: "A/B" } });
+    await ambilReservasiSayaByKode("A/B");
+    expect(lastRequest?.url).toBe("https://cms.example.com/api/v1/commerce/storefront/booking/reservations/A%2FB");
   });
 });

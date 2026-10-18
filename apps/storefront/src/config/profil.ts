@@ -325,6 +325,8 @@ export const ROBOTS_DISALLOW_ALL: ReadonlyArray<{ path: string; group: RouteGrou
   { path: ROUTES.login, group: "toko" },
   { path: ROUTES.register, group: "toko" },
   { path: ROUTES.account, group: "toko" },
+  // Issue #386: `/booking/pesan` is a prefix child, so one rule covers it.
+  { path: ROUTES.booking, group: "toko" },
   { path: "/api/", group: "shared" }
 ];
 

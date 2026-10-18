@@ -1,0 +1,191 @@
+---
+/**
+ * `/booking/pesan` - confirm the stay, hold it, and hand off to payment (issue
+ * #386, ADR-0045, `docs/booking-ux-flows.md` sections 2.2 and 3). A STATIC
+ * shell with one visible "view" at a time, switched by
+ * `src/scripts/booking-pesan.ts`:
+ *
+ *   memuat -> (kosong | masuk | tidak-tersedia | form) -> menahan -> (tahan | habis)
+ *
+ * The stay arrives as `?o=&r=&in=&out=&n=` (ids and plain dates, never an
+ * amount). The server's quote fills the summary, the hold response carries the
+ * absolute expiry and the server's own "now", and the countdown is their
+ * difference - so a wrong device clock does not matter. Signed-out visitors go
+ * to `/masuk?kembali=` and come back here (the reservation needs an account to
+ * own it, UX ground rule 7).
+ *
+ * `noindex, follow`; `/booking` in `robots.txt` also covers this path.
+ */
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import { getSiteIdentity } from "../../../../lib/awcms/profil";
+import { getStoreSettings } from "../../../../lib/awcms/pemasaran";
+import { ROUTES } from "../../../../config/routes";
+import "../../../../styles/toko.css";
+import "../../../../styles/booking.css";
+
+const identity = await getSiteIdentity();
+const storeSettings = await getStoreSettings();
+const whatsappNumber = storeSettings.whatsapp ?? identity.whatsappNumber ?? "";
+const whatsappHref = whatsappNumber ? `https://wa.me/${whatsappNumber.replace(/\D/g, "")}` : "";
+---
+
+<BaseLayout title="Pesan Penginapan" description="Tahan kamar dan selesaikan pembayaran." canonicalPath="/booking/pesan">
+  <meta slot="head" name="robots" content="noindex, follow" />
+
+  <noscript>
+    <div class="container">
+      <div class="toko-banner toko-banner--info">
+        Pemesanan memerlukan JavaScript aktif di peramban Anda. Hubungi kami
+        {whatsappHref ? (
+          <>
+            di <a class="toko-wa-fallback" href={whatsappHref}>WhatsApp</a>
+          </>
+        ) : (
+          <>melalui <a href={ROUTES.contact}>halaman kontak</a></>
+        )}
+        untuk memesan.
+      </div>
+    </div>
+  </noscript>
+
+  <div
+    class="container"
+    data-pesan-root
+    data-whatsapp-number={whatsappNumber}
+    data-store-name={identity.name}
+    data-login-href={ROUTES.login}
+  >
+    <div class="page-heading">
+      <h1 tabindex="-1" data-heading>Pesan Penginapan</h1>
+    </div>
+
+    <!--
+      The two announcement regions exist in the DOM before their content
+      changes (WCAG 4.1.3). The ticking digits are NOT in either: they are in
+      `[data-countdown]`, which is deliberately not a live region.
+    -->
+    <div class="visually-hidden" role="status" aria-live="polite" data-announce></div>
+    <div class="visually-hidden" role="alert" data-announce-urgent></div>
+
+    <div data-view="memuat" aria-busy="true">
+      <p data-loading-text>Memuat...</p>
+    </div>
+
+    <div data-view="kosong" hidden>
+      <p class="empty-state">Tidak ada pemesanan yang sedang berjalan.</p>
+      <div class="toko-actions">
+        <a class="btn btn--primary" href={ROUTES.booking}>Cari penginapan</a>
+      </div>
+    </div>
+
+    <div data-view="tidak-tersedia" class="toko-banner toko-banner--info" role="status" hidden>
+      <p>Pemesanan tidak tersedia saat ini.</p>
+      <div class="toko-actions">
+        <a class="btn btn--secondary btn--sm" href={ROUTES.products}>Lihat katalog</a>
+      </div>
+    </div>
+
+    <div data-view="masuk" hidden>
+      <p>Masuk dengan akun Anda untuk menahan kamar. Pilihan tanggal Anda tetap tersimpan.</p>
+      <div class="toko-actions">
+        <a class="btn btn--primary" data-login-link href={ROUTES.login}>Masuk untuk melanjutkan</a>
+        <a class="btn btn--secondary" href={ROUTES.booking}>Ubah tanggal</a>
+      </div>
+    </div>
+
+    <div data-submit-error class="toko-banner toko-banner--danger" role="alert" tabindex="-1" hidden>
+      <p data-submit-error-message></p>
+      <div class="toko-actions">
+        <a class="btn btn--secondary btn--sm" data-error-change-dates href={ROUTES.booking} hidden>Pilih tanggal lain</a>
+        <a data-wa-fallback-link class="toko-wa-fallback" hidden>Hubungi via WhatsApp</a>
+      </div>
+    </div>
+
+    <form data-view="form" data-pesan-form novalidate hidden>
+      <section class="toko-section" aria-labelledby="pesan-judul-ringkasan">
+        <h2 id="pesan-judul-ringkasan">Ringkasan menginap</h2>
+        <dl class="booking-dl">
+          <div><dt>Layanan</dt><dd data-sum-name></dd></div>
+          <div><dt>Lama menginap</dt><dd data-sum-stay></dd></div>
+          <div><dt>Harga per malam</dt><dd data-sum-unit></dd></div>
+          <div class="booking-dl-total"><dt>Total</dt><dd data-sum-total></dd></div>
+        </dl>
+        <p><a data-change-dates href={ROUTES.booking}>Ubah tanggal</a></p>
+      </section>
+
+      <section class="toko-section" aria-labelledby="pesan-judul-tamu">
+        <h2 id="pesan-judul-tamu">Data tamu</h2>
+        <p data-guest-line></p>
+        <p class="toko-field-hint">Konfirmasi dikirim ke kontak akun Anda. <a href={ROUTES.account}>Ubah di akun</a>.</p>
+        <div class="toko-field">
+          <label for="pesan-catatan">Permintaan khusus (opsional)</label>
+          <textarea id="pesan-catatan" name="notes" rows="3" maxlength="500" aria-describedby="pesan-catatan-galat"></textarea>
+          <p class="toko-field-error" id="pesan-catatan-galat" data-error-for="notes"></p>
+        </div>
+      </section>
+
+      <section class="toko-section" aria-labelledby="pesan-judul-bayar">
+        <h2 id="pesan-judul-bayar">Pembayaran</h2>
+        <div role="radiogroup" aria-labelledby="pesan-judul-bayar" data-payment-options></div>
+        <p class="toko-field-error" data-error-for="payment.method"></p>
+        <p class="toko-field-hint" data-points-note hidden>Poin tidak dapat dipakai bersama uang muka.</p>
+        <p class="toko-field-hint">Dengan melanjutkan, Anda menyetujui syarat dan ketentuan pemesanan toko ini. Pembatalan mengikuti kebijakan yang berlaku.</p>
+        <div class="toko-actions">
+          <button type="submit" class="btn btn--primary" data-submit>Tahan kamar dan lanjut bayar</button>
+        </div>
+      </section>
+    </form>
+
+    <div data-view="menahan" aria-busy="true" hidden>
+      <p>Menahan kamar...</p>
+    </div>
+
+    <div data-view="tahan" hidden>
+      <section class="toko-section" aria-labelledby="pesan-judul-tahan">
+        <h2 id="pesan-judul-tahan" tabindex="-1" data-hold-heading>Kamar ditahan</h2>
+        <p class="booking-countdown" data-countdown></p>
+        <p class="toko-field-hint" data-one-minute-note hidden>
+          Waktu tahan tidak dapat diperpanjang. Selesaikan pembayaran sekarang; jika waktu habis, Anda bisa memesan lagi
+          dengan tanggal yang sama.
+        </p>
+        <dl class="booking-dl">
+          <div><dt>Nomor pesanan</dt><dd data-hold-order></dd></div>
+          <div><dt>Lama menginap</dt><dd data-hold-stay></dd></div>
+          <div class="booking-dl-total"><dt>Total</dt><dd data-hold-total></dd></div>
+          <div data-hold-deposit-row><dt data-hold-deposit-label>Bayar sekarang</dt><dd data-hold-deposit></dd></div>
+          <div data-hold-balance-row hidden><dt>Sisa pembayaran</dt><dd data-hold-balance></dd></div>
+        </dl>
+        <p class="toko-field-hint" data-hold-status role="status"></p>
+        <div class="toko-actions">
+          <button type="button" class="btn btn--primary" data-pay hidden>Bayar sekarang</button>
+          <a class="btn btn--secondary" data-instructions href={ROUTES.orderTracking} hidden>Lihat instruksi pembayaran</a>
+          <a class="btn btn--secondary" href={ROUTES.accountReservations}>Reservasi saya</a>
+        </div>
+      </section>
+    </div>
+
+    <div data-view="berhasil" hidden>
+      <section class="toko-section" aria-labelledby="pesan-judul-berhasil">
+        <h2 id="pesan-judul-berhasil" tabindex="-1" data-success-heading>Reservasi terkonfirmasi</h2>
+        <p data-success-text></p>
+        <div class="toko-actions">
+          <a class="btn btn--primary" href={ROUTES.accountReservations}>Lihat reservasi saya</a>
+        </div>
+      </section>
+    </div>
+
+    <div data-view="habis" hidden>
+      <section class="toko-section" aria-labelledby="pesan-judul-habis">
+        <h2 id="pesan-judul-habis" tabindex="-1" data-expired-heading>Waktu penahanan habis</h2>
+        <p data-expired-text>Waktu penahanan habis. Kamar dilepas. Pilih tanggal lagi.</p>
+        <div class="toko-actions">
+          <a class="btn btn--primary" data-restart href={ROUTES.booking}>Pilih tanggal lagi</a>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    import "../../../../scripts/booking-pesan";
+  </script>
+</BaseLayout>

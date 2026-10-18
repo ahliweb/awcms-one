@@ -7,6 +7,9 @@
  */
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import {
+  ambilKetersediaanBooking,
+  ambilKuotaBooking,
+  ambilTawaranBooking,
   cancelOrder,
   createGatewaySession,
   createOrder,
@@ -262,5 +265,67 @@ describe("toko-klien: PUBLIC_AWCMS_ORIGIN is required", () => {
 
     await expect(quoteCart(QUOTE_REQUEST)).rejects.toThrow(/PUBLIC_AWCMS_ORIGIN/);
     expect(fetchCalled).toBe(false);
+  });
+});
+
+describe("toko-klien: the booking reads (issue #386)", () => {
+  const OFFERING = "11111111-1111-4111-8111-111111111111";
+  const RESOURCE = "22222222-2222-4222-8222-222222222222";
+
+  test("offerings is a plain cors GET with no header and no body; a session token adds Authorization only", async () => {
+    mockFetch(200, { success: true, data: { items: [] } });
+    await ambilTawaranBooking();
+    expect(lastRequest?.url).toBe("https://cms.example.com/api/v1/commerce/storefront/booking/offerings");
+    expect(lastRequest?.init.method).toBe("GET");
+    expect(lastRequest?.init.mode).toBe("cors");
+    expect(lastRequest?.init.credentials).toBe("omit");
+    expect(lastRequest?.init.headers).toBeUndefined();
+    expect(lastRequest?.init.body).toBeUndefined();
+
+    await ambilTawaranBooking("cs_stub_1");
+    expect(lastRequest?.init.headers).toEqual({ Authorization: "Bearer cs_stub_1" });
+  });
+
+  test("availability puts the ids and the two dates in the query and nothing else", async () => {
+    mockFetch(200, { success: true, data: { mode: "stay", available: true } });
+    await ambilKetersediaanBooking({ offeringId: OFFERING, resourceId: RESOURCE, checkInDate: "2026-11-01", checkOutDate: "2026-11-03" });
+    const url = new URL(String(lastRequest?.url));
+    expect(url.pathname).toBe("/api/v1/commerce/storefront/booking/availability");
+    expect([...url.searchParams.keys()].sort()).toEqual(["checkInDate", "checkOutDate", "offeringId", "resourceId"]);
+    expect(url.searchParams.get("checkInDate")).toBe("2026-11-01");
+    expect(lastRequest?.init.headers).toBeUndefined();
+  });
+
+  test("the quote sends dates only - never a night count or an amount - and an optional bearer", async () => {
+    mockFetch(200, { success: true, data: { nights: 2, total: "900000.00" } });
+    const result = await ambilKuotaBooking({ offeringId: OFFERING, checkInDate: "2026-11-01", checkOutDate: "2026-11-03" }, "cs_stub_1");
+    const url = new URL(String(lastRequest?.url));
+    expect(url.pathname).toBe("/api/v1/commerce/storefront/booking/quote");
+    expect([...url.searchParams.keys()].sort()).toEqual(["checkInDate", "checkOutDate", "offeringId"]);
+    expect(lastRequest?.init.headers).toEqual({ Authorization: "Bearer cs_stub_1" });
+    // The server's figures come back untouched.
+    expect(result.nights).toBe(2);
+    expect(result.total).toBe("900000.00");
+  });
+
+  test("a 404 (feature off) and a 400 surface as TokoApiError with their code", async () => {
+    mockFetch(404, { success: false, error: { code: "NOT_FOUND", message: "Not found." } });
+    await expect(ambilTawaranBooking()).rejects.toMatchObject({ code: "NOT_FOUND", status: 404 });
+    mockFetch(400, { success: false, error: { code: "VALIDATION_ERROR", message: "bad", details: [{ field: "checkOutDate", message: "x" }] } });
+    const error = await ambilKuotaBooking({ offeringId: OFFERING, checkInDate: "a", checkOutDate: "b" }).catch((e) => e);
+    expect(error).toBeInstanceOf(TokoApiError);
+    expect(error.fieldErrors).toEqual([{ field: "checkOutDate", message: "x" }]);
+  });
+
+  test("createGatewaySession asks for a deposit or balance by purpose and still sends no amount; `full` is never sent", async () => {
+    mockFetch(201, { success: true, data: { redirectUrl: "https://gateway.example/pay/9", expiresAt: "2026-10-19T00:00:00.000Z", providerRef: "r" } });
+    await createGatewaySession("BJM-9", null, "cs_stub_1", "deposit");
+    expect(JSON.parse(String(lastRequest?.init.body))).toEqual({ purpose: "deposit" });
+    await createGatewaySession("BJM-9", null, "cs_stub_1", "balance");
+    expect(JSON.parse(String(lastRequest?.init.body))).toEqual({ purpose: "balance" });
+    await createGatewaySession("BJM-9", null, "cs_stub_1", "full");
+    expect(JSON.parse(String(lastRequest?.init.body))).toEqual({});
+    await createGatewaySession("BJM-9", "0812");
+    expect(JSON.parse(String(lastRequest?.init.body))).toEqual({ phone: "0812" });
   });
 });
