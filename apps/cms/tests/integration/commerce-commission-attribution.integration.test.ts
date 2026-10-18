@@ -91,7 +91,7 @@ function isoDate(date: Date, timeZone: string): string {
 
 function inTenant<T>(
   tenantId: string,
-  fn: (tx: Bun.SQL) => Promise<T>,
+  fn: (tx: Bun.TransactionSQL) => Promise<T>,
   sql: Bun.SQL = getRuntimeSql()
 ): Promise<T> {
   return withTenantOrThrow(sql, tenantId, fn);

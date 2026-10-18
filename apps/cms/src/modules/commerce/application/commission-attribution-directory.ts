@@ -211,7 +211,7 @@ export type CreateStaffLinkOutcome =
   | { kind: "employment_already_linked" };
 
 export async function createStaffLink(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   input: CreateStaffLinkInput,
@@ -236,12 +236,17 @@ export async function createStaffLink(
 
   let rows: LinkRow[];
   try {
-    rows = (await tx`
+    // A savepoint: the unique violation below is swallowed and mapped to an
+    // outcome, which must not poison the surrounding tenant transaction.
+    rows = (await tx.savepoint(
+      async (sp) =>
+        await sp`
       INSERT INTO awcms_commerce_commission_staff_links
         (tenant_id, tenant_user_id, employment_id, created_by_tenant_user_id)
       VALUES (${tenantId}, ${input.tenantUserId}, ${input.employmentId}, ${actorTenantUserId})
-      RETURNING ${tx.unsafe(LINK_COLUMNS)}
-    `) as LinkRow[];
+      RETURNING ${sp.unsafe(LINK_COLUMNS)}
+    `
+    )) as LinkRow[];
   } catch (error) {
     // A racing request created the same live link between the check and the
     // insert; the partial unique indexes are the authority.
