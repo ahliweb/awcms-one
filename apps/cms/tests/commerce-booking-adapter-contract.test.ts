@@ -320,7 +320,7 @@ describe("module wiring and boundary", () => {
     }
   });
 
-  test("the only reads of a Booking table are the offering lookup and the reservation reads, and commerce writes none", async () => {
+  test("the only reads of a Booking table are the offering lookup, the reservation reads and the storefront resource-id read, and commerce writes none", async () => {
     const readers: string[] = [];
     for (const file of await sourceFilesUnder("src/modules/commerce")) {
       const source = await readFile(file, "utf8");
@@ -331,7 +331,8 @@ describe("module wiring and boundary", () => {
     }
     expect(readers.sort()).toEqual([
       "src/modules/commerce/application/booking-offering-links.ts",
-      "src/modules/commerce/application/booking-reservation-reads.ts"
+      "src/modules/commerce/application/booking-reservation-reads.ts",
+      "src/modules/commerce/application/booking-storefront-reads.ts"
     ]);
   });
 
