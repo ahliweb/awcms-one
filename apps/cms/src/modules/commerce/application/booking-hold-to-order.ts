@@ -184,7 +184,7 @@ export async function buildReservationView(
 }
 
 export async function createBookingReservation(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   ctx: HoldToOrderContext,
   request: BookingReservationRequest,
   idempotencyKey: string

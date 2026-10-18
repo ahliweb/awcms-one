@@ -923,7 +923,7 @@ export async function createOrderFromCart(
  * idempotency record is neither read nor written.
  */
 export function createBookingOrderFromCart(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   mediaPort: MediaLibraryPort,
   input: CreateOrderInput,
@@ -945,7 +945,7 @@ export function createBookingOrderFromCart(
 }
 
 async function runCreateOrder(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   mediaPort: MediaLibraryPort,
   input: CreateOrderInput,
@@ -2080,7 +2080,7 @@ async function bookingOrderHoldsMoney(
  * money: that one is never cancelled by an event.
  */
 export async function cancelUnpaidOrderForBooking(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   orderId: string,
   correlationId?: string

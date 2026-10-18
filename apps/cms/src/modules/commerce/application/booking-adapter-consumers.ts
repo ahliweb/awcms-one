@@ -88,7 +88,7 @@ export const BOOKING_ADAPTER_CONSUMERS: ModuleDomainEventConsumer[] = [
       const { closeOrderForEndedReservation } =
         await import("./booking-order-consumers");
       await closeOrderForEndedReservation(
-        tx,
+        tx as Bun.TransactionSQL,
         ctx.tenantId,
         event.aggregateId,
         "expired",
@@ -106,7 +106,7 @@ export const BOOKING_ADAPTER_CONSUMERS: ModuleDomainEventConsumer[] = [
       const { closeOrderForEndedReservation } =
         await import("./booking-order-consumers");
       await closeOrderForEndedReservation(
-        tx,
+        tx as Bun.TransactionSQL,
         ctx.tenantId,
         event.aggregateId,
         "cancelled",

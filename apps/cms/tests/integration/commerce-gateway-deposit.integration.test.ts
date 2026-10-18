@@ -90,7 +90,7 @@ const earnerConsumer = listDomainEventConsumers().find(
   (consumer) => consumer.name === "commerce.order_paid_loyalty_earner"
 )!;
 
-function inTenant<T>(fn: (tx: Bun.SQL) => Promise<T>): Promise<T> {
+function inTenant<T>(fn: (tx: Bun.TransactionSQL) => Promise<T>): Promise<T> {
   return withTenantOrThrow(getRuntimeSql(), TENANT_A, fn);
 }
 

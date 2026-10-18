@@ -218,7 +218,7 @@ export type CancellerOutcome =
  * adapter).
  */
 export async function closeOrderForEndedReservation(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   reservationId: string,
   how: "expired" | "cancelled",
