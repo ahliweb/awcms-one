@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](booking-ux-flows.md)
 
-<!-- i18n-source-hash: sha256:1123ab82a5eaf1f63a4269abed60dd97c0199105dae0064f7f6be449ab9f34b8 -->
+<!-- i18n-source-hash: sha256:582baa306ecb9aad2cbeec8680aa2d3cc35a4211499228515f336ad8109400e1 -->
 
 <!-- i18n-source-hash: sha256:0 -->
 
@@ -8,7 +8,7 @@
 
 Artefak DoR 8 dari epik [#280](https://github.com/ahliweb/awcms-one/issues/280), item Wave A W8 ([#359](https://github.com/ahliweb/awcms-one/issues/359)), dilacak di [`aw-business-platform-dor.md`](aw-business-platform-dor.md). Ditulis 10 Oktober 2026.
 
-> **Spesifikasi desain. Tidak ada yang dijelaskan di sini yang sudah dibangun.** Tidak ada halaman pemesanan, rute pemesanan, adapter, atau konteks layanan kasir di pohon ini ([`status.md`](status.md) mencantumkannya di "belum ada di sini"). ADR-0040 D7 melarang kode, migrasi, dan path OpenAPI sampai Definition of Ready terpenuhi. Setiap nama rute, string teks, dan state di bawah adalah usulan untuk dikonfirmasi implementer fase 1; bila bertentangan dengan kode yang kelak ada, kode dan pengujiannya yang menang dan dokumen ini diamandemen.
+> **Spesifikasi desain, sebagian sudah dibangun.** Permukaan A (alur pemesanan storefront: `/booking`, `/booking/pesan`, `/akun/reservasi`, beserta state hitung mundur, kedaluwarsa, dan daftar milik sendiri) dibangun oleh [issue #386](https://github.com/ahliweb/awcms-one/issues/386); lihat "Status implementasi Permukaan A" di bawah untuk apa persisnya yang dikerjakannya dan di mana ia sengaja berbeda dari teks ini. Serah-terima pembayaran Permukaan B adalah sesi gateway yang sudah ada (tujuan deposit dan saldo) yang dicapai dari halaman-halaman itu; tampilan order dengan riwayat pembayarannya, **Permukaan C (pembatalan dan refund), Permukaan D (check-in kasir), dan semua layar back-office belum dibangun** (issue #381 sampai #383 dan seterusnya). Setiap nama rute, string teks, dan state di bawah yang belum dibangun tetap usulan untuk dikonfirmasi implementernya; bila teks ini bertentangan dengan kode, kode dan pengujiannya yang menang dan dokumen ini diubah.
 
 **Terkait:** [PRD platform](aw-business-platform-prd.md) (alur kerja 4.1 sampai 4.4, jawaban pemilik di bagian 9), [Model ancaman](aw-business-platform-threat-model.md) (pemetaan kontrol, bagian 7), [Kontrak metrik](aw-business-platform-metrics.md), [ADR-0025](adr/0025-payments-are-an-allocation-ledger-separate-from-order-status.md) (buku besar pembayaran dan uang muka), [ADR-0033](adr/0033-returns-refunds-and-exchanges-are-additive-records-that-compensate-through-the-existing-ledgers.md) (pengembalian dana), [ADR-0040](adr/0040-aw-business-platform-capability-ownership-and-boundaries.md), [ADR-0041](adr/0041-gateway-deposit-sessions-and-mixed-tenders-on-one-order.md) (sesi uang muka); aturan visual dan aksesibilitas yang diikuti spesifikasi ini adalah [`ui-ux.md`](ui-ux.md), [`aksesibilitas.md`](aksesibilitas.md), dan [`responsif.md`](responsif.md).
 
@@ -324,6 +324,27 @@ Pada setiap profil build tetap statis dan profil tanpa pemesanan tidak membawa s
 | Penahanan no-show hanya menurut kebijakan       | C-41                             | 4.1 (baris no-show; tindakan staf tidak dirinci di sini)        |
 
 Kontrol C-25 sampai C-41 berasal dari adendum model ancaman ([#354](https://github.com/ahliweb/awcms-one/issues/354)). Rujukan bagian di kolom kanan adalah bagian terdekat yang memuat perilaku tiap kontrol; tabel ini alat keterlacakan dan teks kontrol di model ancaman adalah yang berwenang.
+
+## Status implementasi Permukaan A (issue #386)
+
+Dibangun, hanya pada profil `toko` (`apps/storefront/src/profil/toko/pages/**`; build `berita` atau `landing` tidak menulis satu pun halaman ini dan tidak menautkannya), statis (`output: "static"`, tanpa `prerender = false`), membaca CMS dari browser:
+
+| Halaman           | Bacaan (semua `GET …/commerce/storefront/booking/*` kecuali disebut)                                              | Fungsi                                                                                                                                                                                                                 |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/booking`        | `offerings`, `availability`, `quote` (anonim; bearer opsional memberi harga satuan sesuai level pelanggan)        | Pilihan layanan, dua input tanggal bawaan, jumlah tamu, panel kuota (malam, harga per malam, total, uang muka dan sisa, semuanya string dari server), "Penuh" bila tak ada resource kosong.                            |
+| `/booking/pesan`  | `quote`, lalu `POST reservations` (bearer, `Idempotency-Key`), `GET reservations/{orderCode}` untuk sinkron ulang | Ringkasan, pilihan pembayaran, hold dan hitung mundurnya, state kedaluwarsa dan terkonfirmasi, serah-terima pembayaran (`POST …/orders/{code}/payment-gateway/sessions` dengan `purpose: deposit \| balance \| full`). |
+| `/akun/reservasi` | `GET reservations` (bearer, keyset)                                                                               | Reservasi milik pembeli sendiri, terbaru dulu, dengan pil status dan pembayaran, sisa tagihan, sisa waktu hold yang hidup, dan tombol bayar.                                                                           |
+
+Di mana ia berbeda dari usulan di atas, dan mengapa:
+
+1. **Hold dibuat di `/booking/pesan`, bersama pilihan pembayaran, bukan sebelumnya.** Server menahan menginap dan membuat order dalam satu panggilan yang sudah membutuhkan metode pembayaran (ADR-0045 G2), sehingga "Lanjut" di `/booking` membawa menginap itu sebagai `?o=&r=&in=&out=&n=` (id dan tanggal polos, tidak pernah nominal) dan hold terjadi saat pembeli mengonfirmasi di `/booking/pesan`. Hitung mundur dimulai di sana. Tautan "Ubah tanggal" tidak melepas apa pun karena belum ada yang ditahan.
+2. **Akun diperlukan untuk memesan (aturan dasar 7), dan blok tamu tidak ditampilkan.** Saat belum masuk, halaman mengarahkan pembeli ke `/masuk?kembali=` lalu kembali. Server juga menerima checkout tamu (G15), tetapi storefront tidak menawarkannya; kontak menginap adalah milik akun, ditampilkan hanya-baca, karena server mengabaikan blok `guest` bila bearer diberikan.
+3. **Tidak ada perpanjangan hold.** CMS tidak punya endpoint perpanjangan, sehingga ambang satu menit menampilkan catatan ("Waktu tahan tidak dapat diperpanjang...") dan jalan untuk memulai lagi, bukan tombol "Perpanjang waktu tahan" (keputusan 2 di bagian 10 tetap terbuka).
+4. **Tidak ada grid kalender.** Dua input tanggal bawaan adalah kontrol yang lengkap; grid adalah penyempurnaan di atasnya dan belum dibangun.
+5. **Tidak ada jam check-in dan check-out.** Bacaan ketersediaan dan kuota tidak membawanya (keduanya bidang informasi tamu pada resource, bukan bagian uji tumpang tindih).
+6. **Resource diperiksa berdasarkan id.** Sebuah offering Booking tidak menetapkan resource dan tautan offering tidak membawanya, sehingga `offerings` mendaftar id resource aktif tenant dengan mode yang sama dengan offering, dan halaman menanyakan `availability` satu per satu, memakai yang pertama punya unit kosong. Tenant yang menjual beberapa tipe kamar dari resource terpisah bermode sama akan melihat setiap tipe ditawarkan di bawah setiap offering; penetapan eksplisit offering-ke-resource adalah tindak lanjut (catatan implementasi ADR-0045 untuk #386).
+7. **Provider kembali ke `/pesanan`.** URL selesai gateway adalah `COMMERCE_STOREFRONT_PUBLIC_URL` milik CMS ditambah `/pesanan`, sehingga pembeli yang membayar lewat gateway mendarat di halaman pelacakan order; `/booking/pesan` (menginap dan tab yang sama) dan `/akun/reservasi` menampilkan reservasi terkonfirmasi dan sisa saldonya, dan tidak pernah menyatakan "terkonfirmasi" dari redirect.
+8. **Hitung mundur tidak pernah memercayai jam perangkat.** Setiap isi reservasi membawa `serverNow`; sisa waktu adalah `holdExpiresAt - serverNow` dikurangi waktu yang berlalu pada jam monotonik perangkat, dan halaman bertanya lagi ke server saat nol, saat kembali terlihat atau terhubung, dan setiap beberapa detik selama ditahan.
 
 ## 10. Keputusan yang belum dicatat (asumsi untuk dikonfirmasi)
 

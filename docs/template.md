@@ -144,11 +144,14 @@ Every file under `apps/storefront/src/pages/**` belongs to exactly one group. Th
 | `akun/index.astro` | toko | Commerce account dashboard shell |
 | `akun/pesanan.astro` | toko | Commerce order history |
 | `akun/pesan.astro` | toko | Commerce customer-inbox thread |
+| `akun/reservasi.astro` | toko | Signed-in shopper's own booking reservations (issue #386) |
 | `akun/ulasan.astro` | toko | Commerce product reviews |
 | `arsip/[yyyy]/[mm].astro` | berita | News monthly archive |
 | `berita/feed.xml.ts` | berita | News RSS feed (posts) |
 | `berita/index.astro` | berita | News front page |
 | `berita/[slug].astro` | berita | News article |
+| `booking/index.astro` | toko | Booking stay search, availability and server quote (issue #386) |
+| `booking/pesan.astro` | toko | Booking hold, countdown and payment handoff (issue #386) |
 | `buletin/index.astro` | berita | Newsletter subscribe page |
 | `cari.astro` | toko | Product search (builds from `/index/produk.json`) |
 | `cari-berita.astro` | berita | News search |
@@ -191,7 +194,7 @@ Every file under `apps/storefront/src/pages/**` belongs to exactly one group. Th
 | `video/[slug].astro` | berita | News video article |
 | `wishlist.astro` | toko | Commerce wishlist |
 
-**Totals:** shared 10, `toko` 23, `berita` 19 (52 total).
+**Totals:** shared 10, `toko` 26, `berita` 19 (55 total).
 
 ### Navigation, sitemap, feeds, robots, CSP, and fixtures per profile
 
@@ -201,8 +204,8 @@ Every file under `apps/storefront/src/pages/**` belongs to exactly one group. Th
 | **Footer legal links** | Shopping guide, privacy, terms, editorial, media guidelines, disclaimer | Editorial, media guidelines, disclaimer, privacy, terms | Privacy, terms only |
 | **Sitemap sources** | All: `static-routes`, `static-pages`, `katalog-produk`, `katalog-kategori`, `katalog-product-detail`, `berita-front`, `berita-posts`, `berita-video`, `berita-rubrik`, `berita-daerah`, `berita-mitra`, `berita-tag` | `static-routes`, `static-pages`, and every `berita-*` source | `static-routes`, `static-pages` only |
 | **Feeds** | Product feed + news posts feed + rubric feeds | News posts feed + rubric feeds | None |
-| **Robots rules** | Disallows commerce per-visitor paths (`/keranjang`, `/checkout`, `/pesanan`, `/wishlist`, `/cari`, `/masuk`, `/daftar`, `/akun`) plus `/newsletter/*`, `/api/` | Disallows `/newsletter/*`, `/api/` | Disallows `/api/` only |
-| **CSP `form-action`/`connect-src`** | `form-action 'self'`, `connect-src` widened to `PUBLIC_AWCMS_ORIGIN` (checkout/cart) | `form-action 'self'` only | `form-action 'self'` only |
+| **Robots rules** | Disallows commerce per-visitor paths (`/keranjang`, `/checkout`, `/pesanan`, `/wishlist`, `/cari`, `/masuk`, `/daftar`, `/akun`, `/booking`) plus `/newsletter/*`, `/api/` | Disallows `/newsletter/*`, `/api/` | Disallows `/api/` only |
+| **CSP `form-action`/`connect-src`** | `form-action 'self'`, `connect-src` widened to `PUBLIC_AWCMS_ORIGIN` (checkout/cart, and the booking pages, which add no further origin) | `form-action 'self'` only | `form-action 'self'` only |
 | **Stub-CMS fixtures needed** | Every commerce fixture plus every news fixture (the hybrid build needs both) | `blog-posts.json`, `blog-terms.json`, `blog-institutions.json`, `blog-pages-public*.json`, `seo-redirects-legacy.json`, `regions-kalteng.json`, `ad-placements-active.json`, `analytics-pages.json` | `blog-pages-public*.json`, `store-settings-public.json`, `media-objects.json`/`media-public-origin.json`; no commerce or news-specific fixture |
 
 ## Sample seeds

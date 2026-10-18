@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](template.md)
 
-<!-- i18n-source-hash: sha256:2af20f4f45c2885e4bb8aef9d8ec8cec7c7ce199c6b055fce1013ebeaef1cccd -->
+<!-- i18n-source-hash: sha256:82f829e4d3da50452a74e1bac6e2033a9dbdcbc6d5a1589e56b56d99aceb0ba2 -->
 
 # Menggunakan awcms-one sebagai template
 
@@ -149,11 +149,14 @@ Setiap file di bawah `apps/storefront/src/pages/**` termasuk tepat satu kelompok
 | `akun/index.astro` | toko | Shell dashboard akun commerce |
 | `akun/pesanan.astro` | toko | Riwayat pesanan commerce |
 | `akun/pesan.astro` | toko | Thread inbox pelanggan commerce |
+| `akun/reservasi.astro` | toko | Reservasi booking milik pembeli yang sedang masuk (issue #386) |
 | `akun/ulasan.astro` | toko | Ulasan produk commerce |
 | `arsip/[yyyy]/[mm].astro` | berita | Arsip bulanan berita |
 | `berita/feed.xml.ts` | berita | Feed RSS berita (pos) |
 | `berita/index.astro` | berita | Halaman depan berita |
 | `berita/[slug].astro` | berita | Artikel berita |
+| `booking/index.astro` | toko | Pencarian menginap booking, ketersediaan, dan kuota dari server (issue #386) |
+| `booking/pesan.astro` | toko | Penahanan booking, hitung mundur, dan serah-terima pembayaran (issue #386) |
 | `buletin/index.astro` | berita | Halaman berlangganan newsletter |
 | `cari.astro` | toko | Pencarian produk (dibangun dari `/index/produk.json`) |
 | `cari-berita.astro` | berita | Pencarian berita |
@@ -196,7 +199,7 @@ Setiap file di bawah `apps/storefront/src/pages/**` termasuk tepat satu kelompok
 | `video/[slug].astro` | berita | Artikel video berita |
 | `wishlist.astro` | toko | Wishlist commerce |
 
-**Total:** shared 10, `toko` 23, `berita` 19 (total 52).
+**Total:** shared 10, `toko` 26, `berita` 19 (total 55).
 
 ### Navigasi, sitemap, feed, robots, CSP, dan fixture per profil
 
@@ -206,8 +209,8 @@ Setiap file di bawah `apps/storefront/src/pages/**` termasuk tepat satu kelompok
 | **Tautan legal footer** | Panduan belanja, privasi, syarat, redaksi, pedoman media, disclaimer | Redaksi, pedoman media, disclaimer, privasi, syarat | Privasi, syarat saja |
 | **Sumber sitemap** | Semua: `static-routes`, `static-pages`, `katalog-produk`, `katalog-kategori`, `katalog-product-detail`, `berita-front`, `berita-posts`, `berita-video`, `berita-rubrik`, `berita-daerah`, `berita-mitra`, `berita-tag` | `static-routes`, `static-pages`, dan setiap sumber `berita-*` | `static-routes`, `static-pages` saja |
 | **Feed** | Feed produk + feed pos berita + feed rubrik | Feed pos berita + feed rubrik | Tidak ada |
-| **Aturan robots** | Melarang path per-pengunjung commerce (`/keranjang`, `/checkout`, `/pesanan`, `/wishlist`, `/cari`, `/masuk`, `/daftar`, `/akun`) ditambah `/newsletter/*`, `/api/` | Melarang `/newsletter/*`, `/api/` | Melarang `/api/` saja |
-| **CSP `form-action`/`connect-src`** | `form-action 'self'`, `connect-src` diperluas ke `PUBLIC_AWCMS_ORIGIN` (checkout/keranjang) | `form-action 'self'` saja | `form-action 'self'` saja |
+| **Aturan robots** | Melarang path per-pengunjung commerce (`/keranjang`, `/checkout`, `/pesanan`, `/wishlist`, `/cari`, `/masuk`, `/daftar`, `/akun`, `/booking`) ditambah `/newsletter/*`, `/api/` | Melarang `/newsletter/*`, `/api/` | Melarang `/api/` saja |
+| **CSP `form-action`/`connect-src`** | `form-action 'self'`, `connect-src` diperluas ke `PUBLIC_AWCMS_ORIGIN` (checkout/keranjang, dan halaman booking, yang tidak menambah origin lain) | `form-action 'self'` saja | `form-action 'self'` saja |
 | **Fixture stub-CMS yang dibutuhkan** | Setiap fixture commerce ditambah setiap fixture berita (build hibrida butuh keduanya) | `blog-posts.json`, `blog-terms.json`, `blog-institutions.json`, `blog-pages-public*.json`, `seo-redirects-legacy.json`, `regions-kalteng.json`, `ad-placements-active.json`, `analytics-pages.json` | `blog-pages-public*.json`, `store-settings-public.json`, `media-objects.json`/`media-public-origin.json`; tidak ada fixture khusus commerce atau berita |
 
 ## Seed contoh
