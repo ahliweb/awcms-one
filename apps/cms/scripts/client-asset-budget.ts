@@ -1701,6 +1701,16 @@ export const READER_BUDGET_BYTES = 24_000;
  * offering links, reservation hold-to-order, and the order consumers) are
  * server code, API routes and migrations, and added no client script or
  * stylesheet byte. The budget is the measurement rounded up to the next 100 B.
+ *
+ * **Issue #385 (booking admin screens)** measured 461,999 B on its own build
+ * (458,746 B before it; it set 462,000 B): `/admin/commerce-booking-links`
+ * (create with a per-attempt `Idempotency-Key`, unlink through the shared
+ * confirm dialog, the carried-over no-policy notice),
+ * `/admin/commerce-booking-deposits` (the percent / fixed kind toggle and the
+ * policy body builder), the shared `commerce-booking-client` module, the
+ * service-account field in the settings script, the stylesheet share and the
+ * new catalogue entries. Merged into the booking chain (issue #381) the figure
+ * below is a fresh measurement of the merged build, not a sum.
  */
 export const APP_BUDGET_BYTES = 466_200;
 

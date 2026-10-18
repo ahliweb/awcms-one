@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](booking-ux-flows.md)
 
-<!-- i18n-source-hash: sha256:1123ab82a5eaf1f63a4269abed60dd97c0199105dae0064f7f6be449ab9f34b8 -->
+<!-- i18n-source-hash: sha256:5fabf2fdadd77aa1d6853fcea7d0e3d939cb595f0d71beff10e19eb80064dd63 -->
 
 <!-- i18n-source-hash: sha256:0 -->
 
@@ -221,7 +221,7 @@ Pengembalian yang tidak dapat diselesaikan otomatis ditampilkan ke tamu sebagai 
 
 ### 4.3 Override staf (hanya back-office)
 
-**Tamu tidak dapat meng-override apa pun.** Storefront tidak punya kontrol yang mengubah jumlah pengembalian. Override adalah tindakan staf di konteks admin / meja depan (jawaban pemilik Q10; PRD 4.2 langkah 6; A5): memerlukan **izin manajer atau finance** yang dipegang terpisah dari izin batal biasa, **autentikasi ulang step-up**, **alasan wajib**, **peristiwa audit**, dan jumlah **tidak pernah melebihi yang sudah dibayar**. Layarnya adalah layar admin adapter (item W8 berikutnya); spesifikasi ini hanya menetapkan kontrak UX-nya:
+**Tamu tidak dapat meng-override apa pun.** Storefront tidak punya kontrol yang mengubah jumlah pengembalian. Override adalah tindakan staf di konteks admin / meja depan (jawaban pemilik Q10; PRD 4.2 langkah 6; A5): memerlukan **izin manajer atau finance** yang dipegang terpisah dari izin batal biasa, **autentikasi ulang step-up**, **alasan wajib**, **peristiwa audit**, dan jumlah **tidak pernah melebihi yang sudah dibayar**. Layarnya adalah layar admin adapter, dispesifikasikan di bagian 11.5 dan dibangun oleh [#381](https://github.com/ahliweb/awcms-one/issues/381); bagian ini menetapkan kontrak UX-nya:
 
 - Kontrol override tidak ada (bukan dinonaktifkan) bagi staf tanpa izin.
 - Form menampilkan jumlah hitungan kebijakan di samping kolom override, mewajibkan alasan (panjang minimum, teks bebas, polos), dan menyatakan batas ("Maksimal Rp X: sebesar yang sudah dibayar").
@@ -334,3 +334,70 @@ Kontrol C-25 sampai C-41 berasal dari adendum model ancaman ([#354](https://gith
 5. **Saran tanggal alternatif** pada state tanpa-ketersediaan bergantung pada kapabilitas endpoint ketersediaan yang menjadi hak upstream untuk didefinisikan.
 6. **Apakah tamu melihat kontak pengecualian pembayaran terlambat** (3.2) sebagai telepon, WhatsApp, atau e-mail adalah konfigurasi tenant.
 7. **Tidak diketahui sampai dibangun**: semua desain tingkat piksel (jarak, visual kalender persisnya) milik sistem desain redesign ([`ui-ux.md`](ui-ux.md)); spesifikasi ini menyatakan perilaku, bukan mock-up.
+
+## 11. Permukaan E — layar admin adapter booking (Isu #385, residu DoR R2)
+
+Ditulis 17 Oktober 2026. Ini spesifikasi yang harus ada sebelum [#385](https://github.com/ahliweb/awcms-one/issues/385) membangun (residu DoR R2); [#381](https://github.com/ahliweb/awcms-one/issues/381) membangun permukaan kebijakan pembatalan dan penggantian pengembalian dana berdasarkan bagian ini. Layar-layar ini adalah halaman admin `apps/cms` di dalam modul `commerce` (ADR-0045), di balik fitur `booking` tenant (bawaan MATI) dengan `requiredFeature: { moduleKey: "commerce", feature: "booking" }` pada setiap entri sidebar. Teks admin mengikuti aturan i18n repo: Inggris adalah msgid, Indonesia ada di `id.po`; baris Indonesia di bawah adalah terjemahan katalog. Setiap kontrol hanya untuk UX: server memvalidasi ulang setiap kolom dan menjadi otoritasnya.
+
+| Layar                                | Rute                               | Izin (lihat / ubah)                                                          | Dibangun di                |
+| ------------------------------------ | ---------------------------------- | ---------------------------------------------------------------------------- | -------------------------- |
+| 11.1 Tautan penawaran                | `/admin/commerce-booking-links`    | `commerce.booking_offering_links.read` / `.create`, `.update`                | #385                       |
+| 11.2 Kebijakan uang muka             | `/admin/commerce-booking-deposits` | `commerce.booking_deposit_policies.read` / `.update`                         | #385                       |
+| 11.3 Pengaturan akun layanan         | `/admin/commerce-settings`         | `commerce.settings.read` / `.update` (layar yang ada, satu kolom baru)       | #385                       |
+| 11.4 Versi kebijakan pembatalan      | `/admin/commerce-booking-policies` | `commerce.booking_cancellation_policies.read` / `.create`, `.approve`        | #381 (butuh API kebijakan) |
+| 11.5 Dialog penggantian pengembalian | pada detail pesanan dan reservasi  | `commerce.booking_refund_overrides.approve` (terpisah dari izin batal biasa) | #381 (butuh API batal)     |
+
+Kelimanya memakai state bersama bagian 1.1, disesuaikan dengan chrome admin: pemirsa yang ditolak mendapat `.state-notice`, kegagalan muat mendapat `.state-notice` dengan petunjuk coba lagi, daftar kosong mendapat blok `.empty-state` dengan tindakan berikutnya, dan kegagalan tulis mendapat kotak `role="alert"` di atas formulir (`.admin-create-error`). Tombol sibuk dinonaktifkan dan diberi label baru ("Menyimpan…"); halaman dimuat ulang setelah tulis berhasil (idiom `mutateAndReload`), sehingga baris dari server yang dilihat operator berikutnya.
+
+### 11.1 Tautan penawaran
+
+Tujuan: menautkan satu penawaran Booking ke satu produk **jasa** agar produk dapat dijual sebagai reservasi (ADR-0045 D1). Satu produk aktif per penawaran dan satu penawaran aktif per produk.
+
+- **Daftar.** Wilayah `.data-table-scroll` (dapat difokus, bernama) dengan hitungan di `<caption>`. Kolom: Penawaran (id, `.cell-code`), Produk (id), Dasar ("Per malam" / "Per pemesanan"), Status (`admin-status-pill`: Aktif = sukses, Terlepas = netral; teks selalu ada), Ditautkan pada, Tindakan. Daftar dipaginasi keyset (50), terbaru dulu; filter "Tampilkan terlepas" adalah tautan GET biasa (`?status=unlinked`), bukan skrip.
+- **Formulir buat** (hanya dengan `.create`): ID penawaran (teks uuid, `autocomplete="off"`, petunjuk "Salin dari Booking, Penawaran."), ID produk (teks uuid, petunjuk "Produk jasa."), Dasar (pilihan: Per malam / Per pemesanan). Kolom wajib ditandai dengan teks. Pengiriman memakai `POST` dengan `Idempotency-Key` baru per percobaan.
+- **Lepas tautan** (hanya dengan `.update`): tombol baris membuka dialog konfirmasi bersama (bahaya). Dialog menjelaskan akibatnya: tautan tidak lagi dapat dijual; pesanan dan reservasi lama menyimpan riwayatnya; tidak dapat ditautkan lagi dari baris yang sama (buat tautan baru).
+- **Peringatan.** Tautan yang dibuat dengan produk tanpa kebijakan pembatalan aktif menampilkan baris status sopan di samping formulir: "Tertaut. Produk ini belum memiliki kebijakan pembatalan, sehingga tamu tidak akan melihat ketentuan pengembalian dana." (`NO_CANCELLATION_POLICY`; tidak memblokir, ADR-0045 D6).
+- **Penolakan server dipetakan ke teks khusus**, bukan kegagalan umum: `OFFERING_ALREADY_LINKED` "Penawaran ini sudah ditautkan ke produk."; `PRODUCT_ALREADY_LINKED` "Produk ini sudah ditautkan ke penawaran."; `PRODUCT_NOT_SERVICE` "Hanya produk jasa yang dapat ditautkan."; `QUANTITY_BASIS_MISMATCH` "Dasar kuantitas tidak sesuai dengan penawaran (per malam atau per pemesanan)."; `OFFERING_NOT_LINKABLE` "Penawaran yang langsung terkonfirmasi tidak dapat dijual."; `BOOKING_SERVICE_ACTOR_NOT_CONFIGURED` "Tetapkan akun layanan pemesanan di Pengaturan toko terlebih dahulu."; `FEATURE_DISABLED` "Pemesanan dimatikan untuk toko ini."; `RESOURCE_NOT_FOUND` "Penawaran atau produk tidak ditemukan."
+
+### 11.2 Kebijakan uang muka
+
+Tujuan: menetapkan uang muka produk jasa sebagai persen dari total kena pajak, jumlah tetap per unit kuantitas (per malam untuk produk per malam), atau mengembalikannya ke pembayaran penuh. Produk tanpa kebijakan dibayar penuh; tidak ada bawaan tenant (ADR-0045 D5).
+
+- **Daftar.** Satu baris per produk jasa: Produk (nama, SKU), Status, Kebijakan (teks: "Pembayaran penuh", "30.00% dari total", "Rp 50.000,00 per unit"), Tindakan. `details` "Ubah uang muka" per baris (hanya dengan `.update`) memuat formulir; ringkasannya adalah pengungkap yang dapat dijangkau keyboard.
+- **Formulir.** Fieldset "Uang muka" dengan radio (Pembayaran penuh / Persen / Jumlah tetap per unit); kolom Persen (0-100, dua desimal) dan kolom Tetap (jumlah, dua desimal) hanya tampil untuk radionya, dan kolom tersembunyi dikeluarkan dari urutan tab. Pengiriman memakai `PUT` dengan `{ kind, percent | fixedAmount }`; tidak pernah mengirim jumlah hasil hitung. Satu baris di bawah formulir menyatakan: "Uang muka pada tiap pesanan dihitung oleh server dan ditetapkan saat pesanan dibuat; mengubah ini tidak mengubah pesanan yang ada."
+- **Catatan Allow-DP.** Karena kebijakan menjaga bendera lama "izinkan uang muka" tetap sejalan, baris tidak menampilkan sakelar terpisah; kontrol pada formulir produk dikunci server selama `booking` aktif (`ALLOW_DP_MANAGED_BY_POLICY`), dan layar menyatakannya dalam petunjuk.
+- Teks validasi: "Masukkan persentase antara 0 dan 100 dengan paling banyak dua desimal." / "Masukkan jumlah lebih besar dari nol dengan paling banyak dua desimal."
+
+### 11.3 Pengaturan akun layanan
+
+Satu kolom pada formulir pengaturan toko, dalam legendanya sendiri "Booking": "Akun layanan pemesanan (ID pengguna)", sebuah uuid, dengan petunjuk "Pengguna staf yang dicatat Booking untuk checkout tamu dan tindakan otomatis. Harus pengguna aktif toko ini. Kosongkan untuk menghapusnya." Kolom hanya dirender selama fitur `booking` aktif dan hanya untuk pemirsa yang dapat membaca pengaturan; dikirim dengan bilah simpan yang ada dan mengirim `bookingServiceTenantUserId` (uuid, atau `null` untuk menghapus). Pengguna tidak aktif atau milik tenant lain ditolak server dengan galat kolom, ditampilkan di kotak galat formulir.
+
+### 11.4 Versi kebijakan pembatalan (dispesifikasikan di sini, dibangun oleh #381)
+
+Tujuan: menyusun jendela bagian 4.1 sebagai **versi**: draf diedit, disetujui orang kedua, dan baru kemudian menjadi versi aktif; versi lama tetap dapat dibaca dan tidak pernah berubah, sehingga setiap pengembalian dana dapat dijelaskan oleh versi yang berlaku.
+
+- **Pemilih cakupan.** "Bawaan tenant" atau satu produk. Halaman menampilkan **versi aktif** sebagai tabel bagian 4.1, lalu **Draf** (dapat diedit, dengan `.create`), lalu **Riwayat** (tabel `.data-table-scroll` hanya-baca: nomor versi, cakupan, disetujui oleh dan pada, ringkasan jendela, pil status). Baris riwayat tidak punya kontrol ubah atau hapus (tidak ada, bukan dinonaktifkan).
+- **Editor jendela.** Baris "Batal paling lambat [n] [jam|hari] sebelum check-in" dan "Pengembalian [0-100]%". Baris harus berurutan dan tidak tumpang tindih; formulir menyatakan aturannya dan server menegakkannya. Baris terakhir untuk pengembalian no-show paling banyak sebesar yang dinyatakan kebijakan.
+- **Setujui** (`.approve`, orang yang berbeda dari penyusun — pemisahan tugas, C-11): tombol membuka dialog konfirmasi yang menampilkan jendela berdampingan dengan versi aktif.
+- State: memuat, kosong ("Belum ada kebijakan pembatalan. Tamu tidak akan melihat ketentuan pengembalian dana."), galat, sukses - seperti bagian 1.1.
+
+### 11.5 Dialog penggantian pengembalian dana (dispesifikasikan di sini, dibangun oleh #381)
+
+Tujuan: tindakan staf bagian 4.3, pada detail pesanan dan detail reservasi, untuk reservasi yang tidak dikembalikan dananya oleh kebijakan sesuai maksud staf. Ini kontrak yang dibangun #381.
+
+- **Visibilitas.** Kontrol "Ubah pengembalian dana" tidak ada (bukan dinonaktifkan) tanpa `commerce.booking_refund_overrides.approve`. Juga tidak ada bila tidak ada yang dibayar.
+- **Dialog.** `<dialog>` modal asli (pola bersama: fokus masuk, Escape membatalkan, fokus kembali ke pembuka, latar inert) bernama "Ubah jumlah pengembalian dana" dan dijelaskan oleh angkanya. Baris: Dibayar (hanya-baca), Pengembalian menurut kebijakan (hanya-baca, dihitung server), Jumlah pengembalian baru (angka, `min` 0, `max` = jumlah dibayar, `step` 0.01, `inputmode="decimal"`), Alasan (textarea, wajib, minimal 10 karakter, penghitung diumumkan secara sopan).
+- **Batas.** Petunjuknya: "Maksimal Rp X: sebesar yang sudah dibayar." Tombol kirim **dinonaktifkan selama jumlah di atas jumlah dibayar, di bawah nol, salah format, atau alasan terlalu pendek**, dan kolom memuat `aria-invalid="true"` beserta pesannya; `max` pada input hanya kemudahan. **Server menegakkan batas yang sama** dan menolak jumlah lebih besar dengan `REFUND_EXCEEDS_PAID` (409), ditampilkan di peringatan dialog; permintaan buatan tangan mendapat penolakan yang sama.
+- **Step-up.** Pengiriman memicu autentikasi ulang step-up; penggantian hanya dicatat setelah berhasil. Step-up yang gagal atau ditinggalkan tidak mengubah apa pun dan dialog tetap terbuka dengan nilai yang diketik.
+- **Teks.** Judul "Ubah jumlah pengembalian dana"; konfirmasi "Catat perubahan"; batal "Pakai jumlah sesuai kebijakan" (fokus bawaan); status sukses "Pengembalian dana ditetapkan Rp X. Perubahan dicatat beserta alasan Anda." Tamu tidak pernah melihat alasan atau pelakunya (bagian 4.3).
+- **State.** Memuat (angka belum dimuat: kolom dinonaktifkan, `aria-busy`), galat (pratinjau gagal: coba lagi, kirim dinonaktifkan), dan sukses (dialog menutup, detail dimuat ulang dan menampilkan pengembalian tercatat serta pil "Disesuaikan").
+
+### 11.6 Aksesibilitas, keyboard, dan 360px untuk layar ini
+
+Landasan bagian 6 berlaku; tambahan:
+
+- **Keyboard.** Setiap kontrol dapat dijangkau dalam urutan baca: tautan filter, formulir buat, wilayah tabel (dapat difokus, bernama), tombol baris, pengungkap `details`; Enter dan Spasi mengoperasikan tombol dan ringkasan; dialog konfirmasi menjebak fokus, Escape membatalkan, dan fokus kembali ke tombol baris. Tidak ada affordance khusus penunjuk.
+- **Nama dan status.** Setiap input punya `<label>` terlihat yang diikat `for`/`id`; petunjuk dikaitkan dengan `aria-describedby`; pil status selalu memuat teksnya; galat adalah pesan teks di wilayah `role="alert"`, tidak pernah hanya warna.
+- **Tanpa dialog bawaan peramban.** Konfirmasi destruktif memakai `CommerceConfirmDialog` bersama; `window.confirm`, `alert`, dan `prompt` dilarang (gerbang admin gagal bila dilanggar).
+- **360px.** Tabel memakai `data-table--stack` dengan `data-label` pada tiap sel, di dalam wilayah `.data-table-scroll`; formulir satu kolom dengan kontrol 44px; halaman tidak pernah menggulir horizontal; id panjang dibungkus (`overflow-wrap: anywhere`).
+- **Verifikasi.** Pemindaian axe `wcag2a`/`wcag2aa`/`wcag21a`/`wcag21aa` dan pemeriksaan overflow 360px mencakup layar yang ada (11.1 sampai 11.3); 11.4 dan 11.5 bergabung saat #381 membangunnya.

@@ -32,6 +32,7 @@ import {
 import { fetchTaxAdapterConfig } from "../../modules/commerce/application/tax-adapter-directory";
 import { listWebhookEndpoints } from "../../modules/commerce/application/webhook-endpoint-directory";
 import { fetchCommerceFeatures } from "../../modules/commerce/application/commerce-feature-gate";
+import { fetchBookingServiceTenantUserId } from "../../modules/commerce/application/booking-adapter-settings";
 import { MODULE_SETTINGS_UPDATE_GUARD } from "../../modules/module-management/application/module-settings";
 import { resolveRequestOrigin } from "../../lib/http/site-origin";
 
@@ -81,7 +82,13 @@ const screen = await loadAdminScreen({
     // vs. `settings.update`.
     const canManageFeatures = await can(MODULE_SETTINGS_UPDATE_GUARD);
     const commerceFeatures = await fetchCommerceFeatures(tx, ssr.tenantId);
+    // Issue #385 (ADR-0045 G3): the booking adapter's service-account user,
+    // shown only while the `booking` feature is on.
+    const bookingServiceTenantUserId = commerceFeatures.booking
+      ? await fetchBookingServiceTenantUserId(tx, ssr.tenantId)
+      : null;
     return {
+      bookingServiceTenantUserId,
       settings,
       affiliateCommissionRate,
       taxAdapter,
@@ -114,6 +121,8 @@ const taxAdapter =
     ? screen.data.taxAdapter
     : { mode: "flat" as const, profileCode: "store-default" };
 const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
+const bookingServiceTenantUserId =
+  screen.state === "allowed" ? screen.data.bookingServiceTenantUserId : null;
 const canManageWebhookEndpoints =
   screen.state === "allowed" && screen.data.canManageWebhookEndpoints;
 const webhookEndpoints =
@@ -364,6 +373,28 @@ const COURIER_OPTIONS = [
           placeholder="e.g. 10.00"
           value={affiliateCommissionRate ?? ""}
         />
+
+        {commerceFeatures.booking && (
+          <>
+            <p class="form-legend">{t("Booking")}</p>
+            <label for="settings-bookingServiceTenantUserId">
+              {t("Booking service account (user ID)")}
+            </label>
+            <input
+              id="settings-bookingServiceTenantUserId"
+              type="text"
+              autocomplete="off"
+              spellcheck="false"
+              aria-describedby="settings-bookingServiceTenantUserId-hint"
+              value={bookingServiceTenantUserId ?? ""}
+            />
+            <p id="settings-bookingServiceTenantUserId-hint" class="form-hint">
+              {t(
+                "The staff user Booking records for guest checkouts and automatic actions. It must be an active user of this store. Leave blank to clear it."
+              )}
+            </p>
+          </>
+        )}
 
         <p class="form-legend">{t("Courier rates (RajaOngkir)")}</p>
         <p class="cell-muted">
@@ -775,6 +806,15 @@ const COURIER_OPTIONS = [
       email: orNull(val("settings-email")),
       mapsEmbedUrl: orNull(val("settings-mapsEmbedUrl")),
       affiliateCommissionRate: orNull(val("settings-affiliateCommissionRate")),
+      // Issue #385: present only while the booking field renders; an absent
+      // key leaves the stored value alone, `null` clears it.
+      ...(el("settings-bookingServiceTenantUserId")
+        ? {
+            bookingServiceTenantUserId: orNull(
+              val("settings-bookingServiceTenantUserId")
+            )
+          }
+        : {}),
       ...advanced
     });
 

@@ -13259,3 +13259,178 @@ msgstr[1] ""
 
 msgid "Some sections are not available to you."
 msgstr ""
+# booking-adapter #385
+msgid "This offering is already linked to a product."
+msgstr ""
+
+msgid "This product is already linked to an offering."
+msgstr ""
+
+msgid "Only a service product can be linked."
+msgstr ""
+
+msgid "The basis does not match the offering (nightly or per booking)."
+msgstr ""
+
+msgid "An offering that confirms immediately cannot be sold."
+msgstr ""
+
+msgid "Set the booking service account in Store settings first."
+msgstr ""
+
+msgid "Booking is turned off for this store."
+msgstr ""
+
+msgid "The offering or the product was not found."
+msgstr ""
+
+msgid "Per night"
+msgstr ""
+
+msgid "Per booking"
+msgstr ""
+
+msgid "Booking links"
+msgstr ""
+
+msgid "Link a Booking offering to a service product so the product can be sold as a reservation."
+msgstr ""
+
+msgid "You do not have permission to view booking links."
+msgstr ""
+
+msgid "Booking links could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Could not link the offering. Check both IDs and try again."
+msgstr ""
+
+msgid "Enter a valid ID (a UUID)."
+msgstr ""
+
+msgid "Link an offering to a product"
+msgstr ""
+
+msgid "Linked. This product has no cancellation policy yet, so guests will see no refund terms."
+msgstr ""
+
+msgid "Offering ID"
+msgstr ""
+
+msgid "Copy it from Booking, Offerings."
+msgstr ""
+
+msgid "Product ID"
+msgstr ""
+
+msgid "A service product."
+msgstr ""
+
+msgid "Link offering"
+msgstr ""
+
+msgid "Filter links"
+msgstr ""
+
+msgid "Unlinked"
+msgstr ""
+
+msgid "Linked on"
+msgstr ""
+
+msgid "No links yet"
+msgstr ""
+
+msgid "Link an offering to a service product to start selling reservations."
+msgstr ""
+
+msgid "Unlink this offering?"
+msgstr ""
+
+msgid "The product stops being sellable as a reservation. Past orders and reservations keep their history. To sell it again, create a new link."
+msgstr ""
+
+msgid "Could not unlink the offering. Please try again."
+msgstr ""
+
+msgid "Unlinking…"
+msgstr ""
+
+msgid "Full payment"
+msgstr ""
+
+msgid "{percent}% of the total"
+msgstr ""
+
+msgid "{amount} per unit"
+msgstr ""
+
+msgid "Booking deposits"
+msgstr ""
+
+msgid "Set how much of a service product's price is paid as a deposit when it is booked."
+msgstr ""
+
+msgid "You do not have permission to view booking deposits."
+msgstr ""
+
+msgid "Booking deposits could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "The deposit on each order is calculated by the server and fixed when the order is created. Changing a policy does not change existing orders. While Booking is on, the product's own down-payment switch follows this policy."
+msgstr ""
+
+msgid "Deposit"
+msgstr ""
+
+msgid "No service products yet"
+msgstr ""
+
+msgid "Create a product of type service to set its deposit here."
+msgstr ""
+
+msgid "Edit deposit for {name}"
+msgstr ""
+
+msgid "Could not save the deposit policy. Please try again."
+msgstr ""
+
+msgid "Enter a percentage between 0 and 100 with at most two decimals."
+msgstr ""
+
+msgid "Enter an amount greater than zero with at most two decimals."
+msgstr ""
+
+msgid "Percent of the total"
+msgstr ""
+
+msgid "Fixed amount per unit"
+msgstr ""
+
+msgid "Percent (0-100)"
+msgstr ""
+
+msgid "Amount per unit"
+msgstr ""
+
+msgid "Per unit of quantity: per night for a nightly product."
+msgstr ""
+
+msgid "Save deposit"
+msgstr ""
+
+msgid "Booking service account (user ID)"
+msgstr ""
+
+msgid "The staff user Booking records for guest checkouts and automatic actions. It must be an active user of this store. Leave blank to clear it."
+msgstr ""
+
+msgid "{count} link"
+msgid_plural "{count} links"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} service product"
+msgid_plural "{count} service products"
+msgstr[0] ""
+msgstr[1] ""

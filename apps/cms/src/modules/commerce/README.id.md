@@ -1645,3 +1645,12 @@ Issue #380 memungkinkan pembeli atau staf menahan slot atau menginap di Booking 
 - **Penjaga**: produk dengan tautan offering aktif dikutip `unavailable` di jalur biasa; order booking yang memegang uang ditolak oleh pembatalan admin generik, pembatalan pelanggan, dan pengembalian dengan `409 BOOKING_ORDER_USE_ADAPTER`.
 - **Operasional**: consumer memanggil `BookingPort`, yang tidak dapat dilakukan `awcms_worker`, sehingga `domain-events:dispatch` berjalan dengan peran aplikasi (catatan ADR-0045, U2).
 - **Tidak ada di sini**: pembacaan ketersediaan dan offering (U1 hulu), varian POS, pembatalan dan refund, reschedule, no-show, check-in, dan semua layar.
+
+## Adapter booking-commerce, layar admin - TERIMPLEMENTASI (Issue #385, epic #280 - [ADR-0045](../../../../../docs/adr/0045-booking-commerce-adapter.md))
+
+Spesifikasi: [alur UX pemesanan](../../../../../docs/booking-ux-flows.md) bagian 11.
+
+- **Layar**: `src/pages/admin/commerce-booking-links.astro` (tautan penawaran: daftar, buat, lepas; rute `commerce/booking/offering-links`), `src/pages/admin/commerce-booking-deposits.astro` (kebijakan uang muka produk jasa; `PUT commerce/products/{id}/deposit-policy`), dan kolom akun layanan pemesanan pada `commerce-settings.astro` (`bookingServiceTenantUserId` lewat `PUT commerce/store-settings`, tampil hanya saat `booking` aktif).
+- **Navigasi**: kedua entri ada di `domain/booking-adapter-navigation.ts`, dibatasi izin baca dan `requiredFeature: { moduleKey: "commerce", feature: "booking" }`.
+- **Kode**: `lib/ui/commerce-booking-client.ts` (isi uang muka, pencarian teks penolakan), `listServiceProductDepositPolicies` di `application/booking-deposit-policies.ts`. Layar mengirim kebijakan, bukan jumlah; lepas tautan memakai dialog konfirmasi bersama dan `Idempotency-Key`.
+- **Tidak ada di sini**: layar versi kebijakan pembatalan dan dialog penggantian pengembalian dana (dispesifikasikan di bagian 11.4 dan 11.5; menunggu API kebijakan dan pembatalan #381), serta layar reservasi.

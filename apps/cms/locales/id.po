@@ -13200,3 +13200,176 @@ msgstr[0] "{count} kejadian dalam 7 hari terakhir (UTC)"
 
 msgid "Some sections are not available to you."
 msgstr "Beberapa bagian tidak tersedia untuk Anda."
+# booking-adapter #385
+msgid "This offering is already linked to a product."
+msgstr "Penawaran ini sudah ditautkan ke produk."
+
+msgid "This product is already linked to an offering."
+msgstr "Produk ini sudah ditautkan ke penawaran."
+
+msgid "Only a service product can be linked."
+msgstr "Hanya produk jasa yang dapat ditautkan."
+
+msgid "The basis does not match the offering (nightly or per booking)."
+msgstr "Dasar kuantitas tidak sesuai dengan penawaran (per malam atau per pemesanan)."
+
+msgid "An offering that confirms immediately cannot be sold."
+msgstr "Penawaran yang langsung terkonfirmasi tidak dapat dijual."
+
+msgid "Set the booking service account in Store settings first."
+msgstr "Tetapkan akun layanan pemesanan di Pengaturan toko terlebih dahulu."
+
+msgid "Booking is turned off for this store."
+msgstr "Pemesanan dimatikan untuk toko ini."
+
+msgid "The offering or the product was not found."
+msgstr "Penawaran atau produk tidak ditemukan."
+
+msgid "Per night"
+msgstr "Per malam"
+
+msgid "Per booking"
+msgstr "Per pemesanan"
+
+msgid "Booking links"
+msgstr "Tautan pemesanan"
+
+msgid "Link a Booking offering to a service product so the product can be sold as a reservation."
+msgstr "Tautkan penawaran Booking ke produk jasa agar produk dapat dijual sebagai reservasi."
+
+msgid "You do not have permission to view booking links."
+msgstr "Anda tidak memiliki izin untuk melihat tautan pemesanan."
+
+msgid "Booking links could not be loaded right now. Please try again later."
+msgstr "Tautan pemesanan tidak dapat dimuat saat ini. Coba lagi nanti."
+
+msgid "Could not link the offering. Check both IDs and try again."
+msgstr "Tidak dapat menautkan penawaran. Periksa kedua ID lalu coba lagi."
+
+msgid "Enter a valid ID (a UUID)."
+msgstr "Masukkan ID yang valid (UUID)."
+
+msgid "Link an offering to a product"
+msgstr "Tautkan penawaran ke produk"
+
+msgid "Linked. This product has no cancellation policy yet, so guests will see no refund terms."
+msgstr "Tertaut. Produk ini belum memiliki kebijakan pembatalan, sehingga tamu tidak akan melihat ketentuan pengembalian dana."
+
+msgid "Offering ID"
+msgstr "ID penawaran"
+
+msgid "Copy it from Booking, Offerings."
+msgstr "Salin dari Booking, Penawaran."
+
+msgid "Product ID"
+msgstr "ID produk"
+
+msgid "A service product."
+msgstr "Produk jasa."
+
+msgid "Link offering"
+msgstr "Tautkan penawaran"
+
+msgid "Filter links"
+msgstr "Saring tautan"
+
+msgid "Unlinked"
+msgstr "Terlepas"
+
+msgid "Linked on"
+msgstr "Ditautkan pada"
+
+msgid "No links yet"
+msgstr "Belum ada tautan"
+
+msgid "Link an offering to a service product to start selling reservations."
+msgstr "Tautkan penawaran ke produk jasa untuk mulai menjual reservasi."
+
+msgid "Unlink this offering?"
+msgstr "Lepas tautan penawaran ini?"
+
+msgid "The product stops being sellable as a reservation. Past orders and reservations keep their history. To sell it again, create a new link."
+msgstr "Produk tidak lagi dapat dijual sebagai reservasi. Pesanan dan reservasi sebelumnya tetap menyimpan riwayatnya. Untuk menjualnya lagi, buat tautan baru."
+
+msgid "Could not unlink the offering. Please try again."
+msgstr "Tidak dapat melepas tautan penawaran. Silakan coba lagi."
+
+msgid "Unlinking…"
+msgstr "Melepas tautan…"
+
+msgid "Full payment"
+msgstr "Pembayaran penuh"
+
+msgid "{percent}% of the total"
+msgstr "{percent}% dari total"
+
+msgid "{amount} per unit"
+msgstr "{amount} per unit"
+
+msgid "Booking deposits"
+msgstr "Uang muka pemesanan"
+
+msgid "Set how much of a service product's price is paid as a deposit when it is booked."
+msgstr "Atur berapa bagian harga produk jasa yang dibayar sebagai uang muka saat dipesan."
+
+msgid "You do not have permission to view booking deposits."
+msgstr "Anda tidak memiliki izin untuk melihat uang muka pemesanan."
+
+msgid "Booking deposits could not be loaded right now. Please try again later."
+msgstr "Uang muka pemesanan tidak dapat dimuat saat ini. Coba lagi nanti."
+
+msgid "The deposit on each order is calculated by the server and fixed when the order is created. Changing a policy does not change existing orders. While Booking is on, the product's own down-payment switch follows this policy."
+msgstr "Uang muka pada tiap pesanan dihitung oleh server dan ditetapkan saat pesanan dibuat. Mengubah kebijakan tidak mengubah pesanan yang ada. Selama Booking aktif, sakelar uang muka pada produk mengikuti kebijakan ini."
+
+msgid "Deposit"
+msgstr "Uang muka"
+
+msgid "No service products yet"
+msgstr "Belum ada produk jasa"
+
+msgid "Create a product of type service to set its deposit here."
+msgstr "Buat produk bertipe jasa untuk mengatur uang mukanya di sini."
+
+msgid "Edit deposit for {name}"
+msgstr "Ubah uang muka untuk {name}"
+
+msgid "Could not save the deposit policy. Please try again."
+msgstr "Tidak dapat menyimpan kebijakan uang muka. Silakan coba lagi."
+
+msgid "Enter a percentage between 0 and 100 with at most two decimals."
+msgstr "Masukkan persentase antara 0 dan 100 dengan paling banyak dua desimal."
+
+msgid "Enter an amount greater than zero with at most two decimals."
+msgstr "Masukkan jumlah lebih besar dari nol dengan paling banyak dua desimal."
+
+msgid "Percent of the total"
+msgstr "Persen dari total"
+
+msgid "Fixed amount per unit"
+msgstr "Jumlah tetap per unit"
+
+msgid "Percent (0-100)"
+msgstr "Persen (0-100)"
+
+msgid "Amount per unit"
+msgstr "Jumlah per unit"
+
+msgid "Per unit of quantity: per night for a nightly product."
+msgstr "Per unit kuantitas: per malam untuk produk per malam."
+
+msgid "Save deposit"
+msgstr "Simpan uang muka"
+
+msgid "Booking service account (user ID)"
+msgstr "Akun layanan pemesanan (ID pengguna)"
+
+msgid "The staff user Booking records for guest checkouts and automatic actions. It must be an active user of this store. Leave blank to clear it."
+msgstr "Pengguna staf yang dicatat Booking untuk checkout tamu dan tindakan otomatis. Harus pengguna aktif toko ini. Kosongkan untuk menghapusnya."
+
+msgid "{count} link"
+msgid_plural "{count} links"
+msgstr[0] "{count} tautan"
+
+msgid "{count} service product"
+msgid_plural "{count} service products"
+msgstr[0] "{count} produk jasa"
