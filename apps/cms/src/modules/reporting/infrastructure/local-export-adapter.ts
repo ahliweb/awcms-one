@@ -21,38 +21,22 @@
 import { mkdir } from "node:fs/promises";
 import { createHash } from "node:crypto";
 
+import { csvCellForWrite } from "../../../lib/security/csv-formula";
+
 export type ExportRow = {
   metricKey: string;
   label: string;
   value: number;
 };
 
-function csvEscape(value: unknown): string {
-  if (value === null || value === undefined) {
-    return "";
-  }
-
-  const text = typeof value === "string" ? value : String(value);
-
-  // Spreadsheet-formula-injection neutralization: a metric label is
-  // code-declared (`ProjectionDescriptor.metricLabels`, never tenant
-  // input) so this is defense in depth, not the primary control — still
-  // applied unconditionally per this repo's general CSV-export posture.
-  const neutralized = /^[=+\-@\t\r]/.test(text) ? `'${text}` : text;
-
-  if (/[",\n\r]/.test(neutralized)) {
-    return `"${neutralized.replace(/"/g, '""')}"`;
-  }
-
-  return neutralized;
-}
-
 function serializeCsv(rows: readonly ExportRow[]): string {
   const header = ["metricKey", "label", "value"].join(",");
   const lines = rows.map((row) =>
-    [csvEscape(row.metricKey), csvEscape(row.label), csvEscape(row.value)].join(
-      ","
-    )
+    [
+      csvCellForWrite(row.metricKey),
+      csvCellForWrite(row.label),
+      csvCellForWrite(row.value)
+    ].join(",")
   );
   return [header, ...lines].join("\n");
 }
@@ -65,7 +49,7 @@ function serializeJson(rows: readonly ExportRow[]): string {
  * Tabular variant (Issue #117) — a dimensional projection exports its own
  * rows (one per day/product/category) under the column names its
  * `ProjectionDimensionalContract.exportRows` declares. Column names are
- * code-declared; every cell value still goes through `csvEscape`
+ * code-declared; every cell value still goes through `csvCellForWrite`
  * (formula-injection neutralization matters MORE here: a product name is
  * tenant-typed text, not a code-declared label).
  */
@@ -75,9 +59,11 @@ export type TabularExport = {
 };
 
 function serializeTabularCsv(table: TabularExport): string {
-  const header = table.columns.map(csvEscape).join(",");
+  const header = table.columns
+    .map((column) => csvCellForWrite(column))
+    .join(",");
   const lines = table.rows.map((row) =>
-    table.columns.map((column) => csvEscape(row[column])).join(",")
+    table.columns.map((column) => csvCellForWrite(row[column])).join(",")
   );
   return [header, ...lines].join("\n");
 }

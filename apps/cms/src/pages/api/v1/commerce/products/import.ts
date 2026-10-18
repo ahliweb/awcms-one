@@ -12,7 +12,8 @@ import { resolveClientIp } from "../../../../../lib/security/rate-limit";
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../../../../modules/_shared/idempotency";
 import { authorizeInTransaction } from "../../../../../modules/identity-access/application/access-guard";
 import {
@@ -175,7 +176,8 @@ export const POST = defineTenantRoute<Prepared>({
       tx,
       tenantId,
       IDEMPOTENCY_SCOPE,
-      idempotencyKey
+      idempotencyKey,
+      userIdempotencyActor(auth.context.tenantUserId)
     );
     const replayOrConflict = (
       record: NonNullable<typeof existing>
@@ -206,7 +208,8 @@ export const POST = defineTenantRoute<Prepared>({
         tx,
         tenantId,
         IDEMPOTENCY_SCOPE,
-        idempotencyKey
+        idempotencyKey,
+        userIdempotencyActor(auth.context.tenantUserId)
       );
       return winner
         ? replayOrConflict(winner)
@@ -236,6 +239,7 @@ export const POST = defineTenantRoute<Prepared>({
       tenantId,
       IDEMPOTENCY_SCOPE,
       idempotencyKey,
+      userIdempotencyActor(auth.context.tenantUserId),
       requestHash,
       200,
       successBody

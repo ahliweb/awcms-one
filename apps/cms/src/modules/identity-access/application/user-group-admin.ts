@@ -120,6 +120,7 @@ export async function listUserGroups(
         SELECT count(*) FROM awcms_access_policies ap
         WHERE ap.tenant_id = g.tenant_id AND ap.user_group_id = g.id
           AND ap.status = 'active'
+          AND (ap.effective_to IS NULL OR ap.effective_to > now())
       )::int AS role_count
     FROM awcms_user_groups g
     WHERE g.tenant_id = ${tenantId} AND g.deleted_at IS NULL
@@ -238,12 +239,12 @@ export type UserGroupRecord = {
 };
 
 /**
- * Creates a LOCAL group. Lets the unique violation propagate to the caller,
- * which maps it — the transaction is already aborted at that point, so nothing
- * further may be written to `tx`.
+ * Creates a LOCAL group. The INSERT runs in a savepoint, so a unique violation
+ * is rolled back to it and surfaces as `DuplicateGroupCodeError` on a still-valid
+ * transaction that the caller may map to a 409 and commit (Issue #1099).
  */
 export async function createUserGroup(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   input: CreateUserGroupInput,
@@ -252,14 +253,16 @@ export async function createUserGroup(
   let rows: { id: string }[];
 
   try {
-    rows = (await tx`
+    rows = (await tx.savepoint(
+      (sp) => sp`
       INSERT INTO awcms_user_groups
         (tenant_id, group_code, group_name, description, source, created_by_tenant_user_id)
       VALUES
         (${tenantId}, ${input.groupCode}, ${input.groupName}, ${input.description},
          'local', ${actorTenantUserId})
       RETURNING id
-    `) as { id: string }[];
+    `
+    )) as { id: string }[];
   } catch (error) {
     // SQLSTATE lives on `errno` in Bun, never on `code` — `code` carries Bun's
     // own constant for every server error.
@@ -501,9 +504,12 @@ export async function addUserGroupMember(
     // more existence check tells them apart without widening what a caller can
     // learn: they already know the group exists (they were not 404'd above).
     const existing = (await tx`
-      SELECT 1 FROM awcms_user_group_members
-      WHERE tenant_id = ${tenantId} AND user_group_id = ${input.userGroupId}
-        AND tenant_user_id = ${input.tenantUserId}
+      SELECT 1 FROM awcms_user_group_members m
+      JOIN awcms_user_groups g
+        ON g.tenant_id = m.tenant_id AND g.id = m.user_group_id
+      WHERE m.tenant_id = ${tenantId} AND m.user_group_id = ${input.userGroupId}
+        AND m.tenant_user_id = ${input.tenantUserId}
+        AND g.deleted_at IS NULL
     `) as unknown[];
 
     if (existing.length === 0) throw new GroupMembershipTargetNotFoundError();
@@ -553,7 +559,7 @@ export async function removeUserGroupMember(
     tenantId,
     actorTenantUserId,
     moduleKey: AUDIT_MODULE_KEY,
-    action: "assign",
+    action: "revoke",
     resourceType: "user_group",
     resourceId: input.userGroupId,
     severity: "warning",

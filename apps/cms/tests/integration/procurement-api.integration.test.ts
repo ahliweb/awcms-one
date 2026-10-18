@@ -262,6 +262,36 @@ function call<T = unknown>(
 
 const admin = () => getHandlerAdminSql();
 
+/**
+ * The owner (the node's assignee) decides, the task completes and the instance
+ * takes the verdict -- the writes the workflow engine makes, which the
+ * database binds an approval to (sql/301). A bare
+ * `UPDATE awcms_workflow_instances SET status = 'approved'` is refused.
+ */
+async function settleInstance(
+  instanceId: string,
+  decision: "approve" | "reject"
+): Promise<void> {
+  await admin().begin(async (tx) => {
+    const tasks = (await tx`
+      SELECT id FROM awcms_workflow_tasks
+      WHERE tenant_id = ${env.tenantId} AND workflow_instance_id = ${instanceId}
+    `) as { id: string }[];
+
+    await tx`
+      INSERT INTO awcms_workflow_decisions
+        (tenant_id, workflow_task_id, decision, decided_by_tenant_user_id)
+      VALUES (${env.tenantId}, ${tasks[0]!.id}, ${decision}, ${env.ownerTenantUserId})
+    `;
+    await tx`UPDATE awcms_workflow_tasks SET status = 'completed' WHERE id = ${tasks[0]!.id}`;
+    await tx`
+      UPDATE awcms_workflow_instances
+      SET status = ${decision === "approve" ? "approved" : "rejected"}
+      WHERE tenant_id = ${env.tenantId} AND id = ${instanceId}
+    `;
+  });
+}
+
 async function newLocation(code: string): Promise<string> {
   const response = await call<{ id: string }>(createLocation, {
     method: "POST",
@@ -1675,7 +1705,7 @@ suite("procurement HTTP surface (Issue #888)", () => {
       expect(rows[0]!.n).toBe(1);
     });
 
-    test("a second user presenting the first user's Idempotency-Key does not get the first user's response", async () => {
+    test("a second user presenting the first user's Idempotency-Key does not get the first user's response and cannot block its key", async () => {
       if (!handlerReady) return;
       const other = await seedUser(
         env.tenantId,
@@ -1704,7 +1734,10 @@ suite("procurement HTTP surface (Issue #888)", () => {
       });
       expect(retry.status).toBe(200);
 
-      // ... a DIFFERENT user with the same key is a conflict, not a replay.
+      // ... a DIFFERENT user with the same key holds a separate record (ADR-0145):
+      // not told the key is taken (no squat/oracle) and never handed the first
+      // user's stored response. The submit really runs for them, against a
+      // document that is already submitted, so the service refuses it on state.
       const stolen = await call<Doc>(submitDocument, {
         method: "POST",
         path: `/api/v1/procurement/documents/${doc.id}/submit`,
@@ -1712,8 +1745,8 @@ suite("procurement HTTP surface (Issue #888)", () => {
         token: other.token,
         idempotencyKey: key
       });
-      expect(stolen.status).toBe(409);
-      expect(stolen.body.error!.code).toBe("IDEMPOTENCY_CONFLICT");
+      expect(stolen.body.error?.code).not.toBe("IDEMPOTENCY_CONFLICT");
+      expect(stolen.body.success).not.toBe(true);
       expect(JSON.stringify(stolen.body)).not.toContain(doc.documentNo);
     });
 
@@ -1854,10 +1887,7 @@ suite("procurement HTTP surface (Issue #888)", () => {
       expect(await onHand(main, "ap3")).toBe("none");
 
       const instance = (await getDoc(big.id)).approvalInstanceId;
-      await admin()`
-        UPDATE awcms_workflow_instances SET status = 'approved'
-        WHERE tenant_id = ${env.tenantId} AND id = ${instance}
-      `;
+      await settleInstance(instance, "approve");
       expect((await finalise(big.id)).status).toBe(201);
       expect(await onHand(main, "ap3")).toBe("10");
     });
@@ -1886,10 +1916,7 @@ suite("procurement HTTP surface (Issue #888)", () => {
       );
       await submit(doc.id);
       const instance = (await getDoc(doc.id)).approvalInstanceId;
-      await admin()`
-        UPDATE awcms_workflow_instances SET status = 'rejected'
-        WHERE tenant_id = ${env.tenantId} AND id = ${instance}
-      `;
+      await settleInstance(instance, "reject");
 
       const refused = await finalise(doc.id);
       expect(refused.status).toBe(409);

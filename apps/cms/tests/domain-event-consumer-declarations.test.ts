@@ -255,6 +255,7 @@ describe("buildDomainEventConsumerRegistry", () => {
       "commerce.order_paid_entitlement_grantor",
       "commerce.order_paid_loyalty_earner",
       "domain_event_runtime.activity_rollup_projector",
+      "hr_workforce.attendance_correction_settler",
       "logging.sample_event_audit_projector",
       "reporting.event_activity_projector"
     ]);

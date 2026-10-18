@@ -48,7 +48,8 @@ import { recordAuditEvent } from "../../logging/application/audit-log";
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../_shared/idempotency";
 import {
   COMMERCE_EVENT_VERSION,
@@ -376,7 +377,7 @@ async function writeAndSettleLegs(
  *   (the transaction rolls back).
  */
 export async function createReturn(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   orderId: string,
@@ -445,7 +446,8 @@ async function createReturnWrite(
     tx,
     tenantId,
     CREATE_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -876,6 +878,7 @@ async function createReturnWrite(
     tenantId,
     CREATE_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     redactForStore(body)
@@ -936,7 +939,8 @@ export async function createRefundsForReturn(
     tx,
     tenantId,
     REFUND_SCOPE,
-    idempotencyKey
+    idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -1026,6 +1030,7 @@ export async function createRefundsForReturn(
     tenantId,
     REFUND_SCOPE,
     idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     redactForStore(body)
@@ -1081,7 +1086,8 @@ export async function linkExchangeOrder(
     tx,
     tenantId,
     EXCHANGE_SCOPE,
-    idempotencyKey
+    idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -1142,6 +1148,7 @@ export async function linkExchangeOrder(
     tenantId,
     EXCHANGE_SCOPE,
     idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     200,
     { returnId }

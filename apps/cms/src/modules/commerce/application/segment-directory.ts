@@ -235,7 +235,7 @@ export type CreateSegmentOutcome =
   { kind: "created"; segment: SegmentDetail } | { kind: "name_taken" };
 
 export async function createSegment(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   input: CreateSegmentInput,
@@ -244,7 +244,7 @@ export async function createSegment(
   let head: SegmentRow;
   try {
     // A savepoint: a unique violation must not poison the tenant transaction.
-    head = await (tx as Bun.TransactionSQL).savepoint(async (sp) => {
+    head = await tx.savepoint(async (sp) => {
       const rows = (await sp`
         INSERT INTO awcms_commerce_segments (
           tenant_id, name, description, latest_version, created_by_tenant_user_id
@@ -296,7 +296,7 @@ export type UpdateSegmentOutcome =
   | { kind: "name_taken" };
 
 export async function updateSegment(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   segmentId: string,
@@ -325,7 +325,7 @@ export async function updateSegment(
     input.description === undefined ? head.description : input.description;
 
   try {
-    await (tx as Bun.TransactionSQL).savepoint(async (sp) => {
+    await tx.savepoint(async (sp) => {
       if (input.rules && nextVersion !== null) {
         await sp`
           INSERT INTO awcms_commerce_segment_versions (

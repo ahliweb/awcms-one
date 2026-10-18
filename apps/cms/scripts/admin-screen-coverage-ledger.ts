@@ -157,5 +157,90 @@ export const NOT_YET_SCREENED: readonly string[] = [
   // (`PUT /documents/{id}`): the screen creates a draft and, for a mistake,
   // cancels it and enters a new one, so this stays on the shrink-only list until
   // a draft editor is a decision.
-  "procurement.documents.update"
+  "procurement.documents.update",
+
+  // hr_workforce (7) — ADR-0132 / Issue #945. Phase 1 foundation shipped
+  // API-first. Issue #952 added the self-service, supervisor and HR screens
+  // (`/admin/hr/*`), flipped the module to `active`, and claimed
+  // `employments.read`, `attendance.read`, `corrections.create` and
+  // `corrections.read`; the employment WRITE screens (create, terms, assign,
+  // delete, restore) and the settings screens are still the recorded follow-up,
+  // so each of those permissions is listed here until a screen claims it.
+  "hr_workforce.employments.assign",
+  "hr_workforce.employments.create",
+  "hr_workforce.employments.delete",
+  "hr_workforce.employments.restore",
+  "hr_workforce.employments.update",
+  "hr_workforce.settings.configure",
+  "hr_workforce.settings.read",
+  // booking (7) — ADR-0131 / Issue #937. Issue #942 shipped the admin screens
+  // (`/admin/booking/*`) and claimed 25 of the 32 permissions. The seven left
+  // have no screen YET, each for a reason the screens' own docblocks give:
+  //   * `availability.read` -- the search/quote an operator would run before
+  //     creating a reservation; belongs with the reservation-create screen.
+  //   * `reservations.create`, `.reschedule`, `.override` -- they need a
+  //     date/resource picker and, for override, a justified high-risk affordance;
+  //     the detail screen deliberately offers only the single-call transitions.
+  //   * `reservations.reconcile` -- the route does not exist yet.
+  //   * `reservation_notes.read` -- an audited read of customer text; the
+  //     screens deliberately never show the note.
+  //   * `reports.read` -- the occupancy/utilization reports have no screen yet.
+  "booking.availability.read",
+  "booking.reservation_notes.read",
+  "booking.reservations.create",
+  "booking.reservations.reschedule",
+  "booking.reservations.override",
+  "booking.reservations.reconcile",
+  "booking.reports.read",
+
+  // hr_commission (5) — ADR-0132 / Issue #950. Phase 2 foundation ships API-first
+  // and `experimental` (flag off): the rule screens are the recorded follow-up
+  // that flips the module to `active`, so each permission is listed here until a
+  // screen claims it.
+  "hr_commission.rules.create",
+  "hr_commission.rules.publish",
+  "hr_commission.rules.read",
+  "hr_commission.rules.retire",
+  "hr_commission.rules.update",
+  // hr_workforce shifts (8) — ADR-0132 / Issue #946. Same posture as above:
+  // API-first and `experimental`; the shift roster and template screens are the
+  // recorded follow-up that flips the module to `active`.
+  "hr_workforce.shifts.cancel",
+  "hr_workforce.shifts.create",
+  "hr_workforce.shifts.publish",
+  "hr_workforce.shifts.read",
+  "hr_workforce.templates.create",
+  "hr_workforce.templates.delete",
+  "hr_workforce.templates.read",
+  "hr_workforce.templates.update",
+
+  // hr_commission accruals (6) — ADR-0132 / Issue #951. The ledger ships API-first
+  // like the rules: the accrual screens (list, approve/release/void/pay) are the
+  // recorded follow-up that flips the module to `active`.
+  "hr_commission.accruals.approve",
+  "hr_commission.accruals.cancel",
+  "hr_commission.accruals.accrue",
+  "hr_commission.accruals.pay",
+  "hr_commission.accruals.read",
+  "hr_commission.accruals.release",
+  // hr_workforce attendance (7) — ADR-0132 / Issue #947. Same posture: API-first
+  // and `experimental`; the attendance and correction-inbox screens are the
+  // recorded follow-up that flips the module to `active`.
+  "hr_workforce.attendance.create",
+  "hr_workforce.clock.create",
+  "hr_workforce.corrections.approve",
+  "hr_workforce.corrections.cancel",
+  // hr_workforce workforce metrics (2) — Issue #953. Same posture: API-first and
+  // `experimental`; the metrics screen (per-employee list for `read`, per-office
+  // aggregates for `analyze`) is part of the recorded follow-up that flips the
+  // module to `active`. The facts are reachable by their owners meanwhile
+  // through the ownership-granted routes (`?mine=true`, `?reports=true`).
+  "hr_workforce.workforce_metrics.analyze",
+  "hr_workforce.workforce_metrics.read",
+  // hr_workforce geolocation evidence (2) — ADR-0138 / Issue #970. API-first like
+  // the rest of the module: the issue asks for no screen. The configure screen
+  // (switch, DPIA reference, notice, geofences) and the evidence reader are the
+  // recorded follow-up; until then both are reachable only through the API.
+  "hr_workforce.attendance_evidence.read",
+  "hr_workforce.geolocation_evidence.configure"
 ];

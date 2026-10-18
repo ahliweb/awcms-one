@@ -353,7 +353,7 @@ export type SessionMeta = {
 };
 
 export async function verifyCustomerOtp(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   input: VerifyCustomerOtpInput,
   sessionMeta: SessionMeta,

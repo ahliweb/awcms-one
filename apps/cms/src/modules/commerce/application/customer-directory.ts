@@ -67,7 +67,7 @@ function toAdminRecord(row: CustomerRow): CustomerAdminRecord {
  * and retries once (mirroring `createProduct`'s slug-collision handling).
  */
 export async function findOrCreateCustomerByPhone(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   name: string,
   phone: string,
@@ -84,11 +84,14 @@ export async function findOrCreateCustomerByPhone(
 
   let rows: CustomerRow[];
   try {
-    rows = (await tx`
+    rows = (await tx.savepoint(
+      async (sp) =>
+        await sp`
       INSERT INTO awcms_commerce_customers (tenant_id, name, phone, email)
       VALUES (${tenantId}, ${name}, ${phone}, ${email})
       RETURNING id, name, phone, email, level, status, created_at
-    `) as CustomerRow[];
+    `
+    )) as CustomerRow[];
   } catch (error) {
     if (
       error instanceof Bun.SQL.PostgresError &&

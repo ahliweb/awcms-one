@@ -1,0 +1,3255 @@
+# Source fragment for the "hr_workforce" module (Issue #945, #946, #947, ADR-0132).
+#
+# Owns every path whose operations carry this module's OpenAPI tag, plus every
+# components.schemas entry referenced ONLY by this module's operations.
+#
+# An employment REFERENCES a profile_identity party (`profileId`) and never
+# carries its name, contact or national id; no operation accepts or returns a
+# photo, biometric or device field (owner decision O6); the one position input is the
+# optional `positionSample` of a self clock-in/out, evaluated and discarded (Issue #970,
+# ADR-0138). `terminatedOn` is derived
+# from a terminated term and can never be asserted by a client.
+#
+# NOT independently valid OpenAPI: $ref targets pointing at shared components
+# only resolve after `bun run openapi:bundle` merges this file with the root
+# fragment and every sibling module fragment. Edit this file, never the bundle.
+paths:
+  /api/v1/hr-workforce/employments:
+    get:
+      operationId: hrWorkforceEmploymentsList
+      tags:
+        - HR Workforce
+      summary: List employments
+      description: "Gated by `hr_workforce.employments.read`, EXCEPT `mine=true`, which answers only the caller's own employment and needs no permission (an ownership grant on the persisted login link, ADR-0063; ABAC, scope and SoD still apply, and a machine credential never carries it). Newest first, keyset paginated (`cursor`). Each row REFERENCES its person (`profileId`); no name, contact or national id is ever returned. Soft-deleted rows are hidden unless `includeDeleted=true`, which additionally needs `hr_workforce.employments.restore`. Tenant-scoped (withTenant + RLS FORCE)."
+      parameters:
+        - name: state
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - active
+              - terminated
+        - name: officeId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - name: mine
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: includeDeleted
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: A page of employments.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      employments:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/HrEmployment"
+                      nextCursor:
+                        type: string
+                        nullable: true
+                  meta:
+                    type: object
+    post:
+      operationId: hrWorkforceEmploymentCreate
+      tags:
+        - HR Workforce
+      summary: Create an employment
+      description: "Gated by `hr_workforce.employments.create`. Creates the employment for an existing, active `profile_identity` party together with its first terms effective on `hiredOn`. A body naming a personal field (name, contact, national id) or `terminatedOn` is a 400. One ACTIVE employment per profile and tenant (`409 ALREADY_EMPLOYED`); employee numbers are unique among live rows (`409 EMPLOYEE_NO_CONFLICT`). Requires an Idempotency-Key. Audited."
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HrEmploymentInput"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "201":
+          description: The employment.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrEmployment"
+                  meta:
+                    type: object
+        "409":
+          description: IDEMPOTENCY_CONFLICT, ALREADY_EMPLOYED, EMPLOYEE_NO_CONFLICT, MANAGER_CYCLE or MANAGER_CHAIN_TOO_DEEP.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: PROFILE_NOT_FOUND, OFFICE_NOT_FOUND or MANAGER_NOT_FOUND.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/hr-workforce/employments/{id}:
+    get:
+      operationId: hrWorkforceEmploymentGet
+      tags:
+        - HR Workforce
+      summary: Get an employment
+      description: "Gated by `hr_workforce.employments.read`; the employee the employment is linked to may read their own without it (an ownership grant). A missing id and someone else's employment are indistinguishable to a caller without the permission (both 403)."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: The employment with its current terms.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrEmployment"
+                  meta:
+                    type: object
+        "404":
+          description: RESOURCE_NOT_FOUND.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    delete:
+      operationId: hrWorkforceEmploymentDelete
+      tags:
+        - HR Workforce
+      summary: Soft-delete an employment
+      description: "Gated by `hr_workforce.employments.delete` (high-risk). For an employment entered by mistake; a real end of employment is a terminated term. Optional `reason` (at most 500 characters, never echoed into the audit row). Requires an Idempotency-Key. Audited at warning severity."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HrReasonInput"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: The deleted employment.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrEmployment"
+                  meta:
+                    type: object
+        "404":
+          description: RESOURCE_NOT_FOUND.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: IDEMPOTENCY_CONFLICT or EMPLOYMENT_DELETED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/hr-workforce/employments/{id}/restore:
+    post:
+      operationId: hrWorkforceEmploymentRestore
+      tags:
+        - HR Workforce
+      summary: Restore an employment
+      description: "Gated by `hr_workforce.employments.restore` (high-risk). Refused with 409 while the employee number, the person's active employment or the linked login has been taken meanwhile. Requires an Idempotency-Key. Audited at warning severity."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: The restored employment.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrEmployment"
+                  meta:
+                    type: object
+        "404":
+          description: RESOURCE_NOT_FOUND.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: IDEMPOTENCY_CONFLICT, EMPLOYMENT_NOT_DELETED, EMPLOYEE_NO_CONFLICT, ALREADY_EMPLOYED or ACCOUNT_IN_USE.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/hr-workforce/employments/{id}/terms:
+    get:
+      operationId: hrWorkforceEmploymentTermsList
+      tags:
+        - HR Workforce
+      summary: List an employment's terms
+      description: "Gated by `hr_workforce.employments.read`; the linked employee may read their own history without it (an ownership grant). Effective-dated and append-only, oldest first (at most 500)."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: The terms history.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      terms:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/HrEmploymentTerm"
+                  meta:
+                    type: object
+        "404":
+          description: RESOURCE_NOT_FOUND.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    post:
+      operationId: hrWorkforceEmploymentTermsChange
+      tags:
+        - HR Workforce
+      summary: Append the next terms
+      description: "Gated by `hr_workforce.employments.update`. Appends the next terms from `effectiveFrom` (strictly after the current terms' start, never before the hire date); the open row is closed, never edited. `status: terminated` ends the employment and is terminal (rehire is a new employment). The manager chain must stay acyclic and at most 10 deep. Re-sending identical terms is a no-op answering 200 `replayed: true`. Requires an Idempotency-Key. Audited."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HrTermsChangeInput"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "201":
+          description: The terms were appended.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      replayed:
+                        type: boolean
+                      employment:
+                        $ref: "#/components/schemas/HrEmployment"
+                  meta:
+                    type: object
+        "200":
+          description: The identical terms were already current (replayed).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      replayed:
+                        type: boolean
+                      employment:
+                        $ref: "#/components/schemas/HrEmployment"
+                  meta:
+                    type: object
+        "404":
+          description: RESOURCE_NOT_FOUND.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: IDEMPOTENCY_CONFLICT, EMPLOYMENT_DELETED, EMPLOYMENT_TERMINATED, TERMS_OUT_OF_ORDER, MANAGER_CYCLE or MANAGER_CHAIN_TOO_DEEP.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: EFFECTIVE_BEFORE_HIRE, OFFICE_NOT_FOUND or MANAGER_NOT_FOUND.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/hr-workforce/employments/{id}/account:
+    put:
+      operationId: hrWorkforceEmploymentAccountAssign
+      tags:
+        - HR Workforce
+      summary: Link or unlink the employee's login
+      description: 'Gated by `hr_workforce.employments.assign` (high-risk). `{"tenantUserId": "<uuid>"}` links the login that IS this employee; `null` unlinks. This is the basis of self-service ownership (and of payslip ownership in phase 3), so (finding PS-14, #979): the caller cannot link their OWN login to another person''s employment (`403 SELF_LINK_FORBIDDEN`); the linked login must belong to the employment''s person, i.e. its identity carries the employment''s `profileId` (`422 PROFILE_MISMATCH`); and a RE-LINK (changing or removing an existing link, or linking again after an unlink) is audited at `critical` (a first link at `warning`) with the before and after login UUIDs and no free text, and, when the employment already has attendance history, requires the conditional step-up of ADR-0141 section 4 (`403 STEP_UP_REQUIRED` for an enrolled caller with a stale session; a caller with no enrolled factor is not locked out and the audit row records `not_enrolled`). Each refusal writes an `account_link_refused` audit row (reason code and UUIDs only); repeating the current link re-validates it. One active employment per login. Requires an Idempotency-Key.'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HrAccountInput"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: ACCESS_DENIED, SELF_LINK_FORBIDDEN or STEP_UP_REQUIRED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "200":
+          description: The employment, with `replayed` true when the link was already as asked.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      replayed:
+                        type: boolean
+                      employment:
+                        $ref: "#/components/schemas/HrEmployment"
+                  meta:
+                    type: object
+        "404":
+          description: RESOURCE_NOT_FOUND.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: IDEMPOTENCY_CONFLICT, EMPLOYMENT_DELETED, EMPLOYMENT_TERMINATED or ACCOUNT_IN_USE.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: USER_NOT_FOUND or PROFILE_MISMATCH.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/hr-workforce/settings:
+    get:
+      operationId: hrWorkforceSettingsGet
+      tags:
+        - HR Workforce
+      summary: Read the workforce settings
+      description: "Gated by `hr_workforce.settings.read`. Defaults apply until a row exists. There is no evidence, location or photo setting, by construction (owner decision O6)."
+      parameters:
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: The settings.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrWorkforceSettings"
+                  meta:
+                    type: object
+    put:
+      operationId: hrWorkforceSettingsSet
+      tags:
+        - HR Workforce
+      summary: Change the workforce settings
+      description: "Gated by `hr_workforce.settings.configure` (high-risk). An omitted field keeps its value; at least one is required. Requires an Idempotency-Key. Audited at warning severity (the row records which setting changed, not its value)."
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HrWorkforceSettingsInput"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: The settings.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrWorkforceSettings"
+                  meta:
+                    type: object
+        "409":
+          description: IDEMPOTENCY_CONFLICT.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/hr-workforce/shift-templates:
+    get:
+      operationId: hrWorkforceShiftTemplatesList
+      tags:
+        - HR Workforce
+      summary: List shift templates
+      description: "Gated by `hr_workforce.templates.read`. Live templates, newest first, keyset paginated (`cursor`). A template is a pattern and names no person. Tenant-scoped (withTenant + RLS FORCE)."
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: A page of shift templates.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      templates:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/HrShiftTemplate"
+                      nextCursor:
+                        type: string
+                        nullable: true
+                  meta:
+                    type: object
+    post:
+      operationId: hrWorkforceShiftTemplateCreate
+      tags:
+        - HR Workforce
+      summary: Create a shift template
+      description: "Gated by `hr_workforce.templates.create`. A pattern: a local start time, an ELAPSED duration in minutes, an optional single break and an IANA zone. Codes are unique among live templates (`409 TEMPLATE_CODE_CONFLICT`). Requires an Idempotency-Key. Audited."
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HrShiftTemplateInput"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "201":
+          description: The template.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrShiftTemplate"
+                  meta:
+                    type: object
+        "409":
+          description: IDEMPOTENCY_CONFLICT or TEMPLATE_CODE_CONFLICT.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: OFFICE_NOT_FOUND or INVALID_TIME_ZONE.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/hr-workforce/shift-templates/{id}:
+    get:
+      operationId: hrWorkforceShiftTemplateGet
+      tags:
+        - HR Workforce
+      summary: Get a shift template
+      description: "Gated by `hr_workforce.templates.read`. A soft-deleted template is a 404."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: The template.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrShiftTemplate"
+                  meta:
+                    type: object
+        "404":
+          description: RESOURCE_NOT_FOUND.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    patch:
+      operationId: hrWorkforceShiftTemplateUpdate
+      tags:
+        - HR Workforce
+      summary: Edit a shift template
+      description: "Gated by `hr_workforce.templates.update`. Only the keys sent change (the code is fixed); `officeId: null`, or both break keys `null`, clear them. Assignments already made are NOT moved: they hold their own resolved instants. The call sets values, so repeating it is harmless and it needs no Idempotency-Key. Audited."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HrShiftTemplatePatch"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: The template.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrShiftTemplate"
+                  meta:
+                    type: object
+        "404":
+          description: RESOURCE_NOT_FOUND.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: OFFICE_NOT_FOUND, INVALID_TIME_ZONE or VALIDATION_ERROR (the break must end within the shift).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    delete:
+      operationId: hrWorkforceShiftTemplateDelete
+      tags:
+        - HR Workforce
+      summary: Soft-delete a shift template
+      description: "Gated by `hr_workforce.templates.delete` (high-risk). Soft delete; frees the code. Assignments made from it are unaffected. Requires an Idempotency-Key. Audited at warning severity."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: The deleted template.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrShiftTemplate"
+                  meta:
+                    type: object
+        "404":
+          description: RESOURCE_NOT_FOUND.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: IDEMPOTENCY_CONFLICT or TEMPLATE_DELETED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/hr-workforce/shift-assignments:
+    get:
+      operationId: hrWorkforceShiftAssignmentsList
+      tags:
+        - HR Workforce
+      summary: List shift assignments
+      description: "Gated by `hr_workforce.shifts.read` (drafts visible), EXCEPT `mine=true`, which answers only the caller\u0027s OWN PUBLISHED schedule and needs no permission (an ownership grant on the persisted login link, ADR-0063; ABAC, scope and SoD still apply, and a machine credential never carries it). Oldest start first, keyset paginated (`cursor`); `from` (inclusive) and `to` (exclusive) are whole-minute UTC instants and an assignment is listed when it overlaps that window. Tenant-scoped (withTenant + RLS FORCE)."
+      parameters:
+        - name: employmentId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: to
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - draft
+              - published
+              - cancelled
+        - name: mine
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: A page of assignments.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      assignments:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/HrShiftAssignment"
+                      nextCursor:
+                        type: string
+                        nullable: true
+                  meta:
+                    type: object
+    post:
+      operationId: hrWorkforceShiftAssignmentCreate
+      tags:
+        - HR Workforce
+      summary: Draft a shift or time-off assignment
+      description: "Gated by `hr_workforce.shifts.create`. Send EITHER `templateId` + `localDate` (the wall clock is resolved to UTC once, here, in the template\u0027s zone) OR the explicit `startsAt`/`endsAt` UTC interval with its `timeZone`. Created as a DRAFT: invisible to scheduling consumers until published, but it already counts for the overlap rule. An employment cannot have two non-cancelled assignments that overlap (half-open, across kinds): `409 SHIFT_CONFLICT`, with the other assignment\u0027s id in `error.details.conflictingAssignmentId` ONLY when the caller also holds `hr_workforce.shifts.read` (otherwise the id is omitted, so a create-only caller cannot enumerate other people\u0027s schedule ids). Time off carries a coarse `timeOffKind` and NEVER a reason; no free-text field exists. Requires an Idempotency-Key. Audited."
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HrShiftAssignmentInput"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "201":
+          description: The draft assignment.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrShiftAssignment"
+                  meta:
+                    type: object
+        "409":
+          description: IDEMPOTENCY_CONFLICT or SHIFT_CONFLICT.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: EMPLOYMENT_NOT_FOUND, TEMPLATE_NOT_FOUND, OFFICE_NOT_FOUND or INVALID_TIME_ZONE.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/hr-workforce/shift-assignments/{id}/publish:
+    post:
+      operationId: hrWorkforceShiftAssignmentPublish
+      tags:
+        - HR Workforce
+      summary: Publish a shift assignment
+      description: "Gated by `hr_workforce.shifts.publish` (high-risk). draft -> published. Only a published assignment is visible to scheduling consumers (the `StaffAvailabilityPort`). A published assignment is immutable: it is cancelled, never edited or deleted. Requires an Idempotency-Key. Audited."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: The published assignment.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrShiftAssignment"
+                  meta:
+                    type: object
+        "404":
+          description: RESOURCE_NOT_FOUND.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: IDEMPOTENCY_CONFLICT, SHIFT_NOT_DRAFT or EMPLOYMENT_DELETED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/hr-workforce/shift-assignments/{id}/cancel:
+    post:
+      operationId: hrWorkforceShiftAssignmentCancel
+      tags:
+        - HR Workforce
+      summary: Cancel a shift assignment
+      description: "Gated by `hr_workforce.shifts.cancel` (high-risk). draft or published -> cancelled (terminal). The row stays; it stops counting for the overlap rule and for availability. Requires an Idempotency-Key. Audited at warning severity."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: The cancelled assignment.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrShiftAssignment"
+                  meta:
+                    type: object
+        "404":
+          description: RESOURCE_NOT_FOUND.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: IDEMPOTENCY_CONFLICT or SHIFT_ALREADY_CANCELLED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/hr-workforce/attendance-events:
+    get:
+      operationId: hrWorkforceAttendanceEventsList
+      tags:
+        - HR Workforce
+      summary: List attendance events
+      description: "Gated by `hr_workforce.attendance.read` (every employee), EXCEPT `mine=true` (your OWN events, across EVERY live employment of yours, a terminated one included: a rehired person reads the old and the new) and `reports=true` (the events of the people who report to you through the current manager chain, at most ten levels; a soft-deleted employment is neither listed nor walked through), which need no permission (an ownership grant on the persisted login link / manager chain, ADR-0063; ABAC, scope and SoD still apply, and a machine credential never carries it). `mine` and `reports` cannot be combined, and an `employmentId` outside the chosen basis is 403. Newest claimed instant first, keyset paginated (`cursor`); `from` (inclusive) and `to` (exclusive) bound the claimed instant; `effective=true` hides an event a later approved correction replaced. Confidential behavioural data: no location, photo, device or network value exists. Tenant-scoped (withTenant + RLS FORCE). In the ALL-employee mode AND in the manager-chain `reports` mode the read is recorded as a sensitive read (`sensitive_read.attendance_events`: employment ids and a count, coalesced, attribute `mode`, Issue #1083); only `mine` is not."
+      parameters:
+        - name: employmentId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: to
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: effective
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: mine
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: reports
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: A page of attendance events.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      events:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/HrAttendanceEvent"
+                      nextCursor:
+                        type: string
+                        nullable: true
+                  meta:
+                    type: object
+    post:
+      operationId: hrWorkforceAttendanceEventCreate
+      tags:
+        - HR Workforce
+      summary: Record an attendance event
+      description: "`source: self` records YOUR OWN event and needs `hr_workforce.clock.create` plus an employment linked to your login (anything else is 403 whether the employment exists or not); `supervisor`, `kiosk` and `import` record for another employment and need `hr_workforce.attendance.create`. The SERVER clock decides `recordedAt`; `occurredAt` is bounded by the tenant clock-skew setting: in the future -> 422 `ATTENDANCE_TIME_IN_FUTURE`; for `self`/`supervisor`, older than the skew -> 422 `ATTENDANCE_BACKDATED` (request a correction); a `kiosk`/`import` replay is accepted up to seven days old (older -> 422 `ATTENDANCE_TOO_OLD`) and flagged `late` past fifteen minutes. A replay of the same `clientEventKey` for the same employment returns the ORIGINAL with 200 (a different event under a used key is 409 `CLIENT_EVENT_KEY_CONFLICT`). The body has NO photo, device or network field and an unknown field is refused. The ONE optional position field is `positionSample` (Issue #970, ADR-0138): only a `self` clock_in / clock_out may carry it (any other source or kind -> 400), the server evaluates it IN THE REQUEST against the geofences of the event's office and DISCARDS it (no coordinate, raw accuracy, address or device value is ever stored, logged or audited), and the response carries `locationVerdict` (`inside`, `outside` or `not_provided`; `null` while the tenant's switch is off, the default, when the sample is ignored). A declined / absent / too-coarse / unacknowledged sample is `not_provided` and never blocks clocking. Requires an Idempotency-Key. Audited when recorded for somebody else: every `supervisor` event, and a `kiosk`/`import` event flagged `late` (ids, kind, source and claimed instant only; the actor is the recorder); a `self` event and a punctual kiosk/import tap are not (high volume: the event is the record). The seven-day replay window is NOT an approval path: it exists for offline queues, which is why the stale ones leave a trace."
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HrAttendanceEventInput"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "201":
+          description: The recorded event.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrAttendanceEventRecorded"
+                  meta:
+                    type: object
+        "200":
+          description: "A replay of an already-recorded clientEventKey: the original event."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrAttendanceEventRecorded"
+                  meta:
+                    type: object
+        "409":
+          description: IDEMPOTENCY_CONFLICT, CLIENT_EVENT_KEY_CONFLICT or EMPLOYMENT_TERMINATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: EMPLOYMENT_NOT_FOUND, OFFICE_NOT_FOUND, ATTENDANCE_TIME_IN_FUTURE, ATTENDANCE_BACKDATED or ATTENDANCE_TOO_OLD.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/hr-workforce/attendance-corrections:
+    get:
+      operationId: hrWorkforceAttendanceCorrectionsList
+      tags:
+        - HR Workforce
+      summary: List attendance corrections
+      description: "Gated by `hr_workforce.corrections.read`, EXCEPT `mine=true` (the corrections of every live employment of yours, a terminated one included) and `reports=true` (your reports\u0027, through the manager chain), which need no permission (ownership grants, ADR-0063). Newest first, keyset paginated. The list NEVER carries the sensitive `reason`; read one correction for it. Tenant-scoped (withTenant + RLS FORCE)."
+      parameters:
+        - name: employmentId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - pending
+              - approved
+              - rejected
+              - withdrawn
+        - name: mine
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: reports
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: A page of corrections (no reason).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      corrections:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/HrAttendanceCorrection"
+                      nextCursor:
+                        type: string
+                        nullable: true
+                  meta:
+                    type: object
+    post:
+      operationId: hrWorkforceAttendanceCorrectionCreate
+      tags:
+        - HR Workforce
+      summary: Request an attendance correction
+      description: "Gated by `hr_workforce.corrections.create`; the employment must be YOURS unless you also hold `hr_workforce.attendance.create`. Proposes adding a missing event (`kind: add`) or replacing one (`kind: replace` + `targetEventId`) with a mandatory `reason`. It NEVER edits the original: on approval a NEW event is appended that supersedes the old one. Approval is REQUIRED and fail-closed: with no published workflow under the tenant\u0027s correction workflow key (or `workflow` disabled for the tenant) -> 409 `APPROVAL_WORKFLOW_NOT_CONFIGURED` and nothing is created. A `proposedOccurredAt` further in the future than the tenant clock-skew bound is refused with 422 `ATTENDANCE_TIME_IN_FUTURE` and nothing is created (the event guard would refuse it at approval and the correction would stay pending for good). The workflow instance is started with NO facts. The reason is sensitive: it is never written to an audit row, an event or the workflow store. Requires an Idempotency-Key. Audited without the reason."
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HrAttendanceCorrectionInput"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "201":
+          description: The pending correction, with its reason (the requester may read it).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrAttendanceCorrection"
+                  meta:
+                    type: object
+        "409":
+          description: IDEMPOTENCY_CONFLICT, CORRECTION_ALREADY_PENDING, TARGET_EVENT_SUPERSEDED, APPROVAL_WORKFLOW_NOT_CONFIGURED or APPROVAL_WORKFLOW_MISCONFIGURED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: EMPLOYMENT_NOT_FOUND, TARGET_EVENT_NOT_FOUND or ATTENDANCE_TIME_IN_FUTURE.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/hr-workforce/attendance-corrections/{id}:
+    get:
+      operationId: hrWorkforceAttendanceCorrectionGet
+      tags:
+        - HR Workforce
+      summary: Get an attendance correction
+      description: "Gated by `hr_workforce.corrections.read`, EXCEPT for the REQUESTER, a workflow ASSIGNEE of its approval instance, the employee it is about and a supervisor above that employee (an ownership grant, ADR-0063). The sensitive `reason` is included only for the requester, an assignee, or a holder of `corrections.read`; a supervisor reading through the manager chain alone sees everything but the reason. A missing id and someone else\u0027s correction are both 403 to a caller without the permission."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: The correction (reason only where permitted).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrAttendanceCorrection"
+                  meta:
+                    type: object
+        "404":
+          description: RESOURCE_NOT_FOUND.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/hr-workforce/attendance-corrections/{id}/withdraw:
+    post:
+      operationId: hrWorkforceAttendanceCorrectionWithdraw
+      tags:
+        - HR Workforce
+      summary: Withdraw a pending attendance correction
+      description: "Gated by `hr_workforce.corrections.cancel` (high-risk). The REQUESTER only withdraws a still-pending correction (its approval instance is cancelled first); someone else\u0027s and a missing id answer alike (404). Requires an Idempotency-Key. Audited without the reason."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: The withdrawn correction.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrAttendanceCorrection"
+                  meta:
+                    type: object
+        "404":
+          description: RESOURCE_NOT_FOUND.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: IDEMPOTENCY_CONFLICT, CORRECTION_NOT_PENDING or CORRECTION_ALREADY_DECIDED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/hr-workforce/attendance-corrections/{id}/settle:
+    post:
+      operationId: hrWorkforceAttendanceCorrectionSettle
+      tags:
+        - HR Workforce
+      summary: Apply the approval workflow verdict to a correction
+      description: "Gated by `hr_workforce.corrections.approve` (high-risk). The decision is made in `workflow_approval`; this materialises it: instance pending -> 409 `CORRECTION_STILL_PENDING`; approved -> the correction becomes `approved` and a NEW event superseding the old one is appended in the same transaction (the original is never edited); rejected / cancelled -> `rejected` / `withdrawn`. Normally this happens by itself: a domain-event consumer applies the verdict as soon as the workflow instance finishes, and this route is the manual fallback for a verdict it declined to apply. SEGREGATION OF DUTIES: the requester cannot settle their own APPROVED (or still pending) correction (the chokepoint\u0027s self-approval guard, 403); a `rejected` or `cancelled` verdict applies nothing, so the requester may close their own refused request; an approved instance with no human approving decision is 409 `CORRECTION_NO_APPROVER`; one the requester, or the employee the correction is about (the login linked when it was requested, and the one linked now), approved directly or as the delegator whose standing a delegate used, or that employee settling it, is 409 `CORRECTION_SELF_APPROVED`; the database refuses each of these too. Requires an Idempotency-Key. Audited (warning when approved) without the reason."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: The settled correction.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrAttendanceCorrection"
+                  meta:
+                    type: object
+        "404":
+          description: RESOURCE_NOT_FOUND.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: IDEMPOTENCY_CONFLICT, CORRECTION_NOT_PENDING, CORRECTION_STILL_PENDING, CORRECTION_NO_APPROVER, CORRECTION_SELF_APPROVED, TARGET_EVENT_SUPERSEDED or CORRECTION_NOT_APPLICABLE.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/hr-workforce/geolocation/settings:
+    get:
+      operationId: hrWorkforceGeolocationSettingsGet
+      tags:
+        - HR Workforce
+      summary: Read the geolocation evidence settings
+      description: "Gated by `hr_workforce.geolocation_evidence.configure` (not granted to the tenant owner by default, ADR-0138 section 3). The switch is FALSE for every tenant until an authorised person enables it. Responses are `no-store`."
+      parameters:
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: The settings.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrGeolocationSettings"
+                  meta:
+                    type: object
+    put:
+      operationId: hrWorkforceGeolocationSettingsSet
+      tags:
+        - HR Workforce
+      summary: Switch geolocation attendance evidence on or off
+      description: 'ENABLING needs `hr_workforce.geolocation_evidence.configure` (403 otherwise) and, in the resulting state, a DPIA reference + date (409 `GEOLOCATION_DPIA_REQUIRED`), a published notice (409 `GEOLOCATION_NOTICE_REQUIRED`) and at least one live geofence (409 `GEOLOCATION_GEOFENCE_REQUIRED`). DISABLING has no precondition, and a holder of `hr_workforce.settings.configure` may send a bare `{ "enabled": false }`; anything else needs the dedicated permission. An omitted field keeps its value; `null` clears `dpiaReference`, `dpiaRecordedOn` or `noticeId`. Requires an Idempotency-Key. Audited at CRITICAL severity when the switch flips (warning otherwise) with the before/after STATE and the actor, never a location. Pointing `noticeId` at a newer version re-requests every employee''s acknowledgement.'
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HrGeolocationSettingsInput"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: The settings.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrGeolocationSettings"
+                  meta:
+                    type: object
+        "409":
+          description: IDEMPOTENCY_CONFLICT, GEOLOCATION_DPIA_REQUIRED, GEOLOCATION_NOTICE_REQUIRED or GEOLOCATION_GEOFENCE_REQUIRED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: NOTICE_NOT_FOUND.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/hr-workforce/geolocation/geofences:
+    get:
+      operationId: hrWorkforceGeofencesList
+      tags:
+        - HR Workforce
+      summary: List geofences
+      description: "Gated by `hr_workforce.geolocation_evidence.configure`. `officeId` narrows to one office; `includeDeleted=true` includes soft-deleted ones. A geofence is a place of business, not a person."
+      parameters:
+        - name: officeId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - name: includeDeleted
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: The geofences.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      geofences:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/HrGeofence"
+                  meta:
+                    type: object
+    post:
+      operationId: hrWorkforceGeofenceCreate
+      tags:
+        - HR Workforce
+      summary: Define a geofence
+      description: "Gated by `hr_workforce.geolocation_evidence.configure` (high-risk). A circle (`latitude`, `longitude`, `radiusMeters` 50-5000) or a simple polygon (3-32 `[latitude, longitude]` vertices, no repeated vertex or crossing edge, at least 2,500 square metres, spanning at most 10 km) attached to a live office; at most 10 live geofences per office (409 `GEOFENCE_OFFICE_LIMIT`). Requires an Idempotency-Key. Audited at warning severity with ids, the revision and a geometry fingerprint, never coordinates."
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HrGeofenceInput"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "201":
+          description: The geofence.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrGeofence"
+                  meta:
+                    type: object
+        "409":
+          description: IDEMPOTENCY_CONFLICT or GEOFENCE_OFFICE_LIMIT.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: OFFICE_NOT_FOUND.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/hr-workforce/geolocation/geofences/{id}:
+    put:
+      operationId: hrWorkforceGeofenceReplace
+      tags:
+        - HR Workforce
+      summary: Replace a geofence
+      description: "Gated by `hr_workforce.geolocation_evidence.configure` (high-risk). Replaces label, office and geometry of a LIVE geofence. Evidence already recorded keeps naming it; it cannot be re-evaluated because no coordinate was kept. Requires an Idempotency-Key. Audited at warning severity with ids, the revision and a geometry fingerprint, never coordinates."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HrGeofenceInput"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: The geofence.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrGeofence"
+                  meta:
+                    type: object
+        "404":
+          description: RESOURCE_NOT_FOUND.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: IDEMPOTENCY_CONFLICT or GEOFENCE_OFFICE_LIMIT.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: OFFICE_NOT_FOUND.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    delete:
+      operationId: hrWorkforceGeofenceDelete
+      tags:
+        - HR Workforce
+      summary: Soft-delete a geofence
+      description: "Gated by `hr_workforce.geolocation_evidence.configure` (high-risk). SOFT delete: a verdict that names the geofence keeps its reference. Refused 409 `GEOFENCE_LAST_WHILE_ENABLED` while geolocation evidence is enabled and this is the last live geofence. Requires an Idempotency-Key. Audited at warning severity."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: The deleted geofence.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrGeofence"
+                  meta:
+                    type: object
+        "404":
+          description: RESOURCE_NOT_FOUND.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: IDEMPOTENCY_CONFLICT, GEOFENCE_ALREADY_DELETED or GEOFENCE_LAST_WHILE_ENABLED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/hr-workforce/geolocation/geofences/{id}/restore:
+    post:
+      operationId: hrWorkforceGeofenceRestore
+      tags:
+        - HR Workforce
+      summary: Restore a geofence
+      description: "Gated by `hr_workforce.geolocation_evidence.configure` (high-risk). Undoes a soft delete; refused 422 while its office is deleted. Requires an Idempotency-Key. Audited at warning severity."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: The restored geofence.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrGeofence"
+                  meta:
+                    type: object
+        "404":
+          description: RESOURCE_NOT_FOUND.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: IDEMPOTENCY_CONFLICT, GEOFENCE_NOT_DELETED or GEOFENCE_OFFICE_LIMIT.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: OFFICE_NOT_FOUND.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/hr-workforce/geolocation/notices:
+    get:
+      operationId: hrWorkforceGeolocationNoticesList
+      tags:
+        - HR Workforce
+      summary: List the notice versions
+      description: "Gated by `hr_workforce.geolocation_evidence.configure`. Newest version first."
+      parameters:
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: The notice versions.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      notices:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/HrGeolocationNotice"
+                  meta:
+                    type: object
+    post:
+      operationId: hrWorkforceGeolocationNoticePublish
+      tags:
+        - HR Workforce
+      summary: Publish the next notice version
+      description: "Gated by `hr_workforce.geolocation_evidence.configure` (high-risk). Append-only, numbered per tenant; the text (locale -> text) is the tenant's: what is captured (a position at clock-in and clock-out only), why, who can see it, how long it is kept, and that declining does not stop clocking in. Publishing does NOT make it current: `PUT .../settings` with `noticeId` does. Requires an Idempotency-Key. Audited at warning severity (the version, never the text)."
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HrGeolocationNoticeInput"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "201":
+          description: The notice version.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrGeolocationNotice"
+                  meta:
+                    type: object
+        "409":
+          description: IDEMPOTENCY_CONFLICT.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/hr-workforce/geolocation/notice:
+    get:
+      operationId: hrWorkforceGeolocationNoticeStatus
+      tags:
+        - HR Workforce
+      summary: Read the notice status for the caller's employment
+      description: "Gated by `hr_workforce.clock.create` and an employment linked to the caller's login (anything else is 403). What the clock client needs BEFORE it offers a position: whether the tenant has the feature on, the accuracy ceiling, the current notice and whether this employee acknowledged it. While the feature is off, `enabled` is false and no notice is returned: the client must not ask for a position. `no-store`."
+      parameters:
+        - name: employmentId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: The status.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrGeolocationNoticeStatus"
+                  meta:
+                    type: object
+  /api/v1/hr-workforce/geolocation/notice-acknowledgements:
+    post:
+      operationId: hrWorkforceGeolocationNoticeAcknowledge
+      tags:
+        - HR Workforce
+      summary: Acknowledge the current notice
+      description: "Gated by `hr_workforce.clock.create` and an employment linked to the caller's login (anything else is 403). Records that the employee has seen the CURRENT notice version: evidence of notice, not a claim that consent is the lawful basis. A repeat is 200. Declining is simply not acknowledging: the employee still clocks in, with a `not_provided` verdict. Requires an Idempotency-Key."
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HrGeolocationAcknowledgeInput"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "201":
+          description: Acknowledged.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrGeolocationAcknowledgement"
+                  meta:
+                    type: object
+        "200":
+          description: Already acknowledged.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/HrGeolocationAcknowledgement"
+                  meta:
+                    type: object
+        "409":
+          description: IDEMPOTENCY_CONFLICT or NOTICE_NOT_CURRENT.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/hr-workforce/geolocation/evidence:
+    get:
+      operationId: hrWorkforceLocationEvidenceList
+      tags:
+        - HR Workforce
+      summary: List location-evidence verdicts
+      description: "Gated by `hr_workforce.attendance_evidence.read` (tenant-wide and HR-only: there is no supervisor scope or manager-chain read yet, and never a scheduler, cashier, marketer or payroll operator), EXCEPT `mine=true` (your OWN verdicts), which needs no permission beyond an employment linked to your login (an ownership grant, ADR-0063). An `employmentId` outside your own under `mine` is 403. Each read of OTHER people's verdicts is audited (the reader, the employment filter and a count, never a verdict). A verdict is a SUPPORTING INDICATOR for human review, never proof, and changes no pay, status or approval by itself. There is no coordinate to return: none is ever stored. Newest first, keyset paginated; `from`/`to` bound the evaluation instant. Responses are `no-store`."
+      parameters:
+        - name: mine
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: employmentId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - name: eventId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: to
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: A page of verdicts.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      evidence:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/HrLocationEvidence"
+                      nextCursor:
+                        type: string
+                        nullable: true
+                  meta:
+                    type: object
+  /api/v1/hr-workforce/workforce-metrics/employees:
+    get:
+      operationId: hrWorkforceMetricsEmployeesList
+      tags:
+        - HR Workforce
+      summary: Workforce facts per employee
+      description: "Transparent attendance, hours, shift-coverage and productivity FACTS per employee over a UTC window (`from` inclusive, `to` exclusive, both required, at most 31 days). Gated by `hr_workforce.workforce_metrics.read` (HR: every employee), EXCEPT `mine=true` (your OWN employments) and `reports=true` (your DIRECT reports only, one level, and only from when the reporting line began; a soft-deleted, terminated or re-assigned report, or a terminated manager, drops out), which need no permission (an ownership grant on the persisted login link / current manager link, ADR-0063; ABAC, scope and SoD still apply, and a machine credential never carries it). `mine` and `reports` cannot be combined, and an `employmentId` outside the chosen basis is 403, the same as an id that does not exist. Malformed input from a caller entitled to nothing is 403, not 400. Keyset paginated by employment id (`cursor`, 50 per page). There is NO composite score, ranking or flag; every figure is a count, minutes, or a ratio defined in `docs/awcms/workforce-metrics.md`. Reads attendance events (effective record only) and published work shifts only; no photo, biometric, device, location or payroll data exists in or is read by this surface. Never cached. Tenant-scoped (withTenant + RLS FORCE). The all-employee mode and the `reports` mode (the manager chain can make a director with no HR permission a reader of everyone) are recorded as a sensitive read (`sensitive_read.workforce_metrics`: the employment ids, a count and the `mode`, never a figure; coalesced per actor in a five-minute window, Issue #1083). Only the employee's own (`mine`) read is not recorded."
+      parameters:
+        - name: from
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: to
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: employmentId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - name: mine
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: reports
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: A page of per-employee workforce facts.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      contractVersion:
+                        type: integer
+                      window:
+                        type: object
+                        properties:
+                          from:
+                            type: string
+                            format: date-time
+                          to:
+                            type: string
+                            format: date-time
+                      governance:
+                        type: string
+                      employees:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            employmentId:
+                              type: string
+                              format: uuid
+                            employeeNo:
+                              type: string
+                            facts:
+                              $ref: "#/components/schemas/HrWorkforceFacts"
+                      nextCursor:
+                        type: string
+                        format: uuid
+                        nullable: true
+                  meta:
+                    type: object
+  /api/v1/hr-workforce/workforce-metrics/groups:
+    get:
+      operationId: hrWorkforceMetricsGroupsList
+      tags:
+        - HR Workforce
+      summary: Workforce aggregates per office, small groups withheld
+      description: "Per-OFFICE workforce aggregates (the office of each employee's current terms; `officeId: null` is no office assigned) over exactly ONE CLOSED UTC ISO week (`from` a Monday 00:00Z, `to` the next Monday); weeks are disjoint and never nest, so no two accepted windows can be subtracted to leave a slice. A calendar month, any other window, and a bucket that has not ended, is 400: free windows let two requests that differ by a tail slice isolate one person. Gated by `hr_workforce.workforce_metrics.analyze` (or `.read`); there is no ownership grant, an aggregate is not a person's own record. Returns NO individual row. A group with fewer than five CONTRIBUTING employees (at least four hours scheduled or worked in the bucket) is returned `suppressed: true` with no number at all; an employee under the four-hour floor is neither counted nor summed. A shown group reports only a contributor BAND (`5-9`, `10-19`, `20+`), never an exact count. There is deliberately no tenant-wide total, so a withheld group cannot be recovered by subtraction. Ratios are recomputed from the group sums, never averaged. 422 `WORKFORCE_METRICS_SCOPE_TOO_LARGE` when the tenant has more than 10000 employments (decided from a COUNT before any page is read). No composite score. Never cached. Tenant-scoped (withTenant + RLS FORCE). A suppressed group carries no `officeId` (Issue #1083, L2). The read is recorded as a sensitive read under the permission that actually granted it (`sensitive_read.workforce_metrics` for `.read`, `sensitive_read.workforce_metrics_aggregate` for `.analyze`; the group count and no ids). Residual: the offices that DO appear are the shown ones, so a caller who knows the tenant's offices by other means can infer by set difference which are withheld. Residual risk (documented, not enforced by an SoD rule): a caller who knows some members of a small group (as their supervisor through `?reports=true`, or because they can create or publish its shifts) can subtract them from a shown figure; do not combine `.analyze` with those over the same people (docs/awcms/workforce-metrics.md section 6)."
+      parameters:
+        - name: from
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: to
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "422":
+          description: The tenant has too many employments for one aggregate request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "200":
+          description: Per-office aggregates; small groups withheld.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      contractVersion:
+                        type: integer
+                      window:
+                        type: object
+                        properties:
+                          from:
+                            type: string
+                            format: date-time
+                          to:
+                            type: string
+                            format: date-time
+                          bucket:
+                            type: string
+                            enum:
+                              - iso_week
+                      governance:
+                        type: string
+                      suppression:
+                        type: object
+                        properties:
+                          minContributors:
+                            type: integer
+                          minContributionMinutes:
+                            type: integer
+                      groups:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/HrWorkforceGroupFigure"
+                  meta:
+                    type: object
+  /api/v1/hr-workforce/me:
+    get:
+      operationId: hrWorkforceMeGet
+      tags:
+        - HR Workforce
+      summary: The caller's own employment summary
+      description: "Gated by `hr_workforce.self_service.read` (default-deny). Returns ONLY the employments linked to the caller's login (the persisted link, computed in the query; no parameter names another person) and whether anyone reports to them directly, so the employee and supervisor screens (Issue #952) know which employment a correction request is for and whether to offer the team view. No profile id, name or contact is returned. The permission is a screen gate: the data of the self-service reads stays bound to the login link and the manager chain through the ownership grants of the attendance, shift and metrics routes. Never cached. Tenant-scoped (withTenant + RLS FORCE)."
+      parameters:
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "200":
+          description: The caller's own employments and the supervisor flag.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      employments:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              format: uuid
+                            employeeNo:
+                              type: string
+                            hiredOn:
+                              type: string
+                              format: date
+                            terminatedOn:
+                              type: string
+                              format: date
+                              nullable: true
+                            currentTerm:
+                              type: object
+                              nullable: true
+                              properties:
+                                officeId:
+                                  type: string
+                                  format: uuid
+                                  nullable: true
+                                jobTitle:
+                                  type: string
+                                  nullable: true
+                                employmentType:
+                                  type: string
+                                status:
+                                  type: string
+                      hasDirectReports:
+                        type: boolean
+                  meta:
+                    type: object
+components:
+  schemas:
+    HrWorkforceFacts:
+      type: object
+      description: "The transparent business facts of one employment (or the sum of a group) over a window. Counts, minutes and ratios only; no score. Definitions: docs/awcms/workforce-metrics.md section 4."
+      properties:
+        scheduledShifts:
+          type: integer
+          description: Published, non-cancelled work shifts that have started inside the window.
+        attendedShifts:
+          type: integer
+          description: Of those, shifts with a clock-in from two hours before the start until the end.
+        missedShifts:
+          type: integer
+          description: Of those, shifts that have ended with no matching clock-in.
+        lateArrivals:
+          type: integer
+          description: Attended shifts whose clock-in came more than five minutes after the start.
+        scheduledMinutes:
+          type: integer
+          description: Planned minutes (length less planned break) of shifts that have ended.
+        workedMinutes:
+          type: integer
+          description: Minutes between a clock-in and its clock-out, less breaks taken, for sessions whose clock-in is in the window.
+        breakMinutes:
+          type: integer
+        incompleteSessions:
+          type: integer
+          description: Clock-ins with no plausible clock-out (over 24 hours); never counted as worked time.
+        coverageRatio:
+          type: number
+          nullable: true
+          description: attended / (attended + missed); null when no shift has settled.
+        workedToScheduledRatio:
+          type: number
+          nullable: true
+          description: worked / scheduled minutes; null when nothing was scheduled; may exceed 1. A fact, not a target.
+    HrWorkforceGroupFigure:
+      type: object
+      description: "One office's aggregate. When `suppressed` is true the object carries NO figure (no facts, no contributor count) and NO `officeId`: the group is too small, and a caller holding only `.analyze` must not learn which offices exist or which are under the threshold (Issue #1083, L2). Suppressed groups are listed after the shown ones."
+      properties:
+        officeId:
+          type: string
+          format: uuid
+          nullable: true
+          description: Absent on a suppressed group.
+        suppressed:
+          type: boolean
+        reason:
+          type: string
+          enum:
+            - small_group
+        contributorsBand:
+          type: string
+          enum:
+            - 5-9
+            - 10-19
+            - 20+
+          description: Present only when not suppressed. A band, never an exact count.
+        facts:
+          $ref: "#/components/schemas/HrWorkforceFacts"
+    HrEmploymentTerm:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        officeId:
+          type: string
+          format: uuid
+          nullable: true
+        managerEmploymentId:
+          type: string
+          format: uuid
+          nullable: true
+        jobTitle:
+          type: string
+          nullable: true
+        employmentType:
+          type: string
+          enum:
+            - permanent
+            - fixed_term
+            - part_time
+            - casual
+        status:
+          type: string
+          enum:
+            - active
+            - on_leave
+            - suspended
+            - terminated
+        effectiveFrom:
+          type: string
+          format: date
+        effectiveTo:
+          type: string
+          format: date
+          nullable: true
+          description: Exclusive end; null for the current row.
+    HrEmployment:
+      type: object
+      description:
+        An employment. It REFERENCES a profile_identity party by `profileId`; the person's name and
+        identifiers are read from profile_identity, never from here. `accountLinked` says whether a
+        login is attached; the login's id is not returned.
+      properties:
+        id:
+          type: string
+          format: uuid
+        profileId:
+          type: string
+          format: uuid
+        employeeNo:
+          type: string
+        hiredOn:
+          type: string
+          format: date
+        terminatedOn:
+          type: string
+          format: date
+          nullable: true
+        accountLinked:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        deletedAt:
+          type: string
+          format: date-time
+          nullable: true
+        currentTerm:
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/HrEmploymentTerm"
+    HrTermsFields:
+      type: object
+      properties:
+        officeId:
+          type: string
+          format: uuid
+          nullable: true
+        managerEmploymentId:
+          type: string
+          format: uuid
+          nullable: true
+        jobTitle:
+          type: string
+          minLength: 1
+          maxLength: 120
+          nullable: true
+        employmentType:
+          type: string
+          enum:
+            - permanent
+            - fixed_term
+            - part_time
+            - casual
+        status:
+          type: string
+          enum:
+            - active
+            - on_leave
+            - suspended
+            - terminated
+    HrEmploymentInput:
+      type: object
+      additionalProperties: false
+      required:
+        - profileId
+        - employeeNo
+        - hiredOn
+        - employmentType
+        - status
+      properties:
+        profileId:
+          type: string
+          format: uuid
+        employeeNo:
+          type: string
+          pattern: ^[A-Za-z0-9][A-Za-z0-9_./-]{0,63}$
+        hiredOn:
+          type: string
+          format: date
+        officeId:
+          type: string
+          format: uuid
+          nullable: true
+        managerEmploymentId:
+          type: string
+          format: uuid
+          nullable: true
+        jobTitle:
+          type: string
+          minLength: 1
+          maxLength: 120
+          nullable: true
+        employmentType:
+          type: string
+          enum:
+            - permanent
+            - fixed_term
+            - part_time
+            - casual
+        status:
+          type: string
+          description: A new employment cannot start terminated.
+          enum:
+            - active
+            - on_leave
+            - suspended
+    HrTermsChangeInput:
+      type: object
+      additionalProperties: false
+      required:
+        - effectiveFrom
+        - employmentType
+        - status
+      properties:
+        effectiveFrom:
+          type: string
+          format: date
+        officeId:
+          type: string
+          format: uuid
+          nullable: true
+        managerEmploymentId:
+          type: string
+          format: uuid
+          nullable: true
+        jobTitle:
+          type: string
+          minLength: 1
+          maxLength: 120
+          nullable: true
+        employmentType:
+          type: string
+          enum:
+            - permanent
+            - fixed_term
+            - part_time
+            - casual
+        status:
+          type: string
+          enum:
+            - active
+            - on_leave
+            - suspended
+            - terminated
+    HrAccountInput:
+      type: object
+      additionalProperties: false
+      required:
+        - tenantUserId
+      properties:
+        tenantUserId:
+          type: string
+          format: uuid
+          nullable: true
+    HrReasonInput:
+      type: object
+      additionalProperties: false
+      properties:
+        reason:
+          type: string
+          minLength: 1
+          maxLength: 500
+    HrWorkforceSettings:
+      type: object
+      properties:
+        clockSkewSeconds:
+          type: integer
+          minimum: 0
+          maximum: 3600
+        correctionWorkflowKey:
+          type: string
+    HrWorkforceSettingsInput:
+      type: object
+      additionalProperties: false
+      properties:
+        clockSkewSeconds:
+          type: integer
+          minimum: 0
+          maximum: 3600
+        correctionWorkflowKey:
+          type: string
+          pattern: ^[a-z][a-z0-9_.-]{0,99}$
+    HrShiftTemplate:
+      type: object
+      description: A shift pattern. It names no person.
+      properties:
+        id:
+          type: string
+          format: uuid
+        code:
+          type: string
+        name:
+          type: string
+        localStart:
+          type: string
+          description: Local wall-clock start, HH:MM (24 hours), in `timeZone`.
+        durationMinutes:
+          type: integer
+          description: ELAPSED minutes; the end is the start plus this, whatever the wall clock does.
+        breakOffsetMinutes:
+          type: integer
+          nullable: true
+        breakMinutes:
+          type: integer
+          nullable: true
+        timeZone:
+          type: string
+          description: IANA zone name.
+        officeId:
+          type: string
+          format: uuid
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        deletedAt:
+          type: string
+          format: date-time
+          nullable: true
+    HrShiftTemplateInput:
+      type: object
+      additionalProperties: false
+      required:
+        - code
+        - name
+        - localStart
+        - durationMinutes
+        - timeZone
+      properties:
+        code:
+          type: string
+          pattern: "^[A-Za-z0-9][A-Za-z0-9_.-]{0,31}$"
+        name:
+          type: string
+          minLength: 1
+          maxLength: 120
+        localStart:
+          type: string
+          pattern: "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+        durationMinutes:
+          type: integer
+          minimum: 15
+          maximum: 1440
+        breakOffsetMinutes:
+          type: integer
+          minimum: 0
+          maximum: 1439
+        breakMinutes:
+          type: integer
+          minimum: 1
+          maximum: 1440
+        timeZone:
+          type: string
+        officeId:
+          type: string
+          format: uuid
+    HrShiftTemplatePatch:
+      type: object
+      additionalProperties: false
+      minProperties: 1
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 120
+        localStart:
+          type: string
+          pattern: "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+        durationMinutes:
+          type: integer
+          minimum: 15
+          maximum: 1440
+        breakOffsetMinutes:
+          type: integer
+          nullable: true
+        breakMinutes:
+          type: integer
+          nullable: true
+        timeZone:
+          type: string
+        officeId:
+          type: string
+          format: uuid
+          nullable: true
+    HrShiftAssignment:
+      type: object
+      description:
+        One scheduled interval for one employment, in UTC and half-open `[startsAt, endsAt)`. It carries
+        no name and no free text; time off has a coarse `timeOffKind` and never a reason.
+      properties:
+        id:
+          type: string
+          format: uuid
+        employmentId:
+          type: string
+          format: uuid
+        templateId:
+          type: string
+          format: uuid
+          nullable: true
+          description: Provenance only; the instants are authoritative and never recomputed.
+        kind:
+          type: string
+          enum:
+            - work
+            - time_off
+        timeOffKind:
+          type: string
+          nullable: true
+          enum:
+            - leave
+            - holiday
+            - other
+        startsAt:
+          type: string
+          format: date-time
+        endsAt:
+          type: string
+          format: date-time
+        breakStartsAt:
+          type: string
+          format: date-time
+          nullable: true
+        breakEndsAt:
+          type: string
+          format: date-time
+          nullable: true
+        timeZone:
+          type: string
+          description: The IANA zone the interval was resolved in (a snapshot).
+        officeId:
+          type: string
+          format: uuid
+          nullable: true
+        status:
+          type: string
+          enum:
+            - draft
+            - published
+            - cancelled
+        publishedAt:
+          type: string
+          format: date-time
+          nullable: true
+        cancelledAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+    HrShiftAssignmentInput:
+      type: object
+      additionalProperties: false
+      description:
+        "Send EITHER `templateId` + `localDate` (work only) OR `startsAt` + `endsAt` + `timeZone`.
+        Instants are whole-minute UTC ending in Z; a work shift is at most 24 hours, time off at most
+        31 days; an optional single break must lie inside a work interval."
+      required:
+        - employmentId
+        - kind
+      properties:
+        employmentId:
+          type: string
+          format: uuid
+        kind:
+          type: string
+          enum:
+            - work
+            - time_off
+        timeOffKind:
+          type: string
+          enum:
+            - leave
+            - holiday
+            - other
+        templateId:
+          type: string
+          format: uuid
+        localDate:
+          type: string
+          format: date
+        startsAt:
+          type: string
+          format: date-time
+        endsAt:
+          type: string
+          format: date-time
+        breakStartsAt:
+          type: string
+          format: date-time
+        breakEndsAt:
+          type: string
+          format: date-time
+        timeZone:
+          type: string
+        officeId:
+          type: string
+          format: uuid
+    HrAttendanceEvent:
+      type: object
+      description:
+        One attendance fact. Append-only; it is never edited or deleted. It carries no location, photo,
+        device or network value (owner decision O6, ADR-0138).
+      properties:
+        id:
+          type: string
+          format: uuid
+        employmentId:
+          type: string
+          format: uuid
+        kind:
+          type: string
+          enum:
+            - clock_in
+            - clock_out
+            - break_start
+            - break_end
+        occurredAt:
+          type: string
+          format: date-time
+          description: The CLAIMED instant, bounded by the tenant clock-skew setting.
+        recordedAt:
+          type: string
+          format: date-time
+          description: The DATABASE clock at insert; a client can never supply it.
+        source:
+          type: string
+          enum:
+            - self
+            - supervisor
+            - kiosk
+            - import
+            - correction
+        clientEventKey:
+          type: string
+        officeId:
+          type: string
+          format: uuid
+          nullable: true
+        supersedesEventId:
+          type: string
+          format: uuid
+          nullable: true
+        supersededByEventId:
+          type: string
+          format: uuid
+          nullable: true
+        correctionId:
+          type: string
+          format: uuid
+          nullable: true
+        late:
+          type: boolean
+          description: An offline kiosk/import replay whose claimed time was more than fifteen minutes old; set by the server.
+    HrAttendanceEventRecorded:
+      description: A recorded attendance event plus the verdict of its location evidence (ADR-0138).
+      allOf:
+        - $ref: "#/components/schemas/HrAttendanceEvent"
+        - type: object
+          properties:
+            locationVerdict:
+              type: string
+              nullable: true
+              enum:
+                - inside
+                - outside
+                - not_provided
+                - null
+              description:
+                Null while the tenant's geolocation switch is off (the default). Otherwise the verdict of the
+                position sample for a self clock_in / clock_out. A supporting indicator, never proof.
+    HrPositionSample:
+      type: object
+      additionalProperties: false
+      description:
+        One position sample, evaluated by the server in the request and DISCARDED. It is never persisted,
+        logged, audited, queued, cached or returned. Exactly these three numbers; an altitude, speed, heading,
+        address or device value is refused.
+      required:
+        - latitude
+        - longitude
+        - accuracyMeters
+      properties:
+        latitude:
+          type: number
+          minimum: -90
+          maximum: 90
+        longitude:
+          type: number
+          minimum: -180
+          maximum: 180
+        accuracyMeters:
+          type: number
+          exclusiveMinimum: 0
+          maximum: 100000
+    HrGeolocationSettings:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: FALSE for every tenant until an authorised person enables it.
+        accuracyCeilingMeters:
+          type: integer
+          minimum: 10
+          maximum: 500
+        dpiaReference:
+          type: string
+          nullable: true
+          description: A reference to the tenant's data-protection impact assessment, never its content.
+        dpiaRecordedOn:
+          type: string
+          format: date
+          nullable: true
+        noticeId:
+          type: string
+          format: uuid
+          nullable: true
+        noticeVersion:
+          type: integer
+          nullable: true
+    HrGeolocationSettingsInput:
+      type: object
+      additionalProperties: false
+      required:
+        - enabled
+      properties:
+        enabled:
+          type: boolean
+        accuracyCeilingMeters:
+          type: integer
+          minimum: 10
+          maximum: 500
+        dpiaReference:
+          type: string
+          nullable: true
+          maxLength: 200
+        dpiaRecordedOn:
+          type: string
+          format: date
+          nullable: true
+        noticeId:
+          type: string
+          format: uuid
+          nullable: true
+    HrGeofence:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        revision:
+          type: integer
+          minimum: 1
+          description: Bumped by every replace; the audit row carries it with a geometry fingerprint.
+        officeId:
+          type: string
+          format: uuid
+        label:
+          type: string
+        shape:
+          type: string
+          enum:
+            - circle
+            - polygon
+        latitude:
+          type: number
+          nullable: true
+          description: The CENTRE OF THE WORK SITE (circle); a place of business, not a person.
+        longitude:
+          type: number
+          nullable: true
+        radiusMeters:
+          type: integer
+          nullable: true
+        vertices:
+          type: array
+          nullable: true
+          items:
+            type: array
+            minItems: 2
+            maxItems: 2
+            items:
+              type: number
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        deletedAt:
+          type: string
+          format: date-time
+          nullable: true
+    HrGeofenceInput:
+      type: object
+      additionalProperties: false
+      required:
+        - officeId
+        - label
+        - shape
+      properties:
+        officeId:
+          type: string
+          format: uuid
+        label:
+          type: string
+          minLength: 1
+          maxLength: 80
+        shape:
+          type: string
+          enum:
+            - circle
+            - polygon
+        latitude:
+          type: number
+          minimum: -90
+          maximum: 90
+        longitude:
+          type: number
+          minimum: -180
+          maximum: 180
+        radiusMeters:
+          type: integer
+          minimum: 50
+          maximum: 5000
+        vertices:
+          type: array
+          minItems: 3
+          maxItems: 32
+          items:
+            type: array
+            minItems: 2
+            maxItems: 2
+            items:
+              type: number
+    HrGeolocationNotice:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        version:
+          type: integer
+        texts:
+          type: object
+          additionalProperties:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+    HrGeolocationNoticeInput:
+      type: object
+      additionalProperties: false
+      required:
+        - texts
+      properties:
+        texts:
+          type: object
+          minProperties: 1
+          maxProperties: 10
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 4000
+    HrGeolocationNoticeStatus:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        accuracyCeilingMeters:
+          type: integer
+        notice:
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/HrGeolocationNotice"
+        acknowledged:
+          type: boolean
+    HrGeolocationAcknowledgeInput:
+      type: object
+      additionalProperties: false
+      required:
+        - employmentId
+        - noticeId
+      properties:
+        employmentId:
+          type: string
+          format: uuid
+        noticeId:
+          type: string
+          format: uuid
+    HrGeolocationAcknowledgement:
+      type: object
+      properties:
+        employmentId:
+          type: string
+          format: uuid
+        noticeId:
+          type: string
+          format: uuid
+        acknowledged:
+          type: boolean
+    HrLocationEvidence:
+      type: object
+      description:
+        One VERDICT for one self clock-in/out. RESTRICTED personal data; retained 30 / 90 / 180 days
+        and then hard-deleted. It holds NO coordinate, raw accuracy, address, device or network value.
+      properties:
+        id:
+          type: string
+          format: uuid
+        eventId:
+          type: string
+          format: uuid
+        employmentId:
+          type: string
+          format: uuid
+        verdict:
+          type: string
+          enum:
+            - inside
+            - outside
+            - not_provided
+        distanceBand:
+          type: string
+          nullable: true
+          enum:
+            - within
+            - lt_250m
+            - lt_1km
+            - gte_1km
+            - null
+        accuracyBand:
+          type: string
+          nullable: true
+          enum:
+            - lt_25m
+            - lt_100m
+            - lt_500m
+            - gte_500m
+            - null
+        geofenceId:
+          type: string
+          format: uuid
+          nullable: true
+        ruleVersion:
+          type: integer
+        evaluatedAt:
+          type: string
+          format: date-time
+    HrAttendanceEventInput:
+      type: object
+      additionalProperties: false
+      required:
+        - employmentId
+        - kind
+        - occurredAt
+        - source
+        - clientEventKey
+      properties:
+        employmentId:
+          type: string
+          format: uuid
+        kind:
+          type: string
+          enum:
+            - clock_in
+            - clock_out
+            - break_start
+            - break_end
+        occurredAt:
+          type: string
+          format: date-time
+          description: A UTC instant ending in Z.
+        source:
+          type: string
+          enum:
+            - self
+            - supervisor
+            - kiosk
+            - import
+        clientEventKey:
+          type: string
+          maxLength: 128
+          pattern: "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+        officeId:
+          type: string
+          format: uuid
+        positionSample:
+          nullable: true
+          description:
+            Optional, `self` clock_in / clock_out only (any other source or kind -> 400). Evaluated by the
+            server in the request and discarded (ADR-0138). `null` or absent is a declined fix.
+          allOf:
+            - $ref: "#/components/schemas/HrPositionSample"
+    HrAttendanceCorrection:
+      type: object
+      description:
+        A proposed change to attendance. Only its status moves, following the workflow_approval verdict.
+        `reason` is SENSITIVE and present only for the requester, a workflow assignee or a holder of
+        `corrections.read`.
+      properties:
+        id:
+          type: string
+          format: uuid
+        employmentId:
+          type: string
+          format: uuid
+        kind:
+          type: string
+          enum:
+            - add
+            - replace
+        targetEventId:
+          type: string
+          format: uuid
+          nullable: true
+        proposedKind:
+          type: string
+          enum:
+            - clock_in
+            - clock_out
+            - break_start
+            - break_end
+        proposedOccurredAt:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+            - pending
+            - approved
+            - rejected
+            - withdrawn
+        workflowInstanceId:
+          type: string
+          format: uuid
+        requestedBy:
+          type: string
+          format: uuid
+        decidedBy:
+          type: string
+          format: uuid
+          nullable: true
+        decidedAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        appliedEventId:
+          type: string
+          format: uuid
+          nullable: true
+          description: The superseding event an approval appended.
+        reason:
+          type: string
+          description: SENSITIVE. Only where the caller may see it.
+    HrAttendanceCorrectionInput:
+      type: object
+      additionalProperties: false
+      required:
+        - employmentId
+        - kind
+        - proposedKind
+        - proposedOccurredAt
+        - reason
+      properties:
+        employmentId:
+          type: string
+          format: uuid
+        kind:
+          type: string
+          enum:
+            - add
+            - replace
+        targetEventId:
+          type: string
+          format: uuid
+          description: Required for `replace`, forbidden for `add`.
+        proposedKind:
+          type: string
+          enum:
+            - clock_in
+            - clock_out
+            - break_start
+            - break_end
+        proposedOccurredAt:
+          type: string
+          format: date-time
+        reason:
+          type: string
+          minLength: 1
+          maxLength: 500

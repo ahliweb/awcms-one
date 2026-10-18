@@ -39,7 +39,8 @@ import { appendDomainEvent } from "../../domain-event-runtime/application/append
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../_shared/idempotency";
 import {
   encodeKeysetCursor,
@@ -440,7 +441,7 @@ export type CreateQuotationOutcome =
   | { kind: "created" | "replayed"; quotation: QuotationDetail };
 
 export async function createQuotation(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   mediaPort: MediaLibraryPort,
@@ -460,7 +461,8 @@ export async function createQuotation(
     tx,
     tenantId,
     CREATE_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -544,6 +546,7 @@ export async function createQuotation(
     tenantId,
     CREATE_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     quotation
@@ -593,7 +596,8 @@ export async function reviseQuotation(
     tx,
     tenantId,
     REVISE_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -667,6 +671,7 @@ export async function reviseQuotation(
     tenantId,
     REVISE_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     quotation
@@ -729,7 +734,8 @@ export async function applyQuotationAction(
     tx,
     tenantId,
     scope,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -838,6 +844,7 @@ export async function applyQuotationAction(
     tenantId,
     scope,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     200,
     quotation
@@ -898,7 +905,7 @@ async function orderSummary(
 }
 
 export async function convertQuotation(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   mediaPort: MediaLibraryPort,
@@ -932,7 +939,8 @@ export async function convertQuotation(
     tx,
     tenantId,
     CONVERT_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -994,9 +1002,9 @@ export async function convertQuotation(
   // conversion that must not stand is undone by throwing inside the savepoint.
   let order: PosOrderRecord;
   try {
-    const inner = await (tx as Bun.TransactionSQL).savepoint(async (sp) => {
+    const inner = await tx.savepoint(async (sp) => {
       const outcome = await createPosOrder(
-        sp,
+        sp as Bun.TransactionSQL,
         tenantId,
         actorTenantUserId,
         mediaPort,
@@ -1086,6 +1094,7 @@ export async function convertQuotation(
     tenantId,
     CONVERT_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     result

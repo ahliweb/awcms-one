@@ -20,7 +20,8 @@ import { getDatabaseClient } from "../../../../../../../../lib/database/client";
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../../../../../../../modules/_shared/idempotency";
 import {
   idempotencyErrorResponse,
@@ -88,7 +89,8 @@ export const POST = defineTenantRoute<ExecuteRefundInput>({
         tx,
         tenantId,
         SCOPE,
-        prepared.idempotencyKey
+        prepared.idempotencyKey,
+        userIdempotencyActor(auth.context.tenantUserId)
       );
       if (existing) {
         if (existing.requestHash !== requestHash) {
@@ -121,6 +123,7 @@ export const POST = defineTenantRoute<ExecuteRefundInput>({
           tenantId,
           SCOPE,
           prepared.idempotencyKey,
+          userIdempotencyActor(auth.context.tenantUserId),
           requestHash,
           response.status,
           await response.clone().json()
@@ -128,6 +131,10 @@ export const POST = defineTenantRoute<ExecuteRefundInput>({
       }
       return response;
     } catch (error) {
+      // tx-swallow-ok: IdempotencyRaceLostError and
+      // IdempotencyPayloadMismatchError are raised by application code after
+      // statements that succeeded (ON CONFLICT DO NOTHING plus a replay
+      // lookup), so the transaction is healthy.
       const mapped = idempotencyErrorResponse(error);
       if (mapped) return mapped;
       throw error;

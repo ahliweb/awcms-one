@@ -131,6 +131,11 @@ export const DEFAULT_MODULE_TYPE: Readonly<Record<string, string>> = {
   // first screen from landing silently in `general` — a real section, so the
   // mistake would render as a plausible sidebar rather than as a gap.
   push_delivery: "operations",
+  // ADR-0133 (Issue #963). The sibling channel of push_delivery and email, so it
+  // sits beside push in operations; the map must cover every registered module.
+  whatsapp_delivery: "operations",
+  // ADR-0140 (Issue #965). The fourth delivery channel; beside the others.
+  telegram_delivery: "operations",
   // ADR-0122 (ahliweb/omes#196). Placed even though the module declares NO navigation yet:
   // this map must cover every registered module so its first screen lands in operations.
   omes_control: "operations",
@@ -143,6 +148,18 @@ export const DEFAULT_MODULE_TYPE: Readonly<Record<string, string>> = {
   // yet (API-first; admin screens are a recorded follow-up): this map must cover
   // every registered module so its first screen lands in the commerce section.
   procurement: "commerce",
+  // ADR-0132 (Issue #945). Placed even though the module declares NO navigation
+  // yet (`experimental`, no admin screen): this map must cover every registered
+  // module so its first screen lands with the people/identity screens rather
+  // than silently in `general`.
+  hr_workforce: "identity",
+  // ADR-0131 (Issue #937). Placed even though the module declares NO navigation
+  // yet (foundation slice, `experimental`): this map must cover every registered
+  // module so its first screen lands in the commerce section.
+  booking: "commerce",
+  // ADR-0132 (Issue #950). Placed even though the module declares NO navigation
+  // yet (`experimental`, no admin screen); see hr_workforce above.
+  hr_commission: "identity",
   // Master reference data. This module DOES declare navigation now
   // (`/admin/idn-regions`, landed with ADR-0053/PR #332). The comment that used
   // to sit here said its operator screen lived in awcms-astro per ADR-0047 —
@@ -259,6 +276,8 @@ export const SIDEBAR_LABELS: Readonly<Record<string, string>> = {
   "admin.layout.nav_approvals": "Approvals",
   "admin.layout.nav_domain_events": "Domain events",
   "admin.layout.nav_push_notifications": "Push notifications",
+  "admin.layout.nav_whatsapp": "WhatsApp delivery",
+  "admin.layout.nav_telegram": "Telegram delivery",
   "admin.layout.nav_sync": "Sync & storage",
   "admin.layout.nav_profiles": "Profiles",
   "admin.layout.nav_users": "Users",
@@ -304,6 +323,17 @@ export const SIDEBAR_LABELS: Readonly<Record<string, string>> = {
   "admin.layout.nav_inventory": "Inventory",
   "admin.layout.nav_tax": "Tax",
   "admin.layout.nav_procurement": "Procurement",
+  "admin.layout.nav_booking_reservations": "Reservations",
+  "admin.layout.nav_booking_resources": "Booking resources",
+  "admin.layout.nav_booking_offerings": "Booking offerings",
+  "admin.layout.nav_booking_schedules": "Booking schedules",
+  "admin.layout.nav_booking_blocks": "Blocked nights",
+  "admin.layout.nav_booking_policy": "Booking policy",
+  "admin.layout.nav_hr_my_work": "My work",
+  "admin.layout.nav_hr_my_metrics": "My workforce metrics",
+  "admin.layout.nav_hr_my_commission": "My commission",
+  "admin.layout.nav_hr_team": "My team",
+  "admin.layout.nav_hr_workforce": "Workforce",
   "admin.layout.nav_omes_overview": "OMES overview",
   "admin.layout.nav_omes_servers": "OMES servers",
   "admin.layout.nav_omes_deployments": "OMES deployments",
@@ -382,6 +412,8 @@ export const DEFAULT_SIDEBAR_ICONS: Readonly<Record<string, string>> = {
   "admin.layout.nav_comments": "chat",
   "admin.layout.nav_newsletter": "mail",
   "admin.layout.nav_push_notifications": "bell",
+  "admin.layout.nav_whatsapp": "chat",
+  "admin.layout.nav_telegram": "chat",
   // Operations.
   "admin.layout.nav_visitor_analytics": "chart",
   "admin.layout.nav_data_lifecycle": "database",
@@ -436,6 +468,17 @@ export const DEFAULT_SIDEBAR_ICONS: Readonly<Record<string, string>> = {
   "admin.layout.nav_inventory": "layers",
   "admin.layout.nav_tax": "doc",
   "admin.layout.nav_procurement": "layers",
+  "admin.layout.nav_booking_reservations": "inbox",
+  "admin.layout.nav_booking_resources": "building",
+  "admin.layout.nav_booking_offerings": "tag",
+  "admin.layout.nav_booking_schedules": "clock",
+  "admin.layout.nav_booking_blocks": "lock",
+  "admin.layout.nav_booking_policy": "gear",
+  "admin.layout.nav_hr_my_work": "clock",
+  "admin.layout.nav_hr_my_metrics": "chart",
+  "admin.layout.nav_hr_my_commission": "doc",
+  "admin.layout.nav_hr_team": "users",
+  "admin.layout.nav_hr_workforce": "users",
   "admin.layout.nav_omes_overview": "dashboard",
   "admin.layout.nav_omes_servers": "monitor",
   "admin.layout.nav_omes_deployments": "layers",
@@ -488,6 +531,8 @@ export type SidebarDefaultEntry = {
   requiredPermission?: string;
   /** Issue #118 — carried straight from `ModuleNavigationEntry.requiredFeature`; see that type's own header. */
   requiredFeature?: { moduleKey: string; feature: string };
+  /** See `ModuleNavigationEntry.requiredAnyPermission`: holding ANY of these also shows the link. */
+  requiredAnyPermission?: readonly string[];
   /** See `ModuleNavigationEntry.badgeCount` — carried through unchanged. */
   badgeCount?: number;
 };
@@ -577,6 +622,9 @@ export function buildDefaultSidebarModel(
         order: nav.order ?? 0,
         requiredPermission: nav.requiredPermission,
         requiredFeature: nav.requiredFeature,
+        ...(nav.requiredAnyPermission
+          ? { requiredAnyPermission: nav.requiredAnyPermission }
+          : {}),
         badgeCount: nav.badgeCount
       });
     }
@@ -627,7 +675,10 @@ export function composeSidebarSections(
 
     return (
       !entry.requiredPermission ||
-      options.grantedPermissionKeys.has(entry.requiredPermission)
+      options.grantedPermissionKeys.has(entry.requiredPermission) ||
+      (entry.requiredAnyPermission ?? []).some((key) =>
+        options.grantedPermissionKeys.has(key)
+      )
     );
   });
 

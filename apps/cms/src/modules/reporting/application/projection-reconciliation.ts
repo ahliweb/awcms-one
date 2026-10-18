@@ -29,6 +29,8 @@ import {
   type ReconciliationRunRow
 } from "./reconciliation-run-store";
 
+import { assertNotPayrollTable } from "../../_shared/payroll-data-boundary";
+
 const TABLE_NAME_PATTERN = /^awcms_[a-z][a-z0-9_]*$/;
 const COLUMN_NAME_PATTERN = /^[a-z][a-z0-9_]*$/;
 
@@ -39,6 +41,12 @@ function assertSafeIdentifier(name: string, kind: "table" | "column"): string {
       `reporting reconciliation: refusing to build SQL from an unsafe ${kind} identifier: ${JSON.stringify(name)}.`
     );
   }
+  // Issue #978 (PS-18): defence in depth behind the registry gate — an engine
+  // must not read a payroll table even if a descriptor bypassed validation.
+  if (kind === "table") {
+    assertNotPayrollTable(name, "reporting reconciliation");
+  }
+
   return name;
 }
 
@@ -57,16 +65,21 @@ async function computeSourceTotals(
     );
 
     for (const rule of stream.metrics) {
+      // The same quantity the engine adds per row: 1, or `sumColumn`.
+      const quantity =
+        rule.sumColumn === undefined
+          ? "COUNT(*)"
+          : `COALESCE(SUM(${assertSafeIdentifier(rule.sumColumn, "column")}), 0)`;
       let rows: { total: string | number }[];
       if (rule.matchColumn === undefined) {
         rows = (await tx.unsafe(
-          `SELECT COUNT(*) AS total FROM ${tableName} WHERE ${tenantColumn} = $1`,
+          `SELECT ${quantity} AS total FROM ${tableName} WHERE ${tenantColumn} = $1`,
           [tenantId]
         )) as { total: string | number }[];
       } else {
         const matchColumn = assertSafeIdentifier(rule.matchColumn, "column");
         rows = (await tx.unsafe(
-          `SELECT COUNT(*) AS total FROM ${tableName} WHERE ${tenantColumn} = $1 AND ${matchColumn} = $2`,
+          `SELECT ${quantity} AS total FROM ${tableName} WHERE ${tenantColumn} = $1 AND ${matchColumn} = $2`,
           [tenantId, rule.matchValue]
         )) as { total: string | number }[];
       }

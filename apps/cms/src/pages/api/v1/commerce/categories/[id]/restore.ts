@@ -45,6 +45,9 @@ export const POST = defineTenantRoute({
 
       return ok(category);
     } catch (error) {
+      // tx-swallow-ok: DuplicateCategorySlugError is raised by application
+      // code before a write, or after the directory rolled its failed
+      // statement back to a savepoint, so the transaction is healthy.
       if (error instanceof DuplicateCategorySlugError) {
         return fail(409, "CATEGORY_SLUG_ALREADY_EXISTS", error.message);
       }

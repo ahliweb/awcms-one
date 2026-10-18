@@ -283,6 +283,17 @@ export function getAppRoleSql(): Bun.SQL {
 }
 
 /**
+ * A NEW pool of `max` connections to the ephemeral database as the runtime role
+ * (`awcms_app`, else the non-superuser owner), for tests that must put MANY
+ * transactions in flight at once. `getRuntimeSql()` holds 4 connections, so a
+ * race of 20 contenders on it would run five at a time and prove nothing about
+ * real concurrency. The CALLER owns the pool and must `close()` it.
+ */
+export function createRuntimePool(max: number): Bun.SQL {
+  return new Bun.SQL(appRoleActivated ? appUrl() : ownerUrl(), { max });
+}
+
+/**
  * A DEDICATED connection to the ephemeral database as `awcms_worker`
  * (migration 022). Only valid when `workerRoleActivated`; callers MUST guard on
  * it. Use it to assert what a scheduled job CAN and — more often — CANNOT do:
@@ -472,6 +483,22 @@ async function activateWorkerRole(): Promise<void> {
     `ALTER ROLE "${WORKER_ROLE_NAME}" LOGIN PASSWORD '${WORKER_ROLE_PASSWORD}'`
   );
   workerRoleActivated = true;
+}
+
+/**
+ * Re-asserts the LOGIN grant on the two cluster-scoped runtime roles. They are
+ * shared by every process on the cluster, and another process's teardown puts
+ * them back to NOLOGIN, so a LONG-running consumer (the `bench:booking`
+ * benchmark, minutes) that opens a NEW connection late can find them shut.
+ * Idempotent and the same statement setup runs; a short test file never needs it.
+ */
+export async function reassertRuntimeRoleLogins(): Promise<void> {
+  if (!integrationEnabled) {
+    return;
+  }
+
+  await activateAppRole();
+  await activateWorkerRole();
 }
 
 /**
@@ -712,6 +739,27 @@ export async function assertRejected(
   }
 
   throw new Error(`Expected PostgreSQL to reject ${what}, but it succeeded.`);
+}
+
+/**
+ * {@link assertRejected} for a statement issued INSIDE a transaction
+ * (Issue #1099). A rejected statement aborts the whole transaction, so a test
+ * that catches the rejection and lets the callback return normally gets a
+ * `COMMIT` on an aborted transaction: silently a `ROLLBACK` up to Bun 1.4.2,
+ * `ERR_POSTGRES_COMMIT_ROLLED_BACK` from Bun 1.4.3. Running the statement in a
+ * savepoint rolls only that statement back and leaves the transaction valid, so
+ * the test behaves the same on both. Pass the statement as a function of the
+ * savepoint handle: `assertRejectedInSavepoint(tx, (sp) => sp\`INSERT …\`, "…")`.
+ */
+export async function assertRejectedInSavepoint(
+  tx: Bun.TransactionSQL,
+  run: (sp: Bun.SQL) => Promise<unknown>,
+  what: string
+): Promise<Error> {
+  return assertRejected(
+    tx.savepoint((sp) => run(sp)),
+    what
+  );
 }
 
 // ---------------------------------------------------------------------------

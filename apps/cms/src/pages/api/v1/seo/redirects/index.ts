@@ -20,7 +20,8 @@ import { recordAuditEvent } from "../../../../../modules/logging/application/aud
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../../../../modules/_shared/idempotency";
 import { decodeKeysetCursor } from "../../../../../modules/_shared/keyset-pagination";
 import {
@@ -168,7 +169,8 @@ export const POST: APIRoute = async ({ request, cookies, locals }) => {
       tx,
       tenantId,
       IDEMPOTENCY_SCOPE,
-      idempotencyKey
+      idempotencyKey,
+      userIdempotencyActor(auth.context.tenantUserId)
     );
     if (existing) {
       if (existing.requestHash !== requestHash) {
@@ -216,11 +218,13 @@ export const POST: APIRoute = async ({ request, cookies, locals }) => {
 
     let redirect;
     try {
-      redirect = await createRedirect(
-        tx,
-        tenantId,
-        auth.context.tenantUserId,
-        validation.value
+      redirect = await tx.savepoint((sp) =>
+        createRedirect(
+          sp,
+          tenantId,
+          auth.context.tenantUserId,
+          validation.value
+        )
       );
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
@@ -259,6 +263,7 @@ export const POST: APIRoute = async ({ request, cookies, locals }) => {
       tenantId,
       IDEMPOTENCY_SCOPE,
       idempotencyKey,
+      userIdempotencyActor(auth.context.tenantUserId),
       requestHash,
       200,
       successBody

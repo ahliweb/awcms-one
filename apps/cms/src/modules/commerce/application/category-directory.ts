@@ -189,7 +189,7 @@ async function fetchCategoryRowIncludingDeleted(
  * @throws {DuplicateCategorySlugError} `slug` is already taken in this tenant.
  */
 export async function createCategory(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   input: CreateCategoryInput,
@@ -209,11 +209,14 @@ export async function createCategory(
   }[];
 
   try {
-    rows = (await tx`
+    rows = (await tx.savepoint(
+      async (sp) =>
+        await sp`
       INSERT INTO awcms_commerce_categories (tenant_id, parent_id, name, slug, icon)
       VALUES (${tenantId}, ${input.parentId}, ${input.name}, ${input.slug}, ${input.icon})
       RETURNING id, parent_id, name, slug, icon
-    `) as {
+    `
+    )) as {
       id: string;
       parent_id: string | null;
       name: string;
@@ -261,7 +264,7 @@ export async function createCategory(
 }
 
 export async function updateCategory(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   categoryId: string,
@@ -280,7 +283,9 @@ export async function updateCategory(
   }[];
 
   try {
-    rows = (await tx`
+    rows = (await tx.savepoint(
+      async (sp) =>
+        await sp`
       UPDATE awcms_commerce_categories
       SET
         name = ${input.name ?? existing.name},
@@ -289,7 +294,8 @@ export async function updateCategory(
         updated_at = now()
       WHERE tenant_id = ${tenantId} AND id = ${categoryId} AND deleted_at IS NULL
       RETURNING id, parent_id, name, slug, icon
-    `) as {
+    `
+    )) as {
       id: string;
       parent_id: string | null;
       name: string;
@@ -428,7 +434,7 @@ export async function listDeletedCategories(
  *   this category's slug.
  */
 export async function restoreCategory(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   categoryId: string,
@@ -450,12 +456,15 @@ export async function restoreCategory(
   }[];
 
   try {
-    rows = (await tx`
+    rows = (await tx.savepoint(
+      async (sp) =>
+        await sp`
       UPDATE awcms_commerce_categories
       SET deleted_at = NULL, restored_at = now(), updated_at = now()
       WHERE tenant_id = ${tenantId} AND id = ${categoryId} AND deleted_at IS NOT NULL
       RETURNING id, parent_id, name, slug, icon
-    `) as {
+    `
+    )) as {
       id: string;
       parent_id: string | null;
       name: string;

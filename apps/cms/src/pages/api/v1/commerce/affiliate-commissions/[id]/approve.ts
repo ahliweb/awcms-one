@@ -7,7 +7,8 @@ import { defineTenantRoute } from "../../../../../../modules/_shared/tenant-rout
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../../../../../modules/_shared/idempotency";
 import {
   approveAffiliateCommission,
@@ -55,7 +56,8 @@ export const POST = defineTenantRoute<Prepared>({
       tx,
       tenantId,
       IDEMPOTENCY_SCOPE,
-      prepared.idempotencyKey
+      prepared.idempotencyKey,
+      userIdempotencyActor(auth.context.tenantUserId)
     );
     if (existing) {
       if (existing.requestHash !== requestHash) {
@@ -89,12 +91,16 @@ export const POST = defineTenantRoute<Prepared>({
         tenantId,
         IDEMPOTENCY_SCOPE,
         prepared.idempotencyKey,
+        userIdempotencyActor(auth.context.tenantUserId),
         requestHash,
         200,
         successBody
       );
       return successResponse;
     } catch (error) {
+      // tx-swallow-ok: InvalidCommissionTransitionError is raised by
+      // application code before a write, or after the directory rolled its
+      // failed statement back to a savepoint, so the transaction is healthy.
       if (error instanceof InvalidCommissionTransitionError) {
         return fail(409, "COMMISSION_NOT_APPROVABLE", error.message);
       }

@@ -99,6 +99,21 @@ export const BOUNDED_BY_DESIGN: readonly {
       "ADR-0102. At most ONE row per tenant, by primary key — the row is upserted, never appended, so the table's ceiling IS `awcms_tenants` and no request path or job can add a second. Nothing here is traffic-generated: every value is typed by an administrator on `/admin/site-profile`. An age-based purge would be actively WRONG rather than merely unnecessary, for the same reason it is wrong for `awcms_principal_preferences`: `executionMode: 'generic'` deletes by age with no status predicate, so a newsroom that set its editorial address two years ago and has not touched it since — the healthy case — would have its masthead, footer and contact block silently emptied for being OLD. The row has no natural expiry and its age says nothing about whether it is still wanted; deleting it would blank the published contact details of a live site. Erasure is not a question here either: this is the PUBLISHER's own published identity, deliberately public, not a data subject's personal data — which is exactly why the audit row for a change records which fields are set and never their values."
   },
   {
+    table: "awcms_hr_commission_rules",
+    reason:
+      "ADR-0132 / Issue #950. Every row is AUTHORED by an administrator — a draft saved, then published — never accumulated by traffic: a tenant has a handful of rules and a version is added only when its terms actually change, so the ceiling is rules x the number of times the scheme changed. RETAINED INDEFINITELY and never purged: no retention period is asserted, because the period for commercial terms that later commission accruals cite belongs to the tenant's own counsel and no owner of that decision exists in this repository yet. An age-based purge would be actively WRONG rather than merely unnecessary: `executionMode: 'generic'` deletes purely by age with no status predicate, so it would delete the version CURRENTLY IN FORCE for any rule that has not changed in years (the healthy case). A published version is immutable and every row undeletable by trigger and by privileges (`sql/182`), the opposite of what a purge needs. A reviewed, privileged archive-then-purge job, with a retention period set by whoever owns it, is a recorded follow-up (docs/awcms/hr-payroll.md section 15)."
+  },
+  {
+    table: "awcms_hr_commission_accruals",
+    reason:
+      "ADR-0132 / Issue #951. One row per (source event, employee) that a commission rule covers, written only through a permissioned, audited, idempotent call (`accruals.accrue`) or the neutral port from an authenticated adapter, and held to one row by a database unique key: growth is the number of commissionable business events, a business quantity and not a request loop (a redelivery is a no-op). RETAINED FOR THE LIFE OF THE TENANT and never purged: no retention period is asserted, because the period for records of earnings belongs to the tenant's own counsel and no owner of that decision exists in this repository. A generic age-based purge would be actively WRONG: it deletes by age with no status predicate, so it would delete accruals still pending, approved or payable, i.e. earnings not yet paid. The rows are undeletable by trigger and by privileges (`sql/188`). A reviewed, privileged archive-then-purge of PAID and VOIDED accruals, with a period set by whoever owns it, is a recorded follow-up (docs/awcms/hr-payroll.md section 15)."
+  },
+  {
+    table: "awcms_hr_commission_transitions",
+    reason:
+      "ADR-0132 / Issue #951. At most one row per state an accrual enters (a unique key per accrual and target status), so at most four per accrual, written only by the accrual's own triggers: its ceiling is four times the accrual table's. RETAINED WITH ITS ACCRUAL for the life of the tenant, no period asserted (same owner and same reason as `awcms_hr_commission_accruals`); append-only by trigger and privileges, so nothing here is purged by age, and a purge would have to remove an accrual and its log together."
+  },
+  {
     table: "awcms_tax_rule_versions",
     reason:
       "ADR-0127. Every row is AUTHORED by an administrator — a draft saved, then published — never accumulated by traffic: a tenant has a handful of profiles and a version is added only when a rate or a rounding rule actually changes, so the ceiling is profiles x the number of times the law moved. An age-based purge would be actively WRONG rather than merely unnecessary: `executionMode: 'generic'` deletes purely by age with no status predicate, so it would delete the rule version CURRENTLY IN FORCE for any profile that has not changed in years (the healthy case), and every snapshot cites its version by foreign key, so the delete would be refused for exactly the versions that matter. A published version is also immutable and undeletable by trigger (`sql/171`), which is the opposite of what a purge needs. What DOES grow with traffic — `awcms_tax_snapshots` — carries its own `dataLifecycle` descriptor (`financial_tax`, 1826-day floor) in `tax/module.ts`."
@@ -167,6 +182,11 @@ export const BOUNDED_BY_DESIGN: readonly {
     table: "awcms_partner_managed_tenants",
     reason:
       "ADR-0089, and bounded by the table above rather than independently — the `awcms_user_group_members` shape, one entry class rather than a new one. At most one row per (tenant, partner) by unique index, and the partner side is FK-bound to a registry that is itself operator-authored, so the ceiling is tenants x registered partners with both factors human-authored. It is not a log: severing an engagement is a DELETE (ADR-0089 chose hard delete precisely so no dead mapping can be resurrected by a bug), so the table holds the present, and 'who reached into this tenant last March' is answered by `awcms_audit_events` with its own retention. An age-based purge would delete LIVE engagements, which for the partner surface PR 8.4 builds means access disappearing mid-support-case with no revocation anybody performed."
+  },
+  {
+    table: "awcms_sensitive_read_windows",
+    reason:
+      "Issue #978 / hr-payroll.md PS-18. At most ONE row per (tenant, actor, module, kind), by primary key, and a later window OVERWRITES the row in place rather than adding one: the ceiling is actors x registered sensitive-read kinds (a handful), never a function of how many reads happen. It is a working counter, not evidence - the evidence is the audit row the same call writes to `awcms_audit_events`, which has its own retention - and it holds no amount, no name and no record id, only a count. An age-based purge would be actively WRONG rather than merely unnecessary: `executionMode: 'generic'` deletes by age with no status predicate, so it would delete the counter of an actor who is reading RIGHT NOW, the next read would see no window and write a fresh opening audit row, and the coalescing that stops the log flooding would break exactly for the heaviest readers. The application role holds no DELETE on it (sql/224)."
   }
 ];
 
@@ -213,7 +233,6 @@ export const TABLES_PREDATING_THE_RULE: readonly string[] = [
   "awcms_email_suppression_list",
   "awcms_email_templates",
   "awcms_external_identities",
-  "awcms_idempotency_keys",
   "awcms_identities",
   "awcms_idn_admin_regions",
   "awcms_idn_region_datasets",

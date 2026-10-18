@@ -94,6 +94,8 @@ describe("fetchModuleJobs", () => {
         "bun run blog:ads:ingest",
         "bun run blog:portable-text:backfill",
         "bun run blog:publish:scheduled",
+        "bun run booking:holds:expire",
+        "bun run booking:reminders:dispatch",
         "bun run comments:retention",
         // Issue #114 (awcms-one epic #33): the campaign claim/page/finalize drain.
         "bun run commerce:campaigns:dispatch",
@@ -134,6 +136,7 @@ describe("fetchModuleJobs", () => {
         "bun run logs:audit:purge",
         "bun run news-media:reconcile",
         "bun run omes:repository-progress:poll",
+        "bun run push:auth-secret:backfill",
         "bun run push:dispatch",
         "bun run push:queue:purge",
         "bun run reporting:exports:dispatch",
@@ -141,7 +144,11 @@ describe("fetchModuleJobs", () => {
         "bun run site-search:reconcile",
         "bun run sync:objects:dispatch",
         "bun run sync:objects:purge",
+        "bun run telegram:dispatch",
+        "bun run telegram:queue:purge",
         "bun run tenant-domain:dns:sync",
+        "bun run whatsapp:dispatch",
+        "bun run whatsapp:queue:purge",
         "bun run workflow:escalations:dispatch"
       ].sort()
     );

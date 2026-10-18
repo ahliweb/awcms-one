@@ -80,6 +80,9 @@ export const POST = defineTenantRoute({
       );
       return created(flashSale);
     } catch (error) {
+      // tx-swallow-ok: DuplicateFlashSaleSlugError is raised by application
+      // code before a write, or after the directory rolled its failed
+      // statement back to a savepoint, so the transaction is healthy.
       if (error instanceof DuplicateFlashSaleSlugError) {
         return fail(409, "FLASH_SALE_SLUG_ALREADY_EXISTS", error.message);
       }

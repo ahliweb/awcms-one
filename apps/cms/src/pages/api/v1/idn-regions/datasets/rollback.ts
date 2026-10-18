@@ -7,7 +7,8 @@ import {
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../../../../modules/_shared/idempotency";
 import {
   IDN_ADMIN_REGIONS_MODULE_KEY,
@@ -65,7 +66,8 @@ export const POST = defineTenantRoute<Prepared>({
       tx,
       tenantId,
       IDEMPOTENCY_SCOPE,
-      prepared.idempotencyKey
+      prepared.idempotencyKey,
+      userIdempotencyActor(auth.context.tenantUserId)
     );
 
     if (existing) {
@@ -88,6 +90,12 @@ export const POST = defineTenantRoute<Prepared>({
         activatedBy: auth.context.tenantUserId
       });
     } catch (error) {
+      // tx-swallow-ok: DatasetLifecycleError is raised by application logic (the
+      // existence and status checks, and getDatasetById when a row is absent),
+      // never by a failed SQL statement, so the transaction is healthy here.
+      // (The row is locked FOR UPDATE before any write, so the absent-row case
+      // cannot follow the UPDATEs; the 404/409 therefore commits no partial
+      // change.)
       if (error instanceof DatasetLifecycleError) {
         return fail(409, error.code, error.message);
       }
@@ -119,6 +127,7 @@ export const POST = defineTenantRoute<Prepared>({
       tenantId,
       IDEMPOTENCY_SCOPE,
       prepared.idempotencyKey,
+      userIdempotencyActor(auth.context.tenantUserId),
       requestHash,
       200,
       body

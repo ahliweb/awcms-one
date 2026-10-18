@@ -106,7 +106,7 @@ const byKey = (key: string): ProjectionDescriptor =>
 
 function inTenant<T>(
   tenantId: string,
-  fn: (tx: Bun.SQL) => Promise<T>
+  fn: (tx: Bun.TransactionSQL) => Promise<T>
 ): Promise<T> {
   return withTenantOrThrow(getRuntimeSql(), tenantId, fn);
 }
@@ -216,12 +216,14 @@ const PROJECTION_TABLES = [
 ] as const;
 
 /** Raw table rows via the admin channel - `updated_at` excluded - to compare a rebuild against the live rows byte for byte. */
+// `id` is stripped with `updated_at`: sql/1034's surrogate handle for the lifecycle
+// purge is random per row, so it is no part of the report a rebuild must reproduce.
 async function rawRows(tenantId: string) {
   const admin = getAdminSql();
   const out: Record<string, string> = {};
   for (const [table, order] of PROJECTION_TABLES) {
     const rows = await admin.unsafe(
-      `SELECT to_jsonb(t) - 'updated_at' AS row FROM ${table} t
+      `SELECT to_jsonb(t) - 'updated_at' - 'id' AS row FROM ${table} t
        WHERE tenant_id = $1 ORDER BY ${order}`,
       [tenantId]
     );
@@ -521,7 +523,9 @@ type StoredValueAccount = { id: string; seq: number };
  * exactly the rows the trigger would have written, at the instants this test
  * needs. The projection under test reads only those rows.
  */
-async function asFixtureTx<T>(fn: (tx: Bun.SQL) => Promise<T>): Promise<T> {
+async function asFixtureTx<T>(
+  fn: (tx: Bun.TransactionSQL) => Promise<T>
+): Promise<T> {
   return getAdminSql().begin(async (tx) => {
     await tx`SET LOCAL session_replication_role = replica`;
     return fn(tx);

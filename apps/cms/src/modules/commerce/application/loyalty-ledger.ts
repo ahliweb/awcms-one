@@ -42,7 +42,8 @@ import { recordAuditEvent } from "../../logging/application/audit-log";
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../_shared/idempotency";
 import {
   encodeKeysetCursor,
@@ -647,6 +648,8 @@ export async function earnPointsForPaidOrder(
       correlationId
     });
   } catch (error) {
+    // tx-swallow-ok: LoyaltyIdempotencyConflictError comes from the key
+    // lookup, before any write, so the transaction is healthy.
     if (!(error instanceof LoyaltyIdempotencyConflictError)) throw error;
     // Thrown before any write (the key lookup precedes the INSERT), so the
     // transaction is intact. Redelivery cannot change the answer, so surface a
@@ -884,7 +887,8 @@ export async function redeemPoints(
     tx,
     tenantId,
     LOYALTY_REDEEM_IDEMPOTENCY_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (stored) {
     if (stored.requestHash !== requestHash) {
@@ -967,6 +971,7 @@ export async function redeemPoints(
     tenantId,
     LOYALTY_REDEEM_IDEMPOTENCY_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     record
@@ -1009,7 +1014,8 @@ export async function adjustPoints(
     tx,
     tenantId,
     LOYALTY_ADJUST_IDEMPOTENCY_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (stored) {
     if (stored.requestHash !== requestHash) {
@@ -1082,6 +1088,7 @@ export async function adjustPoints(
     tenantId,
     LOYALTY_ADJUST_IDEMPOTENCY_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     record

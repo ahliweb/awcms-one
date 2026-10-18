@@ -232,13 +232,16 @@ export const POST = defineTenantRoute({
       );
       return created(product);
     } catch (error) {
+      // tx-swallow-ok: ProductCategoryNotFoundError,
+      // DuplicateProductSlugError, DuplicateProductSkuError,
+      // BundleDefinitionInvalidError, InventoryLedgerRefusedError are raised
+      // by application code before a write, or after the directory rolled its
+      // failed statement back to a savepoint, so the transaction is healthy.
       // All branches are caught INSIDE the transaction: none of these is a
-      // `Bun.SQL.PostgresError`, and each is safe to turn into a 4xx here
-      // only because of what has NOT been written — `ProductCategoryNotFoundError`
-      // is raised before `createProduct` touches anything, and the two
-      // duplicate errors follow a unique violation that already aborted the
-      // transaction, so the commit `defineTenantRoute` performs on this normal
-      // return degrades to a rollback.
+      // `Bun.SQL.PostgresError`. `ProductCategoryNotFoundError` is raised
+      // before `createProduct` touches anything, and the two duplicate errors
+      // are thrown after the directory ran the failing INSERT in a savepoint
+      // and rolled it back, so the transaction is still usable.
       if (error instanceof ProductCategoryNotFoundError) {
         return fail(
           400,
