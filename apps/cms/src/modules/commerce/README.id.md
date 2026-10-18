@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:b0e297051cd24875b8efb988ac65a58bb2cd6a8d2b0955f9f48a6ef418746a4d -->
+<!-- i18n-source-hash: sha256:981196438f25befd0c05a89d078f04a567e483fc0fc12b85fd1e0ec1b5aadec8 -->
 
 # `commerce`
 
@@ -175,6 +175,10 @@ pemeriksaan keberadaan sebelum-tulis lain di modul ini), dan indeks unik
 parsial DB pada `awcms_commerce_product_variants` sendiri tetap menjadi
 jaring pengaman race satu-tabel. Benturan muncul sebagai `409
 VARIANT_SKU_ALREADY_EXISTS`.
+
+## Savepoint untuk error pernyataan yang ditangkap
+
+**Pernyataan yang errornya ditangkap di dalam transaksi dijalankan dalam savepoint.** Pernyataan yang gagal (pelanggaran unik yang diubah menjadi `409`, `23514` dari trigger yang diubah menjadi `400`, tabrakan kode pesanan yang diulang dengan kandidat lain) membatalkan transaksi PostgreSQL tempatnya berjalan; bila handler lalu mengembalikan respons seperti biasa, transaksi di-commit, PostgreSQL menjawab `COMMIT` itu dengan `ROLLBACK`, dan semua penulisan sebelumnya dalam transaksi yang sama hilang. Bun 1.4.2 menganggapnya sukses begitu saja (handler melaporkan sukses untuk penulisan yang hilang); Bun 1.4.3 melempar `ERR_POSTGRES_COMMIT_ROLLED_BACK`. `tx.savepoint(async (sp) => ...)` membatasi pembatalan itu pada pernyataannya saja: jalankan pernyataan pada `sp`, tangkap `Bun.SQL.PostgresError` di luarnya, dan transaksi luar tetap dapat dipakai (fungsi yang melakukannya menerima `tx: Bun.TransactionSQL`; pembantu yang dipanggil dari dalam savepoint menerima `sp as Bun.TransactionSQL`). Pernyataan yang errornya selalu merambat keluar dari callback transaksi tidak memerlukan savepoint (seluruh transaksi memang di-rollback). `bun run db:transaction-swallow:check` milik upstream menolak bentuk lain; catch rute yang hanya memetakan error aplikasi membawa penanda `// tx-swallow-ok: <alasan>`. `tests/integration/commerce-caught-error-savepoints.integration.test.ts` mengunci perilakunya.
 
 ## Gambar dan varian (Issue #23)
 

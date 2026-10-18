@@ -170,7 +170,7 @@ export async function fetchAttributeDefinitionById(
  * @throws {DuplicateAttributeKeyError} the key is already taken by a live definition.
  */
 export async function createAttributeDefinition(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   input: AttributeDefinitionInput,
@@ -190,7 +190,9 @@ export async function createAttributeDefinition(
 
   let rows: DefinitionRow[];
   try {
-    rows = (await tx`
+    rows = (await tx.savepoint(
+      async (sp) =>
+        await sp`
       INSERT INTO awcms_commerce_attribute_definitions (
         tenant_id, key, label, labels, value_type, constraints, applies_to,
         is_searchable, is_filterable, visible_admin, visible_public, sort_order
@@ -201,8 +203,9 @@ export async function createAttributeDefinition(
         ${input.isSearchable}, ${input.isFilterable}, ${input.visibleAdmin},
         ${input.visiblePublic}, ${input.sortOrder}
       )
-      RETURNING ${tx.unsafe(DEFINITION_COLUMNS)}
-    `) as DefinitionRow[];
+      RETURNING ${sp.unsafe(DEFINITION_COLUMNS)}
+    `
+    )) as DefinitionRow[];
   } catch (error) {
     if (
       error instanceof Bun.SQL.PostgresError &&

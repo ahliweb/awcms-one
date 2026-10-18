@@ -52,7 +52,7 @@ export type CreateReviewOutcome =
  * in this branch.
  */
 export async function createReview(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   orderCode: string,
   phone: string,
@@ -95,11 +95,14 @@ export async function createReview(
 
   let rows: { id: string }[];
   try {
-    rows = (await tx`
+    rows = (await tx.savepoint(
+      async (sp) =>
+        await sp`
       INSERT INTO awcms_commerce_reviews (tenant_id, product_id, customer_id, order_id, rating, body)
       VALUES (${tenantId}, ${productId}, ${order.customer_id}, ${order.id}, ${rating}, ${body})
       RETURNING id
-    `) as { id: string }[];
+    `
+    )) as { id: string }[];
   } catch (error) {
     if (
       error instanceof Bun.SQL.PostgresError &&

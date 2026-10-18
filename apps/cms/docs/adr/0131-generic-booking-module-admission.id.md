@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0131-generic-booking-module-admission.md)
 
-<!-- i18n-source-hash: sha256:fa03ad0bdfaf11fd67ca013c0655ca1e2ed671d8306ac71b2f532026e7736d0f -->
+<!-- i18n-source-hash: sha256:b99626acd52ce8d5180f30a9f7646a6e6563afbe84ea900678bb7e0826ba58c1 -->
 
 <!-- i18n-source-hash: sha256:pending -->
 
@@ -76,7 +76,7 @@ Reservasi, item, alokasi, penugasan staf, dan event adalah bukti di balik bookin
 ## Konsekuensi
 
 - Konsumen melakukan hold, confirm, cancel, dan reschedule lewat satu port; database, bukan handler tiap konsumen, yang menjamin satu klaim per unit per interval.
-- **Biaya:** sekitar 13 tabel, ~29 izin, anggota `AccessAction` baru (`confirm`, `reschedule`, `check_in`, `complete`, `no_show`, dan `override` BERISIKO TINGGI), ekstensi `btree_gist`, satu job, satu port, 9 event, dua proyeksi. Pencarian ketersediaan (pembacaan) bisa mahal; dibatasi oleh jendela, halaman, dan rate per-principal (paket §9), dan tak pernah di-edge-cache (ia per-tenant secara alami).
+- **Biaya:** sekitar 13 tabel, ~29 izin, anggota `AccessAction` baru (`confirm`, `reschedule`, `check_in`, `complete`, `no_show`, dan `override` BERISIKO TINGGI), ekstensi `btree_gist`, satu job, satu port, 9 event, tiga proyeksi (dua saat ADR ini ditulis; diubah oleh [ADR-0143](0143-reporting-quantity-metrics-tie-safe-pages-and-booking-projections.id.md)). Pencarian ketersediaan (pembacaan) bisa mahal; dibatasi oleh jendela, halaman, dan rate per-principal (paket §9), dan tak pernah di-edge-cache (ia per-tenant secara alami).
 - **Rollback** bersifat forward-only seperti setiap migrasi di sini: berhenti memanggil modul, pertahankan tabel (inert), dan setiap order hilir tetap valid. Menjatuhkan tabel adalah keputusan kelas restore. Setelah restore, rekonsiliasikan reservasi terhadap alokasi (paket §7).
 - **Terbuka dan tidak diputuskan di sini:** keputusan pemilik O1, O2, O3, O5, O8, O9, dan O12 pada tracker DoR hilir (paket §11). O12 dan O2 memengaruhi skema (referensi pelanggan, kebijakan catatan, field vertikal pertama) dan **harus dijawab sebelum migrasi ditulis**; O8 hanya memengaruhi definisi proyeksi. ADR ini menerima modul dan menetapkan properti yang berlaku apa pun jawabannya.
 - **Pembaruan (2026-10-10): jawaban pemilik dicatat.** Pemilik awcms-one menjawab O1–O12 pada 2026-10-10. Jawaban yang mengikat paket ini dicatat di [`booking.md`](../awcms/booking.id.md) §11 dan §7.2: O8 (occupancy tidak menghitung hold; jendela retensi 90 hari adalah KPI retensi pelanggan; net revenue adalah angka utama) dan O12 (commerce tetap otoritas pelanggan, sehingga v1 hanya membawa `external_customer_ref` yang buram dan tanpa `customer_profile_id`). O2 (vertikal pertama hotel / vila / rental) bertentangan dengan asumsi pack bahwa menginap per malam di luar v1; ia diselesaikan oleh [ADR-0135](0135-day-granularity-stays-admitted-into-booking-v1.id.md), yang mengubah ADR ini (Issue #931). Selebihnya ADR ini tidak berubah.
@@ -113,3 +113,9 @@ Dinilai atas keamanan, performa, maintainability, skalabilitas, kompatibilitas, 
 - **Menyalin nama dan kontak pelanggan ke reservasi:** sumber kebenaran kedua yang tak terjangkau penghapusan dan merge `profile_identity`.
 - **Kedaluwarsa hanya lewat job:** job yang macet akan membiarkan kamar terakhir tertahan selamanya. Lazy reclaim di penulis membuat kebenaran tak bergantung pada kesehatan job; job untuk event dan kerapian.
 - **Dependensi keras pada kapabilitas tenaga kerja:** memaksa `hr_payroll` pada setiap tenant yang memesan kamar. Port opsional; tanpanya, staf hanya dibatasi aturan modul sendiri.
+
+## Addendum (Issue #1108, 2026-10-18): `BookingPort` tumbuh ke kontrak 1.1.0
+
+Bagian 9 menyebut lima verba port. Adapter hilir pertama (adapter commerce dari toko turunan) membutuhkan transisi di tempat dan beberapa pembacaan, dan kapabilitas yang milik AWCMS dibangun di sini, bukan ditambal di consumer. Port bertambah, secara aditif, `checkIn`, `checkOut` (transisi `complete`) dan `markNoShow` dengan kontrak `confirm` (key idempotensi ber-namespace aktor menurut ADR-0145, reservasi `Targeted`, penolakan sebagai nilai, `transition()` yang sama sehingga event yang sama), dan empat pembacaan: `get`, `getOffering`, `listOfferings` dan `availability` tanpa aktor.
+
+Diputuskan di sini: (1) kapabilitas `booking` masuk `CAPABILITY_CONTRACT_VERSIONS` pada `1.1.0` (`1.0.0` adalah bentuk implisit #941), perubahan MINOR karena tidak ada signature yang berubah dan `BookingRefusal` hanya bertambah `CHECK_IN_TOO_EARLY` dan `NO_SHOW_TOO_EARLY`; (2) pembacaan tidak pernah mengembalikan `external_customer_ref` atau kontak, catatan, atau aktor apa pun, lewat daftar kolom eksplisit yang dikunci tes, sehingga port tidak memperluas siapa yang dapat mengetahui seseorang; (3) malam terblokir dan malam terpesan adalah penolakan yang sama pada pembacaan anonim; (4) tidak ada route HTTP yang ditambahkan: route anonim, rate limit dan cache-nya milik consumer pemilik halaman, dan port membatasi sendiri pekerjaannya. Pembayaran dan harga tetap di luar port.

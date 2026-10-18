@@ -14,14 +14,17 @@ This is the **rule foundation** (#950: `awcms_hr_commission_rules`, the draft /
 publish / retire API, a **pure evaluation function**) and the **accrual ledger**
 (#951: `awcms_hr_commission_accruals`, `awcms_hr_commission_transitions`, the
 approve / release / void / pay lifecycle and the sale-attribution port).
-**Not here yet:** reversals (a compensating negative accrual for a payable or paid
-one), the `awcms.hr.commission.*` events, and the payroll claim of an accrual
+**Not here yet:** reversals of a payable or paid accrual (a compensating negative
+accrual; `CommissionAccrualPort.void` refuses those as `period_closed`, below), the
+other `awcms.hr.commission.*` events (only `voided` exists), and the payroll claim of an accrual
 (PS-19, below). It is **not affiliate commission** (hr-payroll.md 6.4: the
 beneficiary here is always an employment) and carries **no country's or
 jurisdiction's rules**: a tenant authors its own.
 
-Status is `experimental`: the flag is off, no admin screen exists, and the module
-declares no `navigation`. It flips to `active` with its first screen.
+Status is `active` since Issue #952: the module declares one admin screen,
+`/admin/hr/my-commission`, where an employee reads their OWN accruals (read-only;
+`GET /api/v1/hr-commission/my-accruals`, `docs/awcms/workforce-self-service.md`).
+The rule and ledger-management screens are still API-only.
 
 ## The rules that make it safe
 
@@ -147,7 +150,12 @@ declares no `navigation`. It flips to `active` with its first screen.
   can approve, release or pay none of their own accrual; whoever created an
   accrual cannot approve it; whoever approved it cannot pay it (`403
 SEGREGATION_OF_DUTIES`, or `APPROVE_OWN_ACCRUAL_FORBIDDEN` for the beneficiary
-  approving). Void is not segregated. A test removes the trigger's guard and shows
+  approving). **The beneficiary is the login snapshotted when the accrual was
+  created (`beneficiary_tenant_user_id`, stamped by trigger, `sql/236`) AND the
+  employment's current login** (Issue #1019): unlinking the login and relinking it
+  around a self-approval gains nothing. With neither a linked login nor a snapshot,
+  approve, release and pay are refused (fail closed, `409
+BENEFICIARY_LOGIN_UNRESOLVED`; `sql/237`). Void is not segregated. A test removes the trigger's guard and shows
   the bypass succeeds.
 - **The log cannot diverge from the status.** `awcms_hr_commission_transitions` is
   written only by the accrual's own triggers (a direct insert is refused by
@@ -172,6 +180,46 @@ SEGREGATION_OF_DUTIES`, or `APPROVE_OWN_ACCRUAL_FORBIDDEN` for the beneficiary
   booking. The adapter, not the ledger, verifies the sale is real, paid and the
   employee's, and decides what is commissionable. Authorization and audit stay with
   the caller's composition root (`POST /api/v1/hr-commission/accruals` is one).
+- **Reversing an accrual: `CommissionAccrualPort.void` (Issue #1109, port contract
+  `commission_accrual` 1.1.0).** `void(tx, tenantId, actorTenantUserId, { source,
+employmentId, reason, correlationId? })` is keyed by the SAME source identity
+  `accrue` took, so a consumer (the first is the commerce sale-attribution adapter
+  in a derived repository) never stores this module's ids. It locates the accrual by
+  the ledger's own unique key, locks it `FOR UPDATE` and answers:
+  - `voided` - a `pending` or `approved` accrual was voided. It goes through the one
+    transition core the HTTP void route uses, so the audit row
+    (`hr_commission.accrual.voided`, no amount, no source reference), the
+    `awcms.hr.commission.voided` domain event and the append-only transition-log
+    row are all written in the CALLER's transaction and roll back with it.
+  - `already_voided` - a replay; nothing is written, audited or published, whatever
+    `reason` the replay carries. Racing voids serialise on the row: one `voided`.
+  - `not_found` - nothing was accrued for that source and employment (also what
+    another tenant's accrual looks like: RLS).
+  - `period_closed` - the accrual is `payable` or `paid`; refused, nothing written.
+  - `actor_required` (a `null` actor: every edge stamps a person) and
+    `input_invalid` (a malformed source, an employment id that is not a UUID, a
+    `reason` that is not a code).
+
+  **Compensating entry.** The accrual is never edited or deleted: its monetary facts
+  are immutable by trigger and stay as posted. The reversal is the status edge to
+  `voided` plus the transition-log row the database appends (the ledger's "append"
+  for a reversal while no money has moved), so `reconcileAccruals` shows the amount
+  leave the live buckets and sit under `voided`, and a voided accrual can never be
+  paid. No migration was needed: a NEGATIVE row (`operation = reversal`) is only
+  required once money is committed, which is the next point.
+
+  **Closed-period policy (decided in #1109): refuse, `period_closed`.** This module
+  has no commission period of its own; the boundary is the accrual's status.
+  `payable` means released to payroll, whose run selects payable accruals
+  (`FOR UPDATE SKIP LOCKED`, PS-19), and `paid` means a payout is recorded. There is
+  no reversal-into-the-current-period mechanism yet (the negative row of
+  hr-payroll.md 6.3, below), and voiding money payroll may already hold would break
+  "an accrual is paid by exactly one run". So the port refuses and writes nothing;
+  the outcome carries `accrualId` and `status`, and the consumer routes it to a
+  human (a clawback / next-run netting), never to a blind retry. When the
+  reversal row lands, `period_closed` is the case it replaces with a posted
+  reversal; `voided`, `already_voided` and `not_found` keep their meaning.
+
 - **Known gap: a void permanently consumes its source key.** A voided accrual
   keeps its `(source, employment)` identity, so a redelivery of the same source
   returns the voided original (never a new accrual) and the commission cannot be
@@ -228,18 +276,36 @@ SEGREGATION_OF_DUTIES`, or `APPROVE_OWN_ACCRUAL_FORBIDDEN` for the beneficiary
   re-opening its original. The unique key, the `operation` column and the
   transition log already have room for it; a `sql/NNN` that widens the
   `operation` and status CHECKs and the machine will add it.
-- **Events are provisional.** `awcms.hr.commission.accrued` and `.approved`
-  (hr-payroll.md section 10) are not emitted yet: the ledger writes no outbox row
-  and no AsyncAPI channel exists, so nothing is published until a consumer needs
-  one.
+- **Events: only `voided` exists.** `awcms.hr.commission.voided` (Issue #1109;
+  registry, AsyncAPI channel and `events.publishes`) is published in the transaction
+  of every void, HTTP or port, with ids, the source TYPE, the rule key and version,
+  `fromStatus` and the reason code (never an amount or a source reference).
+  `awcms.hr.commission.accrued` and `.approved` (hr-payroll.md section 10) are not
+  emitted yet: nothing is published until a consumer needs them.
 - **No own-accrual read and no office scope yet.** `accruals.read` is a plain
   permission: the "employee sees their own accruals" path (an ownership grant on
   the employment's login) and the `office` business scope are follow-ups with the
   self-service surface.
-- **Exporting a person's accrual history** (tracked in issue #985) needs an employment-to-subject join the
-  registry's direct subject columns cannot express (the limit
-  `hr_workforce.employment_terms` records); the descriptor names only the actor
-  stamps and is `exportable: false` until that join exists.
+- **A person's accrual history is exported to that person** (Issue #1018,
+  ADR-0142): `hr_commission.accruals` reaches the beneficiary through
+  `employment_id` (`subjectVia`) and is `exportable: true`; the actor stamps are not
+  subject columns. Because earnings sit on the payroll boundary, the subject-export
+  route does **not** hand them out on `data_lifecycle.subject_request.export`
+  alone: the caller must ALSO hold `hr_commission.accruals.read`, otherwise the
+  table is withheld and named under `withheld` in the response (default-deny, also
+  for a replay of a stored export). Every read that does happen is recorded as a
+  sensitive read (ids and a count, never an amount). `hr_commission.transitions`
+  stays `exportable: false`: it needs a second hop and adds nothing about the
+  beneficiary the accrual does not carry. Whether earnings may be exported to the
+  subject at all is a product/legal decision recorded in the ADR-0142 addendum.
+  The join uses `profile_id` ONLY (a login mislinked to somebody else's employment
+  and later corrected would otherwise put that employment's accruals into the
+  login's export). The stored `Idempotency-Key` record keeps these rows as ids only
+  and a replay re-reads them under a fresh `accruals.read` check. The
+  `beneficiary_tenant_user_id` snapshot (`sql/236`) is a redacted column of the
+  export and is in no API response: the header comment of `sql/236` that says it
+  "is not exposed by any API" stays true only because of that redaction, and the
+  applied migration cannot be edited to say so.
 - **Retention: retained for the life of the tenant, no period asserted.** There is
   deliberately NO `dataLifecycle` descriptor for any of the three tables (a
   descriptor must assert a period and a purge mode, and nothing purges): the ledger
@@ -252,7 +318,7 @@ SEGREGATION_OF_DUTIES`, or `APPROVE_OWN_ACCRUAL_FORBIDDEN` for the beneficiary
 
 ## Limitations
 
-- No admin screen; `experimental`. The accrual screens (list, approve / release / void / pay) are the follow-up that flips the module to `active`.
+- Only the employee's own-commission screen exists (Issue #952); the rule screens and the accrual screens (list, approve / release / void / pay) are the follow-up.
 - Existing tenants need `bun run identity-access:permissions:backfill` to receive
   the seeded permissions (the limitation every permission seed carries).
 - A draft can only be changed by replacing every editable field (`PUT`); there is

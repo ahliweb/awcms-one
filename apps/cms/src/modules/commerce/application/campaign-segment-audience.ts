@@ -202,7 +202,7 @@ export type SegmentAudienceCountOutcome =
  * difference a narrow segment into a person any more than a segment reader.
  */
 export async function countCampaignSegmentAudience(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   context: { tenantId: string; actorTenantUserId: string; now: Date },
   pin: CampaignSegmentPin,
   channel: CampaignChannel
@@ -252,7 +252,7 @@ export type DeferralReason =
  * every refusal is a `deferred`, which the dispatcher must not read as "done".
  */
 export async function resolveSegmentAudiencePage(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   input: {
     tenantId: string;
     campaignId: string;

@@ -7,8 +7,8 @@
  * small-number threshold carries an empty `retention_percent` (counts only),
  * so the export cannot be used to read a rate the screen withholds.
  */
+import { csvCellForWrite } from "../../../lib/security/csv-formula";
 import type { RetentionReport } from "../application/retention-report-directory";
-import { csvCell, csvNumber } from "./register-cash-up-csv";
 
 export const RETENTION_CSV_COLUMNS = [
   "cohort_month",
@@ -23,14 +23,19 @@ export const RETENTION_CSV_COLUMNS = [
 export function serializeRetentionReportCsv(report: RetentionReport): string {
   const rows = report.cohorts.map((cohort) =>
     [
-      csvCell(cohort.cohortMonth),
-      csvNumber(String(cohort.size)),
-      csvNumber(String(cohort.repeaters)),
-      cohort.ratePercent === null ? "" : csvNumber(cohort.ratePercent),
-      csvCell(cohort.mature ? "final" : "to_date"),
-      csvCell(cohort.maturesAt),
-      csvCell(cohort.restatedAt)
+      csvCellForWrite(cohort.cohortMonth),
+      csvCellForWrite(String(cohort.size), { numericText: true }),
+      csvCellForWrite(String(cohort.repeaters), { numericText: true }),
+      csvCellForWrite(cohort.ratePercent, { numericText: true }),
+      csvCellForWrite(cohort.mature ? "final" : "to_date"),
+      csvCellForWrite(cohort.maturesAt),
+      csvCellForWrite(cohort.restatedAt)
     ].join(",")
   );
-  return [RETENTION_CSV_COLUMNS.join(","), ...rows].join("\r\n") + "\r\n";
+  return (
+    [
+      RETENTION_CSV_COLUMNS.map((column) => csvCellForWrite(column)).join(","),
+      ...rows
+    ].join("\r\n") + "\r\n"
+  );
 }

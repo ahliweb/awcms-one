@@ -1,4 +1,5 @@
 import { defineTenantRoute } from "../../../../../modules/_shared/tenant-route";
+import { csvCellForWrite } from "../../../../../lib/security/csv-formula";
 import {
   decodeKeysetCursor,
   type KeysetCursor
@@ -23,11 +24,6 @@ const READ_GUARD = {
 
 const MAX_PAGES = 20;
 
-function csvEscape(value: string): string {
-  if (/[",\n]/.test(value)) return `"${value.replace(/"/g, '""')}"`;
-  return value;
-}
-
 export const GET = defineTenantRoute({
   workClass: "reporting",
   authorize: READ_GUARD,
@@ -41,7 +37,9 @@ export const GET = defineTenantRoute({
       "total",
       "createdAt"
     ];
-    const rows: string[] = [header.join(",")];
+    const rows: string[] = [
+      header.map((column) => csvCellForWrite(column)).join(",")
+    ];
 
     let cursor: KeysetCursor | null = null;
     for (let page = 0; page < MAX_PAGES; page += 1) {
@@ -49,13 +47,13 @@ export const GET = defineTenantRoute({
       for (const order of result.items) {
         rows.push(
           [
-            order.orderCode,
-            order.status,
-            order.paymentStatus,
-            csvEscape(order.customerName),
-            order.customerPhoneMasked,
-            order.total,
-            order.createdAt
+            csvCellForWrite(order.orderCode),
+            csvCellForWrite(order.status),
+            csvCellForWrite(order.paymentStatus),
+            csvCellForWrite(order.customerName),
+            csvCellForWrite(order.customerPhoneMasked),
+            csvCellForWrite(order.total, { numericText: true }),
+            csvCellForWrite(order.createdAt)
           ].join(",")
         );
       }

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](mfa-totp-step-up.md)
 
-<!-- i18n-source-hash: sha256:0ff11488fe1f49bacf9e57b0722a288530fa90a220b90ff6a594406fc569cc90 -->
+<!-- i18n-source-hash: sha256:217910084c97d14d6a29e0c3ac497ec11de1c0df01a2797d7c5f357fd2611892 -->
 
 # MFA TOTP, recovery codes, dan step-up authentication
 
@@ -22,7 +22,9 @@ Referensi implementasi Issue #184 (epic #177). Modul: `identity-access`. ADR: [A
 ### 1.1 Enrollment
 
 ```
-POST /api/v1/auth/mfa/totp/enroll/start   (sesi valid; AUTH_MFA_ENABLED=true)
+POST /api/v1/auth/mfa/totp/enroll/start   { currentPassword }   (sesi valid + autentikasi ulang, atau grant pendaftaran; AUTH_MFA_ENABLED=true)
+  -> SESI harus autentikasi ulang (#1004): kata sandi SAAT INI (kredensial principal, jika tidak hash identitas - aturan login), atau sesi SSO yang dibuat <= 5 menit lalu bila orangnya tak bekerja di tenant lain
+  -> faktor pending terikat pada sesi/grant ini dan hidup 10 menit
   -> generate secret 20 byte (CSPRNG), simpan factor `pending` (secret terenkripsi)
   -> balas { secret (base32), otpauthUri }   # ditampilkan SEKALI
 POST /api/v1/auth/mfa/totp/enroll/verify  { code }
@@ -114,6 +116,33 @@ Selain rate limit per-sumber dan cap `failed_attempts` per-challenge, tiap facto
 
 **Sejak ADR-0087 lockout itu GLOBAL**, karena penghitungnya menempel pada faktor dan faktornya pindah — konsekuensi yang sama yang ADR-0086 ambil untuk password: penyerang yang tahu password seseorang bisa mengunci authenticator orang itu di semua tenant sekaligus. Aturan ADR-0086 berlaku penuh, jadi trade-off itu diambil bersama **ketiga** tuas pemulihannya yang kini juga global: recovery code, `disable` mandiri + enroll ulang, dan reset administratif. Sebelumnya lockout faktor di tenant A tidak bisa dibatalkan admin tenant B; sesudahnya siapa pun dari ketiga jalur itu memulihkan orangnya sepenuhnya — pemulihannya lebih baik dari sebelumnya, bukan lebih buruk.
 
+### 1.7 Izin yang mewajibkan faktor terdaftar (ADR-0141)
+
+Step-up bersifat **bersyarat** (§1.3): orang tanpa faktor tidak dimintai faktor, karena `requireStepUp` tanpa syarat akan mengunci semua orang yang belum mendaftar. Akibatnya orang tanpa faktor melakukan aksi berisiko tinggi tanpa faktor kedua sama sekali. Modul menutupnya untuk izin yang penting dengan mendeklarasikannya di descriptor:
+
+```ts
+permissions: [
+  {
+    activityCode: "runs",
+    action: "approve",
+    description: "…",
+    requiresMfaEnrolment: true
+  }
+];
+```
+
+`authorizeInTransaction` lalu menolak izin itu, **setelah** allow biasa dan hanya sebagai penolakan, dengan `403 MFA_ENROLMENT_REQUIRED` (`details.reason`: `not_enrolled`, `enrolment_unavailable`, atau `machine_credential`) bagi siapa pun tanpa faktor **aktif**. Ia menanyakan apakah faktor ada; tidak pernah menuntut bukti baru. Modul tetap memegang step-up bersyaratnya sendiri di atasnya, yang kini selalu berlaku bagi orang yang diloloskan gerbang.
+
+**Bootstrap — tenant tanpa pemegang terdaftar tidak terkunci.** Pendaftaran (`POST /auth/mfa/totp/enroll/start` lalu `/verify`) butuh sesi dan tanpa izin, dan berada di luar chokepoint. Jadi: owner (atau pemegang mana pun) membuka `/admin/account`, mendaftar, dan permintaan berikutnya langsung dilayani — tanpa restart, tanpa tindakan administrator, tanpa perubahan kebijakan tenant. Semua yang tak bertanda berfungsi sepanjang waktu, itulah yang membuat mereka dapat mencapai layar itu. Prasyarat: `AUTH_MFA_ENABLED=true` dan `AUTH_MFA_SECRET_ENCRYPTION_KEY`; tanpanya penolakannya `enrolment_unavailable` untuk **semua orang** (fail-closed) dan `security:readiness` gagal pada pemeriksaan `critical` "Pendaftaran MFA tersedia saat sebuah izin mewajibkan faktor terdaftar". Pemegang tunggal yang kehilangan perangkatnya memakai kode pemulihan (§4), lalu mendaftar ulang.
+
+**Autentikasi ulang sebelum pendaftaran (#1004, ADR-0141 §7).** Sesi saja tak dapat memulai pendaftaran: `currentPassword` wajib (`400 PASSWORD_REQUIRED` / `INVALID_CREDENTIALS`, `403 REAUTHENTICATION_REQUIRED` untuk sesi SSO-saja yang basi, dibatasi laju per sumber). Jalur grant pendaftaran saat login tidak berubah. Saat aktivasi pemilik akun diemail `system.security_notice` (butuh template bawaan di-seed: `bun run email:templates:seed-defaults`) dan peristiwa audit `critical` `mfa_enrolled` ditulis; menonaktifkan faktor juga memberi notifikasi. Pemegang kata sandi masih dapat mendaftar (ia mengajukan kata sandi yang sama) tetapi tak lagi dapat melakukannya diam-diam. `enroll/verify` dibatasi lajunya (per sumber dan per sesi/grant), hanya menerima sesi atau grant yang memulai pendaftaran, dan menghancurkan secret pending setelah 5 kode salah (`429 MFA_ENROLLMENT_EXHAUSTED`). Notifikasi hanya dikirim ke kotak surat akun di tenant tempat pendaftaran.
+
+**Menemukan orangnya sebelum mereka menemukan penolakannya.** `bun run security:readiness` mendaftar, per tenant yang modulnya dapat dipakai, pemegang (dari sumber grant mana pun) yang tak punya faktor aktif — hanya id dan jumlah. Ini `warning`: mereka ditolak, bukan kerentanan, dan masing-masing diminta mendaftar sekali.
+
+**Yang tidak dibuktikan gerbang.** Ia membuktikan faktor ada pada akun, bukan bahwa pemilik akun yang memegangnya: pemegang kata sandi pemegang yang belum terdaftar masih dapat mendaftarkan authenticator miliknya lebih dulu (sesi saja tak lagi dapat, dan pemilik diberi tahu lewat jalur lain; lihat §1.1 dan ADR-0141 §7). Jalankan laporan pemegang **sebelum mengaktifkan modul yang menandai izin** agar pemegang yang sah mendaftar lebih dulu.
+
+Ini tuas yang berbeda dari §1.5. Kebijakan tenant menentukan siapa yang harus mendaftar **untuk login**; ini menentukan **izin** mana yang tidak dapat dijalankan tanpa pendaftaran. Keduanya berpadu dan tidak saling menggantikan.
+
 ## 2. Referensi konfigurasi / environment
 
 | Variabel                         | Default                | Keterangan                                                                                               |
@@ -185,3 +214,7 @@ Jangan pernah men-commit key. Simpan di secrets manager / env deployment, bukan 
 - A.8.5 (secure authentication) — faktor kedua, assurance level.
 - A.8.24 (kriptografi) — enkripsi secret at-rest, manajemen key.
 - A.8.15 / A.5.28 (logging & bukti) — audit `mfa_*` termasuk `critical` untuk admin reset.
+
+### Status faktor di bawah kunci verifikasi
+
+Kunci baris verifikasi per faktor memeriksa ulang `status = 'active'`. Faktor yang dinonaktifkan di antara pembacaan tanpa kunci dan penguncian diperlakukan sebagai tidak cocok (`MFA_CHALLENGE_INVALID` / `MFA_INVALID_CODE`), dan tidak dihitung sebagai kegagalan lockout. Compare-and-swap replay-guard dan konsumsi recovery code juga mensyaratkan faktor aktif.

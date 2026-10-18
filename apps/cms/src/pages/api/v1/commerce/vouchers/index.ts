@@ -76,6 +76,9 @@ export const POST = defineTenantRoute({
       );
       return created(voucher);
     } catch (error) {
+      // tx-swallow-ok: DuplicateVoucherCodeError is raised by application
+      // code before a write, or after the directory rolled its failed
+      // statement back to a savepoint, so the transaction is healthy.
       if (error instanceof DuplicateVoucherCodeError) {
         return fail(409, "VOUCHER_CODE_ALREADY_EXISTS", error.message);
       }

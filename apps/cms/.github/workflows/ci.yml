@@ -58,7 +58,7 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
         with:
-          bun-version: "1.4.2"
+          bun-version: "1.4.3"
 
       - name: Cache Bun install cache
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
@@ -91,7 +91,7 @@ jobs:
       # memakai secret sungguhan sama sekali.
       - name: Upload failure diagnostics
         if: failure()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: quality-failure-diagnostics
           path: |
@@ -134,7 +134,7 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
         with:
-          bun-version: "1.4.2"
+          bun-version: "1.4.3"
 
       - name: Cache Bun install cache
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
@@ -240,7 +240,7 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
         with:
-          bun-version: "1.4.2"
+          bun-version: "1.4.3"
 
       - name: Cache Bun install cache
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
@@ -262,6 +262,14 @@ jobs:
         # and soft-skip if it isn't migrated, and the legacy ad-hoc suite
         # connects to it directly and expects `sql/` already applied.
         run: bun run db:migrate
+
+      - name: Payroll catalog boundary (the migrated database)
+        # Issue #1077: the catalog half of the payroll boundary needs a database
+        # where every migration has run, so it cannot sit in `bun run check`
+        # (which has none). The same analysis runs, with its probes, in
+        # tests/integration/payroll-catalog-boundary.integration.test.ts; this
+        # step is the operator command against THIS migrated database.
+        run: bun run payroll:catalog-boundary:check
 
       - name: Run DB-gated integration tests
         # Scoped to `tests/integration/` (the harness-based suite, purpose-built
@@ -323,6 +331,7 @@ jobs:
           tests/security-readiness-failclosed.test.ts
           tests/security-readiness-rls.test.ts
           tests/security-readiness-worker-setup-grants.test.ts
+          tests/security-readiness-worker-credential-columns.test.ts
           tests/sync-hmac-versioned.test.ts
           tests/tenant-selection-e2e.test.ts
           tests/turnstile-login-e2e.test.ts
@@ -330,7 +339,7 @@ jobs:
 
   minimum-supported:
     # Issue #183 AC "CI menguji minimal versi current DAN minimum-supported":
-    # the `quality` job pins the CURRENT Bun (1.4.2); this cell actually RUNS
+    # the `quality` job pins the CURRENT Bun (1.4.3); this cell actually RUNS
     # the declared floor `engines.bun >=1.3.0` (Bun 1.3.0) so a regression that
     # only breaks on the floor can never ship green. Verified locally: Bun 1.3.0
     # runs this exact subset (install/typecheck/build/family-conformance) clean.

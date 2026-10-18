@@ -19,27 +19,23 @@
  * session reads top to bottom in a spreadsheet and is unambiguous to a parser:
  * `summary`, `tender`, `movement`, `correction`.
  */
+import { csvCellForWrite } from "../../../lib/security/csv-formula";
 import type { RegisterCashUpReport } from "./register";
 
-const FORMULA_LEADERS = /^[=+\-@\t\r]/;
-const STRICT_NUMBER = /^-?\d{1,12}(\.\d{1,2})?$/;
-
-/** One CSV cell of arbitrary text: formula-neutralised, then quoted if it needs it. */
+/**
+ * One CSV cell of arbitrary text: formula-neutralised, then quoted if it needs
+ * it. The rule lives in the shared writer (`csvCellForWrite`, issue #978); this
+ * is the name the commerce tests and callers know it by.
+ */
 export function csvCell(
   value: string | number | boolean | null | undefined
 ): string {
-  if (value === null || value === undefined) return "";
-  const text = String(value);
-  const neutralised = FORMULA_LEADERS.test(text) ? `'${text}` : text;
-  return /[",\n\r]/.test(neutralised)
-    ? `"${neutralised.replace(/"/g, '""')}"`
-    : neutralised;
+  return csvCellForWrite(value);
 }
 
 /** A strictly numeric cell (a `numeric(14,2)` string): never neutralised, never free text. */
 export function csvNumber(value: string | null | undefined): string {
-  if (value === null || value === undefined) return "";
-  return STRICT_NUMBER.test(value) ? value : csvCell(value);
+  return csvCellForWrite(value, { numericText: true });
 }
 
 export const CASH_UP_CSV_COLUMNS = [
@@ -56,10 +52,23 @@ export const CASH_UP_CSV_COLUMNS = [
   "text"
 ] as const;
 
-type Row = Partial<Record<(typeof CASH_UP_CSV_COLUMNS)[number], string>>;
+type Row = Partial<
+  Record<(typeof CASH_UP_CSV_COLUMNS)[number], string | null | undefined>
+>;
 
+/** The columns that carry a `numeric(14,2)` figure as text; every other cell is free text. */
+const NUMERIC_COLUMNS: ReadonlySet<string> = new Set([
+  "amount",
+  "expected",
+  "counted",
+  "variance"
+]);
+
+/** Cells are RAW values here: the one escape happens in this function, never twice. */
 function line(row: Row): string {
-  return CASH_UP_CSV_COLUMNS.map((column) => row[column] ?? "").join(",");
+  return CASH_UP_CSV_COLUMNS.map((column) =>
+    csvCellForWrite(row[column], { numericText: NUMERIC_COLUMNS.has(column) })
+  ).join(",");
 }
 
 /**
@@ -68,7 +77,9 @@ function line(row: Row): string {
  * total here, never a person).
  */
 export function serializeCashUpCsv(report: RegisterCashUpReport): string {
-  const lines: string[] = [CASH_UP_CSV_COLUMNS.join(",")];
+  const lines: string[] = [
+    CASH_UP_CSV_COLUMNS.map((column) => csvCellForWrite(column)).join(",")
+  ];
 
   const summary = (
     key: string,
@@ -78,9 +89,9 @@ export function serializeCashUpCsv(report: RegisterCashUpReport): string {
     lines.push(
       line({
         section: "summary",
-        key: csvCell(key),
-        amount: csvNumber(amount),
-        text: csvCell(text ?? null)
+        key: key,
+        amount: amount,
+        text: text ?? null
       })
     );
   };
@@ -106,17 +117,16 @@ export function serializeCashUpCsv(report: RegisterCashUpReport): string {
       line({
         section: "tender",
         key: "tender",
-        tender: csvCell(tender.tenderType),
-        amount: csvNumber(tender.payments),
-        expected: csvNumber(tender.expected),
-        counted: csvNumber(tender.counted),
-        variance: csvNumber(tender.variance),
-        text: csvCell(
+        tender: tender.tenderType,
+        amount: tender.payments,
+        expected: tender.expected,
+        counted: tender.counted,
+        variance: tender.variance,
+        text:
           `payments=${tender.payments};reversals=${tender.reversals}` +
-            (tender.correction !== "0.00"
-              ? `;correction=${tender.correction};effective_counted=${tender.effectiveCounted}`
-              : "")
-        )
+          (tender.correction !== "0.00"
+            ? `;correction=${tender.correction};effective_counted=${tender.effectiveCounted}`
+            : "")
       })
     );
   }
@@ -125,16 +135,15 @@ export function serializeCashUpCsv(report: RegisterCashUpReport): string {
     lines.push(
       line({
         section: "movement",
-        key: csvCell(movement.movementType),
+        key: movement.movementType,
         tender: "cash",
-        amount: csvNumber(
-          movement.direction === "out" ? `-${movement.amount}` : movement.amount
-        ),
-        at: csvCell(movement.createdAt),
-        actor: csvCell(movement.actorTenantUserId),
-        text: csvCell(
-          [movement.reference, movement.note].filter(Boolean).join(" | ")
-        )
+        amount:
+          movement.direction === "out"
+            ? `-${movement.amount}`
+            : movement.amount,
+        at: movement.createdAt,
+        actor: movement.actorTenantUserId,
+        text: [movement.reference, movement.note].filter(Boolean).join(" | ")
       })
     );
   }
@@ -143,12 +152,12 @@ export function serializeCashUpCsv(report: RegisterCashUpReport): string {
     lines.push(
       line({
         section: "correction",
-        key: csvCell(correction.correctionId),
-        tender: csvCell(correction.tenderType),
-        amount: csvNumber(correction.adjustment),
-        at: csvCell(correction.createdAt),
-        actor: csvCell(correction.actorTenantUserId),
-        text: csvCell(correction.reason)
+        key: correction.correctionId,
+        tender: correction.tenderType,
+        amount: correction.adjustment,
+        at: correction.createdAt,
+        actor: correction.actorTenantUserId,
+        text: correction.reason
       })
     );
   }

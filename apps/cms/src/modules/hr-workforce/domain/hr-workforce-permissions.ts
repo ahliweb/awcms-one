@@ -8,7 +8,7 @@
  * `moduleKey`, `activityCode` and `action` together as string literals in one
  * object.
  *
- * `delete`, `restore`, `assign`, `configure`, `publish` and `cancel` are HIGH-RISK actions
+ * `delete`, `restore`, `assign`, `configure`, `publish`, `cancel` and `approve` are HIGH-RISK actions
  * (`identity-access/domain/access-control.ts`).
  */
 export const HR_WORKFORCE_MODULE_KEY = "hr_workforce";
@@ -88,6 +88,80 @@ export const HR_WORKFORCE_GUARDS = {
       moduleKey: "hr_workforce",
       activityCode: "templates",
       action: "delete" as const
+    }
+  },
+  clock: {
+    create: {
+      moduleKey: "hr_workforce",
+      activityCode: "clock",
+      action: "create" as const
+    }
+  },
+  attendance: {
+    read: {
+      moduleKey: "hr_workforce",
+      activityCode: "attendance",
+      action: "read" as const
+    },
+    create: {
+      moduleKey: "hr_workforce",
+      activityCode: "attendance",
+      action: "create" as const
+    }
+  },
+  corrections: {
+    read: {
+      moduleKey: "hr_workforce",
+      activityCode: "corrections",
+      action: "read" as const
+    },
+    create: {
+      moduleKey: "hr_workforce",
+      activityCode: "corrections",
+      action: "create" as const
+    },
+    cancel: {
+      moduleKey: "hr_workforce",
+      activityCode: "corrections",
+      action: "cancel" as const
+    },
+    approve: {
+      moduleKey: "hr_workforce",
+      activityCode: "corrections",
+      action: "approve" as const
+    }
+  },
+  workforceMetrics: {
+    read: {
+      moduleKey: "hr_workforce",
+      activityCode: "workforce_metrics",
+      action: "read" as const
+    },
+    analyze: {
+      moduleKey: "hr_workforce",
+      activityCode: "workforce_metrics",
+      action: "analyze" as const
+    }
+  },
+  attendanceEvidence: {
+    read: {
+      moduleKey: "hr_workforce",
+      activityCode: "attendance_evidence",
+      action: "read" as const
+    }
+  },
+  geolocationEvidence: {
+    configure: {
+      moduleKey: "hr_workforce",
+      activityCode: "geolocation_evidence",
+      action: "configure" as const
+    }
+  },
+  selfService: {
+    read: {
+      moduleKey: "hr_workforce",
+      activityCode: "self_service",
+      action: "read" as const
     }
   },
   settings: {

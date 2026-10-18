@@ -120,6 +120,7 @@ async function loadFragment(fileName: string): Promise<AnyRecord> {
 }
 
 describe("openapi bundle — fragment resolver", () => {
+  // Whole-repo scan: regenerates the full bundle; exceeds the 5 s default under load.
   test("merges every fragment's paths and schemas into the bundle (nothing lost)", async () => {
     const bundle = (await buildBundledDocument(ROOT)) as AnyRecord;
     const bundlePaths = new Set(Object.keys(bundle.paths as AnyRecord));
@@ -141,8 +142,9 @@ describe("openapi bundle — fragment resolver", () => {
         expect(bundleSchemas.has(schemaName)).toBe(true);
       }
     }
-  });
+  }, 60_000);
 
+  // Whole-repo scan: regenerates the full bundle; exceeds the 5 s default under load.
   test("bundle keys are alphabetically sorted (deterministic ordering)", async () => {
     const bundle = (await buildBundledDocument(ROOT)) as AnyRecord;
     const pathKeys = Object.keys(bundle.paths as AnyRecord);
@@ -153,17 +155,16 @@ describe("openapi bundle — fragment resolver", () => {
     expect(schemaKeys).toEqual(
       [...schemaKeys].sort((a, b) => a.localeCompare(b))
     );
-  });
+  }, 60_000);
 
-  // awcms-one divergence (#319): two full bundles of the merged document (upstream's
-  // modules plus `commerce`, ~1.7 MB) take ~10 s on a loaded runner, past bun's 5 s
-  // default; the explicit timeout is the only change.
+  // Whole-repo scan: bundles the full spec twice; exceeds the 5 s default under load.
   test("bundling twice produces byte-identical output (idempotent)", async () => {
     const first = await bundleOpenApi(ROOT);
     const second = await bundleOpenApi(ROOT);
     expect(second).toBe(first);
   }, 60_000);
 
+  // Whole-repo scan: regenerates the full bundle; exceeds the 5 s default under load.
   test("committed bundle matches freshly generated bundle (not hand-edited/stale)", async () => {
     const committed = await readFile(
       path.join(ROOT, "openapi/awcms-public-api.openapi.yaml"),
@@ -171,7 +172,7 @@ describe("openapi bundle — fragment resolver", () => {
     );
     const fresh = await bundleOpenApi(ROOT);
     expect(fresh).toBe(committed);
-  });
+  }, 60_000);
 });
 
 describe("openapi bundle — merge conflict detection", () => {
@@ -258,6 +259,7 @@ describe("openapi bundle — truncated scalar detection (Issue #786)", () => {
     ).rejects.toThrow(/genuinely IS an unrelated comment/);
   });
 
+  // Whole-repo scan: regenerates the full bundle; exceeds the 5 s default under load.
   test("the same prose, correctly double-quoted, does not false-positive", async () => {
     const quoted = path.join(
       ROOT,
@@ -272,7 +274,7 @@ describe("openapi bundle — truncated scalar detection (Issue #786)", () => {
     expect(operation.summary).toBe(
       "Fixture endpoint mentioning Issue #999 with the scalar correctly quoted."
     );
-  });
+  }, 60_000);
 
   test("every real fragment currently in the repo is free of this truncation shape", async () => {
     // Regression guard for the specific pre-existing instances Issue #786
@@ -281,7 +283,7 @@ describe("openapi bundle — truncated scalar detection (Issue #786)", () => {
     // failed before they were quoted, and fails again if a future fragment
     // edit reintroduces the shape anywhere in the real fragment set.
     await expect(buildBundledDocument(ROOT)).resolves.toBeTruthy();
-  });
+  }, 60_000);
 });
 
 describe("openapi bundle — contract equivalence to pre-migration monolith", () => {
@@ -364,6 +366,14 @@ describe("openapi bundle — contract equivalence to pre-migration monolith", ()
         "#186 optional turnstileToken (backward-compatible)",
       "/api/v1/setup/initialize":
         "#186 optional turnstileToken (backward-compatible)",
+      // #1004 adds an OPTIONAL `currentPassword` body and 400/429 responses to
+      // the TOTP enrolment start; the operation description is untouched.
+      // #1004 follow-up: enroll/verify gains a 429 (rate limit / pending secret
+      // destroyed after five wrong codes).
+      "/api/v1/auth/mfa/totp/enroll/verify":
+        "#1004 added 429 response (backward-compatible)",
+      "/api/v1/auth/mfa/totp/enroll/start":
+        "#1004 optional currentPassword body + 400/429 (backward-compatible for the grant path; a session start now needs the password)",
       // The one entry here that is NOT backward-compatible, and is listed as
       // such on purpose. `events` gains `maxItems: 500` — a document-additive
       // change (no field removed, no type changed, so `isAdditiveSuperset`
@@ -537,6 +547,13 @@ describe("openapi bundle — contract equivalence to pre-migration monolith", ()
       // jurisdiction-neutral calculator (quote, snapshot, reversal), rule-version
       // authoring and the reconciliation report. Nothing here is anonymous.
       "Tax",
+      // "Telegram Delivery" (telegram_delivery, ADR-0140, Issue #965) — genuinely
+      // new surface: self-service chat linking and confirmation, queue
+      // diagnostics, templates and the tenant switch. The ONE anonymous
+      // operation is the bot webhook (`receiveTelegramWebhook`), authenticated
+      // by its secret header and individually justified in
+      // ALLOWED_PUBLIC_OPERATIONS.
+      "Telegram Delivery",
       "Tenant Domains",
       "Theming",
       "Visitor Analytics",

@@ -11,7 +11,8 @@ import {
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../../../../../modules/_shared/idempotency";
 import { COMMERCE_PRODUCTS_ACTIVITY_CODE } from "../../../../../../modules/commerce/domain/commerce-permissions";
 import {
@@ -94,7 +95,8 @@ export const PUT = defineTenantRoute<PutPrepared>({
       tx,
       tenantId,
       "commerce_product_protected_media_set",
-      prepared.idempotencyKey
+      prepared.idempotencyKey,
+      userIdempotencyActor(auth.context.tenantUserId)
     );
 
     if (existing) {
@@ -145,6 +147,7 @@ export const PUT = defineTenantRoute<PutPrepared>({
       tenantId,
       "commerce_product_protected_media_set",
       prepared.idempotencyKey,
+      userIdempotencyActor(auth.context.tenantUserId),
       requestHash,
       200,
       body
@@ -189,7 +192,8 @@ export const DELETE = defineTenantRoute<DeletePrepared>({
       tx,
       tenantId,
       "commerce_product_protected_media_clear",
-      prepared.idempotencyKey
+      prepared.idempotencyKey,
+      userIdempotencyActor(auth.context.tenantUserId)
     );
 
     if (existing) {
@@ -221,6 +225,7 @@ export const DELETE = defineTenantRoute<DeletePrepared>({
       tenantId,
       "commerce_product_protected_media_clear",
       prepared.idempotencyKey,
+      userIdempotencyActor(auth.context.tenantUserId),
       requestHash,
       200,
       body

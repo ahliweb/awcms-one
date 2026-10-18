@@ -46,8 +46,11 @@ import {
 import type {
   CommissionAccrualOutcome,
   CommissionAccrualRecord,
-  CommissionAccrualRequest
+  CommissionAccrualRequest,
+  CommissionVoidOutcome,
+  CommissionVoidRequest
 } from "../../_shared/ports/commission-accrual-port";
+import { appendDomainEvent } from "../../domain-event-runtime/application/append-domain-event";
 import { recordAuditEvent } from "../../logging/application/audit-log";
 import {
   ACCRUAL_ACTION_TARGET,
@@ -60,8 +63,14 @@ import {
 } from "../domain/hr-commission-accrual-state";
 import {
   accrualRequestDigest,
-  validateAccrualRequest
+  validateAccrualRequest,
+  validateVoidRequest
 } from "../domain/hr-commission-accrual-validation";
+import {
+  HR_COMMISSION_ACCRUAL_AGGREGATE_TYPE,
+  HR_COMMISSION_ACCRUAL_VOIDED_EVENT_TYPE,
+  HR_COMMISSION_EVENT_VERSION
+} from "../domain/hr-commission-events";
 import { type RoundingMode } from "../domain/hr-commission-decimal";
 import {
   CommissionEvaluationError,
@@ -297,6 +306,170 @@ export async function getAccrual(
       fromStatus: row.from_status,
       toStatus: row.to_status,
       actorTenantUserId: row.actor_tenant_user_id,
+      reasonCode: row.reason_code,
+      occurredAt: iso(row.occurred_at)
+    }))
+  };
+}
+
+// --- Self-service reads (Issue #952) --------------------------------------------
+
+/**
+ * What an employee sees of their OWN accrual: the earning and how it was
+ * computed, never the approver or payer (no actor stamps), the payment
+ * reference or the rule row id. A subset of {@link CommissionAccrual}, built
+ * field by field so a column added to the ledger later does not reach an
+ * employee by default.
+ */
+export type OwnCommissionAccrual = Pick<
+  CommissionAccrual,
+  | "id"
+  | "status"
+  | "amount"
+  | "currencyCode"
+  | "ruleKey"
+  | "ruleVersion"
+  | "sourceType"
+  | "sourceRef"
+  | "calculation"
+  | "baseAmount"
+  | "units"
+  | "rate"
+  | "fixedAmount"
+  | "occurredOn"
+  | "createdAt"
+  | "approvedAt"
+  | "releasedAt"
+  | "paidAt"
+  | "voidedAt"
+  | "voidReasonCode"
+>;
+
+export type OwnCommissionTransition = Pick<
+  CommissionTransition,
+  "seq" | "fromStatus" | "toStatus" | "reasonCode" | "occurredAt"
+>;
+
+function toOwn(accrual: CommissionAccrual): OwnCommissionAccrual {
+  return {
+    id: accrual.id,
+    status: accrual.status,
+    amount: accrual.amount,
+    currencyCode: accrual.currencyCode,
+    ruleKey: accrual.ruleKey,
+    ruleVersion: accrual.ruleVersion,
+    sourceType: accrual.sourceType,
+    sourceRef: accrual.sourceRef,
+    calculation: accrual.calculation,
+    baseAmount: accrual.baseAmount,
+    units: accrual.units,
+    rate: accrual.rate,
+    fixedAmount: accrual.fixedAmount,
+    occurredOn: accrual.occurredOn,
+    createdAt: accrual.createdAt,
+    approvedAt: accrual.approvedAt,
+    releasedAt: accrual.releasedAt,
+    paidAt: accrual.paidAt,
+    voidedAt: accrual.voidedAt,
+    voidReasonCode: accrual.voidReasonCode
+  };
+}
+
+/**
+ * The caller's OWN accruals, newest first, keyset paginated. The ownership is
+ * the persisted login link on a live employment (`tenant_user_id`), joined here
+ * in the query: there is no way to ask for another person's rows, so there is no
+ * id to be refused.
+ */
+export async function listOwnAccruals(
+  tx: Bun.SQL,
+  tenantId: string,
+  tenantUserId: string,
+  filters: { status?: AccrualStatus },
+  cursor?: KeysetCursor
+): Promise<{ accruals: OwnCommissionAccrual[]; nextCursor: string | null }> {
+  const status = filters.status ?? null;
+  const cursorCreatedAt = cursor ? cursor.createdAt : null;
+  const cursorId = cursor ? cursor.id : null;
+
+  const rows = (await tx`
+    SELECT ${tx.unsafe(ACCRUAL_SELECT)},
+           ${tx.unsafe(keysetCursorCreatedAtSql("a"))} AS created_at_cursor
+    FROM awcms_hr_commission_accruals a
+    WHERE a.tenant_id = ${tenantId}
+      AND a.employment_id IN (
+        SELECT e.id FROM awcms_hr_employments e
+        WHERE e.tenant_id = ${tenantId}
+          AND e.tenant_user_id = ${tenantUserId} AND e.deleted_at IS NULL
+      )
+      AND (${status}::text IS NULL OR a.status = ${status}::text)
+      AND (
+        ${cursorCreatedAt}::timestamptz IS NULL
+        OR (a.created_at, a.id) < (${cursorCreatedAt}::timestamptz, ${cursorId}::uuid)
+      )
+    ORDER BY a.created_at DESC, a.id DESC
+    LIMIT ${ACCRUAL_PAGE_SIZE}
+  `) as (AccrualRow & { created_at_cursor: string })[];
+
+  const last = rows[rows.length - 1];
+
+  return {
+    accruals: rows.map((row) => toOwn(mapAccrual(row))),
+    nextCursor:
+      rows.length === ACCRUAL_PAGE_SIZE && last
+        ? encodeKeysetCursor(last.created_at_cursor, last.id)
+        : null
+  };
+}
+
+/**
+ * One of the caller's OWN accruals with its transition history, or `null` when
+ * it does not exist OR belongs to somebody else: both answer 404 at the route,
+ * so the answer is not an existence oracle for another person's earnings.
+ */
+export async function getOwnAccrual(
+  tx: Bun.SQL,
+  tenantId: string,
+  tenantUserId: string,
+  id: string
+): Promise<{
+  accrual: OwnCommissionAccrual;
+  transitions: OwnCommissionTransition[];
+} | null> {
+  const rows = (await tx`
+    SELECT ${tx.unsafe(ACCRUAL_SELECT)}
+    FROM awcms_hr_commission_accruals a
+    WHERE a.tenant_id = ${tenantId} AND a.id = ${id}
+      AND a.employment_id IN (
+        SELECT e.id FROM awcms_hr_employments e
+        WHERE e.tenant_id = ${tenantId}
+          AND e.tenant_user_id = ${tenantUserId} AND e.deleted_at IS NULL
+      )
+  `) as AccrualRow[];
+
+  if (!rows[0]) {
+    return null;
+  }
+
+  const transitions = (await tx`
+    SELECT seq::int AS seq, from_status, to_status, reason_code, occurred_at
+    FROM awcms_hr_commission_transitions
+    WHERE tenant_id = ${tenantId} AND accrual_id = ${id}
+    ORDER BY seq
+  `) as {
+    seq: number;
+    from_status: AccrualStatus | null;
+    to_status: AccrualStatus;
+    reason_code: string | null;
+    occurred_at: Date | string;
+  }[];
+
+  return {
+    accrual: toOwn(mapAccrual(rows[0])),
+    transitions: transitions.map((row) => ({
+      seq: Number(row.seq),
+      fromStatus: row.from_status,
+      toStatus: row.to_status,
       reasonCode: row.reason_code,
       occurredAt: iso(row.occurred_at)
     }))
@@ -588,7 +761,7 @@ export async function transitionAccrual(
 
   const locked = (await tx`
     SELECT status, employment_id, rule_key, rule_version::int AS rule_version,
-           created_by, approved_by
+           source_type, created_by, approved_by, beneficiary_tenant_user_id
     FROM awcms_hr_commission_accruals
     WHERE tenant_id = ${tenantId} AND id = ${id}
     FOR UPDATE
@@ -597,8 +770,10 @@ export async function transitionAccrual(
     employment_id: string;
     created_by: string | null;
     approved_by: string | null;
+    beneficiary_tenant_user_id: string | null;
     rule_key: string;
     rule_version: number;
+    source_type: string;
   }[];
 
   const row = locked[0];
@@ -626,6 +801,7 @@ export async function transitionAccrual(
     `) as { tenant_user_id: string | null }[];
     const kind = sodViolation(action, userId, {
       beneficiaryUserId: beneficiary[0]?.tenant_user_id ?? null,
+      snapshotBeneficiaryUserId: row.beneficiary_tenant_user_id,
       createdBy: row.created_by,
       approvedBy: row.approved_by
     });
@@ -687,9 +863,124 @@ export async function transitionAccrual(
     correlationId: actor.correlationId
   });
 
+  if (action === "void") {
+    // Same transaction as the status edge: a rolled-back void publishes nothing,
+    // and a refused or replayed one never reaches here. Ids, the source TYPE and
+    // codes only (hr-payroll.md section 10): no amount, no source reference.
+    await appendDomainEvent(tx, tenantId, {
+      eventType: HR_COMMISSION_ACCRUAL_VOIDED_EVENT_TYPE,
+      eventVersion: HR_COMMISSION_EVENT_VERSION,
+      aggregateType: HR_COMMISSION_ACCRUAL_AGGREGATE_TYPE,
+      aggregateId: id,
+      correlationId: actor.correlationId ?? null,
+      producerModule: HR_COMMISSION_MODULE_KEY,
+      actorTenantUserId: userId,
+      payload: {
+        accrualId: id,
+        employmentId: row.employment_id,
+        sourceType: row.source_type,
+        ruleKey: row.rule_key,
+        ruleVersion: Number(row.rule_version),
+        fromStatus: row.status,
+        reasonCode: extras.reasonCode ?? null
+      }
+    });
+  }
+
   const fetched = await getAccrual(tx, tenantId, id);
 
   return { outcome: "ok", accrual: fetched!.accrual };
+}
+
+/**
+ * `CommissionAccrualPort.void` (Issue #1109): reverse the accrual posted for a
+ * source identity and employment, exactly once. The accrual is located by the
+ * ledger's own unique key and LOCKED `FOR UPDATE`, so two racing voids (or a void
+ * racing an approve / release) serialise on the row: the loser re-reads the
+ * winner's status and answers from it. A `pending` or `approved` accrual goes
+ * through `transitionAccrual` (the one write path of the HTTP void route: the
+ * audit row, the `voided` event, the lifecycle CHECK and the append-only
+ * transition log the database writes). `payable` and `paid` are refused as
+ * `period_closed` and nothing is written (see the port header for why).
+ */
+export async function voidCommissionBySource(
+  tx: Bun.SQL,
+  tenantId: string,
+  actorTenantUserId: string | null,
+  rawRequest: CommissionVoidRequest
+): Promise<CommissionVoidOutcome> {
+  const validation = validateVoidRequest(rawRequest);
+
+  if (!validation.valid) {
+    return {
+      outcome: "input_invalid",
+      message: validation.errors
+        .map((error) => `${error.field}: ${error.message}`)
+        .join("; ")
+    };
+  }
+
+  if (actorTenantUserId === null) {
+    return { outcome: "actor_required" };
+  }
+
+  const request = validation.value;
+  const found = (await tx`
+    SELECT id, status
+    FROM awcms_hr_commission_accruals
+    WHERE tenant_id = ${tenantId}
+      AND source_type = ${request.source.type}
+      AND source_ref = ${request.source.ref}
+      AND source_line = ${request.source.line ?? ""}
+      AND employment_id = ${request.employmentId.toLowerCase()}::uuid
+      AND operation = 'accrue'
+    FOR UPDATE
+  `) as { id: string; status: AccrualStatus }[];
+  const row = found[0];
+
+  if (!row) {
+    return { outcome: "not_found" };
+  }
+
+  const record = async (): Promise<CommissionAccrualRecord> => {
+    const fetched = await getAccrual(tx, tenantId, row.id);
+
+    return toRecord(fetched!.accrual);
+  };
+
+  if (row.status === "voided") {
+    return { outcome: "already_voided", accrual: await record() };
+  }
+
+  if (row.status === "payable" || row.status === "paid") {
+    return {
+      outcome: "period_closed",
+      accrualId: row.id,
+      status: row.status
+    };
+  }
+
+  const result = await transitionAccrual(
+    tx,
+    tenantId,
+    row.id,
+    "void",
+    {
+      actorTenantUserId,
+      correlationId: request.correlationId
+    },
+    { reasonCode: request.reason }
+  );
+
+  if (result.outcome !== "ok") {
+    // The row is locked by this transaction, so no other writer can have moved
+    // it since the read above: anything but `ok` is a defect, not a refusal.
+    throw new Error(
+      `commission void of a locked ${row.status} accrual was refused (${result.outcome})`
+    );
+  }
+
+  return { outcome: "voided", accrual: toRecord(result.accrual) };
 }
 
 // --- Reconciliation -----------------------------------------------------------

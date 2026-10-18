@@ -140,7 +140,7 @@ export async function fetchVoucherById(
 }
 
 export async function createVoucher(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   input: CreateVoucherInput,
@@ -149,7 +149,9 @@ export async function createVoucher(
   let rows: VoucherRow[];
 
   try {
-    rows = (await tx`
+    rows = (await tx.savepoint(
+      async (sp) =>
+        await sp`
       INSERT INTO awcms_commerce_vouchers (
         tenant_id, code, name, description, type, value, min_order, max_discount,
         quota, is_public, starts_at, ends_at
@@ -159,8 +161,9 @@ export async function createVoucher(
         ${input.value}, ${input.minOrder}, ${input.maxDiscount},
         ${input.quota}, ${input.isPublic}, ${input.startsAt}, ${input.endsAt}
       )
-      RETURNING ${tx.unsafe(VOUCHER_COLUMNS)}
-    `) as VoucherRow[];
+      RETURNING ${sp.unsafe(VOUCHER_COLUMNS)}
+    `
+    )) as VoucherRow[];
   } catch (error) {
     if (
       error instanceof Bun.SQL.PostgresError &&
@@ -190,7 +193,7 @@ export async function createVoucher(
 }
 
 export async function updateVoucher(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   voucherId: string,
@@ -203,7 +206,9 @@ export async function updateVoucher(
   let rows: VoucherRow[];
 
   try {
-    rows = (await tx`
+    rows = (await tx.savepoint(
+      async (sp) =>
+        await sp`
       UPDATE awcms_commerce_vouchers
       SET
         code = ${input.code ?? existing.code},
@@ -220,8 +225,9 @@ export async function updateVoucher(
         ends_at = ${input.endsAt ?? new Date(existing.endsAt)},
         updated_at = now()
       WHERE tenant_id = ${tenantId} AND id = ${voucherId} AND deleted_at IS NULL
-      RETURNING ${tx.unsafe(VOUCHER_COLUMNS)}
-    `) as VoucherRow[];
+      RETURNING ${sp.unsafe(VOUCHER_COLUMNS)}
+    `
+    )) as VoucherRow[];
   } catch (error) {
     if (
       error instanceof Bun.SQL.PostgresError &&

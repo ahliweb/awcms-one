@@ -55,7 +55,8 @@ import { appendDomainEvent } from "../../domain-event-runtime/application/append
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../_shared/idempotency";
 import { enqueueDirectAddressEmail } from "../../email/application/direct-address-notification";
 import {
@@ -596,7 +597,8 @@ export async function requestDocumentDelivery(
     tx,
     tenantId,
     DELIVERY_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(context.actorTenantUserId)
   );
   if (stored) {
     if (stored.requestHash !== requestHash) {
@@ -803,6 +805,7 @@ export async function requestDocumentDelivery(
     tenantId,
     DELIVERY_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(context.actorTenantUserId),
     requestHash,
     201,
     delivery

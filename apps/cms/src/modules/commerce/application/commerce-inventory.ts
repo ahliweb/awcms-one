@@ -83,13 +83,15 @@ export type InventoryConfig =
  * `defineTenantRoute` commits a normal return, and nothing is left to commit.
  */
 export async function withInventorySavepoint<T>(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   config: InventoryConfig,
-  work: (db: Bun.SQL) => Promise<T>
+  work: (db: Bun.TransactionSQL) => Promise<T>
 ): Promise<T> {
   if (config.mode === "counter") return work(tx);
 
-  return (tx as Bun.TransactionSQL).savepoint((sp) => work(sp));
+  // `sp` is a savepoint handle: it accepts everything a transaction handle does,
+  // including a nested `.savepoint(...)`.
+  return tx.savepoint((sp) => work(sp as Bun.TransactionSQL));
 }
 
 /** The in-process `InventoryLedgerPort`, resolved at call time (see the header). */

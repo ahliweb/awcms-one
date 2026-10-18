@@ -9,18 +9,53 @@
  * constraints on `awcms_booking_resource_allocations`, `sql/180`), a reservation
  * state machine enforced by trigger, and an append-only transition history.
  *
- * ## This is the FOUNDATION slice only
+ * ## What exists, and what does not (slices #937 to #941)
  *
- * What exists: the descriptor, the schema (`sql/180`), the permission catalogue
- * (`sql/181`), the PURE reservation state machine
+ * What exists: the descriptor, the schema (`sql/180`, `sql/186`, `sql/204`), the
+ * permission catalogue (`sql/181`), the PURE reservation state machine
  * (`domain/booking-reservation-state.ts`), the guard literals and the audit
- * event names. What does NOT exist yet, deliberately: the allocator, availability
- * search, any HTTP route, OpenAPI path, AsyncAPI channel, admin screen or
- * reporting projection (Issues #938 to #941). The module therefore ships
- * `experimental`, declares no `navigation`, and no route reaches its tables: it
- * is the "feature flag off" the issue asks for -- a status ADR-0021 allows
- * without an admin screen, and the one a later PR flips to `active` together
- * with its first screen.
+ * event names; the availability read and the schedule routes (Issue #938); the
+ * ALLOCATOR slice (Issue #939): `application/booking-allocator.ts` (units
+ * claimed all-or-none under the exclusion constraint), `booking-hold-expiry.ts`
+ * (lazy reclaim plus the reaper primitive), `booking-hold-service.ts`
+ * (`placeHold`, the claim a reservation route will call),
+ * `booking-reconciliation.ts` and the job `booking:holds:expire`; and the STAY
+ * slice (Issue #940, ADR-0135): stay claims through the same allocator and
+ * `placeHold` (`stay: { checkInDate, checkOutDate }`, `domain/booking-stay.ts`),
+ * and blocked nights as allocation rows owned by `resource_blocks`
+ * (`application/booking-block-service.ts`: `createBlock`, `releaseBlock`,
+ * `BLOCK_CONFLICT`) and, from Issue #1012, their routes (`POST/GET /blocks`,
+ * `GET /blocks/{id}`, `POST /blocks/{id}/release`, bound to `Idempotency-Key`,
+ * no event in v1); and the RESERVATION slice (Issue #941): the routes
+ * `POST/GET /reservations`, `GET /reservations/{id}` and the transitions
+ * `confirm`, `cancel`, `reschedule`, `check-in`, `check-out` and `no-show`
+ * (`application/booking-reservation-service.ts`), `Idempotency-Key` through the
+ * shared component, the `BookingPort` of cross-domain-contracts section 3
+ * (`application/booking-port-adapter.ts`), the nine reservation events on the
+ * live AsyncAPI document, and a safe DEFAULT for the hold caps; the report routes
+ * and projections (Issue #944); and the ADMIN CONFIGURATION routes (Issue #1030:
+ * `resources` with their units and pool membership, `resource-pools`, `offerings`
+ * and `policy`, `application/booking-*-admin.ts`), the reads and writes the admin
+ * screens are built on. What does NOT exist yet, deliberately: the reconciliation
+ * route.
+ *
+ * ## The admin screens (Issue #942) and the status
+ *
+ * The screens exist: `/admin/booking/{reservations,resources,offerings,schedules,
+ * blocks,policy}` plus the reservation detail, a view of the list page (`/admin/booking/reservations?id=`),
+ * each a `navigation` entry whose `requiredPermission` is seeded (`sql/181`) and
+ * enforced by the route the page drives. ADR-0021 criterion 1 (every ACTIVE module
+ * declares a screen) is therefore met and the module is `active`: it was
+ * `experimental` only because it had none.
+ *
+ * ## Reminders (Issue #943)
+ *
+ * Confirmation and reminder INTENTS (`awcms_booking_reminder_intents`, once per
+ * reservation, kind and occurrence) are created and handed to the one WhatsApp
+ * queue through the `WhatsappDeliveryPort` by the job `booking:reminders:
+ * dispatch`; nothing on the reservation path changes. Booking holds no contact:
+ * a `BookingReminderRecipientPort` the deployment registers resolves the opaque
+ * customer reference, and without one the job is inert (booking.md section 7.5).
  *
  * ## No money, no product, no customer name
  *
@@ -41,7 +76,13 @@ import {
   type HighVolumeTableDescriptor,
   type SubjectDataDescriptor
 } from "../_shared/module-contract";
+import type { BookingPort } from "../_shared/ports/booking-port";
+import { createBookingPort } from "./application/booking-port-adapter";
+import { resolveStaffAvailability } from "./application/booking-staff-availability-consumer";
+import type { StaffAvailabilityPort } from "../_shared/ports/staff-availability-port";
 import { BOOKING_MODULE_KEY } from "./domain/booking-permissions";
+import { BOOKING_REPORTING_PROJECTIONS } from "./domain/booking-reporting";
+import { BOOKING_EVENT_TYPES } from "./domain/booking-reservation-events";
 
 /**
  * A `delegated` descriptor for a table nothing purges, so each table answers the
@@ -126,22 +167,117 @@ function stamps(input: {
   };
 }
 
+/**
+ * The ONE place booking reaches the `hr_workforce` adapter of the
+ * `staff_availability` capability (ADR-0011): a lazy import, resolved at the
+ * composition roots (the availability, create and reschedule routes) and handed
+ * to `resolveStaffAvailability`, which decides whether the tenant has the
+ * provider on. `application/**` never imports it.
+ */
+export async function loadStaffAvailabilityPort(): Promise<StaffAvailabilityPort> {
+  const { staffAvailabilityAdapter } =
+    await import("../hr-workforce/application/staff-availability-adapter");
+
+  return staffAvailabilityAdapter;
+}
+
+/**
+ * The BookingPort a downstream adapter (commerce, a channel) is handed: the staff
+ * constraint is resolved per tenant exactly as the routes do, through the loader
+ * above, so a port reservation cannot double-book a person (Issue #949).
+ */
+export function createComposedBookingPort(): BookingPort {
+  return createBookingPort((tx, tenantId) =>
+    resolveStaffAvailability(tx, tenantId, loadStaffAvailabilityPort)
+  );
+}
+
 export const bookingModule = defineModule({
   key: BOOKING_MODULE_KEY,
   name: "Booking",
-  version: "0.1.0",
-  // `experimental` is the feature flag: the module has no admin screen until
-  // Issues #939 to #941 (Issue #938 added the availability read and the schedule
-  // routes), and ADR-0021's "every ACTIVE module declares a screen" would be
-  // false the other way round.
-  status: "experimental",
+  version: "0.3.0",
+  // `active` since Issue #942: the module was `experimental` while it had no
+  // admin screen (ADR-0021 criterion 1: every ACTIVE module declares one), and it
+  // now declares six.
+  status: "active",
   description:
-    "Generic resources, capacity units, schedules and reservations (Issue #937, ADR-0131, ADR-0135) for anything that rents out time, space or capacity, including nightly stays. Foundation slice: the schema with RLS FORCE and composite tenant foreign keys, two exclusion constraints that make double-booking unrepresentable, a reservation state machine enforced by trigger, an append-only transition history, the permission catalogue and the pure state-machine function. Availability slice (Issue #938): schedules, closures and exceptions, pure slot and stay availability with explicit timezone and interval semantics, blocked nights, and the tenant-scoped availability read. No allocator yet. Holds no price, payment state, product id or customer name.",
-  dependencies: ["tenant_admin", "identity_access", "logging"],
+    "Generic resources, capacity units, schedules and reservations (Issue #937, ADR-0131, ADR-0135) for anything that rents out time, space or capacity, including nightly stays. Foundation slice: the schema with RLS FORCE and composite tenant foreign keys, two exclusion constraints that make double-booking unrepresentable, a reservation state machine enforced by trigger, an append-only transition history, the permission catalogue and the pure state-machine function. Availability slice (Issue #938): schedules, closures and exceptions, pure slot and stay availability with explicit timezone and interval semantics, blocked nights, and the tenant-scoped availability read. Allocator slice (Issue #939): the slot allocator that wins capacity units all-or-none under the exclusion constraint, holds with expiry (lazy reclaim at write time plus the observable `booking:holds:expire` reaper, correctness independent of it), the claim service `placeHold`, and a read-only reconciliation. Reservation slice (Issue #941): create-hold, confirm, cancel, reschedule with lineage, check-in, check-out and staff-only no-show, each idempotent, audited and published as one of nine domain events in the same transaction; the BookingPort; safe default hold caps. Holds no price, payment state, product id or customer name. Admin configuration slice (Issue #1030): resources with units and pools, offerings and the tenant policy as routes. Operator surface (Issue #942): /admin/booking/{reservations,resources,offerings,schedules,blocks,policy}.",
+  dependencies: [
+    "tenant_admin",
+    "identity_access",
+    "logging",
+    "domain_event_runtime"
+  ],
+  capabilities: {
+    provides: ["booking"],
+    // Issue #943: reminders and confirmations are handed to the one WhatsApp
+    // queue through its port (ADR-0133). Optional: with the capability absent or
+    // switched off the intents stay pending and booking itself is unaffected.
+    consumes: [
+      {
+        capability: "whatsapp_delivery",
+        providedBy: "whatsapp_delivery",
+        optional: true
+      },
+      // Issue #949: a resource that names the people who serve it is narrowed by
+      // the workforce port (`StaffAvailabilityPort`, `_shared/ports`). A soft
+      // edge, NOT a `dependencies` entry: with `hr_workforce` off, or absent,
+      // booking applies no staff constraint at all. The adapter is imported
+      // lazily in `loadStaffAvailabilityPort` below, this file only (ADR-0011).
+      {
+        capability: "staff_availability",
+        providedBy: "hr_workforce",
+        optional: true
+      }
+    ]
+  },
+  events: {
+    asyncApiPath: "asyncapi/awcms-domain-events.asyncapi.yaml",
+    publishes: Object.values(BOOKING_EVENT_TYPES),
+    subscribes: []
+  },
   api: {
     openApiPath: "openapi/modules/booking.openapi.yaml",
     basePath: "/api/v1/booking"
   },
+  navigation: [
+    {
+      labelKey: "admin.layout.nav_booking_reservations",
+      path: "/admin/booking/reservations",
+      order: 30,
+      requiredPermission: "booking.reservations.read"
+    },
+    {
+      labelKey: "admin.layout.nav_booking_resources",
+      path: "/admin/booking/resources",
+      order: 31,
+      requiredPermission: "booking.resources.read"
+    },
+    {
+      labelKey: "admin.layout.nav_booking_offerings",
+      path: "/admin/booking/offerings",
+      order: 32,
+      requiredPermission: "booking.offerings.read"
+    },
+    {
+      labelKey: "admin.layout.nav_booking_schedules",
+      path: "/admin/booking/schedules",
+      order: 33,
+      requiredPermission: "booking.schedules.read"
+    },
+    {
+      labelKey: "admin.layout.nav_booking_blocks",
+      path: "/admin/booking/blocks",
+      order: 34,
+      requiredPermission: "booking.blocks.read"
+    },
+    {
+      labelKey: "admin.layout.nav_booking_policy",
+      path: "/admin/booking/policy",
+      order: 35,
+      requiredPermission: "booking.policy.read"
+    }
+  ],
   permissions: [
     {
       activityCode: "resources",
@@ -315,6 +451,42 @@ export const bookingModule = defineModule({
       description: "Read occupancy, utilization and reservation aggregates"
     }
   ],
+  jobs: [
+    {
+      command: "bun run booking:holds:expire",
+      schedule: {
+        mode: "cron",
+        expression: "* * * * *",
+        backlog: "bounded"
+      },
+      purpose:
+        "Expires booking holds whose lifetime has elapsed on the database clock (reservation `expired`, units released, `expired` history row, the `awcms.booking.reservation.expired` domain event per hold in the same transaction, one aggregate audit entry per tenant per pass). Housekeeping, not the gate: the allocator reclaims an elapsed hold on the units it claims, so a stopped sweep leaves stale `held` rows and never a double booking. Its lag is observable as `hold_overdue_unswept` in the booking reconciliation (booking.md section 7.1).",
+      recommendedSchedule: "Every minute via cron/systemd timer.",
+      environmentNotes:
+        "Database-only operation, no external network dependency. Runs as `awcms_worker` under a per-tenant context. The worker holds no privilege on the booking tables: the sweep goes through `awcms_booking_expire_due_holds` (sql/200, returning what it expired since sql/209 so the job can publish the event without reading the tables), a narrow SECURITY DEFINER function (the sql/142 pattern, ADR-0090) that can only expire an elapsed hold of the session's own tenant, and the `held -> expired` trigger refuses an expiry before the hold has elapsed. Bounded per-tenant passes in the maintenance work class; safe to run alongside request traffic (it never waits on a locked hold: SKIP LOCKED). `--dry-run` counts the elapsed holds per tenant.",
+      safeInOfflineLan: true
+    },
+    {
+      command: "bun run booking:reminders:dispatch",
+      schedule: {
+        mode: "cron",
+        expression: "* * * * *",
+        backlog: "bounded"
+      },
+      purpose:
+        "Creates the confirmation and reminder intents owed for CONFIRMED reservations (once per reservation, kind and occurrence) and hands each to the WhatsApp delivery queue through the `WhatsappDeliveryPort`; cancels the queued message of a reservation that was cancelled, expired, rescheduled or marked no-show; expires an intent whose reservation began. Database-only: `enqueue` is one INSERT, the provider is called by `whatsapp:dispatch` in another process. Inert (creates and sends nothing) until a deployment registers a `BookingReminderRecipientPort`, because booking holds only the opaque customer reference and never a contact. Consent, opt-out, templating and the provider are the delivery module's decisions (booking.md section 7.5).",
+      recommendedSchedule: "Every minute via cron/systemd timer.",
+      environmentNotes:
+        "Database-only operation, no external network dependency and no credential: booking holds none. Runs as `awcms_worker` under a per-tenant context. The worker holds no privilege on the reservation tables: it reads through three narrow SECURITY DEFINER functions (sql/285, the sql/200 pattern) and settles intents with UPDATE on `awcms_booking_reminder_intents` alone (sql/284). Bounded per-tenant passes in the maintenance work class; safe alongside request traffic (SKIP LOCKED; a reservation being cancelled is skipped). Whether WhatsApp is on is `WHATSAPP_ENABLED` (a disabled capability answers DISABLED and the intents wait). `--dry-run` counts the intents due now.",
+      safeInOfflineLan: true
+    }
+  ],
+  // Issue #944: three projections on the existing `reporting` engine (no second
+  // analytics engine). The trade-off for a table source over the live domain
+  // events is in `domain/booking-reporting.ts`. No `reporting` dependency is
+  // declared: the engine reads descriptors through `listModules()`, and a tenant
+  // without `reporting` simply never refreshes them.
+  reportingProjections: BOOKING_REPORTING_PROJECTIONS,
   dataLifecycle: [
     retained({
       key: "booking.settings",
@@ -430,6 +602,27 @@ export const bookingModule = defineModule({
         "Not performed. A released allocation is retained as history; awcms_app is denied DELETE and a trigger rejects it.",
       indexColumns: ["tenant_id", "item_id"],
       indexPurpose: "awcms_booking_resource_allocations_item_idx (sql/180)."
+    }),
+    retained({
+      key: "booking.staff_assignments",
+      tableName: "awcms_booking_staff_assignments",
+      retentionClass: "system_event",
+      why: "At most one row per claimed (item, resource) of a resource that names the people who serve it, so volume is bounded by reservations, not by traffic. Released rows are kept as the record of who was committed.",
+      deletionWhy:
+        "Not performed and not permitted: awcms_app is denied DELETE and a trigger rejects it. An assignment is released with its allocation, never removed.",
+      indexColumns: ["tenant_id", "item_id"],
+      indexPurpose: "awcms_booking_staff_assignments_item_idx (sql/305)."
+    }),
+    retained({
+      key: "booking.reminder_intents",
+      tableName: "awcms_booking_reminder_intents",
+      retentionClass: "system_event",
+      why: "At most two rows per reservation (one confirmation, one reminder, a unique key), so volume is bounded by reservations, not by traffic.",
+      deletionWhy:
+        "Not performed and not permitted: awcms_app is denied DELETE and a trigger rejects it. An intent is settled (enqueued, suppressed, refused, skipped, cancelled, expired), never removed; it is the record that a notice was or was not owed.",
+      indexColumns: ["tenant_id", "created_at"],
+      indexPurpose:
+        "awcms_booking_reminder_intents_unreconciled_idx (sql/284) leads with tenant_id and created_at; nothing scans this table by age otherwise."
     }),
     retained({
       key: "booking.reservation_events",

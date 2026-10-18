@@ -346,7 +346,7 @@ type CurrentBundleRow = {
  * before a bundle becomes standard, and `kind` is set before components exist.
  */
 export async function applyBundleDefinition(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   productId: string,
@@ -421,49 +421,51 @@ export async function applyBundleDefinition(
   if (unchanged) return;
 
   try {
-    // A bundle turned back into a standard product loses its components first.
-    if (wasBundle && write.kind === "standard") {
-      await tx`
-        UPDATE awcms_commerce_bundle_components
-        SET deleted_at = now(), updated_at = now()
-        WHERE tenant_id = ${tenantId} AND bundle_product_id = ${productId}
-          AND deleted_at IS NULL
-      `;
-    }
-
-    await tx`
-      UPDATE awcms_commerce_products
-      SET kind = ${write.kind},
-          bundle_pricing = ${write.kind === "bundle" ? write.pricing : "fixed"},
-          bundle_discount_percent = ${write.kind === "bundle" ? write.discountPercent : null},
-          stock = CASE WHEN ${write.kind === "bundle"}::boolean THEN 0 ELSE stock END,
-          updated_at = now()
-      WHERE tenant_id = ${tenantId} AND id = ${productId}
-    `;
-
-    if (write.kind === "bundle" && resolved !== undefined) {
-      await tx`
-        UPDATE awcms_commerce_bundle_components
-        SET deleted_at = now(), updated_at = now()
-        WHERE tenant_id = ${tenantId} AND bundle_product_id = ${productId}
-          AND deleted_at IS NULL
-      `;
-      for (const [index, component] of resolved.entries()) {
-        await tx`
-          INSERT INTO awcms_commerce_bundle_components (
-            tenant_id, bundle_product_id, position, component_product_id,
-            component_variant_id, quantity, actor_tenant_user_id
-          )
-          VALUES (
-            ${tenantId}, ${productId}, ${index + 1}, ${component.productId},
-            ${component.variantId}, ${component.quantity}, ${actorTenantUserId}
-          )
+    await tx.savepoint(async (sp) => {
+      // A bundle turned back into a standard product loses its components first.
+      if (wasBundle && write.kind === "standard") {
+        await sp`
+          UPDATE awcms_commerce_bundle_components
+          SET deleted_at = now(), updated_at = now()
+          WHERE tenant_id = ${tenantId} AND bundle_product_id = ${productId}
+            AND deleted_at IS NULL
         `;
       }
-    }
+
+      await sp`
+        UPDATE awcms_commerce_products
+        SET kind = ${write.kind},
+            bundle_pricing = ${write.kind === "bundle" ? write.pricing : "fixed"},
+            bundle_discount_percent = ${write.kind === "bundle" ? write.discountPercent : null},
+            stock = CASE WHEN ${write.kind === "bundle"}::boolean THEN 0 ELSE stock END,
+            updated_at = now()
+        WHERE tenant_id = ${tenantId} AND id = ${productId}
+      `;
+
+      if (write.kind === "bundle" && resolved !== undefined) {
+        await sp`
+          UPDATE awcms_commerce_bundle_components
+          SET deleted_at = now(), updated_at = now()
+          WHERE tenant_id = ${tenantId} AND bundle_product_id = ${productId}
+            AND deleted_at IS NULL
+        `;
+        for (const [index, component] of resolved.entries()) {
+          await sp`
+            INSERT INTO awcms_commerce_bundle_components (
+              tenant_id, bundle_product_id, position, component_product_id,
+              component_variant_id, quantity, actor_tenant_user_id
+            )
+            VALUES (
+              ${tenantId}, ${productId}, ${index + 1}, ${component.productId},
+              ${component.variantId}, ${component.quantity}, ${actorTenantUserId}
+            )
+          `;
+        }
+      }
+    });
   } catch (error) {
     // A trigger refusal (a racing nesting attempt, the 20-line cap) is a 400
-    // too; the statement aborted the transaction, so nothing partial commits.
+    // too; the savepoint rolls back every partial write and the transaction stays usable.
     if (
       error instanceof Bun.SQL.PostgresError &&
       String(error.errno) === "23514"

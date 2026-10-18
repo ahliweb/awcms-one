@@ -432,6 +432,126 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/booking/blocks/[id].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/booking/blocks/[id]/release.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/booking/blocks/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/booking/offerings/[id].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/booking/offerings/[id]/restore.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/booking/offerings/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/booking/policy.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/booking/reports/occupancy.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/booking/reports/reservations.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/booking/reports/utilization.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/booking/reservations/[id].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/booking/reservations/[id]/cancel.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/booking/reservations/[id]/check-in.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/booking/reservations/[id]/check-out.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/booking/reservations/[id]/confirm.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/booking/reservations/[id]/no-show.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/booking/reservations/[id]/reschedule.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/booking/reservations/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/booking/resource-pools/[id].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/booking/resource-pools/[id]/restore.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/booking/resource-pools/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/booking/resources/[id].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/booking/resources/[id]/restore.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/booking/resources/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/booking/schedule-exceptions/[id].ts",
       "workClass": "interactive",
       "source": "factory"
@@ -1427,6 +1547,16 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/hr-commission/my-accruals/[id].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/hr-commission/my-accruals/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/hr-commission/rules/[id].ts",
       "workClass": "interactive",
       "source": "factory"
@@ -1443,6 +1573,31 @@
     },
     {
       "path": "src/pages/api/v1/hr-commission/rules/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/hr-workforce/attendance-corrections/[id].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/hr-workforce/attendance-corrections/[id]/settle.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/hr-workforce/attendance-corrections/[id]/withdraw.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/hr-workforce/attendance-corrections/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/hr-workforce/attendance-events/index.ts",
       "workClass": "interactive",
       "source": "factory"
     },
@@ -1468,6 +1623,51 @@
     },
     {
       "path": "src/pages/api/v1/hr-workforce/employments/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/hr-workforce/geolocation/evidence.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/hr-workforce/geolocation/geofences/[id].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/hr-workforce/geolocation/geofences/[id]/restore.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/hr-workforce/geolocation/geofences/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/hr-workforce/geolocation/notice-acknowledgements.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/hr-workforce/geolocation/notice.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/hr-workforce/geolocation/notices.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/hr-workforce/geolocation/settings.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/hr-workforce/me.ts",
       "workClass": "interactive",
       "source": "factory"
     },
@@ -1498,6 +1698,16 @@
     },
     {
       "path": "src/pages/api/v1/hr-workforce/shift-templates/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/hr-workforce/workforce-metrics/employees.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/hr-workforce/workforce-metrics/groups.ts",
       "workClass": "interactive",
       "source": "factory"
     },
@@ -2462,6 +2672,56 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/telegram/bindings/[id]/revoke.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/telegram/bindings/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/telegram/bindings/me/confirm.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/telegram/bindings/me/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/telegram/bindings/me/reject.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/telegram/bindings/me/revoke.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/telegram/diagnostics.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/telegram/links.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/telegram/settings.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/telegram/templates.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/tenant/domains/[id].ts",
       "workClass": "interactive",
       "source": "default"
@@ -2744,6 +3004,18 @@
       "rationale": "Scheduled-publish dispatcher (blog:publish:scheduled) — recurring, not latency-sensitive, but more time-relevant than a maintenance purge."
     },
     {
+      "path": "scripts/booking-holds-expire.ts",
+      "workClass": "maintenance",
+      "source": "registry",
+      "rationale": "Scheduled hold-expiry sweep (booking:holds:expire, Issue #939, ADR-0131), every minute — housekeeping, not the gate: the allocator reclaims an elapsed hold on the units it claims, so a late pass costs stale `held` rows and never a double booking. The sweep runs through the narrow SECURITY DEFINER function awcms_booking_expire_due_holds (sql/200) and both its pass and its --dry-run count pass workClass: \"maintenance\" explicitly."
+    },
+    {
+      "path": "scripts/booking-reminders-dispatch.ts",
+      "workClass": "maintenance",
+      "source": "registry",
+      "rationale": "Scheduled reminder/confirmation dispatcher (booking:reminders:dispatch, Issue #943, ADR-0131/ADR-0133), every minute — database-only: each tenant pass reads through three narrow SECURITY DEFINER functions (sql/285), settles intents (sql/284) and writes the delivery module's queue row through its port (one INSERT; the provider is called by whatsapp:dispatch, another process). A late pass delays a notice by a minute and never touches a booking. Both its pass and its --dry-run count pass workClass: \"maintenance\" explicitly."
+    },
+    {
       "path": "scripts/comments-retention.ts",
       "workClass": "maintenance",
       "source": "registry",
@@ -2912,6 +3184,12 @@
       "rationale": "Scheduled GitHub repository-progress poll (omes:repository-progress:poll, ahliweb/omes#249, ADR-0030), every 15 minutes — tolerant of delay; the outbound GitHub call itself runs OUTSIDE any transaction, so only the short read/write DB passes around it are classified here."
     },
     {
+      "path": "scripts/push-auth-secret-backfill.ts",
+      "workClass": "maintenance",
+      "source": "registry",
+      "rationale": "One-time, re-runnable backfill (push:auth-secret:backfill, Issue #1089; its --rekey mode push:auth-secret:rekey, Issue #1098, re-encrypts rows onto the active key) that encrypts legacy plaintext push auth secrets; batched, tolerant of delay, and every withTenantOrThrow call inside push-auth-secret-backfill.ts passes workClass: \"maintenance\" explicitly."
+    },
+    {
       "path": "scripts/push-dispatch.ts",
       "workClass": "background_sync",
       "source": "registry",
@@ -2940,6 +3218,18 @@
       "workClass": "background_sync",
       "source": "registry",
       "rationale": "Recurring per-tenant search index reconciliation (site-search:reconcile, ADR-0040) — drives user-visible public search freshness, same dispatcher profile as domain-events-dispatch rather than a maintenance purge."
+    },
+    {
+      "path": "scripts/telegram-dispatch.ts",
+      "workClass": "background_sync",
+      "source": "registry",
+      "rationale": "Outbox dispatcher (telegram:dispatch, ADR-0140), recommended every minute — the same profile as push/email/whatsapp dispatch, and every withTenantOrThrow call inside telegram-dispatch.ts already passes workClass: \"background_sync\" explicitly."
+    },
+    {
+      "path": "scripts/telegram-queue-purge.ts",
+      "workClass": "maintenance",
+      "source": "registry",
+      "rationale": "Scheduled retention purge and expiry/erasure backstop (telegram:queue:purge, ADR-0140) — same tolerant-of-delay profile as whatsapp:queue:purge; purgeTelegramQueue passes workClass: \"maintenance\" explicitly."
     },
     {
       "path": "scripts/tenant-domain-dns-sync.ts",

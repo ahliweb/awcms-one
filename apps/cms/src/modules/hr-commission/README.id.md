@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:e5ba8102bd992acec070a39432e29fdadc498bda9ab5465c5239a82166ad6441 -->
+<!-- i18n-source-hash: sha256:972260162efeaf2527774bdd3a965d9d4212a85c17dbd6ef5bbdc16800ea4a3b -->
 
 # `hr_commission`
 
@@ -16,14 +16,17 @@ Ini adalah **fondasi aturan** (#950: `awcms_hr_commission_rules`, API draft /
 publish / retire, **fungsi evaluasi yang murni**) dan **buku besar akrual** (#951:
 `awcms_hr_commission_accruals`, `awcms_hr_commission_transitions`, siklus approve /
 release / void / pay, dan port atribusi-penjualan). **Belum ada:** reversal
-(akrual negatif kompensasi untuk akrual yang payable atau paid), event
-`awcms.hr.commission.*`, dan klaim payroll atas sebuah akrual (PS-19, di bawah).
+akrual yang payable atau paid (akrual negatif kompensasi; `CommissionAccrualPort.void`
+menolaknya sebagai `period_closed`, di bawah), event `awcms.hr.commission.*` lainnya
+(hanya `voided` yang ada), dan klaim payroll atas sebuah akrual (PS-19, di bawah).
 Ini **bukan komisi afiliasi** (hr-payroll.md 6.4: penerimanya di sini selalu sebuah
 employment) dan **tidak membawa aturan negara atau yurisdiksi mana pun**: tenant
 menyusun aturannya sendiri.
 
-Status `experimental`: flag mati, belum ada layar admin, dan modul tidak
-mendeklarasikan `navigation`. Ia menjadi `active` bersama layar pertamanya.
+Status `active` sejak Issue #952: modul mendeklarasikan satu layar admin,
+`/admin/hr/my-commission`, tempat karyawan membaca akrual MILIKNYA sendiri (hanya
+baca; `GET /api/v1/hr-commission/my-accruals`, `docs/awcms/workforce-self-service.md`).
+Layar aturan dan pengelolaan buku besar masih hanya lewat API.
 
 ## Aturan yang membuatnya aman
 
@@ -157,7 +160,12 @@ paid`, dan `voided` dari `pending` atau `approved`. Tiap sisi menstempel aktor d
   itu sendiri) tak dapat approve, release, atau pay akrualnya sendiri; pembuat
   akrual tak dapat menyetujuinya; penyetuju tak dapat membayarnya (`403
 SEGREGATION_OF_DUTIES`, atau `APPROVE_OWN_ACCRUAL_FORBIDDEN` untuk penerima yang
-  menyetujui). Void tidak dipisahkan. Sebuah tes menghapus guard trigger dan
+  menyetujui). **Penerima adalah login yang di-snapshot saat akrual dibuat
+  (`beneficiary_tenant_user_id`, distempel trigger, `sql/236`) DAN login employment
+  saat ini** (Issue #1019): melepas lalu menautkan kembali login di sekitar
+  persetujuan diri sendiri tidak memberi apa-apa. Bila tak ada login tertaut maupun
+  snapshot, approve, release, dan pay ditolak (fail closed, `409
+BENEFICIARY_LOGIN_UNRESOLVED`; `sql/237`). Void tidak dipisahkan. Sebuah tes menghapus guard trigger dan
   menunjukkan bypass-nya berhasil.
 - **Log tak dapat menyimpang dari status.** `awcms_hr_commission_transitions`
   ditulis hanya oleh trigger milik akrual (insert langsung ditolak oleh
@@ -184,6 +192,47 @@ SEGREGATION_OF_DUTIES`, atau `APPROVE_OWN_ACCRUAL_FORBIDDEN` untuk penerima yang
   milik karyawan itu, dan menentukan apa yang layak dikomisikan. Otorisasi dan audit
   tetap pada composition root pemanggil (`POST /api/v1/hr-commission/accruals`
   adalah salah satunya).
+- **Membalik akrual: `CommissionAccrualPort.void` (Issue #1109, kontrak port
+  `commission_accrual` 1.1.0).** `void(tx, tenantId, actorTenantUserId, { source,
+employmentId, reason, correlationId? })` berkunci identitas sumber YANG SAMA
+  dengan `accrue`, jadi konsumen (yang pertama adalah adapter atribusi-penjualan
+  commerce di repositori turunan) tidak pernah menyimpan id modul ini. Ia mencari
+  akrual lewat unique key buku besar, menguncinya `FOR UPDATE`, lalu menjawab:
+  - `voided` - akrual `pending` atau `approved` di-void. Lewat satu inti transisi
+    yang dipakai route HTTP void, sehingga baris audit
+    (`hr_commission.accrual.voided`, tanpa jumlah dan tanpa referensi sumber), event
+    domain `awcms.hr.commission.voided`, dan baris log transisi append-only semuanya
+    ditulis dalam transaksi PEMANGGIL dan ikut rollback bersamanya.
+  - `already_voided` - replay; tidak ada yang ditulis, diaudit, atau diterbitkan,
+    apa pun `reason` replay itu. Void yang berlomba diserialkan pada barisnya: satu
+    `voided`.
+  - `not_found` - tidak ada yang diakrualkan untuk sumber dan employment itu (juga
+    tampilan akrual tenant lain: RLS).
+  - `period_closed` - akrual `payable` atau `paid`; ditolak, tidak ada yang ditulis.
+  - `actor_required` (aktor `null`: setiap edge mencap seseorang) dan
+    `input_invalid` (sumber cacat, id employment bukan UUID, `reason` bukan kode).
+
+  **Entri kompensasi.** Akrual tidak pernah diubah atau dihapus: fakta monetarinya
+  tak dapat diubah oleh trigger dan tetap seperti saat diposting. Pembalikannya
+  adalah edge status ke `voided` ditambah baris log transisi yang ditambahkan
+  database (penambahan buku besar untuk reversal selama belum ada uang berpindah),
+  sehingga `reconcileAccruals` menunjukkan jumlahnya keluar dari bucket aktif dan
+  berada di `voided`, dan akrual yang di-void tak pernah dapat dibayar. Tidak
+  diperlukan migrasi: baris NEGATIF (`operation = reversal`) baru diperlukan setelah
+  uang dikomit, yaitu butir berikutnya.
+
+  **Kebijakan periode tertutup (diputuskan di #1109): tolak, `period_closed`.** Modul
+  ini tidak punya periode komisi sendiri; batasnya adalah status akrual. `payable`
+  berarti dirilis ke payroll, yang run-nya memilih akrual payable (`FOR UPDATE SKIP
+LOCKED`, PS-19), dan `paid` berarti pembayaran tercatat. Belum ada mekanisme
+  reversal-ke-periode-berjalan (baris negatif hr-payroll.md 6.3), dan mem-void uang
+  yang mungkin sudah dipegang payroll akan melanggar "akrual dibayar tepat oleh satu
+  run". Maka port menolak dan tidak menulis apa pun; hasilnya membawa `accrualId` dan
+  `status`, dan konsumen mengarahkannya ke manusia (penarikan kembali / netting run
+  berikutnya), bukan ke retry buta. Ketika baris reversal hadir, `period_closed`
+  adalah kasus yang digantikannya dengan reversal yang diposting; `voided`,
+  `already_voided`, dan `not_found` tetap bermakna sama.
+
 - **Celah yang diketahui: void mengonsumsi kunci sumber secara permanen.** Akrual
   yang di-void mempertahankan identitas `(sumber, employment)`-nya, sehingga
   pengiriman ulang sumber yang sama mengembalikan aslinya yang void (tak pernah
@@ -242,17 +291,36 @@ SEGREGATION_OF_DUTIES`, atau `APPROVE_OWN_ACCRUAL_FORBIDDEN` untuk penerima yang
   tak dapat di-reversal, tak pernah membuka kembali aslinya. Kunci unik, kolom
   `operation`, dan log transisi sudah punya ruangnya; sebuah `sql/NNN` yang
   melebarkan CHECK `operation` dan status serta mesinnya akan menambahkannya.
-- **Event masih provisional.** `awcms.hr.commission.accrued` dan `.approved`
-  (hr-payroll.md bagian 10) belum dipancarkan: buku besar tidak menulis baris outbox
-  dan tidak ada channel AsyncAPI, jadi tak ada yang diterbitkan sampai ada konsumen.
+- **Event: hanya `voided` yang ada.** `awcms.hr.commission.voided` (Issue #1109;
+  registry, channel AsyncAPI, dan `events.publishes`) diterbitkan dalam transaksi
+  setiap void, HTTP maupun port, dengan id, TIPE sumber, kunci dan versi aturan,
+  `fromStatus`, dan kode alasan (tidak pernah jumlah atau referensi sumber).
+  `awcms.hr.commission.accrued` dan `.approved` (hr-payroll.md bagian 10) belum
+  dipancarkan: tak ada yang diterbitkan sampai ada konsumen.
 - **Belum ada baca-akrual-sendiri dan scope office.** `accruals.read` adalah
   permission biasa: jalur "karyawan melihat akrualnya sendiri" (ownership grant pada
   login employment) dan business scope `office` adalah tindak lanjut bersama
   permukaan swalayan.
-- **Mengekspor riwayat akrual seseorang** (dilacak di issue #985) membutuhkan join employment-ke-subjek yang
-  tak dapat diungkapkan kolom subjek langsung registri (batas yang dicatat
-  `hr_workforce.employment_terms`); descriptor hanya menamai stempel aktor dan
-  `exportable: false` sampai join itu ada.
+- **Riwayat akrual seseorang diekspor kepada orang itu** (Issue #1018,
+  ADR-0142): `hr_commission.accruals` menjangkau penerima lewat `employment_id`
+  (`subjectVia`) dan `exportable: true`; stempel aktor bukan kolom subjek. Karena
+  penghasilan berada di batas penggajian, rute ekspor subjek **tidak** menyerahkannya
+  hanya dengan `data_lifecycle.subject_request.export`: pemanggil juga harus memegang
+  `hr_commission.accruals.read`, jika tidak tabelnya ditahan dan disebut di
+  `withheld` pada respons (default-deny, juga untuk replay ekspor tersimpan). Setiap
+  pembacaan yang terjadi dicatat sebagai sensitive read (id dan jumlah, tak pernah
+  nominal). `hr_commission.transitions` tetap `exportable: false`: ia butuh lompatan
+  kedua dan tidak menambah apa pun tentang penerima yang belum dibawa akrual. Apakah
+  penghasilan boleh diekspor kepada subjek adalah keputusan produk/hukum yang tercatat
+  di adendum ADR-0142.
+  Join memakai `profile_id` SAJA (login yang salah tertaut ke employment orang lain
+  lalu dikoreksi akan memasukkan akrual employment itu ke ekspor login tersebut).
+  Catatan `Idempotency-Key` yang tersimpan hanya menyimpan id baris ini dan replay
+  membacanya ulang di bawah pemeriksaan `accruals.read` yang baru. Snapshot
+  `beneficiary_tenant_user_id` (`sql/236`) adalah kolom yang disamarkan pada ekspor
+  dan tidak ada di respons API mana pun: komentar header `sql/236` yang menyatakan
+  "tidak diekspos API apa pun" benar hanya karena penyamaran itu, dan migrasi yang
+  sudah diterapkan tidak dapat disunting untuk menyatakannya.
 - **Retensi: disimpan selama hidup tenant, tanpa periode yang diklaim.** Sengaja
   TIDAK ada descriptor `dataLifecycle` untuk ketiga tabel (descriptor harus
   mengklaim periode dan mode purge, dan tak ada yang mem-purge): tabel buku besar
@@ -265,7 +333,7 @@ SEGREGATION_OF_DUTIES`, atau `APPROVE_OWN_ACCRUAL_FORBIDDEN` untuk penerima yang
 
 ## Keterbatasan
 
-- Tanpa layar admin; `experimental`. Layar akrual (daftar, approve / release / void / pay) adalah tindak lanjut yang membuat modul `active`.
+- Hanya layar komisi milik karyawan yang ada (Issue #952); layar aturan dan layar akrual (daftar, approve / release / void / pay) adalah tindak lanjut.
 - Tenant yang sudah ada perlu `bun run identity-access:permissions:backfill` untuk
   menerima permission yang di-seed (keterbatasan yang dibawa setiap seed permission).
 - Draft hanya dapat diubah dengan mengganti seluruh field yang dapat diedit (`PUT`);

@@ -41,6 +41,7 @@ import {
   listOrdersForAccount,
   listOrdersForAdmin
 } from "../../src/modules/commerce/application/order-directory";
+import { AllocationSourceKeyConflictError } from "../../src/modules/commerce/application/payment-allocation-directory";
 import {
   createPosOrder,
   listPosOrders,
@@ -89,7 +90,7 @@ async function seedTenant(id: string, code: string): Promise<void> {
 
 function inTenant<T>(
   tenantId: string,
-  fn: (tx: Bun.SQL) => Promise<T>
+  fn: (tx: Bun.TransactionSQL) => Promise<T>
 ): Promise<T> {
   return withTenantOrThrow(getRuntimeSql(), tenantId, fn);
 }
@@ -640,8 +641,11 @@ suite("commerce POS integration (Issue #116)", () => {
     }
     expect(conflict).toBeInstanceOf(IdempotencyPayloadMismatchError);
 
-    // Same key value, DIFFERENT cashier → the hash is bound to the actor,
-    // so this is a conflict too, never a replay of cashier A's sale.
+    // Same key value, DIFFERENT cashier → ADR-0145 scopes the idempotency
+    // store by actor, so the store no longer sees cashier A's record; the
+    // ledger's own `source_key` guard (`pos:{key}`) refuses it instead, as an
+    // AllocationSourceKeyConflictError (the route answers 409
+    // IDEMPOTENCY_CONFLICT for both). Never a replay of cashier A's sale.
     let crossCashier: unknown;
     try {
       await inTenant(TENANT_A, (tx) =>
@@ -657,7 +661,7 @@ suite("commerce POS integration (Issue #116)", () => {
     } catch (error) {
       crossCashier = error;
     }
-    expect(crossCashier).toBeInstanceOf(IdempotencyPayloadMismatchError);
+    expect(crossCashier).toBeInstanceOf(AllocationSourceKeyConflictError);
 
     // Short tender: the transaction throws before any row is written.
     let short: unknown;

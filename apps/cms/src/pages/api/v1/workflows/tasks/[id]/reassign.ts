@@ -18,7 +18,8 @@ import {
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../../../../../modules/_shared/idempotency";
 import { recordAuditEvent } from "../../../../../../modules/logging/application/audit-log";
 import { recordCounter } from "../../../../../../lib/observability/metrics-port";
@@ -123,7 +124,8 @@ export const POST: APIRoute = async ({ request, params, cookies, locals }) => {
         tx,
         tenantId,
         IDEMPOTENCY_SCOPE,
-        idempotencyKey
+        idempotencyKey,
+        userIdempotencyActor(auth.context.tenantUserId)
       );
 
       if (existingIdempotency) {
@@ -174,6 +176,7 @@ export const POST: APIRoute = async ({ request, params, cookies, locals }) => {
           tenantId,
           IDEMPOTENCY_SCOPE,
           idempotencyKey,
+          userIdempotencyActor(auth.context.tenantUserId),
           requestHash,
           200,
           successBody
@@ -181,6 +184,10 @@ export const POST: APIRoute = async ({ request, params, cookies, locals }) => {
 
         return successResponse;
       } catch (error) {
+        // tx-swallow-ok: The workflow module raises this domain error from
+        // application code on a healthy transaction (it never catches a
+        // database error beneath it), so returning here commits a valid
+        // transaction.
         if (error instanceof WorkflowRecoveryError) {
           if (error.message.includes("not found")) {
             return fail(404, "RESOURCE_NOT_FOUND", error.message);

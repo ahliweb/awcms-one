@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:d20b96b4fb2e3de1753d6c3d217673b63427f12bafff57b02d86fef7b391db87 -->
+<!-- i18n-source-hash: sha256:bc5e2b9b219e74e3de2c7594109ed7a26ea347300464c42732991501a1c53a13 -->
 
 # Management Reporting
 
@@ -186,6 +186,37 @@ endpoint already established). A mismatch while a projection is merely
 `delayed` is EXPECTED, not a bug — read freshness alongside reconcile,
 never instead of it.
 
+### Kuantitas dan batas halaman (Issue #944)
+
+Dua perluasan kecil yang memungkinkan modul domain melewatkan angka nyata lewat
+engine ini alih-alih engine kedua (pengguna pertama adalah `booking`, yang tiga
+proyeksi `booking.*`-nya menghitung jenis transisi dan menjumlah detik terpesan
+serta unit-malam):
+
+- **`sumColumn`** pada aturan metrik (`ProjectionCursorMetricRule`, kontrak 4.5.0):
+  menjumlah kolom integer non-negatif atas baris yang cocok alih-alih
+  menghitungnya. `computeRuleDelta` di `domain/projection-metric-delta.ts` adalah
+  satu-satunya tempat worker dan rebuild mengubah batch menjadi delta;
+  rekonsiliasi menghitung kuantitas yang sama sebagai `SUM(col)`. Nilai yang bukan
+  integer non-negatif melempar error dan pass di-rollback, dan registry menolak
+  kuantitas yang mengurangi (store menjepit di nol, sehingga decrement akan
+  menyimpang diam-diam).
+- **Halaman tak pernah berakhir di tengah satu milidetik**
+  (`trimIncompleteTail`, `domain/cursor-boundary.ts`). Sumber yang menulis
+  beberapa baris dalam satu transaksi (`created_at DEFAULT now()` adalah awal
+  transaksi) dulu kehilangan baris dari kelompok seri yang terpotong `LIMIT`,
+  karena batas lanjutan adalah `cursor + 1 ms`. Engine kini membaca `limit + 1`
+  baris; bila baris pengintip itu sebaya milidetiknya dengan baris terakhir
+  halaman, halaman membuang baris milidetik itu dan pass berikutnya membacanya
+  utuh. Sumber dengan timestamp berbeda berperilaku seperti sebelumnya.
+  Bila `limit + 1` baris sebaya dalam SATU milidetik, pass gagal keras (rollback
+  dan mencatat kegagalan proyeksi): naikkan `batchLimit` deskriptor.
+  **Setelah men-deploy perubahan ini, rebuild proyeksi `cursor_table` yang ada atas
+  sumber yang menulis beberapa baris per transaksi (`procurement.*`,
+  `inventory.*`, ...)** (`POST /api/v1/reports/projections/{key}/rebuild`):
+  sebelumnya mereka mungkin kehilangan baris di batas halaman, dan
+  ketidakcocokan rekonsiliasi adalah tandanya. Catatan keputusan: ADR-0143.
+
 ### Scheduled exports
 
 Minimal, self-contained (not built on Issue #752 `data_exchange`, which
@@ -216,6 +247,20 @@ snapshot. Rather than silently ignore a submitted filter (a false sense
 of scoping), the create endpoint rejects a non-empty `filter` with `400
 NOT_IMPLEMENTED` until a follow-up issue defines its schema and wires it
 into generation (reviewer + security-auditor finding, PR #781).
+
+**Data payroll tidak pernah dapat diekspor (Issue #978, PS-18).** Ekspor adalah
+berkas yang hidup lebih lama dari request dan dibuka di spreadsheet, sehingga ia
+adalah salinan proyeksi yang paling lebar. Tidak ada proyeksi yang boleh membaca
+tabel `awcms_hr_payroll_*`, `awcms_hr_compensation`, `awcms_hr_payout_accounts`,
+atau `awcms_hr_payslips`, atau dideklarasikan oleh `hr_payroll`:
+`reporting:projections:registry:check` menolak deskriptornya, ketiga engine menolak
+membangun SQL untuk tabel itu, dan `generateProjectionExport` menolak lagi saat
+menulis (`assertProjectionExportable`). Daftar tunggal nama terlarang ada di
+`src/modules/_shared/payroll-data-boundary.ts`; jalan menuju laporan payroll
+mendatang (izin sendiri, ukuran kohort minimum, ADR sendiri) ada di
+`docs/awcms/hr-payroll.id.md` bagian 13.3. Sel CSV yang diawali `=`, `+`, `-`, `@`,
+TAB, atau CR diberi satu tanda kutip tunggal di depan lewat
+`src/lib/security/csv-formula.ts` bersama.
 
 ### API
 

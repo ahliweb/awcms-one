@@ -161,6 +161,10 @@ unique index on `awcms_commerce_product_variants` itself remains the
 same-table race-safety net. A collision surfaces as `409
 VARIANT_SKU_ALREADY_EXISTS`.
 
+## Savepoints for caught statement errors
+
+**A statement whose error is caught inside a transaction runs in a savepoint.** A failing statement (a unique violation turned into a `409`, a trigger `23514` turned into a `400`, an order-code collision that retries with another candidate) aborts the PostgreSQL transaction it runs in; if the handler then returns normally the transaction commits, PostgreSQL answers that `COMMIT` with `ROLLBACK`, and every earlier write in the same transaction is gone. Bun 1.4.2 treated that silently as success (the handler reported success for writes that were lost); Bun 1.4.3 throws `ERR_POSTGRES_COMMIT_ROLLED_BACK`. `tx.savepoint(async (sp) => ...)` confines the abort to the statement: do the statement on `sp`, catch the `Bun.SQL.PostgresError` outside it, and the outer transaction stays usable (a function that does this takes `tx: Bun.TransactionSQL`; a helper called from inside a savepoint receives `sp as Bun.TransactionSQL`). A statement whose error always propagates out of the transaction callback needs no savepoint (the whole transaction rolls back by design). Upstream's `bun run db:transaction-swallow:check` refuses any other shape; a route catch that only maps an application error carries a `// tx-swallow-ok: <reason>` marker. `tests/integration/commerce-caught-error-savepoints.integration.test.ts` pins the behaviour.
+
 ## Images and variants (Issue #23)
 
 `awcms_commerce_product_images` (`media_object_id NOT NULL` — the row IS the

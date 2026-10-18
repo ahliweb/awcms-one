@@ -20,6 +20,14 @@ import type {
   ProjectionCursorStream,
   ProjectionDescriptor
 } from "../../_shared/module-contract";
+import {
+  isPayrollEventType,
+  isPayrollOwnerModule,
+  isPayrollTable,
+  payrollBoundaryMessage,
+  payrollEventMessage,
+  payrollOwnerMessage
+} from "../../_shared/payroll-data-boundary";
 
 const TABLE_NAME_PATTERN = /^awcms_[a-z][a-z0-9_]*$/;
 const COLUMN_NAME_PATTERN = /^[a-z][a-z0-9_]*$/;
@@ -61,6 +69,17 @@ function validateCursorStream(
   if (!stream.tableName || !TABLE_NAME_PATTERN.test(stream.tableName)) {
     push(
       `${context}: tableName must start with "awcms_" and be snake_case (got ${JSON.stringify(stream.tableName)}).`
+    );
+  }
+  // Issue #978 (PS-18): a projection is readable by every holder of the report
+  // permission, which is a far wider audience than `compensation.read`.
+  if (stream.tableName && isPayrollTable(stream.tableName)) {
+    push(
+      payrollBoundaryMessage(
+        "reporting projection",
+        stream.tableName,
+        `${context}.tableName`
+      )
     );
   }
   const tenantColumn = stream.tenantColumn ?? "tenant_id";
@@ -121,6 +140,19 @@ function validateCursorStream(
         `${context}: metric "${metric.metricKey}" matchColumn is not a valid column name.`
       );
     }
+    if (
+      metric.sumColumn !== undefined &&
+      !COLUMN_NAME_PATTERN.test(metric.sumColumn)
+    ) {
+      push(
+        `${context}: metric "${metric.metricKey}" sumColumn is not a valid column name.`
+      );
+    }
+    if (metric.sumColumn !== undefined && metric.effect !== "increment") {
+      push(
+        `${context}: metric "${metric.metricKey}" declares sumColumn with effect "decrement" -- a quantity is added, never subtracted (the store clamps at zero, so a decrement would desync silently).`
+      );
+    }
   }
 }
 
@@ -142,6 +174,10 @@ function validateSingleDescriptor(
     push(
       `ownerModuleKey (${JSON.stringify(descriptor.ownerModuleKey)}) must equal the declaring module's own key (${JSON.stringify(ownerModule.key)}) — a module must not declare a descriptor it claims another module owns.`
     );
+  }
+
+  if (isPayrollOwnerModule(ownerModule.key)) {
+    push(payrollOwnerMessage("reporting projection", ownerModule.key));
   }
 
   if (descriptor.scope !== "tenant" && descriptor.scope !== "global") {
@@ -223,6 +259,11 @@ function validateSingleDescriptor(
       push(
         'source.events must declare at least one event when strategy is "domain_event".'
       );
+    }
+    for (const [index, event] of (descriptor.source.events ?? []).entries()) {
+      if (isPayrollEventType(event.eventType)) {
+        push(payrollEventMessage(`source.events[${index}]`, event.eventType));
+      }
     }
     if (!descriptor.source.consumerName) {
       push('source.consumerName is required when strategy is "domain_event".');

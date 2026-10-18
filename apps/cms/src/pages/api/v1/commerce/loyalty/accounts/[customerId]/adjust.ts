@@ -109,6 +109,10 @@ export const POST = defineTenantRoute<Prepared>({
       }
       return created({ entry: outcome.entry, balance: outcome.balance });
     } catch (error) {
+      // tx-swallow-ok: LoyaltyIdempotencyConflictError,
+      // IdempotencyRaceLostError are raised by application code before a
+      // write, or after the directory rolled its failed statement back to a
+      // savepoint, so the transaction is healthy.
       if (error instanceof LoyaltyIdempotencyConflictError) {
         return fail(
           409,

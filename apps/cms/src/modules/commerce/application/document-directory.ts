@@ -36,7 +36,8 @@ import { appendDomainEvent } from "../../domain-event-runtime/application/append
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../_shared/idempotency";
 import {
   encodeKeysetCursor,
@@ -243,7 +244,8 @@ export async function issueDocument(
     tx,
     tenantId,
     ISSUE_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (stored) {
     if (stored.requestHash !== requestHash) {
@@ -269,6 +271,7 @@ export async function issueDocument(
       tenantId,
       ISSUE_SCOPE,
       input.idempotencyKey,
+      userIdempotencyActor(actorTenantUserId),
       requestHash,
       200,
       document
@@ -424,6 +427,7 @@ export async function issueDocument(
     tenantId,
     ISSUE_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     document

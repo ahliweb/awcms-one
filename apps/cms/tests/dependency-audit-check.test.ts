@@ -151,16 +151,15 @@ describe("parseAuditOutput", () => {
 });
 
 describe("the shipped exception list", () => {
-  test("holds exactly the one advisory with no patched release", () => {
+  test("is empty: no advisory is knowingly accepted", () => {
     // Not style: pinning the exact set makes the next exception a visible edit
     // here, so it cannot be added without a reviewer seeing it. Same reasoning
-    // ADR-0058 settled for the permission-enforcement gate. Empty is still the
-    // target: once http-cache-semantics ships a fix, close it with `overrides`
-    // and this list goes back to `[]` (`deps:audit:check` fails on a stale
-    // entry, so it cannot linger).
-    expect(EXCEPTIONS.map((e) => `${e.packageName} ${e.advisoryUrl}`)).toEqual([
-      "http-cache-semantics https://github.com/advisories/GHSA-ch52-4w7c-c8xp"
-    ]);
+    // ADR-0058 settled for the permission-enforcement gate. http-cache-semantics
+    // shipped its fix (4.3.0), so the list is back to `[]` (`deps:audit:check`
+    // fails on a stale entry, so it cannot linger).
+    expect(EXCEPTIONS.map((e) => `${e.packageName} ${e.advisoryUrl}`)).toEqual(
+      []
+    );
   });
 
   test("any future entry must carry reason, owner, and reviewDate", () => {

@@ -14,9 +14,23 @@
  */
 import { readFile } from "node:fs/promises";
 
+import { describeIdempotencySecretProblem } from "../src/lib/security/idempotency-hmac";
 import { parseFcmCredentialsBase64 } from "../src/modules/push-delivery/domain/fcm-credentials";
+import { resolvePushAuthSecretRing } from "../src/modules/push-delivery/domain/push-auth-secret";
+import {
+  resolvePushPayloadFormat,
+  resolvePushPublicOrigin
+} from "../src/modules/push-delivery/domain/push-payload-format";
 import { parseVapidConfig } from "../src/modules/push-delivery/domain/vapid-config";
 import { parseRecipientHashKeys } from "../src/modules/whatsapp-delivery/domain/whatsapp-recipient";
+import {
+  isValidTelegramBotToken,
+  isValidTelegramWebhookSecret,
+  resolveTelegramBotUsername,
+  resolveTelegramEncryptionRingUnchecked,
+  resolveTelegramHashRingUnchecked,
+  telegramRingsShareAKey
+} from "../src/modules/telegram-delivery/domain/telegram-config";
 
 type EnvBag = Record<string, string | undefined>;
 
@@ -97,6 +111,14 @@ const RULES: readonly Rule[] = [
   { name: "TRUSTED_PROXY_HOP_COUNT", required: false, type: "int", min: 1 },
   {
     name: "AUTH_IP_HASH_SECRET",
+    required: false,
+    type: "string",
+    secret: true
+  },
+  // Keys the HMAC of the idempotency request hash (ADR-0129 amendment 1).
+  // Required in production by the cross-rule below; the runtime fails closed too.
+  {
+    name: "IDEMPOTENCY_HMAC_SECRET",
     required: false,
     type: "string",
     secret: true
@@ -272,6 +294,13 @@ const RULES: readonly Rule[] = [
   { name: "EMAIL_SEND_TIMEOUT_MS", required: false, type: "int", min: 1 },
   { name: "EMAIL_SEND_MAX_RETRIES", required: false, type: "int", min: 0 },
 
+  // Installable admin (Issue #1105). Optional branding of the Home Screen app;
+  // the manifest falls back to defaults on an empty or invalid value.
+  { name: "PWA_APP_NAME", required: false, type: "string" },
+  { name: "PWA_APP_SHORT_NAME", required: false, type: "string" },
+  { name: "PWA_THEME_COLOR", required: false, type: "string" },
+  { name: "PWA_BACKGROUND_COLOR", required: false, type: "string" },
+
   // push_delivery (ADR-0074, epic #463). Off by default; off means the
   // dispatcher claims nothing at all. `PUSH_PROVIDER` is an enum listing only
   // the adapters that EXIST — `fcm`/`web_push` join it in Issue #466, and
@@ -284,9 +313,21 @@ const RULES: readonly Rule[] = [
     type: "enum",
     values: ["log", "fcm", "web_push"]
   },
+  {
+    name: "PUSH_PAYLOAD_FORMAT",
+    required: false,
+    type: "enum",
+    values: ["legacy", "declarative"]
+  },
   { name: "PUSH_SEND_MAX_RETRIES", required: false, type: "int", min: 0 },
   { name: "PUSH_SEND_TIMEOUT_MS", required: false, type: "int", min: 1 },
   { name: "PUSH_FCM_CREDENTIALS_BASE64", required: false, type: "string" },
+  {
+    name: "PUSH_AUTH_SECRET_ENCRYPTION_KEYS",
+    required: false,
+    type: "string",
+    secret: true
+  },
   { name: "PUSH_VAPID_PUBLIC_KEY", required: false, type: "string" },
   { name: "PUSH_VAPID_PRIVATE_KEY", required: false, type: "string" },
   { name: "PUSH_VAPID_SUBJECT", required: false, type: "string" },
@@ -335,6 +376,99 @@ const RULES: readonly Rule[] = [
   { name: "WHATSAPP_META_ACCESS_TOKEN", required: false, type: "string" },
   { name: "WHATSAPP_META_PHONE_NUMBER_ID", required: false, type: "string" },
   { name: "WHATSAPP_META_API_VERSION", required: false, type: "string" },
+
+  // telegram_delivery (ADR-0140, Issue #965). Off by default; off means enqueue
+  // answers `refused: DISABLED`, the webhook answers 404 and the dispatcher claims
+  // nothing. ONE bot per DEPLOYMENT (never per tenant). The token, the webhook
+  // secret and both key rings are secrets and are never echoed.
+  { name: "TELEGRAM_ENABLED", required: false, type: "bool" },
+  {
+    name: "TELEGRAM_BOT_TOKEN",
+    required: false,
+    type: "string",
+    secret: true
+  },
+  { name: "TELEGRAM_BOT_USERNAME", required: false, type: "string" },
+  {
+    name: "TELEGRAM_WEBHOOK_SECRET",
+    required: false,
+    type: "string",
+    secret: true
+  },
+  {
+    name: "TELEGRAM_CHAT_ENCRYPTION_KEYS",
+    required: false,
+    type: "string",
+    secret: true
+  },
+  {
+    name: "TELEGRAM_CHAT_HASH_KEYS",
+    required: false,
+    type: "string",
+    secret: true
+  },
+  { name: "TELEGRAM_SEND_MAX_RETRIES", required: false, type: "int", min: 0 },
+  { name: "TELEGRAM_SEND_TIMEOUT_MS", required: false, type: "int", min: 1 },
+  {
+    name: "TELEGRAM_RATE_PER_CHAT_INTERVAL_MS",
+    required: false,
+    type: "int",
+    min: 1000
+  },
+  {
+    name: "TELEGRAM_RATE_GLOBAL_PER_SECOND",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "TELEGRAM_RETRY_AFTER_CAP_SECONDS",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "TELEGRAM_DISPATCH_BATCH_SIZE",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "TELEGRAM_RATE_PER_BINDING_PER_HOUR",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "TELEGRAM_RATE_PER_TENANT_PER_HOUR",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "TELEGRAM_WEBHOOK_RATE_PER_MINUTE",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "TELEGRAM_MESSAGE_RETENTION_DAYS",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "TELEGRAM_BINDING_RETENTION_DAYS",
+    required: false,
+    type: "int",
+    min: 7
+  },
+  {
+    name: "TELEGRAM_LINK_CODE_RETENTION_DAYS",
+    required: false,
+    type: "int",
+    min: 1
+  },
 
   // visitor_analytics (ported from awcms-micro epic #617-#624). All optional,
   // privacy-first off-by-default; see
@@ -555,7 +689,12 @@ export function validateEnv(env: EnvBag): string[] {
         break;
       }
       case "enum": {
-        if (!rule.values!.includes(value)) {
+        // PUSH_PAYLOAD_FORMAT is read case-insensitively at runtime
+        // (`resolvePushPayloadFormat`), so validate the same normalised form.
+        const candidate =
+          rule.name === "PUSH_PAYLOAD_FORMAT" ? value.toLowerCase() : value;
+
+        if (!rule.values!.includes(candidate)) {
           problems.push(
             `${rule.name} harus salah satu [${rule.values!.join(", ")}], dapat "${value}".`
           );
@@ -583,6 +722,21 @@ export function validateEnv(env: EnvBag): string[] {
     if (rule.secret && isProduction && PLACEHOLDER_SECRETS.has(value)) {
       problems.push(
         `${rule.name} masih bernilai placeholder ("${value}") — dilarang di produksi.`
+      );
+    }
+  }
+
+  // Idempotency request hash is an HMAC (ADR-0129 amendment 1, issue #1000).
+  // Production refuses idempotent mutations without a real key, so surface it
+  // here rather than as a 500 on the first mutation.
+  if (isProduction) {
+    const problem = describeIdempotencySecretProblem(
+      env.IDEMPOTENCY_HMAC_SECRET
+    );
+
+    if (problem !== null) {
+      problems.push(
+        `IDEMPOTENCY_HMAC_SECRET wajib berisi secret nyata (>= 32 karakter) di produksi, tetapi ${problem} (mis. \`openssl rand -base64 48\`).`
       );
     }
   }
@@ -694,6 +848,31 @@ export function validateEnv(env: EnvBag): string[] {
       if (!vapid.ok) {
         problems.push(`Konfigurasi VAPID tidak valid: ${vapid.reason}.`);
       }
+
+      // Issue #1106: payload deklaratif butuh `navigate` https absolut pada
+      // origin publik terkonfigurasi (APP_URL). Tanpa itu produsen diam-diam
+      // tetap memakai bentuk legacy, jadi saklar tampak aktif tetapi tidak
+      // berbuat apa pun; lebih baik gagal di sini.
+      if (
+        resolvePushPayloadFormat(env as NodeJS.ProcessEnv) === "declarative" &&
+        resolvePushPublicOrigin(env.APP_URL) === null
+      ) {
+        problems.push(
+          "PUSH_PAYLOAD_FORMAT=declarative wajib APP_URL berskema https tanpa kredensial (field `navigate` payload deklaratif adalah URL https absolut pada origin publik)."
+        );
+      }
+
+      // Issue #1089: rahasia auth RFC 8291 disimpan terenkripsi; tanpa cincin
+      // kunci tidak ada langganan web_push yang dapat didaftarkan (gagal-tertutup).
+      const authSecretRing = resolvePushAuthSecretRing(
+        env as NodeJS.ProcessEnv
+      );
+
+      if (!authSecretRing.ok) {
+        problems.push(
+          `${authSecretRing.reason} Wajib valid saat PUSH_PROVIDER=web_push (tanpa kunci, perangkat tidak dapat didaftarkan dan rahasia auth tidak dapat didekripsi).`
+        );
+      }
     }
   }
 
@@ -736,6 +915,57 @@ export function validateEnv(env: EnvBag): string[] {
     ) {
       problems.push(
         "WHATSAPP_META_ACCESS_TOKEN dan WHATSAPP_META_PHONE_NUMBER_ID wajib diisi saat WHATSAPP_PROVIDER=meta."
+      );
+    }
+  }
+
+  // telegram_delivery (ADR-0140): enabling Telegram REQUIRES the bot token, its
+  // public username, the webhook secret and both key rings. Without any one of
+  // them the adapter would be half on: no binding could be created (no ring), the
+  // webhook would accept nothing (no secret), or every send would fail
+  // non-retryably (no token). Caught at config time instead. The key rings are
+  // parsed by the same helper the runtime uses, so the validator cannot disagree
+  // with the thing it validates; no value is ever echoed.
+  if (env.TELEGRAM_ENABLED === "true") {
+    if (!isValidTelegramBotToken(env.TELEGRAM_BOT_TOKEN?.trim())) {
+      problems.push(
+        "TELEGRAM_BOT_TOKEN wajib diisi dengan token bot Telegram yang valid saat TELEGRAM_ENABLED=true."
+      );
+    }
+
+    if (resolveTelegramBotUsername(env as NodeJS.ProcessEnv) === undefined) {
+      problems.push(
+        "TELEGRAM_BOT_USERNAME wajib diisi (5-32 karakter huruf, angka, atau garis bawah; tanpa @) saat TELEGRAM_ENABLED=true."
+      );
+    }
+
+    if (!isValidTelegramWebhookSecret(env.TELEGRAM_WEBHOOK_SECRET)) {
+      problems.push(
+        "TELEGRAM_WEBHOOK_SECRET wajib diisi dan kuat (43-256 karakter A-Za-z0-9_-, minimal 12 karakter berbeda, tanpa kata placeholder seperti change-me, secret, atau password) saat TELEGRAM_ENABLED=true; tanpanya, atau bila lemah, webhook menolak semua permintaan."
+      );
+    }
+
+    const encryption = resolveTelegramEncryptionRingUnchecked(
+      env as NodeJS.ProcessEnv
+    );
+
+    if (!encryption.ok) {
+      problems.push(
+        `${encryption.reason} Wajib valid saat TELEGRAM_ENABLED=true (tanpa kunci, chat id tidak dapat dienkripsi dan tidak ada binding yang dibuat).`
+      );
+    }
+
+    const hash = resolveTelegramHashRingUnchecked(env as NodeJS.ProcessEnv);
+
+    if (!hash.ok) {
+      problems.push(
+        `${hash.reason} Wajib valid saat TELEGRAM_ENABLED=true (tanpa kunci, chat tidak dapat dicari dan aturan satu-chat-satu-staf tidak dapat ditegakkan).`
+      );
+    }
+
+    if (telegramRingsShareAKey(encryption, hash)) {
+      problems.push(
+        "TELEGRAM_CHAT_ENCRYPTION_KEYS dan TELEGRAM_CHAT_HASH_KEYS tidak boleh berbagi kunci yang sama; keduanya harus cincin kunci terpisah."
       );
     }
   }

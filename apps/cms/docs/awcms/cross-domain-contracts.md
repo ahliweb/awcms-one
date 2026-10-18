@@ -2,11 +2,12 @@
 
 # Cross-domain contracts — capability ports, provisional events and consumer idempotency
 
-> **Status:** design only (Issue #918 items 2-3). **No runtime code exists for
-> anything in this document.** The three ports below are signature sketches, the
-> events are in a separate, machine-validated, **provisional** AsyncAPI document
-> that is not part of the live contract, and the `_shared/ports/*.ts` files are
-> created by each module's phase-1 implementation PR, not now (a port with no
+> **Status:** the booking port and its nine events are **built** (Issue #941);
+> the staff availability port (#946) and the WhatsApp port and its seven events
+> (#963) were built before it. What remains design is the `hr` events (still in a
+> separate, machine-validated, **provisional** AsyncAPI document that is not part
+> of the live contract) and the consumers of section 6. The `_shared/ports/*.ts`
+> files are created by each module's phase-1 implementation PR (a port with no
 > implementation is dead code that a reviewer would have to delete).
 >
 > It is the join between four decisions: the booking pack
@@ -23,10 +24,10 @@
 
 | Artifact                                                                            | Status           | Where                                                                                                                               |
 | ----------------------------------------------------------------------------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| Booking port (`quote`, `hold`, `confirm`, `cancel`, `reschedule`)                   | design           | §3                                                                                                                                  |
+| Booking port (`quote`, `hold`, `confirm`, `cancel`, `reschedule`)                   | **built** (#941) | §3                                                                                                                                  |
 | Staff availability port (`getAvailability`)                                         | **built** (#946) | §4                                                                                                                                  |
 | WhatsApp delivery port (`enqueue`, `getStatusByCorrelation`, `cancelByCorrelation`) | **live** (#963)  | §5                                                                                                                                  |
-| 15 provisional event schemas (9 booking, 6 hr); the 7 whatsapp events are **live**  | **provisional**  | [`asyncapi/provisional/…provisional.asyncapi.yaml`](../../asyncapi/provisional/awcms-cross-domain-events.provisional.asyncapi.yaml) |
+| 6 provisional event schemas (hr); the 7 whatsapp and 9 booking events are **live**  | **provisional**  | [`asyncapi/provisional/…provisional.asyncapi.yaml`](../../asyncapi/provisional/awcms-cross-domain-events.provisional.asyncapi.yaml) |
 | Consumer registration (`ModuleDescriptor.domainEventConsumers`)                     | ADR-0134         | not restated; this document only _uses_ it                                                                                          |
 | Idempotency per side-effecting consumer                                             | design           | §6                                                                                                                                  |
 | How an event moves from provisional to live                                         | process          | §7                                                                                                                                  |
@@ -71,6 +72,13 @@ ADR-0006 (no network I/O inside a database transaction) and ADR-0063
 
 ## 3. Booking port
 
+- **Status:** **built in Issue #941** (`src/modules/_shared/ports/booking-port.ts`,
+  adapter `booking/application/booking-port-adapter.ts`). The signatures below are
+  the sketch; the built port differs in four ways: every method takes the caller's
+  transaction first and the input carries `tenantId` (as the WhatsApp and staff
+  availability ports do); `quote` asks one `resourceId`; the refusal union is
+  completed (see the note at the end of this section); and there is no override.
+  Its nine events moved to the live AsyncAPI document and the runtime registry.
 - **Owning module:** `booking` (ADR-0131; `src/modules/_shared/ports/booking-port.ts`).
 - **Consumers:** a downstream commerce adapter (offering ↔ product, hold → order,
   payment → confirm), a portal or kiosk route in the same repository. Booking
@@ -173,8 +181,8 @@ type BookingOutcome =
   | { ok: false; reason: BookingRefusal };
 ```
 
-Idempotency, as booking §5.2: the key is required on `hold`, `confirm`, `cancel`
-and `reschedule`; the acting user is part of the request hash; the same key
+Idempotency, as booking §5.2: the key is required on `hold`, `confirm`, `cancel`,
+`reschedule`, `checkIn`, `checkOut` and `markNoShow`; the acting user is part of the request hash; the same key
 against a different target is `IDEMPOTENCY_CONFLICT`; confirming a `confirmed`
 reservation returns it with `replayed: true`; and the exclusion constraint
 backstops both layers. The natural key `(tenant, externalRef.type, externalRef.id)`
@@ -185,9 +193,91 @@ customer name or contact, free-text notes. Any of them in an input is
 `PAYMENT_FIELD_NOT_ACCEPTED` or a validation error. Payment is the adapter's;
 the adapter decides _when_ to ask for a `confirm`.
 
-Provisional signature note: `BookingRefusal` is the pack's list as of this
-writing; the implementation PR fixes the final union and OpenAPI `ErrorCode`
-enumeration together.
+**Keep the transaction short.** `hold` takes a per-tenant advisory lock after it
+wins its units (the hold-cap count, booking.md §13) and holds it until the
+caller's transaction ends; the same-key idempotency lock is held likewise. A
+consumer that wraps `hold` in a long transaction (a provider call, a slow
+render) queues every other hold of that tenant behind it. Do the port call, then
+commit; never call a provider inside the transaction (§2).
+
+Signature note: the built `BookingRefusal` is the pack's list completed with what
+the claim and the transitions can say: `QUANTITY_EXCEEDS_UNITS`,
+`BOOKING_MODE_MISMATCH`, `MIN_STAY_VIOLATION`, `MAX_STAY_EXCEEDED`,
+`STAY_DATES_INVALID`, `STAY_POOL_INCONSISTENT`, `CONTENTION_RETRY`,
+`EXTERNAL_REF_IN_USE`, `RESOURCE_NOT_FOUND`, `OFFERING_NOT_FOUND`,
+`RESERVATION_NOT_FOUND`, `RESOURCE_REQUIRED` and `VALIDATION_ERROR`
+(`RECURRENCE_UNSUPPORTED` and `TIMEZONE_INVALID` are not producible by the port
+today and are left out; `STAFF_UNAVAILABLE` is kept for the staff slice). The
+OpenAPI document does not enumerate error codes. A stay is asked with
+`stay: { checkInDate, checkOutDate }` instead of `startsAt`. `hold` accepts a
+`poolId` instead of a `resourceId`, and `reschedule` returns the REPLACEMENT's
+`reservationId`.
+
+**Contract 1.1.0 (Issue #1108), additive.** The `booking` capability is versioned
+in `capability-contract-versions.ts` (`1.0.0` = the port above; `1.1.0` adds the
+following, no existing signature changed):
+
+```ts
+type Targeted = {
+  tenantId: string;
+  reservationId: string;
+  idempotencyKey: string;
+  correlationId: string;
+  actorTenantUserId: string;
+};
+
+interface BookingPort {
+  // ... quote, hold, confirm, cancel, reschedule as above ...
+  checkIn(tx: Bun.SQL, input: Targeted): Promise<BookingOutcome>; // confirmed -> checked_in
+  checkOut(tx: Bun.SQL, input: Targeted): Promise<BookingOutcome>; // checked_in -> completed
+  markNoShow(tx: Bun.SQL, input: Targeted): Promise<BookingOutcome>; // confirmed -> no_show, after start + grace
+  get(
+    tx: Bun.SQL,
+    input: { tenantId: string } & (
+      { reservationId: string } | { reservationNo: string }
+    )
+  ): Promise<
+    | { ok: true; reservation: BookingReservationRecord }
+    | { ok: false; reason: BookingRefusal }
+  >;
+  getOffering(
+    tx: Bun.SQL,
+    input: { tenantId: string; offeringId: string }
+  ): Promise<
+    | { ok: true; offering: BookingOfferingRecord }
+    | { ok: false; reason: BookingRefusal }
+  >;
+  listOfferings(
+    tx: Bun.SQL,
+    input: {
+      tenantId: string;
+      cursor?: string | null;
+      limit?: number;
+      status?: "active" | "inactive";
+    }
+  ): Promise<
+    | {
+        ok: true;
+        offerings: BookingOfferingRecord[];
+        nextCursor: string | null;
+      }
+    | { ok: false; reason: BookingRefusal }
+  >;
+  availability(
+    tx: Bun.SQL,
+    input: BookingAvailabilityInput
+  ): Promise<BookingAvailabilityResult>; // no actor
+}
+```
+
+`BookingRefusal` gains `CHECK_IN_TOO_EARLY` and `NO_SHOW_TOO_EARLY`. The
+transitions are idempotent exactly as `confirm` (actor-namespaced key, ADR-0145;
+a replay or the state already reached is `replayed: true`). The reads write
+nothing, return not-found as a value, and carry **no customer or contact data**:
+`BookingReservationRecord` is `{ reservationId, reservationNo, status, startsAt,
+endsAt, holdExpiresAt, lineageId, supersededById, stays[], externalRef }`, and
+`availability` returns slots or stay counts only. The full description, including
+how a public booking page uses the anonymous read, is booking.md §10.1.
 
 ## 4. Staff availability port
 
@@ -324,6 +414,38 @@ ADR-0133 §8 says; the implementation ADR fixes them. A phone number, message
 body or template variable never appears in an event, an audit row or a log; the
 caller learns only ids and the masked recipient.
 
+### 5.1 Telegram delivery port (live, #965)
+
+- **Status:** **live since Issue #965** (ADR-0140, inert behind `TELEGRAM_ENABLED`). Unlike §5 it carries **operational and staff alerts only**, to a member of staff who bound their own private chat; it is never a fallback for WhatsApp or e-mail and no other channel falls back to it (ADR-0139).
+- **Owning module:** `telegram_delivery` (`src/modules/_shared/ports/telegram-delivery-port.ts`).
+- **Consumers:** `booking` (staff reminders), `workflow_approval` (approval-pending pings), and the platform's own operational alerts. None of them is wired yet; each registers its module-prefixed `staff_ops` template (`registerTelegramTemplate`) in its own issue. A payroll-owning module cannot register one (`bun run telegram:templates:check`).
+- **Transaction rule:** as §5. `enqueue` and `cancelByCorrelation` are writes in the **caller's** tenant transaction; there is no `send` and no free-text body. The tenant is read from the transaction's own RLS context, so the port has no `tenantId` parameter.
+- **Failure semantics:** refusals are **returned**: `DISABLED` (deployment, tenant or module off), `TEMPLATE_UNKNOWN`, `NO_BINDING`, `RATE_LIMITED`, `EXPIRY_REQUIRED`. **`NO_BINDING` triggers nothing else**: what the consumer does about a person with no linked chat is its own explicit decision, in its own module.
+
+```ts
+type EnqueueTelegramInput = {
+  templateKey: string; // module-prefixed; registered with the ONE purpose "staff_ops"
+  recipientPrincipalId: string; // the tenant user (awcms_tenant_users.id), never a chat id
+  variables: Record<string, string>; // typed by kind (reference | count | token | link); anything else is dropped
+  idempotencyKey: string; // required, unique per tenant
+  expiresAt: Date; // required, in the future and at most 7 days out
+  correlationId?: string;
+};
+
+type EnqueueTelegramResult =
+  | { status: "queued"; messageId: string }
+  | { status: "duplicate"; messageId: string }
+  | {
+      status: "refused";
+      reason:
+        | "DISABLED"
+        | "TEMPLATE_UNKNOWN"
+        | "NO_BINDING"
+        | "RATE_LIMITED"
+        | "EXPIRY_REQUIRED";
+    };
+```
+
 ## 6. Idempotency per side-effecting consumer — emitted once is not handled once
 
 Delivery is **at-least-once**. A handler that ran and then crashed before its
@@ -425,7 +547,7 @@ edit.
 
 ## 8. Open items
 
-- The final `BookingRefusal` union, WhatsApp port names and the exact hr payload
+- WhatsApp port names and the exact hr payload
   field types (for example `kind`, `source`, `operation` enumerations) are fixed
   by each implementation PR; the provisional schemas leave them as strings where
   the packs list no closed set.
