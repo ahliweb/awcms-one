@@ -20809,6 +20809,10 @@ components:
       properties:
         replayed:
           type: boolean
+        serverNow:
+          type: string
+          format: date-time
+          description: "Issue #386. The server's instant when the body was built; a countdown is `holdExpiresAt - serverNow`, so a wrong device clock does not matter."
         orderId:
           type: string
           format: uuid
@@ -20841,6 +20845,10 @@ components:
       type: object
       description: "Issue #380. A reservation's view: Booking's facts, the order's code and status, the ledger-derived settlement. `attentionReason`/`attentionOpen` are present on the STAFF route only. `refund` stays null until the cancellation issue records decisions. No customer field."
       properties:
+        serverNow:
+          type: string
+          format: date-time
+          description: "Issue #386. The server's instant when the body was built (see `CommerceBookingReservationCreated`)."
         reservationId:
           type: string
           format: uuid

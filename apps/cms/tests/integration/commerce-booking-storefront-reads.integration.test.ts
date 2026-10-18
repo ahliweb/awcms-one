@@ -440,6 +440,10 @@ suite("booking storefront reads (Issue #386)", () => {
 
     const booked = await book(fx);
     expect(booked.status).toBe(201);
+    // The hold response says what time the server thinks it is (the page counts down against it).
+    expect(
+      Date.parse((booked.body.data as { serverNow: string }).serverNow)
+    ).toBeGreaterThan(Date.now() - 60_000);
     const orderCode = booked.body.data.orderCode;
     const reservationId = booked.body.data.reservation.id;
 
@@ -745,6 +749,13 @@ suite("booking storefront reads (Issue #386)", () => {
     expect(newest!.settlement.total).toBe("1500000.00");
     expect(newest!.settlement.balanceDue).toBe("1500000.00");
     expect(typeof newest!.holdExpiresAt).toBe("string");
+    // The countdown is a difference of two SERVER instants, so the body carries the server's own "now".
+    expect(Date.parse(newest!.serverNow)).toBeLessThanOrEqual(
+      Date.now() + 5_000
+    );
+    expect(Date.parse(newest!.holdExpiresAt)).toBeGreaterThan(
+      Date.parse(newest!.serverNow)
+    );
     expect(older).toMatchObject({ nights: 2 });
     for (const item of mine.body.data.items) {
       expect(item).not.toHaveProperty("attentionReason");
