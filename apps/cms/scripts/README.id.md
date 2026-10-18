@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:041cdbaa0346e70d314ef56fd08f414ab7b829d29b41341dc7c9b0f9ccc050c6 -->
+<!-- i18n-source-hash: sha256:e9971f4659f452592850ad33b58c9152c112b22e18823bc4ce58e035716b22a2 -->
 
 # Scripts AWCMS
 
@@ -27,7 +27,7 @@ lalu membangun duplikatnya.
 
 <!-- Dihasilkan `bun run scripts:inventory:generate`. JANGAN diedit tangan. -->
 
-161 target menjalankan berkas di `scripts/`; 64 di antaranya
+164 target menjalankan berkas di `scripts/`; 64 di antaranya
 ada di rantai `bun run check` (kolom **Gate**), sisanya dijalankan manual,
 terjadwal, atau oleh workflow CI tertentu.
 
@@ -163,9 +163,11 @@ terjadwal, atau oleh workflow CI tertentu.
 | `project-state:inventory:check`           | `project-state-inventory.ts`                   | ✅   |
 | `project-state:inventory:generate`        | `project-state-inventory.ts`                   | —    |
 | `push:auth-secret:backfill`               | `push-auth-secret-backfill.ts`                 | —    |
+| `push:auth-secret:rekey`                  | `push-auth-secret-backfill.ts`                 | —    |
 | `push:dispatch`                           | `push-dispatch.ts`                             | —    |
 | `push:queue:purge`                        | `push-queue-purge.ts`                          | —    |
 | `push:vapid:generate`                     | `push-vapid-generate.ts`                       | —    |
+| `pwa:icons:generate`                      | `generate-pwa-icons.ts`                        | —    |
 | `redis:health`                            | `redis-health.ts`                              | —    |
 | `release:verify`                          | `release-verify.ts`                            | —    |
 | `repo:inventory:check`                    | `repo-inventory.ts`                            | ✅   |
@@ -185,6 +187,7 @@ terjadwal, atau oleh workflow CI tertentu.
 | `subject-data:registry:check`             | `subject-data-registry-check.ts`               | ✅   |
 | `sync:objects:dispatch`                   | `object-sync-dispatch.ts`                      | —    |
 | `sync:objects:purge`                      | `object-queue-purge.ts`                        | —    |
+| `telegram:chat:rekey`                     | `telegram-chat-rekey.ts`                       | —    |
 | `telegram:dispatch`                       | `telegram-dispatch.ts`                         | —    |
 | `telegram:queue:purge`                    | `telegram-queue-purge.ts`                      | —    |
 | `telegram:templates:check`                | `telegram-templates-check.ts`                  | ✅   |

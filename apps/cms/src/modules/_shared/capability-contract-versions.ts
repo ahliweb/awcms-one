@@ -96,10 +96,25 @@ export const CAPABILITY_CONTRACT_VERSIONS: Readonly<Record<string, string>> =
     // staff_availability is provided by `hr_workforce` (Issue #946, ADR-0132) and
     // consumed, optionally, by `booking` (Issue #949). First assigned number.
     staff_availability: "1.0.0",
+    // commission_accrual is provided by `hr_commission` (Issue #951, ADR-0132) and
+    // bound by a downstream sale-attribution adapter. The port shipped with
+    // `accrue` alone and was not listed here; Issue #1109 adds `void` (a new
+    // method on the port: MINOR) and declares the key for the first time, so
+    // `1.1.0` is the first assigned number: `1.0.0` is the accrue-only shape.
+    commission_accrual: "1.1.0",
     // tenant_admin provides (ADR-0060) — the office hierarchy resolver behind
     // `business_scope_hierarchy`. The port itself is unchanged from the day it
     // landed (#180); what changed is that a BASE module finally provides an
     // adapter for it, so it belongs in this registry for the first time. First
     // assigned number, not a stability milestone.
-    business_scope_hierarchy: "1.0.0"
+    business_scope_hierarchy: "1.0.0",
+    // booking is provided by the base `booking` module (ADR-0131); its port is
+    // `_shared/ports/booking-port.ts`. First entry in this registry, because the
+    // port is the first one a downstream adapter (the commerce adapter of a
+    // derived store) asks to GROW: `1.0.0` is the shape of Issue #941 (quote,
+    // hold, confirm, cancel, reschedule) and `1.1.0` (Issue #1108) ADDS `checkIn`,
+    // `checkOut`, `markNoShow`, `get`, `getOffering`, `listOfferings` and the
+    // anonymous `availability` read, plus the refusals `CHECK_IN_TOO_EARLY` and
+    // `NO_SHOW_TOO_EARLY`. No existing signature changed (a MINOR bump).
+    booking: "1.1.0"
   });
