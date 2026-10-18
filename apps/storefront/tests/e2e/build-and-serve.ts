@@ -72,7 +72,11 @@ export async function buildAndServe(profile: string, options: BuildAndServeOptio
     // client-side runtime behaviour acts on the identical product data the
     // built pages actually rendered.
     PUBLIC_AWCMS_ORIGIN: stubOrigin,
-    SITE_PROFILE: profile
+    SITE_PROFILE: profile,
+    // Issue #428: the opt-in iPhone install-help page is built ON here so
+    // the axe/360px/footer-link gates cover it. Production builds default
+    // to off (`src/lib/pasang-aplikasi.ts`).
+    PUBLIC_INSTALL_HELP: "1"
   };
 
   const build = Bun.spawnSync(["bun", "--bun", "astro", "build"], {

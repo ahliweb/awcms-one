@@ -75,6 +75,12 @@ Checkout's payment step lists **Bayar online (kartu, VA, e-wallet)** whenever th
 
 `/akun/pesan` is this app's fourth authenticated list/detail page (after `/akun/pesanan`, `/akun/alamat`, `/akun/afiliasi`'s commissions list), reusing the exact same keyset-list-plus-`?id=`-detail shape `/akun/pesanan` established — a shopper who already knows that page's own pattern (list, "Muat lebih banyak", click through to a detail) needs to learn nothing new here. The one genuinely new element is the unread badge: a small count on each list row, `aria-label`'d rather than left as a bare visual number, and cleared server-side as a side effect of opening the thread (never a separate "mark read" action a shopper has to remember to take). A closed thread renders a plain note in place of the reply form — never a `disabled` textarea, which would invite a shopper to try typing into a control that can only fail.
 
+## Installing the storefront to the Home Screen (issue #428)
+
+Every page carries the manifest link, an `apple-touch-icon` and the iOS web-app meta tags (static `<head>` markup, no script). The PNG icons are drawn at build time from the site's first letter and theme colour, so a derived site never ships another brand's mark; see [`docs/template.md`](template.md#install-metadata-manifest-icons-ios-home-screen) and [ADR-0049](adr/0049-install-metadata-is-derived-at-build-time-and-the-ios-help-page-is-opt-in.md).
+
+`/pasang-aplikasi` is an opt-in help page (build flag `PUBLIC_INSTALL_HELP`, off by default; absent from the build when off). It lists the iPhone steps (Safari, Share, Add to Home Screen), and one small module reads `display-mode: standalone` / `navigator.standalone` to hide the steps once the app is already running from the Home Screen and to show a Chrome hint on non-Apple devices; with no JavaScript everything stays visible. It says plainly that a browser tab cannot receive notifications once closed, never asks for a permission on load, and is `noindex`. It is included in the axe and 360px gates.
+
 ## Not built
 
 A locale switcher; any product-imagery decision tied to dark mode (the colour-scheme media query governs this app's own chrome, not CMS-supplied imagery or `labelColor`).

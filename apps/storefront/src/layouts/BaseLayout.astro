@@ -36,6 +36,8 @@ import { getSiteIdentity } from "../lib/awcms/profil";
 import { listStaticPages } from "../lib/awcms/pages";
 import { readEnv } from "../lib/env";
 import { readGaMeasurementId } from "../lib/ga";
+import { getSiteTheme } from "../lib/awcms/theme";
+import { ICON_PATHS, shortNameFor } from "../lib/pwa-manifest";
 import { GROUP_STYLESHEET_HREFS, PRIMARY_FEED } from "../config/profil";
 import type { MetaTag, OgType } from "../lib/meta-sosial";
 import Header from "../components/Header.astro";
@@ -76,6 +78,7 @@ const { title, description, canonicalPath, schema, ogType = "website", meta = []
 
 const identity = await getSiteIdentity();
 const staticPages = await listStaticPages();
+const theme = await getSiteTheme();
 
 const canonicalUrl = absoluteUrl(canonicalPath);
 const fullTitle = title === identity.name ? title : `${title} — ${identity.name}`;
@@ -183,6 +186,16 @@ function jsonForScript(value: unknown): string {
     <link rel="stylesheet" href="/theme-tokens.css" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="manifest" href="/manifest.webmanifest" />
+    {/* Issue #428: iOS Home Screen web app + Chrome theme chrome. Static
+        tags only — no script, no permission, no CSP impact. The touch icon
+        is the build-time PNG (`src/lib/pwa-ikon.ts`); the title is the
+        manifest's `short_name` so the two never disagree. */}
+    <link rel="apple-touch-icon" href={ICON_PATHS.appleTouch} />
+    <meta name="theme-color" content={theme.primary} />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content={shortNameFor(identity.name)} />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     {/* Issue #137: the profile's primary feed — `/feed.xml` (products) for
         `toko`, `/berita/feed.xml` for `berita`, nothing for `landing`. */}
     {PRIMARY_FEED && (
