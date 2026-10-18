@@ -10,7 +10,7 @@
  *
  *   - pay -> accrue -> refund -> void, and cancel -> void, end to end through the
  *     REAL dispatcher as the real `awcms_worker` role (the narrow column grant of
- *     `sql/1042`), with the real cancel path of the order directory;
+ *     `sql/1051`), with the real cancel path of the order directory;
  *   - replay: the same event twice, and a different event for the same fact, are
  *     one void, one transition, one `voided` domain event, one audit row;
  *   - a void with nothing to void (never accrued) is a quiet no-op;
@@ -1018,7 +1018,7 @@ suite(
         expect(await count("transitions", TENANT_A)).toBe(2);
       });
 
-      test("without the sql/1042 column grant the worker cannot reverse (the grant is load-bearing), and with it restored it can", async () => {
+      test("without the sql/1051 column grant the worker cannot reverse (the grant is load-bearing), and with it restored it can", async () => {
         if (!workerRoleActivated) return;
         const { orderId } = await accruedSale();
         const grant = `GRANT UPDATE (status, voided_at, voided_by, void_reason_code) ON awcms_hr_commission_accruals TO awcms_worker`;

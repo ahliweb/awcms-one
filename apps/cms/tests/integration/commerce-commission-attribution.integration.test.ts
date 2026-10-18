@@ -22,7 +22,7 @@
  *   - the worker role - the one that really runs the consumer - can do the whole
  *     job with the narrow grants of `sql/1031` and nothing more (it cannot
  *     approve, pay or rewrite an accrual, change a rule or an employment; the
- *     void grant of `sql/1042` is covered by the reversal suite).
+ *     void grant of `sql/1051` is covered by the reversal suite).
  *
  * The `hr_workforce` / `hr_commission` fixtures here (employment, published
  * rule) are written straight into those tables - tests only; the module under
@@ -967,7 +967,7 @@ suite("commerce commission attribution integration (Issue #391)", () => {
           (tx) =>
             tx`UPDATE awcms_hr_commission_accruals SET status = 'approved'`
         ],
-        // Voiding is NOT here: since sql/1042 (ADR-0046 D9) the worker holds a
+        // Voiding is NOT here: since sql/1051 (ADR-0046 D9) the worker holds a
         // four-column UPDATE for it, covered by
         // commerce-commission-reversal.integration.test.ts. Paying and
         // rewriting an amount stay out of reach:

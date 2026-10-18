@@ -394,7 +394,7 @@
 | 333 | `sql/1032_awcms_commerce_trigger_function_search_path.sql`                  |
 | 334 | `sql/1033_awcms_commerce_campaign_worker_email_category.sql`                |
 | 335 | `sql/1034_awcms_commerce_lifecycle_surrogate_id.sql`                        |
-| 336 | `sql/1042_awcms_commerce_commission_reversal_worker_grants.sql`             |
+| 336 | `sql/1051_awcms_commerce_commission_reversal_worker_grants.sql`             |
 
 ### Tables & Row-Level Security
 

@@ -2147,7 +2147,7 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // those two (their `FOR SHARE` reads need an UPDATE privilege; it is not a
   // table privilege, so it does not appear here - the inventory locations'
   // precedent above). No table-level UPDATE or DELETE on an accrual: the worker
-  // cannot approve, pay or rewrite one; since sql/1042 it can void one, through
+  // cannot approve, pay or rewrite one; since sql/1051 it can void one, through
   // four COLUMN grants (WORKER_COLUMN_GRANTS). `awcms_tenant_settings` (the tenant's time
   // zone) and `awcms_tenant_modules` (is `hr_commission` on) are SELECT only.
   awcms_commerce_commission_settings: ["SELECT"],
@@ -2231,7 +2231,7 @@ export const WORKER_COLUMN_GRANTS: Record<
     UPDATE: ["status", "decided_by", "decided_at", "updated_at"]
   },
   awcms_hr_employments: { UPDATE: ["updated_at"] },
-  // sql/1042 (Issue #391, ADR-0046 D9): the commission reversal consumers void an
+  // sql/1051 (Issue #391, ADR-0046 D9): the commission reversal consumers void an
   // accrual through `CommissionAccrualPort.void`: one status edge, four columns.
   // The amount, rule, source and beneficiary stay unwritable; approve, release
   // and pay are not reachable (the port refuses a payable or paid accrual).

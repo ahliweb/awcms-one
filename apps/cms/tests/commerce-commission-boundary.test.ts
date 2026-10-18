@@ -21,7 +21,7 @@
  * The migrations get the same treatment: no commerce-band migration may declare a
  * foreign key into an `awcms_hr_*` table (the employment id is opaque), and the
  * only statements that mention one are the worker grants the port's posting core
- * needs (`sql/1031`).
+ * needs (`sql/1031`, and the four-column void grant of `sql/1051`).
  */
 import { describe, expect, test } from "bun:test";
 import { readdirSync, readFileSync } from "node:fs";
@@ -166,7 +166,7 @@ describe("commerce migrations never constrain against an hr_* table", () => {
     expect(offenders).toEqual([]);
   });
 
-  test("the only commerce-band migration that mentions an awcms_hr_ table in a statement is the worker-grant migration 1031", () => {
+  test("the only commerce-band migrations that mention an awcms_hr_ table in a statement are the worker-grant migrations 1031 and 1051", () => {
     const files = readdirSync(path.join(root, "sql")).filter((name) =>
       COMMERCE_MIGRATION.test(name)
     );
@@ -179,7 +179,8 @@ describe("commerce migrations never constrain against an hr_* table", () => {
       if (/awcms_hr_/i.test(text)) mentioning.push(name);
     }
     expect(mentioning).toEqual([
-      "1031_awcms_commerce_commission_attribution_permissions_grants.sql"
+      "1031_awcms_commerce_commission_attribution_permissions_grants.sql",
+      "1051_awcms_commerce_commission_reversal_worker_grants.sql"
     ]);
   });
 });

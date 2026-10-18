@@ -9,7 +9,6 @@ import {
   createStaffLink,
   listStaffLinks
 } from "../../../../../../modules/commerce/application/commission-attribution-directory";
-import { COMMERCE_COMMISSION_STAFF_LINKS_ACTIVITY_CODE } from "../../../../../../modules/commerce/domain/commerce-permissions";
 import {
   validateCreateStaffLinkInput,
   type CreateStaffLinkInput
@@ -29,21 +28,21 @@ import {
  * LIVE link and an employment at most one: a second is `409`. The beneficiary of
  * a sale is never a field of the sale; it is derived from this table.
  */
-const READ_GUARD = {
+const COMMISSION_STAFF_LINKS_READ_GUARD = {
   moduleKey: "commerce",
-  activityCode: COMMERCE_COMMISSION_STAFF_LINKS_ACTIVITY_CODE,
+  activityCode: "commission_staff_links",
   action: "read"
 } as const;
 
-const MANAGE_GUARD = {
+const COMMISSION_STAFF_LINKS_MANAGE_GUARD = {
   moduleKey: "commerce",
-  activityCode: COMMERCE_COMMISSION_STAFF_LINKS_ACTIVITY_CODE,
+  activityCode: "commission_staff_links",
   action: "manage"
 } as const;
 
 export const GET = defineTenantRoute({
   workClass: "interactive",
-  authorize: READ_GUARD,
+  authorize: COMMISSION_STAFF_LINKS_READ_GUARD,
   handler: async ({ tx, tenantId, url }) =>
     ok({
       items: await listStaffLinks(tx, tenantId, {
@@ -56,7 +55,7 @@ export const POST = defineTenantRoute<CreateStaffLinkInput>({
   workClass: "interactive",
   prepare: ({ request }) =>
     readValidatedBody(request, validateCreateStaffLinkInput),
-  authorize: MANAGE_GUARD,
+  authorize: COMMISSION_STAFF_LINKS_MANAGE_GUARD,
   handler: async ({ tx, tenantId, auth, prepared, locals }) => {
     const outcome = await createStaffLink(
       tx,
