@@ -1080,12 +1080,16 @@ DROP FUNCTION awcms_cp();`).join()
     expect(performance.now() - started).toBeLessThan(2000);
   });
 
-  test("the port adapter is a guarded import with no allowed importer", () => {
+  test("the port adapter is a guarded import whose only allowed importer is commerce's composition seam", () => {
     const entry = PAYROLL_READ_FUNCTION_IMPORTS.find((candidate) =>
       candidate.functions.includes("createCommissionAccrualPort")
     );
 
-    expect(entry?.allowedImporters).toEqual([]);
+    // LOCAL REGISTRY ROW (awcms-one #391): upstream pinned `[]`; commerce's
+    // single composition seam is the first importer the entry's comment asks for.
+    expect(entry?.allowedImporters).toEqual([
+      "src/modules/commerce/application/commission-attribution-port.ts"
+    ]);
 
     const source =
       'import { createCommissionAccrualPort } from "../../../../modules/hr-commission/application/hr-commission-accrual-port-adapter";\nexport const x = createCommissionAccrualPort;';
