@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](PROJECT_STATE.md)
 
-<!-- i18n-source-hash: sha256:e298c8b180d81c0bb077fdde70a80861ef654b46468e68a182770c09bb24a903 -->
+<!-- i18n-source-hash: sha256:063f513a3d1cbc38a415cd70f3cd57380eaaa5fe4f4fca8da8035da0c561e16f -->
 
 # AWCMS — Project State & Continuation
 
@@ -114,18 +114,18 @@ Model tata kelola dipakai-langsung/tanpa-repo-turunan (ADR-0034 §2/§3) **tidak
 
 <!-- Dihasilkan `bun run project-state:inventory:generate`. JANGAN diedit tangan; gerbangnya `bun run project-state:inventory:check`. -->
 
-| Aspek | Nilai (ter-generate) | Sumber kebenaran |
-| --- | --- | --- |
-| Versi | **10.9.0** | `package.json` |
-| Changeset menunggu (per tipe bump) | _jalankan perintah di kolom kanan_ | `grep -h '^"awcms":' .changeset/*.md \| sort \| uniq -c` |
-| Commit sejak rilis terakhir | _jalankan perintah di kolom kanan_ | `git rev-list --count v10.9.0..HEAD` |
-| Modul base | **34** (lihat daftar di ARCHITECTURE.md) | `src/modules/index.ts` |
-| Migrasi | **335** (`sql/001`–`1034`) | `ls sql/` |
-| ADR | **0000**–**0145** (`0000` = template; status ADR tertinggi: **Accepted**) | `ls docs/adr/` |
-| Layar admin | **109** berkas `.astro` di `src/pages/admin/`; **0 dari 34** modul tanpa `navigation:` | `find src/pages/admin -name '*.astro'`, `grep -L 'navigation:' src/modules/*/module.ts` |
-| Berkas `.astro` | **136** (83.602 baris) — soal typecheck lihat §6 | `find src -name '*.astro'` |
-| Gerbang | **68** di rantai `bun run check` | `scripts.check` di `package.json`, dipisah pada `&&` |
-| Kontrak | OpenAPI modular per-modul + AsyncAPI; `MODULE_CONTRACT_VERSION` **4.6.0** | `openapi/`, `asyncapi/`, `_shared/module-contract.ts` |
+| Aspek                              | Nilai (ter-generate)                                                                   | Sumber kebenaran                                                                        |
+| ---------------------------------- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| Versi                              | **10.9.0**                                                                             | `package.json`                                                                          |
+| Changeset menunggu (per tipe bump) | _jalankan perintah di kolom kanan_                                                     | `grep -h '^"awcms":' .changeset/*.md \| sort \| uniq -c`                                |
+| Commit sejak rilis terakhir        | _jalankan perintah di kolom kanan_                                                     | `git rev-list --count v10.9.0..HEAD`                                                    |
+| Modul base                         | **34** (lihat daftar di ARCHITECTURE.md)                                               | `src/modules/index.ts`                                                                  |
+| Migrasi                            | **336** (`sql/001`–`1042`)                                                             | `ls sql/`                                                                               |
+| ADR                                | **0000**–**0145** (`0000` = template; status ADR tertinggi: **Accepted**)              | `ls docs/adr/`                                                                          |
+| Layar admin                        | **109** berkas `.astro` di `src/pages/admin/`; **0 dari 34** modul tanpa `navigation:` | `find src/pages/admin -name '*.astro'`, `grep -L 'navigation:' src/modules/*/module.ts` |
+| Berkas `.astro`                    | **136** (83.602 baris) — soal typecheck lihat §6                                       | `find src -name '*.astro'`                                                              |
+| Gerbang                            | **68** di rantai `bun run check`                                                       | `scripts.check` di `package.json`, dipisah pada `&&`                                    |
+| Kontrak                            | OpenAPI modular per-modul + AsyncAPI; `MODULE_CONTRACT_VERSION` **4.6.0**              | `openapi/`, `asyncapi/`, `_shared/module-contract.ts`                                   |
 
 <!-- project-state-inventory:selesai -->
 

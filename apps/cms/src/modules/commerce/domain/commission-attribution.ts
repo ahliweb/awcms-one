@@ -41,7 +41,10 @@ import {
   resolveSalesReportDay,
   SALES_REPORT_TIME_ZONE
 } from "./sales-report-deltas";
-import type { CommissionAccrualOutcome } from "../../_shared/ports/commission-accrual-port";
+import type {
+  CommissionAccrualOutcome,
+  CommissionVoidOutcome
+} from "../../_shared/ports/commission-accrual-port";
 
 export type CommissionValidationError = { field: string; message: string };
 type ValidationResult<T> =
@@ -86,7 +89,11 @@ export const COMMISSION_SKIP_REASONS = [
   "not_a_counter_sale",
   "no_cashier_stamp",
   "no_staff_link",
-  "no_commissionable_lines"
+  "no_commissionable_lines",
+  // Reversal-only reasons (ADR-0046 D9).
+  "no_reversal_actor",
+  "return_not_settled",
+  "return_not_found"
 ] as const;
 export type CommissionSkipReason = (typeof COMMISSION_SKIP_REASONS)[number];
 
@@ -428,4 +435,88 @@ export function tallyOutcome(
         (tally.refused[outcome.outcome] ?? 0) + 1;
       break;
   }
+}
+
+// ---------------------------------------------------------------------------
+// Reversal (ADR-0046 D9): cancel and refund void the accrual by source identity
+// ---------------------------------------------------------------------------
+
+/** The `reason` CODE handed to `CommissionAccrualPort.void` (a code, never free text). */
+export const COMMISSION_VOID_REASON_ORDER_CANCELLED = "order_cancelled";
+export const COMMISSION_VOID_REASON_LINE_RETURNED = "line_returned";
+
+/**
+ * Whether a line's accrual is reversed by refunds: ONLY when every unit of the
+ * line has been returned, across all completed returns of the order. The port
+ * voids a whole accrual, irreversibly (a voided accrual is never resurrected by
+ * a redelivery), so a partly returned line keeps its accrual and is left for a
+ * human (ADR-0046 D9: the conservative option - the ledger never loses a
+ * commission on units the customer kept).
+ */
+export function isLineFullyReturned(
+  orderedQuantity: number,
+  returnedQuantity: number
+): boolean {
+  return orderedQuantity > 0 && returnedQuantity >= orderedQuantity;
+}
+
+export type VoidTally = {
+  voided: number;
+  alreadyVoided: number;
+  /** Nothing was accrued for that line and employment: the normal case for a line below the threshold, a rule-less tenant or a sale that was refused. */
+  notFound: number;
+  /** Lines of a partly returned order line left untouched (a human decides). */
+  partial: number;
+  /** `payable` / `paid` accruals: a clawback for a human. NEVER retried. */
+  periodClosed: Record<"payable" | "paid", number>;
+  actorRequired: number;
+  invalid: number;
+};
+
+export function emptyVoidTally(): VoidTally {
+  return {
+    voided: 0,
+    alreadyVoided: 0,
+    notFound: 0,
+    partial: 0,
+    periodClosed: { payable: 0, paid: 0 },
+    actorRequired: 0,
+    invalid: 0
+  };
+}
+
+export function tallyVoidOutcome(
+  tally: VoidTally,
+  outcome: CommissionVoidOutcome
+): void {
+  switch (outcome.outcome) {
+    case "voided":
+      tally.voided += 1;
+      break;
+    case "already_voided":
+      tally.alreadyVoided += 1;
+      break;
+    case "not_found":
+      tally.notFound += 1;
+      break;
+    case "period_closed":
+      tally.periodClosed[outcome.status] += 1;
+      break;
+    case "actor_required":
+      tally.actorRequired += 1;
+      break;
+    case "input_invalid":
+      tally.invalid += 1;
+      break;
+  }
+}
+
+/** True when a human has to look: money the ledger would not reverse, or a reversal that could not be attributed. */
+export function voidNeedsAttention(tally: VoidTally): boolean {
+  return (
+    tally.periodClosed.payable + tally.periodClosed.paid > 0 ||
+    tally.actorRequired > 0 ||
+    tally.invalid > 0 ||
+    tally.partial > 0
+  );
 }
