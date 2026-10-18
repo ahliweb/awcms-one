@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:4eaac6db3803efdbc94d7d9b72532c3483cdbad5704fa11ac2f0874a58d8d5b2 -->
+<!-- i18n-source-hash: sha256:e9971f4659f452592850ad33b58c9152c112b22e18823bc4ce58e035716b22a2 -->
 
 # Scripts AWCMS
 
@@ -27,7 +27,7 @@ lalu membangun duplikatnya.
 
 <!-- Dihasilkan `bun run scripts:inventory:generate`. JANGAN diedit tangan. -->
 
-159 target menjalankan berkas di `scripts/`; 63 di antaranya
+164 target menjalankan berkas di `scripts/`; 64 di antaranya
 ada di rantai `bun run check` (kolom **Gate**), sisanya dijalankan manual,
 terjadwal, atau oleh workflow CI tertentu.
 
@@ -102,6 +102,7 @@ terjadwal, atau oleh workflow CI tertentu.
 | `db:migrate`                              | `db-migrate.ts`                                | —    |
 | `db:pool:health`                          | `db-pool-health.ts`                            | —    |
 | `db:tenant-context:check`                 | `tenant-context-usage-check.ts`                | ✅   |
+| `db:transaction-swallow:check`            | `transaction-swallow-check.ts`                 | ✅   |
 | `db:work-class:check`                     | `work-class-registry-check.ts`                 | ✅   |
 | `db:work-class:generate`                  | `work-class-registry-generate.ts`              | —    |
 | `deps:audit:check`                        | `dependency-audit-check.ts`                    | ✅   |
@@ -161,9 +162,12 @@ terjadwal, atau oleh workflow CI tertentu.
 | `payroll:sql-boundary:check`              | `payroll-sql-boundary-check.ts`                | ✅   |
 | `project-state:inventory:check`           | `project-state-inventory.ts`                   | ✅   |
 | `project-state:inventory:generate`        | `project-state-inventory.ts`                   | —    |
+| `push:auth-secret:backfill`               | `push-auth-secret-backfill.ts`                 | —    |
+| `push:auth-secret:rekey`                  | `push-auth-secret-backfill.ts`                 | —    |
 | `push:dispatch`                           | `push-dispatch.ts`                             | —    |
 | `push:queue:purge`                        | `push-queue-purge.ts`                          | —    |
 | `push:vapid:generate`                     | `push-vapid-generate.ts`                       | —    |
+| `pwa:icons:generate`                      | `generate-pwa-icons.ts`                        | —    |
 | `redis:health`                            | `redis-health.ts`                              | —    |
 | `release:verify`                          | `release-verify.ts`                            | —    |
 | `repo:inventory:check`                    | `repo-inventory.ts`                            | ✅   |
@@ -183,6 +187,7 @@ terjadwal, atau oleh workflow CI tertentu.
 | `subject-data:registry:check`             | `subject-data-registry-check.ts`               | ✅   |
 | `sync:objects:dispatch`                   | `object-sync-dispatch.ts`                      | —    |
 | `sync:objects:purge`                      | `object-queue-purge.ts`                        | —    |
+| `telegram:chat:rekey`                     | `telegram-chat-rekey.ts`                       | —    |
 | `telegram:dispatch`                       | `telegram-dispatch.ts`                         | —    |
 | `telegram:queue:purge`                    | `telegram-queue-purge.ts`                      | —    |
 | `telegram:templates:check`                | `telegram-templates-check.ts`                  | ✅   |

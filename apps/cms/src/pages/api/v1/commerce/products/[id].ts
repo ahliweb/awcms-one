@@ -129,11 +129,17 @@ export const PATCH = defineTenantRoute({
 
       return ok(withRelations);
     } catch (error) {
+      // tx-swallow-ok: ProductCategoryNotFoundError,
+      // IllegalProductStatusTransitionError, InvalidSizeChartFieldsError,
+      // DuplicateProductSlugError, DuplicateProductSkuError,
+      // BundleDefinitionInvalidError, InventoryLedgerRefusedError are raised
+      // by application code before a write, or after the directory rolled its
+      // failed statement back to a savepoint, so the transaction is healthy.
       // Every one of these is raised either before the UPDATE runs
       // (`ProductCategoryNotFoundError`, `IllegalProductStatusTransitionError`,
-      // `InvalidSizeChartFieldsError`) or after a unique violation already
-      // aborted the transaction (the two duplicate errors) — so nothing
-      // further may be written in any branch.
+      // `InvalidSizeChartFieldsError`) or after the directory rolled the failed
+      // UPDATE back to a savepoint (the two duplicate errors) — so the
+      // transaction is still usable in every branch.
       if (error instanceof ProductCategoryNotFoundError) {
         return fail(
           400,

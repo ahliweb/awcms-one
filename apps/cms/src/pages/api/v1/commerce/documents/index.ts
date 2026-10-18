@@ -140,6 +140,10 @@ export const POST = defineTenantRoute<IssueDocumentInput>({
             : created(outcome.document);
       }
     } catch (error) {
+      // tx-swallow-ok: IdempotencyRaceLostError and
+      // IdempotencyPayloadMismatchError are raised by application code after
+      // statements that succeeded (ON CONFLICT DO NOTHING plus a replay
+      // lookup), so the transaction is healthy.
       const mapped = idempotencyErrorResponse(error);
       if (mapped) return mapped;
       throw error;

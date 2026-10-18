@@ -46,6 +46,10 @@ import path from "node:path";
 
 import { getDatabaseClient } from "../src/lib/database/client";
 import { withTenantOrThrow } from "../src/lib/database/tenant-context";
+import { countPushAuthSecretsByKeyId } from "../src/modules/push-delivery/application/push-auth-secret-backfill";
+import { resolvePushAuthSecretRing } from "../src/modules/push-delivery/domain/push-auth-secret";
+import { countTelegramChatsByKeyId } from "../src/modules/telegram-delivery/application/telegram-chat-rekey";
+import { resolveTelegramEncryptionRingUnchecked } from "../src/modules/telegram-delivery/domain/telegram-config";
 import { hashPassword } from "../src/lib/auth/password";
 import { listModules } from "../src/modules";
 import {
@@ -1510,7 +1514,10 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // dead subscriptions; `push:queue:purge` deletes terminal rows. The DELETE is
   // the one to notice: sql/091 records what its absence looks like — a purge
   // that runs, reports success, and removes nothing.
-  awcms_push_subscriptions: ["DELETE", "INSERT", "SELECT", "UPDATE"],
+  // UPDATE is column-only since sql/314 (Issue #1089): see WORKER_COLUMN_GRANTS.
+  // INSERT is revoked too (sql/314): only the app registers a device. A worker
+  // that could DELETE + INSERT could re-point a row at an attacker endpoint.
+  awcms_push_subscriptions: ["DELETE", "SELECT"],
   awcms_push_messages: ["DELETE", "INSERT", "SELECT", "UPDATE"],
   awcms_push_delivery_attempts: ["DELETE", "INSERT", "SELECT"],
   // ADR-0133 (sql/178) — `whatsapp:dispatch` claims/updates queue rows, writes
@@ -2212,6 +2219,19 @@ export const WORKER_COLUMN_GRANTS: Record<
     UPDATE: ["status", "decided_by", "decided_at", "updated_at"]
   },
   awcms_hr_employments: { UPDATE: ["updated_at"] },
+  // sql/314 (Issue #1089): the dispatcher settles a delivery / disables a dead
+  // device, and the auth-secret backfill moves the secret from plaintext to
+  // ciphertext. The endpoint, its hash and the p256dh key are not writable.
+  awcms_push_subscriptions: {
+    UPDATE: [
+      "status",
+      "disabled_reason",
+      "last_success_at",
+      "updated_at",
+      "auth_secret",
+      "auth_secret_ciphertext"
+    ]
+  },
   // sql/284 (Issue #943): the booking reminder dispatcher settles an intent. The
   // identity of the debt (reservation, kind, occurrence, due time) is not
   // writable. Found unpinned by the column sweep added with Issue #1082.
@@ -2756,7 +2776,9 @@ export const WORKER_CREDENTIAL_COLUMN_EXCEPTIONS: Readonly<
   Record<string, string>
 > = {
   "awcms_push_subscriptions.auth_secret":
-    "push:dispatch needs the subscription's Web Push auth secret to encrypt the payload (sql/093)",
+    "LEGACY plaintext copy of the Web Push auth secret, read by push:dispatch ONLY for a row that has no ciphertext yet (sql/093). Transitional (Issue #1089): the backfill NULLs it, `security:readiness` reports how many plaintext rows remain, and the follow-up migration drops the column and this exception",
+  "awcms_push_subscriptions.auth_secret_ciphertext":
+    "push:dispatch decrypts the Web Push auth secret in-process to encrypt the payload; it is ciphertext under a key ring the worker already holds, AAD-bound to tenant and endpoint hash (sql/314)",
   "awcms_omes_repository_progress_config.secret_ref":
     "omes:repository-progress:poll resolves this REFERENCE (the name of a secret held outside the database) (sql/166)",
   "awcms_telegram_bindings.chat_ciphertext":
@@ -4757,6 +4779,261 @@ export async function checkCommissionAccrualsNotSelfSettled(): Promise<SecurityC
 }
 
 // ---------------------------------------------------------------------------
+// Push subscription auth secrets at rest (warning) — Issue #1089
+// ---------------------------------------------------------------------------
+
+/**
+ * Reports how many `awcms_push_subscriptions.auth_secret` values are still held
+ * in PLAINTEXT. Warning, not critical, on purpose: the plaintext column is the
+ * documented transitional state of the Issue #1089 rollout (sql/314 added the
+ * ciphertext column; `bun run push:auth-secret:backfill` converts the rest), so
+ * a deployment that has not run the backfill yet is mid-migration rather than
+ * breached. It stays visible on every run until the count is zero, which is the
+ * precondition for the follow-up migration that drops the column and removes
+ * the worker exception.
+ *
+ * Counts only; never selects a value. Per tenant under that tenant's RLS
+ * context, because the table is FORCE RLS and a bare count would see nothing.
+ */
+export async function checkPushAuthSecretsEncryptedAtRest(): Promise<SecurityCheckResult> {
+  const name = "Push subscription auth secrets are encrypted at rest";
+  const severity: CheckSeverity = "warning";
+
+  try {
+    if (!process.env.DATABASE_URL) {
+      throw new Error("DATABASE_URL is not set.");
+    }
+
+    const sql = getDatabaseClient();
+    const tenants = (await sql`
+      SELECT id FROM awcms_tenants ORDER BY id
+    `) as { id: string }[];
+
+    let plaintext = 0;
+    let affectedTenants = 0;
+
+    for (const tenant of tenants) {
+      const remaining = await withTenantOrThrow(
+        sql,
+        tenant.id,
+        async (tx) => {
+          const rows = (await tx`
+            SELECT count(*)::int AS remaining
+            FROM awcms_push_subscriptions
+            WHERE tenant_id = ${tenant.id} AND auth_secret IS NOT NULL
+          `) as { remaining: number }[];
+
+          return rows[0]?.remaining ?? 0;
+        },
+        { workClass: "maintenance" }
+      );
+
+      if (typeof remaining !== "number") {
+        throw new Error(
+          `the database circuit breaker is open (tenant ${tenant.id}) — no conclusion can be drawn`
+        );
+      }
+
+      if (remaining > 0) {
+        plaintext += remaining;
+        affectedTenants += 1;
+      }
+    }
+
+    if (plaintext > 0) {
+      return {
+        name,
+        severity,
+        status: "fail",
+        evidence: `${plaintext} push subscription(s) across ${affectedTenants} tenant(s) still hold the RFC 8291 auth secret in PLAINTEXT. Set PUSH_AUTH_SECRET_ENCRYPTION_KEYS and run \`bun run push:auth-secret:backfill\` (idempotent, resumable); the plaintext column can be dropped only once this reaches zero.`
+      };
+    }
+
+    return {
+      name,
+      severity,
+      status: "pass",
+      evidence: `No push subscription holds its auth secret in plaintext (${tenants.length} tenant(s) checked); the plaintext column and its worker exception are ready to be removed by the follow-up migration.`
+    };
+  } catch (error) {
+    return {
+      name,
+      severity,
+      status: "fail",
+      evidence: `Could not verify push auth-secret encryption: ${errorMessage(error)}.`
+    };
+  }
+}
+
+/**
+ * Warning when Web Push is the configured provider but the auth-secret key ring
+ * is unset or invalid: every registration is then refused (503) and every
+ * ciphertext row is undeliverable. Reports the problem class only, never key
+ * material or the configured value.
+ */
+export function checkPushAuthSecretRingConfigured(
+  env: NodeJS.ProcessEnv = process.env
+): SecurityCheckResult {
+  const name = "Push auth-secret key ring is configured for Web Push";
+  const severity: CheckSeverity = "warning";
+
+  if (env.PUSH_ENABLED !== "true" || env.PUSH_PROVIDER !== "web_push") {
+    return {
+      name,
+      severity,
+      status: "pass",
+      evidence:
+        "Web Push is not the active provider (PUSH_ENABLED/PUSH_PROVIDER); no auth-secret key ring is needed."
+    };
+  }
+
+  const ring = resolvePushAuthSecretRing(env);
+
+  if (!ring.ok) {
+    return {
+      name,
+      severity,
+      status: "fail",
+      evidence:
+        "PUSH_PROVIDER=web_push but PUSH_AUTH_SECRET_ENCRYPTION_KEYS is unset or invalid (see config:validate): device registration is refused with 503 and encrypted subscriptions cannot be delivered."
+    };
+  }
+
+  return {
+    name,
+    severity,
+    status: "pass",
+    evidence: `PUSH_AUTH_SECRET_ENCRYPTION_KEYS is a valid ring of ${ring.keys.length} key(s).`
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Ciphertext rows per key id, per ring (warning) — Issue #1098
+// ---------------------------------------------------------------------------
+
+type KeyIdCountInput = {
+  name: string;
+  ringEnv: string;
+  rekeyCommand: string;
+  ring: { ok: true; keys: { id: string }[] } | { ok: false };
+  count: typeof countPushAuthSecretsByKeyId;
+};
+
+/**
+ * Counts ciphertext rows per key id and warns while any row is still under a
+ * key that is not the ring's ACTIVE (first) one. That is the precondition the
+ * rotation runbook states for removing an old key ("until no row carries it"),
+ * and before Issue #1098 it could be neither re-keyed nor observed. Counts and
+ * key ids only (a key id is a short label, not key material); never a value.
+ */
+async function checkCiphertextKeyIdDistribution(
+  input: KeyIdCountInput
+): Promise<SecurityCheckResult> {
+  const severity: CheckSeverity = "warning";
+  const { name } = input;
+
+  try {
+    if (!process.env.DATABASE_URL) {
+      throw new Error("DATABASE_URL is not set.");
+    }
+
+    const sql = getDatabaseClient();
+    const tenants = (await sql`
+      SELECT id FROM awcms_tenants ORDER BY id
+    `) as { id: string }[];
+    const totals: Record<string, number> = {};
+
+    for (const tenant of tenants) {
+      const counts = await input.count(sql, tenant.id);
+
+      if (typeof counts !== "object" || counts === null) {
+        throw new Error(
+          `the database circuit breaker is open (tenant ${tenant.id}) — no conclusion can be drawn`
+        );
+      }
+
+      for (const [keyId, rows] of Object.entries(counts)) {
+        totals[keyId] = (totals[keyId] ?? 0) + rows;
+      }
+    }
+
+    const summary =
+      Object.entries(totals)
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([keyId, rows]) => `${keyId}=${rows}`)
+        .join(", ") || "no ciphertext rows";
+
+    if (!input.ring.ok) {
+      return {
+        name,
+        severity,
+        status: Object.keys(totals).length > 0 ? "fail" : "pass",
+        evidence:
+          Object.keys(totals).length > 0
+            ? `${input.ringEnv} is unset or invalid, so the active key cannot be determined. Rows per key id: ${summary}.`
+            : "No ciphertext rows; no key ring is needed yet."
+      };
+    }
+
+    const activeKeyId = input.ring.keys[0]!.id;
+    const stale = Object.entries(totals)
+      .filter(([keyId]) => keyId !== activeKeyId)
+      .reduce((sum, [, rows]) => sum + rows, 0);
+
+    if (stale > 0) {
+      return {
+        name,
+        severity,
+        status: "fail",
+        evidence: `${stale} row(s) are still under a key id other than the active key "${activeKeyId}" (rows per key id: ${summary}). Run \`bun run ${input.rekeyCommand}\` (idempotent, resumable); an old key in ${input.ringEnv} may be removed only once this reaches zero.`
+      };
+    }
+
+    return {
+      name,
+      severity,
+      status: "pass",
+      evidence: `Every ciphertext row is under the active key "${activeKeyId}" (rows per key id: ${summary}); no old key in ${input.ringEnv} is still needed.`
+    };
+  } catch (error) {
+    return {
+      name,
+      severity,
+      status: "fail",
+      evidence: `Could not count rows per key id: ${errorMessage(error)}.`
+    };
+  }
+}
+
+export function checkPushAuthSecretKeyIds(
+  env: NodeJS.ProcessEnv = process.env
+): Promise<SecurityCheckResult> {
+  const ring = resolvePushAuthSecretRing(env);
+
+  return checkCiphertextKeyIdDistribution({
+    name: "Push auth-secret ciphertexts are under the active key",
+    ringEnv: "PUSH_AUTH_SECRET_ENCRYPTION_KEYS",
+    rekeyCommand: "push:auth-secret:rekey",
+    ring: ring.ok ? ring : { ok: false },
+    count: countPushAuthSecretsByKeyId
+  });
+}
+
+export function checkTelegramChatKeyIds(
+  env: NodeJS.ProcessEnv = process.env
+): Promise<SecurityCheckResult> {
+  const ring = resolveTelegramEncryptionRingUnchecked(env);
+
+  return checkCiphertextKeyIdDistribution({
+    name: "Telegram chat ciphertexts are under the active key",
+    ringEnv: "TELEGRAM_CHAT_ENCRYPTION_KEYS",
+    rekeyCommand: "telegram:chat:rekey",
+    ring: ring.ok ? ring : { ok: false },
+    count: countTelegramChatsByKeyId
+  });
+}
+
+// ---------------------------------------------------------------------------
 // Orchestration
 // ---------------------------------------------------------------------------
 
@@ -4796,6 +5073,11 @@ export async function runSecurityReadinessChecks(): Promise<
     checkLoginRateLimitImplemented(),
     checkSecurityHeadersBuilt(),
     await checkResponseCompressionOwnership(),
+    await checkPushAuthSecretsEncryptedAtRest(),
+    checkPushAuthSecretRingConfigured(),
+    await checkPushAuthSecretKeyIds(),
+    await checkTelegramChatKeyIds(),
+    // MUST stay last: it closes the shared database pool when it finishes.
     await checkEntitlementBlastRadius()
   ];
 }

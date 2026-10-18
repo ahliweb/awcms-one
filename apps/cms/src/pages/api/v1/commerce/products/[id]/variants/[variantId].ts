@@ -72,6 +72,10 @@ export const PATCH = defineTenantRoute({
 
       return ok(variant);
     } catch (error) {
+      // tx-swallow-ok: DuplicateVariantSkuError, InventoryLedgerRefusedError
+      // are raised by application code before a write, or after the directory
+      // rolled its failed statement back to a savepoint, so the transaction
+      // is healthy.
       if (error instanceof DuplicateVariantSkuError) {
         return fail(409, "VARIANT_SKU_ALREADY_EXISTS", error.message);
       }

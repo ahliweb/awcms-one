@@ -153,7 +153,7 @@ export async function fetchFlashSaleById(
 }
 
 export async function createFlashSale(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   input: CreateFlashSaleInput,
@@ -162,11 +162,14 @@ export async function createFlashSale(
   let rows: FlashSaleRow[];
 
   try {
-    rows = (await tx`
+    rows = (await tx.savepoint(
+      async (sp) =>
+        await sp`
       INSERT INTO awcms_commerce_flash_sales (tenant_id, name, slug, starts_at, ends_at, status)
       VALUES (${tenantId}, ${input.name}, ${input.slug}, ${input.startsAt}, ${input.endsAt}, ${input.status})
       RETURNING id, name, slug, starts_at, ends_at, status
-    `) as FlashSaleRow[];
+    `
+    )) as FlashSaleRow[];
   } catch (error) {
     if (
       error instanceof Bun.SQL.PostgresError &&
@@ -196,7 +199,7 @@ export async function createFlashSale(
 }
 
 export async function updateFlashSale(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   flashSaleId: string,
@@ -209,7 +212,9 @@ export async function updateFlashSale(
   let rows: FlashSaleRow[];
 
   try {
-    rows = (await tx`
+    rows = (await tx.savepoint(
+      async (sp) =>
+        await sp`
       UPDATE awcms_commerce_flash_sales
       SET
         name = ${input.name ?? existing.name},
@@ -220,7 +225,8 @@ export async function updateFlashSale(
         updated_at = now()
       WHERE tenant_id = ${tenantId} AND id = ${flashSaleId} AND deleted_at IS NULL
       RETURNING id, name, slug, starts_at, ends_at, status
-    `) as FlashSaleRow[];
+    `
+    )) as FlashSaleRow[];
   } catch (error) {
     if (
       error instanceof Bun.SQL.PostgresError &&
@@ -384,7 +390,7 @@ export async function listFlashSaleProducts(
  *   already on this sale.
  */
 export async function createFlashSaleProduct(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   flashSaleId: string,
@@ -407,12 +413,15 @@ export async function createFlashSaleProduct(
   let rows: FlashSaleProductRow[];
 
   try {
-    rows = (await tx`
+    rows = (await tx.savepoint(
+      async (sp) =>
+        await sp`
       INSERT INTO awcms_commerce_flash_sale_products
         (tenant_id, flash_sale_id, product_id, variant_id, sale_price, quota, sort_order)
       VALUES (${tenantId}, ${flashSaleId}, ${input.productId}, ${input.variantId}, ${input.salePrice}, ${input.quota}, ${input.sortOrder})
       RETURNING id, flash_sale_id, product_id, variant_id, sale_price, quota, sold, sort_order
-    `) as FlashSaleProductRow[];
+    `
+    )) as FlashSaleProductRow[];
   } catch (error) {
     if (
       error instanceof Bun.SQL.PostgresError &&

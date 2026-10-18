@@ -168,12 +168,23 @@ contracts:
     # (#946) and consumed (optional) by `booking` (#949): a resource that names the
     # people who serve it is narrowed by their rostered working time.
     staff_availability: "1.0.0"
+    # commission_accrual is owned (provided) by the base `hr_commission` module
+    # (#951) and bound by a downstream sale-attribution adapter at its own
+    # composition root. 1.1.0 since #1109: `void` (reverse an accrual by source
+    # identity) was ADDED to the port (MINOR). The key is declared here for the
+    # first time; 1.0.0 was the accrue-only shape.
+    commission_accrual: "1.1.0"
     # business_scope_hierarchy is owned (provided) by the base `tenant_admin`
     # module since ADR-0060, which resolves the `office` scope type against
     # `awcms_offices`. The port itself is unchanged since #180; what changed is
     # that a base module finally provides an adapter for it, so it belongs here
     # for the first time. `identity_access` consumes it, still `optional: true`.
     business_scope_hierarchy: "1.0.0"
+    # booking is owned (provided) by the base `booking` module (ADR-0131), port
+    # `_shared/ports/booking-port.ts`. 1.0.0 was the port of #941; 1.1.0 (#1108)
+    # adds checkIn, checkOut, markNoShow, get, getOffering, listOfferings and the
+    # anonymous availability read, additively. First entry in this registry.
+    booking: "1.1.0"
   apiResponseEnvelopeVersion: "1.0.0"
   restApiInfoVersion: "0.1.0"
   eventApiInfoVersion: "0.1.0"
@@ -192,13 +203,13 @@ contracts:
 stack:
   bun:
     packageManager:
-      declared: "1.4.2"
+      declared: "1.4.3"
       source: package.json packageManager
     engines:
       declared: ">=1.3.0"
       source: package.json engines.bun
     ci:
-      declared: "1.4.2"
+      declared: "1.4.3"
       source: .github/workflows/ci.yml setup-bun bun-version (current pin)
     ciMinimum:
       declared: "1.3.0"

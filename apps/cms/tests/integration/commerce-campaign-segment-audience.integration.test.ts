@@ -81,7 +81,7 @@ const DAY = 86_400_000;
 
 function inTenant<T>(
   tenantId: string,
-  fn: (tx: Bun.SQL) => Promise<T>
+  fn: (tx: Bun.TransactionSQL) => Promise<T>
 ): Promise<T> {
   return withTenantOrThrow(getRuntimeSql(), tenantId, fn);
 }

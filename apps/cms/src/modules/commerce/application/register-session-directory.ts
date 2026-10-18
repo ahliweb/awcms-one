@@ -415,7 +415,7 @@ export type OpenRegisterSessionOutcome =
  * @throws {IdempotencyPayloadMismatchError} same key, different payload.
  */
 export async function openRegisterSession(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   input: OpenSessionInput,
@@ -464,7 +464,9 @@ export async function openRegisterSession(
 
   let sessionId: string;
   try {
-    const rows = (await tx`
+    const rows = (await tx.savepoint(
+      async (sp) =>
+        await sp`
       INSERT INTO awcms_commerce_register_sessions (
         tenant_id, register_id, opened_by_tenant_user_id, opening_float,
         current_cashier_tenant_user_id
@@ -474,7 +476,8 @@ export async function openRegisterSession(
         ${actorTenantUserId}
       )
       RETURNING id
-    `) as { id: string }[];
+    `
+    )) as { id: string }[];
     sessionId = rows[0]!.id;
   } catch (error) {
     if (

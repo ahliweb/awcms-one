@@ -90,7 +90,7 @@ export type CreateExpenseCategoryOutcome =
   { kind: "created"; category: ExpenseCategoryRecord } | { kind: "code_taken" };
 
 export async function createExpenseCategory(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   input: CreateExpenseCategoryInput,
@@ -98,13 +98,16 @@ export async function createExpenseCategory(
 ): Promise<CreateExpenseCategoryOutcome> {
   let id: string;
   try {
-    const rows = (await tx`
+    const rows = (await tx.savepoint(
+      async (sp) =>
+        await sp`
       INSERT INTO awcms_commerce_expense_categories (
         tenant_id, code, name, created_by_tenant_user_id, updated_by_tenant_user_id
       )
       VALUES (${tenantId}, ${input.code}, ${input.name}, ${actorTenantUserId}, ${actorTenantUserId})
       RETURNING id
-    `) as { id: string }[];
+    `
+    )) as { id: string }[];
     id = rows[0]!.id;
   } catch (error) {
     if (

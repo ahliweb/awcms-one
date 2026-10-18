@@ -9651,13 +9651,14 @@ Takes the browser's own PushSubscription.toJSON() shape plus a transport discrim
 
 **Responses**
 
-| Status | Description                                                                                                                                                         | Schema                                 |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 201    | The registered device.                                                                                                                                              | object                                 |
-| 400    | Validation error.                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                                                                                                                         | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                                                                                                                         | [`ApiError`](#standard-error-envelope) |
-| 422    | Malformed registration — unknown transport, a non-https endpoint, an endpoint pointing at a literal private address, or key material that is not the RFC 8291 size. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                                                         | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The registered device.                                                                                                                                                                                                                                                                                              | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 422    | Malformed registration — unknown transport, a non-https endpoint, an endpoint pointing at a literal private address, or key material that is not the RFC 8291 size.                                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 503    | Code PUSH_MISCONFIGURED. A web_push registration needs the PUSH_AUTH_SECRET_ENCRYPTION_KEYS key ring (the RFC 8291 auth secret is stored encrypted, never in the clear) and the deployment has none usable. Fail closed: nothing is stored. The GET capability reports webPush.enabled=false in the same situation. | [`ApiError`](#standard-error-envelope) |
 
 ### `DELETE /api/v1/push/subscriptions/{id}` — Retire one of the caller's own push devices.
 
@@ -18372,6 +18373,27 @@ ENABLING needs `hr_workforce.geolocation_evidence.configure` (403 otherwise) and
 | 409    | IDEMPOTENCY_CONFLICT, GEOLOCATION_DPIA_REQUIRED, GEOLOCATION_NOTICE_REQUIRED or GEOLOCATION_GEOFENCE_REQUIRED. | [`ApiError`](#standard-error-envelope) |
 | 422    | NOTICE_NOT_FOUND.                                                                                              | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/hr-workforce/me` — The caller's own employment summary
+
+- **operationId**: `hrWorkforceMeGet`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `hr_workforce.self_service.read` (default-deny). Returns ONLY the employments linked to the caller's login (the persisted link, computed in the query; no parameter names another person) and whether anyone reports to them directly, so the employee and supervisor screens (Issue #952) know which employment a correction request is for and whether to offer the team view. No profile id, name or contact is returned. The permission is a screen gate: the data of the self-service reads stays bound to the login link and the manager chain through the ownership grants of the attendance, shift and metrics routes. Never cached. Tenant-scoped (withTenant + RLS FORCE).
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description |
+| ------------------ | ------ | -------- | ------ | ----------- |
+| `X-Correlation-ID` | header | no       | string |             |
+
+**Responses**
+
+| Status | Description                                           | Schema                                 |
+| ------ | ----------------------------------------------------- | -------------------------------------- |
+| 200    | The caller's own employments and the supervisor flag. | object                                 |
+| 401    | Missing or invalid session.                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                           | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/hr-workforce/settings` — Read the workforce settings
 
 - **operationId**: `hrWorkforceSettingsGet`
@@ -20295,6 +20317,54 @@ Gated by `hr_commission.accruals.cancel` (high-risk). `pending` or `approved` ->
 | 403    | Forbidden, or SEGREGATION_OF_DUTIES.           | [`ApiError`](#standard-error-envelope) |
 | 404    | RESOURCE_NOT_FOUND.                            | [`ApiError`](#standard-error-envelope) |
 | 409    | IDEMPOTENCY_CONFLICT or ACCRUAL_INVALID_STATE. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/hr-commission/my-accruals` — List your own commission accruals
+
+- **operationId**: `hrCommissionMyAccrualsList`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `hr_commission.my_accruals.read` (default-deny; separate from `accruals.read`). The caller's OWN accruals only, newest first, keyset paginated (`cursor`), optionally filtered by `status`. There is no `employmentId` or person parameter: the query joins the live employment linked to the caller's login, so another person's rows cannot be requested. Read-only. The view omits the approver, the payer, the payment reference, the rule row id and the employment id. Amounts are decimal strings. An employee reading their own earnings is not an audited sensitive read; anyone else's go through `GET /accruals`, which is. Never cached. Tenant-scoped (withTenant + RLS FORCE).
+
+**Parameters**
+
+| Name               | In     | Required | Type                                                             | Description |
+| ------------------ | ------ | -------- | ---------------------------------------------------------------- | ----------- |
+| `status`           | query  | no       | [`HrCommissionAccrualStatus`](#schema-hrcommissionaccrualstatus) |             |
+| `cursor`           | query  | no       | string                                                           |             |
+| `X-Correlation-ID` | header | no       | string                                                           |             |
+
+**Responses**
+
+| Status | Description                          | Schema                                 |
+| ------ | ------------------------------------ | -------------------------------------- |
+| 200    | A page of the caller's own accruals. | object                                 |
+| 400    | Validation error.                    | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.          | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/hr-commission/my-accruals/{id}` — Get one of your own commission accruals with its history
+
+- **operationId**: `hrCommissionMyAccrualGet`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `hr_commission.my_accruals.read`. An id that does not exist and an id that belongs to somebody else are the SAME 404 (`RESOURCE_NOT_FOUND`), so the route is not an existence oracle for another person's earnings. The transition history omits who moved the accrual. Never cached.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `id`               | path   | yes      | string (uuid) |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Responses**
+
+| Status | Description                                      | Schema                                 |
+| ------ | ------------------------------------------------ | -------------------------------------- |
+| 200    | The caller's own accrual and its transition log. | object                                 |
+| 400    | Validation error.                                | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                      | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                      | [`ApiError`](#standard-error-envelope) |
+| 404    | RESOURCE_NOT_FOUND (missing, or not yours).      | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/hr-commission/rules` — List commission rule versions
 
@@ -25816,7 +25886,7 @@ consumer/subscriber contract in this file).
 }
 ```
 
-### Channels (98)
+### Channels (99)
 
 - `awcms.blog-content.ad.created` — An advertisement was created. Documented contract only; producer is `pages/api/v1/blog/ads/index.ts`'s `blog-content.ad.created` log line.
 - `awcms.blog-content.ad.deleted` — An advertisement was soft-deleted. Documented contract only; producer is `pages/api/v1/blog/ads/[id].ts`'s `blog-content.ad.deleted` log line.
@@ -25894,6 +25964,7 @@ consumer/subscriber contract in this file).
 - `awcms.email.message.queued` — An email message was enqueued into `awcms_email_messages`. Documented contract only, same convention as `database.pool.saturated` — the concrete producer is the structured JSON logger, invoked from `email/application/announcement-directory.ts`'s `enqueueAnnouncement` (`email.message.queued` log line).
 - `awcms.email.message.sent` — The email dispatcher (`bun run email:dispatch`) delivered a message through the configured provider. Documented contract only; producer is the structured JSON logger (`email/application/email-dispatch.ts`'s `email.dispatch.sent` log line).
 - `awcms.email.message.suppressed` — The email dispatcher found a claimed message's recipient newly present on `awcms_email_suppression_list` (added after enqueue, before dispatch) and skipped the provider call entirely. Documented contract only; producer is the structured JSON logger (`email/application/email-dispatch.ts`'s `email.dispatch.suppressed` log line).
+- `awcms.hr.commission.voided` — A commission accrual was voided (ADR-0132, Issue #1109), in the transaction that voided it: a pending or approved accrual, by the HTTP void route or by `CommissionAccrualPort.void` when the sale it came from was voided, refunded or cancelled. Producer: `hr-commission/application/hr-commission- accrual-ledger.ts`'s `transitionAccrual`. Payload: `accrualId`, `employmentId`, `sourceType`, `ruleKey`, `ruleVersion`, `fromStatus` (`pending` or `approved`), `reasonCode` (a code or null). Never an amount, a source reference, a payment reference or a name. A replayed void publishes nothing.
 - `awcms.inventory.movement.posted` — A stock movement was posted to the append-only inventory ledger and its balance updated, in ONE transaction (ADR-0126, Issue #887). Producer: `inventory/application/inventory-ledger.ts`'s posting core, shared by `postMovement`, `postAdjustment`, `reverseAdjustment` and `postTransfer` (a transfer publishes one event per leg). Published in the same commit as the movement, so a rolled-back posting publishes nothing; a REPLAY of an already-posted source identity publishes nothing either. Ordered per balance (`order_key` = location + item). The payload carries opaque item and source references and decimal-string quantities only — `movementId`, `locationId`, `itemType`, `itemRef`, `unitCode`, `movementType`, `operation`, `quantityDelta`, `balanceAfter`, `sourceType`, `sourceId`, `sourceLine`, `transferId`, `reversesMovementId`. Never the free-text note and never anything identifying a person.
 - `awcms.inventory.stock.low` — A stock balance crossed to or below its low-stock threshold (ADR-0126, Issue #887) — by a movement or by a threshold change. Producer: `inventory/application/inventory-ledger.ts`'s `recordLowStockTransition`. Published ONCE per downward crossing, not on every movement while the balance stays low, and never for the recovery (that is recorded in the signals table the reporting projection reads). Payload: `locationId`, `itemType`, `itemRef`, `onHand`, `threshold`, `movementId` (null when a threshold change caused it).
 - `awcms.procurement.document.finalised` — A procurement document (receive, supplier_return, requisition or transfer) was finalised and its inventory movements posted through the ledger's port (ADR-0128, Issue #888), in one transaction. Producer: `procurement/application/procurement-posting.ts`'s `finaliseDocument`. Published once per document — a replayed finalise posts and publishes nothing. Payload: `documentId`, `documentNo`, `mode`, `supplierId`, `locationId`, `sourceLocationId`, `currencyCode`, `totalCost` (decimal string), `lineCount`, `movementCount`. Never a supplier name, an identifier, a note or a reason.
