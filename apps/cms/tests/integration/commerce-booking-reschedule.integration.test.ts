@@ -94,6 +94,8 @@ const fx = createAdapterFixtures({
 const {
   inTenant,
   newFixture,
+  newSlotFixture,
+  slotAt,
   book,
   pay,
   bookedAndPaid,
@@ -829,6 +831,100 @@ suite("booking reschedule (Issue #382)", () => {
       expect(refused).toEqual({
         kind: "refused",
         refusal: { code: "REDUCTION_NOT_SUPPORTED", roomNights: 1 }
+      });
+    });
+  });
+
+  // ---------------------------------------------------------------------------
+  describe("a time-slot reservation", () => {
+    test("moves to another start with nothing priced, keeps the same order, and refuses a stay body", async () => {
+      const f = await newSlotFixture();
+      const view = await book(f, {
+        req: { stay: null, startsAt: slotAt(10, 5) }
+      });
+      await pay(view.orderId, PRICE);
+      await dispatch();
+      expect(await reservationStatus(view.reservationId)).toBe("confirmed");
+      const before = await frozen(view.orderId);
+
+      // A slot product is moved with startsAt; a stay body is the wrong shape.
+      expect(
+        await resched(view.reservationId, {
+          stay: { checkInDate: D(20), checkOutDate: D(21) }
+        })
+      ).toEqual({
+        kind: "refused",
+        refusal: { code: "QUANTITY_BASIS_MISMATCH" }
+      });
+      expect(
+        await resched(view.reservationId, { startsAt: slotAt(10, 5) })
+      ).toEqual({ kind: "refused", refusal: { code: "NOT_A_CHANGE" } });
+
+      const done = moved(
+        await resched(view.reservationId, { startsAt: slotAt(12, 8) })
+      );
+      expect(done.record).toMatchObject({
+        direction: "none",
+        fromNights: 1,
+        toNights: 1,
+        pricedAmount: "0.00",
+        supplementOrderId: null,
+        returnId: null
+      });
+      expect(done.reservation.orderId).toBe(view.orderId);
+      expect(await frozen(view.orderId)).toBe(before);
+      expect(await reservationStatus(view.reservationId)).toBe("rescheduled");
+      expect(Date.parse(done.reservation.startsAt)).toBe(
+        Date.parse(slotAt(12, 8))
+      );
+
+      // The panel of a slot booking offers no stay dates.
+      const panel = await inTenant((tx) =>
+        loadBookingOrderPanel(tx, TENANT_A, view.orderId, {
+          canCancel: true,
+          canOverride: false,
+          canReschedule: true,
+          canReadDecision: true
+        })
+      );
+      expect(panel!.stay).toBeNull();
+      expect(panel!.nights).toBe(1);
+      expect(panel!.canReschedule).toBe(true);
+    });
+
+    test("the quote with a resource id reports Booking's availability of the asked slot", async () => {
+      const f = await newSlotFixture();
+      const view = await book(f, {
+        req: { stay: null, startsAt: slotAt(10, 5) }
+      });
+      await pay(view.orderId, PRICE);
+      await dispatch();
+      const port = await composedBookingPort();
+      const quote = await inTenant(async (tx) => {
+        const link = (await fetchReservationLinkByReservationId(
+          tx,
+          TENANT_A,
+          view.reservationId
+        ))!;
+        return computeRescheduleQuote(
+          tx,
+          TENANT_A,
+          link,
+          port,
+          mediaLibraryPortAdapter,
+          {
+            startsAt: slotAt(15, 9),
+            stay: null,
+            resourceId: f.resourceId
+          },
+          new Date()
+        );
+      });
+      if (!quote.ok) throw new Error(JSON.stringify(quote.refusal));
+      expect(quote.value.quote).toMatchObject({
+        direction: "none",
+        vehicle: null,
+        availability: { available: true }
       });
     });
   });

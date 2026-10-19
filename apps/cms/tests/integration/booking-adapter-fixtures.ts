@@ -204,6 +204,82 @@ export function createAdapterFixtures(config: AdapterFixtureConfig) {
     };
   }
 
+  /**
+   * A TIME-SLOT service: a slot resource open all day every day, a one-hour
+   * offering (15-minute step) linked to a service product sold per booking
+   * (`quantityBasis = "booking"`, one unit).
+   */
+  async function newSlotFixture(
+    tenantId: string = tenantA,
+    staffId: string = staff
+  ): Promise<Fixture> {
+    fixtureSeq += 1;
+    const code = `${config.keyPrefix}s${fixtureSeq}`;
+    const admin = getAdminSql();
+    const product = (await admin`
+      INSERT INTO awcms_commerce_products
+        (tenant_id, type, sku, name, slug, price, stock, status)
+      VALUES (${tenantId}, 'service', ${`SKU-${code}`}, ${`Sesi ${code}`}, ${`sesi-${code}`}, ${PRICE}, 0, 'active')
+      RETURNING id
+    `) as { id: string }[];
+    const resource = (await admin`
+      INSERT INTO awcms_booking_resources
+        (tenant_id, code, name, kind, capacity, timezone, booking_mode)
+      VALUES (${tenantId}, ${code}, ${`Studio ${code}`}, 'room', 1,
+              'Asia/Pontianak', 'slot')
+      RETURNING id
+    `) as { id: string }[];
+    await admin`
+      INSERT INTO awcms_booking_resource_units (tenant_id, resource_id, ordinal)
+      VALUES (${tenantId}, ${resource[0]!.id}, 1)
+    `;
+    const day = [{ from: "00:00", to: "24:00" }];
+    await admin`
+      INSERT INTO awcms_booking_schedules
+        (tenant_id, resource_id, timezone, effective_from, rules)
+      VALUES (${tenantId}, ${resource[0]!.id}, 'Asia/Pontianak', '2020-01-01',
+              ${{ weekly: { mon: day, tue: day, wed: day, thu: day, fri: day, sat: day, sun: day } }}::jsonb)
+    `;
+    const offering = (await admin`
+      INSERT INTO awcms_booking_service_offerings
+        (tenant_id, code, name, granularity, duration_seconds, setup_seconds,
+         cleanup_seconds, slot_step_seconds, max_party, confirmation_mode)
+      VALUES (${tenantId}, ${`hour-${code}`}, 'Hour', 'time', 3600, 0, 0, 900,
+              4, 'hold_then_confirm')
+      RETURNING id
+    `) as { id: string }[];
+    const linked = await inTenant(
+      (tx) =>
+        createOfferingLink(
+          tx,
+          tenantId,
+          staffId,
+          {
+            offeringId: offering[0]!.id,
+            productId: product[0]!.id,
+            quantityBasis: "booking"
+          },
+          `link-${code}`
+        ),
+      tenantId
+    );
+    if (linked.kind === "refused") {
+      throw new Error(`link refused: ${linked.refusal}`);
+    }
+    return {
+      productId: product[0]!.id,
+      offeringId: offering[0]!.id,
+      resourceId: resource[0]!.id
+    };
+  }
+
+  /** A quarter-hour-aligned UTC instant `day` days after a point inside Booking's default horizon. */
+  function slotAt(day: number, hourUtc = 5): string {
+    const base = new Date(Date.now() + (60 + day) * 86_400_000);
+    base.setUTCHours(hourUtc, 0, 0, 0);
+    return base.toISOString().replace(".000Z", "Z");
+  }
+
   function request(
     fx: Fixture,
     overrides: Partial<BookingReservationRequest> = {}
@@ -468,6 +544,8 @@ export function createAdapterFixtures(config: AdapterFixtureConfig) {
     seedTenant,
     configureTenant,
     newFixture,
+    newSlotFixture,
+    slotAt,
     request,
     book,
     pay,
