@@ -436,6 +436,23 @@ export function holdRefusalHttp(refusal: HoldRefusal): {
           message: "Booking resource or offering not found."
         };
       }
+      // Issue #382 - the two timing refusals of BookingPort 1.1.0 keep their own
+      // code (and a message that says what to wait for) instead of the generic one.
+      if (reason === "NO_SHOW_TOO_EARLY") {
+        return {
+          status: 409,
+          code: "NO_SHOW_TOO_EARLY",
+          message:
+            "A no-show can be marked only after the arrival time plus the grace period."
+        };
+      }
+      if (reason === "CHECK_IN_TOO_EARLY") {
+        return {
+          status: 409,
+          code: "CHECK_IN_TOO_EARLY",
+          message: "The guest cannot be checked in before the check-in date."
+        };
+      }
       return {
         status: 409,
         code: reason,

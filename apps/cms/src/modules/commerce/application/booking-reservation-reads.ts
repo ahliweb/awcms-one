@@ -30,10 +30,27 @@
  *     the ledger holds less than the threshold (a payment was reversed, or
  *     staff confirmed it in Booking's own screen).
  *
- * The query is read-only and bounded; it writes nothing and fixes nothing - an
+ * Issue #382 adds three findings of the reschedule (control C-38 and C-39):
+ *
+ *   - `booking_reference_missing` / `commerce_link_missing`: the order has ONE
+ *     reference instead of two (zero or two, never one). The commerce link is
+ *     active but Booking's reservation does not name the order, or a live Booking
+ *     reservation names an order that has no active link to it (a reschedule made
+ *     in Booking's own screen that the reconciler consumer has not repaired);
+ *   - `reschedule_difference_unpaid`: the supplementary order of a reschedule that
+ *     added nights is still unsettled after it expired or was cancelled, while
+ *     the longer stay is live - nights nobody paid for.
+ *
+ * A settled refund of a reschedule that shortened a stay lowers the ledger below
+ * the order's total, as any refund of a paid order does; that is not a missing
+ * deposit, so the refunded part (the settled legs of the order's cancellation
+ * returns) is netted out of the threshold before the comparison.
+ *
+ * The queries are read-only and bounded; they write nothing and fix nothing - an
  * operator decides (the attention flag is the work queue, this is its audit).
  */
 
+import { BOOKING_RESERVATION_ORDER_REFERENCE_TYPE } from "../domain/booking-adapter";
 import { normalizeMoney } from "../domain/price-calculation";
 
 export type BookingReservationFacts = {
@@ -104,13 +121,17 @@ export async function readBookingReservationStatus(
 
 export const RECONCILIATION_KINDS = [
   "paid_without_confirm",
-  "confirmed_without_deposit"
+  "confirmed_without_deposit",
+  "booking_reference_missing",
+  "commerce_link_missing",
+  "reschedule_difference_unpaid"
 ] as const;
 export type ReconciliationKind = (typeof RECONCILIATION_KINDS)[number];
 
 export type ReconciliationItem = {
   kind: ReconciliationKind;
-  linkId: string;
+  /** `null` for `commerce_link_missing`: there is no link to name. */
+  linkId: string | null;
   orderId: string;
   orderCode: string;
   orderStatus: string;
@@ -136,7 +157,7 @@ export const RECONCILIATION_LIMIT = 200;
 const CONFIRMED_OR_BEYOND = ["confirmed", "checked_in", "completed", "no_show"];
 
 type ReconRow = {
-  link_id: string;
+  link_id: string | null;
   order_id: string;
   order_code: string;
   order_status: string;
@@ -150,13 +171,32 @@ type ReconRow = {
   attention_resolved_at: Date | string | null;
 };
 
+function toItem(row: ReconRow, kind: ReconciliationKind): ReconciliationItem {
+  return {
+    kind,
+    linkId: row.link_id,
+    orderId: row.order_id,
+    orderCode: row.order_code,
+    orderStatus: row.order_status,
+    reservationId: row.reservation_id,
+    reservationNo: row.reservation_no,
+    reservationStatus: row.reservation_status,
+    total: normalizeMoney(row.total),
+    threshold: normalizeMoney(row.threshold),
+    settled: normalizeMoney(row.settled),
+    attentionReason: row.attention_reason,
+    attentionOpen:
+      row.attention_reason !== null && row.attention_resolved_at === null
+  };
+}
+
 /**
  * Active links whose order's ledger and reservation status disagree (control
- * C-09). Money is read from the allocation ledger exactly as settlement is
- * derived: succeeded payments minus succeeded reversals. The release threshold
- * is `dp_amount` for a down-payment order and the total otherwise
- * (`releaseThresholdCents`, ADR-0025 D3), restated in SQL so the whole report
- * is one bounded statement.
+ * C-09), and the three reschedule findings above. Money is read from the
+ * allocation ledger exactly as settlement is derived: succeeded payments minus
+ * succeeded reversals. The release threshold is `dp_amount` for a down-payment
+ * order and the total otherwise (`releaseThresholdCents`, ADR-0025 D3),
+ * restated in SQL so each report is one bounded statement.
  */
 export async function reconcileBookingOrders(
   tx: Bun.SQL,
@@ -182,12 +222,26 @@ export async function reconcileBookingOrders(
         AND a.order_id IN (SELECT order_id FROM active)
       GROUP BY a.order_id
     ),
+    -- Issue #382: money a reschedule that shortened the stay already gave back
+    -- (settled legs of the order's cancellation returns) is not a missing deposit.
+    refunded AS (
+      SELECT f.order_id, COALESCE(SUM(f.amount), 0) AS refunded
+      FROM awcms_commerce_refunds f
+      JOIN awcms_commerce_returns t
+        ON t.tenant_id = f.tenant_id AND t.id = f.return_id
+      WHERE f.tenant_id = ${tenantId}
+        AND t.kind = 'cancellation'
+        AND f.status = 'succeeded'
+        AND f.order_id IN (SELECT order_id FROM active)
+      GROUP BY f.order_id
+    ),
     joined AS (
       SELECT active.link_id, active.order_id, o.order_code, o.status AS order_status,
-             o.total,
-             CASE WHEN o.payment_method = 'dp' AND o.dp_amount IS NOT NULL
-                       AND o.dp_amount > 0 AND o.dp_amount < o.total
-                  THEN o.dp_amount ELSE o.total END AS threshold,
+             o.total - COALESCE(refunded.refunded, 0) AS total,
+             (CASE WHEN o.payment_method = 'dp' AND o.dp_amount IS NOT NULL
+                        AND o.dp_amount > 0 AND o.dp_amount < o.total
+                   THEN o.dp_amount ELSE o.total END)
+               - COALESCE(refunded.refunded, 0) AS threshold,
              COALESCE(ledger.settled, 0) AS settled,
              r.id AS reservation_id, r.reservation_no, r.status AS reservation_status,
              active.attention_reason, active.attention_resolved_at, active.created_at
@@ -197,6 +251,7 @@ export async function reconcileBookingOrders(
       JOIN awcms_booking_reservations r
         ON r.tenant_id = ${tenantId} AND r.id = active.reservation_id
       LEFT JOIN ledger ON ledger.order_id = active.order_id
+      LEFT JOIN refunded ON refunded.order_id = active.order_id
     )
     SELECT * FROM joined
     WHERE (settled >= threshold AND total > 0
@@ -207,29 +262,100 @@ export async function reconcileBookingOrders(
     LIMIT ${limit + 1}
   `) as ReconRow[];
 
-  const truncated = rows.length > limit;
-  const items = rows.slice(0, limit).map((row): ReconciliationItem => {
-    const kind: ReconciliationKind = CONFIRMED_OR_BEYOND.includes(
-      row.reservation_status
+  const items = rows.map((row): ReconciliationItem =>
+    toItem(
+      row,
+      CONFIRMED_OR_BEYOND.includes(row.reservation_status)
+        ? "confirmed_without_deposit"
+        : "paid_without_confirm"
     )
-      ? "confirmed_without_deposit"
-      : "paid_without_confirm";
-    return {
-      kind,
-      linkId: row.link_id,
-      orderId: row.order_id,
-      orderCode: row.order_code,
-      orderStatus: row.order_status,
-      reservationId: row.reservation_id,
-      reservationNo: row.reservation_no,
-      reservationStatus: row.reservation_status,
-      total: normalizeMoney(row.total),
-      threshold: normalizeMoney(row.threshold),
-      settled: normalizeMoney(row.settled),
-      attentionReason: row.attention_reason,
-      attentionOpen:
-        row.attention_reason !== null && row.attention_resolved_at === null
-    };
-  });
-  return { items, truncated };
+  );
+
+  // -- Issue #382: the order with ONE reference instead of two (C-38) -----------
+  const missingOnBookingSide = (await tx`
+    SELECT l.id AS link_id, l.order_id, o.order_code, o.status AS order_status,
+           o.total, o.total AS threshold, 0::numeric AS settled,
+           r.id AS reservation_id, r.reservation_no, r.status AS reservation_status,
+           l.attention_reason, l.attention_resolved_at
+    FROM awcms_commerce_booking_reservation_links l
+    JOIN awcms_commerce_orders o
+      ON o.tenant_id = ${tenantId} AND o.id = l.order_id
+    JOIN awcms_booking_reservations r
+      ON r.tenant_id = ${tenantId} AND r.id = l.reservation_id
+    WHERE l.tenant_id = ${tenantId} AND l.status = 'active'
+      AND (r.external_ref_type IS DISTINCT FROM ${BOOKING_RESERVATION_ORDER_REFERENCE_TYPE}
+           OR r.external_ref IS DISTINCT FROM l.order_id::text)
+    ORDER BY l.created_at DESC, l.id DESC
+    LIMIT ${limit + 1}
+  `) as ReconRow[];
+  items.push(
+    ...missingOnBookingSide.map((row) =>
+      toItem(row, "booking_reference_missing")
+    )
+  );
+
+  const missingOnCommerceSide = (await tx`
+    SELECT NULL::uuid AS link_id, o.id AS order_id, o.order_code,
+           o.status AS order_status, o.total, o.total AS threshold, 0::numeric AS settled,
+           r.id AS reservation_id, r.reservation_no, r.status AS reservation_status,
+           NULL::text AS attention_reason, NULL::timestamptz AS attention_resolved_at
+    FROM awcms_booking_reservations r
+    JOIN awcms_commerce_orders o
+      ON o.tenant_id = ${tenantId} AND o.id::text = r.external_ref
+    WHERE r.tenant_id = ${tenantId}
+      AND r.external_ref_type = ${BOOKING_RESERVATION_ORDER_REFERENCE_TYPE}
+      AND r.status IN ('held', 'confirmed', 'checked_in')
+      AND NOT EXISTS (
+        SELECT 1 FROM awcms_commerce_booking_reservation_links l
+        WHERE l.tenant_id = ${tenantId} AND l.reservation_id = r.id
+          AND l.status = 'active'
+      )
+    ORDER BY r.created_at DESC, r.id DESC
+    LIMIT ${limit + 1}
+  `) as ReconRow[];
+  items.push(
+    ...missingOnCommerceSide.map((row) => toItem(row, "commerce_link_missing"))
+  );
+
+  // -- Issue #382: nights added by a reschedule that nobody paid for (C-39) --------
+  const unpaidDifference = (await tx`
+    SELECT l.id AS link_id, s.id AS order_id, s.order_code, s.status AS order_status,
+           s.total, s.total AS threshold,
+           COALESCE((
+             SELECT SUM(CASE WHEN a.kind = 'payment' THEN a.amount
+                             WHEN a.kind = 'reversal' THEN -a.amount ELSE 0 END)
+             FROM awcms_commerce_payment_allocations a
+             WHERE a.tenant_id = ${tenantId} AND a.order_id = s.id
+               AND a.status = 'succeeded'
+           ), 0) AS settled,
+           r.id AS reservation_id, r.reservation_no, r.status AS reservation_status,
+           l.attention_reason, l.attention_resolved_at
+    FROM awcms_commerce_booking_reschedules rs
+    JOIN awcms_commerce_orders s
+      ON s.tenant_id = ${tenantId} AND s.id = rs.supplement_order_id
+    JOIN awcms_commerce_booking_reservation_links l
+      ON l.tenant_id = ${tenantId} AND l.order_id = rs.order_id AND l.status = 'active'
+    JOIN awcms_booking_reservations r
+      ON r.tenant_id = ${tenantId} AND r.id = l.reservation_id
+    WHERE rs.tenant_id = ${tenantId} AND rs.difference_direction = 'charge'
+      AND r.status IN ('confirmed', 'checked_in')
+      AND (s.status IN ('cancelled', 'expired')
+           OR (s.status = 'pending_payment' AND s.expires_at < now()))
+      AND COALESCE((
+        SELECT SUM(CASE WHEN a.kind = 'payment' THEN a.amount
+                        WHEN a.kind = 'reversal' THEN -a.amount ELSE 0 END)
+        FROM awcms_commerce_payment_allocations a
+        WHERE a.tenant_id = ${tenantId} AND a.order_id = s.id
+          AND a.status = 'succeeded'
+      ), 0) < s.total
+    ORDER BY rs.created_at DESC, rs.id DESC
+    LIMIT ${limit + 1}
+  `) as ReconRow[];
+  items.push(
+    ...unpaidDifference.map((row) =>
+      toItem(row, "reschedule_difference_unpaid")
+    )
+  );
+
+  return { items: items.slice(0, limit), truncated: items.length > limit };
 }

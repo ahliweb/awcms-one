@@ -14,8 +14,13 @@ import {
   holdRefusalHttp,
   type HoldRefusal
 } from "../domain/booking-hold-to-order";
+import {
+  rescheduleRefusalHttp,
+  type RescheduleRefusal
+} from "../domain/booking-reschedule";
 import type { CancellationQuote, DecisionView } from "./booking-cancellation";
 import type { BookingReservationView } from "./booking-hold-to-order";
+import type { RescheduleQuote, RescheduleView } from "./booking-reschedule";
 import { requireCommerceFeatureForOwnerRoute } from "./commerce-feature-gate";
 
 export { readValidatedBody, requireIdempotencyKey } from "./register-http";
@@ -241,6 +246,8 @@ export function refundDecisionBody(decision: DecisionView) {
     computedRefund: decision.computedRefund,
     finalRefund: decision.finalRefund,
     overridden: decision.overridden,
+    // Issue #382 - a no-show: what the policy retained (a cancellation: null).
+    retainedAmount: decision.retainedAmount,
     returnId: decision.returnId,
     createdAt: decision.createdAt
   };
@@ -257,4 +264,98 @@ export function guestPhoneKey(phone: string): string {
     .update(phone)
     .digest("hex")
     .slice(0, 32);
+}
+
+// ---------------------------------------------------------------------------
+// Issue #382 - reschedule and no-show
+// ---------------------------------------------------------------------------
+
+/** A reschedule / no-show refusal as its HTTP code (ADR-0045 D14; `NO_SHOW_TOO_EARLY` keeps Booking's code). */
+export function rescheduleRefusalResponse(
+  refusal: RescheduleRefusal,
+  headers?: Record<string, string>
+): Response {
+  const mapped = rescheduleRefusalHttp(refusal);
+  return fail(
+    mapped.status,
+    mapped.code,
+    mapped.message,
+    {},
+    mapped.details,
+    headers
+  );
+}
+
+/**
+ * The `CommerceBookingRescheduleQuote` body: how the night count changes, how
+ * the difference would be carried and every figure the SERVER computed. No
+ * customer field (X7).
+ */
+export function rescheduleQuoteBody(quote: RescheduleQuote, now: Date) {
+  return {
+    serverNow: now.toISOString(),
+    currentNights: quote.currentNights,
+    newNights: quote.newNights,
+    direction: quote.direction,
+    vehicle: quote.vehicle,
+    pricedAmount: quote.pricedAmount,
+    refundAmount: quote.refundAmount,
+    policySource: quote.policySource,
+    policyId: quote.policyId,
+    policyVersion: quote.policyVersion,
+    hoursBeforeStart: quote.hoursBeforeStart,
+    refundablePercent: quote.refundablePercent,
+    availability: quote.availability
+  };
+}
+
+/**
+ * The `CommerceBookingRescheduled` body: the replacement reservation on the
+ * SAME order, the superseded reservation, and the difference with the order it
+ * created (a supplementary order, whose code the customer pays) or the return
+ * that carries the refund. No customer field (X7).
+ */
+export function rescheduledBody(view: RescheduleView, replayed: boolean) {
+  const record = view.record;
+  return {
+    replayed,
+    rescheduleId: record.id,
+    orderId: view.reservation.orderId,
+    orderCode: view.reservation.orderCode,
+    reservation: {
+      id: view.reservation.reservationId,
+      reservationNo: view.reservation.reservationNo,
+      status: view.reservation.status,
+      startsAt: view.reservation.startsAt,
+      endsAt: view.reservation.endsAt
+    },
+    supersededReservationId: view.supersededReservationId,
+    fromNights: record.fromNights,
+    toNights: record.toNights,
+    priceDifference: {
+      direction: record.direction,
+      vehicle:
+        record.direction === "charge"
+          ? ("supplementary_order" as const)
+          : record.returnId !== null
+            ? ("refund_return" as const)
+            : null,
+      pricedAmount: record.pricedAmount,
+      refundAmount: record.refundAmount,
+      supplementOrder: view.supplementOrder
+        ? {
+            orderId: view.supplementOrder.orderId,
+            orderCode: view.supplementOrder.orderCode,
+            status: view.supplementOrder.status,
+            total: view.supplementOrder.total
+          }
+        : null,
+      returnId: record.returnId,
+      policySource: record.policySource,
+      policyVersion: record.policyVersion,
+      hoursBeforeStart: record.hoursBeforeStart,
+      refundablePercent: record.refundablePercent
+    },
+    settlement: view.reservation.settlement
+  };
 }

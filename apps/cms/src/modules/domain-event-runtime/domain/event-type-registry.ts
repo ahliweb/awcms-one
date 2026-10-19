@@ -118,6 +118,9 @@ export const COMMERCE_BOOKING_ATTENTION_RAISED_EVENT_TYPE =
 /** Issue #381 (ADR-0045 D8) - a booking cancellation's refund decision was recorded (amounts and the policy source; an override is flagged, never explained). */
 export const COMMERCE_BOOKING_REFUND_DECIDED_EVENT_TYPE =
   "awcms.commerce.booking_refund.decided";
+/** Issue #382 (ADR-0045 D7) - a staff reschedule moved the order's reservation reference and carried the price difference. */
+export const COMMERCE_BOOKING_RESERVATION_RESCHEDULED_EVENT_TYPE =
+  "awcms.commerce.booking_reservation.rescheduled";
 export const COMMERCE_PAYMENT_REVERSED_EVENT_TYPE =
   "awcms.commerce.payment.reversed";
 /** Issue #284 (ADR-0028) — POS register-session events. */
@@ -423,7 +426,13 @@ export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
       eventType: COMMERCE_BOOKING_REFUND_DECIDED_EVENT_TYPE,
       eventVersion: COMMERCE_EVENT_VERSION,
       description:
-        "A booking cancellation's refund decision was recorded (Issue #381, ADR-0045 D8, threat controls C-10/C-40): the policy source, the amount paid, the policy-computed refund, the final refund and whether a manager or finance override made them differ. Producer: commerce/application/booking-cancellation.ts's cancelBookingReservation, in the same transaction as the decision row, the released reservation link and - for a positive refund - the pending refund legs. Aggregate: the order. Payload: decisionId, orderId, reservationId, triggerKind, policySource, amountPaid, computedRefund, finalRefund, overridden - never a customer name/phone, a payment reference, the override reason or the actor."
+        "A booking cancellation's or no-show's refund decision was recorded (Issue #381 and #382, ADR-0045 D8/D15, threat controls C-10/C-40/C-41): the policy source, the amount paid, the policy-computed refund, the final refund and whether a manager or finance override made them differ; for a no-show (triggerKind no_show) the refunds are zero and retainedAmount is what the policy version retained. Producers: commerce/application/booking-cancellation.ts's cancelBookingReservation and booking-no-show.ts's recordBookingNoShow, in the same transaction as the decision row, the released reservation link and - for a positive cancellation refund - the pending refund legs. Aggregate: the order. Payload: decisionId, orderId, reservationId, triggerKind, policySource, amountPaid, computedRefund, finalRefund, overridden, and retainedAmount (no-show only) - never a customer name/phone, a payment reference, the override reason or the actor."
+    },
+    {
+      eventType: COMMERCE_BOOKING_RESERVATION_RESCHEDULED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A staff member rescheduled a booking reservation through the adapter (Issue #382, ADR-0045 D7, threat controls C-37 to C-39): the order now points at the replacement reservation and the price difference was carried as a supplementary order (more nights), a policy-limited refund return (fewer nights) or not at all. Producer: commerce/application/booking-reschedule.ts's rescheduleBookingReservation, in the same transaction as the reschedule record and the moved reservation link. Aggregate: the order. Payload: rescheduleId, orderId, fromReservationId, toReservationId, fromNights, toNights, direction, pricedAmount, refundAmount, supplementOrderId, returnId - never a customer name/phone, a payment reference or the actor."
     },
     {
       eventType: COMMERCE_PAYMENT_REVERSED_EVENT_TYPE,

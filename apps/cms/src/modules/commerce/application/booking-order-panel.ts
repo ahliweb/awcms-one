@@ -10,6 +10,14 @@
  * decided by what the viewer may do; the routes decide again.
  */
 import { composedBookingPort } from "../../../lib/composition/booking-port";
+import { nightsOf } from "./booking-cancellation";
+import { computeNoShowPreview, type NoShowPreview } from "./booking-no-show";
+import {
+  fetchSupplementOrder,
+  listReschedulesForOrder,
+  type RescheduleRecord,
+  type SupplementOrderSummary
+} from "./booking-reschedule";
 import {
   computeCancellationQuote,
   fetchDecisionForLink,
@@ -23,8 +31,24 @@ import {
 } from "./booking-hold-to-order";
 import type { ReservationLinkSummary } from "./booking-reservation-links";
 
+/** One reschedule of the booking as the panel lists it (Issue #382). */
+export type PanelReschedule = RescheduleRecord & {
+  /** The supplementary order of a reschedule that added nights, with its payment state. */
+  supplementOrder: SupplementOrderSummary | null;
+};
+
 export type BookingOrderPanel = {
   reservation: BookingReservationView;
+  /** What Booking holds now (Issue #382): the nights, and the stay's dates for the reschedule dialog (`null` for a slot). */
+  nights: number;
+  stay: { checkInDate: string; checkOutDate: string } | null;
+  reschedules: PanelReschedule[];
+  /** What a no-show would retain, while the reservation is confirmed and its arrival has passed; `null` otherwise. */
+  noShow: NoShowPreview | null;
+  canReschedule: boolean;
+  canNoShow: boolean;
+  /** The server's clock, for the reschedule dialog's earliest date (never the browser's). */
+  serverNow: string;
   /** The quote, while the reservation can still be cancelled; `null` otherwise. */
   quote: CancellationQuote | null;
   /** Why there is no quote (`already_decided`, `released`, `completed`, ...), or `null`. */
@@ -56,6 +80,8 @@ export async function loadBookingOrderPanel(
   caps: {
     canCancel: boolean;
     canOverride: boolean;
+    /** `commerce.booking_reservation_links.update` (Issue #382). */
+    canReschedule?: boolean;
     /** `commerce.booking_refund_decisions.read`: without it the recorded figures stay hidden. */
     canReadDecision: boolean;
   },
@@ -78,6 +104,28 @@ export async function loadBookingOrderPanel(
     status: link.status
   });
   if (!reservation) return null;
+
+  const port = await composedBookingPort();
+  const held = await port.get(tx, {
+    tenantId,
+    reservationId: link.reservation_id
+  });
+  const current = held.ok ? held.reservation : null;
+  const stay = current?.stays[0]
+    ? {
+        checkInDate: current.stays[0].checkInDate,
+        checkOutDate: current.stays[0].checkOutDate
+      }
+    : null;
+  const reschedules: PanelReschedule[] = [];
+  for (const record of await listReschedulesForOrder(tx, tenantId, orderId)) {
+    reschedules.push({
+      ...record,
+      supplementOrder: record.supplementOrderId
+        ? await fetchSupplementOrder(tx, tenantId, record.supplementOrderId)
+        : null
+    });
+  }
 
   const recorded = await fetchDecisionForLink(tx, tenantId, link.id);
   const decision = caps.canReadDecision ? recorded : null;
@@ -110,8 +158,38 @@ export async function loadBookingOrderPanel(
     noQuoteReason = "already_decided";
   }
 
+  // A no-show: the reservation is confirmed and its ORIGINAL arrival has passed
+  // (Booking decides the grace on the server; the control is only offered).
+  let noShow: NoShowPreview | null = null;
+  const confirmed = link.status === "active" && current?.status === "confirmed";
+  if (confirmed && recorded === null && caps.canCancel) {
+    const previewed = await computeNoShowPreview(
+      tx,
+      tenantId,
+      {
+        id: link.id,
+        orderId: link.order_id,
+        reservationId: link.reservation_id,
+        status: link.status
+      },
+      port,
+      { now, expectStatus: "confirmed" }
+    );
+    if (previewed.ok && previewed.value.preview.hoursBeforeStart < 0) {
+      noShow = previewed.value.preview;
+    }
+  }
+
   return {
     reservation,
+    nights: current ? nightsOf(current) : 1,
+    stay,
+    reschedules,
+    noShow,
+    canReschedule:
+      Boolean(caps.canReschedule) && confirmed && recorded === null,
+    canNoShow: caps.canCancel && noShow !== null,
+    serverNow: now.toISOString(),
     quote,
     noQuoteReason,
     decision,

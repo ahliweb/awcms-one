@@ -57,7 +57,8 @@
 import { computeRequestHash } from "../../_shared/idempotency";
 import type {
   BookingGetResult,
-  BookingPort
+  BookingPort,
+  BookingReservationRecord
 } from "../../_shared/ports/booking-port";
 import { appendDomainEvent } from "../../domain-event-runtime/application/append-domain-event";
 import { recordAuditEvent } from "../../logging/application/audit-log";
@@ -106,7 +107,10 @@ const AUDIT_RESOURCE_TYPE = "commerce_booking_reservation_link";
 const PRODUCER_MODULE = "commerce";
 
 /** Reservation states a cancellation still has something to cancel in. */
-const LIVE_STATUSES: ReadonlySet<string> = new Set(["held", "confirmed"]);
+export const LIVE_STATUSES: ReadonlySet<string> = new Set([
+  "held",
+  "confirmed"
+]);
 /** States where the reservation is already dead but money may be held behind it (STAFF may settle that, never a guest). */
 const DEAD_STATUSES: ReadonlySet<string> = new Set(["expired", "cancelled"]);
 
@@ -149,7 +153,7 @@ export type QuoteOutcome =
   { ok: true; value: QuoteInternals } | { ok: false; refusal: CancelRefusal };
 
 /** The chain of reschedules ends at the ORIGINAL link; a booking that was never moved is its own root. */
-async function findRootLink(
+export async function findRootLink(
   tx: Bun.SQL,
   tenantId: string,
   linkId: string
@@ -180,6 +184,74 @@ async function findRootLink(
         productId: row.product_id
       }
     : null;
+}
+
+/** The nights a Booking reservation holds: its stays' nights, or 1 for a slot. */
+export function nightsOf(
+  reservation: Pick<BookingReservationRecord, "stays">
+): number {
+  return Math.max(
+    1,
+    reservation.stays.reduce((sum, stay) => sum + stay.nights, 0)
+  );
+}
+
+/**
+ * The ORIGINAL booking of a reschedule chain (Issue #381 C-37, reused by the
+ * reschedule of #382): the root link, the product it was sold as and the
+ * ORIGINAL arrival read from Booking through the port. A chain of reschedules
+ * can therefore never move the window a cancellation or a reduction is judged
+ * by - the instant is the root's, whatever the current reservation says.
+ */
+export async function readOriginalBooking(
+  tx: Bun.SQL,
+  tenantId: string,
+  port: BookingPort,
+  link: Pick<ReservationLinkSummary, "id" | "reservationId">,
+  current: Pick<BookingReservationRecord, "startsAt">
+): Promise<{
+  root: { id: string; reservationId: string; productId: string };
+  startsAtMs: number;
+} | null> {
+  const root = await findRootLink(tx, tenantId, link.id);
+  if (!root) return null;
+  let originalStartsAt = current.startsAt;
+  if (root.reservationId !== link.reservationId) {
+    const original = await port.get(tx, {
+      tenantId,
+      reservationId: root.reservationId
+    });
+    if (!original.ok) return null;
+    originalStartsAt = original.reservation.startsAt;
+  }
+  return { root, startsAtMs: Date.parse(originalStartsAt) };
+}
+
+/**
+ * How many nights the order behind a reservation link still pays for: the order
+ * line's quantity less the nights earlier reschedules took off it. At least 1; a
+ * line that is not found falls back to a large number so the reservation's own
+ * night count decides.
+ */
+async function nightsHeldByOrder(
+  tx: Bun.SQL,
+  tenantId: string,
+  linkId: string
+): Promise<number> {
+  const rows = (await tx`
+    SELECT i.quantity - COALESCE((
+      SELECT SUM(r.from_nights - r.to_nights)
+      FROM awcms_commerce_booking_reschedules r
+      WHERE r.tenant_id = l.tenant_id AND r.order_id = l.order_id
+        AND r.difference_direction = 'refund'
+    ), 0) AS held
+    FROM awcms_commerce_booking_reservation_links l
+    JOIN awcms_commerce_order_items i
+      ON i.tenant_id = l.tenant_id AND i.id = l.order_item_id
+    WHERE l.tenant_id = ${tenantId} AND l.id = ${linkId}
+  `) as { held: string | number }[];
+  const held = rows[0] ? Number(rows[0].held) : Number.MAX_SAFE_INTEGER;
+  return Math.max(1, held);
 }
 
 /**
@@ -232,23 +304,28 @@ export async function computeCancellationQuote(
     return { ok: false, refusal: { code: "INVALID_STATE", reason: status } };
   }
 
-  const root = await findRootLink(tx, tenantId, link.id);
-  if (!root) return { ok: false, refusal: { code: "RESERVATION_NOT_FOUND" } };
-  let originalStartsAt = current.reservation.startsAt;
-  if (root.reservationId !== link.reservationId) {
-    const original = await port.get(tx, {
-      tenantId,
-      reservationId: root.reservationId
-    });
-    if (!original.ok) {
-      return { ok: false, refusal: { code: "RESERVATION_NOT_FOUND" } };
-    }
-    originalStartsAt = original.reservation.startsAt;
+  const original = await readOriginalBooking(
+    tx,
+    tenantId,
+    port,
+    link,
+    current.reservation
+  );
+  if (!original) {
+    return { ok: false, refusal: { code: "RESERVATION_NOT_FOUND" } };
   }
-  const startsAtMs = Date.parse(originalStartsAt);
+  const { root, startsAtMs } = original;
+  // The nights the ORDER being refunded still pays for (Issue #382): a stay that
+  // a reschedule lengthened holds more nights than this order sold (the extra
+  // ones were sold on a supplementary order), and one it shortened has had the
+  // removed nights taken off. Splitting the amount paid over more nights than it
+  // paid for would only under-refund; over the order's own nights it is exact.
   const nights = Math.max(
     1,
-    current.reservation.stays.reduce((sum, stay) => sum + stay.nights, 0)
+    Math.min(
+      nightsOf(current.reservation),
+      await nightsHeldByOrder(tx, tenantId, link.id)
+    )
   );
 
   const policy = await resolvePolicyForLink(
@@ -316,6 +393,8 @@ export type DecisionView = {
   computedRefund: string;
   finalRefund: string;
   overridden: boolean;
+  /** A no-show only (Issue #382, sql/1045): what the policy retained; `null` for a cancellation. */
+  retainedAmount: string | null;
   returnId: string | null;
   createdAt: string;
 };
@@ -335,6 +414,7 @@ type DecisionRow = {
   computed_refund: string;
   final_refund: string;
   override_reason: string | null;
+  retained_amount: string | null;
   return_id: string | null;
   request_hash: string | null;
   created_at: Date | string;
@@ -343,7 +423,8 @@ type DecisionRow = {
 const DECISION_SELECT = `d.id, d.order_id, d.reservation_link_id, d.trigger_kind,
   d.actor_kind, d.policy_source, d.policy_id, p.version AS policy_version,
   d.hours_before_start, d.refundable_percent, d.amount_paid, d.computed_refund,
-  d.final_refund, d.override_reason, d.return_id, d.request_hash, d.created_at`;
+  d.final_refund, d.override_reason, d.retained_amount, d.return_id,
+  d.request_hash, d.created_at`;
 
 function toDecisionView(row: DecisionRow): DecisionView {
   return {
@@ -364,6 +445,10 @@ function toDecisionView(row: DecisionRow): DecisionView {
     computedRefund: normalizeMoney(String(row.computed_refund)),
     finalRefund: normalizeMoney(String(row.final_refund)),
     overridden: row.override_reason !== null,
+    retainedAmount:
+      row.retained_amount === null
+        ? null
+        : normalizeMoney(String(row.retained_amount)),
     returnId: row.return_id,
     createdAt: new Date(row.created_at).toISOString()
   };
@@ -700,6 +785,30 @@ export async function cancelBookingReservation(
       )) === "cancelled";
   }
 
+  // Nights a reschedule added were sold on a supplementary order (Issue #382).
+  // One nobody has paid for yet must not stay open for a booking that no longer
+  // exists; one that holds money is refunded by staff through the ordinary
+  // returns path (it is a separate order and keeps its own ledger).
+  const supplements = (await tx`
+    SELECT supplement_order_id FROM awcms_commerce_booking_reschedules
+    WHERE tenant_id = ${tenantId} AND order_id = ${link.orderId}
+      AND supplement_order_id IS NOT NULL
+    ORDER BY created_at, id
+  `) as { supplement_order_id: string }[];
+  let supplementsCancelled = 0;
+  for (const supplement of supplements) {
+    if (
+      (await cancelUnpaidOrderForBooking(
+        tx,
+        tenantId,
+        supplement.supplement_order_id,
+        ctx.correlationId
+      )) === "cancelled"
+    ) {
+      supplementsCancelled += 1;
+    }
+  }
+
   // -- Audit + event ----------------------------------------------------------------
   const initiatedBy = staff ? "staff" : "customer";
   const auditActor = staffId ?? undefined;
@@ -723,7 +832,8 @@ export async function cancelBookingReservation(
       actorKind: staff ? "staff" : "system",
       initiatedBy,
       reasonCode: input.reasonCode,
-      orderCancelled
+      orderCancelled,
+      supplementOrdersCancelled: supplementsCancelled
     }
   });
   await recordAuditEvent(tx, {

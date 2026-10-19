@@ -927,17 +927,39 @@ channels:
       DomainEvent:
         $ref: "#/components/messages/DomainEvent"
     description: >-
-      A booking cancellation's refund decision was recorded (Issue #381,
-      ADR-0045 D8, threat controls C-10/C-40): the policy source, the amount
-      paid, the policy-computed refund, the final refund and whether a manager
-      or finance override made them differ. Producer:
-      `commerce/application/booking-cancellation.ts`'s
-      `cancelBookingReservation`, in the same transaction as the decision row,
-      the released reservation link and - for a positive refund - the pending
-      refund legs. Aggregate: the order. Payload: `decisionId`, `orderId`,
-      `reservationId`, `triggerKind`, `policySource`, `amountPaid`,
-      `computedRefund`, `finalRefund`, `overridden` - never a customer
-      name/phone, a payment reference, the override reason or the actor.
+      A booking cancellation's or no-show's refund decision was recorded (Issue
+      #381 and #382, ADR-0045 D8/D15, threat controls C-10/C-40/C-41): the policy
+      source, the amount paid, the policy-computed refund, the final refund and
+      whether a manager or finance override made them differ. For a no-show
+      (`triggerKind` `no_show`) both refunds are zero and `retainedAmount` is
+      what the policy version retained - a no-show never creates a refund leg.
+      Producers: `commerce/application/booking-cancellation.ts`'s
+      `cancelBookingReservation` and `booking-no-show.ts`'s
+      `recordBookingNoShow`, in the same transaction as the decision row, the
+      released reservation link and - for a positive cancellation refund - the
+      pending refund legs. Aggregate: the order. Payload: `decisionId`,
+      `orderId`, `reservationId`, `triggerKind`, `policySource`, `amountPaid`,
+      `computedRefund`, `finalRefund`, `overridden`, and `retainedAmount`
+      (no-show only) - never a customer name/phone, a payment reference, the
+      override reason or the actor.
+  awcms.commerce.booking_reservation.rescheduled:
+    address: awcms.commerce.booking_reservation.rescheduled
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A staff member rescheduled a booking reservation through the adapter
+      (Issue #382, ADR-0045 D7, threat controls C-37 to C-39): the order now
+      points at the replacement reservation and the price difference was carried
+      as a supplementary order (more nights), a policy-limited refund return
+      (fewer nights) or not at all (same length). Producer:
+      `commerce/application/booking-reschedule.ts`'s
+      `rescheduleBookingReservation`, in the same transaction as the reschedule
+      record and the moved reservation link. Aggregate: the order. Payload:
+      `rescheduleId`, `orderId`, `fromReservationId`, `toReservationId`,
+      `fromNights`, `toNights`, `direction`, `pricedAmount`, `refundAmount`,
+      `supplementOrderId`, `returnId` - never a customer name/phone, a payment
+      reference or the actor.
   awcms.commerce.payment.reversed:
     address: awcms.commerce.payment.reversed
     messages:
@@ -1701,6 +1723,12 @@ operations:
       $ref: "#/channels/awcms.commerce.booking_refund.decided"
     messages:
       - $ref: "#/channels/awcms.commerce.booking_refund.decided/messages/DomainEvent"
+  publishCommerceBookingReservationRescheduled:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.booking_reservation.rescheduled"
+    messages:
+      - $ref: "#/channels/awcms.commerce.booking_reservation.rescheduled/messages/DomainEvent"
   publishCommercePaymentReversed:
     action: send
     channel:

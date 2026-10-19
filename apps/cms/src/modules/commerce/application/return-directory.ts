@@ -1359,6 +1359,15 @@ export type CancellationReturnInput = {
   legs: readonly PlannedRefundLeg[];
   /** The tenant's service-account user (G3): the actor of the return and its legs. */
   actorTenantUserId: string;
+  /**
+   * Units of the service line this return gives back (Issue #382: the nights a
+   * reschedule removes). Absent = everything still unreturned, i.e. a whole
+   * cancellation - which is what makes a cancellation after an earlier partial
+   * return of the same line legal (the over-return guard sums the quantities).
+   */
+  quantity?: number;
+  /** The order-event wording ("Booking cancellation" by default). */
+  eventLabel?: string;
   correlationId?: string;
 };
 
@@ -1379,13 +1388,30 @@ export async function recordCancellationReturn(
   }
 
   const item = (await tx`
-    SELECT product_id, variant_id, quantity
+    SELECT product_id, variant_id, quantity,
+      COALESCE((
+        SELECT SUM(l.quantity) FROM awcms_commerce_return_lines l
+        WHERE l.tenant_id = ${tenantId} AND l.order_item_id = ${input.orderItemId}
+      ), 0) AS returned
     FROM awcms_commerce_order_items
     WHERE tenant_id = ${tenantId} AND id = ${input.orderItemId}
       AND order_id = ${input.orderId}
-  `) as { product_id: string; variant_id: string | null; quantity: number }[];
+  `) as {
+    product_id: string;
+    variant_id: string | null;
+    quantity: number;
+    returned: string | number;
+  }[];
   if (!item[0]) {
     throw new Error("The reservation's order line could not be found.");
+  }
+  const unreturned = Number(item[0].quantity) - Number(item[0].returned);
+  const lineQuantity = input.quantity ?? unreturned;
+  if (lineQuantity < 1 || lineQuantity > unreturned) {
+    // The database's over-return guard would refuse it anyway; a clear defect first.
+    throw new Error(
+      `The reservation's order line has ${unreturned} unreturned unit(s); ${lineQuantity} cannot be given back.`
+    );
   }
 
   const returned = (await tx`
@@ -1409,7 +1435,7 @@ export async function recordCancellationReturn(
     )
     VALUES (
       ${tenantId}, ${returnId}, ${input.orderId}, ${input.orderItemId},
-      ${item[0].product_id}, ${item[0].variant_id}, ${Number(item[0].quantity)},
+      ${item[0].product_id}, ${item[0].variant_id}, ${lineQuantity},
       'booking_cancelled', 'not_applicable', 0, ${total}, 0, ${total}
     )
   `;
@@ -1420,7 +1446,7 @@ export async function recordCancellationReturn(
       (tenant_id, order_id, from_status, to_status, actor, note, return_id)
     VALUES (
       ${tenantId}, ${input.orderId}, ${input.orderStatus}, 'returned', 'admin',
-      ${`Booking cancellation ${returnId} recorded.`}, ${returnId}
+      ${`${input.eventLabel ?? "Booking cancellation"} ${returnId} recorded.`}, ${returnId}
     )
   `;
 

@@ -27,11 +27,19 @@
  *   - `booking_cancellation_policies.{read,create,approve}`: list versions,
  *     author a draft, activate or retire a version (`approve` is high-risk).
  *
- * The rest of the matrix is NOT registered yet and tests pin that it is not:
- * `booking_reservation_links.update` (reschedule, #382). `cancel` and
- * `approve` are in `HIGH_RISK_ACTIONS` already (a test asserts it), so
- * registering them classes them correctly with no change to the upstream-owned
- * union.
+ * Issue #382 lands the reschedule route and registers the last key of the
+ * matrix (`sql/1045`):
+ *
+ *   - `booking_reservation_links.update`: reschedule a reservation (and read its
+ *     non-binding price). Not high-risk: `update` is not in `HIGH_RISK_ACTIONS`
+ *     (a test asserts it). A no-show needs no key of its own - it is a staff
+ *     cancel of a reservation that did not arrive, so it takes the two keys a
+ *     cancel takes (`booking_reservation_links.cancel` and
+ *     `booking_refund_decisions.create`), which a cashier does not hold.
+ *
+ * Nothing in the access matrix is left unregistered. `cancel` and `approve` are
+ * in `HIGH_RISK_ACTIONS` already (a test asserts it), so registering them classes
+ * them correctly with no change to the upstream-owned union.
  *
  * Existing `AccessAction` verbs only.
  */
@@ -68,6 +76,8 @@ export const COMMERCE_BOOKING_DEPOSIT_POLICY_PERMISSIONS = {
 export const COMMERCE_BOOKING_RESERVATION_LINK_PERMISSIONS = {
   read: "commerce.booking_reservation_links.read",
   create: "commerce.booking_reservation_links.create",
+  /** Issue #382 - reschedule (and its price preview). */
+  update: "commerce.booking_reservation_links.update",
   cancel: "commerce.booking_reservation_links.cancel"
 } as const;
 
@@ -86,12 +96,15 @@ export const COMMERCE_BOOKING_REFUND_OVERRIDE_PERMISSIONS = {
   approve: "commerce.booking_refund_overrides.approve"
 } as const;
 
-/** The keys of the access matrix that no route enforces yet (arrive with #382 onward). */
-export const BOOKING_ADAPTER_PENDING_PERMISSIONS = [
-  "commerce.booking_reservation_links.update"
-] as const;
+/**
+ * The keys of the access matrix that no route enforces yet. Empty since issue
+ * #382 landed the reschedule route: a key is added here only if a later issue
+ * proposes one before its route exists, and `access:permissions:enforcement:check`
+ * keeps it out of the registered list until then.
+ */
+export const BOOKING_ADAPTER_PENDING_PERMISSIONS: readonly string[] = [];
 
-/** Mirrors `sql/1039`, `sql/1041` and `sql/1044` exactly. */
+/** Mirrors `sql/1039`, `sql/1041`, `sql/1044` and `sql/1045` exactly. */
 export const BOOKING_ADAPTER_PERMISSIONS: ModulePermissionDescriptor[] = [
   {
     activityCode: COMMERCE_BOOKING_OFFERING_LINKS_ACTIVITY_CODE,
@@ -130,6 +143,12 @@ export const BOOKING_ADAPTER_PERMISSIONS: ModulePermissionDescriptor[] = [
     action: "create",
     description:
       "Hold a Booking slot or stay and create the commerce order from it (Issue #380)"
+  },
+  {
+    activityCode: COMMERCE_BOOKING_RESERVATION_LINKS_ACTIVITY_CODE,
+    action: "update",
+    description:
+      "Reschedule a Booking reservation: move it to new dates and carry the price difference through the order path (Issue #382)"
   },
   {
     activityCode: COMMERCE_BOOKING_RESERVATION_LINKS_ACTIVITY_CODE,

@@ -1,6 +1,7 @@
 /**
- * `dataLifecycle` and `subjectData` descriptors for the six booking-commerce
- * adapter tables (Issue #378, ADR-0045; `sql/1035`-`sql/1038`), declared once
+ * `dataLifecycle` and `subjectData` descriptors for the seven booking-commerce
+ * adapter tables (Issue #378, ADR-0045; `sql/1035`-`sql/1038`, and the reschedule
+ * record of Issue #382, `sql/1045`), declared once
  * here and spread into `module.ts`'s two arrays - the same shape and reasoning
  * as `segment-lifecycle.ts` and `returns-lifecycle.ts`. A later adapter issue
  * that adds a table appends to THIS file, never to `module.ts`. Pure data.
@@ -23,6 +24,11 @@
  *   (`financial_tax`, like `commerce.refunds`): five-year floor, ten-year
  *   ceiling, append-only, cursor `created_at`, no DELETE for the application
  *   role (`sql/1038`), only the retention worker (`sql/1040`).
+ * - The reschedule record (Issue #382) is a fiscal record of how a price
+ *   difference was carried (a supplementary order, a policy-limited refund), so
+ *   it takes the refund decision's window: `financial_tax`, five-year floor,
+ *   ten-year ceiling, append-only, cursor `created_at`, no UPDATE or DELETE for
+ *   the application role (`sql/1045`), only the retention worker.
  *
  * ## Subject data
  *
@@ -30,7 +36,8 @@
  * is derived through the order its active link points to, and reaches a person
  * only through `commerce.customers`, which carries no tenant-user / identity id
  * (ADR-0016 D1). Only the refund decision names STAFF, by tenant-user uuid
- * (the actor and the override actor), and carries one staff-authored reason.
+ * (the actor and the override actor), and carries one staff-authored reason; the
+ * reschedule record (Issue #382) names only the staff member who moved it.
  */
 import type {
   HighVolumeTableDescriptor,
@@ -162,6 +169,37 @@ export const BOOKING_ADAPTER_DATA_LIFECYCLE: HighVolumeTableDescriptor[] = [
     batchLimit: 5000,
     backupRestoreNotes: BACKUP_NOTES,
     executionMode: "generic"
+  },
+  {
+    key: "commerce.booking_reschedules",
+    tableName: "awcms_commerce_booking_reschedules",
+    ownerModuleKey: "commerce",
+    scope: "tenant",
+    // Append-only - no `deleted_at`; the cursor is `created_at`, like the refund decision.
+    cursorColumn: "created_at",
+    ...FINANCIAL_WINDOW,
+    partition: {
+      eligible: false,
+      rationale:
+        "One row per reschedule of a booking; bounded by the shop's reschedule volume, and the (tenant, created_at) index serves the purge."
+    },
+    archive: NO_ARCHIVE,
+    deletion: {
+      mode: "hard_delete",
+      rationale:
+        "Reachable only past the ten-year ceiling and only by the retention worker: awcms_app has neither UPDATE nor DELETE and a trigger refuses every update (sql/1045)."
+    },
+    legalHold: NO_LEGAL_HOLD,
+    requiredIndexes: [
+      {
+        columns: ["tenant_id", "created_at"],
+        purpose:
+          "awcms_commerce_booking_reschedules_tenant_created_idx (sql/1045) - the (tenant, cursor) composite the generic purge engine filters + orders by."
+      }
+    ],
+    batchLimit: 5000,
+    backupRestoreNotes: BACKUP_NOTES,
+    executionMode: "generic"
   }
 ];
 
@@ -238,5 +276,17 @@ export const BOOKING_ADAPTER_SUBJECT_DATA: SubjectDataDescriptor[] = [
     rationale:
       "Issue #378 - the append-only record of a booking cancellation's refund: the policy version applied, the computed and final amounts and, for an override, the staff approver, the step-up time and a staff-authored reason. It names STAFF only (as plain tenant-user uuid stamps); a customer cancel stores no customer id (X7). A fiscal record of money leaving the business, retained under the same obligation as commerce.refunds; a staff stamp resolves to nobody once identity_access.identities anonymises.",
     redactedColumns: ["override_reason"]
+  },
+  {
+    key: "commerce.booking_reschedules",
+    tableName: "awcms_commerce_booking_reschedules",
+    ownerModuleKey: "commerce",
+    subjectColumns: [
+      { column: "actor_tenant_user_id", references: "tenant_user" }
+    ],
+    exportable: false,
+    erasure: "retain_under_obligation",
+    rationale:
+      "Issue #382 - the append-only record of a booking reschedule: the two reservation links of the same order, the night counts and how the price difference was carried (none, a supplementary order, or a policy-limited refund return). It names the STAFF member who rescheduled as a plain tenant-user uuid stamp and nobody else (finding X7: the customer is derived through the order and stored nowhere here). A fiscal record of how money was priced and refunded, retained under the same obligation as commerce.booking_refund_decisions; a staff stamp resolves to nobody once identity_access.identities anonymises."
   }
 ];
