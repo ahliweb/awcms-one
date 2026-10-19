@@ -33,7 +33,10 @@ export type OfferingLinkRefusal =
   | "product_already_linked"
   | "product_not_service"
   | "quantity_basis_mismatch"
-  | "service_actor_not_configured";
+  | "service_actor_not_configured"
+  | "resource_not_found"
+  | "resource_mode_mismatch"
+  | "resource_inactive";
 
 const REFUSALS: Record<
   OfferingLinkRefusal,
@@ -81,6 +84,24 @@ const REFUSALS: Record<
     code: "BOOKING_SERVICE_ACTOR_NOT_CONFIGURED",
     message:
       "Name an active service-account user for bookings in the store settings before linking an offering."
+  },
+  // Issue #437 - the resource(s) a link sells. An unknown, foreign-tenant or
+  // soft-deleted resource is one neutral 404, like an unknown offering.
+  resource_not_found: {
+    status: 404,
+    code: "RESOURCE_NOT_FOUND",
+    message: "Booking resource not found."
+  },
+  resource_mode_mismatch: {
+    status: 409,
+    code: "RESOURCE_MODE_MISMATCH",
+    message:
+      "A stay offering is sold from stay-mode resources and a time-slot offering from slot-mode resources."
+  },
+  resource_inactive: {
+    status: 409,
+    code: "RESOURCE_NOT_ACTIVE",
+    message: "An inactive resource cannot be bound to an offering link."
   }
 };
 

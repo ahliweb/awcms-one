@@ -23,6 +23,7 @@ import {
   type ValidationError
 } from "./payment-allocation";
 import { isUuid } from "./register";
+import { MAX_RESOURCES_PER_OFFERING } from "./booking-storefront-reads";
 
 export type { ValidationError };
 type ValidationResult<T> =
@@ -122,6 +123,12 @@ export type CreateOfferingLinkInput = {
   offeringId: string;
   productId: string;
   quantityBasis: BookingQuantityBasis;
+  /**
+   * Issue #437 - the Booking resource(s) this link sells, in the order the
+   * storefront lists them. EMPTY keeps the #386 fallback (every active resource
+   * of the offering's booking mode); at most {@link MAX_RESOURCES_PER_OFFERING}.
+   */
+  resourceIds: string[];
 };
 
 export type UpdateOfferingLinkInput = { status: "unlinked" };
@@ -152,6 +159,47 @@ function rejectUnknownKeys(
   }
 }
 
+/**
+ * `resourceIds` is optional: absent, `null` and `[]` all mean "no binding" (the
+ * #386 fallback). Present, it is a list of distinct uuids, at most
+ * {@link MAX_RESOURCES_PER_OFFERING}. These are CLIENT ids: the directory still
+ * proves each is the tenant's, active and of the offering's booking mode.
+ */
+function parseResourceIds(value: unknown, errors: ValidationError[]): string[] {
+  if (value === undefined || value === null) return [];
+  if (!Array.isArray(value)) {
+    errors.push({
+      field: "resourceIds",
+      message: "resourceIds must be an array of uuids."
+    });
+    return [];
+  }
+  if (value.length > MAX_RESOURCES_PER_OFFERING) {
+    errors.push({
+      field: "resourceIds",
+      message: `resourceIds takes at most ${MAX_RESOURCES_PER_OFFERING} resources.`
+    });
+    return [];
+  }
+  const seen = new Set<string>();
+  for (const [index, entry] of value.entries()) {
+    if (!isUuid(entry)) {
+      errors.push({
+        field: `resourceIds[${index}]`,
+        message: "Each resource id must be a uuid."
+      });
+    } else if (seen.has(entry)) {
+      errors.push({
+        field: `resourceIds[${index}]`,
+        message: "A resource can be listed once."
+      });
+    } else {
+      seen.add(entry);
+    }
+  }
+  return errors.length > 0 ? [] : [...seen];
+}
+
 export function validateCreateOfferingLinkInput(
   body: unknown
 ): ValidationResult<CreateOfferingLinkInput> {
@@ -159,7 +207,7 @@ export function validateCreateOfferingLinkInput(
   const errors: ValidationError[] = [];
   rejectUnknownKeys(
     record,
-    ["offeringId", "productId", "quantityBasis"],
+    ["offeringId", "productId", "quantityBasis", "resourceIds"],
     errors
   );
 
@@ -180,13 +228,15 @@ export function validateCreateOfferingLinkInput(
       message: "quantityBasis must be nights or booking."
     });
   }
+  const resourceIds = parseResourceIds(record.resourceIds, errors);
   if (errors.length > 0) return { valid: false, errors };
   return {
     valid: true,
     value: {
       offeringId: record.offeringId as string,
       productId: record.productId as string,
-      quantityBasis: record.quantityBasis as BookingQuantityBasis
+      quantityBasis: record.quantityBasis as BookingQuantityBasis,
+      resourceIds
     }
   };
 }

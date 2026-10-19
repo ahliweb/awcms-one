@@ -11,9 +11,10 @@
  * `status` - and `BookingPort` has no offering read (needs upstream port U1,
  * recorded in ADR-0045). So this file runs ONE read-only `SELECT` of exactly
  * those three columns from `awcms_booking_service_offerings`, constrained by the
- * tenant. It imports nothing from `booking`'s code (the module boundary stays
- * "commerce imports the PORT only"), writes nothing to Booking's tables, and is
- * the only such read; it retires when the port gains an offering read.
+ * tenant (plus, since #437, the resource check below). It imports nothing from
+ * `booking`'s code (the module boundary stays "commerce imports the PORT
+ * only"), writes nothing to Booking's tables, and both reads retire when the
+ * port gains an offering and a resource read.
  *
  * ## Contract
  *
@@ -29,6 +30,17 @@
  *   `NO_CANCELLATION_POLICY`, "cancellations will refund nothing".
  * - Create and unlink take an `Idempotency-Key` (the contract); both write one
  *   audit event with identifiers and enums only.
+ * - Issue #437: a link may name the Booking resource(s) it sells
+ *   (`resourceIds`, at most ten, written once with the link into
+ *   `awcms_commerce_booking_offering_link_resources`, sql/1050). They are
+ *   CLIENT ids and are proven here: the tenant's own, not deleted, ACTIVE and in
+ *   the booking mode the offering's granularity needs (a stay is sold from
+ *   `stay` resources, a time slot from `slot` ones - the only relation Booking
+ *   has between an offering and a resource, since an offering fixes none).
+ *   `BookingPort` has no resource read, so this is one more read-only `SELECT`
+ *   of `awcms_booking_resources` in this already pinned file, tenant-constrained
+ *   and by id; it retires with the offering `SELECT` when the port gains the
+ *   read. No resource named = the #386 fallback (M9: existing links unchanged).
  *
  * Every refusal is RETURNED, never thrown; nothing is written before a refusal.
  */
@@ -69,6 +81,8 @@ export type OfferingLinkRecord = {
   offeringId: string;
   productId: string;
   quantityBasis: BookingQuantityBasis;
+  /** The bound Booking resources, storefront order; empty = the #386 fallback (every active resource of the mode). */
+  resourceIds: string[];
   status: BookingOfferingLinkStatus;
   unlinkedAt: string | null;
   createdAt: string;
@@ -93,12 +107,13 @@ type LinkRow = {
 
 const iso = (value: Date | string): string => new Date(value).toISOString();
 
-function toRecord(row: LinkRow): OfferingLinkRecord {
+function toRecord(row: LinkRow, resourceIds: string[]): OfferingLinkRecord {
   return {
     id: row.id,
     offeringId: row.offering_id,
     productId: row.product_id,
     quantityBasis: row.quantity_basis,
+    resourceIds,
     status: row.status,
     unlinkedAt: row.unlinked_at === null ? null : iso(row.unlinked_at),
     createdAt: iso(row.created_at),
@@ -141,6 +156,58 @@ async function readOfferingFacts(
   };
 }
 
+/** The bound resource ids of each link, in the order the storefront lists them. */
+export async function readLinkResourceIds(
+  tx: Bun.SQL,
+  tenantId: string,
+  linkIds: string[]
+): Promise<Map<string, string[]>> {
+  const byLink = new Map<string, string[]>();
+  if (linkIds.length === 0) return byLink;
+  const rows = (await tx`
+    SELECT offering_link_id, resource_id
+    FROM awcms_commerce_booking_offering_link_resources
+    WHERE tenant_id = ${tenantId}
+      AND offering_link_id = ANY(${tx.array(linkIds, "uuid")}::uuid[])
+    ORDER BY offering_link_id, sort_order, created_at, resource_id
+  `) as { offering_link_id: string; resource_id: string }[];
+  for (const row of rows) {
+    const list = byLink.get(row.offering_link_id) ?? [];
+    list.push(row.resource_id);
+    byLink.set(row.offering_link_id, list);
+  }
+  return byLink;
+}
+
+/**
+ * Proves the client's resource ids against Booking's table (see the header):
+ * every id must be a live resource of THIS tenant (`null` otherwise - unknown,
+ * foreign and soft-deleted are indistinguishable), active, and in the booking
+ * mode the offering's granularity sells.
+ */
+async function checkResources(
+  tx: Bun.SQL,
+  tenantId: string,
+  resourceIds: string[],
+  granularity: string
+): Promise<OfferingLinkRefusal | null> {
+  if (resourceIds.length === 0) return null;
+  const rows = (await tx`
+    SELECT id, booking_mode, status
+    FROM awcms_booking_resources
+    WHERE tenant_id = ${tenantId}
+      AND id = ANY(${tx.array(resourceIds, "uuid")}::uuid[])
+      AND deleted_at IS NULL
+  `) as { id: string; booking_mode: string; status: string }[];
+  if (rows.length !== resourceIds.length) return "resource_not_found";
+  const mode = granularity === "stay" ? "stay" : "slot";
+  if (rows.some((row) => row.booking_mode !== mode)) {
+    return "resource_mode_mismatch";
+  }
+  if (rows.some((row) => row.status !== "active")) return "resource_inactive";
+  return null;
+}
+
 /** Whether a cancellation policy (the product's, else the tenant default) is active (ADR-0045 D6). */
 async function hasActiveCancellationPolicy(
   tx: Bun.SQL,
@@ -170,7 +237,17 @@ export async function createOfferingLink(
   idempotencyKey: string,
   correlationId?: string
 ): Promise<CreateOfferingLinkOutcome> {
-  const requestHash = computeRequestHash(input);
+  // A request that names no resource hashes exactly as it did before #437, so a
+  // retry in flight across the deploy still replays.
+  const requestHash = computeRequestHash(
+    input.resourceIds.length === 0
+      ? {
+          offeringId: input.offeringId,
+          productId: input.productId,
+          quantityBasis: input.quantityBasis
+        }
+      : input
+  );
   const actor = userIdempotencyActor(actorTenantUserId);
   const existing = await findIdempotencyRecord(
     tx,
@@ -212,6 +289,13 @@ export async function createOfferingLink(
   ) {
     return { kind: "refused", refusal: "quantity_basis_mismatch" };
   }
+  const resourceRefusal = await checkResources(
+    tx,
+    tenantId,
+    input.resourceIds,
+    offering.granularity
+  );
+  if (resourceRefusal) return { kind: "refused", refusal: resourceRefusal };
 
   const rows = (await tx`
     INSERT INTO awcms_commerce_booking_offering_links
@@ -243,7 +327,18 @@ export async function createOfferingLink(
   ))
     ? []
     : ["NO_CANCELLATION_POLICY"];
-  const link: CreatedOfferingLink = { ...toRecord(rows[0]), warnings };
+  // Written once with the link (sql/1050); the row guard refuses a later edit.
+  for (const [index, resourceId] of input.resourceIds.entries()) {
+    await tx`
+      INSERT INTO awcms_commerce_booking_offering_link_resources
+        (tenant_id, offering_link_id, resource_id, sort_order)
+      VALUES (${tenantId}, ${rows[0].id}, ${resourceId}, ${index})
+    `;
+  }
+  const link: CreatedOfferingLink = {
+    ...toRecord(rows[0], input.resourceIds),
+    warnings
+  };
 
   await recordAuditEvent(tx, {
     tenantId,
@@ -257,6 +352,7 @@ export async function createOfferingLink(
       offeringId: link.offeringId,
       productId: link.productId,
       quantityBasis: link.quantityBasis,
+      resourceIds: link.resourceIds,
       warnings
     },
     correlationId
@@ -324,7 +420,7 @@ export async function unlinkOfferingLink(
     WHERE tenant_id = ${tenantId} AND id = ${linkId} AND status = 'active'
     RETURNING ${tx.unsafe(LINK_COLUMNS)}
   `) as LinkRow[];
-  const link = rows[0] ? toRecord(rows[0]) : current;
+  const link = rows[0] ? toRecord(rows[0], current.resourceIds) : current;
 
   await recordAuditEvent(tx, {
     tenantId,
@@ -360,7 +456,9 @@ export async function fetchOfferingLink(
     FROM awcms_commerce_booking_offering_links
     WHERE tenant_id = ${tenantId} AND id = ${linkId}
   `) as LinkRow[];
-  return rows[0] ? toRecord(rows[0]) : null;
+  if (!rows[0]) return null;
+  const resources = await readLinkResourceIds(tx, tenantId, [rows[0].id]);
+  return toRecord(rows[0], resources.get(rows[0].id) ?? []);
 }
 
 /** Links, newest first, keyset paged; `status` narrows to active or unlinked. */
@@ -390,8 +488,13 @@ export async function listOfferingLinks(
   const hasMore = rows.length > LIST_PAGE_SIZE;
   const visible = hasMore ? rows.slice(0, LIST_PAGE_SIZE) : rows;
   const last = visible[visible.length - 1];
+  const resources = await readLinkResourceIds(
+    tx,
+    tenantId,
+    visible.map((row) => row.id)
+  );
   return {
-    items: visible.map(toRecord),
+    items: visible.map((row) => toRecord(row, resources.get(row.id) ?? [])),
     nextCursor:
       hasMore && last?.created_at_cursor
         ? encodeKeysetCursor(last.created_at_cursor, last.id)

@@ -104,6 +104,13 @@ export const BOOKING_ADAPTER_DATA_LIFECYCLE: HighVolumeTableDescriptor[] = [
     "A tenant links a handful of offerings; the table is bounded by catalogue effort."
   ),
   deletedAtTable(
+    "commerce.booking_offering_link_resources",
+    "awcms_commerce_booking_offering_link_resources",
+    "awcms_commerce_booking_offering_link_resources_tenant_deleted_idx (sql/1050)",
+    "Practically UNREACHABLE: this module never sets deleted_at (the rows are written once with the link and awcms_app has neither UPDATE nor DELETE), so the purge predicate never matches and a binding a sold reservation was made from is never purged.",
+    "At most ten rows per offering link; bounded by catalogue effort."
+  ),
+  deletedAtTable(
     "commerce.booking_reservation_links",
     "awcms_commerce_booking_reservation_links",
     "awcms_commerce_booking_reservation_links_tenant_deleted_idx (sql/1035)",
@@ -178,6 +185,16 @@ export const BOOKING_ADAPTER_SUBJECT_DATA: SubjectDataDescriptor[] = [
     exportable: false,
     erasure: "retain_under_obligation",
     rationale: `Issue #378 - which Booking offering is sold as which service product. ${NO_PERSON_RATIONALE}`
+  },
+  {
+    key: "commerce.booking_offering_link_resources",
+    tableName: "awcms_commerce_booking_offering_link_resources",
+    ownerModuleKey: "commerce",
+    unreachableBySubject: true,
+    subjectColumns: [],
+    exportable: false,
+    erasure: "retain_under_obligation",
+    rationale: `Issue #437 - which Booking resource(s) an offering link sells. ${NO_PERSON_RATIONALE}`
   },
   {
     key: "commerce.booking_reservation_links",

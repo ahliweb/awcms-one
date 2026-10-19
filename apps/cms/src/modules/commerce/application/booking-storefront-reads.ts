@@ -15,17 +15,22 @@
  *
  * ## Which resource sells an offering
  *
- * A Booking offering does not fix a resource, and the link carries none (no
- * column, by design in #378). The public page needs a `resourceId` for the
- * availability read and the hold, so the offerings read lists the tenant's
- * ACTIVE, undeleted resources whose booking mode matches the offering's
- * granularity (`stay` / `slot`), by id only - never a name, a unit label or the
- * capacity. Interchangeable resources of one mode are therefore offered in
- * `sort_order, code` order and the page probes them in turn. A tenant that sells
- * several room TYPES from separate resources of one mode would see every type
- * offered under every offering; an explicit offering-to-resource assignment is a
- * follow-up (a nullable column on the link), recorded in ADR-0045. This file
- * is one of three commerce files that name a Booking table (with
+ * A Booking offering does not fix a resource. The public page needs a
+ * `resourceId` for the availability read and the hold, by id only - never a
+ * name, a unit label or the capacity, in two cases (Issue #437):
+ *
+ * - The link NAMES its resource(s) (`awcms_commerce_booking_offering_link_
+ *   resources`, sql/1050): only those, in the order the admin gave and only the
+ *   ones that are still active and of the right mode, are offered, and
+ *   availability and the hold refuse any other id. A bound link whose resources
+ *   are all inactive is NOT sold; it never falls back to the whole pool, or it
+ *   would offer another room type.
+ * - The link names none (every link made before #437; M9): the tenant's ACTIVE,
+ *   undeleted resources whose booking mode matches the offering's granularity
+ *   (`stay` / `slot`) in `sort_order, code` order, and the page probes them in
+ *   turn - correct for one resource, or several interchangeable ones, per mode.
+ *
+ * This file is one of three commerce files that name a Booking table (with
  * `booking-offering-links.ts` and `booking-reservation-reads.ts`), always in a
  * `SELECT` (a static test pins the set).
  *
@@ -107,6 +112,52 @@ async function readSellableLink(
         quantityBasis: row.quantity_basis
       }
     : null;
+}
+
+type BoundResource = {
+  resourceId: string;
+  bookingMode: "stay" | "slot";
+  /** Active and not deleted NOW. */
+  live: boolean;
+};
+
+/**
+ * The resources each of `linkIds` names (Issue #437), in the order the admin
+ * gave. A link absent from the map names none: the fallback. Read-only `SELECT`
+ * of a Booking table (see the header).
+ */
+async function readBoundResources(
+  tx: Bun.SQL,
+  tenantId: string,
+  linkIds: string[]
+): Promise<Map<string, BoundResource[]>> {
+  const bound = new Map<string, BoundResource[]>();
+  if (linkIds.length === 0) return bound;
+  const rows = (await tx`
+    SELECT lr.offering_link_id, lr.resource_id, r.booking_mode,
+           (r.status = 'active' AND r.deleted_at IS NULL) AS live
+    FROM awcms_commerce_booking_offering_link_resources lr
+    JOIN awcms_booking_resources r
+      ON r.tenant_id = lr.tenant_id AND r.id = lr.resource_id
+    WHERE lr.tenant_id = ${tenantId}
+      AND lr.offering_link_id = ANY(${tx.array(linkIds, "uuid")}::uuid[])
+    ORDER BY lr.offering_link_id, lr.sort_order, lr.created_at, lr.resource_id
+  `) as {
+    offering_link_id: string;
+    resource_id: string;
+    booking_mode: "stay" | "slot";
+    live: boolean;
+  }[];
+  for (const row of rows) {
+    const list = bound.get(row.offering_link_id) ?? [];
+    list.push({
+      resourceId: row.resource_id,
+      bookingMode: row.booking_mode,
+      live: row.live
+    });
+    bound.set(row.offering_link_id, list);
+  }
+  return bound;
 }
 
 function isSellableOffering(offering: BookingOfferingRecord): boolean {
@@ -217,6 +268,11 @@ export async function listBookableOfferings(
     now
   );
 
+  const boundByLink = await readBoundResources(
+    tx,
+    tenantId,
+    sellable.map((link) => link.id)
+  );
   const resourcesByMode = new Map<string, string[]>();
   const items: BookableOffering[] = [];
   for (const link of sellable) {
@@ -227,10 +283,18 @@ export async function listBookableOfferings(
     if (!line || line.status === "unavailable") continue;
 
     const mode = offering.granularity === "stay" ? "stay" : "slot";
-    let resourceIds = resourcesByMode.get(mode);
-    if (!resourceIds) {
-      resourceIds = await readResourceIds(tx, tenantId, mode);
-      resourcesByMode.set(mode, resourceIds);
+    const named = boundByLink.get(link.id);
+    let resourceIds: string[];
+    if (named) {
+      // The link names its resources: only the live ones of the right mode,
+      // and an empty answer is "not sold", never the whole pool.
+      resourceIds = named
+        .filter((entry) => entry.live && entry.bookingMode === mode)
+        .map((entry) => entry.resourceId);
+    } else {
+      const pool = resourcesByMode.get(mode);
+      resourceIds = pool ?? (await readResourceIds(tx, tenantId, mode));
+      if (!pool) resourcesByMode.set(mode, resourceIds);
     }
     if (resourceIds.length === 0) continue;
 
@@ -271,7 +335,8 @@ const NOT_FOUND = {
 /**
  * The anonymous availability read for a LINKED offering. The caller has already
  * validated the query ({@link validateAvailabilityQuery}); this refuses an
- * offering that is not sold as one neutral `not found`, calls the port (which
+ * offering that is not sold, or a resource its link does not name, as one
+ * neutral `not found`, calls the port (which
  * takes no actor and returns counts and slots only) and passes the answer
  * through the allow-listed body.
  */
@@ -288,6 +353,15 @@ export async function answerStorefrontAvailability(
     offeringId: query.offeringId
   });
   if (!offering.ok || !isSellableOffering(offering.offering)) return NOT_FOUND;
+  // A link that names its resources answers for those only (Issue #437): any
+  // other id - another room type's, another tenant's, unknown - is the same
+  // neutral 404, so the route does not reveal which ids exist.
+  const named = (
+    await readBoundResources(tx, tenantId, [link.offeringLinkId])
+  ).get(link.offeringLinkId);
+  if (named && !named.some((entry) => entry.resourceId === query.resourceId)) {
+    return NOT_FOUND;
+  }
 
   const result = await port.availability(
     tx,
