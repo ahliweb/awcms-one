@@ -46,6 +46,8 @@ import {
   rescheduleBookingReservation,
   type RescheduleResult
 } from "../../src/modules/commerce/application/booking-reschedule";
+import { loadBookingOrderPanel } from "../../src/modules/commerce/application/booking-order-panel";
+import { recordBookingNoShow } from "../../src/modules/commerce/application/booking-no-show";
 import { setProductDepositPolicy } from "../../src/modules/commerce/application/booking-deposit-policies";
 import { reconcileBookingOrders } from "../../src/modules/commerce/application/booking-reservation-reads";
 import { fetchReservationLinkByReservationId } from "../../src/modules/commerce/application/booking-reservation-links";
@@ -102,6 +104,7 @@ const {
   policy,
   auditActions,
   attemptSql,
+  arrivedHoursAgo,
   legsOf,
   tamperReservation,
   nextKey
@@ -1135,7 +1138,135 @@ suite("booking reschedule (Issue #382)", () => {
   });
 
   // ---------------------------------------------------------------------------
-  test("a settled decision for a rescheduled booking is still readable through the new link", async () => {
+  describe("the booking panel of the order detail", () => {
+    const caps = {
+      canCancel: true,
+      canOverride: false,
+      canReschedule: true,
+      canReadDecision: true
+    };
+    const panelOf = (
+      orderId: string,
+      overrides: Partial<typeof caps> = {},
+      now?: Date
+    ) =>
+      inTenant((tx) =>
+        loadBookingOrderPanel(
+          tx,
+          TENANT_A,
+          orderId,
+          { ...caps, ...overrides },
+          now
+        )
+      );
+
+    test("a confirmed future booking offers the reschedule, shows its stay and the server's clock, and no no-show yet", async () => {
+      const f = await newFixture();
+      await policy(f.productId);
+      const view = await bookedAndPaid(f);
+      const now = new Date("2026-11-01T03:00:00.000Z");
+      const panel = (await panelOf(view.orderId, {}, now))!;
+      expect(panel.canReschedule).toBe(true);
+      expect(panel.canNoShow).toBe(false);
+      expect(panel.noShow).toBeNull();
+      expect(panel.nights).toBe(2);
+      expect(panel.stay).toEqual({
+        checkInDate: D(10),
+        checkOutDate: D(12)
+      });
+      expect(panel.reschedules).toEqual([]);
+      expect(panel.serverNow).toBe("2026-11-01T03:00:00.000Z");
+      // Without the update key the control is not offered.
+      expect(
+        (await panelOf(view.orderId, { canReschedule: false }))!.canReschedule
+      ).toBe(false);
+    });
+
+    test("after a longer-stay reschedule the panel lists it with the extra order and shows the new reservation", async () => {
+      const f = await newFixture();
+      const view = await bookedAndPaid(f);
+      const done = moved(
+        await resched(view.reservationId, {
+          stay: { checkInDate: D(20), checkOutDate: D(23) }
+        })
+      );
+      const panel = (await panelOf(view.orderId))!;
+      expect(panel.reservation.reservationId).toBe(
+        done.reservation.reservationId
+      );
+      expect(panel.nights).toBe(3);
+      expect(panel.stay).toEqual({ checkInDate: D(20), checkOutDate: D(23) });
+      expect(panel.reschedules).toHaveLength(1);
+      expect(panel.reschedules[0]).toMatchObject({
+        direction: "charge",
+        fromNights: 2,
+        toNights: 3,
+        pricedAmount: PRICE
+      });
+      expect(panel.reschedules[0]!.supplementOrder).toMatchObject({
+        orderCode: done.supplementOrder!.orderCode,
+        status: "pending_payment",
+        total: PRICE
+      });
+    });
+
+    test("once the arrival has passed the panel previews what a no-show retains, only for a viewer who may cancel; after it the decision shows and nothing more is offered", async () => {
+      const f = await newFixture();
+      await policy(f.productId, undefined, { retention: "retain_all" });
+      const view = await bookedAndPaid(f);
+      await arrivedHoursAgo(view.reservationId, 3);
+
+      const panel = (await panelOf(view.orderId))!;
+      expect(panel.canNoShow).toBe(true);
+      expect(panel.canReschedule).toBe(true);
+      expect(panel.noShow).toMatchObject({
+        retentionRule: "retain_all",
+        amountPaid: "1000000.00",
+        retainedAmount: "1000000.00",
+        notRetainedAmount: "0.00"
+      });
+      expect(panel.noShow!.hoursBeforeStart).toBeLessThan(0);
+      const readOnly = (await panelOf(view.orderId, { canCancel: false }))!;
+      expect(readOnly.canNoShow).toBe(false);
+      expect(readOnly.noShow).toBeNull();
+
+      const marked = await inTenant(async (tx) => {
+        const link = (await fetchReservationLinkByReservationId(
+          tx,
+          TENANT_A,
+          view.reservationId
+        ))!;
+        return recordBookingNoShow(
+          tx,
+          {
+            tenantId: TENANT_A,
+            actor: { kind: "staff", tenantUserId: STAFF },
+            correlationId: crypto.randomUUID(),
+            port: await composedBookingPort()
+          },
+          {
+            link,
+            idempotencyKey: nextKey(),
+            reasonCode: "guest_did_not_arrive"
+          }
+        );
+      });
+      expect(marked.kind).toBe("marked");
+      const after = (await panelOf(view.orderId))!;
+      expect(after.decision).toMatchObject({
+        triggerKind: "no_show",
+        retainedAmount: "1000000.00",
+        finalRefund: "0.00"
+      });
+      expect(after.canReschedule).toBe(false);
+      expect(after.canNoShow).toBe(false);
+      expect(after.quote).toBeNull();
+      expect(after.legs).toEqual([]);
+    });
+  });
+
+  // ---------------------------------------------------------------------------
+  test("a rescheduled booking has no decision on its new link until it is cancelled or marked no-show", async () => {
     const f = await newFixture();
     const view = await bookedAndPaid(f);
     const done = moved(
