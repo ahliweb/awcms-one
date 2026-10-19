@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](cms.md)
 
-<!-- i18n-source-hash: sha256:1786f39d3614d1bdc8d5d711f6a14cbe742f0935c67605fb7d5f937683f16a73 -->
+<!-- i18n-source-hash: sha256:98064b896b94a471d0b829f666492f3ea6854fc7b9d241964f56a4001dadf247 -->
 
 # CMS: authoring, publikasi, izin, audit, media, taksonomi
 
@@ -368,6 +368,24 @@ Flag `features` keenam, **`loyalty`, default `false`** — satu-satunya flag di 
 - **Lingkup karyawan.** Draf milik pembuatnya: karyawan lain tidak dapat mengedit, membuang, atau melampirkan padanya; supervisor (pemegang `commerce.expense_postings.approve`) dapat.
 - **Layar.** `/admin/commerce-expenses` — angka, catat pengeluaran (pemilih laci hanya muncul dengan fitur `register`), tabel pengeluaran dengan filter status dan aksi yang diizinkan status baris dan izin Anda (dialog konfirmasi, dengan catatan wajib untuk tolak dan balik), ekspor CSV rentang tanggal, kategori, dan ambang persetujuan (lewat rute pengaturan modul generik di balik `module_management.settings.update`).
 - **Tes.** `apps/cms/tests/commerce-expense-domain.test.ts` (validasi, keputusan persetujuan dan SoD, aritmetika laporan sen yang tepat, penetralan CSV), `commerce-expense-permissions.test.ts` (dua belas kunci, evaluasi akses nyata atas grant berbentuk peran), dan terhadap Postgres sungguhan `apps/cms/tests/integration/commerce-register-expenses.integration.test.ts` (handler rute: pencerminan tutup kas tepat satu kali, pembalikan dan idempotensi, ambang dan SoD, kontrol akses struk, BOLA, penyamaran audit/event, CSV, gerbang fitur) dan `commerce-register-expenses-rls.integration.test.ts` (peran `awcms_app`/`awcms_worker` berhak akses minimal: isolasi RLS, FK komposit, hak akses, trigger siklus hidup).
+
+## Layar admin pemesanan (isu #385, epik #280, [ADR-0045](adr/0045-booking-commerce-adapter.md))
+
+Di balik fitur `booking` (**bawaan MATI**; _Jual reservasi Booking_ di bawah Fitur pada pengaturan toko); setiap entri sidebar disembunyikan selama fitur mati. Layar ini dispesifikasikan di [`booking-ux-flows.md`](booking-ux-flows.md) bagian 11 (state, teks Indonesia dan Inggris, WCAG 2.1 AA, 360px).
+
+- **Tautan pemesanan.** `/admin/commerce-booking-links` - tautkan penawaran Booking ke produk **jasa** (ID penawaran, ID produk, per malam atau per pemesanan), saring aktif atau terlepas, dan lepas tautan lewat dialog konfirmasi. Setiap penolakan server (sudah tertaut, bukan produk jasa, dasar tidak cocok, penawaran yang langsung terkonfirmasi, tanpa akun layanan) punya pesan sendiri. Melepas tautan mempertahankan pesanan dan reservasi lama; untuk menjual produk lagi, buat tautan baru. Izin `commerce.booking_offering_links.{read,create,update}`.
+- **Uang muka pemesanan.** `/admin/commerce-booking-deposits` - satu baris per produk jasa dengan uang mukanya sebagai _Pembayaran penuh_, persen dari total, atau jumlah tetap per unit (per malam untuk produk per malam). Layar mengirim kebijakan, bukan jumlah hasil hitung; server menurunkan uang muka saat pesanan dibuat dan perubahan tidak mengubah pesanan yang ada. Izin `commerce.booking_deposit_policies.{read,update}`.
+- **Akun layanan.** Pengaturan commerce menambah _Akun layanan pemesanan (ID pengguna)_ (tampil hanya saat `booking` aktif): pengguna staf aktif yang dicatat Booking untuk checkout tamu dan tindakan otomatis.
+- **Pembatalan (issue #381).** Lihat bagian di bawah: layar versi kebijakan dan dialog penggantian pengembalian dana sudah dibangun.
+- **Pengujian.** `apps/cms/tests/commerce-booking-client.test.ts` (isi uang muka, pemeriksaan uuid, teks penolakan) dan `commerce-booking-admin-screens.test.ts` (klaim, gating sidebar, tanpa dialog bawaan, rute ada). Belum ada alur Playwright: suite axe dan 360px admin yang ada tidak memuat layar commerce, sehingga layar ini bergabung saat satu disiapkan untuk commerce.
+
+## Layar pembatalan dan pengembalian dana booking (issue #381, epic #280, [ADR-0045](adr/0045-booking-commerce-adapter.id.md))
+
+Di balik fitur `booking` (default OFF), dispesifikasikan di [`booking-ux-flows.id.md`](booking-ux-flows.id.md) bagian 11.4 dan 11.5.
+
+- **Kebijakan pembatalan.** `/admin/commerce-booking-policies` - pilih bawaan tenant atau sebuah produk, lihat versi aktif beserta jendelanya, draf (masing-masing dengan _Setujui dan aktifkan_) dan riwayat. Draf baru adalah daftar baris "batal paling lambat N jam atau hari sebelum check-in: pengembalian P%"; layar memeriksa bahwa pemberitahuan lebih awal tidak pernah mengembalikan lebih sedikit (server dan basis data memeriksanya lagi) dan draf tidak pernah disunting - untuk mengubahnya, simpan draf baru. Menyetujui dan memensiunkan meminta kode faktor kedua dalam dialog asli. Booking mempertahankan versi yang berlaku saat dibuat.
+- **Batal dan override.** Detail order dari order booking mendapat panel booking: reservasi, kuotasi yang dihitung server (dibayar, pengembalian menurut kebijakan, jendela, dan jam sebelum check-in) dan, bagi yang boleh membatalkan, _Batalkan reservasi ini_ lewat dialog konfirmasi yang menyebut angkanya. Manajer atau pengguna keuangan dengan izin override juga melihat _Ubah pengembalian dana_: jumlah baru antara 0 dan yang dibayar, serta alasan minimal 10 karakter; dicatat bersama alasannya. Kode step-up diminta dalam dialog bila perlu dan permintaan yang sama dikirim ulang dengan `Idempotency-Key` yang sama. Leg refund diselesaikan di panel retur di bawahnya, dengan izinnya sendiri.
+- **Pengujian.** `commerce-booking-refund-client.test.ts` (aturan jumlah dan pemberitahuan), `commerce-booking-admin-screens.test.ts` (klaim, tanpa dialog mentah, rute ada, ledger).
 
 ## Segmen pelanggan (issue #360, epic #280, [ADR-0042](adr/0042-crm-segments-are-immutable-versioned-closed-vocabulary-rules-evaluated-on-demand.md))
 

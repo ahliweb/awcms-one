@@ -1,0 +1,661 @@
+---
+/**
+ * CommerceBookingPanel - the reservation, the refund quote, the cancel control
+ * and the refund-override dialog on the order detail of a BOOKED order (Issue
+ * #381, `docs/booking-ux-flows.md` sections 4.3 and 11.5; ADR-0045 D8, owner
+ * answer Q10, threat control C-40).
+ *
+ * Rendered by `commerce-orders/[id].astro` only while the tenant's `booking`
+ * feature is on, the order is a booking and the viewer holds
+ * `commerce.booking_reservation_links.read`. Every control is UX-only: the
+ * server computes the refund, re-checks the cap (`REFUND_EXCEEDS_PAID`), the
+ * reason and the step-up, and refuses a body that names an amount anywhere but
+ * the `override` object.
+ *
+ * ## What it offers, by what the viewer may do
+ *
+ * - **Cancel reservation** (`.cancel` AND `commerce.booking_refund_decisions.create`):
+ *   the shared confirm dialog states the figures first; the refund is the one
+ *   the SERVER computes. Absent (not disabled) without both keys, and replaced
+ *   by a plain sentence once the reservation can no longer be cancelled.
+ * - **Override refund** (`commerce.booking_refund_overrides.approve`): absent
+ *   without that key and when nothing was paid. A native modal `<dialog>`:
+ *   Paid and the policy refund are read-only; the new amount has `min` 0 and
+ *   `max` = the amount paid; the reason needs 10 characters; submit is disabled
+ *   while the amount is above the amount paid, malformed or unchanged, or the
+ *   reason is too short (the `max` is only a convenience). Submitting runs the
+ *   cancel with the override; a `STEP_UP_REQUIRED` answer opens the step-up
+ *   dialog and re-sends the SAME request (same `Idempotency-Key`) once.
+ *
+ * The guest never sees the reason or the actor: the decision shows "Adjusted".
+ */
+import CommerceStepUpDialog from "./CommerceStepUpDialog.astro";
+import { getTranslatorFor } from "../lib/i18n";
+import type { Locale } from "../lib/i18n/locales";
+import {
+  bookingLabel,
+  createBookingCancellationLabels,
+  STAFF_CANCEL_REASON_CODES
+} from "../lib/ui/commerce-booking-labels";
+import {
+  createCommerceLabels,
+  commerceLabel
+} from "../lib/ui/commerce-admin-labels";
+import type { BookingOrderPanel } from "../modules/commerce/application/booking-order-panel";
+
+interface Props {
+  panel: BookingOrderPanel;
+  locale?: Locale | null | undefined;
+}
+
+const { panel, locale } = Astro.props as Props;
+const { t } = getTranslatorFor(locale);
+const labels = createBookingCancellationLabels(t);
+const commerce = createCommerceLabels(t);
+
+const reservation = panel.reservation;
+const quote = panel.quote;
+const decision = panel.decision;
+const dateFormat = new Intl.DateTimeFormat(locale ?? "en", {
+  dateStyle: "medium",
+  timeStyle: "short",
+  timeZone: "UTC"
+});
+const when = (value: string): string => dateFormat.format(new Date(value));
+
+const reservationTone: Record<string, string> = {
+  held: "warning",
+  confirmed: "success",
+  checked_in: "success",
+  completed: "success",
+  cancelled: "neutral",
+  expired: "neutral",
+  no_show: "danger",
+  rescheduled: "neutral"
+};
+
+const policyText = (source: string, version: number | null): string =>
+  version === null
+    ? bookingLabel(labels.policySource, source)
+    : t("{policy}, version {version}", {
+        policy: bookingLabel(labels.policySource, source),
+        version
+      });
+
+const errorMessages = JSON.stringify({
+  REFUND_EXCEEDS_PAID: t("The refund cannot be more than the amount paid."),
+  STEP_UP_CANCELLED: t("Confirmation cancelled. Nothing was changed."),
+  STEP_UP_FAILED: t("That code was not accepted. Nothing was changed."),
+  STEP_UP_REQUIRED: t("This action needs a recent second-factor check."),
+  FORBIDDEN: t("You do not have permission to do that."),
+  ACCESS_DENIED: t("You do not have permission to do that."),
+  INVALID_STATE: t("This reservation can no longer be cancelled."),
+  IDEMPOTENCY_CONFLICT: t(
+    "This request was already sent with different details. Reload the page."
+  ),
+  BOOKING_SERVICE_ACTOR_NOT_CONFIGURED: t(
+    "Set the booking service account in Store settings first."
+  ),
+  FEATURE_DISABLED: t("Booking is turned off for this store."),
+  VALIDATION_ERROR: t("Check the amount and the reason, then try again.")
+});
+
+const confirmMessage = quote
+  ? t(
+      "Paid {paid}. The policy refunds {refund} ({policy}, {hours} hours before check-in). The reservation is released and the refund is queued for the returns screen; nothing is paid out until it is settled there.",
+      {
+        paid: quote.amountPaid,
+        refund: quote.computedRefund,
+        policy: policyText(quote.policySource, quote.policyVersion),
+        hours: quote.hoursBeforeStart
+      }
+    )
+  : "";
+const idBase = "booking-override";
+---
+
+<section
+  class="admin-order-booking-panel"
+  id="order-booking-panel"
+  data-order-id={reservation.orderId}
+  data-reservation-id={reservation.reservationId}
+  data-errors={errorMessages}
+  data-failure={t("Could not cancel the reservation. Please try again.")}
+  data-busy={t("Saving…")}
+>
+  <h2 class="admin-dashboard-panel-title">{t("Reservation")}</h2>
+  <p
+    id="order-booking-error"
+    class="admin-create-error"
+    role="alert"
+    hidden
+  ></p>
+  <p
+    id="order-booking-status"
+    class="admin-stat-card-caption"
+    role="status"
+    data-adjusted={t(
+      "Refund set to {amount}. The change is recorded with your reason."
+    )}
+    hidden
+  ></p>
+
+  <dl class="admin-order-return-totals">
+    <dt>{t("Reservation no.")}</dt>
+    <dd>
+      <span class="cell-code">{reservation.reservationNo}</span>
+    </dd>
+    <dt>{t("Status")}</dt>
+    <dd>
+      <span
+        class="admin-status-pill"
+        data-tone={reservationTone[reservation.status] ?? "neutral"}
+      >
+        <span class="admin-status-pill-dot" aria-hidden="true"></span>
+        {bookingLabel(labels.reservationStatus, reservation.status)}
+      </span>
+    </dd>
+    <dt>{t("Arrival")}</dt>
+    <dd>{when(reservation.startsAt)}</dd>
+    <dt>{t("Departure")}</dt>
+    <dd>{when(reservation.endsAt)}</dd>
+  </dl>
+
+  {decision && (
+    <div id="order-booking-decision">
+      <h3>{t("Refund decision")}</h3>
+      <dl class="admin-order-return-totals">
+        <dt>{t("Policy applied")}</dt>
+        <dd>{policyText(decision.policySource, decision.policyVersion)}</dd>
+        <dt>{t("Paid")}</dt>
+        <dd>{decision.amountPaid}</dd>
+        <dt>{t("Policy refund")}</dt>
+        <dd>{decision.computedRefund}</dd>
+        <dt>{t("Refund")}</dt>
+        <dd>
+          <strong>{decision.finalRefund}</strong>
+          {decision.overridden && (
+            <span class="admin-status-pill" data-tone="warning">
+              {t("Adjusted")}
+            </span>
+          )}
+        </dd>
+      </dl>
+      {panel.legs.length > 0 ? (
+        <div
+          class="data-table-scroll"
+          role="region"
+          tabindex="0"
+          aria-label={t("Refund legs")}
+        >
+          <table class="data-table data-table--stack">
+            <caption class="sr-only">{t("Refund legs")}</caption>
+            <thead>
+              <tr>
+                <th scope="col">{t("Paid by")}</th>
+                <th scope="col">{t("Amount")}</th>
+                <th scope="col">{t("Status")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {panel.legs.map((leg) => (
+                <tr>
+                  <td data-label={t("Paid by")}>
+                    {commerceLabel(commerce.paymentTenderType, leg.tenderType)}
+                  </td>
+                  <td data-label={t("Amount")}>{leg.amount}</td>
+                  <td data-label={t("Status")}>
+                    {commerceLabel(commerce.refundStatus, leg.status)}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <p class="admin-stat-card-caption">
+          {t("No money moves: nothing is refunded for this cancellation.")}
+        </p>
+      )}
+      {panel.legs.some((leg) => leg.status !== "succeeded") && (
+        <p class="admin-stat-card-caption">
+          {t(
+            "The refund legs are settled under Returns and refunds below, with their own permissions."
+          )}
+        </p>
+      )}
+    </div>
+  )}
+
+  {!decision && quote && (
+    <div id="order-booking-quote">
+      <h3>{t("If cancelled now")}</h3>
+      <dl class="admin-order-return-totals">
+        <dt>{t("Policy applied")}</dt>
+        <dd>{policyText(quote.policySource, quote.policyVersion)}</dd>
+        <dt>{t("Hours before check-in")}</dt>
+        <dd>{quote.hoursBeforeStart}</dd>
+        <dt>{t("Paid")}</dt>
+        <dd>{quote.amountPaid}</dd>
+        <dt>{t("Policy refund")}</dt>
+        <dd>
+          <strong id="order-booking-computed">{quote.computedRefund}</strong>
+        </dd>
+      </dl>
+      {quote.policySource === "none" && (
+        <p class="admin-stat-card-caption">
+          {t(
+            "No cancellation policy applied to this booking, so the policy refund is nothing. A manager can still set the refund by hand."
+          )}
+        </p>
+      )}
+    </div>
+  )}
+
+  {!decision && !quote && panel.noQuoteReason && (
+    <p class="admin-stat-card-caption" id="order-booking-no-quote">
+      {bookingLabel(labels.noQuote, panel.noQuoteReason) ||
+        t("This reservation can no longer be cancelled.")}
+    </p>
+  )}
+
+  {quote && panel.canCancel && (
+    <div class="admin-form-actions" id="order-booking-actions">
+      <div class="admin-field">
+        <label for="order-booking-reason">{t("Reason for cancelling")}</label>
+        <select id="order-booking-reason">
+          {STAFF_CANCEL_REASON_CODES.map((code) => (
+            <option value={code}>
+              {bookingLabel(labels.cancelReason, code)}
+            </option>
+          ))}
+        </select>
+      </div>
+      <button
+        type="button"
+        class="btn-inline btn-inline--danger"
+        id="order-booking-cancel"
+        data-confirm-title={t("Cancel this reservation?")}
+        data-confirm-message={confirmMessage}
+        data-confirm-label={t("Cancel reservation")}
+        data-confirm-danger="true"
+      >
+        {t("Cancel reservation")}
+      </button>
+      {panel.canOverride && (
+        <button type="button" class="btn-inline" id="order-booking-override">
+          {t("Override refund")}
+        </button>
+      )}
+    </div>
+  )}
+
+  {quote && panel.canOverride && (
+    <dialog
+      id={`${idBase}-dialog`}
+      class="commerce-booking-override-dialog"
+      aria-labelledby={`${idBase}-title`}
+      aria-describedby={`${idBase}-figures`}
+      data-paid={quote.amountPaid}
+      data-computed={quote.computedRefund}
+      data-cap-hint={t("Maximum {amount}: the amount paid.", {
+        amount: quote.amountPaid
+      })}
+      data-msg-malformed={t(
+        "Enter an amount with at most two decimals, for example 250000.00."
+      )}
+      data-msg-above={t("The amount cannot be more than the amount paid.")}
+      data-msg-unchanged={t(
+        "This equals the policy refund. Cancel without an override instead."
+      )}
+      data-msg-short={t("Write a reason of at least 10 characters.")}
+      data-msg-counter={t("{count} of 500 characters")}
+    >
+      <form
+        id={`${idBase}-form`}
+        class="commerce-booking-override-body"
+        novalidate
+      >
+        <h2 id={`${idBase}-title`}>{t("Override the refund")}</h2>
+        <p
+          id={`${idBase}-error`}
+          class="admin-create-error"
+          role="alert"
+          hidden
+        ></p>
+        <dl id={`${idBase}-figures`} class="admin-order-return-totals">
+          <dt>{t("Paid")}</dt>
+          <dd>{quote.amountPaid}</dd>
+          <dt>{t("Policy refund")}</dt>
+          <dd>{quote.computedRefund}</dd>
+        </dl>
+        <div class="admin-field">
+          <label for={`${idBase}-amount`}>{t("New refund amount")}</label>
+          <input
+            id={`${idBase}-amount`}
+            name="finalRefund"
+            type="number"
+            min="0"
+            max={quote.amountPaid}
+            step="0.01"
+            inputmode="decimal"
+            required
+            aria-describedby={`${idBase}-amount-hint ${idBase}-amount-error`}
+          />
+          <p id={`${idBase}-amount-hint`} class="form-hint">
+            {t("Maximum {amount}: the amount paid.", {
+              amount: quote.amountPaid
+            })}
+          </p>
+          <p
+            id={`${idBase}-amount-error`}
+            class="admin-create-error"
+            role="alert"
+            hidden
+          ></p>
+        </div>
+        <div class="admin-field">
+          <label for={`${idBase}-reason`}>{t("Reason")}</label>
+          <textarea
+            id={`${idBase}-reason`}
+            name="reason"
+            rows="3"
+            required
+            minlength="10"
+            maxlength="500"
+            aria-describedby={`${idBase}-reason-error ${idBase}-counter`}
+          ></textarea>
+          <p
+            id={`${idBase}-reason-error`}
+            class="admin-create-error"
+            role="alert"
+            hidden
+          ></p>
+          <p id={`${idBase}-counter`} class="form-hint" aria-live="polite">
+            {t("{count} of 500 characters", { count: 0 })}
+          </p>
+        </div>
+        <div class="commerce-booking-override-actions">
+          <button
+            type="button"
+            class="btn-secondary"
+            id={`${idBase}-keep`}
+            autofocus
+          >
+            {t("Keep the policy amount")}
+          </button>
+          <button
+            type="submit"
+            class="btn-primary"
+            id={`${idBase}-submit`}
+            data-busy={t("Saving…")}
+            disabled
+          >
+            {t("Record the override")}
+          </button>
+        </div>
+      </form>
+    </dialog>
+  )}
+
+  <CommerceStepUpDialog locale={locale} id="order-booking-stepup" />
+</section>
+
+<style>
+  .commerce-booking-override-dialog {
+    width: min(480px, 92vw);
+    max-width: none;
+    padding: 0;
+    margin: 10vh auto auto;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
+    color: var(--color-text);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .commerce-booking-override-dialog::backdrop {
+    background: var(--color-overlay);
+  }
+
+  .commerce-booking-override-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+    padding: var(--sp-5);
+  }
+
+  .commerce-booking-override-body h2 {
+    margin: 0;
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-semibold);
+  }
+
+  .commerce-booking-override-body input,
+  .commerce-booking-override-body textarea {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  .commerce-booking-override-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--sp-2);
+  }
+
+  @media (max-width: 420px) {
+    .commerce-booking-override-dialog {
+      width: 92vw;
+      margin: 6vh auto auto;
+    }
+
+    .commerce-booking-override-actions {
+      flex-direction: column-reverse;
+    }
+
+    .commerce-booking-override-actions button {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  import {
+    messageBox,
+    mutateAndReload,
+    onAction,
+    sendJson
+  } from "../lib/ui/admin-form-client";
+  import {
+    buildStaffCancelBody,
+    checkOverrideForm,
+    type OverrideProblem
+  } from "../lib/ui/commerce-booking-refund-client";
+  import {
+    newIdempotencyKey,
+    pickRefusalMessage
+  } from "../lib/ui/commerce-booking-client";
+  import { confirmFromTrigger } from "../lib/ui/commerce-confirm-dialog-client";
+  import {
+    promptStepUpCode,
+    sendWithStepUp
+  } from "../lib/ui/commerce-stepup-client";
+
+  const panel = document.getElementById("order-booking-panel");
+  const reservationId = panel?.dataset.reservationId ?? "";
+  const cancelUrl = `/api/v1/commerce/booking/reservations/${reservationId}/cancel`;
+  const panelError = messageBox("order-booking-error");
+  const STATUS_KEY = "awcms-one:booking-refund-adjusted";
+
+  const reasonCode = (): string => {
+    const select = document.getElementById("order-booking-reason");
+    return select instanceof HTMLSelectElement ? select.value : "other";
+  };
+  const failureMessage = (code: string | null): string =>
+    pickRefusalMessage(
+      panel?.dataset.errors,
+      code,
+      panel?.dataset.failure ?? ""
+    );
+
+  // The announcement of a recorded override survives the reload that shows it.
+  try {
+    const stored = sessionStorage.getItem(STATUS_KEY);
+    if (stored) {
+      sessionStorage.removeItem(STATUS_KEY);
+      const status = document.getElementById("order-booking-status");
+      if (status) {
+        status.textContent = stored;
+        status.hidden = false;
+      }
+    }
+  } catch {
+    /* storage unavailable: the page still shows the recorded refund */
+  }
+
+  // -- plain cancel: the refund is the server's figure ----------------------------
+  onAction("#order-booking-cancel", async (button) => {
+    const confirmed = await confirmFromTrigger(button);
+    if (!confirmed) return;
+    const key = newIdempotencyKey();
+    await mutateAndReload(
+      button,
+      panelError,
+      () =>
+        sendJson("POST", cancelUrl, buildStaffCancelBody(reasonCode(), null), {
+          "Idempotency-Key": key
+        }),
+      failureMessage,
+      panel?.dataset.busy
+    );
+  });
+
+  // -- the override dialog ------------------------------------------------------------
+  const dialog = document.getElementById("booking-override-dialog");
+  if (dialog instanceof HTMLDialogElement) {
+    const form = document.getElementById(
+      "booking-override-form"
+    ) as HTMLFormElement;
+    const amount = document.getElementById(
+      "booking-override-amount"
+    ) as HTMLInputElement;
+    const reason = document.getElementById(
+      "booking-override-reason"
+    ) as HTMLTextAreaElement;
+    const submit = document.getElementById(
+      "booking-override-submit"
+    ) as HTMLButtonElement;
+    const keep = document.getElementById("booking-override-keep");
+    const amountError = document.getElementById(
+      "booking-override-amount-error"
+    );
+    const reasonError = document.getElementById(
+      "booking-override-reason-error"
+    );
+    const counter = document.getElementById("booking-override-counter");
+    const dialogError = messageBox("booking-override-error");
+
+    const refresh = (showMessages: boolean): boolean => {
+      const result = checkOverrideForm({
+        amountText: amount.value,
+        paidText: dialog.dataset.paid ?? "0",
+        computedText: dialog.dataset.computed ?? "0",
+        reason: reason.value
+      });
+      const problems: OverrideProblem[] = result.ok ? [] : result.problems;
+      const amountProblem = problems.find((p) => p.startsWith("amount_"));
+      const reasonProblem = problems.find((p) => p.startsWith("reason_"));
+      const message = (key: string): string =>
+        (dialog.dataset as Record<string, string | undefined>)[key] ?? "";
+      const amountText =
+        amountProblem === "amount_above_paid"
+          ? message("msgAbove")
+          : amountProblem === "amount_unchanged"
+            ? message("msgUnchanged")
+            : amountProblem
+              ? message("msgMalformed")
+              : "";
+      // The cap is announced as the error the moment it is crossed; the other
+      // messages wait until the operator has touched the field.
+      const showAmount =
+        amountProblem === "amount_above_paid" ||
+        (showMessages && amountProblem !== undefined);
+      amount.setAttribute("aria-invalid", showAmount ? "true" : "false");
+      if (amountError) {
+        amountError.textContent = showAmount ? amountText : "";
+        amountError.hidden = !showAmount;
+      }
+      const showReason = showMessages && reasonProblem !== undefined;
+      reason.setAttribute("aria-invalid", showReason ? "true" : "false");
+      if (reasonError) {
+        reasonError.textContent = showReason ? message("msgShort") : "";
+        reasonError.hidden = !showReason;
+      }
+      if (counter) {
+        counter.textContent = message("msgCounter").replace(
+          "{count}",
+          String(reason.value.trim().length)
+        );
+      }
+      submit.disabled = !result.ok;
+      return result.ok;
+    };
+
+    amount.addEventListener("input", () => refresh(true));
+    reason.addEventListener("input", () => refresh(true));
+    keep?.addEventListener("click", () => dialog.close());
+
+    onAction("#order-booking-override", () => {
+      dialogError.clear();
+      refresh(false);
+      dialog.showModal();
+      keep?.focus();
+    });
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!refresh(true)) return;
+      const result = checkOverrideForm({
+        amountText: amount.value,
+        paidText: dialog.dataset.paid ?? "0",
+        computedText: dialog.dataset.computed ?? "0",
+        reason: reason.value
+      });
+      if (!result.ok) return;
+      dialogError.clear();
+      const previousLabel = submit.textContent;
+      submit.disabled = true;
+      submit.textContent = submit.dataset.busy ?? "…";
+      // One key for the click AND its step-up retry: the second send is safe.
+      const key = newIdempotencyKey();
+      const body = buildStaffCancelBody(reasonCode(), {
+        finalRefund: result.finalRefund,
+        reason: result.reason
+      });
+      const outcome = await sendWithStepUp(
+        () => sendJson("POST", cancelUrl, body, { "Idempotency-Key": key }),
+        () => promptStepUpCode("order-booking-stepup")
+      );
+      if (!outcome.ok) {
+        dialogError.show(failureMessage(outcome.errorCode));
+        submit.textContent = previousLabel;
+        refresh(true);
+        return;
+      }
+      try {
+        const status = document.getElementById("order-booking-status");
+        sessionStorage.setItem(
+          STATUS_KEY,
+          (status?.dataset.adjusted ?? "").replace(
+            "{amount}",
+            result.finalRefund
+          )
+        );
+      } catch {
+        /* storage unavailable: the reload still shows the recorded refund */
+      }
+      dialog.close();
+      window.location.reload();
+    });
+  }
+</script>

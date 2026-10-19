@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:8eeee72f2928ade8a41e4197f9d53b7f68b7b798b81e1fc7673a0493f51e3181 -->
+<!-- i18n-source-hash: sha256:e8e4160729541576b0598e3f445574d52a339a213df148e31393a7cbfa4d30b0 -->
 
 # Kamus data
 

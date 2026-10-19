@@ -7,9 +7,14 @@
  */
 import { fail } from "../../_shared/api-response";
 import {
+  cancelRefusalHttp,
+  type CancelRefusal
+} from "../domain/booking-cancellation";
+import {
   holdRefusalHttp,
   type HoldRefusal
 } from "../domain/booking-hold-to-order";
+import type { CancellationQuote, DecisionView } from "./booking-cancellation";
 import type { BookingReservationView } from "./booking-hold-to-order";
 import { requireCommerceFeatureForOwnerRoute } from "./commerce-feature-gate";
 
@@ -161,14 +166,42 @@ export function createdReservationBody(
   };
 }
 
+/** The recorded refund of a cancelled reservation as the view carries it. */
+export type ReservationRefundSummary = {
+  finalRefund: string;
+  /** A manager or finance override made the refund differ from the policy's; the guest sees only that, never why or by whom. */
+  adjusted: boolean;
+  /** STAFF only. */
+  computedRefund?: string;
+  /** STAFF only. */
+  decisionId?: string;
+};
+
+/** The refund summary a view carries: the shopper's is the amount and `adjusted`; the staff's adds the policy figure and the decision id. */
+export function reservationRefundSummary(
+  decision: DecisionView | null,
+  audience: "staff" | "shopper"
+): ReservationRefundSummary | null {
+  if (!decision) return null;
+  return audience === "staff"
+    ? {
+        finalRefund: decision.finalRefund,
+        adjusted: decision.overridden,
+        computedRefund: decision.computedRefund,
+        decisionId: decision.id
+      }
+    : { finalRefund: decision.finalRefund, adjusted: decision.overridden };
+}
+
 /**
  * The `CommerceBookingReservationView` body. `attention` is the STAFF-only
  * flag; the shopper's view never carries it (contracts section 3.4). `refund`
- * stays `null` until the cancellation issue records decisions.
+ * is `null` until the reservation is cancelled (Issue #381).
  */
 export function reservationViewBody(
   view: BookingReservationView,
   attention: { reason: string | null; open: boolean } | null,
+  refund: ReservationRefundSummary | null = null,
   now: Date = new Date()
 ) {
   return {
@@ -190,6 +223,71 @@ export function reservationViewBody(
           attentionOpen: attention.open
         }
       : {}),
-    refund: null
+    refund
   };
+}
+
+/** Issue #381 - a cancellation / quote refusal as its HTTP code (ADR-0045 D14; `QUOTE_CHANGED` carries the fresh figure). */
+export function cancelRefusalResponse(
+  refusal: CancelRefusal,
+  headers?: Record<string, string>
+): Response {
+  const mapped = cancelRefusalHttp(refusal);
+  return fail(
+    mapped.status,
+    mapped.code,
+    mapped.message,
+    {},
+    mapped.details,
+    headers
+  );
+}
+
+/** The `CommerceBookingCancellationQuote` body. No customer field, no actor (X7). */
+export function cancellationQuoteBody(quote: CancellationQuote) {
+  return {
+    quotedAt: quote.quotedAt,
+    startsAt: quote.startsAt,
+    hoursBeforeStart: quote.hoursBeforeStart,
+    reservationStatus: quote.reservationStatus,
+    policySource: quote.policySource,
+    policyId: quote.policyId,
+    policyVersion: quote.policyVersion,
+    refundBasis: quote.refundBasis,
+    refundablePercent: quote.refundablePercent,
+    amountPaid: quote.amountPaid,
+    computedRefund: quote.computedRefund
+  };
+}
+
+/** The STAFF body of a recorded decision: every figure and whether it was overridden (never the reason or the actor). */
+export function refundDecisionBody(decision: DecisionView) {
+  return {
+    id: decision.id,
+    triggerKind: decision.triggerKind,
+    policySource: decision.policySource,
+    policyId: decision.policyId,
+    policyVersion: decision.policyVersion,
+    hoursBeforeStart: decision.hoursBeforeStart,
+    refundablePercent: decision.refundablePercent,
+    amountPaid: decision.amountPaid,
+    computedRefund: decision.computedRefund,
+    finalRefund: decision.finalRefund,
+    overridden: decision.overridden,
+    returnId: decision.returnId,
+    createdAt: decision.createdAt
+  };
+}
+
+/** The SHOPPER's body: the status and the amount only (contracts 3.5; never the policy internals, the reason or the actor). */
+export function shopperDecisionBody(decision: DecisionView) {
+  return { status: "cancelled" as const, finalRefund: decision.finalRefund };
+}
+
+/** The anonymous namespace tag of a guest: a digest of the normalised phone (the raw number is not written into a key). */
+export function guestPhoneKey(phone: string): string {
+  return new Bun.CryptoHasher("sha256")
+    .update(phone)
+    .digest("hex")
+    .slice(0, 32);
 }

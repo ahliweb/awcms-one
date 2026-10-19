@@ -13200,3 +13200,526 @@ msgstr[0] "{count} kejadian dalam 7 hari terakhir (UTC)"
 
 msgid "Some sections are not available to you."
 msgstr "Beberapa bagian tidak tersedia untuk Anda."
+# booking-adapter #385
+msgid "This offering is already linked to a product."
+msgstr "Penawaran ini sudah ditautkan ke produk."
+
+msgid "This product is already linked to an offering."
+msgstr "Produk ini sudah ditautkan ke penawaran."
+
+msgid "Only a service product can be linked."
+msgstr "Hanya produk jasa yang dapat ditautkan."
+
+msgid "The basis does not match the offering (nightly or per booking)."
+msgstr "Dasar kuantitas tidak sesuai dengan penawaran (per malam atau per pemesanan)."
+
+msgid "An offering that confirms immediately cannot be sold."
+msgstr "Penawaran yang langsung terkonfirmasi tidak dapat dijual."
+
+msgid "Set the booking service account in Store settings first."
+msgstr "Tetapkan akun layanan pemesanan di Pengaturan toko terlebih dahulu."
+
+msgid "Booking is turned off for this store."
+msgstr "Pemesanan dimatikan untuk toko ini."
+
+msgid "The offering or the product was not found."
+msgstr "Penawaran atau produk tidak ditemukan."
+
+msgid "Per night"
+msgstr "Per malam"
+
+msgid "Per booking"
+msgstr "Per pemesanan"
+
+msgid "Booking links"
+msgstr "Tautan pemesanan"
+
+msgid "Link a Booking offering to a service product so the product can be sold as a reservation."
+msgstr "Tautkan penawaran Booking ke produk jasa agar produk dapat dijual sebagai reservasi."
+
+msgid "You do not have permission to view booking links."
+msgstr "Anda tidak memiliki izin untuk melihat tautan pemesanan."
+
+msgid "Booking links could not be loaded right now. Please try again later."
+msgstr "Tautan pemesanan tidak dapat dimuat saat ini. Coba lagi nanti."
+
+msgid "Could not link the offering. Check both IDs and try again."
+msgstr "Tidak dapat menautkan penawaran. Periksa kedua ID lalu coba lagi."
+
+msgid "Enter a valid ID (a UUID)."
+msgstr "Masukkan ID yang valid (UUID)."
+
+msgid "Link an offering to a product"
+msgstr "Tautkan penawaran ke produk"
+
+msgid "Linked. This product has no cancellation policy yet, so guests will see no refund terms."
+msgstr "Tertaut. Produk ini belum memiliki kebijakan pembatalan, sehingga tamu tidak akan melihat ketentuan pengembalian dana."
+
+msgid "Offering ID"
+msgstr "ID penawaran"
+
+msgid "Copy it from Booking, Offerings."
+msgstr "Salin dari Booking, Penawaran."
+
+msgid "Product ID"
+msgstr "ID produk"
+
+msgid "A service product."
+msgstr "Produk jasa."
+
+msgid "Link offering"
+msgstr "Tautkan penawaran"
+
+msgid "Filter links"
+msgstr "Saring tautan"
+
+msgid "Unlinked"
+msgstr "Terlepas"
+
+msgid "Linked on"
+msgstr "Ditautkan pada"
+
+msgid "No links yet"
+msgstr "Belum ada tautan"
+
+msgid "Link an offering to a service product to start selling reservations."
+msgstr "Tautkan penawaran ke produk jasa untuk mulai menjual reservasi."
+
+msgid "Unlink this offering?"
+msgstr "Lepas tautan penawaran ini?"
+
+msgid "The product stops being sellable as a reservation. Past orders and reservations keep their history. To sell it again, create a new link."
+msgstr "Produk tidak lagi dapat dijual sebagai reservasi. Pesanan dan reservasi sebelumnya tetap menyimpan riwayatnya. Untuk menjualnya lagi, buat tautan baru."
+
+msgid "Could not unlink the offering. Please try again."
+msgstr "Tidak dapat melepas tautan penawaran. Silakan coba lagi."
+
+msgid "Unlinking…"
+msgstr "Melepas tautan…"
+
+msgid "Full payment"
+msgstr "Pembayaran penuh"
+
+msgid "{percent}% of the total"
+msgstr "{percent}% dari total"
+
+msgid "{amount} per unit"
+msgstr "{amount} per unit"
+
+msgid "Booking deposits"
+msgstr "Uang muka pemesanan"
+
+msgid "Set how much of a service product's price is paid as a deposit when it is booked."
+msgstr "Atur berapa bagian harga produk jasa yang dibayar sebagai uang muka saat dipesan."
+
+msgid "You do not have permission to view booking deposits."
+msgstr "Anda tidak memiliki izin untuk melihat uang muka pemesanan."
+
+msgid "Booking deposits could not be loaded right now. Please try again later."
+msgstr "Uang muka pemesanan tidak dapat dimuat saat ini. Coba lagi nanti."
+
+msgid "The deposit on each order is calculated by the server and fixed when the order is created. Changing a policy does not change existing orders. While Booking is on, the product's own down-payment switch follows this policy."
+msgstr "Uang muka pada tiap pesanan dihitung oleh server dan ditetapkan saat pesanan dibuat. Mengubah kebijakan tidak mengubah pesanan yang ada. Selama Booking aktif, sakelar uang muka pada produk mengikuti kebijakan ini."
+
+msgid "Deposit"
+msgstr "Uang muka"
+
+msgid "No service products yet"
+msgstr "Belum ada produk jasa"
+
+msgid "Create a product of type service to set its deposit here."
+msgstr "Buat produk bertipe jasa untuk mengatur uang mukanya di sini."
+
+msgid "Edit deposit for {name}"
+msgstr "Ubah uang muka untuk {name}"
+
+msgid "Could not save the deposit policy. Please try again."
+msgstr "Tidak dapat menyimpan kebijakan uang muka. Silakan coba lagi."
+
+msgid "Enter a percentage between 0 and 100 with at most two decimals."
+msgstr "Masukkan persentase antara 0 dan 100 dengan paling banyak dua desimal."
+
+msgid "Enter an amount greater than zero with at most two decimals."
+msgstr "Masukkan jumlah lebih besar dari nol dengan paling banyak dua desimal."
+
+msgid "Percent of the total"
+msgstr "Persen dari total"
+
+msgid "Fixed amount per unit"
+msgstr "Jumlah tetap per unit"
+
+msgid "Percent (0-100)"
+msgstr "Persen (0-100)"
+
+msgid "Amount per unit"
+msgstr "Jumlah per unit"
+
+msgid "Per unit of quantity: per night for a nightly product."
+msgstr "Per unit kuantitas: per malam untuk produk per malam."
+
+msgid "Save deposit"
+msgstr "Simpan uang muka"
+
+msgid "Booking service account (user ID)"
+msgstr "Akun layanan pemesanan (ID pengguna)"
+
+msgid "The staff user Booking records for guest checkouts and automatic actions. It must be an active user of this store. Leave blank to clear it."
+msgstr "Pengguna staf yang dicatat Booking untuk checkout tamu dan tindakan otomatis. Harus pengguna aktif toko ini. Kosongkan untuk menghapusnya."
+
+msgid "{count} link"
+msgid_plural "{count} links"
+msgstr[0] "{count} tautan"
+
+msgid "{count} service product"
+msgid_plural "{count} service products"
+msgstr[0] "{count} produk jasa"
+
+# booking-adapter #381
+
+msgid "A product's own policy replaces the tenant default for that product. A change is a new version: bookings already made keep the version they were made under."
+msgstr "Kebijakan milik produk menggantikan kebijakan bawaan toko untuk produk itu. Perubahan menjadi versi baru: pemesanan yang sudah dibuat tetap memakai versi saat dipesan."
+
+msgid "A version that is replaced or retired stays here, unchanged, so every past refund can be explained."
+msgstr "Versi yang diganti atau dipensiunkan tetap di sini tanpa berubah, sehingga setiap pengembalian dana di masa lalu dapat dijelaskan."
+
+msgid "A window with more notice must not refund less than one with less notice."
+msgstr "Jendela dengan pemberitahuan lebih awal tidak boleh mengembalikan lebih sedikit daripada jendela dengan pemberitahuan lebih singkat."
+
+msgid "Activating…"
+msgstr "Mengaktifkan…"
+
+msgid "Add at least one window."
+msgstr "Tambahkan setidaknya satu jendela."
+
+msgid "Add window"
+msgstr "Tambah jendela"
+
+msgid "Another reason"
+msgstr "Alasan lain"
+
+msgid "Approve and activate"
+msgstr "Setujui dan aktifkan"
+
+msgid "Approved on"
+msgstr "Disetujui pada"
+
+msgid "Arrival"
+msgstr "Kedatangan"
+
+msgid "Authenticator code"
+msgstr "Kode autentikator"
+
+msgid "Authored by"
+msgstr "Disusun oleh"
+
+msgid "Booking already cancelled this reservation."
+msgstr "Booking sudah membatalkan reservasi ini."
+
+msgid "Booking cancellation"
+msgstr "Pembatalan pemesanan"
+
+msgid "Booking cancelled"
+msgstr "Pemesanan dibatalkan"
+
+msgid "Cancel at least"
+msgstr "Batal paling lambat"
+
+msgid "Cancel this reservation?"
+msgstr "Batalkan reservasi ini?"
+
+msgid "Cancellation policies"
+msgstr "Kebijakan pembatalan"
+
+msgid "Cancellation policies could not be loaded right now. Please try again later."
+msgstr "Kebijakan pembatalan tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Check the amount and the reason, then try again."
+msgstr "Periksa jumlah dan alasannya, lalu coba lagi."
+
+msgid "Closer than that, or after check-in"
+msgstr "Lebih singkat dari itu, atau setelah check-in"
+
+msgid "Closer than that: no refund."
+msgstr "Lebih singkat dari itu: tidak ada pengembalian dana."
+
+msgid "Confirm it is you"
+msgstr "Konfirmasi bahwa ini Anda"
+
+msgid "Confirmation cancelled. Nothing was changed."
+msgstr "Konfirmasi dibatalkan. Tidak ada yang berubah."
+
+msgid "Could not activate the version. Please try again."
+msgstr "Tidak dapat mengaktifkan versi. Silakan coba lagi."
+
+msgid "Could not cancel the reservation. Please try again."
+msgstr "Tidak dapat membatalkan reservasi. Silakan coba lagi."
+
+msgid "Could not retire the version. Please try again."
+msgstr "Tidak dapat memensiunkan versi. Silakan coba lagi."
+
+msgid "Could not save the draft. Check the windows and try again."
+msgstr "Tidak dapat menyimpan draf. Periksa jendelanya dan coba lagi."
+
+msgid "Departure"
+msgstr "Kepergian"
+
+msgid "Draft versions"
+msgstr "Versi draf"
+
+msgid "Duplicate booking"
+msgstr "Pemesanan ganda"
+
+msgid "Enter a refund from 0 to 100, with at most two decimals."
+msgstr "Masukkan pengembalian dana dari 0 sampai 100, dengan paling banyak dua desimal."
+
+msgid "Enter an amount with at most two decimals, for example 250000.00."
+msgstr "Masukkan jumlah dengan paling banyak dua desimal, misalnya 250000.00."
+
+msgid "Enter the notice as a whole number."
+msgstr "Masukkan pemberitahuan sebagai bilangan bulat."
+
+msgid "Hours before check-in"
+msgstr "Jam sebelum check-in"
+
+msgid "If cancelled now"
+msgstr "Jika dibatalkan sekarang"
+
+msgid "If the guest does not show"
+msgstr "Jika tamu tidak hadir"
+
+msgid "Keep everything paid"
+msgstr "Tahan semua yang dibayar"
+
+msgid "Keep the deposit"
+msgstr "Tahan uang muka"
+
+msgid "Keep the policy amount"
+msgstr "Pakai jumlah sesuai kebijakan"
+
+msgid "Maximum {amount}: the amount paid."
+msgstr "Maksimal {amount}: sebesar yang sudah dibayar."
+
+msgid "New bookings of this scope will use the tenant default, or get no refund if there is none. Bookings already made keep this version."
+msgstr "Pemesanan baru pada cakupan ini akan memakai kebijakan bawaan toko, atau tanpa pengembalian dana jika tidak ada. Pemesanan yang sudah dibuat tetap memakai versi ini."
+
+msgid "New draft version"
+msgstr "Versi draf baru"
+
+msgid "New refund amount"
+msgstr "Jumlah pengembalian dana baru"
+
+msgid "No cancellation policy applied to this booking, so the policy refund is nothing. A manager can still set the refund by hand."
+msgstr "Tidak ada kebijakan pembatalan yang berlaku untuk pemesanan ini, sehingga pengembalian dana menurut kebijakan nol. Manajer tetap dapat menetapkan pengembalian dana secara manual."
+
+msgid "No cancellation policy yet"
+msgstr "Belum ada kebijakan pembatalan"
+
+msgid "No cancellation policy yet. Guests will see no refund terms."
+msgstr "Belum ada kebijakan pembatalan. Tamu tidak akan melihat ketentuan pengembalian dana."
+
+msgid "No earlier versions"
+msgstr "Belum ada versi sebelumnya"
+
+msgid "No money moves: nothing is refunded for this cancellation."
+msgstr "Tidak ada uang yang berpindah: tidak ada yang dikembalikan untuk pembatalan ini."
+
+msgid "No policy applied"
+msgstr "Tidak ada kebijakan yang berlaku"
+
+msgid "Not applicable (service)"
+msgstr "Tidak berlaku (jasa)"
+
+msgid "Now active: {active}. This draft: {draft}. From activation it decides the refund of every new booking in this scope; earlier bookings keep the version they were made under."
+msgstr "Saat ini aktif: {active}. Draf ini: {draft}. Sejak diaktifkan, versi ini menentukan pengembalian dana setiap pemesanan baru pada cakupan ini; pemesanan sebelumnya tetap memakai versi saat dipesan."
+
+msgid "Override refund"
+msgstr "Ubah pengembalian dana"
+
+msgid "Override the refund"
+msgstr "Ubah jumlah pengembalian dana"
+
+msgid "Paid {paid}. The policy refunds {refund} ({policy}, {hours} hours before check-in). The reservation is released and the refund is queued for the returns screen; nothing is paid out until it is settled there."
+msgstr "Dibayar {paid}. Kebijakan mengembalikan {refund} ({policy}, {hours} jam sebelum check-in). Reservasi dilepas dan pengembalian dana diantrekan di layar retur; tidak ada yang dibayarkan sampai diselesaikan di sana."
+
+msgid "Payment problem"
+msgstr "Masalah pembayaran"
+
+msgid "Policy applied"
+msgstr "Kebijakan yang berlaku"
+
+msgid "Policy for"
+msgstr "Kebijakan untuk"
+
+msgid "Policy refund"
+msgstr "Pengembalian dana menurut kebijakan"
+
+msgid "Reason for cancelling"
+msgstr "Alasan pembatalan"
+
+msgid "Record the override"
+msgstr "Catat perubahan"
+
+msgid "Refund"
+msgstr "Pengembalian dana"
+
+msgid "Refund applies to"
+msgstr "Pengembalian dana berlaku untuk"
+
+msgid "Refund by the windows"
+msgstr "Kembalikan sesuai jendela"
+
+msgid "Refund decision"
+msgstr "Keputusan pengembalian dana"
+
+msgid "Refund of what was paid"
+msgstr "Pengembalian dari yang dibayar"
+
+msgid "Refund percent"
+msgstr "Persen pengembalian dana"
+
+msgid "Refund set to {amount}. The change is recorded with your reason."
+msgstr "Pengembalian dana ditetapkan {amount}. Perubahan dicatat beserta alasan Anda."
+
+msgid "Remove window"
+msgstr "Hapus jendela"
+
+msgid "Reservation no."
+msgstr "No. reservasi"
+
+msgid "Retire this version"
+msgstr "Pensiunkan versi ini"
+
+msgid "Retiring…"
+msgstr "Memensiunkan…"
+
+msgid "Rows must not overlap, and more notice must never refund less. The server enforces the same rule. A draft is not edited: to change it, save a new draft."
+msgstr "Baris tidak boleh tumpang tindih, dan pemberitahuan lebih awal tidak boleh mengembalikan lebih sedikit. Server menerapkan aturan yang sama. Draf tidak diubah: untuk mengubahnya, simpan draf baru."
+
+msgid "Set how much of what a guest paid is refunded, by how long before check-in they cancel."
+msgstr "Atur seberapa besar dari yang dibayar tamu dikembalikan, menurut berapa lama sebelum check-in mereka membatalkan."
+
+msgid "Tenant default"
+msgstr "Bawaan toko"
+
+msgid "That code was not accepted. Nothing was changed."
+msgstr "Kode itu tidak diterima. Tidak ada yang berubah."
+
+msgid "That version or product was not found."
+msgstr "Versi atau produk itu tidak ditemukan."
+
+msgid "The amount cannot be more than the amount paid."
+msgstr "Jumlah tidak boleh lebih dari yang sudah dibayar."
+
+msgid "The guest asked to cancel"
+msgstr "Tamu meminta pembatalan"
+
+msgid "The guest has checked in; this reservation cannot be cancelled."
+msgstr "Tamu sudah check-in; reservasi ini tidak dapat dibatalkan."
+
+msgid "The property is closed"
+msgstr "Properti ditutup"
+
+msgid "The refund cannot be more than the amount paid."
+msgstr "Pengembalian dana tidak boleh lebih dari yang sudah dibayar."
+
+msgid "The refund legs are settled under Returns and refunds below, with their own permissions."
+msgstr "Bagian pengembalian dana diselesaikan di Retur dan pengembalian dana di bawah, dengan izinnya sendiri."
+
+msgid "The store's default policy"
+msgstr "Kebijakan bawaan toko"
+
+msgid "The windows were not accepted. A window with more notice must not refund less than one with less notice."
+msgstr "Jendela tidak diterima. Jendela dengan pemberitahuan lebih awal tidak boleh mengembalikan lebih sedikit daripada yang lebih singkat."
+
+msgid "This action needs a recent second-factor check."
+msgstr "Tindakan ini memerlukan pemeriksaan faktor kedua yang baru."
+
+msgid "This action needs a recent second-factor check. Enter the code from your authenticator app, then it continues."
+msgstr "Tindakan ini memerlukan pemeriksaan faktor kedua yang baru. Masukkan kode dari aplikasi autentikator Anda, lalu tindakan dilanjutkan."
+
+msgid "This equals the policy refund. Cancel without an override instead."
+msgstr "Ini sama dengan pengembalian dana menurut kebijakan. Batalkan tanpa perubahan saja."
+
+msgid "This product's policy"
+msgstr "Kebijakan produk ini"
+
+msgid "This request was already sent with different details. Reload the page."
+msgstr "Permintaan ini sudah dikirim dengan rincian berbeda. Muat ulang halaman."
+
+msgid "This reservation can no longer be cancelled."
+msgstr "Reservasi ini tidak dapat dibatalkan lagi."
+
+msgid "This reservation expired."
+msgstr "Reservasi ini telah kedaluwarsa."
+
+msgid "This reservation is already released."
+msgstr "Reservasi ini sudah dilepas."
+
+msgid "This reservation is complete and cannot be cancelled."
+msgstr "Reservasi ini sudah selesai dan tidak dapat dibatalkan."
+
+msgid "This reservation was already cancelled and refunded."
+msgstr "Reservasi ini sudah dibatalkan dan dananya dikembalikan."
+
+msgid "This reservation was marked no-show and cannot be cancelled."
+msgstr "Reservasi ini ditandai tidak hadir dan tidak dapat dibatalkan."
+
+msgid "This reservation was rescheduled; cancel the new one."
+msgstr "Reservasi ini dijadwalkan ulang; batalkan yang baru."
+
+msgid "This version is not in the right state for that. Reload the page."
+msgstr "Versi ini tidak dalam keadaan yang tepat untuk itu. Muat ulang halaman."
+
+msgid "Two windows cannot have the same notice."
+msgstr "Dua jendela tidak boleh memiliki pemberitahuan yang sama."
+
+msgid "Verify and continue"
+msgstr "Verifikasi dan lanjutkan"
+
+msgid "Whole stay"
+msgstr "Seluruh menginap"
+
+msgid "Windows"
+msgstr "Jendela"
+
+msgid "Windows of the active version"
+msgstr "Jendela versi aktif"
+
+msgid "Write a reason of at least 10 characters."
+msgstr "Tulis alasan paling sedikit 10 karakter."
+
+msgid "You do not have permission to view cancellation policies."
+msgstr "Anda tidak memiliki izin untuk melihat kebijakan pembatalan."
+
+msgid "before check-in"
+msgstr "sebelum check-in"
+
+msgid "hours"
+msgstr "jam"
+
+msgid "no policy"
+msgstr "tidak ada kebijakan"
+
+msgid "{count} draft"
+msgid_plural "{count} drafts"
+msgstr[0] "{count} draf"
+
+msgid "{count} earlier version"
+msgid_plural "{count} earlier versions"
+msgstr[0] "{count} versi sebelumnya"
+
+msgid "{count} hour"
+msgid_plural "{count} hours"
+msgstr[0] "{count} jam"
+
+msgid "{count} of 500 characters"
+msgstr "{count} dari 500 karakter"
+
+msgid "{notice} before check-in"
+msgstr "{notice} sebelum check-in"
+
+msgid "{notice} or more before check-in: {percent}%"
+msgstr "{notice} atau lebih sebelum check-in: {percent}%"
+
+msgid "{policy}, version {version}"
+msgstr "{policy}, versi {version}"

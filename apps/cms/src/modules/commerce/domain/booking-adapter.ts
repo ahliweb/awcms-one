@@ -79,6 +79,7 @@ export const REFUND_POLICY_SOURCES = [
   "tenant_default",
   "none"
 ] as const;
+export type RefundPolicySource = (typeof REFUND_POLICY_SOURCES)[number];
 export const REFUND_DECISION_TRIGGER_KINDS = [
   "customer_cancel",
   "staff_cancel",

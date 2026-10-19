@@ -161,9 +161,9 @@ import type {
   RefundDestination,
   RefundSettledVia,
   RefundStatus,
-  ReturnDisposition,
-  ReturnKind,
-  ReturnReason,
+  StoredReturnDisposition,
+  StoredReturnKind,
+  StoredReturnReason,
   ReturnStatus
 } from "../../modules/commerce/domain/returns";
 import type {
@@ -621,20 +621,26 @@ export function createCommerceLabels(t: Translator["t"]) {
     changed_mind: t("Customer changed their mind"),
     size_fit: t("Size or fit"),
     duplicate_order: t("Duplicate order"),
-    other: t("Other reason")
-  } satisfies Record<ReturnReason, string>;
+    other: t("Other reason"),
+    // Issue #381 - the one reason only a booking cancellation writes.
+    booking_cancelled: t("Booking cancelled")
+  } satisfies Record<StoredReturnReason, string>;
 
   /** Issue #287 - what happens to a returned unit. Only `restock` makes it sellable again. */
   const returnDisposition = {
     restock: t("Restock (sellable again)"),
     damaged: t("Damaged (written off)"),
-    quarantine: t("Quarantine (held, not sellable)")
-  } satisfies Record<ReturnDisposition, string>;
+    quarantine: t("Quarantine (held, not sellable)"),
+    // Issue #381 - a service has no goods to put back.
+    not_applicable: t("Not applicable (service)")
+  } satisfies Record<StoredReturnDisposition, string>;
 
   const returnKind = {
     return: t("Return"),
-    exchange: t("Exchange")
-  } satisfies Record<ReturnKind, string>;
+    exchange: t("Exchange"),
+    // Issue #381 - the refund of a cancelled booking (ADR-0045 D4).
+    cancellation: t("Booking cancellation")
+  } satisfies Record<StoredReturnKind, string>;
 
   const returnStatus = {
     open: t("Open"),

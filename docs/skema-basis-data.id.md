@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:47a60aca3e889dd3f432a3fbb73b1b59923e87346e665f6a1f1f987927764712 -->
+<!-- i18n-source-hash: sha256:2e1451df098198221ebbadb07c8723bc6cd0a9f87eea6c77d3e4b1b56c8a05ae -->
 
 # Skema basis data
 
@@ -555,3 +555,9 @@ Enam tabel FORCE-RLS (kebijakan isolasi tenant dengan `WITH CHECK`, foreign key 
 - **`sql/1039`** menyemai lima kunci izin yang kini punya rute (`commerce.booking_offering_links.{read,create,update}`, `commerce.booking_deposit_policies.{read,update}`); sisa matriks akses didaftarkan oleh issue yang membawa rutenya.
 - **`sql/1040`** menambah `awcms_commerce_store_settings.booking_service_tenant_user_id` (FK komposit ke `awcms_tenant_users`; NULL = belum dikonfigurasi), pengguna akun layanan yang dipakai adapter untuk panggilan sistem, tamu, dan konsumen ke `BookingPort` (ADR-0045 G3); memberi `awcms_worker` `SELECT, DELETE` pada keenam tabel untuk mesin retensi; dan mengunci `search_path` pada guard sesi gateway milik `sql/1025`, yang mendahului gerbang itu.
 - **`allow_dp`** dicerminkan oleh penulisan kebijakan deposit dan tidak dapat diubah sendiri selama fitur `booking` aktif (D5). Tidak ada backfill: tidak ada baris kebijakan sebelum `sql/1036`, dan tidak pernah ada yang dikarang (produk dengan `allow_dp = true` tanpa baris tetap memakai aturan uang muka seluruh toko).
+
+### Tambahan pembatalan dan pengembalian dana (`sql/1043`-`1044`, issue #381)
+
+- **`sql/1043`**: `awcms_commerce_returns.kind` menerima `cancellation`; `awcms_commerce_return_lines` menerima alasan `booking_cancelled` dan disposisi `not_applicable`; CHECK bucket `awcms_commerce_report_returns_daily` menerima hal yang sama; `awcms_commerce_booking_refund_decisions` mendapat `client_key` dan `request_hash` (keduanya atau tidak sama sekali, indeks unik parsial pada `(tenant_id, client_key)`); `awcms_commerce_cancellation_policies` mendapat `created_by_tenant_user_id` dan `approved_by_tenant_user_id` (FK tenant komposit, berindeks) dan fungsi penjaganya diterbitkan ulang (penyusun dibekukan, penyetuju diisi sekali saat draf menjadi aktif, `search_path` dipatok).
+- **`sql/1044`** men-seed tujuh kunci izin: `commerce.booking_reservation_links.cancel`, `commerce.booking_refund_decisions.{read,create}`, `commerce.booking_refund_overrides.approve`, `commerce.booking_cancellation_policies.{read,create,approve}`.
+- Data subjek: tabel kebijakan kini mendaftar dua kolom stafnya. Tidak ada tabel lain yang mendapat kolom pelanggan; kunci klien keputusan menghash pihaknya.
