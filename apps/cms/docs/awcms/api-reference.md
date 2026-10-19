@@ -10037,7 +10037,7 @@ One offering has at most one active link and one product has at most one active 
 | 404    | Resource not found.                                                         | [`ApiError`](#standard-error-envelope) |
 | 409    | `FEATURE_DISABLED` or `IDEMPOTENCY_CONFLICT`.                               | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/commerce/booking/reconciliation` — Issue #380 (threat control C-09). The read-only booking reconciliation: active reservation links whose order's ledger and whose Booking reservation disagree - `paid_without_confirm` (money at or above the release threshold, reservation still held, expired or cancelled) and `confirmed_without_deposit` (reservation confirmed, ledger below the threshold). Writes and repairs nothing; bounded to 200 rows (`truncated`). Gated on `commerce.booking_reservation_links.read` and the tenant's `booking` feature.
+### `GET /api/v1/commerce/booking/reconciliation` — Issue #380 (threat control C-09). The read-only booking reconciliation: active reservation links whose order's ledger and whose Booking reservation disagree - `paid_without_confirm` (money at or above the release threshold, reservation still held, expired or cancelled) and `confirmed_without_deposit` (reservation confirmed, ledger below the threshold) - plus, since Issue #382, the reschedule findings `booking_reference_missing` (an active link whose Booking reservation does not name the order), `commerce_link_missing` (a live Booking reservation names the order but no active link does; `linkId` null) and `reschedule_difference_unpaid` (the supplementary order of a reschedule that added nights expired, was cancelled or is unpaid while the longer stay is live). Writes and repairs nothing; bounded to 200 rows (`truncated`). Gated on `commerce.booking_reservation_links.read` and the tenant's `booking` feature.
 
 - **operationId**: `getCommerceBookingReconciliation`
 - **Security**: bearerAuth + tenantHeader
@@ -10150,6 +10150,33 @@ The policy version is the one in force when the booking was made (a later versio
 | 404    | Resource not found.                                                                                       | [`ApiError`](#standard-error-envelope) |
 | 409    | `FEATURE_DISABLED`, or `INVALID_STATE` - the reservation is already decided, released or past cancelling. | [`ApiError`](#standard-error-envelope) |
 
+### `POST /api/v1/commerce/booking/reservations/{id}/no-show` — Issue #382 (ADR-0045 D15; contracts 3.8; control C-41). Mark a confirmed reservation no-show and record what the cancellation policy retains. Gated on `commerce.booking_reservation_links.cancel` AND `commerce.booking_refund_decisions.create`, the tenant's `booking` feature and an `Idempotency-Key`. Staff only: a cashier holds neither key and a customer has no route.
+
+- **operationId**: `markCommerceBookingNoShow`
+- **Security**: bearerAuth + tenantHeader
+
+Booking measures the arrival plus the tenant's grace: before it the answer is `409 NO_SHOW_TOO_EARLY` and nothing is written. The body is only an optional short `reasonCode`; an amount is a `400`. What is retained is the `no_show_retention` rule of the policy version in force when the booking was made (`retain_deposit`: the deposit, or the whole total of a non-deposit order; `retain_all`: everything paid; `refund_per_windows`: the cancellation windows at the no-show instant, which after arrival refund nothing; no policy: everything paid). NO refund leg is ever created: the decision's refunds are zero by a CHECK and a trigger forbids giving a no-show decision a return. One audit event carries the amount paid, the amount retained, the rule and the policy version.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (optional): [`CommerceBookingNoShow`](#schema-commercebookingnoshow)
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                                                 | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Marked no-show; the decision (`finalRefund` is `0.00`, `retainedAmount` is what the policy kept). A replay answers the same decision with `replayed: true`.                                                                 | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED`, `INVALID_STATE` (not confirmed, not active or already decided), `NO_SHOW_TOO_EARLY` (the arrival plus the grace has not passed), `IDEMPOTENCY_CONFLICT`, or another Booking refusal under its own code. | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/booking/reservations/{id}/refund-decision` — Issue #381 (ADR-0045 D8). The refund decision of a cancelled reservation and the state of its refund legs. `id` is Booking's reservation id. Gated on `commerce.booking_refund_decisions.read` and the tenant's `booking` feature. Carries every figure and whether the refund was overridden - never the override reason or the actor, and no customer (X7).
 
 - **operationId**: `getCommerceBookingRefundDecision`
@@ -10170,6 +10197,61 @@ The policy version is the one in force when the booking was made (a later versio
 | 403    | Access denied by RBAC/ABAC.                                                  | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.                                                          | [`ApiError`](#standard-error-envelope) |
 | 409    | `FEATURE_DISABLED` - the `booking` feature is off.                           | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/booking/reservations/{id}/reschedule` — Issue #382 (ADR-0045 D7, D18; contracts 3.7; controls C-37, C-38, C-39). Move a confirmed reservation to new dates and carry the price difference through the order path. Gated on `commerce.booking_reservation_links.update`, the tenant's `booking` feature and an `Idempotency-Key`. Staff only: a customer asks, staff move it.
+
+- **operationId**: `rescheduleCommerceBookingReservation`
+- **Security**: bearerAuth + tenantHeader
+
+The body is exactly one of `startsAt` and `stay`, optionally the `resourceId` to move to and a short lowercase `reasonCode`; a price, a difference, a refund, an order or a payment method is a `400`. In ONE transaction the order's reference moves (the old reservation link becomes `superseded`, a new link points at the SAME order and order line, Booking carries its own reference to the replacement - the order is left with two references, never one), then the difference: more nights become a supplementary ORDER priced by the ordinary cart quote with full payment due (paid through the ordinary payment paths, with no new payment flow); fewer nights become a pending refund return limited by the original policy version from the original arrival; the same length writes nothing else. The paid order, its lines and its payment allocations are never edited. A Booking refusal (`SLOT_UNAVAILABLE` and the rest) or an unsellable supplement rolls back to the untouched original on both sides. Idempotent: the same key and body replays the record (`200`, `replayed: true`), the same key with another body is `409 IDEMPOTENCY_CONFLICT`; a concurrent reschedule and cancel of one booking queue on the order lock and the second finds the first's result.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): [`CommerceBookingReschedule`](#schema-commercebookingreschedule)
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                                                                                                                                                                   | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Rescheduled; the replacement reservation on the same order and how the difference was carried. A replay answers the same record with `replayed: true`.                                                                                                                                                                                        | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED`, `BOOKING_SERVICE_ACTOR_NOT_CONFIGURED`, `INVALID_STATE`, `QUANTITY_BASIS_MISMATCH`, `RESCHEDULE_NOT_A_CHANGE`, `BOOKING_REFERENCE_MISMATCH`, `BALANCE_OUTSTANDING`, `REDUCTION_NOT_SUPPORTED`, `SUPPLEMENT_ORDER_UNAVAILABLE`, `IDEMPOTENCY_CONFLICT`, or a Booking refusal under its own code (`SLOT_UNAVAILABLE`, ...). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/booking/reservations/{id}/reschedule-quote` — Issue #382 (ADR-0045 D7; contracts 3.7; control C-39). The non-binding price of moving a confirmed reservation to new dates: how the night count changes, how the difference would be carried and every figure the server computed. Writes nothing. `id` is Booking's reservation id. Gated on `commerce.booking_reservation_links.update` and the tenant's `booking` feature.
+
+- **operationId**: `getCommerceBookingRescheduleQuote`
+- **Security**: bearerAuth + tenantHeader
+
+The query is exactly one of `startsAt` (a slot) and `checkInDate` + `checkOutDate` (a night range), plus an optional `resourceId`; it can never name a price, a difference or a refund (`400`). Direction `none`: the same number of nights (or any slot), only the reference moves. Direction `charge`: more nights, priced by the ordinary cart quote as a SUPPLEMENTARY ORDER the customer pays through the ordinary payment paths (`vehicle: supplementary_order`); the paid order is never edited. Direction `refund`: fewer nights, the value of the removed nights judged by the cancellation policy of the ORIGINAL booking from the ORIGINAL arrival (a chain of reschedules can never extend the window) and capped at what each payment can give back, planned as pending refund legs (`vehicle: refund_return`); only a fully paid order can be shortened (`409 BALANCE_OUTSTANDING`). With `resourceId` the answer carries Booking's availability for those dates on that resource - a hint only, since the reservation's own current nights count as taken. `serverNow` is the server's clock. The reschedule prices again under the order lock, so the quote is a preview, never a promise. An unknown id and another tenant's id are the same 404.
+
+**Parameters**
+
+| Name           | In    | Required | Type               | Description |
+| -------------- | ----- | -------- | ------------------ | ----------- |
+| `id`           | path  | yes      | string (uuid)      |             |
+| `startsAt`     | query | no       | string (date-time) |             |
+| `checkInDate`  | query | no       | string (date)      |             |
+| `checkOutDate` | query | no       | string (date)      |             |
+| `resourceId`   | query | no       | string (uuid)      |             |
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                                                                | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | The quote.                                                                                                                                                                                                                                 | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                          | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED`, `INVALID_STATE` (not active or not confirmed), `QUANTITY_BASIS_MISMATCH`, `RESCHEDULE_NOT_A_CHANGE`, `BOOKING_REFERENCE_MISMATCH`, `BALANCE_OUTSTANDING`, `REDUCTION_NOT_SUPPORTED` or `SUPPLEMENT_ORDER_UNAVAILABLE`. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/campaigns` — Issue #114 (contract #106 ADR-0017 D9). Staff list of campaigns, newest first. Gated on `commerce.campaigns.read`.
 
@@ -22099,6 +22181,22 @@ Enum values: `text`, `integer`, `decimal`, `boolean`, `date`, `enum`.
 }
 ```
 
+### Schema: CommerceBookingNoShow
+
+Issue #382. Only an optional closed reason code; an amount is a 400.
+
+| Field        | Type   | Required | Nullable | Description |
+| ------------ | ------ | -------- | -------- | ----------- |
+| `reasonCode` | string | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "reasonCode": "string"
+}
+```
+
 ### Schema: CommerceBookingOfferingLinkInput
 
 | Field           | Type                      | Required | Nullable | Description |
@@ -22114,6 +22212,31 @@ Enum values: `text`, `integer`, `decimal`, `boolean`, `date`, `enum`.
   "offeringId": "00000000-0000-0000-0000-000000000000",
   "productId": "00000000-0000-0000-0000-000000000000",
   "quantityBasis": "nights"
+}
+```
+
+### Schema: CommerceBookingReschedule
+
+Issue #382. Exactly one of `startsAt` and `stay`. It never carries a price, a difference, a refund, an order or a payment method.
+
+| Field        | Type               | Required | Nullable | Description                                                                            |
+| ------------ | ------------------ | -------- | -------- | -------------------------------------------------------------------------------------- |
+| `startsAt`   | string (date-time) | no       | no       | A slot reservation: the new start, an RFC 3339 UTC instant.                            |
+| `stay`       | object             | no       | no       |                                                                                        |
+| `resourceId` | string (uuid)      | no       | no       | Move to another resource; absent = where the reservation is.                           |
+| `reasonCode` | string             | no       | no       | A short lowercase code for the audit row, never free text. Default `staff_reschedule`. |
+
+**Example**
+
+```json
+{
+  "startsAt": "2026-01-01T00:00:00.000Z",
+  "stay": {
+    "checkInDate": "2026-01-01",
+    "checkOutDate": "2026-01-01"
+  },
+  "resourceId": "00000000-0000-0000-0000-000000000000",
+  "reasonCode": "string"
 }
 ```
 
@@ -26163,7 +26286,7 @@ consumer/subscriber contract in this file).
 }
 ```
 
-### Channels (100)
+### Channels (101)
 
 - `awcms.blog-content.ad.created` — An advertisement was created. Documented contract only; producer is `pages/api/v1/blog/ads/index.ts`'s `blog-content.ad.created` log line.
 - `awcms.blog-content.ad.deleted` — An advertisement was soft-deleted. Documented contract only; producer is `pages/api/v1/blog/ads/[id].ts`'s `blog-content.ad.deleted` log line.
@@ -26204,8 +26327,9 @@ consumer/subscriber contract in this file).
 - `awcms.comments.comment.approved` — A comment became publicly visible, either by auto-approval under the thread policy or by a moderator's approve decision. Producers: `comments/application/comment-service.ts`'s `submitComment` and `comments/application/comment-moderation.ts`'s `moderateComment`. The reply-notification consumer keys off THIS event rather than `comment.submitted`, so a comment still held for moderation never triggers a notification.
 - `awcms.comments.comment.submitted` — A comment was submitted against a published, public commentable resource (ADR-0041). Producer: `comments/application/comment-service.ts`'s `submitComment`. The payload carries opaque references only — comment and thread id, resource type, the server-derived public URL, and the resulting status. Never the body text, the author address, or any identity hash.
 - `awcms.comments.reply.created` — A submitted comment was a reply to an existing comment. Producer: `comments/application/comment-service.ts`'s `submitComment`, published alongside `comment.submitted` so a consumer can distinguish thread replies without re-reading the row. The recipient address is resolved from encrypted storage by the dispatcher at send time and is never carried here.
-- `awcms.commerce.booking_refund.decided` — A booking cancellation's refund decision was recorded (Issue #381, ADR-0045 D8, threat controls C-10/C-40): the policy source, the amount paid, the policy-computed refund, the final refund and whether a manager or finance override made them differ. Producer: `commerce/application/booking-cancellation.ts`'s `cancelBookingReservation`, in the same transaction as the decision row, the released reservation link and - for a positive refund - the pending refund legs. Aggregate: the order. Payload: `decisionId`, `orderId`, `reservationId`, `triggerKind`, `policySource`, `amountPaid`, `computedRefund`, `finalRefund`, `overridden` - never a customer name/phone, a payment reference, the override reason or the actor.
+- `awcms.commerce.booking_refund.decided` — A booking cancellation's or no-show's refund decision was recorded (Issue #381 and #382, ADR-0045 D8/D15, threat controls C-10/C-40/C-41): the policy source, the amount paid, the policy-computed refund, the final refund and whether a manager or finance override made them differ. For a no-show (`triggerKind` `no_show`) both refunds are zero and `retainedAmount` is what the policy version retained - a no-show never creates a refund leg. Producers: `commerce/application/booking-cancellation.ts`'s `cancelBookingReservation` and `booking-no-show.ts`'s `recordBookingNoShow`, in the same transaction as the decision row, the released reservation link and - for a positive cancellation refund - the pending refund legs. Aggregate: the order. Payload: `decisionId`, `orderId`, `reservationId`, `triggerKind`, `policySource`, `amountPaid`, `computedRefund`, `finalRefund`, `overridden`, and `retainedAmount` (no-show only) - never a customer name/phone, a payment reference, the override reason or the actor.
 - `awcms.commerce.booking_reservation_link.attention_raised` — The booking adapter could not reconcile an order with its Booking reservation on its own (Issue #380, ADR-0045 G7, threat controls C-08/C-09): a deposit settled after the hold lapsed (`deposit_after_expiry`), the confirmation was refused (`confirm_failed`), or the reservation was cancelled or moved outside the adapter while the order holds money (`cancelled_externally_paid`, `rescheduled_externally`). Producer: `commerce/application/booking-attention.ts`'s `raiseBookingAttention`, in the same transaction as the flag on the reservation link; fired once per open flag. Aggregate: the order. Payload: `orderId`, `reservationId`, `reason` - never a customer name/phone, an amount or a payment reference.
+- `awcms.commerce.booking_reservation.rescheduled` — A staff member rescheduled a booking reservation through the adapter (Issue #382, ADR-0045 D7, threat controls C-37 to C-39): the order now points at the replacement reservation and the price difference was carried as a supplementary order (more nights), a policy-limited refund return (fewer nights) or not at all (same length). Producer: `commerce/application/booking-reschedule.ts`'s `rescheduleBookingReservation`, in the same transaction as the reschedule record and the moved reservation link. Aggregate: the order. Payload: `rescheduleId`, `orderId`, `fromReservationId`, `toReservationId`, `fromNights`, `toNights`, `direction`, `pricedAmount`, `refundAmount`, `supplementOrderId`, `returnId` - never a customer name/phone, a payment reference or the actor.
 - `awcms.commerce.document.delivery_requested` — A delivery of a commercial document (receipt, invoice, quotation version or work-order notice) was requested (Issue #295, ADR-0034): handed to the e-mail or commerce WhatsApp outbox, or refused at the hand-off (a suppressed address). Producer: `commerce/application/document-delivery-directory.ts`'s `requestDocumentDelivery`, in the same transaction as the outbox row. Aggregate: the delivery request. Payload: `deliveryId`, `targetType`, `targetId`, `docNumber`, `channel`, `status` (`queued` or `not_enqueued`), `failureReason` - never a recipient or message content; the provider outcome lives in the outbox, not in this event.
 - `awcms.commerce.document.issued` — A numbered receipt or invoice document was issued for a finalized order (Issue #286, ADR-0029 D1-D3): an immutable snapshot. Producer: `commerce/application/document-directory.ts`'s `issueDocument`, in the same transaction as the numbered row. Aggregate: the document. Payload: `documentId`, `docType`, `number`, `sourceType`, `sourceId`, `sourceVersion`, `total` - never the customer.
 - `awcms.commerce.expense.posted` — An expense reached `posted` (Issue #294, ADR-0031): within the tenant's approval threshold, or approved by someone other than its creator. Producer: `commerce/application/expense-posting.ts`'s `postExpense` / `decideExpense`, in the same transaction as the status change and - for a drawer-paid expense - the register `expense` movement. Aggregate: the expense (`commerce.expense`). Fired once; a pending submission or a rejection does not fire it. Payload: `expenseId`, `categoryId`, `amount`, `tenderType`, `registerSessionId`, `movementId`, `decision` - never the free-text description or payee.

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](booking-ux-flows.md)
 
-<!-- i18n-source-hash: sha256:d4cbfe044dbe860c3ee6f894d76f8a57997d3801097b49d8c0405fbe88ea8466 -->
+<!-- i18n-source-hash: sha256:7704ce1c493bd1ce85c2556842d602f3ebc88096dd9803145d109097c83d77e7 -->
 
 <!-- i18n-source-hash: sha256:0 -->
 
@@ -319,9 +319,9 @@ Pada setiap profil build tetap statis dan profil tanpa pemesanan tidak membawa s
 | Penebusan tidak digabung dengan uang muka       | C-33                             | 3.1 (kontrol poin disembunyikan pada pesanan uang muka)         |
 | Pencarian POS: kode plus pelanggan, miss netral | C-34                             | 5.1                                                             |
 | Pemisahan izin POS                              | C-35                             | 5.1, 5.2                                                        |
-| Integritas jendela reschedule dan pembatalan    | C-37                             | 4.1 (jendela; layar reschedule tidak dirinci di sini)           |
+| Integritas jendela reschedule dan pembatalan    | C-37                             | 4.1 (jendela), 11.6 (dialog jadwal ulang)                       |
 | Kontrol override pengembalian                   | C-40                             | 4.3                                                             |
-| Penahanan no-show hanya menurut kebijakan       | C-41                             | 4.1 (baris no-show; tindakan staf tidak dirinci di sini)        |
+| Penahanan no-show hanya menurut kebijakan       | C-41                             | 4.1 (baris no-show), 11.6 (tindakan tamu tidak hadir)           |
 
 Kontrol C-25 sampai C-41 berasal dari adendum model ancaman ([#354](https://github.com/ahliweb/awcms-one/issues/354)). Rujukan bagian di kolom kanan adalah bagian terdekat yang memuat perilaku tiap kontrol; tabel ini alat keterlacakan dan teks kontrol di model ancaman adalah yang berwenang.
 
@@ -394,7 +394,20 @@ Tujuan: tindakan staf bagian 4.3, pada detail pesanan dan detail reservasi, untu
 - **Teks.** Judul "Ubah jumlah pengembalian dana"; konfirmasi "Catat perubahan"; batal "Pakai jumlah sesuai kebijakan" (fokus bawaan); status sukses "Pengembalian dana ditetapkan Rp X. Perubahan dicatat beserta alasan Anda." Tamu tidak pernah melihat alasan atau pelakunya (bagian 4.3).
 - **State.** Memuat (angka belum dimuat: kolom dinonaktifkan, `aria-busy`), galat (pratinjau gagal: coba lagi, kirim dinonaktifkan), dan sukses (dialog menutup, detail dimuat ulang dan menampilkan pengembalian tercatat serta pil "Disesuaikan").
 
-### 11.6 Aksesibilitas, keyboard, dan 360px untuk layar ini
+### 11.6 Jadwal ulang dan tamu tidak hadir pada panel booking (dibangun oleh #382)
+
+Tujuan: tindakan staf pada bagian 4.3 di detail pesanan yang dibooking: memindahkan reservasi ke tanggal baru (selisih harga dibawa oleh jalur pesanan dan refund), dan menandai tamu yang tidak datang. Keduanya berada pada panel booking di bagian 11.5 (`CommerceBookingPanel`), di balik fitur `booking`.
+
+- **Jadwal ulang - visibilitas.** Tombol "Jadwalkan ulang" tidak ada (bukan dinonaktifkan) tanpa `commerce.booking_reservation_links.update`, dan setelah reservasi tidak lagi terkonfirmasi atau sudah memiliki keputusan.
+- **Jadwal ulang - dialog.** `<dialog>` modal asli bernama "Jadwalkan ulang reservasi", dijelaskan oleh tanggal saat ini ("Saat ini 2026-12-10 sampai 2026-12-12 (2 malam). Harga selisih apa pun dihitung oleh server, tidak pernah diketik di sini."). Menginap menampilkan input tanggal "Check-in baru" dan "Check-out baru"; slot waktu menampilkan "Mulai baru (UTC)". Pilihan "Alasan" menawarkan daftar tertutup (tamu meminta pindah, pihak properti perlu memindahkannya, pemesanan ganda, alasan lain). Tanggal paling awal berasal dari jam server (`serverNow`), satu hari lebih awal dari tanggal UTC-nya karena tanggal lokal sumber daya dapat tertinggal dari UTC.
+- **Harga adalah milik server.** "Periksa harga" dinonaktifkan sampai tanggalnya valid (tanggal nyata, check-out setelah check-in, tidak di masa lalu, bukan tanggal saat ini) lalu meminta `GET .../reschedule-quote`; jawabannya ditampilkan sebagai satu kalimat di wilayah live yang sopan: lama sama ("tidak ada yang dihitung; hanya reservasi yang berpindah"); menginap lebih lama ("malam tambahan ditagih sebagai pesanan terpisah sebesar Rp X, yang dibayar pelanggan seperti pesanan lain"); menginap lebih singkat ("malam yang dihapus bernilai Rp X; kebijakan pembatalan awal mengembalikan Rp Y, diantrekan di Pengembalian barang dan dana", atau "tidak mengembalikan apa pun", atau "tidak ada kebijakan pembatalan yang berlaku"). Peramban tidak menghitung dan tidak mengirim angka apa pun: body POST adalah waktu baru dan kode alasan.
+- **Kirim.** "Jadwalkan ulang" mengirim dengan `Idempotency-Key`; halaman dimuat ulang saat berhasil dan menampilkan reservasi baru serta satu baris riwayat. Penolakan ditampilkan di dalam dialog dengan kata-kata: tanggal tidak tersedia (`SLOT_UNAVAILABLE`), menginap lebih singkat pada saldo belum dibayar (`BALANCE_OUTSTANDING`), malam yang dijual pada pesanan lain (`REDUCTION_NOT_SUPPORTED`), malam tambahan tidak dapat dijual (`SUPPLEMENT_ORDER_UNAVAILABLE`), dan lainnya.
+- **Riwayat.** Tabel "Penjadwalan ulang" (`.data-table-scroll`, `data-table--stack`): kapan, malam sebelum dan sesudah, selisih (lama sama, menginap lebih lama, menginap lebih singkat), jumlah dihitung dan refund, serta pesanan tambahan dengan kodenya (tautan ke pesanan itu), status, dan total.
+- **Tamu tidak hadir - visibilitas.** Blok "Tamu tidak datang" muncul untuk reservasi terkonfirmasi yang kedatangan aslinya telah lewat, bagi pengguna yang memegang kunci cancel dan keputusan sekaligus. Ia menampilkan kebijakan yang berlaku, aturan tamu tidak hadir (tahan uang muka, tahan semua yang dibayar, refund menurut jendela), yang sudah dibayar, dan yang ditahan kebijakan.
+- **Tamu tidak hadir - tindakan.** "Tandai tidak hadir" membuka dialog konfirmasi bersama, yang menyatakan angkanya dan bahwa tidak ada yang dikembalikan; Booking yang memutuskan apakah kedatangan ditambah toleransi sudah lewat (`NO_SHOW_TOO_EARLY` ditampilkan sebagai "Terlalu dini..."). Setelah keputusan, panel menampilkan "Keputusan tamu tidak hadir" dengan "Ditahan oleh kebijakan" dan "Tidak ada uang yang berpindah: tamu yang tidak hadir tidak pernah dikembalikan dananya."
+- **Status.** Kuotasi memuat ("Memeriksa harga..."), kuotasi galat (di dalam dialog, kirim tetap tersedia), dan berhasil (muat ulang).
+
+### 11.7 Aksesibilitas, keyboard, dan 360px untuk layar ini
 
 Landasan bagian 6 berlaku; tambahan:
 

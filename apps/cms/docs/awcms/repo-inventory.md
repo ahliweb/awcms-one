@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 34    |
-| Migrations                          | 343   |
-| `awcms_*` tables                    | 312   |
-| Tables with `FORCE` RLS             | 294   |
+| Migrations                          | 344   |
+| `awcms_*` tables                    | 313   |
+| Tables with `FORCE` RLS             | 295   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 883   |
-| Route files                         | 828   |
+| Test files                          | 888   |
+| Route files                         | 831   |
 | ADR                                 | 292   |
 
 ### Modules
@@ -402,6 +402,7 @@
 | 341 | `sql/1041_awcms_commerce_booking_reservation_permissions.sql`               |
 | 342 | `sql/1043_awcms_commerce_booking_cancellation_schema.sql`                   |
 | 343 | `sql/1044_awcms_commerce_booking_cancellation_permissions.sql`              |
+| 344 | `sql/1045_awcms_commerce_booking_reschedule.sql`                            |
 
 ### Tables & Row-Level Security
 
@@ -460,6 +461,7 @@
 | `awcms_commerce_attribute_definitions`         | `sql/960_awcms_commerce_attributes_schema.sql`             | yes | yes   |
 | `awcms_commerce_booking_offering_links`        | `sql/1035_awcms_commerce_booking_links_schema.sql`         | yes | yes   |
 | `awcms_commerce_booking_refund_decisions`      | `sql/1038_awcms_commerce_booking_refund_decisions.sql`     | yes | yes   |
+| `awcms_commerce_booking_reschedules`           | `sql/1045_awcms_commerce_booking_reschedule.sql`           | yes | yes   |
 | `awcms_commerce_booking_reservation_links`     | `sql/1035_awcms_commerce_booking_links_schema.sql`         | yes | yes   |
 | `awcms_commerce_bundle_components`             | `sql/953_awcms_commerce_bundles_schema.sql`                | yes | yes   |
 | `awcms_commerce_campaign_recipients`           | `sql/929_awcms_commerce_campaigns_schema.sql`              | yes | yes   |
@@ -724,16 +726,16 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 643        |
+| `(root)`      | 645        |
 | `e2e`         | 26         |
-| `integration` | 213        |
+| `integration` | 216        |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 684   |
+| `/api/v1/**`    | 687   |
 | `/admin/**`     | 113   |
 | publik / anonim | 31    |
 
