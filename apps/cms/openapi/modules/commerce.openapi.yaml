@@ -14135,6 +14135,421 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/booking/reservations/{id}/cancellation-quote:
+    get:
+      operationId: getCommerceBookingCancellationQuote
+      tags:
+        - Commerce
+      summary: "Issue #381 (ADR-0045 D6; contracts 3.5). The non-binding refund quote of a reservation: which policy version applies, the whole hours before the ORIGINAL arrival, the amount paid and the refund the policy computes. Writes nothing. `id` is Booking's reservation id. Gated on `commerce.booking_reservation_links.read` and the tenant's `booking` feature."
+      description: >-
+        The policy version is the one in force when the booking was made (a
+        later version never changes what the guest was promised), the arrival is
+        the original one across a reschedule chain, and the figures are computed
+        from the payment ledger and the server clock - nothing in the request.
+        `policySource: none` means no policy applied and the refund is `0.00`
+        (ADR-0045 D6). A reservation that already has a decision, is released,
+        or is past cancelling is `409 INVALID_STATE`. An unknown id and another
+        tenant's id are the same 404.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: "The quote."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceBookingCancellationQuote"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED`, or `INVALID_STATE` - the reservation is already decided, released or past cancelling."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/booking/reservations/{id}/cancel:
+    post:
+      operationId: cancelCommerceBookingReservation
+      tags:
+        - Commerce
+      summary: "Issue #381 (ADR-0045 D4, D8, D9, D12; contracts 3.5; controls C-10, C-11, C-40). Cancel a Booking reservation and record the refund decision. Gated on `commerce.booking_reservation_links.cancel` AND `commerce.booking_refund_decisions.create`, the tenant's `booking` feature and an `Idempotency-Key`; an inline `override` also needs `commerce.booking_refund_overrides.approve` and a fresh step-up."
+      description: >-
+        The refund is the one the SERVER computes (policy version in force when
+        the booking was made, original arrival, payment ledger): the body never
+        carries an amount, and `amount`, `final_refund` and similar keys are a
+        400. The decision is idempotent - the same key and body replays it
+        (`200`, `replayed: true`), the same key with another body is
+        `409 IDEMPOTENCY_CONFLICT`, two concurrent cancels of one reservation
+        produce one decision. Order of work in ONE transaction: Booking cancels
+        (a refusal writes nothing), the link is released, the decision row is
+        written and - for a positive refund - a return of kind `cancellation`
+        carries `pending` refund legs, newest payment first, each capped at what
+        its payment can still give back, under the tenant's service-account user.
+        Settling a leg stays with the existing returns / refunds routes. A paid
+        order is not edited; an unpaid one is cancelled. The optional `override`
+        sets a final refund other than the computed one: it needs the override
+        permission (a different authority from the offline refund approval), a
+        fresh step-up (`403 STEP_UP_REQUIRED`, nothing written), a reason of 10
+        to 500 characters, and may never exceed the amount paid
+        (`409 REFUND_EXCEEDS_PAID`); it writes a critical audit event.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceBookingStaffCancel"
+      responses:
+        "200":
+          description: "Cancelled; the recorded decision. A replay answers the same decision with `replayed: true`."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      replayed:
+                        type: boolean
+                      decision:
+                        $ref: "#/components/schemas/CommerceBookingRefundDecision"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "`FORBIDDEN` (a cancel permission, the decision permission or - with an override - the override permission is missing; nothing is written) or `STEP_UP_REQUIRED` (an override without a fresh step-up)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED`, `BOOKING_SERVICE_ACTOR_NOT_CONFIGURED`, `INVALID_STATE` (already decided or past cancelling), `REFUND_EXCEEDS_PAID` (`details.amountPaid`), `IDEMPOTENCY_CONFLICT`, or a Booking refusal under its own code."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/booking/reservations/{id}/refund-decision:
+    get:
+      operationId: getCommerceBookingRefundDecision
+      tags:
+        - Commerce
+      summary: "Issue #381 (ADR-0045 D8). The refund decision of a cancelled reservation and the state of its refund legs. `id` is Booking's reservation id. Gated on `commerce.booking_refund_decisions.read` and the tenant's `booking` feature. Carries every figure and whether the refund was overridden - never the override reason or the actor, and no customer (X7)."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: "The decision and the return carrying its legs (`null` while no money moves)."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    allOf:
+                      - $ref: "#/components/schemas/CommerceBookingRefundDecision"
+                      - type: object
+                        properties:
+                          return:
+                            type: object
+                            nullable: true
+                            properties:
+                              id:
+                                type: string
+                                format: uuid
+                              status:
+                                type: string
+                                enum:
+                                  - open
+                                  - completed
+                              refundTotal:
+                                type: string
+                              legs:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      format: uuid
+                                    tenderType:
+                                      type: string
+                                    amount:
+                                      type: string
+                                    status:
+                                      type: string
+                                      enum:
+                                        - pending
+                                        - processing
+                                        - succeeded
+                                        - failed
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED` - the `booking` feature is off."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/booking/cancellation-policies:
+    get:
+      operationId: listCommerceBookingCancellationPolicies
+      tags:
+        - Commerce
+      summary: "Issue #381 (ADR-0045 D6, Q9; UX 11.4). The versions of the cancellation refund policies with their windows: active first, then drafts, then the history, newest version first. Gated on `commerce.booking_cancellation_policies.read` and the tenant's `booking` feature."
+      parameters:
+        - name: productId
+          in: query
+          required: false
+          description: "A product uuid, or `default` for the tenant default; omitted lists every scope."
+          schema:
+            type: string
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - draft
+              - active
+              - retired
+      responses:
+        "200":
+          description: "The versions (bounded to 200)."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceBookingCancellationPolicy"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`FEATURE_DISABLED` - the `booking` feature is off."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    post:
+      operationId: createCommerceBookingCancellationPolicy
+      tags:
+        - Commerce
+      summary: "Issue #381 (ADR-0045 D6, Q9; UX 11.4). Author a DRAFT version of a cancellation policy with its windows. Gated on `commerce.booking_cancellation_policies.create` and the tenant's `booking` feature; requires `Idempotency-Key`."
+      description: >-
+        `productId: null` (or omitted) is the tenant default. A window says: a
+        cancellation made at least `minHoursBeforeStart` whole hours before the
+        arrival refunds `refundablePercent` of the amount paid; windows are
+        evaluated greatest hours first. A window with more notice must not
+        refund less than one with less notice (400). A version is immutable once
+        approved and a draft is not edited: a change is a new draft (the next
+        version number of the scope). Activating a draft is the separate
+        `approve` call.
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceBookingCancellationPolicyDraft"
+      responses:
+        "201":
+          description: "The draft version."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceBookingCancellationPolicy"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED`, or `IDEMPOTENCY_CONFLICT`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/booking/cancellation-policies/{id}/approve:
+    post:
+      operationId: approveCommerceBookingCancellationPolicy
+      tags:
+        - Commerce
+      summary: "Issue #381 (ADR-0045 D6; access matrix 4 and 8). Activate a DRAFT policy version: the scope's active version is retired in the same transaction. Gated on `commerce.booking_cancellation_policies.approve` (high-risk) AND a fresh step-up, the tenant's `booking` feature and an `Idempotency-Key`."
+      description: >-
+        From then on the version decides the refund of every NEW booking of the
+        scope; a booking already made keeps the version in force when it was
+        made. The approver is recorded. A stale or absent step-up is
+        `403 STEP_UP_REQUIRED` with nothing written. A version that is not a
+        draft is `409 INVALID_STATE`. Whether the author may also approve is a
+        tenant separation-of-duties rule over the create and approve keys.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+      responses:
+        "200":
+          description: "The activated version, the version it replaced and `replayed`."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      replayed:
+                        type: boolean
+                      policy:
+                        $ref: "#/components/schemas/CommerceBookingCancellationPolicy"
+                      retiredPolicyId:
+                        type: string
+                        format: uuid
+                        nullable: true
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "`FORBIDDEN` or `STEP_UP_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED`, `INVALID_STATE` (not a draft), `POLICY_WINDOWS_INVALID` or `IDEMPOTENCY_CONFLICT`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/booking/cancellation-policies/{id}/retire:
+    post:
+      operationId: retireCommerceBookingCancellationPolicy
+      tags:
+        - Commerce
+      summary: "Issue #381 (ADR-0045 D6). End the ACTIVE version of a scope without a successor; the scope falls back to the tenant default and, with none, to no refund. Gated on `commerce.booking_cancellation_policies.approve` AND a fresh step-up, the tenant's `booking` feature and an `Idempotency-Key`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+      responses:
+        "200":
+          description: "The retired version and `replayed`."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      replayed:
+                        type: boolean
+                      policy:
+                        $ref: "#/components/schemas/CommerceBookingCancellationPolicy"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "`FORBIDDEN` or `STEP_UP_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED`, `INVALID_STATE` (not active) or `IDEMPOTENCY_CONFLICT`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/booking/reconciliation:
     get:
       operationId: getCommerceBookingReconciliation
@@ -14502,6 +14917,144 @@ paths:
                 $ref: "#/components/schemas/ApiError"
         "404":
           $ref: "#/components/responses/NotFound"
+        "429":
+          description: Rate limited.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/booking/reservations/{orderCode}/cancellation-quote:
+    get:
+      operationId: getCommerceStorefrontBookingCancellationQuote
+      tags:
+        - Commerce
+      summary: "Issue #381 (ADR-0045 D6; contracts 3.5). The non-binding refund quote for cancelling a shopper's OWN reservation now: the policy version that applies, the whole hours before arrival, the amount paid and the computed refund, shown BEFORE confirming. Identified by a live `customerBearer` or by the order's `phone`; an unknown code, another customer's code and another tenant's code are one neutral 404. Behind the `booking` feature (off = the neutral 404)."
+      security: []
+      parameters:
+        - name: orderCode
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: phone
+          in: query
+          required: false
+          description: Required unless a valid `customerBearer` is presented.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "The quote."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceBookingCancellationQuote"
+        "401":
+          description: "UNAUTHENTICATED - a bearer was presented but is not a live customer session."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`INVALID_STATE` - the reservation is already decided or past cancelling."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: Rate limited.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/booking/reservations/{orderCode}/cancel:
+    post:
+      operationId: cancelCommerceStorefrontBookingReservation
+      tags:
+        - Commerce
+      summary: "Issue #381 (ADR-0045 D4, D9; contracts 3.5; controls C-05, C-10, C-32). The shopper confirms a quoted cancellation of their OWN reservation. Anonymous, with an optional `customerBearer`; requires `Idempotency-Key`; behind the `booking` feature (off = the neutral 404). It never accepts an amount or an override."
+      description: >-
+        An OPTIONAL `Authorization: Bearer <customer session token>`: present
+        and live → the reservation must be the account's own; present and dead →
+        `401 UNAUTHENTICATED`; absent → the order's `phone` in the body proves
+        ownership (a wrong phone, an unknown code and another customer's code
+        are one neutral 404). The body is `{ acknowledgedRefund, phone? }` and
+        nothing else - `final_refund`, `amount` and every other money or override
+        field is a 400 from the strict schema, so a guest can never set a
+        figure. The refund is the one the server computes; `acknowledgedRefund`
+        is only COMPARED with it: a difference is `409 QUOTE_CHANGED` carrying
+        `details.computedRefund`, with nothing cancelled. The answer is the
+        status and the final refund only. The `Idempotency-Key` is namespaced by
+        the acting account or the guest's phone: the same key and request
+        replays (`200`), another request is `409 IDEMPOTENCY_CONFLICT`. The
+        refund legs are planned under the tenant's service-account user and are
+        settled by the existing refund routes.
+      security: []
+      parameters:
+        - name: orderCode
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceBookingCustomerCancel"
+      responses:
+        "200":
+          description: "Cancelled (or the replay of the same cancellation); the status and the final refund."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        enum:
+                          - cancelled
+                      finalRefund:
+                        type: string
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: "UNAUTHENTICATED - a bearer was presented but is not a live customer session."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "403":
+          description: "`ACCOUNT_BLOCKED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`QUOTE_CHANGED` (`details.computedRefund`; nothing was cancelled), `INVALID_STATE`, `BOOKING_SERVICE_ACTOR_NOT_CONFIGURED`, `IDEMPOTENCY_CONFLICT`, or a Booking refusal under its own code."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
         "429":
           description: Rate limited.
           content:
@@ -20843,7 +21396,7 @@ components:
           $ref: "#/components/schemas/CommerceSettlement"
     CommerceBookingReservationView:
       type: object
-      description: "Issue #380. A reservation's view: Booking's facts, the order's code and status, the ledger-derived settlement. `attentionReason`/`attentionOpen` are present on the STAFF route only. `refund` stays null until the cancellation issue records decisions. No customer field."
+      description: "Issue #380. A reservation's view: Booking's facts, the order's code and status, the ledger-derived settlement. `attentionReason`/`attentionOpen` are present on the STAFF route only. `refund` is null until the reservation is cancelled (Issue #381). No customer field."
       properties:
         serverNow:
           type: string
@@ -20897,6 +21450,231 @@ components:
         refund:
           type: object
           nullable: true
+    CommerceBookingCancellationQuote:
+      type: object
+      description: "Issue #381. The non-binding refund quote of a reservation. Every figure is computed by the server; there is no customer and no actor field."
+      properties:
+        quotedAt:
+          type: string
+          format: date-time
+        startsAt:
+          type: string
+          format: date-time
+          description: "The ORIGINAL arrival (the root of a reschedule chain)."
+        hoursBeforeStart:
+          type: integer
+          description: "Whole hours, floored; negative after arrival."
+        reservationStatus:
+          type: string
+          description: "Booking's status of the reservation now."
+        policySource:
+          type: string
+          enum:
+            - product
+            - tenant_default
+            - none
+        policyId:
+          type: string
+          format: uuid
+          nullable: true
+        policyVersion:
+          type: integer
+          nullable: true
+        refundBasis:
+          type: string
+          enum:
+            - whole_stay
+            - per_night
+        refundablePercent:
+          type: string
+          description: "numeric(5,2): the share the window allowed (the effective share for a per-night policy)."
+        amountPaid:
+          type: string
+          description: "Paid and not yet refunded or promised along any payment: the ceiling of any refund."
+        computedRefund:
+          type: string
+    CommerceBookingRefundDecision:
+      type: object
+      description: "Issue #381. The recorded refund decision of a cancellation. `overridden` says a manager or finance override made `finalRefund` differ from `computedRefund`; the reason and the actor are never in this body."
+      properties:
+        id:
+          type: string
+          format: uuid
+        triggerKind:
+          type: string
+          enum:
+            - customer_cancel
+            - staff_cancel
+            - no_show
+        policySource:
+          type: string
+          enum:
+            - product
+            - tenant_default
+            - none
+        policyId:
+          type: string
+          format: uuid
+          nullable: true
+        policyVersion:
+          type: integer
+          nullable: true
+        hoursBeforeStart:
+          type: integer
+        refundablePercent:
+          type: string
+        amountPaid:
+          type: string
+        computedRefund:
+          type: string
+        finalRefund:
+          type: string
+        overridden:
+          type: boolean
+        returnId:
+          type: string
+          format: uuid
+          nullable: true
+          description: "The return of kind `cancellation` that carries the refund legs; null while no money moves."
+        createdAt:
+          type: string
+          format: date-time
+    CommerceBookingStaffCancel:
+      type: object
+      additionalProperties: false
+      required:
+        - reasonCode
+      properties:
+        reasonCode:
+          type: string
+          pattern: "^[a-z][a-z0-9_]{2,39}$"
+          description: "A closed short code, never free text about a person."
+        override:
+          type: object
+          additionalProperties: false
+          description: "Honoured only for a caller holding `commerce.booking_refund_overrides.approve` with a fresh step-up; never above the amount paid."
+          required:
+            - finalRefund
+            - reason
+          properties:
+            finalRefund:
+              type: string
+              description: "numeric(14,2) string, 0 up to the amount paid, different from the computed refund."
+            reason:
+              type: string
+              minLength: 10
+              maxLength: 500
+    CommerceBookingCustomerCancel:
+      type: object
+      additionalProperties: false
+      required:
+        - acknowledgedRefund
+      properties:
+        acknowledgedRefund:
+          type: string
+          description: "The quote's `computedRefund` the shopper saw. Compared with the figure recomputed under the order lock; never used as the refund."
+        phone:
+          type: string
+          description: "The order's phone; required unless a valid `customerBearer` is presented."
+    CommerceBookingCancellationPolicy:
+      type: object
+      description: "Issue #381. One version of a cancellation refund policy with its windows. `productId` null is the tenant default."
+      properties:
+        id:
+          type: string
+          format: uuid
+        productId:
+          type: string
+          format: uuid
+          nullable: true
+        version:
+          type: integer
+        status:
+          type: string
+          enum:
+            - draft
+            - active
+            - retired
+        refundBasis:
+          type: string
+          enum:
+            - whole_stay
+            - per_night
+        noShowRetention:
+          type: string
+          enum:
+            - retain_deposit
+            - retain_all
+            - refund_per_windows
+        windows:
+          type: array
+          items:
+            type: object
+            properties:
+              minHoursBeforeStart:
+                type: integer
+              refundablePercent:
+                type: string
+        createdAt:
+          type: string
+          format: date-time
+        activatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        retiredAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdByTenantUserId:
+          type: string
+          format: uuid
+          nullable: true
+        approvedByTenantUserId:
+          type: string
+          format: uuid
+          nullable: true
+    CommerceBookingCancellationPolicyDraft:
+      type: object
+      additionalProperties: false
+      required:
+        - windows
+      properties:
+        productId:
+          type: string
+          format: uuid
+          nullable: true
+        refundBasis:
+          type: string
+          enum:
+            - whole_stay
+            - per_night
+          default: whole_stay
+        noShowRetention:
+          type: string
+          enum:
+            - retain_deposit
+            - retain_all
+            - refund_per_windows
+          default: retain_deposit
+        windows:
+          type: array
+          minItems: 1
+          maxItems: 20
+          items:
+            type: object
+            additionalProperties: false
+            required:
+              - minHoursBeforeStart
+              - refundablePercent
+            properties:
+              minHoursBeforeStart:
+                type: integer
+                minimum: 0
+                maximum: 8760
+              refundablePercent:
+                type: string
+                description: "0 to 100 with at most two decimals."
     CommerceStorefrontBookingOfferingList:
       type: object
       description: "Issue #386. The bookable offerings."

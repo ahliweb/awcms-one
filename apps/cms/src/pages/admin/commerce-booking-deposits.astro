@@ -1,0 +1,351 @@
+---
+/**
+ * Booking deposit policies (Issue #385, ADR-0045 D5) - a service product's
+ * deposit as a percent of the taxed line total, a fixed amount per unit of
+ * quantity, or full payment. Specified in `docs/booking-ux-flows.md`
+ * section 11.2.
+ *
+ * Every control is UX-only; `PUT /api/v1/commerce/products/{id}/deposit-policy`
+ * is the authority. The screen sends the POLICY, never a computed deposit: the
+ * server derives the amount when an order is created and snapshots it, so
+ * editing a policy never changes an existing order. Gated on
+ * `commerce.booking_deposit_policies.read` (view) and `.update` (change), and
+ * on the tenant's `booking` feature.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import { fetchCommerceFeatures } from "../../modules/commerce/application/commerce-feature-gate";
+import { listServiceProductDepositPolicies } from "../../modules/commerce/application/booking-deposit-policies";
+
+const ssr = Astro.locals.ssrContext!;
+const { t, tn } = getTranslatorFor(Astro.locals.locale);
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "commerce",
+    activityCode: "booking_deposit_policies",
+    action: "read"
+  },
+  load: async ({ tx, can }) => {
+    const features = await fetchCommerceFeatures(tx, ssr.tenantId);
+    const canUpdate = await can({
+      moduleKey: "commerce",
+      activityCode: "booking_deposit_policies",
+      action: "update"
+    });
+    const products = features.booking
+      ? await listServiceProductDepositPolicies(tx, ssr.tenantId)
+      : [];
+    return { bookingEnabled: features.booking, canUpdate, products };
+  },
+  onError: (error) => {
+    logAdminPageError(
+      "admin/commerce-booking-deposits.astro: failed to list deposit policies",
+      error,
+      { correlationId: Astro.locals.correlationId }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+const loadError = screen.state === "error";
+const data = screen.state === "allowed" ? screen.data : null;
+const bookingEnabled = data?.bookingEnabled ?? false;
+const canUpdate = data?.canUpdate ?? false;
+const products = data?.products ?? [];
+
+type PolicyView = (typeof products)[number]["policy"];
+const policyText = (policy: PolicyView): string => {
+  if (policy === null) return t("Full payment");
+  if (policy.kind === "percent") {
+    return t("{percent}% of the total", { percent: policy.percent ?? "" });
+  }
+  return t("{amount} per unit", { amount: policy.fixedAmount ?? "" });
+};
+---
+
+<AdminLayout
+  title={t("Booking deposits")}
+  description={t(
+    "Set how much of a service product's price is paid as a deposit when it is booked."
+  )}
+>
+  {!canRead && (
+    <p class="state-notice fade-in-up" id="booking-deposits-denied">
+      {t("You do not have permission to view booking deposits.")}
+    </p>
+  )}
+
+  {canRead && loadError && (
+    <p class="state-notice fade-in-up" id="booking-deposits-error">
+      {t(
+        "Booking deposits could not be loaded right now. Please try again later."
+      )}
+    </p>
+  )}
+
+  {canRead && !loadError && !bookingEnabled && (
+    <p class="state-notice fade-in-up" id="booking-deposits-disabled">
+      {t("Booking is turned off for this store.")}
+    </p>
+  )}
+
+  {canRead && !loadError && bookingEnabled && (
+    <p class="form-hint fade-in-up">
+      {t(
+        "The deposit on each order is calculated by the server and fixed when the order is created. Changing a policy does not change existing orders. While Booking is on, the product's own down-payment switch follows this policy."
+      )}
+    </p>
+  )}
+
+  {canRead && !loadError && bookingEnabled && (
+    <p
+      id="booking-deposit-action-error"
+      class="admin-create-error"
+      role="alert"
+      hidden
+    />
+  )}
+
+  {canRead && !loadError && bookingEnabled && (
+    <div
+      class="data-table-scroll fade-in-up"
+      role="region"
+      tabindex="0"
+      aria-label={t("Booking deposits")}
+    >
+      <table class="data-table data-table--stack" id="booking-deposits-table">
+        <caption>
+          {tn(
+            "{count} service product",
+            "{count} service products",
+            products.length,
+            {
+              count: products.length
+            }
+          )}
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">{t("Product")}</th>
+            <th scope="col">{t("SKU")}</th>
+            <th scope="col">{t("Status")}</th>
+            <th scope="col">{t("Deposit")}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {products.length === 0 ? (
+            <tr>
+              <td class="data-table-empty" colspan={4}>
+                <div class="empty-state">
+                  <span class="empty-state-icon" aria-hidden="true">
+                    ◇
+                  </span>
+                  <span class="empty-state-title">
+                    {t("No service products yet")}
+                  </span>
+                  <span class="empty-state-text">
+                    {t(
+                      "Create a product of type service to set its deposit here."
+                    )}
+                  </span>
+                </div>
+              </td>
+            </tr>
+          ) : (
+            products.map((product) => (
+              <>
+                <tr data-product-row={product.productId}>
+                  <td data-label={t("Product")}>{product.name}</td>
+                  <td data-label={t("SKU")}>
+                    <span class="cell-code">{product.sku}</span>
+                  </td>
+                  <td data-label={t("Status")}>
+                    <span
+                      class="admin-status-pill"
+                      data-tone={
+                        product.status === "active" ? "success" : "neutral"
+                      }
+                    >
+                      {product.status}
+                    </span>
+                  </td>
+                  <td data-label={t("Deposit")}>
+                    <span
+                      class="admin-status-pill"
+                      data-tone={product.policy === null ? "neutral" : "info"}
+                    >
+                      {policyText(product.policy)}
+                    </span>
+                  </td>
+                </tr>
+                {canUpdate && (
+                  <tr>
+                    <td colspan={4}>
+                      <details class="admin-section">
+                        <summary>
+                          {t("Edit deposit for {name}", { name: product.name })}
+                        </summary>
+                        <form
+                          class="admin-create-form deposit-policy-form"
+                          data-product-id={product.productId}
+                          data-failure={t(
+                            "Could not save the deposit policy. Please try again."
+                          )}
+                          data-invalid-percent={t(
+                            "Enter a percentage between 0 and 100 with at most two decimals."
+                          )}
+                          data-invalid-amount={t(
+                            "Enter an amount greater than zero with at most two decimals."
+                          )}
+                        >
+                          <p
+                            id={`deposit-error-${product.productId}`}
+                            class="admin-create-error"
+                            role="alert"
+                            hidden
+                          />
+                          <fieldset class="admin-fieldset">
+                            <legend>{t("Deposit")}</legend>
+                            <label>
+                              <input
+                                type="radio"
+                                name="kind"
+                                value="full"
+                                checked={product.policy === null}
+                              />{" "}
+                              {t("Full payment")}
+                            </label>
+                            <label>
+                              <input
+                                type="radio"
+                                name="kind"
+                                value="percent"
+                                checked={product.policy?.kind === "percent"}
+                              />{" "}
+                              {t("Percent of the total")}
+                            </label>
+                            <label>
+                              <input
+                                type="radio"
+                                name="kind"
+                                value="fixed"
+                                checked={product.policy?.kind === "fixed"}
+                              />{" "}
+                              {t("Fixed amount per unit")}
+                            </label>
+                          </fieldset>
+
+                          <div data-deposit-for="percent">
+                            <label for={`deposit-percent-${product.productId}`}>
+                              {t("Percent (0-100)")}
+                            </label>
+                            <input
+                              id={`deposit-percent-${product.productId}`}
+                              name="percent"
+                              type="text"
+                              inputmode="decimal"
+                              autocomplete="off"
+                              value={product.policy?.percent ?? ""}
+                            />
+                          </div>
+                          <div data-deposit-for="fixed">
+                            <label for={`deposit-fixed-${product.productId}`}>
+                              {t("Amount per unit")}
+                            </label>
+                            <input
+                              id={`deposit-fixed-${product.productId}`}
+                              name="fixedAmount"
+                              type="text"
+                              inputmode="decimal"
+                              autocomplete="off"
+                              aria-describedby={`deposit-fixed-hint-${product.productId}`}
+                              value={product.policy?.fixedAmount ?? ""}
+                            />
+                            <p
+                              id={`deposit-fixed-hint-${product.productId}`}
+                              class="form-hint"
+                            >
+                              {t(
+                                "Per unit of quantity: per night for a nightly product."
+                              )}
+                            </p>
+                          </div>
+
+                          <button type="submit" data-busy={t("Saving…")}>
+                            {t("Save deposit")}
+                          </button>
+                        </form>
+                      </details>
+                    </td>
+                  </tr>
+                )}
+              </>
+            ))
+          )}
+        </tbody>
+      </table>
+    </div>
+  )}
+</AdminLayout>
+
+<script>
+  import {
+    field,
+    messageBox,
+    mutateAndReload,
+    onSubmitAll,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+  import {
+    buildDepositPolicyBody,
+    initDepositKindToggle
+  } from "../../lib/ui/commerce-booking-client";
+
+  for (const form of document.querySelectorAll<HTMLFormElement>(
+    ".deposit-policy-form"
+  )) {
+    initDepositKindToggle(form);
+  }
+
+  onSubmitAll(".deposit-policy-form", async ({ form, data, submit }) => {
+    const id = form.dataset.productId;
+    if (!id) return;
+    const box = messageBox(`deposit-error-${id}`);
+    box.clear();
+
+    const built = buildDepositPolicyBody(
+      field(data, "kind"),
+      field(data, "percent"),
+      field(data, "fixedAmount")
+    );
+    if (!built.ok) {
+      box.show(
+        built.field === "percent"
+          ? (form.dataset.invalidPercent ?? "")
+          : built.field === "fixedAmount"
+            ? (form.dataset.invalidAmount ?? "")
+            : (form.dataset.failure ?? "")
+      );
+      return;
+    }
+
+    await mutateAndReload(
+      submit,
+      box,
+      () =>
+        sendJson(
+          "PUT",
+          `/api/v1/commerce/products/${id}/deposit-policy`,
+          built.body
+        ),
+      form.dataset.failure ?? "",
+      submit?.dataset.busy
+    );
+  });
+</script>

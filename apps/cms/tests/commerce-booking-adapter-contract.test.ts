@@ -3,11 +3,12 @@
  * module wiring (Issue #378, ADR-0045; access matrix section 9 evidence item 1)
  * - no database. The rules that must not rot silently:
  *
- *   - the five registered permission keys are declared by the module through
- *     the part file, seeded by `sql/1039` exactly, and each is enforced by the
- *     route meant to need it; the rest of the access matrix is NOT registered
- *     (a key with no enforcing route is the "permission with no enforcing code"
- *     defect class) and the high-risk verbs it will use are already classed;
+ *   - the fourteen registered permission keys are declared by the module
+ *     through the part file, seeded by `sql/1039`, `sql/1041` and `sql/1044`
+ *     exactly, and each is enforced by the route meant to need it; the rest of
+ *     the access matrix is NOT registered (a key with no enforcing route is the
+ *     "permission with no enforcing code" defect class) and the high-risk verbs
+ *     it will use are already classed;
  *   - the six adapter tables are the ones the migrations create, each with an
  *     `id` primary key, `tenant_id`, RLS ENABLED and FORCED, a lifecycle and a
  *     subject-data descriptor, and a worker grant;
@@ -40,7 +41,9 @@ const MIGRATIONS = [
   "sql/1035_awcms_commerce_booking_links_schema.sql",
   "sql/1036_awcms_commerce_product_deposit_policies.sql",
   "sql/1037_awcms_commerce_cancellation_policies.sql",
-  "sql/1038_awcms_commerce_booking_refund_decisions.sql"
+  "sql/1038_awcms_commerce_booking_refund_decisions.sql",
+  // Issue #381: ALTERs only (no table), but its re-issued guard must pin search_path too.
+  "sql/1043_awcms_commerce_booking_cancellation_schema.sql"
 ];
 
 const ADAPTER_TABLES = [
@@ -75,14 +78,51 @@ const ROUTES: Record<string, string[]> = {
   ],
   "commerce.booking_reservation_links.read": [
     "src/pages/api/v1/commerce/booking/reservations/[id].ts",
-    "src/pages/api/v1/commerce/booking/reconciliation.ts"
+    "src/pages/api/v1/commerce/booking/reconciliation.ts",
+    "src/pages/api/v1/commerce/booking/reservations/[id]/cancellation-quote.ts"
+  ],
+  // Issue #381 (sql/1044).
+  "commerce.booking_reservation_links.cancel": [
+    "src/pages/api/v1/commerce/booking/reservations/[id]/cancel.ts"
+  ],
+  "commerce.booking_refund_decisions.create": [
+    "src/pages/api/v1/commerce/booking/reservations/[id]/cancel.ts"
+  ],
+  "commerce.booking_refund_decisions.read": [
+    "src/pages/api/v1/commerce/booking/reservations/[id]/refund-decision.ts"
+  ],
+  // The override key is enforced by the one helper the cancel route calls (the
+  // service accepts only the type it returns); the route file names the helper.
+  "commerce.booking_refund_overrides.approve": [
+    "src/modules/commerce/application/booking-refund-override.ts"
+  ],
+  "commerce.booking_cancellation_policies.read": [
+    "src/pages/api/v1/commerce/booking/cancellation-policies/index.ts"
+  ],
+  "commerce.booking_cancellation_policies.create": [
+    "src/pages/api/v1/commerce/booking/cancellation-policies/index.ts"
+  ],
+  "commerce.booking_cancellation_policies.approve": [
+    "src/pages/api/v1/commerce/booking/cancellation-policies/[id]/approve.ts",
+    "src/pages/api/v1/commerce/booking/cancellation-policies/[id]/retire.ts"
   ]
 };
+
+/** The routes that must be feature-gated and built on `defineTenantRoute` (the override helper is not a route). */
+const ROUTE_FILES = new Set(
+  Object.values(ROUTES)
+    .flat()
+    .filter((file) => file.startsWith("src/pages/"))
+);
 
 const CONSTANT_TO_CODE: Record<string, string> = {
   COMMERCE_BOOKING_OFFERING_LINKS_ACTIVITY_CODE: "booking_offering_links",
   COMMERCE_BOOKING_DEPOSIT_POLICIES_ACTIVITY_CODE: "booking_deposit_policies",
-  COMMERCE_BOOKING_RESERVATION_LINKS_ACTIVITY_CODE: "booking_reservation_links"
+  COMMERCE_BOOKING_RESERVATION_LINKS_ACTIVITY_CODE: "booking_reservation_links",
+  COMMERCE_BOOKING_CANCELLATION_POLICIES_ACTIVITY_CODE:
+    "booking_cancellation_policies",
+  COMMERCE_BOOKING_REFUND_DECISIONS_ACTIVITY_CODE: "booking_refund_decisions",
+  COMMERCE_BOOKING_REFUND_OVERRIDES_ACTIVITY_CODE: "booking_refund_overrides"
 };
 
 function guardsIn(source: string): Set<string> {
@@ -116,7 +156,7 @@ async function sourceFilesUnder(directory: string): Promise<string[]> {
 }
 
 describe("permissions (evidence item 1)", () => {
-  test("the seven keys are declared by the module from the part file, and sql/1039 + sql/1041 seed exactly them with the same descriptions", async () => {
+  test("the fourteen keys are declared by the module from the part file, and sql/1039 + sql/1041 + sql/1044 seed exactly them with the same descriptions", async () => {
     for (const key of EXPECTED_KEYS) expect(declared.has(key)).toBe(true);
     const sql =
       (await readFile(
@@ -125,6 +165,10 @@ describe("permissions (evidence item 1)", () => {
       )) +
       (await readFile(
         "sql/1041_awcms_commerce_booking_reservation_permissions.sql",
+        "utf8"
+      )) +
+      (await readFile(
+        "sql/1044_awcms_commerce_booking_cancellation_permissions.sql",
         "utf8"
       ));
     const seeded = [
@@ -170,12 +214,19 @@ describe("permissions (evidence item 1)", () => {
     for (const key of BOOKING_ADAPTER_PENDING_PERMISSIONS) {
       expect(declared.has(key), key).toBe(false);
     }
-    expect(BOOKING_ADAPTER_PENDING_PERMISSIONS).toHaveLength(8);
+    // Only the reschedule key (#382) is still to come.
+    expect([...BOOKING_ADAPTER_PENDING_PERMISSIONS]).toEqual([
+      "commerce.booking_reservation_links.update"
+    ]);
     // Reads, create and update are not high-risk (matrix section 2); cancel and
-    // approve are, so registering the pending keys later classes them correctly
-    // with no change to the upstream-owned AccessAction union.
+    // approve are, so the registered keys are classed correctly with no change
+    // to the upstream-owned AccessAction union (a high-risk verb makes the
+    // action-time separation-of-duties check available).
     for (const key of EXPECTED_KEYS) {
-      expect(isHighRiskAction(key.split(".")[2] as never), key).toBe(false);
+      const action = key.split(".")[2]!;
+      expect(isHighRiskAction(action as never), key).toBe(
+        action === "cancel" || action === "approve"
+      );
     }
     for (const key of BOOKING_ADAPTER_PENDING_PERMISSIONS) {
       const action = key.split(".")[2]!;
@@ -266,17 +317,32 @@ describe("tables", () => {
       );
     }
     // Only the refund decision names a person (staff), and none stores a customer.
+    // Issue #381: the policy version also names the two STAFF users who authored
+    // and approved it.
     const named = BOOKING_ADAPTER_SUBJECT_DATA.filter(
       (d) => !d.unreachableBySubject
     ).map((d) => d.tableName);
-    expect(named).toEqual(["awcms_commerce_booking_refund_decisions"]);
+    expect(named.sort()).toEqual([
+      "awcms_commerce_booking_refund_decisions",
+      "awcms_commerce_cancellation_policies"
+    ]);
   });
 });
 
 describe("module wiring and boundary", () => {
-  test("the booking feature defaults OFF, and the part files carry the navigation (empty) and the five consumers of Issue #380", () => {
+  test("the booking feature defaults OFF, and the part files carry the navigation (Issues #385 and #381: three entries, all gated on it) and the five consumers of Issue #380", () => {
     expect(DEFAULT_COMMERCE_FEATURES.booking).toBe(false);
-    expect(BOOKING_ADAPTER_NAVIGATION).toEqual([]);
+    expect(BOOKING_ADAPTER_NAVIGATION.map((e) => e.path)).toEqual([
+      "/admin/commerce-booking-links",
+      "/admin/commerce-booking-deposits",
+      "/admin/commerce-booking-policies"
+    ]);
+    for (const entry of BOOKING_ADAPTER_NAVIGATION) {
+      expect(entry.requiredFeature).toEqual({
+        moduleKey: "commerce",
+        feature: "booking"
+      });
+    }
     expect(BOOKING_ADAPTER_CONSUMERS.map((entry) => entry.name)).toEqual([
       "commerce.booking_order_paid_confirmer",
       "commerce.booking_expired_order_canceller",
@@ -337,8 +403,7 @@ describe("module wiring and boundary", () => {
   });
 
   test("every adapter route is feature-gated, built on defineTenantRoute, and reads no tenant or customer id from the body or query", async () => {
-    const routes = new Set(Object.values(ROUTES).flat());
-    for (const route of routes) {
+    for (const route of ROUTE_FILES) {
       const source = await readFile(route, "utf8");
       expect(source, route).toContain("requireBookingFeature(");
       expect(source, route).toContain("defineTenantRoute");

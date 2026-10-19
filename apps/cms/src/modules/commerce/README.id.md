@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:8c4d288149eb304370b208527f5583aa4f703490fb4a7a6ab4569c03ec0269c1 -->
+<!-- i18n-source-hash: sha256:6a9b156f02f3e4d794318a82b4769f2b29f13492eb0af9a35bec4177023cd18f -->
 
 # `commerce`
 
@@ -1646,3 +1646,24 @@ Issue #380 memungkinkan pembeli atau staf menahan slot atau menginap di Booking 
 - **Penjaga**: produk dengan tautan offering aktif dikutip `unavailable` di jalur biasa; order booking yang memegang uang ditolak oleh pembatalan admin generik, pembatalan pelanggan, dan pengembalian dengan `409 BOOKING_ORDER_USE_ADAPTER`.
 - **Operasional**: consumer memanggil `BookingPort`, yang tidak dapat dilakukan `awcms_worker`, sehingga `domain-events:dispatch` berjalan dengan peran aplikasi (catatan ADR-0045, U2).
 - **Tidak ada di sini**: pembacaan ketersediaan dan offering (U1 hulu), varian POS, pembatalan dan refund, reschedule, no-show, check-in, dan semua layar.
+
+## Adapter booking-commerce, layar admin - TERIMPLEMENTASI (Issue #385, epic #280 - [ADR-0045](../../../../../docs/adr/0045-booking-commerce-adapter.md))
+
+Spesifikasi: [alur UX pemesanan](../../../../../docs/booking-ux-flows.md) bagian 11.
+
+- **Layar**: `src/pages/admin/commerce-booking-links.astro` (tautan penawaran: daftar, buat, lepas; rute `commerce/booking/offering-links`), `src/pages/admin/commerce-booking-deposits.astro` (kebijakan uang muka produk jasa; `PUT commerce/products/{id}/deposit-policy`), dan kolom akun layanan pemesanan pada `commerce-settings.astro` (`bookingServiceTenantUserId` lewat `PUT commerce/store-settings`, tampil hanya saat `booking` aktif).
+- **Navigasi**: kedua entri ada di `domain/booking-adapter-navigation.ts`, dibatasi izin baca dan `requiredFeature: { moduleKey: "commerce", feature: "booking" }`.
+- **Kode**: `lib/ui/commerce-booking-client.ts` (isi uang muka, pencarian teks penolakan), `listServiceProductDepositPolicies` di `application/booking-deposit-policies.ts`. Layar mengirim kebijakan, bukan jumlah; lepas tautan memakai dialog konfirmasi bersama dan `Idempotency-Key`.
+- **Tidak ada di sini** (dibangun oleh #381, di bawah): layar versi kebijakan pembatalan dan dialog penggantian pengembalian dana. Masih belum ada: layar reservasi.
+
+## Adapter booking-commerce, kebijakan pembatalan, kuotasi refund dan override - TERIMPLEMENTASI (Issue #381, epik #280 - [ADR-0045](../../../../../docs/adr/0045-booking-commerce-adapter.id.md))
+
+Di balik fitur `booking`. Migrasi `sql/1043` (skema) dan `sql/1044` (tujuh kunci izin). Spesifikasi: [alur UX booking](../../../../../docs/booking-ux-flows.id.md) bagian 11.4 dan 11.5; rute di [`api.md`](../../../../../docs/api.id.md).
+
+- **Kebijakan**: `application/booking-cancellation-policies.ts` (daftar, `createPolicyDraft`, `approvePolicy`, `retirePolicy`, `resolvePolicyForLink`), rute `commerce/booking/cancellation-policies` (`GET`, `POST`) dan `.../{id}/approve|retire`. Draf tidak dapat diubah (tabel jendela hanya-sisip); setuju dan pensiun memerlukan step-up; penyusun dan penyetuju disimpan dan "penyusun bukan penyetuju" adalah aturan SoD tenant.
+- **Kuotasi** (`domain/booking-cancellation.ts`, `computeCancellationQuote` di `application/booking-cancellation.ts`): jam penuh sebelum waktu mulai ASLI (`BookingPort.get` pada reservasi akar rantai reschedule), jendela dengan `min_hours_before_start` terbesar yang dipenuhi pemberitahuan, bagian pembulatan setengah ke atas dari yang dibayar dan belum dikembalikan; versi kebijakan diselesaikan pada saat tautan akar dibuat (tidak ada berarti refund 0). `per_night` menilai tiap malam menurut pemberitahuannya sendiri. `lateCancellation` Booking diabaikan (G6).
+- **Batal** (`cancelBookingReservation`): idempoten (`bc1:<hash pihak>:<hash kunci>` ditambah `request_hash`), SATU transaksi: kunci advisory, kunci order, pembatalan Booking lewat port, keputusan append-only, `recordCancellationReturn` (`application/booking-cancellation-refund.ts`: return berjenis `cancellation`, leg direncanakan `pending` oleh `planRefundLegs` di bawah pengguna akun layanan), order yang belum dibayar dibatalkan (yang sudah dibayar TIDAK diubah), tautan `released`. Penyelesaian leg tetap pada rute `execute` dan `offline` retur. Event `awcms.commerce.booking_refund.decided`.
+- **Override**: `authorizeRefundOverride` (`application/booking-refund-override.ts`) menjalankan `commerce.booking_refund_overrides.approve` dan `requireStepUp` serta mengembalikan `AuthorizedOverride` yang dituntut service; batasnya sebesar yang dibayar (`REFUND_EXCEEDS_PAID`), angka yang tidak berubah adalah `OVERRIDE_NOT_A_CHANGE`, satu event audit kritis mencatatnya. Tamu tidak pernah mengirim jumlah: body storefront bersifat ketat.
+- **Layar**: `pages/admin/commerce-booking-policies.astro`, `components/CommerceBookingPanel.astro` pada detail order (dimuat oleh `application/booking-order-panel.ts`), `components/CommerceStepUpDialog.astro`, helper klien `lib/ui/commerce-booking-refund-client.ts` dan `lib/ui/commerce-stepup-client.ts`.
+- **Izin**: `commerce.booking_reservation_links.cancel`, `commerce.booking_refund_decisions.{read,create}`, `commerce.booking_refund_overrides.approve`, `commerce.booking_cancellation_policies.{read,create,approve}`; hanya `commerce.booking_reservation_links.update` (reschedule, #382) yang masih tertunda.
+- **Tidak ada di sini**: varian check-in dengan saldo belum dibayar (#383), no-show, reschedule, penyelesaian otomatis leg.

@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 34    |
-| Migrations                          | 341   |
+| Migrations                          | 343   |
 | `awcms_*` tables                    | 312   |
 | Tables with `FORCE` RLS             | 294   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 879   |
-| Route files                         | 820   |
+| Test files                          | 885   |
+| Route files                         | 831   |
 | ADR                                 | 292   |
 
 ### Modules
@@ -400,6 +400,8 @@
 | 339 | `sql/1039_awcms_commerce_booking_adapter_permissions.sql`                   |
 | 340 | `sql/1040_awcms_commerce_booking_adapter_settings_and_worker_grants.sql`    |
 | 341 | `sql/1041_awcms_commerce_booking_reservation_permissions.sql`               |
+| 342 | `sql/1043_awcms_commerce_booking_cancellation_schema.sql`                   |
+| 343 | `sql/1044_awcms_commerce_booking_cancellation_permissions.sql`              |
 
 ### Tables & Row-Level Security
 
@@ -722,17 +724,17 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 640        |
+| `(root)`      | 644        |
 | `e2e`         | 26         |
-| `integration` | 212        |
+| `integration` | 214        |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 679   |
-| `/admin/**`     | 110   |
+| `/api/v1/**`    | 687   |
+| `/admin/**`     | 113   |
 | publik / anonim | 31    |
 
 <!-- END GENERATED: repo-inventory -->

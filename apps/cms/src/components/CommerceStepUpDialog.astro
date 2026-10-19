@@ -1,0 +1,126 @@
+---
+/**
+ * CommerceStepUpDialog - the native `<dialog>` that asks for a second-factor code
+ * when a high-risk commerce action answers `STEP_UP_REQUIRED` (Issue #381,
+ * ADR-0045 D10). Rendered ONCE per admin page and driven from a client
+ * `<script>` through `commerce-stepup-client.ts` (`sendWithStepUp`). The
+ * flow: the call is refused with nothing written, the operator types the code
+ * here, `POST /api/v1/auth/mfa/step-up` verifies it, and the SAME request is
+ * sent again once.
+ *
+ * Never `window.prompt` (the admin gate allow-lists the legacy sites only): this
+ * is a modal `<dialog>` - focus enters on the code field, Escape cancels, focus
+ * returns to the opener, the page behind is inert.
+ *
+ * Lives under `src/components/`, never `src/pages/admin/`
+ * (`access-chokepoint-check.ts` reads every `.astro` file there as a screen).
+ */
+import { getTranslatorFor } from "../lib/i18n";
+import type { Locale } from "../lib/i18n/locales";
+
+interface Props {
+  id?: string;
+  locale?: Locale | null | undefined;
+}
+
+const { id = "commerce-stepup-dialog", locale } = Astro.props as Props;
+const { t } = getTranslatorFor(locale);
+const titleId = `${id}-title`;
+const messageId = `${id}-message`;
+const inputId = `${id}-code`;
+---
+
+<dialog
+  id={id}
+  class="commerce-stepup-dialog"
+  role="alertdialog"
+  aria-labelledby={titleId}
+  aria-describedby={messageId}
+>
+  <form method="dialog" class="commerce-stepup-body" novalidate>
+    <h2 id={titleId} class="commerce-stepup-title">
+      {t("Confirm it is you")}
+    </h2>
+    <p id={messageId} class="commerce-stepup-message">
+      {t(
+        "This action needs a recent second-factor check. Enter the code from your authenticator app, then it continues."
+      )}
+    </p>
+    <div class="admin-field">
+      <label for={inputId}>{t("Authenticator code")}</label>
+      <input
+        id={inputId}
+        name="code"
+        type="text"
+        inputmode="numeric"
+        autocomplete="one-time-code"
+        spellcheck="false"
+        maxlength="20"
+      />
+    </div>
+    <div class="commerce-stepup-actions">
+      <button type="button" class="btn-secondary" data-stepup-cancel>
+        {t("Cancel")}
+      </button>
+      <button type="button" class="btn-primary" data-stepup-confirm>
+        {t("Verify and continue")}
+      </button>
+    </div>
+  </form>
+</dialog>
+
+<style>
+  .commerce-stepup-dialog {
+    width: min(420px, 92vw);
+    max-width: none;
+    padding: 0;
+    margin: 14vh auto auto;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
+    color: var(--color-text);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .commerce-stepup-dialog::backdrop {
+    background: var(--color-overlay);
+  }
+
+  .commerce-stepup-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+    padding: var(--sp-5);
+  }
+
+  .commerce-stepup-title {
+    margin: 0;
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-semibold);
+    line-height: var(--lh-snug);
+  }
+
+  .commerce-stepup-message {
+    margin: 0;
+    font-size: var(--fs-sm);
+    line-height: var(--lh-normal);
+    color: var(--color-text-muted);
+  }
+
+  .commerce-stepup-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--sp-2);
+  }
+
+  @media (max-width: 420px) {
+    .commerce-stepup-actions {
+      flex-direction: column-reverse;
+    }
+
+    .commerce-stepup-actions .btn-secondary,
+    .commerce-stepup-actions .btn-primary {
+      width: 100%;
+    }
+  }
+</style>
