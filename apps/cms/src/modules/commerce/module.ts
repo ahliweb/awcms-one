@@ -11,6 +11,10 @@ import {
   BOOKING_ADAPTER_SUBJECT_DATA
 } from "./domain/booking-adapter-lifecycle";
 import { BOOKING_ADAPTER_NAVIGATION } from "./domain/booking-adapter-navigation";
+import {
+  BOOKING_REPORT_DATA_LIFECYCLE,
+  BOOKING_REPORT_SUBJECT_DATA
+} from "./domain/booking-report-lifecycle";
 import { BOOKING_ADAPTER_PERMISSIONS } from "./domain/booking-adapter-permissions";
 import { BOOKING_ADAPTER_CONSUMERS } from "./application/booking-adapter-consumers";
 import {
@@ -3216,6 +3220,9 @@ export const commerceModule = defineModule({
     // Issue #378 (ADR-0045) - the six booking-adapter tables; see
     // `domain/booking-adapter-lifecycle.ts`.
     ...BOOKING_ADAPTER_DATA_LIFECYCLE,
+    // Issue #389 (sql/1047) - the booking revenue projection's two tables; see
+    // `domain/booking-report-lifecycle.ts`.
+    ...BOOKING_REPORT_DATA_LIFECYCLE,
     // Issue #287 (ADR-0033) - the four returns / refunds tables; see
     // `domain/returns-lifecycle.ts`.
     ...RETURNS_DATA_LIFECYCLE,
@@ -4182,6 +4189,8 @@ export const commerceModule = defineModule({
     ...SEGMENT_SUBJECT_DATA,
     // Issue #378 (ADR-0045) - see `domain/booking-adapter-lifecycle.ts`.
     ...BOOKING_ADAPTER_SUBJECT_DATA,
+    // Issue #389 (sql/1047) - see `domain/booking-report-lifecycle.ts`.
+    ...BOOKING_REPORT_SUBJECT_DATA,
     // Issue #287 (ADR-0033) - see `domain/returns-lifecycle.ts`.
     ...RETURNS_SUBJECT_DATA,
     {
