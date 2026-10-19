@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:3f6be613f0d53446cf07348e8e8a1774d0d4325443d8a871e46ca7c4c419441c -->
+<!-- i18n-source-hash: sha256:d450cd52525ead8134daed675b77287bbb89856bd66b63bac00c92168a4ba7ce -->
 
 # `commerce`
 
@@ -1641,3 +1641,12 @@ Issue #380 memungkinkan pembeli atau staf menahan slot atau menginap di Booking 
 - **Penjaga**: produk dengan tautan offering aktif dikutip `unavailable` di jalur biasa; order booking yang memegang uang ditolak oleh pembatalan admin generik, pembatalan pelanggan, dan pengembalian dengan `409 BOOKING_ORDER_USE_ADAPTER`.
 - **Operasional**: consumer memanggil `BookingPort`, yang tidak dapat dilakukan `awcms_worker`, sehingga `domain-events:dispatch` berjalan dengan peran aplikasi (catatan ADR-0045, U2).
 - **Tidak ada di sini**: pembacaan ketersediaan dan offering (U1 hulu), varian POS, pembatalan dan refund, reschedule, no-show, check-in, dan semua layar.
+
+## Adapter booking-commerce, rekonsiliasi pasca-restore - TERIMPLEMENTASI (Issue #396, epic #280 butir 35 - [ADR-0045](../../../../../docs/adr/0045-booking-commerce-adapter.id.md))
+
+Separuh adaptor dari drill restore: CLI operator hanya-baca, tanpa migrasi, route, izin, atau event.
+
+- **Jalankan**: `bun run commerce:booking:reconcile [--tenant <uuid>] [--json] [--require-links] [--evidence-log <path>]` (`scripts/commerce-booking-reconcile.ts`), terhadap basis data hasil restore, sebagai peran owner atau `awcms_app` (bukan `awcms_worker`). Exit 0 hanya bila nol drift. Perintah untuk me-restore dengan `--keep`, menjalankannya, dan men-drop basis data scratch ada di [`deployment.md`](../../../../../docs/deployment.md) ("Restore drill adaptor booking").
+- **Kode**: `domain/booking-restore-drill.ts` (bentuk laporan, vonis, baris bukti, argumen, teks; murni), `application/booking-restore-reconciliation.ts` (pemeriksaan struktur katalog, jumlah, pernyataan keputusan-refund-terhadap-kaki-refund, lintasan READ ONLY per tenant, titik ekstensi `BOOKING_RESTORE_EXTENSION_CHECKS` yang kosong) dan `reconcileBookingReferences` (pernyataan nol-atau-dua-referensi C-38) di `application/booking-reservation-reads.ts`, yang tetap satu-satunya berkas yang menyebut tabel Booking. Perbandingan C-09 adalah `reconcileBookingOrders` yang sudah ada, dengan temuan yang sudah membawa flag perhatian terbuka dilaporkan sebagai `acknowledged` dan tidak digagalkan.
+- **Titik ekstensi**: isu pembatalan (#381) menulis keputusan refund pertama dan mendaftarkan pemeriksaan lanjutan apa pun di `BOOKING_RESTORE_EXTENSION_CHECKS`; tidak ada yang di sini menyebut tabel yang ia tambahkan.
+- **Tes**: `tests/commerce-booking-restore-drill.test.ts` (vonis, baris bukti, argumen, bentuk hanya-baca, pemeriksaan struktur; tanpa basis data) dan `tests/integration/commerce-booking-restore-drill.integration.test.ts` (setiap jenis drift terhadap basis data nyata yang termigrasi, di bawah RLS).

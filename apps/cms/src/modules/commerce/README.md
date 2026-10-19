@@ -1549,3 +1549,12 @@ Issue #380 lets a shopper or staff member hold a Booking slot or stay and get th
 - **Guards**: a product with an active offering link quotes as `unavailable` on the ordinary paths; a booking order that holds money is refused by the generic admin cancel, customer cancel and returns with `409 BOOKING_ORDER_USE_ADAPTER`.
 - **Operational**: the consumers call `BookingPort`, which `awcms_worker` cannot, so `domain-events:dispatch` runs with the application role (ADR-0045 notes, U2).
 - **Not here**: availability and offering reads (upstream U1), the POS variant, cancellation and refunds, reschedule, no-show, check-in, and every screen.
+
+## Booking-commerce adapter, post-restore reconciliation - IMPLEMENTED (Issue #396, epic #280 item 35 - [ADR-0045](../../../../../docs/adr/0045-booking-commerce-adapter.md))
+
+The adapter half of the restore drill: a read-only operator CLI, no migration, route, permission or event.
+
+- **Run**: `bun run commerce:booking:reconcile [--tenant <uuid>] [--json] [--require-links] [--evidence-log <path>]` (`scripts/commerce-booking-reconcile.ts`), against a restored database, as the owner role or `awcms_app` (not `awcms_worker`). Exit 0 only on zero drift. The commands to restore with `--keep`, run it and drop the scratch database are in [`deployment.md`](../../../../../docs/deployment.md) ("Booking adapter restore drill").
+- **Code**: `domain/booking-restore-drill.ts` (report shape, verdict, evidence line, arguments, text; pure), `application/booking-restore-reconciliation.ts` (the catalog structure check, the counts, the refund-decision-versus-refund-leg statement, the per-tenant READ ONLY pass, the empty `BOOKING_RESTORE_EXTENSION_CHECKS` extension point) and `reconcileBookingReferences` (the C-38 zero-or-two-references statements) in `application/booking-reservation-reads.ts`, which stays the only file that names a Booking table. The C-09 comparison is the existing `reconcileBookingOrders`, with findings that already carry an open attention flag reported as `acknowledged` and not failed.
+- **Extension point**: the cancellation issue (#381) writes the first refund decisions and registers any further check in `BOOKING_RESTORE_EXTENSION_CHECKS`; nothing here names a table it adds.
+- **Tests**: `tests/commerce-booking-restore-drill.test.ts` (verdict, evidence line, arguments, read-only shape, structure check; no database) and `tests/integration/commerce-booking-restore-drill.integration.test.ts` (each kind of drift against a real migrated database, under RLS).

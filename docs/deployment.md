@@ -575,6 +575,63 @@ docker run --rm --network container:<the postgres container> \
 
 `restore-drill.sh` measures both directly, with no production data ever leaving the drill: `restoreRtoSeconds` is the real wall-clock verify→decrypt→restore→check duration; `restoreRpoSeconds` is the age of the backup it drilled, at drill time. Validating this issue against a disposable PostgreSQL with synthetic data (one fictional tenant row, no real customer/business data), a full drill measured **RTO 2-3 seconds, RPO 1-615 seconds** depending on how long since the last synthetic backup — evidence of the mechanism, not a production SLA; a real deployment's own numbers depend on database size and its own `backup`/`restore-drill` cron cadence.
 
+### Booking adapter restore drill (issue #396, [ADR-0045](adr/0045-booking-commerce-adapter.md))
+
+`restore-postgres.sh` answers "did the schema and the row counts come back". It cannot answer the question the booking-commerce adapter adds: **do an order and its reservation still point at each other exactly once, and do the adapter's guarantees still exist?** Foreign keys cannot see it (Booking holds the reverse reference as the opaque `external_ref_type = 'commerce_order'` / `external_ref` pair), a single dropped index or a lost `FORCE ROW LEVEL SECURITY` leaves every row readable, and the upstream drill only asserts that SOME table has FORCE RLS. `bun run commerce:booking:reconcile` (`apps/cms/scripts/commerce-booking-reconcile.ts`) is the adapter half of the drill. It is **read-only** (every tenant pass runs in a `READ ONLY` transaction, so even a role that could write cannot), it repairs nothing, and it writes at most one JSON line of evidence.
+
+**What it checks**, and what makes a drill fail (exit code 1):
+
+| Class       | Check                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Fails the drill                                                                                                                                                                     |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `structure` | Once per database: the six adapter tables exist with RLS enabled **and forced**, their `_tenant_isolation` policy and `_guard` trigger (enabled), and the unique indexes the invariants stand on (Booking's `awcms_booking_reservations_external_ref_key`, the reservation-link active keys and client key, the offering-link active keys, the refund decision's link and source keys)                                                                        | yes                                                                                                                                                                                 |
+| `reference` | Control C-38, per tenant: every active link's reservation names the link's order back (`back_reference_missing`, `back_reference_mismatch`), no active link sits on a rescheduled reservation (`link_on_rescheduled_reservation`), no LIVE reservation names an order without an active link (`orphan_back_reference`, also reporting whether the order exists), and no order is named by two live reservations or active links (`order_multiple_references`) | yes                                                                                                                                                                                 |
+| `ledger`    | Control C-09, per tenant: a link whose order has settled its release threshold but whose reservation is `held`/`expired`/`cancelled`, or whose reservation is confirmed or beyond with less than the threshold settled (the same statement as `GET /api/v1/commerce/booking/reconciliation`)                                                                                                                                                                  | only when no attention flag is open on the link; one that already has an open flag was in the operator queue before the backup, so it is reported as `acknowledged` and never fails |
+| `decision`  | Booking refund decisions versus refund legs, per tenant: a decision belongs to its link's order (`decision_order_mismatch`), its return to that order (`decision_return_order_mismatch`), the live legs of its return never add up to more than the decision (`legs_exceed_decision`), and a `completed` return has settled at least the decision (`legs_short_of_decision`)                                                                                  | yes                                                                                                                                                                                 |
+| extension   | `BOOKING_RESTORE_EXTENSION_CHECKS` in `apps/cms/src/modules/commerce/application/booking-restore-reconciliation.ts` is **empty**. The cancellation issue ([#381](https://github.com/ahliweb/awcms-one/issues/381)) writes the first refund decisions and registers any further check that depends on what it adds (for example a decision's return total against the planner's tax split) there; none is invented ahead of the code that writes the rows      | yes, once registered                                                                                                                                                                |
+
+A decision that has money to refund and no return yet is a normal in-flight state: it is counted (`decisionsAwaitingLegs`) and never fails. Until the cancellation issue lands no decision row exists, so the `decision` class returns nothing on today's data; that is the check being in place, not being skipped.
+
+**Running it** between the restore and the drop. `restore-drill.sh` (and so the `restore-drill` compose service) restores into a scratch database and **drops it before anyone can query it**, and this repository does not edit that upstream script. So the adapter half is a manual step, run after the weekly drill or after any real restore, using only the non-destructive `--keep` flag of `restore-postgres.sh` (never `--target`):
+
+```bash
+# 1. Restore into a scratch database and keep it (the same docker run as the real-restore step above,
+#    WITHOUT --target/--yes, WITH --keep, and a scratch name that is not the live database).
+docker run --rm --network container:<the postgres container> \
+  -v awcms-one-production-backups:/backup \
+  -v ./apps/cms/deploy/backup:/scripts:ro \
+  -e DATABASE_URL="<owner/setup DSN>" -e RESTORE_SCRATCH_DB=awcms_restore_drill \
+  -e RESTORE_AGE_IDENTITY_FILE=/secrets/restore-age-identity.key \
+  -e BACKUP_HMAC_KEY_FILE=/secrets/backup-hmac.key \
+  postgres:18.4 \
+  bash /scripts/restore-postgres.sh /backup/<artifact>.dump.age --keep
+
+# 2. Run the adapter half against that database as the owner role (the `migrate` service is the jobs image with
+#    the owner DSN). --require-links makes a database with no reservation link fail as `empty`, because a
+#    drill that checked zero rows proves nothing; leave it off for a tenant that never enabled `booking`.
+docker compose -f compose.production.yaml --profile migrate run --rm \
+  -v awcms-one-production-backups:/backup \
+  -e DATABASE_URL="postgres://<owner>:<password>@postgres:5432/awcms_restore_drill" \
+  migrate bun run commerce:booking:reconcile --require-links \
+  --evidence-log /backup/restore-drill-evidence.jsonl
+
+# 3. Drop the scratch database (restore-postgres.sh left it for you).
+docker compose -f compose.production.yaml exec postgres \
+  psql -U <owner> -d postgres -c 'DROP DATABASE awcms_restore_drill WITH (FORCE)'
+```
+
+Use the owner DSN or `awcms_app`; **not** `awcms_worker` (the `jobs` service), which Booking deliberately gives no read of its reservations. `--tenant <uuid>` limits the run to one tenant, `--json` prints the full report with the ids (the text summary prints counts and kinds only) and `--evidence-log <path>` appends one JSON line (`startedAt`, `status`, `detail`, `durationMs`, counts and drift kinds; no identifier, amount or name) to the same `restore-drill-evidence.jsonl` the upstream drill writes, so one file carries both halves. If the image's user cannot write to the backups volume, give `--evidence-log` a path it can, or paste the text output into the change ticket. A run that cannot connect or query throws and exits non-zero as well; it never reports a pass it did not earn.
+
+**Reading the result.** A restore is a point-in-time image, so a database that was consistent when `pg_dump` took its snapshot is consistent after `pg_restore`: any `structure`, `reference` or `decision` finding is a defect of the backup or the restore, or one that was already live in the source. Before concluding the restore broke something, run the same command against the live database and compare: a finding present in both predates the backup. **Nothing is auto-repaired**; an operator decides (the C-09 attention flag is the work queue, this is its audit). After a real restore (`--target=<db>`), run it against the restored database **before** pointing traffic at it.
+
+Example drill log, from a synthetic database with two bookings (PostgreSQL 16.15, not the 18.4 production image; evidence of the mechanism, not a production figure). The first line is a backup taken while consistent, the second the same database after a reservation lost its reference to its order:
+
+```text
+{"startedAt":"2026-10-19T01:47:35.923Z","check":"commerce:booking:reconcile","status":"pass","outcome":"pass","detail":"booking adapter reconciliation found zero drift","durationMs":72,"tenantsChecked":1,"counts":{"offeringLinks":1,"reservationLinks":2,"activeReservationLinks":2,"openAttention":0,"refundDecisions":0,"decisionsAwaitingLegs":0},"drift":{},"acknowledgedLedger":0,"truncated":false}
+{"startedAt":"2026-10-19T01:47:43.700Z","check":"commerce:booking:reconcile","status":"fail","outcome":"drift","detail":"booking adapter reconciliation found 1 drifted item(s)","durationMs":70,"tenantsChecked":1,"counts":{"offeringLinks":1,"reservationLinks":2,"activeReservationLinks":2,"openAttention":0,"refundDecisions":0,"decisionsAwaitingLegs":0},"drift":{"reference:back_reference_missing":1},"acknowledgedLedger":0,"truncated":false}
+```
+
+`apps/cms/tests/integration/commerce-booking-restore-drill.integration.test.ts` produces each kind of drift against a real migrated database and pins that the query finds exactly it, under RLS, with the runtime role.
+
 ### How this relates to the current production topology (scope item 10)
 
 `backup`/`restore-drill`/`offsite-copy` are additive services in the SAME `compose.production.yaml` this document's "Production runbook" already describes — no change to `postgres`/`migrate`/`cms`/`jobs`/`storefront`, and no new host-accessible database port (the safety rule above: production stays reachable only from the compose project's own network; `backup`/`restore-drill` join that same network the way `migrate` already does).

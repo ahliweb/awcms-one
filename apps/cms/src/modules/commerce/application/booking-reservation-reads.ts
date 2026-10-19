@@ -34,6 +34,10 @@
  * operator decides (the attention flag is the work queue, this is its audit).
  */
 
+import type {
+  ReferenceDriftItem,
+  ReferenceKind
+} from "../domain/booking-restore-drill";
 import { normalizeMoney } from "../domain/price-calculation";
 
 export type BookingReservationFacts = {
@@ -231,5 +235,217 @@ export async function reconcileBookingOrders(
         row.attention_reason !== null && row.attention_resolved_at === null
     };
   });
+  return { items, truncated };
+}
+
+// ---------------------------------------------------------------------------
+// C-38: the zero-or-two-references reconciliation (Issue #396).
+// ---------------------------------------------------------------------------
+
+// "Live" below means the statuses in which Booking's partial unique index on
+// `(external_ref_type, external_ref)` (`sql/180`) binds a reservation: held,
+// confirmed, checked_in. A completed, no-show, expired, cancelled or
+// rescheduled reservation keeps its `external_ref` as history and holds no
+// claim on the order, so it is never reported.
+
+export const REFERENCE_DRIFT_KINDS = [
+  "back_reference_missing",
+  "back_reference_mismatch",
+  "link_on_rescheduled_reservation",
+  "orphan_back_reference",
+  "order_multiple_references"
+] as const satisfies readonly ReferenceKind[];
+export type ReferenceDriftKind = (typeof REFERENCE_DRIFT_KINDS)[number];
+
+export type ReferenceDriftReport = {
+  items: ReferenceDriftItem[];
+  /** `true` when any of the statements hit its bound; the drift is real either way. */
+  truncated: boolean;
+};
+
+export const REFERENCE_DRIFT_LIMIT = 200;
+
+type LinkSideRow = {
+  kind: ReferenceDriftKind;
+  link_id: string;
+  order_id: string;
+  reservation_id: string;
+  reservation_no: string;
+  reservation_status: string;
+  external_ref_type: string | null;
+  external_ref: string | null;
+};
+
+type OrphanRow = {
+  reservation_id: string;
+  reservation_no: string;
+  reservation_status: string;
+  external_ref_type: string;
+  external_ref: string;
+  order_exists: boolean;
+};
+
+type MultiRow = {
+  order_ref: string;
+  live_references: number | string;
+  active_links: number | string;
+};
+
+const emptyItem = (kind: ReferenceDriftKind): ReferenceDriftItem => ({
+  kind,
+  linkId: null,
+  orderId: null,
+  reservationId: null,
+  reservationNo: null,
+  reservationStatus: null,
+  externalRefType: null,
+  externalRef: null,
+  orderExists: null,
+  liveReferences: null,
+  activeLinks: null
+});
+
+/**
+ * Orders whose reference to a reservation is not exactly one on each side (the
+ * "zero or two live references" report of threat control C-38, restated for the
+ * restore drill). Booking holds the reverse reference as the opaque
+ * `external_ref_type = 'commerce_order'` / `external_ref = <order id>` pair; the
+ * adapter holds the forward one as the active reservation link. A paid order
+ * must be reachable from exactly one live reservation, and that reservation from
+ * exactly one active link. Five ways to break it, none of which a foreign key
+ * can see (the reverse reference is opaque text):
+ *
+ *   - `back_reference_missing`: an active link whose reservation carries no
+ *     reference (ONE reference: the order names a stay that does not name it);
+ *   - `back_reference_mismatch`: the reservation's reference names another order
+ *     or another type;
+ *   - `link_on_rescheduled_reservation`: an active link left on the reservation
+ *     a reschedule replaced ("the old reservation is never left linked", A6);
+ *   - `orphan_back_reference`: a LIVE reservation names an order but no active
+ *     link points at it (a hold with no link; also reports whether the order
+ *     exists at all);
+ *   - `order_multiple_references`: an order named by more than one live
+ *     reservation or by active links on more than one reservation (TWO
+ *     references: a paid order covers two stays). Booking's partial unique index
+ *     makes the first impossible while the index exists, which is exactly why a
+ *     restore that lost the index shows up here.
+ *
+ * Read-only, tenant-scoped, and each statement is bounded by `limit`. A restore
+ * is a point-in-time image, so a database that was consistent when the dump was
+ * taken is consistent here: every row this returns is a defect of the backup, of
+ * the restore, or one that was already live in the source.
+ */
+export async function reconcileBookingReferences(
+  tx: Bun.SQL,
+  tenantId: string,
+  limit: number = REFERENCE_DRIFT_LIMIT
+): Promise<ReferenceDriftReport> {
+  const linkSide = (await tx`
+    SELECT
+      CASE
+        WHEN r.status = 'rescheduled' THEN 'link_on_rescheduled_reservation'
+        WHEN r.external_ref IS NULL THEN 'back_reference_missing'
+        ELSE 'back_reference_mismatch'
+      END AS kind,
+      l.id AS link_id, l.order_id, l.reservation_id,
+      r.reservation_no, r.status AS reservation_status,
+      r.external_ref_type, r.external_ref
+    FROM awcms_commerce_booking_reservation_links l
+    JOIN awcms_booking_reservations r
+      ON r.tenant_id = l.tenant_id AND r.id = l.reservation_id
+    WHERE l.tenant_id = ${tenantId}
+      AND l.status = 'active'
+      AND (
+        r.status = 'rescheduled'
+        OR r.external_ref IS NULL
+        OR r.external_ref_type IS DISTINCT FROM 'commerce_order'
+        OR r.external_ref <> l.order_id::text
+      )
+    ORDER BY l.created_at DESC, l.id DESC
+    LIMIT ${limit + 1}
+  `) as LinkSideRow[];
+
+  const orphans = (await tx`
+    SELECT r.id AS reservation_id, r.reservation_no, r.status AS reservation_status,
+           r.external_ref_type, r.external_ref,
+           EXISTS (
+             SELECT 1 FROM awcms_commerce_orders o
+             WHERE o.tenant_id = r.tenant_id AND o.id::text = r.external_ref
+           ) AS order_exists
+    FROM awcms_booking_reservations r
+    WHERE r.tenant_id = ${tenantId}
+      AND r.external_ref_type = 'commerce_order'
+      AND r.status IN ('held', 'confirmed', 'checked_in')
+      AND NOT EXISTS (
+        SELECT 1 FROM awcms_commerce_booking_reservation_links l
+        WHERE l.tenant_id = r.tenant_id
+          AND l.reservation_id = r.id
+          AND l.status = 'active'
+      )
+    ORDER BY r.created_at DESC, r.id DESC
+    LIMIT ${limit + 1}
+  `) as OrphanRow[];
+
+  const multiples = (await tx`
+    WITH refs AS (
+      SELECT r.external_ref AS order_ref, count(*)::int AS live_references
+      FROM awcms_booking_reservations r
+      WHERE r.tenant_id = ${tenantId}
+        AND r.external_ref_type = 'commerce_order'
+        AND r.status IN ('held', 'confirmed', 'checked_in')
+      GROUP BY r.external_ref
+      HAVING count(*) > 1
+    ),
+    links AS (
+      SELECT l.order_id::text AS order_ref,
+             count(DISTINCT l.reservation_id)::int AS active_links
+      FROM awcms_commerce_booking_reservation_links l
+      WHERE l.tenant_id = ${tenantId} AND l.status = 'active'
+      GROUP BY l.order_id
+      HAVING count(DISTINCT l.reservation_id) > 1
+    )
+    SELECT COALESCE(refs.order_ref, links.order_ref) AS order_ref,
+           COALESCE(refs.live_references, 0) AS live_references,
+           COALESCE(links.active_links, 0) AS active_links
+    FROM refs
+    FULL JOIN links ON links.order_ref = refs.order_ref
+    ORDER BY 1
+    LIMIT ${limit + 1}
+  `) as MultiRow[];
+
+  const truncated =
+    linkSide.length > limit ||
+    orphans.length > limit ||
+    multiples.length > limit;
+
+  const items: ReferenceDriftItem[] = [
+    ...linkSide.slice(0, limit).map((row): ReferenceDriftItem => ({
+      ...emptyItem(row.kind),
+      linkId: row.link_id,
+      orderId: row.order_id,
+      reservationId: row.reservation_id,
+      reservationNo: row.reservation_no,
+      reservationStatus: row.reservation_status,
+      externalRefType: row.external_ref_type,
+      externalRef: row.external_ref
+    })),
+    ...orphans.slice(0, limit).map((row): ReferenceDriftItem => ({
+      ...emptyItem("orphan_back_reference"),
+      orderId: row.external_ref,
+      reservationId: row.reservation_id,
+      reservationNo: row.reservation_no,
+      reservationStatus: row.reservation_status,
+      externalRefType: row.external_ref_type,
+      externalRef: row.external_ref,
+      orderExists: row.order_exists
+    })),
+    ...multiples.slice(0, limit).map((row): ReferenceDriftItem => ({
+      ...emptyItem("order_multiple_references"),
+      orderId: row.order_ref,
+      liveReferences: Number(row.live_references),
+      activeLinks: Number(row.active_links)
+    }))
+  ];
+
   return { items, truncated };
 }

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:a1327b504b1c981ce483b08e1f2f5218e2c274825c9cc62538949914d1bb1a37 -->
+<!-- i18n-source-hash: sha256:8c5678bb5d986303c782226d4ce103780e765520099b3bcd8eb8648917e8f6fb -->
 
 # Deployment
 
@@ -581,6 +581,63 @@ docker run --rm --network container:<kontainer postgres> \
 ### Evidence RTO/RPO (butir cakupan 9)
 
 `restore-drill.sh` mengukur keduanya langsung, tanpa data produksi pernah keluar dari drill: `restoreRtoSeconds` adalah durasi nyata verify→decrypt→restore→check secara wall-clock; `restoreRpoSeconds` adalah umur backup yang di-drill, pada saat drill. Memvalidasi issue ini terhadap PostgreSQL disposable dengan data sintetis (satu baris tenant fiktif, tanpa data pelanggan/bisnis nyata), satu drill penuh mengukur **RTO 2-3 detik, RPO 1-615 detik** tergantung berapa lama sejak backup sintetis terakhir — evidence dari mekanismenya, bukan SLA produksi; angka deployment nyata bergantung pada ukuran basis data dan kadensi cron `backup`/`restore-drill`-nya sendiri.
+
+### Restore drill adaptor booking (issue #396, [ADR-0045](adr/0045-booking-commerce-adapter.md))
+
+`restore-postgres.sh` menjawab "apakah skema dan jumlah barisnya kembali". Ia tidak bisa menjawab pertanyaan yang ditambahkan adaptor booking-commerce: **apakah sebuah pesanan dan reservasinya masih saling menunjuk tepat sekali, dan apakah jaminan adaptor masih ada?** Foreign key tidak melihatnya (Booking menyimpan referensi baliknya sebagai pasangan buram `external_ref_type = 'commerce_order'` / `external_ref`), satu indeks yang hilang atau `FORCE ROW LEVEL SECURITY` yang lenyap membiarkan semua baris tetap terbaca, dan drill hulu hanya memastikan bahwa SEBUAH tabel punya FORCE RLS. `bun run commerce:booking:reconcile` (`apps/cms/scripts/commerce-booking-reconcile.ts`) adalah separuh drill milik adaptor. Ia **hanya-baca** (setiap lintasan tenant berjalan dalam transaksi `READ ONLY`, jadi peran yang bisa menulis pun tidak dapat menulis), tidak memperbaiki apa pun, dan paling banyak menulis satu baris JSON bukti.
+
+**Yang diperiksa**, dan apa yang membuat drill gagal (exit code 1):
+
+| Kelas       | Pemeriksaan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Menggagalkan drill                                                                                                                                                                                            |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `structure` | Sekali per basis data: keenam tabel adaptor ada dengan RLS aktif **dan dipaksa**, kebijakan `_tenant_isolation` dan trigger `_guard` (aktif), serta indeks unik yang menjadi tumpuan invarian (`awcms_booking_reservations_external_ref_key` milik Booking, kunci aktif dan kunci klien tautan reservasi, kunci aktif tautan penawaran, kunci tautan dan kunci sumber keputusan refund)                                                                                                                         | ya                                                                                                                                                                                                            |
+| `reference` | Kontrol C-38, per tenant: reservasi dari setiap tautan aktif menyebut balik pesanan tautan itu (`back_reference_missing`, `back_reference_mismatch`), tidak ada tautan aktif pada reservasi yang sudah dijadwal ulang (`link_on_rescheduled_reservation`), tidak ada reservasi AKTIF yang menyebut pesanan tanpa tautan aktif (`orphan_back_reference`, juga melaporkan apakah pesanannya ada), dan tidak ada pesanan yang disebut oleh dua reservasi aktif atau dua tautan aktif (`order_multiple_references`) | ya                                                                                                                                                                                                            |
+| `ledger`    | Kontrol C-09, per tenant: tautan yang pesanannya sudah melunasi ambang rilis tetapi reservasinya `held`/`expired`/`cancelled`, atau reservasinya sudah terkonfirmasi atau lebih jauh sementara pelunasan kurang dari ambang (pernyataan yang sama dengan `GET /api/v1/commerce/booking/reconciliation`)                                                                                                                                                                                                         | hanya bila tidak ada flag perhatian terbuka pada tautan; yang sudah punya flag terbuka sudah ada di antrean operator sebelum backup, sehingga dilaporkan sebagai `acknowledged` dan tidak pernah menggagalkan |
+| `decision`  | Keputusan refund booking terhadap kaki refund, per tenant: keputusan milik pesanan tautannya (`decision_order_mismatch`), return-nya milik pesanan itu (`decision_return_order_mismatch`), kaki aktif return-nya tidak pernah berjumlah lebih dari keputusan (`legs_exceed_decision`), dan return yang `completed` sudah melunasi sekurangnya sebesar keputusan (`legs_short_of_decision`)                                                                                                                      | ya                                                                                                                                                                                                            |
+| ekstensi    | `BOOKING_RESTORE_EXTENSION_CHECKS` di `apps/cms/src/modules/commerce/application/booking-restore-reconciliation.ts` **kosong**. Isu pembatalan ([#381](https://github.com/ahliweb/awcms-one/issues/381)) menulis keputusan refund pertama dan mendaftarkan pemeriksaan lanjutan yang bergantung pada apa yang ia tambahkan (misalnya total return sebuah keputusan terhadap pembagian pajak perencana) di sana; tidak ada yang dikarang mendahului kode yang menulis barisnya                                   | ya, setelah didaftarkan                                                                                                                                                                                       |
+
+Keputusan yang punya uang untuk di-refund dan belum punya return adalah keadaan berjalan yang normal: ia dihitung (`decisionsAwaitingLegs`) dan tidak pernah menggagalkan. Sampai isu pembatalan mendarat belum ada baris keputusan, jadi kelas `decision` tidak mengembalikan apa-apa pada data hari ini; itu berarti pemeriksaannya sudah terpasang, bukan dilewati.
+
+**Menjalankannya** di antara restore dan drop. `restore-drill.sh` (dan karenanya layanan compose `restore-drill`) me-restore ke basis data scratch dan **men-drop-nya sebelum ada yang sempat menanyainya**, dan repositori ini tidak menyunting skrip hulu itu. Jadi separuh adaptor adalah langkah manual, dijalankan setelah drill mingguan atau setelah restore sungguhan, hanya dengan flag `--keep` yang tidak destruktif milik `restore-postgres.sh` (tidak pernah `--target`):
+
+```bash
+# 1. Restore ke basis data scratch dan pertahankan (docker run yang sama dengan langkah restore sungguhan di atas,
+#    TANPA --target/--yes, DENGAN --keep, dan nama scratch yang bukan basis data live).
+docker run --rm --network container:<the postgres container> \
+  -v awcms-one-production-backups:/backup \
+  -v ./apps/cms/deploy/backup:/scripts:ro \
+  -e DATABASE_URL="<owner/setup DSN>" -e RESTORE_SCRATCH_DB=awcms_restore_drill \
+  -e RESTORE_AGE_IDENTITY_FILE=/secrets/restore-age-identity.key \
+  -e BACKUP_HMAC_KEY_FILE=/secrets/backup-hmac.key \
+  postgres:18.4 \
+  bash /scripts/restore-postgres.sh /backup/<artifact>.dump.age --keep
+
+# 2. Jalankan separuh adaptor terhadap basis data itu sebagai peran owner (layanan `migrate` adalah image jobs dengan
+#    DSN owner). --require-links membuat basis data tanpa satu pun tautan reservasi gagal sebagai `empty`, karena
+#    drill yang memeriksa nol baris tidak membuktikan apa-apa; lepas untuk tenant yang tidak pernah mengaktifkan `booking`.
+docker compose -f compose.production.yaml --profile migrate run --rm \
+  -v awcms-one-production-backups:/backup \
+  -e DATABASE_URL="postgres://<owner>:<password>@postgres:5432/awcms_restore_drill" \
+  migrate bun run commerce:booking:reconcile --require-links \
+  --evidence-log /backup/restore-drill-evidence.jsonl
+
+# 3. Drop basis data scratch (restore-postgres.sh meninggalkannya untuk Anda).
+docker compose -f compose.production.yaml exec postgres \
+  psql -U <owner> -d postgres -c 'DROP DATABASE awcms_restore_drill WITH (FORCE)'
+```
+
+Gunakan DSN owner atau `awcms_app`; **bukan** `awcms_worker` (layanan `jobs`), yang sengaja tidak diberi Booking hak baca atas reservasinya. `--tenant <uuid>` membatasi eksekusi ke satu tenant, `--json` mencetak laporan lengkap beserta id (ringkasan teks hanya mencetak jumlah dan jenis) dan `--evidence-log <path>` menambahkan satu baris JSON (`startedAt`, `status`, `detail`, `durationMs`, jumlah dan jenis drift; tanpa identifier, jumlah uang, atau nama) ke `restore-drill-evidence.jsonl` yang sama dengan yang ditulis drill hulu, sehingga satu berkas memuat kedua separuh. Bila pengguna image tidak bisa menulis ke volume backup, beri `--evidence-log` path yang bisa, atau tempel keluaran teks ke tiket perubahan. Eksekusi yang tidak bisa terhubung atau menjalankan query melempar error dan juga keluar non-nol; ia tidak pernah melaporkan lulus yang tidak ia peroleh.
+
+**Membaca hasilnya.** Restore adalah citra pada satu titik waktu, jadi basis data yang konsisten ketika `pg_dump` mengambil snapshot-nya tetap konsisten setelah `pg_restore`: temuan `structure`, `reference`, atau `decision` apa pun adalah cacat backup atau restore, atau sesuatu yang sudah ada di sumber. Sebelum menyimpulkan restore merusak sesuatu, jalankan perintah yang sama terhadap basis data live dan bandingkan: temuan yang ada di keduanya mendahului backup. **Tidak ada yang diperbaiki otomatis**; operator memutuskan (flag perhatian C-09 adalah antrean kerja, ini auditnya). Setelah restore sungguhan (`--target=<db>`), jalankan terhadap basis data hasil restore **sebelum** mengarahkan lalu lintas ke sana.
+
+Contoh log drill, dari basis data sintetis dengan dua booking (PostgreSQL 16.15, bukan image produksi 18.4; bukti mekanismenya, bukan angka produksi). Baris pertama adalah backup yang diambil saat konsisten, baris kedua basis data yang sama setelah sebuah reservasi kehilangan referensinya ke pesanannya:
+
+```text
+{"startedAt":"2026-10-19T01:47:35.923Z","check":"commerce:booking:reconcile","status":"pass","outcome":"pass","detail":"booking adapter reconciliation found zero drift","durationMs":72,"tenantsChecked":1,"counts":{"offeringLinks":1,"reservationLinks":2,"activeReservationLinks":2,"openAttention":0,"refundDecisions":0,"decisionsAwaitingLegs":0},"drift":{},"acknowledgedLedger":0,"truncated":false}
+{"startedAt":"2026-10-19T01:47:43.700Z","check":"commerce:booking:reconcile","status":"fail","outcome":"drift","detail":"booking adapter reconciliation found 1 drifted item(s)","durationMs":70,"tenantsChecked":1,"counts":{"offeringLinks":1,"reservationLinks":2,"activeReservationLinks":2,"openAttention":0,"refundDecisions":0,"decisionsAwaitingLegs":0},"drift":{"reference:back_reference_missing":1},"acknowledgedLedger":0,"truncated":false}
+```
+
+`apps/cms/tests/integration/commerce-booking-restore-drill.integration.test.ts` menghasilkan setiap jenis drift terhadap basis data nyata yang termigrasi dan memastikan query menemukan persis itu, di bawah RLS, dengan peran runtime.
 
 ### Kaitan dengan topologi produksi saat ini (butir cakupan 10)
 
