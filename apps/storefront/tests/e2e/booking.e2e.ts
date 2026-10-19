@@ -32,7 +32,7 @@ const API = `${STUB}/api/v1/commerce/storefront`;
 const SESSION_KEY = "awcms-one:akun:v1";
 const [R1, R2] = booking.resourceIds as [string, string];
 const OFFERING = booking.offering.offeringId;
-const RUPIAH = (digits: string) => new RegExp(`Rp[\\s\\u00a0]?${digits.replace(/\./g, "\\.")}`);
+const RUPIAH = (digits: string) => new RegExp(`Rp[\\s\\u00a0]?${digits.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`);
 
 /** Days from today (UTC, as the stub counts them) as `YYYY-MM-DD`. */
 const day = (offset: number): string => new Date(Date.now() + offset * 86_400_000).toISOString().slice(0, 10);
