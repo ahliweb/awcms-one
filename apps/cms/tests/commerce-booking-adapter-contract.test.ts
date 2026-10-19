@@ -3,13 +3,13 @@
  * module wiring (Issue #378, ADR-0045; access matrix section 9 evidence item 1)
  * - no database. The rules that must not rot silently:
  *
- *   - the fourteen registered permission keys are declared by the module
- *     through the part file, seeded by `sql/1039`, `sql/1041` and `sql/1044`
- *     exactly, and each is enforced by the route meant to need it; the rest of
- *     the access matrix is NOT registered (a key with no enforcing route is the
- *     "permission with no enforcing code" defect class) and the high-risk verbs
- *     it will use are already classed;
- *   - the six adapter tables are the ones the migrations create, each with an
+ *   - the fifteen registered permission keys are declared by the module
+ *     through the part file, seeded by `sql/1039`, `sql/1041`, `sql/1044` and
+ *     `sql/1045` exactly, and each is enforced by the route meant to need it;
+ *     nothing of the access matrix is left unregistered (a key with no enforcing
+ *     route is the "permission with no enforcing code" defect class) and the
+ *     high-risk verbs are classed;
+ *   - the seven adapter tables are the ones the migrations create, each with an
  *     `id` primary key, `tenant_id`, RLS ENABLED and FORCED, a lifecycle and a
  *     subject-data descriptor, and a worker grant;
  *   - the module boundary: commerce reads Booking through the PORT only (no
@@ -43,7 +43,9 @@ const MIGRATIONS = [
   "sql/1037_awcms_commerce_cancellation_policies.sql",
   "sql/1038_awcms_commerce_booking_refund_decisions.sql",
   // Issue #381: ALTERs only (no table), but its re-issued guard must pin search_path too.
-  "sql/1043_awcms_commerce_booking_cancellation_schema.sql"
+  "sql/1043_awcms_commerce_booking_cancellation_schema.sql",
+  // Issue #382: the reschedule record, the no-show columns and one permission.
+  "sql/1045_awcms_commerce_booking_reschedule.sql"
 ];
 
 const ADAPTER_TABLES = [
@@ -52,7 +54,8 @@ const ADAPTER_TABLES = [
   "awcms_commerce_product_deposit_policies",
   "awcms_commerce_cancellation_policies",
   "awcms_commerce_cancellation_policy_windows",
-  "awcms_commerce_booking_refund_decisions"
+  "awcms_commerce_booking_refund_decisions",
+  "awcms_commerce_booking_reschedules"
 ];
 
 const ROUTES: Record<string, string[]> = {
@@ -82,11 +85,19 @@ const ROUTES: Record<string, string[]> = {
     "src/pages/api/v1/commerce/booking/reservations/[id]/cancellation-quote.ts"
   ],
   // Issue #381 (sql/1044).
+  // Issue #382 (sql/1045): the reschedule and its price preview; the no-show
+  // takes the two keys a cancel takes.
+  "commerce.booking_reservation_links.update": [
+    "src/pages/api/v1/commerce/booking/reservations/[id]/reschedule.ts",
+    "src/pages/api/v1/commerce/booking/reservations/[id]/reschedule-quote.ts"
+  ],
   "commerce.booking_reservation_links.cancel": [
-    "src/pages/api/v1/commerce/booking/reservations/[id]/cancel.ts"
+    "src/pages/api/v1/commerce/booking/reservations/[id]/cancel.ts",
+    "src/pages/api/v1/commerce/booking/reservations/[id]/no-show.ts"
   ],
   "commerce.booking_refund_decisions.create": [
-    "src/pages/api/v1/commerce/booking/reservations/[id]/cancel.ts"
+    "src/pages/api/v1/commerce/booking/reservations/[id]/cancel.ts",
+    "src/pages/api/v1/commerce/booking/reservations/[id]/no-show.ts"
   ],
   "commerce.booking_refund_decisions.read": [
     "src/pages/api/v1/commerce/booking/reservations/[id]/refund-decision.ts"
@@ -156,7 +167,7 @@ async function sourceFilesUnder(directory: string): Promise<string[]> {
 }
 
 describe("permissions (evidence item 1)", () => {
-  test("the fourteen keys are declared by the module from the part file, and sql/1039 + sql/1041 + sql/1044 seed exactly them with the same descriptions", async () => {
+  test("the fifteen keys are declared by the module from the part file, and sql/1039 + sql/1041 + sql/1044 + sql/1045 seed exactly them with the same descriptions", async () => {
     for (const key of EXPECTED_KEYS) expect(declared.has(key)).toBe(true);
     const sql =
       (await readFile(
@@ -169,6 +180,11 @@ describe("permissions (evidence item 1)", () => {
       )) +
       (await readFile(
         "sql/1044_awcms_commerce_booking_cancellation_permissions.sql",
+        "utf8"
+      )) +
+      // Issue #382: the reschedule key rides in the migration that creates its table.
+      (await readFile(
+        "sql/1045_awcms_commerce_booking_reschedule.sql",
         "utf8"
       ));
     const seeded = [
@@ -210,14 +226,13 @@ describe("permissions (evidence item 1)", () => {
     }
   });
 
-  test("the rest of the access matrix is not registered yet, and the verbs it will use are already classed high-risk", () => {
+  test("nothing of the access matrix is left unregistered, and the verbs are classed (update is not high-risk, cancel and approve are)", () => {
     for (const key of BOOKING_ADAPTER_PENDING_PERMISSIONS) {
       expect(declared.has(key), key).toBe(false);
     }
-    // Only the reschedule key (#382) is still to come.
-    expect([...BOOKING_ADAPTER_PENDING_PERMISSIONS]).toEqual([
-      "commerce.booking_reservation_links.update"
-    ]);
+    // Issue #382 landed the last key (reschedule); a later issue that proposes a
+    // key before its route exists lists it here until the route lands.
+    expect([...BOOKING_ADAPTER_PENDING_PERMISSIONS]).toEqual([]);
     // Reads, create and update are not high-risk (matrix section 2); cancel and
     // approve are, so the registered keys are classed correctly with no change
     // to the upstream-owned AccessAction union (a high-risk verb makes the
@@ -238,7 +253,7 @@ describe("permissions (evidence item 1)", () => {
 });
 
 describe("tables", () => {
-  test("the migrations create exactly the six adapter tables, each with an id primary key, tenant_id, RLS enabled and forced, and a tenant-isolation policy", async () => {
+  test("the migrations create exactly the seven adapter tables, each with an id primary key, tenant_id, RLS enabled and forced, and a tenant-isolation policy", async () => {
     const created: string[] = [];
     for (const file of MIGRATIONS) {
       const sql = await readFile(file, "utf8");
@@ -294,7 +309,8 @@ describe("tables", () => {
       expect(descriptor.executionMode).toBe("generic");
       expect(descriptor.ownerModuleKey).toBe("commerce");
       expect(descriptor.cursorColumn).toBe(
-        descriptor.tableName === "awcms_commerce_booking_refund_decisions"
+        descriptor.tableName === "awcms_commerce_booking_refund_decisions" ||
+          descriptor.tableName === "awcms_commerce_booking_reschedules"
           ? "created_at"
           : "deleted_at"
       );
@@ -305,10 +321,16 @@ describe("tables", () => {
     const moduleSubject = new Set(
       (commerce.subjectData ?? []).map((d) => d.tableName)
     );
-    const grants = await readFile(
-      "sql/1040_awcms_commerce_booking_adapter_settings_and_worker_grants.sql",
-      "utf8"
-    );
+    // The reschedule record (Issue #382) takes its worker grant in its own migration.
+    const grants =
+      (await readFile(
+        "sql/1040_awcms_commerce_booking_adapter_settings_and_worker_grants.sql",
+        "utf8"
+      )) +
+      (await readFile(
+        "sql/1045_awcms_commerce_booking_reschedule.sql",
+        "utf8"
+      ));
     for (const table of ADAPTER_TABLES) {
       expect(moduleLifecycle.has(table), table).toBe(true);
       expect(moduleSubject.has(table), table).toBe(true);
@@ -322,15 +344,17 @@ describe("tables", () => {
     const named = BOOKING_ADAPTER_SUBJECT_DATA.filter(
       (d) => !d.unreachableBySubject
     ).map((d) => d.tableName);
+    // Issue #382: the reschedule record names the staff member who moved it.
     expect(named.sort()).toEqual([
       "awcms_commerce_booking_refund_decisions",
+      "awcms_commerce_booking_reschedules",
       "awcms_commerce_cancellation_policies"
     ]);
   });
 });
 
 describe("module wiring and boundary", () => {
-  test("the booking feature defaults OFF, and the part files carry the navigation (Issues #385 and #381: three entries, all gated on it) and the five consumers of Issue #380", () => {
+  test("the booking feature defaults OFF, and the part files carry the navigation (Issues #385 and #381: three entries, all gated on it) and the seven consumers of Issues #380 and #382", () => {
     expect(DEFAULT_COMMERCE_FEATURES.booking).toBe(false);
     expect(BOOKING_ADAPTER_NAVIGATION.map((e) => e.path)).toEqual([
       "/admin/commerce-booking-links",
@@ -348,7 +372,10 @@ describe("module wiring and boundary", () => {
       "commerce.booking_expired_order_canceller",
       "commerce.booking_cancelled_order_canceller",
       "commerce.booking_order_cancelled_hold_releaser",
-      "commerce.booking_late_payment_flagger"
+      "commerce.booking_late_payment_flagger",
+      // Issue #382 (ADR-0045 D15): the reconciler and the no-show recorder.
+      "commerce.booking_rescheduled_link_reconciler",
+      "commerce.booking_no_show_decision_recorder"
     ]);
     // The default idempotency (the runtime wraps `handle`); never self-managed.
     for (const entry of BOOKING_ADAPTER_CONSUMERS) {
