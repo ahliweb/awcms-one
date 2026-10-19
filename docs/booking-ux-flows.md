@@ -381,6 +381,8 @@ One field on the store-settings form, in its own legend "Booking": "Booking serv
 
 ### 11.4 Cancellation policy versions (specified here, built by #381)
 
+> **Built** by [#381](https://github.com/ahliweb/awcms-one/issues/381) as `/admin/commerce-booking-policies`; sections 11.4 and 11.5 were followed, with two decisions: a draft is never edited (an edit is a new draft, since the windows table is insert-only), and the confirm and the step-up are native `<dialog>`s.
+
 Purpose: author the windows of section 4.1 as **versions**: a draft is edited, approved by a second person, and only then becomes the active version; earlier versions stay readable and never change, so every refund can be explained by the version that applied.
 
 - **Scope selector.** "Tenant default" or one product. The page shows the **active version** as the section 4.1 table, then **Draft** (editable, with `.create`), then **History** (a read-only `.data-table-scroll` table: version number, scope, approved by and on, windows summary, status pill). History rows have no edit or delete control (absent, not disabled).

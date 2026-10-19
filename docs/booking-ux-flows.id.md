@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](booking-ux-flows.md)
 
-<!-- i18n-source-hash: sha256:5fabf2fdadd77aa1d6853fcea7d0e3d939cb595f0d71beff10e19eb80064dd63 -->
+<!-- i18n-source-hash: sha256:d4cbfe044dbe860c3ee6f894d76f8a57997d3801097b49d8c0405fbe88ea8466 -->
 
 <!-- i18n-source-hash: sha256:0 -->
 
@@ -373,6 +373,8 @@ Tujuan: menetapkan uang muka produk jasa sebagai persen dari total kena pajak, j
 Satu kolom pada formulir pengaturan toko, dalam legendanya sendiri "Booking": "Akun layanan pemesanan (ID pengguna)", sebuah uuid, dengan petunjuk "Pengguna staf yang dicatat Booking untuk checkout tamu dan tindakan otomatis. Harus pengguna aktif toko ini. Kosongkan untuk menghapusnya." Kolom hanya dirender selama fitur `booking` aktif dan hanya untuk pemirsa yang dapat membaca pengaturan; dikirim dengan bilah simpan yang ada dan mengirim `bookingServiceTenantUserId` (uuid, atau `null` untuk menghapus). Pengguna tidak aktif atau milik tenant lain ditolak server dengan galat kolom, ditampilkan di kotak galat formulir.
 
 ### 11.4 Versi kebijakan pembatalan (dispesifikasikan di sini, dibangun oleh #381)
+
+> **Dibangun** oleh [#381](https://github.com/ahliweb/awcms-one/issues/381) sebagai `/admin/commerce-booking-policies`; bagian 11.4 dan 11.5 diikuti, dengan dua keputusan: draf tidak pernah disunting (suntingan adalah draf baru, karena tabel jendela hanya-sisip), dan konfirmasi serta step-up adalah `<dialog>` asli.
 
 Tujuan: menyusun jendela bagian 4.1 sebagai **versi**: draf diedit, disetujui orang kedua, dan baru kemudian menjadi versi aktif; versi lama tetap dapat dibaca dan tidak pernah berubah, sehingga setiap pengembalian dana dapat dijelaskan oleh versi yang berlaku.
 

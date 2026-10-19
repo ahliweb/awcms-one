@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](booking-commerce-adapter-data-model.md)
 
-<!-- i18n-source-hash: sha256:25b0c1c3496da71be1c09b9196b967c6677e2ab97a3fc850d2ece88f4e186d69 -->
+<!-- i18n-source-hash: sha256:37dd11d443fbfc5bea75c7718497f1cd31c8fb2cfbd038bb28d4497eda74cfbb -->
 
 # Adapter booking-commerce — usulan ERD dan kamus data
 
@@ -315,3 +315,17 @@ Diimplementasikan di `sql/1035` (tautan offering dan reservasi), `sql/1036` (keb
 | 8   | 4.4    | kebijakan bawaan tenant dan kebijakan produk                                        | sebagaimana ditentukan; selain itu jendela hanya dapat ditambah selagi kebijakan masih draft, tabel jendela hanya-tambah bagi `awcms_app`, dan aktivasi ditolak kecuali bagian refund tidak pernah naik ketika pemberitahuan menyusut                                                                                                                |
 
 Baru juga, tidak ada di spesifikasi: fitur commerce `booking` (bawaan MATI), pengguna akun layanan per tenant `awcms_commerce_store_settings.booking_service_tenant_user_id` (G3), dan pembacaan penurunan pelanggan di `application/booking-reservation-links.ts` yang dijalankan tes dua-pelanggan-satu-tenant.
+
+## 10. Catatan implementasi (issue #381)
+
+Diimplementasikan di `sql/1043` (skema) dan `sql/1044` (tujuh kunci izin). Penyimpangan dari bagian 4.4, 4.5 dan 9:
+
+| #   | Bagian | Spesifikasi menyatakan                                                        | Diimplementasikan                                                                                                                                                                                                                                                                  |
+| --- | ------ | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | 4.5    | keputusan diidentifikasi hanya oleh `UNIQUE (tenant_id, reservation_link_id)` | menambah `client_key` dan `request_hash` (CHECK berpasangan dan indeks unik parsial): kunci yang sama memutar ulang, kunci sama dengan permintaan lain berkonflik. Kuncinya `bc1:<hash pihak>:<hash Idempotency-Key>`; pihak di-hash sehingga tidak ada id pelanggan yang disimpan |
+| 2   | 4.4    | kebijakan memuat status dan versinya                                          | menambah `created_by_tenant_user_id` dan `approved_by_tenant_user_id` (FK komposit, berindeks). Fungsi penjaga membekukan penyusun dan mengisi penyetuju sekali, saat draf menjadi aktif. Penyusun tidak sama dengan penyetuju adalah aturan SoD tenant, bukan constraint          |
+| 3   | 4.4    | kebijakan "berlaku" untuk sebuah booking                                      | tanpa kolom snapshot: versi diselesaikan PADA SAAT tautan akar rantai reschedule dibuat (`activated_at <= created_at AND (retired_at IS NULL OR retired_at > created_at)`, milik produk lebih dulu daripada bawaan tenant, selain itu `none`)                                      |
+| 4   | 3.x    | `kind` return adalah `refund`, `exchange`, `return`                           | `kind` juga menerima `cancellation`; baris return menerima alasan `booking_cancelled` dan disposisi `not_applicable`; CHECK bucket proyeksi harian return menerima hal yang sama. Validator yang menghadap klien mempertahankan daftar tertutupnya                                 |
+| 5   | 4.5    | `return_id` diisi sekali                                                      | tidak berubah; diisi dalam transaksi yang sama dengan keputusan oleh aktor sistem (pengguna akun layanan)                                                                                                                                                                          |
+
+Rute override mandiri pada draf kontrak (3.6) tidak dibangun: override adalah parameter inline pada pembatalan staf (ADR-0045 D8), dan kode galat untuk override di atas yang sudah dibayar adalah `REFUND_EXCEEDS_PAID`.
