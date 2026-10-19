@@ -13222,8 +13222,8 @@ msgstr "Tetapkan akun layanan pemesanan di Pengaturan toko terlebih dahulu."
 msgid "Booking is turned off for this store."
 msgstr "Pemesanan dimatikan untuk toko ini."
 
-msgid "The offering or the product was not found."
-msgstr "Penawaran atau produk tidak ditemukan."
+msgid "The offering, the product or a resource was not found."
+msgstr "Penawaran, produk, atau resource tidak ditemukan."
 
 msgid "Per night"
 msgstr "Per malam"
@@ -13723,3 +13723,22 @@ msgstr "{notice} atau lebih sebelum check-in: {percent}%"
 
 msgid "{policy}, version {version}"
 msgstr "{policy}, versi {version}"
+
+# booking-adapter #437
+msgid "A resource does not match the offering (stay or time slot)."
+msgstr "Resource tidak sesuai dengan penawaran (menginap atau slot waktu)."
+
+msgid "A resource is inactive. Choose an active one."
+msgstr "Resource tidak aktif. Pilih yang aktif."
+
+msgid "Check the IDs: resource IDs must be different UUIDs, up to 10, separated by commas."
+msgstr "Periksa ID: ID resource harus UUID yang berbeda, paling banyak 10, dipisahkan koma."
+
+msgid "Resource IDs (optional)"
+msgstr "ID resource (opsional)"
+
+msgid "The room type this offering sells: copy the resource IDs from Booking, Resources, separated by commas. Leave empty to offer every active resource of the same kind."
+msgstr "Tipe kamar yang dijual penawaran ini: salin ID resource dari Booking, Resource, dipisahkan koma. Kosongkan untuk menawarkan setiap resource aktif dengan jenis yang sama."
+
+msgid "All active resources"
+msgstr "Semua resource aktif"

@@ -110,6 +110,28 @@ test("the link screen unlinks through the confirm dialog helper, with an idempot
   expect(source).toContain('"PATCH"');
 });
 
+test("the link screen takes and shows the resource(s) the link sells (Issue #437)", () => {
+  const source = readFileSync(
+    SCREENS["/admin/commerce-booking-links"].file,
+    "utf8"
+  );
+  // The optional field, parsed by the shared helper and sent as `resourceIds`.
+  expect(source).toContain('name="resourceIds"');
+  expect(source).toContain("resourceIds: field(data");
+  // The list shows them, with a words-not-colour fallback for a link naming none.
+  expect(source).toContain("link.resourceIds");
+  expect(source).toContain('t("All active resources")');
+  // The new server refusals have their own copy.
+  for (const code of [
+    "RESOURCE_MODE_MISMATCH",
+    "RESOURCE_NOT_ACTIVE",
+    "RESOURCE_NOT_FOUND",
+    "VALIDATION_ERROR"
+  ]) {
+    expect(source).toContain(`${code}:`);
+  }
+});
+
 test("the deposit screen sends the policy, never a computed amount", () => {
   const source = readFileSync(
     SCREENS["/admin/commerce-booking-deposits"].file,
