@@ -1554,3 +1554,14 @@ Issue #380 lets a shopper or staff member hold a Booking slot or stay and get th
 - **Guards**: a product with an active offering link quotes as `unavailable` on the ordinary paths; a booking order that holds money is refused by the generic admin cancel, customer cancel and returns with `409 BOOKING_ORDER_USE_ADAPTER`.
 - **Operational**: the consumers call `BookingPort`, which `awcms_worker` cannot, so `domain-events:dispatch` runs with the application role (ADR-0045 notes, U2).
 - **Not here**: availability and offering reads (upstream U1), the POS variant, cancellation and refunds, reschedule, no-show, check-in, and every screen.
+
+## Booking offering link resources - IMPLEMENTED (Issue #437, epic #280 - [ADR-0045](../../../../../docs/adr/0045-booking-commerce-adapter.md))
+
+An offering link can name the Booking resource(s) it sells, so a tenant that sells several room types from separate resources of one booking mode shows each type only under its own offering.
+
+- **Table** (`sql/1050`): `awcms_commerce_booking_offering_link_resources` (`offering_link_id`, `resource_id`, `sort_order`; composite tenant FKs to the link and to `awcms_booking_resources`; FORCE RLS; no `UPDATE` or `DELETE` for `awcms_app`; worker `SELECT, DELETE`). A child table and not a column because the link's guard trigger keeps the link frozen and one offering can sell several rooms (at most ten).
+- **No row = the #386 fallback (M9).** Every link made before #437, and any link created without `resourceIds`, keeps offering the tenant's active resources of the matching booking mode. A bound link sells only its own live resources, in the admin's order; a bound link whose resources are all inactive is not listed and never falls back to the whole pool.
+- **Link route**: `POST commerce/booking/offering-links` takes an optional `resourceIds`; each must be a live resource of the tenant (`404 RESOURCE_NOT_FOUND`), active (`409 RESOURCE_NOT_ACTIVE`) and in the booking mode the offering's granularity needs (`409 RESOURCE_MODE_MISMATCH`). The body returned by create, get, list and unlink carries `resourceIds`. `BookingPort` has no resource read, so the check is a read-only `SELECT` of `awcms_booking_resources` in `application/booking-offering-links.ts` (an already pinned reader).
+- **Reads and the hold** (`application/booking-storefront-reads.ts`, `application/booking-hold-to-order.ts`): the offerings read lists the bound resources; availability for any other resource is the neutral `404`, and the hold refuses it (`404 RESOURCE_NOT_FOUND`) before any write, on the storefront and the staff route. A client resource id is never trusted.
+- **Changing a binding**: unlink and link again (the rows are written once; past reservations keep pointing at the old link).
+- **Permissions, events, access matrix**: unchanged (the existing `commerce.booking_offering_links.*` keys guard the same routes; the audit event gains `resourceIds`).

@@ -140,6 +140,22 @@ The link from a Booking offering to a commerce product (PRD A1). A reference, no
 **RLS:** generic. No `DELETE` for the app role; an unlink is a status change, so the history of what was sold as what survives.
 **Not here:** no price, no deposit, no policy. Price lives on the product (Q1), deposit on its policy row.
 
+### 4.1a `awcms_commerce_booking_offering_link_resources` (issue #437)
+
+Which Booking resource(s) an offering link sells. A Booking offering does not fix a resource, so a tenant that sells several room types from separate resources of one booking mode needs the link to say which room type each offering is.
+
+| Column             | Type          | Null | Constraint / note                                                                                                         |
+| ------------------ | ------------- | ---- | ------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | `uuid`        | no   | PK                                                                                                                        |
+| `tenant_id`        | `uuid`        | no   | FK `awcms_tenants`                                                                                                        |
+| `offering_link_id` | `uuid`        | no   | Composite FK `(tenant_id, offering_link_id)` to the offering link                                                         |
+| `resource_id`      | `uuid`        | no   | Composite FK `(tenant_id, resource_id)` to `awcms_booking_resources`; `UNIQUE (tenant_id, offering_link_id, resource_id)` |
+| `sort_order`       | `integer`     | no   | `CHECK BETWEEN 0 AND 1000`; the storefront lists the resources in this order, at most ten per link                        |
+| `created_at`       | `timestamptz` | no   | `DEFAULT now()`                                                                                                           |
+| `deleted_at`       | `timestamptz` | yes  | Retention cursor only; this module never sets it                                                                          |
+
+**Why a child table and not a nullable `resource_id` on the link:** the link table is frozen by its guard trigger (identity, offering, product and basis never change, and reservation links point at the row for good); a column would either loosen that guard or be write-once, and one offering often sells more than one room. **Semantics (M9):** a link with no row keeps the fallback (every active resource of the offering's booking mode); a link with rows sells only those, and a bound link whose resources are all inactive is not sold, never the whole pool. **Written once with an active link:** `awcms_app` has no `UPDATE` or `DELETE`, a trigger refuses an update and a row on an unlinked link; to change a binding, unlink and link again. **RLS:** generic, FORCE. The server proves the client's ids (the tenant's own, active, of the mode the offering's granularity needs) before inserting.
+
 ### 4.2 `awcms_commerce_booking_reservation_links` (implemented, see section 9)
 
 The reservation-to-order reference pair (PRD A2, A3, A6, A8). It is the only place the two contexts meet in data. It holds **identifiers and a lifecycle flag, nothing else**.
@@ -311,5 +327,6 @@ Implemented in `sql/1035` (offering and reservation links), `sql/1036` (deposit 
 | 6   | 4.1     | "Booking is read through its port"                                                | `BookingPort` has no offering read (needs upstream port U1). The one read is a `SELECT` of `granularity`, `confirmation_mode` and `status` from `awcms_booking_service_offerings`, tenant-scoped, in `application/booking-offering-links.ts`; commerce imports nothing from the `booking` module and writes none of its tables |
 | 7   | 7.2     | a one-time backfill of `allow_dp`                                                 | none ran: no policy row existed before `sql/1036` and none is invented (G10). A product with `allow_dp = true` and no row keeps the store-wide down-payment rule; the write path keeps the flag in step from now on                                                                                                            |
 | 8   | 4.4     | tenant default and product policies                                               | as specified; additionally a window can only be added while the policy is a draft, the windows table is insert-only for `awcms_app`, and activation is refused unless the refundable share never increases as notice shrinks                                                                                                   |
+| 9   | 4.1     | the link carries no resource (Issue #378)                                         | Issue #437 adds the child table `awcms_commerce_booking_offering_link_resources` (`sql/1050`, section 4.1a) rather than a column on the link: the link's guard trigger keeps it frozen, and one offering can sell several resources. No row keeps the #386 fallback                                                            |
 
 Also new, not in the specification: the `booking` commerce feature (default OFF), the per-tenant service-account user `awcms_commerce_store_settings.booking_service_tenant_user_id` (G3), and the customer-derivation reads in `application/booking-reservation-links.ts` that the two-customers-one-tenant test exercises.
