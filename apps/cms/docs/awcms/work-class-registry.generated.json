@@ -1067,6 +1067,26 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/pos/booking/lookup.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/pos/booking/reservations/[id]/balance-payments.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/pos/booking/reservations/[id]/check-in.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/pos/booking/reservations/[id]/check-out.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/pos/orders/index.ts",
       "workClass": "interactive",
       "source": "factory"

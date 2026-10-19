@@ -14475,6 +14475,274 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/pos/booking/lookup:
+    post:
+      operationId: lookupCommercePosBookingReservation
+      tags:
+        - Commerce
+      summary: "Issue #383 (ADR-0045 D19; booking UX flows 5.1; control C-34). Find ONE booking reservation at the till by its exact code together with the customer's exact phone or e-mail. Gated on `commerce.booking_reservation_links.read`, the tenant's `booking` and `pos` features and a per-actor rate."
+      description: >-
+        The body is `reservationNo` plus exactly one of `phone` and `email`, and
+        nothing else: a name, a prefix, a date or any other key is a `400`, a code
+        alone or an identifier alone finds nothing, and there is no partial
+        search. An unknown code, a code whose customer is somebody else and
+        another tenant's code are ONE neutral `404`, byte for byte. A `POST` so
+        the identifier never lands in a URL or a log; every response is
+        `Cache-Control: no-store`. A per-actor lookup rate answers `429` with
+        `Retry-After`, and wrong guesses draw down a small per-actor budget (a hit
+        gives its unit back). Every lookup is audited (outcome `hit`, `miss` or
+        `throttled`) with a keyed digest of the identifier, never the identifier.
+        The card shows Booking's status and dates, the ledger's balance, the
+        service line the product priced and the contact MASKED; it carries no
+        customer id and no stored reservation state of the POS.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceBookingPosLookup"
+      responses:
+        "200":
+          description: "The reservation card."
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                enum:
+                  - no-store
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceBookingPosReservation"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: "The neutral miss: not found, wrong customer and another tenant's code are indistinguishable."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: "`FEATURE_DISABLED` (`booking` or `pos`)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: "`RATE_LIMITED`: too many lookups, or too many wrong guesses; `Retry-After` says when to try again."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/pos/booking/reservations/{id}/check-in:
+    post:
+      operationId: checkInCommercePosBookingReservation
+      tags:
+        - Commerce
+      summary: "Issue #383 (ADR-0045 D19; controls C-35, C-36). Check a confirmed guest in at the till. `id` is Booking's reservation id. Gated on `commerce.booking_check_ins.create` (separate from check-out and from taking payment), the tenant's `booking`, `pos` and `register` features and an `Idempotency-Key`; the register must have an open session whose current cashier is the caller."
+      description: >-
+        The POS writes no reservation state: the transition is
+        `BookingPort.checkIn` (idempotent; a guest already checked in is a harmless
+        replay). `409 CHECK_IN_TOO_EARLY` before the check-in date. Tenant policy
+        `checkinRequiresSettlement` (default ON, residual R3 - the owner confirms
+        the default): while a balance is owed on the order's ledger the answer is
+        `409 BALANCE_NOT_SETTLED` (details carry `outstanding`) and nothing is
+        written; with the policy OFF the check-in proceeds and the audit row says
+        the balance was waived. The body is the register only.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceBookingPosRegister"
+      responses:
+        "200":
+          description: "Checked in. A replay answers the same body with `replayed: true`."
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                enum:
+                  - no-store
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceBookingPosStay"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED` (`booking`, `pos` or `register`), `REGISTER_SESSION_REQUIRED`, `REGISTER_SESSION_CLOSING`, `NOT_SESSION_CASHIER`, `INVALID_STATE`, `BALANCE_NOT_SETTLED`, `CHECK_IN_TOO_EARLY`, `IDEMPOTENCY_CONFLICT`, or another Booking refusal under its own code."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/pos/booking/reservations/{id}/check-out:
+    post:
+      operationId: checkOutCommercePosBookingReservation
+      tags:
+        - Commerce
+      summary: "Issue #383 (ADR-0045 D19; controls C-35, C-36). Check a checked-in guest out at the till. `id` is Booking's reservation id. Gated on `commerce.booking_check_outs.create`, the tenant's `booking`, `pos` and `register` features and an `Idempotency-Key`; the register must have an open session whose current cashier is the caller."
+      description: >-
+        The transition is `BookingPort.checkOut` (`checked_in` to `completed`;
+        idempotent). The balance still owed is reported and audited, not enforced:
+        the tenant policy of D19 gates the check-in. A stay shortened at check-out
+        is a partial return of the service line started from the order.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceBookingPosRegister"
+      responses:
+        "200":
+          description: "Checked out. A replay answers the same body with `replayed: true`."
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                enum:
+                  - no-store
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceBookingPosStay"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED` (`booking`, `pos` or `register`), `REGISTER_SESSION_REQUIRED`, `REGISTER_SESSION_CLOSING`, `NOT_SESSION_CASHIER`, `INVALID_STATE`, `IDEMPOTENCY_CONFLICT`, or another Booking refusal under its own code."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/pos/booking/reservations/{id}/balance-payments:
+    post:
+      operationId: collectCommercePosBookingBalance
+      tags:
+        - Commerce
+      summary: "Issue #383 (ADR-0045 D19; controls C-35, C-36). Take the outstanding balance of a booking reservation's order at the till. `id` is Booking's reservation id. Gated on `commerce.booking_balance_payments.create` (separate from check-in and check-out), the tenant's `booking`, `pos` and `register` features and an `Idempotency-Key`; the register must have an open session whose current cashier is the caller. No new money mechanism."
+      description: >-
+        The body is the register and explicit `tenders` (cash with change, QRIS,
+        bank transfer, gift card, store credit; split tenders), planned by the POS
+        tender planner and recorded by the ordinary payment ledger: order row
+        locked, `409 OVERPAYMENT` above the balance, stored-value legs drawn in the
+        same transaction, the order released and `order.settled` published by the
+        ledger. The legs are stamped with the caller's open register session, so
+        the money is in that shift's cash-up and the per-register tender report.
+        The balance is READ from the ledger and the service line was priced by the
+        product: a `price`, `balance`, `orderId` or `customerId` in the body is a
+        `400`. `409 NO_BALANCE_DUE` when nothing is owed. A part payment is
+        allowed.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceBookingPosBalancePayment"
+      responses:
+        "200":
+          description: "Balance collected. A replay answers the same body with `replayed: true`."
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                enum:
+                  - no-store
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceBookingPosBalanceCollected"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: "The reservation, the register or a gift card / store credit code was not found (`RESOURCE_NOT_FOUND`, `STORED_VALUE_NOT_FOUND`)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: "`FEATURE_DISABLED` (`booking`, `pos`, `register` or `storedValue`), `REGISTER_SESSION_REQUIRED`, `REGISTER_SESSION_CLOSING`, `NOT_SESSION_CASHIER`, `INVALID_STATE`, `ORDER_NOT_PAYABLE`, `NO_BALANCE_DUE`, `OVERPAYMENT`, `STORED_VALUE_UNAVAILABLE`, `STORED_VALUE_INSUFFICIENT`, `IDEMPOTENCY_CONFLICT`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: "`STORED_VALUE_LOOKUP_THROTTLED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/booking/reservations/{id}/refund-decision:
     get:
       operationId: getCommerceBookingRefundDecision
@@ -17462,6 +17730,9 @@ components:
           type: string
           readOnly: true
           description: "Issue #293 — the tax module profile used in `engine` mode (default `store-default`). Read-only."
+        checkinRequiresSettlement:
+          type: boolean
+          description: "Issue #383 (ADR-0045 D19, residual R3) - whether a booking guest may NOT be checked in at the till while a balance is owed (`409 BALANCE_NOT_SETTLED`). Default true (block); false allows the check-in with the balance still visible. A real column, on the wire only. Absent from a `PUT` leaves the stored value alone. The default is a recommendation the owner confirms."
     CommerceStoreSettingsPublic:
       type: object
       description: The subset a storefront may publish — the contract awcms-one's storefront builds against. Never carries an account number, account holder or QRIS payload.
@@ -21724,6 +21995,233 @@ components:
           type: object
           nullable: true
           description: "The order's settlement as the booking views carry it."
+    CommerceBookingPosLookup:
+      type: object
+      additionalProperties: false
+      description: "Issue #383 (C-34). The reservation's full code together with exactly one of the customer's phone and e-mail. No other key is accepted; there is no search."
+      required:
+        - reservationNo
+      properties:
+        reservationNo:
+          type: string
+          description: "Booking's reservation code (G13), the full code."
+        phone:
+          type: string
+          description: "The customer's phone; normalised to E.164 and compared exactly."
+        email:
+          type: string
+          description: "The customer's e-mail; lower-cased and compared exactly."
+    CommerceBookingPosReservation:
+      type: object
+      description: "Issue #383. The reservation card at the till. The contact is always masked and there is no customer id. `settlement` is read from the order's payment ledger; `serviceLine` is the order line the product priced. `actions` are hints for the screen - every route re-checks the state, the balance and the permission."
+      properties:
+        reservationId:
+          type: string
+          format: uuid
+        reservationNo:
+          type: string
+        status:
+          type: string
+          description: "Booking's reservation status."
+        linkStatus:
+          type: string
+          enum:
+            - active
+            - superseded
+            - released
+        holdExpiresAt:
+          type: string
+          format: date-time
+          nullable: true
+        startsAt:
+          type: string
+          format: date-time
+        endsAt:
+          type: string
+          format: date-time
+        orderId:
+          type: string
+          format: uuid
+        orderCode:
+          type: string
+        orderStatus:
+          type: string
+        guest:
+          type: object
+          properties:
+            name:
+              type: string
+            phoneMasked:
+              type: string
+            emailMasked:
+              type: string
+              nullable: true
+        serviceLine:
+          type: object
+          nullable: true
+          properties:
+            name:
+              type: string
+            quantity:
+              type: integer
+            unitPrice:
+              type: string
+            lineTotal:
+              type: string
+        settlement:
+          type: object
+          properties:
+            total:
+              type: string
+            paid:
+              type: string
+            deposit:
+              type: string
+            balanceDue:
+              type: string
+              description: "The figure the tender entry is held to."
+            paymentStatus:
+              type: string
+        policy:
+          type: object
+          properties:
+            checkInRequiresSettlement:
+              type: boolean
+        actions:
+          type: object
+          properties:
+            canCollectBalance:
+              type: boolean
+            canCheckIn:
+              type: boolean
+            checkInBlockedReason:
+              type: string
+              nullable: true
+              enum:
+                - balance_not_settled
+            canCheckOut:
+              type: boolean
+    CommerceBookingPosRegister:
+      type: object
+      additionalProperties: false
+      description: "Issue #383. Check-in and check-out name the register only; its open session (whose current cashier must be the caller) is resolved on the server."
+      required:
+        - registerId
+      properties:
+        registerId:
+          type: string
+          format: uuid
+    CommerceBookingPosStay:
+      type: object
+      description: "Issue #383. A check-in or check-out. `balanceDue` is what the ledger said was owed at that moment (an allowed check-in with a balance is visible)."
+      properties:
+        replayed:
+          type: boolean
+        reservation:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+            reservationNo:
+              type: string
+            status:
+              type: string
+        balanceDue:
+          type: string
+        registerSessionId:
+          type: string
+          format: uuid
+    CommerceBookingPosBalancePayment:
+      type: object
+      additionalProperties: false
+      description: "Issue #383. The register and explicit tenders. Never a balance, a price, an order or a customer (each is a 400): the server reads the balance from the ledger."
+      required:
+        - registerId
+        - tenders
+      properties:
+        registerId:
+          type: string
+          format: uuid
+        tenders:
+          type: array
+          minItems: 1
+          maxItems: 10
+          description: "At most one `cash` tender; non-cash tenders may repeat."
+          items:
+            type: object
+            required:
+              - tenderType
+              - amount
+            properties:
+              tenderType:
+                type: string
+                enum:
+                  - cash
+                  - manual_qris
+                  - manual_bank_transfer
+                  - gift_card
+                  - store_credit
+              amount:
+                type: string
+                description: "`numeric(14,2)` string, > 0. Cash: handed over (change derived server-side). Others: applied to the balance, never above it."
+              reference:
+                type: string
+                nullable: true
+                maxLength: 100
+              storedValueCode:
+                type: string
+                maxLength: 64
+                description: "Required for `gift_card` / `store_credit`, forbidden otherwise. Never stored, logged, audited, hashed as plaintext or returned."
+    CommerceBookingPosBalanceCollected:
+      type: object
+      description: "Issue #383. The legs written (in order) and the settlement after them, read from the ledger. `change` is the cash to hand back (null without a cash leg)."
+      properties:
+        replayed:
+          type: boolean
+        reservation:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+            reservationNo:
+              type: string
+            status:
+              type: string
+        orderId:
+          type: string
+          format: uuid
+        orderCode:
+          type: string
+        balanceBefore:
+          type: string
+        payments:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+              tenderType:
+                type: string
+              amount:
+                type: string
+              tenderedAmount:
+                type: string
+                nullable: true
+              changeAmount:
+                type: string
+                nullable: true
+        change:
+          type: string
+          nullable: true
+        settlement:
+          $ref: "#/components/schemas/CommerceSettlement"
+        registerSessionId:
+          type: string
+          format: uuid
     CommerceBookingNoShow:
       type: object
       additionalProperties: false

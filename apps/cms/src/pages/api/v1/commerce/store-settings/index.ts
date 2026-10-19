@@ -13,8 +13,10 @@ import {
 } from "../../../../../modules/commerce/application/store-settings-directory";
 import {
   fetchBookingServiceTenantUserId,
+  fetchCheckInRequiresSettlement,
   isActiveTenantUser,
-  saveBookingServiceTenantUserId
+  saveBookingServiceTenantUserId,
+  saveCheckInRequiresSettlement
 } from "../../../../../modules/commerce/application/booking-adapter-settings";
 import { fetchTaxAdapterConfig } from "../../../../../modules/commerce/application/tax-adapter-directory";
 import {
@@ -45,12 +47,14 @@ export const GET = defineTenantRoute({
       settings,
       affiliateCommissionRate,
       taxAdapter,
-      bookingServiceTenantUserId
+      bookingServiceTenantUserId,
+      checkinRequiresSettlement
     ] = await Promise.all([
       fetchStoreSettings(tx, tenantId),
       fetchAffiliateCommissionRate(tx, tenantId),
       fetchTaxAdapterConfig(tx, tenantId),
-      fetchBookingServiceTenantUserId(tx, tenantId)
+      fetchBookingServiceTenantUserId(tx, tenantId),
+      fetchCheckInRequiresSettlement(tx, tenantId)
     ]);
     // Issue #293 (ADR-0039): the tax mode is READ-ONLY here — it is flipped only by
     // the audited cut-over tooling (`commerce:tax:cutover`), never by this PUT.
@@ -58,6 +62,7 @@ export const GET = defineTenantRoute({
       ...settings,
       affiliateCommissionRate,
       bookingServiceTenantUserId,
+      checkinRequiresSettlement,
       taxMode: taxAdapter.mode,
       taxProfileCode: taxAdapter.profileCode
     });
@@ -67,7 +72,8 @@ export const GET = defineTenantRoute({
 /** Body keys backed by real columns of the settings row, not by the jsonb blob. */
 const SIDE_COLUMN_KEYS: ReadonlySet<string> = new Set([
   "affiliateCommissionRate",
-  "bookingServiceTenantUserId"
+  "bookingServiceTenantUserId",
+  "checkinRequiresSettlement"
 ]);
 
 type PreparedSettingsUpdate = {
@@ -75,6 +81,8 @@ type PreparedSettingsUpdate = {
   affiliateCommissionRate: string | null;
   /** `undefined` = leave the stored value alone; `null` = clear it (Issue #378, ADR-0045 G3). */
   bookingServiceTenantUserId: string | null | undefined;
+  /** `undefined` = leave the stored value alone (Issue #383, ADR-0045 D19). */
+  checkinRequiresSettlement: boolean | undefined;
 };
 
 /** `PUT /api/v1/commerce/store-settings` — full replace, never a partial merge (see `domain/store-settings-validation.ts`'s header). `affiliateCommissionRate` (Issue #92) is validated/saved separately from the jsonb blob — see `sql/921`'s header for why it is a real column. */
@@ -150,10 +158,30 @@ export const PUT = defineTenantRoute({
       );
     }
 
+    // Issue #383 (ADR-0045 D19): the check-in policy. Absent leaves the stored
+    // value alone; it is a boolean, never `null` (there is no "unset": the
+    // default is the fail-closed block).
+    const rawCheckIn = record.checkinRequiresSettlement;
+    if (rawCheckIn !== undefined && typeof rawCheckIn !== "boolean") {
+      return fail(
+        400,
+        "VALIDATION_ERROR",
+        "Store settings input is invalid.",
+        {},
+        [
+          {
+            field: "checkinRequiresSettlement",
+            message: "checkinRequiresSettlement must be a boolean."
+          }
+        ]
+      );
+    }
+
     return {
       settings: validation.value,
       affiliateCommissionRate: rateValidation.value,
-      bookingServiceTenantUserId: rawServiceUser as string | null | undefined
+      bookingServiceTenantUserId: rawServiceUser as string | null | undefined,
+      checkinRequiresSettlement: rawCheckIn
     };
   },
   authorize: UPDATE_GUARD,
@@ -200,10 +228,21 @@ export const PUT = defineTenantRoute({
         prepared.bookingServiceTenantUserId
       );
     }
+    if (prepared.checkinRequiresSettlement !== undefined) {
+      await saveCheckInRequiresSettlement(
+        tx,
+        tenantId,
+        prepared.checkinRequiresSettlement
+      );
+    }
     return ok({
       ...saved,
       affiliateCommissionRate: prepared.affiliateCommissionRate,
       bookingServiceTenantUserId: await fetchBookingServiceTenantUserId(
+        tx,
+        tenantId
+      ),
+      checkinRequiresSettlement: await fetchCheckInRequiresSettlement(
         tx,
         tenantId
       )

@@ -186,6 +186,9 @@ export async function resetStoreSettings(
             THEN ${buildDefaultStoreSettings(await fetchTenantName(tx, tenantId))}::jsonb
           ELSE settings
         END,
+        -- Issue #383 (ADR-0045 D19): the check-in policy goes back to its
+        -- (fail-closed) default with the rest, whether the row is kept or purged.
+        checkin_requires_settlement = true,
         updated_at = now()
     WHERE tenant_id = ${tenantId} AND deleted_at IS NULL
     RETURNING tenant_id

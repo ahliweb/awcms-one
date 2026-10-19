@@ -119,6 +119,83 @@ export async function readBookingReservationStatus(
   return rows[0]?.status ?? null;
 }
 
+/** What the till's lookup finds: the link, and the customer the order belongs to (raw; the caller masks the contact). */
+export type PosLookupMatch = {
+  linkId: string;
+  orderId: string;
+  orderItemId: string;
+  reservationId: string;
+  linkStatus: string;
+  guestName: string;
+  guestPhone: string;
+  guestEmail: string | null;
+};
+
+type PosLookupRow = {
+  link_id: string;
+  order_id: string;
+  order_item_id: string;
+  reservation_id: string;
+  link_status: string;
+  guest_name: string;
+  guest_phone: string;
+  guest_email: string | null;
+};
+
+/**
+ * The till's lookup (Issue #383, controls C-34 and C-36): ONE reservation by its
+ * EXACT code AND the customer's EXACT phone or e-mail, in a single statement.
+ * The customer condition is part of the query, so an unknown code, a code whose
+ * customer is somebody else and another tenant's code are one `null` - there is
+ * no second query whose outcome could tell them apart. Equality only (`=`, never
+ * `LIKE`), so there is no partial or prefix search; the caller has already
+ * normalised the phone (E.164) and lower-cased the e-mail.
+ *
+ * The ACTIVE link wins over a superseded or released one (a rescheduled
+ * reservation's old code still finds its history, but cannot be acted on).
+ */
+export async function findReservationLinkForPosLookup(
+  tx: Bun.SQL,
+  tenantId: string,
+  reservationNo: string,
+  identifier: { kind: "phone" | "email"; value: string }
+): Promise<PosLookupMatch | null> {
+  const phone = identifier.kind === "phone" ? identifier.value : null;
+  const email = identifier.kind === "email" ? identifier.value : null;
+  const rows = (await tx`
+    SELECT l.id AS link_id, l.order_id, l.order_item_id, l.reservation_id,
+           l.status AS link_status, c.name AS guest_name, c.phone AS guest_phone,
+           c.email AS guest_email
+    FROM awcms_booking_reservations r
+    JOIN awcms_commerce_booking_reservation_links l
+      ON l.tenant_id = r.tenant_id AND l.reservation_id = r.id
+    JOIN awcms_commerce_orders o
+      ON o.tenant_id = l.tenant_id AND o.id = l.order_id
+    JOIN awcms_commerce_customers c
+      ON c.tenant_id = o.tenant_id AND c.id = o.customer_id
+    WHERE r.tenant_id = ${tenantId}
+      AND r.reservation_no = ${reservationNo}
+      AND (
+        (${phone}::text IS NOT NULL AND c.phone = ${phone}::text)
+        OR (${email}::text IS NOT NULL AND lower(c.email) = ${email}::text)
+      )
+    ORDER BY (l.status = 'active') DESC, l.created_at DESC, l.id DESC
+    LIMIT 1
+  `) as PosLookupRow[];
+  const row = rows[0];
+  if (!row) return null;
+  return {
+    linkId: row.link_id,
+    orderId: row.order_id,
+    orderItemId: row.order_item_id,
+    reservationId: row.reservation_id,
+    linkStatus: row.link_status,
+    guestName: row.guest_name,
+    guestPhone: row.guest_phone,
+    guestEmail: row.guest_email
+  };
+}
+
 export const RECONCILIATION_KINDS = [
   "paid_without_confirm",
   "confirmed_without_deposit",

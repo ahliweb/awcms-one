@@ -658,6 +658,17 @@ export type RecordPaymentAllocationParams = {
   release: ReleaseOrderFn | null;
   releaseNote: string;
   correlationId?: string;
+  /**
+   * Issue #383 (ADR-0028, ADR-0045): the OPEN register session of the till that
+   * takes the balance of a BOOKING order, which carries no session of its own
+   * (only `pos` orders do). The caller has already checked, under the session
+   * row's `FOR SHARE` lock, that the session is open and that the actor is its
+   * current cashier; the leg is stamped with it so the money is in that shift's
+   * cash-up. `sql/1046`'s trigger independently refuses the stamp unless the
+   * leg's source is `pos` and the order has no session and a live reservation
+   * link. Absent, the stamp is the order's own session, as always.
+   */
+  registerSessionId?: string | null;
 };
 
 export type RecordPaymentAllocationOutcome =
@@ -948,15 +959,17 @@ export async function recordPaymentAllocation(
   const actor = actorColumns(params.actor);
   // Issue #284 — a leg recorded while its sale's register session is open
   // belongs to that session's cash-up (see `register-session-stamp.ts`).
-  const registerSessionId = await resolveRegisterSessionStamp(
-    tx,
-    tenantId,
-    header.registerSessionId,
-    // A counter/admin payment into a session that is `closing` would fall
-    // into no cash-up: refuse it (409 REGISTER_SESSION_CLOSING). Gateway and
-    // confirmation legs are not drawer money and are never refused.
-    { rejectClosing: params.source === "pos" || params.source === "admin" }
-  );
+  const registerSessionId =
+    params.registerSessionId ??
+    (await resolveRegisterSessionStamp(
+      tx,
+      tenantId,
+      header.registerSessionId,
+      // A counter/admin payment into a session that is `closing` would fall
+      // into no cash-up: refuse it (409 REGISTER_SESSION_CLOSING). Gateway and
+      // confirmation legs are not drawer money and are never refused.
+      { rejectClosing: params.source === "pos" || params.source === "admin" }
+    ));
 
   // Issue #288 — a stored-value tender locks and checks its account BEFORE any
   // row is written (so a refusal leaves nothing behind), in the order this
