@@ -13787,3 +13787,161 @@ msgstr ""
 
 msgid "{policy}, version {version}"
 msgstr ""
+
+# booking-adapter #382
+
+msgid "A longer stay is billed as a separate order that is paid like any other. A shorter stay queues a refund under the original cancellation policy; it is settled under Returns and refunds."
+msgstr ""
+
+msgid "A shorter stay is refunded only on a fully paid order. Settle the balance first, or cancel and rebook."
+msgstr ""
+
+msgid "Check the dates and try again."
+msgstr ""
+
+msgid "Check the price"
+msgstr ""
+
+msgid "Check-out must be after check-in."
+msgstr ""
+
+msgid "Checking the price…"
+msgstr ""
+
+msgid "Choose the new dates."
+msgstr ""
+
+msgid "Could not mark the reservation no-show. Please try again."
+msgstr ""
+
+msgid "Could not reschedule the reservation. Please try again."
+msgstr ""
+
+msgid "Currently {checkIn} to {checkOut} ({nights} nights). The price of any difference is worked out by the server, never typed here."
+msgstr ""
+
+msgid "Currently {start}. Times are in UTC. The price of any difference is worked out by the server, never typed here."
+msgstr ""
+
+msgid "Double booking"
+msgstr ""
+
+msgid "Enter real dates."
+msgstr ""
+
+msgid "Extra order"
+msgstr ""
+
+msgid "Keep the current dates"
+msgstr ""
+
+msgid "Kept by the policy"
+msgstr ""
+
+msgid "Longer stay"
+msgstr ""
+
+msgid "Mark no-show"
+msgstr ""
+
+msgid "Mark this reservation no-show?"
+msgstr ""
+
+msgid "Marking a no-show closes the reservation and keeps what the policy keeps. No refund is created; any money the policy does not keep stays on the order until staff decide otherwise."
+msgstr ""
+
+msgid "New check-in"
+msgstr ""
+
+msgid "New check-out"
+msgstr ""
+
+msgid "New start (UTC)"
+msgstr ""
+
+msgid "No money moves: a no-show is never refunded."
+msgstr ""
+
+msgid "No-show decision"
+msgstr ""
+
+msgid "No-show rule"
+msgstr ""
+
+msgid "Paid {paid}. The policy ({rule}) keeps {retained}. Nothing is refunded for a no-show; the reservation is closed."
+msgstr ""
+
+msgid "Priced"
+msgstr ""
+
+msgid "Reschedule"
+msgstr ""
+
+msgid "Reschedule the reservation"
+msgstr ""
+
+msgid "Reschedules"
+msgstr ""
+
+msgid "Same length"
+msgstr ""
+
+msgid "Same length ({to} nights). Nothing is priced; only the reservation moves."
+msgstr ""
+
+msgid "Shorter stay"
+msgstr ""
+
+msgid "The extra nights cannot be sold right now: the product is unavailable or no payment method is open."
+msgstr ""
+
+msgid "The guest asked to move"
+msgstr ""
+
+msgid "The guest cannot be reached"
+msgstr ""
+
+msgid "The guest did not arrive"
+msgstr ""
+
+msgid "The new date cannot be in the past."
+msgstr ""
+
+msgid "The property needs to move it"
+msgstr ""
+
+msgid "The reservation does not match this order. An operator must reconcile it first."
+msgstr ""
+
+msgid "These are the reservation's current dates."
+msgstr ""
+
+msgid "This reservation can no longer be marked no-show."
+msgstr ""
+
+msgid "This reservation can no longer be rescheduled."
+msgstr ""
+
+msgid "This reservation cannot be moved that way. Reload the page."
+msgstr ""
+
+msgid "Those dates are not available."
+msgstr ""
+
+msgid "Those nights were sold on a separate order. Cancel and rebook the stay instead."
+msgstr ""
+
+msgid "Too early: a no-show can be marked only after the arrival time plus the grace period."
+msgstr ""
+
+msgid "{from} nights become {to}. No cancellation policy applied to this booking, so nothing is refunded."
+msgstr ""
+
+msgid "{from} nights become {to}. The extra nights are billed as a separate order of {priced}, which the customer pays like any order."
+msgstr ""
+
+msgid "{from} nights become {to}. The removed nights are worth {priced}; the original cancellation policy refunds nothing."
+msgstr ""
+
+msgid "{from} nights become {to}. The removed nights are worth {priced}; the original cancellation policy refunds {refund}, queued under Returns and refunds."
+msgstr ""

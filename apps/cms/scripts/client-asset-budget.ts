@@ -1722,8 +1722,18 @@ export const READER_BUDGET_BYTES = 24_000;
  * catalogue entries the two screens read in both languages. Nothing was
  * duplicated per screen: the step-up prompt is one native `<dialog>` component
  * used by both, and the money / window rules are one module with a unit test.
+ *
+ * **Issue #382 (booking reschedule and no-show)** measured 486,997 B on the build
+ * that carries #381 (the previous constant was 480,800 B; it sets 487,000 B, the
+ * measurement rounded up to the next 100 B, +6,197 B): the reschedule dialog and
+ * the no-show control in the booking panel's script (the same panel, no new
+ * screen and no new route page), the `commerce-booking-reschedule-client` module
+ * (date checks, the server-quote reader, the request builders - one module with a
+ * unit test), the panel's reschedule history table and stylesheet share, and the
+ * 52 new catalogue entries both languages carry. The dialog reuses the override
+ * dialog's styles and the shared confirm dialog; nothing was copied per screen.
  */
-export const APP_BUDGET_BYTES = 480_800;
+export const APP_BUDGET_BYTES = 487_000;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

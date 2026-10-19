@@ -150,6 +150,12 @@ const BOOKING_LINKS_READ = {
   activityCode: "booking_reservation_links",
   action: "read"
 } as const;
+/** Issue #382 - the reschedule key (also the price preview's). */
+const BOOKING_LINKS_UPDATE = {
+  moduleKey: "commerce",
+  activityCode: "booking_reservation_links",
+  action: "update"
+} as const;
 const BOOKING_LINKS_CANCEL = {
   moduleKey: "commerce",
   activityCode: "booking_reservation_links",
@@ -279,13 +285,15 @@ const screen = await loadAdminScreen({
         : NO_RETURNS;
     // Issue #381 - the reservation, its refund quote and the cancel / override
     // controls, only for a booked order, while the feature is on, and only for
-    // a viewer who may read reservations.
+    // a viewer who may read reservations. Issue #382 adds the reschedule and
+    // no-show controls (the update key; the cancel + decision keys).
     const bookingPanel: BookingOrderPanel | null =
       features.booking && (await can(BOOKING_LINKS_READ))
         ? await loadBookingOrderPanel(tx, ssr.tenantId, orderId, {
             canCancel:
               (await can(BOOKING_LINKS_CANCEL)) &&
               (await can(BOOKING_DECISIONS_CREATE)),
+            canReschedule: await can(BOOKING_LINKS_UPDATE),
             canOverride: await can(BOOKING_OVERRIDE_APPROVE),
             canReadDecision: await can(BOOKING_DECISIONS_READ)
           })

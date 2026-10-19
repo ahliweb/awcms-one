@@ -13723,3 +13723,161 @@ msgstr "{notice} atau lebih sebelum check-in: {percent}%"
 
 msgid "{policy}, version {version}"
 msgstr "{policy}, versi {version}"
+
+# booking-adapter #382
+
+msgid "A longer stay is billed as a separate order that is paid like any other. A shorter stay queues a refund under the original cancellation policy; it is settled under Returns and refunds."
+msgstr "Masa menginap yang lebih panjang ditagih sebagai pesanan terpisah yang dibayar seperti pesanan lain. Masa menginap yang lebih pendek mengantrekan pengembalian dana menurut kebijakan pembatalan awal; diselesaikan di Pengembalian barang dan dana."
+
+msgid "A shorter stay is refunded only on a fully paid order. Settle the balance first, or cancel and rebook."
+msgstr "Masa menginap yang lebih pendek dikembalikan dananya hanya pada pesanan yang lunas. Lunasi sisa tagihan terlebih dahulu, atau batalkan lalu pesan ulang."
+
+msgid "Check the dates and try again."
+msgstr "Periksa tanggalnya lalu coba lagi."
+
+msgid "Check the price"
+msgstr "Periksa harga"
+
+msgid "Check-out must be after check-in."
+msgstr "Tanggal check-out harus setelah check-in."
+
+msgid "Checking the price…"
+msgstr "Memeriksa harga…"
+
+msgid "Choose the new dates."
+msgstr "Pilih tanggal baru."
+
+msgid "Could not mark the reservation no-show. Please try again."
+msgstr "Reservasi tidak dapat ditandai tidak hadir. Silakan coba lagi."
+
+msgid "Could not reschedule the reservation. Please try again."
+msgstr "Reservasi tidak dapat dijadwalkan ulang. Silakan coba lagi."
+
+msgid "Currently {checkIn} to {checkOut} ({nights} nights). The price of any difference is worked out by the server, never typed here."
+msgstr "Saat ini {checkIn} sampai {checkOut} ({nights} malam). Harga selisih apa pun dihitung oleh server, tidak pernah diketik di sini."
+
+msgid "Currently {start}. Times are in UTC. The price of any difference is worked out by the server, never typed here."
+msgstr "Saat ini {start}. Waktu dalam UTC. Harga selisih apa pun dihitung oleh server, tidak pernah diketik di sini."
+
+msgid "Double booking"
+msgstr "Pemesanan ganda"
+
+msgid "Enter real dates."
+msgstr "Masukkan tanggal yang sebenarnya."
+
+msgid "Extra order"
+msgstr "Pesanan tambahan"
+
+msgid "Keep the current dates"
+msgstr "Pertahankan tanggal saat ini"
+
+msgid "Kept by the policy"
+msgstr "Ditahan oleh kebijakan"
+
+msgid "Longer stay"
+msgstr "Menginap lebih lama"
+
+msgid "Mark no-show"
+msgstr "Tandai tidak hadir"
+
+msgid "Mark this reservation no-show?"
+msgstr "Tandai reservasi ini tidak hadir?"
+
+msgid "Marking a no-show closes the reservation and keeps what the policy keeps. No refund is created; any money the policy does not keep stays on the order until staff decide otherwise."
+msgstr "Menandai tamu tidak hadir menutup reservasi dan menahan bagian yang ditahan kebijakan. Tidak ada pengembalian dana yang dibuat; uang yang tidak ditahan kebijakan tetap pada pesanan sampai staf memutuskan lain."
+
+msgid "New check-in"
+msgstr "Check-in baru"
+
+msgid "New check-out"
+msgstr "Check-out baru"
+
+msgid "New start (UTC)"
+msgstr "Mulai baru (UTC)"
+
+msgid "No money moves: a no-show is never refunded."
+msgstr "Tidak ada uang yang berpindah: tamu yang tidak hadir tidak pernah dikembalikan dananya."
+
+msgid "No-show decision"
+msgstr "Keputusan tamu tidak hadir"
+
+msgid "No-show rule"
+msgstr "Aturan tamu tidak hadir"
+
+msgid "Paid {paid}. The policy ({rule}) keeps {retained}. Nothing is refunded for a no-show; the reservation is closed."
+msgstr "Dibayar {paid}. Kebijakan ({rule}) menahan {retained}. Tidak ada pengembalian dana untuk tamu yang tidak hadir; reservasi ditutup."
+
+msgid "Priced"
+msgstr "Dihitung"
+
+msgid "Reschedule"
+msgstr "Jadwalkan ulang"
+
+msgid "Reschedule the reservation"
+msgstr "Jadwalkan ulang reservasi"
+
+msgid "Reschedules"
+msgstr "Penjadwalan ulang"
+
+msgid "Same length"
+msgstr "Lama sama"
+
+msgid "Same length ({to} nights). Nothing is priced; only the reservation moves."
+msgstr "Lama menginap sama ({to} malam). Tidak ada yang dihitung; hanya reservasi yang berpindah."
+
+msgid "Shorter stay"
+msgstr "Menginap lebih singkat"
+
+msgid "The extra nights cannot be sold right now: the product is unavailable or no payment method is open."
+msgstr "Malam tambahan tidak dapat dijual saat ini: produk tidak tersedia atau tidak ada metode pembayaran yang terbuka."
+
+msgid "The guest asked to move"
+msgstr "Tamu meminta pindah"
+
+msgid "The guest cannot be reached"
+msgstr "Tamu tidak dapat dihubungi"
+
+msgid "The guest did not arrive"
+msgstr "Tamu tidak datang"
+
+msgid "The new date cannot be in the past."
+msgstr "Tanggal baru tidak boleh di masa lalu."
+
+msgid "The property needs to move it"
+msgstr "Pihak properti perlu memindahkannya"
+
+msgid "The reservation does not match this order. An operator must reconcile it first."
+msgstr "Reservasi tidak cocok dengan pesanan ini. Operator harus merekonsiliasinya terlebih dahulu."
+
+msgid "These are the reservation's current dates."
+msgstr "Ini adalah tanggal reservasi saat ini."
+
+msgid "This reservation can no longer be marked no-show."
+msgstr "Reservasi ini tidak dapat lagi ditandai tidak hadir."
+
+msgid "This reservation can no longer be rescheduled."
+msgstr "Reservasi ini tidak dapat dijadwalkan ulang lagi."
+
+msgid "This reservation cannot be moved that way. Reload the page."
+msgstr "Reservasi ini tidak dapat dipindahkan dengan cara itu. Muat ulang halaman."
+
+msgid "Those dates are not available."
+msgstr "Tanggal itu tidak tersedia."
+
+msgid "Those nights were sold on a separate order. Cancel and rebook the stay instead."
+msgstr "Malam-malam itu dijual pada pesanan terpisah. Batalkan lalu pesan ulang masa menginap ini."
+
+msgid "Too early: a no-show can be marked only after the arrival time plus the grace period."
+msgstr "Terlalu dini: tamu tidak hadir hanya dapat ditandai setelah waktu kedatangan ditambah masa toleransi."
+
+msgid "{from} nights become {to}. No cancellation policy applied to this booking, so nothing is refunded."
+msgstr "{from} malam menjadi {to}. Tidak ada kebijakan pembatalan yang berlaku pada pemesanan ini, sehingga tidak ada yang dikembalikan."
+
+msgid "{from} nights become {to}. The extra nights are billed as a separate order of {priced}, which the customer pays like any order."
+msgstr "{from} malam menjadi {to}. Malam tambahan ditagih sebagai pesanan terpisah sebesar {priced}, yang dibayar pelanggan seperti pesanan lain."
+
+msgid "{from} nights become {to}. The removed nights are worth {priced}; the original cancellation policy refunds nothing."
+msgstr "{from} malam menjadi {to}. Malam yang dihapus bernilai {priced}; kebijakan pembatalan awal tidak mengembalikan apa pun."
+
+msgid "{from} nights become {to}. The removed nights are worth {priced}; the original cancellation policy refunds {refund}, queued under Returns and refunds."
+msgstr "{from} malam menjadi {to}. Malam yang dihapus bernilai {priced}; kebijakan pembatalan awal mengembalikan {refund}, diantrekan di Pengembalian barang dan dana."
