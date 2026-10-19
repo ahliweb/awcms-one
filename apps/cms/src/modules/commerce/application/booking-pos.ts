@@ -62,6 +62,7 @@ import {
   POS_BOOKING_CHECK_IN_AUDIT_ACTION,
   POS_BOOKING_CHECK_OUT_AUDIT_ACTION,
   POS_BOOKING_LOOKUP_AUDIT_ACTION,
+  POS_BOOKING_NOT_SESSION_CASHIER_AUDIT_ACTION,
   POS_LOOKUPS_PER_MINUTE,
   POS_LOOKUP_MISSES_PER_WINDOW,
   POS_LOOKUP_MISS_WINDOW_MS,
@@ -296,24 +297,42 @@ export async function lookupBookingForPos(
     identifierDigest: identifierDigest(tenantId, request.identifier)
   };
 
-  const throttled = async (retryAfterSec: number): Promise<PosLookupResult> => {
-    await recordAuditEvent(tx, {
-      ...base,
-      severity: "warning",
-      message: "Booking lookup at the till refused: too many lookups.",
-      attributes: { outcome: "throttled", ...typed }
-    });
+  // Only the FIRST throttle of a window is audited (security audit of PR #443,
+  // L3): a client hammering a throttled endpoint must not turn the audit log
+  // into the amplifier. The limiter itself decides which one is first - a
+  // one-attempt bucket of the same window length per kind of throttle - so the
+  // choice is as shared across replicas as the limiter is (with Redis down it
+  // fails open and every throttle is audited: more rows, never fewer).
+  const throttled = async (
+    kind: "rate" | "misses",
+    retryAfterSec: number
+  ): Promise<PosLookupResult> => {
+    const first = await checkSharedRateLimit(
+      `${rateKey}:throttle-audit:${kind}`,
+      {
+        maxAttempts: 1,
+        windowMs: kind === "rate" ? 60_000 : POS_LOOKUP_MISS_WINDOW_MS
+      }
+    );
+    if (first.allowed) {
+      await recordAuditEvent(tx, {
+        ...base,
+        severity: "warning",
+        message: "Booking lookup at the till refused: too many lookups.",
+        attributes: { outcome: "throttled", throttle: kind, ...typed }
+      });
+    }
     return { kind: "throttled", retryAfterSec };
   };
   const perMinute = await checkSharedRateLimit(rateKey, {
     maxAttempts: POS_LOOKUPS_PER_MINUTE,
     windowMs: 60_000
   });
-  if (!perMinute.allowed) return throttled(perMinute.retryAfterSec);
+  if (!perMinute.allowed) return throttled("rate", perMinute.retryAfterSec);
   // A lookup is charged to the miss budget up front and the unit is given back
   // on a hit, so only wrong guesses are held to the (small) budget.
   const budget = await checkSharedRateLimit(missKey, missConfig);
-  if (!budget.allowed) return throttled(budget.retryAfterSec);
+  if (!budget.allowed) return throttled("misses", budget.retryAfterSec);
 
   const match = await findReservationLinkForPosLookup(
     tx,
@@ -418,11 +437,23 @@ async function checkReplay(
   };
 }
 
-/** The register must have an OPEN session whose current cashier is the actor; the session is locked FOR SHARE to the end of the transaction. */
+/**
+ * The register must have an OPEN session whose current cashier is the actor; the
+ * session is locked FOR SHARE to the end of the transaction.
+ *
+ * A refusal because the actor is NOT the session's cashier is the one refusal
+ * that is also an event: somebody tried to ring money (or a stay) into another
+ * cashier's register. It is audited at `warning` and the row COMMITS even though
+ * the write is refused - the route returns a refusal as a `Response`, which does
+ * not roll the transaction back (the same way a lookup miss keeps its audit row).
+ * The row carries the register, the attempted operation and the reservation id as
+ * typed, never anything of the customer.
+ */
 async function gateTillSession(
   tx: Bun.SQL,
   ctx: PosContext,
-  registerId: string
+  registerId: string,
+  attempt: { operation: string; reservationId: string }
 ): Promise<{ kind: "ok"; sessionId: string } | Refused> {
   const gate = await gateSaleToRegisterSession(
     tx,
@@ -440,6 +471,24 @@ async function gateTillSession(
     case "session_closing":
       return refuse({ code: "REGISTER_SESSION_CLOSING" });
     case "not_session_cashier":
+      await recordAuditEvent(tx, {
+        tenantId: ctx.tenantId,
+        actorTenantUserId: ctx.actorTenantUserId,
+        moduleKey: AUDIT_MODULE_KEY,
+        action: POS_BOOKING_NOT_SESSION_CASHIER_AUDIT_ACTION,
+        resourceType: "commerce_register",
+        resourceId: registerId,
+        severity: "warning",
+        message:
+          "Booking till write refused: the actor is not the cashier of the register's open session.",
+        attributes: {
+          outcome: "refused",
+          operation: attempt.operation,
+          registerId,
+          reservationId: attempt.reservationId
+        },
+        correlationId: ctx.correlationId
+      });
       return refuse({ code: "NOT_SESSION_CASHIER" });
   }
 }
@@ -530,7 +579,10 @@ async function changeStay(
     return { kind: "replayed", body: replay.body as PosStayBody };
   }
 
-  const session = await gateTillSession(tx, ctx, input.registerId);
+  const session = await gateTillSession(tx, ctx, input.registerId, {
+    operation: verb,
+    reservationId: input.reservationId
+  });
   if (session.kind === "refused") return session;
 
   const resolved = await resolveActiveLink(tx, tenantId, input.reservationId);
@@ -729,7 +781,10 @@ export async function collectBalanceAtPos(
     return { kind: "replayed", body: replay.body as PosBalanceBody };
   }
 
-  const session = await gateTillSession(tx, ctx, input.registerId);
+  const session = await gateTillSession(tx, ctx, input.registerId, {
+    operation: "balance",
+    reservationId: input.reservationId
+  });
   if (session.kind === "refused") return session;
 
   const resolved = await resolveActiveLink(tx, tenantId, input.reservationId);
@@ -806,10 +861,17 @@ export async function collectBalanceAtPos(
     );
   }
 
-  const keyDigest = computeRequestHash({ key: input.idempotencyKey }).slice(
-    0,
-    40
-  );
+  // The source key is the ledger's own dedupe key, shared by the whole tenant
+  // (security audit of PR #443, L2): it must name the ACTOR (and the register
+  // session) as well as the client's Idempotency-Key. The replay record is
+  // already per actor; without the actor here two cashiers who happened to send
+  // the same header would find each other's legs and answer `deduplicated` with
+  // an allocation that is not theirs.
+  const keyDigest = computeRequestHash({
+    key: input.idempotencyKey,
+    actor: actorTenantUserId,
+    registerSessionId: session.sessionId
+  }).slice(0, 40);
   // The legs are written together or not at all: a defect after the first leg of
   // a split payment rolls the whole payment back to here.
   const payments = await tx.savepoint(async (sp) => {

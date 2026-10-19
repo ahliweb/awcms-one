@@ -13953,3 +13953,6 @@ msgstr ""
 
 msgid "When on, the front desk cannot check a guest in while any balance is owed. When off, the guest can be checked in and the balance stays to collect."
 msgstr ""
+
+msgid "Turning this off needs a recent second-factor check and is recorded in the audit log."
+msgstr ""

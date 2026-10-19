@@ -13889,3 +13889,6 @@ msgstr "Wajibkan sisa pembayaran lunas sebelum check-in"
 
 msgid "When on, the front desk cannot check a guest in while any balance is owed. When off, the guest can be checked in and the balance stays to collect."
 msgstr "Jika aktif, resepsionis tidak dapat meng-check-in tamu selama masih ada sisa pembayaran. Jika nonaktif, tamu dapat di-check-in dan sisa pembayaran tetap perlu ditagih."
+
+msgid "Turning this off needs a recent second-factor check and is recorded in the audit log."
+msgstr "Menonaktifkan ini memerlukan verifikasi faktor kedua yang baru dan dicatat dalam log audit."

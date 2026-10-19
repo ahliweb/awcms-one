@@ -2774,7 +2774,7 @@ paths:
       operationId: updateCommerceStoreSettings
       tags:
         - Commerce
-      summary: Replace the tenant's store settings (Issue 26). Gated on settings.update. Unknown keys are rejected; the audit event names the changed SECTIONS, never a bank account.
+      summary: Replace the tenant's store settings (Issue 26). Gated on settings.update. Unknown keys are rejected; the audit event names the changed SECTIONS, never a bank account. Turning `checkinRequiresSettlement` from true to false needs a fresh step-up (`403 STEP_UP_REQUIRED`, nothing written); any change of that value is audited as `commerce.booking_pos.check_in_policy_changed`.
       requestBody:
         required: true
         content:
@@ -2800,7 +2800,11 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          $ref: "#/components/responses/Forbidden"
+          description: "`FORBIDDEN`, or `STEP_UP_REQUIRED` (the body turns `checkinRequiresSettlement` from true to false without a fresh step-up; nothing is written)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
     delete:
       operationId: resetCommerceStoreSettings
       tags:
@@ -14603,7 +14607,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: "`FEATURE_DISABLED` (`booking`, `pos` or `register`), `REGISTER_SESSION_REQUIRED`, `REGISTER_SESSION_CLOSING`, `NOT_SESSION_CASHIER`, `INVALID_STATE`, `BALANCE_NOT_SETTLED`, `CHECK_IN_TOO_EARLY`, `IDEMPOTENCY_CONFLICT`, or another Booking refusal under its own code."
+          description: "`FEATURE_DISABLED` (`booking`, `pos` or `register`), `REGISTER_SESSION_REQUIRED`, `REGISTER_SESSION_CLOSING`, `NOT_SESSION_CASHIER` (audited as a warning), `INVALID_STATE`, `BALANCE_NOT_SETTLED`, `CHECK_IN_TOO_EARLY`, `IDEMPOTENCY_CONFLICT`, or another Booking refusal under its own code."
           content:
             application/json:
               schema:
@@ -14662,7 +14666,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: "`FEATURE_DISABLED` (`booking`, `pos` or `register`), `REGISTER_SESSION_REQUIRED`, `REGISTER_SESSION_CLOSING`, `NOT_SESSION_CASHIER`, `INVALID_STATE`, `IDEMPOTENCY_CONFLICT`, or another Booking refusal under its own code."
+          description: "`FEATURE_DISABLED` (`booking`, `pos` or `register`), `REGISTER_SESSION_REQUIRED`, `REGISTER_SESSION_CLOSING`, `NOT_SESSION_CASHIER` (audited as a warning), `INVALID_STATE`, `IDEMPOTENCY_CONFLICT`, or another Booking refusal under its own code."
           content:
             application/json:
               schema:
@@ -14732,7 +14736,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "409":
-          description: "`FEATURE_DISABLED` (`booking`, `pos`, `register` or `storedValue`), `REGISTER_SESSION_REQUIRED`, `REGISTER_SESSION_CLOSING`, `NOT_SESSION_CASHIER`, `INVALID_STATE`, `ORDER_NOT_PAYABLE`, `NO_BALANCE_DUE`, `OVERPAYMENT`, `STORED_VALUE_UNAVAILABLE`, `STORED_VALUE_INSUFFICIENT`, `IDEMPOTENCY_CONFLICT`."
+          description: "`FEATURE_DISABLED` (`booking`, `pos`, `register` or `storedValue`), `REGISTER_SESSION_REQUIRED`, `REGISTER_SESSION_CLOSING`, `NOT_SESSION_CASHIER` (audited as a warning), `INVALID_STATE`, `ORDER_NOT_PAYABLE`, `NO_BALANCE_DUE`, `OVERPAYMENT`, `STORED_VALUE_UNAVAILABLE`, `STORED_VALUE_INSUFFICIENT`, `IDEMPOTENCY_CONFLICT`."
           content:
             application/json:
               schema:
@@ -17732,7 +17736,7 @@ components:
           description: "Issue #293 — the tax module profile used in `engine` mode (default `store-default`). Read-only."
         checkinRequiresSettlement:
           type: boolean
-          description: "Issue #383 (ADR-0045 D19, residual R3) - whether a booking guest may NOT be checked in at the till while a balance is owed (`409 BALANCE_NOT_SETTLED`). Default true (block); false allows the check-in with the balance still visible. A real column, on the wire only. Absent from a `PUT` leaves the stored value alone. The default is a recommendation the owner confirms."
+          description: "Issue #383 (ADR-0045 D19, residual R3) - whether a booking guest may NOT be checked in at the till while a balance is owed (`409 BALANCE_NOT_SETTLED`). Default true (block); false allows the check-in with the balance still visible. A real column, on the wire only. Absent from a `PUT` leaves the stored value alone. Turning it from true to false is a loosening of a money control: it needs a fresh step-up (`403 STEP_UP_REQUIRED`) and every change is audited (`commerce.booking_pos.check_in_policy_changed`, `warning` when turned off). The default is a recommendation the owner confirms."
     CommerceStoreSettingsPublic:
       type: object
       description: The subset a storefront may publish — the contract awcms-one's storefront builds against. Never carries an account number, account holder or QRIS payload.

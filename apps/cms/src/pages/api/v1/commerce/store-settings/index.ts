@@ -12,12 +12,15 @@ import {
   saveStoreSettings
 } from "../../../../../modules/commerce/application/store-settings-directory";
 import {
+  auditCheckInPolicyChange,
   fetchBookingServiceTenantUserId,
   fetchCheckInRequiresSettlement,
   isActiveTenantUser,
+  lockCheckInRequiresSettlement,
   saveBookingServiceTenantUserId,
   saveCheckInRequiresSettlement
 } from "../../../../../modules/commerce/application/booking-adapter-settings";
+import { requireStepUp } from "../../../../../modules/identity-access/application/mfa-session-assurance";
 import { fetchTaxAdapterConfig } from "../../../../../modules/commerce/application/tax-adapter-directory";
 import {
   validateStoreSettingsInput,
@@ -185,7 +188,7 @@ export const PUT = defineTenantRoute({
     };
   },
   authorize: UPDATE_GUARD,
-  handler: async ({ tx, tenantId, auth, prepared, locals }) => {
+  handler: async ({ tx, tenantId, auth, prepared, locals, tokenHash, now }) => {
     // Checked BEFORE any write: a returned 4xx after a write would commit it.
     if (
       typeof prepared.bookingServiceTenantUserId === "string" &&
@@ -208,6 +211,26 @@ export const PUT = defineTenantRoute({
           }
         ]
       );
+    }
+    // Issue #383 (ADR-0045 D19; security audit of PR #443, M1): turning the
+    // check-in policy OFF (a balance no longer blocks a check-in) is a
+    // loosening of a money control, so it needs a FRESH step-up - the same
+    // platform gate as a refund override and a cancellation-policy approval,
+    // `403 STEP_UP_REQUIRED` and nothing written otherwise - and is audited
+    // either way it flips. The value is read under the settings row's lock so the
+    // decision and the audited `from` cannot be overtaken by a concurrent PUT.
+    let checkInPolicyChange:
+      { from: boolean; to: boolean; stepUpAt: Date | null } | undefined;
+    if (prepared.checkinRequiresSettlement !== undefined) {
+      const from = await lockCheckInRequiresSettlement(tx, tenantId);
+      const to = prepared.checkinRequiresSettlement;
+      let stepUpAt: Date | null = null;
+      if (from && !to) {
+        const stepUp = await requireStepUp(tx, tenantId, tokenHash, now);
+        if (!stepUp.ok) return stepUp.denied;
+        stepUpAt = stepUp.session.steppedUpAt;
+      }
+      checkInPolicyChange = { from, to, stepUpAt };
     }
     const saved = await saveStoreSettings(
       tx,
@@ -234,6 +257,14 @@ export const PUT = defineTenantRoute({
         tenantId,
         prepared.checkinRequiresSettlement
       );
+    }
+    if (checkInPolicyChange) {
+      await auditCheckInPolicyChange(tx, {
+        tenantId,
+        actorTenantUserId: auth.context.tenantUserId,
+        ...checkInPolicyChange,
+        correlationId: locals.correlationId
+      });
     }
     return ok({
       ...saved,

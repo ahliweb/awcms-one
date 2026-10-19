@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:07eea26c36156b75d8ed5e5c2025b08f3258a50b2b9dfedf5a1fd2b9995091ac -->
+<!-- i18n-source-hash: sha256:77c11ad39c84db52d4d327fb3131445b8d87964898e09275d9c393d59dd03911 -->
 
 # Skema basis data
 
@@ -570,7 +570,7 @@ Enam tabel FORCE-RLS (kebijakan isolasi tenant dengan `WITH CHECK`, foreign key 
 
 ### Tambahan booking di kasir (`sql/1046`, issue #383)
 
-- **Tanpa tabel baru.** POS tidak menyimpan status reservasi atau saldo; buktinya adalah log audit (`commerce.booking_pos.lookup`, `.check_in`, `.check_out`, `.balance_collected`) dan buku besar pembayaran.
+- **Tanpa tabel baru.** POS tidak menyimpan status reservasi atau saldo; buktinya adalah log audit (`commerce.booking_pos.lookup`, `.check_in`, `.check_out`, `.balance_collected`, `.not_session_cashier`, `.check_in_policy_changed`) dan buku besar pembayaran.
 - **`awcms_commerce_store_settings.checkin_requires_settlement boolean NOT NULL DEFAULT true`** (ADR-0045 D19): blokir check-in selama ada sisa terutang. Tenant tanpa baris hidup membaca `true`; reset pengaturan mengembalikannya ke `true`.
-- **`awcms_commerce_payment_allocations_register_guard()`** diterbitkan ulang (`search_path` dipatok): leg pembayaran bersumber `pos`, pada pesanan tanpa sesi register sendiri dan dengan tautan reservasi AKTIF, boleh menyebut sesi register TERBUKA mana pun. Setiap pembayaran lain tetap menyebut sesi pesanannya sendiri; pembalikan tetap memakai aturan sql/974.
+- **`awcms_commerce_payment_allocations_register_guard()`** diterbitkan ulang (`search_path` dipatok): leg pembayaran bersumber `pos`, pada pesanan tanpa sesi register sendiri dan dengan tautan reservasi AKTIF, yang dicatat oleh pengguna tenant (`actor_kind = 'tenant_user'`) yang merupakan kasir SAAT INI dari sesi register `open` yang disebut, boleh menyebutnya (audit PR #443, L1: sebelumnya sesi terbuka mana pun milik tenant diterima). Setiap pembayaran lain tetap menyebut sesi pesanannya sendiri; pembalikan tetap memakai aturan sql/974.
 - **`sql/1046`** menyemai `commerce.booking_check_ins.create`, `commerce.booking_check_outs.create` dan `commerce.booking_balance_payments.create`.

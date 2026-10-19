@@ -568,7 +568,7 @@ Six FORCE-RLS tables (tenant-isolation policy with `WITH CHECK`, composite `(ten
 
 ### Booking at the till additions (`sql/1046`, issue #383)
 
-- **No new table.** The POS keeps no reservation or balance state; the evidence is the audit log (`commerce.booking_pos.lookup`, `.check_in`, `.check_out`, `.balance_collected`) and the payment ledger.
+- **No new table.** The POS keeps no reservation or balance state; the evidence is the audit log (`commerce.booking_pos.lookup`, `.check_in`, `.check_out`, `.balance_collected`, `.not_session_cashier`, `.check_in_policy_changed`) and the payment ledger.
 - **`awcms_commerce_store_settings.checkin_requires_settlement boolean NOT NULL DEFAULT true`** (ADR-0045 D19): block a check-in while a balance is owed. A tenant with no live row reads `true`; a settings reset sets it back to `true`.
-- **`awcms_commerce_payment_allocations_register_guard()`** is re-issued (`search_path` pinned): a payment leg whose `source` is `pos`, on an order with no register session of its own and an ACTIVE reservation link, may name any OPEN register session. Every other payment still names its order's own session; reversals keep the sql/974 rule.
+- **`awcms_commerce_payment_allocations_register_guard()`** is re-issued (`search_path` pinned): a payment leg whose `source` is `pos`, on an order with no register session of its own and an ACTIVE reservation link, recorded by a tenant user (`actor_kind = 'tenant_user'`) who is the CURRENT cashier of the named `open` register session, may name it (the PR #443 audit, L1: any open session of the tenant used to be accepted). Every other payment still names its order's own session; reversals keep the sql/974 rule.
 - **`sql/1046`** seeds `commerce.booking_check_ins.create`, `commerce.booking_check_outs.create` and `commerce.booking_balance_payments.create`.

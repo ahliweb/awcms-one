@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](booking-ux-flows.md)
 
-<!-- i18n-source-hash: sha256:767d0c3619c689d4990757b3fa40bf6e54f02b7da8413678eb49974b0109443f -->
+<!-- i18n-source-hash: sha256:e17e9dfc6e48f18a1ced3bd225613d240176dbe1287d2d0855a71864d5a63311 -->
 
 <!-- i18n-source-hash: sha256:0 -->
 
@@ -329,7 +329,7 @@ Kontrol C-25 sampai C-41 berasal dari adendum model ancaman ([#354](https://gith
 
 ## 10. Keputusan yang belum dicatat (asumsi untuk dikonfirmasi)
 
-1. **Check-in dengan sisa belum dibayar**: diselesaikan oleh [ADR-0045](adr/0045-booking-commerce-adapter.id.md) D19. Pengaturan tenant `checkin_requires_settlement` (bawaan `true`: diblokir sampai sisa lunas; `false`: diizinkan, sisa tetap terlihat) ditegakkan server dengan `BALANCE_NOT_SETTLED`; bagian 5.1 menunjukkan kedua varian. Issue #383 membalik bawaan yang direkomendasikan dari izinkan menjadi blokir (gagal tertutup); pemilik mengonfirmasinya sebelum issue itu digabung.
+1. **Check-in dengan sisa belum dibayar**: diselesaikan oleh [ADR-0045](adr/0045-booking-commerce-adapter.id.md) D19. Pengaturan tenant `checkin_requires_settlement` (bawaan `true`: diblokir sampai sisa lunas; `false`: diizinkan, sisa tetap terlihat) ditegakkan server dengan `BALANCE_NOT_SETTLED`; bagian 5.1 menunjukkan kedua varian. Issue #383 membalik bawaan yang direkomendasikan dari izinkan menjadi blokir (gagal tertutup); pemilik mengonfirmasinya sebelum issue itu digabung. Mengubah pengaturan dari `true` ke `false` pada layar pengaturan commerce meminta kode autentikator (dialog step-up bersama) dan setiap perubahan diaudit.
 2. **Panjang hold dan aturan perpanjangan**: hitung mundur menampilkan apa pun yang ditetapkan server; angka 15 menit dalam teks hanya ilustrasi, dan apakah satu perpanjangan diizinkan adalah keputusan Booking/adapter.
 3. **Stepper tamu/unit dan menginap multi-unit**: penginapan berada pada satu unit di v1 (ADR-0135 upstream `awcms` bagian 4); pemesanan multi-kamar tidak dispesifikasikan di sini.
 4. **Nama rute** adalah usulan; implementer fase 1 menetapkannya dan memperbarui [`routing.md`](routing.md) serta matriks profil dalam perubahan yang sama.

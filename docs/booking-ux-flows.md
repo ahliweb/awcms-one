@@ -325,7 +325,7 @@ Controls C-25 to C-41 come from the threat-model addendum ([#354](https://github
 
 ## 10. Decisions not recorded (assumptions to confirm)
 
-1. **Check-in with an unpaid balance**: resolved by [ADR-0045](adr/0045-booking-commerce-adapter.md) D19. A tenant setting `checkin_requires_settlement` (default `true`: blocked until the balance is paid; `false`: allowed, balance stays visible) is enforced by the server with `BALANCE_NOT_SETTLED`; section 5.1 shows both variants. Issue #383 flipped the recommended default from allow to block (fail closed); the owner confirms it before that issue merges.
+1. **Check-in with an unpaid balance**: resolved by [ADR-0045](adr/0045-booking-commerce-adapter.md) D19. A tenant setting `checkin_requires_settlement` (default `true`: blocked until the balance is paid; `false`: allowed, balance stays visible) is enforced by the server with `BALANCE_NOT_SETTLED`; section 5.1 shows both variants. Issue #383 flipped the recommended default from allow to block (fail closed); the owner confirms it before that issue merges. Turning the setting from `true` to `false` on the commerce settings screen asks for the authenticator code (the shared step-up dialog) and every change is audited.
 2. **Hold length and the extension rule**: the countdown shows whatever the server sets; the 15-minute figure in copy is illustrative, and whether one extension is allowed is a Booking/adapter decision.
 3. **Guests/units stepper and multi-unit stays**: a stay is on one unit in v1 (upstream `awcms` ADR-0135 section 4); multi-room bookings are not specified here.
 4. **Route names** are proposals; the phase-1 implementer fixes them and updates [`routing.md`](routing.md) and the profile matrix in the same change.

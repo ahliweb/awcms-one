@@ -51,6 +51,21 @@ export const POS_BOOKING_CHECK_OUT_AUDIT_ACTION =
   "commerce.booking_pos.check_out";
 export const POS_BOOKING_BALANCE_AUDIT_ACTION =
   "commerce.booking_pos.balance_collected";
+/**
+ * A write at the till refused because the actor is not the CURRENT CASHIER of
+ * the register's open session - an attempt to ring money (or a stay) into
+ * somebody else's shift (C-35). Audited at `warning` even though the write is
+ * refused.
+ */
+export const POS_BOOKING_NOT_SESSION_CASHIER_AUDIT_ACTION =
+  "commerce.booking_pos.not_session_cashier";
+/**
+ * The tenant's check-in policy (`checkinRequiresSettlement`) was flipped through
+ * the store settings. `warning` when the new value is `false` (a balance no
+ * longer blocks a check-in), `info` when it is turned back on.
+ */
+export const POS_BOOKING_CHECK_IN_POLICY_AUDIT_ACTION =
+  "commerce.booking_pos.check_in_policy_changed";
 
 /** Lookups per actor per minute, hit or miss. */
 export const POS_LOOKUPS_PER_MINUTE = 30;

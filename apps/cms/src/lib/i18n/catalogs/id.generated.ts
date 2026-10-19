@@ -3945,6 +3945,7 @@ export const ID_CATALOG: CompiledCatalog = {
   "Turn them on under Features in the store settings.": ["Aktifkan di Fitur pada pengaturan toko."],
   "Turning a kind off stops new cards and top-ups; value already issued stays redeemable.": ["Mematikan suatu jenis menghentikan kartu baru dan pengisian saldo; nilai yang sudah diterbitkan tetap dapat ditukar."],
   "Turning it off unlinks every staff member's chat and erases the stored chat ids. Staff must link again if it is turned back on.": ["Mematikannya akan memutus tautan chat setiap staf dan menghapus id chat yang tersimpan. Staf harus menautkan ulang jika dinyalakan kembali."],
+  "Turning this off needs a recent second-factor check and is recorded in the audit log.": ["Menonaktifkan ini memerlukan verifikasi faktor kedua yang baru dan dicatat dalam log audit."],
   "Twitter site handle": ["Handle situs Twitter"],
   "Two separate, source-labelled feeds: what an operator did in AWCMS (control-plane actor/action events), and what the host itself reported doing (remote OMES execution and reconciliation evidence). They are never merged into one undifferentiated list.": ["Dua umpan terpisah berlabel sumber: apa yang dilakukan operator di AWCMS (peristiwa aktor/aksi control-plane), dan apa yang dilaporkan host itu sendiri (bukti eksekusi dan rekonsiliasi OMES jarak jauh). Keduanya tidak pernah digabung menjadi satu daftar yang tidak terbedakan."],
   "Two windows cannot have the same notice.": ["Dua jendela tidak boleh memiliki pemberitahuan yang sama."],

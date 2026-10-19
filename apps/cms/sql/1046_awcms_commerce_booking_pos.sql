@@ -54,14 +54,22 @@
 -- (C-35). The guard is relaxed by exactly one case:
 --
 --   a payment leg whose source is `pos`, on an order with NO register session of
---   its own and an ACTIVE booking reservation link, may name any OPEN session.
+--   its own and an ACTIVE booking reservation link, recorded by a TENANT USER
+--   (`actor_kind = 'tenant_user'`) who is the CURRENT CASHIER of the named
+--   session, which must be `open`.
+--
+-- The cashier binding is enforced HERE and not only in the application (the
+-- security audit of PR #443, finding L1): a guard that accepted any open session
+-- of the tenant would let a code path, a script or a future route stamp money
+-- into somebody else's shift, so the variance it causes lands on the wrong
+-- cashier or hides a shortage. The application still locks the session row
+-- (`gateSaleToRegisterSession`) so a close cannot slip in between.
 --
 -- Everything else stays as strict as before: the session must be `open` at the
 -- insert, every other payment still names its order's own session, a reversal
--- keeps the sql/974 rule. Who may use the session (its current cashier) is
--- checked by the application under the session-row lock. `CREATE OR REPLACE`
--- resets a function's settings, so `search_path` is pinned in the definition
--- (the gate `db:function-search-path:check`, sql/1032).
+-- keeps the sql/974 rule. `CREATE OR REPLACE` resets a function's settings, so
+-- `search_path` is pinned in the definition (the gate
+-- `db:function-search-path:check`, sql/1032).
 
 INSERT INTO awcms_permissions (module_key, activity_code, action, description)
 VALUES
@@ -95,15 +103,25 @@ BEGIN
     WHERE tenant_id = NEW.tenant_id AND id = NEW.order_id;
     IF order_session IS DISTINCT FROM NEW.register_session_id THEN
       -- The one exception (Issue #383): the balance of a booking order taken at
-      -- the till. The order has no session of its own and a live reservation link.
+      -- the till. The order has no session of its own and a live reservation
+      -- link, and the leg is recorded by the named session's own open cashier.
       booking_balance := NEW.source = 'pos'
         AND order_session IS NULL
+        AND NEW.actor_kind = 'tenant_user'
         AND EXISTS (
           SELECT 1
           FROM awcms_commerce_booking_reservation_links l
           WHERE l.tenant_id = NEW.tenant_id
             AND l.order_id = NEW.order_id
             AND l.status = 'active'
+        )
+        AND EXISTS (
+          SELECT 1
+          FROM awcms_commerce_register_sessions s
+          WHERE s.tenant_id = NEW.tenant_id
+            AND s.id = NEW.register_session_id
+            AND s.status = 'open'
+            AND s.current_cashier_tenant_user_id = NEW.actor_tenant_user_id
         );
       IF NOT COALESCE(booking_balance, false) THEN
         RAISE EXCEPTION

@@ -1741,8 +1741,18 @@ export const READER_BUDGET_BYTES = 24_000;
  * catalogue entries per language and the checkbox's value in the screen's save
  * script. The cashier / front-desk SCREENS are Issue #388's and will carry their
  * own raise.
+ *
+ * **Issue #383 security-audit fixes (PR #443)** measured 487,465 B on the same
+ * build (the previous constant was 487,200 B; it sets 487,500 B, the measurement
+ * rounded up to the next 100 B, +346 B): the commerce settings screen now sends
+ * its save through the shared step-up dialog (`sendWithStepUp`,
+ * `promptStepUpCode`, `pickRefusalMessage` - the same modules the booking
+ * policies screen already ships, so only the screen's own call site is new), one
+ * hint line and the two step-up outcome messages, which reuse existing catalogue
+ * entries. Turning the check-in policy off is a loosening of a money control and
+ * asks for a second factor, like a refund override.
  */
-export const APP_BUDGET_BYTES = 487_200;
+export const APP_BUDGET_BYTES = 487_500;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

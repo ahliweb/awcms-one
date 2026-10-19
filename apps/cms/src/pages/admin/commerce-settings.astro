@@ -17,6 +17,7 @@
  */
 import AdminLayout from "../../layouts/AdminLayout.astro";
 import CommerceSettingsSaveBar from "../../components/CommerceSettingsSaveBar.astro";
+import CommerceStepUpDialog from "../../components/CommerceStepUpDialog.astro";
 import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
@@ -117,6 +118,13 @@ const screen = await loadAdminScreen({
       }
     );
   }
+});
+
+// The step-up outcomes of a save that turned the check-in policy off (Issue
+// #383); the client script picks one by the error code.
+const stepUpMessages = JSON.stringify({
+  STEP_UP_CANCELLED: t("Confirmation cancelled. Nothing was changed."),
+  STEP_UP_FAILED: t("That code was not accepted. Nothing was changed.")
 });
 
 const canRead = screen.state !== "denied";
@@ -302,6 +310,7 @@ const COURIER_OPTIONS = [
           id="store-settings-error"
           class="admin-create-error"
           role="alert"
+          data-errors={stepUpMessages}
           hidden
         />
         <p id="store-settings-success" class="state-notice" hidden>
@@ -416,6 +425,11 @@ const COURIER_OPTIONS = [
             <p id="settings-checkinRequiresSettlement-hint" class="form-hint">
               {t(
                 "When on, the front desk cannot check a guest in while any balance is owed. When off, the guest can be checked in and the balance stays to collect."
+              )}
+            </p>
+            <p class="form-hint">
+              {t(
+                "Turning this off needs a recent second-factor check and is recorded in the audit log."
               )}
             </p>
           </>
@@ -738,6 +752,15 @@ const COURIER_OPTIONS = [
       </form>
     </section>
   )}
+
+  {/* Issue #383 (security audit of PR #443, M1): turning the check-in policy
+      off needs a fresh step-up. Outside the form: the dialog is its own form. */}
+  {canUpdate && commerceFeatures.booking && (
+    <CommerceStepUpDialog
+      locale={Astro.locals.locale}
+      id="store-settings-stepup"
+    />
+  )}
 </AdminLayout>
 
 <script>
@@ -754,6 +777,11 @@ const COURIER_OPTIONS = [
     commerceSaveBarButton,
     initCommerceSettingsSaveBars
   } from "../../lib/ui/commerce-settings-save-bar-client";
+  import { pickRefusalMessage } from "../../lib/ui/commerce-booking-client";
+  import {
+    promptStepUpCode,
+    sendWithStepUp
+  } from "../../lib/ui/commerce-stepup-client";
 
   const el = (id: string) => document.getElementById(id);
   const val = (id: string) =>
@@ -820,7 +848,11 @@ const COURIER_OPTIONS = [
       submit.textContent = "Saving…";
     }
 
-    const result = await sendJson("PUT", "/api/v1/commerce/store-settings", {
+    // Turning the check-in policy off is refused with `STEP_UP_REQUIRED` and
+    // nothing written until the operator proves a second factor; the SAME body is
+    // then sent once more (a PUT needs no Idempotency-Key). Any other save never
+    // sees the dialog.
+    const settingsBody = {
       storeName: val("settings-storeName"),
       tagline: orNull(val("settings-tagline")),
       logoMediaObjectId: orNull(val("settings-logoMediaObjectId")),
@@ -849,13 +881,21 @@ const COURIER_OPTIONS = [
           }
         : {}),
       ...advanced
-    });
+    };
+    const result = await sendWithStepUp(
+      () => sendJson("PUT", "/api/v1/commerce/store-settings", settingsBody),
+      () => promptStepUpCode("store-settings-stepup")
+    );
 
     if (result.ok) {
       successBox.show("Saved.");
     } else {
       errorBox.show(
-        "Could not save store settings. Check the advanced JSON shape and try again."
+        pickRefusalMessage(
+          el("store-settings-error")?.dataset.errors,
+          result.errorCode,
+          "Could not save store settings. Check the advanced JSON shape and try again."
+        )
       );
     }
 

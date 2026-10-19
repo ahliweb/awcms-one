@@ -83,6 +83,7 @@ import {
   putSettings,
   seedFixture,
   seedPrincipal,
+  stepUp,
   tamperReservation,
   UNKNOWN_ID,
   type Envelope,
@@ -677,6 +678,20 @@ suite("booking POS: lookup, check-in, check-out, balance (Issue #383)", () => {
         await auditRows(till.owner.tenantId, "commerce.booking_pos.lookup")
       ).map((row) => row.attributes.outcome);
       expect(outcomes.at(-1)).toBe("throttled");
+      // Audit L3: only the FIRST throttle of the window is audited. Hammering the
+      // throttled endpoint must not write a row per request.
+      for (let i = 0; i < 4; i += 1) {
+        expect(
+          (await lookup(till.desk, { reservationNo: code, phone: GUEST.phone }))
+            .status
+        ).toBe(429);
+      }
+      const throttledRows = (
+        await auditRows(till.owner.tenantId, "commerce.booking_pos.lookup")
+      ).filter((row) => row.attributes.outcome === "throttled");
+      expect(throttledRows).toHaveLength(1);
+      expect(throttledRows[0]!.severity).toBe("warning");
+      expect(throttledRows[0]!.attributes.throttle).toBe("misses");
 
       // Another actor is not affected by this one's budget.
       const other = await seedPrincipal(till.owner.tenantId, "desk2", [
@@ -701,6 +716,18 @@ suite("booking POS: lookup, check-in, check-out, balance (Issue #383)", () => {
         if (i < 30) expect(status).toBe(200);
       }
       expect(status).toBe(429);
+      // Audit L3: the per-minute throttle is audited once per window as well.
+      for (let i = 0; i < 3; i += 1) {
+        expect(
+          (await lookup(till.desk, { reservationNo: code, phone: GUEST.phone }))
+            .status
+        ).toBe(429);
+      }
+      const throttledRows = (
+        await auditRows(till.owner.tenantId, "commerce.booking_pos.lookup")
+      ).filter((row) => row.attributes.outcome === "throttled");
+      expect(throttledRows).toHaveLength(1);
+      expect(throttledRows[0]!.attributes.throttle).toBe("rate");
     });
 
     test("nothing of another tenant: the same code and phone asked in another tenant finds nothing (the tenant is in the query, and RLS backs it where it is enforced)", async () => {
@@ -863,6 +890,26 @@ suite("booking POS: lookup, check-in, check-out, balance (Issue #383)", () => {
         409,
         "NOT_SESSION_CASHIER"
       );
+      // Audit I3: ringing money (or a stay) into another cashier's register is an
+      // event, audited at `warning` and COMMITTED although the write was refused.
+      const intrusions = await auditRows(
+        till.owner.tenantId,
+        "commerce.booking_pos.not_session_cashier"
+      );
+      expect(intrusions).toHaveLength(3);
+      expect(intrusions.map((row) => row.attributes.operation).sort()).toEqual([
+        "balance",
+        "check_in",
+        "check_out"
+      ]);
+      for (const row of intrusions) {
+        expect(row.severity).toBe("warning");
+        expect(row.actor_tenant_user_id).toBe(second.tenantUserId);
+        expect(row.attributes).toMatchObject({
+          registerId: till.registerId,
+          reservationId: id
+        });
+      }
 
       // An unknown register is the neutral 404.
       expectAll(
@@ -916,6 +963,14 @@ suite("booking POS: lookup, check-in, check-out, balance (Issue #383)", () => {
 
       expect((await ledgerOf(booking.orderId)).length).toBe(ledgerBefore);
       expect(await reservationStatus(id)).toBe("confirmed");
+      // Only the not-the-cashier refusal is an intrusion: the other refusals
+      // above (no session, closing, closed, unknown register) added no row.
+      expect(
+        await auditRows(
+          till.owner.tenantId,
+          "commerce.booking_pos.not_session_cashier"
+        )
+      ).toHaveLength(3);
     });
 
     test("the balance is stamped with the cashier's session: the shift's cash-up and the per-register tender report count it, and pocketing it is a variance", async () => {
@@ -1125,7 +1180,63 @@ suite("booking POS: lookup, check-in, check-out, balance (Issue #383)", () => {
       });
     });
 
-    test("the database guard: a payment stamped with a foreign session is refused unless it is the till's balance of a booking order", async () => {
+    test("two cashiers reusing one Idempotency-Key never share a leg: each collects into their own session, no silent deduplication (audit L2)", async () => {
+      if (skipUnlessHandlerReady()) return;
+      const till = await readyTill();
+      const booking = await depositBooking(till);
+      const id = booking.reservation.id;
+      const second = await seedPrincipal(till.owner.tenantId, "desk2", [
+        ...PERSONAS.desk
+      ]);
+      const secondRegister = await newRegister(till.owner, "FD-2");
+      const secondSession = await openShift(second, secondRegister);
+
+      const key = nextKey();
+      const first = await collect(
+        till.desk,
+        id,
+        { registerId: till.registerId, tenders: [CASH("100000.00")] },
+        key
+      );
+      expect(first.status).toBe(200);
+      const other = await collect(
+        second,
+        id,
+        { registerId: secondRegister, tenders: [CASH("100000.00")] },
+        key
+      );
+      // Not a replay of the first cashier's answer, and not their allocation.
+      expect(other.status).toBe(200);
+      expect(other.body.data.replayed).toBe(false);
+      expect(other.body.data.registerSessionId).toBe(secondSession);
+      expect(other.body.data.payments[0].id).not.toBe(
+        first.body.data.payments[0].id
+      );
+
+      const legs = (await ledgerOf(booking.orderId)).slice(1);
+      expect(legs).toHaveLength(2);
+      expect(
+        legs.map((leg) => [leg.actor_tenant_user_id, leg.register_session_id])
+      ).toEqual([
+        [till.desk.tenantUserId, till.sessionId],
+        [second.tenantUserId, secondSession]
+      ]);
+
+      // Each cashier's own repeat is still a replay of their own answer.
+      const again = await collect(
+        till.desk,
+        id,
+        { registerId: till.registerId, tenders: [CASH("100000.00")] },
+        key
+      );
+      expect(again.body.data.replayed).toBe(true);
+      expect(again.body.data.payments[0].id).toBe(
+        first.body.data.payments[0].id
+      );
+      expect(await ledgerOf(booking.orderId)).toHaveLength(3);
+    });
+
+    test("the database guard: a payment stamped with a foreign session is refused unless it is the till's balance of a booking order, recorded by that session's own cashier", async () => {
       if (skipUnlessHandlerReady()) return;
       const till = await readyTill();
       const booking = await depositBooking(till);
@@ -1134,15 +1245,22 @@ suite("booking POS: lookup, check-in, check-out, balance (Issue #383)", () => {
       const attempt = async (
         orderId: string,
         source: string,
-        sourceKey: string
+        sourceKey: string,
+        actor:
+          { kind: "tenant_user"; tenantUserId: string } | { kind: "system" } = {
+          kind: "tenant_user",
+          tenantUserId: till.desk.tenantUserId
+        }
       ): Promise<string> => {
+        const actorId =
+          actor.kind === "tenant_user" ? actor.tenantUserId : null;
         try {
           await admin`
             INSERT INTO awcms_commerce_payment_allocations
               (tenant_id, order_id, kind, tender_type, amount, status, source, source_key,
                actor_kind, actor_tenant_user_id, register_session_id, settled_at)
             VALUES (${till.owner.tenantId}, ${orderId}, 'payment', 'cash', '1000.00', 'succeeded',
-                    ${source}, ${sourceKey}, 'tenant_user', ${till.desk.tenantUserId},
+                    ${source}, ${sourceKey}, ${actor.kind}, ${actorId},
                     ${till.sessionId}, now())
           `;
           return "";
@@ -1152,6 +1270,38 @@ suite("booking POS: lookup, check-in, check-out, balance (Issue #383)", () => {
       };
       // The booking order, source pos: allowed (this is the app's own path).
       expect(await attempt(booking.orderId, "pos", "guard-ok")).toBe("");
+      // Issue #383 audit L1: the exception names the session's OWN cashier. The
+      // session is open and the order is a live booking, but the actor is
+      // somebody else (the owner, and a second cashier with the same keys): the
+      // database refuses it, whatever the application would have done.
+      expect(
+        await attempt(booking.orderId, "pos", "guard-other-cashier", {
+          kind: "tenant_user",
+          tenantUserId: till.owner.tenantUserId
+        })
+      ).toMatch(/register session of its own order/);
+      const second = await seedPrincipal(till.owner.tenantId, "desk3", [
+        ...PERSONAS.desk
+      ]);
+      expect(
+        await attempt(booking.orderId, "pos", "guard-second-cashier", {
+          kind: "tenant_user",
+          tenantUserId: second.tenantUserId
+        })
+      ).toMatch(/register session of its own order/);
+      // A system-recorded leg has no cashier to bind: refused as well.
+      expect(
+        await attempt(booking.orderId, "pos", "guard-system", {
+          kind: "system"
+        })
+      ).toMatch(/register session of its own order/);
+      // The refused attempts left nothing behind.
+      const stamped = (await admin`
+        SELECT count(*)::int AS n FROM awcms_commerce_payment_allocations
+        WHERE order_id = ${booking.orderId}
+          AND source_key IN ('guard-other-cashier', 'guard-second-cashier', 'guard-system')
+      `) as { n: number }[];
+      expect(stamped[0]!.n).toBe(0);
       // The same order from the admin path: refused.
       expect(await attempt(booking.orderId, "admin", "guard-admin")).toMatch(
         /register session of its own order/
@@ -1448,6 +1598,7 @@ suite("booking POS: lookup, check-in, check-out, balance (Issue #383)", () => {
     test("ALLOW: the tenant setting off lets the guest in with the balance visible and still collectable; the audit row says the balance was waived", async () => {
       if (skipUnlessHandlerReady()) return;
       const till = await readyTill();
+      await stepUp(till.owner);
       expect(
         (await putSettings(till.owner, { checkinRequiresSettlement: false }))
           .status
@@ -1493,6 +1644,7 @@ suite("booking POS: lookup, check-in, check-out, balance (Issue #383)", () => {
     test("CHECK_IN_TOO_EARLY is 409 and nothing changes", async () => {
       if (skipUnlessHandlerReady()) return;
       const till = await readyTill();
+      await stepUp(till.owner);
       expect(
         (await putSettings(till.owner, { checkinRequiresSettlement: false }))
           .status
@@ -1520,6 +1672,7 @@ suite("booking POS: lookup, check-in, check-out, balance (Issue #383)", () => {
           })
         ).body.data.checkinRequiresSettlement;
       expect(await read()).toBe(true);
+      await stepUp(owner);
       expect(
         (await putSettings(owner, { checkinRequiresSettlement: false })).status
       ).toBe(200);
@@ -1536,6 +1689,7 @@ suite("booking POS: lookup, check-in, check-out, balance (Issue #383)", () => {
         (await putSettings(owner, { checkinRequiresSettlement: true })).status
       ).toBe(200);
       expect(await read()).toBe(true);
+      await stepUp(owner);
       expect(
         (await putSettings(owner, { checkinRequiresSettlement: false })).status
       ).toBe(200);
@@ -1546,6 +1700,89 @@ suite("booking POS: lookup, check-in, check-out, balance (Issue #383)", () => {
       });
       expect(reset.status).toBe(200);
       expect(await read()).toBe(true);
+    });
+
+    test("the policy flip is audited both ways (from, to, severity) and turning it OFF needs a fresh step-up: refused without one, nothing written (audit M1)", async () => {
+      if (skipUnlessHandlerReady()) return;
+      const owner = await bootstrapOwner();
+      const policyRows = () =>
+        auditRows(
+          owner.tenantId,
+          "commerce.booking_pos.check_in_policy_changed"
+        );
+      const storeRows = async () =>
+        (
+          await getHandlerAdminSql()`
+            SELECT count(*)::int AS n FROM awcms_audit_events
+            WHERE tenant_id = ${owner.tenantId} AND action = 'update'
+              AND resource_type = 'store_settings'
+          `
+        )[0]!.n as number;
+      const read = async () =>
+        (
+          await invoke<Envelope<Record<string, any>>>(getStoreSettings, {
+            path: "/api/v1/commerce/store-settings",
+            headers: headers(owner)
+          })
+        ).body.data.checkinRequiresSettlement;
+
+      // The owner of a fresh tenant has no step-up: the loosening is refused.
+      const before = await storeRows();
+      const refused = await putSettings(owner, {
+        checkinRequiresSettlement: false
+      });
+      expect(refused.status).toBe(403);
+      expect(refused.body.error?.code).toBe("STEP_UP_REQUIRED");
+      expect(await read()).toBe(true);
+      expect(await policyRows()).toEqual([]);
+      expect(await storeRows()).toBe(before);
+
+      // A STALE step-up (older than the platform TTL) is no step-up either.
+      await stepUp(owner, 3_600_000);
+      expect(
+        (await putSettings(owner, { checkinRequiresSettlement: false })).status
+      ).toBe(403);
+      expect(await read()).toBe(true);
+      expect(await policyRows()).toEqual([]);
+
+      // Not touching the policy (an absent key, or the value it already has)
+      // needs no step-up and writes no policy row.
+      expect((await putSettings(owner, {})).status).toBe(200);
+      expect(
+        (await putSettings(owner, { checkinRequiresSettlement: true })).status
+      ).toBe(200);
+      expect(await policyRows()).toEqual([]);
+
+      // Fresh step-up: true -> false is accepted and audited as a warning.
+      await stepUp(owner);
+      expect(
+        (await putSettings(owner, { checkinRequiresSettlement: false })).status
+      ).toBe(200);
+      expect(await read()).toBe(false);
+      let rows = await policyRows();
+      expect(rows).toHaveLength(1);
+      expect(rows[0]!.severity).toBe("warning");
+      expect(rows[0]!.actor_tenant_user_id).toBe(owner.tenantUserId);
+      expect(rows[0]!.attributes).toMatchObject({ from: true, to: false });
+      expect(typeof rows[0]!.attributes.stepUpAt).toBe("string");
+
+      // The same value again is not a change: no second row.
+      expect(
+        (await putSettings(owner, { checkinRequiresSettlement: false })).status
+      ).toBe(200);
+      expect(await policyRows()).toHaveLength(1);
+
+      // false -> true tightens the control: no step-up needed, audited as info.
+      await stepUp(owner, 3_600_000);
+      expect(
+        (await putSettings(owner, { checkinRequiresSettlement: true })).status
+      ).toBe(200);
+      expect(await read()).toBe(true);
+      rows = await policyRows();
+      expect(rows).toHaveLength(2);
+      expect(rows[1]!.severity).toBe("info");
+      expect(rows[1]!.attributes).toMatchObject({ from: false, to: true });
+      expect(rows[1]!.attributes.stepUpAt).toBeUndefined();
     });
 
     test("states: an unknown or malformed id is the neutral 404; a cancelled reservation takes no balance and no check-in; a held one can be paid in full at the till and is then confirmed by the ordinary consumer", async () => {
