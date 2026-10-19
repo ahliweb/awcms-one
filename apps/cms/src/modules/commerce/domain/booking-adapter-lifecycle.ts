@@ -203,11 +203,17 @@ export const BOOKING_ADAPTER_SUBJECT_DATA: SubjectDataDescriptor[] = [
     key: "commerce.cancellation_policies",
     tableName: "awcms_commerce_cancellation_policies",
     ownerModuleKey: "commerce",
-    unreachableBySubject: true,
-    subjectColumns: [],
+    // Issue #381 (sql/1043) - the version records who authored and who
+    // approved it (staff tenant users, the evidence of who decided every later
+    // refund of the scope). Still no customer.
+    subjectColumns: [
+      { column: "created_by_tenant_user_id", references: "tenant_user" },
+      { column: "approved_by_tenant_user_id", references: "tenant_user" }
+    ],
     exportable: false,
     erasure: "retain_under_obligation",
-    rationale: `Issue #378 - a versioned cancellation refund policy head. ${NO_PERSON_RATIONALE}`
+    rationale:
+      "Issue #378 and #381 - a versioned cancellation refund policy head: the rules it applies, its lifecycle timestamps and the two STAFF tenant users who authored and approved it (the evidence of who decided every later refund of the scope; retained under the financial obligation like the decisions that cite it). It stores no customer, name, contact or free text."
   },
   {
     key: "commerce.cancellation_policy_windows",

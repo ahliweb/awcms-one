@@ -19,10 +19,10 @@ import type {
   RefundDestination,
   RefundSettledVia,
   RefundStatus,
-  ReturnDisposition,
-  ReturnKind,
-  ReturnReason,
-  ReturnStatus
+  ReturnStatus,
+  StoredReturnDisposition,
+  StoredReturnKind,
+  StoredReturnReason
 } from "../domain/returns";
 
 export type RefundRecord = {
@@ -53,8 +53,8 @@ export type ReturnLineRecord = {
   productId: string;
   variantId: string | null;
   quantity: number;
-  reason: ReturnReason;
-  disposition: ReturnDisposition;
+  reason: StoredReturnReason;
+  disposition: StoredReturnDisposition;
   /** Units that went back into sellable stock. */
   stockEffect: number;
   goodsGross: string;
@@ -79,7 +79,7 @@ export type RefundCompensationRecord = {
 export type ReturnRecord = {
   id: string;
   orderId: string;
-  kind: ReturnKind;
+  kind: StoredReturnKind;
   status: ReturnStatus;
   note: string | null;
   goodsGross: string;
@@ -194,8 +194,8 @@ function toLineRecord(row: LineRow): ReturnLineRecord {
     productId: row.product_id,
     variantId: row.variant_id,
     quantity: Number(row.quantity),
-    reason: row.reason as ReturnReason,
-    disposition: row.disposition as ReturnDisposition,
+    reason: row.reason as StoredReturnReason,
+    disposition: row.disposition as StoredReturnDisposition,
     stockEffect: Number(row.stock_effect),
     goodsGross: normalizeMoney(String(row.goods_gross)),
     discountShare: normalizeMoney(String(row.discount_share)),
@@ -224,7 +224,7 @@ function toReturnRecord(
   return {
     id: row.id,
     orderId: row.order_id,
-    kind: row.kind as ReturnKind,
+    kind: row.kind as StoredReturnKind,
     status: row.status as ReturnStatus,
     note: row.note,
     goodsGross: normalizeMoney(String(row.goods_gross)),

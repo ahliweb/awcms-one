@@ -82,6 +82,27 @@ export type ReturnDisposition = (typeof RETURN_DISPOSITIONS)[number];
 export const RETURN_KINDS = ["return", "exchange"] as const;
 export type ReturnKind = (typeof RETURN_KINDS)[number];
 
+/**
+ * Issue #381 (ADR-0045 D4) - what a STORED return, line or disposition may be:
+ * the client-creatable vocabularies above plus the values only the booking
+ * cancellation writes (`sql/1043`). A client never sends them: the request
+ * validators below use the closed lists above, so the generic returns route
+ * still refuses `cancellation`, `booking_cancelled` and `not_applicable`.
+ */
+export const STORED_RETURN_KINDS = [...RETURN_KINDS, "cancellation"] as const;
+export type StoredReturnKind = (typeof STORED_RETURN_KINDS)[number];
+export const STORED_RETURN_REASONS = [
+  ...RETURN_REASONS,
+  "booking_cancelled"
+] as const;
+export type StoredReturnReason = (typeof STORED_RETURN_REASONS)[number];
+export const STORED_RETURN_DISPOSITIONS = [
+  ...RETURN_DISPOSITIONS,
+  "not_applicable"
+] as const;
+export type StoredReturnDisposition =
+  (typeof STORED_RETURN_DISPOSITIONS)[number];
+
 export const RETURN_STATUSES = ["open", "completed"] as const;
 export type ReturnStatus = (typeof RETURN_STATUSES)[number];
 

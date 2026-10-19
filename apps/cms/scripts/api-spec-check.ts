@@ -96,6 +96,8 @@ const ALLOWED_PUBLIC_OPERATIONS = new Set([
   // Issue #380 (ADR-0045): the booking adapter's anonymous shopper surface, behind the `booking` feature.
   "createCommerceStorefrontBookingReservation",
   "getCommerceStorefrontBookingReservation",
+  "getCommerceStorefrontBookingCancellationQuote",
+  "cancelCommerceStorefrontBookingReservation",
   "createCommerceStorefrontPaymentConfirmation",
   "createCommerceStorefrontPaymentProofUploadSession",
   "finalizeCommerceStorefrontPaymentProofUploadSession",
