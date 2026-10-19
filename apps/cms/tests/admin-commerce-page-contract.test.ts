@@ -90,7 +90,7 @@ async function enforcedTriples(
 }
 
 describe("commerce module descriptor — restore is declared for both activity codes", () => {
-  test("one hundred and fifty-five permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations/entitlements, three for reviews, one for whatsapp, three for campaigns, one for webhook_endpoints, one for pos, one for pos_due, three for payments, ten for registers/cash-up, two for loyalty and one each for loyalty_adjustments/loyalty_redemptions, and (Issue #291) read/manage for attributes plus export/import on products, seven for stored value, (Issue #292) two for barcodes, (Issue #287) five for returns, refunds and offline refunds, and (Issue #296) ten for the five operational-report resources, and (Issue #316) two for report_returns, and (Issue #282) two for inventory, and (Issue #364) two for report_retention, and (Issue #360) seven for segments, segment_previews and segment_members, and (Issue #378) five for booking_offering_links and booking_deposit_policies, and (Issue #380) two for booking_reservation_links, and (Issue #381) seven for the cancellation, refund-decision, refund-override and cancellation-policy resources, and (Issue #382) one for the reschedule (booking_reservation_links update)", () => {
+  test("one hundred and fifty-eight permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations/entitlements, three for reviews, one for whatsapp, three for campaigns, one for webhook_endpoints, one for pos, one for pos_due, three for payments, ten for registers/cash-up, two for loyalty and one each for loyalty_adjustments/loyalty_redemptions, and (Issue #291) read/manage for attributes plus export/import on products, seven for stored value, (Issue #292) two for barcodes, (Issue #287) five for returns, refunds and offline refunds, and (Issue #296) ten for the five operational-report resources, and (Issue #316) two for report_returns, and (Issue #282) two for inventory, and (Issue #364) two for report_retention, and (Issue #360) seven for segments, segment_previews and segment_members, and (Issue #378) five for booking_offering_links and booking_deposit_policies, and (Issue #380) two for booking_reservation_links, and (Issue #381) seven for the cancellation, refund-decision, refund-override and cancellation-policy resources, and (Issue #382) one for the reschedule (booking_reservation_links update), and (Issue #383) three for the till (booking_check_ins, booking_check_outs and booking_balance_payments create)", () => {
     // Issue #23: categories/products carry read/create/update/delete/restore.
     // Issue #26: flash_sales/vouchers/sliders/testimonials/popups carry
     // read/create/update/delete (soft delete only, no restore — the marketing
@@ -193,7 +193,10 @@ describe("commerce module descriptor — restore is declared for both activity c
         // booking_cancellation_policies read/create/approve.
         7 +
         // Issue #382: booking_reservation_links update (the reschedule).
-        1
+        1 +
+        // Issue #383: booking_check_ins, booking_check_outs and
+        // booking_balance_payments create (the till's three writes).
+        3
     );
 
     // Issue #291 — typed catalog attributes. `manage` (one high-risk action,
