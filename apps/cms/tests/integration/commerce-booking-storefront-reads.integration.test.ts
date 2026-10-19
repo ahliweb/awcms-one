@@ -236,27 +236,30 @@ const book = (
   extra: Record<string, string> = {},
   overrides: Record<string, unknown> = {}
 ) =>
-  invoke<Envelope<{ orderCode: string; reservation: { id: string } }>>(
-    storefrontCreate,
-    {
-      method: "POST",
-      path: "/api/v1/commerce/storefront/booking/reservations",
-      headers: {
-        "content-type": "application/json",
-        "idempotency-key": nextKey(),
-        ...extra
-      },
-      body: {
-        offeringId: fx.offeringId,
-        resourceId: fx.resourceId,
-        stay: { checkInDate: day(1), checkOutDate: day(3) },
-        partySize: 2,
-        guest: { name: "Budi Rahasia", phone: "081311112222" },
-        payment: { method: "manual_qris" },
-        ...overrides
-      }
+  invoke<
+    Envelope<{
+      orderCode: string;
+      serverNow: string;
+      reservation: { id: string };
+    }>
+  >(storefrontCreate, {
+    method: "POST",
+    path: "/api/v1/commerce/storefront/booking/reservations",
+    headers: {
+      "content-type": "application/json",
+      "idempotency-key": nextKey(),
+      ...extra
+    },
+    body: {
+      offeringId: fx.offeringId,
+      resourceId: fx.resourceId,
+      stay: { checkInDate: day(1), checkOutDate: day(3) },
+      partySize: 2,
+      guest: { name: "Budi Rahasia", phone: "081311112222" },
+      payment: { method: "manual_qris" },
+      ...overrides
     }
-  );
+  });
 
 async function bearerFor(tenantId: string, name: string, phone: string) {
   const admin = getHandlerAdminSql();
@@ -441,9 +444,9 @@ suite("booking storefront reads (Issue #386)", () => {
     const booked = await book(fx);
     expect(booked.status).toBe(201);
     // The hold response says what time the server thinks it is (the page counts down against it).
-    expect(
-      Date.parse((booked.body.data as { serverNow: string }).serverNow)
-    ).toBeGreaterThan(Date.now() - 60_000);
+    expect(Date.parse(booked.body.data.serverNow)).toBeGreaterThan(
+      Date.now() - 60_000
+    );
     const orderCode = booked.body.data.orderCode;
     const reservationId = booked.body.data.reservation.id;
 
