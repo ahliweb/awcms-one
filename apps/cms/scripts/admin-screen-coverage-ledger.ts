@@ -54,14 +54,14 @@ export const NOT_YET_SCREENED: readonly string[] = [
   "comments.settings.read",
   "comments.settings.update",
 
-  // commerce (2) - Issues #378 and #380 (ADR-0045) landed the booking
+  // commerce (1) - Issues #378 and #380 (ADR-0045) landed the booking
   // adapter's ROUTES ahead of its screens. Issue #385 built the offering-link
-  // (`/admin/commerce-booking-links`) and deposit-policy
-  // (`/admin/commerce-booking-deposits`) screens, which removed those five
-  // lines; what remains is the reservation-link surface, whose screens arrive
+  // and deposit-policy screens; Issue #381 built the cancellation-policy
+  // screen and the booking panel on the order detail page, which claim the
+  // cancellation keys and `commerce.booking_reservation_links.read`. What
+  // remains is the reservation-link `create` surface, whose screen arrives
   // with the adapter's reservation issues.
   "commerce.booking_reservation_links.create",
-  "commerce.booking_reservation_links.read",
 
   // email (6)
   "email.announcement.create",

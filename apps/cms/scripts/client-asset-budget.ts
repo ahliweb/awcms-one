@@ -1711,8 +1711,19 @@ export const READER_BUDGET_BYTES = 24_000;
  * service-account field in the settings script, the stylesheet share and the
  * new catalogue entries. Merged into the booking chain (issue #381) the figure
  * below is a fresh measurement of the merged build, not a sum.
+ *
+ * **Issue #381 (booking cancellation and refund)** measured 480,763 B on the
+ * build that carries #385 and the #427 sync (the previous constant was 466,200 B;
+ * it sets 480,800 B, the measurement rounded up to the next 100 B): `/admin/commerce-booking-policies` (the windows editor,
+ * approve and retire with the shared confirm and step-up dialogs), the booking
+ * panel on `/admin/commerce-orders/[id]` (the quote, the cancel and the
+ * refund-override dialog), the `commerce-booking-refund-client` and
+ * `commerce-stepup-client` modules, the stylesheet share and the roughly 115 new
+ * catalogue entries the two screens read in both languages. Nothing was
+ * duplicated per screen: the step-up prompt is one native `<dialog>` component
+ * used by both, and the money / window rules are one module with a unit test.
  */
-export const APP_BUDGET_BYTES = 466_200;
+export const APP_BUDGET_BYTES = 480_800;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

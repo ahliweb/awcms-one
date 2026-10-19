@@ -13434,3 +13434,356 @@ msgid "{count} service product"
 msgid_plural "{count} service products"
 msgstr[0] ""
 msgstr[1] ""
+
+# booking-adapter #381
+
+msgid "A product's own policy replaces the tenant default for that product. A change is a new version: bookings already made keep the version they were made under."
+msgstr ""
+
+msgid "A version that is replaced or retired stays here, unchanged, so every past refund can be explained."
+msgstr ""
+
+msgid "A window with more notice must not refund less than one with less notice."
+msgstr ""
+
+msgid "Activating…"
+msgstr ""
+
+msgid "Add at least one window."
+msgstr ""
+
+msgid "Add window"
+msgstr ""
+
+msgid "Another reason"
+msgstr ""
+
+msgid "Approve and activate"
+msgstr ""
+
+msgid "Approved on"
+msgstr ""
+
+msgid "Arrival"
+msgstr ""
+
+msgid "Authenticator code"
+msgstr ""
+
+msgid "Authored by"
+msgstr ""
+
+msgid "Booking already cancelled this reservation."
+msgstr ""
+
+msgid "Booking cancellation"
+msgstr ""
+
+msgid "Booking cancelled"
+msgstr ""
+
+msgid "Cancel at least"
+msgstr ""
+
+msgid "Cancel this reservation?"
+msgstr ""
+
+msgid "Cancellation policies"
+msgstr ""
+
+msgid "Cancellation policies could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Check the amount and the reason, then try again."
+msgstr ""
+
+msgid "Closer than that, or after check-in"
+msgstr ""
+
+msgid "Closer than that: no refund."
+msgstr ""
+
+msgid "Confirm it is you"
+msgstr ""
+
+msgid "Confirmation cancelled. Nothing was changed."
+msgstr ""
+
+msgid "Could not activate the version. Please try again."
+msgstr ""
+
+msgid "Could not cancel the reservation. Please try again."
+msgstr ""
+
+msgid "Could not retire the version. Please try again."
+msgstr ""
+
+msgid "Could not save the draft. Check the windows and try again."
+msgstr ""
+
+msgid "Departure"
+msgstr ""
+
+msgid "Draft versions"
+msgstr ""
+
+msgid "Duplicate booking"
+msgstr ""
+
+msgid "Enter a refund from 0 to 100, with at most two decimals."
+msgstr ""
+
+msgid "Enter an amount with at most two decimals, for example 250000.00."
+msgstr ""
+
+msgid "Enter the notice as a whole number."
+msgstr ""
+
+msgid "Hours before check-in"
+msgstr ""
+
+msgid "If cancelled now"
+msgstr ""
+
+msgid "If the guest does not show"
+msgstr ""
+
+msgid "Keep everything paid"
+msgstr ""
+
+msgid "Keep the deposit"
+msgstr ""
+
+msgid "Keep the policy amount"
+msgstr ""
+
+msgid "Maximum {amount}: the amount paid."
+msgstr ""
+
+msgid "New bookings of this scope will use the tenant default, or get no refund if there is none. Bookings already made keep this version."
+msgstr ""
+
+msgid "New draft version"
+msgstr ""
+
+msgid "New refund amount"
+msgstr ""
+
+msgid "No cancellation policy applied to this booking, so the policy refund is nothing. A manager can still set the refund by hand."
+msgstr ""
+
+msgid "No cancellation policy yet"
+msgstr ""
+
+msgid "No cancellation policy yet. Guests will see no refund terms."
+msgstr ""
+
+msgid "No earlier versions"
+msgstr ""
+
+msgid "No money moves: nothing is refunded for this cancellation."
+msgstr ""
+
+msgid "No policy applied"
+msgstr ""
+
+msgid "Not applicable (service)"
+msgstr ""
+
+msgid "Now active: {active}. This draft: {draft}. From activation it decides the refund of every new booking in this scope; earlier bookings keep the version they were made under."
+msgstr ""
+
+msgid "Override refund"
+msgstr ""
+
+msgid "Override the refund"
+msgstr ""
+
+msgid "Paid {paid}. The policy refunds {refund} ({policy}, {hours} hours before check-in). The reservation is released and the refund is queued for the returns screen; nothing is paid out until it is settled there."
+msgstr ""
+
+msgid "Payment problem"
+msgstr ""
+
+msgid "Policy applied"
+msgstr ""
+
+msgid "Policy for"
+msgstr ""
+
+msgid "Policy refund"
+msgstr ""
+
+msgid "Reason for cancelling"
+msgstr ""
+
+msgid "Record the override"
+msgstr ""
+
+msgid "Refund"
+msgstr ""
+
+msgid "Refund applies to"
+msgstr ""
+
+msgid "Refund by the windows"
+msgstr ""
+
+msgid "Refund decision"
+msgstr ""
+
+msgid "Refund of what was paid"
+msgstr ""
+
+msgid "Refund percent"
+msgstr ""
+
+msgid "Refund set to {amount}. The change is recorded with your reason."
+msgstr ""
+
+msgid "Remove window"
+msgstr ""
+
+msgid "Reservation no."
+msgstr ""
+
+msgid "Retire this version"
+msgstr ""
+
+msgid "Retiring…"
+msgstr ""
+
+msgid "Rows must not overlap, and more notice must never refund less. The server enforces the same rule. A draft is not edited: to change it, save a new draft."
+msgstr ""
+
+msgid "Set how much of what a guest paid is refunded, by how long before check-in they cancel."
+msgstr ""
+
+msgid "Tenant default"
+msgstr ""
+
+msgid "That code was not accepted. Nothing was changed."
+msgstr ""
+
+msgid "That version or product was not found."
+msgstr ""
+
+msgid "The amount cannot be more than the amount paid."
+msgstr ""
+
+msgid "The guest asked to cancel"
+msgstr ""
+
+msgid "The guest has checked in; this reservation cannot be cancelled."
+msgstr ""
+
+msgid "The property is closed"
+msgstr ""
+
+msgid "The refund cannot be more than the amount paid."
+msgstr ""
+
+msgid "The refund legs are settled under Returns and refunds below, with their own permissions."
+msgstr ""
+
+msgid "The store's default policy"
+msgstr ""
+
+msgid "The windows were not accepted. A window with more notice must not refund less than one with less notice."
+msgstr ""
+
+msgid "This action needs a recent second-factor check."
+msgstr ""
+
+msgid "This action needs a recent second-factor check. Enter the code from your authenticator app, then it continues."
+msgstr ""
+
+msgid "This equals the policy refund. Cancel without an override instead."
+msgstr ""
+
+msgid "This product's policy"
+msgstr ""
+
+msgid "This request was already sent with different details. Reload the page."
+msgstr ""
+
+msgid "This reservation can no longer be cancelled."
+msgstr ""
+
+msgid "This reservation expired."
+msgstr ""
+
+msgid "This reservation is already released."
+msgstr ""
+
+msgid "This reservation is complete and cannot be cancelled."
+msgstr ""
+
+msgid "This reservation was already cancelled and refunded."
+msgstr ""
+
+msgid "This reservation was marked no-show and cannot be cancelled."
+msgstr ""
+
+msgid "This reservation was rescheduled; cancel the new one."
+msgstr ""
+
+msgid "This version is not in the right state for that. Reload the page."
+msgstr ""
+
+msgid "Two windows cannot have the same notice."
+msgstr ""
+
+msgid "Verify and continue"
+msgstr ""
+
+msgid "Whole stay"
+msgstr ""
+
+msgid "Windows"
+msgstr ""
+
+msgid "Windows of the active version"
+msgstr ""
+
+msgid "Write a reason of at least 10 characters."
+msgstr ""
+
+msgid "You do not have permission to view cancellation policies."
+msgstr ""
+
+msgid "before check-in"
+msgstr ""
+
+msgid "hours"
+msgstr ""
+
+msgid "no policy"
+msgstr ""
+
+msgid "{count} draft"
+msgid_plural "{count} drafts"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} earlier version"
+msgid_plural "{count} earlier versions"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} hour"
+msgid_plural "{count} hours"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} of 500 characters"
+msgstr ""
+
+msgid "{notice} before check-in"
+msgstr ""
+
+msgid "{notice} or more before check-in: {percent}%"
+msgstr ""
+
+msgid "{policy}, version {version}"
+msgstr ""

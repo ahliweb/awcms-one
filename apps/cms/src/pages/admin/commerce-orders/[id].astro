@@ -41,12 +41,17 @@
  */
 import AdminLayout from "../../../layouts/AdminLayout.astro";
 import CommerceConfirmDialog from "../../../components/CommerceConfirmDialog.astro";
+import CommerceBookingPanel from "../../../components/CommerceBookingPanel.astro";
 import CommerceReturnsPanel from "../../../components/CommerceReturnsPanel.astro";
 import ReasonPanel from "../../../components/ReasonPanel.astro";
 import "../../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../../lib/logging/error-log";
 import { getTranslatorFor } from "../../../lib/i18n";
+import {
+  loadBookingOrderPanel,
+  type BookingOrderPanel
+} from "../../../modules/commerce/application/booking-order-panel";
 import { fetchCommerceFeatures } from "../../../modules/commerce/application/commerce-feature-gate";
 import {
   fetchOrderDetailForAdmin,
@@ -134,6 +139,38 @@ const REFUNDS_OFFLINE_APPROVE = {
   action: "approve"
 } as const;
 
+/**
+ * Issue #381 - the booking panel's permissions (docs/booking-ux-flows.md 11.5),
+ * each claimed here and enforced again by the routes the panel calls: the
+ * reservation read, the two keys a cancel needs, the decision read, and the
+ * separate override authority.
+ */
+const BOOKING_LINKS_READ = {
+  moduleKey: "commerce",
+  activityCode: "booking_reservation_links",
+  action: "read"
+} as const;
+const BOOKING_LINKS_CANCEL = {
+  moduleKey: "commerce",
+  activityCode: "booking_reservation_links",
+  action: "cancel"
+} as const;
+const BOOKING_DECISIONS_READ = {
+  moduleKey: "commerce",
+  activityCode: "booking_refund_decisions",
+  action: "read"
+} as const;
+const BOOKING_DECISIONS_CREATE = {
+  moduleKey: "commerce",
+  activityCode: "booking_refund_decisions",
+  action: "create"
+} as const;
+const BOOKING_OVERRIDE_APPROVE = {
+  moduleKey: "commerce",
+  activityCode: "booking_refund_overrides",
+  action: "approve"
+} as const;
+
 type ReturnsPanelData = {
   enabled: boolean;
   returns: ReturnRecord[];
@@ -165,7 +202,7 @@ const screen = await loadAdminScreen({
     REFUNDS_CREATE,
     REFUNDS_OFFLINE_APPROVE
   ],
-  load: async ({ tx, entry }) => {
+  load: async ({ tx, entry, can }) => {
     // The entry is any-of; THIS page's subject is the order, so it still
     // needs `orders.read` itself — holding only a payments permission must
     // not unlock the order detail.
@@ -193,7 +230,8 @@ const screen = await loadAdminScreen({
         storedValueEnabled,
         payments: null as OrderPaymentSummary | null,
         drawer: null as { sessionId: string; registerCode: string } | null,
-        returnsPanel: NO_RETURNS
+        returnsPanel: NO_RETURNS,
+        bookingPanel: null as BookingOrderPanel | null
       };
     }
     const detail = await fetchOrderDetailForAdmin(
@@ -212,7 +250,8 @@ const screen = await loadAdminScreen({
         storedValueEnabled,
         payments: null as OrderPaymentSummary | null,
         drawer: null as { sessionId: string; registerCode: string } | null,
-        returnsPanel: NO_RETURNS
+        returnsPanel: NO_RETURNS,
+        bookingPanel: null as BookingOrderPanel | null
       };
     }
     const record = await toAdminOrderRecord(tx, ssr.tenantId, detail);
@@ -238,6 +277,19 @@ const screen = await loadAdminScreen({
             canOffline: canOfflineRefund
           }
         : NO_RETURNS;
+    // Issue #381 - the reservation, its refund quote and the cancel / override
+    // controls, only for a booked order, while the feature is on, and only for
+    // a viewer who may read reservations.
+    const bookingPanel: BookingOrderPanel | null =
+      features.booking && (await can(BOOKING_LINKS_READ))
+        ? await loadBookingOrderPanel(tx, ssr.tenantId, orderId, {
+            canCancel:
+              (await can(BOOKING_LINKS_CANCEL)) &&
+              (await can(BOOKING_DECISIONS_CREATE)),
+            canOverride: await can(BOOKING_OVERRIDE_APPROVE),
+            canReadDecision: await can(BOOKING_DECISIONS_READ)
+          })
+        : null;
     return {
       order: record,
       canReadOrder,
@@ -247,7 +299,8 @@ const screen = await loadAdminScreen({
       storedValueEnabled,
       payments,
       drawer,
-      returnsPanel
+      returnsPanel,
+      bookingPanel
     };
   },
   onError: (error) => {
@@ -275,6 +328,8 @@ const storedValueEnabled =
 const drawer = screen.state === "allowed" ? screen.data.drawer : null;
 const returnsPanel =
   screen.state === "allowed" ? screen.data.returnsPanel : NO_RETURNS;
+const bookingPanel =
+  screen.state === "allowed" ? screen.data.bookingPanel : null;
 const shippingRefunded = (() => {
   const cents = returnsPanel.returns.reduce(
     (sum, ret) => sum + BigInt(Math.round(Number(ret.shippingRefund) * 100)),
@@ -751,6 +806,13 @@ const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
                 </form>
               )}
             </section>
+          )}
+
+          {bookingPanel && (
+            <CommerceBookingPanel
+              panel={bookingPanel}
+              locale={Astro.locals.locale}
+            />
           )}
 
           {returnsPanel.enabled && order && (
