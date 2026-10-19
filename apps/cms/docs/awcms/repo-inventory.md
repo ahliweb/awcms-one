@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 34    |
-| Migrations                          | 344   |
+| Migrations                          | 345   |
 | `awcms_*` tables                    | 313   |
 | Tables with `FORCE` RLS             | 295   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 888   |
-| Route files                         | 831   |
+| Test files                          | 890   |
+| Route files                         | 835   |
 | ADR                                 | 292   |
 
 ### Modules
@@ -403,6 +403,7 @@
 | 342 | `sql/1043_awcms_commerce_booking_cancellation_schema.sql`                   |
 | 343 | `sql/1044_awcms_commerce_booking_cancellation_permissions.sql`              |
 | 344 | `sql/1045_awcms_commerce_booking_reschedule.sql`                            |
+| 345 | `sql/1046_awcms_commerce_booking_pos.sql`                                   |
 
 ### Tables & Row-Level Security
 
@@ -726,16 +727,16 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 645        |
+| `(root)`      | 646        |
 | `e2e`         | 26         |
-| `integration` | 216        |
+| `integration` | 217        |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 687   |
+| `/api/v1/**`    | 691   |
 | `/admin/**`     | 113   |
 | publik / anonim | 31    |
 

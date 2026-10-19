@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](booking-ux-flows.md)
 
-<!-- i18n-source-hash: sha256:7704ce1c493bd1ce85c2556842d602f3ebc88096dd9803145d109097c83d77e7 -->
+<!-- i18n-source-hash: sha256:767d0c3619c689d4990757b3fa40bf6e54f02b7da8413678eb49974b0109443f -->
 
 <!-- i18n-source-hash: sha256:0 -->
 
@@ -234,10 +234,10 @@ Permukaan ini ada di POS (sesi register dan cash-up dari ADR-0028 tidak berubah,
 
 ### 5.1 Alur
 
-1. **Cari reservasi**: pindai atau ketik referensi pemesanan, atau cari menurut nama/telepon tamu dan tanggal kedatangan. Pencarian hanya menampilkan reservasi tenant sendiri (C-01); referensi yang tidak ditemukan menampilkan "Reservasi tidak ditemukan" tanpa petunjuk tentang tenant lain.
+1. **Cari reservasi**: ketik atau pindai kode reservasi DAN masukkan telepon atau e-mail pelanggan; keduanya wajib dan dicocokkan persis (kontrol C-34, dibangun oleh [#383](https://github.com/ahliweb/awcms-one/issues/383)). Tidak ada pencarian menurut nama, tanggal, atau sebagian kode, dan tidak ada daftar kedatangan: kode saja atau nama saja tidak menemukan apa pun, sehingga kasir tidak dapat dipakai untuk mendaftar tamu tenant. Kode yang tidak ada, kode dengan pelanggan yang salah, dan kode tenant lain semuanya menampilkan "Reservasi tidak ditemukan" yang sama tanpa petunjuk yang mana; luput berulang dibatasi lajunya dan setiap pencarian diaudit. Kartu menampilkan kontak tersamar dan hanya disimpan di memori - dibersihkan pada penjualan berikutnya dan di akhir shift, tidak pernah disimpan di penyimpanan browser.
 2. **Buka baris layanan**: POS menampilkan kartu reservasi: tamu, unit/kamar, tanggal dan malam, pill status, dan tiga baris uang (total, sudah dibayar, **sisa pembayaran**), dengan kosakata identik bagian 3.1. Kartu menaut ke pesanan.
 3. **Terima sisa pembayaran**: kasir menerima sisa lewat jalur tender eksplisit yang ada (ADR-0025 D8), dengan tender apa pun dan tender terpisah; sisa adalah angka server dan entri tender menolak jumlah di atasnya. Penukaran poin dan deposit jaminan yang dikembalikan tidak ditawarkan (Q8 dan Q3).
-4. **Check-in**: aktif bila reservasi `confirmed`. Apakah check-in dengan sisa belum dibayar diizinkan adalah **kebijakan tenant**, keputusan yang belum dicatat pemilik; spesifikasi ini menunjukkan kedua varian dalam satu kontrol: bila kebijakan mewajibkan sisa lunas dulu, "Check-in" nonaktif dengan alasan terlihat "Lunasi sisa pembayaran dulu" di sampingnya; bila tidak, check-in aktif dan sisa tetap terlihat. Diputuskan oleh [ADR-0045](adr/0045-booking-commerce-adapter.id.md) D19: pengaturan tenant `checkin_requires_settlement`, bawaan `false` (diizinkan), pemilik dapat merevisi.
+4. **Check-in**: aktif bila reservasi `confirmed`. Apakah check-in dengan sisa belum dibayar diizinkan adalah **kebijakan tenant**, keputusan yang belum dicatat pemilik; spesifikasi ini menunjukkan kedua varian dalam satu kontrol: bila kebijakan mewajibkan sisa lunas dulu, "Check-in" nonaktif dengan alasan terlihat "Lunasi sisa pembayaran dulu" di sampingnya; bila tidak, check-in aktif dan sisa tetap terlihat. Diputuskan oleh [ADR-0045](adr/0045-booking-commerce-adapter.id.md) D19: pengaturan tenant `checkin_requires_settlement` (API `checkinRequiresSettlement`, kotak centang di layar pengaturan commerce), bawaan **`true` (blokir)** sejak #383 - pemilik mengonfirmasi bawaannya (risiko sisa R3) dan dapat mematikannya. Server menegakkannya dengan `409 BALANCE_NOT_SETTLED`; kartu menyatakannya lewat `policy.checkInRequiresSettlement` dan `actions.checkInBlockedReason`.
 5. **Check-out**: `checked_in` menjadi `completed` lewat kontrol yang sama. Penginapan yang dipersingkat saat check-out adalah pengembalian parsial baris layanan (PRD bagian 3; ADR-0033 D2), dimulai dari pesanan, tidak pernah mengedit pesanan final.
 6. **Kuitansi**: kuitansi/faktur bernomor adalah dokumen pesanan lewat siklus dokumen yang ada (ADR-0029); layar menawarkan cetak dan kirim.
 
@@ -255,6 +255,8 @@ Teks (Indonesia, Inggris): "Terima sisa pembayaran" / Collect balance; "Check-in
 ### 5.3 Kontrol (khusus meja depan)
 
 Setiap penerimaan sisa dan penulisan check-in/check-out diaudit dengan aktor dan sesi register (dibawa audit POS yang ada). Kasir tidak dapat meng-override pengembalian atau membatalkan reservasi berbayar dengan pengembalian dari permukaan ini; keduanya adalah jalur back-office Permukaan C dengan izin bagian 4.3.
+
+**Sisi server dibangun oleh [#383](https://github.com/ahliweb/awcms-one/issues/383) (layarnya adalah [#388](https://github.com/ahliweb/awcms-one/issues/388)).** API di bawah `/api/v1/commerce/pos/booking/` memberi layar: pencarian (`POST lookup`: kode ditambah telepon atau e-mail) yang mengembalikan kartu reservasi 5.1 - status, tanggal, baris layanan yang dihargai produk, tiga baris uang dari buku besar, kontak tersamar, kebijakan, dan petunjuk `actions` - serta tiga penulisan, masing-masing izin sendiri dan masing-masing menyebut register yang sesi terbukanya dipegang kasir: `check-in`, `check-out` dan `balance-payments` (tender eksplisit, tender terpisah, kembalian untuk tunai). Body penulisan tidak pernah memuat harga atau saldo. Dua hal di 5.2 tidak dilayaninya: **tidak ada daftar kedatangan** ("Tidak ada kedatangan hari ini."), karena daftar tamu hari itu persis enumerasi yang dilarang C-34 di kasir; dan penjualan layanan walk-in tanpa reservasi adalah penjualan POS biasa. Galat `REGISTER_SESSION_REQUIRED` adalah teks "Buka sesi kasir sebelum menerima pembayaran." dengan tautan untuk membuka sesi; `BALANCE_NOT_SETTLED` adalah "Lunasi sisa pembayaran dulu".
 
 ## 6. Persyaratan aksesibilitas (WCAG 2.1 AA)
 
@@ -327,7 +329,7 @@ Kontrol C-25 sampai C-41 berasal dari adendum model ancaman ([#354](https://gith
 
 ## 10. Keputusan yang belum dicatat (asumsi untuk dikonfirmasi)
 
-1. **Check-in dengan sisa belum dibayar**: diselesaikan oleh [ADR-0045](adr/0045-booking-commerce-adapter.id.md) D19. Pengaturan tenant `checkin_requires_settlement` (bawaan `false`: diizinkan, sisa tetap terlihat) ditegakkan server dengan `BALANCE_NOT_SETTLED`; bagian 5.1 menunjukkan kedua varian dan pemilik dapat merevisi bawaannya.
+1. **Check-in dengan sisa belum dibayar**: diselesaikan oleh [ADR-0045](adr/0045-booking-commerce-adapter.id.md) D19. Pengaturan tenant `checkin_requires_settlement` (bawaan `true`: diblokir sampai sisa lunas; `false`: diizinkan, sisa tetap terlihat) ditegakkan server dengan `BALANCE_NOT_SETTLED`; bagian 5.1 menunjukkan kedua varian. Issue #383 membalik bawaan yang direkomendasikan dari izinkan menjadi blokir (gagal tertutup); pemilik mengonfirmasinya sebelum issue itu digabung.
 2. **Panjang hold dan aturan perpanjangan**: hitung mundur menampilkan apa pun yang ditetapkan server; angka 15 menit dalam teks hanya ilustrasi, dan apakah satu perpanjangan diizinkan adalah keputusan Booking/adapter.
 3. **Stepper tamu/unit dan menginap multi-unit**: penginapan berada pada satu unit di v1 (ADR-0135 upstream `awcms` bagian 4); pemesanan multi-kamar tidak dispesifikasikan di sini.
 4. **Nama rute** adalah usulan; implementer fase 1 menetapkannya dan memperbarui [`routing.md`](routing.md) serta matriks profil dalam perubahan yang sama.
