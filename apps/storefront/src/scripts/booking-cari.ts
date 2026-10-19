@@ -11,10 +11,12 @@
  * (never stale), a request that is no longer the latest is dropped, and the
  * "Lanjut" button stays disabled until a quote for the CURRENT dates exists.
  *
- * Availability is probed resource by resource (the offerings list names the
- * ids, never a name): the first resource with a free unit is the one the
- * hold will use. A range with no free resource is "Penuh", never an empty
- * success.
+ * Availability is probed resource by resource over the ids the offerings list
+ * gives for THIS offering (never a name): the resource(s) its link names when
+ * the admin bound it to a room type (issue #437), else every active resource of
+ * the matching mode. The first resource with a free unit is the one the hold
+ * will use, and the CMS refuses a hold on any resource the link does not name.
+ * A range with no free resource is "Penuh", never an empty success.
  *
  * Moving on carries the stay as plain ids and dates in the address
  * (`buatPathPesan`) and, signed out, sends the shopper through `/masuk` with

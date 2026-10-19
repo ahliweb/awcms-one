@@ -488,7 +488,7 @@ export function submitReview(input: ReviewRequest, bearerToken?: string): Promis
 const bearerHeader = (bearerToken?: string): Record<string, string> | undefined =>
   bearerToken ? { Authorization: `Bearer ${bearerToken}` } : undefined;
 
-/** `GET …/booking/offerings` - what the tenant sells online, with the resource ids to probe. `404` while the tenant's `booking` feature is off. */
+/** `GET …/booking/offerings` - what the tenant sells online, with the resource ids to probe (each offering's own, issue #437). `404` while the tenant's `booking` feature is off. */
 export function ambilTawaranBooking(bearerToken?: string): Promise<{ items: TawaranBooking[] }> {
   return kirimPermintaan<{ items: TawaranBooking[] }>("/booking/offerings", "GET", undefined, bearerHeader(bearerToken));
 }

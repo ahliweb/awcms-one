@@ -38,6 +38,7 @@ export type TawaranBooking = {
   minParty: number;
   maxParty: number;
   durationSeconds: number | null;
+  /** The ids to probe for THIS offering: the resource(s) its link names (issue #437), else every active resource of the mode. Never another offering's. */
   resourceIds: string[];
 };
 
