@@ -34,6 +34,16 @@
  * same rows. Every customer who ever had a relevant event is recomputed at
  * least once after their last one, which is the whole correctness argument.
  *
+ * ## The booking anchor (Issue #389)
+ *
+ * Two more append-only streams feed the SAME recompute: the booking refund
+ * decisions (a cancellation or no-show releases the reservation link, which
+ * changes whether the stay stands but moves no order status when nothing is
+ * refunded) and the reschedule record (it names the supplementary order that
+ * stops being a stand-alone event). `loadCustomerFacts` attaches the booking
+ * facts of `booking-report-facts.ts` to each order; the rule is
+ * `domain/retention.ts`'s `retentionEventOf`.
+ *
  * ## What is NOT in the row
  *
  * Whether the customer is blocked, soft-deleted or the walk-in sentinel is
@@ -59,6 +69,7 @@ import {
   type RetentionOrderFact,
   type RetentionRowState
 } from "../domain/retention";
+import { loadRetentionBookingFacts } from "./booking-report-facts";
 import { resolveSalesDeltaDirection } from "../domain/sales-report-deltas";
 import type {
   ProjectionDimensionalContract,
@@ -143,14 +154,24 @@ async function loadCustomerFacts(
       AND paid_at IS NOT NULL
     ORDER BY customer_id ASC, paid_at ASC, id ASC
   `) as OrderFactRow[];
+  // Issue #389 - the booking anchor: which of these orders are bookings (or the
+  // supplement of one), and whether the stay still stands.
+  const booking = await loadRetentionBookingFacts(
+    tx,
+    tenantId,
+    rows.map((row) => row.id)
+  );
   for (const row of rows) {
     const list = grouped.get(row.customer_id) ?? [];
-    list.push({
+    const fact: RetentionOrderFact = {
       orderId: row.id,
       paidAt: row.paid_at === null ? null : toDate(row.paid_at),
       status: row.status,
       paymentStatus: row.payment_status
-    });
+    };
+    const bookingFact = booking.get(row.id);
+    if (bookingFact) fact.booking = bookingFact;
+    list.push(fact);
     grouped.set(row.customer_id, list);
   }
   return grouped;
@@ -260,14 +281,18 @@ export async function recomputeCustomersOfOrders(
       await tx`
         INSERT INTO awcms_commerce_report_retention_customers
           (tenant_id, customer_id, cohort_month, first_event_at,
-           second_event_at, qualifying_order_count)
+           second_event_at, qualifying_order_count, first_event_kind,
+           qualifying_booking_count)
         VALUES (${tenantId}, ${customerId}, ${next.cohortMonth}::date,
-          ${next.firstEventAt}, ${next.secondEventAt}, ${next.qualifyingOrderCount})
+          ${next.firstEventAt}, ${next.secondEventAt}, ${next.qualifyingOrderCount},
+          ${next.firstEventKind}, ${next.qualifyingBookingCount})
         ON CONFLICT (tenant_id, customer_id) DO UPDATE SET
           cohort_month = EXCLUDED.cohort_month,
           first_event_at = EXCLUDED.first_event_at,
           second_event_at = EXCLUDED.second_event_at,
           qualifying_order_count = EXCLUDED.qualifying_order_count,
+          first_event_kind = EXCLUDED.first_event_kind,
+          qualifying_booking_count = EXCLUDED.qualifying_booking_count,
           updated_at = now()
       `;
     }
@@ -295,6 +320,59 @@ export const RETENTION_EVENT_SINK: ProjectionDimensionalSink = {
 export const RETENTION_REVERSAL_SINK: ProjectionDimensionalSink = {
   selectColumns: RETENTION_REVERSAL_SELECT_COLUMNS,
   applyBatch: applyRetentionBatch
+};
+
+// ---------------------------------------------------------------------------
+// The booking anchor (Issue #389)
+// ---------------------------------------------------------------------------
+
+/** Columns the refund-decision stream asks the engine to SELECT beyond the cursor. */
+export const RETENTION_BOOKING_DECISION_SELECT_COLUMNS = [
+  "id",
+  "order_id"
+] as const;
+
+/** Columns the reschedule stream asks the engine to SELECT beyond the cursor. */
+export const RETENTION_BOOKING_RESCHEDULE_SELECT_COLUMNS = [
+  "id",
+  "order_id",
+  "supplement_order_id"
+] as const;
+
+/**
+ * The order ids a booking-side batch row can change a customer through: the
+ * order a decision or reschedule is about and, for a reschedule, the
+ * supplementary order it created (which stops being a stand-alone event).
+ */
+export function bookingBatchOrderIds(
+  rows: readonly Record<string, unknown>[]
+): string[] {
+  const ids = new Set<string>();
+  for (const row of rows) {
+    for (const key of ["order_id", "supplement_order_id"] as const) {
+      const value = row[key];
+      if (typeof value === "string" && value.length > 0) ids.add(value);
+    }
+  }
+  return [...ids].sort();
+}
+
+export async function applyRetentionBookingBatch(
+  tx: Bun.SQL,
+  tenantId: string,
+  rows: readonly Record<string, unknown>[]
+): Promise<void> {
+  await recomputeCustomersOfOrders(tx, tenantId, bookingBatchOrderIds(rows));
+}
+
+export const RETENTION_BOOKING_DECISION_SINK: ProjectionDimensionalSink = {
+  selectColumns: RETENTION_BOOKING_DECISION_SELECT_COLUMNS,
+  applyBatch: applyRetentionBookingBatch
+};
+
+export const RETENTION_BOOKING_RESCHEDULE_SINK: ProjectionDimensionalSink = {
+  selectColumns: RETENTION_BOOKING_RESCHEDULE_SELECT_COLUMNS,
+  applyBatch: applyRetentionBookingBatch
 };
 
 // ---------------------------------------------------------------------------
@@ -354,7 +432,8 @@ export const RETENTION_DIMENSIONAL: ProjectionDimensionalContract = {
             AND second_event_at > first_event_at
             AND second_event_at <= first_event_at + make_interval(hours => ${RETENTION_WINDOW_HOURS})
         ))::int AS repeaters,
-        COALESCE(sum(qualifying_order_count), 0)::int AS qualifying_orders
+        COALESCE(sum(qualifying_order_count), 0)::int AS qualifying_orders,
+        COALESCE(sum(qualifying_booking_count), 0)::int AS booking_events
       FROM awcms_commerce_report_retention_customers
       WHERE tenant_id = ${tenantId}
     `) as Record<string, unknown>[];
@@ -364,7 +443,8 @@ export const RETENTION_DIMENSIONAL: ProjectionDimensionalContract = {
       [RETENTION_CONTROL_KEYS.repeaters]: Number(row.repeaters ?? 0),
       [RETENTION_CONTROL_KEYS.qualifyingOrders]: Number(
         row.qualifying_orders ?? 0
-      )
+      ),
+      [RETENTION_CONTROL_KEYS.bookingEvents]: Number(row.booking_events ?? 0)
     };
   },
   computeSourceTotals: async (tx, tenantId) => {
@@ -372,7 +452,8 @@ export const RETENTION_DIMENSIONAL: ProjectionDimensionalContract = {
     return {
       [RETENTION_CONTROL_KEYS.customers]: totals.customers,
       [RETENTION_CONTROL_KEYS.repeaters]: totals.repeaters,
-      [RETENTION_CONTROL_KEYS.qualifyingOrders]: totals.qualifyingOrders
+      [RETENTION_CONTROL_KEYS.qualifyingOrders]: totals.qualifyingOrders,
+      [RETENTION_CONTROL_KEYS.bookingEvents]: totals.bookingEvents
     };
   },
   // Aggregates only: the export carries cohort counts, never a customer.
@@ -384,12 +465,16 @@ export const RETENTION_DIMENSIONAL: ProjectionDimensionalContract = {
           WHERE second_event_at IS NOT NULL
             AND second_event_at > first_event_at
             AND second_event_at <= first_event_at + make_interval(hours => ${RETENTION_WINDOW_HOURS})
-        ))::int AS repeaters
+        ))::int AS repeaters,
+        (count(*) FILTER (WHERE first_event_kind = 'booking'))::int AS booking_anchored
       FROM awcms_commerce_report_retention_customers
       WHERE tenant_id = ${tenantId}
       GROUP BY cohort_month
       ORDER BY cohort_month ASC
     `) as Record<string, unknown>[];
-    return { columns: ["cohort_month", "customers", "repeaters"], rows };
+    return {
+      columns: ["cohort_month", "customers", "repeaters", "booking_anchored"],
+      rows
+    };
   }
 };
