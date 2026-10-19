@@ -14962,6 +14962,40 @@ Legal status edges: received -> scheduled | in_progress | cancelled; scheduled -
 | 404    | Resource not found.                                                                                                                                                                            | [`ApiError`](#standard-error-envelope) |
 | 409    | `WORK_ORDER_TRANSITION_ILLEGAL` (`details.from`, `details.to`), `WORK_ORDER_CLOSED`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` - the tenant's `documents` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/reports/commerce/booking-pipeline` — Issue #389 (ADR-0045 amendment note; metrics spec sections 4.3 and 8.2). The booking hold pipeline AS OF NOW: the holds the booking adapter is waiting to see paid (an active reservation link on an order still `pending_payment`, not yet expired), with the held units (resource-nights for a stay product, one per slot), their value (the order totals), the age of the oldest hold and the soonest expiry. Held space is neither occupancy nor revenue. A live, read-only, tenant-scoped query over the adapter's link table and the order - a hold is a current state, not an event sum - so it is as fresh as the database. Counts and money only. While the tenant's `booking` feature is OFF the answer is `200` with `enabled: false`. Gated on `reporting.dashboard.read`.
+
+- **operationId**: `getReportsCommerceBookingPipeline`
+- **Security**: bearerAuth + tenantHeader
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The pipeline.               | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/reports/commerce/booking-revenue` — Issue #389 (ADR-0045 amendment note; metrics spec sections 3, 3.7 and 8.2). The booking-sourced revenue waterfall per `Asia/Jakarta` paid day in the inclusive range, from the `commerce.booking_revenue` projection. Revenue follows the commerce order and the payment ledger only: gross is recognised once, on the day of the order's first paid transition (a deposit order recognises its whole gross on the deposit day); discounts are the reductions the order recorded before payment; Refunds are the money paid back plus, for a closed order (a cancellation or a no-show), the unpaid balance that will never be collected ("no money moved"), both on the ORIGINAL paid day; net is gross - discounts - refunds. Shipping, insurance and tax are companion columns beside the waterfall, and the unpaid balance of orders still open is shown as `balanceOutstanding`. Also the stay and no-show counts and the no-show rate (no-shows / stays, joined through the order). Aggregates only: no order, customer, name or contact. A day older than the 35-day window that a late event changed is `restated: true`. While the tenant's `booking` feature is OFF (the default) the answer is `200` with `enabled: false` and no days. Gated on `reporting.dashboard.read`, the sales report routes' own permission; the projection's freshness, rebuild and reconciliation live on `GET /api/v1/reports/projections/commerce.booking_revenue`.
+
+- **operationId**: `getReportsCommerceBookingRevenue`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name   | In    | Required | Type          | Description                                                                                                                        |
+| ------ | ----- | -------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `from` | query | no       | string (date) | Inclusive first paid day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days. |
+| `to`   | query | no       | string (date) | Inclusive last paid day (`YYYY-MM-DD`). Defaults to today in the report time zone.                                                 |
+
+**Responses**
+
+| Status | Description                                                                                    | Schema                                 |
+| ------ | ---------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The waterfall, one row per paid day that has a booking order, ascending, and the range totals. | object                                 |
+| 400    | Validation error.                                                                              | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                    | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/reports/commerce/operational-cash-ups` — Issue #296 (ADR-0035). The POS operational cash-ups report over the inclusive day range: the cash-up variance of every register session that closed in the range, per tender, with register and cashier of record, from the `commerce.pos_cash_up_variance` projection; variance is counted (with corrections) minus expected, negative is short. While the tenant's `register` feature is OFF the answer is `200` with `enabled: false` and no rows. Gated on `commerce.report_cash_ups.read`, a permission of its own (not implied by `reporting.dashboard.read` or by the source-domain permission).
 
 - **operationId**: `getReportsCommerceOperationalCashUps`
@@ -15235,7 +15269,7 @@ Legal status edges: received -> scheduled | in_progress | cancelled; scheduled -
 | 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/reports/commerce/retention` — Issue #364 (ADR-0044; metrics spec section 6). The 90-day repeat rate of each customer cohort - the `Asia/Jakarta` calendar month of a customer's first qualifying paid order - for the last `months` cohort months, from the `commerce.customer_retention` projection. A qualifying order is paid and not fully refunded or cancelled afterwards; the repeat must be a distinct order whose instant is after the first and within 90 x 24 hours of it (the final instant is inside). Counts only: no customer id, name or contact is ever returned. A cohort whose window has not fully elapsed is `mature: false` (shown "to date"); a cohort under 20 customers has `rateShown: false` and a `null` percentage; a closed cohort changed by a late event after the 35-day restatement window is `restated: true`. Blocked and purged customers and the walk-in placeholder are outside every cohort; the placeholder's orders are `unlinkedOrders`. While the tenant's `retention` feature is OFF (the default) the answer is `200` with `enabled: false` and no cohorts. Gated on `commerce.report_retention.read`, a permission of its own (not implied by `reporting.dashboard.read` or `commerce.customers.read`).
+### `GET /api/v1/reports/commerce/retention` — Issue #364 (ADR-0044; metrics spec section 6). The 90-day repeat rate of each customer cohort - the `Asia/Jakarta` calendar month of a customer's first qualifying paid order - for the last `months` cohort months, from the `commerce.customer_retention` projection. A qualifying event is a paid order that is not fully refunded or cancelled afterwards, or (Issue #389, the booking anchor) a paid order carrying a Booking reservation link whose stay still stands - one event per stay: a reschedule's replacement and the supplementary order of a stay that grew are not extra events, a cancelled stay is none; the repeat must be a distinct event whose instant is after the first and within 90 x 24 hours of it (the final instant is inside). Counts only: no customer id, name or contact is ever returned. A cohort whose window has not fully elapsed is `mature: false` (shown "to date"); a cohort under 20 customers has `rateShown: false` and a `null` percentage; a closed cohort changed by a late event after the 35-day restatement window is `restated: true`. Blocked and purged customers and the walk-in placeholder are outside every cohort; the placeholder's orders are `unlinkedOrders`. While the tenant's `retention` feature is OFF (the default) the answer is `200` with `enabled: false` and no cohorts. Gated on `commerce.report_retention.read`, a permission of its own (not implied by `reporting.dashboard.read` or `commerce.customers.read`).
 
 - **operationId**: `getReportsCommerceRetention`
 - **Security**: bearerAuth + tenantHeader

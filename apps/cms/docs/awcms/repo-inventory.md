@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 34    |
-| Migrations                          | 344   |
-| `awcms_*` tables                    | 313   |
-| Tables with `FORCE` RLS             | 295   |
+| Migrations                          | 345   |
+| `awcms_*` tables                    | 315   |
+| Tables with `FORCE` RLS             | 297   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 888   |
-| Route files                         | 831   |
+| Test files                          | 891   |
+| Route files                         | 833   |
 | ADR                                 | 292   |
 
 ### Modules
@@ -403,6 +403,7 @@
 | 342 | `sql/1043_awcms_commerce_booking_cancellation_schema.sql`                   |
 | 343 | `sql/1044_awcms_commerce_booking_cancellation_permissions.sql`              |
 | 344 | `sql/1045_awcms_commerce_booking_reschedule.sql`                            |
+| 345 | `sql/1047_awcms_commerce_booking_revenue_projection.sql`                    |
 
 ### Tables & Row-Level Security
 
@@ -517,6 +518,8 @@
 | `awcms_commerce_register_movements`            | `sql/970_awcms_commerce_register_schema.sql`               | yes | yes   |
 | `awcms_commerce_register_sessions`             | `sql/970_awcms_commerce_register_schema.sql`               | yes | yes   |
 | `awcms_commerce_registers`                     | `sql/970_awcms_commerce_register_schema.sql`               | yes | yes   |
+| `awcms_commerce_report_booking_orders`         | `sql/1047_awcms_commerce_booking_revenue_projection.sql`   | yes | yes   |
+| `awcms_commerce_report_booking_restated`       | `sql/1047_awcms_commerce_booking_revenue_projection.sql`   | yes | yes   |
 | `awcms_commerce_report_cash_up_tenders`        | `sql/998_awcms_commerce_operational_reports_schema.sql`    | yes | yes   |
 | `awcms_commerce_report_expense_daily`          | `sql/998_awcms_commerce_operational_reports_schema.sql`    | yes | yes   |
 | `awcms_commerce_report_loyalty_daily`          | `sql/998_awcms_commerce_operational_reports_schema.sql`    | yes | yes   |
@@ -726,16 +729,16 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 645        |
+| `(root)`      | 646        |
 | `e2e`         | 26         |
-| `integration` | 216        |
+| `integration` | 218        |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 687   |
+| `/api/v1/**`    | 689   |
 | `/admin/**`     | 113   |
 | publik / anonim | 31    |
 
