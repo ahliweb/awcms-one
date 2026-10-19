@@ -8,7 +8,7 @@
  *     route meant to need it; the rest of the access matrix is NOT registered
  *     (a key with no enforcing route is the "permission with no enforcing code"
  *     defect class) and the high-risk verbs it will use are already classed;
- *   - the six adapter tables are the ones the migrations create, each with an
+ *   - the seven adapter tables are the ones the migrations create, each with an
  *     `id` primary key, `tenant_id`, RLS ENABLED and FORCED, a lifecycle and a
  *     subject-data descriptor, and a worker grant;
  *   - the module boundary: commerce reads Booking through the PORT only (no
@@ -40,7 +40,9 @@ const MIGRATIONS = [
   "sql/1035_awcms_commerce_booking_links_schema.sql",
   "sql/1036_awcms_commerce_product_deposit_policies.sql",
   "sql/1037_awcms_commerce_cancellation_policies.sql",
-  "sql/1038_awcms_commerce_booking_refund_decisions.sql"
+  "sql/1038_awcms_commerce_booking_refund_decisions.sql",
+  // Issue #437: the offering link's resource binding.
+  "sql/1050_awcms_commerce_booking_offering_link_resources.sql"
 ];
 
 const ADAPTER_TABLES = [
@@ -49,7 +51,8 @@ const ADAPTER_TABLES = [
   "awcms_commerce_product_deposit_policies",
   "awcms_commerce_cancellation_policies",
   "awcms_commerce_cancellation_policy_windows",
-  "awcms_commerce_booking_refund_decisions"
+  "awcms_commerce_booking_refund_decisions",
+  "awcms_commerce_booking_offering_link_resources"
 ];
 
 const ROUTES: Record<string, string[]> = {
@@ -187,7 +190,7 @@ describe("permissions (evidence item 1)", () => {
 });
 
 describe("tables", () => {
-  test("the migrations create exactly the six adapter tables, each with an id primary key, tenant_id, RLS enabled and forced, and a tenant-isolation policy", async () => {
+  test("the migrations create exactly the seven adapter tables, each with an id primary key, tenant_id, RLS enabled and forced, and a tenant-isolation policy", async () => {
     const created: string[] = [];
     for (const file of MIGRATIONS) {
       const sql = await readFile(file, "utf8");
@@ -254,10 +257,15 @@ describe("tables", () => {
     const moduleSubject = new Set(
       (commerce.subjectData ?? []).map((d) => d.tableName)
     );
-    const grants = await readFile(
-      "sql/1040_awcms_commerce_booking_adapter_settings_and_worker_grants.sql",
-      "utf8"
-    );
+    const grants =
+      (await readFile(
+        "sql/1040_awcms_commerce_booking_adapter_settings_and_worker_grants.sql",
+        "utf8"
+      )) +
+      (await readFile(
+        "sql/1050_awcms_commerce_booking_offering_link_resources.sql",
+        "utf8"
+      ));
     for (const table of ADAPTER_TABLES) {
       expect(moduleLifecycle.has(table), table).toBe(true);
       expect(moduleSubject.has(table), table).toBe(true);

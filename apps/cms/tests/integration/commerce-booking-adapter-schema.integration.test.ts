@@ -1,5 +1,5 @@
 /**
- * The booking-commerce adapter's six tables against a real, migrated PostgreSQL
+ * The booking-commerce adapter's seven tables against a real, migrated PostgreSQL
  * under the least-privilege RUNTIME role (Issue #378, ADR-0045; access matrix
  * section 9 evidence items 3 and 4). WORLD 1 (see `harness.ts`): an ephemeral
  * database with the real `awcms_app` / `awcms_worker` roles, so every assertion
@@ -63,7 +63,8 @@ const ADAPTER_TABLES = [
   "awcms_commerce_product_deposit_policies",
   "awcms_commerce_cancellation_policies",
   "awcms_commerce_cancellation_policy_windows",
-  "awcms_commerce_booking_refund_decisions"
+  "awcms_commerce_booking_refund_decisions",
+  "awcms_commerce_booking_offering_link_resources"
 ] as const;
 
 // SQLSTATEs.
@@ -546,6 +547,145 @@ suite("booking adapter tables (Issue #378)", () => {
       ),
       PRIVILEGE,
       "deleting a link as awcms_app"
+    );
+  });
+
+  test("offering link resources (Issue #437): RLS, composite FKs to the tenant's own Booking resource and link, written once with an active link, no UPDATE or DELETE for the app role", async () => {
+    const admin = getAdminSql();
+    const newResource = async (tenantId: string, code: string) => {
+      const rows = (await admin`
+        INSERT INTO awcms_booking_resources
+          (tenant_id, code, name, kind, capacity, timezone, booking_mode,
+           stay_check_in_time, stay_check_out_time)
+        VALUES (${tenantId}, ${code}, ${code}, 'room', 1, 'Asia/Pontianak',
+                'stay', '14:00'::time, '12:00'::time)
+        RETURNING id
+      `) as { id: string }[];
+      return rows[0]!.id;
+    };
+    const bind = (
+      tx: Bun.SQL,
+      tenantId: string,
+      linkId: string,
+      resourceId: string,
+      order = 0
+    ) =>
+      tx`
+        INSERT INTO awcms_commerce_booking_offering_link_resources
+          (tenant_id, offering_link_id, resource_id, sort_order)
+        VALUES (${tenantId}, ${linkId}, ${resourceId}, ${order})
+        RETURNING id
+      ` as Promise<{ id: string }[]>;
+
+    const resA1 = await newResource(TENANT_A, "ra1");
+    const resA2 = await newResource(TENANT_A, "ra2");
+    const resB = await newResource(TENANT_B, "rb1");
+    const linkA = await inTenant(TENANT_A, (tx) =>
+      insertOfferingLink(tx, TENANT_A, seed.offeringA, seed.svcA)
+    );
+    const linkB = await inTenant(TENANT_B, (tx) =>
+      insertOfferingLink(tx, TENANT_B, seed.offeringB, seed.svcB)
+    );
+
+    const first = await inTenant(TENANT_A, (tx) =>
+      bind(tx, TENANT_A, linkA[0]!.id, resA1, 0)
+    );
+    await inTenant(TENANT_A, (tx) =>
+      bind(tx, TENANT_A, linkA[0]!.id, resA2, 1)
+    );
+    await inTenant(TENANT_B, (tx) => bind(tx, TENANT_B, linkB[0]!.id, resB));
+
+    // A resource is bound to a link once.
+    await rejectedWith(
+      inTenant(TENANT_A, (tx) => bind(tx, TENANT_A, linkA[0]!.id, resA1, 2)),
+      UNIQUE,
+      "the same resource bound twice to one link"
+    );
+    // Tenant B's rows are invisible from A, and A cannot write a B-stamped row.
+    const seenFromA = await inTenant(
+      TENANT_A,
+      (tx) => tx`SELECT id FROM awcms_commerce_booking_offering_link_resources`
+    );
+    expect(seenFromA).toHaveLength(2);
+    const crossTenant = await assertRejected(
+      Promise.resolve(
+        inTenant(TENANT_A, (tx) => bind(tx, TENANT_B, linkB[0]!.id, resB))
+      ),
+      "a binding stamped with another tenant"
+    );
+    resetDatabaseCircuitBreakerForTests();
+    expect([PRIVILEGE, CHECK, FOREIGN_KEY, RESTRICT]).toContain(
+      String((crossTenant as { errno?: unknown }).errno)
+    );
+
+    // The composite FKs, with RLS out of the way: another tenant's resource and
+    // another tenant's link are refused by the database itself.
+    await rejectedWith(
+      bind(admin, TENANT_A, linkA[0]!.id, resB),
+      FOREIGN_KEY,
+      "another tenant's Booking resource"
+    );
+    await rejectedWith(
+      bind(admin, TENANT_A, linkB[0]!.id, resA1),
+      RESTRICT,
+      "another tenant's offering link (the guard trigger's tenant-scoped lookup refuses it before the composite FK)"
+    );
+
+    // Written once: no UPDATE, no DELETE for the app role; the trigger refuses an UPDATE for anyone.
+    await rejectedWith(
+      inTenant(
+        TENANT_A,
+        (tx) => tx`
+        UPDATE awcms_commerce_booking_offering_link_resources
+        SET sort_order = 9 WHERE id = ${first[0]!.id}
+      `
+      ),
+      PRIVILEGE,
+      "updating a binding as awcms_app"
+    );
+    await rejectedWith(
+      inTenant(
+        TENANT_A,
+        (tx) => tx`
+        DELETE FROM awcms_commerce_booking_offering_link_resources
+        WHERE id = ${first[0]!.id}
+      `
+      ),
+      PRIVILEGE,
+      "deleting a binding as awcms_app"
+    );
+    await rejectedWith(
+      admin`
+        UPDATE awcms_commerce_booking_offering_link_resources
+        SET sort_order = 9 WHERE id = ${first[0]!.id}
+      `,
+      RESTRICT,
+      "updating a binding as the owner (the guard trigger)"
+    );
+
+    // An unlinked link takes no new binding, and keeps the ones it has.
+    await inTenant(
+      TENANT_A,
+      (tx) => tx`
+      UPDATE awcms_commerce_booking_offering_links
+      SET status = 'unlinked', unlinked_at = now(), updated_at = now()
+      WHERE id = ${linkA[0]!.id}
+    `
+    );
+    const resA3 = await newResource(TENANT_A, "ra3");
+    await rejectedWith(
+      inTenant(TENANT_A, (tx) => bind(tx, TENANT_A, linkA[0]!.id, resA3)),
+      RESTRICT,
+      "binding a resource to an unlinked link"
+    );
+    const kept = await inTenant(
+      TENANT_A,
+      (tx) =>
+        tx`SELECT resource_id FROM awcms_commerce_booking_offering_link_resources
+           WHERE offering_link_id = ${linkA[0]!.id} ORDER BY sort_order`
+    );
+    expect(kept.map((row: { resource_id: string }) => row.resource_id)).toEqual(
+      [resA1, resA2]
     );
   });
 

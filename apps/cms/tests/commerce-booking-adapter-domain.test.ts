@@ -30,8 +30,55 @@ describe("offering link input", () => {
       })
     ).toEqual({
       valid: true,
-      value: { offeringId: UUID_A, productId: UUID_B, quantityBasis: "nights" }
+      value: {
+        offeringId: UUID_A,
+        productId: UUID_B,
+        quantityBasis: "nights",
+        resourceIds: []
+      }
     });
+  });
+
+  test("resourceIds (Issue #437) is optional, ordered, distinct, uuid-only and bounded", () => {
+    const base = {
+      offeringId: UUID_A,
+      productId: UUID_B,
+      quantityBasis: "nights" as const
+    };
+    const bound = validateCreateOfferingLinkInput({
+      ...base,
+      resourceIds: [UUID_B, UUID_A]
+    });
+    expect(bound).toEqual({
+      valid: true,
+      value: { ...base, resourceIds: [UUID_B, UUID_A] }
+    });
+    for (const unbound of [undefined, null, []]) {
+      const result = validateCreateOfferingLinkInput({
+        ...base,
+        resourceIds: unbound
+      });
+      expect(result.valid && result.value.resourceIds).toEqual([]);
+    }
+    for (const bad of [
+      "not-an-array",
+      [7],
+      ["x"],
+      [UUID_A, UUID_A],
+      Array.from(
+        { length: 11 },
+        (_, i) => `00000000-0000-4000-8000-${String(i).padStart(12, "0")}`
+      )
+    ]) {
+      const result = validateCreateOfferingLinkInput({
+        ...base,
+        resourceIds: bad
+      });
+      expect(result.valid).toBe(false);
+      if (!result.valid) {
+        expect(fields(result)[0]).toStartWith("resourceIds");
+      }
+    }
   });
 
   test("an id that is not a uuid, a basis that is not nights|booking, and a missing field are refused by name", () => {
