@@ -129,6 +129,22 @@ test("the settings screen carries the service-account field", () => {
   expect(source).toContain("bookingServiceTenantUserId");
 });
 
+test("the settings screen carries the check-in policy checkbox (Issue #383, ADR-0045 D19): rendered only with the booking block, sent only when rendered, default ON", () => {
+  const source = readFileSync(
+    "src/pages/admin/commerce-settings.astro",
+    "utf8"
+  );
+  expect(source).toContain("settings-checkinRequiresSettlement");
+  expect(source).toContain("fetchCheckInRequiresSettlement");
+  // Absent from the PUT unless the checkbox rendered, so a tenant with the
+  // booking feature off never clears or sets it by saving the screen.
+  expect(source).toMatch(
+    /el\("settings-checkinRequiresSettlement"\)\s*\?\s*\{\s*checkinRequiresSettlement:/
+  );
+  // The default shown for a tenant without the feature is the fail-closed one.
+  expect(source).toMatch(/: true;/);
+});
+
 test("the policy screen drafts, approves and retires through the confirm and step-up dialogs", () => {
   const source = readFileSync(
     SCREENS["/admin/commerce-booking-policies"].file,
