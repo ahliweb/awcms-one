@@ -1,0 +1,425 @@
+/**
+ * The booking revenue waterfall and the hold pipeline through the REAL route
+ * handlers (Issue #389, ADR-0045 amendment note) - the HTTP half that
+ * `commerce-booking-revenue.integration.test.ts` (engine and read functions,
+ * WORLD 1) cannot see: route wiring (`defineTenantRoute`, ABAC, the range
+ * validator, the `booking` feature toggle) with real session and permission
+ * machinery behind it. Same shape as `commerce-retention-routes.integration.
+ * test.ts`, whose WORLD 2 note applies: handlers call `getDatabaseClient()`
+ * internally, so this file runs against the migrated `DATABASE_URL` database and
+ * seeds through `getHandlerAdminSql()`. Projection rows are seeded directly -
+ * this file is about who may read them and what comes back, not how they are
+ * filled.
+ */
+import {
+  afterAll,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  test
+} from "bun:test";
+
+import {
+  createCookieJar,
+  ensureHandlerDatabaseReady,
+  getHandlerAdminSql,
+  integrationEnabled,
+  invoke,
+  resetHandlerDatabase,
+  teardownHandlerDatabase
+} from "./harness";
+import { hashSessionToken } from "../../src/lib/auth/session-token";
+import { resolveSalesReportDay } from "../../src/modules/commerce/domain/sales-report-deltas";
+import { POST as setupInitialize } from "../../src/pages/api/v1/setup/initialize";
+import { POST as authLogin } from "../../src/pages/api/v1/auth/login";
+import { PATCH as patchModuleSettings } from "../../src/pages/api/v1/tenant/modules/[moduleKey]/settings";
+import { GET as revenueJson } from "../../src/pages/api/v1/reports/commerce/booking-revenue";
+import { GET as pipelineJson } from "../../src/pages/api/v1/reports/commerce/booking-pipeline";
+
+const OWNER_PASSWORD = "integration-test-owner-password";
+const REVENUE_PATH = "/api/v1/reports/commerce/booking-revenue";
+const PIPELINE_PATH = "/api/v1/reports/commerce/booking-pipeline";
+
+type Principal = { tenantId: string; token: string; tenantUserId: string };
+
+async function bootstrapOwner(): Promise<Principal> {
+  const loginIdentifier = "owner@example.com";
+  const setup = await invoke<{ data: { tenantId: string } }>(setupInitialize, {
+    method: "POST",
+    path: "/api/v1/setup/initialize",
+    headers: { "content-type": "application/json" },
+    body: {
+      tenantName: "Acme",
+      tenantCode: "acme",
+      officeCode: "hq",
+      officeName: "HQ",
+      ownerLoginIdentifier: loginIdentifier,
+      ownerPassword: OWNER_PASSWORD,
+      ownerDisplayName: "Owner"
+    }
+  });
+  expect(setup.status).toBe(200);
+  const tenantId = setup.body.data.tenantId;
+  const login = await invoke<{ data: { token: string } }>(authLogin, {
+    method: "POST",
+    path: "/api/v1/auth/login",
+    headers: {
+      "content-type": "application/json",
+      "x-awcms-tenant-id": tenantId
+    },
+    body: { loginIdentifier, password: OWNER_PASSWORD },
+    cookies: createCookieJar()
+  });
+  expect(login.status).toBe(200);
+  const rows = (await getHandlerAdminSql()`
+    SELECT tu.id FROM awcms_tenant_users tu
+    JOIN awcms_identities i ON i.id = tu.identity_id
+    WHERE tu.tenant_id = ${tenantId} AND i.login_identifier = ${loginIdentifier}
+  `) as { id: string }[];
+  return { tenantId, token: login.body.data.token, tenantUserId: rows[0]!.id };
+}
+
+/** A tenant user holding ONLY the given permission keys, with a live session. */
+async function seedPrincipal(
+  tenantId: string,
+  label: string,
+  perms: string[]
+): Promise<Principal> {
+  const admin = getHandlerAdminSql();
+  const profile = (await admin`
+    INSERT INTO awcms_profiles (tenant_id, profile_type, display_name)
+    VALUES (${tenantId}, 'person', ${`Profile ${label}`})
+    RETURNING id
+  `) as { id: string }[];
+  const identity = (await admin`
+    INSERT INTO awcms_identities (tenant_id, profile_id, login_identifier, password_hash)
+    VALUES (${tenantId}, ${profile[0]!.id}, ${`${label}@example.test`}, 'x')
+    RETURNING id
+  `) as { id: string }[];
+  const tenantUser = (await admin`
+    INSERT INTO awcms_tenant_users (tenant_id, identity_id)
+    VALUES (${tenantId}, ${identity[0]!.id})
+    RETURNING id
+  `) as { id: string }[];
+  const role = (await admin`
+    INSERT INTO awcms_roles (tenant_id, role_code, role_name)
+    VALUES (${tenantId}, ${label}, ${label})
+    RETURNING id
+  `) as { id: string }[];
+  for (const key of perms) {
+    const [moduleKey, activityCode, action] = key.split(".");
+    const permission = (await admin`
+      SELECT id FROM awcms_permissions
+      WHERE module_key = ${moduleKey!} AND activity_code = ${activityCode!} AND action = ${action!}
+    `) as { id: string }[];
+    if (!permission[0]) throw new Error(`permission ${key} is not seeded`);
+    await admin`
+      INSERT INTO awcms_role_permissions (tenant_id, role_id, permission_id)
+      VALUES (${tenantId}, ${role[0]!.id}, ${permission[0].id})
+    `;
+  }
+  await admin`
+    INSERT INTO awcms_access_policies (tenant_id, tenant_user_id, role_id, scope_type, scope_id)
+    VALUES (${tenantId}, ${tenantUser[0]!.id}, ${role[0]!.id}, 'tenant', ${tenantId})
+  `;
+  const token = `it-token-${label}-${Date.now()}`;
+  await admin`
+    INSERT INTO awcms_sessions (tenant_id, identity_id, token_hash, expires_at)
+    VALUES (${tenantId}, ${identity[0]!.id}, ${hashSessionToken(token)}, ${new Date(Date.now() + 3_600_000)})
+  `;
+  return { tenantId, token, tenantUserId: tenantUser[0]!.id };
+}
+
+function headers(who: Principal): Record<string, string> {
+  return {
+    "content-type": "application/json",
+    "x-awcms-tenant-id": who.tenantId,
+    authorization: `Bearer ${who.token}`
+  };
+}
+
+type Envelope<T = unknown> = {
+  success: boolean;
+  data: T;
+  error?: { code: string };
+};
+
+type RevenueBody = {
+  enabled: boolean;
+  from: string;
+  to: string;
+  days: {
+    day: string;
+    gross: string;
+    refunds: string;
+    refundsPaidBack: string;
+    refundsUncollected: string;
+    net: string;
+    balanceOutstanding: string;
+    noShows: number;
+    noShowRatePercent: string | null;
+    restated: boolean;
+  }[];
+  totals: { gross: string; net: string };
+};
+
+const dayAgo = (n: number) =>
+  resolveSalesReportDay(new Date(Date.now() - n * 86_400_000));
+
+/** Two booking orders on one past day: a no-show with its balance uncollected, and a fully paid stay. */
+async function seedRows(tenantId: string): Promise<void> {
+  const admin = getHandlerAdminSql();
+  const insert = (
+    stays: number,
+    noShows: number,
+    paidIn: string,
+    uncollected: string,
+    retained: string
+  ) => admin`
+    INSERT INTO awcms_commerce_report_booking_orders
+      (tenant_id, order_id, paid_day, source_kind, stays, no_shows, no_show_retained,
+       gross, discount, shipping, insurance, tax, total, paid_in, paid_back,
+       uncollected, outstanding, closed)
+    VALUES (${tenantId}, gen_random_uuid(), ${dayAgo(2)}::date, 'reservation', ${stays},
+      ${noShows}, ${retained}::numeric, 3000000, 0, 0, 0, 0, 3000000,
+      ${paidIn}::numeric, 0, ${uncollected}::numeric, 0, ${noShows > 0})`;
+  await insert(1, 1, "900000", "2100000", "900000");
+  await insert(1, 0, "3000000", "0", "0");
+}
+
+async function setBooking(owner: Principal, on: boolean) {
+  return invoke<Envelope>(patchModuleSettings, {
+    method: "PATCH",
+    path: "/api/v1/tenant/modules/commerce/settings",
+    headers: headers(owner),
+    params: { moduleKey: "commerce" },
+    body: {
+      features: {
+        pos: true,
+        inbox: true,
+        campaigns: true,
+        gateway: true,
+        courier: true,
+        booking: on
+      }
+    }
+  });
+}
+
+const suite = integrationEnabled ? describe : describe.skip;
+
+let handlerReady = false;
+
+function skipUnlessHandlerReady(): boolean {
+  if (handlerReady) return false;
+  console.warn(
+    "[skip] handler database is not migrated - run 'bun run db:migrate' against DATABASE_URL."
+  );
+  return true;
+}
+
+suite(
+  "booking revenue and pipeline through the route handlers (Issue #389)",
+  () => {
+    beforeAll(async () => {
+      handlerReady = await ensureHandlerDatabaseReady();
+    });
+
+    afterAll(async () => {
+      await teardownHandlerDatabase();
+    });
+
+    beforeEach(async () => {
+      if (!handlerReady) return;
+      await resetHandlerDatabase();
+    });
+
+    test("OFF by default: 200 enabled=false and no days; on shows the waterfall of the original paid day; off again hides it", async () => {
+      if (skipUnlessHandlerReady()) return;
+      const owner = await bootstrapOwner();
+      await seedRows(owner.tenantId);
+      const path = `${REVENUE_PATH}?from=${dayAgo(5)}&to=${dayAgo(0)}`;
+
+      const off = await invoke<Envelope<RevenueBody>>(revenueJson, {
+        path,
+        headers: headers(owner)
+      });
+      expect(off.status).toBe(200);
+      expect(off.body.data.enabled).toBe(false);
+      expect(off.body.data.days).toEqual([]);
+
+      expect((await setBooking(owner, true)).status).toBe(200);
+      const on = await invoke<Envelope<RevenueBody>>(revenueJson, {
+        path,
+        headers: headers(owner)
+      });
+      expect(on.status).toBe(200);
+      expect(on.body.data.enabled).toBe(true);
+      expect(on.body.data.days).toHaveLength(1);
+      expect(on.body.data.days[0]).toMatchObject({
+        day: dayAgo(2),
+        gross: "6000000.00",
+        refundsPaidBack: "0.00",
+        refundsUncollected: "2100000.00",
+        refunds: "2100000.00",
+        net: "3900000.00",
+        noShows: 1,
+        noShowRatePercent: "50.0",
+        restated: false
+      });
+      expect(on.body.data.totals).toMatchObject({
+        gross: "6000000.00",
+        net: "3900000.00"
+      });
+      // Aggregates only: no order id, customer or contact leaves the route.
+      expect(JSON.stringify(on.body)).not.toMatch(
+        /order_?id|customer|phone|[0-9a-f]{8}-[0-9a-f]{4}-4/i
+      );
+
+      expect((await setBooking(owner, false)).status).toBe(200);
+      const hidden = await invoke<Envelope<RevenueBody>>(revenueJson, {
+        path,
+        headers: headers(owner)
+      });
+      expect(hidden.body.data.enabled).toBe(false);
+    });
+
+    test("a day outside the range is not returned, and the default range is the last 30 days", async () => {
+      if (skipUnlessHandlerReady()) return;
+      const owner = await bootstrapOwner();
+      await seedRows(owner.tenantId);
+      expect((await setBooking(owner, true)).status).toBe(200);
+
+      const narrow = await invoke<Envelope<RevenueBody>>(revenueJson, {
+        path: `${REVENUE_PATH}?from=${dayAgo(1)}&to=${dayAgo(0)}`,
+        headers: headers(owner)
+      });
+      expect(narrow.body.data.days).toEqual([]);
+
+      const defaults = await invoke<Envelope<RevenueBody>>(revenueJson, {
+        path: REVENUE_PATH,
+        headers: headers(owner)
+      });
+      expect(defaults.body.data.to).toBe(dayAgo(0));
+      expect(defaults.body.data.days).toHaveLength(1);
+    });
+
+    test("reporting.dashboard.read opens both routes; nothing else does, and a bad range is 400 only after the permission check", async () => {
+      if (skipUnlessHandlerReady()) return;
+      const owner = await bootstrapOwner();
+      await seedRows(owner.tenantId);
+      expect((await setBooking(owner, true)).status).toBe(200);
+
+      const reader = await seedPrincipal(owner.tenantId, "reader", [
+        "reporting.dashboard.read"
+      ]);
+      const bystander = await seedPrincipal(owner.tenantId, "bystander", [
+        "reporting.projections.read",
+        "commerce.report_returns.read",
+        "commerce.report_retention.read",
+        "commerce.orders.read"
+      ]);
+      const nobody = await seedPrincipal(owner.tenantId, "nobody", []);
+
+      for (const path of [REVENUE_PATH, PIPELINE_PATH]) {
+        const handler = path === REVENUE_PATH ? revenueJson : pipelineJson;
+        expect(
+          (await invoke<Envelope>(handler, { path, headers: headers(reader) }))
+            .status
+        ).toBe(200);
+        expect(
+          (
+            await invoke<Envelope>(handler, {
+              path,
+              headers: headers(bystander)
+            })
+          ).status
+        ).toBe(403);
+        expect(
+          (await invoke<Envelope>(handler, { path, headers: headers(nobody) }))
+            .status
+        ).toBe(403);
+        expect(
+          (
+            await invoke<Envelope>(handler, {
+              path,
+              headers: { "x-awcms-tenant-id": owner.tenantId }
+            })
+          ).status
+        ).toBe(401);
+      }
+
+      for (const query of [
+        "?from=2026-02-30",
+        "?from=2026-05-02&to=2026-05-01"
+      ]) {
+        const denied = await invoke<Envelope>(revenueJson, {
+          path: `${REVENUE_PATH}${query}`,
+          headers: headers(nobody)
+        });
+        expect(denied.status).toBe(403);
+        const bad = await invoke<Envelope>(revenueJson, {
+          path: `${REVENUE_PATH}${query}`,
+          headers: headers(reader)
+        });
+        expect(bad.status).toBe(400);
+        expect(bad.body.error?.code).toBe("VALIDATION_ERROR");
+      }
+    });
+
+    test("the pipeline is enabled=false while booking is OFF and an empty live read while it is ON with no holds", async () => {
+      if (skipUnlessHandlerReady()) return;
+      const owner = await bootstrapOwner();
+      const off = await invoke<
+        Envelope<{ enabled: boolean; pipeline: { holds: number } }>
+      >(pipelineJson, { path: PIPELINE_PATH, headers: headers(owner) });
+      expect(off.status).toBe(200);
+      expect(off.body.data.enabled).toBe(false);
+
+      expect((await setBooking(owner, true)).status).toBe(200);
+      const on = await invoke<
+        Envelope<{
+          enabled: boolean;
+          pipeline: {
+            holds: number;
+            units: number;
+            value: string;
+            oldestHoldAgeSeconds: number | null;
+            nextExpiryAt: string | null;
+          };
+        }>
+      >(pipelineJson, { path: PIPELINE_PATH, headers: headers(owner) });
+      expect(on.body.data.enabled).toBe(true);
+      expect(on.body.data.pipeline).toEqual({
+        holds: 0,
+        units: 0,
+        value: "0.00",
+        oldestHoldAgeSeconds: null,
+        nextExpiryAt: null
+      });
+    });
+
+    test("cross-tenant: a second tenant's owner reads none of the first tenant's days", async () => {
+      if (skipUnlessHandlerReady()) return;
+      const owner = await bootstrapOwner();
+      await seedRows(owner.tenantId);
+      expect((await setBooking(owner, true)).status).toBe(200);
+
+      const other = (await getHandlerAdminSql()`
+        INSERT INTO awcms_tenants
+          (tenant_code, tenant_name, legal_name, status, default_locale, default_theme)
+        VALUES ('other', 'Other', 'Other', 'active', 'en', 'light')
+        RETURNING id
+      `) as { id: string }[];
+      const stranger = await seedPrincipal(other[0]!.id, "stranger", [
+        "reporting.dashboard.read"
+      ]);
+      const crossed = await invoke<Envelope>(revenueJson, {
+        path: REVENUE_PATH,
+        headers: { ...headers(stranger), "x-awcms-tenant-id": owner.tenantId }
+      });
+      expect([401, 403]).toContain(crossed.status);
+    });
+  }
+);

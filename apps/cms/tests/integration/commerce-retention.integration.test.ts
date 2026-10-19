@@ -704,8 +704,9 @@ suite("commerce customer-retention projection (Issue #364)", () => {
     );
     expect(run.status).toBe("completed");
     const lines = (await Bun.file(run.storagePath!).text()).trim().split("\n");
-    expect(lines[0]).toBe("cohort_month,customers,repeaters");
-    expect(lines[1]).toBe(`${month(2)},2,0`);
+    expect(lines[0]).toBe("cohort_month,customers,repeaters,booking_anchored");
+    // Issue #389: no booking in this fixture, so no cohort member is anchored by one.
+    expect(lines[1]).toBe(`${month(2)},2,0,0`);
     await Bun.$`rm -rf ${rootPath}`.quiet();
   });
 
