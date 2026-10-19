@@ -13881,3 +13881,44 @@ msgstr "{from} malam menjadi {to}. Malam yang dihapus bernilai {priced}; kebijak
 
 msgid "{from} nights become {to}. The removed nights are worth {priced}; the original cancellation policy refunds {refund}, queued under Returns and refunds."
 msgstr "{from} malam menjadi {to}. Malam yang dihapus bernilai {priced}; kebijakan pembatalan awal mengembalikan {refund}, diantrekan di Pengembalian barang dan dana."
+
+# booking-adapter #389
+
+msgid "Balance outstanding"
+msgstr "Saldo belum dibayar"
+
+msgid "Began with a booking"
+msgstr "Diawali dengan pemesanan"
+
+msgid "Booking revenue"
+msgstr "Pendapatan pemesanan"
+
+msgid "Discounts"
+msgstr "Diskon"
+
+msgid "Held nights and slots"
+msgstr "Malam dan slot yang ditahan"
+
+msgid "Hold pipeline"
+msgstr "Pipeline penahanan"
+
+msgid "No booking orders were paid in this period"
+msgstr "Tidak ada pesanan pemesanan yang dibayar pada periode ini"
+
+msgid "No-shows"
+msgstr "Tamu tidak hadir"
+
+msgid "Oldest hold"
+msgstr "Penahanan tertua"
+
+msgid "Revenue of orders that carry a Booking reservation, by the day the order was first paid. A refund, a cancellation or a no-show lands on that same day. The balance still owed on open orders is shown beside the waterfall, not subtracted. Held space is not revenue."
+msgstr "Pendapatan pesanan yang membawa reservasi Booking, menurut hari pesanan pertama kali dibayar. Pengembalian dana, pembatalan, atau tamu tidak hadir jatuh pada hari yang sama. Saldo yang masih terutang pada pesanan terbuka ditampilkan di samping air terjun pendapatan, tidak dikurangkan. Ruang yang ditahan bukan pendapatan."
+
+msgid "Value on hold"
+msgstr "Nilai yang ditahan"
+
+msgid "{count} of {stays} ({percent}%)"
+msgstr "{count} dari {stays} ({percent}%)"
+
+msgid "{paidBack} paid back, {uncollected} uncollected (no money moved)"
+msgstr "{paidBack} dikembalikan, {uncollected} tidak tertagih (tidak ada uang berpindah)"

@@ -1,0 +1,211 @@
+---
+/**
+ * The booking revenue and hold pipeline panel (Issue #389, ADR-0045 amendment
+ * note; metrics spec sections 3, 3.7 and 8.2) on `/admin/commerce-reports`:
+ * the booking-sourced revenue waterfall per paid day (gross, discounts, refunds
+ * split into "paid back" and "uncollected balance (no money moved)", net), the
+ * balance still outstanding on open orders and the no-show figures, plus the
+ * live hold pipeline. Rendered from the `commerce.booking_revenue` projection
+ * and the live pipeline query through `application/booking-revenue-report.ts`
+ * and `application/booking-pipeline.ts`; the page passes `null` when the caller
+ * lacks `reporting.dashboard.read`, and a tenant whose `booking` feature is OFF
+ * (the default) comes back `enabled: false` - both render nothing at all,
+ * hidden rather than an error.
+ *
+ * Honesty rules from the spec show up here: a day is the day of the order's
+ * first paid transition (a deposit order's whole gross lands on the deposit
+ * day, and the balance still owed is shown BESIDE the waterfall, never
+ * subtracted); the unpaid part of a closed order sits inside Refunds on the
+ * ORIGINAL day, labelled "no money moved"; a closed day that a late event
+ * changed is flagged "Restated". Held space is a pipeline line of its own - not
+ * occupancy and not revenue.
+ *
+ * Lives under `src/components/` like `CommerceRetentionReport.astro`
+ * (`access-chokepoint-check.ts` reads every `.astro` under `pages/admin/` as a
+ * screen that must call `loadAdminScreen`). It does no loading of its own and
+ * holds no script: the export is the freshness panel's generic projection
+ * export, which re-checks its own permission.
+ */
+import { getTranslatorFor } from "../lib/i18n";
+import type { Locale } from "../lib/i18n/locales";
+import { formatCurrency, formatNumber } from "../lib/i18n/format";
+import type { BookingPipelineReport } from "../modules/commerce/application/booking-pipeline";
+import type { BookingRevenueReport } from "../modules/commerce/application/booking-revenue-report";
+
+export type BookingRevenueView = {
+  report: BookingRevenueReport;
+  pipeline: BookingPipelineReport;
+};
+
+const { view, locale } = Astro.props as {
+  view: BookingRevenueView | null;
+  locale: Locale;
+};
+
+const { t } = getTranslatorFor(locale);
+const count = (value: number) => formatNumber(locale, value);
+const money = (value: string) =>
+  formatCurrency(locale, value, "IDR", { maximumFractionDigits: 0 });
+const report = view?.report ?? null;
+const pipeline = view?.pipeline ?? null;
+const rows = report?.enabled ? report.days : [];
+const totals = report?.enabled ? report.totals : null;
+
+function formatAge(seconds: number | null): string {
+  if (seconds === null) return "—";
+  if (seconds < 5400) return t("{n}m ago", { n: Math.round(seconds / 60) });
+  if (seconds < 172800) {
+    return t("{n}h ago", { n: Math.round(seconds / 3600) });
+  }
+  return t("{n}d ago", { n: Math.round(seconds / 86400) });
+}
+---
+
+{report?.enabled && (
+  <section
+    class="admin-section fade-in-up"
+    id="ops-booking-revenue"
+    aria-labelledby="ops-booking-revenue-title"
+  >
+    <h2 class="admin-section-title" id="ops-booking-revenue-title">
+      {t("Booking revenue")}
+      <span class="count-pill">{rows.length}</span>
+    </h2>
+    {pipeline?.enabled && (
+      <section class="admin-stat-card-grid" aria-label={t("Hold pipeline")}>
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Holds")}</span>
+          <span class="admin-stat-card-value" id="ops-booking-holds">
+            {count(pipeline.pipeline.holds)}
+          </span>
+        </div>
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">
+            {t("Held nights and slots")}
+          </span>
+          <span class="admin-stat-card-value" id="ops-booking-held-units">
+            {count(pipeline.pipeline.units)}
+          </span>
+        </div>
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Value on hold")}</span>
+          <span class="admin-stat-card-value" id="ops-booking-held-value">
+            {money(pipeline.pipeline.value)}
+          </span>
+        </div>
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Oldest hold")}</span>
+          <span class="admin-stat-card-value" id="ops-booking-oldest-hold">
+            {formatAge(pipeline.pipeline.oldestHoldAgeSeconds)}
+          </span>
+        </div>
+      </section>
+    )}
+    <div
+      class="data-table-scroll"
+      role="region"
+      tabindex="0"
+      aria-label={t("Booking revenue")}
+    >
+      <table
+        class="data-table data-table--stack"
+        id="ops-booking-revenue-table"
+      >
+        <caption>
+          {t(
+            "Revenue of orders that carry a Booking reservation, by the day the order was first paid. A refund, a cancellation or a no-show lands on that same day. The balance still owed on open orders is shown beside the waterfall, not subtracted. Held space is not revenue."
+          )}
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">{t("Day")}</th>
+            <th scope="col">{t("Orders")}</th>
+            <th scope="col">{t("Gross")}</th>
+            <th scope="col">{t("Discounts")}</th>
+            <th scope="col">{t("Refunds")}</th>
+            <th scope="col">{t("Net")}</th>
+            <th scope="col">{t("Balance outstanding")}</th>
+            <th scope="col">{t("No-shows")}</th>
+            <th scope="col">{t("Status")}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.length === 0 ? (
+            <tr>
+              <td class="data-table-empty" colspan="9">
+                <div class="empty-state">
+                  <span class="empty-state-icon" aria-hidden="true">
+                    ◇
+                  </span>
+                  <span class="empty-state-title">
+                    {t("No booking orders were paid in this period")}
+                  </span>
+                </div>
+              </td>
+            </tr>
+          ) : (
+            rows.map((day) => (
+              <tr data-ops-booking-day={day.day}>
+                <th scope="row" data-label={t("Day")}>
+                  {day.day}
+                </th>
+                <td data-label={t("Orders")}>{count(day.orders)}</td>
+                <td data-label={t("Gross")}>{money(day.gross)}</td>
+                <td data-label={t("Discounts")}>{money(day.discounts)}</td>
+                <td data-label={t("Refunds")}>
+                  {money(day.refunds)}
+                  {Number(day.refundsUncollected) > 0 && (
+                    <small class="muted">
+                      {t(
+                        "{paidBack} paid back, {uncollected} uncollected (no money moved)",
+                        {
+                          paidBack: money(day.refundsPaidBack),
+                          uncollected: money(day.refundsUncollected)
+                        }
+                      )}
+                    </small>
+                  )}
+                </td>
+                <td data-label={t("Net")}>{money(day.net)}</td>
+                <td data-label={t("Balance outstanding")}>
+                  {money(day.balanceOutstanding)}
+                </td>
+                <td data-label={t("No-shows")}>
+                  {day.noShowRatePercent === null
+                    ? count(day.noShows)
+                    : t("{count} of {stays} ({percent}%)", {
+                        count: String(day.noShows),
+                        stays: String(day.stays),
+                        percent: day.noShowRatePercent
+                      })}
+                </td>
+                <td data-label={t("Status")}>
+                  {day.restated && (
+                    <span class="admin-status-pill" data-tone="danger">
+                      {t("Restated")}
+                    </span>
+                  )}
+                </td>
+              </tr>
+            ))
+          )}
+        </tbody>
+        {totals && rows.length > 0 && (
+          <tfoot>
+            <tr>
+              <th scope="row">{t("Total")}</th>
+              <td>{count(totals.orders)}</td>
+              <td>{money(totals.gross)}</td>
+              <td>{money(totals.discounts)}</td>
+              <td>{money(totals.refunds)}</td>
+              <td>{money(totals.net)}</td>
+              <td>{money(totals.balanceOutstanding)}</td>
+              <td>{count(totals.noShows)}</td>
+              <td />
+            </tr>
+          </tfoot>
+        )}
+      </table>
+    </div>
+  </section>
+)}
