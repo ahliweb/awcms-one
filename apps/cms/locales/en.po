@@ -13945,3 +13945,11 @@ msgstr ""
 
 msgid "{from} nights become {to}. The removed nights are worth {priced}; the original cancellation policy refunds {refund}, queued under Returns and refunds."
 msgstr ""
+
+# booking-adapter #383
+
+msgid "Require the balance to be paid before check-in"
+msgstr ""
+
+msgid "When on, the front desk cannot check a guest in while any balance is owed. When off, the guest can be checked in and the balance stays to collect."
+msgstr ""

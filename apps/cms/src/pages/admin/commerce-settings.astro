@@ -32,7 +32,10 @@ import {
 import { fetchTaxAdapterConfig } from "../../modules/commerce/application/tax-adapter-directory";
 import { listWebhookEndpoints } from "../../modules/commerce/application/webhook-endpoint-directory";
 import { fetchCommerceFeatures } from "../../modules/commerce/application/commerce-feature-gate";
-import { fetchBookingServiceTenantUserId } from "../../modules/commerce/application/booking-adapter-settings";
+import {
+  fetchBookingServiceTenantUserId,
+  fetchCheckInRequiresSettlement
+} from "../../modules/commerce/application/booking-adapter-settings";
 import { MODULE_SETTINGS_UPDATE_GUARD } from "../../modules/module-management/application/module-settings";
 import { resolveRequestOrigin } from "../../lib/http/site-origin";
 
@@ -87,8 +90,14 @@ const screen = await loadAdminScreen({
     const bookingServiceTenantUserId = commerceFeatures.booking
       ? await fetchBookingServiceTenantUserId(tx, ssr.tenantId)
       : null;
+    // Issue #383 (ADR-0045 D19): whether the till refuses a check-in while a
+    // balance is owed (default: it does).
+    const checkinRequiresSettlement = commerceFeatures.booking
+      ? await fetchCheckInRequiresSettlement(tx, ssr.tenantId)
+      : true;
     return {
       bookingServiceTenantUserId,
+      checkinRequiresSettlement,
       settings,
       affiliateCommissionRate,
       taxAdapter,
@@ -123,6 +132,8 @@ const taxAdapter =
 const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
 const bookingServiceTenantUserId =
   screen.state === "allowed" ? screen.data.bookingServiceTenantUserId : null;
+const checkinRequiresSettlement =
+  screen.state === "allowed" ? screen.data.checkinRequiresSettlement : true;
 const canManageWebhookEndpoints =
   screen.state === "allowed" && screen.data.canManageWebhookEndpoints;
 const webhookEndpoints =
@@ -391,6 +402,20 @@ const COURIER_OPTIONS = [
             <p id="settings-bookingServiceTenantUserId-hint" class="form-hint">
               {t(
                 "The staff user Booking records for guest checkouts and automatic actions. It must be an active user of this store. Leave blank to clear it."
+              )}
+            </p>
+            <label>
+              <input
+                id="settings-checkinRequiresSettlement"
+                type="checkbox"
+                checked={checkinRequiresSettlement}
+                aria-describedby="settings-checkinRequiresSettlement-hint"
+              />{" "}
+              {t("Require the balance to be paid before check-in")}
+            </label>
+            <p id="settings-checkinRequiresSettlement-hint" class="form-hint">
+              {t(
+                "When on, the front desk cannot check a guest in while any balance is owed. When off, the guest can be checked in and the balance stays to collect."
               )}
             </p>
           </>
@@ -813,6 +838,14 @@ const COURIER_OPTIONS = [
             bookingServiceTenantUserId: orNull(
               val("settings-bookingServiceTenantUserId")
             )
+          }
+        : {}),
+      // Issue #383: same rule - present only while the booking block renders.
+      ...(el("settings-checkinRequiresSettlement")
+        ? {
+            checkinRequiresSettlement: (
+              el("settings-checkinRequiresSettlement") as HTMLInputElement
+            ).checked
           }
         : {}),
       ...advanced

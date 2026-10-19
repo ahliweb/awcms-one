@@ -1732,8 +1732,17 @@ export const READER_BUDGET_BYTES = 24_000;
  * unit test), the panel's reschedule history table and stylesheet share, and the
  * 52 new catalogue entries both languages carry. The dialog reuses the override
  * dialog's styles and the shared confirm dialog; nothing was copied per screen.
+ *
+ * **Issue #383 (booking POS: lookup, check-in, check-out, balance)** measured
+ * 487,119 B on the build that carries #382 (the previous constant was 487,000 B;
+ * it sets 487,200 B, the measurement rounded up to the next 100 B, +119 B). The
+ * issue is server and POS-API work: its only browser byte is ONE checkbox and its
+ * hint on the commerce settings screen (the check-in policy of ADR-0045 D19), two
+ * catalogue entries per language and the checkbox's value in the screen's save
+ * script. The cashier / front-desk SCREENS are Issue #388's and will carry their
+ * own raise.
  */
-export const APP_BUDGET_BYTES = 487_000;
+export const APP_BUDGET_BYTES = 487_200;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.
