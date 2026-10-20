@@ -19,6 +19,7 @@
  * entries of such a call carry `actor_kind = 'system'` and `initiated_by`, never
  * the service account posing as a person.
  */
+import { recordAuditEvent } from "../../logging/application/audit-log";
 
 /** The configured service-account tenant user, or `null` when unset or inactive. */
 export async function fetchBookingServiceActor(
@@ -68,15 +69,40 @@ export async function isActiveTenantUser(
  * Writes (or clears, with `null`) the service-account tenant user. Called AFTER
  * `saveStoreSettings` in the same request, so the singleton row it updates
  * exists. The caller has already checked {@link isActiveTenantUser}.
+ *
+ * The service account is the identity every guest-driven booking write acts
+ * as, so a change of it is audited in the same transaction
+ * (`commerce.booking_service_account.changed`, warning severity) with the old
+ * and new tenant-user ids (identifiers only). Saving the value already stored
+ * writes no audit event.
  */
 export async function saveBookingServiceTenantUserId(
   tx: Bun.SQL,
   tenantId: string,
-  tenantUserId: string | null
+  tenantUserId: string | null,
+  actorTenantUserId: string,
+  correlationId?: string
 ): Promise<void> {
+  const before = await fetchBookingServiceTenantUserId(tx, tenantId);
   await tx`
     UPDATE awcms_commerce_store_settings
     SET booking_service_tenant_user_id = ${tenantUserId}, updated_at = now()
     WHERE tenant_id = ${tenantId}
   `;
+  if (before === tenantUserId) return;
+  await recordAuditEvent(tx, {
+    tenantId,
+    actorTenantUserId,
+    moduleKey: "commerce",
+    action: "commerce.booking_service_account.changed",
+    resourceType: "store_settings",
+    resourceId: tenantId,
+    severity: "warning",
+    message: "Booking service-account user changed.",
+    attributes: {
+      oldTenantUserId: before,
+      newTenantUserId: tenantUserId
+    },
+    correlationId
+  });
 }

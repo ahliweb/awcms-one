@@ -1015,6 +1015,14 @@ suite(
       expect(cleared.status).toBe(200);
       expect(cleared.body.data.bookingServiceTenantUserId).toBeNull();
       expect(await stored()).toBeNull();
+
+      // Each real change of the service account was audited (set, then clear);
+      // re-saving the same value wrote nothing.
+      expect(
+        (await auditActions(owner.tenantId, "store_settings")).filter(
+          (a) => a === "commerce.booking_service_account.changed"
+        )
+      ).toHaveLength(2);
     });
   }
 );

@@ -197,7 +197,9 @@ export const PUT = defineTenantRoute({
       await saveBookingServiceTenantUserId(
         tx,
         tenantId,
-        prepared.bookingServiceTenantUserId
+        prepared.bookingServiceTenantUserId,
+        auth.context.tenantUserId,
+        locals.correlationId
       );
     }
     return ok({

@@ -324,7 +324,13 @@ export async function unlinkOfferingLink(
     WHERE tenant_id = ${tenantId} AND id = ${linkId} AND status = 'active'
     RETURNING ${tx.unsafe(LINK_COLUMNS)}
   `) as LinkRow[];
-  const link = rows[0] ? toRecord(rows[0]) : current;
+  // A concurrent unlink won the race: nothing changed here, so write neither a
+  // second audit event nor an idempotency record from the stale read.
+  if (!rows[0]) {
+    const latest = await fetchOfferingLink(tx, tenantId, linkId);
+    return latest ? { kind: "unchanged", link: latest } : { kind: "not_found" };
+  }
+  const link = toRecord(rows[0]);
 
   await recordAuditEvent(tx, {
     tenantId,

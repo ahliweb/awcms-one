@@ -320,4 +320,33 @@ describe("module wiring and boundary", () => {
       );
     }
   });
+
+  test("changing the booking service account is audited in the same transaction, and a lost unlink race is a no-op", async () => {
+    const settings = await readFile(
+      "src/modules/commerce/application/booking-adapter-settings.ts",
+      "utf8"
+    );
+    expect(settings).toContain("recordAuditEvent(");
+    expect(settings).toContain("commerce.booking_service_account.changed");
+    expect(settings).toContain("oldTenantUserId");
+    expect(settings).toContain("newTenantUserId");
+    const route = await readFile(
+      "src/pages/api/v1/commerce/store-settings/index.ts",
+      "utf8"
+    );
+    expect(route).toMatch(
+      /saveBookingServiceTenantUserId\(\s*tx,\s*tenantId,\s*prepared\.bookingServiceTenantUserId,\s*auth\.context\.tenantUserId/
+    );
+    const links = await readFile(
+      "src/modules/commerce/application/booking-offering-links.ts",
+      "utf8"
+    );
+    const unlink = links.slice(
+      links.indexOf("export async function unlinkOfferingLink")
+    );
+    expect(unlink.indexOf("if (!rows[0])")).toBeGreaterThan(-1);
+    expect(unlink.indexOf("if (!rows[0])")).toBeLessThan(
+      unlink.indexOf("recordAuditEvent(")
+    );
+  });
 });
