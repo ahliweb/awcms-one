@@ -104,7 +104,7 @@ async function enforcedTriples(
 }
 
 describe("commerce module descriptor — restore is declared for both activity codes", () => {
-  test("one hundred and forty-six permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations/entitlements, three for reviews, one for whatsapp, three for campaigns, one for webhook_endpoints, one for pos, one for pos_due, three for payments, ten for registers/cash-up, two for loyalty and one each for loyalty_adjustments/loyalty_redemptions, and (Issue #291) read/manage for attributes plus export/import on products, seven for stored value, (Issue #292) two for barcodes, (Issue #287) five for returns, refunds and offline refunds, and (Issue #296) ten for the five operational-report resources, and (Issue #316) two for report_returns, and (Issue #282) two for inventory, and (Issue #364) two for report_retention, and (Issue #360) seven for segments, segment_previews and segment_members, and (Issue #391) four for commission_settings and commission_staff_links, and (Issue #393) two for whatsapp_mode", () => {
+  test("one hundred and fifty-one permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations/entitlements, three for reviews, one for whatsapp, three for campaigns, one for webhook_endpoints, one for pos, one for pos_due, three for payments, ten for registers/cash-up, two for loyalty and one each for loyalty_adjustments/loyalty_redemptions, and (Issue #291) read/manage for attributes plus export/import on products, seven for stored value, (Issue #292) two for barcodes, (Issue #287) five for returns, refunds and offline refunds, and (Issue #296) ten for the five operational-report resources, and (Issue #316) two for report_returns, and (Issue #282) two for inventory, and (Issue #364) two for report_retention, and (Issue #360) seven for segments, segment_previews and segment_members, and (Issue #391) four for commission_settings and commission_staff_links, and (Issue #393) two for whatsapp_mode, and (Issue #378) five for booking_offering_links and booking_deposit_policies", () => {
     // Issue #23: categories/products carry read/create/update/delete/restore.
     // Issue #26: flash_sales/vouchers/sliders/testimonials/popups carry
     // read/create/update/delete (soft delete only, no restore — the marketing
@@ -201,7 +201,10 @@ describe("commerce module descriptor — restore is declared for both activity c
         // read/manage (existing verbs; API-first, no admin screen yet).
         4 +
         // Issue #393: whatsapp_mode read + manage.
-        2
+        2 +
+        // Issue #378: booking_offering_links read/create/update,
+        // booking_deposit_policies read/update.
+        5
     );
 
     // Issue #291 — typed catalog attributes. `manage` (one high-risk action,
@@ -337,7 +340,9 @@ describe("commerce module descriptor — restore is declared for both activity c
     expect(
       NOT_YET_SCREENED.filter(
         (key) =>
-          key.startsWith("commerce.") && !API_FIRST_COMMERCE_KEYS.has(key)
+          key.startsWith("commerce.") && !API_FIRST_COMMERCE_KEYS.has(key) &&
+          // Issue #378: the booking adapter lands routes before screens.
+          !key.startsWith("commerce.booking_")
       )
     ).toEqual([]);
   });

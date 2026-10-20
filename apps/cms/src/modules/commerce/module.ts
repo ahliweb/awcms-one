@@ -16,6 +16,13 @@ import {
   COMMISSION_SUBJECT_DATA
 } from "./domain/commission-lifecycle";
 import {
+  BOOKING_ADAPTER_DATA_LIFECYCLE,
+  BOOKING_ADAPTER_SUBJECT_DATA
+} from "./domain/booking-adapter-lifecycle";
+import { BOOKING_ADAPTER_NAVIGATION } from "./domain/booking-adapter-navigation";
+import { BOOKING_ADAPTER_PERMISSIONS } from "./domain/booking-adapter-permissions";
+import { BOOKING_ADAPTER_CONSUMERS } from "./application/booking-adapter-consumers";
+import {
   EXPENSE_DATA_LIFECYCLE,
   EXPENSE_SUBJECT_DATA
 } from "./domain/expense-lifecycle";
@@ -675,6 +682,15 @@ export const commerceModule = defineModule({
    * tenant that has not enabled `whatsapp_delivery`, and the default (`legacy`)
    * mode never touches it. `optional` because the capability simply is not used
    * until a tenant's mode is `upstream`.
+   *
+   * Issue #378 (ADR-0045) - the booking adapter sells a Booking reservation as a
+   * commerce order and reaches Booking through `BookingPort`
+   * (`_shared/ports/booking-port.ts`) only. A CAPABILITY, not a `dependencies`
+   * entry: `dependencies` would make enabling `commerce` for a tenant require
+   * enabling `booking`, and every existing tenant has no use for it. With
+   * `optional: true` the `booking` feature (default OFF) degrades to "not
+   * available" when Booking is absent or off for a tenant. `booking` itself has
+   * no `commerce` edge.
    */
   capabilities: {
     consumes: [
@@ -686,6 +702,11 @@ export const commerceModule = defineModule({
       {
         capability: "whatsapp_delivery",
         providedBy: "whatsapp_delivery",
+        optional: true
+      },
+      {
+        capability: "booking",
+        providedBy: "booking",
         optional: true
       }
     ]
@@ -956,7 +977,10 @@ export const commerceModule = defineModule({
           await import("./application/commerce-inventory-cache-projector");
         await projectStockCacheFromMovement(tx, ctx.tenantId, event.payload);
       }
-    }
+    },
+    // Issue #378 (ADR-0045 D15) - the booking adapter's consumers; empty until
+    // their handlers land. See `application/booking-adapter-consumers.ts`.
+    ...BOOKING_ADAPTER_CONSUMERS
   ],
   events: {
     asyncApiPath: "asyncapi/awcms-domain-events.asyncapi.yaml",
@@ -1405,7 +1429,10 @@ export const commerceModule = defineModule({
       order: 28,
       requiredPermission: "commerce.segments.read",
       requiredFeature: { moduleKey: "commerce", feature: "segments" }
-    }
+    },
+    // Issue #378 (ADR-0045) - the booking adapter's entries; empty until the
+    // screens land. See `domain/booking-adapter-navigation.ts`.
+    ...BOOKING_ADAPTER_NAVIGATION
   ],
   /**
    * ADR-0037 (`data_lifecycle`) — Issue #437's table-coverage gate requires
@@ -3237,6 +3264,9 @@ export const commerceModule = defineModule({
     // Issue #360 (ADR-0042) - the two CRM segment tables; see
     // `domain/segment-lifecycle.ts`.
     ...SEGMENT_DATA_LIFECYCLE,
+    // Issue #378 (ADR-0045) - the six booking-adapter tables; see
+    // `domain/booking-adapter-lifecycle.ts`.
+    ...BOOKING_ADAPTER_DATA_LIFECYCLE,
     // Issue #287 (ADR-0033) - the four returns / refunds tables; see
     // `domain/returns-lifecycle.ts`.
     ...RETURNS_DATA_LIFECYCLE,
@@ -4202,6 +4232,8 @@ export const commerceModule = defineModule({
     ...EXPENSE_SUBJECT_DATA,
     // Issue #360 (ADR-0042) - see `domain/segment-lifecycle.ts`.
     ...SEGMENT_SUBJECT_DATA,
+    // Issue #378 (ADR-0045) - see `domain/booking-adapter-lifecycle.ts`.
+    ...BOOKING_ADAPTER_SUBJECT_DATA,
     // Issue #287 (ADR-0033) - see `domain/returns-lifecycle.ts`.
     ...RETURNS_SUBJECT_DATA,
     {
@@ -5115,7 +5147,10 @@ export const commerceModule = defineModule({
       action: "export",
       description:
         "Export the customers a segment version matches as CSV (Issue #360)"
-    }
+    },
+    // Issue #378 (ADR-0045) - the booking adapter's keys; see
+    // `domain/booking-adapter-permissions.ts`.
+    ...BOOKING_ADAPTER_PERMISSIONS
   ]
 });
 

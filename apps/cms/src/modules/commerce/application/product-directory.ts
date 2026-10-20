@@ -1,4 +1,5 @@
 import { recordAuditEvent } from "../../logging/application/audit-log";
+import { assertAllowDpWritable } from "./booking-deposit-policies";
 import { assertStockWritable } from "./commerce-inventory";
 import {
   applyBundleDefinition,
@@ -679,6 +680,9 @@ export async function createProduct(
   // Issue #282 (ADR-0038 D6) - in `ledger` mode a new product starts at zero;
   // opening stock is a ledger movement, not a column.
   await assertStockWritable(tx, tenantId, input.stock, 0);
+  // Issue #378 (ADR-0045 D5) - with the `booking` feature on, `allow_dp` follows
+  // the deposit policy row and is not set by hand.
+  await assertAllowDpWritable(tx, tenantId, input.allowDp, false);
 
   let rows: ProductRow[];
 
@@ -886,6 +890,8 @@ export async function updateProduct(
 
   // Issue #282 (ADR-0038 D6) - refused in `ledger` mode when it would CHANGE the count.
   await assertStockWritable(tx, tenantId, input.stock, existing.stock);
+  // Issue #378 (ADR-0045 D5) - same rule on an edit; raised before the UPDATE.
+  await assertAllowDpWritable(tx, tenantId, input.allowDp, existing.allowDp);
 
   let rows: ProductRow[];
 

@@ -49,7 +49,8 @@ describe("resolveCommerceFeatures", () => {
             key !== "retention" &&
             key !== "segments" &&
             key !== "loyaltySegments" &&
-            key !== "campaignSegmentAudience"
+            key !== "campaignSegmentAudience" &&
+            key !== "booking"
         )
         .every(([, value]) => value === true)
     ).toBe(true);
@@ -83,7 +84,8 @@ describe("resolveCommerceFeatures", () => {
       retention: false,
       segments: false,
       loyaltySegments: false,
-      campaignSegmentAudience: false
+      campaignSegmentAudience: false,
+      booking: false
     });
   });
 
@@ -107,7 +109,8 @@ describe("resolveCommerceFeatures", () => {
       retention: false,
       segments: false,
       loyaltySegments: false,
-      campaignSegmentAudience: false
+      campaignSegmentAudience: false,
+      booking: false
     });
   });
 
@@ -151,7 +154,8 @@ describe("resolveCommerceFeatures", () => {
         retention: false,
         segments: false,
         loyaltySegments: false,
-        campaignSegmentAudience: false
+        campaignSegmentAudience: false,
+        booking: false
       }
     });
     expect(resolved).toEqual({
@@ -172,7 +176,8 @@ describe("resolveCommerceFeatures", () => {
       retention: false,
       segments: false,
       loyaltySegments: false,
-      campaignSegmentAudience: false
+      campaignSegmentAudience: false,
+      booking: false
     });
     // ...and the flags that default off can be turned on.
     expect(
@@ -564,6 +569,17 @@ describe("toPublicRecord — feature composition (Issue #118)", () => {
     expect(
       resolveCommerceFeatures({ features: { campaignSegmentAudience: true } })
         .campaignSegmentAudience
+    ).toBe(true);
+  });
+
+  test("booking (Issue #378, ADR-0045) defaults OFF, can be turned on, and a tenant that saved a settings row before the flag existed still reads OFF", () => {
+    expect(DEFAULT_COMMERCE_FEATURES.booking).toBe(false);
+    expect(resolveCommerceFeatures({}).booking).toBe(false);
+    expect(
+      resolveCommerceFeatures({ features: { segments: true } }).booking
+    ).toBe(false);
+    expect(
+      resolveCommerceFeatures({ features: { booking: true } }).booking
     ).toBe(true);
   });
 });

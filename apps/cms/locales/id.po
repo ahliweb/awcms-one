@@ -12805,3 +12805,7 @@ msgstr[0] "{min}–{max} malam"
 
 msgid "Continue"
 msgstr "Lanjutkan"
+
+# booking-adapter #378
+msgid "Sell Booking reservations (deposits, links)"
+msgstr "Jual reservasi Booking (deposit, tautan)"

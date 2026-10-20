@@ -9846,6 +9846,100 @@ An equality probe on the tenant's partial unique barcode index. A barcode is an 
 | 404    | Resource not found.                                                           | [`ApiError`](#standard-error-envelope) |
 | 409    | `FEATURE_DISABLED` - the tenant's `barcode` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/booking/offering-links` — Issue #378 (ADR-0045 D1). The links between Booking offerings and service products, keyset-paginated, newest first. Identifiers and a status only - no price, no customer. Gated on `commerce.booking_offering_links.read` and the tenant's `booking` feature (default OFF).
+
+- **operationId**: `listCommerceBookingOfferingLinks`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name     | In    | Required | Type                       | Description                                                                                  |
+| -------- | ----- | -------- | -------------------------- | -------------------------------------------------------------------------------------------- |
+| `cursor` | query | no       | string                     | Opaque cursor from a previous response's nextCursor. A malformed value is rejected with 400. |
+| `status` | query | no       | enum(`active`, `unlinked`) |                                                                                              |
+
+**Responses**
+
+| Status | Description                                                                       | Schema                                 |
+| ------ | --------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | One page of links (limit 50) with an opaque `nextCursor` (null on the last page). | object                                 |
+| 400    | Validation error.                                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                       | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` - the `booking` feature is off (it defaults OFF).              | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/booking/offering-links` — Issue #378 (ADR-0045 D1, D14, G3, G9). Link one Booking offering to one service product. Gated on `commerce.booking_offering_links.create` and the tenant's `booking` feature; requires `Idempotency-Key`.
+
+- **operationId**: `createCommerceBookingOfferingLink`
+- **Security**: bearerAuth + tenantHeader
+
+One offering has at most one active link and one product has at most one active link. The product must be of type `service`; `quantityBasis` must agree with the offering's granularity (`nights` for a stay offering, `booking` for a time-slot offering); an offering that confirms without payment (`confirmation_mode = immediate`) or is inactive cannot be sold; and the tenant must have named an active service-account user in the store settings (`bookingServiceTenantUserId`). A body naming a price, an amount or a customer is a 400. The response carries a non-blocking `NO_CANCELLATION_POLICY` warning when neither the product nor the tenant has an active cancellation policy ("cancellations will refund nothing"). Booking is read for three facts (granularity, confirmation mode, status) and is not altered.
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): [`CommerceBookingOfferingLinkInput`](#schema-commercebookingofferinglinkinput)
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                                           | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The link (or the original, on an idempotent replay).                                                                                                                                                                  | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED`, `OFFERING_ALREADY_LINKED`, `PRODUCT_ALREADY_LINKED`, `PRODUCT_NOT_SERVICE`, `QUANTITY_BASIS_MISMATCH`, `OFFERING_NOT_LINKABLE`, `BOOKING_SERVICE_ACTOR_NOT_CONFIGURED` or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/booking/offering-links/{id}` — Issue #378 (ADR-0045 D1). One offering link. Gated on `commerce.booking_offering_links.read` and the tenant's `booking` feature. An unknown id and another tenant's id are the same 404.
+
+- **operationId**: `getCommerceBookingOfferingLink`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                        | Schema                                 |
+| ------ | -------------------------------------------------- | -------------------------------------- |
+| 200    | The link.                                          | object                                 |
+| 401    | Missing or invalid session.                        | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                        | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` - the `booking` feature is off. | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/booking/offering-links/{id}` — Issue #378 (ADR-0045 D1). Unlink an offering (status active to unlinked) - the only transition; there is no delete. Past orders and reservation links are untouched. Gated on `commerce.booking_offering_links.update` and the tenant's `booking` feature; requires `Idempotency-Key`.
+
+- **operationId**: `updateCommerceBookingOfferingLink`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                 | Schema                                 |
+| ------ | --------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The updated link (the stored row, unchanged, when it was already unlinked). | object                                 |
+| 400    | Validation error.                                                           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                 | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                 | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                         | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` or `IDEMPOTENCY_CONFLICT`.                               | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/campaigns` — Issue #114 (contract #106 ADR-0017 D9). Staff list of campaigns, newest first. Gated on `commerce.campaigns.read`.
 
 - **operationId**: `listCommerceCampaigns`
@@ -12262,6 +12356,53 @@ Sets deleted_at; the sku and slug are freed for reuse. Restore it with POST /api
 | 401    | Missing or invalid session.          | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC.          | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.                  | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/products/{id}/deposit-policy` — Issue #378 (ADR-0045 D5, ADR-0041 D4). A product's deposit policy: the active policy, or null when the product is paid in full (there is no tenant default). Gated on `commerce.booking_deposit_policies.read` and the tenant's `booking` feature. An unknown id and another tenant's id are the same 404.
+
+- **operationId**: `getCommerceProductDepositPolicy`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                        | Schema                                 |
+| ------ | -------------------------------------------------- | -------------------------------------- |
+| 200    | The product's deposit policy.                      | object                                 |
+| 401    | Missing or invalid session.                        | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                        | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` - the `booking` feature is off. | [`ApiError`](#standard-error-envelope) |
+
+### `PUT /api/v1/commerce/products/{id}/deposit-policy` — Issue #378 (ADR-0045 D5). Set, replace or remove a product's deposit policy, keeping `allowDp` in step in the same transaction. Gated on `commerce.booking_deposit_policies.update` and the tenant's `booking` feature.
+
+- **operationId**: `setCommerceProductDepositPolicy`
+- **Security**: bearerAuth + tenantHeader
+
+`percent` is a share of the line's taxed total (rounded half up in integer cents); `fixed` is an amount PER UNIT of quantity (per night for a nightly product), capped at the line total when an order is created; `full` removes the policy (the product is paid in full). The result is snapshotted on an order as `dp_amount` at creation, so an edit never alters an existing order. A body naming `amount` or `price` is a 400. Naturally idempotent: writing the same policy again changes nothing.
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): [`CommerceProductDepositPolicyInput`](#schema-commerceproductdepositpolicyinput)
+
+**Responses**
+
+| Status | Description                                        | Schema                                 |
+| ------ | -------------------------------------------------- | -------------------------------------- |
+| 200    | The product's deposit policy after the write.      | object                                 |
+| 400    | Validation error.                                  | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                        | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                        | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` - the `booking` feature is off. | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/products/{id}/images` — Attach a media object to a product (Issue 23). Gated on products.update.
 
@@ -21653,6 +21794,24 @@ Enum values: `text`, `integer`, `decimal`, `boolean`, `date`, `enum`.
 "text"
 ```
 
+### Schema: CommerceBookingOfferingLinkInput
+
+| Field           | Type                      | Required | Nullable | Description |
+| --------------- | ------------------------- | -------- | -------- | ----------- |
+| `offeringId`    | string (uuid)             | yes      | no       |             |
+| `productId`     | string (uuid)             | yes      | no       |             |
+| `quantityBasis` | enum(`nights`, `booking`) | yes      | no       |             |
+
+**Example**
+
+```json
+{
+  "offeringId": "00000000-0000-0000-0000-000000000000",
+  "productId": "00000000-0000-0000-0000-000000000000",
+  "quantityBasis": "nights"
+}
+```
+
 ### Schema: CommerceBundleComponentInput
 
 Name the component either by `productId` (+ optional `variantId`) or by `sku` - a live product's or variant's SKU, resolved server-side inside the tenant (the admin form's `SKU x quantity` lines). An unknown SKU is refused exactly like an unknown product id.
@@ -22017,6 +22176,24 @@ _No properties declared._
   "stock": 0,
   "label": "string",
   "labelColor": "string"
+}
+```
+
+### Schema: CommerceProductDepositPolicyInput
+
+| Field         | Type                             | Required | Nullable | Description                                                                                                                   |
+| ------------- | -------------------------------- | -------- | -------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `kind`        | enum(`full`, `percent`, `fixed`) | yes      | no       |                                                                                                                               |
+| `percent`     | string                           | no       | no       | Required when kind is `percent`: a decimal greater than 0 and at most 100, at most 2 places (a JSON number is also accepted). |
+| `fixedAmount` | string                           | no       | no       | Required when kind is `fixed`: a numeric(14,2) string greater than zero, PER UNIT of quantity (never a JSON number).          |
+
+**Example**
+
+```json
+{
+  "kind": "full",
+  "percent": "string",
+  "fixedAmount": "string"
 }
 ```
 

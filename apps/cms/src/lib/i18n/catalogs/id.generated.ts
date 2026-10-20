@@ -2979,6 +2979,7 @@ export const ID_CATALOG: CompiledCatalog = {
   "Selected object": ["Objek terpilih"],
   "Selected region": ["Wilayah terpilih"],
   "Self-registration is switched off for this deployment ({setting}), so no new request can arrive. Anything already queued below can still be reviewed.": ["Pendaftaran mandiri dimatikan untuk deployment ini ({setting}), jadi tidak ada permintaan baru yang bisa masuk. Yang sudah mengantre di bawah tetap bisa ditinjau."],
+  "Sell Booking reservations (deposits, links)": ["Jual reservasi Booking (deposit, tautan)"],
   "Sell on register": ["Jual di register"],
   "Selling on {register}.": ["Berjualan di {register}."],
   "Send": ["Kirim"],
