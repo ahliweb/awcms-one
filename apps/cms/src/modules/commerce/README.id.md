@@ -837,6 +837,27 @@ berbagi SATU gerbang, `COMMERCE_WHATSAPP_ENABLED === "true"` — kondisi yang
 sama yang dipakai `dispatchWhatsappQueue` untuk memutuskan apakah akan
 mengklaim apa pun sama sekali.
 
+**Mode per tenant: `legacy` atau `upstream` (Issue #392, ADR-0133 bagian 6
+fase 2, [ADR-0047](../../../../../docs/adr/0047-commerce-whatsapp-moves-to-the-upstream-queue-through-a-per-tenant-mode-router.md)).**
+`whatsapp-enqueue.ts` kini adalah router dengan signature yang sama: ia
+membaca `awcms_commerce_store_settings.whatsapp_mode` (`sql/1027`, default
+`legacy`; `application/whatsapp-mode.ts`, dibaca di bawah advisory lock
+bersama) lalu memanggil `whatsapp-enqueue-legacy.ts` (fungsi persis seperti
+semula) atau `whatsapp-upstream-enqueue.ts` (`WhatsappDeliveryPort.enqueue`
+dalam transaksi pemanggil, ke antrean `whatsapp_delivery`). Tanpa dual write,
+tanpa menyalin baris. `domain/whatsapp-upstream-templates.ts` mendaftarkan
+empat template `commerce.*` ke `whatsapp_delivery` (OTP `security` dengan
+kedaluwarsa; pesanan dibayar dan dokumen `transactional`; kampanye
+`marketing`); `scripts/whatsapp-dispatch.ts` mengimpornya agar dispatcher
+upstream mengenalnya. Pada mode `upstream`, penolakan kembali sebagai
+`enqueued: false` beserta alasan, ketersediaan kanal menanyakan
+`WHATSAPP_ENABLED` alih-alih `COMMERCE_WHATSAPP_ENABLED`, dan riwayat
+pengiriman dokumen membaca antrean lewat correlation id. Dispatcher, purge,
+dan layar admin di atas tetap ada untuk baris legacy. Belum ada yang mengatur
+mode; flip terjaga adalah #393.
+`tests/commerce-whatsapp-upstream-boundary.test.ts` gagal jika berkas di jalur
+upstream menyebut tabel, provider, atau dispatcher legacy.
+
 `POST .../account/otp/request` menerima `via?: "email"|"whatsapp"` (default
 `email`). `via: "whatsapp"` mewajibkan `phone` (E.164 lewat `domain/
 phone-normalisation.ts`), hanya pernah mendukung `purpose: "login"`

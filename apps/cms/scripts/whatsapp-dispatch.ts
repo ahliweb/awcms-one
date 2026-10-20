@@ -16,6 +16,11 @@
  * event for THAT tenant and does not stop the other tenants.
  */
 import { getWorkerDatabaseClient } from "../src/lib/database/client";
+// awcms-one divergence (Issue #392, ADR-0133 section 6): this process imports no
+// module, so it would look every `commerce.*` message up in an empty template
+// registry and fail it as `template_unknown`. One side-effect import registers
+// them. Retires when upstream loads consumer template registrations generically.
+import "../src/modules/commerce/domain/whatsapp-upstream-templates";
 import { logScriptFailure } from "../src/lib/logging/error-log";
 import {
   dispatchWhatsappQueue,

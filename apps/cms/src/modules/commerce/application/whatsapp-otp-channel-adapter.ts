@@ -25,7 +25,11 @@ import type {
   CustomerOtpChannelResult
 } from "../domain/customer-otp-channel";
 import { isWhatsappChannelEnabled } from "../domain/whatsapp-config";
-import { enqueueWhatsappMessage } from "./whatsapp-enqueue";
+import {
+  enqueueWhatsappMessage,
+  isWhatsappChannelAvailable
+} from "./whatsapp-enqueue";
+import { readWhatsappMode } from "./whatsapp-mode";
 
 function buildVariables(
   request: CustomerOtpChannelRequest
@@ -37,7 +41,7 @@ function buildVariables(
   };
 }
 
-/** The real path — enqueues one `awcms_commerce_whatsapp_messages` row inside the SAME transaction as the OTP row. */
+/** The real path - enqueues one message inside the SAME transaction as the OTP row: a `awcms_commerce_whatsapp_messages` row in `legacy` mode, a `whatsapp_delivery` queue row (purpose `security`, with an expiry) in `upstream` mode (Issue #392). */
 export function createWhatsappCustomerOtpChannel(): CustomerOtpChannel {
   return {
     async sendOtp(
@@ -48,7 +52,12 @@ export function createWhatsappCustomerOtpChannel(): CustomerOtpChannel {
       // `requestCustomerOtp` never resolves this adapter otherwise.
       const phoneNormalized = request.phoneNormalized!;
 
-      await enqueueWhatsappMessage(tx, {
+      // `legacy` always enqueues (`enqueued: true`). In `upstream` mode the
+      // queue can refuse or suppress; the caller still answers `202` either way
+      // (ADR-0016's anti-enumeration rule) and `sent` only reaches the audit row.
+      // No `idempotencyKey`: every OTP request is its own message, and a replay
+      // onto the previous message would deliver the old code for the new one.
+      const result = await enqueueWhatsappMessage(tx, {
         tenantId: request.tenantId,
         toPhone: phoneNormalized,
         templateKey: "commerce.customer_otp",
@@ -56,7 +65,7 @@ export function createWhatsappCustomerOtpChannel(): CustomerOtpChannel {
         correlationId: request.correlationId
       });
 
-      return { sent: true };
+      return { sent: result.enqueued };
     }
   };
 }
@@ -87,15 +96,47 @@ export function isWhatsappOtpChannelAvailable(
   return isWhatsappChannelEnabled(env);
 }
 
-/** `log` whenever WhatsApp is disabled or `COMMERCE_WHATSAPP_PROVIDER=log` — same "never selected when a real provider is configured" rule the e-mail channel follows. Callers should check `isWhatsappOtpChannelAvailable` FIRST (before issuing an OTP row at all); this resolver exists for the case where the caller already knows the channel is available and just needs the concrete adapter for actual delivery. */
+/**
+ * The tenant-aware form (Issue #392): `legacy` asks `COMMERCE_WHATSAPP_ENABLED`
+ * exactly as {@link isWhatsappOtpChannelAvailable} does, `upstream` asks the
+ * queue's own `WHATSAPP_ENABLED`. `requestCustomerOtp` uses this one, so
+ * `via: "whatsapp"` still answers `409 CHANNEL_UNAVAILABLE` BEFORE issuing an OTP
+ * row when the tenant's dispatcher would never send it.
+ */
+export function isWhatsappOtpChannelAvailableForTenant(
+  tx: Bun.SQL,
+  tenantId: string,
+  env: NodeJS.ProcessEnv = process.env
+): Promise<boolean> {
+  return isWhatsappChannelAvailable(tx, tenantId, env);
+}
+
+/**
+ * `log` whenever WhatsApp is disabled or `COMMERCE_WHATSAPP_PROVIDER=log` - same "never selected when a real provider is configured" rule the e-mail channel follows. Callers should check `isWhatsappOtpChannelAvailableForTenant` FIRST (before issuing an OTP row at all); this resolver exists for the case where the caller already knows the channel is available and just needs the concrete adapter for actual delivery.
+ *
+ * The choice between the two LEGACY adapters is made here, from the environment,
+ * before any tenant is known (the route resolves the channel before it resolves
+ * the tenant). A tenant in `upstream` mode must not be subject to it: the
+ * `COMMERCE_WHATSAPP_*` flags and the legacy `log` adapter belong to the legacy
+ * queue, and the `log` adapter logs the code in the clear instead of enqueueing.
+ * So the returned channel looks the tenant's mode up at send time and, in
+ * `upstream` mode, always takes the real path (which enqueues through the port;
+ * the queue's own `WHATSAPP_PROVIDER=log` is the dev/CI equivalent there).
+ */
 export function resolveWhatsappCustomerOtpChannel(
   env: NodeJS.ProcessEnv = process.env
 ): CustomerOtpChannel {
-  if (
-    !isWhatsappChannelEnabled(env) ||
-    env.COMMERCE_WHATSAPP_PROVIDER === "log"
-  ) {
-    return createLogWhatsappCustomerOtpChannel();
-  }
-  return createWhatsappCustomerOtpChannel();
+  const legacy =
+    !isWhatsappChannelEnabled(env) || env.COMMERCE_WHATSAPP_PROVIDER === "log"
+      ? createLogWhatsappCustomerOtpChannel()
+      : createWhatsappCustomerOtpChannel();
+  const upstream = createWhatsappCustomerOtpChannel();
+
+  return {
+    async sendOtp(tx, request) {
+      return (await readWhatsappMode(tx, request.tenantId)) === "upstream"
+        ? upstream.sendOtp(tx, request)
+        : legacy.sendOtp(tx, request);
+    }
+  };
 }

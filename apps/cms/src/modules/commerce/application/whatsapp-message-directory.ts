@@ -111,3 +111,69 @@ export async function fetchWhatsappMessageEntries(
 
   return { messages: rows.map(toView), nextCursor };
 }
+
+/**
+ * The live outbox state of the legacy messages whose `correlation_id` is one of
+ * `correlationIds` (Issue #295's document-delivery history, moved here by Issue
+ * #392 so that `document-delivery-directory.ts` no longer names the legacy table:
+ * the history reads the legacy queue through this function and the `upstream`
+ * queue through `whatsapp-upstream-status.ts`). The statement is the one the
+ * history has always run. Never written.
+ */
+export async function readLegacyWhatsappStatesByCorrelation(
+  tx: Bun.SQL,
+  tenantId: string,
+  correlationIds: readonly string[]
+): Promise<
+  Map<
+    string,
+    {
+      status: string;
+      providerMessageId: string | null;
+      retryCount: number;
+      lastError: string | null;
+      sentAt: string | null;
+    }
+  >
+> {
+  const result = new Map<
+    string,
+    {
+      status: string;
+      providerMessageId: string | null;
+      retryCount: number;
+      lastError: string | null;
+      sentAt: string | null;
+    }
+  >();
+
+  if (correlationIds.length === 0) return result;
+
+  const found = (await tx`
+      SELECT correlation_id, status, provider_ref, attempts, last_error, sent_at
+      FROM awcms_commerce_whatsapp_messages
+      WHERE tenant_id = ${tenantId}
+        AND correlation_id = ANY(${tx.array([...correlationIds], "text")}::text[])
+    `) as {
+    correlation_id: string;
+    status: string;
+    provider_ref: string | null;
+    attempts: number;
+    last_error: string | null;
+    sent_at: Date | null;
+  }[];
+  for (const row of found) {
+    result.set(row.correlation_id, {
+      status: row.status,
+      providerMessageId: row.provider_ref,
+      // Both dispatchers count FAILED attempts only (a success never bumps
+      // the counter), so `attempts` here and `retry_count` on the e-mail outbox
+      // mean the same.
+      retryCount: Number(row.attempts),
+      lastError: row.last_error,
+      sentAt: row.sent_at ? row.sent_at.toISOString() : null
+    });
+  }
+
+  return result;
+}

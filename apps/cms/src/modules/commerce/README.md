@@ -778,6 +778,26 @@ enqueues into the outbox inside the SAME transaction as the OTP row;
 ONE gate, `COMMERCE_WHATSAPP_ENABLED === "true"` — the same condition
 `dispatchWhatsappQueue` uses to decide whether to claim anything at all.
 
+**A per-tenant mode: `legacy` or `upstream` (Issue #392, ADR-0133 section 6
+phase 2, [ADR-0047](../../../../../docs/adr/0047-commerce-whatsapp-moves-to-the-upstream-queue-through-a-per-tenant-mode-router.md)).**
+`whatsapp-enqueue.ts` is now a router with the same signature: it reads
+`awcms_commerce_store_settings.whatsapp_mode` (`sql/1027`, default `legacy`;
+`application/whatsapp-mode.ts`, read under a shared advisory lock) and calls
+`whatsapp-enqueue-legacy.ts` (the function exactly as it was) or
+`whatsapp-upstream-enqueue.ts` (`WhatsappDeliveryPort.enqueue` in the
+caller's transaction, into the `whatsapp_delivery` queue). No dual write, no
+row copying. `domain/whatsapp-upstream-templates.ts` registers the four
+`commerce.*` templates with `whatsapp_delivery` (OTP `security` with an
+expiry; order paid and documents `transactional`; campaigns `marketing`);
+`scripts/whatsapp-dispatch.ts` imports it so the upstream dispatcher knows
+them. In `upstream` mode a refusal comes back as `enqueued: false` with a
+reason, channel availability asks `WHATSAPP_ENABLED` instead of
+`COMMERCE_WHATSAPP_ENABLED`, and the document-delivery history reads the
+queue back by correlation id. The dispatcher, purge and admin screens above
+stay for legacy rows. Nothing sets the mode yet; the guarded flip is #393.
+`tests/commerce-whatsapp-upstream-boundary.test.ts` fails if a file on the
+upstream path names a legacy table, provider or dispatcher.
+
 `POST .../account/otp/request` accepts `via?: "email"|"whatsapp"` (default
 `email`). `via: "whatsapp"` requires `phone` (E.164 via `domain/
 phone-normalisation.ts`), only ever supports `purpose: "login"` (a `register`
