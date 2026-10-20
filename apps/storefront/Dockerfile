@@ -76,6 +76,7 @@ ARG SITE_URL
 ARG AWCMS_API_URL
 ARG PUBLIC_AWCMS_ORIGIN
 ARG PUBLIC_GA_ID
+ARG PUBLIC_INSTALL_HELP
 
 WORKDIR /repo/apps/storefront
 
@@ -91,6 +92,7 @@ RUN --mount=type=secret,id=awcms_api_token \
     AWCMS_API_URL="${AWCMS_API_URL}" \
     PUBLIC_AWCMS_ORIGIN="${PUBLIC_AWCMS_ORIGIN}" \
     PUBLIC_GA_ID="${PUBLIC_GA_ID}" \
+    PUBLIC_INSTALL_HELP="${PUBLIC_INSTALL_HELP}" \
     AWCMS_API_TOKEN="$(cat /run/secrets/awcms_api_token)" \
     && bun run build
 

@@ -63,3 +63,28 @@ describe("apps/storefront/Dockerfile's runtime stage applies Debian security upd
     expect(userBunIndex).toBeGreaterThan(-1);
   });
 });
+
+/**
+ * `PUBLIC_INSTALL_HELP` (ADR-0049 D5) is a build-time flag that decides whether
+ * `/pasang-aplikasi` exists in the image. The build stage must both declare it
+ * as an ARG and export it into the `bun run build` environment, or a container
+ * build silently ships with the help page off regardless of what the caller
+ * passed.
+ */
+describe("apps/storefront/Dockerfile's build stage passes PUBLIC_INSTALL_HELP through", () => {
+  const buildStageMatch = dockerfile.match(/FROM deps AS build[\s\S]*?(?=FROM oven\/bun:)/);
+
+  test("the build stage exists", () => {
+    expect(buildStageMatch).not.toBeNull();
+  });
+
+  const buildStage = buildStageMatch ? buildStageMatch[0] : "";
+
+  test("declares `ARG PUBLIC_INSTALL_HELP`", () => {
+    expect(buildStage).toMatch(/^ARG PUBLIC_INSTALL_HELP$/m);
+  });
+
+  test("exports PUBLIC_INSTALL_HELP in the build RUN's environment", () => {
+    expect(buildStage).toMatch(/PUBLIC_INSTALL_HELP="\$\{PUBLIC_INSTALL_HELP\}" \\/);
+  });
+});

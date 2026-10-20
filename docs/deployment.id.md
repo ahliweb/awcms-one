@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:1f59107f709210e5a3718101c54a45bb849f490d002237f671f193fc2206a900 -->
+<!-- i18n-source-hash: sha256:405b2d4b830b965f32258fd714c2bcf020e60e1a8b12fc96b7f2e1b7961215fa -->
 
 # Deployment
 
@@ -412,7 +412,7 @@ Tiga identitas berbeda, tidak pernah dicampur (ADR-0019 D2):
 ### Image
 
 - **`apps/cms`** — `apps/cms/Dockerfile.production` (sudah ada sebelumnya, upstream, tidak diubah) membangun target `runtime` (hanya `dist/`, peran berhak-minimum, tanpa scripts) dan target `jobs` (source penuh, sehingga 30+ target job terdaftarnya benar-benar bisa berjalan).
-- **`apps/storefront`** — `apps/storefront/Dockerfile` (baru). Multi-stage: stage build yang menjalankan `bun run build` dari konteks ROOT REPO (build aplikasi ini butuh kontrak type-only `packages/kontrak`, yang sendiri mengimpor dari source `apps/cms`) dengan `SITE_PROFILE`/`SITE_URL`/`AWCMS_API_URL`/`PUBLIC_AWCMS_ORIGIN`/`PUBLIC_GA_ID` sebagai build ARG, dan `AWCMS_API_TOKEN` HANYA lewat BuildKit `--mount=type=secret,id=awcms_api_token` — tidak pernah ARG/ENV, sehingga tidak pernah masuk layer image (ADR-0019 D4); stage runtime yang menjalankan `apt-get upgrade` terhadap repo keamanan Debian sendiri sebelum turun ke user non-root `bun` milik image (temuan 27 Sep 2026 — tag basis `oven/bun:*-slim` sebaliknya membawa versi paket Debian apa pun yang berlaku saat tag itu dipotong, dan pemindaian trivy atas `oven/bun:1.4.2-slim` menemukan tiga CVE CRITICAL yang bisa diperbaiki pada `perl-base`), lalu hanya membawa `dist/` dan menjalankan `bun dist/server/penyaji.mjs` sebagai user `bun` yang sama itu. **Setiap `SITE_PROFILE` adalah image-nya sendiri** — bangun `toko`, `berita`, dan `landing` terpisah bila lebih dari satu deployment berbagi repositori ini.
+- **`apps/storefront`** — `apps/storefront/Dockerfile` (baru). Multi-stage: stage build yang menjalankan `bun run build` dari konteks ROOT REPO (build aplikasi ini butuh kontrak type-only `packages/kontrak`, yang sendiri mengimpor dari source `apps/cms`) dengan `SITE_PROFILE`/`SITE_URL`/`AWCMS_API_URL`/`PUBLIC_AWCMS_ORIGIN`/`PUBLIC_GA_ID`/`PUBLIC_INSTALL_HELP` sebagai build ARG, dan `AWCMS_API_TOKEN` HANYA lewat BuildKit `--mount=type=secret,id=awcms_api_token` — tidak pernah ARG/ENV, sehingga tidak pernah masuk layer image (ADR-0019 D4); stage runtime yang menjalankan `apt-get upgrade` terhadap repo keamanan Debian sendiri sebelum turun ke user non-root `bun` milik image (temuan 27 Sep 2026 — tag basis `oven/bun:*-slim` sebaliknya membawa versi paket Debian apa pun yang berlaku saat tag itu dipotong, dan pemindaian trivy atas `oven/bun:1.4.2-slim` menemukan tiga CVE CRITICAL yang bisa diperbaiki pada `perl-base`), lalu hanya membawa `dist/` dan menjalankan `bun dist/server/penyaji.mjs` sebagai user `bun` yang sama itu. **Setiap `SITE_PROFILE` adalah image-nya sendiri** — bangun `toko`, `berita`, dan `landing` terpisah bila lebih dari satu deployment berbagi repositori ini.
 
 ```bash
 DOCKER_BUILDKIT=1 docker build \
