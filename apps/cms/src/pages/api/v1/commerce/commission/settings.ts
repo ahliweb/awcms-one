@@ -1,4 +1,4 @@
-import { ok } from "../../../../../modules/_shared/api-response";
+import { fail, ok } from "../../../../../modules/_shared/api-response";
 import { defineTenantRoute } from "../../../../../modules/_shared/tenant-route";
 import { readValidatedBody } from "../../../../../modules/commerce/application/register-http";
 import {
@@ -23,6 +23,14 @@ import {
  * values. `PUT` is an upsert, so replaying it is harmless. It takes effect for
  * orders paid afterwards; a sale already reported keeps the identity it was
  * reported under.
+ *
+ * `sourceType` and `ruleKey` form the accrual source identity that replays and
+ * voids are keyed on, so once the consumer has reported any accrual under a
+ * pair (recorded in `awcms_commerce_commission_attributed_sources`, in the same
+ * transaction) a `PUT` that changes either answers `409 COMMISSION_SOURCE_LOCKED`
+ * and is audited as `commerce.commission.settings_refused`. The check runs under
+ * an exclusive tenant advisory lock that the consumer takes shared. Unchanged
+ * values, and `enabled`, stay free (Issue #413 review).
  */
 const COMMISSION_SETTINGS_READ_GUARD = {
   moduleKey: "commerce",
@@ -48,14 +56,21 @@ export const PUT = defineTenantRoute<CommissionSettingsInput>({
   prepare: ({ request }) =>
     readValidatedBody(request, validateCommissionSettingsInput),
   authorize: COMMISSION_SETTINGS_MANAGE_GUARD,
-  handler: async ({ tx, tenantId, auth, prepared, locals }) =>
-    ok({
-      settings: await saveCommissionSettings(
-        tx,
-        tenantId,
-        auth.context.tenantUserId,
-        prepared,
-        locals.correlationId
-      )
-    })
+  handler: async ({ tx, tenantId, auth, prepared, locals }) => {
+    const outcome = await saveCommissionSettings(
+      tx,
+      tenantId,
+      auth.context.tenantUserId,
+      prepared,
+      locals.correlationId
+    );
+    if (outcome.kind === "source_locked") {
+      return fail(
+        409,
+        "COMMISSION_SOURCE_LOCKED",
+        `Commission accruals already exist, so ${outcome.fields.join(" and ")} cannot be changed; it forms the accrual source identity.`
+      );
+    }
+    return ok({ settings: outcome.settings });
+  }
 });

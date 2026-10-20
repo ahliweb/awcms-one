@@ -90,6 +90,14 @@ export const COMMISSION_DATA_LIFECYCLE: HighVolumeTableDescriptor[] = [
     why: "Bounded by the number of staff a tenant links (a login has at most one LIVE link and a retired link is kept as history) - authored by an administrator, never by traffic.",
     deletionWhy:
       "No purge runs and no DELETE is possible (awcms_app is REVOKEd it and a trigger refuses it for every role): a link is retired, never deleted, because it is the evidence of who was entitled to commission on a sale at the time."
+  }),
+  retained({
+    key: "commerce.commission_attributed_sources",
+    tableName: "awcms_commerce_commission_attributed_sources",
+    cursorColumn: "first_attributed_at",
+    why: "At most one row per (tenant, source type, rule key) (unique key, sql/1052): bounded by how often a tenant has ever changed those two settings, which an administrator does by hand.",
+    deletionWhy:
+      "No purge runs and no UPDATE or DELETE is possible (a guard trigger refuses both for every role): a row is the evidence that a source identity was used, and deleting it would let the settings change the identity of accruals that already exist (Issue #413, ADR-0046)."
   })
 ];
 
@@ -119,5 +127,16 @@ export const COMMISSION_SUBJECT_DATA: SubjectDataDescriptor[] = [
     erasure: "retain_under_obligation",
     rationale:
       "Issue #391 - which login's counter sales are credited to which employment: two uuids and two actor stamps, no name, contact, amount or rate. The employment id is OPAQUE here (no foreign key, no read of hr_workforce) and is only meaningful with the hr_workforce record it points at, which that module owns and exports; so this table is not exported on its own. Retained, never deleted (a link is retired), because it is the evidence of who was entitled to be paid commission on a sale at the time; after anonymisation the login resolves to nobody and the link remains an explainable fact about an employment."
+  },
+  {
+    key: "commerce.commission_attributed_sources",
+    tableName: "awcms_commerce_commission_attributed_sources",
+    ownerModuleKey: "commerce",
+    unreachableBySubject: true,
+    subjectColumns: [],
+    exportable: false,
+    erasure: "retain_under_obligation",
+    rationale:
+      "Issue #413 (ADR-0046) - one row per (source type, rule key) pair a tenant has reported commission accruals under: two codes and a timestamp, no login, employment, order, amount or actor. It cannot be traced to any person, and it must outlive every erasure because it is what stops the commission settings from changing the identity of accruals that already exist."
   }
 ];

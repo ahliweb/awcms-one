@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:a467d6bf86b892b9edbbbd78dd6c87ce835df9c3406f2cecc7796fb235e0d378 -->
+<!-- i18n-source-hash: sha256:2d6890888e62b9ae77c98bb332b20a702bf9e017745f7e2a88353805ac060525 -->
 
 # API
 
@@ -585,7 +585,7 @@ Empat rute, semuanya `defineTenantRoute`, izin dipisah per sumber daya, hanya ka
 
 | Metode | Path | Catatan |
 | --- | --- | --- |
-| `GET` / `PUT` | `/api/v1/commerce/commission/settings` | `commerce.commission_settings.read` / `.manage`. `{ enabled, ruleKey, sourceType, updatedAt }`. **Mati sampai tenant mengatur `enabled: true` dengan `ruleKey`** (kunci aturan `hr_commission` yang sudah ia terbitkan; commerce menyimpannya dan tidak pernah mencarinya). `sourceType` bawaannya `commerce_order_line` dan harus sama dengan `sourceType` yang dideklarasikan aturan itu. `PUT` adalah upsert, diaudit dengan nilai lama dan baru; field tak dikenal dan `enabled` tanpa kunci adalah `400` |
+| `GET` / `PUT` | `/api/v1/commerce/commission/settings` | `commerce.commission_settings.read` / `.manage`. `{ enabled, ruleKey, sourceType, updatedAt }`. **Mati sampai tenant mengatur `enabled: true` dengan `ruleKey`** (kunci aturan `hr_commission` yang sudah ia terbitkan; commerce menyimpannya dan tidak pernah mencarinya). `sourceType` bawaannya `commerce_order_line` dan harus sama dengan `sourceType` yang dideklarasikan aturan itu. `PUT` adalah upsert, diaudit dengan nilai lama dan baru; field tak dikenal dan `enabled` tanpa kunci adalah `400`; mengubah `sourceType` atau `ruleKey` setelah ada akrual yang dilaporkan di bawah pasangan tersimpan adalah `409 COMMISSION_SOURCE_LOCKED` (diaudit sebagai `commerce.commission.settings_refused`; mengirim ulang nilai tersimpan atau mengubah hanya `enabled` diterima) |
 | `GET` / `POST` | `/api/v1/commerce/commission/staff-links` | `commerce.commission_staff_links.read` / `.manage`. `GET` mendaftar tautan terbaru dulu (paling banyak 200; yang hidup saja kecuali `?includeRetired=true`). `POST` `{ tenantUserId, employmentId }` menautkan login ke id employment `hr_workforce`, yang **buram** (diperiksa buku besar saat akrual ditulis, bukan di sini). `404` untuk login yang bukan milik tenant (sama untuk milik tenant lain), `409 COMMISSION_LOGIN_ALREADY_LINKED` / `COMMISSION_EMPLOYMENT_ALREADY_LINKED` selama masih ada tautan hidup |
 | `POST` | `/api/v1/commerce/commission/staff-links/{id}/retire` | `commerce.commission_staff_links.manage`. Tautan dipensiunkan, tidak pernah dihapus, dan tautan yang dipensiunkan bersifat final; pensiun kedua adalah `409 COMMISSION_LINK_ALREADY_RETIRED`. Penjualan yang sudah dilaporkan mempertahankan akrualnya |
 

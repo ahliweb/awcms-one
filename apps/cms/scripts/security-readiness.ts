@@ -2163,6 +2163,10 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // zone) and `awcms_tenant_modules` (is `hr_commission` on) are SELECT only.
   awcms_commerce_commission_settings: ["SELECT"],
   awcms_commerce_commission_staff_links: ["SELECT"],
+  // Issue #413 review (sql/1052): the consumer records, in the transaction of
+  // its first accrual, that a (source_type, rule_key) pair has been used; the
+  // settings update refuses to change the pair afterwards. Insert-only.
+  awcms_commerce_commission_attributed_sources: ["SELECT", "INSERT"],
   awcms_hr_commission_accruals: ["SELECT", "INSERT"],
   awcms_hr_commission_transitions: ["SELECT", "INSERT"],
   awcms_hr_commission_rules: ["SELECT"],

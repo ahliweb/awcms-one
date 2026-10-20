@@ -22,6 +22,7 @@ import {
   commissionSourceIdentity,
   decideAttributableLogin,
   decideBeneficiary,
+  decideSettingsChange,
   emptyTally,
   isOrderWideRefusal,
   tallyOutcome,
@@ -306,6 +307,54 @@ describe("classifying what the ledger answered", () => {
   });
 });
 
+describe("decideSettingsChange - the source identity is frozen once an attribution exists (#413 review)", () => {
+  const stored = { ruleKey: "pos_sales", sourceType: "commerce_order_line" };
+
+  test("with no attribution recorded, anything may change", () => {
+    expect(
+      decideSettingsChange({
+        stored,
+        requested: { ruleKey: "other", sourceType: "other_type" },
+        attributionsExist: false
+      })
+    ).toEqual({ kind: "allowed" });
+  });
+
+  test("with an attribution, re-saving the same values is accepted", () => {
+    expect(
+      decideSettingsChange({
+        stored,
+        requested: { ...stored },
+        attributionsExist: true
+      })
+    ).toEqual({ kind: "allowed" });
+  });
+
+  test("with an attribution, a changed source type, rule key or both is refused and names the fields", () => {
+    expect(
+      decideSettingsChange({
+        stored,
+        requested: { ...stored, sourceType: "other_type" },
+        attributionsExist: true
+      })
+    ).toEqual({ kind: "source_locked", fields: ["sourceType"] });
+    expect(
+      decideSettingsChange({
+        stored,
+        requested: { ...stored, ruleKey: "other" },
+        attributionsExist: true
+      })
+    ).toEqual({ kind: "source_locked", fields: ["ruleKey"] });
+    expect(
+      decideSettingsChange({
+        stored,
+        requested: { ruleKey: null, sourceType: "x" },
+        attributionsExist: true
+      })
+    ).toEqual({ kind: "source_locked", fields: ["sourceType", "ruleKey"] });
+  });
+});
+
 describe("request validation", () => {
   test("settings: enabled is required, the adapter cannot be switched on without a rule key, unknown fields are refused", () => {
     expect(validateCommissionSettingsInput({ enabled: false })).toEqual({
@@ -411,7 +460,8 @@ describe("the module descriptor", () => {
   test("both tables answer the retention question on the record, with no purge", () => {
     expect(COMMISSION_DATA_LIFECYCLE.map((entry) => entry.tableName)).toEqual([
       "awcms_commerce_commission_settings",
-      "awcms_commerce_commission_staff_links"
+      "awcms_commerce_commission_staff_links",
+      "awcms_commerce_commission_attributed_sources"
     ]);
     for (const entry of COMMISSION_DATA_LIFECYCLE) {
       expect(entry.executionMode).toBe("delegated");
@@ -482,5 +532,27 @@ describe("migrations 1030 and 1031", () => {
         if (/UPDATE/.test(line)) expect(line).toMatch(/UPDATE \(id\)/);
       }
     }
+  });
+});
+
+describe("migration 1052 - the attributed-source marker", () => {
+  const sql = readFileSync(
+    path.join(
+      import.meta.dir,
+      "..",
+      "sql",
+      "1052_awcms_commerce_commission_attributed_sources.sql"
+    ),
+    "utf8"
+  );
+
+  test("tenant-isolated, FORCE RLS, unique per pair, insert-only for the worker, immutable for everyone", () => {
+    const table = "awcms_commerce_commission_attributed_sources";
+    expect(sql).toContain(`ALTER TABLE ${table} FORCE ROW LEVEL SECURITY`);
+    expect(sql).toContain(`${table}_tenant_isolation`);
+    expect(sql).toContain("UNIQUE (tenant_id, source_type, rule_key)");
+    expect(sql).toContain(`GRANT SELECT, INSERT ON ${table} TO awcms_worker`);
+    expect(sql).not.toMatch(/GRANT[^;]*(UPDATE|DELETE)[^;]*awcms_worker/);
+    expect(sql).toContain("BEFORE UPDATE OR DELETE");
   });
 });
