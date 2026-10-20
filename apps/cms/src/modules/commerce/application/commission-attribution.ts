@@ -66,7 +66,9 @@ import { fromCents, toCents } from "../domain/price-calculation";
 import { SALES_REPORT_TIME_ZONE } from "../domain/sales-report-deltas";
 import {
   fetchCommissionSettings,
-  findLiveEmploymentForLogin
+  findLiveEmploymentForLogin,
+  lockCommissionSettings,
+  recordAttributedSource
 } from "./commission-attribution-directory";
 import { commerceCommissionAccrualPort } from "./commission-attribution-port";
 
@@ -102,6 +104,9 @@ export async function attributeCommissionForPaidOrder(
     now?: Date;
   } = {}
 ): Promise<CommissionAttributionResult> {
+  // Shared, held to the end of this transaction: a settings update (exclusive)
+  // waits for us, so the identity we accrue under is the one it will see locked.
+  await lockCommissionSettings(tx, tenantId, false);
   const settings = await fetchCommissionSettings(tx, tenantId);
   if (!settings.enabled || settings.ruleKey === null) {
     return { kind: "skipped", reason: "disabled" };
@@ -186,6 +191,17 @@ export async function attributeCommissionForPaidOrder(
     tallyOutcome(tally, outcome);
     // The same refusal would come back for every remaining line.
     if (isOrderWideRefusal(outcome)) break;
+  }
+
+  // Freeze the source identity (settings update refuses to change it) in the
+  // SAME transaction as the accrual it protects. A replay also proves one exists.
+  if (tally.accrued > 0 || tally.replayed > 0) {
+    await recordAttributedSource(
+      tx,
+      tenantId,
+      settings.sourceType,
+      settings.ruleKey
+    );
   }
 
   await auditAttempt(tx, tenantId, orderId, link.linkId, tally, correlationId);

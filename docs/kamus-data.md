@@ -436,6 +436,7 @@ The commerce side of reporting a paid counter sale to upstream's `hr_commission`
 | `rule_key` | same | The key of an `hr_commission` rule the tenant has published. Lower-case code; stored, never looked up by commerce |
 | `source_type` | same | Default `commerce_order_line`. Must equal the `sourceType` the rule declares, or the ledger refuses with `source_type_mismatch` |
 | staff link | `awcms_commerce_commission_staff_links` | Joins a login (`tenant_user_id`) to an `hr_workforce` employment (`employment_id`, **opaque**: no foreign key, no read). At most one LIVE link per login and per employment; retired (`retired_at`), never deleted |
+| attributed source | `awcms_commerce_commission_attributed_sources` | A `(source_type, rule_key)` pair under which accruals have been reported (`sql/1052`, ADR-0046 D9). Once a row exists the settings cannot change either field (`409 COMMISSION_SOURCE_LOCKED`, audited as `commerce.commission.settings_refused`) |
 | cashier stamp | `awcms_commerce_orders.pos_cashier_tenant_user_id` | The login that rang up a counter sale, stamped from the authenticated session (`sql/931`). The only source of "who sold": never a request field |
 | source identity | the ledger's unique key | `(source type, order id, order-line id)` plus the employment: one accrual per line however often the order-paid event is replayed |
 | base amount | reported per line | The line total less its pro-rata share of `discount` + `loyalty_discount` (integer cents, the returns module's largest-remainder allocation). Never shipping, insurance or tax |

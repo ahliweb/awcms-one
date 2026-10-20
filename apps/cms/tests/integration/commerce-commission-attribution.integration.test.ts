@@ -39,6 +39,7 @@ import {
 import { withTenantOrThrow } from "../../src/lib/database/tenant-context";
 import {
   createStaffLink,
+  fetchCommissionSettings,
   retireStaffLink,
   saveCommissionSettings
 } from "../../src/modules/commerce/application/commission-attribution-directory";
@@ -253,13 +254,16 @@ async function seedOrder(
 }
 
 async function enable(tenantId: string, on = true): Promise<void> {
-  await inTenant(tenantId, (tx) =>
+  const outcome = await inTenant(tenantId, (tx) =>
     saveCommissionSettings(tx, tenantId, ADMIN_A, {
       enabled: on,
       ruleKey: RULE_KEY,
       sourceType: SOURCE_TYPE
     })
   );
+  if (outcome.kind !== "saved") {
+    throw new Error(`fixture: settings not saved (${outcome.kind})`);
+  }
 }
 
 async function link(
@@ -926,6 +930,139 @@ suite("commerce commission attribution integration (Issue #391)", () => {
         "commerce.commission.staff_link_created",
         "commerce.commission.staff_link_retired"
       ]);
+    });
+  });
+
+  // -------------------------------------------------------------------------
+  describe("the source identity is frozen once an attribution exists (#413 review)", () => {
+    test("before any accrual the source type and rule key may change; after the first accrual they are refused (409 path) and audited, unchanged values still accepted", async () => {
+      await link(TENANT_A, cashier, employment);
+      await enable(TENANT_A);
+
+      const beforeAccrual = await inTenant(TENANT_A, (tx) =>
+        saveCommissionSettings(tx, TENANT_A, ADMIN_A, {
+          enabled: true,
+          ruleKey: RULE_KEY,
+          sourceType: SOURCE_TYPE
+        })
+      );
+      expect(beforeAccrual.kind).toBe("saved");
+
+      const { orderId } = await seedOrder(TENANT_A, { cashier });
+      await deliver(TENANT_A, paidEvent(orderId));
+      expect(await accrualsOf(TENANT_A)).toHaveLength(1);
+
+      const markers = (await getAdminSql()`
+        SELECT source_type, rule_key
+        FROM awcms_commerce_commission_attributed_sources
+        WHERE tenant_id = ${TENANT_A}
+      `) as { source_type: string; rule_key: string }[];
+      expect(markers).toEqual([
+        { source_type: SOURCE_TYPE, rule_key: RULE_KEY }
+      ]);
+
+      const refused = await inTenant(TENANT_A, (tx) =>
+        saveCommissionSettings(tx, TENANT_A, ADMIN_A, {
+          enabled: true,
+          ruleKey: RULE_KEY,
+          sourceType: "another_source"
+        })
+      );
+      expect(refused).toEqual({
+        kind: "source_locked",
+        fields: ["sourceType"]
+      });
+
+      const refusedRule = await inTenant(TENANT_A, (tx) =>
+        saveCommissionSettings(tx, TENANT_A, ADMIN_A, {
+          enabled: true,
+          ruleKey: "another_rule",
+          sourceType: SOURCE_TYPE
+        })
+      );
+      expect(refusedRule).toEqual({
+        kind: "source_locked",
+        fields: ["ruleKey"]
+      });
+
+      // The stored settings are untouched, and the refusal audit row COMMITTED.
+      const stored = await inTenant(TENANT_A, (tx) =>
+        fetchCommissionSettings(tx, TENANT_A)
+      );
+      expect(stored.sourceType).toBe(SOURCE_TYPE);
+      expect(stored.ruleKey).toBe(RULE_KEY);
+      expect(await auditActions(TENANT_A)).toContain(
+        "commerce.commission.settings_refused"
+      );
+
+      // Unchanged identity: switching off and on again stays free.
+      await enable(TENANT_A, false);
+      await enable(TENANT_A, true);
+
+      // A redelivery still accrues under the same identity: one row.
+      await deliver(TENANT_A, paidEvent(orderId));
+      expect(await accrualsOf(TENANT_A)).toHaveLength(1);
+    });
+
+    test("a settings update waits for an in-flight attribution (lock-then-refuse)", async () => {
+      await link(TENANT_A, cashier, employment);
+      await enable(TENANT_A);
+      const { orderId } = await seedOrder(TENANT_A, { cashier });
+
+      let release!: () => void;
+      const held = new Promise<void>((resolve) => {
+        release = resolve;
+      });
+      let entered!: () => void;
+      const started = new Promise<void>((resolve) => {
+        entered = resolve;
+      });
+
+      // The consumer's transaction: attribution done, transaction still open.
+      const attribution = inTenant(TENANT_A, async (tx) => {
+        await attributeCommissionForPaidOrder(tx, TENANT_A, orderId);
+        entered();
+        await held;
+      });
+      await started;
+
+      // The settings update queues behind the shared lock, then sees the marker.
+      const update = inTenant(TENANT_A, (tx) =>
+        saveCommissionSettings(tx, TENANT_A, ADMIN_A, {
+          enabled: true,
+          ruleKey: RULE_KEY,
+          sourceType: "late_change"
+        })
+      );
+      await new Promise((resolve) => setTimeout(resolve, 200));
+      release();
+      await attribution;
+
+      expect(await update).toEqual({
+        kind: "source_locked",
+        fields: ["sourceType"]
+      });
+    });
+
+    test("the marker is tenant-isolated and cannot be updated or deleted, by any role", async () => {
+      await link(TENANT_A, cashier, employment);
+      await enable(TENANT_A);
+      const { orderId } = await seedOrder(TENANT_A, { cashier });
+      await deliver(TENANT_A, paidEvent(orderId));
+
+      const seenByB = await inTenant(
+        TENANT_B,
+        (tx) => tx`SELECT 1 FROM awcms_commerce_commission_attributed_sources`
+      );
+      expect(seenByB).toEqual([]);
+      await assertRejected(
+        getAdminSql()`UPDATE awcms_commerce_commission_attributed_sources SET rule_key = 'x'`,
+        "rewriting a marker"
+      );
+      await assertRejected(
+        getAdminSql()`DELETE FROM awcms_commerce_commission_attributed_sources`,
+        "deleting a marker"
+      );
     });
   });
 

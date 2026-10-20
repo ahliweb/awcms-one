@@ -180,6 +180,37 @@ export function validateCommissionSettingsInput(
   };
 }
 
+/**
+ * Whether a settings update may proceed (Issue #413 review, ADR-0046).
+ *
+ * The accrual source identity is `(sourceType, order id, order-line id)` and the
+ * ledger treats the same identity under a different rule key as a conflict, so
+ * once any accrual has been reported under a `(sourceType, ruleKey)` pair, a
+ * later void or redelivery that is keyed from the CURRENT settings would miss.
+ * Both fields are therefore frozen from the first attribution on; `enabled`
+ * stays free, and re-saving the same values is always accepted.
+ */
+export type SettingsChangeDecision =
+  | { kind: "allowed" }
+  | { kind: "source_locked"; fields: ("sourceType" | "ruleKey")[] };
+
+export function decideSettingsChange(facts: {
+  stored: { ruleKey: string | null; sourceType: string };
+  requested: { ruleKey: string | null; sourceType: string };
+  /** True when at least one attributed-source marker exists for the tenant. */
+  attributionsExist: boolean;
+}): SettingsChangeDecision {
+  if (!facts.attributionsExist) return { kind: "allowed" };
+  const fields: ("sourceType" | "ruleKey")[] = [];
+  if (facts.requested.sourceType !== facts.stored.sourceType) {
+    fields.push("sourceType");
+  }
+  if (facts.requested.ruleKey !== facts.stored.ruleKey) fields.push("ruleKey");
+  return fields.length === 0
+    ? { kind: "allowed" }
+    : { kind: "source_locked", fields };
+}
+
 export type CreateStaffLinkInput = {
   tenantUserId: string;
   employmentId: string;

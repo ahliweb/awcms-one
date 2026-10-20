@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0046-commission-attribution-adapter-reports-paid-counter-sales-to-the-hr-commission-ledger.md)
 
-<!-- i18n-source-hash: sha256:afe781935353f720b3cdd4b59ade5b0639b8402853a8d275b87eea1317e8f6ce -->
+<!-- i18n-source-hash: sha256:6ab8c17aec66b47ad80690ddae0bb80bfe9e43d14268c987a10dc8a8a2918da3 -->
 
 # ADR-0046 — Adaptor atribusi komisi melaporkan penjualan kasir yang sudah dibayar ke buku besar `hr_commission`
 
@@ -114,3 +114,9 @@ Void menurut **identitas sumber** (bukan id accrual) memungkinkan adaptor tanpa-
 - Layar admin pengaturan dan tautan staf.
 - Penghitungan ulang "dibayar" dari buku besar alokasi pembayaran.
 - Komisi bersumber Booking (isu adaptor Booking sendiri).
+
+### D9 — Identitas sumber dibekukan begitu atribusi ada (tinjauan isu #413, `sql/1052`)
+
+Identitas sumber akrual adalah `(settings.sourceType, id pesanan, id baris pesanan)`, dan buku besar memperlakukan identitas yang sama dengan `ruleKey` berbeda sebagai `source_conflict`. Pembatalan (void) berikutnya dialamatkan dengan identitas yang sama. Jika administrator mengubah `sourceType` atau `ruleKey` setelah akrual ada, void yang disusun dari pengaturan saat ini akan meleset diam-diam dan event yang dikirim ulang bisa mengakrual untuk kedua kalinya di bawah identitas baru.
+
+Keputusan: `PUT` pengaturan **menolak perubahan `sourceType` atau `ruleKey` selama ada akrual yang dilaporkan di bawah pasangan tersimpan**: `409 COMMISSION_SOURCE_LOCKED`, diaudit pada tingkat `warning` sebagai `commerce.commission.settings_refused` (hanya kode tersimpan dan yang diminta). Mengirim ulang nilai tersimpan, dan mengubah hanya `enabled`, selalu diterima. Commerce tidak bisa bertanya ke buku besar apakah akrual ada (ia tidak membaca tabel komisi, D3, dan `CommissionAccrualPort` hanya punya `accrue`), dan jejak audit bisa dipurge, sehingga jawabannya milik commerce sendiri: `awcms_commerce_commission_attributed_sources`, satu baris insert-only per `(tenant, source_type, rule_key)`, ditulis konsumer dalam transaksi YANG SAMA dengan akrual yang dilindunginya (`ON CONFLICT DO NOTHING`; replay juga menulisnya). Konsumer mengambil `pg_advisory_xact_lock_shared` pada kunci per-tenant sebelum membaca pengaturan; pembaruan pengaturan mengambil kunci eksklusif pada kunci yang sama, membaca penanda dan memutuskan di bawahnya, sehingga perubahan tidak bisa menyela atribusi yang sedang berjalan (bentuk kunci mode inventaris). Worker hanya punya `SELECT, INSERT` dan trigger penjaga menolak UPDATE dan DELETE untuk semua peran. Tabel ini hanya berisi dua kode dan cap waktu: tanpa data subjek, disimpan selama hidup tenant. Konsekuensi yang sengaja tumpul: untuk memakai aturan atau tipe sumber lain setelah atribusi pertama, tenant memerlukan migrasi yang disengaja, bukan sunting pengaturan.

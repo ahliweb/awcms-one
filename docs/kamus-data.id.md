@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:9a4708a534d8fb5d8ee6c1e3410c31d1c1847cdfb164f8f121043c0ce54f7a36 -->
+<!-- i18n-source-hash: sha256:01c787599891d11ea43e938eae3280c03381175f7176ad308c728343de62047e -->
 
 # Kamus data
 
@@ -437,6 +437,7 @@ Sisi commerce dalam melaporkan penjualan kasir yang sudah dibayar ke buku besar 
 | `rule_key` | sama | Kunci aturan `hr_commission` yang sudah diterbitkan tenant. Kode huruf kecil; disimpan, tidak pernah dicari commerce |
 | `source_type` | sama | Bawaan `commerce_order_line`. Harus sama dengan `sourceType` yang dideklarasikan aturan, atau buku besar menolak dengan `source_type_mismatch` |
 | tautan staf | `awcms_commerce_commission_staff_links` | Menggabungkan login (`tenant_user_id`) dengan employment `hr_workforce` (`employment_id`, **buram**: tanpa foreign key, tanpa pembacaan). Paling banyak satu tautan HIDUP per login dan per employment; dipensiunkan (`retired_at`), tidak pernah dihapus |
+| sumber teratribusi | `awcms_commerce_commission_attributed_sources` | Pasangan `(source_type, rule_key)` yang di bawahnya akrual telah dilaporkan (`sql/1052`, ADR-0046 D9). Begitu ada baris, pengaturan tidak bisa mengubah salah satunya (`409 COMMISSION_SOURCE_LOCKED`, diaudit sebagai `commerce.commission.settings_refused`) |
 | cap kasir | `awcms_commerce_orders.pos_cashier_tenant_user_id` | Login yang mencatat penjualan kasir, dicap dari sesi terautentikasi (`sql/931`). Satu-satunya sumber "siapa yang menjual": tidak pernah kolom request |
 | identitas sumber | kunci unik buku besar | `(tipe sumber, id pesanan, id baris pesanan)` ditambah employment: satu akrual per baris berapa pun event pesanan-dibayar diputar ulang |
 | jumlah dasar | dilaporkan per baris | Total baris dikurangi bagian proporsional `discount` + `loyalty_discount` (sen bilangan bulat, alokasi sisa-terbesar modul retur). Tidak pernah ongkos kirim, asuransi atau pajak |

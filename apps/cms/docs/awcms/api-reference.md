@@ -10150,12 +10150,13 @@ Takes effect for orders paid afterwards. Switching it on requires a `ruleKey`; t
 
 **Responses**
 
-| Status | Description                 | Schema                                 |
-| ------ | --------------------------- | -------------------------------------- |
-| 200    | The saved settings.         | object                                 |
-| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                                                                                     | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The saved settings.                                                                                                                                                                                                                                                                                                                             | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 409    | `COMMISSION_SOURCE_LOCKED` - the commission ledger already holds accruals reported under the stored `sourceType` and `ruleKey`, which form the accrual source identity, so a request that changes either is refused (audited as `commerce.commission.settings_refused`). Re-sending the stored values, or changing only `enabled`, is accepted. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/commission/staff-links` — Issue #391 (ADR-0046). Which employment earns the commission of which login's counter (POS) sales, newest first (at most 200). Live links only unless `includeRetired=true`. Gated on `commerce.commission_staff_links.read`.
 

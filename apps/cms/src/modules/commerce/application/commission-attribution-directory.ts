@@ -14,6 +14,7 @@
 import { recordAuditEvent } from "../../logging/application/audit-log";
 import {
   COMMISSION_DEFAULT_SOURCE_TYPE,
+  decideSettingsChange,
   type CommissionSettingsInput,
   type CreateStaffLinkInput
 } from "../domain/commission-attribution";
@@ -77,14 +78,97 @@ export async function fetchCommissionSettings(
   };
 }
 
+function settingsLockKey(tenantId: string): string {
+  return `commerce.commission.settings|${tenantId}`;
+}
+
+/**
+ * The tenant-scoped advisory lock that makes "settings fixed while an
+ * attribution is in flight" true. The consumer takes it SHARED before it reads
+ * the settings and holds it to the end of its transaction (so concurrent
+ * deliveries do not block each other); the settings update takes it EXCLUSIVE,
+ * so it waits for every in-flight attribution and every later one waits for it.
+ * Same shape as `commerce-inventory.ts`'s mode lock.
+ */
+export async function lockCommissionSettings(
+  tx: Bun.SQL,
+  tenantId: string,
+  exclusive: boolean
+): Promise<void> {
+  const key = settingsLockKey(tenantId);
+  if (exclusive) {
+    await tx`SELECT pg_advisory_xact_lock(hashtextextended(${key}, 0))`;
+  } else {
+    await tx`SELECT pg_advisory_xact_lock_shared(hashtextextended(${key}, 0))`;
+  }
+}
+
+/**
+ * Records that accruals have been reported under this `(sourceType, ruleKey)`
+ * pair, in the caller's (the consumer's) transaction. Idempotent.
+ */
+export async function recordAttributedSource(
+  tx: Bun.SQL,
+  tenantId: string,
+  sourceType: string,
+  ruleKey: string
+): Promise<void> {
+  await tx`
+    INSERT INTO awcms_commerce_commission_attributed_sources
+      (tenant_id, source_type, rule_key)
+    VALUES (${tenantId}, ${sourceType}, ${ruleKey})
+    ON CONFLICT (tenant_id, source_type, rule_key) DO NOTHING
+  `;
+}
+
+export type SaveCommissionSettingsOutcome =
+  | { kind: "saved"; settings: CommissionSettings }
+  | { kind: "source_locked"; fields: ("sourceType" | "ruleKey")[] };
+
 export async function saveCommissionSettings(
   tx: Bun.SQL,
   tenantId: string,
   actorTenantUserId: string,
   input: CommissionSettingsInput,
   correlationId?: string
-): Promise<CommissionSettings> {
+): Promise<SaveCommissionSettingsOutcome> {
+  await lockCommissionSettings(tx, tenantId, true);
   const before = await fetchCommissionSettings(tx, tenantId);
+
+  const markerRows = (await tx`
+    SELECT 1 AS present
+    FROM awcms_commerce_commission_attributed_sources
+    WHERE tenant_id = ${tenantId}
+    LIMIT 1
+  `) as unknown[];
+  const decision = decideSettingsChange({
+    stored: before,
+    requested: input,
+    attributionsExist: markerRows.length > 0
+  });
+  if (decision.kind === "source_locked") {
+    // The route answers 409 as a RETURNED response, which still commits this
+    // transaction, so the refusal's audit row is kept.
+    await recordAuditEvent(tx, {
+      tenantId,
+      actorTenantUserId,
+      moduleKey: AUDIT_MODULE_KEY,
+      action: "commerce.commission.settings_refused",
+      resourceType: AUDIT_RESOURCE_TYPE,
+      resourceId: tenantId,
+      severity: "warning",
+      message:
+        "A change to the commission source identity was refused because accruals already exist.",
+      attributes: {
+        fields: decision.fields,
+        stored: { ruleKey: before.ruleKey, sourceType: before.sourceType },
+        requested: { ruleKey: input.ruleKey, sourceType: input.sourceType }
+      },
+      correlationId
+    });
+    return decision;
+  }
+
   const rows = (await tx`
     INSERT INTO awcms_commerce_commission_settings
       (tenant_id, enabled, rule_key, source_type, updated_by_tenant_user_id)
@@ -129,7 +213,7 @@ export async function saveCommissionSettings(
     correlationId
   });
 
-  return settings;
+  return { kind: "saved", settings };
 }
 
 // ---------------------------------------------------------------------------

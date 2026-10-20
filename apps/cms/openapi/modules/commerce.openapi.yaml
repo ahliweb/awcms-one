@@ -4014,6 +4014,12 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`COMMISSION_SOURCE_LOCKED` - the commission ledger already holds accruals reported under the stored `sourceType` and `ruleKey`, which form the accrual source identity, so a request that changes either is refused (audited as `commerce.commission.settings_refused`). Re-sending the stored values, or changing only `enabled`, is accepted."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/commission/staff-links:
     get:
       operationId: listCommerceCommissionStaffLinks
