@@ -83,7 +83,7 @@ export type RecordOwnerPaymentOutcome =
  * @throws {OverpaymentError} the amount exceeds what is still owed.
  */
 export async function recordOwnerPayment(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   orderId: string,

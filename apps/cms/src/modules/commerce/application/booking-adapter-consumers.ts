@@ -71,7 +71,7 @@ export const BOOKING_ADAPTER_CONSUMERS: ModuleDomainEventConsumer[] = [
       const { confirmReservationForPaidOrder } =
         await import("./booking-order-consumers");
       await confirmReservationForPaidOrder(
-        tx,
+        tx as Bun.TransactionSQL,
         ctx.tenantId,
         event.aggregateId,
         ctx.correlationId
@@ -88,7 +88,7 @@ export const BOOKING_ADAPTER_CONSUMERS: ModuleDomainEventConsumer[] = [
       const { closeOrderForEndedReservation } =
         await import("./booking-order-consumers");
       await closeOrderForEndedReservation(
-        tx,
+        tx as Bun.TransactionSQL,
         ctx.tenantId,
         event.aggregateId,
         "expired",
@@ -106,7 +106,7 @@ export const BOOKING_ADAPTER_CONSUMERS: ModuleDomainEventConsumer[] = [
       const { closeOrderForEndedReservation } =
         await import("./booking-order-consumers");
       await closeOrderForEndedReservation(
-        tx,
+        tx as Bun.TransactionSQL,
         ctx.tenantId,
         event.aggregateId,
         "cancelled",
@@ -127,7 +127,7 @@ export const BOOKING_ADAPTER_CONSUMERS: ModuleDomainEventConsumer[] = [
       const { releaseHoldForClosedOrder } =
         await import("./booking-order-consumers");
       await releaseHoldForClosedOrder(
-        tx,
+        tx as Bun.TransactionSQL,
         ctx.tenantId,
         event.aggregateId,
         ctx.correlationId
@@ -144,7 +144,7 @@ export const BOOKING_ADAPTER_CONSUMERS: ModuleDomainEventConsumer[] = [
       const { flagPaymentOnDeadReservation } =
         await import("./booking-order-consumers");
       await flagPaymentOnDeadReservation(
-        tx,
+        tx as Bun.TransactionSQL,
         ctx.tenantId,
         event.aggregateId,
         ctx.correlationId

@@ -66,7 +66,7 @@ const PRICE = "500000.00";
 const GUEST_PHONE = "081311112222";
 
 function inTenant<T>(
-  fn: (tx: Bun.SQL) => Promise<T>,
+  fn: (tx: Bun.TransactionSQL) => Promise<T>,
   tenantId: string = TENANT_A
 ): Promise<T> {
   return withTenantOrThrow(getRuntimeSql(), tenantId, fn);

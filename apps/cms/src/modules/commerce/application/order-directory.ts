@@ -923,7 +923,7 @@ export async function createOrderFromCart(
  * idempotency record is neither read nor written.
  */
 export function createBookingOrderFromCart(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   mediaPort: MediaLibraryPort,
   input: CreateOrderInput,
@@ -945,7 +945,7 @@ export function createBookingOrderFromCart(
 }
 
 async function runCreateOrder(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   mediaPort: MediaLibraryPort,
   input: CreateOrderInput,
@@ -1532,7 +1532,7 @@ export async function createPaymentConfirmation(
 
 /** Admin accept/reject of a payment confirmation — also drives the order's own status when accepted. */
 export async function reviewPaymentConfirmation(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   orderId: string,
@@ -1629,7 +1629,7 @@ function toCentsSafe(amount: string): bigint {
  * the ledger never forks the transition.
  */
 export function makeOrderRelease(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actor: OrderStatusActor,
   actorTenantUserId: string | undefined,
@@ -1655,7 +1655,7 @@ export function makeOrderRelease(
 // ---------------------------------------------------------------------------
 
 async function transitionOrderStatus(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string | undefined,
   actor: OrderStatusActor,
@@ -2080,7 +2080,7 @@ async function bookingOrderHoldsMoney(
  * money: that one is never cancelled by an event.
  */
 export async function cancelUnpaidOrderForBooking(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   orderId: string,
   correlationId?: string
@@ -2109,7 +2109,7 @@ export async function cancelUnpaidOrderForBooking(
 
 /** `commerce:orders:expire` job's own per-order call — see `scripts/commerce-orders-expire.ts`. */
 export async function expireOrderBySystem(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   orderId: string,
   correlationId?: string
@@ -2204,7 +2204,7 @@ export type MarkOrderPaidBySystemResult =
  * already `succeeded` and writes nothing.
  */
 export async function markOrderPaidBySystem(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   orderId: string,
   gateway: MarkOrderPaidBySystemInput,
@@ -2487,7 +2487,7 @@ export async function expireOrdersForTenant(
         }
         try {
           await tx.savepoint((sp) =>
-            expireOrderBySystem(sp, tenantId, orderId, correlationId)
+            expireOrderBySystem(sp as Bun.TransactionSQL, tenantId, orderId, correlationId)
           );
           expiredCount += 1;
         } catch (error) {
