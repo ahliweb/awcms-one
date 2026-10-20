@@ -28,6 +28,7 @@ import type {
   UpdateFlashSaleProductInput
 } from "../domain/flash-sale-validation";
 import { listLiveProductImagesByProductIds } from "./product-image-directory";
+import { inSavepoint } from "./savepoint";
 
 const PRODUCER_MODULE = "commerce";
 /** Bounded per tenant per tick — a tenant's own flash-sale calendar is small (see `module.ts`'s `dataLifecycle` partition rationale), so this is generous headroom, not a real limit. */
@@ -162,11 +163,15 @@ export async function createFlashSale(
   let rows: FlashSaleRow[];
 
   try {
-    rows = (await tx`
+    rows = (await inSavepoint(
+      tx,
+      async (sp) =>
+        await sp`
       INSERT INTO awcms_commerce_flash_sales (tenant_id, name, slug, starts_at, ends_at, status)
       VALUES (${tenantId}, ${input.name}, ${input.slug}, ${input.startsAt}, ${input.endsAt}, ${input.status})
       RETURNING id, name, slug, starts_at, ends_at, status
-    `) as FlashSaleRow[];
+    `
+    )) as FlashSaleRow[];
   } catch (error) {
     if (
       error instanceof Bun.SQL.PostgresError &&
@@ -209,7 +214,10 @@ export async function updateFlashSale(
   let rows: FlashSaleRow[];
 
   try {
-    rows = (await tx`
+    rows = (await inSavepoint(
+      tx,
+      async (sp) =>
+        await sp`
       UPDATE awcms_commerce_flash_sales
       SET
         name = ${input.name ?? existing.name},
@@ -220,7 +228,8 @@ export async function updateFlashSale(
         updated_at = now()
       WHERE tenant_id = ${tenantId} AND id = ${flashSaleId} AND deleted_at IS NULL
       RETURNING id, name, slug, starts_at, ends_at, status
-    `) as FlashSaleRow[];
+    `
+    )) as FlashSaleRow[];
   } catch (error) {
     if (
       error instanceof Bun.SQL.PostgresError &&
@@ -407,12 +416,16 @@ export async function createFlashSaleProduct(
   let rows: FlashSaleProductRow[];
 
   try {
-    rows = (await tx`
+    rows = (await inSavepoint(
+      tx,
+      async (sp) =>
+        await sp`
       INSERT INTO awcms_commerce_flash_sale_products
         (tenant_id, flash_sale_id, product_id, variant_id, sale_price, quota, sort_order)
       VALUES (${tenantId}, ${flashSaleId}, ${input.productId}, ${input.variantId}, ${input.salePrice}, ${input.quota}, ${input.sortOrder})
       RETURNING id, flash_sale_id, product_id, variant_id, sale_price, quota, sold, sort_order
-    `) as FlashSaleProductRow[];
+    `
+    )) as FlashSaleProductRow[];
   } catch (error) {
     if (
       error instanceof Bun.SQL.PostgresError &&

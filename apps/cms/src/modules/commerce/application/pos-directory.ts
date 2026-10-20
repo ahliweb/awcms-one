@@ -158,6 +158,7 @@ import {
 } from "./order-directory";
 import { recordPaymentAllocation } from "./payment-allocation-directory";
 import type { CartQuoteResult } from "../domain/cart-quote";
+import { inSavepoint } from "./savepoint";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE = "order";
@@ -586,7 +587,10 @@ async function createPosOrderWrite(
   for (let attempt = 0; attempt < MAX_ORDER_CODE_ATTEMPTS; attempt += 1) {
     const candidateCode = generateOrderCode(now);
     try {
-      const rows = (await tx`
+      const rows = (await inSavepoint(
+        tx,
+        async (sp) =>
+          await sp`
         INSERT INTO awcms_commerce_orders (
           tenant_id, order_code, customer_id, status, payment_method, payment_status,
           shipping_method, shipping_cost, subtotal, discount, insurance_fee, tax, total,
@@ -598,7 +602,8 @@ async function createPosOrderWrite(
           ${payableTotal}, ${loyaltyDiscount}, ${input.notes}, 'pos', ${actorTenantUserId}, ${registerSessionId}
         )
         RETURNING id, order_code
-      `) as { id: string; order_code: string }[];
+      `
+      )) as { id: string; order_code: string }[];
       orderId = rows[0]!.id;
       orderCode = rows[0]!.order_code;
       break;

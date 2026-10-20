@@ -21,6 +21,7 @@ import {
   COMMERCE_REVIEW_AGGREGATE_TYPE,
   COMMERCE_REVIEW_PUBLISHED_EVENT_TYPE
 } from "../domain/commerce-events";
+import { inSavepoint } from "./savepoint";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE = "review";
@@ -95,11 +96,15 @@ export async function createReview(
 
   let rows: { id: string }[];
   try {
-    rows = (await tx`
+    rows = (await inSavepoint(
+      tx,
+      async (sp) =>
+        await sp`
       INSERT INTO awcms_commerce_reviews (tenant_id, product_id, customer_id, order_id, rating, body)
       VALUES (${tenantId}, ${productId}, ${order.customer_id}, ${order.id}, ${rating}, ${body})
       RETURNING id
-    `) as { id: string }[];
+    `
+    )) as { id: string }[];
   } catch (error) {
     if (
       error instanceof Bun.SQL.PostgresError &&

@@ -10,6 +10,7 @@ import type {
   AttributeConstraints,
   AttributeValueType
 } from "../domain/attribute-value";
+import { inSavepoint } from "./savepoint";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE = "attribute_definition";
@@ -190,7 +191,10 @@ export async function createAttributeDefinition(
 
   let rows: DefinitionRow[];
   try {
-    rows = (await tx`
+    rows = (await inSavepoint(
+      tx,
+      async (sp) =>
+        await sp`
       INSERT INTO awcms_commerce_attribute_definitions (
         tenant_id, key, label, labels, value_type, constraints, applies_to,
         is_searchable, is_filterable, visible_admin, visible_public, sort_order
@@ -201,8 +205,9 @@ export async function createAttributeDefinition(
         ${input.isSearchable}, ${input.isFilterable}, ${input.visibleAdmin},
         ${input.visiblePublic}, ${input.sortOrder}
       )
-      RETURNING ${tx.unsafe(DEFINITION_COLUMNS)}
-    `) as DefinitionRow[];
+      RETURNING ${sp.unsafe(DEFINITION_COLUMNS)}
+    `
+    )) as DefinitionRow[];
   } catch (error) {
     if (
       error instanceof Bun.SQL.PostgresError &&

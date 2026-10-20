@@ -32,6 +32,7 @@ import {
   isAffiliateCodeShape
 } from "../domain/affiliate-code";
 import { fetchAffiliateCommissionRate } from "./store-settings-directory";
+import { inSavepoint } from "./savepoint";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE_AFFILIATE = "affiliate";
@@ -172,11 +173,15 @@ async function insertAffiliateWithRetryableCode(
   for (let attempt = 0; attempt < MAX_AFFILIATE_CODE_ATTEMPTS; attempt += 1) {
     const code = generateAffiliateCode();
     try {
-      const rows = (await tx`
+      const rows = (await inSavepoint(
+        tx,
+        async (sp) =>
+          await sp`
         INSERT INTO awcms_commerce_affiliates (tenant_id, customer_id, code, commission_rate, status)
         VALUES (${tenantId}, ${customerId}, ${code}, ${commissionRate}, 'active')
         RETURNING id, customer_id, code, commission_rate, status, created_at
-      `) as AffiliateRow[];
+      `
+      )) as AffiliateRow[];
       return rows[0]!;
     } catch (error) {
       const isCollision =
