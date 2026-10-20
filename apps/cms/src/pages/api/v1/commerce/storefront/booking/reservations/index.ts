@@ -26,7 +26,11 @@ import {
 import { requireCommerceFeatureForPublicRoute } from "../../../../../../../modules/commerce/application/commerce-feature-gate";
 import { requireCustomerSession } from "../../../../../../../modules/commerce/application/customer-session-auth";
 import { commercePreflightResponse } from "../../../../../../../modules/commerce/application/public-commerce-preflight";
-import { withPublicCommerceTenant } from "../../../../../../../modules/commerce/application/public-commerce-tenant";
+import { commerceCorsHeaders } from "../../../../../../../modules/commerce/domain/commerce-cors";
+import {
+  resolvePublicCommerceOrigin,
+  withPublicCommerceTenant
+} from "../../../../../../../modules/commerce/application/public-commerce-tenant";
 import {
   validateBookingReservationRequest,
   type BookingRequestActor
@@ -273,15 +277,24 @@ export const POST: APIRoute = async ({ request, clientAddress, locals }) => {
     );
   } catch (error) {
     if (error instanceof IdempotencyRaceLostError) {
+      // The race error is thrown out of `withPublicCommerceTenant`, so its
+      // `corsHeaders` never reached this scope: classify the origin again
+      // (the same decision, a pure function of the request's Origin).
+      const { decision } = await resolvePublicCommerceOrigin(sql, request);
+      const raceCorsHeaders = commerceCorsHeaders(decision);
       if (error.replay) {
         return jsonResponse(error.replay.responseBody, {
-          status: error.replay.responseStatus
+          status: error.replay.responseStatus,
+          headers: raceCorsHeaders
         });
       }
       return fail(
         409,
         "IDEMPOTENCY_CONFLICT",
-        "Idempotency-Key was already used with a different request."
+        "Idempotency-Key was already used with a different request.",
+        {},
+        undefined,
+        raceCorsHeaders
       );
     }
     throw error;
