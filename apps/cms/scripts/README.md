@@ -73,6 +73,7 @@ scheduled, or by a specific CI workflow.
 | `ci:local`                                | `ci-local.ts`                                  | —    |
 | `comments:resources:check`                | `comments-resources-check.ts`                  | ✅   |
 | `comments:retention`                      | `comments-retention.ts`                        | —    |
+| `commerce:booking:reconcile`              | `commerce-booking-reconcile.ts`                | —    |
 | `commerce:campaigns:dispatch`             | `commerce-campaigns-dispatch.ts`               | —    |
 | `commerce:customer-auth:purge`            | `commerce-customer-auth-purge.ts`              | —    |
 | `commerce:deploy:preflight`               | `commerce-deploy-preflight.ts`                 | —    |
