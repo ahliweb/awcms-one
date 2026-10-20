@@ -124,6 +124,7 @@ Decided as a direction (issue #445): LynxJS/ReactLynx is the preferred candidate
 
 ## Not here yet — the short list
 
+- Customer Web Push: it is designed, not built. [ADR-0048](adr/0048-customer-web-push-identity-subscription-and-cross-origin-contract.md) is **Proposed**, and the implementation issues #430, #431 and #432 wait for the owner to accept it (customer devices, consent, a thin outbox over the upstream provider, storefront-origin click targets; no table, route, consumer or UI exists yet).
 - E-mail/phone change on an existing customer account, and phone verification ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) D6).
 - Loyalty optional tiers, campaign/segment eligibility and a storefront balance page — [ADR-0026](adr/0026-loyalty-points-are-an-append-only-ledger.md)'s Deferred list; the cashier own-account guard and refunding a fully points-paid order — [ADR-0043](adr/0043-loyalty-points-are-redeemed-as-a-server-priced-discount-line-written-with-the-ledger-debit.md)'s "Not here yet".
 - Catalog attributes: variants in the CSV import/export, sorting by an attribute value, storefront facet UI over `attr=` filters, and renaming an enum option — each recorded in [ADR-0027](adr/0027-catalog-custom-attributes-are-typed-and-allowlisted.md)'s "Deferred".

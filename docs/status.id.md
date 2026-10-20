@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](status.md)
 
-<!-- i18n-source-hash: sha256:c18048505c093a6753a22f407b70d08159ac555891b9872ac07987ce87832f02 -->
+<!-- i18n-source-hash: sha256:c009b13c369d283a6577fd7645b8d5019a4731d9499ba7f95ac294ef4d8e6edd -->
 
 # Status
 
@@ -124,6 +124,7 @@ Diputuskan sebagai arah (issue #445): LynxJS/ReactLynx adalah kandidat utama unt
 
 ## Belum ada — daftar singkat
 
+- Web Push pelanggan: sudah dirancang, belum dibangun. [ADR-0048](adr/0048-customer-web-push-identity-subscription-and-cross-origin-contract.md) berstatus **Diusulkan**, dan isu implementasi #430, #431, dan #432 menunggu pemilik menerimanya (perangkat pelanggan, persetujuan, outbox tipis di atas provider upstream, target klik di origin storefront; belum ada tabel, rute, consumer, atau UI).
 - Ubah e-mail/telepon pada akun pelanggan yang sudah ada, dan verifikasi telepon ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) D6).
 - Tingkat (tier) loyalitas, kelayakan kampanye/segmen, dan halaman saldo storefront — daftar Tertunda [ADR-0026](adr/0026-loyalty-points-are-an-append-only-ledger.md); penjaga akun-sendiri kasir dan refund pesanan yang seluruhnya dibayar poin — "Belum ada di sini" [ADR-0043](adr/0043-loyalty-points-are-redeemed-as-a-server-priced-discount-line-written-with-the-ledger-debit.md).
 - Atribut katalog: varian pada impor/ekspor CSV, pengurutan berdasarkan nilai atribut, UI faset etalase di atas filter `attr=`, dan penggantian nama opsi enum — masing-masing dicatat pada "Ditunda" di [ADR-0027](adr/0027-catalog-custom-attributes-are-typed-and-allowlisted.md).
