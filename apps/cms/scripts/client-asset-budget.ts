@@ -1732,8 +1732,19 @@ export const READER_BUDGET_BYTES = 24_000;
  * catalogue entries the two screens read in both languages. Nothing was
  * duplicated per screen: the step-up prompt is one native `<dialog>` component
  * used by both, and the money / window rules are one module with a unit test.
+ *
+ * **Issue #437 (offering link resources)** measured 480,827 B on the build
+ * that carries #381, #385 and #386 (480,763 B before it; the previous constant
+ * was 480,800 B, so the screen did not fit; it sets 480,900 B, the measurement
+ * rounded up to the next 100 B - a coordinator override of the headroom rule
+ * for #437): the optional "Resource IDs" field of `/admin/commerce-booking-links`
+ * (an inline split of the typed ids into the `resourceIds` array the server
+ * proves), the "Resources" column, and the six new catalogue entries that ship
+ * with every page in the compiled Indonesian catalogue. The parsing and the id
+ * checks stay on the server on purpose: a client helper would have cost more.
+ * The budget sits 73 B above the measurement.
  */
-export const APP_BUDGET_BYTES = 480_800;
+export const APP_BUDGET_BYTES = 480_900;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

@@ -13375,6 +13375,9 @@ msgstr[0] "{count} kejadian dalam 7 hari terakhir (UTC)"
 msgid "Some sections are not available to you."
 msgstr "Beberapa bagian tidak tersedia untuk Anda."
 
+msgid "The offering, the product or a resource was not found."
+msgstr "Penawaran, produk, atau resource tidak ditemukan."
+
 # booking-adapter #381
 
 msgid "A product's own policy replaces the tenant default for that product. A change is a new version: bookings already made keep the version they were made under."
@@ -13724,3 +13727,22 @@ msgstr "{notice} atau lebih sebelum check-in: {percent}%"
 
 msgid "{policy}, version {version}"
 msgstr "{policy}, versi {version}"
+
+# booking-adapter #437
+msgid "A resource does not match the offering (stay or time slot)."
+msgstr "Resource tidak sesuai dengan penawaran (menginap atau slot waktu)."
+
+msgid "A resource is inactive. Choose an active one."
+msgstr "Resource tidak aktif. Pilih yang aktif."
+
+msgid "Check the IDs: resource IDs must be different UUIDs, up to 10, separated by commas."
+msgstr "Periksa ID: ID resource harus UUID yang berbeda, paling banyak 10, dipisahkan koma."
+
+msgid "Resource IDs (optional)"
+msgstr "ID resource (opsional)"
+
+msgid "The room type this offering sells: copy the resource IDs from Booking, Resources, separated by commas. Leave empty to offer every active resource of the same kind."
+msgstr "Tipe kamar yang dijual penawaran ini: salin ID resource dari Booking, Resource, dipisahkan koma. Kosongkan untuk menawarkan setiap resource aktif dengan jenis yang sama."
+
+msgid "All active resources"
+msgstr "Semua resource aktif"

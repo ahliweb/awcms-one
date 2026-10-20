@@ -13436,6 +13436,9 @@ msgstr[1] ""
 msgid "Some sections are not available to you."
 msgstr ""
 
+msgid "The offering, the product or a resource was not found."
+msgstr ""
+
 # booking-adapter #381
 
 msgid "A product's own policy replaces the tenant default for that product. A change is a new version: bookings already made keep the version they were made under."
@@ -13787,4 +13790,23 @@ msgid "{notice} or more before check-in: {percent}%"
 msgstr ""
 
 msgid "{policy}, version {version}"
+msgstr ""
+
+# booking-adapter #437
+msgid "A resource does not match the offering (stay or time slot)."
+msgstr ""
+
+msgid "A resource is inactive. Choose an active one."
+msgstr ""
+
+msgid "Check the IDs: resource IDs must be different UUIDs, up to 10, separated by commas."
+msgstr ""
+
+msgid "Resource IDs (optional)"
+msgstr ""
+
+msgid "The room type this offering sells: copy the resource IDs from Booking, Resources, separated by commas. Leave empty to offer every active resource of the same kind."
+msgstr ""
+
+msgid "All active resources"
 msgstr ""

@@ -10860,7 +10860,7 @@ paths:
       tags:
         - Commerce
       summary: "Issue #378 (ADR-0045 D1, D14, G3, G9). Link one Booking offering to one service product. Gated on `commerce.booking_offering_links.create` and the tenant's `booking` feature; requires `Idempotency-Key`."
-      description: One offering has at most one active link and one product has at most one active link. The product must be of type `service`; `quantityBasis` must agree with the offering's granularity (`nights` for a stay offering, `booking` for a time-slot offering); an offering that confirms without payment (`confirmation_mode = immediate`) or is inactive cannot be sold; and the tenant must have named an active service-account user in the store settings (`bookingServiceTenantUserId`). A body naming a price, an amount or a customer is a 400. The response carries a non-blocking `NO_CANCELLATION_POLICY` warning when neither the product nor the tenant has an active cancellation policy ("cancellations will refund nothing"). Booking is read for three facts (granularity, confirmation mode, status) and is not altered.
+      description: 'One offering has at most one active link and one product has at most one active link. The product must be of type `service`; `quantityBasis` must agree with the offering''s granularity (`nights` for a stay offering, `booking` for a time-slot offering); an offering that confirms without payment (`confirmation_mode = immediate`) or is inactive cannot be sold; and the tenant must have named an active service-account user in the store settings (`bookingServiceTenantUserId`). A body naming a price, an amount or a customer is a 400. The response carries a non-blocking `NO_CANCELLATION_POLICY` warning when neither the product nor the tenant has an active cancellation policy ("cancellations will refund nothing"). Booking is read for three facts (granularity, confirmation mode, status) and is not altered. Issue #437: `resourceIds` (optional, at most ten) names the Booking resource(s) the link sells. Each must be a live resource of the tenant, active and in the booking mode the offering''s granularity needs (`stay` for a stay offering, `slot` for a time-slot offering); an unknown, foreign or deleted one is a 404 `RESOURCE_NOT_FOUND`, a wrong mode `RESOURCE_MODE_MISMATCH` and an inactive one `RESOURCE_NOT_ACTIVE` (409). Naming none keeps the fallback: the storefront offers every active resource of the matching mode. The binding is written once with the link and never edited; to change it, unlink and link again.'
       parameters:
         - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
@@ -10892,7 +10892,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: "`FEATURE_DISABLED`, `OFFERING_ALREADY_LINKED`, `PRODUCT_ALREADY_LINKED`, `PRODUCT_NOT_SERVICE`, `QUANTITY_BASIS_MISMATCH`, `OFFERING_NOT_LINKABLE`, `BOOKING_SERVICE_ACTOR_NOT_CONFIGURED` or `IDEMPOTENCY_CONFLICT`."
+          description: "`FEATURE_DISABLED`, `OFFERING_ALREADY_LINKED`, `PRODUCT_ALREADY_LINKED`, `PRODUCT_NOT_SERVICE`, `QUANTITY_BASIS_MISMATCH`, `OFFERING_NOT_LINKABLE`, `BOOKING_SERVICE_ACTOR_NOT_CONFIGURED`, `RESOURCE_MODE_MISMATCH`, `RESOURCE_NOT_ACTIVE` or `IDEMPOTENCY_CONFLICT`."
           content:
             application/json:
               schema:
@@ -11026,7 +11026,7 @@ paths:
       tags:
         - Commerce
       summary: "Issue #380 (ADR-0045 G2, G4, G5, G10; contracts 3.2). Hold a Booking slot or stay for a guest and create the commerce order from it in ONE idempotent call (the staff variant). Gated on `commerce.booking_reservation_links.create` and the tenant's `booking` feature; requires `Idempotency-Key`."
-      description: "The hold (through `BookingPort`, with the staff member as the acting user), the order and the reservation link are written in one transaction. The price is the linked product's (a body naming `price`, `amount`, `deposit` or `customerId` is a 400), the line quantity is the night count for a stay, and `dp_amount` is the product's deposit policy when `payment.method` is `dp`. The order expires with the hold. The `Idempotency-Key` is namespaced by the calling staff member and stored as the link's `client_key`: the same key and request replays the original (`200`, `replayed: true`), the same key with another request is `409 IDEMPOTENCY_CONFLICT`. A Booking refusal keeps Booking's code under `409` (`429` for `HOLD_LIMIT_EXCEEDED`) and writes nothing. `resourceId` is required in v1 (a pool is not offered)."
+      description: "The hold (through `BookingPort`, with the staff member as the acting user), the order and the reservation link are written in one transaction. The price is the linked product's (a body naming `price`, `amount`, `deposit` or `customerId` is a 400), the line quantity is the night count for a stay, and `dp_amount` is the product's deposit policy when `payment.method` is `dp`. The order expires with the hold. The `Idempotency-Key` is namespaced by the calling staff member and stored as the link's `client_key`: the same key and request replays the original (`200`, `replayed: true`), the same key with another request is `409 IDEMPOTENCY_CONFLICT`. A Booking refusal keeps Booking's code under `409` (`429` for `HOLD_LIMIT_EXCEEDED`) and writes nothing. `resourceId` is required in v1 (a pool is not offered). When the offering link names its resources (Issue #437), any other `resourceId` is a 404 `RESOURCE_NOT_FOUND` and nothing is written."
       parameters:
         - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
@@ -21886,7 +21886,7 @@ paths:
       operationId: getCommerceStorefrontBookingAvailability
       tags:
         - Commerce
-      summary: "Issue #386. Anonymous availability of a LINKED offering on one resource, through `BookingPort.availability` (contract 1.1.0): a stay's free-unit count (`checkInDate` + `checkOutDate`) or the free slots of a window (`from` + `to`). Tenant from the request origin. Counts, slots and the zone only - no resource name, unit label, reservation, block, staff, customer or policy. An unavailable stay is always `available: false` + `SLOT_UNAVAILABLE`; an unknown or over-capacity resource is the same answer as a full range. An offering that is unknown, another tenant's, unlinked, inactive or not sold is one neutral 404. Bounded (1..366 nights, 31 days of slots, 730 days ahead) and rate limited; never cached."
+      summary: "Issue #386. Anonymous availability of a LINKED offering on one resource, through `BookingPort.availability` (contract 1.1.0): a stay's free-unit count (`checkInDate` + `checkOutDate`) or the free slots of a window (`from` + `to`). Tenant from the request origin. Counts, slots and the zone only - no resource name, unit label, reservation, block, staff, customer or policy. An unavailable stay is always `available: false` + `SLOT_UNAVAILABLE`; an unknown or over-capacity resource is the same answer as a full range. An offering that is unknown, another tenant's, unlinked, inactive or not sold - or a `resourceId` that the offering's link does not name, when it names any (Issue #437) - is one neutral 404. Bounded (1..366 nights, 31 days of slots, 730 days ahead) and rate limited; never cached."
       security: []
       parameters:
         - name: offeringId
@@ -21959,7 +21959,7 @@ paths:
       operationId: listCommerceStorefrontBookingOfferings
       tags:
         - Commerce
-      summary: "Issue #386. The booking offerings the tenant sells online: an active offering link, an active service product, an active hold-then-confirm Booking offering and an active resource of the right mode. Anonymous; an optional live `customerBearer` only prices the unit at the customer's level. Ids and public product facts only - never a resource name, unit label, capacity or offering code. Behind the `booking` feature (off = the neutral 404). Never cached."
+      summary: "Issue #386. The booking offerings the tenant sells online: an active offering link, an active service product, an active hold-then-confirm Booking offering and an active resource of the right mode (the link's own resource(s) when it names them, Issue #437, else every active resource of the mode). Anonymous; an optional live `customerBearer` only prices the unit at the customer's level. Ids and public product facts only - never a resource name, unit label, capacity or offering code. Behind the `booking` feature (off = the neutral 404). Never cached."
       security: []
       responses:
         "200":
@@ -48674,6 +48674,7 @@ components:
         - offeringId
         - productId
         - quantityBasis
+        - resourceIds
         - status
         - unlinkedAt
         - createdAt
@@ -48694,6 +48695,13 @@ components:
             - nights
             - booking
           description: "`nights` for a stay offering (the line quantity is the night count), `booking` for a time-slot offering (quantity 1)."
+        resourceIds:
+          type: array
+          maxItems: 10
+          description: "Issue #437. The Booking resource(s) the link sells, in storefront order. Empty = no binding: the storefront offers every active resource of the offering's booking mode (every link made before #437)."
+          items:
+            type: string
+            format: uuid
         status:
           type: string
           enum:
@@ -48742,6 +48750,14 @@ components:
           enum:
             - nights
             - booking
+        resourceIds:
+          type: array
+          maxItems: 10
+          uniqueItems: true
+          description: "Issue #437. Optional. The Booking resource(s) this link sells, in the order the storefront lists them: tenant's own, active, of the booking mode the offering's granularity needs. Omit (or send `[]`) to keep the fallback of every active resource of that mode."
+          items:
+            type: string
+            format: uuid
     CommerceBookingReconciliation:
       type: object
       description: "Issue #380 (C-09). Active reservation links whose order's ledger and whose Booking reservation disagree."

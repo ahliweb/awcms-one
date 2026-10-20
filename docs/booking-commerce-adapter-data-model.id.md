@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](booking-commerce-adapter-data-model.md)
 
-<!-- i18n-source-hash: sha256:37dd11d443fbfc5bea75c7718497f1cd31c8fb2cfbd038bb28d4497eda74cfbb -->
+<!-- i18n-source-hash: sha256:e52061179263fc5e608d45cb0ed1e935806b0fb19adc41ea14ce7ed6dbed89df -->
 
 # Adapter booking-commerce — usulan ERD dan kamus data
 
@@ -141,6 +141,22 @@ Tautan dari offering Booking ke produk commerce (PRD A1). Sebuah rujukan, bukan 
 **Indeks dan keunikan:** unik parsial `(tenant_id, offering_id) WHERE status = 'active'` (satu produk aktif per offering, A1) dan unik parsial `(tenant_id, product_id) WHERE status = 'active'` (produk menjual satu offering sekali waktu; lihat bagian 7); `(tenant_id, status)`.
 **RLS:** generik. Tanpa `DELETE` untuk peran aplikasi; melepas tautan adalah perubahan status, sehingga riwayat "dijual sebagai apa" tetap ada.
 **Tidak di sini:** tanpa harga, tanpa deposit, tanpa kebijakan. Harga ada di produk (Q1), deposit di baris kebijakannya.
+
+### 4.1a `awcms_commerce_booking_offering_link_resources` (issue #437)
+
+Resource Booking mana yang dijual sebuah tautan offering. Offering Booking tidak menetapkan resource, sehingga tenant yang menjual beberapa tipe kamar dari resource terpisah dengan satu mode booking perlu tautan yang menyatakan tipe kamar tiap offering.
+
+| Kolom              | Tipe          | Null  | Constraint / catatan                                                                                                     |
+| ------------------ | ------------- | ----- | ------------------------------------------------------------------------------------------------------------------------ |
+| `id`               | `uuid`        | tidak | PK                                                                                                                       |
+| `tenant_id`        | `uuid`        | tidak | FK `awcms_tenants`                                                                                                       |
+| `offering_link_id` | `uuid`        | tidak | FK komposit `(tenant_id, offering_link_id)` ke tautan offering                                                           |
+| `resource_id`      | `uuid`        | tidak | FK komposit `(tenant_id, resource_id)` ke `awcms_booking_resources`; `UNIQUE (tenant_id, offering_link_id, resource_id)` |
+| `sort_order`       | `integer`     | tidak | `CHECK BETWEEN 0 AND 1000`; storefront mendaftar resource menurut urutan ini, paling banyak sepuluh per tautan           |
+| `created_at`       | `timestamptz` | tidak | `DEFAULT now()`                                                                                                          |
+| `deleted_at`       | `timestamptz` | ya    | Hanya kursor retensi; modul ini tidak pernah mengisinya                                                                  |
+
+**Mengapa tabel anak dan bukan `resource_id` nullable pada tautan:** tabel tautan dibekukan trigger penjaganya (identitas, offering, produk, dan basis tidak pernah berubah, dan tautan reservasi menunjuk baris itu selamanya); sebuah kolom akan melonggarkan penjaga itu atau hanya-tulis-sekali, padahal satu offering sering menjual lebih dari satu kamar. **Semantik (M9):** tautan tanpa baris mempertahankan fallback (setiap resource aktif dengan mode booking offering); tautan dengan baris hanya menjual resource itu, dan tautan terikat yang semua resource-nya nonaktif tidak dijual, bukan jatuh ke seluruh kumpulan. **Ditulis sekali bersama tautan aktif:** `awcms_app` tidak punya `UPDATE` atau `DELETE`, sebuah trigger menolak pembaruan dan baris pada tautan yang sudah dilepas; untuk mengubah ikatan, lepas lalu tautkan lagi. **RLS:** generik, FORCE. Server membuktikan id dari klien (milik tenant, aktif, dengan mode yang dibutuhkan granularitas offering) sebelum menyisipkan.
 
 ### 4.2 `awcms_commerce_booking_reservation_links` (diimplementasikan, lihat bagian 9)
 
@@ -313,6 +329,7 @@ Diimplementasikan di `sql/1035` (tautan offering dan reservasi), `sql/1036` (keb
 | 6   | 4.1    | "Booking dibaca lewat port-nya"                                                     | `BookingPort` tidak punya pembacaan offering (butuh port upstream U1). Satu-satunya pembacaan adalah `SELECT` `granularity`, `confirmation_mode`, dan `status` dari `awcms_booking_service_offerings`, dibatasi tenant, di `application/booking-offering-links.ts`; commerce tidak mengimpor apa pun dari modul `booking` dan tidak menulis tabelnya |
 | 7   | 7.2    | backfill `allow_dp` sekali                                                          | tidak ada yang dijalankan: tidak ada baris kebijakan sebelum `sql/1036` dan tidak ada yang dikarang (G10). Produk dengan `allow_dp = true` tanpa baris tetap memakai aturan uang muka seluruh toko; jalur tulis menjaga flag selaras mulai sekarang                                                                                                  |
 | 8   | 4.4    | kebijakan bawaan tenant dan kebijakan produk                                        | sebagaimana ditentukan; selain itu jendela hanya dapat ditambah selagi kebijakan masih draft, tabel jendela hanya-tambah bagi `awcms_app`, dan aktivasi ditolak kecuali bagian refund tidak pernah naik ketika pemberitahuan menyusut                                                                                                                |
+| 9   | 4.1    | tautan tidak membawa resource (Issue #378)                                          | Issue #437 menambah tabel anak `awcms_commerce_booking_offering_link_resources` (`sql/1050`, bagian 4.1a) dan bukan kolom pada tautan: trigger penjaga tautan tetap membekukannya, dan satu offering dapat menjual beberapa resource. Tanpa baris, fallback #386 tetap berlaku                                                                       |
 
 Baru juga, tidak ada di spesifikasi: fitur commerce `booking` (bawaan MATI), pengguna akun layanan per tenant `awcms_commerce_store_settings.booking_service_tenant_user_id` (G3), dan pembacaan penurunan pelanggan di `application/booking-reservation-links.ts` yang dijalankan tes dua-pelanggan-satu-tenant.
 

@@ -9970,7 +9970,7 @@ From then on the version decides the refund of every NEW booking of the scope; a
 - **operationId**: `createCommerceBookingOfferingLink`
 - **Security**: bearerAuth + tenantHeader
 
-One offering has at most one active link and one product has at most one active link. The product must be of type `service`; `quantityBasis` must agree with the offering's granularity (`nights` for a stay offering, `booking` for a time-slot offering); an offering that confirms without payment (`confirmation_mode = immediate`) or is inactive cannot be sold; and the tenant must have named an active service-account user in the store settings (`bookingServiceTenantUserId`). A body naming a price, an amount or a customer is a 400. The response carries a non-blocking `NO_CANCELLATION_POLICY` warning when neither the product nor the tenant has an active cancellation policy ("cancellations will refund nothing"). Booking is read for three facts (granularity, confirmation mode, status) and is not altered.
+One offering has at most one active link and one product has at most one active link. The product must be of type `service`; `quantityBasis` must agree with the offering's granularity (`nights` for a stay offering, `booking` for a time-slot offering); an offering that confirms without payment (`confirmation_mode = immediate`) or is inactive cannot be sold; and the tenant must have named an active service-account user in the store settings (`bookingServiceTenantUserId`). A body naming a price, an amount or a customer is a 400. The response carries a non-blocking `NO_CANCELLATION_POLICY` warning when neither the product nor the tenant has an active cancellation policy ("cancellations will refund nothing"). Booking is read for three facts (granularity, confirmation mode, status) and is not altered. Issue #437: `resourceIds` (optional, at most ten) names the Booking resource(s) the link sells. Each must be a live resource of the tenant, active and in the booking mode the offering's granularity needs (`stay` for a stay offering, `slot` for a time-slot offering); an unknown, foreign or deleted one is a 404 `RESOURCE_NOT_FOUND`, a wrong mode `RESOURCE_MODE_MISMATCH` and an inactive one `RESOURCE_NOT_ACTIVE` (409). Naming none keeps the fallback: the storefront offers every active resource of the matching mode. The binding is written once with the link and never edited; to change it, unlink and link again.
 
 **Parameters**
 
@@ -9982,14 +9982,14 @@ One offering has at most one active link and one product has at most one active 
 
 **Responses**
 
-| Status | Description                                                                                                                                                                                                           | Schema                                 |
-| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 201    | The link (or the original, on an idempotent replay).                                                                                                                                                                  | object                                 |
-| 400    | Validation error.                                                                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                                                                                                                                                                           | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                           | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.                                                                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
-| 409    | `FEATURE_DISABLED`, `OFFERING_ALREADY_LINKED`, `PRODUCT_ALREADY_LINKED`, `PRODUCT_NOT_SERVICE`, `QUANTITY_BASIS_MISMATCH`, `OFFERING_NOT_LINKABLE`, `BOOKING_SERVICE_ACTOR_NOT_CONFIGURED` or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                            | Schema                                 |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The link (or the original, on an idempotent replay).                                                                                                                                                                                                                   | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                                      | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED`, `OFFERING_ALREADY_LINKED`, `PRODUCT_ALREADY_LINKED`, `PRODUCT_NOT_SERVICE`, `QUANTITY_BASIS_MISMATCH`, `OFFERING_NOT_LINKABLE`, `BOOKING_SERVICE_ACTOR_NOT_CONFIGURED`, `RESOURCE_MODE_MISMATCH`, `RESOURCE_NOT_ACTIVE` or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/booking/offering-links/{id}` — Issue #378 (ADR-0045 D1). One offering link. Gated on `commerce.booking_offering_links.read` and the tenant's `booking` feature. An unknown id and another tenant's id are the same 404.
 
@@ -10056,7 +10056,7 @@ One offering has at most one active link and one product has at most one active 
 - **operationId**: `createCommerceBookingReservation`
 - **Security**: bearerAuth + tenantHeader
 
-The hold (through `BookingPort`, with the staff member as the acting user), the order and the reservation link are written in one transaction. The price is the linked product's (a body naming `price`, `amount`, `deposit` or `customerId` is a 400), the line quantity is the night count for a stay, and `dp_amount` is the product's deposit policy when `payment.method` is `dp`. The order expires with the hold. The `Idempotency-Key` is namespaced by the calling staff member and stored as the link's `client_key`: the same key and request replays the original (`200`, `replayed: true`), the same key with another request is `409 IDEMPOTENCY_CONFLICT`. A Booking refusal keeps Booking's code under `409` (`429` for `HOLD_LIMIT_EXCEEDED`) and writes nothing. `resourceId` is required in v1 (a pool is not offered).
+The hold (through `BookingPort`, with the staff member as the acting user), the order and the reservation link are written in one transaction. The price is the linked product's (a body naming `price`, `amount`, `deposit` or `customerId` is a 400), the line quantity is the night count for a stay, and `dp_amount` is the product's deposit policy when `payment.method` is `dp`. The order expires with the hold. The `Idempotency-Key` is namespaced by the calling staff member and stored as the link's `client_key`: the same key and request replays the original (`200`, `replayed: true`), the same key with another request is `409 IDEMPOTENCY_CONFLICT`. A Booking refusal keeps Booking's code under `409` (`429` for `HOLD_LIMIT_EXCEEDED`) and writes nothing. `resourceId` is required in v1 (a pool is not offered). When the offering link names its resources (Issue #437), any other `resourceId` is a 404 `RESOURCE_NOT_FOUND` and nothing is written.
 
 **Parameters**
 
@@ -14253,7 +14253,7 @@ Read-only by default. `repair: true` rebuilds ONLY the `balance` and `version` o
 | 403    | Access denied by RBAC/ABAC.                                                       | [`ApiError`](#standard-error-envelope) |
 | 409    | `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/commerce/storefront/booking/availability` — Issue #386. Anonymous availability of a LINKED offering on one resource, through `BookingPort.availability` (contract 1.1.0): a stay's free-unit count (`checkInDate` + `checkOutDate`) or the free slots of a window (`from` + `to`). Tenant from the request origin. Counts, slots and the zone only - no resource name, unit label, reservation, block, staff, customer or policy. An unavailable stay is always `available: false` + `SLOT_UNAVAILABLE`; an unknown or over-capacity resource is the same answer as a full range. An offering that is unknown, another tenant's, unlinked, inactive or not sold is one neutral 404. Bounded (1..366 nights, 31 days of slots, 730 days ahead) and rate limited; never cached.
+### `GET /api/v1/commerce/storefront/booking/availability` — Issue #386. Anonymous availability of a LINKED offering on one resource, through `BookingPort.availability` (contract 1.1.0): a stay's free-unit count (`checkInDate` + `checkOutDate`) or the free slots of a window (`from` + `to`). Tenant from the request origin. Counts, slots and the zone only - no resource name, unit label, reservation, block, staff, customer or policy. An unavailable stay is always `available: false` + `SLOT_UNAVAILABLE`; an unknown or over-capacity resource is the same answer as a full range. An offering that is unknown, another tenant's, unlinked, inactive or not sold - or a `resourceId` that the offering's link does not name, when it names any (Issue #437) - is one neutral 404. Bounded (1..366 nights, 31 days of slots, 730 days ahead) and rate limited; never cached.
 
 - **operationId**: `getCommerceStorefrontBookingAvailability`
 - **Security**: none (public endpoint)
@@ -14278,7 +14278,7 @@ Read-only by default. `repair: true` rebuilds ONLY the `balance` and `version` o
 | 404    | Resource not found. | [`ApiError`](#standard-error-envelope) |
 | 429    | Rate limited.       | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/commerce/storefront/booking/offerings` — Issue #386. The booking offerings the tenant sells online: an active offering link, an active service product, an active hold-then-confirm Booking offering and an active resource of the right mode. Anonymous; an optional live `customerBearer` only prices the unit at the customer's level. Ids and public product facts only - never a resource name, unit label, capacity or offering code. Behind the `booking` feature (off = the neutral 404). Never cached.
+### `GET /api/v1/commerce/storefront/booking/offerings` — Issue #386. The booking offerings the tenant sells online: an active offering link, an active service product, an active hold-then-confirm Booking offering and an active resource of the right mode (the link's own resource(s) when it names them, Issue #437, else every active resource of the mode). Anonymous; an optional live `customerBearer` only prices the unit at the customer's level. Ids and public product facts only - never a resource name, unit label, capacity or offering code. Behind the `booking` feature (off = the neutral 404). Never cached.
 
 - **operationId**: `listCommerceStorefrontBookingOfferings`
 - **Security**: none (public endpoint)
@@ -22320,11 +22320,12 @@ Enum values: `text`, `integer`, `decimal`, `boolean`, `date`, `enum`.
 
 ### Schema: CommerceBookingOfferingLinkInput
 
-| Field           | Type                      | Required | Nullable | Description |
-| --------------- | ------------------------- | -------- | -------- | ----------- |
-| `offeringId`    | string (uuid)             | yes      | no       |             |
-| `productId`     | string (uuid)             | yes      | no       |             |
-| `quantityBasis` | enum(`nights`, `booking`) | yes      | no       |             |
+| Field           | Type                      | Required | Nullable | Description                                                                                                                                                                                                                                                        |
+| --------------- | ------------------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `offeringId`    | string (uuid)             | yes      | no       |                                                                                                                                                                                                                                                                    |
+| `productId`     | string (uuid)             | yes      | no       |                                                                                                                                                                                                                                                                    |
+| `quantityBasis` | enum(`nights`, `booking`) | yes      | no       |                                                                                                                                                                                                                                                                    |
+| `resourceIds`   | array of string (uuid)    | no       | no       | Issue #437. Optional. The Booking resource(s) this link sells, in the order the storefront lists them: tenant's own, active, of the booking mode the offering's granularity needs. Omit (or send `[]`) to keep the fallback of every active resource of that mode. |
 
 **Example**
 
@@ -22332,7 +22333,8 @@ Enum values: `text`, `integer`, `decimal`, `boolean`, `date`, `enum`.
 {
   "offeringId": "00000000-0000-0000-0000-000000000000",
   "productId": "00000000-0000-0000-0000-000000000000",
-  "quantityBasis": "nights"
+  "quantityBasis": "nights",
+  "resourceIds": ["00000000-0000-0000-0000-000000000000"]
 }
 ```
 

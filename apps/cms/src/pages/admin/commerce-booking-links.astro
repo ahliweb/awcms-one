@@ -97,7 +97,16 @@ const errorMessages = JSON.stringify({
     "Set the booking service account in Store settings first."
   ),
   FEATURE_DISABLED: t("Booking is turned off for this store."),
-  RESOURCE_NOT_FOUND: t("The offering or the product was not found.")
+  VALIDATION_ERROR: t(
+    "Check the IDs: resource IDs must be different UUIDs, up to 10, separated by commas."
+  ),
+  RESOURCE_NOT_FOUND: t(
+    "The offering, the product or a resource was not found."
+  ),
+  RESOURCE_MODE_MISMATCH: t(
+    "A resource does not match the offering (stay or time slot)."
+  ),
+  RESOURCE_NOT_ACTIVE: t("A resource is inactive. Choose an active one.")
 });
 const basisLabel = (basis: string): string =>
   basis === "nights" ? t("Per night") : t("Per booking");
@@ -194,6 +203,21 @@ const dateFormat = new Intl.DateTimeFormat(Astro.locals.locale ?? "en", {
         <option value="booking">{t("Per booking")}</option>
       </select>
 
+      <label for="booking-link-resources">{t("Resource IDs (optional)")}</label>
+      <input
+        id="booking-link-resources"
+        name="resourceIds"
+        type="text"
+        autocomplete="off"
+        spellcheck="false"
+        aria-describedby="booking-link-resources-hint"
+      />
+      <p id="booking-link-resources-hint" class="form-hint">
+        {t(
+          "The room type this offering sells: copy the resource IDs from Booking, Resources, separated by commas. Leave empty to offer every active resource of the same kind."
+        )}
+      </p>
+
       <button
         type="submit"
         id="booking-link-create-submit"
@@ -254,6 +278,7 @@ const dateFormat = new Intl.DateTimeFormat(Astro.locals.locale ?? "en", {
             <th scope="col">{t("Offering ID")}</th>
             <th scope="col">{t("Product ID")}</th>
             <th scope="col">{t("Basis")}</th>
+            <th scope="col">{t("Resources")}</th>
             <th scope="col">{t("Status")}</th>
             <th scope="col">{t("Linked on")}</th>
             {canUpdate && <th scope="col">{t("Actions")}</th>}
@@ -262,7 +287,7 @@ const dateFormat = new Intl.DateTimeFormat(Astro.locals.locale ?? "en", {
         <tbody>
           {links.length === 0 ? (
             <tr>
-              <td class="data-table-empty" colspan={canUpdate ? 6 : 5}>
+              <td class="data-table-empty" colspan={canUpdate ? 7 : 6}>
                 <div class="empty-state">
                   <span class="empty-state-icon" aria-hidden="true">
                     ◇
@@ -287,6 +312,13 @@ const dateFormat = new Intl.DateTimeFormat(Astro.locals.locale ?? "en", {
                 </td>
                 <td data-label={t("Basis")}>
                   {basisLabel(link.quantityBasis)}
+                </td>
+                <td data-label={t("Resources")}>
+                  {link.resourceIds.length === 0 ? (
+                    <span class="form-hint">{t("All active resources")}</span>
+                  ) : (
+                    <span class="cell-code">{link.resourceIds.join(", ")}</span>
+                  )}
                 </td>
                 <td data-label={t("Status")}>
                   <span
@@ -379,7 +411,16 @@ const dateFormat = new Intl.DateTimeFormat(Astro.locals.locale ?? "en", {
     const result = await sendJsonForData<{ warnings?: string[] }>(
       "POST",
       "/api/v1/commerce/booking/offering-links",
-      { offeringId, productId, quantityBasis: field(data, "quantityBasis") },
+      {
+        offeringId,
+        productId,
+        quantityBasis: field(data, "quantityBasis"),
+        // Optional ([] = no binding); the server proves every id and answers
+        // VALIDATION_ERROR / RESOURCE_* (see data-errors).
+        resourceIds: field(data, "resourceIds")
+          .split(/[\s,;]+/)
+          .filter(Boolean)
+      },
       { "Idempotency-Key": newIdempotencyKey() }
     );
     if (!result.ok) {

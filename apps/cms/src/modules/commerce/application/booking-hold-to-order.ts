@@ -67,6 +67,7 @@ import {
 } from "../domain/booking-hold-to-order";
 import type { CreateOrderInput } from "../domain/order-request-validation";
 import { fetchBookingServiceActor } from "./booking-adapter-settings";
+import { readLinkResourceIds } from "./booking-offering-links";
 import {
   readBookingReservation,
   type BookingReservationFacts
@@ -239,6 +240,18 @@ export async function createBookingReservation(
   `) as { id: string; product_id: string; quantity_basis: string }[];
   const offeringLink = links[0];
   if (!offeringLink) return refuse({ code: "OFFERING_NOT_LINKED" });
+
+  // -- The resource (Issue #437) ----------------------------------------------
+  // A link that names its resources sells those only: the client's resource id
+  // is never trusted, so another room type's (or another tenant's) id is the
+  // same neutral "resource not found" Booking itself answers an unknown id with.
+  // A link naming none keeps the #386 behaviour (Booking checks the id).
+  const named = (
+    await readLinkResourceIds(tx, tenantId, [offeringLink.id])
+  ).get(offeringLink.id);
+  if (named && !named.includes(request.resourceId)) {
+    return refuse({ code: "BOOKING", reason: "RESOURCE_NOT_FOUND" });
+  }
 
   const nights = request.stay
     ? nightsBetween(request.stay.checkInDate, request.stay.checkOutDate)

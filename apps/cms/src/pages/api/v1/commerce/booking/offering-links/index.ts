@@ -11,7 +11,11 @@
  * `quantityBasis` that agrees with the offering's granularity
  * (`QUANTITY_BASIS_MISMATCH`), an offering that is not `immediate`
  * (`OFFERING_NOT_LINKABLE`, G9), and a configured service-account user
- * (`BOOKING_SERVICE_ACTOR_NOT_CONFIGURED`, G3). A body naming a price, amount
+ * (`BOOKING_SERVICE_ACTOR_NOT_CONFIGURED`, G3). `resourceIds` (optional, Issue
+ * #437) names the Booking resource(s) the link sells - the tenant's own, active
+ * and of the offering's booking mode (`404 RESOURCE_NOT_FOUND`,
+ * `RESOURCE_MODE_MISMATCH`, `RESOURCE_NOT_ACTIVE`); none keeps the fallback of
+ * every active resource of the mode. A body naming a price, amount
  * or customer is a `400`. Both methods are gated on the tenant's `booking`
  * feature (`409 FEATURE_DISABLED` while off).
  */

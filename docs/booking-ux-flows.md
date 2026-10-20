@@ -370,8 +370,8 @@ All five use the shared states of section 1.1, adapted to the admin chrome: a de
 
 Purpose: link one Booking offering to one **service** product so the product can be sold as a reservation (ADR-0045 D1). One active product per offering and one active offering per product.
 
-- **List.** A `.data-table-scroll` region (focusable, named) with a `<caption>` count. Columns: Offering (id, `.cell-code`), Product (id), Basis ("Per night" / "Per booking"), Status (`admin-status-pill`: Active = success, Unlinked = neutral; text always present), Linked on, Actions. The list is keyset-paged (50), newest first; a "Show unlinked" filter is a plain GET link (`?status=unlinked`), not script.
-- **Create form** (only with `.create`): Offering ID (uuid text, `autocomplete="off"`, hint "Copy it from Booking, Offerings."), Product ID (uuid text, hint "A service product."), Basis (select: Per night / Per booking). Required fields are marked in text. The submit sends `POST` with a fresh `Idempotency-Key` per attempt.
+- **List.** A `.data-table-scroll` region (focusable, named) with a `<caption>` count. Columns: Offering (id, `.cell-code`), Product (id), Basis ("Per night" / "Per booking"), Resources (the bound resource ids in `.cell-code`, or the words "All active resources" when the link names none), Status (`admin-status-pill`: Active = success, Unlinked = neutral; text always present), Linked on, Actions. The list is keyset-paged (50), newest first; a "Show unlinked" filter is a plain GET link (`?status=unlinked`), not script.
+- **Create form** (only with `.create`): Offering ID (uuid text, `autocomplete="off"`, hint "Copy it from Booking, Offerings."), Product ID (uuid text, hint "A service product."), Basis (select: Per night / Per booking), Resource IDs (optional, issue #437: uuids separated by commas, at most ten, hint "The room type this offering sells: copy the resource IDs from Booking, Resources, separated by commas. Leave empty to offer every active resource of the same kind."; sent as `resourceIds`, omitted when empty). Required fields are marked in text. The submit sends `POST` with a fresh `Idempotency-Key` per attempt.
 - **Unlink** (only with `.update`): a row button opens the shared confirm dialog (danger). The dialog says what happens: the link stops being sellable; past orders and reservations keep their history; it cannot be re-linked from the same row (create a new link).
 - **Warnings.** A created link whose product has no active cancellation policy shows a polite status line beside the form: "Linked. This product has no cancellation policy yet, so guests will see no refund terms." (`NO_CANCELLATION_POLICY`; non-blocking, ADR-0045 D6).
 - **Server refusals are mapped to specific copy**, never the generic failure:
@@ -385,7 +385,9 @@ Purpose: link one Booking offering to one **service** product so the product can
 | `OFFERING_NOT_LINKABLE`                | An offering that confirms immediately cannot be sold.           | Penawaran yang langsung terkonfirmasi tidak dapat dijual.                     |
 | `BOOKING_SERVICE_ACTOR_NOT_CONFIGURED` | Set the booking service account in Store settings first.        | Tetapkan akun layanan pemesanan di Pengaturan toko terlebih dahulu.           |
 | `FEATURE_DISABLED`                     | Booking is turned off for this store.                           | Pemesanan dimatikan untuk toko ini.                                           |
-| `RESOURCE_NOT_FOUND`                   | The offering or the product was not found.                      | Penawaran atau produk tidak ditemukan.                                        |
+| `RESOURCE_NOT_FOUND`                   | The offering, the product or a resource was not found.          | Penawaran, produk, atau resource tidak ditemukan.                             |
+| `RESOURCE_MODE_MISMATCH`               | A resource does not match the offering (stay or time slot).     | Resource tidak sesuai dengan penawaran (menginap atau slot waktu).            |
+| `RESOURCE_NOT_ACTIVE`                  | A resource is inactive. Choose an active one.                   | Resource tidak aktif. Pilih yang aktif.                                       |
 
 ### 11.2 Deposit policies
 
