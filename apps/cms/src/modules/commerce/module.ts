@@ -20,8 +20,17 @@ import {
   BOOKING_ADAPTER_SUBJECT_DATA
 } from "./domain/booking-adapter-lifecycle";
 import { BOOKING_ADAPTER_NAVIGATION } from "./domain/booking-adapter-navigation";
+import {
+  BOOKING_REPORT_DATA_LIFECYCLE,
+  BOOKING_REPORT_SUBJECT_DATA
+} from "./domain/booking-report-lifecycle";
 import { BOOKING_ADAPTER_PERMISSIONS } from "./domain/booking-adapter-permissions";
 import { BOOKING_ADAPTER_CONSUMERS } from "./application/booking-adapter-consumers";
+import {
+  BOOKING_REPORT_PROJECTIONS,
+  RETENTION_BOOKING_METRIC_LABELS,
+  RETENTION_BOOKING_STREAMS
+} from "./application/booking-report-projections";
 import {
   EXPENSE_DATA_LIFECYCLE,
   EXPENSE_SUBJECT_DATA
@@ -588,7 +597,9 @@ const RETENTION_STREAMS: readonly ProjectionCursorStream[] = [
       }
     ],
     dimensional: RETENTION_REVERSAL_SINK
-  }
+  },
+  // Issue #389 - the booking anchor: see `application/booking-report-projections.ts`.
+  ...RETENTION_BOOKING_STREAMS
 ];
 
 /**
@@ -860,17 +871,19 @@ export const commerceModule = defineModule({
     // instants, recomputed from the customer's orders, never incremented.
     {
       key: RETENTION_PROJECTION_KEY,
-      version: 1,
+      // 2: Issue #389 added the booking anchor (two streams, two row columns).
+      version: 2,
       ownerModuleKey: "commerce",
       scope: "tenant",
       description:
-        "Per customer: the earliest qualifying paid order and the earliest one strictly after it (a qualifying order is paid and not fully refunded or cancelled), the Asia/Jakarta calendar month of the first as the customer's cohort, and the count of qualifying orders. Recomputed from the customer's current orders whenever one of them is paid, cancelled, returned or refunded, so a late event moves the customer between cohorts. The 90-day repeat rate per cohort is derived at read; the row holds no name or contact.",
+        "Per customer: the earliest qualifying paid order and the earliest one strictly after it (a qualifying order is paid and not fully refunded or cancelled), the Asia/Jakarta calendar month of the first as the customer's cohort, and the count of qualifying orders. Recomputed from the customer's current orders whenever one of them is paid, cancelled, returned or refunded (or, for a booking, cancelled, marked no-show or rescheduled), so a late event moves the customer between cohorts. A paid order carrying a Booking reservation link is one booking event: its reschedule replacement and supplementary order are the same stay, and a cancelled stay is none. The 90-day repeat rate per cohort is derived at read; the row holds no name or contact.",
       source: { strategy: "cursor_table", streams: RETENTION_STREAMS },
       rebuildSource: { streams: RETENTION_STREAMS },
       metricLabels: {
         [RETENTION_METRIC_KEYS.paidEvents]: "Paid order events consumed",
         [RETENTION_METRIC_KEYS.reversalLegs]:
-          "Settled payment reversal legs consumed"
+          "Settled payment reversal legs consumed",
+        ...RETENTION_BOOKING_METRIC_LABELS
       },
       requiredPermission: COMMERCE_REPORT_RETENTION_PERMISSIONS.read,
       freshness: SALES_REPORT_FRESHNESS,
@@ -879,7 +892,10 @@ export const commerceModule = defineModule({
         "commerce.customer_retention / commerce.customer_retention_restated (this module's own dataLifecycle descriptors, cursor `cohort_month`, the same 3650-day ceiling as the order ledger): derived, fully rebuildable per-customer rows - a rebuild after the source's own retention purge recomputes from surviving orders only.",
       batchLimit: 500,
       dimensional: RETENTION_DIMENSIONAL
-    }
+    },
+    // Issue #389 - the booking-sourced revenue waterfall; see
+    // `application/booking-report-projections.ts`.
+    ...BOOKING_REPORT_PROJECTIONS
   ],
   /**
    * ADR-0134 - this module's domain-event consumers, declared HERE rather than
@@ -3309,6 +3325,9 @@ export const commerceModule = defineModule({
     // Issue #378 (ADR-0045) - the six booking-adapter tables; see
     // `domain/booking-adapter-lifecycle.ts`.
     ...BOOKING_ADAPTER_DATA_LIFECYCLE,
+    // Issue #389 (sql/1047) - the booking revenue projection's two tables; see
+    // `domain/booking-report-lifecycle.ts`.
+    ...BOOKING_REPORT_DATA_LIFECYCLE,
     // Issue #287 (ADR-0033) - the four returns / refunds tables; see
     // `domain/returns-lifecycle.ts`.
     ...RETURNS_DATA_LIFECYCLE,
@@ -4276,6 +4295,8 @@ export const commerceModule = defineModule({
     ...SEGMENT_SUBJECT_DATA,
     // Issue #378 (ADR-0045) - see `domain/booking-adapter-lifecycle.ts`.
     ...BOOKING_ADAPTER_SUBJECT_DATA,
+    // Issue #389 (sql/1047) - see `domain/booking-report-lifecycle.ts`.
+    ...BOOKING_REPORT_SUBJECT_DATA,
     // Issue #287 (ADR-0033) - see `domain/returns-lifecycle.ts`.
     ...RETURNS_SUBJECT_DATA,
     {

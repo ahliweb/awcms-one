@@ -32,6 +32,32 @@
  * sales reports attribute to it for the same reason). The cohort month is the
  * Jakarta calendar month of that instant.
  *
+ * ## The booking anchor (Issue #389, metrics 6.2)
+ *
+ * A customer's events are no longer only orders. A paid order that carries a
+ * Booking reservation link is ONE booking event (the confirmed booking), and:
+ *
+ *   * its instant is the order's first paid transition - the instant the
+ *     adapter confirms the reservation on (`commerce.booking_order_paid_
+ *     confirmer` consumes `order.paid`), so "the confirmation instant is the
+ *     anchor" reads `paid_at` on the commerce side of the seam;
+ *   * a reschedule's replacement reservation sits on the SAME order, and the
+ *     supplementary order a reschedule that added nights created is part of the
+ *     same stay: neither is a second event (the replacement counts once, and
+ *     the second event must be a distinct order or reservation);
+ *   * a booking that was CANCELLED (every standing reservation link released by
+ *     a cancellation decision) is not an event even when a retained deposit
+ *     keeps the order from being fully refunded; a no-show still is one (the
+ *     contract excludes cancelled, expired and rescheduled-away bookings, and a
+ *     guest who booked, paid and did not come did book);
+ *   * a reservation with no link has no derivable customer and is in no cohort
+ *     (data model 5.1 rule 3, metrics Q7).
+ *
+ * The facts the rule reads - link statuses and decision kinds - are
+ * APPEND-ONLY or write-once, so the recompute is triggered by the two streams
+ * that carry them (the refund decision and the reschedule record), not by a
+ * mutable flag. The attention flag is deliberately NOT consulted.
+ *
  * ## Time zone
  *
  * The 90-day window is absolute time (`90 x 24 h`), not 90 calendar days. The
@@ -77,30 +103,48 @@ export const RETENTION_PROJECTION_KEY = "commerce.customer_retention";
 /** Stream keys: cursors are per (tenant, projection, stream). */
 export const RETENTION_STREAM_KEYS = {
   orderEvents: "order_events",
-  reversalLegs: "reversal_legs"
+  reversalLegs: "reversal_legs",
+  /** Issue #389 - the booking anchor: a cancellation or no-show decision of a reservation link. */
+  bookingDecisions: "booking_decisions",
+  /** Issue #389 - the booking anchor: a reschedule (and the supplementary order it created). */
+  bookingReschedules: "booking_reschedules"
 } as const;
 
 export const RETENTION_METRIC_KEYS = {
   paidEvents: "retention_paid_events",
-  reversalLegs: "retention_reversal_legs"
+  reversalLegs: "retention_reversal_legs",
+  bookingDecisions: "retention_booking_decisions",
+  bookingReschedules: "retention_booking_reschedules"
 } as const;
 
 /** Reconciliation keys of the dimensional control totals (integers). */
 export const RETENTION_CONTROL_KEYS = {
   customers: "retention_customers",
   repeaters: "retention_repeaters",
-  qualifyingOrders: "retention_qualifying_orders"
+  qualifyingOrders: "retention_qualifying_orders",
+  /** Issue #389 - how many of the qualifying events are bookings. */
+  bookingEvents: "retention_booking_events"
 } as const;
 
 // ---------------------------------------------------------------------------
 // Qualifying orders and per-customer derivation
 // ---------------------------------------------------------------------------
 
+/**
+ * What the booking adapter says about an order (Issue #389): `reservation` -
+ * the order carries reservation links (`standing` = at least one is not
+ * superseded and not released by a cancellation); `supplement` - the
+ * supplementary order of a reschedule. Absent = an ordinary order.
+ */
+export type RetentionBookingFact =
+  { kind: "reservation"; standing: boolean } | { kind: "supplement" };
+
 export type RetentionOrderFact = {
   orderId: string;
   paidAt: Date | null;
   status: string;
   paymentStatus: string;
+  booking?: RetentionBookingFact;
 };
 
 export function isQualifyingRetentionOrder(
@@ -113,46 +157,91 @@ export function isQualifyingRetentionOrder(
   );
 }
 
+export type RetentionEventKind = "order" | "booking";
+
+export type RetentionEvent = {
+  orderId: string;
+  at: number;
+  kind: RetentionEventKind;
+};
+
+/**
+ * The qualifying EVENT an order contributes, or `null`: an ordinary qualifying
+ * order is an `order` event, a qualifying booking order whose stay still
+ * stands is a `booking` event, a supplementary order and a cancelled stay are
+ * none (see the file header).
+ */
+export function retentionEventOf(
+  fact: RetentionOrderFact
+): RetentionEvent | null {
+  if (!isQualifyingRetentionOrder(fact)) return null;
+  const at = fact.paidAt!.getTime();
+  if (!fact.booking) return { orderId: fact.orderId, at, kind: "order" };
+  if (fact.booking.kind === "supplement") return null;
+  return fact.booking.standing
+    ? { orderId: fact.orderId, at, kind: "booking" }
+    : null;
+}
+
 export type CustomerRetention = {
   /** First day of the Jakarta calendar month of {@link firstEventAt}, `YYYY-MM-01`. */
   cohortMonth: string;
   firstEventAt: Date;
   /** Earliest qualifying instant strictly after the first; `null` when there is none. */
   secondEventAt: Date | null;
+  /** Qualifying events: ordinary orders plus bookings (a stay is one event). */
   qualifyingOrderCount: number;
+  /** Issue #389 - what the first event was. */
+  firstEventKind: RetentionEventKind;
+  /** Issue #389 - how many of the qualifying events are bookings. */
+  qualifyingBookingCount: number;
 };
 
 /**
  * Derives one customer's row from the customer's CURRENT order facts - the only
  * way the sink ever writes a row (a recompute, never an increment). `null`
- * when the customer has no qualifying order (the row is then deleted).
+ * when the customer has no qualifying event (the row is then deleted).
  *
- * Ties: two orders paid at the same instant are two distinct orders, but the
- * second event must be strictly AFTER the first, so the second is the earliest
- * instant greater than the first.
+ * Ties: two events at the same instant are two distinct events, but the second
+ * event must be strictly AFTER the first, so the second is the earliest
+ * instant greater than the first. When a booking and an order tie for first,
+ * the booking is the anchor (deterministic and independent of read order).
  */
 export function deriveCustomerRetention(
   facts: readonly RetentionOrderFact[]
 ): CustomerRetention | null {
-  const instants: number[] = [];
+  const events: RetentionEvent[] = [];
   for (const fact of facts) {
-    if (isQualifyingRetentionOrder(fact)) instants.push(fact.paidAt!.getTime());
+    const event = retentionEventOf(fact);
+    if (event !== null) events.push(event);
   }
-  const first = instants.length === 0 ? null : Math.min(...instants);
-  let second: number | null = null;
-  for (const at of instants) {
-    if (first !== null && at > first && (second === null || at < second)) {
-      second = at;
+  if (events.length === 0) return null;
+  let first = events[0]!;
+  for (const event of events) {
+    if (
+      event.at < first.at ||
+      (event.at === first.at &&
+        event.kind === "booking" &&
+        first.kind !== "booking")
+    ) {
+      first = event;
     }
   }
-  const count = instants.length;
-  if (first === null) return null;
-  const firstEventAt = new Date(first);
+  let second: number | null = null;
+  for (const event of events) {
+    if (event.at > first.at && (second === null || event.at < second)) {
+      second = event.at;
+    }
+  }
+  const firstEventAt = new Date(first.at);
   return {
     cohortMonth: cohortMonthOf(firstEventAt),
     firstEventAt,
     secondEventAt: second === null ? null : new Date(second),
-    qualifyingOrderCount: count
+    qualifyingOrderCount: events.length,
+    firstEventKind: first.kind,
+    qualifyingBookingCount: events.filter((event) => event.kind === "booking")
+      .length
   };
 }
 
@@ -226,9 +315,13 @@ export type RetentionCohortCounts = {
   cohortMonth: string;
   size: number;
   repeaters: number;
+  /** Issue #389 - cohort members whose first event was a confirmed booking. */
+  bookingAnchored?: number;
 };
 
-export type RetentionCohort = RetentionCohortCounts & {
+export type RetentionCohort = Omit<RetentionCohortCounts, "bookingAnchored"> & {
+  /** Issue #389 - cohort members whose first event was a confirmed booking. */
+  bookingAnchored: number;
   /** `true` once every member's 90-day window has elapsed; otherwise the figure is "to date". */
   mature: boolean;
   /** ISO instant the cohort matures. */
@@ -262,6 +355,7 @@ export function shapeRetentionCohorts(
       const restatedAt = restatedAtByMonth.get(row.cohortMonth) ?? null;
       return {
         ...row,
+        bookingAnchored: row.bookingAnchored ?? 0,
         mature: isCohortMature(row.cohortMonth, now),
         maturesAt: cohortMaturesAt(row.cohortMonth).toISOString(),
         rateShown,
@@ -338,10 +432,11 @@ export type RetentionControlTotals = {
   customers: number;
   repeaters: number;
   qualifyingOrders: number;
+  bookingEvents: number;
 };
 
 export function emptyRetentionControlTotals(): RetentionControlTotals {
-  return { customers: 0, repeaters: 0, qualifyingOrders: 0 };
+  return { customers: 0, repeaters: 0, qualifyingOrders: 0, bookingEvents: 0 };
 }
 
 export function accumulateRetentionControlTotals(
@@ -350,6 +445,7 @@ export function accumulateRetentionControlTotals(
 ): void {
   totals.customers += 1;
   totals.qualifyingOrders += customer.qualifyingOrderCount;
+  totals.bookingEvents += customer.qualifyingBookingCount;
   if (isRepeatWithinWindow(customer.firstEventAt, customer.secondEventAt)) {
     totals.repeaters += 1;
   }

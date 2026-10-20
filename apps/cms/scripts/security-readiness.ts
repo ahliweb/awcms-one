@@ -2046,6 +2046,23 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
     "DELETE"
   ],
   awcms_commerce_report_src_retention_reversals: ["SELECT"],
+  // Issue #389 (sql/1047) - the booking-sourced revenue projection: both tables
+  // are written by the sink (recompute = upsert or delete, the restatement log
+  // an upsert) and purged by the generic engine; the settled-leg view is
+  // read-only.
+  awcms_commerce_report_booking_orders: [
+    "SELECT",
+    "INSERT",
+    "UPDATE",
+    "DELETE"
+  ],
+  awcms_commerce_report_booking_restated: [
+    "SELECT",
+    "INSERT",
+    "UPDATE",
+    "DELETE"
+  ],
+  awcms_commerce_report_src_booking_legs: ["SELECT"],
   awcms_commerce_payment_events: ["SELECT", "DELETE"],
   awcms_commerce_webhook_endpoints: ["SELECT", "DELETE"],
   // omes_control — the generic data_lifecycle purge engine (sql/154's

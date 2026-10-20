@@ -2397,6 +2397,16 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/reports/commerce/booking-pipeline.ts",
+      "workClass": "reporting",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/reports/commerce/booking-revenue.ts",
+      "workClass": "reporting",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/reports/commerce/operational-cash-ups.csv.ts",
       "workClass": "reporting",
       "source": "factory"

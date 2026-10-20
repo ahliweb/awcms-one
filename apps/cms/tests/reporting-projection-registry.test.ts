@@ -224,13 +224,14 @@ describe("validateProjectionRegistry (Issue #753)", () => {
     // over its document-event log (ADR-0128), plus the three `booking.*`
     // projections over its reservation history (Issue #944), plus
     // `hr_workforce.attendance_events` over the attendance history (Issue #953).
-    // `commerce` contributes ten of them (three sales reports, five POS
-    // operational ones, returns & refunds and customer retention), so the
-    // total is upstream's eleven plus those ten.
-    expect(result.descriptors.length).toBe(21);
+    // `commerce` contributes eleven of them (three sales reports, five POS
+    // operational ones, returns & refunds, customer retention and the
+    // booking-sourced revenue waterfall of Issue #389), so the total is
+    // upstream's eleven plus those eleven.
+    expect(result.descriptors.length).toBe(22);
     expect(
       result.descriptors.filter((d) => d.ownerModuleKey === "commerce").length
-    ).toBe(10);
+    ).toBe(11);
     expect(result.descriptors.map((d) => d.key)).toEqual(
       expect.arrayContaining([
         "booking.reservations",

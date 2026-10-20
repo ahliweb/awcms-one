@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](aw-business-platform-metrics.md)
 
-<!-- i18n-source-hash: sha256:6562a60c84255827560b476968af7935e19c19534c46a54be212db9116c0a02f -->
+<!-- i18n-source-hash: sha256:96b94d801439a42f8150a26bb49e92e1e4cc6f65dc91fb5b799c6f3e06a5a7de -->
 
 # AW Business Platform — kontrak metrik
 
@@ -130,6 +130,16 @@ Contoh: menginap tiga malam dengan Rp1.000.000 per malam, deposit 30% (900.000),
 
 Pada baris kedua dan ketiga, 2.100.000 yang tidak tertagih jatuh pada hari deposit dibayar, bukan hari pembatalan (aturan 5 bagian 1.1); tampilan kas menunjukkan 450.000 keluar pada harinya sendiri.
 
+### 3.8 Catatan implementasi: irisan bersumber booking (isu #389)
+
+**Dibangun 19 Oktober 2026 ([#389](https://github.com/ahliweb/awcms-one/issues/389), catatan implementasi [ADR-0045](adr/0045-booking-commerce-adapter.id.md)).** Air terjun pendapatan bersumber booking pada bagian 3, pipeline penahanan, dan angka tamu tidak hadir pada 8.2 dikirim sebagai descriptor `reporting` `commerce.booking_revenue` (satu baris per pesanan berbayar bersumber booking, dihitung ulang dari pesanan, buku besar pembayaran, dan keputusan refund adapter) dan `GET /api/v1/reports/commerce/booking-pipeline` yang hidup; tidak ada penyimpanan kedua. Pembacaan kontrak yang harus dipilih saat membangun:
+
+- **Bruto sekali, pada hari bayar pertama; saldo di samping air terjun.** Tepat aturan 1 dan 2 dari 3.7: pesanan DP mengakui seluruh brutonya pada hari uang muka, dan saldo yang masih terutang pada pesanan terbuka adalah kolom pendamping `balanceOutstanding`.
+- **Refund = dikembalikan + tidak tertagih.** "Dikembalikan" adalah leg reversal buku besar yang berhasil; "di antaranya saldo tidak tertagih (tidak ada uang berpindah)" adalah bagian belum dibayar dari pesanan yang ditutup pembatalan atau tamu tidak hadir. Keduanya jatuh pada hari bayar ASLI. Tiga baris contoh kerja 3.7 dan pekan vila 8.3 (bruto 5.500.000, diskon 250.000, refund 100.000, neto 5.150.000) dibuktikan sampai ke sen di `apps/cms/tests/integration/commerce-booking-revenue.integration.test.ts`; ADR 1.030.000 dan RevPAN 858.333,33 memakai malam terisi dan tersedia milik Booking sebagai masukan, karena okupansi ada di hulu (`awcms#944`).
+- **Diskon adalah yang dicatat pesanan sebagai pengurangan harga** (voucher, poin), diturunkan dari identitas pesanan sendiri agar kendali 3.5 `neto + ongkir + asuransi + pajak = settled + outstanding - surplus` tepat; potongan harga per baris sudah ada di dalam harga baris yang dibekukan. Refund adalah uang, sehingga refund penuh atas pesanan yang membawa pajak membiarkan kolom pajak tidak dinetokan dan neto di bawah nol sebesar itu.
+- **Refund dihitung saat uang sudah berpindah** (leg buku besar yang settle), bukan saat leg pending direncanakan; apakah pemilik ingin irisan booking menetokan refund saat diputuskan, seperti `commerce.sales_daily` untuk retur, masih terbuka.
+- **Pembaca dan visibilitas.** Hanya agregat, pada `reporting.dashboard.read` (gerbang rute penjualan), disembunyikan selama fitur `booking` tenant mati; bendera restatement dari 1.2 disimpan per hari bayar.
+
 ## 4. Okupansi
 
 ### 4.1 Apa yang dijawabnya
@@ -248,6 +258,27 @@ Dua hal yang dipertegas contoh ini. Pertama, peristiwa kedua C2 adalah pembelian
 ### 6.4 Bentuk proyeksi
 
 Retensi **bukan** counter murni yang hanya naik, karena satu peristiwa dapat memindahkan pelanggan antar kohort. Proyeksi lintas-domain karenanya menyimpan, per tenant dan pelanggan, hanya dua instan peristiwa memenuhi syarat paling awal (pertama dan kedua) dan menurunkan tally kohort darinya saat dibaca atau pada rebuild terbatas. Ini adalah tabel di penyimpanan proyeksi engine `reporting`, bukan penyimpanan kedua; tidak memuat nama atau kontak, dan barisnya dihapus saat pelanggan dianonimkan. Bila kontrak deskriptor engine tidak dapat mengekspresikan baris per-pelanggan berkunci, itu adalah **penghambat bagi isu build** dan diajukan ke upstream, tidak diakali dengan penyimpanan eksternal (ADR-0040 D5.2).
+
+### 6.5 Catatan implementasi: separuh khusus-commerce (isu #364)
+
+**Dibangun 11 Oktober 2026 ([#364](https://github.com/ahliweb/awcms-one/issues/364), [ADR-0044](adr/0044-customer-retention-is-a-per-customer-recompute-projection-on-the-reporting-engine.md)).** Sub-tampilan milik commerce yang disebut di tabel kontrak ("hanya pesanan") dikirim sebagai descriptor `reporting` `commerce.customer_retention`. Kontrak dimensional-sink mesin mampu mengungkapkan baris per-pelanggan berkunci pada 6.4, sehingga klausul penghalang tidak terpicu dan tidak ada penyimpanan eksternal. Masukan booking (booking terkonfirmasi sebagai peristiwa pertama atau kedua) **belum** dibangun di sini; ia ditambahkan oleh [#389](https://github.com/ahliweb/awcms-one/issues/389), lihat 6.6. Pilihan yang diambil saat kontrak membiarkannya terbuka:
+
+- **Hitung ulang, bukan naikkan.** Baris pelanggan diturunkan ulang dari pesanan pelanggan saat ini setiap kali salah satunya dibayar, dibatalkan, diretur, atau di-refund, sehingga refund pembelian pertama menyerahkan kohort ke pesanan berikutnya dan pembelian ulang yang dibatalkan berhenti dihitung; rebuild mereproduksi tabel live byte demi byte.
+- **Peristiwa kedua tepat setelah yang pertama.** Dua pesanan pada instan yang sama adalah dua pesanan tetapi bukan pembelian ulang. "Dalam 90 hari" adalah `<= 90 × 24 jam` dan dievaluasi saat baca, tidak disimpan.
+- **Pesanan berkualifikasi** = `paid_at` terisi, status siklus hidup berbayar, dan `payment_status` bukan `refunded` (refund sebagian tetap berkualifikasi, refund penuh mengeluarkan pesanan).
+- **Unlinked (Q7).** Setiap pesanan commerce memiliki id pelanggan (checkout tamu membuat atau memakai ulang pelanggan berdasarkan telepon), sehingga populasi unlinked adalah placeholder walk-in POS anonim: pesanan berkualifikasinya dilaporkan satu kali sebagai `unlinkedOrders` dan tidak masuk kohort mana pun.
+- **Pengecualian terblokir, terpurge, dan walk-in diterapkan saat baca** (join ke tabel pelanggan), tidak dipanggang ke baris tersimpan, karena berubah tanpa event apa pun. Akun uji dan internal bukan konsep commerce dan tidak dimodelkan.
+- **Restatement (Q1).** Perubahan pada kohort setelah akhir bulannya ditambah 35 hari dicatat dan ditandai "dikoreksi"; pembelian ulang yang muncul saat kohort masih matang adalah pengisian biasa dan bukan.
+- **Visibilitas.** `commerce.report_retention.read|export` (tidak tersirat oleh kunci dashboard atau pelanggan), fitur `retention` per tenant bawaan MATI, hanya jumlah, tanpa persentase di bawah 20 pelanggan.
+
+### 6.6 Catatan implementasi: jangkar booking (isu #389)
+
+**Dibangun 19 Oktober 2026 ([#389](https://github.com/ahliweb/awcms-one/issues/389), catatan implementasi [ADR-0045](adr/0045-booking-commerce-adapter.id.md)).** Hitung-ulang pada 6.5 mendapat fakta booking; tanpa penyimpanan baru dan tanpa izin baru. Pilihan yang diambil saat kontrak membiarkannya terbuka:
+
+- **Booking terkonfirmasi adalah pesanan berbayar yang membawa tautan reservasi Booking, dan ia SATU peristiwa.** Instannya adalah transisi berbayar pertama pesanan, yaitu instan adapter mengonfirmasi reservasi. Reservasi pengganti pada jadwal ulang berada pada pesanan yang sama dan pesanan tambahan dari menginap yang diperpanjang termasuk menginap yang sama, sehingga keduanya bukan pembelian ulang; peristiwa kedua harus pesanan atau reservasi yang berbeda.
+- **Menginap yang dibatalkan bukan peristiwa** (setiap tautan berlaku dilepas oleh keputusan pembatalan), meski uang muka yang ditahan membuat pesanan tidak sepenuhnya di-refund; tamu tidak hadir tetap peristiwa (kontrak hanya mengecualikan booking yang dibatalkan, kedaluwarsa, dan dipindahkan); booking yang di-refund penuh tidak pernah memulai pelanggan. Reservasi tanpa tautan tidak punya pelanggan yang dapat diturunkan dan tidak masuk kohort manapun (Q7); booking placeholder walk-in "unlinked" seperti pesanannya.
+- **Aturan kohort sama.** Pelanggan berada di satu kohort, satu kali; batas hari ke-90, aturan kelompok kecil, dan jendela restatement tidak berubah; `bookingAnchored` per kohort menghitung anggota yang peristiwa pertamanya sebuah booking. Bukti contoh 6.3 dengan booking dan pesanan bercampur ada di `apps/cms/tests/commerce-booking-revenue-domain.test.ts`, dan kasus hidupnya di `apps/cms/tests/integration/commerce-booking-revenue.integration.test.ts`.
+- **Dua aliran lagi memicu hitung-ulang** (keputusan refund dan catatan jadwal ulang), karena membatalkan tanpa refund tidak mengubah status pesanan apa pun. Descriptor menjadi versi 2: tenant yang sudah menjual booking menjalankan satu rebuild.
 
 ## 7. Produktivitas karyawan
 

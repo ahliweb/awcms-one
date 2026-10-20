@@ -10,7 +10,9 @@ import {
 /**
  * `GET /api/v1/reports/commerce/retention?months=` (Issue #364, ADR-0044;
  * metrics spec section 6) - the 90-day repeat rate of each customer cohort (the
- * `Asia/Jakarta` calendar month of the customer's first qualifying paid order),
+ * `Asia/Jakarta` calendar month of the customer's first qualifying event: a paid
+ * order or, since Issue #389, a confirmed booking - a paid order carrying a
+ * Booking reservation link, one event per stay),
  * for the last `months` cohort months (default 12, at most 36), read from the
  * `commerce.customer_retention` projection. Counts only: no customer id, name or
  * contact is ever returned. A cohort whose 90-day window has not fully elapsed

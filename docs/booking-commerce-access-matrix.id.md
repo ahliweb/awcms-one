@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](booking-commerce-access-matrix.md)
 
-<!-- i18n-source-hash: sha256:df4b2cbadb1d60460be52cede64202127ed5538ec11e0ade7fe47a9acff0494c -->
+<!-- i18n-source-hash: sha256:853dbae05ff894cfe949e38e319d79adae784b77d42f337ca1189b524d880cc5 -->
 
 # Adapter booking-commerce — matriks RBAC / ABAC / RLS
 
@@ -186,13 +186,13 @@ Tidak satu pun yang berikut ada. Ini adalah pengujian yang disiratkan matriks in
 
 **Diselesaikan oleh [ADR-0045](adr/0045-booking-commerce-adapter.id.md) (11 Oktober 2026).** Halaman ini tidak mendaftarkan izin apa pun; jawaban di bawah diterapkan oleh issue implementasi.
 
-| #   | Titik terbuka                                 | Penyelesaian                                                                                                                                                                                                        |
-| --- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| O-1 | Lingkup bisnis pada penawaran                 | D11: seluruh tenant di v1, persis selingkup Booking; lingkup cabang mengikuti ADR-0128 L5 `awcms` hulu                                                                                                              |
-| O-2 | Aktor tungkai refund atas inisiatif pelanggan | D9: layanan internal di bawah aktor sistem, dimasuki hanya dari jalur pembatalan adapter; merencanakan tungkai dan tidak pernah menyetujui penyelesaian offline; audit mencatat `system` yang diinisiasi `customer` |
-| O-3 | Pengkabelan step-up                           | D10: pemeriksaan tingkat handler setelah pemeriksaan izin dan sebelum transaksi, lewat evaluasi step-up `identity-access` dan TTL platformnya; tanpa TTL commerce; hanya penimpaan yang membutuhkannya di v1        |
-| O-4 | Granularitas `...reservation_links.cancel`    | D12: satu izin, klasifikasi berisiko tinggi, `actor_kind` membedakan pelanggan, staf, dan sistem; tanpa persetujuan ambang refund di v1. Pemilik dapat merevisi                                                     |
-| O-5 | Kunci laporan                                 | D13: memakai ulang `commerce.report_returns.read`, `commerce.report_tenders.read`, `commerce.report_loyalty.read`; adapter tidak menambah keluarga laporan booking                                                  |
+| #   | Titik terbuka                                 | Penyelesaian                                                                                                                                                                                                                                                                                                                    |
+| --- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| O-1 | Lingkup bisnis pada penawaran                 | D11: seluruh tenant di v1, persis selingkup Booking; lingkup cabang mengikuti ADR-0128 L5 `awcms` hulu                                                                                                                                                                                                                          |
+| O-2 | Aktor tungkai refund atas inisiatif pelanggan | D9: layanan internal di bawah aktor sistem, dimasuki hanya dari jalur pembatalan adapter; merencanakan tungkai dan tidak pernah menyetujui penyelesaian offline; audit mencatat `system` yang diinisiasi `customer`                                                                                                             |
+| O-3 | Pengkabelan step-up                           | D10: pemeriksaan tingkat handler setelah pemeriksaan izin dan sebelum transaksi, lewat evaluasi step-up `identity-access` dan TTL platformnya; tanpa TTL commerce; hanya penimpaan yang membutuhkannya di v1                                                                                                                    |
+| O-4 | Granularitas `...reservation_links.cancel`    | D12: satu izin, klasifikasi berisiko tinggi, `actor_kind` membedakan pelanggan, staf, dan sistem; tanpa persetujuan ambang refund di v1. Pemilik dapat merevisi                                                                                                                                                                 |
+| O-5 | Kunci laporan                                 | D13: memakai ulang `commerce.report_returns.read`, `commerce.report_tenders.read`, `commerce.report_loyalty.read`; adapter tidak menambah keluarga laporan booking. Issue #389: rute pendapatan dan pipeline booking memakai `reporting.dashboard.read`, gerbang rute penjualan sendiri, sehingga tidak ada kunci yang ditambah |
 
 ## 11. Yang bukan dokumen ini
 

@@ -29,6 +29,7 @@
  */
 import AdminLayout from "../../layouts/AdminLayout.astro";
 import CommerceOperationalReports from "../../components/CommerceOperationalReports.astro";
+import CommerceBookingRevenueReport from "../../components/CommerceBookingRevenueReport.astro";
 import CommerceRetentionReport from "../../components/CommerceRetentionReport.astro";
 import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
@@ -65,6 +66,9 @@ import {
   fetchStoredValueDailyReport,
   fetchTenderReport
 } from "../../modules/commerce/application/operational-report-directory";
+import { fetchBookingPipeline } from "../../modules/commerce/application/booking-pipeline";
+import { fetchBookingRevenueReport } from "../../modules/commerce/application/booking-revenue-report";
+import { BOOKING_REVENUE_PROJECTION_KEY } from "../../modules/commerce/domain/booking-revenue";
 import { fetchRetentionReport } from "../../modules/commerce/application/retention-report-directory";
 import { RETENTION_PROJECTION_KEY } from "../../modules/commerce/domain/retention";
 import {
@@ -116,7 +120,8 @@ const PRODUCT_LIMIT = 50;
 const REPORT_PROJECTION_KEYS: readonly string[] = [
   ...SALES_REPORT_PROJECTION_KEYS,
   ...OPERATIONAL_REPORT_PROJECTION_KEYS,
-  RETENTION_PROJECTION_KEY
+  RETENTION_PROJECTION_KEY,
+  BOOKING_REVENUE_PROJECTION_KEY
 ];
 const OUTSTANDING_LIMIT = 50;
 
@@ -282,6 +287,15 @@ const screen = await loadAdminScreen({
         }
       : null;
 
+    // Issue #389 (ADR-0045 amendment note) - the booking revenue waterfall and
+    // the live hold pipeline. They ride this screen's own `reporting.dashboard
+    // .read` entry (the sales routes' gate) and are hidden while the tenant's
+    // `booking` feature is off (the default): `enabled: false` renders nothing.
+    const bookingRevenue = {
+      report: await fetchBookingRevenueReport(tx, ssr.tenantId, range),
+      pipeline: await fetchBookingPipeline(tx, ssr.tenantId)
+    };
+
     const projections = canReadProjections
       ? (
           await listProjectionSummariesForTenant(
@@ -315,7 +329,8 @@ const screen = await loadAdminScreen({
       tenderMix,
       outstanding,
       operational,
-      retention
+      retention,
+      bookingRevenue
     };
   },
   onError: (error) => {
@@ -343,6 +358,8 @@ const tenderMix = screen.state === "allowed" ? screen.data.tenderMix : null;
 const outstanding = screen.state === "allowed" ? screen.data.outstanding : null;
 const operational = screen.state === "allowed" ? screen.data.operational : null;
 const retention = screen.state === "allowed" ? screen.data.retention : null;
+const bookingRevenue =
+  screen.state === "allowed" ? screen.data.bookingRevenue : null;
 
 const CURRENCY = "IDR";
 const money = (value: string) =>
@@ -369,7 +386,8 @@ const PROJECTION_LABELS: Record<string, string> = {
   [POS_EXPENSE_DAILY_PROJECTION_KEY]: t("Expenses by category"),
   [POS_LOYALTY_DAILY_PROJECTION_KEY]: t("Loyalty points"),
   [POS_STORED_VALUE_DAILY_PROJECTION_KEY]: t("Stored-value liability"),
-  [POS_RETURNS_DAILY_PROJECTION_KEY]: t("Returns and refunds")
+  [POS_RETURNS_DAILY_PROJECTION_KEY]: t("Returns and refunds"),
+  [BOOKING_REVENUE_PROJECTION_KEY]: t("Booking revenue")
 };
 
 function formatAge(ageSeconds: number | null): string {
@@ -892,6 +910,8 @@ function formatTimestamp(value: Date | string | null): string {
           locale={locale}
         />
       )}
+
+      <CommerceBookingRevenueReport view={bookingRevenue} locale={locale} />
 
       <CommerceRetentionReport view={retention} locale={locale} />
 

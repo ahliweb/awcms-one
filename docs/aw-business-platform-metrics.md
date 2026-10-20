@@ -128,6 +128,16 @@ Worked example: a three-night stay at 1,000,000 a night, a 30% deposit (900,000)
 
 In the second and third rows the uncollected 2,100,000 lands on the day the deposit was paid, not on the cancellation day (rule 5 of section 1.1); the cash view shows the 450,000 going out on its own day.
 
+### 3.8 Implementation note: the booking-sourced slice (issue #389)
+
+**Built 19 October 2026 ([#389](https://github.com/ahliweb/awcms-one/issues/389), [ADR-0045](adr/0045-booking-commerce-adapter.md) implementation notes).** The booking-sourced revenue waterfall of section 3, the hold pipeline and the no-show figures of section 8.2 ship as the `reporting` descriptor `commerce.booking_revenue` (one row per booking-sourced paid order, recomputed from the order, the payment ledger and the adapter's refund decisions) and the live `GET /api/v1/reports/commerce/booking-pipeline`; no second store exists. The reading of the contract the build had to choose:
+
+- **Gross once, on the first paid day; the balance beside the waterfall.** Exactly rule 1 and 2 of 3.7: a deposit order recognises its whole gross on the deposit day, and the balance still owed on an open order is the `balanceOutstanding` companion column.
+- **Refunds = paid back + uncollected.** "Paid back" is the succeeded reversal legs of the ledger; "of which uncollected balance (no money moved)" is the unpaid part of an order a cancellation or a no-show closed. Both land on the ORIGINAL paid day. The three rows of the 3.7 worked example and the 8.3 villa week (gross 5,500,000, discounts 250,000, refunds 100,000, net 5,150,000) are asserted to the cent in `apps/cms/tests/integration/commerce-booking-revenue.integration.test.ts`; ADR 1,030,000 and RevPAN 858,333.33 take Booking's occupied and available nights as inputs, because occupancy is upstream (`awcms#944`).
+- **Discounts are what the order recorded as a price reduction** (voucher, points), derived from its own identity so the 3.5 control `net + shipping + insurance + tax = settled + outstanding - surplus` is exact; a per-line price cut is inside the frozen line price. A refund is money, so a full refund of an order that carried tax leaves the tax companion un-netted and net below zero by that amount.
+- **A refund counts when the money has moved** (a settled ledger leg), not when a pending leg is planned; whether the owner wants the booking slice to net a refund at the moment it is decided, as `commerce.sales_daily` does for a return, is open.
+- **Readers and visibility.** Aggregates only, on `reporting.dashboard.read` (the sales routes' gate), hidden while the tenant's `booking` feature is off; the restatement flag of 1.2 is kept per paid day.
+
 ## 4. Occupancy
 
 ### 4.1 What it answers
@@ -249,7 +259,7 @@ Retention is **not** a pure increment-only counter, because an event can move a 
 
 ### 6.5 Implementation note: commerce-only half (issue #364)
 
-**Built 11 October 2026 ([#364](https://github.com/ahliweb/awcms-one/issues/364), [ADR-0044](adr/0044-customer-retention-is-a-per-customer-recompute-projection-on-the-reporting-engine.md)).** The commerce-owned sub-view named in the contract table ("orders only") ships as the `reporting` descriptor `commerce.customer_retention`. The engine's dimensional-sink contract expresses the keyed per-customer row of 6.4, so the blocker clause did not trigger and no external store exists. The booking input (a confirmed booking as a first or second event) is **not** built; it extends the recompute's facts after Wave C. Where the build made a choice the contract left open:
+**Built 11 October 2026 ([#364](https://github.com/ahliweb/awcms-one/issues/364), [ADR-0044](adr/0044-customer-retention-is-a-per-customer-recompute-projection-on-the-reporting-engine.md)).** The commerce-owned sub-view named in the contract table ("orders only") ships as the `reporting` descriptor `commerce.customer_retention`. The engine's dimensional-sink contract expresses the keyed per-customer row of 6.4, so the blocker clause did not trigger and no external store exists. The booking input (a confirmed booking as a first or second event) was **not** built here; it was added by [#389](https://github.com/ahliweb/awcms-one/issues/389), see 6.6. Where the build made a choice the contract left open:
 
 - **Recompute, not increment.** A customer's row is re-derived from their current orders whenever one of them is paid, cancelled, returned or refunded, so a refund of the first purchase hands the cohort to the next order and a cancelled repeat stops counting; a rebuild reproduces the live table byte for byte.
 - **Second event strictly after the first.** Two orders at the same instant are two orders but not a repeat. "Within 90 days" is `<= 90 × 24 h` and is evaluated at read, not stored.
@@ -258,6 +268,15 @@ Retention is **not** a pure increment-only counter, because an event can move a 
 - **Blocked, purged and walk-in exclusions are applied at read** (a join to the customer table), not baked into the stored rows, because they change without any event. Test and internal accounts are not a commerce concept and are not modelled.
 - **Restatement (Q1).** A change to a cohort after its month end plus 35 days is logged and flagged "restated"; a repeat that appears while the cohort is still maturing is ordinary filling-in and is not.
 - **Visibility.** `commerce.report_retention.read|export` (not implied by the dashboard or customer keys), a per-tenant `retention` feature defaulting OFF, counts only, no percentage under 20 customers.
+
+### 6.6 Implementation note: the booking anchor (issue #389)
+
+**Built 19 October 2026 ([#389](https://github.com/ahliweb/awcms-one/issues/389), [ADR-0045](adr/0045-booking-commerce-adapter.md) implementation notes).** The recompute of 6.5 gains the booking facts; no new store and no new permission. Where the build made a choice the contract left open:
+
+- **A confirmed booking is a paid order that carries a Booking reservation link, and it is ONE event.** Its instant is the order's first paid transition, the instant the adapter confirms the reservation on. The replacement reservation of a reschedule sits on the same order and the supplementary order of a stay that grew belongs to the same stay, so neither is a repeat; the second event must be a distinct order or reservation.
+- **A cancelled stay is no event** (every standing link released by a cancellation decision), even when a retained deposit keeps the order from being fully refunded; a no-show is still an event (the contract excludes cancelled, expired and rescheduled-away bookings only); a fully refunded booking never started the customer. A reservation with no link has no derivable customer and is in no cohort (Q7); the walk-in placeholder's bookings are "unlinked" like its orders.
+- **Same cohort rules.** A customer is in one cohort, once; the day-90 boundary, the small-group rule and the restatement window are unchanged; `bookingAnchored` per cohort counts the members whose first event was a booking. The proof of the 6.3 example with bookings and orders mixed is in `apps/cms/tests/commerce-booking-revenue-domain.test.ts`, and the live cases in `apps/cms/tests/integration/commerce-booking-revenue.integration.test.ts`.
+- **Two more streams trigger the recompute** (the refund decisions and the reschedule record), because cancelling with nothing refunded changes no order status. The descriptor is version 2: a tenant that already sold bookings runs one rebuild.
 
 ## 7. Employee productivity
 

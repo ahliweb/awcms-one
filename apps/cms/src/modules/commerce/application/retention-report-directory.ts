@@ -18,6 +18,13 @@
  * hides. The projection keeps running, so switching the feature on shows
  * history immediately.
  *
+ * ## The booking anchor (Issue #389)
+ *
+ * A customer's first event can now be a confirmed booking (a paid order that
+ * carries a Booking reservation link); `bookingAnchored` counts, per cohort,
+ * the members whose first event was one. It is a count inside the cohort, not a
+ * second cohort: a customer is in exactly one cohort, once.
+ *
  * ## "Unlinked"
  *
  * Every commerce order carries a customer id (a guest checkout creates or
@@ -92,7 +99,8 @@ export async function fetchRetentionReport(
         WHERE r.second_event_at IS NOT NULL
           AND r.second_event_at > r.first_event_at
           AND r.second_event_at <= r.first_event_at + make_interval(hours => ${RETENTION_WINDOW_HOURS})
-      ))::int AS repeaters
+      ))::int AS repeaters,
+      (count(*) FILTER (WHERE r.first_event_kind = 'booking'))::int AS booking_anchored
     FROM awcms_commerce_report_retention_customers r
     JOIN awcms_commerce_customers c
       ON c.tenant_id = r.tenant_id AND c.id = r.customer_id
@@ -104,7 +112,12 @@ export async function fetchRetentionReport(
       AND c.phone <> ${POS_WALK_IN_CUSTOMER_SENTINEL_PHONE}
     GROUP BY r.cohort_month
     ORDER BY r.cohort_month ASC
-  `) as { cohort_month: string; size: number; repeaters: number }[];
+  `) as {
+    cohort_month: string;
+    size: number;
+    repeaters: number;
+    booking_anchored: number;
+  }[];
 
   const restated = (await tx`
     SELECT to_char(cohort_month, 'YYYY-MM-DD') AS cohort_month, restated_at
@@ -130,7 +143,8 @@ export async function fetchRetentionReport(
       rows.map((row) => ({
         cohortMonth: row.cohort_month,
         size: Number(row.size),
-        repeaters: Number(row.repeaters)
+        repeaters: Number(row.repeaters),
+        bookingAnchored: Number(row.booking_anchored)
       })),
       now,
       new Map(
