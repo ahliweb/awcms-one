@@ -202,7 +202,7 @@ dirintis langsung di sini setelah pembekuan ADR-0047.)
 
 ## 3. Yang sudah selesai (jangan dibangun ulang)
 
-- **29 modul** terdaftar dengan RLS `FORCE`, pemisahan role DB
+- **33 modul** terdaftar dengan RLS `FORCE`, pemisahan role DB
   (`awcms_app`/`awcms_worker`/`awcms_setup`), admin SSR read+write (Issue #166/#171).
 - **Auth lanjutan**: MFA TOTP + session-assurance/step-up (`sql/024`), OIDC/SSO
   tenant-aware + SSRF guard + break-glass (`sql/025`/`026`), Turnstile bot protection
@@ -411,12 +411,7 @@ knowledge:check` (`graph:artifacts:check` + dry run `--check` sync wrapper)
   **Keputusan pemilik (dijawab 2026-10-10 di DoR awcms-one).** Dicatat di
   pack tempat ia mengikat: booking O8 dan O12 (hold tidak dihitung dalam
   occupancy; commerce tetap otoritas pelanggan, sehingga tanpa
-  `customer_profile_id`); hr O4 (profil Indonesia milik konsumen), O6 (geolokasi
-  saja, mati secara default, tetap butuh ADR sendiri) dan O7 (SoD dapat
-  dikonfigurasi per tenant; butuh amandemen ADR-0132 dan punya sub-pertanyaan
-  terbuka O7a; payroll juga digerbangi enkripsi at-rest serta review keamanan).
-  Delivery O10/O11: Telegram dan orkestrasi diinginkan pemilik tetapi belum
-  diterima di sini; masing-masing butuh ADR/isu sendiri. O2 booking (vertikal pertama hotel / vila / rental) terjawab dan memasukkan menginap berbasis hari ke v1 lewat ADR-0135 (Issue #931); O1, O3, O5, dan O9 belum direkonsiliasi ke pack. Baca tabel
+  `customer_profile_id`); hr O4 (profil Indonesia milik konsumen), O6 (geolokasi saja, mati secara default; diputuskan ADR-0138 sebagai bukti berupa verdict saja, implementasi #970) dan O7 (SoD dapat dikonfigurasi per tenant, diputuskan ADR-0136 termasuk sub-pertanyaan O7a, penegakan di #957; payroll juga digerbangi enkripsi rekening payout, diputuskan ADR-0137, serta review keamanan dan hukum #956). Delivery O10/O11: adaptor Telegram diterima hanya untuk notifikasi ops/staf oleh ADR-0140 (#964; implementasi #965, setelah helper enkripsi field ADR-0137); orkestrasi lintas kanal tidak diterima (ADR-0139, dengan pemicu pembukaan ulang). O2 booking (vertikal pertama hotel / vila / rental) terjawab dan memasukkan menginap berbasis hari ke v1 lewat ADR-0135 (Issue #931); O1, O3, O5, dan O9 belum direkonsiliasi ke pack. Baca tabel
   pertanyaan terbuka pack sebelum menulis migrasi.
 
   **Dua hal sebelum menyentuh registry consumer (#926).** Consumer berjalan

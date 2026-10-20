@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](status.md)
 
-<!-- i18n-source-hash: sha256:30bfb1e98e00276d259f9aed3aff9e2ef96b0e8a0e14899dfab522a22815bf0f -->
+<!-- i18n-source-hash: sha256:7d5a570eeab42375d38bbcb1f79efffb71595978e17ca541b855c8053a451ebf -->
 
 # Status
 
@@ -93,6 +93,12 @@ Isu #282 (epik #281) membuat tenant dapat memindahkan stoknya dari satu penghitu
 ## Inventory, tax, dan procurement: modul upstream kini ada di `apps/cms`
 
 Sinkronisasi subtree v10.5.0 ([issue #319](https://github.com/ahliweb/awcms-one/issues/319)) membawa tiga modul milik upstream (`awcms`) ke `apps/cms`: `inventory` (buku besar stok multi-lokasi, ADR-0126, `sql/169`–`170`), `tax` (kalkulasi pajak netral yurisdiksi, ADR-0127, `sql/171`–`173`) dan `procurement` (dokumen pemasok, penerimaan, dan transfer, ADR-0128, `sql/174`–`175`), masing-masing dengan layar admin, fragmen OpenAPI, dan izinnya. `inventory` dan `tax` sudah dihubungkan ke `commerce` di balik mode per tenant (lihat bagian stok dan pajak di atas, [#282](https://github.com/ahliweb/awcms-one/issues/282), [#293](https://github.com/ahliweb/awcms-one/issues/293)). `procurement` tersedia dan **terintegrasi dengan stok commerce** ([#283](https://github.com/ahliweb/awcms-one/issues/283), adendum [ADR-0038](adr/0038-commerce-stock-is-a-write-through-cache-of-the-inventory-ledger.md)): pada tenant berstatus `ledger`, penerimaan, transfer, retur pemasok, atau pembalikan di lokasi penjualan commerce sampai ke stok etalase lewat konsumen event inventori (penerimaan tenant `counter` tetap di ledger; lakukan cut-over lebih dulu), baris pengadaan menamai unit commerce sebagai `commerce.variant` / `commerce.product` + uuid + satuan `unit` (`GET /api/v1/commerce/inventory/items?q=` menerjemahkan SKU), dan rekonsiliasi melaporkan saldo ledger yang tak menunjuk unit aktif sebagai `orphans`. Laporan penerimaan adalah proyeksi `procurement.*` hulu. Sinkronisasi ini juga memindahkan setiap parameter OpenAPI `Idempotency-Key` commerce ke komponen bersama upstream (ADR-0129) dan memberi tabel admin commerce region `.data-table-scroll` yang dapat difokus dan bernama.
+
+## Booking, WhatsApp delivery, HR workforce, dan HR commission: modul upstream kini ada di `apps/cms`
+
+Sinkronisasi subtree pada `4f061a5` ([issue #409](https://github.com/ahliweb/awcms-one/issues/409)) membawa empat modul lagi milik upstream (`awcms`) ke `apps/cms`, sehingga totalnya 33 modul terdaftar dan `sql/001`–`189`. Belum ada satu pun yang dihubungkan ke `commerce`, dan tidak ada yang mengubah route, tabel, atau layar commerce: `whatsapp_delivery` (antrean WhatsApp generik per tenant dengan consent, opt-out dan suppression, dispatcher berbasis lease, serta adapter penyedia Fonnte, Meta Cloud, dan penyedia log; ADR-0133 fase 1, `sql/178`–`179`; dikirim dalam keadaan nonaktif di balik `WHATSAPP_ENABLED` dan punya layar `/admin/whatsapp`), `booking` (hanya fondasi dan ketersediaan: skema, mesin status reservasi, jadwal dan pengecualian, serta pembacaan ketersediaan, `sql/180`–`181`, `186`; alokator, hold, dan API publik upstream #939–#941 **belum** ada di upstream), `hr_workforce` (kepegawaian, ketentuan, dan shift, `sql/176`–`177`, `184`–`185`) dan `hr_commission` (aturan komisi berversi, buku akrual, dan port atribusi penjualan, `sql/182`–`183`, `187`–`189`). Ketiga modul HR/booking itu sudah punya API tetapi belum punya layar admin. Sinkronisasi ini juga membawa helper enkripsi field bersama (ADR-0137), ADR-0136 sampai ADR-0140, serta job `whatsapp:dispatch` dan `whatsapp:queue:purge`.
+
+Sinkronisasi ini adalah prasyarat adaptor commerce yang dilacak di [#391](https://github.com/ahliweb/awcms-one/issues/391) (atribusi penjualan `hr_commission`) dan [#392](https://github.com/ahliweb/awcms-one/issues/392) (`whatsapp_delivery` menggantikan outbox WhatsApp milik commerce), serta langkah parsial menuju [#377](https://github.com/ahliweb/awcms-one/issues/377), yang masih menunggu upstream [ahliweb/awcms#941](https://github.com/ahliweb/awcms/issues/941).
 
 ## `apps/storefront` — profil build (ADR-0018)
 

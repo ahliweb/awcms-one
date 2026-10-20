@@ -802,7 +802,45 @@ export const RETIRED_TENANT_TABLE_PRIVILEGES: Record<string, string[]> = {
   awcms_procurement_suppliers: ["SELECT", "INSERT", "UPDATE"],
   awcms_procurement_documents: ["SELECT", "INSERT", "UPDATE"],
   awcms_procurement_document_movements: ["SELECT", "INSERT"],
-  awcms_procurement_document_events: ["SELECT", "INSERT"]
+  awcms_procurement_document_events: ["SELECT", "INSERT"],
+  // ADR-0132 / `sql/176`. NOT retired — an employment ends by a `terminated`
+  // term (or is soft-deleted when entered by mistake) and the terms history is
+  // append-only (the only UPDATE closes the open row); a trigger refuses DELETE
+  // as the second layer. Settings are upserted, never deleted.
+  awcms_hr_employments: ["SELECT", "INSERT", "UPDATE"],
+  awcms_hr_employment_terms: ["SELECT", "INSERT", "UPDATE"],
+  awcms_hr_workforce_settings: ["SELECT", "INSERT", "UPDATE"],
+  // ADR-0131 / `sql/180`. NOT retired -- nothing in `booking` is ever DELETEd (a
+  // reservation is cancelled, a resource soft-deleted, an allocation released),
+  // and a trigger refuses DELETE on the tables that matter as the second layer.
+  // Reservation items and events are append-only: INSERT and SELECT only.
+  awcms_booking_settings: ["SELECT", "INSERT", "UPDATE"],
+  awcms_booking_resource_pools: ["SELECT", "INSERT", "UPDATE"],
+  awcms_booking_resources: ["SELECT", "INSERT", "UPDATE"],
+  awcms_booking_resource_units: ["SELECT", "INSERT", "UPDATE"],
+  awcms_booking_service_offerings: ["SELECT", "INSERT", "UPDATE"],
+  awcms_booking_schedules: ["SELECT", "INSERT", "UPDATE"],
+  // `sql/186`: blocks are released (status), never deleted; DELETE is revoked
+  // and a trigger refuses it as the second layer.
+  awcms_booking_resource_blocks: ["SELECT", "INSERT", "UPDATE"],
+  awcms_booking_reservations: ["SELECT", "INSERT", "UPDATE"],
+  awcms_booking_resource_allocations: ["SELECT", "INSERT", "UPDATE"],
+  awcms_booking_reservation_items: ["SELECT", "INSERT"],
+  awcms_booking_reservation_events: ["SELECT", "INSERT"],
+  // ADR-0132 / `sql/182`. NOT retired — a rule ends by being retired (a status
+  // UPDATE) and a trigger refuses DELETE as the second layer.
+  awcms_hr_commission_rules: ["SELECT", "INSERT", "UPDATE"],
+  // ADR-0132 / `sql/184`. NOT retired — a template is soft-deleted and an
+  // assignment is cancelled, never deleted (a trigger refuses DELETE as the
+  // second layer).
+  awcms_hr_shift_templates: ["SELECT", "INSERT", "UPDATE"],
+  awcms_hr_shift_assignments: ["SELECT", "INSERT", "UPDATE"],
+  // ADR-0132 / `sql/188`. NOT retired — an accrual ends by being voided (a status
+  // UPDATE; its monetary facts are immutable by trigger) and a trigger refuses
+  // DELETE as the second layer. The transition log is append-only and written
+  // only by the accrual's own triggers: INSERT and SELECT only.
+  awcms_hr_commission_accruals: ["SELECT", "INSERT", "UPDATE"],
+  awcms_hr_commission_transitions: ["SELECT", "INSERT"]
 };
 
 type RlsRow = {
@@ -1418,6 +1456,15 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_push_subscriptions: ["DELETE", "INSERT", "SELECT", "UPDATE"],
   awcms_push_messages: ["DELETE", "INSERT", "SELECT", "UPDATE"],
   awcms_push_delivery_attempts: ["DELETE", "INSERT", "SELECT"],
+  // ADR-0133 (sql/178) — `whatsapp:dispatch` claims/updates queue rows, writes
+  // attempts, and records a hard-failure suppression; it re-reads consents but
+  // never writes them. `whatsapp:queue:purge` deletes terminal rows (the DELETE
+  // is the one to notice, per sql/091). Consents and suppressions are never
+  // deleted by any job.
+  awcms_whatsapp_messages: ["DELETE", "INSERT", "SELECT", "UPDATE"],
+  awcms_whatsapp_delivery_attempts: ["DELETE", "INSERT", "SELECT"],
+  awcms_whatsapp_consents: ["SELECT"],
+  awcms_whatsapp_suppressions: ["INSERT", "SELECT"],
   awcms_identities: ["SELECT"],
   awcms_sync_nodes: ["SELECT"],
   // Issue #180 — identity-access:business-scope:expiry (sql/027): SELECT the
@@ -1966,7 +2013,11 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_inventory_movements: ["SELECT", "INSERT"],
   // Issue #888 (sql/174). SELECT only: the reporting engine's projection worker
   // reads the document-event log as `awcms_worker` (ADR-0128 §7).
-  awcms_procurement_document_events: ["SELECT"]
+  awcms_procurement_document_events: ["SELECT"],
+  // Issue #937 (sql/180). SELECT only: the reporting engine's projection worker
+  // will read the reservation-event log as `awcms_worker` (ADR-0131 section
+  // 7.2); it writes exclusively to its own `awcms_reporting_projection_*` tables.
+  awcms_booking_reservation_events: ["SELECT"]
 };
 
 /**

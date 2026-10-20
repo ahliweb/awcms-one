@@ -463,6 +463,10 @@ describe("openapi bundle — contract equivalence to pre-migration monolith", ()
     const added = [...afterTags].filter((n) => !beforeTags.has(n)).sort();
     expect(added).toEqual([
       "Blog Content",
+      // "Booking" (booking, ADR-0131, Issue #938) -- genuinely new surface:
+      // schedules, schedule exceptions and the availability read. Nothing here
+      // is anonymous.
+      "Booking",
       "Comments",
       // "Commerce" (commerce, Issue #4, epic #1) — genuinely new surface: the
       // catalog slice (categories + products) of the re-platformed
@@ -485,6 +489,14 @@ describe("openapi bundle — contract equivalence to pre-migration monolith", ()
       "Data Lifecycle",
       "Domain Event Runtime",
       "Form Drafts",
+      // "HR Workforce" (hr_workforce, ADR-0132, Issue #945) — genuinely new
+      // surface: the employment context (employments, effective-dated terms,
+      // settings). Nothing here is anonymous.
+      // "HR Commission" (hr_commission, ADR-0132, Issue #950) — genuinely new
+      // surface: versioned commission rules (draft, publish, retire). Nothing
+      // here is anonymous.
+      "HR Commission",
+      "HR Workforce",
       "Indonesia Regions",
       // "Inventory" (inventory, ADR-0126, Issue #887) — genuinely new surface:
       // the multi-location stock ledger (locations, movements, adjustments,
@@ -527,7 +539,11 @@ describe("openapi bundle — contract equivalence to pre-migration monolith", ()
       "Tax",
       "Tenant Domains",
       "Theming",
-      "Visitor Analytics"
+      "Visitor Analytics",
+      // "WhatsApp Delivery" (whatsapp_delivery, ADR-0133, Issue #963) — genuinely
+      // new surface: queue diagnostics, cancel, templates, suppressions and the
+      // consent store. Nothing here is anonymous.
+      "WhatsApp Delivery"
     ]);
   });
 });

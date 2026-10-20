@@ -157,5 +157,85 @@ export const NOT_YET_SCREENED: readonly string[] = [
   // (`PUT /documents/{id}`): the screen creates a draft and, for a mistake,
   // cancels it and enters a new one, so this stays on the shrink-only list until
   // a draft editor is a decision.
-  "procurement.documents.update"
+  "procurement.documents.update",
+
+  // hr_workforce (8) — ADR-0132 / Issue #945. Phase 1 foundation ships API-first
+  // and `experimental` (flag off): the employment, terms and settings screens
+  // are the recorded follow-up that flips the module to `active`, so each
+  // permission is listed here until a screen claims it.
+  "hr_workforce.employments.assign",
+  "hr_workforce.employments.create",
+  "hr_workforce.employments.delete",
+  "hr_workforce.employments.read",
+  "hr_workforce.employments.restore",
+  "hr_workforce.employments.update",
+  "hr_workforce.settings.configure",
+  "hr_workforce.settings.read",
+  // booking (32) — ADR-0131 / Issue #937. The foundation slice has no route and
+  // no screen: the schema, the permission catalogue and the pure state machine
+  // only. Every key is unbuilt work, and the list shrinks as the admin screens
+  // land with Issues #938 to #941 (the module is `experimental` until then).
+  "booking.resources.read",
+  "booking.resources.create",
+  "booking.resources.update",
+  "booking.resources.delete",
+  "booking.resources.restore",
+  "booking.offerings.read",
+  "booking.offerings.create",
+  "booking.offerings.update",
+  "booking.offerings.delete",
+  "booking.offerings.restore",
+  "booking.schedules.read",
+  "booking.schedules.create",
+  "booking.schedules.update",
+  "booking.schedules.delete",
+  "booking.blocks.read",
+  "booking.blocks.create",
+  "booking.blocks.release",
+  "booking.availability.read",
+  "booking.reservations.read",
+  "booking.reservation_notes.read",
+  "booking.reservations.create",
+  "booking.reservations.confirm",
+  "booking.reservations.cancel",
+  "booking.reservations.reschedule",
+  "booking.reservations.check_in",
+  "booking.reservations.complete",
+  "booking.reservations.no_show",
+  "booking.reservations.override",
+  "booking.reservations.reconcile",
+  "booking.policy.read",
+  "booking.policy.configure",
+  "booking.reports.read",
+
+  // hr_commission (5) — ADR-0132 / Issue #950. Phase 2 foundation ships API-first
+  // and `experimental` (flag off): the rule screens are the recorded follow-up
+  // that flips the module to `active`, so each permission is listed here until a
+  // screen claims it.
+  "hr_commission.rules.create",
+  "hr_commission.rules.publish",
+  "hr_commission.rules.read",
+  "hr_commission.rules.retire",
+  "hr_commission.rules.update",
+  // hr_workforce shifts (8) — ADR-0132 / Issue #946. Same posture as above:
+  // API-first and `experimental`; the shift roster and template screens are the
+  // recorded follow-up that flips the module to `active`.
+  "hr_workforce.shifts.cancel",
+  "hr_workforce.shifts.create",
+  "hr_workforce.shifts.publish",
+  "hr_workforce.shifts.read",
+  "hr_workforce.templates.create",
+  "hr_workforce.templates.delete",
+  "hr_workforce.templates.read",
+  "hr_workforce.templates.update",
+
+  // hr_commission accruals (6) — ADR-0132 / Issue #951. The ledger ships API-first
+  // like the rules: the accrual screens (list, approve/release/void/pay) are the
+  // recorded follow-up that flips the module to `active`.
+  "hr_commission.accruals.approve",
+  "hr_commission.accruals.cancel",
+  "hr_commission.accruals.accrue",
+  "hr_commission.accruals.pay",
+  "hr_commission.accruals.read",
+  "hr_commission.accruals.release"
 ];

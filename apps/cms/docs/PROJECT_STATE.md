@@ -201,7 +201,7 @@ pioneered directly here after the ADR-0047 freeze.)
 
 ## 3. What is already done (do not rebuild it)
 
-- **29 modules** registered with `FORCE` RLS, DB role separation
+- **33 modules** registered with `FORCE` RLS, DB role separation
   (`awcms_app`/`awcms_worker`/`awcms_setup`), admin SSR read+write (Issue #166/#171).
 - **Advanced auth**: MFA TOTP + session-assurance/step-up (`sql/024`), tenant-aware
   OIDC/SSO + SSRF guard + break-glass (`sql/025`/`026`), profile-aware Turnstile bot
@@ -408,12 +408,7 @@ pioneered directly here after the ADR-0047 freeze.)
   **Owner decisions (answered 2026-10-10 in the awcms-one DoR).** Recorded in
   the packs where they bind: booking O8 and O12 (holds excluded from occupancy;
   commerce stays the customer authority, so no `customer_profile_id`); hr O4
-  (Indonesian profile consumer-owned), O6 (geolocation only, off by default,
-  own ADR still needed) and O7 (SoD configurable per tenant; needs an ADR-0132
-  amendment and has an open sub-question O7a; payroll is additionally gated on
-  at-rest encryption plus security review). Delivery O10/O11: Telegram and
-  orchestration are wanted by the owner but are still not admitted here; each
-  needs its own ADR/issue. Booking O2 (first vertical hotel / villa / rental) is answered and admits day-granularity stays into v1 through ADR-0135 (Issue #931); O1, O3, O5 and
+  (Indonesian profile consumer-owned), O6 (geolocation only, off by default; decided by ADR-0138 as verdict-only evidence, implementation #970) and O7 (SoD configurable per tenant, decided by ADR-0136 including sub-question O7a, enforcement in #957; payroll is additionally gated on payout-account encryption, decided by ADR-0137, plus the security and legal review of #956). Delivery O10/O11: the Telegram adapter is admitted for ops/staff alerts only by ADR-0140 (#964; implementation #965, after the ADR-0137 field-encryption helper); cross-channel orchestration is not admitted (ADR-0139, with reopening triggers). Booking O2 (first vertical hotel / villa / rental) is answered and admits day-granularity stays into v1 through ADR-0135 (Issue #931); O1, O3, O5 and
   O9 are not yet reconciled into the packs. Read the pack's open-questions table
   before writing a migration.
 

@@ -1158,6 +1158,19 @@ export const READER_BUDGET_BYTES = 24_000;
  * (the `role`/`tabindex`/`aria-*` attributes live in server-rendered HTML and
  * weigh nothing here). Measured actual total, no added margin: 318,319 B
  * (+89 B on 318,230 = 318,319).
+ *
+ * **Raised for Issue #963** (the `/admin/whatsapp` screen that flipped
+ * `whatsapp_delivery` to `active`). One screen script of 1,913 B, and it is not
+ * per-screen duplication of the shared lifecycle: it imports `admin-form-client.ts`
+ * (already shared) and adds only the screen's own five requests (cancel a queued
+ * message, record an opt-in, record an opt-out, suppress a number, remove a
+ * suppression) and their error-code-to-message strings. No new stylesheet rules:
+ * it reuses the admin table, stat-card and status-pill classes. Measured actual
+ * total, no added margin: 320,232 B (+1,913 B on 318,319 = 320,232).
+ *
+ * **Raised again for Issue #963's security audit** (F3): the same screen script
+ * gains the reinstate-over-opt-out fields (two body keys and one refusal message).
+ * Measured actual total, no added margin: 320,435 B (+203 B on 320,232).
  */
 /**
  * **Raised to 254,500 B in awcms-one (subtree sync of awcms#813, issue
@@ -1532,7 +1545,17 @@ export const READER_BUDGET_BYTES = 24_000;
  * reports screen added nothing measurable. A measurement of the merged build,
  * not a sum of the three branches' figures; the budget sits 91 B above it.
  */
-export const APP_BUDGET_BYTES = 442_200;
+/*
+ * **Final: 444,300 B at the 4f061a5 subtree sync (awcms-one#409)** - MEASURED
+ * 444,225 B on the merged build. Upstream sits at 320,435 B after its
+ * `/admin/whatsapp` screen script (#963, above, +2,116 B on 318,319 B); this
+ * embed's commerce lineage is +123,790 B over that, exactly the +123,790 B
+ * (442,109 - 318,319) it was before the sync, so here the measurement and a plain
+ * sum (442,109 + 2,116) agree. The other new upstream modules (`booking`,
+ * `hr_workforce`, `hr_commission`) have no admin screen and added no client
+ * asset. The measurement is the figure, not the sum.
+ */
+export const APP_BUDGET_BYTES = 444_300;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

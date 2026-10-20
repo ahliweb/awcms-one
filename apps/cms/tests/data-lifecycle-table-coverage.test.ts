@@ -520,7 +520,24 @@ describe("the real repository", () => {
       // carries a real `dataLifecycle` descriptor with a database-enforced
       // retention floor. The entry is the authored-configuration argument the
       // first five make, not a new kind of one.
-      expect(BOUNDED_BY_DESIGN.length).toBeLessThanOrEqual(15);
+      //
+      // Raised 15 -> 16 for `awcms_hr_commission_rules` (Issue #950, ADR-0132):
+      // authored configuration that must NOT carry an asserted retention period
+      // (nobody owns that decision), so the honest answer is this entry and not
+      // a `dataLifecycle` descriptor. Same authored-configuration argument as the
+      // entries above, not a new kind of one.
+      //
+      // **18 since the hr_commission ledger (Issue #951).** The two raised for
+      // `awcms_hr_commission_accruals` and `_transitions` are NOT the authored-
+      // configuration argument and are written out as such: they grow with the
+      // tenant's commissionable business events. They sit here, rather than behind
+      // an asserted descriptor, because nothing in this repository purges them and
+      // nobody owns the retention period for records of earnings; a descriptor
+      // would assert 2555-3650 days and a purge mode that do not exist. Each entry
+      // says so and names the generic-purge hazard (it would delete accruals still
+      // payable). The recorded follow-up is a reviewed archive-then-purge, which
+      // replaces both entries with a real descriptor.
+      expect(BOUNDED_BY_DESIGN.length).toBeLessThanOrEqual(18);
     });
 
     test("every entry names a table that really exists in sql/", () => {
