@@ -165,6 +165,7 @@ import {
   COMMERCE_PRODUCT_UPDATED_EVENT_TYPE,
   COMMERCE_ORDER_CREATED_EVENT_TYPE,
   COMMERCE_ORDER_PAID_EVENT_TYPE,
+  COMMERCE_ORDER_SETTLED_EVENT_TYPE,
   COMMERCE_ORDER_STATUS_CHANGED_EVENT_TYPE,
   COMMERCE_ORDER_CANCELLED_EVENT_TYPE,
   COMMERCE_ORDER_EXPIRED_EVENT_TYPE,
@@ -839,8 +840,11 @@ export const commerceModule = defineModule({
     {
       name: COMMERCE_ORDER_PAID_LOYALTY_EARNER_CONSUMER_NAME,
       description:
-        "commerce module consumer - earns loyalty points for an order the moment it turns paid, exactly once per order, from server-side order facts only (Issue #289).",
-      eventTypes: [COMMERCE_ORDER_PAID_EVENT_TYPE],
+        "commerce module consumer - earns loyalty points for an order the moment it turns paid, exactly once per order, from server-side order facts only (Issue #289). A deposit order earns only at full settlement (Issue #379, ADR-0041 D7): it reacts to order.settled for that, and an order.paid for a deposit order that still owes a balance earns nothing.",
+      eventTypes: [
+        COMMERCE_ORDER_PAID_EVENT_TYPE,
+        COMMERCE_ORDER_SETTLED_EVENT_TYPE
+      ],
       eventVersions: [COMMERCE_EVENT_VERSION],
       handle: async (tx, event, ctx) => {
         const { earnPointsForPaidOrder } =
@@ -849,7 +853,10 @@ export const commerceModule = defineModule({
           tx,
           ctx.tenantId,
           event.aggregateId,
-          ctx.correlationId
+          ctx.correlationId,
+          event.eventType === COMMERCE_ORDER_SETTLED_EVENT_TYPE
+            ? "settled"
+            : "paid"
         );
       }
     },
@@ -894,6 +901,7 @@ export const commerceModule = defineModule({
       COMMERCE_FLASH_SALE_ENDED_EVENT_TYPE,
       COMMERCE_ORDER_CREATED_EVENT_TYPE,
       COMMERCE_ORDER_PAID_EVENT_TYPE,
+      COMMERCE_ORDER_SETTLED_EVENT_TYPE,
       COMMERCE_ORDER_STATUS_CHANGED_EVENT_TYPE,
       COMMERCE_ORDER_CANCELLED_EVENT_TYPE,
       COMMERCE_QUOTATION_ACCEPTED_EVENT_TYPE,

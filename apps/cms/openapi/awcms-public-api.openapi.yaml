@@ -18518,7 +18518,10 @@ paths:
       tags:
         - Commerce
       summary: "Issue #106 (ADR-0017 D3; implemented by #110). Create a hosted payment-gateway session (Midtrans Snap) for a `pending_payment` order whose `paymentMethod` is `gateway`. Anonymous, identified by `phone` — or an optional `customerBearer`, matching the rest of this anonymous surface (Issue #91's own optional-bearer pattern)."
-      description: "`createSession` (the `PaymentGatewayProvider` port) is called OUTSIDE any DB transaction (ADR-0006/ADR-0017 D1); the returned `providerRef` is persisted before the redirect is handed back, so a `commerce:payments:reconcile` pass can always find this session even if the shopper never returns from the hosted page. Calling this twice for the same order while a session is still live returns the SAME session rather than creating a second one at the provider."
+      description: |-
+        `createSession` (the `PaymentGatewayProvider` port) is called OUTSIDE any DB transaction (ADR-0006/ADR-0017 D1); the returned `providerRef` is persisted before the redirect is handed back, so a `commerce:payments:reconcile` pass can always find this session even if the shopper never returns from the hosted page. Calling this twice for the same order while a session is still live returns the SAME session rather than creating a second one at the provider.
+
+        Issue #379 (ADR-0041): the body may carry `purpose` (`full`, the default, is exactly the whole-total session above; every existing caller is unchanged). `deposit` collects the down payment of a down-payment order (`paymentMethod` `dp`) that is still below its release threshold; `balance` collects what remains once the threshold is reached. The client asks for "pay the deposit" / "pay the balance" and supplies NO amount: the server computes the expected amount under the order-row lock, from the allocation ledger, and sends exactly that to the provider as `gross_amount`. A body naming `amount`, `expectedAmount` or `grossAmount` is refused `400`. The webhook and reconcile guard compare the provider's reported figure with the session's frozen expected amount in integer cents (a lower or a higher figure is an `amount_mismatch`, nothing is credited). At most one session is live per order. A `deposit`/`balance` response names `purpose` and `expectedAmount`; a `full` response is unchanged.
       security: []
       parameters:
         - name: orderCode
@@ -18536,6 +18539,14 @@ paths:
                 phone:
                   type: string
                   description: Required unless a valid `customerBearer` is presented instead.
+                purpose:
+                  type: string
+                  enum:
+                    - full
+                    - deposit
+                    - balance
+                  default: full
+                  description: "Issue #379 (ADR-0041 D1). `full`: the whole-total session, only for a `gateway` order while nothing is settled. `deposit`: only on a down-payment order still below its release threshold. `balance`: only on a down-payment order that has reached the threshold and is below the total. A whole-total order can never obtain `deposit` or `balance`."
       responses:
         "201":
           description: Session created (or the still-live session for this order was returned).
@@ -18558,6 +18569,15 @@ paths:
                         format: date-time
                       providerRef:
                         type: string
+                      purpose:
+                        type: string
+                        enum:
+                          - deposit
+                          - balance
+                        description: "Present for a `deposit`/`balance` session only (Issue #379)."
+                      expectedAmount:
+                        type: string
+                        description: Present for a `deposit`/`balance` session only. `numeric(14,2)`, computed by the server under the order-row lock; exactly the `gross_amount` sent to the provider.
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -18569,7 +18589,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: "`PAYMENT_NOT_APPLICABLE` — the order's `paymentMethod` is not `gateway`, or its status is not `pending_payment`; or `ORDER_PARTIALLY_SETTLED` (Issue #285, ADR-0025) — money has already been received against the order, so a hosted checkout (which charges the whole total) is neither created nor handed back; `details.outstanding` carries the balance, to be settled with a manual tender."
+          description: "`PAYMENT_NOT_APPLICABLE` — the order's `paymentMethod` is not `gateway`, or its status is not `pending_payment`; or `ORDER_PARTIALLY_SETTLED` (Issue #285, ADR-0025) — money has already been received against the order, so a hosted checkout (which charges the whole total) is neither created nor handed back; `details.outstanding` carries the balance, to be settled with a manual tender. Issue #379 (ADR-0041): `PURPOSE_NOT_ALLOWED` — the order's state does not admit the requested `purpose` (`details.allowed` lists what it does admit); `SESSION_IN_PROGRESS` — another payment session for the order is still live (a different purpose, or an amount a payment since made stale) and must be paid or expire first."
           content:
             application/json:
               schema:
@@ -40718,6 +40738,17 @@ components:
                     expiresAt:
                       type: string
                       format: date-time
+                    purpose:
+                      type: string
+                      enum:
+                        - full
+                        - deposit
+                        - balance
+                      description: "Issue #379 (ADR-0041 D1) — what the session collects; `full` for every session created before the deposit change."
+                    expectedAmount:
+                      type: string
+                      nullable: true
+                      description: "Issue #379 — the server-computed `numeric(14,2)` amount the session was created to collect; `null` only for a session created before the deposit change (it collects the order total)."
                 events:
                   type: array
                   items:
@@ -42682,6 +42713,17 @@ components:
             - dp_paid
             - paid
             - refunded
+        deposit:
+          type: string
+          description: "Issue #379 (ADR-0041 D6) — the release threshold: the order's snapshotted `dp_amount` for a down-payment order, otherwise the total. Derived on every read of the order detail and the order payments, never stored."
+        balanceDue:
+          type: string
+          description: 'Issue #379 — `total - settled`, never negative (the same figure as `outstanding`, named for "Deposit paid X, balance due Y").'
+        settledAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: "Issue #379 — set once the outstanding amount is zero: the settled time of the ledger leg that took it there; `null` while anything is owed."
     CommerceSlider:
       type: object
       properties:

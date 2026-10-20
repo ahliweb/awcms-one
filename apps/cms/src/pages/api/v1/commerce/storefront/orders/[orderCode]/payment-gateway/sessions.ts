@@ -14,6 +14,7 @@ import {
   fail,
   jsonResponse
 } from "../../../../../../../../modules/_shared/api-response";
+import { parseGatewaySessionPurpose } from "../../../../../../../../modules/commerce/domain/gateway-deposit";
 import { createGatewaySession } from "../../../../../../../../modules/commerce/application/payment-gateway-directory";
 import { commercePreflightResponse } from "../../../../../../../../modules/commerce/application/public-commerce-preflight";
 import { withPublicCommerceTenant } from "../../../../../../../../modules/commerce/application/public-commerce-tenant";
@@ -33,6 +34,16 @@ import { fetchCommerceFeatures } from "../../../../../../../../modules/commerce/
  * answer the SAME neutral `404` the order-tracking route
  * (`GET .../orders/{orderCode}`) uses: a caller must never learn "this order
  * exists but is not yours" from a distinguishable response.
+ *
+ * ## Purpose (Issue #379, ADR-0041)
+ *
+ * The body may carry `purpose`: `full` (the default, and the only value an
+ * order without a deposit ever admits - every existing caller is unchanged),
+ * `deposit` (the down payment of a down-payment order) or `balance` (what
+ * remains after it). The client asks for "pay the deposit" / "pay the balance"
+ * and supplies NO amount: the server computes the expected amount under the
+ * order-row lock and sends exactly that to the provider. A body naming an
+ * amount at all is refused `400`.
  *
  * `createGatewaySession` itself opens its own two short transactions off the
  * raw pool client (`sql`, not this route's own `tx`) and calls the provider
@@ -82,7 +93,49 @@ export const POST: APIRoute = async ({ request, params, clientAddress }) => {
   const bodyRead = await readJsonBody(request);
   if (bodyRead.tooLarge) return bodyTooLargeResponse(bodyRead.limitBytes);
 
-  const body = (bodyRead.value ?? {}) as { phone?: unknown };
+  const body = (bodyRead.value ?? {}) as {
+    phone?: unknown;
+    purpose?: unknown;
+  };
+
+  // Issue #379 (ADR-0041 D1): the client never supplies money. A body naming an
+  // amount is refused rather than silently ignored, so nothing can be mistaken
+  // for a figure the server trusts.
+  const bodyRecord = (bodyRead.value ?? {}) as Record<string, unknown>;
+  const suppliedMoneyField = ["amount", "expectedAmount", "grossAmount"].find(
+    (field) => field in bodyRecord
+  );
+  if (suppliedMoneyField) {
+    return fail(
+      400,
+      "VALIDATION_ERROR",
+      "The amount is computed by the server and cannot be supplied.",
+      {},
+      [
+        {
+          field: suppliedMoneyField,
+          message: "The amount is computed by the server."
+        }
+      ],
+      { vary: "Origin" }
+    );
+  }
+  const purpose = parseGatewaySessionPurpose(body.purpose);
+  if (purpose === null) {
+    return fail(
+      400,
+      "VALIDATION_ERROR",
+      "purpose must be one of full, deposit, balance.",
+      {},
+      [
+        {
+          field: "purpose",
+          message: "purpose must be one of full, deposit, balance."
+        }
+      ],
+      { vary: "Origin" }
+    );
+  }
   const hasAuthorizationHeader = request.headers.get("authorization") !== null;
   const rawPhone = typeof body.phone === "string" ? body.phone : null;
 
@@ -124,7 +177,8 @@ export const POST: APIRoute = async ({ request, params, clientAddress }) => {
           ? { kind: "bearer", request }
           : { kind: "phone", phone: rawPhone! },
         provider,
-        providerKey
+        providerKey,
+        purpose
       );
     }
   );
@@ -168,6 +222,32 @@ export const POST: APIRoute = async ({ request, params, clientAddress }) => {
     );
   }
 
+  if (result.kind === "purpose_not_allowed") {
+    // Issue #379 (ADR-0041 D1/D3): the order's state does not admit this
+    // purpose (a deposit/balance on a whole-total order, a balance before the
+    // deposit is in, ...). `allowed` lists what it does admit.
+    return fail(
+      409,
+      "PURPOSE_NOT_ALLOWED",
+      "This order does not admit that kind of payment session right now.",
+      {},
+      { allowed: result.allowed },
+      corsHeaders
+    );
+  }
+
+  if (result.kind === "session_in_progress") {
+    // Issue #379 (ADR-0041 D5.1): one live session per order.
+    return fail(
+      409,
+      "SESSION_IN_PROGRESS",
+      "Another payment session for this order is still open; wait for it to be paid or to expire.",
+      {},
+      undefined,
+      corsHeaders
+    );
+  }
+
   if (result.kind === "gateway_unavailable") {
     return fail(
       503,
@@ -185,7 +265,16 @@ export const POST: APIRoute = async ({ request, params, clientAddress }) => {
       data: {
         redirectUrl: result.session.redirectUrl,
         expiresAt: result.session.expiresAt,
-        providerRef: result.session.providerRef
+        providerRef: result.session.providerRef,
+        // Issue #379: only a deposit/balance session names its purpose and the
+        // server-computed amount it collects; a whole-total session's response
+        // is exactly what it always was.
+        ...(result.session.purpose === "full"
+          ? {}
+          : {
+              purpose: result.session.purpose,
+              expectedAmount: result.session.expectedAmount
+            })
       },
       meta: {}
     },

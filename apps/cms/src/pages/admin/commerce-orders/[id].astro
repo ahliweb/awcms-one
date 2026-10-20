@@ -468,6 +468,13 @@ const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
                   <span>{t("Total")}</span>
                   <span>{payments.settlement.total}</span>
                 </li>
+                {payments.settlement.deposit !== undefined &&
+                  payments.settlement.deposit !== payments.settlement.total && (
+                    <li>
+                      <span>{t("Deposit (release threshold)")}</span>
+                      <span>{payments.settlement.deposit}</span>
+                    </li>
+                  )}
                 <li>
                   <span>{t("Paid")}</span>
                   <span>{payments.settlement.paid}</span>
@@ -486,6 +493,14 @@ const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
                     <span>{payments.settlement.overpaid}</span>
                   </li>
                 )}
+                {payments.settlement.deposit !== undefined &&
+                  payments.settlement.deposit !== payments.settlement.total &&
+                  payments.settlement.settledAt && (
+                    <li>
+                      <span>{t("Fully settled on")}</span>
+                      <span>{payments.settlement.settledAt}</span>
+                    </li>
+                  )}
               </ul>
 
               {payments.allocations.length === 0 ? (

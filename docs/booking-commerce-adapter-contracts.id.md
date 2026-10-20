@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](booking-commerce-adapter-contracts.md)
 
-<!-- i18n-source-hash: sha256:d427aa4e330105d4bbd65cb42f7dc62d3ff2d19ee309e9833454cc6dc2e84e76 -->
+<!-- i18n-source-hash: sha256:6f1b778ac442210ef9dfbba389845a23383d75d9ef3d66358227d1270396daba -->
 
 # Adapter booking-commerce — draf kontrak OpenAPI dan AsyncAPI
 
@@ -351,7 +351,7 @@ components:
 
 ### 3.3 Sesi deposit (ADR-0041)
 
-Rute 6 adalah perubahan aditif pada `createCommerceStorefrontPaymentGatewaySession` yang sudah ada: `purpose` bawaannya `full`, sehingga semua pemanggil yang ada tidak berubah (ADR-0041 D3). Klien meminta "bayar deposit" atau "bayar pelunasan" dan tidak mengirim jumlah.
+Rute 6 adalah perubahan aditif pada `createCommerceStorefrontPaymentGatewaySession` yang sudah ada: `purpose` bawaannya `full`, sehingga semua pemanggil yang ada tidak berubah (ADR-0041 D3). Klien meminta "bayar deposit" atau "bayar pelunasan" dan tidak mengirim jumlah. _Diimplementasikan #379 (kontrak yang berlaku adalah `docs/api.md` dan bundel OpenAPI): respons menambah `purpose` dan `expectedAmount` hanya untuk sesi `deposit`/`balance`, body yang menyebut jumlah adalah `400`, kode galatnya `PURPOSE_NOT_ALLOWED` dan `SESSION_IN_PROGRESS`, dan rute staf 7 belum dibangun._
 
 ```yaml
 # DRAFT — not in the live spec. Amendment to an existing live operation, shown as the delta.
@@ -1209,8 +1209,9 @@ Penolakan Booking mempertahankan kode yang diberikan Booking (gabungan akhir dit
 | `OFFERING_NOT_LINKED`                               | 409  | Offering tidak punya tautan aktif ke produk                                                                                          |
 | `OFFERING_ALREADY_LINKED`, `PRODUCT_ALREADY_LINKED` | 409  | Satu tautan aktif per offering dan per produk                                                                                        |
 | `PRODUCT_NOT_SERVICE`, `QUANTITY_BASIS_MISMATCH`    | 409  | Produk tertaut bukan `service`, atau `quantityBasis` tidak sesuai granularitas offering                                              |
-| `POINTS_DEPOSIT_NOT_COMBINABLE`                     | 409  | ADR-0041 D8; kode stabilnya "ditetapkan di isu implementasi", nama ini usulan                                                        |
+| `POINTS_DEPOSIT_NOT_COMBINABLE`                     | 409  | ADR-0041 D8; kode stabil yang berlaku adalah `LOYALTY_REDEMPTION_DEPOSIT_CONFLICT` (#363), nama ini digantikan olehnya |
 | `PURPOSE_NOT_ALLOWED`                               | 409  | Sesi `deposit` atau `balance` pada pesanan yang status atau kebijakan depositnya tidak mengizinkan (ADR-0041 D1, D3)                 |
+| `SESSION_IN_PROGRESS`                               | 409  | Sesi gateway lain untuk pesanan itu masih hidup (satu sesi hidup per pesanan, ADR-0041 D5.1; ditetapkan #379)                        |
 | `QUOTE_CHANGED`                                     | 409  | Refund yang dihitung ulang berbeda dari angka yang disetujui pembeli; tidak ada yang dibatalkan                                      |
 | `OVERRIDE_EXCEEDS_PAID`                             | 409  | `finalRefund` di atas jumlah terbayar yang dihitung ulang                                                                            |
 | `DECISION_ALREADY_EXECUTED`                         | 409  | Leg refund keputusan sudah direncanakan; jumlahnya tidak bisa berubah lagi                                                           |
@@ -1430,12 +1431,13 @@ channels:
   awcms.commerce.order.settled:
     address: awcms.commerce.order.settled
     description: >-
-      PROPOSED NAME (ADR-0041 D7; final name and payload are decided in #355).
-      Settlement on an order reached its total. Emitted exactly once, in the same
+      FIXED BY #379 (ADR-0041 D7, implemented): the name and the payload below.
+      Settlement of a DEPOSIT order reached its total. Emitted once, in the same
       transaction as the ledger write that makes outstanding zero, for a deposit
-      order and for a whole-total order alike. The loyalty earner reacts to
-      order.paid for a whole-total order and to this event for a deposit order,
-      under the existing earn source key so no order earns twice.
+      order only: a whole-total order fires none, its order.paid already means
+      fully paid. The loyalty earner reacts to order.paid for a whole-total order
+      and to this event for a deposit order, under the existing earn source key
+      so no order earns twice.
     messages: { OrderSettled: { $ref: "#/components/messages/OrderSettled" } }
   awcms.commerce.booking_refund.decided:
     address: awcms.commerce.booking_refund.decided
@@ -1480,17 +1482,14 @@ components:
               payload:
                 type: object
                 additionalProperties: false
-                required: [orderId, orderCode, total, settledAt, hadDeposit]
+                required: [orderId, orderCode, total, deposit, settledAt]
                 properties:
                   orderId: { type: string, format: uuid }
                   orderCode: { type: string }
                   total: { type: string }
                   settledAt: { type: string, format: date-time }
-                  hadDeposit:
-                    {
-                      type: boolean,
-                      description: "True when dp_amount was below total."
-                    }
+                  deposit:
+                    { type: string, description: "The order's dp_amount." }
     BookingRefundDecided:
       contentType: application/json
       payload:
@@ -1592,10 +1591,10 @@ Draf di atas mengimplementasikan kontrol model ancaman berikut ([model ancaman](
 | 3   | Pengkabelan step-up                  | D10: tingkat handler, TTL platform, `STEP_UP_REQUIRED` yang ada                                                                                                                                                     |
 | 4   | Wahana selisih reschedule            | D7: `supplementary_order`; di v1 jumlahnya nol dan wahana null (hanya reschedule berdurasi sama). Pemilik dapat merevisi                                                                                            |
 | 5   | Check-in dengan saldo jatuh tempo    | D19: pengaturan tenant `checkin_requires_settlement`, bawaan `false`; `BALANCE_NOT_SETTLED` hanya bila aktif. Pemilik dapat merevisi                                                                                |
-| 6   | Nama peristiwa pelunasan             | D16: ditetapkan #379 (ADR-0041 D7); tidak ada consumer adapter yang membutuhkannya; kanal `awcms.commerce.order.settled` di bagian 5 tetap penampung sementara                                                      |
+| 6   | Nama peristiwa pelunasan             | D16: `awcms.commerce.order.settled`, ditetapkan dan diimplementasikan #379 (ADR-0041 D7), dipancarkan hanya untuk pesanan uang muka; tidak ada consumer adapter yang membutuhkannya; kanal di bagian 5 dikoreksi ke muatan yang dirilis |
 | 7   | Kompensasi hold-ke-pesanan           | D17: hold dulu, pesanan kedua; bila gagal lepas hold lewat port; hold yang tak dapat dilepas kedaluwarsa                                                                                                            |
 | 8   | Permintaan reschedule oleh pelanggan | D18: tanpa rute pelanggan di v1; ditunda ke #359                                                                                                                                                                    |
-| -   | Nama kode galat (bagian 4)           | D14: himpunan milik adapter dibekukan; kode ranah ADR-0041 ditetapkan #379                                                                                                                                          |
+| -   | Nama kode galat (bagian 4)           | D14: himpunan milik adapter dibekukan; kode ranah ADR-0041 ditetapkan #379: `PURPOSE_NOT_ALLOWED`, `SESSION_IN_PROGRESS`                                                                                            |
 | -   | Nama consumer (bagian 5)             | D15: keenam nama `commerce.booking_*` dibekukan                                                                                                                                                                     |
 
 ## 8. Apa yang bukan dokumen ini

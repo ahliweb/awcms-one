@@ -171,6 +171,21 @@ export type SettlementView = {
   outstanding: string;
   overpaid: string;
   paymentStatus: SettlementPaymentStatus;
+  /**
+   * Issue #379 (ADR-0041 D6) - the deposit-aware fields, DERIVED from the
+   * ledger on every read and never stored. Present on the order detail and the
+   * order payments read (`fetchOrderPaymentSummary`), absent from the write
+   * responses that carry the plain view.
+   *
+   * `deposit`: the release threshold (`dp_amount` for a down-payment order,
+   * otherwise the total). `balanceDue`: `total - settled`, never negative (the
+   * same figure as `outstanding`, named for "Deposit paid X, balance due Y").
+   * `settledAt`: set once outstanding is zero - the settled time of the ledger
+   * leg that took it there; `null` while anything is owed.
+   */
+  deposit?: string;
+  balanceDue?: string;
+  settledAt?: string | null;
 };
 
 export function toSettlementView(
@@ -227,6 +242,48 @@ export function derivePaymentStatus(
   const dp = releaseThresholdCents(order);
   if (dp < totalCents && settledCents >= dp) return "dp_paid";
   return "partially_paid";
+}
+
+export type SettledAtRow = LedgerRow & {
+  /** When the leg stopped being pending (ISO-8601); `null` for a leg still pending. */
+  settledAt: string | null;
+};
+
+/**
+ * Issue #379 (ADR-0041 D6) - when settlement reached the total: the settled
+ * time of the leg that took the running balance from below the total to at
+ * least the total, most recent crossing (a reversal that reopens the balance
+ * and a later payment that closes it again moves it). `null` while anything is
+ * owed, for a free order and for an empty ledger. `rows` are in ledger order;
+ * legs are replayed by settled time, ledger order breaking ties. Pure.
+ */
+export function deriveSettledAt(
+  total: string,
+  rows: readonly SettledAtRow[]
+): string | null {
+  const totalCents = toCents(total);
+  if (totalCents <= 0n) return null;
+  const legs = rows
+    .map((row, index) => ({ row, index }))
+    .filter(({ row }) => row.status === "succeeded" && row.settledAt !== null)
+    .sort(
+      (a, b) =>
+        Date.parse(a.row.settledAt!) - Date.parse(b.row.settledAt!) ||
+        a.index - b.index
+    );
+  let running = 0n;
+  let settledAt: string | null = null;
+  for (const { row } of legs) {
+    const before = running;
+    running +=
+      row.kind === "payment" ? toCents(row.amount) : -toCents(row.amount);
+    if (running >= totalCents) {
+      if (before < totalCents) settledAt = row.settledAt;
+    } else {
+      settledAt = null;
+    }
+  }
+  return running >= totalCents ? settledAt : null;
 }
 
 /** `true` once settlement has reached the point where the lifecycle may move to `paid`. */

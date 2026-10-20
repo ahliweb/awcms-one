@@ -688,6 +688,22 @@ channels:
       `source`, and the order's resulting `paid`/`outstanding`/
       `paymentStatus` — never a customer name/phone or a payment reference.
       A pending gateway leg and the `sql/943` backfill do not fire it.
+  awcms.commerce.order.settled:
+    address: awcms.commerce.order.settled
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      Settlement of a deposit order (`payment_method = 'dp'`, `dp_amount`
+      below the total) reached the total (Issue #379, ADR-0041 D7). Producer:
+      `commerce/application/payment-allocation-directory.ts`'s
+      `finalizeSettlement`, in the same transaction as the ledger write that
+      made the outstanding amount zero. Fires for a deposit order only:
+      `order.paid` fires for it at the deposit (the release threshold), so
+      this is the fact that says it is fully paid, and the loyalty earner
+      reacts to it. A whole-total order fires none. Payload: `orderId`,
+      `orderCode`, `total`, `deposit`, `settledAt` - never a customer
+      name/phone or a payment reference.
   awcms.commerce.payment.reversed:
     address: awcms.commerce.payment.reversed
     messages:
@@ -1331,6 +1347,12 @@ operations:
       $ref: "#/channels/awcms.commerce.payment.recorded"
     messages:
       - $ref: "#/channels/awcms.commerce.payment.recorded/messages/DomainEvent"
+  publishCommerceOrderSettled:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.order.settled"
+    messages:
+      - $ref: "#/channels/awcms.commerce.order.settled/messages/DomainEvent"
   publishCommercePaymentReversed:
     action: send
     channel:
