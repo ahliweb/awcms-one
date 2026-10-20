@@ -39,6 +39,7 @@ import { normalizePhoneNumber } from "../domain/phone-normalisation";
 import { isOrderPayable, type OrderStatus } from "../domain/order-status";
 import {
   decideGatewayPurpose,
+  decideLiveSessionReuse,
   type GatewaySessionPurpose
 } from "../domain/gateway-deposit";
 import type { PaymentGatewayProvider } from "../domain/payment-gateway-provider";
@@ -266,9 +267,10 @@ async function validateAndCheckReuse(
       // end first (it expires or is paid) - never a second live session.
       const live = await fetchLiveSession(tx, tenantId, order.id);
       if (live) {
-        return live.purpose === decision.purpose &&
-          live.expected_amount !== null &&
-          toCents(live.expected_amount) === decision.expectedCents
+        return decideLiveSessionReuse(
+          { purpose: live.purpose, expectedAmount: live.expected_amount },
+          { purpose: decision.purpose, expectedAmount: decision.expectedAmount }
+        ) === "reuse"
           ? { kind: "reuse", session: live }
           : { kind: "session_in_progress" };
       }
@@ -383,6 +385,13 @@ export async function createGatewaySession(
   try {
     return await withTenantOrThrow(sql, tenantId, async (tx) => {
       if (validated.purpose === "full") {
+        // Serialise with a concurrent create for this order (the deposit/balance
+        // branch below takes the same lock via `lockOrderAndReadSettledCents`).
+        await tx`
+          SELECT id FROM awcms_commerce_orders
+          WHERE tenant_id = ${tenantId} AND id = ${validated.orderId}
+          FOR UPDATE
+        `;
         // Re-check: a payment may have been recorded while the provider call
         // was in flight (no lock is held across it). Nothing is inserted, so
         // the provider-side session is simply never used.
@@ -428,6 +437,26 @@ export async function createGatewaySession(
         if (decision.expectedAmount !== validated.expectedAmount) {
           return { kind: "session_in_progress" as const };
         }
+      }
+
+      // One live session per order (ADR-0041 D5.1), re-checked under the
+      // order-row lock taken above: two requests can both pass the validate
+      // step while no session exists, and each calls the provider with no
+      // lock held. The later persist must not insert a second live session -
+      // it hands back the first when it is the very session this request
+      // would have made, else reports one in progress. The provider-side
+      // session this request created is simply never used.
+      const liveNow = await fetchLiveSession(tx, tenantId, validated.orderId);
+      if (liveNow) {
+        return decideLiveSessionReuse(
+          { purpose: liveNow.purpose, expectedAmount: liveNow.expected_amount },
+          {
+            purpose: validated.purpose,
+            expectedAmount: validated.expectedAmount
+          }
+        ) === "reuse"
+          ? { kind: "reused" as const, session: toRecord(liveNow) }
+          : { kind: "session_in_progress" as const };
       }
       const rows = (await tx`
         INSERT INTO awcms_commerce_payment_gateway_sessions (

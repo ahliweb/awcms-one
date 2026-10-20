@@ -14,7 +14,10 @@ import {
   fail,
   jsonResponse
 } from "../../../../../../../../modules/_shared/api-response";
-import { parseGatewaySessionPurpose } from "../../../../../../../../modules/commerce/domain/gateway-deposit";
+import {
+  isPlainJsonObject,
+  parseGatewaySessionPurpose
+} from "../../../../../../../../modules/commerce/domain/gateway-deposit";
 import { createGatewaySession } from "../../../../../../../../modules/commerce/application/payment-gateway-directory";
 import { commercePreflightResponse } from "../../../../../../../../modules/commerce/application/public-commerce-preflight";
 import { withPublicCommerceTenant } from "../../../../../../../../modules/commerce/application/public-commerce-tenant";
@@ -93,6 +96,18 @@ export const POST: APIRoute = async ({ request, params, clientAddress }) => {
   const bodyRead = await readJsonBody(request);
   if (bodyRead.tooLarge) return bodyTooLargeResponse(bodyRead.limitBytes);
 
+  // A JSON body that parses but is not an object (`5`, `"x"`, `true`, `[]`)
+  // is a validation error, never a 500 from the `in` checks below.
+  if (bodyRead.value != null && !isPlainJsonObject(bodyRead.value)) {
+    return fail(
+      400,
+      "VALIDATION_ERROR",
+      "The request body must be a JSON object.",
+      {},
+      [{ field: "body", message: "The request body must be a JSON object." }],
+      { vary: "Origin" }
+    );
+  }
   const body = (bodyRead.value ?? {}) as {
     phone?: unknown;
     purpose?: unknown;
@@ -101,7 +116,7 @@ export const POST: APIRoute = async ({ request, params, clientAddress }) => {
   // Issue #379 (ADR-0041 D1): the client never supplies money. A body naming an
   // amount is refused rather than silently ignored, so nothing can be mistaken
   // for a figure the server trusts.
-  const bodyRecord = (bodyRead.value ?? {}) as Record<string, unknown>;
+  const bodyRecord = body as Record<string, unknown>;
   const suppliedMoneyField = ["amount", "expectedAmount", "grossAmount"].find(
     (field) => field in bodyRecord
   );

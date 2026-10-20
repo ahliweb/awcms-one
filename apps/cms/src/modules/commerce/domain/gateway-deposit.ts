@@ -133,3 +133,30 @@ export function decideGatewayPurpose(
     expectedAmount: fromCents(expectedCents)
   };
 }
+
+/**
+ * What to do with a still-live session when another is about to be created
+ * (ADR-0041 D5.1, one live session per order). It is handed back only when it
+ * is exactly the one the request would create - the same purpose and, for a
+ * deposit/balance, the same expected amount; anything else must end first.
+ * Pure so the validate step and the persist step (which re-checks under the
+ * order-row lock) decide identically.
+ */
+export function decideLiveSessionReuse(
+  live: { purpose: string; expectedAmount: string | null },
+  wanted: { purpose: GatewaySessionPurpose; expectedAmount: string }
+): "reuse" | "in_progress" {
+  if (live.purpose !== wanted.purpose) return "in_progress";
+  if (wanted.purpose === "full") return "reuse";
+  return live.expectedAmount !== null &&
+    toCents(live.expectedAmount) === toCents(wanted.expectedAmount)
+    ? "reuse"
+    : "in_progress";
+}
+
+/** A JSON request body that is a plain object (not null, an array or a primitive). */
+export function isPlainJsonObject(
+  value: unknown
+): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}

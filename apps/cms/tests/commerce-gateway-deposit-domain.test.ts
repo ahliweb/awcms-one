@@ -18,6 +18,8 @@ import { join } from "node:path";
 import {
   allowedGatewayPurposes,
   decideGatewayPurpose,
+  decideLiveSessionReuse,
+  isPlainJsonObject,
   isDepositOrder,
   parseGatewaySessionPurpose
 } from "../src/modules/commerce/domain/gateway-deposit";
@@ -341,5 +343,58 @@ describe("migration sql/1025", () => {
       .join("\n");
     expect(statements).not.toMatch(/DROP TABLE/i);
     expect(statements).not.toMatch(/\bGRANT\b/i);
+  });
+});
+
+describe("live session reuse (ADR-0041 D5.1)", () => {
+  const wanted = { purpose: "deposit", expectedAmount: "30000.00" } as const;
+
+  test("the same purpose and amount is reused, whatever the decimal spelling", () => {
+    expect(
+      decideLiveSessionReuse(
+        { purpose: "deposit", expectedAmount: "30000" },
+        wanted
+      )
+    ).toBe("reuse");
+  });
+
+  test("another purpose, another amount or an unrecorded amount is in progress", () => {
+    expect(
+      decideLiveSessionReuse(
+        { purpose: "balance", expectedAmount: "30000.00" },
+        wanted
+      )
+    ).toBe("in_progress");
+    expect(
+      decideLiveSessionReuse(
+        { purpose: "deposit", expectedAmount: "20000.00" },
+        wanted
+      )
+    ).toBe("in_progress");
+    expect(
+      decideLiveSessionReuse(
+        { purpose: "deposit", expectedAmount: null },
+        wanted
+      )
+    ).toBe("in_progress");
+  });
+
+  test("a full session is reused on purpose alone", () => {
+    expect(
+      decideLiveSessionReuse(
+        { purpose: "full", expectedAmount: null },
+        { purpose: "full", expectedAmount: "50000.00" }
+      )
+    ).toBe("reuse");
+  });
+});
+
+describe("request body shape", () => {
+  test("only a plain object passes; primitives, null and arrays do not", () => {
+    expect(isPlainJsonObject({})).toBe(true);
+    expect(isPlainJsonObject({ phone: "1" })).toBe(true);
+    for (const bad of [5, "x", true, null, [], [1]]) {
+      expect(isPlainJsonObject(bad)).toBe(false);
+    }
   });
 });
