@@ -92,8 +92,14 @@
         "tax"
       ],
       "capabilitiesProvided": [],
-      "capabilitiesConsumed": [],
-      "permissionCount": 140,
+      "capabilitiesConsumed": [
+        {
+          "capability": "commission_accrual",
+          "providedBy": "hr_commission",
+          "optional": true
+        }
+      ],
+      "permissionCount": 144,
       "navigationCount": 27,
       "jobCount": 10,
       "hasHealthCheck": false,

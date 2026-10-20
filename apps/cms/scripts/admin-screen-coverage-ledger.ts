@@ -237,5 +237,13 @@ export const NOT_YET_SCREENED: readonly string[] = [
   "hr_commission.accruals.accrue",
   "hr_commission.accruals.pay",
   "hr_commission.accruals.read",
-  "hr_commission.accruals.release"
+  "hr_commission.accruals.release",
+
+  // commerce commission attribution (4) — ADR-0046 / Issue #391. The adapter ships
+  // API-first (OpenAPI, no screen): the settings and staff-link screens are the
+  // recorded follow-up, and the keys leave this list when a screen claims them.
+  "commerce.commission_settings.manage",
+  "commerce.commission_settings.read",
+  "commerce.commission_staff_links.manage",
+  "commerce.commission_staff_links.read"
 ];

@@ -9085,6 +9085,212 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/commission/settings:
+    get:
+      operationId: getCommerceCommissionSettings
+      tags:
+        - Commerce
+      summary: "Issue #391 (ADR-0046). Whether employee-commission sale attribution is on for the tenant, which `hr_commission` rule key it applies and the source type that rule declares. Gated on `commerce.commission_settings.read`."
+      description: "OFF by default: a tenant that never saved settings answers `enabled: false` with no rule key and `updatedAt: null`."
+      responses:
+        "200":
+          description: The settings, or the defaults.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      settings:
+                        $ref: "#/components/schemas/CommerceCommissionSettings"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    put:
+      operationId: putCommerceCommissionSettings
+      tags:
+        - Commerce
+      summary: "Issue #391 (ADR-0046). Switch commission attribution on or off and name the `hr_commission` rule it applies. Gated on `commerce.commission_settings.manage` (a high-risk action); audited with the old and new values. An upsert, so a replay is harmless."
+      description: Takes effect for orders paid afterwards. Switching it on requires a `ruleKey`; the key is stored, not looked up, because commerce never reads the commission tables - a key with no published version in force on a sale's date makes the ledger refuse that sale (audited as `commerce.commission.attribution_refused`).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - enabled
+              additionalProperties: false
+              properties:
+                enabled:
+                  type: boolean
+                ruleKey:
+                  type: string
+                  nullable: true
+                  pattern: ^[a-z][a-z0-9_.-]{0,62}$
+                  description: The `hr_commission` rule key. Required when `enabled` is true.
+                sourceType:
+                  type: string
+                  pattern: ^[a-z][a-z0-9_.-]{0,62}$
+                  default: commerce_order_line
+                  description: Must equal the `sourceType` the rule declares.
+      responses:
+        "200":
+          description: The saved settings.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      settings:
+                        $ref: "#/components/schemas/CommerceCommissionSettings"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/commission/staff-links:
+    get:
+      operationId: listCommerceCommissionStaffLinks
+      tags:
+        - Commerce
+      summary: "Issue #391 (ADR-0046). Which employment earns the commission of which login's counter (POS) sales, newest first (at most 200). Live links only unless `includeRetired=true`. Gated on `commerce.commission_staff_links.read`."
+      parameters:
+        - name: includeRetired
+          in: query
+          required: false
+          schema:
+            type: boolean
+            default: false
+      responses:
+        "200":
+          description: The links.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceCommissionStaffLink"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    post:
+      operationId: createCommerceCommissionStaffLink
+      tags:
+        - Commerce
+      summary: "Issue #391 (ADR-0046). Link a login (tenant user) to the `hr_workforce` employment that earns the commission of its counter sales. Gated on `commerce.commission_staff_links.manage` (a high-risk action); audited."
+      description: "The employment id is opaque to commerce: it is not checked against `hr_workforce` here, the commission ledger validates it when an accrual is written. A login has at most one LIVE link and an employment at most one (`409` otherwise). An unknown tenant user and another tenant's are the same `404`."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - tenantUserId
+                - employmentId
+              additionalProperties: false
+              properties:
+                tenantUserId:
+                  type: string
+                  format: uuid
+                employmentId:
+                  type: string
+                  format: uuid
+      responses:
+        "201":
+          description: The new link.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceCommissionStaffLink"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`COMMISSION_LOGIN_ALREADY_LINKED` or `COMMISSION_EMPLOYMENT_ALREADY_LINKED` - retire the live link first."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/commission/staff-links/{id}/retire:
+    post:
+      operationId: retireCommerceCommissionStaffLink
+      tags:
+        - Commerce
+      summary: "Issue #391 (ADR-0046). End a staff link: sales paid afterwards are no longer attributed to that employment. A link is retired, never deleted, and a retired link is final. Gated on `commerce.commission_staff_links.manage` (a high-risk action); audited."
+      description: A sale already reported keeps the accrual it produced. Retiring an already-retired link is `409`, so a retry cannot be mistaken for a second effect.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The retired link.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceCommissionStaffLink"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`COMMISSION_LINK_ALREADY_RETIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/conversations:
     get:
       operationId: listCommerceConversations
@@ -42001,6 +42207,59 @@ components:
         productCount:
           type: integer
           description: Computed — the tenant's LIVE products currently in this category (Issue 23).
+    CommerceCommissionSettings:
+      type: object
+      description: "Issue #391 (ADR-0046). Employee-commission sale attribution settings; the defaults (off, no rule) for a tenant that never saved."
+      required:
+        - enabled
+        - ruleKey
+        - sourceType
+        - updatedAt
+      properties:
+        enabled:
+          type: boolean
+        ruleKey:
+          type: string
+          nullable: true
+        sourceType:
+          type: string
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+    CommerceCommissionStaffLink:
+      type: object
+      description: "Issue #391 (ADR-0046). Which employment earns the commission of which login's counter sales. The employment id is opaque to commerce."
+      required:
+        - id
+        - tenantUserId
+        - employmentId
+        - createdAt
+      properties:
+        id:
+          type: string
+          format: uuid
+        tenantUserId:
+          type: string
+          format: uuid
+        employmentId:
+          type: string
+          format: uuid
+        createdByTenantUserId:
+          type: string
+          format: uuid
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        retiredByTenantUserId:
+          type: string
+          format: uuid
+          nullable: true
+        retiredAt:
+          type: string
+          format: date-time
+          nullable: true
     CommerceConversation:
       type: object
       description: "Issue #111 (contract #106 D8). A row of `awcms_commerce_conversations` — one customer account's private thread with the store. The account's own list/detail (`GET .../account/conversations*`) carries only `id`/`subject`/`status`/`lastMessageAt`/`unreadForCustomer` (unreadForCustomer travels as 0|1, never a genuine count); the staff list/detail additionally carries `customerId`/`customerName`/`unreadForStore`."

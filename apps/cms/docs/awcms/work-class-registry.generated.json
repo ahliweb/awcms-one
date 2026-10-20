@@ -577,6 +577,21 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/commission/settings.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/commission/staff-links/[id]/retire.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/commission/staff-links/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/conversations/[id]/index.ts",
       "workClass": "interactive",
       "source": "factory"

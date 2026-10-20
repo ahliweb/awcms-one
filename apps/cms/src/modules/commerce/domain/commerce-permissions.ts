@@ -590,6 +590,34 @@ export const COMMERCE_LOYALTY_REDEMPTION_PERMISSIONS = {
 } as const;
 
 /**
+ * Employee-commission sale attribution (Issue #391, ADR-0046, `sql/1031`). Four
+ * keys on two activity codes, EXISTING verbs only (the upstream-owned
+ * `AccessAction` union is not widened). `manage` is a high-risk action already
+ * (`HIGH_RISK_ACTIONS`): both settings and links decide who is paid.
+ *
+ *   - `commission_settings`: `read` / `manage` - whether the adapter is on and
+ *     which `hr_commission` rule it applies.
+ *   - `commission_staff_links`: `read` / `manage` - which employment earns the
+ *     commission of which login's counter sales (create and retire).
+ *
+ * Neither implies the other, any `commerce.orders.*` key, or any
+ * `hr_commission.*` key; holding one opens no commission amount, accrual or rule.
+ */
+export const COMMERCE_COMMISSION_SETTINGS_ACTIVITY_CODE = "commission_settings";
+export const COMMERCE_COMMISSION_STAFF_LINKS_ACTIVITY_CODE =
+  "commission_staff_links";
+
+export const COMMERCE_COMMISSION_SETTINGS_PERMISSIONS = {
+  read: "commerce.commission_settings.read",
+  manage: "commerce.commission_settings.manage"
+} as const;
+
+export const COMMERCE_COMMISSION_STAFF_LINK_PERMISSIONS = {
+  read: "commerce.commission_staff_links.read",
+  manage: "commerce.commission_staff_links.manage"
+} as const;
+
+/**
  * Returns, refunds and exchanges (Issue #287, ADR-0033, `sql/996`). Five
  * permissions on three activity codes, EXISTING verbs only (the upstream-owned
  * `AccessAction` union is not widened - ADR-0025 D9's reasoning again):

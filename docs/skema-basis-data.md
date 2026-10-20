@@ -535,6 +535,17 @@ erDiagram
   document_deliveries ||--o| whatsapp_messages : "correlation_id = id (reads the live status)"
 ```
 
+## Employee-commission attribution: two tables (`sql/1030`–`1031`)
+
+Issue #391 ([ADR-0046](adr/0046-commission-attribution-adapter-reports-paid-counter-sales-to-the-hr-commission-ledger.md)). The commerce side of reporting a paid counter sale to `hr_commission`; the ledger itself (rules, accruals, amounts) belongs to that module and commerce never reads it.
+
+| Object | Key columns | Notes |
+| --- | --- | --- |
+| `awcms_commerce_commission_settings` | `tenant_id` (primary key — at most one row per tenant), `enabled boolean NOT NULL DEFAULT false`, `rule_key text` (`^[a-z][a-z0-9_.-]{0,62}$`), `source_type text NOT NULL DEFAULT 'commerce_order_line'`, `updated_by_tenant_user_id` | CHECK `NOT enabled OR rule_key IS NOT NULL`: the adapter cannot be on without a rule. No row = off. Changed under `commerce.commission_settings.manage`, audited with the old and new values. Retention: a `delegated` descriptor with no purge (an age-based delete would silently stop every staff member earning commission) |
+| `awcms_commerce_commission_staff_links` | `id`, `tenant_user_id` (composite FK `(tenant_id, tenant_user_id)` to `awcms_tenant_users`), `employment_id uuid` (**opaque: no foreign key**), `created_by_tenant_user_id`, `created_at`, `retired_by_tenant_user_id`, `retired_at` | Partial unique indexes: one LIVE link per `(tenant_id, tenant_user_id)` and per `(tenant_id, employment_id)` (`WHERE retired_at IS NULL`). A trigger refuses DELETE for every role, any change to who a link joins, and any change to a retired link; `awcms_app` is `REVOKE`d DELETE and TRUNCATE. CHECK `(retired_at IS NULL) = (retired_by_tenant_user_id IS NULL)`. Subject data: the login is a `tenant_user` subject column; `exportable: false`, `retain_under_obligation` |
+
+Both tables: RLS `ENABLE`+`FORCE` with the standard tenant-isolation policy. `sql/1031` seeds the four permissions and grants `awcms_worker` (the dispatcher that runs the consumer) `SELECT` on the two tables; on the **ledger's** tables `SELECT, INSERT` on `awcms_hr_commission_accruals` and `awcms_hr_commission_transitions` (never `UPDATE` or `DELETE`), `SELECT` on `awcms_hr_commission_rules` and `awcms_hr_employments` plus a **column-level `UPDATE (id)`** on those two (PostgreSQL requires an `UPDATE` privilege for the `FOR SHARE` reads the posting core and its guard trigger use), and `SELECT` on `awcms_tenant_settings` (time zone) and `awcms_tenant_modules`. The grants exist because the port's posting core runs with the caller's privileges; nothing in `commerce` names those tables (`apps/cms/tests/commerce-commission-boundary.test.ts`).
+
 ## Proposed (not migrated): booking-commerce adapter tables
 
 Six proposed `awcms_commerce_*` tables (offering-to-product link, reservation-to-order link, per-product deposit policy, versioned cancellation policy and its windows, and a booking refund decision record) are specified in [`booking-commerce-adapter-data-model.md`](booking-commerce-adapter-data-model.md), with an ERD, columns, constraints and RLS. **None exists:** no migration, route or code (ADR-0040 D7), and their numbers are taken from `sql/1001` onward at implementation per ADR-0037. The one rule that page fixes for this schema: the customer of a reservation is derived through the linked order and is never stored on an adapter table.

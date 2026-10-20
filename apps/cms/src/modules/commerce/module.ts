@@ -7,6 +7,10 @@ import {
   SEGMENT_SUBJECT_DATA
 } from "./domain/segment-lifecycle";
 import {
+  COMMISSION_DATA_LIFECYCLE,
+  COMMISSION_SUBJECT_DATA
+} from "./domain/commission-lifecycle";
+import {
   EXPENSE_DATA_LIFECYCLE,
   EXPENSE_SUBJECT_DATA
 } from "./domain/expense-lifecycle";
@@ -155,7 +159,11 @@ import {
   COMMERCE_SEGMENT_PREVIEWS_ACTIVITY_CODE,
   COMMERCE_SEGMENT_PREVIEW_PERMISSIONS,
   COMMERCE_SEGMENT_MEMBERS_ACTIVITY_CODE,
-  COMMERCE_SEGMENT_MEMBER_PERMISSIONS
+  COMMERCE_SEGMENT_MEMBER_PERMISSIONS,
+  COMMERCE_COMMISSION_SETTINGS_ACTIVITY_CODE,
+  COMMERCE_COMMISSION_SETTINGS_PERMISSIONS,
+  COMMERCE_COMMISSION_STAFF_LINKS_ACTIVITY_CODE,
+  COMMERCE_COMMISSION_STAFF_LINK_PERMISSIONS
 } from "./domain/commerce-permissions";
 import {
   COMMERCE_FLASH_SALE_ENDED_EVENT_TYPE,
@@ -192,7 +200,8 @@ import {
   COMMERCE_ORDER_PAID_ENTITLEMENT_GRANTOR_CONSUMER_NAME,
   COMMERCE_ORDER_PAID_LOYALTY_EARNER_CONSUMER_NAME,
   COMMERCE_ORDER_CANCELLED_LOYALTY_REVERSER_CONSUMER_NAME,
-  COMMERCE_INVENTORY_STOCK_CACHE_PROJECTOR_CONSUMER_NAME
+  COMMERCE_INVENTORY_STOCK_CACHE_PROJECTOR_CONSUMER_NAME,
+  COMMERCE_ORDER_PAID_COMMISSION_ATTRIBUTOR_CONSUMER_NAME
 } from "./domain/commerce-events";
 import {
   INVENTORY_EVENT_VERSION,
@@ -640,6 +649,26 @@ export const commerceModule = defineModule({
     // pattern, as with `email`); `tax` never depends on commerce.
     "tax"
   ],
+  /**
+   * Issue #391 (ADR-0046) - `application/commission-attribution-port.ts` is the
+   * one place commerce names `hr_commission`'s concrete `CommissionAccrualPort`
+   * adapter (`_shared/ports/commission-accrual-port.ts`), wired at this module's
+   * composition root as that port's contract asks. OPTIONAL, and a capability
+   * rather than a `dependencies` edge on purpose: commerce stays enablable, and
+   * keeps working, for a tenant that never switches `hr_commission` on (a
+   * lifecycle dependency would make it a prerequisite of the whole store and
+   * un-disablable for every tenant with commerce). The consumer checks the
+   * tenant's `hr_commission` state itself before it calls anything.
+   */
+  capabilities: {
+    consumes: [
+      {
+        capability: "commission_accrual",
+        providedBy: "hr_commission",
+        optional: true
+      }
+    ]
+  },
   type: "domain",
   isCore: false,
   api: {
@@ -874,6 +903,23 @@ export const commerceModule = defineModule({
           ctx.tenantId,
           event.aggregateId,
           new Date(),
+          ctx.correlationId
+        );
+      }
+    },
+    {
+      name: COMMERCE_ORDER_PAID_COMMISSION_ATTRIBUTOR_CONSUMER_NAME,
+      description:
+        "commerce module consumer - reports each line of a paid counter (POS) sale to the hr_commission accrual ledger through CommissionAccrualPort, for the employment linked to the login that rang the sale up; exactly once per line, from server-side order facts only, OFF unless the tenant enables it (Issue #391, ADR-0046).",
+      eventTypes: [COMMERCE_ORDER_PAID_EVENT_TYPE],
+      eventVersions: [COMMERCE_EVENT_VERSION],
+      handle: async (tx, event, ctx) => {
+        const { attributeCommissionForPaidOrder } =
+          await import("./application/commission-attribution");
+        await attributeCommissionForPaidOrder(
+          tx,
+          ctx.tenantId,
+          event.aggregateId,
           ctx.correlationId
         );
       }
@@ -3165,6 +3211,7 @@ export const commerceModule = defineModule({
     ...DOCUMENT_DATA_LIFECYCLE,
     // Issue #294 (ADR-0031) - the two expense tables; see
     // `domain/expense-lifecycle.ts`.
+    ...COMMISSION_DATA_LIFECYCLE,
     ...EXPENSE_DATA_LIFECYCLE,
     // Issue #360 (ADR-0042) - the two CRM segment tables; see
     // `domain/segment-lifecycle.ts`.
@@ -4130,6 +4177,7 @@ export const commerceModule = defineModule({
     // Issue #286 (ADR-0029) - see `domain/documents-lifecycle.ts`.
     ...DOCUMENT_SUBJECT_DATA,
     // Issue #294 (ADR-0031) - see `domain/expense-lifecycle.ts`.
+    ...COMMISSION_SUBJECT_DATA,
     ...EXPENSE_SUBJECT_DATA,
     // Issue #360 (ADR-0042) - see `domain/segment-lifecycle.ts`.
     ...SEGMENT_SUBJECT_DATA,
@@ -4798,6 +4846,31 @@ export const commerceModule = defineModule({
       action: "export",
       description: "Export the customer-retention report as CSV (Issue #364)"
     },
+    // Issue #391 (ADR-0046) - employee-commission sale attribution.
+    {
+      activityCode: COMMERCE_COMMISSION_SETTINGS_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "View whether employee-commission attribution is on and which commission rule it applies (Issue #391)"
+    },
+    {
+      activityCode: COMMERCE_COMMISSION_SETTINGS_ACTIVITY_CODE,
+      action: "manage",
+      description:
+        "Switch employee-commission attribution on or off and choose the commission rule it applies (Issue #391)"
+    },
+    {
+      activityCode: COMMERCE_COMMISSION_STAFF_LINKS_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "List which employment earns the commission of which login's counter sales (Issue #391)"
+    },
+    {
+      activityCode: COMMERCE_COMMISSION_STAFF_LINKS_ACTIVITY_CODE,
+      action: "manage",
+      description:
+        "Link a login to the employment that earns its counter-sale commission, and retire a link (Issue #391)"
+    },
     {
       activityCode: COMMERCE_BARCODES_ACTIVITY_CODE,
       action: "read",
@@ -5060,7 +5133,9 @@ export {
   COMMERCE_DOCUMENT_DELIVERY_OVERRIDE_PERMISSIONS,
   COMMERCE_SEGMENT_PERMISSIONS,
   COMMERCE_SEGMENT_PREVIEW_PERMISSIONS,
-  COMMERCE_SEGMENT_MEMBER_PERMISSIONS
+  COMMERCE_SEGMENT_MEMBER_PERMISSIONS,
+  COMMERCE_COMMISSION_SETTINGS_PERMISSIONS,
+  COMMERCE_COMMISSION_STAFF_LINK_PERMISSIONS
 };
 export {
   COMMERCE_LOYALTY_PERMISSIONS,

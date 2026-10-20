@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:76ee65934b693e2a2e75d1d169d0a48ccf36de7691156386b207c33ca611ad1f -->
+<!-- i18n-source-hash: sha256:6be4393c0d1a384923aab050a58d6c1098eaa1338221405221a17dd844968ce3 -->
 
 # Skema basis data
 
@@ -536,6 +536,17 @@ erDiagram
   document_deliveries ||--o| email_messages : "correlation_id = id (membaca status hidup)"
   document_deliveries ||--o| whatsapp_messages : "correlation_id = id (membaca status hidup)"
 ```
+
+## Atribusi komisi karyawan: dua tabel (`sql/1030`–`1031`)
+
+Isu #391 ([ADR-0046](adr/0046-commission-attribution-adapter-reports-paid-counter-sales-to-the-hr-commission-ledger.id.md)). Sisi commerce dalam melaporkan penjualan kasir yang sudah dibayar ke `hr_commission`; buku besarnya sendiri (aturan, akrual, jumlah) milik modul itu dan commerce tidak pernah membacanya.
+
+| Objek | Kolom kunci | Catatan |
+| --- | --- | --- |
+| `awcms_commerce_commission_settings` | `tenant_id` (primary key — paling banyak satu baris per tenant), `enabled boolean NOT NULL DEFAULT false`, `rule_key text` (`^[a-z][a-z0-9_.-]{0,62}$`), `source_type text NOT NULL DEFAULT 'commerce_order_line'`, `updated_by_tenant_user_id` | CHECK `NOT enabled OR rule_key IS NOT NULL`: adaptor tidak bisa menyala tanpa aturan. Tanpa baris = mati. Diubah dengan `commerce.commission_settings.manage`, diaudit dengan nilai lama dan baru. Retensi: descriptor `delegated` tanpa purge (penghapusan berbasis umur diam-diam akan menghentikan setiap staf memperoleh komisi) |
+| `awcms_commerce_commission_staff_links` | `id`, `tenant_user_id` (FK komposit `(tenant_id, tenant_user_id)` ke `awcms_tenant_users`), `employment_id uuid` (**buram: tanpa foreign key**), `created_by_tenant_user_id`, `created_at`, `retired_by_tenant_user_id`, `retired_at` | Indeks unik parsial: satu tautan HIDUP per `(tenant_id, tenant_user_id)` dan per `(tenant_id, employment_id)` (`WHERE retired_at IS NULL`). Trigger menolak DELETE untuk semua role, perubahan atas siapa yang digabungkan tautan, dan perubahan atas tautan yang sudah dipensiunkan; `awcms_app` di-`REVOKE` DELETE dan TRUNCATE. CHECK `(retired_at IS NULL) = (retired_by_tenant_user_id IS NULL)`. Data subjek: login adalah kolom subjek `tenant_user`; `exportable: false`, `retain_under_obligation` |
+
+Kedua tabel: RLS `ENABLE`+`FORCE` dengan kebijakan isolasi tenant standar. `sql/1031` menyemai empat izin dan memberi `awcms_worker` (dispatcher yang menjalankan konsumer) `SELECT` pada dua tabel itu; pada tabel **buku besar** `SELECT, INSERT` pada `awcms_hr_commission_accruals` dan `awcms_hr_commission_transitions` (tidak pernah `UPDATE` atau `DELETE`), `SELECT` pada `awcms_hr_commission_rules` dan `awcms_hr_employments` ditambah **`UPDATE (id)` tingkat kolom** pada keduanya (PostgreSQL mensyaratkan hak `UPDATE` untuk bacaan `FOR SHARE` yang dipakai inti pencatatan dan trigger penjaganya), serta `SELECT` pada `awcms_tenant_settings` (zona waktu) dan `awcms_tenant_modules`. Hibah itu ada karena inti pencatatan port berjalan dengan hak pemanggil; tidak ada kode di `commerce` yang menyebut tabel-tabel itu (`apps/cms/tests/commerce-commission-boundary.test.ts`).
 
 ## Diusulkan (belum dimigrasi): tabel adapter booking-commerce
 

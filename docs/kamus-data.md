@@ -429,6 +429,25 @@ This platform's own design - nothing here is ported from the legacy store.
 | component source line                     | `awcms_inventory_movements.source_line`                                                                                    | `<orderItemId>:c<position>` for a sale or order restock, `<returnLineId>:c<position>` for a return restock                                                                                                                     |
 | `bundle.define`                           | `awcms_audit_events.action` (module `commerce`)                                                                            | A bundle definition was saved (kind, pricing, component count; ids and counts only)                                                                                                                                            |
 
+## Commission attribution vocabulary (issue #391, [ADR-0046](adr/0046-commission-attribution-adapter-reports-paid-counter-sales-to-the-hr-commission-ledger.md))
+
+The commerce side of reporting a paid counter sale to upstream's `hr_commission` ledger. Commerce holds **identifiers and a switch, never an amount, a rate or an accrual state**; those live in `hr_commission`. Not to be confused with affiliate commission (`awcms_commerce_affiliates`, an external beneficiary).
+
+| Term | Where | Meaning |
+| --- | --- | --- |
+| commission settings | `awcms_commerce_commission_settings` | One row per tenant: `enabled` (default **false**), `rule_key`, `source_type`. A CHECK forbids `enabled` without a `rule_key`; there is no default rule key |
+| `rule_key` | same | The key of an `hr_commission` rule the tenant has published. Lower-case code; stored, never looked up by commerce |
+| `source_type` | same | Default `commerce_order_line`. Must equal the `sourceType` the rule declares, or the ledger refuses with `source_type_mismatch` |
+| staff link | `awcms_commerce_commission_staff_links` | Joins a login (`tenant_user_id`) to an `hr_workforce` employment (`employment_id`, **opaque**: no foreign key, no read). At most one LIVE link per login and per employment; retired (`retired_at`), never deleted |
+| cashier stamp | `awcms_commerce_orders.pos_cashier_tenant_user_id` | The login that rang up a counter sale, stamped from the authenticated session (`sql/931`). The only source of "who sold": never a request field |
+| source identity | the ledger's unique key | `(source type, order id, order-line id)` plus the employment: one accrual per line however often the order-paid event is replayed |
+| base amount | reported per line | The line total less its pro-rata share of `discount` + `loyalty_discount` (integer cents, the returns module's largest-remainder allocation). Never shipping, insurance or tax |
+| `occurredOn` | reported per line | The order's `paid_at` as a civil date in the tenant's own time zone (`awcms_tenant_settings.timezone`) |
+| `commerce.order_paid_commission_attributor` | domain-event consumer name | Permanent: it keys delivery rows and the effect ledger. Default `runtime_effect_once` idempotency |
+| `commerce.commission_settings.{read,manage}`, `commerce.commission_staff_links.{read,manage}` | `awcms_permissions` (`sql/1031`) | Four permissions on two activity codes; `manage` is high-risk |
+| `commerce.commission.{settings_updated,staff_link_created,staff_link_retired,attributed,attribution_refused,attribution_rejected}` | audit actions | None carries an amount, base, rate, source reference or (for the consumer's rows) employment id |
+| `COMMISSION_LOGIN_ALREADY_LINKED`, `COMMISSION_EMPLOYMENT_ALREADY_LINKED`, `COMMISSION_LINK_ALREADY_RETIRED` | `409` error codes | The stable refusals of the staff-link routes |
+
 ## Deferred columns and tables — not ported
 
 - **A live RajaOngkir courier-RATE table is done** (issue #107, `sql/924` — `awcms_commerce_courier_destinations`/`_shipping_rates`, a cached rate the order path validates against, never a synchronous provider call). What is still deferred: live courier TRACKING (a shipped parcel's own status) — `shipping_method`/`shipping_service_name` on an order remain merchant-defined labels for the `alternative`/`self_pickup` methods; a `courier` shipment's rate is now live, its post-dispatch tracking is not (named as a follow-up in [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md)).
