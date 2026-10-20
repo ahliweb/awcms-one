@@ -70,6 +70,7 @@ type ClaimedRow = {
   correlation_id: string | null;
   category: string;
   subscription_id: string;
+  recipient_tenant_user_id: string | null;
   title: string;
   body: string;
   target_path: string | null;
@@ -140,7 +141,7 @@ async function claimEligibleMessages(
         FROM due
         WHERE t.id = due.id
         RETURNING t.id, t.correlation_id, t.category, t.subscription_id,
-                  t.title, t.body, t.target_path, t.data, t.retry_count
+                  t.recipient_tenant_user_id, t.title, t.body, t.target_path, t.data, t.retry_count
       `;
 
       return rows as unknown as ClaimedRow[];
@@ -183,6 +184,11 @@ async function recordDeliveryAttempt(
   );
 }
 
+/**
+ * `status = 'sent'` / `sent_at` record PROVIDER ACCEPTANCE (the push service
+ * answered 2xx), not display on a device. `last_success_at` on the subscription
+ * has the same meaning. See `PushDeliveryResult` in the provider contract.
+ */
 async function finalizeSent(
   sql: Bun.SQL,
   tenantId: string,
@@ -335,7 +341,13 @@ export async function dispatchPushQueue(
       const targetRow = await withTenantOrThrow(
         sql,
         tenantId,
-        (tx) => fetchDeliveryTargetRow(tx, tenantId, entry.subscription_id),
+        (tx) =>
+          fetchDeliveryTargetRow(
+            tx,
+            tenantId,
+            entry.subscription_id,
+            entry.recipient_tenant_user_id
+          ),
         { workClass: "background_sync" }
       );
 

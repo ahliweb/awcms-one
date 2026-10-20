@@ -164,9 +164,11 @@ scheduled, or by a specific CI workflow.
 | `project-state:inventory:check`           | `project-state-inventory.ts`                   | ✅   |
 | `project-state:inventory:generate`        | `project-state-inventory.ts`                   | —    |
 | `push:auth-secret:backfill`               | `push-auth-secret-backfill.ts`                 | —    |
+| `push:auth-secret:rekey`                  | `push-auth-secret-backfill.ts`                 | —    |
 | `push:dispatch`                           | `push-dispatch.ts`                             | —    |
 | `push:queue:purge`                        | `push-queue-purge.ts`                          | —    |
 | `push:vapid:generate`                     | `push-vapid-generate.ts`                       | —    |
+| `pwa:icons:generate`                      | `generate-pwa-icons.ts`                        | —    |
 | `redis:health`                            | `redis-health.ts`                              | —    |
 | `release:verify`                          | `release-verify.ts`                            | —    |
 | `repo:inventory:check`                    | `repo-inventory.ts`                            | ✅   |
@@ -186,6 +188,7 @@ scheduled, or by a specific CI workflow.
 | `subject-data:registry:check`             | `subject-data-registry-check.ts`               | ✅   |
 | `sync:objects:dispatch`                   | `object-sync-dispatch.ts`                      | —    |
 | `sync:objects:purge`                      | `object-queue-purge.ts`                        | —    |
+| `telegram:chat:rekey`                     | `telegram-chat-rekey.ts`                       | —    |
 | `telegram:dispatch`                       | `telegram-dispatch.ts`                         | —    |
 | `telegram:queue:purge`                    | `telegram-queue-purge.ts`                      | —    |
 | `telegram:templates:check`                | `telegram-templates-check.ts`                  | ✅   |

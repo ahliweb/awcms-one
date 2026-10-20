@@ -17,6 +17,10 @@ import { readFile } from "node:fs/promises";
 import { describeIdempotencySecretProblem } from "../src/lib/security/idempotency-hmac";
 import { parseFcmCredentialsBase64 } from "../src/modules/push-delivery/domain/fcm-credentials";
 import { resolvePushAuthSecretRing } from "../src/modules/push-delivery/domain/push-auth-secret";
+import {
+  resolvePushPayloadFormat,
+  resolvePushPublicOrigin
+} from "../src/modules/push-delivery/domain/push-payload-format";
 import { parseVapidConfig } from "../src/modules/push-delivery/domain/vapid-config";
 import { parseRecipientHashKeys } from "../src/modules/whatsapp-delivery/domain/whatsapp-recipient";
 import {
@@ -290,6 +294,13 @@ const RULES: readonly Rule[] = [
   { name: "EMAIL_SEND_TIMEOUT_MS", required: false, type: "int", min: 1 },
   { name: "EMAIL_SEND_MAX_RETRIES", required: false, type: "int", min: 0 },
 
+  // Installable admin (Issue #1105). Optional branding of the Home Screen app;
+  // the manifest falls back to defaults on an empty or invalid value.
+  { name: "PWA_APP_NAME", required: false, type: "string" },
+  { name: "PWA_APP_SHORT_NAME", required: false, type: "string" },
+  { name: "PWA_THEME_COLOR", required: false, type: "string" },
+  { name: "PWA_BACKGROUND_COLOR", required: false, type: "string" },
+
   // push_delivery (ADR-0074, epic #463). Off by default; off means the
   // dispatcher claims nothing at all. `PUSH_PROVIDER` is an enum listing only
   // the adapters that EXIST — `fcm`/`web_push` join it in Issue #466, and
@@ -301,6 +312,12 @@ const RULES: readonly Rule[] = [
     required: false,
     type: "enum",
     values: ["log", "fcm", "web_push"]
+  },
+  {
+    name: "PUSH_PAYLOAD_FORMAT",
+    required: false,
+    type: "enum",
+    values: ["legacy", "declarative"]
   },
   { name: "PUSH_SEND_MAX_RETRIES", required: false, type: "int", min: 0 },
   { name: "PUSH_SEND_TIMEOUT_MS", required: false, type: "int", min: 1 },
@@ -672,7 +689,12 @@ export function validateEnv(env: EnvBag): string[] {
         break;
       }
       case "enum": {
-        if (!rule.values!.includes(value)) {
+        // PUSH_PAYLOAD_FORMAT is read case-insensitively at runtime
+        // (`resolvePushPayloadFormat`), so validate the same normalised form.
+        const candidate =
+          rule.name === "PUSH_PAYLOAD_FORMAT" ? value.toLowerCase() : value;
+
+        if (!rule.values!.includes(candidate)) {
           problems.push(
             `${rule.name} harus salah satu [${rule.values!.join(", ")}], dapat "${value}".`
           );
@@ -825,6 +847,19 @@ export function validateEnv(env: EnvBag): string[] {
 
       if (!vapid.ok) {
         problems.push(`Konfigurasi VAPID tidak valid: ${vapid.reason}.`);
+      }
+
+      // Issue #1106: payload deklaratif butuh `navigate` https absolut pada
+      // origin publik terkonfigurasi (APP_URL). Tanpa itu produsen diam-diam
+      // tetap memakai bentuk legacy, jadi saklar tampak aktif tetapi tidak
+      // berbuat apa pun; lebih baik gagal di sini.
+      if (
+        resolvePushPayloadFormat(env as NodeJS.ProcessEnv) === "declarative" &&
+        resolvePushPublicOrigin(env.APP_URL) === null
+      ) {
+        problems.push(
+          "PUSH_PAYLOAD_FORMAT=declarative wajib APP_URL berskema https tanpa kredensial (field `navigate` payload deklaratif adalah URL https absolut pada origin publik)."
+        );
       }
 
       // Issue #1089: rahasia auth RFC 8291 disimpan terenkripsi; tanpa cincin
