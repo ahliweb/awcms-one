@@ -49,6 +49,7 @@ import {
   getPerusahaanLinks
 } from "../../lib/navigasi-berita";
 import { ROUTES } from "../../config/routes";
+import { INSTALL_HELP_PATH, isInstallHelpEnabled } from "../../lib/pasang-aplikasi";
 
 interface Props {
   identity: SiteIdentity;
@@ -132,6 +133,7 @@ const copyright = identity.copyrightNotice ?? `© ${year} ${identity.name}`;
       {perusahaanLinks.map((link) => (
         <a href={link.href}>{link.label}</a>
       ))}
+      {isInstallHelpEnabled() && <a href={INSTALL_HELP_PATH}>Pasang di Layar Utama</a>}
     </nav>
   </div>
 </footer>

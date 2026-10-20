@@ -174,6 +174,8 @@ Every file under `apps/storefront/src/pages/**` belongs to exactly one group. Th
 | `keranjang.astro` | toko | Commerce cart |
 | `kontak.astro` | shared | Every profile needs a contact page |
 | `manifest.webmanifest.ts` | shared | Every profile is an installable site |
+| `apple-touch-icon.png.ts` | shared | Every profile has its own generated PNG app icons |
+| `icons/[name].png.ts` | shared | Every profile has its own generated PNG app icons |
 | `masuk.astro` | toko | Commerce customer sign-in |
 | `mitra/[slug].astro` | berita | The institution/"Mitra" directory — a news partnership feature, not a commerce one (see ADR-0018's own edge-case note) |
 | `newsletter/confirm.astro` | berita | Newsletter double opt-in confirm |
@@ -208,6 +210,16 @@ Every file under `apps/storefront/src/pages/**` belongs to exactly one group. Th
 | **Robots rules** | Disallows commerce per-visitor paths (`/keranjang`, `/checkout`, `/pesanan`, `/wishlist`, `/cari`, `/masuk`, `/daftar`, `/akun`) plus `/newsletter/*`, `/api/` | Disallows `/newsletter/*`, `/api/` | Disallows `/api/` only |
 | **CSP `form-action`/`connect-src`** | `form-action 'self'`, `connect-src` widened to `PUBLIC_AWCMS_ORIGIN` (checkout/cart) | `form-action 'self'` only | `form-action 'self'` only |
 | **Stub-CMS fixtures needed** | Every commerce fixture plus every news fixture (the hybrid build needs both) | `blog-posts.json`, `blog-terms.json`, `blog-institutions.json`, `blog-pages-public*.json`, `seo-redirects-legacy.json`, `regions-kalteng.json`, `ad-placements-active.json`, `analytics-pages.json` | `blog-pages-public*.json`, `store-settings-public.json`, `media-objects.json`/`media-public-origin.json`; no commerce or news-specific fixture |
+
+### Install metadata (manifest, icons, iOS Home Screen)
+
+Identical for all three profiles, and derived rather than rewritten ([ADR-0049](adr/0049-install-metadata-is-derived-at-build-time-and-the-ios-help-page-is-opt-in.md), issue [#428](https://github.com/ahliweb/awcms-one/issues/428)):
+
+- **`/manifest.webmanifest`** has a stable `id` (`/`), `scope` and `start_url` (`/`), `display: standalone`, a `name` from the site identity, a `short_name` of at most 12 characters, and a `categories` hint per profile (`toko` shopping, `berita` news, `landing` business).
+- **PNG icons** (`/icons/icon-192.png`, `/icons/icon-512.png`, `/icons/icon-maskable-512.png`, `/apple-touch-icon.png`) are generated at build time from the first letter of `SITE_NAME` and the theme primary colour. Both are already on `template:init`'s "What it rewrites" list (`DEFAULT_IDENTITY`, `DEFAULT_THEME_COLORS`), so **init needs no new rewrite target and there is no BjekMart icon file to forget**. To use real artwork, replace the endpoints under `apps/storefront/src/pages/icons/` and `apple-touch-icon.png.ts`.
+- **iOS metadata** (`apple-touch-icon`, `apple-mobile-web-app-*`, `mobile-web-app-capable`, `theme-color`) is static markup in `BaseLayout.astro`.
+- **`/pasang-aplikasi`** is an optional "Add to Home Screen on iPhone" help page, **off by default**. Set `PUBLIC_INSTALL_HELP=1` (also `true`, `on`, `yes`) at build time to add the route, a footer link and one same-origin script that detects standalone mode. Off, none of it exists (no route, link, script or sitemap entry) and the CSP is the same either way. The page never asks for a notification permission and states that a browser tab cannot receive notifications once closed.
+- The manifest and icons live on the **storefront** origin. The storefront registers no service worker; the CMS keeps its own admin PWA and `/push-sw.js` on its own origin. Push subscription is out of scope here.
 
 ## Sample seeds
 

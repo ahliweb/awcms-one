@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](template.md)
 
-<!-- i18n-source-hash: sha256:6a9f56fd6260058ec062fffb08df67b7e2305a4c99e85dbb631af76f1fcb5525 -->
+<!-- i18n-source-hash: sha256:cdd025a4ef884299deb0e68c67b66881e278db7deb2ba942e2b43978966b6398 -->
 
 # Menggunakan awcms-one sebagai template
 
@@ -179,6 +179,8 @@ Setiap file di bawah `apps/storefront/src/pages/**` termasuk tepat satu kelompok
 | `keranjang.astro` | toko | Keranjang commerce |
 | `kontak.astro` | shared | Setiap profil butuh halaman kontak |
 | `manifest.webmanifest.ts` | shared | Setiap profil adalah situs yang bisa dipasang |
+| `apple-touch-icon.png.ts` | shared | Setiap profil punya ikon aplikasi PNG hasil generate sendiri |
+| `icons/[name].png.ts` | shared | Setiap profil punya ikon aplikasi PNG hasil generate sendiri |
 | `masuk.astro` | toko | Sign-in pelanggan commerce |
 | `mitra/[slug].astro` | berita | Direktori institusi/"Mitra" — fitur kemitraan berita, bukan commerce (lihat catatan kasus-tepi ADR-0018 sendiri) |
 | `newsletter/confirm.astro` | berita | Konfirmasi opt-in ganda newsletter |
@@ -213,6 +215,16 @@ Setiap file di bawah `apps/storefront/src/pages/**` termasuk tepat satu kelompok
 | **Aturan robots** | Melarang path per-pengunjung commerce (`/keranjang`, `/checkout`, `/pesanan`, `/wishlist`, `/cari`, `/masuk`, `/daftar`, `/akun`) ditambah `/newsletter/*`, `/api/` | Melarang `/newsletter/*`, `/api/` | Melarang `/api/` saja |
 | **CSP `form-action`/`connect-src`** | `form-action 'self'`, `connect-src` diperluas ke `PUBLIC_AWCMS_ORIGIN` (checkout/keranjang) | `form-action 'self'` saja | `form-action 'self'` saja |
 | **Fixture stub-CMS yang dibutuhkan** | Setiap fixture commerce ditambah setiap fixture berita (build hibrida butuh keduanya) | `blog-posts.json`, `blog-terms.json`, `blog-institutions.json`, `blog-pages-public*.json`, `seo-redirects-legacy.json`, `regions-kalteng.json`, `ad-placements-active.json`, `analytics-pages.json` | `blog-pages-public*.json`, `store-settings-public.json`, `media-objects.json`/`media-public-origin.json`; tidak ada fixture khusus commerce atau berita |
+
+### Metadata instalasi (manifest, ikon, Layar Utama iOS)
+
+Sama untuk ketiga profil, dan diturunkan, bukan ditulis ulang ([ADR-0049](adr/0049-install-metadata-is-derived-at-build-time-and-the-ios-help-page-is-opt-in.id.md), issue [#428](https://github.com/ahliweb/awcms-one/issues/428)):
+
+- **`/manifest.webmanifest`** punya `id` stabil (`/`), `scope` dan `start_url` (`/`), `display: standalone`, `name` dari identitas situs, `short_name` maksimal 12 karakter, dan petunjuk `categories` per profil (`toko` shopping, `berita` news, `landing` business).
+- **Ikon PNG** (`/icons/icon-192.png`, `/icons/icon-512.png`, `/icons/icon-maskable-512.png`, `/apple-touch-icon.png`) dibuat saat build dari huruf pertama `SITE_NAME` dan warna primer tema. Keduanya sudah ada di daftar "Apa yang ditulis ulang" milik `template:init` (`DEFAULT_IDENTITY`, `DEFAULT_THEME_COLORS`), sehingga **init tidak butuh target tulis-ulang baru dan tidak ada berkas ikon BjekMart yang terlupa**. Untuk memakai karya seni sungguhan, ganti endpoint di `apps/storefront/src/pages/icons/` dan `apple-touch-icon.png.ts`.
+- **Metadata iOS** (`apple-touch-icon`, `apple-mobile-web-app-*`, `mobile-web-app-capable`, `theme-color`) adalah markup statis di `BaseLayout.astro`.
+- **`/pasang-aplikasi`** adalah halaman bantuan opsional "Tambahkan ke Layar Utama di iPhone", **mati secara bawaan**. Setel `PUBLIC_INSTALL_HELP=1` (juga `true`, `on`, `yes`) saat build untuk menambah rute, tautan footer, dan satu skrip same-origin yang mendeteksi mode standalone. Saat mati, semuanya tidak ada (tanpa rute, tautan, skrip, atau entri sitemap) dan CSP sama di kedua kondisi. Halaman ini tidak pernah meminta izin notifikasi dan menyatakan bahwa tab browser tidak bisa menerima notifikasi setelah ditutup.
+- Manifest dan ikon berada di origin **storefront**. Storefront tidak mendaftarkan service worker; CMS memegang PWA admin dan `/push-sw.js` sendiri di origin-nya. Langganan push di luar cakupan di sini.
 
 ## Seed contoh
 

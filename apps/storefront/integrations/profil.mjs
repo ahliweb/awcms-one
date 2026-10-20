@@ -66,6 +66,7 @@ import { join, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { SITE_PROFILE, ACTIVE_GROUPS } from "../src/config/profil";
+import { INSTALL_HELP_PATH, isInstallHelpEnabled } from "../src/lib/pasang-aplikasi";
 
 /** Where a group's page files live, relative to the project root. */
 export const PROFIL_ROOT = "src/profil";
@@ -169,6 +170,13 @@ export default function profil() {
         const routes = collectInjectedRoutes(root, ACTIVE_GROUPS);
         for (const route of routes) {
           injectRoute({ pattern: route.pattern, entrypoint: route.entrypoint });
+        }
+
+        // Issue #428: the opt-in iPhone "Add to Home Screen" help page. Its
+        // file lives outside `src/pages/` so it is routed ONLY when the
+        // build-time flag is on; off, no route exists at all.
+        if (isInstallHelpEnabled()) {
+          injectRoute({ pattern: INSTALL_HELP_PATH, entrypoint: "./src/install/pasang-aplikasi.astro" });
         }
 
         const beranda = join(root, berandaVariantPath(SITE_PROFILE));

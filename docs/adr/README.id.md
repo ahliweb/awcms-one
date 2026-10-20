@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:78d21df68d56492787a5501ee0c4b099a60647f0096de287203f240b22e99d47 -->
+<!-- i18n-source-hash: sha256:b1189b51351c4156afc9f3864e0701851558116c4e4e65526493e26ca84be29a -->
 
 # Architecture Decision Records
 
@@ -65,6 +65,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0044](0044-customer-retention-is-a-per-customer-recompute-projection-on-the-reporting-engine.md)                                       | Retensi pelanggan adalah proyeksi hitung-ulang per pelanggan di mesin `reporting` (separuh khusus-commerce dari bagian 6 metrik)                                                                                                             | Diterima                                                                                                                      |
 | [0045](0045-booking-commerce-adapter.md)                                                                                                | Adapter booking-commerce: bentuk tautan, tungkai refund pembatalan, waktu penimpaan, aktor dan step-up, kode galat dan nama consumer yang dibekukan                                                                                          | Diterima                                                                                                                      |
 | [0048](0048-customer-web-push-identity-subscription-and-cross-origin-contract.md) | Web Push pelanggan: identitas, model langganan, dan kontrak lintas origin (perangkat pelanggan milik `commerce`, outbox tipis di atas provider dan kripto upstream, target klik di origin storefront) | Diusulkan |
+| [0049](0049-install-metadata-is-derived-at-build-time-and-the-ios-help-page-is-opt-in.md)                                               | Metadata instalasi diturunkan saat build (ikon PNG netral hasil generate, `id` manifest stabil), dan halaman bantuan Layar Utama iOS adalah flag build opt-in yang mati secara bawaan                                                        | Diterima                                                                                                                      |
 | [0050](0050-lynxjs-for-separate-persona-apps-astro-stays-for-admin-and-public-profiles.md) | LynxJS/ReactLynx untuk aplikasi persona terpisah; Astro tetap untuk admin dan setiap profil publik (hanya arah, belum diimplementasikan) | Accepted as direction; not implemented |
 
 ## Mengapa penomoran dimulai dari 0001
