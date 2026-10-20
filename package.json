@@ -10,9 +10,9 @@
     "url": "git+https://github.com/ahliweb/awcms-one.git"
   },
   "license": "MIT",
-  "packageManager": "bun@1.4.2",
+  "packageManager": "bun@1.4.3",
   "engines": {
-    "bun": ">=1.4.2"
+    "bun": ">=1.4.3"
   },
   "workspaces": [
     "apps/*",

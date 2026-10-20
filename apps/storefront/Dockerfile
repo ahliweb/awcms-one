@@ -29,7 +29,7 @@
 # Each profile (toko/berita/landing) is its OWN image, built with its own
 # SITE_PROFILE — see docs/deployment.md's "Production runbook".
 
-ARG BUN_VERSION=1.4.0
+ARG BUN_VERSION=1.4.3
 
 # ---------------------------------------------------------------------------
 # deps — installs the whole workspace's dependencies once, cached by
