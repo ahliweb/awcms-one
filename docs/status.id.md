@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](status.md)
 
-<!-- i18n-source-hash: sha256:33c121d920909717372f3c5f0276b60f717270355abcc5db0fe49fa785c98e7d -->
+<!-- i18n-source-hash: sha256:d814970bfa99737c892b5343bbd8efb1081374d389e88a1d713aa3ee111b1f1e -->
 
 # Status
 
@@ -106,7 +106,7 @@ Sinkronisasi subtree berikutnya ([issue #377](https://github.com/ahliweb/awcms-o
 
 ### Gerbang transaction-swallow (sinkronisasi subtree pada `c6a04a9`, AWCMS v10.9.0)
 
-Sinkronisasi subtree [issue #424](https://github.com/ahliweb/awcms-one/issues/424) (17 Oktober 2026) membawa `apps/cms` ke AWCMS v10.9.0 dengan 34 modul terdaftar yang sama. Akibatnya bagi `commerce` adalah gerbang upstream `bun run db:transaction-swallow:check`, yang menolak `catch` yang menelan pernyataan gagal dari transaksi yang terbuka kecuali pernyataan itu dijalankan dalam `tx.savepoint(...)`: PostgreSQL membatalkan seluruh transaksi pada pernyataan gagal pertama, dan Bun 1.4.3 mengubah `COMMIT` yang terdegradasi menjadi `ERR_POSTGRES_COMMIT_ROLLED_BACK` sedangkan Bun 1.4.2 mengembalikan sukses dan diam-diam membuang penulisan sebelumnya. `commerce` memenuhinya tanpa perubahan perilaku: pernyataan yang errornya ditangkap memanggil `tx.savepoint(...)` langsung (pembantu milik [PR #417](https://github.com/ahliweb/awcms-one/pull/417) dilebur ke bentuk upstream sendiri), dan rute yang hanya memetakan error aplikasi membawa penanda `// tx-swallow-ok:` yang telah ditinjau. Ini menyelesaikan butir 3 dari [#420](https://github.com/ahliweb/awcms-one/issues/420). Sinkronisasi ini juga membawa enkripsi `auth_secret` langganan push saat disimpan (`sql/313`-`314`) dan layar swa-layan `hr_workforce`; pin Bun root tetap 1.4.2 sampai [#416](https://github.com/ahliweb/awcms-one/pull/416). Lihat [`AGENTS.md`](../AGENTS.md) untuk daftar divergensi dan catatan sinkronisasi.
+Sinkronisasi subtree [issue #424](https://github.com/ahliweb/awcms-one/issues/424) (17 Oktober 2026) membawa `apps/cms` ke AWCMS v10.9.0 dengan 34 modul terdaftar yang sama. Akibatnya bagi `commerce` adalah gerbang upstream `bun run db:transaction-swallow:check`, yang menolak `catch` yang menelan pernyataan gagal dari transaksi yang terbuka kecuali pernyataan itu dijalankan dalam `tx.savepoint(...)`: PostgreSQL membatalkan seluruh transaksi pada pernyataan gagal pertama, dan Bun 1.4.3 mengubah `COMMIT` yang terdegradasi menjadi `ERR_POSTGRES_COMMIT_ROLLED_BACK` sedangkan Bun 1.4.2 mengembalikan sukses dan diam-diam membuang penulisan sebelumnya. `commerce` memenuhinya tanpa perubahan perilaku: pernyataan yang errornya ditangkap memanggil `tx.savepoint(...)` langsung (pembantu milik [PR #417](https://github.com/ahliweb/awcms-one/pull/417) dilebur ke bentuk upstream sendiri), dan rute yang hanya memetakan error aplikasi membawa penanda `// tx-swallow-ok:` yang telah ditinjau. Ini menyelesaikan butir 3 dari [#420](https://github.com/ahliweb/awcms-one/issues/420). Sinkronisasi ini juga membawa enkripsi `auth_secret` langganan push saat disimpan (`sql/313`-`314`) dan layar swa-layan `hr_workforce`; pin Bun root kini 1.4.3 (dinaikkan oleh [#416](https://github.com/ahliweb/awcms-one/pull/416)). Lihat [`AGENTS.md`](../AGENTS.md) untuk daftar divergensi dan catatan sinkronisasi.
 
 ## `apps/storefront` — profil build (ADR-0018)
 
