@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](cms.md)
 
-<!-- i18n-source-hash: sha256:1a926ee21994d442b5b21e82039bf271fc4e76e89a3459de14727aad98871cde -->
+<!-- i18n-source-hash: sha256:2fcb7b35f3ae03319b08c7794f376c6a83f8e64ccbca3b5e10e61bfc80f82dc1 -->
 
 # CMS: authoring, publikasi, izin, audit, media, taksonomi
 
@@ -368,6 +368,16 @@ Flag `features` keenam, **`loyalty`, default `false`** — satu-satunya flag di 
 - **Lingkup karyawan.** Draf milik pembuatnya: karyawan lain tidak dapat mengedit, membuang, atau melampirkan padanya; supervisor (pemegang `commerce.expense_postings.approve`) dapat.
 - **Layar.** `/admin/commerce-expenses` — angka, catat pengeluaran (pemilih laci hanya muncul dengan fitur `register`), tabel pengeluaran dengan filter status dan aksi yang diizinkan status baris dan izin Anda (dialog konfirmasi, dengan catatan wajib untuk tolak dan balik), ekspor CSV rentang tanggal, kategori, dan ambang persetujuan (lewat rute pengaturan modul generik di balik `module_management.settings.update`).
 - **Tes.** `apps/cms/tests/commerce-expense-domain.test.ts` (validasi, keputusan persetujuan dan SoD, aritmetika laporan sen yang tepat, penetralan CSV), `commerce-expense-permissions.test.ts` (dua belas kunci, evaluasi akses nyata atas grant berbentuk peran), dan terhadap Postgres sungguhan `apps/cms/tests/integration/commerce-register-expenses.integration.test.ts` (handler rute: pencerminan tutup kas tepat satu kali, pembalikan dan idempotensi, ambang dan SoD, kontrol akses struk, BOLA, penyamaran audit/event, CSV, gerbang fitur) dan `commerce-register-expenses-rls.integration.test.ts` (peran `awcms_app`/`awcms_worker` berhak akses minimal: isolasi RLS, FK komposit, hak akses, trigger siklus hidup).
+
+## Layar admin pemesanan (isu #385, epik #280, [ADR-0045](adr/0045-booking-commerce-adapter.md))
+
+Di balik fitur `booking` (**bawaan MATI**; _Jual reservasi Booking_ di bawah Fitur pada pengaturan toko); setiap entri sidebar disembunyikan selama fitur mati. Layar ini dispesifikasikan di [`booking-ux-flows.md`](booking-ux-flows.md) bagian 11 (state, teks Indonesia dan Inggris, WCAG 2.1 AA, 360px).
+
+- **Tautan pemesanan.** `/admin/commerce-booking-links` - tautkan penawaran Booking ke produk **jasa** (ID penawaran, ID produk, per malam atau per pemesanan), saring aktif atau terlepas, dan lepas tautan lewat dialog konfirmasi. Setiap penolakan server (sudah tertaut, bukan produk jasa, dasar tidak cocok, penawaran yang langsung terkonfirmasi, tanpa akun layanan) punya pesan sendiri. Melepas tautan mempertahankan pesanan dan reservasi lama; untuk menjual produk lagi, buat tautan baru. Izin `commerce.booking_offering_links.{read,create,update}`.
+- **Uang muka pemesanan.** `/admin/commerce-booking-deposits` - satu baris per produk jasa dengan uang mukanya sebagai _Pembayaran penuh_, persen dari total, atau jumlah tetap per unit (per malam untuk produk per malam). Layar mengirim kebijakan, bukan jumlah hasil hitung; server menurunkan uang muka saat pesanan dibuat dan perubahan tidak mengubah pesanan yang ada. Izin `commerce.booking_deposit_policies.{read,update}`.
+- **Akun layanan.** Pengaturan commerce menambah _Akun layanan pemesanan (ID pengguna)_ (tampil hanya saat `booking` aktif): pengguna staf aktif yang dicatat Booking untuk checkout tamu dan tindakan otomatis.
+- **Belum ada.** Layar versi kebijakan pembatalan dan dialog penggantian pengembalian dana sudah dispesifikasikan (bagian 11.4 dan 11.5) tetapi menunggu API-nya di [#381](https://github.com/ahliweb/awcms-one/issues/381); dialog penggantian tidak dapat dikirim di atas jumlah yang dibayar dan server menegakkan batas yang sama.
+- **Pengujian.** `apps/cms/tests/commerce-booking-client.test.ts` (isi uang muka, pemeriksaan uuid, teks penolakan) dan `commerce-booking-admin-screens.test.ts` (klaim, gating sidebar, tanpa dialog bawaan, rute ada). Belum ada alur Playwright: suite axe dan 360px admin yang ada tidak memuat layar commerce, sehingga layar ini bergabung saat satu disiapkan untuk commerce.
 
 ## Segmen pelanggan (issue #360, epic #280, [ADR-0042](adr/0042-crm-segments-are-immutable-versioned-closed-vocabulary-rules-evaluated-on-demand.md))
 

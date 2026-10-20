@@ -233,3 +233,62 @@ export async function assertAllowDpWritable(
   const features = await fetchCommerceFeatures(tx, tenantId);
   if (features.booking) throw new AllowDpManagedByPolicyError();
 }
+
+export type ServiceProductDepositRow = {
+  productId: string;
+  name: string;
+  sku: string;
+  status: string;
+  allowDp: boolean;
+  /** `null` = no active policy = paid in full. */
+  policy: Pick<DepositPolicyRecord, "kind" | "percent" | "fixedAmount"> | null;
+};
+
+/**
+ * The deposit-policy admin screen's read (Issue #385): every live SERVICE
+ * product of the tenant (the only kind an offering can be linked to) with its
+ * active policy, one query. Bounded to 200 rows; the screen is a configuration
+ * surface, not a catalogue browser.
+ */
+export async function listServiceProductDepositPolicies(
+  tx: Bun.SQL,
+  tenantId: string
+): Promise<ServiceProductDepositRow[]> {
+  const rows = (await tx`
+    SELECT p.id, p.name, p.sku, p.status, p.allow_dp,
+           d.kind, d.percent, d.fixed_amount
+    FROM awcms_commerce_products p
+    LEFT JOIN awcms_commerce_product_deposit_policies d
+      ON d.tenant_id = p.tenant_id AND d.product_id = p.id AND d.retired_at IS NULL
+    WHERE p.tenant_id = ${tenantId} AND p.type = 'service' AND p.deleted_at IS NULL
+    ORDER BY p.name ASC, p.id ASC
+    LIMIT 200
+  `) as {
+    id: string;
+    name: string;
+    sku: string;
+    status: string;
+    allow_dp: boolean;
+    kind: DepositPolicyKind | null;
+    percent: string | null;
+    fixed_amount: string | null;
+  }[];
+  return rows.map((row) => ({
+    productId: row.id,
+    name: row.name,
+    sku: row.sku,
+    status: row.status,
+    allowDp: row.allow_dp,
+    policy:
+      row.kind === null
+        ? null
+        : {
+            kind: row.kind,
+            percent: row.percent === null ? null : normalizeMoney(row.percent),
+            fixedAmount:
+              row.fixed_amount === null
+                ? null
+                : normalizeMoney(row.fixed_amount)
+          }
+  }));
+}

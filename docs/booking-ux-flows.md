@@ -217,7 +217,7 @@ A refund that cannot settle automatically is shown to the guest as "sedang dipro
 
 ### 4.3 Staff override (back-office only)
 
-A **guest cannot override anything.** The storefront has no control that changes a refund amount. Override is a staff action in the admin / front-desk context (owner answer Q10; PRD 4.2 step 6; A5): it requires a **manager or finance permission** held separately from the ordinary cancel permission, **step-up re-authentication**, a **mandatory reason**, an **audit event**, and an amount **never above what was paid**. The screen for it is an admin screen of the adapter (a later W8 item); this spec fixes only its UX contract:
+A **guest cannot override anything.** The storefront has no control that changes a refund amount. Override is a staff action in the admin / front-desk context (owner answer Q10; PRD 4.2 step 6; A5): it requires a **manager or finance permission** held separately from the ordinary cancel permission, **step-up re-authentication**, a **mandatory reason**, an **audit event**, and an amount **never above what was paid**. The screen for it is an admin screen of the adapter, specified in section 11.5 and built by [#381](https://github.com/ahliweb/awcms-one/issues/381); this section fixes the UX contract:
 
 - The override control is absent (not disabled) for staff without the permission.
 - The form shows the policy-computed amount beside the override field, requires a reason (minimum length, free text, plain), and states the cap ("Maksimal Rp X: sebesar yang sudah dibayar").
@@ -330,3 +330,81 @@ Controls C-25 to C-41 come from the threat-model addendum ([#354](https://github
 5. **Alternative-date suggestions** in the no-availability state depend on an availability endpoint capability that is upstream's to define.
 6. **Whether the guest sees the late-payment exception contact** (3.2) as a phone, WhatsApp or e-mail is the tenant's configuration.
 7. **Unknown-until-built**: all pixel-level design (spacing, the exact calendar visual) is the redesign design system's ([`ui-ux.md`](ui-ux.md)); this spec states behaviour, not a mock-up.
+
+## 11. Surface E — admin screens of the booking adapter (Issue #385, DoR residual R2)
+
+Written 17 October 2026. This is the spec that [#385](https://github.com/ahliweb/awcms-one/issues/385) owed before building (DoR residual R2); [#381](https://github.com/ahliweb/awcms-one/issues/381) builds the cancellation-policy and refund-override surfaces against it. The screens are `apps/cms` admin pages inside the `commerce` module (ADR-0045), behind the tenant's `booking` feature (default OFF) with `requiredFeature: { moduleKey: "commerce", feature: "booking" }` on every sidebar entry. Admin copy follows the repo's i18n rule: English is the msgid, Indonesian is in `id.po`; the Indonesian lines below are the catalogue translations. Every control is UX-only: the server re-validates every field and is the authority.
+
+| Screen                            | Route                               | Permissions (view / change)                                                                | Built in                    |
+| --------------------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------ | --------------------------- |
+| 11.1 Offering links               | `/admin/commerce-booking-links`     | `commerce.booking_offering_links.read` / `.create`, `.update`                              | #385                        |
+| 11.2 Deposit policies             | `/admin/commerce-booking-deposits`  | `commerce.booking_deposit_policies.read` / `.update`                                       | #385                        |
+| 11.3 Service-account setting      | `/admin/commerce-settings`          | `commerce.settings.read` / `.update` (existing screen, one new field)                      | #385                        |
+| 11.4 Cancellation policy versions | `/admin/commerce-booking-policies`  | `commerce.booking_cancellation_policies.read` / `.create`, `.approve`                      | #381 (needs its policy API) |
+| 11.5 Refund-override dialog       | on the order and reservation detail | `commerce.booking_refund_overrides.approve` (separate from the ordinary cancel permission) | #381 (needs its cancel API) |
+
+All five use the shared states of section 1.1, adapted to the admin chrome: a denied viewer gets a `.state-notice`, a load failure a `.state-notice` with a retry hint, an empty list the `.empty-state` block with the next action, and a write failure a `role="alert"` box above the form (`.admin-create-error`). A busy button is disabled and relabelled ("Saving…"); the page reloads after a successful write (the existing `mutateAndReload` idiom), so the server's row is what the operator sees next.
+
+### 11.1 Offering links
+
+Purpose: link one Booking offering to one **service** product so the product can be sold as a reservation (ADR-0045 D1). One active product per offering and one active offering per product.
+
+- **List.** A `.data-table-scroll` region (focusable, named) with a `<caption>` count. Columns: Offering (id, `.cell-code`), Product (id), Basis ("Per night" / "Per booking"), Status (`admin-status-pill`: Active = success, Unlinked = neutral; text always present), Linked on, Actions. The list is keyset-paged (50), newest first; a "Show unlinked" filter is a plain GET link (`?status=unlinked`), not script.
+- **Create form** (only with `.create`): Offering ID (uuid text, `autocomplete="off"`, hint "Copy it from Booking, Offerings."), Product ID (uuid text, hint "A service product."), Basis (select: Per night / Per booking). Required fields are marked in text. The submit sends `POST` with a fresh `Idempotency-Key` per attempt.
+- **Unlink** (only with `.update`): a row button opens the shared confirm dialog (danger). The dialog says what happens: the link stops being sellable; past orders and reservations keep their history; it cannot be re-linked from the same row (create a new link).
+- **Warnings.** A created link whose product has no active cancellation policy shows a polite status line beside the form: "Linked. This product has no cancellation policy yet, so guests will see no refund terms." (`NO_CANCELLATION_POLICY`; non-blocking, ADR-0045 D6).
+- **Server refusals are mapped to specific copy**, never the generic failure:
+
+| Code                                   | English                                                         | Indonesian                                                                    |
+| -------------------------------------- | --------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `OFFERING_ALREADY_LINKED`              | This offering is already linked to a product.                   | Penawaran ini sudah ditautkan ke produk.                                      |
+| `PRODUCT_ALREADY_LINKED`               | This product is already linked to an offering.                  | Produk ini sudah ditautkan ke penawaran.                                      |
+| `PRODUCT_NOT_SERVICE`                  | Only a service product can be linked.                           | Hanya produk jasa yang dapat ditautkan.                                       |
+| `QUANTITY_BASIS_MISMATCH`              | The basis does not match the offering (nightly or per booking). | Dasar kuantitas tidak sesuai dengan penawaran (per malam atau per pemesanan). |
+| `OFFERING_NOT_LINKABLE`                | An offering that confirms immediately cannot be sold.           | Penawaran yang langsung terkonfirmasi tidak dapat dijual.                     |
+| `BOOKING_SERVICE_ACTOR_NOT_CONFIGURED` | Set the booking service account in Store settings first.        | Tetapkan akun layanan pemesanan di Pengaturan toko terlebih dahulu.           |
+| `FEATURE_DISABLED`                     | Booking is turned off for this store.                           | Pemesanan dimatikan untuk toko ini.                                           |
+| `RESOURCE_NOT_FOUND`                   | The offering or the product was not found.                      | Penawaran atau produk tidak ditemukan.                                        |
+
+### 11.2 Deposit policies
+
+Purpose: set a service product's deposit as a percent of the taxed line total or a fixed amount per unit of quantity (per night for a nightly product), or return it to full payment. A product without a policy is paid in full; there is no tenant default (ADR-0045 D5).
+
+- **List.** One row per service product: Product (name, SKU), Status, Policy (text: "Full payment", "30.00% of the total", "Rp 50.000,00 per unit"), Actions. A `details` "Edit deposit" per row (only with `.update`) holds the form; the summary is the keyboard-reachable disclosure.
+- **Form.** A fieldset "Deposit" with radios (Full payment / Percent / Fixed amount per unit); the Percent field (0-100, two decimals) and the Fixed field (amount, two decimals) are shown only for their radio, and hidden fields are removed from the tab order. The submit sends `PUT` with `{ kind, percent | fixedAmount }`; it never sends a computed amount. A line under the form states: "The deposit on each order is calculated by the server and fixed when the order is created; changing this does not change existing orders."
+- **Allow-DP note.** Because the policy keeps the legacy "allow down payment" flag in step, the row shows no separate toggle; the product form's own control is locked by the server while `booking` is on (`ALLOW_DP_MANAGED_BY_POLICY`), and the screen says so in a hint.
+- Validation copy: "Enter a percentage between 0 and 100 with at most two decimals." / "Enter an amount greater than zero with at most two decimals." (id: "Masukkan persentase antara 0 dan 100 dengan paling banyak dua desimal." / "Masukkan jumlah lebih besar dari nol dengan paling banyak dua desimal.").
+
+### 11.3 Service-account setting
+
+One field on the store-settings form, in its own legend "Booking": "Booking service account (user ID)" (id: "Akun layanan pemesanan (ID pengguna)"), a uuid, with the hint "The staff user Booking records for guest checkouts and automatic actions. It must be an active user of this store. Leave blank to clear it." It is rendered only while the `booking` feature is on and only for a viewer who can read settings; it is submitted with the existing save bar and sends `bookingServiceTenantUserId` (a uuid, or `null` to clear). An inactive or foreign user is refused by the server with a field error, shown in the form's error box.
+
+### 11.4 Cancellation policy versions (specified here, built by #381)
+
+Purpose: author the windows of section 4.1 as **versions**: a draft is edited, approved by a second person, and only then becomes the active version; earlier versions stay readable and never change, so every refund can be explained by the version that applied.
+
+- **Scope selector.** "Tenant default" or one product. The page shows the **active version** as the section 4.1 table, then **Draft** (editable, with `.create`), then **History** (a read-only `.data-table-scroll` table: version number, scope, approved by and on, windows summary, status pill). History rows have no edit or delete control (absent, not disabled).
+- **Windows editor.** Rows of "Cancel at least [n] [hours|days] before check-in" and "Refund [0-100]%". Rows must be ordered and non-overlapping; the form states the rule and the server enforces it. A last row for "no-show" refunds at most what the policy says.
+- **Approve** (`.approve`, a different person from the author - separation of duties, C-11): the button opens the confirm dialog showing the windows side by side with the active version.
+- States: loading, empty ("No cancellation policy yet. Guests will see no refund terms."), error, success - as section 1.1.
+
+### 11.5 Refund-override dialog (specified here, built by #381)
+
+Purpose: the staff action of section 4.3, on the order detail and the reservation detail, for a reservation the policy does not refund as staff intend. This is the contract #381 builds to.
+
+- **Visibility.** The control "Override refund" is absent (not disabled) without `commerce.booking_refund_overrides.approve`. It is also absent when nothing was paid.
+- **Dialog.** A native modal `<dialog>` (the shared pattern: focus enters, Escape cancels, focus returns to the opener, background inert) named "Override the refund" and described by its figures. Rows: Paid (read-only), Policy refund (read-only, computed by the server), New refund amount (number, `min` 0, `max` = amount paid, `step` 0.01, `inputmode="decimal"`), Reason (textarea, required, minimum 10 characters, counter announced politely).
+- **The cap.** The hint reads "Maximum Rp X: the amount paid." (id: "Maksimal Rp X: sebesar yang sudah dibayar."). The submit button is **disabled while the amount is above the amount paid, below zero, malformed, or the reason is too short**, and the field carries `aria-invalid="true"` with its message; the input's own `max` is a convenience only. **The server enforces the same bound** and refuses a larger amount with `REFUND_EXCEEDS_PAID` (409), shown in the dialog's alert; a hand-built request gets the same refusal.
+- **Step-up.** Submitting triggers step-up re-authentication; the override is recorded only after it succeeds. A failed or abandoned step-up changes nothing and the dialog stays open with the typed values.
+- **Copy.** Title "Override the refund" (id: "Ubah jumlah pengembalian dana"); confirm "Record the override" (id: "Catat perubahan"); cancel "Keep the policy amount" (id: "Pakai jumlah sesuai kebijakan", default focus); success status "Refund set to Rp X. The change is recorded with your reason." (id: "Pengembalian dana ditetapkan Rp X. Perubahan dicatat beserta alasan Anda."). The guest never sees the reason or the actor (section 4.3).
+- **States.** Loading (figures not yet loaded: fields disabled, `aria-busy`), error (preview failed: retry, submit disabled), and success (dialog closes, the detail reloads and shows the recorded refund and an "Adjusted" pill).
+
+### 11.6 Accessibility, keyboard and 360px for these screens
+
+The floor of section 6 applies; in addition:
+
+- **Keyboard.** Every control is reachable in reading order: filter link, create form, table region (focusable, named), row buttons, `details` disclosures; Enter and Space operate buttons and summaries; the confirm dialog traps focus, Escape cancels, and focus returns to the row's button. No pointer-only affordance exists.
+- **Names and status.** Each input has a visible `<label>` bound by `for`/`id`; hints are tied with `aria-describedby`; a status pill always carries its text; an error is a text message in a `role="alert"` region, never colour alone.
+- **No raw browser dialogs.** Destructive confirmations use the shared `CommerceConfirmDialog`; `window.confirm`, `alert` and `prompt` are forbidden (the admin gate fails otherwise).
+- **360px.** Tables use `data-table--stack` with `data-label` on each cell, inside the `.data-table-scroll` region; forms are one column with 44px controls; the page never scrolls horizontally; long ids wrap (`overflow-wrap: anywhere`).
+- **Verification.** The axe `wcag2a`/`wcag2aa`/`wcag21a`/`wcag21aa` scan and the 360px overflow check cover the screens that exist (11.1 to 11.3); 11.4 and 11.5 join them when #381 builds them.

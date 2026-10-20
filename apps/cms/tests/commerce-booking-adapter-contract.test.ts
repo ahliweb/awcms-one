@@ -274,9 +274,18 @@ describe("tables", () => {
 });
 
 describe("module wiring and boundary", () => {
-  test("the booking feature defaults OFF, and the part files carry the navigation (empty) and the five consumers of Issue #380", () => {
+  test("the booking feature defaults OFF, and the part files carry the navigation (Issue #385: two entries, both gated on it) and the five consumers of Issue #380", () => {
     expect(DEFAULT_COMMERCE_FEATURES.booking).toBe(false);
-    expect(BOOKING_ADAPTER_NAVIGATION).toEqual([]);
+    expect(BOOKING_ADAPTER_NAVIGATION.map((e) => e.path)).toEqual([
+      "/admin/commerce-booking-links",
+      "/admin/commerce-booking-deposits"
+    ]);
+    for (const entry of BOOKING_ADAPTER_NAVIGATION) {
+      expect(entry.requiredFeature).toEqual({
+        moduleKey: "commerce",
+        feature: "booking"
+      });
+    }
     expect(BOOKING_ADAPTER_CONSUMERS.map((entry) => entry.name)).toEqual([
       "commerce.booking_order_paid_confirmer",
       "commerce.booking_expired_order_canceller",

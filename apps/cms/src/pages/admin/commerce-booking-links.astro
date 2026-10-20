@@ -1,0 +1,445 @@
+---
+/**
+ * Booking offering links (Issue #385, ADR-0045 D1) - the links between Booking
+ * offerings and service products: list, create and unlink. Specified in
+ * `docs/booking-ux-flows.md` section 11.1.
+ *
+ * Every control is UX-only; `/api/v1/commerce/booking/offering-links` is the
+ * authority and re-validates every field (one active product per offering and
+ * per product, service products only, quantity basis, a configured
+ * service-account user). Gated on `commerce.booking_offering_links.read` (view)
+ * and `.create` / `.update` (change), and on the tenant's `booking` feature.
+ * An unlink is a status change; there is no delete.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import CommerceConfirmDialog from "../../components/CommerceConfirmDialog.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import { decodeKeysetCursor } from "../../modules/_shared/keyset-pagination";
+import { fetchCommerceFeatures } from "../../modules/commerce/application/commerce-feature-gate";
+import { listOfferingLinks } from "../../modules/commerce/application/booking-offering-links";
+import {
+  BOOKING_OFFERING_LINK_STATUSES,
+  type BookingOfferingLinkStatus
+} from "../../modules/commerce/domain/booking-adapter";
+
+const ssr = Astro.locals.ssrContext!;
+const { t, tn } = getTranslatorFor(Astro.locals.locale);
+
+const statusParam = Astro.url.searchParams.get("status");
+const statusFilter: BookingOfferingLinkStatus | null = (
+  BOOKING_OFFERING_LINK_STATUSES as readonly string[]
+).includes(statusParam ?? "")
+  ? (statusParam as BookingOfferingLinkStatus)
+  : null;
+const cursorParam = Astro.url.searchParams.get("cursor");
+const cursor = cursorParam === null ? null : decodeKeysetCursor(cursorParam);
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "commerce",
+    activityCode: "booking_offering_links",
+    action: "read"
+  },
+  load: async ({ tx, can }) => {
+    const features = await fetchCommerceFeatures(tx, ssr.tenantId);
+    const canCreate = await can({
+      moduleKey: "commerce",
+      activityCode: "booking_offering_links",
+      action: "create"
+    });
+    const canUpdate = await can({
+      moduleKey: "commerce",
+      activityCode: "booking_offering_links",
+      action: "update"
+    });
+    const page = features.booking
+      ? await listOfferingLinks(tx, ssr.tenantId, {
+          status: statusFilter,
+          cursor
+        })
+      : { items: [], nextCursor: null };
+    return { bookingEnabled: features.booking, canCreate, canUpdate, page };
+  },
+  onError: (error) => {
+    logAdminPageError(
+      "admin/commerce-booking-links.astro: failed to list offering links",
+      error,
+      { correlationId: Astro.locals.correlationId }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+const loadError = screen.state === "error";
+const data = screen.state === "allowed" ? screen.data : null;
+const bookingEnabled = data?.bookingEnabled ?? false;
+const canCreate = data?.canCreate ?? false;
+const canUpdate = data?.canUpdate ?? false;
+const links = data?.page.items ?? [];
+const nextCursor = data?.page.nextCursor ?? null;
+
+const errorMessages = JSON.stringify({
+  OFFERING_ALREADY_LINKED: t("This offering is already linked to a product."),
+  PRODUCT_ALREADY_LINKED: t("This product is already linked to an offering."),
+  PRODUCT_NOT_SERVICE: t("Only a service product can be linked."),
+  QUANTITY_BASIS_MISMATCH: t(
+    "The basis does not match the offering (nightly or per booking)."
+  ),
+  OFFERING_NOT_LINKABLE: t(
+    "An offering that confirms immediately cannot be sold."
+  ),
+  BOOKING_SERVICE_ACTOR_NOT_CONFIGURED: t(
+    "Set the booking service account in Store settings first."
+  ),
+  FEATURE_DISABLED: t("Booking is turned off for this store."),
+  RESOURCE_NOT_FOUND: t("The offering or the product was not found.")
+});
+const basisLabel = (basis: string): string =>
+  basis === "nights" ? t("Per night") : t("Per booking");
+const dateFormat = new Intl.DateTimeFormat(Astro.locals.locale ?? "en", {
+  dateStyle: "medium",
+  timeZone: "UTC"
+});
+---
+
+<AdminLayout
+  title={t("Booking links")}
+  description={t(
+    "Link a Booking offering to a service product so the product can be sold as a reservation."
+  )}
+>
+  {!canRead && (
+    <p class="state-notice fade-in-up" id="booking-links-denied">
+      {t("You do not have permission to view booking links.")}
+    </p>
+  )}
+
+  {canRead && loadError && (
+    <p class="state-notice fade-in-up" id="booking-links-error">
+      {t(
+        "Booking links could not be loaded right now. Please try again later."
+      )}
+    </p>
+  )}
+
+  {canRead && !loadError && !bookingEnabled && (
+    <p class="state-notice fade-in-up" id="booking-links-disabled">
+      {t("Booking is turned off for this store.")}
+    </p>
+  )}
+
+  {canCreate && bookingEnabled && (
+    <form
+      id="booking-link-create-form"
+      class="admin-create-form fade-in-up"
+      data-failure={t(
+        "Could not link the offering. Check both IDs and try again."
+      )}
+      data-errors={errorMessages}
+      data-invalid-id={t("Enter a valid ID (a UUID).")}
+    >
+      <p class="form-legend">{t("Link an offering to a product")}</p>
+      <p
+        id="booking-link-create-error"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      />
+      <p
+        id="booking-link-create-status"
+        class="form-hint"
+        role="status"
+        data-warning={t(
+          "Linked. This product has no cancellation policy yet, so guests will see no refund terms."
+        )}
+        hidden
+      />
+
+      <label for="booking-link-offering">{t("Offering ID")}</label>
+      <input
+        id="booking-link-offering"
+        name="offeringId"
+        type="text"
+        required
+        autocomplete="off"
+        spellcheck="false"
+        aria-describedby="booking-link-offering-hint"
+      />
+      <p id="booking-link-offering-hint" class="form-hint">
+        {t("Copy it from Booking, Offerings.")}
+      </p>
+
+      <label for="booking-link-product">{t("Product ID")}</label>
+      <input
+        id="booking-link-product"
+        name="productId"
+        type="text"
+        required
+        autocomplete="off"
+        spellcheck="false"
+        aria-describedby="booking-link-product-hint"
+      />
+      <p id="booking-link-product-hint" class="form-hint">
+        {t("A service product.")}
+      </p>
+
+      <label for="booking-link-basis">{t("Basis")}</label>
+      <select id="booking-link-basis" name="quantityBasis">
+        <option value="nights">{t("Per night")}</option>
+        <option value="booking">{t("Per booking")}</option>
+      </select>
+
+      <button
+        type="submit"
+        id="booking-link-create-submit"
+        data-busy={t("Saving…")}
+      >
+        {t("Link offering")}
+      </button>
+    </form>
+  )}
+
+  {canRead && !loadError && bookingEnabled && (
+    <p
+      id="booking-link-action-error"
+      class="admin-create-error"
+      role="alert"
+      hidden
+    />
+  )}
+
+  {canRead && !loadError && bookingEnabled && (
+    <nav class="pill-row fade-in-up" aria-label={t("Filter links")}>
+      <a
+        href="/admin/commerce-booking-links"
+        aria-current={statusFilter === null ? "page" : undefined}
+      >
+        {t("All")}
+      </a>
+      <a
+        href="/admin/commerce-booking-links?status=active"
+        aria-current={statusFilter === "active" ? "page" : undefined}
+      >
+        {t("Active")}
+      </a>
+      <a
+        href="/admin/commerce-booking-links?status=unlinked"
+        aria-current={statusFilter === "unlinked" ? "page" : undefined}
+      >
+        {t("Unlinked")}
+      </a>
+    </nav>
+  )}
+
+  {canRead && !loadError && bookingEnabled && (
+    <div
+      class="data-table-scroll fade-in-up"
+      role="region"
+      tabindex="0"
+      aria-label={t("Booking links")}
+    >
+      <table class="data-table data-table--stack" id="booking-links-table">
+        <caption>
+          {tn("{count} link", "{count} links", links.length, {
+            count: links.length
+          })}
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">{t("Offering ID")}</th>
+            <th scope="col">{t("Product ID")}</th>
+            <th scope="col">{t("Basis")}</th>
+            <th scope="col">{t("Status")}</th>
+            <th scope="col">{t("Linked on")}</th>
+            {canUpdate && <th scope="col">{t("Actions")}</th>}
+          </tr>
+        </thead>
+        <tbody>
+          {links.length === 0 ? (
+            <tr>
+              <td class="data-table-empty" colspan={canUpdate ? 6 : 5}>
+                <div class="empty-state">
+                  <span class="empty-state-icon" aria-hidden="true">
+                    ◇
+                  </span>
+                  <span class="empty-state-title">{t("No links yet")}</span>
+                  <span class="empty-state-text">
+                    {t(
+                      "Link an offering to a service product to start selling reservations."
+                    )}
+                  </span>
+                </div>
+              </td>
+            </tr>
+          ) : (
+            links.map((link) => (
+              <tr data-link-row={link.id}>
+                <td data-label={t("Offering ID")}>
+                  <span class="cell-code">{link.offeringId}</span>
+                </td>
+                <td data-label={t("Product ID")}>
+                  <span class="cell-code">{link.productId}</span>
+                </td>
+                <td data-label={t("Basis")}>
+                  {basisLabel(link.quantityBasis)}
+                </td>
+                <td data-label={t("Status")}>
+                  <span
+                    class="admin-status-pill"
+                    data-tone={link.status === "active" ? "success" : "neutral"}
+                  >
+                    {link.status === "active" ? t("Active") : t("Unlinked")}
+                  </span>
+                </td>
+                <td data-label={t("Linked on")}>
+                  {dateFormat.format(new Date(link.createdAt))}
+                </td>
+                {canUpdate && (
+                  <td data-label={t("Actions")} class="stacked-block">
+                    {link.status === "active" && (
+                      <div class="row-actions">
+                        <button
+                          type="button"
+                          class="module-toggle booking-link-unlink-btn"
+                          data-link-id={link.id}
+                          data-confirm-title={t("Unlink this offering?")}
+                          data-confirm-message={t(
+                            "The product stops being sellable as a reservation. Past orders and reservations keep their history. To sell it again, create a new link."
+                          )}
+                          data-confirm-label={t("Unlink")}
+                          data-confirm-danger="true"
+                          data-failure={t(
+                            "Could not unlink the offering. Please try again."
+                          )}
+                          data-busy={t("Unlinking…")}
+                        >
+                          {t("Unlink")}
+                        </button>
+                      </div>
+                    )}
+                  </td>
+                )}
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
+    </div>
+  )}
+
+  {nextCursor && (
+    <p class="fade-in-up">
+      <a
+        href={`/admin/commerce-booking-links?${statusFilter ? `status=${statusFilter}&` : ""}cursor=${encodeURIComponent(nextCursor)}`}
+      >
+        {t("Next page")}
+      </a>
+    </p>
+  )}
+  <CommerceConfirmDialog locale={Astro.locals.locale} />
+</AdminLayout>
+
+<script>
+  import {
+    field,
+    lockElement,
+    messageBox,
+    mutateAndReload,
+    onAction,
+    onSubmit,
+    sendJson,
+    sendJsonForData
+  } from "../../lib/ui/admin-form-client";
+  import {
+    isUuidText,
+    newIdempotencyKey,
+    pickRefusalMessage
+  } from "../../lib/ui/commerce-booking-client";
+  import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
+
+  const WARNING_KEY = "awcms-one:booking-link-warning";
+  const createError = messageBox("booking-link-create-error");
+
+  onSubmit("booking-link-create-form", async ({ form, data, submit }) => {
+    const offeringId = field(data, "offeringId");
+    const productId = field(data, "productId");
+    if (!isUuidText(offeringId) || !isUuidText(productId)) {
+      createError.show(form.dataset.invalidId ?? "");
+      return;
+    }
+    createError.clear();
+    const unlock = submit
+      ? lockElement(submit, submit.dataset.busy ?? "…")
+      : () => {};
+    const result = await sendJsonForData<{ warnings?: string[] }>(
+      "POST",
+      "/api/v1/commerce/booking/offering-links",
+      { offeringId, productId, quantityBasis: field(data, "quantityBasis") },
+      { "Idempotency-Key": newIdempotencyKey() }
+    );
+    if (!result.ok) {
+      createError.show(
+        pickRefusalMessage(
+          form.dataset.errors,
+          result.errorCode,
+          form.dataset.failure ?? ""
+        )
+      );
+      unlock();
+      return;
+    }
+    // The page reloads to show the stored row; a non-blocking warning
+    // (ADR-0045 D6) is carried across the reload and announced once.
+    if (result.data?.warnings?.includes("NO_CANCELLATION_POLICY")) {
+      const status = document.getElementById("booking-link-create-status");
+      try {
+        sessionStorage.setItem(WARNING_KEY, status?.dataset.warning ?? "");
+      } catch {
+        /* storage unavailable: the link still exists, only the notice is lost */
+      }
+    }
+    window.location.reload();
+  });
+
+  try {
+    const warning = sessionStorage.getItem(WARNING_KEY);
+    if (warning) {
+      sessionStorage.removeItem(WARNING_KEY);
+      const status = document.getElementById("booking-link-create-status");
+      if (status) {
+        status.textContent = warning;
+        status.hidden = false;
+      }
+    }
+  } catch {
+    /* storage unavailable: nothing to show */
+  }
+
+  const actionError = messageBox("booking-link-action-error");
+
+  onAction(".booking-link-unlink-btn", async (button) => {
+    const id = button.dataset.linkId;
+    if (!id) return;
+    const confirmed = await confirmFromTrigger(button);
+    if (!confirmed) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson(
+          "PATCH",
+          `/api/v1/commerce/booking/offering-links/${id}`,
+          { status: "unlinked" },
+          { "Idempotency-Key": newIdempotencyKey() }
+        ),
+      button.dataset.failure ?? "",
+      button.dataset.busy
+    );
+  });
+</script>

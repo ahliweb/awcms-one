@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](status.md)
 
-<!-- i18n-source-hash: sha256:c5b1340f9c2a10e6f14f426365e4d7ffbabe142b5519534ca944d25d3b2a9aaf -->
+<!-- i18n-source-hash: sha256:914713e9172df8c9bd9b0a46fe6e09611f0fb99428848561872acc8adebb8a25 -->
 
 # Status
 
@@ -129,6 +129,7 @@ Lima consumer yang dideklarasikan di deskriptor menjaga Booking dan ledger tetap
 ### Pesanan booking memperoleh poin loyalitas saat pelunasan penuh (issue #384, [ADR-0045](adr/0045-booking-commerce-adapter.md))
 
 Issue #384 (epik #280, Wave C) adalah **pembuktian, bukan perilaku baru**: pesanan asal booking memperoleh poin loyalitas lewat pemberi poin dan bentuk ledger yang tidak berubah ([ADR-0026](adr/0026-loyalty-points-are-an-append-only-ledger.md) D5, kunci `earn:order:<orderId>`), dan hanya saat pelunasan penuh ([ADR-0041](adr/0041-gateway-deposit-sessions-and-mixed-tenders-on-one-order.md) D7, dijaga oleh #379). `apps/cms/tests/integration/commerce-booking-loyalty.integration.test.ts` menunjukkan, pada pesanan yang lahir dari hold Booking dengan kebijakan deposit: deposit saja tidak memberi poin; pelunasan memberi poin sekali, atas seluruh total; pemutaran ulang `order.paid` atau `order.settled` memberi poin sekali; leg refund membalik dengan baris kompensasi `reversal:refund:<id>` ([ADR-0033](adr/0033-returns-refunds-and-exchanges-are-additive-records-that-compensate-through-the-existing-ledgers.md) D9) dan pemutaran ulangnya tidak menulis apa pun; serta poin dan deposit tidak pernah digabung (permintaan booking tidak membawa poin, dan database menolak diskon poin pada pesanan deposit, Q8 / C-33). **Belum ada:** jenis retur `cancellation` booking beserta cakupan loyalitasnya (#381) - sampai itu ada, jalur retur generik menolak pesanan booking yang sudah dibayar, sehingga pembuktian refund menjalankan penyelesaian leg refund secara langsung.
+**Layar admin pemesanan ([isu #385](https://github.com/ahliweb/awcms-one/issues/385)).** Adapter kini punya layar pertamanya, di balik fitur `booking`: `/admin/commerce-booking-links` (tautkan, saring, dan lepas tautan penawaran-ke-produk) dan `/admin/commerce-booking-deposits` (kebijakan uang muka produk jasa), ditambah kolom akun layanan pemesanan pada layar pengaturan commerce, dengan entri sidebar yang dibatasi `requiredFeature`. Spesifikasi UX-nya, bersama layar versi kebijakan pembatalan dan dialog penggantian pengembalian dana, ada di [`booking-ux-flows.md`](booking-ux-flows.md) bagian 11; dua yang terakhir menunggu API-nya di [#381](https://github.com/ahliweb/awcms-one/issues/381). Layar reservasi dan pengembalian dana masih belum ada.
 
 ## `apps/storefront` — profil build (ADR-0018)
 
