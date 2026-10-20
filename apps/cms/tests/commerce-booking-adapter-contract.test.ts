@@ -3,9 +3,10 @@
  * module wiring (Issue #378, ADR-0045; access matrix section 9 evidence item 1)
  * - no database. The rules that must not rot silently:
  *
- *   - the fifteen registered permission keys are declared by the module
- *     through the part file, seeded by `sql/1039`, `sql/1041`, `sql/1044` and
- *     `sql/1045` exactly, and each is enforced by the route meant to need it;
+ *   - the eighteen registered permission keys are declared by the module
+ *     through the part file, seeded by `sql/1039`, `sql/1041`, `sql/1044`,
+ *     `sql/1045` and `sql/1046` exactly, and each is enforced by the route meant
+ *     to need it;
  *     nothing of the access matrix is left unregistered (a key with no enforcing
  *     route is the "permission with no enforcing code" defect class) and the
  *     high-risk verbs are classed;
@@ -47,7 +48,10 @@ const MIGRATIONS = [
   // Issue #437: the offering link's resource binding.
   "sql/1050_awcms_commerce_booking_offering_link_resources.sql",
   // Issue #382: the reschedule record, the no-show columns and one permission.
-  "sql/1045_awcms_commerce_booking_reschedule.sql"
+  "sql/1045_awcms_commerce_booking_reschedule.sql",
+  // Issue #383: the POS permissions, the check-in policy column and the relaxed
+  // ledger guard (re-issued with its search_path pinned).
+  "sql/1046_awcms_commerce_booking_pos.sql"
 ];
 
 const ADAPTER_TABLES = [
@@ -85,7 +89,9 @@ const ROUTES: Record<string, string[]> = {
   "commerce.booking_reservation_links.read": [
     "src/pages/api/v1/commerce/booking/reservations/[id].ts",
     "src/pages/api/v1/commerce/booking/reconciliation.ts",
-    "src/pages/api/v1/commerce/booking/reservations/[id]/cancellation-quote.ts"
+    "src/pages/api/v1/commerce/booking/reservations/[id]/cancellation-quote.ts",
+    // Issue #383: the till's lookup rides the read key (no key of its own).
+    "src/pages/api/v1/commerce/pos/booking/lookup.ts"
   ],
   // Issue #381 (sql/1044).
   // Issue #382 (sql/1045): the reschedule and its price preview; the no-show
@@ -109,6 +115,16 @@ const ROUTES: Record<string, string[]> = {
   // service accepts only the type it returns); the route file names the helper.
   "commerce.booking_refund_overrides.approve": [
     "src/modules/commerce/application/booking-refund-override.ts"
+  ],
+  // Issue #383 (sql/1046): the till's three writes, each its own key and route.
+  "commerce.booking_check_ins.create": [
+    "src/pages/api/v1/commerce/pos/booking/reservations/[id]/check-in.ts"
+  ],
+  "commerce.booking_check_outs.create": [
+    "src/pages/api/v1/commerce/pos/booking/reservations/[id]/check-out.ts"
+  ],
+  "commerce.booking_balance_payments.create": [
+    "src/pages/api/v1/commerce/pos/booking/reservations/[id]/balance-payments.ts"
   ],
   "commerce.booking_cancellation_policies.read": [
     "src/pages/api/v1/commerce/booking/cancellation-policies/index.ts"
@@ -136,7 +152,10 @@ const CONSTANT_TO_CODE: Record<string, string> = {
   COMMERCE_BOOKING_CANCELLATION_POLICIES_ACTIVITY_CODE:
     "booking_cancellation_policies",
   COMMERCE_BOOKING_REFUND_DECISIONS_ACTIVITY_CODE: "booking_refund_decisions",
-  COMMERCE_BOOKING_REFUND_OVERRIDES_ACTIVITY_CODE: "booking_refund_overrides"
+  COMMERCE_BOOKING_REFUND_OVERRIDES_ACTIVITY_CODE: "booking_refund_overrides",
+  COMMERCE_BOOKING_CHECK_INS_ACTIVITY_CODE: "booking_check_ins",
+  COMMERCE_BOOKING_CHECK_OUTS_ACTIVITY_CODE: "booking_check_outs",
+  COMMERCE_BOOKING_BALANCE_PAYMENTS_ACTIVITY_CODE: "booking_balance_payments"
 };
 
 function guardsIn(source: string): Set<string> {
@@ -170,7 +189,7 @@ async function sourceFilesUnder(directory: string): Promise<string[]> {
 }
 
 describe("permissions (evidence item 1)", () => {
-  test("the fifteen keys are declared by the module from the part file, and sql/1039 + sql/1041 + sql/1044 + sql/1045 seed exactly them with the same descriptions", async () => {
+  test("the eighteen keys are declared by the module from the part file, and sql/1039 + sql/1041 + sql/1044 + sql/1045 + sql/1046 seed exactly them with the same descriptions", async () => {
     for (const key of EXPECTED_KEYS) expect(declared.has(key)).toBe(true);
     const sql =
       (await readFile(
@@ -189,7 +208,9 @@ describe("permissions (evidence item 1)", () => {
       (await readFile(
         "sql/1045_awcms_commerce_booking_reschedule.sql",
         "utf8"
-      ));
+      )) +
+      // Issue #383: the three POS keys ride in the migration that lands their routes.
+      (await readFile("sql/1046_awcms_commerce_booking_pos.sql", "utf8"));
     const seeded = [
       ...sql.matchAll(
         /\('commerce', '([a-z_]+)', '([a-z_]+)', '((?:[^']|'')*)'\)/g

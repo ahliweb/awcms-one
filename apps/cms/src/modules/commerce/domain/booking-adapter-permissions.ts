@@ -37,6 +37,19 @@
  *     cancel takes (`booking_reservation_links.cancel` and
  *     `booking_refund_decisions.create`), which a cashier does not hold.
  *
+ * Issue #383 lands the POS side (`sql/1046`) and registers three keys, each
+ * enforced by its own route and each bound to the actor's own OPEN register
+ * session (ADR-0028; threat controls C-34, C-35):
+ *
+ *   - `booking_check_ins.create`: check a confirmed guest in at the till.
+ *   - `booking_check_outs.create`: check a checked-in guest out.
+ *   - `booking_balance_payments.create`: take the outstanding balance of a
+ *     reservation's order through the payment ledger.
+ *
+ * They are separate from each other and from `commerce.pos.create` /
+ * `commerce.payments.create` on purpose (C-35). The lookup that precedes them is
+ * the existing `commerce.booking_reservation_links.read`.
+ *
  * Nothing in the access matrix is left unregistered. `cancel` and `approve` are
  * in `HIGH_RISK_ACTIONS` already (a test asserts it), so registering them classes
  * them correctly with no change to the upstream-owned union.
@@ -61,6 +74,14 @@ export const COMMERCE_BOOKING_REFUND_DECISIONS_ACTIVITY_CODE =
 /** Issue #381 - the manager / finance override of a computed refund (`approve`). */
 export const COMMERCE_BOOKING_REFUND_OVERRIDES_ACTIVITY_CODE =
   "booking_refund_overrides";
+
+/** Issue #383 - check a guest in at the till (`create`), inside the actor's own open register session. */
+export const COMMERCE_BOOKING_CHECK_INS_ACTIVITY_CODE = "booking_check_ins";
+/** Issue #383 - check a guest out at the till (`create`). */
+export const COMMERCE_BOOKING_CHECK_OUTS_ACTIVITY_CODE = "booking_check_outs";
+/** Issue #383 - take a reservation's outstanding balance at the till (`create`). */
+export const COMMERCE_BOOKING_BALANCE_PAYMENTS_ACTIVITY_CODE =
+  "booking_balance_payments";
 
 export const COMMERCE_BOOKING_OFFERING_LINK_PERMISSIONS = {
   read: "commerce.booking_offering_links.read",
@@ -96,6 +117,12 @@ export const COMMERCE_BOOKING_REFUND_OVERRIDE_PERMISSIONS = {
   approve: "commerce.booking_refund_overrides.approve"
 } as const;
 
+export const COMMERCE_BOOKING_POS_PERMISSIONS = {
+  checkIn: "commerce.booking_check_ins.create",
+  checkOut: "commerce.booking_check_outs.create",
+  balancePayment: "commerce.booking_balance_payments.create"
+} as const;
+
 /**
  * The keys of the access matrix that no route enforces yet. Empty since issue
  * #382 landed the reschedule route: a key is added here only if a later issue
@@ -104,7 +131,7 @@ export const COMMERCE_BOOKING_REFUND_OVERRIDE_PERMISSIONS = {
  */
 export const BOOKING_ADAPTER_PENDING_PERMISSIONS: readonly string[] = [];
 
-/** Mirrors `sql/1039`, `sql/1041`, `sql/1044` and `sql/1045` exactly. */
+/** Mirrors `sql/1039`, `sql/1041`, `sql/1044`, `sql/1045` and `sql/1046` exactly. */
 export const BOOKING_ADAPTER_PERMISSIONS: ModulePermissionDescriptor[] = [
   {
     activityCode: COMMERCE_BOOKING_OFFERING_LINKS_ACTIVITY_CODE,
@@ -191,5 +218,23 @@ export const BOOKING_ADAPTER_PERMISSIONS: ModulePermissionDescriptor[] = [
     action: "approve",
     description:
       "Activate or retire a version of a booking cancellation policy, with a fresh step-up (Issue #381)"
+  },
+  {
+    activityCode: COMMERCE_BOOKING_CHECK_INS_ACTIVITY_CODE,
+    action: "create",
+    description:
+      "Check a confirmed Booking reservation in at the till, inside the actor's own open register session (Issue #383)"
+  },
+  {
+    activityCode: COMMERCE_BOOKING_CHECK_OUTS_ACTIVITY_CODE,
+    action: "create",
+    description:
+      "Check a checked-in Booking reservation out at the till, inside the actor's own open register session (Issue #383)"
+  },
+  {
+    activityCode: COMMERCE_BOOKING_BALANCE_PAYMENTS_ACTIVITY_CODE,
+    action: "create",
+    description:
+      "Take the outstanding balance of a Booking reservation's order through the payment ledger, into the actor's own open register session (Issue #383)"
   }
 ];

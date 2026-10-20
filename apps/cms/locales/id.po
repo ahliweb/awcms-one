@@ -13904,3 +13904,14 @@ msgstr "{from} malam menjadi {to}. Malam yang dihapus bernilai {priced}; kebijak
 
 msgid "{from} nights become {to}. The removed nights are worth {priced}; the original cancellation policy refunds {refund}, queued under Returns and refunds."
 msgstr "{from} malam menjadi {to}. Malam yang dihapus bernilai {priced}; kebijakan pembatalan awal mengembalikan {refund}, diantrekan di Pengembalian barang dan dana."
+
+# booking-adapter #383
+
+msgid "Require the balance to be paid before check-in"
+msgstr "Wajibkan sisa pembayaran lunas sebelum check-in"
+
+msgid "When on, the front desk cannot check a guest in while any balance is owed. When off, the guest can be checked in and the balance stays to collect."
+msgstr "Jika aktif, resepsionis tidak dapat meng-check-in tamu selama masih ada sisa pembayaran. Jika nonaktif, tamu dapat di-check-in dan sisa pembayaran tetap perlu ditagih."
+
+msgid "Turning this off needs a recent second-factor check and is recorded in the audit log."
+msgstr "Menonaktifkan ini memerlukan verifikasi faktor kedua yang baru dan dicatat dalam log audit."

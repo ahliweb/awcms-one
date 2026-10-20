@@ -21,6 +21,10 @@ import {
 import type { CancellationQuote, DecisionView } from "./booking-cancellation";
 import type { BookingReservationView } from "./booking-hold-to-order";
 import type { RescheduleQuote, RescheduleView } from "./booking-reschedule";
+import {
+  posBookingRefusalHttp,
+  type PosBookingRefusal
+} from "../domain/booking-pos";
 import { requireCommerceFeatureForOwnerRoute } from "./commerce-feature-gate";
 
 export { readValidatedBody, requireIdempotencyKey } from "./register-http";
@@ -391,4 +395,57 @@ export function rescheduledBody(view: RescheduleView, replayed: boolean) {
     },
     settlement: view.reservation.settlement
   };
+}
+
+// ---------------------------------------------------------------------------
+// Issue #383 - the POS side (lookup, check-in, check-out, balance payment)
+// ---------------------------------------------------------------------------
+
+/**
+ * Stamps a till response `Cache-Control: no-store` (control C-34): a reservation
+ * card or a refusal about one must never sit in a browser or proxy cache, and
+ * the screen keeps it in memory only. Returns the same response.
+ */
+export function noStore(response: Response): Response {
+  response.headers.set("cache-control", "no-store");
+  return response;
+}
+
+/**
+ * The feature gates of the till's routes besides `booking`: `pos`, and for the
+ * three writes `register` too - they are bound to an open register session
+ * (ADR-0028), which exists only while the tenant's `register` feature is on.
+ * `409 FEATURE_DISABLED` naming the missing one, else `null`.
+ */
+export async function requirePosFeatures(
+  tx: Bun.SQL,
+  tenantId: string,
+  options: { register: boolean }
+): Promise<Response | null> {
+  const pos = await requireCommerceFeatureForOwnerRoute(tx, tenantId, "pos");
+  if (pos) return noStore(pos);
+  if (!options.register) return null;
+  const register = await requireCommerceFeatureForOwnerRoute(
+    tx,
+    tenantId,
+    "register"
+  );
+  return register ? noStore(register) : null;
+}
+
+/** A till refusal as its HTTP response (no-store). */
+export function posRefusalResponse(refusal: PosBookingRefusal): Response {
+  const mapped = posBookingRefusalHttp(refusal);
+  return noStore(
+    fail(mapped.status, mapped.code, mapped.message, {}, mapped.details)
+  );
+}
+
+/**
+ * The ONE answer to a lookup that finds nothing. The same bytes for an unknown
+ * code, a code whose customer is somebody else's and another tenant's code - a
+ * test compares them byte for byte (control C-34).
+ */
+export function posLookupMissResponse(): Response {
+  return noStore(fail(404, "RESOURCE_NOT_FOUND", "Reservation not found."));
 }

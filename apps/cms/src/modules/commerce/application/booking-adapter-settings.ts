@@ -21,6 +21,12 @@
  */
 import { recordAuditEvent } from "../../logging/application/audit-log";
 
+import { recordAuditEvent } from "../../logging/application/audit-log";
+import {
+  DEFAULT_CHECK_IN_REQUIRES_SETTLEMENT,
+  POS_BOOKING_CHECK_IN_POLICY_AUDIT_ACTION
+} from "../domain/booking-pos";
+
 /** The configured service-account tenant user, or `null` when unset or inactive. */
 export async function fetchBookingServiceActor(
   tx: Bun.SQL,
@@ -105,4 +111,98 @@ export async function saveBookingServiceTenantUserId(
     },
     correlationId
   });
+}
+
+/**
+ * Whether a guest may NOT be checked in at the till while a balance is owed
+ * (Issue #383, ADR-0045 D19). A real column of the one-row-per-tenant settings
+ * table (`sql/1046`, default TRUE). A tenant with no live row - never saved, or
+ * reset and not yet purged - reads the default, so the answer fails closed.
+ */
+export async function fetchCheckInRequiresSettlement(
+  tx: Bun.SQL,
+  tenantId: string
+): Promise<boolean> {
+  const rows = (await tx`
+    SELECT checkin_requires_settlement AS value
+    FROM awcms_commerce_store_settings
+    WHERE tenant_id = ${tenantId} AND deleted_at IS NULL
+  `) as { value: boolean }[];
+  return rows[0]?.value ?? DEFAULT_CHECK_IN_REQUIRES_SETTLEMENT;
+}
+
+/**
+ * Reads the policy AND locks the settings row (`FOR NO KEY UPDATE`) to the end of
+ * the transaction, so the value a change is judged against (does it loosen the
+ * policy, which needs a step-up?) and the `from` it is audited with cannot be
+ * overtaken by a concurrent change. A tenant with no live row reads the default
+ * (`true`), the conservative side: a change to `false` is then a loosening.
+ */
+export async function lockCheckInRequiresSettlement(
+  tx: Bun.SQL,
+  tenantId: string
+): Promise<boolean> {
+  const rows = (await tx`
+    SELECT checkin_requires_settlement AS value
+    FROM awcms_commerce_store_settings
+    WHERE tenant_id = ${tenantId} AND deleted_at IS NULL
+    FOR NO KEY UPDATE
+  `) as { value: boolean }[];
+  return rows[0]?.value ?? DEFAULT_CHECK_IN_REQUIRES_SETTLEMENT;
+}
+
+/** Writes the policy. Called AFTER `saveStoreSettings` in the same request, so the singleton row exists. */
+export async function saveCheckInRequiresSettlement(
+  tx: Bun.SQL,
+  tenantId: string,
+  requiresSettlement: boolean
+): Promise<void> {
+  await tx`
+    UPDATE awcms_commerce_store_settings
+    SET checkin_requires_settlement = ${requiresSettlement}, updated_at = now()
+    WHERE tenant_id = ${tenantId}
+  `;
+}
+
+/**
+ * Audits a CHANGE of the check-in policy (Issue #383, ADR-0045 D19; the security
+ * audit of PR #443, M1). The generic "store settings updated" row compares only
+ * the jsonb sections, so a flip of this real column left `sections: []` and no
+ * trace of who stopped a balance from blocking check-ins. `warning` when the new
+ * value is `false` (the policy was loosened: the front desk can now check guests
+ * in with money owed), `info` when it is turned back on. Written in the caller's
+ * transaction; a no-op when nothing changed. `stepUpAt` is the proof the
+ * loosening was made with (the platform step-up stamp), when there was one.
+ */
+export async function auditCheckInPolicyChange(
+  tx: Bun.SQL,
+  input: {
+    tenantId: string;
+    actorTenantUserId: string;
+    from: boolean;
+    to: boolean;
+    stepUpAt?: Date | null;
+    correlationId?: string;
+  }
+): Promise<boolean> {
+  if (input.from === input.to) return false;
+  await recordAuditEvent(tx, {
+    tenantId: input.tenantId,
+    actorTenantUserId: input.actorTenantUserId,
+    moduleKey: "commerce",
+    action: POS_BOOKING_CHECK_IN_POLICY_AUDIT_ACTION,
+    resourceType: "store_settings",
+    resourceId: input.tenantId,
+    severity: input.to ? "info" : "warning",
+    message: input.to
+      ? "Booking check-in policy changed: a balance owed blocks check-in again."
+      : "Booking check-in policy changed: a guest can now be checked in with a balance owed.",
+    attributes: {
+      from: input.from,
+      to: input.to,
+      ...(input.stepUpAt ? { stepUpAt: input.stepUpAt.toISOString() } : {})
+    },
+    correlationId: input.correlationId
+  });
+  return true;
 }

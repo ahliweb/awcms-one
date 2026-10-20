@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](status.md)
 
-<!-- i18n-source-hash: sha256:ea84b0a4d2f2c288bc38105b24bc04b8af8c9ed627a720e7d47c451c6da72814 -->
+<!-- i18n-source-hash: sha256:cb624474c6d57e660926d0eadc9116b303743e4e52d3a1a6c64ffe57ec415c11 -->
 
 # Status
 
@@ -150,6 +150,8 @@ Issue #437 menutup satu keterbatasan yang dicatat #386: tenant yang menjual bebe
 ### Adapter booking-commerce, rekonsiliasi pasca-restore (issue #396, [ADR-0045](adr/0045-booking-commerce-adapter.id.md))
 
 Issue #396 (epic #280 butir 35, separuh adaptor) menambah separuh adaptor dari drill restore, tanpa migrasi, route, atau izin: `bun run commerce:booking:reconcile` adalah CLI operator hanya-baca yang, terhadap basis data hasil restore, memeriksa struktur tabel adaptor (FORCE RLS, kebijakan isolasi tenant, trigger guard, indeks unik), rekonsiliasi nol-atau-dua-referensi antara tautan reservasi dan pesanan (kontrol ancaman C-38), perbandingan pelunasan terhadap reservasi C-09 (temuan yang sudah ada di antrean operator dilaporkan, tidak digagalkan), dan keputusan refund booking terhadap kaki refund. Ia keluar dengan 1 pada drift apa pun dan dapat menambahkan satu baris berisi jumlah saja ke log bukti drill restore. `restore-drill.sh` hulu men-drop basis data scratch-nya sebelum ada yang sempat menanyainya, jadi langkah ini berjalan di antara `restore-postgres.sh --keep` dan drop; perintahnya ada di [`deployment.md`](deployment.md) ("Restore drill adaptor booking"). Pemeriksaan keputusan refund sudah terpasang, tetapi belum ada baris keputusan sampai isu pembatalan (#381), yang juga mendaftarkan pemeriksaan lanjutan apa pun di `BOOKING_RESTORE_EXTENSION_CHECKS` yang masih kosong.
+
+**Booking di kasir ([issue #383](https://github.com/ahliweb/awcms-one/issues/383), `sql/1046`).** Di balik fitur `booking` dan `pos` (dan `register` untuk penulisan), POS dapat menemukan reservasi, menerima sisa pembayarannya, dan meng-check-in serta check-out tamu - hanya server dan API; layar meja depan adalah [#388](https://github.com/ahliweb/awcms-one/issues/388). `POST commerce/pos/booking/lookup` menerima kode reservasi persis DAN telepon atau e-mail pelanggan (tanpa pencarian, satu `404` netral untuk setiap luput, laju per pelaku dan anggaran luput, setiap pencarian diaudit, kontak disamarkan, `no-store`); `POST .../reservations/{id}/balance-payments`, `.../check-in` dan `.../check-out` adalah tiga izin terpisah, masing-masing terikat pada sesi register terbuka milik pemanggil. Sisa pembayaran dibaca dari buku besar pembayaran dan diterima lewat perencana tender dan primitif buku besar biasa (tanpa mekanisme uang baru), diberi stempel sesi kasir sehingga selisih tutup kas dan laporan per register menyertakannya; check-in dan check-out adalah transisi milik Booking (`409 CHECK_IN_TOO_EARLY`) dan POS tidak menyimpan status reservasi atau sisa pembayaran. Pengaturan tenant `checkinRequiresSettlement` (kotak centang di layar pengaturan commerce) menentukan apakah tamu dapat di-check-in selama ada sisa terutang: kedua varian dibangun, dan **bawaannya blokir**, yang harus dikonfirmasi pemilik sebelum issue digabung (risiko sisa R3).
 
 ### Gerbang transaction-swallow (sinkronisasi subtree pada `c6a04a9`, AWCMS v10.9.0)
 
