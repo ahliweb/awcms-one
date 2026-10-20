@@ -15,7 +15,6 @@ import type {
   CreateExpenseCategoryInput,
   UpdateExpenseCategoryInput
 } from "../domain/expense";
-import { inSavepoint } from "./savepoint";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE = "expense_category";
@@ -91,7 +90,7 @@ export type CreateExpenseCategoryOutcome =
   { kind: "created"; category: ExpenseCategoryRecord } | { kind: "code_taken" };
 
 export async function createExpenseCategory(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   input: CreateExpenseCategoryInput,
@@ -99,8 +98,7 @@ export async function createExpenseCategory(
 ): Promise<CreateExpenseCategoryOutcome> {
   let id: string;
   try {
-    const rows = (await inSavepoint(
-      tx,
+    const rows = (await tx.savepoint(
       async (sp) =>
         await sp`
       INSERT INTO awcms_commerce_expense_categories (

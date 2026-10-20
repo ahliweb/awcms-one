@@ -157,7 +157,7 @@ export type CreateAccountForCustomerInput = {
  * that ordering); this function does not itself check any OTP.
  */
 export async function createAccountForCustomer(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   input: CreateAccountForCustomerInput,
   correlationId?: string

@@ -74,7 +74,7 @@ const ACTOR = "33333333-3333-3333-3333-333333333333";
 
 function inTenant<T>(
   tenantId: string,
-  fn: (tx: Bun.SQL) => Promise<T>
+  fn: (tx: Bun.TransactionSQL) => Promise<T>
 ): Promise<T> {
   return withTenantOrThrow(getRuntimeSql(), tenantId, fn);
 }

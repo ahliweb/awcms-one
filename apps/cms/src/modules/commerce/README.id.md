@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:001acd212a2386dcdb8a4716951c43d8a5c8e2e7478fcee59a7b46c9b5246c5b -->
+<!-- i18n-source-hash: sha256:af5a9cf7a4a2041d910f0d9cfc5b13f2af3ea44bbbadcc72f4c2c77102cff1ad -->
 
 # `commerce`
 
@@ -178,7 +178,7 @@ VARIANT_SKU_ALREADY_EXISTS`.
 
 ## Savepoint untuk error pernyataan yang ditangkap
 
-**Pernyataan yang errornya ditangkap di dalam transaksi dijalankan dalam savepoint.** Pernyataan yang gagal (pelanggaran unik yang diubah menjadi `409`, `23514` dari trigger yang diubah menjadi `400`, tabrakan kode pesanan yang diulang dengan kandidat lain) membatalkan transaksi PostgreSQL tempatnya berjalan; bila handler lalu mengembalikan respons seperti biasa, transaksi di-commit, PostgreSQL menjawab `COMMIT` itu dengan `ROLLBACK`, dan semua penulisan sebelumnya dalam transaksi yang sama hilang. Bun 1.4.2 menganggapnya sukses begitu saja (handler melaporkan sukses untuk penulisan yang hilang); Bun 1.4.3 melempar `ERR_POSTGRES_COMMIT_ROLLED_BACK`. `inSavepoint(tx, async (sp) => ...)` di `application/savepoint.ts` membatasi pembatalan itu pada pernyataannya saja: jalankan pernyataan pada `sp`, tangkap `Bun.SQL.PostgresError` di luarnya, dan transaksi luar tetap dapat dipakai. Pernyataan yang errornya selalu merambat keluar dari callback transaksi tidak memerlukan savepoint (seluruh transaksi memang di-rollback). `tests/integration/commerce-caught-error-savepoints.integration.test.ts` mengunci perilakunya.
+**Pernyataan yang errornya ditangkap di dalam transaksi dijalankan dalam savepoint.** Pernyataan yang gagal (pelanggaran unik yang diubah menjadi `409`, `23514` dari trigger yang diubah menjadi `400`, tabrakan kode pesanan yang diulang dengan kandidat lain) membatalkan transaksi PostgreSQL tempatnya berjalan; bila handler lalu mengembalikan respons seperti biasa, transaksi di-commit, PostgreSQL menjawab `COMMIT` itu dengan `ROLLBACK`, dan semua penulisan sebelumnya dalam transaksi yang sama hilang. Bun 1.4.2 menganggapnya sukses begitu saja (handler melaporkan sukses untuk penulisan yang hilang); Bun 1.4.3 melempar `ERR_POSTGRES_COMMIT_ROLLED_BACK`. `tx.savepoint(async (sp) => ...)` membatasi pembatalan itu pada pernyataannya saja: jalankan pernyataan pada `sp`, tangkap `Bun.SQL.PostgresError` di luarnya, dan transaksi luar tetap dapat dipakai (fungsi yang melakukannya menerima `tx: Bun.TransactionSQL`; pembantu yang dipanggil dari dalam savepoint menerima `sp as Bun.TransactionSQL`). Pernyataan yang errornya selalu merambat keluar dari callback transaksi tidak memerlukan savepoint (seluruh transaksi memang di-rollback). `bun run db:transaction-swallow:check` milik upstream menolak bentuk lain; catch rute yang hanya memetakan error aplikasi membawa penanda `// tx-swallow-ok: <alasan>`. `tests/integration/commerce-caught-error-savepoints.integration.test.ts` mengunci perilakunya.
 
 ## Gambar dan varian (Issue #23)
 

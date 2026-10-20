@@ -88,7 +88,7 @@ async function takeSlot(
  * inside the savepoint: it must do its reads on THAT, not on `tx`.
  */
 export async function runBoundedEvaluation<T>(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   context: SegmentEvaluationContext,
   work: (db: Bun.SQL, asOf: string) => Promise<T>,
   options: { statementTimeoutMs?: number } = {}
@@ -109,7 +109,7 @@ export async function runBoundedEvaluation<T>(
   const asOf = context.now.toISOString();
   const started = performance.now();
   try {
-    const value = await (tx as Bun.TransactionSQL).savepoint(async (sp) => {
+    const value = await tx.savepoint(async (sp) => {
       const previous = (await sp`
         SELECT current_setting('statement_timeout') AS value
       `) as { value: string }[];
@@ -172,7 +172,7 @@ export type SegmentPreviewResult = {
  * and customer read permissions - a bounded sample.
  */
 export async function previewSegment(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   context: SegmentEvaluationContext,
   rules: EvaluationRules,
   options: { includeSample: boolean }
@@ -218,7 +218,7 @@ export type SegmentMembersPage = {
 
 /** One keyset page of members (ascending customer id). */
 export async function listSegmentMembersPage(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   context: SegmentEvaluationContext,
   rules: EvaluationRules,
   afterId: string | null,
@@ -256,7 +256,7 @@ export async function listSegmentMembersPage(
  * existed - the export says so rather than cutting silently.
  */
 export async function exportSegmentMembers(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   context: SegmentEvaluationContext,
   rules: EvaluationRules,
   maxRows: number

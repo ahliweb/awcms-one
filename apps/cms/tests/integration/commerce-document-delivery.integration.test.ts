@@ -351,12 +351,12 @@ async function expectDbError(run: () => PromiseLike<unknown>): Promise<void> {
  */
 async function asApp<T>(
   tenantId: string,
-  fn: (tx: Bun.SQL) => Promise<T>
+  fn: (tx: Bun.TransactionSQL) => Promise<T>
 ): Promise<T> {
   return (await getHandlerAdminSql().begin(async (tx) => {
     await tx.unsafe("SET LOCAL ROLE awcms_app");
     await tx.unsafe(`SET LOCAL app.current_tenant_id = '${tenantId}'`);
-    return fn(tx as unknown as Bun.SQL);
+    return fn(tx);
   })) as T;
 }
 

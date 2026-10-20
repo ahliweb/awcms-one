@@ -160,7 +160,6 @@ import {
   resolveAffiliateForOrder,
   voidAffiliateCommissionForOrder
 } from "./affiliate-directory";
-import { inSavepoint } from "./savepoint";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE = "order";
@@ -799,7 +798,7 @@ export type OrderLoyaltyRefusal =
   | { code: typeof LOYALTY_REDEMPTION_ERROR_CODES.requiresAccount };
 
 async function insertOrderWithRetryableCode(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   customerId: string,
   input: CreateOrderInput,
@@ -838,8 +837,7 @@ async function insertOrderWithRetryableCode(
   for (let attempt = 0; attempt < MAX_ORDER_CODE_ATTEMPTS; attempt += 1) {
     const orderCode = generateOrderCode(now);
     try {
-      const rows = (await inSavepoint(
-        tx,
+      const rows = (await tx.savepoint(
         async (sp) =>
           await sp`
         INSERT INTO awcms_commerce_orders (
@@ -897,7 +895,7 @@ async function insertOrderWithRetryableCode(
  * that no longer validates, rather than guessing at the client's intent.
  */
 export async function createOrderFromCart(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   mediaPort: MediaLibraryPort,
   input: CreateOrderInput,
@@ -978,7 +976,7 @@ async function runCreateOrder(
     );
   }
 
-  const attempt = (db: Bun.SQL) =>
+  const attempt = (db: Bun.TransactionSQL) =>
     createOrderFromCartWrite(
       db,
       tenantId,
@@ -1016,7 +1014,7 @@ async function runCreateOrder(
 }
 
 async function createOrderFromCartWrite(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   mediaPort: MediaLibraryPort,
   input: CreateOrderInput,
@@ -1949,7 +1947,7 @@ async function restockCancelledOrRefreshedOrder(
 
 /** `POST …/storefront/orders/{orderCode}/cancel` — customer-initiated. */
 export async function cancelOrderByCustomer(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   mediaPort: MediaLibraryPort,
   orderCode: string,
@@ -1997,7 +1995,7 @@ export async function cancelOrderByCustomer(
 
 /** Admin status change — `PATCH .../orders/{id}/status`. */
 export async function updateOrderStatusByAdmin(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   orderId: string,
@@ -2488,7 +2486,7 @@ export async function expireOrdersForTenant(
           continue;
         }
         try {
-          await withInventorySavepoint(tx, inventory, (sp) =>
+          await tx.savepoint((sp) =>
             expireOrderBySystem(sp, tenantId, orderId, correlationId)
           );
           expiredCount += 1;

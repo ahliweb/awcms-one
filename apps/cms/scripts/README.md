@@ -103,6 +103,7 @@ scheduled, or by a specific CI workflow.
 | `db:migrate`                              | `db-migrate.ts`                                | —    |
 | `db:pool:health`                          | `db-pool-health.ts`                            | —    |
 | `db:tenant-context:check`                 | `tenant-context-usage-check.ts`                | ✅   |
+| `db:transaction-swallow:check`            | `transaction-swallow-check.ts`                 | ✅   |
 | `db:work-class:check`                     | `work-class-registry-check.ts`                 | ✅   |
 | `db:work-class:generate`                  | `work-class-registry-generate.ts`              | —    |
 | `deps:audit:check`                        | `dependency-audit-check.ts`                    | ✅   |
@@ -162,6 +163,7 @@ scheduled, or by a specific CI workflow.
 | `payroll:sql-boundary:check`              | `payroll-sql-boundary-check.ts`                | ✅   |
 | `project-state:inventory:check`           | `project-state-inventory.ts`                   | ✅   |
 | `project-state:inventory:generate`        | `project-state-inventory.ts`                   | —    |
+| `push:auth-secret:backfill`               | `push-auth-secret-backfill.ts`                 | —    |
 | `push:dispatch`                           | `push-dispatch.ts`                             | —    |
 | `push:queue:purge`                        | `push-queue-purge.ts`                          | —    |
 | `push:vapid:generate`                     | `push-vapid-generate.ts`                       | —    |

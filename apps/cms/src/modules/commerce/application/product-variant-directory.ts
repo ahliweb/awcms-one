@@ -5,7 +5,6 @@ import type {
   CreateProductVariantInput,
   UpdateProductVariantInput
 } from "../domain/product-variant-validation";
-import { inSavepoint } from "./savepoint";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE = "product_variant";
@@ -156,7 +155,7 @@ export async function listLiveProductVariantsByProductIds(
  * @throws {DuplicateVariantSkuError} `input.sku` is set and already taken.
  */
 export async function createProductVariant(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   productId: string,
@@ -186,8 +185,7 @@ export async function createProductVariant(
 
   let rows: ProductVariantRow[];
   try {
-    rows = (await inSavepoint(
-      tx,
+    rows = (await tx.savepoint(
       async (sp) =>
         await sp`
       INSERT INTO awcms_commerce_product_variants (
@@ -232,7 +230,7 @@ export async function createProductVariant(
 }
 
 export async function updateProductVariant(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   productId: string,
@@ -265,8 +263,7 @@ export async function updateProductVariant(
 
   let rows: ProductVariantRow[];
   try {
-    rows = (await inSavepoint(
-      tx,
+    rows = (await tx.savepoint(
       async (sp) =>
         await sp`
       UPDATE awcms_commerce_product_variants

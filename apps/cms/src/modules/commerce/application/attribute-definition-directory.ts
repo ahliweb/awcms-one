@@ -10,7 +10,6 @@ import type {
   AttributeConstraints,
   AttributeValueType
 } from "../domain/attribute-value";
-import { inSavepoint } from "./savepoint";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE = "attribute_definition";
@@ -171,7 +170,7 @@ export async function fetchAttributeDefinitionById(
  * @throws {DuplicateAttributeKeyError} the key is already taken by a live definition.
  */
 export async function createAttributeDefinition(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   input: AttributeDefinitionInput,
@@ -191,8 +190,7 @@ export async function createAttributeDefinition(
 
   let rows: DefinitionRow[];
   try {
-    rows = (await inSavepoint(
-      tx,
+    rows = (await tx.savepoint(
       async (sp) =>
         await sp`
       INSERT INTO awcms_commerce_attribute_definitions (

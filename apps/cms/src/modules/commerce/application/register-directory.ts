@@ -19,7 +19,6 @@ import type {
   RegisterSessionStatus,
   UpdateRegisterInput
 } from "../domain/register";
-import { inSavepoint } from "./savepoint";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE = "register";
@@ -130,7 +129,7 @@ export type CreateRegisterOutcome =
   { kind: "created"; register: RegisterRecord } | { kind: "code_taken" };
 
 export async function createRegister(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   input: CreateRegisterInput,
@@ -138,8 +137,7 @@ export async function createRegister(
 ): Promise<CreateRegisterOutcome> {
   let id: string;
   try {
-    const rows = (await inSavepoint(
-      tx,
+    const rows = (await tx.savepoint(
       async (sp) =>
         await sp`
       INSERT INTO awcms_commerce_registers (

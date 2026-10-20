@@ -135,6 +135,11 @@ export const POST = defineTenantRoute<RecordReversalInput>({
       }
       return created(outcome.body);
     } catch (error) {
+      // tx-swallow-ok: IdempotencyRaceLostError,
+      // IdempotencyPayloadMismatchError, AllocationSourceKeyConflictError,
+      // ReversalExceedsPaymentError are raised by application code before a
+      // write, or after the directory rolled its failed statement back to a
+      // savepoint, so the transaction is healthy.
       if (error instanceof IdempotencyRaceLostError) {
         if (error.replay) {
           return jsonResponse(error.replay.responseBody, {

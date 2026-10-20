@@ -23,7 +23,6 @@ import {
 import { withTenantOrThrow } from "../../src/lib/database/tenant-context";
 import { createExpenseCategory } from "../../src/modules/commerce/application/expense-category-directory";
 import { createRegister } from "../../src/modules/commerce/application/register-directory";
-import { inSavepoint } from "../../src/modules/commerce/application/savepoint";
 import {
   getAdminSql,
   getRuntimeSql,
@@ -38,7 +37,7 @@ const suite = integrationEnabled ? describe : describe.skip;
 const TENANT = "a1a1a1a1-a1a1-4a1a-8a1a-a1a1a1a1a1a1";
 const ACTOR = "c3c3c3c3-c3c3-4c3c-8c3c-c3c3c3c3c3c3";
 
-function inTenant<T>(fn: (tx: Bun.SQL) => Promise<T>): Promise<T> {
+function inTenant<T>(fn: (tx: Bun.TransactionSQL) => Promise<T>): Promise<T> {
   return withTenantOrThrow(getRuntimeSql(), TENANT, fn);
 }
 
@@ -139,7 +138,7 @@ suite(
       expect(rows[0]!.n).toBe(1);
     });
 
-    test("inSavepoint re-throws the original PostgresError and keeps the transaction usable", async () => {
+    test("tx.savepoint re-throws the original PostgresError and keeps the transaction usable", async () => {
       await inTenant(async (tx) => {
         await createRegister(tx, TENANT, ACTOR, {
           code: "R1",
@@ -148,7 +147,7 @@ suite(
         });
         let caught: unknown;
         try {
-          await inSavepoint(tx, async (sp) => {
+          await tx.savepoint(async (sp) => {
             await sp`
             INSERT INTO awcms_commerce_registers (
               tenant_id, code, name, location_label,

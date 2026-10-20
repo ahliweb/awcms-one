@@ -8,7 +8,6 @@ import type {
   CreateCategoryInput,
   UpdateCategoryInput
 } from "../domain/category-validation";
-import { inSavepoint } from "./savepoint";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE = "category";
@@ -190,7 +189,7 @@ async function fetchCategoryRowIncludingDeleted(
  * @throws {DuplicateCategorySlugError} `slug` is already taken in this tenant.
  */
 export async function createCategory(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   input: CreateCategoryInput,
@@ -210,8 +209,7 @@ export async function createCategory(
   }[];
 
   try {
-    rows = (await inSavepoint(
-      tx,
+    rows = (await tx.savepoint(
       async (sp) =>
         await sp`
       INSERT INTO awcms_commerce_categories (tenant_id, parent_id, name, slug, icon)
@@ -266,7 +264,7 @@ export async function createCategory(
 }
 
 export async function updateCategory(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   categoryId: string,
@@ -285,8 +283,7 @@ export async function updateCategory(
   }[];
 
   try {
-    rows = (await inSavepoint(
-      tx,
+    rows = (await tx.savepoint(
       async (sp) =>
         await sp`
       UPDATE awcms_commerce_categories
@@ -437,7 +434,7 @@ export async function listDeletedCategories(
  *   this category's slug.
  */
 export async function restoreCategory(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   categoryId: string,
@@ -459,8 +456,7 @@ export async function restoreCategory(
   }[];
 
   try {
-    rows = (await inSavepoint(
-      tx,
+    rows = (await tx.savepoint(
       async (sp) =>
         await sp`
       UPDATE awcms_commerce_categories

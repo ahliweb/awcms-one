@@ -10,7 +10,6 @@ import type {
   PopupFrequency,
   UpdatePopupInput
 } from "../domain/popup-validation";
-import { inSavepoint } from "./savepoint";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE = "popup";
@@ -125,7 +124,7 @@ export async function fetchPopupById(
 
 /** @throws {PopupAlreadyActiveError} `input.isActive` is `true` and another live popup already is. */
 export async function createPopup(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   input: CreatePopupInput,
@@ -134,8 +133,7 @@ export async function createPopup(
   let rows: PopupRow[];
 
   try {
-    rows = (await inSavepoint(
-      tx,
+    rows = (await tx.savepoint(
       async (sp) =>
         await sp`
       INSERT INTO awcms_commerce_popups (
@@ -179,7 +177,7 @@ export async function createPopup(
 
 /** @throws {PopupAlreadyActiveError} the update would set `isActive: true` while another live popup already is. */
 export async function updatePopup(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   popupId: string,
@@ -192,8 +190,7 @@ export async function updatePopup(
   let rows: PopupRow[];
 
   try {
-    rows = (await inSavepoint(
-      tx,
+    rows = (await tx.savepoint(
       async (sp) =>
         await sp`
       UPDATE awcms_commerce_popups

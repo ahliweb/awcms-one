@@ -1256,6 +1256,15 @@ export const READER_BUDGET_BYTES = 24_000;
  * (334,800 -> 335,108 on its own base); no stylesheet grew.
  *
  * Stacked on #1008 (335,426 B): +308 B for #1018, 335,734 B.
+ *
+ * **Raised for Issue #952** (the five `/admin/hr/*` screens): +1,164 B, measured
+ * (335,734 -> 336,898 on its own base). Four of the five screens are server
+ * rendered with no script at all; the whole growth is the one script of
+ * `/admin/hr/my-work` (the correction request form: the replace-target toggle and
+ * the POST) plus its shared client, `src/lib/ui/hr-self-service-client.ts`, which
+ * only adds the `Idempotency-Key` source and the translated-message lookup on top
+ * of `admin-form-client.ts`. No stylesheet grew: the screens reuse the admin
+ * table, segmented-filter, stat-card and status-pill classes.
  */
 /**
  * **Raised to 254,500 B in awcms-one (subtree sync of awcms#813, issue
@@ -1650,6 +1659,14 @@ export const READER_BUDGET_BYTES = 24_000;
  * bundle is not additive across lineages; no commerce screen changed its client
  * script in this sync. The commerce CSV writers moved onto the shared
  * `csvCellForWrite` (server code, no client byte).
+ *
+ * **Raised to 460,000 B by the #424 sync (upstream `c6a04a9`, AWCMS v10.9.0)**,
+ * MEASURED 459,910 B on the merged build - a measurement, not a sum. Upstream's
+ * own budget sits at 336,898 B (above: +1,164 B for the `/admin/hr/my-work`
+ * correction form and its shared `hr-self-service-client.ts`), and this
+ * embed's commerce lineage is +123,012 B over it, exactly as at #377 (here
+ * the measurement and a plain sum, 458,746 + 1,164, happen to agree). The
+ * savepoint changes in `commerce` are server code and added no client byte.
  *
  * **Raised to 462,000 B by issue #385 (booking admin screens)**, MEASURED
  * 461,999 B on the build (458,746 B before it) - a measurement of the build, not

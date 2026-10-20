@@ -124,6 +124,11 @@ export const POST = defineTenantRoute<CreateReturnInput>({
         )
       );
     } catch (error) {
+      // tx-swallow-ok: IdempotencyRaceLostError,
+      // IdempotencyPayloadMismatchError, InventoryLedgerRefusedError are
+      // raised by application code before a write, or after the directory
+      // rolled its failed statement back to a savepoint, so the transaction
+      // is healthy.
       const mapped = idempotencyErrorResponse(error);
       if (mapped) return mapped;
       const inventoryFailure = inventoryErrorResponse(error);

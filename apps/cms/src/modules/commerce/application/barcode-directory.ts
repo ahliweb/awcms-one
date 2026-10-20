@@ -26,7 +26,6 @@ import {
   type BarcodeSymbology,
   type BarcodeTarget
 } from "../domain/barcode";
-import { inSavepoint } from "./savepoint";
 
 const AUDIT_MODULE_KEY = "commerce";
 
@@ -343,7 +342,7 @@ export type AssignBarcodeOutcome =
  * product (so an id of another product's variant cannot be re-pointed here).
  */
 export async function assignBarcode(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   target: BarcodeTarget,
@@ -352,7 +351,7 @@ export async function assignBarcode(
 ): Promise<AssignBarcodeOutcome> {
   let updated: { id: string }[];
   try {
-    updated = await inSavepoint(tx, async (sp) => {
+    updated = await tx.savepoint(async (sp) => {
       if (target.variantId === null) {
         return (await sp`
           UPDATE awcms_commerce_products

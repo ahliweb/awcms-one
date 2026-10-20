@@ -69,6 +69,11 @@ export const PATCH = defineTenantRoute({
       if (!updated) return fail(404, "RESOURCE_NOT_FOUND", "Order not found.");
       return ok({ status: prepared.status });
     } catch (error) {
+      // tx-swallow-ok: PaymentNotSettledError,
+      // IllegalOrderStatusTransitionError, InventoryLedgerRefusedError are
+      // raised by application code before a write, or after the directory
+      // rolled its failed statement back to a savepoint, so the transaction
+      // is healthy.
       if (error instanceof PaymentNotSettledError) {
         // Issue #285: `paid` is derived from the payment ledger — record the
         // payment (`POST .../orders/{id}/payments`) and the order moves by

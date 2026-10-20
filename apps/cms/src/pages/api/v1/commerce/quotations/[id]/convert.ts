@@ -151,6 +151,13 @@ export const POST = defineTenantRoute<ConvertQuotationInput>({
           return ok(outcome.result);
       }
     } catch (error) {
+      // tx-swallow-ok: PosCartChangedError, QuotationCartError,
+      // PosDueRequiresCustomerError, FeatureDisabledError,
+      // PosRegisterSessionError, IdempotencyRaceLostError,
+      // IdempotencyPayloadMismatchError, InventoryLedgerRefusedError are
+      // raised by application code before a write, or after the directory
+      // rolled its failed statement back to a savepoint, so the transaction
+      // is healthy.
       const mapped = idempotencyErrorResponse(error);
       if (mapped) return mapped;
       if (
