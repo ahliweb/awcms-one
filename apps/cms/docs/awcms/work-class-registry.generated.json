@@ -702,7 +702,22 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/booking/reservations/[id]/no-show.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/booking/reservations/[id]/refund-decision.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/booking/reservations/[id]/reschedule-quote.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/booking/reservations/[id]/reschedule.ts",
       "workClass": "interactive",
       "source": "factory"
     },

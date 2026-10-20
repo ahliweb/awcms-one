@@ -144,6 +144,15 @@ export function computeCancellationRefund(input: {
   nowMs: number;
   rules: CancellationRules | null;
   nights: number;
+  /**
+   * Issue #382 - for a PARTIAL cancellation (a reschedule that shortens the
+   * stay), how many nights of the stay are kept: the `nights` judged are the
+   * trailing ones, so the first of them starts `firstNightOffset` days after
+   * arrival. Default 0 (the whole stay, every other caller). It only matters
+   * for `per_night`; `whole_stay` judges the amount by the notice before
+   * arrival whatever the offset.
+   */
+  firstNightOffset?: number;
 }): QuoteFigures {
   const hours = hoursBeforeStart(input.startsAtMs, input.nowMs);
   const paid = input.amountPaidCents > 0n ? input.amountPaidCents : 0n;
@@ -152,12 +161,13 @@ export function computeCancellationRefund(input: {
   }
 
   const nights = Math.max(1, Math.floor(input.nights));
-  if (input.rules.refundBasis === "per_night" && nights > 1) {
+  const offset = Math.max(0, Math.floor(input.firstNightOffset ?? 0));
+  if (input.rules.refundBasis === "per_night" && (nights > 1 || offset > 0)) {
     const shares = splitCents(paid, nights);
     let total = 0n;
     for (let night = 0; night < nights; night += 1) {
       const nightHours = hoursBeforeStart(
-        input.startsAtMs + night * DAY_MS,
+        input.startsAtMs + (offset + night) * DAY_MS,
         input.nowMs
       );
       const window = matchWindow(input.rules.windows, nightHours);

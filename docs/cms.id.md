@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](cms.md)
 
-<!-- i18n-source-hash: sha256:37911b2939c453dcc604879ae9afeeb3985e03e750d0cb4a4fed69a50baf306f -->
+<!-- i18n-source-hash: sha256:1714558eea2697ef6682f18ffb6a3b6a2fd05b2b0bed8cc5343ea0e0ec3d857b -->
 
 # CMS: authoring, publikasi, izin, audit, media, taksonomi
 
@@ -385,6 +385,7 @@ Di balik fitur `booking` (default OFF), dispesifikasikan di [`booking-ux-flows.i
 
 - **Kebijakan pembatalan.** `/admin/commerce-booking-policies` - pilih bawaan tenant atau sebuah produk, lihat versi aktif beserta jendelanya, draf (masing-masing dengan _Setujui dan aktifkan_) dan riwayat. Draf baru adalah daftar baris "batal paling lambat N jam atau hari sebelum check-in: pengembalian P%"; layar memeriksa bahwa pemberitahuan lebih awal tidak pernah mengembalikan lebih sedikit (server dan basis data memeriksanya lagi) dan draf tidak pernah disunting - untuk mengubahnya, simpan draf baru. Menyetujui dan memensiunkan meminta kode faktor kedua dalam dialog asli. Booking mempertahankan versi yang berlaku saat dibuat.
 - **Batal dan override.** Detail order dari order booking mendapat panel booking: reservasi, kuotasi yang dihitung server (dibayar, pengembalian menurut kebijakan, jendela, dan jam sebelum check-in) dan, bagi yang boleh membatalkan, _Batalkan reservasi ini_ lewat dialog konfirmasi yang menyebut angkanya. Manajer atau pengguna keuangan dengan izin override juga melihat _Ubah pengembalian dana_: jumlah baru antara 0 dan yang dibayar, serta alasan minimal 10 karakter; dicatat bersama alasannya. Kode step-up diminta dalam dialog bila perlu dan permintaan yang sama dikirim ulang dengan `Idempotency-Key` yang sama. Leg refund diselesaikan di panel retur di bawahnya, dengan izinnya sendiri.
+- **Jadwal ulang dan tamu tidak hadir (issue #382).** Panel booking yang sama mendapat tombol _Jadwalkan ulang_ (`commerce.booking_reservation_links.update`): dialog dengan tanggal baru (slot meminta waktu mulai dalam UTC) dan alasan tertutup, serta tombol _Periksa harga_ yang hanya menampilkan jawaban server - lama sama tidak mengubah apa pun, menginap lebih lama ditagih sebagai pesanan terpisah yang dibayar pelanggan seperti pesanan lain, menginap lebih singkat mengantrekan refund menurut kebijakan pembatalan awal. Tanggal paling awal berasal dari jam server. Panel mendaftar penjadwalan ulang beserta pesanan tambahannya. Setelah kedatangan lewat, pengguna yang boleh membatalkan dan mencatat keputusan juga melihat _Tamu tidak datang_: kebijakan yang berlaku, yang ditahannya, dan _Tandai tidak hadir_ lewat dialog konfirmasi yang menyatakan bahwa tidak ada yang dikembalikan. Spesifikasi: [`booking-ux-flows.id.md`](booking-ux-flows.id.md) bagian 11.6.
 - **Pengujian.** `commerce-booking-refund-client.test.ts` (aturan jumlah dan pemberitahuan), `commerce-booking-admin-screens.test.ts` (klaim, tanpa dialog mentah, rute ada, ledger).
 
 ## Segmen pelanggan (issue #360, epic #280, [ADR-0042](adr/0042-crm-segments-are-immutable-versioned-closed-vocabulary-rules-evaluated-on-demand.md))

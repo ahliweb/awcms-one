@@ -29,6 +29,13 @@ export type { ValidationError };
 type ValidationResult<T> =
   { valid: true; value: T } | { valid: false; errors: ValidationError[] };
 
+/**
+ * The `externalRef.type` the adapter gives Booking for a reservation it sold: the
+ * id is the ORDER's (ADR-0045 G4). It is the second of the two references of C-38
+ * (the first is the reservation link), carried to a replacement by a reschedule.
+ */
+export const BOOKING_RESERVATION_ORDER_REFERENCE_TYPE = "commerce_order";
+
 export const BOOKING_QUANTITY_BASES = ["nights", "booking"] as const;
 export type BookingQuantityBasis = (typeof BOOKING_QUANTITY_BASES)[number];
 

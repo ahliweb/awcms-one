@@ -14586,6 +14586,222 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/booking/reservations/{id}/reschedule-quote:
+    get:
+      operationId: getCommerceBookingRescheduleQuote
+      tags:
+        - Commerce
+      summary: "Issue #382 (ADR-0045 D7; contracts 3.7; control C-39). The non-binding price of moving a confirmed reservation to new dates: how the night count changes, how the difference would be carried and every figure the server computed. Writes nothing. `id` is Booking's reservation id. Gated on `commerce.booking_reservation_links.update` and the tenant's `booking` feature."
+      description: >-
+        The query is exactly one of `startsAt` (a slot) and `checkInDate` +
+        `checkOutDate` (a night range), plus an optional `resourceId`; it can
+        never name a price, a difference or a refund (`400`). Direction `none`:
+        the same number of nights (or any slot), only the reference moves.
+        Direction `charge`: more nights, priced by the ordinary cart quote as a
+        SUPPLEMENTARY ORDER the customer pays through the ordinary payment paths
+        (`vehicle: supplementary_order`); the paid order is never edited.
+        Direction `refund`: fewer nights, the value of the removed nights judged
+        by the cancellation policy of the ORIGINAL booking from the ORIGINAL
+        arrival (a chain of reschedules can never extend the window) and capped
+        at what each payment can give back, planned as pending refund legs
+        (`vehicle: refund_return`); only a fully paid order can be shortened
+        (`409 BALANCE_OUTSTANDING`). With `resourceId` the answer carries Booking's
+        availability for those dates on that resource - a hint only, since the
+        reservation's own current nights count as taken. `serverNow` is the
+        server's clock. The reschedule prices again under the order lock, so the
+        quote is a preview, never a promise. An unknown id and another tenant's id
+        are the same 404.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: startsAt
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: checkInDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: checkOutDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: resourceId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: "The quote."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceBookingRescheduleQuote"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED`, `INVALID_STATE` (not active or not confirmed), `QUANTITY_BASIS_MISMATCH`, `RESCHEDULE_NOT_A_CHANGE`, `BOOKING_REFERENCE_MISMATCH`, `BALANCE_OUTSTANDING`, `REDUCTION_NOT_SUPPORTED` or `SUPPLEMENT_ORDER_UNAVAILABLE`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/booking/reservations/{id}/reschedule:
+    post:
+      operationId: rescheduleCommerceBookingReservation
+      tags:
+        - Commerce
+      summary: "Issue #382 (ADR-0045 D7, D18; contracts 3.7; controls C-37, C-38, C-39). Move a confirmed reservation to new dates and carry the price difference through the order path. Gated on `commerce.booking_reservation_links.update`, the tenant's `booking` feature and an `Idempotency-Key`. Staff only: a customer asks, staff move it."
+      description: >-
+        The body is exactly one of `startsAt` and `stay`, optionally the
+        `resourceId` to move to and a short lowercase `reasonCode`; a price, a
+        difference, a refund, an order or a payment method is a `400`. In ONE
+        transaction the order's reference moves (the old reservation link becomes
+        `superseded`, a new link points at the SAME order and order line, Booking
+        carries its own reference to the replacement - the order is left with two
+        references, never one), then the difference: more nights become a
+        supplementary ORDER priced by the ordinary cart quote with full payment
+        due (paid through the ordinary payment paths, with no new payment flow);
+        fewer nights become a pending refund return limited by the original
+        policy version from the original arrival; the same length writes nothing
+        else. The paid order, its lines and its payment allocations are never
+        edited. A Booking refusal (`SLOT_UNAVAILABLE` and the rest) or an unsellable
+        supplement rolls back to the untouched original on both sides. Idempotent:
+        the same key and body replays the record (`200`, `replayed: true`), the same
+        key with another body is `409 IDEMPOTENCY_CONFLICT`; a concurrent reschedule
+        and cancel of one booking queue on the order lock and the second finds the
+        first's result.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceBookingReschedule"
+      responses:
+        "200":
+          description: "Rescheduled; the replacement reservation on the same order and how the difference was carried. A replay answers the same record with `replayed: true`."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceBookingRescheduled"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED`, `BOOKING_SERVICE_ACTOR_NOT_CONFIGURED`, `INVALID_STATE`, `QUANTITY_BASIS_MISMATCH`, `RESCHEDULE_NOT_A_CHANGE`, `BOOKING_REFERENCE_MISMATCH`, `BALANCE_OUTSTANDING`, `REDUCTION_NOT_SUPPORTED`, `SUPPLEMENT_ORDER_UNAVAILABLE`, `IDEMPOTENCY_CONFLICT`, or a Booking refusal under its own code (`SLOT_UNAVAILABLE`, ...)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/booking/reservations/{id}/no-show:
+    post:
+      operationId: markCommerceBookingNoShow
+      tags:
+        - Commerce
+      summary: "Issue #382 (ADR-0045 D15; contracts 3.8; control C-41). Mark a confirmed reservation no-show and record what the cancellation policy retains. Gated on `commerce.booking_reservation_links.cancel` AND `commerce.booking_refund_decisions.create`, the tenant's `booking` feature and an `Idempotency-Key`. Staff only: a cashier holds neither key and a customer has no route."
+      description: >-
+        Booking measures the arrival plus the tenant's grace: before it the answer
+        is `409 NO_SHOW_TOO_EARLY` and nothing is written. The body is only an
+        optional short `reasonCode`; an amount is a `400`. What is retained is the
+        `no_show_retention` rule of the policy version in force when the booking
+        was made (`retain_deposit`: the deposit, or the whole total of a
+        non-deposit order; `retain_all`: everything paid; `refund_per_windows`:
+        the cancellation windows at the no-show instant, which after arrival
+        refund nothing; no policy: everything paid). NO refund leg is ever
+        created: the decision's refunds are zero by a CHECK and a trigger forbids
+        giving a no-show decision a return. One audit event carries the amount
+        paid, the amount retained, the rule and the policy version.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceBookingNoShow"
+      responses:
+        "200":
+          description: "Marked no-show; the decision (`finalRefund` is `0.00`, `retainedAmount` is what the policy kept). A replay answers the same decision with `replayed: true`."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      replayed:
+                        type: boolean
+                      decision:
+                        $ref: "#/components/schemas/CommerceBookingRefundDecision"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED`, `INVALID_STATE` (not confirmed, not active or already decided), `NO_SHOW_TOO_EARLY` (the arrival plus the grace has not passed), `IDEMPOTENCY_CONFLICT`, or another Booking refusal under its own code."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/booking/reservations/{id}/refund-decision:
     get:
       operationId: getCommerceBookingRefundDecision
@@ -14882,7 +15098,7 @@ paths:
       operationId: getCommerceBookingReconciliation
       tags:
         - Commerce
-      summary: "Issue #380 (threat control C-09). The read-only booking reconciliation: active reservation links whose order's ledger and whose Booking reservation disagree - `paid_without_confirm` (money at or above the release threshold, reservation still held, expired or cancelled) and `confirmed_without_deposit` (reservation confirmed, ledger below the threshold). Writes and repairs nothing; bounded to 200 rows (`truncated`). Gated on `commerce.booking_reservation_links.read` and the tenant's `booking` feature."
+      summary: "Issue #380 (threat control C-09). The read-only booking reconciliation: active reservation links whose order's ledger and whose Booking reservation disagree - `paid_without_confirm` (money at or above the release threshold, reservation still held, expired or cancelled) and `confirmed_without_deposit` (reservation confirmed, ledger below the threshold) - plus, since Issue #382, the reschedule findings `booking_reference_missing` (an active link whose Booking reservation does not name the order), `commerce_link_missing` (a live Booking reservation names the order but no active link does; `linkId` null) and `reschedule_difference_unpaid` (the supplementary order of a reschedule that added nights expired, was cancelled or is unpaid while the longer stay is live). Writes and repairs nothing; bounded to 200 rows (`truncated`). Gated on `commerce.booking_reservation_links.read` and the tenant's `booking` feature."
       responses:
         "200":
           description: "The disagreeing pairs."
@@ -22194,6 +22410,10 @@ components:
           type: string
         overridden:
           type: boolean
+        retainedAmount:
+          type: string
+          nullable: true
+          description: "Issue #382. A no-show only: what the policy version retained (never above `amountPaid`); null for a cancellation. A no-show has `finalRefund` 0.00 and never a return."
         returnId:
           type: string
           format: uuid
@@ -22202,6 +22422,198 @@ components:
         createdAt:
           type: string
           format: date-time
+    CommerceBookingRescheduleQuote:
+      type: object
+      description: "Issue #382. The non-binding price of a reschedule. Every figure is computed by the server in integer cents; there is no customer and no actor field."
+      properties:
+        serverNow:
+          type: string
+          format: date-time
+        currentNights:
+          type: integer
+        newNights:
+          type: integer
+        direction:
+          type: string
+          enum:
+            - none
+            - charge
+            - refund
+        vehicle:
+          type: string
+          nullable: true
+          enum:
+            - supplementary_order
+            - refund_return
+            - null
+          description: "`supplementary_order` for a charge; `refund_return` for a refund that gives something back; null otherwise."
+        pricedAmount:
+          type: string
+          description: "A charge: the supplementary order's total. A refund: the value of the removed nights. Otherwise `0.00`."
+        refundAmount:
+          type: string
+          description: "A refund only: what the ORIGINAL policy version gives back from the ORIGINAL arrival, capped at what each payment can still give back; never above `pricedAmount`."
+        policySource:
+          type: string
+          nullable: true
+          enum:
+            - product
+            - tenant_default
+            - none
+            - null
+        policyId:
+          type: string
+          format: uuid
+          nullable: true
+        policyVersion:
+          type: integer
+          nullable: true
+        hoursBeforeStart:
+          type: integer
+          nullable: true
+        refundablePercent:
+          type: string
+          nullable: true
+        availability:
+          type: object
+          nullable: true
+          description: "Only when the query named a `resourceId`: Booking's answer for those dates on that resource. A hint, not a promise."
+          properties:
+            available:
+              type: boolean
+            freeUnits:
+              type: integer
+    CommerceBookingReschedule:
+      type: object
+      additionalProperties: false
+      description: "Issue #382. Exactly one of `startsAt` and `stay`. It never carries a price, a difference, a refund, an order or a payment method."
+      properties:
+        startsAt:
+          type: string
+          format: date-time
+          description: "A slot reservation: the new start, an RFC 3339 UTC instant."
+        stay:
+          type: object
+          additionalProperties: false
+          required:
+            - checkInDate
+            - checkOutDate
+          properties:
+            checkInDate:
+              type: string
+              format: date
+            checkOutDate:
+              type: string
+              format: date
+        resourceId:
+          type: string
+          format: uuid
+          description: "Move to another resource; absent = where the reservation is."
+        reasonCode:
+          type: string
+          pattern: "^[a-z][a-z0-9_]{2,39}$"
+          description: "A short lowercase code for the audit row, never free text. Default `staff_reschedule`."
+    CommerceBookingRescheduled:
+      type: object
+      description: "Issue #382. The replacement reservation on the SAME order and how the price difference was carried. No customer field (X7)."
+      properties:
+        replayed:
+          type: boolean
+        rescheduleId:
+          type: string
+          format: uuid
+        orderId:
+          type: string
+          format: uuid
+        orderCode:
+          type: string
+        reservation:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+              description: "The replacement reservation (Booking's id)."
+            reservationNo:
+              type: string
+            status:
+              type: string
+            startsAt:
+              type: string
+              format: date-time
+            endsAt:
+              type: string
+              format: date-time
+        supersededReservationId:
+          type: string
+          format: uuid
+        fromNights:
+          type: integer
+        toNights:
+          type: integer
+        priceDifference:
+          type: object
+          properties:
+            direction:
+              type: string
+              enum:
+                - none
+                - charge
+                - refund
+            vehicle:
+              type: string
+              nullable: true
+              enum:
+                - supplementary_order
+                - refund_return
+                - null
+            pricedAmount:
+              type: string
+            refundAmount:
+              type: string
+            supplementOrder:
+              type: object
+              nullable: true
+              description: "A charge: the ordinary order for the extra nights, which the customer pays through the ordinary payment paths."
+              properties:
+                orderId:
+                  type: string
+                  format: uuid
+                orderCode:
+                  type: string
+                status:
+                  type: string
+                total:
+                  type: string
+            returnId:
+              type: string
+              format: uuid
+              nullable: true
+              description: "A refund: the return of kind `cancellation` that carries the pending refund legs."
+            policySource:
+              type: string
+              nullable: true
+            policyVersion:
+              type: integer
+              nullable: true
+            hoursBeforeStart:
+              type: integer
+              nullable: true
+            refundablePercent:
+              type: string
+              nullable: true
+        settlement:
+          type: object
+          nullable: true
+          description: "The order's settlement as the booking views carry it."
+    CommerceBookingNoShow:
+      type: object
+      additionalProperties: false
+      description: "Issue #382. Only an optional closed reason code; an amount is a 400."
+      properties:
+        reasonCode:
+          type: string
+          pattern: "^[a-z][a-z0-9_]{2,39}$"
     CommerceBookingStaffCancel:
       type: object
       additionalProperties: false
@@ -22556,9 +22968,14 @@ components:
                 enum:
                   - paid_without_confirm
                   - confirmed_without_deposit
+                  - booking_reference_missing
+                  - commerce_link_missing
+                  - reschedule_difference_unpaid
               linkId:
                 type: string
                 format: uuid
+                nullable: true
+                description: "Null for `commerce_link_missing`: a live Booking reservation names the order but no active link does."
               orderId:
                 type: string
                 format: uuid

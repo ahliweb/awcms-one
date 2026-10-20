@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:f1df8c42e03cea19f5c47aae2704162ccda94f514981a7d61e8475cec6b17b92 -->
+<!-- i18n-source-hash: sha256:7a105d48ca9ca7881c8ff345f135f2eec17dc5875a410db7ee254760ad38e310 -->
 
 # Skema basis data
 
@@ -572,3 +572,10 @@ Enam tabel FORCE-RLS (kebijakan isolasi tenant dengan `WITH CHECK`, foreign key 
 - **`sql/1043`**: `awcms_commerce_returns.kind` menerima `cancellation`; `awcms_commerce_return_lines` menerima alasan `booking_cancelled` dan disposisi `not_applicable`; CHECK bucket `awcms_commerce_report_returns_daily` menerima hal yang sama; `awcms_commerce_booking_refund_decisions` mendapat `client_key` dan `request_hash` (keduanya atau tidak sama sekali, indeks unik parsial pada `(tenant_id, client_key)`); `awcms_commerce_cancellation_policies` mendapat `created_by_tenant_user_id` dan `approved_by_tenant_user_id` (FK tenant komposit, berindeks) dan fungsi penjaganya diterbitkan ulang (penyusun dibekukan, penyetuju diisi sekali saat draf menjadi aktif, `search_path` dipatok).
 - **`sql/1044`** men-seed tujuh kunci izin: `commerce.booking_reservation_links.cancel`, `commerce.booking_refund_decisions.{read,create}`, `commerce.booking_refund_overrides.approve`, `commerce.booking_cancellation_policies.{read,create,approve}`.
 - Data subjek: tabel kebijakan kini mendaftar dua kolom stafnya. Tidak ada tabel lain yang mendapat kolom pelanggan; kunci klien keputusan menghash pihaknya.
+
+### Tambahan jadwal ulang dan tamu tidak hadir (`sql/1045`, issue #382)
+
+- **Tabel baru `awcms_commerce_booking_reschedules`** (append-only; FORCE RLS; tanpa `UPDATE` atau `DELETE` untuk `awcms_app`, trigger menolak setiap `UPDATE`; `awcms_worker` `SELECT, DELETE` untuk retensi): `order_id`, `from_link_id`, `to_link_id` (masing-masing `UNIQUE` per tenant), `from_nights`, `to_nights`, `difference_direction` (`none`, `charge`, `refund`, sama dengan tanda selisih malam), `priced_amount` dan `refund_amount` (`numeric(14,2)`, refund tidak pernah di atas harga), `supplement_order_id` (tepat untuk penambahan), `return_id` (tepat untuk refund positif), bukti kebijakan untuk refund, `actor_tenant_user_id`, `client_key` (`UNIQUE` per tenant), dan `request_hash`.
+- **`awcms_commerce_booking_refund_decisions`** mendapat `retained_amount`; CHECK menjaga refund keputusan `no_show` tetap nol dan jumlah ditahannya dalam jumlah dibayar, dan fungsi penjaga (diterbitkan ulang, `search_path` dipaku) menolak `return_id` pada keputusan tamu tidak hadir.
+- **`sql/1045`** juga men-seed `commerce.booking_reservation_links.update` dan memberi `awcms_worker` `SELECT, DELETE` pada tabel baru (deskriptor siklus hidup `financial_tax`, lantai lima tahun, batas atas sepuluh tahun).
+- Data subjek: tabel baru hanya mendaftar `actor_tenant_user_id` (cap staf); tanpa kolom pelanggan.

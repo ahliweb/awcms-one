@@ -315,9 +315,9 @@ In every profile the build stays static and a profile that does not include book
 | Redemption not combined with a deposit       | C-33                             | 3.1 (points control hidden on a deposit order)                     |
 | POS lookup: code plus customer, neutral miss | C-34                             | 5.1                                                                |
 | POS permission separation                    | C-35                             | 5.1, 5.2                                                           |
-| Reschedule and cancellation window integrity | C-37                             | 4.1 (window; reschedule screens are not specified here)            |
+| Reschedule and cancellation window integrity | C-37                             | 4.1 (window), 11.6 (the reschedule dialog; built by #382)          |
 | Refund override control                      | C-40                             | 4.3                                                                |
-| No-show retention by policy only             | C-41                             | 4.1 (no-show row; staff action not specified here)                 |
+| No-show retention by policy only             | C-41                             | 4.1 (no-show row), 11.6 (the no-show action)                       |
 
 Controls C-25 to C-41 come from the threat-model addendum ([#354](https://github.com/ahliweb/awcms-one/issues/354)). The section references in the right-hand column are the nearest sections that carry each behaviour; the table is a traceability aid and the control text in the threat model is authoritative.
 
@@ -424,7 +424,20 @@ Purpose: the staff action of section 4.3, on the order detail and the reservatio
 - **Copy.** Title "Override the refund" (id: "Ubah jumlah pengembalian dana"); confirm "Record the override" (id: "Catat perubahan"); cancel "Keep the policy amount" (id: "Pakai jumlah sesuai kebijakan", default focus); success status "Refund set to Rp X. The change is recorded with your reason." (id: "Pengembalian dana ditetapkan Rp X. Perubahan dicatat beserta alasan Anda."). The guest never sees the reason or the actor (section 4.3).
 - **States.** Loading (figures not yet loaded: fields disabled, `aria-busy`), error (preview failed: retry, submit disabled), and success (dialog closes, the detail reloads and shows the recorded refund and an "Adjusted" pill).
 
-### 11.6 Accessibility, keyboard and 360px for these screens
+### 11.6 Reschedule and no-show on the booking panel (built by #382)
+
+Purpose: the staff actions of sections 4.3 on the order detail of a booked order: move the reservation to new dates (with the price difference carried by the order and refund paths), and mark a guest who did not arrive. Both live on the booking panel of section 11.5 (`CommerceBookingPanel`), behind the `booking` feature.
+
+- **Reschedule - visibility.** The button "Reschedule" is absent (not disabled) without `commerce.booking_reservation_links.update`, and once the reservation is no longer confirmed or already has a decision.
+- **Reschedule - dialog.** A native modal `<dialog>` named "Reschedule the reservation", described by the current dates ("Currently 2026-12-10 to 2026-12-12 (2 nights). The price of any difference is worked out by the server, never typed here."). A stay shows "New check-in" and "New check-out" date inputs; a time slot shows "New start (UTC)". A "Reason" select offers a closed list (the guest asked to move, the property needs to move it, double booking, another reason). The earliest date comes from the server's clock (`serverNow`), one day earlier than its UTC date because a resource's local date can trail UTC.
+- **The price is the server's.** "Check the price" is disabled until the dates are valid (real dates, check-out after check-in, not in the past, not the current dates) and then asks `GET .../reschedule-quote`; the answer is shown as one sentence in a polite live region: same length ("nothing is priced; only the reservation moves"); a longer stay ("the extra nights are billed as a separate order of Rp X, which the customer pays like any order"); a shorter stay ("the removed nights are worth Rp X; the original cancellation policy refunds Rp Y, queued under Returns and refunds", or "refunds nothing", or "no cancellation policy applied"). The browser computes no figure and sends none: the POST body is the new time and the reason code.
+- **Submit.** "Reschedule" posts with an `Idempotency-Key`; the page reloads on success and shows the new reservation and one row of the history. A refusal is shown in the dialog in words: the dates are not available (`SLOT_UNAVAILABLE`), a shorter stay on an unpaid balance (`BALANCE_OUTSTANDING`), nights that were sold on another order (`REDUCTION_NOT_SUPPORTED`), the extra nights cannot be sold (`SUPPLEMENT_ORDER_UNAVAILABLE`), and the rest.
+- **History.** A "Reschedules" table (`.data-table-scroll`, `data-table--stack`): when, nights before and after, the difference (same length, longer stay, shorter stay), the priced and refund amounts, and the extra order with its code (a link to that order), status and total.
+- **No-show - visibility.** The block "The guest did not arrive" appears for a confirmed reservation whose original arrival has passed, for a viewer who holds both the cancel and the decision key. It shows the policy applied, the no-show rule (keep the deposit, keep everything paid, refund by the windows), what was paid and what the policy keeps.
+- **No-show - action.** "Mark no-show" opens the shared confirm dialog, which states the figures and that nothing is refunded; Booking decides whether the arrival plus the grace has elapsed (`NO_SHOW_TOO_EARLY` is shown as "Too early..."). After the decision, the panel shows "No-show decision" with "Kept by the policy" and "No money moves: a no-show is never refunded."
+- **States.** Quote loading ("Checking the price..."), quote error (in the dialog, submit still available), and success (reload).
+
+### 11.7 Accessibility, keyboard and 360px for these screens
 
 The floor of section 6 applies; in addition:
 

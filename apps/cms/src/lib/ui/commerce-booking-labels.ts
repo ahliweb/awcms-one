@@ -28,6 +28,14 @@ export type BookingReservationStatus =
   | "no_show"
   | "rescheduled";
 
+/** Reason codes of the reschedule and no-show controls live beside their client helpers (`commerce-booking-reschedule-client.ts`). */
+import {
+  NO_SHOW_REASON_CODES,
+  RESCHEDULE_REASON_CODES,
+  type NoShowReasonCode,
+  type RescheduleReasonCode
+} from "./commerce-booking-reschedule-client";
+
 /** The closed reason codes the staff cancel offers (the server accepts any short lowercase code). */
 export const STAFF_CANCEL_REASON_CODES = [
   "guest_request",
@@ -107,6 +115,36 @@ export function createBookingCancellationLabels(t: Translate) {
     noQuote
   };
 }
+
+/**
+ * Labels of the reschedule and no-show controls (Issue #382,
+ * `docs/booking-ux-flows.md` section 11.6), kept apart from the cancellation maps
+ * so the cancellation screens render exactly as before.
+ */
+export function createBookingChangeLabels(t: Translate) {
+  const rescheduleReason = {
+    guest_request: t("The guest asked to move"),
+    property_request: t("The property needs to move it"),
+    double_booking: t("Double booking"),
+    other: t("Another reason")
+  } satisfies Record<RescheduleReasonCode, string>;
+
+  const noShowReason = {
+    guest_did_not_arrive: t("The guest did not arrive"),
+    guest_unreachable: t("The guest cannot be reached"),
+    other: t("Another reason")
+  } satisfies Record<NoShowReasonCode, string>;
+
+  const direction = {
+    none: t("Same length"),
+    charge: t("Longer stay"),
+    refund: t("Shorter stay")
+  } satisfies Record<"none" | "charge" | "refund", string>;
+
+  return { rescheduleReason, noShowReason, direction };
+}
+
+export { NO_SHOW_REASON_CODES, RESCHEDULE_REASON_CODES };
 
 export type BookingCancellationLabels = ReturnType<
   typeof createBookingCancellationLabels

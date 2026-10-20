@@ -208,3 +208,60 @@ describe("the booking panel of the order detail", () => {
     expect(panel).not.toMatch(/policyRefund\s*:/);
   });
 });
+
+// Issue #382 (UX 11.6): the reschedule dialog and the no-show control on the same panel.
+describe("the reschedule and no-show controls of the booking panel", () => {
+  const page = readFileSync(
+    "src/pages/admin/commerce-orders/[id].astro",
+    "utf8"
+  );
+  const panel = readFileSync(
+    "src/components/CommerceBookingPanel.astro",
+    "utf8"
+  );
+
+  test("the order screen claims the reschedule key, declared and off the ledger; the panel reads it as a capability", () => {
+    const key = "commerce.booking_reservation_links.update";
+    expect(extractScreenClaims(page).has(key)).toBe(true);
+    expect(declared.has(key)).toBe(true);
+    expect(NOT_YET_SCREENED.includes(key)).toBe(false);
+    expect(page).toContain("canReschedule");
+  });
+
+  test("the reschedule is a native modal dialog and the no-show uses the shared confirm dialog, never a raw browser one", () => {
+    expect(panel).toContain("booking-reschedule-dialog");
+    expect(panel).toContain("showModal()");
+    expect(panel).toContain(
+      'data-confirm-title={t("Mark this reservation no-show?")}'
+    );
+    expect(panel).not.toMatch(/\b(?:window\.)?(?:confirm|alert|prompt)\(/);
+    expect(panel).not.toMatch(/\sstyle=/);
+    expect(panel).not.toMatch(/<h1[\s>]/);
+  });
+
+  test("a reschedule and a no-show are sent with an Idempotency-Key", () => {
+    expect(panel).toContain("/reschedule`");
+    expect(panel).toContain("/no-show`");
+    expect(panel).toContain("Idempotency-Key");
+  });
+
+  test("the browser sends dates and a reason code, never a price, a refund or a retained amount", () => {
+    expect(panel).toContain("buildRescheduleBody");
+    expect(panel).toContain("buildNoShowBody");
+    expect(panel).toContain("fetchRescheduleQuote");
+    const script = panel.slice(panel.indexOf("<script>"));
+    expect(script).not.toMatch(
+      /(?:priceDifference|pricedAmount|refundAmount|retainedAmount)\s*:/
+    );
+    // The earliest date is the SERVER's clock, never the browser's.
+    expect(panel).toContain("earliestDate(panel.serverNow)");
+    expect(panel).not.toMatch(/new Date\(\)|Date\.now\(\)/);
+  });
+
+  test("the dialog's inputs are labelled and its figures are announced politely", () => {
+    for (const id of ["checkin", "checkout", "starts", "reason"]) {
+      expect(panel).toContain(`for={\`\${reschedulePrefix}-${id}\`}`);
+    }
+    expect(panel).toContain('aria-live="polite"');
+  });
+});

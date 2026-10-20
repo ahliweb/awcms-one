@@ -1869,6 +1869,8 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_commerce_booking_refund_decisions: ["SELECT", "DELETE"],
   // Issue #437 (ADR-0045): the offering link's resource binding (sql/1050).
   awcms_commerce_booking_offering_link_resources: ["SELECT", "DELETE"],
+  // Issue #382 (ADR-0045 D7) - the reschedule record (sql/1045).
+  awcms_commerce_booking_reschedules: ["SELECT", "DELETE"],
   // but never actually matches a row in practice.
   awcms_commerce_customer_accounts: ["SELECT", "DELETE"],
   // Issue #267 (IRMbyDUS, sql/936/937): same shape as

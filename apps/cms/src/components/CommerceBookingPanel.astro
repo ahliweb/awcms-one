@@ -27,6 +27,17 @@
  *   cancel with the override; a `STEP_UP_REQUIRED` answer opens the step-up
  *   dialog and re-sends the SAME request (same `Idempotency-Key`) once.
  *
+ * - **Reschedule** (`commerce.booking_reservation_links.update`, Issue #382): a
+ *   native modal `<dialog>` with the new dates, a closed reason and a "Check
+ *   price" button that shows the SERVER's non-binding answer (nothing is priced
+ *   in the browser): the same length changes nothing, a longer stay is billed as
+ *   a separate order, a shorter one queues a refund limited by the ORIGINAL
+ *   cancellation policy. Absent without the key and once the reservation is no
+ *   longer confirmed. The earliest date comes from the server's clock.
+ * - **Mark no-show** (the two keys a cancel needs): shown once the arrival has
+ *   passed, with what the original policy version retains; the confirm dialog
+ *   states that NO refund is made. Booking decides whether the grace has elapsed.
+ *
  * The guest never sees the reason or the actor: the decision shows "Adjusted".
  */
 import CommerceStepUpDialog from "./CommerceStepUpDialog.astro";
@@ -35,8 +46,12 @@ import type { Locale } from "../lib/i18n/locales";
 import {
   bookingLabel,
   createBookingCancellationLabels,
+  createBookingChangeLabels,
+  NO_SHOW_REASON_CODES,
+  RESCHEDULE_REASON_CODES,
   STAFF_CANCEL_REASON_CODES
 } from "../lib/ui/commerce-booking-labels";
+import { earliestDate } from "../lib/ui/commerce-booking-reschedule-client";
 import {
   createCommerceLabels,
   commerceLabel
@@ -51,6 +66,7 @@ interface Props {
 const { panel, locale } = Astro.props as Props;
 const { t } = getTranslatorFor(locale);
 const labels = createBookingCancellationLabels(t);
+const changeLabels = createBookingChangeLabels(t);
 const commerce = createCommerceLabels(t);
 
 const reservation = panel.reservation;
@@ -112,6 +128,63 @@ const confirmMessage = quote
     )
   : "";
 const idBase = "booking-override";
+
+// -- Issue #382: reschedule and no-show ---------------------------------------------
+const slotMode = panel.stay === null;
+const earliest = earliestDate(panel.serverNow);
+const rescheduleErrors = JSON.stringify({
+  SLOT_UNAVAILABLE: t("Those dates are not available."),
+  INVALID_STATE: t("This reservation can no longer be rescheduled."),
+  BALANCE_OUTSTANDING: t(
+    "A shorter stay is refunded only on a fully paid order. Settle the balance first, or cancel and rebook."
+  ),
+  REDUCTION_NOT_SUPPORTED: t(
+    "Those nights were sold on a separate order. Cancel and rebook the stay instead."
+  ),
+  SUPPLEMENT_ORDER_UNAVAILABLE: t(
+    "The extra nights cannot be sold right now: the product is unavailable or no payment method is open."
+  ),
+  RESCHEDULE_NOT_A_CHANGE: t("These are the reservation's current dates."),
+  BOOKING_REFERENCE_MISMATCH: t(
+    "The reservation does not match this order. An operator must reconcile it first."
+  ),
+  QUANTITY_BASIS_MISMATCH: t(
+    "This reservation cannot be moved that way. Reload the page."
+  ),
+  IDEMPOTENCY_CONFLICT: t(
+    "This request was already sent with different details. Reload the page."
+  ),
+  BOOKING_SERVICE_ACTOR_NOT_CONFIGURED: t(
+    "Set the booking service account in Store settings first."
+  ),
+  FEATURE_DISABLED: t("Booking is turned off for this store."),
+  FORBIDDEN: t("You do not have permission to do that."),
+  ACCESS_DENIED: t("You do not have permission to do that."),
+  VALIDATION_ERROR: t("Check the dates and try again.")
+});
+const noShowErrors = JSON.stringify({
+  NO_SHOW_TOO_EARLY: t(
+    "Too early: a no-show can be marked only after the arrival time plus the grace period."
+  ),
+  INVALID_STATE: t("This reservation can no longer be marked no-show."),
+  IDEMPOTENCY_CONFLICT: t(
+    "This request was already sent with different details. Reload the page."
+  ),
+  FEATURE_DISABLED: t("Booking is turned off for this store."),
+  FORBIDDEN: t("You do not have permission to do that."),
+  ACCESS_DENIED: t("You do not have permission to do that.")
+});
+const noShowConfirm = panel.noShow
+  ? t(
+      "Paid {paid}. The policy ({rule}) keeps {retained}. Nothing is refunded for a no-show; the reservation is closed.",
+      {
+        paid: panel.noShow.amountPaid,
+        rule: bookingLabel(labels.noShowRetention, panel.noShow.retentionRule),
+        retained: panel.noShow.retainedAmount
+      }
+    )
+  : "";
+const reschedulePrefix = "booking-reschedule";
 ---
 
 <section
@@ -121,6 +194,10 @@ const idBase = "booking-override";
   data-reservation-id={reservation.reservationId}
   data-errors={errorMessages}
   data-failure={t("Could not cancel the reservation. Please try again.")}
+  data-no-show-errors={noShowErrors}
+  data-no-show-failure={t(
+    "Could not mark the reservation no-show. Please try again."
+  )}
   data-busy={t("Saving…")}
 >
   <h2 class="admin-dashboard-panel-title">{t("Reservation")}</h2>
@@ -161,9 +238,80 @@ const idBase = "booking-override";
     <dd>{when(reservation.endsAt)}</dd>
   </dl>
 
+  {panel.reschedules.length > 0 && (
+    <div id="order-booking-reschedules">
+      <h3>{t("Reschedules")}</h3>
+      <div
+        class="data-table-scroll"
+        role="region"
+        tabindex="0"
+        aria-label={t("Reschedules")}
+      >
+        <table class="data-table data-table--stack">
+          <caption class="sr-only">{t("Reschedules")}</caption>
+          <thead>
+            <tr>
+              <th scope="col">{t("When")}</th>
+              <th scope="col">{t("Nights")}</th>
+              <th scope="col">{t("Difference")}</th>
+              <th scope="col">{t("Priced")}</th>
+              <th scope="col">{t("Refund")}</th>
+              <th scope="col">{t("Extra order")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {panel.reschedules.map((entry) => (
+              <tr>
+                <td data-label={t("When")}>{when(entry.createdAt)}</td>
+                <td data-label={t("Nights")}>
+                  {entry.fromNights} → {entry.toNights}
+                </td>
+                <td data-label={t("Difference")}>
+                  {bookingLabel(changeLabels.direction, entry.direction)}
+                </td>
+                <td data-label={t("Priced")}>{entry.pricedAmount}</td>
+                <td data-label={t("Refund")}>{entry.refundAmount}</td>
+                <td data-label={t("Extra order")}>
+                  {entry.supplementOrder ? (
+                    <span>
+                      <a
+                        href={`/admin/commerce-orders/${entry.supplementOrder.orderId}`}
+                      >
+                        {entry.supplementOrder.orderCode}
+                      </a>{" "}
+                      <span class="admin-stat-card-caption">
+                        {commerceLabel(
+                          commerce.orderStatus,
+                          entry.supplementOrder.status
+                        )}
+                        {" · "}
+                        {entry.supplementOrder.total}
+                      </span>
+                    </span>
+                  ) : (
+                    "–"
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="admin-stat-card-caption">
+        {t(
+          "A longer stay is billed as a separate order that is paid like any other. A shorter stay queues a refund under the original cancellation policy; it is settled under Returns and refunds."
+        )}
+      </p>
+    </div>
+  )}
+
   {decision && (
     <div id="order-booking-decision">
-      <h3>{t("Refund decision")}</h3>
+      <h3>
+        {decision.triggerKind === "no_show"
+          ? t("No-show decision")
+          : t("Refund decision")}
+      </h3>
       <dl class="admin-order-return-totals">
         <dt>{t("Policy applied")}</dt>
         <dd>{policyText(decision.policySource, decision.policyVersion)}</dd>
@@ -180,6 +328,14 @@ const idBase = "booking-override";
             </span>
           )}
         </dd>
+        {decision.retainedAmount !== null && (
+          <>
+            <dt>{t("Kept by the policy")}</dt>
+            <dd>
+              <strong>{decision.retainedAmount}</strong>
+            </dd>
+          </>
+        )}
       </dl>
       {panel.legs.length > 0 ? (
         <div
@@ -214,7 +370,9 @@ const idBase = "booking-override";
         </div>
       ) : (
         <p class="admin-stat-card-caption">
-          {t("No money moves: nothing is refunded for this cancellation.")}
+          {decision.triggerKind === "no_show"
+            ? t("No money moves: a no-show is never refunded.")
+            : t("No money moves: nothing is refunded for this cancellation.")}
         </p>
       )}
       {panel.legs.some((leg) => leg.status !== "succeeded") && (
@@ -398,6 +556,226 @@ const idBase = "booking-override";
     </dialog>
   )}
 
+  {panel.canReschedule && (
+    <div class="admin-form-actions" id="order-booking-change-actions">
+      <button type="button" class="btn-inline" id="order-booking-reschedule">
+        {t("Reschedule")}
+      </button>
+    </div>
+  )}
+
+  {panel.noShow && panel.canNoShow && (
+    <div id="order-booking-no-show">
+      <h3>{t("The guest did not arrive")}</h3>
+      <dl class="admin-order-return-totals">
+        <dt>{t("Policy applied")}</dt>
+        <dd>
+          {policyText(panel.noShow.policySource, panel.noShow.policyVersion)}
+        </dd>
+        <dt>{t("No-show rule")}</dt>
+        <dd>
+          {bookingLabel(labels.noShowRetention, panel.noShow.retentionRule)}
+        </dd>
+        <dt>{t("Paid")}</dt>
+        <dd>{panel.noShow.amountPaid}</dd>
+        <dt>{t("Kept by the policy")}</dt>
+        <dd>
+          <strong>{panel.noShow.retainedAmount}</strong>
+        </dd>
+      </dl>
+      <p class="admin-stat-card-caption">
+        {t(
+          "Marking a no-show closes the reservation and keeps what the policy keeps. No refund is created; any money the policy does not keep stays on the order until staff decide otherwise."
+        )}
+      </p>
+      <div class="admin-form-actions">
+        <div class="admin-field">
+          <label for="order-booking-no-show-reason">{t("Reason")}</label>
+          <select id="order-booking-no-show-reason">
+            {NO_SHOW_REASON_CODES.map((code) => (
+              <option value={code}>
+                {bookingLabel(changeLabels.noShowReason, code)}
+              </option>
+            ))}
+          </select>
+        </div>
+        <button
+          type="button"
+          class="btn-inline btn-inline--danger"
+          id="order-booking-mark-no-show"
+          data-confirm-title={t("Mark this reservation no-show?")}
+          data-confirm-message={noShowConfirm}
+          data-confirm-label={t("Mark no-show")}
+          data-confirm-danger="true"
+        >
+          {t("Mark no-show")}
+        </button>
+      </div>
+    </div>
+  )}
+
+  {panel.canReschedule && (
+    <dialog
+      id={`${reschedulePrefix}-dialog`}
+      class="commerce-booking-override-dialog"
+      aria-labelledby={`${reschedulePrefix}-title`}
+      aria-describedby={`${reschedulePrefix}-intro`}
+      data-mode={slotMode ? "slot" : "stay"}
+      data-earliest={earliest ?? ""}
+      data-current-checkin={panel.stay?.checkInDate ?? ""}
+      data-current-checkout={panel.stay?.checkOutDate ?? ""}
+      data-current-starts={slotMode ? reservation.startsAt : ""}
+      data-quote-url={`/api/v1/commerce/booking/reservations/${reservation.reservationId}/reschedule-quote`}
+      data-reschedule-url={`/api/v1/commerce/booking/reservations/${reservation.reservationId}/reschedule`}
+      data-errors={rescheduleErrors}
+      data-failure={t(
+        "Could not reschedule the reservation. Please try again."
+      )}
+      data-msg-missing={t("Choose the new dates.")}
+      data-msg-invalid={t("Enter real dates.")}
+      data-msg-order={t("Check-out must be after check-in.")}
+      data-msg-past={t("The new date cannot be in the past.")}
+      data-msg-unchanged={t("These are the reservation's current dates.")}
+      data-msg-checking={t("Checking the price…")}
+      data-sum-none={t(
+        "Same length ({to} nights). Nothing is priced; only the reservation moves."
+      )}
+      data-sum-charge={t(
+        "{from} nights become {to}. The extra nights are billed as a separate order of {priced}, which the customer pays like any order."
+      )}
+      data-sum-refund-some={t(
+        "{from} nights become {to}. The removed nights are worth {priced}; the original cancellation policy refunds {refund}, queued under Returns and refunds."
+      )}
+      data-sum-refund-none={t(
+        "{from} nights become {to}. The removed nights are worth {priced}; the original cancellation policy refunds nothing."
+      )}
+      data-sum-refund-policy-none={t(
+        "{from} nights become {to}. No cancellation policy applied to this booking, so nothing is refunded."
+      )}
+    >
+      <form
+        id={`${reschedulePrefix}-form`}
+        class="commerce-booking-override-body"
+        novalidate
+      >
+        <h2 id={`${reschedulePrefix}-title`}>
+          {t("Reschedule the reservation")}
+        </h2>
+        <p id={`${reschedulePrefix}-intro`} class="admin-stat-card-caption">
+          {slotMode
+            ? t(
+                "Currently {start}. Times are in UTC. The price of any difference is worked out by the server, never typed here.",
+                { start: when(reservation.startsAt) }
+              )
+            : t(
+                "Currently {checkIn} to {checkOut} ({nights} nights). The price of any difference is worked out by the server, never typed here.",
+                {
+                  checkIn: panel.stay!.checkInDate,
+                  checkOut: panel.stay!.checkOutDate,
+                  nights: panel.nights
+                }
+              )}
+        </p>
+        <p
+          id={`${reschedulePrefix}-error`}
+          class="admin-create-error"
+          role="alert"
+          hidden
+        ></p>
+        {slotMode ? (
+          <div class="admin-field">
+            <label for={`${reschedulePrefix}-starts`}>
+              {t("New start (UTC)")}
+            </label>
+            <input
+              id={`${reschedulePrefix}-starts`}
+              type="datetime-local"
+              required
+              aria-describedby={`${reschedulePrefix}-when-error`}
+            />
+          </div>
+        ) : (
+          <>
+            <div class="admin-field">
+              <label for={`${reschedulePrefix}-checkin`}>
+                {t("New check-in")}
+              </label>
+              <input
+                id={`${reschedulePrefix}-checkin`}
+                type="date"
+                required
+                min={earliest ?? undefined}
+                aria-describedby={`${reschedulePrefix}-when-error`}
+              />
+            </div>
+            <div class="admin-field">
+              <label for={`${reschedulePrefix}-checkout`}>
+                {t("New check-out")}
+              </label>
+              <input
+                id={`${reschedulePrefix}-checkout`}
+                type="date"
+                required
+                min={earliest ?? undefined}
+                aria-describedby={`${reschedulePrefix}-when-error`}
+              />
+            </div>
+          </>
+        )}
+        <p
+          id={`${reschedulePrefix}-when-error`}
+          class="admin-create-error"
+          role="alert"
+          hidden
+        ></p>
+        <div class="admin-field">
+          <label for={`${reschedulePrefix}-reason`}>{t("Reason")}</label>
+          <select id={`${reschedulePrefix}-reason`}>
+            {RESCHEDULE_REASON_CODES.map((code) => (
+              <option value={code}>
+                {bookingLabel(changeLabels.rescheduleReason, code)}
+              </option>
+            ))}
+          </select>
+        </div>
+        <p
+          id={`${reschedulePrefix}-quote-result`}
+          class="admin-stat-card-caption"
+          role="status"
+          aria-live="polite"
+          hidden
+        ></p>
+        <div class="commerce-booking-override-actions">
+          <button
+            type="button"
+            class="btn-secondary"
+            id={`${reschedulePrefix}-keep`}
+            autofocus
+          >
+            {t("Keep the current dates")}
+          </button>
+          <button
+            type="button"
+            class="btn-secondary"
+            id={`${reschedulePrefix}-quote`}
+            disabled
+          >
+            {t("Check the price")}
+          </button>
+          <button
+            type="submit"
+            class="btn-primary"
+            id={`${reschedulePrefix}-submit`}
+            data-busy={t("Saving…")}
+            disabled
+          >
+            {t("Reschedule")}
+          </button>
+        </div>
+      </form>
+    </dialog>
+  )}
+
   <CommerceStepUpDialog locale={locale} id="order-booking-stepup" />
 </section>
 
@@ -475,6 +853,15 @@ const idBase = "booking-override";
     newIdempotencyKey,
     pickRefusalMessage
   } from "../lib/ui/commerce-booking-client";
+  import {
+    buildNoShowBody,
+    buildRescheduleBody,
+    buildRescheduleQuoteQuery,
+    checkRescheduleForm,
+    fetchRescheduleQuote,
+    summarizeQuote,
+    type RescheduleProblem
+  } from "../lib/ui/commerce-booking-reschedule-client";
   import { confirmFromTrigger } from "../lib/ui/commerce-confirm-dialog-client";
   import {
     promptStepUpCode,
@@ -655,6 +1042,216 @@ const idBase = "booking-override";
         /* storage unavailable: the reload still shows the recorded refund */
       }
       dialog.close();
+      window.location.reload();
+    });
+  }
+  // -- mark no-show (Issue #382): the server applies the policy's retention ------------
+  onAction("#order-booking-mark-no-show", async (button) => {
+    const confirmed = await confirmFromTrigger(button);
+    if (!confirmed) return;
+    const select = document.getElementById("order-booking-no-show-reason");
+    const reason =
+      select instanceof HTMLSelectElement
+        ? select.value
+        : "guest_did_not_arrive";
+    const key = newIdempotencyKey();
+    await mutateAndReload(
+      button,
+      panelError,
+      () =>
+        sendJson(
+          "POST",
+          `/api/v1/commerce/booking/reservations/${reservationId}/no-show`,
+          buildNoShowBody(reason),
+          { "Idempotency-Key": key }
+        ),
+      (code) =>
+        pickRefusalMessage(
+          panel?.dataset.noShowErrors,
+          code,
+          panel?.dataset.noShowFailure ?? ""
+        ),
+      panel?.dataset.busy
+    );
+  });
+
+  // -- the reschedule dialog (Issue #382) -------------------------------------------------
+  const moveDialog = document.getElementById("booking-reschedule-dialog");
+  if (moveDialog instanceof HTMLDialogElement) {
+    const data = (key: string): string =>
+      (moveDialog.dataset as Record<string, string | undefined>)[key] ?? "";
+    const slot = data("mode") === "slot";
+    const form = document.getElementById(
+      "booking-reschedule-form"
+    ) as HTMLFormElement;
+    const checkIn = document.getElementById(
+      "booking-reschedule-checkin"
+    ) as HTMLInputElement | null;
+    const checkOut = document.getElementById(
+      "booking-reschedule-checkout"
+    ) as HTMLInputElement | null;
+    const starts = document.getElementById(
+      "booking-reschedule-starts"
+    ) as HTMLInputElement | null;
+    const reason = document.getElementById(
+      "booking-reschedule-reason"
+    ) as HTMLSelectElement;
+    const submit = document.getElementById(
+      "booking-reschedule-submit"
+    ) as HTMLButtonElement;
+    const quoteButton = document.getElementById(
+      "booking-reschedule-quote"
+    ) as HTMLButtonElement;
+    const keep = document.getElementById("booking-reschedule-keep");
+    const whenError = document.getElementById("booking-reschedule-when-error");
+    const result = document.getElementById("booking-reschedule-quote-result");
+    const dialogError = messageBox("booking-reschedule-error");
+
+    const problemText = (problem: RescheduleProblem): string => {
+      switch (problem) {
+        case "dates_missing":
+        case "start_missing":
+          return data("msgMissing");
+        case "dates_invalid":
+        case "start_invalid":
+          return data("msgInvalid");
+        case "checkout_not_after":
+          return data("msgOrder");
+        case "in_the_past":
+          return data("msgPast");
+        case "unchanged":
+          return data("msgUnchanged");
+      }
+    };
+
+    const readForm = () =>
+      slot
+        ? checkRescheduleForm({
+            mode: "slot",
+            startsAtLocal: starts?.value ?? "",
+            current: data("currentStarts")
+              ? { startsAt: data("currentStarts") }
+              : null,
+            earliest: data("earliest") || null
+          })
+        : checkRescheduleForm({
+            mode: "stay",
+            checkInDate: checkIn?.value ?? "",
+            checkOutDate: checkOut?.value ?? "",
+            current: {
+              checkInDate: data("currentCheckin"),
+              checkOutDate: data("currentCheckout")
+            },
+            earliest: data("earliest") || null
+          });
+
+    const clearQuote = (): void => {
+      if (result) {
+        result.textContent = "";
+        result.hidden = true;
+      }
+    };
+
+    const refresh = (showMessages: boolean): boolean => {
+      const check = readForm();
+      const touched = slot
+        ? (starts?.value ?? "") !== ""
+        : (checkIn?.value ?? "") !== "" || (checkOut?.value ?? "") !== "";
+      const problem = check.ok ? undefined : check.problems[0];
+      const show = problem !== undefined && showMessages && touched;
+      if (whenError) {
+        whenError.textContent = show && problem ? problemText(problem) : "";
+        whenError.hidden = !show;
+      }
+      for (const input of [checkIn, checkOut, starts]) {
+        input?.setAttribute("aria-invalid", show ? "true" : "false");
+      }
+      submit.disabled = !check.ok;
+      quoteButton.disabled = !check.ok;
+      return check.ok;
+    };
+
+    for (const input of [checkIn, checkOut, starts]) {
+      input?.addEventListener("input", () => {
+        clearQuote();
+        refresh(true);
+      });
+    }
+    keep?.addEventListener("click", () => moveDialog.close());
+
+    onAction("#order-booking-reschedule", () => {
+      dialogError.clear();
+      clearQuote();
+      refresh(false);
+      moveDialog.showModal();
+      keep?.focus();
+    });
+
+    quoteButton.addEventListener("click", async () => {
+      const check = readForm();
+      if (!check.ok) return;
+      dialogError.clear();
+      if (result) {
+        result.textContent = data("msgChecking");
+        result.hidden = false;
+      }
+      const answer = await fetchRescheduleQuote(
+        `${data("quoteUrl")}${buildRescheduleQuoteQuery(check)}`
+      );
+      if (!answer.ok) {
+        clearQuote();
+        dialogError.show(
+          pickRefusalMessage(data("errors"), answer.errorCode, data("failure"))
+        );
+        return;
+      }
+      const summary = summarizeQuote(answer.quote);
+      const template =
+        summary.kind === "charge"
+          ? data("sumCharge")
+          : summary.kind === "refund_some"
+            ? data("sumRefundSome")
+            : summary.kind === "refund_none"
+              ? data("sumRefundNone")
+              : summary.kind === "refund_policy_none"
+                ? data("sumRefundPolicyNone")
+                : data("sumNone");
+      if (result) {
+        result.textContent = template
+          .replace("{from}", String(summary.nightsFrom))
+          .replace("{to}", String(summary.nightsTo))
+          .replace("{priced}", summary.pricedAmount)
+          .replace("{refund}", summary.refundAmount);
+        result.hidden = false;
+      }
+    });
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const check = readForm();
+      if (!check.ok) {
+        refresh(true);
+        return;
+      }
+      dialogError.clear();
+      const previousLabel = submit.textContent;
+      submit.disabled = true;
+      submit.textContent = submit.dataset.busy ?? "…";
+      const outcome = await sendJson(
+        "POST",
+        data("rescheduleUrl"),
+        buildRescheduleBody(check, reason.value),
+        { "Idempotency-Key": newIdempotencyKey() }
+      );
+      if (!outcome.ok) {
+        dialogError.show(
+          pickRefusalMessage(data("errors"), outcome.errorCode, data("failure"))
+        );
+        submit.textContent = previousLabel;
+        refresh(true);
+        return;
+      }
+      moveDialog.close();
       window.location.reload();
     });
   }

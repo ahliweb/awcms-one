@@ -191,6 +191,21 @@ export const COMMERCE_BOOKING_REFUND_DECIDED_EVENT_TYPE =
   "awcms.commerce.booking_refund.decided";
 
 /**
+ * Booking reschedule (Issue #382, ADR-0045 D7, contracts section 5.2).
+ * `awcms.commerce.booking_reservation.rescheduled` announces that a staff member
+ * moved a reservation through the adapter: the order now points at the
+ * replacement reservation, and the price difference (if any) was carried as a
+ * supplementary order or a policy-limited refund return. Written in the same
+ * transaction as the reschedule record, on the ORDER aggregate. The payload
+ * carries ids, the night counts, the closed direction and amounts - never a
+ * customer name, phone, payment reference or the actor (the audit log carries the
+ * actor). Registered in `domain-event-runtime/domain/event-type-registry.ts` and
+ * `asyncapi/awcms-domain-events.asyncapi.yaml` in the same change.
+ */
+export const COMMERCE_BOOKING_RESERVATION_RESCHEDULED_EVENT_TYPE =
+  "awcms.commerce.booking_reservation.rescheduled";
+
+/**
  * POS register-session events (Issue #284, ADR-0028). All four ride on the
  * REGISTER SESSION aggregate (`commerce.register_session`, aggregate id = the
  * session id), so a consumer rebuilding "what happened in this shift" reads

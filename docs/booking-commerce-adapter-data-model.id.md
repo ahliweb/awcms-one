@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](booking-commerce-adapter-data-model.md)
 
-<!-- i18n-source-hash: sha256:e52061179263fc5e608d45cb0ed1e935806b0fb19adc41ea14ce7ed6dbed89df -->
+<!-- i18n-source-hash: sha256:b8d3b6d88b530e68de31a8eb06a54fbe017c3545cdd8584305ce216a18e961f9 -->
 
 # Adapter booking-commerce — usulan ERD dan kamus data
 
@@ -346,3 +346,16 @@ Diimplementasikan di `sql/1043` (skema) dan `sql/1044` (tujuh kunci izin). Penyi
 | 5   | 4.5    | `return_id` diisi sekali                                                      | tidak berubah; diisi dalam transaksi yang sama dengan keputusan oleh aktor sistem (pengguna akun layanan)                                                                                                                                                                          |
 
 Rute override mandiri pada draf kontrak (3.6) tidak dibangun: override adalah parameter inline pada pembatalan staf (ADR-0045 D8), dan kode galat untuk override di atas yang sudah dibayar adalah `REFUND_EXCEEDS_PAID`.
+
+## 11. Catatan implementasi (issue #382)
+
+Diimplementasikan di `sql/1045` (satu migrasi: satu tabel, bukti tamu tidak hadir berupa kolom, fungsi penjaga yang diterbitkan ulang, satu kunci izin, satu grant worker). Penyimpangan dari bagian 4.4, 4.5, 7.4 dan 9:
+
+| #   | Bagian | Spesifikasi menyatakan                                                                              | Diimplementasikan                                                                                                                                                                                                                                                                                                                                                                               |
+| --- | ------ | --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | 7.4    | jadwal ulang "tidak menyimpan selisih harga (Q4)"; hanya tautan yang berubah                        | tautan berubah seperti spesifikasi, dan tabel append-only baru `awcms_commerce_booking_reschedules` mencatat buktinya: kedua tautan, jumlah malam, arah (`none`, `charge`, `refund`), jumlah dihitung dan refund dalam `numeric(14,2)`, pesanan tambahan dan return, bukti kebijakan untuk refund, aktor staf, `client_key` dan `request_hash`. Ia sendiri tidak memindahkan uang               |
+| 2   | 7.4    | satu peran tautan (`primary`, `supplement`) ditunda                                                 | tidak dibangun: pesanan tambahan adalah pesanan biasa yang tidak memuat tautan reservasi, sehingga tabel tautan tidak berubah                                                                                                                                                                                                                                                                   |
+| 3   | 4.5    | keputusan tamu tidak hadir "boleh memiliki `hours_before_start` negatif", jumlah seperti pembatalan | `awcms_commerce_booking_refund_decisions` mendapat `retained_amount` (terisi untuk `trigger_kind = 'no_show'`, null selain itu). CHECK menjaga refund hitung dan akhir keputusan tamu tidak hadir tetap nol dan jumlah ditahannya di antara nol dan jumlah dibayar; fungsi penjaga (diterbitkan ulang, `search_path` dipaku) juga menolak memberi keputusan tamu tidak hadir sebuah `return_id` |
+| 4   | 3.x    | kunci jadwal ulang diusulkan                                                                        | `commerce.booking_reservation_links.update` di-seed pada migrasi yang sama dengan tabel, bersama rute yang menegakkannya                                                                                                                                                                                                                                                                        |
+
+Batasan yang perlu diketahui (milik tabel sendiri, bukan aplikasi): `UNIQUE (tenant_id, from_link_id)` dan `(tenant_id, to_link_id)` membuat tautan digantikan sekali dan dibuat sekali; pesanan tambahan tepat untuk penambahan dan return tepat untuk refund positif; refund tidak pernah di atas harga malam yang dihapus; bukti kebijakan tepat untuk refund. Trigger menolak setiap `UPDATE`; `awcms_app` tidak punya `UPDATE` maupun `DELETE`; `awcms_worker` punya `SELECT, DELETE` untuk mesin retensi (jendela finansial, lantai lima tahun).
