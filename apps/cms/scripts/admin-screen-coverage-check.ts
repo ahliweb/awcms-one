@@ -163,7 +163,22 @@ export const DELIBERATELY_UNSCREENED: Readonly<Record<string, string>> = {
   "commerce.inventory.read":
     "Issue #282 — operator/API surface around a CLI cut-over; the ledger's own screen is /admin/inventory, a commerce reconciliation panel is follow-up work",
   "commerce.inventory.configure":
-    "Issue #282 — gates POST .../inventory/resync and .../inventory/rollback, called by an operator during and after the cut-over, not from a daily screen"
+    "Issue #282 — gates POST .../inventory/resync and .../inventory/rollback, called by an operator during and after the cut-over, not from a daily screen",
+
+  // Issue #393 (ADR-0047 "Cutover"). The per-tenant WhatsApp mode flip is a
+  // once-per-tenant OPERATOR step, like the inventory cut-over above: the flip
+  // is `bun run commerce:whatsapp:cutover` (or `POST .../whatsapp/mode`), it
+  // needs a recent step-up and prints an evidence record a runbook attaches,
+  // and the only recurring need - "which queue is this tenant on, and has the
+  // old one drained?" - is answered by `GET .../whatsapp/mode`. A panel on
+  // `/admin/commerce-whatsapp` is reasonable follow-up work; it would add client
+  // script against the asset budget for a surface used a handful of times per
+  // tenant, and the legacy screens it would sit beside are deleted when the
+  // legacy mode is (ADR-0133 section 6 end condition 4).
+  "commerce.whatsapp_mode.read":
+    "Issue #393 — operator/API surface around a CLI cut-over; the drain state is GET .../whatsapp/mode, a panel on the commerce WhatsApp screen is follow-up work",
+  "commerce.whatsapp_mode.manage":
+    "Issue #393 — gates POST .../whatsapp/mode (step-up, Idempotency-Key, audited), called by an operator once per tenant, not from a daily screen"
 
   // `idn_admin_regions.region.read` USED to sit here ("lookup API for other
   // modules' forms; /admin/idn-regions drives dataset.* instead"). Issue #767

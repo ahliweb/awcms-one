@@ -1,6 +1,7 @@
 /**
- * The per-tenant WhatsApp delivery mode: where it is read, and the seam for the
- * guarded flip (Issue #392, ADR-0133 section 6 phase 2; the flip is issue #393).
+ * The per-tenant WhatsApp delivery mode: where it is read (Issue #392, ADR-0133
+ * section 6 phase 2). The guarded flip that writes it is `whatsapp-mode-flip.ts`
+ * (issue #393).
  *
  * ## Where the mode lives
  *
@@ -27,15 +28,16 @@
  * `readWhatsappMode` takes no lock: for reads that do not write a message (the
  * channel-availability checks, the status read, a status endpoint).
  *
- * ## What is deliberately NOT here
+ * ## Where the mode is WRITTEN
  *
- * There is no writer. Changing the mode is not part of #392: issue #393 adds the
- * one function that writes `whatsapp_mode` / `whatsapp_mode_changed_at`, and it
- * must (1) take `lockWhatsappModeExclusive`, (2) refuse while
- * `awcms_commerce_whatsapp_messages` holds a non-terminal row for the tenant
- * (`queued`, `sending`, `retry_wait` - the same set the legacy purge treats as
- * waiting), (3) upsert the settings row if the tenant has none, and (4) audit.
- * The tests set the column with SQL.
+ * Not here. `whatsapp-mode-flip.ts` (issue #393) holds the one writer
+ * (`flipWhatsappMode`); `tests/commerce-whatsapp-upstream-boundary.test.ts` fails
+ * if a second file writes the column. It takes `lockWhatsappModeExclusive`,
+ * refuses while the queue being left holds a non-terminal row (the legacy
+ * table's are `queued` and `sending` - a retry is `queued` again, that table has
+ * no `retry_wait`; the upstream queue's also include `retry_wait`), upserts the
+ * settings row, writes `whatsapp_mode` + `whatsapp_mode_changed_at` and audits.
+ * This file stays the reader, and stays free of both queues' tables.
  */
 import {
   DEFAULT_WHATSAPP_MODE,

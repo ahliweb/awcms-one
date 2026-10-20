@@ -20238,6 +20238,75 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/whatsapp/mode:
+    get:
+      operationId: getCommerceWhatsappMode
+      tags:
+        - Commerce WhatsApp
+      summary: "Issue #393 (ADR-0047 Cutover). Which queue the tenant's NEW WhatsApp messages go to, and the drain state of both queues. Gated on `commerce.whatsapp_mode.read`."
+      description: "`mode` is `legacy` (commerce's own outbox, drained by `commerce:whatsapp:dispatch`) or `upstream` (the `whatsapp_delivery` queue, drained by `whatsapp:dispatch`). `queues` counts each queue's rows per status and how many are still work; `channel` is what THIS process knows about whether each channel would be serviced; `flip` is what a flip to the other mode would be refused for right now (warnings are assumed acknowledged, so only blockers decide `allowed`). Reads a snapshot and takes no lock: a flip re-reads everything under the exclusive mode lock."
+      responses:
+        "200":
+          description: The mode and the drain state.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceWhatsappModeStatus"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    post:
+      operationId: flipCommerceWhatsappMode
+      tags:
+        - Commerce WhatsApp
+      summary: "Issue #393 (ADR-0047 Cutover). Flips the tenant's WhatsApp delivery mode, or dry-runs the flip. Gated on `commerce.whatsapp_mode.manage` (high-risk)."
+      description: "A tenant is in exactly one mode at a time (ADR-0133 section 6). Under the exclusive per-tenant mode lock the flip is refused `409` while the queue being LEFT holds a non-terminal row for the tenant (`DRAIN_PENDING`), while the queue being ENTERED cannot send (`TARGET_CHANNEL_UNAVAILABLE`: its enable flag is off, the `whatsapp_delivery` module is off for the tenant, the recipient-hash key ring or the provider is unusable), and, for a flip into `upstream`, until the differences between the queues are acknowledged (`WARNINGS_NOT_ACKNOWLEDGED`). `from` makes the request conditional on the current mode (`MODE_CHANGED`). A refusal writes only an audit event of the refused attempt and carries the full evidence record in `error.details`. No row is ever copied between queues; the old dispatcher drains the old one. A flip to the mode the tenant is already in answers `200` with `outcome: unchanged` and writes nothing. A real flip requires a recent step-up (`403 STEP_UP_REQUIRED`) and an `Idempotency-Key`; a `dryRun` needs neither, runs the same decision and writes nothing, not even an audit event. The same rule runs from the CLI as `bun run commerce:whatsapp:cutover`."
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceWhatsappModeFlipRequest"
+      responses:
+        "200":
+          description: "The evidence record: `outcome` is `flipped`, `would_flip` (dry run) or `unchanged`."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceWhatsappModeFlipEvidence"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Access denied, or `STEP_UP_REQUIRED` (the session has no recent second-factor proof), or a segregation-of-duties conflict.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: "Refused: `MODE_CHANGED`, `DRAIN_PENDING`, `TARGET_CHANNEL_UNAVAILABLE`, `WARNINGS_NOT_ACKNOWLEDGED` (`error.details` is the evidence record), or `IDEMPOTENCY_CONFLICT`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/work-orders:
     get:
       operationId: listCommerceWorkOrders
@@ -46981,6 +47050,74 @@ components:
           type: string
           format: date-time
           nullable: true
+    CommerceWhatsappChannelFacts:
+      type: object
+      required:
+        - legacyEnabled
+        - upstreamEnabled
+        - upstreamModuleEnabled
+        - upstreamHashKeysUsable
+        - upstreamProvider
+        - upstreamProviderKnown
+      properties:
+        legacyEnabled:
+          type: boolean
+          description: COMMERCE_WHATSAPP_ENABLED in the process answering.
+        upstreamEnabled:
+          type: boolean
+          description: WHATSAPP_ENABLED in the process answering.
+        upstreamModuleEnabled:
+          type: boolean
+          description: The whatsapp_delivery module is not switched off for the tenant.
+        upstreamHashKeysUsable:
+          type: boolean
+        upstreamProvider:
+          type: string
+          nullable: true
+          description: WHATSAPP_PROVIDER as configured; never a credential.
+        upstreamProviderKnown:
+          type: boolean
+    CommerceWhatsappConsentFacts:
+      type: object
+      required:
+        - commerceMarketingOptIns
+        - upstreamGrantedConsents
+      properties:
+        commerceMarketingOptIns:
+          type: integer
+        upstreamGrantedConsents:
+          type: integer
+    CommerceWhatsappFlipBlocker:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          enum:
+            - DRAIN_PENDING
+            - TARGET_DISABLED
+            - TARGET_MODULE_DISABLED
+            - TARGET_HASH_KEYS_UNUSABLE
+            - TARGET_PROVIDER_UNSET
+        message:
+          type: string
+    CommerceWhatsappFlipWarning:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          enum:
+            - MARKETING_CONSENT_NOT_BRIDGED
+            - META_PROVIDER_TEMPLATE_MISSING
+            - VARIABLES_SINGLE_LINE_CAPPED
+            - RATE_LIMITS_DIFFER
+        message:
+          type: string
     CommerceWhatsappMessage:
       type: object
       description: "Issue #108 (contract #106/ADR-0017 D5). A row of `awcms_commerce_whatsapp_messages` (`GET /api/v1/commerce/whatsapp/messages` diagnostics). Never carries `to_phone`/the rendered body/the OTP code — masked phone only."
@@ -47018,6 +47155,221 @@ components:
           type: string
           format: date-time
           nullable: true
+    CommerceWhatsappModeFlipEvidence:
+      type: object
+      required:
+        - schema
+        - tenantId
+        - from
+        - to
+        - outcome
+        - dryRun
+        - reason
+        - at
+        - surface
+        - operator
+        - queues
+        - channel
+        - consent
+        - blockers
+        - warnings
+        - warningsAcknowledged
+        - refusal
+        - auditEventId
+        - correlationId
+      properties:
+        schema:
+          type: string
+          enum:
+            - awcms.commerce.whatsapp_mode_flip/v1
+        tenantId:
+          type: string
+          format: uuid
+        from:
+          type: string
+          enum:
+            - legacy
+            - upstream
+        to:
+          type: string
+          enum:
+            - legacy
+            - upstream
+        outcome:
+          type: string
+          enum:
+            - flipped
+            - would_flip
+            - unchanged
+            - refused
+        dryRun:
+          type: boolean
+        reason:
+          type: string
+        at:
+          type: string
+          format: date-time
+        surface:
+          type: string
+          enum:
+            - api
+            - cli
+        operator:
+          type: string
+          nullable: true
+        queues:
+          type: object
+          required:
+            - legacy
+            - upstream
+          properties:
+            legacy:
+              $ref: "#/components/schemas/CommerceWhatsappQueueDrain"
+            upstream:
+              $ref: "#/components/schemas/CommerceWhatsappQueueDrain"
+        channel:
+          $ref: "#/components/schemas/CommerceWhatsappChannelFacts"
+        consent:
+          $ref: "#/components/schemas/CommerceWhatsappConsentFacts"
+        blockers:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceWhatsappFlipBlocker"
+        warnings:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceWhatsappFlipWarning"
+        warningsAcknowledged:
+          type: boolean
+        refusal:
+          type: object
+          nullable: true
+          required:
+            - code
+            - message
+          properties:
+            code:
+              type: string
+              enum:
+                - MODE_CHANGED
+                - DRAIN_PENDING
+                - TARGET_CHANNEL_UNAVAILABLE
+                - WARNINGS_NOT_ACKNOWLEDGED
+            message:
+              type: string
+        auditEventId:
+          type: string
+          format: uuid
+          nullable: true
+          description: The awcms_audit_events row of the flip or of the refused attempt; null for a dry run or an unchanged tenant.
+        correlationId:
+          type: string
+    CommerceWhatsappModeFlipRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - to
+        - reason
+      properties:
+        to:
+          type: string
+          enum:
+            - legacy
+            - upstream
+        reason:
+          type: string
+          minLength: 1
+          maxLength: 500
+          description: Why. Recorded in the audit event and the evidence.
+        from:
+          type: string
+          enum:
+            - legacy
+            - upstream
+          description: The mode the caller believes the tenant is in; a mismatch is refused MODE_CHANGED.
+        acknowledgeWarnings:
+          type: boolean
+          default: false
+          description: Required true for a flip into upstream, which always carries warnings (ADR-0047 known gaps).
+        dryRun:
+          type: boolean
+          default: false
+          description: Run the decision and write nothing (no mode change, no audit event). Needs no Idempotency-Key and no step-up.
+    CommerceWhatsappModeStatus:
+      type: object
+      required:
+        - mode
+        - changedAt
+        - queues
+        - channel
+        - consent
+        - flip
+      properties:
+        mode:
+          type: string
+          enum:
+            - legacy
+            - upstream
+        changedAt:
+          type: string
+          format: date-time
+          nullable: true
+        queues:
+          type: object
+          required:
+            - legacy
+            - upstream
+          properties:
+            legacy:
+              $ref: "#/components/schemas/CommerceWhatsappQueueDrain"
+            upstream:
+              $ref: "#/components/schemas/CommerceWhatsappQueueDrain"
+        channel:
+          $ref: "#/components/schemas/CommerceWhatsappChannelFacts"
+        consent:
+          $ref: "#/components/schemas/CommerceWhatsappConsentFacts"
+        flip:
+          type: object
+          required:
+            - to
+            - allowed
+            - blockers
+            - warnings
+          properties:
+            to:
+              type: string
+              enum:
+                - legacy
+                - upstream
+            allowed:
+              type: boolean
+            blockers:
+              type: array
+              items:
+                $ref: "#/components/schemas/CommerceWhatsappFlipBlocker"
+            warnings:
+              type: array
+              items:
+                $ref: "#/components/schemas/CommerceWhatsappFlipWarning"
+    CommerceWhatsappQueueDrain:
+      type: object
+      required:
+        - countsByStatus
+        - nonTerminal
+        - oldestNonTerminalAgeSeconds
+      properties:
+        countsByStatus:
+          type: object
+          additionalProperties:
+            type: integer
+          description: Rows per status for the tenant. The legacy table has queued, sending, sent, failed; the upstream queue also has retry_wait, cancelled, expired.
+        nonTerminal:
+          type: integer
+          description: Rows still being worked (every status that is not terminal for that queue).
+        oldestNonTerminalAgeSeconds:
+          type: integer
+          nullable: true
+          description: Age of the oldest non-terminal row; null when there is none. For the upstream queue it is the oldest queued or retry_wait row.
     CommerceWorkOrder:
       type: object
       description: "Issue #286 (ADR-0029 D6). An operational work/service order. Holds no money."

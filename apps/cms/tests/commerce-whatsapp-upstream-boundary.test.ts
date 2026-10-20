@@ -186,3 +186,44 @@ describe("every commerce WhatsApp caller goes through the mode router (ADR-0133 
     expect(importers).toEqual(["application/whatsapp-enqueue.ts"]);
   });
 });
+
+describe("the mode has exactly one writer (Issue #393)", () => {
+  // A statement that SETs the mode column, or INSERTs the settings row with it.
+  const MODE_WRITE =
+    /\bSET\s+whatsapp_mode\b|\bwhatsapp_mode_changed_at\s*=|INSERT INTO awcms_commerce_store_settings[^`;]*\bwhatsapp_mode\b/;
+
+  test("only the guarded flip writes whatsapp_mode, so nothing can move a tenant between queues around its drain check", () => {
+    const writers = allCommerceFiles().filter((file) =>
+      MODE_WRITE.test(code(read(file)))
+    );
+
+    expect(writers).toEqual(["application/whatsapp-mode-flip.ts"]);
+  });
+
+  test("the writer takes the exclusive mode lock and does not name the legacy table (it counts through the directory)", () => {
+    const body = code(read("application/whatsapp-mode-flip.ts"));
+
+    expect(body).toContain("lockWhatsappModeExclusive(tx, tenantId)");
+    expect(body).not.toMatch(LEGACY_TABLE);
+    expect(body).not.toContain("awcms_whatsapp_messages");
+    expect(specifiers(read("application/whatsapp-mode-flip.ts"))).toContain(
+      "../../whatsapp-delivery/application/whatsapp-diagnostics"
+    );
+  });
+
+  test("no script or route writes the mode itself: both call flipWhatsappMode", () => {
+    const route = readFileSync(
+      resolve(import.meta.dir, "../src/pages/api/v1/commerce/whatsapp/mode.ts"),
+      "utf8"
+    );
+    const cli = readFileSync(
+      resolve(import.meta.dir, "../scripts/commerce-whatsapp-cutover.ts"),
+      "utf8"
+    );
+
+    for (const source of [route, cli]) {
+      expect(code(source)).toContain("flipWhatsappMode(");
+      expect(code(source)).not.toMatch(MODE_WRITE);
+    }
+  });
+});

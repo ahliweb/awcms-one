@@ -346,6 +346,48 @@ A tenant starts on the `counter` (today's single stock count per product/variant
 
 Purchasing and receiving are upstream's `procurement` module (suppliers, `receive` / `supplier_return` / `requisition` / `transfer` documents). To make a receipt move the **storefront** count: (1) **cut over to `ledger` mode first** (above) - on a `counter` tenant a receipt is recorded in the ledger but never reaches commerce stock; (2) enable the `procurement` module and run `bun run identity-access:permissions:backfill` so existing owners receive the `procurement.*` permissions; (3) post receipts **at the sales location**, or at a warehouse and then a `transfer` document into the sales location (a receipt at another location does not change the storefront); (4) each line uses `itemType` `commerce.variant` (the variant's uuid) or `commerce.product` (the uuid of a product with no variants), unit `unit` - find the uuid with `GET /api/v1/commerce/inventory/items?q=<sku or name>` (`commerce.inventory.read`); (5) keep `bun run domain-events:dispatch` running, which carries the receipt to the cache. A wrong reference does not fail: the ledger accepts it. `GET /api/v1/commerce/inventory/reconciliation` lists such balances under `orphans` (`not_found`, `product_has_variants`, `wrong_unit`, `unknown_item_type`); reverse the document and re-post it with the right reference.
 
+## Moving a tenant's commerce WhatsApp onto the upstream queue (issue #393, [ADR-0047](adr/0047-commerce-whatsapp-moves-to-the-upstream-queue-through-a-per-tenant-mode-router.md) "Cutover")
+
+A tenant starts in `legacy` mode: its OTPs, receipts and campaigns go to commerce's own outbox (`awcms_commerce_whatsapp_messages`, drained by `commerce:whatsapp:dispatch`). Moving it to the upstream `whatsapp_delivery` queue is one operator command per tenant, with no downtime and no row copied: the old dispatcher drains what is already queued, only new messages enter the new queue, and the command refuses until the old queue holds nothing in flight. A tenant is in exactly one mode at a time.
+
+**Before the first tenant (once per deployment).**
+
+1. **Deploy** the release (`sql/1028` seeds `commerce.whatsapp_mode.{read,manage}`; every tenant stays `legacy`). For tenants older than the permission run `bun run identity-access:permissions:backfill`.
+2. **Configure the upstream channel** in the environment of BOTH the CMS and the jobs sidecar: `WHATSAPP_ENABLED=true`, `WHATSAPP_PROVIDER` (`fonnte`, `meta` or `log`) with its credentials, and `WHATSAPP_RECIPIENT_HASH_KEYS` (`openssl rand -base64 32`, see `apps/cms/.env.example`). Make sure `whatsapp:dispatch` runs (every 2 minutes, `whatsapp:queue:purge` beside it). **Keep `COMMERCE_WHATSAPP_ENABLED=true` and `commerce:whatsapp:dispatch` running**: they drain the legacy rows of every tenant, flipped or not.
+3. **Enable the `whatsapp_delivery` module** for the tenant.
+4. **Decide the known gaps** ([ADR-0047](adr/0047-commerce-whatsapp-moves-to-the-upstream-queue-through-a-per-tenant-mode-router.md)): campaigns need each recipient's opt-in in the upstream consent store (`/admin/whatsapp`), so import the tenant's opted-in numbers first or accept that no WhatsApp campaign is sent; `WHATSAPP_PROVIDER=meta` fails every commerce message until the templates carry a provider template identity, so use `fonnte` or wait for that; long multi-line receipts are flattened and cut at 1,000 characters; the rate limits differ (10 per recipient per hour, 5 for OTPs, 2,000 per tenant).
+
+**Per tenant.** Run the command from `apps/cms` **with the same environment file as the `whatsapp:dispatch` job** (the channel checks read the environment of the process that runs them), as the web role (`DATABASE_URL` = `awcms_app`).
+
+```bash
+# 1. Where is the tenant, and what would a flip face right now?
+bun run commerce:whatsapp:cutover --tenant <tenant-uuid> --status
+
+# 2. Rehearse. Writes nothing (no mode change, no audit event). Read the warnings, then add --ack-warnings.
+bun run commerce:whatsapp:cutover --tenant <tenant-uuid> --to upstream --reason "Cutover wave 1" --ack-warnings --dry-run
+
+# 3. Apply. --wait polls (dry runs, every 5 s) until the legacy queue is empty, then makes the one real attempt.
+bun run commerce:whatsapp:cutover --tenant <tenant-uuid> --to upstream --reason "Cutover wave 1" --ack-warnings --wait 600 \
+  --operator "<your name>" | tee evidence-<tenant-uuid>.json
+```
+
+Output is ONE JSON document on stdout (keep it with the change record) and a sentence on stderr. Exit code 0 = flipped, would flip, or already in that mode; 1 = refused; 2 = bad usage or unknown tenant. The same decision is `POST /api/v1/commerce/whatsapp/mode` (`{ "to", "reason", "from"?, "acknowledgeWarnings"?, "dryRun"? }`, `Idempotency-Key`, a recent step-up for a real flip) and `GET` for the status; both are audited under `commerce.whatsapp_mode.{read,manage}`.
+
+**What a refusal means.** The flip is refused, and only the refused attempt is audited, when:
+
+| `refusal.code` | Cause | What to do |
+| --- | --- | --- |
+| `DRAIN_PENDING` | The queue being left holds a non-terminal row. The record gives the counts per status and the age of the oldest row. | Wait for the old dispatcher (`commerce:whatsapp:dispatch` is every 2 minutes), or use `--wait`. A row stuck `queued` with a late `next_attempt_at` is a provider outage: fix the provider, do not flip around it. |
+| `TARGET_CHANNEL_UNAVAILABLE` | The queue being entered cannot send: its enable flag is off, the module is off for the tenant, the recipient-hash key ring or the provider is missing. `blockers` lists every cause. | Fix the environment or enable the module, then re-run. |
+| `WARNINGS_NOT_ACKNOWLEDGED` | A flip into `upstream` always carries warnings (`warnings` lists them). | Read them, then repeat with `--ack-warnings`. |
+| `MODE_CHANGED` | `--from <mode>` did not match the tenant's current mode. | Read the mode again. |
+
+**Evidence record** (`awcms.commerce.whatsapp_mode_flip/v1`): `tenantId`, `from`, `to`, `outcome` (`flipped`, `would_flip`, `unchanged`, `refused`), `dryRun`, `reason`, `at`, `surface` (`cli`/`api`) and `operator`, `queues.legacy` and `queues.upstream` (`countsByStatus`, `nonTerminal`, `oldestNonTerminalAgeSeconds`), `channel` (the flags, the provider NAME, never a credential), `consent` (`commerceMarketingOptIns`, `upstreamGrantedConsents`), `blockers`, `warnings`, `warningsAcknowledged`, `refusal`, `auditEventId` (the `awcms_audit_events` row, `whatsapp_mode.flip` or `whatsapp_mode.flip_refused`) and `correlationId`.
+
+**After the flip.** (1) Send one real OTP to a number you control and confirm it arrives; credentials are not verified by the flip. (2) `GET /api/v1/commerce/whatsapp/mode` (or `--status`) should show `mode: upstream` and `queues.legacy.nonTerminal: 0`; the legacy rows stay as history until `commerce:whatsapp:purge` removes them after the retention window. (3) Watch `/admin/whatsapp` for the tenant's first messages. The commerce WhatsApp screen keeps showing only legacy rows.
+
+**Rollback.** `bun run commerce:whatsapp:cutover --tenant <uuid> --to legacy --reason "<why>" --wait 600` (or `POST` with `"to": "legacy"`). It is symmetric: refused until the **upstream** queue holds no non-terminal row for the tenant (counted tenant-wide, so a tenant that also queues booking reminders waits for those too), and refused while `COMMERCE_WHATSAPP_ENABLED` is off. There is no override: if the upstream dispatcher is down, bring it up and let the queue drain or expire, then roll back. Messages already in the upstream queue are never copied back.
+
 ## Production topology (issue #150, ADR-0019)
 
 `apps/cms` is PostgreSQL-only, and until this section was written, borneojek's own production infrastructure ran MySQL with no PostgreSQL provisioned anywhere on it — the delivery gap [issue #150](https://github.com/ahliweb/awcms-one/issues/150) named directly. What follows is the real, tested production path this repository now ships; [ADR-0019](adr/0019-production-topology-two-images-a-jobs-sidecar-and-a-fail-closed-preflight.md) records the decisions behind it. `compose.yaml`'s own `postgres:18.4` container remains a LOCAL/CI convenience — `compose.production.yaml` (below) is the production shape, and the two are never meant to share a database.

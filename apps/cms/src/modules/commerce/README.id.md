@@ -853,10 +853,29 @@ upstream mengenalnya. Pada mode `upstream`, penolakan kembali sebagai
 `enqueued: false` beserta alasan, ketersediaan kanal menanyakan
 `WHATSAPP_ENABLED` alih-alih `COMMERCE_WHATSAPP_ENABLED`, dan riwayat
 pengiriman dokumen membaca antrean lewat correlation id. Dispatcher, purge,
-dan layar admin di atas tetap ada untuk baris legacy. Belum ada yang mengatur
-mode; flip terjaga adalah #393.
+dan layar admin di atas tetap ada untuk baris legacy.
 `tests/commerce-whatsapp-upstream-boundary.test.ts` gagal jika berkas di jalur
 upstream menyebut tabel, provider, atau dispatcher legacy.
+
+**Flip terjaga (issue #393, ADR-0047 "Cutover").**
+`application/whatsapp-mode-flip.ts` adalah SATU-SATUNYA penulis
+`whatsapp_mode`: `flipWhatsappMode(tx, tenantId, actor, target, { reason,
+expected?, acknowledgeWarnings?, dryRun? })`, dipanggil oleh `bun run
+commerce:whatsapp:cutover` (`scripts/commerce-whatsapp-cutover.ts`; `--status`,
+`--to`, `--reason`, `--dry-run`, `--ack-warnings`) dan `GET` / `POST
+/api/v1/commerce/whatsapp/mode` (`commerce.whatsapp_mode.read` / `.manage`,
+`sql/1028`; flip sungguhan butuh step-up dan `Idempotency-Key`). Di bawah lock
+mode eksklusif ia menolak (`409`) selama antrean yang DITINGGALKAN memiliki
+baris non-terminal (legacy: `queued`, `sending`; upstream, untuk flip balik:
+juga `retry_wait`, dihitung lewat `summarizeWhatsappQueue` milik
+`whatsapp_delivery` sendiri), selama antrean yang DIMASUKI tidak dapat
+mengirim (flag mati, modul `whatsapp_delivery` mati untuk tenant, tidak ada
+key ring hash penerima, tidak ada provider) dan, untuk flip ke `upstream`,
+sampai celah yang diketahui ADR-0047 diakui. Penolakan hanya menulis audit
+event percobaan yang ditolak; flip menulis mode dan satu audit event; dry run
+tidak menulis apa pun. Setiap percobaan mengembalikan catatan bukti (jumlah
+antrean per status, umur tertua, penghalang, peringatan, id audit event).
+Aturannya sendiri adalah `domain/whatsapp-cutover.ts` yang murni.
 
 `POST .../account/otp/request` menerima `via?: "email"|"whatsapp"` (default
 `email`). `via: "whatsapp"` mewajibkan `phone` (E.164 lewat `domain/

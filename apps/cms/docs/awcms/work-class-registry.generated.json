@@ -1237,6 +1237,11 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/whatsapp/mode.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/work-orders/[id].ts",
       "workClass": "interactive",
       "source": "factory"
