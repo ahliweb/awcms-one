@@ -181,7 +181,7 @@ async function configureTenant(
       staffId
     );
     if (serviceId) {
-      await saveBookingServiceTenantUserId(tx, tenantId, serviceId);
+      await saveBookingServiceTenantUserId(tx, tenantId, serviceId, serviceId);
     }
   }, tenantId);
 }
@@ -1573,14 +1573,14 @@ suite("booking cancellation, refund quote and refund legs (Issue #381)", () => {
       await configureTenant(TENANT_A, STAFF, null);
       // Linking needs the service account; set it, book, then clear it.
       await inTenant((tx) =>
-        saveBookingServiceTenantUserId(tx, TENANT_A, SERVICE)
+        saveBookingServiceTenantUserId(tx, TENANT_A, SERVICE, SERVICE)
       );
       const fx = await newFixture();
       await policy(fx.productId);
       const view = await book(fx);
       await pay(view.orderId, "1000000.00");
       await inTenant((tx) =>
-        saveBookingServiceTenantUserId(tx, TENANT_A, null)
+        saveBookingServiceTenantUserId(tx, TENANT_A, null, SERVICE)
       );
       const refused = await cancel(view.reservationId, {
         actor: guestActor(),
