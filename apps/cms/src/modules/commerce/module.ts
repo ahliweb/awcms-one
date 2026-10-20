@@ -215,7 +215,9 @@ import {
   COMMERCE_ORDER_PAID_LOYALTY_EARNER_CONSUMER_NAME,
   COMMERCE_ORDER_CANCELLED_LOYALTY_REVERSER_CONSUMER_NAME,
   COMMERCE_INVENTORY_STOCK_CACHE_PROJECTOR_CONSUMER_NAME,
-  COMMERCE_ORDER_PAID_COMMISSION_ATTRIBUTOR_CONSUMER_NAME
+  COMMERCE_ORDER_PAID_COMMISSION_ATTRIBUTOR_CONSUMER_NAME,
+  COMMERCE_ORDER_CANCELLED_COMMISSION_REVERSER_CONSUMER_NAME,
+  COMMERCE_REFUND_SETTLED_COMMISSION_REVERSER_CONSUMER_NAME
 } from "./domain/commerce-events";
 import {
   INVENTORY_EVENT_VERSION,
@@ -960,6 +962,40 @@ export const commerceModule = defineModule({
         const { attributeCommissionForPaidOrder } =
           await import("./application/commission-attribution");
         await attributeCommissionForPaidOrder(
+          tx,
+          ctx.tenantId,
+          event.aggregateId,
+          ctx.correlationId
+        );
+      }
+    },
+    {
+      name: COMMERCE_ORDER_CANCELLED_COMMISSION_REVERSER_CONSUMER_NAME,
+      description:
+        "commerce module consumer - reverses (voids, never deletes) the commission accrued on every line of a cancelled counter sale through CommissionAccrualPort.void, by the same source identity the accrual was reported under; a closed-period accrual is audited for a person, never retried (Issue #391, ADR-0046 D9).",
+      eventTypes: [COMMERCE_ORDER_CANCELLED_EVENT_TYPE],
+      eventVersions: [COMMERCE_EVENT_VERSION],
+      handle: async (tx, event, ctx) => {
+        const { reverseCommissionForCancelledOrder } =
+          await import("./application/commission-reversal");
+        await reverseCommissionForCancelledOrder(
+          tx,
+          ctx.tenantId,
+          event.aggregateId,
+          ctx.correlationId
+        );
+      }
+    },
+    {
+      name: COMMERCE_REFUND_SETTLED_COMMISSION_REVERSER_CONSUMER_NAME,
+      description:
+        "commerce module consumer - when the last refund leg of a return settles, voids the commission accrued on each counter-sale line that is now fully returned through CommissionAccrualPort.void; a partly returned line keeps its accrual and is audited for a person, a closed-period accrual is audited and never retried (Issue #391, ADR-0046 D9).",
+      eventTypes: [COMMERCE_REFUND_SETTLED_EVENT_TYPE],
+      eventVersions: [COMMERCE_EVENT_VERSION],
+      handle: async (tx, event, ctx) => {
+        const { reverseCommissionForSettledRefund } =
+          await import("./application/commission-reversal");
+        await reverseCommissionForSettledRefund(
           tx,
           ctx.tenantId,
           event.aggregateId,

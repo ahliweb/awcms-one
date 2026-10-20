@@ -1,7 +1,6 @@
 import { fail, ok } from "../../../../../../../modules/_shared/api-response";
 import { defineTenantRoute } from "../../../../../../../modules/_shared/tenant-route";
 import { retireStaffLink } from "../../../../../../../modules/commerce/application/commission-attribution-directory";
-import { COMMERCE_COMMISSION_STAFF_LINKS_ACTIVITY_CODE } from "../../../../../../../modules/commerce/domain/commerce-permissions";
 import { isCommissionUuid } from "../../../../../../../modules/commerce/domain/commission-attribution";
 
 /**
@@ -14,15 +13,15 @@ import { isCommissionUuid } from "../../../../../../../modules/commerce/domain/c
  * link that is already retired is `409`, so a retry can never be mistaken for
  * a second effect. A sale already reported keeps the accrual it produced.
  */
-const MANAGE_GUARD = {
+const COMMISSION_STAFF_LINK_RETIRE_GUARD = {
   moduleKey: "commerce",
-  activityCode: COMMERCE_COMMISSION_STAFF_LINKS_ACTIVITY_CODE,
+  activityCode: "commission_staff_links",
   action: "manage"
 } as const;
 
 export const POST = defineTenantRoute({
   workClass: "interactive",
-  authorize: MANAGE_GUARD,
+  authorize: COMMISSION_STAFF_LINK_RETIRE_GUARD,
   handler: async ({ tx, tenantId, auth, params, locals }) => {
     if (!isCommissionUuid(params.id)) {
       return fail(

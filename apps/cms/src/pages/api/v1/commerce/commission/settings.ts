@@ -5,7 +5,6 @@ import {
   fetchCommissionSettings,
   saveCommissionSettings
 } from "../../../../../modules/commerce/application/commission-attribution-directory";
-import { COMMERCE_COMMISSION_SETTINGS_ACTIVITY_CODE } from "../../../../../modules/commerce/domain/commerce-permissions";
 import {
   validateCommissionSettingsInput,
   type CommissionSettingsInput
@@ -25,21 +24,21 @@ import {
  * orders paid afterwards; a sale already reported keeps the identity it was
  * reported under.
  */
-const READ_GUARD = {
+const COMMISSION_SETTINGS_READ_GUARD = {
   moduleKey: "commerce",
-  activityCode: COMMERCE_COMMISSION_SETTINGS_ACTIVITY_CODE,
+  activityCode: "commission_settings",
   action: "read"
 } as const;
 
-const MANAGE_GUARD = {
+const COMMISSION_SETTINGS_MANAGE_GUARD = {
   moduleKey: "commerce",
-  activityCode: COMMERCE_COMMISSION_SETTINGS_ACTIVITY_CODE,
+  activityCode: "commission_settings",
   action: "manage"
 } as const;
 
 export const GET = defineTenantRoute({
   workClass: "interactive",
-  authorize: READ_GUARD,
+  authorize: COMMISSION_SETTINGS_READ_GUARD,
   handler: async ({ tx, tenantId }) =>
     ok({ settings: await fetchCommissionSettings(tx, tenantId) })
 });
@@ -48,7 +47,7 @@ export const PUT = defineTenantRoute<CommissionSettingsInput>({
   workClass: "interactive",
   prepare: ({ request }) =>
     readValidatedBody(request, validateCommissionSettingsInput),
-  authorize: MANAGE_GUARD,
+  authorize: COMMISSION_SETTINGS_MANAGE_GUARD,
   handler: async ({ tx, tenantId, auth, prepared, locals }) =>
     ok({
       settings: await saveCommissionSettings(

@@ -2117,24 +2117,6 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // will read the reservation-event log as `awcms_worker` (ADR-0131 section
   // 7.2); it writes exclusively to its own `awcms_reporting_projection_*` tables.
   awcms_booking_reservation_events: ["SELECT"],
-  // Issue #391 (sql/1031, ADR-0046): the `commerce.order_paid_commission_attributor`
-  // consumer, run by `domain-events:dispatch` as `awcms_worker`. It reads this
-  // module's two commission-attribution tables, and the posting core of
-  // `hr_commission`'s `CommissionAccrualPort` runs in ITS transaction with ITS
-  // privileges: SELECT + INSERT on the accrual (and its birth-trigger log row),
-  // SELECT on the rule and the employment, plus a COLUMN-level UPDATE on `id` of
-  // those two (their `FOR SHARE` reads need an UPDATE privilege; it is not a
-  // table privilege, so it does not appear here - the inventory locations'
-  // precedent above). Never UPDATE or DELETE on an accrual: the worker cannot
-  // approve, void, pay or rewrite one. `awcms_tenant_settings` (the tenant's time
-  // zone) and `awcms_tenant_modules` (is `hr_commission` on) are SELECT only.
-  awcms_commerce_commission_settings: ["SELECT"],
-  awcms_commerce_commission_staff_links: ["SELECT"],
-  awcms_hr_commission_accruals: ["SELECT", "INSERT"],
-  awcms_hr_commission_transitions: ["SELECT", "INSERT"],
-  awcms_hr_commission_rules: ["SELECT"],
-  awcms_tenant_settings: ["SELECT"],
-  awcms_tenant_modules: ["SELECT"],
   // Issue #943 (`sql/284`). `booking:reminders:dispatch` settles intents (UPDATE)
   // and reads them; it does not INSERT (the DEFINER function of `sql/285` does)
   // and it holds NO privilege on the reservation tables, which it reads only
@@ -2163,7 +2145,26 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // compromised worker cannot read a verdict, a band or an employment.
   awcms_hr_attendance_location_evidence: ["DELETE"],
   awcms_hr_workforce_settings: ["SELECT"],
-  awcms_hr_employments: ["SELECT"]
+  // Issue #391 (sql/1031, ADR-0046): the `commerce.order_paid_commission_attributor`
+  // consumer, run by `domain-events:dispatch` as `awcms_worker`. It reads this
+  // module's two commission-attribution tables, and the posting core of
+  // `hr_commission`'s `CommissionAccrualPort` runs in ITS transaction with ITS
+  // privileges: SELECT + INSERT on the accrual (and its birth-trigger log row),
+  // SELECT on the rule and the employment, plus a COLUMN-level UPDATE on `id` of
+  // those two (their `FOR SHARE` reads need an UPDATE privilege; it is not a
+  // table privilege, so it does not appear here - the inventory locations'
+  // precedent above). No table-level UPDATE or DELETE on an accrual: the worker
+  // cannot approve, pay or rewrite one; since sql/1051 it can void one, through
+  // four COLUMN grants (WORKER_COLUMN_GRANTS). `awcms_tenant_settings` (the tenant's time
+  // zone) and `awcms_tenant_modules` (is `hr_commission` on) are SELECT only.
+  awcms_commerce_commission_settings: ["SELECT"],
+  awcms_commerce_commission_staff_links: ["SELECT"],
+  awcms_hr_commission_accruals: ["SELECT", "INSERT"],
+  awcms_hr_commission_transitions: ["SELECT", "INSERT"],
+  awcms_hr_commission_rules: ["SELECT"],
+  awcms_hr_employments: ["SELECT"],
+  awcms_tenant_settings: ["SELECT"],
+  awcms_tenant_modules: ["SELECT"]
 };
 
 /**
@@ -2237,6 +2238,13 @@ export const WORKER_COLUMN_GRANTS: Record<
     UPDATE: ["status", "decided_by", "decided_at", "updated_at"]
   },
   awcms_hr_employments: { UPDATE: ["updated_at"] },
+  // sql/1051 (Issue #391, ADR-0046 D9): the commission reversal consumers void an
+  // accrual through `CommissionAccrualPort.void`: one status edge, four columns.
+  // The amount, rule, source and beneficiary stay unwritable; approve, release
+  // and pay are not reachable (the port refuses a payable or paid accrual).
+  awcms_hr_commission_accruals: {
+    UPDATE: ["status", "voided_at", "voided_by", "void_reason_code"]
+  },
   // sql/314 (Issue #1089): the dispatcher settles a delivery / disables a dead
   // device, and the auth-secret backfill moves the secret from plaintext to
   // ciphertext. The endpoint, its hash and the p256dh key are not writable.

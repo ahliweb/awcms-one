@@ -203,6 +203,53 @@ export async function findLiveEmploymentForLogin(
   return row ? { linkId: row.id, employmentId: row.employment_id } : null;
 }
 
+/**
+ * Every employment a login's counter sales were EVER credited to (live or
+ * retired, newest first). A reversal needs these, not only the live link: the
+ * link may have been retired or re-pointed between the sale and its refund, and
+ * the accrual belongs to the employment that was linked when the sale was paid.
+ * Voiding a source for an employment that never earned it is a harmless
+ * `not_found`.
+ */
+export async function listEmploymentsEverLinkedToLogin(
+  tx: Bun.SQL,
+  tenantId: string,
+  tenantUserId: string
+): Promise<string[]> {
+  const rows = (await tx`
+    SELECT DISTINCT employment_id, created_at
+    FROM awcms_commerce_commission_staff_links
+    WHERE tenant_id = ${tenantId} AND tenant_user_id = ${tenantUserId}
+    ORDER BY created_at DESC, employment_id
+  `) as { employment_id: string }[];
+  return rows.map((row) => row.employment_id);
+}
+
+/**
+ * What a REVERSAL needs from the settings: the source type the accruals were
+ * reported under and the person who authorised the adapter (the last tenant
+ * user to save the settings), whom the ledger stamps as the voider because a
+ * status edge needs a person and an event consumer has none (ADR-0046 D9).
+ * `null` when the adapter was never configured: nothing can have been accrued.
+ */
+export async function fetchCommissionReversalContext(
+  tx: Bun.SQL,
+  tenantId: string
+): Promise<{ sourceType: string; actorTenantUserId: string | null } | null> {
+  const rows = (await tx`
+    SELECT source_type, updated_by_tenant_user_id
+    FROM awcms_commerce_commission_settings
+    WHERE tenant_id = ${tenantId}
+  `) as { source_type: string; updated_by_tenant_user_id: string | null }[];
+  const row = rows[0];
+  return row
+    ? {
+        sourceType: row.source_type,
+        actorTenantUserId: row.updated_by_tenant_user_id
+      }
+    : null;
+}
+
 export type CreateStaffLinkOutcome =
   | { kind: "created"; link: CommissionStaffLink }
   /** The login does not exist in this tenant (indistinguishable from another tenant's: nothing to probe). */
@@ -211,7 +258,7 @@ export type CreateStaffLinkOutcome =
   | { kind: "employment_already_linked" };
 
 export async function createStaffLink(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   input: CreateStaffLinkInput,
@@ -236,12 +283,17 @@ export async function createStaffLink(
 
   let rows: LinkRow[];
   try {
-    rows = (await tx`
+    // A savepoint: the unique violation below is swallowed and mapped to an
+    // outcome, which must not poison the surrounding tenant transaction.
+    rows = (await tx.savepoint(
+      async (sp) =>
+        await sp`
       INSERT INTO awcms_commerce_commission_staff_links
         (tenant_id, tenant_user_id, employment_id, created_by_tenant_user_id)
       VALUES (${tenantId}, ${input.tenantUserId}, ${input.employmentId}, ${actorTenantUserId})
-      RETURNING ${tx.unsafe(LINK_COLUMNS)}
-    `) as LinkRow[];
+      RETURNING ${sp.unsafe(LINK_COLUMNS)}
+    `
+    )) as LinkRow[];
   } catch (error) {
     // A racing request created the same live link between the check and the
     // insert; the partial unique indexes are the authority.

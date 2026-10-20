@@ -458,7 +458,14 @@ export const PAYROLL_READ_FUNCTION_IMPORTS: readonly PayrollReadFunctionImport[]
         "src/modules/hr-commission/application/hr-commission-accrual-port-adapter.ts",
       functions: ["createCommissionAccrualPort"],
       permission: "hr_commission.accruals.read",
-      allowedImporters: []
+      allowedImporters: [
+        "src/modules/commerce/application/commission-attribution-port.ts"
+      ],
+      writePathFunctions: ["createCommissionAccrualPort"],
+      auditExemptImporters: {
+        "src/modules/commerce/application/commission-attribution-port.ts":
+          "commerce's single composition seam (Issue #391, ADR-0046): it only builds the in-process port. Its two consumers (commission-attribution.ts, commission-reversal.ts) read no ledger row and return none to any caller; each audits, with the order as the resource and counts only (no amount, rate, source reference, accrual or employment id), every attempt that accrues, voids, is refused or needs a person - a pure replay or a void with nothing to void writes no row. No HTTP surface"
+      }
     },
     {
       // Issue #952: the OWN-ONLY readers behind /my-accruals and the employee's

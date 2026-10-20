@@ -304,3 +304,12 @@ export const COMMERCE_RETURN_RECORDED_EVENT_TYPE =
 export const COMMERCE_REFUND_SETTLED_EVENT_TYPE =
   "awcms.commerce.refund.settled";
 export const COMMERCE_RETURN_AGGREGATE_TYPE = "commerce.return";
+/**
+ * Issue #391 (ADR-0046 D9): reverse the accrual on a cancelled order / a settled
+ * refund. Names are shipped identifiers (delivery rows, the effect ledger and
+ * metrics key on them): never rename one.
+ */
+export const COMMERCE_ORDER_CANCELLED_COMMISSION_REVERSER_CONSUMER_NAME =
+  "commerce.order_cancelled_commission_reverser";
+export const COMMERCE_REFUND_SETTLED_COMMISSION_REVERSER_CONSUMER_NAME =
+  "commerce.refund_settled_commission_reverser";
