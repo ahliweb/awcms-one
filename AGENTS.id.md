@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](AGENTS.md)
 
-<!-- i18n-source-hash: sha256:daeb6aa562aa8f34afff993a517c571535bf4473a9c29045ee58bb2ebbd0e941 -->
+<!-- i18n-source-hash: sha256:c99ca75d51d0e3aacdb1e802f7d0ada991f1e29cc920d199d01ec5e2802b4552 -->
 
 # AGENTS.md — kontrak kerja awcms-one
 
@@ -26,6 +26,10 @@ Terapkan aturan berikut pada **setiap implementasi dan setiap issue**:
 - **Promosi capability harus eksplisit.** Saat consumer menemukan foundation yang belum ada, klasifikasikan terlebih dahulu sebagai consumer-specific atau reusable. Implementasi consumer-specific tetap di repo consumer. Pekerjaan reusable membutuhkan ADR template/upstream, tes, rencana migrasi/kompatibilitas, dan penamaan netral sebelum diterima di sini.
 
 Migrasi IRMbyDUS pada issue #297 adalah penerapan pertama aturan ini: improvement generik yang sudah merged tetap menjadi capability template, sedangkan kode practice/program/journal/progress/mentoring spesifik IRM dimiliki oleh `ahliweb/web-irmbydus.com`.
+
+## Aplikasi persona Lynx — arah disetujui, belum diimplementasikan
+
+[ADR-0050](docs/adr/0050-lynxjs-for-separate-persona-apps-astro-stays-for-admin-and-public-profiles.id.md) (issue #445): LynxJS/ReactLynx adalah **kandidat utama** untuk aplikasi persona yang **terpisah** (pelanggan, kurir, pengemudi, mitra, petugas gudang); admin AWCMS dan setiap profil publik (`toko`, `berita`, `landing`) **tetap Astro**, dan `apps/storefront` tetap SSG statis (SSR hanya lewat ADR mendatang). Arah ini disetujui, **integrasi Lynx belum diimplementasikan**: tidak ada kode, workspace atau dependensi Lynx yang ditambahkan ke `apps/storefront`, `apps/cms` atau root workspace, dan aplikasi persona hidup di repositori terpisah yang membuka issue sendiri (ADR-0024). Aplikasi itu mengonsumsi API terdokumentasi produknya sendiri dengan auth bercakupan aktor, bukan deployment referensi ini atau internals `apps/cms`, dan tidak memegang kunci provider. Pemilihan Lynx di repo konsumen digerbangi PoC. Jangan menulis kode atau dokumen yang mengklaim sebaliknya. Ini penjabaran khusus template dari upstream ahliweb/awcms#1133 dan ditinjau ulang bila itu mendarat berbeda.
 
 ## Yang ada hari ini, dan yang tidak
 
