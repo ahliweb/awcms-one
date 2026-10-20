@@ -14,7 +14,8 @@ import {
  * `GET|PUT /api/v1/commerce/commission/settings` (Issue #391, ADR-0046) - whether
  * employee-commission sale attribution is on for the tenant, which
  * `hr_commission` rule key it applies and the source type that rule declares.
- * OFF until a tenant `PUT`s `enabled: true` with a rule key; `GET` answers the
+ * DORMANT (ADR-0046 D10): `PUT` with `enabled: true` answers
+ * `409 COMMISSION_ADAPTER_DORMANT`; no consumer is registered. Previously: OFF until a tenant `PUT`s `enabled: true` with a rule key; `GET` answers the
  * defaults (`enabled: false`, no rule) for a tenant that has never saved.
  *
  * Reading needs `commerce.commission_settings.read`; changing needs
@@ -57,6 +58,16 @@ export const PUT = defineTenantRoute<CommissionSettingsInput>({
     readValidatedBody(request, validateCommissionSettingsInput),
   authorize: COMMISSION_SETTINGS_MANAGE_GUARD,
   handler: async ({ tx, tenantId, auth, prepared, locals }) => {
+    // Issue #391 (ADR-0046 D10): the adapter ships dormant (sql/1053 revokes the
+    // worker's payroll-table grants; the consumers are not registered), so
+    // switching it on would promise accruals that never happen.
+    if (prepared.enabled) {
+      return fail(
+        409,
+        "COMMISSION_ADAPTER_DORMANT",
+        "Commission attribution is dormant: it cannot be switched on until upstream provides a sanctioned worker path to the commission ledger."
+      );
+    }
     const outcome = await saveCommissionSettings(
       tx,
       tenantId,

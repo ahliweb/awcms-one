@@ -1,4 +1,5 @@
 import { defineModule } from "../_shared/module-contract";
+import type { ModuleDomainEventConsumer } from "../_shared/domain-event-consumer-contract";
 import { DEFAULT_COMMERCE_FEATURES } from "./domain/commerce-features";
 // Side-effect import (Issue #392): registers the `commerce.*` WhatsApp templates
 // with `whatsapp_delivery`, so wherever the module graph is loaded - the CMS
@@ -603,6 +604,70 @@ const RETENTION_STREAMS: readonly ProjectionCursorStream[] = [
 ];
 
 /**
+ * Issue #391 (ADR-0046 D10) - the commission consumers' descriptors, kept but
+ * DELIBERATELY NOT registered in `domainEventConsumers`. Upstream's payroll
+ * boundary (ahliweb/awcms#1015) lets only `awcms_app` hold privileges on
+ * `awcms_hr_*`, and `domain-events:dispatch` runs as `awcms_worker`, so
+ * `sql/1053` revokes the grants `sql/1031` and `sql/1051` gave it and the
+ * adapter is dormant until upstream provides a sanctioned worker path to
+ * `CommissionAccrualPort`. When it does, spread this array into
+ * `domainEventConsumers` together with a re-granting migration.
+ */
+export const DORMANT_COMMISSION_CONSUMERS: ModuleDomainEventConsumer[] = [
+  {
+    name: COMMERCE_ORDER_PAID_COMMISSION_ATTRIBUTOR_CONSUMER_NAME,
+    description:
+      "commerce module consumer - reports each line of a paid counter (POS) sale to the hr_commission accrual ledger through CommissionAccrualPort, for the employment linked to the login that rang the sale up; exactly once per line, from server-side order facts only, OFF unless the tenant enables it (Issue #391, ADR-0046).",
+    eventTypes: [COMMERCE_ORDER_PAID_EVENT_TYPE],
+    eventVersions: [COMMERCE_EVENT_VERSION],
+    handle: async (tx, event, ctx) => {
+      const { attributeCommissionForPaidOrder } =
+        await import("./application/commission-attribution");
+      await attributeCommissionForPaidOrder(
+        tx,
+        ctx.tenantId,
+        event.aggregateId,
+        ctx.correlationId
+      );
+    }
+  },
+  {
+    name: COMMERCE_ORDER_CANCELLED_COMMISSION_REVERSER_CONSUMER_NAME,
+    description:
+      "commerce module consumer - reverses (voids, never deletes) the commission accrued on every line of a cancelled counter sale through CommissionAccrualPort.void, by the same source identity the accrual was reported under; a closed-period accrual is audited for a person, never retried (Issue #391, ADR-0046 D9).",
+    eventTypes: [COMMERCE_ORDER_CANCELLED_EVENT_TYPE],
+    eventVersions: [COMMERCE_EVENT_VERSION],
+    handle: async (tx, event, ctx) => {
+      const { reverseCommissionForCancelledOrder } =
+        await import("./application/commission-reversal");
+      await reverseCommissionForCancelledOrder(
+        tx,
+        ctx.tenantId,
+        event.aggregateId,
+        ctx.correlationId
+      );
+    }
+  },
+  {
+    name: COMMERCE_REFUND_SETTLED_COMMISSION_REVERSER_CONSUMER_NAME,
+    description:
+      "commerce module consumer - when the last refund leg of a return settles, voids the commission accrued on each counter-sale line that is now fully returned through CommissionAccrualPort.void; a partly returned line keeps its accrual and is audited for a person, a closed-period accrual is audited and never retried (Issue #391, ADR-0046 D9).",
+    eventTypes: [COMMERCE_REFUND_SETTLED_EVENT_TYPE],
+    eventVersions: [COMMERCE_EVENT_VERSION],
+    handle: async (tx, event, ctx) => {
+      const { reverseCommissionForSettledRefund } =
+        await import("./application/commission-reversal");
+      await reverseCommissionForSettledRefund(
+        tx,
+        ctx.tenantId,
+        event.aggregateId,
+        ctx.correlationId
+      );
+    }
+  }
+];
+
+/**
  * `commerce` (Issue #4, part of epic #1; brought to full product-model parity
  * by Issue #23, part of epic #21) — tenant-scoped product categories
  * (hierarchical, self-referencing) and products, ported from the legacy
@@ -966,57 +1031,6 @@ export const commerceModule = defineModule({
           ctx.tenantId,
           event.aggregateId,
           new Date(),
-          ctx.correlationId
-        );
-      }
-    },
-    {
-      name: COMMERCE_ORDER_PAID_COMMISSION_ATTRIBUTOR_CONSUMER_NAME,
-      description:
-        "commerce module consumer - reports each line of a paid counter (POS) sale to the hr_commission accrual ledger through CommissionAccrualPort, for the employment linked to the login that rang the sale up; exactly once per line, from server-side order facts only, OFF unless the tenant enables it (Issue #391, ADR-0046).",
-      eventTypes: [COMMERCE_ORDER_PAID_EVENT_TYPE],
-      eventVersions: [COMMERCE_EVENT_VERSION],
-      handle: async (tx, event, ctx) => {
-        const { attributeCommissionForPaidOrder } =
-          await import("./application/commission-attribution");
-        await attributeCommissionForPaidOrder(
-          tx,
-          ctx.tenantId,
-          event.aggregateId,
-          ctx.correlationId
-        );
-      }
-    },
-    {
-      name: COMMERCE_ORDER_CANCELLED_COMMISSION_REVERSER_CONSUMER_NAME,
-      description:
-        "commerce module consumer - reverses (voids, never deletes) the commission accrued on every line of a cancelled counter sale through CommissionAccrualPort.void, by the same source identity the accrual was reported under; a closed-period accrual is audited for a person, never retried (Issue #391, ADR-0046 D9).",
-      eventTypes: [COMMERCE_ORDER_CANCELLED_EVENT_TYPE],
-      eventVersions: [COMMERCE_EVENT_VERSION],
-      handle: async (tx, event, ctx) => {
-        const { reverseCommissionForCancelledOrder } =
-          await import("./application/commission-reversal");
-        await reverseCommissionForCancelledOrder(
-          tx,
-          ctx.tenantId,
-          event.aggregateId,
-          ctx.correlationId
-        );
-      }
-    },
-    {
-      name: COMMERCE_REFUND_SETTLED_COMMISSION_REVERSER_CONSUMER_NAME,
-      description:
-        "commerce module consumer - when the last refund leg of a return settles, voids the commission accrued on each counter-sale line that is now fully returned through CommissionAccrualPort.void; a partly returned line keeps its accrual and is audited for a person, a closed-period accrual is audited and never retried (Issue #391, ADR-0046 D9).",
-      eventTypes: [COMMERCE_REFUND_SETTLED_EVENT_TYPE],
-      eventVersions: [COMMERCE_EVENT_VERSION],
-      handle: async (tx, event, ctx) => {
-        const { reverseCommissionForSettledRefund } =
-          await import("./application/commission-reversal");
-        await reverseCommissionForSettledRefund(
-          tx,
-          ctx.tenantId,
-          event.aggregateId,
           ctx.correlationId
         );
       }

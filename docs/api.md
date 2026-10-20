@@ -581,6 +581,8 @@ RajaOngkir courier rates are **done** ([issue #107](https://github.com/ahliweb/a
 
 ## Owner API: employee-commission attribution (issue #391, epic #280, [ADR-0046](adr/0046-commission-attribution-adapter-reports-paid-counter-sales-to-the-hr-commission-ledger.md))
 
+> **Dormant (ADR-0046 D10, `sql/1053`).** Upstream's payroll boundary (ahliweb/awcms#1015) lets only `awcms_app` hold privileges on `awcms_hr_*` tables, so the grants this adapter gave `awcms_worker` were revoked and the three commission consumers are not registered with `domain-events:dispatch`. The code, tables, permissions and routes stay; `PUT /api/v1/commerce/commission/settings` with `enabled: true` answers `409 COMMISSION_ADAPTER_DORMANT`. It becomes active when upstream provides a sanctioned worker path to `CommissionAccrualPort`; the text below describes the adapter as built.
+
 Four routes, all `defineTenantRoute`, resource-split permissions, existing verbs only (`manage` is high-risk and audited). They configure an adapter that has **no request path of its own**: the accrual is made by the `commerce.order_paid_commission_attributor` domain-event consumer when a counter sale is paid (see below). The contract is `apps/cms/openapi/modules/commerce.openapi.yaml`.
 
 | Method | Path | Notes |

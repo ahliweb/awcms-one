@@ -9,7 +9,10 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 
 import type { CommissionAccrualOutcome } from "../src/modules/_shared/ports/commission-accrual-port";
-import { commerceModule } from "../src/modules/commerce/module";
+import {
+  commerceModule,
+  DORMANT_COMMISSION_CONSUMERS
+} from "../src/modules/commerce/module";
 import {
   COMMERCE_COMMISSION_SETTINGS_PERMISSIONS,
   COMMERCE_COMMISSION_STAFF_LINK_PERMISSIONS
@@ -415,8 +418,30 @@ describe("request validation", () => {
 });
 
 describe("the module descriptor", () => {
+  test("is DORMANT (ADR-0046 D10): no commission consumer is registered and the settings route refuses enabling", () => {
+    const registered = (commerceModule.domainEventConsumers ?? []).map(
+      (entry) => entry.name
+    );
+    for (const entry of DORMANT_COMMISSION_CONSUMERS) {
+      expect(registered).not.toContain(entry.name);
+    }
+    expect(DORMANT_COMMISSION_CONSUMERS.map((entry) => entry.name)).toEqual([
+      "commerce.order_paid_commission_attributor",
+      "commerce.order_cancelled_commission_reverser",
+      "commerce.refund_settled_commission_reverser"
+    ]);
+    const route = readFileSync(
+      path.join(
+        import.meta.dir,
+        "../src/pages/api/v1/commerce/commission/settings.ts"
+      ),
+      "utf8"
+    );
+    expect(route).toContain("COMMISSION_ADAPTER_DORMANT");
+  });
+
   test("declares the attributor as a descriptor consumer of the order-paid event with the DEFAULT runtime_effect_once idempotency", () => {
-    const consumer = commerceModule.domainEventConsumers?.find(
+    const consumer = DORMANT_COMMISSION_CONSUMERS.find(
       (entry) => entry.name === "commerce.order_paid_commission_attributor"
     );
     expect(consumer).toBeDefined();

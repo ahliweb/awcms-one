@@ -166,7 +166,7 @@ describe("commerce migrations never constrain against an hr_* table", () => {
     expect(offenders).toEqual([]);
   });
 
-  test("the only commerce-band migrations that mention an awcms_hr_ table in a statement are the worker-grant migrations 1031 and 1051", () => {
+  test("the only commerce-band migrations that mention an awcms_hr_ table in a statement are the worker-grant migrations 1031 and 1051 and the revoke 1053", () => {
     const files = readdirSync(path.join(root, "sql")).filter((name) =>
       COMMERCE_MIGRATION.test(name)
     );
@@ -180,7 +180,8 @@ describe("commerce migrations never constrain against an hr_* table", () => {
     }
     expect([...mentioning].sort()).toEqual([
       "1031_awcms_commerce_commission_attribution_permissions_grants.sql",
-      "1051_awcms_commerce_commission_reversal_worker_grants.sql"
+      "1051_awcms_commerce_commission_reversal_worker_grants.sql",
+      "1053_awcms_commerce_commission_revoke_payroll_worker_grants.sql"
     ]);
   });
 });

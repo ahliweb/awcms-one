@@ -1,4 +1,10 @@
 /**
+ * DORMANT (ADR-0046 D10): the adapter ships without a registered consumer and
+ * without any worker grant on a payroll-family table (sql/1053), because
+ * upstream's payroll boundary (ahliweb/awcms#1015) lets only `awcms_app` hold
+ * them. The tests below drive the consumer's code directly as the app role
+ * (`DORMANT_COMMISSION_CONSUMERS`); the last block pins the dormant state.
+ *
  * Employee-commission sale attribution (Issue #391, ADR-0046) against a REAL
  * migrated PostgreSQL through `tests/integration/harness.ts`. Gated on
  * `DATABASE_URL`; skips cleanly without one.
@@ -45,6 +51,7 @@ import {
   saveCommissionSettings
 } from "../../src/modules/commerce/application/commission-attribution-directory";
 import { attributeCommissionForPaidOrder } from "../../src/modules/commerce/application/commission-attribution";
+import { DORMANT_COMMISSION_CONSUMERS } from "../../src/modules/commerce/module";
 import { listDomainEventConsumers } from "../../src/modules/domain-event-runtime/infrastructure/consumer-registry";
 import type { DomainEventForHandler } from "../../src/modules/domain-event-runtime/domain/consumer-types";
 import {
@@ -52,15 +59,13 @@ import {
   getAdminSql,
   getOwnerSql,
   getRuntimeSql,
-  getWorkerRoleSql,
   integrationEnabled,
   resetDatabase,
   setupIntegrationDatabase,
-  teardownIntegrationDatabase,
-  workerRoleActivated
+  teardownIntegrationDatabase
 } from "./harness";
 
-const attributorConsumer = listDomainEventConsumers().find(
+const attributorConsumer = DORMANT_COMMISSION_CONSUMERS.find(
   (consumer) => consumer.name === "commerce.order_paid_commission_attributor"
 )!;
 
@@ -315,7 +320,7 @@ async function deliver(
   await inTenant(
     tenantId,
     (tx) =>
-      attributorConsumer.handler(tx, event, {
+      attributorConsumer.handle(tx, event, {
         tenantId,
         correlationId: "corr-391"
       }),
@@ -1068,90 +1073,54 @@ suite("commerce commission attribution integration (Issue #391)", () => {
   });
 
   // -------------------------------------------------------------------------
-  describe("the worker role (the dispatcher's real identity)", () => {
-    test("does the whole job with the narrow grants of sql/1031", async () => {
-      if (!workerRoleActivated) return;
-      await link(TENANT_A, cashier, employment);
-      await enable(TENANT_A);
-      const { orderId } = await seedOrder(TENANT_A, {
-        cashier,
-        lines: ["100000.00", "50000.00"]
-      });
-
-      await deliver(TENANT_A, paidEvent(orderId), getWorkerRoleSql());
-
-      const rows = await accrualsOf(TENANT_A);
-      expect(rows).toHaveLength(2);
-      expect(rows.every((row) => row.status === "pending")).toBe(true);
-      // The accrual's birth trigger wrote the log row as the worker too.
-      const transitions = (await getAdminSql()`
-        SELECT count(*)::int AS n FROM awcms_hr_commission_transitions
-        WHERE tenant_id = ${TENANT_A}
-      `) as { n: number }[];
-      expect(transitions[0]!.n).toBe(2);
+  describe("dormant: the worker role holds nothing on the payroll tables (sql/1053)", () => {
+    test("the consumers are not registered with the dispatcher", () => {
+      const registered = listDomainEventConsumers().map(
+        (consumer) => consumer.name
+      );
+      for (const consumer of DORMANT_COMMISSION_CONSUMERS) {
+        expect(registered).not.toContain(consumer.name);
+      }
     });
 
-    test("cannot approve, pay, rewrite or delete an accrual, nor change a rule or an employment, nor touch a link", async () => {
-      if (!workerRoleActivated) return;
-      await link(TENANT_A, cashier, employment);
-      await enable(TENANT_A);
-      const { orderId } = await seedOrder(TENANT_A, { cashier });
-      await deliver(TENANT_A, paidEvent(orderId), getWorkerRoleSql());
-
-      const attempts: [string, (tx: Bun.SQL) => Promise<unknown>][] = [
-        [
-          "approving an accrual",
-          (tx) =>
-            tx`UPDATE awcms_hr_commission_accruals SET status = 'approved'`
-        ],
-        // Voiding is NOT here: since sql/1051 (ADR-0046 D9) the worker holds a
-        // four-column UPDATE for it, covered by
-        // commerce-commission-reversal.integration.test.ts. Paying and
-        // rewriting an amount stay out of reach:
-        [
-          "paying an accrual",
-          (tx) =>
-            tx`UPDATE awcms_hr_commission_accruals SET status = 'paid', paid_at = now()`
-        ],
-        [
-          "rewriting an amount",
-          (tx) => tx`UPDATE awcms_hr_commission_accruals SET amount = 1`
-        ],
-        [
-          "deleting an accrual",
-          (tx) => tx`DELETE FROM awcms_hr_commission_accruals`
-        ],
-        [
-          "rewriting a rule",
-          (tx) => tx`UPDATE awcms_hr_commission_rules SET name = 'x'`
-        ],
-        [
-          "inserting a rule",
-          (tx) =>
-            tx`INSERT INTO awcms_hr_commission_rules (tenant_id, rule_key, version_no, name, source_type, calculation, rate, currency_code, rounding_mode, rounding_scale, effective_from) VALUES (${TENANT_A}, 'x', 99, 'x', 'x', 'percent', 1, 'IDR', 'half_up', 2, '2026-01-01')`
-        ],
-        [
-          "rewriting an employment",
-          (tx) => tx`UPDATE awcms_hr_employments SET employee_no = 'hacked'`
-        ],
-        [
-          "creating a link",
-          (tx) =>
-            tx`INSERT INTO awcms_commerce_commission_staff_links (tenant_id, tenant_user_id, employment_id) VALUES (${TENANT_A}, ${cashier}, '66666666-6666-4666-8666-666666666666')`
-        ],
-        [
-          "changing the settings",
-          (tx) =>
-            tx`UPDATE awcms_commerce_commission_settings SET enabled = false`
-        ]
-      ];
-
-      for (const [what, run] of attempts) {
-        await assertRejected(
-          inTenant(TENANT_A, (tx) => run(tx), getWorkerRoleSql()),
-          what
-        );
+    test("awcms_worker holds no table or column privilege on any awcms_hr_commission_* table, and no UPDATE (id) on awcms_hr_employments", async () => {
+      const rows = (await getAdminSql()`
+        SELECT c.relname AS table_name,
+               has_table_privilege('awcms_worker', c.oid, 'SELECT, INSERT, UPDATE, DELETE') AS any_table,
+               has_any_column_privilege('awcms_worker', c.oid, 'SELECT, INSERT, UPDATE, REFERENCES') AS any_column
+        FROM pg_class c
+        WHERE c.relname IN (
+          'awcms_hr_commission_accruals', 'awcms_hr_commission_transitions',
+          'awcms_hr_commission_rules'
+        ) AND c.relkind = 'r'
+      `) as { table_name: string; any_table: boolean; any_column: boolean }[];
+      expect(rows).toHaveLength(3);
+      for (const row of rows) {
+        expect([row.table_name, row.any_table, row.any_column]).toEqual([
+          row.table_name,
+          false,
+          false
+        ]);
       }
+    });
+
+    test("the worker's only UPDATE on awcms_hr_employments is upstream's updated_at", async () => {
+      const rows = (await getAdminSql()`
+        SELECT a.attname AS column_name
+        FROM pg_attribute a
+        WHERE a.attrelid = 'awcms_hr_employments'::regclass
+          AND a.attnum > 0 AND NOT a.attisdropped
+          AND has_column_privilege('awcms_worker', a.attrelid, a.attnum, 'UPDATE')
+      `) as { column_name: string }[];
+      expect(rows.map((row) => row.column_name)).toEqual(["updated_at"]);
+    });
+
+    test("the worker keeps only its commerce-owned reads", async () => {
+      const rows = (await getAdminSql()`
+        SELECT has_table_privilege('awcms_worker', 'awcms_commerce_commission_settings', 'SELECT') AS settings,
+               has_table_privilege('awcms_worker', 'awcms_commerce_commission_staff_links', 'SELECT') AS links
+      `) as { settings: boolean; links: boolean }[];
+      expect(rows[0]).toEqual({ settings: true, links: true });
     });
   });
 });

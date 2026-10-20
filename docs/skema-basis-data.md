@@ -537,6 +537,8 @@ erDiagram
 
 ## Employee-commission attribution: three tables (`sql/1030`–`1031`, `sql/1052`)
 
+> **Dormant (ADR-0046 D10, `sql/1053`).** Upstream's payroll boundary (ahliweb/awcms#1015) lets only `awcms_app` hold privileges on `awcms_hr_*` tables, so the grants this adapter gave `awcms_worker` were revoked and the three commission consumers are not registered with `domain-events:dispatch`. The code, tables, permissions and routes stay; `PUT /api/v1/commerce/commission/settings` with `enabled: true` answers `409 COMMISSION_ADAPTER_DORMANT`. It becomes active when upstream provides a sanctioned worker path to `CommissionAccrualPort`; the text below describes the adapter as built. `sql/1053` revokes every `awcms_worker` grant on an `awcms_hr_*` table that `sql/1031` and `sql/1051` issued (the worker keeps `SELECT` on the commerce-owned tables and on `awcms_tenant_settings` / `awcms_tenant_modules`, and upstream's own `sql/280` grants on `awcms_hr_employments`).
+
 Issue #391 ([ADR-0046](adr/0046-commission-attribution-adapter-reports-paid-counter-sales-to-the-hr-commission-ledger.md)). The commerce side of reporting a paid counter sale to `hr_commission`; the ledger itself (rules, accruals, amounts) belongs to that module and commerce never reads it.
 
 | Object | Key columns | Notes |

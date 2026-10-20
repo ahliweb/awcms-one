@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:8f19cc681576b070a0cb034b4ecd9932c2fa2f78b5682d0e53d2ed0b462c62a5 -->
+<!-- i18n-source-hash: sha256:51b24d5d968319f9c23fc18b8ccdd3017234a4d9165b4744c0ee097e15d8b01e -->
 
 # `commerce`
 
@@ -1668,6 +1668,8 @@ Di balik `features.campaignSegmentAudience` (bawaan MATI; juga butuh `campaigns`
 Aturan yang harus dijaga perubahan di sini: persetujuan dan pengecualian tetap bagian kueri halaman; jangan pernah memmaterialisasi daftar pelanggan kedua; halaman yang ditolak menunda, tidak pernah memfinalisasi; kampanye lama (tanpa segmen) memakai penyelesai lama tanpa disentuh.
 
 ## Atribusi komisi penjualan karyawan dan pembaliknya — TERIMPLEMENTASI (Issue #391, epik #280 — [ADR-0046](../../../../../docs/adr/0046-commission-attribution-adapter-reports-paid-counter-sales-to-the-hr-commission-ledger.id.md))
+
+> **Dorman (ADR-0046 D10, `sql/1053`).** Batas payroll upstream (ahliweb/awcms#1015) hanya mengizinkan `awcms_app` memegang hak pada tabel `awcms_hr_*`, sehingga hak yang diberikan adaptor ini kepada `awcms_worker` dicabut dan ketiga konsumer komisi tidak terdaftar di `domain-events:dispatch`. Kode, tabel, izin, dan rute tetap ada; `PUT /api/v1/commerce/commission/settings` dengan `enabled: true` dijawab `409 COMMISSION_ADAPTER_DORMANT`. Adaptor aktif kembali setelah upstream menyediakan jalur worker yang sah ke `CommissionAccrualPort`; teks di bawah menggambarkan adaptor sebagaimana dibangun.
 
 Konsumer `commerce.order_paid_commission_attributor` melaporkan setiap baris **penjualan kasir (POS) yang sudah dibayar** ke buku besar akrual `hr_commission` milik upstream lewat `CommissionAccrualPort` yang netral (`_shared/ports/commission-accrual-port.ts`). Konsumer ini **mati secara bawaan** dan dapat dipakai ulang: tenant menyusun aturan di `hr_commission` dan menyebut kuncinya di `PUT /api/v1/commerce/commission/settings`; tidak ada skema milik konsumen mana pun di sini.
 

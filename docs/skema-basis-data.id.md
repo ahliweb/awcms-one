@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:eee7b5adf6744d6df12adeafc17fd668ab2534e463b2fa092877cc57239ac52f -->
+<!-- i18n-source-hash: sha256:10abaa9e1923856b0f277ffc4d1ac42d2b6feb63d456ed1e6b9bd640afbf9035 -->
 
 # Skema basis data
 
@@ -538,6 +538,8 @@ erDiagram
 ```
 
 ## Atribusi komisi karyawan: tiga tabel (`sql/1030`–`1031`, `sql/1052`)
+
+> **Dorman (ADR-0046 D10, `sql/1053`).** Batas payroll upstream (ahliweb/awcms#1015) hanya mengizinkan `awcms_app` memegang hak pada tabel `awcms_hr_*`, sehingga hak yang diberikan adaptor ini kepada `awcms_worker` dicabut dan ketiga konsumer komisi tidak terdaftar di `domain-events:dispatch`. Kode, tabel, izin, dan rute tetap ada; `PUT /api/v1/commerce/commission/settings` dengan `enabled: true` dijawab `409 COMMISSION_ADAPTER_DORMANT`. Adaptor aktif kembali setelah upstream menyediakan jalur worker yang sah ke `CommissionAccrualPort`; teks di bawah menggambarkan adaptor sebagaimana dibangun. `sql/1053` mencabut setiap hak `awcms_worker` pada tabel `awcms_hr_*` yang diberikan `sql/1031` dan `sql/1051` (worker tetap memegang `SELECT` pada tabel milik commerce dan pada `awcms_tenant_settings` / `awcms_tenant_modules`, serta hak `sql/280` milik upstream pada `awcms_hr_employments`).
 
 Isu #391 ([ADR-0046](adr/0046-commission-attribution-adapter-reports-paid-counter-sales-to-the-hr-commission-ledger.id.md)). Sisi commerce dalam melaporkan penjualan kasir yang sudah dibayar ke `hr_commission`; buku besarnya sendiri (aturan, akrual, jumlah) milik modul itu dan commerce tidak pernah membacanya.
 

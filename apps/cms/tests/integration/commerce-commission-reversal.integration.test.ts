@@ -8,9 +8,10 @@
  * `commerce.refund_settled_commission_reverser`), which void the accrual the
  * accrue half posted through `CommissionAccrualPort.void`:
  *
- *   - pay -> accrue -> refund -> void, and cancel -> void, end to end through the
- *     REAL dispatcher as the real `awcms_worker` role (the narrow column grant of
- *     `sql/1051`), with the real cancel path of the order directory;
+ *   - pay -> accrue -> refund -> void, and cancel -> void, driven directly as the
+ *     app role. DORMANT (ADR-0046 D10): `sql/1053` revoked the worker's
+ *     payroll-table grants, so the consumers are not registered and the real
+ *     dispatcher, as `awcms_worker`, reverses nothing (last block);
  *   - replay: the same event twice, and a different event for the same fact, are
  *     one void, one transition, one `voided` domain event, one audit row;
  *   - a void with nothing to void (never accrued) is a quiet no-op;
@@ -32,7 +33,7 @@ import {
   test
 } from "bun:test";
 
-import { commerceModule } from "../../src/modules/commerce/module";
+import { DORMANT_COMMISSION_CONSUMERS } from "../../src/modules/commerce/module";
 import { withTenantOrThrow } from "../../src/lib/database/tenant-context";
 import {
   createStaffLink,
@@ -43,16 +44,13 @@ import {
   reverseCommissionForCancelledOrder,
   reverseCommissionForSettledRefund
 } from "../../src/modules/commerce/application/commission-reversal";
-import { updateOrderStatusByAdmin } from "../../src/modules/commerce/application/order-directory";
 import { transitionAccrual } from "../../src/modules/hr-commission/application/hr-commission-accrual-ledger";
 import { appendDomainEvent } from "../../src/modules/domain-event-runtime/application/append-domain-event";
 import { dispatchDomainEventsForTenant } from "../../src/modules/domain-event-runtime/application/dispatch-domain-events";
 import { listDomainEventConsumers } from "../../src/modules/domain-event-runtime/infrastructure/consumer-registry";
 import type { DomainEventForHandler } from "../../src/modules/domain-event-runtime/domain/consumer-types";
 import {
-  assertRejected,
   getAdminSql,
-  getOwnerSql,
   getRuntimeSql,
   getWorkerRoleSql,
   integrationEnabled,
@@ -62,7 +60,7 @@ import {
   workerRoleActivated
 } from "./harness";
 
-const consumers = listDomainEventConsumers();
+const consumers = DORMANT_COMMISSION_CONSUMERS;
 const attributorConsumer = consumers.find(
   (consumer) => consumer.name === "commerce.order_paid_commission_attributor"
 )!;
@@ -319,7 +317,7 @@ async function deliver(
   await inTenant(
     tenantId,
     (tx) =>
-      attributorConsumer.handler(tx, event, {
+      attributorConsumer.handle(tx, event, {
         tenantId,
         correlationId: "corr-391"
       }),
@@ -381,7 +379,7 @@ async function deliverWith(
   await inTenant(
     tenantId,
     (tx) =>
-      consumer.handler(tx, event, { tenantId, correlationId: "corr-391v" }),
+      consumer.handle(tx, event, { tenantId, correlationId: "corr-391v" }),
     sql
   );
 }
@@ -524,12 +522,17 @@ suite(
         expect(refundReverser.eventTypes).toEqual([
           "awcms.commerce.refund.settled"
         ]);
-        const declared = (commerceModule.domainEventConsumers ?? []).filter(
+        const declared = DORMANT_COMMISSION_CONSUMERS.filter(
           (consumer) =>
             consumer.name === cancelReverser.name ||
             consumer.name === refundReverser.name
         );
         expect(declared).toHaveLength(2);
+        // ... and, being dormant (sql/1053), none is registered with the dispatcher.
+        const registered = listDomainEventConsumers().map((c) => c.name);
+        for (const consumer of DORMANT_COMMISSION_CONSUMERS) {
+          expect(registered).not.toContain(consumer.name);
+        }
         for (const consumer of declared) {
           expect(consumer.idempotency ?? "runtime_effect_once").toBe(
             "runtime_effect_once"
@@ -965,8 +968,8 @@ suite(
     });
 
     // -------------------------------------------------------------------------
-    describe("the real dispatcher, as the real worker role", () => {
-      test("pay -> accrue -> cancel -> void end to end through domain-events:dispatch's code path", async () => {
+    describe("dormant: the real dispatcher, as the real worker role, does nothing (sql/1053)", () => {
+      test("a paid then cancelled counter sale dispatched as awcms_worker accrues and voids nothing", async () => {
         if (!workerRoleActivated) return;
         await link(TENANT_A, cashier, employment);
         await enable(TENANT_A);
@@ -974,119 +977,20 @@ suite(
           cashier,
           lines: ["100000.00", "50000.00"]
         });
-        // The paid fact, appended exactly as the order directory appends it.
-        await inTenant(TENANT_A, (tx) =>
-          appendDomainEvent(tx, TENANT_A, {
-            eventType: "awcms.commerce.order.paid",
-            eventVersion: "1.0",
-            aggregateType: "commerce.order",
-            aggregateId: orderId,
-            producerModule: "commerce",
-            payload: { orderId }
-          })
-        );
-        await dispatchDomainEventsForTenant(getWorkerRoleSql(), TENANT_A);
-        expect(
-          (await accrualStates(TENANT_A)).every(
-            (row) => row.status === "pending"
-          )
-        ).toBe(true);
-        expect(await accrualStates(TENANT_A)).toHaveLength(2);
-
-        // The real cancel path: the order directory appends the cancelled fact.
-        await getAdminSql()`
-        UPDATE awcms_commerce_orders SET payment_status = 'paid' WHERE id = ${orderId}
-      `;
-        const changed = await inTenant(TENANT_A, (tx) =>
-          updateOrderStatusByAdmin(
-            tx,
-            TENANT_A,
-            admin,
-            orderId,
-            "cancelled",
-            null
-          )
-        );
-        expect(changed).toBe(true);
-        await dispatchDomainEventsForTenant(getWorkerRoleSql(), TENANT_A);
-
-        const rows = await accrualStates(TENANT_A);
-        expect(rows.every((row) => row.status === "voided")).toBe(true);
-        expect(rows.every((row) => row.voided_by === admin)).toBe(true);
-        // A second pass delivers nothing new.
-        await dispatchDomainEventsForTenant(getWorkerRoleSql(), TENANT_A);
-        expect(await count("transitions", TENANT_A)).toBe(2);
-      });
-
-      test("without the sql/1051 column grant the worker cannot reverse (the grant is load-bearing), and with it restored it can", async () => {
-        if (!workerRoleActivated) return;
-        const { orderId } = await accruedSale();
-        const grant = `GRANT UPDATE (status, voided_at, voided_by, void_reason_code) ON awcms_hr_commission_accruals TO awcms_worker`;
-        await getOwnerSql().unsafe(
-          `REVOKE UPDATE (status, voided_at, voided_by, void_reason_code) ON awcms_hr_commission_accruals FROM awcms_worker`
-        );
-        try {
-          await assertRejected(
-            deliverWith(
-              cancelReverser,
-              TENANT_A,
-              cancelledEvent(orderId),
-              getWorkerRoleSql()
-            ),
-            "voiding without the column grant"
-          );
-        } finally {
-          await getOwnerSql().unsafe(grant);
-        }
-        await deliverWith(
-          cancelReverser,
-          TENANT_A,
-          cancelledEvent(orderId),
-          getWorkerRoleSql()
-        );
-        expect((await accrualStates(TENANT_A))[0]!.status).toBe("voided");
-      });
-
-      test("the worker's grant is the four void columns: it still cannot approve, pay, rewrite an amount or delete", async () => {
-        if (!workerRoleActivated) return;
-        await accruedSale();
-
-        const attempts: [string, (tx: Bun.SQL) => Promise<unknown>][] = [
-          [
-            "approving an accrual",
-            (tx) =>
-              tx`UPDATE awcms_hr_commission_accruals SET status = 'approved', approved_at = now()`
-          ],
-          [
-            "paying an accrual",
-            (tx) =>
-              tx`UPDATE awcms_hr_commission_accruals SET status = 'paid', paid_at = now()`
-          ],
-          [
-            "rewriting an amount",
-            (tx) => tx`UPDATE awcms_hr_commission_accruals SET amount = 1`
-          ],
-          [
-            "re-pointing the beneficiary",
-            (tx) =>
-              tx`UPDATE awcms_hr_commission_accruals SET employment_id = gen_random_uuid()`
-          ],
-          [
-            "deleting an accrual",
-            (tx) => tx`DELETE FROM awcms_hr_commission_accruals`
-          ],
-          [
-            "writing a transition",
-            (tx) =>
-              tx`UPDATE awcms_hr_commission_transitions SET to_status = 'paid'`
-          ]
-        ];
-        for (const [what, run] of attempts) {
-          await assertRejected(
-            inTenant(TENANT_A, (tx) => run(tx), getWorkerRoleSql()),
-            what
+        for (const eventType of [PAID, CANCELLED]) {
+          await inTenant(TENANT_A, (tx) =>
+            appendDomainEvent(tx, TENANT_A, {
+              eventType,
+              eventVersion: "1.0",
+              aggregateType: "commerce.order",
+              aggregateId: orderId,
+              producerModule: "commerce",
+              payload: { orderId }
+            })
           );
         }
+        await dispatchDomainEventsForTenant(getWorkerRoleSql(), TENANT_A);
+        expect(await accrualStates(TENANT_A)).toHaveLength(0);
       });
     });
   }

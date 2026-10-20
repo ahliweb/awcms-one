@@ -438,6 +438,8 @@ This platform's own design - nothing here is ported from the legacy store.
 
 ## Commission attribution vocabulary (issue #391, [ADR-0046](adr/0046-commission-attribution-adapter-reports-paid-counter-sales-to-the-hr-commission-ledger.md))
 
+> **Dormant (ADR-0046 D10, `sql/1053`).** Upstream's payroll boundary (ahliweb/awcms#1015) lets only `awcms_app` hold privileges on `awcms_hr_*` tables, so the grants this adapter gave `awcms_worker` were revoked and the three commission consumers are not registered with `domain-events:dispatch`. The code, tables, permissions and routes stay; `PUT /api/v1/commerce/commission/settings` with `enabled: true` answers `409 COMMISSION_ADAPTER_DORMANT`. It becomes active when upstream provides a sanctioned worker path to `CommissionAccrualPort`; the text below describes the adapter as built.
+
 The commerce side of reporting a paid counter sale to upstream's `hr_commission` ledger. Commerce holds **identifiers and a switch, never an amount, a rate or an accrual state**; those live in `hr_commission`. Not to be confused with affiliate commission (`awcms_commerce_affiliates`, an external beneficiary).
 
 | Term | Where | Meaning |

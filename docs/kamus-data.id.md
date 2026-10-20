@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:2c90596d0f30de9e0e3bc03b70046019d654a9391c131cbbaa1ddba814dea349 -->
+<!-- i18n-source-hash: sha256:69d8a674fc29760d1816672ae4809c10a9af49019174ac81691ac7a97b09c67f -->
 
 # Kamus data
 
@@ -438,6 +438,8 @@ Rancangan platform ini sendiri - tidak ada yang dipindahkan dari toko lama.
 | `bundle.define`                           | `awcms_audit_events.action` (modul `commerce`)                                                                              | Definisi bundel disimpan (kind, harga, jumlah komponen; hanya id dan hitungan)                                                                                                                                                       |
 
 ## Kosakata atribusi komisi (isu #391, [ADR-0046](adr/0046-commission-attribution-adapter-reports-paid-counter-sales-to-the-hr-commission-ledger.id.md))
+
+> **Dorman (ADR-0046 D10, `sql/1053`).** Batas payroll upstream (ahliweb/awcms#1015) hanya mengizinkan `awcms_app` memegang hak pada tabel `awcms_hr_*`, sehingga hak yang diberikan adaptor ini kepada `awcms_worker` dicabut dan ketiga konsumer komisi tidak terdaftar di `domain-events:dispatch`. Kode, tabel, izin, dan rute tetap ada; `PUT /api/v1/commerce/commission/settings` dengan `enabled: true` dijawab `409 COMMISSION_ADAPTER_DORMANT`. Adaptor aktif kembali setelah upstream menyediakan jalur worker yang sah ke `CommissionAccrualPort`; teks di bawah menggambarkan adaptor sebagaimana dibangun.
 
 Sisi commerce dalam melaporkan penjualan kasir yang sudah dibayar ke buku besar `hr_commission` milik upstream. Commerce menyimpan **pengenal dan sebuah sakelar, tidak pernah jumlah, tarif atau status akrual**; semua itu ada di `hr_commission`. Jangan dikacaukan dengan komisi afiliasi (`awcms_commerce_affiliates`, penerima manfaat eksternal).
 

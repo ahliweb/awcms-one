@@ -8,7 +8,7 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 34    |
-| Migrations                          | 353   |
+| Migrations                          | 354   |
 | `awcms_*` tables                    | 319   |
 | Tables with `FORCE` RLS             | 301   |
 | RLS-free tables (global, by design) | 18    |
@@ -412,6 +412,7 @@
 | 351 | `sql/1050_awcms_commerce_booking_offering_link_resources.sql`               |
 | 352 | `sql/1051_awcms_commerce_commission_reversal_worker_grants.sql`             |
 | 353 | `sql/1052_awcms_commerce_commission_attributed_sources.sql`                 |
+| 354 | `sql/1053_awcms_commerce_commission_revoke_payroll_worker_grants.sql`       |
 
 ### Tables & Row-Level Security
 

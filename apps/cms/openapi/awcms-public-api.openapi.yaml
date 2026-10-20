@@ -12151,7 +12151,7 @@ paths:
       tags:
         - Commerce
       summary: "Issue #391 (ADR-0046). Switch commission attribution on or off and name the `hr_commission` rule it applies. Gated on `commerce.commission_settings.manage` (a high-risk action); audited with the old and new values. An upsert, so a replay is harmless."
-      description: Takes effect for orders paid afterwards. Switching it on requires a `ruleKey`; the key is stored, not looked up, because commerce never reads the commission tables - a key with no published version in force on a sale's date makes the ledger refuse that sale (audited as `commerce.commission.attribution_refused`).
+      description: "DORMANT: `enabled: true` is refused with `409 COMMISSION_ADAPTER_DORMANT` until upstream provides a sanctioned worker path to the accrual ledger. Takes effect for orders paid afterwards. Switching it on requires a `ruleKey`; the key is stored, not looked up, because commerce never reads the commission tables - a key with no published version in force on a sale's date makes the ledger refuse that sale (audited as `commerce.commission.attribution_refused`)."
       requestBody:
         required: true
         content:
@@ -12198,7 +12198,7 @@ paths:
         "403":
           $ref: "#/components/responses/Forbidden"
         "409":
-          description: "`COMMISSION_SOURCE_LOCKED` - the commission ledger already holds accruals reported under the stored `sourceType` and `ruleKey`, which form the accrual source identity, so a request that changes either is refused (audited as `commerce.commission.settings_refused`). Re-sending the stored values, or changing only `enabled`, is accepted."
+          description: "`COMMISSION_ADAPTER_DORMANT` (Issue #391, ADR-0046 D10) - a request with `enabled: true` is refused: the commission adapter ships dormant because the worker may not hold payroll-table privileges (upstream payroll boundary, ahliweb/awcms#1015), so no accrual would be reported. Switching it off, or saving without enabling, is accepted. Otherwise `COMMISSION_SOURCE_LOCKED` - the commission ledger already holds accruals reported under the stored `sourceType` and `ruleKey`, which form the accrual source identity, so a request that changes either is refused (audited as `commerce.commission.settings_refused`). Re-sending the stored values, or changing only `enabled`, is accepted."
           content:
             application/json:
               schema:
