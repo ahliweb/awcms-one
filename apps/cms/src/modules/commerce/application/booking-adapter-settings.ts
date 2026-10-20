@@ -21,7 +21,6 @@
  */
 import { recordAuditEvent } from "../../logging/application/audit-log";
 
-import { recordAuditEvent } from "../../logging/application/audit-log";
 import {
   DEFAULT_CHECK_IN_REQUIRES_SETTLEMENT,
   POS_BOOKING_CHECK_IN_POLICY_AUDIT_ACTION

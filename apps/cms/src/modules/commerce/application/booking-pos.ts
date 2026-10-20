@@ -876,7 +876,7 @@ export async function collectBalanceAtPos(
   // a split payment rolls the whole payment back to here.
   const payments = await tx.savepoint(async (sp) => {
     const release = makeOrderRelease(
-      sp,
+      sp as Bun.TransactionSQL,
       tenantId,
       "admin",
       actorTenantUserId,
