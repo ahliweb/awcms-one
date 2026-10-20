@@ -421,7 +421,7 @@ async function seedTenant(label: string): Promise<Tenant> {
       },
       actor
     );
-    await saveBookingServiceTenantUserId(tx, id, actor);
+    await saveBookingServiceTenantUserId(tx, id, actor, actor);
   });
 
   return { id, actor };

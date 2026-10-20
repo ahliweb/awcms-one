@@ -137,7 +137,7 @@ async function configureTenant(
       staffId
     );
     if (withServiceActor) {
-      await saveBookingServiceTenantUserId(tx, tenantId, staffId);
+      await saveBookingServiceTenantUserId(tx, tenantId, staffId, staffId);
     }
   }, tenantId);
 }
