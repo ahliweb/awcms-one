@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](pengujian.md)
 
-<!-- i18n-source-hash: sha256:afb7fa8dc1f40b4cfa80a26ed516a770f7fd1cc79cf5b7b8810307522bf3ccbf -->
+<!-- i18n-source-hash: sha256:ca5980a1236fc882b7610ef6f10433730b0d6804707ad1b94b6b6638b2aaf7e6 -->
 
 # Pengujian
 
@@ -165,6 +165,22 @@ Setiap run menegakkan pin Bun dulu (`tools/ci/lib/bun-pin.ts`): sebuah leg tidak
 Leg `local-ci/security` (CodeQL CLI + gitleaks dipin lewat digest + `bun audit`) sengaja tidak setara GHAS — lihat ADR-0021 D7 untuk titik buta yang dinyatakan (tanpa extractor `.astro`, kesesuaian `paths-ignore` yang mendekati, tanpa siklus hidup alert tab Security). Ia gagal pada temuan CodeQL apa pun di `security-severity >= 7.0` kecuali pasangan `(ruleId, path)` eksak itu terdaftar di `tools/ci/security-baseline.json`, yang disemai dengan sembilan alert code-scanning GitHub milik repositori ini yang sudah dismissed (`reason` masing-masing entri mengutip komentar dismissal alert itu) ditambah satu entri lagi untuk temuan kode-baru sungguhan yang dimunculkan run pertama leg ini sendiri di `tools/ci/lib/lock.ts`, dan tumbuh lebih jauh hanya dengan maintainer secara eksplisit men-triase dan mencatat alasan sebuah temuan yang benar-benar baru diterima.
 
 Cakupan unit untuk logika murninya (tabel leg, perbandingan pin Bun, pola redaksi, pencocok baseline security, predikat penolakan fork, hash definisi-CI dan keying direktori state) hidup di root: `tests/local-ci-legs.test.mjs`, `tests/local-ci-bun-pin.test.mjs`, `tests/local-ci-redact.test.mjs`, `tests/local-ci-baseline.test.mjs`, `tests/local-ci-fork.test.mjs`, `tests/local-ci-hash-and-state.test.mjs` — tidak satu pun menyentuh docker, jaringan, atau token GitHub nyata, sesuai sikap setiap tes gerbang root lainnya.
+
+## Benchmark beban dan konkurensi (issue #395)
+
+`bun run bench:commerce-load` (di `apps/cms`) bersifat opt-in: bukan `*.test.ts` dan tidak ada di `bun run check`, sehingga rantai gate normal maupun `tests/integration/` tidak menjalankannya. Ia butuh `DATABASE_URL` superuser yang sama seperti suite integrasi, menunjuk ke PostgreSQL sekali pakai (harness membuat dan menghapus database sementaranya sendiri):
+
+```bash
+docker run -d --name pg-bench -p 55432:5432 -e POSTGRES_PASSWORD=postgres postgres:18.4
+cd apps/cms
+export DATABASE_URL=postgres://postgres:postgres@127.0.0.1:55432/postgres
+bun run bench:commerce-load --profile smoke            # detik: invarian pada skala kecil
+bun run bench:commerce-load --profile standard         # sekitar dua menit: angka yang tercatat
+bun run bench:commerce-load --only race,loyalty --json out.json
+docker rm -f pg-bench
+```
+
+Cakupannya: konversi hold menjadi order secara konkuren, balapan kedaluwarsa melawan pembayaran, penukaran poin loyalti konkuren, dan pratinjau segmen pada 100.000 pelanggan (PRD M7). Pelanggaran invarian selalu menggagalkan run; ambang latensi diberlakukan pada `standard` kecuali `--no-thresholds`. Hasil, perangkat keras, dan metode: [`benchmarks-commerce-load.md`](benchmarks-commerce-load.id.md).
 
 ## Dua hal yang harus diketahui kontributor sebelum menulis query di sini
 

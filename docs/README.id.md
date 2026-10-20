@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:7055b3a5a6e6edbad5149d2f5b26c6a54f5b4cbc5a4f56d3036c1661f2095b7d -->
+<!-- i18n-source-hash: sha256:1e9b4471a276f26c52cb3b2070005ffe5f0ca1983ac94e457b574b93729c7931 -->
 
 # Dokumentasi
 
@@ -21,6 +21,7 @@ Dokumentasi arsitektur, skema, API, alur kerja CMS, perilaku storefront, penguji
 | [`responsif.md`](responsif.id.md)                                                     | Grid yang sebagian besar fluid, dan bagaimana itu diverifikasi — browser sungguhan memeriksa overflow di CI, bukan sekadar membaca kode                                                                                     |
 | [`ui-ux.md`](ui-ux.id.md)                                                             | Sistem desain: token, gambar produk, kontras lencana terhitung, presentasi harga/stok                                                                                                                                       |
 | [`pengujian.md`](pengujian.id.md)                                                     | Empat tingkat tes — mana yang butuh PostgreSQL, mana yang menjalankan browser sungguhan, dan mana yang tidak                                                                                                                |
+| [`benchmarks-commerce-load.md`](benchmarks-commerce-load.id.md)                       | Hasil benchmark beban dan konkurensi: hold-ke-order, kedaluwarsa vs pembayaran, penukaran loyalti, pratinjau segmen (M7)                                                                                                    |
 | [`deployment.md`](deployment.id.md)                                                   | Build vs. serve, variabel environment, topologi produksi, image yang dipublikasikan, apa yang boleh dan tidak boleh dijangkau container                                                                                     |
 | [`alur-kerja-pengembangan.md`](alur-kerja-pengembangan.id.md)                         | Branching, pengaturan branch protection nyata, changeset, pemotongan rilis                                                                                                                                                  |
 | [`rilis.md`](rilis.id.md)                                                             | Runbook rilis end-to-end: changeset ke tag, `release:images`, `release:publish`, bukti, verifikasi konsumen                                                                                                                 |
