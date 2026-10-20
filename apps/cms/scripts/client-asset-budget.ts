@@ -1772,8 +1772,16 @@ export const READER_BUDGET_BYTES = 24_000;
  * hint line and the two step-up outcome messages, which reuse existing catalogue
  * entries. Turning the check-in policy off is a loosening of a money control and
  * asks for a second factor, like a refund override.
+ *
+ * **Raised to 487,600 B by the Wave C integration branch (int/wave-c)**,
+ * MEASURED 487,529 B on the build that merges every Wave C pull request (the
+ * previous constant, 487,500 B, was the figure the individual booking branches
+ * summed to) - a measurement of the merged build, not a sum: the shared
+ * `AdminLayout` CSS bundle and the compiled Indonesian catalogue are not
+ * additive across lineages. The budget is the measurement rounded up to the next
+ * 100 B.
  */
-export const APP_BUDGET_BYTES = 487_500;
+export const APP_BUDGET_BYTES = 487_600;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.
