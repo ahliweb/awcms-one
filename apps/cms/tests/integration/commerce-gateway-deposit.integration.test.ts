@@ -475,6 +475,42 @@ suite("commerce gateway deposit sessions (Issue #379, ADR-0041)", () => {
       });
     });
 
+    test("two concurrent creates that both passed validation persist ONE live session (re-check under the order lock)", async () => {
+      const { orderCode, orderId } = await placeOrder("dp");
+
+      // Hold both provider calls open until both requests are past the validate
+      // step, so neither sees a live session; give each a distinct providerRef
+      // so the (provider, provider_ref) unique index cannot mask the race.
+      let calls = 0;
+      let release!: () => void;
+      const bothInFlight = new Promise<void>((resolve) => {
+        release = resolve;
+      });
+      const racing: PaymentGatewayProvider = {
+        ...PROVIDER,
+        createSession: async (input) => {
+          const n = ++calls;
+          if (n === 2) release();
+          await bothInFlight;
+          const created = await PROVIDER.createSession(input);
+          return { ...created, providerRef: `${created.providerRef}-race${n}` };
+        }
+      };
+
+      const [a, b] = await Promise.all([
+        session(orderCode, "deposit", racing),
+        session(orderCode, "deposit", racing)
+      ]);
+      expect([a.kind, b.kind].sort()).toEqual(["created", "reused"]);
+
+      const live = await inTenant(
+        (tx) =>
+          tx`SELECT id FROM awcms_commerce_payment_gateway_sessions
+             WHERE order_id = ${orderId} AND status IN ('created', 'pending')`
+      );
+      expect(live).toHaveLength(1);
+    });
+
     test("whole-total path unchanged: a full session carries the order total and refuses a part-paid order as before", async () => {
       const { orderCode, orderId } = await placeOrder("gateway");
       const created = await createdSession(orderCode, "full");
