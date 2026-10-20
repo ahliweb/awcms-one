@@ -191,7 +191,8 @@ describe("commerce marketing screens (Issue #26)", () => {
     expect(
       NOT_YET_SCREENED.filter(
         (key) =>
-          key.startsWith("commerce.") && !API_FIRST_COMMERCE_KEYS.has(key) &&
+          key.startsWith("commerce.") &&
+          !API_FIRST_COMMERCE_KEYS.has(key) &&
           // Issue #378: the booking adapter lands routes before screens.
           !key.startsWith("commerce.booking_")
       )

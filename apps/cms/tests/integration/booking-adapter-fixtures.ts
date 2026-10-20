@@ -142,7 +142,12 @@ export function createAdapterFixtures(config: AdapterFixtureConfig) {
         staffId
       );
       if (serviceId) {
-        await saveBookingServiceTenantUserId(tx, tenantId, serviceId, serviceId);
+        await saveBookingServiceTenantUserId(
+          tx,
+          tenantId,
+          serviceId,
+          serviceId
+        );
       }
     }, tenantId);
   }

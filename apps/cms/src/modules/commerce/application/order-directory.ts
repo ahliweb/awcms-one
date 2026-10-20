@@ -2487,7 +2487,12 @@ export async function expireOrdersForTenant(
         }
         try {
           await tx.savepoint((sp) =>
-            expireOrderBySystem(sp as Bun.TransactionSQL, tenantId, orderId, correlationId)
+            expireOrderBySystem(
+              sp as Bun.TransactionSQL,
+              tenantId,
+              orderId,
+              correlationId
+            )
           );
           expiredCount += 1;
         } catch (error) {
