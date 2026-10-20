@@ -29,7 +29,7 @@ Since issue #137 the route files live in **page groups**, and which groups a bui
 | Header nav | Beranda, Produk, Flash Sale, Berita, Kontak + cart/wishlist/account tools | Beranda, Berita, the recognised top-level rubrik (dynamic), Video, Buletin, Kontak | Beranda, every published static page (dynamic), Kontak |
 | Header/404 search form | `/cari` (products) | `/cari-berita` (news) | none |
 | Footer legal links | all six | Redaksi, Pedoman Media Siber, Disclaimer, Kebijakan Privasi, Syarat & Ketentuan | Kebijakan Privasi, Syarat & Ketentuan |
-| `robots.txt` `Disallow` | `/keranjang`, `/checkout`, `/pesanan`, `/wishlist`, `/cari`, `/newsletter/confirm`, `/newsletter/unsubscribe`, `/masuk`, `/daftar`, `/akun`, `/api/` (unchanged) | `/newsletter/confirm`, `/newsletter/unsubscribe`, `/api/` | `/api/` |
+| `robots.txt` `Disallow` | `/keranjang`, `/checkout`, `/pesanan`, `/wishlist`, `/cari`, `/newsletter/confirm`, `/newsletter/unsubscribe`, `/masuk`, `/daftar`, `/akun`, `/booking`, `/api/` | `/newsletter/confirm`, `/newsletter/unsubscribe`, `/api/` | `/api/` |
 | Sitemap sources | all twelve | `static-routes`, `static-pages`, every `berita-*` | `static-routes`, `static-pages` |
 | Feeds | `/feed.xml` (products, advertised in `<head>`), `/berita/feed.xml`, `/rubrik/{slug}/feed.xml` | `/berita/feed.xml` (advertised), `/rubrik/{slug}/feed.xml` | none |
 | `csp.json` | `connect-src` = `PUBLIC_AWCMS_ORIGIN`; `img-src` from products, marketing, article media; `frame-src` YouTube when a video post exists | `connect-src` = `PUBLIC_AWCMS_ORIGIN` (the visitor beacon and the newsletter form post there); `img-src` from article media; YouTube as above | `connect-src` = `PUBLIC_AWCMS_ORIGIN` (the visitor beacon runs on every page); `img-src` = the media host and the site logo only; no `frame-src` |
@@ -98,6 +98,18 @@ All four: `noindex, follow`, `aria-live="polite"` on quote/status updates, keybo
 
 `checkout.astro`/`checkout.ts` gained a "Pilih alamat tersimpan" `<select>`, hidden until a customer session is confirmed, that autofills the address step from `GET …/account/addresses`; the order-creation request carries the signed-in shopper's Bearer token when one exists (`apps/storefront/src/lib/toko-klien.ts`'s `createOrder` takes an OPTIONAL second `bearerToken` argument — existing anonymous callers are unaffected).
 
+## Booking (issue #386, `toko` group only)
+
+Static pages that read the CMS's anonymous booking endpoints from the browser, exactly like the commerce runtime pages above. A `berita` or `landing` build writes none of them and links to none of them (`apps/storefront/tests/profil-routes.test.ts`); the three routes are `ROUTES.booking`, `ROUTES.bookingCheckout` and `ROUTES.accountReservations`, all `toko`. See [`booking-ux-flows.md`](booking-ux-flows.md) ("Implementation status of Surface A") for behaviour and [ADR-0045](adr/0045-booking-commerce-adapter.md) for the decisions.
+
+| Path | Source | Notes |
+| --- | --- | --- |
+| `/booking` | `apps/storefront/src/profil/toko/pages/booking/index.astro` | Service select, two native date inputs, guest count, and a quote panel whose nights, prices, deposit and balance are the server's (`GET …/booking/offerings`, `availability`, `quote`); "Lanjut" carries the stay as `?o=&r=&in=&out=&n=` (ids and plain dates, never an amount). `noindex, follow` |
+| `/booking/pesan` | `apps/storefront/src/profil/toko/pages/booking/pesan.astro` | Needs a signed-in account (`/masuk?kembali=` and back). Summary, payment choice, then the hold (`POST …/booking/reservations`, bearer, `Idempotency-Key` once per attempt) and its countdown (`holdExpiresAt - serverNow`, never the device clock; announced at the start, 5 minutes, 1 minute and expiry only), the expired and confirmed states (the server decides), and the payment handoff through the existing gateway session (`purpose` deposit, balance or full) or `/pesanan?kode=` for a manual tender. `noindex, follow` |
+| `/akun/reservasi` | `apps/storefront/src/profil/toko/pages/akun/reservasi.astro` | The shopper's own reservations (`GET …/booking/reservations`, bearer, keyset "Muat lebih banyak"): status and payment pills, balance due, a live hold's remaining time and a pay button; a `401` clears the session. `noindex, follow` (the `/akun` prefix is already disallowed) |
+
+`/booking` is both a page and the parent of `/booking/pesan`, so the build emits `booking.html` beside `booking/` and `apps/storefront/server/penyaji.mjs` serves it through the directory-shadow rewrite (`apps/storefront/tests/penyaji-bayangan-build-smoke.test.ts` lists it). `PROFILE_NAV` has no "Booking" item on purpose: whether a tenant sells stays is a CMS feature switch the static build cannot read, so a deployment that does adds one entry (`{ label: "Booking", href: ROUTES.booking, route: "booking" }`) to `PROFILE_NAV.toko`.
+
 ## Static
 
 | Path | Source |
@@ -110,7 +122,7 @@ All four: `noindex, follow`, `aria-live="polite"` on quote/status updates, keybo
 
 | Path | Source |
 | --- | --- |
-| `/robots.txt` | `apps/storefront/src/pages/robots.txt.ts` — `Disallow`s the active profile's list (`apps/storefront/src/config/profil.ts`'s `ROBOTS_DISALLOW`; for `toko`: `/keranjang`, `/checkout`, `/pesanan`, `/wishlist`, `/cari`, `/newsletter/confirm`, `/newsletter/unsubscribe`, `/masuk`, `/daftar`, `/akun`, `/api/`); names `Sitemap:` |
+| `/robots.txt` | `apps/storefront/src/pages/robots.txt.ts` — `Disallow`s the active profile's list (`apps/storefront/src/config/profil.ts`'s `ROBOTS_DISALLOW`; for `toko`: `/keranjang`, `/checkout`, `/pesanan`, `/wishlist`, `/cari`, `/newsletter/confirm`, `/newsletter/unsubscribe`, `/masuk`, `/daftar`, `/akun`, `/booking`, `/api/`); names `Sitemap:` |
 | `/sitemap-index.xml` | `apps/storefront/src/pages/sitemap-index.xml.ts` |
 | `/sitemap-{n}.xml` | `apps/storefront/src/pages/sitemap-[n].xml.ts` — chunked at 5000 URLs/file (`apps/storefront/src/lib/sitemap.ts`'s `registerSitemapSource`) |
 | `/feed.xml` | `apps/storefront/src/profil/toko/pages/feed.xml.ts` — products (`toko` group; the news feed is `/berita/feed.xml` above) |

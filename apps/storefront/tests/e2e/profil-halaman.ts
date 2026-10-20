@@ -59,7 +59,12 @@ export function keyPagesFor(profile: SiteProfile): KeyPage[] {
       { name: "product-listing", path: ROUTES.products },
       { name: "product-detail", path: `/product/${productSlug}` },
       { name: "login", path: ROUTES.login },
-      { name: "account", path: ROUTES.account }
+      { name: "account", path: ROUTES.account },
+      // Issue #386: the three booking pages, in their static (signed-out, no-stay) state; the
+      // meaningful states (quote, hold, list) are scanned by `booking.e2e.ts`.
+      { name: "booking", path: ROUTES.booking },
+      { name: "booking-pesan", path: ROUTES.bookingCheckout },
+      { name: "akun-reservasi", path: ROUTES.accountReservations }
     );
   }
 

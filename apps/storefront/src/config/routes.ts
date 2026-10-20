@@ -100,7 +100,19 @@ export const ROUTES = {
   /** Issue #115 (S3 of #33, contract #106 D8) — the signed-in shopper's own message inbox with the store. */
   accountMessages: "/akun/pesan",
   /** A single thread — `id` is percent-encoded, mirroring `accountOrder`'s own `?kode=` shape. */
-  accountMessage: (id: string): string => `/akun/pesan?id=${encodeURIComponent(id)}`
+  accountMessage: (id: string): string => `/akun/pesan?id=${encodeURIComponent(id)}`,
+  // --- issue #386 (ADR-0045, `docs/booking-ux-flows.md` sections 2 and 8): the
+  // booking pages. `toko` group only - a `berita` or `landing` build neither
+  // emits these pages nor links to them. `PROFILE_NAV` deliberately does NOT
+  // list `booking`: whether a tenant sells stays is a CMS feature switch the
+  // static build cannot read, so a deployment that does adds one nav item
+  // (`{ label: "Booking", href: ROUTES.booking, route: "booking" }`).
+  /** `/booking` - stay search, availability and the server quote. */
+  booking: "/booking",
+  /** `/booking/pesan` - the hold, the countdown and the payment handoff; the stay travels as `?o=&r=&in=&out=&n=` (ids and dates, never an amount). */
+  bookingCheckout: "/booking/pesan",
+  /** `/akun/reservasi` - the signed-in shopper's own reservations. */
+  accountReservations: "/akun/reservasi"
 } as const;
 
 /**
@@ -183,7 +195,10 @@ export const ROUTE_GROUPS = {
   accountReviews: "toko",
   accountAffiliate: "toko",
   accountMessages: "toko",
-  accountMessage: "toko"
+  accountMessage: "toko",
+  booking: "toko",
+  bookingCheckout: "toko",
+  accountReservations: "toko"
 } as const satisfies Record<keyof typeof ROUTES, RouteGroup>;
 
 export type RouteKey = keyof typeof ROUTES;

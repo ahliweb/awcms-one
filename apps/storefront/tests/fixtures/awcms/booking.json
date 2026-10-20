@@ -1,0 +1,21 @@
+{
+  "comment": "Read by scripts/stub-booking.mjs (the stub CMS) and by tests/e2e/booking.e2e.ts, so the dates a test books are the dates the stub treats as free, blocked or full. Offsets are days from today (UTC).",
+  "offering": {
+    "offeringId": "b3860000-0000-4000-8000-000000000001",
+    "productId": "b3860000-0000-4000-8000-0000000000a1",
+    "name": "Kamar Deluxe Tepi Sungai",
+    "slug": "kamar-deluxe-tepi-sungai",
+    "unitPrice": "450000.00",
+    "minNights": 1,
+    "maxNights": 14,
+    "minParty": 1,
+    "maxParty": 4
+  },
+  "resourceIds": ["b3860000-0000-4000-8000-0000000000c1", "b3860000-0000-4000-8000-0000000000c2"],
+  "timezone": "Asia/Pontianak",
+  "depositPercent": 30,
+  "holdSeconds": 900,
+  "firstResourceBlockedOffsetDays": 20,
+  "fullOffsetDays": 40,
+  "maxLiveHolds": 3
+}

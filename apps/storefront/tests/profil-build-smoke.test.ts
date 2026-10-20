@@ -79,7 +79,7 @@ describe("profil build smoke: every profile builds against the stub CMS and ship
         }
         // Dynamic routes of an excluded group leave no directory behind either.
         if (!isGroupActive("toko", profile)) {
-          for (const dir of ["product", "kategori", "akun"]) expect(exists(dir)).toBe(false);
+          for (const dir of ["product", "kategori", "akun", "booking"]) expect(exists(dir)).toBe(false);
         }
         if (!isGroupActive("berita", profile)) {
           for (const dir of ["berita", "rubrik", "daerah", "mitra", "tag", "penulis", "arsip", "video", "newsletter"]) {

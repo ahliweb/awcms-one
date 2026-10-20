@@ -1,0 +1,116 @@
+---
+/**
+ * `/akun/reservasi` - the signed-in shopper's own reservations (issue #386,
+ * ADR-0045, `docs/booking-ux-flows.md` sections 2.3 and 2.4): newest first,
+ * keyset-paged ("Muat lebih banyak"), each row with the stay's dates, nights,
+ * the reservation status, the payment state, the balance due, and - while a
+ * hold is live - how long it has left and a button to pay.
+ *
+ * A static SHELL in the `/akun/*` pattern: `src/scripts/akun-reservasi.ts`
+ * reads the bearer session (`bacaSesi()`), shows the guest or the signed-in
+ * state, and calls `GET …/booking/reservations` through `akun-klien.ts`. A `401`
+ * clears the session and shows the sign-in prompt. The list is the shopper's
+ * own by construction (the server derives the customer from the session), and
+ * a reference in the URL is never proof of ownership.
+ *
+ * `noindex, follow` - the `/akun` prefix already covers `robots.txt`.
+ */
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import { getSiteIdentity } from "../../../../lib/awcms/profil";
+import { getStoreSettings } from "../../../../lib/awcms/pemasaran";
+import { ROUTES } from "../../../../config/routes";
+import "../../../../styles/toko.css";
+import "../../../../styles/akun.css";
+import "../../../../styles/booking.css";
+
+const identity = await getSiteIdentity();
+const storeSettings = await getStoreSettings();
+const whatsappNumber = storeSettings.whatsapp ?? identity.whatsappNumber ?? "";
+
+/** The `/akun*` side navigation, with this page's own item (see `akun/pesanan.astro` for why each page carries its own copy). */
+const SIDENAV_ITEMS = [
+  { key: "ringkasan", href: ROUTES.account, label: "Ringkasan" },
+  { key: "pesanan", href: ROUTES.accountOrders, label: "Pesanan" },
+  { key: "reservasi", href: ROUTES.accountReservations, label: "Reservasi" },
+  { key: "alamat", href: ROUTES.accountAddresses, label: "Alamat" },
+  { key: "pesan", href: ROUTES.accountMessages, label: "Pesan" },
+  { key: "ulasan", href: ROUTES.accountReviews, label: "Ulasan" },
+  { key: "afiliasi", href: ROUTES.accountAffiliate, label: "Afiliasi" }
+] as const;
+const SIDENAV_ACTIVE = "reservasi";
+---
+
+<BaseLayout title="Reservasi Saya" description="Daftar reservasi akun Anda." canonicalPath="/akun/reservasi">
+  <meta slot="head" name="robots" content="noindex, follow" />
+
+  <noscript>
+    <div class="container">
+      <div class="toko-banner toko-banner--info">
+        Halaman reservasi memerlukan JavaScript aktif di peramban Anda. Anda tetap bisa menghubungi kami langsung
+        melalui WhatsApp:
+        {whatsappNumber && (
+          <a class="toko-wa-fallback" href={`https://wa.me/${whatsappNumber.replace(/\D/g, "")}`}>
+            Hubungi WhatsApp
+          </a>
+        )}
+      </div>
+    </div>
+  </noscript>
+
+  <div class="container" data-reservasi-root data-whatsapp-number={whatsappNumber} data-store-name={identity.name}>
+    <div class="page-heading">
+      <h1>Reservasi Saya</h1>
+    </div>
+
+    <div class="visually-hidden" role="status" aria-live="polite" data-announce></div>
+
+    <div data-submit-error class="toko-banner toko-banner--danger" role="alert" hidden>
+      <p data-submit-error-message></p>
+      <div class="toko-actions">
+        <button type="button" class="btn btn--secondary btn--sm" data-retry>Coba lagi</button>
+        <a data-wa-fallback-link class="toko-wa-fallback" hidden>Hubungi via WhatsApp</a>
+      </div>
+    </div>
+
+    <div data-guest-view class="akun-card" hidden>
+      <p>Sesi Anda berakhir atau Anda belum masuk. Masuk lagi untuk melihat reservasi.</p>
+      <div class="akun-actions">
+        <a href={ROUTES.login + "?kembali=" + encodeURIComponent(ROUTES.accountReservations)} class="btn btn--primary btn--sm">Masuk</a>
+      </div>
+    </div>
+
+    <div class="akun-layout">
+      <nav class="akun-sidenav" aria-label="Menu akun">
+        {
+          SIDENAV_ITEMS.map((item) => (
+            <a
+              class="akun-sidenav-item"
+              href={item.href}
+              aria-current={item.key === SIDENAV_ACTIVE ? "page" : undefined}
+            >
+              <span class="akun-sidenav-item-label">{item.label}</span>
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="akun-content">
+        <div data-list-view hidden>
+          <p class="toko-field-hint" data-loading aria-busy="true">Memuat reservasi...</p>
+          <p class="empty-state" data-empty hidden>
+            Anda belum punya reservasi. <a class="btn btn--primary btn--sm" href={ROUTES.booking}>Cari penginapan</a>
+          </p>
+          <ul class="akun-nav-grid" data-list aria-label="Daftar reservasi"></ul>
+          <div class="akun-actions">
+            <button type="button" class="btn btn--secondary btn--sm" data-load-more hidden>Muat lebih banyak</button>
+            <a class="btn btn--secondary btn--sm" href={ROUTES.booking}>Pesan lagi</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    import "../../../../scripts/akun-reservasi";
+  </script>
+</BaseLayout>

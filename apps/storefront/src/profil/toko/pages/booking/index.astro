@@ -1,0 +1,161 @@
+---
+/**
+ * `/booking` - choose a stay: a service, two dates, a guest count, and the
+ * server's availability and quote (issue #386, ADR-0045,
+ * `docs/booking-ux-flows.md` section 2.1). The page is a STATIC shell; every
+ * dynamic region is filled by `src/scripts/booking-cari.ts` from the CMS's
+ * anonymous booking reads (offerings, availability, quote) in the browser.
+ *
+ * The two native date inputs are the complete control - a calendar grid would
+ * be an enhancement over them, never a replacement. Nights, prices, the deposit
+ * and the balance are shown exactly as the server returns them; this page
+ * computes none of them.
+ *
+ * `noindex, follow` (nothing here is indexable without JavaScript), and
+ * `robots.txt` disallows `/booking`, which also covers `/booking/pesan`. A
+ * tenant whose `booking` feature is off answers the reads with the neutral
+ * 404, and the script then shows "Pemesanan tidak tersedia" instead of a
+ * broken form.
+ */
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import { getSiteIdentity } from "../../../../lib/awcms/profil";
+import { getStoreSettings } from "../../../../lib/awcms/pemasaran";
+import { ROUTES } from "../../../../config/routes";
+import "../../../../styles/toko.css";
+import "../../../../styles/booking.css";
+
+const identity = await getSiteIdentity();
+const storeSettings = await getStoreSettings();
+const whatsappNumber = storeSettings.whatsapp ?? identity.whatsappNumber ?? "";
+const whatsappHref = whatsappNumber ? `https://wa.me/${whatsappNumber.replace(/\D/g, "")}` : "";
+---
+
+<BaseLayout title="Booking" description="Cari kamar, lihat ketersediaan dan harga, lalu pesan." canonicalPath="/booking">
+  <meta slot="head" name="robots" content="noindex, follow" />
+
+  <noscript>
+    <div class="container">
+      <div class="toko-banner toko-banner--info">
+        Pemesanan memerlukan JavaScript aktif di peramban Anda. Hubungi kami
+        {whatsappHref ? (
+          <>
+            di <a class="toko-wa-fallback" href={whatsappHref}>WhatsApp</a>
+          </>
+        ) : (
+          <>melalui <a href={ROUTES.contact}>halaman kontak</a></>
+        )}
+        untuk memesan.
+      </div>
+    </div>
+  </noscript>
+
+  <div
+    class="container"
+    data-booking-root
+    data-whatsapp-number={whatsappNumber}
+    data-store-name={identity.name}
+    data-login-href={ROUTES.login}
+  >
+    <div class="page-heading">
+      <h1>Cari Penginapan</h1>
+    </div>
+
+    <div data-unavailable class="toko-banner toko-banner--info" role="status" hidden>
+      <p>Pemesanan tidak tersedia saat ini.</p>
+      <div class="toko-actions">
+        <a class="btn btn--secondary btn--sm" href={ROUTES.products}>Lihat katalog</a>
+      </div>
+    </div>
+
+    <div data-submit-error class="toko-banner toko-banner--danger" role="alert" hidden>
+      <p data-submit-error-message></p>
+      <div class="toko-actions">
+        <button type="button" class="btn btn--secondary btn--sm" data-retry hidden>Coba lagi</button>
+        <a data-wa-fallback-link class="toko-wa-fallback" hidden>Hubungi via WhatsApp</a>
+      </div>
+    </div>
+
+    <form data-booking-form novalidate hidden>
+      <section class="toko-section" aria-labelledby="booking-judul-layanan" data-offerings-region aria-busy="true">
+        <h2 id="booking-judul-layanan">Pilih layanan</h2>
+        <p data-offerings-loading>Memuat layanan...</p>
+        <p class="empty-state" data-offerings-empty hidden>
+          Belum ada layanan yang bisa dipesan saat ini. <a href={ROUTES.products}>Kembali ke katalog</a>.
+        </p>
+        <div class="toko-field" data-offering-field hidden>
+          <label for="booking-layanan">Layanan</label>
+          <select id="booking-layanan" name="offeringId" data-offering-select></select>
+        </div>
+      </section>
+
+      <section class="toko-section" aria-labelledby="booking-judul-tanggal">
+        <h2 id="booking-judul-tanggal">Tanggal dan tamu</h2>
+
+        <div class="toko-field">
+          <label for="booking-masuk">Tanggal masuk</label>
+          <input
+            type="date"
+            id="booking-masuk"
+            name="checkInDate"
+            required
+            aria-describedby="booking-zona booking-masuk-galat"
+            data-check-in
+          />
+          <p class="toko-field-error" id="booking-masuk-galat" data-error-for="checkInDate"></p>
+        </div>
+
+        <div class="toko-field">
+          <label for="booking-keluar">Tanggal keluar</label>
+          <input
+            type="date"
+            id="booking-keluar"
+            name="checkOutDate"
+            required
+            aria-describedby="booking-zona booking-keluar-galat"
+            data-check-out
+          />
+          <p class="toko-field-error" id="booking-keluar-galat" data-error-for="checkOutDate"></p>
+        </div>
+
+        <p class="toko-field-hint" id="booking-zona" data-timezone-hint>
+          Tanggal keluar adalah hari Anda pergi dan tidak dihitung sebagai malam.
+        </p>
+
+        <div class="toko-field">
+          <label for="booking-tamu">Jumlah tamu</label>
+          <input type="number" id="booking-tamu" name="partySize" min="1" max="10" value="2" inputmode="numeric" data-party aria-describedby="booking-tamu-galat" />
+          <p class="toko-field-error" id="booking-tamu-galat" data-error-for="partySize"></p>
+        </div>
+      </section>
+
+      <section class="toko-section" aria-labelledby="booking-judul-harga">
+        <h2 id="booking-judul-harga">Ketersediaan dan harga</h2>
+        <div data-quote-panel aria-live="polite" aria-busy="false">
+          <p data-quote-status>Pilih tanggal masuk dan tanggal keluar.</p>
+          <p class="booking-penuh" data-full hidden>
+            <span class="pill pill--danger">Penuh</span>
+            Tidak ada kamar kosong untuk tanggal ini. Coba tanggal lain.
+          </p>
+          <dl class="booking-dl" data-quote-list hidden>
+            <div><dt>Layanan</dt><dd data-quote-name></dd></div>
+            <div><dt>Lama menginap</dt><dd data-quote-stay></dd></div>
+            <div><dt>Harga per malam</dt><dd data-quote-unit></dd></div>
+            <div class="booking-dl-total"><dt>Total</dt><dd data-quote-total></dd></div>
+            <div data-quote-deposit-row hidden><dt>Uang muka (jika memilih uang muka)</dt><dd data-quote-deposit></dd></div>
+            <div data-quote-balance-row hidden><dt>Sisa pembayaran</dt><dd data-quote-balance></dd></div>
+          </dl>
+          <p class="toko-field-hint" data-quote-note hidden>Poin tidak dapat dipakai bersama uang muka.</p>
+        </div>
+
+        <div class="toko-actions">
+          <button type="submit" class="btn btn--primary" data-continue disabled>Lanjut ke data tamu</button>
+          <a class="btn btn--secondary" href={ROUTES.accountReservations}>Reservasi saya</a>
+        </div>
+      </section>
+    </form>
+  </div>
+
+  <script>
+    import "../../../../scripts/booking-cari";
+  </script>
+</BaseLayout>

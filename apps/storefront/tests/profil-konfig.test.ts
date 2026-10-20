@@ -204,7 +204,7 @@ describe("config/profil: every per-profile list stays inside the profile's own g
     expect(describeProfile("landing").feeds).toEqual([]);
   });
 
-  test("robots — toko emits the historical list verbatim; other profiles drop the paths they do not build", () => {
+  test("robots — toko emits the historical list (plus /booking, issue #386); other profiles drop the paths they do not build", () => {
     expect(describeProfile("toko").robotsDisallow).toEqual([
       "/keranjang",
       "/checkout",
@@ -216,6 +216,8 @@ describe("config/profil: every per-profile list stays inside the profile's own g
       "/masuk",
       "/daftar",
       "/akun",
+      // Issue #386: the booking pages; `/booking` also covers `/booking/pesan`.
+      "/booking",
       "/api/"
     ]);
     expect(describeProfile("berita").robotsDisallow).toEqual(["/newsletter/confirm", "/newsletter/unsubscribe", "/api/"]);

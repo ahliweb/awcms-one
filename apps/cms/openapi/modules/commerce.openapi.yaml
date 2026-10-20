@@ -14896,7 +14896,218 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/booking/offerings:
+    get:
+      operationId: listCommerceStorefrontBookingOfferings
+      tags:
+        - Commerce
+      summary: "Issue #386. The booking offerings the tenant sells online: an active offering link, an active service product, an active hold-then-confirm Booking offering and an active resource of the right mode. Anonymous; an optional live `customerBearer` only prices the unit at the customer's level. Ids and public product facts only - never a resource name, unit label, capacity or offering code. Behind the `booking` feature (off = the neutral 404). Never cached."
+      security: []
+      responses:
+        "200":
+          description: "The bookable offerings."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceStorefrontBookingOfferingList"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: Rate limited.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/booking/availability:
+    get:
+      operationId: getCommerceStorefrontBookingAvailability
+      tags:
+        - Commerce
+      summary: "Issue #386. Anonymous availability of a LINKED offering on one resource, through `BookingPort.availability` (contract 1.1.0): a stay's free-unit count (`checkInDate` + `checkOutDate`) or the free slots of a window (`from` + `to`). Tenant from the request origin. Counts, slots and the zone only - no resource name, unit label, reservation, block, staff, customer or policy. An unavailable stay is always `available: false` + `SLOT_UNAVAILABLE`; an unknown or over-capacity resource is the same answer as a full range. An offering that is unknown, another tenant's, unlinked, inactive or not sold is one neutral 404. Bounded (1..366 nights, 31 days of slots, 730 days ahead) and rate limited; never cached."
+      security: []
+      parameters:
+        - name: offeringId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: resourceId
+          in: query
+          required: true
+          description: "A resource id from the offerings list."
+          schema:
+            type: string
+            format: uuid
+        - name: checkInDate
+          in: query
+          required: false
+          description: "Stay: the first night (YYYY-MM-DD). Send with `checkOutDate`, never with `from`/`to`."
+          schema:
+            type: string
+            format: date
+        - name: checkOutDate
+          in: query
+          required: false
+          description: "Stay: the departure date (YYYY-MM-DD), not counted as a night."
+          schema:
+            type: string
+            format: date
+        - name: from
+          in: query
+          required: false
+          description: "Slots: window start, an RFC 3339 UTC instant ending in Z."
+          schema:
+            type: string
+            format: date-time
+        - name: to
+          in: query
+          required: false
+          description: "Slots: window end, at most 31 days after `from`."
+          schema:
+            type: string
+            format: date-time
+      responses:
+        "200":
+          description: "The availability."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceStorefrontBookingAvailability"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: Rate limited.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/booking/quote:
+    get:
+      operationId: getCommerceStorefrontBookingQuote
+      tags:
+        - Commerce
+      summary: "Issue #386. The non-binding SERVER quote of a stay (or a time-slot booking): nights, unit price, tax, total, and the deposit and balance if the shopper chooses `dp`. The client sends dates only and never a night count or an amount (400). Priced like the hold-to-order path (`bookingSale`), at the signed-in customer's level when a live `customerBearer` is presented. An offering that is not sold is the neutral 404; a stay outside the offering's min/max nights is 400. Never cached."
+      security: []
+      parameters:
+        - name: offeringId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: checkInDate
+          in: query
+          required: false
+          description: "Required for a night-based offering; send with `checkOutDate`."
+          schema:
+            type: string
+            format: date
+        - name: checkOutDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: "The quote."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceStorefrontBookingQuote"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: Rate limited.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/storefront/booking/reservations:
+    get:
+      operationId: listCommerceStorefrontBookingReservations
+      tags:
+        - Commerce
+      summary: "Issue #386. The signed-in shopper's OWN reservations, newest first, keyset-paged (`cursor`, `limit` 1..50, default 20). A live `customerBearer` is required (missing or dead = 401 `UNAUTHENTICATED`); the customer is the session's, never a parameter, and another customer's reservations are not in the result. Superseded links are not listed, released ones are; orders before the account's `historyFrom` are not listed. Never carries the staff attention flag. Behind the `booking` feature (off = the neutral 404)."
+      security: []
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+            default: 20
+      responses:
+        "200":
+          description: "A page of the shopper's reservations."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceStorefrontOwnReservationPage"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: "UNAUTHENTICATED - the bearer is missing, dead or expired."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "403":
+          description: "`ACCOUNT_BLOCKED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: Rate limited.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
     post:
       operationId: createCommerceStorefrontBookingReservation
       tags:
@@ -21803,6 +22014,10 @@ components:
       properties:
         replayed:
           type: boolean
+        serverNow:
+          type: string
+          format: date-time
+          description: "Issue #386. The server's instant when the body was built; a countdown is `holdExpiresAt - serverNow`, so a wrong device clock does not matter."
         orderId:
           type: string
           format: uuid
@@ -21835,6 +22050,10 @@ components:
       type: object
       description: "Issue #380. A reservation's view: Booking's facts, the order's code and status, the ledger-derived settlement. `attentionReason`/`attentionOpen` are present on the STAFF route only. `refund` is null until the reservation is cancelled (Issue #381). No customer field."
       properties:
+        serverNow:
+          type: string
+          format: date-time
+          description: "Issue #386. The server's instant when the body was built (see `CommerceBookingReservationCreated`)."
         reservationId:
           type: string
           format: uuid
@@ -22108,6 +22327,210 @@ components:
               refundablePercent:
                 type: string
                 description: "0 to 100 with at most two decimals."
+    CommerceStorefrontBookingOfferingList:
+      type: object
+      description: "Issue #386. The bookable offerings."
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceStorefrontBookingOffering"
+    CommerceStorefrontBookingOffering:
+      type: object
+      description: "Issue #386. One offering the tenant sells online. `resourceIds` are the ids the page may probe for availability and hold on; no resource name, unit label, capacity or offering code is ever returned."
+      properties:
+        offeringId:
+          type: string
+          format: uuid
+        granularity:
+          type: string
+          enum:
+            - stay
+            - time
+        quantityBasis:
+          type: string
+          enum:
+            - nights
+            - booking
+        name:
+          type: string
+          description: "The product's public name."
+        slug:
+          type: string
+          nullable: true
+        image:
+          type: object
+          nullable: true
+          properties:
+            url:
+              type: string
+            alt:
+              type: string
+        unitPrice:
+          type: string
+          description: "numeric(14,2): per night for a stay, per booking for a slot, at the caller's level."
+        minNights:
+          type: integer
+          nullable: true
+        maxNights:
+          type: integer
+          nullable: true
+        minParty:
+          type: integer
+        maxParty:
+          type: integer
+        durationSeconds:
+          type: integer
+          nullable: true
+        resourceIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+    CommerceStorefrontBookingAvailability:
+      type: object
+      description: "Issue #386. Anonymous availability. `mode: stay` carries `checkInDate`, `checkOutDate`, `nights`, `available`, `freeUnits` (and `reason: SLOT_UNAVAILABLE` when not available); `mode: slot` carries `from`, `to`, `slots` and `truncated`. Every answer without free capacity has `timezone: UTC`."
+      properties:
+        mode:
+          type: string
+          enum:
+            - stay
+            - slot
+        timezone:
+          type: string
+        checkInDate:
+          type: string
+          format: date
+        checkOutDate:
+          type: string
+          format: date
+        nights:
+          type: integer
+          nullable: true
+        available:
+          type: boolean
+        freeUnits:
+          type: integer
+        reason:
+          type: string
+          enum:
+            - SLOT_UNAVAILABLE
+        from:
+          type: string
+          format: date-time
+        to:
+          type: string
+          format: date-time
+        slots:
+          type: array
+          items:
+            type: object
+            properties:
+              startsAt:
+                type: string
+                format: date-time
+              endsAt:
+                type: string
+                format: date-time
+              freeUnits:
+                type: integer
+        truncated:
+          type: boolean
+    CommerceStorefrontBookingQuote:
+      type: object
+      description: "Issue #386. The server quote. `nights` is null for a slot. `deposit` is what the shopper would owe now if they choose `dp` (`available: false` = pay in full)."
+      properties:
+        offeringId:
+          type: string
+          format: uuid
+        granularity:
+          type: string
+          enum:
+            - stay
+            - time
+        nights:
+          type: integer
+          nullable: true
+        quantity:
+          type: integer
+        product:
+          type: object
+          properties:
+            name:
+              type: string
+            slug:
+              type: string
+              nullable: true
+            image:
+              type: object
+              nullable: true
+              properties:
+                url:
+                  type: string
+                alt:
+                  type: string
+        unitPrice:
+          type: string
+        subtotal:
+          type: string
+        tax:
+          type: object
+          properties:
+            active:
+              type: boolean
+            percent:
+              type: number
+            amount:
+              type: string
+        total:
+          type: string
+        deposit:
+          type: object
+          properties:
+            available:
+              type: boolean
+            amount:
+              type: string
+            balanceDue:
+              type: string
+        paymentMethods:
+          type: array
+          items:
+            type: object
+            properties:
+              method:
+                type: string
+              available:
+                type: boolean
+        canCheckout:
+          type: boolean
+        quotedAt:
+          type: string
+          format: date-time
+    CommerceStorefrontOwnReservationPage:
+      type: object
+      description: "Issue #386. A page of the shopper's own reservations."
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceStorefrontOwnReservation"
+        nextCursor:
+          type: string
+          nullable: true
+    CommerceStorefrontOwnReservation:
+      description: "Issue #386. The reservation view plus the product name, the nights (the order line's quantity; null for a slot) and the order's payment method."
+      allOf:
+        - $ref: "#/components/schemas/CommerceBookingReservationView"
+        - type: object
+          properties:
+            productName:
+              type: string
+            nights:
+              type: integer
+              nullable: true
+            paymentMethod:
+              type: string
     CommerceBookingReconciliation:
       type: object
       description: "Issue #380 (C-09). Active reservation links whose order's ledger and whose Booking reservation disagree."

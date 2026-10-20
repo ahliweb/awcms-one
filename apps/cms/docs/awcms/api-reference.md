@@ -14253,6 +14253,90 @@ Read-only by default. `repair: true` rebuilds ONLY the `balance` and `version` o
 | 403    | Access denied by RBAC/ABAC.                                                       | [`ApiError`](#standard-error-envelope) |
 | 409    | `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/storefront/booking/availability` — Issue #386. Anonymous availability of a LINKED offering on one resource, through `BookingPort.availability` (contract 1.1.0): a stay's free-unit count (`checkInDate` + `checkOutDate`) or the free slots of a window (`from` + `to`). Tenant from the request origin. Counts, slots and the zone only - no resource name, unit label, reservation, block, staff, customer or policy. An unavailable stay is always `available: false` + `SLOT_UNAVAILABLE`; an unknown or over-capacity resource is the same answer as a full range. An offering that is unknown, another tenant's, unlinked, inactive or not sold is one neutral 404. Bounded (1..366 nights, 31 days of slots, 730 days ahead) and rate limited; never cached.
+
+- **operationId**: `getCommerceStorefrontBookingAvailability`
+- **Security**: none (public endpoint)
+
+**Parameters**
+
+| Name           | In    | Required | Type               | Description                                                                           |
+| -------------- | ----- | -------- | ------------------ | ------------------------------------------------------------------------------------- |
+| `offeringId`   | query | yes      | string (uuid)      |                                                                                       |
+| `resourceId`   | query | yes      | string (uuid)      | A resource id from the offerings list.                                                |
+| `checkInDate`  | query | no       | string (date)      | Stay: the first night (YYYY-MM-DD). Send with `checkOutDate`, never with `from`/`to`. |
+| `checkOutDate` | query | no       | string (date)      | Stay: the departure date (YYYY-MM-DD), not counted as a night.                        |
+| `from`         | query | no       | string (date-time) | Slots: window start, an RFC 3339 UTC instant ending in Z.                             |
+| `to`           | query | no       | string (date-time) | Slots: window end, at most 31 days after `from`.                                      |
+
+**Responses**
+
+| Status | Description         | Schema                                 |
+| ------ | ------------------- | -------------------------------------- |
+| 200    | The availability.   | object                                 |
+| 400    | Validation error.   | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found. | [`ApiError`](#standard-error-envelope) |
+| 429    | Rate limited.       | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/storefront/booking/offerings` — Issue #386. The booking offerings the tenant sells online: an active offering link, an active service product, an active hold-then-confirm Booking offering and an active resource of the right mode. Anonymous; an optional live `customerBearer` only prices the unit at the customer's level. Ids and public product facts only - never a resource name, unit label, capacity or offering code. Behind the `booking` feature (off = the neutral 404). Never cached.
+
+- **operationId**: `listCommerceStorefrontBookingOfferings`
+- **Security**: none (public endpoint)
+
+**Responses**
+
+| Status | Description             | Schema                                 |
+| ------ | ----------------------- | -------------------------------------- |
+| 200    | The bookable offerings. | object                                 |
+| 400    | Validation error.       | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.     | [`ApiError`](#standard-error-envelope) |
+| 429    | Rate limited.           | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/storefront/booking/quote` — Issue #386. The non-binding SERVER quote of a stay (or a time-slot booking): nights, unit price, tax, total, and the deposit and balance if the shopper chooses `dp`. The client sends dates only and never a night count or an amount (400). Priced like the hold-to-order path (`bookingSale`), at the signed-in customer's level when a live `customerBearer` is presented. An offering that is not sold is the neutral 404; a stay outside the offering's min/max nights is 400. Never cached.
+
+- **operationId**: `getCommerceStorefrontBookingQuote`
+- **Security**: none (public endpoint)
+
+**Parameters**
+
+| Name           | In    | Required | Type          | Description                                                    |
+| -------------- | ----- | -------- | ------------- | -------------------------------------------------------------- |
+| `offeringId`   | query | yes      | string (uuid) |                                                                |
+| `checkInDate`  | query | no       | string (date) | Required for a night-based offering; send with `checkOutDate`. |
+| `checkOutDate` | query | no       | string (date) |                                                                |
+
+**Responses**
+
+| Status | Description         | Schema                                 |
+| ------ | ------------------- | -------------------------------------- |
+| 200    | The quote.          | object                                 |
+| 400    | Validation error.   | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found. | [`ApiError`](#standard-error-envelope) |
+| 429    | Rate limited.       | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/storefront/booking/reservations` — Issue #386. The signed-in shopper's OWN reservations, newest first, keyset-paged (`cursor`, `limit` 1..50, default 20). A live `customerBearer` is required (missing or dead = 401 `UNAUTHENTICATED`); the customer is the session's, never a parameter, and another customer's reservations are not in the result. Superseded links are not listed, released ones are; orders before the account's `historyFrom` are not listed. Never carries the staff attention flag. Behind the `booking` feature (off = the neutral 404).
+
+- **operationId**: `listCommerceStorefrontBookingReservations`
+- **Security**: none (public endpoint)
+
+**Parameters**
+
+| Name     | In    | Required | Type    | Description |
+| -------- | ----- | -------- | ------- | ----------- |
+| `cursor` | query | no       | string  |             |
+| `limit`  | query | no       | integer |             |
+
+**Responses**
+
+| Status | Description                                               | Schema                                 |
+| ------ | --------------------------------------------------------- | -------------------------------------- |
+| 200    | A page of the shopper's reservations.                     | object                                 |
+| 400    | Validation error.                                         | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED - the bearer is missing, dead or expired. | [`ApiError`](#standard-error-envelope) |
+| 403    | `ACCOUNT_BLOCKED`.                                        | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                       | [`ApiError`](#standard-error-envelope) |
+| 429    | Rate limited.                                             | [`ApiError`](#standard-error-envelope) |
+
 ### `POST /api/v1/commerce/storefront/booking/reservations` — Issue #380 (ADR-0045 G2, G5, G15; contracts 3.2). Hold a slot or stay and create the order from it in one idempotent request. Anonymous, with an optional `customerBearer`; behind the `booking` feature (off = the neutral 404).
 
 - **operationId**: `createCommerceStorefrontBookingReservation`

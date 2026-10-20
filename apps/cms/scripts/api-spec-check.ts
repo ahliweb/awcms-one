@@ -93,6 +93,11 @@ const ALLOWED_PUBLIC_OPERATIONS = new Set([
   "quoteCommerceStorefrontCart",
   "createCommerceStorefrontOrder",
   "trackCommerceStorefrontOrder",
+  // Issue #386 (ADR-0045): the `toko` booking pages' reads - anonymous offerings, availability and quote, and the shopper's own list (bearer-checked in the handler); behind the `booking` feature.
+  "listCommerceStorefrontBookingOfferings",
+  "getCommerceStorefrontBookingAvailability",
+  "getCommerceStorefrontBookingQuote",
+  "listCommerceStorefrontBookingReservations",
   // Issue #380 (ADR-0045): the booking adapter's anonymous shopper surface, behind the `booking` feature.
   "createCommerceStorefrontBookingReservation",
   "getCommerceStorefrontBookingReservation",

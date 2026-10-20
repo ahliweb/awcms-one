@@ -38,6 +38,11 @@ import {
 import { normalizePhoneNumber } from "../../../../../../../modules/commerce/domain/phone-normalisation";
 import { mediaLibraryPortAdapter } from "../../../../../../../modules/media-library/application/media-library-port-adapter";
 import { IdempotencyRaceLostError } from "../../../../../../../modules/_shared/idempotency";
+import { listOwnReservations } from "../../../../../../../modules/commerce/application/booking-storefront-reads";
+import {
+  decodeKeysetCursor,
+  type KeysetCursor
+} from "../../../../../../../modules/_shared/keyset-pagination";
 
 /**
  * `POST /api/v1/commerce/storefront/booking/reservations` (Issue #380, ADR-0045
@@ -321,3 +326,139 @@ export const OPTIONS: APIRoute = async ({ request, clientAddress }) =>
     },
     [...PREFLIGHT_ALLOWED_HEADERS]
   );
+
+/**
+ * `GET /api/v1/commerce/storefront/booking/reservations` (Issue #386) - the
+ * signed-in shopper's OWN reservations for `/akun/reservasi`, newest first,
+ * keyset-paged (`cursor`, `limit` 1..50, default 20). A live `customerBearer` is
+ * REQUIRED (a missing or dead one is `401 UNAUTHENTICATED`, and the storefront
+ * clears its stored session); the customer is the session's, never a parameter,
+ * and another customer's reservations are simply not in the result (the join
+ * compares the order's customer to the server-resolved id). Superseded links are
+ * not listed, released ones are. Orders before the account's `historyFrom` are
+ * not listed (ADR-0016 D4). Each item is the reservation view of the single
+ * read plus the product name, the nights and the order's payment method; the
+ * staff attention flag is never in it. Behind the `booking` feature (off = the
+ * neutral `404`).
+ */
+const LIST_RATE_LIMIT_MAX = parsePositiveIntSetting(
+  process.env.COMMERCE_STOREFRONT_RATE_LIMIT_MAX,
+  60,
+  "COMMERCE_STOREFRONT_RATE_LIMIT_MAX"
+);
+const LIST_RATE_LIMIT_WINDOW_SEC = parsePositiveIntSetting(
+  process.env.COMMERCE_STOREFRONT_RATE_LIMIT_WINDOW_SEC,
+  60,
+  "COMMERCE_STOREFRONT_RATE_LIMIT_WINDOW_SEC"
+);
+
+type ListOutcome =
+  | { kind: "feature_off" }
+  | { kind: "unauthenticated" }
+  | { kind: "blocked" }
+  | { kind: "bad_cursor" }
+  | { kind: "page"; page: Awaited<ReturnType<typeof listOwnReservations>> };
+
+export const GET: APIRoute = async ({ request, url, clientAddress }) => {
+  const clientIp = resolveClientIp(request, clientAddress);
+  const rateLimit = await checkSharedRateLimit(
+    `commerce:booking:list:${clientIp}`,
+    {
+      maxAttempts: LIST_RATE_LIMIT_MAX,
+      windowMs: LIST_RATE_LIMIT_WINDOW_SEC * 1000
+    }
+  );
+  if (!rateLimit.allowed) {
+    return fail(
+      429,
+      "RATE_LIMITED",
+      "Too many requests. Try again later.",
+      {},
+      undefined,
+      { "retry-after": String(rateLimit.retryAfterSec), vary: "Origin" }
+    );
+  }
+
+  const cursorParam = url.searchParams.get("cursor");
+  const cursor: KeysetCursor | null = cursorParam
+    ? decodeKeysetCursor(cursorParam)
+    : null;
+  const limitParam = url.searchParams.get("limit");
+  const limit = limitParam
+    ? Math.min(Math.max(1, Number.parseInt(limitParam, 10) || 20), 50)
+    : 20;
+
+  const sql = getDatabaseClient();
+  const { result, corsHeaders } = await withPublicCommerceTenant(
+    sql,
+    request,
+    async (tx, tenant): Promise<ListOutcome> => {
+      const gate = await requireCommerceFeatureForPublicRoute(
+        tx,
+        tenant.tenantId,
+        "booking",
+        () => notFound({})
+      );
+      if (gate) return { kind: "feature_off" };
+      const auth = await requireCustomerSession(request, tx, tenant.tenantId);
+      if (!auth.ok) return { kind: "unauthenticated" };
+      if (auth.account.status === "blocked") return { kind: "blocked" };
+      if (cursorParam !== null && cursor === null) {
+        return { kind: "bad_cursor" };
+      }
+      return {
+        kind: "page",
+        page: await listOwnReservations(
+          tx,
+          tenant.tenantId,
+          auth.account.customerId,
+          new Date(auth.account.historyFrom),
+          cursor,
+          limit
+        )
+      };
+    }
+  );
+
+  if (!result || result.kind === "feature_off") {
+    return notFound(corsHeaders);
+  }
+  if (result.kind === "unauthenticated") {
+    return fail(
+      401,
+      "UNAUTHENTICATED",
+      "Missing, invalid, or expired session.",
+      {},
+      undefined,
+      corsHeaders
+    );
+  }
+  if (result.kind === "blocked") {
+    return fail(
+      403,
+      "ACCOUNT_BLOCKED",
+      "This account is blocked.",
+      {},
+      undefined,
+      corsHeaders
+    );
+  }
+  if (result.kind === "bad_cursor") {
+    return fail(
+      400,
+      "VALIDATION_ERROR",
+      "cursor is malformed.",
+      {},
+      undefined,
+      corsHeaders
+    );
+  }
+  return jsonResponse(
+    {
+      success: true,
+      data: { items: result.page.items, nextCursor: result.page.nextCursor },
+      meta: {}
+    },
+    { status: 200, headers: { ...corsHeaders, "cache-control": "no-store" } }
+  );
+};

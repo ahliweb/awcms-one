@@ -114,13 +114,23 @@ export function holdRefusalResponse(
   );
 }
 
-/** The `CommerceBookingReservationCreated` body. No customer field: the customer is derived through the order (X7). */
+/**
+ * The `CommerceBookingReservationCreated` body. No customer field: the customer is derived through the order (X7).
+ *
+ * `serverNow` (Issue #386) is the server's instant when the body was built, so
+ * a storefront countdown is the DIFFERENCE `holdExpiresAt - serverNow` and a
+ * wrong device clock cannot shorten or lengthen a hold (booking-ux-flows 2.2).
+ * A browser cannot read the `Date` response header cross-origin, so it travels
+ * in the body.
+ */
 export function createdReservationBody(
   view: BookingReservationView,
-  replayed: boolean
+  replayed: boolean,
+  now: Date = new Date()
 ) {
   return {
     replayed,
+    serverNow: now.toISOString(),
     orderId: view.orderId,
     orderCode: view.orderCode,
     reservation: {
@@ -170,9 +180,11 @@ export function reservationRefundSummary(
 export function reservationViewBody(
   view: BookingReservationView,
   attention: { reason: string | null; open: boolean } | null,
-  refund: ReservationRefundSummary | null = null
+  refund: ReservationRefundSummary | null = null,
+  now: Date = new Date()
 ) {
   return {
+    serverNow: now.toISOString(),
     reservationId: view.reservationId,
     reservationNo: view.reservationNo,
     orderId: view.orderId,
