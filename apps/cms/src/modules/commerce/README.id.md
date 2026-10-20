@@ -1425,6 +1425,10 @@ Menutup butir penukaran yang ditunda ADR-0026.
 - Membatalkan atau mengedaluwarsakan pesanan mengembalikan dalam transaksi yang sama (`restore:order:<id>`); refund mengembalikan `floor(points × refund / total)` dikurangi yang sudah dikembalikan (`restore:refund:<id>`), dari uang tunai yang dibayar. `restore` adalah lot dengan kedaluwarsa tercepat yang dikonsumsi penukaran.
 - Poin dan deposit yang dapat dikembalikan tidak pernah berbagi pesanan (`409` dan CHECK basis data). Dasar perolehan tidak memuat diskon poin.
 
+## Perolehan loyalitas untuk pesanan booking — TERBUKTI (Issue #384 — ADR-0045, ADR-0041 D7)
+
+Tanpa kode baru: pesanan asal booking adalah pesanan biasa dengan deposit, dan pemberi poin yang ada sudah benar. `earnPointsForPaidOrder` memberi poin pada pesanan deposit hanya setelah buku besar pembayaran menyatakan total lunas (pemicu `awcms.commerce.order.settled`), dengan kunci tetap `earn:order:<orderId>`; leg refund membalik lewat `reversal:refund:<refundId>` (ADR-0033 D9). `apps/cms/tests/integration/commerce-booking-loyalty.integration.test.ts` mengunci ini untuk pesanan hasil hold-to-order: deposit saja tidak memberi poin, pelunasan penuh memberi sekali, pemutaran ulang memberi sekali, refund membalik dengan baris kompensasi, dan poin tidak pernah digabung dengan deposit (permintaan booking tidak membawa poin; CHECK `sql/1010` menolak kombinasinya). Jenis retur `cancellation` booking (#381) akan menambah cakupan loyalitasnya sendiri.
+
 ## Barcode, label, input pemindai, dan pintasan kasir - TERIMPLEMENTASI (Issue #292, epic #281 - [ADR-0032](../../../../../docs/adr/0032-barcodes-are-a-derived-identifier-and-the-cashier-keyboard-layer-is-chord-only.md))
 
 Dua kolom `barcode` nullable (`sql/975`: produk dan varian), dua izin (`commerce.barcodes.{read,update}`, `sql/976`), tanpa tabel baru.

@@ -1335,6 +1335,10 @@ ADR-0026's deferred redemption item.
 - Cancelling or expiring an order restores in the same transaction (`restore:order:<id>`); a refund restores `floor(points × refunded / total)` less what was restored (`restore:refund:<id>`), from cash paid. A `restore` is a lot with the soonest expiry the redemption had consumed.
 - Points and a refundable deposit never share an order (a `409` and a database CHECK). The earn base excludes the points discount.
 
+## Loyalty earn for booking orders — PROVEN (Issue #384 — ADR-0045, ADR-0041 D7)
+
+No new code: a booking-originated order is an ordinary order with a deposit, and the existing earner already does the right thing. `earnPointsForPaidOrder` earns a deposit order only once the payment ledger says the total is settled (the `awcms.commerce.order.settled` trigger), under the unchanged key `earn:order:<orderId>`; a refund leg reverses by `reversal:refund:<refundId>` (ADR-0033 D9). `apps/cms/tests/integration/commerce-booking-loyalty.integration.test.ts` pins this for an order created by hold-to-order: deposit alone earns nothing, full settlement earns once, replays earn once, a refund reverses by a compensating row, and points never combine with a deposit (the booking request carries no points; the `sql/1010` CHECK refuses the combination). The booking `cancellation` return kind (#381) will add its own loyalty coverage.
+
 ## Barcodes, labels, scanner input and cashier shortcuts - IMPLEMENTED (Issue #292, epic #281 - [ADR-0032](../../../../../docs/adr/0032-barcodes-are-a-derived-identifier-and-the-cashier-keyboard-layer-is-chord-only.md))
 
 Two nullable `barcode` columns (`sql/975`: products and variants), two permissions (`commerce.barcodes.{read,update}`, `sql/976`), no new table.
