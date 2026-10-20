@@ -8,7 +8,8 @@ import { fail, ok } from "../../_shared/api-response";
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../_shared/idempotency";
 import {
   bodyTooLargeResponse,
@@ -164,13 +165,15 @@ export async function findFlipReplay(
   tx: Bun.SQL,
   tenantId: string,
   idempotencyKey: string,
+  actorTenantUserId: string,
   requestHash: string
 ): Promise<FlipEvidence | null> {
   const existing = await findIdempotencyRecord(
     tx,
     tenantId,
     WHATSAPP_MODE_FLIP_SCOPE,
-    idempotencyKey
+    idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
 
   if (!existing) return null;
@@ -186,6 +189,7 @@ export async function saveFlipReplay(
   tx: Bun.SQL,
   tenantId: string,
   idempotencyKey: string,
+  actorTenantUserId: string,
   requestHash: string,
   evidence: FlipEvidence
 ): Promise<void> {
@@ -194,6 +198,7 @@ export async function saveFlipReplay(
     tenantId,
     WHATSAPP_MODE_FLIP_SCOPE,
     idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     200,
     evidence

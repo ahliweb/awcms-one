@@ -76,6 +76,7 @@ export const POST = defineTenantRoute<Prepared>({
           tx,
           tenantId,
           idempotencyKey,
+          auth.context.tenantUserId,
           requestHash
         );
         if (replay) return ok(replay);
@@ -103,6 +104,7 @@ export const POST = defineTenantRoute<Prepared>({
           tx,
           tenantId,
           idempotencyKey,
+          auth.context.tenantUserId,
           requestHash,
           result.evidence
         );
