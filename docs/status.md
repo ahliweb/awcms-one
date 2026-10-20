@@ -102,6 +102,10 @@ The v10.5.0 subtree sync ([issue #319](https://github.com/ahliweb/awcms-one/issu
 
 Media (product photography, article heroes, ad creatives) resolves through `GET /api/v1/media/objects`, and the CSP is derived at build time from what actually resolved ([ADR-0011](adr/0011-storefront-media-resolves-through-the-media-objects-endpoint.md)). See [`docs/template.md`](template.md) for the full profile mechanism and matrix, [`docs/routing.md`](routing.md) for every route, and [`docs/ui-ux.md`](ui-ux.md) for the design system (tokens, product imagery, computed badge contrast, price/stock presentation) — including the 2026-09 redesign covering admin and public chrome (issues #166–#171).
 
+## Lynx persona apps: direction approved, not implemented ([ADR-0050](adr/0050-lynxjs-for-separate-persona-apps-astro-stays-for-admin-and-public-profiles.md))
+
+Decided as a direction (issue #445): LynxJS/ReactLynx is the preferred candidate for separate persona apps; the admin and all public profiles stay Astro and the storefront stays static SSG. **Nothing of Lynx exists in this repository**: no code, workspace or dependency, and persona apps live in separate repositories that open their own issues. A PoC gates any consumer's choice.
+
 ## Template mechanism
 
 `bun run template:init` (`tools/template-init.ts`) is an idempotent CLI a derived repository runs once to rewrite its brand surface — name, domain, colours, contact, chosen profile — never touching `apps/cms/**`. `bun run ci:template`'s four `local-ci/template-*` legs (`tools/ci/runners/template.ts`, formerly `.github/workflows/template-init-smoke.yml`) matrix it over the three profiles (`toko`, `berita`, `landing`, `root`); all four are required status checks. Per-profile seeds live at `tools/seed-data/profil/{toko,berita,landing}/**`; the BjekMart reference content itself (kept as the template's worked example) is `tools/seed-data/contoh/borneojek-mart/**`. Full walkthrough: [`docs/template.md`](template.md) and [ADR-0018](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md).

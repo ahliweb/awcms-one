@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](status.md)
 
-<!-- i18n-source-hash: sha256:298cde436d2f64a85ba078defa62e776b31d026213ccd7817706b800337307d7 -->
+<!-- i18n-source-hash: sha256:c18048505c093a6753a22f407b70d08159ac555891b9872ac07987ce87832f02 -->
 
 # Status
 
@@ -101,6 +101,10 @@ Sinkronisasi subtree v10.5.0 ([issue #319](https://github.com/ahliweb/awcms-one/
 - **`landing`** — situs profil perusahaan/landing: halaman, kontak, chrome SEO; tanpa commerce, tanpa berita.
 
 Media (fotografi produk, hero artikel, kreatif iklan) diresolusi lewat `GET /api/v1/media/objects`, dan CSP diturunkan saat build dari apa yang sungguh terresolusi ([ADR-0011](adr/0011-storefront-media-resolves-through-the-media-objects-endpoint.md)). Lihat [`docs/template.md`](template.id.md) untuk mekanisme dan matriks profil lengkap, [`docs/routing.md`](routing.id.md) untuk setiap rute, dan [`docs/ui-ux.md`](ui-ux.id.md) untuk sistem desain (token, gambar produk, kontras lencana terhitung, presentasi harga/stok) — termasuk redesign 2026-09 yang mencakup chrome admin dan publik (issue #166–#171).
+
+## Aplikasi persona Lynx: arah disetujui, belum diimplementasikan ([ADR-0050](adr/0050-lynxjs-for-separate-persona-apps-astro-stays-for-admin-and-public-profiles.id.md))
+
+Diputuskan sebagai arah (issue #445): LynxJS/ReactLynx adalah kandidat utama untuk aplikasi persona terpisah; admin dan semua profil publik tetap Astro dan storefront tetap SSG statis. **Tidak ada apa pun dari Lynx di repo ini**: tanpa kode, workspace atau dependensi, dan aplikasi persona hidup di repositori terpisah yang membuka issue sendiri. PoC menjadi gerbang pilihan tiap konsumen.
 
 ## Mekanisme template
 

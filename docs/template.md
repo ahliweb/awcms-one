@@ -17,6 +17,10 @@ When the derived product discovers a missing capability:
 
 This ownership rule is normative; see [ADR-0024](adr/0024-awcms-one-is-template-only-derived-apps-own-their-backend.md).
 
+## Persona apps (Lynx) are separate repositories
+
+A derived product that wants customer, courier, driver, partner or warehouse apps builds them in **separate repositories** against its own backend's documented API; they are not added to this workspace, to `apps/storefront` or to `apps/cms` (ADR-0024). LynxJS/ReactLynx is the preferred candidate, gated by a consumer-side PoC; the admin and every public profile stay Astro. The direction is approved, **Lynx integration is not implemented** in this template. See [ADR-0050](adr/0050-lynxjs-for-separate-persona-apps-astro-stays-for-admin-and-public-profiles.md).
+
 ## Memulai dari template (starting from the template)
 
 1. **Use this template.** Click "Use this template" on `ahliweb/awcms-one` (the GitHub *template repository* flag is on) to create a new, historyless repository — not a fork. Clone it.

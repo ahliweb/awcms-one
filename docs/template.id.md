@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](template.md)
 
-<!-- i18n-source-hash: sha256:2af20f4f45c2885e4bb8aef9d8ec8cec7c7ce199c6b055fce1013ebeaef1cccd -->
+<!-- i18n-source-hash: sha256:6a9f56fd6260058ec062fffb08df67b7e2305a4c99e85dbb631af76f1fcb5525 -->
 
 # Menggunakan awcms-one sebagai template
 
@@ -18,6 +18,10 @@ Ketika produk turunan menemukan capability yang belum tersedia:
 4. adopsi peningkatan template yang sudah dirilis kembali ke produk secara sengaja — jangan membuat dependency runtime permanen ke repo ini.
 
 Aturan ownership ini bersifat normatif; lihat [ADR-0024](adr/0024-awcms-one-is-template-only-derived-apps-own-their-backend.id.md).
+
+## Aplikasi persona (Lynx) adalah repositori terpisah
+
+Produk turunan yang menginginkan aplikasi pelanggan, kurir, pengemudi, mitra atau gudang membangunnya di **repositori terpisah** terhadap API terdokumentasi backend-nya sendiri; aplikasi itu tidak ditambahkan ke workspace ini, ke `apps/storefront` atau ke `apps/cms` (ADR-0024). LynxJS/ReactLynx adalah kandidat utama, digerbangi PoC di sisi konsumen; admin dan setiap profil publik tetap Astro. Arah disetujui, **integrasi Lynx belum diimplementasikan** di template ini. Lihat [ADR-0050](adr/0050-lynxjs-for-separate-persona-apps-astro-stays-for-admin-and-public-profiles.id.md).
 
 ## Memulai dari template
 
