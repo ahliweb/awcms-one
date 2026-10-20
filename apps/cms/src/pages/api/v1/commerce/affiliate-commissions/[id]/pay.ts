@@ -7,7 +7,8 @@ import { defineTenantRoute } from "../../../../../../modules/_shared/tenant-rout
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../../../../../modules/_shared/idempotency";
 import {
   payAffiliateCommission,
@@ -52,7 +53,8 @@ export const POST = defineTenantRoute<Prepared>({
       tx,
       tenantId,
       IDEMPOTENCY_SCOPE,
-      prepared.idempotencyKey
+      prepared.idempotencyKey,
+      userIdempotencyActor(auth.context.tenantUserId)
     );
     if (existing) {
       if (existing.requestHash !== requestHash) {
@@ -86,6 +88,7 @@ export const POST = defineTenantRoute<Prepared>({
         tenantId,
         IDEMPOTENCY_SCOPE,
         prepared.idempotencyKey,
+        userIdempotencyActor(auth.context.tenantUserId),
         requestHash,
         200,
         successBody

@@ -48,7 +48,8 @@ import { appendDomainEvent } from "../../domain-event-runtime/application/append
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../_shared/idempotency";
 import {
   COMMERCE_EVENT_VERSION,
@@ -151,13 +152,15 @@ async function replayOrNull(
   tenantId: string,
   scope: string,
   idempotencyKey: string,
-  requestHash: string
+  requestHash: string,
+  actorTenantUserId: string
 ): Promise<ExpenseActionResult | null> {
   const existing = await findIdempotencyRecord(
     tx,
     tenantId,
     scope,
-    idempotencyKey
+    idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (!existing) return null;
   if (existing.requestHash !== requestHash) {
@@ -323,7 +326,8 @@ export async function postExpense(
     tenantId,
     POST_SCOPE,
     input.idempotencyKey,
-    requestHash
+    requestHash,
+    actorTenantUserId
   );
   if (replay) return { kind: "replayed", result: replay };
 
@@ -378,6 +382,7 @@ export async function postExpense(
       tenantId,
       POST_SCOPE,
       input.idempotencyKey,
+      userIdempotencyActor(actorTenantUserId),
       requestHash,
       200,
       result
@@ -404,6 +409,7 @@ export async function postExpense(
     tenantId,
     POST_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     200,
     result
@@ -453,7 +459,8 @@ export async function decideExpense(
     tenantId,
     DECIDE_SCOPE,
     input.idempotencyKey,
-    requestHash
+    requestHash,
+    actorTenantUserId
   );
   if (replay) return { kind: "replayed", result: replay };
 
@@ -490,6 +497,7 @@ export async function decideExpense(
       tenantId,
       DECIDE_SCOPE,
       input.idempotencyKey,
+      userIdempotencyActor(actorTenantUserId),
       requestHash,
       200,
       result
@@ -524,6 +532,7 @@ export async function decideExpense(
     tenantId,
     DECIDE_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     200,
     result
@@ -570,7 +579,8 @@ export async function reverseExpense(
     tenantId,
     REVERSE_SCOPE,
     input.idempotencyKey,
-    requestHash
+    requestHash,
+    actorTenantUserId
   );
   if (replay) return { kind: "replayed", result: replay };
 
@@ -676,6 +686,7 @@ export async function reverseExpense(
     tenantId,
     REVERSE_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     200,
     result

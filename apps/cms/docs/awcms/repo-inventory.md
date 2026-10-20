@@ -49,10 +49,11 @@
 | `omes_control`         | 0.1.0   | active       | domain | no   | `tenant_admin`, `identity_access`                                                                                                                                     |
 | `inventory`            | 0.1.0   | active       | domain | no   | `tenant_admin`, `identity_access`, `logging`, `domain_event_runtime`, `reporting`                                                                                     |
 | `procurement`          | 0.1.0   | active       | domain | no   | `tenant_admin`, `identity_access`, `profile_identity`, `logging`, `domain_event_runtime`, `reporting`, `inventory`                                                    |
-| `hr_workforce`         | 0.1.0   | experimental | domain | no   | `tenant_admin`, `profile_identity`                                                                                                                                    |
+| `hr_workforce`         | 0.1.0   | experimental | domain | no   | `tenant_admin`, `profile_identity`, `domain_event_runtime`                                                                                                            |
 | `whatsapp_delivery`    | 0.1.0   | active       | system | no   | `tenant_admin`, `profile_identity`, `logging`, `domain_event_runtime`                                                                                                 |
-| `booking`              | 0.1.0   | experimental | —      | no   | `tenant_admin`, `identity_access`, `logging`                                                                                                                          |
+| `booking`              | 0.3.0   | active       | —      | no   | `tenant_admin`, `identity_access`, `logging`, `domain_event_runtime`                                                                                                  |
 | `hr_commission`        | 0.2.0   | experimental | domain | no   | `tenant_admin`, `hr_workforce`                                                                                                                                        |
+| `telegram_delivery`    | 0.1.0   | active       | system | no   | `tenant_admin`, `identity_access`, `logging`                                                                                                                          |
 
 ### Migrations
 

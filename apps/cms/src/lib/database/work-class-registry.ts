@@ -75,6 +75,16 @@ export const JOB_WORK_CLASS_REGISTRY: Readonly<
     rationale:
       'Scheduled expiry sweep (identity-access:delegated-access:expiry, ADR-0090) — the same tolerant-of-delay profile as identity-access:business-scope:expiry, and for the same reason: the authorization decision is already made at the chokepoint, so a late pass costs bookkeeping and never access. Both its sweep and its --dry-run count pass workClass: "maintenance" explicitly.'
   },
+  "scripts/booking-holds-expire.ts": {
+    workClass: "maintenance",
+    rationale:
+      'Scheduled hold-expiry sweep (booking:holds:expire, Issue #939, ADR-0131), every minute — housekeeping, not the gate: the allocator reclaims an elapsed hold on the units it claims, so a late pass costs stale `held` rows and never a double booking. The sweep runs through the narrow SECURITY DEFINER function awcms_booking_expire_due_holds (sql/200) and both its pass and its --dry-run count pass workClass: "maintenance" explicitly.'
+  },
+  "scripts/booking-reminders-dispatch.ts": {
+    workClass: "maintenance",
+    rationale:
+      'Scheduled reminder/confirmation dispatcher (booking:reminders:dispatch, Issue #943, ADR-0131/ADR-0133), every minute — database-only: each tenant pass reads through three narrow SECURITY DEFINER functions (sql/285), settles intents (sql/284) and writes the delivery module\'s queue row through its port (one INSERT; the provider is called by whatsapp:dispatch, another process). A late pass delays a notice by a minute and never touches a booking. Both its pass and its --dry-run count pass workClass: "maintenance" explicitly.'
+  },
   "scripts/form-draft-purge.ts": {
     workClass: "maintenance",
     rationale:
@@ -119,6 +129,16 @@ export const JOB_WORK_CLASS_REGISTRY: Readonly<
     workClass: "maintenance",
     rationale:
       'Scheduled retention purge (whatsapp:queue:purge, ADR-0133) — same tolerant-of-delay profile as push:queue:purge; purgeWhatsappQueue passes workClass: "maintenance" explicitly.'
+  },
+  "scripts/telegram-dispatch.ts": {
+    workClass: "background_sync",
+    rationale:
+      'Outbox dispatcher (telegram:dispatch, ADR-0140), recommended every minute — the same profile as push/email/whatsapp dispatch, and every withTenantOrThrow call inside telegram-dispatch.ts already passes workClass: "background_sync" explicitly.'
+  },
+  "scripts/telegram-queue-purge.ts": {
+    workClass: "maintenance",
+    rationale:
+      'Scheduled retention purge and expiry/erasure backstop (telegram:queue:purge, ADR-0140) — same tolerant-of-delay profile as whatsapp:queue:purge; purgeTelegramQueue passes workClass: "maintenance" explicitly.'
   },
   "scripts/email-queue-purge.ts": {
     workClass: "maintenance",

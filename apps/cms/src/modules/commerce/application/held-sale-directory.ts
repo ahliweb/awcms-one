@@ -35,7 +35,8 @@ import { recordAuditEvent } from "../../logging/application/audit-log";
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../_shared/idempotency";
 import {
   encodeKeysetCursor,
@@ -148,7 +149,8 @@ export async function holdSale(
     tx,
     tenantId,
     HOLD_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -214,6 +216,7 @@ export async function holdSale(
     tenantId,
     HOLD_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     heldSale
@@ -324,7 +327,8 @@ async function decide(
     tx,
     tenantId,
     scope,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -396,6 +400,7 @@ async function decide(
     tenantId,
     scope,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     200,
     body

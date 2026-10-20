@@ -171,41 +171,24 @@ export const NOT_YET_SCREENED: readonly string[] = [
   "hr_workforce.employments.update",
   "hr_workforce.settings.configure",
   "hr_workforce.settings.read",
-  // booking (32) — ADR-0131 / Issue #937. The foundation slice has no route and
-  // no screen: the schema, the permission catalogue and the pure state machine
-  // only. Every key is unbuilt work, and the list shrinks as the admin screens
-  // land with Issues #938 to #941 (the module is `experimental` until then).
-  "booking.resources.read",
-  "booking.resources.create",
-  "booking.resources.update",
-  "booking.resources.delete",
-  "booking.resources.restore",
-  "booking.offerings.read",
-  "booking.offerings.create",
-  "booking.offerings.update",
-  "booking.offerings.delete",
-  "booking.offerings.restore",
-  "booking.schedules.read",
-  "booking.schedules.create",
-  "booking.schedules.update",
-  "booking.schedules.delete",
-  "booking.blocks.read",
-  "booking.blocks.create",
-  "booking.blocks.release",
+  // booking (7) — ADR-0131 / Issue #937. Issue #942 shipped the admin screens
+  // (`/admin/booking/*`) and claimed 25 of the 32 permissions. The seven left
+  // have no screen YET, each for a reason the screens' own docblocks give:
+  //   * `availability.read` -- the search/quote an operator would run before
+  //     creating a reservation; belongs with the reservation-create screen.
+  //   * `reservations.create`, `.reschedule`, `.override` -- they need a
+  //     date/resource picker and, for override, a justified high-risk affordance;
+  //     the detail screen deliberately offers only the single-call transitions.
+  //   * `reservations.reconcile` -- the route does not exist yet.
+  //   * `reservation_notes.read` -- an audited read of customer text; the
+  //     screens deliberately never show the note.
+  //   * `reports.read` -- the occupancy/utilization reports have no screen yet.
   "booking.availability.read",
-  "booking.reservations.read",
   "booking.reservation_notes.read",
   "booking.reservations.create",
-  "booking.reservations.confirm",
-  "booking.reservations.cancel",
   "booking.reservations.reschedule",
-  "booking.reservations.check_in",
-  "booking.reservations.complete",
-  "booking.reservations.no_show",
   "booking.reservations.override",
   "booking.reservations.reconcile",
-  "booking.policy.read",
-  "booking.policy.configure",
   "booking.reports.read",
 
   // hr_commission (5) — ADR-0132 / Issue #950. Phase 2 foundation ships API-first
@@ -245,5 +228,28 @@ export const NOT_YET_SCREENED: readonly string[] = [
   "commerce.commission_settings.manage",
   "commerce.commission_settings.read",
   "commerce.commission_staff_links.manage",
-  "commerce.commission_staff_links.read"
+  "commerce.commission_staff_links.read",
+  // hr_workforce attendance (7) — ADR-0132 / Issue #947. Same posture: API-first
+  // and `experimental`; the attendance and correction-inbox screens are the
+  // recorded follow-up that flips the module to `active`.
+  "hr_workforce.attendance.create",
+  "hr_workforce.attendance.read",
+  "hr_workforce.clock.create",
+  "hr_workforce.corrections.approve",
+  "hr_workforce.corrections.cancel",
+  "hr_workforce.corrections.create",
+  "hr_workforce.corrections.read",
+  // hr_workforce workforce metrics (2) — Issue #953. Same posture: API-first and
+  // `experimental`; the metrics screen (per-employee list for `read`, per-office
+  // aggregates for `analyze`) is part of the recorded follow-up that flips the
+  // module to `active`. The facts are reachable by their owners meanwhile
+  // through the ownership-granted routes (`?mine=true`, `?reports=true`).
+  "hr_workforce.workforce_metrics.analyze",
+  "hr_workforce.workforce_metrics.read",
+  // hr_workforce geolocation evidence (2) — ADR-0138 / Issue #970. API-first like
+  // the rest of the module: the issue asks for no screen. The configure screen
+  // (switch, DPIA reference, notice, geofences) and the evidence reader are the
+  // recorded follow-up; until then both are reachable only through the API.
+  "hr_workforce.attendance_evidence.read",
+  "hr_workforce.geolocation_evidence.configure"
 ];

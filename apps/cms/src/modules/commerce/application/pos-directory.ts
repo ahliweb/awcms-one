@@ -87,7 +87,8 @@ import { appendDomainEvent } from "../../domain-event-runtime/application/append
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../_shared/idempotency";
 import {
   keysetCursorCreatedAtSql,
@@ -377,7 +378,8 @@ async function createPosOrderWrite(
     tx,
     tenantId,
     IDEMPOTENCY_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -521,7 +523,8 @@ async function createPosOrderWrite(
       tx,
       tenantId,
       IDEMPOTENCY_SCOPE,
-      input.idempotencyKey
+      input.idempotencyKey,
+      userIdempotencyActor(actorTenantUserId)
     );
     if (raced) {
       if (raced.requestHash !== requestHash) {
@@ -837,6 +840,7 @@ async function createPosOrderWrite(
     tenantId,
     IDEMPOTENCY_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     responseBody

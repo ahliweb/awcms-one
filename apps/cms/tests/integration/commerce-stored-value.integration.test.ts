@@ -683,7 +683,7 @@ suite("closed-loop stored value integration (Issue #288)", () => {
 
     test("the same key with a different payload is a conflict, and another actor cannot replay it", async () => {
       const input = issueInput({ amount: "30000.00" });
-      await inTenant(TENANT_A, (tx) =>
+      const first = await inTenant(TENANT_A, (tx) =>
         issueStoredValueAccount(tx, TENANT_A, STAFF_1, input, new Date())
       );
       await expect(
@@ -697,11 +697,20 @@ suite("closed-loop stored value integration (Issue #288)", () => {
           )
         )
       ).rejects.toBeInstanceOf(IdempotencyPayloadMismatchError);
-      await expect(
-        inTenant(TENANT_A, (tx) =>
-          issueStoredValueAccount(tx, TENANT_A, STAFF_2, input, new Date())
-        )
-      ).rejects.toBeInstanceOf(IdempotencyPayloadMismatchError);
+      // ADR-0145 (awcms-one#377): the store is actor-scoped, so another actor
+      // reusing the key can neither claim it (no 409 against the first actor)
+      // nor READ the first actor's stored response - which carries the
+      // once-shown code. The account's own `source_key` guard then answers
+      // the same request as a replay of the one account: no second account,
+      // and no code.
+      const other = await inTenant(TENANT_A, (tx) =>
+        issueStoredValueAccount(tx, TENANT_A, STAFF_2, input, new Date())
+      );
+      expect(other.kind).toBe("replayed");
+      if (first.kind !== "created" || other.kind !== "replayed") return;
+      expect(other.body.account.id).toBe(first.body.account.id);
+      expect(other.body.code).toBeNull();
+      expect(other.body.codeRevealed).toBe(false);
     });
 
     test("two genuinely concurrent requests with one key issue exactly ONE account", async () => {

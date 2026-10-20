@@ -42,7 +42,8 @@ import { recordAuditEvent } from "../../logging/application/audit-log";
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../_shared/idempotency";
 import {
   encodeKeysetCursor,
@@ -931,7 +932,8 @@ export async function redeemPoints(
     tx,
     tenantId,
     LOYALTY_REDEEM_IDEMPOTENCY_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (stored) {
     if (stored.requestHash !== requestHash) {
@@ -1014,6 +1016,7 @@ export async function redeemPoints(
     tenantId,
     LOYALTY_REDEEM_IDEMPOTENCY_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     record
@@ -1056,7 +1059,8 @@ export async function adjustPoints(
     tx,
     tenantId,
     LOYALTY_ADJUST_IDEMPOTENCY_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (stored) {
     if (stored.requestHash !== requestHash) {
@@ -1129,6 +1133,7 @@ export async function adjustPoints(
     tenantId,
     LOYALTY_ADJUST_IDEMPOTENCY_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     record
