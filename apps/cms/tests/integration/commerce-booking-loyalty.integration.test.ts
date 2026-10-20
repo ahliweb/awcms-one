@@ -209,7 +209,8 @@ async function newFixture(
           {
             offeringId: offering[0]!.id,
             productId: product[0]!.id,
-            quantityBasis: "nights"
+            quantityBasis: "nights",
+            resourceIds: []
           },
           `link-${code}`
         ),
