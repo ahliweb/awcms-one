@@ -435,6 +435,16 @@ describe("the module descriptor", () => {
         capability: "commission_accrual",
         providedBy: "hr_commission",
         optional: true
+      },
+      {
+        capability: "whatsapp_delivery",
+        providedBy: "whatsapp_delivery",
+        optional: true
+      },
+      {
+        capability: "booking",
+        providedBy: "booking",
+        optional: true
       }
     ]);
   });

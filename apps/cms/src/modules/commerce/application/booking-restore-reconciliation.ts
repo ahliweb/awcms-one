@@ -62,14 +62,16 @@ import {
   reconcileBookingReferences
 } from "./booking-reservation-reads";
 
-/** The adapter's six tables (`sql/1035`-`sql/1038`); pinned to the lifecycle descriptors by a test. */
+/** The adapter's eight tables (`sql/1035`-`sql/1038`, `sql/1045`, `sql/1050`); pinned to the lifecycle descriptors by a test. */
 export const BOOKING_ADAPTER_RESTORE_TABLES = [
   "awcms_commerce_booking_offering_links",
   "awcms_commerce_booking_reservation_links",
   "awcms_commerce_product_deposit_policies",
   "awcms_commerce_cancellation_policies",
   "awcms_commerce_cancellation_policy_windows",
-  "awcms_commerce_booking_refund_decisions"
+  "awcms_commerce_booking_refund_decisions",
+  "awcms_commerce_booking_reschedules",
+  "awcms_commerce_booking_offering_link_resources"
 ] as const;
 
 /**

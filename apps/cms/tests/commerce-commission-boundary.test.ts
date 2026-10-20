@@ -178,7 +178,7 @@ describe("commerce migrations never constrain against an hr_* table", () => {
         .join("\n");
       if (/awcms_hr_/i.test(text)) mentioning.push(name);
     }
-    expect(mentioning).toEqual([
+    expect([...mentioning].sort()).toEqual([
       "1031_awcms_commerce_commission_attribution_permissions_grants.sql",
       "1051_awcms_commerce_commission_reversal_worker_grants.sql"
     ]);
