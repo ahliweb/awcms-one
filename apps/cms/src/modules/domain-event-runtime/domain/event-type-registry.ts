@@ -112,6 +112,9 @@ export const COMMERCE_PAYMENT_RECORDED_EVENT_TYPE =
   "awcms.commerce.payment.recorded";
 /** Issue #379 (ADR-0041 D7) — a deposit order's settlement reached its total. */
 export const COMMERCE_ORDER_SETTLED_EVENT_TYPE = "awcms.commerce.order.settled";
+/** Issue #380 (ADR-0045 G7) - the booking adapter could not reconcile an order with its reservation; an operator must look. */
+export const COMMERCE_BOOKING_ATTENTION_RAISED_EVENT_TYPE =
+  "awcms.commerce.booking_reservation_link.attention_raised";
 export const COMMERCE_PAYMENT_REVERSED_EVENT_TYPE =
   "awcms.commerce.payment.reversed";
 /** Issue #284 (ADR-0028) — POS register-session events. */
@@ -391,6 +394,12 @@ export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
       eventVersion: COMMERCE_EVENT_VERSION,
       description:
         "Settlement of a deposit order (payment_method dp, dp_amount below the total) reached the total (Issue #379, ADR-0041 D7). Producer: commerce/application/payment-allocation-directory.ts's finalizeSettlement, in the same transaction as the ledger write that made the outstanding amount zero. Fires for a deposit order only: order.paid fires for it at the deposit, so this is the fact that says it is fully paid, and the loyalty earner reacts to it. A whole-total order fires none. Carries orderId, orderCode, total, deposit and settledAt - never a customer name/phone or a payment reference."
+    },
+    {
+      eventType: COMMERCE_BOOKING_ATTENTION_RAISED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "The booking adapter could not reconcile an order with its Booking reservation on its own (Issue #380, ADR-0045 G7, threat controls C-08/C-09): a deposit settled after the hold lapsed (deposit_after_expiry), the confirmation was refused (confirm_failed), or the reservation was cancelled or moved outside the adapter while the order holds money (cancelled_externally_paid, rescheduled_externally). Producer: commerce/application/booking-attention.ts's raiseBookingAttention, in the same transaction as the flag on the reservation link; fired once per open flag. Aggregate: the order. Carries orderId, reservationId and the closed reason code - never a customer name/phone, an amount or a payment reference."
     },
     {
       eventType: COMMERCE_PAYMENT_REVERSED_EVENT_TYPE,

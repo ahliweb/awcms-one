@@ -9940,6 +9940,69 @@ One offering has at most one active link and one product has at most one active 
 | 404    | Resource not found.                                                         | [`ApiError`](#standard-error-envelope) |
 | 409    | `FEATURE_DISABLED` or `IDEMPOTENCY_CONFLICT`.                               | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/booking/reconciliation` — Issue #380 (threat control C-09). The read-only booking reconciliation: active reservation links whose order's ledger and whose Booking reservation disagree - `paid_without_confirm` (money at or above the release threshold, reservation still held, expired or cancelled) and `confirmed_without_deposit` (reservation confirmed, ledger below the threshold). Writes and repairs nothing; bounded to 200 rows (`truncated`). Gated on `commerce.booking_reservation_links.read` and the tenant's `booking` feature.
+
+- **operationId**: `getCommerceBookingReconciliation`
+- **Security**: bearerAuth + tenantHeader
+
+**Responses**
+
+| Status | Description                                        | Schema                                 |
+| ------ | -------------------------------------------------- | -------------------------------------- |
+| 200    | The disagreeing pairs.                             | object                                 |
+| 401    | Missing or invalid session.                        | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                        | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` - the `booking` feature is off. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/booking/reservations` — Issue #380 (ADR-0045 G2, G4, G5, G10; contracts 3.2). Hold a Booking slot or stay for a guest and create the commerce order from it in ONE idempotent call (the staff variant). Gated on `commerce.booking_reservation_links.create` and the tenant's `booking` feature; requires `Idempotency-Key`.
+
+- **operationId**: `createCommerceBookingReservation`
+- **Security**: bearerAuth + tenantHeader
+
+The hold (through `BookingPort`, with the staff member as the acting user), the order and the reservation link are written in one transaction. The price is the linked product's (a body naming `price`, `amount`, `deposit` or `customerId` is a 400), the line quantity is the night count for a stay, and `dp_amount` is the product's deposit policy when `payment.method` is `dp`. The order expires with the hold. The `Idempotency-Key` is namespaced by the calling staff member and stored as the link's `client_key`: the same key and request replays the original (`200`, `replayed: true`), the same key with another request is `409 IDEMPOTENCY_CONFLICT`. A Booking refusal keeps Booking's code under `409` (`429` for `HOLD_LIMIT_EXCEEDED`) and writes nothing. `resourceId` is required in v1 (a pool is not offered).
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): [`CommerceBookingReservationCreate`](#schema-commercebookingreservationcreate)
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Idempotent replay: the original result with `replayed: true`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | object                                 |
+| 201    | Reservation held and order created.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED`, `OFFERING_NOT_LINKED`, `OFFERING_NOT_LINKABLE`, `QUANTITY_BASIS_MISMATCH`, `BOOKING_SERVICE_ACTOR_NOT_CONFIGURED`, `CART_CHANGED` (the product is no longer sellable as priced), `PAYMENT_METHOD_UNAVAILABLE`, `IDEMPOTENCY_CONFLICT`, or a Booking refusal under its own code (`SLOT_UNAVAILABLE`, `OUTSIDE_SCHEDULE`, `LEAD_TIME_VIOLATION`, `HORIZON_EXCEEDED`, `PARTY_SIZE_OUT_OF_RANGE`, `QUANTITY_EXCEEDS_UNITS`, `BOOKING_MODE_MISMATCH`, `MIN_STAY_VIOLATION`, `MAX_STAY_EXCEEDED`, `STAY_DATES_INVALID`, `STAFF_UNAVAILABLE`, `EXTERNAL_REF_IN_USE`, `CONTENTION_RETRY`, `INVALID_STATE`). | [`ApiError`](#standard-error-envelope) |
+| 429    | `HOLD_LIMIT_EXCEEDED` - the per-customer or per-tenant live-hold ceiling of the Booking module.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/booking/reservations/{id}` — Issue #380 (contracts 3.4). A reservation's link, its order code, Booking's status and dates, the ledger-derived settlement and the attention flag. `id` is Booking's reservation id. Gated on `commerce.booking_reservation_links.read` and the tenant's `booking` feature. An unknown id and another tenant's id are the same 404. The customer is never a field (finding X7).
+
+- **operationId**: `getCommerceBookingReservation`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                        | Schema                                 |
+| ------ | -------------------------------------------------- | -------------------------------------- |
+| 200    | The reservation.                                   | object                                 |
+| 401    | Missing or invalid session.                        | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                        | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` - the `booking` feature is off. | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/campaigns` — Issue #114 (contract #106 ADR-0017 D9). Staff list of campaigns, newest first. Gated on `commerce.campaigns.read`.
 
 - **operationId**: `listCommerceCampaigns`
@@ -14021,6 +14084,55 @@ Read-only by default. `repair: true` rebuilds ONLY the `balance` and `version` o
 | 401    | Missing or invalid session.                                                       | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC.                                                       | [`ApiError`](#standard-error-envelope) |
 | 409    | `FEATURE_DISABLED` — the tenant's `storedValue` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/booking/reservations` — Issue #380 (ADR-0045 G2, G5, G15; contracts 3.2). Hold a slot or stay and create the order from it in one idempotent request. Anonymous, with an optional `customerBearer`; behind the `booking` feature (off = the neutral 404).
+
+- **operationId**: `createCommerceStorefrontBookingReservation`
+- **Security**: none (public endpoint)
+
+An OPTIONAL `Authorization: Bearer <customer session token>` (`customerBearer`, ADR-0016 D3): present and live → the order is the account's own and `guest` is ignored; present and dead → `401 UNAUTHENTICATED`; absent → a guest checkout that needs `guest.name` and `guest.phone` (anonymous guest checkout is allowed server-side, G15; a tenant that wants accounts only enforces it in its storefront). The required `Idempotency-Key` is namespaced by the acting account, or the guest's phone, and stored as the reservation link's `client_key`: the same key and request replays the original (`200`, `replayed: true`), the same key with another request is `409 IDEMPOTENCY_CONFLICT`. The body never names a price, amount, deposit or customer (400). Booking sees the tenant's service-account user as the acting user (G3). Rate-limited per IP and per phone like the ordinary order route.
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): [`CommerceBookingReservationCreate`](#schema-commercebookingreservationcreate)
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                                                                           | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Idempotent replay: the original result with `replayed: true`.                                                                                                                                                                                         | object                                 |
+| 201    | Reservation held and order created.                                                                                                                                                                                                                   | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED - an Authorization header was present but not a live customer session.                                                                                                                                                                | [`ApiError`](#standard-error-envelope) |
+| 403    | `ACCOUNT_BLOCKED`.                                                                                                                                                                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | As the staff route: `OFFERING_NOT_LINKED`, `OFFERING_NOT_LINKABLE`, `QUANTITY_BASIS_MISMATCH`, `BOOKING_SERVICE_ACTOR_NOT_CONFIGURED`, `CART_CHANGED`, `PAYMENT_METHOD_UNAVAILABLE`, `IDEMPOTENCY_CONFLICT`, or a Booking refusal under its own code. | [`ApiError`](#standard-error-envelope) |
+| 429    | `RATE_LIMITED`, or `HOLD_LIMIT_EXCEEDED` from the Booking module.                                                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/storefront/booking/reservations/{orderCode}` — Issue #380 (contracts 3.4). A shopper's own reservation: Booking's status and dates and the ledger-derived settlement (deposit, balance due, settled time). Identified by a live `customerBearer` or by the order's `phone`; an unknown code, another customer's code and another tenant's code are one neutral 404. Never carries the staff attention flag.
+
+- **operationId**: `getCommerceStorefrontBookingReservation`
+- **Security**: none (public endpoint)
+
+**Parameters**
+
+| Name        | In    | Required | Type   | Description                                            |
+| ----------- | ----- | -------- | ------ | ------------------------------------------------------ |
+| `orderCode` | path  | yes      | string |                                                        |
+| `phone`     | query | no       | string | Required unless a valid `customerBearer` is presented. |
+
+**Responses**
+
+| Status | Description                                                                  | Schema                                 |
+| ------ | ---------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The reservation view without staff-only fields.                              | object                                 |
+| 401    | UNAUTHENTICATED - a bearer was presented but is not a live customer session. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                          | [`ApiError`](#standard-error-envelope) |
+| 429    | Rate limited.                                                                | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/storefront/cart/quote` — Anonymous, cross-origin cart quote (Issue 29, `commerce-storefront-endpoints.md`). Tenant resolved from the request Origin/Host — no bearer, no permission check. Read-only. Issue #118 (ADR-0016 D6): an OPTIONAL `Authorization: Bearer <customer session token>` is accepted (never required) — when present and valid, and the account's own `commerce.customers.level` is 2, 3, or 4, every line is priced at that tier's `price_level_{n}` (falling back to `price` when the merchant never set that tier), so the price shown here always matches the price `POST .../orders` charges the same account moments later.
 
@@ -21812,6 +21924,45 @@ Enum values: `text`, `integer`, `decimal`, `boolean`, `date`, `enum`.
 }
 ```
 
+### Schema: CommerceBookingReservationCreate
+
+Issue #380. Exactly one of `stay` and `startsAt`, by the offering's granularity (`stay` for a night-based offering, `startsAt` for a time slot). No amount, price, deposit, total, order id or customer id is accepted (400).
+
+| Field        | Type               | Required | Nullable | Description                                                                                                 |
+| ------------ | ------------------ | -------- | -------- | ----------------------------------------------------------------------------------------------------------- |
+| `offeringId` | string (uuid)      | yes      | no       |                                                                                                             |
+| `resourceId` | string (uuid)      | yes      | no       |                                                                                                             |
+| `startsAt`   | string (date-time) | no       | no       | A slot's start, an RFC 3339 UTC instant ending in Z.                                                        |
+| `stay`       | object             | no       | no       |                                                                                                             |
+| `partySize`  | integer            | yes      | no       |                                                                                                             |
+| `guest`      | object             | no       | no       | Required for an anonymous request and for the staff route; ignored when a live customerBearer is presented. |
+| `payment`    | object             | yes      | no       |                                                                                                             |
+| `notes`      | string             | no       | no       |                                                                                                             |
+
+**Example**
+
+```json
+{
+  "offeringId": "00000000-0000-0000-0000-000000000000",
+  "resourceId": "00000000-0000-0000-0000-000000000000",
+  "startsAt": "2026-01-01T00:00:00.000Z",
+  "stay": {
+    "checkInDate": "2026-01-01",
+    "checkOutDate": "2026-01-01"
+  },
+  "partySize": 1,
+  "guest": {
+    "name": "string",
+    "phone": "string",
+    "email": "user@example.com"
+  },
+  "payment": {
+    "method": "manual_bank"
+  },
+  "notes": "string"
+}
+```
+
 ### Schema: CommerceBundleComponentInput
 
 Name the component either by `productId` (+ optional `variantId`) or by `sku` - a live product's or variant's SKU, resolved server-side inside the tenant (the admin form's `SKU x quantity` lines). An unknown SKU is refused exactly like an unknown product id.
@@ -25863,6 +26014,7 @@ consumer/subscriber contract in this file).
 - `awcms.comments.comment.approved` — A comment became publicly visible, either by auto-approval under the thread policy or by a moderator's approve decision. Producers: `comments/application/comment-service.ts`'s `submitComment` and `comments/application/comment-moderation.ts`'s `moderateComment`. The reply-notification consumer keys off THIS event rather than `comment.submitted`, so a comment still held for moderation never triggers a notification.
 - `awcms.comments.comment.submitted` — A comment was submitted against a published, public commentable resource (ADR-0041). Producer: `comments/application/comment-service.ts`'s `submitComment`. The payload carries opaque references only — comment and thread id, resource type, the server-derived public URL, and the resulting status. Never the body text, the author address, or any identity hash.
 - `awcms.comments.reply.created` — A submitted comment was a reply to an existing comment. Producer: `comments/application/comment-service.ts`'s `submitComment`, published alongside `comment.submitted` so a consumer can distinguish thread replies without re-reading the row. The recipient address is resolved from encrypted storage by the dispatcher at send time and is never carried here.
+- `awcms.commerce.booking_reservation_link.attention_raised` — The booking adapter could not reconcile an order with its Booking reservation on its own (Issue #380, ADR-0045 G7, threat controls C-08/C-09): a deposit settled after the hold lapsed (`deposit_after_expiry`), the confirmation was refused (`confirm_failed`), or the reservation was cancelled or moved outside the adapter while the order holds money (`cancelled_externally_paid`, `rescheduled_externally`). Producer: `commerce/application/booking-attention.ts`'s `raiseBookingAttention`, in the same transaction as the flag on the reservation link; fired once per open flag. Aggregate: the order. Payload: `orderId`, `reservationId`, `reason` - never a customer name/phone, an amount or a payment reference.
 - `awcms.commerce.document.delivery_requested` — A delivery of a commercial document (receipt, invoice, quotation version or work-order notice) was requested (Issue #295, ADR-0034): handed to the e-mail or commerce WhatsApp outbox, or refused at the hand-off (a suppressed address). Producer: `commerce/application/document-delivery-directory.ts`'s `requestDocumentDelivery`, in the same transaction as the outbox row. Aggregate: the delivery request. Payload: `deliveryId`, `targetType`, `targetId`, `docNumber`, `channel`, `status` (`queued` or `not_enqueued`), `failureReason` - never a recipient or message content; the provider outcome lives in the outbox, not in this event.
 - `awcms.commerce.document.issued` — A numbered receipt or invoice document was issued for a finalized order (Issue #286, ADR-0029 D1-D3): an immutable snapshot. Producer: `commerce/application/document-directory.ts`'s `issueDocument`, in the same transaction as the numbered row. Aggregate: the document. Payload: `documentId`, `docType`, `number`, `sourceType`, `sourceId`, `sourceVersion`, `total` - never the customer.
 - `awcms.commerce.expense.posted` — An expense reached `posted` (Issue #294, ADR-0031): within the tenant's approval threshold, or approved by someone other than its creator. Producer: `commerce/application/expense-posting.ts`'s `postExpense` / `decideExpense`, in the same transaction as the status change and - for a drawer-paid expense - the register `expense` movement. Aggregate: the expense (`commerce.expense`). Fired once; a pending submission or a rejection does not fire it. Payload: `expenseId`, `categoryId`, `amount`, `tenderType`, `registerSessionId`, `movementId`, `decision` - never the free-text description or payee.

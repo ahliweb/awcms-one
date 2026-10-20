@@ -243,13 +243,20 @@ describe("buildDomainEventConsumerRegistry", () => {
     expect(built!.maxAttempts).toBe(8);
   });
 
-  test("the real composed registry builds and keeps the shipped names (the three upstream ones plus this repo's five commerce ones, ADR-0134)", () => {
+  test("the real composed registry builds and keeps the shipped names (the three upstream ones plus this repo's five commerce ones and five booking-adapter ones, ADR-0134, Issue #380)", () => {
     const names = buildDomainEventConsumerRegistry(listModules()).map(
       (c) => c.name
     );
     // LOCAL DIVERGENCE (awcms-one #347): upstream pins exactly its three; the
-    // commerce module declares five more in its own descriptor. Keep ours on conflict.
+    // commerce module declares five more in its own descriptor, plus the
+    // booking adapter's five (Issue #380, ADR-0045 D15). Keep ours on conflict;
+    // extend this list when commerce declares another consumer.
     expect(names).toEqual([
+      "commerce.booking_cancelled_order_canceller",
+      "commerce.booking_expired_order_canceller",
+      "commerce.booking_late_payment_flagger",
+      "commerce.booking_order_cancelled_hold_releaser",
+      "commerce.booking_order_paid_confirmer",
       "commerce.inventory_stock_cache_projector",
       "commerce.order_cancelled_loyalty_reverser",
       "commerce.order_paid_commission_attributor",

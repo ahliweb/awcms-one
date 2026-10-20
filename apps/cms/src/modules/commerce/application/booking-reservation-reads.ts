@@ -1,0 +1,235 @@
+/**
+ * The adapter's READS of Booking's reservation rows (Issue #380, ADR-0045 D3,
+ * threat controls C-08/C-09). The only file besides `booking-offering-links.ts`
+ * that names a Booking table, and like it only in `SELECT`s: commerce imports
+ * nothing from `booking`'s code and writes none of its tables (a static test
+ * pins both).
+ *
+ * ## Why a table read and not the port
+ *
+ * `BookingPort` has no reservation read by id (upstream port addition U1, with
+ * the offering read, the check-in/out/no-show verbs and an availability read -
+ * recorded in ADR-0045). The adapter needs three things the port cannot say
+ * yet: the reservation's current STATUS (to decide between "confirm", "raise
+ * attention" and "nothing to do" without provoking a refusal), its dates and
+ * number for the reservation view, and the C-09 comparison of that status with
+ * the order's ledger. Each is a tenant-scoped `SELECT` of a few columns; RLS is
+ * FORCEd on the table, so a read can never reach another tenant's row.
+ *
+ * ## The C-09 reconciliation
+ *
+ * Booking holds the claim, commerce holds the money, and the two commit in
+ * different transactions (the order's payment arrives later). Two states must
+ * never persist silently:
+ *
+ *   - `paid_without_confirm`: the ledger holds at least the release threshold
+ *     (the deposit, or the total) but the reservation is not confirmed - still
+ *     `held` (the confirm is pending or failed) or already `expired` /
+ *     `cancelled` (the deposit arrived after the hold lapsed, C-08).
+ *   - `confirmed_without_deposit`: the reservation is confirmed (or beyond) but
+ *     the ledger holds less than the threshold (a payment was reversed, or
+ *     staff confirmed it in Booking's own screen).
+ *
+ * The query is read-only and bounded; it writes nothing and fixes nothing - an
+ * operator decides (the attention flag is the work queue, this is its audit).
+ */
+
+import { normalizeMoney } from "../domain/price-calculation";
+
+export type BookingReservationFacts = {
+  id: string;
+  reservationNo: string;
+  status: string;
+  startsAt: string;
+  endsAt: string;
+  holdExpiresAt: string | null;
+  externalRefType: string | null;
+  externalRef: string | null;
+};
+
+type ReservationRow = {
+  id: string;
+  reservation_no: string;
+  status: string;
+  starts_at: Date | string;
+  ends_at: Date | string;
+  hold_expires_at: Date | string | null;
+  external_ref_type: string | null;
+  external_ref: string | null;
+};
+
+const iso = (value: Date | string): string => new Date(value).toISOString();
+
+function toFacts(row: ReservationRow): BookingReservationFacts {
+  return {
+    id: row.id,
+    reservationNo: row.reservation_no,
+    status: row.status,
+    startsAt: iso(row.starts_at),
+    endsAt: iso(row.ends_at),
+    holdExpiresAt:
+      row.hold_expires_at === null ? null : iso(row.hold_expires_at),
+    externalRefType: row.external_ref_type,
+    externalRef: row.external_ref
+  };
+}
+
+/** One reservation by id; `null` for an unknown or another tenant's id, indistinguishably. */
+export async function readBookingReservation(
+  tx: Bun.SQL,
+  tenantId: string,
+  reservationId: string
+): Promise<BookingReservationFacts | null> {
+  const rows = (await tx`
+    SELECT id, reservation_no, status, starts_at, ends_at, hold_expires_at,
+           external_ref_type, external_ref
+    FROM awcms_booking_reservations
+    WHERE tenant_id = ${tenantId} AND id = ${reservationId}
+  `) as ReservationRow[];
+  return rows[0] ? toFacts(rows[0]) : null;
+}
+
+/** The status only - the consumers' fast question. `null` when the row is not visible. */
+export async function readBookingReservationStatus(
+  tx: Bun.SQL,
+  tenantId: string,
+  reservationId: string
+): Promise<string | null> {
+  const rows = (await tx`
+    SELECT status FROM awcms_booking_reservations
+    WHERE tenant_id = ${tenantId} AND id = ${reservationId}
+  `) as { status: string }[];
+  return rows[0]?.status ?? null;
+}
+
+export const RECONCILIATION_KINDS = [
+  "paid_without_confirm",
+  "confirmed_without_deposit"
+] as const;
+export type ReconciliationKind = (typeof RECONCILIATION_KINDS)[number];
+
+export type ReconciliationItem = {
+  kind: ReconciliationKind;
+  linkId: string;
+  orderId: string;
+  orderCode: string;
+  orderStatus: string;
+  reservationId: string;
+  reservationNo: string;
+  reservationStatus: string;
+  /** `numeric(14,2)` strings, from the ledger. */
+  total: string;
+  threshold: string;
+  settled: string;
+  attentionReason: string | null;
+  attentionOpen: boolean;
+};
+
+export type ReconciliationReport = {
+  items: ReconciliationItem[];
+  /** `true` when the bound cut the list short; narrow by resolving what is shown and read again. */
+  truncated: boolean;
+};
+
+export const RECONCILIATION_LIMIT = 200;
+
+const CONFIRMED_OR_BEYOND = ["confirmed", "checked_in", "completed", "no_show"];
+
+type ReconRow = {
+  link_id: string;
+  order_id: string;
+  order_code: string;
+  order_status: string;
+  total: string;
+  threshold: string;
+  settled: string;
+  reservation_id: string;
+  reservation_no: string;
+  reservation_status: string;
+  attention_reason: string | null;
+  attention_resolved_at: Date | string | null;
+};
+
+/**
+ * Active links whose order's ledger and reservation status disagree (control
+ * C-09). Money is read from the allocation ledger exactly as settlement is
+ * derived: succeeded payments minus succeeded reversals. The release threshold
+ * is `dp_amount` for a down-payment order and the total otherwise
+ * (`releaseThresholdCents`, ADR-0025 D3), restated in SQL so the whole report
+ * is one bounded statement.
+ */
+export async function reconcileBookingOrders(
+  tx: Bun.SQL,
+  tenantId: string,
+  limit: number = RECONCILIATION_LIMIT
+): Promise<ReconciliationReport> {
+  const rows = (await tx`
+    WITH active AS (
+      SELECT l.id AS link_id, l.order_id, l.reservation_id, l.attention_reason,
+             l.attention_resolved_at, l.created_at
+      FROM awcms_commerce_booking_reservation_links l
+      WHERE l.tenant_id = ${tenantId} AND l.status = 'active'
+    ),
+    ledger AS (
+      SELECT a.order_id,
+             COALESCE(SUM(CASE
+               WHEN a.kind = 'payment' THEN a.amount
+               WHEN a.kind = 'reversal' THEN -a.amount
+               ELSE 0 END), 0) AS settled
+      FROM awcms_commerce_payment_allocations a
+      WHERE a.tenant_id = ${tenantId}
+        AND a.status = 'succeeded'
+        AND a.order_id IN (SELECT order_id FROM active)
+      GROUP BY a.order_id
+    ),
+    joined AS (
+      SELECT active.link_id, active.order_id, o.order_code, o.status AS order_status,
+             o.total,
+             CASE WHEN o.payment_method = 'dp' AND o.dp_amount IS NOT NULL
+                       AND o.dp_amount > 0 AND o.dp_amount < o.total
+                  THEN o.dp_amount ELSE o.total END AS threshold,
+             COALESCE(ledger.settled, 0) AS settled,
+             r.id AS reservation_id, r.reservation_no, r.status AS reservation_status,
+             active.attention_reason, active.attention_resolved_at, active.created_at
+      FROM active
+      JOIN awcms_commerce_orders o
+        ON o.tenant_id = ${tenantId} AND o.id = active.order_id
+      JOIN awcms_booking_reservations r
+        ON r.tenant_id = ${tenantId} AND r.id = active.reservation_id
+      LEFT JOIN ledger ON ledger.order_id = active.order_id
+    )
+    SELECT * FROM joined
+    WHERE (settled >= threshold AND total > 0
+           AND reservation_status IN ('held', 'expired', 'cancelled'))
+       OR (settled < threshold
+           AND reservation_status IN ('confirmed', 'checked_in', 'completed', 'no_show'))
+    ORDER BY created_at DESC, link_id DESC
+    LIMIT ${limit + 1}
+  `) as ReconRow[];
+
+  const truncated = rows.length > limit;
+  const items = rows.slice(0, limit).map((row): ReconciliationItem => {
+    const kind: ReconciliationKind = CONFIRMED_OR_BEYOND.includes(
+      row.reservation_status
+    )
+      ? "confirmed_without_deposit"
+      : "paid_without_confirm";
+    return {
+      kind,
+      linkId: row.link_id,
+      orderId: row.order_id,
+      orderCode: row.order_code,
+      orderStatus: row.order_status,
+      reservationId: row.reservation_id,
+      reservationNo: row.reservation_no,
+      reservationStatus: row.reservation_status,
+      total: normalizeMoney(row.total),
+      threshold: normalizeMoney(row.threshold),
+      settled: normalizeMoney(row.settled),
+      attentionReason: row.attention_reason,
+      attentionOpen:
+        row.attention_reason !== null && row.attention_resolved_at === null
+    };
+  });
+  return { items, truncated };
+}

@@ -159,6 +159,23 @@ export const COMMERCE_PAYMENT_REVERSED_EVENT_TYPE =
 export const COMMERCE_ORDER_SETTLED_EVENT_TYPE = "awcms.commerce.order.settled";
 
 /**
+ * Booking-adapter attention event (Issue #380, ADR-0045 G7, contracts section
+ * 5.2). `awcms.commerce.booking_reservation_link.attention_raised` announces
+ * that the adapter could not reconcile an order with its reservation on its own
+ * and an operator must look: a deposit settled after the hold lapsed
+ * (`deposit_after_expiry`, threat control C-08), the confirmation was refused
+ * (`confirm_failed`), or the reservation was cancelled or moved outside the
+ * adapter while the order holds money (`cancelled_externally_paid`,
+ * `rescheduled_externally`). Raised once per open flag, in the same transaction
+ * as the flag, on the ORDER aggregate. The payload carries ids and the closed
+ * reason code - never a customer name, phone, amount or payment reference.
+ * Registered in `domain-event-runtime/domain/event-type-registry.ts` and
+ * `asyncapi/awcms-domain-events.asyncapi.yaml` in the same change.
+ */
+export const COMMERCE_BOOKING_ATTENTION_RAISED_EVENT_TYPE =
+  "awcms.commerce.booking_reservation_link.attention_raised";
+
+/**
  * POS register-session events (Issue #284, ADR-0028). All four ride on the
  * REGISTER SESSION aggregate (`commerce.register_session`, aggregate id = the
  * session id), so a consumer rebuilding "what happened in this shift" reads

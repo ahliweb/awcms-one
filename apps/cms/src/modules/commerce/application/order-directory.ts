@@ -100,6 +100,7 @@ import {
 } from "../domain/order-status";
 import type { CartQuoteResult } from "../domain/cart-quote";
 import type { CreateOrderInput } from "../domain/order-request-validation";
+import type { HoldRefusal } from "../domain/booking-hold-to-order";
 import {
   COMMERCE_EVENT_VERSION,
   COMMERCE_ORDER_AGGREGATE_TYPE,
@@ -112,6 +113,10 @@ import {
   COMMERCE_VOUCHER_REDEEMED_EVENT_TYPE
 } from "../domain/commerce-events";
 import { buildCartQuote } from "./cart-quote-service";
+import {
+  BookingOrderUseAdapterError,
+  orderHasBookingLink
+} from "./booking-order-guards";
 import {
   loadComponentFactsByItem,
   lockBundleComponentStock,
@@ -761,6 +766,34 @@ export type CreateOrderOutcome =
    */
   | { kind: "loyalty_refused"; refusal: OrderLoyaltyRefusal };
 
+/**
+ * Issue #380 (ADR-0045 G2/G4) - what the hold-to-order path hands the generic
+ * order writer. The booking adapter owns the hold, the pre-allocated order id
+ * and the link; this file owns everything an order is.
+ */
+export type BookingOrderExtras = {
+  /** G4: the order's id, allocated before the hold so Booking's `externalRef` can name it. */
+  orderId: string;
+  /**
+   * Called AFTER the cart re-quote validated and BEFORE any order row exists:
+   * places the hold through the port. A refusal is returned (nothing written);
+   * success carries the hold's expiry, which becomes the order's `expires_at`.
+   */
+  hold: (
+    quote: CartQuoteResult
+  ) => Promise<
+    { ok: true; expiresAt: Date } | { ok: false; refusal: HoldRefusal }
+  >;
+  /** Called after the header and every item row exist: writes the reservation link. */
+  onItemsWritten: (
+    order: { id: string; orderCode: string },
+    itemIds: readonly string[]
+  ) => Promise<void>;
+};
+
+export type BookingOrderOutcome =
+  CreateOrderOutcome | { kind: "booking_refused"; refusal: HoldRefusal };
+
 export type OrderLoyaltyRefusal =
   | RedemptionRefusal
   | { code: typeof LOYALTY_REDEMPTION_ERROR_CODES.requiresAccount };
@@ -775,7 +808,9 @@ async function insertOrderWithRetryableCode(
   expiresAt: Date,
   affiliateId: string | null,
   /** Issue #363 - the total actually due (net of points) and the discount line. */
-  pricing: { total: string; loyaltyDiscount: string }
+  pricing: { total: string; loyaltyDiscount: string },
+  /** Issue #380 (G4) - the pre-allocated id of a booking order; absent = the column default. */
+  orderId: string | null = null
 ): Promise<OrderHeaderRow> {
   const addressJson = input.address
     ? {
@@ -808,13 +843,13 @@ async function insertOrderWithRetryableCode(
         async (sp) =>
           await sp`
         INSERT INTO awcms_commerce_orders (
-          tenant_id, order_code, customer_id, status, payment_method, payment_status,
+          id, tenant_id, order_code, customer_id, status, payment_method, payment_status,
           shipping_method, shipping_service_name, shipping_cost, address,
           subtotal, discount, voucher_code, voucher_discount, insurance_fee, tax, total,
           loyalty_discount, dp_amount, notes, expires_at, affiliate_id
         )
         VALUES (
-          ${tenantId}, ${orderCode}, ${customerId}, 'pending_payment', ${input.payment.method}, 'unpaid',
+          COALESCE(${orderId}::uuid, gen_random_uuid()), ${tenantId}, ${orderCode}, ${customerId}, 'pending_payment', ${input.payment.method}, 'unpaid',
           ${quote.shipping?.method ?? input.shipping?.method ?? "self_pickup"},
           ${quote.shipping?.name ?? null}, ${quote.shipping?.cost ?? "0.00"}, ${addressJson}::jsonb,
           ${quote.subtotal}, ${quote.discount}, ${quote.voucher?.code ?? null},
@@ -870,6 +905,57 @@ export async function createOrderFromCart(
   correlationId?: string,
   accountCustomerId?: string
 ): Promise<CreateOrderOutcome> {
+  // No `extras` -> never `booking_refused`.
+  return (await runCreateOrder(
+    tx,
+    tenantId,
+    mediaPort,
+    input,
+    now,
+    correlationId,
+    accountCustomerId,
+    undefined
+  )) as CreateOrderOutcome;
+}
+
+/**
+ * Issue #380 - the hold-to-order entry point: the same order writer, with the
+ * adapter's hold before the first row and its reservation link after the lines.
+ * Idempotency is the link's `client_key` (G5), so the shared storefront
+ * idempotency record is neither read nor written.
+ */
+export function createBookingOrderFromCart(
+  tx: Bun.SQL,
+  tenantId: string,
+  mediaPort: MediaLibraryPort,
+  input: CreateOrderInput,
+  extras: BookingOrderExtras,
+  now: Date = new Date(),
+  correlationId?: string,
+  accountCustomerId?: string
+): Promise<BookingOrderOutcome> {
+  return runCreateOrder(
+    tx,
+    tenantId,
+    mediaPort,
+    input,
+    now,
+    correlationId,
+    accountCustomerId,
+    extras
+  );
+}
+
+async function runCreateOrder(
+  tx: Bun.SQL,
+  tenantId: string,
+  mediaPort: MediaLibraryPort,
+  input: CreateOrderInput,
+  now: Date,
+  correlationId: string | undefined,
+  accountCustomerId: string | undefined,
+  extras: BookingOrderExtras | undefined
+): Promise<BookingOrderOutcome> {
   // Issue #282 (ADR-0038 D2) - the stock authority. `counter` is today's path,
   // untouched. In `ledger` mode every order write runs in a SAVEPOINT: a ledger
   // refusal (the last unit sold a millisecond ago) is a thrown error so the
@@ -887,7 +973,8 @@ export async function createOrderFromCart(
       now,
       correlationId,
       accountCustomerId,
-      inventory
+      inventory,
+      extras
     );
   }
 
@@ -900,9 +987,10 @@ export async function createOrderFromCart(
       now,
       correlationId,
       accountCustomerId,
-      inventory
+      inventory,
+      extras
     );
-  const guarded = (): Promise<CreateOrderOutcome> =>
+  const guarded = (): Promise<BookingOrderOutcome> =>
     withInventorySavepoint(tx, inventory, attempt);
 
   try {
@@ -946,8 +1034,9 @@ async function createOrderFromCartWrite(
    * from the account's own) is never called in this branch.
    */
   accountCustomerId: string | undefined,
-  inventory: InventoryConfig
-): Promise<CreateOrderOutcome> {
+  inventory: InventoryConfig,
+  extras: BookingOrderExtras | undefined
+): Promise<BookingOrderOutcome> {
   const requestHash = computeRequestHash({
     action: IDEMPOTENCY_SCOPE,
     customer: input.customer,
@@ -964,13 +1053,17 @@ async function createOrderFromCartWrite(
     loyaltyRedemption: input.loyaltyRedemption ?? undefined
   });
 
-  const existing = await findIdempotencyRecord(
-    tx,
-    tenantId,
-    IDEMPOTENCY_SCOPE,
-    input.idempotencyKey,
-    ANONYMOUS_IDEMPOTENCY_ACTOR
-  );
+  // Issue #380: a booking order is idempotent by its reservation link's
+  // `client_key` (G5), decided by the caller before it got here.
+  const existing = extras
+    ? null
+    : await findIdempotencyRecord(
+        tx,
+        tenantId,
+        IDEMPOTENCY_SCOPE,
+        input.idempotencyKey,
+        ANONYMOUS_IDEMPOTENCY_ACTOR
+      );
   if (existing) {
     if (existing.requestHash !== requestHash) {
       throw new IdempotencyPayloadMismatchError();
@@ -1024,7 +1117,9 @@ async function createOrderFromCartWrite(
         destination: input.address
           ? { districtCode: input.address.districtCode }
           : null,
-        customerLevel
+        customerLevel,
+        // Issue #380: only the hold-to-order path may sell a booking-linked product.
+        bookingSale: extras !== undefined
       },
       now
     );
@@ -1046,6 +1141,16 @@ async function createOrderFromCartWrite(
 
   if (!quote.canCheckout || !paymentAvailable || !shippingResolved) {
     return { kind: "cart_changed", quote };
+  }
+
+  // Issue #380 (ADR-0045 G2): the hold is placed only now - the cart is valid
+  // and nothing of the order is written yet - so a refusal from Booking is a
+  // returned value with nothing to undo.
+  let bookingExpiresAt: Date | null = null;
+  if (extras) {
+    const held = await extras.hold(quote);
+    if (!held.ok) return { kind: "booking_refused", refusal: held.refusal };
+    bookingExpiresAt = held.expiresAt;
   }
 
   // Issue #363 (ADR-0043) - points. Prepared BEFORE any row of the order is
@@ -1105,9 +1210,9 @@ async function createOrderFromCartWrite(
   };
 
   const settings = await fetchStoreSettings(tx, tenantId);
-  const expiresAt = new Date(
-    now.getTime() + settings.orders.expiryHours * 60 * 60 * 1000
-  );
+  const expiresAt =
+    bookingExpiresAt ??
+    new Date(now.getTime() + settings.orders.expiryHours * 60 * 60 * 1000);
 
   const customer = accountCustomer
     ? accountCustomer
@@ -1137,7 +1242,8 @@ async function createOrderFromCartWrite(
     now,
     expiresAt,
     affiliateId,
-    pricing
+    pricing,
+    extras?.orderId ?? null
   );
 
   if (redemption) {
@@ -1172,7 +1278,10 @@ async function createOrderFromCartWrite(
     `) as { id: string }[];
     orderItemIds.push(itemRows[0]!.id);
 
-    if (line.bundle) {
+    if (extras) {
+      // Issue #380: a booking line moves no stock - the claim on capacity is
+      // Booking's (the hold), and the product's counter is not its capacity.
+    } else if (line.bundle) {
       // Issue #290 - the bundle line moves no stock itself; its components do.
       await sellBundleLine(
         tx,
@@ -1216,7 +1325,14 @@ async function createOrderFromCartWrite(
     }
   }
 
-  if (inventory.mode === "ledger") {
+  if (extras) {
+    await extras.onItemsWritten(
+      { id: header.id, orderCode: header.order_code },
+      orderItemIds
+    );
+  }
+
+  if (inventory.mode === "ledger" && !extras) {
     try {
       await postOrderSale(tx, tenantId, inventory, header.id, ledgerLines, {
         actorTenantUserId: null,
@@ -1292,8 +1408,14 @@ async function createOrderFromCartWrite(
     action: "create",
     resourceType: AUDIT_RESOURCE_TYPE,
     resourceId: header.id,
-    message: `Order ${header.order_code} created via storefront checkout.`,
-    attributes: { orderCode: header.order_code, total: pricing.total },
+    message: extras
+      ? `Order ${header.order_code} created from a booking hold.`
+      : `Order ${header.order_code} created via storefront checkout.`,
+    attributes: {
+      orderCode: header.order_code,
+      total: pricing.total,
+      ...(extras ? { bookingHold: true } : {})
+    },
     correlationId
   });
 
@@ -1333,16 +1455,18 @@ async function createOrderFromCartWrite(
   });
   const publicRecord = await toPublicOrderRecord(tx, tenantId, detail!);
 
-  await saveIdempotencyRecord(
-    tx,
-    tenantId,
-    IDEMPOTENCY_SCOPE,
-    input.idempotencyKey,
-    ANONYMOUS_IDEMPOTENCY_ACTOR,
-    requestHash,
-    201,
-    publicRecord
-  );
+  if (!extras) {
+    await saveIdempotencyRecord(
+      tx,
+      tenantId,
+      IDEMPOTENCY_SCOPE,
+      input.idempotencyKey,
+      ANONYMOUS_IDEMPOTENCY_ACTOR,
+      requestHash,
+      201,
+      publicRecord
+    );
+  }
 
   return { kind: "created", order: publicRecord };
 }
@@ -1717,6 +1841,10 @@ async function restockCancelledOrRefreshedOrder(
   correlationId?: string
 ): Promise<void> {
   const inventory = await resolveInventoryConfig(tx, tenantId);
+  // Issue #380: a booking order never moved product stock (capacity is
+  // Booking's), so there is none to put back; flash-sale counters and the
+  // voucher below are restored as for any order.
+  const bookingOrder = await orderHasBookingLink(tx, tenantId, orderId);
   const items = (await tx`
     SELECT id, product_id, variant_id, quantity, flash_sale_id
     FROM awcms_commerce_order_items
@@ -1739,7 +1867,7 @@ async function restockCancelledOrRefreshedOrder(
 
   // Issue #282 - `ledger` mode puts the units back through the port (a
   // `sale_return`, sorted, in this transaction); `counter` mode is unchanged.
-  if (inventory.mode === "ledger") {
+  if (inventory.mode === "ledger" && !bookingOrder) {
     await postOrderRestock(
       tx,
       tenantId,
@@ -1774,7 +1902,9 @@ async function restockCancelledOrRefreshedOrder(
   }
 
   for (const item of items) {
-    if (bundleFacts.has(item.id)) {
+    if (bookingOrder) {
+      // No product stock was taken for a booking line.
+    } else if (bundleFacts.has(item.id)) {
       // The bundle line itself restocks nothing: its components did, above.
     } else if (inventory.mode === "counter" && item.variant_id) {
       await tx`
@@ -1834,6 +1964,13 @@ export async function cancelOrderByCustomer(
 
   if (!isOrderCancellableByCustomer(detail.status)) {
     throw new OrderNotCancellableError();
+  }
+
+  // Issue #380 (ADR-0045 G11): a booking order that already holds money
+  // (a deposit below the release threshold still leaves it `pending_payment`) is
+  // cancelled through its reservation, where the refund is decided.
+  if (await bookingOrderHoldsMoney(tx, tenantId, detail.id)) {
+    throw new BookingOrderUseAdapterError();
   }
 
   // Issue #282 - a `ledger`-mode restock that the ledger refuses rolls the
@@ -1897,6 +2034,17 @@ export async function updateOrderStatusByAdmin(
     if (gate.kind === "recorded") return true;
   }
 
+  // Issue #380 (ADR-0045 G11): a PAID booking order is cancelled through the
+  // adapter (the cancellation policy, the refund and the reservation move
+  // together, #381), never by this generic status edge. An UNPAID one may be
+  // cancelled here; the hold-releaser consumer then frees its hold.
+  if (
+    to === "cancelled" &&
+    (await bookingOrderHoldsMoney(tx, tenantId, orderId))
+  ) {
+    throw new BookingOrderUseAdapterError();
+  }
+
   const inventory = await resolveInventoryConfig(tx, tenantId);
   const result = await withInventorySavepoint(tx, inventory, (db) =>
     transitionOrderStatus(
@@ -1911,6 +2059,54 @@ export async function updateOrderStatusByAdmin(
     )
   );
   return result !== null;
+}
+
+/** A booking order that holds settled money: the generic cancel paths refuse it. */
+async function bookingOrderHoldsMoney(
+  tx: Bun.SQL,
+  tenantId: string,
+  orderId: string
+): Promise<boolean> {
+  if (!(await orderHasBookingLink(tx, tenantId, orderId))) return false;
+  return (await orderHoldsSettledMoney(tx, tenantId, orderId)) === true;
+}
+
+/**
+ * Issue #380 - the booking consumers' one way to cancel an UNPAID order whose
+ * reservation was cancelled in Booking: `pending_payment -> cancelled`, noted,
+ * through the one status transition (restock, redemption restore, tax reversal
+ * and the `order.cancelled` event all follow). The order-status graph lets only
+ * `admin` walk this edge, so the event records `actor = 'admin'` with no tenant
+ * user and the note says it was automatic; the audit row carries no actor and
+ * `initiatedBy`. Refuses (returns `held_money`) an order that holds settled
+ * money: that one is never cancelled by an event.
+ */
+export async function cancelUnpaidOrderForBooking(
+  tx: Bun.SQL,
+  tenantId: string,
+  orderId: string,
+  correlationId?: string
+): Promise<"cancelled" | "held_money" | "not_pending"> {
+  if (await orderHoldsSettledMoney(tx, tenantId, orderId)) return "held_money";
+  const rows = (await tx`
+    SELECT status FROM awcms_commerce_orders
+    WHERE tenant_id = ${tenantId} AND id = ${orderId} AND deleted_at IS NULL
+  `) as { status: string }[];
+  if (rows[0]?.status !== "pending_payment") return "not_pending";
+  const inventory = await resolveInventoryConfig(tx, tenantId);
+  await withInventorySavepoint(tx, inventory, (db) =>
+    transitionOrderStatus(
+      db,
+      tenantId,
+      undefined,
+      "admin",
+      orderId,
+      "cancelled",
+      "Booking reservation cancelled (automatic).",
+      correlationId
+    )
+  );
+  return "cancelled";
 }
 
 /** `commerce:orders:expire` job's own per-order call — see `scripts/commerce-orders-expire.ts`. */

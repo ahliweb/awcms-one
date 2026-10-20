@@ -31,6 +31,9 @@ export const COMMERCE_BOOKING_OFFERING_LINKS_ACTIVITY_CODE =
   "booking_offering_links";
 export const COMMERCE_BOOKING_DEPOSIT_POLICIES_ACTIVITY_CODE =
   "booking_deposit_policies";
+/** Issue #380 - hold-to-order (`create`) and the reservation/reconciliation reads (`read`). */
+export const COMMERCE_BOOKING_RESERVATION_LINKS_ACTIVITY_CODE =
+  "booking_reservation_links";
 
 export const COMMERCE_BOOKING_OFFERING_LINK_PERMISSIONS = {
   read: "commerce.booking_offering_links.read",
@@ -43,10 +46,13 @@ export const COMMERCE_BOOKING_DEPOSIT_POLICY_PERMISSIONS = {
   update: "commerce.booking_deposit_policies.update"
 } as const;
 
-/** The keys of the access matrix that no route enforces yet (arrive with #380 onward). */
+export const COMMERCE_BOOKING_RESERVATION_LINK_PERMISSIONS = {
+  read: "commerce.booking_reservation_links.read",
+  create: "commerce.booking_reservation_links.create"
+} as const;
+
+/** The keys of the access matrix that no route enforces yet (arrive with #381 onward). */
 export const BOOKING_ADAPTER_PENDING_PERMISSIONS = [
-  "commerce.booking_reservation_links.read",
-  "commerce.booking_reservation_links.create",
   "commerce.booking_reservation_links.update",
   "commerce.booking_reservation_links.cancel",
   "commerce.booking_cancellation_policies.read",
@@ -57,7 +63,7 @@ export const BOOKING_ADAPTER_PENDING_PERMISSIONS = [
   "commerce.booking_refund_overrides.approve"
 ] as const;
 
-/** Mirrors `sql/1039` exactly. */
+/** Mirrors `sql/1039` and `sql/1041` exactly. */
 export const BOOKING_ADAPTER_PERMISSIONS: ModulePermissionDescriptor[] = [
   {
     activityCode: COMMERCE_BOOKING_OFFERING_LINKS_ACTIVITY_CODE,
@@ -84,5 +90,17 @@ export const BOOKING_ADAPTER_PERMISSIONS: ModulePermissionDescriptor[] = [
     activityCode: COMMERCE_BOOKING_DEPOSIT_POLICIES_ACTIVITY_CODE,
     action: "update",
     description: "Set or remove a product's deposit policy (Issue #378)"
+  },
+  {
+    activityCode: COMMERCE_BOOKING_RESERVATION_LINKS_ACTIVITY_CODE,
+    action: "read",
+    description:
+      "Read a booking reservation's link, order and settlement, and the booking reconciliation (Issue #380)"
+  },
+  {
+    activityCode: COMMERCE_BOOKING_RESERVATION_LINKS_ACTIVITY_CODE,
+    action: "create",
+    description:
+      "Hold a Booking slot or stay and create the commerce order from it (Issue #380)"
   }
 ];

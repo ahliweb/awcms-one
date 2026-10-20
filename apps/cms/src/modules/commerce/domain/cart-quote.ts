@@ -64,6 +64,10 @@ import type {
 import type { StoreSettingsData } from "./store-settings-validation";
 import type { BundleLineComponent } from "./bundle";
 import {
+  derivePolicyDownPayment,
+  type DepositPolicySnapshot
+} from "./booking-deposit-calc";
+import {
   computeEngineTax,
   fallbackRatePercent,
   versionTaxesAnything,
@@ -194,6 +198,26 @@ export type CartQuoteContext = {
    */
   gatewayProviderConfigured?: boolean;
   /**
+   * Issue #380 (ADR-0041 D4, ADR-0045 G10) - the ACTIVE deposit policy of each
+   * product in the cart that has one, keyed by product id. Absent or empty =
+   * no line has a policy = today's store-wide down-payment rule, unchanged
+   * (decision M9). Optional so every earlier `CartQuoteContext` literal keeps
+   * compiling.
+   */
+  depositPolicies?: ReadonlyMap<string, DepositPolicySnapshot>;
+  /**
+   * Issue #380 (ADR-0045 D1) - the products with an ACTIVE Booking offering
+   * link. Such a product is sold only through the booking path (it claims
+   * capacity), so on any other path its line is `unavailable`. Optional.
+   */
+  bookingLinkedProductIds?: ReadonlySet<string>;
+  /**
+   * Issue #380 - `true` only for the hold-to-order path: a linked product is
+   * sellable, and its `stock` counter is not consulted (capacity belongs to
+   * Booking, not to the product's stock number).
+   */
+  bookingSale?: boolean;
+  /**
    * Issue #293 (ADR-0039) — how tax is priced. Absent = `{ mode: "flat" }`: the
    * pre-#293 `percent` of `subtotal - voucher discount`, byte for byte. In
    * `engine` mode the caller (`cart-quote-service.ts`) has already resolved the
@@ -301,6 +325,9 @@ export type CartQuoteResult = {
   quotedAt: string;
 };
 
+/** Stock figure a booking line is quoted against: capacity is Booking's, not the product counter's (Issue #380). */
+export const BOOKING_SALE_STOCK = 1_000_000;
+
 function flashSaleKey(productId: string, variantId: string | null): string {
   return `${productId}:${variantId ?? ""}`;
 }
@@ -377,7 +404,12 @@ function resolveLine(
 ): CartQuoteLineResult {
   const product = context.products.get(input.productId);
 
-  if (!product || product.status !== "active") {
+  if (
+    !product ||
+    product.status !== "active" ||
+    (context.bookingLinkedProductIds?.has(input.productId) &&
+      !context.bookingSale)
+  ) {
     return {
       productId: input.productId,
       variantId: input.variantId,
@@ -442,15 +474,17 @@ function resolveLine(
     flashSaleKey(product.id, input.variantId)
   );
 
-  const availableStock = flashSale
-    ? flashSale.quota > 0
-      ? Math.max(flashSale.quota - flashSale.sold, 0)
+  const availableStock = context.bookingSale
+    ? BOOKING_SALE_STOCK
+    : flashSale
+      ? flashSale.quota > 0
+        ? Math.max(flashSale.quota - flashSale.sold, 0)
+        : variant
+          ? variant.stock
+          : product.stock
       : variant
         ? variant.stock
-        : product.stock
-    : variant
-      ? variant.stock
-      : product.stock;
+        : product.stock;
 
   const unitPrice = flashSale
     ? normalizeMoney(flashSale.salePrice)
@@ -862,14 +896,35 @@ export function quoteCart(
   const total = fromCents(totalCents < 0n ? 0n : totalCents);
 
   // -- Down payment -------------------------------------------------------
-  const downPaymentAvailable =
-    context.storeSettings.payment.downPayment.active &&
-    lines.length > 0 &&
-    lines.every((line) => line.allowDp);
-  const downPaymentPercent = context.storeSettings.payment.downPayment.percent;
-  const downPaymentAmountCents = downPaymentAvailable
-    ? (totalCents * BigInt(downPaymentPercent) + 50n) / 100n
-    : 0n;
+  // Issue #380 (G10): a deposit-policy row wins; the store-wide rule applies
+  // only to a cart in which no line has one (owner decision M9).
+  const policyDownPayment = derivePolicyDownPayment({
+    lines: lines
+      .filter((line) => line.status === "ok")
+      .map((line) => ({
+        productId: line.productId,
+        quantity: line.quantity,
+        lineTotal: line.lineTotal
+      })),
+    policies: context.depositPolicies ?? new Map(),
+    subtotalCents,
+    taxCents: taxAddedCents,
+    upFrontExtrasCents: shippingCents + insuranceFeeCents,
+    totalCents: totalCents < 0n ? 0n : totalCents
+  });
+  const downPaymentAvailable = policyDownPayment.applies
+    ? true
+    : context.storeSettings.payment.downPayment.active &&
+      lines.length > 0 &&
+      lines.every((line) => line.allowDp);
+  const downPaymentPercent = policyDownPayment.applies
+    ? policyDownPayment.percentOfTotal
+    : context.storeSettings.payment.downPayment.percent;
+  const downPaymentAmountCents = policyDownPayment.applies
+    ? policyDownPayment.amountCents
+    : downPaymentAvailable
+      ? (totalCents * BigInt(downPaymentPercent) + 50n) / 100n
+      : 0n;
 
   const paymentMethods: { method: PaymentMethod; available: boolean }[] = [
     {

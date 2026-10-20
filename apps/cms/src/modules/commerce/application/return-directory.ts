@@ -40,6 +40,7 @@
  * Finalised order history is never edited: no order, order item or payment row
  * is updated. A return only ever ADDS rows.
  */
+import { orderHasBookingLink } from "./booking-order-guards";
 import { loadComponentFactsByItem } from "./bundle-directory";
 import { componentSourceLine } from "../domain/bundle";
 import { reverseOrderTaxForReturn } from "./tax-adapter-directory";
@@ -110,6 +111,8 @@ const DEFAULT_DEPS: ReturnDeps = { inventory: modeAwareInventoryPort };
 export type CreateReturnOutcome =
   | { kind: "feature_disabled" }
   | { kind: "order_not_found" }
+  /** Issue #380 (ADR-0045 G11) - a booking order is cancelled or refunded through the booking adapter (#381), not as a return of goods. */
+  | { kind: "booking_order" }
   | { kind: "order_not_returnable"; status: string }
   | { kind: "line_not_found"; orderItemId: string }
   | {
@@ -441,6 +444,9 @@ async function createReturnWrite(
   // request that is still running.
   const header = await lockOrderForSettlement(tx, tenantId, orderId);
   if (!header) return { kind: "order_not_found" };
+  if (await orderHasBookingLink(tx, tenantId, orderId)) {
+    return { kind: "booking_order" };
+  }
 
   const existing = await findIdempotencyRecord(
     tx,

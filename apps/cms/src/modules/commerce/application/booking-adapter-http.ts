@@ -6,6 +6,11 @@
  * specific code (control C-05).
  */
 import { fail } from "../../_shared/api-response";
+import {
+  holdRefusalHttp,
+  type HoldRefusal
+} from "../domain/booking-hold-to-order";
+import type { BookingReservationView } from "./booking-hold-to-order";
 import { requireCommerceFeatureForOwnerRoute } from "./commerce-feature-gate";
 
 export { readValidatedBody, requireIdempotencyKey } from "./register-http";
@@ -84,4 +89,74 @@ export function offeringLinkRefusalResponse(
 ): Response {
   const entry = REFUSALS[refusal];
   return fail(entry.status, entry.code, entry.message);
+}
+
+/** Issue #380 - a hold-to-order refusal as its frozen HTTP code (ADR-0045 D14, contracts section 4). `CART_CHANGED` carries the fresh quote. */
+export function holdRefusalResponse(
+  refusal: HoldRefusal,
+  headers?: Record<string, string>
+): Response {
+  const mapped = holdRefusalHttp(refusal);
+  return fail(
+    mapped.status,
+    mapped.code,
+    mapped.message,
+    {},
+    refusal.code === "CART_CHANGED" && refusal.quote !== undefined
+      ? { quote: refusal.quote }
+      : undefined,
+    headers
+  );
+}
+
+/** The `CommerceBookingReservationCreated` body. No customer field: the customer is derived through the order (X7). */
+export function createdReservationBody(
+  view: BookingReservationView,
+  replayed: boolean
+) {
+  return {
+    replayed,
+    orderId: view.orderId,
+    orderCode: view.orderCode,
+    reservation: {
+      id: view.reservationId,
+      reservationNo: view.reservationNo,
+      status: view.status,
+      holdExpiresAt: view.holdExpiresAt,
+      startsAt: view.startsAt,
+      endsAt: view.endsAt
+    },
+    settlement: view.settlement
+  };
+}
+
+/**
+ * The `CommerceBookingReservationView` body. `attention` is the STAFF-only
+ * flag; the shopper's view never carries it (contracts section 3.4). `refund`
+ * stays `null` until the cancellation issue records decisions.
+ */
+export function reservationViewBody(
+  view: BookingReservationView,
+  attention: { reason: string | null; open: boolean } | null
+) {
+  return {
+    reservationId: view.reservationId,
+    reservationNo: view.reservationNo,
+    orderId: view.orderId,
+    orderCode: view.orderCode,
+    orderStatus: view.orderStatus,
+    status: view.status,
+    linkStatus: view.linkStatus,
+    holdExpiresAt: view.holdExpiresAt,
+    startsAt: view.startsAt,
+    endsAt: view.endsAt,
+    settlement: view.settlement,
+    ...(attention
+      ? {
+          attentionReason: attention.reason,
+          attentionOpen: attention.open
+        }
+      : {}),
+    refund: null
+  };
 }

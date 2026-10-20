@@ -20,6 +20,7 @@ import { commercePreflightResponse } from "../../../../../../../modules/commerce
 import { withPublicCommerceTenant } from "../../../../../../../modules/commerce/application/public-commerce-tenant";
 import { normalizePhoneNumber } from "../../../../../../../modules/commerce/domain/phone-normalisation";
 import { validateCancelOrderInput } from "../../../../../../../modules/commerce/domain/public-request-validation";
+import { BookingOrderUseAdapterError } from "../../../../../../../modules/commerce/application/booking-order-guards";
 import { inventoryErrorResponse } from "../../../../../../../modules/commerce/application/commerce-inventory-http";
 
 /** `POST /api/v1/commerce/storefront/orders/{orderCode}/cancel` (Issue #29) — anonymous, only while `pending_payment` (`domain/order-status.ts`). */
@@ -111,6 +112,18 @@ export const POST: APIRoute = async ({ params, request, clientAddress }) => {
 
     return ok(result, {}, corsHeaders);
   } catch (error) {
+    if (error instanceof BookingOrderUseAdapterError) {
+      return fail(
+        409,
+        "BOOKING_ORDER_USE_ADAPTER",
+        error.message,
+        {},
+        undefined,
+        {
+          vary: "Origin"
+        }
+      );
+    }
     if (error instanceof OrderNotCancellableError) {
       return fail(409, "ORDER_NOT_CANCELLABLE", error.message, {}, undefined, {
         vary: "Origin"
