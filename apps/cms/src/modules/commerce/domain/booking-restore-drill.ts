@@ -118,8 +118,8 @@ export type TenantRestoreCounts = {
 
 export type LedgerFinding = {
   kind: string;
-  linkId: string;
-  orderId: string;
+  linkId: string | null;
+  orderId: string | null;
   reservationId: string;
   reservationStatus: string;
   attentionOpen: boolean;

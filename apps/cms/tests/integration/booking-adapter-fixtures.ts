@@ -142,7 +142,7 @@ export function createAdapterFixtures(config: AdapterFixtureConfig) {
         staffId
       );
       if (serviceId) {
-        await saveBookingServiceTenantUserId(tx, tenantId, serviceId);
+        await saveBookingServiceTenantUserId(tx, tenantId, serviceId, serviceId);
       }
     }, tenantId);
   }
@@ -188,7 +188,8 @@ export function createAdapterFixtures(config: AdapterFixtureConfig) {
           {
             offeringId: offering[0]!.id,
             productId: product[0]!.id,
-            quantityBasis: "nights"
+            quantityBasis: "nights",
+            resourceIds: []
           },
           `link-${code}`
         ),
@@ -257,7 +258,8 @@ export function createAdapterFixtures(config: AdapterFixtureConfig) {
           {
             offeringId: offering[0]!.id,
             productId: product[0]!.id,
-            quantityBasis: "booking"
+            quantityBasis: "booking",
+            resourceIds: []
           },
           `link-${code}`
         ),
