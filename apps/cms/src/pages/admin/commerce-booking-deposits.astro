@@ -17,11 +17,16 @@ import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
 import { getTranslatorFor } from "../../lib/i18n";
+import {
+  commerceLabel,
+  createCommerceLabels
+} from "../../lib/ui/commerce-admin-labels";
 import { fetchCommerceFeatures } from "../../modules/commerce/application/commerce-feature-gate";
 import { listServiceProductDepositPolicies } from "../../modules/commerce/application/booking-deposit-policies";
 
 const ssr = Astro.locals.ssrContext!;
 const { t, tn } = getTranslatorFor(Astro.locals.locale);
+const labels = createCommerceLabels(t);
 
 const screen = await loadAdminScreen({
   ssr,
@@ -172,7 +177,7 @@ const policyText = (policy: PolicyView): string => {
                         product.status === "active" ? "success" : "neutral"
                       }
                     >
-                      {product.status}
+                      {commerceLabel(labels.productStatus, product.status)}
                     </span>
                   </td>
                   <td data-label={t("Deposit")}>
