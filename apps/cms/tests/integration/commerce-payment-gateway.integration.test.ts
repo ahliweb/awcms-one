@@ -262,7 +262,8 @@ async function seedCustomerBearerSession(
 
   const token = generateCustomerSessionToken();
   const tokenHash = hashCustomerSessionToken(token);
-  const expiresAt = new Date(NOW.getTime() + 30 * 24 * 60 * 60 * 1000);
+  // Session validity is checked against the real clock (not the injected NOW), so expire relative to Date.now() — a fixed NOW + 30d became a time bomb (expired 2026-10-19).
+  const expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
 
   await inTenant(
     tenantId,
