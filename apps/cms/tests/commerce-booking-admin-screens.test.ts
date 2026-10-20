@@ -35,6 +35,20 @@ const SCREENS = {
       "commerce.booking_deposit_policies.update"
     ],
     routes: ["src/pages/api/v1/commerce/products/[id]/deposit-policy.ts"]
+  },
+  // Issue #381 (UX 11.4): the cancellation-policy versions screen.
+  "/admin/commerce-booking-policies": {
+    file: "src/pages/admin/commerce-booking-policies.astro",
+    claims: [
+      "commerce.booking_cancellation_policies.read",
+      "commerce.booking_cancellation_policies.create",
+      "commerce.booking_cancellation_policies.approve"
+    ],
+    routes: [
+      "src/pages/api/v1/commerce/booking/cancellation-policies/index.ts",
+      "src/pages/api/v1/commerce/booking/cancellation-policies/[id]/approve.ts",
+      "src/pages/api/v1/commerce/booking/cancellation-policies/[id]/retire.ts"
+    ]
   }
 } as const;
 
@@ -113,4 +127,62 @@ test("the settings screen carries the service-account field", () => {
   );
   expect(source).toContain("settings-bookingServiceTenantUserId");
   expect(source).toContain("bookingServiceTenantUserId");
+});
+
+test("the policy screen drafts, approves and retires through the confirm and step-up dialogs", () => {
+  const source = readFileSync(
+    SCREENS["/admin/commerce-booking-policies"].file,
+    "utf8"
+  );
+  expect(source).toContain("CommerceConfirmDialog");
+  expect(source).toContain("CommerceStepUpDialog");
+  expect(source).toContain("sendWithStepUp");
+  expect(source).toContain("buildPolicyDraftBody");
+  expect(source).toContain("Idempotency-Key");
+});
+
+// Issue #381 (UX 11.5): the booking panel on the order detail.
+describe("the booking panel of the order detail", () => {
+  const page = readFileSync(
+    "src/pages/admin/commerce-orders/[id].astro",
+    "utf8"
+  );
+  const panel = readFileSync(
+    "src/components/CommerceBookingPanel.astro",
+    "utf8"
+  );
+
+  test("the order screen claims the cancellation keys, all declared and off the ledger", () => {
+    const keys = [
+      "commerce.booking_reservation_links.read",
+      "commerce.booking_reservation_links.cancel",
+      "commerce.booking_refund_decisions.read",
+      "commerce.booking_refund_decisions.create",
+      "commerce.booking_refund_overrides.approve"
+    ];
+    const claimed = extractScreenClaims(page);
+    for (const key of keys) {
+      expect(claimed.has(key)).toBe(true);
+      expect(declared.has(key)).toBe(true);
+      expect(NOT_YET_SCREENED.includes(key)).toBe(false);
+    }
+  });
+
+  test("cancelling and overriding use native dialogs, never a raw browser one", () => {
+    expect(panel).toContain("<dialog");
+    expect(panel).toContain("CommerceStepUpDialog");
+    expect(panel).not.toMatch(/\b(?:window\.)?(?:confirm|alert|prompt)\(/);
+    expect(panel).not.toMatch(/\sstyle=/);
+    expect(panel).not.toMatch(/<h1[\s>]/);
+  });
+
+  test("a cancel is sent with an Idempotency-Key and the override re-sends the same key after step-up", () => {
+    expect(panel).toContain("Idempotency-Key");
+    expect(panel).toContain("sendWithStepUp");
+  });
+
+  test("the panel sends a reason and an amount, never a policy figure the server computes", () => {
+    expect(panel).toContain("buildStaffCancelBody");
+    expect(panel).not.toMatch(/policyRefund\s*:/);
+  });
 });

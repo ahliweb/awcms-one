@@ -68,6 +68,7 @@ import {
   remainingEligibleQuantity,
   type CreateReturnInput,
   type CreateReturnRefundInput,
+  type PlannedRefundLeg,
   type RefundablePayment
 } from "../domain/returns";
 import {
@@ -172,7 +173,7 @@ type PaymentRow = {
 };
 
 /** The payments of an order with what each can still give back, ready for {@link planRefundLegs}. */
-async function loadRefundablePayments(
+export async function loadRefundablePayments(
   tx: Bun.SQL,
   tenantId: string,
   orderId: string
@@ -1339,4 +1340,102 @@ export async function reconcileReturns(
     SELECT count(*)::int AS n FROM awcms_commerce_returns WHERE tenant_id = ${tenantId}
   `) as { n: number }[];
   return { checkedReturns: Number(counted[0]!.n), findings };
+}
+
+// ---------------------------------------------------------------------------
+// Booking cancellation (Issue #381, ADR-0045 D4/D9). Re-exported by
+// `booking-cancellation-refund.ts`, which documents the rules.
+// ---------------------------------------------------------------------------
+
+export type CancellationReturnInput = {
+  orderId: string;
+  /** The service line the reservation was sold on (the link's `order_item_id`). */
+  orderItemId: string;
+  /** The order's status now, recorded as the `from_status` of the order event. */
+  orderStatus: string;
+  /** The decision's source key; return and legs derive theirs from it. */
+  sourceKey: string;
+  finalCents: bigint;
+  legs: readonly PlannedRefundLeg[];
+  /** The tenant's service-account user (G3): the actor of the return and its legs. */
+  actorTenantUserId: string;
+  correlationId?: string;
+};
+
+/** Writes the return, its line, the order-event row and the pending legs; returns the return id. */
+export async function recordCancellationReturn(
+  tx: Bun.SQL,
+  tenantId: string,
+  input: CancellationReturnInput
+): Promise<string> {
+  const total = fromCents(input.finalCents);
+  const legTotal = input.legs.reduce((sum, leg) => sum + leg.amountCents, 0n);
+  if (legTotal !== input.finalCents) {
+    // Impossible by construction (the plan sums to its request); a mismatch is a
+    // defect and must roll everything back.
+    throw new Error(
+      `The refund legs (${fromCents(legTotal)}) do not add up to the decision (${total}).`
+    );
+  }
+
+  const item = (await tx`
+    SELECT product_id, variant_id, quantity
+    FROM awcms_commerce_order_items
+    WHERE tenant_id = ${tenantId} AND id = ${input.orderItemId}
+      AND order_id = ${input.orderId}
+  `) as { product_id: string; variant_id: string | null; quantity: number }[];
+  if (!item[0]) {
+    throw new Error("The reservation's order line could not be found.");
+  }
+
+  const returned = (await tx`
+    INSERT INTO awcms_commerce_returns (
+      tenant_id, order_id, kind, status, note, goods_gross, discount_share,
+      shipping_refund, tax_refund, refund_total, source_key, actor_tenant_user_id
+    )
+    VALUES (
+      ${tenantId}, ${input.orderId}, 'cancellation', 'open', NULL, ${total}, 0,
+      0, 0, ${total}, ${`${input.sourceKey}:return`}, ${input.actorTenantUserId}
+    )
+    RETURNING id
+  `) as { id: string }[];
+  const returnId = returned[0]!.id;
+
+  await tx`
+    INSERT INTO awcms_commerce_return_lines (
+      tenant_id, return_id, order_id, order_item_id, product_id, variant_id,
+      quantity, reason, disposition, stock_effect, goods_gross, discount_share,
+      refund_amount
+    )
+    VALUES (
+      ${tenantId}, ${returnId}, ${input.orderId}, ${input.orderItemId},
+      ${item[0].product_id}, ${item[0].variant_id}, ${Number(item[0].quantity)},
+      'booking_cancelled', 'not_applicable', 0, ${total}, 0, ${total}
+    )
+  `;
+
+  // The record the sales projections read to net the refund (ADR-0033 step 3).
+  await tx`
+    INSERT INTO awcms_commerce_order_events
+      (tenant_id, order_id, from_status, to_status, actor, note, return_id)
+    VALUES (
+      ${tenantId}, ${input.orderId}, ${input.orderStatus}, 'returned', 'admin',
+      ${`Booking cancellation ${returnId} recorded.`}, ${returnId}
+    )
+  `;
+
+  for (const [index, leg] of input.legs.entries()) {
+    await tx`
+      INSERT INTO awcms_commerce_refunds (
+        tenant_id, return_id, order_id, allocation_id, tender_type, amount,
+        destination, status, source_key, actor_tenant_user_id
+      )
+      VALUES (
+        ${tenantId}, ${returnId}, ${input.orderId}, ${leg.allocationId},
+        ${leg.tenderType}, ${fromCents(leg.amountCents)}, 'original_tender',
+        'pending', ${`${input.sourceKey}:leg:${index}`}, ${input.actorTenantUserId}
+      )
+    `;
+  }
+  return returnId;
 }

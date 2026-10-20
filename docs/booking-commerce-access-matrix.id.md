@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](booking-commerce-access-matrix.md)
 
-<!-- i18n-source-hash: sha256:a90474c7341d449fd3700c9093fc0d8501261889e2559d2b04a8959ad61f14aa -->
+<!-- i18n-source-hash: sha256:c04283bb727d5897f2ae7a291fb1fc2d3989b1b87100074a38ead755b400243b -->
 
 # Adapter booking-commerce — matriks RBAC / ABAC / RLS
 
@@ -175,6 +175,8 @@ Tidak satu pun yang berikut ada. Ini adalah pengujian yang disiratkan matriks in
 4. Pengujian integrasi dua-pelanggan-satu-tenant pada bagian 7.
 5. Pengujian override: tanpa izin, tanpa step-up, step-up basi, tanpa alasan, `final_refund` di atas `amount_paid`, dan pengulangan, semuanya menolak atau mengembalikan baris yang sama; keberhasilan menulis tepat satu peristiwa audit kritis [C-40].
 6. Regresi bahwa kasir dan penjadwal tidak dapat menjangkau override, dan bahwa memegang `commerce.refunds_offline.approve` saja tidak mengizinkannya [C-11, C-35, C-40].
+
+**Bukti yang dihasilkan issue #381.** Butir 2, 5 dan 6 ada untuk permukaan pembatalan, di `apps/cms/tests/integration/commerce-booking-cancellation-routes.integration.test.ts` (rute, persona, kepemilikan, skema ketat tamu) dan `commerce-booking-cancellation.integration.test.ts` (service, terhadap basis data nyata di bawah `awcms_app`): tujuh kunci `sql/1044` masing-masing ditegakkan oleh sebuah rute (butir 1, bersama `apps/cms/tests/commerce-booking-adapter-contract.test.ts` dan gerbang penegakan izin); persona tanpa kunci batal, keputusan, atau override ditolak `403`; override menolak tanpa step-up, step-up basi, alasan kosong atau pendek, `finalRefund` di atas yang dibayar (`REFUND_EXCEEDS_PAID`) dan yang tidak berubah, dan pemutaran ulang mengembalikan baris yang sama; keberhasilan menulis tepat satu event audit kritis `commerce.booking_refund_decision.overridden`; kasir dan penjadwal tidak dapat menjangkaunya, dan memegang `commerce.refunds_offline.approve` saja tidak mengizinkannya (butir 6). Penyusun tidak sama dengan penyetuju untuk versi kebijakan adalah aturan SoD tenant (bagian 8), bukan constraint.
 
 ## 10. Poin terbuka: diselesaikan oleh ADR adapter
 

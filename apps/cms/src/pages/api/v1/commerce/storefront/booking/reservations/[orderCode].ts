@@ -7,7 +7,11 @@ import {
 } from "../../../../../../../lib/security/rate-limit";
 import { parsePositiveIntSetting } from "../../../../../../../lib/security/env-thresholds";
 import { fail, ok } from "../../../../../../../modules/_shared/api-response";
-import { reservationViewBody } from "../../../../../../../modules/commerce/application/booking-adapter-http";
+import {
+  reservationRefundSummary,
+  reservationViewBody
+} from "../../../../../../../modules/commerce/application/booking-adapter-http";
+import { fetchDecisionForLink } from "../../../../../../../modules/commerce/application/booking-cancellation";
 import { buildReservationView } from "../../../../../../../modules/commerce/application/booking-hold-to-order";
 import {
   fetchReservationLinkForOrderCode,
@@ -113,7 +117,15 @@ export const GET: APIRoute = async ({
       if (!link) return { kind: "not_found" };
       const view = await buildReservationView(tx, tenant.tenantId, link);
       if (!view) return { kind: "not_found" };
-      return { kind: "found", body: reservationViewBody(view, null) };
+      const decision = await fetchDecisionForLink(tx, tenant.tenantId, link.id);
+      return {
+        kind: "found",
+        body: reservationViewBody(
+          view,
+          null,
+          reservationRefundSummary(decision, "shopper")
+        )
+      };
     }
   );
 

@@ -9847,6 +9847,102 @@ An equality probe on the tenant's partial unique barcode index. A barcode is an 
 | 404    | Resource not found.                                                           | [`ApiError`](#standard-error-envelope) |
 | 409    | `FEATURE_DISABLED` - the tenant's `barcode` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/booking/cancellation-policies` — Issue #381 (ADR-0045 D6, Q9; UX 11.4). The versions of the cancellation refund policies with their windows: active first, then drafts, then the history, newest version first. Gated on `commerce.booking_cancellation_policies.read` and the tenant's `booking` feature.
+
+- **operationId**: `listCommerceBookingCancellationPolicies`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name        | In    | Required | Type                               | Description                                                                     |
+| ----------- | ----- | -------- | ---------------------------------- | ------------------------------------------------------------------------------- |
+| `productId` | query | no       | string                             | A product uuid, or `default` for the tenant default; omitted lists every scope. |
+| `status`    | query | no       | enum(`draft`, `active`, `retired`) |                                                                                 |
+
+**Responses**
+
+| Status | Description                                        | Schema                                 |
+| ------ | -------------------------------------------------- | -------------------------------------- |
+| 200    | The versions (bounded to 200).                     | object                                 |
+| 400    | Validation error.                                  | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                        | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                        | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` - the `booking` feature is off. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/booking/cancellation-policies` — Issue #381 (ADR-0045 D6, Q9; UX 11.4). Author a DRAFT version of a cancellation policy with its windows. Gated on `commerce.booking_cancellation_policies.create` and the tenant's `booking` feature; requires `Idempotency-Key`.
+
+- **operationId**: `createCommerceBookingCancellationPolicy`
+- **Security**: bearerAuth + tenantHeader
+
+`productId: null` (or omitted) is the tenant default. A window says: a cancellation made at least `minHoursBeforeStart` whole hours before the arrival refunds `refundablePercent` of the amount paid; windows are evaluated greatest hours first. A window with more notice must not refund less than one with less notice (400). A version is immutable once approved and a draft is not edited: a change is a new draft (the next version number of the scope). Activating a draft is the separate `approve` call.
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): [`CommerceBookingCancellationPolicyDraft`](#schema-commercebookingcancellationpolicydraft)
+
+**Responses**
+
+| Status | Description                                    | Schema                                 |
+| ------ | ---------------------------------------------- | -------------------------------------- |
+| 201    | The draft version.                             | object                                 |
+| 400    | Validation error.                              | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                    | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                            | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED`, or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/booking/cancellation-policies/{id}/approve` — Issue #381 (ADR-0045 D6; access matrix 4 and 8). Activate a DRAFT policy version: the scope's active version is retired in the same transaction. Gated on `commerce.booking_cancellation_policies.approve` (high-risk) AND a fresh step-up, the tenant's `booking` feature and an `Idempotency-Key`.
+
+- **operationId**: `approveCommerceBookingCancellationPolicy`
+- **Security**: bearerAuth + tenantHeader
+
+From then on the version decides the refund of every NEW booking of the scope; a booking already made keeps the version in force when it was made. The approver is recorded. A stale or absent step-up is `403 STEP_UP_REQUIRED` with nothing written. A version that is not a draft is `409 INVALID_STATE`. Whether the author may also approve is a tenant separation-of-duties rule over the create and approve keys.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Responses**
+
+| Status | Description                                                                                            | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | The activated version, the version it replaced and `replayed`.                                         | object                                 |
+| 400    | Validation error.                                                                                      | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                            | [`ApiError`](#standard-error-envelope) |
+| 403    | `FORBIDDEN` or `STEP_UP_REQUIRED`.                                                                     | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED`, `INVALID_STATE` (not a draft), `POLICY_WINDOWS_INVALID` or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/booking/cancellation-policies/{id}/retire` — Issue #381 (ADR-0045 D6). End the ACTIVE version of a scope without a successor; the scope falls back to the tenant default and, with none, to no refund. Gated on `commerce.booking_cancellation_policies.approve` AND a fresh step-up, the tenant's `booking` feature and an `Idempotency-Key`.
+
+- **operationId**: `retireCommerceBookingCancellationPolicy`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Responses**
+
+| Status | Description                                                                 | Schema                                 |
+| ------ | --------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The retired version and `replayed`.                                         | object                                 |
+| 400    | Validation error.                                                           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                 | [`ApiError`](#standard-error-envelope) |
+| 403    | `FORBIDDEN` or `STEP_UP_REQUIRED`.                                          | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                         | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED`, `INVALID_STATE` (not active) or `IDEMPOTENCY_CONFLICT`. | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/booking/offering-links` — Issue #378 (ADR-0045 D1). The links between Booking offerings and service products, keyset-paginated, newest first. Identifiers and a status only - no price, no customer. Gated on `commerce.booking_offering_links.read` and the tenant's `booking` feature (default OFF).
 
 - **operationId**: `listCommerceBookingOfferingLinks`
@@ -10003,6 +10099,77 @@ The hold (through `BookingPort`, with the staff member as the acting user), the 
 | 403    | Access denied by RBAC/ABAC.                        | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.                                | [`ApiError`](#standard-error-envelope) |
 | 409    | `FEATURE_DISABLED` - the `booking` feature is off. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/booking/reservations/{id}/cancel` — Issue #381 (ADR-0045 D4, D8, D9, D12; contracts 3.5; controls C-10, C-11, C-40). Cancel a Booking reservation and record the refund decision. Gated on `commerce.booking_reservation_links.cancel` AND `commerce.booking_refund_decisions.create`, the tenant's `booking` feature and an `Idempotency-Key`; an inline `override` also needs `commerce.booking_refund_overrides.approve` and a fresh step-up.
+
+- **operationId**: `cancelCommerceBookingReservation`
+- **Security**: bearerAuth + tenantHeader
+
+The refund is the one the SERVER computes (policy version in force when the booking was made, original arrival, payment ledger): the body never carries an amount, and `amount`, `final_refund` and similar keys are a 400. The decision is idempotent - the same key and body replays it (`200`, `replayed: true`), the same key with another body is `409 IDEMPOTENCY_CONFLICT`, two concurrent cancels of one reservation produce one decision. Order of work in ONE transaction: Booking cancels (a refusal writes nothing), the link is released, the decision row is written and - for a positive refund - a return of kind `cancellation` carries `pending` refund legs, newest payment first, each capped at what its payment can still give back, under the tenant's service-account user. Settling a leg stays with the existing returns / refunds routes. A paid order is not edited; an unpaid one is cancelled. The optional `override` sets a final refund other than the computed one: it needs the override permission (a different authority from the offline refund approval), a fresh step-up (`403 STEP_UP_REQUIRED`, nothing written), a reason of 10 to 500 characters, and may never exceed the amount paid (`409 REFUND_EXCEEDS_PAID`); it writes a critical audit event.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | path   | yes      | string (uuid) |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string        | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): [`CommerceBookingStaffCancel`](#schema-commercebookingstaffcancel)
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                                                      | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Cancelled; the recorded decision. A replay answers the same decision with `replayed: true`.                                                                                                                                      | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                      | [`ApiError`](#standard-error-envelope) |
+| 403    | `FORBIDDEN` (a cancel permission, the decision permission or - with an override - the override permission is missing; nothing is written) or `STEP_UP_REQUIRED` (an override without a fresh step-up).                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED`, `BOOKING_SERVICE_ACTOR_NOT_CONFIGURED`, `INVALID_STATE` (already decided or past cancelling), `REFUND_EXCEEDS_PAID` (`details.amountPaid`), `IDEMPOTENCY_CONFLICT`, or a Booking refusal under its own code. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/booking/reservations/{id}/cancellation-quote` — Issue #381 (ADR-0045 D6; contracts 3.5). The non-binding refund quote of a reservation: which policy version applies, the whole hours before the ORIGINAL arrival, the amount paid and the refund the policy computes. Writes nothing. `id` is Booking's reservation id. Gated on `commerce.booking_reservation_links.read` and the tenant's `booking` feature.
+
+- **operationId**: `getCommerceBookingCancellationQuote`
+- **Security**: bearerAuth + tenantHeader
+
+The policy version is the one in force when the booking was made (a later version never changes what the guest was promised), the arrival is the original one across a reschedule chain, and the figures are computed from the payment ledger and the server clock - nothing in the request. `policySource: none` means no policy applied and the refund is `0.00` (ADR-0045 D6). A reservation that already has a decision, is released, or is past cancelling is `409 INVALID_STATE`. An unknown id and another tenant's id are the same 404.
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                                                               | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The quote.                                                                                                | object                                 |
+| 401    | Missing or invalid session.                                                                               | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                               | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED`, or `INVALID_STATE` - the reservation is already decided, released or past cancelling. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/booking/reservations/{id}/refund-decision` — Issue #381 (ADR-0045 D8). The refund decision of a cancelled reservation and the state of its refund legs. `id` is Booking's reservation id. Gated on `commerce.booking_refund_decisions.read` and the tenant's `booking` feature. Carries every figure and whether the refund was overridden - never the override reason or the actor, and no customer (X7).
+
+- **operationId**: `getCommerceBookingRefundDecision`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                                  | Schema                                 |
+| ------ | ---------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The decision and the return carrying its legs (`null` while no money moves). | object                                 |
+| 401    | Missing or invalid session.                                                  | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                  | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                          | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` - the `booking` feature is off.                           | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/campaigns` — Issue #114 (contract #106 ADR-0017 D9). Staff list of campaigns, newest first. Gated on `commerce.campaigns.read`.
 
@@ -14133,6 +14300,56 @@ An OPTIONAL `Authorization: Bearer <customer session token>` (`customerBearer`, 
 | 200    | The reservation view without staff-only fields.                              | object                                 |
 | 401    | UNAUTHENTICATED - a bearer was presented but is not a live customer session. | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.                                                          | [`ApiError`](#standard-error-envelope) |
+| 429    | Rate limited.                                                                | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/booking/reservations/{orderCode}/cancel` — Issue #381 (ADR-0045 D4, D9; contracts 3.5; controls C-05, C-10, C-32). The shopper confirms a quoted cancellation of their OWN reservation. Anonymous, with an optional `customerBearer`; requires `Idempotency-Key`; behind the `booking` feature (off = the neutral 404). It never accepts an amount or an override.
+
+- **operationId**: `cancelCommerceStorefrontBookingReservation`
+- **Security**: none (public endpoint)
+
+An OPTIONAL `Authorization: Bearer <customer session token>`: present and live → the reservation must be the account's own; present and dead → `401 UNAUTHENTICATED`; absent → the order's `phone` in the body proves ownership (a wrong phone, an unknown code and another customer's code are one neutral 404). The body is `{ acknowledgedRefund, phone? }` and nothing else - `final_refund`, `amount` and every other money or override field is a 400 from the strict schema, so a guest can never set a figure. The refund is the one the server computes; `acknowledgedRefund` is only COMPARED with it: a difference is `409 QUOTE_CHANGED` carrying `details.computedRefund`, with nothing cancelled. The answer is the status and the final refund only. The `Idempotency-Key` is namespaced by the acting account or the guest's phone: the same key and request replays (`200`), another request is `409 IDEMPOTENCY_CONFLICT`. The refund legs are planned under the tenant's service-account user and are settled by the existing refund routes.
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description                                                                                                                                                                                                     |
+| ----------------- | ------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `orderCode`       | path   | yes      | string |                                                                                                                                                                                                                 |
+| `Idempotency-Key` | header | yes      | string | Deduplicates a retried HTTP request. 1 to 255 visible ASCII characters (0x21-0x7E); any other value is refused at the edge with `400 IDEMPOTENCY_KEY_INVALID` before the route runs, on every route (ADR-0129). |
+
+**Request body** (required): [`CommerceBookingCustomerCancel`](#schema-commercebookingcustomercancel)
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                  | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Cancelled (or the replay of the same cancellation); the status and the final refund.                                                                                                         | object                                 |
+| 400    | Validation error.                                                                                                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED - a bearer was presented but is not a live customer session.                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 403    | `ACCOUNT_BLOCKED`.                                                                                                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                          | [`ApiError`](#standard-error-envelope) |
+| 409    | `QUOTE_CHANGED` (`details.computedRefund`; nothing was cancelled), `INVALID_STATE`, `BOOKING_SERVICE_ACTOR_NOT_CONFIGURED`, `IDEMPOTENCY_CONFLICT`, or a Booking refusal under its own code. | [`ApiError`](#standard-error-envelope) |
+| 429    | Rate limited.                                                                                                                                                                                | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/storefront/booking/reservations/{orderCode}/cancellation-quote` — Issue #381 (ADR-0045 D6; contracts 3.5). The non-binding refund quote for cancelling a shopper's OWN reservation now: the policy version that applies, the whole hours before arrival, the amount paid and the computed refund, shown BEFORE confirming. Identified by a live `customerBearer` or by the order's `phone`; an unknown code, another customer's code and another tenant's code are one neutral 404. Behind the `booking` feature (off = the neutral 404).
+
+- **operationId**: `getCommerceStorefrontBookingCancellationQuote`
+- **Security**: none (public endpoint)
+
+**Parameters**
+
+| Name        | In    | Required | Type   | Description                                            |
+| ----------- | ----- | -------- | ------ | ------------------------------------------------------ |
+| `orderCode` | path  | yes      | string |                                                        |
+| `phone`     | query | no       | string | Required unless a valid `customerBearer` is presented. |
+
+**Responses**
+
+| Status | Description                                                                  | Schema                                 |
+| ------ | ---------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The quote.                                                                   | object                                 |
+| 401    | UNAUTHENTICATED - a bearer was presented but is not a live customer session. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                          | [`ApiError`](#standard-error-envelope) |
+| 409    | `INVALID_STATE` - the reservation is already decided or past cancelling.     | [`ApiError`](#standard-error-envelope) |
 | 429    | Rate limited.                                                                | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/storefront/cart/quote` — Anonymous, cross-origin cart quote (Issue 29, `commerce-storefront-endpoints.md`). Tenant resolved from the request Origin/Host — no bearer, no permission check. Read-only. Issue #118 (ADR-0016 D6): an OPTIONAL `Authorization: Bearer <customer session token>` is accepted (never required) — when present and valid, and the account's own `commerce.customers.level` is 2, 3, or 4, every line is priced at that tier's `price_level_{n}` (falling back to `price` when the merchant never set that tier), so the price shown here always matches the price `POST .../orders` charges the same account moments later.
@@ -21976,6 +22193,47 @@ Enum values: `text`, `integer`, `decimal`, `boolean`, `date`, `enum`.
 "text"
 ```
 
+### Schema: CommerceBookingCancellationPolicyDraft
+
+| Field             | Type                                                       | Required | Nullable | Description |
+| ----------------- | ---------------------------------------------------------- | -------- | -------- | ----------- |
+| `productId`       | string (uuid)                                              | no       | yes      |             |
+| `refundBasis`     | enum(`whole_stay`, `per_night`)                            | no       | no       |             |
+| `noShowRetention` | enum(`retain_deposit`, `retain_all`, `refund_per_windows`) | no       | no       |             |
+| `windows`         | array of object                                            | yes      | no       |             |
+
+**Example**
+
+```json
+{
+  "productId": "00000000-0000-0000-0000-000000000000",
+  "refundBasis": "whole_stay",
+  "noShowRetention": "retain_deposit",
+  "windows": [
+    {
+      "minHoursBeforeStart": 0,
+      "refundablePercent": "string"
+    }
+  ]
+}
+```
+
+### Schema: CommerceBookingCustomerCancel
+
+| Field                | Type   | Required | Nullable | Description                                                                                                                       |
+| -------------------- | ------ | -------- | -------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `acknowledgedRefund` | string | yes      | no       | The quote's `computedRefund` the shopper saw. Compared with the figure recomputed under the order lock; never used as the refund. |
+| `phone`              | string | no       | no       | The order's phone; required unless a valid `customerBearer` is presented.                                                         |
+
+**Example**
+
+```json
+{
+  "acknowledgedRefund": "string",
+  "phone": "string"
+}
+```
+
 ### Schema: CommerceBookingOfferingLinkInput
 
 | Field           | Type                      | Required | Nullable | Description |
@@ -22030,6 +22288,25 @@ Issue #380. Exactly one of `stay` and `startsAt`, by the offering's granularity 
     "method": "manual_bank"
   },
   "notes": "string"
+}
+```
+
+### Schema: CommerceBookingStaffCancel
+
+| Field        | Type   | Required | Nullable | Description                                                                                                                       |
+| ------------ | ------ | -------- | -------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `reasonCode` | string | yes      | no       | A closed short code, never free text about a person.                                                                              |
+| `override`   | object | no       | no       | Honoured only for a caller holding `commerce.booking_refund_overrides.approve` with a fresh step-up; never above the amount paid. |
+
+**Example**
+
+```json
+{
+  "reasonCode": "string",
+  "override": {
+    "finalRefund": "string",
+    "reason": "string"
+  }
 }
 ```
 
@@ -26084,6 +26361,7 @@ consumer/subscriber contract in this file).
 - `awcms.comments.comment.approved` — A comment became publicly visible, either by auto-approval under the thread policy or by a moderator's approve decision. Producers: `comments/application/comment-service.ts`'s `submitComment` and `comments/application/comment-moderation.ts`'s `moderateComment`. The reply-notification consumer keys off THIS event rather than `comment.submitted`, so a comment still held for moderation never triggers a notification.
 - `awcms.comments.comment.submitted` — A comment was submitted against a published, public commentable resource (ADR-0041). Producer: `comments/application/comment-service.ts`'s `submitComment`. The payload carries opaque references only — comment and thread id, resource type, the server-derived public URL, and the resulting status. Never the body text, the author address, or any identity hash.
 - `awcms.comments.reply.created` — A submitted comment was a reply to an existing comment. Producer: `comments/application/comment-service.ts`'s `submitComment`, published alongside `comment.submitted` so a consumer can distinguish thread replies without re-reading the row. The recipient address is resolved from encrypted storage by the dispatcher at send time and is never carried here.
+- `awcms.commerce.booking_refund.decided` — A booking cancellation's refund decision was recorded (Issue #381, ADR-0045 D8, threat controls C-10/C-40): the policy source, the amount paid, the policy-computed refund, the final refund and whether a manager or finance override made them differ. Producer: `commerce/application/booking-cancellation.ts`'s `cancelBookingReservation`, in the same transaction as the decision row, the released reservation link and - for a positive refund - the pending refund legs. Aggregate: the order. Payload: `decisionId`, `orderId`, `reservationId`, `triggerKind`, `policySource`, `amountPaid`, `computedRefund`, `finalRefund`, `overridden` - never a customer name/phone, a payment reference, the override reason or the actor.
 - `awcms.commerce.booking_reservation_link.attention_raised` — The booking adapter could not reconcile an order with its Booking reservation on its own (Issue #380, ADR-0045 G7, threat controls C-08/C-09): a deposit settled after the hold lapsed (`deposit_after_expiry`), the confirmation was refused (`confirm_failed`), or the reservation was cancelled or moved outside the adapter while the order holds money (`cancelled_externally_paid`, `rescheduled_externally`). Producer: `commerce/application/booking-attention.ts`'s `raiseBookingAttention`, in the same transaction as the flag on the reservation link; fired once per open flag. Aggregate: the order. Payload: `orderId`, `reservationId`, `reason` - never a customer name/phone, an amount or a payment reference.
 - `awcms.commerce.document.delivery_requested` — A delivery of a commercial document (receipt, invoice, quotation version or work-order notice) was requested (Issue #295, ADR-0034): handed to the e-mail or commerce WhatsApp outbox, or refused at the hand-off (a suppressed address). Producer: `commerce/application/document-delivery-directory.ts`'s `requestDocumentDelivery`, in the same transaction as the outbox row. Aggregate: the delivery request. Payload: `deliveryId`, `targetType`, `targetId`, `docNumber`, `channel`, `status` (`queued` or `not_enqueued`), `failureReason` - never a recipient or message content; the provider outcome lives in the outbox, not in this event.
 - `awcms.commerce.document.issued` — A numbered receipt or invoice document was issued for a finalized order (Issue #286, ADR-0029 D1-D3): an immutable snapshot. Producer: `commerce/application/document-directory.ts`'s `issueDocument`, in the same transaction as the numbered row. Aggregate: the document. Payload: `documentId`, `docType`, `number`, `sourceType`, `sourceId`, `sourceVersion`, `total` - never the customer.

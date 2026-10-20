@@ -115,6 +115,9 @@ export const COMMERCE_ORDER_SETTLED_EVENT_TYPE = "awcms.commerce.order.settled";
 /** Issue #380 (ADR-0045 G7) - the booking adapter could not reconcile an order with its reservation; an operator must look. */
 export const COMMERCE_BOOKING_ATTENTION_RAISED_EVENT_TYPE =
   "awcms.commerce.booking_reservation_link.attention_raised";
+/** Issue #381 (ADR-0045 D8) - a booking cancellation's refund decision was recorded (amounts and the policy source; an override is flagged, never explained). */
+export const COMMERCE_BOOKING_REFUND_DECIDED_EVENT_TYPE =
+  "awcms.commerce.booking_refund.decided";
 export const COMMERCE_PAYMENT_REVERSED_EVENT_TYPE =
   "awcms.commerce.payment.reversed";
 /** Issue #284 (ADR-0028) — POS register-session events. */
@@ -415,6 +418,12 @@ export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
       eventVersion: COMMERCE_EVENT_VERSION,
       description:
         "The booking adapter could not reconcile an order with its Booking reservation on its own (Issue #380, ADR-0045 G7, threat controls C-08/C-09): a deposit settled after the hold lapsed (deposit_after_expiry), the confirmation was refused (confirm_failed), or the reservation was cancelled or moved outside the adapter while the order holds money (cancelled_externally_paid, rescheduled_externally). Producer: commerce/application/booking-attention.ts's raiseBookingAttention, in the same transaction as the flag on the reservation link; fired once per open flag. Aggregate: the order. Carries orderId, reservationId and the closed reason code - never a customer name/phone, an amount or a payment reference."
+    },
+    {
+      eventType: COMMERCE_BOOKING_REFUND_DECIDED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A booking cancellation's refund decision was recorded (Issue #381, ADR-0045 D8, threat controls C-10/C-40): the policy source, the amount paid, the policy-computed refund, the final refund and whether a manager or finance override made them differ. Producer: commerce/application/booking-cancellation.ts's cancelBookingReservation, in the same transaction as the decision row, the released reservation link and - for a positive refund - the pending refund legs. Aggregate: the order. Payload: decisionId, orderId, reservationId, triggerKind, policySource, amountPaid, computedRefund, finalRefund, overridden - never a customer name/phone, a payment reference, the override reason or the actor."
     },
     {
       eventType: COMMERCE_PAYMENT_REVERSED_EVENT_TYPE,

@@ -11,8 +11,10 @@ import { fail, ok } from "../../../../../../modules/_shared/api-response";
 import { defineTenantRoute } from "../../../../../../modules/_shared/tenant-route";
 import {
   requireBookingFeature,
+  reservationRefundSummary,
   reservationViewBody
 } from "../../../../../../modules/commerce/application/booking-adapter-http";
+import { fetchDecisionForLink } from "../../../../../../modules/commerce/application/booking-cancellation";
 import { buildReservationView } from "../../../../../../modules/commerce/application/booking-hold-to-order";
 import { fetchReservationLinkByReservationId } from "../../../../../../modules/commerce/application/booking-reservation-links";
 import { COMMERCE_BOOKING_RESERVATION_LINKS_ACTIVITY_CODE } from "../../../../../../modules/commerce/domain/booking-adapter-permissions";
@@ -38,11 +40,17 @@ export const GET = defineTenantRoute({
     if (!link) return fail(404, "RESOURCE_NOT_FOUND", "Reservation not found.");
     const view = await buildReservationView(tx, tenantId, link);
     if (!view) return fail(404, "RESOURCE_NOT_FOUND", "Reservation not found.");
+    const decision = await fetchDecisionForLink(tx, tenantId, link.id);
     return ok(
-      reservationViewBody(view, {
-        reason: link.attentionReason,
-        open: link.attentionReason !== null && link.attentionResolvedAt === null
-      })
+      reservationViewBody(
+        view,
+        {
+          reason: link.attentionReason,
+          open:
+            link.attentionReason !== null && link.attentionResolvedAt === null
+        },
+        reservationRefundSummary(decision, "staff")
+      )
     );
   }
 });

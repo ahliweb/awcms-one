@@ -5,8 +5,9 @@
  * moment the tenant's `booking` feature is off (it defaults OFF).
  *
  * Issue #385 - the offering-link and deposit-policy screens
- * (`docs/booking-ux-flows.md` section 11). The cancellation-policy and refund
- * screens arrive with #381.
+ * (`docs/booking-ux-flows.md` section 11). Issue #381 adds the
+ * cancellation-policy versions screen (11.4); the refund-override dialog (11.5)
+ * lives on the order detail, not in the sidebar.
  */
 import type { ModuleNavigationEntry } from "../../_shared/module-contract";
 
@@ -23,6 +24,13 @@ export const BOOKING_ADAPTER_NAVIGATION: ModuleNavigationEntry[] = [
     path: "/admin/commerce-booking-deposits",
     order: 30,
     requiredPermission: "commerce.booking_deposit_policies.read",
+    requiredFeature: { moduleKey: "commerce", feature: "booking" }
+  },
+  {
+    labelKey: "admin.layout.nav_commerce_booking_policies",
+    path: "/admin/commerce-booking-policies",
+    order: 31,
+    requiredPermission: "commerce.booking_cancellation_policies.read",
     requiredFeature: { moduleKey: "commerce", feature: "booking" }
   }
 ];

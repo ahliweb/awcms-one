@@ -657,6 +657,21 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/booking/cancellation-policies/[id]/approve.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/booking/cancellation-policies/[id]/retire.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/booking/cancellation-policies/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/booking/offering-links/[id].ts",
       "workClass": "interactive",
       "source": "factory"
@@ -673,6 +688,21 @@
     },
     {
       "path": "src/pages/api/v1/commerce/booking/reservations/[id].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/booking/reservations/[id]/cancel.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/booking/reservations/[id]/cancellation-quote.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/booking/reservations/[id]/refund-decision.ts",
       "workClass": "interactive",
       "source": "factory"
     },

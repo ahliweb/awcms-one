@@ -6,7 +6,9 @@ DoR artifact 7 of epic [#280](https://github.com/ahliweb/awcms-one/issues/280), 
 
 > **Drafts only. Every path and event below is "draft — not in the live spec".** Nothing here is a file under `apps/cms/openapi/` or `apps/cms/asyncapi/`, so `ROUTE_PARITY_EXEMPTIONS` in `apps/cms/scripts/api-spec-check.ts` stays empty and no gate sees these paths ([ADR-0040](adr/0040-aw-business-platform-capability-ownership-and-boundaries.md) D7). The YAML blocks are written in the shape the real fragments use so that a later implementation can lift them, but they are prose in a Markdown page: they are not validated, bundled or served. Table, permission, error-code and event names are proposals that the implementation issue may adjust. Do not read this page as describing the current API; [`status.md`](status.md) and the files under `apps/cms/openapi/` do that.
 
-> **Implementation status (issue #378 and #380).** Paths 1 to 3 (offering links) were implemented by issue #378. Issue #380 implemented paths **4, 5, 8 and 9** (hold-to-order, staff and storefront; the reservation read, staff and storefront) and added one read the drafts did not list, `GET /api/v1/commerce/booking/reconciliation` (control C-09), as `commerce.booking_reservation_links.{create,read}` (`sql/1041`). Where they differ from section 3, the live shape is `apps/cms/openapi/modules/commerce.openapi.yaml` and [`api.md`](api.md): `resourceId` is required (a pool is not offered in v1), `payment.method` is required, the view adds `orderStatus` and `holdExpiresAt`, `stays[]` is not returned (the reservation read is a table `SELECT`, not an event fact), the staff create has no `registerSessionId` (the POS variant belongs to the check-in issue), and the added error codes are `BOOKING_ORDER_USE_ADAPTER`, `PAYMENT_METHOD_UNAVAILABLE` and `BOOKING_SERVICE_ACTOR_NOT_CONFIGURED`. The AsyncAPI event of section 5.2 is live as `awcms.commerce.booking_reservation_link.attention_raised` with the reason enum of ADR-0045 G7, and the consumers of section 5.1 that exist are the confirmer, the two cancellers and, beyond the six frozen names, the hold releaser and the late-payment flagger. **Still drafts and deferred:** paths 10 to 17 (cancellation, refund override, reschedule, no-show, POS check-in), the `refund_decided` event, and the storefront availability and offering reads, which need upstream `BookingPort` additions (U1: an offering read, an availability read, a reservation read by id or number, and the check-in, check-out and no-show verbs). The `lateCancellation` fact is ignored (G6).
+> **Implementation status (issue #381).** Issue #381 implemented the cancellation policy routes, the quote and the cancel of section 3.5 (staff and storefront), and `GET .../refund-decision`. **Section 3.6 (the standalone override route) is not built**: the override is an inline `override: { finalRefund, reason }` of the staff cancel (ADR-0045 D8), authorised by `commerce.booking_refund_overrides.approve` plus a fresh step-up, and the error for an override above what was paid is `REFUND_EXCEEDS_PAID` (409, amending D14's `OVERRIDE_EXCEEDS_PAID`, which no code emitted). A guest cancel is a strict body (`reasonCode`, `acknowledgedRefund`; `final_refund`, `amount` and any extra key are `400`). The live shape is `apps/cms/openapi/modules/commerce.openapi.yaml` and [`api.md`](api.md). The new event is `awcms.commerce.booking_refund.decided`; `return.recorded` is not emitted for a cancellation.
+>
+> **Implementation status (issue #378 and #380).** Paths 1 to 3 (offering links) were implemented by issue #378. Issue #380 implemented paths **4, 5, 8 and 9** (hold-to-order, staff and storefront; the reservation read, staff and storefront) and added one read the drafts did not list, `GET /api/v1/commerce/booking/reconciliation` (control C-09), as `commerce.booking_reservation_links.{create,read}` (`sql/1041`). Where they differ from section 3, the live shape is `apps/cms/openapi/modules/commerce.openapi.yaml` and [`api.md`](api.md): `resourceId` is required (a pool is not offered in v1), `payment.method` is required, the view adds `orderStatus` and `holdExpiresAt`, `stays[]` is not returned (the reservation read is a table `SELECT`, not an event fact), the staff create has no `registerSessionId` (the POS variant belongs to the check-in issue), and the added error codes are `BOOKING_ORDER_USE_ADAPTER`, `PAYMENT_METHOD_UNAVAILABLE` and `BOOKING_SERVICE_ACTOR_NOT_CONFIGURED`. The AsyncAPI event of section 5.2 is live as `awcms.commerce.booking_reservation_link.attention_raised` with the reason enum of ADR-0045 G7, and the consumers of section 5.1 that exist are the confirmer, the two cancellers and, beyond the six frozen names, the hold releaser and the late-payment flagger. **Still drafts and deferred** (issue #381 has since built the cancellation, quote and `refund_decided` event): paths 10 to 17 (reschedule, no-show, POS check-in), and the storefront availability and offering reads, which need upstream `BookingPort` additions (U1: an offering read, an availability read, a reservation read by id or number, and the check-in, check-out and no-show verbs). The `lateCancellation` fact is ignored (G6).
 
 ## 1. Inputs and the conventions they fix
 
@@ -73,7 +75,7 @@ paths:
             name: status,
             in: query,
             required: false,
-            schema: { type: string, enum: [active, unlinked] }
+            schema: { type: string, enum: [active, unlinked] },
           }
       responses:
         "200":
@@ -91,7 +93,7 @@ paths:
                         type: array
                         items:
                           {
-                            $ref: "#/components/schemas/CommerceBookingOfferingLink"
+                            $ref: "#/components/schemas/CommerceBookingOfferingLink",
                           }
                       nextCursor: { type: string, nullable: true }
         "401": { $ref: "#/components/responses/Unauthorized" }
@@ -139,7 +141,7 @@ paths:
           content:
             {
               application/json:
-                { schema: { $ref: "#/components/schemas/ApiError" } }
+                { schema: { $ref: "#/components/schemas/ApiError" } },
             }
   /api/v1/commerce/booking/offering-links/{id}:
     patch:
@@ -152,7 +154,7 @@ paths:
             name: id,
             in: path,
             required: true,
-            schema: { type: string, format: uuid }
+            schema: { type: string, format: uuid },
           }
         - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
@@ -367,7 +369,7 @@ paths:
                 phone:
                   {
                     type: string,
-                    description: "Required unless a valid customerBearer is presented instead (unchanged)."
+                    description: "Required unless a valid customerBearer is presented instead (unchanged).",
                   }
                 purpose:
                   type: string
@@ -395,7 +397,7 @@ paths:
                       expectedAmount:
                         {
                           type: string,
-                          description: "numeric(14,2), computed by the server inside the order lock; exactly the gross_amount sent to the provider."
+                          description: "numeric(14,2), computed by the server inside the order lock; exactly the gross_amount sent to the provider.",
                         }
         "409":
           description: >-
@@ -418,7 +420,7 @@ paths:
             name: id,
             in: path,
             required: true,
-            schema: { type: string, format: uuid }
+            schema: { type: string, format: uuid },
           }
         - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
@@ -456,14 +458,14 @@ paths:
           content:
             {
               application/json:
-                { schema: { $ref: "#/components/schemas/ApiError" } }
+                { schema: { $ref: "#/components/schemas/ApiError" } },
             }
         "503":
           description: "GATEWAY_UNAVAILABLE, as the existing session route."
           content:
             {
               application/json:
-                { schema: { $ref: "#/components/schemas/ApiError" } }
+                { schema: { $ref: "#/components/schemas/ApiError" } },
             }
 ```
 
@@ -486,19 +488,19 @@ components:
             deposit:
               {
                 type: string,
-                description: "The order's snapshotted dp_amount (the release threshold). Equals total on a whole-total order."
+                description: "The order's snapshotted dp_amount (the release threshold). Equals total on a whole-total order.",
               }
             balanceDue:
               {
                 type: string,
-                description: "total minus settled, never negative."
+                description: "total minus settled, never negative.",
               }
             settledAt:
               {
                 type: string,
                 format: date-time,
                 nullable: true,
-                description: "Set once outstanding is zero: the settled time of the ledger leg that got it there."
+                description: "Set once outstanding is zero: the settled time of the ledger leg that got it there.",
               }
 paths:
   /api/v1/commerce/booking/reservations/{id}:
@@ -513,7 +515,7 @@ paths:
             in: path,
             required: true,
             schema: { type: string, format: uuid },
-            description: "The reservation id (Booking's), resolved to its active link."
+            description: "The reservation id (Booking's), resolved to its active link.",
           }
       responses:
         "200":
@@ -526,7 +528,7 @@ paths:
                   success: { type: boolean, enum: [true] }
                   data:
                     {
-                      $ref: "#/components/schemas/CommerceBookingReservationView"
+                      $ref: "#/components/schemas/CommerceBookingReservationView",
                     }
         "401": { $ref: "#/components/responses/Unauthorized" }
         "403": { $ref: "#/components/responses/Forbidden" }
@@ -543,14 +545,14 @@ paths:
             name: orderCode,
             in: path,
             required: true,
-            schema: { type: string }
+            schema: { type: string },
           }
         - {
             name: phone,
             in: query,
             required: false,
             schema: { type: string },
-            description: "Required unless a valid customerBearer is presented."
+            description: "Required unless a valid customerBearer is presented.",
           }
       responses:
         "200":
@@ -563,21 +565,21 @@ paths:
                   success: { type: boolean, enum: [true] }
                   data:
                     {
-                      $ref: "#/components/schemas/CommerceBookingReservationView"
+                      $ref: "#/components/schemas/CommerceBookingReservationView",
                     }
         "401":
           description: "UNAUTHENTICATED — a bearer was presented but is not a live customer session."
           content:
             {
               application/json:
-                { schema: { $ref: "#/components/schemas/ApiError" } }
+                { schema: { $ref: "#/components/schemas/ApiError" } },
             }
         "404":
           description: "An unknown code and another customer's code are indistinguishable."
           content:
             {
               application/json:
-                { schema: { $ref: "#/components/schemas/ApiError" } }
+                { schema: { $ref: "#/components/schemas/ApiError" } },
             }
 components:
   schemas:
@@ -600,8 +602,8 @@ components:
                 checked_in,
                 completed,
                 no_show,
-                expired
-              ]
+                expired,
+              ],
           }
         linkStatus: { type: string, enum: [active, superseded, released] }
         startsAt: { type: string, format: date-time }
@@ -613,7 +615,7 @@ components:
             type: string,
             enum: [deposit_after_expiry, confirm_failed],
             nullable: true,
-            description: "Staff route only."
+            description: "Staff route only.",
           }
         refund:
           type: object
@@ -642,7 +644,7 @@ paths:
             name: id,
             in: path,
             required: true,
-            schema: { type: string, format: uuid }
+            schema: { type: string, format: uuid },
           }
       responses:
         "200":
@@ -655,7 +657,7 @@ paths:
                   success: { type: boolean, enum: [true] }
                   data:
                     {
-                      $ref: "#/components/schemas/CommerceBookingCancellationQuote"
+                      $ref: "#/components/schemas/CommerceBookingCancellationQuote",
                     }
         "401": { $ref: "#/components/responses/Unauthorized" }
         "403": { $ref: "#/components/responses/Forbidden" }
@@ -665,7 +667,7 @@ paths:
           content:
             {
               application/json:
-                { schema: { $ref: "#/components/schemas/ApiError" } }
+                { schema: { $ref: "#/components/schemas/ApiError" } },
             }
   /api/v1/commerce/storefront/booking/reservations/{orderCode}/cancellation-quote:
     get:
@@ -679,7 +681,7 @@ paths:
             name: orderCode,
             in: path,
             required: true,
-            schema: { type: string }
+            schema: { type: string },
           }
         - { name: phone, in: query, required: false, schema: { type: string } }
       responses:
@@ -693,7 +695,7 @@ paths:
                   success: { type: boolean, enum: [true] }
                   data:
                     {
-                      $ref: "#/components/schemas/CommerceBookingCancellationQuote"
+                      $ref: "#/components/schemas/CommerceBookingCancellationQuote",
                     }
         "401": { $ref: "#/components/responses/Unauthorized" }
         "404": { $ref: "#/components/responses/NotFound" }
@@ -703,8 +705,8 @@ paths:
             content:
               {
                 application/json:
-                  { schema: { $ref: "#/components/schemas/ApiError" } }
-              }
+                  { schema: { $ref: "#/components/schemas/ApiError" } },
+              },
           }
   /api/v1/commerce/booking/reservations/{id}/cancel:
     post:
@@ -726,7 +728,7 @@ paths:
             name: id,
             in: path,
             required: true,
-            schema: { type: string, format: uuid }
+            schema: { type: string, format: uuid },
           }
         - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
@@ -740,7 +742,7 @@ paths:
                 reasonCode:
                   {
                     type: string,
-                    description: "A closed short code, never free text about a person."
+                    description: "A closed short code, never free text about a person.",
                   }
                 override:
                   { $ref: "#/components/schemas/CommerceBookingRefundOverride" }
@@ -755,7 +757,7 @@ paths:
                   success: { type: boolean, enum: [true] }
                   data:
                     {
-                      $ref: "#/components/schemas/CommerceBookingRefundDecision"
+                      $ref: "#/components/schemas/CommerceBookingRefundDecision",
                     }
         "400": { $ref: "#/components/responses/BadRequest" }
         "401": { $ref: "#/components/responses/Unauthorized" }
@@ -764,7 +766,7 @@ paths:
           content:
             {
               application/json:
-                { schema: { $ref: "#/components/schemas/ApiError" } }
+                { schema: { $ref: "#/components/schemas/ApiError" } },
             }
         "404": { $ref: "#/components/responses/NotFound" }
         "409":
@@ -772,7 +774,7 @@ paths:
           content:
             {
               application/json:
-                { schema: { $ref: "#/components/schemas/ApiError" } }
+                { schema: { $ref: "#/components/schemas/ApiError" } },
             }
   /api/v1/commerce/storefront/booking/reservations/{orderCode}/cancel:
     post:
@@ -786,7 +788,7 @@ paths:
             name: orderCode,
             in: path,
             required: true,
-            schema: { type: string }
+            schema: { type: string },
           }
         - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
@@ -801,7 +803,7 @@ paths:
                 acknowledgedRefund:
                   {
                     type: string,
-                    description: "The quote's computedRefund the shopper saw. Compared with the figure recomputed under the order lock; never used as the refund."
+                    description: "The quote's computedRefund the shopper saw. Compared with the figure recomputed under the order lock; never used as the refund.",
                   }
       responses:
         "200":
@@ -824,7 +826,7 @@ paths:
           content:
             {
               application/json:
-                { schema: { $ref: "#/components/schemas/ApiError" } }
+                { schema: { $ref: "#/components/schemas/ApiError" } },
             }
 components:
   schemas:
@@ -835,7 +837,7 @@ components:
         hoursBeforeStart:
           {
             type: integer,
-            description: "Whole hours, floored; negative after arrival."
+            description: "Whole hours, floored; negative after arrival.",
           }
         policySource: { type: string, enum: [product, tenant_default, none] }
         policyId: { type: string, format: uuid, nullable: true }
@@ -845,7 +847,7 @@ components:
         amountPaid:
           {
             type: string,
-            description: "Σ succeeded payments − Σ succeeded reversals (ADR-0025 D1): the ceiling for any refund."
+            description: "Σ succeeded payments − Σ succeeded reversals (ADR-0025 D1): the ceiling for any refund.",
           }
         computedRefund: { type: string }
     CommerceBookingRefundDecision:
@@ -864,7 +866,7 @@ components:
             type: string,
             format: uuid,
             nullable: true,
-            description: "Set once the refund legs are planned; null while no money moves."
+            description: "Set once the refund legs are planned; null while no money moves.",
           }
 ```
 
@@ -895,7 +897,7 @@ paths:
             name: id,
             in: path,
             required: true,
-            schema: { type: string, format: uuid }
+            schema: { type: string, format: uuid },
           }
         - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
@@ -915,14 +917,14 @@ paths:
                   success: { type: boolean, enum: [true] }
                   data:
                     {
-                      $ref: "#/components/schemas/CommerceBookingRefundDecision"
+                      $ref: "#/components/schemas/CommerceBookingRefundDecision",
                     }
         "400":
           description: "VALIDATION_ERROR — reason shorter than 10 or longer than 500 characters, or matching a personal-data pattern the order-note validator already rejects; finalRefund not a numeric(14,2) string."
           content:
             {
               application/json:
-                { schema: { $ref: "#/components/schemas/ApiError" } }
+                { schema: { $ref: "#/components/schemas/ApiError" } },
             }
         "401": { $ref: "#/components/responses/Unauthorized" }
         "403":
@@ -935,7 +937,7 @@ paths:
           content:
             {
               application/json:
-                { schema: { $ref: "#/components/schemas/ApiError" } }
+                { schema: { $ref: "#/components/schemas/ApiError" } },
             }
         "404": { $ref: "#/components/responses/NotFound" }
         "409":
@@ -943,7 +945,7 @@ paths:
           content:
             {
               application/json:
-                { schema: { $ref: "#/components/schemas/ApiError" } }
+                { schema: { $ref: "#/components/schemas/ApiError" } },
             }
 components:
   schemas:
@@ -954,7 +956,7 @@ components:
         finalRefund:
           {
             type: string,
-            description: "numeric(14,2); 0 up to the amount paid."
+            description: "numeric(14,2); 0 up to the amount paid.",
           }
         reason: { type: string, minLength: 10, maxLength: 500 }
 ```
@@ -983,7 +985,7 @@ paths:
             name: id,
             in: path,
             required: true,
-            schema: { type: string, format: uuid }
+            schema: { type: string, format: uuid },
           }
         - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
@@ -1017,7 +1019,7 @@ paths:
                         {
                           type: string,
                           format: uuid,
-                          description: "The replacement reservation."
+                          description: "The replacement reservation.",
                         }
                       supersededReservationId: { type: string, format: uuid }
                       priceDifference:
@@ -1028,18 +1030,18 @@ paths:
                           amount:
                             {
                               type: string,
-                              description: "Priced by the order path (nights x unit price, tax, discounts), never by Booking."
+                              description: "Priced by the order path (nights x unit price, tax, discounts), never by Booking.",
                             }
                           vehicle:
                             {
                               type: string,
                               enum: [supplementary_order, order_line],
-                              description: "OPEN: see section 7 point 4."
+                              description: "OPEN: see section 7 point 4.",
                             }
                           orderCode: { type: string, nullable: true }
                       settlement:
                         {
-                          $ref: "#/components/schemas/CommerceBookingSettlement"
+                          $ref: "#/components/schemas/CommerceBookingSettlement",
                         }
         "400": { $ref: "#/components/responses/BadRequest" }
         "401": { $ref: "#/components/responses/Unauthorized" }
@@ -1050,7 +1052,7 @@ paths:
           content:
             {
               application/json:
-                { schema: { $ref: "#/components/schemas/ApiError" } }
+                { schema: { $ref: "#/components/schemas/ApiError" } },
             }
 ```
 
@@ -1078,7 +1080,7 @@ paths:
             name: id,
             in: path,
             required: true,
-            schema: { type: string, format: uuid }
+            schema: { type: string, format: uuid },
           }
         - $ref: "#/components/parameters/IdempotencyKey"
       responses:
@@ -1092,7 +1094,7 @@ paths:
                   success: { type: boolean, enum: [true] }
                   data:
                     {
-                      $ref: "#/components/schemas/CommerceBookingRefundDecision"
+                      $ref: "#/components/schemas/CommerceBookingRefundDecision",
                     }
         "401": { $ref: "#/components/responses/Unauthorized" }
         "403": { $ref: "#/components/responses/Forbidden" }
@@ -1102,7 +1104,7 @@ paths:
           content:
             {
               application/json:
-                { schema: { $ref: "#/components/schemas/ApiError" } }
+                { schema: { $ref: "#/components/schemas/ApiError" } },
             }
 ```
 
@@ -1133,7 +1135,7 @@ paths:
             name: id,
             in: path,
             required: true,
-            schema: { type: string, format: uuid }
+            schema: { type: string, format: uuid },
           }
         - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
@@ -1161,8 +1163,8 @@ paths:
                               manual_qris,
                               manual_bank_transfer,
                               gift_card,
-                              store_credit
-                            ]
+                              store_credit,
+                            ],
                         }
                       amount: { type: string }
       responses:
@@ -1181,11 +1183,11 @@ paths:
                       change:
                         {
                           type: string,
-                          description: "Cash change, derived by the server."
+                          description: "Cash change, derived by the server.",
                         }
                       settlement:
                         {
-                          $ref: "#/components/schemas/CommerceBookingSettlement"
+                          $ref: "#/components/schemas/CommerceBookingSettlement",
                         }
         "400": { $ref: "#/components/responses/BadRequest" }
         "401": { $ref: "#/components/responses/Unauthorized" }
@@ -1196,7 +1198,7 @@ paths:
           content:
             {
               application/json:
-                { schema: { $ref: "#/components/schemas/ApiError" } }
+                { schema: { $ref: "#/components/schemas/ApiError" } },
             }
 ```
 
@@ -1209,7 +1211,7 @@ Booking refusals keep the code Booking gives them (the final union is fixed by B
 | `OFFERING_NOT_LINKED`                               | 409  | The offering has no active link to a product                                                                         |
 | `OFFERING_ALREADY_LINKED`, `PRODUCT_ALREADY_LINKED` | 409  | One active link per offering and per product                                                                         |
 | `PRODUCT_NOT_SERVICE`, `QUANTITY_BASIS_MISMATCH`    | 409  | The linked product is not `service`, or `quantityBasis` disagrees with the offering's granularity                    |
-| `POINTS_DEPOSIT_NOT_COMBINABLE`                     | 409  | ADR-0041 D8; the live stable code is `LOYALTY_REDEMPTION_DEPOSIT_CONFLICT` (#363), this name is superseded by it    |
+| `POINTS_DEPOSIT_NOT_COMBINABLE`                     | 409  | ADR-0041 D8; the live stable code is `LOYALTY_REDEMPTION_DEPOSIT_CONFLICT` (#363), this name is superseded by it     |
 | `PURPOSE_NOT_ALLOWED`                               | 409  | A `deposit` or `balance` session on an order whose state or deposit policy does not admit it (ADR-0041 D1, D3)       |
 | `SESSION_IN_PROGRESS`                               | 409  | Another gateway session for the order is still live (one live session per order, ADR-0041 D5.1; fixed by #379)       |
 | `QUOTE_CHANGED`                                     | 409  | The recomputed refund differs from the figure the shopper acknowledged; nothing was cancelled                        |
@@ -1242,49 +1244,49 @@ channels:
     messages:
       {
         BookingReservationConfirmed:
-          { $ref: "#/components/messages/BookingReservationEvent" }
+          { $ref: "#/components/messages/BookingReservationEvent" },
       }
   awcms.booking.reservation.cancelled:
     address: awcms.booking.reservation.cancelled
     messages:
       {
         BookingReservationCancelled:
-          { $ref: "#/components/messages/BookingReservationEvent" }
+          { $ref: "#/components/messages/BookingReservationEvent" },
       }
   awcms.booking.reservation.expired:
     address: awcms.booking.reservation.expired
     messages:
       {
         BookingReservationExpired:
-          { $ref: "#/components/messages/BookingReservationEvent" }
+          { $ref: "#/components/messages/BookingReservationEvent" },
       }
   awcms.booking.reservation.rescheduled:
     address: awcms.booking.reservation.rescheduled
     messages:
       {
         BookingReservationRescheduled:
-          { $ref: "#/components/messages/BookingReservationEvent" }
+          { $ref: "#/components/messages/BookingReservationEvent" },
       }
   awcms.booking.reservation.checked_in:
     address: awcms.booking.reservation.checked_in
     messages:
       {
         BookingReservationCheckedIn:
-          { $ref: "#/components/messages/BookingReservationEvent" }
+          { $ref: "#/components/messages/BookingReservationEvent" },
       }
   awcms.booking.reservation.completed:
     address: awcms.booking.reservation.completed
     messages:
       {
         BookingReservationCompleted:
-          { $ref: "#/components/messages/BookingReservationEvent" }
+          { $ref: "#/components/messages/BookingReservationEvent" },
       }
   awcms.booking.reservation.no_show:
     address: awcms.booking.reservation.no_show
     messages:
       {
         BookingReservationNoShow:
-          { $ref: "#/components/messages/BookingReservationEvent" }
+          { $ref: "#/components/messages/BookingReservationEvent" },
       }
   awcms.commerce.order.paid:
     address: awcms.commerce.order.paid
@@ -1351,7 +1353,7 @@ components:
           resourceIds,
           offeringIds,
           partySize,
-          occurredAt
+          occurredAt,
         ]
       properties:
         reservationId: { type: string, format: uuid }
@@ -1369,8 +1371,8 @@ components:
                 checked_in,
                 completed,
                 no_show,
-                expired
-              ]
+                expired,
+              ],
           }
         previousStatus: { type: [string, "null"] }
         startsAt: { type: string, format: date-time }
@@ -1381,7 +1383,7 @@ components:
         externalRefType:
           {
             type: [string, "null"],
-            description: "The adapter's own opaque pair; commerce_order."
+            description: "The adapter's own opaque pair; commerce_order.",
           }
         externalRef: { type: [string, "null"], description: "The order id." }
         lateCancellation: { type: boolean }
@@ -1447,7 +1449,7 @@ channels:
     messages:
       {
         BookingRefundDecided:
-          { $ref: "#/components/messages/BookingRefundDecided" }
+          { $ref: "#/components/messages/BookingRefundDecided" },
       }
   awcms.commerce.booking_reservation_link.attention_raised:
     address: awcms.commerce.booking_reservation_link.attention_raised
@@ -1465,7 +1467,7 @@ operations:
     action: send
     channel:
       {
-        $ref: "#/channels/awcms.commerce.booking_reservation_link.attention_raised"
+        $ref: "#/channels/awcms.commerce.booking_reservation_link.attention_raised",
       }
 components:
   messages:
@@ -1513,7 +1515,7 @@ components:
                     amountPaid,
                     computedRefund,
                     finalRefund,
-                    overridden
+                    overridden,
                   ]
                 properties:
                   decisionId: { type: string, format: uuid }
@@ -1522,7 +1524,7 @@ components:
                   triggerKind:
                     {
                       type: string,
-                      enum: [customer_cancel, staff_cancel, no_show]
+                      enum: [customer_cancel, staff_cancel, no_show],
                     }
                   policySource:
                     { type: string, enum: [product, tenant_default, none] }
@@ -1532,7 +1534,7 @@ components:
                   overridden:
                     {
                       type: boolean,
-                      description: "No reason text and no actor name in the payload; the actor is in the envelope and the reason in the decision row and audit log."
+                      description: "No reason text and no actor name in the payload; the actor is in the envelope and the reason in the decision row and audit log.",
                     }
     AttentionRaised:
       contentType: application/json
@@ -1543,7 +1545,7 @@ components:
             properties:
               eventType:
                 {
-                  const: awcms.commerce.booking_reservation_link.attention_raised
+                  const: awcms.commerce.booking_reservation_link.attention_raised,
                 }
               eventVersion: { const: "1.0" }
               aggregateType: { const: order }
@@ -1557,7 +1559,7 @@ components:
                   reason:
                     {
                       type: string,
-                      enum: [deposit_after_expiry, confirm_failed]
+                      enum: [deposit_after_expiry, confirm_failed],
                     }
 ```
 
@@ -1591,7 +1593,7 @@ The drafts above implement these threat-model controls ([threat model](aw-busine
 | 3   | Step-up wiring                    | D10: handler-level, platform TTL, existing `STEP_UP_REQUIRED`                                                                                                                                                         |
 | 4   | The reschedule difference vehicle | D7: `supplementary_order`; in v1 the amount is zero and the vehicle null (equal-duration reschedules only). Owner may revise                                                                                          |
 | 5   | Check-in with a balance due       | D19: a tenant setting `checkin_requires_settlement`, default `false`; `BALANCE_NOT_SETTLED` only when on. Owner may revise                                                                                            |
-| 6   | Name of the settlement event      | D16: `awcms.commerce.order.settled`, fixed and implemented by #379 (ADR-0041 D7), emitted for a deposit order only; no adapter consumer needs it; the section 5 channel is corrected to the shipped payload  |
+| 6   | Name of the settlement event      | D16: `awcms.commerce.order.settled`, fixed and implemented by #379 (ADR-0041 D7), emitted for a deposit order only; no adapter consumer needs it; the section 5 channel is corrected to the shipped payload           |
 | 7   | Hold-to-order compensation        | D17: hold first, order second; on failure release the hold through the port; an unreleasable hold expires                                                                                                             |
 | 8   | Customer reschedule request       | D18: no customer route in v1; deferred to #359                                                                                                                                                                        |
 | -   | Error code names (section 4)      | D14: the adapter-owned set is frozen; the ADR-0041-domain codes are fixed by #379: `PURPOSE_NOT_ALLOWED`, `SESSION_IN_PROGRESS`                                                                                       |

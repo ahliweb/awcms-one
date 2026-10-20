@@ -176,6 +176,21 @@ export const COMMERCE_BOOKING_ATTENTION_RAISED_EVENT_TYPE =
   "awcms.commerce.booking_reservation_link.attention_raised";
 
 /**
+ * Booking cancellation refund decision (Issue #381, ADR-0045 D8, contracts
+ * section 5.2). `awcms.commerce.booking_refund.decided` announces that a
+ * cancellation was decided: the policy source, the amount paid, the
+ * policy-computed refund and the final one, and whether a manager or finance
+ * override made them differ. Written in the same transaction as the decision
+ * row, on the ORDER aggregate. The payload carries ids, the closed policy
+ * source and amounts - never a customer name, phone, payment reference, the
+ * override reason or the actor (the audit log carries the actor). Registered in
+ * `domain-event-runtime/domain/event-type-registry.ts` and
+ * `asyncapi/awcms-domain-events.asyncapi.yaml` in the same change.
+ */
+export const COMMERCE_BOOKING_REFUND_DECIDED_EVENT_TYPE =
+  "awcms.commerce.booking_refund.decided";
+
+/**
  * POS register-session events (Issue #284, ADR-0028). All four ride on the
  * REGISTER SESSION aggregate (`commerce.register_session`, aggregate id = the
  * session id), so a consumer rebuilding "what happened in this shift" reads

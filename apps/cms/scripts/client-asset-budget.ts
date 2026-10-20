@@ -1703,8 +1703,37 @@ export const READER_BUDGET_BYTES = 24_000;
  * shared `AdminLayout` CSS bundle is not additive across lineages, so the
  * lineage delta moves by a few hundred bytes without any commerce change).
  * The BookingPort and `CommissionAccrualPort.void` additions are server code.
+ *
+ * **Set to 466,200 B by merging the #427 sync into the booking adapter chain
+ * (awcms-one#381 base: #378 and #380 on top of the v10.9.0 and `3c7fc29`
+ * syncs)**, MEASURED 466,168 B on the merged build - the same figure the #427
+ * sync alone measured, because the adapter issues so far (the booking settings,
+ * offering links, reservation hold-to-order, and the order consumers) are
+ * server code, API routes and migrations, and added no client script or
+ * stylesheet byte. The budget is the measurement rounded up to the next 100 B.
+ *
+ * **Issue #385 (booking admin screens)** measured 461,999 B on its own build
+ * (458,746 B before it; it set 462,000 B): `/admin/commerce-booking-links`
+ * (create with a per-attempt `Idempotency-Key`, unlink through the shared
+ * confirm dialog, the carried-over no-policy notice),
+ * `/admin/commerce-booking-deposits` (the percent / fixed kind toggle and the
+ * policy body builder), the shared `commerce-booking-client` module, the
+ * service-account field in the settings script, the stylesheet share and the
+ * new catalogue entries. Merged into the booking chain (issue #381) the figure
+ * below is a fresh measurement of the merged build, not a sum.
+ *
+ * **Issue #381 (booking cancellation and refund)** measured 480,763 B on the
+ * build that carries #385 and the #427 sync (the previous constant was 466,200 B;
+ * it sets 480,800 B, the measurement rounded up to the next 100 B): `/admin/commerce-booking-policies` (the windows editor,
+ * approve and retire with the shared confirm and step-up dialogs), the booking
+ * panel on `/admin/commerce-orders/[id]` (the quote, the cancel and the
+ * refund-override dialog), the `commerce-booking-refund-client` and
+ * `commerce-stepup-client` modules, the stylesheet share and the roughly 115 new
+ * catalogue entries the two screens read in both languages. Nothing was
+ * duplicated per screen: the step-up prompt is one native `<dialog>` component
+ * used by both, and the money / window rules are one module with a unit test.
  */
-export const APP_BUDGET_BYTES = 466_300;
+export const APP_BUDGET_BYTES = 480_800;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.
