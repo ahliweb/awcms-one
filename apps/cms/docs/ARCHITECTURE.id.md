@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](ARCHITECTURE.md)
 
-<!-- i18n-source-hash: sha256:dfa896b5e8bdf3d1e78dc4db7a8b7248e0c55e3cbd5cb131e760868cb883292b -->
+<!-- i18n-source-hash: sha256:c3b244ccf31efbc776fb3fe68121301c3ca996537936f67b27c7143bad6edb6f -->
 
 # Arsitektur AWCMS
 
@@ -25,6 +25,23 @@ bawah). Repo ini punya **34 modul terdaftar**, migration `sql/001-sql/224` plus 
 `FORCE` di seluruh tabel tenant-scoped, pemisahan role database, dan admin UI read+write
 (Issue #166, #171). Dokumen ini menjelaskan apa yang **ada di kode saat ini**. Untuk detail
 per modul, lihat `README.md` masing-masing di `src/modules/<module>/`.
+
+## Permukaan produk dan aplikasi persona (ADR-0146)
+
+[ADR-0146](adr/0146-persona-apps-prefer-lynx-in-consumer-repos-astro-keeps-admin-and-public-web.id.md)
+(**Proposed** sampai ditinjau maintainer; ia **menyempurnakan** ADR-0055 dan ADR-0070, tidak
+men-supersede-nya) menetapkan teknologi tiap jenis permukaan. **Setiap permukaan admin
+(SISTEM di repo ini, USER di `awcms-astro`, dan admin PWA yang dapat dipasang) serta setiap
+permukaan web publik tetap Astro**; **aplikasi persona** (pelanggan, kurir, pengemudi, mitra,
+petugas gudang dan lapangan) **memilih LynxJS + ReactLynx** sebagai _kandidat_, di **repo
+konsumennya sendiri**, sebagai klien kontrak API resmi — bukan backend kedua, bukan workspace
+Lynx di sini. "Aplikasi" didefinisikan oleh fungsi persona, bukan URL, perangkat, atau
+kemampuan dipasang, dan apa pun yang mengelola sistem adalah admin. Lynx for Web hanya boleh
+setelah proof of concept lulus, dan tidak ada aplikasi persona dirilis sebelum gerbang PoC
+Android/iOS/HarmonyOS/Web dan Bun (ADR-0146 §5) tercatat. **Keadaan kode saat ini: tidak ada
+kode, dependensi, atau konfigurasi Lynx di repo ini**, dan `tests/product-surface-policy.test.ts`
+gagal bila ada yang muncul (`scripts/lib/product-surface-policy.ts` memuat tabel permukaan dan
+pengklasifikasi).
 
 ## Stack
 

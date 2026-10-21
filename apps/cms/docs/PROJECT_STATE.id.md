@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](PROJECT_STATE.md)
 
-<!-- i18n-source-hash: sha256:a2f73f108dd648957a3d1d5ae215e3403b67afe309190d2434086e5ac8322a5b -->
+<!-- i18n-source-hash: sha256:8cbd0947db8e7c0413ffbbefbe5644a657c963da0f8f825f94b8e371d5a2ea9e -->
 
 # AWCMS — Project State & Continuation
 
@@ -108,6 +108,22 @@ Model tata kelola dipakai-langsung/tanpa-repo-turunan (ADR-0034 §2/§3) **tidak
   endpoint HTTP kini menulis baris `awcms_audit_events` ke log tenant platform, sedangkan
   job tidak menulis apa pun, tak berubah dari biaya yang diterima ADR-0052.
 
+**Perubahan 20 Oktober 2026 — teknologi apa yang dipakai tiap permukaan produk (ADR-0146, Proposed):**
+
+- [ADR-0146](adr/0146-persona-apps-prefer-lynx-in-consumer-repos-astro-keeps-admin-and-public-web.id.md)
+  menyempurnakan ADR-0055 dan ADR-0070 (tidak men-supersede keduanya). **Setiap permukaan
+  admin dan setiap permukaan web publik tetap Astro**; **aplikasi persona** (pelanggan,
+  kurir, pengemudi, mitra, petugas gudang dan lapangan) **memilih LynxJS + ReactLynx** sebagai
+  _kandidat_, di **repo konsumennya sendiri**, sebagai klien kontrak API resmi. "Aplikasi"
+  didefinisikan oleh fungsi persona, bukan URL, perangkat, atau kemampuan dipasang; Lynx for
+  Web memerlukan proof of concept yang lulus; tidak ada aplikasi Lynx dirilis sebelum gerbang
+  PoC (Android/iOS/HarmonyOS/Web + Bun) tercatat. Status **Proposed** sampai ditinjau
+  maintainer. **Tidak ada yang berkaitan dengan Lynx di repo ini dan
+  `tests/product-surface-policy.test.ts` gagal bila ada yang muncul** (dependensi `@lynx-js/*`,
+  impor di `src/`, `lynx.config.*`); tabel permukaan dan pengklasifikasinya adalah
+  `scripts/lib/product-surface-policy.ts`. Pekerjaan khusus konsumen hidup di repo konsumen
+  (mis. `ahliweb/awcms-one#445`).
+
 ## 2. Inventori ringkas
 
 <!-- project-state-inventory:mulai -->
@@ -116,14 +132,14 @@ Model tata kelola dipakai-langsung/tanpa-repo-turunan (ADR-0034 §2/§3) **tidak
 
 | Aspek                              | Nilai (ter-generate)                                                                   | Sumber kebenaran                                                                        |
 | ---------------------------------- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| Versi                              | **10.9.0**                                                                             | `package.json`                                                                          |
+| Versi                              | **10.10.2**                                                                            | `package.json`                                                                          |
 | Changeset menunggu (per tipe bump) | _jalankan perintah di kolom kanan_                                                     | `grep -h '^"awcms":' .changeset/*.md \| sort \| uniq -c`                                |
-| Commit sejak rilis terakhir        | _jalankan perintah di kolom kanan_                                                     | `git rev-list --count v10.9.0..HEAD`                                                    |
+| Commit sejak rilis terakhir        | _jalankan perintah di kolom kanan_                                                     | `git rev-list --count v10.10.2..HEAD`                                                   |
 | Modul base                         | **34** (lihat daftar di ARCHITECTURE.md)                                               | `src/modules/index.ts`                                                                  |
 | Migrasi                            | **354** (`sql/001`–`1053`)                                                             | `ls sql/`                                                                               |
-| ADR                                | **0000**–**0145** (`0000` = template; status ADR tertinggi: **Accepted**)              | `ls docs/adr/`                                                                          |
+| ADR                                | **0000**–**0146** (`0000` = template; status ADR tertinggi: **Proposed**)              | `ls docs/adr/`                                                                          |
 | Layar admin                        | **112** berkas `.astro` di `src/pages/admin/`; **0 dari 34** modul tanpa `navigation:` | `find src/pages/admin -name '*.astro'`, `grep -L 'navigation:' src/modules/*/module.ts` |
-| Berkas `.astro`                    | **142** (87.107 baris) — soal typecheck lihat §6                                       | `find src -name '*.astro'`                                                              |
+| Berkas `.astro`                    | **142** (87.135 baris) — soal typecheck lihat §6                                       | `find src -name '*.astro'`                                                              |
 | Gerbang                            | **68** di rantai `bun run check`                                                       | `scripts.check` di `package.json`, dipisah pada `&&`                                    |
 | Kontrak                            | OpenAPI modular per-modul + AsyncAPI; `MODULE_CONTRACT_VERSION` **4.6.0**              | `openapi/`, `asyncapi/`, `_shared/module-contract.ts`                                   |
 
