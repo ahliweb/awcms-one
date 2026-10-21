@@ -14,6 +14,7 @@ import {
   ORDER_STATUSES,
   type OrderStatus
 } from "../../../../../../modules/commerce/domain/order-status";
+import { BookingOrderUseAdapterError } from "../../../../../../modules/commerce/application/booking-order-guards";
 import { inventoryErrorResponse } from "../../../../../../modules/commerce/application/commerce-inventory-http";
 
 /** `PATCH /api/v1/commerce/orders/{id}/status` — admin status transition, enforced through `domain/order-status.ts`'s legal-transition table (Issue #29). */
@@ -68,6 +69,11 @@ export const PATCH = defineTenantRoute({
       if (!updated) return fail(404, "RESOURCE_NOT_FOUND", "Order not found.");
       return ok({ status: prepared.status });
     } catch (error) {
+      // tx-swallow-ok: PaymentNotSettledError,
+      // IllegalOrderStatusTransitionError, InventoryLedgerRefusedError are
+      // raised by application code before a write, or after the directory
+      // rolled its failed statement back to a savepoint, so the transaction
+      // is healthy.
       if (error instanceof PaymentNotSettledError) {
         // Issue #285: `paid` is derived from the payment ledger — record the
         // payment (`POST .../orders/{id}/payments`) and the order moves by
@@ -79,6 +85,11 @@ export const PATCH = defineTenantRoute({
           {},
           { outstanding: error.outstanding }
         );
+      }
+      if (error instanceof BookingOrderUseAdapterError) {
+        // Issue #380 (ADR-0045 G11): a paid booking order is cancelled through
+        // its reservation, never by the generic status edge.
+        return fail(409, "BOOKING_ORDER_USE_ADAPTER", error.message);
       }
       if (error instanceof IllegalOrderStatusTransitionError) {
         return fail(

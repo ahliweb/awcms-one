@@ -434,9 +434,58 @@ export async function setPrincipalCredentialForIdentity(
   identityId: string,
   passwordHash: string
 ): Promise<void> {
-  const principalId = await resolvePrincipalIdForIdentity(tx, identityId);
+  let principalId = await resolvePrincipalIdForIdentity(tx, identityId);
 
-  if (principalId) await setPrincipalCredential(tx, principalId, passwordHash);
+  if (!principalId) {
+    // #1035 follow-up. An identity that was never linked (ADR-0085's
+    // missed-writer case) is still the same PERSON as the principal of its
+    // address - that is how `login.ts` and `verifyCurrentPassword` find the
+    // credential. Skipping the write here left the reset silently doing nothing
+    // where it matters: login kept verifying the OLD principal credential, the
+    // epoch never moved, and an attacker's old password kept working everywhere.
+    //
+    // So resolve by address exactly as they do, and LINK the identity while we
+    // are here. Linking is what `requirePrincipalIdForEnrollment` already does
+    // for the same case, it is idempotent, and without it the identity's own
+    // sessions never join the epoch check (the fragment joins through
+    // `principal_id`), so the reset could not end them.
+    const rows = (await tx`
+      SELECT login_identifier FROM awcms_identities WHERE id = ${identityId}
+    `) as { login_identifier: string }[];
+    const loginIdentifier = rows[0]?.login_identifier;
+
+    if (!loginIdentifier) return;
+
+    principalId = await linkIdentityToPrincipal(
+      tx,
+      identityId,
+      loginIdentifier
+    );
+  }
+
+  await setPrincipalCredential(tx, principalId, passwordHash);
+}
+
+/**
+ * Creates the principal for an address if it does not exist and returns ONLY its
+ * id — Issue #1082.
+ *
+ * Goes through `awcms_ensure_principal_id(text)` (`sql/310`, SECURITY DEFINER),
+ * not a direct INSERT/SELECT: the setup wizard (`awcms_setup`) holds no privilege
+ * on `awcms_principals` at all, and `ensurePrincipalForEmail` also reads
+ * `password_hash`. The function does the same `ON CONFLICT DO NOTHING` + re-read
+ * and returns the id alone, so every caller converges on one principal per
+ * address with neither writing nor reading a secret.
+ */
+async function ensurePrincipalIdForEmail(
+  tx: Bun.SQL,
+  email: string
+): Promise<string> {
+  const rows = (await tx`
+    SELECT awcms_ensure_principal_id(${normalizePrincipalEmail(email)}) AS id
+  `) as { id: string }[];
+
+  return rows[0]!.id;
 }
 
 /**
@@ -464,15 +513,15 @@ export async function linkIdentityToPrincipal(
   identityId: string,
   loginIdentifier: string
 ): Promise<string> {
-  const principal = await ensurePrincipalForEmail(tx, loginIdentifier);
+  const principalId = await ensurePrincipalIdForEmail(tx, loginIdentifier);
 
   await tx`
     UPDATE awcms_identities
-    SET principal_id = ${principal.id}
+    SET principal_id = ${principalId}
     WHERE id = ${identityId} AND principal_id IS NULL
   `;
 
-  return principal.id;
+  return principalId;
 }
 
 /**

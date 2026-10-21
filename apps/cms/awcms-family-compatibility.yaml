@@ -52,6 +52,32 @@ family:
 # FAMILY_OWNED_CONTRACT_VERSIONS in src/modules/_shared/family-contract.ts and
 # given teeth by a SEMANTIC contract test that goes RED if the control drifts.
 contracts:
+  # 4.6.0 sejak ADR-0142 (Issue #985): field opsional
+  # `SubjectDataDescriptor.subjectVia` (+ tipe `SubjectDataJoin`) DITAMBAHKAN
+  # (penambahan murni, jadi MINOR). Tabel yang hanya terjangkau subjek lewat
+  # baris induk (satu lompatan, foreign key ke tabel deskriptor lain) kini bisa
+  # diekspor; PENGHAPUSAN tidak mengikuti join (gerbang registry mewajibkan
+  # `retain_under_obligation`).
+  #
+  # 4.5.0 sejak Issue #944 (ADR-0143): field opsional
+  # `ProjectionCursorMetricRule.sumColumn` DITAMBAHKAN (penambahan murni, jadi
+  # MINOR). Aturan metrik projection menjumlahkan sebuah kolom (kuantitas:
+  # malam-unit, detik) alih-alih menghitung baris; tanpa field ini artinya sama
+  # seperti sebelumnya (hitung baris). Pengguna pertama: projection `booking.*`.
+  #
+  # 4.4.0 sejak ADR-0140 (Issue #965): dua field opsional DITAMBAHKAN (penambahan
+  # murni, jadi MINOR): `ModuleDescriptor.handlesPayrollData` (modul yang memegang
+  # data penggajian dideklarasikan, bukan ditebak dari nama; dibaca registri
+  # template Telegram dan gerbang CI-nya) dan
+  # `ModuleNavigationEntry.requiredAnyPermission` (tautan menu terlihat bagi
+  # pemegang salah satu izin panel layarnya; hanya visibilitas).
+  #
+  # 4.3.0 sejak ADR-0141 (Issue #977): field opsional
+  # `ModulePermissionDescriptor.requiresMfaEnrolment` DITAMBAHKAN (penambahan
+  # murni, jadi MINOR). Izin yang menandainya hanya dapat dijalankan oleh orang
+  # yang punya faktor MFA aktif; ditegakkan di chokepoint
+  # `authorizeInTransaction`, dideklarasikan di kode (bukan kolom DB).
+  #
   # 4.2.0 sejak ADR-0134 (Issue #918): field opsional
   # `ModuleDescriptor.domainEventConsumers` DITAMBAHKAN (penambahan murni, jadi
   # MINOR). Konsumen domain-event kini dideklarasikan di descriptor modul
@@ -109,7 +135,7 @@ contracts:
   # DIHAPUS dari union `ModuleDeploymentProfile` — union yang menyempit adalah
   # penarikan kemampuan, jadi MAJOR (preseden 2.0.0, yang menghapus tipe
   # ekspor). Nilai ini di-cross-check gerbang terhadap MODULE_CONTRACT_VERSION.
-  moduleDescriptorContractVersion: "4.2.0"
+  moduleDescriptorContractVersion: "4.6.0"
   # Per-capability port SemVer for capabilities OWNED BY A BASE MODULE (matches
   # CAPABILITY_CONTRACT_VERSIONS). Only capabilities whose owning module actually
   # ships in this base belong here. `party_directory` is owned by the base
@@ -135,12 +161,30 @@ contracts:
     # because the reverse edge is impossible: `email` already depends on
     # `identity_access`, so a direct import would close a module cycle.
     auth_notification: "1.0.0"
+    # workflow_notification is owned (provided) by the base `email` module and
+    # consumed (optional) by `hr_workforce`'s attendance-correction settler (#1044).
+    workflow_notification: "1.0.0"
+    # staff_availability is owned (provided) by the base `hr_workforce` module
+    # (#946) and consumed (optional) by `booking` (#949): a resource that names the
+    # people who serve it is narrowed by their rostered working time.
+    staff_availability: "1.0.0"
+    # commission_accrual is owned (provided) by the base `hr_commission` module
+    # (#951) and bound by a downstream sale-attribution adapter at its own
+    # composition root. 1.1.0 since #1109: `void` (reverse an accrual by source
+    # identity) was ADDED to the port (MINOR). The key is declared here for the
+    # first time; 1.0.0 was the accrue-only shape.
+    commission_accrual: "1.1.0"
     # business_scope_hierarchy is owned (provided) by the base `tenant_admin`
     # module since ADR-0060, which resolves the `office` scope type against
     # `awcms_offices`. The port itself is unchanged since #180; what changed is
     # that a base module finally provides an adapter for it, so it belongs here
     # for the first time. `identity_access` consumes it, still `optional: true`.
     business_scope_hierarchy: "1.0.0"
+    # booking is owned (provided) by the base `booking` module (ADR-0131), port
+    # `_shared/ports/booking-port.ts`. 1.0.0 was the port of #941; 1.1.0 (#1108)
+    # adds checkIn, checkOut, markNoShow, get, getOffering, listOfferings and the
+    # anonymous availability read, additively. First entry in this registry.
+    booking: "1.1.0"
   apiResponseEnvelopeVersion: "1.0.0"
   restApiInfoVersion: "0.1.0"
   eventApiInfoVersion: "0.1.0"
@@ -159,22 +203,22 @@ contracts:
 stack:
   bun:
     packageManager:
-      declared: "1.4.2"
+      declared: "1.4.3"
       source: package.json packageManager
     engines:
       declared: ">=1.3.0"
       source: package.json engines.bun
     ci:
-      declared: "1.4.2"
+      declared: "1.4.3"
       source: .github/workflows/ci.yml setup-bun bun-version (current pin)
     ciMinimum:
       declared: "1.3.0"
       source: .github/workflows/ci.yml minimum-supported job setup-bun (== engines floor)
   astro:
-    declared: "^7.3.5"
+    declared: "^7.3.8"
     source: package.json dependencies.astro
   astroNode:
-    declared: "^11.1.6"
+    declared: "^11.1.7"
     source: package.json dependencies["@astrojs/node"]
   typescript:
     declared: "^7.0.2"

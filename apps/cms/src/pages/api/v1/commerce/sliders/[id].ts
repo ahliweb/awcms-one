@@ -86,6 +86,9 @@ export const PATCH = defineTenantRoute({
       if (!slider) return fail(404, "RESOURCE_NOT_FOUND", "Slider not found.");
       return ok(slider);
     } catch (error) {
+      // tx-swallow-ok: SliderMediaReferenceInvalidError is raised by
+      // application code before a write, or after the directory rolled its
+      // failed statement back to a savepoint, so the transaction is healthy.
       if (error instanceof SliderMediaReferenceInvalidError) {
         return fail(
           400,

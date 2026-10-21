@@ -27,7 +27,8 @@
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../_shared/idempotency";
 import {
   encodeKeysetCursor,
@@ -271,7 +272,8 @@ export async function issueStoredValueAccount(
     tx,
     tenantId,
     ISSUE_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -364,6 +366,7 @@ export async function issueStoredValueAccount(
     tenantId,
     ISSUE_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     stored
@@ -433,7 +436,8 @@ async function mutateAccount(
     tx,
     tenantId,
     spec.scope,
-    spec.idempotencyKey
+    spec.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -484,6 +488,7 @@ async function mutateAccount(
     tenantId,
     spec.scope,
     spec.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     body

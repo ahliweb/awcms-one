@@ -67,7 +67,7 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
         with:
-          bun-version: "1.4.2"
+          bun-version: "1.4.3"
 
       - name: Cache Bun install cache
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
@@ -103,6 +103,14 @@ jobs:
         run: bun run check
         env:
           DATABASE_URL: ""
+
+      - name: Payroll catalog boundary (the migrated database)
+        # Issue #1077: the catalog half of the payroll boundary needs a database
+        # where every migration has run, so it cannot sit in `bun run check`
+        # (which has none). The same analysis runs, with its probes, in
+        # tests/integration/payroll-catalog-boundary.integration.test.ts; this
+        # step is the operator command against THIS migrated database.
+        run: bun run payroll:catalog-boundary:check
 
       - name: Run DB-gated integration tests (RLS + DB role separation)
         # Scoped to `tests/integration/` (the harness-based suite — see
@@ -153,6 +161,7 @@ jobs:
           tests/security-readiness-failclosed.test.ts
           tests/security-readiness-rls.test.ts
           tests/security-readiness-worker-setup-grants.test.ts
+          tests/security-readiness-worker-credential-columns.test.ts
           tests/sync-hmac-versioned.test.ts
           tests/tenant-selection-e2e.test.ts
           tests/turnstile-login-e2e.test.ts
@@ -284,7 +293,7 @@ jobs:
         run: sha256sum sbom-source.cdx.json sbom-image.cdx.json source.tar.gz > CHECKSUMS.txt
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: release-artifacts
           path: |
@@ -317,7 +326,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Download build artifacts
-        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
           name: release-artifacts
 
@@ -412,7 +421,7 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
         with:
-          bun-version: "1.4.2"
+          bun-version: "1.4.3"
 
       - name: Decide the "Latest" badge for this release
         id: latest_flag

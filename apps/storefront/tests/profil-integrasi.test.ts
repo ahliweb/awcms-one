@@ -74,10 +74,10 @@ describe("integrations/profil: routePatternFor", () => {
 describe("integrations/profil: the real src/profil tree", () => {
   const matrix = readProfileMatrix();
 
-  test("the matrix in docs/template.md parsed (52 rows, 3 groups)", () => {
-    expect(matrix.length).toBe(52);
-    expect(matrix.filter((row) => row.group === "shared").length).toBe(10);
-    expect(matrix.filter((row) => row.group === "toko").length).toBe(23);
+  test("the matrix in docs/template.md parsed (57 rows, 3 groups)", () => {
+    expect(matrix.length).toBe(57);
+    expect(matrix.filter((row) => row.group === "shared").length).toBe(12);
+    expect(matrix.filter((row) => row.group === "toko").length).toBe(26);
     expect(matrix.filter((row) => row.group === "berita").length).toBe(19);
   });
 
@@ -106,8 +106,8 @@ describe("integrations/profil: the real src/profil tree", () => {
 
   test("collectInjectedRoutes yields one root-relative entrypoint per non-shared page, patterns unique and disjoint from src/pages", () => {
     const routes = collectInjectedRoutes(STOREFRONT_ROOT, ["shared", "toko", "berita"]);
-    expect(routes.length).toBe(42);
-    expect(routes.filter((r) => r.group === "toko").length).toBe(23);
+    expect(routes.length).toBe(45);
+    expect(routes.filter((r) => r.group === "toko").length).toBe(26);
     expect(routes.filter((r) => r.group === "berita").length).toBe(19);
 
     const patterns = routes.map((r) => r.pattern);
@@ -130,7 +130,7 @@ describe("integrations/profil: the real src/profil tree", () => {
     expect(collectInjectedRoutes(STOREFRONT_ROOT, ["shared"]).length).toBe(0);
     for (const profile of SITE_PROFILES) {
       const expected = PROFILE_GROUPS[profile].reduce(
-        (n, group) => n + (group === "toko" ? 23 : group === "berita" ? 19 : 0),
+        (n, group) => n + (group === "toko" ? 26 : group === "berita" ? 19 : 0),
         0
       );
       expect(collectInjectedRoutes(STOREFRONT_ROOT, PROFILE_GROUPS[profile]).length).toBe(expected);

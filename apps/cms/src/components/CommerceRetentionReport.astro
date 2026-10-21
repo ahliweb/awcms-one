@@ -10,6 +10,10 @@
  * OFF (the default) comes back `enabled: false` - both render nothing at all,
  * hidden rather than an error.
  *
+ * Since Issue #389 a customer's first event can also be a confirmed booking (a
+ * paid order carrying a Booking reservation link, one event per stay); the
+ * "Began with a booking" column counts, per cohort, the members it anchored.
+ *
  * Three honesty rules from the spec show up here: a cohort whose 90-day window
  * has not fully elapsed is "To date", never final; a cohort under 20 customers
  * shows counts and no percentage; a closed cohort that a late event changed is
@@ -91,6 +95,7 @@ const csvHref = "/api/v1/reports/commerce/retention.csv";
             <th scope="col">{t("Cohort")}</th>
             <th scope="col">{t("Customers")}</th>
             <th scope="col">{t("Came back")}</th>
+            <th scope="col">{t("Began with a booking")}</th>
             <th scope="col">{t("Retention")}</th>
             <th scope="col">{t("Status")}</th>
           </tr>
@@ -98,7 +103,7 @@ const csvHref = "/api/v1/reports/commerce/retention.csv";
         <tbody>
           {rows.length === 0 ? (
             <tr>
-              <td class="data-table-empty" colspan="5">
+              <td class="data-table-empty" colspan="6">
                 <div class="empty-state">
                   <span class="empty-state-icon" aria-hidden="true">
                     ◇
@@ -117,6 +122,9 @@ const csvHref = "/api/v1/reports/commerce/retention.csv";
                 </th>
                 <td data-label={t("Customers")}>{count(cohort.size)}</td>
                 <td data-label={t("Came back")}>{count(cohort.repeaters)}</td>
+                <td data-label={t("Began with a booking")}>
+                  {count(cohort.bookingAnchored)}
+                </td>
                 <td data-label={t("Retention")}>
                   {cohort.ratePercent === null
                     ? t("{repeaters} of {size}", {

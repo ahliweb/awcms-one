@@ -91,6 +91,32 @@ export type ModulePermissionDescriptor = {
    * the migration that seeds it, so the two cannot drift apart silently.
    */
   scope?: ModulePermissionScope;
+  /**
+   * `true` declares that exercising this permission requires the acting PERSON
+   * to have an enrolled MFA factor (ADR-0141, finding PS-13).
+   *
+   * Omitted means `false`, which is what every existing descriptor already
+   * meant. It is a REFUSAL condition on an otherwise-allowed decision, enforced
+   * at the `authorizeInTransaction` chokepoint: a holder with no active factor
+   * is refused `403 MFA_ENROLMENT_REQUIRED` with the way to enrol, and a machine
+   * credential — which can never hold a factor — is refused outright. It is
+   * NOT a step-up: it does not demand a fresh second-factor proof, it demands
+   * that one CAN be given. Step-up stays the owning module's own conditional
+   * call (ADR-0141 §4), and once this flag has been satisfied that call is
+   * always applicable, because an enrolled holder is exactly who it applies to.
+   *
+   * Declared here, in code, and never read from the database: a flag a row
+   * could clear would be a requirement a single UPDATE removes while every check
+   * stays green (the argument ADR-0053 §3 makes for `scope`). There is
+   * accordingly no column and no migration.
+   *
+   * Mark only a permission whose misuse by an account protected by a password
+   * alone is unacceptable — money movement, disclosure of a recoverable secret,
+   * and the authority to change the rules those depend on. Every flag removes
+   * that permission from anyone who has not enrolled, so a flag on a routine
+   * permission is a lockout the tenant did not choose.
+   */
+  requiresMfaEnrolment?: boolean;
 };
 
 export type ModuleNavigationEntry = {
@@ -111,6 +137,18 @@ export type ModuleNavigationEntry = {
    * `requiredPermission` — see `sidebar-menu.ts`'s own header.
    */
   requiredFeature?: { moduleKey: string; feature: string };
+  /**
+   * Further permissions that ALSO make the link visible (`4.4.0`, Issue #965).
+   *
+   * `requiredPermission` names one key; a screen with several independent
+   * panels, each gated on its own key, cannot be reached from a menu that
+   * checks only one of them (a diagnostics-only administrator would never see
+   * the link). The link is shown when the caller holds `requiredPermission` OR
+   * ANY key listed here. Visibility only, never authorization: every target
+   * route still runs its own server-side guard, so a visible link grants
+   * nothing. Each key must be a permission the declaring module declares.
+   */
+  requiredAnyPermission?: readonly string[];
   /**
    * A small count shown as a badge beside the link's label (`.admin-sidebar-
    * count` in `admin.css`, awcms-one#170) — an unread count, a pending-review
@@ -292,6 +330,20 @@ export type ModuleDescriptor = {
   capabilities?: ModuleCapabilityContract;
   maintainers?: string[];
   /**
+   * This module stores, computes or notifies about PAYROLL data: pay, payslips,
+   * commission statements, compensation (`4.4.0`, Issue #965, ADR-0140).
+   *
+   * A declared fact, not a name pattern: consumers that must keep payroll off a
+   * channel (today `telegram_delivery`, whose registry refuses a template from a
+   * flagged module and whose CI gate refuses a flagged module's source touching
+   * the Telegram port at all) read THIS, so a payroll module the day it is added
+   * cannot be missed because its directory name was spelled unexpectedly.
+   * Omitting it means "not payroll-bearing", which every existing descriptor
+   * already meant. It is a heuristic's replacement, not a proof: a module that
+   * handles payroll data and does not say so is a review finding.
+   */
+  handlesPayrollData?: true;
+  /**
    * Read-model projection descriptors this module owns (ported from
    * awcms-mini Issue #753) — see `ProjectionDescriptor`'s own doc comment
    * below. A module that wants a derived, incrementally-maintained read
@@ -424,6 +476,13 @@ export type ProjectionCursorMetricRule = {
   effect: "increment" | "decrement";
   matchColumn?: string;
   matchValue?: string;
+  /**
+   * Add up this column over the matching rows instead of counting them (Issue
+   * #944): a projection that carries a QUANTITY (booked unit-nights, booked
+   * seconds) rather than an event count. The column must hold a non-negative
+   * integer on every source row; the engine refuses a row that does not.
+   */
+  sumColumn?: string;
 };
 
 /**
@@ -1095,6 +1154,61 @@ export type SubjectDataColumn = {
   match?: "equals" | "jsonb_array_contains";
 };
 
+/**
+ * An INDIRECT path from a row to the subject — ADR-0142, Issue #985.
+ *
+ * Some tables never carry a person's id. `awcms_hr_employment_terms` and
+ * `awcms_hr_shift_assignments` carry `employment_id`, and only the employment
+ * they point at names the person (`profile_id` / `tenant_user_id`). A direct
+ * subject column cannot say that, so before this the two were `exportable:
+ * false` and a subject-access export omitted the employee's own terms history
+ * and schedule.
+ *
+ * ## One hop, by design
+ *
+ * The path is exactly one foreign key to ONE other descriptor's table, whose
+ * own subject columns are the ones named. It is not a graph language: a
+ * second hop would be a join planner on the privacy path, and no table in this
+ * schema needs it.
+ *
+ * ## Why `parentColumns` is explicit
+ *
+ * The parent's `subjectColumns` mix identity columns (`profile_id`) with actor
+ * stamps (`created_by`). Following ALL of them would make an HR administrator's
+ * export include every employment history they merely created for somebody
+ * else — a disclosure of other people's data under the administrator's own
+ * request. So the descriptor names which of the parent's columns say "this row
+ * IS about the person"; the registry gate refuses a name the parent does not
+ * declare.
+ *
+ * ## It replaces the table's own `subjectColumns`
+ *
+ * A descriptor with `subjectVia` has NO `subjectColumns` (gate-enforced). The
+ * same stamp problem applies to the child: OR-ing `created_by` with the join
+ * would hand the person every row they scheduled for others. The stamps are
+ * answered by `severed_with_subject_row` semantics on their own and stay
+ * described in the `rationale`.
+ *
+ * ## Erasure does NOT follow the join
+ *
+ * A descriptor with `subjectVia` must answer `retain_under_obligation`; the
+ * registry gate refuses any other mode. Rewriting or deleting a child row
+ * because of a parent match is a different and more dangerous operation than
+ * the direct case (the parent could be matched by a stamp-free identity but the
+ * child may be append-only evidence). Until a table needs it and an ADR
+ * decides it, the safe default is the one these two tables already have: kept
+ * under the employer's obligations, resolving to nobody once the profile is
+ * anonymised.
+ */
+export type SubjectDataJoin = {
+  /** Column on THIS table holding the parent's `id` (e.g. `employment_id`). */
+  column: string;
+  /** `key` of the parent descriptor (e.g. `hr_workforce.employments`). Must itself be a direct (non-`subjectVia`) tenant-scoped descriptor. */
+  parentKey: string;
+  /** Which of the parent's `subjectColumns` mean "the row IS about the person". A non-empty subset of the parent's declared columns. */
+  parentColumns: readonly string[];
+};
+
 export type SubjectDataDescriptor = {
   /** Stable, unique across the whole registry, e.g. `"identity_access.sessions"` (`<ownerModuleKey>.<table_shortname>`). */
   key: string;
@@ -1117,6 +1231,11 @@ export type SubjectDataDescriptor = {
    * silently omit every row where they are the second.
    */
   subjectColumns: readonly SubjectDataColumn[];
+  /**
+   * Reach the subject through a parent row instead of a column of this table —
+   * see `SubjectDataJoin`. Mutually exclusive with `subjectColumns`.
+   */
+  subjectVia?: SubjectDataJoin;
   /**
    * The table holds data about people, but NO column can be matched to a
    * per-tenant subject — so `subjectColumns` is empty ON PURPOSE.
@@ -1341,8 +1460,38 @@ export type SubjectDataDescriptor = {
  * additive — every existing descriptor omits both and behaves exactly as
  * before; `reporting:projections:registry:check` enforces that the two new
  * fields are declared together or not at all.
+ * `4.3.0` (ADR-0141, Issue #977) — added the optional
+ * `ModulePermissionDescriptor.requiresMfaEnrolment` field. MINOR: purely
+ * additive, and omitting it means "no enrolment requirement", which is what
+ * every existing descriptor already meant. No base module sets it, so the
+ * in-repo blast radius is zero by construction; the first user is the
+ * `hr_payroll` module (#957), whose payroll-critical permissions are named in
+ * `docs/awcms/hr-payroll.md` §17 (PS-13).
+ *
+ * `4.4.0` (ADR-0140, Issue #965) — added the optional
+ * `ModuleDescriptor.handlesPayrollData` and
+ * `ModuleNavigationEntry.requiredAnyPermission`. MINOR: both are purely
+ * additive, and omitting either means what every existing descriptor already
+ * meant (not payroll-bearing; visible on `requiredPermission` alone).
+ * `handlesPayrollData` replaces a name-pattern guess in the Telegram registry
+ * with a declaration; `requiredAnyPermission` lets a multi-panel screen be
+ * linked from the menu for a holder of any of its panels' keys.
+ *
+ * `4.5.0` (Issue #944, ADR-0143) — added the optional `ProjectionCursorMetricRule.sumColumn`.
+ * MINOR: purely additive, and omitting it means "count the matching rows", which
+ * is what every existing rule already meant. It lets a projection carry a
+ * quantity (the first user is `booking`: unit-nights and seconds booked) through
+ * the same `cursor_table` engine instead of a second one.
+ *
+ * `4.6.0` (ADR-0142, Issue #985) — added the optional
+ * `SubjectDataDescriptor.subjectVia` field plus the `SubjectDataJoin` type, so a
+ * table that reaches the subject only through a parent row (a foreign key to
+ * another descriptor's table) can be exported. MINOR: purely additive, and no
+ * existing descriptor changes meaning. Erasure deliberately does not follow the
+ * join (the registry gate requires `retain_under_obligation`); the first users
+ * are `awcms_hr_employment_terms` and `awcms_hr_shift_assignments`.
  */
-export const MODULE_CONTRACT_VERSION = "4.2.0";
+export const MODULE_CONTRACT_VERSION = "4.6.0";
 
 export function defineModule(descriptor: ModuleDescriptor): ModuleDescriptor {
   return descriptor;

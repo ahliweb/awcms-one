@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](routing.md)
 
-<!-- i18n-source-hash: sha256:b196fe7c4c394cc6a9fb03bd818264f159344edad751d845c32c273a50a64f82 -->
+<!-- i18n-source-hash: sha256:ead3f703d0e60433d2ba530d84518374a65d92acebc0d046b25ba9c0475f66c0 -->
 
 # Routing
 
@@ -31,7 +31,7 @@ Sejak issue #137 berkas rute hidup dalam **grup halaman**, dan grup mana yang di
 | Nav header | Beranda, Produk, Flash Sale, Berita, Kontak + alat keranjang/wishlist/akun | Beranda, Berita, rubrik tingkat atas yang dikenali (dinamis), Video, Buletin, Kontak | Beranda, setiap halaman statis yang terbit (dinamis), Kontak |
 | Formulir pencarian header/404 | `/cari` (produk) | `/cari-berita` (berita) | tidak ada |
 | Tautan legal footer | keenam-enamnya | Redaksi, Pedoman Media Siber, Disclaimer, Kebijakan Privasi, Syarat & Ketentuan | Kebijakan Privasi, Syarat & Ketentuan |
-| `Disallow` `robots.txt` | `/keranjang`, `/checkout`, `/pesanan`, `/wishlist`, `/cari`, `/newsletter/confirm`, `/newsletter/unsubscribe`, `/masuk`, `/daftar`, `/akun`, `/api/` (tidak berubah) | `/newsletter/confirm`, `/newsletter/unsubscribe`, `/api/` | `/api/` |
+| `Disallow` `robots.txt` | `/keranjang`, `/checkout`, `/pesanan`, `/wishlist`, `/cari`, `/newsletter/confirm`, `/newsletter/unsubscribe`, `/masuk`, `/daftar`, `/akun`, `/booking`, `/api/` | `/newsletter/confirm`, `/newsletter/unsubscribe`, `/api/` | `/api/` |
 | Sumber sitemap | kedua belas | `static-routes`, `static-pages`, setiap `berita-*` | `static-routes`, `static-pages` |
 | Feed | `/feed.xml` (produk, diiklankan di `<head>`), `/berita/feed.xml`, `/rubrik/{slug}/feed.xml` | `/berita/feed.xml` (diiklankan), `/rubrik/{slug}/feed.xml` | tidak ada |
 | `csp.json` | `connect-src` = `PUBLIC_AWCMS_ORIGIN`; `img-src` dari produk, pemasaran, media artikel; `frame-src` YouTube bila ada post video | `connect-src` = `PUBLIC_AWCMS_ORIGIN` (beacon pengunjung dan formulir buletin mem-POST ke sana); `img-src` dari media artikel; YouTube seperti di atas | `connect-src` = `PUBLIC_AWCMS_ORIGIN` (beacon pengunjung berjalan di setiap halaman); `img-src` = host media dan logo situs saja; tanpa `frame-src` |
@@ -100,6 +100,18 @@ Keempatnya: `noindex, follow`, `aria-live="polite"` pada update quote/status, te
 
 `checkout.astro`/`checkout.ts` mendapat `<select>` "Pilih alamat tersimpan", tersembunyi sampai sesi pelanggan terkonfirmasi, yang mengisi otomatis langkah alamat dari `GET …/account/addresses`; permintaan pembuatan pesanan membawa Bearer token pembeli yang sudah masuk bila ada (`createOrder` milik `apps/storefront/src/lib/toko-klien.ts` menerima argumen kedua OPSIONAL `bearerToken` — pemanggil anonim yang sudah ada tidak terpengaruh).
 
+## Booking (issue #386, hanya grup `toko`)
+
+Halaman statis yang membaca endpoint booking anonim CMS dari browser, persis seperti halaman runtime commerce di atas. Build `berita` atau `landing` tidak menulis satu pun dan tidak menautkannya (`apps/storefront/tests/profil-routes.test.ts`); ketiga rute adalah `ROUTES.booking`, `ROUTES.bookingCheckout`, dan `ROUTES.accountReservations`, semuanya `toko`. Lihat [`booking-ux-flows.md`](booking-ux-flows.md) ("Status implementasi Permukaan A") untuk perilaku dan [ADR-0045](adr/0045-booking-commerce-adapter.md) untuk keputusannya.
+
+| Path | Sumber | Catatan |
+| --- | --- | --- |
+| `/booking` | `apps/storefront/src/profil/toko/pages/booking/index.astro` | Pilihan layanan, dua input tanggal bawaan, jumlah tamu, dan panel kuota yang malam, harga, uang muka, dan sisanya berasal dari server (`GET …/booking/offerings`, `availability`, `quote`); "Lanjut" membawa menginap sebagai `?o=&r=&in=&out=&n=` (id dan tanggal polos, tidak pernah nominal). `noindex, follow` |
+| `/booking/pesan` | `apps/storefront/src/profil/toko/pages/booking/pesan.astro` | Butuh akun yang sedang masuk (`/masuk?kembali=` lalu kembali). Ringkasan, pilihan pembayaran, lalu hold (`POST …/booking/reservations`, bearer, `Idempotency-Key` sekali per percobaan) dan hitung mundurnya (`holdExpiresAt - serverNow`, tidak pernah jam perangkat; diumumkan hanya saat mulai, 5 menit, 1 menit, dan kedaluwarsa), state kedaluwarsa dan terkonfirmasi (server yang memutuskan), dan serah-terima pembayaran lewat sesi gateway yang sudah ada (`purpose` deposit, balance, atau full) atau `/pesanan?kode=` untuk tender manual. `noindex, follow` |
+| `/akun/reservasi` | `apps/storefront/src/profil/toko/pages/akun/reservasi.astro` | Reservasi milik pembeli sendiri (`GET …/booking/reservations`, bearer, keyset "Muat lebih banyak"): pil status dan pembayaran, sisa tagihan, sisa waktu hold yang hidup, dan tombol bayar; `401` menghapus sesi. `noindex, follow` (prefiks `/akun` sudah di-disallow) |
+
+`/booking` adalah halaman sekaligus induk `/booking/pesan`, sehingga build menulis `booking.html` di samping `booking/` dan `apps/storefront/server/penyaji.mjs` menyajikannya lewat penulisan ulang bayangan-direktori (`apps/storefront/tests/penyaji-bayangan-build-smoke.test.ts` mendaftarkannya). `PROFILE_NAV` sengaja tidak punya item "Booking": apakah tenant menjual menginap adalah sakelar fitur CMS yang tak dapat dibaca build statis, sehingga deployment yang menjualnya menambah satu entri (`{ label: "Booking", href: ROUTES.booking, route: "booking" }`) ke `PROFILE_NAV.toko`.
+
 ## Statis
 
 | Path | Sumber |
@@ -112,7 +124,7 @@ Keempatnya: `noindex, follow`, `aria-live="polite"` pada update quote/status, te
 
 | Path | Sumber |
 | --- | --- |
-| `/robots.txt` | `apps/storefront/src/pages/robots.txt.ts` — men-`Disallow` daftar milik profil aktif (`ROBOTS_DISALLOW` di `apps/storefront/src/config/profil.ts`; untuk `toko`: `/keranjang`, `/checkout`, `/pesanan`, `/wishlist`, `/cari`, `/newsletter/confirm`, `/newsletter/unsubscribe`, `/masuk`, `/daftar`, `/akun`, `/api/`); menyebut `Sitemap:` |
+| `/robots.txt` | `apps/storefront/src/pages/robots.txt.ts` — men-`Disallow` daftar milik profil aktif (`ROBOTS_DISALLOW` di `apps/storefront/src/config/profil.ts`; untuk `toko`: `/keranjang`, `/checkout`, `/pesanan`, `/wishlist`, `/cari`, `/newsletter/confirm`, `/newsletter/unsubscribe`, `/masuk`, `/daftar`, `/akun`, `/booking`, `/api/`); menyebut `Sitemap:` |
 | `/sitemap-index.xml` | `apps/storefront/src/pages/sitemap-index.xml.ts` |
 | `/sitemap-{n}.xml` | `apps/storefront/src/pages/sitemap-[n].xml.ts` — dipecah per 5000 URL/berkas (`registerSitemapSource` milik `apps/storefront/src/lib/sitemap.ts`) |
 | `/feed.xml` | `apps/storefront/src/profil/toko/pages/feed.xml.ts` — produk (grup `toko`; feed berita adalah `/berita/feed.xml` di atas) |

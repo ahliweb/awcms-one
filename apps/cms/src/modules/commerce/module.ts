@@ -1,11 +1,37 @@
 import { defineModule } from "../_shared/module-contract";
+import type { ModuleDomainEventConsumer } from "../_shared/domain-event-consumer-contract";
 import { DEFAULT_COMMERCE_FEATURES } from "./domain/commerce-features";
+// Side-effect import (Issue #392): registers the `commerce.*` WhatsApp templates
+// with `whatsapp_delivery`, so wherever the module graph is loaded - the CMS
+// server, the admin template list - they are present. The dispatch process
+// imports the same file from `scripts/whatsapp-dispatch.ts`.
+import "./domain/whatsapp-upstream-templates";
 import { DEFAULT_CASH_UP_APPROVAL_THRESHOLD } from "./domain/register";
 import { DEFAULT_EXPENSE_APPROVAL_THRESHOLD } from "./domain/expense";
 import {
   SEGMENT_DATA_LIFECYCLE,
   SEGMENT_SUBJECT_DATA
 } from "./domain/segment-lifecycle";
+import {
+  COMMISSION_DATA_LIFECYCLE,
+  COMMISSION_SUBJECT_DATA
+} from "./domain/commission-lifecycle";
+import {
+  BOOKING_ADAPTER_DATA_LIFECYCLE,
+  BOOKING_ADAPTER_SUBJECT_DATA
+} from "./domain/booking-adapter-lifecycle";
+import { BOOKING_ADAPTER_NAVIGATION } from "./domain/booking-adapter-navigation";
+import {
+  BOOKING_REPORT_DATA_LIFECYCLE,
+  BOOKING_REPORT_SUBJECT_DATA
+} from "./domain/booking-report-lifecycle";
+import { BOOKING_ADAPTER_PERMISSIONS } from "./domain/booking-adapter-permissions";
+import { BOOKING_ADAPTER_CONSUMERS } from "./application/booking-adapter-consumers";
+import {
+  BOOKING_REPORT_PROJECTIONS,
+  RETENTION_BOOKING_METRIC_LABELS,
+  RETENTION_BOOKING_STREAMS
+} from "./application/booking-report-projections";
 import {
   EXPENSE_DATA_LIFECYCLE,
   EXPENSE_SUBJECT_DATA
@@ -118,6 +144,7 @@ import {
   COMMERCE_DOCUMENTS_ACTIVITY_CODE,
   COMMERCE_BARCODES_ACTIVITY_CODE,
   COMMERCE_INVENTORY_ACTIVITY_CODE,
+  COMMERCE_WHATSAPP_MODE_ACTIVITY_CODE,
   COMMERCE_DOCUMENT_PERMISSIONS,
   COMMERCE_STORED_VALUE_PROGRAMS_ACTIVITY_CODE,
   COMMERCE_STORED_VALUE_PROGRAM_PERMISSIONS,
@@ -155,7 +182,11 @@ import {
   COMMERCE_SEGMENT_PREVIEWS_ACTIVITY_CODE,
   COMMERCE_SEGMENT_PREVIEW_PERMISSIONS,
   COMMERCE_SEGMENT_MEMBERS_ACTIVITY_CODE,
-  COMMERCE_SEGMENT_MEMBER_PERMISSIONS
+  COMMERCE_SEGMENT_MEMBER_PERMISSIONS,
+  COMMERCE_COMMISSION_SETTINGS_ACTIVITY_CODE,
+  COMMERCE_COMMISSION_SETTINGS_PERMISSIONS,
+  COMMERCE_COMMISSION_STAFF_LINKS_ACTIVITY_CODE,
+  COMMERCE_COMMISSION_STAFF_LINK_PERMISSIONS
 } from "./domain/commerce-permissions";
 import {
   COMMERCE_FLASH_SALE_ENDED_EVENT_TYPE,
@@ -165,6 +196,10 @@ import {
   COMMERCE_PRODUCT_UPDATED_EVENT_TYPE,
   COMMERCE_ORDER_CREATED_EVENT_TYPE,
   COMMERCE_ORDER_PAID_EVENT_TYPE,
+  COMMERCE_ORDER_SETTLED_EVENT_TYPE,
+  COMMERCE_BOOKING_ATTENTION_RAISED_EVENT_TYPE,
+  COMMERCE_BOOKING_REFUND_DECIDED_EVENT_TYPE,
+  COMMERCE_BOOKING_RESERVATION_RESCHEDULED_EVENT_TYPE,
   COMMERCE_ORDER_STATUS_CHANGED_EVENT_TYPE,
   COMMERCE_ORDER_CANCELLED_EVENT_TYPE,
   COMMERCE_ORDER_EXPIRED_EVENT_TYPE,
@@ -191,7 +226,10 @@ import {
   COMMERCE_ORDER_PAID_ENTITLEMENT_GRANTOR_CONSUMER_NAME,
   COMMERCE_ORDER_PAID_LOYALTY_EARNER_CONSUMER_NAME,
   COMMERCE_ORDER_CANCELLED_LOYALTY_REVERSER_CONSUMER_NAME,
-  COMMERCE_INVENTORY_STOCK_CACHE_PROJECTOR_CONSUMER_NAME
+  COMMERCE_INVENTORY_STOCK_CACHE_PROJECTOR_CONSUMER_NAME,
+  COMMERCE_ORDER_PAID_COMMISSION_ATTRIBUTOR_CONSUMER_NAME,
+  COMMERCE_ORDER_CANCELLED_COMMISSION_REVERSER_CONSUMER_NAME,
+  COMMERCE_REFUND_SETTLED_COMMISSION_REVERSER_CONSUMER_NAME
 } from "./domain/commerce-events";
 import {
   INVENTORY_EVENT_VERSION,
@@ -560,6 +598,72 @@ const RETENTION_STREAMS: readonly ProjectionCursorStream[] = [
       }
     ],
     dimensional: RETENTION_REVERSAL_SINK
+  },
+  // Issue #389 - the booking anchor: see `application/booking-report-projections.ts`.
+  ...RETENTION_BOOKING_STREAMS
+];
+
+/**
+ * Issue #391 (ADR-0046 D10) - the commission consumers' descriptors, kept but
+ * DELIBERATELY NOT registered in `domainEventConsumers`. Upstream's payroll
+ * boundary (ahliweb/awcms#1015) lets only `awcms_app` hold privileges on
+ * `awcms_hr_*`, and `domain-events:dispatch` runs as `awcms_worker`, so
+ * `sql/1053` revokes the grants `sql/1031` and `sql/1051` gave it and the
+ * adapter is dormant until upstream provides a sanctioned worker path to
+ * `CommissionAccrualPort`. When it does, spread this array into
+ * `domainEventConsumers` together with a re-granting migration.
+ */
+export const DORMANT_COMMISSION_CONSUMERS: ModuleDomainEventConsumer[] = [
+  {
+    name: COMMERCE_ORDER_PAID_COMMISSION_ATTRIBUTOR_CONSUMER_NAME,
+    description:
+      "commerce module consumer - reports each line of a paid counter (POS) sale to the hr_commission accrual ledger through CommissionAccrualPort, for the employment linked to the login that rang the sale up; exactly once per line, from server-side order facts only, OFF unless the tenant enables it (Issue #391, ADR-0046).",
+    eventTypes: [COMMERCE_ORDER_PAID_EVENT_TYPE],
+    eventVersions: [COMMERCE_EVENT_VERSION],
+    handle: async (tx, event, ctx) => {
+      const { attributeCommissionForPaidOrder } =
+        await import("./application/commission-attribution");
+      await attributeCommissionForPaidOrder(
+        tx,
+        ctx.tenantId,
+        event.aggregateId,
+        ctx.correlationId
+      );
+    }
+  },
+  {
+    name: COMMERCE_ORDER_CANCELLED_COMMISSION_REVERSER_CONSUMER_NAME,
+    description:
+      "commerce module consumer - reverses (voids, never deletes) the commission accrued on every line of a cancelled counter sale through CommissionAccrualPort.void, by the same source identity the accrual was reported under; a closed-period accrual is audited for a person, never retried (Issue #391, ADR-0046 D9).",
+    eventTypes: [COMMERCE_ORDER_CANCELLED_EVENT_TYPE],
+    eventVersions: [COMMERCE_EVENT_VERSION],
+    handle: async (tx, event, ctx) => {
+      const { reverseCommissionForCancelledOrder } =
+        await import("./application/commission-reversal");
+      await reverseCommissionForCancelledOrder(
+        tx,
+        ctx.tenantId,
+        event.aggregateId,
+        ctx.correlationId
+      );
+    }
+  },
+  {
+    name: COMMERCE_REFUND_SETTLED_COMMISSION_REVERSER_CONSUMER_NAME,
+    description:
+      "commerce module consumer - when the last refund leg of a return settles, voids the commission accrued on each counter-sale line that is now fully returned through CommissionAccrualPort.void; a partly returned line keeps its accrual and is audited for a person, a closed-period accrual is audited and never retried (Issue #391, ADR-0046 D9).",
+    eventTypes: [COMMERCE_REFUND_SETTLED_EVENT_TYPE],
+    eventVersions: [COMMERCE_EVENT_VERSION],
+    handle: async (tx, event, ctx) => {
+      const { reverseCommissionForSettledRefund } =
+        await import("./application/commission-reversal");
+      await reverseCommissionForSettledRefund(
+        tx,
+        ctx.tenantId,
+        event.aggregateId,
+        ctx.correlationId
+      );
+    }
   }
 ];
 
@@ -639,6 +743,55 @@ export const commerceModule = defineModule({
     // pattern, as with `email`); `tax` never depends on commerce.
     "tax"
   ],
+  /**
+   * Issue #391 (ADR-0046) - `application/commission-attribution-port.ts` is the
+   * one place commerce names `hr_commission`'s concrete `CommissionAccrualPort`
+   * adapter (`_shared/ports/commission-accrual-port.ts`), wired at this module's
+   * composition root as that port's contract asks. OPTIONAL, and a capability
+   * rather than a `dependencies` edge on purpose: commerce stays enablable, and
+   * keeps working, for a tenant that never switches `hr_commission` on (a
+   * lifecycle dependency would make it a prerequisite of the whole store and
+   * un-disablable for every tenant with commerce). The consumer checks the
+   * tenant's `hr_commission` state itself before it calls anything.
+   *
+   * Issue #392 (ADR-0133 section 6 phase 2) - a tenant in `upstream` WhatsApp
+   * mode sends through `whatsapp_delivery`'s port (`application/whatsapp-upstream-enqueue.ts`),
+   * and `domain/whatsapp-upstream-templates.ts` registers the `commerce.*`
+   * templates with it. A source-level relationship that deliberately does NOT
+   * imply lifecycle ordering, so it is a `capabilities.consumes` entry and not a
+   * `dependencies` one: a hard dependency would make commerce un-enableable for a
+   * tenant that has not enabled `whatsapp_delivery`, and the default (`legacy`)
+   * mode never touches it. `optional` because the capability simply is not used
+   * until a tenant's mode is `upstream`.
+   *
+   * Issue #378 (ADR-0045) - the booking adapter sells a Booking reservation as a
+   * commerce order and reaches Booking through `BookingPort`
+   * (`_shared/ports/booking-port.ts`) only. A CAPABILITY, not a `dependencies`
+   * entry: `dependencies` would make enabling `commerce` for a tenant require
+   * enabling `booking`, and every existing tenant has no use for it. With
+   * `optional: true` the `booking` feature (default OFF) degrades to "not
+   * available" when Booking is absent or off for a tenant. `booking` itself has
+   * no `commerce` edge.
+   */
+  capabilities: {
+    consumes: [
+      {
+        capability: "commission_accrual",
+        providedBy: "hr_commission",
+        optional: true
+      },
+      {
+        capability: "whatsapp_delivery",
+        providedBy: "whatsapp_delivery",
+        optional: true
+      },
+      {
+        capability: "booking",
+        providedBy: "booking",
+        optional: true
+      }
+    ]
+  },
   type: "domain",
   isCore: false,
   api: {
@@ -783,17 +936,19 @@ export const commerceModule = defineModule({
     // instants, recomputed from the customer's orders, never incremented.
     {
       key: RETENTION_PROJECTION_KEY,
-      version: 1,
+      // 2: Issue #389 added the booking anchor (two streams, two row columns).
+      version: 2,
       ownerModuleKey: "commerce",
       scope: "tenant",
       description:
-        "Per customer: the earliest qualifying paid order and the earliest one strictly after it (a qualifying order is paid and not fully refunded or cancelled), the Asia/Jakarta calendar month of the first as the customer's cohort, and the count of qualifying orders. Recomputed from the customer's current orders whenever one of them is paid, cancelled, returned or refunded, so a late event moves the customer between cohorts. The 90-day repeat rate per cohort is derived at read; the row holds no name or contact.",
+        "Per customer: the earliest qualifying paid order and the earliest one strictly after it (a qualifying order is paid and not fully refunded or cancelled), the Asia/Jakarta calendar month of the first as the customer's cohort, and the count of qualifying orders. Recomputed from the customer's current orders whenever one of them is paid, cancelled, returned or refunded (or, for a booking, cancelled, marked no-show or rescheduled), so a late event moves the customer between cohorts. A paid order carrying a Booking reservation link is one booking event: its reschedule replacement and supplementary order are the same stay, and a cancelled stay is none. The 90-day repeat rate per cohort is derived at read; the row holds no name or contact.",
       source: { strategy: "cursor_table", streams: RETENTION_STREAMS },
       rebuildSource: { streams: RETENTION_STREAMS },
       metricLabels: {
         [RETENTION_METRIC_KEYS.paidEvents]: "Paid order events consumed",
         [RETENTION_METRIC_KEYS.reversalLegs]:
-          "Settled payment reversal legs consumed"
+          "Settled payment reversal legs consumed",
+        ...RETENTION_BOOKING_METRIC_LABELS
       },
       requiredPermission: COMMERCE_REPORT_RETENTION_PERMISSIONS.read,
       freshness: SALES_REPORT_FRESHNESS,
@@ -802,7 +957,10 @@ export const commerceModule = defineModule({
         "commerce.customer_retention / commerce.customer_retention_restated (this module's own dataLifecycle descriptors, cursor `cohort_month`, the same 3650-day ceiling as the order ledger): derived, fully rebuildable per-customer rows - a rebuild after the source's own retention purge recomputes from surviving orders only.",
       batchLimit: 500,
       dimensional: RETENTION_DIMENSIONAL
-    }
+    },
+    // Issue #389 - the booking-sourced revenue waterfall; see
+    // `application/booking-report-projections.ts`.
+    ...BOOKING_REPORT_PROJECTIONS
   ],
   /**
    * ADR-0134 - this module's domain-event consumers, declared HERE rather than
@@ -839,8 +997,11 @@ export const commerceModule = defineModule({
     {
       name: COMMERCE_ORDER_PAID_LOYALTY_EARNER_CONSUMER_NAME,
       description:
-        "commerce module consumer - earns loyalty points for an order the moment it turns paid, exactly once per order, from server-side order facts only (Issue #289).",
-      eventTypes: [COMMERCE_ORDER_PAID_EVENT_TYPE],
+        "commerce module consumer - earns loyalty points for an order the moment it turns paid, exactly once per order, from server-side order facts only (Issue #289). A deposit order earns only at full settlement (Issue #379, ADR-0041 D7): it reacts to order.settled for that, and an order.paid for a deposit order that still owes a balance earns nothing.",
+      eventTypes: [
+        COMMERCE_ORDER_PAID_EVENT_TYPE,
+        COMMERCE_ORDER_SETTLED_EVENT_TYPE
+      ],
       eventVersions: [COMMERCE_EVENT_VERSION],
       handle: async (tx, event, ctx) => {
         const { earnPointsForPaidOrder } =
@@ -849,7 +1010,10 @@ export const commerceModule = defineModule({
           tx,
           ctx.tenantId,
           event.aggregateId,
-          ctx.correlationId
+          ctx.correlationId,
+          event.eventType === COMMERCE_ORDER_SETTLED_EVENT_TYPE
+            ? "settled"
+            : "paid"
         );
       }
     },
@@ -882,7 +1046,10 @@ export const commerceModule = defineModule({
           await import("./application/commerce-inventory-cache-projector");
         await projectStockCacheFromMovement(tx, ctx.tenantId, event.payload);
       }
-    }
+    },
+    // Issue #378 (ADR-0045 D15) - the booking adapter's consumers; empty until
+    // their handlers land. See `application/booking-adapter-consumers.ts`.
+    ...BOOKING_ADAPTER_CONSUMERS
   ],
   events: {
     asyncApiPath: "asyncapi/awcms-domain-events.asyncapi.yaml",
@@ -894,6 +1061,10 @@ export const commerceModule = defineModule({
       COMMERCE_FLASH_SALE_ENDED_EVENT_TYPE,
       COMMERCE_ORDER_CREATED_EVENT_TYPE,
       COMMERCE_ORDER_PAID_EVENT_TYPE,
+      COMMERCE_ORDER_SETTLED_EVENT_TYPE,
+      COMMERCE_BOOKING_ATTENTION_RAISED_EVENT_TYPE,
+      COMMERCE_BOOKING_REFUND_DECIDED_EVENT_TYPE,
+      COMMERCE_BOOKING_RESERVATION_RESCHEDULED_EVENT_TYPE,
       COMMERCE_ORDER_STATUS_CHANGED_EVENT_TYPE,
       COMMERCE_ORDER_CANCELLED_EVENT_TYPE,
       COMMERCE_QUOTATION_ACCEPTED_EVENT_TYPE,
@@ -1330,7 +1501,10 @@ export const commerceModule = defineModule({
       order: 28,
       requiredPermission: "commerce.segments.read",
       requiredFeature: { moduleKey: "commerce", feature: "segments" }
-    }
+    },
+    // Issue #378 (ADR-0045) - the booking adapter's entries; empty until the
+    // screens land. See `domain/booking-adapter-navigation.ts`.
+    ...BOOKING_ADAPTER_NAVIGATION
   ],
   /**
    * ADR-0037 (`data_lifecycle`) — Issue #437's table-coverage gate requires
@@ -3157,10 +3331,17 @@ export const commerceModule = defineModule({
     ...DOCUMENT_DATA_LIFECYCLE,
     // Issue #294 (ADR-0031) - the two expense tables; see
     // `domain/expense-lifecycle.ts`.
+    ...COMMISSION_DATA_LIFECYCLE,
     ...EXPENSE_DATA_LIFECYCLE,
     // Issue #360 (ADR-0042) - the two CRM segment tables; see
     // `domain/segment-lifecycle.ts`.
     ...SEGMENT_DATA_LIFECYCLE,
+    // Issue #378 (ADR-0045) - the six booking-adapter tables; see
+    // `domain/booking-adapter-lifecycle.ts`.
+    ...BOOKING_ADAPTER_DATA_LIFECYCLE,
+    // Issue #389 (sql/1047) - the booking revenue projection's two tables; see
+    // `domain/booking-report-lifecycle.ts`.
+    ...BOOKING_REPORT_DATA_LIFECYCLE,
     // Issue #287 (ADR-0033) - the four returns / refunds tables; see
     // `domain/returns-lifecycle.ts`.
     ...RETURNS_DATA_LIFECYCLE,
@@ -4122,9 +4303,14 @@ export const commerceModule = defineModule({
     // Issue #286 (ADR-0029) - see `domain/documents-lifecycle.ts`.
     ...DOCUMENT_SUBJECT_DATA,
     // Issue #294 (ADR-0031) - see `domain/expense-lifecycle.ts`.
+    ...COMMISSION_SUBJECT_DATA,
     ...EXPENSE_SUBJECT_DATA,
     // Issue #360 (ADR-0042) - see `domain/segment-lifecycle.ts`.
     ...SEGMENT_SUBJECT_DATA,
+    // Issue #378 (ADR-0045) - see `domain/booking-adapter-lifecycle.ts`.
+    ...BOOKING_ADAPTER_SUBJECT_DATA,
+    // Issue #389 (sql/1047) - see `domain/booking-report-lifecycle.ts`.
+    ...BOOKING_REPORT_SUBJECT_DATA,
     // Issue #287 (ADR-0033) - see `domain/returns-lifecycle.ts`.
     ...RETURNS_SUBJECT_DATA,
     {
@@ -4790,6 +4976,31 @@ export const commerceModule = defineModule({
       action: "export",
       description: "Export the customer-retention report as CSV (Issue #364)"
     },
+    // Issue #391 (ADR-0046) - employee-commission sale attribution.
+    {
+      activityCode: COMMERCE_COMMISSION_SETTINGS_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "View whether employee-commission attribution is on and which commission rule it applies (Issue #391)"
+    },
+    {
+      activityCode: COMMERCE_COMMISSION_SETTINGS_ACTIVITY_CODE,
+      action: "manage",
+      description:
+        "Switch employee-commission attribution on or off and choose the commission rule it applies (Issue #391)"
+    },
+    {
+      activityCode: COMMERCE_COMMISSION_STAFF_LINKS_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "List which employment earns the commission of which login's counter sales (Issue #391)"
+    },
+    {
+      activityCode: COMMERCE_COMMISSION_STAFF_LINKS_ACTIVITY_CODE,
+      action: "manage",
+      description:
+        "Link a login to the employment that earns its counter-sale commission, and retire a link (Issue #391)"
+    },
     {
       activityCode: COMMERCE_BARCODES_ACTIVITY_CODE,
       action: "read",
@@ -4813,6 +5024,18 @@ export const commerceModule = defineModule({
       action: "configure",
       description:
         "Roll the stock authority back to counter mode and resync the stock cache from the ledger (Issue #282)"
+    },
+    {
+      activityCode: COMMERCE_WHATSAPP_MODE_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "Read the tenant WhatsApp delivery mode and the drain state of both queues (Issue #393)"
+    },
+    {
+      activityCode: COMMERCE_WHATSAPP_MODE_ACTIVITY_CODE,
+      action: "manage",
+      description:
+        "Flip the tenant WhatsApp delivery mode between the legacy and upstream queues, or dry-run the flip (Issue #393)"
     },
     {
       activityCode: COMMERCE_RETURNS_ACTIVITY_CODE,
@@ -5001,7 +5224,10 @@ export const commerceModule = defineModule({
       action: "export",
       description:
         "Export the customers a segment version matches as CSV (Issue #360)"
-    }
+    },
+    // Issue #378 (ADR-0045) - the booking adapter's keys; see
+    // `domain/booking-adapter-permissions.ts`.
+    ...BOOKING_ADAPTER_PERMISSIONS
   ]
 });
 
@@ -5052,7 +5278,9 @@ export {
   COMMERCE_DOCUMENT_DELIVERY_OVERRIDE_PERMISSIONS,
   COMMERCE_SEGMENT_PERMISSIONS,
   COMMERCE_SEGMENT_PREVIEW_PERMISSIONS,
-  COMMERCE_SEGMENT_MEMBER_PERMISSIONS
+  COMMERCE_SEGMENT_MEMBER_PERMISSIONS,
+  COMMERCE_COMMISSION_SETTINGS_PERMISSIONS,
+  COMMERCE_COMMISSION_STAFF_LINK_PERMISSIONS
 };
 export {
   COMMERCE_LOYALTY_PERMISSIONS,

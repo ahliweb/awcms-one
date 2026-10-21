@@ -17,6 +17,7 @@
  */
 import AdminLayout from "../../layouts/AdminLayout.astro";
 import CommerceSettingsSaveBar from "../../components/CommerceSettingsSaveBar.astro";
+import CommerceStepUpDialog from "../../components/CommerceStepUpDialog.astro";
 import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
@@ -32,6 +33,10 @@ import {
 import { fetchTaxAdapterConfig } from "../../modules/commerce/application/tax-adapter-directory";
 import { listWebhookEndpoints } from "../../modules/commerce/application/webhook-endpoint-directory";
 import { fetchCommerceFeatures } from "../../modules/commerce/application/commerce-feature-gate";
+import {
+  fetchBookingServiceTenantUserId,
+  fetchCheckInRequiresSettlement
+} from "../../modules/commerce/application/booking-adapter-settings";
 import { MODULE_SETTINGS_UPDATE_GUARD } from "../../modules/module-management/application/module-settings";
 import { resolveRequestOrigin } from "../../lib/http/site-origin";
 
@@ -81,7 +86,19 @@ const screen = await loadAdminScreen({
     // vs. `settings.update`.
     const canManageFeatures = await can(MODULE_SETTINGS_UPDATE_GUARD);
     const commerceFeatures = await fetchCommerceFeatures(tx, ssr.tenantId);
+    // Issue #385 (ADR-0045 G3): the booking adapter's service-account user,
+    // shown only while the `booking` feature is on.
+    const bookingServiceTenantUserId = commerceFeatures.booking
+      ? await fetchBookingServiceTenantUserId(tx, ssr.tenantId)
+      : null;
+    // Issue #383 (ADR-0045 D19): whether the till refuses a check-in while a
+    // balance is owed (default: it does).
+    const checkinRequiresSettlement = commerceFeatures.booking
+      ? await fetchCheckInRequiresSettlement(tx, ssr.tenantId)
+      : true;
     return {
+      bookingServiceTenantUserId,
+      checkinRequiresSettlement,
       settings,
       affiliateCommissionRate,
       taxAdapter,
@@ -103,6 +120,13 @@ const screen = await loadAdminScreen({
   }
 });
 
+// The step-up outcomes of a save that turned the check-in policy off (Issue
+// #383); the client script picks one by the error code.
+const stepUpMessages = JSON.stringify({
+  STEP_UP_CANCELLED: t("Confirmation cancelled. Nothing was changed."),
+  STEP_UP_FAILED: t("That code was not accepted. Nothing was changed.")
+});
+
 const canRead = screen.state !== "denied";
 const loadError = screen.state === "error";
 const settings = screen.state === "allowed" ? screen.data.settings : null;
@@ -114,6 +138,10 @@ const taxAdapter =
     ? screen.data.taxAdapter
     : { mode: "flat" as const, profileCode: "store-default" };
 const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
+const bookingServiceTenantUserId =
+  screen.state === "allowed" ? screen.data.bookingServiceTenantUserId : null;
+const checkinRequiresSettlement =
+  screen.state === "allowed" ? screen.data.checkinRequiresSettlement : true;
 const canManageWebhookEndpoints =
   screen.state === "allowed" && screen.data.canManageWebhookEndpoints;
 const webhookEndpoints =
@@ -141,7 +169,8 @@ const commerceFeatures =
         retention: false,
         segments: false,
         loyaltySegments: false,
-        campaignSegmentAudience: false
+        campaignSegmentAudience: false,
+        booking: false
       };
 const FEATURE_TOGGLES = [
   { key: "pos", label: "Point of sale (POS)" },
@@ -170,7 +199,8 @@ const FEATURE_TOGGLES = [
   {
     key: "campaignSegmentAudience",
     label: "Send campaigns to a customer segment"
-  }
+  },
+  { key: "booking", label: "Sell Booking reservations (deposits, links)" }
 ] as const;
 /** `${public CMS origin}/api/v1/commerce/webhooks/midtrans/{token}` — the URL shape to paste into Midtrans, per contract #106 D2. The token itself is filled in client-side, once, right after creation. */
 const webhookUrlBase = `${resolveRequestOrigin(Astro.url, Astro.request)}/api/v1/commerce/webhooks/midtrans`;
@@ -280,6 +310,7 @@ const COURIER_OPTIONS = [
           id="store-settings-error"
           class="admin-create-error"
           role="alert"
+          data-errors={stepUpMessages}
           hidden
         />
         <p id="store-settings-success" class="state-notice" hidden>
@@ -362,6 +393,47 @@ const COURIER_OPTIONS = [
           placeholder="e.g. 10.00"
           value={affiliateCommissionRate ?? ""}
         />
+
+        {commerceFeatures.booking && (
+          <>
+            <p class="form-legend">{t("Booking")}</p>
+            <label for="settings-bookingServiceTenantUserId">
+              {t("Booking service account (user ID)")}
+            </label>
+            <input
+              id="settings-bookingServiceTenantUserId"
+              type="text"
+              autocomplete="off"
+              spellcheck="false"
+              aria-describedby="settings-bookingServiceTenantUserId-hint"
+              value={bookingServiceTenantUserId ?? ""}
+            />
+            <p id="settings-bookingServiceTenantUserId-hint" class="form-hint">
+              {t(
+                "The staff user Booking records for guest checkouts and automatic actions. It must be an active user of this store. Leave blank to clear it."
+              )}
+            </p>
+            <label>
+              <input
+                id="settings-checkinRequiresSettlement"
+                type="checkbox"
+                checked={checkinRequiresSettlement}
+                aria-describedby="settings-checkinRequiresSettlement-hint"
+              />{" "}
+              {t("Require the balance to be paid before check-in")}
+            </label>
+            <p id="settings-checkinRequiresSettlement-hint" class="form-hint">
+              {t(
+                "When on, the front desk cannot check a guest in while any balance is owed. When off, the guest can be checked in and the balance stays to collect."
+              )}
+            </p>
+            <p class="form-hint">
+              {t(
+                "Turning this off needs a recent second-factor check and is recorded in the audit log."
+              )}
+            </p>
+          </>
+        )}
 
         <p class="form-legend">{t("Courier rates (RajaOngkir)")}</p>
         <p class="cell-muted">
@@ -680,6 +752,15 @@ const COURIER_OPTIONS = [
       </form>
     </section>
   )}
+
+  {/* Issue #383 (security audit of PR #443, M1): turning the check-in policy
+      off needs a fresh step-up. Outside the form: the dialog is its own form. */}
+  {canUpdate && commerceFeatures.booking && (
+    <CommerceStepUpDialog
+      locale={Astro.locals.locale}
+      id="store-settings-stepup"
+    />
+  )}
 </AdminLayout>
 
 <script>
@@ -696,6 +777,11 @@ const COURIER_OPTIONS = [
     commerceSaveBarButton,
     initCommerceSettingsSaveBars
   } from "../../lib/ui/commerce-settings-save-bar-client";
+  import { pickRefusalMessage } from "../../lib/ui/commerce-booking-client";
+  import {
+    promptStepUpCode,
+    sendWithStepUp
+  } from "../../lib/ui/commerce-stepup-client";
 
   const el = (id: string) => document.getElementById(id);
   const val = (id: string) =>
@@ -762,7 +848,11 @@ const COURIER_OPTIONS = [
       submit.textContent = "Saving…";
     }
 
-    const result = await sendJson("PUT", "/api/v1/commerce/store-settings", {
+    // Turning the check-in policy off is refused with `STEP_UP_REQUIRED` and
+    // nothing written until the operator proves a second factor; the SAME body is
+    // then sent once more (a PUT needs no Idempotency-Key). Any other save never
+    // sees the dialog.
+    const settingsBody = {
       storeName: val("settings-storeName"),
       tagline: orNull(val("settings-tagline")),
       logoMediaObjectId: orNull(val("settings-logoMediaObjectId")),
@@ -773,14 +863,39 @@ const COURIER_OPTIONS = [
       email: orNull(val("settings-email")),
       mapsEmbedUrl: orNull(val("settings-mapsEmbedUrl")),
       affiliateCommissionRate: orNull(val("settings-affiliateCommissionRate")),
+      // Issue #385: present only while the booking field renders; an absent
+      // key leaves the stored value alone, `null` clears it.
+      ...(el("settings-bookingServiceTenantUserId")
+        ? {
+            bookingServiceTenantUserId: orNull(
+              val("settings-bookingServiceTenantUserId")
+            )
+          }
+        : {}),
+      // Issue #383: same rule - present only while the booking block renders.
+      ...(el("settings-checkinRequiresSettlement")
+        ? {
+            checkinRequiresSettlement: (
+              el("settings-checkinRequiresSettlement") as HTMLInputElement
+            ).checked
+          }
+        : {}),
       ...advanced
-    });
+    };
+    const result = await sendWithStepUp(
+      () => sendJson("PUT", "/api/v1/commerce/store-settings", settingsBody),
+      () => promptStepUpCode("store-settings-stepup")
+    );
 
     if (result.ok) {
       successBox.show("Saved.");
     } else {
       errorBox.show(
-        "Could not save store settings. Check the advanced JSON shape and try again."
+        pickRefusalMessage(
+          el("store-settings-error")?.dataset.errors,
+          result.errorCode,
+          "Could not save store settings. Check the advanced JSON shape and try again."
+        )
       );
     }
 

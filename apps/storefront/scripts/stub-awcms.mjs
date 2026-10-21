@@ -220,6 +220,8 @@
  */
 import { readFileSync } from "node:fs";
 
+import { createBookingStub } from "./stub-booking.mjs";
+
 const PORT = Number(process.env.STUB_PORT ?? 4310);
 const FIXTURES = new URL("../tests/fixtures/awcms/", import.meta.url);
 
@@ -992,6 +994,19 @@ function seedAccountOrders() {
 
 seedAccountOrders();
 
+// Issue #386 (ADR-0045): the `toko` booking pages' routes and state machine
+// live in `scripts/stub-booking.mjs`; it shares this file's orders so a
+// booking order is trackable at `/pesanan` and `/akun/pesanan` like any other.
+const bookingStub = createBookingStub({
+  envelope,
+  envelopeError,
+  findAccountByBearer,
+  orders: ORDERS,
+  generateOrderCode,
+  storeSettings,
+  normalizeEmail
+});
+
 function issueSession(emailNormalized) {
   sessionSequence += 1;
   const token = `cs_stub_${sessionSequence}`;
@@ -1757,7 +1772,7 @@ async function handleStorefrontRequest(request, url) {
         // echoing it here for every storefront route (rather than only the
         // /account/* ones) keeps this one OPTIONS handler simple, and is
         // harmless for the anonymous routes, which never send it.
-        "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization, Idempotency-Key",
         "Access-Control-Max-Age": "600"
       }
     });
@@ -1793,6 +1808,12 @@ async function handleStorefrontRequest(request, url) {
   if (path.startsWith("/account/")) {
     const accountResult = handleAccountRequest(request, path.slice("/account".length), body, headers);
     if (accountResult) return accountResult;
+    return Response.json(NEUTRAL_NOT_FOUND, { status: 404, headers });
+  }
+
+  if (path.startsWith("/booking/")) {
+    const bookingResult = await bookingStub.handle(request, url, path.slice("/booking".length), body, headers);
+    if (bookingResult) return bookingResult;
     return Response.json(NEUTRAL_NOT_FOUND, { status: 404, headers });
   }
 
@@ -1978,7 +1999,12 @@ async function handleStorefrontRequest(request, url) {
         return Response.json(NEUTRAL_NOT_FOUND, { status: 404, headers });
       }
 
-      if (order.paymentMethod !== "gateway" || order.status !== "pending_payment") {
+      // Issue #386 (ADR-0041 D1): a booking order paid by down payment may pay
+      // its deposit through a gateway session (`purpose: "deposit"`); the stub
+      // admits that and nothing else beyond a whole-total `gateway` order.
+      const gatewayPayable =
+        order.paymentMethod === "gateway" || (order.paymentMethod === "dp" && order.booking === true);
+      if (!gatewayPayable || order.status !== "pending_payment") {
         return envelopeError(
           409,
           "PAYMENT_NOT_APPLICABLE",
@@ -2145,6 +2171,12 @@ const server = Bun.serve({
     // gate in this file.
     if (url.pathname.startsWith("/stub/gateway/")) {
       return handleStubGatewayPage(request, url);
+    }
+
+    // Issue #386: test-only control of the booking state machine (shorten the
+    // hold, expire every live hold, switch the feature off, reset).
+    if (url.pathname === "/stub/booking/control" && request.method === "POST") {
+      return bookingStub.handleControl(request);
     }
 
     // Anonymous, cross-origin, no bearer token at all — handled BEFORE the

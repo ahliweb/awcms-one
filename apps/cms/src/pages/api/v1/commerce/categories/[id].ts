@@ -93,9 +93,12 @@ export const PATCH = defineTenantRoute({
 
       return ok(category);
     } catch (error) {
-      // `DuplicateCategorySlugError` follows a unique violation that already
-      // aborted the transaction, so the commit degrades to a rollback and
-      // nothing further is written (same rule as `POST /categories`).
+      // tx-swallow-ok: DuplicateCategorySlugError is raised by application
+      // code before a write, or after the directory rolled its failed
+      // statement back to a savepoint, so the transaction is healthy.
+      // `DuplicateCategorySlugError` is thrown after the directory rolled the
+      // failed statement back to a savepoint, so the transaction is still
+      // usable (same rule as `POST /categories`).
       if (error instanceof DuplicateCategorySlugError) {
         return fail(409, "CATEGORY_SLUG_ALREADY_EXISTS", error.message);
       }

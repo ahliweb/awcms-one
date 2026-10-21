@@ -101,10 +101,17 @@ describeOrSkip("workflow approval concurrency (real PostgreSQL)", () => {
       await sql`SELECT set_config('app.current_tenant_id', ${tenantId}, false)`;
       await sql`DELETE FROM awcms_domain_event_deliveries WHERE tenant_id = ${tenantId}`;
       await sql`DELETE FROM awcms_domain_events WHERE tenant_id = ${tenantId}`;
-      await sql`DELETE FROM awcms_workflow_decisions WHERE tenant_id = ${tenantId}`;
-      await sql`DELETE FROM awcms_workflow_task_assignments WHERE tenant_id = ${tenantId}`;
-      await sql`DELETE FROM awcms_workflow_tasks WHERE tenant_id = ${tenantId}`;
-      await sql`DELETE FROM awcms_workflow_instances WHERE tenant_id = ${tenantId}`;
+      // The decision log and instances are immutable (sql/252, #999); a test
+      // teardown is a superuser maintenance session, so it steps outside the
+      // guard for this transaction only.
+      await sql.begin(async (tx) => {
+        await tx.unsafe("SET LOCAL session_replication_role = replica");
+        await tx`SELECT set_config('app.current_tenant_id', ${tenantId}, true)`;
+        await tx`DELETE FROM awcms_workflow_decisions WHERE tenant_id = ${tenantId}`;
+        await tx`DELETE FROM awcms_workflow_task_assignments WHERE tenant_id = ${tenantId}`;
+        await tx`DELETE FROM awcms_workflow_tasks WHERE tenant_id = ${tenantId}`;
+        await tx`DELETE FROM awcms_workflow_instances WHERE tenant_id = ${tenantId}`;
+      });
       await sql`DELETE FROM awcms_workflow_definitions WHERE tenant_id = ${tenantId}`;
       await sql`DELETE FROM awcms_tenants WHERE id = ${tenantId}`;
     }
@@ -439,12 +446,22 @@ describeOrSkip("workflow approval concurrency (real PostgreSQL)", () => {
     const graph = approvalGraph("all", [USER_A, USER_B]);
     const { tenantId, taskId } = await seed(graph, [USER_A, USER_B], "all");
 
-    // USER_A decides; USER_B keeps a live 'pending' seat.
-    await sql`
-      UPDATE awcms_workflow_task_assignments SET status = 'decided'
-      WHERE tenant_id = ${tenantId} AND workflow_task_id = ${taskId}
-        AND tenant_user_id = ${USER_A}
-    `;
+    // USER_A decides (the decision row first, as the engine writes it);
+    // USER_B keeps a live 'pending' seat.
+    // One transaction, so the decision and the seat move together on one
+    // connection (two pooled statements raced on a loaded box).
+    await sql.begin(async (tx: Bun.SQL) => {
+      await tx`
+        INSERT INTO awcms_workflow_decisions
+          (tenant_id, workflow_task_id, decision, decided_by_tenant_user_id)
+        VALUES (${tenantId}, ${taskId}, 'approve', ${USER_A})
+      `;
+      await tx`
+        UPDATE awcms_workflow_task_assignments SET status = 'decided'
+        WHERE tenant_id = ${tenantId} AND workflow_task_id = ${taskId}
+          AND tenant_user_id = ${USER_A}
+      `;
+    });
 
     // Mirror the route EXACTLY: it catches WorkflowRecoveryError INSIDE the
     // withTenant callback and returns a 409 response. Returning (rather than

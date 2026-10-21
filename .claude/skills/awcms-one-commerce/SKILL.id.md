@@ -79,6 +79,10 @@ Layar yang ditambahkan atau disentuh setelah epic ini mengikuti lima aturan tamb
 
 Jangan pernah menulis `awcms_commerce_products.stock` / `…_product_variants.stock` dari jalur kode baru. Sebuah tenant berada di `counter` (kolom adalah otoritas) atau `ledger` inventori hulu (ledger adalah otoritas, kolom adalah cache write-through), dan `application/commerce-inventory.ts` adalah satu-satunya berkas yang tahu yang mana: `resolveInventoryConfig` membaca mode di bawah kunci mode shared, `postOrderSale` / `postOrderRestock` / `postReturnRestock` memposting lewat `InventoryLedgerPort`, `withInventorySavepoint` membuat penolakan ledger menggulung balik unit kerja, dan `assertStockWritable` menolak suntingan admin yang akan mengubah hitungan pada mode `ledger`. Fitur baru penggerak stok memanggil itu, mempertahankan cabang `counter` seperti semula, dan memetakan `InventoryLedgerRefusedError` / `StockManagedByInventoryError` dengan `inventoryErrorResponse` (jangan menangkapnya setelah menulis di luar savepoint: 4xx yang dikembalikan akan di-commit).
 
+## WhatsApp lewat satu router, dan mode ditulis di satu tempat (Issue #392/#393, ADR-0047)
+
+Jangan pernah meng-insert ke `awcms_commerce_whatsapp_messages` atau memanggil `WhatsappDeliveryPort` dari jalur kode baru: kirim lewat `enqueueWhatsappMessage` (`application/whatsapp-enqueue.ts`), yang membaca mode tenant di bawah advisory lock bersama dan menulis outbox legacy atau antrean upstream. Jangan pula menulis `awcms_commerce_store_settings.whatsapp_mode`: `flipWhatsappMode` (`application/whatsapp-mode-flip.ts`) adalah satu-satunya penulis - ia mengambil lock eksklusif, menolak selama antrean yang ditinggalkan memegang baris non-terminal, dan mengaudit - dan `apps/cms/tests/commerce-whatsapp-upstream-boundary.test.ts` gagal jika berkas kedua melakukannya. Permukaan operatornya adalah `bun run commerce:whatsapp:cutover` dan `GET`/`POST /api/v1/commerce/whatsapp/mode`.
+
 ## Verifikasi
 
 ```bash

@@ -415,12 +415,14 @@ export function computeStoredValueDailyDelta(
 // returns & refunds (Issue #316)
 // ---------------------------------------------------------------------------
 
-export const RETURN_KINDS = ["return", "exchange"] as const;
-/** `restock` = back on the shelf; `damaged` = written off; `quarantine` = held, neither. */
+/** `cancellation` is the refund of a cancelled booking (Issue #381, ADR-0045 D4/D13). */
+export const RETURN_KINDS = ["return", "exchange", "cancellation"] as const;
+/** `restock` = back on the shelf; `damaged` = written off; `quarantine` = held, neither; `not_applicable` = a service line (a booking cancellation, Issue #381). */
 export const RETURN_DISPOSITIONS = [
   "restock",
   "damaged",
-  "quarantine"
+  "quarantine",
+  "not_applicable"
 ] as const;
 export const REFUND_DESTINATIONS = ["original_tender", "store_credit"] as const;
 export type ReturnsReportSection = "return" | "disposition" | "refund";

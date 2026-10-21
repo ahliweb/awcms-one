@@ -40,6 +40,7 @@
  * Finalised order history is never edited: no order, order item or payment row
  * is updated. A return only ever ADDS rows.
  */
+import { orderHasBookingLink } from "./booking-order-guards";
 import { loadComponentFactsByItem } from "./bundle-directory";
 import { componentSourceLine } from "../domain/bundle";
 import { reverseOrderTaxForReturn } from "./tax-adapter-directory";
@@ -48,7 +49,8 @@ import { recordAuditEvent } from "../../logging/application/audit-log";
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../_shared/idempotency";
 import {
   COMMERCE_EVENT_VERSION,
@@ -66,6 +68,7 @@ import {
   remainingEligibleQuantity,
   type CreateReturnInput,
   type CreateReturnRefundInput,
+  type PlannedRefundLeg,
   type RefundablePayment
 } from "../domain/returns";
 import {
@@ -109,6 +112,8 @@ const DEFAULT_DEPS: ReturnDeps = { inventory: modeAwareInventoryPort };
 export type CreateReturnOutcome =
   | { kind: "feature_disabled" }
   | { kind: "order_not_found" }
+  /** Issue #380 (ADR-0045 G11) - a booking order is cancelled or refunded through the booking adapter (#381), not as a return of goods. */
+  | { kind: "booking_order" }
   | { kind: "order_not_returnable"; status: string }
   | { kind: "line_not_found"; orderItemId: string }
   | {
@@ -168,7 +173,7 @@ type PaymentRow = {
 };
 
 /** The payments of an order with what each can still give back, ready for {@link planRefundLegs}. */
-async function loadRefundablePayments(
+export async function loadRefundablePayments(
   tx: Bun.SQL,
   tenantId: string,
   orderId: string
@@ -376,7 +381,7 @@ async function writeAndSettleLegs(
  *   (the transaction rolls back).
  */
 export async function createReturn(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   orderId: string,
@@ -440,12 +445,16 @@ async function createReturnWrite(
   // request that is still running.
   const header = await lockOrderForSettlement(tx, tenantId, orderId);
   if (!header) return { kind: "order_not_found" };
+  if (await orderHasBookingLink(tx, tenantId, orderId)) {
+    return { kind: "booking_order" };
+  }
 
   const existing = await findIdempotencyRecord(
     tx,
     tenantId,
     CREATE_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -876,6 +885,7 @@ async function createReturnWrite(
     tenantId,
     CREATE_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     redactForStore(body)
@@ -936,7 +946,8 @@ export async function createRefundsForReturn(
     tx,
     tenantId,
     REFUND_SCOPE,
-    idempotencyKey
+    idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -1026,6 +1037,7 @@ export async function createRefundsForReturn(
     tenantId,
     REFUND_SCOPE,
     idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     redactForStore(body)
@@ -1081,7 +1093,8 @@ export async function linkExchangeOrder(
     tx,
     tenantId,
     EXCHANGE_SCOPE,
-    idempotencyKey
+    idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -1142,6 +1155,7 @@ export async function linkExchangeOrder(
     tenantId,
     EXCHANGE_SCOPE,
     idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     200,
     { returnId }
@@ -1326,4 +1340,128 @@ export async function reconcileReturns(
     SELECT count(*)::int AS n FROM awcms_commerce_returns WHERE tenant_id = ${tenantId}
   `) as { n: number }[];
   return { checkedReturns: Number(counted[0]!.n), findings };
+}
+
+// ---------------------------------------------------------------------------
+// Booking cancellation (Issue #381, ADR-0045 D4/D9). Re-exported by
+// `booking-cancellation-refund.ts`, which documents the rules.
+// ---------------------------------------------------------------------------
+
+export type CancellationReturnInput = {
+  orderId: string;
+  /** The service line the reservation was sold on (the link's `order_item_id`). */
+  orderItemId: string;
+  /** The order's status now, recorded as the `from_status` of the order event. */
+  orderStatus: string;
+  /** The decision's source key; return and legs derive theirs from it. */
+  sourceKey: string;
+  finalCents: bigint;
+  legs: readonly PlannedRefundLeg[];
+  /** The tenant's service-account user (G3): the actor of the return and its legs. */
+  actorTenantUserId: string;
+  /**
+   * Units of the service line this return gives back (Issue #382: the nights a
+   * reschedule removes). Absent = everything still unreturned, i.e. a whole
+   * cancellation - which is what makes a cancellation after an earlier partial
+   * return of the same line legal (the over-return guard sums the quantities).
+   */
+  quantity?: number;
+  /** The order-event wording ("Booking cancellation" by default). */
+  eventLabel?: string;
+  correlationId?: string;
+};
+
+/** Writes the return, its line, the order-event row and the pending legs; returns the return id. */
+export async function recordCancellationReturn(
+  tx: Bun.SQL,
+  tenantId: string,
+  input: CancellationReturnInput
+): Promise<string> {
+  const total = fromCents(input.finalCents);
+  const legTotal = input.legs.reduce((sum, leg) => sum + leg.amountCents, 0n);
+  if (legTotal !== input.finalCents) {
+    // Impossible by construction (the plan sums to its request); a mismatch is a
+    // defect and must roll everything back.
+    throw new Error(
+      `The refund legs (${fromCents(legTotal)}) do not add up to the decision (${total}).`
+    );
+  }
+
+  const item = (await tx`
+    SELECT product_id, variant_id, quantity,
+      COALESCE((
+        SELECT SUM(l.quantity) FROM awcms_commerce_return_lines l
+        WHERE l.tenant_id = ${tenantId} AND l.order_item_id = ${input.orderItemId}
+      ), 0) AS returned
+    FROM awcms_commerce_order_items
+    WHERE tenant_id = ${tenantId} AND id = ${input.orderItemId}
+      AND order_id = ${input.orderId}
+  `) as {
+    product_id: string;
+    variant_id: string | null;
+    quantity: number;
+    returned: string | number;
+  }[];
+  if (!item[0]) {
+    throw new Error("The reservation's order line could not be found.");
+  }
+  const unreturned = Number(item[0].quantity) - Number(item[0].returned);
+  const lineQuantity = input.quantity ?? unreturned;
+  if (lineQuantity < 1 || lineQuantity > unreturned) {
+    // The database's over-return guard would refuse it anyway; a clear defect first.
+    throw new Error(
+      `The reservation's order line has ${unreturned} unreturned unit(s); ${lineQuantity} cannot be given back.`
+    );
+  }
+
+  const returned = (await tx`
+    INSERT INTO awcms_commerce_returns (
+      tenant_id, order_id, kind, status, note, goods_gross, discount_share,
+      shipping_refund, tax_refund, refund_total, source_key, actor_tenant_user_id
+    )
+    VALUES (
+      ${tenantId}, ${input.orderId}, 'cancellation', 'open', NULL, ${total}, 0,
+      0, 0, ${total}, ${`${input.sourceKey}:return`}, ${input.actorTenantUserId}
+    )
+    RETURNING id
+  `) as { id: string }[];
+  const returnId = returned[0]!.id;
+
+  await tx`
+    INSERT INTO awcms_commerce_return_lines (
+      tenant_id, return_id, order_id, order_item_id, product_id, variant_id,
+      quantity, reason, disposition, stock_effect, goods_gross, discount_share,
+      refund_amount
+    )
+    VALUES (
+      ${tenantId}, ${returnId}, ${input.orderId}, ${input.orderItemId},
+      ${item[0].product_id}, ${item[0].variant_id}, ${lineQuantity},
+      'booking_cancelled', 'not_applicable', 0, ${total}, 0, ${total}
+    )
+  `;
+
+  // The record the sales projections read to net the refund (ADR-0033 step 3).
+  await tx`
+    INSERT INTO awcms_commerce_order_events
+      (tenant_id, order_id, from_status, to_status, actor, note, return_id)
+    VALUES (
+      ${tenantId}, ${input.orderId}, ${input.orderStatus}, 'returned', 'admin',
+      ${`${input.eventLabel ?? "Booking cancellation"} ${returnId} recorded.`}, ${returnId}
+    )
+  `;
+
+  for (const [index, leg] of input.legs.entries()) {
+    await tx`
+      INSERT INTO awcms_commerce_refunds (
+        tenant_id, return_id, order_id, allocation_id, tender_type, amount,
+        destination, status, source_key, actor_tenant_user_id
+      )
+      VALUES (
+        ${tenantId}, ${returnId}, ${input.orderId}, ${leg.allocationId},
+        ${leg.tenderType}, ${fromCents(leg.amountCents)}, 'original_tender',
+        'pending', ${`${input.sourceKey}:leg:${index}`}, ${input.actorTenantUserId}
+      )
+    `;
+  }
+  return returnId;
 }

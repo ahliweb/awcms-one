@@ -1,0 +1,65 @@
+---
+/**
+ * `/pasang-aplikasi` — the iPhone "Add to Home Screen" help page (issue
+ * #428). Injected as a route by `integrations/profil.mjs` ONLY when
+ * `PUBLIC_INSTALL_HELP` is on (`src/lib/pasang-aplikasi.ts`); with the flag
+ * off this file is never routed, so the build has no such page, no link and
+ * no script. Lives under `src/install/` (not `src/pages/`) precisely so
+ * Astro's file-based routing does not pick it up on its own.
+ *
+ * Static content, no permission prompt, no push subscription: it explains
+ * how to install the site and states plainly that a browser tab cannot
+ * receive notifications once it is closed. `noindex` — a help page, not
+ * content for search — and not in the sitemap (it is not in `ROUTES`).
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getSiteIdentity } from "../lib/awcms/profil";
+import { INSTALL_HELP_PATH } from "../lib/pasang-aplikasi";
+
+const identity = await getSiteIdentity();
+---
+
+<BaseLayout
+  title="Pasang di Layar Utama"
+  description={`Cara menambahkan ${identity.name} ke layar utama iPhone.`}
+  canonicalPath={INSTALL_HELP_PATH}
+>
+  <meta slot="head" name="robots" content="noindex, follow" />
+  <div class="container">
+    <div class="page-heading">
+      <h1>Pasang {identity.name} di Layar Utama</h1>
+      <p>Buka {identity.name} seperti aplikasi, langsung dari layar utama iPhone Anda.</p>
+    </div>
+
+    <p role="status" data-when="standalone" hidden>
+      Anda sedang membuka {identity.name} dari layar utama. Tidak ada yang perlu dipasang lagi.
+    </p>
+
+    <section data-when="browser" aria-labelledby="langkah-ios">
+      <h2 id="langkah-ios">Langkah di iPhone (iOS 16.4 atau lebih baru)</h2>
+      <ol>
+        <li>Buka <strong>{identity.name}</strong> di Safari.</li>
+        <li>Ketuk tombol <strong>Bagikan</strong> (kotak dengan panah ke atas) di bilah Safari.</li>
+        <li>Pilih <strong>Tambahkan ke Layar Utama</strong>.</li>
+        <li>Pastikan opsi <strong>Buka sebagai Aplikasi Web</strong> aktif, lalu ketuk <strong>Tambah</strong>.</li>
+        <li>Mulai berikutnya, buka {identity.name} dari ikonnya di layar utama.</li>
+      </ol>
+      <p data-when="not-ios">
+        Bukan iPhone? Di Chrome (Android atau komputer), gunakan menu <strong>Instal aplikasi</strong>
+        atau <strong>Tambahkan ke layar utama</strong>.
+      </p>
+    </section>
+
+    <section aria-labelledby="catatan-notifikasi">
+      <h2 id="catatan-notifikasi">Tentang notifikasi</h2>
+      <p>
+        Tab browser tidak bisa menerima notifikasi saat Safari atau tab tersebut ditutup. Di iPhone,
+        notifikasi dari situs web hanya bisa diterima oleh situs yang sudah ditambahkan ke layar
+        utama, dan hanya jika Anda sendiri mengizinkannya.
+      </p>
+      <p>Halaman ini tidak meminta izin notifikasi apa pun dan tidak mengirim notifikasi.</p>
+    </section>
+  </div>
+
+  <script>import "../scripts/pasang-aplikasi";</script>
+</BaseLayout>

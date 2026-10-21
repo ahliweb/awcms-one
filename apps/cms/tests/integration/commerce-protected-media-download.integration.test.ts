@@ -62,7 +62,7 @@ const TENANT = "44444444-4444-4444-4444-444444444444";
 const ACTOR = "55555555-5555-5555-5555-555555555555";
 const NOW = new Date("2026-09-29T10:00:00.000Z");
 
-function inTenant<T>(fn: (tx: Bun.SQL) => Promise<T>): Promise<T> {
+function inTenant<T>(fn: (tx: Bun.TransactionSQL) => Promise<T>): Promise<T> {
   return withTenantOrThrow(getRuntimeSql(), TENANT, fn);
 }
 

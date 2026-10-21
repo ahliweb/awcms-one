@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](ui-ux.md)
 
-<!-- i18n-source-hash: sha256:9ed140dc62340a59b0ce6a56a1fd3052c361df350ef26228e6ea989917a93f05 -->
+<!-- i18n-source-hash: sha256:1d0240456fd4ffd6cc43430f391292061f58fbb61e5b3bea22feb27f2b62447f -->
 
 # UI / UX
 
@@ -76,6 +76,12 @@ Langkah pembayaran checkout menampilkan **Bayar online (kartu, VA, e-wallet)** s
 `/akun` mendapat kartu "Preferensi Promo": satu kotak centang sungguhan, tersimpan segera saat `change` tanpa perlu tombol "Simpan"-nya sendiri — perubahan status sakelar itu SENDIRI sudah merupakan niat lengkap, berbeda dari formulir "Ubah Nama" multi-field di sampingnya. Ini adalah field `PATCH …/account/me` pertama aplikasi ini yang menulis selain `name`; tipe input `ubahProfil` menjadi `{name?, marketingConsent?}` justru agar kedua pemanggil tidak perlu mengirim ulang field yang tidak sedang diubahnya.
 
 `/akun/pesan` adalah halaman daftar/detail terautentikasi keempat aplikasi ini (setelah `/akun/pesanan`, `/akun/alamat`, daftar komisi `/akun/afiliasi`), memakai ulang bentuk daftar-keyset-plus-detail-`?id=` yang sama persis seperti yang ditetapkan `/akun/pesanan` — pelanggan yang sudah mengenal pola halaman itu (daftar, "Muat lebih banyak", klik ke detail) tidak perlu mempelajari apa pun yang baru di sini. Satu elemen yang sungguh baru adalah lencana belum-dibaca: hitungan kecil pada tiap baris daftar, diberi `aria-label` alih-alih dibiarkan sebagai angka visual polos, dan dibersihkan di sisi server sebagai efek samping membuka thread (tidak pernah aksi "tandai dibaca" terpisah yang harus diingat pelanggan). Thread tertutup merender catatan polos menggantikan formulir balas — tidak pernah textarea `disabled`, yang akan mengundang pelanggan mencoba mengetik pada kontrol yang hanya bisa gagal.
+
+## Memasang storefront ke Layar Utama (issue #428)
+
+Setiap halaman membawa tautan manifest, `apple-touch-icon`, dan meta tag aplikasi web iOS (markup `<head>` statis, tanpa skrip). Ikon PNG digambar saat build dari huruf pertama situs dan warna tema, sehingga situs turunan tidak pernah mengirim tanda merek lain; lihat [`docs/template.md`](template.id.md#metadata-instalasi-manifest-ikon-layar-utama-ios) dan [ADR-0049](adr/0049-install-metadata-is-derived-at-build-time-and-the-ios-help-page-is-opt-in.id.md).
+
+`/pasang-aplikasi` adalah halaman bantuan opt-in (flag build `PUBLIC_INSTALL_HELP`, mati secara bawaan; tidak ada di build saat mati). Ia memuat langkah iPhone (Safari, Bagikan, Tambahkan ke Layar Utama), dan satu modul kecil membaca `display-mode: standalone` / `navigator.standalone` untuk menyembunyikan langkah saat aplikasi sudah berjalan dari Layar Utama dan menampilkan petunjuk Chrome di perangkat non-Apple; tanpa JavaScript semuanya tetap terlihat. Ia menyatakan terus terang bahwa tab browser tidak bisa menerima notifikasi setelah ditutup, tidak pernah meminta izin saat dimuat, dan `noindex`. Ia termasuk dalam gerbang axe dan 360px.
 
 ## Belum dibangun
 

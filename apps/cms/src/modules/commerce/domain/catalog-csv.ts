@@ -33,6 +33,8 @@
  * can cause.
  */
 
+import { csvCellForWrite } from "../../../lib/security/csv-formula";
+
 export const CSV_TRIGGER_CHARACTERS = ["=", "+", "-", "@", "\t", "\r"] as const;
 
 const PLAIN_SIGNED_NUMBER = /^[+-]?[0-9]+(\.[0-9]+)?$/;
@@ -77,7 +79,13 @@ export function serializeCsv(
   options: { bom?: boolean } = {}
 ): string {
   const body = rows
-    .map((row) => row.map((cell) => encodeCsvCell(cell)).join(","))
+    .map((row) =>
+      row
+        .map((cell) =>
+          csvCellForWrite(cell, { numericText: true, reversible: true })
+        )
+        .join(",")
+    )
     .join("\r\n");
   const text = rows.length > 0 ? `${body}\r\n` : "";
   return options.bom === false ? text : `﻿${text}`;

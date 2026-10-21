@@ -34,7 +34,7 @@ import { ROUTES, type RouteKey } from "../src/config/routes";
  */
 export const GROUP_FILES = {
   shared: ["index.html", "kontak.html", "404.html", "robots.txt", "sitemap-index.xml", "csp.json", "manifest.webmanifest", "theme-tokens.css"],
-  toko: ["produk.html", "keranjang.html", "checkout.html", "cari.html", "masuk.html", "akun.html", "feed.xml", "product-labels.css", "index/produk.json", "index/wilayah-provinsi.json"],
+  toko: ["produk.html", "keranjang.html", "checkout.html", "cari.html", "masuk.html", "akun.html", "booking.html", "booking/pesan.html", "akun/reservasi.html", "feed.xml", "product-labels.css", "index/produk.json", "index/wilayah-provinsi.json"],
   berita: ["berita.html", "cari-berita.html", "buletin.html", "video.html", "berita/feed.xml", "index/berita.json", "index/pengalihan-legacy.json", "newsletter/confirm.html"]
 } as const;
 

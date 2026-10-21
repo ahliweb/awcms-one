@@ -42,7 +42,8 @@ import { recordAuditEvent } from "../../logging/application/audit-log";
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../_shared/idempotency";
 import {
   encodeKeysetCursor,
@@ -78,6 +79,8 @@ import {
 } from "../domain/loyalty-lots";
 import { fromCents, toCents } from "../domain/price-calculation";
 import { fetchEffectiveProgramAt } from "./loyalty-program-directory";
+import { isDepositOrder } from "../domain/gateway-deposit";
+import { readOrderSettledAt } from "./payment-allocation-directory";
 import { decideProgramEligibility } from "./loyalty-eligibility";
 
 const PRODUCER_MODULE = "commerce";
@@ -505,7 +508,11 @@ export type EarnOutcome =
         | "customer_unavailable"
         | "no_effective_program"
         | "not_in_segment"
-        | "zero_points";
+        | "zero_points"
+        /** Issue #379 (ADR-0041 D7): a deposit order that is not fully settled earns nothing yet. */
+        | "deposit_not_settled"
+        /** Issue #379: a settlement trigger for an order that is not a deposit order (its `order.paid` is its earn trigger). */
+        | "not_a_deposit_order";
     };
 
 /** Whether the order's earn row already exists (the replay guard for the eligibility check). */
@@ -538,18 +545,34 @@ async function earnEntryExists(
  * program version was effective at `paid_at`. Skipping because the feature is
  * off is NOT retroactive: enabling it later does not back-fill earlier orders
  * (ADR-0026 D2).
+ *
+ * ## Deposit orders earn only at full settlement (Issue #379, ADR-0041 D7)
+ *
+ * A down-payment order is `paid` at its deposit, so `order.paid` fires there
+ * while a balance is still owed. For such an order this function earns only
+ * once the ledger says the total is settled: a call with `trigger = "paid"`
+ * (the `order.paid` event) while a balance is outstanding skips with
+ * `deposit_not_settled` (a deposit alone never earns), and the later
+ * `awcms.commerce.order.settled` event calls it with `trigger = "settled"`,
+ * which earns under the same `earn:order:<id>` key, so an order can never earn
+ * twice. The program version in force is the one at the full-settlement instant
+ * (read from the ledger, never from the event payload). A whole-total order is
+ * untouched: it earns at `order.paid`, exactly as before, and a `"settled"`
+ * trigger for one is ignored.
  */
 export async function earnPointsForPaidOrder(
   tx: Bun.SQL,
   tenantId: string,
   orderId: string,
-  correlationId?: string
+  correlationId?: string,
+  trigger: "paid" | "settled" = "paid"
 ): Promise<EarnOutcome> {
   const features = await fetchCommerceFeatures(tx, tenantId);
   if (!features.loyalty) return { kind: "skipped", reason: "feature_disabled" };
 
   const orderRows = (await tx`
     SELECT o.id, o.status, o.subtotal, o.discount, o.loyalty_discount, o.paid_at, o.customer_id,
+      o.total, o.payment_method, o.dp_amount,
       c.phone AS customer_phone, c.status AS customer_status,
       c.deleted_at AS customer_deleted_at
     FROM awcms_commerce_orders o
@@ -564,6 +587,9 @@ export async function earnPointsForPaidOrder(
     loyalty_discount: string;
     paid_at: Date | string | null;
     customer_id: string;
+    total: string;
+    payment_method: string;
+    dp_amount: string | null;
     customer_phone: string;
     customer_status: string;
     customer_deleted_at: Date | string | null;
@@ -583,7 +609,29 @@ export async function earnPointsForPaidOrder(
     return { kind: "skipped", reason: "customer_unavailable" };
   }
 
-  const paidAt = order.paid_at === null ? new Date() : new Date(order.paid_at);
+  let paidAt = order.paid_at === null ? new Date() : new Date(order.paid_at);
+
+  // Issue #379 (ADR-0041 D7): a deposit order earns only at full settlement.
+  const depositOrder = isDepositOrder({
+    total: String(order.total),
+    paymentMethod: order.payment_method,
+    dpAmount: order.dp_amount !== null ? String(order.dp_amount) : null
+  });
+  if (!depositOrder && trigger === "settled") {
+    return { kind: "skipped", reason: "not_a_deposit_order" };
+  }
+  if (depositOrder) {
+    const settledAt = await readOrderSettledAt(
+      tx,
+      tenantId,
+      orderId,
+      String(order.total)
+    );
+    if (settledAt === null) {
+      return { kind: "skipped", reason: "deposit_not_settled" };
+    }
+    paidAt = new Date(settledAt);
+  }
   const program = await fetchEffectiveProgramAt(tx, tenantId, paidAt);
   if (!program) return { kind: "skipped", reason: "no_effective_program" };
 
@@ -647,6 +695,8 @@ export async function earnPointsForPaidOrder(
       correlationId
     });
   } catch (error) {
+    // tx-swallow-ok: LoyaltyIdempotencyConflictError comes from the key
+    // lookup, before any write, so the transaction is healthy.
     if (!(error instanceof LoyaltyIdempotencyConflictError)) throw error;
     // Thrown before any write (the key lookup precedes the INSERT), so the
     // transaction is intact. Redelivery cannot change the answer, so surface a
@@ -884,7 +934,8 @@ export async function redeemPoints(
     tx,
     tenantId,
     LOYALTY_REDEEM_IDEMPOTENCY_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (stored) {
     if (stored.requestHash !== requestHash) {
@@ -967,6 +1018,7 @@ export async function redeemPoints(
     tenantId,
     LOYALTY_REDEEM_IDEMPOTENCY_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     record
@@ -1009,7 +1061,8 @@ export async function adjustPoints(
     tx,
     tenantId,
     LOYALTY_ADJUST_IDEMPOTENCY_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (stored) {
     if (stored.requestHash !== requestHash) {
@@ -1082,6 +1135,7 @@ export async function adjustPoints(
     tenantId,
     LOYALTY_ADJUST_IDEMPOTENCY_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     record

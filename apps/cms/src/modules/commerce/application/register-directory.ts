@@ -129,7 +129,7 @@ export type CreateRegisterOutcome =
   { kind: "created"; register: RegisterRecord } | { kind: "code_taken" };
 
 export async function createRegister(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   input: CreateRegisterInput,
@@ -137,7 +137,9 @@ export async function createRegister(
 ): Promise<CreateRegisterOutcome> {
   let id: string;
   try {
-    const rows = (await tx`
+    const rows = (await tx.savepoint(
+      async (sp) =>
+        await sp`
       INSERT INTO awcms_commerce_registers (
         tenant_id, code, name, location_label,
         created_by_tenant_user_id, updated_by_tenant_user_id
@@ -147,7 +149,8 @@ export async function createRegister(
         ${actorTenantUserId}, ${actorTenantUserId}
       )
       RETURNING id
-    `) as { id: string }[];
+    `
+    )) as { id: string }[];
     id = rows[0]!.id;
   } catch (error) {
     if (

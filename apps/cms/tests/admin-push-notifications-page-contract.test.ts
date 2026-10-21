@@ -8,7 +8,7 @@
  *   device" is self-service — the subject is the person looking at it — while
  *   the queue below needs `diagnostics.read`. A test that assumed one gate for
  *   the whole page would push somebody to invent a `subscriptions.read`
- *   permission, which is the latent-authz trap ADR-0058 §E recorded.
+ *   permission, which is the latent-authz trap the `awcms-abac-guard` skill records.
  * - **The service worker cannot be a bundled asset.** A registration is keyed
  *   by script URL, so a content-hashed name would change every build and orphan
  *   every subscription the previous build made. It therefore lives in `public/`
@@ -171,7 +171,8 @@ describe("the service worker cannot be turned into an open redirect", () => {
     const source = await readFile(SERVICE_WORKER, "utf8");
 
     expect(source).toContain("FALLBACK_TITLE");
-    expect(source).toContain("var payload = readPayload(event) || {};");
+    // Issue #1106: the dual reader normalises a null payload to the fallback.
+    expect(source).toContain("normalizePayload(readPayload(event))");
   });
 
   test("both handlers wrap their async work in waitUntil", async () => {

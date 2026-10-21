@@ -195,6 +195,15 @@ SHA-256 checksummed, one manifest row per artifact
 `archive.port` value a descriptor can declare (forward-compatible typing) but has
 no concrete adapter yet.
 
+CSV archives are formula-neutral (Issue #978, PS-18) through the shared
+`src/lib/security/csv-formula.ts`, in its **reversible** mode: a cell beginning
+with `=`, `+`, `-`, `@`, TAB or CR is written with a leading single quote, a cell
+that already begins with `'` plus one of those is prefixed too, and
+`ArchivePort.read()` strips exactly one quote, so the restore procedure below gets
+the original bytes back. This module is deliberately NOT bound by the payroll data
+boundary (`src/modules/_shared/payroll-data-boundary.ts`): retention and legal
+hold must name every payroll table (PS-17).
+
 ### Restore procedure (local/offline archive)
 
 `ArchivePort.read()` reads an artifact back for reconciliation/testing; it
@@ -264,6 +273,38 @@ var (e.g. `AUDIT_LOG_RETENTION_DAYS`) — never re-declared here.
 
 ## Known limitations
 
+- **Delegated snapshots the worker cannot read (Issue #1040, resolved by
+  #1042).** Per tenant, `data-lifecycle:archive-purge` records a dry-run backlog
+  snapshot for every `delegated` descriptor. 25 inventory, procurement, HR and
+  booking tables are deliberately NOT readable by `awcms_worker` (the payroll
+  boundary keeps worker roles away from that data), so the snapshot does not
+  `SELECT` them: it calls a count-only `SECURITY DEFINER` function from
+  `sql/303` (`awcms_{inventory,procurement,hr_workforce,booking}_lifecycle_eligible_count(p_table,
+p_tenant_id, p_cutoff)`), which returns ONE integer, the tenant's rows older
+  than the cutoff. Held, purgeable and blocked are derived in TypeScript from
+  that number and the legal-hold records, so no hold key enters SQL (these
+  descriptors are all non-archivable, so eligible equals purgeable). The
+  mapping is `DELEGATED_COUNT_FUNCTIONS` in
+  `domain/known-unreadable-delegated.ts`. Safeguards: `search_path` pinned to
+  `public, pg_temp`; `EXECUTE` granted to `awcms_worker` only; a dedicated
+  NOLOGIN owner role per module with column-level `SELECT (tenant_id, cursor
+column)` only; RLS untouched (tenant scoping relies on the caller's own `app.current_tenant_id` plus `p_tenant_id`; this adds no capability beyond the worker's existing per-tenant iteration and is not a boundary against the worker);
+  static SQL per table, an unknown table raises `22023`. No payroll relation is
+  involved. The snapshots are recorded as `completed` runs with counts.
+  A failing descriptor is still isolated: it is logged
+  (`data_lifecycle.descriptor_failed`, descriptor key and SQLSTATE only, never
+  row data), recorded as a `dry_run` run with `status: failed` and
+  `errorCount: 1`, and the pass continues, including to the generic descriptors.
+  The same isolation applies to a generic descriptor that throws. The
+  shrink-only baseline `KNOWN_UNREADABLE_DELEGATED_TABLES` is now EMPTY; the
+  mechanism stays for a future descriptor the worker may not read. A snapshot
+  failure is EXPECTED only when its table is in the baseline AND the SQLSTATE is
+  `42501` (then counted as `knownUnreadableDelegated` and not making the job
+  `partial`); anything else makes the job `partial` and exit non-zero.
+  `data-lifecycle:worker-grants:check` fails on an unreadable delegated
+  descriptor with neither a worker `SELECT` nor a mapped count function granted
+  to the worker with a branch for its table, and on a stale baseline entry.
+  Real purges are unaffected (each owning module's own job).
 - **Cross-tenant/global-scope execution**: `scope: "global"` descriptors are
   accepted by the registry validator (forward-compatible typing) but the dry-run
   planner and archive/purge engine only implement the `scope: "tenant"` path

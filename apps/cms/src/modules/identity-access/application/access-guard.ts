@@ -17,6 +17,11 @@ import {
 } from "../domain/access-control";
 import { isPlatformScopedPermissionKey } from "../domain/platform-scope";
 import {
+  MFA_ENROLMENT_REQUIRED_CODE,
+  MFA_ENROLMENT_REQUIRED_POLICY
+} from "../domain/mfa-required-permissions";
+import { checkMfaEnrolmentRequirement } from "./mfa-enrolment-gate";
+import {
   resolvePlatformTenant,
   resolvePlatformTenantIdIgnoringStatus
 } from "../../../lib/tenant/platform-tenant";
@@ -115,7 +120,17 @@ export type AuthorizeResult =
       context: TenantContext;
       grantedPermissionKeys: Set<string>;
     }
-  | { allowed: false; denied: Response };
+  | {
+      allowed: false;
+      denied: Response;
+      /**
+       * The error code of `denied`, set only where a caller needs to choose
+       * between several refusals without reading a response body — today the
+       * ADR-0141 enrolment refusal, which an any-of caller must prefer over a
+       * generic `ACCESS_DENIED` from a sibling candidate (finding F-4).
+       */
+      code?: string;
+    };
 
 /**
  * A domain-supplied basis for allowing an action the subject's ROLES do not
@@ -130,6 +145,29 @@ export type OwnershipGrant = {
   granted: boolean;
   reason: string;
 };
+
+/**
+ * An ownership grant may only widen a `read` guard on surfaces that hand the
+ * grant to callers generically: `defineTenantRoute` (ADR-0063,
+ * `assertOwnershipGrantIsReadOnly`) and an admin screen's `can()` (Issue #952
+ * re-audit, N-1). Throws for any other action while a grant is supplied,
+ * whether or not it is `granted`: the mistake is in the call, not in the data.
+ *
+ * It is deliberately NOT enforced inside `authorizeInTransaction` itself:
+ * hand-written routes legitimately pass a write-scoped grant there after their
+ * own ownership check (e.g. a blog author updating or submitting their own
+ * unpublished post/page), and that path is reviewed per route.
+ */
+export function assertOwnershipGrantAppliesToRead(
+  guard: AccessRequest,
+  grant: OwnershipGrant | undefined
+): void {
+  if (grant && guard.action !== "read") {
+    throw new Error(
+      `authorizeInTransaction: an ownershipGrant may only widen a \`read\` guard; ${guard.moduleKey}.${guard.activityCode}.${guard.action} is not one.`
+    );
+  }
+}
 
 /**
  * Runs the full guard chain inside an existing tenant transaction: resolve
@@ -175,6 +213,14 @@ export async function authorizeInTransaction(
     hierarchyPort?: BusinessScopeHierarchyPort;
     sodRules?: readonly SoDRuleDescriptor[];
     ownershipGrant?: OwnershipGrant;
+    /**
+     * ADR-0141 — EXTRA permission keys that require an enrolled MFA factor,
+     * UNIONED with the ones the composed registry flags with
+     * `requiresMfaEnrolment`. Additive only: it can add enforcement and can
+     * never remove it, so passing an empty set changes nothing. A test injects
+     * a fixture set to exercise the gate without editing a shipped module.
+     */
+    mfaRequiredKeys?: ReadonlySet<string>;
     /**
      * An OPT-IN memo for the reads this function repeats when one caller makes
      * several decisions about the same principal in one transaction — finding
@@ -744,13 +790,76 @@ export async function authorizeInTransaction(
   // wrong answer for the one case where the answer is not "a role granted it".
   // A DENY is never relabelled: the reason it was denied is the reason it was
   // denied.
-  const decision =
+  const rbacDecision =
     ownershipApplied && evaluated.allowed
       ? {
           ...evaluated,
           matchedPolicy: `ownership_grant:${options!.ownershipGrant!.reason}`
         }
       : evaluated;
+
+  // ADR-0141 (finding PS-13) — a permission flagged `requiresMfaEnrolment` is
+  // refused to anyone without an active MFA factor, evaluated ONLY on a decision
+  // that has already allowed.
+  //
+  // Both halves of that sentence are deliberate. After the allow, because a
+  // caller who lacks the permission is owed `ACCESS_DENIED` and nothing that
+  // teaches them the action exists or what it needs; and deny-only, because it
+  // can turn this allow into a refusal and never the reverse, so no grant, no
+  // ownership basis and no policy can make an unenrolled caller pass it.
+  //
+  // This is NOT one of the structural gates above the grant read
+  // (`guard-structural-gate-order.test.ts`), and the difference is principled
+  // rather than an oversight: those answer "the caller's grants must not be able
+  // to affect this", whereas this reads the caller's own enrolment and is
+  // applied to every holder alike — it is already unaffected by what they hold.
+  //
+  // Folded into THE decision rather than logged as a second row, so the log
+  // reads "refused: mfa_enrolment_required" instead of an allow followed by a
+  // contradicting deny for the same request. Evaluated before the log write for
+  // that reason; `viaMachineCredential` because a credential can never hold a
+  // factor and its linked account having one proves nothing about the request.
+  const mfaRefusal = rbacDecision.allowed
+    ? await checkMfaEnrolmentRequirement(
+        tx,
+        tenantId,
+        context,
+        permissionKey(guard.moduleKey, guard.activityCode, guard.action),
+        {
+          requiredKeys: options?.mfaRequiredKeys,
+          viaMachineCredential: Boolean(machine)
+        }
+      )
+    : null;
+
+  // Issue #181 — segregation-of-duties conflict enforcement, deny-only and
+  // additive to the ABAC decision (it can only turn an already-`allowed`
+  // HIGH-RISK decision into a deny). ACTION-TIME enforcement; see
+  // `high-risk-sod-guard.ts`. Evaluated BEFORE the decision-log write and folded
+  // into the logged decision (like the MFA refusal) so a SoD block is recorded
+  // as a deny with its reason, never as an allow contradicting the 403.
+  const sodCheck =
+    rbacDecision.allowed && !mfaRefusal && isHighRiskAction(guard.action)
+      ? await checkHighRiskSoDConflicts(tx, tenantId, context, guard, now, {
+          hierarchyPort: options?.hierarchyPort,
+          rules: options?.sodRules
+        })
+      : null;
+  const sodBlock = sodCheck?.blocked ? sodCheck : null;
+
+  const decision = mfaRefusal
+    ? {
+        allowed: false,
+        reason: mfaRefusal.message,
+        matchedPolicy: MFA_ENROLMENT_REQUIRED_POLICY
+      }
+    : sodBlock
+      ? {
+          allowed: false,
+          reason: sodBlock.reason,
+          matchedPolicy: "sod_conflict"
+        }
+      : rbacDecision;
 
   await recordDecisionLog(
     tx,
@@ -762,6 +871,27 @@ export async function authorizeInTransaction(
     context.delegatedGrantId
   );
 
+  if (mfaRefusal) {
+    return {
+      allowed: false,
+      code: MFA_ENROLMENT_REQUIRED_CODE,
+      denied: fail(
+        403,
+        MFA_ENROLMENT_REQUIRED_CODE,
+        mfaRefusal.message,
+        {},
+        { reason: mfaRefusal.reason }
+      )
+    };
+  }
+
+  if (sodBlock) {
+    return {
+      allowed: false,
+      denied: fail(403, "SOD_CONFLICT", sodBlock.reason)
+    };
+  }
+
   if (!decision.allowed) {
     return {
       allowed: false,
@@ -769,33 +899,14 @@ export async function authorizeInTransaction(
     };
   }
 
-  // Issue #181 — segregation-of-duties conflict enforcement, additive to the
-  // ordinary ABAC decision above (deny-overrides-allow: this can only turn an
-  // already-`allowed` HIGH-RISK decision into a deny, never the reverse). This
-  // is ACTION-TIME enforcement — a subject holding both halves of a registered
-  // conflict is denied at execution, not only at assignment. See
-  // `high-risk-sod-guard.ts`'s header (it reasons about permissions held via
-  // BOTH the business-scope-assignment path AND ordinary RBAC role grants, and
-  // short-circuits at zero cost when no rule references the requested key).
-  if (isHighRiskAction(guard.action)) {
-    const sodCheck = await checkHighRiskSoDConflicts(
-      tx,
-      tenantId,
-      context,
-      guard,
-      now,
-      { hierarchyPort: options?.hierarchyPort, rules: options?.sodRules }
-    );
-
-    if (sodCheck.blocked) {
-      return {
-        allowed: false,
-        denied: fail(403, "SOD_CONFLICT", sodCheck.reason)
-      };
-    }
-  }
-
-  return { allowed: true, context, grantedPermissionKeys };
+  return {
+    allowed: true,
+    // Machine-ness travels WITH the authorised context (ADR-0141 / audit F-1),
+    // so `evaluateFieldAccessInTransaction` cannot be handed a credential's
+    // context and treat it as a session by omission.
+    context: machine ? { ...context, viaMachineCredential: true } : context,
+    grantedPermissionKeys
+  };
 }
 
 /**
@@ -837,5 +948,28 @@ export async function evaluateFieldAccessInTransaction(
     { policies, env: { now, ipTrusted: false } }
   );
 
-  return decision.allowed;
+  if (!decision.allowed) return false;
+
+  // ADR-0141 — a FIELD gated on a flagged permission must not be a way round the
+  // enrolment requirement the same key carries on an endpoint. The field omits
+  // rather than refusing (see above), so a refusal here is simply `false`.
+  //
+  // Whether the request is a machine credential is read from the authorised
+  // context itself (`authorizeInTransaction` stamps it), never from an optional
+  // argument: a credential is bound to an EXISTING tenant user, who may be a
+  // person with a factor, so "enrolled" would be true of a request in which
+  // nobody presented one (audit F-1).
+  const mfaRefusal = await checkMfaEnrolmentRequirement(
+    tx,
+    tenantId,
+    context,
+    permissionKey(
+      fieldGuard.moduleKey,
+      fieldGuard.activityCode,
+      fieldGuard.action
+    ),
+    { viaMachineCredential: context.viaMachineCredential === true }
+  );
+
+  return mfaRefusal === null;
 }

@@ -164,7 +164,7 @@ export async function isAffiliateProgramEnabled(
 }
 
 async function insertAffiliateWithRetryableCode(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   customerId: string,
   commissionRate: string
@@ -172,11 +172,14 @@ async function insertAffiliateWithRetryableCode(
   for (let attempt = 0; attempt < MAX_AFFILIATE_CODE_ATTEMPTS; attempt += 1) {
     const code = generateAffiliateCode();
     try {
-      const rows = (await tx`
+      const rows = (await tx.savepoint(
+        async (sp) =>
+          await sp`
         INSERT INTO awcms_commerce_affiliates (tenant_id, customer_id, code, commission_rate, status)
         VALUES (${tenantId}, ${customerId}, ${code}, ${commissionRate}, 'active')
         RETURNING id, customer_id, code, commission_rate, status, created_at
-      `) as AffiliateRow[];
+      `
+      )) as AffiliateRow[];
       return rows[0]!;
     } catch (error) {
       const isCollision =
@@ -201,7 +204,7 @@ async function insertAffiliateWithRetryableCode(
  * @throws {AffiliateProgramDisabledError} the tenant's program is off.
  */
 export async function enrolAffiliate(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   customerId: string,
   correlationId?: string

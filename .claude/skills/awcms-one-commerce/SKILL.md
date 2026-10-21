@@ -82,6 +82,10 @@ A screen added or touched after this epic follows five additional rules, on top 
 
 Never write `awcms_commerce_products.stock` / `…_product_variants.stock` from a new code path. A tenant is either on the `counter` (the column is the authority) or the upstream inventory `ledger` (the ledger is, and the column is a write-through cache), and `application/commerce-inventory.ts` is the one file that knows which: `resolveInventoryConfig` reads the mode under the shared mode lock, `postOrderSale` / `postOrderRestock` / `postReturnRestock` post through `InventoryLedgerPort`, `withInventorySavepoint` makes a ledger refusal roll the unit of work back, and `assertStockWritable` refuses an admin edit that would change a count in `ledger` mode. A new stock-moving feature calls those, keeps the `counter` branch as it was, and maps `InventoryLedgerRefusedError` / `StockManagedByInventoryError` with `inventoryErrorResponse` (never catch one after writing outside a savepoint: a returned 4xx commits).
 
+## WhatsApp goes through one router, and the mode is written in one place (Issues #392/#393, ADR-0047)
+
+Never insert into `awcms_commerce_whatsapp_messages` or call `WhatsappDeliveryPort` from a new code path: send through `enqueueWhatsappMessage` (`application/whatsapp-enqueue.ts`), which reads the tenant's mode under a shared advisory lock and writes the legacy outbox or the upstream queue. Never write `awcms_commerce_store_settings.whatsapp_mode` either: `flipWhatsappMode` (`application/whatsapp-mode-flip.ts`) is the only writer - it takes the exclusive lock, refuses while the queue being left holds a non-terminal row, and audits - and `apps/cms/tests/commerce-whatsapp-upstream-boundary.test.ts` fails if a second file does. The operator surfaces are `bun run commerce:whatsapp:cutover` and `GET`/`POST /api/v1/commerce/whatsapp/mode`.
+
 ## Verification
 
 ```bash

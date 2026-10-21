@@ -29,6 +29,7 @@ import { isProductStatus } from "../../../../../modules/commerce/domain/product-
 import { isProductSort } from "../../../../../modules/commerce/domain/product-sort";
 import { COMMERCE_PRODUCTS_ACTIVITY_CODE } from "../../../../../modules/commerce/domain/commerce-permissions";
 import { BundleDefinitionInvalidError } from "../../../../../modules/commerce/application/bundle-directory";
+import { AllowDpManagedByPolicyError } from "../../../../../modules/commerce/application/booking-deposit-policies";
 import { inventoryErrorResponse } from "../../../../../modules/commerce/application/commerce-inventory-http";
 
 const READ_GUARD = {
@@ -232,13 +233,16 @@ export const POST = defineTenantRoute({
       );
       return created(product);
     } catch (error) {
+      // tx-swallow-ok: ProductCategoryNotFoundError,
+      // DuplicateProductSlugError, DuplicateProductSkuError,
+      // BundleDefinitionInvalidError, InventoryLedgerRefusedError are raised
+      // by application code before a write, or after the directory rolled its
+      // failed statement back to a savepoint, so the transaction is healthy.
       // All branches are caught INSIDE the transaction: none of these is a
-      // `Bun.SQL.PostgresError`, and each is safe to turn into a 4xx here
-      // only because of what has NOT been written — `ProductCategoryNotFoundError`
-      // is raised before `createProduct` touches anything, and the two
-      // duplicate errors follow a unique violation that already aborted the
-      // transaction, so the commit `defineTenantRoute` performs on this normal
-      // return degrades to a rollback.
+      // `Bun.SQL.PostgresError`. `ProductCategoryNotFoundError` is raised
+      // before `createProduct` touches anything, and the two duplicate errors
+      // are thrown after the directory ran the failing INSERT in a savepoint
+      // and rolled it back, so the transaction is still usable.
       if (error instanceof ProductCategoryNotFoundError) {
         return fail(
           400,
@@ -265,6 +269,10 @@ export const POST = defineTenantRoute({
           {},
           error.errors
         );
+      }
+
+      if (error instanceof AllowDpManagedByPolicyError) {
+        return fail(409, "ALLOW_DP_MANAGED_BY_POLICY", error.message);
       }
 
       const inventoryFailure = inventoryErrorResponse(error);

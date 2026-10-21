@@ -1,7 +1,7 @@
 {
   "name": "awcms-one",
   "type": "module",
-  "version": "0.16.3",
+  "version": "0.17.0",
   "private": true,
   "description": "awcms-one — the borneojek-mart commerce platform on the AWCMS stack. Bun workspace root: apps/storefront is the public Astro storefront, apps/cms is ahliweb/awcms embedded via git subtree, packages/config and packages/gerbang are the shared presets and audit gates, packages/kontrak carries the type-only DTO contract the storefront imports from the CMS.",
   "homepage": "https://mart.borneojek.com",
@@ -10,9 +10,9 @@
     "url": "git+https://github.com/ahliweb/awcms-one.git"
   },
   "license": "MIT",
-  "packageManager": "bun@1.4.2",
+  "packageManager": "bun@1.4.3",
   "engines": {
-    "bun": ">=1.4.2"
+    "bun": ">=1.4.3"
   },
   "workspaces": [
     "apps/*",

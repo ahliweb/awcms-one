@@ -37,10 +37,16 @@ import { withTenantOrThrow } from "../../../lib/database/tenant-context";
 import { normalizeMoney, toCents } from "../domain/price-calculation";
 import { normalizePhoneNumber } from "../domain/phone-normalisation";
 import { isOrderPayable, type OrderStatus } from "../domain/order-status";
+import {
+  decideGatewayPurpose,
+  decideLiveSessionReuse,
+  type GatewaySessionPurpose
+} from "../domain/gateway-deposit";
 import type { PaymentGatewayProvider } from "../domain/payment-gateway-provider";
 import { requireCustomerSession } from "./customer-session-auth";
 import {
   failPendingGatewayAllocation,
+  lockOrderAndReadSettledCents,
   openPendingGatewayAllocation,
   readOrderSettlement
 } from "./payment-allocation-directory";
@@ -58,6 +64,10 @@ export type GatewaySessionRecord = {
   redirectUrl: string;
   status: string;
   expiresAt: string;
+  /** Issue #379 (ADR-0041 D1) - what the session collects: the whole total (`full`, every session before `sql/1025`), the down payment, or what remains after it. */
+  purpose: GatewaySessionPurpose;
+  /** The server-computed amount the session was created to collect (`numeric(14,2)`); `null` only for a session created before `sql/1025`, which reads as the order total. */
+  expectedAmount: string | null;
 };
 
 export type CreateGatewaySessionAuth =
@@ -75,6 +85,20 @@ export type CreateGatewaySessionOutcome =
    * gateway legs are deferred; the balance is settled with a manual tender.
    */
   | { kind: "partially_settled"; outstanding: string }
+  /**
+   * Issue #379 (ADR-0041 D1/D3): the order's current state does not admit the
+   * requested purpose (a `deposit` or `balance` on a whole-total order, a
+   * `balance` before the deposit is in, a `deposit` after it, ...). `allowed`
+   * lists what it does admit, for the caller to offer instead.
+   */
+  | { kind: "purpose_not_allowed"; allowed: GatewaySessionPurpose[] }
+  /**
+   * Issue #379 (ADR-0041 D5.1): one live session per order. A session is still
+   * `created`/`pending` but is not the one the order's present state calls for
+   * (another purpose, or an amount a payment since made stale); it must end
+   * before another can be created.
+   */
+  | { kind: "session_in_progress" }
   | { kind: "gateway_unavailable" };
 
 type OrderRow = {
@@ -97,6 +121,8 @@ type SessionRow = {
   redirect_url: string;
   status: string;
   expires_at: Date;
+  purpose: string;
+  expected_amount: string | null;
 };
 
 function toRecord(row: SessionRow): GatewaySessionRecord {
@@ -107,7 +133,10 @@ function toRecord(row: SessionRow): GatewaySessionRecord {
     providerRef: row.provider_ref,
     redirectUrl: row.redirect_url,
     status: row.status,
-    expiresAt: row.expires_at.toISOString()
+    expiresAt: row.expires_at.toISOString(),
+    purpose: row.purpose as GatewaySessionPurpose,
+    expectedAmount:
+      row.expected_amount !== null ? normalizeMoney(row.expected_amount) : null
   };
 }
 
@@ -132,7 +161,7 @@ async function fetchLiveSession(
   orderId: string
 ): Promise<SessionRow | null> {
   const rows = (await tx`
-    SELECT id, order_id, provider, provider_ref, redirect_url, status, expires_at
+    SELECT id, order_id, provider, provider_ref, redirect_url, status, expires_at, purpose, expected_amount
     FROM awcms_commerce_payment_gateway_sessions
     WHERE tenant_id = ${tenantId} AND order_id = ${orderId}
       AND status = ANY(${tx.array([...LIVE_STATUSES], "text")}::text[])
@@ -164,19 +193,24 @@ type ValidateResult =
       customerName: string;
       customerPhone: string;
       customerEmail: string | null;
-      total: string;
+      /** Issue #379: what the session collects, decided by the server under the order lock for a deposit/balance (the order total for `full`). Exactly the `gross_amount` sent to the provider. */
+      expectedAmount: string;
+      purpose: GatewaySessionPurpose;
       attempt: number;
     }
   | { kind: "not_found" }
   | { kind: "unauthenticated" }
   | { kind: "not_applicable" }
+  | { kind: "purpose_not_allowed"; allowed: GatewaySessionPurpose[] }
+  | { kind: "session_in_progress" }
   | { kind: "partially_settled"; outstanding: string };
 
 async function validateAndCheckReuse(
   sql: Bun.SQL,
   tenantId: string,
   orderCode: string,
-  auth: CreateGatewaySessionAuth
+  auth: CreateGatewaySessionAuth,
+  purpose: GatewaySessionPurpose
 ): Promise<ValidateResult> {
   return withTenantOrThrow(sql, tenantId, async (tx) => {
     const order = await fetchOrderForGateway(tx, tenantId, orderCode);
@@ -203,6 +237,56 @@ async function validateAndCheckReuse(
         // exist at all".
         return { kind: "not_found" };
       }
+    }
+
+    // Issue #379 (ADR-0041 D1): a deposit or balance session. The expected
+    // amount is computed HERE, under the order-row lock, from the ledger -
+    // never from the request - and the provider is called afterwards with no
+    // transaction open. A whole-total order can never reach this branch's
+    // success: its `decideGatewayPurpose` admits only `full`.
+    if (purpose !== "full") {
+      const locked = await lockOrderAndReadSettledCents(tx, tenantId, order.id);
+      if (!locked) return { kind: "not_found" };
+      const decision = decideGatewayPurpose(
+        {
+          status: locked.header.status as OrderStatus,
+          total: locked.header.total,
+          paymentMethod: locked.header.paymentMethod,
+          dpAmount: locked.header.dpAmount
+        },
+        locked.settledCents,
+        purpose
+      );
+      if (!decision.ok) {
+        return { kind: "purpose_not_allowed", allowed: decision.allowed };
+      }
+
+      // One live session per order (ADR-0041 D5.1). The still-live session is
+      // handed back only when it is exactly the one this request would create;
+      // a different purpose, or an amount a payment since made stale, must
+      // end first (it expires or is paid) - never a second live session.
+      const live = await fetchLiveSession(tx, tenantId, order.id);
+      if (live) {
+        return decideLiveSessionReuse(
+          { purpose: live.purpose, expectedAmount: live.expected_amount },
+          { purpose: decision.purpose, expectedAmount: decision.expectedAmount }
+        ) === "reuse"
+          ? { kind: "reuse", session: live }
+          : { kind: "session_in_progress" };
+      }
+
+      const priorAttempts = await countPriorAttempts(tx, tenantId, order.id);
+      return {
+        kind: "call_provider",
+        orderId: order.id,
+        orderCode: order.order_code,
+        customerName: order.customer_name,
+        customerPhone: order.customer_phone,
+        customerEmail: order.customer_email,
+        expectedAmount: decision.expectedAmount,
+        purpose: decision.purpose,
+        attempt: priorAttempts + 1
+      };
     }
 
     if (
@@ -234,7 +318,8 @@ async function validateAndCheckReuse(
       customerName: order.customer_name,
       customerPhone: order.customer_phone,
       customerEmail: order.customer_email,
-      total: normalizeMoney(order.total),
+      expectedAmount: normalizeMoney(order.total),
+      purpose: "full",
       attempt: priorAttempts + 1
     };
   });
@@ -245,6 +330,12 @@ async function validateAndCheckReuse(
  * own signature. `provider` is resolved by the caller (the route), not this
  * function, so a `503 GATEWAY_UNAVAILABLE` (no provider configured at all)
  * never needs to open a transaction first.
+ *
+ * `purpose` (Issue #379, ADR-0041) defaults to `full`, the whole-total
+ * session every order without a deposit uses and the path this function
+ * followed before that issue, unchanged. `deposit` / `balance` are only
+ * admitted for a down-payment order in the matching state; the amount they
+ * collect is computed here, never supplied by the caller.
  */
 export async function createGatewaySession(
   sql: Bun.SQL,
@@ -252,14 +343,23 @@ export async function createGatewaySession(
   orderCode: string,
   auth: CreateGatewaySessionAuth,
   provider: PaymentGatewayProvider,
-  providerKey: "midtrans" | "log"
+  providerKey: "midtrans" | "log",
+  purpose: GatewaySessionPurpose = "full"
 ): Promise<CreateGatewaySessionOutcome> {
-  const validated = await validateAndCheckReuse(sql, tenantId, orderCode, auth);
+  const validated = await validateAndCheckReuse(
+    sql,
+    tenantId,
+    orderCode,
+    auth,
+    purpose
+  );
 
   if (validated.kind === "not_found") return { kind: "not_found" };
   if (validated.kind === "unauthenticated") return { kind: "unauthenticated" };
   if (validated.kind === "not_applicable") return { kind: "not_applicable" };
   if (validated.kind === "partially_settled") return validated;
+  if (validated.kind === "purpose_not_allowed") return validated;
+  if (validated.kind === "session_in_progress") return validated;
   if (validated.kind === "reuse") {
     return { kind: "reused", session: toRecord(validated.session) };
   }
@@ -271,7 +371,7 @@ export async function createGatewaySession(
     created = await provider.createSession({
       orderCode: validated.orderCode,
       attempt: validated.attempt,
-      grossAmount: validated.total,
+      grossAmount: validated.expectedAmount,
       customerName: validated.customerName,
       customerPhone: validated.customerPhone,
       customerEmail: validated.customerEmail
@@ -284,29 +384,91 @@ export async function createGatewaySession(
   // -- Persist — second, independent short transaction. --------------------
   try {
     return await withTenantOrThrow(sql, tenantId, async (tx) => {
-      // Re-check: a payment may have been recorded while the provider call
-      // was in flight (no lock is held across it). Nothing is inserted, so
-      // the provider-side session is simply never used.
-      const recheck = await readOrderSettlement(
-        tx,
-        tenantId,
-        validated.orderId
-      );
-      if (recheck && toCents(recheck.view.settled) > 0n) {
-        return {
-          kind: "partially_settled" as const,
-          outstanding: recheck.view.outstanding
-        };
+      if (validated.purpose === "full") {
+        // Serialise with a concurrent create for this order (the deposit/balance
+        // branch below takes the same lock via `lockOrderAndReadSettledCents`).
+        await tx`
+          SELECT id FROM awcms_commerce_orders
+          WHERE tenant_id = ${tenantId} AND id = ${validated.orderId}
+          FOR UPDATE
+        `;
+        // Re-check: a payment may have been recorded while the provider call
+        // was in flight (no lock is held across it). Nothing is inserted, so
+        // the provider-side session is simply never used.
+        const recheck = await readOrderSettlement(
+          tx,
+          tenantId,
+          validated.orderId
+        );
+        if (recheck && toCents(recheck.view.settled) > 0n) {
+          return {
+            kind: "partially_settled" as const,
+            outstanding: recheck.view.outstanding
+          };
+        }
+      } else {
+        // Issue #379: the same re-check for a deposit/balance, under the lock.
+        // If the ledger moved while the provider call was in flight, the
+        // amount the provider was given is no longer what the order calls
+        // for: nothing is inserted and the provider-side session is never used.
+        const locked = await lockOrderAndReadSettledCents(
+          tx,
+          tenantId,
+          validated.orderId
+        );
+        const decision = locked
+          ? decideGatewayPurpose(
+              {
+                status: locked.header.status as OrderStatus,
+                total: locked.header.total,
+                paymentMethod: locked.header.paymentMethod,
+                dpAmount: locked.header.dpAmount
+              },
+              locked.settledCents,
+              validated.purpose
+            )
+          : null;
+        if (!decision || !decision.ok) {
+          return {
+            kind: "purpose_not_allowed" as const,
+            allowed: decision && !decision.ok ? decision.allowed : []
+          };
+        }
+        if (decision.expectedAmount !== validated.expectedAmount) {
+          return { kind: "session_in_progress" as const };
+        }
+      }
+
+      // One live session per order (ADR-0041 D5.1), re-checked under the
+      // order-row lock taken above: two requests can both pass the validate
+      // step while no session exists, and each calls the provider with no
+      // lock held. The later persist must not insert a second live session -
+      // it hands back the first when it is the very session this request
+      // would have made, else reports one in progress. The provider-side
+      // session this request created is simply never used.
+      const liveNow = await fetchLiveSession(tx, tenantId, validated.orderId);
+      if (liveNow) {
+        return decideLiveSessionReuse(
+          { purpose: liveNow.purpose, expectedAmount: liveNow.expected_amount },
+          {
+            purpose: validated.purpose,
+            expectedAmount: validated.expectedAmount
+          }
+        ) === "reuse"
+          ? { kind: "reused" as const, session: toRecord(liveNow) }
+          : { kind: "session_in_progress" as const };
       }
       const rows = (await tx`
         INSERT INTO awcms_commerce_payment_gateway_sessions (
-          tenant_id, order_id, provider, provider_ref, redirect_url, status, expires_at
+          tenant_id, order_id, provider, provider_ref, redirect_url, status, expires_at,
+          purpose, expected_amount
         )
         VALUES (
           ${tenantId}, ${validated.orderId}, ${providerKey}, ${created.providerRef},
-          ${created.redirectUrl}, 'pending', ${created.expiresAt}
+          ${created.redirectUrl}, 'pending', ${created.expiresAt},
+          ${validated.purpose}, ${validated.expectedAmount}
         )
-        RETURNING id, order_id, provider, provider_ref, redirect_url, status, expires_at
+        RETURNING id, order_id, provider, provider_ref, redirect_url, status, expires_at, purpose, expected_amount
       `) as SessionRow[];
 
       // Issue #285 (ADR-0025): the in-flight leg of the payment-allocation
@@ -315,7 +477,7 @@ export async function createGatewaySession(
       // persist transaction AFTER the provider call returned, never during it.
       await openPendingGatewayAllocation(tx, tenantId, {
         orderId: validated.orderId,
-        amount: validated.total,
+        amount: validated.expectedAmount,
         provider: providerKey,
         providerReference: created.providerRef
       });
@@ -333,7 +495,7 @@ export async function createGatewaySession(
     // re-fetch and hand back ITS row rather than 500ing.
     return withTenantOrThrow(sql, tenantId, async (tx) => {
       const rows = (await tx`
-        SELECT id, order_id, provider, provider_ref, redirect_url, status, expires_at
+        SELECT id, order_id, provider, provider_ref, redirect_url, status, expires_at, purpose, expected_amount
         FROM awcms_commerce_payment_gateway_sessions
         WHERE tenant_id = ${tenantId} AND provider = ${providerKey} AND provider_ref = ${created.providerRef}
       `) as SessionRow[];
@@ -360,7 +522,7 @@ export async function findGatewaySessionByProviderRef(
   providerRef: string
 ): Promise<GatewaySessionRecord | null> {
   const rows = (await tx`
-    SELECT id, order_id, provider, provider_ref, redirect_url, status, expires_at
+    SELECT id, order_id, provider, provider_ref, redirect_url, status, expires_at, purpose, expected_amount
     FROM awcms_commerce_payment_gateway_sessions
     WHERE tenant_id = ${tenantId} AND provider = ${provider} AND provider_ref = ${providerRef}
   `) as SessionRow[];
@@ -494,7 +656,7 @@ export async function findGatewaySessionById(
   sessionId: string
 ): Promise<GatewaySessionRecord | null> {
   const rows = (await tx`
-    SELECT id, order_id, provider, provider_ref, redirect_url, status, expires_at
+    SELECT id, order_id, provider, provider_ref, redirect_url, status, expires_at, purpose, expected_amount
     FROM awcms_commerce_payment_gateway_sessions
     WHERE tenant_id = ${tenantId} AND id = ${sessionId}
   `) as SessionRow[];
@@ -516,7 +678,7 @@ export async function fetchLatestGatewaySessionForOrder(
   orderId: string
 ): Promise<GatewaySessionRecord | null> {
   const rows = (await tx`
-    SELECT id, order_id, provider, provider_ref, redirect_url, status, expires_at
+    SELECT id, order_id, provider, provider_ref, redirect_url, status, expires_at, purpose, expected_amount
     FROM awcms_commerce_payment_gateway_sessions
     WHERE tenant_id = ${tenantId} AND order_id = ${orderId}
     ORDER BY created_at DESC

@@ -31,6 +31,7 @@
  *     RLS context, and rows are matched only against the caller's own products;
  *   - write what the caller may not: the route requires import + create + update.
  */
+import { AllowDpManagedByPolicyError } from "./booking-deposit-policies";
 import { createHash } from "node:crypto";
 
 import { recordAuditEvent } from "../../logging/application/audit-log";
@@ -534,7 +535,7 @@ export type ApplyCatalogImportResult =
  * matches the dry-run it reviewed.
  */
 export async function applyCatalogImport(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   csvText: string,
@@ -675,6 +676,7 @@ function isExpectedWriteConflict(error: unknown): boolean {
   return (
     error instanceof RowWriteError ||
     error instanceof StockManagedByInventoryError ||
+    error instanceof AllowDpManagedByPolicyError ||
     error instanceof BundleDefinitionInvalidError ||
     error instanceof DuplicateProductSlugError ||
     error instanceof DuplicateProductSkuError ||

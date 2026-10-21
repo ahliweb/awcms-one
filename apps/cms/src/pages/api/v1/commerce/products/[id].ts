@@ -23,6 +23,7 @@ import {
 } from "../../../../../modules/commerce/domain/product-validation";
 import { COMMERCE_PRODUCTS_ACTIVITY_CODE } from "../../../../../modules/commerce/domain/commerce-permissions";
 import { BundleDefinitionInvalidError } from "../../../../../modules/commerce/application/bundle-directory";
+import { AllowDpManagedByPolicyError } from "../../../../../modules/commerce/application/booking-deposit-policies";
 import { inventoryErrorResponse } from "../../../../../modules/commerce/application/commerce-inventory-http";
 
 const READ_GUARD = {
@@ -128,11 +129,17 @@ export const PATCH = defineTenantRoute({
 
       return ok(withRelations);
     } catch (error) {
+      // tx-swallow-ok: ProductCategoryNotFoundError,
+      // IllegalProductStatusTransitionError, InvalidSizeChartFieldsError,
+      // DuplicateProductSlugError, DuplicateProductSkuError,
+      // BundleDefinitionInvalidError, InventoryLedgerRefusedError are raised
+      // by application code before a write, or after the directory rolled its
+      // failed statement back to a savepoint, so the transaction is healthy.
       // Every one of these is raised either before the UPDATE runs
       // (`ProductCategoryNotFoundError`, `IllegalProductStatusTransitionError`,
-      // `InvalidSizeChartFieldsError`) or after a unique violation already
-      // aborted the transaction (the two duplicate errors) — so nothing
-      // further may be written in any branch.
+      // `InvalidSizeChartFieldsError`) or after the directory rolled the failed
+      // UPDATE back to a savepoint (the two duplicate errors) — so the
+      // transaction is still usable in every branch.
       if (error instanceof ProductCategoryNotFoundError) {
         return fail(
           400,
@@ -179,6 +186,10 @@ export const PATCH = defineTenantRoute({
           {},
           error.errors
         );
+      }
+
+      if (error instanceof AllowDpManagedByPolicyError) {
+        return fail(409, "ALLOW_DP_MANAGED_BY_POLICY", error.message);
       }
 
       const inventoryFailure = inventoryErrorResponse(error);

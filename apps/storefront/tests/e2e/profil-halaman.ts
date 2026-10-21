@@ -32,6 +32,7 @@
  */
 import { isGroupActive, resolveSiteProfile, type SiteProfile } from "../../src/config/profil";
 import { ROUTES } from "../../src/config/routes";
+import { INSTALL_HELP_PATH } from "../../src/lib/pasang-aplikasi";
 import blogPagesFixture from "../fixtures/awcms/blog-pages-public.json";
 import blogPostsFixture from "../fixtures/awcms/blog-posts.json";
 import productsFixture from "../fixtures/awcms/products.json";
@@ -58,7 +59,12 @@ export function keyPagesFor(profile: SiteProfile): KeyPage[] {
       { name: "product-listing", path: ROUTES.products },
       { name: "product-detail", path: `/product/${productSlug}` },
       { name: "login", path: ROUTES.login },
-      { name: "account", path: ROUTES.account }
+      { name: "account", path: ROUTES.account },
+      // Issue #386: the three booking pages, in their static (signed-out, no-stay) state; the
+      // meaningful states (quote, hold, list) are scanned by `booking.e2e.ts`.
+      { name: "booking", path: ROUTES.booking },
+      { name: "booking-pesan", path: ROUTES.bookingCheckout },
+      { name: "akun-reservasi", path: ROUTES.accountReservations }
     );
   }
 
@@ -74,6 +80,10 @@ export function keyPagesFor(profile: SiteProfile): KeyPage[] {
   // whole of "landing's own pages" once `home`/`contact` are already listed.
   const staticPageSlug = firstSlug(blogPagesFixture.pages, "static pages");
   pages.push({ name: "contact", path: ROUTES.contact }, { name: "static-page", path: ROUTES.page(staticPageSlug) });
+
+  // Issue #428: the opt-in install-help page — `build-and-serve.ts` builds
+  // with `PUBLIC_INSTALL_HELP=1`, so it exists on every profile.
+  pages.push({ name: "pasang-aplikasi", path: INSTALL_HELP_PATH });
 
   return pages;
 }

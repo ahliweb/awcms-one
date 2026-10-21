@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:fb420c5dfc1dfb51629e71d254ddb433be87a4bfb40ac6a16705cfce103d890f -->
+<!-- i18n-source-hash: sha256:67bce9d778c5a62810cf36b0edfec4477e60e750ae847654d05e4e90f7c66d47 -->
 
 # AWCMS Project Skills
 
@@ -43,7 +43,7 @@ Skill Claude Code tingkat-proyek untuk AWCMS. Setiap skill meng-encode standar d
 > Keluarga hari ini dua repo, `awcms` + [`awcms-astro`](https://github.com/ahliweb/awcms-astro)
 > (halaman publik + permukaan admin USER, ADR-0070). **KOREKSI:** versi sebelumnya menyatakan
 > implementasi ini "baru fondasi Sprint 1–2" dengan empat modul — itu **sudah
-> lama tidak benar**. Repo ini punya **29 modul terdaftar** dan `sql/001–sql/175` plus milik modul `commerce` sendiri yang dicadangkan di `sql/901` sampai `sql/999`;
+> lama tidak benar**. Repo ini punya **34 modul terdaftar** dan `sql/001–sql/224` plus milik modul `commerce` sendiri yang dicadangkan di `sql/901` sampai `sql/999`;
 > lihat [`docs/ARCHITECTURE.md`](../../docs/ARCHITECTURE.md) untuk daftar nyata.
 > Skill yang badannya masih menandai dirinya "BACAAN SAJA" tetap begitu — itu
 > per-skill, bukan pernyataan tentang repo secara keseluruhan.

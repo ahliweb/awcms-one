@@ -116,6 +116,12 @@ export function createReturnResponse(outcome: CreateReturnOutcome): Response {
       );
     case "order_not_found":
       return fail(404, "RESOURCE_NOT_FOUND", "Order not found.");
+    case "booking_order":
+      return fail(
+        409,
+        "BOOKING_ORDER_USE_ADAPTER",
+        "A booking order is cancelled and refunded through its reservation, not as a return of goods."
+      );
     case "order_not_returnable":
       return fail(
         409,

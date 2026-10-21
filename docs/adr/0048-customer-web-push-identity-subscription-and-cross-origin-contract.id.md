@@ -1,0 +1,562 @@
+🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0048-customer-web-push-identity-subscription-and-cross-origin-contract.md)
+
+<!-- i18n-source-hash: sha256:0190084cc8644fc38a42f94f205fb56530d3f6373f253eab0ecddd726f160913 -->
+
+# ADR-0048 — Web Push pelanggan: identitas, model langganan, dan kontrak lintas origin
+
+- **Status:** Diusulkan
+- **Tanggal:** 18 Oktober 2026
+- **Pengambil keputusan:** ahliweb (menunggu persetujuan; tidak ada isi di bawah yang diimplementasikan atau disetujui sampai pemilik mengubah status ini)
+- **Terkait:** issue [#429](https://github.com/ahliweb/awcms-one/issues/429) (ADR ini); konsumen [#430](https://github.com/ahliweb/awcms-one/issues/430), [#431](https://github.com/ahliweb/awcms-one/issues/431), [#432](https://github.com/ahliweb/awcms-one/issues/432); prasyarat [#427](https://github.com/ahliweb/awcms-one/issues/427) (sinkronisasi subtree) dan [#428](https://github.com/ahliweb/awcms-one/issues/428) (storefront dapat dipasang); [ADR-0007](0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.id.md), [ADR-0016](0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md), [ADR-0024](0024-awcms-one-is-template-only-derived-apps-own-their-backend.id.md), [ADR-0037](0037-the-commerce-migration-band-is-allocated-gap-first-and-widened-upstream.id.md), [ADR-0040](0040-aw-business-platform-capability-ownership-and-boundaries.id.md); issue upstream `ahliweb/awcms` 1106 beserta pekerjaan Web Push-nya (payload deklaratif, admin iOS yang dapat dipasang, matriks uji operator); WebKit [Declarative Web Push](https://webkit.org/blog/16535/)
+
+## Konteks
+
+`apps/cms` menyematkan modul `push_delivery` dari `ahliweb/awcms` upstream. ADR ini ditulis terhadap `main` upstream pada `3c7fc296`, keadaan yang dicapai repositori ini setelah sinkronisasi #427. Di bagian yang pohon ini lebih tua dari itu, hal tersebut dinyatakan. Apa modul itu, dan apa yang diasumsikannya:
+
+- **Satu jenis penerima: pengguna tenant.** Tabel langganan berkunci `(tenant_id, endpoint_hash)` dan memuat foreign key komposit `(tenant_id, tenant_user_id)` ke tabel pengguna tenant. Baris antrean memuat `subscription_id` dan (sejak penguatan upstream atas celah pengikatan penerima) `recipient_tenant_user_id` yang `NOT NULL` dengan jenis foreign key komposit yang sama. Dispatcher menolak pesan yang penerimanya bukan lagi pemilik perangkat. Skemanya adalah `apps/cms/sql/093_awcms_push_delivery_schema.sql`; pengikatan penerima dan auth secret terenkripsi adalah migrasi upstream yang lebih baru dan belum ada di pohon ini.
+- **Permukaan HTTP adalah layanan mandiri untuk staf.** `GET|POST /api/v1/push/subscriptions` dan `DELETE …/{id}` (`apps/cms/src/pages/api/v1/push/subscriptions/index.ts`) mengambil prinsipal dari sesi staf dan tidak pernah menerima `tenantUserId`.
+- **Fungsi enqueue menerima id pengguna tenant.** `enqueuePushToRecipients` di `apps/cms/src/modules/push-delivery/application/push-enqueue.ts` menulis `awcms_push_messages` untuk `recipientTenantUserIds`. Target kliknya adalah path satu-origin (`apps/cms/src/modules/push-delivery/domain/push-target-path.ts`).
+- **Lapisan provider netral terhadap penerima.** `PushProvider`, `PushTarget`, dan `PushMessage` (`apps/cms/src/modules/push-delivery/domain/push-provider-contract.ts`) tidak tahu apa-apa tentang pengguna tenant. Penandatanganan VAPID, enkripsi RFC 8291, pemetaan respons, kebijakan retry, dan circuit breaker ada di `apps/cms/src/modules/push-delivery/infrastructure/web-push-provider.ts`, `apps/cms/src/modules/push-delivery/domain/web-push-encryption.ts`, `apps/cms/src/modules/push-delivery/domain/push-retry.ts`, dan `apps/cms/src/modules/push-delivery/infrastructure/push-provider-resolver.ts`.
+- **Dispatch tiga fase di luar transaksi.** `apps/cms/src/modules/push-delivery/application/push-dispatch.ts`: claim dengan `FOR UPDATE SKIP LOCKED` dan lease di `next_attempt_at`, kirim, finalisasi. `sent` berarti push service menjawab 2xx, tidak lebih.
+- **Upstream, setelah sinkronisasi:** `auth_secret` Web Push disimpan sebagai ciphertext AES-256-GCM dengan AAD `(purpose, tenant_id, endpoint_hash)` di bawah key ring; pendaftaran ulang endpoint yang dipegang pengguna lain adalah transfer yang eksplisit dan diaudit; produsen dapat mengirim payload deklaratif WebKit (`navigate` adalah URL absolut pada origin `APP_URL`, yaitu origin **CMS**); dan `apps/cms/public/push-sw.js` adalah service worker dua format yang hanya disajikan dari origin CMS.
+- **Provider mengirim `TTL` tetap dan tanpa header `Urgency`.** Prioritas pesan hanyalah urutan antrean.
+
+Di sisi pelanggan:
+
+- Pelanggan adalah baris `awcms_commerce_customer_accounts` yang terikat 1:1 ke `awcms_commerce_customers` (`apps/cms/sql/917_awcms_commerce_customer_accounts_schema.sql`), diautentikasi dengan OTP e-mail dan sesi bearer opak `cs_` yang `sha256`-nya disimpan di `awcms_commerce_customer_sessions` ([ADR-0016](0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md)). Penjaganya adalah `requireCustomerSession` di `apps/cms/src/modules/commerce/application/customer-session-auth.ts`; ia mengembalikan akun dan id sesi dan sengaja tidak menolak akun yang diblokir.
+- Tenant pada panggilan storefront di-resolve dari host `Origin` browser terhadap domain aktif tenant (`apps/cms/src/modules/commerce/application/public-commerce-tenant.ts`); CORS tidak pernah memberi kredensial (`apps/cms/src/modules/commerce/domain/commerce-cors.ts`). Browser menyimpan token di `localStorage` (`apps/storefront/src/lib/akun-sesi.ts`) dan melampirkannya secara eksplisit (`apps/storefront/src/lib/akun-klien.ts`).
+- Logout (`apps/cms/src/pages/api/v1/commerce/storefront/account/logout.ts`) mencabut satu sesi itu. `revokeAllSessions` di `apps/cms/src/modules/commerce/application/customer-account-store.ts` ada tetapi tidak punya pemanggil produksi (hanya tes). Akun yang diblokir mempertahankan sesi aktifnya; rutenya menjawab `403 ACCOUNT_BLOCKED`.
+- Akun memuat `marketing_consent_at` (kampanye e-mail dan WhatsApp). Belum ada alur penghapusan akun di `commerce` hari ini.
+- `apps/storefront` statis ([ADR-0007](0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.id.md)): CSP-nya dibangun di `apps/storefront/server/penyaji.mjs` dengan `default-src 'self'` dan `connect-src` turunan yang sudah menyebut origin CMS.
+
+Kedua dunia itu tidak bertemu. Pelanggan bukan pengguna tenant, service worker storefront tidak dapat didaftarkan di origin CMS, dan produsen membangun target klik di origin CMS. Memakai ulang endpoint staf secara buta, atau menciptakan pengguna tenant bayangan per pelanggan, akan membuat notifikasi satu akun sampai ke perangkat akun lain, atau membuat token pelanggan bertindak sebagai staf. Issue #430 juga melarang menyimpan `customer_id` di `tenant_user_id`.
+
+## Cara membaca ADR ini
+
+Bagian-bagiannya mengikuti urutan yang diminta DoR: cetak biru, model ancaman dan privasi, ERD, matriks RLS dan otorisasi, algoritma domain, kontrak API dan peristiwa, UX, tes, migrasi dan pemulihan. Pengenal `T1…` (ancaman), `I1…` (invarian), `E1…` (peristiwa), `P1…` (kewajiban bukti), dan `Q1…` (pertanyaan terbuka) adalah pegangan stabil untuk isu implementasi. Setiap path berkas dalam backtick ada di repositori ini; berkas baru yang diusulkan dijelaskan, tidak ditulis sebagai path. Pita migrasi dinyatakan, tidak pernah nomor konkret ([ADR-0037](0037-the-commerce-migration-band-is-allocated-gap-first-and-widened-upstream.id.md)).
+
+## 1. Cetak biru
+
+### 1.1 Opsi yang dibandingkan
+
+Tiga opsi #429, menurut kriteria yang dipakai proyek. Judul kolom memuat putusannya.
+
+| Kriteria | **A. Abstraksi "penerima eksternal" generik di upstream** | **B. Pemetaan commerce + pakai ulang provider + antrean generik** | **C. Tabel perangkat milik commerce dan outbox tipis, memakai ulang semua yang di bawah antrean (direkomendasikan)** |
+| --- | --- | --- | --- |
+| Keamanan | Satu pipeline, tetapi identitas pelanggan masuk ke tabel admin yang paling dikeraskan. Referensi penerima menjadi polimorfik dan tidak dapat menjadi foreign key ke akun `commerce`, sehingga basis data kehilangan sandaran integritas dan pemilik yang dimiliki jalur staf. Satu bug menyentuh jalur admin. | Tidak dapat diimplementasikan sendirian. `awcms_push_messages.subscription_id` merujuk langganan milik staf dan `recipient_tenant_user_id` `NOT NULL`; menulis tabel itu dari `commerce` ditolak `modules:table-writes:check` (satu modul penulis per tabel); satu-satunya jalan masuk adalah pengguna tenant bayangan, yaitu peniruan. | Isolasi terkuat. Pipeline admin tidak tersentuh. Baris pelanggan membawa foreign key komposit ke akun dan sesi, sehingga baris lintas tenant dan lintas akun mustahil secara struktural. Satu query kelayakan memutuskan setiap pengiriman. |
+| Performa | Antrean sama. Banjir pelanggan berbagi batch tenant dengan pesan admin. | Seperti A begitu antrean dibagi. | Antrean, batch, dan cron terpisah; volume pelanggan tidak dapat membuat pesan admin kelaparan. Provider dan circuit breaker sengaja dibagi (keduanya menggambarkan kesehatan push service). |
+| Keterawatan | Keadaan akhir terbaik (satu dispatcher) tetapi transisi terburuk: desain upstream, ADR, rilis, dan sinkronisasi subtree kedua sebelum #430 dapat mulai. | Runtuh menjadi A atau C. | Satu loop claim/finalize kedua yang harus dijaga benar (kira-kira seukuran pola tiga fase upstream, yang oleh upstream sendiri disalin dari `email`). Dimitigasi dengan mengimpor kode retry, pemetaan, dan provider serta usulan konvergensi di bagian 12. |
+| Skalabilitas | Urutan claim dan batch tenant dibagi. | Seperti A. | Batas fan-out, limit, dan jadwal independen; perangkat per akun dibatasi. |
+| Aksesibilitas | Tidak ada beda. | Tidak ada beda. | Tidak ada beda. Teks notifikasi generik secara desain (bagian 6.5). |
+| SEO | Tidak ada (tidak ada halaman publik berubah). | Tidak ada. | Tidak ada. |
+| UI/UX | Hasil bagi pengguna sama. | Sama. | Hasil bagi pengguna sama. |
+| Kompatibilitas | Mengubah kolom dan constraint tabel kredensial hidup yang dipakai perangkat admin terpasang (expand dan contract pada tabel sensitif keamanan). | Sama seperti A. | Murni aditif di pita migrasi commerce. Tidak ada tabel upstream berubah, sehingga subtree tetap bersih dan tidak tercipta divergensi tetap. |
+| Kompleksitas operasional | Satu antrean dan satu purge, tetapi #430 bergantung pada kereta rilis upstream. | n/a | Satu job dan satu purge lagi. Satu pasang kunci VAPID, satu key ring, dan satu runbook (bagian 9). |
+| Jangka panjang | Paling bersih jika beberapa konsumen butuh penerima eksternal; prematur untuk satu (ADR-0024 D3: satu konsumen adalah bukti untuk memeriksa generalitas, bukan izin untuk menggeneralisasi). | n/a | Nanti dapat diarahkan ulang ke abstraksi upstream: tabel perangkat tetap, outbox menyusut menjadi adaptor. |
+
+**Putusan.** Bukti di atas menunjukkan bahwa outbox generik tidak dapat membawa penerima pelanggan dengan aman tanpa perubahan skema upstream (B gagal dengan syaratnya sendiri), yang merupakan syarat yang ditetapkan #429 untuk (c). Pilih **C**, dengan pembagian kepemilikan dari B: `commerce` memiliki identitas, persetujuan, perangkat, dan outbox; ia **mengimpor** kode provider, kripto, dan kebijakan upstream serta tidak menulis satu pun tabel upstream. Opsi A tetap terbuka sebagai konvergensi jangka panjang, lewat usulan upstream generik kecil di bagian 12. Pertanyaan pemilik Q1 meminta pemilik mengonfirmasi pertukaran ini (menerima outbox commerce yang tipis sekarang, atau menunggu A).
+
+### 1.2 Yang dipakai ulang dan yang baru
+
+| Dipakai ulang dari `push_delivery` upstream (tanpa salinan, tanpa fork) | Baru di `apps/cms/src/modules/commerce/` |
+| --- | --- |
+| Tipe `PushProvider` / `PushTarget` / `PushMessage`, `createWebPushProvider`, penandatanganan VAPID, enkripsi RFC 8291, `mapWebPushResponse`, `evaluatePushRetry`, circuit breaker `push-delivery`, `PUSH_ENABLED`, konfigurasi VAPID | Empat tabel bagian 3 |
+| Normalisasi, hashing, dan masking endpoint; `validateSubscriptionInput`; `validatePushTargetPath` | Direktori perangkat pelanggan (daftar, transfer, cabut), preferensi, query kelayakan |
+| Helper enkripsi field upstream dan ring `PUSH_AUTH_SECRET_ENCRYPTION_KEYS` (AAD dengan purpose berbeda; helper tiba bersama sinkronisasi #427) | Consumer peristiwa domain, kebijakan notifikasi, templat generik |
+| Body limit, rate limiter bersama, log audit, pola feature gate | Loop claim/kirim/finalisasi terhadap outbox baru, purge, job re-key |
+
+Descriptor `commerce` mendapat `push_delivery` sebagai dependensi (diperiksa `modules:dag:check`). Ia hanya mengimpor fungsi murni, domain, dan infrastruktur upstream dan tidak pernah menyebut tabel `awcms_push_*` di SQL.
+
+### 1.3 Kepemilikan dan batas
+
+- **Subtree.** Tidak ada kode milik upstream yang disunting. Kode dan migrasi baru berada di `apps/cms/src/modules/commerce/` dan pita migrasi commerce ([ADR-0037](0037-the-commerce-migration-band-is-allocated-gap-first-and-widened-upstream.id.md)). Registri bersama (grant security readiness, cakupan subject-data, bundel OpenAPI, crontab job) menerima baris commerce persis seperti setiap tabel commerce sebelumnya; tabrakan itu diselesaikan dengan mempertahankan kedua garis keturunan, menurut [AGENTS.md](../../AGENTS.md).
+- **Template, bukan layanan** ([ADR-0024](0024-awcms-one-is-template-only-derived-apps-own-their-backend.id.md)). Aplikasi turunan menjalankan backend, basis data, pasangan kunci VAPID, key ring, teks persetujuan, dan flag miliknya sendiri. Tidak ada yang menyebut BjekMart di sini; kata-kata khusus toko berasal dari data tenant. Fitur ini mati kecuali deployment menyalakannya (bagian 9).
+- **Kepemilikan domain.** Tenant memiliki data (`tenant_id` di setiap baris, RLS). Akun pelanggan memiliki preferensi dan perangkatnya. **Perangkat** adalah satu langganan push dari satu profil browser pada satu origin storefront, terikat pada akun dan sesi yang mendaftarkannya. Tamu (tanpa akun) tidak punya perangkat dan tidak menerima push.
+
+## 2. Model ancaman dan privasi
+
+### 2.1 Aset dan aktor
+
+Aset: URL endpoint (kapabilitas setara bearer untuk mengirim push ke perangkat), kunci p256dh dan auth secret, tautan pelanggan-ke-perangkat, informasi pesanan dan dukungan, kunci privat VAPID, token `cs_`. Aktor: pelanggan pemilik, pelanggan lain pada browser bersama, pelanggan tenant lain, staf, tamu, penyerang yang mencuri satu token (XSS), pendaftar jahat (endpoint bermusuhan), push service yang dikompromikan.
+
+### 2.2 Tabel ancaman
+
+| ID | Ancaman | Mitigasi (berlapis) | Tes regresi |
+| --- | --- | --- | --- |
+| T1 | Cookie staf atau bearer staf berfungsi di rute push pelanggan, atau token `cs_` berfungsi di `/api/v1/push/*` | Rute pelanggan hanya memanggil `requireCustomerSession`, tidak pernah membaca cookie, tidak pernah mengimpor resolver prinsipal staf; `cs_` punya prefiks dan namespace hash berbeda; rute staf me-resolve tabel lain dan menjawab 401 | TS-H1, TS-H2, TS-S1 |
+| T2 | Klien memilih prinsipal (`accountId`, `customerId`, `tenantId`, `sessionId`, `tenantUserId`) | Prinsipal hanya berasal dari bearer dan tenant yang di-resolve; skema body ketat dan menolak key tak dikenal dengan 400 | TS-U5, TS-H1 |
+| T3 | Pemakaian lintas tenant: token tenant A dengan origin tenant B | Pencarian sesi berjalan di bawah RLS tenant B dan tidak menemukan apa-apa: 401. Setiap baris membawa `tenant_id`; foreign key komposit menyertakannya | TS-I1, TS-H1 |
+| T4 | Notifikasi untuk pelanggan X sampai ke pelanggan Y | `account_id` diturunkan di server dari pesanan ke pelanggan ke akun, dikunci pada pesan, dan dibandingkan dengan akun perangkat saat kirim (I5) | TS-I4, TS-I2 |
+| T5 | Pengambilalihan endpoint pada perangkat bersama: pelanggan B mendaftarkan endpoint perangkat pelanggan A | Transfer eksplisit, atomik, diaudit (hanya id); pesan antre A dibatalkan dalam transaksi yang sama; pemeriksaan penerima saat kirim menolak pesan yang akunnya bukan akun perangkat saat ini. Sisa risiko: pemegang endpoint mentah dapat membungkam A (hanya ketersediaan; B tidak menerima apa-apa). Diterima dan dapat dideteksi (peristiwa audit, metrik) | TS-I2 |
+| T6 | Pengungkapan pelanggan basi: A logout atau diganti, dan notifikasi A masih tampil di browser itu untuk B | Logout mencabut perangkat sesi itu dalam transaksi yang sama; pengiriman membutuhkan sesi pendaftar yang masih hidup; klien mencabut sesi lama sebelum menyimpan yang baru; teks generik sehingga kebocoran hampir tidak mengungkap apa-apa | TS-I3, TS-I4, TS-E1 |
+| T7 | Target klik notifikasi dipalsukan (open redirect dengan nama dan ikon toko) | Target dipilih dari daftar tertutup per tujuan, tidak pernah dari data peristiwa atau permintaan; origin adalah origin storefront perangkat yang tersimpan dan tervalidasi; diperiksa lagi oleh `validatePushTargetPath` dan oleh service worker | TS-U2, TS-E3 |
+| T8 | Perangkat pembeli berlangganan di origin CMS (admin) | `Origin` pendaftaran harus domain aktif tenant yang sama dan tidak boleh origin CMS/admin; jika tidak ditolak | TS-U2, TS-H3 |
+| T9 | Endpoint bermusuhan (SSRF lewat dispatcher) | Validasi upstream (hanya https, alamat privat/terpesan literal ditolak) **ditambah** allowlist host push service untuk permukaan ini, karena setiap pelanggan terverifikasi dapat mendaftar (populasi penyerang lebih besar daripada staf). Host tak dikenal: 422 | TS-U3 |
+| T10 | Kehabisan sumber daya: banjir pendaftaran, amplifikasi fan-out | Batas body, rate limit per IP dan per akun, paling banyak lima perangkat aktif per akun, batas notifikasi per akun, batch terbatas, TTL | TS-H5, TS-I5 |
+| T11 | Kebocoran kredensial atau PII di respons, log, baris audit, galat | Respons hanya memuat endpoint yang di-mask; ciphertext dan kunci tidak pernah di-select ke respons; string galat dan `last_error` adalah kosakata tetap; baris audit hanya memuat id | TS-H4 |
+| T12 | Akun yang diblokir atau belum terverifikasi tetap menerima atau mendaftar | Daftar dan ubah menjawab 403; kelayakan saat kirim mensyaratkan akun aktif dan terverifikasi; pemblokiran harus mencabut perangkat (#430 menyambungkannya) | TS-I4 |
+| T13 | Bypass persetujuan: persetujuan transaksional dipakai untuk pemasaran | Tujuan adalah baris preferensi terpisah; peta peristiwa-ke-tujuan tidak punya jalur ke `marketing`; push pemasaran tidak dikirim (Q11) | TS-U1, TS-I4 |
+| T14 | Replay peristiwa, pengiriman ganda, restart worker | `dedupe_key` unik per peristiwa dan perangkat; consumer memakai penjaga sekali-per-efek milik runtime; percobaan ke provider at-least-once (satu banner ganda mungkin terjadi dan didokumentasikan) | TS-I5 |
+| T15 | Privasi layar kunci: kode pesanan, jumlah, atau nama dalam notifikasi | Teks payload berasal dari templat generik tetap; tidak ada pengenal di payload atau URL; baris tidak menyimpan data pesanan | TS-U4 |
+| T16 | XSS mencuri token `cs_` | Sisa risiko [ADR-0016](0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md) D3, tidak diperlebar: service worker tidak memegang token dan tidak dapat memanggil API; payload tidak memuatnya; CSP first-party | TS-E3 |
+| T17 | "Terkirim" diklaim dari penerimaan provider | Kosakata status menyatakan `sent` = diterima provider; metrik tidak pernah berkata terkirim; tanpa pelacakan klik di v1 | TS-I6 |
+| T18 | Oracle enumerasi: id perangkat milik orang lain, fitur mati, tenant lain | Satu 404 netral untuk perangkat milik orang lain atau tidak ada; fitur mati runtuh ke 404 netral yang sama dengan tenant yang tak ter-resolve, seperti rute commerce publik lainnya | TS-H6 |
+| T19 | Respons yang di-cache atau dibagi membuka daftar perangkat | `Cache-Control: private, no-store`, `Vary: Origin` | TS-H3 |
+
+### 2.3 Privasi sejak desain
+
+- **Inventaris data.** Per perangkat: endpoint (kredensial, hanya disimpan selama aktif), endpoint ter-mask, kunci p256dh, auth secret terenkripsi, ringkasan user-agent kasar, origin storefront, status, dan stempel waktu. Per akun: preferensi tujuan dengan versi persetujuan dan stempel waktu. Per pesan: judul dan isi generik, path target tetap, tujuan, status. Tidak ada alamat IP disimpan di baris perangkat. Tidak ada pengenal pesanan, jumlah, nama, atau telepon disimpan di baris pesan.
+- **Tujuan (daftar tertutup).** `order_updates`, `payment_updates`, `support_replies` (transaksional) dan `marketing` (dicadangkan, tidak pernah dikirim di v1). Persetujuan transaksional tidak menyiratkan persetujuan pemasaran; `marketing_consent_at` yang ada (e-mail dan WhatsApp) **tidak** dipakai ulang untuk push.
+- **Persetujuan.** Diambil lewat tindakan pengguna yang eksplisit bersama versi teks tujuan yang ditampilkan, disimpan per tujuan dengan waktu pemberian, dapat ditarik kapan saja (penarikan mempertahankan barisnya sebagai bukti). Prompt izin browser milik browser dan tidak dapat dicabut secara terprogram; halaman menyatakannya.
+- **Minimisasi dan transparansi.** Teks persetujuan harus menyatakan bahwa notifikasi melewati push service vendor browser dalam bentuk terenkripsi, bahwa layar kunci hanya menampilkan teks generik, dan cara mematikannya.
+- **Retensi.** Materi kredensial hanya ada selama perangkat `active`; dimusnahkan pada setiap status lain. Baris perangkat revoked, gone, dan disabled disimpan 30 hari (sebagai tombstone yang membawa hash dan mask) lalu di-purge; pesan terminal dan percobaan di-purge setelah 30 hari. Preferensi disimpan selama akun ada. Jendela ini adalah nilai awal untuk konfirmasi pemilik (Q8) dan dideklarasikan ke mesin data-lifecycle.
+- **Penghapusan.** Perangkat, preferensi, pesan, dan percobaan mendaftarkan descriptor `subjectData` (hapus = delete). Belum ada alur penghapusan akun pelanggan di `commerce` hari ini; saat dibangun ia harus menjangkau tabel ini, dan gerbang cakupan (`subject-data:coverage:check`) mewajibkan pendaftaran sekarang.
+
+## 3. ERD dan kamus data
+
+Empat tabel baru di pita migrasi commerce (`901`–`9999`, [ADR-0037](0037-the-commerce-migration-band-is-allocated-gap-first-and-widened-upstream.id.md)); #430 mengalokasikan nomornya. Semuanya aditif. Setiap tabel: `tenant_id uuid NOT NULL REFERENCES awcms_tenants (id)`, `ENABLE` dan `FORCE ROW LEVEL SECURITY`, policy `tenant_id = current_setting('app.current_tenant_id')::uuid`, descriptor retensi, dan descriptor `subjectData`. Dua tabel commerce yang ada dan membutuhkan `UNIQUE (tenant_id, id)` untuk foreign key komposit (akun pelanggan dan sesi pelanggan) mendapatkannya lewat constraint aditif di migrasi baru.
+
+```
+awcms_tenants 1───* awcms_commerce_customer_accounts 1───* awcms_commerce_customer_sessions
+                           │ 1                                        │ 1
+                           │                                          │
+                           ├────* awcms_commerce_push_preferences     │
+                           │ 1                                        │ *
+                           └────* awcms_commerce_push_devices *───────┘   (perangkat ↔ akun, perangkat ↔ sesi pendaftar)
+                                        │ 1
+                                        └────* awcms_commerce_push_messages 1───* awcms_commerce_push_delivery_attempts
+                                               (account_id juga disimpan pada pesan)
+```
+
+### 3.1 `awcms_commerce_push_devices` (satu baris per tenant dan endpoint)
+
+| Kolom | Tipe | Catatan |
+| --- | --- | --- |
+| `id` | uuid PK | |
+| `tenant_id` | uuid | FK tenants |
+| `account_id` | uuid | FK komposit `(tenant_id, account_id)` ke akun pelanggan; pemilik saat ini |
+| `session_id` | uuid | FK komposit `(tenant_id, session_id)` ke sesi pelanggan; sesi yang mendaftarkan atau terakhir mendaftarkan ulang perangkat |
+| `storefront_origin` | text | origin `https` storefront tenant yang tervalidasi (lihat 6.3); satu-satunya origin yang boleh dibuka sebuah klik |
+| `endpoint` | text NULL | endpoint mentah; ada hanya selama `active`; dimusnahkan jika tidak; di-select di tepat satu berkas (direktori perangkat), seperti aturan upstream |
+| `endpoint_hash` | text | `sha256` endpoint yang dinormalisasi (fungsi upstream); unik bersama `tenant_id` |
+| `endpoint_masked` | text | yang dibaca setiap daftar, log, dan diagnostik |
+| `p256dh_key` | text NULL | ada hanya selama `active` |
+| `auth_secret_ciphertext` | text NULL | ada hanya selama `active`; amplop AES-256-GCM dari helper upstream; AAD = (purpose `commerce.customer_push_auth_secret`, `tenant_id`, `endpoint_hash`). Tidak ada kolom plaintext |
+| `status` | text | `active`, `revoked`, `gone`, `disabled` (CHECK) |
+| `status_reason` | text NULL | kosakata tertutup: `customer_removed`, `logout`, `session_ended`, `account_blocked`, `account_erased`, `endpoint_gone`, `origin_revoked`, `vapid_rotated`, `kill_switch` |
+| `user_agent_summary` | text NULL | ringkasan kasar (fungsi upstream), paling banyak 120 karakter |
+| `last_success_at` | timestamptz NULL | penerimaan provider, bukan tampil di layar |
+| `registered_at`, `rebound_at`, `created_at`, `updated_at` | timestamptz | `rebound_at` bergerak pada setiap pendaftaran ulang atau transfer |
+
+Constraint: `UNIQUE (tenant_id, endpoint_hash)`; `UNIQUE (tenant_id, id)`; CHECK `status = 'active'` jika dan hanya jika `endpoint`, `p256dh_key`, dan `auth_secret_ciphertext` semuanya ada (kredensial hanya ada pada baris aktif); CHECK pada kosakata status dan alasan; CHECK `storefront_origin` adalah origin (tanpa path, query, atau userinfo). Indeks: `(tenant_id, account_id)` parsial pada `status = 'active'` (fan-out), `(tenant_id, session_id)` (logout dan sapuan sesi), `(tenant_id, status, updated_at)` (purge), ditambah yang diwajibkan `db:fk-index:check`.
+
+### 3.2 `awcms_commerce_push_preferences` (persetujuan per akun dan tujuan)
+
+`tenant_id`, `account_id` (FK komposit), `purpose` (CHECK dalam daftar tertutup), `enabled` boolean, `consent_text_version` text, `granted_at` timestamptz NULL, `revoked_at` timestamptz NULL, `updated_at`. Primary key `(tenant_id, account_id, purpose)`. CHECK: `enabled` mengimplikasikan `granted_at` tidak null. Penarikan mengatur `enabled = false` dan `revoked_at`; barisnya tetap ada.
+
+### 3.3 `awcms_commerce_push_messages` (outbox, satu baris per pesan dan perangkat)
+
+| Kolom | Catatan |
+| --- | --- |
+| `id`, `tenant_id` | |
+| `account_id` | FK komposit ke akun; **dikunci saat enqueue**, dibandingkan dengan akun perangkat saat kirim (I5) |
+| `device_id` | FK komposit `(tenant_id, device_id)` ke perangkat |
+| `source_event_id` | uuid peristiwa domain; opak, tanpa FK (retensi peristiwa berbeda) |
+| `event_type`, `purpose`, `priority`, `tag` | `priority` CHECK dalam `low`, `normal`, `high`; `tag` adalah kunci penggabungan (tujuan) |
+| `dedupe_key` | text; `UNIQUE (tenant_id, dedupe_key)`; nilainya id peristiwa dan id perangkat |
+| `title`, `body` | teks generik hasil render, dibatasi 120 dan 240 karakter; tidak pernah data pesanan |
+| `target_path` | salah satu path storefront tetap (6.5) |
+| `status` | `queued`, `sending`, `sent`, `retry_wait`, `failed`, `cancelled`, `expired` |
+| `retry_count`, `next_attempt_at` | `next_attempt_at` merangkap lease claim, seperti upstream |
+| `expires_at` | setelah ini pesan antre menjadi expired, tidak pernah dikirim terlambat |
+| `last_error` | hanya kosakata tetap |
+| `provider_name`, `provider_message_id`, `created_at`, `updated_at`, `sent_at` | `sent_at` = penerimaan provider |
+
+Indeks: dispatch `(tenant_id, status, next_attempt_at)`, perangkat `(tenant_id, device_id)`, jendela laju `(tenant_id, account_id, created_at DESC)`, retensi `(tenant_id, status, updated_at)`.
+
+### 3.4 `awcms_commerce_push_delivery_attempts`
+
+`id`, `tenant_id`, `message_id` (FK komposit), `attempt_no`, `outcome` (`success`, `failure`), `provider_name`, `provider_response_snippet` (paling banyak 500 karakter, tidak pernah payload atau endpoint), `error_message` (kosakata tetap), `created_at`; `UNIQUE (message_id, attempt_no)` dengan `ON CONFLICT DO NOTHING` di titik pemanggilan (claim ulang lease kedaluwarsa membutuhkannya, seperti yang didokumentasikan upstream).
+
+### 3.5 Grant (hak istimewa minimum)
+
+`awcms_app`: daftar, cabut, dan preferensi (INSERT dan UPDATE pada perangkat dan preferensi, UPDATE pada pesan untuk membatalkan). Fan-out kelayakan dan enqueue berjalan di peran runtime peristiwa domain; #430 memetakannya. `awcms_worker`: SELECT pada keempatnya; UPDATE hanya pada `status`, `status_reason`, `last_success_at`, `updated_at` perangkat (dan kolom ciphertext untuk job re-key); UPDATE pada pesan; INSERT pada percobaan; DELETE untuk purge. Worker **tidak dapat INSERT perangkat dan tidak dapat UPDATE `endpoint`, `endpoint_hash`, `p256dh_key`, `account_id`, `session_id`, atau `storefront_origin`** (pelajaran upstream: worker yang dapat menulis ulang kolom itu dapat mengalihkan pengiriman). Setiap grant mendapat barisnya di matriks security-readiness dan tes pada PostgreSQL nyata.
+
+## 4. Matriks RLS dan otorisasi
+
+| Permukaan | Kredensial diterima | Harus ditolak (dan bagaimana) | Tenant berasal dari | Peran DB | Tabel |
+| --- | --- | --- | --- | --- | --- |
+| `GET …/account/push/subscriptions` | bearer `cs_`, sesi mana pun yang belum kedaluwarsa | tanpa header, cacat, cookie staf, bearer staf, token mesin, `cs_` dicabut atau kedaluwarsa: 401 `UNAUTHENTICATED`; akun diblokir: 403 `ACCOUNT_BLOCKED` | host `Origin` ke domain tenant | app | perangkat R, preferensi R |
+| `PUT …/account/push/preferences` | `cs_`, akun aktif | seperti di atas; belum terverifikasi: 403 | sama | app | preferensi RW, audit |
+| `POST …/account/push/subscriptions` | `cs_`, akun aktif dan terverifikasi | seperti di atas; endpoint bermusuhan 422; origin tidak diizinkan 422 `ORIGIN_NOT_ALLOWED`; batas 409 | sama | app | perangkat RW, preferensi RW, pesan U (batal), audit |
+| `DELETE …/account/push/subscriptions/{id}` | `cs_` (akun diblokir boleh mencabut) | id milik orang lain atau tidak ada: 404 (isi sama) | sama | app | perangkat U, pesan U |
+| `DELETE …/account/push/subscriptions` (semua perangkat saya) | `cs_` | seperti di atas | sama | app | perangkat U, pesan U |
+| `POST …/account/logout` (yang ada, diperluas) | `cs_` | 401 | sama | app | sesi U, perangkat U, pesan U |
+| Consumer peristiwa | runtime, konteks tenant dari peristiwa | peristiwa tanpa akun yang dapat di-resolve: no-op | tenant peristiwa | peran runtime | pesanan R, akun R, preferensi R, perangkat R, pesan I |
+| Job dispatch | worker | fitur mati atau push mati: tidak meng-claim apa pun | loop per tenant | worker | perangkat R/U(status), pesan R/U, percobaan I |
+| Job purge dan re-key | worker | tidak ada | loop per tenant | worker | D pada baris terminal; re-key ciphertext |
+| Diagnostik staf yang diusulkan: hitungan agregat per status dan tujuan | sesi staf dengan izin baru `commerce.customer_push.read` (Q10) | token `cs_`: 401; tanpa pengenal atau endpoint dalam jawaban | header tenant | app | agregat pesan dan perangkat |
+| `/api/v1/push/*` yang ada | sesi staf | `cs_`: 401 (perilaku upstream tidak berubah, kini diliput tes) | tenant staf | app | hanya tabel upstream |
+
+Otorisasi bersifat **layanan mandiri secara konstruksi**: subjeknya adalah akun milik bearer, sehingga tidak ada izin untuk diperiksa dan tidak ada id untuk dibandingkan; kepemilikan id perangkat ditegakkan di dalam `WHERE` (`id = $1 AND account_id = $pemanggil`), sehingga "tidak ada", "milik orang lain", dan "sudah dicabut" tidak dapat dibedakan. Rute pelanggan mengikuti bentuk rute commerce publik yang ada: `withPublicCommerceTenant`, feature gate commerce, `requireCustomerSession`, rate limit bersama, dan `commercePreflightResponse` untuk `OPTIONS`.
+
+## 5. Algoritma domain
+
+### 5.1 Invarian
+
+- **I1** Prinsipal adalah `(tenant, akun, sesi)` dari bearer. Tidak ada di body atau query permintaan yang dapat menamai atau mengubahnya.
+- **I2** Perangkat mengikat satu endpoint ke satu akun, satu sesi pendaftar, dan satu origin storefront yang tervalidasi.
+- **I3** Materi kredensial hanya ada pada baris `active`.
+- **I4** Pesan dikirim hanya jika kelayakan saat kirim terpenuhi (5.5).
+- **I5** Pesan milik tepat satu akun, dikunci saat enqueue; saat kirim harus sama dengan akun perangkat saat ini.
+- **I6** Isi notifikasi adalah templat generik tetap ditambah path tetap; tidak pernah membawa pengenal atau rahasia.
+- **I7** Satu efek per `(peristiwa, perangkat)`; percobaan ke provider at-least-once.
+- **I8** `sent` berarti push service menerima permintaan. Tidak ada di sistem ini yang mengklaim tampil atau terbaca.
+
+### 5.2 Daftar (idempoten)
+
+1. Resolve CORS dan tenant dari `Origin` (origin ditolak: isi 404 netral, tanpa ACAO). Fitur `customerPush` mati: 404 netral yang sama.
+2. `requireCustomerSession`; 401 jika gagal. Diblokir: 403 `ACCOUNT_BLOCKED`. Tanpa e-mail terverifikasi: 403 `ACCOUNT_NOT_VERIFIED`.
+3. Rate limit (IP, lalu akun). Baca body di bawah batas ukuran; skema ketat; `Content-Type` JSON.
+4. Push tersedia? (`PUSH_ENABLED`, VAPID, key ring) jika tidak 409 `PUSH_UNAVAILABLE`.
+5. Validasi endpoint (validasi upstream ditambah allowlist host). Validasi `Origin` sebagai origin storefront yang disetujui (6.3). Validasi `consent.purposes` terhadap daftar transaksional tertutup dan string versi.
+6. Enkripsi auth secret dengan helper upstream (AAD dengan purpose commerce).
+7. Satu transaksi: upsert baris preferensi dari `consent`; periksa jumlah perangkat aktif (tidak termasuk endpoint ini) terhadap batas; `INSERT … ON CONFLICT (tenant_id, endpoint_hash) DO NOTHING`; jika baris ada, `SELECT … FOR UPDATE`, lalu `UPDATE` ke akun, sesi, origin pemanggil dan kunci baru, `status = 'active'`, `status_reason = NULL`, `rebound_at = now()`.
+8. Jika akun sebelumnya berbeda: batalkan pesan `queued` dan `retry_wait` akun itu pada perangkat (`last_error = 'device_transferred'`) dalam transaksi yang sama dan tulis satu peristiwa audit `commerce.customer_push.device_transferred` hanya dengan id. Penulisan audit yang gagal membatalkan pendaftaran.
+9. Audit `commerce.customer_push.device_registered`. Jawab 201 saat pemanggil baru memiliki baris (baru atau ditransfer) dan 200 untuk pendaftaran ulang no-op oleh akun dan sesi yang sama. Kedua kasus identik bagi pemanggil pada transfer, sehingga respons tidak pernah mengungkap bahwa endpoint itu sudah dikenal.
+
+Dua pendaftaran serentak atas satu endpoint berserialisasi pada kunci baris; sesudahnya tepat satu akun memiliki baris itu.
+
+### 5.3 Cabut, logout, ganti akun, kedaluwarsa, blokir
+
+- **Cabut satu atau semua.** `UPDATE … WHERE tenant_id AND id AND account_id = pemanggil`; atur `status = 'revoked'`, alasan `customer_removed`, musnahkan `endpoint`, `p256dh_key`, dan ciphertext, batalkan pesan antre perangkat, audit. Panggilan kedua menurut id adalah 404; bentuk "semua" adalah 204 no-op. Halaman lalu memanggil `unsubscribe()` browser (upaya terbaik; server tidak bergantung padanya).
+- **Logout.** Dalam transaksi yang sama dengan `revokeSession`: cabut setiap perangkat yang `session_id`-nya adalah sesi yang logout (alasan `logout`), batalkan pesan antrenya. Jika transaksi gagal, tidak ada yang terjadi.
+- **Ganti akun pada satu browser.** Storefront harus memanggil logout untuk sesi lama sebelum menyimpan yang baru (bagian 7). Sandaran di server: pendaftaran akun baru mentransfer endpoint (5.2) dan pemeriksaan saat kirim menolak pesan akun lama.
+- **Kedaluwarsa sesi.** Perangkat dapat menerima kiriman hanya selama `session_id`-nya hidup (tidak dicabut, tidak kedaluwarsa). Sapuan di job purge menandai perangkat dari sesi yang berakhir sebagai `revoked` (`session_ended`) dan memusnahkan kredensialnya. Konsekuensi (Q5): notifikasi berhenti saat sesi pendaftar berakhir setelah 30 hari tanpa pemakaian; pelanggan mengaktifkan lagi dengan satu ketukan.
+- **Blokir.** Kelayakan saat kirim langsung menolak akun yang diblokir. Jalur kode yang memblokir akun juga harus mencabut perangkatnya (alasan `account_blocked`); #430 menyambungkannya, karena `revokeAllSessions` tidak punya pemanggil hari ini.
+
+### 5.4 Enqueue (consumer peristiwa domain)
+
+Consumer dideklarasikan di descriptor `commerce` (`domainEventConsumers`, seam yang sudah dipakai consumer loyalti) dengan idempotensi sekali-per-efek bawaan runtime, sehingga handler hanyalah efek sampingnya dan berjalan di dalam transaksi pengiriman. Ia tidak melakukan panggilan jaringan.
+
+1. Lewati kecuali fitur `customerPush` tenant menyala dan `PUSH_ENABLED` true.
+2. Petakan peristiwa ke tujuan dan templat lewat tabel tertutup (bagian 6.6). Tanpa entri, tanpa push.
+3. Dari `orderId` peristiwa: pesanan ke `customer_id` ke satu-satunya akun dengan `customer_id` itu. Tanpa akun (tamu, walk-in): berhenti. Akun harus `active` dan e-mail terverifikasi.
+4. Preferensi untuk tujuan harus eksplisit `enabled`. Jika tidak berhenti.
+5. Pilih perangkat akun yang `active`, yang sesinya hidup dan yang originnya masih valid. Tidak ada: berhenti (kotak masuk adalah fallback).
+6. Terapkan batas notifikasi akun (12 per jam bergulir, 40 per hari bergulir, nilai awal untuk Q7). Melebihi batas: tidak menyisipkan apa pun dan hitung `suppressed_rate_limit`.
+7. Sisipkan satu baris per perangkat: `dedupe_key = <id peristiwa>:<id perangkat>`, `ON CONFLICT DO NOTHING`, judul dan isi generik dalam locale bawaan tenant, path tetap untuk tujuan itu, `expires_at` dari kebijakan.
+
+### 5.5 Kelayakan saat kirim (satu query, dievaluasi per pesan dalam transaksi pendeknya sendiri)
+
+Semua syarat: tenant mengaktifkan `commerce` dan `customerPush` menyala; push aktif dan terkonfigurasi; pesan belum melewati `expires_at`; perangkat `active` dan `device.account_id = message.account_id`; sesi perangkat tidak dicabut dan tidak kedaluwarsa; akun `active` dan terverifikasi; preferensi untuk tujuan pesan `enabled`; origin perangkat masih domain aktif tenant dan bukan origin admin. Kegagalan apa pun membatalkan pesan dengan alasan tetap (`expired`, `not_eligible`, …); tidak ada panggilan provider.
+
+### 5.6 Dispatch
+
+Tiga fase, di luar transaksi apa pun saat mengirim, meniru pola upstream: **claim** (`FOR UPDATE SKIP LOCKED`, lease di `next_attempt_at`, prioritas tinggi lebih dulu, batch terbatas), **kelayakan dan target** (query 5.5, dekripsi auth secret di luar transaksi, bangun `PushTarget`), **kirim** lewat provider upstream yang dibuat dengan `storefront_origin` perangkat sebagai origin publik (sehingga `navigate` deklaratif ada di origin storefront, tidak pernah di `APP_URL`), **finalisasi** per baris: `sent` (diterima provider, `last_success_at`), `retry_wait` dengan backoff upstream, `failed`, atau, saat push service menjawab 404 atau 410, perangkat `gone` ditambah pembatalan pesan antrenya. Setiap percobaan menulis satu baris percobaan. Crash setelah penerimaan provider dan sebelum finalisasi dapat mengulang satu banner; `tag` membuat ulangan menggantikan, bukan menumpuk.
+
+### 5.7 Pembersihan
+
+Job purge menghapus pesan dan percobaan terminal yang lebih tua dari jendela retensi, menghapus perangkat non-aktif yang lebih tua dari jendelanya, dan menjalankan sapuan sesi-berakhir. Ia berjalan meski fitur mati, karena baris dari periode sebelumnya tetap perlu dibersihkan.
+
+## 6. Kontrak API dan peristiwa
+
+### 6.1 Rute
+
+Di bawah `/api/v1/commerce/storefront/account/push/…`, skema keamanan `customerBearer` (tidak pernah `bearerAuth`), penulisan akhir ditetapkan #430 di fragmen OpenAPI commerce (`apps/cms/openapi/modules/commerce.openapi.yaml`).
+
+| Metode dan path | Tujuan | Sukses | Galat penting |
+| --- | --- | --- | --- |
+| `GET …/push/subscriptions` | Kapabilitas, preferensi, dan perangkat akun ini | 200 `{ capability, preferences, devices[] }` | 401, 403 `ACCOUNT_BLOCKED`, 404 netral, 429 |
+| `POST …/push/subscriptions` | Daftar atau daftar ulang browser ini | 201 baru atau ditransfer, 200 no-op | 401, 403, 404, 409 `PUSH_UNAVAILABLE`, 409 `DEVICE_LIMIT`, 422 `VALIDATION_ERROR` / `ENDPOINT_NOT_ALLOWED` / `ORIGIN_NOT_ALLOWED`, 429 |
+| `DELETE …/push/subscriptions/{id}` | Cabut salah satu perangkat saya | 204 | 401, 404 (milik orang lain, tidak ada), 429 |
+| `DELETE …/push/subscriptions` | Cabut semua perangkat saya | 204 | 401, 429 |
+| `PUT …/push/preferences` | Atur tujuan dan catat persetujuan | 200 `{ preferences }` | 401, 403, 422, 429 |
+
+Semua jawaban membawa `Cache-Control: private, no-store` dan `Vary: Origin`. Amplop respons adalah standar commerce (`success`, `data`, `meta`).
+
+**Permintaan** (`POST`): `{ "endpoint": string, "keys": { "p256dh": string, "auth": string }, "expirationTime": number|null (diabaikan), "consent": { "purposes": ["order_updates", …], "textVersion": string } }`. Selain itu, termasuk `transport`, `accountId`, `tenantId`, `title`, `body`, `navigate`, adalah 400. Bentuknya `PushSubscription.toJSON()` ditambah `consent`.
+
+**Perangkat** (respons): `{ id, endpointMasked, userAgentSummary, status, lastSuccessAt, registeredAt, current }`. Endpoint mentah, kunci, dan ciphertext tidak pernah dikembalikan. `current` true bila sesi perangkat adalah sesi pemanggil.
+
+**Kapabilitas** (respons kapabilitas browser, yang diketahui **server**): `{ enabled, reason: null | "push_not_configured" | "origin_not_supported", applicationServerKey: string|null, transports: ["web_push"], purposes: [...], consentTextVersion, maxDevices }`. Segala yang diketahui **browser** (Push API ada, aplikasi iOS terpasang, status izin) dideteksi storefront (bagian 7). `enabled: false` adalah jawaban 200 kelas satu, bukan galat.
+
+**Idempotensi.** Pendaftaran idempoten menurut kunci alami `(tenant, endpoint_hash)` di bawah kunci baris; tidak perlu kunci dari klien. DELETE idempoten dalam efeknya. Replay jalur consumer idempoten menurut `dedupe_key`.
+
+**Semantik transfer.** Mendaftarkan endpoint yang dipegang akun lain memindahkannya ke pemanggil (5.2): atomik, diaudit, pesan antre dibatalkan, pemeriksaan penerima saat kirim. Pemanggil tidak mempelajari apa pun tentang pemilik sebelumnya.
+
+### 6.2 Rate limit (nilai awal, Q7)
+
+| Rute | Per IP | Per akun |
+| --- | --- | --- |
+| `GET` | bawaan storefront commerce (60 per menit) | n/a |
+| `POST subscriptions` | 30 per jam | 10 per jam |
+| `DELETE`, `PUT preferences` | 60 per menit | 30 per menit |
+| `OPTIONS` | limiter preflight yang ada, di bawah kunci yang sama dengan permintaan yang didahuluinya | n/a |
+
+Melebihi batas: 429 dengan `Retry-After`. Batas body: 8 KiB.
+
+### 6.3 Origin, CORS, CSP, dan CSRF
+
+- **Pemetaan origin.** Storefront adalah origin berbeda dari CMS ([ADR-0007](0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.id.md)). Service worker dan langganan push hidup di origin **storefront**. `storefront_origin` adalah `Origin` permintaan, diterima hanya jika: `https` (origin loopback `http` hanya di profil pengembangan); tanpa userinfo, path, atau query; hostnya ter-resolve, lewat pencarian yang sama dengan yang dipakai CORS, ke domain aktif **tenant ini**; dan berbeda dari origin CMS/admin (`APP_URL`). Permintaan satu-origin (tanpa `Origin` lintas-origin) ditolak di v1: deployment yang menyajikan storefront dan CMS dari satu origin mendapat `reason: "origin_not_supported"` dan tanpa push pelanggan (Q3). PWA admin upstream tetap di origin CMS dan tidak pernah mendaftarkan pembeli.
+- **Validasi target.** Target klik tidak pernah diambil dari permintaan atau peristiwa. Ia adalah path tetap untuk tujuan itu, digabung ke `storefront_origin` tersimpan perangkat saat kirim, setelah memeriksa ulang bahwa origin itu masih domain aktif tenant. Domain yang dihapus menonaktifkan perangkat (`origin_revoked`). Path juga dijalankan lewat `validatePushTargetPath`, dan service worker storefront me-resolve-nya terhadap originnya sendiri untuk ketiga kalinya.
+- **CORS.** Keluarga commerce yang ada: allow-origin hanya menggemakan origin yang ter-resolve ke tenant, `Vary: Origin`, `authorization` dan `content-type` diizinkan, metode mencakup `DELETE` dan `PUT`, **tanpa `Access-Control-Allow-Credentials`** ([ADR-0016](0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md) D3).
+- **CSRF.** Tidak terpapar: otoritasnya adalah header `Authorization` yang dilampirkan skrip secara sengaja; tidak ada cookie, tidak ada kredensial ambien, dan tidak ada CORS berkredensial, sehingga halaman pihak ketiga tidak dapat memicu permintaan terautentikasi. Satu sisa risiko, pencurian token lewat XSS, milik ADR-0016 dan tidak diperlebar: service worker tidak memegang token.
+- **CSP.** Storefront: origin tidak berubah. `worker-src` jatuh ke `default-src 'self'`; `connect-src` sudah menyebut origin CMS; service worker first-party dan tanpa hash pada URL tetap. CMS: hanya API. Tanpa SDK Firebase, tanpa skrip pihak ketiga.
+
+### 6.4 Payload yang didorong
+
+Produsen upstream mengenkripsi payload legacy (judul, isi, path target, data) atau yang deklaratif (`navigate` absolut pada origin yang diberikan ke provider). Pesan pelanggan memakai format apa pun yang dikonfigurasi deployment; origin selalu milik storefront. Tidak ada ikon atau gambar diambil dari payload. Judul paling banyak 120 dan isi 240 karakter, sebagaimana dibatasi upstream.
+
+### 6.5 Path tetap dan teks generik
+
+| Tujuan | Path (storefront, tanpa pengenal) | Teks generik (Inggris; Indonesia di katalog) |
+| --- | --- | --- |
+| `order_updates` | `/akun/pesanan` | "Pesanan Anda ada pembaruan" / "Buka akun Anda untuk melihatnya." |
+| `payment_updates` | `/akun/pesanan` | "Pembaruan pembayaran" / "Buka akun Anda untuk melihatnya." |
+| `support_replies` | `/akun/pesan` | "Anda punya pesan baru dari toko" / "Buka kotak masuk Anda untuk membacanya." |
+
+Nama toko boleh ditambahkan dari data tenant. Kode pesanan, jumlah, nama produk, dan nama orang tidak diizinkan. Templat yang dapat disunting tenant ditunda (Q9).
+
+### 6.6 Kasus penggunaan peristiwa (terverifikasi di kode)
+
+Setiap peristiwa di bawah ada di `apps/cms/src/modules/commerce/domain/commerce-events.ts`, dipublikasikan di descriptor `commerce`, dijelaskan di `apps/cms/asyncapi/awcms-domain-events.asyncapi.yaml`, dan di-append oleh produsen yang disebut. Consumer hanya membaca id dari payload.
+
+| ID | Tipe peristiwa (terverifikasi) | Bukti produsen | Pemicu | Tujuan | Prioritas | Tag dan TTL | Aturan |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| E1 | `awcms.commerce.order.paid` | `transitionOrderStatus` di `apps/cms/src/modules/commerce/application/order-directory.ts` meng-append-nya saat `to = paid`; payload `orderId`, `orderCode`, `from`, `to` | Pembayaran terkonfirmasi | `payment_updates` | high | `payment`, 4 jam | Selalu layak bila disetujui |
+| E2 | `awcms.commerce.order.status_changed` | fungsi yang sama, setiap transisi | Hanya `to` dalam `processing`, `shipped`, `completed` (target `paid`, `cancelled`, `expired` ditangani peristiwanya sendiri, sehingga tidak ada notifikasi ganda) | `order_updates` | `shipped` high, `processing` normal, `completed` low | `order`, 12 jam | Pembaruan pemenuhan dan pengiriman |
+| E3 | `awcms.commerce.order.cancelled` | fungsi yang sama, `to = cancelled` | Pesanan dibatalkan oleh staf atau sistem; ditekan bila baris peristiwa pesanan mencatat pelanggan sebagai aktor | `order_updates` | normal | `order`, 4 jam | |
+| E4 | `awcms.commerce.order.expired` | fungsi yang sama, `to = expired`, dijalankan job `commerce:orders:expire` | Jendela pembayaran habis | `payment_updates` | normal | `payment`, 4 jam | |
+| E5 | `awcms.commerce.refund.settled` | `settleRefundLeg` di `apps/cms/src/modules/commerce/application/refund-settlement.ts`; payload memuat `orderId` | Tungkai refund mencapai `succeeded` | `payment_updates` | normal | `payment`, 12 jam | Satu per tungkai |
+| E6 | `awcms.commerce.return.recorded` | `createReturn` di `apps/cms/src/modules/commerce/application/return-directory.ts`; payload memuat `orderId` | Barang diterima kembali | `order_updates` | normal | `order`, 12 jam | |
+
+Diperiksa dan **tidak** ada di daftar terverifikasi:
+
+- **Balasan kotak masuk pelanggan (disebut di contoh #429).** Tidak ada peristiwa domain. `postStoreReply` di `apps/cms/src/modules/commerce/application/conversation-directory.ts` menyisipkan pesan dan mengantrekan e-mail dalam transaksi yang sama, dan tidak meng-append peristiwa. Push untuknya butuh peristiwa `commerce` baru (kunci yang diusulkan `awcms.commerce.conversation.store_replied`, hanya id) dengan entri AsyncAPI dan pendaftaran descriptor-nya. Ini **E7** bersyarat di #432 (tujuan `support_replies`, prioritas high), dikirim hanya bila pemilik menyetujui peristiwa baru itu (Q4). Sampai saat itu kotak masuk dan e-mail adalah salurannya.
+- `order.created` (pembeli sedang melihat konfirmasi), `payment.recorded` (tungkai parsial; tinjau ulang dengan pesanan uang muka), `work_order.status_changed` (payload menyebut penanggung jawab staf, bukan pelanggan), `document.issued`, peristiwa loyalti, voucher, dan flash sale (bersifat pemasaran), serta `quotation.*`.
+
+**Kebijakan opt-in, prioritas, dan laju.** Tidak ada pesan diantrekan tanpa preferensi `enabled` yang eksplisit untuk tujuannya. Prioritas hanya mengurutkan claim (provider tidak mengirim header `Urgency` hari ini; bagian 12). Per akun: paling banyak 12 pesan per jam bergulir dan 40 per hari bergulir; `tag` menggabungkan pengulangan satu tujuan pada perangkat; TTL adalah yang lebih kecil antara nilai kebijakan dan empat jam milik provider. Pemasaran tidak pernah dihasilkan oleh peristiwa-peristiwa ini.
+
+### 6.7 Sketsa OpenAPI (ilustratif; fragmen sebenarnya milik #430)
+
+```yaml
+/api/v1/commerce/storefront/account/push/subscriptions:
+  get:
+    security: [{ customerBearer: [] }]
+    responses:
+      "200": { content: { application/json: { schema: { $ref: "#/components/schemas/CustomerPushState" } } } }
+      "401": { $ref: "#/components/responses/Unauthenticated" }
+      "403": { description: ACCOUNT_BLOCKED }
+      "404": { description: Not found netral (fitur mati atau tenant tak ter-resolve) }
+  post:
+    security: [{ customerBearer: [] }]
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: false
+            required: [endpoint, keys, consent]
+            properties:
+              endpoint: { type: string, maxLength: 2048 }
+              keys:
+                type: object
+                additionalProperties: false
+                required: [p256dh, auth]
+                properties: { p256dh: { type: string }, auth: { type: string } }
+              expirationTime: { type: [number, "null"] }
+              consent:
+                type: object
+                additionalProperties: false
+                required: [purposes, textVersion]
+                properties:
+                  purposes: { type: array, items: { enum: [order_updates, payment_updates, support_replies] }, minItems: 1 }
+                  textVersion: { type: string, maxLength: 32 }
+    responses:
+      "200": { description: Pendaftaran ulang no-op }
+      "201": { description: Terdaftar atau ditransfer ke pemanggil }
+      "409": { description: PUSH_UNAVAILABLE atau DEVICE_LIMIT }
+      "422": { description: VALIDATION_ERROR, ENDPOINT_NOT_ALLOWED, atau ORIGIN_NOT_ALLOWED }
+      "429": { description: RATE_LIMITED, dengan Retry-After }
+```
+
+### 6.8 Sketsa AsyncAPI
+
+Tidak ada channel yang ada berubah. Consumer baru dideklarasikan di descriptor `commerce` dan bukan dokumen AsyncAPI. Jika Q4 disetujui, #432 menambah satu channel dan entri descriptor:
+
+```yaml
+awcms.commerce.conversation.store_replied:
+  address: awcms.commerce.conversation.store_replied
+  messages: { DomainEvent: { $ref: "#/components/messages/DomainEvent" } }
+  description: >-
+    Balasan staf ditambahkan ke percakapan pelanggan. Produsen: fungsi balasan
+    toko pada direktori percakapan commerce, dalam transaksi yang sama dengan
+    pesan. Agregat: percakapan. Payload: hanya conversationId; tidak pernah
+    subjek, isi, atau pelanggan.
+```
+
+Metrik operasional (bukan peristiwa): hitungan per status pesan (`queued`, `sending`, `sent` = diterima provider, `retry_wait`, `failed`, `cancelled`, `expired`), status perangkat, `suppressed_rate_limit`. Tidak ada metrik bernama "delivered".
+
+## 7. Kontrak UX (untuk #431)
+
+- **Hanya opt-in.** Prompt izin browser dan pendaftaran terjadi hanya dari klik pada "Aktifkan Notifikasi" setelah teks persetujuan ditampilkan. Tidak pernah saat muat, login, gulir, atau timer.
+- **Status klien** (ditentukan storefront): tidak didukung (tanpa Push API, web view tersemat): tampilkan kotak masuk saja; tab Safari iOS atau iPadOS (belum terpasang): tampilkan panduan Tambahkan ke Layar Utama untuk 16.4+; aplikasi terpasang, izin default: tampilkan opt-in; izin ditolak: jelaskan cara mengaktifkan kembali di pengaturan sistem (halaman tidak bisa); izin diberikan, belum didaftarkan untuk akun ini: opt-in tanpa prompt browser kedua; terdaftar di perangkat ini; kapabilitas server mati: sembunyikan kontrol.
+- **Teks persetujuan** (berversi, dilokalkan, dikunci pada nama toko tenant): apa yang dikirim, tiga tujuan dengan sakelar masing-masing (semua menyala secara bawaan tidak diizinkan; pelanggan memilih), bahwa layar kunci menampilkan teks generik, bahwa pesan melewati push service vendor browser dalam bentuk terenkripsi, dan cara mematikannya. Pemasaran tidak ditawarkan di v1.
+- **Tidak pernah otomatis.** Setelah login, halaman tidak pernah mendaftarkan ulang perangkat secara diam-diam. Jika izin sudah diberikan dan akun belum punya perangkat di sini, ia menampilkan opt-in satu ketukan.
+- **Logout dan ganti akun.** Urutan operasi: (1) panggil logout dengan token lama dan tunggu; (2) bila sukses, panggil `unsubscribe()` sebagai upaya terbaik; (3) baru kemudian hapus sesi tersimpan dan biarkan login baru menyimpan sesinya sendiri. Pada kegagalan jaringan halaman tidak menghapus secara diam-diam: ia menyatakan bahwa keluar tidak dapat dikonfirmasi dan menawarkan coba lagi; server tetap mencabut pada panggilan sukses berikutnya, saat sesi kedaluwarsa, dan lewat transfer pendaftaran. Login di atas sesi tersimpan menjalankan urutan yang sama untuk sesi lama terlebih dahulu.
+- **Pesan galat.** 401: hapus sesi lewat aturan yang ada dan tampilkan halaman masuk. 403: pesan diblokir atau belum terverifikasi. 409 `DEVICE_LIMIT`: daftar perangkat dan tawarkan penghapusan. 422 dan 429: teks sederhana, terlokalisasi dengan `Retry-After`. 404: sembunyikan kontrol.
+- **Aksesibilitas.** Elemen `button` native; fokus berpindah ke wilayah status `aria-live="polite"`; tidak ada status yang disampaikan hanya lewat warna; dapat dipakai pada 360 px dan dengan keyboard serta pembaca layar; target sentuh minimal 44 px.
+- **Fallback kotak masuk.** Halaman kotak masuk dan pesanan akun (`apps/storefront/src/profil/toko/pages/akun/pesan.astro`, `apps/storefront/src/profil/toko/pages/akun/pesanan.astro`) tetap menjadi sistem pencatat. Klik membuka halaman tetap; halaman mengautentikasi dengan bearer tersimpan sebelum menampilkan sesuatu yang privat.
+- **Service worker** (#431): berkas first-party tanpa hash pada URL tetap di origin storefront, scope `/`, disajikan `max-age=0` (tiga alasan upstream di komentar `apps/cms/public/push-sw.js` berlaku); ia membaca kedua format payload, selalu menampilkan tepat satu notifikasi, me-resolve target klik terhadap originnya sendiri, tidak pernah memanggil API dan tidak pernah menyimpan token. Ia boleh berbagi parser dengan upstream lewat salinan yang ditinjau dan tes bahwa keduanya sepakat.
+
+## 8. Strategi tes
+
+ID adalah pegangan yang dicadangkan; #430 sampai #432 membuat tes dengan nama itu. Lapisan: unit (U), permukaan HTTP (H), integrasi PostgreSQL nyata (I), statis (S), kontrak (C), browser (E), perangkat fisik (D).
+
+### 8.1 Kriteria penerimaan ke tes
+
+| Kriteria | Tes |
+| --- | --- |
+| DoR #429: ADR yang disetujui dan tinjauan lintas-spek | ADR ini diterima; TS-C1 (paritas dan bundel OpenAPI, `api:spec:check`), TS-C2 (kamus data dan ERD diperbarui), TS-C3 (katalog i18n) di #430 sampai #432 |
+| DoR #429: sedikitnya lima peristiwa terverifikasi dan kebijakan | TS-EVT1: tes menyebutkan tipe peristiwa pada tabel kebijakan dan menegaskan masing-masing ada di daftar terpublikasi descriptor commerce dan di berkas AsyncAPI; peristiwa yang diganti nama atau dihapus membuatnya merah |
+| DoR #429: empat bukti | P1 sampai P4 di bawah |
+| DoR #429: kriteria ke tes, ancaman ke tes, jejak isu | Bagian 8.1, 2.2, dan 11 |
+| DoR #429: kapabilitas template, digerbangi profil, tidak khusus BjekMart | TS-U6: semua bawaan mati; TS-E4: ketiga profil build berhasil, dan profil tanpa akun pelanggan tidak memuat UI push; TS-S2: tidak ada literal khusus toko di berkas baru |
+| #430: pendaftaran idempoten, tanpa fallback admin | TS-I2 (daftar ulang), TS-H1, TS-H2 |
+| #430: lintas tenant, pelanggan lain, tamu, dihapus atau diblokir, transfer browser bersama | TS-I1, TS-H1, TS-I2, TS-I4 |
+| #430: langganan browser asli dikirim lewat Bun Web Push; penerimaan tidak dicampur; tanpa kebocoran | TS-D1 (perangkat), TS-I6, TS-H4 |
+| #430: RLS, FORCE, FK, unique, grant worker, pembersihan di PostgreSQL nyata; balapan | TS-I1, TS-I2, TS-I5, TS-I7 |
+| #431: hanya opt-in; panduan tab Safari; push iOS saat aplikasi tertutup | TS-E2, TS-D1 |
+| #431: dua profil terisolasi; logout dan pengikatan ulang tidak dapat membocorkan | TS-E1 |
+| #431: CSP first-party, 360 px, WCAG, terjemahan | TS-E3, TS-E5 (a11y dan tata letak), TS-C3 |
+| #432: peristiwa, antrean, jejak worker; checkout tidak pernah menunggu provider | TS-EVT1, TS-I5, TS-S3 (tanpa impor jaringan di consumer) |
+| #432: satu enqueue per dedupe key saat replay; percobaan at-least-once didokumentasikan | TS-I5 |
+| #432: tanpa kebocoran lintas tenant atau akun; target dipalsukan; persetujuan pemasaran | TS-I4, TS-U1, TS-U2 |
+| #432: kegagalan, pemulihan, TTL, 404/410, rate limit | TS-I6, TS-I7 |
+
+### 8.2 Ancaman ke tes regresi
+
+| Tes | Meliput | Apa yang dibuktikan |
+| --- | --- | --- |
+| TS-U1 | T13 | Peta peristiwa-ke-tujuan tertutup dan tidak punya jalur ke `marketing`; kebijakan persetujuan |
+| TS-U2 | T7, T8 | Validator origin (https, domain tenant, bukan origin admin, tanpa userinfo atau path); allowlist target; `//host`, `/\host`, skema, dan traversal ditolak |
+| TS-U3 | T9 | Validasi endpoint: http, alamat privat literal, terlalu besar, host di luar allowlist |
+| TS-U4 | T15 | Teks hasil render sama dengan templat; tanpa angka atau kode dari pesanan |
+| TS-U5 | T2 | Skema ketat: setiap key prinsipal atau isi pilihan klien adalah 400 |
+| TS-U6 | DoR | Bawaan mati |
+| TS-H1 | T1, T2, T3, T12 | Matriks kredensial (tanpa, cacat, cookie staf, bearer staf, token mesin, kedaluwarsa, dicabut, `cs_` tenant lain, diblokir) pada setiap rute |
+| TS-H2 | T1 | Token `cs_` pada setiap rute `/api/v1/push/*` adalah 401 |
+| TS-H3 | T8, T19 | Preflight dan ACAO hanya untuk origin tenant; tidak pernah header kredensial; `Vary`; `no-store` |
+| TS-H4 | T11 | Endpoint, kunci, dan secret sentinel tidak pernah muncul di respons, log, audit, atau galat |
+| TS-H5 | T10 | Rate limit dan `Retry-After` |
+| TS-H6 | T18 | Fitur mati, tenant tak ter-resolve, perangkat milik orang lain, dan perangkat tidak ada memberi isi yang tidak dapat dibedakan |
+| TS-S1 | T1 | Statis: berkas rute pelanggan tidak mengimpor resolver prinsipal staf atau membaca cookie |
+| TS-S3 | #432 | Consumer tidak mengimpor kode jaringan atau provider |
+| TS-I1 | T3 | FORCE RLS, foreign key komposit lintas tenant, constraint unik dan CHECK, grant kolom worker (tidak dapat INSERT perangkat atau menulis ulang kolom endpoint) |
+| TS-I2 | T4, T5 | Pendaftaran serentak satu endpoint oleh dua akun: satu pemilik, pesan antre dibatalkan, satu peristiwa audit; daftar berlomba dengan logout |
+| TS-I3 | T6 | Logout mencabut tepat perangkat sesi itu secara atomik; rollback saat gagal |
+| TS-I4 | T4, T6, T12, T13 | Tabel kebenaran kelayakan: masing-masing dari sembilan predikat, dibalik sendirian, membuat pesan tidak layak dan tidak ada panggilan provider |
+| TS-I5 | T10, T14 | Replay dan pengiriman ganda memberi satu baris per dedupe key; dispatch serentak; claim ulang lease kedaluwarsa; batas fan-out |
+| TS-I6 | T17 | Provider tiruan: 201 ke `sent`; 404 dan 410 ke perangkat `gone`; 429 dan 5xx ke `retry_wait`; 4xx permanen ke `failed`; kedaluwarsa TTL; breaker; kosakata status |
+| TS-I7 | Retensi | Purge hanya menyentuh baris terminal; kredensial dimusnahkan pada status non-aktif; penghapusan menghapus baris akun; rotasi kunci dan gagal-tertutup tanpa ring |
+| TS-E1 | T6 | Dua profil browser; A keluar dan B masuk pada satu profil; ganti akun tanpa logout; B tidak pernah melihat notifikasi A |
+| TS-E2 | #431 | `Notification.requestPermission` tidak pernah dipanggil tanpa klik |
+| TS-E3 | T7, T16 | Service worker: kedua format payload, fallback payload kosong, target origin asing ditolak, tanpa akses token |
+| TS-EVT1 | DoR | Tipe peristiwa kebijakan ada di descriptor dan berkas AsyncAPI |
+| TS-C1, TS-C2, TS-C3 | DoR | Paritas dan bundel OpenAPI; kamus data dan ERD; katalog i18n |
+| TS-S2, TS-S3 | DoR, #432 | Tanpa literal khusus toko di berkas baru; consumer tidak mengimpor kode jaringan atau provider |
+| TS-E4, TS-E5 | DoR, #431 | Ketiga profil build berhasil dan hanya profil yang mampu akun membawa UI push; pemeriksaan 360 px dan aksesibilitas |
+| TS-D1 | DoR | iPhone fisik (aplikasi terpasang), Chrome Android dan desktop, panduan tab Safari; dicatat di matriks uji |
+
+### 8.3 Kewajiban bukti
+
+- **P1 — Tanpa fallback cookie atau bearer admin.** *Lapisan:* rute pelanggan hanya memakai `requireCustomerSession` dan tidak pernah membaca cookie (TS-S1); `looksLikeCustomerSessionToken` menolak apa pun tanpa bentuk `cs_` sebelum pencarian; rute push staf tidak dapat me-resolve hash `cs_`. *Bukti:* TS-H1 dan TS-H2 menjalankan setiap jenis kredensial pada setiap rute dalam kedua arah; TS-S1 menggagalkan build bila berkas rute push pelanggan mendapat impor prinsipal staf.
+- **P2 — Tanpa push ke pelanggan lain.** *Lapisan:* akun diturunkan dari pesanan di server (5.4), dikunci pada pesan, sama dengan akun perangkat saat kirim (I5), dan tidak pernah ada di body permintaan mana pun; foreign key komposit menjaga perangkat, akun, dan tenant konsisten. *Bukti:* TS-I4 (ketidakcocokan akun saja membuat pesan tidak layak), TS-I2 (transfer membatalkan pesan antre), TS-U5 (tanpa id pilihan klien).
+- **P3 — Tanpa pengambilalihan endpoint pada perangkat bersama.** *Lapisan:* transfer adalah operasi terkunci, atomik, dan diaudit; pengikatan penerima saat kirim; kredensial dimusnahkan saat dicabut; teks generik. Sisa risiko (pemegang endpoint mentah dapat membungkam pemilik) dinyatakan di T5 dan dapat dideteksi. *Bukti:* TS-I2, TS-I3, TS-E1.
+- **P4 — Tanpa pengungkapan pelanggan basi pada browser yang sama.** *Lapisan:* logout mencabut perangkat sesi dalam transaksi yang sama; pengiriman membutuhkan sesi pendaftar yang hidup; klien mencabut sebelum mengganti sesi tersimpan; pendaftaran akun berikutnya mentransfer endpoint; teks generik. *Bukti:* TS-I3, TS-I4 (sesi berakhir saja membuat pesan tidak layak), TS-E1 (tingkat browser, termasuk jalur tidak normal saat panggilan logout gagal).
+
+## 9. Migrasi, peluncuran, dan pemulihan
+
+- **Dari keadaan tanpa langganan.** Semuanya aditif. Hari ini tidak ada perangkat atau pesan, sehingga tidak ada backfill. Migrasi membuat tabel kosong dan dua constraint unik aditif; aplikasi inert sampai fitur dinyalakan.
+- **Gerbang (semuanya harus menyala agar ada efek).** Modul `commerce` aktif untuk tenant; fitur commerce `customerPush` (flag baru, bawaan **mati**, seperti `loyalty`); `PUSH_ENABLED=true`; pasangan kunci VAPID; key ring auth-secret. Deployment tanpa ring mendapat `reason: "push_not_configured"` dan tanpa pendaftaran, karena tidak ada fallback plaintext. Penggerbangan profil: storefront menyertakan kontrol hanya di profil dengan kapabilitas akun pelanggan (biasanya `toko`).
+- **Urutan kerja.** (0) sinkronisasi #427 membawa kode dan migrasi upstream; (1) migrasi dan rute #430, di belakang flag; (2) verifikasi VAPID, ring, cron, dan `PUSH_SERVICE_WORKER_PATH` di staging lewat matriks uji operator; (3) UI #431, digerbangi flag; (4) consumer #432, digerbangi flag; (5) satu tenant percontohan, lalu yang lain, masing-masing dengan UAT perangkat (aplikasi iPhone terpasang, Chrome Android dan desktop) sebelum aktivasi produksi.
+- **Kill switch dan rollback.** Matikan flag: rute menjawab 404 netral, consumer melewati, dispatcher tidak meng-claim apa pun, dan perangkat yang ada menjadi inert; jalankan job cabut-semua untuk menjadikan endpoint tombstone bila fitur ditinggalkan. Skema aditif dan tidak ada migrasi turun; roll-forward aplikasi, jangan menjatuhkan tabel. Jalur kotak masuk dan e-mail tidak pernah bergantung pada push, sehingga pelanggan hanya kehilangan banner.
+- **Fallback ke kotak masuk.** Selalu ada. Izin ditolak, endpoint gone, sesi kedaluwarsa, batas habis, dan fitur nonaktif semuanya menyisakan kotak masuk serta kanal e-mail dan WhatsApp yang ada sebagai cara pelanggan mengetahui perubahan.
+- **Rotasi kunci.** Tambahkan kunci di depan ring, deploy, jalankan job re-key commerce (disediakan #430; perintah re-key upstream hanya meliput tabel upstream), periksa readiness, pensiunkan kunci lama. Rotasi VAPID membatalkan setiap langganan: nonaktifkan perangkat dengan alasan `vapid_rotated`; halaman melihat `applicationServerKey` berubah dan meminta pelanggan mengaktifkan lagi.
+- **Backup dan restore.** Perangkat dan sesi dipulihkan bersama. Setelah restore point-in-time ke momen lebih awal, logout yang terjadi kemudian hilang untuk kedua tabel; perlakukan semua perangkat sebagai mencurigakan: jalankan job cabut-semua dan putuskan apakah sesi pelanggan juga dicabut. Deploy kunci ring yang sama dengan yang menulis backup, atau ciphertext tidak dapat dibaca.
+- **Observabilitas.** Hitungan per status pesan dan perangkat; alarm pada naiknya porsi `failed`, lonjakan `gone`, dan status breaker terbuka; tidak pernah angka "terkirim".
+
+## 10. Pemetaan regulasi
+
+Ini adalah penyelarasan kontrol desain dengan persyaratan, bukan klaim kepatuhan atau sertifikasi. Apakah URL endpoint merupakan data pribadi adalah penilaian hukum; desain memperlakukannya demikian. Tinjauan hukum atas teks persetujuan menjadi tanggung jawab pemilik (Q8).
+
+| Rujukan | Tema | Unsur desain |
+| --- | --- | --- |
+| UU PDP 27/2022 (undang-undang pelindungan data pribadi Indonesia) | Dasar hukum dan persetujuan eksplisit; pembatasan tujuan; minimisasi data; keamanan pemrosesan; hak subjek data untuk menarik persetujuan dan penghapusan | Opt-in lewat tindakan eksplisit dengan teks berversi; tujuan tertutup; tanpa data pesanan di pesan; auth secret terenkripsi, RLS, isolasi bearer; penarikan satu ketukan dan sakelar per tujuan; pendaftaran penghapusan subject-data; penanganan pelanggaran mengikuti runbook platform |
+| PP PSTE 71/2019 (sistem dan transaksi elektronik) | Keandalan dan keamanan sistem elektronik; kendali akses; jejak audit | Rute pelanggan default-deny, isolasi tenant, peristiwa audit hanya dengan id, tindakan administratif tercatat, ketersediaan lewat fallback kotak masuk |
+| ISO/IEC 27001 | Sistem manajemen keamanan informasi | Register ancaman (2.2), kontrol, siklus tinjauan lewat persetujuan ADR |
+| ISO/IEC 27002 (edisi 2022) | Kendali akses (5.15), privasi dan perlindungan PII (5.34), penghapusan informasi (8.10), pencatatan (8.15), kriptografi (8.24) | Bagian 4, bagian 2.3, retensi dan purge (5.7), peristiwa audit, enkripsi field dengan AAD terikat tujuan |
+| ISO/IEC 27005 | Manajemen risiko keamanan informasi | Bagian 2 adalah masukan identifikasi dan penanganan risiko; butir terbuka ada di Q1 sampai Q12 |
+| ISO/IEC 27701 | Manajemen informasi privasi (kontrol pengendali) | Pengambilan dan penarikan persetujuan, minimisasi, jendela retensi, catatan pemrosesan di kamus data |
+
+## 11. Jejak isu
+
+| Isu | Mengimplementasikan dari ADR ini |
+| --- | --- |
+| #427 (sinkronisasi) | Membawa payload upstream, key ring, helper enkripsi field, dan matriks ops; verifikasi bahwa PWA admin origin CMS tidak mendaftarkan pembeli |
+| #428 (dapat dipasang) | Manifest dan kemampuan dipasang storefront, prasyarat push iOS |
+| #429 (ini) | Keputusan, model ancaman, kontrak, tes, dan jejak |
+| #430 | Bagian 3 (tabel, constraint, grant, retensi, subject-data), bagian 4, bagian 5.2, 5.3, 5.5, 5.6, 5.7 (dispatch, purge, re-key, sapuan sesi), bagian 6.1 sampai 6.3 dan 6.7 (rute, validasi, CORS, rate limit, fragmen OpenAPI), perluasan logout, pencabutan jalur blokir, tes TS-U2, U3, U5, U6, H1 sampai H6, S1, I1 sampai I3, I6, I7, C1, C2 |
+| #431 | Bagian 7 (teks persetujuan, status, urutan logout dan ganti akun, service worker, fallback kotak masuk), pemeriksaan CSP, tes TS-E1 sampai E5, TS-D1, TS-C3 |
+| #432 | Bagian 5.4, 6.4 sampai 6.6 dan 6.8 (consumer, kebijakan, teks generik, dedupe, batas), peristiwa baru opsional, AsyncAPI, metrik, tes TS-U1, U4, EVT1, S3, I4, I5, E1, D1 |
+
+## 12. Isu upstream yang diusulkan (dijelaskan, tidak diajukan)
+
+Perubahan generik menjadi milik `ahliweb/awcms` terlebih dahulu dan tiba lewat sinkronisasi subtree ([ADR-0024](0024-awcms-one-is-template-only-derived-apps-own-their-backend.id.md) D3). Tidak satu pun menghalangi #430 sampai #432.
+
+- **U1 — permukaan pemakaian ulang yang didukung untuk modul saudara.** Buat helper enkripsi dan dekripsi auth-secret menerima purpose AAD sebagai parameter, ekspos fungsi murni "bangun target push dari bagian tersimpan", dan dokumentasikan pabrik provider sebagai API yang didukung. Menghilangkan kebutuhan commerce mengulang sambungan upstream.
+- **U2 — opsi pengiriman per pesan pada `PushMessage`.** Origin navigate yang tervalidasi, TTL per pesan, dan header RFC 8030 `Urgency` yang diturunkan dari prioritas. Memungkinkan modul saudara menarget origin non-`APP_URL` tanpa membuat provider per origin.
+- **U3 — inti dispatch agnostik-tabel.** Ekstrak mesin status claim, kirim, dan finalisasi di balik antarmuka store kecil sehingga outbox lain dapat memakainya. Ini menghilangkan loop ganda dan memenuhi keinginan #432 akan satu dispatcher.
+- **U4 — allowlist host push service untuk validasi endpoint** (dapat dikonfigurasi, dengan bawaan yang wajar). Memperkeras permukaan admin juga.
+- **U5 — abstraksi penerima eksternal netral (opsi A).** Layak diajukan hanya jika U1 sampai U3 diadopsi dan konsumen kedua muncul.
+
+## Pertanyaan terbuka untuk pemilik
+
+| ID | Pertanyaan | Rekomendasi |
+| --- | --- | --- |
+| Q1 | Terima outbox commerce yang tipis sekarang (opsi C), atau tunggu opsi A di upstream? | C sekarang, konvergen lewat U3 |
+| Q2 | Satu key ring auth-secret dengan AAD terikat tujuan, atau ring terpisah untuk pelanggan? | Satu ring, purpose AAD berbeda; job re-key commerce |
+| Q3 | Push pelanggan tidak didukung bila storefront dan CMS berbagi satu origin di v1? | Ya |
+| Q4 | Setujui peristiwa baru `awcms.commerce.conversation.store_replied` untuk push balasan kotak masuk? | Ya, di #432 |
+| Q5 | Notifikasi berhenti saat sesi pendaftar berakhir (30 hari bergeser)? | Ya (aman saat gagal); tinjau ulang dengan data pemakaian |
+| Q6 | Allowlist host push service bawaan dan siapa yang dapat menimpanya? | Sufiks vendor yang dikenal, penimpaan lewat environment operator |
+| Q7 | Batas: 5 perangkat per akun, 12 per jam dan 40 per hari per akun, batas pendaftaran | Terima sebagai nilai awal |
+| Q8 | Jendela retensi (30 hari) serta kata-kata persetujuan dan privasi, dengan tinjauan hukum | Pemilik dan penasihat hukum |
+| Q9 | Templat yang dapat disunting tenant di v1, atau hanya teks generik bawaan? | Hanya bawaan |
+| Q10 | Endpoint diagnostik staf dan nama izinnya di v1? | Hanya hitungan agregat, `commerce.customer_push.read` |
+| Q11 | Push pemasaran dicadangkan dan di luar cakupan v1? | Ya |
+| Q12 | Tanpa pelacakan klik di v1? | Ya |
+
+## Ringkasan keputusan
+
+1. **D1.** Opsi C: commerce memiliki perangkat pelanggan, persetujuan, dan outbox tipis; kode provider, kripto, dan kebijakan upstream diimpor, tidak ada tabel upstream yang ditulis; opsi A adalah jalur konvergensi (bagian 12).
+2. **D2.** Prinsipal diturunkan dari bearer `cs_`; perangkat mengikat satu endpoint ke satu akun, satu sesi pendaftar, dan satu origin storefront yang tervalidasi; tamu tidak menerima push.
+3. **D3.** Pendaftaran endpoint yang sudah dikenal oleh akun lain adalah transfer atomik yang eksplisit dengan pembatalan pesan antre dan peristiwa audit; pencabutan dan logout memusnahkan kredensial; pengiriman membutuhkan sesi yang hidup.
+4. **D4.** Target klik adalah path storefront tetap pada origin tersimpan perangkat yang tervalidasi domainnya; payload generik; tidak ada pengenal melintasi push service.
+5. **D5.** Empat tabel commerce aditif dengan FORCE RLS dan grant hak istimewa minimum; flag baru `customerPush` bawaan mati; tanpa kolom secret plaintext.
+6. **D6.** Tujuan tertutup; hanya transaksional di v1; pemasaran dicadangkan dan tidak pernah dikirim; peristiwa terverifikasi E1 sampai E6 menggerakkan notifikasi; balasan kotak masuk (E7) menunggu peristiwa nyata.
+
+## Konsekuensi
+
+- #430 sampai #432 dapat mulai setelah ADR ini diterima dan #427 mendarat; tidak perlu rilis upstream.
+- Modul commerce mendapat loop dispatch kedua. Duplikasinya terbatas (semua di bawah antrean dibagi) dan dilacak untuk konvergensi; jika pemilik memilih A, #430 menunggu pekerjaan upstream.
+- Push pelanggan bergantung pada sesi yang hidup: pelanggan yang tidak terlihat 30 hari berhenti menerima banner sampai mengaktifkan lagi (Q5).
+- Provider hanya menerima isi generik terenkripsi; sistem tidak dapat mengatakan apakah banner ditampilkan atau dibaca.
+- Setiap aplikasi turunan yang dideploy membawa VAPID dan ring sendiri; merotasi salah satunya adalah prosedur operator, bukan perubahan kode.
+
+## Yang belum ada
+
+- Push pemasaran (butuh alur persetujuan, audiens, dan ADR sendiri), templat yang dapat disunting tenant, analitik klik dan baca, aplikasi pelanggan native (FCM/APNs), alur penghapusan akun pelanggan, UI staf untuk perangkat pelanggan, dan peristiwa balasan kotak masuk (Q4).
+- Belum ada implementasi: tidak ada tabel, rute, consumer, job worker, service worker, atau UI. ADR ini adalah Definition of Ready untuk #430, #431, dan #432.

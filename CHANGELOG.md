@@ -2,6 +2,418 @@
 
 Every entry below is folded from `.changesets/` by `bun run release`, which also tags the release. The version is `MAJOR.MINOR.PATCH`, tagged `vX.Y.Z`; the next version is the largest `bump` declared among the changesets a release folds (see [`.changesets/README.md`](.changesets/README.md)) — never a level chosen at release time from a list of file names.
 
+## [0.17.0] — 2026-10-20
+
+### ADR-0041: gateway deposit sessions and mixed tenders on one order
+
+Docs only (ADR-0040 D7): no code, migration or OpenAPI path. Resolves issue #353, cross-spec finding X2 and threat-model control C-07, and revisits the ADR-0025 D7 deferral.
+
+- Each gateway session will carry a server-computed `expected_amount` and a `purpose` (`full`, `deposit`, `balance`), and the amount guard compares the provider figure to it in integer cents; whole-total orders keep exactly today's guard and behaviour.
+- Deposit policy is per product (percentage or fixed, unset = full payment, no tenant default); points earn only at full settlement on deposit orders; points and a deposit cannot be combined and rental security deposits are out of v1 (owner answers Q2, Q3, Q5, Q8).
+- The order keeps `dp_paid` with an explicit balance due between the deposit and the balance.
+
+### Booking-commerce adapter RBAC / ABAC / RLS matrix (DoR artifact 5)
+
+Docs only (ADR-0040 D7): no permission registered, no code, migration or OpenAPI path. Resolves issue #357 (stacked on #356).
+
+- Persona by resource by action matrix for the commerce-side roles that touch bookings (customer, cashier, scheduler / receptionist, tenant admin, finance), with ABAC conditions, step-up, audit events and the RLS shape of each proposed adapter table. Proposed permission keys are marked "proposed (not registered)".
+- Owner answer Q10: only a manager or finance permission (`commerce.booking_refund_overrides.approve`, proposed) may override a policy-computed refund, with step-up, a mandatory reason, an audit event, and never above the amount paid; cashier and front desk cannot.
+- Records that no commerce route calls the platform step-up today, and that the threat model has no controls beyond C-24.
+
+### Booking-commerce adapter OpenAPI and AsyncAPI contract drafts (DoR artifact 7)
+
+Docs only (ADR-0040 D7): no live OpenAPI path, no AsyncAPI file, no handler, permission or migration, so `ROUTE_PARITY_EXEMPTIONS` stays empty. Resolves issue #358 (stacked on #357).
+
+- New `docs/booking-commerce-adapter-contracts.md` drafts, as fenced OpenAPI 3.1 and AsyncAPI 3.0 YAML marked "draft — not in the live spec", the adapter routes: offering-to-product link, hold-to-order with idempotency, deposit and balance gateway sessions per ADR-0041, a deposit-aware settlement view, cancellation quote and confirm with a server-computed refund, the manager/finance refund override (step-up, `403 STEP_UP_REQUIRED`), reschedule, no-show and POS check-in with balance collection.
+- Drafts the events consumed (Booking's provisional reservation events, including the upstream `awcms` ADR-0135 `stays[]` field, plus `order.paid`) with proposed consumer names and idempotency modes, and the events emitted (order settled, refund decided, attention raised).
+- Explains how the drafts become live under the contract-first rule, and lists the open points the adapter ADR must settle. The DoR tracker marks artifact 7 as drafted.
+
+### Booking-commerce adapter: proposed ERD and data dictionary
+
+Docs only (ADR-0040 D7): no migration, table, route or OpenAPI path. Resolves issue #356, DoR artifact 4 for the booking-commerce adapter and cross-spec finding X7.
+
+- New `docs/booking-commerce-adapter-data-model.md` proposes six `awcms_commerce_*` tables with an ERD and column-level dictionary: offering-to-product link, reservation-to-order link, per-product deposit policy, versioned cancellation policy with its windows (product row or tenant default), and an append-only refund decision record carrying the manager/finance override fields. Migration numbers are left to implementation from `sql/1001` (ADR-0037).
+- The customer of a reservation is derived through the linked order and stored on no adapter table; Booking holds no price, deposit or payment field.
+- Reflects the owner answers of 10 October 2026 (Q1 to Q4, Q8 to Q10) and ADR-0041. Pointers added to the schema and data-dictionary pages; the DoR tracker marks artifact 4 as partly satisfied.
+
+### Booking UX flows (DoR artifact 8)
+
+Docs only: a design specification, not built. `docs/booking-ux-flows.md` (with its Indonesian mirror) specifies the storefront stay-booking flow (half-open date range, nights as quantity, hold countdown, availability errors), deposit payment and the order view, the cancellation and refund view (per-product windows with a tenant default, refund shown before confirming, staff-only override), and cashier check-in with balance collection, with screen states, copy, WCAG 2.1 AA and 360px requirements and behaviour under the three build profiles. Resolves issue #359.
+
+### DoR gate check (A9) and control cross-references
+
+Issue #339. `docs/aw-business-platform-dor.md` rolls up the epic #280 Definition of Ready after W1 to W9 landed: `awcms` ADR-0135 (nightly stays, ahliweb/awcms#931) resolves finding X1 and decision W0, the threat-model addendum resolves X4, and the upstream packs now record the owner answers (X9). The ADR-0040 D7 gate is evaluated criterion by criterion: it holds conditionally, with three named residuals (R1 to R3) proposed as explicit owner waivers.
+
+- The booking access matrix, UX flows and adapter contracts cite threat controls C-25 to C-41 and drop their "does not exist on this base" caveats.
+- Documents that cited `awcms` ADR-0135 by GitHub URL link the local copy in `apps/cms/docs/adr/`.
+- Docs only: no module, migration or OpenAPI path. Indonesian mirrors are updated and re-stamped.
+
+### AW Business Platform: PRD and metric-contract amendment
+
+Docs only (ADR-0040 D7). Resolves issue #355 and cross-spec findings X3, X5, X6 and X8.
+
+- Records the owner's answers of 10 October 2026 to PRD Q1 to Q10 and accepts every default of metrics Q1 to Q7.
+- Loyalty on deposit orders earns only at full settlement; whole-total orders are unchanged (consistent with ADR-0041 D7).
+- Metrics gain a deposit-order revenue rule (section 3.7), loyalty figures (section 12) and a glossary (section 13).
+- Corrects statements made stale by the AWCMS v10.7.0 sync and upstream `awcms` ADR-0135.
+
+### apps/cms synced from ahliweb/awcms main at ad35d12f
+
+A documentation-only sync, still AWCMS v10.7.0. It brings ADR-0135, which admits day-granularity (nightly) stays into Booking v1 as the owner asked for the hotel/villa/rental vertical (ahliweb/awcms#931), and the booking and hr_payroll design packs with the awcms-one owner answers O4–O12 recorded (ahliweb/awcms#932). Both unblock the epic #280 DoR documents that depended on #931.
+
+- No code, migration, OpenAPI or permission change in `apps/cms`.
+- The only conflicts were the generated counts in `PROJECT_STATE.md` and `repo-inventory.md`, regenerated.
+
+### Threat model addendum: segments, loyalty redemption, POS service context, reschedule and no-show
+
+Closes cross-spec finding X4 (issue #354). `docs/aw-business-platform-threat-model.md` gains flows F8 to F11 with STRIDE tables and controls C-25 to C-41 in the existing control-mapping format, so the Wave B issues (#360 to #363) have threat rows to implement against. The PRD owner answers Q4 and Q6 to Q10 (point value, points-plus-deposit exclusion, refund override, segment vocabulary, reschedule pricing, cancellation windows) are recorded in the decision provenance table and bound to controls.
+
+- Docs only: no module, migration, OpenAPI path or DDL is added; every control is "planned".
+- The Indonesian mirror is updated and re-stamped.
+
+### ADR-0045: booking-commerce adapter
+
+Docs only (ADR-0040 D7): no code, migration, permission or OpenAPI path. Resolves issue #376 and ends the "pending" status of the four booking-commerce drafts (data model, access matrix, contracts, UX flows), whose open-points sections now point to the ADR.
+
+- One active product per offering and vice versa; composite foreign keys to Booking with a verification precondition; the customer stays derived through the order and Booking's `external_customer_ref` stays unset.
+- Cancellation refund legs ride a new returns `kind = 'cancellation'`; the deposit policy row is the only deposit authority and `allow_dp` becomes a mirror; no active policy refunds nothing (owner may revise).
+- The refund override is an inline parameter of the staff cancel, behind step-up; a customer cancel plans refund legs under a system actor; the adapter-owned error codes and the six `commerce.booking_*` consumer names are frozen.
+- A reschedule keeps the stay length in v1 (difference zero; a supplementary order is the decided vehicle for later); check-in with an unpaid balance is a tenant setting, default allowed (owner may revise). Control C-20 re-run: pass.
+
+### Campaigns can target a CRM segment (issue #362)
+
+A campaign can now take a CRM segment as its audience (Wave B of epic #280; PRD S3 and S4; threat-model controls C-12, C-28, C-29), **behind a new per-tenant `campaignSegmentAudience` feature that defaults OFF** (it also needs `campaigns` and `segments`). A tenant that never opens Features sees no change, and existing campaigns and their audience filters behave exactly as before.
+
+Why it is shaped this way (ADR-0042 Amendment): no second customer store. The existing resumable, claimable dispatcher still pages through the recipient ledger; the segment's rule is evaluated under the same bounds as a preview, and the customer's consent, active account and channel address are part of the page query. So membership never implies consent - an opted-out member is refused when the campaign is enqueued and again at dispatch - and walk-in, blocked and erased customers are never targeted, even by a `NOT` rule.
+
+- Migration `sql/1007`: `segment_id`, `segment_version`, `segment_as_of` on `awcms_commerce_campaigns` (composite FK to the immutable segment version). The campaign records the version it was pinned to and the as-of the audience was evaluated at, so a past send is explainable.
+- API: `segmentId` / `segmentVersion` on campaign create and update; the campaign preview and send routes evaluate a segment audience within the segment bounds (`422 SEGMENT_TOO_EXPENSIVE`, `429 SEGMENT_EVALUATION_BUSY`, `409 FEATURE_DISABLED`); a count under five is withheld. Choosing a segment needs `commerce.segments.read`; its count needs `commerce.segment_previews.read`. No new permission key.
+- Dispatch: a refused page (busy, too expensive, flag off) is deferred and the campaign stays `sending`, never `sent`.
+- Admin: a segment picker on the campaign create form (only when the flags are on and the viewer may read segments), the pinned segment and as-of in the detail panel, and a "Send campaigns to a customer segment" toggle in Features.
+- Fixed: `PATCH` of a campaign's audience stored the filters as a JSON string, which the dispatcher could not read.
+
+### CRM segments: versioned rules, preview and evaluation (issue #360)
+
+A tenant can now define a named customer segment from a closed rule vocabulary, count how many customers match, and — with permission to read customers — list or export them. This is Wave B item 7 of epic #280 (PRD stories S1, S2, S4; outcome M7), allowed under the ADR-0040 D7 commerce-only carve-out, and it is **behind a new per-tenant `segments` feature that defaults OFF**: a tenant that never opens Features sees no change.
+
+Why the design is what it is (ADR-0042): a segment turns a rule into a list of people, so the risks are disclosure and evaluation cost. Rules are a closed, versioned JSON vocabulary mapped to fixed parameterised SQL templates (no client SQL, no free strings, bounded depth/nodes/windows); membership is derived on demand and **never stored**; versions are immutable at the database and a delete keeps every version a past consumer recorded; every evaluation is bounded (5 s statement timeout, per-tenant and per-actor concurrency, page and export caps) with stable refusal codes.
+
+- Migrations `sql/1001`–`1004`: `awcms_commerce_segments` and `awcms_commerce_segment_versions` (FORCE RLS, composite FKs, immutability trigger, no UPDATE/DELETE for the app role on versions), one partial covering index on `awcms_commerce_orders`, seven permission keys, worker grants.
+- Seven resource-split permissions: `commerce.segments.{read,create,update,delete}`, `commerce.segment_previews.read` (count only, no customer permission), `commerce.segment_members.{read,export}` (each also requires `commerce.customers.read`). Existing tenants do not gain them retroactively.
+- New endpoints under `/api/v1/commerce/segments`: list/define, get/rename-and-version/retire, `preview`, `{id}/members`, `{id}/export.csv`. A count under five is withheld; the as-of instant is the server's; walk-in, blocked and erased customers are never members; consent stays independent of membership.
+- Admin screen `/admin/commerce-segments` and a _Customer segments_ toggle under Features; sidebar entry hidden while the feature is off.
+- Measured on 100,000 customers (about 250,000 paid orders): preview p95 between 0.3 s and 1.2 s against the 3 s target (M7).
+- Not built here: wiring a segment into a loyalty program version (#361) or a campaign audience (#362), booking-derived fields (after Wave C), domain events.
+
+### Loyalty programs can be restricted to a customer segment (issue #361)
+
+A loyalty program version can now be restricted to a CRM segment, so only that segment's members earn points under it (PRD L1/S3, Wave B item 9 of epic #280). It is **behind a new per-tenant `loyaltySegments` feature that defaults OFF**, on top of the existing `loyalty` and `segments` features: a tenant that never opens Features sees no change, and with the feature off a program that names a segment pays everyone exactly as before.
+
+Why the design is what it is (ADR-0042 amendment): the ledger rules of ADR-0026 are unchanged — the program version in force at the order's `paid_at` decides, earn stays on `order.paid` through the existing consumer, reversal is untouched. The program records the **segment id and the pinned segment version** (migration `sql/1005`, composite foreign key, immutable once the program leaves draft), so editing or retiring the segment later never changes what a past earn used. Membership of ONE customer is decided with the same fixed templates as a full evaluation, narrowed to that customer, as of the order's `paid_at`; walk-in, blocked and erased customers never earn, and channel consent is neither read nor changed.
+
+- Migration `sql/1005`: two nullable columns, a pair `CHECK`, a composite FK to `awcms_commerce_segment_versions`, a draft-only trigger, a partial index. No grants change.
+- API: `eligibilitySegmentId` / `eligibilitySegmentVersion` on `POST` and `PATCH commerce/loyalty/programs` and on every program read; setting one needs the two features and `commerce.segments.read`; `422 SEGMENT_NOT_FOUND` for an unknown, foreign, retired or non-existent segment or version. No new route.
+- Admin: the Loyalty screen's create form gains an optional segment picker and the programs table an Eligibility column; a _Loyalty eligibility by segment_ toggle under Features.
+- Not built here: booking-originated earn (L2, after X3) and campaign audiences (#362).
+
+### Commerce customer-retention report (commerce-only projection)
+
+Issue #364 (epic #280, Wave B), [ADR-0044](docs/adr/0044-customer-retention-is-a-per-customer-recompute-projection-on-the-reporting-engine.md). The 90-day repeat rate of customer cohorts, built as a `reporting` projection over commerce orders - no second analytics store.
+
+- A cohort is the `Asia/Jakarta` month of a customer's first qualifying paid order; the repeat must be a distinct order within 90 x 24 hours of it. A cohort is "to date" until its window has elapsed, shows counts and no percentage under 20 customers, and is flagged restated when a late event changes it after 35 days.
+- Recompute, not increment: a refunded first purchase or a cancelled repeat moves the customer correctly, and a rebuild reproduces the live table byte for byte. Migrations `1020`-`1021`.
+- `GET /api/v1/reports/commerce/retention` (and `.csv`) under the new `commerce.report_retention.read|export` permissions, behind the per-tenant `retention` feature, which defaults OFF. A panel on `/admin/commerce-reports`.
+- The booking input, a CRM win-back list and a configurable window are not here.
+
+### Fix: campaign `audience.levels` failed to bind
+
+A campaign's `audience.levels` filter bound its JS array as a bare parameter, so any non-empty price-level selection failed with "insufficient data left in message" on both preview (`countCampaignAudience`) and dispatch (`resolveCampaignAudiencePage`). It is now bound as a typed text array and cast to `int[]`, with an integration test covering one and several levels (#402).
+
+### Fix: campaign dispatch runs as the least-privilege `awcms_worker` role
+
+`awcms_worker` lacked `INSERT` on `awcms_email_templates`, `awcms_email_messages` and `awcms_commerce_whatsapp_messages`, so `commerce:campaigns:dispatch` worked only as `awcms_app` and failed in production, where jobs run as the worker. Migration `sql/1013` grants exactly those three `INSERT`s, mirrored in `WORKER_ROLE_GRANTS`, with an integration test running one dispatch tick as the real worker role on both channels (#403). Run `bun run db:migrate` on deploy.
+
+### Loyalty points can be spent at checkout and the POS (issue #363, ADR-0043)
+
+Closes the redemption item ADR-0026 deferred. Behind a new per-tenant commerce feature toggle, `loyaltyRedemption`, that **defaults OFF** and is independent of `loyalty`; and unavailable until a tenant sets a point value, which has **no default** (owner answer Q6).
+
+- A signed-in shopper at checkout (`loyaltyRedemption: { points }` on `POST /storefront/orders`, bearer session, no cookie) or a cashier at the POS (the same field on `POST /pos/orders`, needing `commerce.loyalty_redemptions.create` in addition to `commerce.pos.create`) sends **only whole points**. The server prices a discount line: `points × rupiah-per-point` in integer cents, bounded by the goods (`subtotal − voucher discount`) and the tenant's optional cap; shipping, insurance and tax stay payable in money. Any other key in the object is a `400`.
+- The ledger debit, the write-once `awcms_commerce_loyalty_redemptions` record and the order's `loyalty_discount` commit in one transaction under the account row lock; replay returns the same order and debits once, the same key with a different request is a conflict, an overdraw is refused whole, and two parallel redemptions of one balance have exactly one winner. Refusals are stable `409` codes found before any order row is written.
+- Cancelling or expiring an order gives the points back in the same transaction, and a settled refund gives back the proportional share, each by a compensating `restore` ledger row with its own identity (`restore:order:<id>` / `restore:refund:<id>`), exactly once.
+- Points and a refundable deposit cannot share an order (a `409` and a database CHECK); points paid for are not rewarded again; an issued invoice's discount and the returns refund share include the points discount.
+- New: `GET/PUT/DELETE /api/v1/commerce/loyalty/redemption-settings` and a "Point value" panel on `/admin/commerce-loyalty`; the storefront account loyalty read gains `redemption`; the POS screen gains a "Spend loyalty points" field; the storefront checkout gains an optional points field for a signed-in shopper.
+- Migrations `1010`–`1012` (`1013`–`1014` held), ADR-0043, OpenAPI fragments, i18n (en/id), subject-data, data-lifecycle and worker-grant registrations.
+- Not here yet (ADR-0043): the cashier own-account guard (needs a customer-to-identity link), refunding a fully points-paid order, and the points discount in the sales-report `discount` figure.
+
+### Gateway deposit sessions and mixed tenders over time on one order (issue #379, ADR-0041)
+
+A down-payment order (`payment_method = 'dp'`, `dp_amount` below the total) can now take its deposit, and later its balance, through the payment gateway as well as at the counter, in any order. A tenant that never creates a deposit session sees **no change**: the whole-total gateway path is the code that existed before, every existing test for it passes unchanged, and no whole-total order can obtain a deposit or balance session.
+
+- A hosted-checkout session carries a `purpose` (`full`, `deposit`, `balance`) and a server-computed `expected_amount` (`sql/1025`, frozen by a trigger). `POST /api/v1/commerce/storefront/orders/{orderCode}/payment-gateway/sessions` takes an optional `purpose` (default `full`); the client never supplies an amount (a body naming `amount`, `expectedAmount` or `grossAmount` is `400`), the server computes it under the order-row lock from the ledger and sends exactly that to the provider. The `201` adds `purpose` and `expectedAmount` for a deposit/balance session only. New `409` codes: `PURPOSE_NOT_ALLOWED` (`details.allowed`) and `SESSION_IN_PROGRESS` (one live session per order).
+- **Control C-07.** The webhook and reconcile guard compares the provider's `gross_amount` with the session's frozen expected amount in integer cents, in both directions; a mismatch is recorded as `amount_mismatch`, audited, and credits nothing. A `full` session is still checked against the order total. A replayed webhook, a re-delivery under a new event key and the reconcile job racing the webhook credit once; a cash payment that lands while a session is live is recorded, and any excess surfaces as `overpaid`.
+- The order detail and the order payments read add the derived `deposit`, `balanceDue` and `settledAt` to `settlement`; the admin order screen shows the deposit and the date the order was fully settled.
+- **Loyalty.** A deposit order earns points only at full settlement (owner answer Q5): the ledger write that makes the outstanding amount zero emits the new `awcms.commerce.order.settled` event once, the earner subscribes to it, and a deposit alone earns nothing. A whole-total order emits no settled event and earns at `order.paid` as before.
+- Migration `1025`, OpenAPI and AsyncAPI updates, en/id strings, and ADR-0041's implementation record. The `awcms.commerce.order.settled` name and the deposit-session error codes are the ones the booking adapter drafts were waiting for.
+- Not here yet (ADR-0041): the per-product deposit policy and the order-time `dp_amount` derivation (a `dp` order still uses the store-wide down-payment percentage), a staff-started deposit/balance session route, and storefront and POS wording for the in-between state.
+
+### Paid counter sales are reported to the `hr_commission` ledger (issue #391, ADR-0046)
+
+A reusable `commerce` adapter for the employee-commission ledger that arrived with the #409 sync. **Ships dormant** (ADR-0046 D10, migration `1053`): upstream's payroll boundary (ahliweb/awcms#1015) lets only `awcms_app` hold privileges on `awcms_hr_*` tables, so the `awcms_worker` grants on them were revoked, the three commission consumers are exported as `DORMANT_COMMISSION_CONSUMERS` rather than registered with `domain-events:dispatch`, and `PUT /api/v1/commerce/commission/settings` with `enabled: true` answers `409 COMMISSION_ADAPTER_DORMANT`. It activates when upstream provides a sanctioned worker path; the bullets below describe the adapter as built. **Off by default**; the tenant authors its rule in `hr_commission` and names the rule key in the new settings. Nothing consumer-specific lives here (ADR-0024).
+
+- The `commerce.order_paid_commission_attributor` domain-event consumer (descriptor-declared, default `runtime_effect_once`) reports each line of a **paid POS sale** through the neutral `CommissionAccrualPort`: source `(sourceType, order id, order-line id)`, base = the line's net after its pro-rata share of the order discounts, currency `IDR`, dated in the tenant's own time zone. A replay, a redelivery and racing deliveries are one accrual per line (the ledger's unique key).
+- **The beneficiary is never a client field.** It is the employment linked to the login the server stamped on the order as its cashier, through a commerce-owned staff link (an opaque employment id, no foreign key, retired never deleted, one live link per login and per employment). A storefront order, an unstamped sale and an unlinked login are not attributed.
+- New API (OpenAPI, no admin screen yet): `GET|PUT /api/v1/commerce/commission/settings`, `GET|POST /api/v1/commerce/commission/staff-links`, `POST .../staff-links/{id}/retire`; four permissions `commerce.commission_settings.{read,manage}`, `commerce.commission_staff_links.{read,manage}` (`manage` is high-risk and audited). The ledger's refusals (no rule in force, employment not eligible, source type or currency mismatch) are audited outcomes, never exceptions, and no audit row carries an amount.
+- Commerce reads no commission table and imports `hr-commission` code in exactly one file (the port seam); `hr_commission` is an optional consumed capability, not a lifecycle dependency. `apps/cms/tests/commerce-commission-boundary.test.ts` enforces this. Migrations `1030`–`1031` (the latter gives `awcms_worker` the narrow grants the port's posting core needs, including a column-level `UPDATE (id)` for its `FOR SHARE` reads).
+- **Reversal is the second half** (`2026-10-18-391-commission-void.md`, ADR-0046 D9): the port had no `void` when this adapter was written (D8). Also not here: a way to re-drive a sale refused for a missing rule, the two admin screens, and recomputing "paid" from the payment ledger.
+- **The source identity is frozen once an attribution exists (issue #413 review, ADR-0046 D9).** Migration `1052` adds the insert-only `awcms_commerce_commission_attributed_sources` marker, written by the consumer in the same transaction as the accrual under a shared tenant advisory lock. The settings `PUT` takes the exclusive lock and answers `409 COMMISSION_SOURCE_LOCKED` (audited as `commerce.commission.settings_refused`) for a changed `sourceType` or `ruleKey` once a marker exists, so a later void or redelivery cannot key a different identity. Unchanged values and `enabled` stay free.
+
+### Commerce WhatsApp: a per-tenant mode routes new messages to the upstream queue
+
+Phase 2 of upstream ADR-0133 section 6, issue #392, decided in ADR-0047. `enqueueWhatsappMessage` keeps its signature and becomes a router over a new per-tenant mode, `awcms_commerce_store_settings.whatsapp_mode` (`sql/1027`, default `legacy`).
+
+- `legacy` (every tenant today) is unchanged: the same INSERT into `awcms_commerce_whatsapp_messages`, drained by `commerce:whatsapp:dispatch`. The function body moved to `whatsapp-enqueue-legacy.ts` without edits.
+- `upstream` enqueues through `WhatsappDeliveryPort` into the `whatsapp_delivery` queue in the caller's transaction, with the four `commerce.*` templates registered there (customer OTP `security` with an expiry, order paid and documents `transactional`, campaigns `marketing`). No dual write and no row copying.
+- Nothing sets the mode yet: the guarded flip and the drain report are issue #393. Before a tenant is flipped, read the known gaps in ADR-0047 (marketing consent is not bridged to the upstream consent store, upstream variables are single-line and capped at 1,000 characters, Meta needs a provider template identity).
+- The legacy dispatcher, purge, admin screens and API paths stay. The adapter has a dated end: the second minor release after the one that first ships this mode (ADR-0133 section 6 backstop).
+- `resetStoreSettings` also keeps the settings row live while the mode is `upstream`, so retention cannot purge the mode.
+- Recorded divergence: `apps/cms/scripts/whatsapp-dispatch.ts` carries one side-effect import of the template registration (`AGENTS.md`).
+- The migration is additive (two columns on the settings table); no data is moved. `sql/1028` is held for #393.
+
+### apps/cms synced from ahliweb/awcms main at 4f061a5
+
+Still AWCMS v10.7.0, but this sync is not documentation only: it brings four new upstream modules into `apps/cms`, taking the embed to 33 registered modules and `sql/001`–`189`. Tracking issue: #409.
+
+- `whatsapp_delivery` (ahliweb/awcms#963, ADR-0133 phase 1): a generic WhatsApp queue with consent/opt-out/suppression, a lease-based dispatcher, Fonnte / Meta Cloud / log providers, an `/admin/whatsapp` screen and the `whatsapp:dispatch` and `whatsapp:queue:purge` jobs. It ships inert behind `WHATSAPP_ENABLED`.
+- `booking`, foundation and availability only (#937, #938). The allocator, holds and public APIs (upstream #939–#941) are not upstream yet.
+- `hr_workforce` (with shifts) and `hr_commission` (rules, accruals and the sale-attribution port, #951), API only, no admin screen yet.
+- The shared field-encryption helper (ADR-0137), and ADR-0136 to ADR-0140.
+
+No commerce route, table, screen or permission changes. The new modules are not wired into `commerce`. This sync is the prerequisite for #391 (`hr_commission` sale attribution) and #392 (`whatsapp_delivery` instead of commerce's own WhatsApp outbox), and a partial step toward #377, which still waits for ahliweb/awcms#941.
+
+The conflicts were the generated and counted surfaces (module and migration counts in the architecture/state documents, `en.po`/`id.po` with both lineages kept, the compiled catalogue, the bundled OpenAPI document and the asset budget), each resolved by keeping both lineages and regenerating. No new standing divergence from upstream.
+
+### Commerce WhatsApp: a guarded per-tenant cutover with a drain check
+
+Phase 3 of upstream `awcms` ADR-0133 section 6, issue #393, decided in ADR-0047 "Cutover". A tenant can now be moved between commerce's own WhatsApp outbox (`legacy`) and the upstream `whatsapp_delivery` queue (`upstream`) by an operator, and only when it is safe: a tenant is in exactly one mode at a time.
+
+- One function, `flipWhatsappMode`, is the only writer of `whatsapp_mode`. Under the exclusive per-tenant mode lock it refuses (`409`) while the queue being left holds a non-terminal row (legacy: `queued`, `sending`; upstream, for the reverse flip: also `retry_wait`), while the queue being entered cannot send (its enable flag is off, the `whatsapp_delivery` module is off for the tenant, no recipient-hash key ring, no provider), and, into `upstream`, until the ADR-0047 known gaps are acknowledged. An enqueue racing the flip either lands before the count (the flip refuses) or waits and reads the new mode, so no legacy row can appear after the drain check.
+- `bun run commerce:whatsapp:cutover --tenant <id> (--status | --to upstream|legacy --reason "<why>" [--dry-run] [--ack-warnings] [--wait <seconds>])` prints a JSON evidence record (queue counts per status, oldest age, blockers, warnings, audit event id) for the runbook; exit 0 / 1 refused / 2 usage. Applying is the default, `--dry-run` writes nothing.
+- `GET` / `POST /api/v1/commerce/whatsapp/mode` are the same decision over HTTP: `commerce.whatsapp_mode.read` / `.manage` (high-risk, `sql/1028`), a real flip needs a recent step-up and an `Idempotency-Key`, a refusal is `409` with the evidence in `error.details`. Existing tenants run `bun run identity-access:permissions:backfill`.
+- Audited: a flip writes `whatsapp_mode.flip`, a refused attempt writes only `whatsapp_mode.flip_refused`, a dry run writes nothing.
+- No tenant changes mode on deploy; every tenant stays `legacy` until an operator flips it. Runbook: `docs/deployment.md`. No admin screen (recorded in the admin-screen coverage ledger).
+- Corrects a comment from #392: the legacy table has no `retry_wait` (a retrying row is `queued` again); `retry_wait` belongs to the upstream queue.
+
+### Raise the root-owned Bun pin to 1.4.3
+
+Bun 1.4.3 is the latest stable release. The root-owned pin moves together, as AGENTS.md's "Configuration and toolchain" requires:
+
+- `package.json`'s `packageManager` is `bun@1.4.3` and `engines.bun` is `>=1.4.3` (still a floor).
+- `apps/storefront/Dockerfile`'s `ARG BUN_VERSION` goes from a stale `1.4.0` to `1.4.3`, so the storefront image's `oven/bun` base matches the runtime that gates the code.
+- `@types/bun` in `apps/storefront` is `^1.4.3`; `bun.lock` was regenerated, not hand-edited.
+- Test fixtures and doc examples that used the old version string follow.
+
+`apps/cms` is untouched: its own `packageManager` and `Dockerfile.production` base tag are upstream's, bumped in `ahliweb/awcms` and arriving by subtree sync.
+
+### Commerce statements whose errors are caught now run in savepoints
+
+A failing statement aborts its PostgreSQL transaction; where a commerce handler caught the error (a duplicate register, barcode, expense-category, category, product, voucher, popup, flash-sale or attribute code answered as `409`/`400`, a customer or order-code collision retried, a bundle trigger refusal) and then let the transaction commit, the `COMMIT` was answered with `ROLLBACK`. Bun 1.4.2 hid that and silently dropped earlier writes of the same transaction; Bun 1.4.3 throws `ERR_POSTGRES_COMMIT_ROLLED_BACK`. Every such statement now runs in `tx.savepoint(...)` (the convention of upstream's `db:transaction-swallow:check` gate, doc 16 "Catching a failed statement inside a transaction"), so only the savepoint rolls back; the functions that open one take `tx: Bun.TransactionSQL`. HTTP codes, rows and audit are unchanged on Bun 1.4.2. New regression test `commerce-caught-error-savepoints.integration.test.ts`; the rule is documented in the commerce README.
+
+### apps/cms synced from ahliweb/awcms main at 1b688c8 (AWCMS v10.8.0)
+
+Brings Booking to its finished upstream shape and the security sweeps that came with it, taking the embed to 34 registered modules. Closes #377.
+
+- `booking`: the allocator and holds (ahliweb/awcms#939), stays and blocks (#940), the reservation APIs and `BookingPort` (#941), nine `awcms.booking.reservation.*` domain events, reporting projections (#944), reminder intents (#943), admin screens (#942) and the staff-availability consult (#949). The commerce adapter on top of `BookingPort` is not built here yet (#378 onwards); no commerce route, screen or permission changed.
+- `hr_workforce` reporting and geolocation, a `telegram_delivery` module with its delivery port, `hr_payroll` catalog-boundary hardening.
+- Upstream sweeps that changed `commerce` internally: idempotency records are actor-scoped (ADR-0145), so every commerce idempotency call names its actor; new migration `sql/1032_awcms_commerce_trigger_function_search_path.sql` pins `search_path` on 42 commerce trigger functions; `sql/1033_awcms_commerce_campaign_worker_email_category.sql` re-allows the campaign e-mail category that the new worker-insert guard on `awcms_email_messages` refused and narrows the worker's e-mail INSERT back to columns; `sql/1034_awcms_commerce_lifecycle_surrogate_id.sql` gives thirteen projection and settings tables the `id` the data-lifecycle purge deletes by (their retention had never run); the commerce CSV exports use the shared formula-neutralising writer (the orders export had no neutralisation); `awcms_commerce_refund_compensations` is registered as not payroll data.
+- Client asset budget raised to 458,800 B (measured 458,746 B on the merged build). `apps/storefront`'s `@playwright/test` moves to `^1.64.0` so the lockfile holds one `playwright-core`. The `http-cache-semantics` audit exception is removed (fixed in 4.3.0).
+
+New standing divergences from upstream are listed in `AGENTS.md`: the payroll name exception, the CSV `numericText` option and test registry entries, and the emptied audit-exception list.
+
+### Booking-commerce adapter: tables, offering links, deposit policy and the service-account setting (issue #378, ADR-0045)
+
+The data and configuration layer of the adapter that sells a Booking reservation as an ordinary commerce order. A tenant that never turns on the new `booking` feature (**default OFF**) sees **no change**: no adapter route answers (`409 FEATURE_DISABLED`), `allow_dp` stays editable by hand, and no existing table, route or screen behaves differently.
+
+- **Six tables** (`sql/1035`-`1038`, all FORCE RLS with composite tenant foreign keys, an `id` primary key, no `DELETE` for the application role): the offering link, the reservation link (identifiers, a lifecycle flag and an attention flag only), the per-product deposit policy, the versioned cancellation policy and its windows, and the append-only refund decision (a final refund can never exceed what was paid; an override needs its reason, approver and step-up time together). **The customer of a reservation is derived through the linked order and stored on no adapter table**; two customers of one tenant cannot read each other's links. Frozen-column triggers pin identity columns, the one-way statuses, the immutable active cancellation policy and the single settable `return_id`.
+- **Routes** behind the `booking` feature, with five new permission keys (`commerce.booking_offering_links.{read,create,update}`, `commerce.booking_deposit_policies.{read,update}`; `sql/1039`) and audit events: `GET`/`POST /api/v1/commerce/booking/offering-links`, `GET`/`PATCH .../{id}` (link, list, get, unlink) and `GET`/`PUT /api/v1/commerce/products/{id}/deposit-policy`. Linking refuses an offering that confirms without payment (`OFFERING_NOT_LINKABLE`), a non-service product, a mismatched `quantityBasis` and a second active link on either side. The deposit-policy write keeps `allow_dp` in step; while `booking` is on, a product write that changes `allow_dp` by hand is `409 ALLOW_DP_MANAGED_BY_POLICY`. New OpenAPI paths and schemas, handlers in the same change.
+- **Service-account tenant user** (`sql/1040`, `awcms_commerce_store_settings.booking_service_tenant_user_id`, set through `bookingServiceTenantUserId` on `PUT /api/v1/commerce/store-settings`): the user the adapter acts as for system, guest and consumer calls into the `BookingPort`. Linking is refused until an active one is named. `PUT store-settings` now also accepts `affiliateCommissionRate` without rejecting it as an unknown field of the settings blob.
+- `sql/1040` also grants `awcms_worker` `SELECT, DELETE` on the six tables for the retention engine and pins `search_path` on the gateway-session guard of `sql/1025`. Lifecycle and subject-data descriptors for every table; a trigger-function `search_path` pin on every new function.
+
+Not here: hold-to-order, the cart/quote deposit rule, consumers, the cancellation quote and refunds, reschedule, no-show, check-in with a balance and every screen. Booking is read for three facts of an offering through one `SELECT` (the `BookingPort` has no offering read; needs upstream port U1) and is never written. Docs: `docs/skema-basis-data.md`, `docs/kamus-data.md`, `docs/api.md`, `docs/status.md`, the commerce README, the data-model page (section 9 lists the deviations) and the ADR-0045 implementation notes (including the D17 wording amendment).
+
+### Booking-commerce adapter: hold-to-order, deposit-threshold confirm and the booking consumers (issue #380, ADR-0045)
+
+A shopper or a staff member can hold a Booking slot or stay and get the commerce order from it in one idempotent call, and the two stay in step. A tenant that never turns on the `booking` feature (**default OFF**) sees **no change**: the new routes answer `409 FEATURE_DISABLED` (staff) or the neutral `404` (storefront), and no ordinary cart, order, quote or return behaves differently - a tenant with no deposit-policy row keeps today's store-wide down-payment rule byte for byte.
+
+- **Routes** (`sql/1041` registers `commerce.booking_reservation_links.{read,create}`): `POST /api/v1/commerce/storefront/booking/reservations` (anonymous guest or `customerBearer`) and `POST /api/v1/commerce/booking/reservations` (staff) write the hold, the order and the reservation link in ONE transaction; `GET /api/v1/commerce/booking/reservations/{id}` (staff), `GET /api/v1/commerce/storefront/booking/reservations/{orderCode}` (the shopper's own, by bearer or phone) and `GET /api/v1/commerce/booking/reconciliation` (threat control C-09: paid-without-confirm, confirmed-without-deposit). The price is the linked product's, never the client's (a body naming a price, amount, deposit or customer is `400`); the order expires with the hold; the `Idempotency-Key` is namespaced by who asks and replays the same order; refusals are returned values that write nothing; the product's stock counter is not moved. Booking sees the acting staff member, or the tenant's service-account user for a shopper.
+- **Deposit rule** (decision G10): the cart quote derives `dp_amount` from the product's deposit policy (percent of the taxed line, or a fixed amount per night), policy row first.
+- **Five consumers**: the order is confirmed when it reaches its release threshold; a Booking `expired` or `cancelled` event closes the UNPAID order; an unpaid booking order cancelled through the generic path frees its hold; a payment landing on a dead reservation is flagged. An order that holds money is **never auto-cancelled**: an attention flag and the new event `awcms.commerce.booking_reservation_link.attention_raised` ask an operator instead (control C-08).
+- **Guards**: a product with an active offering link cannot be sold through the ordinary cart, storefront order, quotation or POS path; a booking order that holds money is refused by the generic admin cancel, customer cancel and returns with `409 BOOKING_ORDER_USE_ADAPTER`.
+- **Operators:** the consumers call `BookingPort`, which `awcms_worker` cannot, so `domain-events:dispatch` must run with the application role (no least-privilege `WORKER_DATABASE_URL`) until upstream offers a worker-callable confirm and cancel.
+
+Not here: storefront availability and offering reads (upstream port addition U1), the POS variant, cancellation and refunds, reschedule, no-show, check-in and every screen. Docs: `docs/api.md`, `docs/status.md`, the contracts page, the ADR-0045 implementation notes and the commerce README.
+
+### Booking orders earn loyalty points at full settlement: integration proofs (issue #384, ADR-0045)
+
+No behaviour change. A real-PostgreSQL integration suite proves that an order created from a Booking hold with a deposit policy earns nothing at the deposit, earns once on the whole total at full settlement (key `earn:order:<id>`, ledger shape unchanged), earns once however often `order.paid` or `order.settled` is replayed, is reversed by a compensating `reversal:refund:<id>` row on refund, and can never carry points together with a deposit (Q8, C-33). The booking `cancellation` return kind and its loyalty coverage stay with issue #381.
+
+### Booking-commerce adapter: admin screens for offering links and deposit policies (issue #385, ADR-0045)
+
+The adapter gets its first admin screens, all behind the tenant's `booking` feature (**default OFF**; a tenant that never turns it on sees no new sidebar entry and no change). The UX spec (states, Indonesian and English copy, WCAG 2.1 AA, 360px) is `docs/booking-ux-flows.md` section 11, written first as DoR residual R2 asked.
+
+- **`/admin/commerce-booking-links`**: list, create and unlink the links between Booking offerings and service products (`commerce.booking_offering_links.{read,create,update}`); each server refusal has its own message, the unlink goes through the shared confirm dialog, and a link created for a product with no cancellation policy shows a non-blocking notice.
+- **`/admin/commerce-booking-deposits`**: a service product's deposit as full payment, a percent or a fixed amount per unit (`commerce.booking_deposit_policies.{read,update}`). The screen sends the policy, never an amount.
+- **Commerce settings**: a "Booking service account (user ID)" field, shown only while `booking` is on.
+- **Sidebar**: two entries with `requiredFeature`; `NOT_YET_SCREENED` loses the five matching permissions; the client asset budget is raised with its measurement in the constant's docblock.
+
+Not here, specified in section 11 and waiting for their APIs in #381: the cancellation-policy versions screen and the refund-override dialog (which cannot submit above the amount paid; the server enforces the same bound).
+
+### Load and concurrency benchmarks for hold-to-order, deposit races, loyalty redemptions and segment preview (issue #395)
+
+`bun run bench:commerce-load` (in `apps/cms`) is a new, opt-in benchmark target, deliberately outside `bun run check` and the normal integration run. Against a throwaway migrated PostgreSQL under the production roles it measures and asserts four things: N concurrent holds converting to orders on one unit pool (exactly `capacity` orders, no double allocation, a same-key replay storm creates one order); the C-08 expiry-versus-payment race at volume with the booking reaper, payment settlement and the domain-event dispatcher all running at once (every order ends in one of three consistent terminal states, none auto-cancelled while it holds money); concurrent loyalty redemptions on one account (no double spend, the balance never negative, the ledger sums to the balance); and the segment preview on a 100,000-customer tenant (PRD M7: p95 at most 3 s).
+
+The measured numbers, the machine they were taken on and the invariant results are recorded in `docs/benchmarks-commerce-load.md`, with an Indonesian mirror; `docs/pengujian.md` and the docs index say how to run it. No production code changes. It reuses `percentile` from upstream's `apps/cms/tests/bench/booking-bench.ts`, which stays unmodified.
+
+### apps/cms synced from ahliweb/awcms main at c6a04a9 (AWCMS v10.9.0)
+
+Brings the transaction-swallow gate and its savepoint convention (`bun run db:transaction-swallow:check`, ahliweb/awcms#1099), Bun 1.4.3 as `apps/cms`'s own `packageManager`, encryption of the push subscription `auth_secret` at rest (`sql/313`-`314`, `push:auth-secret:backfill`) and the `hr_workforce` self-service screens, taking the embed to the same 34 registered modules. Closes #424; resolves item 3 of #420.
+
+- The gate refuses a `catch` that swallows a failed statement of an open transaction unless that statement runs in `tx.savepoint(...)`. `commerce` now complies: the savepoint helper of #417 is folded into upstream's own form, so `application/savepoint.ts` is gone and the statements whose errors are caught call `tx.savepoint(async (sp) => ...)` directly. The functions that open one now take `tx: Bun.TransactionSQL` (a helper called from inside a savepoint receives `sp as Bun.TransactionSQL`), and 64 route catches that only map an application error carry a reviewed `// tx-swallow-ok:` marker. No behaviour change on Bun 1.4.2 or 1.4.3.
+- The repository's root Bun pin stays at 1.4.2 (that bump is #416); `apps/cms/package.json`'s `packageManager` follows upstream and does not govern this workspace.
+- Client asset budget unchanged in kind: see `AGENTS.md` for the measured figure.
+
+No new standing divergence from upstream; the list in `AGENTS.md` is unchanged.
+
+### Booking-commerce adapter: cancellation policy, refund quote and confirm, refund override (issue #381, ADR-0045)
+
+Behind the tenant's `booking` feature (**default OFF**; a tenant that never turns it on sees no change). A booking order can now be cancelled with a refund the server computes from the tenant's cancellation policy, and a manager or finance user can set a different figure with a step-up and a recorded reason.
+
+- **Policy versions** (`commerce.booking_cancellation_policies.{read,create,approve}`): a tenant default and a per-product policy, each a list of "at least N hours before arrival refunds P%" windows. A version is a draft until approved, then immutable; an edit is a new draft, and a booking keeps the version in force when it was made. `/admin/commerce-booking-policies` is the screen.
+- **Quote and cancel**: `GET .../reservations/{id}/cancellation-quote` and `POST .../reservations/{id}/cancel` (staff), and the two storefront equivalents for the guest. The refund is computed on the server from the original start, the original policy version and the amount actually paid; a guest never sends an amount (a strict schema refuses `final_refund`, `amount` and any extra key). The decision is idempotent (`Idempotency-Key`, namespaced by the actor) and written in ONE transaction with the Booking cancel, the refund legs and the link release.
+- **Refund legs** are planned `pending` as a return of the new kind `cancellation` through the existing allocation ledger, so their sum can never exceed what was paid; they are settled on the existing returns and refunds screens with their own permissions. A paid order is not edited or cancelled; an unpaid one is.
+- **Override** (`commerce.booking_refund_overrides.approve`, distinct from approving an offline refund): an inline parameter of the staff cancel, behind a fresh step-up and a reason of 10 to 500 characters, capped at the amount paid (`409 REFUND_EXCEEDS_PAID`), with one critical audit event. The order detail gets a booking panel with the cancel button and the override dialog, and a native step-up dialog (never `window.prompt`).
+- **Schema** (`sql/1043`, `sql/1044`): the returns kind, reason and disposition widened for `cancellation`; the decision gets `client_key` and `request_hash`; the policy gets author and approver; seven permission keys. New event `awcms.commerce.booking_refund.decided`. `NOT_YET_SCREENED` loses `commerce.booking_reservation_links.read`; the client asset budget is raised with its measurement in the constant's docblock.
+
+Not here: the check-in with an unpaid balance variant (#383), no-show handling and automatic settlement of the legs.
+
+### Booking pages for the `toko` storefront (`/booking`, `/booking/pesan`, `/akun/reservasi`)
+
+A shopper can now search a stay, see the server's nights, price, deposit and balance, hold the room with a countdown, hand off to payment through the existing gateway session, and see their own reservations. Closes #386 (epic #280, Wave C).
+
+- **Pages, `toko` profile only.** `/booking` (service, two date inputs, guest count, a quote panel; "Penuh" when no resource is free), `/booking/pesan` (the hold, a countdown from the server's clock, the expired and confirmed states, the payment handoff: gateway deposit, balance or full session, or `/pesanan` for a manual tender) and `/akun/reservasi` (own reservations behind the bearer session; a `401` clears it). Static (`output: "static"`, no `prerender = false`); `berita` and `landing` build none of the pages and link to none; the derived CSP is unchanged.
+- **Four CMS reads, no migration.** `GET commerce/storefront/booking/offerings`, `.../availability` (the anonymous `BookingPort.availability` of contract 1.1.0: validated and bounded, rate limited, `no-store`, an allow-listed body with no PII and no resource name, one `404` for any offering that is not sold), `.../quote` (nights, total and deposit from the same quote the hold re-checks) and `GET .../reservations` (the bearer's own list, keyset). All sit behind the tenant's `booking` feature (off = the neutral `404`). Every reservation body gains `serverNow`, so the countdown never trusts the device clock. This resolves the "availability needs U1, deferred" note of #380.
+- **Known limitation.** The offering link carries no resource, so `offerings` lists the ids of the tenant's active resources of the right booking mode and the page probes them in turn; a tenant selling several room types from separate resources of one mode would see every type under every offering. The fix (a nullable `resource_id` on the link, migration `1050`) is recorded in ADR-0045 and not built here.
+- **Not here.** Cancellation and refund (#381), reschedule, no-show, check-in, a calendar grid, a hold extension (the CMS has no endpoint), and a header link (`PROFILE_NAV` stays as it was; a deployment that sells stays adds one line).
+- **Rollback.** No schema change: revert the commit. A tenant that never enables the `booking` feature sees no difference (the three routes answer "Pemesanan tidak tersedia", and the reads are the neutral `404`).
+
+### A cancelled or refunded counter sale voids its commission (issue #391 second half, ADR-0046 D9)
+
+The reversal half of the `commerce` employee-commission adapter, on top of upstream's `CommissionAccrualPort.void` (contract 1.1.0, ahliweb/awcms#1109). Nothing changes for a tenant that never enabled the adapter.
+
+- Two descriptor-declared domain-event consumers, default `runtime_effect_once`: `commerce.order_cancelled_commission_reverser` (`awcms.commerce.order.cancelled`, every line of the order) and `commerce.refund_settled_commission_reverser` (`awcms.commerce.refund.settled`, each line of the completed return that is now fully returned). They void by the same source identity `(sourceType, order id, order-line id)` the accrue used, read the database and never the payload, and try every employment the login was ever linked to (a link retired between the sale and its refund does not strand the accrual). Replays are one void, one transition, one `awcms.hr.commission.voided` event.
+- **A partly returned line keeps its accrual** until the last unit is returned: the port voids a whole accrual and a voided accrual is never resurrected, so the conservative option is chosen and the case is flagged, not silent.
+- **`period_closed`** (the accrual is already `payable` or `paid`) is never retried and never thrown: one `commerce.commission.reversal_needs_attention` warning audit row (counts only, no amount, source reference, accrual or employment id) is the work item for a person. A new void writes `commerce.commission.reversed`.
+- The voider stamped on the ledger is the tenant user who last saved the commission settings (a consumer has no acting user; none means `actor_required` and the reversal waits for a person). A reversal needs `hr_commission` on and the adapter configured once, not `enabled`.
+- Migration `1051` gives `awcms_worker` `UPDATE (status, voided_at, voided_by, void_reason_code)` on the ledger's accruals and nothing else: it still cannot approve, pay, rewrite an amount or delete. Commerce still reads no commission table, and the AGENTS.md divergence list does not grow. (Revoked again by migration `1053`: the adapter ships dormant, ADR-0046 D10.)
+- Not here: a clawback of a closed-period accrual, a pro-rata reversal of a partly returned line, the admin screens.
+
+### apps/cms synced from ahliweb/awcms main at 3c7fc29
+
+Brings the installable iOS Home Screen admin (ahliweb/awcms#1105), the declarative Web Push payload with a dual-reader service worker (`PUSH_PAYLOAD_FORMAT`, #1106), the push operator test matrix and runbook (#1107), the push and Telegram key re-rotation jobs (#1098/#1104), `BookingPort` 1.1.0 (`checkIn`, `checkOut`, `markNoShow`, `get`, `getOffering`, `listOfferings`, `availability`) and `CommissionAccrualPort.void` (capability `commission_accrual` 1.1.0). The embed keeps its 34 registered modules and gains one migration, `sql/315`. Closes #427; resolves items 1 and 2 of #420 and unblocks #381-#383, #386 and the second half of #391.
+
+- Push stays one foundation: the same `push_delivery` module, VAPID keys and queue. The admin manifest and `/push-sw.js` are served on the CMS origin only; `apps/storefront` registers no service worker, now pinned by `tests/storefront-tanpa-service-worker.test.mjs`. Configuration, origin separation and the Chrome and Safari closed-app test cases are in `docs/deployment.md`.
+- `commerce` needed no code change: it does not call `BookingPort` (so the new `CHECK_IN_TOO_EARLY` and `NO_SHOW_TOO_EARLY` refusals reach no exhaustive switch here), it already complies with the transaction-swallow gate, and gitleaks found no new fixture to allowlist.
+- Client asset budget raised to 466,300 B (measured 466,168 B; upstream +6,644 B for the four icon PNGs); see `AGENTS.md`.
+- Rollback: roll forward. `sql/315` only adds a nullable column, so no database step is needed to roll the image back; set `PUSH_PAYLOAD_FORMAT=legacy` or `PUSH_ENABLED=false` first if a push defect appears.
+
+No new standing divergence from upstream; the list in `AGENTS.md` is unchanged.
+
+### ADR-0048 proposes the customer Web Push identity, subscription model and cross-origin contract (issue #429)
+
+Docs only. Nothing is built: no migration, table, route, consumer, job, service worker or UI changes. Implementation stays blocked until the owner accepts the ADR.
+
+- [ADR-0048](docs/adr/0048-customer-web-push-identity-subscription-and-cross-origin-contract.md) (Proposed, with its Indonesian mirror) is the Definition of Ready for #430, #431 and #432. It compares the three options of #429 and recommends commerce-owned customer devices, consent and a thin outbox that imports the upstream provider, crypto and retry code and writes none of upstream's tables.
+- It fixes the principal (derived from the `cs_` bearer only), the device binding (account, enrolling session, validated storefront origin), shared-browser transfer and logout semantics, storefront-origin click targets, CORS/CSP/CSRF/rate-limit posture, the ERD and data dictionary for four additive commerce tables, the RLS and authorization matrix, the `GET/POST/DELETE` contract, a threat table, a test matrix with four proof obligations, rollout and recovery, and a regulatory mapping.
+- Six commerce events were verified in code as notification sources; the customer-inbox reply has no event today and is a conditional seventh.
+- Twelve open questions and five proposed upstream issues are listed for the owner; none was filed.
+- The ADR index and `docs/status.md` (and their mirrors) point to it.
+
+### Storefront manifest hardening and iOS Home Screen install help (#428)
+
+The existing `/manifest.webmanifest` is extended, not replaced, for every build profile (`toko`, `berita`, `landing`); ADR-0049 records the decisions.
+
+- The manifest gains a stable `id` (`/`), `lang`, a per-profile `categories` hint and a `short_name` of at most 12 characters; `name` still comes from the site identity, so nothing BjekMart-specific enters the template.
+- PNG icons at 192 and 512 (plus a maskable 512) and an `apple-touch-icon` are generated at build time from the site's first letter and theme colour, so `template:init` needs no new rewrite target.
+- Every page gets the iOS web-app meta tags and `theme-color` (static markup, no script).
+- New opt-in help page `/pasang-aplikasi` for adding the site to an iPhone Home Screen, behind the build flag `PUBLIC_INSTALL_HELP` (off by default; absent from the build when off, with no JavaScript, CSP or SEO impact). It never requests a notification permission and states that a browser tab cannot receive closed-app notifications.
+- No service worker and no push subscription are added; the CMS keeps its own admin PWA on its own origin.
+
+### Booking-commerce adapter: reschedule with the price difference carried by the order and refund paths, and staff no-show (issue #382, ADR-0045)
+
+Behind the tenant's `booking` feature (**default OFF**; a tenant that never turns it on sees no change). Staff can now move a confirmed booking to new dates, and mark a guest who did not arrive, without the order ever being edited.
+
+- **Reschedule** (`commerce.booking_reservation_links.update`): `POST .../reservations/{id}/reschedule` and a non-binding `GET .../reschedule-quote` (staff only; a customer asks, staff move it). The order keeps TWO references that move together in one guarded transaction - the old reservation link is superseded, a new one points at the same order and line, Booking carries its own reference - and a Booking refusal (the new dates are taken) or an unsellable supplement rolls everything back to the untouched original. The request never carries a price (`amount`, `price`, `refund`, `orderId` and the like are `400`); the server prices the difference in integer cents: the same length changes nothing, more nights become a supplementary order paid through the ordinary payment paths (no new payment flow), fewer nights become pending refund legs of a return of kind `cancellation`, limited by the policy version of the ORIGINAL booking from the ORIGINAL arrival, so a chain of reschedules can neither extend the window nor change the version. The paid order, its lines and its payment allocations are never edited. It is idempotent (`Idempotency-Key`, namespaced by the actor), and a concurrent reschedule and cancel of one booking queue on the order lock.
+- **No-show**: `POST .../reservations/{id}/no-show` (the two keys a cancel needs; a cashier cannot). Booking measures the arrival plus the grace (`409 NO_SHOW_TOO_EARLY`). What is kept is the `no_show_retention` rule of the policy version in force when the booking was made; NO refund leg is ever created (the decision's refunds are zero by a CHECK and a trigger refuses to give it a return). One audit event records the amount paid, the amount retained and the policy version.
+- **Order detail**: the booking panel gains a reschedule dialog (the earliest date comes from the server's clock; "Check the price" shows only the server's answer), the reschedule history with its extra orders, and a no-show control with a confirm dialog that says nothing is refunded.
+- **Schema** (`sql/1045`): the append-only `awcms_commerce_booking_reschedules` record, `retained_amount` on the refund decision, the permission key, the worker grant. New event `awcms.commerce.booking_reservation.rescheduled`; consumers `commerce.booking_rescheduled_link_reconciler` (repairs a reschedule made in Booking's own screen to two references) and `commerce.booking_no_show_decision_recorder`; three new reconciliation findings. The client asset budget is raised to 487,000 B with its measurement in the constant's docblock.
+
+Not here: a customer reschedule request, the POS check-in (#383), and automatic refund of a paid supplementary order when the booking is cancelled.
+
+### Booking-commerce adapter: lookup, check-in, check-out and balance collection at the till (issue #383, ADR-0045)
+
+Behind the tenant's `booking` and `pos` features (a tenant that never turns booking on sees no change); the three writes also need the `register` feature, because each is bound to the caller's own open register session. Server and POS API only: the front-desk screens are issue #388. The one browser change is a checkbox on the commerce settings screen.
+
+- **Lookup** (`POST /api/v1/commerce/pos/booking/lookup`, `commerce.booking_reservation_links.read`): the exact reservation code AND the customer's phone or e-mail, nothing else - no search by name, date or part of a code, no list of arrivals. An unknown code, a wrong customer and another tenant's code are one neutral `404`, byte for byte; wrong guesses draw down a small per-actor budget and the lookup has a per-actor rate (`429` with `Retry-After`); every lookup is audited with a digest of the identifier, never the identifier; the contact in the answer is masked; every till response is `Cache-Control: no-store`.
+- **Three separate permissions** - `commerce.booking_check_ins.create`, `commerce.booking_check_outs.create` and `commerce.booking_balance_payments.create` - for `POST .../reservations/{id}/check-in`, `.../check-out` and `.../balance-payments`. None is the generic POS or payment permission, and each needs an open register session the caller holds (`409 REGISTER_SESSION_REQUIRED`, `REGISTER_SESSION_CLOSING`, `NOT_SESSION_CASHIER`) and an `Idempotency-Key`.
+- **The balance is the ledger's, and the money path is the existing one.** The balance is read from the order's payment ledger and the service line is the order line the product priced; a body naming a balance, price, order or customer is a `400`. The tenders (cash with change, QRIS, bank transfer, gift card, store credit, split tenders, a part payment) go through the POS tender planner and the ordinary payment-ledger primitive - no new money mechanism. The legs are stamped with the till's session, so the shift's cash-up, its close variance, the per-register tender report and the cash-up report include the booking balance; a cashier who pockets it shows as a variance.
+- **Check-in and check-out are Booking's transitions** (`BookingPort.checkIn` / `checkOut`, idempotent, `409 CHECK_IN_TOO_EARLY`); the POS stores no reservation or balance state.
+- **Check-in with an unpaid balance is a tenant setting with both variants built** (`checkinRequiresSettlement`, `GET`/`PUT /api/v1/commerce/store-settings`, a checkbox on the commerce settings screen). **The default is BLOCK** (`409 BALANCE_NOT_SETTLED`, nothing written), which supersedes the ADR-0045 D19 recommendation of allow; **the owner must confirm this default before the issue merges (residual R3).** Turning it off lets the guest in with the balance visible and collectable, and the audit row records that it was waived.
+- **Schema** (`sql/1046`): the three permission keys, the `checkin_requires_settlement` column (default true) and a re-issued payment-ledger guard that lets a `pos` payment on a booking order name the till's open session - and only when the leg is recorded by that session's own current cashier (a tenant user), so the cashier binding is enforced by the database too. No table. The client asset budget is 487,500 B (measured 487,465 B).
+- **Hardening from the security review of this change.** Turning the check-in policy off now needs a fresh step-up (`403 STEP_UP_REQUIRED`, nothing written; the settings screen asks for the authenticator code) and every change of the policy is audited (`commerce.booking_pos.check_in_policy_changed`, `warning` when turned off). Two cashiers who send the same `Idempotency-Key` no longer share a balance leg. A throttled lookup is audited once per window instead of once per request. A till write refused because the actor is not the register session's cashier is audited at `warning` (`commerce.booking_pos.not_session_cashier`). Known limit, documented: the lookup miss budget is per process (or a Redis fixed window), fails open if Redis is unreachable and is N times the budget on N replicas without Redis; a database-backed counter is a follow-up.
+
+Not here: the cashier / front-desk screens (#388), a list of the day's arrivals, a walk-in service sale with no reservation, points redemption and a refundable deposit at the till, and the unmasked contact.
+
+### Booking-commerce adapter: booking-sourced revenue waterfall, hold pipeline, no-show figures and the booking anchor of retention (issue #389, ADR-0045)
+
+Behind the tenant's `booking` feature (**default OFF**; a tenant that never turns it on sees no change, and the retention booking anchor only matters to a tenant that sells bookings). Commerce half of epic #280 items 10 and 18; Booking's own occupancy and utilisation stay upstream (`ahliweb/awcms#944`). On the `reporting` engine, no second analytics store, migration `sql/1047` only.
+
+- **Revenue waterfall** (`commerce.booking_revenue`): revenue follows the commerce order and the payment ledger only. Per booking-sourced paid order (an order with a reservation link, or the supplementary order of a stay that grew) one row is RECOMPUTED from the order, the ledger and the adapter's refund decisions, so a day is the sum of its rows: gross recognised once on the Asia/Jakarta day of the first paid transition (a deposit order's whole gross on the deposit day), discounts, Refunds as the money paid back plus the unpaid balance of a cancelled or no-show order ("uncollected balance, no money moved") on the ORIGINAL day, net, the shipping / insurance / tax companions, and the balance still outstanding beside the waterfall. A late refund or a no-show restates the original day; a day older than 35 days that a late event changed is flagged `restated`. A rebuild equals the live table byte for byte.
+- **No-show figures** joined through the order (count, retained amount, rate against the stays of the day) and the **hold pipeline** (held nights and slots, their value, the oldest hold, the next expiry) as a live read-only query, not a projection.
+- **Retention booking anchor**: a paid order carrying a reservation link is ONE booking event; a reschedule's replacement and the supplementary order of a stay that grew are the same stay (not a repeat), a cancelled stay is no event, a no-show still is one. The cohort report gains `bookingAnchored` and the retention panel a "Began with a booking" column. The descriptor is version 2: a tenant that already sold bookings runs one rebuild of `commerce.customer_retention`.
+- **Reading**: `GET /api/v1/reports/commerce/booking-revenue` (`?from&to`) and `GET .../booking-pipeline` on `reporting.dashboard.read` (no new permission), `200 enabled: false` while `booking` is off, and a panel on `/admin/commerce-reports`. The per-day aggregates are also written by the generic projection export. The three rows of the metrics deposit example and the villa week (net 5,150,000) are asserted to the cent against the real adapter flows.
+- **Schema** (`sql/1047`): `awcms_commerce_report_booking_orders`, `awcms_commerce_report_booking_restated`, the `awcms_commerce_report_src_booking_legs` view, two columns on the retention row, the worker grants.
+
+Not here: a CSV route for the waterfall, the by-refund-day cash view, ADR and RevPAN as stored figures (they take Booking's nights), channel and segment slices, and the owner's answer on whether a pending refund leg counts before it settles.
+
+### Booking adapter: post-restore reconciliation for the restore drill (issue #396, ADR-0045)
+
+An operator can now prove, after restoring a backup, that the booking-commerce adapter came back intact. `bun run commerce:booking:reconcile` is a **read-only** CLI (no migration, route, permission or event; a tenant that never enabled `booking` sees nothing) to run against a restored database as the owner role or `awcms_app`. It exits 0 only on zero drift.
+
+- **What it checks:** the adapter tables kept FORCE row-level security, their tenant-isolation policy, guard trigger and unique indexes (upstream's drill only asserts that some table has FORCE RLS); the zero-or-two-references reconciliation between reservation links and orders (threat control C-38: every active link's reservation names the order back, no link on a rescheduled reservation, no live reservation naming an order without a link, no order named twice); the existing C-09 settlement-versus-reservation comparison (a finding already in the operator queue, with an open attention flag, is reported and not failed); and booking refund decisions versus refund legs (order and return ownership, legs never above the decision, a completed return settled at least the decision).
+- **Operators:** upstream's `restore-drill.sh` drops its scratch database before anything can query it and is not edited here, so the adapter half runs between `restore-postgres.sh --keep` and the drop; `--evidence-log <path>` appends one counts-only JSON line to the same `restore-drill-evidence.jsonl`, and `--require-links` fails a database with no reservation link (a drill that checked nothing). The commands are in `docs/deployment.md` ("Booking adapter restore drill"). Not for `awcms_worker`, which Booking gives no read of reservations.
+- **Developers:** `BOOKING_RESTORE_EXTENSION_CHECKS` is the empty extension point the cancellation issue (#381) registers its own post-restore checks in. No refund decision exists until then, so that check is in place and returns nothing on today's data.
+
+Docs: `docs/deployment.md` (+ Indonesian mirror), ADR-0045 implementation notes, `docs/status.md`, the commerce README.
+
+### Booking links screen: the resource(s) an offering sells (issue #437)
+
+`/admin/commerce-booking-links` takes an optional "Resource IDs" field (the room type this offering sells: up to ten resource IDs from Booking, Resources, separated by commas; empty keeps the old behaviour of offering every active resource of the same kind) and shows the bound resources in a new "Resources" column ("All active resources" for a link that names none). The server proves every ID; its refusals (`RESOURCE_NOT_FOUND`, `RESOURCE_MODE_MISMATCH`, `RESOURCE_NOT_ACTIVE`, `VALIDATION_ERROR`) each have their own copy in English and Indonesian. The app client-asset budget is raised from 480,800 B to 480,900 B (measured 480,827 B). Spec: `docs/booking-ux-flows.md` section 11.1.
+
+### Booking: an offering link can name the room(s) it sells (issue #437)
+
+A tenant that sells several room types from separate resources of one booking mode no longer shows every type under every offering. An offering link can now name the Booking resource(s) it sells, and the `toko` storefront's `/booking` offers a bound offering only with its own resource(s). **A tenant that changes nothing sees no change:** a link with no resource named, which is every link made before this change, keeps offering the tenant's active resources of the matching booking mode, exactly as before.
+
+- **Migration `1050`**: the child table `awcms_commerce_booking_offering_link_resources` (composite tenant foreign keys to the link and to the Booking resource, FORCE RLS, no `UPDATE` or `DELETE` for the application role, worker `SELECT, DELETE` for the retention engine). A child table rather than a column because the offering link stays frozen by its guard trigger and one offering can sell several rooms (at most ten).
+- **`POST /api/v1/commerce/booking/offering-links`** takes an optional `resourceIds`; each id must be a live resource of the tenant (`404 RESOURCE_NOT_FOUND`, the same answer for unknown, another tenant's and deleted), active (`409 RESOURCE_NOT_ACTIVE`) and in the booking mode the offering needs (`409 RESOURCE_MODE_MISMATCH`). The link body of create, get, list and unlink gains `resourceIds`. OpenAPI and the API reference are updated in the same change.
+- **Storefront**: `GET commerce/storefront/booking/offerings` lists only a bound link's live resources (a bound link whose resources are all inactive is not listed, never the whole pool), `availability` for a resource the link does not name is the neutral `404`, and the hold on one (storefront or staff) is refused with `404 RESOURCE_NOT_FOUND` before anything is written.
+- No new permission, event, price, deposit or cancellation behaviour. To change a binding, unlink and link again. Docs: ADR-0045 implementation notes, the data-model page (section 4.1a), `docs/skema-basis-data.md`, `docs/kamus-data.md`, `docs/api.md` and the commerce README.
+
+### ADR-0050: Lynx for separate persona apps, Astro stays
+
+Docs only. ADR-0050 (with its Indonesian mirror) records the approved direction from issue #445: LynxJS/ReactLynx is the preferred candidate for persona apps (customer, courier, driver, partner, warehouse) in separate repositories, while the AWCMS admin and every public profile (`toko`, `berita`, `landing`) stay Astro and the storefront stays static SSG. It is the template-specific elaboration of upstream ahliweb/awcms#1133, with the per-surface table, API boundary, PoC gate and trade-off analysis.
+
+- AGENTS.md, status.md and template.md (and their mirrors) say the direction is approved and Lynx integration is NOT implemented.
+- `tests/lynx-direction.test.mjs` guards that no workspace depends on Lynx and no document claims a shipped Lynx client.
+
 ## [0.16.3] — 2026-10-10
 
 ### AW Business Platform Wave A documents and owner decisions

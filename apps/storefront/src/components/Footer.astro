@@ -35,6 +35,7 @@
 import type { SiteIdentity } from "../lib/awcms/profil";
 import type { StaticPageSummary } from "../lib/awcms/pages";
 import { ROUTES } from "../config/routes";
+import { INSTALL_HELP_PATH, isInstallHelpEnabled } from "../lib/pasang-aplikasi";
 import { FOOTER_PAGE_LINKS, SEARCH_SURFACE, isRouteActive } from "../config/profil";
 
 interface Props {
@@ -101,6 +102,7 @@ const copyright = identity.copyrightNotice ?? `© ${year} ${identity.name} · Se
       <h2>Bantuan</h2>
       <ul class="footer-page-links">
         <li><a href={ROUTES.contact}>Kontak</a></li>
+        {isInstallHelpEnabled() && <li><a href={INSTALL_HELP_PATH}>Pasang di Layar Utama</a></li>}
         {SEARCH_SURFACE && (
           <li><a href={SEARCH_SURFACE.action}>{SEARCH_SURFACE.route === "search" ? "Cari Produk" : "Cari Berita"}</a></li>
         )}

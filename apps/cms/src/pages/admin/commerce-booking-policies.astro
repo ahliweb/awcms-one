@@ -1,0 +1,840 @@
+---
+/**
+ * Cancellation policy versions (Issue #381, ADR-0045 D6, owner answer Q9) - the
+ * windows that decide how much of what a guest paid is refunded, by how long
+ * before check-in they cancel. Specified in `docs/booking-ux-flows.md` section
+ * 11.4.
+ *
+ * A policy is per product, with a tenant default for a product that has none of
+ * its own. It is authored as a VERSION: a draft is written (with `.create`) and
+ * approved (with `.approve`, after a step-up) before it becomes the active
+ * version; earlier versions stay readable and never change, so every refund can
+ * be explained by the version that applied, and a booking keeps the version in
+ * force when it was made. History rows have no edit or delete control (absent,
+ * not disabled).
+ *
+ * Every control is UX-only; `/api/v1/commerce/booking/cancellation-policies` is
+ * the authority and re-validates every window, and the approve / retire routes
+ * require a fresh step-up. Gated on `commerce.booking_cancellation_policies.read`
+ * (view) and `.create` / `.approve` (change), and on the tenant's `booking`
+ * feature.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import CommerceConfirmDialog from "../../components/CommerceConfirmDialog.astro";
+import CommerceStepUpDialog from "../../components/CommerceStepUpDialog.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import {
+  bookingLabel,
+  createBookingCancellationLabels
+} from "../../lib/ui/commerce-booking-labels";
+import { hoursToNotice } from "../../lib/ui/commerce-booking-refund-client";
+import { fetchCommerceFeatures } from "../../modules/commerce/application/commerce-feature-gate";
+import { listServiceProductDepositPolicies } from "../../modules/commerce/application/booking-deposit-policies";
+import {
+  listPolicies,
+  type PolicyRecord,
+  type PolicyScope
+} from "../../modules/commerce/application/booking-cancellation-policies";
+
+const ssr = Astro.locals.ssrContext!;
+const { t, tn } = getTranslatorFor(Astro.locals.locale);
+const labels = createBookingCancellationLabels(t);
+
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const scopeParam = Astro.url.searchParams.get("scope");
+const productScope: string | null =
+  scopeParam !== null && UUID.test(scopeParam) ? scopeParam : null;
+const scope: PolicyScope =
+  productScope === null
+    ? { kind: "default" }
+    : { kind: "product", productId: productScope };
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "commerce",
+    activityCode: "booking_cancellation_policies",
+    action: "read"
+  },
+  load: async ({ tx, can }) => {
+    const features = await fetchCommerceFeatures(tx, ssr.tenantId);
+    const canCreate = await can({
+      moduleKey: "commerce",
+      activityCode: "booking_cancellation_policies",
+      action: "create"
+    });
+    const canApprove = await can({
+      moduleKey: "commerce",
+      activityCode: "booking_cancellation_policies",
+      action: "approve"
+    });
+    const policies = features.booking
+      ? await listPolicies(tx, ssr.tenantId, scope)
+      : [];
+    const products = features.booking
+      ? await listServiceProductDepositPolicies(tx, ssr.tenantId)
+      : [];
+    return {
+      bookingEnabled: features.booking,
+      canCreate,
+      canApprove,
+      policies,
+      products
+    };
+  },
+  onError: (error) => {
+    logAdminPageError(
+      "admin/commerce-booking-policies.astro: failed to list cancellation policies",
+      error,
+      { correlationId: Astro.locals.correlationId }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+const loadError = screen.state === "error";
+const data = screen.state === "allowed" ? screen.data : null;
+const bookingEnabled = data?.bookingEnabled ?? false;
+const canCreate = data?.canCreate ?? false;
+const canApprove = data?.canApprove ?? false;
+const policies: PolicyRecord[] = data?.policies ?? [];
+const products = data?.products ?? [];
+
+const active = policies.find((policy) => policy.status === "active") ?? null;
+const drafts = policies.filter((policy) => policy.status === "draft");
+const history = policies.filter((policy) => policy.status === "retired");
+
+const noticeText = (hours: number): string => {
+  const notice = hoursToNotice(hours);
+  return notice.unit === "days"
+    ? tn("{count} day", "{count} days", notice.amount, { count: notice.amount })
+    : tn("{count} hour", "{count} hours", notice.amount, {
+        count: notice.amount
+      });
+};
+const windowsText = (policy: PolicyRecord): string =>
+  [
+    ...policy.windows.map((window) =>
+      t("{notice} or more before check-in: {percent}%", {
+        notice: noticeText(window.minHoursBeforeStart),
+        percent: window.refundablePercent
+      })
+    ),
+    t("Closer than that: no refund.")
+  ].join("; ");
+
+const dateFormat = new Intl.DateTimeFormat(Astro.locals.locale ?? "en", {
+  dateStyle: "medium",
+  timeZone: "UTC"
+});
+const dateText = (value: string | null): string =>
+  value === null ? "—" : dateFormat.format(new Date(value));
+const statusTone: Record<string, string> = {
+  active: "success",
+  draft: "warning",
+  retired: "neutral"
+};
+
+const scopeName = (): string =>
+  productScope === null
+    ? t("Tenant default")
+    : (products.find((product) => product.productId === productScope)?.name ??
+      productScope);
+
+const errorMessages = JSON.stringify({
+  VALIDATION_ERROR: t(
+    "The windows were not accepted. A window with more notice must not refund less than one with less notice."
+  ),
+  STEP_UP_CANCELLED: t("Confirmation cancelled. Nothing was changed."),
+  STEP_UP_FAILED: t("That code was not accepted. Nothing was changed."),
+  STEP_UP_REQUIRED: t("This action needs a recent second-factor check."),
+  FORBIDDEN: t("You do not have permission to do that."),
+  ACCESS_DENIED: t("You do not have permission to do that."),
+  INVALID_STATE: t(
+    "This version is not in the right state for that. Reload the page."
+  ),
+  POLICY_WINDOWS_INVALID: t(
+    "A window with more notice must not refund less than one with less notice."
+  ),
+  IDEMPOTENCY_CONFLICT: t(
+    "This request was already sent with different details. Reload the page."
+  ),
+  FEATURE_DISABLED: t("Booking is turned off for this store."),
+  RESOURCE_NOT_FOUND: t("That version or product was not found.")
+});
+---
+
+<AdminLayout
+  title={t("Cancellation policies")}
+  description={t(
+    "Set how much of what a guest paid is refunded, by how long before check-in they cancel."
+  )}
+>
+  {!canRead && (
+    <p class="state-notice fade-in-up" id="booking-policies-denied">
+      {t("You do not have permission to view cancellation policies.")}
+    </p>
+  )}
+
+  {canRead && loadError && (
+    <p class="state-notice fade-in-up" id="booking-policies-error">
+      {t(
+        "Cancellation policies could not be loaded right now. Please try again later."
+      )}
+    </p>
+  )}
+
+  {canRead && !loadError && !bookingEnabled && (
+    <p class="state-notice fade-in-up" id="booking-policies-disabled">
+      {t("Booking is turned off for this store.")}
+    </p>
+  )}
+
+  {canRead && !loadError && bookingEnabled && (
+    <form
+      method="get"
+      action="/admin/commerce-booking-policies"
+      class="admin-create-form fade-in-up"
+      id="booking-policies-scope-form"
+    >
+      <p class="form-legend">{t("Scope")}</p>
+      <label for="booking-policies-scope">{t("Policy for")}</label>
+      <select id="booking-policies-scope" name="scope">
+        <option value="default" selected={productScope === null}>
+          {t("Tenant default")}
+        </option>
+        {products.map((product) => (
+          <option
+            value={product.productId}
+            selected={product.productId === productScope}
+          >
+            {product.name}
+          </option>
+        ))}
+      </select>
+      <p class="form-hint">
+        {t(
+          "A product's own policy replaces the tenant default for that product. A change is a new version: bookings already made keep the version they were made under."
+        )}
+      </p>
+      <button type="submit">{t("Show")}</button>
+    </form>
+  )}
+
+  {canRead && !loadError && bookingEnabled && (
+    <p
+      id="booking-policies-action-error"
+      class="admin-create-error"
+      role="alert"
+      data-errors={errorMessages}
+      hidden
+    />
+  )}
+
+  {canRead && !loadError && bookingEnabled && (
+    <section
+      class="admin-section fade-in-up"
+      aria-labelledby="policy-active-title"
+    >
+      <h2 id="policy-active-title" class="admin-dashboard-panel-title">
+        {t("Active version")} &middot; {scopeName()}
+      </h2>
+      {active ? (
+        <>
+          <dl class="admin-order-return-totals">
+            <dt>{t("Version")}</dt>
+            <dd>{active.version}</dd>
+            <dt>{t("Refund applies to")}</dt>
+            <dd>{bookingLabel(labels.refundBasis, active.refundBasis)}</dd>
+            <dt>{t("Approved by")}</dt>
+            <dd>
+              <span class="cell-code">
+                {active.approvedByTenantUserId ?? "—"}
+              </span>
+              &middot; {dateText(active.activatedAt)}
+            </dd>
+          </dl>
+          <div
+            class="data-table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label={t("Active version")}
+          >
+            <table
+              class="data-table data-table--stack"
+              id="policy-active-table"
+            >
+              <caption class="sr-only">
+                {t("Windows of the active version")}
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">{t("Cancel at least")}</th>
+                  <th scope="col">{t("Refund of what was paid")}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {active.windows.map((window) => (
+                  <tr>
+                    <td data-label={t("Cancel at least")}>
+                      {t("{notice} before check-in", {
+                        notice: noticeText(window.minHoursBeforeStart)
+                      })}
+                    </td>
+                    <td data-label={t("Refund of what was paid")}>
+                      {window.refundablePercent}%
+                    </td>
+                  </tr>
+                ))}
+                <tr>
+                  <td data-label={t("Cancel at least")}>
+                    {t("Closer than that, or after check-in")}
+                  </td>
+                  <td data-label={t("Refund of what was paid")}>0%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          {canApprove && (
+            <div class="row-actions">
+              <button
+                type="button"
+                class="module-toggle booking-policy-retire-btn"
+                data-policy-id={active.id}
+                data-confirm-title={t("Retire this version?")}
+                data-confirm-message={t(
+                  "New bookings of this scope will use the tenant default, or get no refund if there is none. Bookings already made keep this version."
+                )}
+                data-confirm-label={t("Retire version")}
+                data-confirm-danger="true"
+                data-failure={t(
+                  "Could not retire the version. Please try again."
+                )}
+                data-busy={t("Retiring…")}
+              >
+                {t("Retire this version")}
+              </button>
+            </div>
+          )}
+        </>
+      ) : (
+        <div class="empty-state" id="policy-active-empty">
+          <span class="empty-state-icon" aria-hidden="true">
+            ◇
+          </span>
+          <span class="empty-state-title">
+            {t("No cancellation policy yet")}
+          </span>
+          <span class="empty-state-text">
+            {t("No cancellation policy yet. Guests will see no refund terms.")}
+          </span>
+        </div>
+      )}
+    </section>
+  )}
+
+  {canRead && !loadError && bookingEnabled && drafts.length > 0 && (
+    <section
+      class="admin-section fade-in-up"
+      aria-labelledby="policy-drafts-title"
+    >
+      <h2 id="policy-drafts-title" class="admin-dashboard-panel-title">
+        {t("Draft versions")}
+      </h2>
+      <div
+        class="data-table-scroll"
+        role="region"
+        tabindex="0"
+        aria-label={t("Draft versions")}
+      >
+        <table class="data-table data-table--stack" id="policy-drafts-table">
+          <caption>
+            {tn("{count} draft", "{count} drafts", drafts.length, {
+              count: drafts.length
+            })}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">{t("Version")}</th>
+              <th scope="col">{t("Windows")}</th>
+              <th scope="col">{t("Authored by")}</th>
+              {canApprove && <th scope="col">{t("Actions")}</th>}
+            </tr>
+          </thead>
+          <tbody>
+            {drafts.map((draft) => (
+              <tr data-policy-row={draft.id}>
+                <td data-label={t("Version")}>{draft.version}</td>
+                <td data-label={t("Windows")}>
+                  {windowsText(draft)}
+                  <br />
+                  <span class="cell-muted">
+                    {bookingLabel(labels.refundBasis, draft.refundBasis)}
+                  </span>
+                </td>
+                <td data-label={t("Authored by")}>
+                  <span class="cell-code">
+                    {draft.createdByTenantUserId ?? "—"}
+                  </span>
+                </td>
+                {canApprove && (
+                  <td data-label={t("Actions")} class="stacked-block">
+                    <div class="row-actions">
+                      <button
+                        type="button"
+                        class="module-toggle booking-policy-approve-btn"
+                        data-policy-id={draft.id}
+                        data-confirm-title={t("Activate this version?")}
+                        data-confirm-message={t(
+                          "Now active: {active}. This draft: {draft}. From activation it decides the refund of every new booking in this scope; earlier bookings keep the version they were made under.",
+                          {
+                            active: active
+                              ? windowsText(active)
+                              : t("no policy"),
+                            draft: windowsText(draft)
+                          }
+                        )}
+                        data-confirm-label={t("Activate version")}
+                        data-failure={t(
+                          "Could not activate the version. Please try again."
+                        )}
+                        data-busy={t("Activating…")}
+                      >
+                        {t("Approve and activate")}
+                      </button>
+                    </div>
+                  </td>
+                )}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  )}
+
+  {canRead && !loadError && bookingEnabled && canCreate && (
+    <form
+      id="booking-policy-form"
+      class="admin-create-form fade-in-up"
+      data-product-id={productScope ?? ""}
+      data-failure={t(
+        "Could not save the draft. Check the windows and try again."
+      )}
+      data-errors={errorMessages}
+      data-msg-empty={t("Add at least one window.")}
+      data-msg-notice={t("Enter the notice as a whole number.")}
+      data-msg-percent={t(
+        "Enter a refund from 0 to 100, with at most two decimals."
+      )}
+      data-msg-duplicate={t("Two windows cannot have the same notice.")}
+      data-msg-grows={t(
+        "A window with more notice must not refund less than one with less notice."
+      )}
+    >
+      <p class="form-legend">{t("New draft version")}</p>
+      <p
+        id="booking-policy-form-error"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      />
+      <p class="form-hint">
+        {t(
+          "Rows must not overlap, and more notice must never refund less. The server enforces the same rule. A draft is not edited: to change it, save a new draft."
+        )}
+      </p>
+
+      <div id="booking-policy-rows" class="booking-policy-rows">
+        <div class="booking-policy-row" data-policy-row-editor>
+          <label class="booking-policy-field">
+            <span>{t("Cancel at least")}</span>
+            <input
+              type="number"
+              name="notice"
+              min="0"
+              step="1"
+              inputmode="numeric"
+              required
+              value="7"
+            />
+          </label>
+          <label class="booking-policy-field">
+            <span>{t("Unit")}</span>
+            <select name="unit">
+              <option value="days" selected>
+                {t("days")}
+              </option>
+              <option value="hours">{t("hours")}</option>
+            </select>
+          </label>
+          <label class="booking-policy-field">
+            <span>{t("Refund percent")}</span>
+            <input
+              type="number"
+              name="percent"
+              min="0"
+              max="100"
+              step="0.01"
+              inputmode="decimal"
+              required
+              value="100"
+            />
+          </label>
+          <span class="booking-policy-after">{t("before check-in")}</span>
+          <button type="button" class="module-toggle booking-policy-remove-btn">
+            {t("Remove window")}
+          </button>
+        </div>
+      </div>
+      <p>
+        <button type="button" class="module-toggle" id="booking-policy-add-row">
+          {t("Add window")}
+        </button>
+      </p>
+
+      <label for="booking-policy-basis">{t("Refund applies to")}</label>
+      <select id="booking-policy-basis" name="refundBasis">
+        <option value="whole_stay">{labels.refundBasis.whole_stay}</option>
+        <option value="per_night">{labels.refundBasis.per_night}</option>
+      </select>
+      <label for="booking-policy-noshow">
+        {t("If the guest does not show")}
+      </label>
+      <select id="booking-policy-noshow" name="noShowRetention">
+        <option value="retain_deposit">
+          {labels.noShowRetention.retain_deposit}
+        </option>
+        <option value="retain_all">{labels.noShowRetention.retain_all}</option>
+        <option value="refund_per_windows">
+          {labels.noShowRetention.refund_per_windows}
+        </option>
+      </select>
+
+      <button type="submit" id="booking-policy-submit" data-busy={t("Saving…")}>
+        {t("Save draft")}
+      </button>
+    </form>
+  )}
+
+  {canRead && !loadError && bookingEnabled && (
+    <section
+      class="admin-section fade-in-up"
+      aria-labelledby="policy-history-title"
+    >
+      <h2 id="policy-history-title" class="admin-dashboard-panel-title">
+        {t("History")}
+      </h2>
+      <div
+        class="data-table-scroll"
+        role="region"
+        tabindex="0"
+        aria-label={t("History")}
+      >
+        <table class="data-table data-table--stack" id="policy-history-table">
+          <caption>
+            {tn(
+              "{count} earlier version",
+              "{count} earlier versions",
+              history.length,
+              {
+                count: history.length
+              }
+            )}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">{t("Version")}</th>
+              <th scope="col">{t("Scope")}</th>
+              <th scope="col">{t("Windows")}</th>
+              <th scope="col">{t("Approved by")}</th>
+              <th scope="col">{t("Approved on")}</th>
+              <th scope="col">{t("Status")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {history.length === 0 ? (
+              <tr>
+                <td class="data-table-empty" colspan={6}>
+                  <div class="empty-state">
+                    <span class="empty-state-title">
+                      {t("No earlier versions")}
+                    </span>
+                    <span class="empty-state-text">
+                      {t(
+                        "A version that is replaced or retired stays here, unchanged, so every past refund can be explained."
+                      )}
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              history.map((policy) => (
+                <tr>
+                  <td data-label={t("Version")}>{policy.version}</td>
+                  <td data-label={t("Scope")}>{scopeName()}</td>
+                  <td data-label={t("Windows")}>{windowsText(policy)}</td>
+                  <td data-label={t("Approved by")}>
+                    <span class="cell-code">
+                      {policy.approvedByTenantUserId ?? "—"}
+                    </span>
+                  </td>
+                  <td data-label={t("Approved on")}>
+                    {dateText(policy.activatedAt)}
+                  </td>
+                  <td data-label={t("Status")}>
+                    <span
+                      class="admin-status-pill"
+                      data-tone={statusTone[policy.status] ?? "neutral"}
+                    >
+                      {bookingLabel(labels.policyStatus, policy.status)}
+                    </span>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  )}
+
+  <template id="booking-policy-row-template">
+    <div class="booking-policy-row" data-policy-row-editor>
+      <label class="booking-policy-field">
+        <span>{t("Cancel at least")}</span>
+        <input
+          type="number"
+          name="notice"
+          min="0"
+          step="1"
+          inputmode="numeric"
+          required
+          value="2"
+        />
+      </label>
+      <label class="booking-policy-field">
+        <span>{t("Unit")}</span>
+        <select name="unit">
+          <option value="days" selected>
+            {t("days")}
+          </option>
+          <option value="hours">{t("hours")}</option>
+        </select>
+      </label>
+      <label class="booking-policy-field">
+        <span>{t("Refund percent")}</span>
+        <input
+          type="number"
+          name="percent"
+          min="0"
+          max="100"
+          step="0.01"
+          inputmode="decimal"
+          required
+          value="50"
+        />
+      </label>
+      <span class="booking-policy-after">{t("before check-in")}</span>
+      <button type="button" class="module-toggle booking-policy-remove-btn">
+        {t("Remove window")}
+      </button>
+    </div>
+  </template>
+
+  <CommerceConfirmDialog locale={Astro.locals.locale} />
+  <CommerceStepUpDialog
+    locale={Astro.locals.locale}
+    id="booking-policies-stepup"
+  />
+</AdminLayout>
+
+<style>
+  .booking-policy-rows {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+  }
+
+  .booking-policy-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: var(--sp-3);
+  }
+
+  .booking-policy-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-1);
+    min-width: 8rem;
+  }
+
+  .booking-policy-field input,
+  .booking-policy-field select {
+    min-height: 44px;
+  }
+
+  .booking-policy-after {
+    align-self: center;
+  }
+
+  @media (max-width: 420px) {
+    .booking-policy-row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+</style>
+
+<script>
+  import {
+    field,
+    messageBox,
+    mutateAndReload,
+    onAction,
+    onSubmit,
+    sendJson,
+    sendJsonForData
+  } from "../../lib/ui/admin-form-client";
+  import {
+    newIdempotencyKey,
+    pickRefusalMessage
+  } from "../../lib/ui/commerce-booking-client";
+  import {
+    buildPolicyDraftBody,
+    type WindowRowInput
+  } from "../../lib/ui/commerce-booking-refund-client";
+  import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
+  import {
+    promptStepUpCode,
+    sendWithStepUp
+  } from "../../lib/ui/commerce-stepup-client";
+
+  const BASE = "/api/v1/commerce/booking/cancellation-policies";
+  const STEP_UP_DIALOG = "booking-policies-stepup";
+  const formError = messageBox("booking-policy-form-error");
+  const actionError = messageBox("booking-policies-action-error");
+
+  const rowsHost = document.getElementById("booking-policy-rows");
+  const template = document.getElementById("booking-policy-row-template");
+
+  document
+    .getElementById("booking-policy-add-row")
+    ?.addEventListener("click", () => {
+      if (!rowsHost || !(template instanceof HTMLTemplateElement)) return;
+      rowsHost.appendChild(template.content.cloneNode(true));
+    });
+  rowsHost?.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) return;
+    const remove = target.closest(".booking-policy-remove-btn");
+    if (!remove) return;
+    remove.closest("[data-policy-row-editor]")?.remove();
+  });
+
+  function readRows(): WindowRowInput[] {
+    const rows: WindowRowInput[] = [];
+    for (const row of document.querySelectorAll<HTMLElement>(
+      "#booking-policy-rows [data-policy-row-editor]"
+    )) {
+      const notice = row.querySelector<HTMLInputElement>("[name='notice']");
+      const unit = row.querySelector<HTMLSelectElement>("[name='unit']");
+      const percent = row.querySelector<HTMLInputElement>("[name='percent']");
+      rows.push({
+        amount: notice?.value ?? "",
+        unit: unit?.value === "hours" ? "hours" : "days",
+        percent: percent?.value ?? ""
+      });
+    }
+    return rows;
+  }
+
+  onSubmit("booking-policy-form", async ({ form, data, submit }) => {
+    const productId = form.dataset.productId ?? "";
+    const built = buildPolicyDraftBody({
+      productId: productId === "" ? null : productId,
+      refundBasis: field(data, "refundBasis"),
+      noShowRetention: field(data, "noShowRetention"),
+      rows: readRows()
+    });
+    if (!built.ok) {
+      const key =
+        built.problem === "empty"
+          ? "msgEmpty"
+          : built.problem === "notice_invalid"
+            ? "msgNotice"
+            : built.problem === "percent_invalid"
+              ? "msgPercent"
+              : built.problem === "duplicate_notice"
+                ? "msgDuplicate"
+                : "msgGrows";
+      formError.show(
+        (form.dataset as Record<string, string | undefined>)[key] ?? ""
+      );
+      return;
+    }
+    formError.clear();
+    const previous = submit?.textContent ?? "";
+    if (submit) {
+      submit.disabled = true;
+      submit.textContent = submit.dataset.busy ?? "…";
+    }
+    const result = await sendJsonForData("POST", BASE, built.body, {
+      "Idempotency-Key": newIdempotencyKey()
+    });
+    if (!result.ok) {
+      formError.show(
+        pickRefusalMessage(
+          form.dataset.errors,
+          result.errorCode,
+          form.dataset.failure ?? ""
+        )
+      );
+      if (submit) {
+        submit.disabled = false;
+        submit.textContent = previous;
+      }
+      return;
+    }
+    window.location.reload();
+  });
+
+  function stepUpAction(path: string) {
+    return async (button: HTMLButtonElement): Promise<void> => {
+      const id = button.dataset.policyId;
+      if (!id) return;
+      const confirmed = await confirmFromTrigger(button);
+      if (!confirmed) return;
+      // One key for the click AND its step-up retry: the second send is safe.
+      const key = newIdempotencyKey();
+      await mutateAndReload(
+        button,
+        actionError,
+        () =>
+          sendWithStepUp(
+            () =>
+              sendJson("POST", `${BASE}/${id}/${path}`, undefined, {
+                "Idempotency-Key": key
+              }),
+            () => promptStepUpCode(STEP_UP_DIALOG)
+          ),
+        (code) =>
+          pickRefusalMessage(
+            document.getElementById("booking-policies-action-error")?.dataset
+              .errors,
+            code,
+            button.dataset.failure ?? ""
+          ),
+        button.dataset.busy
+      );
+    };
+  }
+
+  onAction(".booking-policy-approve-btn", stepUpAction("approve"));
+  onAction(".booking-policy-retire-btn", stepUpAction("retire"));
+</script>

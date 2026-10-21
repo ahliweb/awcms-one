@@ -243,6 +243,206 @@ channels:
       #888), in one transaction. Producer:
       `procurement/application/procurement-posting.ts`'s `reverseDocument`.
       Same payload shape as `document.finalised`.
+  awcms.hr.commission.voided:
+    address: awcms.hr.commission.voided
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A commission accrual was voided (ADR-0132, Issue #1109), in the transaction
+      that voided it: a pending or approved accrual, by the HTTP void route or by
+      `CommissionAccrualPort.void` when the sale it came from was voided,
+      refunded or cancelled. Producer: `hr-commission/application/hr-commission-
+      accrual-ledger.ts`'s `transitionAccrual`. Payload: `accrualId`,
+      `employmentId`, `sourceType`, `ruleKey`, `ruleVersion`, `fromStatus`
+      (`pending` or `approved`), `reasonCode` (a code or null). Never an amount,
+      a source reference, a payment reference or a name. A replayed void
+      publishes nothing.
+  awcms.whatsapp.message.queued:
+    address: awcms.whatsapp.message.queued
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A message was accepted into the WhatsApp outbox (ADR-0133, Issue #963), in
+      the SAME transaction as the caller's fact: a rolled-back booking emits
+      nothing. Producer: `whatsapp-delivery/application/whatsapp-enqueue.ts`'s
+      `enqueueWhatsappMessage`. Payload: `messageId`, `templateKey`, `purpose`
+      (transactional | security | marketing), `recipientMasked`, `status`
+      (queued). Never a phone number, message body or template variable; the
+      caller's own record is joined through the envelope `correlationId`.
+  awcms.whatsapp.message.sent:
+    address: awcms.whatsapp.message.sent
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      The provider accepted the WhatsApp message (ADR-0133, Issue #963). Producer:
+      `whatsapp-delivery/application/whatsapp-dispatch.ts`, in the finalise
+      transaction after the provider call returned. Same payload shape as
+      `message.queued` with `status` sent.
+  awcms.whatsapp.message.failed:
+    address: awcms.whatsapp.message.failed
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A WhatsApp message reached a terminal failure (ADR-0133, Issue #963): a non-
+      retryable provider rejection, exhausted retries, or a template that is no
+      longer registered. Producer: `whatsapp-delivery/application/whatsapp-
+      dispatch.ts`. Same payload shape as `message.queued` with `status` failed
+      and a coarse `failureCode`.
+  awcms.whatsapp.message.expired:
+    address: awcms.whatsapp.message.expired
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A WhatsApp message passed its expiry before it was sent and was not retried
+      late (ADR-0133, Issue #963) — an OTP that arrives after its validity is
+      worse than none. Producer: `whatsapp-delivery/application/whatsapp-
+      dispatch.ts`. Same payload shape as `message.queued` with `status` expired.
+  awcms.whatsapp.consent.granted:
+    address: awcms.whatsapp.consent.granted
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A recipient's WhatsApp marketing consent was recorded (ADR-0133, Issue
+      #963). Producer: `whatsapp-delivery/application/whatsapp-consent-
+      directory.ts`'s `grantMarketingConsent`. Payload: `consentId`, `purpose`,
+      `recipientMasked`. Never the number.
+  awcms.whatsapp.consent.withdrawn:
+    address: awcms.whatsapp.consent.withdrawn
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A recipient's WhatsApp marketing consent was withdrawn; their waiting
+      marketing messages were cancelled in the same transaction (ADR-0133, Issue
+      #963). Producer: `whatsapp-delivery/application/whatsapp-consent-
+      directory.ts`'s `withdrawMarketingConsent`. Same payload shape as
+      `consent.granted`.
+  awcms.whatsapp.dispatch.failed:
+    address: awcms.whatsapp.dispatch.failed
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A WhatsApp dispatcher pass failed as a whole — job level, not one message
+      (ADR-0133, Issue #963). Producer: `whatsapp-delivery/application/whatsapp-
+      dispatch.ts`'s `recordWhatsappDispatchFailure`, called by `scripts/whatsapp-
+      dispatch.ts`. Payload: `failureCode`, optional `batchSize`, `occurredAt`.
+  awcms.booking.reservation.created:
+    address: awcms.booking.reservation.created
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      Booking reservation event (ADR-0131, Issue #941; docs/awcms/booking.md
+      section 7.4). A reservation exists: held, or confirmed when the offering
+      confirms immediately, or the confirmed replacement of a reschedule (then
+      `rescheduledFromId` names the reservation it replaced). Producer:
+      `booking/application/booking-hold-service.ts`'s `placeHold`, in the SAME
+      transaction as the claim: a rolled-back or refused claim emits nothing.
+      Payload: `reservationId`, `reservationNo`, `lineageId`, `status`,
+      `previousStatus`, `startsAt`/`endsAt` (RFC 3339 UTC), `resourceIds`,
+      `offeringIds`, `partySize`, `externalRefType`/`externalRef` (the
+      adapter's own opaque pair), `stays` (additive, only when the reservation
+      holds a stay: `resourceId`, `checkInDate`, `checkOutDate`, `nights`,
+      `timezone`), `occurredAt`, `correlationId`. NEVER a customer name,
+      contact, reference or note, a reason text, an actor in the payload (the
+      envelope carries `actorTenantUserId` like every module's events) or any amount or
+      payment state: the module stores none.
+  awcms.booking.reservation.held:
+    address: awcms.booking.reservation.held
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      Booking reservation event (ADR-0131, Issue #941; docs/awcms/booking.md
+      section 7.4). A hold was placed; not emitted when the offering confirms
+      immediately. Producer: `placeHold`. Same payload shape as
+      `reservation.created`.
+  awcms.booking.reservation.confirmed:
+    address: awcms.booking.reservation.confirmed
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      Booking reservation event (ADR-0131, Issue #941; docs/awcms/booking.md
+      section 7.4). A hold became confirmed (`previousStatus` held) or a
+      reservation was created already confirmed (`previousStatus` null).
+      Producer: `booking/application/booking-reservation-service.ts`'s
+      `transitionReservation` and `placeHold`. Same payload shape as
+      `reservation.created`.
+  awcms.booking.reservation.rescheduled:
+    address: awcms.booking.reservation.rescheduled
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      Booking reservation event (ADR-0131, Issue #941; docs/awcms/booking.md
+      section 7.4). A confirmed reservation was superseded by its replacement
+      in one transaction. Producer: `placeHold` with `replaces`, called by
+      `rescheduleReservation`. Same payload shape as `reservation.created`,
+      plus `supersededById` (the replacement); the replacement announces
+      itself with `created` and `confirmed` carrying `rescheduledFromId`.
+  awcms.booking.reservation.cancelled:
+    address: awcms.booking.reservation.cancelled
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      Booking reservation event (ADR-0131, Issue #941; docs/awcms/booking.md
+      section 7.4). A held or confirmed reservation was cancelled and its
+      allocations released. Producer: `transitionReservation`. Same payload
+      shape as `reservation.created`, plus `lateCancellation` (the module
+      records the fact; any fee is the commerce layer's). The cancellation
+      reason code is on the append-only history row, never in the event.
+  awcms.booking.reservation.checked_in:
+    address: awcms.booking.reservation.checked_in
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      Booking reservation event (ADR-0131, Issue #941; docs/awcms/booking.md
+      section 7.4). A confirmed reservation was checked in. Producer:
+      `transitionReservation`. Same payload shape as `reservation.created`.
+  awcms.booking.reservation.completed:
+    address: awcms.booking.reservation.completed
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      Booking reservation event (ADR-0131, Issue #941; docs/awcms/booking.md
+      section 7.4). A checked-in reservation was completed (checked out).
+      Producer: `transitionReservation`. Same payload shape as
+      `reservation.created`.
+  awcms.booking.reservation.no_show:
+    address: awcms.booking.reservation.no_show
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      Booking reservation event (ADR-0131, Issue #941; docs/awcms/booking.md
+      section 7.4). A confirmed reservation was marked no-show by a person
+      after its start plus the grace period (there is no automatic no-show).
+      Producer: `transitionReservation`. Same payload shape as
+      `reservation.created`.
+  awcms.booking.reservation.expired:
+    address: awcms.booking.reservation.expired
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      Booking reservation event (ADR-0131, Issue #941; docs/awcms/booking.md
+      section 7.4). A hold expired and its allocations were released: found by
+      the `booking:holds:expire` sweep (published in the sweep's own tenant
+      transaction, `booking/application/booking-hold-expiry-job.ts`) or
+      reclaimed by a claim that wanted its units (`booking-hold-expiry.ts`'s
+      `reclaimExpiredHolds`). Same payload shape as `reservation.created`;
+      `previousStatus` is held.
   awcms.email.message.queued:
     address: awcms.email.message.queued
     messages:
@@ -688,6 +888,78 @@ channels:
       `source`, and the order's resulting `paid`/`outstanding`/
       `paymentStatus` — never a customer name/phone or a payment reference.
       A pending gateway leg and the `sql/943` backfill do not fire it.
+  awcms.commerce.order.settled:
+    address: awcms.commerce.order.settled
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      Settlement of a deposit order (`payment_method = 'dp'`, `dp_amount`
+      below the total) reached the total (Issue #379, ADR-0041 D7). Producer:
+      `commerce/application/payment-allocation-directory.ts`'s
+      `finalizeSettlement`, in the same transaction as the ledger write that
+      made the outstanding amount zero. Fires for a deposit order only:
+      `order.paid` fires for it at the deposit (the release threshold), so
+      this is the fact that says it is fully paid, and the loyalty earner
+      reacts to it. A whole-total order fires none. Payload: `orderId`,
+      `orderCode`, `total`, `deposit`, `settledAt` - never a customer
+      name/phone or a payment reference.
+  awcms.commerce.booking_reservation_link.attention_raised:
+    address: awcms.commerce.booking_reservation_link.attention_raised
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      The booking adapter could not reconcile an order with its Booking
+      reservation on its own (Issue #380, ADR-0045 G7, threat controls
+      C-08/C-09): a deposit settled after the hold lapsed
+      (`deposit_after_expiry`), the confirmation was refused
+      (`confirm_failed`), or the reservation was cancelled or moved outside the
+      adapter while the order holds money (`cancelled_externally_paid`,
+      `rescheduled_externally`). Producer:
+      `commerce/application/booking-attention.ts`'s `raiseBookingAttention`, in
+      the same transaction as the flag on the reservation link; fired once per
+      open flag. Aggregate: the order. Payload: `orderId`, `reservationId`,
+      `reason` - never a customer name/phone, an amount or a payment reference.
+  awcms.commerce.booking_refund.decided:
+    address: awcms.commerce.booking_refund.decided
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A booking cancellation's or no-show's refund decision was recorded (Issue
+      #381 and #382, ADR-0045 D8/D15, threat controls C-10/C-40/C-41): the policy
+      source, the amount paid, the policy-computed refund, the final refund and
+      whether a manager or finance override made them differ. For a no-show
+      (`triggerKind` `no_show`) both refunds are zero and `retainedAmount` is
+      what the policy version retained - a no-show never creates a refund leg.
+      Producers: `commerce/application/booking-cancellation.ts`'s
+      `cancelBookingReservation` and `booking-no-show.ts`'s
+      `recordBookingNoShow`, in the same transaction as the decision row, the
+      released reservation link and - for a positive cancellation refund - the
+      pending refund legs. Aggregate: the order. Payload: `decisionId`,
+      `orderId`, `reservationId`, `triggerKind`, `policySource`, `amountPaid`,
+      `computedRefund`, `finalRefund`, `overridden`, and `retainedAmount`
+      (no-show only) - never a customer name/phone, a payment reference, the
+      override reason or the actor.
+  awcms.commerce.booking_reservation.rescheduled:
+    address: awcms.commerce.booking_reservation.rescheduled
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A staff member rescheduled a booking reservation through the adapter
+      (Issue #382, ADR-0045 D7, threat controls C-37 to C-39): the order now
+      points at the replacement reservation and the price difference was carried
+      as a supplementary order (more nights), a policy-limited refund return
+      (fewer nights) or not at all (same length). Producer:
+      `commerce/application/booking-reschedule.ts`'s
+      `rescheduleBookingReservation`, in the same transaction as the reschedule
+      record and the moved reservation link. Aggregate: the order. Payload:
+      `rescheduleId`, `orderId`, `fromReservationId`, `toReservationId`,
+      `fromNights`, `toNights`, `direction`, `pricedAmount`, `refundAmount`,
+      `supplementOrderId`, `returnId` - never a customer name/phone, a payment
+      reference or the actor.
   awcms.commerce.payment.reversed:
     address: awcms.commerce.payment.reversed
     messages:
@@ -1049,6 +1321,108 @@ operations:
       $ref: "#/channels/awcms.procurement.document.reversed"
     messages:
       - $ref: "#/channels/awcms.procurement.document.reversed/messages/DomainEvent"
+  publishHrCommissionAccrualVoided:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.hr.commission.voided"
+    messages:
+      - $ref: "#/channels/awcms.hr.commission.voided/messages/DomainEvent"
+  publishWhatsappMessageQueued:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.whatsapp.message.queued"
+    messages:
+      - $ref: "#/channels/awcms.whatsapp.message.queued/messages/DomainEvent"
+  publishWhatsappMessageSent:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.whatsapp.message.sent"
+    messages:
+      - $ref: "#/channels/awcms.whatsapp.message.sent/messages/DomainEvent"
+  publishWhatsappMessageFailed:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.whatsapp.message.failed"
+    messages:
+      - $ref: "#/channels/awcms.whatsapp.message.failed/messages/DomainEvent"
+  publishWhatsappMessageExpired:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.whatsapp.message.expired"
+    messages:
+      - $ref: "#/channels/awcms.whatsapp.message.expired/messages/DomainEvent"
+  publishWhatsappConsentGranted:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.whatsapp.consent.granted"
+    messages:
+      - $ref: "#/channels/awcms.whatsapp.consent.granted/messages/DomainEvent"
+  publishWhatsappConsentWithdrawn:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.whatsapp.consent.withdrawn"
+    messages:
+      - $ref: "#/channels/awcms.whatsapp.consent.withdrawn/messages/DomainEvent"
+  publishWhatsappDispatchFailed:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.whatsapp.dispatch.failed"
+    messages:
+      - $ref: "#/channels/awcms.whatsapp.dispatch.failed/messages/DomainEvent"
+  publishBookingReservationCreated:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.booking.reservation.created"
+    messages:
+      - $ref: "#/channels/awcms.booking.reservation.created/messages/DomainEvent"
+  publishBookingReservationHeld:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.booking.reservation.held"
+    messages:
+      - $ref: "#/channels/awcms.booking.reservation.held/messages/DomainEvent"
+  publishBookingReservationConfirmed:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.booking.reservation.confirmed"
+    messages:
+      - $ref: "#/channels/awcms.booking.reservation.confirmed/messages/DomainEvent"
+  publishBookingReservationRescheduled:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.booking.reservation.rescheduled"
+    messages:
+      - $ref: "#/channels/awcms.booking.reservation.rescheduled/messages/DomainEvent"
+  publishBookingReservationCancelled:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.booking.reservation.cancelled"
+    messages:
+      - $ref: "#/channels/awcms.booking.reservation.cancelled/messages/DomainEvent"
+  publishBookingReservationCheckedIn:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.booking.reservation.checked_in"
+    messages:
+      - $ref: "#/channels/awcms.booking.reservation.checked_in/messages/DomainEvent"
+  publishBookingReservationCompleted:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.booking.reservation.completed"
+    messages:
+      - $ref: "#/channels/awcms.booking.reservation.completed/messages/DomainEvent"
+  publishBookingReservationNoShow:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.booking.reservation.no_show"
+    messages:
+      - $ref: "#/channels/awcms.booking.reservation.no_show/messages/DomainEvent"
+  publishBookingReservationExpired:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.booking.reservation.expired"
+    messages:
+      - $ref: "#/channels/awcms.booking.reservation.expired/messages/DomainEvent"
   publishEmailMessageQueued:
     action: send
     channel:
@@ -1331,6 +1705,30 @@ operations:
       $ref: "#/channels/awcms.commerce.payment.recorded"
     messages:
       - $ref: "#/channels/awcms.commerce.payment.recorded/messages/DomainEvent"
+  publishCommerceOrderSettled:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.order.settled"
+    messages:
+      - $ref: "#/channels/awcms.commerce.order.settled/messages/DomainEvent"
+  publishCommerceBookingAttentionRaised:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.booking_reservation_link.attention_raised"
+    messages:
+      - $ref: "#/channels/awcms.commerce.booking_reservation_link.attention_raised/messages/DomainEvent"
+  publishCommerceBookingRefundDecided:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.booking_refund.decided"
+    messages:
+      - $ref: "#/channels/awcms.commerce.booking_refund.decided/messages/DomainEvent"
+  publishCommerceBookingReservationRescheduled:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.booking_reservation.rescheduled"
+    messages:
+      - $ref: "#/channels/awcms.commerce.booking_reservation.rescheduled/messages/DomainEvent"
   publishCommercePaymentReversed:
     action: send
     channel:

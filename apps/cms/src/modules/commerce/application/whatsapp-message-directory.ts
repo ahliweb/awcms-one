@@ -13,6 +13,12 @@ import {
   type KeysetCursor
 } from "../../_shared/keyset-pagination";
 
+import {
+  LEGACY_TERMINAL_STATUSES,
+  buildQueueDrain,
+  type QueueDrain
+} from "../domain/whatsapp-cutover";
+
 export const WHATSAPP_MESSAGE_LIST_LIMIT = 100;
 
 export type WhatsappMessageStatus = "queued" | "sending" | "sent" | "failed";
@@ -110,4 +116,105 @@ export async function fetchWhatsappMessageEntries(
       : null;
 
   return { messages: rows.map(toView), nextCursor };
+}
+
+/**
+ * The live outbox state of the legacy messages whose `correlation_id` is one of
+ * `correlationIds` (Issue #295's document-delivery history, moved here by Issue
+ * #392 so that `document-delivery-directory.ts` no longer names the legacy table:
+ * the history reads the legacy queue through this function and the `upstream`
+ * queue through `whatsapp-upstream-status.ts`). The statement is the one the
+ * history has always run. Never written.
+ */
+export async function readLegacyWhatsappStatesByCorrelation(
+  tx: Bun.SQL,
+  tenantId: string,
+  correlationIds: readonly string[]
+): Promise<
+  Map<
+    string,
+    {
+      status: string;
+      providerMessageId: string | null;
+      retryCount: number;
+      lastError: string | null;
+      sentAt: string | null;
+    }
+  >
+> {
+  const result = new Map<
+    string,
+    {
+      status: string;
+      providerMessageId: string | null;
+      retryCount: number;
+      lastError: string | null;
+      sentAt: string | null;
+    }
+  >();
+
+  if (correlationIds.length === 0) return result;
+
+  const found = (await tx`
+      SELECT correlation_id, status, provider_ref, attempts, last_error, sent_at
+      FROM awcms_commerce_whatsapp_messages
+      WHERE tenant_id = ${tenantId}
+        AND correlation_id = ANY(${tx.array([...correlationIds], "text")}::text[])
+    `) as {
+    correlation_id: string;
+    status: string;
+    provider_ref: string | null;
+    attempts: number;
+    last_error: string | null;
+    sent_at: Date | null;
+  }[];
+  for (const row of found) {
+    result.set(row.correlation_id, {
+      status: row.status,
+      providerMessageId: row.provider_ref,
+      // Both dispatchers count FAILED attempts only (a success never bumps
+      // the counter), so `attempts` here and `retry_count` on the e-mail outbox
+      // mean the same.
+      retryCount: Number(row.attempts),
+      lastError: row.last_error,
+      sentAt: row.sent_at ? row.sent_at.toISOString() : null
+    });
+  }
+
+  return result;
+}
+
+/**
+ * The legacy queue's state for one tenant, for the guarded mode flip (Issue
+ * #393): the row count per status, how many are still work (every status that is
+ * not terminal, so an unknown future status blocks rather than slips through) and
+ * the age of the oldest one. A read; the flip holds the exclusive mode lock when
+ * it calls this, so no new legacy row can appear between this answer and the
+ * commit.
+ */
+export async function summarizeLegacyWhatsappQueue(
+  tx: Bun.SQL,
+  tenantId: string
+): Promise<QueueDrain> {
+  const counts = (await tx`
+    SELECT status, count(*) AS count
+    FROM awcms_commerce_whatsapp_messages
+    WHERE tenant_id = ${tenantId}
+    GROUP BY status
+  `) as { status: string; count: string | number }[];
+
+  const oldest = (await tx`
+    SELECT floor(extract(epoch FROM (now() - min(created_at))))::bigint AS age_seconds
+    FROM awcms_commerce_whatsapp_messages
+    WHERE tenant_id = ${tenantId}
+      AND status <> ALL(${tx.array([...LEGACY_TERMINAL_STATUSES], "text")}::text[])
+  `) as { age_seconds: string | number | null }[];
+
+  const age = oldest[0]?.age_seconds;
+
+  return buildQueueDrain(
+    Object.fromEntries(counts.map((row) => [row.status, Number(row.count)])),
+    LEGACY_TERMINAL_STATUSES,
+    age === null || age === undefined ? null : Number(age)
+  );
 }

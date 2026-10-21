@@ -51,7 +51,7 @@ import { expireOrderBySystem, markOrderPaidBySystem } from "./order-directory";
 import { recordAuditEvent } from "../../logging/application/audit-log";
 import { normalizeMoney } from "../domain/price-calculation";
 import {
-  checkPaymentAmount,
+  checkSessionPaymentAmount,
   isTerminalFailureStatus
 } from "../domain/payment-amount-guard";
 import type { PaymentGatewayStatus } from "../domain/payment-gateway-provider";
@@ -133,6 +133,16 @@ export type ApplyWebhookEventResult =
  * audit entry it writes on a mismatch. Returns `null` when the amounts
  * agree (or no amount was reported), or the mismatch detail otherwise —
  * the caller decides what that means for the event row/session.
+ *
+ * Issue #379 (ADR-0041 D2): the reported figure is compared, in integer
+ * cents, with what the SESSION was created to collect - read from the session
+ * row by `(provider, providerRef)`, where the server froze it (`sql/1025`) -
+ * not with a figure the request or the provider could influence. A `full`
+ * session (and a session created before `sql/1025`) is still checked against
+ * the order's current total, so a whole-total order is exactly as guarded as
+ * before; a `deposit` / `balance` session is checked against its own expected
+ * amount. One function serves the webhook route and the reconcile job, so the
+ * two paths cannot disagree.
  */
 export async function guardPaymentAmount(
   tx: Bun.SQL,
@@ -147,18 +157,50 @@ export async function guardPaymentAmount(
     correlationId?: string;
   }
 ): Promise<{ reported: string; expected: string } | null> {
-  if (grossAmount === undefined) return null;
+  // The `log` adapter's status response carries no amount at all (dev/CI only):
+  // nothing to compare, as before. Any other provider that reports none is
+  // handled below, once the session's purpose is known.
+  if (grossAmount === undefined && context.provider === "log") return null;
 
   const rows = (await tx`
     SELECT total, order_code FROM awcms_commerce_orders
     WHERE tenant_id = ${tenantId} AND id = ${orderId} AND deleted_at IS NULL
   `) as { total: string; order_code: string }[];
   const order = rows[0];
-  const expected = order ? normalizeMoney(order.total) : "";
+  const orderTotal = order ? normalizeMoney(order.total) : "";
 
-  const check = checkPaymentAmount(grossAmount, expected);
+  const sessionRows = (await tx`
+    SELECT purpose, expected_amount
+    FROM awcms_commerce_payment_gateway_sessions
+    WHERE tenant_id = ${tenantId} AND provider = ${context.provider}
+      AND provider_ref = ${context.providerRef}
+  `) as { purpose: string; expected_amount: string | null }[];
+  const session = sessionRows[0] ?? { purpose: "full", expected_amount: null };
+  const purpose = session.purpose;
+  const sessionBasis = {
+    purpose,
+    expectedAmount:
+      session.expected_amount !== null
+        ? normalizeMoney(session.expected_amount)
+        : null
+  };
+
+  // A whole-total session without a reported amount is the old behaviour
+  // (nothing to compare). A deposit/balance CREDIT, though, is only ever given
+  // against a verified matching figure: for a "paid" outcome an absent one
+  // never passes (Issue #379, control C-07 - the expected amount is the
+  // server's, the provider's report is what proves the money arrived).
+  if (
+    grossAmount === undefined &&
+    (purpose === "full" || context.status !== "paid")
+  ) {
+    return null;
+  }
+  const reported = grossAmount ?? "";
+  const check = checkSessionPaymentAmount(reported, sessionBasis, orderTotal);
   if (check.ok) return null;
 
+  const expected = check.expected;
   await recordAuditEvent(tx, {
     tenantId,
     actorTenantUserId: undefined,
@@ -166,21 +208,25 @@ export async function guardPaymentAmount(
     action: "update",
     resourceType: "order",
     resourceId: orderId,
-    message: `Payment ${context.provider} event ${context.eventKey} REJECTED: reported amount ${grossAmount} does not match order ${order?.order_code ?? orderId} total ${expected} (${check.reason}). Order NOT marked paid.`,
+    message:
+      purpose === "full"
+        ? `Payment ${context.provider} event ${context.eventKey} REJECTED: reported amount ${reported} does not match order ${order?.order_code ?? orderId} total ${expected} (${check.reason}). Order NOT marked paid.`
+        : `Payment ${context.provider} event ${context.eventKey} REJECTED: reported amount ${reported} does not match the expected ${purpose} amount ${expected} of the gateway session for order ${order?.order_code ?? orderId} (${check.reason}). Nothing credited.`,
     attributes: {
       orderCode: order?.order_code ?? null,
       provider: context.provider,
       providerRef: context.providerRef,
       eventKey: context.eventKey,
       providerStatus: context.status,
-      reportedAmount: grossAmount,
+      reportedAmount: reported,
       expectedAmount: expected,
+      ...(purpose === "full" ? {} : { sessionPurpose: purpose }),
       reason: check.reason
     },
     correlationId: context.correlationId
   });
 
-  return { reported: grossAmount, expected };
+  return { reported, expected };
 }
 
 /** Which `PaymentGatewayStatus` values move the order at all — see `domain/order-status.ts`'s header for why `failed`/`refunded` never do. */

@@ -126,6 +126,10 @@ export const POST = defineTenantRoute<CreateQuotationInput>({
       }
       return created(outcome.quotation);
     } catch (error) {
+      // tx-swallow-ok: QuotationCartError, IdempotencyRaceLostError,
+      // IdempotencyPayloadMismatchError are raised by application code before
+      // a write, or after the directory rolled its failed statement back to a
+      // savepoint, so the transaction is healthy.
       const mapped = idempotencyErrorResponse(error);
       if (mapped) return mapped;
       if (error instanceof QuotationCartError) {

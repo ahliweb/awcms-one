@@ -110,6 +110,17 @@ export const COMMERCE_REVIEW_PUBLISHED_EVENT_TYPE =
 /** Issue #285 (ADR-0025) — payment-allocation ledger events. */
 export const COMMERCE_PAYMENT_RECORDED_EVENT_TYPE =
   "awcms.commerce.payment.recorded";
+/** Issue #379 (ADR-0041 D7) — a deposit order's settlement reached its total. */
+export const COMMERCE_ORDER_SETTLED_EVENT_TYPE = "awcms.commerce.order.settled";
+/** Issue #380 (ADR-0045 G7) - the booking adapter could not reconcile an order with its reservation; an operator must look. */
+export const COMMERCE_BOOKING_ATTENTION_RAISED_EVENT_TYPE =
+  "awcms.commerce.booking_reservation_link.attention_raised";
+/** Issue #381 (ADR-0045 D8) - a booking cancellation's refund decision was recorded (amounts and the policy source; an override is flagged, never explained). */
+export const COMMERCE_BOOKING_REFUND_DECIDED_EVENT_TYPE =
+  "awcms.commerce.booking_refund.decided";
+/** Issue #382 (ADR-0045 D7) - a staff reschedule moved the order's reservation reference and carried the price difference. */
+export const COMMERCE_BOOKING_RESERVATION_RESCHEDULED_EVENT_TYPE =
+  "awcms.commerce.booking_reservation.rescheduled";
 export const COMMERCE_PAYMENT_REVERSED_EVENT_TYPE =
   "awcms.commerce.payment.reversed";
 /** Issue #284 (ADR-0028) — POS register-session events. */
@@ -188,8 +199,69 @@ export const PROCUREMENT_DOCUMENT_FINALISED_EVENT_TYPE =
 export const PROCUREMENT_DOCUMENT_REVERSED_EVENT_TYPE =
   "awcms.procurement.document.reversed";
 
+/**
+ * `whatsapp_delivery` (ADR-0133). Declared here — not imported from
+ * `whatsapp-delivery/domain/whatsapp-events.ts` — for the same reason as
+ * `inventory` above. The literals are kept identical by the AsyncAPI parity gate.
+ */
+export const WHATSAPP_EVENT_VERSION = "1.0";
+export const WHATSAPP_MESSAGE_QUEUED_EVENT_TYPE =
+  "awcms.whatsapp.message.queued";
+export const WHATSAPP_MESSAGE_SENT_EVENT_TYPE = "awcms.whatsapp.message.sent";
+export const WHATSAPP_MESSAGE_FAILED_EVENT_TYPE =
+  "awcms.whatsapp.message.failed";
+export const WHATSAPP_MESSAGE_EXPIRED_EVENT_TYPE =
+  "awcms.whatsapp.message.expired";
+export const WHATSAPP_CONSENT_GRANTED_EVENT_TYPE =
+  "awcms.whatsapp.consent.granted";
+export const WHATSAPP_CONSENT_WITHDRAWN_EVENT_TYPE =
+  "awcms.whatsapp.consent.withdrawn";
+export const WHATSAPP_DISPATCH_FAILED_EVENT_TYPE =
+  "awcms.whatsapp.dispatch.failed";
+
+/**
+ * `hr_commission` (ADR-0132, Issue #1109). Declared here -- not imported from
+ * `hr-commission/domain/hr-commission-events.ts` -- for the same reason as
+ * `inventory` above. The literals are kept identical by the AsyncAPI parity gate.
+ */
+export const HR_COMMISSION_EVENT_VERSION = "1.0";
+export const HR_COMMISSION_ACCRUAL_VOIDED_EVENT_TYPE =
+  "awcms.hr.commission.voided";
+
+/**
+ * `booking` (ADR-0131, Issue #941). Declared here -- not imported from
+ * `booking/domain/booking-reservation-events.ts` -- for the same reason as
+ * `inventory` above. The literals are kept identical by the AsyncAPI parity
+ * gate. The nine reservation events share one payload shape.
+ */
+export const BOOKING_EVENT_VERSION = "1.0";
+export const BOOKING_RESERVATION_CREATED_EVENT_TYPE =
+  "awcms.booking.reservation.created";
+export const BOOKING_RESERVATION_HELD_EVENT_TYPE =
+  "awcms.booking.reservation.held";
+export const BOOKING_RESERVATION_CONFIRMED_EVENT_TYPE =
+  "awcms.booking.reservation.confirmed";
+export const BOOKING_RESERVATION_RESCHEDULED_EVENT_TYPE =
+  "awcms.booking.reservation.rescheduled";
+export const BOOKING_RESERVATION_CANCELLED_EVENT_TYPE =
+  "awcms.booking.reservation.cancelled";
+export const BOOKING_RESERVATION_CHECKED_IN_EVENT_TYPE =
+  "awcms.booking.reservation.checked_in";
+export const BOOKING_RESERVATION_COMPLETED_EVENT_TYPE =
+  "awcms.booking.reservation.completed";
+export const BOOKING_RESERVATION_NO_SHOW_EVENT_TYPE =
+  "awcms.booking.reservation.no_show";
+export const BOOKING_RESERVATION_EXPIRED_EVENT_TYPE =
+  "awcms.booking.reservation.expired";
+
 export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
   [
+    {
+      eventType: HR_COMMISSION_ACCRUAL_VOIDED_EVENT_TYPE,
+      eventVersion: HR_COMMISSION_EVENT_VERSION,
+      description:
+        "A commission accrual was voided (a pending or approved accrual, by the HTTP void route or by the CommissionAccrualPort when the sale it came from was voided, refunded or cancelled), in the transaction that voided it. Carries opaque ids, the source TYPE, the rule key and version, the status it left and a coded reason only: never an amount, a source reference, a payment reference or a name."
+    },
     {
       eventType: SAMPLE_RECORDED_EVENT_TYPE,
       eventVersion: SAMPLE_RECORDED_EVENT_VERSION,
@@ -339,6 +411,30 @@ export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
         "A payment-allocation ledger leg became a succeeded payment against an order (an operator-recorded tender, a POS tender, an accepted manual-transfer confirmation, or a confirmed gateway leg). Producer: commerce/application/payment-allocation-directory.ts's recordPaymentAllocation / resolveGatewayAllocation, in the same transaction as the ledger write. Carries the order's resulting settlement (paid/outstanding/paymentStatus); a pending gateway leg and the sql/943 backfill do not fire it."
     },
     {
+      eventType: COMMERCE_ORDER_SETTLED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "Settlement of a deposit order (payment_method dp, dp_amount below the total) reached the total (Issue #379, ADR-0041 D7). Producer: commerce/application/payment-allocation-directory.ts's finalizeSettlement, in the same transaction as the ledger write that made the outstanding amount zero. Fires for a deposit order only: order.paid fires for it at the deposit, so this is the fact that says it is fully paid, and the loyalty earner reacts to it. A whole-total order fires none. Carries orderId, orderCode, total, deposit and settledAt - never a customer name/phone or a payment reference."
+    },
+    {
+      eventType: COMMERCE_BOOKING_ATTENTION_RAISED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "The booking adapter could not reconcile an order with its Booking reservation on its own (Issue #380, ADR-0045 G7, threat controls C-08/C-09): a deposit settled after the hold lapsed (deposit_after_expiry), the confirmation was refused (confirm_failed), or the reservation was cancelled or moved outside the adapter while the order holds money (cancelled_externally_paid, rescheduled_externally). Producer: commerce/application/booking-attention.ts's raiseBookingAttention, in the same transaction as the flag on the reservation link; fired once per open flag. Aggregate: the order. Carries orderId, reservationId and the closed reason code - never a customer name/phone, an amount or a payment reference."
+    },
+    {
+      eventType: COMMERCE_BOOKING_REFUND_DECIDED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A booking cancellation's or no-show's refund decision was recorded (Issue #381 and #382, ADR-0045 D8/D15, threat controls C-10/C-40/C-41): the policy source, the amount paid, the policy-computed refund, the final refund and whether a manager or finance override made them differ; for a no-show (triggerKind no_show) the refunds are zero and retainedAmount is what the policy version retained. Producers: commerce/application/booking-cancellation.ts's cancelBookingReservation and booking-no-show.ts's recordBookingNoShow, in the same transaction as the decision row, the released reservation link and - for a positive cancellation refund - the pending refund legs. Aggregate: the order. Payload: decisionId, orderId, reservationId, triggerKind, policySource, amountPaid, computedRefund, finalRefund, overridden, and retainedAmount (no-show only) - never a customer name/phone, a payment reference, the override reason or the actor."
+    },
+    {
+      eventType: COMMERCE_BOOKING_RESERVATION_RESCHEDULED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A staff member rescheduled a booking reservation through the adapter (Issue #382, ADR-0045 D7, threat controls C-37 to C-39): the order now points at the replacement reservation and the price difference was carried as a supplementary order (more nights), a policy-limited refund return (fewer nights) or not at all. Producer: commerce/application/booking-reschedule.ts's rescheduleBookingReservation, in the same transaction as the reschedule record and the moved reservation link. Aggregate: the order. Payload: rescheduleId, orderId, fromReservationId, toReservationId, fromNights, toNights, direction, pricedAmount, refundAmount, supplementOrderId, returnId - never a customer name/phone, a payment reference or the actor."
+    },
+    {
       eventType: COMMERCE_PAYMENT_REVERSED_EVENT_TYPE,
       eventVersion: COMMERCE_EVENT_VERSION,
       description:
@@ -475,6 +571,102 @@ export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
       eventVersion: PROCUREMENT_EVENT_VERSION,
       description:
         "A finalised procurement document was reversed: compensating inventory movements were posted and the document marked reversed, in one transaction. Same payload shape as document.finalised."
+    },
+    {
+      eventType: WHATSAPP_MESSAGE_QUEUED_EVENT_TYPE,
+      eventVersion: WHATSAPP_EVENT_VERSION,
+      description:
+        "A message was accepted into the WhatsApp outbox, in the same transaction as the caller's fact. Carries the message id, template key, purpose and the masked recipient only — never a phone number, body or variable."
+    },
+    {
+      eventType: WHATSAPP_MESSAGE_SENT_EVENT_TYPE,
+      eventVersion: WHATSAPP_EVENT_VERSION,
+      description:
+        "The provider accepted the WhatsApp message. Same payload shape as message.queued."
+    },
+    {
+      eventType: WHATSAPP_MESSAGE_FAILED_EVENT_TYPE,
+      eventVersion: WHATSAPP_EVENT_VERSION,
+      description:
+        "A WhatsApp message reached a terminal failure; carries a coarse failureCode. Same payload shape as message.queued."
+    },
+    {
+      eventType: WHATSAPP_MESSAGE_EXPIRED_EVENT_TYPE,
+      eventVersion: WHATSAPP_EVENT_VERSION,
+      description:
+        "A WhatsApp message passed its expiry before it was sent and was not retried late. Same payload shape as message.queued."
+    },
+    {
+      eventType: WHATSAPP_CONSENT_GRANTED_EVENT_TYPE,
+      eventVersion: WHATSAPP_EVENT_VERSION,
+      description:
+        "A recipient's WhatsApp marketing consent was recorded. Carries the consent id, purpose and the masked recipient only."
+    },
+    {
+      eventType: WHATSAPP_CONSENT_WITHDRAWN_EVENT_TYPE,
+      eventVersion: WHATSAPP_EVENT_VERSION,
+      description:
+        "A recipient's WhatsApp marketing consent was withdrawn; their waiting marketing messages were cancelled in the same transaction. Same payload shape as consent.granted."
+    },
+    {
+      eventType: WHATSAPP_DISPATCH_FAILED_EVENT_TYPE,
+      eventVersion: WHATSAPP_EVENT_VERSION,
+      description:
+        "A WhatsApp dispatcher pass failed as a whole (job level, not one message). Carries a coarse failureCode and the failure instant."
+    },
+    {
+      eventType: BOOKING_RESERVATION_CREATED_EVENT_TYPE,
+      eventVersion: BOOKING_EVENT_VERSION,
+      description:
+        "A reservation exists: held, or confirmed when the offering confirms immediately. Carries ids, the interval, resources, offerings, party size and the adapter's opaque external reference; never a customer reference, note, reason or amount."
+    },
+    {
+      eventType: BOOKING_RESERVATION_HELD_EVENT_TYPE,
+      eventVersion: BOOKING_EVENT_VERSION,
+      description:
+        "A hold was placed (not emitted when the offering confirms immediately). Same payload shape as reservation.created."
+    },
+    {
+      eventType: BOOKING_RESERVATION_CONFIRMED_EVENT_TYPE,
+      eventVersion: BOOKING_EVENT_VERSION,
+      description:
+        "A hold became confirmed, or a reservation was created already confirmed (an immediate offering, or the replacement of a reschedule). Same payload shape as reservation.created."
+    },
+    {
+      eventType: BOOKING_RESERVATION_RESCHEDULED_EVENT_TYPE,
+      eventVersion: BOOKING_EVENT_VERSION,
+      description:
+        "A confirmed reservation was superseded by a replacement in one transaction; carries supersededById. The replacement announces itself with created and confirmed, naming rescheduledFromId."
+    },
+    {
+      eventType: BOOKING_RESERVATION_CANCELLED_EVENT_TYPE,
+      eventVersion: BOOKING_EVENT_VERSION,
+      description:
+        "A held or confirmed reservation was cancelled and its allocations released; carries lateCancellation. Same payload shape as reservation.created."
+    },
+    {
+      eventType: BOOKING_RESERVATION_CHECKED_IN_EVENT_TYPE,
+      eventVersion: BOOKING_EVENT_VERSION,
+      description:
+        "A confirmed reservation was checked in. Same payload shape as reservation.created."
+    },
+    {
+      eventType: BOOKING_RESERVATION_COMPLETED_EVENT_TYPE,
+      eventVersion: BOOKING_EVENT_VERSION,
+      description:
+        "A checked-in reservation was completed (checked out). Same payload shape as reservation.created."
+    },
+    {
+      eventType: BOOKING_RESERVATION_NO_SHOW_EVENT_TYPE,
+      eventVersion: BOOKING_EVENT_VERSION,
+      description:
+        "A confirmed reservation was marked no-show by a person after its start plus the grace. Same payload shape as reservation.created."
+    },
+    {
+      eventType: BOOKING_RESERVATION_EXPIRED_EVENT_TYPE,
+      eventVersion: BOOKING_EVENT_VERSION,
+      description:
+        "A hold expired, found by the sweep job or reclaimed by a claim that wanted its units, and its allocations were released. Same payload shape as reservation.created."
     }
   ];
 

@@ -17,6 +17,10 @@ When the derived product discovers a missing capability:
 
 This ownership rule is normative; see [ADR-0024](adr/0024-awcms-one-is-template-only-derived-apps-own-their-backend.md).
 
+## Persona apps (Lynx) are separate repositories
+
+A derived product that wants customer, courier, driver, partner or warehouse apps builds them in **separate repositories** against its own backend's documented API; they are not added to this workspace, to `apps/storefront` or to `apps/cms` (ADR-0024). LynxJS/ReactLynx is the preferred candidate, gated by a consumer-side PoC; the admin and every public profile stay Astro. The direction is approved, **Lynx integration is not implemented** in this template. See [ADR-0050](adr/0050-lynxjs-for-separate-persona-apps-astro-stays-for-admin-and-public-profiles.md).
+
 ## Memulai dari template (starting from the template)
 
 1. **Use this template.** Click "Use this template" on `ahliweb/awcms-one` (the GitHub *template repository* flag is on) to create a new, historyless repository — not a fork. Clone it.
@@ -144,11 +148,14 @@ Every file under `apps/storefront/src/pages/**` belongs to exactly one group. Th
 | `akun/index.astro` | toko | Commerce account dashboard shell |
 | `akun/pesanan.astro` | toko | Commerce order history |
 | `akun/pesan.astro` | toko | Commerce customer-inbox thread |
+| `akun/reservasi.astro` | toko | Signed-in shopper's own booking reservations (issue #386) |
 | `akun/ulasan.astro` | toko | Commerce product reviews |
 | `arsip/[yyyy]/[mm].astro` | berita | News monthly archive |
 | `berita/feed.xml.ts` | berita | News RSS feed (posts) |
 | `berita/index.astro` | berita | News front page |
 | `berita/[slug].astro` | berita | News article |
+| `booking/index.astro` | toko | Booking stay search, availability and server quote (issue #386) |
+| `booking/pesan.astro` | toko | Booking hold, countdown and payment handoff (issue #386) |
 | `buletin/index.astro` | berita | Newsletter subscribe page |
 | `cari.astro` | toko | Product search (builds from `/index/produk.json`) |
 | `cari-berita.astro` | berita | News search |
@@ -170,6 +177,8 @@ Every file under `apps/storefront/src/pages/**` belongs to exactly one group. Th
 | `keranjang.astro` | toko | Commerce cart |
 | `kontak.astro` | shared | Every profile needs a contact page |
 | `manifest.webmanifest.ts` | shared | Every profile is an installable site |
+| `apple-touch-icon.png.ts` | shared | Every profile has its own generated PNG app icons |
+| `icons/[name].png.ts` | shared | Every profile has its own generated PNG app icons |
 | `masuk.astro` | toko | Commerce customer sign-in |
 | `mitra/[slug].astro` | berita | The institution/"Mitra" directory — a news partnership feature, not a commerce one (see ADR-0018's own edge-case note) |
 | `newsletter/confirm.astro` | berita | Newsletter double opt-in confirm |
@@ -191,7 +200,7 @@ Every file under `apps/storefront/src/pages/**` belongs to exactly one group. Th
 | `video/[slug].astro` | berita | News video article |
 | `wishlist.astro` | toko | Commerce wishlist |
 
-**Totals:** shared 10, `toko` 23, `berita` 19 (52 total).
+**Totals:** shared 10, `toko` 26, `berita` 19 (55 total).
 
 ### Navigation, sitemap, feeds, robots, CSP, and fixtures per profile
 
@@ -201,9 +210,19 @@ Every file under `apps/storefront/src/pages/**` belongs to exactly one group. Th
 | **Footer legal links** | Shopping guide, privacy, terms, editorial, media guidelines, disclaimer | Editorial, media guidelines, disclaimer, privacy, terms | Privacy, terms only |
 | **Sitemap sources** | All: `static-routes`, `static-pages`, `katalog-produk`, `katalog-kategori`, `katalog-product-detail`, `berita-front`, `berita-posts`, `berita-video`, `berita-rubrik`, `berita-daerah`, `berita-mitra`, `berita-tag` | `static-routes`, `static-pages`, and every `berita-*` source | `static-routes`, `static-pages` only |
 | **Feeds** | Product feed + news posts feed + rubric feeds | News posts feed + rubric feeds | None |
-| **Robots rules** | Disallows commerce per-visitor paths (`/keranjang`, `/checkout`, `/pesanan`, `/wishlist`, `/cari`, `/masuk`, `/daftar`, `/akun`) plus `/newsletter/*`, `/api/` | Disallows `/newsletter/*`, `/api/` | Disallows `/api/` only |
-| **CSP `form-action`/`connect-src`** | `form-action 'self'`, `connect-src` widened to `PUBLIC_AWCMS_ORIGIN` (checkout/cart) | `form-action 'self'` only | `form-action 'self'` only |
+| **Robots rules** | Disallows commerce per-visitor paths (`/keranjang`, `/checkout`, `/pesanan`, `/wishlist`, `/cari`, `/masuk`, `/daftar`, `/akun`, `/booking`) plus `/newsletter/*`, `/api/` | Disallows `/newsletter/*`, `/api/` | Disallows `/api/` only |
+| **CSP `form-action`/`connect-src`** | `form-action 'self'`, `connect-src` widened to `PUBLIC_AWCMS_ORIGIN` (checkout/cart, and the booking pages, which add no further origin) | `form-action 'self'` only | `form-action 'self'` only |
 | **Stub-CMS fixtures needed** | Every commerce fixture plus every news fixture (the hybrid build needs both) | `blog-posts.json`, `blog-terms.json`, `blog-institutions.json`, `blog-pages-public*.json`, `seo-redirects-legacy.json`, `regions-kalteng.json`, `ad-placements-active.json`, `analytics-pages.json` | `blog-pages-public*.json`, `store-settings-public.json`, `media-objects.json`/`media-public-origin.json`; no commerce or news-specific fixture |
+
+### Install metadata (manifest, icons, iOS Home Screen)
+
+Identical for all three profiles, and derived rather than rewritten ([ADR-0049](adr/0049-install-metadata-is-derived-at-build-time-and-the-ios-help-page-is-opt-in.md), issue [#428](https://github.com/ahliweb/awcms-one/issues/428)):
+
+- **`/manifest.webmanifest`** has a stable `id` (`/`), `scope` and `start_url` (`/`), `display: standalone`, a `name` from the site identity, a `short_name` of at most 12 characters, and a `categories` hint per profile (`toko` shopping, `berita` news, `landing` business).
+- **PNG icons** (`/icons/icon-192.png`, `/icons/icon-512.png`, `/icons/icon-maskable-512.png`, `/apple-touch-icon.png`) are generated at build time from the first letter of `SITE_NAME` and the theme primary colour. Both are already on `template:init`'s "What it rewrites" list (`DEFAULT_IDENTITY`, `DEFAULT_THEME_COLORS`), so **init needs no new rewrite target and there is no BjekMart icon file to forget**. To use real artwork, replace the endpoints under `apps/storefront/src/pages/icons/` and `apple-touch-icon.png.ts`.
+- **iOS metadata** (`apple-touch-icon`, `apple-mobile-web-app-*`, `mobile-web-app-capable`, `theme-color`) is static markup in `BaseLayout.astro`.
+- **`/pasang-aplikasi`** is an optional "Add to Home Screen on iPhone" help page, **off by default**. Set `PUBLIC_INSTALL_HELP=1` (also `true`, `on`, `yes`) at build time to add the route, a footer link and one same-origin script that detects standalone mode. Off, none of it exists (no route, link, script or sitemap entry) and the CSP is the same either way. The page never asks for a notification permission and states that a browser tab cannot receive notifications once closed.
+- The manifest and icons live on the **storefront** origin. The storefront registers no service worker; the CMS keeps its own admin PWA and `/push-sw.js` on its own origin. Push subscription is out of scope here.
 
 ## Sample seeds
 

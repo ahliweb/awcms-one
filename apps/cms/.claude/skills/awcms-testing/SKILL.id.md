@@ -5,7 +5,7 @@ description: Tulis test AWCMS sesuai strategi berlapis (unit, integration, API c
 
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](SKILL.md)
 
-<!-- i18n-source-hash: sha256:d8be19eb59a591388ee73286ad8799ddbdaacb6ef3a7d75f300e0195c5a835a0 -->
+<!-- i18n-source-hash: sha256:af9d4dabfa7c2d31c39640c92465e68796eaf760a2d94f92c1984248fb68a4f5 -->
 
 > **TITIK BUTA YANG WAJIB DIKETAHUI — `.astro` tidak diperiksa tipe sama
 > sekali.** `bun run typecheck` adalah `tsc --noEmit`, dan `tsc` **tidak bisa
@@ -114,7 +114,21 @@ role` (42501) — **bukan** skip, jadi mudah disalahartikan sebagai regresi.
    (`tests/integration/`) lalu legacy ad-hoc (9 berkas `*-postgres.test.ts` dan
    kawan-kawan).
 
+**Atau serahkan semuanya ke runner: `bun run ci:local --job integration`** (dan
+`--job e2e` untuk suite browser). Ia mengambil connection string superuser dari
+`CI_LOCAL_DATABASE_URL` (fallback ke `DATABASE_URL`), membuat database
+sementara, menjalankan step workflow yang persis sama berurutan — migrate, suite
+harness, lalu daftar berkas legacy — mem-pin `DATABASE_URL`/`SETUP_DATABASE_URL`/
+`WORKER_DATABASE_URL` agar nilai `.env` tidak bisa membelah database, dan
+menghapus database itu sesudahnya. Tanpa URL database ia melaporkan job sebagai
+`SKIPPED (alasan)` dengan exit code bukan nol — tidak pernah sebagai lulus. Pakai
+server Postgres tersendiri: harness membalik role tingkat-cluster
+`awcms_app`/`awcms_worker`, sehingga dua run di satu server saling mengganggu.
+Rujukan: [`docs/awcms/ci-local.md`](../../../docs/awcms/ci-local.md).
+
 ## Aturan
 
+- Sebelum PR: `bun run check` penuh, lalu `bun run ci:local` untuk job CI yang tidak dicakup `check` (hygiene, kebijakan changeset, integrasi DB-gated, lantai Bun 1.3.0, E2E). Job `SKIPPED` belum terverifikasi, bukan hijau. Required checks GitHub (ruleset `11653326`) tetap yang menentukan merge.
 - Setiap fitur baru minimal punya unit test logic + satu integration/contract test.
 - Test tenant-scoped memakai tenant context; jangan bergantung data global.
+- **Jalur duplicate-key / FK diuji lewat commit yang ASLI** (Issue #1099). Jalankan lewat `withTenantOrThrow(getRuntimeSql(), …)` (atau `sql.begin`) lalu baca ulang databasenya: menegaskan hanya "dapat `DuplicateXError`" lulus di Bun 1.4.2 maupun 1.4.3 dan tidak membuktikan apa-apa, karena bedanya adalah apakah `COMMIT` di sekitarnya melempar `ERR_POSTGRES_COMMIT_ROLLED_BACK`. Tegaskan juga kontrak savepoint-nya: penulisan saudara dalam transaction yang sama sebelum statement gagal ter-commit, dan transaction masih bisa dipakai sesudahnya. Pola: `tests/integration/transaction-savepoints.integration.test.ts`. `tx` palsu untuk unit test butuh `savepoint(fn)` yang memanggil `fn(tx)`. Sisi statisnya `tests/transaction-swallow-check.test.ts` (`bun run db:transaction-swallow:check`); pengecualian baru yang sudah ditinjau berupa komentar `// tx-swallow-ok: <alasan>`, bukan perubahan test.

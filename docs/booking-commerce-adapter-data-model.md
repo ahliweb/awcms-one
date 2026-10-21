@@ -4,7 +4,7 @@
 
 DoR artifact 4 of epic [#280](https://github.com/ahliweb/awcms-one/issues/280), work item W5 ([#356](https://github.com/ahliweb/awcms-one/issues/356)), tracked in [`aw-business-platform-dor.md`](aw-business-platform-dor.md). It extends [`skema-basis-data.md`](skema-basis-data.md) and [`kamus-data.md`](kamus-data.md) with the `awcms_commerce_*` tables the booking-commerce adapter would add, and settles cross-spec finding X7: **the customer is derived through the linked order, never stored on the adapter.**
 
-> **Proposals only. Nothing here exists.** No migration, table, route, OpenAPI path or code is added by this document ([ADR-0040](adr/0040-aw-business-platform-capability-ownership-and-boundaries.md) D7). Table and column names are proposals that a migration review may adjust, exactly as the upstream Booking pack says of its own ERD. Migration numbers are **not allocated here**: every table below takes the next free commerce number from `sql/1001` onward per [ADR-0037](adr/0037-the-commerce-migration-band-is-allocated-gap-first-and-widened-upstream.md), allocated at implementation, in dependency order. Do not read this page as describing the current schema; [`status.md`](status.md) and the files under `apps/cms/sql/` do that.
+> **Implemented by [issue #378](https://github.com/ahliweb/awcms-one/issues/378) (`sql/1035`–`1040`); read section 9 for where the tables differ from this proposal.** The six tables, the offering-link and deposit-policy routes and the service-account setting exist; the reservation, cancellation, refund and override _behaviour_ (hold-to-order, consumers, quote, refunds, screens) does not, and arrives with the issues after #378 (ADR-0040 D7 still holds for those). The text below is the original specification and stays the design reference; section 9 lists every deviation. The current schema is described by [`skema-basis-data.md`](skema-basis-data.md), [`status.md`](status.md) and the files under `apps/cms/sql/`.
 
 ## 1. Inputs and the rules they fix
 
@@ -121,7 +121,7 @@ Conventions, inherited from [`skema-basis-data.md`](skema-basis-data.md) and the
 - No actor-stamp noise: an actor column appears only where the fact is the actor (an override, a decision).
 - Every table opts into `dataLifecycle` and is `unreachableBySubject` / `retain_under_obligation` like the other commerce tables; none stores a name, contact or free-text note about a person (section 6).
 
-### 4.1 `awcms_commerce_booking_offering_links` (proposal)
+### 4.1 `awcms_commerce_booking_offering_links` (implemented, see section 9)
 
 The link from a Booking offering to a commerce product (PRD A1). A reference, not a merge: neither side's row is changed (ADR-0040 D5.8).
 
@@ -140,7 +140,23 @@ The link from a Booking offering to a commerce product (PRD A1). A reference, no
 **RLS:** generic. No `DELETE` for the app role; an unlink is a status change, so the history of what was sold as what survives.
 **Not here:** no price, no deposit, no policy. Price lives on the product (Q1), deposit on its policy row.
 
-### 4.2 `awcms_commerce_booking_reservation_links` (proposal)
+### 4.1a `awcms_commerce_booking_offering_link_resources` (issue #437)
+
+Which Booking resource(s) an offering link sells. A Booking offering does not fix a resource, so a tenant that sells several room types from separate resources of one booking mode needs the link to say which room type each offering is.
+
+| Column             | Type          | Null | Constraint / note                                                                                                         |
+| ------------------ | ------------- | ---- | ------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | `uuid`        | no   | PK                                                                                                                        |
+| `tenant_id`        | `uuid`        | no   | FK `awcms_tenants`                                                                                                        |
+| `offering_link_id` | `uuid`        | no   | Composite FK `(tenant_id, offering_link_id)` to the offering link                                                         |
+| `resource_id`      | `uuid`        | no   | Composite FK `(tenant_id, resource_id)` to `awcms_booking_resources`; `UNIQUE (tenant_id, offering_link_id, resource_id)` |
+| `sort_order`       | `integer`     | no   | `CHECK BETWEEN 0 AND 1000`; the storefront lists the resources in this order, at most ten per link                        |
+| `created_at`       | `timestamptz` | no   | `DEFAULT now()`                                                                                                           |
+| `deleted_at`       | `timestamptz` | yes  | Retention cursor only; this module never sets it                                                                          |
+
+**Why a child table and not a nullable `resource_id` on the link:** the link table is frozen by its guard trigger (identity, offering, product and basis never change, and reservation links point at the row for good); a column would either loosen that guard or be write-once, and one offering often sells more than one room. **Semantics (M9):** a link with no row keeps the fallback (every active resource of the offering's booking mode); a link with rows sells only those, and a bound link whose resources are all inactive is not sold, never the whole pool. **Written once with an active link:** `awcms_app` has no `UPDATE` or `DELETE`, a trigger refuses an update and a row on an unlinked link; to change a binding, unlink and link again. **RLS:** generic, FORCE. The server proves the client's ids (the tenant's own, active, of the mode the offering's granularity needs) before inserting.
+
+### 4.2 `awcms_commerce_booking_reservation_links` (implemented, see section 9)
 
 The reservation-to-order reference pair (PRD A2, A3, A6, A8). It is the only place the two contexts meet in data. It holds **identifiers and a lifecycle flag, nothing else**.
 
@@ -164,7 +180,7 @@ The reservation-to-order reference pair (PRD A2, A3, A6, A8). It is the only pla
 **Mutability:** only `status`, `attention_*` and `updated_at` change, by trigger; every other column is a frozen fact.
 **What it deliberately omits:** price, deposit, payment status, balance, customer id, name, contact, party size, dates. Dates and party size are Booking's; money is the order's and the allocation ledger's. A reader joins; the adapter never copies (ADR-0040 D5.9, threat control C-09 reconciles the two).
 
-### 4.3 `awcms_commerce_product_deposit_policies` (proposal)
+### 4.3 `awcms_commerce_product_deposit_policies` (implemented, see section 9)
 
 Per-product deposit policy (ADR-0041 D4, Q2). **A product without a row is paid in full. There is no tenant default row, setting or fallback.**
 
@@ -181,7 +197,7 @@ Per-product deposit policy (ADR-0041 D4, Q2). **A product without a row is paid 
 A cross-field CHECK ties `kind` to exactly one of `percent`/`fixed_amount`. **The policy is read when an order is created and the result is snapshotted on the order as the existing `dp_amount`** (the release threshold of ADR-0025 D3); a later edit of this table never alters an existing order, so the table needs no versioning and `updated_at` plus the audit log are the history. A product whose `allow_dp` flag (existing column) is false but which has a policy row is a configuration error to be refused by the admin write path; reconciling `allow_dp` with this table is an implementation question (section 7).
 **RLS:** generic.
 
-### 4.4 `awcms_commerce_cancellation_policies` and `awcms_commerce_cancellation_policy_windows` (proposal)
+### 4.4 `awcms_commerce_cancellation_policies` and `awcms_commerce_cancellation_policy_windows` (implemented, see section 9)
 
 Cancellation refund policy (PRD A5, A7; Q9). A policy is **versioned and immutable once active**: a change is a new version, so a refund decision can always name the exact rules it applied.
 
@@ -213,7 +229,7 @@ Windows are evaluated greatest `min_hours_before_start` first and the first matc
 **Resolution order** at decision time: the product's active policy, else the tenant default's active policy, else **none**: refundable share 0 and `policy_source = 'none'` on the decision, with a manager override (4.5) available. The hours are measured against the reservation's arrival instant from Booking (stay: the derived `checkInAt`), in whole hours floored, so the Asia/Jakarta calendar never enters the arithmetic.
 **RLS:** generic on both tables. The refund _amount_ is never taken from the request: it is computed on the server from these rows and the allocation ledger (threat control C-10).
 
-### 4.5 `awcms_commerce_booking_refund_decisions` (proposal)
+### 4.5 `awcms_commerce_booking_refund_decisions` (implemented, see section 9)
 
 One record per cancellation or no-show: the policy-computed refund, any override, and the link to the refund legs (PRD A5, A7; Q10; controls C-10, C-11). It is the evidence for "why was this amount refunded". It **does not move money**: money moves only through the existing return and refund legs (ADR-0033) and the allocation ledger (ADR-0025).
 
@@ -260,7 +276,7 @@ This follows from three accepted decisions: O12 (commerce stays the customer aut
 
 1. **Booking events and rows carry no customer.** The adapter does not put a commerce customer id into Booking's `external_customer_ref`; it leaves it unset (section 7 for the one case where this might change). Booking's customer-facing needs (own reservations) are answered by the adapter through the order.
 2. **"My reservations"** for a signed-in shopper is the shopper's own orders joined to active links, over the existing bearer-session route family ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) D3); a guest checks by the order's own access mechanism, not by a customer id.
-3. **Retention and booking-derived segment rules** (metrics section 6, PRD 6.1) read orders joined to links. A reservation with **no link** (created by staff with no commerce sale) has no derivable customer and shows as "unlinked" in those reports; it does not enter retention or booking-derived segments. Metrics Q7 already says this; whether staff-only reservations should count is an owner decision the model does not pre-empt.
+3. **Retention and booking-derived segment rules** (metrics section 6, PRD 6.1) read orders joined to links. A reservation with **no link** (created by staff with no commerce sale) has no derivable customer and shows as "unlinked" in those reports; it does not enter retention or booking-derived segments. Metrics Q7 already says this; whether staff-only reservations should count is an owner decision the model does not pre-empt. Built by [#389](https://github.com/ahliweb/awcms-one/issues/389) (`sql/1047`): a paid order carrying an active-or-released link is ONE booking event for the retention cohort, and the booking-sourced revenue rows are keyed by that order.
 4. **Erasure and anonymisation follow commerce.** Severing the customer at the commerce authority is sufficient: the adapter tables hold nothing to scrub, and Booking severs its own opaque reference and note per its data-subject answers.
 5. **A repeat customer across two orders** is two links to two orders; the join is by the order's `customer_id`. There is no booking-side customer key to reconcile.
 
@@ -280,7 +296,7 @@ This follows from three accepted decisions: O12 (commerce stays the customer aut
 
 ## 7. Open points: resolved by the adapter ADR
 
-**Resolved by [ADR-0045](adr/0045-booking-commerce-adapter.md) (11 October 2026).** This page stays a proposal; the answers below change the proposal as stated and are applied by the implementation issues, not here.
+**Resolved by [ADR-0045](adr/0045-booking-commerce-adapter.md) (11 October 2026).** The answers below change the proposal as stated and are applied by the implementation issues (issue #378 applied D1, D2, D5 and the open points it owns; section 9).
 
 | #   | Open point                              | Resolution                                                                                                                                                                               |
 | --- | --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -296,3 +312,60 @@ This follows from three accepted decisions: O12 (commerce stays the customer aut
 ## 8. What this document is not
 
 It is not a migration, an OpenAPI draft (that is W7, [#358](https://github.com/ahliweb/awcms-one/issues/358)), a permission matrix (W6, [#357](https://github.com/ahliweb/awcms-one/issues/357)), or a UX specification (W8, [#359](https://github.com/ahliweb/awcms-one/issues/359)). It does not change [ADR-0041](adr/0041-gateway-deposit-sessions-and-mixed-tenders-on-one-order.md): the session columns `purpose` and `expected_amount` and their freeze trigger are specified there and are not repeated as adapter tables.
+
+## 9. Implementation notes (issue #378)
+
+Implemented in `sql/1035` (offering and reservation links), `sql/1036` (deposit policy), `sql/1037` (cancellation policy and windows), `sql/1038` (refund decisions), `sql/1039` (the five permission keys that have a route) and `sql/1040` (the service-account column, worker grants and one `search_path` pin). The deviations from the specification above, each deliberate:
+
+| #   | Section | Specification said                                                                | Implemented                                                                                                                                                                                                                                                                                                                    |
+| --- | ------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1   | 4.3     | `UNIQUE (tenant_id, product_id)`; "removing the row is an update to full payment" | `awcms_app` has no `DELETE` on any adapter table, so removal is a **retirement**: `retired_at`, and the uniqueness is a partial unique index on the active row. A retired row is frozen; a later policy is a new row                                                                                                           |
+| 2   | 4.2     | columns as listed                                                                 | adds `request_hash` (ADR-0045 G5: the same `client_key` with a different request is a conflict) and `deleted_at` (the retention engine's cursor, never set by this module). Every adapter table carries `deleted_at` or, for the append-only decision, uses `created_at` as its cursor                                         |
+| 3   | 4.2     | `attention_reason IN ('deposit_after_expiry','confirm_failed')`                   | the superset `deposit_after_expiry`, `confirm_failed`, `rescheduled_externally`, `cancelled_externally_paid` (G7), so no later issue widens the CHECK. The reason stays after it is resolved; a new flag can be raised only when none is open                                                                                  |
+| 4   | 4.1     | `product_id` "must be `type = 'service'`, checked in the application"             | checked in the application **and** by an insert trigger (a CHECK cannot read another table, a trigger can). The offering's `quantity_basis`/granularity agreement and the `confirmation_mode` rule (G9, `OFFERING_NOT_LINKABLE`) are application checks, because the only way to read them is Booking's table (see 6)          |
+| 5   | 4.5     | `return_id` set once                                                              | a trigger freezes every column but `return_id`, and `awcms_app` holds a column grant `UPDATE (return_id)` only. The returns `kind = 'cancellation'` CHECK widening (D4) is **not** in this issue; it belongs with the refund-leg issue                                                                                         |
+| 6   | 4.1     | "Booking is read through its port"                                                | `BookingPort` has no offering read (needs upstream port U1). The one read is a `SELECT` of `granularity`, `confirmation_mode` and `status` from `awcms_booking_service_offerings`, tenant-scoped, in `application/booking-offering-links.ts`; commerce imports nothing from the `booking` module and writes none of its tables |
+| 7   | 7.2     | a one-time backfill of `allow_dp`                                                 | none ran: no policy row existed before `sql/1036` and none is invented (G10). A product with `allow_dp = true` and no row keeps the store-wide down-payment rule; the write path keeps the flag in step from now on                                                                                                            |
+| 8   | 4.4     | tenant default and product policies                                               | as specified; additionally a window can only be added while the policy is a draft, the windows table is insert-only for `awcms_app`, and activation is refused unless the refundable share never increases as notice shrinks                                                                                                   |
+| 9   | 4.1     | the link carries no resource (Issue #378)                                         | Issue #437 adds the child table `awcms_commerce_booking_offering_link_resources` (`sql/1050`, section 4.1a) rather than a column on the link: the link's guard trigger keeps it frozen, and one offering can sell several resources. No row keeps the #386 fallback                                                            |
+
+Also new, not in the specification: the `booking` commerce feature (default OFF), the per-tenant service-account user `awcms_commerce_store_settings.booking_service_tenant_user_id` (G3), and the customer-derivation reads in `application/booking-reservation-links.ts` that the two-customers-one-tenant test exercises.
+
+## 10. Implementation notes (issue #381)
+
+Implemented in `sql/1043` (schema) and `sql/1044` (seven permission keys). Deviations from sections 4.4, 4.5 and 9:
+
+| #   | Section | Specification said                                                     | Implemented                                                                                                                                                                                                                                                            |
+| --- | ------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | 4.5     | decisions identified by `UNIQUE (tenant_id, reservation_link_id)` only | adds `client_key` and `request_hash` (a pair CHECK and a unique partial index): the same key replays, the same key with another request conflicts. The key is `bc1:<hash of the party>:<hash of the Idempotency-Key>`; the party is hashed so no customer id is stored |
+| 2   | 4.4     | a policy carries its state and version                                 | adds `created_by_tenant_user_id` and `approved_by_tenant_user_id` (composite FKs, indexed). The guard function freezes the author and sets the approver once, at draft to active. Author is not equal to approver is a tenant SoD rule, not a constraint               |
+| 3   | 4.4     | the policy "applies" to a booking                                      | no snapshot column: the version is resolved AS OF the creation of the root link of the reschedule chain (`activated_at <= created_at AND (retired_at IS NULL OR retired_at > created_at)`, the product before the tenant default, else `none`)                         |
+| 4   | 3.x     | returns `kind` is `refund`, `exchange`, `return`                       | `kind` also admits `cancellation`; return lines admit reason `booking_cancelled` and disposition `not_applicable`; the daily returns projection bucket CHECK admits the same. The client-facing validators keep the closed lists                                       |
+| 5   | 4.5     | `return_id` set once                                                   | unchanged; set in the same transaction as the decision by the system actor (the service-account user)                                                                                                                                                                  |
+
+The standalone override route of the contracts draft (3.6) is not built: the override is an inline parameter of the staff cancel (ADR-0045 D8), and the error code for an override above what was paid is `REFUND_EXCEEDS_PAID`.
+
+## 11. Implementation notes (issue #382)
+
+Implemented in `sql/1045` (one migration: a table, two columns' worth of no-show evidence, a re-issued guard, one permission key, one worker grant). Deviations from sections 4.4, 4.5, 7.4 and 9:
+
+| #   | Section | Specification said                                                                   | Implemented                                                                                                                                                                                                                                                                                                                                                                                           |
+| --- | ------- | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | 7.4     | a reschedule "stores no price difference (Q4)"; only the links change                | the links change as specified, and a new append-only table `awcms_commerce_booking_reschedules` records the evidence: both links, the night counts, the direction (`none`, `charge`, `refund`), the priced and refund amounts in `numeric(14,2)`, the supplementary order and the return, the policy evidence of a refund, the staff actor, `client_key` and `request_hash`. It moves no money itself |
+| 2   | 7.4     | one link role (`primary`, `supplement`) deferred                                     | not built: the supplementary order is an ordinary order that carries no reservation link, so the link table is unchanged                                                                                                                                                                                                                                                                              |
+| 3   | 4.5     | a no-show decision "may have a negative `hours_before_start`", amounts as a cancel's | `awcms_commerce_booking_refund_decisions` gains `retained_amount` (set for `trigger_kind = 'no_show'`, null otherwise). A CHECK keeps a no-show decision's computed and final refund at zero and its retained amount between zero and the amount paid; the guard function (re-issued, `search_path` pinned) also refuses to give a no-show decision a `return_id`                                     |
+| 4   | 3.x     | the reschedule key is proposed                                                       | `commerce.booking_reservation_links.update` is seeded in the same migration as the table, with the route that enforces it                                                                                                                                                                                                                                                                             |
+
+Constraints worth knowing (the table's own, not the application's): `UNIQUE (tenant_id, from_link_id)` and `(tenant_id, to_link_id)` make a link superseded once and created once; a supplementary order exactly for a charge and a return exactly for a positive refund; a refund never above the price of the nights removed; the policy evidence exactly for a refund. A trigger refuses every `UPDATE`; `awcms_app` has neither `UPDATE` nor `DELETE`; `awcms_worker` has `SELECT, DELETE` for the retention engine (financial window, five-year floor).
+
+## 12. Implementation notes (issue #383)
+
+Implemented in `sql/1046`: no table (the POS stores no reservation state and no balance), three permission keys, one column and one re-issued guard. Deviations from the specification:
+
+| #   | Section | Specification said                                                                            | Implemented                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| --- | ------- | --------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | 7.5     | a commerce setting `checkin_requires_settlement`, default `false` (allow)                     | `awcms_commerce_store_settings.checkin_requires_settlement boolean NOT NULL DEFAULT true`: default BLOCK (fail closed), which the owner confirms before the issue merges (residual R3). A tenant with no live settings row reads `true`; a settings reset sets it back to `true`                                                                                                                                                                                                                                                                                                                   |
+| 2   | 3.9     | one route that collects the balance and checks in                                             | three keys and four routes (`commerce.booking_check_ins.create`, `.booking_check_outs.create`, `.booking_balance_payments.create`; the lookup is `.booking_reservation_links.read`); seeded in `sql/1046` with the routes that enforce them                                                                                                                                                                                                                                                                                                                                                        |
+| 3   | 5.1     | a payment leg stamped with a register session names the SAME session as its order (`sql/971`) | `awcms_commerce_payment_allocations_register_guard()` is re-issued (`search_path` pinned): a payment leg whose `source` is `pos`, on an order with NO register session of its own and an ACTIVE reservation link, recorded by a tenant user (`actor_kind = 'tenant_user'`) who is the CURRENT cashier of the named `open` session, may name it, so the balance taken at the till is in that shift's cash-up and in nobody else's. Every other payment, and every reversal, keeps its rule; the application still gates the cashier first under the session lock (the database no longer trusts it) |
+
+Not stored: no status, no balance, no customer and no reservation code on any commerce table for the POS. The audit rows `commerce.booking_pos.*` are the evidence of who looked up, checked in or out, or took a balance, with the register and its session; they carry the code as typed and a keyed digest of the identifier, never the identifier.

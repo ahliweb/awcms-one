@@ -27,7 +27,8 @@
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../_shared/idempotency";
 import type {
   RecordPaymentInput,
@@ -82,7 +83,7 @@ export type RecordOwnerPaymentOutcome =
  * @throws {OverpaymentError} the amount exceeds what is still owed.
  */
 export async function recordOwnerPayment(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   orderId: string,
@@ -108,7 +109,8 @@ export async function recordOwnerPayment(
     tx,
     tenantId,
     RECORD_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -194,6 +196,7 @@ export async function recordOwnerPayment(
     tenantId,
     RECORD_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     body
@@ -247,7 +250,8 @@ export async function recordOwnerReversal(
     tx,
     tenantId,
     REVERSE_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -293,6 +297,7 @@ export async function recordOwnerReversal(
     tenantId,
     REVERSE_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     body

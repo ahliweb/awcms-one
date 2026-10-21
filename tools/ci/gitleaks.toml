@@ -30,6 +30,20 @@ paths = [
   '''apps/cms/tests/security-readiness-checks\.test\.ts''',
   '''tests/deploy-preflight\.test\.mjs''',
 
+  # Upstream's Telegram delivery unit test (arrived with the AWCMS v10.8.0
+  # sync, #377): a self-generated 50-character webhook `secret_token`
+  # fixture used to assert the validator's 42/43-character length bounds.
+  # It authenticates nothing outside the test; editing the upstream file
+  # to annotate it would be a subtree divergence.
+  '''apps/cms/tests/telegram-delivery\.test\.ts''',
+
+  # Upstream's push-subscription auth_secret encryption test (#424 sync,
+  # ahliweb/awcms#1100) binds a fixed base64url fixture
+  # ("secret-auth-secret") to exercise the at-rest cipher. It authenticates
+  # nothing outside the test; editing the upstream file would be a subtree
+  # divergence.
+  '''apps/cms/tests/push-auth-secret\.test\.ts''',
+
   # Machine-generated knowledge-graph output — AGENTS.md's "Working with
   # the knowledge graph" already forbids hand-editing these; a node label
   # or report line that merely looks high-entropy is not a secret.

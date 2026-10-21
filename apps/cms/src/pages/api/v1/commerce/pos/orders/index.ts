@@ -269,6 +269,15 @@ export const POST = defineTenantRoute<CreatePosOrderInput>({
       // `createOrderFromCart`'s own idempotent-replay contract.
       return created(outcome.order);
     } catch (error) {
+      // tx-swallow-ok: IdempotencyRaceLostError,
+      // IdempotencyPayloadMismatchError, AllocationSourceKeyConflictError,
+      // LoyaltyIdempotencyConflictError, PosLoyaltyRefusedError,
+      // PosCartChangedError, InsufficientTenderError, OverpaymentError,
+      // InvalidTenderPlanError, FeatureDisabledError,
+      // PosRegisterSessionError, PosDueRequiresCustomerError,
+      // InventoryLedgerRefusedError are raised by application code before a
+      // write, or after the directory rolled its failed statement back to a
+      // savepoint, so the transaction is healthy.
       if (error instanceof IdempotencyRaceLostError) {
         if (error.replay) {
           return jsonResponse(error.replay.responseBody, {

@@ -39,6 +39,9 @@ export const COMMERCE_ORDER_CANCELLED_LOYALTY_REVERSER_CONSUMER_NAME =
   "commerce.order_cancelled_loyalty_reverser";
 export const COMMERCE_INVENTORY_STOCK_CACHE_PROJECTOR_CONSUMER_NAME =
   "commerce.inventory_stock_cache_projector";
+/** Issue #391 (ADR-0046): reports a paid counter sale to the `hr_commission` ledger. */
+export const COMMERCE_ORDER_PAID_COMMISSION_ATTRIBUTOR_CONSUMER_NAME =
+  "commerce.order_paid_commission_attributor";
 
 export const COMMERCE_PRODUCT_CREATED_EVENT_TYPE =
   "awcms.commerce.product.created";
@@ -137,6 +140,70 @@ export const COMMERCE_PAYMENT_RECORDED_EVENT_TYPE =
   "awcms.commerce.payment.recorded";
 export const COMMERCE_PAYMENT_REVERSED_EVENT_TYPE =
   "awcms.commerce.payment.reversed";
+
+/**
+ * Deposit-order settlement event (Issue #379, ADR-0041 D7, owner answer Q5).
+ * `awcms.commerce.order.settled` announces that settlement of a DEPOSIT order
+ * (`payment_method = 'dp'`, `dp_amount` below the total) has reached the total:
+ * emitted from the ledger write that makes the outstanding amount zero, in the
+ * same transaction, on the ORDER aggregate. `order.paid` fires for such an
+ * order at the deposit (the release threshold, ADR-0025 D3), so it cannot say
+ * "fully paid"; this event does, and it is what the loyalty earner reacts to
+ * for a deposit order (a deposit alone never earns). A whole-total order fires
+ * `order.paid` at full settlement already and gets NO settled event - nothing
+ * changes for a tenant that never takes a deposit. The payload carries ids,
+ * money and the settled time, never a customer name/phone or a payment
+ * reference. Registered in `domain-event-runtime/domain/event-type-registry.ts`
+ * and `asyncapi/awcms-domain-events.asyncapi.yaml` in the same change.
+ */
+export const COMMERCE_ORDER_SETTLED_EVENT_TYPE = "awcms.commerce.order.settled";
+
+/**
+ * Booking-adapter attention event (Issue #380, ADR-0045 G7, contracts section
+ * 5.2). `awcms.commerce.booking_reservation_link.attention_raised` announces
+ * that the adapter could not reconcile an order with its reservation on its own
+ * and an operator must look: a deposit settled after the hold lapsed
+ * (`deposit_after_expiry`, threat control C-08), the confirmation was refused
+ * (`confirm_failed`), or the reservation was cancelled or moved outside the
+ * adapter while the order holds money (`cancelled_externally_paid`,
+ * `rescheduled_externally`). Raised once per open flag, in the same transaction
+ * as the flag, on the ORDER aggregate. The payload carries ids and the closed
+ * reason code - never a customer name, phone, amount or payment reference.
+ * Registered in `domain-event-runtime/domain/event-type-registry.ts` and
+ * `asyncapi/awcms-domain-events.asyncapi.yaml` in the same change.
+ */
+export const COMMERCE_BOOKING_ATTENTION_RAISED_EVENT_TYPE =
+  "awcms.commerce.booking_reservation_link.attention_raised";
+
+/**
+ * Booking cancellation refund decision (Issue #381, ADR-0045 D8, contracts
+ * section 5.2). `awcms.commerce.booking_refund.decided` announces that a
+ * cancellation was decided: the policy source, the amount paid, the
+ * policy-computed refund and the final one, and whether a manager or finance
+ * override made them differ. Written in the same transaction as the decision
+ * row, on the ORDER aggregate. The payload carries ids, the closed policy
+ * source and amounts - never a customer name, phone, payment reference, the
+ * override reason or the actor (the audit log carries the actor). Registered in
+ * `domain-event-runtime/domain/event-type-registry.ts` and
+ * `asyncapi/awcms-domain-events.asyncapi.yaml` in the same change.
+ */
+export const COMMERCE_BOOKING_REFUND_DECIDED_EVENT_TYPE =
+  "awcms.commerce.booking_refund.decided";
+
+/**
+ * Booking reschedule (Issue #382, ADR-0045 D7, contracts section 5.2).
+ * `awcms.commerce.booking_reservation.rescheduled` announces that a staff member
+ * moved a reservation through the adapter: the order now points at the
+ * replacement reservation, and the price difference (if any) was carried as a
+ * supplementary order or a policy-limited refund return. Written in the same
+ * transaction as the reschedule record, on the ORDER aggregate. The payload
+ * carries ids, the night counts, the closed direction and amounts - never a
+ * customer name, phone, payment reference or the actor (the audit log carries the
+ * actor). Registered in `domain-event-runtime/domain/event-type-registry.ts` and
+ * `asyncapi/awcms-domain-events.asyncapi.yaml` in the same change.
+ */
+export const COMMERCE_BOOKING_RESERVATION_RESCHEDULED_EVENT_TYPE =
+  "awcms.commerce.booking_reservation.rescheduled";
 
 /**
  * POS register-session events (Issue #284, ADR-0028). All four ride on the
@@ -267,3 +334,12 @@ export const COMMERCE_RETURN_RECORDED_EVENT_TYPE =
 export const COMMERCE_REFUND_SETTLED_EVENT_TYPE =
   "awcms.commerce.refund.settled";
 export const COMMERCE_RETURN_AGGREGATE_TYPE = "commerce.return";
+/**
+ * Issue #391 (ADR-0046 D9): reverse the accrual on a cancelled order / a settled
+ * refund. Names are shipped identifiers (delivery rows, the effect ledger and
+ * metrics key on them): never rename one.
+ */
+export const COMMERCE_ORDER_CANCELLED_COMMISSION_REVERSER_CONSUMER_NAME =
+  "commerce.order_cancelled_commission_reverser";
+export const COMMERCE_REFUND_SETTLED_COMMISSION_REVERSER_CONSUMER_NAME =
+  "commerce.refund_settled_commission_reverser";

@@ -1,0 +1,28 @@
+-- Issue #391, second half (ADR-0046 D9) - `awcms_worker` grants for the
+-- commission REVERSAL consumers (`commerce.order_cancelled_commission_reverser`
+-- and `commerce.refund_settled_commission_reverser`, run by
+-- `domain-events:dispatch`).
+--
+-- `sql/1031` deliberately gave the worker no UPDATE on an accrual: the worker
+-- could report a sale but "cannot approve, void, pay or rewrite" one. The
+-- upstream `CommissionAccrualPort.void` (ahliweb/awcms#1109) runs its posting
+-- core in the CALLER's transaction with the CALLER's privileges, and one status
+-- edge is exactly one UPDATE of four columns, so that is all this grants:
+--
+--   * `awcms_hr_commission_accruals` UPDATE (status, voided_at, voided_by,
+--     void_reason_code) - the columns `transitionAccrual`'s `void` branch sets.
+--     The lifecycle CHECK constraint, the immutability trigger and the
+--     append-only transition log (the worker already holds INSERT on it from
+--     `sql/1031`; the database writes the row) still decide what an edge may be:
+--     the worker still cannot touch the amount, the rule, the source or the
+--     beneficiary, cannot approve, release or pay, and cannot move a `payable`
+--     or `paid` accrual (the port refuses those as `period_closed` before any
+--     write). A column-level privilege is invisible to `has_table_privilege`, so
+--     the table-level matrix (`WORKER_ROLE_GRANTS`) keeps its SELECT, INSERT row
+--     and `WORKER_COLUMN_GRANTS` records the four columns.
+--
+-- Nothing else is needed: the audit row, the `voided` event and the reads
+-- (accrual, rule, employment, returns, order items) are covered by `sql/1031`,
+-- `sql/997` and the existing audit and domain-event grants.
+GRANT UPDATE (status, voided_at, voided_by, void_reason_code)
+  ON awcms_hr_commission_accruals TO awcms_worker;

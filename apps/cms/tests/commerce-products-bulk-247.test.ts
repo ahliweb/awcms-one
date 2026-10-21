@@ -471,6 +471,8 @@ describe("no new bulk API route exists (Issue #247 — per-item endpoints only)"
       [
         "src/pages/api/v1/commerce/products/[id].ts",
         "src/pages/api/v1/commerce/products/[id]/attributes.ts",
+        // Issue #378: one product's deposit policy - per-item, like images.
+        "src/pages/api/v1/commerce/products/[id]/deposit-policy.ts",
         "src/pages/api/v1/commerce/products/[id]/variants/[variantId]/attributes.ts",
         "src/pages/api/v1/commerce/products/export.csv.ts",
         "src/pages/api/v1/commerce/products/import.ts",

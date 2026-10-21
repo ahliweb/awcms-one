@@ -65,6 +65,8 @@ import {
   resolveDocumentLink
 } from "../../src/modules/commerce/application/document-delivery-directory";
 import { dispatchWhatsappQueue } from "../../src/modules/commerce/application/whatsapp-dispatch";
+import { dispatchWhatsappQueue as dispatchUpstreamWhatsappQueue } from "../../src/modules/whatsapp-delivery/application/whatsapp-dispatch";
+import { createSuppression } from "../../src/modules/whatsapp-delivery/application/whatsapp-consent-directory";
 import { dispatchEmailQueue } from "../../src/modules/email/application/email-dispatch";
 import { createProduct } from "../../src/modules/commerce/application/product-directory";
 import { saveStoreSettings } from "../../src/modules/commerce/application/store-settings-directory";
@@ -349,12 +351,12 @@ async function expectDbError(run: () => PromiseLike<unknown>): Promise<void> {
  */
 async function asApp<T>(
   tenantId: string,
-  fn: (tx: Bun.SQL) => Promise<T>
+  fn: (tx: Bun.TransactionSQL) => Promise<T>
 ): Promise<T> {
   return (await getHandlerAdminSql().begin(async (tx) => {
     await tx.unsafe("SET LOCAL ROLE awcms_app");
     await tx.unsafe(`SET LOCAL app.current_tenant_id = '${tenantId}'`);
-    return fn(tx as unknown as Bun.SQL);
+    return fn(tx);
   })) as T;
 }
 
@@ -371,7 +373,14 @@ function skipUnlessHandlerReady(): boolean {
 }
 
 const SAVED_ENV: Record<string, string | undefined> = {};
-const ENV_KEYS = ["EMAIL_ENABLED", "COMMERCE_WHATSAPP_ENABLED"] as const;
+const ENV_KEYS = [
+  "EMAIL_ENABLED",
+  "COMMERCE_WHATSAPP_ENABLED",
+  // Issue #392: the `whatsapp_delivery` queue a tenant in `upstream` mode uses.
+  "WHATSAPP_ENABLED",
+  "WHATSAPP_PROVIDER",
+  "WHATSAPP_RECIPIENT_HASH_KEYS"
+] as const;
 
 function setChannels(email: boolean, whatsapp: boolean): void {
   process.env.EMAIL_ENABLED = email ? "true" : "false";
@@ -1097,6 +1106,121 @@ suite("transactional document delivery (Issue #295)", () => {
     const retried = await deliver(w.owner, DOC(w, "email"), idem);
     expect(retried.status).toBe(201);
     expect(await emailRows(w.owner.tenantId)).toHaveLength(1);
+  });
+
+  /** Issue #392: puts the tenant's WhatsApp channel on the `whatsapp_delivery` queue (the guarded flip is #393). */
+  async function useUpstreamQueue(tenantId: string) {
+    process.env.WHATSAPP_ENABLED = "true";
+    process.env.WHATSAPP_PROVIDER = "log";
+    process.env.WHATSAPP_RECIPIENT_HASH_KEYS = `k1:${Buffer.from(Array.from({ length: 32 }, (_, i) => (i * 13 + 7) % 251)).toString("base64")}`;
+    await getHandlerAdminSql()`
+      INSERT INTO awcms_commerce_store_settings (tenant_id, whatsapp_mode, whatsapp_mode_changed_at)
+      VALUES (${tenantId}, 'upstream', now())
+      ON CONFLICT (tenant_id) DO UPDATE SET whatsapp_mode = 'upstream', whatsapp_mode_changed_at = now()
+    `;
+  }
+
+  async function upstreamQueueRows(tenantId: string) {
+    return (await getHandlerAdminSql()`
+      SELECT id, template_key, purpose, correlation_id, idempotency_key, status, body
+      FROM awcms_whatsapp_messages WHERE tenant_id = ${tenantId} ORDER BY created_at
+    `) as {
+      id: string;
+      template_key: string;
+      purpose: string;
+      correlation_id: string;
+      idempotency_key: string;
+      status: string;
+      body: string;
+    }[];
+  }
+
+  test("in upstream mode a WhatsApp delivery is one row in the whatsapp_delivery queue, read back by correlation id, and the legacy table stays untouched (Issue #392)", async () => {
+    if (skipUnlessHandlerReady()) return;
+    const w = await world();
+    const db = getHandlerDatabaseClient();
+
+    // A delivery requested while the tenant is still `legacy` ...
+    const old = await deliver(w.owner, DOC(w, "whatsapp"));
+    expect(old.status).toBe(201);
+    // ... then the tenant moves to the queue (by hand; the guarded flip is #393).
+    await useUpstreamQueue(w.owner.tenantId);
+    const fresh = await deliver(w.owner, DOC(w, "whatsapp"));
+    expect(fresh.status).toBe(201);
+
+    // No copy and no dual write: the old delivery is the only legacy row, the new one the only queue row.
+    expect(
+      (await whatsappRows(w.owner.tenantId)).map((r) => r.correlation_id)
+    ).toEqual([old.body.data.id]);
+    const queued = await upstreamQueueRows(w.owner.tenantId);
+    expect(queued).toHaveLength(1);
+    expect(queued[0]).toMatchObject({
+      template_key: "commerce.document",
+      purpose: "transactional",
+      correlation_id: fresh.body.data.id,
+      idempotency_key: `commerce:document:${fresh.body.data.id}`,
+      status: "queued"
+    });
+    expect(queued[0]!.body).toContain(w.number);
+    expect(queued[0]!.body).toContain("30000.00");
+    expect(JSON.stringify(fresh.body)).not.toContain("81234567890");
+
+    // The history joins BOTH queues: the old delivery from the legacy table, the new one through the port.
+    let list = await history(w.owner, "document", w.documentId);
+    const byId = new Map(list.body.data.items.map((item) => [item.id, item]));
+    expect(byId.get(old.body.data.id)!.outbox.status).toBe("queued");
+    expect(byId.get(fresh.body.data.id)!.outbox.status).toBe("queued");
+
+    // The queue's own dispatcher sends it, and the history shows it sent.
+    const result = await dispatchUpstreamWhatsappQueue(db, w.owner.tenantId, {
+      env: process.env
+    });
+    expect(result).toMatchObject({ claimed: 1, sent: 1 });
+    list = await history(w.owner, "document", w.documentId);
+    expect(
+      list.body.data.items.find((item) => item.id === fresh.body.data.id)!
+        .outbox.status
+    ).toBe("sent");
+    expect(
+      list.body.data.items.find((item) => item.id === old.body.data.id)!.outbox
+        .status
+    ).toBe("queued");
+  });
+
+  test("in upstream mode the channel is gated by the queue's flag, and a suppressed number is recorded not_enqueued (Issue #392)", async () => {
+    if (skipUnlessHandlerReady()) return;
+    const w = await world();
+    await useUpstreamQueue(w.owner.tenantId);
+
+    // The legacy flag being on is irrelevant to this tenant: its dispatcher is the queue's.
+    process.env.WHATSAPP_ENABLED = "false";
+    const off = await deliver(w.owner, DOC(w, "whatsapp"));
+    expect(off.status).toBe(409);
+    expect(off.body.error?.code).toBe("CHANNEL_UNAVAILABLE");
+    process.env.WHATSAPP_ENABLED = "true";
+
+    await withTenantOrThrow(
+      getHandlerDatabaseClient(),
+      w.owner.tenantId,
+      (tx) =>
+        createSuppression(tx, w.owner.tenantId, w.owner.tenantUserId, {
+          phone: "+6281234567890",
+          reason: "manual"
+        })
+    );
+    const refused = await deliver(w.owner, DOC(w, "whatsapp"));
+    expect(refused.status).toBe(409);
+    expect(refused.body.error?.code).toBe("RECIPIENT_SUPPRESSED");
+    expect(await upstreamQueueRows(w.owner.tenantId)).toHaveLength(0);
+    expect(await whatsappRows(w.owner.tenantId)).toHaveLength(0);
+
+    const list = await history(w.owner, "document", w.documentId);
+    expect(list.body.data.items).toHaveLength(1);
+    expect(list.body.data.items[0]).toMatchObject({
+      status: "not_enqueued",
+      failureReason: "RECIPIENT_SUPPRESSED",
+      hasLink: false
+    });
   });
 
   test("a rolling-window limit per source bounds a stuck client", async () => {

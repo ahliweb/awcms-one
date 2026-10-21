@@ -17,6 +17,7 @@
  */
 import { bacaSesi, hapusSesi } from "./akun-sesi";
 import type { Akun } from "./akun-kontrak";
+import type { HalamanReservasiSaya, PermintaanReservasi, ReservasiDibuat, ReservasiSaya } from "./booking-kontrak";
 import { parsePoinAkun, type PoinAkun } from "./poin-kontrak";
 import { kirimPermintaan, TokoApiError } from "./toko-permintaan";
 import type { Order } from "./toko-klien";
@@ -441,6 +442,55 @@ export function kirimPesanPercakapan(id: string, body: string): Promise<{ messag
       `/account/conversations/${encodeURIComponent(id)}/messages`,
       "POST",
       { body },
+      authHeader()
+    )
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Issue #386 (ADR-0045) - the `toko` booking pages. Bearer-only, wrapped in the
+// same `denganPembersihanSesi` every other function here uses, so a `401
+// UNAUTHENTICATED` clears the stored session.
+// ---------------------------------------------------------------------------
+
+/**
+ * `POST …/booking/reservations` - holds the stay and creates the order in one
+ * idempotent call (`201`, or `200` for a replay of the same key and request).
+ * `idempotencyKey` is generated once per attempt by the caller and reused on a
+ * retry. The body names no price, amount, deposit or customer (the server
+ * answers `400` to any of them): the customer is the bearer session's own.
+ * Refusals keep their code: `SLOT_UNAVAILABLE`, `HOLD_LIMIT_EXCEEDED` (`429`),
+ * `OFFERING_NOT_LINKED`, `CART_CHANGED`, `PAYMENT_METHOD_UNAVAILABLE`, ….
+ */
+export function buatReservasiBooking(
+  input: PermintaanReservasi,
+  idempotencyKey: string
+): Promise<ReservasiDibuat> {
+  return denganPembersihanSesi(() =>
+    kirimPermintaan<ReservasiDibuat>("/booking/reservations", "POST", input, {
+      ...authHeader(),
+      "Idempotency-Key": idempotencyKey
+    })
+  );
+}
+
+/** `GET …/booking/reservations?cursor=` - the signed-in shopper's own reservations, newest first, keyset-paged. */
+export function ambilReservasiSaya(cursor?: string | null): Promise<HalamanReservasiSaya> {
+  const query = cursor ? `?cursor=${encodeURIComponent(cursor)}` : "";
+  return denganPembersihanSesi(() =>
+    kirimPermintaan<HalamanReservasiSaya>(`/booking/reservations${query}`, "GET", undefined, authHeader())
+  );
+}
+
+/** `GET …/booking/reservations/{orderCode}` - one own reservation (the session proves ownership; `404` for anything else, with no hint why). */
+export function ambilReservasiSayaByKode(orderCode: string): Promise<
+  Omit<ReservasiSaya, "productName" | "nights" | "paymentMethod">
+> {
+  return denganPembersihanSesi(() =>
+    kirimPermintaan<Omit<ReservasiSaya, "productName" | "nights" | "paymentMethod">>(
+      `/booking/reservations/${encodeURIComponent(orderCode)}`,
+      "GET",
+      undefined,
       authHeader()
     )
   );

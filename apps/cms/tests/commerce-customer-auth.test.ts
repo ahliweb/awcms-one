@@ -11,7 +11,7 @@ import type { CustomerOtpChannel } from "../src/modules/commerce/domain/customer
 const ORIGINAL = { ...realStore };
 
 /** A callable stand-in for `Bun.SQL` — `recordAuditEvent` runs `tx\`INSERT …\`` unconditionally on every branch below, so the fake has to be a callable tagged-template function, not just an object. It always resolves to an empty row set. */
-const fakeTx = (() => Promise.resolve([])) as unknown as Bun.SQL;
+const fakeTx = (() => Promise.resolve([])) as unknown as Bun.TransactionSQL;
 
 /**
  * `application/customer-auth.ts`'s branching (Issue #89), with the store

@@ -1,0 +1,132 @@
+/*
+ * The booking pages' extras (issue #386): a definition list for the three money
+ * rows, the hold countdown, and the "Penuh" mark. Everything else is
+ * `toko.css` / `akun.css` / `global.css` primitives. Layout rules follow
+ * `docs/responsif.md`: single column at 360px, grid tracks `minmax(0, 1fr)`,
+ * long strings wrap, 44px controls (the `.btn` / form-control floor).
+ */
+
+.booking-dl {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+}
+
+.booking-dl > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, auto);
+  gap: 0.25rem 1rem;
+  align-items: baseline;
+}
+
+.booking-dl dt {
+  color: var(--text-secondary);
+  overflow-wrap: anywhere;
+}
+
+.booking-dl dd {
+  margin: 0;
+  font-weight: 600;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.booking-dl-total {
+  border-top: 1px solid var(--border-color);
+  padding-top: 0.5rem;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 480px) {
+  .booking-dl > div {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .booking-dl dd {
+    text-align: left;
+  }
+}
+
+.booking-penuh {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* The ticking digits are never in a live region (UX 2.2); below a minute the text also says so in words. */
+.booking-countdown {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+  overflow-wrap: anywhere;
+}
+
+.booking-countdown--urgent {
+  color: var(--status-danger-fg);
+  background: var(--status-danger-bg);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-md, 8px);
+}
+
+.booking-reservation {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.booking-reservation-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.booking-reservation h2,
+.booking-reservation h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  overflow-wrap: anywhere;
+}
+
+.booking-reservation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.booking-radio {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md, 8px);
+  margin-bottom: 0.5rem;
+  min-height: 44px;
+}
+
+.booking-radio input {
+  margin-top: 0.2rem;
+}
+
+.booking-radio span {
+  overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .booking-countdown {
+    transition: none;
+  }
+}
+
+/*
+ * A link inside running text is told apart by more than colour (WCAG 1.4.1 /
+ * axe `link-in-text-block`): underlined, except the button-styled ones.
+ */
+[data-booking-root] a:not(.btn):not(.toko-wa-fallback),
+[data-pesan-root] a:not(.btn):not(.toko-wa-fallback),
+[data-reservasi-root] a:not(.btn):not(.toko-wa-fallback):not(.akun-sidenav-item) {
+  text-decoration: underline;
+}

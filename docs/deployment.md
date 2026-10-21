@@ -75,6 +75,34 @@ A much larger file, owned entirely by `apps/cms` as embedded `ahliweb/awcms` cod
 
 `PUBLIC_*` storefront variables are unchanged by increment 4 — the bearer session lives entirely in the browser's own `localStorage`, so no new build-time or runtime env var was needed on the `apps/storefront` side for accounts or affiliates.
 
+## Web Push and the installable admin: CMS origin only (issue #427)
+
+The subtree sync at `3c7fc29` ([issue #427](https://github.com/ahliweb/awcms-one/issues/427)) brings the installable iOS Home Screen admin ([ahliweb/awcms#1105](https://github.com/ahliweb/awcms/issues/1105)), the declarative Web Push payload ([#1106](https://github.com/ahliweb/awcms/issues/1106)) and the operator test matrix ([#1107](https://github.com/ahliweb/awcms/issues/1107)). Nothing here is a second push foundation: it is the `push_delivery` module, VAPID and the `push:dispatch` job that were already embedded, and every variable below lives in the `.env` file created from `apps/cms/.env.example` (the compose file reads it through `env_file:`), never in the root `.env.example` and never in the repository.
+
+| Variable                                                                           | Default                | What a deployment must get right                                                                                                                                                                                              |
+| ---------------------------------------------------------------------------------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `PUSH_ENABLED`                                                                     | `false`                | Off means the dispatcher claims nothing. Turn it on per deployment, after the rows below are set.                                                                                                                             |
+| `PUSH_PROVIDER`                                                                    | `log`                  | `web_push` for real delivery (`fcm` and `log` also exist). `config:validate` refuses an invalid VAPID configuration for `web_push`.                                                                                           |
+| `PUSH_VAPID_PUBLIC_KEY` / `PUSH_VAPID_PRIVATE_KEY` / `PUSH_VAPID_SUBJECT`          | unset                  | One key pair per deployment, generated once with `bun run push:vapid:generate`. **Never rotate it casually**: a subscription is bound to the public key, so a new pair orphans every enrolled device.                         |
+| `PUSH_AUTH_SECRET_ENCRYPTION_KEYS`                                                 | unset                  | The key ring that encrypts each subscription's `auth_secret` at rest. Rotation is add a new FIRST key, `bun run push:auth-secret:rekey` until `security:readiness` reports no row under an old key id, then drop the old key. |
+| `PUSH_PAYLOAD_FORMAT`                                                              | `legacy`               | `declarative` emits WebKit Declarative Web Push and needs `APP_URL` to be an `https` URL (`config:validate` refuses it otherwise). Flip only after the new `/push-sw.js` has propagated; flip back to `legacy` to roll back.  |
+| `PWA_APP_NAME` / `PWA_APP_SHORT_NAME` / `PWA_THEME_COLOR` / `PWA_BACKGROUND_COLOR` | built-in defaults      | Optional branding of the one `/manifest.webmanifest`. Deployment config, never the request `Host` and never a tenant row.                                                                                                     |
+| `PUSH_SEND_MAX_RETRIES` / `PUSH_SEND_TIMEOUT_MS`                                   | `3` / provider default | Retry ceiling and timeout. A `404`/`410` from the push service retires the subscription and is never retried.                                                                                                                 |
+
+`PUSH_SERVICE_WORKER_PATH` is not an environment variable: it is the fixed constant `/push-sw.js` in `apps/cms/src/lib/ui/push-subscription-client.ts`, served from `apps/cms/public/` with its default scope and registered only from the enrolment gesture on `/admin/push-notifications`. The jobs sidecar is configured by upstream's generated files, which this repository does not edit: `apps/cms/ops/awcms-jobs.crontab` schedules `push:dispatch` and `push:queue:purge`, `apps/cms/ops/awcms-jobs.env-allowlist` lists the variables upstream's own `ops/run-job.sh` copies into the job container (`PUSH_ENABLED`, `PUSH_PROVIDER`, `PUSH_AUTH_SECRET_ENCRYPTION_KEYS`, `PUSH_PAYLOAD_FORMAT`; it does NOT list the three `PUSH_VAPID_*` variables, as generated today - this repository's `jobs` service uses an `env_file` pointing at that `.env` and so receives them anyway, but a host running upstream's `run-job.sh` would send with no VAPID key, an upstream gap to report there), and `push:auth-secret:rekey` and `telegram:chat:rekey` are operator actions that deliberately have no timer. Secrets belong in the deployment's secret store, not in the repository or an image layer.
+
+**Origin separation.** The admin manifest (`/manifest.webmanifest`, scope `/admin/`) and `/push-sw.js` are served by `apps/cms` and exist only on the CMS origin. `apps/storefront` is a separate static origin for shoppers and registers no service worker, links no admin manifest and never touches the Push API; `tests/storefront-tanpa-service-worker.test.mjs` fails the root suite if that changes. Enrolment is an operator gesture inside the authenticated admin, so a shopper device cannot be subscribed from the CMS origin. A deployment that puts both behind ONE hostname would give the worker's default scope (`/`) reach over shopper pages on any device an operator enrolled; keep them on two origins.
+
+**Closed-app test cases (real devices, evidence per row).** The full matrix, evidence template, the `PUSH_PAYLOAD_FORMAT` flip gate and the operator runbook are upstream's [`apps/cms/docs/awcms/push-notifications-test-matrix.md`](../apps/cms/docs/awcms/push-notifications-test-matrix.md); the cases this deployment must run before enabling push for a tenant are:
+
+1. **Chrome, desktop and Android.** Enrol from `/admin/push-notifications`, send a test, then quit every Chrome window (Android: swipe the app away): the notification must still arrive, and a click must open the validated admin URL in a new or reused tab.
+2. **Safari on macOS.** Same sequence with Safari quit; the notification arrives from the system.
+3. **Safari on iPhone and iPad (iOS or iPadOS 16.4 or later).** Web Push works only from the installed Home Screen web app: open `/admin/` in Safari, Share, Add to Home Screen, open the installed app, enrol there, send a test, then close the app from the switcher: the notification must still arrive and a tap must open the app at the target page. In a plain Safari tab the screen explains that the device cannot receive push yet.
+4. **Both payload shapes.** Repeat 1 to 3 with `PUSH_PAYLOAD_FORMAT=legacy` and then `declarative`; exactly one notification per event, never two.
+5. **Failure handling.** Unenrol or revoke the permission on a device and send again: the push service answers `404` or `410`, the subscription is retired and not retried.
+
+**Rollback.** Application roll-forward is preferred. The sync adds one migration (`sql/315`, a nullable recipient column on the push message table) and no destructive change, so a rollback of the image does not need a database step; if a defect appears, set `PUSH_PAYLOAD_FORMAT=legacy` (the service worker reads both shapes) or `PUSH_ENABLED=false`, and roll forward with a fix rather than restoring an older database.
+
 ## What may reach `apps/cms`: the build process, and — since issue #30 — the reader's browser
 
 |                                                   | May reach                                                                                                                                                                                                                                                                                                                                              |
@@ -346,6 +374,48 @@ A tenant starts on the `counter` (today's single stock count per product/variant
 
 Purchasing and receiving are upstream's `procurement` module (suppliers, `receive` / `supplier_return` / `requisition` / `transfer` documents). To make a receipt move the **storefront** count: (1) **cut over to `ledger` mode first** (above) - on a `counter` tenant a receipt is recorded in the ledger but never reaches commerce stock; (2) enable the `procurement` module and run `bun run identity-access:permissions:backfill` so existing owners receive the `procurement.*` permissions; (3) post receipts **at the sales location**, or at a warehouse and then a `transfer` document into the sales location (a receipt at another location does not change the storefront); (4) each line uses `itemType` `commerce.variant` (the variant's uuid) or `commerce.product` (the uuid of a product with no variants), unit `unit` - find the uuid with `GET /api/v1/commerce/inventory/items?q=<sku or name>` (`commerce.inventory.read`); (5) keep `bun run domain-events:dispatch` running, which carries the receipt to the cache. A wrong reference does not fail: the ledger accepts it. `GET /api/v1/commerce/inventory/reconciliation` lists such balances under `orphans` (`not_found`, `product_has_variants`, `wrong_unit`, `unknown_item_type`); reverse the document and re-post it with the right reference.
 
+## Moving a tenant's commerce WhatsApp onto the upstream queue (issue #393, [ADR-0047](adr/0047-commerce-whatsapp-moves-to-the-upstream-queue-through-a-per-tenant-mode-router.md) "Cutover")
+
+A tenant starts in `legacy` mode: its OTPs, receipts and campaigns go to commerce's own outbox (`awcms_commerce_whatsapp_messages`, drained by `commerce:whatsapp:dispatch`). Moving it to the upstream `whatsapp_delivery` queue is one operator command per tenant, with no downtime and no row copied: the old dispatcher drains what is already queued, only new messages enter the new queue, and the command refuses until the old queue holds nothing in flight. A tenant is in exactly one mode at a time.
+
+**Before the first tenant (once per deployment).**
+
+1. **Deploy** the release (`sql/1028` seeds `commerce.whatsapp_mode.{read,manage}`; every tenant stays `legacy`). For tenants older than the permission run `bun run identity-access:permissions:backfill`.
+2. **Configure the upstream channel** in the environment of BOTH the CMS and the jobs sidecar: `WHATSAPP_ENABLED=true`, `WHATSAPP_PROVIDER` (`fonnte`, `meta` or `log`) with its credentials, and `WHATSAPP_RECIPIENT_HASH_KEYS` (`openssl rand -base64 32`, see `apps/cms/.env.example`). Make sure `whatsapp:dispatch` runs (every 2 minutes, `whatsapp:queue:purge` beside it). **Keep `COMMERCE_WHATSAPP_ENABLED=true` and `commerce:whatsapp:dispatch` running**: they drain the legacy rows of every tenant, flipped or not.
+3. **Enable the `whatsapp_delivery` module** for the tenant.
+4. **Decide the known gaps** ([ADR-0047](adr/0047-commerce-whatsapp-moves-to-the-upstream-queue-through-a-per-tenant-mode-router.md)): campaigns need each recipient's opt-in in the upstream consent store (`/admin/whatsapp`), so import the tenant's opted-in numbers first or accept that no WhatsApp campaign is sent; `WHATSAPP_PROVIDER=meta` fails every commerce message until the templates carry a provider template identity, so use `fonnte` or wait for that; long multi-line receipts are flattened and cut at 1,000 characters; the rate limits differ (10 per recipient per hour, 5 for OTPs, 2,000 per tenant).
+
+**Per tenant.** Run the command from `apps/cms` **with the same environment file as the `whatsapp:dispatch` job** (the channel checks read the environment of the process that runs them), as the web role (`DATABASE_URL` = `awcms_app`).
+
+```bash
+# 1. Where is the tenant, and what would a flip face right now?
+bun run commerce:whatsapp:cutover --tenant <tenant-uuid> --status
+
+# 2. Rehearse. Writes nothing (no mode change, no audit event). Read the warnings, then add --ack-warnings.
+bun run commerce:whatsapp:cutover --tenant <tenant-uuid> --to upstream --reason "Cutover wave 1" --ack-warnings --dry-run
+
+# 3. Apply. --wait polls (dry runs, every 5 s) until the legacy queue is empty, then makes the one real attempt.
+bun run commerce:whatsapp:cutover --tenant <tenant-uuid> --to upstream --reason "Cutover wave 1" --ack-warnings --wait 600 \
+  --operator "<your name>" | tee evidence-<tenant-uuid>.json
+```
+
+Output is ONE JSON document on stdout (keep it with the change record) and a sentence on stderr. Exit code 0 = flipped, would flip, or already in that mode; 1 = refused; 2 = bad usage or unknown tenant. The same decision is `POST /api/v1/commerce/whatsapp/mode` (`{ "to", "reason", "from"?, "acknowledgeWarnings"?, "dryRun"? }`, `Idempotency-Key`, a recent step-up for a real flip) and `GET` for the status; both are audited under `commerce.whatsapp_mode.{read,manage}`.
+
+**What a refusal means.** The flip is refused, and only the refused attempt is audited, when:
+
+| `refusal.code` | Cause | What to do |
+| --- | --- | --- |
+| `DRAIN_PENDING` | The queue being left holds a non-terminal row. The record gives the counts per status and the age of the oldest row. | Wait for the old dispatcher (`commerce:whatsapp:dispatch` is every 2 minutes), or use `--wait`. A row stuck `queued` with a late `next_attempt_at` is a provider outage: fix the provider, do not flip around it. |
+| `TARGET_CHANNEL_UNAVAILABLE` | The queue being entered cannot send: its enable flag is off, the module is off for the tenant, the recipient-hash key ring or the provider is missing. `blockers` lists every cause. | Fix the environment or enable the module, then re-run. |
+| `WARNINGS_NOT_ACKNOWLEDGED` | A flip into `upstream` always carries warnings (`warnings` lists them). | Read them, then repeat with `--ack-warnings`. |
+| `MODE_CHANGED` | `--from <mode>` did not match the tenant's current mode. | Read the mode again. |
+
+**Evidence record** (`awcms.commerce.whatsapp_mode_flip/v1`): `tenantId`, `from`, `to`, `outcome` (`flipped`, `would_flip`, `unchanged`, `refused`), `dryRun`, `reason`, `at`, `surface` (`cli`/`api`) and `operator`, `queues.legacy` and `queues.upstream` (`countsByStatus`, `nonTerminal`, `oldestNonTerminalAgeSeconds`), `channel` (the flags, the provider NAME, never a credential), `consent` (`commerceMarketingOptIns`, `upstreamGrantedConsents`), `blockers`, `warnings`, `warningsAcknowledged`, `refusal`, `auditEventId` (the `awcms_audit_events` row, `whatsapp_mode.flip` or `whatsapp_mode.flip_refused`) and `correlationId`.
+
+**After the flip.** (1) Send one real OTP to a number you control and confirm it arrives; credentials are not verified by the flip. (2) `GET /api/v1/commerce/whatsapp/mode` (or `--status`) should show `mode: upstream` and `queues.legacy.nonTerminal: 0`; the legacy rows stay as history until `commerce:whatsapp:purge` removes them after the retention window. (3) Watch `/admin/whatsapp` for the tenant's first messages. The commerce WhatsApp screen keeps showing only legacy rows.
+
+**Rollback.** `bun run commerce:whatsapp:cutover --tenant <uuid> --to legacy --reason "<why>" --wait 600` (or `POST` with `"to": "legacy"`). It is symmetric: refused until the **upstream** queue holds no non-terminal row for the tenant (counted tenant-wide, so a tenant that also queues booking reminders waits for those too), and refused while `COMMERCE_WHATSAPP_ENABLED` is off. There is no override: if the upstream dispatcher is down, bring it up and let the queue drain or expire, then roll back. Messages already in the upstream queue are never copied back.
+
 ## Production topology (issue #150, ADR-0019)
 
 `apps/cms` is PostgreSQL-only, and until this section was written, borneojek's own production infrastructure ran MySQL with no PostgreSQL provisioned anywhere on it — the delivery gap [issue #150](https://github.com/ahliweb/awcms-one/issues/150) named directly. What follows is the real, tested production path this repository now ships; [ADR-0019](adr/0019-production-topology-two-images-a-jobs-sidecar-and-a-fail-closed-preflight.md) records the decisions behind it. `compose.yaml`'s own `postgres:18.4` container remains a LOCAL/CI convenience — `compose.production.yaml` (below) is the production shape, and the two are never meant to share a database.
@@ -363,7 +433,7 @@ Three distinct identities, never conflated (ADR-0019 D2):
 ### Images
 
 - **`apps/cms`** — `apps/cms/Dockerfile.production` (already existed, upstream, unmodified) builds a `runtime` target (only `dist/`, the least-privilege role, no scripts) and a `jobs` target (the full source, so its 30+ registered job targets can actually run).
-- **`apps/storefront`** — `apps/storefront/Dockerfile` (new). Multi-stage: a build stage that runs `bun run build` from the REPO ROOT context (this app's build needs `packages/kontrak`'s type-only contract, which itself imports from `apps/cms`'s own source) with `SITE_PROFILE`/`SITE_URL`/`AWCMS_API_URL`/`PUBLIC_AWCMS_ORIGIN`/`PUBLIC_GA_ID` as build ARGs, and `AWCMS_API_TOKEN` ONLY via a BuildKit `--mount=type=secret,id=awcms_api_token` — never an ARG/ENV, so it never enters an image layer (ADR-0019 D4); a runtime stage that runs `apt-get upgrade` against Debian's own security repo before dropping to the image's non-root `bun` user (27 Sep 2026 finding — the `oven/bun:*-slim` base tag otherwise carries whatever Debian package versions it was cut with, and a trivy scan of `oven/bun:1.4.2-slim` found three fixable CRITICAL CVEs in `perl-base`), then carries only `dist/` and runs `bun dist/server/penyaji.mjs` as that same `bun` user. **Each `SITE_PROFILE` is its own image** — build `toko`, `berita`, and `landing` separately if more than one deployment shares this repository.
+- **`apps/storefront`** — `apps/storefront/Dockerfile` (new). Multi-stage: a build stage that runs `bun run build` from the REPO ROOT context (this app's build needs `packages/kontrak`'s type-only contract, which itself imports from `apps/cms`'s own source) with `SITE_PROFILE`/`SITE_URL`/`AWCMS_API_URL`/`PUBLIC_AWCMS_ORIGIN`/`PUBLIC_GA_ID`/`PUBLIC_INSTALL_HELP` as build ARGs, and `AWCMS_API_TOKEN` ONLY via a BuildKit `--mount=type=secret,id=awcms_api_token` — never an ARG/ENV, so it never enters an image layer (ADR-0019 D4); a runtime stage that runs `apt-get upgrade` against Debian's own security repo before dropping to the image's non-root `bun` user (27 Sep 2026 finding — the `oven/bun:*-slim` base tag otherwise carries whatever Debian package versions it was cut with, and a trivy scan of `oven/bun:1.4.2-slim` found three fixable CRITICAL CVEs in `perl-base`), then carries only `dist/` and runs `bun dist/server/penyaji.mjs` as that same `bun` user. **Each `SITE_PROFILE` is its own image** — build `toko`, `berita`, and `landing` separately if more than one deployment shares this repository.
 
 ```bash
 DOCKER_BUILDKIT=1 docker build \
@@ -574,6 +644,63 @@ docker run --rm --network container:<the postgres container> \
 ### RTO/RPO evidence (scope item 9)
 
 `restore-drill.sh` measures both directly, with no production data ever leaving the drill: `restoreRtoSeconds` is the real wall-clock verify→decrypt→restore→check duration; `restoreRpoSeconds` is the age of the backup it drilled, at drill time. Validating this issue against a disposable PostgreSQL with synthetic data (one fictional tenant row, no real customer/business data), a full drill measured **RTO 2-3 seconds, RPO 1-615 seconds** depending on how long since the last synthetic backup — evidence of the mechanism, not a production SLA; a real deployment's own numbers depend on database size and its own `backup`/`restore-drill` cron cadence.
+
+### Booking adapter restore drill (issue #396, [ADR-0045](adr/0045-booking-commerce-adapter.md))
+
+`restore-postgres.sh` answers "did the schema and the row counts come back". It cannot answer the question the booking-commerce adapter adds: **do an order and its reservation still point at each other exactly once, and do the adapter's guarantees still exist?** Foreign keys cannot see it (Booking holds the reverse reference as the opaque `external_ref_type = 'commerce_order'` / `external_ref` pair), a single dropped index or a lost `FORCE ROW LEVEL SECURITY` leaves every row readable, and the upstream drill only asserts that SOME table has FORCE RLS. `bun run commerce:booking:reconcile` (`apps/cms/scripts/commerce-booking-reconcile.ts`) is the adapter half of the drill. It is **read-only** (every tenant pass runs in a `READ ONLY` transaction, so even a role that could write cannot), it repairs nothing, and it writes at most one JSON line of evidence.
+
+**What it checks**, and what makes a drill fail (exit code 1):
+
+| Class       | Check                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Fails the drill                                                                                                                                                                     |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `structure` | Once per database: the six adapter tables exist with RLS enabled **and forced**, their `_tenant_isolation` policy and `_guard` trigger (enabled), and the unique indexes the invariants stand on (Booking's `awcms_booking_reservations_external_ref_key`, the reservation-link active keys and client key, the offering-link active keys, the refund decision's link and source keys)                                                                        | yes                                                                                                                                                                                 |
+| `reference` | Control C-38, per tenant: every active link's reservation names the link's order back (`back_reference_missing`, `back_reference_mismatch`), no active link sits on a rescheduled reservation (`link_on_rescheduled_reservation`), no LIVE reservation names an order without an active link (`orphan_back_reference`, also reporting whether the order exists), and no order is named by two live reservations or active links (`order_multiple_references`) | yes                                                                                                                                                                                 |
+| `ledger`    | Control C-09, per tenant: a link whose order has settled its release threshold but whose reservation is `held`/`expired`/`cancelled`, or whose reservation is confirmed or beyond with less than the threshold settled (the same statement as `GET /api/v1/commerce/booking/reconciliation`)                                                                                                                                                                  | only when no attention flag is open on the link; one that already has an open flag was in the operator queue before the backup, so it is reported as `acknowledged` and never fails |
+| `decision`  | Booking refund decisions versus refund legs, per tenant: a decision belongs to its link's order (`decision_order_mismatch`), its return to that order (`decision_return_order_mismatch`), the live legs of its return never add up to more than the decision (`legs_exceed_decision`), and a `completed` return has settled at least the decision (`legs_short_of_decision`)                                                                                  | yes                                                                                                                                                                                 |
+| extension   | `BOOKING_RESTORE_EXTENSION_CHECKS` in `apps/cms/src/modules/commerce/application/booking-restore-reconciliation.ts` is **empty**. The cancellation issue ([#381](https://github.com/ahliweb/awcms-one/issues/381)) writes the first refund decisions and registers any further check that depends on what it adds (for example a decision's return total against the planner's tax split) there; none is invented ahead of the code that writes the rows      | yes, once registered                                                                                                                                                                |
+
+A decision that has money to refund and no return yet is a normal in-flight state: it is counted (`decisionsAwaitingLegs`) and never fails. Until the cancellation issue lands no decision row exists, so the `decision` class returns nothing on today's data; that is the check being in place, not being skipped.
+
+**Running it** between the restore and the drop. `restore-drill.sh` (and so the `restore-drill` compose service) restores into a scratch database and **drops it before anyone can query it**, and this repository does not edit that upstream script. So the adapter half is a manual step, run after the weekly drill or after any real restore, using only the non-destructive `--keep` flag of `restore-postgres.sh` (never `--target`):
+
+```bash
+# 1. Restore into a scratch database and keep it (the same docker run as the real-restore step above,
+#    WITHOUT --target/--yes, WITH --keep, and a scratch name that is not the live database).
+docker run --rm --network container:<the postgres container> \
+  -v awcms-one-production-backups:/backup \
+  -v ./apps/cms/deploy/backup:/scripts:ro \
+  -e DATABASE_URL="<owner/setup DSN>" -e RESTORE_SCRATCH_DB=awcms_restore_drill \
+  -e RESTORE_AGE_IDENTITY_FILE=/secrets/restore-age-identity.key \
+  -e BACKUP_HMAC_KEY_FILE=/secrets/backup-hmac.key \
+  postgres:18.4 \
+  bash /scripts/restore-postgres.sh /backup/<artifact>.dump.age --keep
+
+# 2. Run the adapter half against that database as the owner role (the `migrate` service is the jobs image with
+#    the owner DSN). --require-links makes a database with no reservation link fail as `empty`, because a
+#    drill that checked zero rows proves nothing; leave it off for a tenant that never enabled `booking`.
+docker compose -f compose.production.yaml --profile migrate run --rm \
+  -v awcms-one-production-backups:/backup \
+  -e DATABASE_URL="postgres://<owner>:<password>@postgres:5432/awcms_restore_drill" \
+  migrate bun run commerce:booking:reconcile --require-links \
+  --evidence-log /backup/restore-drill-evidence.jsonl
+
+# 3. Drop the scratch database (restore-postgres.sh left it for you).
+docker compose -f compose.production.yaml exec postgres \
+  psql -U <owner> -d postgres -c 'DROP DATABASE awcms_restore_drill WITH (FORCE)'
+```
+
+Use the owner DSN or `awcms_app`; **not** `awcms_worker` (the `jobs` service), which Booking deliberately gives no read of its reservations. `--tenant <uuid>` limits the run to one tenant, `--json` prints the full report with the ids (the text summary prints counts and kinds only) and `--evidence-log <path>` appends one JSON line (`startedAt`, `status`, `detail`, `durationMs`, counts and drift kinds; no identifier, amount or name) to the same `restore-drill-evidence.jsonl` the upstream drill writes, so one file carries both halves. If the image's user cannot write to the backups volume, give `--evidence-log` a path it can, or paste the text output into the change ticket. A run that cannot connect or query throws and exits non-zero as well; it never reports a pass it did not earn.
+
+**Reading the result.** A restore is a point-in-time image, so a database that was consistent when `pg_dump` took its snapshot is consistent after `pg_restore`: any `structure`, `reference` or `decision` finding is a defect of the backup or the restore, or one that was already live in the source. Before concluding the restore broke something, run the same command against the live database and compare: a finding present in both predates the backup. **Nothing is auto-repaired**; an operator decides (the C-09 attention flag is the work queue, this is its audit). After a real restore (`--target=<db>`), run it against the restored database **before** pointing traffic at it.
+
+Example drill log, from a synthetic database with two bookings (PostgreSQL 16.15, not the 18.4 production image; evidence of the mechanism, not a production figure). The first line is a backup taken while consistent, the second the same database after a reservation lost its reference to its order:
+
+```text
+{"startedAt":"2026-10-19T01:47:35.923Z","check":"commerce:booking:reconcile","status":"pass","outcome":"pass","detail":"booking adapter reconciliation found zero drift","durationMs":72,"tenantsChecked":1,"counts":{"offeringLinks":1,"reservationLinks":2,"activeReservationLinks":2,"openAttention":0,"refundDecisions":0,"decisionsAwaitingLegs":0},"drift":{},"acknowledgedLedger":0,"truncated":false}
+{"startedAt":"2026-10-19T01:47:43.700Z","check":"commerce:booking:reconcile","status":"fail","outcome":"drift","detail":"booking adapter reconciliation found 1 drifted item(s)","durationMs":70,"tenantsChecked":1,"counts":{"offeringLinks":1,"reservationLinks":2,"activeReservationLinks":2,"openAttention":0,"refundDecisions":0,"decisionsAwaitingLegs":0},"drift":{"reference:back_reference_missing":1},"acknowledgedLedger":0,"truncated":false}
+```
+
+`apps/cms/tests/integration/commerce-booking-restore-drill.integration.test.ts` produces each kind of drift against a real migrated database and pins that the query finds exactly it, under RLS, with the runtime role.
 
 ### How this relates to the current production topology (scope item 10)
 

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deploy-coolify.md)
 
-<!-- i18n-source-hash: sha256:0e962e7877ee1d8ffbd5fa10217f041e27ecdf64391640321e8735a332fee56a -->
+<!-- i18n-source-hash: sha256:e09b72efe291d7ddd07fafc0dc640edcb2c3cd32061828d2b1bdc6f9da36101e -->
 
 # Deploy Coolify
 
@@ -136,7 +136,8 @@ Aturan wajib per aplikasi:
 
 - **Domain/subdomain sendiri**, env var/secret sendiri, deployment config sendiri di Coolify (project/app terpisah, bukan satu app dengan banyak domain).
 - **Database terpisah per aplikasi**, atau minimal schema + role terpisah dengan privilege terbatas bila berbagi satu cluster PostgreSQL (lihat §Opsi PostgreSQL di bawah). Jangan pernah berbagi satu database/schema antar aplikasi yang berbeda — untuk ERP multi-klien, ini juga berarti data finansial/HR satu klien tidak pernah berbagi database fisik dengan klien lain kecuali kebijakan isolasi eksplisit mengizinkan.
-- **Jangan reuse secret** antar aplikasi: `AUTH_IP_HASH_SECRET`, `AWCMS_SYNC_HMAC_SECRET`, `AUTH_MFA_SECRET_ENCRYPTION_KEY`, kredensial integrasi eksternal (payment gateway/marketplace/Coretax/logistik), dan password role database harus unik per aplikasi.
+- **`IDEMPOTENCY_HMAC_SECRET` wajib di produksi** (>= 32 karakter, mis. `openssl rand -base64 48`; ADR-0145). Ia me-key HMAC setiap request hash idempotency. Tanpanya mutasi idempoten ditolak (fail closed) dan `config:validate` gagal. Rotasi: setel nilai baru lalu redeploy; retry atas request yang tercatat sebelum perubahan menjawab `409 IDEMPOTENCY_CONFLICT` (aman, tak pernah eksekusi ganda), jadi rotasi saat sepi.
+- **Jangan reuse secret** antar aplikasi: `AUTH_IP_HASH_SECRET`, `IDEMPOTENCY_HMAC_SECRET`, `AWCMS_SYNC_HMAC_SECRET`, `AUTH_MFA_SECRET_ENCRYPTION_KEY`, kredensial integrasi eksternal (payment gateway/marketplace/Coretax/logistik), dan password role database harus unik per aplikasi.
 - **Jangan berbagi role superuser/`postgres` default** untuk runtime app manapun — setiap aplikasi tetap memakai model dua-peran (§Model dua-peran di `deployment-profiles.md`): role migrasi privileged terpisah dari role app least-privilege (`awcms_app` atau role app-specific lain per aplikasi).
 - **App-to-DB memakai internal network/internal hostname**, bukan URL publik, sama seperti topologi single-app di atas.
 - **Backup dan restore per aplikasi/database** — retensi dan jadwal boleh berbeda per aplikasi, tapi setiap aplikasi harus bisa di-restore secara selektif tanpa menyentuh data aplikasi lain (lihat §Backup di bawah).
@@ -193,6 +194,7 @@ Nilai berikut wajib disuntikkan lewat Coolify environment variable (bukan dibaka
 | `DATABASE_URL`                                         | Ya          | Role app least-privilege (`awcms_app` atau setara), **bukan** role migrasi. Hostname internal bila app+DB satu network.                                                                                                                                                                |
 | `APP_URL`                                              | Ya          | URL publik aplikasi. Wajib menurut `scripts/validate-env.ts` bersama `APP_ENV` dan `DATABASE_URL` — dan hanya ketiganya.                                                                                                                                                               |
 | `AUTH_COOKIE_SECURE`                                   | Ya          | `true` untuk deployment Coolify (selalu di belakang HTTPS).                                                                                                                                                                                                                            |
+| `IDEMPOTENCY_HMAC_SECRET`                              | Ya          | Minimal 32 karakter, mis. `openssl rand -base64 48` (ADR-0145). Me-key HMAC setiap request hash idempotency. Produksi menolak boot, dan `config:validate` gagal, tanpa ini.                                                                                                            |
 | `APP_ENV`                                              | Ya          | Deployment repo ini: selalu `production`. Sebuah environment kedua yang berdiri di samping produksi juga memakai `production` — yang memisahkannya adalah database/secret/integrasi keluar, bukan label — dan environment yang berbeda **tidak pernah** berbagi app Coolify yang sama. |
 | `AWCMS_SYNC_HMAC_SECRET`, `AWCMS_SYNC_ENABLED`, `R2_*` | Kondisional | Wajib diisi bila sync/R2 dipakai — lihat `bun run config:validate` (`deployment-profiles.md` §Validasi konfigurasi) yang menegakkan aturan kondisional ini saat boot.                                                                                                                  |
 
@@ -304,6 +306,10 @@ docker run --rm --network container:<container-db> \
 Runner itulah yang dijadwalkan lewat **Scheduled Task** Coolify (bila plan/versi mendukung) atau cron di VPS host setiap 1-2 menit — pola yang sama persis dipakai worker purge cache tepi (`environments.md` §Cache tepi (ADR-0042)). Sama seperti backup, pada topologi multi-app setiap aplikasi punya checkout, `.env.jobs`, dan jadwal sendiri — tidak ada dispatcher bersama lintas aplikasi. Bila fitur terkait `false`, perintah ini no-op (exit 0) sehingga aman dijadwalkan meski belum diaktifkan.
 
 Job lain (audit purge, sync objects, dsb.) dijadwalkan dengan pola container one-shot yang sama persis, hanya beda nama command — lihat [`deployment-profiles.md`](deployment-profiles.md) §Job registry untuk daftar lengkap job dan mana yang on-demand (bukan cron berulang).
+
+## Webhook Telegram: jangan mencatat body respons
+
+Bila `TELEGRAM_ENABLED=true`, PIN verifikasi (Issue #1008) dikembalikan **di body respons HTTP** `POST /api/v1/telegram/webhook` (bentuk webhook-reply Bot API). Reverse proxy, WAF, API gateway, atau agen APM di depan aplikasi karena itu **tidak boleh mencatat atau menangkap body respons untuk `/api/v1/telegram/webhook`** (juga body request, yang membawa chat id). Aplikasi sendiri tidak pernah mencatatnya. PIN berumur pendek (10 menit), di-hash saat disimpan, dan dibatasi lima jawaban salah, tetapi log body akan menyerahkannya kepada siapa pun yang membaca log.
 
 ## Rollback
 

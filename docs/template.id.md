@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](template.md)
 
-<!-- i18n-source-hash: sha256:2af20f4f45c2885e4bb8aef9d8ec8cec7c7ce199c6b055fce1013ebeaef1cccd -->
+<!-- i18n-source-hash: sha256:7c09430e7ff214c04cd6b451e215156aad43816433df0b2404b1ee809c7c20ee -->
 
 # Menggunakan awcms-one sebagai template
 
@@ -18,6 +18,10 @@ Ketika produk turunan menemukan capability yang belum tersedia:
 4. adopsi peningkatan template yang sudah dirilis kembali ke produk secara sengaja — jangan membuat dependency runtime permanen ke repo ini.
 
 Aturan ownership ini bersifat normatif; lihat [ADR-0024](adr/0024-awcms-one-is-template-only-derived-apps-own-their-backend.id.md).
+
+## Aplikasi persona (Lynx) adalah repositori terpisah
+
+Produk turunan yang menginginkan aplikasi pelanggan, kurir, pengemudi, mitra atau gudang membangunnya di **repositori terpisah** terhadap API terdokumentasi backend-nya sendiri; aplikasi itu tidak ditambahkan ke workspace ini, ke `apps/storefront` atau ke `apps/cms` (ADR-0024). LynxJS/ReactLynx adalah kandidat utama, digerbangi PoC di sisi konsumen; admin dan setiap profil publik tetap Astro. Arah disetujui, **integrasi Lynx belum diimplementasikan** di template ini. Lihat [ADR-0050](adr/0050-lynxjs-for-separate-persona-apps-astro-stays-for-admin-and-public-profiles.id.md).
 
 ## Memulai dari template
 
@@ -149,11 +153,14 @@ Setiap file di bawah `apps/storefront/src/pages/**` termasuk tepat satu kelompok
 | `akun/index.astro` | toko | Shell dashboard akun commerce |
 | `akun/pesanan.astro` | toko | Riwayat pesanan commerce |
 | `akun/pesan.astro` | toko | Thread inbox pelanggan commerce |
+| `akun/reservasi.astro` | toko | Reservasi booking milik pembeli yang sedang masuk (issue #386) |
 | `akun/ulasan.astro` | toko | Ulasan produk commerce |
 | `arsip/[yyyy]/[mm].astro` | berita | Arsip bulanan berita |
 | `berita/feed.xml.ts` | berita | Feed RSS berita (pos) |
 | `berita/index.astro` | berita | Halaman depan berita |
 | `berita/[slug].astro` | berita | Artikel berita |
+| `booking/index.astro` | toko | Pencarian menginap booking, ketersediaan, dan kuota dari server (issue #386) |
+| `booking/pesan.astro` | toko | Penahanan booking, hitung mundur, dan serah-terima pembayaran (issue #386) |
 | `buletin/index.astro` | berita | Halaman berlangganan newsletter |
 | `cari.astro` | toko | Pencarian produk (dibangun dari `/index/produk.json`) |
 | `cari-berita.astro` | berita | Pencarian berita |
@@ -175,6 +182,8 @@ Setiap file di bawah `apps/storefront/src/pages/**` termasuk tepat satu kelompok
 | `keranjang.astro` | toko | Keranjang commerce |
 | `kontak.astro` | shared | Setiap profil butuh halaman kontak |
 | `manifest.webmanifest.ts` | shared | Setiap profil adalah situs yang bisa dipasang |
+| `apple-touch-icon.png.ts` | shared | Setiap profil punya ikon aplikasi PNG hasil generate sendiri |
+| `icons/[name].png.ts` | shared | Setiap profil punya ikon aplikasi PNG hasil generate sendiri |
 | `masuk.astro` | toko | Sign-in pelanggan commerce |
 | `mitra/[slug].astro` | berita | Direktori institusi/"Mitra" — fitur kemitraan berita, bukan commerce (lihat catatan kasus-tepi ADR-0018 sendiri) |
 | `newsletter/confirm.astro` | berita | Konfirmasi opt-in ganda newsletter |
@@ -196,7 +205,7 @@ Setiap file di bawah `apps/storefront/src/pages/**` termasuk tepat satu kelompok
 | `video/[slug].astro` | berita | Artikel video berita |
 | `wishlist.astro` | toko | Wishlist commerce |
 
-**Total:** shared 10, `toko` 23, `berita` 19 (total 52).
+**Total:** shared 10, `toko` 26, `berita` 19 (total 55).
 
 ### Navigasi, sitemap, feed, robots, CSP, dan fixture per profil
 
@@ -206,9 +215,19 @@ Setiap file di bawah `apps/storefront/src/pages/**` termasuk tepat satu kelompok
 | **Tautan legal footer** | Panduan belanja, privasi, syarat, redaksi, pedoman media, disclaimer | Redaksi, pedoman media, disclaimer, privasi, syarat | Privasi, syarat saja |
 | **Sumber sitemap** | Semua: `static-routes`, `static-pages`, `katalog-produk`, `katalog-kategori`, `katalog-product-detail`, `berita-front`, `berita-posts`, `berita-video`, `berita-rubrik`, `berita-daerah`, `berita-mitra`, `berita-tag` | `static-routes`, `static-pages`, dan setiap sumber `berita-*` | `static-routes`, `static-pages` saja |
 | **Feed** | Feed produk + feed pos berita + feed rubrik | Feed pos berita + feed rubrik | Tidak ada |
-| **Aturan robots** | Melarang path per-pengunjung commerce (`/keranjang`, `/checkout`, `/pesanan`, `/wishlist`, `/cari`, `/masuk`, `/daftar`, `/akun`) ditambah `/newsletter/*`, `/api/` | Melarang `/newsletter/*`, `/api/` | Melarang `/api/` saja |
-| **CSP `form-action`/`connect-src`** | `form-action 'self'`, `connect-src` diperluas ke `PUBLIC_AWCMS_ORIGIN` (checkout/keranjang) | `form-action 'self'` saja | `form-action 'self'` saja |
+| **Aturan robots** | Melarang path per-pengunjung commerce (`/keranjang`, `/checkout`, `/pesanan`, `/wishlist`, `/cari`, `/masuk`, `/daftar`, `/akun`, `/booking`) ditambah `/newsletter/*`, `/api/` | Melarang `/newsletter/*`, `/api/` | Melarang `/api/` saja |
+| **CSP `form-action`/`connect-src`** | `form-action 'self'`, `connect-src` diperluas ke `PUBLIC_AWCMS_ORIGIN` (checkout/keranjang, dan halaman booking, yang tidak menambah origin lain) | `form-action 'self'` saja | `form-action 'self'` saja |
 | **Fixture stub-CMS yang dibutuhkan** | Setiap fixture commerce ditambah setiap fixture berita (build hibrida butuh keduanya) | `blog-posts.json`, `blog-terms.json`, `blog-institutions.json`, `blog-pages-public*.json`, `seo-redirects-legacy.json`, `regions-kalteng.json`, `ad-placements-active.json`, `analytics-pages.json` | `blog-pages-public*.json`, `store-settings-public.json`, `media-objects.json`/`media-public-origin.json`; tidak ada fixture khusus commerce atau berita |
+
+### Metadata instalasi (manifest, ikon, Layar Utama iOS)
+
+Sama untuk ketiga profil, dan diturunkan, bukan ditulis ulang ([ADR-0049](adr/0049-install-metadata-is-derived-at-build-time-and-the-ios-help-page-is-opt-in.id.md), issue [#428](https://github.com/ahliweb/awcms-one/issues/428)):
+
+- **`/manifest.webmanifest`** punya `id` stabil (`/`), `scope` dan `start_url` (`/`), `display: standalone`, `name` dari identitas situs, `short_name` maksimal 12 karakter, dan petunjuk `categories` per profil (`toko` shopping, `berita` news, `landing` business).
+- **Ikon PNG** (`/icons/icon-192.png`, `/icons/icon-512.png`, `/icons/icon-maskable-512.png`, `/apple-touch-icon.png`) dibuat saat build dari huruf pertama `SITE_NAME` dan warna primer tema. Keduanya sudah ada di daftar "Apa yang ditulis ulang" milik `template:init` (`DEFAULT_IDENTITY`, `DEFAULT_THEME_COLORS`), sehingga **init tidak butuh target tulis-ulang baru dan tidak ada berkas ikon BjekMart yang terlupa**. Untuk memakai karya seni sungguhan, ganti endpoint di `apps/storefront/src/pages/icons/` dan `apple-touch-icon.png.ts`.
+- **Metadata iOS** (`apple-touch-icon`, `apple-mobile-web-app-*`, `mobile-web-app-capable`, `theme-color`) adalah markup statis di `BaseLayout.astro`.
+- **`/pasang-aplikasi`** adalah halaman bantuan opsional "Tambahkan ke Layar Utama di iPhone", **mati secara bawaan**. Setel `PUBLIC_INSTALL_HELP=1` (juga `true`, `on`, `yes`) saat build untuk menambah rute, tautan footer, dan satu skrip same-origin yang mendeteksi mode standalone. Saat mati, semuanya tidak ada (tanpa rute, tautan, skrip, atau entri sitemap) dan CSP sama di kedua kondisi. Halaman ini tidak pernah meminta izin notifikasi dan menyatakan bahwa tab browser tidak bisa menerima notifikasi setelah ditutup.
+- Manifest dan ikon berada di origin **storefront**. Storefront tidak mendaftarkan service worker; CMS memegang PWA admin dan `/push-sw.js` sendiri di origin-nya. Langganan push di luar cakupan di sini.
 
 ## Seed contoh
 

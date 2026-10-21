@@ -14,6 +14,20 @@ import { describe, expect, test } from "bun:test";
 import { listModules } from "../src/modules";
 import { NOT_YET_SCREENED } from "../scripts/admin-screen-coverage-ledger";
 
+/**
+ * Commerce permissions that are API-first on purpose: declared, enforced by
+ * routes and documented in OpenAPI, with no admin screen yet (Issue #391,
+ * ADR-0046). They sit on the shrink-only `NOT_YET_SCREENED` ledger until a
+ * screen claims them; this set may only shrink, and a key that gains a screen
+ * must leave both.
+ */
+const API_FIRST_COMMERCE_KEYS: ReadonlySet<string> = new Set([
+  "commerce.commission_settings.read",
+  "commerce.commission_settings.manage",
+  "commerce.commission_staff_links.read",
+  "commerce.commission_staff_links.manage"
+]);
+
 const PRODUCTS_PAGE = "src/pages/admin/commerce.astro";
 const CATEGORIES_PAGE = "src/pages/admin/commerce-categories.astro";
 
@@ -90,7 +104,7 @@ async function enforcedTriples(
 }
 
 describe("commerce module descriptor — restore is declared for both activity codes", () => {
-  test("one hundred and forty permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations/entitlements, three for reviews, one for whatsapp, three for campaigns, one for webhook_endpoints, one for pos, one for pos_due, three for payments, ten for registers/cash-up, two for loyalty and one each for loyalty_adjustments/loyalty_redemptions, and (Issue #291) read/manage for attributes plus export/import on products, seven for stored value, (Issue #292) two for barcodes, (Issue #287) five for returns, refunds and offline refunds, and (Issue #296) ten for the five operational-report resources, and (Issue #316) two for report_returns, and (Issue #282) two for inventory, and (Issue #364) two for report_retention, and (Issue #360) seven for segments, segment_previews and segment_members", () => {
+  test("one hundred and sixty-four permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations/entitlements, three for reviews, one for whatsapp, three for campaigns, one for webhook_endpoints, one for pos, one for pos_due, three for payments, ten for registers/cash-up, two for loyalty and one each for loyalty_adjustments/loyalty_redemptions, and (Issue #291) read/manage for attributes plus export/import on products, seven for stored value, (Issue #292) two for barcodes, (Issue #287) five for returns, refunds and offline refunds, and (Issue #296) ten for the five operational-report resources, and (Issue #316) two for report_returns, and (Issue #282) two for inventory, and (Issue #364) two for report_retention, and (Issue #360) seven for segments, segment_previews and segment_members, and (Issue #391) four for commission_settings and commission_staff_links, and (Issue #393) two for whatsapp_mode, and (Issue #378) five for booking_offering_links and booking_deposit_policies, and (Issue #380) two for booking_reservation_links, and (Issue #381) seven for the cancellation, refund-decision, refund-override and cancellation-policy resources, and (Issue #382) one for the reschedule (booking_reservation_links update), and (Issue #383) three for the till (booking_check_ins, booking_check_outs and booking_balance_payments create)", () => {
     // Issue #23: categories/products carry read/create/update/delete/restore.
     // Issue #26: flash_sales/vouchers/sliders/testimonials/popups carry
     // read/create/update/delete (soft delete only, no restore — the marketing
@@ -182,7 +196,26 @@ describe("commerce module descriptor — restore is declared for both activity c
         2 +
         // Issue #360: segments read/create/update/delete, segment_previews
         // read, segment_members read/export.
-        7
+        7 +
+        // Issue #391: commission_settings read/manage, commission_staff_links
+        // read/manage (existing verbs; API-first, no admin screen yet).
+        4 +
+        // Issue #393: whatsapp_mode read + manage.
+        2 +
+        // Issue #378: booking_offering_links read/create/update,
+        // booking_deposit_policies read/update.
+        5 +
+        // Issue #380: booking_reservation_links read/create.
+        2 +
+        // Issue #381: booking_reservation_links cancel, booking_refund_decisions
+        // read/create, booking_refund_overrides approve,
+        // booking_cancellation_policies read/create/approve.
+        7 +
+        // Issue #382: booking_reservation_links update (the reschedule).
+        1 +
+        // Issue #383: booking_check_ins, booking_check_outs and
+        // booking_balance_payments create (the till's three writes).
+        3
     );
 
     // Issue #291 — typed catalog attributes. `manage` (one high-risk action,
@@ -316,7 +349,13 @@ describe("commerce module descriptor — restore is declared for both activity c
 
   test("neither commerce activity code's permissions remain on NOT_YET_SCREENED", () => {
     expect(
-      NOT_YET_SCREENED.filter((key) => key.startsWith("commerce."))
+      NOT_YET_SCREENED.filter(
+        (key) =>
+          key.startsWith("commerce.") &&
+          !API_FIRST_COMMERCE_KEYS.has(key) &&
+          // Issue #378: the booking adapter lands routes before screens.
+          !key.startsWith("commerce.booking_")
+      )
     ).toEqual([]);
   });
 });

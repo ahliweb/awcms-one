@@ -42,12 +42,20 @@ import {
   isPushEnabled,
   resolvePushSendMaxRetries
 } from "../domain/push-config";
+import {
+  PushAuthSecretError,
+  resolvePushAuthSecretRing
+} from "../domain/push-auth-secret";
 import { evaluatePushRetry } from "../domain/push-retry";
-import type { PushProvider } from "../domain/push-provider-contract";
+import type {
+  PushProvider,
+  PushTarget
+} from "../domain/push-provider-contract";
 import { resolvePushProvider } from "../infrastructure/push-provider-resolver";
 import {
   disablePushSubscription,
-  fetchDeliveryTarget,
+  buildDeliveryTarget,
+  fetchDeliveryTargetRow,
   markSubscriptionDelivered
 } from "./subscription-directory";
 
@@ -62,6 +70,7 @@ type ClaimedRow = {
   correlation_id: string | null;
   category: string;
   subscription_id: string;
+  recipient_tenant_user_id: string | null;
   title: string;
   body: string;
   target_path: string | null;
@@ -108,11 +117,11 @@ async function claimEligibleMessages(
     sql,
     tenantId,
     async (tx) => {
+      // `MATERIALIZED` is load-bearing: an inlined locking sub-select can be
+      // re-run per outer row on stale statistics and claim more than `limit`
+      // (Issue #1007). The CTE computes the locked, limited id set once.
       const rows = await tx`
-        UPDATE awcms_push_messages
-        SET status = 'sending', next_attempt_at = ${leaseExpiry},
-            updated_at = now()
-        WHERE id IN (
+        WITH due AS MATERIALIZED (
           SELECT id FROM awcms_push_messages
           WHERE tenant_id = ${tenantId}
             AND (
@@ -126,8 +135,13 @@ async function claimEligibleMessages(
           LIMIT ${limit}
           FOR UPDATE SKIP LOCKED
         )
-        RETURNING id, correlation_id, category, subscription_id, title, body,
-                  target_path, data, retry_count
+        UPDATE awcms_push_messages AS t
+        SET status = 'sending', next_attempt_at = ${leaseExpiry},
+            updated_at = now()
+        FROM due
+        WHERE t.id = due.id
+        RETURNING t.id, t.correlation_id, t.category, t.subscription_id,
+                  t.recipient_tenant_user_id, t.title, t.body, t.target_path, t.data, t.retry_count
       `;
 
       return rows as unknown as ClaimedRow[];
@@ -170,6 +184,11 @@ async function recordDeliveryAttempt(
   );
 }
 
+/**
+ * `status = 'sent'` / `sent_at` record PROVIDER ACCEPTANCE (the push service
+ * answered 2xx), not display on a device. `last_success_at` on the subscription
+ * has the same meaning. See `PushDeliveryResult` in the provider contract.
+ */
 async function finalizeSent(
   sql: Bun.SQL,
   tenantId: string,
@@ -297,6 +316,7 @@ export async function dispatchPushQueue(
     return result;
   }
 
+  const authSecretRing = resolvePushAuthSecretRing(env);
   const provider = (options.resolveProvider ?? resolvePushProvider)(env);
   const providerName = env.PUSH_PROVIDER ?? "unknown";
 
@@ -312,12 +332,70 @@ export async function dispatchPushQueue(
     const attemptNo = retryCount + 1;
     const messageCorrelationId = entry.correlation_id ?? correlationId;
 
-    const target = await withTenantOrThrow(
-      sql,
-      tenantId,
-      (tx) => fetchDeliveryTarget(tx, tenantId, entry.subscription_id),
-      { workClass: "background_sync" }
-    );
+    let target: PushTarget | null;
+
+    try {
+      // Read the row inside the tenant transaction, build the target (hash
+      // check + decrypt) OUTSIDE it: a refusal here is not a database failure
+      // and must not feed the circuit breaker (Issue #1089, L1).
+      const targetRow = await withTenantOrThrow(
+        sql,
+        tenantId,
+        (tx) =>
+          fetchDeliveryTargetRow(
+            tx,
+            tenantId,
+            entry.subscription_id,
+            entry.recipient_tenant_user_id
+          ),
+        { workClass: "background_sync" }
+      );
+
+      target = targetRow
+        ? buildDeliveryTarget(
+            targetRow,
+            tenantId,
+            authSecretRing.ok ? authSecretRing : null
+          )
+        : null;
+    } catch (error) {
+      // Issue #1089: a ciphertext row whose secret cannot be produced. The
+      // message is a fixed string (no secret, ciphertext or key material), so it
+      // is safe to persist as the attempt's error. Missing/rotated-away key is
+      // retryable (an operator can fix it); a failed authentication is not.
+      if (!(error instanceof PushAuthSecretError)) {
+        throw error;
+      }
+
+      await recordDeliveryAttempt(
+        sql,
+        tenantId,
+        entry.id,
+        attemptNo,
+        "failure",
+        providerName,
+        null,
+        error.message
+      );
+      const outcome = await finalizeFailure(
+        sql,
+        tenantId,
+        entry.id,
+        retryCount,
+        maxRetries,
+        error.retryable,
+        now,
+        error.message
+      );
+
+      if (outcome.eligible) {
+        result.retried += 1;
+      } else {
+        result.failed += 1;
+      }
+
+      continue;
+    }
 
     if (!target) {
       const reason = "Subscription is no longer active.";

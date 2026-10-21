@@ -9,6 +9,8 @@
  * code from someone who does not have write access to this repository.
  */
 
+import { resolveRepo } from "./github.ts";
+
 export interface PullRequestInfo {
   number: number;
   headSha: string;
@@ -36,46 +38,62 @@ export function enforceForkPolicyOrThrow(
   }
 }
 
+/** The fields of a REST `GET /repos/{owner}/{repo}/pulls/{n}` response this module reads. */
+export interface RestPullRequest {
+  number: number;
+  head: { sha: string; repo: { full_name: string } | null };
+  base: { repo: { full_name: string } };
+}
+
 /**
- * Fetch a PR's head SHA and fork status via `gh pr view`. Isolated behind
- * this function so `enforceForkPolicyOrThrow`'s policy above stays pure and
- * unit-testable with no network call.
+ * Pure: map a REST pull-request object to {@link PullRequestInfo}.
  *
- * @param {number} prNumber
- * @param {string} repoRoot
- * @returns {Promise<PullRequestInfo>}
+ * A PR is cross-repository when its head repository is not its base
+ * repository. A head repository of `null` (the fork was deleted after the
+ * PR was opened) is treated as a fork: its code is still not this
+ * repository's, so the `--allow-fork` refusal must still apply.
  */
-export async function fetchPullRequestInfo(prNumber: number, repoRoot: string): Promise<PullRequestInfo> {
-  const proc = Bun.spawn(
-    [
-      "gh",
-      "pr",
-      "view",
-      String(prNumber),
-      "--json",
-      // "baseRepository" is not a field `gh pr view --json` accepts (its
-      // own error lists the real set); the PR's base repo is always the
-      // one `gh` is already scoped to here (this checkout's `origin`,
-      // matched by resolveRepo()), so this never needs to ask for it.
-      "number,headRefOid,headRepository,headRepositoryOwner,isCrossRepository"
-    ],
-    { cwd: repoRoot, stdout: "pipe", stderr: "pipe" }
-  );
+export function pullRequestInfoFromRest(pr: RestPullRequest): PullRequestInfo {
+  const headRepoFullName = pr.head.repo?.full_name ?? "";
+  return {
+    number: pr.number,
+    headSha: pr.head.sha,
+    headRepoFullName,
+    isCrossRepository: pr.head.repo === null || headRepoFullName.toLowerCase() !== pr.base.repo.full_name.toLowerCase()
+  };
+}
+
+/**
+ * Run `gh api <path>` from `repoRoot` and parse its JSON. REST only, never
+ * GraphQL (`gh pr view`/`gh pr list` are GraphQL), so a token or a host that
+ * allows the REST API alone is enough for local CI.
+ */
+export async function ghApiJson(path: string, repoRoot: string): Promise<unknown> {
+  const proc = Bun.spawn(["gh", "api", path], { cwd: repoRoot, stdout: "pipe", stderr: "pipe" });
   const [stdout, stderr, exitCode] = await Promise.all([
     new Response(proc.stdout).text(),
     new Response(proc.stderr).text(),
     proc.exited
   ]);
   if (exitCode !== 0) {
-    throw new Error(`gh pr view ${prNumber} failed: ${stderr.trim()}`);
+    throw new Error(`gh api ${path} failed: ${stderr.trim()}`);
   }
-  const parsed = JSON.parse(stdout);
-  const headOwner = parsed.headRepositoryOwner?.login ?? "";
-  const headRepoName = parsed.headRepository?.name ?? "";
-  return {
-    number: parsed.number,
-    headSha: parsed.headRefOid,
-    headRepoFullName: `${headOwner}/${headRepoName}`,
-    isCrossRepository: Boolean(parsed.isCrossRepository)
-  };
+  return JSON.parse(stdout);
+}
+
+/**
+ * Fetch a PR's head SHA and fork status via the REST API
+ * (`gh api repos/{owner}/{repo}/pulls/{n}`). Isolated behind this function so
+ * `enforceForkPolicyOrThrow`'s policy above stays pure and unit-testable with
+ * no network call; the mapping itself is the pure
+ * {@link pullRequestInfoFromRest}.
+ *
+ * @param {number} prNumber
+ * @param {string} repoRoot
+ * @returns {Promise<PullRequestInfo>}
+ */
+export async function fetchPullRequestInfo(prNumber: number, repoRoot: string): Promise<PullRequestInfo> {
+  const { owner, repo } = resolveRepo(repoRoot);
+  const parsed = (await ghApiJson(`repos/${owner}/${repo}/pulls/${prNumber}`, repoRoot)) as RestPullRequest;
+  return pullRequestInfoFromRest(parsed);
 }

@@ -8,7 +8,8 @@ import { getDatabaseClient } from "../../../../../../../lib/database/client";
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../../../../../../modules/_shared/idempotency";
 import { reconcileOneOrderPaymentSession } from "../../../../../../../modules/commerce/application/payment-reconcile";
 import {
@@ -57,7 +58,7 @@ export const POST = defineTenantRoute<Prepared>({
     return { idempotencyKey };
   },
   authorize: UPDATE_GUARD,
-  handler: async ({ tx, tenantId, params, prepared, locals }) => {
+  handler: async ({ tx, tenantId, auth, params, prepared, locals }) => {
     const orderId = params.id;
     if (!orderId) return fail(400, "VALIDATION_ERROR", "id is required.");
 
@@ -67,7 +68,8 @@ export const POST = defineTenantRoute<Prepared>({
       tx,
       tenantId,
       IDEMPOTENCY_SCOPE,
-      prepared.idempotencyKey
+      prepared.idempotencyKey,
+      userIdempotencyActor(auth.context.tenantUserId)
     );
     if (existing) {
       if (existing.requestHash !== requestHash) {
@@ -124,6 +126,7 @@ export const POST = defineTenantRoute<Prepared>({
       tenantId,
       IDEMPOTENCY_SCOPE,
       prepared.idempotencyKey,
+      userIdempotencyActor(auth.context.tenantUserId),
       requestHash,
       200,
       successBody

@@ -87,7 +87,8 @@ import { appendDomainEvent } from "../../domain-event-runtime/application/append
 import {
   computeRequestHash,
   findIdempotencyRecord,
-  saveIdempotencyRecord
+  saveIdempotencyRecord,
+  userIdempotencyActor
 } from "../../_shared/idempotency";
 import {
   keysetCursorCreatedAtSql,
@@ -299,7 +300,7 @@ export type CreatePosOrderOutcome =
  * @throws {InsufficientTenderError} cash tendered is less than the total.
  */
 export async function createPosOrder(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   mediaPort: MediaLibraryPort,
@@ -340,7 +341,7 @@ export async function createPosOrder(
 }
 
 async function createPosOrderWrite(
-  tx: Bun.SQL,
+  tx: Bun.TransactionSQL,
   tenantId: string,
   actorTenantUserId: string,
   mediaPort: MediaLibraryPort,
@@ -376,7 +377,8 @@ async function createPosOrderWrite(
     tx,
     tenantId,
     IDEMPOTENCY_SCOPE,
-    input.idempotencyKey
+    input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId)
   );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -520,7 +522,8 @@ async function createPosOrderWrite(
       tx,
       tenantId,
       IDEMPOTENCY_SCOPE,
-      input.idempotencyKey
+      input.idempotencyKey,
+      userIdempotencyActor(actorTenantUserId)
     );
     if (raced) {
       if (raced.requestHash !== requestHash) {
@@ -586,7 +589,9 @@ async function createPosOrderWrite(
   for (let attempt = 0; attempt < MAX_ORDER_CODE_ATTEMPTS; attempt += 1) {
     const candidateCode = generateOrderCode(now);
     try {
-      const rows = (await tx`
+      const rows = (await tx.savepoint(
+        async (sp) =>
+          await sp`
         INSERT INTO awcms_commerce_orders (
           tenant_id, order_code, customer_id, status, payment_method, payment_status,
           shipping_method, shipping_cost, subtotal, discount, insurance_fee, tax, total,
@@ -598,7 +603,8 @@ async function createPosOrderWrite(
           ${payableTotal}, ${loyaltyDiscount}, ${input.notes}, 'pos', ${actorTenantUserId}, ${registerSessionId}
         )
         RETURNING id, order_code
-      `) as { id: string; order_code: string }[];
+      `
+      )) as { id: string; order_code: string }[];
       orderId = rows[0]!.id;
       orderCode = rows[0]!.order_code;
       break;
@@ -832,6 +838,7 @@ async function createPosOrderWrite(
     tenantId,
     IDEMPOTENCY_SCOPE,
     input.idempotencyKey,
+    userIdempotencyActor(actorTenantUserId),
     requestHash,
     201,
     responseBody

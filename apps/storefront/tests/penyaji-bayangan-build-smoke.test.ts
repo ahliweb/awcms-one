@@ -117,13 +117,14 @@ describe("build smoke: the bundled server serves directory-shadowed pages (issue
         // naming the reason, rather than the assertions below passing for a
         // reason that no longer exists.
         const clientDir = join(STOREFRONT_ROOT, "dist", "client");
-        for (const shape of ["berita", "video", join("rubrik", "peristiwa")]) {
+        // `booking` (issue #386) is the toko-profile page that is both a landing page and the parent of `/booking/pesan`.
+        for (const shape of ["berita", "video", "booking", join("rubrik", "peristiwa")]) {
           expect(existsSync(join(clientDir, `${shape}.html`))).toBe(true);
           expect(statSync(join(clientDir, shape)).isDirectory()).toBe(true);
         }
 
         // The defect: 404 before this issue, on every one of these.
-        for (const path of ["/berita", "/video", "/rubrik/peristiwa"]) {
+        for (const path of ["/berita", "/video", "/booking", "/rubrik/peristiwa"]) {
           const response = await fetch(`${origin}${path}`, { redirect: "manual" });
           expect(response.status).toBe(200);
           expect(response.headers.get("content-type")).toContain("text/html");
@@ -138,14 +139,18 @@ describe("build smoke: the bundled server serves directory-shadowed pages (issue
         expect(berita).toContain('rel="canonical" href="http://localhost:4321/berita"');
 
         // Children are untouched (they were never broken).
-        for (const path of ["/berita/bupati-kobar-resmikan-jembatan-baru", "/video/detik-detik-kebakaran-pasar"]) {
+        for (const path of [
+          "/berita/bupati-kobar-resmikan-jembatan-baru",
+          "/video/detik-detik-kebakaran-pasar",
+          "/booking/pesan"
+        ]) {
           const response = await fetch(`${origin}${path}`, { redirect: "manual" });
           expect(response.status).toBe(200);
         }
 
         // The trailing-slash form keeps the adapter's own 301 to the bare
         // path — the acceptance criterion the issue names verbatim.
-        for (const path of ["/berita/", "/video/", "/rubrik/peristiwa/"]) {
+        for (const path of ["/berita/", "/video/", "/booking/", "/rubrik/peristiwa/"]) {
           const response = await fetch(`${origin}${path}`, { redirect: "manual" });
           expect(response.status).toBe(301);
           expect(response.headers.get("location")).toBe(path.slice(0, -1));
