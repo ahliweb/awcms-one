@@ -55,9 +55,10 @@ import { IdempotencyRaceLostError } from "../../../../../../../../modules/_share
  * namespaced by who asks, so a stranger can neither claim nor replay it; the
  * same key and request replays (`200`), another request is `409
  * IDEMPOTENCY_CONFLICT`. The refund legs are planned under the tenant's
- * service-account user; this route never settles money. Rate-limited per IP
- * and per phone, on its own counters but with the order-create limits
- * (`COMMERCE_ORDER_CREATE_RATE_LIMIT_*`). Behind the `booking` feature: off, the neutral `404`.
+ * service-account user; this route never settles money. Rate-limited per IP,
+ * per phone AND order code (so a stranger cannot exhaust the guest's own budget -
+ * Issue #448) and by a coarser per-phone ceiling, on their own counters but with
+ * the order-create limits (`COMMERCE_ORDER_CREATE_RATE_LIMIT_*`). Behind the `booking` feature: off, the neutral `404`.
  */
 const RATE_LIMIT_WINDOW_SEC = parsePositiveIntSetting(
   process.env.COMMERCE_ORDER_CREATE_RATE_LIMIT_WINDOW_SEC,
@@ -74,6 +75,17 @@ const RATE_LIMIT_MAX_PER_PHONE = parsePositiveIntSetting(
   5,
   "COMMERCE_ORDER_CREATE_RATE_LIMIT_MAX_PER_PHONE"
 );
+/**
+ * Issue #448: the per-phone budget is keyed on phone PLUS order code, so a
+ * stranger who only knows a guest's phone number cannot spend the guest's own
+ * budget for their own reservation. A coarser per-phone CEILING (this many times
+ * the per-order budget) still bounds how many distinct order codes one phone can
+ * probe per window. Trade-off: a determined third party who knows only the phone
+ * can still exhaust the ceiling, but needs ten times the requests, and every one
+ * of them is also charged to the per-IP limiter.
+ */
+const RATE_LIMIT_PHONE_CEILING_FACTOR = 10;
+const RATE_LIMIT_ORDER_CODE_KEY_MAX = 64;
 const PREFLIGHT_ALLOWED_HEADERS = [
   "content-type",
   "authorization",
@@ -149,8 +161,12 @@ export const POST: APIRoute = async ({
       });
     }
     guestPhone = normalized.value;
+    const orderKey = orderCode!
+      .trim()
+      .toUpperCase()
+      .slice(0, RATE_LIMIT_ORDER_CODE_KEY_MAX);
     const phoneLimit = await checkSharedRateLimit(
-      `commerce:booking:cancel:phone:${guestPhone}`,
+      `commerce:booking:cancel:phone-order:${guestPhone}:${orderKey}`,
       {
         maxAttempts: RATE_LIMIT_MAX_PER_PHONE,
         windowMs: RATE_LIMIT_WINDOW_SEC * 1000
@@ -164,6 +180,25 @@ export const POST: APIRoute = async ({
         {},
         undefined,
         { "retry-after": String(phoneLimit.retryAfterSec), vary: "Origin" }
+      );
+    }
+    // Checked after the per-order bucket so that repeated denials on one order
+    // do not also burn the ceiling.
+    const phoneCeiling = await checkSharedRateLimit(
+      `commerce:booking:cancel:phone:${guestPhone}`,
+      {
+        maxAttempts: RATE_LIMIT_MAX_PER_PHONE * RATE_LIMIT_PHONE_CEILING_FACTOR,
+        windowMs: RATE_LIMIT_WINDOW_SEC * 1000
+      }
+    );
+    if (!phoneCeiling.allowed) {
+      return fail(
+        429,
+        "RATE_LIMITED",
+        "Too many cancellation requests for this phone number. Try again later.",
+        {},
+        undefined,
+        { "retry-after": String(phoneCeiling.retryAfterSec), vary: "Origin" }
       );
     }
   }
