@@ -775,6 +775,14 @@ export type RescheduleContext = {
   correlationId: string;
   port: BookingPort;
   mediaPort: MediaLibraryPort;
+  /**
+   * Whether the actor also holds `commerce.booking_refund_decisions.create`
+   * (Issue #448), asked lazily. A shorter stay plans pending refund legs - the
+   * refund authority of the access matrix - so a reschedule that would plan any
+   * is refused `REFUND_PLANNING_FORBIDDEN` (before the first write) when this
+   * answers false. REQUIRED, never defaulted: a caller must state it.
+   */
+  canPlanRefund: () => Promise<boolean>;
   now?: Date;
 };
 
@@ -954,6 +962,8 @@ export async function rescheduleBookingReservation(
 
   let serviceActor: string | null = null;
   if (figures.refundCents > 0n) {
+    if (!(await ctx.canPlanRefund()))
+      return refuse({ code: "REFUND_PLANNING_FORBIDDEN" });
     serviceActor = await fetchBookingServiceActor(tx, tenantId);
     if (!serviceActor) return refuse({ code: "SERVICE_ACTOR_NOT_CONFIGURED" });
   }

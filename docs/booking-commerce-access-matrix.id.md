@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](booking-commerce-access-matrix.md)
 
-<!-- i18n-source-hash: sha256:853dbae05ff894cfe949e38e319d79adae784b77d42f337ca1189b524d880cc5 -->
+<!-- i18n-source-hash: sha256:90080bcd5af7d14453eb39ff05adba38f0de79c2f88019ea4d8f96403a36fb9a -->
 
 # Adapter booking-commerce — matriks RBAC / ABAC / RLS
 
@@ -85,6 +85,7 @@ Cara membaca tabel:
 - **Kasir tidak dapat membatalkan, me-refund, atau meng-override.** Kasir menerima deposit atau pelunasan dan menukar poin di dalam sesi register miliknya. Kasir tidak memegang satu pun dari `.cancel`, `commerce.booking_refund_decisions.create`, `commerce.booking_refund_overrides.approve`, `commerce.refunds.create`, atau `commerce.payments.revoke`. Ini menutup eskalasi F3 model ancaman "kasir membatalkan reservasi orang lain untuk me-refund ke pelanggan yang berkolusi": izin batal dan refund terpisah dari buat.
 - **Admin tenant mengonfigurasi dan memberi wewenang; secara bawaan tidak mengoperasikan.** Aktivasi kebijakan pembatalan dijaga step-up karena versi kebijakan diam-diam menentukan setiap jumlah refund berikutnya. Admin yang juga menjaga meja depan diberi paket penjadwal juga (aditif).
 - **Keuangan membaca dan merekonsiliasi.** Keuangan membaca keputusan dan buku besar, memegang kunci eksekusi refund, persetujuan offline, pembalikan, dan penyesuaian loyalti yang sudah ada, dan boleh memegang kunci override. Keuangan tidak punya otoritas reservasi.
+- **Reschedule yang merencanakan refund juga memerlukan kunci keputusan (Issue #448).** Memindahkan reservasi memerlukan `commerce.booking_reservation_links.update`. Bila pemindahan memperpendek menginap, ia juga merencanakan leg refund `pending`, sehingga rute tambahan mensyaratkan `commerce.booking_refund_decisions.create` (hanya jumlah terhitung, tidak pernah override) dan menolak dengan `403` sebelum ada tulisan bila kunci itu tidak ada; pemindahan dengan panjang sama atau lebih panjang cukup dengan `.update`. Bundel penjadwal memegang keduanya.
 - **Aktor sistem menjalankan efek consumer.** Consumer yang mengamati `order.paid` atau pembatalan bertindak sebagai sistem (`actor_kind = 'system'`, baris keputusan di model data), di bawah mekanisme consumer yang dideklarasikan descriptor (ADR-0134 di `awcms`; empat consumer commerce yang ada adalah preseden), bukan di bawah izin seseorang.
 
 ## 5. Kondisi ABAC

@@ -127,6 +127,7 @@ async function resched(
     now?: Date;
     tenantId?: string;
     staffId?: string;
+    canPlanRefund?: boolean;
   } = {}
 ): Promise<RescheduleResult> {
   const tenantId = options.tenantId ?? TENANT_A;
@@ -145,6 +146,7 @@ async function resched(
         correlationId: crypto.randomUUID(),
         port: await composedBookingPort(),
         mediaPort: mediaLibraryPortAdapter,
+        canPlanRefund: async () => options.canPlanRefund ?? true,
         ...(options.now ? { now: options.now } : {})
       },
       {
@@ -603,6 +605,47 @@ suite("booking reschedule (Issue #382)", () => {
 
   // ---------------------------------------------------------------------------
   describe("fewer nights: a policy-limited refund from the ORIGINAL arrival (C-37, C-39)", () => {
+    test("Issue #448: planning refund legs needs the decision permission; without it the shorter stay is refused before any write", async () => {
+      const f = await newFixture();
+      await policy(f.productId);
+      const view = await bookedAndPaid(f, { nights: 3 });
+      const startsAt = await startsAtOf(view.reservationId);
+      const before = await frozen(view.orderId);
+      const counts = async () =>
+        (
+          (await getAdminSql()`
+            SELECT
+              (SELECT count(*)::int FROM awcms_commerce_booking_reschedules WHERE order_id = ${view.orderId}) AS reschedules,
+              (SELECT count(*)::int FROM awcms_commerce_returns WHERE order_id = ${view.orderId}) AS returns
+          `) as { reschedules: number; returns: number }[]
+        )[0]!;
+      const zero = await counts();
+
+      const refused = await resched(
+        view.reservationId,
+        { stay: { checkInDate: D(10), checkOutDate: D(12) } },
+        { now: new Date(startsAt - 100 * HOUR), canPlanRefund: false }
+      );
+      expect(refused).toEqual({
+        kind: "refused",
+        refusal: { code: "REFUND_PLANNING_FORBIDDEN" }
+      });
+      expect(await counts()).toEqual(zero);
+      expect(JSON.parse(await frozen(view.orderId))).toEqual(
+        JSON.parse(before)
+      );
+
+      // The same call with the right does plan the legs.
+      const allowed = moved(
+        await resched(
+          view.reservationId,
+          { stay: { checkInDate: D(10), checkOutDate: D(12) } },
+          { now: new Date(startsAt - 100 * HOUR), canPlanRefund: true }
+        )
+      );
+      expect(allowed.record.returnId).not.toBeNull();
+    });
+
     test("three nights become two: the value of one night, judged by the original policy, planned as pending legs", async () => {
       const f = await newFixture();
       await policy(f.productId);
