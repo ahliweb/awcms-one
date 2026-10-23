@@ -20,7 +20,7 @@ The integration harness's throwaway database: every real migration, and the prod
 | Item               | Value                                                                                         |
 | ------------------ | --------------------------------------------------------------------------------------------- |
 | Date               | 17 October 2026                                                                               |
-| Commit             | `37c970fd` (the branch base the harness was committed on top of; the harness adds files only) |
+| Commit             | `37c970fd` (verified: the base, i.e. parent, of PR #425's harness commit `01953109`)          |
 | CPU                | Intel Xeon @ 2.10 GHz, `nproc` = 4                                                            |
 | Memory             | `free -g`: 15 GiB total, 14 GiB available                                                     |
 | Bun                | 1.4.2                                                                                         |

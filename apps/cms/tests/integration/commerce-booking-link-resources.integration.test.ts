@@ -477,6 +477,16 @@ suite("booking offering link resources (Issue #437)", () => {
     const listed = await offerings();
     expect(listed.map((i) => i.offeringId)).toEqual([deluxe.offeringId]);
     expect(listed[0]!.resourceIds).toEqual([deluxe.resourceId]);
+    // Issue #448: availability for a bound resource that is no longer live is
+    // the same neutral 404 as for an id the link does not name.
+    expect(
+      (
+        await get(
+          availabilityGet,
+          availabilityPath(standard.offeringId, standard.resourceId)
+        )
+      ).status
+    ).toBe(404);
 
     // A bound resource soft-deleted in Booking drops out the same way.
     await getHandlerAdminSql()`

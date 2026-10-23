@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](benchmarks-commerce-load.md)
 
-<!-- i18n-source-hash: sha256:c644bef9f91a3929632230b46e62e1bf92de628e54d0c61a13e93ecac3847968 -->
+<!-- i18n-source-hash: sha256:c348e71f8fe029027eb89907076f968c38eb0b67a271cf3608b841a2c7587be6 -->
 
 # Benchmark beban dan konkurensi commerce (issue #395)
 
@@ -22,7 +22,7 @@ Database sekali pakai milik harness integrasi: semua migrasi nyata, dan peran pr
 | Butir                | Nilai                                                                                             |
 | -------------------- | ------------------------------------------------------------------------------------------------- |
 | Tanggal              | 17 Oktober 2026                                                                                   |
-| Commit               | `37c970fd` (dasar branch tempat harness di-commit; harness hanya menambah berkas)                 |
+| Commit               | `37c970fd` (terverifikasi: dasar, yaitu induk, commit harness `01953109` milik PR #425)           |
 | CPU                  | Intel Xeon @ 2,10 GHz, `nproc` = 4                                                                |
 | Memori               | `free -g`: total 15 GiB, tersedia 14 GiB                                                          |
 | Bun                  | 1.4.2                                                                                             |
