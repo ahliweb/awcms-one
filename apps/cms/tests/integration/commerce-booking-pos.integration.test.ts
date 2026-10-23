@@ -1268,30 +1268,63 @@ suite("booking POS: lookup, check-in, check-out, balance (Issue #383)", () => {
           return (error as Error).message;
         }
       };
-      // The booking order, source pos: allowed (this is the app's own path).
-      expect(await attempt(booking.orderId, "pos", "guard-ok")).toBe("");
+      // Issue #448: the exception also needs the balance route's marker, naming
+      // a live reservation link OF THIS ORDER.
+      const linkRows = (await admin`
+        SELECT id FROM awcms_commerce_booking_reservation_links
+        WHERE order_id = ${booking.orderId} AND status = 'active'
+      `) as { id: string }[];
+      const marker = `posbal:${linkRows[0]!.id}:`;
+      // The booking order, source pos, the balance route's marker: allowed (this
+      // is the app's own path).
+      expect(await attempt(booking.orderId, "pos", `${marker}guard-ok:0`)).toBe(
+        ""
+      );
+      // Issue #448: a pos leg on the same order WITHOUT the marker, with a marker
+      // of another prefix, or naming a link that is not this order's: refused.
+      for (const key of [
+        "guard-no-marker",
+        `status-paid:${linkRows[0]!.id}:x`,
+        `posbal:${UNKNOWN_ID}:guard:0`,
+        "posbal:",
+        "posbal:not-a-uuid:guard:0"
+      ]) {
+        expect(await attempt(booking.orderId, "pos", key)).toMatch(
+          /register session of its own order/
+        );
+      }
       // Issue #383 audit L1: the exception names the session's OWN cashier. The
       // session is open and the order is a live booking, but the actor is
       // somebody else (the owner, and a second cashier with the same keys): the
       // database refuses it, whatever the application would have done.
       expect(
-        await attempt(booking.orderId, "pos", "guard-other-cashier", {
-          kind: "tenant_user",
-          tenantUserId: till.owner.tenantUserId
-        })
+        await attempt(
+          booking.orderId,
+          "pos",
+          `${marker}guard-other-cashier:0`,
+          {
+            kind: "tenant_user",
+            tenantUserId: till.owner.tenantUserId
+          }
+        )
       ).toMatch(/register session of its own order/);
       const second = await seedPrincipal(till.owner.tenantId, "desk3", [
         ...PERSONAS.desk
       ]);
       expect(
-        await attempt(booking.orderId, "pos", "guard-second-cashier", {
-          kind: "tenant_user",
-          tenantUserId: second.tenantUserId
-        })
+        await attempt(
+          booking.orderId,
+          "pos",
+          `${marker}guard-second-cashier:0`,
+          {
+            kind: "tenant_user",
+            tenantUserId: second.tenantUserId
+          }
+        )
       ).toMatch(/register session of its own order/);
       // A system-recorded leg has no cashier to bind: refused as well.
       expect(
-        await attempt(booking.orderId, "pos", "guard-system", {
+        await attempt(booking.orderId, "pos", `${marker}guard-system:0`, {
           kind: "system"
         })
       ).toMatch(/register session of its own order/);
@@ -1299,13 +1332,13 @@ suite("booking POS: lookup, check-in, check-out, balance (Issue #383)", () => {
       const stamped = (await admin`
         SELECT count(*)::int AS n FROM awcms_commerce_payment_allocations
         WHERE order_id = ${booking.orderId}
-          AND source_key IN ('guard-other-cashier', 'guard-second-cashier', 'guard-system')
+          AND source_key IN (${marker + "guard-other-cashier:0"}, ${marker + "guard-second-cashier:0"}, ${marker + "guard-system:0"})
       `) as { n: number }[];
       expect(stamped[0]!.n).toBe(0);
       // The same order from the admin path: refused.
-      expect(await attempt(booking.orderId, "admin", "guard-admin")).toMatch(
-        /register session of its own order/
-      );
+      expect(
+        await attempt(booking.orderId, "admin", `${marker}guard-admin:0`)
+      ).toMatch(/register session of its own order/);
       // An ordinary order with no reservation link: refused, even as pos.
       const plain = (await admin`
         SELECT o.id FROM awcms_commerce_orders o
@@ -1314,18 +1347,18 @@ suite("booking POS: lookup, check-in, check-out, balance (Issue #383)", () => {
         LIMIT 1
       `) as { id: string }[];
       if (plain[0]) {
-        expect(await attempt(plain[0].id, "pos", "guard-plain")).toMatch(
-          /register session of its own order/
-        );
+        expect(
+          await attempt(plain[0].id, "pos", `${marker}guard-plain:0`)
+        ).toMatch(/register session of its own order/);
       }
       // A released link is no longer a live booking balance.
       await admin`
         UPDATE awcms_commerce_booking_reservation_links SET status = 'released'
         WHERE order_id = ${booking.orderId}
       `;
-      expect(await attempt(booking.orderId, "pos", "guard-released")).toMatch(
-        /register session of its own order/
-      );
+      expect(
+        await attempt(booking.orderId, "pos", `${marker}guard-released:0`)
+      ).toMatch(/register session of its own order/);
     });
   });
 
