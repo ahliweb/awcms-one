@@ -2868,6 +2868,9 @@ msgstr ""
 msgid "Remove"
 msgstr ""
 
+msgid "Remove role {code}"
+msgstr ""
+
 msgid "Removed"
 msgstr ""
 
