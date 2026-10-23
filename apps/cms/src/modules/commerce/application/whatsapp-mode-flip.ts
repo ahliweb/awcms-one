@@ -31,17 +31,29 @@
  * ## The reverse flip (`upstream` -> `legacy`)
  *
  * Symmetric, and it is a rollback, so it matters most when the new channel
- * misbehaves: it is refused while the upstream queue holds non-terminal rows for
- * the tenant. The count comes from `summarizeWhatsappQueue`, the `whatsapp_delivery`
- * module's own read for its operator screen - the sanctioned way to look at
- * that queue; commerce never selects from its table. That read is TENANT-wide,
- * not commerce-only, because the module offers no per-template count: a
- * tenant that also queues booking reminders in the upstream queue waits for
- * those too. There is deliberately no override: the rows are drained by the
- * upstream dispatcher regardless of commerce's mode, so waiting is always
- * sufficient, whereas an override would recreate the two-live-queues state the
- * rule exists to prevent. If the upstream dispatcher is down, bringing it up
- * (or letting security messages expire) is the way to a clean rollback.
+ * misbehaves. It is refused while the upstream queue holds a non-terminal row OF
+ * COMMERCE for the tenant (issue #449, ADR-0047 D12):
+ *
+ *   * The upstream queue is shared by every module of the tenant. Counting it
+ *     whole made a booking reminder block a commerce rollback, so only the rows
+ *     of the templates commerce registered (`COMMERCE_UPSTREAM_TEMPLATE_PLANS`)
+ *     count; the rest are reported as `upstreamUnrelated` and never block.
+ *   * The rows are read through `whatsapp_delivery`'s own operator read
+ *     (`listRecentWhatsappMessages`, per non-terminal status, masked columns
+ *     only) - the sanctioned way to look at that queue; commerce still never
+ *     selects from its table. A status holding more than the page limit cannot be
+ *     attributed row by row, so the remainder is counted AS commerce's (the safe
+ *     direction: a rollback that wrongly waits is annoying, one that wrongly
+ *     proceeds strands a row) and the evidence says the count is not exact.
+ *   * `force` overrides the one case scoping cannot help: commerce's own rows in
+ *     `retry_wait` behind the very provider failure that is the reason to roll
+ *     back. It bypasses `DRAIN_PENDING` and nothing else, is available only for a
+ *     rollback, is audited under its own action (`whatsapp_mode.flip_forced`) with
+ *     the counts it bypassed, and the surfaces demand an accountable operator (the
+ *     API: the `manage` permission and a recent step-up like any real flip; the
+ *     CLI: `--operator`). The bypassed rows are not touched: the upstream
+ *     dispatcher keeps working them whatever commerce's mode is, so they still
+ *     reach a terminal state (or expire) and a late message is the cost.
  *
  * ## Environment
  *
@@ -55,7 +67,11 @@ import { randomUUID } from "node:crypto";
 
 import { recordAuditEvent } from "../../logging/application/audit-log";
 import { fetchTenantModuleEntry } from "../../module-management/application/tenant-module-lifecycle";
-import { summarizeWhatsappQueue } from "../../whatsapp-delivery/application/whatsapp-diagnostics";
+import {
+  listRecentWhatsappMessages,
+  summarizeWhatsappQueue,
+  type WhatsappMessageStatusValue
+} from "../../whatsapp-delivery/application/whatsapp-diagnostics";
 import {
   isKnownWhatsappProvider,
   isWhatsappEnabled
@@ -75,6 +91,7 @@ import {
 } from "../domain/whatsapp-cutover";
 import { isWhatsappChannelEnabled } from "../domain/whatsapp-config";
 import type { WhatsappMode } from "../domain/whatsapp-mode";
+import { isKnownWhatsappTemplateKey } from "../domain/whatsapp-templates";
 import { fetchStoreSettings } from "./store-settings-directory";
 import { summarizeLegacyWhatsappQueue } from "./whatsapp-message-directory";
 import { lockWhatsappModeExclusive, readWhatsappMode } from "./whatsapp-mode";
@@ -82,12 +99,31 @@ import { lockWhatsappModeExclusive, readWhatsappMode } from "./whatsapp-mode";
 export const WHATSAPP_MODE_FLIP_AUDIT_ACTION = "whatsapp_mode.flip";
 export const WHATSAPP_MODE_FLIP_REFUSED_AUDIT_ACTION =
   "whatsapp_mode.flip_refused";
+/** A rollback that overrode a pending drain (issue #449): its own action so it can be alerted on. */
+export const WHATSAPP_MODE_FLIP_FORCED_AUDIT_ACTION =
+  "whatsapp_mode.flip_forced";
 export const WHATSAPP_MODE_RESOURCE_TYPE = "commerce_whatsapp_mode";
 export const WHATSAPP_MODE_EVIDENCE_SCHEMA =
   "awcms.commerce.whatsapp_mode_flip/v1";
 
 const MODULE_KEY = "commerce";
 const UPSTREAM_MODULE_KEY = "whatsapp_delivery";
+
+/**
+ * What an operator must know about where the channel facts came from (issue
+ * #449). `WHATSAPP_ENABLED`, `COMMERCE_WHATSAPP_ENABLED`, `WHATSAPP_PROVIDER` and
+ * `WHATSAPP_RECIPIENT_HASH_KEYS` are read from the environment of the process
+ * that ran the call, and the dispatchers that will actually send are other
+ * processes, often other containers with their own environment.
+ */
+export function channelEnvironmentNotice(surface: "api" | "cli"): string {
+  const where =
+    surface === "api"
+      ? "the web (CMS) server process that handled this request"
+      : "the process running this command";
+
+  return `The channel facts (WHATSAPP_ENABLED, COMMERCE_WHATSAPP_ENABLED, WHATSAPP_PROVIDER, WHATSAPP_RECIPIENT_HASH_KEYS) were read from the environment of ${where}, not from the WhatsApp dispatchers (whatsapp:dispatch, commerce:whatsapp:dispatch) that will send. If their environment differs, a passing check does not prove the channel works: send a test message after the flip.`;
+}
 
 export type FlipActor = {
   /** The signed-in operator, or `null` for the CLI (which runs as the deployment, not as a tenant user). */
@@ -106,6 +142,12 @@ export type FlipOptions = {
   acknowledgeWarnings?: boolean;
   /** Run the whole decision, write nothing (not even the audit event). */
   dryRun?: boolean;
+  /**
+   * Roll back although commerce's own rows are still non-terminal in the upstream
+   * queue (issue #449). `upstream` -> `legacy` only; the surfaces validate that
+   * and name an accountable operator. See the header.
+   */
+  force?: boolean;
   correlationId?: string;
   env?: NodeJS.ProcessEnv;
   now?: Date;
@@ -123,12 +165,24 @@ export type FlipEvidence = {
   at: string;
   surface: FlipActor["surface"];
   operator: string | null;
-  queues: { legacy: QueueDrain; upstream: QueueDrain };
+  /** `upstream` counts COMMERCE's non-terminal rows only (the ones this cutover moves); `upstreamScope` says what was left out. */
+  queues: {
+    legacy: QueueDrain;
+    upstream: QueueDrain;
+    upstreamScope: UpstreamScope;
+  };
   channel: ChannelFacts;
   consent: ConsentFacts;
   blockers: FlipBlocker[];
   warnings: FlipWarning[];
   warningsAcknowledged: boolean;
+  /** The rollback override: was it asked for, and did it actually bypass a drain that would have blocked? */
+  force: { requested: boolean; applied: boolean; bypassedNonTerminal: number };
+  /**
+   * Where the channel facts above were read, in words. They are the environment
+   * of the process that ran this call, which is not the dispatcher's.
+   */
+  channelEnvironmentNotice: string;
   refusal: { code: FlipRefusalCode; message: string } | null;
   /** The `awcms_audit_events` row of the flip or of the refused attempt; `null` for a dry run or an unchanged tenant. */
   auditEventId: string | null;
@@ -140,14 +194,101 @@ export type FlipOutcome = "flipped" | "would_flip" | "unchanged" | "refused";
 
 export type FlipResult = { outcome: FlipOutcome; evidence: FlipEvidence };
 
+/** How the upstream queue was attributed to commerce (issue #449). */
+export type UpstreamScope = {
+  /** Non-terminal upstream rows that are NOT commerce's: informational, never a blocker. */
+  unrelatedNonTerminal: number;
+  /** `false` when a status held more rows than one page and the remainder was counted as commerce's (fail closed). */
+  commerceCountExact: boolean;
+};
+
 type Gathered = {
   current: WhatsappMode;
   changedAt: string | null;
   legacy: QueueDrain;
   upstream: QueueDrain;
+  upstreamScope: UpstreamScope;
   channel: ChannelFacts;
   consent: ConsentFacts;
 };
+
+/** One page of the operator read per non-terminal status: far above a healthy queue, bounded for a runaway one. */
+export const UPSTREAM_DRAIN_PAGE_LIMIT = 500;
+
+const UPSTREAM_NON_TERMINAL_STATUSES: readonly WhatsappMessageStatusValue[] = [
+  "queued",
+  "retry_wait",
+  "sending"
+];
+
+/**
+ * The tenant's upstream queue split into the rows of commerce's templates (what
+ * this cutover moves) and everyone else's. Counts come from the module's own
+ * summary; attribution from its own paged operator read, per non-terminal
+ * status. A status with more rows than one page cannot be attributed row by
+ * row: the unseen remainder is counted as commerce's (fail closed) and the
+ * result says it is not exact. Only NON-TERMINAL rows are attributed: terminal
+ * ones are history and are not needed by any decision.
+ */
+async function readUpstreamDrain(
+  tx: Bun.SQL,
+  tenantId: string,
+  now: Date
+): Promise<{
+  drain: QueueDrain;
+  scope: UpstreamScope;
+  grantedConsents: number;
+}> {
+  const summary = await summarizeWhatsappQueue(tx, tenantId);
+  const commerceCounts: Record<string, number> = {};
+  let unrelated = 0;
+  let exact = true;
+  let oldestCommerceMs: number | null = null;
+
+  for (const status of UPSTREAM_NON_TERMINAL_STATUSES) {
+    const total = summary.countsByStatus[status];
+    if (total === 0) continue;
+
+    const page = await listRecentWhatsappMessages(tx, tenantId, {
+      status,
+      limit: UPSTREAM_DRAIN_PAGE_LIMIT
+    });
+    let commerce = 0;
+
+    for (const message of page.messages) {
+      if (isKnownWhatsappTemplateKey(message.templateKey)) {
+        commerce += 1;
+        const created = new Date(message.createdAt).getTime();
+        if (
+          status !== "sending" &&
+          (oldestCommerceMs === null || created < oldestCommerceMs)
+        ) {
+          oldestCommerceMs = created;
+        }
+      } else {
+        unrelated += 1;
+      }
+    }
+    if (page.hasMore) {
+      // Not attributable: count the remainder as commerce's.
+      exact = false;
+      commerce += Math.max(0, total - page.messages.length);
+    }
+    if (commerce > 0) commerceCounts[status] = commerce;
+  }
+
+  return {
+    drain: buildQueueDrain(
+      commerceCounts,
+      UPSTREAM_TERMINAL_STATUSES,
+      oldestCommerceMs === null
+        ? null
+        : Math.max(0, Math.floor((now.getTime() - oldestCommerceMs) / 1000))
+    ),
+    scope: { unrelatedNonTerminal: unrelated, commerceCountExact: exact },
+    grantedConsents: summary.grantedConsents
+  };
+}
 
 function readChangedAt(
   rows: { whatsapp_mode_changed_at: Date | null }[]
@@ -187,21 +328,7 @@ async function gather(
 
   const legacy = await summarizeLegacyWhatsappQueue(tx, tenantId);
 
-  const summary = await summarizeWhatsappQueue(tx, tenantId);
-  // The queue reports the oldest QUEUED / RETRY_WAIT row, not the oldest
-  // `sending` one; a `sending` row is by definition being worked on.
-  const upstream = buildQueueDrain(
-    summary.countsByStatus,
-    UPSTREAM_TERMINAL_STATUSES,
-    summary.oldestPendingAt
-      ? Math.max(
-          0,
-          Math.floor(
-            (now.getTime() - new Date(summary.oldestPendingAt).getTime()) / 1000
-          )
-        )
-      : null
-  );
+  const upstreamRead = await readUpstreamDrain(tx, tenantId, now);
 
   const moduleEntry = await fetchTenantModuleEntry(
     tx,
@@ -220,11 +347,12 @@ async function gather(
     current,
     changedAt: readChangedAt(changed),
     legacy,
-    upstream,
+    upstream: upstreamRead.drain,
+    upstreamScope: upstreamRead.scope,
     channel: readChannelFacts(env, moduleEntry?.tenantEnabled ?? false),
     consent: {
       commerceMarketingOptIns: Number(optIns[0]?.count ?? 0),
-      upstreamGrantedConsents: summary.grantedConsents
+      upstreamGrantedConsents: upstreamRead.grantedConsents
     }
   };
 }
@@ -314,6 +442,15 @@ export async function flipWhatsappMode(
   const now = options.now ?? new Date();
   const dryRun = options.dryRun === true;
   const acknowledgeWarnings = options.acknowledgeWarnings === true;
+  const force = options.force === true;
+
+  if (force && target !== "legacy") {
+    // A programming error: both surfaces refuse it as a usage error first. A
+    // flip INTO upstream never skips the drain.
+    throw new TypeError(
+      "flipWhatsappMode: force applies to a rollback (target legacy) only."
+    );
+  }
   const correlationId =
     options.correlationId ?? `commerce-whatsapp-flip-${randomUUID()}`;
 
@@ -328,9 +465,12 @@ export async function flipWhatsappMode(
     upstream: facts.upstream,
     channel: facts.channel,
     consent: facts.consent,
-    acknowledgeWarnings
+    acknowledgeWarnings,
+    upstreamUnrelated: facts.upstreamScope.unrelatedNonTerminal,
+    forceDrain: force
   });
   const decision = assessment.decision;
+  const forced = assessment.overridden !== null;
 
   const outcome: FlipOutcome =
     decision.kind === "refused"
@@ -352,12 +492,22 @@ export async function flipWhatsappMode(
     at: now.toISOString(),
     surface: actor.surface,
     operator: actor.operator ?? null,
-    queues: { legacy: facts.legacy, upstream: facts.upstream },
+    queues: {
+      legacy: facts.legacy,
+      upstream: facts.upstream,
+      upstreamScope: facts.upstreamScope
+    },
     channel: facts.channel,
     consent: facts.consent,
     blockers: assessment.blockers,
     warnings: assessment.warnings,
     warningsAcknowledged: acknowledgeWarnings,
+    force: {
+      requested: force,
+      applied: forced,
+      bypassedNonTerminal: forced ? facts.upstream.nonTerminal : 0
+    },
+    channelEnvironmentNotice: channelEnvironmentNotice(actor.surface),
     refusal:
       decision.kind === "refused"
         ? { code: decision.code, message: decision.message }
@@ -378,6 +528,10 @@ export async function flipWhatsappMode(
     operator: actor.operator ?? null,
     legacyNonTerminal: facts.legacy.nonTerminal,
     upstreamNonTerminal: facts.upstream.nonTerminal,
+    upstreamUnrelatedNonTerminal: facts.upstreamScope.unrelatedNonTerminal,
+    upstreamCountExact: facts.upstreamScope.commerceCountExact,
+    forced,
+    ...(forced ? { bypassedNonTerminal: facts.upstream.nonTerminal } : {}),
     warningCodes: assessment.warnings.map((warning) => warning.code),
     warningsAcknowledged: acknowledgeWarnings
   };
@@ -413,20 +567,26 @@ export async function flipWhatsappMode(
 
   await writeMode(tx, tenantId, target);
 
+  const action = forced
+    ? WHATSAPP_MODE_FLIP_FORCED_AUDIT_ACTION
+    : WHATSAPP_MODE_FLIP_AUDIT_ACTION;
+
   evidence.auditEventId = await recordAndFindAudit(
     tx,
     tenantId,
-    WHATSAPP_MODE_FLIP_AUDIT_ACTION,
+    action,
     correlationId,
     {
       tenantId,
       ...(actor.tenantUserId ? { actorTenantUserId: actor.tenantUserId } : {}),
       moduleKey: MODULE_KEY,
-      action: WHATSAPP_MODE_FLIP_AUDIT_ACTION,
+      action,
       resourceType: WHATSAPP_MODE_RESOURCE_TYPE,
       resourceId: tenantId,
       severity: "warning",
-      message: `New WhatsApp messages of the tenant now go to the ${target} queue (was ${facts.current}).`,
+      message: forced
+        ? `New WhatsApp messages of the tenant now go to the ${target} queue (was ${facts.current}); the rollback was FORCED over ${facts.upstream.nonTerminal} non-terminal commerce message(s) still in the upstream queue.`
+        : `New WhatsApp messages of the tenant now go to the ${target} queue (was ${facts.current}).`,
       attributes,
       correlationId
     }
@@ -438,7 +598,13 @@ export async function flipWhatsappMode(
 export type WhatsappModeStatus = {
   mode: WhatsappMode;
   changedAt: string | null;
-  queues: { legacy: QueueDrain; upstream: QueueDrain };
+  queues: {
+    legacy: QueueDrain;
+    upstream: QueueDrain;
+    upstreamScope: UpstreamScope;
+  };
+  /** Where `channel` was read (see {@link channelEnvironmentNotice}); the web process, not the dispatchers. */
+  channelEnvironmentNotice: string;
   channel: ChannelFacts;
   consent: ConsentFacts;
   /** What a flip to the OTHER mode would face right now (warnings assumed acknowledged, so only blockers decide). */
@@ -458,7 +624,11 @@ export type WhatsappModeStatus = {
 export async function readWhatsappModeStatus(
   tx: Bun.SQL,
   tenantId: string,
-  options: { env?: NodeJS.ProcessEnv; now?: Date } = {}
+  options: {
+    env?: NodeJS.ProcessEnv;
+    now?: Date;
+    surface?: FlipActor["surface"];
+  } = {}
 ): Promise<WhatsappModeStatus> {
   const facts = await gather(
     tx,
@@ -472,6 +642,7 @@ export async function readWhatsappModeStatus(
     target: to,
     legacy: facts.legacy,
     upstream: facts.upstream,
+    upstreamUnrelated: facts.upstreamScope.unrelatedNonTerminal,
     channel: facts.channel,
     consent: facts.consent,
     acknowledgeWarnings: true
@@ -480,7 +651,14 @@ export async function readWhatsappModeStatus(
   return {
     mode: facts.current,
     changedAt: facts.changedAt,
-    queues: { legacy: facts.legacy, upstream: facts.upstream },
+    queues: {
+      legacy: facts.legacy,
+      upstream: facts.upstream,
+      upstreamScope: facts.upstreamScope
+    },
+    channelEnvironmentNotice: channelEnvironmentNotice(
+      options.surface ?? "api"
+    ),
     channel: facts.channel,
     consent: facts.consent,
     flip: {

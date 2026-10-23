@@ -42,13 +42,19 @@ import { GET, POST } from "../../src/pages/api/v1/commerce/whatsapp/mode";
 
 type Principal = { tenantId: string; token: string; tenantUserId: string };
 type Evidence = {
+  channelEnvironmentNotice: string;
+  force: { requested: boolean; applied: boolean; bypassedNonTerminal: number };
   outcome: string;
   from: string;
   to: string;
   dryRun: boolean;
   auditEventId: string | null;
   refusal: { code: string } | null;
-  queues: { legacy: { nonTerminal: number } };
+  queues: {
+    legacy: { nonTerminal: number };
+    upstream: { nonTerminal: number };
+    upstreamScope: { unrelatedNonTerminal: number };
+  };
   warnings: { code: string }[];
 };
 type Envelope<T = unknown> = {
@@ -200,6 +206,27 @@ async function auditActions(tenantId: string): Promise<string[]> {
     ORDER BY created_at, id
   `) as { action: string }[];
   return rows.map((row) => row.action);
+}
+
+/** The tenant in `upstream` mode with one OF COMMERCE'S messages stuck in `retry_wait` behind a failing provider. */
+async function upstreamTenantWithStuckRow(): Promise<void> {
+  await getHandlerAdminSql()`
+    INSERT INTO awcms_commerce_store_settings (tenant_id, settings, whatsapp_mode, whatsapp_mode_changed_at)
+    VALUES (${TENANT_A}, '{}'::jsonb, 'upstream', now())
+    ON CONFLICT (tenant_id) DO UPDATE SET whatsapp_mode = 'upstream'
+  `;
+  await withTenantOrThrow(getHandlerDatabaseClient(), TENANT_A, (tx) =>
+    enqueueWhatsappMessage(tx, {
+      tenantId: TENANT_A,
+      toPhone: "+6281234567890",
+      templateKey: "commerce.customer_otp",
+      variables: { code: "123456", expiresInMinutes: "10", storeName: "A" },
+      correlationId: "route-stuck"
+    })
+  );
+  await getHandlerAdminSql()`
+    UPDATE awcms_whatsapp_messages SET status = 'retry_wait' WHERE tenant_id = ${TENANT_A}
+  `;
 }
 
 const suite = integrationEnabled ? describe : describe.skip;
@@ -537,6 +564,155 @@ suite("the WhatsApp mode route and CLI (Issue #393)", () => {
   });
 
   // -------------------------------------------------------------------------
+  // Issue #449 (ADR-0047 D12, D13).
+  describe("the rollback override and the environment notice", () => {
+    run(
+      "GET and every POST evidence say the channel facts come from the web process, not the dispatchers",
+      async () => {
+        const manager = await seedPrincipal(TENANT_A, "manager", [
+          "commerce.whatsapp_mode.manage",
+          "commerce.whatsapp_mode.read"
+        ]);
+
+        const status = await get(manager);
+        expect(status.status).toBe(200);
+        expect(status.body.data.channelEnvironmentNotice).toContain(
+          "web (CMS) server process"
+        );
+        expect(status.body.data.channelEnvironmentNotice).toContain(
+          "not from the WhatsApp dispatchers"
+        );
+
+        const dry = await post(manager, { ...FLIP, dryRun: true });
+        expect(dry.body.data.channelEnvironmentNotice).toContain(
+          "web (CMS) server process"
+        );
+      }
+    );
+
+    run(
+      "force is a rollback-only field: with to upstream it is a 400, on a dry run too",
+      async () => {
+        const manager = await seedPrincipal(TENANT_A, "manager", [
+          "commerce.whatsapp_mode.manage"
+        ]);
+
+        const result = await post(manager, {
+          ...FLIP,
+          force: true,
+          dryRun: true
+        });
+        expect(result.status).toBe(400);
+        expect(result.body.error?.code).toBe("VALIDATION_ERROR");
+      }
+    );
+
+    run(
+      "a stuck commerce row refuses the rollback; force (with the same step-up and key) rolls it back, audited under its own action",
+      async () => {
+        const manager = await seedPrincipal(TENANT_A, "manager", [
+          "commerce.whatsapp_mode.manage"
+        ]);
+        await stepUp(manager);
+        await upstreamTenantWithStuckRow();
+        const rollback = { to: "legacy", reason: "provider outage" };
+
+        const refused = await post(manager, rollback, {
+          "idempotency-key": "k-rb-1"
+        });
+        expect(refused.status).toBe(409);
+        expect(refused.body.error?.code).toBe("DRAIN_PENDING");
+        expect(refused.body.error?.details?.queues.upstream.nonTerminal).toBe(
+          1
+        );
+        expect(await modeOf(TENANT_A)).toBe("upstream");
+
+        const dry = await post(manager, {
+          ...rollback,
+          force: true,
+          dryRun: true
+        });
+        expect(dry.status).toBe(200);
+        expect(dry.body.data).toMatchObject({
+          outcome: "would_flip",
+          force: { requested: true, applied: true, bypassedNonTerminal: 1 }
+        });
+        expect(await modeOf(TENANT_A)).toBe("upstream");
+
+        const forced = await post(
+          manager,
+          { ...rollback, force: true },
+          { "idempotency-key": "k-rb-2" }
+        );
+        expect(forced.status).toBe(200);
+        expect(forced.body.data).toMatchObject({
+          outcome: "flipped",
+          from: "upstream",
+          to: "legacy",
+          force: { requested: true, applied: true, bypassedNonTerminal: 1 }
+        });
+        expect(await modeOf(TENANT_A)).toBe("legacy");
+        expect(await auditActions(TENANT_A)).toEqual([
+          "whatsapp_mode.flip_refused",
+          "whatsapp_mode.flip_forced"
+        ]);
+        const rows = (await getHandlerAdminSql()`
+          SELECT id, actor_tenant_user_id FROM awcms_audit_events
+          WHERE tenant_id = ${TENANT_A} AND action = 'whatsapp_mode.flip_forced'
+        `) as { id: string; actor_tenant_user_id: string }[];
+        expect(rows[0]!.id).toBe(forced.body.data.auditEventId!);
+        expect(rows[0]!.actor_tenant_user_id).toBe(manager.tenantUserId);
+      }
+    );
+
+    run(
+      "a forced rollback still needs a recent step-up and an Idempotency-Key, and the key cannot replay the plain request as the forced one",
+      async () => {
+        const manager = await seedPrincipal(TENANT_A, "manager", [
+          "commerce.whatsapp_mode.manage"
+        ]);
+        await upstreamTenantWithStuckRow();
+        const forcedBody = { to: "legacy", reason: "outage", force: true };
+
+        const noStepUp = await post(manager, forcedBody, {
+          "idempotency-key": "k-f-1"
+        });
+        expect(noStepUp.status).toBe(403);
+        expect(noStepUp.body.error?.code).toBe("STEP_UP_REQUIRED");
+
+        await stepUp(manager);
+        const noKey = await post(manager, forcedBody);
+        expect(noKey.status).toBe(400);
+        expect(noKey.body.error?.code).toBe("IDEMPOTENCY_REQUIRED");
+        expect(await modeOf(TENANT_A)).toBe("upstream");
+
+        // The plain rollback is refused (not stored), the forced one with the
+        // SAME key is its own request: it is evaluated, not conflicted or replayed.
+        const plain = await post(
+          manager,
+          { to: "legacy", reason: "outage" },
+          { "idempotency-key": "k-f-2" }
+        );
+        expect(plain.status).toBe(409);
+        const forced = await post(manager, forcedBody, {
+          "idempotency-key": "k-f-2"
+        });
+        expect(forced.status).toBe(200);
+        expect(forced.body.data.force.applied).toBe(true);
+
+        // Now both are stored under that key: the plain body conflicts.
+        const mismatch = await post(
+          manager,
+          { to: "legacy", reason: "outage" },
+          { "idempotency-key": "k-f-2" }
+        );
+        expect(mismatch.status).toBe(409);
+        expect(mismatch.body.error?.code).toBe("IDEMPOTENCY_CONFLICT");
+      }
+    );
+  });
+
+  // -------------------------------------------------------------------------
   describe("the CLI", () => {
     const cli = async (...args: string[]) => {
       const processHandle = Bun.spawn(
@@ -555,6 +731,73 @@ suite("the WhatsApp mode route and CLI (Issue #393)", () => {
       ]);
       return { stdout, stderr, exitCode };
     };
+
+    run(
+      "--force is a rollback override that needs --operator: usage errors exit 2, the forced rollback prints the bypass and the environment note",
+      async () => {
+        await upstreamTenantWithStuckRow();
+
+        const noOperator = await cli(
+          "--tenant",
+          TENANT_A,
+          "--to",
+          "legacy",
+          "--reason",
+          "outage",
+          "--force"
+        );
+        expect(noOperator.exitCode).toBe(2);
+        const intoUpstream = await cli(
+          "--tenant",
+          TENANT_A,
+          "--to",
+          "upstream",
+          "--reason",
+          "outage",
+          "--force",
+          "--operator",
+          "ops-1"
+        );
+        expect(intoUpstream.exitCode).toBe(2);
+
+        const plain = await cli(
+          "--tenant",
+          TENANT_A,
+          "--to",
+          "legacy",
+          "--reason",
+          "outage"
+        );
+        expect(plain.exitCode).toBe(1);
+        expect(JSON.parse(plain.stdout).refusal.code).toBe("DRAIN_PENDING");
+        expect(await modeOf(TENANT_A)).toBe("upstream");
+
+        const forced = await cli(
+          "--tenant",
+          TENANT_A,
+          "--to",
+          "legacy",
+          "--reason",
+          "outage",
+          "--force",
+          "--operator",
+          "ops-1"
+        );
+        expect(forced.exitCode).toBe(0);
+        expect(JSON.parse(forced.stdout)).toMatchObject({
+          outcome: "flipped",
+          surface: "cli",
+          operator: "ops-1",
+          force: { applied: true, bypassedNonTerminal: 1 }
+        });
+        expect(forced.stderr).toContain("FORCED");
+        expect(forced.stderr).toContain("not from the WhatsApp dispatchers");
+        expect(await modeOf(TENANT_A)).toBe("legacy");
+        expect(await auditActions(TENANT_A)).toContain(
+          "whatsapp_mode.flip_forced"
+        );
+      }
+    );
 
     run("--status prints the mode and both queues", async () => {
       const result = await cli("--tenant", TENANT_A, "--status");

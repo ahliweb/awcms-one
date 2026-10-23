@@ -42,6 +42,8 @@ export type FlipRequestBody = {
   from?: WhatsappMode;
   acknowledgeWarnings: boolean;
   dryRun: boolean;
+  /** Roll back over commerce's own non-terminal upstream rows (issue #449). `to: "legacy"` only. */
+  force: boolean;
 };
 
 const ALLOWED_KEYS = new Set([
@@ -49,7 +51,8 @@ const ALLOWED_KEYS = new Set([
   "reason",
   "from",
   "acknowledgeWarnings",
-  "dryRun"
+  "dryRun",
+  "force"
 ]);
 
 const isMode = (value: unknown): value is WhatsappMode =>
@@ -89,10 +92,17 @@ export async function readFlipRequestBody(
       message: "from must be legacy or upstream."
     });
   }
-  for (const flag of ["acknowledgeWarnings", "dryRun"] as const) {
+  for (const flag of ["acknowledgeWarnings", "dryRun", "force"] as const) {
     if (body[flag] !== undefined && typeof body[flag] !== "boolean") {
       errors.push({ field: flag, message: `${flag} must be a boolean.` });
     }
+  }
+  if (body.force === true && body.to !== "legacy") {
+    errors.push({
+      field: "force",
+      message:
+        "force overrides a pending drain of a rollback only; it needs to: legacy."
+    });
   }
   const reason = validateFlipReason(body.reason);
   if (!reason.valid) {
@@ -114,7 +124,8 @@ export async function readFlipRequestBody(
     reason: reason.reason,
     ...(isMode(body.from) ? { from: body.from } : {}),
     acknowledgeWarnings: body.acknowledgeWarnings === true,
-    dryRun: body.dryRun === true
+    dryRun: body.dryRun === true,
+    force: body.force === true
   };
 }
 
@@ -156,7 +167,12 @@ export function flipRequestHash(
     to: body.to,
     from: body.from ?? null,
     reason: body.reason,
-    acknowledgeWarnings: body.acknowledgeWarnings
+    acknowledgeWarnings: body.acknowledgeWarnings,
+    // A forced rollback is a different request from the plain one: the same key
+    // cannot replay one as the other. Only present when true, so the hash of
+    // every request made before this field existed is unchanged and a retry
+    // that straddles the deploy still replays.
+    ...(body.force ? { force: true } : {})
   });
 }
 
