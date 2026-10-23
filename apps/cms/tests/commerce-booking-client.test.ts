@@ -8,8 +8,10 @@ import { describe, expect, test } from "bun:test";
 import {
   buildDepositPolicyBody,
   isUuidText,
+  markFieldInvalid,
   newIdempotencyKey,
-  pickRefusalMessage
+  pickRefusalMessage,
+  showStatusAndFocus
 } from "../src/lib/ui/commerce-booking-client";
 
 describe("buildDepositPolicyBody", () => {
@@ -83,4 +85,73 @@ test("an idempotency key is a fresh uuid per attempt", () => {
   const a = newIdempotencyKey();
   expect(isUuidText(a)).toBe(true);
   expect(newIdempotencyKey()).not.toBe(a);
+});
+
+// Issue #448: the focus helpers, against a minimal stand-in for the DOM (the
+// helpers touch only these members), so the contract is asserted without a browser.
+describe("showStatusAndFocus and markFieldInvalid", () => {
+  type Fake = {
+    textContent: string;
+    hidden: boolean;
+    focused: number;
+    attrs: Map<string, string>;
+    hasAttribute(name: string): boolean;
+    setAttribute(name: string, value: string): void;
+    getAttribute(name: string): string | null;
+    removeAttribute(name: string): void;
+    focus(): void;
+  };
+  const fake = (): Fake => ({
+    textContent: "",
+    hidden: true,
+    focused: 0,
+    attrs: new Map(),
+    hasAttribute(name) {
+      return this.attrs.has(name);
+    },
+    setAttribute(name, value) {
+      this.attrs.set(name, value);
+    },
+    getAttribute(name) {
+      return this.attrs.get(name) ?? null;
+    },
+    removeAttribute(name) {
+      this.attrs.delete(name);
+    },
+    focus() {
+      this.focused += 1;
+    }
+  });
+
+  test("a status line is filled, shown and focused, and made focusable once", () => {
+    const element = fake();
+    showStatusAndFocus(element as unknown as HTMLElement, "Linked.");
+    expect(element.textContent).toBe("Linked.");
+    expect(element.hidden).toBe(false);
+    expect(element.focused).toBe(1);
+    expect(element.getAttribute("tabindex")).toBe("-1");
+    // An element that already declares its tabindex keeps it.
+    const own = fake();
+    own.setAttribute("tabindex", "0");
+    showStatusAndFocus(own as unknown as HTMLElement, "x");
+    expect(own.getAttribute("tabindex")).toBe("0");
+  });
+
+  test("a missing element is a no-op", () => {
+    expect(() => showStatusAndFocus(null, "x")).not.toThrow();
+    expect(() => markFieldInvalid(null, true, "e")).not.toThrow();
+  });
+
+  test("an invalid field is marked, described by its message once, and focused", () => {
+    const input = fake();
+    input.setAttribute("aria-describedby", "hint");
+    markFieldInvalid(input as unknown as HTMLElement, true, "err");
+    markFieldInvalid(input as unknown as HTMLElement, true, "err");
+    expect(input.getAttribute("aria-invalid")).toBe("true");
+    expect(input.getAttribute("aria-describedby")).toBe("hint err");
+    expect(input.focused).toBe(2);
+    markFieldInvalid(input as unknown as HTMLElement, false);
+    expect(input.hasAttribute("aria-invalid")).toBe(false);
+    expect(input.focused).toBe(2);
+  });
 });

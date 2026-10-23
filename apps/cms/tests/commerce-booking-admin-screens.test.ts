@@ -281,3 +281,89 @@ describe("the reschedule and no-show controls of the booking panel", () => {
     expect(panel).toContain('aria-live="polite"');
   });
 });
+
+// Issue #385 closing pass (the real-browser findings and #448).
+describe("closing pass of the booking admin screens", () => {
+  const links = readFileSync(
+    SCREENS["/admin/commerce-booking-links"].file,
+    "utf8"
+  );
+  const deposits = readFileSync(
+    SCREENS["/admin/commerce-booking-deposits"].file,
+    "utf8"
+  );
+  const policies = readFileSync(
+    SCREENS["/admin/commerce-booking-policies"].file,
+    "utf8"
+  );
+  const panel = readFileSync(
+    "src/components/CommerceBookingPanel.astro",
+    "utf8"
+  );
+
+  test("the link filter is the real page-navigation primitive, not a class nobody styles", () => {
+    expect(links).toContain('class="admin-segmented booking-links-filter"');
+    expect(links).toContain('class="admin-segmented-option"');
+    expect(links).not.toContain("pill-row");
+  });
+
+  test("a class a booking screen uses has a rule somewhere (no unstyled markup)", () => {
+    const css = [
+      "src/styles/admin.css",
+      "src/styles/admin-screens.css",
+      "src/styles/tokens.css"
+    ]
+      .map((file) => readFileSync(file, "utf8"))
+      .join("\n");
+    for (const [name, source] of [
+      ["links", links],
+      ["deposits", deposits],
+      ["policies", policies]
+    ] as const) {
+      const local = source.slice(source.indexOf("<style>"));
+      for (const match of source.matchAll(/class="([^"{]+)"/g)) {
+        for (const cls of match[1]!.split(/\s+/)) {
+          // `admin-fieldset` is a marker class used by many screens, and
+          // `fade-in-up` / `cell-code` are motion and token utilities.
+          if (cls === "admin-fieldset") continue;
+          expect(
+            css.includes(`.${cls}`) || local.includes(`.${cls}`),
+            `${name}: .${cls} has no CSS rule`
+          ).toBe(true);
+        }
+      }
+    }
+  });
+
+  test("a status line shown after a reload takes focus (#448), on the links screen and the booking panel", () => {
+    expect(links).toContain("showStatusAndFocus");
+    expect(links).toContain('aria-live="polite"');
+    expect(links).toContain('tabindex="-1"');
+    expect(panel).toContain("showStatusAndFocus");
+    expect(panel).toContain('aria-live="polite"');
+  });
+
+  test("a rejected field is marked invalid and focused (links and deposits)", () => {
+    expect(links).toContain("markFieldInvalid");
+    expect(deposits).toContain("markFieldInvalid");
+  });
+
+  test("the deposits list is keyset-paged and says when more follow (#448)", () => {
+    expect(deposits).toContain("listServiceProductDepositPoliciesPage");
+    expect(deposits).not.toContain("listServiceProductDepositPolicies(");
+    expect(deposits).toContain("decodeDepositListCursor");
+    expect(deposits).toContain("booking-deposits-more");
+    expect(deposits).toContain('rel="next"');
+  });
+
+  test("the deposit kind radios sit in label rows, not as stretched form controls", () => {
+    expect(deposits).toContain('class="admin-checkbox"');
+    expect(deposits).toContain("booking-deposit-kind");
+  });
+
+  test("the policy editor keeps focus when a window is added or removed", () => {
+    expect(policies).toContain("?.focus()");
+    expect(policies).toContain("booking-policy-add-row");
+    expect(policies).toContain("SERVICE_PRODUCT_SELECTOR_LIMIT");
+  });
+});

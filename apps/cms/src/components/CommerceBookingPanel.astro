@@ -211,6 +211,8 @@ const reschedulePrefix = "booking-reschedule";
     id="order-booking-status"
     class="admin-stat-card-caption"
     role="status"
+    aria-live="polite"
+    tabindex="-1"
     data-adjusted={t(
       "Refund set to {amount}. The change is recorded with your reason."
     )}
@@ -851,7 +853,8 @@ const reschedulePrefix = "booking-reschedule";
   } from "../lib/ui/commerce-booking-refund-client";
   import {
     newIdempotencyKey,
-    pickRefusalMessage
+    pickRefusalMessage,
+    showStatusAndFocus
   } from "../lib/ui/commerce-booking-client";
   import {
     buildNoShowBody,
@@ -890,11 +893,11 @@ const reschedulePrefix = "booking-reschedule";
     const stored = sessionStorage.getItem(STATUS_KEY);
     if (stored) {
       sessionStorage.removeItem(STATUS_KEY);
-      const status = document.getElementById("order-booking-status");
-      if (status) {
-        status.textContent = stored;
-        status.hidden = false;
-      }
+      // Focus follows the reload so the recorded refund is read (#448).
+      showStatusAndFocus(
+        document.getElementById("order-booking-status"),
+        stored
+      );
     }
   } catch {
     /* storage unavailable: the page still shows the recorded refund */

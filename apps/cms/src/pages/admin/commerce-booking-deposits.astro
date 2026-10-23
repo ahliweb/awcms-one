@@ -22,11 +22,18 @@ import {
   createCommerceLabels
 } from "../../lib/ui/commerce-admin-labels";
 import { fetchCommerceFeatures } from "../../modules/commerce/application/commerce-feature-gate";
-import { listServiceProductDepositPolicies } from "../../modules/commerce/application/booking-deposit-policies";
+import { formatCurrency } from "../../lib/i18n/format";
+import type { Locale } from "../../lib/i18n/locales";
+import { listServiceProductDepositPoliciesPage } from "../../modules/commerce/application/booking-deposit-policies";
+import { decodeDepositListCursor } from "../../modules/commerce/domain/booking-deposit-list";
 
 const ssr = Astro.locals.ssrContext!;
 const { t, tn } = getTranslatorFor(Astro.locals.locale);
 const labels = createCommerceLabels(t);
+const locale: Locale = Astro.locals.locale;
+// Keyset paging (#448): an unreadable cursor is simply the first page.
+const cursorParam = Astro.url.searchParams.get("after");
+const cursor = decodeDepositListCursor(cursorParam);
 
 const screen = await loadAdminScreen({
   ssr,
@@ -43,10 +50,12 @@ const screen = await loadAdminScreen({
       activityCode: "booking_deposit_policies",
       action: "update"
     });
-    const products = features.booking
-      ? await listServiceProductDepositPolicies(tx, ssr.tenantId)
-      : [];
-    return { bookingEnabled: features.booking, canUpdate, products };
+    const page = features.booking
+      ? await listServiceProductDepositPoliciesPage(tx, ssr.tenantId, {
+          cursor
+        })
+      : { items: [], nextCursor: null };
+    return { bookingEnabled: features.booking, canUpdate, page };
   },
   onError: (error) => {
     logAdminPageError(
@@ -62,7 +71,8 @@ const loadError = screen.state === "error";
 const data = screen.state === "allowed" ? screen.data : null;
 const bookingEnabled = data?.bookingEnabled ?? false;
 const canUpdate = data?.canUpdate ?? false;
-const products = data?.products ?? [];
+const products = data?.page.items ?? [];
+const nextCursor = data?.page.nextCursor ?? null;
 
 type PolicyView = (typeof products)[number]["policy"];
 const policyText = (policy: PolicyView): string => {
@@ -70,7 +80,9 @@ const policyText = (policy: PolicyView): string => {
   if (policy.kind === "percent") {
     return t("{percent}% of the total", { percent: policy.percent ?? "" });
   }
-  return t("{amount} per unit", { amount: policy.fixedAmount ?? "" });
+  return t("{amount} per unit", {
+    amount: formatCurrency(locale, policy.fixedAmount ?? "0", "IDR")
+  });
 };
 ---
 
@@ -124,7 +136,10 @@ const policyText = (policy: PolicyView): string => {
       tabindex="0"
       aria-label={t("Booking deposits")}
     >
-      <table class="data-table data-table--stack" id="booking-deposits-table">
+      <table
+        class="data-table data-table--stack booking-admin-table"
+        id="booking-deposits-table"
+      >
         <caption>
           {tn(
             "{count} service product",
@@ -141,12 +156,13 @@ const policyText = (policy: PolicyView): string => {
             <th scope="col">{t("SKU")}</th>
             <th scope="col">{t("Status")}</th>
             <th scope="col">{t("Deposit")}</th>
+            <th scope="col">{t("Cancellation policy")}</th>
           </tr>
         </thead>
         <tbody>
           {products.length === 0 ? (
             <tr>
-              <td class="data-table-empty" colspan={4}>
+              <td class="data-table-empty" colspan={5}>
                 <div class="empty-state">
                   <span class="empty-state-icon" aria-hidden="true">
                     ◇
@@ -188,10 +204,18 @@ const policyText = (policy: PolicyView): string => {
                       {policyText(product.policy)}
                     </span>
                   </td>
+                  <td data-label={t("Cancellation policy")}>
+                    <a
+                      href={`/admin/commerce-booking-policies?scope=${product.productId}`}
+                    >
+                      {t("View policy")}
+                      <span class="sr-only"> {product.name}</span>
+                    </a>
+                  </td>
                 </tr>
                 {canUpdate && (
                   <tr>
-                    <td colspan={4}>
+                    <td colspan={5}>
                       <details class="admin-section">
                         <summary>
                           {t("Edit deposit for {name}", { name: product.name })}
@@ -215,38 +239,38 @@ const policyText = (policy: PolicyView): string => {
                             role="alert"
                             hidden
                           />
-                          <fieldset class="admin-fieldset">
+                          <fieldset class="admin-fieldset booking-deposit-kind">
                             <legend>{t("Deposit")}</legend>
-                            <label>
+                            <label class="admin-checkbox">
                               <input
                                 type="radio"
                                 name="kind"
                                 value="full"
                                 checked={product.policy === null}
-                              />{" "}
+                              />
                               {t("Full payment")}
                             </label>
-                            <label>
+                            <label class="admin-checkbox">
                               <input
                                 type="radio"
                                 name="kind"
                                 value="percent"
                                 checked={product.policy?.kind === "percent"}
-                              />{" "}
+                              />
                               {t("Percent of the total")}
                             </label>
-                            <label>
+                            <label class="admin-checkbox">
                               <input
                                 type="radio"
                                 name="kind"
                                 value="fixed"
                                 checked={product.policy?.kind === "fixed"}
-                              />{" "}
+                              />
                               {t("Fixed amount per unit")}
                             </label>
                           </fieldset>
 
-                          <div data-deposit-for="percent">
+                          <div class="admin-field" data-deposit-for="percent">
                             <label for={`deposit-percent-${product.productId}`}>
                               {t("Percent (0-100)")}
                             </label>
@@ -256,10 +280,11 @@ const policyText = (policy: PolicyView): string => {
                               type="text"
                               inputmode="decimal"
                               autocomplete="off"
+                              aria-describedby={`deposit-error-${product.productId}`}
                               value={product.policy?.percent ?? ""}
                             />
                           </div>
-                          <div data-deposit-for="fixed">
+                          <div class="admin-field" data-deposit-for="fixed">
                             <label for={`deposit-fixed-${product.productId}`}>
                               {t("Amount per unit")}
                             </label>
@@ -269,7 +294,7 @@ const policyText = (policy: PolicyView): string => {
                               type="text"
                               inputmode="decimal"
                               autocomplete="off"
-                              aria-describedby={`deposit-fixed-hint-${product.productId}`}
+                              aria-describedby={`deposit-fixed-hint-${product.productId} deposit-error-${product.productId}`}
                               value={product.policy?.fixedAmount ?? ""}
                             />
                             <p
@@ -297,7 +322,82 @@ const policyText = (policy: PolicyView): string => {
       </table>
     </div>
   )}
+
+  {canRead && !loadError && bookingEnabled && (nextCursor || cursor) && (
+    <nav class="booking-deposits-pages" aria-label={t("Pages")}>
+      {nextCursor && (
+        <p id="booking-deposits-more" class="form-hint">
+          {t("More service products follow. Use Next page to reach them.")}
+        </p>
+      )}
+      <p class="booking-deposits-page-links">
+        {cursor && (
+          <a href="/admin/commerce-booking-deposits">{t("First page")}</a>
+        )}
+        {nextCursor && (
+          <a
+            href={`/admin/commerce-booking-deposits?after=${encodeURIComponent(nextCursor)}`}
+            rel="next"
+          >
+            {t("Next page")}
+          </a>
+        )}
+      </p>
+    </nav>
+  )}
 </AdminLayout>
+
+<style>
+  .booking-deposit-kind {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+    flex: 1 1 100%;
+  }
+
+  .booking-deposit-kind legend {
+    padding: 0;
+    margin-bottom: var(--sp-2);
+    font-weight: var(--fw-semibold);
+    color: var(--color-text);
+  }
+
+  /* `.admin-create-form label` is a flex column at full width; a radio row is a
+     box and its words side by side. */
+  .deposit-policy-form label.admin-checkbox {
+    flex-direction: row;
+    align-items: center;
+    flex: 0 0 auto;
+    min-height: 38px;
+  }
+
+  .deposit-policy-form label.admin-checkbox input {
+    width: 1.1rem;
+    height: 1.1rem;
+    padding: 0;
+    margin: 0;
+  }
+
+  .deposit-policy-form .admin-field {
+    flex: 1 1 16rem;
+    min-width: 0;
+  }
+
+  .booking-deposits-pages {
+    margin-top: var(--sp-3);
+  }
+
+  .booking-deposits-page-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-4);
+    margin: 0;
+  }
+</style>
 
 <script>
   import {
@@ -309,7 +409,8 @@ const policyText = (policy: PolicyView): string => {
   } from "../../lib/ui/admin-form-client";
   import {
     buildDepositPolicyBody,
-    initDepositKindToggle
+    initDepositKindToggle,
+    markFieldInvalid
   } from "../../lib/ui/commerce-booking-client";
 
   for (const form of document.querySelectorAll<HTMLFormElement>(
@@ -323,6 +424,13 @@ const policyText = (policy: PolicyView): string => {
     if (!id) return;
     const box = messageBox(`deposit-error-${id}`);
     box.clear();
+    const percentInput =
+      form.querySelector<HTMLInputElement>("[name='percent']");
+    const fixedInput = form.querySelector<HTMLInputElement>(
+      "[name='fixedAmount']"
+    );
+    markFieldInvalid(percentInput, false);
+    markFieldInvalid(fixedInput, false);
 
     const built = buildDepositPolicyBody(
       field(data, "kind"),
@@ -330,6 +438,11 @@ const policyText = (policy: PolicyView): string => {
       field(data, "fixedAmount")
     );
     if (!built.ok) {
+      if (built.field === "percent") {
+        markFieldInvalid(percentInput, true, `deposit-error-${id}`);
+      } else if (built.field === "fixedAmount") {
+        markFieldInvalid(fixedInput, true, `deposit-error-${id}`);
+      }
       box.show(
         built.field === "percent"
           ? (form.dataset.invalidPercent ?? "")
