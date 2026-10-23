@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:51b24d5d968319f9c23fc18b8ccdd3017234a4d9165b4744c0ee097e15d8b01e -->
+<!-- i18n-source-hash: sha256:aeddd5cdc461b37d9f2cd54ac3680c99f1b42eec745c5e38ee2a20dfbc62e502 -->
 
 # `commerce`
 
@@ -877,6 +877,18 @@ tidak menulis apa pun. Setiap percobaan mengembalikan catatan bukti (jumlah
 antrean per status, umur tertua, penghalang, peringatan, id audit event).
 Aturannya sendiri adalah `domain/whatsapp-cutover.ts` yang murni.
 
+Issue #449 (ADR-0047 D16/D17): rollback hanya menghitung baris non-terminal milik
+COMMERCE sendiri di antrean upstream bersama (dibaca lewat pembacaan operator
+berhalaman milik `whatsapp_delivery`; baris modul lain dilaporkan di
+`queues.upstreamScope` dan tidak pernah memblokir; status yang melebihi satu
+halaman menghitung sisanya sebagai milik commerce), dan punya override yang
+diaudit, `force` / `--force` (hanya rollback; CLI juga butuh `--operator`): ia
+melewati pemeriksaan pengurasan dan tidak ada yang lain, menulis
+`whatsapp_mode.flip_forced` dengan jumlah yang dilewati, dan membiarkan baris
+itu pada dispatcher upstream. Status dan bukti sama-sama membawa
+`channelEnvironmentNotice`: fakta kanal dibaca dari proses yang menjawab (server
+web untuk API), bukan dari dispatcher yang mengirim.
+
 `POST .../account/otp/request` menerima `via?: "email"|"whatsapp"` (default
 `email`). `via: "whatsapp"` mewajibkan `phone` (E.164 lewat `domain/
 phone-normalisation.ts`), hanya pernah mendukung `purpose: "login"`
@@ -1683,6 +1695,7 @@ Konsumer `commerce.order_paid_commission_attributor` melaporkan setiap baris **p
   - **`period_closed`** (akrual `payable` atau `paid`) tidak pernah dicoba ulang dan tidak pernah dilempar: satu baris audit peringatan `commerce.commission.reversal_needs_attention` (penyebab, hitungan payable/paid, baris yang dikembalikan sebagian, hitungan `actor_required`/`input_invalid`; tanpa jumlah, referensi sumber, id akrual atau employment) adalah item kerja bagi manusia; tidak ada tabel perhatian terpisah. Void baru menulis `commerce.commission.reversed` (info).
   - **Aktor.** `void` membutuhkan seorang manusia dan konsumer tidak punya, sehingga pelaku void adalah pengguna tenant yang terakhir menyimpan pengaturan komisi (orang yang memberi otorisasi pembayaran komisi, D6); tidak ada berarti `actor_required` dan pembalikan menunggu seseorang. Pembalikan membutuhkan `hr_commission` menyala dan adaptor pernah dikonfigurasi, bukan `enabled`: mematikan adaptor tidak menelantarkan akrual yang sudah dibuat.
 - **Berkas.** `domain/commission-attribution.ts` (keputusan murni, termasuk tally void dan `isLineFullyReturned`), `domain/commission-lifecycle.ts`, `application/commission-attribution-directory.ts` (pengaturan dan tautan, satu-satunya penulis), `application/commission-attribution.ts` (konsumer accrue), `application/commission-reversal.ts` (dua konsumer pembalik), `application/commission-attribution-port.ts` (sambungan), rute di `src/pages/api/v1/commerce/commission/`.
+- **Pengiriman tertunda (issue #449, ADR-0046 D11).** Penerima manfaat adalah employment yang tertaut **saat penjualan dibayar** (`findEmploymentLinkedAt(login, paid_at)`, interval `[created_at, retired_at)`), bukan saat konsumer berjalan; attributor tidak mengakrual baris yang sudah **dikembalikan penuh** oleh return `completed` (baris yang sebagian dikembalikan tetap diakrual dan dihitung sebagai `linesPartiallyReturned`); dan attributor serta kedua reverser mengambil kunci advisory per pesanan (`lockCommissionOrder`) sehingga urutan kedatangan mana pun berakhir sama. Pembatal tetap penyimpan pengaturan terakhir; itu pertanyaan pemilik yang dicatat di D12 beserta alternatifnya.
 - **Belum ada.** Tidak ada clawback akrual `payable` atau `paid` (seorang manusia, dari baris perhatian), tidak ada pembalikan proporsional baris yang dikembalikan sebagian, tidak ada layar admin (empat izin di buku besar `NOT_YET_SCREENED` yang hanya boleh menyusut), tidak ada penghitungan ulang "dibayar" dari buku besar pembayaran.
 - **Tes.** `tests/commerce-commission-attribution.test.ts` (murni), `tests/commerce-commission-boundary.test.ts`, dan terhadap basis data nyata `tests/integration/commerce-commission-attribution.integration.test.ts` (replay, pengiriman balapan, mati secara bawaan, etalase/tanpa cap/tanpa tautan/dipensiunkan, diskon, zona waktu, penolakan, isolasi tenant, RLS FORCE, seluruh pekerjaan sebagai role `awcms_worker` asli dan apa yang tidak boleh dilakukan role itu), dan `tests/integration/commerce-commission-reversal.integration.test.ts` (void karena pembatalan dan refund, replay, tidak ada yang di-void, `period_closed` payable dan paid, retur sebagian, tautan yang dipensiunkan, adaptor dan `hr_commission` dimatikan, aktor yang hilang, isolasi tenant, dispatcher asli sebagai worker, hibah `sql/1051` yang menentukan).
 
