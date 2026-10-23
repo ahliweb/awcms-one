@@ -24057,7 +24057,7 @@ paths:
       tags:
         - Commerce WhatsApp
       summary: "Issue #393 (ADR-0047 Cutover). Which queue the tenant's NEW WhatsApp messages go to, and the drain state of both queues. Gated on `commerce.whatsapp_mode.read`."
-      description: "`mode` is `legacy` (commerce's own outbox, drained by `commerce:whatsapp:dispatch`) or `upstream` (the `whatsapp_delivery` queue, drained by `whatsapp:dispatch`). `queues` counts each queue's rows per status and how many are still work; `channel` is what THIS process knows about whether each channel would be serviced; `flip` is what a flip to the other mode would be refused for right now (warnings are assumed acknowledged, so only blockers decide `allowed`). Reads a snapshot and takes no lock: a flip re-reads everything under the exclusive mode lock."
+      description: "`mode` is `legacy` (commerce's own outbox, drained by `commerce:whatsapp:dispatch`) or `upstream` (the `whatsapp_delivery` queue, drained by `whatsapp:dispatch`). `queues` counts each queue's rows per status and how many are still work; `channel` is what THIS process knows about whether each channel would be serviced; `flip` is what a flip to the other mode would be refused for right now (warnings are assumed acknowledged, so only blockers decide `allowed`). Reads a snapshot and takes no lock: a flip re-reads everything under the exclusive mode lock. `channel` is read from the environment of this web server process, not of the WhatsApp dispatchers (`channelEnvironmentNotice`)."
       responses:
         "200":
           description: The mode and the drain state.
@@ -24081,7 +24081,7 @@ paths:
       tags:
         - Commerce WhatsApp
       summary: "Issue #393 (ADR-0047 Cutover). Flips the tenant's WhatsApp delivery mode, or dry-runs the flip. Gated on `commerce.whatsapp_mode.manage` (high-risk)."
-      description: "A tenant is in exactly one mode at a time (ADR-0133 section 6). Under the exclusive per-tenant mode lock the flip is refused `409` while the queue being LEFT holds a non-terminal row for the tenant (`DRAIN_PENDING`), while the queue being ENTERED cannot send (`TARGET_CHANNEL_UNAVAILABLE`: its enable flag is off, the `whatsapp_delivery` module is off for the tenant, the recipient-hash key ring or the provider is unusable), and, for a flip into `upstream`, until the differences between the queues are acknowledged (`WARNINGS_NOT_ACKNOWLEDGED`). `from` makes the request conditional on the current mode (`MODE_CHANGED`). A refusal writes only an audit event of the refused attempt and carries the full evidence record in `error.details`. No row is ever copied between queues; the old dispatcher drains the old one. A flip to the mode the tenant is already in answers `200` with `outcome: unchanged` and writes nothing. A real flip requires a recent step-up (`403 STEP_UP_REQUIRED`) and an `Idempotency-Key`; a `dryRun` needs neither, runs the same decision and writes nothing, not even an audit event. The same rule runs from the CLI as `bun run commerce:whatsapp:cutover`."
+      description: "A tenant is in exactly one mode at a time (ADR-0133 section 6). Under the exclusive per-tenant mode lock the flip is refused `409` while the queue being LEFT holds a non-terminal row for the tenant (`DRAIN_PENDING`; for a rollback only commerce's own rows in the shared upstream queue count, other modules' rows are reported in `queues.upstreamScope` and never block, and `force: true` overrides the rest, see the request body), while the queue being ENTERED cannot send (`TARGET_CHANNEL_UNAVAILABLE`: its enable flag is off, the `whatsapp_delivery` module is off for the tenant, the recipient-hash key ring or the provider is unusable), and, for a flip into `upstream`, until the differences between the queues are acknowledged (`WARNINGS_NOT_ACKNOWLEDGED`). `from` makes the request conditional on the current mode (`MODE_CHANGED`). A refusal writes only an audit event of the refused attempt and carries the full evidence record in `error.details`. No row is ever copied between queues; the old dispatcher drains the old one. A flip to the mode the tenant is already in answers `200` with `outcome: unchanged` and writes nothing. A real flip requires a recent step-up (`403 STEP_UP_REQUIRED`) and an `Idempotency-Key`; a `dryRun` needs neither, runs the same decision and writes nothing, not even an audit event. The same rule runs from the CLI as `bun run commerce:whatsapp:cutover`. The channel checks read the environment of THIS web server process, not of the WhatsApp dispatchers that will send: both the response and the `GET` carry `channelEnvironmentNotice` saying so, and a passing check is not proof the dispatchers are configured alike."
       parameters:
         - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
@@ -55742,6 +55742,8 @@ components:
         - blockers
         - warnings
         - warningsAcknowledged
+        - force
+        - channelEnvironmentNotice
         - refusal
         - auditEventId
         - correlationId
@@ -55790,11 +55792,14 @@ components:
           required:
             - legacy
             - upstream
+            - upstreamScope
           properties:
             legacy:
               $ref: "#/components/schemas/CommerceWhatsappQueueDrain"
             upstream:
               $ref: "#/components/schemas/CommerceWhatsappQueueDrain"
+            upstreamScope:
+              $ref: "#/components/schemas/CommerceWhatsappUpstreamScope"
         channel:
           $ref: "#/components/schemas/CommerceWhatsappChannelFacts"
         consent:
@@ -55809,6 +55814,23 @@ components:
             $ref: "#/components/schemas/CommerceWhatsappFlipWarning"
         warningsAcknowledged:
           type: boolean
+        force:
+          type: object
+          required:
+            - requested
+            - applied
+            - bypassedNonTerminal
+          properties:
+            requested:
+              type: boolean
+            applied:
+              type: boolean
+              description: true only when the override actually bypassed a drain that would have blocked.
+            bypassedNonTerminal:
+              type: integer
+        channelEnvironmentNotice:
+          type: string
+          description: "Where `channel` was read: the environment of the process that ran the call (the web server for the API, the shell for the CLI), not the WhatsApp dispatchers' (issue #449). Send a test message after a flip."
         refusal:
           type: object
           nullable: true
@@ -55863,12 +55885,17 @@ components:
           type: boolean
           default: false
           description: Run the decision and write nothing (no mode change, no audit event). Needs no Idempotency-Key and no step-up.
+        force:
+          type: boolean
+          default: false
+          description: "Rollback only (`to: legacy`; any other value is `400`). Roll back although commerce's own messages are still non-terminal in the upstream queue, typically `retry_wait` behind the provider failure that is the reason to roll back. Bypasses `DRAIN_PENDING` and nothing else; the same `commerce.whatsapp_mode.manage` permission and recent step-up as any real flip; audited as `whatsapp_mode.flip_forced` with the number of messages bypassed. The bypassed messages stay in the upstream queue and its dispatcher keeps working them."
     CommerceWhatsappModeStatus:
       type: object
       required:
         - mode
         - changedAt
         - queues
+        - channelEnvironmentNotice
         - channel
         - consent
         - flip
@@ -55887,11 +55914,17 @@ components:
           required:
             - legacy
             - upstream
+            - upstreamScope
           properties:
             legacy:
               $ref: "#/components/schemas/CommerceWhatsappQueueDrain"
             upstream:
               $ref: "#/components/schemas/CommerceWhatsappQueueDrain"
+            upstreamScope:
+              $ref: "#/components/schemas/CommerceWhatsappUpstreamScope"
+        channelEnvironmentNotice:
+          type: string
+          description: "Where `channel` was read. The channel facts come from the environment of the web (CMS) server process that answered, not from the WhatsApp dispatchers that will send; a passing check does not prove the dispatchers are configured the same way (issue #449)."
         channel:
           $ref: "#/components/schemas/CommerceWhatsappChannelFacts"
         consent:
@@ -55937,7 +55970,20 @@ components:
         oldestNonTerminalAgeSeconds:
           type: integer
           nullable: true
-          description: Age of the oldest non-terminal row; null when there is none. For the upstream queue it is the oldest queued or retry_wait row.
+          description: "Age of the oldest non-terminal row; null when there is none. For the upstream queue it is the oldest queued or retry_wait row of commerce (issue #449)."
+    CommerceWhatsappUpstreamScope:
+      type: object
+      description: "How the shared upstream queue was attributed to commerce (issue #449). `queues.upstream` counts only the non-terminal rows of the templates commerce registered (the rows this cutover moves); the rest are reported here and never block a rollback."
+      required:
+        - unrelatedNonTerminal
+        - commerceCountExact
+      properties:
+        unrelatedNonTerminal:
+          type: integer
+          description: Non-terminal upstream rows of other modules (for example booking reminders).
+        commerceCountExact:
+          type: boolean
+          description: false when a status held more rows than one page of the operator read; the unseen remainder was counted as commerce's (fail closed).
     CommerceWorkOrder:
       type: object
       description: "Issue #286 (ADR-0029 D6). An operational work/service order. Holds no money."

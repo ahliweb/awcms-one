@@ -818,6 +818,17 @@ nothing. Every attempt returns an evidence record (queue counts per status,
 oldest age, blockers, warnings, audit event id). The rule itself is the pure
 `domain/whatsapp-cutover.ts`.
 
+Issue #449 (ADR-0047 D16/D17): a rollback counts only COMMERCE's own non-terminal
+rows in the shared upstream queue (read through `whatsapp_delivery`'s paged
+operator read; other modules' rows are reported in `queues.upstreamScope` and
+never block; a status over one page counts its remainder as commerce's), and has
+an audited override, `force` / `--force` (rollback only; the CLI also needs
+`--operator`): it bypasses the drain check and nothing else, writes
+`whatsapp_mode.flip_forced` with the number bypassed, and leaves those rows to
+the upstream dispatcher. Both the status and the evidence carry
+`channelEnvironmentNotice`: the channel facts are read from the process that
+answered (the web server for the API), not from the dispatchers that send.
+
 `POST .../account/otp/request` accepts `via?: "email"|"whatsapp"` (default
 `email`). `via: "whatsapp"` requires `phone` (E.164 via `domain/
 phone-normalisation.ts`), only ever supports `purpose: "login"` (a `register`
@@ -1591,6 +1602,7 @@ The consumer `commerce.order_paid_commission_attributor` reports each line of a 
   - **`period_closed`** (the accrual is `payable` or `paid`) is never retried and never thrown: one `commerce.commission.reversal_needs_attention` warning audit row (cause, payable/paid counts, partially returned lines, `actor_required`/`input_invalid` counts; no amount, source reference, accrual or employment id) is the work item for a person; there is no separate attention table. A new void writes `commerce.commission.reversed` (info).
   - **Actor.** `void` needs a person and a consumer has none, so the voider is the tenant user who last saved the commission settings (the person who authorised paying commission, D6); none means `actor_required` and the reversal waits for a person. A reversal needs `hr_commission` on and the adapter configured once, not `enabled`: switching the adapter off does not strand accruals already made.
 - **Files.** `domain/commission-attribution.ts` (pure decisions, including the void tally and `isLineFullyReturned`), `domain/commission-lifecycle.ts`, `application/commission-attribution-directory.ts` (settings and links, the only writer), `application/commission-attribution.ts` (the accrue consumer), `application/commission-reversal.ts` (the two reversing consumers), `application/commission-attribution-port.ts` (the seam), routes under `src/pages/api/v1/commerce/commission/`.
+- **A delayed delivery (issue #449, ADR-0046 D11).** The beneficiary is the employment linked **when the sale was paid** (`findEmploymentLinkedAt(login, paid_at)`, the interval `[created_at, retired_at)`), not when the consumer runs; the attributor does not accrue a line already **fully returned** by `completed` returns (a partly returned one is accrued and counted as `linesPartiallyReturned`); and the attributor and both reversers take a per-order advisory lock (`lockCommissionOrder`) so either order of arrival ends the same. The voider stays the last settings saver; that is an owner question recorded in D12 with the alternatives.
 - **Not here yet.** No clawback of a `payable` or `paid` accrual (a person, from the attention row), no pro-rata reversal of a partly returned line, no admin screen (four permissions on the shrink-only `NOT_YET_SCREENED` ledger), no recomputation of "paid" from the payment ledger.
 - **Tests.** `tests/commerce-commission-attribution.test.ts` (pure), `tests/commerce-commission-boundary.test.ts`, and against a real database `tests/integration/commerce-commission-attribution.integration.test.ts` (replay, racing deliveries, off by default, storefront/unstamped/unlinked/retired, discounts, time zone, refusals, tenant isolation, RLS FORCE, the whole job as the real `awcms_worker` role and what that role cannot do), and `tests/integration/commerce-commission-reversal.integration.test.ts` (cancel and refund voids, replay, nothing-to-void, `period_closed` payable and paid, partial returns, a retired link, adapter and `hr_commission` switched off, a missing actor, tenant isolation, the real dispatcher as the worker, the load-bearing `sql/1051` grant).
 

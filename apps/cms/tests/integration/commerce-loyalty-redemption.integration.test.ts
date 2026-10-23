@@ -520,6 +520,134 @@ suite("loyalty redemption integration (Issue #363)", () => {
     expect(await countOrders(TENANT_A)).toBe(1);
   }, 30000);
 
+  // -------------------------------------------------------------------------
+  // Issue #449 (ADR-0043 D5 amendment, ADR-0145): a signed-in checkout's
+  // idempotency record belongs to THAT customer, not to the shared anonymous
+  // namespace.
+  // -------------------------------------------------------------------------
+
+  async function idempotencyActors(tenantId: string): Promise<string[]> {
+    const rows = (await getAdminSql()`
+      SELECT actor_key FROM awcms_idempotency_keys
+      WHERE tenant_id = ${tenantId} AND request_scope = 'commerce.orders.create'
+      ORDER BY actor_key
+    `) as { actor_key: string }[];
+    return rows.map((row) => row.actor_key);
+  }
+
+  test("a signed-in checkout is stored under its own customer's namespace, a guest's under the anonymous one", async () => {
+    const signedIn = await place(
+      TENANT_A,
+      orderInput(productId, { idempotencyKey: "own-ns-signed-in" }),
+      siti
+    );
+    const guest = await place(
+      TENANT_A,
+      orderInput(productId, { idempotencyKey: "own-ns-guest" }),
+      undefined
+    );
+    expect(signedIn.kind).toBe("created");
+    expect(guest.kind).toBe("created");
+
+    expect(await idempotencyActors(TENANT_A)).toEqual([
+      "anonymous",
+      `user:customer:${siti}`
+    ]);
+  }, 30000);
+
+  test("a guest who learned the key and the whole body is NOT replayed the signed-in customer's order", async () => {
+    const input = orderInput(productId, {
+      idempotencyKey: "leak-1",
+      loyaltyRedemption: { points: 5000 }
+    });
+    const first = await place(TENANT_A, input, siti);
+    expect(first.kind).toBe("created");
+
+    // Before #449 this was `replayed`: the order, its masked contact and lines.
+    const guest = await place(TENANT_A, input, undefined);
+
+    expect(guest.kind).toBe("loyalty_refused");
+    expect(await countOrders(TENANT_A)).toBe(1);
+  }, 30000);
+
+  test("another customer or a guest cannot squat a key: the account holder's own request is neither refused nor answered 409", async () => {
+    const key = "squat-1";
+    // A guest claims the key first with an ordinary guest order ...
+    const squatter = await place(
+      TENANT_A,
+      orderInput(productId, { idempotencyKey: key, notes: "guest" }),
+      undefined
+    );
+    // ... and so does another signed-in customer, with a different body.
+    const other = await place(
+      TENANT_A,
+      orderInput(productId, {
+        idempotencyKey: key,
+        customer: { name: "Budi", phone: PHONE_BUDI, email: null }
+      }),
+      budi
+    );
+    expect(squatter.kind).toBe("created");
+    expect(other.kind).toBe("created");
+
+    // Siti uses the same key for her own, different request: before #449 this
+    // was `IdempotencyPayloadMismatchError` (a denial of service and an oracle).
+    const mine = await place(
+      TENANT_A,
+      orderInput(productId, { idempotencyKey: key }),
+      siti
+    );
+    expect(mine.kind).toBe("created");
+    expect(await countOrders(TENANT_A)).toBe(3);
+
+    // Her own retry still replays, in her own namespace only.
+    const retry = await place(
+      TENANT_A,
+      orderInput(productId, { idempotencyKey: key }),
+      siti
+    );
+    expect(retry.kind).toBe("replayed");
+    expect(await countOrders(TENANT_A)).toBe(3);
+  }, 30000);
+
+  test("transition: a record the customer's own order left in the anonymous namespace before #449 still replays (no second order), but only for its owner", async () => {
+    const input = orderInput(productId, { idempotencyKey: "straddle-1" });
+    const first = await place(TENANT_A, input, siti);
+    expect(first.kind).toBe("created");
+    // Put the record where a pre-#449 deploy left it.
+    await getAdminSql()`
+      UPDATE awcms_idempotency_keys SET actor_key = 'anonymous'
+      WHERE tenant_id = ${TENANT_A} AND idempotency_key = 'straddle-1'
+    `;
+    expect(await idempotencyActors(TENANT_A)).toEqual(["anonymous"]);
+
+    // The mid-retry client: same key, same body, same customer.
+    const retry = await place(TENANT_A, input, siti);
+    expect(retry.kind).toBe("replayed");
+    if (first.kind !== "created" || retry.kind !== "replayed") return;
+    expect(retry.order.orderCode).toBe(first.order.orderCode);
+    expect(await countOrders(TENANT_A)).toBe(1);
+
+    // A legacy record is honoured for the IDENTICAL request only: a different
+    // payload under that key is a new request in her own namespace.
+    const changed = await place(TENANT_A, { ...input, notes: "changed" }, siti);
+    expect(changed.kind).toBe("created");
+    expect(await countOrders(TENANT_A)).toBe(2);
+
+    // Budi presenting the same key is NOT affected by Siti's legacy record:
+    // it points at an order that is not his, so it is ignored.
+    const budis = await place(
+      TENANT_A,
+      orderInput(productId, {
+        idempotencyKey: "straddle-1",
+        customer: { name: "Budi", phone: PHONE_BUDI, email: null }
+      }),
+      budi
+    );
+    expect(budis.kind).toBe("created");
+    expect(await countOrders(TENANT_A)).toBe(3);
+  }, 30000);
+
   test("a ledger key already used by a different amount is a hard conflict at the ledger, not just at the idempotency store", async () => {
     await place(
       TENANT_A,

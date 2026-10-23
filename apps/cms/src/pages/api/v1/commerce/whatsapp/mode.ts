@@ -16,6 +16,12 @@
  * A real flip additionally requires a recent step-up (`STEP_UP_REQUIRED`) and an
  * `Idempotency-Key`; a dry run needs neither, because it writes nothing. The
  * step-up gate follows `POST /api/v1/auth/mfa/admin/reset`.
+ *
+ * Issue #449: the drain that blocks a ROLLBACK counts only commerce's own rows in
+ * the shared upstream queue, `force: true` (rollback only, same permission and
+ * step-up, its own audit action) overrides it, and both responses carry
+ * `channelEnvironmentNotice` - the channel facts are read from THIS web process,
+ * not from the dispatchers that will send.
  */
 import { ok } from "../../../../../modules/_shared/api-response";
 import { defineTenantRoute } from "../../../../../modules/_shared/tenant-route";
@@ -41,7 +47,7 @@ export const GET = defineTenantRoute({
   workClass: "interactive",
   authorize: WHATSAPP_MODE_READ_GUARD,
   handler: async ({ tx, tenantId }) =>
-    ok(await readWhatsappModeStatus(tx, tenantId))
+    ok(await readWhatsappModeStatus(tx, tenantId, { surface: "api" }))
 });
 
 type Prepared = { body: FlipRequestBody; idempotencyKey: string | null };
@@ -92,6 +98,7 @@ export const POST = defineTenantRoute<Prepared>({
           ...(body.from ? { expected: body.from } : {}),
           acknowledgeWarnings: body.acknowledgeWarnings,
           dryRun: body.dryRun,
+          force: body.force,
           correlationId: locals.correlationId
         }
       );
