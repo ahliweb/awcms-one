@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:51b24d5d968319f9c23fc18b8ccdd3017234a4d9165b4744c0ee097e15d8b01e -->
+<!-- i18n-source-hash: sha256:25b0ccd1928ee8235eebba71fd0a4de57141b73b733920b5f347c44902dc8a6c -->
 
 # `commerce`
 
@@ -1716,8 +1716,16 @@ Spesifikasi: [alur UX pemesanan](../../../../../docs/booking-ux-flows.md) bagian
 
 - **Layar**: `src/pages/admin/commerce-booking-links.astro` (tautan penawaran: daftar, buat, lepas; rute `commerce/booking/offering-links`), `src/pages/admin/commerce-booking-deposits.astro` (kebijakan uang muka produk jasa; `PUT commerce/products/{id}/deposit-policy`), dan kolom akun layanan pemesanan pada `commerce-settings.astro` (`bookingServiceTenantUserId` lewat `PUT commerce/store-settings`, tampil hanya saat `booking` aktif).
 - **Navigasi**: kedua entri ada di `domain/booking-adapter-navigation.ts`, dibatasi izin baca dan `requiredFeature: { moduleKey: "commerce", feature: "booking" }`.
-- **Kode**: `lib/ui/commerce-booking-client.ts` (isi uang muka, pencarian teks penolakan), `listServiceProductDepositPolicies` di `application/booking-deposit-policies.ts`. Layar mengirim kebijakan, bukan jumlah; lepas tautan memakai dialog konfirmasi bersama dan `Idempotency-Key`.
-- **Tidak ada di sini** (dibangun oleh #381, di bawah): layar versi kebijakan pembatalan dan dialog penggantian pengembalian dana. Masih belum ada: layar reservasi.
+- **Kode**: `lib/ui/commerce-booking-client.ts` (isi uang muka, pencarian teks penolakan), `listServiceProductDepositPoliciesPage` di `application/booking-deposit-policies.ts`. Layar mengirim kebijakan, bukan jumlah; lepas tautan memakai dialog konfirmasi bersama dan `Idempotency-Key`.
+- **Tidak ada di sini** (dibangun oleh #381, di bawah): layar versi kebijakan pembatalan dan dialog penggantian pengembalian dana. Masih belum ada: layar kasir / meja depan (#388).
+
+**Putaran penutup (issue ini; tanpa migrasi, rute, izin, atau event).** Kelima permukaan [bagian 11](../../../../../docs/booking-ux-flows.md) sudah dibangun (11.1 dan 11.2 di sini, 11.3 pada layar pengaturan, 11.4 dan 11.5 oleh #381 di bawah, 11.6 oleh #382); #385 menutup temuan pemeriksaan di peramban sungguhan dengan data nyata, ditambah dua tindak lanjut #448:
+
+- **Daftar uang muka**: `listServiceProductDepositPoliciesPage` (keyset menurut `(name, id)`, 50 per halaman; codec kursor dan konstanta di `domain/booking-deposit-list.ts`), tautan "Halaman berikutnya" / "Halaman pertama" dan baris terlihat "Masih ada produk jasa berikutnya". `listServiceProductDepositPolicies` tanpa halaman tetap ada, dibatasi `SERVICE_PRODUCT_SELECTOR_LIMIT` (200), untuk pemilih lingkup kebijakan pembatalan, yang menyatakannya bila terpotong. Setiap baris menaut ke versi kebijakan pembatalan produk itu.
+- **Fokus setelah muat ulang**: `showStatusAndFocus` dan `markFieldInvalid` (`lib/ui/commerce-booking-client.ts`): pemberitahuan tanpa-kebijakan-pembatalan dan baris sukses penggantian menerima fokus setelah muat ulang; kolom yang ditolak diberi `aria-invalid`, dijelaskan galatnya, dan difokuskan.
+- **Tata letak**: filter tautan adalah kontrol `admin-segmented` bersama, radio jenis uang muka adalah baris `admin-checkbox`, kolom formulir adalah kelompok `admin-field`, dan `.booking-admin-table` (`styles/admin-screens.css`) menjaga caption dan sel selebar penuh tabel bertumpuk tetap terbaca pada 360px. Jendela yang ditambah atau dihapus pada editor draf menjaga fokus di dalam formulir.
+- **"Detail reservasi"**: dialog penggantian ada di panel booking pada detail pesanan secara sengaja (`/admin/booking/reservations` milik Booking dan tidak dapat tahu jumlah dibayar); server menegakkan batasnya (`REFUND_EXCEEDS_PAID`).
+- **Pengujian**: `tests/commerce-booking-deposit-list.test.ts`, `tests/commerce-booking-client.test.ts`, `tests/commerce-booking-admin-screens.test.ts` (menambah "setiap kelas yang dipakai layar booking punya aturan"), `tests/integration/commerce-booking-deposit-list.integration.test.ts` (120 produk, tiga halaman, nama kembar, isolasi tenant) dan `tests/e2e/admin-commerce-booking.e2e.ts` di peramban sungguhan (jalur keyboard, axe di kedua tema, 360px, batas dialog penggantian, sidebar di balik bendera fitur).
 
 ## Adapter booking-commerce, rekonsiliasi pasca-restore - TERIMPLEMENTASI (Issue #396, epic #280 butir 35 - [ADR-0045](../../../../../docs/adr/0045-booking-commerce-adapter.id.md))
 
