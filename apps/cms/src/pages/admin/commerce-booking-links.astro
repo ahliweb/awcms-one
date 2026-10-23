@@ -145,7 +145,7 @@ const dateFormat = new Intl.DateTimeFormat(Astro.locals.locale ?? "en", {
   {canCreate && bookingEnabled && (
     <form
       id="booking-link-create-form"
-      class="admin-create-form fade-in-up"
+      class="admin-create-form booking-link-form fade-in-up"
       data-failure={t(
         "Could not link the offering. Check both IDs and try again."
       )}
@@ -163,60 +163,76 @@ const dateFormat = new Intl.DateTimeFormat(Astro.locals.locale ?? "en", {
         id="booking-link-create-status"
         class="form-hint"
         role="status"
+        aria-live="polite"
+        tabindex="-1"
         data-warning={t(
           "Linked. This product has no cancellation policy yet, so guests will see no refund terms."
         )}
         hidden
       />
 
-      <label for="booking-link-offering">{t("Offering ID")}</label>
-      <input
-        id="booking-link-offering"
-        name="offeringId"
-        type="text"
-        required
-        autocomplete="off"
-        spellcheck="false"
-        aria-describedby="booking-link-offering-hint"
-      />
-      <p id="booking-link-offering-hint" class="form-hint">
-        {t("Copy it from Booking, Offerings.")}
-      </p>
+      <div class="admin-field">
+        <label for="booking-link-offering">
+          {t("{label} (required)", { label: t("Offering ID") })}
+        </label>
+        <input
+          id="booking-link-offering"
+          name="offeringId"
+          type="text"
+          required
+          autocomplete="off"
+          spellcheck="false"
+          aria-describedby="booking-link-offering-hint"
+        />
+        <p id="booking-link-offering-hint" class="form-hint">
+          {t("Copy it from Booking, Offerings.")}
+        </p>
+      </div>
 
-      <label for="booking-link-product">{t("Product ID")}</label>
-      <input
-        id="booking-link-product"
-        name="productId"
-        type="text"
-        required
-        autocomplete="off"
-        spellcheck="false"
-        aria-describedby="booking-link-product-hint"
-      />
-      <p id="booking-link-product-hint" class="form-hint">
-        {t("A service product.")}
-      </p>
+      <div class="admin-field">
+        <label for="booking-link-product">
+          {t("{label} (required)", { label: t("Product ID") })}
+        </label>
+        <input
+          id="booking-link-product"
+          name="productId"
+          type="text"
+          required
+          autocomplete="off"
+          spellcheck="false"
+          aria-describedby="booking-link-product-hint"
+        />
+        <p id="booking-link-product-hint" class="form-hint">
+          {t("A service product.")}
+        </p>
+      </div>
 
-      <label for="booking-link-basis">{t("Basis")}</label>
-      <select id="booking-link-basis" name="quantityBasis">
-        <option value="nights">{t("Per night")}</option>
-        <option value="booking">{t("Per booking")}</option>
-      </select>
+      <div class="admin-field">
+        <label for="booking-link-basis">{t("Basis")}</label>
+        <select id="booking-link-basis" name="quantityBasis">
+          <option value="nights">{t("Per night")}</option>
+          <option value="booking">{t("Per booking")}</option>
+        </select>
+      </div>
 
-      <label for="booking-link-resources">{t("Resource IDs (optional)")}</label>
-      <input
-        id="booking-link-resources"
-        name="resourceIds"
-        type="text"
-        autocomplete="off"
-        spellcheck="false"
-        aria-describedby="booking-link-resources-hint"
-      />
-      <p id="booking-link-resources-hint" class="form-hint">
-        {t(
-          "The room type this offering sells: copy the resource IDs from Booking, Resources, separated by commas. Leave empty to offer every active resource of the same kind."
-        )}
-      </p>
+      <div class="admin-field">
+        <label for="booking-link-resources">
+          {t("Resource IDs (optional)")}
+        </label>
+        <input
+          id="booking-link-resources"
+          name="resourceIds"
+          type="text"
+          autocomplete="off"
+          spellcheck="false"
+          aria-describedby="booking-link-resources-hint"
+        />
+        <p id="booking-link-resources-hint" class="form-hint">
+          {t(
+            "The room type this offering sells: copy the resource IDs from Booking, Resources, separated by commas. Leave empty to offer every active resource of the same kind."
+          )}
+        </p>
+      </div>
 
       <button
         type="submit"
@@ -238,20 +254,26 @@ const dateFormat = new Intl.DateTimeFormat(Astro.locals.locale ?? "en", {
   )}
 
   {canRead && !loadError && bookingEnabled && (
-    <nav class="pill-row fade-in-up" aria-label={t("Filter links")}>
+    <nav
+      class="admin-segmented booking-links-filter"
+      aria-label={t("Filter links")}
+    >
       <a
+        class="admin-segmented-option"
         href="/admin/commerce-booking-links"
         aria-current={statusFilter === null ? "page" : undefined}
       >
         {t("All")}
       </a>
       <a
+        class="admin-segmented-option"
         href="/admin/commerce-booking-links?status=active"
         aria-current={statusFilter === "active" ? "page" : undefined}
       >
         {t("Active")}
       </a>
       <a
+        class="admin-segmented-option"
         href="/admin/commerce-booking-links?status=unlinked"
         aria-current={statusFilter === "unlinked" ? "page" : undefined}
       >
@@ -267,7 +289,10 @@ const dateFormat = new Intl.DateTimeFormat(Astro.locals.locale ?? "en", {
       tabindex="0"
       aria-label={t("Booking links")}
     >
-      <table class="data-table data-table--stack" id="booking-links-table">
+      <table
+        class="data-table data-table--stack booking-admin-table"
+        id="booking-links-table"
+      >
         <caption>
           {tn("{count} link", "{count} links", links.length, {
             count: links.length
@@ -376,6 +401,17 @@ const dateFormat = new Intl.DateTimeFormat(Astro.locals.locale ?? "en", {
   <CommerceConfirmDialog locale={Astro.locals.locale} />
 </AdminLayout>
 
+<style>
+  .booking-link-form .admin-field {
+    flex: 1 1 16rem;
+    min-width: 0;
+  }
+
+  .booking-links-filter {
+    margin-bottom: var(--sp-3);
+  }
+</style>
+
 <script>
   import {
     field,
@@ -389,8 +425,10 @@ const dateFormat = new Intl.DateTimeFormat(Astro.locals.locale ?? "en", {
   } from "../../lib/ui/admin-form-client";
   import {
     isUuidText,
+    markFieldInvalid,
     newIdempotencyKey,
-    pickRefusalMessage
+    pickRefusalMessage,
+    showStatusAndFocus
   } from "../../lib/ui/commerce-booking-client";
   import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
 
@@ -400,8 +438,18 @@ const dateFormat = new Intl.DateTimeFormat(Astro.locals.locale ?? "en", {
   onSubmit("booking-link-create-form", async ({ form, data, submit }) => {
     const offeringId = field(data, "offeringId");
     const productId = field(data, "productId");
+    const offeringInput = document.getElementById("booking-link-offering");
+    const productInput = document.getElementById("booking-link-product");
+    markFieldInvalid(offeringInput, false);
+    markFieldInvalid(productInput, false);
     if (!isUuidText(offeringId) || !isUuidText(productId)) {
       createError.show(form.dataset.invalidId ?? "");
+      // Focus lands on the first field the message is about.
+      const bad = isUuidText(offeringId) ? productInput : offeringInput;
+      markFieldInvalid(bad, true, "booking-link-create-error");
+      if (!isUuidText(offeringId) && !isUuidText(productId)) {
+        productInput?.setAttribute("aria-invalid", "true");
+      }
       return;
     }
     createError.clear();
@@ -451,11 +499,12 @@ const dateFormat = new Intl.DateTimeFormat(Astro.locals.locale ?? "en", {
     const warning = sessionStorage.getItem(WARNING_KEY);
     if (warning) {
       sessionStorage.removeItem(WARNING_KEY);
-      const status = document.getElementById("booking-link-create-status");
-      if (status) {
-        status.textContent = warning;
-        status.hidden = false;
-      }
+      // Focus follows the reload, so the notice is read and a keyboard user
+      // continues from it rather than from the top of the page (#448).
+      showStatusAndFocus(
+        document.getElementById("booking-link-create-status"),
+        warning
+      );
     }
   } catch {
     /* storage unavailable: nothing to show */

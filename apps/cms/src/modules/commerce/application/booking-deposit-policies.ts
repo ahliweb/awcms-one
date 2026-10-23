@@ -30,6 +30,12 @@ import type {
   SetDepositPolicyInput
 } from "../domain/booking-adapter";
 import { normalizeMoney } from "../domain/price-calculation";
+import {
+  DEPOSIT_LIST_PAGE_SIZE,
+  encodeDepositListCursor,
+  SERVICE_PRODUCT_SELECTOR_LIMIT,
+  type DepositListCursor
+} from "../domain/booking-deposit-list";
 import { fetchCommerceFeatures } from "./commerce-feature-gate";
 
 const AUDIT_MODULE_KEY = "commerce";
@@ -244,36 +250,21 @@ export type ServiceProductDepositRow = {
   policy: Pick<DepositPolicyRecord, "kind" | "percent" | "fixedAmount"> | null;
 };
 
-/**
- * The deposit-policy admin screen's read (Issue #385): every live SERVICE
- * product of the tenant (the only kind an offering can be linked to) with its
- * active policy, one query. Bounded to 200 rows; the screen is a configuration
- * surface, not a catalogue browser.
- */
-export async function listServiceProductDepositPolicies(
-  tx: Bun.SQL,
-  tenantId: string
-): Promise<ServiceProductDepositRow[]> {
-  const rows = (await tx`
-    SELECT p.id, p.name, p.sku, p.status, p.allow_dp,
-           d.kind, d.percent, d.fixed_amount
-    FROM awcms_commerce_products p
-    LEFT JOIN awcms_commerce_product_deposit_policies d
-      ON d.tenant_id = p.tenant_id AND d.product_id = p.id AND d.retired_at IS NULL
-    WHERE p.tenant_id = ${tenantId} AND p.type = 'service' AND p.deleted_at IS NULL
-    ORDER BY p.name ASC, p.id ASC
-    LIMIT 200
-  `) as {
-    id: string;
-    name: string;
-    sku: string;
-    status: string;
-    allow_dp: boolean;
-    kind: DepositPolicyKind | null;
-    percent: string | null;
-    fixed_amount: string | null;
-  }[];
-  return rows.map((row) => ({
+type ServiceProductDepositDbRow = {
+  id: string;
+  name: string;
+  sku: string;
+  status: string;
+  allow_dp: boolean;
+  kind: DepositPolicyKind | null;
+  percent: string | null;
+  fixed_amount: string | null;
+};
+
+function toServiceProductDepositRow(
+  row: ServiceProductDepositDbRow
+): ServiceProductDepositRow {
+  return {
     productId: row.id,
     name: row.name,
     sku: row.sku,
@@ -290,5 +281,75 @@ export async function listServiceProductDepositPolicies(
                 ? null
                 : normalizeMoney(row.fixed_amount)
           }
-  }));
+  };
+}
+
+/**
+ * The cancellation-policy screen's scope selector read: every live SERVICE
+ * product of the tenant (the only kind an offering can be linked to) with its
+ * active policy, one query, by name. Bounded to
+ * {@link SERVICE_PRODUCT_SELECTOR_LIMIT} rows; a caller that gets exactly that
+ * many must say the list may be cut (the screen does). The deposits screen
+ * itself pages through {@link listServiceProductDepositPoliciesPage}.
+ */
+export async function listServiceProductDepositPolicies(
+  tx: Bun.SQL,
+  tenantId: string
+): Promise<ServiceProductDepositRow[]> {
+  const rows = (await tx`
+    SELECT p.id, p.name, p.sku, p.status, p.allow_dp,
+           d.kind, d.percent, d.fixed_amount
+    FROM awcms_commerce_products p
+    LEFT JOIN awcms_commerce_product_deposit_policies d
+      ON d.tenant_id = p.tenant_id AND d.product_id = p.id AND d.retired_at IS NULL
+    WHERE p.tenant_id = ${tenantId} AND p.type = 'service' AND p.deleted_at IS NULL
+    ORDER BY p.name ASC, p.id ASC
+    LIMIT ${SERVICE_PRODUCT_SELECTOR_LIMIT}
+  `) as ServiceProductDepositDbRow[];
+  return rows.map(toServiceProductDepositRow);
+}
+
+export type ServiceProductDepositPage = {
+  items: ServiceProductDepositRow[];
+  /** Opaque cursor of the next page, or `null` on the last one. */
+  nextCursor: string | null;
+};
+
+/**
+ * The deposit-policy admin screen's read (Issue #385, #448): the same rows as
+ * {@link listServiceProductDepositPolicies}, keyset-paged by `(name, id)` so a
+ * tenant with more than a page of service products reaches every one of them
+ * and the screen can say there is more. Reads one row past the page to know.
+ */
+export async function listServiceProductDepositPoliciesPage(
+  tx: Bun.SQL,
+  tenantId: string,
+  options: { cursor?: DepositListCursor | null; limit?: number } = {}
+): Promise<ServiceProductDepositPage> {
+  const limit = Math.max(
+    1,
+    Math.min(options.limit ?? DEPOSIT_LIST_PAGE_SIZE, DEPOSIT_LIST_PAGE_SIZE)
+  );
+  const cursor = options.cursor ?? null;
+  const rows = (await tx`
+    SELECT p.id, p.name, p.sku, p.status, p.allow_dp,
+           d.kind, d.percent, d.fixed_amount
+    FROM awcms_commerce_products p
+    LEFT JOIN awcms_commerce_product_deposit_policies d
+      ON d.tenant_id = p.tenant_id AND d.product_id = p.id AND d.retired_at IS NULL
+    WHERE p.tenant_id = ${tenantId} AND p.type = 'service' AND p.deleted_at IS NULL
+      AND (${cursor === null}::boolean
+           OR (p.name, p.id) > (${cursor?.name ?? ""}::text, ${cursor?.id ?? "00000000-0000-0000-0000-000000000000"}::uuid))
+    ORDER BY p.name ASC, p.id ASC
+    LIMIT ${limit + 1}
+  `) as ServiceProductDepositDbRow[];
+  const page = rows.slice(0, limit);
+  const last = page[page.length - 1];
+  return {
+    items: page.map(toServiceProductDepositRow),
+    nextCursor:
+      rows.length > limit && last
+        ? encodeDepositListCursor({ name: last.name, id: last.id })
+        : null
+  };
 }
