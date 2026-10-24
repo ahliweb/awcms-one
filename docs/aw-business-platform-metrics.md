@@ -106,7 +106,7 @@ Shipping, insurance and tax collected are displayed beside net so that "what the
 
 ### 3.6 Views
 
-Default view: by attribution (paid) day. Cash view: by settlement day of the payment legs (this is what the existing tender report already is). The two are never mixed in one chart.
+Default view: by attribution (paid) day. Cash view: by settlement day of the payment legs (this is what the existing tender report already is). The two are never mixed in one chart. For the booking slice the by-refund-day cash view is scheduled (3.9 D4).
 
 ### 3.7 Deposit orders (finding X6)
 
@@ -134,9 +134,72 @@ In the second and third rows the uncollected 2,100,000 lands on the day the depo
 
 - **Gross once, on the first paid day; the balance beside the waterfall.** Exactly rule 1 and 2 of 3.7: a deposit order recognises its whole gross on the deposit day, and the balance still owed on an open order is the `balanceOutstanding` companion column.
 - **Refunds = paid back + uncollected.** "Paid back" is the succeeded reversal legs of the ledger; "of which uncollected balance (no money moved)" is the unpaid part of an order a cancellation or a no-show closed. Both land on the ORIGINAL paid day. The three rows of the 3.7 worked example and the 8.3 villa week (gross 5,500,000, discounts 250,000, refunds 100,000, net 5,150,000) are asserted to the cent in `apps/cms/tests/integration/commerce-booking-revenue.integration.test.ts`; ADR 1,030,000 and RevPAN 858,333.33 take Booking's occupied and available nights as inputs, because occupancy is upstream (`awcms#944`).
-- **Discounts are what the order recorded as a price reduction** (voucher, points), derived from its own identity so the 3.5 control `net + shipping + insurance + tax = settled + outstanding - surplus` is exact; a per-line price cut is inside the frozen line price. A refund is money, so a full refund of an order that carried tax leaves the tax companion un-netted and net below zero by that amount.
-- **A refund counts when the money has moved** (a settled ledger leg), not when a pending leg is planned; whether the owner wants the booking slice to net a refund at the moment it is decided, as `commerce.sales_daily` does for a return, is open.
+- **Discounts are what the order recorded as a price reduction** (voucher, points), derived from its own identity so the 3.5 control `net + shipping + insurance + tax = settled + outstanding - surplus` is exact; a per-line price cut is inside the frozen line price. A refund is money, so a full refund of an order that carried tax leaves the tax companion un-netted and net below zero by that amount. (Interim: 3.9 D3 replaces this with a tax-aware allocation.)
+- **A refund counts when the money has moved** (a settled ledger leg), not when a pending leg is planned; the owner decided on 24 October 2026 that the slice nets a refund at the moment it is decided, as `commerce.sales_daily` does for a return (3.9 D1); this bullet describes the interim behaviour until [#478](https://github.com/ahliweb/awcms-one/issues/478) lands.
 - **Readers and visibility.** Aggregates only, on `reporting.dashboard.read` (the sales routes' gate), hidden while the tenant's `booking` feature is off; the restatement flag of 1.2 is kept per paid day.
+
+### 3.9 Owner decisions on the booking slice (#450, 24 October 2026)
+
+The owner adopted the recommended answer to each of the four questions of [#450](https://github.com/ahliweb/awcms-one/issues/450) (the questions left open by #389). **This section is the contract.** Where it differs from what #389 shipped (3.8), 3.8 describes the interim behaviour until the build issue [#478](https://github.com/ahliweb/awcms-one/issues/478) lands; the code, the integration tests and their worked examples then change together.
+
+**Scope note: the waterfall is an operational sales measure, not statutory revenue.** It attributes the whole value of an order to its first paid day (3.7), a management-reporting convention. Under PSAK 72 (the Indonesian adoption of IFRS 15) revenue is recognised as the performance obligation is satisfied, so a deposit received before the stay is a contract liability until then (IFRS 15.106), and the retained part of a forfeited deposit becomes revenue when the right to a refund lapses. The general ledger and any fiscal document are outside this repository (O9). The screens and exports keep the name "net revenue", but help text must say that it is not a financial-statement figure and that the books of record are the tenant's accounting system. What this page controls is that the mechanics it does use are the IFRS 15 ones: refunds as a liability, pass-through taxes outside revenue, commission as a cost.
+
+#### D1. A refund counts when it is decided (accrual), not when it is paid
+
+**Decision.** The Refunds step counts a refund when it is recorded as an obligation: the refund amount of the order's return record, or of the booking refund decision that planned it. This is the same moment `commerce.sales_daily` nets a return, so the two reports agree. The step has three parts that always add up:
+
+| Part | Meaning |
+| --- | --- |
+| Paid back | Succeeded reversal legs of the payment ledger (money has left) |
+| Refund payable | Decided and not yet paid out (planned or failed legs); a companion column beside the waterfall, like the balance outstanding |
+| Uncollected balance | Unchanged from 3.7: the unpaid part of a closed order, no money moved |
+
+Settling a leg moves an amount from payable to paid back and **never moves net**. A leg that fails stays payable until staff retry or cancel it. All three parts land on the original paid day (rule 5 of 1.1). The **cash** reading is not lost: the by-refund-day cash view of 3.6 (D4) shows each reversal leg on the day it settled.
+
+**Why.** A refund the entity is obliged to pay is a refund liability, and revenue is reduced when the obligation arises, not when cash leaves (IFRS 15.55 and B20 to B27; PSAK 72 has the same paragraphs). A cash-basis refund also overstates net between the decision and the payout, and disagrees with `commerce.sales_daily`. Cash basis stays valuable for a cash reader, so it moves to the labelled cash view (3.6).
+
+Worked example (the third row of 3.7, early cancel with half the deposit refunded):
+
+| Moment | Paid back | Refund payable | Uncollected | Net |
+| --- | --- | --- | --- | --- |
+| Decided, not yet paid out | 0 | 450,000 | 2,100,000 | 450,000 |
+| Leg settled | 450,000 | 0 | 2,100,000 | 450,000 |
+| What #389 shows today before the leg settles | 0 | n/a | 2,100,000 | 900,000 |
+
+The control identity (3.5) becomes `net + shipping + insurance + tax = settled - refund payable + outstanding - surplus`, with the companions after D3.
+
+#### D2. The retention anchor stays the order's first paid transition
+
+**Decision.** Accepted. The order's first paid transition stands in for Booking's `confirmed_at`. **Why.** The adapter confirms the reservation from the `order.paid` event (`commerce.booking_order_paid_confirmer`), so in the normal path the two instants differ only by event-delivery latency, and the cohort is measured in days and months (the day-90 boundary). A booking confirmed without payment is not revenue (Q6) and is not an anchor either. First payment is also the point at which the contract criteria of IFRS 15.9 are met for a prepaid stay, so the anchor and the revenue day agree. Revisit only if Booking exposes `confirmed_at` through the port and a tenant confirms bookings before payment.
+
+#### D3. A refund of a taxed order nets the tax companion, never the goods revenue alone
+
+**Decision.** Not accepted as an end state: net must not go below zero because a taxed order was fully refunded. Each refund and each uncollected amount is allocated across the four components of the order (goods = subtotal less discount, shipping, insurance, tax) in proportion to each component's share of the order total, in integer cents, once, with the largest-remainder function the returns module and ADR-0046 D6 already use. The goods share is the Refunds step; shipping, insurance and tax shares reduce their own companion columns. A split carried by the refund record itself, where one exists, wins over pro rata.
+
+**Why.** Tax collected is not revenue: the transaction price excludes amounts collected on behalf of third parties (IFRS 15.47; PSAK 72), and returning the goods returns the tax (a return or credit note reverses the output tax). Leaving the tax companion un-netted makes the companion column wrong instead of the net, and a negative net for a fully refunded order misleads any reader.
+
+| Case (subtotal, tax) | Refund or uncollected | Net (#389) | Net (D3) | Tax companion (D3) |
+| --- | --- | --- | --- | --- |
+| 1,000,000 + 100,000 tax, paid in full | Full refund 1,100,000 | -100,000 | 0 | 0 |
+| Same order | Refund 550,000 | 450,000 | 500,000 | 50,000 |
+| 3,000,000 + 330,000 tax, 30% deposit 999,000, no-show | Uncollected 2,331,000 | 669,000 | 900,000 | 99,000 |
+
+The third row matches the no-show row of 3.7 (net 900,000) once the 330,000 tax is allocated, and settled 999,000 = net 900,000 + tax 99,000. How the tax on a retained deposit is treated for the tenant's tax return is a tax-advisor question outside this report (O9); the allocation is the neutral default.
+
+#### D4. What is scheduled and what is not
+
+| Item | Decision | Why |
+| --- | --- | --- |
+| Cash view by refund day (3.6) | **Scheduled**, with D1 | It is where the cash reading now lives; the settled-legs fact it needs already exists |
+| Waterfall CSV route | **Scheduled**, after D1 and D3 | Finance reconciles from a file; building it after the columns settle avoids changing it twice. Formula neutralisation as in the other exports |
+| ADR and RevPAN as stored figures | **Not scheduled**; derive at read | A stored ratio goes stale and does not add up across days; compute it from the additive counters (net revenue, occupied and available nights) once upstream Booking exposes the nights (awcms#944) |
+| Channel and segment slices (8.5) | **Deferred** until a tenant asks | Needs the booking channel and a segment membership frozen per row (segments are evaluated on demand, ADR-0042) and the under-5-customers suppression designed first |
+
+D1 to D4 build is tracked by [#478](https://github.com/ahliweb/awcms-one/issues/478).
+
+#### Commission is never a waterfall step
+
+Commission paid to an employee on a booking-sourced sale ([ADR-0046](adr/0046-commission-attribution-adapter-reports-paid-counter-sales-to-the-hr-commission-ledger.md)) is a cost of obtaining the sale (IFRS 15.91 to 94), not a reduction of the transaction price, because the business is the principal and the employee is not the customer. It never appears in gross, discounts, refunds or net. A refund that voids the commission accrual (ADR-0046 D9) changes the cost ledger and nothing here.
 
 ## 4. Occupancy
 
@@ -363,7 +426,7 @@ For a night-based unit, **utilization is not a separate headline** the way it is
 
 ### 8.5 Channels and segments
 
-Occupancy and net revenue may be sliced by booking channel (direct, adapter-supplied source) and by customer segment (a CRM segment). A slice is a **dimension on the same counters**, not a second projection family, and a slice with fewer than 5 customers is shown as an aggregate to avoid identifying a guest.
+Occupancy and net revenue may be sliced by booking channel (direct, adapter-supplied source) and by customer segment (a CRM segment). A slice is a **dimension on the same counters**, not a second projection family, and a slice with fewer than 5 customers is shown as an aggregate to avoid identifying a guest. Not built; deferred until a tenant asks (3.9 D4).
 
 ## 9. Decisions on the open questions
 
