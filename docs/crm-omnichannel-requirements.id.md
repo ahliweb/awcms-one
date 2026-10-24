@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](crm-omnichannel-requirements.md)
 
-<!-- i18n-source-hash: sha256:24f42736d60dc3b46c2adc612835265ed678e00d5039706110fa9470fdd8b0a1 -->
+<!-- i18n-source-hash: sha256:1cc7f94e76c40b4fcd5dce4d52fa20b155d355b6f24305de78841e6ddbfdc1ba -->
 
 # Standar kebutuhan CRM omnichannel — reusable (v1.0, usulan)
 
@@ -174,4 +174,4 @@ Seluruh issue implementasi **masih terbuka/direncanakan** saat dokumen diterbitk
 
 **Risiko dan komersial:** StarSender menyatakan layanannya *bukan API WhatsApp resmi* serta memperingatkan potensi pemblokiran akun/nomor. Operator wajib memahami risiko akun, privasi, kontinuitas dan vendor. Provider default adalah **keputusan deployment produk**, bukan dukungan resmi Meta, jaminan anti-blokir atau izin broadcast tanpa consent. [API Kirim StarSender](https://docs.starsender.online/docs/message-api/kirim-pesan/); [Webhook StarSender](https://docs.starsender.online/docs/webhook/); [FAQ StarSender](https://starsender.id/); [Kebijakan WhatsApp Business](https://whatsappbusiness.com/id/policy/).
 
-**Pelacakan:** [AWCMS #1139](https://github.com/ahliweb/awcms/issues/1139) ADR, [#1141](https://github.com/ahliweb/awcms/issues/1141) routing, [#1142](https://github.com/ahliweb/awcms/issues/1142) StarSender, [#1143](https://github.com/ahliweb/awcms/issues/1143) Meta, [#1154](https://github.com/ahliweb/awcms/issues/1154) admin; [AWCMS-One #458](https://github.com/ahliweb/awcms-one/issues/458) kampanye CRM. Isu tes end-to-end ditautkan setelah dibuat.
+**Pelacakan:** [AWCMS #1139](https://github.com/ahliweb/awcms/issues/1139) ADR, [#1141](https://github.com/ahliweb/awcms/issues/1141) routing, [#1142](https://github.com/ahliweb/awcms/issues/1142) StarSender, [#1143](https://github.com/ahliweb/awcms/issues/1143) Meta, [#1154](https://github.com/ahliweb/awcms/issues/1154) admin; [AWCMS-One #458](https://github.com/ahliweb/awcms-one/issues/458) kampanye CRM. Tes penerimaan lintas-provider: [AWCMS-One #466](https://github.com/ahliweb/awcms-one/issues/466).
