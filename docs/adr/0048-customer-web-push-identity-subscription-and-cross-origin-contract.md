@@ -2,9 +2,9 @@
 
 # ADR-0048 — Customer Web Push: identity, subscription model and cross-origin contract
 
-- **Status:** Proposed
-- **Date:** 18 October 2026
-- **Decision maker:** ahliweb (sign-off pending; nothing below is implemented or approved until the owner changes this status)
+- **Status:** Accepted (24 October 2026). Proposed 18 October 2026
+- **Date:** 18 October 2026 (proposed); 24 October 2026 (accepted)
+- **Decision maker:** ahliweb. Accepted on 24 October 2026 on the owner's instruction to adopt the recommended option for every open question (Q1 to Q12, recorded in "Owner decisions on the open questions" below). The design is approved; **nothing is implemented yet**: #430 to #432 build it, behind the `customerPush` flag, which stays off until the production gates of the decision summary (D8) are met
 - **Related:** issue [#429](https://github.com/ahliweb/awcms-one/issues/429) (this ADR); consumers [#430](https://github.com/ahliweb/awcms-one/issues/430), [#431](https://github.com/ahliweb/awcms-one/issues/431), [#432](https://github.com/ahliweb/awcms-one/issues/432); prerequisites [#427](https://github.com/ahliweb/awcms-one/issues/427) (subtree sync) and [#428](https://github.com/ahliweb/awcms-one/issues/428) (storefront installability); [ADR-0007](0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.md), [ADR-0016](0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md), [ADR-0024](0024-awcms-one-is-template-only-derived-apps-own-their-backend.md), [ADR-0037](0037-the-commerce-migration-band-is-allocated-gap-first-and-widened-upstream.md), [ADR-0040](0040-aw-business-platform-capability-ownership-and-boundaries.md); upstream `ahliweb/awcms` issue 1106 and its Web Push work (declarative payload, installable iOS admin, operator test matrix); WebKit [Declarative Web Push](https://webkit.org/blog/16535/)
 
 ## Context
@@ -52,7 +52,7 @@ The three options of #429, over the criteria the project uses. A column header c
 | Operational complexity | One queue and one purge, but #430 is gated on the upstream release train. | n/a | One more job and one more purge. One VAPID key pair, one key ring and one runbook (section 9). |
 | Long-term | Cleanest if several consumers need external recipients; premature for one (ADR-0024 D3: one consumer is evidence to examine generality, not permission to generalize). | n/a | Can later be re-pointed at an upstream abstraction: the device table stays, the outbox shrinks to an adapter. |
 
-**Verdict.** The evidence above shows that the generic outbox cannot safely carry a customer recipient without an upstream schema change (B fails on its own terms), which is the condition #429 sets for (c). Choose **C**, with B's ownership split: `commerce` owns identity, consent, devices and the outbox; it **imports** the upstream provider, crypto and policy code and writes none of upstream's tables. Option A stays open as the long-term convergence, through the small generic upstream proposals in section 12. Owner question Q1 asks the owner to confirm this trade (accept a thin commerce outbox now, versus wait for A).
+**Verdict.** The evidence above shows that the generic outbox cannot safely carry a customer recipient without an upstream schema change (B fails on its own terms), which is the condition #429 sets for (c). Choose **C**, with B's ownership split: `commerce` owns identity, consent, devices and the outbox; it **imports** the upstream provider, crypto and policy code and writes none of upstream's tables. Option A stays open as the long-term convergence, through the small generic upstream proposals in section 12. The owner confirmed this trade on 24 October 2026 (Q1): accept a thin commerce outbox now rather than wait for A.
 
 ### 1.2 What is reused and what is new
 
@@ -382,7 +382,7 @@ Checked and **not** in the verified list:
 
 ### 6.8 AsyncAPI sketch
 
-No existing channel changes. The new consumers are declared in the `commerce` descriptor and are not AsyncAPI documents. If Q4 is approved, #432 adds one channel and the descriptor entry:
+No existing channel changes. The new consumers are declared in the `commerce` descriptor and are not AsyncAPI documents. Q4 was approved on 24 October 2026, so #432 adds one channel and the descriptor entry:
 
 ```yaml
 awcms.commerce.conversation.store_replied:
@@ -496,6 +496,7 @@ This is an alignment of design controls with the requirements, not a claim of co
 | PP PSTE 71/2019 (electronic systems and transactions) | Reliability and security of the electronic system; access control; audit trail | Default-deny customer routes, tenant isolation, audit events with ids only, logged administrative actions, availability through the inbox fallback |
 | ISO/IEC 27001 | Information security management system | Threat register (2.2), controls, review cycle through ADR sign-off |
 | ISO/IEC 27002 (2022 edition) | Access control (5.15), privacy and PII protection (5.34), information deletion (8.10), logging (8.15), cryptography (8.24) | Section 4, section 2.3, retention and purge (5.7), audit events, field encryption with purpose-bound AAD |
+| ISO/IEC 27034 | Application security (organisation and application normative frameworks, application security controls, verification) | Threat register T1 to T19 and the invariants of 5.1 as the application's security requirements; the threat-to-test map (8.2) and the proof obligations (8.3) as verification evidence; the production-activation gates of D8 as the release control |
 | ISO/IEC 27005 | Information security risk management | Section 2 is the risk identification and treatment input; open items are in Q1 to Q12 |
 | ISO/IEC 27701 | Privacy information management (controller controls) | Consent capture and withdrawal, minimisation, retention windows, records of processing in the data dictionary |
 
@@ -520,22 +521,24 @@ Generic changes belong to `ahliweb/awcms` first and arrive through the subtree s
 - **U4 — a push-service host allowlist for endpoint validation** (configurable, with sensible defaults). Hardens the admin surface as well.
 - **U5 — a neutral external-recipient abstraction (option A).** Only worth filing if U1 to U3 are adopted and a second consumer appears.
 
-## Open questions for the owner
+## Owner decisions on the open questions
 
-| ID | Question | Recommendation |
+The owner answered every question with its recommendation on 24 October 2026 ("implement the recommended option for each pending decision"). The right-hand column is the binding wording for #430 to #432; where it adds detail to the recommendation, the detail closes a point the table used to leave open.
+
+| ID | Question | Decision (accepted 24 October 2026) |
 | --- | --- | --- |
-| Q1 | Accept a thin commerce outbox now (option C), or wait for upstream option A? | C now, converge via U3 |
-| Q2 | One auth-secret key ring with a purpose-bound AAD, or a separate ring for customers? | One ring, distinct AAD purpose; a commerce re-key job |
-| Q3 | Customer push unsupported when storefront and CMS share an origin in v1? | Yes |
-| Q4 | Approve a new `awcms.commerce.conversation.store_replied` event for inbox-reply push? | Yes, in #432 |
-| Q5 | Notifications stop when the enrolling session lapses (30 days sliding)? | Yes (fail safe); revisit with usage data |
-| Q6 | Default push-service host allowlist and who can override it? | Known vendor suffixes, operator environment override |
-| Q7 | Limits: 5 devices per account, 12 per hour and 40 per day per account, registration limits | Accept as initial values |
-| Q8 | Retention windows (30 days) and the consent and privacy wording, with legal review | Owner and counsel |
-| Q9 | Tenant-editable templates in v1, or built-in generic text only? | Built-in only |
-| Q10 | A staff diagnostics endpoint and its permission name in v1? | Aggregate counts only, `commerce.customer_push.read` |
-| Q11 | Marketing push reserved and out of scope in v1? | Yes |
-| Q12 | No click tracking in v1? | Yes |
+| Q1 | Accept a thin commerce outbox now (option C), or wait for upstream option A? | **C now**, converge later through U3. #430 does not wait for any upstream release; A stays the long-term path and U1 to U3 are optional improvements, not prerequisites. |
+| Q2 | One auth-secret key ring with a purpose-bound AAD, or a separate ring for customers? | **One ring, a distinct AAD purpose** for customer devices, and a commerce re-key job delivered by #430 (upstream's re-key command covers only upstream's table). |
+| Q3 | Customer push unsupported when storefront and CMS share an origin in v1? | **Yes.** The capability answers `reason: "origin_not_supported"` and registration is refused; a deployment that wants customer push serves the storefront from its own origin. |
+| Q4 | Approve a new `awcms.commerce.conversation.store_replied` event for inbox-reply push? | **Yes, in #432.** The event is appended in the same transaction as the stored reply (`postStoreReply`), through the existing domain-event seam. E7 stays inactive until it lands. |
+| Q5 | Notifications stop when the enrolling session lapses (30 days sliding)? | **Yes** (fail safe). The window is one constant, to be revisited with usage data, not a schema property. |
+| Q6 | Default push-service host allowlist and who can override it? | **Known vendor suffixes, operator override.** The default covers the Web Push services of Google (FCM), Mozilla, Apple and Microsoft; #430 fixes the exact list and verifies it against the operator test matrix. Only an operator environment setting can extend it; never a tenant admin, a request or a stored row. A host outside the list answers 422 `ENDPOINT_NOT_ALLOWED`. |
+| Q7 | Limits: 5 devices per account, 12 per hour and 40 per day per account, registration limits | **Accepted as initial values** (section 6.2 and 5.4), kept as named constants in one module so usage data can tune them without a schema change. |
+| Q8 | Retention windows (30 days) and the consent and privacy wording, with legal review | **The 30-day windows are accepted as defaults.** The consent and privacy wording ships as a versioned draft (Indonesian first, then English, `textVersion` recorded with every grant). Review of that wording by counsel is a **production-activation gate** for the `customerPush` flag, not a gate for building #430 to #432; the flag stays off in every deployment until the review is recorded. |
+| Q9 | Tenant-editable templates in v1, or built-in generic text only? | **Built-in generic text only** (section 6.5). |
+| Q10 | A staff diagnostics endpoint and its permission name in v1? | **Aggregate counts only**, behind a new `commerce.customer_push.read` permission registered by #430; never an endpoint, a token or a customer identifier in the answer. |
+| Q11 | Marketing push reserved and out of scope in v1? | **Yes.** Reserved and never sent; it needs its own consent flow, audience and ADR. |
+| Q12 | No click tracking in v1? | **Yes.** No click or read analytics; `sent` means only that the push service accepted the message. |
 
 ## Decision summary
 
@@ -545,11 +548,13 @@ Generic changes belong to `ahliweb/awcms` first and arrive through the subtree s
 4. **D4.** Click targets are fixed storefront paths on the device's stored, domain-validated origin; payloads are generic; no identifiers cross the push service.
 5. **D5.** Four additive commerce tables with FORCE RLS and least-privilege grants; new flag `customerPush` default off; no plaintext secret column.
 6. **D6.** Closed purposes; transactional only in v1; marketing reserved and never sent; verified events E1 to E6 drive notifications; the inbox reply (E7) waits for a real event.
+7. **D7.** Q1 to Q12 are resolved as recommended (24 October 2026); the table above is binding for #430 to #432. Nothing in it needs a further owner answer before implementation starts.
+8. **D8.** Production-activation gates for the `customerPush` flag, per deployment: counsel's review of the consent and privacy wording (Q8); a VAPID key pair and the auth-secret ring configured (section 9); the operator test matrix green; device UAT on an installed iPhone app, Chrome Android and Chrome desktop. Until all hold, the flag stays off and the feature is inert.
 
 ## Consequences
 
-- #430 to #432 can start once this ADR is accepted and #427 has landed; no upstream release is required.
-- The commerce module gains a second dispatch loop. The duplication is bounded (everything below the queue is shared) and tracked for convergence; if the owner prefers A, #430 waits for the upstream work.
+- This ADR is accepted (24 October 2026), so the design questions that blocked #430 to #432 are closed. Those issues can start once #427 (the subtree sync) has landed, which is their only remaining prerequisite; no upstream release is required.
+- The commerce module gains a second dispatch loop. The duplication is bounded (everything below the queue is shared) and tracked for convergence; the owner chose C, so #430 does not wait for upstream work and the convergence proposals of section 12 stay optional.
 - Customer push depends on a live session: a customer unseen for 30 days stops receiving banners until they re-enable (Q5).
 - Providers receive only encrypted, generic content; the system cannot say whether a banner was displayed or read.
 - Each deployed derived application carries its own VAPID and ring; rotating either is an operator procedure, not a code change.
@@ -557,4 +562,4 @@ Generic changes belong to `ahliweb/awcms` first and arrive through the subtree s
 ## What is not here yet
 
 - Marketing push (needs its own consent flow, audience and ADR), tenant-editable templates, click and read analytics, native (FCM/APNs) customer apps, a customer-account deletion flow, a staff UI for customer devices, and the inbox-reply event (Q4).
-- No implementation exists: no table, route, consumer, worker job, service worker or UI. This ADR is the Definition of Ready for #430, #431 and #432.
+- No implementation exists: no table, route, consumer, worker job, service worker or UI. This ADR is the Definition of Ready for #430, #431 and #432, and that definition is now met.
