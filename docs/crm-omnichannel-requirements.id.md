@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](crm-omnichannel-requirements.md)
 
-<!-- i18n-source-hash: sha256:fea8b8169969c8f3b1f6c26aa40a82b29d6d8e01391fe0157d0a83a2efe8ef85 -->
+<!-- i18n-source-hash: sha256:24f42736d60dc3b46c2adc612835265ed678e00d5039706110fa9470fdd8b0a1 -->
 
 # Standar kebutuhan CRM omnichannel — reusable (v1.0, usulan)
 
@@ -14,7 +14,7 @@ Dokumen ini berangkat dari berkas pengguna **“SPESIFIKASI KEBUTUHAN SISTEM CRM
 
 **Aturan generalisasi:** kebutuhan dasar harus cocok untuk retail, layanan, media, agency, pendidikan dan turunan lainnya. Istilah LPP ENTER seperti “program pelatihan”, “angkatan”, “pendaftar” dan “daftar ulang” menjadi **dimensi dan tahap pipeline yang dapat dikonfigurasi**; bukan kolom wajib khusus lembaga pendidikan, nama tenant bawaan, data seed atau tahapan universal. Klaim penempatan kerja atau jaminan keberangkatan luar negeri merupakan larangan/aturan persetujuan dalam profil bisnis tertentu.
 
-**Konflik provider:** sumber §6 secara eksplisit mewajibkan **WhatsApp Business Platform/API resmi atau penyedia resmi yang memenuhi syarat**. Blueprint sebelumnya mengusulkan **StarSender yang tidak resmi**. Karena itu, **Meta Cloud API dan penyedia yang resmi terotorisasi menjadi baseline yang memenuhi sumber**. Adapter StarSender opsional pada upstream [#1142](https://github.com/ahliweb/awcms/issues/1142) **tidak memenuhi baseline LPP ENTER**. Statusnya harus default OFF dan membutuhkan keputusan risiko serta persetujuan bisnis/hukum terpisah untuk produk lain. Kehadiran API atau akun media sosial tidak otomatis berarti izin membalas/mengirim pesan.
+**Keputusan bisnis WhatsApp / pengganti persyaratan sumber (24 Oktober 2026):** sumber §2 dan §6 semula mensyaratkan API WhatsApp resmi. **Pemilik produk kini secara eksplisit menggantikan syarat transport tersebut untuk LPP ENTER:** **StarSender adalah provider default produk**, dan **Meta WhatsApp Cloud API tetap tersedia sebagai pilihan alternatif**. Redaksi asli tetap dicatat sebagai *riwayat persyaratan yang digantikan*, bukan acceptance criterion yang masih berlaku. StarSender **bukan mitra API resmi Meta** dan memiliki risiko pemblokiran nomor; operator harus menerima risiko secara sadar sekaligus menjaga persetujuan penerima, pemulihan, dan perlindungan data. Pilihan bisnis ini tidak membuktikan kepatuhan kebijakan WhatsApp atau menjamin pesan sampai. **Template AWCMS-One tidak memiliki provider default global yang di-hard-code**; konfigurasi default bersifat per tenant/brand dan produk LPP menetapkan StarSender setelah koneksi device autentik/healthy. Aturan template dan jendela 24 jam Meta hanya diterapkan untuk jalur Meta; StarSender memakai kemampuan providernya sendiri, tanpa klaim approval Meta. Ketersediaan API bukan izin mengirim semua pesan.
 
 ## 2. Kepemilikan modul dan larangan duplikasi
 
@@ -50,7 +50,7 @@ Dokumen ini berangkat dari berkas pengguna **“SPESIFIKASI KEBUTUHAN SISTEM CRM
 
 ### 3.3 Akun terhubung, integrasi sosial — sumber §2
 
-- **CRM-020** Banyak akun per tenant/platform (dibatasi lisensi/kuota kebijakan, bukan satu akun per platform): WhatsApp Meta Cloud API, StarSender opsional dengan pengecualian risiko, Facebook Page/Messenger, Instagram Professional, TikTok, YouTube, LinkedIn Page, Threads, bot/channel Telegram, Mailketing, domain website dan platform lain yang diizinkan.
+- **CRM-020** Banyak akun per tenant/platform (dibatasi lisensi/kuota kebijakan, bukan satu akun per platform): WhatsApp Meta Cloud API serta device StarSender dengan persetujuan risiko operator, Facebook Page/Messenger, Instagram Professional, TikTok, YouTube, LinkedIn Page, Threads, bot/channel Telegram, Mailketing, domain website dan platform lain yang diizinkan.
 - **CRM-021** Matriks kemampuan riil per akun `publish/reply/dm/inbound/comments/analytics/lead_ads/broadcast`; tolak tindakan yang tidak didukung. Jangan mengklaim TikTok DM umum, pemanfaatan data anggota LinkedIn untuk enrichment CRM, atau YouTube DM.
 - **CRM-022** OAuth/persetujuan, token via referensi secret, kedaluwarsa/pencabutan, status koneksi, kuota, verifikasi sender, perizinan minimum dan peringatan. Secret tidak tampil di browser, AI, log atau issue.
 - **CRM-023** Hanya event masuk resmi yang dapat diautentikasi; verifikasi webhook, binding akun + tenant, batas ukuran, deduplikasi, proteksi replay dan fetch media aman; event tanpa autentikasi tidak boleh langsung mengubah fakta CRM.
@@ -69,7 +69,7 @@ Dokumen ini berangkat dari berkas pengguna **“SPESIFIKASI KEBUTUHAN SISTEM CRM
 
 - **CRM-040** Impor data kontak dengan dry-run, validasi, dedup dan mitigasi CSV injection; nomor/email hasil impor **tidak otomatis menjadi persetujuan marketing**.
 - **CRM-041** Audience dari segmen CRM/customer dan persetujuan penerima, snapshot versi segmen tetap; program/angkatan/wilayah/sumber/status/tanggal interaksi hanya bila dimensi produk tersedia.
-- **CRM-042** Template terversi, personalisasi terkontrol, preview, media sesuai aturan, template resmi Meta yang disetujui, kirim uji, jadwal, pembatalan/retry aman, batas biaya/volume, persetujuan manusia, serta cek opt-out saat enqueue **dan saat kirim**.
+- **CRM-042** Definisi template/pesan terversi, personalisasi dan preview; template persetujuan Meta **khusus jalur Meta Cloud API**, sedangkan StarSender memvalidasi format pesan dan kemampuan API miliknya tanpa mengklaim persetujuan Meta. Kirim uji, jadwal, pembatalan/retry aman, kuota/biaya, persetujuan manusia, dan cek opt-out saat enqueue **serta saat kirim**.
 - **CRM-043** Status penerima dibedakan `queued/provider_accepted/delivered` (hanya jika tervalidasi), `failed/suppressed/replied`; log korelasi, bounce, opt-out dan replay; diterima provider bukan bukti delivered.
 - **CRM-044** Atribusi balasan, lead aktif kembali, pendaftaran, konversi akhir dan biaya hanya bila event otoritatif serta tautan kampanye benar-benar dapat ditelusuri. `Unknown` tidak dianggap nol.
 - **CRM-045** Pertahankan satu antrean yang sudah ada per kanal; jangan bangun universal blast tanpa aturan atau fallback WhatsApp→Telegram→Email otomatis setelah gagal/consent dicabut.
@@ -105,7 +105,7 @@ Dokumen ini berangkat dari berkas pengguna **“SPESIFIKASI KEBUTUHAN SISTEM CRM
 | **AT-02** | Lead dari website berproses menjadi opportunity/customer/konversi tanpa master customer ganda; sumber kampanye dan transisi tercatat. |
 | **AT-03** | Retry webhook hanya menghasilkan satu interaksi; assignment tepat; reply tidak didukung provider tetap ditolak. |
 | **AT-04** | Jadwal follow-up menghormati jam kerja/libur; balasan atau opt-out sebelum dispatch menghentikan pesan lanjutan. |
-| **AT-05** | Impor duplikat, sender tak terverifikasi, consent hilang, atau DM sosial tidak diizinkan tidak menghasilkan blast ilegal. |
+| **AT-05** | Impor duplikat, sender tidak aktif/tak terverifikasi, consent hilang atau DM sosial tak diizinkan harus ditolak; default StarSender memilih device sah per tenant, pilihan Meta eksplisit hanya WABA/nomor sah; tanpa fallback diam-diam atau kirim ganda. |
 | **AT-06** | Status queued/diterima provider/terkirim/bounce/dibalas/pendaftaran/konversi dicatat berbeda; tanpa data berarti unknown. |
 | **AT-07** | AI hanya memakai knowledge terverifikasi; janji/harga tak disetujui dieskalasi; prompt injection tidak bisa memanggil tool atau menghindari approval. |
 | **AT-08** | KPI dapat di-rebuild dari event yang sama; perhitungan SLA dan denominator konversi konsisten. |
@@ -123,7 +123,7 @@ Dokumen ini berangkat dari berkas pengguna **“SPESIFIKASI KEBUTUHAN SISTEM CRM
 | Pipeline lead/prospect generik | **Belum terbukti** sebagai modul reusable | [AWCMS #1163](https://github.com/ahliweb/awcms/issues/1163) (ADR), [#1166](https://github.com/ahliweb/awcms/issues/1166) (implementasi) |
 | Inbox lintas provider, assignment dan SLA | **Belum terbukti**; inbox commerce lebih sempit | [AWCMS #1144](https://github.com/ahliweb/awcms/issues/1144) (arsitektur), [#1164](https://github.com/ahliweb/awcms/issues/1164) (inbox/SLA) |
 | Registry multi-akun dan OAuth | **Direncanakan** | [AWCMS #1139](https://github.com/ahliweb/awcms/issues/1139), [#1140](https://github.com/ahliweb/awcms/issues/1140) |
-| Multi-nomor Meta/StarSender opsional | **Direncanakan**; sumber ini mewajibkan jalur resmi | [AWCMS #1141](https://github.com/ahliweb/awcms/issues/1141)–[#1143](https://github.com/ahliweb/awcms/issues/1143), [AWCMS-One #458](https://github.com/ahliweb/awcms-one/issues/458) |
+| Multi-nomor StarSender dan Meta | **Direncanakan**; konfigurasi LPP: StarSender default, Meta alternatif (keputusan pemilik menggantikan klausul sumber) | [AWCMS #1141](https://github.com/ahliweb/awcms/issues/1141)–[#1143](https://github.com/ahliweb/awcms/issues/1143), [AWCMS-One #458](https://github.com/ahliweb/awcms-one/issues/458) |
 | Telegram notifikasi staf | **Sudah ada**; khusus staf | [Modul AWCMS](https://github.com/ahliweb/awcms/blob/main/src/modules/telegram-delivery/README.md) |
 | Telegram CRM dan publikasi channel | **Direncanakan** pada konteks terpisah | [AWCMS #1155](https://github.com/ahliweb/awcms/issues/1155)–[#1157](https://github.com/ahliweb/awcms/issues/1157), [AWCMS-One #460](https://github.com/ahliweb/awcms-one/issues/460) |
 | Publikasi sosial dan inbox media lainnya | **Direncanakan**, port social sekarang no-op | [AWCMS #1145](https://github.com/ahliweb/awcms/issues/1145) dan isu provider |
@@ -143,7 +143,7 @@ Dokumen ini berangkat dari berkas pengguna **“SPESIFIKASI KEBUTUHAN SISTEM CRM
 | Daftar ulang | Event terverifikasi `converted` atau `re_registered` | §§1, 8, 9 |
 | Admin marketing | Assignee/tim terbatas kewenangan | §§1, 3, 7, 9, 10 |
 | Biaya/syarat/jadwal/program | Knowledge resmi dengan sumber dan masa berlaku | §8 |
-| WhatsApp resmi | Aturan provider `official_only` per produk/tenant | §6 |
+| Pemilihan provider WhatsApp | **Keputusan LPP 24 Okt 2026:** `starsender` default per tenant/brand, `meta_cloud_api` alternatif; klausul resmi pada sumber §6 diganti oleh keputusan pemilik | §2, §6 + keputusan terbaru |
 | Klaim penempatan kerja/keberangkatan | Aturan klaim terlarang dan eskalasi admin | §8 |
 
 Tidak ada konten bisnis spesifik atau token provider yang dimasukkan ke template. Produk turunan AWCMS-One memiliki backend produksi, pengaturan tenant, UAT dan deployment sendiri. Dokumen asli bisnis semestinya disimpan di repositori kebutuhan produk tersebut, sedangkan standar ini hanya membawa kontrol yang berlaku umum.
@@ -158,3 +158,20 @@ Tidak ada konten bisnis spesifik atau token provider yang dimasukkan ke template
 6. Konsumen yang sudah dilacak: [#458](https://github.com/ahliweb/awcms-one/issues/458), [#459](https://github.com/ahliweb/awcms-one/issues/459), [#460](https://github.com/ahliweb/awcms-one/issues/460), [#461](https://github.com/ahliweb/awcms-one/issues/461), serta upstream [#1139](https://github.com/ahliweb/awcms/issues/1139)–[#1162](https://github.com/ahliweb/awcms/issues/1162) sesuai dependensi. Tidak membuat provider engine kedua.
 
 Seluruh issue implementasi **masih terbuka/direncanakan** saat dokumen diterbitkan; memerlukan branch, PR dan validasi masing-masing. PR standar ini **hanya dokumentasi persyaratan**.
+
+## 8. Kebijakan pemilihan provider WhatsApp — perubahan keputusan (24 Oktober 2026)
+
+**Cakupan keputusan:** Pada aplikasi turunan **LPP ENTER**, `starsender` menjadi provider default setelah device tenant terdaftar/terverifikasi; `meta_cloud_api` tersedia sebagai provider alternatif yang dipilih secara eksplisit. **Template AWCMS-One** tetap **belum menetapkan default provider global** sehingga setiap turunan bisa memilih sesuai kebutuhan. Ini merupakan keputusan pemilik yang menggantikan syarat API resmi di sumber §2/§6, **bukan perubahan diam-diam pada dokumen historis**.
+
+### Persyaratan routing multi-pengirim
+
+- **WA-SEL-01** Simpan `tenant_id + business_scope/brand_id + default_sender_account_id + default_provider_kind` terverifikasi dan teraudit; hindari pemakaian sender global antar-tenant. Default `starsender` pada LPP hanya aktif setelah kredensial device, status layanan, consent dan penerimaan risiko memenuhi syarat; jika tidak, **fail closed**, bukan otomatis beralih Meta.
+- **WA-SEL-02** Mendukung **banyak device StarSender** dan **banyak WABA/phone_number_id Meta**. Operator dapat melihat kesehatan, kemampuan, biaya dan memilih nomor tertentu. Perubahan provider perlu otorisasi dan versi konfigurasi prospektif; item antrean lama tetap memakai sender aslinya.
+- **WA-SEL-03** Gunakan **antrean tunggal `whatsapp_delivery` upstream**. Untuk Meta Cloud API, terapkan template yang disetujui dan jendela layanan 24 jam bila relevan; untuk StarSender, validasi `messageType/body/media` dan endpoint sesuai dokumentasinya. Consent, suppression serta opt-out berlaku untuk **keduanya**.
+- **WA-SEL-04** Tolak sender lintas tenant, pengiriman ganda, device StarSender putus/terblokir, token/nomor Meta dicabut, pesan/media yang tak didukung, consent hilang atau webhook lintas-tenant. Jangan rotasi nomor untuk mengakali aturan spam; rate limit/circuit breaker per sender, emergency stop dan eskalasi petugas.
+- **WA-SEL-05** Bedakan status `queued`, `provider_accepted`, `verified_delivered`, `failed`, `unknown` dan `suppressed`. HTTP sukses StarSender **bukan bukti delivered**. Jika autentikasi webhook StarSender belum terbukti, jangan mengizinkan perubahan fakta CRM atau status final dari event tersebut; pakai `unknown` dan kontrol kompensasi tersetujui atau tunda intake.
+- **WA-SEL-06** Tes minimal satu tenant default StarSender dengan dua device, pemilihan Meta dengan dua nomor, tenant kedua default berbeda, koneksi putus, pencabutan kredensial, webhook palsu, rollback, consent dicabut dan crash/duplikasi; profil `toko/berita/landing` tetap netral.
+
+**Risiko dan komersial:** StarSender menyatakan layanannya *bukan API WhatsApp resmi* serta memperingatkan potensi pemblokiran akun/nomor. Operator wajib memahami risiko akun, privasi, kontinuitas dan vendor. Provider default adalah **keputusan deployment produk**, bukan dukungan resmi Meta, jaminan anti-blokir atau izin broadcast tanpa consent. [API Kirim StarSender](https://docs.starsender.online/docs/message-api/kirim-pesan/); [Webhook StarSender](https://docs.starsender.online/docs/webhook/); [FAQ StarSender](https://starsender.id/); [Kebijakan WhatsApp Business](https://whatsappbusiness.com/id/policy/).
+
+**Pelacakan:** [AWCMS #1139](https://github.com/ahliweb/awcms/issues/1139) ADR, [#1141](https://github.com/ahliweb/awcms/issues/1141) routing, [#1142](https://github.com/ahliweb/awcms/issues/1142) StarSender, [#1143](https://github.com/ahliweb/awcms/issues/1143) Meta, [#1154](https://github.com/ahliweb/awcms/issues/1154) admin; [AWCMS-One #458](https://github.com/ahliweb/awcms-one/issues/458) kampanye CRM. Isu tes end-to-end ditautkan setelah dibuat.
