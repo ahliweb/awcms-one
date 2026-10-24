@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:1e9b4471a276f26c52cb3b2070005ffe5f0ca1983ac94e457b574b93729c7931 -->
+<!-- i18n-source-hash: sha256:7f3521973f0a41e2762edf63aa7cb23d3d47b9589e19b417ee6679eb5d8c33e6 -->
 
 # Dokumentasi
 
@@ -34,6 +34,10 @@ Dokumentasi arsitektur, skema, API, alur kerja CMS, perilaku storefront, penguji
 | [`booking-commerce-adapter-data-model.md`](booking-commerce-adapter-data-model.id.md) | Usulan (belum dimigrasi) ERD dan kamus data tabel adapter booking-commerce, dan aturan bahwa pelanggan diturunkan lewat pesanan                                                                                             |
 | [`booking-commerce-access-matrix.md`](booking-commerce-access-matrix.id.md)           | Usulan (belum terdaftar) matriks RBAC / ABAC / RLS untuk peran sisi commerce yang menyentuh booking, dan siapa yang boleh menimpa refund hasil hitung kebijakan                                                             |
 | [`booking-commerce-adapter-contracts.md`](booking-commerce-adapter-contracts.id.md)   | Draf kontrak OpenAPI dan AsyncAPI (belum live) adapter booking-commerce, termasuk event yang dikonsumsi dan diterbitkan                                                                                                     |
+
+## Standar kebutuhan CRM Omnichannel
+
+[**Standar kebutuhan CRM Omnichannel reusable**](crm-omnichannel-requirements.id.md) memuat **target** funnel lead hingga konversi, batas akun dan kemampuan provider, inbox terverifikasi, persetujuan kampanye, SLA/follow-up staf, AI Hermes/OMES, KPI, pengecualian provider, dan tes penerimaan. Kebutuhan tersebut dipromosikan dari spesifikasi sektor pendidikan tanpa mengunci template pada bisnis tertentu. **Ini standar usulan, bukan bukti seluruh modul CRM sudah ada**; kondisi aktual tetap mengacu ke [status.md](status.id.md). Dilacak melalui [#462](https://github.com/ahliweb/awcms-one/issues/462).
 
 ## Apa yang tidak diduplikasi direktori ini
 
