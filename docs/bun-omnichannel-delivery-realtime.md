@@ -37,3 +37,9 @@
 - Planned consumers: CRM multi-sender [#458](https://github.com/ahliweb/awcms-one/issues/458), Hermes [#459](https://github.com/ahliweb/awcms-one/issues/459), Telegram [#460](https://github.com/ahliweb/awcms-one/issues/460), Mailketing [#461](https://github.com/ahliweb/awcms-one/issues/461), WhatsApp regression [#466](https://github.com/ahliweb/awcms-one/issues/466), Web Push [#430](https://github.com/ahliweb/awcms-one/issues/430)–[#432](https://github.com/ahliweb/awcms-one/issues/432), CRM SRS draft [#462](https://github.com/ahliweb/awcms-one/issues/462).
 - Acceptance: Bun-only process and deploy manifest checks; two-tenant sender/provider integration and consent/opt-out; browser upgrade origin/session isolation and replay; validated unknown vs delivered; worker crash/idempotency; SSE/WS network recovery; schema/AsyncAPI, docs EN/ID, relevant DB integration, `bun test`, `bun run check`, `bun run check:cms`, `bun run audit:dokumen`, `bun run audit:translation`, all three SSG profiles, `template:init`.
 - Upstream `apps/cms` changes must arrive through **git subtree pull with MERGE COMMIT, never squash/rebase**; never import upstream tags into this repository. No applied migration rewrite or manual `bun.lock` edits.
+
+## Atomic enforcement follow-up (2026-10-24)
+
+- [AWCMS #1170](https://github.com/ahliweb/awcms/issues/1170) enforces pinned Bun on provider workers/deploy manifests.
+- [AWCMS #1171](https://github.com/ahliweb/awcms/issues/1171) admits/implements SSE-first and optional Bun-native WebSocket gateway only once the upstream [#1168](https://github.com/ahliweb/awcms/issues/1168) ADR is accepted.
+- [AWCMS-One #469](https://github.com/ahliweb/awcms-one/issues/469) enforces Bun-only deployment/job/commerce runtime integration without modifying the upstream subtree; this specification remains documentation until tests/PRs land.
