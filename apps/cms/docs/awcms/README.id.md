@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:0a932b3f1e1f107ca76b14886382b76b3b1f861a61d6342332836598fce8e2db -->
+<!-- i18n-source-hash: sha256:4703465c6257d1473380d081e12b45bc1a90a9b9d6808e45cf89e4b5e7835dd4 -->
 
 # Paket Dokumen Teknis AWCMS
 
@@ -42,6 +42,7 @@ Paket ini sekarang mengadaptasi **seluruh** dokumen teknis dari repo acuan awcms
 | [`post-release-reviews.md`](post-release-reviews.md)                                                         | **Langkah 18 alur** — register review pasca-rilis, satu entri per RILIS. Berbeda dari PROJECT_STATE §4 yang terikat putaran kerja; rilis yang mulus tetap mendapat entri                                                                                                                                                                                                            |
 | [`branch-protection.md`](branch-protection.md)                                                               | Kebijakan proteksi branch GitHub                                                                                                                                                                                                                                                                                                                                                    |
 | [`ci-local.md`](ci-local.md)                                                                                 | `bun run ci:local`: menjalankan setiap job `ci.yml` / `changesets.yml` secara lokal (hygiene, kebijakan changeset, quality, integration, lantai Bun 1.3.0, e2e) dengan perintah workflow sendiri — verifikasi sebelum push; required checks GitHub (ruleset `11653326`) tetap yang menentukan merge                                                                                 |
+| [`dependency-governance.md`](dependency-governance.md)                                                       | Tata kelola kesegaran dependensi dan upgrade atomik (#1173): laporan mingguan baca-saja `bun run deps:freshness` (`bun outdated` + `bun audit` + pin Bun + image dasar yang dipin), aturan satu-upgrade-satu-PR, gerbang yang harus dilewati upgrade, rollback, playbook pin-bump Bun, dan register versi yang ditahan                                                              |
 | [`database-migrations.md`](database-migrations.md)                                                           | Konvensi migration SQL                                                                                                                                                                                                                                                                                                                                                              |
 | [`database-pooling.md`](database-pooling.md)                                                                 | Connection pooling & backpressure                                                                                                                                                                                                                                                                                                                                                   |
 | [`database-capacity-runbook.md`](database-capacity-runbook.md)                                               | Runbook kapasitas database                                                                                                                                                                                                                                                                                                                                                          |
@@ -125,3 +126,11 @@ pagar blok dan tipe diagram — tak pernah isinya — sehingga diagram rusak dan
 `bun run check` hijau bisa hidup berdampingan.
 
 Lihat juga [`AGENTS.md`](../../AGENTS.md) untuk alur kerja wajib setiap task, dan [`docs/adr/`](../adr/README.md) untuk keputusan arsitektural.
+
+## Paket dokumen AWCMS
+
+[Standar worker kanal dan real-time Bun-only](bun-delivery-realtime-runtime.id.md) (issue #1167 dan ADR #1168) mencakup pengiriman email/WhatsApp/Web Push Bun yang sudah ada dan SSE/WebSocket Bun yang masih direncanakan.
+
+## Kontrak layar UI/UX Omnichannel
+
+[**UI/UX Omnichannel upstream v1.0**](omnichannel-ui-ux-screen-contracts.id.md) memetakan **UP-01–UP-16** dari modul email/WhatsApp/Push/Telegram staf saat ini hingga rencana multi-akun/sosial/Mailketing **v2.0.2**/leads/inbox/SSE-WS, lengkap status, hak akses dan pengujian. Issue [#1174](https://github.com/ahliweb/awcms/issues/1174). Dokumen rencana bukan bukti koneksi API sudah aktif.

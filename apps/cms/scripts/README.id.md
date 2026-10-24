@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:145ee934431c4a60d526d463cfa4ae09cc46c811385b4d7840585821e2fb4de7 -->
+<!-- i18n-source-hash: sha256:c5bf36dbbce53b62a14c225ac020b00c4d7bb7dd1017d660e1ffcaf45fd95436 -->
 
 # Scripts AWCMS
 
@@ -27,7 +27,7 @@ lalu membangun duplikatnya.
 
 <!-- Dihasilkan `bun run scripts:inventory:generate`. JANGAN diedit tangan. -->
 
-167 target menjalankan berkas di `scripts/`; 64 di antaranya
+151 target menjalankan berkas di `scripts/`; 64 di antaranya
 ada di rantai `bun run check` (kolom **Gate**), sisanya dijalankan manual,
 terjadwal, atau oleh workflow CI tertentu.
 
@@ -50,7 +50,6 @@ terjadwal, atau oleh workflow CI tertentu.
 | `api:tenant-route:check`                  | `tenant-route-factory-check.ts`                | ✅   |
 | `asyncapi:provisional:check`              | `asyncapi-provisional-check.ts`                | ✅   |
 | `bench:booking`                           | `bench-booking.ts`                             | —    |
-| `bench:commerce-load`                     | `bench-commerce-load.ts`                       | —    |
 | `blog:ads:drop-readiness`                 | `blog-ads-drop-readiness.ts`                   | —    |
 | `blog:ads:ingest`                         | `blog-ads-ingest.ts`                           | —    |
 | `blog:legacy:article-paths`               | `blog-legacy-article-paths.ts`                 | —    |
@@ -75,21 +74,6 @@ terjadwal, atau oleh workflow CI tertentu.
 | `ci:local`                                | `ci-local.ts`                                  | —    |
 | `comments:resources:check`                | `comments-resources-check.ts`                  | ✅   |
 | `comments:retention`                      | `comments-retention.ts`                        | —    |
-| `commerce:booking:reconcile`              | `commerce-booking-reconcile.ts`                | —    |
-| `commerce:campaigns:dispatch`             | `commerce-campaigns-dispatch.ts`               | —    |
-| `commerce:customer-auth:purge`            | `commerce-customer-auth-purge.ts`              | —    |
-| `commerce:deploy:preflight`               | `commerce-deploy-preflight.ts`                 | —    |
-| `commerce:flash-sales:tick`               | `commerce-flash-sales-tick.ts`                 | —    |
-| `commerce:inventory:cutover`              | `commerce-inventory-cutover.ts`                | —    |
-| `commerce:loyalty:expire`                 | `commerce-loyalty-expire.ts`                   | —    |
-| `commerce:loyalty:reconcile`              | `commerce-loyalty-reconcile.ts`                | —    |
-| `commerce:orders:expire`                  | `commerce-orders-expire.ts`                    | —    |
-| `commerce:payments:reconcile`             | `commerce-payments-reconcile.ts`               | —    |
-| `commerce:shipping-rates:purge`           | `commerce-shipping-rates-purge.ts`             | —    |
-| `commerce:tax:cutover`                    | `commerce-tax-cutover.ts`                      | —    |
-| `commerce:whatsapp:cutover`               | `commerce-whatsapp-cutover.ts`                 | —    |
-| `commerce:whatsapp:dispatch`              | `commerce-whatsapp-dispatch.ts`                | —    |
-| `commerce:whatsapp:purge`                 | `commerce-whatsapp-purge.ts`                   | —    |
 | `config:env:coverage:check`               | `env-contract-coverage-check.ts`               | ✅   |
 | `config:validate`                         | `validate-env.ts`                              | —    |
 | `contracts:omes:sync`                     | `sync-omes-contracts.ts`                       | —    |
@@ -98,7 +82,6 @@ terjadwal, atau oleh workflow CI tertentu.
 | `data-lifecycle:registry:check`           | `data-lifecycle-registry-check.ts`             | ✅   |
 | `data-lifecycle:table-coverage:check`     | `data-lifecycle-table-coverage-check.ts`       | ✅   |
 | `data-lifecycle:worker-grants:check`      | `data-lifecycle-worker-grants-check.ts`        | ✅   |
-| `db:commerce:renumber`                    | `commerce-migrations-renumber.ts`              | —    |
 | `db:fk-index:check`                       | `db-fk-index-check.ts`                         | ✅   |
 | `db:function-search-path:check`           | `db-function-search-path-check.ts`             | ✅   |
 | `db:jsonb-binding:check`                  | `jsonb-binding-check.ts`                       | ✅   |
@@ -109,6 +92,7 @@ terjadwal, atau oleh workflow CI tertentu.
 | `db:work-class:check`                     | `work-class-registry-check.ts`                 | ✅   |
 | `db:work-class:generate`                  | `work-class-registry-generate.ts`              | —    |
 | `deps:audit:check`                        | `dependency-audit-check.ts`                    | ✅   |
+| `deps:freshness`                          | `dependency-freshness.ts`                      | —    |
 | `design:token-contrast:check`             | `design-token-contrast-check.ts`               | ✅   |
 | `docs:i18n:stamp`                         | `docs-i18n-stamp.mjs`                          | —    |
 | `docs:i18n:stamp:check`                   | `docs-i18n-stamp.mjs`                          | ✅   |
