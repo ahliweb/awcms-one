@@ -24,7 +24,7 @@ import { readFileSync } from "node:fs";
 const pkg = JSON.parse(readFileSync("package.json", "utf8"));
 const orchestrate = readFileSync("tools/ci/lib/orchestrate.ts", "utf8");
 
-/** `bun@1.4.3` → `1.4.3`. This is the reference value everything else is compared to. */
+/** `bun@1.4.4` → `1.4.4`. This is the reference value everything else is compared to. */
 const VERSION = pkg.packageManager?.replace(/^bun@/, "");
 
 describe("the Bun version agrees everywhere it is used", () => {
