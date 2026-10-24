@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:1e9b4471a276f26c52cb3b2070005ffe5f0ca1983ac94e457b574b93729c7931 -->
+<!-- i18n-source-hash: sha256:f0441f21e02259c54c099f7cdc8c414a0e8f66d2b40b18a2c32307b8b09c6621 -->
 
 # Dokumentasi
 
@@ -42,3 +42,7 @@ Dokumentasi arsitektur, skema, API, alur kerja CMS, perilaku storefront, penguji
 ## Bahasa
 
 Bahasa Inggris di jalur telanjang adalah sumber yang otoritatif; Bahasa Indonesia di `<name>.id.md` adalah mirror, dicap `bun run docs:i18n:stamp` setelah diterjemahkan dan diperiksa `bun run audit:translation`. Setiap dokumen di direktori ini, termasuk setiap berkas di bawah `adr/`, berada dalam cakupan gate itu — lihat `isInScope` milik `packages/gerbang/lib/docs-i18n-checks.mjs`, yang mencakup segala sesuatu di bawah `docs/**`.
+
+## Standar runtime Bun-only untuk CRM dan real-time
+
+[**Pengiriman Omnichannel & Real-time Bun-only**](bun-omnichannel-delivery-realtime.id.md) mengatur antrean Bun email/WhatsApp/Web Push yang sudah ada serta StarSender/Meta, Telegram, Mailketing, status Hermes dan SSE/WebSocket Bun yang masih direncanakan. Gateway real-time generik **belum diimplementasikan**. Issue [#467](https://github.com/ahliweb/awcms-one/issues/467), upstream [#1167](https://github.com/ahliweb/awcms/issues/1167), [#1168](https://github.com/ahliweb/awcms/issues/1168).
