@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](crm-omnichannel-requirements.md)
 
-<!-- i18n-source-hash: sha256:1cc7f94e76c40b4fcd5dce4d52fa20b155d355b6f24305de78841e6ddbfdc1ba -->
+<!-- i18n-source-hash: sha256:cc00aecbeee989acbcc2d17184daa2e7fa0e17a0b8eb20925bc71605e843d870 -->
 
 # Standar kebutuhan CRM omnichannel — reusable (v1.0, usulan)
 
@@ -175,3 +175,14 @@ Seluruh issue implementasi **masih terbuka/direncanakan** saat dokumen diterbitk
 **Risiko dan komersial:** StarSender menyatakan layanannya *bukan API WhatsApp resmi* serta memperingatkan potensi pemblokiran akun/nomor. Operator wajib memahami risiko akun, privasi, kontinuitas dan vendor. Provider default adalah **keputusan deployment produk**, bukan dukungan resmi Meta, jaminan anti-blokir atau izin broadcast tanpa consent. [API Kirim StarSender](https://docs.starsender.online/docs/message-api/kirim-pesan/); [Webhook StarSender](https://docs.starsender.online/docs/webhook/); [FAQ StarSender](https://starsender.id/); [Kebijakan WhatsApp Business](https://whatsappbusiness.com/id/policy/).
 
 **Pelacakan:** [AWCMS #1139](https://github.com/ahliweb/awcms/issues/1139) ADR, [#1141](https://github.com/ahliweb/awcms/issues/1141) routing, [#1142](https://github.com/ahliweb/awcms/issues/1142) StarSender, [#1143](https://github.com/ahliweb/awcms/issues/1143) Meta, [#1154](https://github.com/ahliweb/awcms/issues/1154) admin; [AWCMS-One #458](https://github.com/ahliweb/awcms-one/issues/458) kampanye CRM. Tes penerimaan lintas-provider: [AWCMS-One #466](https://github.com/ahliweb/awcms-one/issues/466).
+
+## 9. Runtime Bun wajib untuk pengiriman CRM dan status real-time (24 Oktober 2026)
+
+> **Persyaratan arsitektur, bukan fitur WebSocket yang sudah aktif.** [AWCMS-One #467](https://github.com/ahliweb/awcms-one/issues/467) dan [draft PR #468](https://github.com/ahliweb/awcms-one/pull/468) memuat rancangan dwibahasa; fondasi upstream [AWCMS #1167](https://github.com/ahliweb/awcms/issues/1167), keputusan realtime usulan [#1168](https://github.com/ahliweb/awcms/issues/1168).
+
+- **RUN-BUN-01:** Seluruh broadcast, email, WhatsApp, Telegram pelanggan, Web Push, publikasi sosial yang diizinkan, scheduler/dispatcher/gateway status yang dimiliki AWCMS-One **wajib menggunakan Bun versi root `bun@1.4.3`**. Jangan tambah proses Node.js, server npm/yarn/pnpm, Socket.IO Node atau runtime aplikasi lain. Import `node:*` kompatibel Bun dan Astro yang dijalankan di Bun tetap boleh.
+- **RUN-BUN-02:** Pengiriman ke provider adalah **outbox database tahan lama → worker Bun berizin → API HTTP provider**, bukan WebSocket. Upstream `email:dispatch`, `whatsapp:dispatch` dan `push:dispatch` **sudah Bun**; StarSender/Meta, Mailketing, Telegram dan follow-up nanti memakai port publik upstream, bukan antrean pengirim baru.
+- **RUN-BUN-03:** Progres kampanye/inbox/tugas AI dapat memakai **SSE Bun** satu arah atau **WebSocket native `Bun.serve`** dua arah yang dibuktikan kebutuhannya, hanya setelah ADR upstream diterima. Polling HTTPS tetap fallback. **Gateway WebSocket generik belum ada di main.**
+- **RUN-BUN-04:** Langganan real-time terikat otorisasi tenant/brand/user server-side, Origin, tiket singkat tanpa bearer panjang di URL, CSP, kuota/backpressure/replay, dan envelope berversi teredaksi. Status stream bukan sumber kebenaran; status antrean dan bukti provider terverifikasi tetap otoritatif.
+- **RUN-BUN-05:** Browser ditutup/ditangguhkan tidak mempertahankan SSE/WS; Web Push memerlukan pendaftaran perangkat dan opt-in terpisah. Worker host OMES Python dengan HTTPS polling keluar bertanda tangan serta runtime Hermes **tidak perlu ditulis ulang** karena bukan dispatcher aplikasi AWCMS.
+- **RUN-BUN-06:** Tes runtime `process.execPath` Bun, Docker/manifest, dua tenant dan sender, opt-out/retry/replay, Origin/tiket WS, klien lambat dan distribusi multi-instance bila gateway dibangun. Jalankan `bun test`, `bun run check`, `bun run check:cms`, integrasi DB dan ketiga profil `toko/berita/landing`.
