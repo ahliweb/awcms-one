@@ -25,11 +25,20 @@ records the artboard layout.
 
 ## Contents
 
-| File                                           | Screen                                                                                                                            | Interactive         |
-| ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
-| [`Main.dc.html`](Main.dc.html)                 | 00 · Analysis of awcms, awcms-one, omes and awcms-astro                                                                           | no                  |
-| [`OneDashboard.dc.html`](OneDashboard.dc.html) | Commerce dashboard: channel filter (all / storefront / POS), KPIs, 14-day gross revenue, attention list, recent orders, low stock | channel filter      |
-| [`OneOrders.dc.html`](OneOrders.dc.html)       | Orders: status tabs with counts, filters, order detail with status timeline, items, Midtrans session, next action                 | tabs, row selection |
+| File                                           | Screen                                                                                                                             | Interactive                   |
+| ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| [`Main.dc.html`](Main.dc.html)                 | 00 · Analysis of awcms, awcms-one, omes and awcms-astro                                                                            | no                            |
+| [`OneDashboard.dc.html`](OneDashboard.dc.html) | Commerce dashboard: channel filter (all / storefront / POS), KPIs, 14-day gross revenue, attention list, recent orders, low stock  | channel filter                |
+| [`OneOrders.dc.html`](OneOrders.dc.html)       | Orders: search, status tabs with counts, filters, keyset paging footer, order detail with status timeline, items, Midtrans session | search, tabs, paging, row     |
+| [`PolaData.dc.html`](PolaData.dc.html)         | Data-page pattern shared by the family: which search and paging each page function gets                                            | no                            |
+| [`OneSpec.dc.html`](OneSpec.dc.html)           | Per-screen spec of the 32 commerce screens by proposed sidebar sub-group, with what the code does today                            | search, filter, paging        |
+| [`OneProducts.dc.html`](OneProducts.dc.html)   | Products: name/SKU/barcode search, status tabs, category, low-stock and featured filters, table or grid, keyset 25/24 per page     | search, filters, view, paging |
+
+[`spec-one.json`](spec-one.json) is the data behind the spec screen; its
+"current" column comes from a heuristic scan of
+`apps/cms/src/pages/admin/commerce*.astro`, the rest is the proposal. The
+products screen uses the same query parameters as `/admin/commerce`
+(`q`, `categoryId`, `status`, `featured`, `recommended`, `cursor`).
 
 Both commerce artboards expose an `accent` tweak: the colour `template:init`
 writes for the brand would become the admin `--color-primary` once it passes the
