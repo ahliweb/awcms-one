@@ -40,3 +40,7 @@ Architecture, schema, API, CMS workflow, storefront behaviour, testing, deployme
 ## Language
 
 English at the bare path is the authoritative source; Indonesian at `<name>.id.md` is the mirror, stamped by `bun run docs:i18n:stamp` after translation and checked by `bun run audit:translation`. Every document in this directory, including every file under `adr/`, is in scope for that gate — see `packages/gerbang/lib/docs-i18n-checks.mjs`'s `isInScope`, which covers everything under `docs/**`.
+
+## Comprehensive Omnichannel CRM UI/UX specification
+
+[**Omnichannel CRM UI/UX v1.0**](omnichannel-crm-ui-ux.md) is a proposed evidence-tagged **30-screen catalogue** for current commerce screens and future lead, inbox, multi-account StarSender/Meta, Mailketing API v2.0.2, Telegram/social, campaigns, knowledge/AI, analytics and OMES management, plus accessibility, journeys and latest-version governance. **Planned is not shipped.** Tracked [#472](https://github.com/ahliweb/awcms-one/issues/472), source status [status.md](status.md).

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:1e9b4471a276f26c52cb3b2070005ffe5f0ca1983ac94e457b574b93729c7931 -->
+<!-- i18n-source-hash: sha256:03b0038ff7788f48b94311941774ba677cc224b531195f523135926183cfc8d9 -->
 
 # Dokumentasi
 
@@ -42,3 +42,7 @@ Dokumentasi arsitektur, skema, API, alur kerja CMS, perilaku storefront, penguji
 ## Bahasa
 
 Bahasa Inggris di jalur telanjang adalah sumber yang otoritatif; Bahasa Indonesia di `<name>.id.md` adalah mirror, dicap `bun run docs:i18n:stamp` setelah diterjemahkan dan diperiksa `bun run audit:translation`. Setiap dokumen di direktori ini, termasuk setiap berkas di bawah `adr/`, berada dalam cakupan gate itu — lihat `isInScope` milik `packages/gerbang/lib/docs-i18n-checks.mjs`, yang mencakup segala sesuatu di bawah `docs/**`.
+
+## Spesifikasi UI/UX CRM Omnichannel lengkap
+
+[**UI/UX CRM Omnichannel v1.0**](omnichannel-crm-ui-ux.id.md) merupakan standar **30 kelompok layar** yang membedakan fitur commerce saat ini dari rencana lead, inbox, multi-akun StarSender/Meta, Mailketing API v2.0.2, Telegram/sosial, kampanye, AI, analitik dan OMES; termasuk aksesibilitas, alur pengguna dan tata kelola versi. **Rencana bukan implementasi.** Issue [#472](https://github.com/ahliweb/awcms-one/issues/472), kondisi aktual [status.md](status.id.md).
