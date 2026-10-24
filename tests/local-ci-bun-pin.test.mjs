@@ -32,7 +32,7 @@ describe("tools/ci/lib/bun-pin.ts", () => {
     assert.equal(result.expected, "1.4.4");
     assert.equal(result.actual, "1.3.0");
     assert.match(result.message, /1\.3\.0/);
-    assert.match(result.message, /1\.4\.3/);
+    assert.match(result.message, /1\.4\.4/);
   });
 
   test("enforceBunPinOrThrow throws on mismatch, is silent on match", () => {
