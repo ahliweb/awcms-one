@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](bun-omnichannel-delivery-realtime.md)
 
-<!-- i18n-source-hash: sha256:af8e630bdc513f80a6813b2fd7dd830b1d14a4e16a6f0ac4a70fabf88a1c4494 -->
+<!-- i18n-source-hash: sha256:453e36220b7fa33d0de2afba90f713444f239f8d2176abf27c9cfdddd7efdd30 -->
 
 # Standar CRM AWCMS-One untuk dispatcher dan real-time Bun-only (usulan)
 
@@ -39,3 +39,9 @@ AWCMS-One adalah Bun monorepo dengan pin **`bun@1.4.3`** di `package.json`. `app
 - Fitur direncanakan: CRM #458, Hermes #459, Telegram #460, Mailketing #461, tes WA #466, Web Push #430–#432, standar CRM #462; upstream #1167/#1168.
 - Tes: proses dan manifest deployment Bun, dua tenant dan consent, callback provider, upgrade auth/Origin/replay, status diterima versus delivered, crash/retry, pemulihan jaringan SSE/WS, OpenAPI/AsyncAPI, dokumen EN/ID, DB-backed tests, `bun test`, `bun run check`, `bun run check:cms`, audit dokumen/terjemahan, ketiga profil SSG dan `template:init`.
 - Sinkronisasi upstream `apps/cms` selalu memakai **git subtree MERGE COMMIT, tidak squash/rebase**; tag upstream tidak ikut diimpor. Migrasi yang sudah diterapkan dan `bun.lock` tidak boleh diubah manual.
+
+## Tindak lanjut penegakan atomik (2026-10-24)
+
+- [AWCMS #1170](https://github.com/ahliweb/awcms/issues/1170) menegakkan Bun pada worker/manifes deployment.
+- [AWCMS #1171](https://github.com/ahliweb/awcms/issues/1171) merancang dan membangun gateway SSE-first/WebSocket Bun hanya setelah ADR [#1168](https://github.com/ahliweb/awcms/issues/1168) diterima.
+- [AWCMS-One #469](https://github.com/ahliweb/awcms-one/issues/469) menguji manifest/job/commerce Bun tanpa mengubah subtree upstream; spesifikasi tetap berupa dokumen sampai PR implementasi selesai.
