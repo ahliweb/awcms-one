@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](crm-omnichannel-requirements.md)
 
-<!-- i18n-source-hash: sha256:111d5e7acc6c4b7565ff729fb58dc7fc48a5d6ebc6c43f00b9397b3273035029 -->
+<!-- i18n-source-hash: sha256:fea8b8169969c8f3b1f6c26aa40a82b29d6d8e01391fe0157d0a83a2efe8ef85 -->
 
 # Standar kebutuhan CRM omnichannel — reusable (v1.0, usulan)
 
@@ -120,8 +120,8 @@ Dokumen ini berangkat dari berkas pengguna **“SPESIFIKASI KEBUTUHAN SISTEM CRM
 | --- | --- | --- |
 | Customer commerce, aturan segmen, audience campaign | **Sudah ada** dalam lingkup commerce | [PRD bisnis](aw-business-platform-prd.id.md), [status](status.id.md) |
 | Email/Mailketing v1, newsletter dan suppression | **Sudah ada** dari upstream | [AWCMS email](https://github.com/ahliweb/awcms/blob/main/src/modules/email/README.md) |
-| Pipeline lead/prospect generik | **Belum terbukti** sebagai modul reusable | Perlu issue admission upstream |
-| Inbox lintas provider, assignment dan SLA | **Belum terbukti**; inbox commerce lebih sempit | [AWCMS #1144](https://github.com/ahliweb/awcms/issues/1144) dan issue lanjutan |
+| Pipeline lead/prospect generik | **Belum terbukti** sebagai modul reusable | [AWCMS #1163](https://github.com/ahliweb/awcms/issues/1163) (ADR), [#1166](https://github.com/ahliweb/awcms/issues/1166) (implementasi) |
+| Inbox lintas provider, assignment dan SLA | **Belum terbukti**; inbox commerce lebih sempit | [AWCMS #1144](https://github.com/ahliweb/awcms/issues/1144) (arsitektur), [#1164](https://github.com/ahliweb/awcms/issues/1164) (inbox/SLA) |
 | Registry multi-akun dan OAuth | **Direncanakan** | [AWCMS #1139](https://github.com/ahliweb/awcms/issues/1139), [#1140](https://github.com/ahliweb/awcms/issues/1140) |
 | Multi-nomor Meta/StarSender opsional | **Direncanakan**; sumber ini mewajibkan jalur resmi | [AWCMS #1141](https://github.com/ahliweb/awcms/issues/1141)–[#1143](https://github.com/ahliweb/awcms/issues/1143), [AWCMS-One #458](https://github.com/ahliweb/awcms-one/issues/458) |
 | Telegram notifikasi staf | **Sudah ada**; khusus staf | [Modul AWCMS](https://github.com/ahliweb/awcms/blob/main/src/modules/telegram-delivery/README.md) |
@@ -129,7 +129,7 @@ Dokumen ini berangkat dari berkas pengguna **“SPESIFIKASI KEBUTUHAN SISTEM CRM
 | Publikasi sosial dan inbox media lainnya | **Direncanakan**, port social sekarang no-op | [AWCMS #1145](https://github.com/ahliweb/awcms/issues/1145) dan isu provider |
 | Mailketing v2/multi-sender/webhook | **Direncanakan** | [AWCMS #1158](https://github.com/ahliweb/awcms/issues/1158)–[#1162](https://github.com/ahliweb/awcms/issues/1162), [AWCMS-One #461](https://github.com/ahliweb/awcms-one/issues/461) |
 | Rekomendasi CRM Hermes dan AI Management | **Direncanakan**, pengamatan OMES sudah tersedia | [AWCMS-One #459](https://github.com/ahliweb/awcms-one/issues/459), [OMES #343](https://github.com/ahliweb/omes/issues/343)–[#344](https://github.com/ahliweb/omes/issues/344) |
-| Rangkaian follow-up dan KPI konversi CRM | **Belum terbukti** | Perlu issue atomik |
+| Rangkaian follow-up dan KPI konversi CRM | **Belum terbukti** | [AWCMS #1165](https://github.com/ahliweb/awcms/issues/1165) (follow-up), [AWCMS-One #464](https://github.com/ahliweb/awcms-one/issues/464) (KPI) |
 
 **Urutan implementasi:** putuskan ADR pipeline prospek, kontrak interaksi/SLA dan event; implementasi port generik upstream + tes; sinkronkan `apps/cms` dengan subtree **MERGE COMMIT** bersejarah utuh (tidak squash/rebase); buat adapter/proyeksi commerce di sini; jalankan tiga profil dan validasi template. Setiap perubahan pada issue/branch atomik. Tidak boleh mengubah migrasi terapan atau `bun.lock` secara manual.
 
@@ -147,3 +147,14 @@ Dokumen ini berangkat dari berkas pengguna **“SPESIFIKASI KEBUTUHAN SISTEM CRM
 | Klaim penempatan kerja/keberangkatan | Aturan klaim terlarang dan eskalasi admin | §8 |
 
 Tidak ada konten bisnis spesifik atau token provider yang dimasukkan ke template. Produk turunan AWCMS-One memiliki backend produksi, pengaturan tenant, UAT dan deployment sendiri. Dokumen asli bisnis semestinya disimpan di repositori kebutuhan produk tersebut, sedangkan standar ini hanya membawa kontrol yang berlaku umum.
+
+## 7. Kepemilikan eksekusi atomik (kesenjangan tervalidasi, 24 Oktober 2026)
+
+1. [AWCMS #1163](https://github.com/ahliweb/awcms/issues/1163) **arsitektur dulu** → [#1166](https://github.com/ahliweb/awcms/issues/1166) lifecycle generik `crm_leads`; pipeline netral dan tanpa customer master ganda.
+2. [AWCMS #1144](https://github.com/ahliweb/awcms/issues/1144) arsitektur interaksi masuk terverifikasi → [#1164](https://github.com/ahliweb/awcms/issues/1164) unified inbox, assignment dan SLA; jangan menggantikan inbox commerce tanpa adapter yang disetujui.
+3. [AWCMS #1165](https://github.com/ahliweb/awcms/issues/1165) tugas follow-up deterministik dan kebijakan notifikasi; gunakan kembali engine workflow/notifikasi.
+4. [AWCMS-One #463](https://github.com/ahliweb/awcms-one/issues/463) **hanya adapter commerce** untuk lead→customer serta event konversi terverifikasi; tahapan produk tetap milik repo turunan.
+5. [AWCMS-One #464](https://github.com/ahliweb/awcms-one/issues/464) proyeksi funnel/atribusi/SLA staf pada reporting engine; kunci definisi KPI sebelum coding.
+6. Konsumen yang sudah dilacak: [#458](https://github.com/ahliweb/awcms-one/issues/458), [#459](https://github.com/ahliweb/awcms-one/issues/459), [#460](https://github.com/ahliweb/awcms-one/issues/460), [#461](https://github.com/ahliweb/awcms-one/issues/461), serta upstream [#1139](https://github.com/ahliweb/awcms/issues/1139)–[#1162](https://github.com/ahliweb/awcms/issues/1162) sesuai dependensi. Tidak membuat provider engine kedua.
+
+Seluruh issue implementasi **masih terbuka/direncanakan** saat dokumen diterbitkan; memerlukan branch, PR dan validasi masing-masing. PR standar ini **hanya dokumentasi persyaratan**.
