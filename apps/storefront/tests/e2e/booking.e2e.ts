@@ -9,6 +9,12 @@
  * the feature switched off, and the refusals (a lost race, the live-hold
  * ceiling, a retry that must reuse its Idempotency-Key).
  *
+ * Issue #387 adds the reservation detail with its deposit state and the cancellation
+ * and refund view (`/akun/reservasi?kode=`): the refund the SERVER quotes is what the
+ * dialog shows, the quote is asked for again on confirm, a changed figure is shown
+ * and re-confirmed instead of acted on, the refusals (409, 422, 429, a dropped
+ * connection) read in the words of the UX spec, and the dialog is keyboard-complete.
+ *
  * Every state that carries content is also scanned with axe (WCAG 2.1 A/AA,
  * serious and critical fail) and measured for horizontal overflow at 360px -
  * the generic key-page specs only see a page's static shell.
@@ -508,7 +514,7 @@ test.describe("own reservations (/akun/reservasi)", () => {
     await expect(first.locator("[data-hold-left]")).toContainText("Kamar ditahan, sisa waktu");
     // The countdown text is plain: it sits in no live region.
     expect(await first.locator("[data-hold-left]").evaluate((el) => !!el.closest('[aria-live], [role="status"], [role="alert"]'))).toBe(false);
-    await expect(first.getByRole("link", { name: "Detail pesanan" })).toHaveAttribute("href", new RegExp(`/akun/pesanan\\?kode=${newer}`));
+    await expect(first.getByRole("link", { name: "Detail reservasi" })).toHaveAttribute("href", new RegExp(`/akun/reservasi\\?kode=${newer}`));
     // A deposit order offers to pay the deposit; a manual one offers no gateway button.
     await expect(rows.nth(1).getByRole("button", { name: "Bayar uang muka" })).toBeVisible();
     await expect(first.getByRole("button")).toHaveCount(0);
@@ -537,6 +543,465 @@ test.describe("own reservations (/akun/reservasi)", () => {
     await expect(page.locator("[data-list] li").first()).toContainText("Penahanan habis", { timeout: 15_000 });
     await expect(page.locator("[data-announce]")).toContainText("Penahanan habis");
     await expect(page.locator("[data-list] li").first().locator("[data-hold-left]")).toHaveCount(0);
+  });
+});
+
+
+// ---------------------------------------------------------------------------
+// Issue #387 - the reservation detail (Surface B) and the cancellation (Surface C)
+// ---------------------------------------------------------------------------
+
+test.describe("reservation detail and cancellation (/akun/reservasi?kode=)", () => {
+  /** A held reservation of 2 nights starting `from` days out (so the stub's policy windows pick the refund share). */
+  async function hold(sesi: Sesi, from: number, method = "dp", key = `det-${from}-${method}`): Promise<string> {
+    const made = await api<{ orderCode: string }>("/booking/reservations", {
+      method: "POST",
+      token: sesi.token,
+      key,
+      body: {
+        offeringId: OFFERING,
+        resourceId: R1,
+        stay: { checkInDate: day(from), checkOutDate: day(from + 2) },
+        partySize: 2,
+        payment: { method }
+      }
+    });
+    expect(made.status).toBe(201);
+    return made.data.orderCode;
+  }
+
+  /** The deposit through the stub's own gateway page, the way the provider would confirm it. */
+  async function payDeposit(sesi: Sesi, orderCode: string): Promise<void> {
+    const session = await api<{ redirectUrl: string }>(`/orders/${orderCode}/payment-gateway/sessions`, {
+      method: "POST",
+      token: sesi.token,
+      body: { purpose: "deposit" }
+    });
+    expect(session.status).toBe(201);
+    const paid = await fetch(`${session.data.redirectUrl}/pay`, { method: "POST", redirect: "manual" });
+    expect(paid.status).toBe(302);
+  }
+
+  async function confirmed(sesi: Sesi, from: number, key?: string): Promise<string> {
+    const code = await hold(sesi, from, "dp", key);
+    await payDeposit(sesi, code);
+    return code;
+  }
+
+  async function open(page: Page, sesi: Sesi, code: string): Promise<void> {
+    await signedIn(page, sesi);
+    await page.goto(`/akun/reservasi?kode=${code}`);
+    await expect(page.locator("[data-detail]")).toBeVisible();
+  }
+
+  const dialog = (page: Page) => page.locator("[data-cancel-dialog]");
+
+  async function openDialog(page: Page): Promise<void> {
+    await page.getByRole("button", { name: "Batalkan reservasi" }).click();
+    await expect(dialog(page)).toBeVisible();
+    await expect(page.locator("[data-cancel-dl]")).toBeVisible();
+  }
+
+  type Seen = { quoteGets: number; cancelPosts: { body: unknown; key: string | null }[] };
+  function watch(page: Page): Seen {
+    const seen: Seen = { quoteGets: 0, cancelPosts: [] };
+    page.on("request", (request) => {
+      const url = request.url();
+      if (request.method() === "GET" && url.includes("/cancellation-quote")) seen.quoteGets += 1;
+      if (request.method() === "POST" && url.endsWith("/cancel")) {
+        seen.cancelPosts.push({ body: request.postDataJSON(), key: request.headers()["idempotency-key"] ?? null });
+      }
+    });
+    return seen;
+  }
+
+  async function reservation(sesi: Sesi, code: string) {
+    const got = await api<{ status: string; refund: { finalRefund: string; adjusted: boolean } | null }>(`/booking/reservations/${code}`, { token: sesi.token });
+    return got.data;
+  }
+
+  test("the order view shows the deposit state from the server's figures, and follows a payment without a reload", async ({ page }) => {
+    const budi = await login();
+    const code = await hold(budi, 9, "dp", "view-1");
+    await signedIn(page, budi);
+    await page.goto("/akun/reservasi");
+    await page.locator("[data-list] li").first().getByRole("link", { name: "Detail reservasi" }).click();
+    await expect(page.locator("[data-detail]")).toBeVisible();
+    await expect(page).toHaveURL(new RegExp(`/akun/reservasi\\?kode=${code}`));
+
+    await expect(page.locator("[data-detail-heading]")).toHaveText("Kamar Deluxe Tepi Sungai");
+    await expect(page.locator("[data-detail-stay]")).toContainText("2 malam");
+    await expect(page.locator("[data-detail-pills]")).toContainText("Menunggu pembayaran uang muka");
+    const money = page.locator("[data-detail-money]");
+    await expect(money.locator('[data-row="total"]')).toContainText(RUPIAH("900.000"));
+    await expect(money.locator('[data-row="uangMuka"] dt')).toHaveText("Uang muka yang harus dibayar sekarang");
+    await expect(money.locator('[data-row="uangMuka"] dd')).toContainText(RUPIAH("270.000"));
+    await expect(money.locator('[data-row="dibayar"] dd')).toContainText(RUPIAH("0"));
+    await expect(money.locator('[data-row="sisa"] dd')).toContainText(RUPIAH("900.000"));
+    await expect(page.getByRole("button", { name: "Bayar uang muka" })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Batalkan reservasi" })).toBeVisible();
+    // The ticking hold is plain text, in no live region.
+    await expect(page.locator("[data-detail-hold]")).toContainText("Kamar ditahan, sisa waktu");
+    expect(await page.locator("[data-detail-hold]").evaluate((el) => !!el.closest('[aria-live], [role="status"], [role="alert"]'))).toBe(false);
+    // Nothing in the view offers a security deposit or a points control on a deposit order.
+    await expect(page.locator("[data-detail]")).not.toContainText(/jaminan/i);
+    await scan(page, "/akun/reservasi?kode= (held, deposit due)");
+    await noOverflow360(page, "/akun/reservasi?kode= (held)");
+
+    // The provider confirms the deposit elsewhere; coming back to the tab re-reads the server.
+    await payDeposit(budi, code);
+    await page.evaluate(() => document.dispatchEvent(new Event("visibilitychange")));
+    await expect(page.locator("[data-detail-pills]")).toContainText("Terkonfirmasi", { timeout: 15_000 });
+    await expect(page.locator("[data-announce]")).toContainText("Terkonfirmasi");
+    await expect(page.locator("[data-detail-pills]")).toContainText("Uang muka dibayar, sisa");
+    await expect(money.locator('[data-row="uangMuka"] dt')).toHaveText("Uang muka");
+    await expect(money.locator('[data-row="dibayar"] dd')).toContainText(RUPIAH("270.000"));
+    await expect(money.locator('[data-row="sisa"] dd')).toContainText(RUPIAH("630.000"));
+    await expect(page.locator("[data-detail-payment-note]")).toContainText("Uang muka diterima. Reservasi Anda terkonfirmasi.");
+    await expect(page.locator("[data-detail-payment-note]")).toContainText(RUPIAH("630.000"));
+    await expect(page.locator("[data-detail-hold]")).toBeHidden();
+    // The balance is paid through the same tender, and the pay-the-deposit button is gone.
+    await expect(page.getByRole("button", { name: "Bayar sisa pembayaran" })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Bayar uang muka" })).toHaveCount(0);
+    await scan(page, "/akun/reservasi?kode= (confirmed, balance due)");
+  });
+
+  test("an order paid in full says 'Bayar penuh' and 'Lunas'; an unknown, foreign or malformed code is the one neutral not-found", async ({ page }) => {
+    const budi = await login();
+    const code = await hold(budi, 9, "gateway", "full-1");
+    const session = await api<{ redirectUrl: string }>(`/orders/${code}/payment-gateway/sessions`, { method: "POST", token: budi.token, body: {} });
+    await fetch(`${session.data.redirectUrl}/pay`, { method: "POST", redirect: "manual" });
+    await open(page, budi, code);
+    await expect(page.locator('[data-row="pembayaran"] dd')).toHaveText("Bayar penuh");
+    await expect(page.locator('[data-row="uangMuka"]')).toHaveCount(0);
+    await expect(page.locator('[data-row="sisa"] dd')).toHaveText("Lunas");
+    await expect(page.locator("[data-detail-pills]")).toContainText("Lunas");
+
+    // Not-found is neutral and the same for all three.
+    const siti = await register("siti.detail@example.test", "Siti Detail", "081299990002");
+    const stranger = await browserPage(page, siti);
+    for (const path of [`/akun/reservasi?kode=${code}`, "/akun/reservasi?kode=NOPE-0000-0000", "/akun/reservasi?kode=a%20b"]) {
+      const target = path.includes("a%20b") || path.includes("NOPE") ? page : stranger;
+      await target.goto(path);
+      await expect(target.locator("[data-detail-notfound]")).toBeVisible();
+      await expect(target.locator("[data-detail-notfound]")).toContainText("Pemesanan tidak ditemukan.");
+      await expect(target.locator("[data-detail]")).toBeHidden();
+    }
+    await scan(stranger, "/akun/reservasi?kode= (not found)");
+    await stranger.context().close();
+  });
+
+  test("signed out the detail asks for a sign-in; a dead token clears the session on the 401", async ({ page }) => {
+    await page.goto("/akun/reservasi?kode=BJM-0000-0001");
+    await expect(page.locator("[data-guest-view]")).toBeVisible();
+    await expect(page.locator("[data-detail]")).toBeHidden();
+
+    await signedIn(page, {
+      token: "cs_stub_dead",
+      expiresAt: new Date(Date.now() + 3_600_000).toISOString(),
+      account: { id: "acc-x", name: "X", email: "x@example.test", phone: "+6281200000000", level: 1, createdAt: "2026-01-01T00:00:00.000Z", historyFrom: "2026-01-01T00:00:00.000Z", marketingConsent: false }
+    });
+    await page.goto("/akun/reservasi?kode=BJM-0000-0001");
+    await expect(page.locator("[data-guest-view]")).toBeVisible();
+    expect(await page.evaluate((key) => window.localStorage.getItem(key), SESSION_KEY)).toBeNull();
+  });
+
+  test("the dialog shows the SERVER's quote before anything is cancelled, and Escape closes it without cancelling and returns focus to the opener", async ({ page }) => {
+    const budi = await login();
+    const code = await confirmed(budi, 4);
+    const seen = watch(page);
+    await open(page, budi, code);
+
+    const opener = page.getByRole("button", { name: "Batalkan reservasi" });
+    await opener.click();
+    await expect(dialog(page)).toBeVisible();
+    // The safe choice holds the focus; the confirm button waits for the quote.
+    await expect(page.getByRole("button", { name: "Tidak, tetap pesan" })).toBeFocused();
+    await expect(page.locator("[data-cancel-dl]")).toBeVisible();
+    await expect(page.locator("[data-cancel-confirm]")).toBeEnabled();
+    await expect(dialog(page)).toHaveAttribute("aria-labelledby", "batal-judul");
+    await expect(page.locator("#batal-judul")).toHaveText("Batalkan reservasi ini?");
+
+    // Every figure is the server's own quote.
+    const quote = await api<{ amountPaid: string; computedRefund: string; refundablePercent: string }>(`/booking/reservations/${code}/cancellation-quote`, { token: budi.token });
+    expect(quote.data).toMatchObject({ amountPaid: "270000.00", computedRefund: "135000.00", refundablePercent: "50.00" });
+    const dl = page.locator("[data-cancel-dl]");
+    await expect(dl).toContainText("Sudah dibayar");
+    await expect(dl).toContainText(RUPIAH("270.000"));
+    await expect(dl).toContainText("Dana yang dikembalikan");
+    await expect(dl).toContainText(RUPIAH("135.000"));
+    await expect(dl).toContainText("Ditahan sesuai kebijakan");
+    await expect(dl).toContainText("dana kembali 50%");
+    await expect(dl).toContainText("Dikembalikan ke metode pembayaran asal");
+    await expect(page.locator("[data-cancel-confirm]")).toHaveText("Ya, batalkan dan ajukan pengembalian");
+
+    await scan(page, "cancellation dialog (quote shown)");
+    // The dialog fits the 360px viewport and the page does not scroll sideways under it.
+    await page.setViewportSize({ width: 360, height: 800 });
+    const box = await dialog(page).boundingBox();
+    expect(box!.x).toBeGreaterThanOrEqual(0);
+    expect(box!.x + box!.width).toBeLessThanOrEqual(360);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+    await page.setViewportSize({ width: 1280, height: 800 });
+
+    // Tab never lands on the page behind the modal (it may leave the document for the browser chrome, which reads as `body`);
+    // Escape closes it, cancels nothing, and focus returns to the opener.
+    for (let i = 0; i < 8; i += 1) {
+      await page.keyboard.press("Tab");
+      expect(await page.evaluate(() => document.activeElement === document.body || !!document.activeElement?.closest("dialog"))).toBe(true);
+    }
+    await page.keyboard.press("Escape");
+    await expect(dialog(page)).toBeHidden();
+    await expect(opener).toBeFocused();
+    expect(seen.cancelPosts).toHaveLength(0);
+    expect((await reservation(budi, code)).status).toBe("confirmed");
+
+    // "Tidak, tetap pesan" does the same.
+    await opener.click();
+    await expect(page.locator("[data-cancel-dl]")).toBeVisible();
+    await page.getByRole("button", { name: "Tidak, tetap pesan" }).click();
+    await expect(dialog(page)).toBeHidden();
+    await expect(opener).toBeFocused();
+    expect((await reservation(budi, code)).status).toBe("confirmed");
+  });
+
+  test("confirming asks the server for the quote AGAIN, sends only the figure it saw with one Idempotency-Key, and shows the recorded refund", async ({ page }) => {
+    const budi = await login();
+    const code = await confirmed(budi, 4);
+    const seen = watch(page);
+    await open(page, budi, code);
+    await openDialog(page);
+    expect(seen.quoteGets).toBe(1);
+
+    await page.locator("[data-cancel-confirm]").click();
+    await expect(dialog(page)).toBeHidden();
+    // Re-fetched on confirm: the second GET happened before the one POST.
+    expect(seen.quoteGets).toBe(2);
+    expect(seen.cancelPosts).toHaveLength(1);
+    expect(seen.cancelPosts[0].body).toEqual({ acknowledgedRefund: "135000.00" });
+    expect(seen.cancelPosts[0].key).toMatch(/\S{8,}/);
+
+    // The confirmation: polite status region, focus on its heading, the recorded figure.
+    const result = page.locator("[data-detail-result]");
+    await expect(result).toContainText("Reservasi dibatalkan");
+    await expect(result).toContainText(`Pengembalian dana ${"Rp"}`);
+    await expect(result).toContainText(RUPIAH("135.000"));
+    await expect(result.getByRole("heading", { name: "Reservasi dibatalkan" })).toBeFocused();
+    await expect(page.locator("[data-detail-pills]")).toContainText("Dibatalkan");
+    await expect(page.locator("[data-detail-refund]")).toContainText("sedang diproses");
+    await expect(page.locator("[data-detail-refund]")).toContainText(RUPIAH("135.000"));
+    await expect(page.getByRole("button", { name: "Batalkan reservasi" })).toHaveCount(0);
+    await expect(page.locator("[data-detail-cancel-reason]")).toHaveText("Reservasi ini sudah dibatalkan.");
+    await expect(page.locator('[data-row="sisa"]')).toHaveCount(0);
+    const recorded = await reservation(budi, code);
+    expect(recorded).toMatchObject({ status: "cancelled", refund: { finalRefund: "135000.00" } });
+    await scan(page, "/akun/reservasi?kode= (cancelled, refund processing)");
+
+    // Once the ledger shows the refund returned, the line says so.
+    await stubControl({ settleRefund: true });
+    await page.reload();
+    await expect(page.locator("[data-detail-refund]")).toContainText("selesai");
+    await expect(page.locator("[data-detail-pills]")).toContainText("Dikembalikan sebagian");
+    await expect(page.locator('[data-row="dikembalikan"] dd')).toContainText(RUPIAH("135.000"));
+  });
+
+  test("a figure that changed while the dialog was open is shown and re-confirmed - nothing is cancelled against a number the shopper did not see", async ({ page }) => {
+    const budi = await login();
+    const code = await confirmed(budi, 4);
+    const seen = watch(page);
+    await open(page, budi, code);
+    await openDialog(page);
+    await expect(page.locator("[data-cancel-dl]")).toContainText(RUPIAH("135.000"));
+
+    // The policy window moves under the open dialog.
+    await stubControl({ percentOverride: 0 });
+    await page.locator("[data-cancel-confirm]").click();
+
+    await expect(page.locator("[data-cancel-status]")).toContainText("Jumlah pengembalian dana berubah. Tidak ada yang dibatalkan.");
+    await expect(page.locator("[data-cancel-dl]")).toContainText("Dana yang dikembalikan");
+    await expect(page.locator("[data-cancel-dl]")).not.toContainText(RUPIAH("135.000"));
+    await expect(page.locator("[data-cancel-confirm]")).toHaveText("Ya, batalkan tanpa pengembalian");
+    await expect(page.locator("[data-cancel-retained]")).toContainText(RUPIAH("270.000"));
+    await expect(dialog(page)).toBeVisible();
+    expect(seen.cancelPosts).toHaveLength(0);
+    expect((await reservation(budi, code)).status).toBe("confirmed");
+    await scan(page, "cancellation dialog (changed figure)");
+
+    // A fresh confirmation acts on the NEW figure, with a key of its own.
+    await page.locator("[data-cancel-confirm]").click();
+    await expect(dialog(page)).toBeHidden();
+    expect(seen.cancelPosts).toHaveLength(1);
+    expect(seen.cancelPosts[0].body).toEqual({ acknowledgedRefund: "0.00" });
+    await expect(page.locator("[data-detail-result]")).toContainText("Tidak ada pengembalian dana.");
+    await expect(page.locator("[data-detail-refund]")).toContainText("Tidak ada pengembalian dana.");
+  });
+
+  test("when the SERVER refuses the acknowledged figure (409 QUOTE_CHANGED) nothing is cancelled and the dialog shows the new figure for a fresh confirmation", async ({ page }) => {
+    const budi = await login();
+    const code = await confirmed(budi, 4);
+    const seen = watch(page);
+    await open(page, budi, code);
+    await openDialog(page);
+
+    // The confirm-time quote still says 50%; the stub then moves the window before the cancel is processed.
+    await stubControl({ driftAfterQuote: 0 });
+    await page.locator("[data-cancel-confirm]").click();
+    await expect(page.locator("[data-cancel-error]")).toContainText("Jumlah pengembalian dana berubah. Tidak ada yang dibatalkan.");
+    await expect(page.locator("[data-cancel-dl]")).not.toContainText(RUPIAH("135.000"));
+    await expect(page.locator("[data-cancel-confirm]")).toHaveText("Ya, batalkan tanpa pengembalian");
+    await expect(page.locator("[data-cancel-confirm]")).toBeEnabled();
+    expect(seen.cancelPosts).toHaveLength(1);
+    expect(seen.cancelPosts[0].body).toEqual({ acknowledgedRefund: "135000.00" });
+    expect((await reservation(budi, code)).status).toBe("confirmed");
+
+    await page.locator("[data-cancel-confirm]").click();
+    await expect(dialog(page)).toBeHidden();
+    expect(seen.cancelPosts).toHaveLength(2);
+    expect(seen.cancelPosts[1].body).toEqual({ acknowledgedRefund: "0.00" });
+    // A new figure takes a new Idempotency-Key.
+    expect(seen.cancelPosts[1].key).not.toBe(seen.cancelPosts[0].key);
+    expect((await reservation(budi, code)).status).toBe("cancelled");
+  });
+
+  test("a zero refund says so before confirming; a hold with nothing paid cancels plainly", async ({ page }) => {
+    const budi = await login();
+    const near = await confirmed(budi, 1);
+    await open(page, budi, near);
+    await openDialog(page);
+    await expect(page.locator("[data-cancel-dl]")).toContainText("dana kembali 0%");
+    await expect(page.locator("[data-cancel-retained]")).toHaveText(/Tidak ada pengembalian: .*270\.000 ditahan sesuai kebijakan/);
+    await expect(page.locator("[data-cancel-confirm]")).toHaveText("Ya, batalkan tanpa pengembalian");
+    await page.getByRole("button", { name: "Tidak, tetap pesan" }).click();
+
+    const unpaid = await hold(budi, 14, "dp", "unpaid-1");
+    await page.goto(`/akun/reservasi?kode=${unpaid}`);
+    await expect(page.locator("[data-detail]")).toBeVisible();
+    await openDialog(page);
+    await expect(page.locator("[data-cancel-confirm]")).toHaveText("Ya, batalkan reservasi");
+    await expect(page.locator("[data-cancel-retained]")).toBeHidden();
+    await page.locator("[data-cancel-confirm]").click();
+    await expect(page.locator("[data-detail-result]")).toContainText("Reservasi dibatalkan. Tidak ada pengembalian dana.");
+  });
+
+  test("no resolved policy: the spec's sentence, a way to contact the store, and no self-service cancel", async ({ page }) => {
+    const budi = await login();
+    const code = await confirmed(budi, 4);
+    const seen = watch(page);
+    await stubControl({ noPolicy: true });
+    await open(page, budi, code);
+    await openDialog(page);
+    await expect(page.locator("[data-cancel-error]")).toContainText("Kebijakan pembatalan belum ditetapkan. Hubungi kami sebelum membatalkan.");
+    await expect(page.locator("[data-cancel-confirm]")).toBeDisabled();
+    await expect(page.locator("[data-cancel-wa]")).toBeVisible();
+    await expect(page.locator("[data-cancel-wa]")).toHaveAttribute("href", /wa\.me\//);
+    expect(seen.cancelPosts).toHaveLength(0);
+    await scan(page, "cancellation dialog (no policy)");
+  });
+
+  test("refusals read in the words of the spec: 429 waits and a retry succeeds, 422 reloads, 409 INVALID_STATE closes the loop", async ({ page }) => {
+    const budi = await login();
+    const code = await confirmed(budi, 4);
+    const seen = watch(page);
+    await open(page, budi, code);
+    await openDialog(page);
+
+    await stubControl({ refuseNextCancel: { status: 429, code: "RATE_LIMITED" } });
+    await page.locator("[data-cancel-confirm]").click();
+    await expect(page.locator("[data-cancel-error]")).toContainText("Terlalu banyak percobaan. Tunggu sebentar, lalu coba lagi.");
+    await expect(dialog(page)).toBeVisible();
+
+    await stubControl({ refuseNextCancel: { status: 422, code: "UNPROCESSABLE" } });
+    await page.locator("[data-cancel-confirm]").click();
+    await expect(page.locator("[data-cancel-error]")).toContainText("Permintaan pembatalan tidak dapat diproses. Muat ulang halaman, lalu coba lagi.");
+    expect((await reservation(budi, code)).status).toBe("confirmed");
+
+    await stubControl({ refuseNextCancel: { status: 409, code: "INVALID_STATE" } });
+    await page.locator("[data-cancel-confirm]").click();
+    await expect(page.locator("[data-cancel-error]")).toContainText("Reservasi ini tidak dapat dibatalkan lagi.");
+    await expect(page.locator("[data-cancel-confirm]")).toBeDisabled();
+    await expect(page.getByRole("button", { name: "Tutup" })).toBeVisible();
+    await scan(page, "cancellation dialog (refused)");
+    await page.getByRole("button", { name: "Tutup" }).click();
+    await expect(dialog(page)).toBeHidden();
+
+    // After the refusals the same reservation can still be cancelled once it is allowed again.
+    await openDialog(page);
+    await page.locator("[data-cancel-confirm]").click();
+    await expect(page.locator("[data-detail-result]")).toContainText("Reservasi dibatalkan");
+    expect(seen.cancelPosts.length).toBeGreaterThanOrEqual(4);
+  });
+
+  test("a quote that cannot be computed keeps the confirm button disabled and offers a retry; 429 on the quote reads as 'wait'", async ({ page }) => {
+    const budi = await login();
+    const code = await confirmed(budi, 4);
+    await open(page, budi, code);
+
+    await stubControl({ refuseNextQuote: { status: 429, code: "RATE_LIMITED" } });
+    await page.getByRole("button", { name: "Batalkan reservasi" }).click();
+    await expect(page.locator("[data-cancel-error]")).toContainText("Terlalu banyak percobaan");
+    await expect(page.locator("[data-cancel-confirm]")).toBeDisabled();
+    await expect(page.locator("[data-cancel-dl]")).toBeHidden();
+    await page.locator("[data-cancel-retry]").click();
+    await expect(page.locator("[data-cancel-dl]")).toBeVisible();
+    await expect(page.locator("[data-cancel-confirm]")).toBeEnabled();
+    await page.getByRole("button", { name: "Tidak, tetap pesan" }).click();
+
+    // A dropped connection: "cannot compute", retry, then the quote appears.
+    await page.route("**/cancellation-quote", (route) => route.abort("failed"));
+    await page.getByRole("button", { name: "Batalkan reservasi" }).click();
+    await expect(page.locator("[data-cancel-error]")).toContainText("Tidak dapat menghitung pengembalian dana. Coba lagi.");
+    await expect(page.locator("[data-cancel-confirm]")).toBeDisabled();
+    await page.unroute("**/cancellation-quote");
+    await page.locator("[data-cancel-retry]").click();
+    await expect(page.locator("[data-cancel-dl]")).toBeVisible();
+    await expect(page.locator("[data-cancel-error]")).toBeHidden();
+  });
+
+  test("a dropped connection on the cancel is retried with the SAME Idempotency-Key and cancels once", async ({ page }) => {
+    const budi = await login();
+    const code = await confirmed(budi, 4);
+    const seen = watch(page);
+    await open(page, budi, code);
+    await openDialog(page);
+
+    let dropped = false;
+    await page.route("**/booking/reservations/*/cancel", async (route) => {
+      if (!dropped) {
+        dropped = true;
+        // The request reaches the server, the answer never reaches the page.
+        await route.fetch();
+        await route.abort("failed");
+        return;
+      }
+      await route.continue();
+    });
+    await page.locator("[data-cancel-confirm]").click();
+    await expect(page.locator("[data-cancel-error]")).toContainText("hasil pembatalan belum diketahui");
+    await expect(page.locator("[data-cancel-retry]")).toBeVisible();
+    await page.locator("[data-cancel-retry]").click();
+    await expect(dialog(page)).toBeHidden();
+
+    expect(seen.cancelPosts).toHaveLength(2);
+    expect(seen.cancelPosts[1].key).toBe(seen.cancelPosts[0].key);
+    await expect(page.locator("[data-detail-result]")).toContainText("Reservasi dibatalkan");
+    await expect(page.locator("[data-detail-result]")).toContainText(RUPIAH("135.000"));
+    expect((await reservation(budi, code)).refund?.finalRefund).toBe("135000.00");
+  });
+
+  test("a reservation that cannot be cancelled gets its reason in plain text; an expired hold never reads as confirmed", async ({ page }) => {
+    const budi = await login();
+    const code = await hold(budi, 9, "dp", "expire-1");
+    await open(page, budi, code);
+    await stubControl({ expireAll: true });
+    await page.evaluate(() => document.dispatchEvent(new Event("visibilitychange")));
+    await expect(page.locator("[data-detail-pills]")).toContainText("Penahanan habis", { timeout: 15_000 });
+    await expect(page.getByRole("button", { name: "Batalkan reservasi" })).toHaveCount(0);
+    await expect(page.locator("[data-detail-cancel-reason]")).toContainText("Penahanan reservasi ini sudah habis");
+    await expect(page.locator("[data-detail-payment-note]")).toContainText("Waktu penahanan habis sebelum pembayaran kami terima.");
+    await expect(page.locator("[data-detail-payment-note]")).toContainText(`Nomor pesanan: ${code}`);
+    await expect(page.locator("[data-detail-pills]")).not.toContainText("Terkonfirmasi");
+    await scan(page, "/akun/reservasi?kode= (expired)");
+    await noOverflow360(page, "/akun/reservasi?kode= (expired)");
   });
 });
 

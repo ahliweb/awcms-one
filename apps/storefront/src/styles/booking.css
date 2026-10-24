@@ -130,3 +130,107 @@
 [data-reservasi-root] a:not(.btn):not(.toko-wa-fallback):not(.akun-sidenav-item) {
   text-decoration: underline;
 }
+
+/* ---- Issue #387: the reservation detail and the cancellation dialog ---- */
+
+.booking-subheading {
+  margin: 0.5rem 0 0;
+  font-size: 1rem;
+}
+
+.booking-pills {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.booking-result {
+  margin: 0 0 1rem;
+}
+
+.booking-result--shown {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--status-success-fg);
+  border-radius: var(--radius-md, 8px);
+  background: var(--status-success-bg);
+  color: var(--status-success-fg);
+}
+
+.booking-result h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.05rem;
+}
+
+.booking-result p {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+/* `global.css` resets every margin to 0, which beats the UA's `dialog:modal { margin: auto }` (see `iklan-popup.css`). */
+.booking-dialog {
+  border: none;
+  border-radius: var(--radius-lg, 12px);
+  padding: 1.25rem;
+  width: min(30rem, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  overflow: auto;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-md);
+  margin: auto;
+}
+
+.booking-dialog::backdrop {
+  background: rgba(15, 23, 42, 0.55);
+}
+
+.booking-dialog h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.15rem;
+  overflow-wrap: anywhere;
+}
+
+.booking-dialog .toko-banner {
+  margin-bottom: 0.75rem;
+}
+
+.booking-dialog-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (min-width: 480px) {
+  .booking-dialog-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+/* The labels are long ("Ya, batalkan dan ajukan pengembalian"): the button wraps instead of widening the dialog at 360px. */
+.booking-dialog-btn {
+  height: auto;
+  min-height: 44px;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.25;
+}
+
+/* Danger without colour alone: the label says what it does, the border is heavier. */
+.booking-btn-danger {
+  background: var(--danger-bg);
+  color: var(--danger-text);
+  border: 2px solid var(--danger-text);
+}
+
+.booking-btn-danger:disabled,
+.booking-dialog-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.booking-btn-danger:hover:not(:disabled) {
+  filter: brightness(0.96);
+}

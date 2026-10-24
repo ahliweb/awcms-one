@@ -61,7 +61,20 @@ function fromCents(cents) {
 export function createBookingStub(deps) {
   const { envelope, envelopeError, findAccountByBearer, orders, generateOrderCode, storeSettings } = deps;
 
-  const control = { holdSeconds: CONFIG.holdSeconds, featureOff: false };
+  const control = {
+    holdSeconds: CONFIG.holdSeconds,
+    featureOff: false,
+    // Issue #387 - the cancellation policy levers. `percentOverride` replaces the policy window's share for every
+    // later quote; `driftAfterQuote` switches it AFTER the next quote is served (so the confirm-time quote and the
+    // cancel see different figures); `noPolicy` resolves no policy at all; `settleRefund` makes the ledger show a
+    // recorded refund as returned; `refuseNext*` answers the next quote / cancel call with a chosen refusal.
+    percentOverride: null,
+    driftAfterQuote: null,
+    noPolicy: false,
+    settleRefund: false,
+    refuseNextQuote: null,
+    refuseNextCancel: null
+  };
   /** orderCode -> reservation. */
   const reservations = new Map();
   /** namespaced idempotency key -> { fingerprint, orderCode }. */
@@ -116,6 +129,24 @@ export function createBookingStub(deps) {
   }
 
   function settlementOf(reservation) {
+    if (reservation.cancel) {
+      // A cancelled reservation keeps what was paid on the ledger; a recorded refund shows as `reversed` once it settles.
+      const paid = BigInt(reservation.cancel.paidCents);
+      const reversed = control.settleRefund ? BigInt(reservation.cancel.refundCents) : 0n;
+      const settled = paid - reversed;
+      return {
+        total: fromCents(BigInt(reservation.totalCents)),
+        paid: fromCents(paid),
+        reversed: fromCents(reversed),
+        settled: fromCents(settled),
+        outstanding: "0.00",
+        overpaid: "0.00",
+        paymentStatus: reversed === 0n ? (paid === 0n ? "unpaid" : "paid") : reversed >= paid ? "refunded" : "partially_refunded",
+        deposit: fromCents(reservation.paymentMethod === "dp" ? BigInt(reservation.depositCents) : BigInt(reservation.totalCents)),
+        balanceDue: "0.00",
+        settledAt: reservation.settledAt ?? null
+      };
+    }
     const order = orders.get(reservation.orderCode);
     const paid = order && order.status !== "pending_payment" && order.status !== "expired" && order.status !== "cancelled";
     const total = BigInt(reservation.totalCents);
@@ -173,7 +204,7 @@ export function createBookingStub(deps) {
       startsAt: reservation.startsAt,
       endsAt: reservation.endsAt,
       settlement: settlementOf(reservation),
-      refund: null
+      refund: reservation.cancel ? { finalRefund: fromCents(BigInt(reservation.cancel.refundCents)), adjusted: false } : null
     };
   }
 
@@ -285,6 +316,11 @@ export function createBookingStub(deps) {
       return envelope({ items: page.map(listItem), nextCursor }, { headers });
     }
 
+    const quoteRoute = /^\/reservations\/([^/]+)\/cancellation-quote$/.exec(path);
+    if (quoteRoute && method === "GET") return cancellationQuote(request, decodeURIComponent(quoteRoute[1]), headers);
+    const cancelRoute = /^\/reservations\/([^/]+)\/cancel$/.exec(path);
+    if (cancelRoute && method === "POST") return cancelReservation(request, decodeURIComponent(cancelRoute[1]), body, headers);
+
     const byCode = /^\/reservations\/([^/]+)$/.exec(path);
     if (byCode && method === "GET") {
       const account = findAccountByBearer(request);
@@ -297,6 +333,141 @@ export function createBookingStub(deps) {
     }
 
     return null;
+  }
+
+  // ---- Issue #387: the cancellation quote and the cancellation (ADR-0045 D4/D6/D9) ----
+
+  /** The shopper's OWN reservation, or the response to answer with (the `401`, or the one neutral `404`). */
+  function ownReservation(request, orderCode, headers) {
+    const account = findAccountByBearer(request);
+    if (request.headers.get("authorization") && !account) {
+      return { response: envelopeError(401, "UNAUTHENTICATED", "Missing, invalid, or expired session.", undefined, headers) };
+    }
+    const reservation = reservations.get(orderCode);
+    if (!account || !reservation || reservation.accountEmail !== deps.normalizeEmail(account.email)) {
+      return { response: notFound(headers) };
+    }
+    refresh(reservation);
+    return { reservation };
+  }
+
+  /** What was settled on the order right now, in cents (a held reservation with nothing paid has 0). */
+  function settledCents(reservation) {
+    return toCents(settlementOf(reservation).settled);
+  }
+
+  function percentFor(hours) {
+    if (control.percentOverride !== null) return control.percentOverride;
+    for (const window of CONFIG.cancellation.windows) if (hours >= window.minHours) return window.percent;
+    return 0;
+  }
+
+  function quoteFor(reservation) {
+    const paid = settledCents(reservation);
+    const hours = Math.floor((Date.parse(reservation.startsAt) - Date.now()) / 3_600_000);
+    const percent = control.noPolicy ? 0 : percentFor(hours);
+    const refund = (paid * BigInt(percent) + 50n) / 100n;
+    return {
+      quotedAt: new Date().toISOString(),
+      startsAt: reservation.startsAt,
+      hoursBeforeStart: hours,
+      reservationStatus: reservation.status,
+      policySource: control.noPolicy ? "none" : "product",
+      policyId: control.noPolicy ? null : "b3870000-0000-4000-8000-000000000001",
+      policyVersion: control.noPolicy ? null : 1,
+      refundBasis: "whole_stay",
+      refundablePercent: `${percent}.00`,
+      amountPaid: fromCents(paid),
+      computedRefund: fromCents(refund)
+    };
+  }
+
+  function invalidState(reservation, headers) {
+    return envelopeError(
+      409,
+      "INVALID_STATE",
+      `The reservation cannot be cancelled now (${reservation.cancel ? "already_decided" : reservation.status}).`,
+      undefined,
+      headers
+    );
+  }
+
+  function takeRefusal(slot, headers) {
+    const refusal = control[slot];
+    if (!refusal) return null;
+    control[slot] = null;
+    return envelopeError(refusal.status, refusal.code, `Refused (${refusal.code}).`, refusal.details, headers);
+  }
+
+  function cancellationQuote(request, orderCode, headers) {
+    const own = ownReservation(request, orderCode, headers);
+    if (own.response) return own.response;
+    const forced = takeRefusal("refuseNextQuote", headers);
+    if (forced) return forced;
+    const { reservation } = own;
+    if (reservation.cancel || (reservation.status !== "held" && reservation.status !== "confirmed")) return invalidState(reservation, headers);
+    const quote = quoteFor(reservation);
+    if (control.driftAfterQuote !== null) {
+      control.percentOverride = control.driftAfterQuote;
+      control.driftAfterQuote = null;
+    }
+    return envelope(quote, { headers });
+  }
+
+  function cancelReservation(request, orderCode, body, headers) {
+    const idempotencyKey = request.headers.get("idempotency-key")?.trim() ?? "";
+    if (!idempotencyKey) {
+      return envelopeError(400, "IDEMPOTENCY_REQUIRED", "Idempotency-Key header is required (1 to 255 characters).", undefined, headers);
+    }
+    // The strict schema: `acknowledgedRefund` (and `phone`) and nothing else - a guest can never set a figure.
+    const extra = Object.keys(body ?? {}).filter((key) => key !== "acknowledgedRefund" && key !== "phone");
+    if (typeof body?.acknowledgedRefund !== "string" || extra.length > 0) {
+      return envelopeError(
+        400,
+        "VALIDATION_ERROR",
+        "Invalid cancellation request.",
+        [...extra.map((field) => ({ field, message: `${field} is not accepted.` })), ...(typeof body?.acknowledgedRefund === "string" ? [] : [{ field: "acknowledgedRefund", message: "acknowledgedRefund is required." }])],
+        headers
+      );
+    }
+    const own = ownReservation(request, orderCode, headers);
+    if (own.response) return own.response;
+    const { reservation } = own;
+    const keyId = `${reservation.accountEmail}:cancel:${idempotencyKey}`;
+    const prior = keys.get(keyId);
+    if (prior) {
+      if (prior.fingerprint !== body.acknowledgedRefund) {
+        return envelopeError(409, "IDEMPOTENCY_CONFLICT", "Idempotency-Key was already used with a different request.", undefined, headers);
+      }
+      return envelope({ status: "cancelled", finalRefund: prior.finalRefund }, { headers });
+    }
+    const forced = takeRefusal("refuseNextCancel", headers);
+    if (forced) return forced;
+    if (reservation.cancel || (reservation.status !== "held" && reservation.status !== "confirmed")) return invalidState(reservation, headers);
+
+    const quote = quoteFor(reservation);
+    if (toCents(body.acknowledgedRefund) !== toCents(quote.computedRefund)) {
+      return envelopeError(
+        409,
+        "QUOTE_CHANGED",
+        "The refund changed since you saw it. Nothing was cancelled; review the new figure.",
+        { computedRefund: quote.computedRefund },
+        headers
+      );
+    }
+
+    const paidCents = settledCents(reservation);
+    reservation.cancel = { paidCents: paidCents.toString(), refundCents: toCents(quote.computedRefund).toString() };
+    reservation.status = "cancelled";
+    reservation.linkStatus = "released";
+    const order = orders.get(reservation.orderCode);
+    if (order && order.status !== "cancelled") {
+      order.status = "cancelled";
+      order.cancelledAt = new Date().toISOString();
+      order.timeline.push({ status: "cancelled", at: order.cancelledAt, note: "Dibatalkan oleh pelanggan." });
+    }
+    keys.set(keyId, { fingerprint: body.acknowledgedRefund, finalRefund: quote.computedRefund });
+    return envelope({ status: "cancelled", finalRefund: quote.computedRefund }, { headers });
   }
 
   function createReservation(request, body, headers) {
@@ -462,6 +633,15 @@ export function createBookingStub(deps) {
     const body = await request.json().catch(() => ({}));
     if (typeof body.holdSeconds === "number" && body.holdSeconds > 0) control.holdSeconds = body.holdSeconds;
     if (typeof body.featureOff === "boolean") control.featureOff = body.featureOff;
+    for (const key of ["percentOverride", "driftAfterQuote"]) {
+      if (key in body) control[key] = typeof body[key] === "number" ? body[key] : null;
+    }
+    for (const key of ["noPolicy", "settleRefund"]) {
+      if (typeof body[key] === "boolean") control[key] = body[key];
+    }
+    for (const key of ["refuseNextQuote", "refuseNextCancel"]) {
+      if (key in body) control[key] = body[key] && typeof body[key].code === "string" ? body[key] : null;
+    }
     if (body.expireAll === true) {
       for (const reservation of reservations.values()) {
         if (reservation.status === "held") reservation.holdExpiresAt = new Date(Date.now() - 1000).toISOString();
@@ -472,6 +652,12 @@ export function createBookingStub(deps) {
       keys.clear();
       control.holdSeconds = CONFIG.holdSeconds;
       control.featureOff = false;
+      control.percentOverride = null;
+      control.driftAfterQuote = null;
+      control.noPolicy = false;
+      control.settleRefund = false;
+      control.refuseNextQuote = null;
+      control.refuseNextCancel = null;
     }
     return Response.json({ success: true, data: { ...control, reservations: reservations.size } });
   }

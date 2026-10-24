@@ -148,7 +148,7 @@ Every file under `apps/storefront/src/pages/**` belongs to exactly one group. Th
 | `akun/index.astro` | toko | Commerce account dashboard shell |
 | `akun/pesanan.astro` | toko | Commerce order history |
 | `akun/pesan.astro` | toko | Commerce customer-inbox thread |
-| `akun/reservasi.astro` | toko | Signed-in shopper's own booking reservations (issue #386) |
+| `akun/reservasi.astro` | toko | Signed-in shopper's own booking reservations (issue #386); with `?kode=` one reservation's deposit state and cancellation dialog (issue #387) |
 | `akun/ulasan.astro` | toko | Commerce product reviews |
 | `arsip/[yyyy]/[mm].astro` | berita | News monthly archive |
 | `berita/feed.xml.ts` | berita | News RSS feed (posts) |
