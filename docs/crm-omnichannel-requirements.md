@@ -118,8 +118,8 @@ The requirements are derived from the stakeholder document **“SPESIFIKASI KEBU
 | --- | --- | --- |
 | Commerce customer, CRM segment rules and campaign audiences | **Implemented**; scope is commerce-specific | [AW Business PRD](aw-business-platform-prd.md), [status.md](status.md) |
 | Email/Mailketing v1, newsletter double opt-in, email suppression | **Implemented** in AWCMS embed | [AWCMS email](https://github.com/ahliweb/awcms/blob/main/src/modules/email/README.md) |
-| CRM lead/prospect/pipeline, dedupe/transition | **Not established** as reusable module | **Follow-up implementation issue required** (upstream admission) |
-| Unified cross-provider inbox, ownership, SLA | **Not established**; commerce inbox is narrower | [AWCMS #1144](https://github.com/ahliweb/awcms/issues/1144) + follow-up |
+| CRM lead/prospect/pipeline, dedupe/transition | **Not established** as reusable module | [AWCMS #1163](https://github.com/ahliweb/awcms/issues/1163) (ADR), [#1166](https://github.com/ahliweb/awcms/issues/1166) (implementation) |
+| Unified cross-provider inbox, ownership, SLA | **Not established**; commerce inbox is narrower | [AWCMS #1144](https://github.com/ahliweb/awcms/issues/1144) (admission), [#1164](https://github.com/ahliweb/awcms/issues/1164) (inbox/SLA) |
 | Multi-account OAuth/provider credentials | **Planned** | [AWCMS #1139](https://github.com/ahliweb/awcms/issues/1139), [#1140](https://github.com/ahliweb/awcms/issues/1140) |
 | WhatsApp Meta multi-number / optional StarSender | **Planned**; official-only baseline for this source | [AWCMS #1141](https://github.com/ahliweb/awcms/issues/1141)–[#1143](https://github.com/ahliweb/awcms/issues/1143), [AWCMS-One #458](https://github.com/ahliweb/awcms-one/issues/458) |
 | Telegram staff notifications | **Implemented**, staff-only; no customer blast | [AWCMS module](https://github.com/ahliweb/awcms/blob/main/src/modules/telegram-delivery/README.md) |
@@ -127,7 +127,7 @@ The requirements are derived from the stakeholder document **“SPESIFIKASI KEBU
 | Social publishing and other social message capability | **Planned**; no-op port today | [AWCMS #1145](https://github.com/ahliweb/awcms/issues/1145) and platform-specific issues |
 | Mailketing v2, many senders, status webhooks | **Planned** | [AWCMS #1158](https://github.com/ahliweb/awcms/issues/1158)–[#1162](https://github.com/ahliweb/awcms/issues/1162); [AWCMS-One #461](https://github.com/ahliweb/awcms-one/issues/461) |
 | Hermes AI CRM recommendation, AI Management | **Planned**; OMES observability exists | [AWCMS-One #459](https://github.com/ahliweb/awcms-one/issues/459); [OMES #343](https://github.com/ahliweb/omes/issues/343)–[#344](https://github.com/ahliweb/omes/issues/344) |
-| Follow-up sequence engine and CRM conversion KPIs | **Not established** | **Follow-up atomic issues required** |
+| Follow-up sequence engine and CRM conversion KPIs | **Not established** | [AWCMS #1165](https://github.com/ahliweb/awcms/issues/1165) (follow-ups), [AWCMS-One #464](https://github.com/ahliweb/awcms-one/issues/464) (KPIs) |
 
 **Implementation sequence:** approve generic lead/prospect/pipeline, conversation/SLA and event boundary ADRs; implement upstream public ports with tests; sync `apps/cms` by full-history **MERGE COMMIT** (never squash/rebase); add `commerce` adapters/reporting here; verify all profiles and derived template neutrality. Separate issue and branch for each atomic implementation. No change to applied migration history or root `bun.lock`.
 
@@ -145,3 +145,14 @@ The requirements are derived from the stakeholder document **“SPESIFIKASI KEBU
 | Job placement/overseas-departure claim | Forbidden promise / escalate-to-human policy | §8 |
 
 No business-specific data or provider token is imported into the template. A product derived from AWCMS-One owns its own production backend, tenant-specific settings, UAT and deployment. The authoritative source document should remain in the product's requirements repository, with this standard holding only neutral, promoted controls.
+
+## 7. Atomic execution ownership (validated gaps, 24 October 2026)
+
+1. [AWCMS #1163](https://github.com/ahliweb/awcms/issues/1163) **architecture first** → [#1166](https://github.com/ahliweb/awcms/issues/1166) `crm_leads` generic lifecycle; neutral pipeline stages, no duplicate commerce customer.
+2. [AWCMS #1144](https://github.com/ahliweb/awcms/issues/1144) verified inbound architecture → [#1164](https://github.com/ahliweb/awcms/issues/1164) unified inbox/assignments/SLA; do not replace the commerce-specific inbox without a reviewed adapter.
+3. [AWCMS #1165](https://github.com/ahliweb/awcms/issues/1165) deterministic follow-up tasks and notification policy; reuse notifications and workflow, no duplicate agent runtime.
+4. [AWCMS-One #463](https://github.com/ahliweb/awcms-one/issues/463) **commerce adapter only** for lead→customer and verified conversion facts; product stages remain the product's own.
+5. [AWCMS-One #464](https://github.com/ahliweb/awcms-one/issues/464) existing reporting engine lead funnel/attribution/admin SLA projections; define metric contracts before code.
+6. Existing targeted consumers remain [#458](https://github.com/ahliweb/awcms-one/issues/458), [#459](https://github.com/ahliweb/awcms-one/issues/459), [#460](https://github.com/ahliweb/awcms-one/issues/460), [#461](https://github.com/ahliweb/awcms-one/issues/461) and upstream [#1139](https://github.com/ahliweb/awcms/issues/1139)–[#1162](https://github.com/ahliweb/awcms/issues/1162) where relevant. Do not open duplicate provider-engine issues.
+
+All listed implementation issues are **open/planned** at publication, and require their own branch/PR and validation. This documentation PR is **requirements-only**.
