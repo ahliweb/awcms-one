@@ -13,6 +13,16 @@
  * own by construction (the server derives the customer from the session), and
  * a reference in the URL is never proof of ownership.
  *
+ * Issue #387 (UX sections 3.3 and 4): the SAME static page also hosts one
+ * reservation's order view when the address carries `?kode=<orderCode>` - the
+ * stay, the status pills, the deposit/balance rows the server returns, the
+ * refund line, "Bayar uang muka" / "Bayar sisa pembayaran", and "Batalkan
+ * reservasi", which opens a native `<dialog>` that shows the SERVER's refund
+ * quote before anything is cancelled and asks for it again on confirm. No new
+ * route: a bare reference in the address is never proof of ownership (the
+ * request carries the bearer session; anything not the shopper's own is the
+ * neutral not-found).
+ *
  * `noindex, follow` - the `/akun` prefix already covers `robots.txt`.
  */
 import BaseLayout from "../../../../layouts/BaseLayout.astro";
@@ -95,6 +105,37 @@ const SIDENAV_ACTIVE = "reservasi";
       </nav>
 
       <div class="akun-content">
+        <div data-detail-view hidden>
+          <p><a href={ROUTES.accountReservations} data-back-to-list>Semua reservasi</a></p>
+          <p class="toko-field-hint" data-detail-loading aria-busy="true" hidden>Memuat reservasi...</p>
+          <div data-detail-error class="toko-banner toko-banner--danger" role="alert" hidden>
+            <p data-detail-error-message></p>
+            <div class="toko-actions">
+              <button type="button" class="btn btn--secondary btn--sm" data-detail-retry>Coba lagi</button>
+            </div>
+          </div>
+          <p class="empty-state" data-detail-notfound hidden>
+            Pemesanan tidak ditemukan. <a class="btn btn--secondary btn--sm" href={ROUTES.accountReservations}>Lihat semua reservasi</a>
+          </p>
+          <div class="booking-result" data-detail-result role="status"></div>
+          <article class="akun-card booking-reservation" data-detail hidden>
+            <div class="booking-reservation-head">
+              <h2 tabindex="-1" data-detail-heading></h2>
+              <span data-detail-pills class="booking-pills"></span>
+            </div>
+            <p data-detail-stay></p>
+            <p class="toko-field-hint" data-detail-meta></p>
+            <p data-detail-hold class="booking-countdown" hidden></p>
+            <h3 class="booking-subheading">Rincian pembayaran</h3>
+            <dl class="booking-dl" data-detail-money></dl>
+            <p data-detail-payment-note class="toko-banner" hidden></p>
+            <p data-detail-refund class="toko-banner toko-banner--info" hidden></p>
+            <div class="booking-reservation-actions" data-detail-actions></div>
+            <p class="toko-field-hint" data-detail-cancel-reason hidden></p>
+            <p class="toko-field-hint" data-detail-action-status role="status"></p>
+          </article>
+        </div>
+
         <div data-list-view hidden>
           <p class="toko-field-hint" data-loading aria-busy="true">Memuat reservasi...</p>
           <p class="empty-state" data-empty hidden>
@@ -108,6 +149,34 @@ const SIDENAV_ACTIVE = "reservasi";
         </div>
       </div>
     </div>
+
+    <dialog
+      class="booking-dialog"
+      data-cancel-dialog
+      aria-labelledby="batal-judul"
+      aria-describedby="batal-isi"
+    >
+      <h2 id="batal-judul">Batalkan reservasi ini?</h2>
+      <div id="batal-isi" data-cancel-body aria-busy="true">
+        <p data-cancel-loading>Menghitung pengembalian dana...</p>
+        <dl class="booking-dl" data-cancel-dl hidden></dl>
+        <p data-cancel-retained class="pill pill--warning" hidden></p>
+      </div>
+      <div data-cancel-error class="toko-banner toko-banner--danger" role="alert" hidden>
+        <p data-cancel-error-message></p>
+        <div class="toko-actions">
+          <button type="button" class="btn btn--secondary" data-cancel-retry hidden>Coba lagi</button>
+          <a class="btn btn--secondary toko-wa-fallback" data-cancel-wa hidden>Hubungi kami</a>
+        </div>
+      </div>
+      <p class="toko-field-hint" data-cancel-status role="status"></p>
+      <div class="booking-dialog-actions">
+        <button type="button" class="btn btn--secondary booking-dialog-btn" data-cancel-keep autofocus>Tidak, tetap pesan</button>
+        <button type="button" class="btn booking-btn-danger booking-dialog-btn" data-cancel-confirm disabled>
+          Ya, batalkan dan ajukan pengembalian
+        </button>
+      </div>
+    </dialog>
   </div>
 
   <script>

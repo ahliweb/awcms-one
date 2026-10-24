@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](routing.md)
 
-<!-- i18n-source-hash: sha256:ead3f703d0e60433d2ba530d84518374a65d92acebc0d046b25ba9c0475f66c0 -->
+<!-- i18n-source-hash: sha256:a0959de28915423dc1b8aa52ccc7bf6fe82a68f6643989b2053d08c48fc4dc4b -->
 
 # Routing
 
@@ -108,7 +108,7 @@ Halaman statis yang membaca endpoint booking anonim CMS dari browser, persis sep
 | --- | --- | --- |
 | `/booking` | `apps/storefront/src/profil/toko/pages/booking/index.astro` | Pilihan layanan, dua input tanggal bawaan, jumlah tamu, dan panel kuota yang malam, harga, uang muka, dan sisanya berasal dari server (`GET …/booking/offerings`, `availability`, `quote`); "Lanjut" membawa menginap sebagai `?o=&r=&in=&out=&n=` (id dan tanggal polos, tidak pernah nominal). `noindex, follow` |
 | `/booking/pesan` | `apps/storefront/src/profil/toko/pages/booking/pesan.astro` | Butuh akun yang sedang masuk (`/masuk?kembali=` lalu kembali). Ringkasan, pilihan pembayaran, lalu hold (`POST …/booking/reservations`, bearer, `Idempotency-Key` sekali per percobaan) dan hitung mundurnya (`holdExpiresAt - serverNow`, tidak pernah jam perangkat; diumumkan hanya saat mulai, 5 menit, 1 menit, dan kedaluwarsa), state kedaluwarsa dan terkonfirmasi (server yang memutuskan), dan serah-terima pembayaran lewat sesi gateway yang sudah ada (`purpose` deposit, balance, atau full) atau `/pesanan?kode=` untuk tender manual. `noindex, follow` |
-| `/akun/reservasi` | `apps/storefront/src/profil/toko/pages/akun/reservasi.astro` | Reservasi milik pembeli sendiri (`GET …/booking/reservations`, bearer, keyset "Muat lebih banyak"): pil status dan pembayaran, sisa tagihan, sisa waktu hold yang hidup, dan tombol bayar; `401` menghapus sesi. `noindex, follow` (prefiks `/akun` sudah di-disallow) |
+| `/akun/reservasi` | `apps/storefront/src/profil/toko/pages/akun/reservasi.astro` | Reservasi milik pembeli sendiri (`GET …/booking/reservations`, bearer, keyset "Muat lebih banyak"): pil status dan pembayaran, sisa tagihan, sisa waktu hold yang hidup, dan tombol bayar; `401` menghapus sesi. Dengan `?kode=<orderCode>` (issue #387) halaman yang sama menampilkan satu reservasi: baris uang muka/saldo, baris pengembalian dana, tombol bayar, dan "Batalkan reservasi", dialog native yang menampilkan kuota pembatalan dari server (`GET …/reservations/{orderCode}/cancellation-quote`) sebelum mengonfirmasi dengan `POST …/cancel`; kode yang tidak dikenal, milik orang lain, atau cacat adalah "Pemesanan tidak ditemukan." yang netral. `noindex, follow` (prefiks `/akun` sudah di-disallow) |
 
 `/booking` adalah halaman sekaligus induk `/booking/pesan`, sehingga build menulis `booking.html` di samping `booking/` dan `apps/storefront/server/penyaji.mjs` menyajikannya lewat penulisan ulang bayangan-direktori (`apps/storefront/tests/penyaji-bayangan-build-smoke.test.ts` mendaftarkannya). `PROFILE_NAV` sengaja tidak punya item "Booking": apakah tenant menjual menginap adalah sakelar fitur CMS yang tak dapat dibaca build statis, sehingga deployment yang menjualnya menambah satu entri (`{ label: "Booking", href: ROUTES.booking, route: "booking" }`) ke `PROFILE_NAV.toko`.
 

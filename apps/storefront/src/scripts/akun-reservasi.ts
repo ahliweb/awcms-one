@@ -17,27 +17,29 @@
  * re-read from the server instead of being declared expired locally.
  */
 import { ambilReservasiSaya } from "../lib/akun-klien";
+import { labelTombolBayar, mulaiPembayaranGateway } from "../lib/booking-aksi";
 import { bacaSesi, hapusSesi } from "../lib/akun-sesi";
 import { AKUN_EVENT_NAME } from "../lib/akun-kontrak";
 import {
+  buatPathDetailReservasi,
   formatSisa,
-  formatTanggalPendek,
   isNol,
   labelPembayaran,
   labelStatusReservasi,
   pesanGalatBooking,
   sisaDetik,
+  parseKodeDetail,
   statusEfektif,
+  teksMenginap,
   tujuanSesiGateway,
   type NadaPil,
   type ReservasiSaya
 } from "../lib/booking-kontrak";
-import { isValidGatewayRedirectUrl } from "../lib/gateway-redirect";
 import { formatPrice } from "../lib/harga";
-import { createGatewaySession } from "../lib/toko-klien";
 import { TokoApiError } from "../lib/toko-permintaan";
 import { ROUTES } from "../config/routes";
 import { buildWhatsappAccountMessage, buildWhatsappUrl } from "../lib/wa-fallback";
+import { buatDetailReservasi, type DetailReservasiKontrol } from "./akun-reservasi-detail";
 
 const POLL_START_MS = 15_000;
 const POLL_MAX_MS = 60_000;
@@ -91,12 +93,7 @@ if (root) {
 
   function stayText(item: ReservasiSaya): string {
     // Check-in is at midday-ish in the property's zone; the UTC calendar date is the stay's date in every zone this storefront serves.
-    const masuk = item.startsAt.slice(0, 10);
-    const nights = item.nights;
-    if (nights === null) return formatTanggalPendek(masuk);
-    const keluarMs = Date.parse(`${masuk}T00:00:00Z`) + nights * 86_400_000;
-    const keluar = new Date(keluarMs).toISOString().slice(0, 10);
-    return `${formatTanggalPendek(masuk)} sampai ${formatTanggalPendek(keluar)} (${nights} malam)`;
+    return teksMenginap(item.startsAt, item.nights);
   }
 
   function renderRow(row: Row): HTMLLIElement {
@@ -148,15 +145,14 @@ if (root) {
       const pay = document.createElement("button");
       pay.type = "button";
       pay.className = "btn btn--primary btn--sm";
-      pay.textContent =
-        purpose === "deposit" ? "Bayar uang muka" : purpose === "balance" ? "Bayar sisa pembayaran" : "Bayar sekarang";
+      pay.textContent = labelTombolBayar(purpose);
       pay.addEventListener("click", () => void payNow(item, purpose, pay));
       actions.appendChild(pay);
     }
     const detail = document.createElement("a");
     detail.className = "btn btn--secondary btn--sm";
-    detail.href = ROUTES.accountOrder(item.orderCode);
-    detail.textContent = "Detail pesanan";
+    detail.href = buatPathDetailReservasi(item.orderCode);
+    detail.textContent = "Detail reservasi";
     actions.appendChild(detail);
     li.appendChild(actions);
 
@@ -267,34 +263,17 @@ if (root) {
   }
 
   async function payNow(item: ReservasiSaya, purpose: "full" | "deposit" | "balance", button: HTMLButtonElement): Promise<void> {
-    const sesi = bacaSesi();
-    if (!sesi) {
-      render();
-      return;
-    }
     const note = listEl.querySelector<HTMLElement>(`[data-order-code="${CSS.escape(item.orderCode)}"] [data-row-status]`);
     button.disabled = true;
     if (note) note.textContent = "Membuka halaman pembayaran...";
-    try {
-      const session = await createGatewaySession(item.orderCode, null, sesi.token, purpose);
-      if (!isValidGatewayRedirectUrl(session.redirectUrl)) throw new Error("Gateway returned an unusable redirectUrl.");
-      window.location.assign(session.redirectUrl);
-    } catch (error) {
-      button.disabled = false;
-      if (error instanceof TokoApiError && error.code === "UNAUTHENTICATED") {
-        hapusSesi();
-        render();
-        return;
-      }
-      if (note) {
-        note.textContent =
-          error instanceof TokoApiError && error.code === "GATEWAY_UNAVAILABLE"
-            ? "Pembayaran online sedang tidak tersedia. Buka detail pesanan untuk instruksi pembayaran."
-            : error instanceof TokoApiError && error.code === "RATE_LIMITED"
-              ? pesanGalatBooking("RATE_LIMITED").message
-              : "Gagal membuka halaman pembayaran. Coba lagi.";
-      }
+    const result = await mulaiPembayaranGateway(item.orderCode, purpose);
+    if (result.kind === "dialihkan") return;
+    button.disabled = false;
+    if (result.kind === "belum-masuk") {
+      render();
+      return;
     }
+    if (note) note.textContent = result.message;
   }
 
   async function load(): Promise<void> {
@@ -317,6 +296,10 @@ if (root) {
       listEl.setAttribute("aria-busy", "false");
     }
   }
+
+  /** A `kode` in the address (even a malformed one) means the detail; a malformed code is the neutral not-found, never a list. */
+  const detailMode = new URLSearchParams(window.location.search).has("kode");
+  const detail: DetailReservasiKontrol = buatDetailReservasi(root, { onBelumMasuk: () => render() });
 
   retryButton.addEventListener("click", () => void load());
   loadMore.addEventListener("click", () => void load());
@@ -342,9 +325,16 @@ if (root) {
     if (!sesi) {
       guestView.hidden = false;
       listView.hidden = true;
+      detail.sembunyi();
       return;
     }
     guestView.hidden = true;
+    if (detailMode) {
+      // `/akun/reservasi?kode=...`: the order view and the cancellation (issue #387). The list is not loaded.
+      listView.hidden = true;
+      detail.tampil(parseKodeDetail(window.location.search));
+      return;
+    }
     listView.hidden = false;
     void load();
   }
