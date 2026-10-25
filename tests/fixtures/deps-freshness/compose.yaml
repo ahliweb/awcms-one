@@ -1,0 +1,11 @@
+name: fixture
+services:
+  postgres:
+    image: postgres:18.4
+    # image: commented/out:1.0
+  cms:
+    image: ${AWCMS_ONE_CMS_IMAGE:-awcms-one/cms:latest}
+  storefront:
+    image: awcms-one/storefront:${SITE_PROFILE:-toko}
+  quoted:
+    image: "redis:8.2" # trailing comment
