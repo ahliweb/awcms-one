@@ -4,7 +4,7 @@
 
 DoR artifact 8 of epic [#280](https://github.com/ahliweb/awcms-one/issues/280), Wave A item W8 ([#359](https://github.com/ahliweb/awcms-one/issues/359)), tracked in [`aw-business-platform-dor.md`](aw-business-platform-dor.md). Written 10 October 2026.
 
-> **Design specification, partly built.** Surface A (the storefront booking flow: `/booking`, `/booking/pesan`, `/akun/reservasi`, with their countdown, expired and own-list states) is built by [issue #386](https://github.com/ahliweb/awcms-one/issues/386); see "Implementation status of Surface A" below for exactly what it does and where it deliberately differs from this text. Surface B's payment handoff is the existing gateway session (deposit and balance purposes) reached from those pages; the order view with its payment history, **Surface C (cancellation and refund), Surface D (the cashier check-in) and every back-office screen are not built** (issues #381 to #383 and later). Every route name, copy string and state below that is not built remains a proposal for its implementer to confirm; where this text conflicts with the code, the code and its tests win and this document is amended.
+> **Design specification, partly built.** Surface A (the storefront booking flow: `/booking`, `/booking/pesan`, `/akun/reservasi`, with their countdown, expired and own-list states) is built by [issue #386](https://github.com/ahliweb/awcms-one/issues/386); see "Implementation status of Surface A" below for exactly what it does and where it deliberately differs from this text. Surface B (the deposit and balance payment handoff and the order view with its deposit state) and the storefront half of Surface C (the cancellation dialog that shows the server's refund quote before confirming, and the refund line) are built by [issue #387](https://github.com/ahliweb/awcms-one/issues/387) on the `/akun/reservasi?kode=` view; see "Implementation status of Surfaces B and C" below. **Surface D (the cashier check-in) and every back-office screen are not built by either** (issues #381 to #383 and later). Every route name, copy string and state below that is not built remains a proposal for its implementer to confirm; where this text conflicts with the code, the code and its tests win and this document is amended.
 
 **Related:** [Platform PRD](aw-business-platform-prd.md) (workflows 4.1 to 4.4, owner answers in section 9), [Threat model](aw-business-platform-threat-model.md) (control mapping, section 7), [Metric contracts](aw-business-platform-metrics.md), [ADR-0025](adr/0025-payments-are-an-allocation-ledger-separate-from-order-status.md) (payment ledger and down payment), [ADR-0033](adr/0033-returns-refunds-and-exchanges-are-additive-records-that-compensate-through-the-existing-ledgers.md) (refunds), [ADR-0040](adr/0040-aw-business-platform-capability-ownership-and-boundaries.md), [ADR-0041](adr/0041-gateway-deposit-sessions-and-mixed-tenders-on-one-order.md) (deposit sessions); the visual and accessibility rules this spec follows are [`ui-ux.md`](ui-ux.md), [`aksesibilitas.md`](aksesibilitas.md) and [`responsif.md`](responsif.md).
 
@@ -343,6 +343,72 @@ Where it differs from the proposal above, and why:
 6. **Resources are probed by id.** A Booking offering does not fix a resource and the offering link carries none, so `offerings` lists the ids of the tenant's active resources of the offering's mode and the page asks `availability` for each in turn, using the first with a free unit. A tenant selling several room types from separate resources of one mode would see every type offered under every offering; an explicit offering-to-resource assignment is a follow-up (ADR-0045 implementation notes for #386).
 7. **The provider returns to `/pesanan`.** The gateway's finish URL is the CMS's `COMMERCE_STOREFRONT_PUBLIC_URL` plus `/pesanan`, so a shopper paying through the gateway lands on the order tracking page; `/booking/pesan` (same stay, same tab) and `/akun/reservasi` show the confirmed reservation and the remaining balance, and never claim "confirmed" from a redirect.
 8. **The countdown never trusts the device clock.** Every reservation body carries `serverNow`; the remaining time is `holdExpiresAt - serverNow` minus the time elapsed on the device's monotonic clock, and the page re-asks the server at zero, when it regains visibility or the network, and every few seconds while held.
+
+## Implementation status of Surfaces B and C (issue #387)
+
+Built on the one static page `/akun/reservasi` (a `toko` profile page, `output: "static"`, no `prerender = false`): with `?kode=<orderCode>` in the address it shows one own reservation instead of the list. There is no new route, so no new entry in the profile matrix; `berita` and `landing` still build neither the page nor a link to it. The list's "Detail reservasi" link leads there, and the detail links on to `/akun/pesanan?kode=` ("Lihat pesanan").
+
+| Part | Reads and calls (all under `…/commerce/storefront/booking/reservations/{orderCode}`) | Does |
+| --- | --- | --- |
+| Order view (B, 3.1 and 3.3) | `GET …/{orderCode}` (bearer) and `GET …/account/orders/{orderCode}` | The stay, the status and payment pills, the money definition list (Total, Uang muka, Sudah dibayar, Sisa pembayaran, Sudah dikembalikan) with the server's settlement strings, the refund line, the hold's remaining time, and the actions "Bayar uang muka" / "Bayar sisa pembayaran" (the existing gateway session `purpose`; no amount is sent) and "Batalkan reservasi". It re-reads the server when the tab regains visibility or the network and while a hold is live, and announces a changed status in the status region. |
+| Cancellation dialog (C, 4.2) | `GET …/cancellation-quote`, then `POST …/cancel` (bearer, `Idempotency-Key`) | A native `<dialog>` opened with `showModal()`. Opening it asks the server for the quote and cancels nothing. It shows the amount paid, the policy window the cancellation falls in, the refund and the retained amount. **Confirming asks for the quote again**; a different refund is shown and needs a fresh confirmation, an unchanged one is sent as `acknowledgedRefund` (the only field of the body). |
+
+Behaviour worth knowing, with the reason:
+
+1. **The refund is the server's, always.** The dialog shows the quote's `computedRefund` verbatim. The percentage is displayed, never applied. The only arithmetic is the "retained" row (`amountPaid - computedRefund`, decimal-exact on strings, floored at zero), two figures of the same quote, shown and never sent (ground rule 1).
+2. **One `Idempotency-Key` per (reservation, figure).** A retry of the same request reuses the key; a changed figure takes a new one. If the answer to a cancel is lost (a dropped connection) the retry **replays the same request without asking for a new quote**: a quote for a reservation that is already cancelled would be refused with `INVALID_STATE` and hide the recorded result. The server compares the figure once more under its own lock (`409 QUOTE_CHANGED`, nothing cancelled; the dialog then re-reads the quote and re-renders it).
+3. **No guest control sets an amount.** The page has no input at all; the body carries `acknowledgedRefund` and nothing else (the CMS answers `400` to any other money field). A test asserts the request body.
+4. **No resolved policy** (`policySource: none`): the dialog says "Kebijakan pembatalan belum ditetapkan. Hubungi kami sebelum membatalkan.", disables the confirm button and offers the store's WhatsApp link (UX 4.1).
+5. **Zero refund** changes the confirm button to "Ya, batalkan tanpa pengembalian" and shows the retained amount in a warning pill; **nothing paid** reads "Ya, batalkan reservasi".
+6. **Points on a deposit order (Q8)**: the booking pages render no points control; they show "Poin tidak dapat dipakai bersama uang muka." (#386) and the ordinary checkout refuses points with a down payment. No "deposit jaminan" row or label exists anywhere.
+7. **Status after a refusal** (UX 2.5 style): 401 clears the session and shows the sign-in prompt; 404 is the neutral "Pemesanan tidak ditemukan."; 409 `INVALID_STATE` closes the loop ("Tutup") and re-reads the reservation; 409 `QUOTE_CHANGED` and `IDEMPOTENCY_CONFLICT` re-render the quote; 400/422 ask for a reload; 429 waits (with the server's seconds when it sends them); 403 `ACCOUNT_BLOCKED` and a tenant without a service account point to the store.
+
+Accessibility: the dialog has an accessible name (`aria-labelledby`) and description (`aria-describedby` on the body that holds the figures); the safe button "Tidak, tetap pesan" holds the initial focus; `Escape` and the safe button close it without cancelling and return focus to the opener (Escape is ignored while a request is in flight so the outcome is never hidden); the background is inert; the result region (`role="status"`) exists before its content changes and focus moves to its heading "Reservasi dibatalkan"; refusals use `role="alert"`; at 360px the buttons stack, wrap their long labels and the dialog fits the viewport. Checked in a real browser by `apps/storefront/tests/e2e/booking.e2e.ts` (axe WCAG 2.1 A/AA on every state, the 360px overflow check, Tab and Escape behaviour).
+
+New copy (Indonesian is what the storefront renders; the storefront has no second locale, so the English column is for the translator, as ground rule 4 says):
+
+| Where | Indonesian | English |
+| --- | --- | --- |
+| Link in the list | Detail reservasi | Reservation details |
+| Section | Rincian pembayaran | Payment details |
+| Row (no deposit policy) | Pembayaran: Bayar penuh | Payment: Pay in full |
+| Row | Uang muka / Uang muka yang harus dibayar sekarang | Deposit / Deposit due now |
+| Row (after a refund) | Sudah dikembalikan | Already refunded |
+| Payment pill, cancelled with money held | Dibayar, pengembalian dana mengikuti kebijakan | Paid; the refund follows the policy |
+| Cancel button | Batalkan reservasi | Cancel reservation |
+| Dialog title | Batalkan reservasi ini? | Cancel this reservation? |
+| Dialog loading | Menghitung pengembalian dana... | Calculating your refund... |
+| Policy row | Kebijakan yang berlaku: batal 9 hari sebelum check-in, dana kembali 50%. | Policy applied: cancelling 9 days before check-in, 50% refund. |
+| Policy row, per night | ... (dihitung per malam) | ... (calculated per night) |
+| Policy row, not resolved | Belum ditetapkan | Not set |
+| Confirm (refund > 0) | Ya, batalkan dan ajukan pengembalian | Yes, cancel and request my refund |
+| Confirm (refund 0) | Ya, batalkan tanpa pengembalian | Yes, cancel with no refund |
+| Confirm (nothing paid) | Ya, batalkan reservasi | Yes, cancel the reservation |
+| Safe button | Tidak, tetap pesan | No, keep my booking |
+| Warning pill | Tidak ada pengembalian: Rp X ditahan sesuai kebijakan | No refund: Rp X is retained under the policy |
+| While confirming | Memeriksa jumlah pengembalian dana terbaru... / Membatalkan reservasi... / Mengirim ulang permintaan yang sama... | Checking the latest refund amount... / Cancelling the reservation... / Sending the same request again... |
+| Figure changed | Jumlah pengembalian dana berubah. Tidak ada yang dibatalkan. Periksa jumlah yang baru, lalu konfirmasi lagi. | The refund amount changed. Nothing was cancelled. Review the new amount, then confirm again. |
+| Result (refund > 0) | Reservasi dibatalkan. Pengembalian dana Rp X sedang diproses. | Reservation cancelled. Your refund of Rp X is being processed. |
+| Result (refund 0) | Reservasi dibatalkan. Tidak ada pengembalian dana. | Reservation cancelled. There is no refund. |
+| Refund line | Pengembalian dana Rp X sedang diproses. / ... selesai. / Tidak ada pengembalian dana. / Disesuaikan oleh tim kami. | Your refund of Rp X is being processed. / ... is complete. / There is no refund. / Adjusted by our team. |
+| Cannot cancel | Reservasi ini sudah selesai dan tidak dapat dibatalkan. (and the sibling reasons for checked-in, cancelled, expired, no-show, rescheduled) | This reservation is completed and cannot be cancelled. (and the sibling reasons) |
+| 409 `INVALID_STATE` | Reservasi ini tidak dapat dibatalkan lagi. Status terbaru ditampilkan di halaman. | This reservation can no longer be cancelled. The latest status is shown on the page. |
+| 400 / 422 | Permintaan pembatalan tidak dapat diproses. Muat ulang halaman, lalu coba lagi. | The cancellation request could not be processed. Reload the page and try again. |
+| Cancel answer lost | Koneksi terputus, hasil pembatalan belum diketahui. Coba lagi: permintaan yang sama tidak akan diproses dua kali. | The connection dropped and the result is not known. Try again: the same request will not be processed twice. |
+| Quote failed | Tidak dapat menghitung pengembalian dana. Coba lagi. | Your refund could not be calculated. Try again. |
+| Neutral not-found | Pemesanan tidak ditemukan. | Booking not found. |
+| Close after a dead end | Tutup | Close |
+
+Where it differs from the proposal above, and why:
+
+1. **No payment-history list.** The storefront has no read of the ledger's allocations, so the view shows the settlement totals (paid, refunded, balance) instead of one row per allocation (3.3). A per-allocation list needs a CMS read.
+2. **No policy table before paying or on the detail, and no cut-off date.** The storefront has no read of a product's policy windows; it only has the quote that applies now. The dialog therefore names the window in hours or days before arrival and the share the server applies; the concrete "sampai 5 Okt 2026 14.00 WITA" cut-off (4.1) is not in the quote body and is not shown.
+3. **The refund destination row is generic** ("Dikembalikan ke metode pembayaran asal"): the quote does not name the tender.
+4. **Refund states.** "Sedang diproses" becomes "selesai" when the ledger's `reversed` reaches the recorded refund. The "menunggu verifikasi tim kami" state of an offline attestation (C-11) is not distinguishable in the shopper's view and reads "sedang diproses". The "biasanya ... hari kerja" phrase is omitted: no server value exists for it.
+5. **Payment return states (3.2).** The page shows the confirmed state (deposit settled) and the late-payment exception (a hold expired) from the reservation view. "Pembayaran sedang diproses" and "Pembayaran tidak berhasil" cannot be derived from it (no pending-payment signal), and the provider returns to `/pesanan` (Surface A, item 7).
+6. **"Unduh kuitansi" is not built** (the numbered order document is reached by a token link the reservation view does not carry).
+7. **Signed in only**, as Surface A (item 2): the server also accepts a guest by `phone`, the storefront does not offer it.
+8. **Not verified here:** real-device screen-reader passes (VoiceOver, TalkBack), 400% zoom and the text-spacing bookmarklet. The automated checks above are Chromium only.
 
 ## 10. Decisions not recorded (assumptions to confirm)
 

@@ -6,7 +6,24 @@
  */
 import { describe, expect, test } from "bun:test";
 import {
+  alasanTidakBisaBatal,
+  bandingkanUang,
+  barisUang,
   BOOKING_AKTIF_KEY,
+  buatPathDetailReservasi,
+  catatanPembayaran,
+  formatPersen,
+  labelPengembalian,
+  parseHasilPembatalan,
+  parseKodeDetail,
+  parseKuotaPembatalan,
+  parseRefundReservasi,
+  pesanBerhasilBatal,
+  pesanGalatPembatalan,
+  rincianPembatalan,
+  teksMenginap,
+  TEKS_TANPA_KEBIJAKAN,
+  uangDitahan,
   buatHoldAktif,
   buatPathPesan,
   formatSisa,
@@ -27,6 +44,7 @@ import {
   tanggalLokal,
   teksSisa,
   tujuanSesiGateway,
+  type KuotaPembatalan,
   type PermintaanReservasi,
   type RingkasanPembayaranBooking
 } from "../src/lib/booking-kontrak";
@@ -335,5 +353,284 @@ describe("the return address carries ids and dates, never an amount (UX 7)", () 
     expect(sidikPermintaan(base)).not.toBe(
       sidikPermintaan({ ...base, stay: { checkInDate: "2026-11-01", checkOutDate: "2026-11-04" } })
     );
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Issue #387 - Surface B (the order view) and Surface C (cancellation and refund)
+// ---------------------------------------------------------------------------
+
+describe("order view money rows (UX 3.1, 3.3)", () => {
+  const depositHeld = settlement({ total: "900000.00", deposit: "270000.00", balanceDue: "900000.00", outstanding: "900000.00" });
+  const depositPaid = settlement({
+    paid: "270000.00",
+    settled: "270000.00",
+    outstanding: "630000.00",
+    balanceDue: "630000.00",
+    paymentStatus: "dp_paid"
+  });
+
+  test("a deposit order not yet paid shows 'Uang muka yang harus dibayar sekarang' with the server's deposit and the whole balance", () => {
+    const rows = barisUang({ status: "held", settlement: depositHeld }, rupiah);
+    expect(rows.map((r) => r.key)).toEqual(["total", "uangMuka", "dibayar", "sisa"]);
+    expect(rows.find((r) => r.key === "uangMuka")).toEqual({ key: "uangMuka", label: "Uang muka yang harus dibayar sekarang", value: "Rp270000.00" });
+    expect(rows.find((r) => r.key === "sisa")?.value).toBe("Rp900000.00");
+  });
+
+  test("after the deposit the row reads 'Uang muka', 'Sudah dibayar' is what the ledger settled and the balance is the server's", () => {
+    const rows = barisUang({ status: "confirmed", settlement: depositPaid }, rupiah);
+    expect(rows.find((r) => r.key === "uangMuka")?.label).toBe("Uang muka");
+    expect(rows.find((r) => r.key === "dibayar")?.value).toBe("Rp270000.00");
+    expect(rows.find((r) => r.key === "sisa")).toEqual({ key: "sisa", label: "Sisa pembayaran", value: "Rp630000.00" });
+  });
+
+  test("a product with no deposit policy hides the deposit row and says 'Bayar penuh'; a paid balance reads 'Lunas'", () => {
+    const rows = barisUang({ status: "held", settlement: settlement({ deposit: "900000.00" }) }, rupiah);
+    expect(rows.map((r) => r.key)).toEqual(["total", "pembayaran", "dibayar", "sisa"]);
+    expect(rows.find((r) => r.key === "pembayaran")?.value).toBe("Bayar penuh");
+    const paid = barisUang(
+      { status: "confirmed", settlement: settlement({ deposit: "900000.00", paid: "900000.00", settled: "900000.00", outstanding: "0.00", balanceDue: "0.00", paymentStatus: "paid" }) },
+      rupiah
+    );
+    expect(paid.find((r) => r.key === "sisa")?.value).toBe("Lunas");
+  });
+
+  test("a cancelled or expired reservation owes nothing: no balance row; a returned amount gets its own row; no row is ever a security deposit", () => {
+    const cancelled = barisUang(
+      { status: "cancelled", settlement: settlement({ ...depositPaid, reversed: "135000.00", settled: "135000.00" }) },
+      rupiah
+    );
+    expect(cancelled.map((r) => r.key)).toEqual(["total", "uangMuka", "dibayar", "dikembalikan"]);
+    expect(barisUang({ status: "expired", settlement: depositHeld }, rupiah).some((r) => r.key === "sisa")).toBe(false);
+    for (const row of [...cancelled, ...barisUang({ status: "held", settlement: depositHeld }, rupiah)]) {
+      expect(`${row.label} ${row.value}`.toLowerCase()).not.toContain("jaminan");
+    }
+  });
+
+  test("payment notes follow the UX 3.2 return states the view can show, and never claim confirmation for an expired hold", () => {
+    const confirmed = catatanPembayaran({ status: "confirmed", orderCode: "BJM-1", settlement: depositPaid }, rupiah);
+    expect(confirmed).toEqual({
+      message: "Uang muka diterima. Reservasi Anda terkonfirmasi. Sisa pembayaran Rp630000.00 dibayar saat check-in atau lebih awal.",
+      tone: "success"
+    });
+    const expired = catatanPembayaran({ status: "expired", orderCode: "BJM-1", settlement: depositHeld }, rupiah);
+    expect(expired?.tone).toBe("warning");
+    expect(expired?.message).toContain("Nomor pesanan: BJM-1");
+    expect(expired?.message).not.toContain("terkonfirmasi");
+    expect(catatanPembayaran({ status: "held", orderCode: "BJM-1", settlement: depositHeld }, rupiah)).toBeNull();
+  });
+
+  test("a cancelled reservation that still holds money is not labelled 'Lunas'", () => {
+    const settled = settlement({ paid: "900000.00", settled: "900000.00", outstanding: "0.00", balanceDue: "0.00", paymentStatus: "paid" });
+    expect(labelPembayaran({ status: "cancelled", settlement: settled }, rupiah).label).toBe("Dibayar, pengembalian dana mengikuti kebijakan");
+    expect(labelPembayaran({ status: "cancelled", settlement: settlement({ paymentStatus: "refunded", reversed: "900000.00" }) }, rupiah).label).toBe(
+      "Dikembalikan seluruhnya"
+    );
+  });
+
+  test("the refund line: nothing before a cancellation, 'sedang diproses' until the ledger shows it returned, zero is plain text", () => {
+    expect(labelPengembalian(null, { reversed: "0.00" }, rupiah)).toBeNull();
+    expect(labelPengembalian({ finalRefund: "135000.00", adjusted: false }, { reversed: "0.00" }, rupiah)).toEqual({
+      label: "Pengembalian dana Rp135000.00 sedang diproses.",
+      tone: "info"
+    });
+    expect(labelPengembalian({ finalRefund: "135000.00", adjusted: false }, { reversed: "135000.00" }, rupiah)).toEqual({
+      label: "Pengembalian dana Rp135000.00 selesai.",
+      tone: "success"
+    });
+    expect(labelPengembalian({ finalRefund: "0.00", adjusted: false }, { reversed: "0.00" }, rupiah)?.label).toBe("Tidak ada pengembalian dana.");
+    // An override by staff is acknowledged without a reason or an actor (UX 4.3).
+    expect(labelPengembalian({ finalRefund: "100000.00", adjusted: true }, { reversed: "0.00" }, rupiah)?.label).toContain("Disesuaikan oleh tim kami.");
+  });
+
+  test("the refund body parses strictly; the success message is the recorded figure", () => {
+    expect(parseRefundReservasi({ finalRefund: "135000.00", adjusted: true })).toEqual({ finalRefund: "135000.00", adjusted: true });
+    expect(parseRefundReservasi(null)).toBeNull();
+    expect(parseRefundReservasi({ finalRefund: 135000 })).toBeNull();
+    expect(parseRefundReservasi({ finalRefund: "abc" })).toBeNull();
+    expect(pesanBerhasilBatal("135000.00", rupiah)).toBe("Reservasi dibatalkan. Pengembalian dana Rp135000.00 sedang diproses.");
+    expect(pesanBerhasilBatal("0.00", rupiah)).toBe("Reservasi dibatalkan. Tidak ada pengembalian dana.");
+  });
+
+  test("the address of a detail is a plain code, parsed back strictly", () => {
+    expect(buatPathDetailReservasi("BJM-20261024-ABC")).toBe("/akun/reservasi?kode=BJM-20261024-ABC");
+    expect(parseKodeDetail("?kode=BJM-20261024-ABC")).toBe("BJM-20261024-ABC");
+    expect(parseKodeDetail("?kode=")).toBeNull();
+    expect(parseKodeDetail("?kode=a b")).toBeNull();
+    expect(parseKodeDetail("?kode=../x")).toBeNull();
+    expect(parseKodeDetail("")).toBeNull();
+  });
+
+  test("stay text: dates plus the server's night count", () => {
+    expect(teksMenginap("2026-10-12T07:00:00.000Z", 3)).toBe("12 Okt 2026 sampai 15 Okt 2026 (3 malam)");
+    expect(teksMenginap("2026-10-12T07:00:00.000Z", null)).toBe("12 Okt 2026");
+  });
+});
+
+describe("money strings are compared and display-subtracted exactly, never as floats", () => {
+  test("bandingkanUang is decimal-exact and null for non-money", () => {
+    expect(bandingkanUang("10.10", "10.1")).toBe(0);
+    expect(bandingkanUang("0.30", "0.3")).toBe(0);
+    expect(bandingkanUang("135000.00", "135000.01")).toBe(-1);
+    expect(bandingkanUang("2.00", "1.99")).toBe(1);
+    expect(bandingkanUang("x", "1.00")).toBeNull();
+    expect(bandingkanUang(undefined, "1.00")).toBeNull();
+  });
+
+  test("uangDitahan is paid minus refund, floored at zero, and null for a malformed figure", () => {
+    expect(uangDitahan("270000.00", "135000.00")).toBe("135000.00");
+    expect(uangDitahan("270000.00", "270000.00")).toBe("0.00");
+    expect(uangDitahan("0.10", "0.30")).toBe("0.00");
+    expect(uangDitahan("0.30", "0.10")).toBe("0.20");
+    expect(uangDitahan("abc", "1.00")).toBeNull();
+  });
+
+  test("percentages are the server's, trimmed for reading", () => {
+    expect(formatPersen("50.00")).toBe("50");
+    expect(formatPersen("100.00")).toBe("100");
+    expect(formatPersen("33.50")).toBe("33,5");
+    expect(formatPersen("0.00")).toBe("0");
+  });
+});
+
+describe("the cancellation quote (UX 4.2): parsed strictly, shown as the server computed it", () => {
+  const quote = (overrides: Partial<KuotaPembatalan> = {}): KuotaPembatalan => ({
+    quotedAt: "2026-10-24T08:00:00.000Z",
+    startsAt: "2026-11-03T07:00:00.000Z",
+    hoursBeforeStart: 239,
+    reservationStatus: "confirmed",
+    policySource: "product",
+    policyId: "b3870000-0000-4000-8000-000000000001",
+    policyVersion: 1,
+    refundBasis: "whole_stay",
+    refundablePercent: "50.00",
+    amountPaid: "270000.00",
+    computedRefund: "135000.00",
+    ...overrides
+  });
+
+  test("the OpenAPI body parses; anything the dialog must not trust is null", () => {
+    expect(parseKuotaPembatalan(quote())).toEqual(quote());
+    expect(parseKuotaPembatalan(null)).toBeNull();
+    expect(parseKuotaPembatalan({ ...quote(), computedRefund: 135000 })).toBeNull();
+    expect(parseKuotaPembatalan({ ...quote(), computedRefund: "12,5" })).toBeNull();
+    expect(parseKuotaPembatalan({ ...quote(), hoursBeforeStart: 1.5 })).toBeNull();
+    expect(parseKuotaPembatalan({ ...quote(), policySource: "somewhere" })).toBeNull();
+    expect(parseKuotaPembatalan({ ...quote(), amountPaid: undefined })).toBeNull();
+    expect(parseHasilPembatalan({ status: "cancelled", finalRefund: "135000.00" })).toEqual({ status: "cancelled", finalRefund: "135000.00" });
+    expect(parseHasilPembatalan({ status: "held", finalRefund: "1.00" })).toBeNull();
+    expect(parseHasilPembatalan({ status: "cancelled" })).toBeNull();
+  });
+
+  test("the dialog rows follow UX 4.2 in order and the refund is the quote's computedRefund verbatim", () => {
+    const r = rincianPembatalan(quote(), rupiah);
+    expect(r.baris.map((b) => b.label)).toEqual([
+      "Sudah dibayar",
+      "Kebijakan yang berlaku",
+      "Dana yang dikembalikan",
+      "Ditahan sesuai kebijakan",
+      "Tujuan pengembalian"
+    ]);
+    expect(r.baris[0].value).toBe("Rp270000.00");
+    expect(r.baris[1].value).toBe("Kebijakan yang berlaku: batal 9 hari sebelum check-in, dana kembali 50%.");
+    expect(r.baris[2].value).toBe("Rp135000.00");
+    expect(r.baris[3].value).toBe("Rp135000.00");
+    expect(r.baris[4].value).toBe("Dikembalikan ke metode pembayaran asal");
+    expect(r.labelKonfirmasi).toBe("Ya, batalkan dan ajukan pengembalian");
+    expect(r.tanpaPengembalian).toBe(false);
+    // The percentage is shown, never applied: a quote whose percentage disagrees with its refund still shows the refund it carries.
+    expect(rincianPembatalan(quote({ refundablePercent: "99.00" }), rupiah).baris[2].value).toBe("Rp135000.00");
+  });
+
+  test("a zero refund changes the confirm button and surfaces the retained amount - a forfeit is never discovered afterwards", () => {
+    const r = rincianPembatalan(quote({ refundablePercent: "0.00", computedRefund: "0.00", hoursBeforeStart: 20 }), rupiah);
+    expect(r.tanpaPengembalian).toBe(true);
+    expect(r.labelKonfirmasi).toBe("Ya, batalkan tanpa pengembalian");
+    expect(r.ditahan).toBe("Rp270000.00");
+    expect(r.baris[1].value).toBe("Kebijakan yang berlaku: batal 20 jam sebelum check-in, dana kembali 0%.");
+    expect(r.baris.some((b) => b.label === "Tujuan pengembalian")).toBe(false);
+  });
+
+  test("nothing paid cancels plainly; a per-night policy says so; after arrival the window is named as such", () => {
+    const none = rincianPembatalan(quote({ amountPaid: "0.00", computedRefund: "0.00" }), rupiah);
+    expect(none.labelKonfirmasi).toBe("Ya, batalkan reservasi");
+    expect(none.ditahan).toBeNull();
+    expect(rincianPembatalan(quote({ refundBasis: "per_night" }), rupiah).baris[1].value).toContain("(dihitung per malam)");
+    expect(rincianPembatalan(quote({ hoursBeforeStart: -3 }), rupiah).baris[1].value).toContain("batal setelah waktu check-in");
+  });
+
+  test("no resolved policy: the spec's sentence, no self-service path implied (UX 4.1)", () => {
+    const r = rincianPembatalan(quote({ policySource: "none", policyId: null, policyVersion: null, refundablePercent: "0.00", computedRefund: "0.00" }), rupiah);
+    expect(r.tanpaKebijakan).toBe(true);
+    expect(r.ringkasan).toBe("Kebijakan pembatalan belum ditetapkan. Hubungi kami sebelum membatalkan.");
+    expect(TEKS_TANPA_KEBIJAKAN).toBe(r.ringkasan);
+  });
+
+  test("a reservation that cannot be cancelled gets a plain-text reason instead of a button; held and confirmed get none", () => {
+    expect(alasanTidakBisaBatal("held")).toBeNull();
+    expect(alasanTidakBisaBatal("confirmed")).toBeNull();
+    expect(alasanTidakBisaBatal("completed")).toBe("Reservasi ini sudah selesai dan tidak dapat dibatalkan.");
+    for (const status of ["checked_in", "cancelled", "expired", "no_show", "rescheduled", "something_new"]) {
+      expect(alasanTidakBisaBatal(status)).toMatch(/\S/);
+    }
+  });
+});
+
+describe("cancellation refusals map to the UX copy (409, 422, 429 and the rest)", () => {
+  test("409 QUOTE_CHANGED asks for a fresh confirmation and says nothing was cancelled", () => {
+    const m = pesanGalatPembatalan("QUOTE_CHANGED", 409, "batal");
+    expect(m.next).toBe("tinjau-ulang");
+    expect(m.message).toContain("Tidak ada yang dibatalkan");
+  });
+
+  test("409 INVALID_STATE re-reads the reservation instead of inviting a second cancel", () => {
+    expect(pesanGalatPembatalan("INVALID_STATE", 409, "batal").next).toBe("muat-ulang");
+    expect(pesanGalatPembatalan("INVALID_STATE", 409, "kuota").next).toBe("muat-ulang");
+  });
+
+  test("409 IDEMPOTENCY_CONFLICT reuses the booking copy and asks for a review", () => {
+    expect(pesanGalatPembatalan("IDEMPOTENCY_CONFLICT", 409, "batal")).toEqual({
+      message: "Permintaan berubah. Periksa rincian lalu kirim ulang.",
+      next: "tinjau-ulang"
+    });
+  });
+
+  test("other 409s (a feature or service account the tenant has not set up) point to the store", () => {
+    expect(pesanGalatPembatalan("BOOKING_SERVICE_ACTOR_NOT_CONFIGURED", 409, "batal").next).toBe("hubungi");
+    expect(pesanGalatPembatalan("FEATURE_DISABLED", 409, "batal").next).toBe("hubungi");
+  });
+
+  test("422 and 400 are 'cannot be processed' with a reload, never a raw code", () => {
+    for (const [code, status] of [["VALIDATION_ERROR", 400], ["UNPROCESSABLE", 422], ["SOMETHING_NEW", 422]] as const) {
+      const m = pesanGalatPembatalan(code, status, "batal");
+      expect(m.message).toBe("Permintaan pembatalan tidak dapat diproses. Muat ulang halaman, lalu coba lagi.");
+      expect(m.message).not.toContain(code);
+    }
+  });
+
+  test("429 waits, with the server's seconds when it sent them", () => {
+    expect(pesanGalatPembatalan("RATE_LIMITED", 429, "batal")).toEqual({
+      message: "Terlalu banyak percobaan. Tunggu sebentar, lalu coba lagi.",
+      next: "tunggu"
+    });
+    expect(pesanGalatPembatalan("RATE_LIMITED", 429, "batal", 30).message).toBe("Terlalu banyak percobaan. Tunggu 30 detik, lalu coba lagi.");
+  });
+
+  test("401 sends to sign-in, 404 is the neutral not-found, 403 blocked points to the store", () => {
+    expect(pesanGalatPembatalan("UNAUTHENTICATED", 401, "batal")).toEqual({ message: "Sesi Anda berakhir. Masuk lagi untuk melanjutkan.", next: "masuk" });
+    expect(pesanGalatPembatalan("NOT_FOUND", 404, "kuota")).toEqual({ message: "Pemesanan tidak ditemukan.", next: "muat-ulang" });
+    expect(pesanGalatPembatalan("ACCOUNT_BLOCKED", 403, "batal").next).toBe("hubungi");
+  });
+
+  test("a dropped connection says the quote cannot be computed, or that the cancel result is unknown and the retry is safe", () => {
+    expect(pesanGalatPembatalan("NETWORK_ERROR", 0, "kuota")).toEqual({ message: "Tidak dapat menghitung pengembalian dana. Coba lagi.", next: "coba-lagi" });
+    const batal = pesanGalatPembatalan("NETWORK_ERROR", 0, "batal");
+    expect(batal.next).toBe("coba-lagi");
+    expect(batal.message).toContain("tidak akan diproses dua kali");
+  });
+
+  test("an unknown code is a generic retry in both phases", () => {
+    expect(pesanGalatPembatalan("SOMETHING_NEW", 500, "kuota").message).toBe("Tidak dapat menghitung pengembalian dana. Coba lagi.");
+    expect(pesanGalatPembatalan("SOMETHING_NEW", 500, "batal").next).toBe("coba-lagi");
   });
 });

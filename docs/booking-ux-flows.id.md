@@ -8,7 +8,7 @@
 
 Artefak DoR 8 dari epik [#280](https://github.com/ahliweb/awcms-one/issues/280), item Wave A W8 ([#359](https://github.com/ahliweb/awcms-one/issues/359)), dilacak di [`aw-business-platform-dor.md`](aw-business-platform-dor.md). Ditulis 10 Oktober 2026.
 
-> **Spesifikasi desain, sebagian sudah dibangun.** Permukaan A (alur pemesanan storefront: `/booking`, `/booking/pesan`, `/akun/reservasi`, beserta state hitung mundur, kedaluwarsa, dan daftar milik sendiri) dibangun oleh [issue #386](https://github.com/ahliweb/awcms-one/issues/386); lihat "Status implementasi Permukaan A" di bawah untuk apa persisnya yang dikerjakannya dan di mana ia sengaja berbeda dari teks ini. Serah-terima pembayaran Permukaan B adalah sesi gateway yang sudah ada (tujuan deposit dan saldo) yang dicapai dari halaman-halaman itu; tampilan order dengan riwayat pembayarannya, **Permukaan C (pembatalan dan refund), Permukaan D (check-in kasir), dan semua layar back-office belum dibangun** (issue #381 sampai #383 dan seterusnya). Setiap nama rute, string teks, dan state di bawah yang belum dibangun tetap usulan untuk dikonfirmasi implementernya; bila teks ini bertentangan dengan kode, kode dan pengujiannya yang menang dan dokumen ini diubah.
+> **Spesifikasi desain, sebagian sudah dibangun.** Permukaan A (alur pemesanan storefront: `/booking`, `/booking/pesan`, `/akun/reservasi`, beserta state hitung mundur, kedaluwarsa, dan daftar milik sendiri) dibangun oleh [issue #386](https://github.com/ahliweb/awcms-one/issues/386); lihat "Status implementasi Permukaan A" di bawah untuk apa persisnya yang dikerjakannya dan di mana ia sengaja berbeda dari teks ini. Permukaan B (serah-terima pembayaran uang muka dan saldo, serta tampilan order dengan state uang mukanya) dan separuh storefront dari Permukaan C (dialog pembatalan yang menampilkan kuota pengembalian dana dari server sebelum konfirmasi, beserta baris pengembaliannya) dibangun oleh [issue #387](https://github.com/ahliweb/awcms-one/issues/387) pada tampilan `/akun/reservasi?kode=`; lihat "Status implementasi Permukaan B dan C" di bawah. **Permukaan D (check-in kasir) dan semua layar back-office belum dibangun oleh keduanya** (issue #381 sampai #383 dan seterusnya). Setiap nama rute, string teks, dan state di bawah yang belum dibangun tetap usulan untuk dikonfirmasi implementernya; bila teks ini bertentangan dengan kode, kode dan pengujiannya yang menang dan dokumen ini diubah.
 
 **Terkait:** [PRD platform](aw-business-platform-prd.md) (alur kerja 4.1 sampai 4.4, jawaban pemilik di bagian 9), [Model ancaman](aw-business-platform-threat-model.md) (pemetaan kontrol, bagian 7), [Kontrak metrik](aw-business-platform-metrics.md), [ADR-0025](adr/0025-payments-are-an-allocation-ledger-separate-from-order-status.md) (buku besar pembayaran dan uang muka), [ADR-0033](adr/0033-returns-refunds-and-exchanges-are-additive-records-that-compensate-through-the-existing-ledgers.md) (pengembalian dana), [ADR-0040](adr/0040-aw-business-platform-capability-ownership-and-boundaries.md), [ADR-0041](adr/0041-gateway-deposit-sessions-and-mixed-tenders-on-one-order.md) (sesi uang muka); aturan visual dan aksesibilitas yang diikuti spesifikasi ini adalah [`ui-ux.md`](ui-ux.md), [`aksesibilitas.md`](aksesibilitas.md), dan [`responsif.md`](responsif.md).
 
@@ -347,6 +347,72 @@ Di mana ia berbeda dari usulan di atas, dan mengapa:
 6. **Resource diperiksa berdasarkan id.** Sebuah offering Booking tidak menetapkan resource dan tautan offering tidak membawanya, sehingga `offerings` mendaftar id resource aktif tenant dengan mode yang sama dengan offering, dan halaman menanyakan `availability` satu per satu, memakai yang pertama punya unit kosong. Tenant yang menjual beberapa tipe kamar dari resource terpisah bermode sama akan melihat setiap tipe ditawarkan di bawah setiap offering; penetapan eksplisit offering-ke-resource adalah tindak lanjut (catatan implementasi ADR-0045 untuk #386).
 7. **Provider kembali ke `/pesanan`.** URL selesai gateway adalah `COMMERCE_STOREFRONT_PUBLIC_URL` milik CMS ditambah `/pesanan`, sehingga pembeli yang membayar lewat gateway mendarat di halaman pelacakan order; `/booking/pesan` (menginap dan tab yang sama) dan `/akun/reservasi` menampilkan reservasi terkonfirmasi dan sisa saldonya, dan tidak pernah menyatakan "terkonfirmasi" dari redirect.
 8. **Hitung mundur tidak pernah memercayai jam perangkat.** Setiap isi reservasi membawa `serverNow`; sisa waktu adalah `holdExpiresAt - serverNow` dikurangi waktu yang berlalu pada jam monotonik perangkat, dan halaman bertanya lagi ke server saat nol, saat kembali terlihat atau terhubung, dan setiap beberapa detik selama ditahan.
+
+## Status implementasi Permukaan B dan C (issue #387)
+
+Dibangun pada satu halaman statis `/akun/reservasi` (halaman profil `toko`, `output: "static"`, tanpa `prerender = false`): dengan `?kode=<orderCode>` di alamat, halaman menampilkan satu reservasi milik sendiri sebagai ganti daftar. Tidak ada rute baru, jadi tidak ada entri baru di matriks profil; `berita` dan `landing` tetap tidak membangun halaman maupun tautan ke sana. Tautan "Detail reservasi" di daftar menuju ke sana, dan detailnya menaut lanjut ke `/akun/pesanan?kode=` ("Lihat pesanan").
+
+| Bagian | Bacaan dan panggilan (semua di bawah `…/commerce/storefront/booking/reservations/{orderCode}`) | Fungsi |
+| --- | --- | --- |
+| Tampilan order (B, 3.1 dan 3.3) | `GET …/{orderCode}` (bearer) dan `GET …/account/orders/{orderCode}` | Menginap, pil status dan pembayaran, daftar definisi uang (Total, Uang muka, Sudah dibayar, Sisa pembayaran, Sudah dikembalikan) dengan string settlement dari server, baris pengembalian dana, sisa waktu hold, serta aksi "Bayar uang muka" / "Bayar sisa pembayaran" (`purpose` sesi gateway yang sudah ada; tidak ada jumlah yang dikirim) dan "Batalkan reservasi". Halaman membaca ulang server saat tab kembali terlihat atau jaringan pulih dan selama hold hidup, dan mengumumkan perubahan status di wilayah status. |
+| Dialog pembatalan (C, 4.2) | `GET …/cancellation-quote`, lalu `POST …/cancel` (bearer, `Idempotency-Key`) | `<dialog>` native yang dibuka dengan `showModal()`. Membukanya meminta kuota ke server dan tidak membatalkan apa pun. Dialog menampilkan jumlah yang sudah dibayar, jendela kebijakan tempat pembatalan jatuh, pengembalian dana, dan jumlah yang ditahan. **Konfirmasi meminta kuota sekali lagi**; pengembalian dana yang berbeda ditampilkan dan butuh konfirmasi baru, yang tidak berubah dikirim sebagai `acknowledgedRefund` (satu-satunya kolom body). |
+
+Perilaku yang perlu diketahui, beserta alasannya:
+
+1. **Pengembalian dana selalu milik server.** Dialog menampilkan `computedRefund` dari kuota apa adanya. Persentase ditampilkan, tidak pernah diterapkan. Satu-satunya aritmatika adalah baris "ditahan" (`amountPaid - computedRefund`, eksak desimal pada string, dibatasi minimal nol), dua angka dari kuota yang sama, hanya ditampilkan dan tidak pernah dikirim (aturan dasar 1).
+2. **Satu `Idempotency-Key` per (reservasi, angka).** Percobaan ulang atas permintaan yang sama memakai kunci yang sama; angka yang berubah mengambil kunci baru. Bila jawaban atas pembatalan hilang (koneksi putus), percobaan ulang **memutar ulang permintaan yang sama tanpa meminta kuota baru**: kuota untuk reservasi yang sudah dibatalkan akan ditolak dengan `INVALID_STATE` dan menyembunyikan hasil yang tercatat. Server membandingkan angka sekali lagi di bawah kunci-nya sendiri (`409 QUOTE_CHANGED`, tidak ada yang dibatalkan; dialog lalu membaca ulang kuota dan menampilkannya lagi).
+3. **Tidak ada kontrol tamu yang menetapkan jumlah.** Halaman sama sekali tidak punya input; body hanya membawa `acknowledgedRefund` (CMS menjawab `400` untuk kolom uang lain). Sebuah tes menegaskan body permintaan.
+4. **Kebijakan belum ditetapkan** (`policySource: none`): dialog berkata "Kebijakan pembatalan belum ditetapkan. Hubungi kami sebelum membatalkan.", menonaktifkan tombol konfirmasi, dan menawarkan tautan WhatsApp toko (UX 4.1).
+5. **Pengembalian nol** mengubah tombol konfirmasi menjadi "Ya, batalkan tanpa pengembalian" dan menampilkan jumlah yang ditahan di pil peringatan; **belum ada yang dibayar** berbunyi "Ya, batalkan reservasi".
+6. **Poin pada pesanan beruang muka (Q8)**: halaman booking tidak merender kontrol poin; halaman menampilkan "Poin tidak dapat dipakai bersama uang muka." (#386) dan checkout biasa menolak poin bersama uang muka. Tidak ada baris atau label "deposit jaminan" di mana pun.
+7. **Status setelah penolakan** (gaya UX 2.5): 401 menghapus sesi dan menampilkan ajakan masuk; 404 adalah "Pemesanan tidak ditemukan." yang netral; 409 `INVALID_STATE` menutup alur ("Tutup") dan membaca ulang reservasi; 409 `QUOTE_CHANGED` dan `IDEMPOTENCY_CONFLICT` menampilkan ulang kuota; 400/422 meminta muat ulang; 429 menunggu (dengan detik dari server bila dikirim); 403 `ACCOUNT_BLOCKED` dan tenant tanpa akun layanan mengarahkan ke toko.
+
+Aksesibilitas: dialog punya nama aksesibel (`aria-labelledby`) dan deskripsi (`aria-describedby` pada badan yang memuat angka); tombol aman "Tidak, tetap pesan" memegang fokus awal; `Escape` dan tombol aman menutupnya tanpa membatalkan dan mengembalikan fokus ke pembuka (Escape diabaikan selagi permintaan berjalan agar hasilnya tidak tersembunyi); latar belakang inert; wilayah hasil (`role="status"`) sudah ada sebelum isinya berubah dan fokus pindah ke judulnya "Reservasi dibatalkan"; penolakan memakai `role="alert"`; pada 360px tombol bertumpuk, label panjangnya membungkus, dan dialog muat di viewport. Diperiksa di browser sungguhan oleh `apps/storefront/tests/e2e/booking.e2e.ts` (axe WCAG 2.1 A/AA pada setiap state, pemeriksaan overflow 360px, perilaku Tab dan Escape).
+
+Teks baru (Indonesia adalah yang dirender storefront; storefront tidak punya locale kedua, jadi kolom Inggris untuk penerjemah, seperti kata aturan dasar 4):
+
+| Di mana | Indonesia | Inggris |
+| --- | --- | --- |
+| Tautan di daftar | Detail reservasi | Reservation details |
+| Bagian | Rincian pembayaran | Payment details |
+| Baris (tanpa kebijakan uang muka) | Pembayaran: Bayar penuh | Payment: Pay in full |
+| Baris | Uang muka / Uang muka yang harus dibayar sekarang | Deposit / Deposit due now |
+| Baris (setelah pengembalian) | Sudah dikembalikan | Already refunded |
+| Pil pembayaran, dibatalkan tetapi dana tertahan | Dibayar, pengembalian dana mengikuti kebijakan | Paid; the refund follows the policy |
+| Tombol batal | Batalkan reservasi | Cancel reservation |
+| Judul dialog | Batalkan reservasi ini? | Cancel this reservation? |
+| Dialog memuat | Menghitung pengembalian dana... | Calculating your refund... |
+| Baris kebijakan | Kebijakan yang berlaku: batal 9 hari sebelum check-in, dana kembali 50%. | Policy applied: cancelling 9 days before check-in, 50% refund. |
+| Baris kebijakan, per malam | ... (dihitung per malam) | ... (calculated per night) |
+| Baris kebijakan, belum ditetapkan | Belum ditetapkan | Not set |
+| Konfirmasi (pengembalian > 0) | Ya, batalkan dan ajukan pengembalian | Yes, cancel and request my refund |
+| Konfirmasi (pengembalian 0) | Ya, batalkan tanpa pengembalian | Yes, cancel with no refund |
+| Konfirmasi (belum ada yang dibayar) | Ya, batalkan reservasi | Yes, cancel the reservation |
+| Tombol aman | Tidak, tetap pesan | No, keep my booking |
+| Pil peringatan | Tidak ada pengembalian: Rp X ditahan sesuai kebijakan | No refund: Rp X is retained under the policy |
+| Saat konfirmasi | Memeriksa jumlah pengembalian dana terbaru... / Membatalkan reservasi... / Mengirim ulang permintaan yang sama... | Checking the latest refund amount... / Cancelling the reservation... / Sending the same request again... |
+| Angka berubah | Jumlah pengembalian dana berubah. Tidak ada yang dibatalkan. Periksa jumlah yang baru, lalu konfirmasi lagi. | The refund amount changed. Nothing was cancelled. Review the new amount, then confirm again. |
+| Hasil (pengembalian > 0) | Reservasi dibatalkan. Pengembalian dana Rp X sedang diproses. | Reservation cancelled. Your refund of Rp X is being processed. |
+| Hasil (pengembalian 0) | Reservasi dibatalkan. Tidak ada pengembalian dana. | Reservation cancelled. There is no refund. |
+| Baris pengembalian | Pengembalian dana Rp X sedang diproses. / ... selesai. / Tidak ada pengembalian dana. / Disesuaikan oleh tim kami. | Your refund of Rp X is being processed. / ... is complete. / There is no refund. / Adjusted by our team. |
+| Tidak dapat dibatalkan | Reservasi ini sudah selesai dan tidak dapat dibatalkan. (dan alasan sejenis untuk sedang menginap, dibatalkan, kedaluwarsa, tidak hadir, dijadwalkan ulang) | This reservation is completed and cannot be cancelled. (and the sibling reasons) |
+| 409 `INVALID_STATE` | Reservasi ini tidak dapat dibatalkan lagi. Status terbaru ditampilkan di halaman. | This reservation can no longer be cancelled. The latest status is shown on the page. |
+| 400 / 422 | Permintaan pembatalan tidak dapat diproses. Muat ulang halaman, lalu coba lagi. | The cancellation request could not be processed. Reload the page and try again. |
+| Jawaban pembatalan hilang | Koneksi terputus, hasil pembatalan belum diketahui. Coba lagi: permintaan yang sama tidak akan diproses dua kali. | The connection dropped and the result is not known. Try again: the same request will not be processed twice. |
+| Kuota gagal | Tidak dapat menghitung pengembalian dana. Coba lagi. | Your refund could not be calculated. Try again. |
+| Tidak ditemukan (netral) | Pemesanan tidak ditemukan. | Booking not found. |
+| Tutup setelah jalan buntu | Tutup | Close |
+
+Di mana ia berbeda dari usulan di atas, dan mengapa:
+
+1. **Tidak ada daftar riwayat pembayaran.** Storefront tidak punya bacaan alokasi buku besar, jadi tampilan menunjukkan total settlement (dibayar, dikembalikan, sisa) sebagai ganti satu baris per alokasi (3.3). Daftar per alokasi butuh bacaan CMS.
+2. **Tidak ada tabel kebijakan sebelum membayar atau di detail, dan tidak ada tanggal batas.** Storefront tidak punya bacaan jendela kebijakan produk; ia hanya punya kuota yang berlaku sekarang. Dialog karena itu menyebut jendela dalam jam atau hari sebelum kedatangan dan persentase yang diterapkan server; batas konkret "sampai 5 Okt 2026 14.00 WITA" (4.1) tidak ada di body kuota dan tidak ditampilkan.
+3. **Baris tujuan pengembalian bersifat umum** ("Dikembalikan ke metode pembayaran asal"): kuota tidak menyebut alat bayarnya.
+4. **State pengembalian.** "Sedang diproses" menjadi "selesai" ketika `reversed` buku besar mencapai pengembalian yang tercatat. State "menunggu verifikasi tim kami" pada atestasi offline (C-11) tidak dapat dibedakan di tampilan pembeli dan berbunyi "sedang diproses". Frasa "biasanya ... hari kerja" dihilangkan: tidak ada nilai dari server untuknya.
+5. **State kembali dari pembayaran (3.2).** Halaman menampilkan state terkonfirmasi (uang muka lunas) dan pengecualian pembayaran terlambat (hold kedaluwarsa) dari tampilan reservasi. "Pembayaran sedang diproses" dan "Pembayaran tidak berhasil" tidak dapat diturunkan darinya (tidak ada sinyal pembayaran tertunda), dan penyedia kembali ke `/pesanan` (Permukaan A, butir 7).
+6. **"Unduh kuitansi" belum dibangun** (dokumen order bernomor dicapai lewat tautan bertoken yang tidak dibawa tampilan reservasi).
+7. **Hanya untuk yang sudah masuk**, seperti Permukaan A (butir 2): server juga menerima tamu lewat `phone`, storefront tidak menawarkannya.
+8. **Tidak diverifikasi di sini:** pengecekan pembaca layar di perangkat sungguhan (VoiceOver, TalkBack), zoom 400%, dan bookmarklet text-spacing. Pemeriksaan otomatis di atas hanya Chromium.
 
 ## 10. Keputusan yang belum dicatat (asumsi untuk dikonfirmasi)
 

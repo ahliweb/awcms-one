@@ -15,6 +15,9 @@
  */
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import {
+  ambilDetailReservasi,
+  ambilKuotaPembatalan,
+  batalkanReservasi,
   ambilReservasiSaya,
   ambilReservasiSayaByKode,
   buatReservasiBooking,
@@ -417,5 +420,99 @@ describe("akun-klien: the booking reservations (issue #386)", () => {
     mockFetch(200, { success: true, data: { orderCode: "A/B" } });
     await ambilReservasiSayaByKode("A/B");
     expect(lastRequest?.url).toBe("https://cms.example.com/api/v1/commerce/storefront/booking/reservations/A%2FB");
+  });
+});
+
+describe("akun-klien: reservation detail and cancellation (issue #387)", () => {
+  const BASE = "https://cms.example.com/api/v1/commerce/storefront/booking/reservations";
+  const QUOTE = {
+    quotedAt: "2026-10-24T08:00:00.000Z",
+    startsAt: "2026-11-03T07:00:00.000Z",
+    hoursBeforeStart: 239,
+    reservationStatus: "confirmed",
+    policySource: "product",
+    policyId: null,
+    policyVersion: 1,
+    refundBasis: "whole_stay",
+    refundablePercent: "50.00",
+    amountPaid: "270000.00",
+    computedRefund: "135000.00"
+  };
+
+  test("ambilDetailReservasi parses the recorded refund (null until cancelled)", async () => {
+    simpanSesi(SESI_VALID);
+    mockFetch(200, { success: true, data: { orderCode: "BJM-1", refund: null } });
+    expect((await ambilDetailReservasi("BJM-1")).refund).toBeNull();
+    mockFetch(200, { success: true, data: { orderCode: "BJM-1", refund: { finalRefund: "135000.00", adjusted: true } } });
+    expect((await ambilDetailReservasi("BJM-1")).refund).toEqual({ finalRefund: "135000.00", adjusted: true });
+    mockFetch(200, { success: true, data: { orderCode: "BJM-1", refund: { finalRefund: "oops" } } });
+    expect((await ambilDetailReservasi("BJM-1")).refund).toBeNull();
+  });
+
+  test("ambilKuotaPembatalan is a bearer GET of the quote route with no body and no Idempotency-Key", async () => {
+    simpanSesi(SESI_VALID);
+    mockFetch(200, { success: true, data: QUOTE });
+    const quote = await ambilKuotaPembatalan("A/B");
+    expect(quote.computedRefund).toBe("135000.00");
+    expect(lastRequest?.url).toBe(`${BASE}/A%2FB/cancellation-quote`);
+    expect(lastRequest?.init.method).toBe("GET");
+    expect(lastRequest?.init.body).toBeUndefined();
+    const headers = lastRequest?.init.headers as Record<string, string>;
+    expect(headers.Authorization).toBe("Bearer cs_stub_1");
+    expect(headers["Idempotency-Key"]).toBeUndefined();
+    expect(lastRequest?.init.credentials).toBe("omit");
+  });
+
+  test("a quote body that does not validate is INVALID_RESPONSE, never a guessed figure", async () => {
+    simpanSesi(SESI_VALID);
+    mockFetch(200, { success: true, data: { ...QUOTE, computedRefund: 135000 } });
+    await expect(ambilKuotaPembatalan("BJM-1")).rejects.toMatchObject({ code: "INVALID_RESPONSE" });
+  });
+
+  test("a quote refusal keeps its code and details; a 401 clears the session", async () => {
+    simpanSesi(SESI_VALID);
+    mockFetch(409, { success: false, error: { code: "INVALID_STATE", message: "no" } });
+    await expect(ambilKuotaPembatalan("BJM-1")).rejects.toMatchObject({ code: "INVALID_STATE", status: 409 });
+    mockFetch(401, { success: false, error: { code: "UNAUTHENTICATED", message: "no" } });
+    await expect(ambilKuotaPembatalan("BJM-1")).rejects.toBeInstanceOf(TokoApiError);
+    expect(window.localStorage.getItem("awcms-one:akun:v1")).toBeNull();
+  });
+
+  test("batalkanReservasi POSTs ONLY the acknowledged figure, with the Idempotency-Key - no amount, override or phone", async () => {
+    simpanSesi(SESI_VALID);
+    mockFetch(200, { success: true, data: { status: "cancelled", finalRefund: "135000.00" } });
+    const result = await batalkanReservasi("BJM-1", "135000.00", "key-1");
+    expect(result).toEqual({ status: "cancelled", finalRefund: "135000.00" });
+    expect(lastRequest?.url).toBe(`${BASE}/BJM-1/cancel`);
+    expect(lastRequest?.init.method).toBe("POST");
+    expect(JSON.parse(String(lastRequest?.init.body))).toEqual({ acknowledgedRefund: "135000.00" });
+    const headers = lastRequest?.init.headers as Record<string, string>;
+    expect(headers["Idempotency-Key"]).toBe("key-1");
+    expect(headers.Authorization).toBe("Bearer cs_stub_1");
+    expect(headers["Content-Type"]).toBe("application/json");
+  });
+
+  test("QUOTE_CHANGED carries the server's new figure in details and nothing is treated as cancelled", async () => {
+    simpanSesi(SESI_VALID);
+    mockFetch(409, { success: false, error: { code: "QUOTE_CHANGED", message: "changed", details: { computedRefund: "0.00" } } });
+    await expect(batalkanReservasi("BJM-1", "135000.00", "key-1")).rejects.toMatchObject({
+      code: "QUOTE_CHANGED",
+      status: 409,
+      details: { computedRefund: "0.00" }
+    });
+  });
+
+  test("an unreadable cancel answer is INVALID_RESPONSE (the caller retries with the same key)", async () => {
+    simpanSesi(SESI_VALID);
+    mockFetch(200, { success: true, data: { status: "held" } });
+    await expect(batalkanReservasi("BJM-1", "1.00", "key-1")).rejects.toMatchObject({ code: "INVALID_RESPONSE" });
+  });
+
+  test("with no session nothing is sent", async () => {
+    mockFetch(200, { success: true, data: QUOTE });
+    await expect(ambilKuotaPembatalan("BJM-1")).rejects.toMatchObject({ code: "UNAUTHENTICATED" });
+    expect(lastRequest).toBeNull();
+    await expect(batalkanReservasi("BJM-1", "1.00", "k")).rejects.toMatchObject({ code: "UNAUTHENTICATED" });
+    expect(lastRequest).toBeNull();
   });
 });

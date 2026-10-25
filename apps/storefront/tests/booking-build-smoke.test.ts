@@ -131,6 +131,41 @@ describe("build smoke: the toko booking pages (issue #386)", () => {
         expect(list).toMatch(/data-guest-view[^>]*\bhidden\b/);
         expect(list).toContain('href="/akun/reservasi"');
 
+        // Issue #387: the same shell hosts the reservation detail and the cancellation dialog (UX 3.3, 4.2, 6).
+        expect(list).toMatch(/data-detail-view[^>]*\bhidden\b/);
+        expect(list).toMatch(/<article[^>]*data-detail[^>]*\bhidden\b/);
+        // A native modal dialog with an accessible name and description (the refund figures live in the described body) ...
+        const dialog = list.match(/<dialog\b[^>]*>/)?.[0] ?? "";
+        expect(dialog).toContain("data-cancel-dialog");
+        expect(dialog).toContain('aria-labelledby="batal-judul"');
+        expect(dialog).toContain('aria-describedby="batal-isi"');
+        expect(list).toContain('id="batal-judul"');
+        expect(list).toContain('id="batal-isi"');
+        // ... whose confirm button cannot be pressed before the server's quote arrives, and whose safe choice is the default focus.
+        expect(list.match(/<button[^>]*data-cancel-confirm[^>]*>/)?.[0]).toMatch(/\bdisabled\b/);
+        expect(list.match(/<button[^>]*data-cancel-keep[^>]*>/)?.[0]).toMatch(/\bautofocus\b/);
+        // The live regions exist before their content changes: the result, the dialog's status and alert, the action status.
+        expect(list).toMatch(/role="status"[^>]*data-detail-result|data-detail-result[^>]*role="status"/);
+        expect(list).toMatch(/data-cancel-error[^>]*role="alert"|role="alert"[^>]*data-cancel-error/);
+        expect(list).toMatch(/data-cancel-status[^>]*role="status"|role="status"[^>]*data-cancel-status/);
+        // No guest control sets an amount: the shell has no form field at all, and nothing in it is a refund input.
+        const shell = list.slice(list.indexOf("data-reservasi-root"), list.indexOf("</main>"));
+        expect(shell.length).toBeGreaterThan(0);
+        expect(shell).not.toMatch(/<input\b/i);
+        expect(shell).not.toMatch(/<textarea\b/i);
+        expect(shell).not.toMatch(/<select\b/i);
+        expect(shell).not.toMatch(/name="(amount|refund|finalRefund|acknowledgedRefund)"/);
+        // No browser confirm/alert in the reservation scripts (the dialog is the confirmation).
+        const reservasiScripts = walk(join(distClient, "_astro"))
+          .filter((file) => file.endsWith(".js"))
+          .map((file) => readFileSync(file, "utf8"))
+          .filter((code) => code.includes("data-cancel-dialog"));
+        expect(reservasiScripts.length).toBeGreaterThan(0);
+        for (const code of reservasiScripts) {
+          expect(code).not.toMatch(/window\.(confirm|alert|prompt)\s*\(/);
+          expect(code).not.toMatch(/[^.\w](confirm|alert|prompt)\s*\(/);
+        }
+
         // `/booking` also covers `/booking/pesan`; `/akun` already covers the third.
         const robots = readFileSync(join(distClient, "robots.txt"), "utf8");
         expect(robots).toContain("Disallow: /booking");

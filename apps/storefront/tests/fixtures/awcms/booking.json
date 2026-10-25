@@ -17,5 +17,13 @@
   "holdSeconds": 900,
   "firstResourceBlockedOffsetDays": 20,
   "fullOffsetDays": 40,
-  "maxLiveHolds": 3
+  "maxLiveHolds": 3,
+  "cancellation": {
+    "comment": "Issue #387. Hours before arrival -> share of what was paid that comes back; the first window whose minHours the cancellation meets wins.",
+    "windows": [
+      { "minHours": 168, "percent": 100 },
+      { "minHours": 48, "percent": 50 },
+      { "minHours": -100000, "percent": 0 }
+    ]
+  }
 }
