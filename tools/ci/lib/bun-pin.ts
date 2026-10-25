@@ -23,7 +23,7 @@
 
 /**
  * Extract the exact Bun version a root `package.json`'s `packageManager`
- * field pins, e.g. `"bun@1.4.3"` -> `"1.4.3"`.
+ * field pins, e.g. `"bun@1.4.4"` -> `"1.4.4"`.
  *
  * @param {string} packageJsonText - the raw text of the root package.json
  * @returns {string} the pinned version

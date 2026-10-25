@@ -6,11 +6,11 @@ import { describe, test } from "bun:test";
 import assert from "node:assert/strict";
 import { checkBunPin, enforceBunPinOrThrow, readPinnedBunVersion } from "../tools/ci/lib/bun-pin.ts";
 
-const PKG = JSON.stringify({ packageManager: "bun@1.4.3" });
+const PKG = JSON.stringify({ packageManager: "bun@1.4.4" });
 
 describe("tools/ci/lib/bun-pin.ts", () => {
   test("readPinnedBunVersion extracts the exact version", () => {
-    assert.equal(readPinnedBunVersion(PKG), "1.4.3");
+    assert.equal(readPinnedBunVersion(PKG), "1.4.4");
   });
 
   test("readPinnedBunVersion throws when packageManager is missing", () => {
@@ -22,17 +22,17 @@ describe("tools/ci/lib/bun-pin.ts", () => {
   });
 
   test("checkBunPin: matching version is ok", () => {
-    const result = checkBunPin("1.4.3", PKG);
-    assert.deepEqual(result, { ok: true, version: "1.4.3" });
+    const result = checkBunPin("1.4.4", PKG);
+    assert.deepEqual(result, { ok: true, version: "1.4.4" });
   });
 
   test("checkBunPin: mismatched version fails closed with a clear message", () => {
     const result = checkBunPin("1.3.0", PKG);
     assert.equal(result.ok, false);
-    assert.equal(result.expected, "1.4.3");
+    assert.equal(result.expected, "1.4.4");
     assert.equal(result.actual, "1.3.0");
     assert.match(result.message, /1\.3\.0/);
-    assert.match(result.message, /1\.4\.3/);
+    assert.match(result.message, /1\.4\.4/);
   });
 
   test("enforceBunPinOrThrow throws on mismatch, is silent on match", () => {

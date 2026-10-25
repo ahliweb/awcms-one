@@ -1780,8 +1780,19 @@ export const READER_BUDGET_BYTES = 24_000;
  * `AdminLayout` CSS bundle and the compiled Indonesian catalogue are not
  * additive across lineages. The budget is the measurement rounded up to the next
  * 100 B.
+ *
+ * **Raised to 487,700 B by the #452 sync (upstream `5e29084`, AWCMS
+ * v10.10.2)**, MEASURED 487,611 B on the merged build (487,529 B before it,
+ * +82 B; the previous constant, 487,600 B, was exceeded by 11 B, so the gate
+ * went red on the merged build until this raise). Upstream's own constant did
+ * not move across this range - the 3c7fc29..5e29084 delta is no client script
+ * and no screen, only the shared `AdminLayout` CSS bundle and the compiled
+ * catalogue changing size, and neither is additive across lineages - and
+ * `commerce` added no browser byte in the sync (its Label-in-Name audit,
+ * issue #452 check 3, found nothing to change). A measurement of the merged
+ * build rounded up to the next 100 B.
  */
-export const APP_BUDGET_BYTES = 487_600;
+export const APP_BUDGET_BYTES = 487_700;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

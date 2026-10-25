@@ -1,11 +1,11 @@
 /**
  * Exceptions for `bun run deps:audit:check` — advisories knowingly accepted.
  *
- * **Empty is the target state, and the list is empty.** The one entry it held,
- * `http-cache-semantics` GHSA-ch52-4w7c-c8xp, was closed by a release
- * (`http-cache-semantics@4.3.0`, reached through `astro@7.4.0`); the entry is
- * removed here by the awcms-one v10.8.0 sync (issue #377) because
- * `deps:audit:check` fails on a stale entry. The reasoning is the
+ * **Empty is the target state, and the list is empty.** Its last entry,
+ * `http-cache-semantics` GHSA-ch52-4w7c-c8xp (accepted 2026-10-03 because no
+ * patched release existed), was removed when `astro@7.4.0` brought in the
+ * patched `http-cache-semantics@4.3.0` — `deps:audit:check` reported the entry
+ * as stale, which is exactly what it exists to do. The reasoning is the
  * one ADR-0058 settled for the permission-enforcement gate: an empty list makes
  * the NEXT exception the only entry, so it cannot be added without being seen.
  * A list with five reasonable-looking entries is where the sixth hides.

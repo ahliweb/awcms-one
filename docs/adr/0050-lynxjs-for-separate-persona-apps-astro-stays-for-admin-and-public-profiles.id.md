@@ -1,12 +1,13 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0050-lynxjs-for-separate-persona-apps-astro-stays-for-admin-and-public-profiles.md)
 
-<!-- i18n-source-hash: sha256:87d0c45c4c4f8f85f35b20a84c4661dcbc544735434c57a22cfc106be2d3ca11 -->
+<!-- i18n-source-hash: sha256:49221f60ee6b0807c192e002721858530fb92617f8792b77dcf230c0083831ac -->
 
 # ADR-0050 — LynxJS/ReactLynx untuk aplikasi persona terpisah; Astro tetap untuk admin dan setiap profil publik
 
 - **Status:** Accepted as direction; not implemented
 - **Tanggal:** 20 Oktober 2026
 - **Pengambil keputusan:** ahliweb
+- **Pembaruan (21 Oktober 2026, issue #452):** konsisten dengan upstream #1133. Issue itu mendarat sebagai ADR-0146 upstream (status Proposed, 20 Oktober 2026) dan tiba bersama sinkronisasi subtree #452; arahnya sama dengan ADR ini (aplikasi persona memprioritaskan Lynx di repo konsumennya sendiri, setiap permukaan admin dan web publik tetap Astro, gerbang PoC lebih dulu, Bun-only), sehingga ADR ini tidak ditinjau ulang. Satu-satunya beda redaksi ada pada fallback Lynx for Web: D6 menyebut Astro sebagai fallback yang didokumentasikan, upstream meminta ADR tersendiri; keduanya sepakat bahwa sebuah ADR harus mencatatnya. `apps/cms/tests/product-surface-policy.test.ts` upstream (tanpa dependensi `@lynx-js/*`, impor, atau `lynx.config.*`) ikut tiba dan lulus.
 - **Terkait:** issue [#445](https://github.com/ahliweb/awcms-one/issues/445) (ADR ini); keputusan platform upstream [ahliweb/awcms#1133](https://github.com/ahliweb/awcms/issues/1133); [ADR-0024](0024-awcms-one-is-template-only-derived-apps-own-their-backend.id.md) (kepemilikan template-only); [ADR-0018](0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.id.md) (profil build); [ADR-0016](0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md) (sesi bearer); [ADR-0017](0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.id.md) (kunci provider tetap di sisi server); pembagian peran ADR-0070 reference repo `awcms` upstream antara admin sistem dan lapisan pengalaman
 
 ## Konteks

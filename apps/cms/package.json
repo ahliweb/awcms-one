@@ -1,6 +1,6 @@
 {
   "name": "awcms",
-  "version": "10.9.0",
+  "version": "10.10.2",
   "private": true,
   "description": "AWCMS \u2014 basis/fondasi modular monolith untuk pengembangan ERP & solusi bisnis (Bun + Astro + PostgreSQL)",
   "license": "MIT",
@@ -27,7 +27,7 @@
     "business-integration"
   ],
   "type": "module",
-  "packageManager": "bun@1.4.3",
+  "packageManager": "bun@1.4.4",
   "engines": {
     "bun": ">=1.3.0"
   },
@@ -126,6 +126,7 @@
     "i18n:screens:check": "bun scripts/i18n-screen-coverage-check.ts",
     "design:token-contrast:check": "bun scripts/design-token-contrast-check.ts",
     "deps:audit:check": "bun scripts/dependency-audit-check.ts",
+    "deps:freshness": "bun scripts/dependency-freshness.ts",
     "access:chokepoint:check": "bun scripts/access-chokepoint-check.ts",
     "access:decision-log:coverage:check": "bun scripts/access-decision-log-coverage-check.ts",
     "access:grant-readers:check": "bun scripts/access-grant-readers-check.ts",
@@ -222,12 +223,12 @@
     "docs:i18n:stamp:check": "bun scripts/docs-i18n-stamp.mjs --check"
   },
   "devDependencies": {
-    "@axe-core/playwright": "^4.13.0",
+    "@axe-core/playwright": "^4.14.0",
     "@changesets/cli": "^3.0.3",
-    "@playwright/test": "^1.64.0",
-    "@types/bun": "^1.4.3",
-    "prettier": "^3.9.9",
-    "prettier-plugin-astro": "^1.1.0",
+    "@playwright/test": "^1.64.1",
+    "@types/bun": "^1.4.4",
+    "prettier": "^3.9.10",
+    "prettier-plugin-astro": "^1.1.1",
     "typescript": "^7.0.2",
     "yaml": "^2.9.1"
   },
@@ -246,6 +247,6 @@
   },
   "dependencies": {
     "@astrojs/node": "^11.1.7",
-    "astro": "^7.3.8"
+    "astro": "^7.4.0"
   }
 }
