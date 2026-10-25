@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0045-booking-commerce-adapter.md)
 
-<!-- i18n-source-hash: sha256:c1aa16c606673134151d8aa340be68837bb9e7042aa1e1e15d34e10de9e23556 -->
+<!-- i18n-source-hash: sha256:26b81e38ee27e5c09de6c8785b0e85c2f08faf601d3294017ecd0425932ed7ef -->
 
 # ADR-0045 — Adapter booking-commerce
 
@@ -431,6 +431,6 @@ Pemilik menerima jawaban yang direkomendasikan untuk empat pertanyaan yang ditin
 - **Daftar uang muka dipaginasi keyset, bukan dibatasi.** `listServiceProductDepositPoliciesPage` membaca 50 produk jasa menurut `(name, id)` dengan kursor pasangan itu (`domain/booking-deposit-list.ts`; kursor yang tidak terbaca berarti halaman pertama, dan filter tenant selalu ada di kueri, sehingga kursor palsu tidak dapat menjangkau baris tenant lain). Versi pertama memotong daftar di 200 baris tanpa mengatakannya. Pembacaan tanpa halaman tetap untuk pemilih lingkup kebijakan pembatalan, dibatasi 200, dan layar itu menyatakan bila daftar terpotong.
 - **Fokus setelah muat ulang.** Pemberitahuan tanpa-kebijakan-pembatalan (layar tautan) dan baris sukses penggantian (panel booking) adalah elemen `role="status"` `aria-live="polite"` yang menerima fokus saat ditampilkan setelah muat ulang (`showStatusAndFocus`): pembaca layar membacakan teks yang terfokus, dan pengguna keyboard melanjutkan dari pesan alih-alih puncak halaman. Kolom yang ditolak pemeriksaan sisi peramban diberi `aria-invalid`, dikaitkan ke kotak galat, dan difokuskan (`markFieldInvalid`).
 - **Markup yang tidak bergaya.** Filter tautan, radio jenis uang muka, kelompok label/kontrol/petunjuk pada tiga formulir, serta caption dan sel selebar penuh pada tabel bertumpuk dirender oleh kelas atau penyusunan yang tidak dicakup stylesheet bersama; uji statis kini gagal bila layar booking memakai kelas tanpa aturan. Aturan yang diperlukan dibatasi pada `.booking-admin-table` dan gaya milik layar.
-- **Bukti berupa peramban sungguhan per state.** `tests/e2e/admin-commerce-booking.e2e.ts` (gelombang WRITE) menyalakan `booking`, menyemai baris, dan menjalankan layar dengan keyboard; axe (critical dan serious) dan pemeriksaan overflow 360px berjalan per state di kedua tema. Sapuan yang sudah ada melihat rute ini hanya dengan fitur mati. Pengiriman yang dijaga step-up (setujui, cabut, ganti) tidak dijalankan di sana; suite integrasi rute mencakupnya.
-- **Anggaran aset klien.** Pengukuran dan hitungannya ada di docblock `APP_BUDGET_BYTES` (`scripts/client-asset-budget.ts`).
+- **Bukti berupa peramban sungguhan per state.** `apps/cms/tests/e2e/admin-commerce-booking.e2e.ts` (gelombang WRITE) menyalakan `booking`, menyemai baris, dan menjalankan layar dengan keyboard; axe (critical dan serious) dan pemeriksaan overflow 360px berjalan per state di kedua tema. Sapuan yang sudah ada melihat rute ini hanya dengan fitur mati. Pengiriman yang dijaga step-up (setujui, cabut, ganti) tidak dijalankan di sana; suite integrasi rute mencakupnya.
+- **Anggaran aset klien.** Pengukuran dan hitungannya ada di docblock `APP_BUDGET_BYTES` (`apps/cms/scripts/client-asset-budget.ts`).
 - **Tidak ada di sini:** editor jendela bernomor dan berkelompok (baris mengulang label yang sama), permukaan `create` tautan reservasi dan layar meja depan (#388), dan pemformatan jumlah detail pesanan sebagai mata uang (halaman mencetak angka polos dua desimal di mana-mana).
