@@ -48,3 +48,7 @@ English at the bare path is the authoritative source; Indonesian at `<name>.id.m
 ## Bun-only CRM dispatch and realtime requirement
 
 [**Bun-only Omnichannel Delivery & Realtime**](bun-omnichannel-delivery-realtime.md) defines planned runtime constraints for existing email/WhatsApp/Web Push Bun queues and future StarSender/Meta, Telegram, Mailketing, Hermes status, Bun SSE/WebSocket, with the source-of-truth distinction that a generic realtime gateway is **not implemented**. Issue [#467](https://github.com/ahliweb/awcms-one/issues/467), upstream [#1167](https://github.com/ahliweb/awcms/issues/1167), [#1168](https://github.com/ahliweb/awcms/issues/1168).
+
+## Comprehensive Omnichannel CRM UI/UX specification
+
+[**Omnichannel CRM UI/UX v1.0**](omnichannel-crm-ui-ux.md) is a proposed evidence-tagged **30-screen catalogue** for current commerce screens and future lead, inbox, multi-account StarSender/Meta, Mailketing API v2.0.2, Telegram/social, campaigns, knowledge/AI, analytics and OMES management, plus accessibility, journeys and latest-version governance. **Planned is not shipped.** Tracked [#472](https://github.com/ahliweb/awcms-one/issues/472), source status [status.md](status.md).
