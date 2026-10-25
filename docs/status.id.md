@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](status.md)
 
-<!-- i18n-source-hash: sha256:6ac04ff79686213d3c07dbeb32d8c19e6724bbadcbef8ed563316d24f8257cda -->
+<!-- i18n-source-hash: sha256:53b282f153ff54a7ba5324d4357fff3482ff5ba9a856e9e674a106f1a2b02552 -->
 
 # Status
 

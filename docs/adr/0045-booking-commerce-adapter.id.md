@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0045-booking-commerce-adapter.md)
 
-<!-- i18n-source-hash: sha256:3889988026537394ae84603eb28298895f45fd53b21f8dacbe87404ebada09ee -->
+<!-- i18n-source-hash: sha256:c1aa16c606673134151d8aa340be68837bb9e7042aa1e1e15d34e10de9e23556 -->
 
 # ADR-0045 — Adapter booking-commerce
 

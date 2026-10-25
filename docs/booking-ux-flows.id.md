@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](booking-ux-flows.md)
 
-<!-- i18n-source-hash: sha256:6e7172e577c9189348f22649f29833b313c24fd2333a06c1442c89e56b081b67 -->
+<!-- i18n-source-hash: sha256:cec84850f081dcf0141f6ca7016e322e6d187ac16415702a4200953fd8d94f24 -->
 
 <!-- i18n-source-hash: sha256:0 -->
 
