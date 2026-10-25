@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](aw-business-platform-metrics.md)
 
-<!-- i18n-source-hash: sha256:96b94d801439a42f8150a26bb49e92e1e4cc6f65dc91fb5b799c6f3e06a5a7de -->
+<!-- i18n-source-hash: sha256:26ba78bcec270dfce71a71f08bace3441d44570b5ddd16d9c4132923bd0d0409 -->
 
 # AW Business Platform — kontrak metrik
 
@@ -136,9 +136,72 @@ Pada baris kedua dan ketiga, 2.100.000 yang tidak tertagih jatuh pada hari depos
 
 - **Bruto sekali, pada hari bayar pertama; saldo di samping air terjun.** Tepat aturan 1 dan 2 dari 3.7: pesanan DP mengakui seluruh brutonya pada hari uang muka, dan saldo yang masih terutang pada pesanan terbuka adalah kolom pendamping `balanceOutstanding`.
 - **Refund = dikembalikan + tidak tertagih.** "Dikembalikan" adalah leg reversal buku besar yang berhasil; "di antaranya saldo tidak tertagih (tidak ada uang berpindah)" adalah bagian belum dibayar dari pesanan yang ditutup pembatalan atau tamu tidak hadir. Keduanya jatuh pada hari bayar ASLI. Tiga baris contoh kerja 3.7 dan pekan vila 8.3 (bruto 5.500.000, diskon 250.000, refund 100.000, neto 5.150.000) dibuktikan sampai ke sen di `apps/cms/tests/integration/commerce-booking-revenue.integration.test.ts`; ADR 1.030.000 dan RevPAN 858.333,33 memakai malam terisi dan tersedia milik Booking sebagai masukan, karena okupansi ada di hulu (`awcms#944`).
-- **Diskon adalah yang dicatat pesanan sebagai pengurangan harga** (voucher, poin), diturunkan dari identitas pesanan sendiri agar kendali 3.5 `neto + ongkir + asuransi + pajak = settled + outstanding - surplus` tepat; potongan harga per baris sudah ada di dalam harga baris yang dibekukan. Refund adalah uang, sehingga refund penuh atas pesanan yang membawa pajak membiarkan kolom pajak tidak dinetokan dan neto di bawah nol sebesar itu.
-- **Refund dihitung saat uang sudah berpindah** (leg buku besar yang settle), bukan saat leg pending direncanakan; apakah pemilik ingin irisan booking menetokan refund saat diputuskan, seperti `commerce.sales_daily` untuk retur, masih terbuka.
+- **Diskon adalah yang dicatat pesanan sebagai pengurangan harga** (voucher, poin), diturunkan dari identitas pesanan sendiri agar kendali 3.5 `neto + ongkir + asuransi + pajak = settled + outstanding - surplus` tepat; potongan harga per baris sudah ada di dalam harga baris yang dibekukan. Refund adalah uang, sehingga refund penuh atas pesanan yang membawa pajak membiarkan kolom pajak tidak dinetokan dan neto di bawah nol sebesar itu. (Sementara: 3.9 D3 menggantinya dengan alokasi yang memperhitungkan pajak.)
+- **Refund dihitung saat uang sudah berpindah** (leg buku besar yang settle), bukan saat leg pending direncanakan; pemilik memutuskan pada 24 Oktober 2026 bahwa irisan ini menetokan refund saat diputuskan, seperti `commerce.sales_daily` untuk retur (3.9 D1); butir ini menggambarkan perilaku sementara sampai [#478](https://github.com/ahliweb/awcms-one/issues/478) mendarat.
 - **Pembaca dan visibilitas.** Hanya agregat, pada `reporting.dashboard.read` (gerbang rute penjualan), disembunyikan selama fitur `booking` tenant mati; bendera restatement dari 1.2 disimpan per hari bayar.
+
+### 3.9 Keputusan pemilik atas irisan booking (#450, 24 Oktober 2026)
+
+Pemilik menerima jawaban yang direkomendasikan untuk keempat pertanyaan [#450](https://github.com/ahliweb/awcms-one/issues/450) (pertanyaan yang ditinggalkan terbuka oleh #389). **Bagian ini adalah kontraknya.** Bila berbeda dari yang dikirim #389 (3.8), 3.8 menggambarkan perilaku sementara sampai isu pembangunan [#478](https://github.com/ahliweb/awcms-one/issues/478) mendarat; kode, tes integrasi, dan contoh kerjanya kemudian berubah bersama.
+
+**Catatan cakupan: air terjun ini adalah ukuran penjualan operasional, bukan pendapatan menurut standar akuntansi.** Ia mengaitkan seluruh nilai pesanan ke hari bayar pertamanya (3.7), sebuah konvensi pelaporan manajemen. Menurut PSAK 72 (adopsi IFRS 15 di Indonesia) pendapatan diakui saat kewajiban pelaksanaan dipenuhi, sehingga deposit yang diterima sebelum menginap adalah liabilitas kontrak sampai saat itu (IFRS 15.106), dan bagian deposit hangus yang ditahan menjadi pendapatan ketika hak atas pengembalian berakhir. Buku besar dan dokumen fiskal apa pun berada di luar repositori ini (O9). Layar dan ekspor tetap memakai nama "pendapatan bersih", tetapi teks bantuan harus menyatakan bahwa ini bukan angka laporan keuangan dan bahwa buku catatan resmi adalah sistem akuntansi tenant. Yang dikendalikan halaman ini adalah bahwa mekanik yang dipakainya adalah mekanik IFRS 15: refund sebagai liabilitas, pajak titipan di luar pendapatan, komisi sebagai biaya.
+
+#### D1. Refund dihitung saat diputuskan (akrual), bukan saat dibayar
+
+**Keputusan.** Langkah Refund menghitung refund saat dicatat sebagai kewajiban: jumlah refund pada catatan retur pesanan, atau pada keputusan refund booking yang merencanakannya. Ini momen yang sama dengan saat `commerce.sales_daily` menetokan retur, sehingga kedua laporan sepakat. Langkah ini punya tiga bagian yang selalu berjumlah sama:
+
+| Bagian | Arti |
+| --- | --- |
+| Dikembalikan | Leg reversal buku besar pembayaran yang berhasil (uang sudah keluar) |
+| Refund terutang | Diputuskan dan belum dibayarkan (leg terencana atau gagal); kolom pendamping di samping air terjun, seperti saldo terutang |
+| Saldo tidak tertagih | Tidak berubah dari 3.7: bagian belum dibayar pada pesanan yang ditutup, tidak ada uang berpindah |
+
+Menyelesaikan sebuah leg memindahkan jumlah dari terutang ke dikembalikan dan **tidak pernah menggeser neto**. Leg yang gagal tetap terutang sampai staf mengulang atau membatalkannya. Ketiga bagian jatuh pada hari bayar ASLI (aturan 5 dari 1.1). Pembacaan **kas** tidak hilang: tampilan kas per hari refund pada 3.6 (D4) menunjukkan setiap leg reversal pada hari ia settle.
+
+**Alasan.** Refund yang wajib dibayar entitas adalah liabilitas refund, dan pendapatan dikurangi saat kewajiban itu timbul, bukan saat kas keluar (IFRS 15.55 dan B20 sampai B27; PSAK 72 memuat paragraf yang sama). Refund basis kas juga melebih-lebihkan neto di antara keputusan dan pembayaran, dan tidak sejalan dengan `commerce.sales_daily`. Basis kas tetap berguna bagi pembaca kas, sehingga dipindah ke tampilan kas berlabel (3.6).
+
+Contoh kerja (baris ketiga 3.7, batal dini dengan separuh uang muka dikembalikan):
+
+| Saat | Dikembalikan | Refund terutang | Tidak tertagih | Neto |
+| --- | --- | --- | --- | --- |
+| Diputuskan, belum dibayarkan | 0 | 450.000 | 2.100.000 | 450.000 |
+| Leg settle | 450.000 | 0 | 2.100.000 | 450.000 |
+| Yang ditampilkan #389 hari ini sebelum leg settle | 0 | n/a | 2.100.000 | 900.000 |
+
+Kendali kontrol (3.5) menjadi `neto + ongkir + asuransi + pajak = settled - refund terutang + outstanding - surplus`, dengan kolom pendamping setelah D3.
+
+#### D2. Jangkar retensi tetap transisi bayar pertama pesanan
+
+**Keputusan.** Diterima. Transisi bayar pertama pesanan menggantikan `confirmed_at` milik Booking. **Alasan.** Adapter mengonfirmasi reservasi dari peristiwa `order.paid` (`commerce.booking_order_paid_confirmer`), sehingga pada jalur normal kedua saat hanya berbeda oleh latensi pengiriman peristiwa, sedangkan kohort diukur dalam hari dan bulan (batas hari ke-90). Booking yang dikonfirmasi tanpa pembayaran bukan pendapatan (Q6) dan juga bukan jangkar. Pembayaran pertama juga adalah titik terpenuhinya kriteria kontrak IFRS 15.9 untuk menginap yang dibayar di muka, sehingga jangkar dan hari pendapatan sejalan. Tinjau ulang hanya jika Booking membuka `confirmed_at` lewat port dan sebuah tenant mengonfirmasi booking sebelum pembayaran.
+
+#### D3. Refund pesanan berpajak menetokan kolom pajak, tidak hanya pendapatan barang
+
+**Keputusan.** Tidak diterima sebagai keadaan akhir: neto tidak boleh di bawah nol hanya karena pesanan berpajak direfund penuh. Setiap refund dan setiap jumlah tidak tertagih dialokasikan ke empat komponen pesanan (barang = subtotal dikurangi diskon, ongkir, asuransi, pajak) sebanding dengan porsi tiap komponen terhadap total pesanan, dalam sen bilangan bulat, satu kali, dengan fungsi largest-remainder yang sudah dipakai modul retur dan ADR-0046 D6. Porsi barang adalah langkah Refund; porsi ongkir, asuransi, dan pajak mengurangi kolom pendampingnya sendiri. Rincian yang dibawa catatan refund itu sendiri, bila ada, didahulukan atas pro rata.
+
+**Alasan.** Pajak yang dipungut bukan pendapatan: harga transaksi tidak mencakup jumlah yang dipungut atas nama pihak ketiga (IFRS 15.47; PSAK 72), dan mengembalikan barang mengembalikan pajaknya (retur atau nota kredit membalik pajak keluaran). Membiarkan kolom pajak tidak dinetokan membuat kolom pendamping yang salah, bukan netonya, dan neto negatif untuk pesanan yang direfund penuh menyesatkan pembaca mana pun.
+
+| Kasus (subtotal, pajak) | Refund atau tidak tertagih | Neto (#389) | Neto (D3) | Kolom pajak (D3) |
+| --- | --- | --- | --- | --- |
+| 1.000.000 + pajak 100.000, lunas | Refund penuh 1.100.000 | -100.000 | 0 | 0 |
+| Pesanan sama | Refund 550.000 | 450.000 | 500.000 | 50.000 |
+| 3.000.000 + pajak 330.000, uang muka 30% 999.000, tamu tidak hadir | Tidak tertagih 2.331.000 | 669.000 | 900.000 | 99.000 |
+
+Baris ketiga cocok dengan baris tamu tidak hadir pada 3.7 (neto 900.000) setelah pajak 330.000 dialokasikan, dan settled 999.000 = neto 900.000 + pajak 99.000. Bagaimana pajak atas uang muka yang ditahan diperlakukan untuk SPT tenant adalah pertanyaan penasihat pajak di luar laporan ini (O9); alokasi ini adalah bawaan netral.
+
+#### D4. Apa yang dijadwalkan dan apa yang tidak
+
+| Butir | Keputusan | Alasan |
+| --- | --- | --- |
+| Tampilan kas per hari refund (3.6) | **Dijadwalkan**, bersama D1 | Di sinilah pembacaan kas kini berada; fakta leg settle yang dibutuhkannya sudah ada |
+| Rute CSV air terjun | **Dijadwalkan**, setelah D1 dan D3 | Keuangan merekonsiliasi dari berkas; membangunnya setelah kolom mantap menghindari perubahan dua kali. Penetralan formula seperti ekspor lain |
+| ADR dan RevPAN sebagai angka tersimpan | **Tidak dijadwalkan**; hitung saat baca | Rasio tersimpan basi dan tidak dapat dijumlah antarhari; hitung dari counter aditif (pendapatan bersih, malam terisi dan tersedia) setelah Booking hulu membuka jumlah malam (awcms#944) |
+| Irisan kanal dan segmen (8.5) | **Ditunda** sampai ada tenant yang meminta | Butuh kanal booking dan keanggotaan segmen yang dibekukan per baris (segmen dievaluasi sesuai permintaan, ADR-0042) dan penekanan kurang dari 5 pelanggan dirancang lebih dulu |
+
+Pembangunan D1 sampai D4 dilacak oleh [#478](https://github.com/ahliweb/awcms-one/issues/478).
+
+#### Komisi tidak pernah menjadi langkah air terjun
+
+Komisi yang dibayarkan kepada karyawan atas penjualan bersumber booking ([ADR-0046](adr/0046-commission-attribution-adapter-reports-paid-counter-sales-to-the-hr-commission-ledger.id.md)) adalah biaya memperoleh penjualan (IFRS 15.91 sampai 94), bukan pengurang harga transaksi, karena bisnis adalah prinsipal dan karyawan bukan pelanggan. Ia tidak pernah muncul di bruto, diskon, refund, atau neto. Refund yang membatalkan akrual komisi (ADR-0046 D9) mengubah buku biaya dan tidak mengubah apa pun di sini.
 
 ## 4. Okupansi
 
@@ -365,7 +428,7 @@ Untuk unit berbasis malam, **utilisasi bukan angka utama tersendiri** seperti un
 
 ### 8.5 Kanal dan segmen
 
-Okupansi dan pendapatan bersih boleh diiris menurut kanal booking (langsung, sumber dari adaptor) dan segmen pelanggan (segmen CRM). Irisan adalah **dimensi pada counter yang sama**, bukan keluarga proyeksi kedua, dan irisan dengan kurang dari 5 pelanggan ditampilkan sebagai agregat agar tamu tidak teridentifikasi.
+Okupansi dan pendapatan bersih boleh diiris menurut kanal booking (langsung, sumber dari adaptor) dan segmen pelanggan (segmen CRM). Irisan adalah **dimensi pada counter yang sama**, bukan keluarga proyeksi kedua, dan irisan dengan kurang dari 5 pelanggan ditampilkan sebagai agregat agar tamu tidak teridentifikasi. Belum dibangun; ditunda sampai ada tenant yang meminta (3.9 D4).
 
 ## 9. Keputusan atas pertanyaan terbuka
 

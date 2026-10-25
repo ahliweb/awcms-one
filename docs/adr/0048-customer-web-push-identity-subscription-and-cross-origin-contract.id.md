@@ -1,12 +1,12 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0048-customer-web-push-identity-subscription-and-cross-origin-contract.md)
 
-<!-- i18n-source-hash: sha256:0190084cc8644fc38a42f94f205fb56530d3f6373f253eab0ecddd726f160913 -->
+<!-- i18n-source-hash: sha256:fcd48310e2cbad4f47f7fb38993e49994c6f7514a63c1bc1389fb9f1e5a3008f -->
 
 # ADR-0048 — Web Push pelanggan: identitas, model langganan, dan kontrak lintas origin
 
-- **Status:** Diusulkan
-- **Tanggal:** 18 Oktober 2026
-- **Pengambil keputusan:** ahliweb (menunggu persetujuan; tidak ada isi di bawah yang diimplementasikan atau disetujui sampai pemilik mengubah status ini)
+- **Status:** Diterima (24 Oktober 2026). Diusulkan 18 Oktober 2026
+- **Tanggal:** 18 Oktober 2026 (diusulkan); 24 Oktober 2026 (diterima)
+- **Pengambil keputusan:** ahliweb. Diterima pada 24 Oktober 2026 atas instruksi pemilik untuk mengambil opsi yang direkomendasikan bagi setiap pertanyaan terbuka (Q1 sampai Q12, dicatat di "Keputusan pemilik atas pertanyaan terbuka" di bawah). Desain disetujui; **belum ada yang diimplementasikan**: #430 sampai #432 membangunnya, di balik flag `customerPush`, yang tetap mati sampai gerbang produksi pada ringkasan keputusan (D8) terpenuhi
 - **Terkait:** issue [#429](https://github.com/ahliweb/awcms-one/issues/429) (ADR ini); konsumen [#430](https://github.com/ahliweb/awcms-one/issues/430), [#431](https://github.com/ahliweb/awcms-one/issues/431), [#432](https://github.com/ahliweb/awcms-one/issues/432); prasyarat [#427](https://github.com/ahliweb/awcms-one/issues/427) (sinkronisasi subtree) dan [#428](https://github.com/ahliweb/awcms-one/issues/428) (storefront dapat dipasang); [ADR-0007](0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.id.md), [ADR-0016](0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md), [ADR-0024](0024-awcms-one-is-template-only-derived-apps-own-their-backend.id.md), [ADR-0037](0037-the-commerce-migration-band-is-allocated-gap-first-and-widened-upstream.id.md), [ADR-0040](0040-aw-business-platform-capability-ownership-and-boundaries.id.md); issue upstream `ahliweb/awcms` 1106 beserta pekerjaan Web Push-nya (payload deklaratif, admin iOS yang dapat dipasang, matriks uji operator); WebKit [Declarative Web Push](https://webkit.org/blog/16535/)
 
 ## Konteks
@@ -54,7 +54,7 @@ Tiga opsi #429, menurut kriteria yang dipakai proyek. Judul kolom memuat putusan
 | Kompleksitas operasional | Satu antrean dan satu purge, tetapi #430 bergantung pada kereta rilis upstream. | n/a | Satu job dan satu purge lagi. Satu pasang kunci VAPID, satu key ring, dan satu runbook (bagian 9). |
 | Jangka panjang | Paling bersih jika beberapa konsumen butuh penerima eksternal; prematur untuk satu (ADR-0024 D3: satu konsumen adalah bukti untuk memeriksa generalitas, bukan izin untuk menggeneralisasi). | n/a | Nanti dapat diarahkan ulang ke abstraksi upstream: tabel perangkat tetap, outbox menyusut menjadi adaptor. |
 
-**Putusan.** Bukti di atas menunjukkan bahwa outbox generik tidak dapat membawa penerima pelanggan dengan aman tanpa perubahan skema upstream (B gagal dengan syaratnya sendiri), yang merupakan syarat yang ditetapkan #429 untuk (c). Pilih **C**, dengan pembagian kepemilikan dari B: `commerce` memiliki identitas, persetujuan, perangkat, dan outbox; ia **mengimpor** kode provider, kripto, dan kebijakan upstream serta tidak menulis satu pun tabel upstream. Opsi A tetap terbuka sebagai konvergensi jangka panjang, lewat usulan upstream generik kecil di bagian 12. Pertanyaan pemilik Q1 meminta pemilik mengonfirmasi pertukaran ini (menerima outbox commerce yang tipis sekarang, atau menunggu A).
+**Putusan.** Bukti di atas menunjukkan bahwa outbox generik tidak dapat membawa penerima pelanggan dengan aman tanpa perubahan skema upstream (B gagal dengan syaratnya sendiri), yang merupakan syarat yang ditetapkan #429 untuk (c). Pilih **C**, dengan pembagian kepemilikan dari B: `commerce` memiliki identitas, persetujuan, perangkat, dan outbox; ia **mengimpor** kode provider, kripto, dan kebijakan upstream serta tidak menulis satu pun tabel upstream. Opsi A tetap terbuka sebagai konvergensi jangka panjang, lewat usulan upstream generik kecil di bagian 12. Pemilik mengonfirmasi pertukaran ini pada 24 Oktober 2026 (Q1): menerima outbox commerce yang tipis sekarang, bukan menunggu A.
 
 ### 1.2 Yang dipakai ulang dan yang baru
 
@@ -384,7 +384,7 @@ Diperiksa dan **tidak** ada di daftar terverifikasi:
 
 ### 6.8 Sketsa AsyncAPI
 
-Tidak ada channel yang ada berubah. Consumer baru dideklarasikan di descriptor `commerce` dan bukan dokumen AsyncAPI. Jika Q4 disetujui, #432 menambah satu channel dan entri descriptor:
+Tidak ada channel yang ada berubah. Consumer baru dideklarasikan di descriptor `commerce` dan bukan dokumen AsyncAPI. Q4 disetujui pada 24 Oktober 2026, sehingga #432 menambah satu channel dan entri descriptor:
 
 ```yaml
 awcms.commerce.conversation.store_replied:
@@ -498,6 +498,7 @@ Ini adalah penyelarasan kontrol desain dengan persyaratan, bukan klaim kepatuhan
 | PP PSTE 71/2019 (sistem dan transaksi elektronik) | Keandalan dan keamanan sistem elektronik; kendali akses; jejak audit | Rute pelanggan default-deny, isolasi tenant, peristiwa audit hanya dengan id, tindakan administratif tercatat, ketersediaan lewat fallback kotak masuk |
 | ISO/IEC 27001 | Sistem manajemen keamanan informasi | Register ancaman (2.2), kontrol, siklus tinjauan lewat persetujuan ADR |
 | ISO/IEC 27002 (edisi 2022) | Kendali akses (5.15), privasi dan perlindungan PII (5.34), penghapusan informasi (8.10), pencatatan (8.15), kriptografi (8.24) | Bagian 4, bagian 2.3, retensi dan purge (5.7), peristiwa audit, enkripsi field dengan AAD terikat tujuan |
+| ISO/IEC 27034 | Keamanan aplikasi (kerangka normatif organisasi dan aplikasi, kontrol keamanan aplikasi, verifikasi) | Register ancaman T1 sampai T19 dan invarian 5.1 sebagai persyaratan keamanan aplikasi; peta ancaman-ke-tes (8.2) dan kewajiban bukti (8.3) sebagai bukti verifikasi; gerbang aktivasi produksi D8 sebagai kontrol rilis |
 | ISO/IEC 27005 | Manajemen risiko keamanan informasi | Bagian 2 adalah masukan identifikasi dan penanganan risiko; butir terbuka ada di Q1 sampai Q12 |
 | ISO/IEC 27701 | Manajemen informasi privasi (kontrol pengendali) | Pengambilan dan penarikan persetujuan, minimisasi, jendela retensi, catatan pemrosesan di kamus data |
 
@@ -522,22 +523,24 @@ Perubahan generik menjadi milik `ahliweb/awcms` terlebih dahulu dan tiba lewat s
 - **U4 — allowlist host push service untuk validasi endpoint** (dapat dikonfigurasi, dengan bawaan yang wajar). Memperkeras permukaan admin juga.
 - **U5 — abstraksi penerima eksternal netral (opsi A).** Layak diajukan hanya jika U1 sampai U3 diadopsi dan konsumen kedua muncul.
 
-## Pertanyaan terbuka untuk pemilik
+## Keputusan pemilik atas pertanyaan terbuka
 
-| ID | Pertanyaan | Rekomendasi |
+Pemilik menjawab setiap pertanyaan dengan rekomendasinya pada 24 Oktober 2026 ("implementasikan opsi yang direkomendasikan untuk setiap keputusan yang menunggu"). Kolom kanan adalah redaksi yang mengikat bagi #430 sampai #432; bila menambah rincian pada rekomendasi, rincian itu menutup hal yang sebelumnya dibiarkan terbuka oleh tabel.
+
+| ID | Pertanyaan | Keputusan (diterima 24 Oktober 2026) |
 | --- | --- | --- |
-| Q1 | Terima outbox commerce yang tipis sekarang (opsi C), atau tunggu opsi A di upstream? | C sekarang, konvergen lewat U3 |
-| Q2 | Satu key ring auth-secret dengan AAD terikat tujuan, atau ring terpisah untuk pelanggan? | Satu ring, purpose AAD berbeda; job re-key commerce |
-| Q3 | Push pelanggan tidak didukung bila storefront dan CMS berbagi satu origin di v1? | Ya |
-| Q4 | Setujui peristiwa baru `awcms.commerce.conversation.store_replied` untuk push balasan kotak masuk? | Ya, di #432 |
-| Q5 | Notifikasi berhenti saat sesi pendaftar berakhir (30 hari bergeser)? | Ya (aman saat gagal); tinjau ulang dengan data pemakaian |
-| Q6 | Allowlist host push service bawaan dan siapa yang dapat menimpanya? | Sufiks vendor yang dikenal, penimpaan lewat environment operator |
-| Q7 | Batas: 5 perangkat per akun, 12 per jam dan 40 per hari per akun, batas pendaftaran | Terima sebagai nilai awal |
-| Q8 | Jendela retensi (30 hari) serta kata-kata persetujuan dan privasi, dengan tinjauan hukum | Pemilik dan penasihat hukum |
-| Q9 | Templat yang dapat disunting tenant di v1, atau hanya teks generik bawaan? | Hanya bawaan |
-| Q10 | Endpoint diagnostik staf dan nama izinnya di v1? | Hanya hitungan agregat, `commerce.customer_push.read` |
-| Q11 | Push pemasaran dicadangkan dan di luar cakupan v1? | Ya |
-| Q12 | Tanpa pelacakan klik di v1? | Ya |
+| Q1 | Terima outbox commerce yang tipis sekarang (opsi C), atau tunggu opsi A di upstream? | **C sekarang**, konvergen kemudian lewat U3. #430 tidak menunggu rilis upstream mana pun; A tetap jalur jangka panjang dan U1 sampai U3 adalah perbaikan opsional, bukan prasyarat. |
+| Q2 | Satu key ring auth-secret dengan AAD terikat tujuan, atau ring terpisah untuk pelanggan? | **Satu ring, purpose AAD berbeda** untuk perangkat pelanggan, dan job re-key commerce yang diserahkan #430 (perintah re-key upstream hanya mencakup tabel upstream). |
+| Q3 | Push pelanggan tidak didukung bila storefront dan CMS berbagi satu origin di v1? | **Ya.** Capability menjawab `reason: "origin_not_supported"` dan pendaftaran ditolak; deployment yang menginginkan push pelanggan menyajikan storefront dari origin-nya sendiri. |
+| Q4 | Setujui peristiwa baru `awcms.commerce.conversation.store_replied` untuk push balasan kotak masuk? | **Ya, di #432.** Peristiwa di-append dalam transaksi yang sama dengan balasan yang disimpan (`postStoreReply`), lewat seam domain-event yang ada. E7 tetap nonaktif sampai peristiwa itu mendarat. |
+| Q5 | Notifikasi berhenti saat sesi pendaftar berakhir (30 hari bergeser)? | **Ya** (aman saat gagal). Jendelanya satu konstanta, ditinjau ulang dengan data pemakaian, bukan properti skema. |
+| Q6 | Allowlist host push service bawaan dan siapa yang dapat menimpanya? | **Sufiks vendor yang dikenal, penimpaan oleh operator.** Bawaannya mencakup layanan Web Push Google (FCM), Mozilla, Apple, dan Microsoft; #430 menetapkan daftar persisnya dan memverifikasinya terhadap matriks tes operator. Hanya setelan environment operator yang dapat memperluasnya; tidak pernah admin tenant, request, atau baris tersimpan. Host di luar daftar dijawab 422 `ENDPOINT_NOT_ALLOWED`. |
+| Q7 | Batas: 5 perangkat per akun, 12 per jam dan 40 per hari per akun, batas pendaftaran | **Diterima sebagai nilai awal** (bagian 6.2 dan 5.4), disimpan sebagai konstanta bernama di satu modul agar data pemakaian dapat menyetelnya tanpa perubahan skema. |
+| Q8 | Jendela retensi (30 hari) serta kata-kata persetujuan dan privasi, dengan tinjauan hukum | **Jendela 30 hari diterima sebagai nilai bawaan.** Kata-kata persetujuan dan privasi dikirim sebagai draf berversi (Indonesia lebih dulu, lalu Inggris, `textVersion` dicatat pada setiap pemberian persetujuan). Tinjauan kata-kata itu oleh penasihat hukum adalah **gerbang aktivasi produksi** untuk flag `customerPush`, bukan gerbang untuk membangun #430 sampai #432; flag tetap mati di setiap deployment sampai tinjauan itu dicatat. |
+| Q9 | Templat yang dapat disunting tenant di v1, atau hanya teks generik bawaan? | **Hanya teks generik bawaan** (bagian 6.5). |
+| Q10 | Endpoint diagnostik staf dan nama izinnya di v1? | **Hanya hitungan agregat**, di balik izin baru `commerce.customer_push.read` yang didaftarkan #430; tidak pernah ada endpoint, token, atau pengenal pelanggan dalam jawabannya. |
+| Q11 | Push pemasaran dicadangkan dan di luar cakupan v1? | **Ya.** Dicadangkan dan tidak pernah dikirim; butuh alur persetujuan, audiens, dan ADR sendiri. |
+| Q12 | Tanpa pelacakan klik di v1? | **Ya.** Tanpa analitik klik atau baca; `sent` hanya berarti push service menerima pesan. |
 
 ## Ringkasan keputusan
 
@@ -547,11 +550,13 @@ Perubahan generik menjadi milik `ahliweb/awcms` terlebih dahulu dan tiba lewat s
 4. **D4.** Target klik adalah path storefront tetap pada origin tersimpan perangkat yang tervalidasi domainnya; payload generik; tidak ada pengenal melintasi push service.
 5. **D5.** Empat tabel commerce aditif dengan FORCE RLS dan grant hak istimewa minimum; flag baru `customerPush` bawaan mati; tanpa kolom secret plaintext.
 6. **D6.** Tujuan tertutup; hanya transaksional di v1; pemasaran dicadangkan dan tidak pernah dikirim; peristiwa terverifikasi E1 sampai E6 menggerakkan notifikasi; balasan kotak masuk (E7) menunggu peristiwa nyata.
+7. **D7.** Q1 sampai Q12 diselesaikan sesuai rekomendasi (24 Oktober 2026); tabel di atas mengikat bagi #430 sampai #432. Tidak ada di dalamnya yang membutuhkan jawaban pemilik lagi sebelum implementasi dimulai.
+8. **D8.** Gerbang aktivasi produksi untuk flag `customerPush`, per deployment: tinjauan penasihat hukum atas kata-kata persetujuan dan privasi (Q8); pasangan kunci VAPID dan ring auth-secret terkonfigurasi (bagian 9); matriks tes operator hijau; UAT perangkat pada aplikasi iPhone terpasang, Chrome Android, dan Chrome desktop. Sampai semuanya terpenuhi, flag tetap mati dan fitur tidak aktif.
 
 ## Konsekuensi
 
-- #430 sampai #432 dapat mulai setelah ADR ini diterima dan #427 mendarat; tidak perlu rilis upstream.
-- Modul commerce mendapat loop dispatch kedua. Duplikasinya terbatas (semua di bawah antrean dibagi) dan dilacak untuk konvergensi; jika pemilik memilih A, #430 menunggu pekerjaan upstream.
+- ADR ini diterima (24 Oktober 2026), sehingga pertanyaan desain yang menghambat #430 sampai #432 tertutup. Isu-isu itu dapat mulai setelah #427 (sinkronisasi subtree) mendarat, satu-satunya prasyarat yang tersisa; tidak perlu rilis upstream.
+- Modul commerce mendapat loop dispatch kedua. Duplikasinya terbatas (semua di bawah antrean dibagi) dan dilacak untuk konvergensi; pemilik memilih C, sehingga #430 tidak menunggu pekerjaan upstream dan usulan konvergensi di bagian 12 tetap opsional.
 - Push pelanggan bergantung pada sesi yang hidup: pelanggan yang tidak terlihat 30 hari berhenti menerima banner sampai mengaktifkan lagi (Q5).
 - Provider hanya menerima isi generik terenkripsi; sistem tidak dapat mengatakan apakah banner ditampilkan atau dibaca.
 - Setiap aplikasi turunan yang dideploy membawa VAPID dan ring sendiri; merotasi salah satunya adalah prosedur operator, bukan perubahan kode.
@@ -559,4 +564,4 @@ Perubahan generik menjadi milik `ahliweb/awcms` terlebih dahulu dan tiba lewat s
 ## Yang belum ada
 
 - Push pemasaran (butuh alur persetujuan, audiens, dan ADR sendiri), templat yang dapat disunting tenant, analitik klik dan baca, aplikasi pelanggan native (FCM/APNs), alur penghapusan akun pelanggan, UI staf untuk perangkat pelanggan, dan peristiwa balasan kotak masuk (Q4).
-- Belum ada implementasi: tidak ada tabel, rute, consumer, job worker, service worker, atau UI. ADR ini adalah Definition of Ready untuk #430, #431, dan #432.
+- Belum ada implementasi: tidak ada tabel, rute, consumer, job worker, service worker, atau UI. ADR ini adalah Definition of Ready untuk #430, #431, dan #432, dan definisi itu kini terpenuhi.
