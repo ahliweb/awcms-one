@@ -32,6 +32,7 @@ import { dirname, join } from "node:path";
 
 import { buildPlan, describePlan, isEmptyPlan } from "../tools/template-init/plan.mjs";
 import { rewriteBunLock } from "../tools/template-init/rewriters.mjs";
+import { describeChecklist, POST_INIT_CHECKLIST } from "../tools/template-init/checklist.mjs";
 import { main } from "../tools/template-init/run.mjs";
 import { rewriteSiteTs } from "../tools/template-init/rewriters.mjs";
 
@@ -226,6 +227,97 @@ describe("template:init — dry-run plan", () => {
   });
 });
 
+describe("template:init — post-init checklist (issue #476)", () => {
+  const PLAN_FLAGS = {
+    nama: "Toko Contoh",
+    slug: "toko-contoh",
+    domain: "toko-contoh.id",
+    profil: "landing",
+    warnaPrimer: "#0ea5e9",
+    warnaSekunder: "#096892",
+    warnaAksen: "#f59e0b",
+    kontakEmail: "owner@toko-contoh.id"
+  };
+
+  /** Every path this run would really write: flag rewrites, package.json, CHANGELOG.md. */
+  function plannedWrites() {
+    const plan = buildPlan({ root: REPO_ROOT, flags: PLAN_FLAGS, today: "2026-10-25", originSha: "deadbeef" });
+    const written = new Set(plan.rewrites.filter((r) => r.changed).map((r) => r.path));
+    if (plan.packageJson.changed) written.add("package.json");
+    if (plan.changelog) written.add("CHANGELOG.md");
+    return written;
+  }
+
+  test("every path the checklist names exists in the tree, with its Indonesian mirror where it is a document", () => {
+    for (const item of POST_INIT_CHECKLIST) {
+      for (const path of [...item.automaticPaths, ...item.manualPaths]) {
+        expect(existsSync(join(REPO_ROOT, path))).toBe(true);
+        // CHANGELOG.md is the one root document with no Indonesian mirror.
+        if (path !== "CHANGELOG.md" && /^(?:docs\/)?[^/]*\.md$/.test(path)) {
+          expect(existsSync(join(REPO_ROOT, path.replace(/\.md$/, ".id.md")))).toBe(true);
+        }
+      }
+    }
+  });
+
+  test("everything the checklist calls automatic is in the real rewrite plan", () => {
+    const written = plannedWrites();
+    for (const item of POST_INIT_CHECKLIST) {
+      for (const path of item.automaticPaths) expect(written.has(path)).toBe(true);
+    }
+  });
+
+  test("nothing the checklist leaves to a person is rewritten by the tool", () => {
+    const written = plannedWrites();
+    const automatic = new Set(POST_INIT_CHECKLIST.flatMap((item) => item.automaticPaths));
+    for (const item of POST_INIT_CHECKLIST) {
+      for (const path of item.manualPaths) {
+        if (!automatic.has(path)) expect(written.has(path)).toBe(false);
+      }
+    }
+    // The documents and files OMES-Web found still naming awcms-one/BjekMart
+    // (ahliweb/omes-web#19) are all on the manual side.
+    const manual = new Set(POST_INIT_CHECKLIST.flatMap((item) => item.manualPaths));
+    for (const path of ["AGENTS.md", "CONTRIBUTING.md", "docs/template.md", "compose.production.yaml"]) {
+      expect(manual.has(path)).toBe(true);
+      expect(written.has(path)).toBe(false);
+    }
+  });
+
+  test("the printed checklist lists every area and says which parts are manual", () => {
+    const text = describeChecklist();
+    for (const item of POST_INIT_CHECKLIST) expect(text).toContain(item.area);
+    expect(text).toContain("GANTI-ORG");
+    expect(text).toContain("compose.production.yaml");
+    expect(text).toContain("merge commit");
+  });
+
+  test("a finished run prints the checklist after the plan", async () => {
+    if (!HAS_GIT || !HAS_BUN) return;
+    const dir = makeTempCopy();
+    const lines = [];
+    const original = console.log;
+    console.log = (...args) => {
+      lines.push(args.join(" "));
+    };
+    let exitCode;
+    try {
+      exitCode = await main([...BASE_FLAGS.map((flag) => (flag === "toko" ? "landing" : flag)), "--yes"], {
+        root: dir,
+        isTTY: false,
+        skipInstall: true,
+        skipGates: true
+      });
+    } finally {
+      console.log = original;
+    }
+    expect(exitCode).toBe(0);
+    const out = lines.join("\n");
+    expect(out.indexOf("Rewrite:")).toBeGreaterThanOrEqual(0);
+    expect(out.indexOf("Post-init checklist")).toBeGreaterThan(out.indexOf("Rewrite:"));
+  }, 60_000);
+});
+
 describe("template:init — rewriteSiteTs contact fallbacks (issue #233)", () => {
   const REAL_SITE_TS = readFileSync(join(REPO_ROOT, "apps/storefront/src/config/site.ts"), "utf8");
   const BASE = {
@@ -407,6 +499,33 @@ describe("template:init — full run in a temp copy", () => {
           const pkgAfter = JSON.parse(readFileSync(join(dir, "package.json"), "utf8"));
           expect(pkgAfter.scripts["db:seed:cms"]).toBe(`bun tools/seed-cms.ts --profil ${profil}`);
           expect(pkgAfter.scripts["import:seputarborneo"]).toBeUndefined();
+
+          // issue #476 — the one-time CHANGELOG reset must survive the doc
+          // citation cleanup that runs after it. The inherited history cites
+          // the removed seed/import paths in backticks, so before the fix the
+          // cleanup rewrote the PRE-reset file over the reset and a derived
+          // repository kept every template release under a 0.1.0 package.json
+          // (the shape ahliweb/omes-web had to relabel by hand in its v0.2.0).
+          const changelogAfter = readFileSync(join(dir, "CHANGELOG.md"), "utf8");
+          expect(changelogAfter.match(/^## \[/gm)).toHaveLength(1);
+          expect(changelogAfter).toContain("## [0.1.0]");
+          expect(changelogAfter).toContain(`Dibuat dari template awcms-one v${originPkg.version}`);
+          expect(changelogAfter).not.toMatch(/borneojek|bjekmart/i);
+
+          // issue #476 — no reference identity in the values the tool owns in
+          // the two env templates (their prose and comments are historical and
+          // are deliberately not scanned, see the scan comment above). Only
+          // the rewritten KEYS are read, so a docblock cannot hide or fake a
+          // leak.
+          const ownedEnvKeys = /^(SEED_TENANT_CODE|SEED_TENANT_NAME|SEED_OFFICE_CODE|SEED_OFFICE_NAME|SEED_OWNER_EMAIL|SITE_URL|SITE_NAME|SITE_DESCRIPTION|SITE_PROFILE)=/;
+          for (const envFile of [".env.example", "apps/storefront/.env.example"]) {
+            const owned = readFileSync(join(dir, envFile), "utf8")
+              .split("\n")
+              .filter((line) => ownedEnvKeys.test(line));
+            expect(owned.length).toBeGreaterThan(0);
+            for (const line of owned) expect(line).not.toMatch(/borneojek|bjekmart|seputarborneo/i);
+          }
+          expect(readFileSync(join(dir, "apps/storefront/.env.example"), "utf8")).toContain(`SITE_PROFILE=${profil}`);
 
           // issue #227 — `bun.lock`'s root workspace name must follow
           // `package.json`'s rewritten `name`, and ONLY the root workspace
