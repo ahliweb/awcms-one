@@ -44,3 +44,7 @@ Architecture, schema, API, CMS workflow, storefront behaviour, testing, deployme
 ## Language
 
 English at the bare path is the authoritative source; Indonesian at `<name>.id.md` is the mirror, stamped by `bun run docs:i18n:stamp` after translation and checked by `bun run audit:translation`. Every document in this directory, including every file under `adr/`, is in scope for that gate — see `packages/gerbang/lib/docs-i18n-checks.mjs`'s `isInScope`, which covers everything under `docs/**`.
+
+## Bun-only CRM dispatch and realtime requirement
+
+[**Bun-only Omnichannel Delivery & Realtime**](bun-omnichannel-delivery-realtime.md) defines planned runtime constraints for existing email/WhatsApp/Web Push Bun queues and future StarSender/Meta, Telegram, Mailketing, Hermes status, Bun SSE/WebSocket, with the source-of-truth distinction that a generic realtime gateway is **not implemented**. Issue [#467](https://github.com/ahliweb/awcms-one/issues/467), upstream [#1167](https://github.com/ahliweb/awcms/issues/1167), [#1168](https://github.com/ahliweb/awcms/issues/1168).
