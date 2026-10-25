@@ -67,6 +67,7 @@ import {
   fetchTenderReport
 } from "../../modules/commerce/application/operational-report-directory";
 import { fetchBookingPipeline } from "../../modules/commerce/application/booking-pipeline";
+import { fetchBookingCashRefundReport } from "../../modules/commerce/application/booking-cash-view";
 import { fetchBookingRevenueReport } from "../../modules/commerce/application/booking-revenue-report";
 import { BOOKING_REVENUE_PROJECTION_KEY } from "../../modules/commerce/domain/booking-revenue";
 import { fetchRetentionReport } from "../../modules/commerce/application/retention-report-directory";
@@ -293,7 +294,9 @@ const screen = await loadAdminScreen({
     // `booking` feature is off (the default): `enabled: false` renders nothing.
     const bookingRevenue = {
       report: await fetchBookingRevenueReport(tx, ssr.tenantId, range),
-      pipeline: await fetchBookingPipeline(tx, ssr.tenantId)
+      pipeline: await fetchBookingPipeline(tx, ssr.tenantId),
+      // Issue #478: the labelled cash view of refunds, by the day they were paid out.
+      cash: await fetchBookingCashRefundReport(tx, ssr.tenantId, range)
     };
 
     const projections = canReadProjections

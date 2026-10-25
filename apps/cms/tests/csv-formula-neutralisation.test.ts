@@ -388,7 +388,9 @@ describe("no CSV writer in src/ keeps its own copy of the rule", () => {
     "src/pages/api/v1/commerce/products/import.ts":
       "reads an uploaded text/csv body for the importer",
     "src/pages/api/v1/reports/commerce/retention.csv.ts":
-      "serves serializeRetentionReportCsv's output"
+      "serves serializeRetentionReportCsv's output",
+    "src/pages/api/v1/reports/commerce/booking-revenue.csv.ts":
+      "serves serializeBookingRevenueCsv's output (issue #478)"
   };
 
   /**

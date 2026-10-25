@@ -15258,7 +15258,7 @@ Legal status edges: received -> scheduled | in_progress | cancelled; scheduled -
 | 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/reports/commerce/booking-revenue` — Issue #389 (ADR-0045 amendment note; metrics spec sections 3, 3.7 and 8.2). The booking-sourced revenue waterfall per `Asia/Jakarta` paid day in the inclusive range, from the `commerce.booking_revenue` projection. Revenue follows the commerce order and the payment ledger only: gross is recognised once, on the day of the order's first paid transition (a deposit order recognises its whole gross on the deposit day); discounts are the reductions the order recorded before payment; Refunds are the money paid back plus, for a closed order (a cancellation or a no-show), the unpaid balance that will never be collected ("no money moved"), both on the ORIGINAL paid day; net is gross - discounts - refunds. Shipping, insurance and tax are companion columns beside the waterfall, and the unpaid balance of orders still open is shown as `balanceOutstanding`. Also the stay and no-show counts and the no-show rate (no-shows / stays, joined through the order). Aggregates only: no order, customer, name or contact. A day older than the 35-day window that a late event changed is `restated: true`. While the tenant's `booking` feature is OFF (the default) the answer is `200` with `enabled: false` and no days. Gated on `reporting.dashboard.read`, the sales report routes' own permission; the projection's freshness, rebuild and reconciliation live on `GET /api/v1/reports/projections/commerce.booking_revenue`.
+### `GET /api/v1/reports/commerce/booking-revenue` — Issues #389 and #478 (ADR-0045 and its "Owner decisions on the booking revenue slice"; metrics spec sections 3, 3.7, 3.9 and 8.2). The booking-sourced revenue waterfall per `Asia/Jakarta` paid day in the inclusive range, from the `commerce.booking_revenue` projection (descriptor version 2). Revenue follows the commerce order and the payment ledger only: gross is recognised once, on the day of the order's first paid transition (a deposit order recognises its whole gross on the deposit day); discounts are the reductions the order recorded before payment. A refund counts when it is DECIDED (the order's return records), not when the money moves, so the Refunds step has three parts that add up: `refundsPaidBack` (succeeded reversal legs), `refundsPayable` (decided, not yet paid out) and `refundsUncollected` (the unpaid balance of a closed order, "no money moved"), all on the ORIGINAL paid day. Each refund and each uncollected amount is allocated across goods, shipping, insurance and tax (pro rata in integer cents with the largest-remainder method; an exact split on a return record wins): only the goods share is in the Refunds step, the other three lower their own companion columns, so a full refund of a taxed order gives net 0 and tax 0. Settling a refund leg moves cents from payable to paid back and never moves net. Net is gross - discounts - refunds. `shipping`, `insurance` and `tax` are companion columns after their refunded share, `balanceOutstanding` is the unpaid balance of orders still open and `refundPayableBalance` the money still to be paid out on decided refunds. The waterfall is an operational sales measure, not a financial-statement figure. The cash reading of refunds is the separate `booking-revenue-cash` view. Also the stay and no-show counts and the no-show rate. Aggregates only: no order, customer, name or contact. A day older than the 35-day window that a late event changed is `restated: true`. While the tenant's `booking` feature is OFF (the default) the answer is `200` with `enabled: false` and no days. Gated on `reporting.dashboard.read`, the sales report routes' own permission; the projection's freshness, rebuild and reconciliation live on `GET /api/v1/reports/projections/commerce.booking_revenue`.
 
 - **operationId**: `getReportsCommerceBookingRevenue`
 - **Security**: bearerAuth + tenantHeader
@@ -15278,6 +15278,48 @@ Legal status edges: received -> scheduled | in_progress | cancelled; scheduled -
 | 400    | Validation error.                                                                              | [`ApiError`](#standard-error-envelope) |
 | 401    | Missing or invalid session.                                                                    | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC.                                                                    | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/reports/commerce/booking-revenue-cash` — Issue #478 (metrics 3.6 and 3.9 D4). The CASH view of the booking slice's refunds: the succeeded reversal legs of the payment ledger of the booking-sourced orders, grouped by the `Asia/Jakarta` day each leg SETTLED. This is where the cash reading of a refund lives now that the waterfall counts a refund when it is decided; the payload says `basis: "cash"` and the two views are never mixed in one chart. A leg that is planned, processing or failed moved no money and is the waterfall's `refundPayableBalance`, not a row here. A live read of the append-only ledger (no second store, no restatement). Aggregates only. While the tenant's `booking` feature is OFF the answer is `200` with `enabled: false` and no days. Gated on `reporting.dashboard.read`.
+
+- **operationId**: `getReportsCommerceBookingRevenueCash`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name   | In    | Required | Type          | Description                                                                                                                              |
+| ------ | ----- | -------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `from` | query | no       | string (date) | Inclusive first settlement day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days. |
+| `to`   | query | no       | string (date) | Inclusive last settlement day (`YYYY-MM-DD`). Defaults to today in the report time zone.                                                 |
+
+**Responses**
+
+| Status | Description                                                                                | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | One row per settlement day that has a booking refund leg, ascending, and the range totals. | object                                 |
+| 400    | Validation error.                                                                          | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/reports/commerce/booking-revenue.csv` — Issue #478 (metrics 3.9 D4). The booking revenue waterfall of `booking-revenue` as a CSV (`text/csv`), one row per `Asia/Jakarta` paid day with the same columns as the screen: `basis` (always `paid_day`), `day`, `orders`, `gross`, `discounts`, `refunds` with its three parts `refunds_paid_back`, `refunds_payable` and `refunds_uncollected`, `net`, the `shipping`, `insurance` and `tax` companions after their refunded share, `balance_outstanding`, `refund_payable_balance`, `stays`, `no_shows`, `no_show_retained`, `no_show_rate_percent`, `restated` and `restated_at`. Aggregates only (no order, customer, name or contact); every cell is spreadsheet-formula-neutralised. Gated on `reporting.dashboard.read`, the JSON route's own permission. The export is audited as `booking_revenue_report.export` (the range and the row count, never a cell) and sent `Cache-Control: no-store`. While the tenant's `booking` feature is OFF the file is the header row only.
+
+- **operationId**: `exportReportsCommerceBookingRevenueCsv`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name   | In    | Required | Type          | Description                                                                                                                        |
+| ------ | ----- | -------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `from` | query | no       | string (date) | Inclusive first paid day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days. |
+| `to`   | query | no       | string (date) | Inclusive last paid day (`YYYY-MM-DD`). Defaults to today in the report time zone.                                                 |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The CSV file.               | string                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/reports/commerce/operational-cash-ups` — Issue #296 (ADR-0035). The POS operational cash-ups report over the inclusive day range: the cash-up variance of every register session that closed in the range, per tender, with register and cashier of record, from the `commerce.pos_cash_up_variance` projection; variance is counted (with corrections) minus expected, negative is short. While the tenant's `register` feature is OFF the answer is `200` with `enabled: false` and no rows. Gated on `commerce.report_cash_ups.read`, a permission of its own (not implied by `reporting.dashboard.read` or by the source-domain permission).
 

@@ -37107,7 +37107,7 @@ paths:
       operationId: getReportsCommerceBookingRevenue
       tags:
         - Commerce
-      summary: 'Issue #389 (ADR-0045 amendment note; metrics spec sections 3, 3.7 and 8.2). The booking-sourced revenue waterfall per `Asia/Jakarta` paid day in the inclusive range, from the `commerce.booking_revenue` projection. Revenue follows the commerce order and the payment ledger only: gross is recognised once, on the day of the order''s first paid transition (a deposit order recognises its whole gross on the deposit day); discounts are the reductions the order recorded before payment; Refunds are the money paid back plus, for a closed order (a cancellation or a no-show), the unpaid balance that will never be collected ("no money moved"), both on the ORIGINAL paid day; net is gross - discounts - refunds. Shipping, insurance and tax are companion columns beside the waterfall, and the unpaid balance of orders still open is shown as `balanceOutstanding`. Also the stay and no-show counts and the no-show rate (no-shows / stays, joined through the order). Aggregates only: no order, customer, name or contact. A day older than the 35-day window that a late event changed is `restated: true`. While the tenant''s `booking` feature is OFF (the default) the answer is `200` with `enabled: false` and no days. Gated on `reporting.dashboard.read`, the sales report routes'' own permission; the projection''s freshness, rebuild and reconciliation live on `GET /api/v1/reports/projections/commerce.booking_revenue`.'
+      summary: 'Issues #389 and #478 (ADR-0045 and its "Owner decisions on the booking revenue slice"; metrics spec sections 3, 3.7, 3.9 and 8.2). The booking-sourced revenue waterfall per `Asia/Jakarta` paid day in the inclusive range, from the `commerce.booking_revenue` projection (descriptor version 2). Revenue follows the commerce order and the payment ledger only: gross is recognised once, on the day of the order''s first paid transition (a deposit order recognises its whole gross on the deposit day); discounts are the reductions the order recorded before payment. A refund counts when it is DECIDED (the order''s return records), not when the money moves, so the Refunds step has three parts that add up: `refundsPaidBack` (succeeded reversal legs), `refundsPayable` (decided, not yet paid out) and `refundsUncollected` (the unpaid balance of a closed order, "no money moved"), all on the ORIGINAL paid day. Each refund and each uncollected amount is allocated across goods, shipping, insurance and tax (pro rata in integer cents with the largest-remainder method; an exact split on a return record wins): only the goods share is in the Refunds step, the other three lower their own companion columns, so a full refund of a taxed order gives net 0 and tax 0. Settling a refund leg moves cents from payable to paid back and never moves net. Net is gross - discounts - refunds. `shipping`, `insurance` and `tax` are companion columns after their refunded share, `balanceOutstanding` is the unpaid balance of orders still open and `refundPayableBalance` the money still to be paid out on decided refunds. The waterfall is an operational sales measure, not a financial-statement figure. The cash reading of refunds is the separate `booking-revenue-cash` view. Also the stay and no-show counts and the no-show rate. Aggregates only: no order, customer, name or contact. A day older than the 35-day window that a late event changed is `restated: true`. While the tenant''s `booking` feature is OFF (the default) the answer is `200` with `enabled: false` and no days. Gated on `reporting.dashboard.read`, the sales report routes'' own permission; the projection''s freshness, rebuild and reconciliation live on `GET /api/v1/reports/projections/commerce.booking_revenue`.'
       parameters:
         - name: from
           in: query
@@ -37137,6 +37137,90 @@ paths:
                       - true
                   data:
                     $ref: "#/components/schemas/CommerceBookingRevenueReport"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/reports/commerce/booking-revenue-cash:
+    get:
+      operationId: getReportsCommerceBookingRevenueCash
+      tags:
+        - Commerce
+      summary: 'Issue #478 (metrics 3.6 and 3.9 D4). The CASH view of the booking slice''s refunds: the succeeded reversal legs of the payment ledger of the booking-sourced orders, grouped by the `Asia/Jakarta` day each leg SETTLED. This is where the cash reading of a refund lives now that the waterfall counts a refund when it is decided; the payload says `basis: "cash"` and the two views are never mixed in one chart. A leg that is planned, processing or failed moved no money and is the waterfall''s `refundPayableBalance`, not a row here. A live read of the append-only ledger (no second store, no restatement). Aggregates only. While the tenant''s `booking` feature is OFF the answer is `200` with `enabled: false` and no days. Gated on `reporting.dashboard.read`.'
+      parameters:
+        - name: from
+          in: query
+          required: false
+          description: Inclusive first settlement day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days.
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: false
+          description: Inclusive last settlement day (`YYYY-MM-DD`). Defaults to today in the report time zone.
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: One row per settlement day that has a booking refund leg, ascending, and the range totals.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceBookingCashRefunds"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/reports/commerce/booking-revenue.csv:
+    get:
+      operationId: exportReportsCommerceBookingRevenueCsv
+      tags:
+        - Commerce
+      summary: "Issue #478 (metrics 3.9 D4). The booking revenue waterfall of `booking-revenue` as a CSV (`text/csv`), one row per `Asia/Jakarta` paid day with the same columns as the screen: `basis` (always `paid_day`), `day`, `orders`, `gross`, `discounts`, `refunds` with its three parts `refunds_paid_back`, `refunds_payable` and `refunds_uncollected`, `net`, the `shipping`, `insurance` and `tax` companions after their refunded share, `balance_outstanding`, `refund_payable_balance`, `stays`, `no_shows`, `no_show_retained`, `no_show_rate_percent`, `restated` and `restated_at`. Aggregates only (no order, customer, name or contact); every cell is spreadsheet-formula-neutralised. Gated on `reporting.dashboard.read`, the JSON route's own permission. The export is audited as `booking_revenue_report.export` (the range and the row count, never a cell) and sent `Cache-Control: no-store`. While the tenant's `booking` feature is OFF the file is the header row only."
+      parameters:
+        - name: from
+          in: query
+          required: false
+          description: Inclusive first paid day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days.
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: false
+          description: Inclusive last paid day (`YYYY-MM-DD`). Defaults to today in the report time zone.
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: The CSV file.
+          headers:
+            Content-Disposition:
+              schema:
+                type: string
+            Cache-Control:
+              schema:
+                type: string
+                enum:
+                  - no-store
+          content:
+            text/csv:
+              schema:
+                type: string
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -49130,6 +49214,72 @@ components:
           description: "Paid and not yet refunded or promised along any payment: the ceiling of any refund."
         computedRefund:
           type: string
+    CommerceBookingCashRefunds:
+      type: object
+      description: "Issue #478. The cash view of the booking slice's refunds, by the day the reversal legs settled."
+      required:
+        - enabled
+        - basis
+        - timeZone
+        - asOf
+        - from
+        - to
+        - currency
+        - days
+        - totals
+      properties:
+        enabled:
+          type: boolean
+          description: "`false` while the `booking` feature is off: everything below is then empty."
+        basis:
+          type: string
+          enum:
+            - cash
+          description: This view is cash - the day money moved. It is never mixed with the paid-day waterfall in one chart.
+        timeZone:
+          type: string
+          description: The day calendar (`Asia/Jakarta`).
+        asOf:
+          type: string
+          format: date-time
+        from:
+          type: string
+          format: date
+        to:
+          type: string
+          format: date
+        currency:
+          type: string
+          description: One currency per tenant in v1.
+        days:
+          type: array
+          items:
+            type: object
+            required:
+              - day
+              - legs
+              - refundsPaidOut
+            properties:
+              day:
+                type: string
+                format: date
+                description: The Asia/Jakarta day the reversal legs settled.
+              legs:
+                type: integer
+                description: Settled reversal legs of that day.
+              refundsPaidOut:
+                type: string
+                description: "`numeric(14,2)` string. Money that went back to customers that day."
+        totals:
+          type: object
+          required:
+            - legs
+            - refundsPaidOut
+          properties:
+            legs:
+              type: integer
+            refundsPaidOut:
+              type: string
     CommerceBookingCustomerCancel:
       type: object
       additionalProperties: false
@@ -49977,7 +50127,7 @@ components:
               nullable: true
     CommerceBookingRevenueFigures:
       type: object
-      description: "Issue #389 (metrics spec sections 3, 3.7, 8.2). The booking-sourced revenue waterfall, its companion columns and the no-show figures of a paid day or of a whole range. Money is a `numeric(14,2)` string (ADR-0003)."
+      description: "Issues #389 and #478 (metrics spec sections 3, 3.7, 3.9, 8.2). The booking-sourced revenue waterfall, its companion columns and the no-show figures of a paid day or of a whole range. Money is a `numeric(14,2)` string (ADR-0003). The control identity is `net + shipping + insurance + tax = settled - refundPayableBalance + balanceOutstanding - surplus`."
       required:
         - orders
         - stays
@@ -49985,12 +50135,14 @@ components:
         - discounts
         - refunds
         - refundsPaidBack
+        - refundsPayable
         - refundsUncollected
         - net
         - shipping
         - insurance
         - tax
         - balanceOutstanding
+        - refundPayableBalance
         - noShows
         - noShowRetained
         - noShowRatePercent
@@ -50011,25 +50163,34 @@ components:
           description: Reductions the order recorded before payment (voucher, points), as a positive number.
         refunds:
           type: string
-          description: "`refundsPaidBack + refundsUncollected`, positive."
+          description: "The Refunds step: `refundsPaidBack + refundsPayable + refundsUncollected`, positive. Each part is the GOODS share (subtotal less discount) of the money; the shipping, insurance and tax shares lower their own companion columns."
         refundsPaidBack:
           type: string
-          description: '"Of which paid back": the succeeded reversal legs of the payment ledger.'
+          description: '"Of which paid back": the goods share of the succeeded reversal legs of the payment ledger.'
+        refundsPayable:
+          type: string
+          description: '"Of which refund payable": the goods share of the refunds decided (a return record exists) and not yet paid out - planned, processing or failed legs. Settling a leg moves cents from here to `refundsPaidBack` and never moves `net`.'
         refundsUncollected:
           type: string
-          description: '"Of which uncollected balance (no money moved)": the unpaid part of an order a cancellation or a no-show closed.'
+          description: '"Of which uncollected balance (no money moved)": the goods share of the unpaid part of an order a cancellation or a no-show closed.'
         net:
           type: string
-          description: "`gross - discounts - refunds` (negative only when a refund returned tax or shipping the companion columns still show)."
+          description: "`gross - discounts - refunds`. Never negative: a refund of a taxed order lowers the tax companion as well, so a full refund gives net 0 and tax 0."
         shipping:
           type: string
+          description: The shipping companion after the share that refunds and the uncollected balance took out of it.
         insurance:
           type: string
+          description: The insurance companion after its refunded share.
         tax:
           type: string
+          description: The tax companion after its refunded share. Tax collected is not revenue.
         balanceOutstanding:
           type: string
           description: The unpaid balance of orders still open, shown beside the waterfall so deposit-day gross is never read as cash received.
+        refundPayableBalance:
+          type: string
+          description: "Money, all components (goods, shipping, insurance, tax), decided to be refunded and not yet paid out: how much cash is still to leave. A companion column like `balanceOutstanding`."
         noShows:
           type: integer
         noShowRetained:
@@ -50049,9 +50210,10 @@ components:
           description: "`refunds / gross`; `null` when gross is zero."
     CommerceBookingRevenueReport:
       type: object
-      description: "Issue #389. The booking-sourced revenue report."
+      description: "Issues #389 and #478. The booking-sourced revenue report."
       required:
         - enabled
+        - basis
         - timeZone
         - restatementWindowDays
         - asOf
@@ -50064,6 +50226,11 @@ components:
         enabled:
           type: boolean
           description: "`false` while the `booking` feature is off: everything below is then empty."
+        basis:
+          type: string
+          enum:
+            - paid_day
+          description: "What a day means: the day of the order's first paid transition (attribution), never the day money moved - see `booking-revenue-cash` for that."
         timeZone:
           type: string
           description: The day calendar (`Asia/Jakarta`).
