@@ -1849,9 +1849,12 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // send-time consent check). Messages: UPDATE (claim, finalize, cancel) and
   // DELETE (retention); the consumers that INSERT run in the event runtime and
   // are mapped by #432. Attempts: the SELECT the ON CONFLICT arbiter read needs.
+  // Messages: SELECT and DELETE only at table level since sql/1061 (Issue #432):
+  // INSERT (the enqueue consumer, which runs as the worker) and UPDATE (the
+  // dispatcher's status machine) are COLUMN-ONLY, see WORKER_COLUMN_GRANTS.
   awcms_commerce_push_devices: ["SELECT", "DELETE"],
   awcms_commerce_push_preferences: ["SELECT"],
-  awcms_commerce_push_messages: ["SELECT", "UPDATE", "DELETE"],
+  awcms_commerce_push_messages: ["SELECT", "DELETE"],
   awcms_commerce_push_delivery_attempts: ["SELECT", "INSERT", "DELETE"],
   // `awcms_commerce_customer_accounts` carries a `dataLifecycle` descriptor
   // with `executionMode: 'generic'` (module.ts) purely so the table answers
@@ -2295,6 +2298,40 @@ export const WORKER_COLUMN_GRANTS: Record<
       "endpoint_ciphertext",
       "p256dh_key",
       "auth_secret_ciphertext"
+    ]
+  },
+  // sql/1061 (Issue #432, ADR-0048 section 3.5): the fan-out consumer INSERTs the
+  // thirteen columns an enqueue supplies (every other column keeps its default, so
+  // a worker cannot insert a row that is already `sent`), and the dispatcher
+  // UPDATEs only the status machine and the provider result. NOT writable after
+  // the insert: account_id, device_id, purpose, title, body, target_path, tag,
+  // dedupe_key, source_event_id, event_type, priority, expires_at - a worker able
+  // to rewrite those could redirect a message to another account, device or text.
+  awcms_commerce_push_messages: {
+    INSERT: [
+      "tenant_id",
+      "account_id",
+      "device_id",
+      "source_event_id",
+      "event_type",
+      "purpose",
+      "priority",
+      "tag",
+      "dedupe_key",
+      "title",
+      "body",
+      "target_path",
+      "expires_at"
+    ],
+    UPDATE: [
+      "status",
+      "retry_count",
+      "next_attempt_at",
+      "last_error",
+      "provider_name",
+      "provider_message_id",
+      "sent_at",
+      "updated_at"
     ]
   },
   // sql/284 (Issue #943): the booking reminder dispatcher settles an intent. The

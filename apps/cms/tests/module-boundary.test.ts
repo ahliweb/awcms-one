@@ -238,7 +238,12 @@ const DOCUMENTED_EXCEPTIONS: {
       "`push_delivery`'s PURE domain helpers: the endpoint hash/mask/normalise " +
       "functions, `validateSubscriptionInput`, the VAPID parser, the " +
       "auth-secret key ring and the `PushTarget` type, so the two modules " +
-      "agree on one endpoint hash and one ciphertext format. Nothing in " +
+      "agree on one endpoint hash and one ciphertext format. Issue #432 adds " +
+      "the SENDING half, through the same reuse: the Web Push provider " +
+      "factory, the SSRF-guarded HTTP client seam, the retry policy, the " +
+      "breaker key and the payload-format helpers, imported by the dispatcher " +
+      "and its provider adapter only (the enqueue consumer imports none of " +
+      "them). Nothing in " +
       "`push_delivery` is called with a database handle and none of its tables " +
       "is touched. It cannot be a `dependencies` edge: that would make " +
       "`commerce` un-enablable for any tenant that does not run `push_delivery` " +

@@ -215,6 +215,11 @@ export const JOB_WORK_CLASS_REGISTRY: Readonly<
     rationale:
       'One-shot-per-run retention sweep (commerce:whatsapp:purge, Issue #108), every 5-15 minutes, delay-tolerant like email:queue:purge; purgeWhatsappQueue passes workClass: "maintenance" explicitly.'
   },
+  "scripts/commerce-customer-push-dispatch.ts": {
+    workClass: "background_sync",
+    rationale:
+      'Scheduled customer Web Push dispatcher (commerce:customer-push:dispatch, Issue #432), every minute: claims due outbox rows, re-checks eligibility and calls the push service OUTSIDE any transaction; every dispatchCustomerPushForTenant transaction passes workClass: "background_sync" explicitly, the same recurring-but-not-latency-sensitive profile as commerce:whatsapp:dispatch and push:dispatch.'
+  },
   "scripts/commerce-customer-push-maintenance.ts": {
     workClass: "maintenance",
     rationale:

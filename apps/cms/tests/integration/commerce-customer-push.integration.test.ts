@@ -1709,7 +1709,9 @@ suite("customer Web Push - devices, consent, outbox (Issue #430)", () => {
     const expected: Record<string, string[]> = {
       awcms_commerce_push_devices: ["DELETE", "SELECT"],
       awcms_commerce_push_preferences: ["SELECT"],
-      awcms_commerce_push_messages: ["DELETE", "SELECT", "UPDATE"],
+      // INSERT and UPDATE are column-only since sql/1061 (Issue #432): see
+      // commerce-customer-push-fanout.integration.test.ts for the column lists.
+      awcms_commerce_push_messages: ["DELETE", "SELECT"],
       awcms_commerce_push_delivery_attempts: ["DELETE", "INSERT", "SELECT"]
     };
 

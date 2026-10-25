@@ -102,7 +102,8 @@ describe("fetchModuleJobs", () => {
         // Issue #87 (awcms-one epic #32): OTP/session purge.
         "bun run commerce:customer-auth:purge",
         // Issue #430: customer Web Push device maintenance (every 15 minutes)
-        // and the manual key-ring rekey.
+        // and the manual key-ring rekey; Issue #432: the dispatcher (every minute).
+        "bun run commerce:customer-push:dispatch",
         "bun run commerce:customer-push:maintenance",
         "bun run commerce:customer-push:rekey",
         // Issue #26 (awcms-one epic #21): the flash-sale status tick.

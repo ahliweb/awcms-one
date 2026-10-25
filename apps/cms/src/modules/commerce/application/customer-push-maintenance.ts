@@ -3,7 +3,8 @@
  * ADR-0048 sections 5.3 "Session expiry" and 5.7 "Clean-up"). The registered
  * "delegated" adopter of the four customer-push `dataLifecycle` descriptors.
  *
- * Two jobs in one bounded pass, in this order:
+ * Three jobs in one bounded pass, in this order (the expiry sweep was added by
+ * #432, after the session and block sweeps):
  *
  * 1. SWEEP. An `active` device whose enrolling session has ended (revoked,
  *    expired, or purged -> `session_id` NULL), or whose account or customer
@@ -14,6 +15,8 @@
  *    destruction of the credential happen instead of waiting for the customer.
  *    Consequence (ADR-0048 Q5): notifications stop when the enrolling session
  *    lapses after 30 days without use; the customer re-enables with one tap.
+ * 1b. EXPIRE. A queued, retry_wait or lease-lapsed sending message past its
+ *    `expires_at` becomes `expired` (never sent late), even with the feature off.
  * 2. PURGE. Tombstones past 30 days (`revoked_at`), TERMINAL messages past 30
  *    days (`updated_at`) and attempts past 30 days (`created_at`). A queued,
  *    sending or retry_wait message is work and is never purged however old. It
@@ -31,6 +34,7 @@ import {
   CUSTOMER_PUSH_TERMINAL_MESSAGE_STATUSES
 } from "../domain/customer-push";
 import { tombstoneCustomerPushDevices } from "./customer-push-devices";
+import { expireOverdueCustomerPushMessages } from "./customer-push-outbox";
 
 export const CUSTOMER_PUSH_MAINTENANCE_BATCH_LIMIT = 500;
 
@@ -42,6 +46,8 @@ export type CustomerPushMaintenanceOptions = {
 };
 
 export type CustomerPushMaintenanceResult = {
+  /** Waiting messages past `expires_at` moved to `expired` (Issue #432). */
+  expiredMessages: number;
   sweptSessionEnded: number;
   sweptAccountBlocked: number;
   purgedDevices: number;
@@ -121,6 +127,16 @@ export async function purgeCustomerPushForTenant(
         now
       );
 
+      // Issue #432: a waiting message past its TTL is expired here too, so the
+      // job that runs with the feature OFF still drains what an earlier period
+      // queued (the dispatcher claims nothing while the kill switch is on).
+      const expired = await expireOverdueCustomerPushMessages(
+        tx,
+        tenantId,
+        now,
+        batchLimit
+      );
+
       // Attempts first (a message's attempts also cascade, but an orphan-free
       // table must not depend on that), then terminal messages, then tombstones
       // (their remaining messages cascade).
@@ -161,6 +177,7 @@ export async function purgeCustomerPushForTenant(
       `) as IdRow[];
 
       const result: CustomerPushMaintenanceResult = {
+        expiredMessages: expired,
         sweptSessionEnded: sessionEnded.length,
         sweptAccountBlocked: accountBlocked.length,
         purgedDevices: devices.length,
@@ -169,6 +186,7 @@ export async function purgeCustomerPushForTenant(
       };
 
       const total =
+        result.expiredMessages +
         result.sweptSessionEnded +
         result.sweptAccountBlocked +
         result.purgedDevices +

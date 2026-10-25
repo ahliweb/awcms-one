@@ -1113,6 +1113,19 @@ channels:
       `amount` and `settledVia` (`ledger` | `provider` | `offline` |
       `store_credit`) - never a provider reference, name or phone. A failed
       attempt is an audit event, not a domain event.
+  awcms.commerce.conversation.store_replied:
+    address: awcms.commerce.conversation.store_replied
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A staff reply was stored in a customer conversation (Issue #432, ADR-0048
+      Q4). Producer: `commerce/application/conversation-directory.ts`'s
+      `postStoreReply`, in the same transaction as the stored message.
+      Aggregate: the conversation (`commerce.conversation`). Payload:
+      `conversationId` only - never the subject, the body or the customer.
+      Consumed by the customer Web Push enqueuer
+      (`commerce.customer_push_enqueuer`, purpose `support_replies`).
   awcms.commerce.quotation.accepted:
     address: awcms.commerce.quotation.accepted
     messages:
@@ -1789,6 +1802,12 @@ operations:
       $ref: "#/channels/awcms.commerce.refund.settled"
     messages:
       - $ref: "#/channels/awcms.commerce.refund.settled/messages/DomainEvent"
+  publishCommerceConversationStoreReplied:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.conversation.store_replied"
+    messages:
+      - $ref: "#/channels/awcms.commerce.conversation.store_replied/messages/DomainEvent"
 components:
   messages:
     DomainEvent:

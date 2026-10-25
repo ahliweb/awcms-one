@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:bc426a8293ff6d554553860dd9474abf38b355871f8493b002abded29b7d07e9 -->
+<!-- i18n-source-hash: sha256:efacfc893e285386c5c9af34aab0d3400cc95a1210116f48743caa4a9d3baaf7 -->
 
 # Scripts AWCMS
 
@@ -27,7 +27,7 @@ lalu membangun duplikatnya.
 
 <!-- Dihasilkan `bun run scripts:inventory:generate`. JANGAN diedit tangan. -->
 
-170 target menjalankan berkas di `scripts/`; 64 di antaranya
+171 target menjalankan berkas di `scripts/`; 64 di antaranya
 ada di rantai `bun run check` (kolom **Gate**), sisanya dijalankan manual,
 terjadwal, atau oleh workflow CI tertentu.
 
@@ -78,6 +78,7 @@ terjadwal, atau oleh workflow CI tertentu.
 | `commerce:booking:reconcile`              | `commerce-booking-reconcile.ts`                | —    |
 | `commerce:campaigns:dispatch`             | `commerce-campaigns-dispatch.ts`               | —    |
 | `commerce:customer-auth:purge`            | `commerce-customer-auth-purge.ts`              | —    |
+| `commerce:customer-push:dispatch`         | `commerce-customer-push-dispatch.ts`           | —    |
 | `commerce:customer-push:maintenance`      | `commerce-customer-push-maintenance.ts`        | —    |
 | `commerce:customer-push:rekey`            | `commerce-customer-push-rekey.ts`              | —    |
 | `commerce:deploy:preflight`               | `commerce-deploy-preflight.ts`                 | —    |

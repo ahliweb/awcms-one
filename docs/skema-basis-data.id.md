@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:7cf21b13830d0d5a72f8df359e5f87cef5e62865f27ca308c5b9644b0e37efa0 -->
+<!-- i18n-source-hash: sha256:83e7b536da6f2c3bf304a198cb38fb800e1f9bc9e11cd52a130a9e27333300cc -->
 
 # Skema basis data
 
@@ -491,6 +491,8 @@ awcms_tenants 1───* awcms_commerce_customer_accounts 1───* awcms_com
 | `sql/1057` | `awcms_commerce_push_messages` (outbox) dan `awcms_commerce_push_delivery_attempts`.                                                                                               |
 | `sql/1058` | Hak akses `awcms_worker` (`UPDATE` hanya-kolom pada perangkat) dan `awcms_commerce_push_devices_guard()`, trigger `BEFORE UPDATE` dengan `search_path` terpasang.                  |
 | `sql/1059` | Izin `commerce.customer_push.read`.                                                                                                                                                |
+
+Issue #432 menambah satu migrasi pada keluarga ini, `sql/1061` (`1062` tidak dipakai): konsumen fan-out dan dispatcher berjalan sebagai `awcms_worker`, sehingga ia menerima `INSERT` **hanya-kolom** pada `awcms_commerce_push_messages` (tiga belas kolom yang diberikan sebuah enqueue; kolom lain tetap pada nilai bawaannya, sehingga baris tidak dapat dimasukkan sudah `sent`) dan `UPDATE` tingkat-tabelnya (sql/1058) diganti `UPDATE` **hanya-kolom** pada mesin status dan hasil provider (`status`, `retry_count`, `next_attempt_at`, `last_error`, `provider_name`, `provider_message_id`, `sent_at`, `updated_at`). Worker karenanya tidak lagi dapat mengalihkan atau menulis ulang pesan yang ada (`account_id`, `device_id`, `purpose`, teks, path, kedaluwarsa). Kunci batas per akun menjadi advisory lock, karena worker tidak punya `UPDATE` pada akun dan `FOR UPDATE` memerlukannya. Tidak ada tabel atau indeks ditambahkan: indeks dispatch, perangkat, jendela-akun, dan retensi yang ada mencakup claim, batas sisi-kirim, dan sapuan kedaluwarsa.
 
 Invarian yang hidup di basis data: kredensial (`endpoint_ciphertext`, `p256dh_key`, `auth_secret_ciphertext`) dan `revoked_at` ada jika dan hanya jika `status = 'active'` (CHECK); `UNIQUE (tenant_id, endpoint_hash)` menjadikan pendaftaran sebuah upsert, tidak pernah duplikat; foreign key komposit `(tenant_id, …)` membuat perangkat, pesan, atau preferensi lintas tenant mustahil secara struktural; `endpoint_hash` tidak pernah berubah; bentuk `target_path`, `title`, `body`, `last_error`, dan `provider_response_snippet` dibatasi sehingga pesan tak dapat membawa URL absolut, data pesanan, atau teks provider. Foreign key akun berantai (akun yang dihapus membawa data push-nya); foreign key sesi mengisi `session_id` dengan NULL, sehingga purge autentikasi pelanggan tidak pernah terhalang perangkat. Indeks: parsial `(tenant_id, account_id) WHERE status = 'active'` untuk fan-out, satu per kolom foreign key, `(tenant_id, status, revoked_at)` dan `(tenant_id, status, updated_at)` untuk retensi, `(tenant_id, status, next_attempt_at)` untuk dispatcher, dan `(tenant_id, account_id, created_at DESC)` untuk jendela laju per akun.
 

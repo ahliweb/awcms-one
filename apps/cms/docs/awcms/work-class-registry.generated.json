@@ -3149,6 +3149,12 @@
       "rationale": "Scheduled OTP/session purge sweep (commerce:customer-auth:purge, Issue #87), every 5-15 minutes — same recurring-but-not-latency-sensitive profile as commerce:orders:expire; purgeCustomerAuthForTenant passes workClass: \"background_sync\" explicitly."
     },
     {
+      "path": "scripts/commerce-customer-push-dispatch.ts",
+      "workClass": "background_sync",
+      "source": "registry",
+      "rationale": "Scheduled customer Web Push dispatcher (commerce:customer-push:dispatch, Issue #432), every minute: claims due outbox rows, re-checks eligibility and calls the push service OUTSIDE any transaction; every dispatchCustomerPushForTenant transaction passes workClass: \"background_sync\" explicitly, the same recurring-but-not-latency-sensitive profile as commerce:whatsapp:dispatch and push:dispatch."
+    },
+    {
       "path": "scripts/commerce-customer-push-maintenance.ts",
       "workClass": "maintenance",
       "source": "registry",

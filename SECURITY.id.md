@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](SECURITY.md)
 
-<!-- i18n-source-hash: sha256:6751485e58193a4fd7b37133ebca341ded8c612e23ec47db67b7f5770767992f -->
+<!-- i18n-source-hash: sha256:f1a0761c137affa07eee3cad43f5fb9fbbf43e40d395924a02141c58231a38ab -->
 
 # Kebijakan Keamanan
 
@@ -59,7 +59,8 @@ Container *yang dilayani* `apps/storefront` — semua kecuali permukaan commerce
 - **Tanpa peniruan di peramban bersama.** Mendaftarkan endpoint akun lain adalah pengalihan atomik dan teraudit yang membatalkan pesan antrean pemilik sebelumnya; logout mencabut perangkat sesi dalam transaksi sesi itu sendiri.
 - **Notifikasi generik, target tetap.** Teks adalah templat tetap dan target klik adalah path storefront tetap yang digabung dengan origin tervalidasi perangkat; tidak ada kode pesanan, jumlah, atau nama yang keluar dari sistem, dan tata letak storefront-pada-origin-CMS ditolak.
 - **Terbatas.** Lima perangkat per akun, body 8 KiB, batas laju per IP dan per akun, 12 notifikasi per jam dan 40 per hari per akun, retensi 30 hari untuk batu nisan, pesan terminal, dan percobaan.
-- **Risiko sisa, dinyatakan.** Pemegang endpoint mentah seorang pembeli dapat mengambil alih perangkat sampai pembeli mengaktifkan lagi (hanya ketersediaan: payload dienkripsi ke kunci yang diberikan pengambil alih, sehingga peramban asli tidak dapat menampilkannya dan pengambil alih tidak menerima apa pun); risiko sisa XSS-pada-`localStorage` yang sama dengan token sesi berlaku, tidak diperlebar karena service worker tidak memegang token; `sent` hanya berarti layanan push menerima permintaan.
+- **Pengiriman (issue #432).** Konsumen yang mengantrekan notifikasi tidak melakukan panggilan jaringan dan tidak mengimpor kode provider atau kredensial (tes statis), sehingga checkout, pembayaran, atau webhook tidak pernah menunggu layanan push. Kelayakan diputuskan lagi saat pesan **dikirim**: perangkat yang dicabut, persetujuan yang ditarik atau berkata-kata usang, akun diblokir, sesi berakhir, pemilik perangkat berubah, domain storefront dihapus, dan pesan kedaluwarsa semuanya membatalkannya tanpa panggilan provider, dan baris yang teksnya bukan salah satu dari enam string katalog atau path-nya bukan path tetap tujuan ditolak siapa pun penulisnya. Akses basis data worker hanya-kolom (`sql/1061`): ia dapat mengantrekan baris tetapi tidak memasukkan baris yang sudah `sent`, dan dapat menggerakkan baris melalui mesin statusnya tetapi tidak menulis ulang untuk siapa atau apa isinya. `404` atau `410` dari layanan push memusnahkan kredensial perangkat; kredensial didekripsi di memori setelah transaksi basis data tutup dan tidak pernah masuk log, baris audit, atau cuplikan percobaan (URL dan untaian mirip token disunting). Pemasaran tidak punya jalur: peta peristiwa hanya menamai tiga tujuan transaksional.
+- **Risiko sisa, dinyatakan.** Crash setelah layanan push menerima permintaan dan sebelum baris diselesaikan mengirim pesan itu lagi (percobaan provider bersifat at-least-once; tag membuat pengulangan menggantikan banner). Pemegang endpoint mentah seorang pembeli dapat mengambil alih perangkat sampai pembeli mengaktifkan lagi (hanya ketersediaan: payload dienkripsi ke kunci yang diberikan pengambil alih, sehingga peramban asli tidak dapat menampilkannya dan pengambil alih tidak menerima apa pun); risiko sisa XSS-pada-`localStorage` yang sama dengan token sesi berlaku, tidak diperlebar karena service worker tidak memegang token; `sent` hanya berarti layanan push menerima permintaan.
 
 ## Permukaan provider dan webhook: apa yang melindunginya
 

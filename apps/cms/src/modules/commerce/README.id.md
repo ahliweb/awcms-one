@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:88ca73e98433d5473ab785f8f8ab87ad82c0af9382f8ab6ca5d31b461e3923c2 -->
+<!-- i18n-source-hash: sha256:d4ea072cbb63dfe498289e7e6b7052bf3f8a1e292406e362eab8bb9ff8710c58 -->
 
 # `commerce`
 
@@ -1769,8 +1769,9 @@ Di balik fitur `customerPush` per tenant (bawaan MATI = `404` netral; aktivasi p
 - **Aturan murni**: `domain/customer-push.ts` (tujuan, batas, aritmetika batas dan jendela laju, parser body yang ketat, versi teks persetujuan), `domain/customer-push-endpoint.ts` (allowlist host layanan push dan penggantian operator), `domain/customer-push-secrets.ts` (enkripsi dengan AAD terikat baris dan tujuan), `domain/customer-push-user-agent.ts` (deskripsi kasar dari kosakata tertutup).
 - **Aplikasi**: `application/customer-push-http.ts` (seluruh perilaku rute; berkas rute di `src/pages/api/v1/commerce/storefront/account/push/` hanya adaptor tipis), `customer-push-devices.ts` (satu-satunya berkas selain re-key yang menyebut kolom kredensial), `customer-push-preferences.ts`, `customer-push-outbox.ts` (sambungan untuk #432: `enqueueCustomerPushMessage`, `cancelPendingMessagesForDevices`), `customer-push-capability.ts`, `customer-push-audit.ts`, `customer-push-erasure.ts` (`eraseCustomerPushData`, `exportCustomerPushData`), `customer-push-maintenance.ts`, `customer-push-rekey.ts`, `customer-push-diagnostics.ts`.
 - **Rute**: `GET|POST|DELETE .../storefront/account/push/subscriptions`, `DELETE .../subscriptions/{id}`, `GET|PUT .../push/preferences` (hanya bearer), dan `GET /api/v1/commerce/customer-push/diagnostics` (`commerce.customer_push.read`, hitungan agregat). Logout (`.../account/logout`) dan pemblokiran pelanggan oleh admin (`PATCH /api/v1/commerce/customers/{id}`) mencabut perangkat dalam transaksinya sendiri.
-- **Job**: `commerce:customer-push:maintenance` (tiap 15 menit) dan `commerce:customer-push:rekey` (manual); pengaturan `COMMERCE_CUSTOMER_PUSH_EXTRA_ENDPOINT_HOSTS`.
-- **Belum ada**: UI storefront dan service worker (#431); konsumen peristiwa domain, loop pengiriman, dan kelayakan saat kirim (#432). Halaman: [`cms.id.md`](../../../../../docs/cms.id.md), [`api.id.md`](../../../../../docs/api.id.md), [`kamus-data.id.md`](../../../../../docs/kamus-data.id.md), [`deployment.id.md`](../../../../../docs/deployment.id.md).
+- **Job**: `commerce:customer-push:maintenance` (tiap 15 menit), `commerce:customer-push:dispatch` (tiap menit), dan `commerce:customer-push:rekey` (manual); pengaturan `COMMERCE_CUSTOMER_PUSH_EXTRA_ENDPOINT_HOSTS`.
+- **Fan-out (Issue #432)**: `domain/customer-push-policy.ts` (murni: peta peristiwa-ke-tujuan tertutup, enam string katalog, pembangun payload, `evaluateSendEligibility`, batas sisi-kirim, klasifikasi hasil provider dan penyuntingan cuplikan), `application/customer-push-enqueue.ts` (konsumen `commerce.customer_push_enqueuer`, hanya basis data), `application/customer-push-dispatch.ts` (claim, transaksi pra-kirim, kirim di luar transaksi apa pun, finalisasi), `application/customer-push-facts.ts`, `infrastructure/customer-push-provider.ts` (provider Web Push upstream dengan TTL, `Urgency`, dan origin storefront per pesan; satu-satunya berkas di sini yang mengimpornya) dan job `commerce:customer-push:dispatch` (tiap menit). Peristiwa baru `awcms.commerce.conversation.store_replied`, ditambahkan oleh `postStoreReply`. `sql/1061`: `INSERT` dan `UPDATE` worker hanya-kolom pada outbox.
+- **Belum ada**: UI storefront dan service worker (#431); push pemasaran; tes penerimaan terhadap layanan push sungguhan. Halaman: [`cms.id.md`](../../../../../docs/cms.id.md), [`api.id.md`](../../../../../docs/api.id.md), [`kamus-data.id.md`](../../../../../docs/kamus-data.id.md), [`deployment.id.md`](../../../../../docs/deployment.id.md).
 
 ## Resource tautan offering booking - TERIMPLEMENTASI (Issue #437, epik #280 - [ADR-0045](../../../../../docs/adr/0045-booking-commerce-adapter.id.md))
 
