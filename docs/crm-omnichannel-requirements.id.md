@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](crm-omnichannel-requirements.md)
 
-<!-- i18n-source-hash: sha256:cc00aecbeee989acbcc2d17184daa2e7fa0e17a0b8eb20925bc71605e843d870 -->
+<!-- i18n-source-hash: sha256:1f9957b0fda41148c3fbedcfaaf937bdd9d2240b7997bd39c773070961376960 -->
 
 # Standar kebutuhan CRM omnichannel — reusable (v1.0, usulan)
 
@@ -180,7 +180,7 @@ Seluruh issue implementasi **masih terbuka/direncanakan** saat dokumen diterbitk
 
 > **Persyaratan arsitektur, bukan fitur WebSocket yang sudah aktif.** [AWCMS-One #467](https://github.com/ahliweb/awcms-one/issues/467) dan [draft PR #468](https://github.com/ahliweb/awcms-one/pull/468) memuat rancangan dwibahasa; fondasi upstream [AWCMS #1167](https://github.com/ahliweb/awcms/issues/1167), keputusan realtime usulan [#1168](https://github.com/ahliweb/awcms/issues/1168).
 
-- **RUN-BUN-01:** Seluruh broadcast, email, WhatsApp, Telegram pelanggan, Web Push, publikasi sosial yang diizinkan, scheduler/dispatcher/gateway status yang dimiliki AWCMS-One **wajib menggunakan Bun versi root `bun@1.4.3`**. Jangan tambah proses Node.js, server npm/yarn/pnpm, Socket.IO Node atau runtime aplikasi lain. Import `node:*` kompatibel Bun dan Astro yang dijalankan di Bun tetap boleh.
+- **RUN-BUN-01:** Seluruh broadcast, email, WhatsApp, Telegram pelanggan, Web Push, publikasi sosial yang diizinkan, scheduler/dispatcher/gateway status yang dimiliki AWCMS-One **wajib menggunakan Bun versi root `bun@1.4.4`**. Jangan tambah proses Node.js, server npm/yarn/pnpm, Socket.IO Node atau runtime aplikasi lain. Import `node:*` kompatibel Bun dan Astro yang dijalankan di Bun tetap boleh.
 - **RUN-BUN-02:** Pengiriman ke provider adalah **outbox database tahan lama → worker Bun berizin → API HTTP provider**, bukan WebSocket. Upstream `email:dispatch`, `whatsapp:dispatch` dan `push:dispatch` **sudah Bun**; StarSender/Meta, Mailketing, Telegram dan follow-up nanti memakai port publik upstream, bukan antrean pengirim baru.
 - **RUN-BUN-03:** Progres kampanye/inbox/tugas AI dapat memakai **SSE Bun** satu arah atau **WebSocket native `Bun.serve`** dua arah yang dibuktikan kebutuhannya, hanya setelah ADR upstream diterima. Polling HTTPS tetap fallback. **Gateway WebSocket generik belum ada di main.**
 - **RUN-BUN-04:** Langganan real-time terikat otorisasi tenant/brand/user server-side, Origin, tiket singkat tanpa bearer panjang di URL, CSP, kuota/backpressure/replay, dan envelope berversi teredaksi. Status stream bukan sumber kebenaran; status antrean dan bukti provider terverifikasi tetap otoritatif.
