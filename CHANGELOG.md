@@ -2,6 +2,117 @@
 
 Every entry below is folded from `.changesets/` by `bun run release`, which also tags the release. The version is `MAJOR.MINOR.PATCH`, tagged `vX.Y.Z`; the next version is the largest `bump` declared among the changesets a release folds (see [`.changesets/README.md`](.changesets/README.md)) — never a level chosen at release time from a list of file names.
 
+## [0.18.0] — 2026-10-25
+
+### Booking adapter admin screens: closing pass, deposits paging, focus after reload (issue #385, ADR-0045)
+
+Behind the tenant's `booking` feature (a tenant that never turns it on sees no change). The offering-link, deposit-policy, cancellation-policy-version screens, the refund-override dialog and the sidebar entries were delivered in parts by #423, #441, #381 and #382; this closes issue #385 (DoR residual R2) with what a pass over them in a real browser, with real data, found. No migration, route, permission or event.
+
+- **The deposits list no longer stops at 200 rows without saying so.** It is keyset-paged by product name (50 per page) with "Next page" and "First page" links and a visible line while more follow; each row links to that product's cancellation policy versions. The cancellation-policy scope selector keeps its 200-product cap and now says when it is cut. A cursor that cannot be read is the first page.
+- **Focus after a reload.** The "this product has no cancellation policy" notice on the links screen and the "refund set" line on the order detail take focus when they appear after the page reloads, so a screen reader reads them and a keyboard user continues from them. A value the browser-side check refuses is marked `aria-invalid`, tied to its error and focused.
+- **Screens that were rendered by markup no stylesheet covered:** the link filter (three links jammed together, the current one visible only to assistive technology) is the shared segmented control; the deposit kind radios no longer render as stretched text fields; labels sit with their controls in the link, scope and draft forms; stacked tables at 360px keep their caption and their empty states readable; a window added to or removed from the draft editor keeps keyboard focus in the form. Required fields say "(required)" in the label.
+- **Real-browser evidence.** `apps/cms/tests/e2e/admin-commerce-booking.e2e.ts` turns the feature on, seeds the rows and drives the screens by keyboard: axe (no critical or serious finding) in both themes at 360px and 1280px, no sideways scroll, the confirm dialog (no raw browser dialog), the override dialog refusing an amount above what was paid and returning focus on Escape, the sidebar entries absent while the feature is off. The server's own refusal of such an amount (`409 REFUND_EXCEEDS_PAID`) stays covered by the route integration suite.
+- **Client asset budget** raised to 489,900 B, measured 489,891 B on the build (487,529 B on the `main` it was branched from): +2.4 kB of script and stylesheet for the above. The arithmetic is in the docblock of `APP_BUDGET_BYTES`.
+- The override dialog stays on the booking panel of the order detail: Booking's own reservation screen cannot know the amount paid and must not import commerce (documented in ADR-0045 and the UX spec, section 11.5).
+
+### Booking adapter hardening from the wave C review (#448)
+
+Low-severity findings of the wave C review, each verified against the code first. Two items of the issue (the deposits screen limit and the focus after a reload, from #423) are left to their own follow-up.
+
+- The guest cancel route's per-phone rate limit is keyed on the phone plus the order code, with a coarser per-phone ceiling (ten times the budget), so a stranger who only knows a phone number can no longer exhaust the guest's own budget for their reservation. Bearer cancels are unaffected.
+- `sql/1054` narrows the register-session ledger guard: the booking-balance exception now also needs the `posbal:<link id>:` marker the balance route writes, naming an active link of the same order.
+- A reschedule that would plan refund legs (fewer nights) also needs `commerce.booking_refund_decisions.create` (403 before any write); same-length and longer moves still need `.update` only.
+- Storefront availability for an offering link that names no resource now answers a neutral 404 for a resource that is not an active resource of the tenant in the offering's mode, as the bound path does; a bound resource that was since retired is the same 404.
+- An active link on a cancelled or expired booking order stays active by design (the late-payment flagger and the reconciliation read it); documented and pinned by a test.
+- Tests: a parallel same-key hold-to-order test, the cancel limiter, the POS guard marker, the reschedule permission and the availability resource check. Docs: ADR-0045 implementation notes (en and id), the restore-drill runbook note about `SETUP_DATABASE_URL`, and the benchmark commit reference.
+
+### Wave C review follow-ups: commission delayed delivery, WhatsApp rollback and checkout idempotency namespace
+
+The low-severity findings of the commission (ADR-0046) and WhatsApp cutover (ADR-0047) reviews, plus the checkout idempotency namespace of the loyalty redemption review (ADR-0043). The commission adapter is still dormant (ADR-0046 D10), so the commission fixes take effect when it is re-enabled; the WhatsApp and checkout changes are live.
+
+- **WhatsApp rollback (`upstream` to `legacy`) counts only commerce's own rows.** A booking reminder in the shared upstream queue no longer blocks it; other modules' rows are reported in `queues.upstreamScope`. A status holding more than one page of the operator read counts its remainder as commerce's (fail closed).
+- **New, audited rollback override.** `force: true` on `POST /api/v1/commerce/whatsapp/mode` and `--force` (with `--operator`) on `bun run commerce:whatsapp:cutover`, rollback only, bypass the drain check and nothing else, under the same permission, step-up and idempotency key as any real flip. Audited as `whatsapp_mode.flip_forced` with the number of messages bypassed; the bypassed messages stay with the upstream dispatcher (late, not lost, not duplicated).
+- **The environment warning is in the HTTP response.** `GET` and `POST /api/v1/commerce/whatsapp/mode` carry `channelEnvironmentNotice`: the channel facts are read from the web server process, not the dispatchers. The CLI prints it on stderr. API change is additive (`force`, `queues.upstreamScope`, `force`, `channelEnvironmentNotice`); `queues.upstream` now counts commerce's non-terminal rows only.
+- **A signed-in storefront checkout's idempotency record is keyed to that customer** (`user:customer:<id>`), so another visitor cannot claim its key or replay its order. A retry that straddles the deploy still replays through a bounded fallback that honours only the identical request on the customer's own order; remove it after the idempotency table's 30-day retention.
+- **Commission, for re-enablement:** the beneficiary is the employment linked when the sale was paid, not when a delayed delivery runs; the attributor skips lines already fully returned and serialises with the reversers on a per-order lock; the voider identity is unchanged and recorded as an owner question (ADR-0046 D12).
+- Documentation: ADR-0046 D11-D12, ADR-0047 D16-D17, ADR-0043 D12 (English and Indonesian), the API reference, the deployment runbook, the commerce module README, `docs/status.md`.
+
+### apps/cms synced from ahliweb/awcms main at 5e29084 (AWCMS v10.10.2)
+
+Brings job-scoped secrets for the scheduled-job environment (ahliweb/awcms#1120: `ops/awcms-jobs.env-allowlist` becomes the generated pair `awcms-jobs.env-global` and `awcms-jobs.env-scoped`), the VAPID and Telegram hash keys on the jobs allowlist (#1119, #1121), Astro 7.4.0, Prettier 3.9.10, Playwright 1.64.1 and axe-core 4.14 with the Label-in-Name fixes it forced (#1130), ADR-0146 on LynxJS persona apps (#1133, Proposed), the attendance Idempotency-Key replay test fix (#1136) and the v10.10.0 to v10.10.2 releases. The embed keeps its 34 registered modules and gains no migration. Closes #452.
+
+- `commerce`'s provider secrets are classified for the new gate in `apps/cms/scripts/jobs-env-allowlist.ts`: the two WhatsApp tokens are scoped to `commerce:whatsapp:dispatch`, `WHATSAPP_RECIPIENT_HASH_KEYS` is also granted to `commerce:campaigns:dispatch` and `commerce:whatsapp:cutover` (without it an upstream-mode campaign message is refused `MISCONFIGURED` on a host that scopes secrets), and the Midtrans and RajaOngkir keys stay global because the module registry reaches their resolvers from about 70 scripts. Two standing divergences, listed in `AGENTS.md`.
+- Operator: no change on the compose path (the `jobs` service reads the whole `.env` through `env_file:`). A host running upstream's `run-job.sh` must deploy both generated env files beside it; see `docs/deployment.md`.
+- The #427 note that called the missing `PUSH_VAPID_*` names an upstream gap is updated: it is closed upstream.
+- ADR-0050 gets a dated note: consistent with upstream's ADR-0146, no revision. The `dependency-audit-exceptions` divergence is gone (upstream emptied its list too).
+- Label-in-Name sweep of `commerce`'s admin screens: no widget whose accessible name omits its visible text, so no screen change.
+- GHSA-587h-7wmj-h5pm (high, `launch-editor <=2.14.1`, reached only through `@changesets/cli`) failed `deps:audit:check` on the merged tree. The merged lockfile resolves `launch-editor` 2.14.2, inside the declared `^2.14.1`, so it is closed in `bun.lock` only (the same fix as #453), with no `overrides` entry.
+- Client asset budget raised to 487,700 B (measured 487,611 B; the shared `AdminLayout` CSS and catalogue, no new script); see `AGENTS.md`.
+- Rollback: roll forward. There is no migration to undo; on a `run-job.sh` host, redeploy the previous `awcms-jobs.env-allowlist` together with the previous `run-job.sh`.
+
+### launch-editor 2.14.2 clears a high-severity advisory
+
+`launch-editor` 2.14.1, which `@changesets/cli` pulls in for `apps/cms`'s release tooling, matched three new advisories: GHSA-587h-7wmj-h5pm (high), GHSA-r825-w8mm-5pxw and GHSA-698v-4r3x-3vcv. `apps/cms`'s `deps:audit:check` refuses an unhandled high-severity advisory, so `local-ci/check-cms` was red on `main` and on every branch. 2.14.2 is inside the existing `^2.14.1` range, so only `bun.lock` moves, regenerated with `bun update launch-editor`, and no exception entry is needed.
+
+- `bun audit` reports no vulnerabilities, and `deps:audit:check` passes with zero registered exceptions.
+
+### apps/cms advanced to ahliweb/awcms main at aa047da; root Bun pin raised to 1.4.4
+
+PR #457 (issue #452) now syncs `apps/cms` to `aa047da` instead of `5e29084`: eleven further upstream commits, still AWCMS v10.10.2, the same 34 registered modules and no migration. It carries the Bun 1.4.3 to 1.4.4 move (ahliweb/awcms#1176), per-job secret grants narrowed by splitting env resolvers (#1132: twelve grants gone from `ops/awcms-jobs.env-scoped`), hardened exemption lists (#1131 L4), the host/image drift refusal in `ops/run-job.sh` with the env files shipped in the jobs image (#1131 L5), the Bun-only launch-manifest gate (#1170), the read-only `deps:freshness` report and governance (#1173), a manual booking soak workflow (#1087) and a reference-only admin UI/UX redesign proposal under `apps/cms/design/`. Closes #452 and delivers the root-pin part of #470 (its staging rollout and timeout/memory review are operational and stay open).
+
+- **Root Bun pin 1.4.3 to 1.4.4 (the established pattern of #416), forced by the sync.** `apps/cms/tests/bun-only-launch-manifests.test.ts` asserts, when `CI` is set, that the running Bun equals `apps/cms`'s `packageManager`; local CI sets `CI=true` and `enforceBunPinOrThrow` pins the running Bun to the root, so a root on 1.4.3 turns `local-ci/check-cms` red. Moved together: `package.json` (`packageManager`, `engines.bun >=1.4.4`), `apps/storefront/Dockerfile` `BUN_VERSION`, `apps/storefront`'s `@types/bun ^1.4.4`, the test fixtures and `bun.lock` (regenerated by `bun install`; only `@types/bun` and `bun-types` move). No `overrides` entry.
+- Two advisories published since the last sync failed the audit gates on the merged tree: `undici` 8.10.2 (GHSA-xjj6-f33q-929c, high) and `fast-uri` 3.1.8 (storefront tree, moderate and low). Closed with `bun audit fix` (to 8.12.2 and 3.1.9, inside the declared ranges), so only `bun.lock` changed.
+- `media_library`: upstream moved the credential-free R2 settings into `media-r2-public-config.ts`; this repo's private-object (issue #268) presigned-GET TTL setting, clamp and `visibility` check are re-applied on top. One new standing divergence, listed in `AGENTS.md`.
+- Operator: no change on the compose path. A host that runs upstream's `run-job.sh` must install the jobs image's copies of `run-job.sh`, `awcms-jobs.env-global` and `awcms-jobs.env-scoped` together on every release or every job refuses to run (fail closed); see `docs/deployment.md`. Production images move to `oven/bun:1.4.4`.
+- Rollback: roll forward. There is no migration to undo. On a `run-job.sh` host, redeploy the previous image together with that image's three host files.
+
+### ADR-0048 accepted: customer Web Push design, Q1 to Q12 answered
+
+Docs only: no code, migration, OpenAPI path or flag change. The owner adopted the recommended answer to every open question of ADR-0048, so the status moves from Proposed to Accepted and the design questions that blocked #430, #431 and #432 are closed.
+
+- Decided: option C (a thin `commerce` outbox beside the upstream provider and crypto, no upstream table written); one auth-secret key ring with a customer-specific AAD purpose; customer push unsupported when storefront and CMS share an origin; push-service host allowlist with an operator-only override; initial limits of 5 devices and 12 per hour and 40 per day per account; built-in generic text only; aggregate-only diagnostics behind `commerce.customer_push.read`; marketing push and click tracking out of v1.
+- Decided with a gate: the 30-day retention windows are accepted, and the consent and privacy wording ships as a versioned draft. Counsel's review of that wording is a production-activation gate for the `customerPush` flag (ADR-0048 D8), not a gate for building #430 to #432.
+- Added ISO/IEC 27034 (application security) to the regulatory mapping. English and Indonesian ADR texts and the ADR index are updated together.
+- #430 to #432 are still gated on #427 (the subtree sync); nothing is implemented.
+
+### Booking revenue slice: owner decisions for #450
+
+Docs only: no code, migration or OpenAPI change, and nothing under `apps/cms/**` is touched. The owner adopted the recommended answer to the four questions #389 left open, recorded as metrics section 3.9 and an "Owner decisions" section of ADR-0045 (English and Indonesian).
+
+- A refund counts when it is decided, not when the reversal leg settles. The Refunds step becomes paid back, refund payable and uncollected balance; the cash reading moves to the labelled by-refund-day view.
+- A refund of a taxed order nets the tax companion pro rata, so a full refund gives net 0 and tax 0 instead of a negative net (tax collected is not revenue, IFRS 15.47).
+- The retention anchor stays the order's first paid transition.
+- Scheduled: the cash view by refund day and the waterfall CSV. Not scheduled: ADR and RevPAN as stored figures (derive at read) and channel or segment slices.
+- The waterfall is stated to be an operational sales measure, not statutory revenue (PSAK 72 / IFRS 15), and commission is stated never to be a waterfall step.
+- The build is tracked by #478 and starts after the subtree sync that owns `apps/cms/**`. Until it lands, #389's behaviour is the documented interim behaviour.
+
+### Reference-only commerce admin redesign under `design/`
+
+Adds `design/redesain-ui-ux-2026-10/`: a commerce dashboard with a channel
+filter and a 14-day revenue chart, and an orders screen with status tabs and an
+order detail timeline, plus the family analysis. It exists so the commerce
+navigation (32 screens in seven sub-groups) and the tenant accent can be
+discussed before anything changes in `apps/cms`, which is a subtree of
+`ahliweb/awcms`.
+
+- The pages load `apps/cms/public/fonts` and the storefront favicon by relative
+  path; no runtime code, build or gate reads the new folder.
+
+### Storefront: reservation detail with its deposit state, and the cancellation and refund dialog
+
+`/akun/reservasi?kode=<orderCode>` now shows one own reservation (issue #387, epic #280 item 16; `docs/booking-ux-flows.md` surfaces B and C): the stay, the status and payment pills, the deposit and balance rows exactly as the server's settlement returns them, the refund line, "Bayar uang muka" / "Bayar sisa pembayaran" through the existing gateway session, and "Batalkan reservasi".
+
+- **The refund is the server's, shown before confirming.** The cancel dialog (a native `<dialog>`; no `confirm()`) reads `GET …/cancellation-quote` and shows the amount paid, the policy window, the refund and what is retained. Nothing is cancelled by opening it.
+- **The quote is read again on confirm.** A changed refund is shown and needs a fresh confirmation; an unchanged one is sent as `acknowledgedRefund`, the only body field, under one `Idempotency-Key` per figure. A cancel whose answer was lost is replayed with the same key instead of asking for a new quote. No guest control sets an amount.
+- **Refusals in the words of the spec:** 409 `QUOTE_CHANGED` / `INVALID_STATE` / `IDEMPOTENCY_CONFLICT`, 400/422, 429, 401, 404 and a dropped connection each have their copy and next action.
+- **Accessible:** focus moves into the dialog and returns to the opener, `Escape` closes without cancelling, results are announced in `role="status"`, refusals in `role="alert"`, and the dialog fits 360px. Checked with axe and a 360px overflow test in `apps/storefront/tests/e2e/booking.e2e.ts`.
+- **No CMS change.** The routes and OpenAPI entries of #381 are used as published. The stub CMS gains the cancellation quote and cancel routes for the e2e suite.
+- **Not covered:** per-allocation payment history, the policy table before paying, the concrete cut-off date, and real-device screen-reader checks (see `docs/booking-ux-flows.md`).
+
+### AGENTS: record the 490,000 B client asset budget set by the #482 integration
+
+The standing-divergence entry for `apps/cms/scripts/client-asset-budget.ts` in `AGENTS.md` (and its Indonesian mirror) stopped at the #452 sync's 487,700 B. The #482 integration of #454, #455, #456 and #474 on top of the #457 sync raised `APP_BUDGET_BYTES` to 490,000 B (measured 489,973 B on the merged build); the constant's docblock already says so, and the divergence list now does too, so the next subtree sync resolves the conflict against the current figure. Docs only; no code, gate or budget value changes.
+
 ## [0.17.0] — 2026-10-20
 
 ### ADR-0041: gateway deposit sessions and mixed tenders on one order
