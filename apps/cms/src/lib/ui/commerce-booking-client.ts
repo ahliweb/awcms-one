@@ -107,3 +107,48 @@ export function initDepositKindToggle(form: HTMLFormElement): void {
   for (const radio of radios) radio.addEventListener("change", apply);
   apply();
 }
+
+/**
+ * Shows a status line after a reload and moves focus to it (Issue #448,
+ * "Focus after reload"). A page reload drops focus to the top of the document and
+ * a `role="status"` element that is un-hidden together with its text is not
+ * reliably announced, so the line is also given focus: a screen reader reads the
+ * focused text, and a keyboard user continues from the message instead of from
+ * the page top. The element keeps `role="status"` (polite) for later updates.
+ */
+export function showStatusAndFocus(
+  element: HTMLElement | null,
+  message: string
+): void {
+  if (!element) return;
+  element.textContent = message;
+  element.hidden = false;
+  if (!element.hasAttribute("tabindex")) element.setAttribute("tabindex", "-1");
+  element.focus();
+}
+
+/**
+ * Marks one field invalid (`aria-invalid`, tied to its message through
+ * `aria-describedby`) and moves focus to it, so a keyboard user lands on the
+ * field the message is about. Pass `null` to clear the mark.
+ */
+export function markFieldInvalid(
+  input: HTMLElement | null,
+  invalid: boolean,
+  messageId?: string
+): void {
+  if (!input) return;
+  if (!invalid) {
+    input.removeAttribute("aria-invalid");
+    return;
+  }
+  input.setAttribute("aria-invalid", "true");
+  if (messageId) {
+    const ids = (input.getAttribute("aria-describedby") ?? "")
+      .split(/\s+/)
+      .filter(Boolean);
+    if (!ids.includes(messageId)) ids.push(messageId);
+    input.setAttribute("aria-describedby", ids.join(" "));
+  }
+  input.focus();
+}

@@ -1791,8 +1791,25 @@ export const READER_BUDGET_BYTES = 24_000;
  * `commerce` added no browser byte in the sync (its Label-in-Name audit,
  * issue #452 check 3, found nothing to change). A measurement of the merged
  * build rounded up to the next 100 B.
+ *
+ * **Raised to 489,900 B by issue #385 (the booking adapter admin screens, closing
+ * pass)**, MEASURED 489,891 B on the build that carries it (487,529 B on the
+ * `main` it was branched from, 49c7a2961 - the previous constant, 487,600 B, left
+ * 71 B of headroom): +2,362 B, a measurement of the two builds compared file by
+ * file, not a sum. Where it went: `commerce-booking-deposits.css` +930 B (the
+ * page's own styles: the kind radios as label rows, the fieldset reset, the pager),
+ * `commerce-booking-client.js` +396 B (`showStatusAndFocus`, `markFieldInvalid`,
+ * shared by the links screen and the booking panel), the three screen scripts
+ * +660 B (invalid-field focus, window-editor focus; the panel's script SHRANK 29 B
+ * by using the shared helper), `commerce-booking-links.css` +179 B, and the shared
+ * `admin-screens.css` +226 B (the two `.booking-admin-table` rules that keep a
+ * stacked table's caption and full-width cells readable at 360px). The new
+ * catalogue entries are server-side only now and added no client byte. Nothing
+ * was copied per screen: the focus helpers are one module, the layout rules for
+ * three tables are one scoped class. The budget is the measurement rounded up to
+ * the next 100 B.
  */
-export const APP_BUDGET_BYTES = 487_700;
+export const APP_BUDGET_BYTES = 489_900;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

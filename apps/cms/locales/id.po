@@ -12844,6 +12844,27 @@ msgid "Sell Booking reservations (deposits, links)"
 msgstr "Jual reservasi Booking (deposit, tautan)"
 
 # booking-adapter #385
+msgid "{label} (required)"
+msgstr "{label} (wajib)"
+
+msgid "Pages"
+msgstr "Halaman"
+
+msgid "First page"
+msgstr "Halaman pertama"
+
+msgid "More service products follow. Use Next page to reach them."
+msgstr "Masih ada produk jasa berikutnya. Gunakan Halaman berikutnya untuk melihatnya."
+
+msgid "Cancellation policy"
+msgstr "Kebijakan pembatalan"
+
+msgid "View policy"
+msgstr "Lihat kebijakan"
+
+msgid "Only the first {count} service products are listed here. Open the policy of any other product from its Booking deposits row."
+msgstr "Hanya {count} produk jasa pertama yang tercantum di sini. Buka kebijakan produk lain dari barisnya di Uang muka pemesanan."
+
 msgid "This offering is already linked to a product."
 msgstr "Penawaran ini sudah ditautkan ke produk."
 
