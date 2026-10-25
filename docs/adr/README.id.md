@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:6589a033e63d7720e70aa3d3512b3b7bac695f3320b4a2cbe10a93abbbd3c8a6 -->
+<!-- i18n-source-hash: sha256:aad662810b43699c9ca2197249a85999c53ba7e266706d4f4006ac92d8c8e2f3 -->
 
 # Architecture Decision Records
 
@@ -69,7 +69,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0045](0045-booking-commerce-adapter.md)                                                                                                | Adapter booking-commerce: bentuk tautan, tungkai refund pembatalan, waktu penimpaan, aktor dan step-up, kode galat dan nama consumer yang dibekukan                                                                                          | Diterima                                                                                                                      |
 | [0046](0046-commission-attribution-adapter-reports-paid-counter-sales-to-the-hr-commission-ledger.md)                                   | Adaptor atribusi komisi melaporkan penjualan kasir yang sudah dibayar ke buku besar `hr_commission`: penerima manfaat diturunkan di server lewat tautan staf, identitas sumber per baris, mati secara bawaan, dan celah void beserta usulan perluasan port hulu | Diusulkan                                                                                                                     |
 | [0047](0047-commerce-whatsapp-moves-to-the-upstream-queue-through-a-per-tenant-mode-router.md)                                          | WhatsApp commerce pindah ke antrean upstream lewat router mode per tenant (default legacy, `upstream` lewat `WhatsappDeliveryPort`)                                                                                                          | Diterima                                                                                                                      |
-| [0048](0048-customer-web-push-identity-subscription-and-cross-origin-contract.md) | Web Push pelanggan: identitas, model langganan, dan kontrak lintas origin (perangkat pelanggan milik `commerce`, outbox tipis di atas provider dan kripto upstream, target klik di origin storefront) | Diusulkan |
+| [0048](0048-customer-web-push-identity-subscription-and-cross-origin-contract.md) | Web Push pelanggan: identitas, model langganan, dan kontrak lintas origin (perangkat pelanggan milik `commerce`, outbox tipis di atas provider dan kripto upstream, target klik di origin storefront) | Diterima |
 | [0049](0049-install-metadata-is-derived-at-build-time-and-the-ios-help-page-is-opt-in.md)                                               | Metadata instalasi diturunkan saat build (ikon PNG netral hasil generate, `id` manifest stabil), dan halaman bantuan Layar Utama iOS adalah flag build opt-in yang mati secara bawaan                                                        | Diterima                                                                                                                      |
 | [0050](0050-lynxjs-for-separate-persona-apps-astro-stays-for-admin-and-public-profiles.md) | LynxJS/ReactLynx untuk aplikasi persona terpisah; Astro tetap untuk admin dan setiap profil publik (hanya arah, belum diimplementasikan) | Accepted as direction; not implemented |
 
