@@ -316,6 +316,43 @@ suite("booking reschedule and no-show routes (Issue #382)", () => {
       expect((await counts(owner.tenantId)).no_shows).toBe(1);
     });
 
+    test("Issue #448: a shorter stay plans refund legs and so also needs the decision key; a move that plans none needs .update alone", async () => {
+      if (skipUnlessHandlerReady()) return;
+      const { owner, fx } = await readyOwner();
+      await activePolicy(owner, fx.productId);
+      const booking = await paidBooking(owner, fx, "1500000.00", {
+        stay: { checkInDate: day(5), checkOutDate: day(8) }
+      });
+      const id = booking.reservation.id;
+      const updateOnly = await seedPrincipal(owner.tenantId, "update-only", [
+        "commerce.booking_reservation_links.read",
+        "commerce.booking_reservation_links.update"
+      ]);
+      const before = await counts(owner.tenantId);
+
+      // Shorter (three nights become two): refund legs would be planned.
+      const refused = await reschedulePost(updateOnly, id, stayOf(5, 7));
+      expect(refused.status).toBe(403);
+      expect(refused.body.error?.code).toBe("FORBIDDEN");
+      expect(await counts(owner.tenantId)).toEqual(before);
+
+      // The same length, shifted: no money moves, `.update` alone is enough.
+      const shifted = await reschedulePost(updateOnly, id, stayOf(6, 9));
+      expect(shifted.status).toBe(200);
+
+      // The scheduler (both keys) may shorten it.
+      const scheduler = await seedPrincipal(owner.tenantId, "scheduler", [
+        ...BUNDLES.scheduler
+      ]);
+      const next = shifted.body.data.reservation.id as string;
+      const shortened = await reschedulePost(scheduler, next, stayOf(6, 8));
+      expect(shortened.status).toBe(200);
+      expect(shortened.body.data.priceDifference).toMatchObject({
+        direction: "refund",
+        vehicle: "refund_return"
+      });
+    });
+
     test("an unknown id and another tenant's id are one 404 for all three routes", async () => {
       if (skipUnlessHandlerReady()) return;
       const { owner } = await readyOwner();

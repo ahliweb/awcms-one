@@ -689,6 +689,7 @@ docker run --rm --network container:<the postgres container> \
 # 2. Jalankan separuh adaptor terhadap basis data itu sebagai peran owner (layanan `migrate` adalah image jobs dengan
 #    DSN owner). --require-links membuat basis data tanpa satu pun tautan reservasi gagal sebagai `empty`, karena
 #    drill yang memeriksa nol baris tidak membuktikan apa-apa; lepas untuk tenant yang tidak pernah mengaktifkan `booking`.
+SETUP_DATABASE_URL="postgres://<owner>:<password>@postgres:5432/awcms_restore_drill" \
 docker compose -f compose.production.yaml --profile migrate run --rm \
   -v awcms-one-production-backups:/backup \
   -e DATABASE_URL="postgres://<owner>:<password>@postgres:5432/awcms_restore_drill" \
@@ -699,6 +700,8 @@ docker compose -f compose.production.yaml --profile migrate run --rm \
 docker compose -f compose.production.yaml exec postgres \
   psql -U <owner> -d postgres -c 'DROP DATABASE awcms_restore_drill WITH (FORCE)'
 ```
+
+**`SETUP_DATABASE_URL` harus diisi walaupun `-e DATABASE_URL` menimpanya** (Issue #448, ditemukan pada review #440). Layanan `migrate` mendeklarasikan `DATABASE_URL: ${SETUP_DATABASE_URL:?...}`, dan Compose menyelesaikan variabel wajib itu saat membaca `compose.production.yaml`, sebelum `-e` diterapkan saat dijalankan. Tanpa `SETUP_DATABASE_URL` di environment, perintah berhenti dengan "SETUP_DATABASE_URL (the migration-owner DSN) is required to run migrate" dan tidak pernah sampai ke container. Ekspor variabel itu (berkas `.env` di sebelah berkas compose juga bisa) atau awali perintah seperti di atas, arahkan ke DSN scratch yang sama dengan yang diberikan ke `-e DATABASE_URL`, agar DSN owner produksi lama di shell Anda tidak ikut terpakai tanpa sengaja. `-e` tetap ada di perintah supaya maksudnya eksplisit di log.
 
 Gunakan DSN owner atau `awcms_app`; **bukan** `awcms_worker` (layanan `jobs`), yang sengaja tidak diberi Booking hak baca atas reservasinya. `--tenant <uuid>` membatasi eksekusi ke satu tenant, `--json` mencetak laporan lengkap beserta id (ringkasan teks hanya mencetak jumlah dan jenis) dan `--evidence-log <path>` menambahkan satu baris JSON (`startedAt`, `status`, `detail`, `durationMs`, jumlah dan jenis drift; tanpa identifier, jumlah uang, atau nama) ke `restore-drill-evidence.jsonl` yang sama dengan yang ditulis drill hulu, sehingga satu berkas memuat kedua separuh. Bila pengguna image tidak bisa menulis ke volume backup, beri `--evidence-log` path yang bisa, atau tempel keluaran teks ke tiket perubahan. Eksekusi yang tidak bisa terhubung atau menjalankan query melempar error dan juga keluar non-nol; ia tidak pernah melaporkan lulus yang tidak ia peroleh.
 

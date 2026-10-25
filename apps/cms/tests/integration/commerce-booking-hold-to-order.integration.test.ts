@@ -614,6 +614,37 @@ suite(
         expect(await counts()).toEqual(before);
       });
 
+      test("Issue #448: parallel submits of ONE key (Promise.all) create exactly one order and link; the rest replay it", async () => {
+        const fx = await newFixture();
+        const key = nextKey();
+        const before = await counts();
+
+        const results = await Promise.all(
+          Array.from({ length: 5 }, () => book(fx, { key }))
+        );
+
+        // The per-key advisory lock queues the concurrent transactions: the
+        // first creates, every other one finds its committed link and replays.
+        const winners = results.filter((r) => r.kind === "created");
+        const replayed = results.filter((r) => r.kind === "replayed");
+        expect(winners).toHaveLength(1);
+        expect(replayed).toHaveLength(4);
+        const winner = winners[0]!;
+        if (winner.kind !== "created") return;
+        for (const replay of replayed) {
+          if (replay.kind !== "replayed") return;
+          expect(replay.view.orderId).toBe(winner.view.orderId);
+          expect(replay.view.linkId).toBe(winner.view.linkId);
+          expect(replay.view.reservationId).toBe(winner.view.reservationId);
+        }
+        const after = await counts();
+        expect(after).toEqual({
+          orders: before.orders + 1,
+          links: before.links + 1,
+          reservations: before.reservations + 1
+        });
+      });
+
       test("the same key with another request is IDEMPOTENCY_CONFLICT and writes nothing", async () => {
         const fx = await newFixture();
         const key = nextKey();
@@ -818,6 +849,10 @@ suite(
         expect((await orderRow(view.orderId)).status).toBe("expired");
         const link = await linkRow(view.reservationId);
         expect(link.attention_reason).toBe("deposit_after_expiry");
+        // Issue #448: the link of an expired order deliberately STAYS `active` -
+        // the late-payment flagger above found the booking through it. Only a
+        // cancellation or no-show DECISION (which carries its own row) releases.
+        expect(link.status).toBe("active");
       });
     });
 

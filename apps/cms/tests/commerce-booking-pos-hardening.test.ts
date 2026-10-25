@@ -146,6 +146,35 @@ describe("L1: the ledger guard binds the booking-balance exception to the sessio
   });
 });
 
+describe("Issue #448: the booking-balance exception also needs the balance route's marker", () => {
+  const sql = readFileSync(
+    "sql/1054_awcms_commerce_booking_pos_guard_marker.sql",
+    "utf8"
+  );
+  const posSource = readFileSync(
+    "src/modules/commerce/application/booking-pos.ts",
+    "utf8"
+  );
+
+  test("the re-issued guard keeps every 1046 rule and adds the marker bound to the order's own active link", () => {
+    expect(sql).toContain("NEW.actor_kind = 'tenant_user'");
+    expect(sql).toContain("s.status = 'open'");
+    expect(sql).toContain(
+      "s.current_cashier_tenant_user_id = NEW.actor_tenant_user_id"
+    );
+    expect(sql).toContain("l.order_id = NEW.order_id");
+    expect(sql).toContain("l.status = 'active'");
+    expect(sql).toContain(
+      "NEW.source_key LIKE 'posbal:' || l.id::text || ':%'"
+    );
+    expect(sql).toContain("SET search_path = pg_catalog, public, pg_temp");
+  });
+
+  test("the marker the guard demands is the one the balance route writes", () => {
+    expect(posSource).toContain("sourceKey: `posbal:${link.id}:");
+  });
+});
+
 describe("the application source", () => {
   const source = readFileSync(
     "src/modules/commerce/application/booking-pos.ts",

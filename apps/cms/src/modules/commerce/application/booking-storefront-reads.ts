@@ -186,6 +186,30 @@ async function readResourceIds(
   return rows.map((row) => row.id);
 }
 
+/**
+ * Whether `resourceId` is one of this tenant's active, undeleted resources of
+ * `bookingMode` (Issue #448). Tenant-scoped under RLS like every read here, so
+ * another tenant's id is simply absent. Read-only `SELECT` of a Booking table
+ * (see the header).
+ */
+async function isLiveResourceOfMode(
+  tx: Bun.SQL,
+  tenantId: string,
+  resourceId: string,
+  bookingMode: "stay" | "slot"
+): Promise<boolean> {
+  const rows = (await tx`
+    SELECT 1 AS ok
+    FROM awcms_booking_resources
+    WHERE tenant_id = ${tenantId}
+      AND id = ${resourceId}
+      AND booking_mode = ${bookingMode}
+      AND status = 'active'
+      AND deleted_at IS NULL
+  `) as { ok: number }[];
+  return rows.length > 0;
+}
+
 // ---------------------------------------------------------------------------
 // Offerings
 // ---------------------------------------------------------------------------
@@ -355,11 +379,21 @@ export async function answerStorefrontAvailability(
   if (!offering.ok || !isSellableOffering(offering.offering)) return NOT_FOUND;
   // A link that names its resources answers for those only (Issue #437): any
   // other id - another room type's, another tenant's, unknown - is the same
-  // neutral 404, so the route does not reveal which ids exist.
+  // neutral 404, so the route does not reveal which ids exist. Issue #448: a
+  // link that names none no longer forwards an arbitrary id to Booking either;
+  // the resource must be one the tenant sells for the offering's mode (the same
+  // set the offerings list would have shown), and a bound resource must still be
+  // live and of the right mode - a retired or other-mode room is the same 404.
+  const mode = offering.offering.granularity === "stay" ? "stay" : "slot";
   const named = (
     await readBoundResources(tx, tenantId, [link.offeringLinkId])
   ).get(link.offeringLinkId);
-  if (named && !named.some((entry) => entry.resourceId === query.resourceId)) {
+  if (named) {
+    const entry = named.find((item) => item.resourceId === query.resourceId);
+    if (!entry || !entry.live || entry.bookingMode !== mode) return NOT_FOUND;
+  } else if (
+    !(await isLiveResourceOfMode(tx, tenantId, query.resourceId, mode))
+  ) {
     return NOT_FOUND;
   }
 

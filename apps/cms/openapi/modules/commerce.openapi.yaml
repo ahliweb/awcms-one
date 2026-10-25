@@ -14780,7 +14780,10 @@ paths:
         the same key and body replays the record (`200`, `replayed: true`), the same
         key with another body is `409 IDEMPOTENCY_CONFLICT`; a concurrent reschedule
         and cancel of one booking queue on the order lock and the second finds the
-        first's result.
+        first's result. A reschedule that would plan refund legs (fewer nights)
+        additionally needs `commerce.booking_refund_decisions.create`: without it
+        the answer is `403 FORBIDDEN` before any write (Issue #448); a move that
+        plans none (the same length, or more nights) needs only `.update`.
       parameters:
         - name: id
           in: path
@@ -15513,7 +15516,7 @@ paths:
       operationId: getCommerceStorefrontBookingAvailability
       tags:
         - Commerce
-      summary: "Issue #386. Anonymous availability of a LINKED offering on one resource, through `BookingPort.availability` (contract 1.1.0): a stay's free-unit count (`checkInDate` + `checkOutDate`) or the free slots of a window (`from` + `to`). Tenant from the request origin. Counts, slots and the zone only - no resource name, unit label, reservation, block, staff, customer or policy. An unavailable stay is always `available: false` + `SLOT_UNAVAILABLE`; an unknown or over-capacity resource is the same answer as a full range. An offering that is unknown, another tenant's, unlinked, inactive or not sold - or a `resourceId` that the offering's link does not name, when it names any (Issue #437) - is one neutral 404. Bounded (1..366 nights, 31 days of slots, 730 days ahead) and rate limited; never cached."
+      summary: "Issue #386. Anonymous availability of a LINKED offering on one resource, through `BookingPort.availability` (contract 1.1.0): a stay's free-unit count (`checkInDate` + `checkOutDate`) or the free slots of a window (`from` + `to`). Tenant from the request origin. Counts, slots and the zone only - no resource name, unit label, reservation, block, staff, customer or policy. An unavailable stay is always `available: false` + `SLOT_UNAVAILABLE`; an over-capacity resource is the same answer as a full range. An offering that is unknown, another tenant's, unlinked, inactive or not sold - or a `resourceId` that the offering's link does not name, when it names any (Issue #437), or that is not an active, undeleted resource of the tenant in the offering's mode (a link naming none, and a bound resource since retired - Issue #448) - is one neutral 404. Bounded (1..366 nights, 31 days of slots, 730 days ahead) and rate limited; never cached."
       security: []
       parameters:
         - name: offeringId
@@ -15894,7 +15897,11 @@ paths:
         the acting account or the guest's phone: the same key and request
         replays (`200`), another request is `409 IDEMPOTENCY_CONFLICT`. The
         refund legs are planned under the tenant's service-account user and are
-        settled by the existing refund routes.
+        settled by the existing refund routes. Rate limited per IP, per phone AND
+        order code (a stranger who only knows a guest's phone cannot spend the
+        guest's own budget for their reservation, Issue #448) and by a coarser
+        per-phone ceiling across order codes; the answer is `429` with
+        `Retry-After`.
       security: []
       parameters:
         - name: orderCode

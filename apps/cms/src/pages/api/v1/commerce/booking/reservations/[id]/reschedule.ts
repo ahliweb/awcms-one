@@ -4,8 +4,10 @@
  * (Issue #382, ADR-0045 D7 as amended for #382, D18, contracts section 3.7;
  * threat controls C-37, C-38, C-39). `id` is BOOKING's reservation id.
  *
- * Staff only: needs `commerce.booking_reservation_links.update`, the tenant's
- * `booking` feature and an `Idempotency-Key` (the same key and body replays the
+ * Staff only: needs `commerce.booking_reservation_links.update` (and, only when
+ * the move would plan refund legs - fewer nights - also
+ * `commerce.booking_refund_decisions.create`, `403` before any write: Issue
+ * #448), the tenant's `booking` feature and an `Idempotency-Key` (the same key and body replays the
  * result, `200`; the same key with another body is `409 IDEMPOTENCY_CONFLICT`). A
  * customer or guest has no reschedule route (ADR-0045 D18, access matrix section
  * 4: the guest asks, staff move it).
@@ -25,6 +27,7 @@
  */
 import { fail, ok } from "../../../../../../../modules/_shared/api-response";
 import { defineTenantRoute } from "../../../../../../../modules/_shared/tenant-route";
+import { authorizeInTransaction } from "../../../../../../../modules/identity-access/application/access-guard";
 import { composedBookingPort } from "../../../../../../../lib/composition/booking-port";
 import { mediaLibraryPortAdapter } from "../../../../../../../modules/media-library/application/media-library-port-adapter";
 import {
@@ -36,7 +39,10 @@ import {
 } from "../../../../../../../modules/commerce/application/booking-adapter-http";
 import { rescheduleBookingReservation } from "../../../../../../../modules/commerce/application/booking-reschedule";
 import { fetchReservationLinkByReservationId } from "../../../../../../../modules/commerce/application/booking-reservation-links";
-import { COMMERCE_BOOKING_RESERVATION_LINKS_ACTIVITY_CODE } from "../../../../../../../modules/commerce/domain/booking-adapter-permissions";
+import {
+  COMMERCE_BOOKING_REFUND_DECISIONS_ACTIVITY_CODE,
+  COMMERCE_BOOKING_RESERVATION_LINKS_ACTIVITY_CODE
+} from "../../../../../../../modules/commerce/domain/booking-adapter-permissions";
 import {
   validateRescheduleRequest,
   type RescheduleRequest
@@ -47,6 +53,12 @@ const UPDATE_GUARD = {
   moduleKey: "commerce",
   activityCode: COMMERCE_BOOKING_RESERVATION_LINKS_ACTIVITY_CODE,
   action: "update"
+} as const;
+
+const DECISION_CREATE_GUARD = {
+  moduleKey: "commerce",
+  activityCode: COMMERCE_BOOKING_REFUND_DECISIONS_ACTIVITY_CODE,
+  action: "create"
 } as const;
 
 type Prepared = { body: RescheduleRequest; idempotencyKey: string };
@@ -68,9 +80,34 @@ export const POST = defineTenantRoute<Prepared>({
     return { body, idempotencyKey: key.key };
   },
   authorize: UPDATE_GUARD,
-  handler: async ({ tx, tenantId, auth, prepared, locals, params, now }) => {
+  handler: async ({
+    tx,
+    tenantId,
+    auth,
+    prepared,
+    locals,
+    params,
+    tokenHash,
+    now
+  }) => {
     const gate = await requireBookingFeature(tx, tenantId);
     if (gate) return gate;
+
+    // Issue #448: a shorter stay plans pending refund legs, the decision
+    // authority of the access matrix. Resolved lazily (the permission machinery
+    // is route-level) so only a reschedule that WOULD plan legs asks - a
+    // same-length or longer move still needs `.update` alone and logs no
+    // second decision.
+    const canPlanRefund = async (): Promise<boolean> =>
+      (
+        await authorizeInTransaction(
+          tx,
+          tenantId,
+          tokenHash,
+          now,
+          DECISION_CREATE_GUARD
+        )
+      ).allowed;
 
     const id = params.id;
     if (!isUuid(id)) {
@@ -87,6 +124,7 @@ export const POST = defineTenantRoute<Prepared>({
         correlationId: locals.correlationId ?? crypto.randomUUID(),
         port: await composedBookingPort(),
         mediaPort: mediaLibraryPortAdapter,
+        canPlanRefund,
         now
       },
       {

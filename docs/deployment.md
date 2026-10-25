@@ -682,6 +682,7 @@ docker run --rm --network container:<the postgres container> \
 # 2. Run the adapter half against that database as the owner role (the `migrate` service is the jobs image with
 #    the owner DSN). --require-links makes a database with no reservation link fail as `empty`, because a
 #    drill that checked zero rows proves nothing; leave it off for a tenant that never enabled `booking`.
+SETUP_DATABASE_URL="postgres://<owner>:<password>@postgres:5432/awcms_restore_drill" \
 docker compose -f compose.production.yaml --profile migrate run --rm \
   -v awcms-one-production-backups:/backup \
   -e DATABASE_URL="postgres://<owner>:<password>@postgres:5432/awcms_restore_drill" \
@@ -692,6 +693,8 @@ docker compose -f compose.production.yaml --profile migrate run --rm \
 docker compose -f compose.production.yaml exec postgres \
   psql -U <owner> -d postgres -c 'DROP DATABASE awcms_restore_drill WITH (FORCE)'
 ```
+
+**`SETUP_DATABASE_URL` must be set even though `-e DATABASE_URL` overrides it** (Issue #448, found in the #440 review). The `migrate` service declares `DATABASE_URL: ${SETUP_DATABASE_URL:?...}`, and Compose resolves that required variable when it reads `compose.production.yaml`, before `-e` is applied at run time. Without `SETUP_DATABASE_URL` in the environment the command stops with "SETUP_DATABASE_URL (the migration-owner DSN) is required to run migrate" and never reaches the container. Export it (a `.env` next to the compose file works too) or prefix the command as above, pointing it at the same scratch DSN you pass to `-e DATABASE_URL`, so a stale production owner DSN in your shell cannot be what the run uses by accident. The `-e` stays in the command so the intent is explicit in the log.
 
 Use the owner DSN or `awcms_app`; **not** `awcms_worker` (the `jobs` service), which Booking deliberately gives no read of its reservations. `--tenant <uuid>` limits the run to one tenant, `--json` prints the full report with the ids (the text summary prints counts and kinds only) and `--evidence-log <path>` appends one JSON line (`startedAt`, `status`, `detail`, `durationMs`, counts and drift kinds; no identifier, amount or name) to the same `restore-drill-evidence.jsonl` the upstream drill writes, so one file carries both halves. If the image's user cannot write to the backups volume, give `--evidence-log` a path it can, or paste the text output into the change ticket. A run that cannot connect or query throws and exits non-zero as well; it never reports a pass it did not earn.
 
