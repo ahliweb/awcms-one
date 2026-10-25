@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:6242a07897b0bdfbc0f958e1bc4a1641218cb5d197209ac4f64f89070f585bcc -->
+<!-- i18n-source-hash: sha256:4f1ef8e34ba4647aa6af88b718f6c982a5edbd95208158bf75897d00c311d3b8 -->
 
 # Dokumentasi
 
@@ -38,6 +38,10 @@ Dokumentasi arsitektur, skema, API, alur kerja CMS, perilaku storefront, penguji
 ## Standar kebutuhan CRM Omnichannel
 
 [**Standar kebutuhan CRM Omnichannel reusable**](crm-omnichannel-requirements.id.md) memuat **target** funnel lead hingga konversi, batas akun dan kemampuan provider, inbox terverifikasi, persetujuan kampanye, SLA/follow-up staf, AI Hermes/OMES, KPI, pengecualian provider, dan tes penerimaan. Kebutuhan tersebut dipromosikan dari spesifikasi sektor pendidikan tanpa mengunci template pada bisnis tertentu. **Ini standar usulan, bukan bukti seluruh modul CRM sudah ada**; kondisi aktual tetap mengacu ke [status.md](status.id.md). Dilacak melalui [#462](https://github.com/ahliweb/awcms-one/issues/462).
+
+## Spesifikasi UI/UX CRM Omnichannel lengkap
+
+[**UI/UX CRM Omnichannel v1.0**](omnichannel-crm-ui-ux.id.md) merupakan standar **30 kelompok layar** yang membedakan fitur commerce saat ini dari rencana lead, inbox, multi-akun StarSender/Meta, Mailketing API v2.0.2, Telegram/sosial, kampanye, AI, analitik dan OMES; termasuk aksesibilitas, alur pengguna dan tata kelola versi. **Rencana bukan implementasi.** Issue [#472](https://github.com/ahliweb/awcms-one/issues/472), kondisi aktual [status.md](status.id.md).
 
 ## Apa yang tidak diduplikasi direktori ini
 
