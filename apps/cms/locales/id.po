@@ -11613,6 +11613,21 @@ msgstr "Pesanan lunas pertama"
 msgid "Loyalty points balance"
 msgstr "Saldo poin loyalitas"
 
+msgid "Number of confirmed bookings"
+msgstr "Jumlah pemesanan terkonfirmasi"
+
+msgid "Number of stays"
+msgstr "Jumlah menginap"
+
+msgid "Last stay (arrival)"
+msgstr "Menginap terakhir (kedatangan)"
+
+msgid "Number of no-shows"
+msgstr "Jumlah tidak hadir"
+
+msgid "Number of cancellations by the customer"
+msgstr "Jumlah pembatalan oleh pelanggan"
+
 msgid "is"
 msgstr "adalah"
 
@@ -11724,8 +11739,8 @@ msgstr "Operator kondisi"
 msgid "Condition value"
 msgstr "Nilai kondisi"
 
-msgid "Window in days (orders and spend only)"
-msgstr "Jendela dalam hari (hanya untuk pesanan dan belanja)"
+msgid "Window in days (counts and spend only)"
+msgstr "Jendela dalam hari (hanya untuk hitungan dan belanja)"
 
 msgid "days"
 msgstr "hari"

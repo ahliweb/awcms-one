@@ -13,6 +13,8 @@
  *   2. `commerce.segments.read` - a loyalty manager who may not see segments
  *      cannot aim a program at one (the permission checked through the one
  *      access chokepoint, so the decision is logged);
+ *      and, when the segment's rule reads a booking-derived fact (rule schema
+ *      2, ADR-0051), `commerce.booking_reservation_links.read` as well;
  *   3. a live segment of THIS tenant and an existing version - `422
  *      SEGMENT_NOT_FOUND`, the same answer for an unknown, foreign, retired or
  *      non-existent version (no existence oracle across tenants).
@@ -26,6 +28,8 @@ import { authorizeInTransaction } from "../../identity-access/application/access
 import { COMMERCE_SEGMENTS_ACTIVITY_CODE } from "../domain/commerce-permissions";
 import { requireCommerceFeatureForOwnerRoute } from "./commerce-feature-gate";
 import { resolveEligibilityReference } from "./loyalty-program-directory";
+import { resolveSegmentRules } from "./segment-directory";
+import { requireBookingRuleAccess } from "./segment-http";
 
 const SEGMENTS_READ_GUARD = {
   moduleKey: "commerce",
@@ -93,6 +97,25 @@ export async function resolveEligibilityRequest(
         "The segment (or the version asked for) does not exist or has been retired."
       )
     };
+  }
+  // A booking-derived rule (rule schema 2, ADR-0051) is aimed only by someone
+  // who may read bookings: choosing it decides who earns, by booking behaviour.
+  const resolved = await resolveSegmentRules(
+    tx,
+    tenantId,
+    reference.segmentId,
+    reference.version
+  );
+  if (resolved) {
+    const bookingDenied = await requireBookingRuleAccess(
+      tx,
+      tenantId,
+      tokenHash,
+      now,
+      resolved.node,
+      { requireFeature: false }
+    );
+    if (bookingDenied) return { kind: "refused", response: bookingDenied };
   }
   return { kind: "ok", reference };
 }

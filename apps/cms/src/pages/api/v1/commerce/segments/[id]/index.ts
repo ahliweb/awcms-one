@@ -8,6 +8,9 @@
  * high-risk) retires the segment and KEEPS every version, so a past consumer's
  * `(segment, version)` stays explainable. An unknown id and another tenant's
  * id are the same `404`. All three are gated on the tenant's `segments` feature.
+ * A new version whose rules read a booking-derived field (rule schema 2,
+ * ADR-0051) also needs the `booking` feature and
+ * `commerce.booking_reservation_links.read`.
  */
 import { fail, ok } from "../../../../../../modules/_shared/api-response";
 import { defineTenantRoute } from "../../../../../../modules/_shared/tenant-route";
@@ -18,6 +21,7 @@ import {
 } from "../../../../../../modules/commerce/application/segment-directory";
 import {
   readValidatedBody,
+  requireBookingRuleAccess,
   requireSegmentsFeature,
   segmentNotFoundResponse
 } from "../../../../../../modules/commerce/application/segment-http";
@@ -63,10 +67,30 @@ export const PATCH = defineTenantRoute<UpdateSegmentInput>({
   prepare: ({ request }) =>
     readValidatedBody(request, validateUpdateSegmentInput),
   authorize: UPDATE_GUARD,
-  handler: async ({ tx, tenantId, auth, params, prepared, locals }) => {
+  handler: async ({
+    tx,
+    tenantId,
+    auth,
+    params,
+    prepared,
+    locals,
+    now,
+    tokenHash
+  }) => {
     const gate = await requireSegmentsFeature(tx, tenantId);
     if (gate) return gate;
     if (!isUuid(params.id)) return segmentNotFoundResponse();
+    if (prepared.rules) {
+      const bookingDenied = await requireBookingRuleAccess(
+        tx,
+        tenantId,
+        tokenHash,
+        now,
+        prepared.rules.node,
+        { requireFeature: true }
+      );
+      if (bookingDenied) return bookingDenied;
+    }
     const outcome = await updateSegment(
       tx,
       tenantId,

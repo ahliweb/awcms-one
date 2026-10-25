@@ -14,9 +14,21 @@
  * SQL template whose operands are bound parameters. A rule carries no tenant,
  * table or column name; an unknown key, field, operator, value shape or depth
  * above the bound is refused with a field-naming error before anything
- * reaches the database. Owner answer Q7: this is the PRD section 6.1 commerce
- * vocabulary only - booking-derived fields wait for Wave C and need an ADR to
- * join this table.
+ * reaches the database. Owner answer Q7: rule schema 1 is the PRD section 6.1
+ * commerce vocabulary only; the booking-derived fields joined this table in
+ * rule schema 2, with their own ADR (ADR-0051, Issue #390, after Wave C).
+ *
+ * ## Rule schema versions (control C-29, ADR-0051)
+ *
+ * The vocabulary is versioned. A stored segment version records the rule
+ * schema it was written under (`rule_schema_version`, `sql/1060`) and is
+ * re-validated under THAT schema whenever it is read: a version written under
+ * schema 1 can never contain a field schema 2 added (it fails closed, it is not
+ * evaluated differently), and a field's meaning is frozen per schema, so a past
+ * campaign or earn stays explainable. Schema 2 is a strict superset of schema
+ * 1 - every field, operator and value shape of schema 1 is unchanged - so old
+ * rules evaluate exactly as before. New versions are written under
+ * {@link SEGMENT_RULE_SCHEMA_VERSION}.
  *
  * ## Shape
  *
@@ -54,6 +66,12 @@ export const SEGMENT_RULE_LIMITS = {
   maxBytes: 8192
 } as const;
 
+/** The rule schema new segment versions are written under. Bumping it is ADR-gated (ADR-0042 D2, ADR-0051). */
+export const SEGMENT_RULE_SCHEMA_VERSION = 2;
+
+/** Every schema the validator still understands: a stored version keeps the one it was written under. */
+export type SegmentRuleSchemaVersion = 1 | 2;
+
 export type SegmentRuleField =
   | "level"
   | "has_account"
@@ -63,7 +81,25 @@ export type SegmentRuleField =
   | "paid_spend"
   | "last_order_date"
   | "first_order_date"
-  | "loyalty_balance";
+  | "loyalty_balance"
+  // Rule schema 2 (ADR-0051): facts derived from the customer's booking links.
+  | "booking_count"
+  | "stay_count"
+  | "last_stay_date"
+  | "no_show_count"
+  | "cancellation_count";
+
+/** A count field: an integer compared with eq / gt / gte / lt / lte, optionally over a look-back window. */
+export type SegmentCountField =
+  | "order_count"
+  | "booking_count"
+  | "stay_count"
+  | "no_show_count"
+  | "cancellation_count";
+
+/** A date field with a "never" operator. */
+export type SegmentInstantField =
+  "last_order_date" | "first_order_date" | "last_stay_date";
 
 export type SegmentRuleOperator =
   "eq" | "in" | "gt" | "gte" | "lt" | "lte" | "before" | "after" | "never";
@@ -85,7 +121,7 @@ export type SegmentLeaf =
     }
   | {
       type: "leaf";
-      field: "order_count";
+      field: SegmentCountField;
       op: "eq" | "gt" | "gte" | "lt" | "lte";
       value: number;
       windowDays: number | null;
@@ -100,13 +136,13 @@ export type SegmentLeaf =
     }
   | {
       type: "leaf";
-      field: "last_order_date" | "first_order_date";
+      field: SegmentInstantField;
       op: "before" | "after";
       value: SegmentDateValue;
     }
   | {
       type: "leaf";
-      field: "last_order_date" | "first_order_date";
+      field: SegmentInstantField;
       op: "never";
     }
   | {
@@ -142,6 +178,8 @@ export type SegmentRuleStats = {
 };
 
 type FieldSpec = {
+  /** The first rule schema that has this field; a rule under an older schema refuses it. */
+  since: SegmentRuleSchemaVersion;
   operators: readonly SegmentRuleOperator[];
   /** Which `value` shape the field takes. */
   value: "level" | "boolean" | "date" | "count" | "money" | "points";
@@ -151,44 +189,123 @@ type FieldSpec = {
 
 /** The vocabulary. Adding a field here is an ADR-gated change (ADR-0042 D2). */
 export const FIELD_SPECS: Readonly<Record<SegmentRuleField, FieldSpec>> = {
-  level: { operators: ["eq", "in"], value: "level", windowed: false },
-  has_account: { operators: ["eq"], value: "boolean", windowed: false },
-  has_email: { operators: ["eq"], value: "boolean", windowed: false },
+  level: { since: 1, operators: ["eq", "in"], value: "level", windowed: false },
+  has_account: {
+    since: 1,
+    operators: ["eq"],
+    value: "boolean",
+    windowed: false
+  },
+  has_email: { since: 1, operators: ["eq"], value: "boolean", windowed: false },
   customer_since: {
+    since: 1,
     operators: ["before", "after"],
     value: "date",
     windowed: false
   },
   order_count: {
+    since: 1,
     operators: ["eq", "gt", "gte", "lt", "lte"],
     value: "count",
     windowed: true
   },
   paid_spend: {
+    since: 1,
     operators: ["gt", "gte", "lt", "lte"],
     value: "money",
     windowed: true
   },
   last_order_date: {
+    since: 1,
     operators: ["before", "after", "never"],
     value: "date",
     windowed: false
   },
   first_order_date: {
+    since: 1,
     operators: ["before", "after", "never"],
     value: "date",
     windowed: false
   },
   loyalty_balance: {
+    since: 1,
     operators: ["eq", "gt", "gte", "lt", "lte"],
     value: "points",
     windowed: false
+  },
+  // Rule schema 2 (ADR-0051). Counts are windowed like order_count; the window
+  // is the booking instant (paid_at) for booking_count, the arrival for
+  // stay_count and the decision instant for the other two.
+  booking_count: {
+    since: 2,
+    operators: ["eq", "gt", "gte", "lt", "lte"],
+    value: "count",
+    windowed: true
+  },
+  stay_count: {
+    since: 2,
+    operators: ["eq", "gt", "gte", "lt", "lte"],
+    value: "count",
+    windowed: true
+  },
+  last_stay_date: {
+    since: 2,
+    operators: ["before", "after", "never"],
+    value: "date",
+    windowed: false
+  },
+  no_show_count: {
+    since: 2,
+    operators: ["eq", "gt", "gte", "lt", "lte"],
+    value: "count",
+    windowed: true
+  },
+  cancellation_count: {
+    since: 2,
+    operators: ["eq", "gt", "gte", "lt", "lte"],
+    value: "count",
+    windowed: true
   }
 };
 
 export const SEGMENT_RULE_FIELDS = Object.keys(
   FIELD_SPECS
 ) as SegmentRuleField[];
+
+/** The fields a rule under `schemaVersion` may name. */
+export function segmentRuleFieldsFor(
+  schemaVersion: SegmentRuleSchemaVersion
+): SegmentRuleField[] {
+  return SEGMENT_RULE_FIELDS.filter(
+    (name) => FIELD_SPECS[name].since <= schemaVersion
+  );
+}
+
+/**
+ * The booking-derived fields (rule schema 2): the ones that read the customer's
+ * booking links, so defining, previewing or listing a segment that uses one is a
+ * separate power (`commerce.booking_reservation_links.read`, ADR-0051 D5).
+ */
+export const BOOKING_RULE_FIELDS: ReadonlySet<SegmentRuleField> = new Set([
+  "booking_count",
+  "stay_count",
+  "last_stay_date",
+  "no_show_count",
+  "cancellation_count"
+]);
+
+/** Whether any leaf of the tree reads a booking-derived fact. */
+export function usesBookingFields(node: SegmentNode): boolean {
+  switch (node.type) {
+    case "leaf":
+      return BOOKING_RULE_FIELDS.has(node.field);
+    case "not":
+      return usesBookingFields(node.child);
+    case "and":
+    case "or":
+      return node.children.some(usesBookingFields);
+  }
+}
 
 const MONEY_PATTERN = /^\d{1,12}(\.\d{1,2})?$/;
 const MAX_COUNT = 1_000_000;
@@ -281,6 +398,8 @@ function parseInteger(
 }
 
 type Walk = {
+  /** The rule schema the rule is validated under: a field newer than it is unknown. */
+  schemaVersion: SegmentRuleSchemaVersion;
   nodeCount: number;
   maxDepth: number;
   windows: Set<number>;
@@ -396,7 +515,16 @@ function parseNode(
   if (!isFieldName(raw.field)) {
     walk.errors.push({
       field: `${path}.field`,
-      message: `Unknown field. Allowed fields: ${SEGMENT_RULE_FIELDS.join(", ")}.`
+      message: `Unknown field. Allowed fields: ${segmentRuleFieldsFor(walk.schemaVersion).join(", ")}.`
+    });
+    return null;
+  }
+  if (FIELD_SPECS[raw.field].since > walk.schemaVersion) {
+    // Not "unknown" to the vocabulary, but outside the schema this rule is read
+    // under (a stored version keeps its own schema, C-29).
+    walk.errors.push({
+      field: `${path}.field`,
+      message: `${raw.field} needs rule schema ${FIELD_SPECS[raw.field].since}; this rule is read under schema ${walk.schemaVersion}.`
     });
     return null;
   }
@@ -456,7 +584,7 @@ function parseNode(
     return {
       node: {
         type: "leaf",
-        field: field as "last_order_date" | "first_order_date",
+        field: field as SegmentInstantField,
         op: "never"
       },
       canonical: { field, op }
@@ -544,7 +672,7 @@ function parseNode(
       return {
         node: {
           type: "leaf",
-          field: field as "last_order_date" | "first_order_date",
+          field: field as SegmentInstantField,
           op: operator as "before" | "after",
           value: date
         },
@@ -563,7 +691,7 @@ function parseNode(
       return {
         node: {
           type: "leaf",
-          field: "order_count",
+          field: field as SegmentCountField,
           op: operator as "eq" | "gt" | "gte" | "lt" | "lte",
           value: count,
           windowDays
@@ -625,7 +753,10 @@ function parseNode(
  * returns the typed tree plus its canonical stored form. Never throws on
  * hostile input: depth and size are bounded before recursion can run away.
  */
-export function validateSegmentRules(raw: unknown): SegmentRuleResult {
+export function validateSegmentRules(
+  raw: unknown,
+  schemaVersion: SegmentRuleSchemaVersion = SEGMENT_RULE_SCHEMA_VERSION
+): SegmentRuleResult {
   let size: number;
   try {
     size = JSON.stringify(raw)?.length ?? 0;
@@ -654,6 +785,7 @@ export function validateSegmentRules(raw: unknown): SegmentRuleResult {
   }
 
   const walk: Walk = {
+    schemaVersion,
     nodeCount: 0,
     maxDepth: 0,
     windows: new Set(),

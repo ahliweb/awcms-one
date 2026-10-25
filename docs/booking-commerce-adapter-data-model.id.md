@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](booking-commerce-adapter-data-model.md)
 
-<!-- i18n-source-hash: sha256:6c8d9585ba2bf5199587072ee349be9bb78beb09b0e31fbadcdac5f9821b7b84 -->
+<!-- i18n-source-hash: sha256:e3a827d09000148e91795b4d0ace5b758412cddfe1a1bab5a0fa6d91791839cf -->
 
 # Adapter booking-commerce — usulan ERD dan kamus data
 
@@ -278,7 +278,7 @@ Ini mengikuti tiga keputusan yang diterima: O12 (commerce tetap otoritas pelangg
 
 1. **Event dan baris Booking tidak membawa pelanggan.** Adapter tidak menaruh id pelanggan commerce ke `external_customer_ref` Booking; ia membiarkannya kosong (lihat bagian 7 untuk satu kasus yang mungkin mengubahnya). Kebutuhan Booking yang menghadap pelanggan (reservasi milik sendiri) dijawab adapter melalui pesanan.
 2. **"Reservasi saya"** bagi pembeli yang masuk adalah pesanan milik pembeli itu yang di-join dengan tautan aktif, lewat keluarga rute sesi bearer yang ada ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md) D3); tamu memeriksa lewat mekanisme akses pesanan sendiri, bukan id pelanggan.
-3. **Retensi dan aturan segmen turunan-booking** (metrik bagian 6, PRD 6.1) membaca pesanan yang di-join dengan tautan. Reservasi **tanpa tautan** (dibuat staf tanpa penjualan commerce) tidak punya pelanggan yang dapat diturunkan dan tampil sebagai "unlinked" di laporan itu; ia tidak masuk retensi atau segmen turunan-booking. Metrik Q7 sudah menyatakannya; apakah reservasi khusus-staf harus dihitung adalah keputusan pemilik yang tidak didahului model ini. Dibangun oleh [#389](https://github.com/ahliweb/awcms-one/issues/389) (`sql/1047`): pesanan berbayar yang membawa tautan aktif-atau-dilepas adalah SATU event booking untuk kohort retensi, dan baris pendapatan bersumber booking berkunci pada pesanan itu.
+3. **Retensi dan aturan segmen turunan-booking** (metrik bagian 6, PRD 6.1) membaca pesanan yang di-join dengan tautan. Reservasi **tanpa tautan** (dibuat staf tanpa penjualan commerce) tidak punya pelanggan yang dapat diturunkan dan tampil sebagai "unlinked" di laporan itu; ia tidak masuk retensi atau segmen turunan-booking. Metrik Q7 sudah menyatakannya; apakah reservasi khusus-staf harus dihitung adalah keputusan pemilik yang tidak didahului model ini. Dibangun oleh [#389](https://github.com/ahliweb/awcms-one/issues/389) (`sql/1047`): pesanan berbayar yang membawa tautan aktif-atau-dilepas adalah SATU event booking untuk kohort retensi, dan baris pendapatan bersumber booking berkunci pada pesanan itu. Field segmen turunan-booking dibangun oleh [#390](https://github.com/ahliweb/awcms-one/issues/390) ([ADR-0051](adr/0051-booking-derived-segment-rules-are-rule-schema-2-read-live-through-the-booking-links-and-never-stored.md)) pada join yang sama, dibaca langsung saat evaluasi dan tidak pernah disimpan.
 4. **Penghapusan dan anonimisasi mengikuti commerce.** Memutus pelanggan di otoritas commerce sudah cukup: tabel adapter tidak menyimpan apa pun untuk dihapus, dan Booking memutus rujukan opak dan catatannya sendiri menurut jawaban subjek datanya.
 5. **Pelanggan berulang pada dua pesanan** adalah dua tautan ke dua pesanan; join lewat `customer_id` pesanan. Tidak ada kunci pelanggan sisi-booking untuk direkonsiliasi.
 

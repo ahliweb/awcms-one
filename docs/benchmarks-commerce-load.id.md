@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](benchmarks-commerce-load.md)
 
-<!-- i18n-source-hash: sha256:c348e71f8fe029027eb89907076f968c38eb0b67a271cf3608b841a2c7587be6 -->
+<!-- i18n-source-hash: sha256:4c28cda5953184109e0a31d954c4f27a450ebf61c947de9b7351d78db007290d -->
 
 # Benchmark beban dan konkurensi commerce (issue #395)
 
@@ -87,6 +87,20 @@ Tenant dengan 100.000 pelanggan dan 250.000 order berbayar (seeding 15,7 dtk) di
 p95 per aturan: `level_in_1_2` 28 ms (50.000 anggota), `order_count_gte_2` 244 ms (100.000), `windowed_orders_spend_not_lapsed` 410 ms (100.000), `account_loyalty_spend_or_tenure` 314 ms (16.666), `two_windows_and_never_not` 510 ms (100.000).
 
 **M7 terverifikasi: p95 410 ms terhadap target 3.000 ms, margin sekitar 7 kali.** Lonjakan di atas batas selesai dalam 3,98 dtk waktu dinding, kelebihannya ditolak, bukan diantrekan.
+
+### 4b. Pratinjau segmen dengan aturan turunan booking (issue #390, [ADR-0051](adr/0051-booking-derived-segment-rules-are-rule-schema-2-read-live-through-the-booking-links-and-never-stored.md))
+
+Skenario yang sama (`bun run bench:commerce-load --only segment`) kini menyemai tenant yang juga menjual menginap dan mengevaluasi **sepuluh** bentuk aturan: lima di atas ditambah lima yang membaca fakta turunan booking (hitungan menginap luas; jendela dengan pengecualian tidak-hadir; fakta pesanan, menginap, kebaruan, dan pembatalan bersama; OR di kedua pemindaian booking; semua keluarga sekaligus dengan tiga jendela). Tenantnya: 100.000 pelanggan, 340.000 pesanan lunas (250.000 biasa dan 90.000 pesanan booking), 90.000 tautan booking dengan campuran status properti yang beroperasi, 29.999 keputusan pembatalan dan tidak-hadir (penyemaian memakan 37 d). Dijalankan di mesin 4-CPU yang sama pada 25 Oktober 2026, PostgreSQL 18.4, Bun 1.4.4, **load average 4,2 sebelum lari** (pekerjaan lain berbagi mesin, sehingga angka ini konservatif), profil standar, 12 putaran (120 sampel) setelah 10 evaluasi pemanasan.
+
+| Ukuran                                         | p50    | p95         | p99     | maks    |
+| ---------------------------------------------- | ------ | ----------- | ------- | ------- |
+| Pratinjau berurutan (120 sampel, sepuluh bentuk) | 496 md | **1941 md** | 2021 md | 2070 md |
+| 2 aktor bersamaan (12 dilayani)                | 462 md | 952 md      | 952 md  | 952 md  |
+| Lonjakan 6 aktor (12 dilayani, 24 sibuk)       | 622 md | 937 md      | 937 md  | 937 md  |
+
+p95 per aturan: lima bentuk commerce 36 / 281 / 528 / 438 / 585 md (seperti sebelumnya, dalam derau beban); `booking_stay_count_gte_1` 612 md (28.858 anggota), `booking_window_not_no_show` 888 md (21.144), `booking_orders_stay_recency_no_cancel` 1.062 md (7.858), `booking_or_across_scans` 1.015 md (35.571), `booking_every_family_three_windows` 2.070 md (571).
+
+**M7 bertahan dengan aturan booking: p95 1.941 md terhadap target 3.000 md (margin sekitar 1,5 kali pada mesin yang sibuk).** Bentuk paling lambat membaca semua keluarga sekaligus; pemindaian booking saja memakan sekitar 270-300 md pada ukuran ini (sekitar 25 md bila fakta yang sama dibaca dari tabel yang sudah dihitung, opsi yang ditolak ADR-0051 D4). Aturan yang tidak membaca fakta booking tidak menjalankan pemindaian booking: bentuk commerce tidak melambat. Perbandingan lima-dan-lima yang sama di dalam tes integrasi `commerce-segment-booking-rules.integration.test.ts` memberi p95 1,7-1,8 d pada tiga lari. Jalur satu-pelanggan (perolehan loyalitas) memakan 187 md untuk 200 pemeriksaan pada data ini. Pada mesin dengan load average di atas 7, satu pratinjau dibatalkan oleh statement timeout 5 d, yaitu batas yang bekerja saat kontensi.
 
 ## Hasil invarian
 

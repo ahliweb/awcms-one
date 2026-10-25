@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:aad662810b43699c9ca2197249a85999c53ba7e266706d4f4006ac92d8c8e2f3 -->
+<!-- i18n-source-hash: sha256:51738ba85568c957d8cf60cc2c5c0feea046e93e9504575251cd096fc9f20abe -->
 
 # Architecture Decision Records
 
@@ -72,6 +72,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0048](0048-customer-web-push-identity-subscription-and-cross-origin-contract.md) | Web Push pelanggan: identitas, model langganan, dan kontrak lintas origin (perangkat pelanggan milik `commerce`, outbox tipis di atas provider dan kripto upstream, target klik di origin storefront) | Diterima |
 | [0049](0049-install-metadata-is-derived-at-build-time-and-the-ios-help-page-is-opt-in.md)                                               | Metadata instalasi diturunkan saat build (ikon PNG netral hasil generate, `id` manifest stabil), dan halaman bantuan Layar Utama iOS adalah flag build opt-in yang mati secara bawaan                                                        | Diterima                                                                                                                      |
 | [0050](0050-lynxjs-for-separate-persona-apps-astro-stays-for-admin-and-public-profiles.md) | LynxJS/ReactLynx untuk aplikasi persona terpisah; Astro tetap untuk admin dan setiap profil publik (hanya arah, belum diimplementasikan) | Accepted as direction; not implemented |
+| [0051](0051-booking-derived-segment-rules-are-rule-schema-2-read-live-through-the-booking-links-and-never-stored.md) | Aturan segmen turunan booking adalah skema aturan 2 (lima field), dibaca langsung lewat tautan booking dan tidak pernah disimpan; versi skema disimpan per versi segmen, sehingga aturan lama dievaluasi tanpa berubah | Diterima |
 
 ## Mengapa penomoran dimulai dari 0001
 

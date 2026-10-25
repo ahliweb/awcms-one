@@ -357,6 +357,12 @@ This platform's own design — nothing here is ported from the legacy store. Sta
 | `segments` feature                                                                    | commerce module settings `features.segments` (default OFF)                                                                                              |
 | `SEGMENT_EVALUATION_LIMITS`                                                           | `domain/segment.ts`: 5 s statement timeout, 2 evaluations per tenant, 1 per actor, 30 previews per actor per minute, page 100, sample 10, export 10,000 |
 | `commerce.segments.*`, `commerce.segment_previews.read`, `commerce.segment_members.*` | `awcms_permissions` (`sql/1003`)                                                                                                                        |
+| rule schema version | `awcms_commerce_segment_versions.rule_schema_version` (`sql/1060`, default 1); the grammar a version was written under and is always read under (ADR-0051). 1 = the nine commerce fields, 2 = adds the booking-derived ones; new versions are written under 2 |
+| booking-derived rule field | `booking_count`, `stay_count`, `last_stay_date`, `no_show_count`, `cancellation_count` (rule schema 2) |
+| booking (for a rule) | an active reservation link whose Booking reservation is `confirmed` / `checked_in` / `completed` and whose order is paid; windows measure the order's `paid_at` |
+| stay (for a rule) | a reservation that is `checked_in` or `completed` with `starts_at` not after the as-of; windows and `last_stay_date` measure the arrival |
+| no-show / cancellation (for a rule) | `awcms_commerce_booking_refund_decisions` with `trigger_kind` `no_show` / `customer_cancel`; a `staff_cancel` is never counted; windows measure the decision's `created_at` |
+| booking-rule access | defining needs `features.booking` and `commerce.booking_reservation_links.read`; reading a saved booking segment (count, members, export, campaign or loyalty use) needs the permission only |
 
 ### Loyalty eligibility by segment (issue #361, [ADR-0042](adr/0042-crm-segments-are-immutable-versioned-closed-vocabulary-rules-evaluated-on-demand.md) amendment)
 

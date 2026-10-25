@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:69d8a674fc29760d1816672ae4809c10a9af49019174ac81691ac7a97b09c67f -->
+<!-- i18n-source-hash: sha256:9b4dd34fe6a7b7b5b1894eb49d40500d05cd7d387ecc5aa198dd5939c1b88916 -->
 
 # Kamus data
 
@@ -358,6 +358,12 @@ Rancangan platform ini sendiri — tidak ada yang di-port dari toko lama. Status
 | fitur `segments`                                                                      | pengaturan modul commerce `features.segments` (bawaan MATI)                                                                                                     |
 | `SEGMENT_EVALUATION_LIMITS`                                                           | `domain/segment.ts`: batas waktu statement 5 detik, 2 evaluasi per tenant, 1 per aktor, 30 pratinjau per aktor per menit, halaman 100, contoh 10, ekspor 10.000 |
 | `commerce.segments.*`, `commerce.segment_previews.read`, `commerce.segment_members.*` | `awcms_permissions` (`sql/1003`)                                                                                                                                |
+| versi skema aturan | `awcms_commerce_segment_versions.rule_schema_version` (`sql/1060`, bawaan 1); tata bahasa tempat sebuah versi ditulis dan selalu dibaca (ADR-0051). 1 = sembilan bidang commerce, 2 = menambah bidang turunan booking; versi baru ditulis di bawah 2 |
+| bidang aturan turunan booking | `booking_count`, `stay_count`, `last_stay_date`, `no_show_count`, `cancellation_count` (skema aturan 2) |
+| booking (untuk aturan) | tautan reservasi aktif yang reservasi Booking-nya `confirmed` / `checked_in` / `completed` dan pesanannya lunas; jendela mengukur `paid_at` pesanan |
+| menginap (untuk aturan) | reservasi yang `checked_in` atau `completed` dengan `starts_at` tidak setelah as-of; jendela dan `last_stay_date` mengukur kedatangan |
+| tidak hadir / pembatalan (untuk aturan) | `awcms_commerce_booking_refund_decisions` dengan `trigger_kind` `no_show` / `customer_cancel`; `staff_cancel` tidak pernah dihitung; jendela mengukur `created_at` keputusan |
+| akses aturan booking | mendefinisikan butuh `features.booking` dan `commerce.booking_reservation_links.read`; membaca segmen booking tersimpan (hitungan, anggota, ekspor, pemakaian kampanye atau loyalitas) hanya butuh izin |
 
 ### Kelayakan loyalitas berdasarkan segmen (issue #361, amandemen [ADR-0042](adr/0042-crm-segments-are-immutable-versioned-closed-vocabulary-rules-evaluated-on-demand.md))
 

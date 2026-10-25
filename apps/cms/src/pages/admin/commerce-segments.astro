@@ -36,6 +36,7 @@ import {
   fetchSegment,
   listSegments
 } from "../../modules/commerce/application/segment-directory";
+import { COMMERCE_BOOKING_RESERVATION_LINKS_ACTIVITY_CODE } from "../../modules/commerce/domain/booking-adapter-permissions";
 import { isUuid } from "../../modules/commerce/domain/register";
 
 const ssr = Astro.locals.ssrContext!;
@@ -104,6 +105,16 @@ const screen = await loadAdminScreen({
         activityCode: "customers",
         action: "read"
       }));
+    // Booking-derived conditions (rule schema 2, ADR-0051) are offered only to
+    // someone who may use them: the booking feature is on AND the caller may
+    // read bookings. A convenience; the routes re-check both.
+    const canUseBookingRules =
+      features.booking &&
+      (await can({
+        moduleKey: "commerce",
+        activityCode: COMMERCE_BOOKING_RESERVATION_LINKS_ACTIVITY_CODE,
+        action: "read"
+      }));
     const page = await listSegments(tx, ssr.tenantId, null, true);
     const selected = selectedId
       ? await fetchSegment(tx, ssr.tenantId, selectedId)
@@ -117,7 +128,8 @@ const screen = await loadAdminScreen({
       canDelete,
       canPreview,
       canReadMembers,
-      canExport
+      canExport,
+      canUseBookingRules
     };
   },
   onError: (error) => {
@@ -137,7 +149,7 @@ const segments = on?.segments ?? [];
 const selected = on?.selected ?? null;
 const latest = selected?.versions[0] ?? null;
 
-const FIELD_OPTIONS = [
+const BASE_FIELD_OPTIONS = [
   { value: "level", label: t("Price level") },
   { value: "has_account", label: t("Has an account") },
   { value: "has_email", label: t("Has an e-mail address") },
@@ -149,48 +161,69 @@ const FIELD_OPTIONS = [
   { value: "loyalty_balance", label: t("Loyalty points balance") }
 ] as const;
 
+/** Rule schema 2 (ADR-0051): offered only when the viewer may use booking-derived conditions. */
+const BOOKING_FIELD_OPTIONS = [
+  { value: "booking_count", label: t("Number of confirmed bookings") },
+  { value: "stay_count", label: t("Number of stays") },
+  { value: "last_stay_date", label: t("Last stay (arrival)") },
+  { value: "no_show_count", label: t("Number of no-shows") },
+  {
+    value: "cancellation_count",
+    label: t("Number of cancellations by the customer")
+  }
+] as const;
+const FIELD_OPTIONS = [
+  ...BASE_FIELD_OPTIONS,
+  ...(on?.canUseBookingRules ? BOOKING_FIELD_OPTIONS : [])
+];
+
 /** Each operator and the fields it applies to; the script hides the rest. */
 const OPERATOR_OPTIONS = [
   {
     value: "eq",
     label: t("is"),
-    fields: "level,has_account,has_email,order_count,loyalty_balance"
+    fields:
+      "level,has_account,has_email,order_count,loyalty_balance,booking_count,stay_count,no_show_count,cancellation_count"
   },
   { value: "in", label: t("is one of (comma separated)"), fields: "level" },
   {
     value: "gte",
     label: t("at least"),
-    fields: "order_count,paid_spend,loyalty_balance"
+    fields:
+      "order_count,paid_spend,loyalty_balance,booking_count,stay_count,no_show_count,cancellation_count"
   },
   {
     value: "gt",
     label: t("more than"),
-    fields: "order_count,paid_spend,loyalty_balance"
+    fields:
+      "order_count,paid_spend,loyalty_balance,booking_count,stay_count,no_show_count,cancellation_count"
   },
   {
     value: "lte",
     label: t("at most"),
-    fields: "order_count,paid_spend,loyalty_balance"
+    fields:
+      "order_count,paid_spend,loyalty_balance,booking_count,stay_count,no_show_count,cancellation_count"
   },
   {
     value: "lt",
     label: t("less than"),
-    fields: "order_count,paid_spend,loyalty_balance"
+    fields:
+      "order_count,paid_spend,loyalty_balance,booking_count,stay_count,no_show_count,cancellation_count"
   },
   {
     value: "before",
     label: t("is before"),
-    fields: "customer_since,last_order_date,first_order_date"
+    fields: "customer_since,last_order_date,first_order_date,last_stay_date"
   },
   {
     value: "after",
     label: t("is after"),
-    fields: "customer_since,last_order_date,first_order_date"
+    fields: "customer_since,last_order_date,first_order_date,last_stay_date"
   },
   {
     value: "never",
     label: t("never happened"),
-    fields: "last_order_date,first_order_date"
+    fields: "last_order_date,first_order_date,last_stay_date"
   }
 ] as const;
 
@@ -331,7 +364,7 @@ const CONDITION_ROWS = [0, 1, 2, 3, 4, 5];
                   maxlength={40}
                 />
                 <label class="visually-hidden" for={`segment-window-${index}`}>
-                  {t("Window in days (orders and spend only)")}
+                  {t("Window in days (counts and spend only)")}
                 </label>
                 <input
                   type="number"
@@ -648,8 +681,11 @@ const CONDITION_ROWS = [0, 1, 2, 3, 4, 5];
   const msg = (key: string): string => root?.dataset[key] ?? "";
   const actionError = messageBox("segments-action-error");
 
-  const DATE_FIELDS = ["customer_since", "last_order_date", "first_order_date"];
-  const WINDOWED = ["order_count", "paid_spend"];
+  // Field names are suffix-typed (ADR-0051): `*_since` / `*_date` take a date,
+  // `*_count` and `paid_spend` take a window.
+  const isDateField = (name: string): boolean => /_(since|date)$/.test(name);
+  const isWindowed = (name: string): boolean =>
+    name === "paid_spend" || name.endsWith("_count");
 
   function failureMessage(errorCode: string | null): string {
     switch (errorCode) {
@@ -696,7 +732,7 @@ const CONDITION_ROWS = [0, 1, 2, 3, 4, 5];
     if (opSelect.selectedOptions[0]?.disabled && firstAllowed !== null) {
       opSelect.value = firstAllowed;
     }
-    if (windowInput) windowInput.disabled = !WINDOWED.includes(chosen);
+    if (windowInput) windowInput.disabled = !isWindowed(chosen);
     if (valueInput) valueInput.disabled = opSelect.value === "never";
   }
 
@@ -728,7 +764,7 @@ const CONDITION_ROWS = [0, 1, 2, 3, 4, 5];
         node.value =
           raw.trim().toLowerCase() === "true" ||
           raw.trim().toLowerCase() === "yes";
-      } else if (DATE_FIELDS.includes(chosen)) {
+      } else if (isDateField(chosen)) {
         node.value = dateValue(raw);
       } else if (chosen === "paid_spend") {
         node.value = raw.trim();
@@ -736,7 +772,7 @@ const CONDITION_ROWS = [0, 1, 2, 3, 4, 5];
         node.value = Number(raw);
       }
     }
-    if (WINDOWED.includes(chosen) && windowRaw !== "")
+    if (isWindowed(chosen) && windowRaw !== "")
       node.windowDays = Number(windowRaw);
     return node;
   }

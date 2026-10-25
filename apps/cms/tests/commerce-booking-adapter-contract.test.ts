@@ -441,7 +441,7 @@ describe("module wiring and boundary", () => {
     }
   });
 
-  test("the only reads of a Booking table are the offering lookup, the reservation reads and the storefront resource-id read, and commerce writes none", async () => {
+  test("the only reads of a Booking table are the offering lookup, the reservation reads, the storefront resource-id read and the segment booking facts, and commerce writes none", async () => {
     const readers: string[] = [];
     for (const file of await sourceFilesUnder("src/modules/commerce")) {
       const source = await readFile(file, "utf8");
@@ -453,8 +453,40 @@ describe("module wiring and boundary", () => {
     expect(readers.sort()).toEqual([
       "src/modules/commerce/application/booking-offering-links.ts",
       "src/modules/commerce/application/booking-reservation-reads.ts",
-      "src/modules/commerce/application/booking-storefront-reads.ts"
+      "src/modules/commerce/application/booking-storefront-reads.ts",
+      "src/modules/commerce/application/segment-booking-sql.ts"
     ]);
+  });
+
+  test("the segment booking facts read only the reservation status and arrival instant of a Booking row - never a customer reference, note or party (ADR-0051 D3)", async () => {
+    const source = (
+      await readFile(
+        "src/modules/commerce/application/segment-booking-sql.ts",
+        "utf8"
+      )
+    )
+      // The header names the forbidden columns to explain the rule; only code counts.
+      .replace(/\/\*[\s\S]*?\*\//g, "")
+      .replace(/^\s*\/\/.*$/gm, "");
+    // The only Booking relation named, and only these columns of `r`.
+    expect([...new Set(source.match(/awcms_booking_[a-z_]+/g))]).toEqual([
+      "awcms_booking_reservations"
+    ]);
+    const columns = new Set(
+      [...source.matchAll(/\br\.([a-z_]+)/g)].map((match) => match[1])
+    );
+    expect([...columns].sort()).toEqual(
+      ["id", "starts_at", "status", "tenant_id"].sort()
+    );
+    for (const personal of [
+      "external_customer_ref",
+      "customer_note",
+      "party_size",
+      "created_by"
+    ]) {
+      expect(source).not.toContain(personal);
+    }
+    expect(source).not.toMatch(/\.unsafe\(/);
   });
 
   test("every adapter route is feature-gated, built on defineTenantRoute, and reads no tenant or customer id from the body or query", async () => {

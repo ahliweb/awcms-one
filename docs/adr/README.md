@@ -70,6 +70,7 @@ What does **not** need an ADR: adding a field within an already-decided schema, 
 | [0048](0048-customer-web-push-identity-subscription-and-cross-origin-contract.md) | Customer Web Push: identity, subscription model and cross-origin contract (customer devices owned by `commerce`, a thin outbox over upstream provider and crypto, storefront-origin click targets) | Accepted |
 | [0049](0049-install-metadata-is-derived-at-build-time-and-the-ios-help-page-is-opt-in.md)                                               | Install metadata is derived at build time (neutral generated PNG icons, stable manifest `id`), and the iOS Home Screen help page is an opt-in, off-by-default build flag                                                    | Accepted                                                                                                                   |
 | [0050](0050-lynxjs-for-separate-persona-apps-astro-stays-for-admin-and-public-profiles.md) | LynxJS/ReactLynx for separate persona apps; Astro stays for the admin and every public profile (direction only, not implemented) | Accepted as direction; not implemented |
+| [0051](0051-booking-derived-segment-rules-are-rule-schema-2-read-live-through-the-booking-links-and-never-stored.md) | Booking-derived segment rules are rule schema 2 (five fields), read live through the booking links and never stored; the schema version is stored per segment version, so old rules evaluate unchanged | Accepted |
 
 ## Why the numbering starts at 0001
 

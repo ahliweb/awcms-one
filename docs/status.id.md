@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](status.md)
 
-<!-- i18n-source-hash: sha256:53b282f153ff54a7ba5324d4357fff3482ff5ba9a856e9e674a106f1a2b02552 -->
+<!-- i18n-source-hash: sha256:1c19e606570e41b40ca21bb1cbbd2bf2f1bb35706402ed591c7df73f29f782dd -->
 
 # Status
 
@@ -234,3 +234,7 @@ Lihat [`docs/arsitektur.md`](arsitektur.id.md), [`docs/cms.md`](cms.id.md), dan 
 ## Audiens segmen kampanye: segmen sebagai audiens, persetujuan tetap independen ([Amendemen ADR-0042](adr/0042-crm-segments-are-immutable-versioned-closed-vocabulary-rules-evaluated-on-demand.id.md))
 
 Di balik sakelar ketiga per tenant, `campaignSegmentAudience` (bawaan **MATI**; juga butuh `campaigns` dan `segments`), kampanye dapat memakai segmen CRM sebagai seluruh audiensnya. `sql/1007` menambah tiga kolom nullable pada kampanye - segmen, versi tak-berubah yang dikuncinya, dan as-of saat dispatcher pertama kali mengevaluasinya - sehingga pengiriman lampau dijelaskan oleh `(segmen, versi, asOf)`. Tidak ada penyimpanan pelanggan kedua: dispatcher yang sama (dapat dilanjutkan, `FOR UPDATE SKIP LOCKED`) menelusuri segmen dengan persetujuan, akun aktif dan alamat kanal pelanggan sebagai bagian kueri halaman, sehingga anggota yang menolak ditolak saat enqueue dan lagi saat dispatch, dan pelanggan walk-in, diblokir dan terhapus tidak pernah dituju. Evaluasi yang ditolak (sibuk, terlalu mahal, sakelar dimatikan) menunda halaman dan membiarkan kampanye `sending`; saat kirim dan pratinjau muncul sebagai `422 SEGMENT_TOO_EXPENSIVE` / `429 SEGMENT_EVALUATION_BUSY`. Hitungan di bawah lima disembunyikan pada kampanye. Kampanye yang ada dan filter audiensnya tidak berubah. Lihat [`api.md`](api.id.md) dan [`cms.md`](cms.id.md).
+
+## Aturan segmen turunan booking: skema aturan 2, dibaca langsung, tidak pernah disimpan ([ADR-0051](adr/0051-booking-derived-segment-rules-are-rule-schema-2-read-live-through-the-booking-links-and-never-stored.md))
+
+Issue #390 (epik #280 butir 7, separuh kedua) menambah lima kondisi ke kosakata segmen - booking terkonfirmasi, menginap, menginap terakhir, tidak hadir, dan pembatalan oleh pelanggan - sebagai **skema aturan 2**. Setiap versi segmen menyimpan skema tempat ia ditulis (`sql/1060`, `rule_schema_version`, bawaan 1) dan selalu dibaca di bawahnya, sehingga setiap versi yang disimpan sebelum perubahan ini dievaluasi persis seperti sebelumnya. Faktanya dihitung saat segmen dipratinjau atau didaftar, dari tautan booking, pesanannya, dan keputusan batal / tidak hadir yang digabung ke status dan tanggal kedatangan reservasi Booking; tidak ada yang disimpan dan tidak ada event yang membawa pelanggan. Mendefinisikan aturan yang memakainya butuh fitur `booking` dan `commerce.booking_reservation_links.read`; membaca, mengekspor, atau mengarahkan kampanye atau program loyalitas ke segmen tersimpan butuh izin itu. Pada 100.000 pelanggan, 340.000 pesanan, dan 90.000 tautan booking, p95 pratinjau M7 adalah 1,94 d (target 3 d). Dibangun dan diukur; ditunda: kondisi deposit-terbayar dan ke depan, pembatalan staf sebagai fakta pelanggan, dan proyeksi atau snapshot apa pun (ADR-0051 mencantumkan titik tinjau ulang).
