@@ -33,6 +33,7 @@
 import { isGroupActive, resolveSiteProfile, type SiteProfile } from "../../src/config/profil";
 import { ROUTES } from "../../src/config/routes";
 import { INSTALL_HELP_PATH } from "../../src/lib/pasang-aplikasi";
+import { PUSH_SETTINGS_PATH } from "../../src/lib/push-konfig";
 import blogPagesFixture from "../fixtures/awcms/blog-pages-public.json";
 import blogPostsFixture from "../fixtures/awcms/blog-posts.json";
 import productsFixture from "../fixtures/awcms/products.json";
@@ -60,6 +61,8 @@ export function keyPagesFor(profile: SiteProfile): KeyPage[] {
       { name: "product-detail", path: `/product/${productSlug}` },
       { name: "login", path: ROUTES.login },
       { name: "account", path: ROUTES.account },
+      // Issue #431: the push settings page, in its signed-out state (`build-and-serve.ts` builds with `PUBLIC_CUSTOMER_PUSH=1`).
+      { name: "akun-notifikasi", path: PUSH_SETTINGS_PATH },
       // Issue #386: the three booking pages, in their static (signed-out, no-stay) state; the
       // meaningful states (quote, hold, list) are scanned by `booking.e2e.ts`.
       { name: "booking", path: ROUTES.booking },
