@@ -1808,8 +1808,15 @@ export const READER_BUDGET_BYTES = 24_000;
  * was copied per screen: the focus helpers are one module, the layout rules for
  * three tables are one scoped class. The budget is the measurement rounded up to
  * the next 100 B.
+ *
+ * **Raised to 490,000 B when #385 (booking admin screens) and the #452 sync
+ * (487,700 B) were integrated into one tree**, MEASURED 489,973 B on the merged
+ * build: the 487,611 B the sync measured plus #385's own +2,362 B, which here
+ * did add up exactly. Each lineage's constant alone (487,700 B and 489,900 B)
+ * is below that, so the gate went red on the merge until this raise. A
+ * measurement of the merged build rounded up to the next 100 B.
  */
-export const APP_BUDGET_BYTES = 489_900;
+export const APP_BUDGET_BYTES = 490_000;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.
