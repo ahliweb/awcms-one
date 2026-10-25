@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](alur-kerja-pengembangan.md)
 
-<!-- i18n-source-hash: sha256:7838bc4202436db1a8c6969ed7793fc3fd00400bb517718056513b59a5e25e2e -->
+<!-- i18n-source-hash: sha256:68cc0f7a610903d7652665caec6de90dff7f8d23f602cabc0f0207f4edb0ac4a -->
 
 # Alur kerja pengembangan
 
@@ -87,6 +87,40 @@ Mendorong (push) tag itu tidak lagi mempublikasikan apa pun dengan sendirinya (i
 **Advisory keamanan** mengikuti jalur manual yang sama. Advisory transitif yang punya rilis perbaikan *di dalam* rentang yang dideklarasikan setiap dependennya ditutup dengan `bun audit fix` (hanya lockfile — begitulah `devalue` 5.9.3 dan `fast-uri` 3.1.8 diambil pada 3 Oktober 2026); yang berada di luar semua rentang ditutup dengan entri `overrides` di root; dan hanya advisory yang **tidak diperbaiki oleh rilis terbitan mana pun** yang boleh diterima, sebagai entri bertanggal dan beralasan di **kedua** `tools/ci/dependency-audit-exceptions.json` (dibaca lewat `tools/ci/lib/audit-exceptions.ts` oleh setiap run `bun audit` yang dibuat repositori ini — leg `local-ci/check-toko` dan `local-ci/security`, serta alat rilis `tools/rilis.mjs` — yang masing-masing menolak lanjut begitu `reviewDate` sebuah entri terlewati) dan `apps/cms/scripts/dependency-audit-exceptions.ts` (dibaca `deps:audit:check` milik `apps/cms` sendiri — divergensi lokal yang terdaftar, lihat AGENTS.md). Saat ini tepat ada satu entri: `http-cache-semantics` `GHSA-ch52-4w7c-c8xp`, yang hanya terjangkau dari cache gambar-remote waktu-build milik `astro`, ditinjau ulang paling lambat 3 November 2026.
 
 `lockfileVersion` milik `bun.lock` adalah alasan blok Dependabot `bun` tidak pernah bekerja di sini sejak awal (issue #199, lanjutan dari #180/#179: updater `bun` milik Dependabot tidak bisa mem-parse lockfile v2). Riwayat itu kini tidak relevan setelah Dependabot sendiri hilang — alur manual di atas bukan jalan pintas menunggu perbaikan, itu adalah cara permanen repo ini sendiri untuk memperbarui dependensi, atas keputusan pemilik.
+
+### Laporan kesegaran: `bun run deps:freshness` (issue #471)
+
+`bun outdated` menunjukkan apa yang *bisa* naik; tidak ada yang menunjukkannya secara terjadwal, lintas workspace, bersama pin Bun dan image kontainer. `bun run deps:freshness` (`tools/deps-freshness.ts`, logika murni di `tools/lib/deps-freshness.ts`) adalah laporan itu. Ini padanan milik root dari laporan `deps:freshness` yang dikirim `apps/cms` (upstream `ahliweb/awcms` #1181): pendekatan dan bentuk keluarannya dipakai bersama, kodenya tidak — kode root tidak pernah mengimpor internal `apps/cms`.
+
+**Hanya-baca.** Tidak memasang apa pun, tidak mengubah `package.json` atau `bun.lock`, dan tidak menulis file kecuali `--out-json` / `--out-md` menyebutnya. Setiap pencarian registry adalah `GET` dengan batas waktu (15 dtk, `--timeout-ms`), tidak mengirim kredensial, dan lewat proxy sandbox/host seperti pemanggilan `bun` atau `fetch` lain (`HTTPS_PROXY` / `NO_PROXY`). Ia melaporkan; peningkatannya adalah PR atomik tersendiri (di bawah).
+
+| Bagian | Sumber | Cakupan |
+| --- | --- | --- |
+| Dependensi langsung | `bun outdated --no-cache --filter …` | `package.json` root, `apps/storefront`, `packages/*` — **tidak pernah `apps/cms`** (milik upstream, lihat [AGENTS.md](../AGENTS.md) "The subtree embed") |
+| `overrides` root | registry npm vs versi yang di-resolve `bun.lock` | keempat override keamanan/kompatibilitas di `package.json` root |
+| Advisory | `bun audit --json` | seluruh lockfile; pemblokir = high/critical tanpa entri di `tools/ci/dependency-audit-exceptions.json`, yakni aturan yang sama dengan gate audit |
+| Pin Bun | rilis Bun terbaru (GitHub `oven-sh/bun` lebih dulu, paket npm `bun` sebagai cadangan) vs `packageManager`; batas bawah `engines.bun`; `ARG BUN_VERSION` Dockerfile storefront | |
+| Image kontainer | tag Docker Hub | setiap `FROM` di `apps/storefront/Dockerfile` dan `docker/backup/Dockerfile`, nilai `image:` literal di `compose.yaml` / `compose.production.yaml`, dan image alat local-ci di `tools/ci` (`postgres:18.4`, gitleaks yang di-pin digest — tag-nya dipulihkan dari registry, karena digest tidak menyebut rilis mana) |
+| Register tertahan | `tools/deps-held-back.json` | setiap dependensi atau image yang sengaja tidak diambil |
+
+Setiap dependensi yang tertinggal mendapat **disposisi**: `candidate` (patch/minor yang bisa diambil PR atomik berikutnya), `held` (versi lebih baru ada dan register menjelaskan kenapa tidak, lengkap dengan pemilik dan tanggal tinjau) atau `needs-decision` (mayor yang belum punya PR peningkatan maupun penahanan tercatat). Tidak ada yang lain yang merupakan penilaian bebas.
+
+**`UNKNOWN` bukan lulus.** Setiap bagian diambil sendiri-sendiri. Registry yang tak terjangkau, menjawab galat, atau mencetak tabel yang tidak dikenali parser membuat *bagian itu* `UNKNOWN`, beserta alasannya — tidak pernah terbaca "0 outdated", dan tidak pernah menggagalkan proses. `--offline` melewati semua registry dengan sengaja; bagian yang tidak butuh registry (penemuan image, pemeriksaan `ARG BUN_VERSION` Dockerfile, register) tetap berjalan.
+
+**Kode keluar.** Selalu 0, seberapa pun banyak ketertinggalannya. `--strict` keluar dengan 1 kecuali laporan benar-benar bersih: bagian `UNKNOWN`, advisory pemblokir, mayor `needs-decision`, pin Bun yang tidak sama dengan Dockerfile, tag image mengambang (`latest`, atau tanpa tag), atau entri register yang kedaluwarsa atau basi. `--json` mencetak manifes, `--out-json` / `--out-md` menyimpannya.
+
+**Kenapa bersifat saran, dan kenapa tidak ada di `check` atau leg `local-ci/*`.** Ketertinggalan registry muncul di hari-hari ketika tak seorang pun menyentuh repositori, sehingga gate ketertinggalan di `check` akan memerahkan PR yang tak terkait dan melatih orang mengabaikannya; dan leg yang butuh registry publik akan membuat dua belas konteks wajib bergantung pada ketersediaan pihak lain. Karena itu laporan dijalankan di host tepercaya dengan kadens mingguan (`bun run deps:freshness -- --strict --out-md <file>`; file itu adalah catatan mingguan), dan sebelum PR peningkatan. Yang *ditegakkan* secara luring, dalam `bun test` root biasa (`tests/deps-freshness.test.mjs`): register ter-parse, dan tidak ada entri yang melewati `reviewDate`-nya — aturan yang sama dengan `tools/ci/dependency-audit-exceptions.json`. Tidak ada konteks `local-ci/*` baru, sehingga branch protection tidak berubah.
+
+**Register tertahan** (`tools/deps-held-back.json`) adalah tempat "sudah kami periksa dan kami bertahan" dituliskan: `packageName`, `heldVersion`, `reason` yang menyebut apa yang ditemukan (bukan "risiko"), `owner`, dan `reviewDate`. Isinya versi yang *sudah dievaluasi lalu ditolak atau ditunda* — bukan ketertinggalan yang belum dilihat siapa pun (itu `candidate`), dan bukan advisory yang tak punya rilis perbaikan (itu `tools/ci/dependency-audit-exceptions.json`). Entri yang `reviewDate`-nya lewat menggagalkan `bun test` sampai dibenarkan ulang atau dihapus; entri yang tidak lagi tertinggal dari registry dilaporkan `stale` agar dihapus, bukan dibiarkan sebagai catatan tentang sesuatu yang tak lagi benar. Saat ini isinya satu entri: TypeScript bertahan di 6.x karena `@astrojs/check` (`astro check` yang dijalankan build `apps/storefront` lebih dulu) menyatakan `typescript` sebagai `^5.0.0 || ^6.0.0`.
+
+#### Gate peningkatan bertahap
+
+1. **Upstream lebih dulu.** Perbaikan dependensi atau runtime di dalam `apps/cms` mendarat di `ahliweb/awcms` dan tiba lewat sinkronisasi `git subtree` dengan merge commit — bukan sebagai suntingan versi di sini. Laporan tidak mendaftar ketertinggalan `apps/cms` sendiri, tetapi advisory transitifnya muncul di bagian `bun audit` seluruh-lockfile, dan ditutup dengan entri `overrides` root atau `bun audit fix`, seperti di atas.
+2. **Satu PR atomik per peningkatan.** Patch/minor diambil satu paket (atau satu keluarga yang erat, mis. `astro` beserta integrasi `@astrojs/*`-nya) sekali waktu dengan `bun update <nama>`; jangan `bun update --recursive` sebagai pembaruan massal. `bun.lock` tidak pernah disunting tangan. Mayor butuh ADR (atau penahanan tercatat). Perbaikan keamanan melewati jalur yang sama, di luar jadwal, mendahului kadens mingguan.
+3. **Ketiga profil build.** `bun run check:lockfile`, lalu `SITE_PROFILE=toko|berita|landing bun run check` — dan `bun run ci:pr -- <nomor-pr>` terhadap SHA head PR yang tepat, yang menjalankan leg `check-*`, `template-*` dan `e2e-*` untuk setiap profil (keluaran SEO profil, aset, dan CSP turunan adalah yang ditegaskan leg-leg itu). Bump yang hijau di satu profil saja belum hijau.
+4. **Pin deployment dan rollback.** Image di-pin ke versi persis di Dockerfile (`ARG BUN_VERSION` bergerak bersama `packageManager` dan `engines.bun`), image alat dengan digest; `latest` bukan pin, dan `--strict` gagal karenanya. Deployment produksi menarget tag rilis, SHA commit, atau digest image yang persis, sehingga rollback berarti "deploy target tercatat sebelumnya" — lihat [`deployment.id.md`](deployment.id.md), "Mekanisme health/readiness dan rollback".
+
+**Tidak dicakup laporan ini, dinyatakan agar tidak disangka terjaga:** kontrak API penyedia eksternal (Mailketing, Meta, StarSender, Telegram) bukan paket registry — ketertinggalan versinya ditinjau tangan pada kadens mingguan yang sama, dan perubahannya urusan upstream `apps/cms`; image penandatanganan/pemindaian alat rilis di `tools/release/lib/pinned-images.mjs` (di-pin digest, sebagian di luar Docker Hub) berada di luar laporan; tidak ada lagi GitHub Actions yang perlu di-pin (ADR-0021).
 
 ## Seeding profil secara lokal
 

@@ -1,0 +1,9 @@
+{
+  "http-cache-semantics": [
+    { "id": 1, "url": "https://github.com/advisories/GHSA-ch52-4w7c-c8xp", "title": "ReDoS in cache header parsing", "severity": "high", "vulnerable_versions": "<4.1.1" }
+  ],
+  "left-pad": [
+    { "id": 2, "url": "https://github.com/advisories/GHSA-aaaa-bbbb-cccc", "title": "Prototype pollution", "severity": "critical", "vulnerable_versions": "<2.0.0" },
+    { "id": 3, "url": "https://github.com/advisories/GHSA-dddd-eeee-ffff", "title": "Minor leak", "severity": "low", "vulnerable_versions": "*" }
+  ]
+}
