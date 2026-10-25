@@ -129,9 +129,15 @@ describe("the real root CHANGELOG.md — a heading-format regression here fails 
     expect(() => findChangelogHeadings(real)).not.toThrow();
   });
 
+  // `template:init` resets CHANGELOG.md to its own single 0.1.0 entry in a derived
+  // repository (issue #476 made that reset stick), so the template's own
+  // "Initial workspace scaffolding" history only exists here, in awcms-one itself.
+  const IS_TEMPLATE = JSON.parse(readFileSync("package.json", "utf8")).name === "awcms-one";
+
   test("v0.1.0 (the very first release, no `.changesets/` convention yet) is still readable", () => {
     const body = changelogSection(real, "v0.1.0");
-    expect(body).toContain("Initial workspace scaffolding");
+    if (IS_TEMPLATE) expect(body).toContain("Initial workspace scaffolding");
+    else expect(body.length).toBeGreaterThan(0);
     // Proves the slice does not run past end of its own section by accident —
     // v0.1.0 is last in the file, so this only guards against a body that
     // somehow includes content before its own heading.

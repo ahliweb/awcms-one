@@ -12,6 +12,7 @@ import { applyColorDefaults, missingRequired, parseArgs, USAGE, validateFlags } 
 import { promptForMissing } from "./cli.mjs";
 import { buildPlan, describePlan, isEmptyPlan } from "./plan.mjs";
 import { applyPlan } from "./apply.mjs";
+import { describeChecklist } from "./checklist.mjs";
 import { runFollowUpGates } from "./gates.mjs";
 
 /**
@@ -117,7 +118,10 @@ export async function main(argv, opts = {}) {
     return 1;
   }
 
-  if (opts.skipGates) return 0;
+  if (opts.skipGates) {
+    console.log(`\n${describeChecklist()}`);
+    return 0;
+  }
 
   try {
     runFollowUpGates(root, { skipInstall: opts.skipInstall, testScope: opts.testScope });
@@ -127,5 +131,6 @@ export async function main(argv, opts = {}) {
   }
 
   console.log("\ntemplate:init — done. This repository's first commit is green.");
+  console.log(`\n${describeChecklist()}`);
   return 0;
 }
