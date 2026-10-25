@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](SECURITY.md)
 
-<!-- i18n-source-hash: sha256:a594565269984d6e17f8a5ea5ff1dde3d4b3f5cfa25a5a820df2c7bb4c8587eb -->
+<!-- i18n-source-hash: sha256:6751485e58193a4fd7b37133ebca341ded8c612e23ec47db67b7f5770767992f -->
 
 # Kebijakan Keamanan
 
@@ -47,6 +47,19 @@ Container *yang dilayani* `apps/storefront` — semua kecuali permukaan commerce
 - **Penerbitan OTP di-rate-limit dengan dua cara sekaligus**: per IP peminta, dan per pengenal e-mail/telepon ternormalisasi (`apps/cms/src/modules/commerce/domain/otp-rate-limit-key.ts`) — penyerang yang merotasi IP tetap tidak bisa membanjiri satu kotak surat atau nomor WhatsApp, dan yang memiliki banyak kotak surat tetap tidak bisa membanjiri satu plafon IP.
 - **Kode OTP yang tersimpan berupa hash, tidak pernah teks-jelas, dan dibatasi 5 percobaan tebak** (`OTP_MAX_ATTEMPTS`, `apps/cms/src/modules/commerce/domain/customer-otp.ts`) — rate limit di atas adalah lini pertahanan pertama; batas percobaan ini yang sebenarnya menghentikan sebuah kode ditebak setelah sebuah request berhasil lolos.
 - **`GET/PATCH account/me` tidak menerima perubahan e-mail/telepon hari ini** (`PATCH` hanya menerima `{name}`) — pemulihan-akun-lewat-pengambilalihan melalui perubahan pengenal yang tak terverifikasi bukan permukaan yang ada saat ini; lihat "Yang BELUM benar" di bawah.
+
+### Web Push pelanggan (issue #430, [ADR-0048](docs/adr/0048-customer-web-push-identity-subscription-and-cross-origin-contract.id.md))
+
+**Endpoint push peramban seorang pembeli adalah data pribadi sekaligus kapabilitas sekelas bearer**, maka ditangani seperti token sesi dan lebih ketat. Mati secara default per tenant (`customerPush`); aktivasi produksi dihalangi tinjauan penasihat hukum atas teks persetujuan dan matriks uji operator (ADR-0048 D8). Kontrol yang berlaku:
+
+- **Hanya bearer milik pembeli sendiri.** Rute (`/api/v1/commerce/storefront/account/push/*`) mengautentikasi hanya dengan `requireCustomerSession`: tanpa cookie, sesi staf, atau token mesin. Prinsipal (tenant, akun, sesi) berasal dari bearer dan tenant hasil `Origin`; skema body yang ketat menolak `accountId`, `tenantId`, `title`, atau `navigate` pilihan klien. Tes statis menggagalkan build bila berkas push pelanggan mengimpor resolver prinsipal staf atau membaca cookie.
+- **Isolasi tenant dua kali.** FORCE RLS pada keempat tabel dengan foreign key komposit `(tenant_id, …)`, dan pencarian bearer sendiri menyebut tenant, sehingga token tenant A adalah `401` pada origin tenant B bahkan pada koneksi BYPASSRLS yang salah konfigurasi.
+- **Allowlist layanan push yang dikenal.** Pembeli terverifikasi mana pun dapat mendaftar, maka host endpoint harus Google FCM, Mozilla, Apple, atau Microsoft (pengaturan operator dapat memperluas; tenant atau permintaan tidak), `https`, tanpa userinfo atau port, tanpa literal IP. Selain itu `422` dan tidak ada yang ditulis. Fetch aman-SSRF dispatcher tetap menjadi otoritas saat kirim.
+- **Terenkripsi saat disimpan, dimusnahkan saat keluar.** Endpoint dan rahasia auth adalah amplop AES-256-GCM di bawah cincin kunci rahasia-auth dengan AAD khusus pelanggan yang terikat baris; daftar menampilkan topeng. Mencabut, logout, memblokir, atau sesi berakhir memusnahkan kredensial dalam pernyataan yang sama (CHECK melarang perangkat tak aktif menyimpan apa pun). Worker dapat menghapus kredensial tetapi tidak mengganti kunci publik atau menghidupkan kembali batu nisan.
+- **Tanpa peniruan di peramban bersama.** Mendaftarkan endpoint akun lain adalah pengalihan atomik dan teraudit yang membatalkan pesan antrean pemilik sebelumnya; logout mencabut perangkat sesi dalam transaksi sesi itu sendiri.
+- **Notifikasi generik, target tetap.** Teks adalah templat tetap dan target klik adalah path storefront tetap yang digabung dengan origin tervalidasi perangkat; tidak ada kode pesanan, jumlah, atau nama yang keluar dari sistem, dan tata letak storefront-pada-origin-CMS ditolak.
+- **Terbatas.** Lima perangkat per akun, body 8 KiB, batas laju per IP dan per akun, 12 notifikasi per jam dan 40 per hari per akun, retensi 30 hari untuk batu nisan, pesan terminal, dan percobaan.
+- **Risiko sisa, dinyatakan.** Pemegang endpoint mentah seorang pembeli dapat mengambil alih perangkat sampai pembeli mengaktifkan lagi (hanya ketersediaan: payload dienkripsi ke kunci yang diberikan pengambil alih, sehingga peramban asli tidak dapat menampilkannya dan pengambil alih tidak menerima apa pun); risiko sisa XSS-pada-`localStorage` yang sama dengan token sesi berlaku, tidak diperlebar karena service worker tidak memegang token; `sent` hanya berarti layanan push menerima permintaan.
 
 ## Permukaan provider dan webhook: apa yang melindunginya
 

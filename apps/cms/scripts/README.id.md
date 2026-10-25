@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:52a55c6cc81edd1d6b4c89fb6ac3a3d5837326c4cba76d98f46d17bb7d3dbf6e -->
+<!-- i18n-source-hash: sha256:bc426a8293ff6d554553860dd9474abf38b355871f8493b002abded29b7d07e9 -->
 
 # Scripts AWCMS
 
@@ -27,7 +27,7 @@ lalu membangun duplikatnya.
 
 <!-- Dihasilkan `bun run scripts:inventory:generate`. JANGAN diedit tangan. -->
 
-168 target menjalankan berkas di `scripts/`; 64 di antaranya
+170 target menjalankan berkas di `scripts/`; 64 di antaranya
 ada di rantai `bun run check` (kolom **Gate**), sisanya dijalankan manual,
 terjadwal, atau oleh workflow CI tertentu.
 
@@ -78,6 +78,8 @@ terjadwal, atau oleh workflow CI tertentu.
 | `commerce:booking:reconcile`              | `commerce-booking-reconcile.ts`                | —    |
 | `commerce:campaigns:dispatch`             | `commerce-campaigns-dispatch.ts`               | —    |
 | `commerce:customer-auth:purge`            | `commerce-customer-auth-purge.ts`              | —    |
+| `commerce:customer-push:maintenance`      | `commerce-customer-push-maintenance.ts`        | —    |
+| `commerce:customer-push:rekey`            | `commerce-customer-push-rekey.ts`              | —    |
 | `commerce:deploy:preflight`               | `commerce-deploy-preflight.ts`                 | —    |
 | `commerce:flash-sales:tick`               | `commerce-flash-sales-tick.ts`                 | —    |
 | `commerce:inventory:cutover`              | `commerce-inventory-cutover.ts`                | —    |

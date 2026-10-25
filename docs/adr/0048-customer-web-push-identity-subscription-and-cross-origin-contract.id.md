@@ -1,12 +1,12 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0048-customer-web-push-identity-subscription-and-cross-origin-contract.md)
 
-<!-- i18n-source-hash: sha256:fcd48310e2cbad4f47f7fb38993e49994c6f7514a63c1bc1389fb9f1e5a3008f -->
+<!-- i18n-source-hash: sha256:89963ccbc576d34b2ccde463d4feb34801aebb6bd29ffc499f64c4fb64ed56f5 -->
 
 # ADR-0048 — Web Push pelanggan: identitas, model langganan, dan kontrak lintas origin
 
 - **Status:** Diterima (24 Oktober 2026). Diusulkan 18 Oktober 2026
 - **Tanggal:** 18 Oktober 2026 (diusulkan); 24 Oktober 2026 (diterima)
-- **Pengambil keputusan:** ahliweb. Diterima pada 24 Oktober 2026 atas instruksi pemilik untuk mengambil opsi yang direkomendasikan bagi setiap pertanyaan terbuka (Q1 sampai Q12, dicatat di "Keputusan pemilik atas pertanyaan terbuka" di bawah). Desain disetujui; **belum ada yang diimplementasikan**: #430 sampai #432 membangunnya, di balik flag `customerPush`, yang tetap mati sampai gerbang produksi pada ringkasan keputusan (D8) terpenuhi
+- **Pengambil keputusan:** ahliweb. Diterima pada 24 Oktober 2026 atas instruksi pemilik untuk mengambil opsi yang direkomendasikan bagi setiap pertanyaan terbuka (Q1 sampai Q12, dicatat di "Keputusan pemilik atas pertanyaan terbuka" di bawah). Desain disetujui. **#430 sudah diimplementasikan** (perangkat, persetujuan, tabel dan repositori outbox tipis, rute pelanggan, diagnostik staf, job pemeliharaan dan re-key; lihat "Catatan implementasi: issue #430" di bawah); #431 (UI storefront dan service worker) dan #432 (konsumen dan loop pengiriman) belum. Semuanya di balik flag `customerPush`, yang tetap mati sampai gerbang produksi pada ringkasan keputusan (D8) terpenuhi
 - **Terkait:** issue [#429](https://github.com/ahliweb/awcms-one/issues/429) (ADR ini); konsumen [#430](https://github.com/ahliweb/awcms-one/issues/430), [#431](https://github.com/ahliweb/awcms-one/issues/431), [#432](https://github.com/ahliweb/awcms-one/issues/432); prasyarat [#427](https://github.com/ahliweb/awcms-one/issues/427) (sinkronisasi subtree) dan [#428](https://github.com/ahliweb/awcms-one/issues/428) (storefront dapat dipasang); [ADR-0007](0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.id.md), [ADR-0016](0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md), [ADR-0024](0024-awcms-one-is-template-only-derived-apps-own-their-backend.id.md), [ADR-0037](0037-the-commerce-migration-band-is-allocated-gap-first-and-widened-upstream.id.md), [ADR-0040](0040-aw-business-platform-capability-ownership-and-boundaries.id.md); issue upstream `ahliweb/awcms` 1106 beserta pekerjaan Web Push-nya (payload deklaratif, admin iOS yang dapat dipasang, matriks uji operator); WebKit [Declarative Web Push](https://webkit.org/blog/16535/)
 
 ## Konteks
@@ -553,6 +553,33 @@ Pemilik menjawab setiap pertanyaan dengan rekomendasinya pada 24 Oktober 2026 ("
 7. **D7.** Q1 sampai Q12 diselesaikan sesuai rekomendasi (24 Oktober 2026); tabel di atas mengikat bagi #430 sampai #432. Tidak ada di dalamnya yang membutuhkan jawaban pemilik lagi sebelum implementasi dimulai.
 8. **D8.** Gerbang aktivasi produksi untuk flag `customerPush`, per deployment: tinjauan penasihat hukum atas kata-kata persetujuan dan privasi (Q8); pasangan kunci VAPID dan ring auth-secret terkonfigurasi (bagian 9); matriks tes operator hijau; UAT perangkat pada aplikasi iPhone terpasang, Chrome Android, dan Chrome desktop. Sampai semuanya terpenuhi, flag tetap mati dan fitur tidak aktif.
 
+## Catatan implementasi: issue #430
+
+#430 membangun bagian 3, 4, 5.2, 5.3, 5.7 dan 6.1 sampai 6.3 sebagaimana tertulis, dalam migrasi `sql/1056` (perangkat, preferensi, dan dua kunci komposit pada akun dan sesi), `sql/1057` (outbox dan buku besar percobaan), `sql/1058` (hak akses worker dan penjaga perangkat) dan `sql/1059` (`commerce.customer_push.read`). Di tempat implementasi membuat pilihan yang dibiarkan terbuka oleh ADR, atau sengaja lebih ketat dari teksnya, hal itu dicatat di sini agar ADR tetap menjadi gambaran jujur tentang sistemnya.
+
+**Lebih ketat dari ADR**
+
+- **Endpoint juga dienkripsi saat disimpan.** Bagian 3.1 menyimpan `endpoint` mentah pada baris aktif. Implementasi menyimpan `endpoint_ciphertext`: amplop AES-256-GCM di bawah cincin yang sama (`PUSH_AUTH_SECRET_ENCRYPTION_KEYS`) dengan tujuan AAD sendiri `commerce.customer_push_endpoint` (rahasia auth tetap `commerce.customer_push_auth_secret`), keduanya terikat pada `(tenant_id, endpoint_hash)`. Dump basis data karenanya tidak memuat endpoint yang dapat dipakai. Tidak ada kolom kredensial teks-biasa; `p256dh_key` adalah kunci publik pelanggan dan tetap terbuka. CHECK kredensial-hanya-bila-aktif mencakup ketiganya.
+- **Pencarian bearer menyebut tenant.** `findSessionByTokenHash` mendapat `tenantId` opsional yang selalu diteruskan `requireCustomerSession`, sehingga token tenant A adalah `401` pada origin tenant B di dalam query itu sendiri dan tidak hanya lewat FORCE RLS (T3). Koneksi BYPASSRLS yang salah konfigurasi tidak lagi mengubah pencarian token-hash global menjadi login lintas tenant.
+- **Worker dibatasi pada kolom kredensial.** Di samping hak UPDATE hanya-kolom, trigger penjaga mengizinkan worker menghapus kredensial tetapi tidak mengganti `p256dh_key`, dan mengenkripsi ulang ciphertext hanya selama perangkat tetap aktif, sehingga job yang diretas tidak dapat menghidupkan kembali batu nisan atau menukar kunci.
+
+**Pilihan yang dibiarkan terbuka oleh ADR**
+
+- `revoked_at` (saat kredensial dimusnahkan, NULL selama aktif) adalah kursor retensi, dan `failure_count` disiapkan untuk dispatcher. `session_id` boleh NULL dengan `ON DELETE SET NULL (session_id)` karena purge autentikasi pelanggan menghapus sesi yang dicabut setelah tujuh hari; foreign key akun berantai (cascade), sehingga menghapus akun menghapus data push-nya di basis data.
+- **Tidak ada entri `push_delivery` di `dependencies`.** Bagian 1.2 menyatakan deskriptor mendapat satu. Ternyata tidak: tepi siklus hidup akan membuat `commerce` mustahil diaktifkan untuk tenant yang belum mengaktifkan `push_delivery`, dan memblokir penonaktifan `push_delivery` bagi tenant mana pun yang memakai commerce. `commerce` hanya mengimpor fungsi murni, domain dan infrastruktur, dan `push_delivery` tidak mendeklarasikan `provides` yang dapat dinamai tepi kapabilitas. `modules:dag:check` dan `modules:compose:check` lulus tanpanya; bila upstream kelak mendeklarasikan kapabilitas itu, tepinya ditambahkan sebagai `consumes` opsional.
+- **Kapabilitas butuh `PUSH_PROVIDER=web_push`** selain `PUSH_ENABLED`, pasangan VAPID yang valid dan cincin kunci: pelanggan hanya memakai Web Push peramban, sehingga provider lain melaporkan `push_not_configured`.
+- **`GET .../push/subscriptions` hanya mendaftar perangkat aktif** (batu nisan tidak ditampilkan), dan `GET .../push/preferences` tersendiri ada di samping `PUT`. Pendaftaran `201` bila pemanggil baru menguasai perangkat aktif (baru, dihidupkan kembali, dialihkan) dan `200` untuk no-op, dan no-op tidak diaudit (peramban mengulanginya). Struktur buruk atau kunci tak dikenal `400`; nilai buruk `422`; versi teks persetujuan harus sama dengan yang diumumkan kapabilitas.
+- **User agent.** Baris perangkat menyimpan deskripsi kasar yang dibangun dari tiga kosakata tertutup ("Chrome on Android (mobile)"), tidak pernah header-nya (bagian 2.3).
+- **Jalur pemblokiran.** `PATCH /api/v1/commerce/customers/{id}` dengan `status: "blocked"` mencabut perangkat akun dalam transaksi yang sama, dan sapuan pemeliharaan juga mencabut perangkat akun atau baris pelanggan yang diblokir dengan cara lain.
+- **Data subjek.** Keempat deskriptor jujur `unreachableBySubject` (akun pelanggan tidak punya id tenant-user, identitas atau profil dalam kosakata mesin); jalur sebenarnya adalah `eraseCustomerPushData` dan `exportCustomerPushData` (berkunci akun) serta cascade akun.
+- **Perluasan allowlist host oleh operator** adalah `COMMERCE_CUSTOMER_PUSH_EXTRA_ENDPOINT_HOSTS` (host persis atau `*.sufiks`), divalidasi `config:validate`; daftar bawaannya `fcm.googleapis.com`, `updates.push.services.mozilla.com`, `web.push.apple.com` dan `*.notify.windows.com`.
+
+**Job.** `commerce:customer-push:maintenance` (tiap 15 menit: sapuan sesi-berakhir dan akun-diblokir, lalu purge 30 hari atas batu nisan, pesan terminal dan percobaan; berjalan walau fitur mati) dan `commerce:customer-push:rekey` (manual, kedua ciphertext, melaporkan baris yang tak dapat didekripsi). Terdaftar di registri work-class, daftar job modul, crontab dan daftar rahasia khusus-job.
+
+**Diserahkan ke #432.** Konsumen peristiwa domain dan kebijakannya, loop claim/kirim/finalisasi beserta job-nya, dan query kelayakan saat kirim (5.5). #430 menyediakan sambungan tempat mereka terpasang: `enqueueCustomerPushMessage` (dedupe, batas per akun di bawah kunci, jalur tujuan tetap), `cancelPendingMessagesForDevices`, dan `loadCustomerPushDeliveryTarget` (satu-satunya dekripsi kredensial, mengembalikan `PushTarget` upstream).
+
+**Tes.** TS-U2, U3, U5 dan U6 di `apps/cms/tests/commerce-customer-push.test.ts` beserta aritmetika jendela laju dan batas, bolak-balik enkripsi dan pemisahan AAD, dan TS-S1; TS-I1, I2, I3, I5 (separuh outbox), I7 dan hak akses di `apps/cms/tests/integration/commerce-customer-push.integration.test.ts`; TS-H1 sampai H6 di `apps/cms/tests/integration/commerce-customer-push-routes.integration.test.ts`.
+
 ## Konsekuensi
 
 - ADR ini diterima (24 Oktober 2026), sehingga pertanyaan desain yang menghambat #430 sampai #432 tertutup. Isu-isu itu dapat mulai setelah #427 (sinkronisasi subtree) mendarat, satu-satunya prasyarat yang tersisa; tidak perlu rilis upstream.
@@ -564,4 +591,4 @@ Pemilik menjawab setiap pertanyaan dengan rekomendasinya pada 24 Oktober 2026 ("
 ## Yang belum ada
 
 - Push pemasaran (butuh alur persetujuan, audiens, dan ADR sendiri), templat yang dapat disunting tenant, analitik klik dan baca, aplikasi pelanggan native (FCM/APNs), alur penghapusan akun pelanggan, UI staf untuk perangkat pelanggan, dan peristiwa balasan kotak masuk (Q4).
-- Belum ada implementasi: tidak ada tabel, rute, consumer, job worker, service worker, atau UI. ADR ini adalah Definition of Ready untuk #430, #431, dan #432, dan definisi itu kini terpenuhi.
+- Belum diimplementasikan: konsumen dan loop pengiriman (#432), serta service worker dan UI storefront (#431). Perangkat, persetujuan, tabel outbox, rute pelanggan, diagnostik, dan job pemeliharaan serta re-key sudah ada (#430). ADR ini adalah Definition of Ready untuk #430, #431, dan #432, dan definisi itu terpenuhi.

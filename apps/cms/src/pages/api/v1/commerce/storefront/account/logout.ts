@@ -5,6 +5,7 @@ import { fail } from "../../../../../../modules/_shared/api-response";
 import { recordAuditEvent } from "../../../../../../modules/logging/application/audit-log";
 import { requireCustomerSession } from "../../../../../../modules/commerce/application/customer-session-auth";
 import { revokeSession } from "../../../../../../modules/commerce/application/customer-account-store";
+import { revokeCustomerPushDevicesOfSession } from "../../../../../../modules/commerce/application/customer-push-devices";
 import { commercePreflightResponse } from "../../../../../../modules/commerce/application/public-commerce-preflight";
 import { withPublicCommerceTenant } from "../../../../../../modules/commerce/application/public-commerce-tenant";
 
@@ -14,7 +15,8 @@ import { withPublicCommerceTenant } from "../../../../../../modules/commerce/app
  * the shopper revoking their OWN session). `204` on success; missing/
  * invalid/expired bearer answers `401 UNAUTHENTICATED` — never `403`, even
  * for a blocked account, since revoking a session a blocked account still
- * holds is exactly what this endpoint should let them do.
+ * holds is exactly what this endpoint should let them do. Issue #430: the
+ * push devices the session enrolled are revoked in the same transaction.
  */
 const PREFLIGHT_ALLOWED_HEADERS = ["content-type", "authorization"] as const;
 
@@ -36,6 +38,17 @@ export const POST: APIRoute = async ({ request, locals }) => {
       }
 
       await revokeSession(tx, tenant.tenantId, authOutcome.sessionId);
+
+      // Issue #430 (ADR-0048 5.3, T6): every push device this session enrolled
+      // is revoked in the SAME transaction as the session, so a failure leaves
+      // both or neither. Unconditional (not behind `customerPush`): devices
+      // from an earlier period must still be revoked when the flag is off.
+      await revokeCustomerPushDevicesOfSession(
+        tx,
+        tenant.tenantId,
+        authOutcome.sessionId,
+        locals.correlationId
+      );
 
       await recordAuditEvent(tx, {
         tenantId: tenant.tenantId,

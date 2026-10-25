@@ -103,6 +103,38 @@ The subtree sync at `3c7fc29` ([issue #427](https://github.com/ahliweb/awcms-one
 
 **Rollback.** Application roll-forward is preferred. The sync adds one migration (`sql/315`, a nullable recipient column on the push message table) and no destructive change, so a rollback of the image does not need a database step; if a defect appears, set `PUSH_PAYLOAD_FORMAT=legacy` (the service worker reads both shapes) or `PUSH_ENABLED=false`, and roll forward with a fix rather than restoring an older database.
 
+## Customer Web Push: operator settings, activation gates and runbook (issue #430, [ADR-0048](adr/0048-customer-web-push-identity-subscription-and-cross-origin-contract.md))
+
+Shoppers' browsers can be enrolled for order, payment and support notifications through the `push_delivery` provider, VAPID pair and key ring above. It is **off in every deployment**: the per-tenant commerce feature `customerPush` defaults to off, and every customer push route then answers the neutral `404`. #430 ships the devices, consent, routes and housekeeping; the storefront UI and service worker (#431) and the sending side (#432) are separate.
+
+| Setting                                                                                           | Default  | What a deployment must get right                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------------------------------------------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `PUSH_ENABLED=true`, `PUSH_PROVIDER=web_push`, the VAPID pair, `PUSH_AUTH_SECRET_ENCRYPTION_KEYS` | unset    | All four, or the capability answer is `enabled: false` (`push_not_configured`) and registration is `409 PUSH_UNAVAILABLE`. There is no plaintext fallback: without the ring a device cannot be stored.                                                                                                                                                                                                                          |
+| `COMMERCE_CUSTOMER_PUSH_EXTRA_ENDPOINT_HOSTS`                                                     | unset    | **Operator-only.** Comma-separated exact hostnames or `*.suffix.example` wildcards added to the built-in push-service allowlist (`fcm.googleapis.com`, `updates.push.services.mozilla.com`, `web.push.apple.com`, `*.notify.windows.com`). Add only a push service you have verified; never a tenant or request value. `config:validate` reports entries it ignores (an IP literal, a single label, `localhost`, more than 32). |
+| `APP_URL`                                                                                         | required | The CMS origin. A storefront served from this origin is unsupported in v1 and a request from it is refused (`origin_not_supported` / `ORIGIN_NOT_ALLOWED`); serve the storefront from its own origin and map its host in the tenant's domains.                                                                                                                                                                                  |
+| `APP_ENV=development`                                                                             | unset    | Only then is an `http://localhost` storefront origin accepted. Never set in production.                                                                                                                                                                                                                                                                                                                                         |
+
+**Production activation gates (ADR-0048 D8), per deployment, all required before the feature flag is turned on for a tenant:** counsel's review of the consent and privacy wording (the wording ships as a versioned draft, `draft-2026-10`); the VAPID pair and the key ring configured; the operator test matrix ([`apps/cms/docs/awcms/push-notifications-test-matrix.md`](../apps/cms/docs/awcms/push-notifications-test-matrix.md)) green; device UAT on an installed iPhone app, Chrome Android and Chrome desktop. The application enforces only the flag. Document the review in the deployment's own records.
+
+**Jobs.** `commerce:customer-push:maintenance` runs every 15 minutes from the generated crontab (no key, no network; it also runs while the feature is off). `commerce:customer-push:rekey` is manual.
+
+**Key rotation.** Prepend a new key to `PUSH_AUTH_SECRET_ENCRYPTION_KEYS`, deploy, run `bun run commerce:customer-push:rekey` (and upstream's `push:auth-secret:backfill --rekey` for staff devices) until it reports nothing left, then retire the old key. It exits `2` when a tenant did not finish and `3` when rows could not be decrypted under the ring (counted, untouched). Rotating the VAPID pair invalidates every subscription: set the affected devices to `disabled` (reason `vapid_rotated`) and let customers enable again.
+
+```sql
+-- Run as a superuser/BYPASSRLS role (the table is FORCE RLS), or first `SET app.current_tenant_id = '<tenant uuid>'` in the session as the app role.
+-- The credentials-iff-active CHECK requires all three credential columns to be cleared in the same statement.
+UPDATE awcms_commerce_push_devices
+   SET status = 'disabled', status_reason = 'vapid_rotated', revoked_at = now(),
+       endpoint_ciphertext = NULL, p256dh_key = NULL, auth_secret_ciphertext = NULL
+ WHERE status = 'active' AND tenant_id = '<tenant uuid>';
+```
+
+Use `status_reason = 'kill_switch'` for the same statement when abandoning the feature.
+
+**Kill switch and rollback.** Turn the tenant's `customerPush` feature off: routes answer the neutral `404`, existing devices stay inert, and the maintenance job keeps cleaning. To abandon the feature, revoke devices through `DELETE .../account/push/subscriptions` per customer or by the SQL above (`status = 'revoked'` with the credentials cleared). The schema is additive and has no down migration; roll the application forward. Logout, blocking a customer and session expiry already revoke devices without the flag.
+
+**Backup and restore.** Restore devices and customer sessions together and deploy the same ring keys that wrote the backup, or the ciphertext cannot be read. After a point-in-time restore to an earlier moment, a logout that happened later is lost for both tables: treat every device as suspect and revoke them all.
+
 ## What may reach `apps/cms`: the build process, and — since issue #30 — the reader's browser
 
 |                                                   | May reach                                                                                                                                                                                                                                                                                                                                              |
