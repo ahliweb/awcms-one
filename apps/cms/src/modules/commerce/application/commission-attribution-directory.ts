@@ -15,6 +15,7 @@ import { recordAuditEvent } from "../../logging/application/audit-log";
 import {
   COMMISSION_DEFAULT_SOURCE_TYPE,
   decideSettingsChange,
+  isLineFullyReturned,
   type CommissionSettingsInput,
   type CreateStaffLinkInput
 } from "../domain/commission-attribution";
@@ -119,6 +120,60 @@ export async function recordAttributedSource(
     VALUES (${tenantId}, ${sourceType}, ${ruleKey})
     ON CONFLICT (tenant_id, source_type, rule_key) DO NOTHING
   `;
+}
+
+/**
+ * A per-order, transaction-scoped advisory lock taken by BOTH the attributor and
+ * the reversers before they read the order (issue #449, ADR-0046 D11). Without
+ * it a delayed attributor and a reverser for the same order can interleave: the
+ * attributor reads "not fully returned", the return completes, the reverser runs
+ * its void against an accrual that does not exist yet, and the attributor then
+ * accrues the line - an accrual nothing ever voids. With it the second of the
+ * two always sees the first's committed effect. Exclusive in both directions:
+ * the work under it is short and per order, so nothing contends on it.
+ */
+export async function lockCommissionOrder(
+  tx: Bun.SQL,
+  tenantId: string,
+  orderId: string
+): Promise<void> {
+  await tx`SELECT pg_advisory_xact_lock(hashtextextended(${`commerce.commission.order|${tenantId}|${orderId}`}, 0))`;
+}
+
+/**
+ * What has already come back of an order, across all `completed` returns
+ * (`isLineFullyReturned`, the reverser's own rule): the lines returned in full,
+ * and how many lines are only partly returned. An attributor that runs after the
+ * refund reverser must not accrue a fully returned line: the reverser has
+ * already run and nothing would ever void the accrual. A partly returned line is
+ * accrued whole (the port voids a whole accrual or nothing, D9) and only counted,
+ * so the audit row can tell a person.
+ */
+export async function readReturnedLines(
+  tx: Bun.SQL,
+  tenantId: string,
+  orderId: string
+): Promise<{ fullyReturned: Set<string>; partiallyReturned: number }> {
+  const rows = (await tx`
+    SELECT oi.id,
+           oi.quantity::int AS ordered,
+           COALESCE(SUM(rl.quantity), 0)::int AS returned
+    FROM awcms_commerce_order_items oi
+    JOIN awcms_commerce_return_lines rl
+      ON rl.tenant_id = oi.tenant_id AND rl.order_item_id = oi.id
+    JOIN awcms_commerce_returns r
+      ON r.tenant_id = rl.tenant_id AND r.id = rl.return_id
+         AND r.order_id = oi.order_id AND r.status = 'completed'
+    WHERE oi.tenant_id = ${tenantId} AND oi.order_id = ${orderId}
+    GROUP BY oi.id, oi.quantity
+  `) as { id: string; ordered: number; returned: number }[];
+  const full = rows.filter((row) =>
+    isLineFullyReturned(Number(row.ordered), Number(row.returned))
+  );
+  return {
+    fullyReturned: new Set(full.map((row) => row.id)),
+    partiallyReturned: rows.length - full.length
+  };
 }
 
 export type SaveCommissionSettingsOutcome =
@@ -271,17 +326,34 @@ export async function listStaffLinks(
   return rows.map(toLink);
 }
 
-/** The employment a login's counter sales are credited to, or `null` when it has no LIVE link. */
-export async function findLiveEmploymentForLogin(
+/**
+ * The employment a login's counter sales were credited to AT `asOf` - the
+ * sale's `paid_at`, never "now" (issue #449, ADR-0046 D11) - or `null` when the
+ * login had no staff link then.
+ *
+ * A link covers the half-open interval `[created_at, retired_at)`, so a retire
+ * and a new link written in one transaction (a correction) hand over at that
+ * very instant with no overlap and no gap. Resolving the beneficiary at the
+ * moment the consumer happens to run would make the answer depend on delivery
+ * delay: a link retired or re-pointed between the sale and a delayed delivery
+ * would drop the sale or accrue it to the NEW employment. The loyalty earner
+ * uses the same as-of (`paid_at`, ADR-0026 D3), and `created_at` / `paid_at` are
+ * both the database clock.
+ */
+export async function findEmploymentLinkedAt(
   tx: Bun.SQL,
   tenantId: string,
-  tenantUserId: string
+  tenantUserId: string,
+  asOf: Date
 ): Promise<{ linkId: string; employmentId: string } | null> {
   const rows = (await tx`
     SELECT id, employment_id
     FROM awcms_commerce_commission_staff_links
     WHERE tenant_id = ${tenantId} AND tenant_user_id = ${tenantUserId}
-      AND retired_at IS NULL
+      AND created_at <= ${asOf}
+      AND (retired_at IS NULL OR retired_at > ${asOf})
+    ORDER BY created_at DESC, id
+    LIMIT 1
   `) as { id: string; employment_id: string }[];
   const row = rows[0];
   return row ? { linkId: row.id, employmentId: row.employment_id } : null;

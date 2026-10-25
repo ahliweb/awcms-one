@@ -35,14 +35,24 @@
  *     (the system), and every attempt is audited here with the order as the
  *     resource and no amount, base or rate.
  *
+ * ## Who earned it, and what is already returned (issue #449, ADR-0046 D11)
+ *
+ *   * **The beneficiary is the employment linked WHEN THE SALE WAS PAID**
+ *     (`paid_at`), not when this delivery happens to run, so a delayed delivery
+ *     cannot drop the sale (link retired meanwhile) or hand it to a new employment
+ *     (link re-pointed meanwhile).
+ *   * **A line already fully returned is not accrued.** If this delivery is
+ *     delayed past a completed refund, the refund reverser has already run and
+ *     would never void what is accrued now. The per-order advisory lock the
+ *     reversers also take makes the two orders of arrival equivalent.
+ *
  * ## What it does not do
  *
  * It never reads a commission table, a rate or an accrual, and it never voids
- * anything: a refund, return or cancellation does NOT reverse a commission
- * today, because `CommissionAccrualPort` exposes no void or reversal (a gap
- * recorded in ADR-0046 with the upstream extension it needs). Voiding by
- * writing to `hr_commission`'s tables, or by calling its application code
- * directly, would be a boundary violation and is not done.
+ * anything: reversal is `commission-reversal.ts`, through
+ * `CommissionAccrualPort.void`. Voiding by writing to `hr_commission`'s tables,
+ * or by calling its application code directly, would be a boundary violation and
+ * is not done.
  */
 import type {
   CommissionAccrualPort,
@@ -66,7 +76,9 @@ import { fromCents, toCents } from "../domain/price-calculation";
 import { SALES_REPORT_TIME_ZONE } from "../domain/sales-report-deltas";
 import {
   fetchCommissionSettings,
-  findLiveEmploymentForLogin,
+  findEmploymentLinkedAt,
+  readReturnedLines,
+  lockCommissionOrder,
   lockCommissionSettings,
   recordAttributedSource
 } from "./commission-attribution-directory";
@@ -116,6 +128,11 @@ export async function attributeCommissionForPaidOrder(
     return { kind: "skipped", reason: "hr_commission_disabled" };
   }
 
+  // Serialises this attribution against the reversers of the SAME order, so a
+  // delayed delivery either sees a refund that has already completed (and skips
+  // the fully returned line) or finishes first (and the reverser then voids it).
+  await lockCommissionOrder(tx, tenantId, orderId);
+
   const orderRows = (await tx`
     SELECT id, status, payment_status, channel, pos_cashier_tenant_user_id, paid_at,
            discount, loyalty_discount
@@ -138,10 +155,14 @@ export async function attributeCommissionForPaidOrder(
     };
   }
 
-  const link = await findLiveEmploymentForLogin(
+  // The employment linked WHEN THE SALE WAS PAID, not when this delivery runs
+  // (ADR-0046 D11): a delayed delivery must not change who earned the sale.
+  const paidAt = new Date(order.paid_at);
+  const link = await findEmploymentLinkedAt(
     tx,
     tenantId,
-    login.tenantUserId
+    login.tenantUserId,
+    paidAt
   );
   if (!link) return { kind: "skipped", reason: "no_staff_link" };
 
@@ -157,18 +178,27 @@ export async function attributeCommissionForPaidOrder(
   const orderDiscount = fromCents(
     toCents(String(order.discount)) + toCents(String(order.loyalty_discount))
   );
-  const bases = allocateLineBases(
+  // The discount is allocated over EVERY line first and the fully returned ones
+  // dropped afterwards, so each remaining line keeps the figure the reverser's
+  // allocation maps to (ADR-0046 D4).
+  const { fullyReturned, partiallyReturned } = await readReturnedLines(
+    tx,
+    tenantId,
+    orderId
+  );
+  const positive = allocateLineBases(
     lineRows.map((line) => ({
       id: line.id,
       lineTotal: String(line.line_total)
     })),
     orderDiscount
   ).filter((line) => toCents(line.baseAmount) > 0n);
+  const bases = positive.filter((line) => !fullyReturned.has(line.id));
+  const skippedReturned = positive.length - bases.length;
   if (bases.length === 0) {
     return { kind: "skipped", reason: "no_commissionable_lines" };
   }
 
-  const paidAt = new Date(order.paid_at);
   const occurredOn = commissionOccurredOn(
     paidAt,
     await fetchTenantTimeZone(tx, tenantId)
@@ -204,7 +234,15 @@ export async function attributeCommissionForPaidOrder(
     );
   }
 
-  await auditAttempt(tx, tenantId, orderId, link.linkId, tally, correlationId);
+  await auditAttempt(
+    tx,
+    tenantId,
+    orderId,
+    link.linkId,
+    tally,
+    { skippedReturned, partiallyReturned },
+    correlationId
+  );
 
   return { kind: "reported", linkId: link.linkId, tally };
 }
@@ -234,6 +272,7 @@ async function auditAttempt(
   orderId: string,
   linkId: string,
   tally: OutcomeTally,
+  returned: { skippedReturned: number; partiallyReturned: number },
   correlationId?: string
 ): Promise<void> {
   const base = {
@@ -253,7 +292,9 @@ async function auditAttempt(
       attributes: {
         linkId,
         linesAccrued: tally.accrued,
-        linesReplayed: tally.replayed
+        linesReplayed: tally.replayed,
+        linesSkippedReturned: returned.skippedReturned,
+        linesPartiallyReturned: returned.partiallyReturned
       }
     });
   }

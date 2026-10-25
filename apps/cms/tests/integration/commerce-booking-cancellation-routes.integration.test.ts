@@ -1260,6 +1260,89 @@ suite("booking cancellation routes (Issue #381)", () => {
   });
 
   // -------------------------------------------------------------------------
+  describe("Issue #448: the guest's phone budget is keyed on phone AND order code", () => {
+    test("a stranger who knows only the phone cannot spend the guest's own budget for their reservation", async () => {
+      if (skipUnlessHandlerReady()) return;
+      const { owner, fx } = await readyOwner();
+      const booking = await paidBooking(owner, fx);
+      const ack = { acknowledgedRefund: "0.00", phone: GUEST_PHONE };
+
+      // The stranger hammers ANOTHER code with the guest's phone: five 404s,
+      // then that code's own bucket answers 429 ...
+      const attempts: number[] = [];
+      for (let i = 0; i < 6; i += 1) {
+        attempts.push((await storefrontCancelPost("NO-SUCH-CODE", ack)).status);
+      }
+      expect(attempts).toEqual([404, 404, 404, 404, 404, 429]);
+      const limited = await storefrontCancelPost("NO-SUCH-CODE", ack);
+      expect(limited.status).toBe(429);
+      expect(limited.body.error?.code).toBe("RATE_LIMITED");
+      expect(limited.response.headers.get("retry-after")).not.toBeNull();
+
+      // ... and the guest's own reservation is untouched: its budget is its own.
+      const mine = await storefrontCancelPost(booking.orderCode, ack);
+      expect(mine.status).toBe(200);
+      expect(mine.body.data.status).toBe("cancelled");
+    });
+
+    test("the coarser per-phone ceiling bounds how many order codes one phone can probe; a bearer is never phone-limited", async () => {
+      if (skipUnlessHandlerReady()) return;
+      const { owner, fx } = await readyOwner();
+      const booking = await paidBooking(owner, fx);
+      const ack = { acknowledgedRefund: "0.00" };
+      const previousProxy = process.env.TRUSTED_PROXY_ENABLED;
+      process.env.TRUSTED_PROXY_ENABLED = "true";
+      try {
+        // Each probe comes from its own address and names its own code, so
+        // neither the per-IP limit nor a per-order bucket is what stops it.
+        const from = (n: number) => ({ "x-forwarded-for": `10.44.${n}.1` });
+        // Default ceiling: ten times the per-phone budget of 5 = 50 per window.
+        for (let i = 0; i < 50; i += 1) {
+          const probe = await storefrontCancelPost(
+            `PROBE-${i}`,
+            { ...ack, phone: GUEST_PHONE },
+            from(i)
+          );
+          expect(probe.status, `probe ${i}`).toBe(404);
+        }
+        const over = await storefrontCancelPost(
+          "PROBE-50",
+          { ...ack, phone: GUEST_PHONE },
+          from(50)
+        );
+        expect(over.status).toBe(429);
+        expect(over.body.error?.code).toBe("RATE_LIMITED");
+
+        // Residual (documented in ADR-0045): the exhausted ceiling also stops
+        // the guest's phone proof for a while ...
+        const blocked = await storefrontCancelPost(
+          booking.orderCode,
+          { ...ack, phone: GUEST_PHONE },
+          from(51)
+        );
+        expect(blocked.status).toBe(429);
+        // ... but a customer bearer carries no phone-keyed limit.
+        const orderCustomer = (await getHandlerAdminSql()`
+          SELECT customer_id FROM awcms_commerce_orders WHERE order_code = ${booking.orderCode}
+        `) as { customer_id: string }[];
+        const token = await bearerFor(
+          owner.tenantId,
+          orderCustomer[0]!.customer_id
+        );
+        const mine = await storefrontCancelPost(booking.orderCode, ack, {
+          ...from(52),
+          authorization: `Bearer ${token}`
+        });
+        expect(mine.status).toBe(200);
+      } finally {
+        if (previousProxy === undefined)
+          delete process.env.TRUSTED_PROXY_ENABLED;
+        else process.env.TRUSTED_PROXY_ENABLED = previousProxy;
+      }
+    });
+  });
+
+  // -------------------------------------------------------------------------
   describe("the cancellation policy routes", () => {
     test("a draft is authored (201), approving it needs a fresh step-up, history keeps the retired version and the approver", async () => {
       if (skipUnlessHandlerReady()) return;

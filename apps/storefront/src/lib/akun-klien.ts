@@ -17,7 +17,18 @@
  */
 import { bacaSesi, hapusSesi } from "./akun-sesi";
 import type { Akun } from "./akun-kontrak";
-import type { HalamanReservasiSaya, PermintaanReservasi, ReservasiDibuat, ReservasiSaya } from "./booking-kontrak";
+import {
+  parseHasilPembatalan,
+  parseKuotaPembatalan,
+  parseRefundReservasi,
+  type DetailReservasi,
+  type HalamanReservasiSaya,
+  type HasilPembatalan,
+  type KuotaPembatalan,
+  type PermintaanReservasi,
+  type ReservasiDibuat,
+  type ReservasiSaya
+} from "./booking-kontrak";
 import { parsePoinAkun, type PoinAkun } from "./poin-kontrak";
 import { kirimPermintaan, TokoApiError } from "./toko-permintaan";
 import type { Order } from "./toko-klien";
@@ -494,4 +505,65 @@ export function ambilReservasiSayaByKode(orderCode: string): Promise<
       authHeader()
     )
   );
+}
+
+// ---------------------------------------------------------------------------
+// Issue #387 (ADR-0045 D4/D6/D9) - the reservation detail and the cancellation.
+// Bearer-only like the rest of the booking calls; the Idempotency-Key header and
+// the Authorization header are both on the routes' CORS allow-lists.
+// ---------------------------------------------------------------------------
+
+/** `GET …/booking/reservations/{orderCode}` with the recorded refund parsed (`null` until cancelled). The neutral `404` covers an unknown, another shopper's and another tenant's code alike. */
+export async function ambilDetailReservasi(orderCode: string): Promise<DetailReservasi> {
+  const view = await ambilReservasiSayaByKode(orderCode);
+  return { ...view, refund: parseRefundReservasi((view as { refund?: unknown }).refund) };
+}
+
+/**
+ * `GET …/booking/reservations/{orderCode}/cancellation-quote` - the NON-BINDING
+ * refund the server computes for cancelling now: the policy that applies, the
+ * hours before arrival, the amount paid and the refund. Called when the dialog
+ * opens AND again when the shopper confirms (the figure on screen is never the
+ * one that is acted on). A body that does not validate is an `INVALID_RESPONSE`,
+ * so the dialog shows its error state instead of a guessed number. `409
+ * INVALID_STATE` when the reservation can no longer be cancelled.
+ */
+export async function ambilKuotaPembatalan(orderCode: string): Promise<KuotaPembatalan> {
+  const raw = await denganPembersihanSesi(() =>
+    kirimPermintaan<unknown>(
+      `/booking/reservations/${encodeURIComponent(orderCode)}/cancellation-quote`,
+      "GET",
+      undefined,
+      authHeader()
+    )
+  );
+  const quote = parseKuotaPembatalan(raw);
+  if (!quote) throw new TokoApiError("The cancellation quote could not be read.", 200, "INVALID_RESPONSE");
+  return quote;
+}
+
+/**
+ * `POST …/booking/reservations/{orderCode}/cancel` - confirms a quoted
+ * cancellation. The body is `{ acknowledgedRefund }` and nothing else: the
+ * figure the shopper saw, which the server only COMPARES with the refund it
+ * recomputes (a difference is `409 QUOTE_CHANGED` with nothing cancelled; the
+ * strict schema answers `400` to any other money field). `idempotencyKey` is
+ * generated once per attempt and reused on a retry of the same request.
+ */
+export async function batalkanReservasi(
+  orderCode: string,
+  acknowledgedRefund: string,
+  idempotencyKey: string
+): Promise<HasilPembatalan> {
+  const raw = await denganPembersihanSesi(() =>
+    kirimPermintaan<unknown>(
+      `/booking/reservations/${encodeURIComponent(orderCode)}/cancel`,
+      "POST",
+      { acknowledgedRefund },
+      { ...authHeader(), "Idempotency-Key": idempotencyKey }
+    )
+  );
+  const result = parseHasilPembatalan(raw);
+  if (!result) throw new TokoApiError("The cancellation answer could not be read.", 200, "INVALID_RESPONSE");
+  return result;
 }

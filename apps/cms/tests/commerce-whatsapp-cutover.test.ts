@@ -55,6 +55,7 @@ function facts(over: Partial<FlipFacts> = {}): FlipFacts {
     target: "upstream",
     legacy: EMPTY,
     upstream: EMPTY,
+    upstreamUnrelated: 0,
     channel: GOOD_CHANNEL,
     consent: { commerceMarketingOptIns: 0, upstreamGrantedConsents: 0 },
     acknowledgeWarnings: true,
@@ -175,6 +176,103 @@ describe("assessWhatsappFlip", () => {
     expect(assessWhatsappFlip(facts({ ...base })).decision.kind).toBe(
       "allowed"
     );
+  });
+
+  // Issue #449: the rollback override and the commerce-only scope.
+  describe("rollback scoping and the force override (issue #449, ADR-0047 D12)", () => {
+    const stuck = buildQueueDrain(
+      { retry_wait: 3 },
+      UPSTREAM_TERMINAL_STATUSES,
+      900
+    );
+    const rollback = {
+      current: "upstream" as const,
+      target: "legacy" as const,
+      acknowledgeWarnings: false
+    };
+
+    test("other modules' rows never block and are named in the message of a real block", () => {
+      // `upstream` is commerce's rows only; unrelated ones arrive separately.
+      expect(
+        assessWhatsappFlip(facts({ ...rollback, upstreamUnrelated: 40 }))
+          .decision.kind
+      ).toBe("allowed");
+
+      const refused = assessWhatsappFlip(
+        facts({ ...rollback, upstream: stuck, upstreamUnrelated: 40 })
+      );
+      expect(refused.decision).toMatchObject({
+        kind: "refused",
+        code: "DRAIN_PENDING"
+      });
+      const message =
+        refused.decision.kind === "refused" ? refused.decision.message : "";
+      expect(message).toContain("of commerce");
+      expect(message).toContain("retry_wait=3");
+      expect(message).toContain("40 non-terminal message(s) of other modules");
+      expect(message).toContain("--force");
+    });
+
+    test("force overrides the drain of a rollback and says what it overrode", () => {
+      const result = assessWhatsappFlip(
+        facts({ ...rollback, upstream: stuck, forceDrain: true })
+      );
+
+      expect(result.decision).toEqual({ kind: "allowed" });
+      expect(result.blockers).toEqual([]);
+      expect(result.overridden).toMatchObject({ code: "DRAIN_PENDING" });
+    });
+
+    test("force with nothing to override overrides nothing", () => {
+      const result = assessWhatsappFlip(
+        facts({ ...rollback, forceDrain: true })
+      );
+
+      expect(result.decision.kind).toBe("allowed");
+      expect(result.overridden).toBeNull();
+    });
+
+    test("force bypasses the drain and NOTHING else: a dead legacy channel and a stale expectation still refuse", () => {
+      const deadLegacy = assessWhatsappFlip(
+        facts({
+          ...rollback,
+          upstream: stuck,
+          forceDrain: true,
+          channel: { ...GOOD_CHANNEL, legacyEnabled: false }
+        })
+      );
+      expect(deadLegacy.decision).toMatchObject({
+        kind: "refused",
+        code: "TARGET_CHANNEL_UNAVAILABLE"
+      });
+      expect(deadLegacy.overridden).toMatchObject({ code: "DRAIN_PENDING" });
+
+      expect(
+        assessWhatsappFlip(
+          facts({
+            ...rollback,
+            upstream: stuck,
+            forceDrain: true,
+            expected: "legacy"
+          })
+        ).decision
+      ).toMatchObject({ kind: "refused", code: "MODE_CHANGED" });
+    });
+
+    test("force never skips the drain of a flip INTO upstream", () => {
+      const legacy = buildQueueDrain(
+        { queued: 2 },
+        LEGACY_TERMINAL_STATUSES,
+        5
+      );
+      const result = assessWhatsappFlip(facts({ legacy, forceDrain: true }));
+
+      expect(result.decision).toMatchObject({
+        kind: "refused",
+        code: "DRAIN_PENDING"
+      });
+      expect(result.overridden).toBeNull();
+    });
   });
 
   test("the reverse flip needs no acknowledgement: it carries no warnings", () => {
@@ -364,8 +462,35 @@ describe("the CLI's argument parser", () => {
       to: "upstream",
       reason: "go",
       dryRun: false,
-      acknowledgeWarnings: false
+      acknowledgeWarnings: false,
+      force: false
     });
+  });
+
+  test("--force is a rollback override and needs an accountable --operator (issue #449)", () => {
+    const rollback = ["--tenant", TENANT, "--to", "legacy", "--reason", "x"];
+
+    expect(
+      parseCutoverArgs([...rollback, "--force", "--operator", "ops-1"])
+    ).toMatchObject({ to: "legacy", force: true, operator: "ops-1" });
+    // The audit row of an override must name who did it: the CLI has no tenant user.
+    expect(() => parseCutoverArgs([...rollback, "--force"])).toThrow(
+      UsageError
+    );
+    // A flip INTO upstream never skips the drain.
+    expect(() =>
+      parseCutoverArgs([
+        "--tenant",
+        TENANT,
+        "--to",
+        "upstream",
+        "--reason",
+        "x",
+        "--force",
+        "--operator",
+        "ops-1"
+      ])
+    ).toThrow(UsageError);
   });
 
   test("--dry-run, --ack-warnings, --from and --operator are read", () => {

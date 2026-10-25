@@ -818,6 +818,17 @@ nothing. Every attempt returns an evidence record (queue counts per status,
 oldest age, blockers, warnings, audit event id). The rule itself is the pure
 `domain/whatsapp-cutover.ts`.
 
+Issue #449 (ADR-0047 D16/D17): a rollback counts only COMMERCE's own non-terminal
+rows in the shared upstream queue (read through `whatsapp_delivery`'s paged
+operator read; other modules' rows are reported in `queues.upstreamScope` and
+never block; a status over one page counts its remainder as commerce's), and has
+an audited override, `force` / `--force` (rollback only; the CLI also needs
+`--operator`): it bypasses the drain check and nothing else, writes
+`whatsapp_mode.flip_forced` with the number bypassed, and leaves those rows to
+the upstream dispatcher. Both the status and the evidence carry
+`channelEnvironmentNotice`: the channel facts are read from the process that
+answered (the web server for the API), not from the dispatchers that send.
+
 `POST .../account/otp/request` accepts `via?: "email"|"whatsapp"` (default
 `email`). `via: "whatsapp"` requires `phone` (E.164 via `domain/
 phone-normalisation.ts`), only ever supports `purpose: "login"` (a `register`
@@ -1591,6 +1602,7 @@ The consumer `commerce.order_paid_commission_attributor` reports each line of a 
   - **`period_closed`** (the accrual is `payable` or `paid`) is never retried and never thrown: one `commerce.commission.reversal_needs_attention` warning audit row (cause, payable/paid counts, partially returned lines, `actor_required`/`input_invalid` counts; no amount, source reference, accrual or employment id) is the work item for a person; there is no separate attention table. A new void writes `commerce.commission.reversed` (info).
   - **Actor.** `void` needs a person and a consumer has none, so the voider is the tenant user who last saved the commission settings (the person who authorised paying commission, D6); none means `actor_required` and the reversal waits for a person. A reversal needs `hr_commission` on and the adapter configured once, not `enabled`: switching the adapter off does not strand accruals already made.
 - **Files.** `domain/commission-attribution.ts` (pure decisions, including the void tally and `isLineFullyReturned`), `domain/commission-lifecycle.ts`, `application/commission-attribution-directory.ts` (settings and links, the only writer), `application/commission-attribution.ts` (the accrue consumer), `application/commission-reversal.ts` (the two reversing consumers), `application/commission-attribution-port.ts` (the seam), routes under `src/pages/api/v1/commerce/commission/`.
+- **A delayed delivery (issue #449, ADR-0046 D11).** The beneficiary is the employment linked **when the sale was paid** (`findEmploymentLinkedAt(login, paid_at)`, the interval `[created_at, retired_at)`), not when the consumer runs; the attributor does not accrue a line already **fully returned** by `completed` returns (a partly returned one is accrued and counted as `linesPartiallyReturned`); and the attributor and both reversers take a per-order advisory lock (`lockCommissionOrder`) so either order of arrival ends the same. The voider stays the last settings saver; that is an owner question recorded in D12 with the alternatives.
 - **Not here yet.** No clawback of a `payable` or `paid` accrual (a person, from the attention row), no pro-rata reversal of a partly returned line, no admin screen (four permissions on the shrink-only `NOT_YET_SCREENED` ledger), no recomputation of "paid" from the payment ledger.
 - **Tests.** `tests/commerce-commission-attribution.test.ts` (pure), `tests/commerce-commission-boundary.test.ts`, and against a real database `tests/integration/commerce-commission-attribution.integration.test.ts` (replay, racing deliveries, off by default, storefront/unstamped/unlinked/retired, discounts, time zone, refusals, tenant isolation, RLS FORCE, the whole job as the real `awcms_worker` role and what that role cannot do), and `tests/integration/commerce-commission-reversal.integration.test.ts` (cancel and refund voids, replay, nothing-to-void, `period_closed` payable and paid, partial returns, a retired link, adapter and `hr_commission` switched off, a missing actor, tenant isolation, the real dispatcher as the worker, the load-bearing `sql/1051` grant).
 
@@ -1624,8 +1636,16 @@ Spec: [the booking UX flows](../../../../../docs/booking-ux-flows.md) section 11
 
 - **Screens**: `src/pages/admin/commerce-booking-links.astro` (offering links: list, create, unlink; routes `commerce/booking/offering-links`), `src/pages/admin/commerce-booking-deposits.astro` (a service product's deposit policy; `PUT commerce/products/{id}/deposit-policy`), and the booking service-account field on `commerce-settings.astro` (`bookingServiceTenantUserId` through `PUT commerce/store-settings`, shown only while `booking` is on).
 - **Navigation**: both entries live in `domain/booking-adapter-navigation.ts`, gated by the read permission and `requiredFeature: { moduleKey: "commerce", feature: "booking" }`.
-- **Code**: `lib/ui/commerce-booking-client.ts` (the deposit body, the refusal-copy lookup), `listServiceProductDepositPolicies` in `application/booking-deposit-policies.ts`. The screens send the policy, never an amount; unlink uses the shared confirm dialog and an `Idempotency-Key`.
-- **Not here** (built by #381, below): the cancellation-policy versions screen and the refund-override dialog. Still not here: the reservation screens.
+- **Code**: `lib/ui/commerce-booking-client.ts` (the deposit body, the refusal-copy lookup), `listServiceProductDepositPoliciesPage` in `application/booking-deposit-policies.ts`. The screens send the policy, never an amount; unlink uses the shared confirm dialog and an `Idempotency-Key`.
+- **Not here** (built by #381, below): the cancellation-policy versions screen and the refund-override dialog. Still not here: the cashier / front-desk screens (#388).
+
+**Closing pass (this issue, no migration, route, permission or event).** All five surfaces of [section 11](../../../../../docs/booking-ux-flows.md) are built (11.1 and 11.2 here, 11.3 on the settings screen, 11.4 and 11.5 by #381 below, 11.6 by #382); #385 closed what a real-browser pass with real data found, plus the two #448 follow-ups:
+
+- **Deposits list**: `listServiceProductDepositPoliciesPage` (keyset by `(name, id)`, 50 per page; cursor codec and constants in `domain/booking-deposit-list.ts`), "Next page" / "First page" links and a visible "More service products follow" line. The unpaged `listServiceProductDepositPolicies` stays, capped at `SERVICE_PRODUCT_SELECTOR_LIMIT` (200), for the cancellation-policy scope selector, which says so when it is cut. Each row links to that product's cancellation policy versions.
+- **Focus after a reload**: `showStatusAndFocus` and `markFieldInvalid` (`lib/ui/commerce-booking-client.ts`): the no-cancellation-policy notice and the override success line take focus after the reload; a refused field is `aria-invalid`, described by its error and focused.
+- **Layout**: the link filter is the shared `admin-segmented` control, the deposit kind radios are `admin-checkbox` rows, form fields are `admin-field` groups, and `.booking-admin-table` (`styles/admin-screens.css`) keeps a stacked table's caption and full-width cells readable at 360px. A window added to or removed from the draft editor keeps focus in the form.
+- **"Reservation detail"**: the override dialog is on the booking panel of the order detail by design (`/admin/booking/reservations` is Booking's and cannot know the amount paid); the server enforces the cap (`REFUND_EXCEEDS_PAID`).
+- **Tests**: `tests/commerce-booking-deposit-list.test.ts`, `tests/commerce-booking-client.test.ts`, `tests/commerce-booking-admin-screens.test.ts` (adds "every class a booking screen uses has a rule"), `tests/integration/commerce-booking-deposit-list.integration.test.ts` (120 products, three pages, ties, tenant isolation) and the real-browser `tests/e2e/admin-commerce-booking.e2e.ts` (keyboard path, axe in both themes, 360px, the override dialog's cap, sidebar behind the feature flag).
 
 ## Booking-commerce adapter, post-restore reconciliation - IMPLEMENTED (Issue #396, epic #280 item 35 - [ADR-0045](../../../../../docs/adr/0045-booking-commerce-adapter.md))
 

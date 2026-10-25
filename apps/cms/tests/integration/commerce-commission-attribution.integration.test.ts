@@ -242,7 +242,7 @@ async function seedOrder(
     VALUES (${tenantId}, ${"COM-" + orderCounter + "-" + Math.random().toString(36).slice(2, 7)},
             ${customerId}, ${options.status ?? "paid"}, 'manual_qris', 'paid', 'self_pickup',
             ${subtotalDecimal}, ${options.discount ?? "0.00"}, ${options.loyaltyDiscount ?? "0.00"},
-            ${subtotalDecimal}, ${options.paidAt ?? recentInstant(2, 10)},
+            ${subtotalDecimal}, ${options.paidAt ?? new Date()},
             ${options.channel ?? "pos"}, ${options.cashier ?? null})
     RETURNING id
   `) as { id: string }[];
@@ -284,6 +284,27 @@ async function link(
     throw new Error(`fixture: link failed (${outcome.kind})`);
   }
   return outcome.link.id;
+}
+
+/**
+ * A staff link that already existed `daysAgo` days ago, written straight into the
+ * table (a link's `created_at` is immutable once written, so a fixture for a sale
+ * dated in the past has to insert it that way). Issue #449: the beneficiary is the
+ * employment linked when the sale was PAID, so a sale back-dated in the past needs
+ * a link at least as old.
+ */
+async function linkExistingSince(
+  tenantId: string,
+  tenantUserId: string,
+  employmentId: string,
+  daysAgo: number
+): Promise<void> {
+  await getAdminSql()`
+    INSERT INTO awcms_commerce_commission_staff_links
+      (tenant_id, tenant_user_id, employment_id, created_at)
+    VALUES (${tenantId}, ${tenantUserId}, ${employmentId},
+            now() - make_interval(days => ${daysAgo}))
+  `;
 }
 
 let eventCounter = 0;
@@ -617,7 +638,7 @@ suite("commerce commission attribution integration (Issue #391)", () => {
     });
 
     test("the sale's civil date is the tenant's own: Jakarta by default, UTC when the tenant says so", async () => {
-      await link(TENANT_A, cashier, employment);
+      await linkExistingSince(TENANT_A, cashier, employment, 10);
       await enable(TENANT_A);
       // 20:00 UTC is already the next day in Jakarta (+07:00).
       const paidAt = recentInstant(3, 20);

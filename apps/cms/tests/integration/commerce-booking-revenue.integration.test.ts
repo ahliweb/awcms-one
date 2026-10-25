@@ -389,7 +389,8 @@ async function resched(
         actor: { kind: "staff", tenantUserId: STAFF },
         correlationId: crypto.randomUUID(),
         port: await composedBookingPort(),
-        mediaPort: mediaLibraryPortAdapter
+        mediaPort: mediaLibraryPortAdapter,
+        canPlanRefund: async () => true
       },
       {
         link,

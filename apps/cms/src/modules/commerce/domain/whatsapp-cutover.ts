@@ -10,10 +10,19 @@
  *
  * A tenant is in exactly one mode at a time (ADR-0133 section 6): the flip to the
  * other mode is allowed only when the queue being LEFT holds no non-terminal row
- * for the tenant, the queue being ENTERED can actually send, and the operator has
- * acknowledged every difference between the two queues that the flip will make
- * visible. Otherwise it is refused and NOTHING is written except the audit of
- * the refused attempt.
+ * THE CUTOVER MOVES for the tenant, the queue being ENTERED can actually send,
+ * and the operator has acknowledged every difference between the two queues that
+ * the flip will make visible. Otherwise it is refused and NOTHING is written
+ * except the audit of the refused attempt.
+ *
+ * "The rows the cutover moves" is a scoping rule (issue #449, ADR-0047 D12): the
+ * legacy queue is commerce's own, so every row of it counts; the upstream queue
+ * is shared by every module of the tenant (a booking reminder is also in it), so
+ * only the rows of the templates COMMERCE registered count, and the rest are
+ * reported (`upstreamUnrelated`) but never block a rollback. A rollback also has
+ * an explicit, audited override (`force`) for the one case scoping cannot help:
+ * commerce's own rows stuck in `retry_wait` behind the very provider failure that
+ * is the reason for rolling back.
  *
  * ## What "non-terminal" means, per queue
  *
@@ -109,10 +118,19 @@ export type FlipFacts = {
   /** The mode the caller believes the tenant is in; a mismatch refuses (`MODE_CHANGED`). */
   expected?: WhatsappMode;
   legacy: QueueDrain;
+  /** The upstream queue, COMMERCE-originated rows only: the ones this cutover moves. */
   upstream: QueueDrain;
+  /** Non-terminal upstream rows of OTHER modules (booking reminders, ...): reported, never blocking. */
+  upstreamUnrelated: number;
   channel: ChannelFacts;
   consent: ConsentFacts;
   acknowledgeWarnings: boolean;
+  /**
+   * Override a pending drain, ROLLBACK ONLY (`target === "legacy"`). It bypasses
+   * `DRAIN_PENDING` and nothing else: a rollback into a channel nothing services,
+   * a stale `expected` and every other blocker still refuse.
+   */
+  forceDrain?: boolean;
 };
 
 export const FLIP_BLOCKER_CODES = [
@@ -153,6 +171,8 @@ export type FlipAssessment = {
   decision: FlipDecision;
   /** Every reason the flip cannot proceed now, whichever came first. Empty when nothing blocks. */
   blockers: FlipBlocker[];
+  /** The drain blocker a `force` overrode, when it actually had something to override; otherwise `null`. */
+  overridden: FlipBlocker | null;
   /** Differences the operator must accept before a flip into `upstream`. Empty for a flip into `legacy`. */
   warnings: FlipWarning[];
 };
@@ -193,6 +213,14 @@ function drainBlocker(facts: FlipFacts): FlipBlocker | null {
   if (leaving.nonTerminal === 0) return null;
 
   const queue = facts.target === "upstream" ? "legacy" : "upstream";
+  const scope =
+    facts.target === "upstream"
+      ? "for this tenant"
+      : "of commerce for this tenant";
+  const unrelated =
+    facts.target === "legacy" && facts.upstreamUnrelated > 0
+      ? ` (${facts.upstreamUnrelated} non-terminal message(s) of other modules are not counted)`
+      : "";
   const age =
     leaving.oldestNonTerminalAgeSeconds === null
       ? ""
@@ -200,7 +228,7 @@ function drainBlocker(facts: FlipFacts): FlipBlocker | null {
 
   return {
     code: "DRAIN_PENDING",
-    message: `The ${queue} queue still holds ${leaving.nonTerminal} non-terminal message(s) for this tenant (${describeNonTerminal(leaving, terminal)})${age}. A tenant is in exactly one mode at a time: wait for the ${queue} dispatcher to take them to a terminal state, then run the flip again.`
+    message: `The ${queue} queue still holds ${leaving.nonTerminal} non-terminal message(s) ${scope} (${describeNonTerminal(leaving, terminal)})${age}${unrelated}. A tenant is in exactly one mode at a time: wait for the ${queue} dispatcher to take them to a terminal state, then run the flip again.${facts.target === "legacy" ? " If the upstream provider is failing and the rows will not drain, a rollback can be forced (force / --force): it is audited and leaves those rows to the upstream dispatcher." : ""}`
   };
 }
 
@@ -314,18 +342,29 @@ export function assessWhatsappFlip(facts: FlipFacts): FlipAssessment {
         message: `The tenant is in ${facts.current} mode, not ${facts.expected} as the request expected. Read the mode again before flipping.`
       },
       blockers: [],
+      overridden: null,
       warnings
     };
   }
 
   if (facts.current === facts.target) {
-    return { decision: { kind: "unchanged" }, blockers: [], warnings: [] };
+    return {
+      decision: { kind: "unchanged" },
+      blockers: [],
+      overridden: null,
+      warnings: []
+    };
   }
 
   const blockers: FlipBlocker[] = [];
   const drain = drainBlocker(facts);
+  // `force` is a rollback override: a flip INTO upstream never skips the drain.
+  const overridden =
+    drain && facts.forceDrain === true && facts.target === "legacy"
+      ? drain
+      : null;
 
-  if (drain) blockers.push(drain);
+  if (drain && !overridden) blockers.push(drain);
   blockers.push(...channelBlockers(facts));
 
   if (blockers.length > 0) {
@@ -341,6 +380,7 @@ export function assessWhatsappFlip(facts: FlipFacts): FlipAssessment {
         message: first.message
       },
       blockers,
+      overridden,
       warnings
     };
   }
@@ -353,11 +393,12 @@ export function assessWhatsappFlip(facts: FlipFacts): FlipAssessment {
         message: `Flipping to ${facts.target} makes ${warnings.length} difference(s) between the queues visible (${warnings.map((w) => w.code).join(", ")}). Read them, then repeat the request with the acknowledgement.`
       },
       blockers,
+      overridden,
       warnings
     };
   }
 
-  return { decision: { kind: "allowed" }, blockers, warnings };
+  return { decision: { kind: "allowed" }, blockers, overridden, warnings };
 }
 
 export const FLIP_REASON_MAX_LENGTH = 500;

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:51b24d5d968319f9c23fc18b8ccdd3017234a4d9165b4744c0ee097e15d8b01e -->
+<!-- i18n-source-hash: sha256:8ab2fc87fb74d388d894e492e5c16f7132699c33d9102a42025e80aafbd35a93 -->
 
 # `commerce`
 
@@ -877,6 +877,18 @@ tidak menulis apa pun. Setiap percobaan mengembalikan catatan bukti (jumlah
 antrean per status, umur tertua, penghalang, peringatan, id audit event).
 Aturannya sendiri adalah `domain/whatsapp-cutover.ts` yang murni.
 
+Issue #449 (ADR-0047 D16/D17): rollback hanya menghitung baris non-terminal milik
+COMMERCE sendiri di antrean upstream bersama (dibaca lewat pembacaan operator
+berhalaman milik `whatsapp_delivery`; baris modul lain dilaporkan di
+`queues.upstreamScope` dan tidak pernah memblokir; status yang melebihi satu
+halaman menghitung sisanya sebagai milik commerce), dan punya override yang
+diaudit, `force` / `--force` (hanya rollback; CLI juga butuh `--operator`): ia
+melewati pemeriksaan pengurasan dan tidak ada yang lain, menulis
+`whatsapp_mode.flip_forced` dengan jumlah yang dilewati, dan membiarkan baris
+itu pada dispatcher upstream. Status dan bukti sama-sama membawa
+`channelEnvironmentNotice`: fakta kanal dibaca dari proses yang menjawab (server
+web untuk API), bukan dari dispatcher yang mengirim.
+
 `POST .../account/otp/request` menerima `via?: "email"|"whatsapp"` (default
 `email`). `via: "whatsapp"` mewajibkan `phone` (E.164 lewat `domain/
 phone-normalisation.ts`), hanya pernah mendukung `purpose: "login"`
@@ -1683,6 +1695,7 @@ Konsumer `commerce.order_paid_commission_attributor` melaporkan setiap baris **p
   - **`period_closed`** (akrual `payable` atau `paid`) tidak pernah dicoba ulang dan tidak pernah dilempar: satu baris audit peringatan `commerce.commission.reversal_needs_attention` (penyebab, hitungan payable/paid, baris yang dikembalikan sebagian, hitungan `actor_required`/`input_invalid`; tanpa jumlah, referensi sumber, id akrual atau employment) adalah item kerja bagi manusia; tidak ada tabel perhatian terpisah. Void baru menulis `commerce.commission.reversed` (info).
   - **Aktor.** `void` membutuhkan seorang manusia dan konsumer tidak punya, sehingga pelaku void adalah pengguna tenant yang terakhir menyimpan pengaturan komisi (orang yang memberi otorisasi pembayaran komisi, D6); tidak ada berarti `actor_required` dan pembalikan menunggu seseorang. Pembalikan membutuhkan `hr_commission` menyala dan adaptor pernah dikonfigurasi, bukan `enabled`: mematikan adaptor tidak menelantarkan akrual yang sudah dibuat.
 - **Berkas.** `domain/commission-attribution.ts` (keputusan murni, termasuk tally void dan `isLineFullyReturned`), `domain/commission-lifecycle.ts`, `application/commission-attribution-directory.ts` (pengaturan dan tautan, satu-satunya penulis), `application/commission-attribution.ts` (konsumer accrue), `application/commission-reversal.ts` (dua konsumer pembalik), `application/commission-attribution-port.ts` (sambungan), rute di `src/pages/api/v1/commerce/commission/`.
+- **Pengiriman tertunda (issue #449, ADR-0046 D11).** Penerima manfaat adalah employment yang tertaut **saat penjualan dibayar** (`findEmploymentLinkedAt(login, paid_at)`, interval `[created_at, retired_at)`), bukan saat konsumer berjalan; attributor tidak mengakrual baris yang sudah **dikembalikan penuh** oleh return `completed` (baris yang sebagian dikembalikan tetap diakrual dan dihitung sebagai `linesPartiallyReturned`); dan attributor serta kedua reverser mengambil kunci advisory per pesanan (`lockCommissionOrder`) sehingga urutan kedatangan mana pun berakhir sama. Pembatal tetap penyimpan pengaturan terakhir; itu pertanyaan pemilik yang dicatat di D12 beserta alternatifnya.
 - **Belum ada.** Tidak ada clawback akrual `payable` atau `paid` (seorang manusia, dari baris perhatian), tidak ada pembalikan proporsional baris yang dikembalikan sebagian, tidak ada layar admin (empat izin di buku besar `NOT_YET_SCREENED` yang hanya boleh menyusut), tidak ada penghitungan ulang "dibayar" dari buku besar pembayaran.
 - **Tes.** `tests/commerce-commission-attribution.test.ts` (murni), `tests/commerce-commission-boundary.test.ts`, dan terhadap basis data nyata `tests/integration/commerce-commission-attribution.integration.test.ts` (replay, pengiriman balapan, mati secara bawaan, etalase/tanpa cap/tanpa tautan/dipensiunkan, diskon, zona waktu, penolakan, isolasi tenant, RLS FORCE, seluruh pekerjaan sebagai role `awcms_worker` asli dan apa yang tidak boleh dilakukan role itu), dan `tests/integration/commerce-commission-reversal.integration.test.ts` (void karena pembatalan dan refund, replay, tidak ada yang di-void, `period_closed` payable dan paid, retur sebagian, tautan yang dipensiunkan, adaptor dan `hr_commission` dimatikan, aktor yang hilang, isolasi tenant, dispatcher asli sebagai worker, hibah `sql/1051` yang menentukan).
 
@@ -1716,8 +1729,16 @@ Spesifikasi: [alur UX pemesanan](../../../../../docs/booking-ux-flows.md) bagian
 
 - **Layar**: `src/pages/admin/commerce-booking-links.astro` (tautan penawaran: daftar, buat, lepas; rute `commerce/booking/offering-links`), `src/pages/admin/commerce-booking-deposits.astro` (kebijakan uang muka produk jasa; `PUT commerce/products/{id}/deposit-policy`), dan kolom akun layanan pemesanan pada `commerce-settings.astro` (`bookingServiceTenantUserId` lewat `PUT commerce/store-settings`, tampil hanya saat `booking` aktif).
 - **Navigasi**: kedua entri ada di `domain/booking-adapter-navigation.ts`, dibatasi izin baca dan `requiredFeature: { moduleKey: "commerce", feature: "booking" }`.
-- **Kode**: `lib/ui/commerce-booking-client.ts` (isi uang muka, pencarian teks penolakan), `listServiceProductDepositPolicies` di `application/booking-deposit-policies.ts`. Layar mengirim kebijakan, bukan jumlah; lepas tautan memakai dialog konfirmasi bersama dan `Idempotency-Key`.
-- **Tidak ada di sini** (dibangun oleh #381, di bawah): layar versi kebijakan pembatalan dan dialog penggantian pengembalian dana. Masih belum ada: layar reservasi.
+- **Kode**: `lib/ui/commerce-booking-client.ts` (isi uang muka, pencarian teks penolakan), `listServiceProductDepositPoliciesPage` di `application/booking-deposit-policies.ts`. Layar mengirim kebijakan, bukan jumlah; lepas tautan memakai dialog konfirmasi bersama dan `Idempotency-Key`.
+- **Tidak ada di sini** (dibangun oleh #381, di bawah): layar versi kebijakan pembatalan dan dialog penggantian pengembalian dana. Masih belum ada: layar kasir / meja depan (#388).
+
+**Putaran penutup (issue ini; tanpa migrasi, rute, izin, atau event).** Kelima permukaan [bagian 11](../../../../../docs/booking-ux-flows.md) sudah dibangun (11.1 dan 11.2 di sini, 11.3 pada layar pengaturan, 11.4 dan 11.5 oleh #381 di bawah, 11.6 oleh #382); #385 menutup temuan pemeriksaan di peramban sungguhan dengan data nyata, ditambah dua tindak lanjut #448:
+
+- **Daftar uang muka**: `listServiceProductDepositPoliciesPage` (keyset menurut `(name, id)`, 50 per halaman; codec kursor dan konstanta di `domain/booking-deposit-list.ts`), tautan "Halaman berikutnya" / "Halaman pertama" dan baris terlihat "Masih ada produk jasa berikutnya". `listServiceProductDepositPolicies` tanpa halaman tetap ada, dibatasi `SERVICE_PRODUCT_SELECTOR_LIMIT` (200), untuk pemilih lingkup kebijakan pembatalan, yang menyatakannya bila terpotong. Setiap baris menaut ke versi kebijakan pembatalan produk itu.
+- **Fokus setelah muat ulang**: `showStatusAndFocus` dan `markFieldInvalid` (`lib/ui/commerce-booking-client.ts`): pemberitahuan tanpa-kebijakan-pembatalan dan baris sukses penggantian menerima fokus setelah muat ulang; kolom yang ditolak diberi `aria-invalid`, dijelaskan galatnya, dan difokuskan.
+- **Tata letak**: filter tautan adalah kontrol `admin-segmented` bersama, radio jenis uang muka adalah baris `admin-checkbox`, kolom formulir adalah kelompok `admin-field`, dan `.booking-admin-table` (`styles/admin-screens.css`) menjaga caption dan sel selebar penuh tabel bertumpuk tetap terbaca pada 360px. Jendela yang ditambah atau dihapus pada editor draf menjaga fokus di dalam formulir.
+- **"Detail reservasi"**: dialog penggantian ada di panel booking pada detail pesanan secara sengaja (`/admin/booking/reservations` milik Booking dan tidak dapat tahu jumlah dibayar); server menegakkan batasnya (`REFUND_EXCEEDS_PAID`).
+- **Pengujian**: `tests/commerce-booking-deposit-list.test.ts`, `tests/commerce-booking-client.test.ts`, `tests/commerce-booking-admin-screens.test.ts` (menambah "setiap kelas yang dipakai layar booking punya aturan"), `tests/integration/commerce-booking-deposit-list.integration.test.ts` (120 produk, tiga halaman, nama kembar, isolasi tenant) dan `tests/e2e/admin-commerce-booking.e2e.ts` di peramban sungguhan (jalur keyboard, axe di kedua tema, 360px, batas dialog penggantian, sidebar di balik bendera fitur).
 
 ## Adapter booking-commerce, rekonsiliasi pasca-restore - TERIMPLEMENTASI (Issue #396, epic #280 butir 35 - [ADR-0045](../../../../../docs/adr/0045-booking-commerce-adapter.id.md))
 

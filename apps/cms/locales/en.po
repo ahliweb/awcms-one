@@ -12896,6 +12896,27 @@ msgid "Sell Booking reservations (deposits, links)"
 msgstr ""
 
 # booking-adapter #385
+msgid "{label} (required)"
+msgstr ""
+
+msgid "Pages"
+msgstr ""
+
+msgid "First page"
+msgstr ""
+
+msgid "More service products follow. Use Next page to reach them."
+msgstr ""
+
+msgid "Cancellation policy"
+msgstr ""
+
+msgid "View policy"
+msgstr ""
+
+msgid "Only the first {count} service products are listed here. Open the policy of any other product from its Booking deposits row."
+msgstr ""
+
 msgid "This offering is already linked to a product."
 msgstr ""
 

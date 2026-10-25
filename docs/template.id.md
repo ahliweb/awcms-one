@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](template.md)
 
-<!-- i18n-source-hash: sha256:7c09430e7ff214c04cd6b451e215156aad43816433df0b2404b1ee809c7c20ee -->
+<!-- i18n-source-hash: sha256:b2e37eda1ab51c42fb6b8e599f2f54a38aeebb7ba83aef81863d1ccbd55fc3c7 -->
 
 # Menggunakan awcms-one sebagai template
 
@@ -153,7 +153,7 @@ Setiap file di bawah `apps/storefront/src/pages/**` termasuk tepat satu kelompok
 | `akun/index.astro` | toko | Shell dashboard akun commerce |
 | `akun/pesanan.astro` | toko | Riwayat pesanan commerce |
 | `akun/pesan.astro` | toko | Thread inbox pelanggan commerce |
-| `akun/reservasi.astro` | toko | Reservasi booking milik pembeli yang sedang masuk (issue #386) |
+| `akun/reservasi.astro` | toko | Reservasi booking milik pembeli yang sedang masuk (issue #386); dengan `?kode=` state uang muka satu reservasi dan dialog pembatalannya (issue #387) |
 | `akun/ulasan.astro` | toko | Ulasan produk commerce |
 | `arsip/[yyyy]/[mm].astro` | berita | Arsip bulanan berita |
 | `berita/feed.xml.ts` | berita | Feed RSS berita (pos) |

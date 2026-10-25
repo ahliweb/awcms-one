@@ -303,6 +303,7 @@ export type RescheduleRefusal =
   | { code: "FEATURE_DISABLED" }
   | { code: "RESERVATION_NOT_FOUND" }
   | { code: "SERVICE_ACTOR_NOT_CONFIGURED" }
+  | { code: "REFUND_PLANNING_FORBIDDEN" }
   | { code: "INVALID_STATE"; reason: string }
   | { code: "IDEMPOTENCY_CONFLICT" }
   | { code: "QUANTITY_BASIS_MISMATCH" }
@@ -338,6 +339,15 @@ export function rescheduleRefusalHttp(refusal: RescheduleRefusal): {
         code: "BOOKING_SERVICE_ACTOR_NOT_CONFIGURED",
         message:
           "Name an active service-account user for bookings in the store settings."
+      };
+    case "REFUND_PLANNING_FORBIDDEN":
+      // Issue #448: a shorter stay plans refund legs, which is the refund
+      // decision authority (access matrix), not the reschedule key alone.
+      return {
+        status: 403,
+        code: "FORBIDDEN",
+        message:
+          "Shortening a stay plans a refund, which needs the booking refund decision permission."
       };
     case "INVALID_STATE":
       return {

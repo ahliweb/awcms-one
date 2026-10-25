@@ -947,3 +947,26 @@ a.admin-segmented-option {
   background: var(--color-danger-strong);
   color: var(--color-primary-contrast);
 }
+
+/* The booking admin tables (Issue #385, `docs/booking-ux-flows.md` 11.7): below
+   `--bp-md` a `data-table--stack` table becomes cards, but a CAPTION stays a
+   shrink-to-fit table caption (one word per line at 360px) and a full-width
+   cell with no `data-label` (the empty state, the "Edit deposit" disclosure) is
+   pushed to the trailing edge by the label/value flex row. These two rules
+   undo exactly that, on the booking tables only. */
+@media (max-width: 767.98px) {
+  .booking-admin-table caption:not(.sr-only) {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+
+  .booking-admin-table td[colspan] {
+    display: block;
+    text-align: left;
+  }
+
+  .booking-admin-table td[colspan]::before {
+    content: none;
+  }
+}

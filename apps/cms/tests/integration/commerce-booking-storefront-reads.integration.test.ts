@@ -428,7 +428,7 @@ suite("booking storefront reads (Issue #386)", () => {
 
   test("availability carries no PII and no resource name, before and after a real booking", async () => {
     if (skipUnlessHandlerReady()) return;
-    const { fx } = await readyOwner();
+    const { owner, fx } = await readyOwner();
 
     const free = await get(availabilityGet, availabilityPath(fx));
     expect(free.status).toBe(200);
@@ -498,13 +498,31 @@ suite("booking storefront reads (Issue #386)", () => {
       reason: "SLOT_UNAVAILABLE"
     });
 
-    // An unknown resource id is the SAME answer as a full range (no oracle).
-    const probe = await get(
-      availabilityGet,
-      `/api/v1/commerce/storefront/booking/availability?offeringId=${fx.offeringId}&resourceId=${UNKNOWN_ID}&checkInDate=${day(1)}&checkOutDate=${day(3)}`
-    );
-    expect(probe.status).toBe(200);
-    expect(probe.body.data).toEqual(full.body.data);
+    // Issue #448: a link that names no resource no longer forwards an arbitrary
+    // id to Booking. An unknown id, a resource of the other mode and a retired
+    // resource are the SAME neutral 404 (the bound path's answer, #437), and the
+    // body names no resource.
+    const path = (resourceId: string) =>
+      `/api/v1/commerce/storefront/booking/availability?offeringId=${fx.offeringId}&resourceId=${resourceId}&checkInDate=${day(1)}&checkOutDate=${day(3)}`;
+    const otherMode = await seedStay(owner.tenantId, {
+      link: false,
+      resourceMode: "slot"
+    });
+    const retired = await seedStay(owner.tenantId, { link: false });
+    await getHandlerAdminSql()`
+      UPDATE awcms_booking_resources SET status = 'inactive'
+      WHERE id = ${retired.resourceId}
+    `;
+    const probes = [
+      await get(availabilityGet, path(UNKNOWN_ID)),
+      await get(availabilityGet, path(otherMode.resourceId)),
+      await get(availabilityGet, path(retired.resourceId))
+    ];
+    for (const probe of probes) expect(probe.status).toBe(404);
+    expect(probes[1]!.body).toEqual(probes[0]!.body);
+    expect(probes[2]!.body).toEqual(probes[0]!.body);
+    // The tenant's own live resource of the right mode still answers.
+    expect((await get(availabilityGet, availabilityPath(fx))).status).toBe(200);
   });
 
   test("bounds and validation are 400s; an unlinked, unknown or unsold offering is one 404", async () => {
@@ -617,12 +635,11 @@ suite("booking storefront reads (Issue #386)", () => {
       `/api/v1/commerce/storefront/booking/availability?offeringId=${fx.offeringId}&resourceId=${fxB.resourceId}&checkInDate=${day(1)}&checkOutDate=${day(3)}`,
       asA
     );
-    expect(resourceCross.status).toBe(200);
-    expect(resourceCross.body.data).toMatchObject({
-      available: false,
-      freeUnits: 0,
-      timezone: "UTC"
-    });
+    // Issue #448: another tenant's resource is invisible under RLS, so it is the
+    // same neutral 404 as an unknown id (it used to reach Booking and answer
+    // "unavailable").
+    expect(resourceCross.status).toBe(404);
+    expect(resourceCross.body.error?.code).toBe("NOT_FOUND");
   });
 
   test("the route is rate limited per client", async () => {

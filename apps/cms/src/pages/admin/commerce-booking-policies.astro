@@ -33,6 +33,7 @@ import {
 import { hoursToNotice } from "../../lib/ui/commerce-booking-refund-client";
 import { fetchCommerceFeatures } from "../../modules/commerce/application/commerce-feature-gate";
 import { listServiceProductDepositPolicies } from "../../modules/commerce/application/booking-deposit-policies";
+import { SERVICE_PRODUCT_SELECTOR_LIMIT } from "../../modules/commerce/domain/booking-deposit-list";
 import {
   listPolicies,
   type PolicyRecord,
@@ -202,25 +203,39 @@ const errorMessages = JSON.stringify({
       id="booking-policies-scope-form"
     >
       <p class="form-legend">{t("Scope")}</p>
-      <label for="booking-policies-scope">{t("Policy for")}</label>
-      <select id="booking-policies-scope" name="scope">
-        <option value="default" selected={productScope === null}>
-          {t("Tenant default")}
-        </option>
-        {products.map((product) => (
-          <option
-            value={product.productId}
-            selected={product.productId === productScope}
-          >
-            {product.name}
+      <div class="admin-field">
+        <label for="booking-policies-scope">{t("Policy for")}</label>
+        <select
+          id="booking-policies-scope"
+          name="scope"
+          aria-describedby="booking-policies-scope-hint"
+        >
+          <option value="default" selected={productScope === null}>
+            {t("Tenant default")}
           </option>
-        ))}
-      </select>
-      <p class="form-hint">
-        {t(
-          "A product's own policy replaces the tenant default for that product. A change is a new version: bookings already made keep the version they were made under."
+          {products.map((product) => (
+            <option
+              value={product.productId}
+              selected={product.productId === productScope}
+            >
+              {product.name}
+            </option>
+          ))}
+        </select>
+        <p id="booking-policies-scope-hint" class="form-hint">
+          {t(
+            "A product's own policy replaces the tenant default for that product. A change is a new version: bookings already made keep the version they were made under."
+          )}
+        </p>
+        {products.length >= SERVICE_PRODUCT_SELECTOR_LIMIT && (
+          <p id="booking-policies-scope-cut" class="form-hint">
+            {t(
+              "Only the first {count} service products are listed here. Open the policy of any other product from its Booking deposits row.",
+              { count: SERVICE_PRODUCT_SELECTOR_LIMIT }
+            )}
+          </p>
         )}
-      </p>
+      </div>
       <button type="submit">{t("Show")}</button>
     </form>
   )}
@@ -265,7 +280,7 @@ const errorMessages = JSON.stringify({
             aria-label={t("Active version")}
           >
             <table
-              class="data-table data-table--stack"
+              class="data-table data-table--stack booking-admin-table"
               id="policy-active-table"
             >
               <caption class="sr-only">
@@ -351,7 +366,10 @@ const errorMessages = JSON.stringify({
         tabindex="0"
         aria-label={t("Draft versions")}
       >
-        <table class="data-table data-table--stack" id="policy-drafts-table">
+        <table
+          class="data-table data-table--stack booking-admin-table"
+          id="policy-drafts-table"
+        >
           <caption>
             {tn("{count} draft", "{count} drafts", drafts.length, {
               count: drafts.length
@@ -497,23 +515,29 @@ const errorMessages = JSON.stringify({
         </button>
       </p>
 
-      <label for="booking-policy-basis">{t("Refund applies to")}</label>
-      <select id="booking-policy-basis" name="refundBasis">
-        <option value="whole_stay">{labels.refundBasis.whole_stay}</option>
-        <option value="per_night">{labels.refundBasis.per_night}</option>
-      </select>
-      <label for="booking-policy-noshow">
-        {t("If the guest does not show")}
-      </label>
-      <select id="booking-policy-noshow" name="noShowRetention">
-        <option value="retain_deposit">
-          {labels.noShowRetention.retain_deposit}
-        </option>
-        <option value="retain_all">{labels.noShowRetention.retain_all}</option>
-        <option value="refund_per_windows">
-          {labels.noShowRetention.refund_per_windows}
-        </option>
-      </select>
+      <div class="admin-field">
+        <label for="booking-policy-basis">{t("Refund applies to")}</label>
+        <select id="booking-policy-basis" name="refundBasis">
+          <option value="whole_stay">{labels.refundBasis.whole_stay}</option>
+          <option value="per_night">{labels.refundBasis.per_night}</option>
+        </select>
+      </div>
+      <div class="admin-field">
+        <label for="booking-policy-noshow">
+          {t("If the guest does not show")}
+        </label>
+        <select id="booking-policy-noshow" name="noShowRetention">
+          <option value="retain_deposit">
+            {labels.noShowRetention.retain_deposit}
+          </option>
+          <option value="retain_all">
+            {labels.noShowRetention.retain_all}
+          </option>
+          <option value="refund_per_windows">
+            {labels.noShowRetention.refund_per_windows}
+          </option>
+        </select>
+      </div>
 
       <button type="submit" id="booking-policy-submit" data-busy={t("Saving…")}>
         {t("Save draft")}
@@ -535,7 +559,10 @@ const errorMessages = JSON.stringify({
         tabindex="0"
         aria-label={t("History")}
       >
-        <table class="data-table data-table--stack" id="policy-history-table">
+        <table
+          class="data-table data-table--stack booking-admin-table"
+          id="policy-history-table"
+        >
           <caption>
             {tn(
               "{count} earlier version",
@@ -728,13 +755,27 @@ const errorMessages = JSON.stringify({
     ?.addEventListener("click", () => {
       if (!rowsHost || !(template instanceof HTMLTemplateElement)) return;
       rowsHost.appendChild(template.content.cloneNode(true));
+      // Focus follows the new row, so a keyboard user types into it next.
+      rowsHost
+        .querySelector<HTMLInputElement>(
+          "[data-policy-row-editor]:last-child [name='notice']"
+        )
+        ?.focus();
     });
   rowsHost?.addEventListener("click", (event) => {
     const target = event.target;
     if (!(target instanceof HTMLElement)) return;
     const remove = target.closest(".booking-policy-remove-btn");
     if (!remove) return;
-    remove.closest("[data-policy-row-editor]")?.remove();
+    const row = remove.closest("[data-policy-row-editor]");
+    const neighbour = row?.previousElementSibling ?? row?.nextElementSibling;
+    row?.remove();
+    // The pressed button left the page: land on a neighbouring row, or on
+    // "Add window" when none is left, never on the top of the document.
+    const landing =
+      neighbour?.querySelector<HTMLElement>("[name='notice']") ??
+      document.getElementById("booking-policy-add-row");
+    landing?.focus();
   });
 
   function readRows(): WindowRowInput[] {
