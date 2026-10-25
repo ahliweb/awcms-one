@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:1e9b4471a276f26c52cb3b2070005ffe5f0ca1983ac94e457b574b93729c7931 -->
+<!-- i18n-source-hash: sha256:4f1ef8e34ba4647aa6af88b718f6c982a5edbd95208158bf75897d00c311d3b8 -->
 
 # Dokumentasi
 
@@ -35,6 +35,14 @@ Dokumentasi arsitektur, skema, API, alur kerja CMS, perilaku storefront, penguji
 | [`booking-commerce-access-matrix.md`](booking-commerce-access-matrix.id.md)           | Usulan (belum terdaftar) matriks RBAC / ABAC / RLS untuk peran sisi commerce yang menyentuh booking, dan siapa yang boleh menimpa refund hasil hitung kebijakan                                                             |
 | [`booking-commerce-adapter-contracts.md`](booking-commerce-adapter-contracts.id.md)   | Draf kontrak OpenAPI dan AsyncAPI (belum live) adapter booking-commerce, termasuk event yang dikonsumsi dan diterbitkan                                                                                                     |
 
+## Standar kebutuhan CRM Omnichannel
+
+[**Standar kebutuhan CRM Omnichannel reusable**](crm-omnichannel-requirements.id.md) memuat **target** funnel lead hingga konversi, batas akun dan kemampuan provider, inbox terverifikasi, persetujuan kampanye, SLA/follow-up staf, AI Hermes/OMES, KPI, pengecualian provider, dan tes penerimaan. Kebutuhan tersebut dipromosikan dari spesifikasi sektor pendidikan tanpa mengunci template pada bisnis tertentu. **Ini standar usulan, bukan bukti seluruh modul CRM sudah ada**; kondisi aktual tetap mengacu ke [status.md](status.id.md). Dilacak melalui [#462](https://github.com/ahliweb/awcms-one/issues/462).
+
+## Spesifikasi UI/UX CRM Omnichannel lengkap
+
+[**UI/UX CRM Omnichannel v1.0**](omnichannel-crm-ui-ux.id.md) merupakan standar **30 kelompok layar** yang membedakan fitur commerce saat ini dari rencana lead, inbox, multi-akun StarSender/Meta, Mailketing API v2.0.2, Telegram/sosial, kampanye, AI, analitik dan OMES; termasuk aksesibilitas, alur pengguna dan tata kelola versi. **Rencana bukan implementasi.** Issue [#472](https://github.com/ahliweb/awcms-one/issues/472), kondisi aktual [status.md](status.id.md).
+
 ## Apa yang tidak diduplikasi direktori ini
 
 [`knowledge/curated/`](../knowledge/curated/) sudah menyatakan lima fakta yang tidak bisa disimpulkan dari kode — peta struktural monorepo, batas kepemilikan subtree, sambungan kontrak backend/storefront, penunjuk keamanan/isolasi-tenant, dan alasan re-platform — dan direktori ini menautkan ke masing-masing alih-alih menyatakannya ulang. `apps/cms/src/modules/commerce/README.md` adalah dokumentasi modul commerce sendiri, berdekatan-kode; [`cms.md`](cms.id.md) di sini menautkan ke sana untuk detail per-field alih-alih mengulanginya. Arsitektur, threat model, dan korpus ADR `apps/cms` sendiri (ruang penomoran terpisah dari [`adr/`](adr/README.id.md) di sini) hidup di bawah `apps/cms/docs/` sebagai dokumentasi `ahliweb/awcms` sendiri, dibawa oleh embed subtree — repositori ini tidak mengatur atau menduplikasinya.
@@ -42,3 +50,7 @@ Dokumentasi arsitektur, skema, API, alur kerja CMS, perilaku storefront, penguji
 ## Bahasa
 
 Bahasa Inggris di jalur telanjang adalah sumber yang otoritatif; Bahasa Indonesia di `<name>.id.md` adalah mirror, dicap `bun run docs:i18n:stamp` setelah diterjemahkan dan diperiksa `bun run audit:translation`. Setiap dokumen di direktori ini, termasuk setiap berkas di bawah `adr/`, berada dalam cakupan gate itu — lihat `isInScope` milik `packages/gerbang/lib/docs-i18n-checks.mjs`, yang mencakup segala sesuatu di bawah `docs/**`.
+
+## Standar runtime Bun-only untuk CRM dan real-time
+
+[**Pengiriman Omnichannel & Real-time Bun-only**](bun-omnichannel-delivery-realtime.id.md) mengatur antrean Bun email/WhatsApp/Web Push yang sudah ada serta StarSender/Meta, Telegram, Mailketing, status Hermes dan SSE/WebSocket Bun yang masih direncanakan. Gateway real-time generik **belum diimplementasikan**. Issue [#467](https://github.com/ahliweb/awcms-one/issues/467), upstream [#1167](https://github.com/ahliweb/awcms/issues/1167), [#1168](https://github.com/ahliweb/awcms/issues/1168).

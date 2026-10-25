@@ -33,6 +33,10 @@ Architecture, schema, API, CMS workflow, storefront behaviour, testing, deployme
 | [`booking-commerce-access-matrix.md`](booking-commerce-access-matrix.md)           | Proposed (not registered) RBAC / ABAC / RLS matrix for the commerce-side roles that touch bookings, and who may override a policy-computed refund                                                                                                          |
 | [`booking-commerce-adapter-contracts.md`](booking-commerce-adapter-contracts.md)   | Draft (not in the live spec) OpenAPI and AsyncAPI contracts for the booking-commerce adapter: hold-to-order, deposit sessions, cancellation quote and confirm, refund override, reschedule, no-show, POS check-in, and the events consumed and emitted     |
 
+## CRM Omnichannel requirements standard
+
+[**Omnichannel CRM — reusable requirements standard**](crm-omnichannel-requirements.md) defines the **target** lead-to-conversion funnel, account-capability and verified-inbox boundaries, campaign consent, staff SLA/follow-up, Hermes/OMES AI, KPI contracts, provider exceptions and acceptance tests, promoted from an education-sector stakeholder specification without introducing tenant-specific product defaults. **It is a proposed standard, not an implemented CRM module**; [status.md](status.md) remains the implementation truth. Tracked by [#462](https://github.com/ahliweb/awcms-one/issues/462).
+
 ## What this directory does not duplicate
 
 [`knowledge/curated/`](../knowledge/curated/) already states five facts not inferable from code — the monorepo's structural map, subtree ownership boundaries, the backend/storefront contract seam, security/tenant-isolation pointers, and re-platform rationale — and this directory links to each rather than restating it. `apps/cms/src/modules/commerce/README.md` is the commerce module's own, code-adjacent documentation; [`cms.md`](cms.md) here links to it for field-by-field detail rather than repeating it. `apps/cms`'s own architecture, threat model, and ADR corpus (a separate numbering space from [`adr/`](adr/README.md) here) live under `apps/cms/docs/` as `ahliweb/awcms`'s own documentation, carried by the subtree embed — this repository does not govern or duplicate it.
@@ -40,3 +44,11 @@ Architecture, schema, API, CMS workflow, storefront behaviour, testing, deployme
 ## Language
 
 English at the bare path is the authoritative source; Indonesian at `<name>.id.md` is the mirror, stamped by `bun run docs:i18n:stamp` after translation and checked by `bun run audit:translation`. Every document in this directory, including every file under `adr/`, is in scope for that gate — see `packages/gerbang/lib/docs-i18n-checks.mjs`'s `isInScope`, which covers everything under `docs/**`.
+
+## Bun-only CRM dispatch and realtime requirement
+
+[**Bun-only Omnichannel Delivery & Realtime**](bun-omnichannel-delivery-realtime.md) defines planned runtime constraints for existing email/WhatsApp/Web Push Bun queues and future StarSender/Meta, Telegram, Mailketing, Hermes status, Bun SSE/WebSocket, with the source-of-truth distinction that a generic realtime gateway is **not implemented**. Issue [#467](https://github.com/ahliweb/awcms-one/issues/467), upstream [#1167](https://github.com/ahliweb/awcms/issues/1167), [#1168](https://github.com/ahliweb/awcms/issues/1168).
+
+## Comprehensive Omnichannel CRM UI/UX specification
+
+[**Omnichannel CRM UI/UX v1.0**](omnichannel-crm-ui-ux.md) is a proposed evidence-tagged **30-screen catalogue** for current commerce screens and future lead, inbox, multi-account StarSender/Meta, Mailketing API v2.0.2, Telegram/social, campaigns, knowledge/AI, analytics and OMES management, plus accessibility, journeys and latest-version governance. **Planned is not shipped.** Tracked [#472](https://github.com/ahliweb/awcms-one/issues/472), source status [status.md](status.md).
