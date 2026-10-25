@@ -37,9 +37,11 @@ import { DORMANT_COMMISSION_CONSUMERS } from "../../src/modules/commerce/module"
 import { withTenantOrThrow } from "../../src/lib/database/tenant-context";
 import {
   createStaffLink,
+  lockCommissionOrder,
   retireStaffLink,
   saveCommissionSettings
 } from "../../src/modules/commerce/application/commission-attribution-directory";
+import { attributeCommissionForPaidOrder } from "../../src/modules/commerce/application/commission-attribution";
 import {
   reverseCommissionForCancelledOrder,
   reverseCommissionForSettledRefund
@@ -80,14 +82,6 @@ const ADMIN_A = "cccccccc-0391-4000-8000-000000000003";
 const RULE_KEY = "pos-sales";
 const SOURCE_TYPE = "commerce_order_line";
 const PAID = "awcms.commerce.order.paid";
-
-/** A recent instant (the ledger refuses a sale older than two years or in the future). */
-function recentInstant(daysAgo: number, hourUtc: number): Date {
-  const date = new Date();
-  date.setUTCDate(date.getUTCDate() - daysAgo);
-  date.setUTCHours(hourUtc, 0, 0, 0);
-  return date;
-}
 
 function inTenant<T>(
   tenantId: string,
@@ -237,7 +231,7 @@ async function seedOrder(
     VALUES (${tenantId}, ${"COM-" + orderCounter + "-" + Math.random().toString(36).slice(2, 7)},
             ${customerId}, ${options.status ?? "paid"}, 'manual_qris', 'paid', 'self_pickup',
             ${subtotalDecimal}, ${options.discount ?? "0.00"}, ${options.loyaltyDiscount ?? "0.00"},
-            ${subtotalDecimal}, ${options.paidAt ?? recentInstant(2, 10)},
+            ${subtotalDecimal}, ${options.paidAt ?? new Date()},
             ${options.channel ?? "pos"}, ${options.cashier ?? null})
     RETURNING id
   `) as { id: string }[];
@@ -964,6 +958,205 @@ suite(
             reverseCommissionForSettledRefund(tx, TENANT_B, ret)
           )
         ).toEqual({ kind: "skipped", reason: "return_not_found" });
+      });
+    });
+
+    // -------------------------------------------------------------------------
+    describe("a delayed paid-event delivery (issue #449, ADR-0046 D11)", () => {
+      test("the beneficiary is the employment linked WHEN THE SALE WAS PAID: a link re-pointed before the delivery does not move the commission", async () => {
+        const second = await seedEmployment(TENANT_A);
+        const firstLink = await link(TENANT_A, cashier, employment);
+        await enable(TENANT_A);
+        const { orderId } = await seedOrder(TENANT_A, { cashier });
+
+        // After the sale and before its (delayed) delivery: the link is
+        // corrected - retired, and the same login joined to another employment.
+        await inTenant(TENANT_A, (tx) =>
+          retireStaffLink(tx, TENANT_A, ADMIN_A, firstLink)
+        );
+        await link(TENANT_A, cashier, second);
+
+        await deliver(TENANT_A, paidEvent(orderId));
+
+        const rows = (await getAdminSql()`
+          SELECT employment_id FROM awcms_hr_commission_accruals
+          WHERE tenant_id = ${TENANT_A}
+        `) as { employment_id: string }[];
+        expect(rows.map((row) => row.employment_id)).toEqual([employment]);
+      });
+
+      test("a link retired before the delayed delivery still earns the sale it was linked for", async () => {
+        const linkId = await link(TENANT_A, cashier, employment);
+        await enable(TENANT_A);
+        const { orderId } = await seedOrder(TENANT_A, { cashier });
+        await inTenant(TENANT_A, (tx) =>
+          retireStaffLink(tx, TENANT_A, ADMIN_A, linkId)
+        );
+
+        await deliver(TENANT_A, paidEvent(orderId));
+
+        const rows = await accrualStates(TENANT_A);
+        expect(rows).toHaveLength(1);
+        expect(rows[0]!.status).toBe("pending");
+      });
+
+      test("a link created AFTER the sale does not claim it, however late the delivery runs", async () => {
+        await enable(TENANT_A);
+        const { orderId } = await seedOrder(TENANT_A, { cashier });
+        await link(TENANT_A, cashier, employment);
+
+        const result = await inTenant(TENANT_A, (tx) =>
+          attributeCommissionForPaidOrder(tx, TENANT_A, orderId)
+        );
+
+        expect(result).toEqual({ kind: "skipped", reason: "no_staff_link" });
+        expect(await accrualStates(TENANT_A)).toEqual([]);
+      });
+
+      test("the attributor skips a line the customer already returned in full, so no accrual is left that no reverser will void", async () => {
+        await link(TENANT_A, cashier, employment);
+        await enable(TENANT_A);
+        // A two-line sale, still `paid`: line 0 comes back in full and the
+        // refund event is handled BEFORE the paid event reaches the attributor.
+        const { orderId, lineIds } = await seedOrder(TENANT_A, {
+          cashier,
+          lines: ["100000.00", "50000.00"],
+          quantities: [2, 1]
+        });
+        const returnId = await seedReturn(TENANT_A, orderId, [
+          { itemId: lineIds[0]!, quantity: 2 }
+        ]);
+        await deliverWith(refundReverser, TENANT_A, refundEvent(returnId));
+        expect(await accrualStates(TENANT_A)).toEqual([]);
+
+        await deliver(TENANT_A, paidEvent(orderId));
+
+        const rows = await accrualStates(TENANT_A);
+        expect(rows.map((row) => row.source_line)).toEqual([lineIds[1]!]);
+        const audit = await getAdminSql()`
+          SELECT attributes FROM awcms_audit_events
+          WHERE tenant_id = ${TENANT_A}
+            AND action = 'commerce.commission.attributed'
+        `;
+        expect(audit[0]!.attributes).toMatchObject({
+          linesAccrued: 1,
+          linesSkippedReturned: 1,
+          linesPartiallyReturned: 0
+        });
+      });
+
+      test("a sale whose every line is already returned accrues nothing; a partly returned line is still accrued (D9: a person decides)", async () => {
+        await link(TENANT_A, cashier, employment);
+        await enable(TENANT_A);
+        const whole = await seedOrder(TENANT_A, { cashier, quantities: [1] });
+        await seedReturn(TENANT_A, whole.orderId, [
+          { itemId: whole.lineIds[0]!, quantity: 1 }
+        ]);
+        const result = await inTenant(TENANT_A, (tx) =>
+          attributeCommissionForPaidOrder(tx, TENANT_A, whole.orderId)
+        );
+        expect(result).toEqual({
+          kind: "skipped",
+          reason: "no_commissionable_lines"
+        });
+
+        const partly = await seedOrder(TENANT_A, {
+          cashier,
+          lines: ["90000.00"],
+          quantities: [3]
+        });
+        await seedReturn(TENANT_A, partly.orderId, [
+          { itemId: partly.lineIds[0]!, quantity: 1 }
+        ]);
+        await deliver(TENANT_A, paidEvent(partly.orderId));
+        const rows = await accrualStates(TENANT_A);
+        expect(rows.map((row) => row.source_ref)).toEqual([partly.orderId]);
+        // ... and the audit row tells a person that part of it is already back.
+        const audit = await getAdminSql()`
+          SELECT attributes FROM awcms_audit_events
+          WHERE tenant_id = ${TENANT_A} AND action = 'commerce.commission.attributed'
+        `;
+        expect(audit[0]!.attributes).toMatchObject({
+          linesAccrued: 1,
+          linesPartiallyReturned: 1
+        });
+      });
+
+      test("an OPEN return (a refund leg still outstanding) does not stop the accrual, and its completion then voids it", async () => {
+        await link(TENANT_A, cashier, employment);
+        await enable(TENANT_A);
+        const { orderId, lineIds } = await seedOrder(TENANT_A, { cashier });
+        const open = await seedReturn(
+          TENANT_A,
+          orderId,
+          [{ itemId: lineIds[0]!, quantity: 1 }],
+          "open"
+        );
+        await deliver(TENANT_A, paidEvent(orderId));
+        expect((await accrualStates(TENANT_A))[0]!.status).toBe("pending");
+
+        await getAdminSql()`
+          UPDATE awcms_commerce_returns SET status = 'completed', completed_at = now()
+          WHERE id = ${open}
+        `;
+        await deliverWith(refundReverser, TENANT_A, refundEvent(open));
+        expect((await accrualStates(TENANT_A))[0]!.status).toBe("voided");
+      });
+
+      test("the attributor and the reversers of one order serialise on the same lock (either order of arrival is equivalent)", async () => {
+        await link(TENANT_A, cashier, employment);
+        await enable(TENANT_A);
+        const { orderId } = await seedOrder(TENANT_A, { cashier });
+
+        let release!: () => void;
+        const gate = new Promise<void>((resolve) => {
+          release = resolve;
+        });
+        let holding!: () => void;
+        const held = new Promise<void>((resolve) => {
+          holding = resolve;
+        });
+        // Another delivery for the SAME order holds the order lock...
+        const holder = inTenant(TENANT_A, async (tx) => {
+          await lockCommissionOrder(tx, TENANT_A, orderId);
+          holding();
+          await gate;
+        });
+        await held;
+
+        // ... so the attributor and the cancel reverser both wait behind it.
+        let attributed = false;
+        let reversed = false;
+        const attributor = deliver(TENANT_A, paidEvent(orderId)).then(() => {
+          attributed = true;
+        });
+        const reverser = deliverWith(
+          cancelReverser,
+          TENANT_A,
+          cancelledEvent(orderId)
+        ).then(() => {
+          reversed = true;
+        });
+        await Bun.sleep(400);
+        expect({ attributed, reversed }).toEqual({
+          attributed: false,
+          reversed: false
+        });
+
+        release();
+        await Promise.all([holder, attributor, reverser]);
+        expect({ attributed, reversed }).toEqual({
+          attributed: true,
+          reversed: true
+        });
+
+        // A cancel that arrives while the sale is still being attributed voids
+        // what was accrued, or (if it ran first) the attributor sees `paid`
+        // still and the later redelivery of the cancel voids it: in no order is
+        // an accrual left for a cancelled sale once both have run.
+        await deliverWith(cancelReverser, TENANT_A, cancelledEvent(orderId));
+        const rows = await accrualStates(TENANT_A);
+        expect(rows.every((row) => row.status === "voided")).toBe(true);
       });
     });
 

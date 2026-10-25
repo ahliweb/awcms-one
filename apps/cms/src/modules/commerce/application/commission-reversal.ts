@@ -63,7 +63,8 @@ import {
 } from "../domain/commission-attribution";
 import {
   fetchCommissionReversalContext,
-  listEmploymentsEverLinkedToLogin
+  listEmploymentsEverLinkedToLogin,
+  lockCommissionOrder
 } from "./commission-attribution-directory";
 import { commerceCommissionAccrualPort } from "./commission-attribution-port";
 
@@ -179,6 +180,11 @@ async function reverse(
   correlationId: string | undefined,
   options: ReversalOptions
 ): Promise<CommissionReversalResult> {
+  // Serialises this reversal against the attributor of the SAME order (issue
+  // #449, ADR-0046 D11): a delayed attributor either finishes first, so the void
+  // below finds its accrual, or runs after and sees the completed return.
+  await lockCommissionOrder(tx, tenantId, orderId);
+
   const context = await fetchCommissionReversalContext(tx, tenantId);
   // Never configured: nothing was ever reported.
   if (!context) return { kind: "skipped", reason: "disabled" };

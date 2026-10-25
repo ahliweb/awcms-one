@@ -10,6 +10,7 @@
  *   bun run commerce:whatsapp:cutover --tenant <uuid> --to upstream --reason "<why>" --dry-run
  *   bun run commerce:whatsapp:cutover --tenant <uuid> --to upstream --reason "<why>" --ack-warnings
  *   bun run commerce:whatsapp:cutover --tenant <uuid> --to legacy   --reason "<why>"
+ *   bun run commerce:whatsapp:cutover --tenant <uuid> --to legacy   --reason "<why>" --force --operator "<name>"
  *
  * Flags:
  *   --tenant <uuid>     the tenant (required)
@@ -25,6 +26,14 @@
  *                       and the tenant keeps enqueueing to the old queue, so on a busy tenant a
  *                       few minutes' patience is the normal way to catch an empty moment.
  *   --from <mode>       refuse (MODE_CHANGED) unless the tenant is currently in this mode
+ *   --force             ROLLBACK ONLY (--to legacy) and needs --operator: roll back although commerce's
+ *                       own messages are still non-terminal in the upstream queue (typically stuck in
+ *                       retry_wait behind the very provider failure that is the reason to roll back).
+ *                       It bypasses that one check and nothing else, is audited as
+ *                       `whatsapp_mode.flip_forced` with the number of messages it bypassed, and leaves
+ *                       those messages to the upstream dispatcher. Other modules' rows in the shared
+ *                       upstream queue (booking reminders) never block a rollback, so --force is not
+ *                       needed for them.
  *   --operator "<name>" a free-text label recorded with the audit event (the CLI has no tenant user)
  *
  * The rule is `flipWhatsappMode` (application/whatsapp-mode-flip.ts), the one
@@ -48,7 +57,9 @@
  * `COMMERCE_WHATSAPP_ENABLED`, `WHATSAPP_PROVIDER`,
  * `WHATSAPP_RECIPIENT_HASH_KEYS`). The dispatchers are separate processes: run
  * this with the same environment file as `whatsapp:dispatch`, or the check
- * answers for a deployment that is not the one that will send.
+ * answers for a deployment that is not the one that will send. The evidence
+ * carries the same warning as `channelEnvironmentNotice` and it is printed on
+ * stderr; the admin route says the same about the web server process.
  *
  * Runs as the web role (`awcms_app`), like `commerce:inventory:cutover`: it is
  * operator-run, not a scheduled worker job.
@@ -84,6 +95,8 @@ export type CutoverArgs =
       waitSeconds: number;
       from?: WhatsappMode;
       operator?: string;
+      /** Roll back over commerce's own pending upstream rows (needs `operator`). */
+      force: boolean;
     };
 
 export class UsageError extends Error {
@@ -103,7 +116,7 @@ const VALUE_FLAGS = [
 ];
 export const MAX_WAIT_SECONDS = 3600;
 const WAIT_POLL_MS = 5000;
-const BOOLEAN_FLAGS = ["--status", "--dry-run", "--ack-warnings"];
+const BOOLEAN_FLAGS = ["--status", "--dry-run", "--ack-warnings", "--force"];
 
 function isMode(value: string | undefined): value is WhatsappMode {
   return (WHATSAPP_MODES as readonly string[]).includes(value ?? "");
@@ -179,6 +192,20 @@ export function parseCutoverArgs(argv: string[]): CutoverArgs {
     );
   }
 
+  const force = argv.includes("--force");
+  if (force && to !== "legacy") {
+    throw new UsageError(
+      "--force overrides a pending drain of a rollback only; use it with --to legacy."
+    );
+  }
+  if (force && !operator) {
+    // The CLI has no tenant user: the operator label is the only name the audit
+    // row of an override can carry.
+    throw new UsageError(
+      '--force needs --operator "<name>": the audit row of an override must name who did it.'
+    );
+  }
+
   return {
     kind: "flip",
     tenantId,
@@ -186,6 +213,7 @@ export function parseCutoverArgs(argv: string[]): CutoverArgs {
     reason: reason.reason,
     dryRun: argv.includes("--dry-run"),
     acknowledgeWarnings: argv.includes("--ack-warnings"),
+    force,
     waitSeconds,
     ...(from ? { from } : {}),
     ...(operator ? { operator: operator.slice(0, 120) } : {})
@@ -200,7 +228,7 @@ async function main(): Promise<void> {
     if (error instanceof UsageError) {
       console.error(`commerce:whatsapp:cutover: ${safeErrorDetail(error)}`);
       console.error(
-        'Usage: bun run commerce:whatsapp:cutover --tenant <uuid> (--status | --to upstream|legacy --reason "<why>" [--dry-run] [--ack-warnings] [--wait <seconds>] [--from <mode>] [--operator "<name>"])'
+        'Usage: bun run commerce:whatsapp:cutover --tenant <uuid> (--status | --to upstream|legacy --reason "<why>" [--dry-run] [--ack-warnings] [--wait <seconds>] [--from <mode>] [--operator "<name>"] [--force])'
       );
       process.exitCode = 2;
       return;
@@ -227,7 +255,9 @@ async function main(): Promise<void> {
         if (args.kind === "status") {
           return {
             kind: "status" as const,
-            status: await readWhatsappModeStatus(tx, args.tenantId)
+            status: await readWhatsappModeStatus(tx, args.tenantId, {
+              surface: "cli"
+            })
           };
         }
 
@@ -246,6 +276,7 @@ async function main(): Promise<void> {
               reason: args.reason,
               ...(args.from ? { expected: args.from } : {}),
               acknowledgeWarnings: args.acknowledgeWarnings,
+              force: args.force,
               dryRun,
               correlationId
             }
@@ -295,11 +326,22 @@ async function main(): Promise<void> {
 
     if (outcome.kind === "status") {
       console.log(JSON.stringify(outcome.status, null, 2));
+      console.error(
+        `commerce:whatsapp:cutover NOTE: ${outcome.status.channelEnvironmentNotice}`
+      );
       return;
     }
 
     const { result } = outcome;
     console.log(JSON.stringify(result.evidence, null, 2));
+    console.error(
+      `commerce:whatsapp:cutover NOTE: ${result.evidence.channelEnvironmentNotice}`
+    );
+    if (result.evidence.force.applied) {
+      console.error(
+        `commerce:whatsapp:cutover FORCED: ${result.evidence.force.bypassedNonTerminal} non-terminal commerce message(s) remain in the upstream queue; the upstream dispatcher keeps working them.`
+      );
+    }
 
     switch (result.outcome) {
       case "flipped":

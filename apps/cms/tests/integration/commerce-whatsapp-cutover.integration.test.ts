@@ -55,6 +55,7 @@ import {
 import {
   flipWhatsappMode,
   readWhatsappModeStatus,
+  UPSTREAM_DRAIN_PAGE_LIMIT,
   type FlipOptions,
   type FlipResult
 } from "../../src/modules/commerce/application/whatsapp-mode-flip";
@@ -285,6 +286,23 @@ async function seedOptedInAccount(tenantId: string, phone: string) {
     });
     await updateMarketingConsent(tx, tenantId, account, true);
   });
+}
+
+/** A queued row of ANOTHER module in the shared upstream queue (a booking reminder), written straight into the table. */
+async function seedForeignUpstreamRows(
+  tenantId: string,
+  count: number,
+  status = "queued"
+): Promise<void> {
+  await getAdminSql()`
+    INSERT INTO awcms_whatsapp_messages
+      (tenant_id, idempotency_key, template_key, purpose, recipient,
+       recipient_hash, recipient_masked, body, status)
+    SELECT ${tenantId}, 'booking:reminder:' || ${status} || ':' || n, 'booking.reminder',
+           'transactional', '+6281200000000', 'hash-' || ${status} || n, '+62812****0000',
+           'Reminder', ${status}
+    FROM generate_series(1, ${count}) AS n
+  `;
 }
 
 suite("the guarded WhatsApp mode flip (Issue #393)", () => {
@@ -768,6 +786,200 @@ suite("the guarded WhatsApp mode flip (Issue #393)", () => {
       expect((await flip(TENANT_A, "legacy")).outcome).toBe("flipped");
     });
 
+    // Issue #449 (ADR-0047 D12).
+    test("rows of ANOTHER module in the shared upstream queue never block a commerce rollback, and are reported", async () => {
+      await flip(TENANT_A, "upstream");
+      await seedForeignUpstreamRows(TENANT_A, 3, "queued");
+      await seedForeignUpstreamRows(TENANT_A, 1, "retry_wait");
+
+      const status = await inTenant(TENANT_A, (tx) =>
+        readWhatsappModeStatus(tx, TENANT_A, { env: process.env })
+      );
+      expect(status.queues.upstream.nonTerminal).toBe(0);
+      expect(status.queues.upstreamScope).toEqual({
+        unrelatedNonTerminal: 4,
+        commerceCountExact: true
+      });
+      expect(status.flip).toMatchObject({ to: "legacy", allowed: true });
+
+      const back = await flip(TENANT_A, "legacy");
+      expect(back.outcome).toBe("flipped");
+      expect(back.evidence.queues.upstreamScope.unrelatedNonTerminal).toBe(4);
+      // They are not touched: the upstream dispatcher still owns them.
+      const rows = (await getAdminSql()`
+        SELECT count(*) AS n FROM awcms_whatsapp_messages
+        WHERE tenant_id = ${TENANT_A} AND template_key = 'booking.reminder'
+          AND status IN ('queued', 'retry_wait')
+      `) as { n: string }[];
+      expect(Number(rows[0]!.n)).toBe(4);
+    });
+
+    test("commerce's OWN pending rows still block, counted without the other module's, and the message offers the override", async () => {
+      await flip(TENANT_A, "upstream");
+      await inTenant(TENANT_A, (tx) => enqueueOtp(tx, TENANT_A, "up-1"));
+      await getAdminSql()`
+        UPDATE awcms_whatsapp_messages SET status = 'retry_wait'
+        WHERE tenant_id = ${TENANT_A} AND template_key = 'commerce.customer_otp'
+      `;
+      await seedForeignUpstreamRows(TENANT_A, 5);
+
+      const refused = await flip(TENANT_A, "legacy");
+
+      expect(refused.outcome).toBe("refused");
+      expect(refused.evidence.refusal?.code).toBe("DRAIN_PENDING");
+      expect(refused.evidence.queues.upstream.countsByStatus).toEqual({
+        retry_wait: 1
+      });
+      expect(refused.evidence.queues.upstreamScope.unrelatedNonTerminal).toBe(
+        5
+      );
+      expect(refused.evidence.refusal?.message).toContain(
+        "5 non-terminal message(s) of other modules are not counted"
+      );
+      expect(refused.evidence.refusal?.message).toContain("--force");
+      expect(refused.evidence.force).toEqual({
+        requested: false,
+        applied: false,
+        bypassedNonTerminal: 0
+      });
+    });
+
+    test("a status holding more than one page is not attributable: the remainder counts as commerce's (fail closed) and the evidence says so", async () => {
+      await flip(TENANT_A, "upstream");
+      await seedForeignUpstreamRows(
+        TENANT_A,
+        UPSTREAM_DRAIN_PAGE_LIMIT + 3,
+        "queued"
+      );
+
+      const refused = await flip(TENANT_A, "legacy");
+
+      expect(refused.outcome).toBe("refused");
+      expect(refused.evidence.queues.upstream.nonTerminal).toBe(3);
+      expect(refused.evidence.queues.upstreamScope).toEqual({
+        unrelatedNonTerminal: UPSTREAM_DRAIN_PAGE_LIMIT,
+        commerceCountExact: false
+      });
+    });
+
+    describe("force: the audited rollback override", () => {
+      async function stuckCommerceRow(): Promise<void> {
+        await flip(TENANT_A, "upstream");
+        await inTenant(TENANT_A, (tx) => enqueueOtp(tx, TENANT_A, "up-1"));
+        await getAdminSql()`
+          UPDATE awcms_whatsapp_messages SET status = 'retry_wait'
+          WHERE tenant_id = ${TENANT_A}
+        `;
+      }
+
+      test("rolls back over commerce's pending rows, audits it under its own action with the bypassed count, and leaves the rows to the upstream dispatcher", async () => {
+        await stuckCommerceRow();
+
+        const result = await flip(TENANT_A, "legacy", { force: true });
+
+        expect(result.outcome).toBe("flipped");
+        expect(result.evidence.force).toEqual({
+          requested: true,
+          applied: true,
+          bypassedNonTerminal: 1
+        });
+        expect(result.evidence.blockers).toEqual([]);
+        expect(await readWhatsappModeFor(TENANT_A)).toBe("legacy");
+
+        const forced = (await auditRows(TENANT_A)).filter(
+          (row) => row.action === "whatsapp_mode.flip_forced"
+        );
+        expect(forced).toHaveLength(1);
+        expect(forced[0]).toMatchObject({
+          severity: "warning",
+          actor_tenant_user_id: STAFF
+        });
+        expect(forced[0]!.attributes).toMatchObject({
+          from: "upstream",
+          to: "legacy",
+          forced: true,
+          bypassedNonTerminal: 1,
+          upstreamNonTerminal: 1
+        });
+        expect(forced[0]!.id).toBe(result.evidence.auditEventId!);
+        // No plain `flip` row for the same event: one action per flip.
+        expect(
+          (await auditRows(TENANT_A)).filter(
+            (row) =>
+              row.action === "whatsapp_mode.flip" && row.id === forced[0]!.id
+          )
+        ).toHaveLength(0);
+
+        // The row is untouched and the upstream dispatcher still works it.
+        const left = (await getAdminSql()`
+          SELECT status FROM awcms_whatsapp_messages WHERE tenant_id = ${TENANT_A}
+        `) as { status: string }[];
+        expect(left.map((row) => row.status)).toEqual(["retry_wait"]);
+      });
+
+      test("a dry run with force reports what it would bypass and writes nothing", async () => {
+        await stuckCommerceRow();
+        const before = await counts(TENANT_A);
+
+        const result = await flip(TENANT_A, "legacy", {
+          force: true,
+          dryRun: true
+        });
+
+        expect(result.outcome).toBe("would_flip");
+        expect(result.evidence.force).toMatchObject({
+          applied: true,
+          bypassedNonTerminal: 1
+        });
+        expect(await counts(TENANT_A)).toEqual(before);
+        expect(await readWhatsappModeFor(TENANT_A)).toBe("upstream");
+      });
+
+      test("force with nothing to bypass is a plain rollback: ordinary audit action, applied false", async () => {
+        await flip(TENANT_A, "upstream");
+
+        const result = await flip(TENANT_A, "legacy", { force: true });
+
+        expect(result.outcome).toBe("flipped");
+        expect(result.evidence.force).toEqual({
+          requested: true,
+          applied: false,
+          bypassedNonTerminal: 0
+        });
+        expect(
+          (await auditRows(TENANT_A)).map((row) => row.action)
+        ).not.toContain("whatsapp_mode.flip_forced");
+      });
+
+      test("force bypasses the drain and nothing else: a dead legacy channel still refuses, and the refusal is audited as a refusal", async () => {
+        await stuckCommerceRow();
+
+        const result = await flip(TENANT_A, "legacy", {
+          force: true,
+          env: {
+            ...envSnapshot(),
+            COMMERCE_WHATSAPP_ENABLED: "false"
+          } as NodeJS.ProcessEnv
+        });
+
+        expect(result.outcome).toBe("refused");
+        expect(result.evidence.refusal?.code).toBe(
+          "TARGET_CHANNEL_UNAVAILABLE"
+        );
+        expect(await readWhatsappModeFor(TENANT_A)).toBe("upstream");
+        expect((await auditRows(TENANT_A)).map((row) => row.action)).toContain(
+          "whatsapp_mode.flip_refused"
+        );
+      });
+
+      test("force never applies to a flip INTO upstream: the function refuses to run it", async () => {
+        await expect(
+          flip(TENANT_A, "upstream", { force: true })
+        ).rejects.toThrow(TypeError);
+        expect(await readWhatsappModeFor(TENANT_A)).toBe("legacy");
+      });
+    });
+
     test("it is refused when the legacy channel is off in this process: flipping into a dead channel would stop every OTP", async () => {
       await flip(TENANT_A, "upstream");
 
@@ -971,6 +1183,9 @@ suite("the guarded WhatsApp mode flip (Issue #393)", () => {
         },
         flip: { to: "upstream", allowed: false }
       });
+      expect(status.channelEnvironmentNotice).toContain(
+        "not from the WhatsApp dispatchers"
+      );
       expect(status.flip.blockers.map((b) => b.code)).toEqual([
         "DRAIN_PENDING"
       ]);

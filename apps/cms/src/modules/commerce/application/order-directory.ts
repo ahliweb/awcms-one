@@ -55,7 +55,10 @@ import {
   computeRequestHash,
   findIdempotencyRecord,
   saveIdempotencyRecord,
-  ANONYMOUS_IDEMPOTENCY_ACTOR
+  userIdempotencyActor,
+  ANONYMOUS_IDEMPOTENCY_ACTOR,
+  type IdempotencyActor,
+  type IdempotencyRecord
 } from "../../_shared/idempotency";
 import {
   keysetCursorCreatedAtSql,
@@ -170,6 +173,85 @@ const ORDER_CODE_CONSTRAINT = "awcms_commerce_orders_tenant_code_key";
 const MAX_ORDER_CODE_ATTEMPTS = 5;
 
 export const ORDER_LIST_LIMIT = 100;
+
+/**
+ * Whose idempotency namespace a storefront checkout key lives in (issue #449,
+ * ADR-0043 D5 amendment, ADR-0145). A guest checkout has no identity and shares
+ * the one anonymous namespace per `(tenant, scope)`, as before. A checkout that
+ * presented a valid customer bearer session (`accountCustomerId`, set by the
+ * route only after `requireCustomerSession`) is keyed to THAT customer: another
+ * visitor, guest or signed-in, can neither claim the key first (the account
+ * holder's own request would answer `409`) nor replay the stored order.
+ *
+ * `ADR-0145` offers only user, machine and anonymous actors, and the table's
+ * shape CHECK admits only those prefixes. A customer is not a tenant user, so it
+ * is the `user:` constructor with a `customer:` sub-namespace
+ * (`user:customer:<uuid>`): it cannot collide with a real tenant user id (a bare
+ * uuid) and needs no upstream-owned change. A first-class `customer:` kind
+ * belongs upstream; moving to it later only renames this one function.
+ */
+export function checkoutIdempotencyActor(
+  accountCustomerId: string | undefined
+): IdempotencyActor {
+  return accountCustomerId
+    ? userIdempotencyActor(`customer:${accountCustomerId}`)
+    : ANONYMOUS_IDEMPOTENCY_ACTOR;
+}
+
+/**
+ * The stored checkout record for `key`, in the actor's own namespace.
+ *
+ * TRANSITION (remove once the retention window of the idempotency table, 30
+ * days, has passed since this shipped): before issue #449 a bearer checkout
+ * stored its order under the anonymous actor. A client that was mid-retry across
+ * the deploy would miss its record in the new namespace and create a SECOND
+ * order. So a signed-in checkout that finds nothing of its own also looks in the
+ * anonymous namespace, and honours that record ONLY when it is the very same
+ * request (equal request hash) AND the order it points to belongs to this
+ * customer. Anything else there - a different payload, somebody else's order, a
+ * record a guest planted - is ignored: never replayed and never answered `409`,
+ * which is what stops the fallback from restoring the squat it exists to close.
+ * (A guest who plants the IDENTICAL request under a customer's own phone could
+ * get that identical order replayed to her; that is what the anonymous namespace
+ * always allowed, it needs the key and the whole body, and the window closes
+ * with the retention.)
+ */
+async function findCheckoutIdempotencyRecord(
+  tx: Bun.SQL,
+  tenantId: string,
+  idempotencyKey: string,
+  accountCustomerId: string | undefined,
+  requestHash: string
+): Promise<IdempotencyRecord | null> {
+  const own = await findIdempotencyRecord(
+    tx,
+    tenantId,
+    IDEMPOTENCY_SCOPE,
+    idempotencyKey,
+    checkoutIdempotencyActor(accountCustomerId)
+  );
+  if (own || !accountCustomerId) return own;
+
+  const legacy = await findIdempotencyRecord(
+    tx,
+    tenantId,
+    IDEMPOTENCY_SCOPE,
+    idempotencyKey,
+    ANONYMOUS_IDEMPOTENCY_ACTOR
+  );
+  if (!legacy || legacy.requestHash !== requestHash) return null;
+  const orderCode = (legacy.responseBody as { orderCode?: unknown } | null)
+    ?.orderCode;
+  if (typeof orderCode !== "string") return null;
+
+  const owned = (await tx`
+    SELECT 1 AS owned FROM awcms_commerce_orders
+    WHERE tenant_id = ${tenantId} AND order_code = ${orderCode}
+      AND customer_id = ${accountCustomerId}
+    LIMIT 1
+  `) as unknown[];
+  return owned.length > 0 ? legacy : null;
+}
 
 export class IdempotencyPayloadMismatchError extends Error {
   constructor() {
@@ -1055,12 +1137,12 @@ async function createOrderFromCartWrite(
   // `client_key` (G5), decided by the caller before it got here.
   const existing = extras
     ? null
-    : await findIdempotencyRecord(
+    : await findCheckoutIdempotencyRecord(
         tx,
         tenantId,
-        IDEMPOTENCY_SCOPE,
         input.idempotencyKey,
-        ANONYMOUS_IDEMPOTENCY_ACTOR
+        accountCustomerId,
+        requestHash
       );
   if (existing) {
     if (existing.requestHash !== requestHash) {
@@ -1179,12 +1261,12 @@ async function createOrderFromCartWrite(
 
     // The account lock was only just taken: a concurrent request with this
     // very idempotency key may have committed while we waited for it.
-    const raced = await findIdempotencyRecord(
+    const raced = await findCheckoutIdempotencyRecord(
       tx,
       tenantId,
-      IDEMPOTENCY_SCOPE,
       input.idempotencyKey,
-      ANONYMOUS_IDEMPOTENCY_ACTOR
+      accountCustomerId,
+      requestHash
     );
     if (raced) {
       if (raced.requestHash !== requestHash) {
@@ -1459,7 +1541,7 @@ async function createOrderFromCartWrite(
       tenantId,
       IDEMPOTENCY_SCOPE,
       input.idempotencyKey,
-      ANONYMOUS_IDEMPOTENCY_ACTOR,
+      checkoutIdempotencyActor(accountCustomerId),
       requestHash,
       201,
       publicRecord
