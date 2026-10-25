@@ -491,6 +491,13 @@ describe("/admin/commerce-pos permission gates", () => {
     expect([...pageKeys].sort()).toEqual([
       // Issue #292 — the scan field needs the lookup key; also checked by the endpoint.
       "commerce.barcodes.read",
+      // Issue #388 — the front-desk tab: the lookup key opens it (also an entry
+      // key of the page) and each of the three till writes is its own key, asked
+      // on that tab only; every route behind them decides for itself.
+      "commerce.booking_balance_payments.create",
+      "commerce.booking_check_ins.create",
+      "commerce.booking_check_outs.create",
+      "commerce.booking_reservation_links.read",
       // Issue #286 — hold and resume a parked cart; also checked by the endpoints.
       "commerce.held_sales.create",
       "commerce.held_sales.update",
@@ -500,9 +507,16 @@ describe("/admin/commerce-pos permission gates", () => {
       "commerce.orders.read",
       "commerce.pos.create",
       // Issue #285 — the credit-sale checkbox; also checked by the endpoint.
-      "commerce.pos_due.create"
+      "commerce.pos_due.create",
+      // Issue #388 — the front desk links the audit trail only to a viewer who
+      // may open it (the one key here that another module declares).
+      "logging.audit_trail.read"
     ]);
-    expect([...pageKeys].filter((key) => !declared.has(key))).toEqual([]);
+    expect(
+      [...pageKeys].filter(
+        (key) => key.startsWith("commerce.") && !declared.has(key)
+      )
+    ).toEqual([]);
 
     const enforcedPos = await enforcedTriples(
       POS_ROUTES,

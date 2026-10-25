@@ -80,6 +80,7 @@ import {
   listHeldSales,
   type HeldSaleRecord
 } from "../../modules/commerce/application/held-sale-directory";
+import CommerceFrontDesk from "../../components/CommerceFrontDesk.astro";
 import { POS_WALK_IN_CUSTOMER_NAME } from "../../modules/commerce/domain/pos-order-validation";
 import { fetchTenantShortcutOverrides } from "../../modules/commerce/application/barcode-http";
 import {
@@ -92,8 +93,16 @@ const ssr = Astro.locals.ssrContext!;
 const { t, tn } = getTranslatorFor(Astro.locals.locale);
 const labels = createCommerceLabels(t);
 
-const tab =
-  Astro.url.searchParams.get("tab") === "history" ? "history" : "sale";
+/**
+ * `?tab=` is explicit when it names a tab. Without it the first tab the
+ * signed-in staff member may use opens (Issue #388): a front-desk cashier who
+ * holds the till keys but cannot ring up a sale lands on the front desk.
+ */
+const tabParam = Astro.url.searchParams.get("tab");
+const requestedTab: "sale" | "history" | "front-desk" | null =
+  tabParam === "history" || tabParam === "front-desk" || tabParam === "sale"
+    ? tabParam
+    : null;
 const dateFromParam = Astro.url.searchParams.get("dateFrom") ?? "";
 const dateToParam = Astro.url.searchParams.get("dateTo") ?? "";
 const cashierParam = Astro.url.searchParams.get("cashier") ?? "";
@@ -130,15 +139,36 @@ const DUE_ENTRY = {
   action: "create"
 } as const;
 
+/**
+ * Issue #388 - the front desk (check-in, check-out, balance collection for a
+ * booking reservation) opens on the lookup permission of Issue #383; each of its
+ * three writes is its own key, asked below only on that tab.
+ */
+const FRONT_DESK_ENTRY = {
+  moduleKey: "commerce",
+  activityCode: "booking_reservation_links",
+  action: "read"
+} as const;
+
 const screen = await loadAdminScreen({
   ssr,
   workClass: "interactive",
-  authorize: [SALE_ENTRY, HISTORY_ENTRY, DUE_ENTRY],
+  authorize: [SALE_ENTRY, HISTORY_ENTRY, DUE_ENTRY, FRONT_DESK_ENTRY],
   load: async ({ tx, entry, can }) => {
     const features = await fetchCommerceFeatures(tx, ssr.tenantId);
     const canSell = entry[0] === true;
     const canReadHistory = entry[1] === true;
     const canSellOnCredit = entry[2] === true;
+    const canFrontDesk = entry[3] === true && features.booking && features.pos;
+    const tab: "sale" | "history" | "front-desk" =
+      requestedTab ??
+      (canSell
+        ? "sale"
+        : canReadHistory
+          ? "history"
+          : canFrontDesk
+            ? "front-desk"
+            : "sale");
     const history: PosOrderListPage | null =
       features.pos && canReadHistory && tab === "history"
         ? await listPosOrders(tx, ssr.tenantId, cursor, {
@@ -150,7 +180,9 @@ const screen = await loadAdminScreen({
     // Issue #284 - the cashier's OWN open register sessions (never another
     // cashier's), only while the register feature is on and the sale form shows.
     const registerSessions: RegisterSessionRecord[] =
-      features.pos && features.register && canSell && tab === "sale"
+      features.pos &&
+      features.register &&
+      ((canSell && tab === "sale") || (canFrontDesk && tab === "front-desk"))
         ? (
             await listRegisterSessions(tx, ssr.tenantId, null, {
               status: "open",
@@ -215,7 +247,46 @@ const screen = await loadAdminScreen({
       }))
         ? await fetchRedemptionTerms(tx, ssr.tenantId)
         : null;
+    // Issue #388 - the front desk's three writes and the audit link, each its own
+    // key (UX only: every route behind them still decides for itself).
+    const frontDeskOn = canFrontDesk && tab === "front-desk";
+    const frontDesk = {
+      canCheckIn:
+        frontDeskOn &&
+        (await can({
+          moduleKey: "commerce",
+          activityCode: "booking_check_ins",
+          action: "create"
+        })),
+      canCheckOut:
+        frontDeskOn &&
+        (await can({
+          moduleKey: "commerce",
+          activityCode: "booking_check_outs",
+          action: "create"
+        })),
+      canCollect:
+        frontDeskOn &&
+        (await can({
+          moduleKey: "commerce",
+          activityCode: "booking_balance_payments",
+          action: "create"
+        })),
+      canReadAudit:
+        frontDeskOn &&
+        (await can({
+          moduleKey: "logging",
+          activityCode: "audit_trail",
+          action: "read"
+        })),
+      shortcuts: frontDeskOn
+        ? await fetchTenantShortcutOverrides(tx, ssr.tenantId)
+        : {}
+    };
     return {
+      tab,
+      canFrontDesk,
+      frontDesk,
       barcodeAvailable,
       canLookup,
       tenantShortcuts,
@@ -241,6 +312,8 @@ const screen = await loadAdminScreen({
 });
 
 const allowed = screen.state === "allowed";
+const tab = allowed ? screen.data.tab : (requestedTab ?? "sale");
+const canFrontDesk = allowed && screen.data.canFrontDesk;
 const denied = screen.state === "denied";
 const loadError = screen.state === "error";
 const posEnabled = allowed && screen.data.posEnabled;
@@ -346,7 +419,43 @@ const tenderLabel = (method: string): string =>
           {t("History")}
         </a>
       )}
+      {canFrontDesk && (
+        <a
+          href="/admin/commerce-pos?tab=front-desk"
+          class={tab === "front-desk" ? "module-toggle" : ""}
+          aria-current={tab === "front-desk" ? "page" : undefined}
+        >
+          {t("Front desk")}
+        </a>
+      )}
     </nav>
+  )}
+
+  {allowed && posEnabled && tab === "front-desk" && !canFrontDesk && (
+    <p class="state-notice fade-in-up" id="pos-front-desk-off" role="status">
+      {t(
+        "The front desk needs the booking feature, point of sale and permission to look up a reservation."
+      )}
+    </p>
+  )}
+
+  {allowed && posEnabled && tab === "front-desk" && canFrontDesk && (
+    <CommerceFrontDesk
+      locale={Astro.locals.locale}
+      registerEnabled={registerEnabled}
+      sessions={registerSessions.map((session) => ({
+        id: session.id,
+        registerId: session.registerId,
+        registerCode: session.registerCode,
+        registerName: session.registerName
+      }))}
+      canCheckIn={allowed && screen.data.frontDesk.canCheckIn}
+      canCheckOut={allowed && screen.data.frontDesk.canCheckOut}
+      canCollect={allowed && screen.data.frontDesk.canCollect}
+      storedValueEnabled={storedValueEnabled}
+      canReadAudit={allowed && screen.data.frontDesk.canReadAudit}
+      tenantShortcuts={allowed ? screen.data.frontDesk.shortcuts : {}}
+    />
   )}
 
   {allowed && posEnabled && tab === "sale" && !canSell && (
@@ -1503,6 +1612,16 @@ const tenderLabel = (method: string): string =>
   const cartRowTemplate = el<HTMLTemplateElement>("pos-cart-row-template");
   const checkoutForm = el<HTMLFormElement>("pos-checkout-form");
   const receiptWrapper = el<HTMLElement>("pos-receipt-wrapper");
+
+  // Issue #388 - the front-desk tab ships its script as a separate chunk,
+  // fetched only when that tab rendered its root: the sale and history tabs
+  // download none of it.
+  const frontDeskRoot = el<HTMLElement>("fd-root");
+  if (frontDeskRoot) {
+    void import("../../lib/ui/front-desk-island").then((module) => {
+      module.initFrontDesk(frontDeskRoot);
+    });
+  }
 
   function cartSubtotalCents(): bigint {
     return cart.reduce(
