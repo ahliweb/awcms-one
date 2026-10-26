@@ -156,6 +156,17 @@ describe("name to Kemendagri code mapping", () => {
     assert.equal(normalizeLabel("Baʼa"), normalizeLabel("Ba'a"));
   });
 
+  test("the wilayah parser keeps names with doubled single quotes and loses no tuple line", () => {
+    const rows = parseWilayahSql("('11.01.02.2018','Pasi Kuala Ba''u'),\n('11.01.07.2015','Sawang Ba''u');");
+    assert.deepEqual(rows, [
+      { code: "11.01.02.2018", name: "Pasi Kuala Ba'u" },
+      { code: "11.01.07.2015", name: "Sawang Ba'u" },
+    ]);
+    const sql = readFileSync(WILAYAH, "utf8");
+    const tupleLines = sql.split(/\r?\n/).filter((l) => /^\('\d{2}/.test(l)).length;
+    assert.equal(parseWilayahSql(sql).length, tupleLines);
+  });
+
   test("a village is resolved inside its own kecamatan only", () => {
     assert.equal(resolveLabel(index, "62.71.01", "001. Pahandut").code, "62.71.01.1001");
     assert.equal(resolveLabel(index, "62.71.04", "001. Pahandut").status, "unmatched");

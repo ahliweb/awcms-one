@@ -48,6 +48,22 @@ import {
 } from "../../apps/cms/src/modules/idn-admin-regions/domain/population-validation";
 
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
+export const WILAYAH_SQL_PATH = path.join(
+  REPO_ROOT,
+  "apps",
+  "cms",
+  "data",
+  "idn-admin-regions",
+  "upstream",
+  "cahyadsn-wilayah",
+  "db",
+  "wilayah.sql"
+);
+/**
+ * One `('<dotted code>','<name>')` tuple of wilayah.sql. SQL escapes a quote inside
+ * a name by doubling it (`'Panu''ut'`), so the name is `(?:[^']|'')*`.
+ */
+const WILAYAH_TUPLE = /\('(\d+(?:\.\d+)*)','(?:[^']|'')*'\)/g;
 
 export const ARCHIVE_FILE_NAME = "archive.json";
 export const EXTRACT_LEDGER_FILE_NAME = "extract-results.json";
@@ -216,12 +232,38 @@ export function isDeletableArchiveSource(cacheDir: string, filePath: string): bo
 }
 
 /**
+ * Every region of the upstream wilayah dataset, as code -> level. This is the same
+ * map the importer reads from the active region dataset in the database, so the
+ * validator's children and region-code checks see the full hierarchy, not only the
+ * regions one PDF happened to publish.
+ */
+export function parseWilayahRegionLevels(sqlText: string): Map<string, number> {
+  const levels = new Map<string, number>();
+  for (const match of sqlText.matchAll(WILAYAH_TUPLE)) {
+    const code = match[1]!;
+    levels.set(code, regionLevelOfCode(code));
+  }
+  return levels;
+}
+
+/** Reads the upstream wilayah.sql. Throws when it is missing or holds no regions: eligibility must not be guessed. */
+export async function loadWilayahRegionLevels(sqlPath: string = WILAYAH_SQL_PATH): Promise<Map<string, number>> {
+  const levels = parseWilayahRegionLevels(await readFile(sqlPath, "utf8"));
+  if (levels.size === 0) throw new Error(`no regions found in ${sqlPath}`);
+  return levels;
+}
+
+/**
  * Decides whether a PDF may be archived. The PDF must be the source of exactly
  * one dataset, whose CSV is present, matches its manifest's checksum, and passes
- * the importer's pure validation. The region-code check against the database is
- * not run here, so the region levels are taken from the CSV's own codes.
+ * the importer's pure validation. `regionLevels` is the full region list (see
+ * `loadWilayahRegionLevels`), loaded once per run, not the CSV's own codes.
  */
-export function decideEligibility(sha256: string, candidates: readonly DatasetCandidate[]): Eligibility {
+export function decideEligibility(
+  sha256: string,
+  candidates: readonly DatasetCandidate[],
+  regionLevels: ReadonlyMap<string, number>
+): Eligibility {
   const matches = candidates.filter((c) => c.manifest.sourceFileSha256 === sha256);
   if (matches.length === 0) {
     return { eligible: false, reason: "no dataset yet" };
@@ -248,10 +290,6 @@ export function decideEligibility(sha256: string, candidates: readonly DatasetCa
   }
   if (parsed.records.length === 0) {
     return { eligible: false, reason: "validation failed: the CSV has no data rows" };
-  }
-  const regionLevels = new Map<string, number>();
-  for (const record of parsed.records) {
-    regionLevels.set(record.region_code, regionLevelOfCode(record.region_code));
   }
   const validation = validatePopulationRecords(parsed.records, {
     regionLevels,
@@ -745,6 +783,13 @@ export async function main(argv: readonly string[], env: NodeJS.ProcessEnv = pro
   const warnings: string[] = [];
   const candidates = await loadDatasetCandidates(datasetsDir, warnings);
   for (const warning of warnings) console.log(`warning: ${warning}`);
+  let regionLevels: Map<string, number>;
+  try {
+    regionLevels = await loadWilayahRegionLevels();
+  } catch (error) {
+    console.error(`cannot load the region list (${(error as Error).message}); no eligibility decided.`);
+    return 2;
+  }
 
   const pdfs = (await listPdfs(pdfRoot)).filter((p) => matchesOnly(path.basename(p), args.only));
   const ledgerWarnings: string[] = [];
@@ -759,7 +804,7 @@ export async function main(argv: readonly string[], env: NodeJS.ProcessEnv = pro
     const md5 = md5Hex(bytesBuf);
     const relativePath = path.relative(pdfRoot, filePath);
     const location = classifyPdfLocation(relativePath);
-    const eligibility = decideEligibility(sha256, candidates);
+    const eligibility = decideEligibility(sha256, candidates, regionLevels);
     let remote: string | null = null;
     let scope: ArchiveScope | null = null;
     let refusal: string | null = null;

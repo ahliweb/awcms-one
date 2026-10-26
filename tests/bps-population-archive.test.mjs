@@ -29,8 +29,10 @@ import {
   parseRcloneMd5,
   parseRcloneSizeJson,
   remoteFilePath,
+  parseWilayahRegionLevels,
   sha256Hex,
-  unextractedFolder
+  unextractedFolder,
+  WILAYAH_SQL_PATH
 } from "../tools/bps-population/archive.ts";
 import { parsePopulationManifest } from "../apps/cms/src/modules/idn-admin-regions/domain/population-manifest.ts";
 
@@ -38,6 +40,8 @@ const REMOTE = "gdrive-test:Folder/Sub";
 const PDF_BYTES = new TextEncoder().encode("%PDF-1.4 fake publication bytes");
 const LOCAL = { md5: md5Hex(PDF_BYTES), bytes: PDF_BYTES.byteLength };
 const SHA = sha256Hex(PDF_BYTES);
+/** An empty region list: only for cases that fail before the region check. */
+const NO_REGIONS = new Map();
 
 /** A dataset candidate whose CSV is deliberately not a valid population file. */
 function candidate({ sourceFileSha256 = SHA, csvText = "not,the,header\n", csvBytesSha256 = null } = {}) {
@@ -112,7 +116,7 @@ const ITEM = {
 
 describe("eligibility", () => {
   test("no dataset cites the PDF: not eligible, 'no dataset yet'", () => {
-    const result = decideEligibility(SHA, [candidate({ sourceFileSha256: "f".repeat(64) })]);
+    const result = decideEligibility(SHA, [candidate({ sourceFileSha256: "f".repeat(64) })], NO_REGIONS);
     assert.deepEqual(result, { eligible: false, reason: "no dataset yet" });
   });
 
@@ -120,13 +124,13 @@ describe("eligibility", () => {
     const a = candidate();
     const b = candidate();
     b.datasetCode = "bps-9998-dalam-angka-2026";
-    const result = decideEligibility(SHA, [a, b]);
+    const result = decideEligibility(SHA, [a, b], NO_REGIONS);
     assert.equal(result.eligible, false);
     assert.match(result.reason, /ambiguous/);
   });
 
   test("CSV missing: not eligible", () => {
-    const result = decideEligibility(SHA, [candidate({ csvText: null })]);
+    const result = decideEligibility(SHA, [candidate({ csvText: null })], NO_REGIONS);
     assert.equal(result.eligible, false);
     assert.match(result.reason, /missing or unreadable/);
   });
@@ -134,13 +138,13 @@ describe("eligibility", () => {
   test("CSV checksum differs from the manifest: not eligible", () => {
     const drifted = candidate();
     drifted.manifest.csvSha256 = "0".repeat(64);
-    const result = decideEligibility(SHA, [drifted]);
+    const result = decideEligibility(SHA, [drifted], NO_REGIONS);
     assert.equal(result.eligible, false);
     assert.match(result.reason, /checksum does not match/);
   });
 
   test("CSV that fails the importer's shape check: validation failed", () => {
-    const result = decideEligibility(SHA, [candidate({ csvText: "not,the,header\n" })]);
+    const result = decideEligibility(SHA, [candidate({ csvText: "not,the,header\n" })], NO_REGIONS);
     assert.equal(result.eligible, false);
     assert.match(result.reason, /^validation failed/);
   });
@@ -148,7 +152,7 @@ describe("eligibility", () => {
   test("a valid header with no data rows: validation failed", () => {
     const header =
       "region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label";
-    const result = decideEligibility(SHA, [candidate({ csvText: `${header}\n` })]);
+    const result = decideEligibility(SHA, [candidate({ csvText: `${header}\n` })], NO_REGIONS);
     assert.equal(result.eligible, false);
     assert.match(result.reason, /validation failed/);
   });
@@ -168,8 +172,69 @@ describe("eligibility", () => {
         csvText: Buffer.from(csvBytes).toString("utf8"),
         csvBytesSha256: sha256Hex(csvBytes)
       }
-    ]);
+    ], parseWilayahRegionLevels(readFileSync(WILAYAH_SQL_PATH, "utf8")));
     assert.deepEqual(result, { eligible: true, datasetCode: "bps-6271-dalam-angka-2026", year: 2026 });
+  });
+});
+
+describe("region list for the validator", () => {
+  test("every ('code','name') tuple of wilayah.sql becomes code -> level, names with doubled quotes included", () => {
+    const sql = "INSERT INTO wilayah (kode, nama) VALUES\n('11','Aceh'),\n('11.01','Kabupaten Aceh Selatan'),\n('11.01.01','Bakongan'),\n('62.71.02.1001','Marang'),\n('62.03.15.2004','Karetau Manta''a'),\n('11.01.02','Panu''ut');";
+    const levels = parseWilayahRegionLevels(sql);
+    assert.deepEqual(
+      [...levels],
+      [["11", 1], ["11.01", 2], ["11.01.01", 3], ["62.71.02.1001", 4], ["62.03.15.2004", 4], ["11.01.02", 3]]
+    );
+  });
+
+  test("the upstream wilayah.sql yields the full hierarchy, not only a PDF's own codes", () => {
+    const levels = parseWilayahRegionLevels(readFileSync(WILAYAH_SQL_PATH, "utf8"));
+    assert.equal(levels.get("62"), 1);
+    assert.equal(levels.get("62.71"), 2);
+    assert.equal(levels.get("62.71.02.1001"), 4);
+    const tupleLines = readFileSync(WILAYAH_SQL_PATH, "utf8").split("\n").filter((l) => /^\('/.test(l)).length;
+    assert.equal(levels.size, tupleLines, "every tuple line parses to one region");
+  });
+});
+
+describe("children_sum uses the full region list", () => {
+  // Kecamatan 62.71.02 has three villages in the region list; the PDF publishes only two.
+  const CSV = [
+    "region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label",
+    "62.71.02,3,Marang,total,total,,4000,jiwa,2025,registration,total_population,3.1.1,36,,",
+    "62.71.02.1001,4,Marang,total,total,,1213,jiwa,2025,registration,total_population,3.1.1,36,,",
+    "62.71.02.1002,4,Tumbang Tahai,total,total,,3224,jiwa,2025,registration,total_population,3.1.1,36,,"
+  ].join("\n") + "\n";
+  const kecamatanCandidate = () => {
+    const c = candidate({ csvText: CSV });
+    c.manifest.coverageRegionCode = "62.71";
+    return c;
+  };
+  const FULL = new Map([
+    ["62", 1],
+    ["62.71", 2],
+    ["62.71.02", 3],
+    ["62.71.02.1001", 4],
+    ["62.71.02.1002", 4],
+    ["62.71.02.1003", 4]
+  ]);
+
+  test("a parent with 3 children in the list and only 2 published: children_sum is skipped, dataset eligible", () => {
+    const result = decideEligibility(SHA, [kecamatanCandidate()], FULL);
+    assert.deepEqual(result, { eligible: true, datasetCode: "bps-9999-dalam-angka-2026", year: 2026 });
+  });
+
+  test("the same CSV with the list holding only the published children is checked and fails (the old, wrong behaviour)", () => {
+    const onlyPublished = new Map([
+      ["62", 1],
+      ["62.71", 2],
+      ["62.71.02", 3],
+      ["62.71.02.1001", 4],
+      ["62.71.02.1002", 4]
+    ]);
+    const result = decideEligibility(SHA, [kecamatanCandidate()], onlyPublished);
+    assert.equal(result.eligible, false);
+    assert.match(result.reason, /children_sum/);
   });
 });
 

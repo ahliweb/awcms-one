@@ -19,7 +19,8 @@ function cleanText(s: string): string {
   let previous: string;
   do {
     previous = text;
-    text = text.replace(/<!--[\s\S]*?-->/g, "").replace(/<[^<>]*>/g, "");
+    // `<!-- -->` (React's text separator) is a tag-shaped run too, so this one pattern removes it.
+    text = text.replace(/<[^<>]*>/g, "");
   } while (text !== previous);
   return text
     .replace(/[<>]/g, "")
