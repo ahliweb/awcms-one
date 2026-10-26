@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1407-kecamatan-140605-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "14.06.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kepenuhan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Rokan Hulu",
+  "publisherDomain": "1407",
+  "publisherWebsite": "https://rohulkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Rokan Hulu (https://rohulkab.bps.go.id), publikasi \"Kecamatan Kepenuhan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "1407.26020",
+  "issn": "2597-5722",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://rohulkab.bps.go.id/id/publication/2026/09/28/6c29f8db08d8cc4cec6c2523/kecamatan-kepenuhan-dalam-angka-2026.html",
+  "sourceFileSha256": "ea06387018f148dbce07e7e421a44c54bde06b09d090b1e0de17f0226f2636f7",
+  "sourceFileBytes": 14943075,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Rokan Hulu",
+  "csvPath": "datasets/bps-1407-kecamatan-140605-dalam-angka-2026.csv",
+  "csvSha256": "4fe07eabe391a585c2e5071081d5d07f4fa463a3181ec8d31004913fc9ad7d37",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kepenuhan, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kepenuhan, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kepenuhan Barat Sungai Rokan Jaya\": unmatched ",
+    "table 3.1: row not stored: row \"Kepenuhan Barat Sungai Rokan Jaya\": unmatched "
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "datasetCode": "bps-1409-kecamatan-140703-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "14.07.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tanah Putih Dalam Angka 2026",
+  "publisherName": "BPS Rokan Hilir",
+  "publisherDomain": "1409",
+  "publisherWebsite": "https://rohilkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Rokan Hilir (https://rohilkab.bps.go.id), publikasi \"Kecamatan Tanah Putih Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1409010",
+  "publicationNumber": "14090.26009",
+  "issn": "3089-0810",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://rohilkab.bps.go.id/id/publication/2026/09/28/79fa1dc1b6314d1a91a662c0/kecamatan-tanah-putih-dalam-angka-2026.html",
+  "sourceFileSha256": "cd10b69c8f60ea05b9d63a26a788667c0818f7baa998efad01e579ef5c64c3f3",
+  "sourceFileBytes": 1363099,
+  "sourcePages": [18, 19, 20],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Rokan Hilir.",
+  "csvPath": "datasets/bps-1409-kecamatan-140703-dalam-angka-2026.csv",
+  "csvSha256": "32ec368765c4604306fe7175e70c902a5500732d4726f2d4975776d74de34638",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Tanah Putih, 2025",
+      "printedPages": [18, 19],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tanah Putih, 2025",
+      "printedPages": [20],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: the rows of region 14.07.03.2008 are not stored: sex split vs total: parts sum 1050.0000 != 547.0000 (diff 503.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 14.07.03.2005 are not stored: sex split vs total: parts sum 3121.0000 != 1608.0000 (diff 1513.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 14.07.03.2009 are not stored: sex split vs total: parts sum 5720.0000 != 2919.0000 (diff 2801.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 14.07.03.2006 are not stored: sex split vs total: parts sum 3359.0000 != 1708.0000 (diff 1651.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 14.07.03.1007 are not stored: sex split vs total: parts sum 5931.0000 != 2975.0000 (diff 2956.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 14.07.03.1010 are not stored: sex split vs total: parts sum 7384.0000 != 3762.0000 (diff 3622.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 14.07.03.2002 are not stored: sex split vs total: parts sum 5210.0000 != 2682.0000 (diff 2528.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 14.07.03.2001 are not stored: sex split vs total: parts sum 13177.0000 != 6709.0000 (diff 6468.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 14.07.03.2011 are not stored: sex split vs total: parts sum 2129.0000 != 1100.0000 (diff 1029.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 14.07.03.2012 are not stored: sex split vs total: parts sum 1151.0000 != 600.0000 (diff 551.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 14.07.03.2013 are not stored: sex split vs total: parts sum 11126.0000 != 5659.0000 (diff 5467.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 14.07.03.2015 are not stored: sex split vs total: parts sum 2746.0000 != 1426.0000 (diff 1320.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 14.07.03.2014 are not stored: sex split vs total: parts sum 2812.0000 != 1481.0000 (diff 1331.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 14.07.03.2018 are not stored: sex split vs total: parts sum 3548.0000 != 1798.0000 (diff 1750.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 14.07.03.2017 are not stored: sex split vs total: parts sum 4207.0000 != 2151.0000 (diff 2056.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 14.07.03.2016 are not stored: sex split vs total: parts sum 2554.0000 != 1288.0000 (diff 1266.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 14.07.03.1019 are not stored: sex split vs total: parts sum 5325.0000 != 2668.0000 (diff 2657.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 14.07.03 are not stored: sex split vs total: parts sum 161100.0000 != 80550.0000 (diff 80550.0000); the source itself is inconsistent"
+  ]
+}

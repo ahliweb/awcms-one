@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1309-kecamatan-130817-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "13.08.17",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Padang Gelugur Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pasaman",
+  "publisherDomain": "1309",
+  "publisherWebsite": "https://pasamankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pasaman (https://pasamankab.bps.go.id), publikasi \"Kecamatan Padang Gelugur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1309111",
+  "publicationNumber": "13090.25017",
+  "issn": "2987-1778",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pasamankab.bps.go.id/id/publication/2026/09/28/54bdb7d9865df2357fb114a5/kecamatan-padang-gelugur-dalam-angka-2026.html",
+  "sourceFileSha256": "8fbb2da020fc4824ced7a7d5bbd91c3ff6c01f1dc04d4107d4b3472f3763e8b6",
+  "sourceFileBytes": 8849811,
+  "sourcePages": [35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pasaman",
+  "csvPath": "datasets/bps-1309-kecamatan-130817-dalam-angka-2026.csv",
+  "csvSha256": "514af5fc8680ec17eac4b6f6ef95eae87571dc8a49fb9d3f4fd0163fb474d56f",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Padang Gelugur, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per desa/kelurahan (Kecamatan 3.1.1): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

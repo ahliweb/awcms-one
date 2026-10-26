@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.10.14.2001,4,Ibul Dalam,sex,laki_laki,,510,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.14.2001,4,Ibul Dalam,sex,perempuan,,484,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.14.2001,4,Ibul Dalam,total,total,,994,jiwa,2025,registration,total_population,3.1,27,,
+16.10.14.2002,4,Beringin Dalam,sex,laki_laki,,808,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.14.2002,4,Beringin Dalam,sex,perempuan,,829,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.14.2002,4,Beringin Dalam,total,total,,1637,jiwa,2025,registration,total_population,3.1,27,,
+16.10.14.2003,4,Kuang Dalam Barat,sex,laki_laki,,1018,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.14.2003,4,Kuang Dalam Barat,sex,perempuan,,1021,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.14.2003,4,Kuang Dalam Barat,total,total,,2039,jiwa,2025,registration,total_population,3.1,27,,
+16.10.14.2004,4,Lubuk Tunggal,sex,laki_laki,,614,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.14.2004,4,Lubuk Tunggal,sex,perempuan,,616,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.14.2004,4,Lubuk Tunggal,total,total,,1230,jiwa,2025,registration,total_population,3.1,27,,
+16.10.14.2005,4,Ulak Segara,sex,laki_laki,,615,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.14.2005,4,Ulak Segara,sex,perempuan,,560,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.14.2005,4,Ulak Segara,total,total,,1175,jiwa,2025,registration,total_population,3.1,27,,
+16.10.14.2007,4,Tambang Rambang,sex,laki_laki,,1811,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.14.2007,4,Tambang Rambang,sex,perempuan,,1765,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.14.2007,4,Tambang Rambang,total,total,,3576,jiwa,2025,registration,total_population,3.1,27,,
+16.10.14.2013,4,Tangai,sex,laki_laki,,299,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.14.2013,4,Tangai,sex,perempuan,,297,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.14.2013,4,Tangai,total,total,,596,jiwa,2025,registration,total_population,3.1,27,,
+16.10.14.2010,4,Tanjung Miring,sex,laki_laki,,1011,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.14.2010,4,Tanjung Miring,sex,perempuan,,903,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.14.2010,4,Tanjung Miring,total,total,,1914,jiwa,2025,registration,total_population,3.1,27,,
+16.10.14.2009,4,Kayu Ara,sex,laki_laki,,745,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.14.2009,4,Kayu Ara,sex,perempuan,,674,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.14.2009,4,Kayu Ara,total,total,,1419,jiwa,2025,registration,total_population,3.1,27,,
+16.10.14.2006,4,Tanjung Bulan,sex,laki_laki,,1474,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.14.2006,4,Tanjung Bulan,sex,perempuan,,1448,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.14.2006,4,Tanjung Bulan,total,total,,2922,jiwa,2025,registration,total_population,3.1,27,,
+16.10.14.2011,4,Sunur,sex,laki_laki,,741,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.14.2011,4,Sunur,sex,perempuan,,711,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.14.2011,4,Sunur,total,total,,1452,jiwa,2025,registration,total_population,3.1,27,,
+16.10.14.2012,4,Kuang Dalam Timur,sex,laki_laki,,924,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.14.2012,4,Kuang Dalam Timur,sex,perempuan,,837,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.14.2012,4,Kuang Dalam Timur,total,total,,1761,jiwa,2025,registration,total_population,3.1,27,,
+16.10.14.2008,4,Sukananti,sex,laki_laki,,430,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.14.2008,4,Sukananti,sex,perempuan,,408,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.14.2008,4,Sukananti,total,total,,838,jiwa,2025,registration,total_population,3.1,27,,
+16.10.14,3,Rambang Kuang,sex,laki_laki,,11000,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.14,3,Rambang Kuang,sex,perempuan,,10553,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.14,3,Rambang Kuang,total,total,,21553,jiwa,2025,registration,total_population,3.1,27,,
+16.10.14,3,Rambang Kuang,age_group,0-4,laki_laki,648,jiwa,2025,registration,total_population,3.2,29,,0–4
+16.10.14,3,Rambang Kuang,age_group,0-4,perempuan,701,jiwa,2025,registration,total_population,3.2,29,,0–4
+16.10.14,3,Rambang Kuang,age_group,0-4,,1349,jiwa,2025,registration,total_population,3.2,29,,0–4
+16.10.14,3,Rambang Kuang,age_group,5-9,laki_laki,1117,jiwa,2025,registration,total_population,3.2,29,,5–9
+16.10.14,3,Rambang Kuang,age_group,5-9,perempuan,1016,jiwa,2025,registration,total_population,3.2,29,,5–9
+16.10.14,3,Rambang Kuang,age_group,5-9,,2133,jiwa,2025,registration,total_population,3.2,29,,5–9
+16.10.14,3,Rambang Kuang,age_group,10-14,laki_laki,1169,jiwa,2025,registration,total_population,3.2,29,,10–14
+16.10.14,3,Rambang Kuang,age_group,10-14,perempuan,1111,jiwa,2025,registration,total_population,3.2,29,,10–14
+16.10.14,3,Rambang Kuang,age_group,10-14,,2280,jiwa,2025,registration,total_population,3.2,29,,10–14
+16.10.14,3,Rambang Kuang,age_group,15-19,laki_laki,1026,jiwa,2025,registration,total_population,3.2,29,,15–19
+16.10.14,3,Rambang Kuang,age_group,15-19,perempuan,952,jiwa,2025,registration,total_population,3.2,29,,15–19
+16.10.14,3,Rambang Kuang,age_group,15-19,,1978,jiwa,2025,registration,total_population,3.2,29,,15–19
+16.10.14,3,Rambang Kuang,age_group,20-24,laki_laki,1005,jiwa,2025,registration,total_population,3.2,29,,20–24
+16.10.14,3,Rambang Kuang,age_group,20-24,perempuan,915,jiwa,2025,registration,total_population,3.2,29,,20–24
+16.10.14,3,Rambang Kuang,age_group,20-24,,1920,jiwa,2025,registration,total_population,3.2,29,,20–24
+16.10.14,3,Rambang Kuang,age_group,25-29,laki_laki,830,jiwa,2025,registration,total_population,3.2,29,,25–29
+16.10.14,3,Rambang Kuang,age_group,25-29,perempuan,769,jiwa,2025,registration,total_population,3.2,29,,25–29
+16.10.14,3,Rambang Kuang,age_group,25-29,,1599,jiwa,2025,registration,total_population,3.2,29,,25–29
+16.10.14,3,Rambang Kuang,age_group,30-34,laki_laki,702,jiwa,2025,registration,total_population,3.2,29,,30–34
+16.10.14,3,Rambang Kuang,age_group,30-34,perempuan,638,jiwa,2025,registration,total_population,3.2,29,,30–34
+16.10.14,3,Rambang Kuang,age_group,30-34,,1340,jiwa,2025,registration,total_population,3.2,29,,30–34
+16.10.14,3,Rambang Kuang,age_group,35-39,laki_laki,928,jiwa,2025,registration,total_population,3.2,29,,35–39
+16.10.14,3,Rambang Kuang,age_group,35-39,perempuan,907,jiwa,2025,registration,total_population,3.2,29,,35–39
+16.10.14,3,Rambang Kuang,age_group,35-39,,1835,jiwa,2025,registration,total_population,3.2,29,,35–39
+16.10.14,3,Rambang Kuang,age_group,40-44,laki_laki,848,jiwa,2025,registration,total_population,3.2,29,,40–44
+16.10.14,3,Rambang Kuang,age_group,40-44,perempuan,836,jiwa,2025,registration,total_population,3.2,29,,40–44
+16.10.14,3,Rambang Kuang,age_group,40-44,,1684,jiwa,2025,registration,total_population,3.2,29,,40–44
+16.10.14,3,Rambang Kuang,age_group,45-49,laki_laki,754,jiwa,2025,registration,total_population,3.2,29,,45–49
+16.10.14,3,Rambang Kuang,age_group,45-49,perempuan,722,jiwa,2025,registration,total_population,3.2,29,,45–49
+16.10.14,3,Rambang Kuang,age_group,45-49,,1476,jiwa,2025,registration,total_population,3.2,29,,45–49
+16.10.14,3,Rambang Kuang,age_group,50-54,laki_laki,631,jiwa,2025,registration,total_population,3.2,29,,50–54
+16.10.14,3,Rambang Kuang,age_group,50-54,perempuan,559,jiwa,2025,registration,total_population,3.2,29,,50–54
+16.10.14,3,Rambang Kuang,age_group,50-54,,1190,jiwa,2025,registration,total_population,3.2,29,,50–54
+16.10.14,3,Rambang Kuang,age_group,55-59,laki_laki,443,jiwa,2025,registration,total_population,3.2,29,,55–59
+16.10.14,3,Rambang Kuang,age_group,55-59,perempuan,470,jiwa,2025,registration,total_population,3.2,29,,55–59
+16.10.14,3,Rambang Kuang,age_group,55-59,,913,jiwa,2025,registration,total_population,3.2,29,,55–59
+16.10.14,3,Rambang Kuang,age_group,60-64,laki_laki,346,jiwa,2025,registration,total_population,3.2,29,,60–64
+16.10.14,3,Rambang Kuang,age_group,60-64,perempuan,366,jiwa,2025,registration,total_population,3.2,29,,60–64
+16.10.14,3,Rambang Kuang,age_group,60-64,,712,jiwa,2025,registration,total_population,3.2,29,,60–64
+16.10.14,3,Rambang Kuang,age_group,65-69,laki_laki,264,jiwa,2025,registration,total_population,3.2,29,,65–69
+16.10.14,3,Rambang Kuang,age_group,65-69,perempuan,262,jiwa,2025,registration,total_population,3.2,29,,65–69
+16.10.14,3,Rambang Kuang,age_group,65-69,,526,jiwa,2025,registration,total_population,3.2,29,,65–69
+16.10.14,3,Rambang Kuang,age_group,70-75,laki_laki,136,jiwa,2025,registration,total_population,3.2,29,,70–75
+16.10.14,3,Rambang Kuang,age_group,70-75,perempuan,133,jiwa,2025,registration,total_population,3.2,29,,70–75
+16.10.14,3,Rambang Kuang,age_group,70-75,,269,jiwa,2025,registration,total_population,3.2,29,,70–75
+16.10.14,3,Rambang Kuang,age_group,75+,laki_laki,153,jiwa,2025,registration,total_population,3.2,29,,>75
+16.10.14,3,Rambang Kuang,age_group,75+,perempuan,196,jiwa,2025,registration,total_population,3.2,29,,>75
+16.10.14,3,Rambang Kuang,age_group,75+,,349,jiwa,2025,registration,total_population,3.2,29,,>75
+16.10.14,3,Rambang Kuang,sex,laki_laki,,11000,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+16.10.14,3,Rambang Kuang,sex,perempuan,,10553,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+16.10.14,3,Rambang Kuang,total,total,,21553,jiwa,2025,registration,total_population,3.2,29,,

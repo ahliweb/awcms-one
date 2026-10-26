@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.07.05.2010,4,Bioa Sengok,sex,laki_laki,,666,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+17.07.05.2010,4,Bioa Sengok,sex,perempuan,,655,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+17.07.05.2010,4,Bioa Sengok,total,total,,1321,jiwa,2025,registration,total_population,3.1,29,,
+17.07.05.2011,4,Tik Kuto,sex,laki_laki,,245,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+17.07.05.2011,4,Tik Kuto,sex,perempuan,,239,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+17.07.05.2011,4,Tik Kuto,total,total,,484,jiwa,2025,registration,total_population,3.1,29,,
+17.07.05.2013,4,Bajok,sex,laki_laki,,269,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+17.07.05.2013,4,Bajok,sex,perempuan,,272,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+17.07.05.2013,4,Bajok,total,total,,541,jiwa,2025,registration,total_population,3.1,29,,
+17.07.05.2012,4,Teluk Dien,sex,laki_laki,,300,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+17.07.05.2012,4,Teluk Dien,sex,perempuan,,277,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+17.07.05.2012,4,Teluk Dien,total,total,,577,jiwa,2025,registration,total_population,3.1,29,,
+17.07.05.1002,4,Rimbo Pengadang,sex,laki_laki,,690,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+17.07.05.1002,4,Rimbo Pengadang,sex,perempuan,,674,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+17.07.05.1002,4,Rimbo Pengadang,total,total,,1364,jiwa,2025,registration,total_population,3.1,29,,
+17.07.05,3,Kecamatan Rimbo Pengadang,sex,laki_laki,,2630,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+17.07.05,3,Kecamatan Rimbo Pengadang,sex,perempuan,,2552,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+17.07.05,3,Kecamatan Rimbo Pengadang,total,total,,5182,jiwa,2025,registration,total_population,3.1,29,,
+17.07.05,3,Kecamatan Rimbo Pengadang,sex,laki_laki,,2630,jiwa,2025,registration,total_population,3.2,31,,Laki-Laki
+17.07.05,3,Kecamatan Rimbo Pengadang,sex,perempuan,,2552,jiwa,2025,registration,total_population,3.2,31,,Perempuan
+17.07.05,3,Kecamatan Rimbo Pengadang,total,total,,5182,jiwa,2025,registration,total_population,3.2,31,,

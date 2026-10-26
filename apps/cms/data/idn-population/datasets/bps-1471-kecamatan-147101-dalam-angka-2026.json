@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-1471-kecamatan-147101-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "14.71.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sukajadi Dalam Angka 2026",
+  "publisherName": "BPS Kota Pekanbaru",
+  "publisherDomain": "1471",
+  "publisherWebsite": "https://pekanbarukota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Pekanbaru (https://pekanbarukota.bps.go.id), publikasi \"Kecamatan Sukajadi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1471060",
+  "publicationNumber": "14710.26014",
+  "issn": "3064-5816",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pekanbarukota.bps.go.id/id/publication/2026/09/28/3cd45c08e85b6fc6b8eb8863/kecamatan-sukajadi-dalam-angka-2026.html",
+  "sourceFileSha256": "72de3a258eaab5fe3beb0e43ae096404facff82c466b6651a9d1d545592c16d7",
+  "sourceFileBytes": 11087972,
+  "sourcePages": [22, 23, 24],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Pekanbaru",
+  "csvPath": "datasets/bps-1471-kecamatan-147101-dalam-angka-2026.csv",
+  "csvSha256": "5dcb6ad9231fd7dadbc1cb90cf4b56cb6514767e8dd73c42f44035ada06bc431",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Sukajadi , 202 5",
+      "printedPages": [22, 23],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sukajadi , 202 5",
+      "printedPages": [24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 14.71.01 are not stored: age_group vs total: parts sum 48188.0000 != 48679.0000 (diff 491.0000); the source itself is inconsistent"
+  ]
+}

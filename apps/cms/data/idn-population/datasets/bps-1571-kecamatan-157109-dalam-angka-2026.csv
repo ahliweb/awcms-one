@@ -1,0 +1,64 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.71.09.1001,4,Kenali Besar,sex,laki_laki,,13141,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.71.09.1001,4,Kenali Besar,sex,perempuan,,13011,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Fem
+15.71.09.1001,4,Kenali Besar,total,total,,26152,jiwa,2025,registration,total_population,3.1,29,,
+15.71.09.1002,4,Rawa Sari,sex,laki_laki,,8060,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.71.09.1002,4,Rawa Sari,sex,perempuan,,8213,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Fem
+15.71.09.1002,4,Rawa Sari,total,total,,16273,jiwa,2025,registration,total_population,3.1,29,,
+15.71.09.1003,4,Mayang Mangurai,sex,laki_laki,,13197,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.71.09.1003,4,Mayang Mangurai,sex,perempuan,,13010,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Fem
+15.71.09.1003,4,Mayang Mangurai,total,total,,26207,jiwa,2025,registration,total_population,3.1,29,,
+15.71.09.1004,4,Bagan Pete,sex,laki_laki,,5132,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.71.09.1004,4,Bagan Pete,sex,perempuan,,4887,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Fem
+15.71.09.1004,4,Bagan Pete,total,total,,10019,jiwa,2025,registration,total_population,3.1,29,,
+15.71.09.1005,4,Beliung,sex,laki_laki,,4300,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.71.09.1005,4,Beliung,sex,perempuan,,4307,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Fem
+15.71.09.1005,4,Beliung,total,total,,8607,jiwa,2025,registration,total_population,3.1,29,,
+15.71.09.1006,4,Simpang Rimbo,sex,laki_laki,,12828,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.71.09.1006,4,Simpang Rimbo,sex,perempuan,,12972,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Fem
+15.71.09.1006,4,Simpang Rimbo,total,total,,25800,jiwa,2025,registration,total_population,3.1,29,,
+15.71.09.1007,4,Pinang Merah,sex,laki_laki,,3248,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.71.09.1007,4,Pinang Merah,sex,perempuan,,3179,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Fem
+15.71.09.1007,4,Pinang Merah,total,total,,6427,jiwa,2025,registration,total_population,3.1,29,,
+15.71.09,3,Alam Barajo,sex,laki_laki,,59906,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.71.09,3,Alam Barajo,sex,perempuan,,59579,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Fem
+15.71.09,3,Alam Barajo,total,total,,119485,jiwa,2025,registration,total_population,3.1,29,,
+15.71.09,3,Alam Barajo,age_group,0-4,laki_laki,4029,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+15.71.09,3,Alam Barajo,age_group,0-4,perempuan,3723,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+15.71.09,3,Alam Barajo,age_group,0-4,,7752,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+15.71.09,3,Alam Barajo,age_group,5-9,laki_laki,5446,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+15.71.09,3,Alam Barajo,age_group,5-9,perempuan,5277,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+15.71.09,3,Alam Barajo,age_group,5-9,,10723,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+15.71.09,3,Alam Barajo,age_group,10-14,laki_laki,5620,jiwa,2025,registration,total_population,3.2,31,,10 - 14
+15.71.09,3,Alam Barajo,age_group,10-14,perempuan,5135,jiwa,2025,registration,total_population,3.2,31,,10 - 14
+15.71.09,3,Alam Barajo,age_group,10-14,,10755,jiwa,2025,registration,total_population,3.2,31,,10 - 14
+15.71.09,3,Alam Barajo,age_group,15-19,laki_laki,5151,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+15.71.09,3,Alam Barajo,age_group,15-19,perempuan,4918,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+15.71.09,3,Alam Barajo,age_group,15-19,,10069,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+15.71.09,3,Alam Barajo,age_group,20-24,laki_laki,4989,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+15.71.09,3,Alam Barajo,age_group,20-24,perempuan,4877,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+15.71.09,3,Alam Barajo,age_group,20-24,,9866,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+15.71.09,3,Alam Barajo,age_group,25-29,laki_laki,5068,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+15.71.09,3,Alam Barajo,age_group,25-29,perempuan,5237,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+15.71.09,3,Alam Barajo,age_group,25-29,,10305,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+15.71.09,3,Alam Barajo,age_group,30-34,laki_laki,4929,jiwa,2025,registration,total_population,3.2,31,,30 - 34
+15.71.09,3,Alam Barajo,age_group,30-34,perempuan,5144,jiwa,2025,registration,total_population,3.2,31,,30 - 34
+15.71.09,3,Alam Barajo,age_group,30-34,,10073,jiwa,2025,registration,total_population,3.2,31,,30 - 34
+15.71.09,3,Alam Barajo,age_group,35-39,laki_laki,4648,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+15.71.09,3,Alam Barajo,age_group,35-39,perempuan,4781,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+15.71.09,3,Alam Barajo,age_group,35-39,,9429,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+15.71.09,3,Alam Barajo,age_group,40-44,laki_laki,4413,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+15.71.09,3,Alam Barajo,age_group,40-44,perempuan,4680,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+15.71.09,3,Alam Barajo,age_group,40-44,,9093,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+15.71.09,3,Alam Barajo,age_group,45-49,laki_laki,4149,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+15.71.09,3,Alam Barajo,age_group,45-49,perempuan,4287,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+15.71.09,3,Alam Barajo,age_group,45-49,,8436,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+15.71.09,3,Alam Barajo,age_group,50-54,laki_laki,3672,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+15.71.09,3,Alam Barajo,age_group,50-54,perempuan,3852,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+15.71.09,3,Alam Barajo,age_group,50-54,,7524,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+15.71.09,3,Alam Barajo,age_group,55-59,laki_laki,2988,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+15.71.09,3,Alam Barajo,age_group,55-59,perempuan,2977,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+15.71.09,3,Alam Barajo,age_group,55-59,,5965,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+15.71.09,3,Alam Barajo,sex,laki_laki,,55102,jiwa,2025,registration,total_population,3.2,31,,Laki-Laki
+15.71.09,3,Alam Barajo,sex,perempuan,,54888,jiwa,2025,registration,total_population,3.2,31,,Perempuan
+15.71.09,3,Alam Barajo,total,total,,109990,jiwa,2025,registration,total_population,3.2,31,,

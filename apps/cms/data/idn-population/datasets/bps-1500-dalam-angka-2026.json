@@ -1,0 +1,87 @@
+{
+  "datasetCode": "bps-1500-dalam-angka-2026",
+  "publicationSeries": "provinsi_dalam_angka",
+  "coverageRegionCode": "15",
+  "coverageRegionLevel": 1,
+  "publicationTitle": "Provinsi Jambi Dalam Angka 2026",
+  "publisherName": "BPS Provinsi Jambi",
+  "publisherDomain": "1500",
+  "publisherWebsite": "https://jambi.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Provinsi Jambi (https://jambi.bps.go.id), publikasi \"Provinsi Jambi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.15",
+  "publicationNumber": "15000.26003",
+  "issn": "0215-2029",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://jambi.bps.go.id/id/publication/2026/02/27/2dadf1db028028730dae8c78/provinsi-jambi-dalam-angka-2026.html",
+  "sourceFileSha256": "cb8208b35e1293949c37d839c5c5dcf40125023fbb8d838886508d68bff5afe1",
+  "sourceFileBytes": 10634919,
+  "sourcePages": [87, 92, 119, 128, 291],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Provinsi Jambi.",
+  "csvPath": "datasets/bps-1500-dalam-angka-2026.csv",
+  "csvSha256": "3ce35e4b5de7ce27d4444a7ec54d9863fff46e4edbc1c7a27d65566a4fd22336",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Kabupaten/ Kota di Provinsi Jambi, 2020, 2025, dan 2026",
+      "printedPages": [87],
+      "referenceYears": [2020, 2026],
+      "figureBasis": "census+projection",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Provinsi Jambi (ribu jiwa), 2025 dan 2026",
+      "printedPages": [92],
+      "referenceYears": [2025, 2026],
+      "figureBasis": "projection",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "4.5.4",
+      "title": "Jumlah Penduduk Menurut Kabupaten/Kota dan Agama yang Dianut di Provinsi Jambi, 2025",
+      "printedPages": [291],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2.14",
+      "title": "Penduduk Berumur 15 Tahun ke Atas yang Bekerja Selama Seminggu Terakhir Menurut Kabupaten/Kota dan Lapangan Pekerjaan Utama di Provinsi Jambi, 2025",
+      "printedPages": [119],
+      "referenceYears": [2025],
+      "figureBasis": "survey_estimate",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2.20",
+      "title": "Rata-Rata Upah/Gaji Bersih Sebulan Buruh/Karyawan/ Pegawai Menurut Kabupaten/Kota dan Lapangan Pekerjaan Utama di Provinsi Jambi (rupiah), 2025",
+      "printedPages": [128],
+      "referenceYears": [2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Per-capita expenditure by commodity group (10.1): no table with this title was found in the publication",
+    "table 3.2.21 (wage-by-age) could not be read reliably and is not included (no average column)",
+    "table 3.2.14: industry group 3: footnote label not parseable; its column is not stored",
+    "table 3.2.20: industry group 3: footnote label not parseable; its column is not stored",
+    "table 3.1.2: the rows of region 15 are not stored: sex split vs total: parts sum 3768.4700 != 3768.4900 (diff 0.0200); the source itself is inconsistent",
+    "table 3.2.14: the rows of region 15.01 are not stored: occupation vs total: parts sum 95302.0000 != 144986.0000 (diff 49684.0000); the source itself is inconsistent",
+    "table 3.2.14: the rows of region 15.02 are not stored: occupation vs total: parts sum 129858.0000 != 186797.0000 (diff 56939.0000); the source itself is inconsistent",
+    "table 3.2.14: the rows of region 15.03 are not stored: occupation vs total: parts sum 90532.0000 != 143602.0000 (diff 53070.0000); the source itself is inconsistent",
+    "table 3.2.14: the rows of region 15.04 are not stored: occupation vs total: parts sum 89247.0000 != 152441.0000 (diff 63194.0000); the source itself is inconsistent",
+    "table 3.2.14: the rows of region 15.05 are not stored: occupation vs total: parts sum 147446.0000 != 227168.0000 (diff 79722.0000); the source itself is inconsistent",
+    "table 3.2.14: the rows of region 15.07 are not stored: occupation vs total: parts sum 84686.0000 != 122490.0000 (diff 37804.0000); the source itself is inconsistent",
+    "table 3.2.14: the rows of region 15.06 are not stored: occupation vs total: parts sum 102539.0000 != 154821.0000 (diff 52282.0000); the source itself is inconsistent",
+    "table 3.2.14: the rows of region 15.09 are not stored: occupation vs total: parts sum 118286.0000 != 170935.0000 (diff 52649.0000); the source itself is inconsistent",
+    "table 3.2.14: the rows of region 15.08 are not stored: occupation vs total: parts sum 115010.0000 != 193227.0000 (diff 78217.0000); the source itself is inconsistent",
+    "table 3.2.14: the rows of region 15.71 are not stored: occupation vs total: parts sum 74384.0000 != 303478.0000 (diff 229094.0000); the source itself is inconsistent",
+    "table 3.2.14: the rows of region 15.72 are not stored: occupation vs total: parts sum 17825.0000 != 51919.0000 (diff 34094.0000); the source itself is inconsistent",
+    "table 3.2.14: the rows of region 15 are not stored: occupation vs total: parts sum 1065115.0000 != 1851864.0000 (diff 786749.0000); the source itself is inconsistent"
+  ]
+}

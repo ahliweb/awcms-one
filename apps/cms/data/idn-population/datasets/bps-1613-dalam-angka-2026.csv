@@ -1,0 +1,106 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.13.07,3,Ulu Rawas,total,total,,13119,jiwa,2025,registration,total_population,3.1.1,53,,
+16.13.06,3,Karang Jaya,total,total,,33591,jiwa,2025,registration,total_population,3.1.1,53,,
+16.13.02,3,Rawas Ulu,total,total,,36015,jiwa,2025,registration,total_population,3.1.1,53,,
+16.13.01,3,Rupit,total,total,,39729,jiwa,2025,registration,total_population,3.1.1,53,,
+16.13.05,3,Karang Dapo,total,total,,22571,jiwa,2025,registration,total_population,3.1.1,53,,
+16.13.04,3,Rawas Ilir,total,total,,31218,jiwa,2025,registration,total_population,3.1.1,53,,
+16.13.03,3,Nibung,total,total,,29123,jiwa,2025,registration,total_population,3.1.1,53,,
+16.13,2,Musi Rawas Utara,total,total,,205366,jiwa,2025,registration,total_population,3.1.1,53,,
+16.13,2,Kabupaten Musi Rawas Utara,age_group,0-4,laki_laki,7010,jiwa,2025,registration,total_population,3.1.2,56,,0–4
+16.13,2,Kabupaten Musi Rawas Utara,age_group,0-4,perempuan,6343,jiwa,2025,registration,total_population,3.1.2,56,,0–4
+16.13,2,Kabupaten Musi Rawas Utara,age_group,0-4,,13353,jiwa,2025,registration,total_population,3.1.2,56,,0–4
+16.13,2,Kabupaten Musi Rawas Utara,age_group,5-9,laki_laki,10067,jiwa,2025,registration,total_population,3.1.2,56,,5–9
+16.13,2,Kabupaten Musi Rawas Utara,age_group,5-9,perempuan,9188,jiwa,2025,registration,total_population,3.1.2,56,,5–9
+16.13,2,Kabupaten Musi Rawas Utara,age_group,5-9,,19255,jiwa,2025,registration,total_population,3.1.2,56,,5–9
+16.13,2,Kabupaten Musi Rawas Utara,age_group,10-14,laki_laki,10276,jiwa,2025,registration,total_population,3.1.2,56,,10–14
+16.13,2,Kabupaten Musi Rawas Utara,age_group,10-14,perempuan,9708,jiwa,2025,registration,total_population,3.1.2,56,,10–14
+16.13,2,Kabupaten Musi Rawas Utara,age_group,10-14,,19984,jiwa,2025,registration,total_population,3.1.2,56,,10–14
+16.13,2,Kabupaten Musi Rawas Utara,age_group,15-19,laki_laki,9737,jiwa,2025,registration,total_population,3.1.2,56,,15–19
+16.13,2,Kabupaten Musi Rawas Utara,age_group,15-19,perempuan,9201,jiwa,2025,registration,total_population,3.1.2,56,,15–19
+16.13,2,Kabupaten Musi Rawas Utara,age_group,15-19,,18938,jiwa,2025,registration,total_population,3.1.2,56,,15–19
+16.13,2,Kabupaten Musi Rawas Utara,age_group,20-24,laki_laki,9083,jiwa,2025,registration,total_population,3.1.2,56,,20–24
+16.13,2,Kabupaten Musi Rawas Utara,age_group,20-24,perempuan,8365,jiwa,2025,registration,total_population,3.1.2,56,,20–24
+16.13,2,Kabupaten Musi Rawas Utara,age_group,20-24,,17448,jiwa,2025,registration,total_population,3.1.2,56,,20–24
+16.13,2,Kabupaten Musi Rawas Utara,age_group,25-29,laki_laki,8265,jiwa,2025,registration,total_population,3.1.2,56,,25–29
+16.13,2,Kabupaten Musi Rawas Utara,age_group,25-29,perempuan,7831,jiwa,2025,registration,total_population,3.1.2,56,,25–29
+16.13,2,Kabupaten Musi Rawas Utara,age_group,25-29,,16096,jiwa,2025,registration,total_population,3.1.2,56,,25–29
+16.13,2,Kabupaten Musi Rawas Utara,age_group,30-34,laki_laki,7737,jiwa,2025,registration,total_population,3.1.2,56,,30–34
+16.13,2,Kabupaten Musi Rawas Utara,age_group,30-34,perempuan,7662,jiwa,2025,registration,total_population,3.1.2,56,,30–34
+16.13,2,Kabupaten Musi Rawas Utara,age_group,30-34,,15399,jiwa,2025,registration,total_population,3.1.2,56,,30–34
+16.13,2,Kabupaten Musi Rawas Utara,age_group,35-39,laki_laki,8691,jiwa,2025,registration,total_population,3.1.2,56,,35–39
+16.13,2,Kabupaten Musi Rawas Utara,age_group,35-39,perempuan,8396,jiwa,2025,registration,total_population,3.1.2,56,,35–39
+16.13,2,Kabupaten Musi Rawas Utara,age_group,35-39,,17087,jiwa,2025,registration,total_population,3.1.2,56,,35–39
+16.13,2,Kabupaten Musi Rawas Utara,age_group,40-44,laki_laki,7730,jiwa,2025,registration,total_population,3.1.2,56,,40–44
+16.13,2,Kabupaten Musi Rawas Utara,age_group,40-44,perempuan,7464,jiwa,2025,registration,total_population,3.1.2,56,,40–44
+16.13,2,Kabupaten Musi Rawas Utara,age_group,40-44,,15194,jiwa,2025,registration,total_population,3.1.2,56,,40–44
+16.13,2,Kabupaten Musi Rawas Utara,age_group,45-49,laki_laki,6676,jiwa,2025,registration,total_population,3.1.2,56,,45–49
+16.13,2,Kabupaten Musi Rawas Utara,age_group,45-49,perempuan,6545,jiwa,2025,registration,total_population,3.1.2,56,,45–49
+16.13,2,Kabupaten Musi Rawas Utara,age_group,45-49,,13221,jiwa,2025,registration,total_population,3.1.2,56,,45–49
+16.13,2,Kabupaten Musi Rawas Utara,age_group,50-54,laki_laki,5203,jiwa,2025,registration,total_population,3.1.2,56,,50–54
+16.13,2,Kabupaten Musi Rawas Utara,age_group,50-54,perempuan,5132,jiwa,2025,registration,total_population,3.1.2,56,,50–54
+16.13,2,Kabupaten Musi Rawas Utara,age_group,50-54,,10335,jiwa,2025,registration,total_population,3.1.2,56,,50–54
+16.13,2,Kabupaten Musi Rawas Utara,age_group,55-59,laki_laki,4200,jiwa,2025,registration,total_population,3.1.2,56,,55–59
+16.13,2,Kabupaten Musi Rawas Utara,age_group,55-59,perempuan,4444,jiwa,2025,registration,total_population,3.1.2,56,,55–59
+16.13,2,Kabupaten Musi Rawas Utara,age_group,55-59,,8644,jiwa,2025,registration,total_population,3.1.2,56,,55–59
+16.13,2,Kabupaten Musi Rawas Utara,age_group,60-64,laki_laki,3690,jiwa,2025,registration,total_population,3.1.2,56,,60–64
+16.13,2,Kabupaten Musi Rawas Utara,age_group,60-64,perempuan,3936,jiwa,2025,registration,total_population,3.1.2,56,,60–64
+16.13,2,Kabupaten Musi Rawas Utara,age_group,60-64,,7626,jiwa,2025,registration,total_population,3.1.2,56,,60–64
+16.13,2,Kabupaten Musi Rawas Utara,age_group,65-69,laki_laki,2873,jiwa,2025,registration,total_population,3.1.2,56,,65–69
+16.13,2,Kabupaten Musi Rawas Utara,age_group,65-69,perempuan,3008,jiwa,2025,registration,total_population,3.1.2,56,,65–69
+16.13,2,Kabupaten Musi Rawas Utara,age_group,65-69,,5881,jiwa,2025,registration,total_population,3.1.2,56,,65–69
+16.13,2,Kabupaten Musi Rawas Utara,age_group,70-74,laki_laki,1637,jiwa,2025,registration,total_population,3.1.2,56,,70–74
+16.13,2,Kabupaten Musi Rawas Utara,age_group,70-74,perempuan,1489,jiwa,2025,registration,total_population,3.1.2,56,,70–74
+16.13,2,Kabupaten Musi Rawas Utara,age_group,70-74,,3126,jiwa,2025,registration,total_population,3.1.2,56,,70–74
+16.13,2,Kabupaten Musi Rawas Utara,age_group,75+,laki_laki,1562,jiwa,2025,registration,total_population,3.1.2,56,,75+
+16.13,2,Kabupaten Musi Rawas Utara,age_group,75+,perempuan,2217,jiwa,2025,registration,total_population,3.1.2,56,,75+
+16.13,2,Kabupaten Musi Rawas Utara,age_group,75+,,3779,jiwa,2025,registration,total_population,3.1.2,56,,75+
+16.13,2,Musi Rawas Utara,sex,laki_laki,,104437,jiwa,2025,registration,total_population,3.1.2,56,,Laki-Laki
+16.13,2,Musi Rawas Utara,sex,perempuan,,100929,jiwa,2025,registration,total_population,3.1.2,56,,Perempuan
+16.13,2,Musi Rawas Utara,total,total,,205366,jiwa,2025,registration,total_population,3.1.2,56,,
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/padi_padian,,93656,rupiah,2025,survey_estimate,per_capita,10.1,245,,Padi-padian
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/padi_padian,,106978,rupiah,2024,survey_estimate,per_capita,10.1,245,,Padi-padian
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/umbi_umbian,,7047,rupiah,2025,survey_estimate,per_capita,10.1,245,,Umbi-umbian
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/umbi_umbian,,6685,rupiah,2024,survey_estimate,per_capita,10.1,245,,Umbi-umbian
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,60276,rupiah,2025,survey_estimate,per_capita,10.1,245,,Ikan/udang/cumi/kerang
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,61726,rupiah,2024,survey_estimate,per_capita,10.1,245,,Ikan/udang/cumi/kerang
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/daging,,36823,rupiah,2025,survey_estimate,per_capita,10.1,245,,Daging
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/daging,,34615,rupiah,2024,survey_estimate,per_capita,10.1,245,,Daging
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/telur_dan_susu,,26304,rupiah,2025,survey_estimate,per_capita,10.1,245,,Telur dan susu
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/telur_dan_susu,,30087,rupiah,2024,survey_estimate,per_capita,10.1,245,,Telur dan susu
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/sayur_sayuran,,70812,rupiah,2025,survey_estimate,per_capita,10.1,245,,Sayur-sayuran
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/sayur_sayuran,,65401,rupiah,2024,survey_estimate,per_capita,10.1,245,,Sayur-sayuran
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/kacang_kacangan,,8073,rupiah,2025,survey_estimate,per_capita,10.1,245,,Kacang-kacangan
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/kacang_kacangan,,8169,rupiah,2024,survey_estimate,per_capita,10.1,245,,Kacang-kacangan
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/buah_buahan,,38505,rupiah,2025,survey_estimate,per_capita,10.1,245,,Buah-buahan
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/buah_buahan,,40703,rupiah,2024,survey_estimate,per_capita,10.1,245,,Buah-buahan
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/minyak_dan_kelapa,,20776,rupiah,2025,survey_estimate,per_capita,10.1,245,,Minyak dan kelapa
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19150,rupiah,2024,survey_estimate,per_capita,10.1,245,,Minyak dan kelapa
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/bahan_minuman,,22975,rupiah,2025,survey_estimate,per_capita,10.1,245,,Bahan minuman
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/bahan_minuman,,22595,rupiah,2024,survey_estimate,per_capita,10.1,245,,Bahan minuman
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/bumbu_bumbuan,,10578,rupiah,2025,survey_estimate,per_capita,10.1,245,,Bumbu-bumbuan
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/bumbu_bumbuan,,10751,rupiah,2024,survey_estimate,per_capita,10.1,245,,Bumbu-bumbuan
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/konsumsi_lainnya,,13422,rupiah,2025,survey_estimate,per_capita,10.1,245,,Konsumsi lainnya
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/konsumsi_lainnya,,13613,rupiah,2024,survey_estimate,per_capita,10.1,245,,Konsumsi lainnya
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,141767,rupiah,2025,survey_estimate,per_capita,10.1,245,,Makanan dan minuman jadi
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,163618,rupiah,2024,survey_estimate,per_capita,10.1,245,,Makanan dan minuman jadi
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/rokok,,105281,rupiah,2025,survey_estimate,per_capita,10.1,245,,Rokok
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/rokok,,101515,rupiah,2024,survey_estimate,per_capita,10.1,245,,Rokok
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/jumlah_makanan,,656297,rupiah,2025,survey_estimate,per_capita,10.1,245,,Jumlah makanan
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/jumlah_makanan,,685605,rupiah,2024,survey_estimate,per_capita,10.1,245,,Jumlah makanan
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,203218,rupiah,2025,survey_estimate,per_capita,10.1,245,,Perumahan dan fasilitas rumah tangga
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,248964,rupiah,2024,survey_estimate,per_capita,10.1,245,,Perumahan dan fasilitas rumah tangga
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,75271,rupiah,2025,survey_estimate,per_capita,10.1,245,,Aneka barang dan jasa
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,80752,rupiah,2024,survey_estimate,per_capita,10.1,245,,Aneka barang dan jasa
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,23584,rupiah,2025,survey_estimate,per_capita,10.1,245,,"Pakaian, alas kaki, dan tutup kepala"
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,24029,rupiah,2024,survey_estimate,per_capita,10.1,245,,"Pakaian, alas kaki, dan tutup kepala"
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/barang_tahan_lama,,30220,rupiah,2025,survey_estimate,per_capita,10.1,245,,Barang tahan lama
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/barang_tahan_lama,,25160,rupiah,2024,survey_estimate,per_capita,10.1,245,,Barang tahan lama
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,35090,rupiah,2025,survey_estimate,per_capita,10.1,245,,"Pajak, pungutan, dan asuransi"
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,42229,rupiah,2024,survey_estimate,per_capita,10.1,245,,"Pajak, pungutan, dan asuransi"
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,9867,rupiah,2025,survey_estimate,per_capita,10.1,245,,Keperluan pesta dan upacara/kenduri
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,14120,rupiah,2024,survey_estimate,per_capita,10.1,245,,Keperluan pesta dan upacara/kenduri
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,377251,rupiah,2025,survey_estimate,per_capita,10.1,245,,Jumlah bukan makanan
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,435255,rupiah,2024,survey_estimate,per_capita,10.1,245,,Jumlah bukan makanan
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,total,,1033548,rupiah,2025,survey_estimate,per_capita,10.1,245,,
+16.13,2,Kabupaten Musi Rawas Utara,expenditure,total,,1120860,rupiah,2024,survey_estimate,per_capita,10.1,245,,

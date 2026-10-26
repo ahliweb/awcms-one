@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.04.25.2008,4,Rindu Hati,sex,laki_laki,,513,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki
+16.04.25.2008,4,Rindu Hati,sex,perempuan,,448,jiwa,2025,registration,total_population,3.1,30,,Perempuan
+16.04.25.2008,4,Rindu Hati,total,total,,961,jiwa,2025,registration,total_population,3.1,30,,
+16.04.25.2007,4,Lubuk Selo,sex,laki_laki,,612,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki
+16.04.25.2007,4,Lubuk Selo,sex,perempuan,,557,jiwa,2025,registration,total_population,3.1,30,,Perempuan
+16.04.25.2007,4,Lubuk Selo,total,total,,1169,jiwa,2025,registration,total_population,3.1,30,,
+16.04.25.2009,4,Sumber Karya,sex,laki_laki,,598,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki
+16.04.25.2009,4,Sumber Karya,sex,perempuan,,551,jiwa,2025,registration,total_population,3.1,30,,Perempuan
+16.04.25.2009,4,Sumber Karya,total,total,,1149,jiwa,2025,registration,total_population,3.1,30,,
+16.04.25.2003,4,Sinjar Bulan,sex,laki_laki,,212,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki
+16.04.25.2003,4,Sinjar Bulan,sex,perempuan,,176,jiwa,2025,registration,total_population,3.1,30,,Perempuan
+16.04.25.2003,4,Sinjar Bulan,total,total,,388,jiwa,2025,registration,total_population,3.1,30,,
+16.04.25.2004,4,Padang Gumay,sex,laki_laki,,169,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki
+16.04.25.2004,4,Padang Gumay,sex,perempuan,,146,jiwa,2025,registration,total_population,3.1,30,,Perempuan
+16.04.25.2004,4,Padang Gumay,total,total,,315,jiwa,2025,registration,total_population,3.1,30,,
+16.04.25.2005,4,Tanjung Aur,sex,laki_laki,,186,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki
+16.04.25.2005,4,Tanjung Aur,sex,perempuan,,174,jiwa,2025,registration,total_population,3.1,30,,Perempuan
+16.04.25.2005,4,Tanjung Aur,total,total,,360,jiwa,2025,registration,total_population,3.1,30,,
+16.04.25.2002,4,Tanjung Raja,sex,laki_laki,,239,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki
+16.04.25.2002,4,Tanjung Raja,sex,perempuan,,264,jiwa,2025,registration,total_population,3.1,30,,Perempuan
+16.04.25.2002,4,Tanjung Raja,total,total,,503,jiwa,2025,registration,total_population,3.1,30,,
+16.04.25.2001,4,Tinggi Hari,sex,laki_laki,,171,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki
+16.04.25.2001,4,Tinggi Hari,sex,perempuan,,146,jiwa,2025,registration,total_population,3.1,30,,Perempuan
+16.04.25.2001,4,Tinggi Hari,total,total,,317,jiwa,2025,registration,total_population,3.1,30,,
+16.04.25.2006,4,Simpur,sex,laki_laki,,229,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki
+16.04.25.2006,4,Simpur,sex,perempuan,,202,jiwa,2025,registration,total_population,3.1,30,,Perempuan
+16.04.25.2006,4,Simpur,total,total,,431,jiwa,2025,registration,total_population,3.1,30,,
+16.04.25,3,Gumay Ulu,sex,laki_laki,,3246,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki
+16.04.25,3,Gumay Ulu,sex,perempuan,,2921,jiwa,2025,registration,total_population,3.1,30,,Perempuan
+16.04.25,3,Gumay Ulu,total,total,,6167,jiwa,2025,registration,total_population,3.1,30,,

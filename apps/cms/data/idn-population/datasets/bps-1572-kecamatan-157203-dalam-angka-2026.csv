@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.72.03,3,Hamparan Rawang,age_group,0-4,laki_laki,508,jiwa,2025,registration,total_population,3.2,35,,0 – 4
+15.72.03,3,Hamparan Rawang,age_group,0-4,perempuan,423,jiwa,2025,registration,total_population,3.2,35,,0 – 4
+15.72.03,3,Hamparan Rawang,age_group,0-4,,931,jiwa,2025,registration,total_population,3.2,35,,0 – 4
+15.72.03,3,Hamparan Rawang,age_group,5-9,laki_laki,550,jiwa,2025,registration,total_population,3.2,35,,5 – 9
+15.72.03,3,Hamparan Rawang,age_group,5-9,perempuan,536,jiwa,2025,registration,total_population,3.2,35,,5 – 9
+15.72.03,3,Hamparan Rawang,age_group,5-9,,1086,jiwa,2025,registration,total_population,3.2,35,,5 – 9
+15.72.03,3,Hamparan Rawang,age_group,10-14,laki_laki,577,jiwa,2025,registration,total_population,3.2,35,,10 – 14
+15.72.03,3,Hamparan Rawang,age_group,10-14,perempuan,499,jiwa,2025,registration,total_population,3.2,35,,10 – 14
+15.72.03,3,Hamparan Rawang,age_group,10-14,,1076,jiwa,2025,registration,total_population,3.2,35,,10 – 14
+15.72.03,3,Hamparan Rawang,age_group,15-19,laki_laki,645,jiwa,2025,registration,total_population,3.2,35,,15 – 19
+15.72.03,3,Hamparan Rawang,age_group,15-19,perempuan,596,jiwa,2025,registration,total_population,3.2,35,,15 – 19
+15.72.03,3,Hamparan Rawang,age_group,15-19,,1241,jiwa,2025,registration,total_population,3.2,35,,15 – 19
+15.72.03,3,Hamparan Rawang,age_group,20-24,laki_laki,651,jiwa,2025,registration,total_population,3.2,35,,20 – 24
+15.72.03,3,Hamparan Rawang,age_group,20-24,perempuan,599,jiwa,2025,registration,total_population,3.2,35,,20 – 24
+15.72.03,3,Hamparan Rawang,age_group,20-24,,1250,jiwa,2025,registration,total_population,3.2,35,,20 – 24
+15.72.03,3,Hamparan Rawang,age_group,25-29,laki_laki,690,jiwa,2025,registration,total_population,3.2,35,,25 – 29
+15.72.03,3,Hamparan Rawang,age_group,25-29,perempuan,656,jiwa,2025,registration,total_population,3.2,35,,25 – 29
+15.72.03,3,Hamparan Rawang,age_group,25-29,,1346,jiwa,2025,registration,total_population,3.2,35,,25 – 29
+15.72.03,3,Hamparan Rawang,age_group,30-34,laki_laki,544,jiwa,2025,registration,total_population,3.2,35,,30 – 34
+15.72.03,3,Hamparan Rawang,age_group,30-34,perempuan,546,jiwa,2025,registration,total_population,3.2,35,,30 – 34
+15.72.03,3,Hamparan Rawang,age_group,30-34,,1090,jiwa,2025,registration,total_population,3.2,35,,30 – 34
+15.72.03,3,Hamparan Rawang,age_group,35-39,laki_laki,533,jiwa,2025,registration,total_population,3.2,35,,35 – 39
+15.72.03,3,Hamparan Rawang,age_group,35-39,perempuan,516,jiwa,2025,registration,total_population,3.2,35,,35 – 39
+15.72.03,3,Hamparan Rawang,age_group,35-39,,1049,jiwa,2025,registration,total_population,3.2,35,,35 – 39
+15.72.03,3,Hamparan Rawang,age_group,40-44,laki_laki,640,jiwa,2025,registration,total_population,3.2,35,,40 – 44
+15.72.03,3,Hamparan Rawang,age_group,40-44,perempuan,613,jiwa,2025,registration,total_population,3.2,35,,40 – 44
+15.72.03,3,Hamparan Rawang,age_group,40-44,,1253,jiwa,2025,registration,total_population,3.2,35,,40 – 44
+15.72.03,3,Hamparan Rawang,age_group,45-49,laki_laki,660,jiwa,2025,registration,total_population,3.2,35,,45 – 49
+15.72.03,3,Hamparan Rawang,age_group,45-49,perempuan,671,jiwa,2025,registration,total_population,3.2,35,,45 – 49
+15.72.03,3,Hamparan Rawang,age_group,45-49,,1331,jiwa,2025,registration,total_population,3.2,35,,45 – 49
+15.72.03,3,Hamparan Rawang,age_group,50-54,laki_laki,608,jiwa,2025,registration,total_population,3.2,35,,50 – 54
+15.72.03,3,Hamparan Rawang,age_group,50-54,perempuan,566,jiwa,2025,registration,total_population,3.2,35,,50 – 54
+15.72.03,3,Hamparan Rawang,age_group,50-54,,1174,jiwa,2025,registration,total_population,3.2,35,,50 – 54
+15.72.03,3,Hamparan Rawang,age_group,55-59,laki_laki,395,jiwa,2025,registration,total_population,3.2,35,,55 – 59
+15.72.03,3,Hamparan Rawang,age_group,55-59,perempuan,398,jiwa,2025,registration,total_population,3.2,35,,55 – 59
+15.72.03,3,Hamparan Rawang,age_group,55-59,,793,jiwa,2025,registration,total_population,3.2,35,,55 – 59
+15.72.03,3,Hamparan Rawang,age_group,60-64,laki_laki,372,jiwa,2025,registration,total_population,3.2,35,,60 – 64
+15.72.03,3,Hamparan Rawang,age_group,60-64,perempuan,387,jiwa,2025,registration,total_population,3.2,35,,60 – 64
+15.72.03,3,Hamparan Rawang,age_group,60-64,,759,jiwa,2025,registration,total_population,3.2,35,,60 – 64
+15.72.03,3,Hamparan Rawang,age_group,65-69,laki_laki,262,jiwa,2025,registration,total_population,3.2,35,,65 – 69
+15.72.03,3,Hamparan Rawang,age_group,65-69,perempuan,339,jiwa,2025,registration,total_population,3.2,35,,65 – 69
+15.72.03,3,Hamparan Rawang,age_group,65-69,,601,jiwa,2025,registration,total_population,3.2,35,,65 – 69
+15.72.03,3,Hamparan Rawang,age_group,70-74,laki_laki,216,jiwa,2025,registration,total_population,3.2,35,,70 - 74
+15.72.03,3,Hamparan Rawang,age_group,70-74,perempuan,280,jiwa,2025,registration,total_population,3.2,35,,70 - 74
+15.72.03,3,Hamparan Rawang,age_group,70-74,,496,jiwa,2025,registration,total_population,3.2,35,,70 - 74
+15.72.03,3,Hamparan Rawang,age_group,75+,laki_laki,323,jiwa,2025,registration,total_population,3.2,35,,75+
+15.72.03,3,Hamparan Rawang,age_group,75+,perempuan,517,jiwa,2025,registration,total_population,3.2,35,,75+
+15.72.03,3,Hamparan Rawang,age_group,75+,,840,jiwa,2025,registration,total_population,3.2,35,,75+
+15.72.03,3,Kecamatan Hamparan Rawang,sex,laki_laki,,8174,jiwa,2025,registration,total_population,3.2,35,,Laki-Laki
+15.72.03,3,Kecamatan Hamparan Rawang,sex,perempuan,,8142,jiwa,2025,registration,total_population,3.2,35,,Perempuan
+15.72.03,3,Kecamatan Hamparan Rawang,total,total,,16316,jiwa,2025,registration,total_population,3.2,35,,

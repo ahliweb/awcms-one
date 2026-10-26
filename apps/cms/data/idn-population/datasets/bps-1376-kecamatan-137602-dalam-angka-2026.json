@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1376-kecamatan-137602-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "13.76.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Payakumbuh Utara Dalam Angka 2026",
+  "publisherName": "BPS Kota Payakumbuh",
+  "publisherDomain": "1376",
+  "publisherWebsite": "https://payakumbuhkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Payakumbuh (https://payakumbuhkota.bps.go.id), publikasi \"Kecamatan Payakumbuh Utara Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1376030",
+  "publicationNumber": "13760.26009",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://payakumbuhkota.bps.go.id/id/publication/2026/09/28/420a2a9f74210a33985659bf/kecamatan-payakumbuh-utara-dalam-angka-2026.html",
+  "sourceFileSha256": "d7b8ba91a2bd8924f9aacd1426ec2320064a9409861e75373fd57b25e43a7edd",
+  "sourceFileBytes": 7451049,
+  "sourcePages": [47, 48, 49],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Payakumbuh.",
+  "csvPath": "datasets/bps-1376-kecamatan-137602-dalam-angka-2026.csv",
+  "csvSha256": "826ad235abca538ce0774b989f3acfdca513f8eb4cfc8b34dca2ba7c287e2474",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Payakumbuh Utara, 2025",
+      "printedPages": [47, 48],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Payakumbuh Utara, 2025",
+      "printedPages": [49],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Jumlah/Total\": unmatched ",
+    "table 3.1: row not stored: row \"Jumlah/Total\": unmatched "
+  ]
+}

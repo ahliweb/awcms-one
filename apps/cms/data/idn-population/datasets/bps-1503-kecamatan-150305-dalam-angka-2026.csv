@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.03.05.2017,4,Batu Putih,sex,laki_laki,,1287,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.05.2017,4,Batu Putih,sex,perempuan,,1290,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.05.2017,4,Batu Putih,total,total,,2577,jiwa,2025,registration,total_population,3.1,28,,
+15.03.05.2002,4,Pelawan,sex,laki_laki,,1190,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.05.2002,4,Pelawan,sex,perempuan,,1178,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.05.2002,4,Pelawan,total,total,,2368,jiwa,2025,registration,total_population,3.1,28,,
+15.03.05.2013,4,Sungai Merah,sex,laki_laki,,1930,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.05.2013,4,Sungai Merah,sex,perempuan,,1911,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.05.2013,4,Sungai Merah,total,total,,3841,jiwa,2025,registration,total_population,3.1,28,,
+15.03.05.2001,4,Penegah,sex,laki_laki,,753,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.05.2001,4,Penegah,sex,perempuan,,760,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.05.2001,4,Penegah,total,total,,1513,jiwa,2025,registration,total_population,3.1,28,,
+15.03.05.2003,4,Pulau Aro,sex,laki_laki,,812,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.05.2003,4,Pulau Aro,sex,perempuan,,797,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.05.2003,4,Pulau Aro,total,total,,1609,jiwa,2025,registration,total_population,3.1,28,,
+15.03.05.2004,4,Bukit,sex,laki_laki,,2374,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.05.2004,4,Bukit,sex,perempuan,,2189,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.05.2004,4,Bukit,total,total,,4563,jiwa,2025,registration,total_population,3.1,28,,
+15.03.05.2005,4,Lubuk Sepuh,sex,laki_laki,,2080,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.05.2005,4,Lubuk Sepuh,sex,perempuan,,2065,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.05.2005,4,Lubuk Sepuh,total,total,,4145,jiwa,2025,registration,total_population,3.1,28,,
+15.03.05.2007,4,Muara Danau,sex,laki_laki,,535,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.05.2007,4,Muara Danau,sex,perempuan,,512,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.05.2007,4,Muara Danau,total,total,,1047,jiwa,2025,registration,total_population,3.1,28,,
+15.03.05.2006,4,Rantau Tenang,sex,laki_laki,,645,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.05.2006,4,Rantau Tenang,sex,perempuan,,679,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.05.2006,4,Rantau Tenang,total,total,,1324,jiwa,2025,registration,total_population,3.1,28,,
+15.03.05.2019,4,Mekar Sari,sex,laki_laki,,1540,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.05.2019,4,Mekar Sari,sex,perempuan,,1470,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.05.2019,4,Mekar Sari,total,total,,3010,jiwa,2025,registration,total_population,3.1,28,,
+15.03.05.2021,4,Pasar Pelawan,sex,laki_laki,,1455,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.05.2021,4,Pasar Pelawan,sex,perempuan,,1433,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.05.2021,4,Pasar Pelawan,total,total,,2888,jiwa,2025,registration,total_population,3.1,28,,
+15.03.05.2022,4,Pelawan Jaya,sex,laki_laki,,1547,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.05.2022,4,Pelawan Jaya,sex,perempuan,,1518,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.05.2022,4,Pelawan Jaya,total,total,,3065,jiwa,2025,registration,total_population,3.1,28,,
+15.03.05.2023,4,Lubuk Sayak,sex,laki_laki,,871,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.05.2023,4,Lubuk Sayak,sex,perempuan,,835,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.05.2023,4,Lubuk Sayak,total,total,,1706,jiwa,2025,registration,total_population,3.1,28,,
+15.03.05,3,Pelawan,sex,laki_laki,,18850,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.05,3,Pelawan,sex,perempuan,,18379,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.05,3,Pelawan,total,total,,37229,jiwa,2025,registration,total_population,3.1,28,,

@@ -1,0 +1,97 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.04.02.2003,4,Jebak,sex,laki_laki,,1385,jiwa,2025,projection,total_population,3.1,25,,Laki-Laki/
+15.04.02.2003,4,Jebak,sex,perempuan,,1346,jiwa,2025,projection,total_population,3.1,25,,Perempuan/
+15.04.02.2003,4,Jebak,total,total,,2731,jiwa,2025,projection,total_population,3.1,25,,
+15.04.02.2004,4,Ampelu,sex,laki_laki,,809,jiwa,2025,projection,total_population,3.1,25,,Laki-Laki/
+15.04.02.2004,4,Ampelu,sex,perempuan,,749,jiwa,2025,projection,total_population,3.1,25,,Perempuan/
+15.04.02.2004,4,Ampelu,total,total,,1558,jiwa,2025,projection,total_population,3.1,25,,
+15.04.02.2010,4,Tanjung Marwo,sex,laki_laki,,1302,jiwa,2025,projection,total_population,3.1,25,,Laki-Laki/
+15.04.02.2010,4,Tanjung Marwo,sex,perempuan,,1296,jiwa,2025,projection,total_population,3.1,25,,Perempuan/
+15.04.02.2010,4,Tanjung Marwo,total,total,,2598,jiwa,2025,projection,total_population,3.1,25,,
+15.04.02.2011,4,Sukaramai,sex,laki_laki,,1029,jiwa,2025,projection,total_population,3.1,25,,Laki-Laki/
+15.04.02.2011,4,Sukaramai,sex,perempuan,,1064,jiwa,2025,projection,total_population,3.1,25,,Perempuan/
+15.04.02.2011,4,Sukaramai,total,total,,2093,jiwa,2025,projection,total_population,3.1,25,,
+15.04.02.2005,4,Rambutan Masam,sex,laki_laki,,1602,jiwa,2025,projection,total_population,3.1,25,,Laki-Laki/
+15.04.02.2005,4,Rambutan Masam,sex,perempuan,,1553,jiwa,2025,projection,total_population,3.1,25,,Perempuan/
+15.04.02.2005,4,Rambutan Masam,total,total,,3155,jiwa,2025,projection,total_population,3.1,25,,
+15.04.02.2009,4,Pulau,sex,laki_laki,,1040,jiwa,2025,projection,total_population,3.1,25,,Laki-Laki/
+15.04.02.2009,4,Pulau,sex,perempuan,,971,jiwa,2025,projection,total_population,3.1,25,,Perempuan/
+15.04.02.2009,4,Pulau,total,total,,2011,jiwa,2025,projection,total_population,3.1,25,,
+15.04.02.2008,4,Sungai Pulai,sex,laki_laki,,956,jiwa,2025,projection,total_population,3.1,25,,Laki-Laki/
+15.04.02.2008,4,Sungai Pulai,sex,perempuan,,964,jiwa,2025,projection,total_population,3.1,25,,Perempuan/
+15.04.02.2008,4,Sungai Pulai,total,total,,1920,jiwa,2025,projection,total_population,3.1,25,,
+15.04.02.2006,4,Rantau Kapas Mudo,sex,laki_laki,,999,jiwa,2025,projection,total_population,3.1,25,,Laki-Laki/
+15.04.02.2006,4,Rantau Kapas Mudo,sex,perempuan,,986,jiwa,2025,projection,total_population,3.1,25,,Perempuan/
+15.04.02.2006,4,Rantau Kapas Mudo,total,total,,1985,jiwa,2025,projection,total_population,3.1,25,,
+15.04.02.2007,4,Rantau Kapas Tuo,sex,laki_laki,,617,jiwa,2025,projection,total_population,3.1,25,,Laki-Laki/
+15.04.02.2007,4,Rantau Kapas Tuo,sex,perempuan,,621,jiwa,2025,projection,total_population,3.1,25,,Perempuan/
+15.04.02.2007,4,Rantau Kapas Tuo,total,total,,1238,jiwa,2025,projection,total_population,3.1,25,,
+15.04.02.2012,4,Ampelu Mudo,sex,laki_laki,,591,jiwa,2025,projection,total_population,3.1,25,,Laki-Laki/
+15.04.02.2012,4,Ampelu Mudo,sex,perempuan,,570,jiwa,2025,projection,total_population,3.1,25,,Perempuan/
+15.04.02.2012,4,Ampelu Mudo,total,total,,1161,jiwa,2025,projection,total_population,3.1,25,,
+15.04.02.2013,4,Pelayangan,sex,laki_laki,,1154,jiwa,2025,projection,total_population,3.1,25,,Laki-Laki/
+15.04.02.2013,4,Pelayangan,sex,perempuan,,1079,jiwa,2025,projection,total_population,3.1,25,,Perempuan/
+15.04.02.2013,4,Pelayangan,total,total,,2233,jiwa,2025,projection,total_population,3.1,25,,
+15.04.02.2015,4,Pematang Lima Suku,sex,laki_laki,,1087,jiwa,2025,projection,total_population,3.1,25,,Laki-Laki/
+15.04.02.2015,4,Pematang Lima Suku,sex,perempuan,,1083,jiwa,2025,projection,total_population,3.1,25,,Perempuan/
+15.04.02.2015,4,Pematang Lima Suku,total,total,,2170,jiwa,2025,projection,total_population,3.1,25,,
+15.04.02.1001,4,Kampung Baru,sex,laki_laki,,4832,jiwa,2025,projection,total_population,3.1,25,,Laki-Laki/
+15.04.02.1001,4,Kampung Baru,sex,perempuan,,4849,jiwa,2025,projection,total_population,3.1,25,,Perempuan/
+15.04.02.1001,4,Kampung Baru,total,total,,9681,jiwa,2025,projection,total_population,3.1,25,,
+15.04.02.1002,4,Pasar Muara Tembesi,sex,laki_laki,,685,jiwa,2025,projection,total_population,3.1,25,,Laki-Laki/
+15.04.02.1002,4,Pasar Muara Tembesi,sex,perempuan,,669,jiwa,2025,projection,total_population,3.1,25,,Perempuan/
+15.04.02.1002,4,Pasar Muara Tembesi,total,total,,1354,jiwa,2025,projection,total_population,3.1,25,,
+15.04.02,3,Muara Tembesi,sex,laki_laki,,18088,jiwa,2025,projection,total_population,3.1,25,,Laki-Laki/
+15.04.02,3,Muara Tembesi,sex,perempuan,,17800,jiwa,2025,projection,total_population,3.1,25,,Perempuan/
+15.04.02,3,Muara Tembesi,total,total,,35888,jiwa,2025,projection,total_population,3.1,25,,
+15.04.02,3,Muara Tembesi,age_group,0-4,laki_laki,1696,jiwa,2025,projection,total_population,3.2,27,,0-4
+15.04.02,3,Muara Tembesi,age_group,0-4,perempuan,1673,jiwa,2025,projection,total_population,3.2,27,,0-4
+15.04.02,3,Muara Tembesi,age_group,0-4,,3369,jiwa,2025,projection,total_population,3.2,27,,0-4
+15.04.02,3,Muara Tembesi,age_group,5-9,laki_laki,1568,jiwa,2025,projection,total_population,3.2,27,,5-9
+15.04.02,3,Muara Tembesi,age_group,5-9,perempuan,1539,jiwa,2025,projection,total_population,3.2,27,,5-9
+15.04.02,3,Muara Tembesi,age_group,5-9,,3107,jiwa,2025,projection,total_population,3.2,27,,5-9
+15.04.02,3,Muara Tembesi,age_group,10-14,laki_laki,1502,jiwa,2025,projection,total_population,3.2,27,,10-14
+15.04.02,3,Muara Tembesi,age_group,10-14,perempuan,1475,jiwa,2025,projection,total_population,3.2,27,,10-14
+15.04.02,3,Muara Tembesi,age_group,10-14,,2977,jiwa,2025,projection,total_population,3.2,27,,10-14
+15.04.02,3,Muara Tembesi,age_group,15-19,laki_laki,1452,jiwa,2025,projection,total_population,3.2,27,,15-19
+15.04.02,3,Muara Tembesi,age_group,15-19,perempuan,1390,jiwa,2025,projection,total_population,3.2,27,,15-19
+15.04.02,3,Muara Tembesi,age_group,15-19,,2842,jiwa,2025,projection,total_population,3.2,27,,15-19
+15.04.02,3,Muara Tembesi,age_group,20-24,laki_laki,1423,jiwa,2025,projection,total_population,3.2,27,,20-24
+15.04.02,3,Muara Tembesi,age_group,20-24,perempuan,1364,jiwa,2025,projection,total_population,3.2,27,,20-24
+15.04.02,3,Muara Tembesi,age_group,20-24,,2787,jiwa,2025,projection,total_population,3.2,27,,20-24
+15.04.02,3,Muara Tembesi,age_group,25-29,laki_laki,1416,jiwa,2025,projection,total_population,3.2,27,,25-29
+15.04.02,3,Muara Tembesi,age_group,25-29,perempuan,1421,jiwa,2025,projection,total_population,3.2,27,,25-29
+15.04.02,3,Muara Tembesi,age_group,25-29,,2837,jiwa,2025,projection,total_population,3.2,27,,25-29
+15.04.02,3,Muara Tembesi,age_group,30-34,laki_laki,1418,jiwa,2025,projection,total_population,3.2,27,,30-34
+15.04.02,3,Muara Tembesi,age_group,30-34,perempuan,1432,jiwa,2025,projection,total_population,3.2,27,,30-34
+15.04.02,3,Muara Tembesi,age_group,30-34,,2850,jiwa,2025,projection,total_population,3.2,27,,30-34
+15.04.02,3,Muara Tembesi,age_group,35-39,laki_laki,1395,jiwa,2025,projection,total_population,3.2,27,,35-39
+15.04.02,3,Muara Tembesi,age_group,35-39,perempuan,1392,jiwa,2025,projection,total_population,3.2,27,,35-39
+15.04.02,3,Muara Tembesi,age_group,35-39,,2787,jiwa,2025,projection,total_population,3.2,27,,35-39
+15.04.02,3,Muara Tembesi,age_group,40-44,laki_laki,1275,jiwa,2025,projection,total_population,3.2,27,,40-44
+15.04.02,3,Muara Tembesi,age_group,40-44,perempuan,1266,jiwa,2025,projection,total_population,3.2,27,,40-44
+15.04.02,3,Muara Tembesi,age_group,40-44,,2541,jiwa,2025,projection,total_population,3.2,27,,40-44
+15.04.02,3,Muara Tembesi,age_group,45-49,laki_laki,1208,jiwa,2025,projection,total_population,3.2,27,,45-49
+15.04.02,3,Muara Tembesi,age_group,45-49,perempuan,1200,jiwa,2025,projection,total_population,3.2,27,,45-49
+15.04.02,3,Muara Tembesi,age_group,45-49,,2408,jiwa,2025,projection,total_population,3.2,27,,45-49
+15.04.02,3,Muara Tembesi,age_group,50-54,laki_laki,1034,jiwa,2025,projection,total_population,3.2,27,,50-54
+15.04.02,3,Muara Tembesi,age_group,50-54,perempuan,1014,jiwa,2025,projection,total_population,3.2,27,,50-54
+15.04.02,3,Muara Tembesi,age_group,50-54,,2048,jiwa,2025,projection,total_population,3.2,27,,50-54
+15.04.02,3,Muara Tembesi,age_group,55-59,laki_laki,878,jiwa,2025,projection,total_population,3.2,27,,55-59
+15.04.02,3,Muara Tembesi,age_group,55-59,perempuan,836,jiwa,2025,projection,total_population,3.2,27,,55-59
+15.04.02,3,Muara Tembesi,age_group,55-59,,1714,jiwa,2025,projection,total_population,3.2,27,,55-59
+15.04.02,3,Muara Tembesi,age_group,60-64,laki_laki,714,jiwa,2025,projection,total_population,3.2,27,,60-64
+15.04.02,3,Muara Tembesi,age_group,60-64,perempuan,682,jiwa,2025,projection,total_population,3.2,27,,60-64
+15.04.02,3,Muara Tembesi,age_group,60-64,,1396,jiwa,2025,projection,total_population,3.2,27,,60-64
+15.04.02,3,Muara Tembesi,age_group,65-69,laki_laki,536,jiwa,2025,projection,total_population,3.2,27,,65-69
+15.04.02,3,Muara Tembesi,age_group,65-69,perempuan,508,jiwa,2025,projection,total_population,3.2,27,,65-69
+15.04.02,3,Muara Tembesi,age_group,65-69,,1044,jiwa,2025,projection,total_population,3.2,27,,65-69
+15.04.02,3,Muara Tembesi,age_group,70-74,laki_laki,357,jiwa,2025,projection,total_population,3.2,27,,70-74
+15.04.02,3,Muara Tembesi,age_group,70-74,perempuan,347,jiwa,2025,projection,total_population,3.2,27,,70-74
+15.04.02,3,Muara Tembesi,age_group,70-74,,704,jiwa,2025,projection,total_population,3.2,27,,70-74
+15.04.02,3,Muara Tembesi,age_group,75+,laki_laki,216,jiwa,2025,projection,total_population,3.2,27,,75+
+15.04.02,3,Muara Tembesi,age_group,75+,perempuan,261,jiwa,2025,projection,total_population,3.2,27,,75+
+15.04.02,3,Muara Tembesi,age_group,75+,,477,jiwa,2025,projection,total_population,3.2,27,,75+
+15.04.02,3,Muara Tembesi,sex,laki_laki,,18088,jiwa,2025,projection,total_population,3.2,27,,Laki-Laki
+15.04.02,3,Muara Tembesi,sex,perempuan,,17800,jiwa,2025,projection,total_population,3.2,27,,Perempuan
+15.04.02,3,Muara Tembesi,total,total,,35888,jiwa,2025,projection,total_population,3.2,27,,

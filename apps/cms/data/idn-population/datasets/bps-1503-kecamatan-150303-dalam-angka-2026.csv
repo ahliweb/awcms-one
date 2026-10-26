@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.03.03.2005,4,TINTING,sex,laki_laki,,849,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.03.2005,4,TINTING,sex,perempuan,,806,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.03.2005,4,TINTING,total,total,,1655,jiwa,2025,registration,total_population,3.1,28,,
+15.03.03.2003,4,Sungai Baung,sex,laki_laki,,1595,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.03.2003,4,Sungai Baung,sex,perempuan,,1543,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.03.2003,4,Sungai Baung,total,total,,3138,jiwa,2025,registration,total_population,3.1,28,,
+15.03.03.2004,4,Panti,sex,laki_laki,,1038,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.03.2004,4,Panti,sex,perempuan,,963,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.03.2004,4,Panti,total,total,,2001,jiwa,2025,registration,total_population,3.1,28,,
+15.03.03.2006,4,Sungai Abang,sex,laki_laki,,1093,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.03.2006,4,Sungai Abang,sex,perempuan,,1015,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.03.2006,4,Sungai Abang,total,total,,2108,jiwa,2025,registration,total_population,3.1,28,,
+15.03.03.2002,4,BERNAI,sex,laki_laki,,1743,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.03.2002,4,BERNAI,sex,perempuan,,1741,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.03.2002,4,BERNAI,total,total,,3484,jiwa,2025,registration,total_population,3.1,28,,
+15.03.03.1001,4,Dusun Sarolangun,sex,laki_laki,,1189,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.03.1001,4,Dusun Sarolangun,sex,perempuan,,1289,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.03.1001,4,Dusun Sarolangun,total,total,,2478,jiwa,2025,registration,total_population,3.1,28,,
+15.03.03.1016,4,Pasar Sarolangun,sex,laki_laki,,1520,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.03.1016,4,Pasar Sarolangun,sex,perempuan,,1523,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.03.1016,4,Pasar Sarolangun,total,total,,3043,jiwa,2025,registration,total_population,3.1,28,,
+15.03.03.1015,4,Sukasari,sex,laki_laki,,4007,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.03.1015,4,Sukasari,sex,perempuan,,4017,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.03.1015,4,Sukasari,total,total,,8024,jiwa,2025,registration,total_population,3.1,28,,
+15.03.03.1019,4,Sarolangun Kembang,sex,laki_laki,,3425,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.03.1019,4,Sarolangun Kembang,sex,perempuan,,3338,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.03.1019,4,Sarolangun Kembang,total,total,,6763,jiwa,2025,registration,total_population,3.1,28,,
+15.03.03.2014,4,Ladang Panjang,sex,laki_laki,,2010,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.03.2014,4,Ladang Panjang,sex,perempuan,,1959,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.03.2014,4,Ladang Panjang,total,total,,3969,jiwa,2025,registration,total_population,3.1,28,,
+15.03.03.2013,4,LIDUNG,sex,laki_laki,,1604,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.03.2013,4,LIDUNG,sex,perempuan,,1487,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.03.2013,4,LIDUNG,total,total,,3091,jiwa,2025,registration,total_population,3.1,28,,
+15.03.03.2024,4,Desa Baru,sex,laki_laki,,618,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.03.2024,4,Desa Baru,sex,perempuan,,601,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.03.2024,4,Desa Baru,total,total,,1219,jiwa,2025,registration,total_population,3.1,28,,
+15.03.03.1026,4,Aur Gading,sex,laki_laki,,6592,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.03.1026,4,Aur Gading,sex,perempuan,,6485,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.03.1026,4,Aur Gading,total,total,,13077,jiwa,2025,registration,total_population,3.1,28,,
+15.03.03.1025,4,Gunung Kembang,sex,laki_laki,,3247,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.03.1025,4,Gunung Kembang,sex,perempuan,,3052,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.03.1025,4,Gunung Kembang,total,total,,6299,jiwa,2025,registration,total_population,3.1,28,,
+15.03.03.2027,4,Ujung Tanjung,sex,laki_laki,,472,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.03.2027,4,Ujung Tanjung,sex,perempuan,,470,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.03.2027,4,Ujung Tanjung,total,total,,942,jiwa,2025,registration,total_population,3.1,28,,
+15.03.03.2028,4,Bernai Dalam,sex,laki_laki,,536,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.03.2028,4,Bernai Dalam,sex,perempuan,,511,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.03.2028,4,Bernai Dalam,total,total,,1047,jiwa,2025,registration,total_population,3.1,28,,
+15.03.03,3,Sarolangun,sex,laki_laki,,31538,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.03,3,Sarolangun,sex,perempuan,,30800,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.03,3,Sarolangun,total,total,,62338,jiwa,2025,registration,total_population,3.1,28,,

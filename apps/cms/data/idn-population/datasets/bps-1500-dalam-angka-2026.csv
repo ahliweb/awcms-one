@@ -1,0 +1,145 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.01,2,Kabupaten Kerinci,total,total,,250.26,ribu_jiwa,2020,census,total_population,3.1.1,87,,
+15.01,2,Kabupaten Kerinci,total,total,,259.64,ribu_jiwa,2026,projection,total_population,3.1.1,87,,
+15.02,2,Kabupaten Merangin,total,total,,354.05,ribu_jiwa,2020,census,total_population,3.1.1,87,,
+15.02,2,Kabupaten Merangin,total,total,,383.22,ribu_jiwa,2026,projection,total_population,3.1.1,87,,
+15.03,2,Kabupaten Sarolangun,total,total,,290.05,ribu_jiwa,2020,census,total_population,3.1.1,87,,
+15.03,2,Kabupaten Sarolangun,total,total,,314.74,ribu_jiwa,2026,projection,total_population,3.1.1,87,,
+15.04,2,Kabupaten Batang Hari,total,total,,301.70,ribu_jiwa,2020,census,total_population,3.1.1,87,,
+15.04,2,Kabupaten Batang Hari,total,total,,323.91,ribu_jiwa,2026,projection,total_population,3.1.1,87,,
+15.05,2,Kabupaten Muaro Jambi,total,total,,402.02,ribu_jiwa,2020,census,total_population,3.1.1,87,,
+15.05,2,Kabupaten Muaro Jambi,total,total,,435.80,ribu_jiwa,2026,projection,total_population,3.1.1,87,,
+15.07,2,Kabupaten Tanjung Jabung Timur,total,total,,229.81,ribu_jiwa,2020,census,total_population,3.1.1,87,,
+15.07,2,Kabupaten Tanjung Jabung Timur,total,total,,243.26,ribu_jiwa,2026,projection,total_population,3.1.1,87,,
+15.06,2,Kabupaten Tanjung Jabung Barat,total,total,,317.50,ribu_jiwa,2020,census,total_population,3.1.1,87,,
+15.06,2,Kabupaten Tanjung Jabung Barat,total,total,,344.13,ribu_jiwa,2026,projection,total_population,3.1.1,87,,
+15.09,2,Kabupaten Tebo,total,total,,337.67,ribu_jiwa,2020,census,total_population,3.1.1,87,,
+15.09,2,Kabupaten Tebo,total,total,,363.89,ribu_jiwa,2026,projection,total_population,3.1.1,87,,
+15.08,2,Kabupaten Bungo,total,total,,362.36,ribu_jiwa,2020,census,total_population,3.1.1,87,,
+15.08,2,Kabupaten Bungo,total,total,,390.85,ribu_jiwa,2026,projection,total_population,3.1.1,87,,
+15.71,2,Kota Jambi,total,total,,606.20,ribu_jiwa,2020,census,total_population,3.1.1,87,,
+15.71,2,Kota Jambi,total,total,,649.26,ribu_jiwa,2026,projection,total_population,3.1.1,87,,
+15.72,2,Kota Sungai Penuh,total,total,,96.61,ribu_jiwa,2020,census,total_population,3.1.1,87,,
+15.72,2,Kota Sungai Penuh,total,total,,102.96,ribu_jiwa,2026,projection,total_population,3.1.1,87,,
+15,1,Jambi,total,total,,3548.23,ribu_jiwa,2020,census,total_population,3.1.1,87,,
+15,1,Jambi,total,total,,3811.66,ribu_jiwa,2026,projection,total_population,3.1.1,87,,
+15.01,2,Kabupaten Kerinci,religion,islam,,269961,jiwa,2025,registration,total_population,4.5.4,291,,Islam
+15.01,2,Kabupaten Kerinci,religion,kristen,,461,jiwa,2025,registration,total_population,4.5.4,291,,Protestan
+15.01,2,Kabupaten Kerinci,religion,katolik,,115,jiwa,2025,registration,total_population,4.5.4,291,,Katolik
+15.01,2,Kabupaten Kerinci,religion,hindu,,0,jiwa,2025,registration,total_population,4.5.4,291,nil,Hindu
+15.01,2,Kabupaten Kerinci,religion,buddha,,1,jiwa,2025,registration,total_population,4.5.4,291,,Budha
+15.01,2,Kabupaten Kerinci,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.5.4,291,nil,Khonghucu
+15.01,2,Kabupaten Kerinci,religion,lainnya,,8,jiwa,2025,registration,total_population,4.5.4,291,,Lainnya1
+15.02,2,Kabupaten Merangin,religion,islam,,393144,jiwa,2025,registration,total_population,4.5.4,291,,Islam
+15.02,2,Kabupaten Merangin,religion,kristen,,6308,jiwa,2025,registration,total_population,4.5.4,291,,Protestan
+15.02,2,Kabupaten Merangin,religion,katolik,,968,jiwa,2025,registration,total_population,4.5.4,291,,Katolik
+15.02,2,Kabupaten Merangin,religion,hindu,,22,jiwa,2025,registration,total_population,4.5.4,291,,Hindu
+15.02,2,Kabupaten Merangin,religion,buddha,,150,jiwa,2025,registration,total_population,4.5.4,291,,Budha
+15.02,2,Kabupaten Merangin,religion,khonghucu,,4,jiwa,2025,registration,total_population,4.5.4,291,,Khonghucu
+15.02,2,Kabupaten Merangin,religion,lainnya,,322,jiwa,2025,registration,total_population,4.5.4,291,,Lainnya1
+15.03,2,Kabupaten Sarolangun,religion,islam,,303429,jiwa,2025,registration,total_population,4.5.4,291,,Islam
+15.03,2,Kabupaten Sarolangun,religion,kristen,,10077,jiwa,2025,registration,total_population,4.5.4,291,,Protestan
+15.03,2,Kabupaten Sarolangun,religion,katolik,,1360,jiwa,2025,registration,total_population,4.5.4,291,,Katolik
+15.03,2,Kabupaten Sarolangun,religion,hindu,,23,jiwa,2025,registration,total_population,4.5.4,291,,Hindu
+15.03,2,Kabupaten Sarolangun,religion,buddha,,258,jiwa,2025,registration,total_population,4.5.4,291,,Budha
+15.03,2,Kabupaten Sarolangun,religion,khonghucu,,12,jiwa,2025,registration,total_population,4.5.4,291,,Khonghucu
+15.03,2,Kabupaten Sarolangun,religion,lainnya,,554,jiwa,2025,registration,total_population,4.5.4,291,,Lainnya1
+15.04,2,Kabupaten Batang Hari,religion,islam,,299003,jiwa,2025,registration,total_population,4.5.4,291,,Islam
+15.04,2,Kabupaten Batang Hari,religion,kristen,,8319,jiwa,2025,registration,total_population,4.5.4,291,,Protestan
+15.04,2,Kabupaten Batang Hari,religion,katolik,,1077,jiwa,2025,registration,total_population,4.5.4,291,,Katolik
+15.04,2,Kabupaten Batang Hari,religion,hindu,,3,jiwa,2025,registration,total_population,4.5.4,291,,Hindu
+15.04,2,Kabupaten Batang Hari,religion,buddha,,296,jiwa,2025,registration,total_population,4.5.4,291,,Budha
+15.04,2,Kabupaten Batang Hari,religion,khonghucu,,4,jiwa,2025,registration,total_population,4.5.4,291,,Khonghucu
+15.04,2,Kabupaten Batang Hari,religion,lainnya,,454,jiwa,2025,registration,total_population,4.5.4,291,,Lainnya1
+15.05,2,Kabupaten Muaro Jambi,religion,islam,,435695,jiwa,2025,registration,total_population,4.5.4,291,,Islam
+15.05,2,Kabupaten Muaro Jambi,religion,kristen,,21948,jiwa,2025,registration,total_population,4.5.4,291,,Protestan
+15.05,2,Kabupaten Muaro Jambi,religion,katolik,,2389,jiwa,2025,registration,total_population,4.5.4,291,,Katolik
+15.05,2,Kabupaten Muaro Jambi,religion,hindu,,193,jiwa,2025,registration,total_population,4.5.4,291,,Hindu
+15.05,2,Kabupaten Muaro Jambi,religion,buddha,,1501,jiwa,2025,registration,total_population,4.5.4,291,,Budha
+15.05,2,Kabupaten Muaro Jambi,religion,khonghucu,,139,jiwa,2025,registration,total_population,4.5.4,291,,Khonghucu
+15.05,2,Kabupaten Muaro Jambi,religion,lainnya,,6,jiwa,2025,registration,total_population,4.5.4,291,,Lainnya1
+15.07,2,Kabupaten Tanjung Jabung Timur,religion,islam,,316308,jiwa,2025,registration,total_population,4.5.4,291,,Islam
+15.07,2,Kabupaten Tanjung Jabung Timur,religion,kristen,,19959,jiwa,2025,registration,total_population,4.5.4,291,,Protestan
+15.07,2,Kabupaten Tanjung Jabung Timur,religion,katolik,,2052,jiwa,2025,registration,total_population,4.5.4,291,,Katolik
+15.07,2,Kabupaten Tanjung Jabung Timur,religion,hindu,,10,jiwa,2025,registration,total_population,4.5.4,291,,Hindu
+15.07,2,Kabupaten Tanjung Jabung Timur,religion,buddha,,1286,jiwa,2025,registration,total_population,4.5.4,291,,Budha
+15.07,2,Kabupaten Tanjung Jabung Timur,religion,khonghucu,,94,jiwa,2025,registration,total_population,4.5.4,291,,Khonghucu
+15.07,2,Kabupaten Tanjung Jabung Timur,religion,lainnya,,49,jiwa,2025,registration,total_population,4.5.4,291,,Lainnya1
+15.06,2,Kabupaten Tanjung Jabung Barat,religion,islam,,242541,jiwa,2025,registration,total_population,4.5.4,291,,Islam
+15.06,2,Kabupaten Tanjung Jabung Barat,religion,kristen,,2823,jiwa,2025,registration,total_population,4.5.4,291,,Protestan
+15.06,2,Kabupaten Tanjung Jabung Barat,religion,katolik,,417,jiwa,2025,registration,total_population,4.5.4,291,,Katolik
+15.06,2,Kabupaten Tanjung Jabung Barat,religion,hindu,,81,jiwa,2025,registration,total_population,4.5.4,291,,Hindu
+15.06,2,Kabupaten Tanjung Jabung Barat,religion,buddha,,128,jiwa,2025,registration,total_population,4.5.4,291,,Budha
+15.06,2,Kabupaten Tanjung Jabung Barat,religion,khonghucu,,5,jiwa,2025,registration,total_population,4.5.4,291,,Khonghucu
+15.06,2,Kabupaten Tanjung Jabung Barat,religion,lainnya,,0,jiwa,2025,registration,total_population,4.5.4,291,nil,Lainnya1
+15.09,2,Kabupaten Tebo,religion,islam,,371963,jiwa,2025,registration,total_population,4.5.4,291,,Islam
+15.09,2,Kabupaten Tebo,religion,kristen,,8633,jiwa,2025,registration,total_population,4.5.4,291,,Protestan
+15.09,2,Kabupaten Tebo,religion,katolik,,1783,jiwa,2025,registration,total_population,4.5.4,291,,Katolik
+15.09,2,Kabupaten Tebo,religion,hindu,,18,jiwa,2025,registration,total_population,4.5.4,291,,Hindu
+15.09,2,Kabupaten Tebo,religion,buddha,,1177,jiwa,2025,registration,total_population,4.5.4,291,,Budha
+15.09,2,Kabupaten Tebo,religion,khonghucu,,7,jiwa,2025,registration,total_population,4.5.4,291,,Khonghucu
+15.09,2,Kabupaten Tebo,religion,lainnya,,231,jiwa,2025,registration,total_population,4.5.4,291,,Lainnya1
+15.08,2,Kabupaten Bungo,religion,islam,,364464,jiwa,2025,registration,total_population,4.5.4,291,,Islam
+15.08,2,Kabupaten Bungo,religion,kristen,,12814,jiwa,2025,registration,total_population,4.5.4,291,,Protestan
+15.08,2,Kabupaten Bungo,religion,katolik,,1923,jiwa,2025,registration,total_population,4.5.4,291,,Katolik
+15.08,2,Kabupaten Bungo,religion,hindu,,20,jiwa,2025,registration,total_population,4.5.4,291,,Hindu
+15.08,2,Kabupaten Bungo,religion,buddha,,83,jiwa,2025,registration,total_population,4.5.4,291,,Budha
+15.08,2,Kabupaten Bungo,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.5.4,291,nil,Khonghucu
+15.08,2,Kabupaten Bungo,religion,lainnya,,1023,jiwa,2025,registration,total_population,4.5.4,291,,Lainnya1
+15.71,2,Kota Jambi,religion,islam,,573338,jiwa,2025,registration,total_population,4.5.4,291,,Islam
+15.71,2,Kota Jambi,religion,kristen,,40834,jiwa,2025,registration,total_population,4.5.4,291,,Protestan
+15.71,2,Kota Jambi,religion,katolik,,10485,jiwa,2025,registration,total_population,4.5.4,291,,Katolik
+15.71,2,Kota Jambi,religion,hindu,,184,jiwa,2025,registration,total_population,4.5.4,291,,Hindu
+15.71,2,Kota Jambi,religion,buddha,,28762,jiwa,2025,registration,total_population,4.5.4,291,,Budha
+15.71,2,Kota Jambi,religion,khonghucu,,587,jiwa,2025,registration,total_population,4.5.4,291,,Khonghucu
+15.71,2,Kota Jambi,religion,lainnya,,4,jiwa,2025,registration,total_population,4.5.4,291,,Lainnya1
+15.72,2,Kota Sungai Penuh,religion,islam,,101526,jiwa,2025,registration,total_population,4.5.4,291,,Islam
+15.72,2,Kota Sungai Penuh,religion,kristen,,683,jiwa,2025,registration,total_population,4.5.4,291,,Protestan
+15.72,2,Kota Sungai Penuh,religion,katolik,,182,jiwa,2025,registration,total_population,4.5.4,291,,Katolik
+15.72,2,Kota Sungai Penuh,religion,hindu,,1,jiwa,2025,registration,total_population,4.5.4,291,,Hindu
+15.72,2,Kota Sungai Penuh,religion,buddha,,90,jiwa,2025,registration,total_population,4.5.4,291,,Budha
+15.72,2,Kota Sungai Penuh,religion,khonghucu,,1,jiwa,2025,registration,total_population,4.5.4,291,,Khonghucu
+15.72,2,Kota Sungai Penuh,religion,lainnya,,0,jiwa,2025,registration,total_population,4.5.4,291,nil,Lainnya1
+15,1,Jambi,religion,islam,,3671372,jiwa,2025,registration,total_population,4.5.4,291,,Islam
+15,1,Jambi,religion,kristen,,132859,jiwa,2025,registration,total_population,4.5.4,291,,Protestan
+15,1,Jambi,religion,katolik,,22751,jiwa,2025,registration,total_population,4.5.4,291,,Katolik
+15,1,Jambi,religion,hindu,,555,jiwa,2025,registration,total_population,4.5.4,291,,Hindu
+15,1,Jambi,religion,buddha,,33732,jiwa,2025,registration,total_population,4.5.4,291,,Budha
+15,1,Jambi,religion,khonghucu,,853,jiwa,2025,registration,total_population,4.5.4,291,,Khonghucu
+15,1,Jambi,religion,lainnya,,2651,jiwa,2025,registration,total_population,4.5.4,291,,Lainnya1
+15.01,2,Kabupaten Kerinci,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,1381656,rupiah,2025,survey_estimate,employees,3.2.20,128,,"Pertanian, Kehutanan dan Perikanan"
+15.01,2,Kabupaten Kerinci,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,2501863,rupiah,2025,survey_estimate,employees,3.2.20,128,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+15.01,2,Kabupaten Kerinci,income,total,,2009531,rupiah,2025,survey_estimate,employees,3.2.20,128,,
+15.02,2,Kabupaten Merangin,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,1962943,rupiah,2025,survey_estimate,employees,3.2.20,128,,"Pertanian, Kehutanan dan Perikanan"
+15.02,2,Kabupaten Merangin,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,3156279,rupiah,2025,survey_estimate,employees,3.2.20,128,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+15.02,2,Kabupaten Merangin,income,total,,2542950,rupiah,2025,survey_estimate,employees,3.2.20,128,,
+15.03,2,Kabupaten Sarolangun,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,2464013,rupiah,2025,survey_estimate,employees,3.2.20,128,,"Pertanian, Kehutanan dan Perikanan"
+15.03,2,Kabupaten Sarolangun,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,3966510,rupiah,2025,survey_estimate,employees,3.2.20,128,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+15.03,2,Kabupaten Sarolangun,income,total,,3056429,rupiah,2025,survey_estimate,employees,3.2.20,128,,
+15.04,2,Kabupaten Batang Hari,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,2200984,rupiah,2025,survey_estimate,employees,3.2.20,128,,"Pertanian, Kehutanan dan Perikanan"
+15.04,2,Kabupaten Batang Hari,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,2704020,rupiah,2025,survey_estimate,employees,3.2.20,128,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+15.04,2,Kabupaten Batang Hari,income,total,,2432581,rupiah,2025,survey_estimate,employees,3.2.20,128,,
+15.05,2,Kabupaten Muaro Jambi,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,2261712,rupiah,2025,survey_estimate,employees,3.2.20,128,,"Pertanian, Kehutanan dan Perikanan"
+15.05,2,Kabupaten Muaro Jambi,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,2939512,rupiah,2025,survey_estimate,employees,3.2.20,128,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+15.05,2,Kabupaten Muaro Jambi,income,total,,2601812,rupiah,2025,survey_estimate,employees,3.2.20,128,,
+15.07,2,Kabupaten Tanjung Jabung Timur,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,1739744,rupiah,2025,survey_estimate,employees,3.2.20,128,,"Pertanian, Kehutanan dan Perikanan"
+15.07,2,Kabupaten Tanjung Jabung Timur,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,3773072,rupiah,2025,survey_estimate,employees,3.2.20,128,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+15.07,2,Kabupaten Tanjung Jabung Timur,income,total,,2209051,rupiah,2025,survey_estimate,employees,3.2.20,128,,
+15.06,2,Kabupaten Tanjung Jabung Barat,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,2519009,rupiah,2025,survey_estimate,employees,3.2.20,128,,"Pertanian, Kehutanan dan Perikanan"
+15.06,2,Kabupaten Tanjung Jabung Barat,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,3959355,rupiah,2025,survey_estimate,employees,3.2.20,128,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+15.06,2,Kabupaten Tanjung Jabung Barat,income,total,,3114110,rupiah,2025,survey_estimate,employees,3.2.20,128,,
+15.09,2,Kabupaten Tebo,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,2162500,rupiah,2025,survey_estimate,employees,3.2.20,128,,"Pertanian, Kehutanan dan Perikanan"
+15.09,2,Kabupaten Tebo,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,3161208,rupiah,2025,survey_estimate,employees,3.2.20,128,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+15.09,2,Kabupaten Tebo,income,total,,2319162,rupiah,2025,survey_estimate,employees,3.2.20,128,,
+15.08,2,Kabupaten Bungo,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,2263798,rupiah,2025,survey_estimate,employees,3.2.20,128,,"Pertanian, Kehutanan dan Perikanan"
+15.08,2,Kabupaten Bungo,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,3455771,rupiah,2025,survey_estimate,employees,3.2.20,128,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+15.08,2,Kabupaten Bungo,income,total,,2675585,rupiah,2025,survey_estimate,employees,3.2.20,128,,
+15.71,2,Kota Jambi,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,3081932,rupiah,2025,survey_estimate,employees,3.2.20,128,,"Pertanian, Kehutanan dan Perikanan"
+15.71,2,Kota Jambi,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,4055830,rupiah,2025,survey_estimate,employees,3.2.20,128,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+15.71,2,Kota Jambi,income,total,,3503363,rupiah,2025,survey_estimate,employees,3.2.20,128,,
+15.72,2,Kota Sungai Penuh,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,1550155,rupiah,2025,survey_estimate,employees,3.2.20,128,,"Pertanian, Kehutanan dan Perikanan"
+15.72,2,Kota Sungai Penuh,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,2846984,rupiah,2025,survey_estimate,employees,3.2.20,128,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+15.72,2,Kota Sungai Penuh,income,total,,3189217,rupiah,2025,survey_estimate,employees,3.2.20,128,,
+15,1,Jambi,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,2137426,rupiah,2025,survey_estimate,employees,3.2.20,128,,"Pertanian, Kehutanan dan Perikanan"
+15,1,Jambi,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,3412302,rupiah,2025,survey_estimate,employees,3.2.20,128,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+15,1,Jambi,income,total,,2778424,rupiah,2025,survey_estimate,employees,3.2.20,128,,

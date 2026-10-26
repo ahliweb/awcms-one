@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1505-kecamatan-150501-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.05.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jambi Luar Kota Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Muaro Jambi",
+  "publisherDomain": "1505",
+  "publisherWebsite": "https://muarojambikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Muaro Jambi (https://muarojambikab.bps.go.id), publikasi \"Kecamatan Jambi Luar Kota Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1505050",
+  "publicationNumber": "15050.26014",
+  "issn": "2722-6867",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://muarojambikab.bps.go.id/id/publication/2026/09/28/f6d3c722616e5e286930f755/kecamatan-jambi-luar-kota-dalam-angka-2026.html",
+  "sourceFileSha256": "9992f627668003409e44f52cf6394a56c5fa5474b69d14f841d890594a9b00b2",
+  "sourceFileBytes": 8300937,
+  "sourcePages": [33, 34, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Muaro Jambi.",
+  "csvPath": "datasets/bps-1505-kecamatan-150501-dalam-angka-2026.csv",
+  "csvSha256": "19bc9068e9efd082a989fe4dc47a8be5d908ab453b569065e61b4c76a05a93d7",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Jambi Luar Kota, 2025",
+      "printedPages": [33, 34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Jambi Luar Kota, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: 53 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.2: the rows of region 15.05.01 are not stored: sex split vs total: parts sum 78918.0000 != 79300.0000 (diff 382.0000); the source itself is inconsistent"
+  ]
+}

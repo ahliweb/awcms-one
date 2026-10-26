@@ -1,0 +1,84 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.08.06,3,Pelepat,total,total,,37728,jiwa,2024,projection,total_population,3.1.1,78,,
+15.08.06,3,Pelepat,total,total,,38363,jiwa,2025,projection,total_population,3.1.1,78,,
+15.08.09,3,Pelepat Ilir,total,total,,52724,jiwa,2024,projection,total_population,3.1.1,78,,
+15.08.09,3,Pelepat Ilir,total,total,,53094,jiwa,2025,projection,total_population,3.1.1,78,,
+15.08.13,3,Rimbo Tengah,total,total,,36169,jiwa,2024,projection,total_population,3.1.1,78,,
+15.08.13,3,Rimbo Tengah,total,total,,37066,jiwa,2025,projection,total_population,3.1.1,78,,
+15.08.12,3,Bungo Dani,total,total,,28535,jiwa,2024,projection,total_population,3.1.1,78,,
+15.08.12,3,Bungo Dani,total,total,,28810,jiwa,2025,projection,total_population,3.1.1,78,,
+15.08.11,3,Bathin III,total,total,,29093,jiwa,2024,projection,total_population,3.1.1,78,,
+15.08.11,3,Bathin III,total,total,,29858,jiwa,2025,projection,total_population,3.1.1,78,,
+15.08.02,3,Rantau Pandan,total,total,,10886,jiwa,2024,projection,total_population,3.1.1,78,,
+15.08.02,3,Rantau Pandan,total,total,,10949,jiwa,2025,projection,total_population,3.1.1,78,,
+15.08.08,3,Muko-Muko Bathin VII,total,total,,15866,jiwa,2024,projection,total_population,3.1.1,78,,
+15.08.08,3,Muko-Muko Bathin VII,total,total,,15978,jiwa,2025,projection,total_population,3.1.1,78,,
+15.08.14,3,Bathin III Ulu,total,total,,10138,jiwa,2024,projection,total_population,3.1.1,78,,
+15.08.14,3,Bathin III Ulu,total,total,,10272,jiwa,2025,projection,total_population,3.1.1,78,,
+15.08.05,3,Tanah Sepenggal,total,total,,25371,jiwa,2024,projection,total_population,3.1.1,78,,
+15.08.05,3,Tanah Sepenggal,total,total,,25620,jiwa,2025,projection,total_population,3.1.1,78,,
+15.08.17,3,Tanah Sepenggal Lintas,total,total,,24064,jiwa,2024,projection,total_population,3.1.1,78,,
+15.08.17,3,Tanah Sepenggal Lintas,total,total,,24160,jiwa,2025,projection,total_population,3.1.1,78,,
+15.08.01,3,Tanah Tumbuh,total,total,,15532,jiwa,2024,projection,total_population,3.1.1,78,,
+15.08.01,3,Tanah Tumbuh,total,total,,15628,jiwa,2025,projection,total_population,3.1.1,78,,
+15.08.07,3,Limbur Lubuk Mengkuang,total,total,,17431,jiwa,2024,projection,total_population,3.1.1,78,,
+15.08.07,3,Limbur Lubuk Mengkuang,total,total,,17611,jiwa,2025,projection,total_population,3.1.1,78,,
+15.08.15,3,Bathin II Pelayang,total,total,,9267,jiwa,2024,projection,total_population,3.1.1,78,,
+15.08.15,3,Bathin II Pelayang,total,total,,9322,jiwa,2025,projection,total_population,3.1.1,78,,
+15.08.04,3,Jujuhan,total,total,,20647,jiwa,2024,projection,total_population,3.1.1,78,,
+15.08.04,3,Jujuhan,total,total,,21045,jiwa,2025,projection,total_population,3.1.1,78,,
+15.08.16,3,Jujuhan Ilir,total,total,,10475,jiwa,2024,projection,total_population,3.1.1,78,,
+15.08.16,3,Jujuhan Ilir,total,total,,10521,jiwa,2025,projection,total_population,3.1.1,78,,
+15.08,2,Bungo,total,total,,381272,jiwa,2024,projection,total_population,3.1.1,78,,
+15.08,2,Bungo,total,total,,386114,jiwa,2025,projection,total_population,3.1.1,78,,
+15.08,2,Kabupaten Bungo,age_group,0-4,laki_laki,16937,jiwa,2025,projection,total_population,3.1.2,81,,0–4
+15.08,2,Kabupaten Bungo,age_group,0-4,perempuan,16393,jiwa,2025,projection,total_population,3.1.2,81,,0–4
+15.08,2,Kabupaten Bungo,age_group,0-4,,33330,jiwa,2025,projection,total_population,3.1.2,81,,0–4
+15.08,2,Kabupaten Bungo,age_group,5-9,laki_laki,16327,jiwa,2025,projection,total_population,3.1.2,81,,5–9
+15.08,2,Kabupaten Bungo,age_group,5-9,perempuan,15705,jiwa,2025,projection,total_population,3.1.2,81,,5–9
+15.08,2,Kabupaten Bungo,age_group,5-9,,32032,jiwa,2025,projection,total_population,3.1.2,81,,5–9
+15.08,2,Kabupaten Bungo,age_group,10-14,laki_laki,16761,jiwa,2025,projection,total_population,3.1.2,81,,10–14
+15.08,2,Kabupaten Bungo,age_group,10-14,perempuan,16048,jiwa,2025,projection,total_population,3.1.2,81,,10–14
+15.08,2,Kabupaten Bungo,age_group,10-14,,32809,jiwa,2025,projection,total_population,3.1.2,81,,10–14
+15.08,2,Kabupaten Bungo,age_group,15-19,laki_laki,16783,jiwa,2025,projection,total_population,3.1.2,81,,15–19
+15.08,2,Kabupaten Bungo,age_group,15-19,perempuan,15751,jiwa,2025,projection,total_population,3.1.2,81,,15–19
+15.08,2,Kabupaten Bungo,age_group,15-19,,32534,jiwa,2025,projection,total_population,3.1.2,81,,15–19
+15.08,2,Kabupaten Bungo,age_group,20-24,laki_laki,16626,jiwa,2025,projection,total_population,3.1.2,81,,20–24
+15.08,2,Kabupaten Bungo,age_group,20-24,perempuan,15677,jiwa,2025,projection,total_population,3.1.2,81,,20–24
+15.08,2,Kabupaten Bungo,age_group,20-24,,32303,jiwa,2025,projection,total_population,3.1.2,81,,20–24
+15.08,2,Kabupaten Bungo,age_group,25-29,laki_laki,16243,jiwa,2025,projection,total_population,3.1.2,81,,25–29
+15.08,2,Kabupaten Bungo,age_group,25-29,perempuan,15699,jiwa,2025,projection,total_population,3.1.2,81,,25–29
+15.08,2,Kabupaten Bungo,age_group,25-29,,31942,jiwa,2025,projection,total_population,3.1.2,81,,25–29
+15.08,2,Kabupaten Bungo,age_group,30-34,laki_laki,15681,jiwa,2025,projection,total_population,3.1.2,81,,30–34
+15.08,2,Kabupaten Bungo,age_group,30-34,perempuan,15266,jiwa,2025,projection,total_population,3.1.2,81,,30–34
+15.08,2,Kabupaten Bungo,age_group,30-34,,30947,jiwa,2025,projection,total_population,3.1.2,81,,30–34
+15.08,2,Kabupaten Bungo,age_group,35-39,laki_laki,15498,jiwa,2025,projection,total_population,3.1.2,81,,35–39
+15.08,2,Kabupaten Bungo,age_group,35-39,perempuan,15030,jiwa,2025,projection,total_population,3.1.2,81,,35–39
+15.08,2,Kabupaten Bungo,age_group,35-39,,30528,jiwa,2025,projection,total_population,3.1.2,81,,35–39
+15.08,2,Kabupaten Bungo,age_group,40-44,laki_laki,14451,jiwa,2025,projection,total_population,3.1.2,81,,40–44
+15.08,2,Kabupaten Bungo,age_group,40-44,perempuan,14035,jiwa,2025,projection,total_population,3.1.2,81,,40–44
+15.08,2,Kabupaten Bungo,age_group,40-44,,28486,jiwa,2025,projection,total_population,3.1.2,81,,40–44
+15.08,2,Kabupaten Bungo,age_group,45-49,laki_laki,13163,jiwa,2025,projection,total_population,3.1.2,81,,45–49
+15.08,2,Kabupaten Bungo,age_group,45-49,perempuan,12681,jiwa,2025,projection,total_population,3.1.2,81,,45–49
+15.08,2,Kabupaten Bungo,age_group,45-49,,25844,jiwa,2025,projection,total_population,3.1.2,81,,45–49
+15.08,2,Kabupaten Bungo,age_group,50-54,laki_laki,11323,jiwa,2025,projection,total_population,3.1.2,81,,50–54
+15.08,2,Kabupaten Bungo,age_group,50-54,perempuan,10887,jiwa,2025,projection,total_population,3.1.2,81,,50–54
+15.08,2,Kabupaten Bungo,age_group,50-54,,22210,jiwa,2025,projection,total_population,3.1.2,81,,50–54
+15.08,2,Kabupaten Bungo,age_group,55-59,laki_laki,9069,jiwa,2025,projection,total_population,3.1.2,81,,55–59
+15.08,2,Kabupaten Bungo,age_group,55-59,perempuan,8649,jiwa,2025,projection,total_population,3.1.2,81,,55–59
+15.08,2,Kabupaten Bungo,age_group,55-59,,17718,jiwa,2025,projection,total_population,3.1.2,81,,55–59
+15.08,2,Kabupaten Bungo,age_group,60-64,laki_laki,7031,jiwa,2025,projection,total_population,3.1.2,81,,60–64
+15.08,2,Kabupaten Bungo,age_group,60-64,perempuan,6751,jiwa,2025,projection,total_population,3.1.2,81,,60–64
+15.08,2,Kabupaten Bungo,age_group,60-64,,13782,jiwa,2025,projection,total_population,3.1.2,81,,60–64
+15.08,2,Kabupaten Bungo,age_group,65-69,laki_laki,4980,jiwa,2025,projection,total_population,3.1.2,81,,65–69
+15.08,2,Kabupaten Bungo,age_group,65-69,perempuan,4949,jiwa,2025,projection,total_population,3.1.2,81,,65–69
+15.08,2,Kabupaten Bungo,age_group,65-69,,9929,jiwa,2025,projection,total_population,3.1.2,81,,65–69
+15.08,2,Kabupaten Bungo,age_group,70-75,laki_laki,3179,jiwa,2025,projection,total_population,3.1.2,81,,70–75
+15.08,2,Kabupaten Bungo,age_group,70-75,perempuan,3322,jiwa,2025,projection,total_population,3.1.2,81,,70–75
+15.08,2,Kabupaten Bungo,age_group,70-75,,6501,jiwa,2025,projection,total_population,3.1.2,81,,70–75
+15.08,2,Kabupaten Bungo,age_group,75+,laki_laki,2235,jiwa,2025,projection,total_population,3.1.2,81,,75+
+15.08,2,Kabupaten Bungo,age_group,75+,perempuan,2984,jiwa,2025,projection,total_population,3.1.2,81,,75+
+15.08,2,Kabupaten Bungo,age_group,75+,,5219,jiwa,2025,projection,total_population,3.1.2,81,,75+
+15.08,2,Bungo,sex,laki_laki,,196287,jiwa,2025,projection,total_population,3.1.2,81,,Laki-Laki
+15.08,2,Bungo,sex,perempuan,,189827,jiwa,2025,projection,total_population,3.1.2,81,,Perempuan
+15.08,2,Bungo,total,total,,386114,jiwa,2025,projection,total_population,3.1.2,81,,

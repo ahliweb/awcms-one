@@ -1,0 +1,175 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.09.10,3,Pagai Selatan,total,total,,9.69,ribu_jiwa,2025,projection,total_population,3.1.1,83,,
+13.09.09,3,Sikakap,total,total,,10.59,ribu_jiwa,2025,projection,total_population,3.1.1,83,,
+13.09.01,3,Pagai Utara,total,total,,6.48,ribu_jiwa,2025,projection,total_population,3.1.1,83,,
+13.09.02,3,Sipora Selatan,total,total,,10.56,ribu_jiwa,2025,projection,total_population,3.1.1,83,,
+13.09.08,3,Sipora Utara,total,total,,13.69,ribu_jiwa,2025,projection,total_population,3.1.1,83,,
+13.09.03,3,Siberut Selatan,total,total,,10.76,ribu_jiwa,2025,projection,total_population,3.1.1,83,,
+13.09.06,3,Siberut Barat Daya,total,total,,7.60,ribu_jiwa,2025,projection,total_population,3.1.1,83,,
+13.09.07,3,Siberut Tengah,total,total,,7.65,ribu_jiwa,2025,projection,total_population,3.1.1,83,,
+13.09.04,3,Siberut Utara,total,total,,8.64,ribu_jiwa,2025,projection,total_population,3.1.1,83,,
+13.09.05,3,Siberut Barat,total,total,,8.39,ribu_jiwa,2025,projection,total_population,3.1.1,83,,
+13.09,2,Kepulauan Mentawai,total,total,,94.05,ribu_jiwa,2025,projection,total_population,3.1.1,83,,
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,0-4,laki_laki,5.06,ribu_jiwa,2025,projection,total_population,3.1.3,86,,0–4
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,0-4,perempuan,4.86,ribu_jiwa,2025,projection,total_population,3.1.3,86,,0–4
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,0-4,,9.91,ribu_jiwa,2025,projection,total_population,3.1.3,86,,0–4
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,5-9,laki_laki,3.51,ribu_jiwa,2025,projection,total_population,3.1.3,86,,5–9
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,5-9,perempuan,3.35,ribu_jiwa,2025,projection,total_population,3.1.3,86,,5–9
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,5-9,,6.85,ribu_jiwa,2025,projection,total_population,3.1.3,86,,5–9
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,10-14,laki_laki,4.05,ribu_jiwa,2025,projection,total_population,3.1.3,86,,10–14
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,10-14,perempuan,3.92,ribu_jiwa,2025,projection,total_population,3.1.3,86,,10–14
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,10-14,,7.97,ribu_jiwa,2025,projection,total_population,3.1.3,86,,10–14
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,15-19,laki_laki,5.00,ribu_jiwa,2025,projection,total_population,3.1.3,86,,15–19
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,15-19,perempuan,4.65,ribu_jiwa,2025,projection,total_population,3.1.3,86,,15–19
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,15-19,,9.65,ribu_jiwa,2025,projection,total_population,3.1.3,86,,15–19
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,20-24,laki_laki,4.47,ribu_jiwa,2025,projection,total_population,3.1.3,86,,20–24
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,20-24,perempuan,3.94,ribu_jiwa,2025,projection,total_population,3.1.3,86,,20–24
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,20-24,,8.42,ribu_jiwa,2025,projection,total_population,3.1.3,86,,20–24
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,25-29,laki_laki,3.94,ribu_jiwa,2025,projection,total_population,3.1.3,86,,25–29
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,25-29,perempuan,3.69,ribu_jiwa,2025,projection,total_population,3.1.3,86,,25–29
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,25-29,,7.63,ribu_jiwa,2025,projection,total_population,3.1.3,86,,25–29
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,30-34,laki_laki,3.73,ribu_jiwa,2025,projection,total_population,3.1.3,86,,30–34
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,30-34,perempuan,3.67,ribu_jiwa,2025,projection,total_population,3.1.3,86,,30–34
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,30-34,,7.39,ribu_jiwa,2025,projection,total_population,3.1.3,86,,30–34
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,35-39,laki_laki,3.84,ribu_jiwa,2025,projection,total_population,3.1.3,86,,35–39
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,35-39,perempuan,3.72,ribu_jiwa,2025,projection,total_population,3.1.3,86,,35–39
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,35-39,,7.56,ribu_jiwa,2025,projection,total_population,3.1.3,86,,35–39
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,40-44,laki_laki,3.41,ribu_jiwa,2025,projection,total_population,3.1.3,86,,40–44
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,40-44,perempuan,2.99,ribu_jiwa,2025,projection,total_population,3.1.3,86,,40–44
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,40-44,,6.40,ribu_jiwa,2025,projection,total_population,3.1.3,86,,40–44
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,45-49,laki_laki,2.99,ribu_jiwa,2025,projection,total_population,3.1.3,86,,45–49
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,45-49,perempuan,2.79,ribu_jiwa,2025,projection,total_population,3.1.3,86,,45–49
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,45-49,,5.78,ribu_jiwa,2025,projection,total_population,3.1.3,86,,45–49
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,50-54,laki_laki,2.54,ribu_jiwa,2025,projection,total_population,3.1.3,86,,50–54
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,50-54,perempuan,2.29,ribu_jiwa,2025,projection,total_population,3.1.3,86,,50–54
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,50-54,,4.83,ribu_jiwa,2025,projection,total_population,3.1.3,86,,50–54
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,55-59,laki_laki,2.22,ribu_jiwa,2025,projection,total_population,3.1.3,86,,55–59
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,55-59,perempuan,1.95,ribu_jiwa,2025,projection,total_population,3.1.3,86,,55–59
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,55-59,,4.17,ribu_jiwa,2025,projection,total_population,3.1.3,86,,55–59
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,60-64,laki_laki,1.55,ribu_jiwa,2025,projection,total_population,3.1.3,86,,60–64
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,60-64,perempuan,1.41,ribu_jiwa,2025,projection,total_population,3.1.3,86,,60–64
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,60-64,,2.96,ribu_jiwa,2025,projection,total_population,3.1.3,86,,60–64
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,65-69,laki_laki,1.12,ribu_jiwa,2025,projection,total_population,3.1.3,86,,65–69
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,65-69,perempuan,1.09,ribu_jiwa,2025,projection,total_population,3.1.3,86,,65–69
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,65-69,,2.21,ribu_jiwa,2025,projection,total_population,3.1.3,86,,65–69
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,70-74,laki_laki,0.61,ribu_jiwa,2025,projection,total_population,3.1.3,86,,70–74
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,70-74,perempuan,0.59,ribu_jiwa,2025,projection,total_population,3.1.3,86,,70–74
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,70-74,,1.20,ribu_jiwa,2025,projection,total_population,3.1.3,86,,70–74
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,75+,laki_laki,0.55,ribu_jiwa,2025,projection,total_population,3.1.3,86,,75+
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,75+,perempuan,0.57,ribu_jiwa,2025,projection,total_population,3.1.3,86,,75+
+13.09,2,Kabupaten Kepulauan Mentawai,age_group,75+,,1.12,ribu_jiwa,2025,projection,total_population,3.1.3,86,,75+
+13.09,2,Kepulauan Mentawai,sex,laki_laki,,48.58,ribu_jiwa,2025,projection,total_population,3.1.3,86,,Laki-laki
+13.09,2,Kepulauan Mentawai,sex,perempuan,,45.47,ribu_jiwa,2025,projection,total_population,3.1.3,86,,Perempuan
+13.09,2,Kepulauan Mentawai,total,total,,94.05,ribu_jiwa,2025,projection,total_population,3.1.3,86,,
+13.09.10,3,Pagai Selatan,religion,islam,,621,jiwa,2025,registration,total_population,4.3.1,197,,Islam
+13.09.10,3,Pagai Selatan,religion,kristen,,8966,jiwa,2025,registration,total_population,4.3.1,197,,Protestan
+13.09.10,3,Pagai Selatan,religion,katolik,,1149,jiwa,2025,registration,total_population,4.3.1,197,,Katolik
+13.09.10,3,Pagai Selatan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,197,nil,Hindu
+13.09.10,3,Pagai Selatan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,197,nil,Budha
+13.09.10,3,Pagai Selatan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,197,nil,Lainnya
+13.09.09,3,Sikakap,religion,islam,,2971,jiwa,2025,registration,total_population,4.3.1,197,,Islam
+13.09.09,3,Sikakap,religion,kristen,,7008,jiwa,2025,registration,total_population,4.3.1,197,,Protestan
+13.09.09,3,Sikakap,religion,katolik,,1336,jiwa,2025,registration,total_population,4.3.1,197,,Katolik
+13.09.09,3,Sikakap,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,197,nil,Hindu
+13.09.09,3,Sikakap,religion,buddha,,3,jiwa,2025,registration,total_population,4.3.1,197,,Budha
+13.09.09,3,Sikakap,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,197,nil,Lainnya
+13.09.01,3,Pagai Utara,religion,islam,,745,jiwa,2025,registration,total_population,4.3.1,197,,Islam
+13.09.01,3,Pagai Utara,religion,kristen,,5248,jiwa,2025,registration,total_population,4.3.1,197,,Protestan
+13.09.01,3,Pagai Utara,religion,katolik,,681,jiwa,2025,registration,total_population,4.3.1,197,,Katolik
+13.09.01,3,Pagai Utara,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,197,nil,Hindu
+13.09.01,3,Pagai Utara,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,197,nil,Budha
+13.09.01,3,Pagai Utara,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,197,,Lainnya
+13.09.02,3,Sipora Selatan,religion,islam,,1705,jiwa,2025,registration,total_population,4.3.1,197,,Islam
+13.09.02,3,Sipora Selatan,religion,kristen,,8243,jiwa,2025,registration,total_population,4.3.1,197,,Protestan
+13.09.02,3,Sipora Selatan,religion,katolik,,984,jiwa,2025,registration,total_population,4.3.1,197,,Katolik
+13.09.02,3,Sipora Selatan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,197,nil,Hindu
+13.09.02,3,Sipora Selatan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,197,nil,Budha
+13.09.02,3,Sipora Selatan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,197,nil,Lainnya
+13.09.08,3,Sipora Utara,religion,islam,,6840,jiwa,2025,registration,total_population,4.3.1,197,,Islam
+13.09.08,3,Sipora Utara,religion,kristen,,6536,jiwa,2025,registration,total_population,4.3.1,197,,Protestan
+13.09.08,3,Sipora Utara,religion,katolik,,1062,jiwa,2025,registration,total_population,4.3.1,197,,Katolik
+13.09.08,3,Sipora Utara,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,197,,Hindu
+13.09.08,3,Sipora Utara,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,197,nil,Budha
+13.09.08,3,Sipora Utara,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,197,,Lainnya
+13.09.03,3,Siberut Selatan,religion,islam,,4577,jiwa,2025,registration,total_population,4.3.1,197,,Islam
+13.09.03,3,Siberut Selatan,religion,kristen,,1303,jiwa,2025,registration,total_population,4.3.1,197,,Protestan
+13.09.03,3,Siberut Selatan,religion,katolik,,5419,jiwa,2025,registration,total_population,4.3.1,197,,Katolik
+13.09.03,3,Siberut Selatan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,197,nil,Hindu
+13.09.03,3,Siberut Selatan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,197,nil,Budha
+13.09.03,3,Siberut Selatan,religion,lainnya,,18,jiwa,2025,registration,total_population,4.3.1,197,,Lainnya
+13.09.06,3,Siberut Barat Daya,religion,islam,,865,jiwa,2025,registration,total_population,4.3.1,197,,Islam
+13.09.06,3,Siberut Barat Daya,religion,kristen,,2012,jiwa,2025,registration,total_population,4.3.1,197,,Protestan
+13.09.06,3,Siberut Barat Daya,religion,katolik,,5389,jiwa,2025,registration,total_population,4.3.1,197,,Katolik
+13.09.06,3,Siberut Barat Daya,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,197,nil,Hindu
+13.09.06,3,Siberut Barat Daya,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,197,nil,Budha
+13.09.06,3,Siberut Barat Daya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,197,nil,Lainnya
+13.09.07,3,Siberut Tengah,religion,islam,,1777,jiwa,2025,registration,total_population,4.3.1,197,,Islam
+13.09.07,3,Siberut Tengah,religion,kristen,,3195,jiwa,2025,registration,total_population,4.3.1,197,,Protestan
+13.09.07,3,Siberut Tengah,religion,katolik,,3074,jiwa,2025,registration,total_population,4.3.1,197,,Katolik
+13.09.07,3,Siberut Tengah,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,197,nil,Hindu
+13.09.07,3,Siberut Tengah,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,197,nil,Budha
+13.09.07,3,Siberut Tengah,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,197,,Lainnya
+13.09.04,3,Siberut Utara,religion,islam,,2020,jiwa,2025,registration,total_population,4.3.1,197,,Islam
+13.09.04,3,Siberut Utara,religion,kristen,,3477,jiwa,2025,registration,total_population,4.3.1,197,,Protestan
+13.09.04,3,Siberut Utara,religion,katolik,,3872,jiwa,2025,registration,total_population,4.3.1,197,,Katolik
+13.09.04,3,Siberut Utara,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,197,nil,Hindu
+13.09.04,3,Siberut Utara,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,197,nil,Budha
+13.09.04,3,Siberut Utara,religion,lainnya,,71,jiwa,2025,registration,total_population,4.3.1,197,,Lainnya
+13.09.05,3,Siberut Barat,religion,islam,,1257,jiwa,2025,registration,total_population,4.3.1,197,,Islam
+13.09.05,3,Siberut Barat,religion,kristen,,1549,jiwa,2025,registration,total_population,4.3.1,197,,Protestan
+13.09.05,3,Siberut Barat,religion,katolik,,5754,jiwa,2025,registration,total_population,4.3.1,197,,Katolik
+13.09.05,3,Siberut Barat,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,197,nil,Hindu
+13.09.05,3,Siberut Barat,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,197,nil,Budha
+13.09.05,3,Siberut Barat,religion,lainnya,,77,jiwa,2025,registration,total_population,4.3.1,197,,Lainnya
+13.09,2,Kepulauan Mentawai,religion,islam,,23378,jiwa,2025,registration,total_population,4.3.1,197,,Islam
+13.09,2,Kepulauan Mentawai,religion,kristen,,47537,jiwa,2025,registration,total_population,4.3.1,197,,Protestan
+13.09,2,Kepulauan Mentawai,religion,katolik,,28720,jiwa,2025,registration,total_population,4.3.1,197,,Katolik
+13.09,2,Kepulauan Mentawai,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,197,,Hindu
+13.09,2,Kepulauan Mentawai,religion,buddha,,3,jiwa,2025,registration,total_population,4.3.1,197,,Budha
+13.09,2,Kepulauan Mentawai,religion,lainnya,,171,jiwa,2025,registration,total_population,4.3.1,197,,Lainnya
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/padi_padian,,92368,rupiah,2024,survey_estimate,per_capita,10.1,404,,Padi-padian
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/padi_padian,,95693,rupiah,2025,survey_estimate,per_capita,10.1,404,,Padi-padian
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/umbi_umbian,,25323,rupiah,2024,survey_estimate,per_capita,10.1,404,,Umbi-umbian
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/umbi_umbian,,27192,rupiah,2025,survey_estimate,per_capita,10.1,404,,Umbi-umbian
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,96611,rupiah,2024,survey_estimate,per_capita,10.1,404,,Ikan/udang/cumi/kerang
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,92019,rupiah,2025,survey_estimate,per_capita,10.1,404,,Ikan/udang/cumi/kerang
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/daging,,27086,rupiah,2024,survey_estimate,per_capita,10.1,404,,Daging
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/daging,,32375,rupiah,2025,survey_estimate,per_capita,10.1,404,,Daging
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/telur_dan_susu,,25854,rupiah,2024,survey_estimate,per_capita,10.1,404,,Telur dan susu
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/telur_dan_susu,,28650,rupiah,2025,survey_estimate,per_capita,10.1,404,,Telur dan susu
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/sayur_sayuran,,69982,rupiah,2024,survey_estimate,per_capita,10.1,404,,Sayur-sayuran
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/sayur_sayuran,,66699,rupiah,2025,survey_estimate,per_capita,10.1,404,,Sayur-sayuran
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/kacang_kacangan,,7385,rupiah,2024,survey_estimate,per_capita,10.1,404,,Kacang-kacangan
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/kacang_kacangan,,5218,rupiah,2025,survey_estimate,per_capita,10.1,404,,Kacang-kacangan
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/buah_buahan,,68098,rupiah,2024,survey_estimate,per_capita,10.1,404,,Buah-buahan
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/buah_buahan,,28909,rupiah,2025,survey_estimate,per_capita,10.1,404,,Buah-buahan
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/minyak_dan_kelapa,,26029,rupiah,2024,survey_estimate,per_capita,10.1,404,,Minyak dan kelapa
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/minyak_dan_kelapa,,27544,rupiah,2025,survey_estimate,per_capita,10.1,404,,Minyak dan kelapa
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/bahan_minuman,,33391,rupiah,2024,survey_estimate,per_capita,10.1,404,,Bahan minuman
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/bahan_minuman,,32022,rupiah,2025,survey_estimate,per_capita,10.1,404,,Bahan minuman
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/bumbu_bumbuan,,13222,rupiah,2024,survey_estimate,per_capita,10.1,404,,Bumbu-bumbuan
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/bumbu_bumbuan,,12274,rupiah,2025,survey_estimate,per_capita,10.1,404,,Bumbu-bumbuan
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/konsumsi_lainnya,,9452,rupiah,2024,survey_estimate,per_capita,10.1,404,,Konsumsi lainnya
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/konsumsi_lainnya,,12566,rupiah,2025,survey_estimate,per_capita,10.1,404,,Konsumsi lainnya
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,132666,rupiah,2024,survey_estimate,per_capita,10.1,404,,Makanan dan minuman jadi
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,100041,rupiah,2025,survey_estimate,per_capita,10.1,404,,Makanan dan minuman jadi
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/rokok,,147439,rupiah,2024,survey_estimate,per_capita,10.1,404,,Rokok
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/rokok,,140873,rupiah,2025,survey_estimate,per_capita,10.1,404,,Rokok
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/jumlah_makanan,,774905,rupiah,2024,survey_estimate,per_capita,10.1,404,,Jumlah makanan
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/jumlah_makanan,,702075,rupiah,2025,survey_estimate,per_capita,10.1,404,,Jumlah makanan
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,233889,rupiah,2024,survey_estimate,per_capita,10.1,404,,Perumahan dan fasilitas rumah tangga
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,242545,rupiah,2025,survey_estimate,per_capita,10.1,404,,Perumahan dan fasilitas rumah tangga
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,96248,rupiah,2024,survey_estimate,per_capita,10.1,404,,Aneka barang dan jasa
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,106932,rupiah,2025,survey_estimate,per_capita,10.1,404,,Aneka barang dan jasa
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,29565,rupiah,2024,survey_estimate,per_capita,10.1,404,,"Pakaian, alas kaki, dan tutup kepala"
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,29038,rupiah,2025,survey_estimate,per_capita,10.1,404,,"Pakaian, alas kaki, dan tutup kepala"
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/barang_tahan_lama,,17773,rupiah,2024,survey_estimate,per_capita,10.1,404,,Barang tahan lama
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/barang_tahan_lama,,23153,rupiah,2025,survey_estimate,per_capita,10.1,404,,Barang tahan lama
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,35002,rupiah,2024,survey_estimate,per_capita,10.1,404,,"Pajak, pungutan, dan asuransi"
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,34490,rupiah,2025,survey_estimate,per_capita,10.1,404,,"Pajak, pungutan, dan asuransi"
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,7570,rupiah,2024,survey_estimate,per_capita,10.1,404,,Keperluan pesta dan upacara/kenduri
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,4832,rupiah,2025,survey_estimate,per_capita,10.1,404,,Keperluan pesta dan upacara/kenduri
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,420045,rupiah,2024,survey_estimate,per_capita,10.1,404,,Jumlah bukan makanan
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,440989,rupiah,2025,survey_estimate,per_capita,10.1,404,,Jumlah bukan makanan
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,total,,1194950,rupiah,2024,survey_estimate,per_capita,10.1,404,,
+13.09,2,Kabupaten Kepulauan Mentawai,expenditure,total,,1143064,rupiah,2025,survey_estimate,per_capita,10.1,404,,

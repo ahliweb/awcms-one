@@ -1,0 +1,51 @@
+{
+  "datasetCode": "bps-1704-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "17.04",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Kaur Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kaur Sumber Ilustrasi",
+  "publisherDomain": "1704",
+  "publisherWebsite": "https://kaurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kaur Sumber Ilustrasi (https://kaurkab.bps.go.id), publikasi \"Kabupaten Kaur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1704",
+  "publicationNumber": "17040.26002",
+  "issn": "2356-3621",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://kaurkab.bps.go.id/id/publication/2026/02/27/a2d31ccbceeb768a05931385/kabupaten-kaur-dalam-angka-2026.html",
+  "sourceFileSha256": "3529a8a0d01ddc6b4e1e79cdd23d07e61464615c36259273929b15c657acdc40",
+  "sourceFileBytes": 21263172,
+  "sourcePages": [114, 232],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kaur.",
+  "csvPath": "datasets/bps-1704-dalam-angka-2026.csv",
+  "csvSha256": "be9f1932bacacf0f08c627a3c250eb7531d93297a4ebfcfbe983d356b51d8966",
+  "tablesUsed": [
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Kaur, 2025",
+      "printedPages": [114],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-Rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Kaur(rupiah), 2024 dan 2025",
+      "printedPages": [232],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Total population per child region (3.1.1): no table with this title was found in the publication",
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 3.1.2 (age-by-sex) could not be read reliably and is not included (basis of 2025 not determinable)"
+  ]
+}

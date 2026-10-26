@@ -1,0 +1,64 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.05.01.2003,4,Tegal Rejo,sex,laki_laki,,1771,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.05.01.2003,4,Tegal Rejo,sex,perempuan,,1730,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.05.01.2003,4,Tegal Rejo,total,total,,3501,jiwa,2025,registration,total_population,3.1,24,,
+16.05.01.2006,4,Widodo,sex,laki_laki,,1893,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.05.01.2006,4,Widodo,sex,perempuan,,1792,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.05.01.2006,4,Widodo,total,total,,3685,jiwa,2025,registration,total_population,3.1,24,,
+16.05.01.2002,4,Surodadi,sex,laki_laki,,1293,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.05.01.2002,4,Surodadi,sex,perempuan,,1276,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.05.01.2002,4,Surodadi,total,total,,2569,jiwa,2025,registration,total_population,3.1,24,,
+16.05.01.2005,4,Kali Bening,sex,laki_laki,,879,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.05.01.2005,4,Kali Bening,sex,perempuan,,872,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.05.01.2005,4,Kali Bening,total,total,,1751,jiwa,2025,registration,total_population,3.1,24,,
+16.05.01.2004,4,Trikoyo,sex,laki_laki,,1610,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.05.01.2004,4,Trikoyo,sex,perempuan,,1551,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.05.01.2004,4,Trikoyo,total,total,,3161,jiwa,2025,registration,total_population,3.1,24,,
+16.05.01.2008,4,Nawangsasi,sex,laki_laki,,1124,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.05.01.2008,4,Nawangsasi,sex,perempuan,,1084,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.05.01.2008,4,Nawangsasi,total,total,,2208,jiwa,2025,registration,total_population,3.1,24,,
+16.05.01.2007,4,Wonokerto,sex,laki_laki,,1551,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.05.01.2007,4,Wonokerto,sex,perempuan,,1541,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.05.01.2007,4,Wonokerto,total,total,,3092,jiwa,2025,registration,total_population,3.1,24,,
+16.05.01.2010,4,Wukir Sari,sex,laki_laki,,1129,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.05.01.2010,4,Wukir Sari,sex,perempuan,,1129,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.05.01.2010,4,Wukir Sari,total,total,,2258,jiwa,2025,registration,total_population,3.1,24,,
+16.05.01.2014,4,Mataram,sex,laki_laki,,2262,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.05.01.2014,4,Mataram,sex,perempuan,,2162,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.05.01.2014,4,Mataram,total,total,,4424,jiwa,2025,registration,total_population,3.1,24,,
+16.05.01.2011,4,Ngadirejo,sex,laki_laki,,787,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.05.01.2011,4,Ngadirejo,sex,perempuan,,789,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.05.01.2011,4,Ngadirejo,total,total,,1576,jiwa,2025,registration,total_population,3.1,24,,
+16.05.01.2017,4,Sidoharjo,sex,laki_laki,,1789,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.05.01.2017,4,Sidoharjo,sex,perempuan,,1813,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.05.01.2017,4,Sidoharjo,total,total,,3602,jiwa,2025,registration,total_population,3.1,24,,
+16.05.01.2015,4,Tambah Asri,sex,laki_laki,,1715,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.05.01.2015,4,Tambah Asri,sex,perempuan,,1723,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.05.01.2015,4,Tambah Asri,total,total,,3438,jiwa,2025,registration,total_population,3.1,24,,
+16.05.01.2016,4,Wonorejo,sex,laki_laki,,793,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.05.01.2016,4,Wonorejo,sex,perempuan,,788,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.05.01.2016,4,Wonorejo,total,total,,1581,jiwa,2025,registration,total_population,3.1,24,,
+16.05.01.2012,4,Dwijaya,sex,laki_laki,,1686,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.05.01.2012,4,Dwijaya,sex,perempuan,,1601,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.05.01.2012,4,Dwijaya,total,total,,3287,jiwa,2025,registration,total_population,3.1,24,,
+16.05.01.2013,4,Siti Harjo,sex,laki_laki,,1122,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.05.01.2013,4,Siti Harjo,sex,perempuan,,1087,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.05.01.2013,4,Siti Harjo,total,total,,2209,jiwa,2025,registration,total_population,3.1,24,,
+16.05.01.2018,4,Triwikaton,sex,laki_laki,,1093,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.05.01.2018,4,Triwikaton,sex,perempuan,,1144,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.05.01.2018,4,Triwikaton,total,total,,2237,jiwa,2025,registration,total_population,3.1,24,,
+16.05.01,3,Tugumulyo,sex,laki_laki,,25205,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.05.01,3,Tugumulyo,sex,perempuan,,24793,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.05.01,3,Tugumulyo,total,total,,49998,jiwa,2025,registration,total_population,3.1,24,,
+16.05.01,3,Tugumulyo,age_group,0-14,laki_laki,5638,jiwa,2025,registration,total_population,3.2,26,,0 -14
+16.05.01,3,Tugumulyo,age_group,0-14,perempuan,5409,jiwa,2025,registration,total_population,3.2,26,,0 -14
+16.05.01,3,Tugumulyo,age_group,0-14,,11047,jiwa,2025,registration,total_population,3.2,26,,0 -14
+16.05.01,3,Tugumulyo,age_group,15-64,laki_laki,17549,jiwa,2025,registration,total_population,3.2,26,,15-64
+16.05.01,3,Tugumulyo,age_group,15-64,perempuan,17266,jiwa,2025,registration,total_population,3.2,26,,15-64
+16.05.01,3,Tugumulyo,age_group,15-64,,34815,jiwa,2025,registration,total_population,3.2,26,,15-64
+16.05.01,3,Tugumulyo,age_group,65+,laki_laki,2018,jiwa,2025,registration,total_population,3.2,26,,65+
+16.05.01,3,Tugumulyo,age_group,65+,perempuan,2118,jiwa,2025,registration,total_population,3.2,26,,65+
+16.05.01,3,Tugumulyo,age_group,65+,,4136,jiwa,2025,registration,total_population,3.2,26,,65+
+16.05.01,3,Tugumulyo,sex,laki_laki,,25205,jiwa,2025,registration,total_population,3.2,26,,Laki-Laki
+16.05.01,3,Tugumulyo,sex,perempuan,,24793,jiwa,2025,registration,total_population,3.2,26,,Perempuan
+16.05.01,3,Tugumulyo,total,total,,49998,jiwa,2025,registration,total_population,3.2,26,,

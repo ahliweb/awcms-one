@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.08.16.2004,4,MENDAH,sex,laki_laki,,2681,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.16.2004,4,MENDAH,sex,perempuan,,2262,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.16.2004,4,MENDAH,total,total,,4943,jiwa,2025,registration,total_population,3.1,28,,
+16.08.16.2002,4,BUNGA MAYANG,sex,laki_laki,,1149,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.16.2002,4,BUNGA MAYANG,sex,perempuan,,1081,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.16.2002,4,BUNGA MAYANG,total,total,,2230,jiwa,2025,registration,total_population,3.1,28,,
+16.08.16.2005,4,TUMIJAYA,sex,laki_laki,,1352,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.16.2005,4,TUMIJAYA,sex,perempuan,,1286,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.16.2005,4,TUMIJAYA,total,total,,2638,jiwa,2025,registration,total_population,3.1,28,,
+16.08.16.2006,4,CONDONG,sex,laki_laki,,999,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.16.2006,4,CONDONG,sex,perempuan,,876,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.16.2006,4,CONDONG,total,total,,1875,jiwa,2025,registration,total_population,3.1,28,,
+16.08.16.2003,4,WAYSALAK,sex,laki_laki,,487,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.16.2003,4,WAYSALAK,sex,perempuan,,481,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.16.2003,4,WAYSALAK,total,total,,968,jiwa,2025,registration,total_population,3.1,28,,
+16.08.16.2001,4,JAYAPURA,sex,laki_laki,,1380,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.16.2001,4,JAYAPURA,sex,perempuan,,1348,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.16.2001,4,JAYAPURA,total,total,,2728,jiwa,2025,registration,total_population,3.1,28,,
+16.08.16.2007,4,PERACAK JAYA,sex,laki_laki,,817,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.16.2007,4,PERACAK JAYA,sex,perempuan,,740,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.16.2007,4,PERACAK JAYA,total,total,,1557,jiwa,2025,registration,total_population,3.1,28,,
+16.08.16.2008,4,KAMBANG,sex,laki_laki,,282,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.16.2008,4,KAMBANG,sex,perempuan,,248,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.16.2008,4,KAMBANG,total,total,,530,jiwa,2025,registration,total_population,3.1,28,,
+16.08.16,3,JAYAPURA,sex,laki_laki,,9147,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.16,3,JAYAPURA,sex,perempuan,,8322,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.16,3,JAYAPURA,total,total,,17469,jiwa,2025,registration,total_population,3.1,28,,
+16.08.16,3,Jayapura,age_group,0-4,laki_laki,614,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+16.08.16,3,Jayapura,age_group,0-4,perempuan,577,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+16.08.16,3,Jayapura,age_group,0-4,,1191,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+16.08.16,3,Jayapura,age_group,5-9,laki_laki,850,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+16.08.16,3,Jayapura,age_group,5-9,perempuan,823,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+16.08.16,3,Jayapura,age_group,5-9,,1673,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+16.08.16,3,Jayapura,age_group,10-14,laki_laki,928,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+16.08.16,3,Jayapura,age_group,10-14,perempuan,798,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+16.08.16,3,Jayapura,age_group,10-14,,1726,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+16.08.16,3,Jayapura,age_group,15-19,laki_laki,767,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+16.08.16,3,Jayapura,age_group,15-19,perempuan,682,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+16.08.16,3,Jayapura,age_group,15-19,,1449,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+16.08.16,3,Jayapura,age_group,20-24,laki_laki,715,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+16.08.16,3,Jayapura,age_group,20-24,perempuan,635,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+16.08.16,3,Jayapura,age_group,20-24,,1350,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+16.08.16,3,Jayapura,age_group,25-29,laki_laki,697,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+16.08.16,3,Jayapura,age_group,25-29,perempuan,617,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+16.08.16,3,Jayapura,age_group,25-29,,1314,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+16.08.16,3,Jayapura,age_group,30-34,laki_laki,629,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+16.08.16,3,Jayapura,age_group,30-34,perempuan,639,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+16.08.16,3,Jayapura,age_group,30-34,,1268,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+16.08.16,3,Jayapura,age_group,35-39,laki_laki,751,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+16.08.16,3,Jayapura,age_group,35-39,perempuan,724,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+16.08.16,3,Jayapura,age_group,35-39,,1475,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+16.08.16,3,Jayapura,age_group,40-44,laki_laki,748,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+16.08.16,3,Jayapura,age_group,40-44,perempuan,654,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+16.08.16,3,Jayapura,age_group,40-44,,1402,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+16.08.16,3,Jayapura,age_group,45-49,laki_laki,666,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+16.08.16,3,Jayapura,age_group,45-49,perempuan,618,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+16.08.16,3,Jayapura,age_group,45-49,,1284,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+16.08.16,3,Jayapura,age_group,50-54,laki_laki,518,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+16.08.16,3,Jayapura,age_group,50-54,perempuan,462,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+16.08.16,3,Jayapura,age_group,50-54,,980,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+16.08.16,3,Jayapura,age_group,55-59,laki_laki,375,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+16.08.16,3,Jayapura,age_group,55-59,perempuan,339,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+16.08.16,3,Jayapura,age_group,55-59,,714,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+16.08.16,3,Jayapura,age_group,60-64,laki_laki,327,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+16.08.16,3,Jayapura,age_group,60-64,perempuan,282,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+16.08.16,3,Jayapura,age_group,60-64,,609,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+16.08.16,3,Jayapura,age_group,65-69,laki_laki,234,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+16.08.16,3,Jayapura,age_group,65-69,perempuan,194,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+16.08.16,3,Jayapura,age_group,65-69,,428,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+16.08.16,3,Jayapura,age_group,70-74,laki_laki,146,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+16.08.16,3,Jayapura,age_group,70-74,perempuan,125,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+16.08.16,3,Jayapura,age_group,70-74,,271,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+16.08.16,3,Jayapura,age_group,75+,laki_laki,182,jiwa,2025,registration,total_population,3.2,30,,75+
+16.08.16,3,Jayapura,age_group,75+,perempuan,153,jiwa,2025,registration,total_population,3.2,30,,75+
+16.08.16,3,Jayapura,age_group,75+,,335,jiwa,2025,registration,total_population,3.2,30,,75+

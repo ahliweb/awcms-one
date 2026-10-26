@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.01.18.2003,4,Kampung Panjang,sex,perempuan,,971,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.18.2003,4,Kampung Panjang,total,total,,1904,jiwa,2025,registration,total_population,3.1,11,,
+14.01.18.2002,4,Sawah,sex,perempuan,,1662,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.18.2002,4,Sawah,total,total,,3365,jiwa,2025,registration,total_population,3.1,11,,
+14.01.18.2004,4,Kayu Aro,sex,perempuan,,366,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.18.2004,4,Kayu Aro,total,total,,765,jiwa,2025,registration,total_population,3.1,11,,
+14.01.18.2001,4,Muara Jalai,sex,perempuan,,1716,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.18.2001,4,Muara Jalai,total,total,,3496,jiwa,2025,registration,total_population,3.1,11,,
+14.01.18.2005,4,Sungai Tonang,sex,perempuan,,1249,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.18.2005,4,Sungai Tonang,total,total,,2533,jiwa,2025,registration,total_population,3.1,11,,
+14.01.18.2006,4,Sungai Jalau,sex,perempuan,,1753,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.18.2006,4,Sungai Jalau,total,total,,3545,jiwa,2025,registration,total_population,3.1,11,,
+14.01.18.2007,4,Sendayan,sex,perempuan,,1256,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.18.2007,4,Sendayan,total,total,,2527,jiwa,2025,registration,total_population,3.1,11,,
+14.01.18.2008,4,Naga Beralih,sex,perempuan,,1263,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.18.2008,4,Naga Beralih,total,total,,2575,jiwa,2025,registration,total_population,3.1,11,,
+14.01.18,3,Kampar Utara,sex,perempuan,,10236,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.18,3,Kampar Utara,total,total,,20710,jiwa,2025,registration,total_population,3.1,11,,

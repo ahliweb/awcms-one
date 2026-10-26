@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.74.04.1001,4,Tanjung Rambang,sex,laki_laki,,1010,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki/Male
+16.74.04.1001,4,Tanjung Rambang,sex,perempuan,,1008,jiwa,2025,registration,total_population,3.2,29,,Perempuan/Female
+16.74.04.1001,4,Tanjung Rambang,total,total,,2018,jiwa,2025,registration,total_population,3.2,29,,
+16.74.04.2003,4,Karya Mulya,sex,laki_laki,,1576,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki/Male
+16.74.04.2003,4,Karya Mulya,sex,perempuan,,1566,jiwa,2025,registration,total_population,3.2,29,,Perempuan/Female
+16.74.04.2003,4,Karya Mulya,total,total,,3142,jiwa,2025,registration,total_population,3.2,29,,
+16.74.04.2005,4,Rambang Senuling,sex,laki_laki,,357,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki/Male
+16.74.04.2005,4,Rambang Senuling,sex,perempuan,,369,jiwa,2025,registration,total_population,3.2,29,,Perempuan/Female
+16.74.04.2005,4,Rambang Senuling,total,total,,726,jiwa,2025,registration,total_population,3.2,29,,
+16.74.04.2006,4,Jungai,sex,laki_laki,,732,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki/Male
+16.74.04.2006,4,Jungai,sex,perempuan,,701,jiwa,2025,registration,total_population,3.2,29,,Perempuan/Female
+16.74.04.2006,4,Jungai,total,total,,1433,jiwa,2025,registration,total_population,3.2,29,,
+16.74.04.2007,4,Talang Batu,sex,laki_laki,,727,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki/Male
+16.74.04.2007,4,Talang Batu,sex,perempuan,,689,jiwa,2025,registration,total_population,3.2,29,,Perempuan/Female
+16.74.04.2007,4,Talang Batu,total,total,,1416,jiwa,2025,registration,total_population,3.2,29,,
+16.74.04.2008,4,Karangan,sex,laki_laki,,876,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki/Male
+16.74.04.2008,4,Karangan,sex,perempuan,,869,jiwa,2025,registration,total_population,3.2,29,,Perempuan/Female
+16.74.04.2008,4,Karangan,total,total,,1745,jiwa,2025,registration,total_population,3.2,29,,
+16.74.04.2009,4,Karang Bindu,sex,laki_laki,,807,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki/Male
+16.74.04.2009,4,Karang Bindu,sex,perempuan,,802,jiwa,2025,registration,total_population,3.2,29,,Perempuan/Female
+16.74.04.2009,4,Karang Bindu,total,total,,1609,jiwa,2025,registration,total_population,3.2,29,,
+16.74.04.2010,4,Sinar Rambang,sex,laki_laki,,489,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki/Male
+16.74.04.2010,4,Sinar Rambang,sex,perempuan,,474,jiwa,2025,registration,total_population,3.2,29,,Perempuan/Female
+16.74.04.2010,4,Sinar Rambang,total,total,,963,jiwa,2025,registration,total_population,3.2,29,,
+16.74.04.2011,4,Kemang Tanduk,sex,laki_laki,,901,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki/Male
+16.74.04.2011,4,Kemang Tanduk,sex,perempuan,,934,jiwa,2025,registration,total_population,3.2,29,,Perempuan/Female
+16.74.04.2011,4,Kemang Tanduk,total,total,,1835,jiwa,2025,registration,total_population,3.2,29,,
+16.74.04,3,Rambang Kapak Tengah,sex,laki_laki,,7475,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki/Male
+16.74.04,3,Rambang Kapak Tengah,sex,perempuan,,7412,jiwa,2025,registration,total_population,3.2,29,,Perempuan/Female
+16.74.04,3,Rambang Kapak Tengah,total,total,,14887,jiwa,2025,registration,total_population,3.2,29,,

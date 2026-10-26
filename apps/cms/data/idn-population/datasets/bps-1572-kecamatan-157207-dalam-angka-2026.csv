@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.72.07.2002,4,Koto Limau Manis,sex,laki_laki,,756,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+15.72.07.2002,4,Koto Limau Manis,sex,perempuan,,822,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+15.72.07.2002,4,Koto Limau Manis,total,total,,1578,jiwa,2025,registration,total_population,3.1,31,,
+15.72.07.2001,4,Koto Baru,sex,laki_laki,,1084,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+15.72.07.2001,4,Koto Baru,sex,perempuan,,1103,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+15.72.07.2001,4,Koto Baru,total,total,,2187,jiwa,2025,registration,total_population,3.1,31,,
+15.72.07.2005,4,Permai Indah,sex,laki_laki,,499,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+15.72.07.2005,4,Permai Indah,sex,perempuan,,471,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+15.72.07.2005,4,Permai Indah,total,total,,970,jiwa,2025,registration,total_population,3.1,31,,
+15.72.07.2003,4,Kampung Tengah,sex,laki_laki,,677,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+15.72.07.2003,4,Kampung Tengah,sex,perempuan,,667,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+15.72.07.2003,4,Kampung Tengah,total,total,,1344,jiwa,2025,registration,total_population,3.1,31,,
+15.72.07.2004,4,Dujung Sakti,sex,laki_laki,,1408,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+15.72.07.2004,4,Dujung Sakti,sex,perempuan,,1363,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+15.72.07.2004,4,Dujung Sakti,total,total,,2771,jiwa,2025,registration,total_population,3.1,31,,
+15.72.07,3,Kecamatan Koto Baru,sex,laki_laki,,5008,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+15.72.07,3,Kecamatan Koto Baru,sex,perempuan,,4987,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+15.72.07,3,Kecamatan Koto Baru,total,total,,9995,jiwa,2025,registration,total_population,3.1,31,,
+15.72.07,3,Koto Baru,age_group,0-4,laki_laki,362,jiwa,2025,registration,total_population,3.2,33,,0 – 4
+15.72.07,3,Koto Baru,age_group,0-4,perempuan,321,jiwa,2025,registration,total_population,3.2,33,,0 – 4
+15.72.07,3,Koto Baru,age_group,0-4,,683,jiwa,2025,registration,total_population,3.2,33,,0 – 4
+15.72.07,3,Koto Baru,age_group,5-9,laki_laki,409,jiwa,2025,registration,total_population,3.2,33,,5 – 9
+15.72.07,3,Koto Baru,age_group,5-9,perempuan,375,jiwa,2025,registration,total_population,3.2,33,,5 – 9
+15.72.07,3,Koto Baru,age_group,5-9,,784,jiwa,2025,registration,total_population,3.2,33,,5 – 9
+15.72.07,3,Koto Baru,age_group,10-14,laki_laki,416,jiwa,2025,registration,total_population,3.2,33,,10 – 14
+15.72.07,3,Koto Baru,age_group,10-14,perempuan,353,jiwa,2025,registration,total_population,3.2,33,,10 – 14
+15.72.07,3,Koto Baru,age_group,10-14,,769,jiwa,2025,registration,total_population,3.2,33,,10 – 14
+15.72.07,3,Koto Baru,age_group,15-19,laki_laki,395,jiwa,2025,registration,total_population,3.2,33,,15 – 19
+15.72.07,3,Koto Baru,age_group,15-19,perempuan,399,jiwa,2025,registration,total_population,3.2,33,,15 – 19
+15.72.07,3,Koto Baru,age_group,15-19,,794,jiwa,2025,registration,total_population,3.2,33,,15 – 19
+15.72.07,3,Koto Baru,age_group,20-24,laki_laki,410,jiwa,2025,registration,total_population,3.2,33,,20 – 24
+15.72.07,3,Koto Baru,age_group,20-24,perempuan,462,jiwa,2025,registration,total_population,3.2,33,,20 – 24
+15.72.07,3,Koto Baru,age_group,20-24,,872,jiwa,2025,registration,total_population,3.2,33,,20 – 24
+15.72.07,3,Koto Baru,age_group,25-29,laki_laki,404,jiwa,2025,registration,total_population,3.2,33,,25 – 29
+15.72.07,3,Koto Baru,age_group,25-29,perempuan,399,jiwa,2025,registration,total_population,3.2,33,,25 – 29
+15.72.07,3,Koto Baru,age_group,25-29,,803,jiwa,2025,registration,total_population,3.2,33,,25 – 29
+15.72.07,3,Koto Baru,age_group,30-34,laki_laki,377,jiwa,2025,registration,total_population,3.2,33,,30 – 34
+15.72.07,3,Koto Baru,age_group,30-34,perempuan,348,jiwa,2025,registration,total_population,3.2,33,,30 – 34
+15.72.07,3,Koto Baru,age_group,30-34,,725,jiwa,2025,registration,total_population,3.2,33,,30 – 34
+15.72.07,3,Koto Baru,age_group,35-39,laki_laki,316,jiwa,2025,registration,total_population,3.2,33,,35 – 39
+15.72.07,3,Koto Baru,age_group,35-39,perempuan,320,jiwa,2025,registration,total_population,3.2,33,,35 – 39
+15.72.07,3,Koto Baru,age_group,35-39,,636,jiwa,2025,registration,total_population,3.2,33,,35 – 39
+15.72.07,3,Koto Baru,age_group,40-44,laki_laki,396,jiwa,2025,registration,total_population,3.2,33,,40 – 44
+15.72.07,3,Koto Baru,age_group,40-44,perempuan,398,jiwa,2025,registration,total_population,3.2,33,,40 – 44
+15.72.07,3,Koto Baru,age_group,40-44,,794,jiwa,2025,registration,total_population,3.2,33,,40 – 44
+15.72.07,3,Koto Baru,age_group,45-49,laki_laki,398,jiwa,2025,registration,total_population,3.2,33,,45 – 49
+15.72.07,3,Koto Baru,age_group,45-49,perempuan,360,jiwa,2025,registration,total_population,3.2,33,,45 – 49
+15.72.07,3,Koto Baru,age_group,45-49,,758,jiwa,2025,registration,total_population,3.2,33,,45 – 49
+15.72.07,3,Koto Baru,age_group,50-54,laki_laki,352,jiwa,2025,registration,total_population,3.2,33,,50 – 54
+15.72.07,3,Koto Baru,age_group,50-54,perempuan,328,jiwa,2025,registration,total_population,3.2,33,,50 – 54
+15.72.07,3,Koto Baru,age_group,50-54,,680,jiwa,2025,registration,total_population,3.2,33,,50 – 54
+15.72.07,3,Koto Baru,age_group,55-59,laki_laki,238,jiwa,2025,registration,total_population,3.2,33,,55 – 59
+15.72.07,3,Koto Baru,age_group,55-59,perempuan,210,jiwa,2025,registration,total_population,3.2,33,,55 – 59
+15.72.07,3,Koto Baru,age_group,55-59,,448,jiwa,2025,registration,total_population,3.2,33,,55 – 59
+15.72.07,3,Koto Baru,age_group,60-64,laki_laki,173,jiwa,2025,registration,total_population,3.2,33,,60 – 64
+15.72.07,3,Koto Baru,age_group,60-64,perempuan,211,jiwa,2025,registration,total_population,3.2,33,,60 – 64
+15.72.07,3,Koto Baru,age_group,60-64,,384,jiwa,2025,registration,total_population,3.2,33,,60 – 64
+15.72.07,3,Koto Baru,age_group,65-69,laki_laki,150,jiwa,2025,registration,total_population,3.2,33,,65 – 69
+15.72.07,3,Koto Baru,age_group,65-69,perempuan,165,jiwa,2025,registration,total_population,3.2,33,,65 – 69
+15.72.07,3,Koto Baru,age_group,65-69,,315,jiwa,2025,registration,total_population,3.2,33,,65 – 69
+15.72.07,3,Koto Baru,age_group,70-74,laki_laki,93,jiwa,2025,registration,total_population,3.2,33,,70 - 74
+15.72.07,3,Koto Baru,age_group,70-74,perempuan,141,jiwa,2025,registration,total_population,3.2,33,,70 - 74
+15.72.07,3,Koto Baru,age_group,70-74,,234,jiwa,2025,registration,total_population,3.2,33,,70 - 74
+15.72.07,3,Koto Baru,age_group,75+,laki_laki,119,jiwa,2025,registration,total_population,3.2,33,,75+
+15.72.07,3,Koto Baru,age_group,75+,perempuan,197,jiwa,2025,registration,total_population,3.2,33,,75+
+15.72.07,3,Koto Baru,age_group,75+,,316,jiwa,2025,registration,total_population,3.2,33,,75+
+15.72.07,3,Kecamatan Koto Baru,sex,laki_laki,,5008,jiwa,2025,registration,total_population,3.2,33,,Laki-Laki
+15.72.07,3,Kecamatan Koto Baru,sex,perempuan,,4987,jiwa,2025,registration,total_population,3.2,33,,Perempuan
+15.72.07,3,Kecamatan Koto Baru,total,total,,9995,jiwa,2025,registration,total_population,3.2,33,,

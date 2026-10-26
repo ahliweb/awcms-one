@@ -1,0 +1,88 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.09.04.2004,4,Kota Titik,sex,laki_laki,,203,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.09.04.2004,4,Kota Titik,sex,perempuan,,201,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.09.04.2004,4,Kota Titik,total,total,,404,jiwa,2025,registration,total_population,3.1,33,,
+17.09.04.2002,4,Aturan Mumpo,sex,laki_laki,,339,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.09.04.2002,4,Aturan Mumpo,sex,perempuan,,345,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.09.04.2002,4,Aturan Mumpo,total,total,,684,jiwa,2025,registration,total_population,3.1,33,,
+17.09.04.2007,4,Senabah,sex,laki_laki,,230,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.09.04.2007,4,Senabah,sex,perempuan,,243,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.09.04.2007,4,Senabah,total,total,,473,jiwa,2025,registration,total_population,3.1,33,,
+17.09.04.2003,4,Talang Tengah II,sex,laki_laki,,331,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.09.04.2003,4,Talang Tengah II,sex,perempuan,,300,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.09.04.2003,4,Talang Tengah II,total,total,,631,jiwa,2025,registration,total_population,3.1,33,,
+17.09.04.2019,4,Kebun Lebar,sex,laki_laki,,331,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.09.04.2019,4,Kebun Lebar,sex,perempuan,,322,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.09.04.2019,4,Kebun Lebar,total,total,,653,jiwa,2025,registration,total_population,3.1,33,,
+17.09.04.2018,4,Tiambang,sex,laki_laki,,257,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.09.04.2018,4,Tiambang,sex,perempuan,,269,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.09.04.2018,4,Tiambang,total,total,,526,jiwa,2025,registration,total_population,3.1,33,,
+17.09.04.2017,4,Pematang Tiga,sex,laki_laki,,434,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.09.04.2017,4,Pematang Tiga,sex,perempuan,,389,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.09.04.2017,4,Pematang Tiga,total,total,,823,jiwa,2025,registration,total_population,3.1,33,,
+17.09.04.2015,4,Air Kotok,sex,laki_laki,,321,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.09.04.2015,4,Air Kotok,sex,perempuan,,264,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.09.04.2015,4,Air Kotok,total,total,,585,jiwa,2025,registration,total_population,3.1,33,,
+17.09.04.2022,4,Aturan Mumpo II,sex,laki_laki,,423,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.09.04.2022,4,Aturan Mumpo II,sex,perempuan,,414,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.09.04.2022,4,Aturan Mumpo II,total,total,,837,jiwa,2025,registration,total_population,3.1,33,,
+17.09.04.2023,4,Genting Dabuk,sex,laki_laki,,317,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.09.04.2023,4,Genting Dabuk,sex,perempuan,,282,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.09.04.2023,4,Genting Dabuk,total,total,,599,jiwa,2025,registration,total_population,3.1,33,,
+17.09.04.2021,4,Pematang Tiga Lama,sex,laki_laki,,310,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.09.04.2021,4,Pematang Tiga Lama,sex,perempuan,,303,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.09.04.2021,4,Pematang Tiga Lama,total,total,,613,jiwa,2025,registration,total_population,3.1,33,,
+17.09.04,3,Pematang Tiga,sex,laki_laki,,4211,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.09.04,3,Pematang Tiga,sex,perempuan,,3992,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.09.04,3,Pematang Tiga,total,total,,8203,jiwa,2025,registration,total_population,3.1,33,,
+17.09.04,3,Pematang Tiga,age_group,0-4,laki_laki,306,jiwa,2025,registration,total_population,3.2,35,,0 – 4
+17.09.04,3,Pematang Tiga,age_group,0-4,perempuan,271,jiwa,2025,registration,total_population,3.2,35,,0 – 4
+17.09.04,3,Pematang Tiga,age_group,0-4,,577,jiwa,2025,registration,total_population,3.2,35,,0 – 4
+17.09.04,3,Pematang Tiga,age_group,5-9,laki_laki,376,jiwa,2025,registration,total_population,3.2,35,,5 – 9
+17.09.04,3,Pematang Tiga,age_group,5-9,perempuan,363,jiwa,2025,registration,total_population,3.2,35,,5 – 9
+17.09.04,3,Pematang Tiga,age_group,5-9,,739,jiwa,2025,registration,total_population,3.2,35,,5 – 9
+17.09.04,3,Pematang Tiga,age_group,10-14,laki_laki,396,jiwa,2025,registration,total_population,3.2,35,,10 – 14
+17.09.04,3,Pematang Tiga,age_group,10-14,perempuan,315,jiwa,2025,registration,total_population,3.2,35,,10 – 14
+17.09.04,3,Pematang Tiga,age_group,10-14,,711,jiwa,2025,registration,total_population,3.2,35,,10 – 14
+17.09.04,3,Pematang Tiga,age_group,15-19,laki_laki,312,jiwa,2025,registration,total_population,3.2,35,,15 – 19
+17.09.04,3,Pematang Tiga,age_group,15-19,perempuan,364,jiwa,2025,registration,total_population,3.2,35,,15 – 19
+17.09.04,3,Pematang Tiga,age_group,15-19,,676,jiwa,2025,registration,total_population,3.2,35,,15 – 19
+17.09.04,3,Pematang Tiga,age_group,20-24,laki_laki,367,jiwa,2025,registration,total_population,3.2,35,,20 – 24
+17.09.04,3,Pematang Tiga,age_group,20-24,perempuan,351,jiwa,2025,registration,total_population,3.2,35,,20 – 24
+17.09.04,3,Pematang Tiga,age_group,20-24,,718,jiwa,2025,registration,total_population,3.2,35,,20 – 24
+17.09.04,3,Pematang Tiga,age_group,25-29,laki_laki,420,jiwa,2025,registration,total_population,3.2,35,,25 – 29
+17.09.04,3,Pematang Tiga,age_group,25-29,perempuan,390,jiwa,2025,registration,total_population,3.2,35,,25 – 29
+17.09.04,3,Pematang Tiga,age_group,25-29,,810,jiwa,2025,registration,total_population,3.2,35,,25 – 29
+17.09.04,3,Pematang Tiga,age_group,30-34,laki_laki,365,jiwa,2025,registration,total_population,3.2,35,,30 – 34
+17.09.04,3,Pematang Tiga,age_group,30-34,perempuan,334,jiwa,2025,registration,total_population,3.2,35,,30 – 34
+17.09.04,3,Pematang Tiga,age_group,30-34,,699,jiwa,2025,registration,total_population,3.2,35,,30 – 34
+17.09.04,3,Pematang Tiga,age_group,35-39,laki_laki,399,jiwa,2025,registration,total_population,3.2,35,,35 – 39
+17.09.04,3,Pematang Tiga,age_group,35-39,perempuan,369,jiwa,2025,registration,total_population,3.2,35,,35 – 39
+17.09.04,3,Pematang Tiga,age_group,35-39,,768,jiwa,2025,registration,total_population,3.2,35,,35 – 39
+17.09.04,3,Pematang Tiga,age_group,40-44,laki_laki,307,jiwa,2025,registration,total_population,3.2,35,,40 – 44
+17.09.04,3,Pematang Tiga,age_group,40-44,perempuan,289,jiwa,2025,registration,total_population,3.2,35,,40 – 44
+17.09.04,3,Pematang Tiga,age_group,40-44,,596,jiwa,2025,registration,total_population,3.2,35,,40 – 44
+17.09.04,3,Pematang Tiga,age_group,45-49,laki_laki,299,jiwa,2025,registration,total_population,3.2,35,,45 – 49
+17.09.04,3,Pematang Tiga,age_group,45-49,perempuan,265,jiwa,2025,registration,total_population,3.2,35,,45 – 49
+17.09.04,3,Pematang Tiga,age_group,45-49,,564,jiwa,2025,registration,total_population,3.2,35,,45 – 49
+17.09.04,3,Pematang Tiga,age_group,50-54,laki_laki,191,jiwa,2025,registration,total_population,3.2,35,,50 – 54
+17.09.04,3,Pematang Tiga,age_group,50-54,perempuan,167,jiwa,2025,registration,total_population,3.2,35,,50 – 54
+17.09.04,3,Pematang Tiga,age_group,50-54,,358,jiwa,2025,registration,total_population,3.2,35,,50 – 54
+17.09.04,3,Pematang Tiga,age_group,55-59,laki_laki,150,jiwa,2025,registration,total_population,3.2,35,,55 – 59
+17.09.04,3,Pematang Tiga,age_group,55-59,perempuan,163,jiwa,2025,registration,total_population,3.2,35,,55 – 59
+17.09.04,3,Pematang Tiga,age_group,55-59,,313,jiwa,2025,registration,total_population,3.2,35,,55 – 59
+17.09.04,3,Pematang Tiga,age_group,60-64,laki_laki,99,jiwa,2025,registration,total_population,3.2,35,,60 – 64
+17.09.04,3,Pematang Tiga,age_group,60-64,perempuan,105,jiwa,2025,registration,total_population,3.2,35,,60 – 64
+17.09.04,3,Pematang Tiga,age_group,60-64,,204,jiwa,2025,registration,total_population,3.2,35,,60 – 64
+17.09.04,3,Pematang Tiga,age_group,65-69,laki_laki,110,jiwa,2025,registration,total_population,3.2,35,,65 – 69
+17.09.04,3,Pematang Tiga,age_group,65-69,perempuan,118,jiwa,2025,registration,total_population,3.2,35,,65 – 69
+17.09.04,3,Pematang Tiga,age_group,65-69,,228,jiwa,2025,registration,total_population,3.2,35,,65 – 69
+17.09.04,3,Pematang Tiga,age_group,70-74,laki_laki,43,jiwa,2025,registration,total_population,3.2,35,,70 – 74
+17.09.04,3,Pematang Tiga,age_group,70-74,perempuan,26,jiwa,2025,registration,total_population,3.2,35,,70 – 74
+17.09.04,3,Pematang Tiga,age_group,70-74,,69,jiwa,2025,registration,total_population,3.2,35,,70 – 74
+17.09.04,3,Pematang Tiga,age_group,75+,laki_laki,71,jiwa,2025,registration,total_population,3.2,35,,75+
+17.09.04,3,Pematang Tiga,age_group,75+,perempuan,102,jiwa,2025,registration,total_population,3.2,35,,75+
+17.09.04,3,Pematang Tiga,age_group,75+,,173,jiwa,2025,registration,total_population,3.2,35,,75+
+17.09.04,3,Pematang Tiga,sex,laki_laki,,4211,jiwa,2025,registration,total_population,3.2,35,,Laki-Laki
+17.09.04,3,Pematang Tiga,sex,perempuan,,3992,jiwa,2025,registration,total_population,3.2,35,,Perempuan
+17.09.04,3,Pematang Tiga,total,total,,8203,jiwa,2025,registration,total_population,3.2,35,,

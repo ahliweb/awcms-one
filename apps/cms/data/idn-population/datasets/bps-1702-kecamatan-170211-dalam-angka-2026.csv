@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.02.11.2002,4,AIR MELES ATAS,sex,laki_laki,,1679,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.11.2002,4,AIR MELES ATAS,sex,perempuan,,1586,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.11.2002,4,AIR MELES ATAS,total,total,,3265,jiwa,2025,registration,total_population,3.1,22,,
+17.02.11.1006,4,CAWANG BARU,sex,laki_laki,,1102,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.11.1006,4,CAWANG BARU,sex,perempuan,,1094,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.11.1006,4,CAWANG BARU,total,total,,2196,jiwa,2025,registration,total_population,3.1,22,,
+17.02.11.2007,4,CAWANG LAMA,sex,laki_laki,,657,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.11.2007,4,CAWANG LAMA,sex,perempuan,,631,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.11.2007,4,CAWANG LAMA,total,total,,1288,jiwa,2025,registration,total_population,3.1,22,,
+17.02.11.2012,4,KAYU MANIS,sex,laki_laki,,634,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.11.2012,4,KAYU MANIS,sex,perempuan,,544,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.11.2012,4,KAYU MANIS,total,total,,1178,jiwa,2025,registration,total_population,3.1,22,,
+17.02.11.1008,4,SIMPANG NANGKA,sex,laki_laki,,1162,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.11.1008,4,SIMPANG NANGKA,sex,perempuan,,1120,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.11.1008,4,SIMPANG NANGKA,total,total,,2282,jiwa,2025,registration,total_population,3.1,22,,
+17.02.11.2013,4,KAMPUNG BARU,sex,laki_laki,,1785,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.11.2013,4,KAMPUNG BARU,sex,perempuan,,1637,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.11.2013,4,KAMPUNG BARU,total,total,,3422,jiwa,2025,registration,total_population,3.1,22,,
+17.02.11.2005,4,SUBAN AYAM,sex,laki_laki,,1508,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.11.2005,4,SUBAN AYAM,sex,perempuan,,1425,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.11.2005,4,SUBAN AYAM,total,total,,2933,jiwa,2025,registration,total_population,3.1,22,,
+17.02.11.2001,4,AIR PUTIH KALI BANDUNG,sex,laki_laki,,616,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.11.2001,4,AIR PUTIH KALI BANDUNG,sex,perempuan,,584,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.11.2001,4,AIR PUTIH KALI BANDUNG,total,total,,1200,jiwa,2025,registration,total_population,3.1,22,,
+17.02.11.1004,4,AIR DUKU,sex,laki_laki,,1631,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.11.1004,4,AIR DUKU,sex,perempuan,,1542,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.11.1004,4,AIR DUKU,total,total,,3173,jiwa,2025,registration,total_population,3.1,22,,
+17.02.11.2003,4,SAMBIREJO,sex,laki_laki,,1939,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.11.2003,4,SAMBIREJO,sex,perempuan,,1811,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.11.2003,4,SAMBIREJO,total,total,,3750,jiwa,2025,registration,total_population,3.1,22,,
+17.02.11.2010,4,SUMBER BENING,sex,laki_laki,,2459,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.11.2010,4,SUMBER BENING,sex,perempuan,,2298,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.11.2010,4,SUMBER BENING,total,total,,4757,jiwa,2025,registration,total_population,3.1,22,,
+17.02.11.2009,4,SUMBER URIP,sex,laki_laki,,1394,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.11.2009,4,SUMBER URIP,sex,perempuan,,1343,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.11.2009,4,SUMBER URIP,total,total,,2737,jiwa,2025,registration,total_population,3.1,22,,
+17.02.11.2011,4,KARANG JAYA,sex,laki_laki,,1626,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.11.2011,4,KARANG JAYA,sex,perempuan,,1622,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.11.2011,4,KARANG JAYA,total,total,,3248,jiwa,2025,registration,total_population,3.1,22,,
+17.02.11.2014,4,KALI PADANG,sex,laki_laki,,500,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.11.2014,4,KALI PADANG,sex,perempuan,,490,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.11.2014,4,KALI PADANG,total,total,,990,jiwa,2025,registration,total_population,3.1,22,,
+17.02.11.2016,4,TALANG LAHAT,sex,laki_laki,,214,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.11.2016,4,TALANG LAHAT,sex,perempuan,,219,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.11.2016,4,TALANG LAHAT,total,total,,433,jiwa,2025,registration,total_population,3.1,22,,
+17.02.11.2015,4,MOJOREJO,sex,laki_laki,,1310,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.11.2015,4,MOJOREJO,sex,perempuan,,1198,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.11.2015,4,MOJOREJO,total,total,,2508,jiwa,2025,registration,total_population,3.1,22,,
+17.02.11,3,Selupu Rejang,sex,laki_laki,,20216,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.11,3,Selupu Rejang,sex,perempuan,,19144,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.11,3,Selupu Rejang,total,total,,39360,jiwa,2025,registration,total_population,3.1,22,,

@@ -1,0 +1,53 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.05,2,Musi Rawas,total,total,,415744,jiwa,2025,projection,total_population,3.1.1,48,,
+16.05,2,Kabupaten Musi Rawas,age_group,0-4,laki_laki,17.13,ribu_jiwa,2025,projection,total_population,3.1.2,51,,0–4
+16.05,2,Kabupaten Musi Rawas,age_group,0-4,perempuan,16.43,ribu_jiwa,2025,projection,total_population,3.1.2,51,,0–4
+16.05,2,Kabupaten Musi Rawas,age_group,0-4,,33.57,ribu_jiwa,2025,projection,total_population,3.1.2,51,,0–4
+16.05,2,Kabupaten Musi Rawas,age_group,5-9,laki_laki,17.45,ribu_jiwa,2025,projection,total_population,3.1.2,51,,5–9
+16.05,2,Kabupaten Musi Rawas,age_group,5-9,perempuan,16.97,ribu_jiwa,2025,projection,total_population,3.1.2,51,,5–9
+16.05,2,Kabupaten Musi Rawas,age_group,5-9,,34.42,ribu_jiwa,2025,projection,total_population,3.1.2,51,,5–9
+16.05,2,Kabupaten Musi Rawas,age_group,10-14,laki_laki,18.81,ribu_jiwa,2025,projection,total_population,3.1.2,51,,10–14
+16.05,2,Kabupaten Musi Rawas,age_group,10-14,perempuan,17.96,ribu_jiwa,2025,projection,total_population,3.1.2,51,,10–14
+16.05,2,Kabupaten Musi Rawas,age_group,10-14,,36.77,ribu_jiwa,2025,projection,total_population,3.1.2,51,,10–14
+16.05,2,Kabupaten Musi Rawas,age_group,15-19,laki_laki,17.04,ribu_jiwa,2025,projection,total_population,3.1.2,51,,15–19
+16.05,2,Kabupaten Musi Rawas,age_group,15-19,perempuan,15.89,ribu_jiwa,2025,projection,total_population,3.1.2,51,,15–19
+16.05,2,Kabupaten Musi Rawas,age_group,15-19,,32.93,ribu_jiwa,2025,projection,total_population,3.1.2,51,,15–19
+16.05,2,Kabupaten Musi Rawas,age_group,20-24,laki_laki,16.60,ribu_jiwa,2025,projection,total_population,3.1.2,51,,20–24
+16.05,2,Kabupaten Musi Rawas,age_group,20-24,perempuan,15.62,ribu_jiwa,2025,projection,total_population,3.1.2,51,,20–24
+16.05,2,Kabupaten Musi Rawas,age_group,20-24,,32.21,ribu_jiwa,2025,projection,total_population,3.1.2,51,,20–24
+16.05,2,Kabupaten Musi Rawas,age_group,25-29,laki_laki,16.18,ribu_jiwa,2025,projection,total_population,3.1.2,51,,25–29
+16.05,2,Kabupaten Musi Rawas,age_group,25-29,perempuan,15.13,ribu_jiwa,2025,projection,total_population,3.1.2,51,,25–29
+16.05,2,Kabupaten Musi Rawas,age_group,25-29,,31.30,ribu_jiwa,2025,projection,total_population,3.1.2,51,,25–29
+16.05,2,Kabupaten Musi Rawas,age_group,30-34,laki_laki,15.64,ribu_jiwa,2025,projection,total_population,3.1.2,51,,30–34
+16.05,2,Kabupaten Musi Rawas,age_group,30-34,perempuan,15.36,ribu_jiwa,2025,projection,total_population,3.1.2,51,,30–34
+16.05,2,Kabupaten Musi Rawas,age_group,30-34,,31.00,ribu_jiwa,2025,projection,total_population,3.1.2,51,,30–34
+16.05,2,Kabupaten Musi Rawas,age_group,35-39,laki_laki,16.01,ribu_jiwa,2025,projection,total_population,3.1.2,51,,35–39
+16.05,2,Kabupaten Musi Rawas,age_group,35-39,perempuan,15.57,ribu_jiwa,2025,projection,total_population,3.1.2,51,,35–39
+16.05,2,Kabupaten Musi Rawas,age_group,35-39,,31.57,ribu_jiwa,2025,projection,total_population,3.1.2,51,,35–39
+16.05,2,Kabupaten Musi Rawas,age_group,40-44,laki_laki,15.60,ribu_jiwa,2025,projection,total_population,3.1.2,51,,40–44
+16.05,2,Kabupaten Musi Rawas,age_group,40-44,perempuan,15.30,ribu_jiwa,2025,projection,total_population,3.1.2,51,,40–44
+16.05,2,Kabupaten Musi Rawas,age_group,40-44,,30.90,ribu_jiwa,2025,projection,total_population,3.1.2,51,,40–44
+16.05,2,Kabupaten Musi Rawas,age_group,45-49,laki_laki,15.23,ribu_jiwa,2025,projection,total_population,3.1.2,51,,45–49
+16.05,2,Kabupaten Musi Rawas,age_group,45-49,perempuan,14.75,ribu_jiwa,2025,projection,total_population,3.1.2,51,,45–49
+16.05,2,Kabupaten Musi Rawas,age_group,45-49,,29.98,ribu_jiwa,2025,projection,total_population,3.1.2,51,,45–49
+16.05,2,Kabupaten Musi Rawas,age_group,50-54,laki_laki,13.59,ribu_jiwa,2025,projection,total_population,3.1.2,51,,50–54
+16.05,2,Kabupaten Musi Rawas,age_group,50-54,perempuan,12.61,ribu_jiwa,2025,projection,total_population,3.1.2,51,,50–54
+16.05,2,Kabupaten Musi Rawas,age_group,50-54,,26.20,ribu_jiwa,2025,projection,total_population,3.1.2,51,,50–54
+16.05,2,Kabupaten Musi Rawas,age_group,55-59,laki_laki,10.50,ribu_jiwa,2025,projection,total_population,3.1.2,51,,55–59
+16.05,2,Kabupaten Musi Rawas,age_group,55-59,perempuan,9.88,ribu_jiwa,2025,projection,total_population,3.1.2,51,,55–59
+16.05,2,Kabupaten Musi Rawas,age_group,55-59,,20.38,ribu_jiwa,2025,projection,total_population,3.1.2,51,,55–59
+16.05,2,Kabupaten Musi Rawas,age_group,60-64,laki_laki,8.34,ribu_jiwa,2025,projection,total_population,3.1.2,51,,60–64
+16.05,2,Kabupaten Musi Rawas,age_group,60-64,perempuan,8.04,ribu_jiwa,2025,projection,total_population,3.1.2,51,,60–64
+16.05,2,Kabupaten Musi Rawas,age_group,60-64,,16.38,ribu_jiwa,2025,projection,total_population,3.1.2,51,,60–64
+16.05,2,Kabupaten Musi Rawas,age_group,65-69,laki_laki,6.11,ribu_jiwa,2025,projection,total_population,3.1.2,51,,65–69
+16.05,2,Kabupaten Musi Rawas,age_group,65-69,perempuan,6.06,ribu_jiwa,2025,projection,total_population,3.1.2,51,,65–69
+16.05,2,Kabupaten Musi Rawas,age_group,65-69,,12.17,ribu_jiwa,2025,projection,total_population,3.1.2,51,,65–69
+16.05,2,Kabupaten Musi Rawas,age_group,70-74,laki_laki,4.32,ribu_jiwa,2025,projection,total_population,3.1.2,51,,70–74
+16.05,2,Kabupaten Musi Rawas,age_group,70-74,perempuan,4.12,ribu_jiwa,2025,projection,total_population,3.1.2,51,,70–74
+16.05,2,Kabupaten Musi Rawas,age_group,70-74,,8.44,ribu_jiwa,2025,projection,total_population,3.1.2,51,,70–74
+16.05,2,Kabupaten Musi Rawas,age_group,75+,laki_laki,3.80,ribu_jiwa,2025,projection,total_population,3.1.2,51,,75+
+16.05,2,Kabupaten Musi Rawas,age_group,75+,perempuan,3.73,ribu_jiwa,2025,projection,total_population,3.1.2,51,,75+
+16.05,2,Kabupaten Musi Rawas,age_group,75+,,7.53,ribu_jiwa,2025,projection,total_population,3.1.2,51,,75+
+16.05,2,Musi Rawas,sex,laki_laki,,212.34,ribu_jiwa,2025,projection,total_population,3.1.2,51,,Laki-Laki
+16.05,2,Musi Rawas,sex,perempuan,,203.41,ribu_jiwa,2025,projection,total_population,3.1.2,51,,Perempuan
+16.05,2,Musi Rawas,total,total,,415.74,ribu_jiwa,2025,projection,total_population,3.1.2,51,,

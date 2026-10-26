@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.10.02.2002,4,BANTAR,sex,laki_laki,,948,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+14.10.02.2002,4,BANTAR,sex,perempuan,,984,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+14.10.02.2002,4,BANTAR,total,total,,1932,jiwa,2025,registration,total_population,3.1,27,,
+14.10.02.2003,4,ANAK SETATAH,sex,laki_laki,,798,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+14.10.02.2003,4,ANAK SETATAH,sex,perempuan,,757,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+14.10.02.2003,4,ANAK SETATAH,total,total,,1555,jiwa,2025,registration,total_population,3.1,27,,
+14.10.02.2001,4,SEGOMENG,sex,laki_laki,,663,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+14.10.02.2001,4,SEGOMENG,sex,perempuan,,622,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+14.10.02.2001,4,SEGOMENG,total,total,,1285,jiwa,2025,registration,total_population,3.1,27,,
+14.10.02.2015,4,SIALANG PASUNG,sex,laki_laki,,1144,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+14.10.02.2015,4,SIALANG PASUNG,sex,perempuan,,1127,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+14.10.02.2015,4,SIALANG PASUNG,total,total,,2271,jiwa,2025,registration,total_population,3.1,27,,
+14.10.02.2004,4,LEMANG,sex,laki_laki,,739,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+14.10.02.2004,4,LEMANG,sex,perempuan,,752,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+14.10.02.2004,4,LEMANG,total,total,,1491,jiwa,2025,registration,total_population,3.1,27,,
+14.10.02.2006,4,SUNGAI CINA,sex,laki_laki,,918,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+14.10.02.2006,4,SUNGAI CINA,sex,perempuan,,812,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+14.10.02.2006,4,SUNGAI CINA,total,total,,1730,jiwa,2025,registration,total_population,3.1,27,,
+14.10.02.2012,4,BINA MAJU,sex,laki_laki,,670,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+14.10.02.2012,4,BINA MAJU,sex,perempuan,,607,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+14.10.02.2012,4,BINA MAJU,total,total,,1277,jiwa,2025,registration,total_population,3.1,27,,
+14.10.02.2011,4,TELAGA BARU,sex,laki_laki,,550,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+14.10.02.2011,4,TELAGA BARU,sex,perempuan,,535,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+14.10.02.2011,4,TELAGA BARU,total,total,,1085,jiwa,2025,registration,total_population,3.1,27,,
+14.10.02.2005,4,BOKOR,sex,laki_laki,,1669,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+14.10.02.2005,4,BOKOR,sex,perempuan,,1579,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+14.10.02.2005,4,BOKOR,total,total,,3248,jiwa,2025,registration,total_population,3.1,27,,
+14.10.02.2007,4,MELAI,sex,laki_laki,,857,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+14.10.02.2007,4,MELAI,sex,perempuan,,768,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+14.10.02.2007,4,MELAI,total,total,,1625,jiwa,2025,registration,total_population,3.1,27,,
+14.10.02.2016,4,PERMAI,sex,laki_laki,,376,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+14.10.02.2016,4,PERMAI,sex,perempuan,,340,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+14.10.02.2016,4,PERMAI,total,total,,716,jiwa,2025,registration,total_population,3.1,27,,
+14.10.02.2017,4,MEKAR BARU,sex,laki_laki,,497,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+14.10.02.2017,4,MEKAR BARU,sex,perempuan,,472,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+14.10.02.2017,4,MEKAR BARU,total,total,,969,jiwa,2025,registration,total_population,3.1,27,,
+14.10.02,3,RANGSANG BARAT,sex,laki_laki,,9829,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+14.10.02,3,RANGSANG BARAT,sex,perempuan,,9355,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+14.10.02,3,RANGSANG BARAT,total,total,,19184,jiwa,2025,registration,total_population,3.1,27,,

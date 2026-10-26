@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-1607-kecamatan-160709-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.07.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Makarti Jaya Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Banyuasin",
+  "publisherDomain": "1607",
+  "publisherWebsite": "https://banyuasinkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Banyuasin (https://banyuasinkab.bps.go.id), publikasi \"Kecamatan Makarti Jaya Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "16070.26020",
+  "issn": "3109-6964",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://banyuasinkab.bps.go.id/id/publication/2026/09/28/fd8bd1955ac2c1b6147ce926/kecamatan-makarti-jaya-dalam-angka-2026.html",
+  "sourceFileSha256": "e8eca271d44b74cc92bc8a64f3c45b16148620e5f170db267d2f140fd465f026",
+  "sourceFileBytes": 12287592,
+  "sourcePages": [34, 35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Banyuasin.",
+  "csvPath": "datasets/bps-1607-kecamatan-160709-dalam-angka-2026.csv",
+  "csvSha256": "2325c85dfc017372e60f783d05bb89ffacd7a8f1747dd941c80d7284c72b7a5d",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Makarti Jaya, 2026",
+      "printedPages": [36],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Upang Makmur 877\": unmatched ",
+    "table 3.1: row not stored: row \"Pangestu 723\": unmatched ",
+    "table 3.1: row not stored: row \"Makarti Jaya 3.079\": unmatched ",
+    "table 3.1: row not stored: row \"Tirta Kencana 1.571\": unmatched ",
+    "table 3.1: row not stored: row \"Delta Upang 2.024\": unmatched ",
+    "table 3.1: row not stored: row \"Pendowo Harjo 1.287\": unmatched ",
+    "table 3.1: row not stored: row \"Upang Mulya 327\": unmatched ",
+    "table 3.1: row not stored: row \"Purwosari 930\": unmatched ",
+    "table 3.1: row not stored: row \"Muara Baru 563\": unmatched ",
+    "table 3.1: row not stored: row \"Sungai Semut 909\": unmatched ",
+    "table 3.1: row not stored: row \"Tanjung Baru 558\": unmatched ",
+    "table 3.1: row not stored: row \"Tanjung Mas 566\": unmatched ",
+    "table 3.1: row not stored: row \"Makarti Jaya 13.414\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

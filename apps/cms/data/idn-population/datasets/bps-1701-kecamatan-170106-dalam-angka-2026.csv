@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.01.06.2004,4,Tanggo Raso,sex,laki_laki,,862,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.06.2004,4,Tanggo Raso,sex,perempuan,,786,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.06.2004,4,Tanggo Raso,total,total,,1648,jiwa,2025,registration,total_population,3.1,26,,
+17.01.06.2002,4,Air Kemang,sex,laki_laki,,528,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.06.2002,4,Air Kemang,sex,perempuan,,546,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.06.2002,4,Air Kemang,total,total,,1074,jiwa,2025,registration,total_population,3.1,26,,
+17.01.06.2008,4,Bandung Ayu,sex,laki_laki,,501,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.06.2008,4,Bandung Ayu,sex,perempuan,,499,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.06.2008,4,Bandung Ayu,total,total,,1000,jiwa,2025,registration,total_population,3.1,26,,
+17.01.06.2006,4,Tungkal I,sex,laki_laki,,564,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.06.2006,4,Tungkal I,sex,perempuan,,519,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.06.2006,4,Tungkal I,total,total,,1083,jiwa,2025,registration,total_population,3.1,26,,
+17.01.06.2005,4,Talang Padang,sex,laki_laki,,442,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.06.2005,4,Talang Padang,sex,perempuan,,407,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.06.2005,4,Talang Padang,total,total,,849,jiwa,2025,registration,total_population,3.1,26,,
+17.01.06.2003,4,Pasar Pino,sex,laki_laki,,1064,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.06.2003,4,Pasar Pino,sex,perempuan,,1065,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.06.2003,4,Pasar Pino,total,total,,2129,jiwa,2025,registration,total_population,3.1,26,,
+17.01.06.2001,4,Selali,sex,laki_laki,,987,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.06.2001,4,Selali,sex,perempuan,,868,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.06.2001,4,Selali,total,total,,1855,jiwa,2025,registration,total_population,3.1,26,,
+17.01.06.2017,4,Nanjungan,sex,laki_laki,,1026,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.06.2017,4,Nanjungan,sex,perempuan,,1012,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.06.2017,4,Nanjungan,total,total,,2038,jiwa,2025,registration,total_population,3.1,26,,
+17.01.06.2007,4,Tungkal II,sex,laki_laki,,321,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.06.2007,4,Tungkal II,sex,perempuan,,318,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.06.2007,4,Tungkal II,total,total,,639,jiwa,2025,registration,total_population,3.1,26,,
+17.01.06.2009,4,Napal Melintang,sex,laki_laki,,301,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.06.2009,4,Napal Melintang,sex,perempuan,,285,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.06.2009,4,Napal Melintang,total,total,,586,jiwa,2025,registration,total_population,3.1,26,,
+17.01.06.2010,4,Serang Bulan,sex,laki_laki,,312,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.06.2010,4,Serang Bulan,sex,perempuan,,304,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.06.2010,4,Serang Bulan,total,total,,616,jiwa,2025,registration,total_population,3.1,26,,
+17.01.06.2018,4,Kemang Manis,sex,laki_laki,,424,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.06.2018,4,Kemang Manis,sex,perempuan,,374,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.06.2018,4,Kemang Manis,total,total,,798,jiwa,2025,registration,total_population,3.1,26,,
+17.01.06.2011,4,Suka Bandung,sex,laki_laki,,466,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.06.2011,4,Suka Bandung,sex,perempuan,,455,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.06.2011,4,Suka Bandung,total,total,,921,jiwa,2025,registration,total_population,3.1,26,,
+17.01.06.2013,4,Cinto Mandi,sex,laki_laki,,186,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.06.2013,4,Cinto Mandi,sex,perempuan,,184,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.06.2013,4,Cinto Mandi,total,total,,370,jiwa,2025,registration,total_population,3.1,26,,
+17.01.06.2012,4,Pagar Gading,sex,laki_laki,,690,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.06.2012,4,Pagar Gading,sex,perempuan,,663,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.06.2012,4,Pagar Gading,total,total,,1353,jiwa,2025,registration,total_population,3.1,26,,
+17.01.06.2014,4,Kembang Seri,sex,laki_laki,,475,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.06.2014,4,Kembang Seri,sex,perempuan,,420,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.06.2014,4,Kembang Seri,total,total,,895,jiwa,2025,registration,total_population,3.1,26,,
+17.01.06.2015,4,Karang Cayo,sex,laki_laki,,764,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.06.2015,4,Karang Cayo,sex,perempuan,,700,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.06.2015,4,Karang Cayo,total,total,,1464,jiwa,2025,registration,total_population,3.1,26,,
+17.01.06.2016,4,Tanjung Aur II,sex,laki_laki,,723,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.06.2016,4,Tanjung Aur II,sex,perempuan,,689,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.06.2016,4,Tanjung Aur II,total,total,,1412,jiwa,2025,registration,total_population,3.1,26,,
+17.01.06.2019,4,Padang Beriang,sex,laki_laki,,701,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.06.2019,4,Padang Beriang,sex,perempuan,,632,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.06.2019,4,Padang Beriang,total,total,,1333,jiwa,2025,registration,total_population,3.1,26,,
+17.01.06.2020,4,Padang Serasan,sex,laki_laki,,604,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.06.2020,4,Padang Serasan,sex,perempuan,,599,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.06.2020,4,Padang Serasan,total,total,,1203,jiwa,2025,registration,total_population,3.1,26,,
+17.01.06.2021,4,Telaga Dalam,sex,laki_laki,,332,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.06.2021,4,Telaga Dalam,sex,perempuan,,278,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.06.2021,4,Telaga Dalam,total,total,,610,jiwa,2025,registration,total_population,3.1,26,,
+17.01.06,3,Kecamatan Pinoraya,sex,laki_laki,,12273,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.06,3,Kecamatan Pinoraya,sex,perempuan,,11603,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.06,3,Kecamatan Pinoraya,total,total,,23876,jiwa,2025,registration,total_population,3.1,26,,

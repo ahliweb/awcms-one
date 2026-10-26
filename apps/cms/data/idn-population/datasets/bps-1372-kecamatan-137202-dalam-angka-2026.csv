@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.72.02.1001,4,Koto Panjang,sex,laki_laki,,1073,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki
+13.72.02.1001,4,Koto Panjang,sex,perempuan,,1063,jiwa,2025,registration,total_population,3.1,41,,Perempuan
+13.72.02.1001,4,Koto Panjang,total,total,,2136,jiwa,2025,registration,total_population,3.1,41,,
+13.72.02.1002,4,Pasar Pandan Air Mati,sex,laki_laki,,3358,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki
+13.72.02.1002,4,Pasar Pandan Air Mati,sex,perempuan,,3271,jiwa,2025,registration,total_population,3.1,41,,Perempuan
+13.72.02.1002,4,Pasar Pandan Air Mati,total,total,,6629,jiwa,2025,registration,total_population,3.1,41,,
+13.72.02.1003,4,Tanjung Paku,sex,laki_laki,,3576,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki
+13.72.02.1003,4,Tanjung Paku,sex,perempuan,,3585,jiwa,2025,registration,total_population,3.1,41,,Perempuan
+13.72.02.1003,4,Tanjung Paku,total,total,,7161,jiwa,2025,registration,total_population,3.1,41,,
+13.72.02.1004,4,Nan Balimo,sex,laki_laki,,5284,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki
+13.72.02.1004,4,Nan Balimo,sex,perempuan,,5184,jiwa,2025,registration,total_population,3.1,41,,Perempuan
+13.72.02.1004,4,Nan Balimo,total,total,,10468,jiwa,2025,registration,total_population,3.1,41,,
+13.72.02.1005,4,Kampung Jawa,sex,laki_laki,,5064,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki
+13.72.02.1005,4,Kampung Jawa,sex,perempuan,,5055,jiwa,2025,registration,total_population,3.1,41,,Perempuan
+13.72.02.1005,4,Kampung Jawa,total,total,,10119,jiwa,2025,registration,total_population,3.1,41,,
+13.72.02.1006,4,Laing,sex,laki_laki,,1139,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki
+13.72.02.1006,4,Laing,sex,perempuan,,1156,jiwa,2025,registration,total_population,3.1,41,,Perempuan
+13.72.02.1006,4,Laing,total,total,,2295,jiwa,2025,registration,total_population,3.1,41,,
+13.72.02,3,Tanjung Harapan,sex,laki_laki,,19494,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki
+13.72.02,3,Tanjung Harapan,sex,perempuan,,19314,jiwa,2025,registration,total_population,3.1,41,,Perempuan
+13.72.02,3,Tanjung Harapan,total,total,,38808,jiwa,2025,registration,total_population,3.1,41,,
+13.72.02,3,Tanjung Harapan,age_group,0-4,laki_laki,1490,jiwa,2025,registration,total_population,3.2,43,,0–4
+13.72.02,3,Tanjung Harapan,age_group,0-4,perempuan,1413,jiwa,2025,registration,total_population,3.2,43,,0–4
+13.72.02,3,Tanjung Harapan,age_group,0-4,,2903,jiwa,2025,registration,total_population,3.2,43,,0–4
+13.72.02,3,Tanjung Harapan,age_group,5-9,laki_laki,1834,jiwa,2025,registration,total_population,3.2,43,,5–9
+13.72.02,3,Tanjung Harapan,age_group,5-9,perempuan,1706,jiwa,2025,registration,total_population,3.2,43,,5–9
+13.72.02,3,Tanjung Harapan,age_group,5-9,,3540,jiwa,2025,registration,total_population,3.2,43,,5–9
+13.72.02,3,Tanjung Harapan,age_group,10-14,laki_laki,1881,jiwa,2025,registration,total_population,3.2,43,,10–14
+13.72.02,3,Tanjung Harapan,age_group,10-14,perempuan,1725,jiwa,2025,registration,total_population,3.2,43,,10–14
+13.72.02,3,Tanjung Harapan,age_group,10-14,,3606,jiwa,2025,registration,total_population,3.2,43,,10–14
+13.72.02,3,Tanjung Harapan,age_group,15-19,laki_laki,1787,jiwa,2025,registration,total_population,3.2,43,,15–19
+13.72.02,3,Tanjung Harapan,age_group,15-19,perempuan,1672,jiwa,2025,registration,total_population,3.2,43,,15–19
+13.72.02,3,Tanjung Harapan,age_group,15-19,,3459,jiwa,2025,registration,total_population,3.2,43,,15–19
+13.72.02,3,Tanjung Harapan,age_group,20-24,laki_laki,1666,jiwa,2025,registration,total_population,3.2,43,,20–24
+13.72.02,3,Tanjung Harapan,age_group,20-24,perempuan,1605,jiwa,2025,registration,total_population,3.2,43,,20–24
+13.72.02,3,Tanjung Harapan,age_group,20-24,,3271,jiwa,2025,registration,total_population,3.2,43,,20–24
+13.72.02,3,Tanjung Harapan,age_group,25-29,laki_laki,1545,jiwa,2025,registration,total_population,3.2,43,,25–29
+13.72.02,3,Tanjung Harapan,age_group,25-29,perempuan,1585,jiwa,2025,registration,total_population,3.2,43,,25–29
+13.72.02,3,Tanjung Harapan,age_group,25-29,,3130,jiwa,2025,registration,total_population,3.2,43,,25–29
+13.72.02,3,Tanjung Harapan,age_group,30-34,laki_laki,1454,jiwa,2025,registration,total_population,3.2,43,,30–34
+13.72.02,3,Tanjung Harapan,age_group,30-34,perempuan,1405,jiwa,2025,registration,total_population,3.2,43,,30–34
+13.72.02,3,Tanjung Harapan,age_group,30-34,,2859,jiwa,2025,registration,total_population,3.2,43,,30–34
+13.72.02,3,Tanjung Harapan,age_group,35-39,laki_laki,1388,jiwa,2025,registration,total_population,3.2,43,,35–39
+13.72.02,3,Tanjung Harapan,age_group,35-39,perempuan,1433,jiwa,2025,registration,total_population,3.2,43,,35–39
+13.72.02,3,Tanjung Harapan,age_group,35-39,,2821,jiwa,2025,registration,total_population,3.2,43,,35–39
+13.72.02,3,Tanjung Harapan,age_group,40-44,laki_laki,1411,jiwa,2025,registration,total_population,3.2,43,,40–44
+13.72.02,3,Tanjung Harapan,age_group,40-44,perempuan,1408,jiwa,2025,registration,total_population,3.2,43,,40–44
+13.72.02,3,Tanjung Harapan,age_group,40-44,,2819,jiwa,2025,registration,total_population,3.2,43,,40–44
+13.72.02,3,Tanjung Harapan,age_group,45-49,laki_laki,1320,jiwa,2025,registration,total_population,3.2,43,,45–49
+13.72.02,3,Tanjung Harapan,age_group,45-49,perempuan,1250,jiwa,2025,registration,total_population,3.2,43,,45–49
+13.72.02,3,Tanjung Harapan,age_group,45-49,,2570,jiwa,2025,registration,total_population,3.2,43,,45–49
+13.72.02,3,Tanjung Harapan,age_group,50-54,laki_laki,1102,jiwa,2025,registration,total_population,3.2,43,,50–54
+13.72.02,3,Tanjung Harapan,age_group,50-54,perempuan,1084,jiwa,2025,registration,total_population,3.2,43,,50–54
+13.72.02,3,Tanjung Harapan,age_group,50-54,,2186,jiwa,2025,registration,total_population,3.2,43,,50–54
+13.72.02,3,Tanjung Harapan,age_group,55-59,laki_laki,829,jiwa,2025,registration,total_population,3.2,43,,55–59
+13.72.02,3,Tanjung Harapan,age_group,55-59,perempuan,861,jiwa,2025,registration,total_population,3.2,43,,55–59
+13.72.02,3,Tanjung Harapan,age_group,55-59,,1690,jiwa,2025,registration,total_population,3.2,43,,55–59
+13.72.02,3,Tanjung Harapan,age_group,60-64,laki_laki,722,jiwa,2025,registration,total_population,3.2,43,,60–64
+13.72.02,3,Tanjung Harapan,age_group,60-64,perempuan,800,jiwa,2025,registration,total_population,3.2,43,,60–64
+13.72.02,3,Tanjung Harapan,age_group,60-64,,1522,jiwa,2025,registration,total_population,3.2,43,,60–64
+13.72.02,3,Tanjung Harapan,age_group,65-69,laki_laki,504,jiwa,2025,registration,total_population,3.2,43,,65–69
+13.72.02,3,Tanjung Harapan,age_group,65-69,perempuan,579,jiwa,2025,registration,total_population,3.2,43,,65–69
+13.72.02,3,Tanjung Harapan,age_group,65-69,,1083,jiwa,2025,registration,total_population,3.2,43,,65–69
+13.72.02,3,Tanjung Harapan,age_group,70-74,laki_laki,311,jiwa,2025,registration,total_population,3.2,43,,70–74
+13.72.02,3,Tanjung Harapan,age_group,70-74,perempuan,375,jiwa,2025,registration,total_population,3.2,43,,70–74
+13.72.02,3,Tanjung Harapan,age_group,70-74,,686,jiwa,2025,registration,total_population,3.2,43,,70–74
+13.72.02,3,Tanjung Harapan,age_group,75+,laki_laki,250,jiwa,2025,registration,total_population,3.2,43,,75+
+13.72.02,3,Tanjung Harapan,age_group,75+,perempuan,413,jiwa,2025,registration,total_population,3.2,43,,75+
+13.72.02,3,Tanjung Harapan,age_group,75+,,663,jiwa,2025,registration,total_population,3.2,43,,75+
+13.72.02,3,Tanjung Harapan,sex,laki_laki,,19494,jiwa,2025,registration,total_population,3.2,43,,Laki-Laki
+13.72.02,3,Tanjung Harapan,sex,perempuan,,19314,jiwa,2025,registration,total_population,3.2,43,,Perempuan
+13.72.02,3,Tanjung Harapan,total,total,,38808,jiwa,2025,registration,total_population,3.2,43,,

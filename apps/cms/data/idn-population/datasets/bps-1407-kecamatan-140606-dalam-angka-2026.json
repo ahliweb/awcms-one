@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1407-kecamatan-140606-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "14.06.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kunto Darussalam Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Rokan Hulu",
+  "publisherDomain": "1407",
+  "publisherWebsite": "https://rohulkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Rokan Hulu (https://rohulkab.bps.go.id), publikasi \"Kecamatan Kunto Darussalam Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "1407.26022",
+  "issn": "2597-5730",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://rohulkab.bps.go.id/id/publication/2026/09/28/7ffd95c3337958e6770c15b3/kecamatan-kunto-darussalam-dalam-angka-2026.html",
+  "sourceFileSha256": "6c829dbe3c45e20ae7412967c7710465b09948c738d3b2c4ed993fc6aaf49d4e",
+  "sourceFileBytes": 14192163,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Rokan Hulu",
+  "csvPath": "datasets/bps-1407-kecamatan-140606-dalam-angka-2026.csv",
+  "csvSha256": "437fb8e41936972e284ba28a5882cc0e5819f11c075fb4e05de6b558d0ad0209",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kunto Darussalam, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kunto Darussalam, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

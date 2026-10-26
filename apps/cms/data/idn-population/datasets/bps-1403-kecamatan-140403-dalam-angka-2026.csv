@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.04.03.2002,4,Tanjung Lajau,sex,laki_laki,,1077,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.03.2002,4,Tanjung Lajau,sex,perempuan,,935,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.03.2002,4,Tanjung Lajau,total,total,,2012,jiwa,2026,registration,total_population,3.1,29,,
+14.04.03.2001,4,Sungai Buluh,sex,laki_laki,,972,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.03.2001,4,Sungai Buluh,sex,perempuan,,939,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.03.2001,4,Sungai Buluh,total,total,,1911,jiwa,2026,registration,total_population,3.1,29,,
+14.04.03.2003,4,Sungai Bela,sex,laki_laki,,1915,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.03.2003,4,Sungai Bela,sex,perempuan,,1696,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.03.2003,4,Sungai Bela,total,total,,3611,jiwa,2026,registration,total_population,3.1,29,,
+14.04.03.2009,4,Perigi Raja,sex,laki_laki,,895,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.03.2009,4,Perigi Raja,sex,perempuan,,832,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.03.2009,4,Perigi Raja,total,total,,1727,jiwa,2026,registration,total_population,3.1,29,,
+14.04.03.1007,4,Sapat,sex,laki_laki,,1691,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.03.1007,4,Sapat,sex,perempuan,,1618,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.03.1007,4,Sapat,total,total,,3309,jiwa,2026,registration,total_population,3.1,29,,
+14.04.03.2006,4,Teluk Dalam,sex,laki_laki,,1072,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.03.2006,4,Teluk Dalam,sex,perempuan,,955,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.03.2006,4,Teluk Dalam,total,total,,2027,jiwa,2026,registration,total_population,3.1,29,,
+14.04.03.2008,4,Sungai Piyai,sex,laki_laki,,683,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.03.2008,4,Sungai Piyai,sex,perempuan,,589,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.03.2008,4,Sungai Piyai,total,total,,1272,jiwa,2026,registration,total_population,3.1,29,,
+14.04.03.2010,4,Tanjung Melayu,sex,laki_laki,,646,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.03.2010,4,Tanjung Melayu,sex,perempuan,,531,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.03.2010,4,Tanjung Melayu,total,total,,1177,jiwa,2026,registration,total_population,3.1,29,,
+14.04.03,3,Kuala In dragiri,sex,laki_laki,,8951,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.03,3,Kuala In dragiri,sex,perempuan,,8095,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.03,3,Kuala In dragiri,total,total,,17046,jiwa,2026,registration,total_population,3.1,29,,

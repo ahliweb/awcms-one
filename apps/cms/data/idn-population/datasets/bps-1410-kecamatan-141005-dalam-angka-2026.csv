@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.10.05.2003,4,LUKIT,sex,laki_laki,,1067,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+14.10.05.2003,4,LUKIT,sex,perempuan,,1049,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+14.10.05.2003,4,LUKIT,total,total,,2116,jiwa,2025,registration,total_population,3.1,29,,
+14.10.05.2019,4,TANJUNG KULIM,sex,laki_laki,,359,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+14.10.05.2019,4,TANJUNG KULIM,sex,perempuan,,322,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+14.10.05.2019,4,TANJUNG KULIM,total,total,,681,jiwa,2025,registration,total_population,3.1,29,,
+14.10.05.2018,4,PELANTAI,sex,laki_laki,,490,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+14.10.05.2018,4,PELANTAI,sex,perempuan,,464,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+14.10.05.2018,4,PELANTAI,total,total,,954,jiwa,2025,registration,total_population,3.1,29,,
+14.10.05.2021,4,MEKAR SARI,sex,laki_laki,,831,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+14.10.05.2021,4,MEKAR SARI,sex,perempuan,,751,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+14.10.05.2021,4,MEKAR SARI,total,total,,1582,jiwa,2025,registration,total_population,3.1,29,,
+14.10.05.1001,4,TELUK BELITUNG,sex,laki_laki,,3536,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+14.10.05.1001,4,TELUK BELITUNG,sex,perempuan,,3244,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+14.10.05.1001,4,TELUK BELITUNG,total,total,,6780,jiwa,2025,registration,total_population,3.1,29,,
+14.10.05.2004,4,BAGAN MELIBUR,sex,laki_laki,,1243,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+14.10.05.2004,4,BAGAN MELIBUR,sex,perempuan,,1223,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+14.10.05.2004,4,BAGAN MELIBUR,total,total,,2466,jiwa,2025,registration,total_population,3.1,29,,
+14.10.05.2023,4,MAYANG SARI,sex,laki_laki,,486,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+14.10.05.2023,4,MAYANG SARI,sex,perempuan,,457,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+14.10.05.2023,4,MAYANG SARI,total,total,,943,jiwa,2025,registration,total_population,3.1,29,,
+14.10.05.2026,4,SUNGAI ANAK KAMAL,sex,laki_laki,,441,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+14.10.05.2026,4,SUNGAI ANAK KAMAL,sex,perempuan,,406,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+14.10.05.2026,4,SUNGAI ANAK KAMAL,total,total,,847,jiwa,2025,registration,total_population,3.1,29,,
+14.10.05.2027,4,SUNGAI TENGAH,sex,laki_laki,,377,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+14.10.05.2027,4,SUNGAI TENGAH,sex,perempuan,,329,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+14.10.05.2027,4,SUNGAI TENGAH,total,total,,706,jiwa,2025,registration,total_population,3.1,29,,

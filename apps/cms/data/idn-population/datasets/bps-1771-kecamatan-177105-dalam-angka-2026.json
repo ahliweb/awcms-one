@@ -1,0 +1,54 @@
+{
+  "datasetCode": "bps-1771-kecamatan-177105-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "17.71.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kampung Melayu Dalam Angka 2026",
+  "publisherName": "BPS Kota Bengkulu",
+  "publisherDomain": "1771",
+  "publisherWebsite": "https://bengkulukota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Bengkulu (https://bengkulukota.bps.go.id), publikasi \"Kecamatan Kampung Melayu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1771021",
+  "publicationNumber": "17710.26009",
+  "issn": "2623-1093",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bengkulukota.bps.go.id/id/publication/2026/09/28/ace00c82bc3db51833d9589b/kecamatan-kampung-melayu-dalam-angka-2026.html",
+  "sourceFileSha256": "57f0cc62107d451dfba9202a82f541c9b93eaa98e064d28cff1c564c86c30c76",
+  "sourceFileBytes": 3655126,
+  "sourcePages": [25, 26, 27, 50],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Bengkulu .",
+  "csvPath": "datasets/bps-1771-kecamatan-177105-dalam-angka-2026.csv",
+  "csvSha256": "8c229067e29a0792f3a96a1c7531ce243d22b3ced1898231a7b280d6c09c0f8e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Jumlah KK, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Kampung Melayu, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kampung Melayu, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.4.3",
+      "title": "Jumlah Penduduk Menurut Agama dan Kelurahan di Kecamatan Kampung Melayu, 2025",
+      "printedPages": [50],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.2: row not stored: row \"Ratu Agung\": unmatched ",
+    "table 3.2: 37 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.1 is not included: its published figures do not add up (total/total/- 2025: parts sum 16101.0000 != 53159.0000 (diff 37058.0000)); the source itself is inconsistent"
+  ]
+}

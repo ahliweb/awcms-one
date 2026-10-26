@@ -1,0 +1,140 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.12.01,3,Talang Ubi,total,total,,95644,jiwa,2025,registration,total_population,3.1.1,63,,
+16.12.05,3,Tanah Abang,total,total,,34429,jiwa,2025,registration,total_population,3.1.1,63,,
+16.12.04,3,Abab,total,total,,29460,jiwa,2025,registration,total_population,3.1.1,63,,
+16.12.03,3,Penukal,total,total,,32508,jiwa,2025,registration,total_population,3.1.1,63,,
+16.12.02,3,Penukal Utara,total,total,,25456,jiwa,2025,registration,total_population,3.1.1,63,,
+16.12,2,Penukal Abab Lematang Ilir,total,total,,217497,jiwa,2025,registration,total_population,3.1.1,63,,
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,0-4,laki_laki,8540,jiwa,2025,registration,total_population,3.1.2,66,,0–4
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,0-4,perempuan,7994,jiwa,2025,registration,total_population,3.1.2,66,,0–4
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,0-4,,16534,jiwa,2025,registration,total_population,3.1.2,66,,0–4
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,5-9,laki_laki,10812,jiwa,2025,registration,total_population,3.1.2,66,,5–9
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,5-9,perempuan,9916,jiwa,2025,registration,total_population,3.1.2,66,,5–9
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,5-9,,20728,jiwa,2025,registration,total_population,3.1.2,66,,5–9
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,10-14,laki_laki,11330,jiwa,2025,registration,total_population,3.1.2,66,,10–14
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,10-14,perempuan,10526,jiwa,2025,registration,total_population,3.1.2,66,,10–14
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,10-14,,21856,jiwa,2025,registration,total_population,3.1.2,66,,10–14
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,15-19,laki_laki,10890,jiwa,2025,registration,total_population,3.1.2,66,,15–19
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,15-19,perempuan,10339,jiwa,2025,registration,total_population,3.1.2,66,,15–19
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,15-19,,21229,jiwa,2025,registration,total_population,3.1.2,66,,15–19
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,20-24,laki_laki,9976,jiwa,2025,registration,total_population,3.1.2,66,,20–24
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,20-24,perempuan,9439,jiwa,2025,registration,total_population,3.1.2,66,,20–24
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,20-24,,19415,jiwa,2025,registration,total_population,3.1.2,66,,20–24
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,25-29,laki_laki,9191,jiwa,2025,registration,total_population,3.1.2,66,,25–29
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,25-29,perempuan,8437,jiwa,2025,registration,total_population,3.1.2,66,,25–29
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,25-29,,17628,jiwa,2025,registration,total_population,3.1.2,66,,25–29
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,30-34,laki_laki,8046,jiwa,2025,registration,total_population,3.1.2,66,,30–34
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,30-34,perempuan,8002,jiwa,2025,registration,total_population,3.1.2,66,,30–34
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,30-34,,16048,jiwa,2025,registration,total_population,3.1.2,66,,30–34
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,35-39,laki_laki,8533,jiwa,2025,registration,total_population,3.1.2,66,,35–39
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,35-39,perempuan,8393,jiwa,2025,registration,total_population,3.1.2,66,,35–39
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,35-39,,16926,jiwa,2025,registration,total_population,3.1.2,66,,35–39
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,40-44,laki_laki,7902,jiwa,2025,registration,total_population,3.1.2,66,,40–44
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,40-44,perempuan,7777,jiwa,2025,registration,total_population,3.1.2,66,,40–44
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,40-44,,15679,jiwa,2025,registration,total_population,3.1.2,66,,40–44
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,45-49,laki_laki,6876,jiwa,2025,registration,total_population,3.1.2,66,,45–49
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,45-49,perempuan,6832,jiwa,2025,registration,total_population,3.1.2,66,,45–49
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,45-49,,13708,jiwa,2025,registration,total_population,3.1.2,66,,45–49
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,50-54,laki_laki,5526,jiwa,2025,registration,total_population,3.1.2,66,,50–54
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,50-54,perempuan,5439,jiwa,2025,registration,total_population,3.1.2,66,,50–54
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,50-54,,10965,jiwa,2025,registration,total_population,3.1.2,66,,50–54
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,55-59,laki_laki,4137,jiwa,2025,registration,total_population,3.1.2,66,,55–59
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,55-59,perempuan,4373,jiwa,2025,registration,total_population,3.1.2,66,,55–59
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,55-59,,8510,jiwa,2025,registration,total_population,3.1.2,66,,55–59
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,60-64,laki_laki,3280,jiwa,2025,registration,total_population,3.1.2,66,,60–64
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,60-64,perempuan,3572,jiwa,2025,registration,total_population,3.1.2,66,,60–64
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,60-64,,6852,jiwa,2025,registration,total_population,3.1.2,66,,60–64
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,65-69,laki_laki,2503,jiwa,2025,registration,total_population,3.1.2,66,,65–69
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,65-69,perempuan,2664,jiwa,2025,registration,total_population,3.1.2,66,,65–69
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,65-69,,5167,jiwa,2025,registration,total_population,3.1.2,66,,65–69
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,70-74,laki_laki,1487,jiwa,2025,registration,total_population,3.1.2,66,,70–74
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,70-74,perempuan,1569,jiwa,2025,registration,total_population,3.1.2,66,,70–74
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,70-74,,3056,jiwa,2025,registration,total_population,3.1.2,66,,70–74
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,75+,laki_laki,1307,jiwa,2025,registration,total_population,3.1.2,66,,75+
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,75+,perempuan,1889,jiwa,2025,registration,total_population,3.1.2,66,,75+
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,age_group,75+,,3196,jiwa,2025,registration,total_population,3.1.2,66,,75+
+16.12,2,Penukal Abab Lematang Ilir,sex,laki_laki,,110336,jiwa,2025,registration,total_population,3.1.2,66,,Laki-Laki
+16.12,2,Penukal Abab Lematang Ilir,sex,perempuan,,107161,jiwa,2025,registration,total_population,3.1.2,66,,Perempuan
+16.12,2,Penukal Abab Lematang Ilir,total,total,,217497,jiwa,2025,registration,total_population,3.1.2,66,,
+16.12.01,3,Talang Ubi,religion,islam,,95056,jiwa,2025,registration,total_population,4.3.1,147,,Islam
+16.12.01,3,Talang Ubi,religion,kristen,,396,jiwa,2025,registration,total_population,4.3.1,147,,Protestan
+16.12.01,3,Talang Ubi,religion,katolik,,111,jiwa,2025,registration,total_population,4.3.1,147,,Katolik
+16.12.01,3,Talang Ubi,religion,hindu,,37,jiwa,2025,registration,total_population,4.3.1,147,,Hindu
+16.12.01,3,Talang Ubi,religion,buddha,,44,jiwa,2025,registration,total_population,4.3.1,147,,Budha
+16.12.01,3,Talang Ubi,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,147,nil,Lainnya
+16.12.05,3,Tanah Abang,religion,islam,,25418,jiwa,2025,registration,total_population,4.3.1,147,,Islam
+16.12.05,3,Tanah Abang,religion,kristen,,8,jiwa,2025,registration,total_population,4.3.1,147,,Protestan
+16.12.05,3,Tanah Abang,religion,katolik,,30,jiwa,2025,registration,total_population,4.3.1,147,,Katolik
+16.12.05,3,Tanah Abang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,147,nil,Hindu
+16.12.05,3,Tanah Abang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,147,nil,Budha
+16.12.05,3,Tanah Abang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,147,nil,Lainnya
+16.12.04,3,Abab,religion,islam,,32438,jiwa,2025,registration,total_population,4.3.1,147,,Islam
+16.12.04,3,Abab,religion,kristen,,68,jiwa,2025,registration,total_population,4.3.1,147,,Protestan
+16.12.04,3,Abab,religion,katolik,,2,jiwa,2025,registration,total_population,4.3.1,147,,Katolik
+16.12.04,3,Abab,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,147,nil,Hindu
+16.12.04,3,Abab,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,147,nil,Budha
+16.12.04,3,Abab,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,147,nil,Lainnya
+16.12.03,3,Penukal,religion,islam,,29434,jiwa,2025,registration,total_population,4.3.1,147,,Islam
+16.12.03,3,Penukal,religion,kristen,,24,jiwa,2025,registration,total_population,4.3.1,147,,Protestan
+16.12.03,3,Penukal,religion,katolik,,2,jiwa,2025,registration,total_population,4.3.1,147,,Katolik
+16.12.03,3,Penukal,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,147,nil,Hindu
+16.12.03,3,Penukal,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,147,nil,Budha
+16.12.03,3,Penukal,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,147,nil,Lainnya
+16.12.02,3,Penukal Utara,religion,islam,,34416,jiwa,2025,registration,total_population,4.3.1,147,,Islam
+16.12.02,3,Penukal Utara,religion,kristen,,11,jiwa,2025,registration,total_population,4.3.1,147,,Protestan
+16.12.02,3,Penukal Utara,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,147,nil,Katolik
+16.12.02,3,Penukal Utara,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,147,nil,Hindu
+16.12.02,3,Penukal Utara,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,147,,Budha
+16.12.02,3,Penukal Utara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,147,nil,Lainnya
+16.12,2,Penukal Abab Lematang Ilir,religion,islam,,216762,jiwa,2025,registration,total_population,4.3.1,147,,Islam
+16.12,2,Penukal Abab Lematang Ilir,religion,kristen,,507,jiwa,2025,registration,total_population,4.3.1,147,,Protestan
+16.12,2,Penukal Abab Lematang Ilir,religion,katolik,,145,jiwa,2025,registration,total_population,4.3.1,147,,Katolik
+16.12,2,Penukal Abab Lematang Ilir,religion,hindu,,37,jiwa,2025,registration,total_population,4.3.1,147,,Hindu
+16.12,2,Penukal Abab Lematang Ilir,religion,buddha,,46,jiwa,2025,registration,total_population,4.3.1,147,,Budha
+16.12,2,Penukal Abab Lematang Ilir,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,147,nil,Lainnya
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/padi_padian,,106113,rupiah,2024,survey_estimate,per_capita,10.1,285,,Padi-padian
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/padi_padian,,100730,rupiah,2025,survey_estimate,per_capita,10.1,285,,Padi-padian
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/umbi_umbian,,5708,rupiah,2024,survey_estimate,per_capita,10.1,285,,Umbi-umbian
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/umbi_umbian,,6003,rupiah,2025,survey_estimate,per_capita,10.1,285,,Umbi-umbian
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,47403,rupiah,2024,survey_estimate,per_capita,10.1,285,,Ikan/udang/cumi/kerang
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,45432,rupiah,2025,survey_estimate,per_capita,10.1,285,,Ikan/udang/cumi/kerang
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/daging,,25184,rupiah,2024,survey_estimate,per_capita,10.1,285,,Daging
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/daging,,22839,rupiah,2025,survey_estimate,per_capita,10.1,285,,Daging
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/telur_dan_susu,,23580,rupiah,2024,survey_estimate,per_capita,10.1,285,,Telur dan susu
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/telur_dan_susu,,21048,rupiah,2025,survey_estimate,per_capita,10.1,285,,Telur dan susu
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/sayur_sayuran,,53486,rupiah,2024,survey_estimate,per_capita,10.1,285,,Sayur-sayuran
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/sayur_sayuran,,54066,rupiah,2025,survey_estimate,per_capita,10.1,285,,Sayur-sayuran
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/kacang_kacangan,,8970,rupiah,2024,survey_estimate,per_capita,10.1,285,,Kacang-kacangan
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/kacang_kacangan,,9292,rupiah,2025,survey_estimate,per_capita,10.1,285,,Kacang-kacangan
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/buah_buahan,,32145,rupiah,2024,survey_estimate,per_capita,10.1,285,,Buah-buahan
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/buah_buahan,,24234,rupiah,2025,survey_estimate,per_capita,10.1,285,,Buah-buahan
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16270,rupiah,2024,survey_estimate,per_capita,10.1,285,,Minyak dan kelapa
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/minyak_dan_kelapa,,15840,rupiah,2025,survey_estimate,per_capita,10.1,285,,Minyak dan kelapa
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/bahan_minuman,,18182,rupiah,2024,survey_estimate,per_capita,10.1,285,,Bahan minuman
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/bahan_minuman,,20591,rupiah,2025,survey_estimate,per_capita,10.1,285,,Bahan minuman
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/bumbu_bumbuan,,13792,rupiah,2024,survey_estimate,per_capita,10.1,285,,Bumbu-bumbuan
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/bumbu_bumbuan,,14849,rupiah,2025,survey_estimate,per_capita,10.1,285,,Bumbu-bumbuan
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/konsumsi_lainnya,,12915,rupiah,2024,survey_estimate,per_capita,10.1,285,,Konsumsi lainnya
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/konsumsi_lainnya,,14695,rupiah,2025,survey_estimate,per_capita,10.1,285,,Konsumsi lainnya
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,118709,rupiah,2024,survey_estimate,per_capita,10.1,285,,Makanan dan minuman jadi
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,112415,rupiah,2025,survey_estimate,per_capita,10.1,285,,Makanan dan minuman jadi
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/rokok,,91979,rupiah,2024,survey_estimate,per_capita,10.1,285,,Rokok
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/rokok,,74084,rupiah,2025,survey_estimate,per_capita,10.1,285,,Rokok
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/jumlah_makanan,,574436,rupiah,2024,survey_estimate,per_capita,10.1,285,,Jumlah makanan
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/jumlah_makanan,,536118,rupiah,2025,survey_estimate,per_capita,10.1,285,,Jumlah makanan
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,219493,rupiah,2024,survey_estimate,per_capita,10.1,285,,Perumahan dan fasilitas rumah tangga
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,226053,rupiah,2025,survey_estimate,per_capita,10.1,285,,Perumahan dan fasilitas rumah tangga
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,70482,rupiah,2024,survey_estimate,per_capita,10.1,285,,Aneka barang dan jasa
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,68579,rupiah,2025,survey_estimate,per_capita,10.1,285,,Aneka barang dan jasa
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,17635,rupiah,2024,survey_estimate,per_capita,10.1,285,,"Pakaian, alas kaki, dan tutup kepala"
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,16195,rupiah,2025,survey_estimate,per_capita,10.1,285,,"Pakaian, alas kaki, dan tutup kepala"
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/barang_tahan_lama,,23301,rupiah,2024,survey_estimate,per_capita,10.1,285,,Barang tahan lama
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/barang_tahan_lama,,24792,rupiah,2025,survey_estimate,per_capita,10.1,285,,Barang tahan lama
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,41508,rupiah,2024,survey_estimate,per_capita,10.1,285,,"Pajak, pungutan, dan asuransi"
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,39447,rupiah,2025,survey_estimate,per_capita,10.1,285,,"Pajak, pungutan, dan asuransi"
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,13243,rupiah,2024,survey_estimate,per_capita,10.1,285,,Keperluan pesta dan upacara/kenduri
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,8914,rupiah,2025,survey_estimate,per_capita,10.1,285,,Keperluan pesta dan upacara/kenduri
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,385662,rupiah,2024,survey_estimate,per_capita,10.1,285,,Jumlah bukan makanan
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,383980,rupiah,2025,survey_estimate,per_capita,10.1,285,,Jumlah bukan makanan
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,total,,960098,rupiah,2024,survey_estimate,per_capita,10.1,285,,
+16.12,2,Kabupaten Penukal Abab Lematang Ilir,expenditure,total,,920098,rupiah,2025,survey_estimate,per_capita,10.1,285,,

@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.09.04.2009,4,Pulau Kijang,sex,laki_laki,,232,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.04.2009,4,Pulau Kijang,sex,perempuan,,217,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.04.2009,4,Pulau Kijang,total,total,,449,jiwa,2025,registration,total_population,3.1,22,,
+14.09.04.2006,4,Banuaran,sex,laki_laki,,628,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.04.2006,4,Banuaran,sex,perempuan,,632,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.04.2006,4,Banuaran,total,total,,1260,jiwa,2025,registration,total_population,3.1,22,,
+14.09.04.2005,4,Koto Tuo,sex,laki_laki,,261,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.04.2005,4,Koto Tuo,sex,perempuan,,265,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.04.2005,4,Koto Tuo,total,total,,526,jiwa,2025,registration,total_population,3.1,22,,
+14.09.04.2015,4,Pulau Madinah,sex,laki_laki,,154,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.04.2015,4,Pulau Madinah,sex,perempuan,,196,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.04.2015,4,Pulau Madinah,total,total,,350,jiwa,2025,registration,total_population,3.1,22,,
+14.09.04.2016,4,Kampung Tengah,sex,laki_laki,,209,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.04.2016,4,Kampung Tengah,sex,perempuan,,206,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.04.2016,4,Kampung Tengah,total,total,,415,jiwa,2025,registration,total_population,3.1,22,,
+14.09.04.2018,4,Kepala Pulau,sex,laki_laki,,884,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.04.2018,4,Kepala Pulau,sex,perempuan,,832,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.04.2018,4,Kepala Pulau,total,total,,1716,jiwa,2025,registration,total_population,3.1,22,,
+14.09.04.2017,4,Kampung Medan,sex,laki_laki,,1023,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.04.2017,4,Kampung Medan,sex,perempuan,,980,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.04.2017,4,Kampung Medan,total,total,,2003,jiwa,2025,registration,total_population,3.1,22,,
+14.09.04.2003,4,Simpang Tanah Lapang,sex,laki_laki,,465,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.04.2003,4,Simpang Tanah Lapang,sex,perempuan,,451,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.04.2003,4,Simpang Tanah Lapang,total,total,,916,jiwa,2025,registration,total_population,3.1,22,,
+14.09.04.2007,4,Kampung Madura,sex,laki_laki,,342,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.04.2007,4,Kampung Madura,sex,perempuan,,329,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.04.2007,4,Kampung Madura,total,total,,671,jiwa,2025,registration,total_population,3.1,22,,
+14.09.04.2004,4,Rawang Bonto,sex,laki_laki,,294,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.04.2004,4,Rawang Bonto,sex,perempuan,,299,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.04.2004,4,Rawang Bonto,total,total,,593,jiwa,2025,registration,total_population,3.1,22,,
+14.09.04.2020,4,Dusun Tuo,sex,laki_laki,,438,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.04.2020,4,Dusun Tuo,sex,perempuan,,398,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.04.2020,4,Dusun Tuo,total,total,,836,jiwa,2025,registration,total_population,3.1,22,,
+14.09.04.2028,4,Gunung Melintang,sex,laki_laki,,718,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.04.2028,4,Gunung Melintang,sex,perempuan,,737,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.04.2028,4,Gunung Melintang,total,total,,1455,jiwa,2025,registration,total_population,3.1,22,,
+14.09.04.2019,4,Teratak Baru,sex,laki_laki,,483,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.04.2019,4,Teratak Baru,sex,perempuan,,476,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.04.2019,4,Teratak Baru,total,total,,959,jiwa,2025,registration,total_population,3.1,22,,
+14.09.04.2030,4,Simpang Pulau Beralo,sex,laki_laki,,208,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.04.2030,4,Simpang Pulau Beralo,sex,perempuan,,191,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.04.2030,4,Simpang Pulau Beralo,total,total,,399,jiwa,2025,registration,total_population,3.1,22,,
+14.09.04,3,Kuantan Hilir,sex,laki_laki,,7669,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.04,3,Kuantan Hilir,sex,perempuan,,7551,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.04,3,Kuantan Hilir,total,total,,15220,jiwa,2025,registration,total_population,3.1,22,,

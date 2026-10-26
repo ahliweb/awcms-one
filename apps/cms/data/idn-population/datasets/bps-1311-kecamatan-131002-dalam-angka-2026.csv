@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.10.02.2001,4,Sungai Dareh,sex,laki_laki,,4479,jiwa,2025,registration,total_population,3.2.1,23,,Laki-Laki
+13.10.02.2001,4,Sungai Dareh,sex,perempuan,,4374,jiwa,2025,registration,total_population,3.2.1,23,,Perempuan
+13.10.02.2001,4,Sungai Dareh,total,total,,8853,jiwa,2025,registration,total_population,3.2.1,23,,
+13.10.02.2002,4,Tebing Tinggi,sex,laki_laki,,2094,jiwa,2025,registration,total_population,3.2.1,23,,Laki-Laki
+13.10.02.2002,4,Tebing Tinggi,sex,perempuan,,2079,jiwa,2025,registration,total_population,3.2.1,23,,Perempuan
+13.10.02.2002,4,Tebing Tinggi,total,total,,4173,jiwa,2025,registration,total_population,3.2.1,23,,
+13.10.02.2007,4,Sungai Kambut,sex,laki_laki,,5276,jiwa,2025,registration,total_population,3.2.1,23,,Laki-Laki
+13.10.02.2007,4,Sungai Kambut,sex,perempuan,,5093,jiwa,2025,registration,total_population,3.2.1,23,,Perempuan
+13.10.02.2007,4,Sungai Kambut,total,total,,10369,jiwa,2025,registration,total_population,3.2.1,23,,
+13.10.02.2008,4,Gunung Selasih,sex,laki_laki,,2387,jiwa,2025,registration,total_population,3.2.1,23,,Laki-Laki
+13.10.02.2008,4,Gunung Selasih,sex,perempuan,,2250,jiwa,2025,registration,total_population,3.2.1,23,,Perempuan
+13.10.02.2008,4,Gunung Selasih,total,total,,4637,jiwa,2025,registration,total_population,3.2.1,23,,
+13.10.02.2009,4,Sikabau,sex,laki_laki,,5378,jiwa,2025,registration,total_population,3.2.1,23,,Laki-Laki
+13.10.02.2009,4,Sikabau,sex,perempuan,,5139,jiwa,2025,registration,total_population,3.2.1,23,,Perempuan
+13.10.02.2009,4,Sikabau,total,total,,10517,jiwa,2025,registration,total_population,3.2.1,23,,
+13.10.02,3,Kecamatan Pulau Punjung,sex,laki_laki,,24911,jiwa,2025,registration,total_population,3.2.1,23,,Laki-Laki
+13.10.02,3,Kecamatan Pulau Punjung,sex,perempuan,,23979,jiwa,2025,registration,total_population,3.2.1,23,,Perempuan
+13.10.02,3,Kecamatan Pulau Punjung,total,total,,48890,jiwa,2025,registration,total_population,3.2.1,23,,
+13.10.02,3,Pulau Punjung,age_group,0-4,laki_laki,1764,jiwa,2025,registration,total_population,3.2.2,25,,0-4
+13.10.02,3,Pulau Punjung,age_group,0-4,perempuan,1596,jiwa,2025,registration,total_population,3.2.2,25,,0-4
+13.10.02,3,Pulau Punjung,age_group,0-4,,3360,jiwa,2025,registration,total_population,3.2.2,25,,0-4
+13.10.02,3,Pulau Punjung,age_group,5-9,laki_laki,2390,jiwa,2025,registration,total_population,3.2.2,25,,5-9
+13.10.02,3,Pulau Punjung,age_group,5-9,perempuan,2299,jiwa,2025,registration,total_population,3.2.2,25,,5-9
+13.10.02,3,Pulau Punjung,age_group,5-9,,4689,jiwa,2025,registration,total_population,3.2.2,25,,5-9
+13.10.02,3,Pulau Punjung,age_group,10-14,laki_laki,2395,jiwa,2025,registration,total_population,3.2.2,25,,10-14
+13.10.02,3,Pulau Punjung,age_group,10-14,perempuan,2304,jiwa,2025,registration,total_population,3.2.2,25,,10-14
+13.10.02,3,Pulau Punjung,age_group,10-14,,4699,jiwa,2025,registration,total_population,3.2.2,25,,10-14
+13.10.02,3,Pulau Punjung,age_group,15-19,laki_laki,2314,jiwa,2025,registration,total_population,3.2.2,25,,15-19
+13.10.02,3,Pulau Punjung,age_group,15-19,perempuan,2132,jiwa,2025,registration,total_population,3.2.2,25,,15-19
+13.10.02,3,Pulau Punjung,age_group,15-19,,4446,jiwa,2025,registration,total_population,3.2.2,25,,15-19
+13.10.02,3,Pulau Punjung,age_group,20-24,laki_laki,2141,jiwa,2025,registration,total_population,3.2.2,25,,20-24
+13.10.02,3,Pulau Punjung,age_group,20-24,perempuan,2117,jiwa,2025,registration,total_population,3.2.2,25,,20-24
+13.10.02,3,Pulau Punjung,age_group,20-24,,4258,jiwa,2025,registration,total_population,3.2.2,25,,20-24
+13.10.02,3,Pulau Punjung,age_group,25-29,laki_laki,2093,jiwa,2025,registration,total_population,3.2.2,25,,25-29
+13.10.02,3,Pulau Punjung,age_group,25-29,perempuan,1936,jiwa,2025,registration,total_population,3.2.2,25,,25-29
+13.10.02,3,Pulau Punjung,age_group,25-29,,4029,jiwa,2025,registration,total_population,3.2.2,25,,25-29
+13.10.02,3,Pulau Punjung,age_group,30-34,laki_laki,1889,jiwa,2025,registration,total_population,3.2.2,25,,30-34
+13.10.02,3,Pulau Punjung,age_group,30-34,perempuan,1843,jiwa,2025,registration,total_population,3.2.2,25,,30-34
+13.10.02,3,Pulau Punjung,age_group,30-34,,3732,jiwa,2025,registration,total_population,3.2.2,25,,30-34
+13.10.02,3,Pulau Punjung,age_group,35-39,laki_laki,1761,jiwa,2025,registration,total_population,3.2.2,25,,35-39
+13.10.02,3,Pulau Punjung,age_group,35-39,perempuan,1793,jiwa,2025,registration,total_population,3.2.2,25,,35-39
+13.10.02,3,Pulau Punjung,age_group,35-39,,3554,jiwa,2025,registration,total_population,3.2.2,25,,35-39
+13.10.02,3,Pulau Punjung,age_group,40-44,laki_laki,1933,jiwa,2025,registration,total_population,3.2.2,25,,40-44
+13.10.02,3,Pulau Punjung,age_group,40-44,perempuan,1932,jiwa,2025,registration,total_population,3.2.2,25,,40-44
+13.10.02,3,Pulau Punjung,age_group,40-44,,3865,jiwa,2025,registration,total_population,3.2.2,25,,40-44
+13.10.02,3,Pulau Punjung,age_group,45-49,laki_laki,1750,jiwa,2025,registration,total_population,3.2.2,25,,45-49
+13.10.02,3,Pulau Punjung,age_group,45-49,perempuan,1551,jiwa,2025,registration,total_population,3.2.2,25,,45-49
+13.10.02,3,Pulau Punjung,age_group,45-49,,3301,jiwa,2025,registration,total_population,3.2.2,25,,45-49
+13.10.02,3,Pulau Punjung,age_group,50-54,laki_laki,1355,jiwa,2025,registration,total_population,3.2.2,25,,50-54
+13.10.02,3,Pulau Punjung,age_group,50-54,perempuan,1351,jiwa,2025,registration,total_population,3.2.2,25,,50-54
+13.10.02,3,Pulau Punjung,age_group,50-54,,2706,jiwa,2025,registration,total_population,3.2.2,25,,50-54
+13.10.02,3,Pulau Punjung,age_group,55-59,laki_laki,1082,jiwa,2025,registration,total_population,3.2.2,25,,55-59
+13.10.02,3,Pulau Punjung,age_group,55-59,perempuan,991,jiwa,2025,registration,total_population,3.2.2,25,,55-59
+13.10.02,3,Pulau Punjung,age_group,55-59,,2073,jiwa,2025,registration,total_population,3.2.2,25,,55-59
+13.10.02,3,Pulau Punjung,age_group,60-64,laki_laki,818,jiwa,2025,registration,total_population,3.2.2,25,,60-64
+13.10.02,3,Pulau Punjung,age_group,60-64,perempuan,731,jiwa,2025,registration,total_population,3.2.2,25,,60-64
+13.10.02,3,Pulau Punjung,age_group,60-64,,1549,jiwa,2025,registration,total_population,3.2.2,25,,60-64
+13.10.02,3,Pulau Punjung,age_group,65-69,laki_laki,585,jiwa,2025,registration,total_population,3.2.2,25,,65-69
+13.10.02,3,Pulau Punjung,age_group,65-69,perempuan,631,jiwa,2025,registration,total_population,3.2.2,25,,65-69
+13.10.02,3,Pulau Punjung,age_group,65-69,,1216,jiwa,2025,registration,total_population,3.2.2,25,,65-69
+13.10.02,3,Pulau Punjung,age_group,70+,laki_laki,641,jiwa,2025,registration,total_population,3.2.2,25,,70+
+13.10.02,3,Pulau Punjung,age_group,70+,perempuan,772,jiwa,2025,registration,total_population,3.2.2,25,,70+
+13.10.02,3,Pulau Punjung,age_group,70+,,1413,jiwa,2025,registration,total_population,3.2.2,25,,70+
+13.10.02,3,Kecamatan Pulau Punjung,sex,laki_laki,,24911,jiwa,2025,registration,total_population,3.2.2,25,,Laki-Laki
+13.10.02,3,Kecamatan Pulau Punjung,sex,perempuan,,23979,jiwa,2025,registration,total_population,3.2.2,25,,Perempuan
+13.10.02,3,Kecamatan Pulau Punjung,total,total,,48890,jiwa,2025,registration,total_population,3.2.2,25,,

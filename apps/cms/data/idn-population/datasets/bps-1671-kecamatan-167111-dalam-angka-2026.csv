@@ -1,0 +1,15 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.71.11.1001,4,Sembilan–Belas Ilir,sex,perempuan,,1237,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.11.1001,4,Sembilan–Belas Ilir,total,total,,2434,jiwa,2025,registration,total_population,3.1,32,,
+16.71.11.1002,4,Dua–Puluh–Dua Ilir,sex,perempuan,,1354,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.11.1002,4,Dua–Puluh–Dua Ilir,total,total,,2731,jiwa,2025,registration,total_population,3.1,32,,
+16.71.11.1003,4,Dua–Puluh–Tiga Ilir,sex,perempuan,,1488,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.11.1003,4,Dua–Puluh–Tiga Ilir,total,total,,2998,jiwa,2025,registration,total_population,3.1,32,,
+16.71.11.1004,4,Dua–Puluh–Empat Ilir,sex,perempuan,,6852,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.11.1004,4,Dua–Puluh–Empat Ilir,total,total,,13727,jiwa,2025,registration,total_population,3.1,32,,
+16.71.11.1005,4,Dua–Puluh–Enam Ilir,sex,perempuan,,5027,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.11.1005,4,Dua–Puluh–Enam Ilir,total,total,,9841,jiwa,2025,registration,total_population,3.1,32,,
+16.71.11.1006,4,Talang Semut,sex,perempuan,,3283,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.11.1006,4,Talang Semut,total,total,,6464,jiwa,2025,registration,total_population,3.1,32,,
+16.71.11,3,Bukitkecil,sex,perempuan,,19241,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.11,3,Bukitkecil,total,total,,38195,jiwa,2025,registration,total_population,3.1,32,,

@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.03.14.2001,4,Parit I Api-Api,sex,laki_laki,,496,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.03.14.2001,4,Parit I Api-Api,sex,perempuan,,467,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.03.14.2001,4,Parit I Api-Api,total,total,,963,jiwa,2025,registration,total_population,3.1,26,,
+14.03.14.2002,4,Temiang,sex,laki_laki,,954,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.03.14.2002,4,Temiang,sex,perempuan,,923,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.03.14.2002,4,Temiang,total,total,,1877,jiwa,2025,registration,total_population,3.1,26,,
+14.03.14.2003,4,Api Api,sex,laki_laki,,847,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.03.14.2003,4,Api Api,sex,perempuan,,844,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.03.14.2003,4,Api Api,total,total,,1691,jiwa,2025,registration,total_population,3.1,26,,
+14.03.14.2004,4,Tenggayun,sex,laki_laki,,1180,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.03.14.2004,4,Tenggayun,sex,perempuan,,1123,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.03.14.2004,4,Tenggayun,total,total,,2303,jiwa,2025,registration,total_population,3.1,26,,
+14.03.14.2005,4,Sepahat,sex,laki_laki,,1228,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.03.14.2005,4,Sepahat,sex,perempuan,,1159,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.03.14.2005,4,Sepahat,total,total,,2387,jiwa,2025,registration,total_population,3.1,26,,
+14.03.14.2006,4,Bukit Kerikil,sex,laki_laki,,4405,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.03.14.2006,4,Bukit Kerikil,sex,perempuan,,4074,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.03.14.2006,4,Bukit Kerikil,total,total,,8479,jiwa,2025,registration,total_population,3.1,26,,
+14.03.14.2007,4,Tanjung Leban,sex,laki_laki,,1655,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.03.14.2007,4,Tanjung Leban,sex,perempuan,,1507,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.03.14.2007,4,Tanjung Leban,total,total,,3162,jiwa,2025,registration,total_population,3.1,26,,
+14.03.14,3,Kecamatan Bandar Laksamana,sex,laki_laki,,10765,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.03.14,3,Kecamatan Bandar Laksamana,sex,perempuan,,10097,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.03.14,3,Kecamatan Bandar Laksamana,total,total,,20862,jiwa,2025,registration,total_population,3.1,26,,

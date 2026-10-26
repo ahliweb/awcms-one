@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.13.05.2006,4,Kertasari,sex,laki_laki,,868,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.05.2006,4,Kertasari,sex,perempuan,,851,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.05.2006,4,Kertasari,total,total,,1719,jiwa,2025,registration,total_population,3.1,24,,
+16.13.05.2005,4,Rantau Kadam,sex,laki_laki,,1236,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.05.2005,4,Rantau Kadam,sex,perempuan,,1202,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.05.2005,4,Rantau Kadam,total,total,,2438,jiwa,2025,registration,total_population,3.1,24,,
+16.13.05.2008,4,Setia Marga,sex,laki_laki,,2092,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.05.2008,4,Setia Marga,sex,perempuan,,2005,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.05.2008,4,Setia Marga,total,total,,4097,jiwa,2025,registration,total_population,3.1,24,,
+16.13.05.2002,4,Biaro Baru,sex,laki_laki,,1300,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.05.2002,4,Biaro Baru,sex,perempuan,,1252,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.05.2002,4,Biaro Baru,total,total,,2552,jiwa,2025,registration,total_population,3.1,24,,
+16.13.05.2003,4,Biaro Lama,sex,laki_laki,,823,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.05.2003,4,Biaro Lama,sex,perempuan,,803,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.05.2003,4,Biaro Lama,total,total,,1626,jiwa,2025,registration,total_population,3.1,24,,
+16.13.05.2001,4,Aringin,sex,laki_laki,,1130,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.05.2001,4,Aringin,sex,perempuan,,1165,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.05.2001,4,Aringin,total,total,,2295,jiwa,2025,registration,total_population,3.1,24,,
+16.13.05.2009,4,Bina Karya,sex,laki_laki,,1254,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.05.2009,4,Bina Karya,sex,perempuan,,1249,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.05.2009,4,Bina Karya,total,total,,2503,jiwa,2025,registration,total_population,3.1,24,,
+16.13.05.1004,4,Karang Dapo,sex,laki_laki,,1788,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.05.1004,4,Karang Dapo,sex,perempuan,,1807,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.05.1004,4,Karang Dapo,total,total,,3595,jiwa,2025,registration,total_population,3.1,24,,
+16.13.05,3,Karang Dapo,sex,laki_laki,,11450,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.05,3,Karang Dapo,sex,perempuan,,11329,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.05,3,Karang Dapo,total,total,,22779,jiwa,2025,registration,total_population,3.1,24,,
+16.13.05,3,Karang Dapo,sex,laki_laki,,11450,jiwa,2025,registration,total_population,3.2,26,,Laki-Laki
+16.13.05,3,Karang Dapo,sex,perempuan,,11329,jiwa,2025,registration,total_population,3.2,26,,Perempuan
+16.13.05,3,Karang Dapo,total,total,,22779,jiwa,2025,registration,total_population,3.2,26,,

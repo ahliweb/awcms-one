@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.07.02.2004,4,Tik Tebing,sex,laki_laki,,536,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+17.07.02.2004,4,Tik Tebing,sex,perempuan,,476,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+17.07.02.2004,4,Tik Tebing,total,total,,1012,jiwa,2025,registration,total_population,3.1,30,,
+17.07.02.2005,4,Tabeak Blau,sex,laki_laki,,632,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+17.07.02.2005,4,Tabeak Blau,sex,perempuan,,569,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+17.07.02.2005,4,Tabeak Blau,total,total,,1201,jiwa,2025,registration,total_population,3.1,30,,
+17.07.02.2006,4,Tabeak Blau I,sex,laki_laki,,553,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+17.07.02.2006,4,Tabeak Blau I,sex,perempuan,,504,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+17.07.02.2006,4,Tabeak Blau I,total,total,,1057,jiwa,2025,registration,total_population,3.1,30,,
+17.07.02.2008,4,Daneu,sex,laki_laki,,818,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+17.07.02.2008,4,Daneu,sex,perempuan,,743,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+17.07.02.2008,4,Daneu,total,total,,1561,jiwa,2025,registration,total_population,3.1,30,,
+17.07.02.2001,4,Sukau Kayo,sex,laki_laki,,425,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+17.07.02.2001,4,Sukau Kayo,sex,perempuan,,400,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+17.07.02.2001,4,Sukau Kayo,total,total,,825,jiwa,2025,registration,total_population,3.1,30,,
+17.07.02.2012,4,Blau,sex,laki_laki,,367,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+17.07.02.2012,4,Blau,sex,perempuan,,325,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+17.07.02.2012,4,Blau,total,total,,692,jiwa,2025,registration,total_population,3.1,30,,
+17.07.02,3,Kecamatan Lebong Atas,sex,laki_laki,,3331,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+17.07.02,3,Kecamatan Lebong Atas,sex,perempuan,,3017,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+17.07.02,3,Kecamatan Lebong Atas,total,total,,6348,jiwa,2025,registration,total_population,3.1,30,,
+17.07.02,3,Kecamatan Lebong Atas,sex,laki_laki,,3331,jiwa,2024,registration,total_population,3.2,32,,Laki-Laki
+17.07.02,3,Kecamatan Lebong Atas,sex,perempuan,,3017,jiwa,2024,registration,total_population,3.2,32,,Perempuan
+17.07.02,3,Kecamatan Lebong Atas,total,total,,6348,jiwa,2024,registration,total_population,3.2,32,,

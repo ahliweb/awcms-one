@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.10.15.2001,4,Ulak Kembahang,sex,laki_laki,,798,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.15.2001,4,Ulak Kembahang,sex,perempuan,,730,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.15.2001,4,Ulak Kembahang,total,total,,1528,jiwa,2025,registration,total_population,3.1,27,,
+16.10.15.2002,4,Lubuk Keliat,sex,laki_laki,,984,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.15.2002,4,Lubuk Keliat,sex,perempuan,,920,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.15.2002,4,Lubuk Keliat,total,total,,1904,jiwa,2025,registration,total_population,3.1,27,,
+16.10.15.2003,4,Embacang,sex,laki_laki,,503,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.15.2003,4,Embacang,sex,perempuan,,474,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.15.2003,4,Embacang,total,total,,977,jiwa,2025,registration,total_population,3.1,27,,
+16.10.15.2009,4,Betung I,sex,laki_laki,,780,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.15.2009,4,Betung I,sex,perempuan,,771,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.15.2009,4,Betung I,total,total,,1551,jiwa,2025,registration,total_population,3.1,27,,
+16.10.15.2004,4,Kasih Raja,sex,laki_laki,,862,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.15.2004,4,Kasih Raja,sex,perempuan,,794,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.15.2004,4,Kasih Raja,total,total,,1656,jiwa,2025,registration,total_population,3.1,27,,
+16.10.15.2007,4,Ketiau,sex,laki_laki,,2086,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.15.2007,4,Ketiau,sex,perempuan,,1974,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.15.2007,4,Ketiau,total,total,,4060,jiwa,2025,registration,total_population,3.1,27,,
+16.10.15.2006,4,Betung II,sex,laki_laki,,991,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.15.2006,4,Betung II,sex,perempuan,,1033,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.15.2006,4,Betung II,total,total,,2024,jiwa,2025,registration,total_population,3.1,27,,
+16.10.15.2008,4,Payalingkung,sex,laki_laki,,582,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.15.2008,4,Payalingkung,sex,perempuan,,557,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.15.2008,4,Payalingkung,total,total,,1139,jiwa,2025,registration,total_population,3.1,27,,
+16.10.15.2010,4,Talang Tengah Laut,sex,laki_laki,,453,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.15.2010,4,Talang Tengah Laut,sex,perempuan,,413,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.15.2010,4,Talang Tengah Laut,total,total,,866,jiwa,2025,registration,total_population,3.1,27,,
+16.10.15,3,LUBUK KELIAT,sex,laki_laki,,9595,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.15,3,LUBUK KELIAT,sex,perempuan,,9182,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.15,3,LUBUK KELIAT,total,total,,18777,jiwa,2025,registration,total_population,3.1,27,,
+16.10.15,3,Lubuk Keliat,age_group,0-4,laki_laki,607,jiwa,2025,registration,total_population,3.2,29,,0–4
+16.10.15,3,Lubuk Keliat,age_group,0-4,perempuan,594,jiwa,2025,registration,total_population,3.2,29,,0–4
+16.10.15,3,Lubuk Keliat,age_group,0-4,,1201,jiwa,2025,registration,total_population,3.2,29,,0–4
+16.10.15,3,Lubuk Keliat,age_group,5-9,laki_laki,877,jiwa,2025,registration,total_population,3.2,29,,5–9
+16.10.15,3,Lubuk Keliat,age_group,5-9,perempuan,775,jiwa,2025,registration,total_population,3.2,29,,5–9
+16.10.15,3,Lubuk Keliat,age_group,5-9,,1652,jiwa,2025,registration,total_population,3.2,29,,5–9
+16.10.15,3,Lubuk Keliat,age_group,10-14,laki_laki,936,jiwa,2025,registration,total_population,3.2,29,,10–14
+16.10.15,3,Lubuk Keliat,age_group,10-14,perempuan,805,jiwa,2025,registration,total_population,3.2,29,,10–14
+16.10.15,3,Lubuk Keliat,age_group,10-14,,1741,jiwa,2025,registration,total_population,3.2,29,,10–14
+16.10.15,3,Lubuk Keliat,age_group,15-19,laki_laki,831,jiwa,2025,registration,total_population,3.2,29,,15–19
+16.10.15,3,Lubuk Keliat,age_group,15-19,perempuan,755,jiwa,2025,registration,total_population,3.2,29,,15–19
+16.10.15,3,Lubuk Keliat,age_group,15-19,,1586,jiwa,2025,registration,total_population,3.2,29,,15–19
+16.10.15,3,Lubuk Keliat,age_group,20-24,laki_laki,826,jiwa,2025,registration,total_population,3.2,29,,20–24
+16.10.15,3,Lubuk Keliat,age_group,20-24,perempuan,735,jiwa,2025,registration,total_population,3.2,29,,20–24
+16.10.15,3,Lubuk Keliat,age_group,20-24,,1561,jiwa,2025,registration,total_population,3.2,29,,20–24
+16.10.15,3,Lubuk Keliat,age_group,25-29,laki_laki,764,jiwa,2025,registration,total_population,3.2,29,,25–29
+16.10.15,3,Lubuk Keliat,age_group,25-29,perempuan,677,jiwa,2025,registration,total_population,3.2,29,,25–29
+16.10.15,3,Lubuk Keliat,age_group,25-29,,1441,jiwa,2025,registration,total_population,3.2,29,,25–29
+16.10.15,3,Lubuk Keliat,age_group,30-34,laki_laki,667,jiwa,2025,registration,total_population,3.2,29,,30–34
+16.10.15,3,Lubuk Keliat,age_group,30-34,perempuan,609,jiwa,2025,registration,total_population,3.2,29,,30–34
+16.10.15,3,Lubuk Keliat,age_group,30-34,,1276,jiwa,2025,registration,total_population,3.2,29,,30–34
+16.10.15,3,Lubuk Keliat,age_group,35-39,laki_laki,783,jiwa,2025,registration,total_population,3.2,29,,35–39
+16.10.15,3,Lubuk Keliat,age_group,35-39,perempuan,755,jiwa,2025,registration,total_population,3.2,29,,35–39
+16.10.15,3,Lubuk Keliat,age_group,35-39,,1538,jiwa,2025,registration,total_population,3.2,29,,35–39
+16.10.15,3,Lubuk Keliat,age_group,40-44,laki_laki,719,jiwa,2025,registration,total_population,3.2,29,,40–44
+16.10.15,3,Lubuk Keliat,age_group,40-44,perempuan,721,jiwa,2025,registration,total_population,3.2,29,,40–44
+16.10.15,3,Lubuk Keliat,age_group,40-44,,1440,jiwa,2025,registration,total_population,3.2,29,,40–44
+16.10.15,3,Lubuk Keliat,age_group,45-49,laki_laki,582,jiwa,2025,registration,total_population,3.2,29,,45–49
+16.10.15,3,Lubuk Keliat,age_group,45-49,perempuan,639,jiwa,2025,registration,total_population,3.2,29,,45–49
+16.10.15,3,Lubuk Keliat,age_group,45-49,,1221,jiwa,2025,registration,total_population,3.2,29,,45–49
+16.10.15,3,Lubuk Keliat,age_group,50-54,laki_laki,548,jiwa,2025,registration,total_population,3.2,29,,50–54
+16.10.15,3,Lubuk Keliat,age_group,50-54,perempuan,554,jiwa,2025,registration,total_population,3.2,29,,50–54
+16.10.15,3,Lubuk Keliat,age_group,50-54,,1102,jiwa,2025,registration,total_population,3.2,29,,50–54
+16.10.15,3,Lubuk Keliat,age_group,55-59,laki_laki,407,jiwa,2025,registration,total_population,3.2,29,,55–59
+16.10.15,3,Lubuk Keliat,age_group,55-59,perempuan,517,jiwa,2025,registration,total_population,3.2,29,,55–59
+16.10.15,3,Lubuk Keliat,age_group,55-59,,924,jiwa,2025,registration,total_population,3.2,29,,55–59
+16.10.15,3,Lubuk Keliat,age_group,60-64,laki_laki,438,jiwa,2025,registration,total_population,3.2,29,,60–64
+16.10.15,3,Lubuk Keliat,age_group,60-64,perempuan,408,jiwa,2025,registration,total_population,3.2,29,,60–64
+16.10.15,3,Lubuk Keliat,age_group,60-64,,846,jiwa,2025,registration,total_population,3.2,29,,60–64
+16.10.15,3,Lubuk Keliat,age_group,65-69,laki_laki,318,jiwa,2025,registration,total_population,3.2,29,,65–69
+16.10.15,3,Lubuk Keliat,age_group,65-69,perempuan,295,jiwa,2025,registration,total_population,3.2,29,,65–69
+16.10.15,3,Lubuk Keliat,age_group,65-69,,613,jiwa,2025,registration,total_population,3.2,29,,65–69
+16.10.15,3,Lubuk Keliat,age_group,70-75,laki_laki,145,jiwa,2025,registration,total_population,3.2,29,,70–75
+16.10.15,3,Lubuk Keliat,age_group,70-75,perempuan,135,jiwa,2025,registration,total_population,3.2,29,,70–75
+16.10.15,3,Lubuk Keliat,age_group,70-75,,280,jiwa,2025,registration,total_population,3.2,29,,70–75
+16.10.15,3,Lubuk Keliat,age_group,75+,laki_laki,147,jiwa,2025,registration,total_population,3.2,29,,>75
+16.10.15,3,Lubuk Keliat,age_group,75+,perempuan,208,jiwa,2025,registration,total_population,3.2,29,,>75
+16.10.15,3,Lubuk Keliat,age_group,75+,,355,jiwa,2025,registration,total_population,3.2,29,,>75
+16.10.15,3,Lubuk Keliat,sex,laki_laki,,9595,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+16.10.15,3,Lubuk Keliat,sex,perempuan,,9182,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+16.10.15,3,Lubuk Keliat,total,total,,18777,jiwa,2025,registration,total_population,3.2,29,,

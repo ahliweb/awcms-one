@@ -1,0 +1,11 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.01.01.1013,4,Langgini,sex,perempuan,,7654,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.01.1013,4,Langgini,total,total,,15256,jiwa,2025,registration,total_population,3.1,11,,
+14.01.01.1011,4,Bangkinang,sex,perempuan,,6819,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.01.1011,4,Bangkinang,total,total,,13647,jiwa,2025,registration,total_population,3.1,11,,
+14.01.01.2009,4,Kumantan,sex,perempuan,,3287,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.01.2009,4,Kumantan,total,total,,6566,jiwa,2025,registration,total_population,3.1,11,,
+14.01.01.2010,4,Ridan Permai,sex,perempuan,,3024,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.01.2010,4,Ridan Permai,total,total,,6193,jiwa,2025,registration,total_population,3.1,11,,
+14.01.01,3,Bangkinang Kota,sex,perempuan,,20784,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.01,3,Bangkinang Kota,total,total,,41662,jiwa,2025,registration,total_population,3.1,11,,

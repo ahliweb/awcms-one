@@ -1,0 +1,140 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.72.04,3,Dempo Selatan,total,total,,14111,jiwa,2025,registration,total_population,3.1.1,58,,
+16.72.05,3,Dempo Tengah,total,total,,16321,jiwa,2025,registration,total_population,3.1.1,58,,
+16.72.03,3,Dempo Utara,total,total,,24404,jiwa,2025,registration,total_population,3.1.1,58,,
+16.72.02,3,Pagar Alam Selatan,total,total,,52533,jiwa,2025,registration,total_population,3.1.1,58,,
+16.72.01,3,Pagar Alam Utara,total,total,,47886,jiwa,2025,registration,total_population,3.1.1,58,,
+16.72,2,Kota Pagar Alam,total,total,,155255,jiwa,2025,registration,total_population,3.1.1,58,,
+16.72,2,Kota Pagar Alam,age_group,0-4,laki_laki,4988,jiwa,2025,registration,total_population,3.1.2,61,,0–4
+16.72,2,Kota Pagar Alam,age_group,0-4,perempuan,4774,jiwa,2025,registration,total_population,3.1.2,61,,0–4
+16.72,2,Kota Pagar Alam,age_group,0-4,,9762,jiwa,2025,registration,total_population,3.1.2,61,,0–4
+16.72,2,Kota Pagar Alam,age_group,5-9,laki_laki,6785,jiwa,2025,registration,total_population,3.1.2,61,,5–9
+16.72,2,Kota Pagar Alam,age_group,5-9,perempuan,6267,jiwa,2025,registration,total_population,3.1.2,61,,5–9
+16.72,2,Kota Pagar Alam,age_group,5-9,,13052,jiwa,2025,registration,total_population,3.1.2,61,,5–9
+16.72,2,Kota Pagar Alam,age_group,10-14,laki_laki,7094,jiwa,2025,registration,total_population,3.1.2,61,,10–14
+16.72,2,Kota Pagar Alam,age_group,10-14,perempuan,6751,jiwa,2025,registration,total_population,3.1.2,61,,10–14
+16.72,2,Kota Pagar Alam,age_group,10-14,,13845,jiwa,2025,registration,total_population,3.1.2,61,,10–14
+16.72,2,Kota Pagar Alam,age_group,15-19,laki_laki,6855,jiwa,2025,registration,total_population,3.1.2,61,,15–19
+16.72,2,Kota Pagar Alam,age_group,15-19,perempuan,6592,jiwa,2025,registration,total_population,3.1.2,61,,15–19
+16.72,2,Kota Pagar Alam,age_group,15-19,,13447,jiwa,2025,registration,total_population,3.1.2,61,,15–19
+16.72,2,Kota Pagar Alam,age_group,20-24,laki_laki,6078,jiwa,2025,registration,total_population,3.1.2,61,,20–24
+16.72,2,Kota Pagar Alam,age_group,20-24,perempuan,5959,jiwa,2025,registration,total_population,3.1.2,61,,20–24
+16.72,2,Kota Pagar Alam,age_group,20-24,,12037,jiwa,2025,registration,total_population,3.1.2,61,,20–24
+16.72,2,Kota Pagar Alam,age_group,25-29,laki_laki,5807,jiwa,2025,registration,total_population,3.1.2,61,,25–29
+16.72,2,Kota Pagar Alam,age_group,25-29,perempuan,5367,jiwa,2025,registration,total_population,3.1.2,61,,25–29
+16.72,2,Kota Pagar Alam,age_group,25-29,,11174,jiwa,2025,registration,total_population,3.1.2,61,,25–29
+16.72,2,Kota Pagar Alam,age_group,30-34,laki_laki,5180,jiwa,2025,registration,total_population,3.1.2,61,,30–34
+16.72,2,Kota Pagar Alam,age_group,30-34,perempuan,4817,jiwa,2025,registration,total_population,3.1.2,61,,30–34
+16.72,2,Kota Pagar Alam,age_group,30-34,,9997,jiwa,2025,registration,total_population,3.1.2,61,,30–34
+16.72,2,Kota Pagar Alam,age_group,35-39,laki_laki,6023,jiwa,2025,registration,total_population,3.1.2,61,,35–39
+16.72,2,Kota Pagar Alam,age_group,35-39,perempuan,5613,jiwa,2025,registration,total_population,3.1.2,61,,35–39
+16.72,2,Kota Pagar Alam,age_group,35-39,,11636,jiwa,2025,registration,total_population,3.1.2,61,,35–39
+16.72,2,Kota Pagar Alam,age_group,40-44,laki_laki,6474,jiwa,2025,registration,total_population,3.1.2,61,,40–44
+16.72,2,Kota Pagar Alam,age_group,40-44,perempuan,5738,jiwa,2025,registration,total_population,3.1.2,61,,40–44
+16.72,2,Kota Pagar Alam,age_group,40-44,,12212,jiwa,2025,registration,total_population,3.1.2,61,,40–44
+16.72,2,Kota Pagar Alam,age_group,45-49,laki_laki,6324,jiwa,2025,registration,total_population,3.1.2,61,,45–49
+16.72,2,Kota Pagar Alam,age_group,45-49,perempuan,5821,jiwa,2025,registration,total_population,3.1.2,61,,45–49
+16.72,2,Kota Pagar Alam,age_group,45-49,,12145,jiwa,2025,registration,total_population,3.1.2,61,,45–49
+16.72,2,Kota Pagar Alam,age_group,50-54,laki_laki,5016,jiwa,2025,registration,total_population,3.1.2,61,,50–54
+16.72,2,Kota Pagar Alam,age_group,50-54,perempuan,4611,jiwa,2025,registration,total_population,3.1.2,61,,50–54
+16.72,2,Kota Pagar Alam,age_group,50-54,,9627,jiwa,2025,registration,total_population,3.1.2,61,,50–54
+16.72,2,Kota Pagar Alam,age_group,55-59,laki_laki,3822,jiwa,2025,registration,total_population,3.1.2,61,,55–59
+16.72,2,Kota Pagar Alam,age_group,55-59,perempuan,3804,jiwa,2025,registration,total_population,3.1.2,61,,55–59
+16.72,2,Kota Pagar Alam,age_group,55-59,,7626,jiwa,2025,registration,total_population,3.1.2,61,,55–59
+16.72,2,Kota Pagar Alam,age_group,60-64,laki_laki,3154,jiwa,2025,registration,total_population,3.1.2,61,,60–64
+16.72,2,Kota Pagar Alam,age_group,60-64,perempuan,3262,jiwa,2025,registration,total_population,3.1.2,61,,60–64
+16.72,2,Kota Pagar Alam,age_group,60-64,,6416,jiwa,2025,registration,total_population,3.1.2,61,,60–64
+16.72,2,Kota Pagar Alam,age_group,65-69,laki_laki,2630,jiwa,2025,registration,total_population,3.1.2,61,,65–69
+16.72,2,Kota Pagar Alam,age_group,65-69,perempuan,2636,jiwa,2025,registration,total_population,3.1.2,61,,65–69
+16.72,2,Kota Pagar Alam,age_group,65-69,,5266,jiwa,2025,registration,total_population,3.1.2,61,,65–69
+16.72,2,Kota Pagar Alam,age_group,70-74,laki_laki,1551,jiwa,2025,registration,total_population,3.1.2,61,,70–74
+16.72,2,Kota Pagar Alam,age_group,70-74,perempuan,1618,jiwa,2025,registration,total_population,3.1.2,61,,70–74
+16.72,2,Kota Pagar Alam,age_group,70-74,,3169,jiwa,2025,registration,total_population,3.1.2,61,,70–74
+16.72,2,Kota Pagar Alam,age_group,75+,laki_laki,1578,jiwa,2025,registration,total_population,3.1.2,61,,75+
+16.72,2,Kota Pagar Alam,age_group,75+,perempuan,2266,jiwa,2025,registration,total_population,3.1.2,61,,75+
+16.72,2,Kota Pagar Alam,age_group,75+,,3844,jiwa,2025,registration,total_population,3.1.2,61,,75+
+16.72,2,Kota Pagar Alam,sex,laki_laki,,79359,jiwa,2025,registration,total_population,3.1.2,61,,Laki-Laki
+16.72,2,Kota Pagar Alam,sex,perempuan,,75896,jiwa,2025,registration,total_population,3.1.2,61,,Perempuan
+16.72,2,Kota Pagar Alam,total,total,,155255,jiwa,2025,registration,total_population,3.1.2,61,,
+16.72.04,3,Dempo Selatan,religion,islam,,14099,jiwa,2025,registration,total_population,4.3.1,133,,Islam
+16.72.04,3,Dempo Selatan,religion,kristen,,11,jiwa,2025,registration,total_population,4.3.1,133,,Protestan
+16.72.04,3,Dempo Selatan,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,133,,Katolik
+16.72.04,3,Dempo Selatan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Hindu
+16.72.04,3,Dempo Selatan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Budha
+16.72.04,3,Dempo Selatan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Lainnya
+16.72.05,3,Dempo Tengah,religion,islam,,16301,jiwa,2025,registration,total_population,4.3.1,133,,Islam
+16.72.05,3,Dempo Tengah,religion,kristen,,20,jiwa,2025,registration,total_population,4.3.1,133,,Protestan
+16.72.05,3,Dempo Tengah,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Katolik
+16.72.05,3,Dempo Tengah,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Hindu
+16.72.05,3,Dempo Tengah,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Budha
+16.72.05,3,Dempo Tengah,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Lainnya
+16.72.03,3,Dempo Utara,religion,islam,,24400,jiwa,2025,registration,total_population,4.3.1,133,,Islam
+16.72.03,3,Dempo Utara,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,133,,Protestan
+16.72.03,3,Dempo Utara,religion,katolik,,3,jiwa,2025,registration,total_population,4.3.1,133,,Katolik
+16.72.03,3,Dempo Utara,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Hindu
+16.72.03,3,Dempo Utara,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Budha
+16.72.03,3,Dempo Utara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Lainnya
+16.72.02,3,Pagar Alam Selatan,religion,islam,,52194,jiwa,2025,registration,total_population,4.3.1,133,,Islam
+16.72.02,3,Pagar Alam Selatan,religion,kristen,,141,jiwa,2025,registration,total_population,4.3.1,133,,Protestan
+16.72.02,3,Pagar Alam Selatan,religion,katolik,,139,jiwa,2025,registration,total_population,4.3.1,133,,Katolik
+16.72.02,3,Pagar Alam Selatan,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,133,,Hindu
+16.72.02,3,Pagar Alam Selatan,religion,buddha,,54,jiwa,2025,registration,total_population,4.3.1,133,,Budha
+16.72.02,3,Pagar Alam Selatan,religion,lainnya,,4,jiwa,2025,registration,total_population,4.3.1,133,,Lainnya
+16.72.01,3,Pagar Alam Utara,religion,islam,,47545,jiwa,2025,registration,total_population,4.3.1,133,,Islam
+16.72.01,3,Pagar Alam Utara,religion,kristen,,176,jiwa,2025,registration,total_population,4.3.1,133,,Protestan
+16.72.01,3,Pagar Alam Utara,religion,katolik,,133,jiwa,2025,registration,total_population,4.3.1,133,,Katolik
+16.72.01,3,Pagar Alam Utara,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Hindu
+16.72.01,3,Pagar Alam Utara,religion,buddha,,32,jiwa,2025,registration,total_population,4.3.1,133,,Budha
+16.72.01,3,Pagar Alam Utara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,133,nil,Lainnya
+16.72,2,Kota Pagar Alam,religion,islam,,154539,jiwa,2025,registration,total_population,4.3.1,133,,Islam
+16.72,2,Kota Pagar Alam,religion,kristen,,349,jiwa,2025,registration,total_population,4.3.1,133,,Protestan
+16.72,2,Kota Pagar Alam,religion,katolik,,276,jiwa,2025,registration,total_population,4.3.1,133,,Katolik
+16.72,2,Kota Pagar Alam,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,133,,Hindu
+16.72,2,Kota Pagar Alam,religion,buddha,,86,jiwa,2025,registration,total_population,4.3.1,133,,Budha
+16.72,2,Kota Pagar Alam,religion,lainnya,,4,jiwa,2025,registration,total_population,4.3.1,133,,Lainnya
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/padi_padian,,85153,rupiah,2025,survey_estimate,per_capita,10.1,322,,Padi-padian
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/padi_padian,,94839,rupiah,2024,survey_estimate,per_capita,10.1,322,,Padi-padian
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/umbi_umbian,,5761,rupiah,2025,survey_estimate,per_capita,10.1,322,,Umbi-umbian
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/umbi_umbian,,5757,rupiah,2024,survey_estimate,per_capita,10.1,322,,Umbi-umbian
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,45553,rupiah,2025,survey_estimate,per_capita,10.1,322,,Ikan/udang/cumi/kerang
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,44278,rupiah,2024,survey_estimate,per_capita,10.1,322,,Ikan/udang/cumi/kerang
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/daging,,36960,rupiah,2025,survey_estimate,per_capita,10.1,322,,Daging
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/daging,,34759,rupiah,2024,survey_estimate,per_capita,10.1,322,,Daging
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/telur_dan_susu,,29267,rupiah,2025,survey_estimate,per_capita,10.1,322,,Telur dan susu
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/telur_dan_susu,,34030,rupiah,2024,survey_estimate,per_capita,10.1,322,,Telur dan susu
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/sayur_sayuran,,69351,rupiah,2025,survey_estimate,per_capita,10.1,322,,Sayur-sayuran
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/sayur_sayuran,,63190,rupiah,2024,survey_estimate,per_capita,10.1,322,,Sayur-sayuran
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/kacang_kacangan,,11868,rupiah,2025,survey_estimate,per_capita,10.1,322,,Kacang-kacangan
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/kacang_kacangan,,12089,rupiah,2024,survey_estimate,per_capita,10.1,322,,Kacang-kacangan
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/buah_buahan,,41428,rupiah,2025,survey_estimate,per_capita,10.1,322,,Buah-buahan
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/buah_buahan,,47546,rupiah,2024,survey_estimate,per_capita,10.1,322,,Buah-buahan
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16723,rupiah,2025,survey_estimate,per_capita,10.1,322,,Minyak dan kelapa
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/minyak_dan_kelapa,,14394,rupiah,2024,survey_estimate,per_capita,10.1,322,,Minyak dan kelapa
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/bahan_minuman,,31718,rupiah,2025,survey_estimate,per_capita,10.1,322,,Bahan minuman
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/bahan_minuman,,25375,rupiah,2024,survey_estimate,per_capita,10.1,322,,Bahan minuman
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/bumbu_bumbuan,,17223,rupiah,2025,survey_estimate,per_capita,10.1,322,,Bumbu-bumbuan
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/bumbu_bumbuan,,13540,rupiah,2024,survey_estimate,per_capita,10.1,322,,Bumbu-bumbuan
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/konsumsi_lainnya,,16541,rupiah,2025,survey_estimate,per_capita,10.1,322,,Konsumsi lainnya
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/konsumsi_lainnya,,16131,rupiah,2024,survey_estimate,per_capita,10.1,322,,Konsumsi lainnya
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,167317,rupiah,2025,survey_estimate,per_capita,10.1,322,,Makanan dan minuman jadi
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,165658,rupiah,2024,survey_estimate,per_capita,10.1,322,,Makanan dan minuman jadi
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/rokok,,108668,rupiah,2025,survey_estimate,per_capita,10.1,322,,Rokok
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/rokok,,97442,rupiah,2024,survey_estimate,per_capita,10.1,322,,Rokok
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/jumlah_makanan,,683531,rupiah,2025,survey_estimate,per_capita,10.1,322,,Jumlah makanan
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/jumlah_makanan,,669029,rupiah,2024,survey_estimate,per_capita,10.1,322,,Jumlah makanan
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,237974,rupiah,2025,survey_estimate,per_capita,10.1,322,,Perumahan dan fasilitas rumah tangga
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,227233,rupiah,2024,survey_estimate,per_capita,10.1,322,,Perumahan dan fasilitas rumah tangga
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,107469,rupiah,2025,survey_estimate,per_capita,10.1,322,,Aneka barang dan jasa
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,94724,rupiah,2024,survey_estimate,per_capita,10.1,322,,Aneka barang dan jasa
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,25876,rupiah,2025,survey_estimate,per_capita,10.1,322,,"Pakaian, alas kaki, dan tutup kepala"
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,23921,rupiah,2024,survey_estimate,per_capita,10.1,322,,"Pakaian, alas kaki, dan tutup kepala"
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/barang_tahan_lama,,44891,rupiah,2025,survey_estimate,per_capita,10.1,322,,Barang tahan lama
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/barang_tahan_lama,,22539,rupiah,2024,survey_estimate,per_capita,10.1,322,,Barang tahan lama
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,46426,rupiah,2025,survey_estimate,per_capita,10.1,322,,"Pajak, pungutan, dan asuransi"
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,36434,rupiah,2024,survey_estimate,per_capita,10.1,322,,"Pajak, pungutan, dan asuransi"
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,27862,rupiah,2025,survey_estimate,per_capita,10.1,322,,Keperluan pesta dan upacara/kenduri
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,33618,rupiah,2024,survey_estimate,per_capita,10.1,322,,Keperluan pesta dan upacara/kenduri
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,490498,rupiah,2025,survey_estimate,per_capita,10.1,322,,Jumlah bukan makanan
+16.72,2,Kota Pagar Alam,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,438469,rupiah,2024,survey_estimate,per_capita,10.1,322,,Jumlah bukan makanan
+16.72,2,Kota Pagar Alam,expenditure,total,,1174029,rupiah,2025,survey_estimate,per_capita,10.1,322,,
+16.72,2,Kota Pagar Alam,expenditure,total,,1107499,rupiah,2024,survey_estimate,per_capita,10.1,322,,

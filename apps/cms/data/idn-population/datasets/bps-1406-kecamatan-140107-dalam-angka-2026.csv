@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.01.07.2005,4,Domo,sex,perempuan,,851,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.07.2005,4,Domo,total,total,,1715,jiwa,2025,registration,total_population,3.1,11,,
+14.01.07.2019,4,Muara Selayah,sex,perempuan,,393,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.07.2019,4,Muara Selayah,total,total,,800,jiwa,2025,registration,total_population,3.1,11,,
+14.01.07.2006,4,Iv Koto Setingkai,sex,perempuan,,852,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.07.2006,4,Iv Koto Setingkai,total,total,,1678,jiwa,2025,registration,total_population,3.1,11,,
+14.01.07.2004,4,Padang Sawah,sex,perempuan,,585,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.07.2004,4,Padang Sawah,total,total,,1210,jiwa,2025,registration,total_population,3.1,11,,
+14.01.07.2003,4,Kuntu,sex,perempuan,,2020,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.07.2003,4,Kuntu,total,total,,4196,jiwa,2025,registration,total_population,3.1,11,,
+14.01.07.2008,4,Teluk Paman,sex,perempuan,,769,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.07.2008,4,Teluk Paman,total,total,,1589,jiwa,2025,registration,total_population,3.1,11,,
+14.01.07.1027,4,Lipat Kain,sex,perempuan,,2513,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.07.1027,4,Lipat Kain,total,total,,5196,jiwa,2025,registration,total_population,3.1,11,,
+14.01.07.2013,4,Sungai Geringging,sex,perempuan,,683,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.07.2013,4,Sungai Geringging,total,total,,1393,jiwa,2025,registration,total_population,3.1,11,,
+14.01.07.2016,4,Sungai Paku,sex,perempuan,,886,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.07.2016,4,Sungai Paku,total,total,,1826,jiwa,2025,registration,total_population,3.1,11,,
+14.01.07.2020,4,Sungai Rambai,sex,perempuan,,685,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.07.2020,4,Sungai Rambai,total,total,,1406,jiwa,2025,registration,total_population,3.1,11,,
+14.01.07.2023,4,Sungai Raja,sex,perempuan,,673,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.07.2023,4,Sungai Raja,total,total,,1428,jiwa,2025,registration,total_population,3.1,11,,
+14.01.07.2021,4,Tanjung Harapan,sex,perempuan,,331,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.07.2021,4,Tanjung Harapan,total,total,,684,jiwa,2025,registration,total_population,3.1,11,,
+14.01.07.2026,4,Sungai Sarik,sex,perempuan,,955,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.07.2026,4,Sungai Sarik,total,total,,2002,jiwa,2025,registration,total_population,3.1,11,,
+14.01.07.2028,4,Lipat Kain Utara,sex,perempuan,,1390,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.07.2028,4,Lipat Kain Utara,total,total,,2827,jiwa,2025,registration,total_population,3.1,11,,
+14.01.07.2029,4,Lipat Kain Selatan,sex,perempuan,,2135,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.07.2029,4,Lipat Kain Selatan,total,total,,4364,jiwa,2025,registration,total_population,3.1,11,,
+14.01.07.2030,4,Kuntu Darussalam,sex,perempuan,,1354,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.07.2030,4,Kuntu Darussalam,total,total,,2789,jiwa,2025,registration,total_population,3.1,11,,
+14.01.07.2031,4,Tanjung Mas,sex,perempuan,,651,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.07.2031,4,Tanjung Mas,total,total,,1324,jiwa,2025,registration,total_population,3.1,11,,
+14.01.07.2033,4,Sungai Liti,sex,perempuan,,1013,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.07.2033,4,Sungai Liti,total,total,,2100,jiwa,2025,registration,total_population,3.1,11,,
+14.01.07.2034,4,Teluk Paman Timur,sex,perempuan,,433,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.07.2034,4,Teluk Paman Timur,total,total,,881,jiwa,2025,registration,total_population,3.1,11,,
+14.01.07.2032,4,Sungai Harapan,sex,perempuan,,349,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.07.2032,4,Sungai Harapan,total,total,,728,jiwa,2025,registration,total_population,3.1,11,,
+14.01.07,3,Kecamatan Kampar Kiri,sex,perempuan,,19521,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.07,3,Kecamatan Kampar Kiri,total,total,,40136,jiwa,2025,registration,total_population,3.1,11,,

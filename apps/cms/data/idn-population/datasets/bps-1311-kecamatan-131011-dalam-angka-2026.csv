@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.10.11.2003,4,Koto Gadang,sex,laki_laki,,2834,jiwa,2025,registration,total_population,3.3.1,22,,Laki-Laki
+13.10.11.2003,4,Koto Gadang,sex,perempuan,,2798,jiwa,2025,registration,total_population,3.3.1,22,,Perempuan
+13.10.11.2003,4,Koto Gadang,total,total,,5632,jiwa,2025,registration,total_population,3.3.1,22,,
+13.10.11.2002,4,Koto Tinggi,sex,laki_laki,,1864,jiwa,2025,registration,total_population,3.3.1,22,,Laki-Laki
+13.10.11.2002,4,Koto Tinggi,sex,perempuan,,1830,jiwa,2025,registration,total_population,3.3.1,22,,Perempuan
+13.10.11.2002,4,Koto Tinggi,total,total,,3694,jiwa,2025,registration,total_population,3.3.1,22,,
+13.10.11.2004,4,Bonjol,sex,laki_laki,,1326,jiwa,2025,registration,total_population,3.3.1,22,,Laki-Laki
+13.10.11.2004,4,Bonjol,sex,perempuan,,1259,jiwa,2025,registration,total_population,3.3.1,22,,Perempuan
+13.10.11.2004,4,Bonjol,total,total,,2585,jiwa,2025,registration,total_population,3.3.1,22,,
+13.10.11.2005,4,Abai Siat,sex,laki_laki,,2918,jiwa,2025,registration,total_population,3.3.1,22,,Laki-Laki
+13.10.11.2005,4,Abai Siat,sex,perempuan,,2839,jiwa,2025,registration,total_population,3.3.1,22,,Perempuan
+13.10.11.2005,4,Abai Siat,total,total,,5757,jiwa,2025,registration,total_population,3.3.1,22,,
+13.10.11.2001,4,Koto Besar,sex,laki_laki,,742,jiwa,2025,registration,total_population,3.3.1,22,,Laki-Laki
+13.10.11.2001,4,Koto Besar,sex,perempuan,,689,jiwa,2025,registration,total_population,3.3.1,22,,Perempuan
+13.10.11.2001,4,Koto Besar,total,total,,1431,jiwa,2025,registration,total_population,3.3.1,22,,
+13.10.11.2006,4,Koto Laweh,sex,laki_laki,,1934,jiwa,2025,registration,total_population,3.3.1,22,,Laki-Laki
+13.10.11.2006,4,Koto Laweh,sex,perempuan,,1917,jiwa,2025,registration,total_population,3.3.1,22,,Perempuan
+13.10.11.2006,4,Koto Laweh,total,total,,3851,jiwa,2025,registration,total_population,3.3.1,22,,
+13.10.11.2007,4,Koto Ranah,sex,laki_laki,,2931,jiwa,2025,registration,total_population,3.3.1,22,,Laki-Laki
+13.10.11.2007,4,Koto Ranah,sex,perempuan,,2733,jiwa,2025,registration,total_population,3.3.1,22,,Perempuan
+13.10.11.2007,4,Koto Ranah,total,total,,5664,jiwa,2025,registration,total_population,3.3.1,22,,
+13.10.11,3,Kecamatan Koto Besar,sex,laki_laki,,14549,jiwa,2025,registration,total_population,3.3.1,22,,Laki-Laki
+13.10.11,3,Kecamatan Koto Besar,sex,perempuan,,14065,jiwa,2025,registration,total_population,3.3.1,22,,Perempuan
+13.10.11,3,Kecamatan Koto Besar,total,total,,28614,jiwa,2025,registration,total_population,3.3.1,22,,
+13.10.11,3,Koto Besar,age_group,0-4,laki_laki,927,jiwa,2025,registration,total_population,3.3.2,24,,0-4
+13.10.11,3,Koto Besar,age_group,0-4,perempuan,856,jiwa,2025,registration,total_population,3.3.2,24,,0-4
+13.10.11,3,Koto Besar,age_group,0-4,,1783,jiwa,2025,registration,total_population,3.3.2,24,,0-4
+13.10.11,3,Koto Besar,age_group,5-9,laki_laki,1333,jiwa,2025,registration,total_population,3.3.2,24,,5-9
+13.10.11,3,Koto Besar,age_group,5-9,perempuan,1257,jiwa,2025,registration,total_population,3.3.2,24,,5-9
+13.10.11,3,Koto Besar,age_group,5-9,,2590,jiwa,2025,registration,total_population,3.3.2,24,,5-9
+13.10.11,3,Koto Besar,age_group,10-14,laki_laki,1332,jiwa,2025,registration,total_population,3.3.2,24,,10-14
+13.10.11,3,Koto Besar,age_group,10-14,perempuan,1276,jiwa,2025,registration,total_population,3.3.2,24,,10-14
+13.10.11,3,Koto Besar,age_group,10-14,,2608,jiwa,2025,registration,total_population,3.3.2,24,,10-14
+13.10.11,3,Koto Besar,age_group,15-19,laki_laki,1434,jiwa,2025,registration,total_population,3.3.2,24,,15-19
+13.10.11,3,Koto Besar,age_group,15-19,perempuan,1281,jiwa,2025,registration,total_population,3.3.2,24,,15-19
+13.10.11,3,Koto Besar,age_group,15-19,,2715,jiwa,2025,registration,total_population,3.3.2,24,,15-19
+13.10.11,3,Koto Besar,age_group,20-24,laki_laki,1268,jiwa,2025,registration,total_population,3.3.2,24,,20-24
+13.10.11,3,Koto Besar,age_group,20-24,perempuan,1243,jiwa,2025,registration,total_population,3.3.2,24,,20-24
+13.10.11,3,Koto Besar,age_group,20-24,,2511,jiwa,2025,registration,total_population,3.3.2,24,,20-24
+13.10.11,3,Koto Besar,age_group,25-29,laki_laki,1183,jiwa,2025,registration,total_population,3.3.2,24,,25-29
+13.10.11,3,Koto Besar,age_group,25-29,perempuan,1066,jiwa,2025,registration,total_population,3.3.2,24,,25-29
+13.10.11,3,Koto Besar,age_group,25-29,,2249,jiwa,2025,registration,total_population,3.3.2,24,,25-29
+13.10.11,3,Koto Besar,age_group,30-34,laki_laki,982,jiwa,2025,registration,total_population,3.3.2,24,,30-34
+13.10.11,3,Koto Besar,age_group,30-34,perempuan,976,jiwa,2025,registration,total_population,3.3.2,24,,30-34
+13.10.11,3,Koto Besar,age_group,30-34,,1958,jiwa,2025,registration,total_population,3.3.2,24,,30-34
+13.10.11,3,Koto Besar,age_group,35-39,laki_laki,976,jiwa,2025,registration,total_population,3.3.2,24,,35-39
+13.10.11,3,Koto Besar,age_group,35-39,perempuan,1032,jiwa,2025,registration,total_population,3.3.2,24,,35-39
+13.10.11,3,Koto Besar,age_group,35-39,,2008,jiwa,2025,registration,total_population,3.3.2,24,,35-39
+13.10.11,3,Koto Besar,age_group,40-44,laki_laki,1132,jiwa,2025,registration,total_population,3.3.2,24,,40-44
+13.10.11,3,Koto Besar,age_group,40-44,perempuan,1189,jiwa,2025,registration,total_population,3.3.2,24,,40-44
+13.10.11,3,Koto Besar,age_group,40-44,,2321,jiwa,2025,registration,total_population,3.3.2,24,,40-44
+13.10.11,3,Koto Besar,age_group,45-49,laki_laki,1091,jiwa,2025,registration,total_population,3.3.2,24,,45-49
+13.10.11,3,Koto Besar,age_group,45-49,perempuan,1002,jiwa,2025,registration,total_population,3.3.2,24,,45-49
+13.10.11,3,Koto Besar,age_group,45-49,,2093,jiwa,2025,registration,total_population,3.3.2,24,,45-49
+13.10.11,3,Koto Besar,age_group,50-54,laki_laki,909,jiwa,2025,registration,total_population,3.3.2,24,,50-54
+13.10.11,3,Koto Besar,age_group,50-54,perempuan,810,jiwa,2025,registration,total_population,3.3.2,24,,50-54
+13.10.11,3,Koto Besar,age_group,50-54,,1719,jiwa,2025,registration,total_population,3.3.2,24,,50-54
+13.10.11,3,Koto Besar,age_group,55-59,laki_laki,663,jiwa,2025,registration,total_population,3.3.2,24,,55-59
+13.10.11,3,Koto Besar,age_group,55-59,perempuan,581,jiwa,2025,registration,total_population,3.3.2,24,,55-59
+13.10.11,3,Koto Besar,age_group,55-59,,1244,jiwa,2025,registration,total_population,3.3.2,24,,55-59
+13.10.11,3,Koto Besar,age_group,60-64,laki_laki,466,jiwa,2025,registration,total_population,3.3.2,24,,60-64
+13.10.11,3,Koto Besar,age_group,60-64,perempuan,518,jiwa,2025,registration,total_population,3.3.2,24,,60-64
+13.10.11,3,Koto Besar,age_group,60-64,,984,jiwa,2025,registration,total_population,3.3.2,24,,60-64
+13.10.11,3,Koto Besar,age_group,65-69,laki_laki,384,jiwa,2025,registration,total_population,3.3.2,24,,65-69
+13.10.11,3,Koto Besar,age_group,65-69,perempuan,369,jiwa,2025,registration,total_population,3.3.2,24,,65-69
+13.10.11,3,Koto Besar,age_group,65-69,,753,jiwa,2025,registration,total_population,3.3.2,24,,65-69
+13.10.11,3,Koto Besar,age_group,70+,laki_laki,469,jiwa,2025,registration,total_population,3.3.2,24,,70+
+13.10.11,3,Koto Besar,age_group,70+,perempuan,609,jiwa,2025,registration,total_population,3.3.2,24,,70+
+13.10.11,3,Koto Besar,age_group,70+,,1078,jiwa,2025,registration,total_population,3.3.2,24,,70+
+13.10.11,3,Kecamatan Koto Besar,sex,laki_laki,,14549,jiwa,2025,registration,total_population,3.3.2,24,,Laki-Laki
+13.10.11,3,Kecamatan Koto Besar,sex,perempuan,,14065,jiwa,2025,registration,total_population,3.3.2,24,,Perempuan
+13.10.11,3,Kecamatan Koto Besar,total,total,,28614,jiwa,2025,registration,total_population,3.3.2,24,,

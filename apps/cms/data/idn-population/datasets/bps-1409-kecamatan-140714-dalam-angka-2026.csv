@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.07.14.2002,4,Rokan Baru,sex,laki_laki,,1056,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.14.2002,4,Rokan Baru,sex,perempuan,,979,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.14.2002,4,Rokan Baru,total,total,,2035,jiwa,2025,registration,total_population,3.1,18,,
+14.07.14.2005,4,Teluk Bano Ii,sex,laki_laki,,635,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.14.2005,4,Teluk Bano Ii,sex,perempuan,,571,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.14.2005,4,Teluk Bano Ii,total,total,,1206,jiwa,2025,registration,total_population,3.1,18,,
+14.07.14.2004,4,Suak Temenggung,sex,laki_laki,,877,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.14.2004,4,Suak Temenggung,sex,perempuan,,832,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.14.2004,4,Suak Temenggung,total,total,,1709,jiwa,2025,registration,total_population,3.1,18,,
+14.07.14.2001,4,Pedamaran,sex,laki_laki,,2463,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.14.2001,4,Pedamaran,sex,perempuan,,2307,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.14.2001,4,Pedamaran,total,total,,4770,jiwa,2025,registration,total_population,3.1,18,,
+14.07.14.2007,4,Suak Air Hitam,sex,laki_laki,,530,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.14.2007,4,Suak Air Hitam,sex,perempuan,,473,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.14.2007,4,Suak Air Hitam,total,total,,1003,jiwa,2025,registration,total_population,3.1,18,,
+14.07.14.2006,4,Pekaitan,sex,laki_laki,,803,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.14.2006,4,Pekaitan,sex,perempuan,,733,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.14.2006,4,Pekaitan,total,total,,1536,jiwa,2025,registration,total_population,3.1,18,,
+14.07.14.2008,4,Kubu I,sex,laki_laki,,534,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.14.2008,4,Kubu I,sex,perempuan,,510,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.14.2008,4,Kubu I,total,total,,1044,jiwa,2025,registration,total_population,3.1,18,,
+14.07.14.2010,4,Rokan Baru Pesisir,sex,laki_laki,,320,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.14.2010,4,Rokan Baru Pesisir,sex,perempuan,,304,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.14.2010,4,Rokan Baru Pesisir,total,total,,624,jiwa,2025,registration,total_population,3.1,18,,
+14.07.14,3,Pekaitan,sex,laki_laki,,9258,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.14,3,Pekaitan,sex,perempuan,,8639,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.14,3,Pekaitan,total,total,,17897,jiwa,2025,registration,total_population,3.1,18,,

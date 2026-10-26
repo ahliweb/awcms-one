@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.02.09.1013,4,AIR PUTIH LAMA,sex,laki_laki,,1508,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.09.1013,4,AIR PUTIH LAMA,sex,perempuan,,1548,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.09.1013,4,AIR PUTIH LAMA,total,total,,3056,jiwa,2025,registration,total_population,3.1,22,,
+17.02.09.1025,4,AIR RAMBAI,sex,laki_laki,,1909,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.09.1025,4,AIR RAMBAI,sex,perempuan,,2012,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.09.1025,4,AIR RAMBAI,total,total,,3921,jiwa,2025,registration,total_population,3.1,22,,
+17.02.09.1012,4,DWI TUNGGAL,sex,laki_laki,,1415,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.09.1012,4,DWI TUNGGAL,sex,perempuan,,1518,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.09.1012,4,DWI TUNGGAL,total,total,,2933,jiwa,2025,registration,total_population,3.1,22,,
+17.02.09.1023,4,ADIREJO,sex,laki_laki,,550,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.09.1023,4,ADIREJO,sex,perempuan,,571,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.09.1023,4,ADIREJO,total,total,,1121,jiwa,2025,registration,total_population,3.1,22,,
+17.02.09.1033,4,TALANG BENIH,sex,laki_laki,,3418,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.09.1033,4,TALANG BENIH,sex,perempuan,,3370,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.09.1033,4,TALANG BENIH,total,total,,6788,jiwa,2025,registration,total_population,3.1,22,,
+17.02.09.1031,4,JALAN BARU,sex,laki_laki,,1933,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.09.1031,4,JALAN BARU,sex,perempuan,,1910,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.09.1031,4,JALAN BARU,total,total,,3843,jiwa,2025,registration,total_population,3.1,22,,
+17.02.09.1026,4,PASAR BARU,sex,laki_laki,,491,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.09.1026,4,PASAR BARU,sex,perempuan,,515,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.09.1026,4,PASAR BARU,total,total,,1006,jiwa,2025,registration,total_population,3.1,22,,
+17.02.09.1027,4,PASAR TENGAH,sex,laki_laki,,647,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.09.1027,4,PASAR TENGAH,sex,perempuan,,637,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.09.1027,4,PASAR TENGAH,total,total,,1284,jiwa,2025,registration,total_population,3.1,22,,
+17.02.09.1047,4,TIMBUL REJO,sex,laki_laki,,1246,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.09.1047,4,TIMBUL REJO,sex,perempuan,,1234,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.09.1047,4,TIMBUL REJO,total,total,,2480,jiwa,2025,registration,total_population,3.1,22,,
+17.02.09,3,Curup,sex,laki_laki,,13117,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.09,3,Curup,sex,perempuan,,13315,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.09,3,Curup,total,total,,26432,jiwa,2025,registration,total_population,3.1,22,,

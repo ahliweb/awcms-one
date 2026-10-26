@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1706-kecamatan-170615-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "17.06.15",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sungai Rumbai Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Mukomuko",
+  "publisherDomain": "1706",
+  "publisherWebsite": "https://mukomukokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Mukomuko (https://mukomukokab.bps.go.id), publikasi \"Kecamatan Sungai Rumbai Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1101002.1706021",
+  "publicationNumber": "17060.26008",
+  "issn": "2797-1422",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://mukomukokab.bps.go.id/id/publication/2026/09/28/f83eea43b898fa68570dec79/kecamatan-sungai-rumbai-dalam-angka-2026.html",
+  "sourceFileSha256": "037dbbb5a3be234bfb5e258c9b719b60c9caebff8dffca15cd7890d9a6551ccd",
+  "sourceFileBytes": 17294529,
+  "sourcePages": [28, 29, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Mukomuko.",
+  "csvPath": "datasets/bps-1706-kecamatan-170615-dalam-angka-2026.csv",
+  "csvSha256": "ccc6830b385d992f4b46a5c14f9635cb0ad251d2864413b096e08806d307515c",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sungai Rumbai, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.3",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sungai Rumbai, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: the rows of region 17.06.15.2004 are not stored: sex split vs total: parts sum 1169.0000 != 1178.0000 (diff 9.0000); the source itself is inconsistent",
+    "table 3.3: the rows of region 17.06.15 are not stored: age_group (laki_laki) vs sex value: parts sum 5030.0000 != 5212.0000 (diff 182.0000); the source itself is inconsistent"
+  ]
+}

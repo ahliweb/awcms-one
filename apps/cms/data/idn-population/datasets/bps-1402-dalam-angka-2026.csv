@@ -1,0 +1,157 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.02.05,3,Peranap,total,total,,39571,jiwa,2025,registration,total_population,3.1.1,67,,
+14.02.14,3,Batang Peranap,total,total,,15430,jiwa,2025,registration,total_population,3.1.1,67,,
+14.02.06,3,Seberida,total,total,,61960,jiwa,2025,registration,total_population,3.1.1,67,,
+14.02.07,3,Batang Cenaku,total,total,,51431,jiwa,2025,registration,total_population,3.1.1,67,,
+14.02.08,3,Batang Gansal,total,total,,36687,jiwa,2025,registration,total_population,3.1.1,67,,
+14.02.03,3,Kelayang,total,total,,27187,jiwa,2025,registration,total_population,3.1.1,67,,
+14.02.13,3,Rakit Kulim,total,total,,26442,jiwa,2025,registration,total_population,3.1.1,67,,
+14.02.04,3,Pasir Penyu,total,total,,38119,jiwa,2025,registration,total_population,3.1.1,67,,
+14.02.09,3,Lirik,total,total,,28906,jiwa,2025,registration,total_population,3.1.1,67,,
+14.02.11,3,Sungai Lala,total,total,,18421,jiwa,2025,registration,total_population,3.1.1,67,,
+14.02.12,3,Lubuk Batu Jaya,total,total,,24192,jiwa,2025,registration,total_population,3.1.1,67,,
+14.02.02,3,Rengat Barat,total,total,,53419,jiwa,2025,registration,total_population,3.1.1,67,,
+14.02.01,3,Rengat,total,total,,53239,jiwa,2025,registration,total_population,3.1.1,67,,
+14.02.10,3,Kuala Cenaku,total,total,,15857,jiwa,2025,registration,total_population,3.1.1,67,,
+14.02,2,Indragiri Hulu,total,total,,490861,jiwa,2025,registration,total_population,3.1.1,67,,
+14.02,2,Kabupaten Indragiri Hulu,age_group,0-4,laki_laki,13607,jiwa,2025,projection,total_population,3.1.2,70,,0–4
+14.02,2,Kabupaten Indragiri Hulu,age_group,0-4,perempuan,12819,jiwa,2025,projection,total_population,3.1.2,70,,0–4
+14.02,2,Kabupaten Indragiri Hulu,age_group,0-4,,26426,jiwa,2025,projection,total_population,3.1.2,70,,0–4
+14.02,2,Kabupaten Indragiri Hulu,age_group,5-9,laki_laki,23920,jiwa,2025,projection,total_population,3.1.2,70,,5–9
+14.02,2,Kabupaten Indragiri Hulu,age_group,5-9,perempuan,23920,jiwa,2025,projection,total_population,3.1.2,70,,5–9
+14.02,2,Kabupaten Indragiri Hulu,age_group,5-9,,47840,jiwa,2025,projection,total_population,3.1.2,70,,5–9
+14.02,2,Kabupaten Indragiri Hulu,age_group,10-14,laki_laki,26068,jiwa,2025,projection,total_population,3.1.2,70,,10–14
+14.02,2,Kabupaten Indragiri Hulu,age_group,10-14,perempuan,24620,jiwa,2025,projection,total_population,3.1.2,70,,10–14
+14.02,2,Kabupaten Indragiri Hulu,age_group,10-14,,50688,jiwa,2025,projection,total_population,3.1.2,70,,10–14
+14.02,2,Kabupaten Indragiri Hulu,age_group,15-19,laki_laki,22743,jiwa,2025,projection,total_population,3.1.2,70,,15–19
+14.02,2,Kabupaten Indragiri Hulu,age_group,15-19,perempuan,21246,jiwa,2025,projection,total_population,3.1.2,70,,15–19
+14.02,2,Kabupaten Indragiri Hulu,age_group,15-19,,43989,jiwa,2025,projection,total_population,3.1.2,70,,15–19
+14.02,2,Kabupaten Indragiri Hulu,age_group,20-24,laki_laki,21426,jiwa,2025,projection,total_population,3.1.2,70,,20–24
+14.02,2,Kabupaten Indragiri Hulu,age_group,20-24,perempuan,20618,jiwa,2025,projection,total_population,3.1.2,70,,20–24
+14.02,2,Kabupaten Indragiri Hulu,age_group,20-24,,42044,jiwa,2025,projection,total_population,3.1.2,70,,20–24
+14.02,2,Kabupaten Indragiri Hulu,age_group,25-29,laki_laki,19807,jiwa,2025,projection,total_population,3.1.2,70,,25–29
+14.02,2,Kabupaten Indragiri Hulu,age_group,25-29,perempuan,18741,jiwa,2025,projection,total_population,3.1.2,70,,25–29
+14.02,2,Kabupaten Indragiri Hulu,age_group,25-29,,38548,jiwa,2025,projection,total_population,3.1.2,70,,25–29
+14.02,2,Kabupaten Indragiri Hulu,age_group,30-34,laki_laki,18571,jiwa,2025,projection,total_population,3.1.2,70,,30–34
+14.02,2,Kabupaten Indragiri Hulu,age_group,30-34,perempuan,18595,jiwa,2025,projection,total_population,3.1.2,70,,30–34
+14.02,2,Kabupaten Indragiri Hulu,age_group,30-34,,37166,jiwa,2025,projection,total_population,3.1.2,70,,30–34
+14.02,2,Kabupaten Indragiri Hulu,age_group,35-39,laki_laki,19878,jiwa,2025,projection,total_population,3.1.2,70,,35–39
+14.02,2,Kabupaten Indragiri Hulu,age_group,35-39,perempuan,20087,jiwa,2025,projection,total_population,3.1.2,70,,35–39
+14.02,2,Kabupaten Indragiri Hulu,age_group,35-39,,39965,jiwa,2025,projection,total_population,3.1.2,70,,35–39
+14.02,2,Kabupaten Indragiri Hulu,age_group,40-44,laki_laki,19941,jiwa,2025,projection,total_population,3.1.2,70,,40–44
+14.02,2,Kabupaten Indragiri Hulu,age_group,40-44,perempuan,19332,jiwa,2025,projection,total_population,3.1.2,70,,40–44
+14.02,2,Kabupaten Indragiri Hulu,age_group,40-44,,39273,jiwa,2025,projection,total_population,3.1.2,70,,40–44
+14.02,2,Kabupaten Indragiri Hulu,age_group,45-49,laki_laki,17893,jiwa,2025,projection,total_population,3.1.2,70,,45–49
+14.02,2,Kabupaten Indragiri Hulu,age_group,45-49,perempuan,16550,jiwa,2025,projection,total_population,3.1.2,70,,45–49
+14.02,2,Kabupaten Indragiri Hulu,age_group,45-49,,34443,jiwa,2025,projection,total_population,3.1.2,70,,45–49
+14.02,2,Kabupaten Indragiri Hulu,age_group,50-54,laki_laki,14569,jiwa,2025,projection,total_population,3.1.2,70,,50–54
+14.02,2,Kabupaten Indragiri Hulu,age_group,50-54,perempuan,13650,jiwa,2025,projection,total_population,3.1.2,70,,50–54
+14.02,2,Kabupaten Indragiri Hulu,age_group,50-54,,28219,jiwa,2025,projection,total_population,3.1.2,70,,50–54
+14.02,2,Kabupaten Indragiri Hulu,age_group,55-59,laki_laki,1533,jiwa,2025,projection,total_population,3.1.2,70,,55–59
+14.02,2,Kabupaten Indragiri Hulu,age_group,55-59,perempuan,10867,jiwa,2025,projection,total_population,3.1.2,70,,55–59
+14.02,2,Kabupaten Indragiri Hulu,age_group,55-59,,12400,jiwa,2025,projection,total_population,3.1.2,70,,55–59
+14.02,2,Kabupaten Indragiri Hulu,age_group,60-64,laki_laki,8696,jiwa,2025,projection,total_population,3.1.2,70,,60–64
+14.02,2,Kabupaten Indragiri Hulu,age_group,60-64,perempuan,7928,jiwa,2025,projection,total_population,3.1.2,70,,60–64
+14.02,2,Kabupaten Indragiri Hulu,age_group,60-64,,16624,jiwa,2025,projection,total_population,3.1.2,70,,60–64
+14.02,2,Kabupaten Indragiri Hulu,age_group,65-69,laki_laki,6150,jiwa,2025,projection,total_population,3.1.2,70,,65–69
+14.02,2,Kabupaten Indragiri Hulu,age_group,65-69,perempuan,5809,jiwa,2025,projection,total_population,3.1.2,70,,65–69
+14.02,2,Kabupaten Indragiri Hulu,age_group,65-69,,11959,jiwa,2025,projection,total_population,3.1.2,70,,65–69
+14.02,2,Kabupaten Indragiri Hulu,age_group,70-74,laki_laki,3549,jiwa,2025,projection,total_population,3.1.2,70,,70–74
+14.02,2,Kabupaten Indragiri Hulu,age_group,70-74,perempuan,3140,jiwa,2025,projection,total_population,3.1.2,70,,70–74
+14.02,2,Kabupaten Indragiri Hulu,age_group,70-74,,6689,jiwa,2025,projection,total_population,3.1.2,70,,70–74
+14.02,2,Kabupaten Indragiri Hulu,age_group,75+,laki_laki,3147,jiwa,2025,projection,total_population,3.1.2,70,,75+
+14.02,2,Kabupaten Indragiri Hulu,age_group,75+,perempuan,3225,jiwa,2025,projection,total_population,3.1.2,70,,75+
+14.02,2,Kabupaten Indragiri Hulu,age_group,75+,,6372,jiwa,2025,projection,total_population,3.1.2,70,,75+
+14.02,2,Indragiri Hulu,sex,laki_laki,,241498,jiwa,2025,projection,total_population,3.1.2,70,,Laki-Laki
+14.02,2,Indragiri Hulu,sex,perempuan,,241147,jiwa,2025,projection,total_population,3.1.2,70,,Perempuan
+14.02,2,Indragiri Hulu,total,total,,482645,jiwa,2025,projection,total_population,3.1.2,70,,
+14.02.05,3,Peranap,religion,islam,,33362,jiwa,2025,registration,total_population,4.3.1,149,,Islam
+14.02.05,3,Peranap,religion,kristen,,5505,jiwa,2025,registration,total_population,4.3.1,149,,Protestan
+14.02.05,3,Peranap,religion,katolik,,684,jiwa,2025,registration,total_population,4.3.1,149,,Katolik
+14.02.05,3,Peranap,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Hindu
+14.02.05,3,Peranap,religion,buddha,,19,jiwa,2025,registration,total_population,4.3.1,149,,Budha
+14.02.05,3,Peranap,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Lainnya
+14.02.14,3,Batang Peranap,religion,islam,,11364,jiwa,2025,registration,total_population,4.3.1,149,,Islam
+14.02.14,3,Batang Peranap,religion,kristen,,3731,jiwa,2025,registration,total_population,4.3.1,149,,Protestan
+14.02.14,3,Batang Peranap,religion,katolik,,335,jiwa,2025,registration,total_population,4.3.1,149,,Katolik
+14.02.14,3,Batang Peranap,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Hindu
+14.02.14,3,Batang Peranap,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Budha
+14.02.14,3,Batang Peranap,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Lainnya
+14.02.06,3,Seberida,religion,islam,,57178,jiwa,2025,registration,total_population,4.3.1,149,,Islam
+14.02.06,3,Seberida,religion,kristen,,4127,jiwa,2025,registration,total_population,4.3.1,149,,Protestan
+14.02.06,3,Seberida,religion,katolik,,493,jiwa,2025,registration,total_population,4.3.1,149,,Katolik
+14.02.06,3,Seberida,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Hindu
+14.02.06,3,Seberida,religion,buddha,,162,jiwa,2025,registration,total_population,4.3.1,149,,Budha
+14.02.06,3,Seberida,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Lainnya
+14.02.07,3,Batang Cenaku,religion,islam,,45919,jiwa,2025,registration,total_population,4.3.1,149,,Islam
+14.02.07,3,Batang Cenaku,religion,kristen,,4978,jiwa,2025,registration,total_population,4.3.1,149,,Protestan
+14.02.07,3,Batang Cenaku,religion,katolik,,520,jiwa,2025,registration,total_population,4.3.1,149,,Katolik
+14.02.07,3,Batang Cenaku,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Hindu
+14.02.07,3,Batang Cenaku,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,149,,Budha
+14.02.07,3,Batang Cenaku,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Lainnya
+14.02.08,3,Batang Gansal,religion,islam,,24161,jiwa,2025,registration,total_population,4.3.1,149,,Islam
+14.02.08,3,Batang Gansal,religion,kristen,,9543,jiwa,2025,registration,total_population,4.3.1,149,,Protestan
+14.02.08,3,Batang Gansal,religion,katolik,,2952,jiwa,2025,registration,total_population,4.3.1,149,,Katolik
+14.02.08,3,Batang Gansal,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,149,,Hindu
+14.02.08,3,Batang Gansal,religion,buddha,,15,jiwa,2025,registration,total_population,4.3.1,149,,Budha
+14.02.08,3,Batang Gansal,religion,lainnya,,8,jiwa,2025,registration,total_population,4.3.1,149,,Lainnya
+14.02.03,3,Kelayang,religion,islam,,27010,jiwa,2025,registration,total_population,4.3.1,149,,Islam
+14.02.03,3,Kelayang,religion,kristen,,150,jiwa,2025,registration,total_population,4.3.1,149,,Protestan
+14.02.03,3,Kelayang,religion,katolik,,27,jiwa,2025,registration,total_population,4.3.1,149,,Katolik
+14.02.03,3,Kelayang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Hindu
+14.02.03,3,Kelayang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Budha
+14.02.03,3,Kelayang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Lainnya
+14.02.13,3,Rakit Kulim,religion,islam,,23407,jiwa,2025,registration,total_population,4.3.1,149,,Islam
+14.02.13,3,Rakit Kulim,religion,kristen,,2505,jiwa,2025,registration,total_population,4.3.1,149,,Protestan
+14.02.13,3,Rakit Kulim,religion,katolik,,397,jiwa,2025,registration,total_population,4.3.1,149,,Katolik
+14.02.13,3,Rakit Kulim,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,149,,Hindu
+14.02.13,3,Rakit Kulim,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Budha
+14.02.13,3,Rakit Kulim,religion,lainnya,,5,jiwa,2025,registration,total_population,4.3.1,149,,Lainnya
+14.02.04,3,Pasir Penyu,religion,islam,,34719,jiwa,2025,registration,total_population,4.3.1,149,,Islam
+14.02.04,3,Pasir Penyu,religion,kristen,,2409,jiwa,2025,registration,total_population,4.3.1,149,,Protestan
+14.02.04,3,Pasir Penyu,religion,katolik,,866,jiwa,2025,registration,total_population,4.3.1,149,,Katolik
+14.02.04,3,Pasir Penyu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Hindu
+14.02.04,3,Pasir Penyu,religion,buddha,,124,jiwa,2025,registration,total_population,4.3.1,149,,Budha
+14.02.04,3,Pasir Penyu,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,149,,Lainnya
+14.02.09,3,Lirik,religion,islam,,27218,jiwa,2025,registration,total_population,4.3.1,149,,Islam
+14.02.09,3,Lirik,religion,kristen,,1489,jiwa,2025,registration,total_population,4.3.1,149,,Protestan
+14.02.09,3,Lirik,religion,katolik,,175,jiwa,2025,registration,total_population,4.3.1,149,,Katolik
+14.02.09,3,Lirik,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Hindu
+14.02.09,3,Lirik,religion,buddha,,24,jiwa,2025,registration,total_population,4.3.1,149,,Budha
+14.02.09,3,Lirik,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Lainnya
+14.02.11,3,Sungai Lala,religion,islam,,17594,jiwa,2025,registration,total_population,4.3.1,149,,Islam
+14.02.11,3,Sungai Lala,religion,kristen,,631,jiwa,2025,registration,total_population,4.3.1,149,,Protestan
+14.02.11,3,Sungai Lala,religion,katolik,,192,jiwa,2025,registration,total_population,4.3.1,149,,Katolik
+14.02.11,3,Sungai Lala,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Hindu
+14.02.11,3,Sungai Lala,religion,buddha,,4,jiwa,2025,registration,total_population,4.3.1,149,,Budha
+14.02.11,3,Sungai Lala,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Lainnya
+14.02.12,3,Lubuk Batu Jaya,religion,islam,,22434,jiwa,2025,registration,total_population,4.3.1,149,,Islam
+14.02.12,3,Lubuk Batu Jaya,religion,kristen,,1569,jiwa,2025,registration,total_population,4.3.1,149,,Protestan
+14.02.12,3,Lubuk Batu Jaya,religion,katolik,,189,jiwa,2025,registration,total_population,4.3.1,149,,Katolik
+14.02.12,3,Lubuk Batu Jaya,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Hindu
+14.02.12,3,Lubuk Batu Jaya,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Budha
+14.02.12,3,Lubuk Batu Jaya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Lainnya
+14.02.02,3,Rengat Barat,religion,islam,,51312,jiwa,2025,registration,total_population,4.3.1,149,,Islam
+14.02.02,3,Rengat Barat,religion,kristen,,1637,jiwa,2025,registration,total_population,4.3.1,149,,Protestan
+14.02.02,3,Rengat Barat,religion,katolik,,272,jiwa,2025,registration,total_population,4.3.1,149,,Katolik
+14.02.02,3,Rengat Barat,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,149,,Hindu
+14.02.02,3,Rengat Barat,religion,buddha,,78,jiwa,2025,registration,total_population,4.3.1,149,,Budha
+14.02.02,3,Rengat Barat,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,149,,Lainnya
+14.02.01,3,Rengat,religion,islam,,51525,jiwa,2025,registration,total_population,4.3.1,149,,Islam
+14.02.01,3,Rengat,religion,kristen,,704,jiwa,2025,registration,total_population,4.3.1,149,,Protestan
+14.02.01,3,Rengat,religion,katolik,,262,jiwa,2025,registration,total_population,4.3.1,149,,Katolik
+14.02.01,3,Rengat,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,149,,Hindu
+14.02.01,3,Rengat,religion,buddha,,746,jiwa,2025,registration,total_population,4.3.1,149,,Budha
+14.02.01,3,Rengat,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Lainnya
+14.02.10,3,Kuala Cenaku,religion,islam,,15307,jiwa,2025,registration,total_population,4.3.1,149,,Islam
+14.02.10,3,Kuala Cenaku,religion,kristen,,481,jiwa,2025,registration,total_population,4.3.1,149,,Protestan
+14.02.10,3,Kuala Cenaku,religion,katolik,,67,jiwa,2025,registration,total_population,4.3.1,149,,Katolik
+14.02.10,3,Kuala Cenaku,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Hindu
+14.02.10,3,Kuala Cenaku,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,149,,Budha
+14.02.10,3,Kuala Cenaku,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Lainnya
+14.02,2,Indragiri Hulu,religion,islam,,442510,jiwa,2025,registration,total_population,4.3.1,149,,Islam
+14.02,2,Indragiri Hulu,religion,kristen,,39459,jiwa,2025,registration,total_population,4.3.1,149,,Protestan
+14.02,2,Indragiri Hulu,religion,katolik,,7431,jiwa,2025,registration,total_population,4.3.1,149,,Katolik
+14.02,2,Indragiri Hulu,religion,hindu,,8,jiwa,2025,registration,total_population,4.3.1,149,,Hindu
+14.02,2,Indragiri Hulu,religion,buddha,,1179,jiwa,2025,registration,total_population,4.3.1,149,,Budha
+14.02,2,Indragiri Hulu,religion,lainnya,,15,jiwa,2025,registration,total_population,4.3.1,149,,Lainnya

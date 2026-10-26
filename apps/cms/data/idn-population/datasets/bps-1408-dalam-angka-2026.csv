@@ -1,0 +1,47 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/padi_padian,,94890,rupiah,2024,survey_estimate,per_capita,10.1,236,,Padi-padian
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/padi_padian,,93056,rupiah,2025,survey_estimate,per_capita,10.1,236,,Padi-padian
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/umbi_umbian,,11816,rupiah,2024,survey_estimate,per_capita,10.1,236,,Umbi-umbian
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/umbi_umbian,,12040,rupiah,2025,survey_estimate,per_capita,10.1,236,,Umbi-umbian
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,111324,rupiah,2024,survey_estimate,per_capita,10.1,236,,Ikan/udang/cumi/kerang
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,106151,rupiah,2025,survey_estimate,per_capita,10.1,236,,Ikan/udang/cumi/kerang
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/daging,,41627,rupiah,2024,survey_estimate,per_capita,10.1,236,,Daging
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/daging,,38211,rupiah,2025,survey_estimate,per_capita,10.1,236,,Daging
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/telur_dan_susu,,43252,rupiah,2024,survey_estimate,per_capita,10.1,236,,Telur dan susu
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/telur_dan_susu,,40263,rupiah,2025,survey_estimate,per_capita,10.1,236,,Telur dan susu
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/sayur_sayuran,,96526,rupiah,2024,survey_estimate,per_capita,10.1,236,,Sayur-sayuran
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/sayur_sayuran,,93165,rupiah,2025,survey_estimate,per_capita,10.1,236,,Sayur-sayuran
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/kacang_kacangan,,12435,rupiah,2024,survey_estimate,per_capita,10.1,236,,Kacang-kacangan
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/kacang_kacangan,,13815,rupiah,2025,survey_estimate,per_capita,10.1,236,,Kacang-kacangan
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/buah_buahan,,33619,rupiah,2024,survey_estimate,per_capita,10.1,236,,Buah-buahan
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/buah_buahan,,46555,rupiah,2025,survey_estimate,per_capita,10.1,236,,Buah-buahan
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/minyak_dan_kelapa,,29478,rupiah,2024,survey_estimate,per_capita,10.1,236,,Minyak dan kelapa
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/minyak_dan_kelapa,,32824,rupiah,2025,survey_estimate,per_capita,10.1,236,,Minyak dan kelapa
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/bahan_minuman,,22439,rupiah,2024,survey_estimate,per_capita,10.1,236,,Bahan minuman
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/bahan_minuman,,23096,rupiah,2025,survey_estimate,per_capita,10.1,236,,Bahan minuman
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/bumbu_bumbuan,,18620,rupiah,2024,survey_estimate,per_capita,10.1,236,,Bumbu-bumbuan
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/bumbu_bumbuan,,22495,rupiah,2025,survey_estimate,per_capita,10.1,236,,Bumbu-bumbuan
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/konsumsi_lainnya,,13920,rupiah,2024,survey_estimate,per_capita,10.1,236,,Konsumsi lainnya
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/konsumsi_lainnya,,13722,rupiah,2025,survey_estimate,per_capita,10.1,236,,Konsumsi lainnya
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,252168,rupiah,2024,survey_estimate,per_capita,10.1,236,,Makanan dan minuman jadi
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,223659,rupiah,2025,survey_estimate,per_capita,10.1,236,,Makanan dan minuman jadi
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/rokok,,129817,rupiah,2024,survey_estimate,per_capita,10.1,236,,Rokok
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/rokok,,124786,rupiah,2025,survey_estimate,per_capita,10.1,236,,Rokok
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/jumlah_makanan,,911932,rupiah,2024,survey_estimate,per_capita,10.1,236,,Jumlah makanan
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/jumlah_makanan,,883838,rupiah,2025,survey_estimate,per_capita,10.1,236,,Jumlah makanan
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,362598,rupiah,2024,survey_estimate,per_capita,10.1,236,,Perumahan dan fasilitas rumah tangga
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,388207,rupiah,2025,survey_estimate,per_capita,10.1,236,,Perumahan dan fasilitas rumah tangga
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,148464,rupiah,2024,survey_estimate,per_capita,10.1,236,,Aneka barang dan jasa
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,135266,rupiah,2025,survey_estimate,per_capita,10.1,236,,Aneka barang dan jasa
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,46716,rupiah,2024,survey_estimate,per_capita,10.1,236,,"Pakaian, alas kaki, dan tutup kepala"
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,45133,rupiah,2025,survey_estimate,per_capita,10.1,236,,"Pakaian, alas kaki, dan tutup kepala"
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/barang_tahan_lama,,29193,rupiah,2024,survey_estimate,per_capita,10.1,236,,Barang tahan lama
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/barang_tahan_lama,,25190,rupiah,2025,survey_estimate,per_capita,10.1,236,,Barang tahan lama
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,59890,rupiah,2024,survey_estimate,per_capita,10.1,236,,"Pajak, pungutan, dan asuransi"
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,63472,rupiah,2025,survey_estimate,per_capita,10.1,236,,"Pajak, pungutan, dan asuransi"
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,7872,rupiah,2024,survey_estimate,per_capita,10.1,236,,Keperluan pesta dan upacara/kenduri
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,17200,rupiah,2025,survey_estimate,per_capita,10.1,236,,Keperluan pesta dan upacara/kenduri
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,654733,rupiah,2024,survey_estimate,per_capita,10.1,236,,Jumlah bukan makanan
+14.03,2,Kabupaten Bengkalis,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,674468,rupiah,2025,survey_estimate,per_capita,10.1,236,,Jumlah bukan makanan
+14.03,2,Kabupaten Bengkalis,expenditure,total,,1566665,rupiah,2024,survey_estimate,per_capita,10.1,236,,
+14.03,2,Kabupaten Bengkalis,expenditure,total,,1558306,rupiah,2025,survey_estimate,per_capita,10.1,236,,

@@ -1,0 +1,39 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.01.02.2001,4,Batu Belah,sex,perempuan,,2978,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.02.2001,4,Batu Belah,total,total,,6020,jiwa,2025,registration,total_population,3.1,11,,
+14.01.02.2003,4,Tanjung Berulak,sex,perempuan,,1262,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.02.2003,4,Tanjung Berulak,total,total,,2514,jiwa,2025,registration,total_population,3.1,11,,
+14.01.02.1027,4,Air Tiris,sex,perempuan,,3364,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.02.1027,4,Air Tiris,total,total,,6806,jiwa,2025,registration,total_population,3.1,11,,
+14.01.02.2006,4,Ranah,sex,perempuan,,1773,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.02.2006,4,Ranah,total,total,,3603,jiwa,2025,registration,total_population,3.1,11,,
+14.01.02.2007,4,Penyasawan,sex,perempuan,,3000,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.02.2007,4,Penyasawan,total,total,,6083,jiwa,2025,registration,total_population,3.1,11,,
+14.01.02.2008,4,Rumbio,sex,perempuan,,1655,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.02.2008,4,Rumbio,total,total,,3429,jiwa,2025,registration,total_population,3.1,11,,
+14.01.02.2013,4,Padang Mutung,sex,perempuan,,2335,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.02.2013,4,Padang Mutung,total,total,,4796,jiwa,2025,registration,total_population,3.1,11,,
+14.01.02.2025,4,Simpang Kubu,sex,perempuan,,1459,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.02.2025,4,Simpang Kubu,total,total,,2965,jiwa,2025,registration,total_population,3.1,11,,
+14.01.02.2024,4,Tanjung Rambutan,sex,perempuan,,1451,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.02.2024,4,Tanjung Rambutan,total,total,,2848,jiwa,2025,registration,total_population,3.1,11,,
+14.01.02.2023,4,Pulau Jambu,sex,perempuan,,934,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.02.2023,4,Pulau Jambu,total,total,,1925,jiwa,2025,registration,total_population,3.1,11,,
+14.01.02.2028,4,Limau Manis,sex,perempuan,,1136,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.02.2028,4,Limau Manis,total,total,,2277,jiwa,2025,registration,total_population,3.1,11,,
+14.01.02.2030,4,Naumbai,sex,perempuan,,1065,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.02.2030,4,Naumbai,total,total,,2187,jiwa,2025,registration,total_population,3.1,11,,
+14.01.02.2036,4,Ranah Singkuang,sex,perempuan,,725,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.02.2036,4,Ranah Singkuang,total,total,,1559,jiwa,2025,registration,total_population,3.1,11,,
+14.01.02.2031,4,Pulau Tinggi,sex,perempuan,,949,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.02.2031,4,Pulau Tinggi,total,total,,1875,jiwa,2025,registration,total_population,3.1,11,,
+14.01.02.2035,4,Koto Tibun,sex,perempuan,,1453,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.02.2035,4,Koto Tibun,total,total,,2891,jiwa,2025,registration,total_population,3.1,11,,
+14.01.02.2033,4,Bukit Ranah,sex,perempuan,,1199,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.02.2033,4,Bukit Ranah,total,total,,2394,jiwa,2025,registration,total_population,3.1,11,,
+14.01.02.2032,4,Ranah Baru,sex,perempuan,,798,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.02.2032,4,Ranah Baru,total,total,,1581,jiwa,2025,registration,total_population,3.1,11,,
+14.01.02.2034,4,Pulau Sarak,sex,perempuan,,737,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.02.2034,4,Pulau Sarak,total,total,,1539,jiwa,2025,registration,total_population,3.1,11,,
+14.01.02,3,KAMPAR,sex,perempuan,,28273,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.02,3,KAMPAR,total,total,,57292,jiwa,2025,registration,total_population,3.1,11,,

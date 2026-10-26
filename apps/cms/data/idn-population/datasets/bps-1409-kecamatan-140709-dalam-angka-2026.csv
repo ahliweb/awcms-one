@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.07.09.2001,4,Melayu Besar,sex,laki_laki,,3705,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.09.2001,4,Melayu Besar,sex,perempuan,,3479,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.09.2001,4,Melayu Besar,total,total,,7184,jiwa,2025,registration,total_population,3.1,18,,
+14.07.09.2002,4,Melayu Tengah,sex,laki_laki,,806,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.09.2002,4,Melayu Tengah,sex,perempuan,,773,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.09.2002,4,Melayu Tengah,total,total,,1579,jiwa,2025,registration,total_population,3.1,18,,
+14.07.09.2003,4,Batu Hampar,sex,laki_laki,,390,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.09.2003,4,Batu Hampar,sex,perempuan,,412,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.09.2003,4,Batu Hampar,total,total,,802,jiwa,2025,registration,total_population,3.1,18,,
+14.07.09.2004,4,Mesah,sex,laki_laki,,775,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.09.2004,4,Mesah,sex,perempuan,,785,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.09.2004,4,Mesah,total,total,,1560,jiwa,2025,registration,total_population,3.1,18,,
+14.07.09.2006,4,Labuhan Papan,sex,laki_laki,,1242,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.09.2006,4,Labuhan Papan,sex,perempuan,,1187,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.09.2006,4,Labuhan Papan,total,total,,2429,jiwa,2025,registration,total_population,3.1,18,,
+14.07.09.1005,4,Melayu Besar Kota,sex,laki_laki,,1981,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.09.1005,4,Melayu Besar Kota,sex,perempuan,,1947,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.09.1005,4,Melayu Besar Kota,total,total,,3928,jiwa,2025,registration,total_population,3.1,18,,
+14.07.09,3,Tanah Putih Tanjung Melawan,sex,laki_laki,,8899,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.09,3,Tanah Putih Tanjung Melawan,sex,perempuan,,8583,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.09,3,Tanah Putih Tanjung Melawan,total,total,,17482,jiwa,2025,registration,total_population,3.1,18,,
+14.07.09,3,Tanah Putih Tanjung Melawan,age_group,75+,laki_laki,88,jiwa,2025,registration,total_population,3.2,20,,75 +
+14.07.09,3,Tanah Putih Tanjung Melawan,age_group,75+,perempuan,97,jiwa,2025,registration,total_population,3.2,20,,75 +
+14.07.09,3,Tanah Putih Tanjung Melawan,age_group,75+,,185,jiwa,2025,registration,total_population,3.2,20,,75 +

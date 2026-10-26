@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.01.32.2001,4,Bunglai,sex,laki_laki,,1298,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.32.2001,4,Bunglai,sex,perempuan,,1233,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.32.2001,4,Bunglai,total,total,,2531,jiwa,2025,registration,total_population,3.1,30,,
+16.01.32.2002,4,Kedaton,sex,laki_laki,,1836,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.32.2002,4,Kedaton,sex,perempuan,,1788,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.32.2002,4,Kedaton,total,total,,3624,jiwa,2025,registration,total_population,3.1,30,,
+16.01.32.2003,4,Kampai,sex,laki_laki,,342,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.32.2003,4,Kampai,sex,perempuan,,342,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.32.2003,4,Kampai,total,total,,684,jiwa,2025,registration,total_population,3.1,30,,
+16.01.32.2004,4,Rantau Panjang,sex,laki_laki,,147,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.32.2004,4,Rantau Panjang,sex,perempuan,,154,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.32.2004,4,Rantau Panjang,total,total,,301,jiwa,2025,registration,total_population,3.1,30,,
+16.01.32.2006,4,Suka Pindah,sex,laki_laki,,1169,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.32.2006,4,Suka Pindah,sex,perempuan,,1056,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.32.2006,4,Suka Pindah,total,total,,2225,jiwa,2025,registration,total_population,3.1,30,,
+16.01.32.2008,4,Lubuk Kemiling,sex,laki_laki,,473,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.32.2008,4,Lubuk Kemiling,sex,perempuan,,429,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.32.2008,4,Lubuk Kemiling,total,total,,902,jiwa,2025,registration,total_population,3.1,30,,
+16.01.32.2007,4,Sinar Kedaton,sex,laki_laki,,932,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.32.2007,4,Sinar Kedaton,sex,perempuan,,817,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.32.2007,4,Sinar Kedaton,total,total,,1749,jiwa,2025,registration,total_population,3.1,30,,
+16.01.32.2005,4,Kedaton Timur,sex,laki_laki,,932,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.32.2005,4,Kedaton Timur,sex,perempuan,,820,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.32.2005,4,Kedaton Timur,total,total,,1752,jiwa,2025,registration,total_population,3.1,30,,
+16.01.32,3,Kedaton Peninjauan Raya,sex,laki_laki,,7129,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.32,3,Kedaton Peninjauan Raya,sex,perempuan,,6639,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.32,3,Kedaton Peninjauan Raya,total,total,,13768,jiwa,2025,registration,total_population,3.1,30,,
+16.01.32,3,Kedaton Peninjauan Raya,age_group,0-4,laki_laki,405,jiwa,2025,registration,total_population,3.2,32,,0-4
+16.01.32,3,Kedaton Peninjauan Raya,age_group,0-4,perempuan,409,jiwa,2025,registration,total_population,3.2,32,,0-4
+16.01.32,3,Kedaton Peninjauan Raya,age_group,0-4,,814,jiwa,2025,registration,total_population,3.2,32,,0-4
+16.01.32,3,Kedaton Peninjauan Raya,age_group,5-9,laki_laki,624,jiwa,2025,registration,total_population,3.2,32,,5-9
+16.01.32,3,Kedaton Peninjauan Raya,age_group,5-9,perempuan,598,jiwa,2025,registration,total_population,3.2,32,,5-9
+16.01.32,3,Kedaton Peninjauan Raya,age_group,5-9,,1222,jiwa,2025,registration,total_population,3.2,32,,5-9
+16.01.32,3,Kedaton Peninjauan Raya,age_group,10-14,laki_laki,672,jiwa,2025,registration,total_population,3.2,32,,10-14
+16.01.32,3,Kedaton Peninjauan Raya,age_group,10-14,perempuan,593,jiwa,2025,registration,total_population,3.2,32,,10-14
+16.01.32,3,Kedaton Peninjauan Raya,age_group,10-14,,1265,jiwa,2025,registration,total_population,3.2,32,,10-14
+16.01.32,3,Kedaton Peninjauan Raya,age_group,15-19,laki_laki,684,jiwa,2025,registration,total_population,3.2,32,,15-19
+16.01.32,3,Kedaton Peninjauan Raya,age_group,15-19,perempuan,612,jiwa,2025,registration,total_population,3.2,32,,15-19
+16.01.32,3,Kedaton Peninjauan Raya,age_group,15-19,,1296,jiwa,2025,registration,total_population,3.2,32,,15-19
+16.01.32,3,Kedaton Peninjauan Raya,age_group,20-24,laki_laki,546,jiwa,2025,registration,total_population,3.2,32,,20-24
+16.01.32,3,Kedaton Peninjauan Raya,age_group,20-24,perempuan,472,jiwa,2025,registration,total_population,3.2,32,,20-24
+16.01.32,3,Kedaton Peninjauan Raya,age_group,20-24,,1018,jiwa,2025,registration,total_population,3.2,32,,20-24
+16.01.32,3,Kedaton Peninjauan Raya,age_group,25-29,laki_laki,505,jiwa,2025,registration,total_population,3.2,32,,25-29
+16.01.32,3,Kedaton Peninjauan Raya,age_group,25-29,perempuan,451,jiwa,2025,registration,total_population,3.2,32,,25-29
+16.01.32,3,Kedaton Peninjauan Raya,age_group,25-29,,956,jiwa,2025,registration,total_population,3.2,32,,25-29
+16.01.32,3,Kedaton Peninjauan Raya,age_group,30-34,laki_laki,479,jiwa,2025,registration,total_population,3.2,32,,30-34
+16.01.32,3,Kedaton Peninjauan Raya,age_group,30-34,perempuan,469,jiwa,2025,registration,total_population,3.2,32,,30-34
+16.01.32,3,Kedaton Peninjauan Raya,age_group,30-34,,948,jiwa,2025,registration,total_population,3.2,32,,30-34
+16.01.32,3,Kedaton Peninjauan Raya,age_group,35-39,laki_laki,564,jiwa,2025,registration,total_population,3.2,32,,35-39
+16.01.32,3,Kedaton Peninjauan Raya,age_group,35-39,perempuan,518,jiwa,2025,registration,total_population,3.2,32,,35-39
+16.01.32,3,Kedaton Peninjauan Raya,age_group,35-39,,1082,jiwa,2025,registration,total_population,3.2,32,,35-39
+16.01.32,3,Kedaton Peninjauan Raya,age_group,40-44,laki_laki,606,jiwa,2025,registration,total_population,3.2,32,,40-44
+16.01.32,3,Kedaton Peninjauan Raya,age_group,40-44,perempuan,569,jiwa,2025,registration,total_population,3.2,32,,40-44
+16.01.32,3,Kedaton Peninjauan Raya,age_group,40-44,,1175,jiwa,2025,registration,total_population,3.2,32,,40-44
+16.01.32,3,Kedaton Peninjauan Raya,age_group,45-49,laki_laki,512,jiwa,2025,registration,total_population,3.2,32,,45-49
+16.01.32,3,Kedaton Peninjauan Raya,age_group,45-49,perempuan,438,jiwa,2025,registration,total_population,3.2,32,,45-49
+16.01.32,3,Kedaton Peninjauan Raya,age_group,45-49,,950,jiwa,2025,registration,total_population,3.2,32,,45-49
+16.01.32,3,Kedaton Peninjauan Raya,age_group,50-54,laki_laki,438,jiwa,2025,registration,total_population,3.2,32,,50-54
+16.01.32,3,Kedaton Peninjauan Raya,age_group,50-54,perempuan,371,jiwa,2025,registration,total_population,3.2,32,,50-54
+16.01.32,3,Kedaton Peninjauan Raya,age_group,50-54,,809,jiwa,2025,registration,total_population,3.2,32,,50-54
+16.01.32,3,Kedaton Peninjauan Raya,age_group,55-59,laki_laki,308,jiwa,2025,registration,total_population,3.2,32,,55-59
+16.01.32,3,Kedaton Peninjauan Raya,age_group,55-59,perempuan,326,jiwa,2025,registration,total_population,3.2,32,,55-59
+16.01.32,3,Kedaton Peninjauan Raya,age_group,55-59,,634,jiwa,2025,registration,total_population,3.2,32,,55-59
+16.01.32,3,Kedaton Peninjauan Raya,age_group,60-64,laki_laki,264,jiwa,2025,registration,total_population,3.2,32,,60-64
+16.01.32,3,Kedaton Peninjauan Raya,age_group,60-64,perempuan,280,jiwa,2025,registration,total_population,3.2,32,,60-64
+16.01.32,3,Kedaton Peninjauan Raya,age_group,60-64,,544,jiwa,2025,registration,total_population,3.2,32,,60-64
+16.01.32,3,Kedaton Peninjauan Raya,age_group,65-69,laki_laki,210,jiwa,2025,registration,total_population,3.2,32,,65-69
+16.01.32,3,Kedaton Peninjauan Raya,age_group,65-69,perempuan,220,jiwa,2025,registration,total_population,3.2,32,,65-69
+16.01.32,3,Kedaton Peninjauan Raya,age_group,65-69,,430,jiwa,2025,registration,total_population,3.2,32,,65-69
+16.01.32,3,Kedaton Peninjauan Raya,age_group,70-74,laki_laki,135,jiwa,2025,registration,total_population,3.2,32,,70-74
+16.01.32,3,Kedaton Peninjauan Raya,age_group,70-74,perempuan,118,jiwa,2025,registration,total_population,3.2,32,,70-74
+16.01.32,3,Kedaton Peninjauan Raya,age_group,70-74,,253,jiwa,2025,registration,total_population,3.2,32,,70-74
+16.01.32,3,Kedaton Peninjauan Raya,age_group,75+,laki_laki,177,jiwa,2025,registration,total_population,3.2,32,,75+
+16.01.32,3,Kedaton Peninjauan Raya,age_group,75+,perempuan,195,jiwa,2025,registration,total_population,3.2,32,,75+
+16.01.32,3,Kedaton Peninjauan Raya,age_group,75+,,372,jiwa,2025,registration,total_population,3.2,32,,75+
+16.01.32,3,Kedaton Peninjauan Raya,sex,laki_laki,,7129,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+16.01.32,3,Kedaton Peninjauan Raya,sex,perempuan,,6639,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+16.01.32,3,Kedaton Peninjauan Raya,total,total,,13768,jiwa,2025,registration,total_population,3.2,32,,

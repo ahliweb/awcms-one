@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.04.19.2004,4,Bayas Jaya,sex,laki_laki,,1787,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.19.2004,4,Bayas Jaya,sex,perempuan,,1746,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.19.2004,4,Bayas Jaya,total,total,,3533,jiwa,2026,registration,total_population,3.1,29,,
+14.04.19.2001,4,Pekan Tua,sex,laki_laki,,1918,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.19.2001,4,Pekan Tua,sex,perempuan,,1718,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.19.2001,4,Pekan Tua,total,total,,3636,jiwa,2026,registration,total_population,3.1,29,,
+14.04.19.1002,4,Kempas Jaya,sex,laki_laki,,3983,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.19.1002,4,Kempas Jaya,sex,perempuan,,3787,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.19.1002,4,Kempas Jaya,total,total,,7770,jiwa,2026,registration,total_population,3.1,29,,
+14.04.19.2005,4,Sungai Ara,sex,laki_laki,,1972,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.19.2005,4,Sungai Ara,sex,perempuan,,1837,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.19.2005,4,Sungai Ara,total,total,,3809,jiwa,2026,registration,total_population,3.1,29,,
+14.04.19.1007,4,Harapan Tani,sex,laki_laki,,2534,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.19.1007,4,Harapan Tani,sex,perempuan,,2398,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.19.1007,4,Harapan Tani,total,total,,4932,jiwa,2026,registration,total_population,3.1,29,,
+14.04.19.2008,4,Karya Tani,sex,laki_laki,,624,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.19.2008,4,Karya Tani,sex,perempuan,,596,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.19.2008,4,Karya Tani,total,total,,1220,jiwa,2026,registration,total_population,3.1,29,,
+14.04.19.2003,4,Rumbai Jaya,sex,laki_laki,,2204,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.19.2003,4,Rumbai Jaya,sex,perempuan,,2116,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.19.2003,4,Rumbai Jaya,total,total,,4320,jiwa,2026,registration,total_population,3.1,29,,
+14.04.19.2006,4,Sungai Gantang,sex,laki_laki,,4514,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.19.2006,4,Sungai Gantang,sex,perempuan,,4281,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.19.2006,4,Sungai Gantang,total,total,,8795,jiwa,2026,registration,total_population,3.1,29,,
+14.04.19.2012,4,Sungai Rabit,sex,laki_laki,,235,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.19.2012,4,Sungai Rabit,sex,perempuan,,241,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.19.2012,4,Sungai Rabit,total,total,,476,jiwa,2026,registration,total_population,3.1,29,,
+14.04.19.2009,4,Kerta Jaya,sex,laki_laki,,467,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.19.2009,4,Kerta Jaya,sex,perempuan,,450,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.19.2009,4,Kerta Jaya,total,total,,917,jiwa,2026,registration,total_population,3.1,29,,
+14.04.19.2010,4,Kulim Jaya,sex,laki_laki,,476,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.19.2010,4,Kulim Jaya,sex,perempuan,,436,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.19.2010,4,Kulim Jaya,total,total,,912,jiwa,2026,registration,total_population,3.1,29,,
+14.04.19.2011,4,Danau Pulai Indah,sex,laki_laki,,1634,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.19.2011,4,Danau Pulai Indah,sex,perempuan,,1594,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.19.2011,4,Danau Pulai Indah,total,total,,3228,jiwa,2026,registration,total_population,3.1,29,,
+14.04.19,3,Kempas,sex,laki_laki,,22348,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.19,3,Kempas,sex,perempuan,,21200,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.19,3,Kempas,total,total,,43548,jiwa,2026,registration,total_population,3.1,29,,

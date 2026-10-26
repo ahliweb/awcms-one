@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.71.03.1007,4,Sentosa,sex,laki_laki,,8537,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.71.03.1007,4,Sentosa,sex,perempuan,,8436,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.03.1007,4,Sentosa,total,total,,16973,jiwa,2025,registration,total_population,3.1,32,,
+16.71.03.1005,4,Enam-Belas Ulu,sex,laki_laki,,15504,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.71.03.1005,4,Enam-Belas Ulu,sex,perempuan,,15355,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.03.1005,4,Enam-Belas Ulu,total,total,,30859,jiwa,2025,registration,total_population,3.1,32,,
+16.71.03.1006,4,Tanggatakat,sex,laki_laki,,9573,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.71.03.1006,4,Tanggatakat,sex,perempuan,,9456,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.03.1006,4,Tanggatakat,total,total,,19029,jiwa,2025,registration,total_population,3.1,32,,
+16.71.03.1004,4,Empat-Belas Ulu,sex,laki_laki,,6764,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.71.03.1004,4,Empat-Belas Ulu,sex,perempuan,,6642,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.03.1004,4,Empat-Belas Ulu,total,total,,13406,jiwa,2025,registration,total_population,3.1,32,,
+16.71.03.1003,4,Tiga-Belas Ulu,sex,laki_laki,,5947,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.71.03.1003,4,Tiga-Belas Ulu,sex,perempuan,,5832,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.03.1003,4,Tiga-Belas Ulu,total,total,,11779,jiwa,2025,registration,total_population,3.1,32,,
+16.71.03.1002,4,Dua-Belas Ulu,sex,laki_laki,,2980,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.71.03.1002,4,Dua-Belas Ulu,sex,perempuan,,2902,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.03.1002,4,Dua-Belas Ulu,total,total,,5882,jiwa,2025,registration,total_population,3.1,32,,
+16.71.03.1001,4,Sebelas Ulu,sex,laki_laki,,3835,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.71.03.1001,4,Sebelas Ulu,sex,perempuan,,3590,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.03.1001,4,Sebelas Ulu,total,total,,7425,jiwa,2025,registration,total_population,3.1,32,,
+16.71.03,3,Seberang Ulu Dua,sex,laki_laki,,53140,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.71.03,3,Seberang Ulu Dua,sex,perempuan,,52213,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.03,3,Seberang Ulu Dua,total,total,,105353,jiwa,2025,registration,total_population,3.1,32,,

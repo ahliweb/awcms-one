@@ -1,0 +1,23 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.02.12.2003,4,Pulau Baru,sex,perempuan,,775,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+15.02.12.2003,4,Pulau Baru,total,total,,1572,jiwa,2025,registration,total_population,3.1,22,,
+15.02.12.2007,4,Rantau Alai,sex,perempuan,,971,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+15.02.12.2007,4,Rantau Alai,total,total,,1972,jiwa,2025,registration,total_population,3.1,22,,
+15.02.12.2001,4,Lubuk Gaung,sex,perempuan,,626,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+15.02.12.2001,4,Lubuk Gaung,total,total,,1279,jiwa,2025,registration,total_population,3.1,22,,
+15.02.12.2005,4,Titian Teras,sex,perempuan,,567,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+15.02.12.2005,4,Titian Teras,total,total,,1191,jiwa,2025,registration,total_population,3.1,22,,
+15.02.12.2002,4,Salam Buku,sex,perempuan,,1486,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+15.02.12.2002,4,Salam Buku,total,total,,2985,jiwa,2025,registration,total_population,3.1,22,,
+15.02.12.2006,4,Kederasan Panjang,sex,perempuan,,292,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+15.02.12.2006,4,Kederasan Panjang,total,total,,596,jiwa,2025,registration,total_population,3.1,22,,
+15.02.12.2010,4,Pulau Layang,sex,perempuan,,463,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+15.02.12.2010,4,Pulau Layang,total,total,,933,jiwa,2025,registration,total_population,3.1,22,,
+15.02.12.2009,4,Pelangki,sex,perempuan,,464,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+15.02.12.2009,4,Pelangki,total,total,,948,jiwa,2025,registration,total_population,3.1,22,,
+15.02.12.2004,4,Nibung,sex,perempuan,,342,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+15.02.12.2004,4,Nibung,total,total,,712,jiwa,2025,registration,total_population,3.1,22,,
+15.02.12.2008,4,Tambang Besi,sex,perempuan,,290,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+15.02.12.2008,4,Tambang Besi,total,total,,632,jiwa,2025,registration,total_population,3.1,22,,
+15.02.12,3,Batang Masumai,sex,perempuan,,6276,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+15.02.12,3,Batang Masumai,total,total,,12820,jiwa,2025,registration,total_population,3.1,22,,

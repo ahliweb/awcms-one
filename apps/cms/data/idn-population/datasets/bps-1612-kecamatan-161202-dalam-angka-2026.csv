@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.12.02.2012,4,Tambak,sex,laki_laki,,573,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.12.02.2012,4,Tambak,sex,perempuan,,531,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.12.02.2012,4,Tambak,total,total,,1104,jiwa,2025,registration,total_population,3.1,23,,
+16.12.02.2001,4,Suka Rami,sex,laki_laki,,725,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.12.02.2001,4,Suka Rami,sex,perempuan,,690,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.12.02.2001,4,Suka Rami,total,total,,1415,jiwa,2025,registration,total_population,3.1,23,,
+16.12.02.2002,4,Tanjung Baru,sex,laki_laki,,632,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.12.02.2002,4,Tanjung Baru,sex,perempuan,,590,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.12.02.2002,4,Tanjung Baru,total,total,,1222,jiwa,2025,registration,total_population,3.1,23,,
+16.12.02.2013,4,Muara Ikan,sex,laki_laki,,464,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.12.02.2013,4,Muara Ikan,sex,perempuan,,433,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.12.02.2013,4,Muara Ikan,total,total,,897,jiwa,2025,registration,total_population,3.1,23,,
+16.12.02.2009,4,Kota Baru,sex,laki_laki,,1135,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.12.02.2009,4,Kota Baru,sex,perempuan,,1085,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.12.02.2009,4,Kota Baru,total,total,,2220,jiwa,2025,registration,total_population,3.1,23,,
+16.12.02.2004,4,Tanding Marga,sex,laki_laki,,1450,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.12.02.2004,4,Tanding Marga,sex,perempuan,,1336,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.12.02.2004,4,Tanding Marga,total,total,,2786,jiwa,2025,registration,total_population,3.1,23,,
+16.12.02.2005,4,Karang Tanding,sex,laki_laki,,990,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.12.02.2005,4,Karang Tanding,sex,perempuan,,939,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.12.02.2005,4,Karang Tanding,total,total,,1929,jiwa,2025,registration,total_population,3.1,23,,
+16.12.02.2006,4,Lubuk Tampui,sex,laki_laki,,823,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.12.02.2006,4,Lubuk Tampui,sex,perempuan,,825,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.12.02.2006,4,Lubuk Tampui,total,total,,1648,jiwa,2025,registration,total_population,3.1,23,,
+16.12.02.2003,4,Prabumenang,sex,laki_laki,,622,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.12.02.2003,4,Prabumenang,sex,perempuan,,607,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.12.02.2003,4,Prabumenang,total,total,,1229,jiwa,2025,registration,total_population,3.1,23,,
+16.12.02.2008,4,Tempirai Selatan,sex,laki_laki,,2075,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.12.02.2008,4,Tempirai Selatan,sex,perempuan,,2047,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.12.02.2008,4,Tempirai Selatan,total,total,,4122,jiwa,2025,registration,total_population,3.1,23,,
+16.12.02.2010,4,Tempirai Utara,sex,laki_laki,,1023,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.12.02.2010,4,Tempirai Utara,sex,perempuan,,992,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.12.02.2010,4,Tempirai Utara,total,total,,2015,jiwa,2025,registration,total_population,3.1,23,,
+16.12.02.2011,4,Tempirai Timur,sex,laki_laki,,784,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.12.02.2011,4,Tempirai Timur,sex,perempuan,,795,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.12.02.2011,4,Tempirai Timur,total,total,,1579,jiwa,2025,registration,total_population,3.1,23,,
+16.12.02.2007,4,Tempirai,sex,laki_laki,,1622,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.12.02.2007,4,Tempirai,sex,perempuan,,1668,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.12.02.2007,4,Tempirai,total,total,,3290,jiwa,2025,registration,total_population,3.1,23,,
+16.12.02,3,Penukal Utara,sex,laki_laki,,12918,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.12.02,3,Penukal Utara,sex,perempuan,,12538,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.12.02,3,Penukal Utara,total,total,,25456,jiwa,2025,registration,total_population,3.1,23,,

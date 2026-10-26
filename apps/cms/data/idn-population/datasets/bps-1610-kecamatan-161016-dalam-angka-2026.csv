@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.10.16.2001,4,Tebedak I,sex,laki_laki,,1190,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.16.2001,4,Tebedak I,sex,perempuan,,1135,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.16.2001,4,Tebedak I,total,total,,2325,jiwa,2025,registration,total_population,3.1,27,,
+16.10.16.2002,4,Lubuk Bandung,sex,laki_laki,,779,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.16.2002,4,Lubuk Bandung,sex,perempuan,,748,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.16.2002,4,Lubuk Bandung,total,total,,1527,jiwa,2025,registration,total_population,3.1,27,,
+16.10.16.2007,4,Rengas I,sex,laki_laki,,991,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.16.2007,4,Rengas I,sex,perempuan,,938,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.16.2007,4,Rengas I,total,total,,1929,jiwa,2025,registration,total_population,3.1,27,,
+16.10.16.2008,4,Paya Besar,sex,laki_laki,,645,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.16.2008,4,Paya Besar,sex,perempuan,,632,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.16.2008,4,Paya Besar,total,total,,1277,jiwa,2025,registration,total_population,3.1,27,,
+16.10.16.2003,4,Talang Seleman,sex,laki_laki,,1086,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.16.2003,4,Talang Seleman,sex,perempuan,,1052,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.16.2003,4,Talang Seleman,total,total,,2138,jiwa,2025,registration,total_population,3.1,27,,
+16.10.16.1013,4,Kel. Payaraman Timur,sex,laki_laki,,1243,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.16.1013,4,Kel. Payaraman Timur,sex,perempuan,,1210,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.16.1013,4,Kel. Payaraman Timur,total,total,,2453,jiwa,2025,registration,total_population,3.1,27,,
+16.10.16.2006,4,Seri Kembang I,sex,laki_laki,,1338,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.16.2006,4,Seri Kembang I,sex,perempuan,,1358,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.16.2006,4,Seri Kembang I,total,total,,2696,jiwa,2025,registration,total_population,3.1,27,,
+16.10.16.2005,4,Tanjung Lalang,sex,laki_laki,,1662,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.16.2005,4,Tanjung Lalang,sex,perempuan,,1606,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.16.2005,4,Tanjung Lalang,total,total,,3268,jiwa,2025,registration,total_population,3.1,27,,
+16.10.16.2010,4,Seri Kembang II,sex,laki_laki,,788,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.16.2010,4,Seri Kembang II,sex,perempuan,,802,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.16.2010,4,Seri Kembang II,total,total,,1590,jiwa,2025,registration,total_population,3.1,27,,
+16.10.16.2011,4,Seri Kembang III,sex,laki_laki,,1004,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.16.2011,4,Seri Kembang III,sex,perempuan,,1045,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.16.2011,4,Seri Kembang III,total,total,,2049,jiwa,2025,registration,total_population,3.1,27,,
+16.10.16.2004,4,Tebedak II,sex,laki_laki,,1275,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.16.2004,4,Tebedak II,sex,perempuan,,1203,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.16.2004,4,Tebedak II,total,total,,2478,jiwa,2025,registration,total_population,3.1,27,,
+16.10.16.2009,4,Rengas II,sex,laki_laki,,900,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.16.2009,4,Rengas II,sex,perempuan,,888,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.16.2009,4,Rengas II,total,total,,1788,jiwa,2025,registration,total_population,3.1,27,,
+16.10.16.1012,4,Kel. Payaraman Barat,sex,laki_laki,,1198,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.16.1012,4,Kel. Payaraman Barat,sex,perempuan,,1235,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.16.1012,4,Kel. Payaraman Barat,total,total,,2433,jiwa,2025,registration,total_population,3.1,27,,
+16.10.16,3,Payaraman,sex,laki_laki,,14099,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.16,3,Payaraman,sex,perempuan,,13852,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.16,3,Payaraman,total,total,,27951,jiwa,2025,registration,total_population,3.1,27,,
+16.10.16,3,Payaraman,age_group,0-4,laki_laki,998,jiwa,2025,registration,total_population,3.2,29,,0–4
+16.10.16,3,Payaraman,age_group,0-4,perempuan,908,jiwa,2025,registration,total_population,3.2,29,,0–4
+16.10.16,3,Payaraman,age_group,0-4,,1906,jiwa,2025,registration,total_population,3.2,29,,0–4
+16.10.16,3,Payaraman,age_group,5-9,laki_laki,1303,jiwa,2025,registration,total_population,3.2,29,,5–9
+16.10.16,3,Payaraman,age_group,5-9,perempuan,1259,jiwa,2025,registration,total_population,3.2,29,,5–9
+16.10.16,3,Payaraman,age_group,5-9,,2562,jiwa,2025,registration,total_population,3.2,29,,5–9
+16.10.16,3,Payaraman,age_group,10-14,laki_laki,1416,jiwa,2025,registration,total_population,3.2,29,,10–14
+16.10.16,3,Payaraman,age_group,10-14,perempuan,1328,jiwa,2025,registration,total_population,3.2,29,,10–14
+16.10.16,3,Payaraman,age_group,10-14,,2744,jiwa,2025,registration,total_population,3.2,29,,10–14
+16.10.16,3,Payaraman,age_group,15-19,laki_laki,1388,jiwa,2025,registration,total_population,3.2,29,,15–19
+16.10.16,3,Payaraman,age_group,15-19,perempuan,1221,jiwa,2025,registration,total_population,3.2,29,,15–19
+16.10.16,3,Payaraman,age_group,15-19,,2609,jiwa,2025,registration,total_population,3.2,29,,15–19
+16.10.16,3,Payaraman,age_group,20-24,laki_laki,1371,jiwa,2025,registration,total_population,3.2,29,,20–24
+16.10.16,3,Payaraman,age_group,20-24,perempuan,1274,jiwa,2025,registration,total_population,3.2,29,,20–24
+16.10.16,3,Payaraman,age_group,20-24,,2645,jiwa,2025,registration,total_population,3.2,29,,20–24
+16.10.16,3,Payaraman,age_group,25-29,laki_laki,1117,jiwa,2025,registration,total_population,3.2,29,,25–29
+16.10.16,3,Payaraman,age_group,25-29,perempuan,1026,jiwa,2025,registration,total_population,3.2,29,,25–29
+16.10.16,3,Payaraman,age_group,25-29,,2143,jiwa,2025,registration,total_population,3.2,29,,25–29
+16.10.16,3,Payaraman,age_group,30-34,laki_laki,935,jiwa,2025,registration,total_population,3.2,29,,30–34
+16.10.16,3,Payaraman,age_group,30-34,perempuan,886,jiwa,2025,registration,total_population,3.2,29,,30–34
+16.10.16,3,Payaraman,age_group,30-34,,1821,jiwa,2025,registration,total_population,3.2,29,,30–34
+16.10.16,3,Payaraman,age_group,35-39,laki_laki,1084,jiwa,2025,registration,total_population,3.2,29,,35–39
+16.10.16,3,Payaraman,age_group,35-39,perempuan,1045,jiwa,2025,registration,total_population,3.2,29,,35–39
+16.10.16,3,Payaraman,age_group,35-39,,2129,jiwa,2025,registration,total_population,3.2,29,,35–39
+16.10.16,3,Payaraman,age_group,40-44,laki_laki,1029,jiwa,2025,registration,total_population,3.2,29,,40–44
+16.10.16,3,Payaraman,age_group,40-44,perempuan,1067,jiwa,2025,registration,total_population,3.2,29,,40–44
+16.10.16,3,Payaraman,age_group,40-44,,2096,jiwa,2025,registration,total_population,3.2,29,,40–44
+16.10.16,3,Payaraman,age_group,45-49,laki_laki,935,jiwa,2025,registration,total_population,3.2,29,,45–49
+16.10.16,3,Payaraman,age_group,45-49,perempuan,982,jiwa,2025,registration,total_population,3.2,29,,45–49
+16.10.16,3,Payaraman,age_group,45-49,,1917,jiwa,2025,registration,total_population,3.2,29,,45–49
+16.10.16,3,Payaraman,age_group,50-54,laki_laki,739,jiwa,2025,registration,total_population,3.2,29,,50–54
+16.10.16,3,Payaraman,age_group,50-54,perempuan,801,jiwa,2025,registration,total_population,3.2,29,,50–54
+16.10.16,3,Payaraman,age_group,50-54,,1540,jiwa,2025,registration,total_population,3.2,29,,50–54
+16.10.16,3,Payaraman,age_group,55-59,laki_laki,612,jiwa,2025,registration,total_population,3.2,29,,55–59
+16.10.16,3,Payaraman,age_group,55-59,perempuan,676,jiwa,2025,registration,total_population,3.2,29,,55–59
+16.10.16,3,Payaraman,age_group,55-59,,1288,jiwa,2025,registration,total_population,3.2,29,,55–59
+16.10.16,3,Payaraman,age_group,60-64,laki_laki,459,jiwa,2025,registration,total_population,3.2,29,,60–64
+16.10.16,3,Payaraman,age_group,60-64,perempuan,490,jiwa,2025,registration,total_population,3.2,29,,60–64
+16.10.16,3,Payaraman,age_group,60-64,,949,jiwa,2025,registration,total_population,3.2,29,,60–64
+16.10.16,3,Payaraman,age_group,65-69,laki_laki,325,jiwa,2025,registration,total_population,3.2,29,,65–69
+16.10.16,3,Payaraman,age_group,65-69,perempuan,378,jiwa,2025,registration,total_population,3.2,29,,65–69
+16.10.16,3,Payaraman,age_group,65-69,,703,jiwa,2025,registration,total_population,3.2,29,,65–69
+16.10.16,3,Payaraman,age_group,70-75,laki_laki,184,jiwa,2025,registration,total_population,3.2,29,,70–75
+16.10.16,3,Payaraman,age_group,70-75,perempuan,226,jiwa,2025,registration,total_population,3.2,29,,70–75
+16.10.16,3,Payaraman,age_group,70-75,,410,jiwa,2025,registration,total_population,3.2,29,,70–75
+16.10.16,3,Payaraman,age_group,75+,laki_laki,204,jiwa,2025,registration,total_population,3.2,29,,>75
+16.10.16,3,Payaraman,age_group,75+,perempuan,285,jiwa,2025,registration,total_population,3.2,29,,>75
+16.10.16,3,Payaraman,age_group,75+,,489,jiwa,2025,registration,total_population,3.2,29,,>75
+16.10.16,3,Payaraman,sex,laki_laki,,14099,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+16.10.16,3,Payaraman,sex,perempuan,,13852,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+16.10.16,3,Payaraman,total,total,,27951,jiwa,2025,registration,total_population,3.2,29,,

@@ -1,0 +1,51 @@
+{
+  "datasetCode": "bps-1409-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "14.07",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Rokan Hilir Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Rokan Hilir",
+  "publisherDomain": "1409",
+  "publisherWebsite": "https://rohilkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Rokan Hilir (https://rohilkab.bps.go.id), publikasi \"Kabupaten Rokan Hilir Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1409",
+  "publicationNumber": "14090.26004",
+  "issn": "2355-4827",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://rohilkab.bps.go.id/id/publication/2026/02/27/607877c9385caa5b4010e9a6/kabupaten-rokan-hilir-dalam-angka-2026.html",
+  "sourceFileSha256": "d57223925651418fd5ca7ac29d31df6c3b516befee9bed3853a741d1d3d93bc1",
+  "sourceFileBytes": 6526330,
+  "sourcePages": [31, 181],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Rokan Hilir.",
+  "csvPath": "datasets/bps-1409-dalam-angka-2026.csv",
+  "csvSha256": "2a2187fdecfd34a70ee61453505dc1aa3720a6fdee4795e51ba094f3eae15054",
+  "tablesUsed": [
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Rokan Hilir (jiwa) , 2024",
+      "printedPages": [31],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Rokan Hilir (rupiah), 2024 dan 2025",
+      "printedPages": [181],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 3.1.1 (total-by-region) could not be read reliably and is not included (heading says jiwa but only some figures carry decimals)"
+  ]
+}
