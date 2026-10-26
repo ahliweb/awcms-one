@@ -1,0 +1,196 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.06.10,3,Katingan Kuala,total,total,,18.74,ribu_jiwa,2025,projection,total_population,3.1.1,53,,
+62.06.09,3,Mendawai,total,total,,4.38,ribu_jiwa,2025,projection,total_population,3.1.1,53,,
+62.06.01,3,Kamipang,total,total,,7.72,ribu_jiwa,2025,projection,total_population,3.1.1,53,,
+62.06.11,3,Tasik Payawan,total,total,,8.84,ribu_jiwa,2025,projection,total_population,3.1.1,53,,
+62.06.02,3,Katingan Hilir,total,total,,43.92,ribu_jiwa,2025,projection,total_population,3.1.1,53,,
+62.06.03,3,Tewang Sangalang Garing,total,total,,14.00,ribu_jiwa,2025,projection,total_population,3.1.1,53,,
+62.06.04,3,Pulau Malan,total,total,,11.68,ribu_jiwa,2025,projection,total_population,3.1.1,53,,
+62.06.05,3,Katingan Tengah,total,total,,31.09,ribu_jiwa,2025,projection,total_population,3.1.1,53,,
+62.06.06,3,Sanaman Mantikei,total,total,,11.71,ribu_jiwa,2025,projection,total_population,3.1.1,53,,
+62.06.12,3,Petak Malai,total,total,,3.66,ribu_jiwa,2025,projection,total_population,3.1.1,53,,
+62.06.07,3,Marikit,total,total,,6.96,ribu_jiwa,2025,projection,total_population,3.1.1,53,,
+62.06.08,3,Katingan Hulu,total,total,,8.40,ribu_jiwa,2025,projection,total_population,3.1.1,53,,
+62.06.13,3,Bukit Raya,total,total,,3.25,ribu_jiwa,2025,projection,total_population,3.1.1,53,,
+62.06,2,Katingan1,total,total,,174.34,ribu_jiwa,2025,projection,total_population,3.1.1,53,,
+62.06,2,Kabupaten Katingan,age_group,0-4,laki_laki,8.26,ribu_jiwa,2025,projection,total_population,3.1.2,56,,0–4
+62.06,2,Kabupaten Katingan,age_group,0-4,perempuan,7.93,ribu_jiwa,2025,projection,total_population,3.1.2,56,,0–4
+62.06,2,Kabupaten Katingan,age_group,0-4,,16.19,ribu_jiwa,2025,projection,total_population,3.1.2,56,,0–4
+62.06,2,Kabupaten Katingan,age_group,5-9,laki_laki,7.45,ribu_jiwa,2025,projection,total_population,3.1.2,56,,5–9
+62.06,2,Kabupaten Katingan,age_group,5-9,perempuan,7.05,ribu_jiwa,2025,projection,total_population,3.1.2,56,,5–9
+62.06,2,Kabupaten Katingan,age_group,5-9,,14.50,ribu_jiwa,2025,projection,total_population,3.1.2,56,,5–9
+62.06,2,Kabupaten Katingan,age_group,10-14,laki_laki,7.67,ribu_jiwa,2025,projection,total_population,3.1.2,56,,10–14
+62.06,2,Kabupaten Katingan,age_group,10-14,perempuan,7.26,ribu_jiwa,2025,projection,total_population,3.1.2,56,,10–14
+62.06,2,Kabupaten Katingan,age_group,10-14,,14.93,ribu_jiwa,2025,projection,total_population,3.1.2,56,,10–14
+62.06,2,Kabupaten Katingan,age_group,15-19,laki_laki,8.00,ribu_jiwa,2025,projection,total_population,3.1.2,56,,15–19
+62.06,2,Kabupaten Katingan,age_group,15-19,perempuan,7.59,ribu_jiwa,2025,projection,total_population,3.1.2,56,,15–19
+62.06,2,Kabupaten Katingan,age_group,15-19,,15.60,ribu_jiwa,2025,projection,total_population,3.1.2,56,,15–19
+62.06,2,Kabupaten Katingan,age_group,20-24,laki_laki,7.58,ribu_jiwa,2025,projection,total_population,3.1.2,56,,20–24
+62.06,2,Kabupaten Katingan,age_group,20-24,perempuan,7.19,ribu_jiwa,2025,projection,total_population,3.1.2,56,,20–24
+62.06,2,Kabupaten Katingan,age_group,20-24,,14.78,ribu_jiwa,2025,projection,total_population,3.1.2,56,,20–24
+62.06,2,Kabupaten Katingan,age_group,25-29,laki_laki,6.80,ribu_jiwa,2025,projection,total_population,3.1.2,56,,25–29
+62.06,2,Kabupaten Katingan,age_group,25-29,perempuan,6.68,ribu_jiwa,2025,projection,total_population,3.1.2,56,,25–29
+62.06,2,Kabupaten Katingan,age_group,25-29,,13.48,ribu_jiwa,2025,projection,total_population,3.1.2,56,,25–29
+62.06,2,Kabupaten Katingan,age_group,30-34,laki_laki,6.96,ribu_jiwa,2025,projection,total_population,3.1.2,56,,30–34
+62.06,2,Kabupaten Katingan,age_group,30-34,perempuan,6.82,ribu_jiwa,2025,projection,total_population,3.1.2,56,,30–34
+62.06,2,Kabupaten Katingan,age_group,30-34,,13.79,ribu_jiwa,2025,projection,total_population,3.1.2,56,,30–34
+62.06,2,Kabupaten Katingan,age_group,35-39,laki_laki,7.12,ribu_jiwa,2025,projection,total_population,3.1.2,56,,35–39
+62.06,2,Kabupaten Katingan,age_group,35-39,perempuan,6.53,ribu_jiwa,2025,projection,total_population,3.1.2,56,,35–39
+62.06,2,Kabupaten Katingan,age_group,35-39,,13.66,ribu_jiwa,2025,projection,total_population,3.1.2,56,,35–39
+62.06,2,Kabupaten Katingan,age_group,40-44,laki_laki,6.57,ribu_jiwa,2025,projection,total_population,3.1.2,56,,40–44
+62.06,2,Kabupaten Katingan,age_group,40-44,perempuan,6.11,ribu_jiwa,2025,projection,total_population,3.1.2,56,,40–44
+62.06,2,Kabupaten Katingan,age_group,40-44,,12.68,ribu_jiwa,2025,projection,total_population,3.1.2,56,,40–44
+62.06,2,Kabupaten Katingan,age_group,45-49,laki_laki,6.20,ribu_jiwa,2025,projection,total_population,3.1.2,56,,45–49
+62.06,2,Kabupaten Katingan,age_group,45-49,perempuan,5.53,ribu_jiwa,2025,projection,total_population,3.1.2,56,,45–49
+62.06,2,Kabupaten Katingan,age_group,45-49,,11.73,ribu_jiwa,2025,projection,total_population,3.1.2,56,,45–49
+62.06,2,Kabupaten Katingan,age_group,50-54,laki_laki,5.37,ribu_jiwa,2025,projection,total_population,3.1.2,56,,50–54
+62.06,2,Kabupaten Katingan,age_group,50-54,perempuan,4.72,ribu_jiwa,2025,projection,total_population,3.1.2,56,,50–54
+62.06,2,Kabupaten Katingan,age_group,50-54,,10.09,ribu_jiwa,2025,projection,total_population,3.1.2,56,,50–54
+62.06,2,Kabupaten Katingan,age_group,55-59,laki_laki,4.34,ribu_jiwa,2025,projection,total_population,3.1.2,56,,55–59
+62.06,2,Kabupaten Katingan,age_group,55-59,perempuan,3.65,ribu_jiwa,2025,projection,total_population,3.1.2,56,,55–59
+62.06,2,Kabupaten Katingan,age_group,55-59,,7.99,ribu_jiwa,2025,projection,total_population,3.1.2,56,,55–59
+62.06,2,Kabupaten Katingan,age_group,60-64,laki_laki,3.26,ribu_jiwa,2025,projection,total_population,3.1.2,56,,60–64
+62.06,2,Kabupaten Katingan,age_group,60-64,perempuan,2.83,ribu_jiwa,2025,projection,total_population,3.1.2,56,,60–64
+62.06,2,Kabupaten Katingan,age_group,60-64,,6.09,ribu_jiwa,2025,projection,total_population,3.1.2,56,,60–64
+62.06,2,Kabupaten Katingan,age_group,65-69,laki_laki,2.02,ribu_jiwa,2025,projection,total_population,3.1.2,56,,65–69
+62.06,2,Kabupaten Katingan,age_group,65-69,perempuan,1.86,ribu_jiwa,2025,projection,total_population,3.1.2,56,,65–69
+62.06,2,Kabupaten Katingan,age_group,65-69,,3.88,ribu_jiwa,2025,projection,total_population,3.1.2,56,,65–69
+62.06,2,Kabupaten Katingan,age_group,70-74,laki_laki,1.27,ribu_jiwa,2025,projection,total_population,3.1.2,56,,70–74
+62.06,2,Kabupaten Katingan,age_group,70-74,perempuan,1.27,ribu_jiwa,2025,projection,total_population,3.1.2,56,,70–74
+62.06,2,Kabupaten Katingan,age_group,70-74,,2.54,ribu_jiwa,2025,projection,total_population,3.1.2,56,,70–74
+62.06,2,Kabupaten Katingan,age_group,75+,laki_laki,1.24,ribu_jiwa,2025,projection,total_population,3.1.2,56,,75+
+62.06,2,Kabupaten Katingan,age_group,75+,perempuan,1.20,ribu_jiwa,2025,projection,total_population,3.1.2,56,,75+
+62.06,2,Kabupaten Katingan,age_group,75+,,2.44,ribu_jiwa,2025,projection,total_population,3.1.2,56,,75+
+62.06,2,Katingan,sex,laki_laki,,90.12,ribu_jiwa,2025,projection,total_population,3.1.2,56,,Laki-Laki
+62.06,2,Katingan,sex,perempuan,,84.22,ribu_jiwa,2025,projection,total_population,3.1.2,56,,Perempuan
+62.06,2,Katingan,total,total,,174.34,ribu_jiwa,2025,projection,total_population,3.1.2,56,,
+62.06.10,3,Katingan Kuala,religion,islam,,7525,jiwa,2025,registration,total_population,4.3.1,158,,Islam
+62.06.10,3,Katingan Kuala,religion,kristen,,128,jiwa,2025,registration,total_population,4.3.1,158,,Protestan
+62.06.10,3,Katingan Kuala,religion,katolik,,13,jiwa,2025,registration,total_population,4.3.1,158,,Katolik
+62.06.10,3,Katingan Kuala,religion,hindu,,128,jiwa,2025,registration,total_population,4.3.1,158,,Hindu
+62.06.10,3,Katingan Kuala,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,158,nil,Budha
+62.06.10,3,Katingan Kuala,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,158,nil,Lainnya
+62.06.09,3,Mendawai,religion,islam,,34895,jiwa,2025,registration,total_population,4.3.1,158,,Islam
+62.06.09,3,Mendawai,religion,kristen,,7970,jiwa,2025,registration,total_population,4.3.1,158,,Protestan
+62.06.09,3,Mendawai,religion,katolik,,922,jiwa,2025,registration,total_population,4.3.1,158,,Katolik
+62.06.09,3,Mendawai,religion,hindu,,2131,jiwa,2025,registration,total_population,4.3.1,158,,Hindu
+62.06.09,3,Mendawai,religion,buddha,,7,jiwa,2025,registration,total_population,4.3.1,158,,Budha
+62.06.09,3,Mendawai,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,158,nil,Lainnya
+62.06.01,3,Kamipang,religion,islam,,6657,jiwa,2025,registration,total_population,4.3.1,158,,Islam
+62.06.01,3,Kamipang,religion,kristen,,4414,jiwa,2025,registration,total_population,4.3.1,158,,Protestan
+62.06.01,3,Kamipang,religion,katolik,,128,jiwa,2025,registration,total_population,4.3.1,158,,Katolik
+62.06.01,3,Kamipang,religion,hindu,,4268,jiwa,2025,registration,total_population,4.3.1,158,,Hindu
+62.06.01,3,Kamipang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,158,nil,Budha
+62.06.01,3,Kamipang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,158,nil,Lainnya
+62.06.11,3,Tasik Payawan,religion,islam,,6361,jiwa,2025,registration,total_population,4.3.1,158,,Islam
+62.06.11,3,Tasik Payawan,religion,kristen,,2738,jiwa,2025,registration,total_population,4.3.1,158,,Protestan
+62.06.11,3,Tasik Payawan,religion,katolik,,346,jiwa,2025,registration,total_population,4.3.1,158,,Katolik
+62.06.11,3,Tasik Payawan,religion,hindu,,2323,jiwa,2025,registration,total_population,4.3.1,158,,Hindu
+62.06.11,3,Tasik Payawan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,158,nil,Budha
+62.06.11,3,Tasik Payawan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,158,nil,Lainnya
+62.06.02,3,Katingan Hilir,religion,islam,,18694,jiwa,2025,registration,total_population,4.3.1,158,,Islam
+62.06.02,3,Katingan Hilir,religion,kristen,,8121,jiwa,2025,registration,total_population,4.3.1,158,,Protestan
+62.06.02,3,Katingan Hilir,religion,katolik,,1342,jiwa,2025,registration,total_population,4.3.1,158,,Katolik
+62.06.02,3,Katingan Hilir,religion,hindu,,3429,jiwa,2025,registration,total_population,4.3.1,158,,Hindu
+62.06.02,3,Katingan Hilir,religion,buddha,,6,jiwa,2025,registration,total_population,4.3.1,158,,Budha
+62.06.02,3,Katingan Hilir,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,158,nil,Lainnya
+62.06.03,3,Tewang Sangalang Garing,religion,islam,,3662,jiwa,2025,registration,total_population,4.3.1,158,,Islam
+62.06.03,3,Tewang Sangalang Garing,religion,kristen,,4744,jiwa,2025,registration,total_population,4.3.1,158,,Protestan
+62.06.03,3,Tewang Sangalang Garing,religion,katolik,,205,jiwa,2025,registration,total_population,4.3.1,158,,Katolik
+62.06.03,3,Tewang Sangalang Garing,religion,hindu,,3939,jiwa,2025,registration,total_population,4.3.1,158,,Hindu
+62.06.03,3,Tewang Sangalang Garing,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,158,nil,Budha
+62.06.03,3,Tewang Sangalang Garing,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,158,nil,Lainnya
+62.06.04,3,Pulau Malan,religion,islam,,1496,jiwa,2025,registration,total_population,4.3.1,158,,Islam
+62.06.04,3,Pulau Malan,religion,kristen,,2304,jiwa,2025,registration,total_population,4.3.1,158,,Protestan
+62.06.04,3,Pulau Malan,religion,katolik,,146,jiwa,2025,registration,total_population,4.3.1,158,,Katolik
+62.06.04,3,Pulau Malan,religion,hindu,,4049,jiwa,2025,registration,total_population,4.3.1,158,,Hindu
+62.06.04,3,Pulau Malan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,158,nil,Budha
+62.06.04,3,Pulau Malan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,158,nil,Lainnya
+62.06.05,3,Katingan Tengah,religion,islam,,3567,jiwa,2025,registration,total_population,4.3.1,158,,Islam
+62.06.05,3,Katingan Tengah,religion,kristen,,1916,jiwa,2025,registration,total_population,4.3.1,158,,Protestan
+62.06.05,3,Katingan Tengah,religion,katolik,,203,jiwa,2025,registration,total_population,4.3.1,158,,Katolik
+62.06.05,3,Katingan Tengah,religion,hindu,,3791,jiwa,2025,registration,total_population,4.3.1,158,,Hindu
+62.06.05,3,Katingan Tengah,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,158,nil,Budha
+62.06.05,3,Katingan Tengah,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,158,nil,Lainnya
+62.06.06,3,Sanaman Mantikei,religion,islam,,4798,jiwa,2025,registration,total_population,4.3.1,158,,Islam
+62.06.06,3,Sanaman Mantikei,religion,kristen,,11,jiwa,2025,registration,total_population,4.3.1,158,,Protestan
+62.06.06,3,Sanaman Mantikei,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,158,,Katolik
+62.06.06,3,Sanaman Mantikei,religion,hindu,,8,jiwa,2025,registration,total_population,4.3.1,158,,Hindu
+62.06.06,3,Sanaman Mantikei,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,158,nil,Budha
+62.06.06,3,Sanaman Mantikei,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,158,nil,Lainnya
+62.06.12,3,Petak Malai,religion,islam,,20197,jiwa,2025,registration,total_population,4.3.1,158,,Islam
+62.06.12,3,Petak Malai,religion,kristen,,186,jiwa,2025,registration,total_population,4.3.1,158,,Protestan
+62.06.12,3,Petak Malai,religion,katolik,,7,jiwa,2025,registration,total_population,4.3.1,158,,Katolik
+62.06.12,3,Petak Malai,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,158,nil,Hindu
+62.06.12,3,Petak Malai,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,158,nil,Budha
+62.06.12,3,Petak Malai,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,158,nil,Lainnya
+62.06.07,3,Marikit,religion,islam,,6438,jiwa,2025,registration,total_population,4.3.1,158,,Islam
+62.06.07,3,Marikit,religion,kristen,,906,jiwa,2025,registration,total_population,4.3.1,158,,Protestan
+62.06.07,3,Marikit,religion,katolik,,33,jiwa,2025,registration,total_population,4.3.1,158,,Katolik
+62.06.07,3,Marikit,religion,hindu,,1765,jiwa,2025,registration,total_population,4.3.1,158,,Hindu
+62.06.07,3,Marikit,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,158,,Budha
+62.06.07,3,Marikit,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,158,nil,Lainnya
+62.06.08,3,Katingan Hulu,religion,islam,,653,jiwa,2025,registration,total_population,4.3.1,158,,Islam
+62.06.08,3,Katingan Hulu,religion,kristen,,917,jiwa,2025,registration,total_population,4.3.1,158,,Protestan
+62.06.08,3,Katingan Hulu,religion,katolik,,84,jiwa,2025,registration,total_population,4.3.1,158,,Katolik
+62.06.08,3,Katingan Hulu,religion,hindu,,2448,jiwa,2025,registration,total_population,4.3.1,158,,Hindu
+62.06.08,3,Katingan Hulu,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,158,,Budha
+62.06.08,3,Katingan Hulu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,158,nil,Lainnya
+62.06.13,3,Bukit Raya,religion,islam,,939,jiwa,2025,registration,total_population,4.3.1,158,,Islam
+62.06.13,3,Bukit Raya,religion,kristen,,916,jiwa,2025,registration,total_population,4.3.1,158,,Protestan
+62.06.13,3,Bukit Raya,religion,katolik,,425,jiwa,2025,registration,total_population,4.3.1,158,,Katolik
+62.06.13,3,Bukit Raya,religion,hindu,,1857,jiwa,2025,registration,total_population,4.3.1,158,,Hindu
+62.06.13,3,Bukit Raya,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,158,nil,Budha
+62.06.13,3,Bukit Raya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,158,nil,Lainnya
+62.06,2,Katingan,religion,islam,,115882,jiwa,2025,registration,total_population,4.3.1,158,,Islam
+62.06,2,Katingan,religion,kristen,,35271,jiwa,2025,registration,total_population,4.3.1,158,,Protestan
+62.06,2,Katingan,religion,katolik,,3855,jiwa,2025,registration,total_population,4.3.1,158,,Katolik
+62.06,2,Katingan,religion,hindu,,30136,jiwa,2025,registration,total_population,4.3.1,158,,Hindu
+62.06,2,Katingan,religion,buddha,,19,jiwa,2025,registration,total_population,4.3.1,158,,Budha
+62.06,2,Katingan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,158,nil,Lainnya
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/padi_padian,,93894,rupiah,2024,survey_estimate,per_capita,10.1,370,,Padi-padian
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/padi_padian,,104906,rupiah,2025,survey_estimate,per_capita,10.1,370,,Padi-padian
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/umbi_umbian,,7285,rupiah,2024,survey_estimate,per_capita,10.1,370,,Umbi-umbian
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/umbi_umbian,,9452,rupiah,2025,survey_estimate,per_capita,10.1,370,,Umbi-umbian
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,96437,rupiah,2024,survey_estimate,per_capita,10.1,370,,Ikan/udang/cumi/kerang
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,117441,rupiah,2025,survey_estimate,per_capita,10.1,370,,Ikan/udang/cumi/kerang
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/daging,,59393,rupiah,2024,survey_estimate,per_capita,10.1,370,,Daging
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/daging,,57949,rupiah,2025,survey_estimate,per_capita,10.1,370,,Daging
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/telur_dan_susu,,35396,rupiah,2024,survey_estimate,per_capita,10.1,370,,Telur dan susu
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/telur_dan_susu,,40220,rupiah,2025,survey_estimate,per_capita,10.1,370,,Telur dan susu
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/sayur_sayuran,,73806,rupiah,2024,survey_estimate,per_capita,10.1,370,,Sayur-sayuran
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/sayur_sayuran,,86059,rupiah,2025,survey_estimate,per_capita,10.1,370,,Sayur-sayuran
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/kacang_kacangan,,10652,rupiah,2024,survey_estimate,per_capita,10.1,370,,Kacang-kacangan
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/kacang_kacangan,,13377,rupiah,2025,survey_estimate,per_capita,10.1,370,,Kacang-kacangan
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/buah_buahan,,33534,rupiah,2024,survey_estimate,per_capita,10.1,370,,Buah-buahan
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/buah_buahan,,38468,rupiah,2025,survey_estimate,per_capita,10.1,370,,Buah-buahan
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,20841,rupiah,2024,survey_estimate,per_capita,10.1,370,,Minyak dan kelapa
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,20579,rupiah,2025,survey_estimate,per_capita,10.1,370,,Minyak dan kelapa
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/bahan_minuman,,29049,rupiah,2024,survey_estimate,per_capita,10.1,370,,Bahan minuman
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/bahan_minuman,,32380,rupiah,2025,survey_estimate,per_capita,10.1,370,,Bahan minuman
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/bumbu_bumbuan,,27021,rupiah,2024,survey_estimate,per_capita,10.1,370,,Bumbu-bumbuan
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/bumbu_bumbuan,,29826,rupiah,2025,survey_estimate,per_capita,10.1,370,,Bumbu-bumbuan
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/konsumsi_lainnya,,18993,rupiah,2024,survey_estimate,per_capita,10.1,370,,Konsumsi lainnya
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/konsumsi_lainnya,,18753,rupiah,2025,survey_estimate,per_capita,10.1,370,,Konsumsi lainnya
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,199538,rupiah,2024,survey_estimate,per_capita,10.1,370,,Makanan dan minuman jadi
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,241642,rupiah,2025,survey_estimate,per_capita,10.1,370,,Makanan dan minuman jadi
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/rokok,,98630,rupiah,2024,survey_estimate,per_capita,10.1,370,,Rokok
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/rokok,,115330,rupiah,2025,survey_estimate,per_capita,10.1,370,,Rokok
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/jumlah_makanan,,804470,rupiah,2024,survey_estimate,per_capita,10.1,370,,Jumlah makanan
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/jumlah_makanan,,926380,rupiah,2025,survey_estimate,per_capita,10.1,370,,Jumlah makanan
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,359624,rupiah,2024,survey_estimate,per_capita,10.1,370,,Perumahan dan fasilitas rumah tangga
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,403212,rupiah,2025,survey_estimate,per_capita,10.1,370,,Perumahan dan fasilitas rumah tangga
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,96957,rupiah,2024,survey_estimate,per_capita,10.1,370,,Aneka barang dan jasa
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,124163,rupiah,2025,survey_estimate,per_capita,10.1,370,,Aneka barang dan jasa
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,22175,rupiah,2024,survey_estimate,per_capita,10.1,370,,"Pakaian, alas kaki, dan tutup kepala"
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,25543,rupiah,2025,survey_estimate,per_capita,10.1,370,,"Pakaian, alas kaki, dan tutup kepala"
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/barang_tahan_lama,,24467,rupiah,2024,survey_estimate,per_capita,10.1,370,,Barang tahan lama
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/barang_tahan_lama,,82285,rupiah,2025,survey_estimate,per_capita,10.1,370,,Barang tahan lama
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,26860,rupiah,2024,survey_estimate,per_capita,10.1,370,,"Pajak, pungutan, dan asuransi"
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,42064,rupiah,2025,survey_estimate,per_capita,10.1,370,,"Pajak, pungutan, dan asuransi"
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,3176,rupiah,2024,survey_estimate,per_capita,10.1,370,,Keperluan pesta dan upacara/kenduri
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,5914,rupiah,2025,survey_estimate,per_capita,10.1,370,,Keperluan pesta dan upacara/kenduri
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,533259,rupiah,2024,survey_estimate,per_capita,10.1,370,,Jumlah bukan makanan
+62.06,2,Kabupaten Katingan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,683180,rupiah,2025,survey_estimate,per_capita,10.1,370,,Jumlah bukan makanan
+62.06,2,Kabupaten Katingan,expenditure,total,,1337729,rupiah,2024,survey_estimate,per_capita,10.1,370,,
+62.06,2,Kabupaten Katingan,expenditure,total,,1609560,rupiah,2025,survey_estimate,per_capita,10.1,370,,

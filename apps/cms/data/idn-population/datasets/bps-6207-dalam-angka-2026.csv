@@ -1,0 +1,170 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.09.03,3,Bulik,total,total,,41.62,ribu_jiwa,2025,projection,total_population,3.1.1,78,,
+62.09.06,3,Sematu Jaya,total,total,,13.81,ribu_jiwa,2025,projection,total_population,3.1.1,78,,
+62.09.05,3,Menthobi Raya,total,total,,12.68,ribu_jiwa,2025,projection,total_population,3.1.1,78,,
+62.09.04,3,Bulik Timur,total,total,,10.09,ribu_jiwa,2025,projection,total_population,3.1.1,78,,
+62.09.01,3,Lamandau,total,total,,10.21,ribu_jiwa,2025,projection,total_population,3.1.1,78,,
+62.09.07,3,Belantikan Raya,total,total,,8.02,ribu_jiwa,2025,projection,total_population,3.1.1,78,,
+62.09.02,3,Delang,total,total,,6.01,ribu_jiwa,2025,projection,total_population,3.1.1,78,,
+62.09.08,3,Batangkawa,total,total,,2.78,ribu_jiwa,2025,projection,total_population,3.1.1,78,,
+62.09,2,Kabupaten Lamandau,total,total,,105.21,ribu_jiwa,2025,projection,total_population,3.1.1,78,,
+62.09,2,Kabupaten Lamandau,age_group,0-4,laki_laki,4.57,ribu_jiwa,2025,projection,total_population,3.1.2,81,,0–4
+62.09,2,Kabupaten Lamandau,age_group,0-4,perempuan,4.38,ribu_jiwa,2025,projection,total_population,3.1.2,81,,0–4
+62.09,2,Kabupaten Lamandau,age_group,0-4,,8.95,ribu_jiwa,2025,projection,total_population,3.1.2,81,,0–4
+62.09,2,Kabupaten Lamandau,age_group,5-9,laki_laki,4.48,ribu_jiwa,2025,projection,total_population,3.1.2,81,,5–9
+62.09,2,Kabupaten Lamandau,age_group,5-9,perempuan,4.23,ribu_jiwa,2025,projection,total_population,3.1.2,81,,5–9
+62.09,2,Kabupaten Lamandau,age_group,5-9,,8.71,ribu_jiwa,2025,projection,total_population,3.1.2,81,,5–9
+62.09,2,Kabupaten Lamandau,age_group,10-14,laki_laki,4.11,ribu_jiwa,2025,projection,total_population,3.1.2,81,,10–14
+62.09,2,Kabupaten Lamandau,age_group,10-14,perempuan,3.85,ribu_jiwa,2025,projection,total_population,3.1.2,81,,10–14
+62.09,2,Kabupaten Lamandau,age_group,10-14,,7.96,ribu_jiwa,2025,projection,total_population,3.1.2,81,,10–14
+62.09,2,Kabupaten Lamandau,age_group,15-19,laki_laki,3.88,ribu_jiwa,2025,projection,total_population,3.1.2,81,,15–19
+62.09,2,Kabupaten Lamandau,age_group,15-19,perempuan,3.49,ribu_jiwa,2025,projection,total_population,3.1.2,81,,15–19
+62.09,2,Kabupaten Lamandau,age_group,15-19,,7.37,ribu_jiwa,2025,projection,total_population,3.1.2,81,,15–19
+62.09,2,Kabupaten Lamandau,age_group,20-24,laki_laki,3.87,ribu_jiwa,2025,projection,total_population,3.1.2,81,,20–24
+62.09,2,Kabupaten Lamandau,age_group,20-24,perempuan,3.69,ribu_jiwa,2025,projection,total_population,3.1.2,81,,20–24
+62.09,2,Kabupaten Lamandau,age_group,20-24,,7.56,ribu_jiwa,2025,projection,total_population,3.1.2,81,,20–24
+62.09,2,Kabupaten Lamandau,age_group,25-29,laki_laki,4.91,ribu_jiwa,2025,projection,total_population,3.1.2,81,,25–29
+62.09,2,Kabupaten Lamandau,age_group,25-29,perempuan,4.23,ribu_jiwa,2025,projection,total_population,3.1.2,81,,25–29
+62.09,2,Kabupaten Lamandau,age_group,25-29,,9.15,ribu_jiwa,2025,projection,total_population,3.1.2,81,,25–29
+62.09,2,Kabupaten Lamandau,age_group,30-34,laki_laki,5.22,ribu_jiwa,2025,projection,total_population,3.1.2,81,,30–34
+62.09,2,Kabupaten Lamandau,age_group,30-34,perempuan,4.40,ribu_jiwa,2025,projection,total_population,3.1.2,81,,30–34
+62.09,2,Kabupaten Lamandau,age_group,30-34,,9.62,ribu_jiwa,2025,projection,total_population,3.1.2,81,,30–34
+62.09,2,Kabupaten Lamandau,age_group,35-39,laki_laki,5.12,ribu_jiwa,2025,projection,total_population,3.1.2,81,,35–39
+62.09,2,Kabupaten Lamandau,age_group,35-39,perempuan,4.38,ribu_jiwa,2025,projection,total_population,3.1.2,81,,35–39
+62.09,2,Kabupaten Lamandau,age_group,35-39,,9.50,ribu_jiwa,2025,projection,total_population,3.1.2,81,,35–39
+62.09,2,Kabupaten Lamandau,age_group,40-44,laki_laki,4.79,ribu_jiwa,2025,projection,total_population,3.1.2,81,,40–44
+62.09,2,Kabupaten Lamandau,age_group,40-44,perempuan,4.12,ribu_jiwa,2025,projection,total_population,3.1.2,81,,40–44
+62.09,2,Kabupaten Lamandau,age_group,40-44,,8.92,ribu_jiwa,2025,projection,total_population,3.1.2,81,,40–44
+62.09,2,Kabupaten Lamandau,age_group,45-49,laki_laki,4.32,ribu_jiwa,2025,projection,total_population,3.1.2,81,,45–49
+62.09,2,Kabupaten Lamandau,age_group,45-49,perempuan,3.55,ribu_jiwa,2025,projection,total_population,3.1.2,81,,45–49
+62.09,2,Kabupaten Lamandau,age_group,45-49,,7.87,ribu_jiwa,2025,projection,total_population,3.1.2,81,,45–49
+62.09,2,Kabupaten Lamandau,age_group,50-54,laki_laki,3.33,ribu_jiwa,2025,projection,total_population,3.1.2,81,,50–54
+62.09,2,Kabupaten Lamandau,age_group,50-54,perempuan,2.75,ribu_jiwa,2025,projection,total_population,3.1.2,81,,50–54
+62.09,2,Kabupaten Lamandau,age_group,50-54,,6.08,ribu_jiwa,2025,projection,total_population,3.1.2,81,,50–54
+62.09,2,Kabupaten Lamandau,age_group,55-59,laki_laki,2.59,ribu_jiwa,2025,projection,total_population,3.1.2,81,,55–59
+62.09,2,Kabupaten Lamandau,age_group,55-59,perempuan,2.10,ribu_jiwa,2025,projection,total_population,3.1.2,81,,55–59
+62.09,2,Kabupaten Lamandau,age_group,55-59,,4.69,ribu_jiwa,2025,projection,total_population,3.1.2,81,,55–59
+62.09,2,Kabupaten Lamandau,age_group,60-64,laki_laki,1.93,ribu_jiwa,2025,projection,total_population,3.1.2,81,,60–64
+62.09,2,Kabupaten Lamandau,age_group,60-64,perempuan,1.55,ribu_jiwa,2025,projection,total_population,3.1.2,81,,60–64
+62.09,2,Kabupaten Lamandau,age_group,60-64,,3.48,ribu_jiwa,2025,projection,total_population,3.1.2,81,,60–64
+62.09,2,Kabupaten Lamandau,age_group,65-69,laki_laki,1.27,ribu_jiwa,2025,projection,total_population,3.1.2,81,,65–69
+62.09,2,Kabupaten Lamandau,age_group,65-69,perempuan,1.07,ribu_jiwa,2025,projection,total_population,3.1.2,81,,65–69
+62.09,2,Kabupaten Lamandau,age_group,65-69,,2.34,ribu_jiwa,2025,projection,total_population,3.1.2,81,,65–69
+62.09,2,Kabupaten Lamandau,age_group,70-74,laki_laki,0.82,ribu_jiwa,2025,projection,total_population,3.1.2,81,,70–74
+62.09,2,Kabupaten Lamandau,age_group,70-74,perempuan,0.71,ribu_jiwa,2025,projection,total_population,3.1.2,81,,70–74
+62.09,2,Kabupaten Lamandau,age_group,70-74,,1.53,ribu_jiwa,2025,projection,total_population,3.1.2,81,,70–74
+62.09,2,Kabupaten Lamandau,age_group,75+,laki_laki,0.80,ribu_jiwa,2025,projection,total_population,3.1.2,81,,75+
+62.09,2,Kabupaten Lamandau,age_group,75+,perempuan,0.69,ribu_jiwa,2025,projection,total_population,3.1.2,81,,75+
+62.09,2,Kabupaten Lamandau,age_group,75+,,1.49,ribu_jiwa,2025,projection,total_population,3.1.2,81,,75+
+62.09,2,Kabupaten Lamandau,sex,laki_laki,,56.01,ribu_jiwa,2025,projection,total_population,3.1.2,81,,Laki-laki
+62.09,2,Kabupaten Lamandau,sex,perempuan,,49.20,ribu_jiwa,2025,projection,total_population,3.1.2,81,,Perempuan
+62.09,2,Kabupaten Lamandau,total,total,,105.21,ribu_jiwa,2025,projection,total_population,3.1.2,81,,
+62.09.03,3,Bulik,religion,islam,,32131,jiwa,2025,registration,total_population,4.3.1,189,,Islam
+62.09.03,3,Bulik,religion,kristen,,8098,jiwa,2025,registration,total_population,4.3.1,189,,Protestan
+62.09.03,3,Bulik,religion,katolik,,6233,jiwa,2025,registration,total_population,4.3.1,189,,Katolik
+62.09.06,3,Sematu Jaya,religion,islam,,13850,jiwa,2025,registration,total_population,4.3.1,189,,Islam
+62.09.06,3,Sematu Jaya,religion,kristen,,587,jiwa,2025,registration,total_population,4.3.1,189,,Protestan
+62.09.06,3,Sematu Jaya,religion,katolik,,670,jiwa,2025,registration,total_population,4.3.1,189,,Katolik
+62.09.05,3,Menthobi Raya,religion,islam,,10681,jiwa,2025,registration,total_population,4.3.1,189,,Islam
+62.09.05,3,Menthobi Raya,religion,kristen,,2409,jiwa,2025,registration,total_population,4.3.1,189,,Protestan
+62.09.05,3,Menthobi Raya,religion,katolik,,853,jiwa,2025,registration,total_population,4.3.1,189,,Katolik
+62.09.04,3,Bulik Timur,religion,islam,,4493,jiwa,2025,registration,total_population,4.3.1,189,,Islam
+62.09.04,3,Bulik Timur,religion,kristen,,2495,jiwa,2025,registration,total_population,4.3.1,189,,Protestan
+62.09.04,3,Bulik Timur,religion,katolik,,2066,jiwa,2025,registration,total_population,4.3.1,189,,Katolik
+62.09.01,3,Lamandau,religion,islam,,4244,jiwa,2025,registration,total_population,4.3.1,189,,Islam
+62.09.01,3,Lamandau,religion,kristen,,4281,jiwa,2025,registration,total_population,4.3.1,189,,Protestan
+62.09.01,3,Lamandau,religion,katolik,,4040,jiwa,2025,registration,total_population,4.3.1,189,,Katolik
+62.09.07,3,Belantikan Raya,religion,islam,,2847,jiwa,2025,registration,total_population,4.3.1,189,,Islam
+62.09.07,3,Belantikan Raya,religion,kristen,,2786,jiwa,2025,registration,total_population,4.3.1,189,,Protestan
+62.09.07,3,Belantikan Raya,religion,katolik,,2821,jiwa,2025,registration,total_population,4.3.1,189,,Katolik
+62.09.02,3,Delang,religion,islam,,782,jiwa,2025,registration,total_population,4.3.1,189,,Islam
+62.09.02,3,Delang,religion,kristen,,3477,jiwa,2025,registration,total_population,4.3.1,189,,Protestan
+62.09.02,3,Delang,religion,katolik,,1040,jiwa,2025,registration,total_population,4.3.1,189,,Katolik
+62.09.08,3,Batangkawa,religion,islam,,352,jiwa,2025,registration,total_population,4.3.1,189,,Islam
+62.09.08,3,Batangkawa,religion,kristen,,2387,jiwa,2025,registration,total_population,4.3.1,189,,Protestan
+62.09.08,3,Batangkawa,religion,katolik,,457,jiwa,2025,registration,total_population,4.3.1,189,,Katolik
+62.09,2,Kabupaten Lamandau,religion,islam,,69380,jiwa,2025,registration,total_population,4.3.1,189,,Islam
+62.09,2,Kabupaten Lamandau,religion,kristen,,26520,jiwa,2025,registration,total_population,4.3.1,189,,Protestan
+62.09,2,Kabupaten Lamandau,religion,katolik,,18180,jiwa,2025,registration,total_population,4.3.1,189,,Katolik
+62.09.03,3,Bulik,religion,hindu,,261,jiwa,2025,registration,total_population,4.3.1,190,,Hindu
+62.09.03,3,Bulik,religion,buddha,,68,jiwa,2025,registration,total_population,4.3.1,190,,Budha
+62.09.03,3,Bulik,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,190,nil,Konghucu
+62.09.03,3,Bulik,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,190,nil,Lainnya
+62.09.06,3,Sematu Jaya,religion,hindu,,100,jiwa,2025,registration,total_population,4.3.1,190,,Hindu
+62.09.06,3,Sematu Jaya,religion,buddha,,4,jiwa,2025,registration,total_population,4.3.1,190,,Budha
+62.09.06,3,Sematu Jaya,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,190,nil,Konghucu
+62.09.06,3,Sematu Jaya,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,190,,Lainnya
+62.09.05,3,Menthobi Raya,religion,hindu,,124,jiwa,2025,registration,total_population,4.3.1,190,,Hindu
+62.09.05,3,Menthobi Raya,religion,buddha,,3,jiwa,2025,registration,total_population,4.3.1,190,,Budha
+62.09.05,3,Menthobi Raya,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,190,nil,Konghucu
+62.09.05,3,Menthobi Raya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,190,nil,Lainnya
+62.09.04,3,Bulik Timur,religion,hindu,,631,jiwa,2025,registration,total_population,4.3.1,190,,Hindu
+62.09.04,3,Bulik Timur,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,190,,Budha
+62.09.04,3,Bulik Timur,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,190,nil,Konghucu
+62.09.04,3,Bulik Timur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,190,nil,Lainnya
+62.09.01,3,Lamandau,religion,hindu,,498,jiwa,2025,registration,total_population,4.3.1,190,,Hindu
+62.09.01,3,Lamandau,religion,buddha,,6,jiwa,2025,registration,total_population,4.3.1,190,,Budha
+62.09.01,3,Lamandau,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,190,nil,Konghucu
+62.09.01,3,Lamandau,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,190,,Lainnya
+62.09.07,3,Belantikan Raya,religion,hindu,,332,jiwa,2025,registration,total_population,4.3.1,190,,Hindu
+62.09.07,3,Belantikan Raya,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,190,nil,Budha
+62.09.07,3,Belantikan Raya,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,190,nil,Konghucu
+62.09.07,3,Belantikan Raya,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,190,,Lainnya
+62.09.02,3,Delang,religion,hindu,,1133,jiwa,2025,registration,total_population,4.3.1,190,,Hindu
+62.09.02,3,Delang,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,190,,Budha
+62.09.02,3,Delang,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,190,nil,Konghucu
+62.09.02,3,Delang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,190,nil,Lainnya
+62.09.08,3,Batangkawa,religion,hindu,,116,jiwa,2025,registration,total_population,4.3.1,190,,Hindu
+62.09.08,3,Batangkawa,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,190,nil,Budha
+62.09.08,3,Batangkawa,religion,khonghucu,,1,jiwa,2025,registration,total_population,4.3.1,190,,Konghucu
+62.09.08,3,Batangkawa,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,190,nil,Lainnya
+62.09,2,Kabupaten Lamandau,religion,hindu,,3195,jiwa,2025,registration,total_population,4.3.1,190,,Hindu
+62.09,2,Kabupaten Lamandau,religion,buddha,,87,jiwa,2025,registration,total_population,4.3.1,190,,Budha
+62.09,2,Kabupaten Lamandau,religion,khonghucu,,1,jiwa,2025,registration,total_population,4.3.1,190,,Konghucu
+62.09,2,Kabupaten Lamandau,religion,lainnya,,5,jiwa,2025,registration,total_population,4.3.1,190,,Lainnya
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/padi_padian,,115137,rupiah,2024,survey_estimate,per_capita,10.1,391,,Padi-padian
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/padi_padian,,104133,rupiah,2025,survey_estimate,per_capita,10.1,391,,Padi-padian
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/umbi_umbian,,9213,rupiah,2024,survey_estimate,per_capita,10.1,391,,Umbi-umbian
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/umbi_umbian,,11896,rupiah,2025,survey_estimate,per_capita,10.1,391,,Umbi-umbian
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,114521,rupiah,2024,survey_estimate,per_capita,10.1,391,,Ikan/udang/cumi/kerang
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,135233,rupiah,2025,survey_estimate,per_capita,10.1,391,,Ikan/udang/cumi/kerang
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/daging,,79644,rupiah,2024,survey_estimate,per_capita,10.1,391,,Daging
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/daging,,91930,rupiah,2025,survey_estimate,per_capita,10.1,391,,Daging
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/telur_dan_susu,,60536,rupiah,2024,survey_estimate,per_capita,10.1,391,,Telur dan susu
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/telur_dan_susu,,54422,rupiah,2025,survey_estimate,per_capita,10.1,391,,Telur dan susu
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/sayur_sayuran,,97595,rupiah,2024,survey_estimate,per_capita,10.1,391,,Sayur-sayuran
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/sayur_sayuran,,106916,rupiah,2025,survey_estimate,per_capita,10.1,391,,Sayur-sayuran
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/kacang_kacangan,,18140,rupiah,2024,survey_estimate,per_capita,10.1,391,,Kacang-kacangan
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/kacang_kacangan,,20331,rupiah,2025,survey_estimate,per_capita,10.1,391,,Kacang-kacangan
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/buah_buahan,,60610,rupiah,2024,survey_estimate,per_capita,10.1,391,,Buah-buahan
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/buah_buahan,,52091,rupiah,2025,survey_estimate,per_capita,10.1,391,,Buah-buahan
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/minyak_dan_kelapa,,23694,rupiah,2024,survey_estimate,per_capita,10.1,391,,Minyak dan kelapa
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/minyak_dan_kelapa,,25954,rupiah,2025,survey_estimate,per_capita,10.1,391,,Minyak dan kelapa
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/bahan_minuman,,32588,rupiah,2024,survey_estimate,per_capita,10.1,391,,Bahan minuman
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/bahan_minuman,,32584,rupiah,2025,survey_estimate,per_capita,10.1,391,,Bahan minuman
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/bumbu_bumbuan,,28301,rupiah,2024,survey_estimate,per_capita,10.1,391,,Bumbu-bumbuan
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/bumbu_bumbuan,,29793,rupiah,2025,survey_estimate,per_capita,10.1,391,,Bumbu-bumbuan
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/konsumsi_lainnya,,21396,rupiah,2024,survey_estimate,per_capita,10.1,391,,Konsumsi lainnya
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/konsumsi_lainnya,,21187,rupiah,2025,survey_estimate,per_capita,10.1,391,,Konsumsi lainnya
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,220824,rupiah,2024,survey_estimate,per_capita,10.1,391,,Makanan dan minuman jadi
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,211542,rupiah,2025,survey_estimate,per_capita,10.1,391,,Makanan dan minuman jadi
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/rokok,,173693,rupiah,2024,survey_estimate,per_capita,10.1,391,,Rokok
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/rokok,,145282,rupiah,2025,survey_estimate,per_capita,10.1,391,,Rokok
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/jumlah_makanan,,1055891,rupiah,2024,survey_estimate,per_capita,10.1,391,,Jumlah makanan
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/jumlah_makanan,,1043294,rupiah,2025,survey_estimate,per_capita,10.1,391,,Jumlah makanan
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,642739,rupiah,2024,survey_estimate,per_capita,10.1,391,,Perumahan dan fasilitas rumah tangga
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,569385,rupiah,2025,survey_estimate,per_capita,10.1,391,,Perumahan dan fasilitas rumah tangga
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,158600,rupiah,2024,survey_estimate,per_capita,10.1,391,,Aneka barang dan jasa
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,214861,rupiah,2025,survey_estimate,per_capita,10.1,391,,Aneka barang dan jasa
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,36272,rupiah,2024,survey_estimate,per_capita,10.1,391,,"Pakaian, alas kaki, dan tutup kepala"
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,43746,rupiah,2025,survey_estimate,per_capita,10.1,391,,"Pakaian, alas kaki, dan tutup kepala"
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/barang_tahan_lama,,102461,rupiah,2024,survey_estimate,per_capita,10.1,391,,Barang tahan lama
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/barang_tahan_lama,,124294,rupiah,2025,survey_estimate,per_capita,10.1,391,,Barang tahan lama
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,70959,rupiah,2024,survey_estimate,per_capita,10.1,391,,"Pajak, pungutan, dan asuransi"
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,76597,rupiah,2025,survey_estimate,per_capita,10.1,391,,"Pajak, pungutan, dan asuransi"
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,9586,rupiah,2024,survey_estimate,per_capita,10.1,391,,Keperluan pesta dan upacara/kenduri
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,22176,rupiah,2025,survey_estimate,per_capita,10.1,391,,Keperluan pesta dan upacara/kenduri
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1020617,rupiah,2024,survey_estimate,per_capita,10.1,391,,Jumlah bukan makanan
+62.09,2,Kabupaten Lamandau,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1051060,rupiah,2025,survey_estimate,per_capita,10.1,391,,Jumlah bukan makanan
+62.09,2,Kabupaten Lamandau,expenditure,total,,2076508,rupiah,2024,survey_estimate,per_capita,10.1,391,,
+62.09,2,Kabupaten Lamandau,expenditure,total,,2094354,rupiah,2025,survey_estimate,per_capita,10.1,391,,

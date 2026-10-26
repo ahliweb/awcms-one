@@ -1,0 +1,296 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.71.01,3,Pahandut,total,total,,103.03,ribu_jiwa,2025,projection,total_population,3.1.1,82,,
+62.71.04,3,Sabangau,total,total,,27.05,ribu_jiwa,2025,projection,total_population,3.1.1,82,,
+62.71.03,3,Jekan Raya,total,total,,165.71,ribu_jiwa,2025,projection,total_population,3.1.1,82,,
+62.71.02,3,Bukit Batu,total,total,,14.45,ribu_jiwa,2025,projection,total_population,3.1.1,82,,
+62.71.05,3,Rakumpit,total,total,,4.13,ribu_jiwa,2025,projection,total_population,3.1.1,82,,
+62.71,2,Palangka Raya,total,total,,314.37,ribu_jiwa,2025,projection,total_population,3.1.1,82,,
+62.71,2,Kota Palangkaraya,age_group,0-4,laki_laki,14.39,ribu_jiwa,2025,projection,total_population,3.1.2,85,,0–4
+62.71,2,Kota Palangkaraya,age_group,0-4,perempuan,13.80,ribu_jiwa,2025,projection,total_population,3.1.2,85,,0–4
+62.71,2,Kota Palangkaraya,age_group,0-4,,28.19,ribu_jiwa,2025,projection,total_population,3.1.2,85,,0–4
+62.71,2,Kota Palangkaraya,age_group,5-9,laki_laki,12.87,ribu_jiwa,2025,projection,total_population,3.1.2,85,,5–9
+62.71,2,Kota Palangkaraya,age_group,5-9,perempuan,12.27,ribu_jiwa,2025,projection,total_population,3.1.2,85,,5–9
+62.71,2,Kota Palangkaraya,age_group,5-9,,25.14,ribu_jiwa,2025,projection,total_population,3.1.2,85,,5–9
+62.71,2,Kota Palangkaraya,age_group,10-14,laki_laki,12.24,ribu_jiwa,2025,projection,total_population,3.1.2,85,,10–14
+62.71,2,Kota Palangkaraya,age_group,10-14,perempuan,11.82,ribu_jiwa,2025,projection,total_population,3.1.2,85,,10–14
+62.71,2,Kota Palangkaraya,age_group,10-14,,24.07,ribu_jiwa,2025,projection,total_population,3.1.2,85,,10–14
+62.71,2,Kota Palangkaraya,age_group,15-19,laki_laki,13.22,ribu_jiwa,2025,projection,total_population,3.1.2,85,,15–19
+62.71,2,Kota Palangkaraya,age_group,15-19,perempuan,12.14,ribu_jiwa,2025,projection,total_population,3.1.2,85,,15–19
+62.71,2,Kota Palangkaraya,age_group,15-19,,25.36,ribu_jiwa,2025,projection,total_population,3.1.2,85,,15–19
+62.71,2,Kota Palangkaraya,age_group,20-24,laki_laki,12.67,ribu_jiwa,2025,projection,total_population,3.1.2,85,,20–24
+62.71,2,Kota Palangkaraya,age_group,20-24,perempuan,11.98,ribu_jiwa,2025,projection,total_population,3.1.2,85,,20–24
+62.71,2,Kota Palangkaraya,age_group,20-24,,24.65,ribu_jiwa,2025,projection,total_population,3.1.2,85,,20–24
+62.71,2,Kota Palangkaraya,age_group,25-29,laki_laki,13.96,ribu_jiwa,2025,projection,total_population,3.1.2,85,,25–29
+62.71,2,Kota Palangkaraya,age_group,25-29,perempuan,14.14,ribu_jiwa,2025,projection,total_population,3.1.2,85,,25–29
+62.71,2,Kota Palangkaraya,age_group,25-29,,28.10,ribu_jiwa,2025,projection,total_population,3.1.2,85,,25–29
+62.71,2,Kota Palangkaraya,age_group,30-34,laki_laki,13.10,ribu_jiwa,2025,projection,total_population,3.1.2,85,,30–34
+62.71,2,Kota Palangkaraya,age_group,30-34,perempuan,14.05,ribu_jiwa,2025,projection,total_population,3.1.2,85,,30–34
+62.71,2,Kota Palangkaraya,age_group,30-34,,27.15,ribu_jiwa,2025,projection,total_population,3.1.2,85,,30–34
+62.71,2,Kota Palangkaraya,age_group,35-39,laki_laki,12.08,ribu_jiwa,2025,projection,total_population,3.1.2,85,,35–39
+62.71,2,Kota Palangkaraya,age_group,35-39,perempuan,13.00,ribu_jiwa,2025,projection,total_population,3.1.2,85,,35–39
+62.71,2,Kota Palangkaraya,age_group,35-39,,25.08,ribu_jiwa,2025,projection,total_population,3.1.2,85,,35–39
+62.71,2,Kota Palangkaraya,age_group,40-44,laki_laki,10.96,ribu_jiwa,2025,projection,total_population,3.1.2,85,,40–44
+62.71,2,Kota Palangkaraya,age_group,40-44,perempuan,11.34,ribu_jiwa,2025,projection,total_population,3.1.2,85,,40–44
+62.71,2,Kota Palangkaraya,age_group,40-44,,22.30,ribu_jiwa,2025,projection,total_population,3.1.2,85,,40–44
+62.71,2,Kota Palangkaraya,age_group,45-49,laki_laki,10.53,ribu_jiwa,2025,projection,total_population,3.1.2,85,,45–49
+62.71,2,Kota Palangkaraya,age_group,45-49,perempuan,10.49,ribu_jiwa,2025,projection,total_population,3.1.2,85,,45–49
+62.71,2,Kota Palangkaraya,age_group,45-49,,21.02,ribu_jiwa,2025,projection,total_population,3.1.2,85,,45–49
+62.71,2,Kota Palangkaraya,age_group,50-54,laki_laki,9.30,ribu_jiwa,2025,projection,total_population,3.1.2,85,,50–54
+62.71,2,Kota Palangkaraya,age_group,50-54,perempuan,9.05,ribu_jiwa,2025,projection,total_population,3.1.2,85,,50–54
+62.71,2,Kota Palangkaraya,age_group,50-54,,18.35,ribu_jiwa,2025,projection,total_population,3.1.2,85,,50–54
+62.71,2,Kota Palangkaraya,age_group,55-59,laki_laki,7.32,ribu_jiwa,2025,projection,total_population,3.1.2,85,,55–59
+62.71,2,Kota Palangkaraya,age_group,55-59,perempuan,7.32,ribu_jiwa,2025,projection,total_population,3.1.2,85,,55–59
+62.71,2,Kota Palangkaraya,age_group,55-59,,14.64,ribu_jiwa,2025,projection,total_population,3.1.2,85,,55–59
+62.71,2,Kota Palangkaraya,age_group,60-64,laki_laki,5.90,ribu_jiwa,2025,projection,total_population,3.1.2,85,,60–64
+62.71,2,Kota Palangkaraya,age_group,60-64,perempuan,6.06,ribu_jiwa,2025,projection,total_population,3.1.2,85,,60–64
+62.71,2,Kota Palangkaraya,age_group,60-64,,11.96,ribu_jiwa,2025,projection,total_population,3.1.2,85,,60–64
+62.71,2,Kota Palangkaraya,age_group,65-69,laki_laki,4.15,ribu_jiwa,2025,projection,total_population,3.1.2,85,,65–69
+62.71,2,Kota Palangkaraya,age_group,65-69,perempuan,4.01,ribu_jiwa,2025,projection,total_population,3.1.2,85,,65–69
+62.71,2,Kota Palangkaraya,age_group,65-69,,8.17,ribu_jiwa,2025,projection,total_population,3.1.2,85,,65–69
+62.71,2,Kota Palangkaraya,age_group,70-74,laki_laki,2.64,ribu_jiwa,2025,projection,total_population,3.1.2,85,,70–74
+62.71,2,Kota Palangkaraya,age_group,70-74,perempuan,2.81,ribu_jiwa,2025,projection,total_population,3.1.2,85,,70–74
+62.71,2,Kota Palangkaraya,age_group,70-74,,5.45,ribu_jiwa,2025,projection,total_population,3.1.2,85,,70–74
+62.71,2,Kota Palangkaraya,age_group,75+,laki_laki,2.24,ribu_jiwa,2025,projection,total_population,3.1.2,85,,75+
+62.71,2,Kota Palangkaraya,age_group,75+,perempuan,2.52,ribu_jiwa,2025,projection,total_population,3.1.2,85,,75+
+62.71,2,Kota Palangkaraya,age_group,75+,,4.76,ribu_jiwa,2025,projection,total_population,3.1.2,85,,75+
+62.71,2,Palangka Raya,sex,laki_laki,,157.56,ribu_jiwa,2025,projection,total_population,3.1.2,85,,Laki-laki
+62.71,2,Palangka Raya,sex,perempuan,,156.80,ribu_jiwa,2025,projection,total_population,3.1.2,85,,Perempuan
+62.71,2,Palangka Raya,total,total,,314.37,ribu_jiwa,2025,projection,total_population,3.1.2,85,,
+62.71.01.1001,4,Pahandut,sex,laki_laki,,14292,jiwa,2025,registration,total_population,3.1.3,86,,Laki-laki
+62.71.01.1001,4,Pahandut,sex,perempuan,,13547,jiwa,2025,registration,total_population,3.1.3,86,,Perempuan
+62.71.01.1001,4,Pahandut,total,total,,27839,jiwa,2025,registration,total_population,3.1.3,86,,
+62.71.01.1002,4,Panarung,sex,laki_laki,,17725,jiwa,2025,registration,total_population,3.1.3,86,,Laki-laki
+62.71.01.1002,4,Panarung,sex,perempuan,,17322,jiwa,2025,registration,total_population,3.1.3,86,,Perempuan
+62.71.01.1002,4,Panarung,total,total,,35047,jiwa,2025,registration,total_population,3.1.3,86,,
+62.71.01.1003,4,Langkai,sex,laki_laki,,15443,jiwa,2025,registration,total_population,3.1.3,86,,Laki-laki
+62.71.01.1003,4,Langkai,sex,perempuan,,15490,jiwa,2025,registration,total_population,3.1.3,86,,Perempuan
+62.71.01.1003,4,Langkai,total,total,,30933,jiwa,2025,registration,total_population,3.1.3,86,,
+62.71.01.1004,4,Tumbang Rungan,sex,laki_laki,,486,jiwa,2025,registration,total_population,3.1.3,86,,Laki-laki
+62.71.01.1004,4,Tumbang Rungan,sex,perempuan,,450,jiwa,2025,registration,total_population,3.1.3,86,,Perempuan
+62.71.01.1004,4,Tumbang Rungan,total,total,,936,jiwa,2025,registration,total_population,3.1.3,86,,
+62.71.01.1006,4,Tanjung Pinang,sex,laki_laki,,2983,jiwa,2025,registration,total_population,3.1.3,86,,Laki-laki
+62.71.01.1006,4,Tanjung Pinang,sex,perempuan,,2957,jiwa,2025,registration,total_population,3.1.3,86,,Perempuan
+62.71.01.1006,4,Tanjung Pinang,total,total,,5940,jiwa,2025,registration,total_population,3.1.3,86,,
+62.71.01.1005,4,Pahandut Seberang,sex,laki_laki,,3086,jiwa,2025,registration,total_population,3.1.3,86,,Laki-laki
+62.71.01.1005,4,Pahandut Seberang,sex,perempuan,,2905,jiwa,2025,registration,total_population,3.1.3,86,,Perempuan
+62.71.01.1005,4,Pahandut Seberang,total,total,,5991,jiwa,2025,registration,total_population,3.1.3,86,,
+62.71.01,3,Pahandut,sex,laki_laki,,54015,jiwa,2025,registration,total_population,3.1.3,86,,Laki-laki
+62.71.01,3,Pahandut,sex,perempuan,,52671,jiwa,2025,registration,total_population,3.1.3,86,,Perempuan
+62.71.01,3,Pahandut,total,total,,106686,jiwa,2025,registration,total_population,3.1.3,86,,
+62.71.04.1003,4,Kereng Bangkirai,sex,laki_laki,,628,jiwa,2025,registration,total_population,3.1.3,86,,Laki-laki
+62.71.04.1003,4,Kereng Bangkirai,sex,perempuan,,571,jiwa,2025,registration,total_population,3.1.3,86,,Perempuan
+62.71.04.1003,4,Kereng Bangkirai,total,total,,1199,jiwa,2025,registration,total_population,3.1.3,86,,
+62.71.04.1006,4,Sabaru,sex,laki_laki,,3735,jiwa,2025,registration,total_population,3.1.3,86,,Laki-laki
+62.71.04.1006,4,Sabaru,sex,perempuan,,3707,jiwa,2025,registration,total_population,3.1.3,86,,Perempuan
+62.71.04.1006,4,Sabaru,total,total,,7442,jiwa,2025,registration,total_population,3.1.3,86,,
+62.71.04.1002,4,Kalampangan,sex,laki_laki,,2615,jiwa,2025,registration,total_population,3.1.3,86,,Laki-laki
+62.71.04.1002,4,Kalampangan,sex,perempuan,,2523,jiwa,2025,registration,total_population,3.1.3,86,,Perempuan
+62.71.04.1002,4,Kalampangan,total,total,,5138,jiwa,2025,registration,total_population,3.1.3,86,,
+62.71.04.1004,4,Kameloh Baru,sex,laki_laki,,440,jiwa,2025,registration,total_population,3.1.3,86,,Laki-laki
+62.71.04.1004,4,Kameloh Baru,sex,perempuan,,428,jiwa,2025,registration,total_population,3.1.3,86,,Perempuan
+62.71.04.1004,4,Kameloh Baru,total,total,,868,jiwa,2025,registration,total_population,3.1.3,86,,
+62.71.04.1001,4,Bereng Bengkel,sex,laki_laki,,7123,jiwa,2025,registration,total_population,3.1.3,86,,Laki-laki
+62.71.04.1001,4,Bereng Bengkel,sex,perempuan,,6602,jiwa,2025,registration,total_population,3.1.3,86,,Perempuan
+62.71.04.1001,4,Bereng Bengkel,total,total,,13725,jiwa,2025,registration,total_population,3.1.3,86,,
+62.71.04.1005,4,Danau Tundai,sex,laki_laki,,143,jiwa,2025,registration,total_population,3.1.3,86,,Laki-laki
+62.71.04.1005,4,Danau Tundai,sex,perempuan,,133,jiwa,2025,registration,total_population,3.1.3,86,,Perempuan
+62.71.04.1005,4,Danau Tundai,total,total,,276,jiwa,2025,registration,total_population,3.1.3,86,,
+62.71.04,3,Sabangau,sex,laki_laki,,14684,jiwa,2025,registration,total_population,3.1.3,86,,Laki-laki
+62.71.04,3,Sabangau,sex,perempuan,,13964,jiwa,2025,registration,total_population,3.1.3,86,,Perempuan
+62.71.04,3,Sabangau,total,total,,28648,jiwa,2025,registration,total_population,3.1.3,86,,
+62.71.03.1002,4,Menteng,sex,laki_laki,,27180,jiwa,2025,registration,total_population,3.1.3,86,,Laki-laki
+62.71.03.1002,4,Menteng,sex,perempuan,,26814,jiwa,2025,registration,total_population,3.1.3,86,,Perempuan
+62.71.03.1002,4,Menteng,total,total,,53994,jiwa,2025,registration,total_population,3.1.3,86,,
+62.71.03.1001,4,Palangka,sex,laki_laki,,23652,jiwa,2025,registration,total_population,3.1.3,86,,Laki-laki
+62.71.03.1001,4,Palangka,sex,perempuan,,23582,jiwa,2025,registration,total_population,3.1.3,86,,Perempuan
+62.71.03.1001,4,Palangka,total,total,,47234,jiwa,2025,registration,total_population,3.1.3,86,,
+62.71.03.1003,4,Bukit Tunggal,sex,laki_laki,,29608,jiwa,2025,registration,total_population,3.1.3,86,,Laki-laki
+62.71.03.1003,4,Bukit Tunggal,sex,perempuan,,28642,jiwa,2025,registration,total_population,3.1.3,86,,Perempuan
+62.71.03.1003,4,Bukit Tunggal,total,total,,58250,jiwa,2025,registration,total_population,3.1.3,86,,
+62.71.03.1004,4,Petuk Katimpun,sex,laki_laki,,2159,jiwa,2025,registration,total_population,3.1.3,86,,Laki-laki
+62.71.03.1004,4,Petuk Katimpun,sex,perempuan,,2048,jiwa,2025,registration,total_population,3.1.3,86,,Perempuan
+62.71.03.1004,4,Petuk Katimpun,total,total,,4207,jiwa,2025,registration,total_population,3.1.3,86,,
+62.71.03,3,Jekan Raya,sex,laki_laki,,82599,jiwa,2025,registration,total_population,3.1.3,86,,Laki-laki
+62.71.03,3,Jekan Raya,sex,perempuan,,81086,jiwa,2025,registration,total_population,3.1.3,86,,Perempuan
+62.71.03,3,Jekan Raya,total,total,,163685,jiwa,2025,registration,total_population,3.1.3,86,,
+62.71.02.1001,4,Marang,sex,laki_laki,,634,jiwa,2025,registration,total_population,3.1.3,87,,Laki-laki
+62.71.02.1001,4,Marang,sex,perempuan,,579,jiwa,2025,registration,total_population,3.1.3,87,,Perempuan
+62.71.02.1001,4,Marang,total,total,,1213,jiwa,2025,registration,total_population,3.1.3,87,,
+62.71.02.1002,4,Tumbang Tahai,sex,laki_laki,,1641,jiwa,2025,registration,total_population,3.1.3,87,,Laki-laki
+62.71.02.1002,4,Tumbang Tahai,sex,perempuan,,1583,jiwa,2025,registration,total_population,3.1.3,87,,Perempuan
+62.71.02.1002,4,Tumbang Tahai,total,total,,3224,jiwa,2025,registration,total_population,3.1.3,87,,
+62.71.02.1003,4,Banturung,sex,laki_laki,,1988,jiwa,2025,registration,total_population,3.1.3,87,,Laki-laki
+62.71.02.1003,4,Banturung,sex,perempuan,,1870,jiwa,2025,registration,total_population,3.1.3,87,,Perempuan
+62.71.02.1003,4,Banturung,total,total,,3858,jiwa,2025,registration,total_population,3.1.3,87,,
+62.71.02.1004,4,Tangkiling,sex,laki_laki,,1775,jiwa,2025,registration,total_population,3.1.3,87,,Laki-laki
+62.71.02.1004,4,Tangkiling,sex,perempuan,,1675,jiwa,2025,registration,total_population,3.1.3,87,,Perempuan
+62.71.02.1004,4,Tangkiling,total,total,,3450,jiwa,2025,registration,total_population,3.1.3,87,,
+62.71.02.1005,4,Sei Gohong,sex,laki_laki,,895,jiwa,2025,registration,total_population,3.1.3,87,,Laki-laki
+62.71.02.1005,4,Sei Gohong,sex,perempuan,,831,jiwa,2025,registration,total_population,3.1.3,87,,Perempuan
+62.71.02.1005,4,Sei Gohong,total,total,,1726,jiwa,2025,registration,total_population,3.1.3,87,,
+62.71.02.1006,4,Kanarakan,sex,laki_laki,,196,jiwa,2025,registration,total_population,3.1.3,87,,Laki-laki
+62.71.02.1006,4,Kanarakan,sex,perempuan,,180,jiwa,2025,registration,total_population,3.1.3,87,,Perempuan
+62.71.02.1006,4,Kanarakan,total,total,,376,jiwa,2025,registration,total_population,3.1.3,87,,
+62.71.02.1007,4,Habaring Hurung,sex,laki_laki,,608,jiwa,2025,registration,total_population,3.1.3,87,,Laki-laki
+62.71.02.1007,4,Habaring Hurung,sex,perempuan,,507,jiwa,2025,registration,total_population,3.1.3,87,,Perempuan
+62.71.02.1007,4,Habaring Hurung,total,total,,1115,jiwa,2025,registration,total_population,3.1.3,87,,
+62.71.02,3,Bukit Batu,sex,laki_laki,,7737,jiwa,2025,registration,total_population,3.1.3,87,,Laki-laki
+62.71.02,3,Bukit Batu,sex,perempuan,,7225,jiwa,2025,registration,total_population,3.1.3,87,,Perempuan
+62.71.02,3,Bukit Batu,total,total,,14962,jiwa,2025,registration,total_population,3.1.3,87,,
+62.71.05.1001,4,Petuk Bukit,sex,laki_laki,,596,jiwa,2025,registration,total_population,3.1.3,87,,Laki-laki
+62.71.05.1001,4,Petuk Bukit,sex,perempuan,,540,jiwa,2025,registration,total_population,3.1.3,87,,Perempuan
+62.71.05.1001,4,Petuk Bukit,total,total,,1136,jiwa,2025,registration,total_population,3.1.3,87,,
+62.71.05.1005,4,Pager,sex,laki_laki,,293,jiwa,2025,registration,total_population,3.1.3,87,,Laki-laki
+62.71.05.1005,4,Pager,sex,perempuan,,250,jiwa,2025,registration,total_population,3.1.3,87,,Perempuan
+62.71.05.1005,4,Pager,total,total,,543,jiwa,2025,registration,total_population,3.1.3,87,,
+62.71.05.1002,4,Panjehang,sex,laki_laki,,140,jiwa,2025,registration,total_population,3.1.3,87,,Laki-laki
+62.71.05.1002,4,Panjehang,sex,perempuan,,115,jiwa,2025,registration,total_population,3.1.3,87,,Perempuan
+62.71.05.1002,4,Panjehang,total,total,,255,jiwa,2025,registration,total_population,3.1.3,87,,
+62.71.05.1006,4,Gaung Baru,sex,laki_laki,,145,jiwa,2025,registration,total_population,3.1.3,87,,Laki-laki
+62.71.05.1006,4,Gaung Baru,sex,perempuan,,134,jiwa,2025,registration,total_population,3.1.3,87,,Perempuan
+62.71.05.1006,4,Gaung Baru,total,total,,279,jiwa,2025,registration,total_population,3.1.3,87,,
+62.71.05.1003,4,Petuk Barunai,sex,laki_laki,,518,jiwa,2025,registration,total_population,3.1.3,87,,Laki-laki
+62.71.05.1003,4,Petuk Barunai,sex,perempuan,,469,jiwa,2025,registration,total_population,3.1.3,87,,Perempuan
+62.71.05.1003,4,Petuk Barunai,total,total,,987,jiwa,2025,registration,total_population,3.1.3,87,,
+62.71.05.1004,4,Mungku Baru,sex,laki_laki,,419,jiwa,2025,registration,total_population,3.1.3,87,,Laki-laki
+62.71.05.1004,4,Mungku Baru,sex,perempuan,,360,jiwa,2025,registration,total_population,3.1.3,87,,Perempuan
+62.71.05.1004,4,Mungku Baru,total,total,,779,jiwa,2025,registration,total_population,3.1.3,87,,
+62.71.05.1007,4,Bukit Sua,sex,laki_laki,,168,jiwa,2025,registration,total_population,3.1.3,87,,Laki-laki
+62.71.05.1007,4,Bukit Sua,sex,perempuan,,119,jiwa,2025,registration,total_population,3.1.3,87,,Perempuan
+62.71.05.1007,4,Bukit Sua,total,total,,287,jiwa,2025,registration,total_population,3.1.3,87,,
+62.71.05,3,Rakumpit,sex,laki_laki,,2279,jiwa,2025,registration,total_population,3.1.3,87,,Laki-laki
+62.71.05,3,Rakumpit,sex,perempuan,,1987,jiwa,2025,registration,total_population,3.1.3,87,,Perempuan
+62.71.05,3,Rakumpit,total,total,,4266,jiwa,2025,registration,total_population,3.1.3,87,,
+62.71,2,Palangka Raya,sex,laki_laki,,161314,jiwa,2025,registration,total_population,3.1.3,87,,Laki-laki
+62.71,2,Palangka Raya,sex,perempuan,,156933,jiwa,2025,registration,total_population,3.1.3,87,,Perempuan
+62.71,2,Palangka Raya,total,total,,318247,jiwa,2025,registration,total_population,3.1.3,87,,
+62.71.01,3,Pahandut,sex,laki_laki,,54015,jiwa,2025,registration,total_population,3.1.4,88,,Laki-laki
+62.71.01,3,Pahandut,sex,perempuan,,52671,jiwa,2025,registration,total_population,3.1.4,88,,Perempuan
+62.71.01,3,Pahandut,total,total,,106686,jiwa,2025,registration,total_population,3.1.4,88,,
+62.71.04,3,Sabangau,sex,laki_laki,,14684,jiwa,2025,registration,total_population,3.1.4,88,,Laki-laki
+62.71.04,3,Sabangau,sex,perempuan,,13964,jiwa,2025,registration,total_population,3.1.4,88,,Perempuan
+62.71.04,3,Sabangau,total,total,,28648,jiwa,2025,registration,total_population,3.1.4,88,,
+62.71.03,3,Jekan Raya,sex,laki_laki,,82599,jiwa,2025,registration,total_population,3.1.4,88,,Laki-laki
+62.71.03,3,Jekan Raya,sex,perempuan,,81086,jiwa,2025,registration,total_population,3.1.4,88,,Perempuan
+62.71.03,3,Jekan Raya,total,total,,163685,jiwa,2025,registration,total_population,3.1.4,88,,
+62.71.02,3,Bukit Batu,sex,laki_laki,,7737,jiwa,2025,registration,total_population,3.1.4,88,,Laki-laki
+62.71.02,3,Bukit Batu,sex,perempuan,,7225,jiwa,2025,registration,total_population,3.1.4,88,,Perempuan
+62.71.02,3,Bukit Batu,total,total,,14962,jiwa,2025,registration,total_population,3.1.4,88,,
+62.71.05,3,Rakumpit,sex,laki_laki,,2279,jiwa,2025,registration,total_population,3.1.4,88,,Laki-laki
+62.71.05,3,Rakumpit,sex,perempuan,,1987,jiwa,2025,registration,total_population,3.1.4,88,,Perempuan
+62.71.05,3,Rakumpit,total,total,,4266,jiwa,2025,registration,total_population,3.1.4,88,,
+62.71,2,Palangka Raya,sex,laki_laki,,161314,jiwa,2025,registration,total_population,3.1.4,88,,Laki-laki
+62.71,2,Palangka Raya,sex,perempuan,,156933,jiwa,2025,registration,total_population,3.1.4,88,,Perempuan
+62.71,2,Palangka Raya,total,total,,318247,jiwa,2025,registration,total_population,3.1.4,88,,
+62.71,2,Kota Palangkaraya,religion,islam,laki_laki,115645,jiwa,2025,registration,total_population,4.3.4,193,,Islam
+62.71,2,Kota Palangkaraya,religion,islam,perempuan,110761,jiwa,2025,registration,total_population,4.3.4,193,,Islam
+62.71,2,Kota Palangkaraya,religion,islam,,226406,jiwa,2025,registration,total_population,4.3.4,193,,Islam
+62.71,2,Kota Palangkaraya,religion,kristen,laki_laki,40174,jiwa,2025,registration,total_population,4.3.4,193,,Kristen
+62.71,2,Kota Palangkaraya,religion,kristen,perempuan,41008,jiwa,2025,registration,total_population,4.3.4,193,,Kristen
+62.71,2,Kota Palangkaraya,religion,kristen,,81182,jiwa,2025,registration,total_population,4.3.4,193,,Kristen
+62.71,2,Kota Palangkaraya,religion,katolik,laki_laki,3316,jiwa,2025,registration,total_population,4.3.4,193,,Katolik
+62.71,2,Kota Palangkaraya,religion,katolik,perempuan,3073,jiwa,2025,registration,total_population,4.3.4,193,,Katolik
+62.71,2,Kota Palangkaraya,religion,katolik,,6389,jiwa,2025,registration,total_population,4.3.4,193,,Katolik
+62.71,2,Kota Palangkaraya,religion,hindu,laki_laki,1873,jiwa,2025,registration,total_population,4.3.4,193,,Hindu
+62.71,2,Kota Palangkaraya,religion,hindu,perempuan,1828,jiwa,2025,registration,total_population,4.3.4,193,,Hindu
+62.71,2,Kota Palangkaraya,religion,hindu,,3701,jiwa,2025,registration,total_population,4.3.4,193,,Hindu
+62.71,2,Kota Palangkaraya,religion,buddha,laki_laki,279,jiwa,2025,registration,total_population,4.3.4,193,,Budha
+62.71,2,Kota Palangkaraya,religion,buddha,perempuan,243,jiwa,2025,registration,total_population,4.3.4,193,,Budha
+62.71,2,Kota Palangkaraya,religion,buddha,,522,jiwa,2025,registration,total_population,4.3.4,193,,Budha
+62.71,2,Kota Palangkaraya,religion,khonghucu,laki_laki,5,jiwa,2025,registration,total_population,4.3.4,193,,Konghucu
+62.71,2,Kota Palangkaraya,religion,khonghucu,perempuan,6,jiwa,2025,registration,total_population,4.3.4,193,,Konghucu
+62.71,2,Kota Palangkaraya,religion,khonghucu,,11,jiwa,2025,registration,total_population,4.3.4,193,,Konghucu
+62.71,2,Kota Palangkaraya,religion,kepercayaan,laki_laki,22,jiwa,2025,registration,total_population,4.3.4,193,,Aliran Kepercayaan
+62.71,2,Kota Palangkaraya,religion,kepercayaan,perempuan,14,jiwa,2025,registration,total_population,4.3.4,193,,Aliran Kepercayaan
+62.71,2,Kota Palangkaraya,religion,kepercayaan,,36,jiwa,2025,registration,total_population,4.3.4,193,,Aliran Kepercayaan
+62.71,2,Kota Palangkaraya,sex,laki_laki,,161314,jiwa,2025,registration,total_population,4.3.4,193,,Laki-laki
+62.71,2,Kota Palangkaraya,sex,perempuan,,156933,jiwa,2025,registration,total_population,4.3.4,193,,Perempuan
+62.71,2,Kota Palangkaraya,total,total,,318247,jiwa,2025,registration,total_population,4.3.4,193,,
+62.71.01,3,Pahandut,religion,islam,,87268,jiwa,2025,registration,total_population,4.3.1,187,,Islam
+62.71.01,3,Pahandut,religion,kristen,,17419,jiwa,2025,registration,total_population,4.3.1,187,,Protestan
+62.71.01,3,Pahandut,religion,katolik,,1182,jiwa,2025,registration,total_population,4.3.1,187,,Katolik
+62.71.01,3,Pahandut,religion,hindu,,588,jiwa,2025,registration,total_population,4.3.1,187,,Hindu
+62.71.04,3,Sabangau,religion,islam,,23043,jiwa,2025,registration,total_population,4.3.1,187,,Islam
+62.71.04,3,Sabangau,religion,kristen,,5036,jiwa,2025,registration,total_population,4.3.1,187,,Protestan
+62.71.04,3,Sabangau,religion,katolik,,242,jiwa,2025,registration,total_population,4.3.1,187,,Katolik
+62.71.04,3,Sabangau,religion,hindu,,304,jiwa,2025,registration,total_population,4.3.1,187,,Hindu
+62.71.03,3,Jekan Raya,religion,islam,,103123,jiwa,2025,registration,total_population,4.3.1,187,,Islam
+62.71.03,3,Jekan Raya,religion,kristen,,53211,jiwa,2025,registration,total_population,4.3.1,187,,Protestan
+62.71.03,3,Jekan Raya,religion,katolik,,4766,jiwa,2025,registration,total_population,4.3.1,187,,Katolik
+62.71.03,3,Jekan Raya,religion,hindu,,2291,jiwa,2025,registration,total_population,4.3.1,187,,Hindu
+62.71.02,3,Bukit Batu,religion,islam,,10913,jiwa,2025,registration,total_population,4.3.1,187,,Islam
+62.71.02,3,Bukit Batu,religion,kristen,,3522,jiwa,2025,registration,total_population,4.3.1,187,,Protestan
+62.71.02,3,Bukit Batu,religion,katolik,,183,jiwa,2025,registration,total_population,4.3.1,187,,Katolik
+62.71.02,3,Bukit Batu,religion,hindu,,326,jiwa,2025,registration,total_population,4.3.1,187,,Hindu
+62.71.05,3,Rakumpit,religion,islam,,2059,jiwa,2025,registration,total_population,4.3.1,187,,Islam
+62.71.05,3,Rakumpit,religion,kristen,,1994,jiwa,2025,registration,total_population,4.3.1,187,,Protestan
+62.71.05,3,Rakumpit,religion,katolik,,16,jiwa,2025,registration,total_population,4.3.1,187,,Katolik
+62.71.05,3,Rakumpit,religion,hindu,,192,jiwa,2025,registration,total_population,4.3.1,187,,Hindu
+62.71,2,Palangka Raya,religion,islam,,226406,jiwa,2025,registration,total_population,4.3.1,187,,Islam
+62.71,2,Palangka Raya,religion,kristen,,81182,jiwa,2025,registration,total_population,4.3.1,187,,Protestan
+62.71,2,Palangka Raya,religion,katolik,,6389,jiwa,2025,registration,total_population,4.3.1,187,,Katolik
+62.71,2,Palangka Raya,religion,hindu,,3701,jiwa,2025,registration,total_population,4.3.1,187,,Hindu
+62.71.01,3,Pahandut,religion,buddha,,228,jiwa,2025,registration,total_population,4.3.1,188,,Budha
+62.71.01,3,Pahandut,religion,khonghucu,,1,jiwa,2025,registration,total_population,4.3.1,188,,Konghucu
+62.71.01,3,Pahandut,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,188,nil,Lainnya
+62.71.04,3,Sabangau,religion,buddha,,16,jiwa,2025,registration,total_population,4.3.1,188,,Budha
+62.71.04,3,Sabangau,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,188,nil,Konghucu
+62.71.04,3,Sabangau,religion,lainnya,,7,jiwa,2025,registration,total_population,4.3.1,188,,Lainnya
+62.71.03,3,Jekan Raya,religion,buddha,,264,jiwa,2025,registration,total_population,4.3.1,188,,Budha
+62.71.03,3,Jekan Raya,religion,khonghucu,,5,jiwa,2025,registration,total_population,4.3.1,188,,Konghucu
+62.71.03,3,Jekan Raya,religion,lainnya,,25,jiwa,2025,registration,total_population,4.3.1,188,,Lainnya
+62.71.02,3,Bukit Batu,religion,buddha,,11,jiwa,2025,registration,total_population,4.3.1,188,,Budha
+62.71.02,3,Bukit Batu,religion,khonghucu,,5,jiwa,2025,registration,total_population,4.3.1,188,,Konghucu
+62.71.02,3,Bukit Batu,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,188,,Lainnya
+62.71.05,3,Rakumpit,religion,buddha,,3,jiwa,2025,registration,total_population,4.3.1,188,,Budha
+62.71.05,3,Rakumpit,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,188,nil,Konghucu
+62.71.05,3,Rakumpit,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,188,,Lainnya
+62.71,2,Palangka Raya,religion,buddha,,522,jiwa,2025,registration,total_population,4.3.1,188,,Budha
+62.71,2,Palangka Raya,religion,khonghucu,,11,jiwa,2025,registration,total_population,4.3.1,188,,Konghucu
+62.71,2,Palangka Raya,religion,lainnya,,36,jiwa,2025,registration,total_population,4.3.1,188,,Lainnya
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/padi_padian,,80629,rupiah,2025,survey_estimate,per_capita,10.1,434,,Padi-padian
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/padi_padian,,76372,rupiah,2024,survey_estimate,per_capita,10.1,434,,Padi-padian
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/umbi_umbian,,8068,rupiah,2025,survey_estimate,per_capita,10.1,434,,Umbi-umbian
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/umbi_umbian,,6517,rupiah,2024,survey_estimate,per_capita,10.1,434,,Umbi-umbian
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,93464,rupiah,2025,survey_estimate,per_capita,10.1,434,,Ikan/udang/cumi/kerang
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,93050,rupiah,2024,survey_estimate,per_capita,10.1,434,,Ikan/udang/cumi/kerang
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/daging,,62598,rupiah,2025,survey_estimate,per_capita,10.1,434,,Daging
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/daging,,53537,rupiah,2024,survey_estimate,per_capita,10.1,434,,Daging
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/telur_dan_susu,,47373,rupiah,2025,survey_estimate,per_capita,10.1,434,,Telur dan susu
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/telur_dan_susu,,45598,rupiah,2024,survey_estimate,per_capita,10.1,434,,Telur dan susu
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/sayur_sayuran,,68774,rupiah,2025,survey_estimate,per_capita,10.1,434,,Sayur-sayuran
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/sayur_sayuran,,59545,rupiah,2024,survey_estimate,per_capita,10.1,434,,Sayur-sayuran
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/kacang_kacangan,,13813,rupiah,2025,survey_estimate,per_capita,10.1,434,,Kacang-kacangan
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/kacang_kacangan,,14106,rupiah,2024,survey_estimate,per_capita,10.1,434,,Kacang-kacangan
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/buah_buahan,,44566,rupiah,2025,survey_estimate,per_capita,10.1,434,,Buah-buahan
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/buah_buahan,,41665,rupiah,2024,survey_estimate,per_capita,10.1,434,,Buah-buahan
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/minyak_dan_kelapa,,18775,rupiah,2025,survey_estimate,per_capita,10.1,434,,Minyak dan kelapa
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/minyak_dan_kelapa,,17657,rupiah,2024,survey_estimate,per_capita,10.1,434,,Minyak dan kelapa
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/bahan_minuman,,18711,rupiah,2025,survey_estimate,per_capita,10.1,434,,Bahan minuman
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/bahan_minuman,,18801,rupiah,2024,survey_estimate,per_capita,10.1,434,,Bahan minuman
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/bumbu_bumbuan,,17799,rupiah,2025,survey_estimate,per_capita,10.1,434,,Bumbu-bumbuan
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/bumbu_bumbuan,,18888,rupiah,2024,survey_estimate,per_capita,10.1,434,,Bumbu-bumbuan
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/konsumsi_lainnya,,13569,rupiah,2025,survey_estimate,per_capita,10.1,434,,Konsumsi lainnya
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/konsumsi_lainnya,,16084,rupiah,2024,survey_estimate,per_capita,10.1,434,,Konsumsi lainnya
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,308203,rupiah,2025,survey_estimate,per_capita,10.1,434,,Makanan dan minuman jadi
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,300363,rupiah,2024,survey_estimate,per_capita,10.1,434,,Makanan dan minuman jadi
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/rokok,,65623,rupiah,2025,survey_estimate,per_capita,10.1,434,,Rokok
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/rokok,,75006,rupiah,2024,survey_estimate,per_capita,10.1,434,,Rokok
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/jumlah_makanan,,861967,rupiah,2025,survey_estimate,per_capita,10.1,434,,Jumlah makanan
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/jumlah_makanan,,837189,rupiah,2024,survey_estimate,per_capita,10.1,434,,Jumlah makanan
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,569037,rupiah,2025,survey_estimate,per_capita,10.1,434,,Perumahan dan fasilitas rumah tangga
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,602569,rupiah,2024,survey_estimate,per_capita,10.1,434,,Perumahan dan fasilitas rumah tangga
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,245302,rupiah,2025,survey_estimate,per_capita,10.1,434,,Aneka barang dan jasa
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,261161,rupiah,2024,survey_estimate,per_capita,10.1,434,,Aneka barang dan jasa
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,35443,rupiah,2025,survey_estimate,per_capita,10.1,434,,"Pakaian, alas kaki, dan tutup kepala"
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,36419,rupiah,2024,survey_estimate,per_capita,10.1,434,,"Pakaian, alas kaki, dan tutup kepala"
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/barang_tahan_lama,,99010,rupiah,2025,survey_estimate,per_capita,10.1,434,,Barang tahan lama
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/barang_tahan_lama,,54724,rupiah,2024,survey_estimate,per_capita,10.1,434,,Barang tahan lama
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,84162,rupiah,2025,survey_estimate,per_capita,10.1,434,,"Pajak, pungutan, dan asuransi"
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,87006,rupiah,2024,survey_estimate,per_capita,10.1,434,,"Pajak, pungutan, dan asuransi"
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,38487,rupiah,2025,survey_estimate,per_capita,10.1,434,,Keperluan pesta dan upacara/kenduri
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,50940,rupiah,2024,survey_estimate,per_capita,10.1,434,,Keperluan pesta dan upacara/kenduri
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1071442,rupiah,2025,survey_estimate,per_capita,10.1,434,,Jumlah bukan makanan
+62.71,2,Kota Palangkaraya,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1092818,rupiah,2024,survey_estimate,per_capita,10.1,434,,Jumlah bukan makanan
+62.71,2,Kota Palangkaraya,expenditure,total,,1933409,rupiah,2025,survey_estimate,per_capita,10.1,434,,
+62.71,2,Kota Palangkaraya,expenditure,total,,1930007,rupiah,2024,survey_estimate,per_capita,10.1,434,,

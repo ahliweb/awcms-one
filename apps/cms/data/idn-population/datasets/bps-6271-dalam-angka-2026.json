@@ -1,0 +1,128 @@
+{
+  "datasetCode": "bps-6271-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "62.71",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kota Palangka Raya Dalam Angka 2026",
+  "publisherName": "BPS Kota Palangka Raya",
+  "publisherDomain": "6271",
+  "publisherWebsite": "https://palangkakota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Palangka Raya (https://palangkakota.bps.go.id), publikasi \"Kota Palangka Raya Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6271",
+  "publicationNumber": "62710.26003",
+  "issn": "0215-5990",
+  "publicationYear": 2026,
+  "releaseDate": null,
+  "publicationUrl": "https://palangkakota.bps.go.id/id/publication",
+  "sourceFileSha256": "367fc93fe65945a81b8ef2a01e8000bd2d6ef30b9bb6023971649bbb45ecb993",
+  "sourceFileBytes": 13814785,
+  "sourcePages": [
+    82,
+    85,
+    86,
+    87,
+    88,
+    187,
+    188,
+    193,
+    434
+  ],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Palangka Raya.",
+  "csvPath": "datasets/bps-6271-dalam-angka-2026.csv",
+  "csvSha256": "c9713046589110b3b075e500a308cd8e33f010370a07b813fe84615d2023a013",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kota Palangka Raya, 2025",
+      "printedPages": [
+        82
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "projection",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kota Palangka Raya (ribu jiwa), 2025",
+      "printedPages": [
+        85
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "projection",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "3.1.3",
+      "title": "Jumlah Penduduk dan Rasio Jenis Kelamin Hasil Registrasi Penduduk Menurut Kelurahan di Kota Palangka Raya, 2025",
+      "printedPages": [
+        86,
+        87
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.4",
+      "title": "Jumlah Penduduk dan Rasio Jenis Kelamin Hasil Registrasi Penduduk Menurut Kecamatan di Kota Palangka Raya, 2025",
+      "printedPages": [
+        88
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.4",
+      "title": "Jumlah Penduduk Menurut Agama/Aliran Kepercayaan dan Jenis Kelamin di Kota Palangka Raya, 2025",
+      "printedPages": [
+        193
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kota Palangka Raya, 2025",
+      "printedPages": [
+        187,
+        188
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-rata Pengeluaran Per Kapita Sebulan Menurut Kelompok Komoditas di Kota Palangka Raya (rupiah), 2024 dan 2025",
+      "printedPages": [
+        434
+      ],
+      "referenceYears": [
+        2024,
+        2025
+      ],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication"
+  ]
+}
