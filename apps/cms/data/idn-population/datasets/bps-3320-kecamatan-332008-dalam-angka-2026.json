@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-3320-kecamatan-332008-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.20.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bangsri Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Jepara",
+  "publisherDomain": "3320",
+  "publisherWebsite": "https://jeparakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Jepara (https://jeparakab.bps.go.id), publikasi \"Kecamatan Bangsri Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3320100",
+  "publicationNumber": "33200.26018",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jeparakab.bps.go.id/id/publication/2026/09/28/ae0a5a47c06d6dcd1fdfd160/kecamatan-bangsri-dalam-angka-2026.html",
+  "sourceFileSha256": "88d142e07d5e8a17a88b5cdc58d11c4b0f98e624f259d4477a4bdeb3f5883bbb",
+  "sourceFileBytes": 13136657,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Jepara.",
+  "csvPath": "datasets/bps-3320-kecamatan-332008-dalam-angka-2026.csv",
+  "csvSha256": "d4d46a93fbd7aac8011a57dac7042cea426533f19461f3f7d10440ab221f13f6",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bangsri, 2024",
+      "printedPages": [32],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"001 Guyangan 6.221\": unmatched ",
+    "table 3.1: row not stored: row \"002 Kepuk 3.303\": unmatched ",
+    "table 3.1: row not stored: row \"003 Papasan 1.079\": unmatched ",
+    "table 3.1: row not stored: row \"004 Srikandang 3.254\": unmatched ",
+    "table 3.1: row not stored: row \"005 Tengguli 6.988\": unmatched ",
+    "table 3.1: row not stored: row \"006 Bangsri 8.383\": unmatched ",
+    "table 3.1: row not stored: row \"007 Banjaran 4.563\": unmatched ",
+    "table 3.1: row not stored: row \"008 Wedelan 4.037\": unmatched ",
+    "table 3.1: row not stored: row \"009 Jerukwangi 4.186\": unmatched ",
+    "table 3.1: row not stored: row \"010 Kedungleper 2.704\": unmatched ",
+    "table 3.1: row not stored: row \"011 Bondo 5.880\": unmatched ",
+    "table 3.1: row not stored: row \"012 Banjar Agung 3.484\": unmatched ",
+    "table 3.1: row not stored: row \"Bangsri 54.082\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3471-kecamatan-347112-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "34.71.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mergangsan Dalam Angka 2026",
+  "publisherName": "BPS Kota Yogyakarta",
+  "publisherDomain": "3471",
+  "publisherWebsite": "https://jogjakota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Yogyakarta (https://jogjakota.bps.go.id), publikasi \"Kecamatan Mergangsan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "34710",
+  "issn": "2615-0026",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jogjakota.bps.go.id/id/publication/2026/09/28/7f88b4bfa40a661e63ffd01d/kecamatan-mergangsan-dalam-angka-2026.html",
+  "sourceFileSha256": "c88c6257ac1c4f8f30f585aa32eb07cc4af15691f0cd26a0aba1c38326de36a1",
+  "sourceFileBytes": 10466287,
+  "sourcePages": [31, 32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Yogyakarta.",
+  "csvPath": "datasets/bps-3471-kecamatan-347112-dalam-angka-2026.csv",
+  "csvSha256": "4a262b061b14cfde4b23c4d5e190d812a8b1fd32925d0687deaaac1d921eab20",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Mergangsan, 2025",
+      "printedPages": [31, 32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Mergangsan, 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 34.71.12 are not stored: age_group (perempuan) vs sex value: parts sum 16344.0000 != 16424.0000 (diff 80.0000); the source itself is inconsistent"
+  ]
+}

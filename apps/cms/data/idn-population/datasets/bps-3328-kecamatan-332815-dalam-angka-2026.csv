@@ -1,0 +1,89 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.28.15.2001,4,Mejasem Barat,sex,perempuan,,6507,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.15.2001,4,Mejasem Barat,total,total,,12676,jiwa,2026,registration,total_population,3.1,34,,
+33.28.15.2020,4,Mejasem Timur,sex,perempuan,,5019,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.15.2020,4,Mejasem Timur,total,total,,10265,jiwa,2026,registration,total_population,3.1,34,,
+33.28.15.2016,4,Dinuk,sex,perempuan,,1601,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.15.2016,4,Dinuk,total,total,,3214,jiwa,2026,registration,total_population,3.1,34,,
+33.28.15.2002,4,Jatilawang,sex,perempuan,,3133,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.15.2002,4,Jatilawang,total,total,,6390,jiwa,2026,registration,total_population,3.1,34,,
+33.28.15.2004,4,Kemantran,sex,perempuan,,2481,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.15.2004,4,Kemantran,total,total,,5057,jiwa,2026,registration,total_population,3.1,34,,
+33.28.15.2003,4,Babakan,sex,perempuan,,2266,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.15.2003,4,Babakan,total,total,,4578,jiwa,2026,registration,total_population,3.1,34,,
+33.28.15.2005,4,Kertaharja,sex,perempuan,,2377,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.15.2005,4,Kertaharja,total,total,,4781,jiwa,2026,registration,total_population,3.1,34,,
+33.28.15.2006,4,Ketileng,sex,perempuan,,1470,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.15.2006,4,Ketileng,total,total,,2931,jiwa,2026,registration,total_population,3.1,34,,
+33.28.15.2007,4,Kepunduhan,sex,perempuan,,1567,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.15.2007,4,Kepunduhan,total,total,,3096,jiwa,2026,registration,total_population,3.1,34,,
+33.28.15.2008,4,Bangun Galih,sex,perempuan,,2056,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.15.2008,4,Bangun Galih,total,total,,4106,jiwa,2026,registration,total_population,3.1,34,,
+33.28.15.2009,4,Tanjungharja,sex,perempuan,,3123,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.15.2009,4,Tanjungharja,total,total,,6447,jiwa,2026,registration,total_population,3.1,34,,
+33.28.15.2010,4,Kemuning,sex,perempuan,,2104,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.15.2010,4,Kemuning,total,total,,4293,jiwa,2026,registration,total_population,3.1,34,,
+33.28.15.2011,4,Plumbungan,sex,perempuan,,1592,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.15.2011,4,Plumbungan,total,total,,3201,jiwa,2026,registration,total_population,3.1,34,,
+33.28.15.2012,4,Maribaya,sex,perempuan,,2905,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.15.2012,4,Maribaya,total,total,,5943,jiwa,2026,registration,total_population,3.1,34,,
+33.28.15.2013,4,Kramat,sex,perempuan,,3645,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.15.2013,4,Kramat,total,total,,7391,jiwa,2026,registration,total_population,3.1,34,,
+33.28.15.2017,4,Kertayasa,sex,perempuan,,5744,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.15.2017,4,Kertayasa,total,total,,11671,jiwa,2026,registration,total_population,3.1,34,,
+33.28.15.2014,4,Bongkok,sex,perempuan,,3713,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.15.2014,4,Bongkok,total,total,,7562,jiwa,2026,registration,total_population,3.1,34,,
+33.28.15.2015,4,Munjung Agung,sex,perempuan,,3369,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.15.2015,4,Munjung Agung,total,total,,6804,jiwa,2026,registration,total_population,3.1,34,,
+33.28.15.2018,4,Padaharja,sex,perempuan,,3167,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.15.2018,4,Padaharja,total,total,,6382,jiwa,2026,registration,total_population,3.1,34,,
+33.28.15.1019,4,Dampyak,sex,perempuan,,3624,jiwa,2026,registration,total_population,3.1,34,,Perempuan
+33.28.15.1019,4,Dampyak,total,total,,7337,jiwa,2026,registration,total_population,3.1,34,,
+33.28.15,3,Kramat,age_group,0-4,laki_laki,5192,jiwa,2026,registration,total_population,3.2,36,,0-4
+33.28.15,3,Kramat,age_group,0-4,perempuan,4979,jiwa,2026,registration,total_population,3.2,36,,0-4
+33.28.15,3,Kramat,age_group,0-4,,10171,jiwa,2026,registration,total_population,3.2,36,,0-4
+33.28.15,3,Kramat,age_group,5-9,laki_laki,5135,jiwa,2026,registration,total_population,3.2,36,,5-9
+33.28.15,3,Kramat,age_group,5-9,perempuan,4971,jiwa,2026,registration,total_population,3.2,36,,5-9
+33.28.15,3,Kramat,age_group,5-9,,10106,jiwa,2026,registration,total_population,3.2,36,,5-9
+33.28.15,3,Kramat,age_group,10-14,laki_laki,5029,jiwa,2026,registration,total_population,3.2,36,,10-14
+33.28.15,3,Kramat,age_group,10-14,perempuan,4660,jiwa,2026,registration,total_population,3.2,36,,10-14
+33.28.15,3,Kramat,age_group,10-14,,9689,jiwa,2026,registration,total_population,3.2,36,,10-14
+33.28.15,3,Kramat,age_group,15-19,laki_laki,4994,jiwa,2026,registration,total_population,3.2,36,,15-19
+33.28.15,3,Kramat,age_group,15-19,perempuan,4761,jiwa,2026,registration,total_population,3.2,36,,15-19
+33.28.15,3,Kramat,age_group,15-19,,9755,jiwa,2026,registration,total_population,3.2,36,,15-19
+33.28.15,3,Kramat,age_group,20-24,laki_laki,4501,jiwa,2026,registration,total_population,3.2,36,,20-24
+33.28.15,3,Kramat,age_group,20-24,perempuan,4421,jiwa,2026,registration,total_population,3.2,36,,20-24
+33.28.15,3,Kramat,age_group,20-24,,8922,jiwa,2026,registration,total_population,3.2,36,,20-24
+33.28.15,3,Kramat,age_group,25-29,laki_laki,4836,jiwa,2026,registration,total_population,3.2,36,,25-29
+33.28.15,3,Kramat,age_group,25-29,perempuan,4712,jiwa,2026,registration,total_population,3.2,36,,25-29
+33.28.15,3,Kramat,age_group,25-29,,9548,jiwa,2026,registration,total_population,3.2,36,,25-29
+33.28.15,3,Kramat,age_group,30-34,laki_laki,4684,jiwa,2026,registration,total_population,3.2,36,,30-34
+33.28.15,3,Kramat,age_group,30-34,perempuan,4799,jiwa,2026,registration,total_population,3.2,36,,30-34
+33.28.15,3,Kramat,age_group,30-34,,9483,jiwa,2026,registration,total_population,3.2,36,,30-34
+33.28.15,3,Kramat,age_group,35-39,laki_laki,5194,jiwa,2026,registration,total_population,3.2,36,,35-39
+33.28.15,3,Kramat,age_group,35-39,perempuan,5199,jiwa,2026,registration,total_population,3.2,36,,35-39
+33.28.15,3,Kramat,age_group,35-39,,10393,jiwa,2026,registration,total_population,3.2,36,,35-39
+33.28.15,3,Kramat,age_group,40-44,laki_laki,5272,jiwa,2026,registration,total_population,3.2,36,,40-44
+33.28.15,3,Kramat,age_group,40-44,perempuan,5078,jiwa,2026,registration,total_population,3.2,36,,40-44
+33.28.15,3,Kramat,age_group,40-44,,10350,jiwa,2026,registration,total_population,3.2,36,,40-44
+33.28.15,3,Kramat,age_group,45-49,laki_laki,4848,jiwa,2026,registration,total_population,3.2,36,,45-49
+33.28.15,3,Kramat,age_group,45-49,perempuan,4621,jiwa,2026,registration,total_population,3.2,36,,45-49
+33.28.15,3,Kramat,age_group,45-49,,9469,jiwa,2026,registration,total_population,3.2,36,,45-49
+33.28.15,3,Kramat,age_group,50-54,laki_laki,4039,jiwa,2026,registration,total_population,3.2,36,,50-54
+33.28.15,3,Kramat,age_group,50-54,perempuan,3953,jiwa,2026,registration,total_population,3.2,36,,50-54
+33.28.15,3,Kramat,age_group,50-54,,7992,jiwa,2026,registration,total_population,3.2,36,,50-54
+33.28.15,3,Kramat,age_group,55-59,laki_laki,3200,jiwa,2026,registration,total_population,3.2,36,,55-59
+33.28.15,3,Kramat,age_group,55-59,perempuan,3462,jiwa,2026,registration,total_population,3.2,36,,55-59
+33.28.15,3,Kramat,age_group,55-59,,6662,jiwa,2026,registration,total_population,3.2,36,,55-59
+33.28.15,3,Kramat,age_group,60-64,laki_laki,2608,jiwa,2026,registration,total_population,3.2,36,,60-64
+33.28.15,3,Kramat,age_group,60-64,perempuan,2656,jiwa,2026,registration,total_population,3.2,36,,60-64
+33.28.15,3,Kramat,age_group,60-64,,5264,jiwa,2026,registration,total_population,3.2,36,,60-64
+33.28.15,3,Kramat,age_group,65-69,laki_laki,2040,jiwa,2026,registration,total_population,3.2,36,,65-69
+33.28.15,3,Kramat,age_group,65-69,perempuan,2085,jiwa,2026,registration,total_population,3.2,36,,65-69
+33.28.15,3,Kramat,age_group,65-69,,4125,jiwa,2026,registration,total_population,3.2,36,,65-69
+33.28.15,3,Kramat,age_group,70-74,laki_laki,1099,jiwa,2026,registration,total_population,3.2,36,,70-74
+33.28.15,3,Kramat,age_group,70-74,perempuan,1254,jiwa,2026,registration,total_population,3.2,36,,70-74
+33.28.15,3,Kramat,age_group,70-74,,2353,jiwa,2026,registration,total_population,3.2,36,,70-74
+33.28.15,3,Kramat,age_group,75+,laki_laki,920,jiwa,2026,registration,total_population,3.2,36,,75+
+33.28.15,3,Kramat,age_group,75+,perempuan,1102,jiwa,2026,registration,total_population,3.2,36,,75+
+33.28.15,3,Kramat,age_group,75+,,2022,jiwa,2026,registration,total_population,3.2,36,,75+

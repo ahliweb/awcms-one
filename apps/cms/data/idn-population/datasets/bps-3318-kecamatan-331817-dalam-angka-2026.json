@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-3318-kecamatan-331817-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.18.17",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Gunungwungkal Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pati",
+  "publisherDomain": "3318",
+  "publisherWebsite": "https://patikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pati (https://patikab.bps.go.id), publikasi \"Kecamatan Gunungwungkal Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3318180",
+  "publicationNumber": "33180.26026",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://patikab.bps.go.id/id/publication/2026/09/28/b5f79b9fd9ca502fa82052c4/kecamatan-gunungwungkal-dalam-angka-2026.html",
+  "sourceFileSha256": "dae210445eee7fac395510b65cc84407be83330439f48dd3ce50e3860e0781ef",
+  "sourceFileBytes": 9646098,
+  "sourcePages": [22, 23, 24],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statsistik Kabupaten Pati",
+  "csvPath": "datasets/bps-3318-kecamatan-331817-dalam-angka-2026.csv",
+  "csvSha256": "d26455f3f2056f69a0de1e6504e18af3b421972dcd8081a27ff54f13667d304e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Gunungwungkal, 2025",
+      "printedPages": [22, 23],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Gunungwungkal, 2025",
+      "printedPages": [24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: 42 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.2: 46 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "cross-table disagreement, both stored as published: 33.18.17 sex/perempuan/ 2025: 20072 (table 3.1) vs 19952 (table 3.2)",
+    "cross-table disagreement, both stored as published: 33.18.17 total/total/ 2025: 39893 (table 3.1) vs 39773 (table 3.2)"
+  ]
+}

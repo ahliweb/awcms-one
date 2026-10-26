@@ -1,0 +1,77 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.75.01,3,Pekalongan Barat,religion,islam,,93300,jiwa,2025,registration,total_population,4.3.1,205,,Islam
+33.75.01,3,Pekalongan Barat,religion,kristen,,1763,jiwa,2025,registration,total_population,4.3.1,205,,Protestan
+33.75.01,3,Pekalongan Barat,religion,katolik,,1105,jiwa,2025,registration,total_population,4.3.1,205,,Katolik
+33.75.01,3,Pekalongan Barat,religion,hindu,,19,jiwa,2025,registration,total_population,4.3.1,205,,Hindu
+33.75.01,3,Pekalongan Barat,religion,buddha,,259,jiwa,2025,registration,total_population,4.3.1,205,,Budha
+33.75.01,3,Pekalongan Barat,religion,khonghucu,,14,jiwa,2025,registration,total_population,4.3.1,205,,Konghucu
+33.75.02,3,Pekalongan Timur,religion,islam,,68606,jiwa,2025,registration,total_population,4.3.1,205,,Islam
+33.75.02,3,Pekalongan Timur,religion,kristen,,1704,jiwa,2025,registration,total_population,4.3.1,205,,Protestan
+33.75.02,3,Pekalongan Timur,religion,katolik,,990,jiwa,2025,registration,total_population,4.3.1,205,,Katolik
+33.75.02,3,Pekalongan Timur,religion,hindu,,13,jiwa,2025,registration,total_population,4.3.1,205,,Hindu
+33.75.02,3,Pekalongan Timur,religion,buddha,,475,jiwa,2025,registration,total_population,4.3.1,205,,Budha
+33.75.02,3,Pekalongan Timur,religion,khonghucu,,26,jiwa,2025,registration,total_population,4.3.1,205,,Konghucu
+33.75.04,3,Pekalongan Selatan,religion,islam,,68189,jiwa,2025,registration,total_population,4.3.1,205,,Islam
+33.75.04,3,Pekalongan Selatan,religion,kristen,,81,jiwa,2025,registration,total_population,4.3.1,205,,Protestan
+33.75.04,3,Pekalongan Selatan,religion,katolik,,32,jiwa,2025,registration,total_population,4.3.1,205,,Katolik
+33.75.04,3,Pekalongan Selatan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,205,nil,Hindu
+33.75.04,3,Pekalongan Selatan,religion,buddha,,15,jiwa,2025,registration,total_population,4.3.1,205,,Budha
+33.75.04,3,Pekalongan Selatan,religion,khonghucu,,5,jiwa,2025,registration,total_population,4.3.1,205,,Konghucu
+33.75.03,3,Pekalongan Utara,religion,islam,,76008,jiwa,2025,registration,total_population,4.3.1,205,,Islam
+33.75.03,3,Pekalongan Utara,religion,kristen,,1884,jiwa,2025,registration,total_population,4.3.1,205,,Protestan
+33.75.03,3,Pekalongan Utara,religion,katolik,,1308,jiwa,2025,registration,total_population,4.3.1,205,,Katolik
+33.75.03,3,Pekalongan Utara,religion,hindu,,9,jiwa,2025,registration,total_population,4.3.1,205,,Hindu
+33.75.03,3,Pekalongan Utara,religion,buddha,,444,jiwa,2025,registration,total_population,4.3.1,205,,Budha
+33.75.03,3,Pekalongan Utara,religion,khonghucu,,23,jiwa,2025,registration,total_population,4.3.1,205,,Konghucu
+33.75,2,Kota Pekalongan,religion,islam,,306103,jiwa,2025,registration,total_population,4.3.1,205,,Islam
+33.75,2,Kota Pekalongan,religion,kristen,,5432,jiwa,2025,registration,total_population,4.3.1,205,,Protestan
+33.75,2,Kota Pekalongan,religion,katolik,,3435,jiwa,2025,registration,total_population,4.3.1,205,,Katolik
+33.75,2,Kota Pekalongan,religion,hindu,,41,jiwa,2025,registration,total_population,4.3.1,205,,Hindu
+33.75,2,Kota Pekalongan,religion,buddha,,1193,jiwa,2025,registration,total_population,4.3.1,205,,Budha
+33.75,2,Kota Pekalongan,religion,khonghucu,,68,jiwa,2025,registration,total_population,4.3.1,205,,Konghucu
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/padi_padian,,71697,rupiah,2025,survey_estimate,per_capita,10.1,402,,Padi-padian
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/padi_padian,,41480,rupiah,2024,survey_estimate,per_capita,10.1,402,,Padi-padian
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/umbi_umbian,,3660,rupiah,2025,survey_estimate,per_capita,10.1,402,,Umbi-umbian
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/umbi_umbian,,2869,rupiah,2024,survey_estimate,per_capita,10.1,402,,Umbi-umbian
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,25018,rupiah,2025,survey_estimate,per_capita,10.1,402,,Ikan/udang/cumi/kerang
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,29961,rupiah,2024,survey_estimate,per_capita,10.1,402,,Ikan/udang/cumi/kerang
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/daging,,27436,rupiah,2025,survey_estimate,per_capita,10.1,402,,Daging
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/daging,,33166,rupiah,2024,survey_estimate,per_capita,10.1,402,,Daging
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/telur_dan_susu,,35298,rupiah,2025,survey_estimate,per_capita,10.1,402,,Telur dan susu
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/telur_dan_susu,,35235,rupiah,2024,survey_estimate,per_capita,10.1,402,,Telur dan susu
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/sayur_sayuran,,47125,rupiah,2025,survey_estimate,per_capita,10.1,402,,Sayur-sayuran
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/sayur_sayuran,,45714,rupiah,2024,survey_estimate,per_capita,10.1,402,,Sayur-sayuran
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/kacang_kacangan,,13433,rupiah,2025,survey_estimate,per_capita,10.1,402,,Kacang-kacangan
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/kacang_kacangan,,13383,rupiah,2024,survey_estimate,per_capita,10.1,402,,Kacang-kacangan
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/buah_buahan,,26826,rupiah,2025,survey_estimate,per_capita,10.1,402,,Buah-buahan
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/buah_buahan,,27259,rupiah,2024,survey_estimate,per_capita,10.1,402,,Buah-buahan
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,14464,rupiah,2025,survey_estimate,per_capita,10.1,402,,Minyak dan kelapa
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,11684,rupiah,2024,survey_estimate,per_capita,10.1,402,,Minyak dan kelapa
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/bahan_minuman,,19887,rupiah,2025,survey_estimate,per_capita,10.1,402,,Bahan minuman
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/bahan_minuman,,21358,rupiah,2024,survey_estimate,per_capita,10.1,402,,Bahan minuman
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/bumbu_bumbuan,,10953,rupiah,2025,survey_estimate,per_capita,10.1,402,,Bumbu-bumbuan
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/bumbu_bumbuan,,13121,rupiah,2024,survey_estimate,per_capita,10.1,402,,Bumbu-bumbuan
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/konsumsi_lainnya,,10420,rupiah,2025,survey_estimate,per_capita,10.1,402,,Konsumsi lainnya
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/konsumsi_lainnya,,12406,rupiah,2024,survey_estimate,per_capita,10.1,402,,Konsumsi lainnya
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,324292,rupiah,2025,survey_estimate,per_capita,10.1,402,,Makanan dan minuman jadi
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,341975,rupiah,2024,survey_estimate,per_capita,10.1,402,,Makanan dan minuman jadi
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/rokok,,55683,rupiah,2025,survey_estimate,per_capita,10.1,402,,Rokok
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/rokok,,78081,rupiah,2024,survey_estimate,per_capita,10.1,402,,Rokok
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/jumlah_makanan,,686284,rupiah,2025,survey_estimate,per_capita,10.1,402,,Jumlah makanan
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/jumlah_makanan,,747690,rupiah,2024,survey_estimate,per_capita,10.1,402,,Jumlah makanan
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,336933,rupiah,2025,survey_estimate,per_capita,10.1,402,,Perumahan dan fasilitas rumah tangga
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,370022,rupiah,2024,survey_estimate,per_capita,10.1,402,,Perumahan dan fasilitas rumah tangga
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,181018,rupiah,2025,survey_estimate,per_capita,10.1,402,,Aneka barang dan jasa
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,171243,rupiah,2024,survey_estimate,per_capita,10.1,402,,Aneka barang dan jasa
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,28301,rupiah,2025,survey_estimate,per_capita,10.1,402,,"Pakaian, alas kaki, dan tutup kepala"
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,32917,rupiah,2024,survey_estimate,per_capita,10.1,402,,"Pakaian, alas kaki, dan tutup kepala"
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/barang_tahan_lama,,39079,rupiah,2025,survey_estimate,per_capita,10.1,402,,Barang tahan lama
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/barang_tahan_lama,,48879,rupiah,2024,survey_estimate,per_capita,10.1,402,,Barang tahan lama
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,48950,rupiah,2025,survey_estimate,per_capita,10.1,402,,"Pajak, pungutan, dan asuransi"
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,58034,rupiah,2024,survey_estimate,per_capita,10.1,402,,"Pajak, pungutan, dan asuransi"
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,14961,rupiah,2025,survey_estimate,per_capita,10.1,402,,Keperluan pesta dan upacara/kenduri
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,57107,rupiah,2024,survey_estimate,per_capita,10.1,402,,Keperluan pesta dan upacara/kenduri
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,649242,rupiah,2025,survey_estimate,per_capita,10.1,402,,Jumlah bukan makanan
+33.75,2,Kota Pekalongan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,738202,rupiah,2024,survey_estimate,per_capita,10.1,402,,Jumlah bukan makanan
+33.75,2,Kota Pekalongan,expenditure,total,,1335526,rupiah,2025,survey_estimate,per_capita,10.1,402,,
+33.75,2,Kota Pekalongan,expenditure,total,,1485891,rupiah,2024,survey_estimate,per_capita,10.1,402,,

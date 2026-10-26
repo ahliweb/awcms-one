@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-3308-kecamatan-330810-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.08.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mertoyudan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Magelang",
+  "publisherDomain": "3308",
+  "publisherWebsite": "https://magelangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Magelang (https://magelangkab.bps.go.id), publikasi \"Kecamatan Mertoyudan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "33080.26028",
+  "issn": "2356-234X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://magelangkab.bps.go.id/id/publication/2026/09/28/ce7b9ef81c1b8d067cd66157/kecamatan-mertoyudan-dalam-angka-2026.html",
+  "sourceFileSha256": "4f329bf6be1498a08e2651a9c5b63d3923fe80b56254af3f08341f7c04cd280a",
+  "sourceFileBytes": 6619351,
+  "sourcePages": [30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Magelang",
+  "csvPath": "datasets/bps-3308-kecamatan-330810-dalam-angka-2026.csv",
+  "csvSha256": "ed2158cbc013b48b2377823a874a368b5ff6825231e38ef260aaa21ad666e3b7",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p30",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1 Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Mertoyudan, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table unnumbered-p30: row not stored: row \"Jumlah/Total\": unmatched "
+  ]
+}

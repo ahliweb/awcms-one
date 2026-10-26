@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3308-kecamatan-330809-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.08.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mungkid Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Magelang",
+  "publisherDomain": "3308",
+  "publisherWebsite": "https://magelangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Magelang (https://magelangkab.bps.go.id), publikasi \"Kecamatan Mungkid Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "33080.26025",
+  "issn": "2442-5753",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://magelangkab.bps.go.id/id/publication/2026/09/28/4c9218769bcab3ce6d8eec1b/kecamatan-mungkid-dalam-angka-2026.html",
+  "sourceFileSha256": "f3b8c1f6de67b60309c82af8083e468b4a27d833f7fb012182fab5d3a04df236",
+  "sourceFileBytes": 10708783,
+  "sourcePages": [30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Magelang",
+  "csvPath": "datasets/bps-3308-kecamatan-330809-dalam-angka-2026.csv",
+  "csvSha256": "8894a8df5155225dae12b50813063b3acd31140d2ff566eebb735600e2027938",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p30",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1 Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Mungkid, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

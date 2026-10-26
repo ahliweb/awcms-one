@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.71.02.1003,4,Wates,sex,laki_laki,,4324,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.71.02.1003,4,Wates,sex,perempuan,,4548,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.71.02.1003,4,Wates,total,total,,8872,jiwa,2025,registration,total_population,3.1,27,,
+33.71.02.1004,4,Potrobangsan,sex,laki_laki,,4113,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.71.02.1004,4,Potrobangsan,sex,perempuan,,4411,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.71.02.1004,4,Potrobangsan,total,total,,8524,jiwa,2025,registration,total_population,3.1,27,,
+33.71.02.1005,4,Kedungsari,sex,laki_laki,,3666,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.71.02.1005,4,Kedungsari,sex,perempuan,,3745,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.71.02.1005,4,Kedungsari,total,total,,7411,jiwa,2025,registration,total_population,3.1,27,,
+33.71.02.1008,4,Kramat Utara,sex,laki_laki,,2368,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.71.02.1008,4,Kramat Utara,sex,perempuan,,2423,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.71.02.1008,4,Kramat Utara,total,total,,4791,jiwa,2025,registration,total_population,3.1,27,,
+33.71.02.1009,4,Kramat Selatan,sex,laki_laki,,4014,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.71.02.1009,4,Kramat Selatan,sex,perempuan,,4237,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.71.02.1009,4,Kramat Selatan,total,total,,8251,jiwa,2025,registration,total_population,3.1,27,,
+33.71.02,3,Magelang Utara,sex,laki_laki,,18485,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.71.02,3,Magelang Utara,sex,perempuan,,19364,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.71.02,3,Magelang Utara,total,total,,37849,jiwa,2025,registration,total_population,3.1,27,,
+33.71.02,3,Magelang Utara,age_group,0-4,laki_laki,953,jiwa,2025,registration,total_population,3.2,29,,0-4
+33.71.02,3,Magelang Utara,age_group,0-4,perempuan,865,jiwa,2025,registration,total_population,3.2,29,,0-4
+33.71.02,3,Magelang Utara,age_group,0-4,,1818,jiwa,2025,registration,total_population,3.2,29,,0-4
+33.71.02,3,Magelang Utara,age_group,5-9,laki_laki,1286,jiwa,2025,registration,total_population,3.2,29,,5-9
+33.71.02,3,Magelang Utara,age_group,5-9,perempuan,1198,jiwa,2025,registration,total_population,3.2,29,,5-9
+33.71.02,3,Magelang Utara,age_group,5-9,,2484,jiwa,2025,registration,total_population,3.2,29,,5-9
+33.71.02,3,Magelang Utara,age_group,10-14,laki_laki,1340,jiwa,2025,registration,total_population,3.2,29,,10-14
+33.71.02,3,Magelang Utara,age_group,10-14,perempuan,1273,jiwa,2025,registration,total_population,3.2,29,,10-14
+33.71.02,3,Magelang Utara,age_group,10-14,,2613,jiwa,2025,registration,total_population,3.2,29,,10-14
+33.71.02,3,Magelang Utara,age_group,15-19,laki_laki,1500,jiwa,2025,registration,total_population,3.2,29,,15-19
+33.71.02,3,Magelang Utara,age_group,15-19,perempuan,1409,jiwa,2025,registration,total_population,3.2,29,,15-19
+33.71.02,3,Magelang Utara,age_group,15-19,,2909,jiwa,2025,registration,total_population,3.2,29,,15-19
+33.71.02,3,Magelang Utara,age_group,20-24,laki_laki,1547,jiwa,2025,registration,total_population,3.2,29,,20-24
+33.71.02,3,Magelang Utara,age_group,20-24,perempuan,1508,jiwa,2025,registration,total_population,3.2,29,,20-24
+33.71.02,3,Magelang Utara,age_group,20-24,,3055,jiwa,2025,registration,total_population,3.2,29,,20-24
+33.71.02,3,Magelang Utara,age_group,25-29,laki_laki,1510,jiwa,2025,registration,total_population,3.2,29,,25-29
+33.71.02,3,Magelang Utara,age_group,25-29,perempuan,1483,jiwa,2025,registration,total_population,3.2,29,,25-29
+33.71.02,3,Magelang Utara,age_group,25-29,,2993,jiwa,2025,registration,total_population,3.2,29,,25-29
+33.71.02,3,Magelang Utara,age_group,30-34,laki_laki,1378,jiwa,2025,registration,total_population,3.2,29,,30-34
+33.71.02,3,Magelang Utara,age_group,30-34,perempuan,1369,jiwa,2025,registration,total_population,3.2,29,,30-34
+33.71.02,3,Magelang Utara,age_group,30-34,,2747,jiwa,2025,registration,total_population,3.2,29,,30-34
+33.71.02,3,Magelang Utara,age_group,35-39,laki_laki,1193,jiwa,2025,registration,total_population,3.2,29,,35-39
+33.71.02,3,Magelang Utara,age_group,35-39,perempuan,1246,jiwa,2025,registration,total_population,3.2,29,,35-39
+33.71.02,3,Magelang Utara,age_group,35-39,,2439,jiwa,2025,registration,total_population,3.2,29,,35-39
+33.71.02,3,Magelang Utara,age_group,40-44,laki_laki,1311,jiwa,2025,registration,total_population,3.2,29,,40-44
+33.71.02,3,Magelang Utara,age_group,40-44,perempuan,1353,jiwa,2025,registration,total_population,3.2,29,,40-44
+33.71.02,3,Magelang Utara,age_group,40-44,,2664,jiwa,2025,registration,total_population,3.2,29,,40-44
+33.71.02,3,Magelang Utara,age_group,45-49,laki_laki,1226,jiwa,2025,registration,total_population,3.2,29,,45-49
+33.71.02,3,Magelang Utara,age_group,45-49,perempuan,1357,jiwa,2025,registration,total_population,3.2,29,,45-49
+33.71.02,3,Magelang Utara,age_group,45-49,,2583,jiwa,2025,registration,total_population,3.2,29,,45-49
+33.71.02,3,Magelang Utara,age_group,50-54,laki_laki,1292,jiwa,2025,registration,total_population,3.2,29,,50-54
+33.71.02,3,Magelang Utara,age_group,50-54,perempuan,1405,jiwa,2025,registration,total_population,3.2,29,,50-54
+33.71.02,3,Magelang Utara,age_group,50-54,,2697,jiwa,2025,registration,total_population,3.2,29,,50-54
+33.71.02,3,Magelang Utara,age_group,55-59,laki_laki,1229,jiwa,2025,registration,total_population,3.2,29,,55-59
+33.71.02,3,Magelang Utara,age_group,55-59,perempuan,1397,jiwa,2025,registration,total_population,3.2,29,,55-59
+33.71.02,3,Magelang Utara,age_group,55-59,,2626,jiwa,2025,registration,total_population,3.2,29,,55-59
+33.71.02,3,Magelang Utara,age_group,60-64,laki_laki,980,jiwa,2025,registration,total_population,3.2,29,,60-64
+33.71.02,3,Magelang Utara,age_group,60-64,perempuan,1237,jiwa,2025,registration,total_population,3.2,29,,60-64
+33.71.02,3,Magelang Utara,age_group,60-64,,2217,jiwa,2025,registration,total_population,3.2,29,,60-64
+33.71.02,3,Magelang Utara,age_group,65-69,laki_laki,782,jiwa,2025,registration,total_population,3.2,29,,65-69
+33.71.02,3,Magelang Utara,age_group,65-69,perempuan,938,jiwa,2025,registration,total_population,3.2,29,,65-69
+33.71.02,3,Magelang Utara,age_group,65-69,,1720,jiwa,2025,registration,total_population,3.2,29,,65-69
+33.71.02,3,Magelang Utara,age_group,70-74,laki_laki,539,jiwa,2025,registration,total_population,3.2,29,,70-74
+33.71.02,3,Magelang Utara,age_group,70-74,perempuan,613,jiwa,2025,registration,total_population,3.2,29,,70-74
+33.71.02,3,Magelang Utara,age_group,70-74,,1152,jiwa,2025,registration,total_population,3.2,29,,70-74
+33.71.02,3,Magelang Utara,age_group,75+,laki_laki,419,jiwa,2025,registration,total_population,3.2,29,,75+
+33.71.02,3,Magelang Utara,age_group,75+,perempuan,713,jiwa,2025,registration,total_population,3.2,29,,75+
+33.71.02,3,Magelang Utara,age_group,75+,,1132,jiwa,2025,registration,total_population,3.2,29,,75+
+33.71.02,3,Magelang Utara,sex,laki_laki,,18485,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+33.71.02,3,Magelang Utara,sex,perempuan,,19364,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+33.71.02,3,Magelang Utara,total,total,,37849,jiwa,2025,registration,total_population,3.2,29,,

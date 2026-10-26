@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3321-kecamatan-332103-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.21.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Guntur Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Demak",
+  "publisherDomain": "3321",
+  "publisherWebsite": "https://demakkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Demak (https://demakkab.bps.go.id), publikasi \"Kecamatan Guntur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3321030",
+  "publicationNumber": "33210.26009",
+  "issn": "0852-2723",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://demakkab.bps.go.id/id/publication/2026/09/28/e376740d416be5ae17f84613/kecamatan-guntur-dalam-angka-2026.html",
+  "sourceFileSha256": "f18aec83ea3a12923bddbb7ea1f21680e80413364bcaad3051c719baec527068",
+  "sourceFileBytes": 4295486,
+  "sourcePages": [24, 25, 26],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengkomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik",
+  "csvPath": "datasets/bps-3321-kecamatan-332103-dalam-angka-2026.csv",
+  "csvSha256": "d00e7b0f8549874fbaaaad7c0d880828c64e2dcfa6b64f3e098cc7cddb862295",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Guntur, 2025",
+      "printedPages": [24, 25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Guntur, 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

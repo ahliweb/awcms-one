@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3301-kecamatan-330124-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.01.24",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kampung Laut Dalam Angka 2026",
+  "publisherName": "BPS KABUPATEN CILACAP",
+  "publisherDomain": "3301",
+  "publisherWebsite": "https://cilacapkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KABUPATEN CILACAP (https://cilacapkab.bps.go.id), publikasi \"Kecamatan Kampung Laut Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3301121",
+  "publicationNumber": "33010.25021",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://cilacapkab.bps.go.id/id/publication/2026/09/28/e03b026bd2d85b0c162136ba/kecamatan-kampung-laut-dalam-angka-2026.html",
+  "sourceFileSha256": "c5f9e8da688fa08545a020ea44abbab9aac579f3819b6a4ffa41259db0cdd23e",
+  "sourceFileBytes": 6824827,
+  "sourcePages": [7, 9],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Cilacap.",
+  "csvPath": "datasets/bps-3301-kecamatan-330124-dalam-angka-2026.csv",
+  "csvSha256": "006af8da8d6fe022e0ea68290d1733647b0c71e50efc30ee2764bad8d9bf4361",
+  "tablesUsed": [
+    {
+      "table": "3.3",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kampung Laut, 2025",
+      "printedPages": [7],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.4",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kampung Laut, 2025",
+      "printedPages": [9],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

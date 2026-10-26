@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.15.07.2006,4,Bago,sex,laki_laki,,1908,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.07.2006,4,Bago,sex,perempuan,,1844,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.07.2006,4,Bago,total,total,,3752,jiwa,2025,registration,total_population,3.1,25,,
+33.15.07.2007,4,Simo,sex,laki_laki,,2872,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.07.2007,4,Simo,sex,perempuan,,2931,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.07.2007,4,Simo,total,total,,5803,jiwa,2025,registration,total_population,3.1,25,,
+33.15.07.2005,4,Rejosari,sex,laki_laki,,3931,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.07.2005,4,Rejosari,sex,perempuan,,3906,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.07.2005,4,Rejosari,total,total,,7837,jiwa,2025,registration,total_population,3.1,25,,
+33.15.07.2008,4,Pakis,sex,laki_laki,,4138,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.07.2008,4,Pakis,sex,perempuan,,4143,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.07.2008,4,Pakis,total,total,,8281,jiwa,2025,registration,total_population,3.1,25,,
+33.15.07.2009,4,Crewek,sex,laki_laki,,2766,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.07.2009,4,Crewek,sex,perempuan,,2698,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.07.2009,4,Crewek,total,total,,5464,jiwa,2025,registration,total_population,3.1,25,,
+33.15.07.2010,4,Banjarsari,sex,laki_laki,,3313,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.07.2010,4,Banjarsari,sex,perempuan,,3199,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.07.2010,4,Banjarsari,total,total,,6512,jiwa,2025,registration,total_population,3.1,25,,
+33.15.07.2004,4,Kradenan,sex,laki_laki,,4231,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.07.2004,4,Kradenan,sex,perempuan,,4181,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.07.2004,4,Kradenan,total,total,,8412,jiwa,2025,registration,total_population,3.1,25,,
+33.15.07.2002,4,Sambongbangi,sex,laki_laki,,3405,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.07.2002,4,Sambongbangi,sex,perempuan,,3484,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.07.2002,4,Sambongbangi,total,total,,6889,jiwa,2025,registration,total_population,3.1,25,,
+33.15.07.2001,4,Sengonwetan,sex,laki_laki,,1915,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.07.2001,4,Sengonwetan,sex,perempuan,,1939,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.07.2001,4,Sengonwetan,total,total,,3854,jiwa,2025,registration,total_population,3.1,25,,
+33.15.07.2003,4,Banjardowo,sex,laki_laki,,3703,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.07.2003,4,Banjardowo,sex,perempuan,,3685,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.07.2003,4,Banjardowo,total,total,,7388,jiwa,2025,registration,total_population,3.1,25,,
+33.15.07.2011,4,Kalisari,sex,laki_laki,,3805,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.07.2011,4,Kalisari,sex,perempuan,,3692,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.07.2011,4,Kalisari,total,total,,7497,jiwa,2025,registration,total_population,3.1,25,,
+33.15.07.2012,4,Kuwu,sex,laki_laki,,3136,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.07.2012,4,Kuwu,sex,perempuan,,3111,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.07.2012,4,Kuwu,total,total,,6247,jiwa,2025,registration,total_population,3.1,25,,
+33.15.07.2013,4,Grabagan,sex,laki_laki,,2282,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.07.2013,4,Grabagan,sex,perempuan,,2208,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.07.2013,4,Grabagan,total,total,,4490,jiwa,2025,registration,total_population,3.1,25,,
+33.15.07.2014,4,Tanjungsari,sex,laki_laki,,2170,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.07.2014,4,Tanjungsari,sex,perempuan,,2128,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.07.2014,4,Tanjungsari,total,total,,4298,jiwa,2025,registration,total_population,3.1,25,,
+33.15.07,3,Kecamatan Kradenan,sex,laki_laki,,43575,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.07,3,Kecamatan Kradenan,sex,perempuan,,43149,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.07,3,Kecamatan Kradenan,total,total,,86724,jiwa,2025,registration,total_population,3.1,25,,

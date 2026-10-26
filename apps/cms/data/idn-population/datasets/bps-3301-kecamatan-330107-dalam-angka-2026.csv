@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.01.07.2001,4,Karangkemiri,sex,perempuan,,2368,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.07.2001,4,Karangkemiri,total,total,,4738,jiwa,2025,registration,total_population,3.1,7,,
+33.01.07.2009,4,Karangreja,sex,perempuan,,827,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.07.2009,4,Karangreja,total,total,,1626,jiwa,2025,registration,total_population,3.1,7,,
+33.01.07.2010,4,Klapagada,sex,perempuan,,1495,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.07.2010,4,Klapagada,total,total,,3048,jiwa,2025,registration,total_population,3.1,7,,
+33.01.07.2002,4,Karangrena,sex,perempuan,,3034,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.07.2002,4,Karangrena,total,total,,6113,jiwa,2025,registration,total_population,3.1,7,,
+33.01.07.2003,4,Maos Kidul,sex,perempuan,,2988,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.07.2003,4,Maos Kidul,total,total,,5934,jiwa,2025,registration,total_population,3.1,7,,
+33.01.07.2004,4,Maos Lor,sex,perempuan,,3662,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.07.2004,4,Maos Lor,total,total,,7361,jiwa,2025,registration,total_population,3.1,7,,
+33.01.07.2005,4,Kalijaran,sex,perempuan,,1708,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.07.2005,4,Kalijaran,total,total,,3408,jiwa,2025,registration,total_population,3.1,7,,
+33.01.07.2006,4,Mernek,sex,perempuan,,2843,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.07.2006,4,Mernek,total,total,,5616,jiwa,2025,registration,total_population,3.1,7,,
+33.01.07.2008,4,Glempang,sex,perempuan,,3137,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.07.2008,4,Glempang,total,total,,6364,jiwa,2025,registration,total_population,3.1,7,,
+33.01.07,3,Maos,sex,perempuan,,24286,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.07,3,Maos,total,total,,48763,jiwa,2025,registration,total_population,3.1,7,,
+33.01.07,3,Maos,age_group,0-4,perempuan,1145,jiwa,2025,registration,total_population,3.2,9,,0–4
+33.01.07,3,Maos,age_group,0-4,,2350,jiwa,2025,registration,total_population,3.2,9,,0–4
+33.01.07,3,Maos,age_group,5-9,perempuan,1639,jiwa,2025,registration,total_population,3.2,9,,5–9
+33.01.07,3,Maos,age_group,5-9,,3347,jiwa,2025,registration,total_population,3.2,9,,5–9
+33.01.07,3,Maos,age_group,10-14,perempuan,1739,jiwa,2025,registration,total_population,3.2,9,,10–14
+33.01.07,3,Maos,age_group,10-14,,3555,jiwa,2025,registration,total_population,3.2,9,,10–14
+33.01.07,3,Maos,age_group,15-19,perempuan,1764,jiwa,2025,registration,total_population,3.2,9,,15–19
+33.01.07,3,Maos,age_group,15-19,,3665,jiwa,2025,registration,total_population,3.2,9,,15–19
+33.01.07,3,Maos,age_group,20-24,perempuan,1700,jiwa,2025,registration,total_population,3.2,9,,20–24
+33.01.07,3,Maos,age_group,20-24,,3518,jiwa,2025,registration,total_population,3.2,9,,20–24
+33.01.07,3,Maos,age_group,25-29,perempuan,1719,jiwa,2025,registration,total_population,3.2,9,,25–29
+33.01.07,3,Maos,age_group,25-29,,3638,jiwa,2025,registration,total_population,3.2,9,,25–29
+33.01.07,3,Maos,age_group,30-34,perempuan,1494,jiwa,2025,registration,total_population,3.2,9,,30–34
+33.01.07,3,Maos,age_group,30-34,,3228,jiwa,2025,registration,total_population,3.2,9,,30–34
+33.01.07,3,Maos,age_group,35-39,perempuan,1541,jiwa,2025,registration,total_population,3.2,9,,35–39
+33.01.07,3,Maos,age_group,35-39,,3204,jiwa,2025,registration,total_population,3.2,9,,35–39
+33.01.07,3,Maos,age_group,40-44,perempuan,1861,jiwa,2025,registration,total_population,3.2,9,,40–44
+33.01.07,3,Maos,age_group,40-44,,3659,jiwa,2025,registration,total_population,3.2,9,,40–44
+33.01.07,3,Maos,age_group,45-49,perempuan,1748,jiwa,2025,registration,total_population,3.2,9,,45–49
+33.01.07,3,Maos,age_group,45-49,,3500,jiwa,2025,registration,total_population,3.2,9,,45–49
+33.01.07,3,Maos,age_group,50-54,perempuan,1767,jiwa,2025,registration,total_population,3.2,9,,50–54
+33.01.07,3,Maos,age_group,50-54,,3382,jiwa,2025,registration,total_population,3.2,9,,50–54
+33.01.07,3,Maos,age_group,55-59,perempuan,1606,jiwa,2025,registration,total_population,3.2,9,,55–59
+33.01.07,3,Maos,age_group,55-59,,3043,jiwa,2025,registration,total_population,3.2,9,,55–59
+33.01.07,3,Maos,age_group,60-64,perempuan,1429,jiwa,2025,registration,total_population,3.2,9,,60–64
+33.01.07,3,Maos,age_group,60-64,,2700,jiwa,2025,registration,total_population,3.2,9,,60–64
+33.01.07,3,Maos,age_group,65-69,perempuan,1157,jiwa,2025,registration,total_population,3.2,9,,65–69
+33.01.07,3,Maos,age_group,65-69,,2190,jiwa,2025,registration,total_population,3.2,9,,65–69
+33.01.07,3,Maos,age_group,70-74,perempuan,777,jiwa,2025,registration,total_population,3.2,9,,70–74
+33.01.07,3,Maos,age_group,70-74,,1575,jiwa,2025,registration,total_population,3.2,9,,70–74
+33.01.07,3,Maos,age_group,75+,perempuan,1200,jiwa,2025,registration,total_population,3.2,9,,75+
+33.01.07,3,Maos,age_group,75+,,2209,jiwa,2025,registration,total_population,3.2,9,,75+
+33.01.07,3,Maos,sex,perempuan,,24286,jiwa,2025,registration,total_population,3.2,9,,Perempuan
+33.01.07,3,Maos,total,total,,48763,jiwa,2025,registration,total_population,3.2,9,,

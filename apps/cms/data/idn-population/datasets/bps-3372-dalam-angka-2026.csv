@@ -1,0 +1,101 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.72.01,3,Laweyan,total,total,,88978,jiwa,2025,projection,total_population,3.1.1,63,,
+33.72.01,3,Laweyan,total,total,,89010,jiwa,2026,projection,total_population,3.1.1,63,,
+33.72.02,3,Serengan,total,total,,48567,jiwa,2025,projection,total_population,3.1.1,63,,
+33.72.02,3,Serengan,total,total,,48689,jiwa,2026,projection,total_population,3.1.1,63,,
+33.72.03,3,Pasar Kliwon,total,total,,79972,jiwa,2025,projection,total_population,3.1.1,63,,
+33.72.03,3,Pasar Kliwon,total,total,,80094,jiwa,2026,projection,total_population,3.1.1,63,,
+33.72.04,3,Jebres,total,total,,139321,jiwa,2025,projection,total_population,3.1.1,63,,
+33.72.04,3,Jebres,total,total,,139396,jiwa,2026,projection,total_population,3.1.1,63,,
+33.72.05,3,Banjarsari,total,total,,172241,jiwa,2025,projection,total_population,3.1.1,63,,
+33.72.05,3,Banjarsari,total,total,,172777,jiwa,2026,projection,total_population,3.1.1,63,,
+33.72,2,Kota Surakarta,total,total,,529079,jiwa,2025,projection,total_population,3.1.1,63,,
+33.72,2,Kota Surakarta,total,total,,529966,jiwa,2026,projection,total_population,3.1.1,63,,
+33.72.01,3,Laweyan,religion,islam,,90210,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+33.72.01,3,Laweyan,religion,kristen,,9041,jiwa,2025,registration,total_population,4.3.1,155,,Kristen
+33.72.01,3,Laweyan,religion,katolik,,5398,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+33.72.01,3,Laweyan,religion,hindu,,79,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+33.72.02,3,Serengan,religion,islam,,42206,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+33.72.02,3,Serengan,religion,kristen,,8432,jiwa,2025,registration,total_population,4.3.1,155,,Kristen
+33.72.02,3,Serengan,religion,katolik,,3881,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+33.72.02,3,Serengan,religion,hindu,,17,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+33.72.03,3,Pasar Kliwon,religion,islam,,78789,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+33.72.03,3,Pasar Kliwon,religion,kristen,,5598,jiwa,2025,registration,total_population,4.3.1,155,,Kristen
+33.72.03,3,Pasar Kliwon,religion,katolik,,4303,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+33.72.03,3,Pasar Kliwon,religion,hindu,,14,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+33.72.04,3,Jebres,religion,islam,,109271,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+33.72.04,3,Jebres,religion,kristen,,27850,jiwa,2025,registration,total_population,4.3.1,155,,Kristen
+33.72.04,3,Jebres,religion,katolik,,14106,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+33.72.04,3,Jebres,religion,hindu,,95,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+33.72.05,3,Banjarsari,religion,islam,,149054,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+33.72.05,3,Banjarsari,religion,kristen,,28041,jiwa,2025,registration,total_population,4.3.1,155,,Kristen
+33.72.05,3,Banjarsari,religion,katolik,,11901,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+33.72.05,3,Banjarsari,religion,hindu,,136,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+33.72,2,Kota Surakarta,religion,islam,,469530,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+33.72,2,Kota Surakarta,religion,kristen,,78962,jiwa,2025,registration,total_population,4.3.1,155,,Kristen
+33.72,2,Kota Surakarta,religion,katolik,,39589,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+33.72,2,Kota Surakarta,religion,hindu,,341,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+33.72.01,3,Laweyan,religion,buddha,,126,jiwa,2025,registration,total_population,4.3.1,156,,Budha
+33.72.01,3,Laweyan,religion,khonghucu,,5,jiwa,2025,registration,total_population,4.3.1,156,,Konghucu
+33.72.01,3,Laweyan,religion,kepercayaan,,12,jiwa,2025,registration,total_population,4.3.1,156,,Kepercayaan
+33.72.02,3,Serengan,religion,buddha,,199,jiwa,2025,registration,total_population,4.3.1,156,,Budha
+33.72.02,3,Serengan,religion,khonghucu,,10,jiwa,2025,registration,total_population,4.3.1,156,,Konghucu
+33.72.02,3,Serengan,religion,kepercayaan,,6,jiwa,2025,registration,total_population,4.3.1,156,,Kepercayaan
+33.72.03,3,Pasar Kliwon,religion,buddha,,116,jiwa,2025,registration,total_population,4.3.1,156,,Budha
+33.72.03,3,Pasar Kliwon,religion,khonghucu,,2,jiwa,2025,registration,total_population,4.3.1,156,,Konghucu
+33.72.03,3,Pasar Kliwon,religion,kepercayaan,,8,jiwa,2025,registration,total_population,4.3.1,156,,Kepercayaan
+33.72.04,3,Jebres,religion,buddha,,441,jiwa,2025,registration,total_population,4.3.1,156,,Budha
+33.72.04,3,Jebres,religion,khonghucu,,86,jiwa,2025,registration,total_population,4.3.1,156,,Konghucu
+33.72.04,3,Jebres,religion,kepercayaan,,11,jiwa,2025,registration,total_population,4.3.1,156,,Kepercayaan
+33.72.05,3,Banjarsari,religion,buddha,,226,jiwa,2025,registration,total_population,4.3.1,156,,Budha
+33.72.05,3,Banjarsari,religion,khonghucu,,22,jiwa,2025,registration,total_population,4.3.1,156,,Konghucu
+33.72.05,3,Banjarsari,religion,kepercayaan,,22,jiwa,2025,registration,total_population,4.3.1,156,,Kepercayaan
+33.72,2,Kota Surakarta,religion,buddha,,1108,jiwa,2025,registration,total_population,4.3.1,156,,Budha
+33.72,2,Kota Surakarta,religion,khonghucu,,125,jiwa,2025,registration,total_population,4.3.1,156,,Konghucu
+33.72,2,Kota Surakarta,religion,kepercayaan,,59,jiwa,2025,registration,total_population,4.3.1,156,,Kepercayaan
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/padi_padian,,78422,rupiah,2024,survey_estimate,per_capita,10.1,435,,Padi-padian
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/padi_padian,,71063,rupiah,2025,survey_estimate,per_capita,10.1,435,,Padi-padian
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/umbi_umbian,,5329,rupiah,2024,survey_estimate,per_capita,10.1,435,,Umbi-umbian
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/umbi_umbian,,6589,rupiah,2025,survey_estimate,per_capita,10.1,435,,Umbi-umbian
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,29385,rupiah,2024,survey_estimate,per_capita,10.1,435,,Ikan/udang/cumi/kerang
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,26316,rupiah,2025,survey_estimate,per_capita,10.1,435,,Ikan/udang/cumi/kerang
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/daging,,40644,rupiah,2024,survey_estimate,per_capita,10.1,435,,Daging
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/daging,,37681,rupiah,2025,survey_estimate,per_capita,10.1,435,,Daging
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/telur_dan_susu,,48485,rupiah,2024,survey_estimate,per_capita,10.1,435,,Telur dan susu
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/telur_dan_susu,,49721,rupiah,2025,survey_estimate,per_capita,10.1,435,,Telur dan susu
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/sayur_sayuran,,58683,rupiah,2024,survey_estimate,per_capita,10.1,435,,Sayur-sayuran
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/sayur_sayuran,,58811,rupiah,2025,survey_estimate,per_capita,10.1,435,,Sayur-sayuran
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/kacang_kacangan,,18033,rupiah,2024,survey_estimate,per_capita,10.1,435,,Kacang-kacangan
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/kacang_kacangan,,19366,rupiah,2025,survey_estimate,per_capita,10.1,435,,Kacang-kacangan
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/buah_buahan,,40723,rupiah,2024,survey_estimate,per_capita,10.1,435,,Buah-buahan
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/buah_buahan,,46622,rupiah,2025,survey_estimate,per_capita,10.1,435,,Buah-buahan
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/minyak_dan_kelapa,,15695,rupiah,2024,survey_estimate,per_capita,10.1,435,,Minyak dan kelapa
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/minyak_dan_kelapa,,17826,rupiah,2025,survey_estimate,per_capita,10.1,435,,Minyak dan kelapa
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/bahan_minuman,,22336,rupiah,2024,survey_estimate,per_capita,10.1,435,,Bahan minuman
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/bahan_minuman,,22529,rupiah,2025,survey_estimate,per_capita,10.1,435,,Bahan minuman
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/bumbu_bumbuan,,13699,rupiah,2024,survey_estimate,per_capita,10.1,435,,Bumbu-bumbuan
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/bumbu_bumbuan,,15364,rupiah,2025,survey_estimate,per_capita,10.1,435,,Bumbu-bumbuan
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/konsumsi_lainnya,,13316,rupiah,2024,survey_estimate,per_capita,10.1,435,,Konsumsi lainnya
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/konsumsi_lainnya,,13152,rupiah,2025,survey_estimate,per_capita,10.1,435,,Konsumsi lainnya
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,314173,rupiah,2024,survey_estimate,per_capita,10.1,435,,Makanan dan minuman jadi
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,344438,rupiah,2025,survey_estimate,per_capita,10.1,435,,Makanan dan minuman jadi
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/rokok,,60852,rupiah,2024,survey_estimate,per_capita,10.1,435,,Rokok
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/rokok,,53497,rupiah,2025,survey_estimate,per_capita,10.1,435,,Rokok
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/jumlah_makanan,,759775,rupiah,2024,survey_estimate,per_capita,10.1,435,,Jumlah makanan
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/jumlah_makanan,,782975,rupiah,2025,survey_estimate,per_capita,10.1,435,,Jumlah makanan
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,508120,rupiah,2024,survey_estimate,per_capita,10.1,435,,Perumahan dan fasilitas rumah tangga
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,578623,rupiah,2025,survey_estimate,per_capita,10.1,435,,Perumahan dan fasilitas rumah tangga
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/aneka_komoditas_dan_jasa,,272418,rupiah,2024,survey_estimate,per_capita,10.1,435,,Aneka komoditas dan jasa
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/aneka_komoditas_dan_jasa,,330111,rupiah,2025,survey_estimate,per_capita,10.1,435,,Aneka komoditas dan jasa
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,23444,rupiah,2024,survey_estimate,per_capita,10.1,435,,"Pakaian, alas kaki, dan tutup kepala"
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,30809,rupiah,2025,survey_estimate,per_capita,10.1,435,,"Pakaian, alas kaki, dan tutup kepala"
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/komoditas_tahan_lama,,40824,rupiah,2024,survey_estimate,per_capita,10.1,435,,Komoditas tahan lama
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/komoditas_tahan_lama,,52817,rupiah,2025,survey_estimate,per_capita,10.1,435,,Komoditas tahan lama
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,83911,rupiah,2024,survey_estimate,per_capita,10.1,435,,"Pajak, pungutan, dan asuransi"
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,81645,rupiah,2025,survey_estimate,per_capita,10.1,435,,"Pajak, pungutan, dan asuransi"
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,13647,rupiah,2024,survey_estimate,per_capita,10.1,435,,Keperluan pesta dan upacara/kenduri
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,73274,rupiah,2025,survey_estimate,per_capita,10.1,435,,Keperluan pesta dan upacara/kenduri
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,942364,rupiah,2024,survey_estimate,per_capita,10.1,435,,Jumlah bukan makanan
+33.72,2,Kota Surakarta,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1147279,rupiah,2025,survey_estimate,per_capita,10.1,435,,Jumlah bukan makanan
+33.72,2,Kota Surakarta,expenditure,total,,1702139,rupiah,2024,survey_estimate,per_capita,10.1,435,,
+33.72,2,Kota Surakarta,expenditure,total,,1930254,rupiah,2025,survey_estimate,per_capita,10.1,435,,

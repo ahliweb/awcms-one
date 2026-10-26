@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3312-kecamatan-331213-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.12.13",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Ngadirojo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Wonogiri-Statistics Wonogiri Regency Sumber Ilustrasi",
+  "publisherDomain": "3312",
+  "publisherWebsite": "https://wonogirikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Wonogiri-Statistics Wonogiri Regency Sumber Ilustrasi (https://wonogirikab.bps.go.id), publikasi \"Kecamatan Ngadirojo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3312150",
+  "publicationNumber": "33120.26025",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://wonogirikab.bps.go.id/id/publication/2026/09/28/6c60dc5aefe1fb0b2ae3cf02/kecamatan-ngadirojo-dalam-angka-2026.html",
+  "sourceFileSha256": "0b69c08f56ee418aa0fde403dcc5f8eaa74a118de88827db530bd289e686b5bf",
+  "sourceFileBytes": 13332776,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Wonogiri",
+  "csvPath": "datasets/bps-3312-kecamatan-331213-dalam-angka-2026.csv",
+  "csvSha256": "027be2c9086258d482aafd5b3be1aee5ef223390f0747e89ec3ce685f6b8fa0b",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Ngadirojo, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Ngadirojo, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

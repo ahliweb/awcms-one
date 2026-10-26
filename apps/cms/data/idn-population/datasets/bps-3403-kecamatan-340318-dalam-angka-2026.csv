@@ -1,0 +1,11 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+34.03.18.2003,4,Girijati,sex,perempuan,,1044,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+34.03.18.2003,4,Girijati,total,total,,2112,jiwa,2025,registration,total_population,3.1,23,,
+34.03.18.2004,4,Giriasih,sex,perempuan,,760,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+34.03.18.2004,4,Giriasih,total,total,,1495,jiwa,2025,registration,total_population,3.1,23,,
+34.03.18.2002,4,Giricahyo,sex,perempuan,,2185,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+34.03.18.2002,4,Giricahyo,total,total,,4327,jiwa,2025,registration,total_population,3.1,23,,
+34.03.18.2001,4,Giripurwo,sex,perempuan,,4764,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+34.03.18.2001,4,Giripurwo,total,total,,9259,jiwa,2025,registration,total_population,3.1,23,,
+34.03.18.2005,4,Giritirto,sex,perempuan,,2153,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+34.03.18.2005,4,Giritirto,total,total,,4211,jiwa,2025,registration,total_population,3.1,23,,

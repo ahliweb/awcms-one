@@ -1,0 +1,237 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.26.01,3,Kandangserang,total,total,,37473,jiwa,2025,projection,total_population,3.1.1,72,,
+33.26.02,3,Paninggaran,total,total,,45684,jiwa,2025,projection,total_population,3.1.1,72,,
+33.26.03,3,Lebakbarang,total,total,,11657,jiwa,2025,projection,total_population,3.1.1,72,,
+33.26.04,3,Petungkriyono,total,total,,13729,jiwa,2025,projection,total_population,3.1.1,72,,
+33.26.05,3,Talun,total,total,,33277,jiwa,2025,projection,total_population,3.1.1,72,,
+33.26.06,3,Doro,total,total,,49303,jiwa,2025,projection,total_population,3.1.1,72,,
+33.26.07,3,Karanganyar,total,total,,50016,jiwa,2025,projection,total_population,3.1.1,72,,
+33.26.08,3,Kajen,total,total,,80919,jiwa,2025,projection,total_population,3.1.1,72,,
+33.26.09,3,Kesesi,total,total,,76691,jiwa,2025,projection,total_population,3.1.1,72,,
+33.26.10,3,Sragi,total,total,,67274,jiwa,2025,projection,total_population,3.1.1,72,,
+33.26.17,3,Siwalan,total,total,,43062,jiwa,2025,projection,total_population,3.1.1,72,,
+33.26.11,3,Bojong,total,total,,80675,jiwa,2025,projection,total_population,3.1.1,72,,
+33.26.12,3,Wonopringgo,total,total,,50671,jiwa,2025,projection,total_population,3.1.1,72,,
+33.26.13,3,Kedungwuni,total,total,,105057,jiwa,2025,projection,total_population,3.1.1,72,,
+33.26.14,3,Buaran,total,total,,48927,jiwa,2025,projection,total_population,3.1.1,72,,
+33.26.15,3,Tirto,total,total,,79142,jiwa,2025,projection,total_population,3.1.1,72,,
+33.26.16,3,Wiradesa,total,total,,64708,jiwa,2025,projection,total_population,3.1.1,72,,
+33.26.19,3,Wonokerto,total,total,,46813,jiwa,2025,projection,total_population,3.1.1,72,,
+33.26,2,Kabupaten Pekalongan,total,total,,1030342,jiwa,2025,projection,total_population,3.1.1,72,,
+33.26,2,Kabupaten Pekalongan,age_group,0-4,laki_laki,43837,jiwa,2025,projection,total_population,3.1.2,75,,0 – 4
+33.26,2,Kabupaten Pekalongan,age_group,0-4,perempuan,42065,jiwa,2025,projection,total_population,3.1.2,75,,0 – 4
+33.26,2,Kabupaten Pekalongan,age_group,0-4,,85902,jiwa,2025,projection,total_population,3.1.2,75,,0 – 4
+33.26,2,Kabupaten Pekalongan,age_group,5-9,laki_laki,40831,jiwa,2025,projection,total_population,3.1.2,75,,5 – 9
+33.26,2,Kabupaten Pekalongan,age_group,5-9,perempuan,38588,jiwa,2025,projection,total_population,3.1.2,75,,5 – 9
+33.26,2,Kabupaten Pekalongan,age_group,5-9,,79419,jiwa,2025,projection,total_population,3.1.2,75,,5 – 9
+33.26,2,Kabupaten Pekalongan,age_group,10-14,laki_laki,39803,jiwa,2025,projection,total_population,3.1.2,75,,10 – 14
+33.26,2,Kabupaten Pekalongan,age_group,10-14,perempuan,37881,jiwa,2025,projection,total_population,3.1.2,75,,10 – 14
+33.26,2,Kabupaten Pekalongan,age_group,10-14,,77684,jiwa,2025,projection,total_population,3.1.2,75,,10 – 14
+33.26,2,Kabupaten Pekalongan,age_group,15-19,laki_laki,39531,jiwa,2025,projection,total_population,3.1.2,75,,15 – 19
+33.26,2,Kabupaten Pekalongan,age_group,15-19,perempuan,36854,jiwa,2025,projection,total_population,3.1.2,75,,15 – 19
+33.26,2,Kabupaten Pekalongan,age_group,15-19,,76385,jiwa,2025,projection,total_population,3.1.2,75,,15 – 19
+33.26,2,Kabupaten Pekalongan,age_group,20-24,laki_laki,39722,jiwa,2025,projection,total_population,3.1.2,75,,20 – 24
+33.26,2,Kabupaten Pekalongan,age_group,20-24,perempuan,37861,jiwa,2025,projection,total_population,3.1.2,75,,20 – 24
+33.26,2,Kabupaten Pekalongan,age_group,20-24,,77583,jiwa,2025,projection,total_population,3.1.2,75,,20 – 24
+33.26,2,Kabupaten Pekalongan,age_group,25-29,laki_laki,43088,jiwa,2025,projection,total_population,3.1.2,75,,25 – 29
+33.26,2,Kabupaten Pekalongan,age_group,25-29,perempuan,40585,jiwa,2025,projection,total_population,3.1.2,75,,25 – 29
+33.26,2,Kabupaten Pekalongan,age_group,25-29,,83673,jiwa,2025,projection,total_population,3.1.2,75,,25 – 29
+33.26,2,Kabupaten Pekalongan,age_group,30-34,laki_laki,45159,jiwa,2025,projection,total_population,3.1.2,75,,30 – 34
+33.26,2,Kabupaten Pekalongan,age_group,30-34,perempuan,40881,jiwa,2025,projection,total_population,3.1.2,75,,30 – 34
+33.26,2,Kabupaten Pekalongan,age_group,30-34,,86040,jiwa,2025,projection,total_population,3.1.2,75,,30 – 34
+33.26,2,Kabupaten Pekalongan,age_group,35-39,laki_laki,42921,jiwa,2025,projection,total_population,3.1.2,75,,35 – 39
+33.26,2,Kabupaten Pekalongan,age_group,35-39,perempuan,38709,jiwa,2025,projection,total_population,3.1.2,75,,35 – 39
+33.26,2,Kabupaten Pekalongan,age_group,35-39,,81630,jiwa,2025,projection,total_population,3.1.2,75,,35 – 39
+33.26,2,Kabupaten Pekalongan,age_group,40-44,laki_laki,38515,jiwa,2025,projection,total_population,3.1.2,75,,40 – 44
+33.26,2,Kabupaten Pekalongan,age_group,40-44,perempuan,35922,jiwa,2025,projection,total_population,3.1.2,75,,40 – 44
+33.26,2,Kabupaten Pekalongan,age_group,40-44,,74437,jiwa,2025,projection,total_population,3.1.2,75,,40 – 44
+33.26,2,Kabupaten Pekalongan,age_group,45-49,laki_laki,34279,jiwa,2025,projection,total_population,3.1.2,75,,45 – 49
+33.26,2,Kabupaten Pekalongan,age_group,45-49,perempuan,33839,jiwa,2025,projection,total_population,3.1.2,75,,45 – 49
+33.26,2,Kabupaten Pekalongan,age_group,45-49,,68118,jiwa,2025,projection,total_population,3.1.2,75,,45 – 49
+33.26,2,Kabupaten Pekalongan,age_group,50-54,laki_laki,30086,jiwa,2025,projection,total_population,3.1.2,75,,50 – 54
+33.26,2,Kabupaten Pekalongan,age_group,50-54,perempuan,30112,jiwa,2025,projection,total_population,3.1.2,75,,50 – 54
+33.26,2,Kabupaten Pekalongan,age_group,50-54,,60198,jiwa,2025,projection,total_population,3.1.2,75,,50 – 54
+33.26,2,Kabupaten Pekalongan,age_group,55-59,laki_laki,26064,jiwa,2025,projection,total_population,3.1.2,75,,55 – 59
+33.26,2,Kabupaten Pekalongan,age_group,55-59,perempuan,27129,jiwa,2025,projection,total_population,3.1.2,75,,55 – 59
+33.26,2,Kabupaten Pekalongan,age_group,55-59,,53193,jiwa,2025,projection,total_population,3.1.2,75,,55 – 59
+33.26,2,Kabupaten Pekalongan,age_group,60-64,laki_laki,22287,jiwa,2025,projection,total_population,3.1.2,75,,60 – 64
+33.26,2,Kabupaten Pekalongan,age_group,60-64,perempuan,22984,jiwa,2025,projection,total_population,3.1.2,75,,60 – 64
+33.26,2,Kabupaten Pekalongan,age_group,60-64,,45271,jiwa,2025,projection,total_population,3.1.2,75,,60 – 64
+33.26,2,Kabupaten Pekalongan,age_group,65-69,laki_laki,16572,jiwa,2025,projection,total_population,3.1.2,75,,65 – 69
+33.26,2,Kabupaten Pekalongan,age_group,65-69,perempuan,17677,jiwa,2025,projection,total_population,3.1.2,75,,65 – 69
+33.26,2,Kabupaten Pekalongan,age_group,65-69,,34249,jiwa,2025,projection,total_population,3.1.2,75,,65 – 69
+33.26,2,Kabupaten Pekalongan,age_group,70-74,laki_laki,10723,jiwa,2025,projection,total_population,3.1.2,75,,70 – 74
+33.26,2,Kabupaten Pekalongan,age_group,70-74,perempuan,12217,jiwa,2025,projection,total_population,3.1.2,75,,70 – 74
+33.26,2,Kabupaten Pekalongan,age_group,70-74,,22940,jiwa,2025,projection,total_population,3.1.2,75,,70 – 74
+33.26,2,Kabupaten Pekalongan,age_group,75+,laki_laki,10108,jiwa,2025,projection,total_population,3.1.2,75,,75+
+33.26,2,Kabupaten Pekalongan,age_group,75+,perempuan,13512,jiwa,2025,projection,total_population,3.1.2,75,,75+
+33.26,2,Kabupaten Pekalongan,age_group,75+,,23620,jiwa,2025,projection,total_population,3.1.2,75,,75+
+33.26,2,Kabupaten Pekalongan,sex,laki_laki,,523526,jiwa,2025,projection,total_population,3.1.2,75,,Laki-Laki
+33.26,2,Kabupaten Pekalongan,sex,perempuan,,506816,jiwa,2025,projection,total_population,3.1.2,75,,Perempuan
+33.26,2,Kabupaten Pekalongan,total,total,,1030342,jiwa,2025,projection,total_population,3.1.2,75,,
+33.26.01,3,Kandangserang,religion,islam,,37849,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+33.26.01,3,Kandangserang,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+33.26.01,3,Kandangserang,religion,katolik,,3,jiwa,2025,registration,total_population,4.3.1,182,,Katolik
+33.26.01,3,Kandangserang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Hindu
+33.26.01,3,Kandangserang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Budha
+33.26.01,3,Kandangserang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Lainnya
+33.26.02,3,Paninggaran,religion,islam,,44909,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+33.26.02,3,Paninggaran,religion,kristen,,9,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+33.26.02,3,Paninggaran,religion,katolik,,2,jiwa,2025,registration,total_population,4.3.1,182,,Katolik
+33.26.02,3,Paninggaran,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Hindu
+33.26.02,3,Paninggaran,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,182,,Budha
+33.26.02,3,Paninggaran,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Lainnya
+33.26.03,3,Lebakbarang,religion,islam,,11672,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+33.26.03,3,Lebakbarang,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+33.26.03,3,Lebakbarang,religion,katolik,,5,jiwa,2025,registration,total_population,4.3.1,182,,Katolik
+33.26.03,3,Lebakbarang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Hindu
+33.26.03,3,Lebakbarang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Budha
+33.26.03,3,Lebakbarang,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,182,,Lainnya
+33.26.04,3,Petungkriyono,religion,islam,,13490,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+33.26.04,3,Petungkriyono,religion,kristen,,240,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+33.26.04,3,Petungkriyono,religion,katolik,,3,jiwa,2025,registration,total_population,4.3.1,182,,Katolik
+33.26.04,3,Petungkriyono,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Hindu
+33.26.04,3,Petungkriyono,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Budha
+33.26.04,3,Petungkriyono,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Lainnya
+33.26.05,3,Talun,religion,islam,,32774,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+33.26.05,3,Talun,religion,kristen,,400,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+33.26.05,3,Talun,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,182,,Katolik
+33.26.05,3,Talun,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Hindu
+33.26.05,3,Talun,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Budha
+33.26.05,3,Talun,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Lainnya
+33.26.06,3,Doro,religion,islam,,49146,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+33.26.06,3,Doro,religion,kristen,,112,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+33.26.06,3,Doro,religion,katolik,,21,jiwa,2025,registration,total_population,4.3.1,182,,Katolik
+33.26.06,3,Doro,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,182,,Hindu
+33.26.06,3,Doro,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Budha
+33.26.06,3,Doro,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Lainnya
+33.26.07,3,Karanganyar,religion,islam,,48893,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+33.26.07,3,Karanganyar,religion,kristen,,72,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+33.26.07,3,Karanganyar,religion,katolik,,146,jiwa,2025,registration,total_population,4.3.1,182,,Katolik
+33.26.07,3,Karanganyar,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,182,,Hindu
+33.26.07,3,Karanganyar,religion,buddha,,7,jiwa,2025,registration,total_population,4.3.1,182,,Budha
+33.26.07,3,Karanganyar,religion,lainnya,,7,jiwa,2025,registration,total_population,4.3.1,182,,Lainnya
+33.26.08,3,Kajen,religion,islam,,78245,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+33.26.08,3,Kajen,religion,kristen,,335,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+33.26.08,3,Kajen,religion,katolik,,155,jiwa,2025,registration,total_population,4.3.1,182,,Katolik
+33.26.08,3,Kajen,religion,hindu,,370,jiwa,2025,registration,total_population,4.3.1,182,,Hindu
+33.26.08,3,Kajen,religion,buddha,,7,jiwa,2025,registration,total_population,4.3.1,182,,Budha
+33.26.08,3,Kajen,religion,lainnya,,7,jiwa,2025,registration,total_population,4.3.1,182,,Lainnya
+33.26.09,3,Kesesi,religion,islam,,77757,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+33.26.09,3,Kesesi,religion,kristen,,61,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+33.26.09,3,Kesesi,religion,katolik,,11,jiwa,2025,registration,total_population,4.3.1,182,,Katolik
+33.26.09,3,Kesesi,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Hindu
+33.26.09,3,Kesesi,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Budha
+33.26.09,3,Kesesi,religion,lainnya,,7,jiwa,2025,registration,total_population,4.3.1,182,,Lainnya
+33.26.10,3,Sragi,religion,islam,,70150,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+33.26.10,3,Sragi,religion,kristen,,231,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+33.26.10,3,Sragi,religion,katolik,,86,jiwa,2025,registration,total_population,4.3.1,182,,Katolik
+33.26.10,3,Sragi,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,182,,Hindu
+33.26.10,3,Sragi,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,182,,Budha
+33.26.10,3,Sragi,religion,lainnya,,16,jiwa,2025,registration,total_population,4.3.1,182,,Lainnya
+33.26.17,3,Siwalan,religion,islam,,81448,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+33.26.17,3,Siwalan,religion,kristen,,65,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+33.26.17,3,Siwalan,religion,katolik,,11,jiwa,2025,registration,total_population,4.3.1,182,,Katolik
+33.26.17,3,Siwalan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Hindu
+33.26.17,3,Siwalan,religion,buddha,,13,jiwa,2025,registration,total_population,4.3.1,182,,Budha
+33.26.17,3,Siwalan,religion,lainnya,,7,jiwa,2025,registration,total_population,4.3.1,182,,Lainnya
+33.26.11,3,Bojong,religion,islam,,51174,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+33.26.11,3,Bojong,religion,kristen,,9,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+33.26.11,3,Bojong,religion,katolik,,9,jiwa,2025,registration,total_population,4.3.1,182,,Katolik
+33.26.11,3,Bojong,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Hindu
+33.26.11,3,Bojong,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Budha
+33.26.11,3,Bojong,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,182,,Lainnya
+33.26.12,3,Wonopringgo,religion,islam,,106084,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+33.26.12,3,Wonopringgo,religion,kristen,,312,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+33.26.12,3,Wonopringgo,religion,katolik,,141,jiwa,2025,registration,total_population,4.3.1,182,,Katolik
+33.26.12,3,Wonopringgo,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,182,,Hindu
+33.26.12,3,Wonopringgo,religion,buddha,,33,jiwa,2025,registration,total_population,4.3.1,182,,Budha
+33.26.12,3,Wonopringgo,religion,lainnya,,5,jiwa,2025,registration,total_population,4.3.1,182,,Lainnya
+33.26.13,3,Kedungwuni,religion,islam,,49442,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+33.26.13,3,Kedungwuni,religion,kristen,,6,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+33.26.13,3,Kedungwuni,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Katolik
+33.26.13,3,Kedungwuni,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Hindu
+33.26.13,3,Kedungwuni,religion,buddha,,10,jiwa,2025,registration,total_population,4.3.1,182,,Budha
+33.26.13,3,Kedungwuni,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Lainnya
+33.26.18,3,Karangdadap,religion,islam,,79314,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+33.26.18,3,Karangdadap,religion,kristen,,82,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+33.26.18,3,Karangdadap,religion,katolik,,51,jiwa,2025,registration,total_population,4.3.1,182,,Katolik
+33.26.18,3,Karangdadap,religion,hindu,,7,jiwa,2025,registration,total_population,4.3.1,182,,Hindu
+33.26.18,3,Karangdadap,religion,buddha,,6,jiwa,2025,registration,total_population,4.3.1,182,,Budha
+33.26.18,3,Karangdadap,religion,lainnya,,5,jiwa,2025,registration,total_population,4.3.1,182,,Lainnya
+33.26.14,3,Buaran,religion,islam,,64158,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+33.26.14,3,Buaran,religion,kristen,,546,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+33.26.14,3,Buaran,religion,katolik,,235,jiwa,2025,registration,total_population,4.3.1,182,,Katolik
+33.26.14,3,Buaran,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,182,,Hindu
+33.26.14,3,Buaran,religion,buddha,,45,jiwa,2025,registration,total_population,4.3.1,182,,Budha
+33.26.14,3,Buaran,religion,lainnya,,7,jiwa,2025,registration,total_population,4.3.1,182,,Lainnya
+33.26.15,3,Tirto,religion,islam,,44787,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+33.26.15,3,Tirto,religion,kristen,,8,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+33.26.15,3,Tirto,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,182,,Katolik
+33.26.15,3,Tirto,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Hindu
+33.26.15,3,Tirto,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Budha
+33.26.15,3,Tirto,religion,lainnya,,4,jiwa,2025,registration,total_population,4.3.1,182,,Lainnya
+33.26.16,3,Wiradesa,religion,islam,,45356,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+33.26.16,3,Wiradesa,religion,kristen,,51,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+33.26.16,3,Wiradesa,religion,katolik,,4,jiwa,2025,registration,total_population,4.3.1,182,,Katolik
+33.26.16,3,Wiradesa,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Hindu
+33.26.16,3,Wiradesa,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Budha
+33.26.16,3,Wiradesa,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Lainnya
+33.26.19,3,Wonokerto,religion,islam,,49002,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+33.26.19,3,Wonokerto,religion,kristen,,50,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+33.26.19,3,Wonokerto,religion,katolik,,25,jiwa,2025,registration,total_population,4.3.1,182,,Katolik
+33.26.19,3,Wonokerto,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Hindu
+33.26.19,3,Wonokerto,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,182,,Budha
+33.26.19,3,Wonokerto,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,182,,Lainnya
+33.26,2,Kabupaten Pekalongan,religion,islam,,1035650,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+33.26,2,Kabupaten Pekalongan,religion,kristen,,2591,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+33.26,2,Kabupaten Pekalongan,religion,katolik,,910,jiwa,2025,registration,total_population,4.3.1,182,,Katolik
+33.26,2,Kabupaten Pekalongan,religion,hindu,,389,jiwa,2025,registration,total_population,4.3.1,182,,Hindu
+33.26,2,Kabupaten Pekalongan,religion,buddha,,128,jiwa,2025,registration,total_population,4.3.1,182,,Budha
+33.26,2,Kabupaten Pekalongan,religion,lainnya,,68,jiwa,2025,registration,total_population,4.3.1,182,,Lainnya
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/padi_padian,,82171,rupiah,2024,survey_estimate,per_capita,10.1,368,,Padi-padian
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/padi_padian,,69705,rupiah,2025,survey_estimate,per_capita,10.1,368,,Padi-padian
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/umbi_umbian,,4090,rupiah,2024,survey_estimate,per_capita,10.1,368,,Umbi-umbian
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/umbi_umbian,,5059,rupiah,2025,survey_estimate,per_capita,10.1,368,,Umbi-umbian
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,30134,rupiah,2024,survey_estimate,per_capita,10.1,368,,Ikan/udang/cumi/kerang
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,29225,rupiah,2025,survey_estimate,per_capita,10.1,368,,Ikan/udang/cumi/kerang
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/daging,,28770,rupiah,2024,survey_estimate,per_capita,10.1,368,,Daging
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/daging,,26046,rupiah,2025,survey_estimate,per_capita,10.1,368,,Daging
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/telur_dan_susu,,30249,rupiah,2024,survey_estimate,per_capita,10.1,368,,Telur dan susu
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/telur_dan_susu,,31938,rupiah,2025,survey_estimate,per_capita,10.1,368,,Telur dan susu
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/sayur_sayuran,,45282,rupiah,2024,survey_estimate,per_capita,10.1,368,,Sayur-sayuran
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/sayur_sayuran,,44997,rupiah,2025,survey_estimate,per_capita,10.1,368,,Sayur-sayuran
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/kacang_kacangan,,15712,rupiah,2024,survey_estimate,per_capita,10.1,368,,Kacang-kacangan
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/kacang_kacangan,,15313,rupiah,2025,survey_estimate,per_capita,10.1,368,,Kacang-kacangan
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/buah_buahan,,31248,rupiah,2024,survey_estimate,per_capita,10.1,368,,Buah-buahan
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/buah_buahan,,34136,rupiah,2025,survey_estimate,per_capita,10.1,368,,Buah-buahan
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,13864,rupiah,2024,survey_estimate,per_capita,10.1,368,,Minyak dan kelapa
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16968,rupiah,2025,survey_estimate,per_capita,10.1,368,,Minyak dan kelapa
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/bahan_minuman,,20254,rupiah,2024,survey_estimate,per_capita,10.1,368,,Bahan minuman
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/bahan_minuman,,21761,rupiah,2025,survey_estimate,per_capita,10.1,368,,Bahan minuman
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/bumbu_bumbuan,,13708,rupiah,2024,survey_estimate,per_capita,10.1,368,,Bumbu-bumbuan
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/bumbu_bumbuan,,13382,rupiah,2025,survey_estimate,per_capita,10.1,368,,Bumbu-bumbuan
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/konsumsi_lainnya,,13034,rupiah,2024,survey_estimate,per_capita,10.1,368,,Konsumsi lainnya
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/konsumsi_lainnya,,11699,rupiah,2025,survey_estimate,per_capita,10.1,368,,Konsumsi lainnya
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,279908,rupiah,2024,survey_estimate,per_capita,10.1,368,,Makanan dan minuman jadi
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,276913,rupiah,2025,survey_estimate,per_capita,10.1,368,,Makanan dan minuman jadi
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/rokok,,87799,rupiah,2024,survey_estimate,per_capita,10.1,368,,Rokok
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/rokok,,85207,rupiah,2025,survey_estimate,per_capita,10.1,368,,Rokok
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/jumlah_makanan,,696224,rupiah,2024,survey_estimate,per_capita,10.1,368,,Jumlah makanan
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/jumlah_makanan,,682350,rupiah,2025,survey_estimate,per_capita,10.1,368,,Jumlah makanan
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,282590,rupiah,2024,survey_estimate,per_capita,10.1,368,,Perumahan dan fasilitas rumah tangga
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,296133,rupiah,2025,survey_estimate,per_capita,10.1,368,,Perumahan dan fasilitas rumah tangga
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,128752,rupiah,2024,survey_estimate,per_capita,10.1,368,,Aneka barang dan jasa
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,152408,rupiah,2025,survey_estimate,per_capita,10.1,368,,Aneka barang dan jasa
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,28306,rupiah,2024,survey_estimate,per_capita,10.1,368,,"Pakaian, alas kaki, dan tutup kepala"
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,32925,rupiah,2025,survey_estimate,per_capita,10.1,368,,"Pakaian, alas kaki, dan tutup kepala"
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/barang_tahan_lama,,39207,rupiah,2024,survey_estimate,per_capita,10.1,368,,Barang tahan lama
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/barang_tahan_lama,,75072,rupiah,2025,survey_estimate,per_capita,10.1,368,,Barang tahan lama
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,41729,rupiah,2024,survey_estimate,per_capita,10.1,368,,"Pajak, pungutan, dan asuransi"
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,46909,rupiah,2025,survey_estimate,per_capita,10.1,368,,"Pajak, pungutan, dan asuransi"
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,23944,rupiah,2024,survey_estimate,per_capita,10.1,368,,Keperluan pesta dan upacara/kenduri
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,35762,rupiah,2025,survey_estimate,per_capita,10.1,368,,Keperluan pesta dan upacara/kenduri
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,544528,rupiah,2024,survey_estimate,per_capita,10.1,368,,Jumlah bukan makanan
+33.26,2,Kabupaten Pekalongan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,639210,rupiah,2025,survey_estimate,per_capita,10.1,368,,Jumlah bukan makanan
+33.26,2,Kabupaten Pekalongan,expenditure,total,,1240752,rupiah,2024,survey_estimate,per_capita,10.1,368,,
+33.26,2,Kabupaten Pekalongan,expenditure,total,,1321560,rupiah,2025,survey_estimate,per_capita,10.1,368,,

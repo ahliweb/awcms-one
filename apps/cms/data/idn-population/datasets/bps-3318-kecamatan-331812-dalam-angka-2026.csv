@@ -1,0 +1,103 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.18.12.2001,4,Jambean Kidul,sex,laki_laki,,2568,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.12.2001,4,Jambean Kidul,sex,perempuan,,2701,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.12.2001,4,Jambean Kidul,total,total,,5269,jiwa,2025,registration,total_population,3.1,22,,
+33.18.12.2002,4,Wangunrejo,sex,laki_laki,,1424,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.12.2002,4,Wangunrejo,sex,perempuan,,1464,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.12.2002,4,Wangunrejo,total,total,,2888,jiwa,2025,registration,total_population,3.1,22,,
+33.18.12.2003,4,Bumirejo,sex,laki_laki,,2456,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.12.2003,4,Bumirejo,sex,perempuan,,2453,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.12.2003,4,Bumirejo,total,total,,4909,jiwa,2025,registration,total_population,3.1,22,,
+33.18.12.2004,4,Sokokulon,sex,laki_laki,,1394,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.12.2004,4,Sokokulon,sex,perempuan,,1442,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.12.2004,4,Sokokulon,total,total,,2836,jiwa,2025,registration,total_population,3.1,22,,
+33.18.12.2005,4,Jimbaran,sex,laki_laki,,1045,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.12.2005,4,Jimbaran,sex,perempuan,,1119,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.12.2005,4,Jimbaran,total,total,,2164,jiwa,2025,registration,total_population,3.1,22,,
+33.18.12.2006,4,Ngawen,sex,laki_laki,,1206,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.12.2006,4,Ngawen,sex,perempuan,,1246,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.12.2006,4,Ngawen,total,total,,2452,jiwa,2025,registration,total_population,3.1,22,,
+33.18.12.2007,4,Margorejo,sex,laki_laki,,2668,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.12.2007,4,Margorejo,sex,perempuan,,2784,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.12.2007,4,Margorejo,total,total,,5452,jiwa,2025,registration,total_population,3.1,22,,
+33.18.12.2008,4,Penambuhan,sex,laki_laki,,1382,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.12.2008,4,Penambuhan,sex,perempuan,,1414,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.12.2008,4,Penambuhan,total,total,,2796,jiwa,2025,registration,total_population,3.1,22,,
+33.18.12.2009,4,Langenharjo,sex,laki_laki,,1525,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.12.2009,4,Langenharjo,sex,perempuan,,1613,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.12.2009,4,Langenharjo,total,total,,3138,jiwa,2025,registration,total_population,3.1,22,,
+33.18.12.2010,4,Dadirejo,sex,laki_laki,,1755,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.12.2010,4,Dadirejo,sex,perempuan,,1878,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.12.2010,4,Dadirejo,total,total,,3633,jiwa,2025,registration,total_population,3.1,22,,
+33.18.12.2011,4,Sukoharjo,sex,laki_laki,,3429,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.12.2011,4,Sukoharjo,sex,perempuan,,3372,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.12.2011,4,Sukoharjo,total,total,,6801,jiwa,2025,registration,total_population,3.1,22,,
+33.18.12.2012,4,Badegan,sex,laki_laki,,786,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.12.2012,4,Badegan,sex,perempuan,,805,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.12.2012,4,Badegan,total,total,,1591,jiwa,2025,registration,total_population,3.1,22,,
+33.18.12.2013,4,Pegandan,sex,laki_laki,,1751,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.12.2013,4,Pegandan,sex,perempuan,,1699,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.12.2013,4,Pegandan,total,total,,3450,jiwa,2025,registration,total_population,3.1,22,,
+33.18.12.2015,4,Banyuurip,sex,laki_laki,,1107,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.12.2015,4,Banyuurip,sex,perempuan,,1146,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.12.2015,4,Banyuurip,total,total,,2253,jiwa,2025,registration,total_population,3.1,22,,
+33.18.12.2017,4,Langse,sex,laki_laki,,631,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.12.2017,4,Langse,sex,perempuan,,618,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.12.2017,4,Langse,total,total,,1249,jiwa,2025,registration,total_population,3.1,22,,
+33.18.12.2018,4,Muktiharjo,sex,laki_laki,,4692,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.12.2018,4,Muktiharjo,sex,perempuan,,4868,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.12.2018,4,Muktiharjo,total,total,,9560,jiwa,2025,registration,total_population,3.1,22,,
+33.18.12,3,Kecamatan Margorejo,sex,laki_laki,,32572,jiwa,2025,registration,total_population,3.1,22,,Laki-laki/Male
+33.18.12,3,Kecamatan Margorejo,sex,perempuan,,33450,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.18.12,3,Kecamatan Margorejo,total,total,,66022,jiwa,2025,registration,total_population,3.1,22,,
+33.18.12,3,Margorejo,age_group,0-4,laki_laki,1934,jiwa,2025,registration,total_population,3.2,24,,0-4
+33.18.12,3,Margorejo,age_group,0-4,perempuan,1853,jiwa,2025,registration,total_population,3.2,24,,0-4
+33.18.12,3,Margorejo,age_group,0-4,,3787,jiwa,2025,registration,total_population,3.2,24,,0-4
+33.18.12,3,Margorejo,age_group,5-9,laki_laki,2371,jiwa,2025,registration,total_population,3.2,24,,5-9
+33.18.12,3,Margorejo,age_group,5-9,perempuan,2254,jiwa,2025,registration,total_population,3.2,24,,5-9
+33.18.12,3,Margorejo,age_group,5-9,,4625,jiwa,2025,registration,total_population,3.2,24,,5-9
+33.18.12,3,Margorejo,age_group,10-14,laki_laki,2553,jiwa,2025,registration,total_population,3.2,24,,10-14
+33.18.12,3,Margorejo,age_group,10-14,perempuan,2341,jiwa,2025,registration,total_population,3.2,24,,10-14
+33.18.12,3,Margorejo,age_group,10-14,,4894,jiwa,2025,registration,total_population,3.2,24,,10-14
+33.18.12,3,Margorejo,age_group,15-19,laki_laki,2374,jiwa,2025,registration,total_population,3.2,24,,15-19
+33.18.12,3,Margorejo,age_group,15-19,perempuan,2243,jiwa,2025,registration,total_population,3.2,24,,15-19
+33.18.12,3,Margorejo,age_group,15-19,,4617,jiwa,2025,registration,total_population,3.2,24,,15-19
+33.18.12,3,Margorejo,age_group,20-24,laki_laki,2303,jiwa,2025,registration,total_population,3.2,24,,20-24
+33.18.12,3,Margorejo,age_group,20-24,perempuan,2228,jiwa,2025,registration,total_population,3.2,24,,20-24
+33.18.12,3,Margorejo,age_group,20-24,,4531,jiwa,2025,registration,total_population,3.2,24,,20-24
+33.18.12,3,Margorejo,age_group,25-29,laki_laki,2472,jiwa,2025,registration,total_population,3.2,24,,25-29
+33.18.12,3,Margorejo,age_group,25-29,perempuan,2387,jiwa,2025,registration,total_population,3.2,24,,25-29
+33.18.12,3,Margorejo,age_group,25-29,,4859,jiwa,2025,registration,total_population,3.2,24,,25-29
+33.18.12,3,Margorejo,age_group,30-34,laki_laki,2422,jiwa,2025,registration,total_population,3.2,24,,30-34
+33.18.12,3,Margorejo,age_group,30-34,perempuan,2490,jiwa,2025,registration,total_population,3.2,24,,30-34
+33.18.12,3,Margorejo,age_group,30-34,,4912,jiwa,2025,registration,total_population,3.2,24,,30-34
+33.18.12,3,Margorejo,age_group,35-39,laki_laki,2405,jiwa,2025,registration,total_population,3.2,24,,35-39
+33.18.12,3,Margorejo,age_group,35-39,perempuan,2479,jiwa,2025,registration,total_population,3.2,24,,35-39
+33.18.12,3,Margorejo,age_group,35-39,,4884,jiwa,2025,registration,total_population,3.2,24,,35-39
+33.18.12,3,Margorejo,age_group,40-44,laki_laki,2384,jiwa,2025,registration,total_population,3.2,24,,40-44
+33.18.12,3,Margorejo,age_group,40-44,perempuan,2609,jiwa,2025,registration,total_population,3.2,24,,40-44
+33.18.12,3,Margorejo,age_group,40-44,,4993,jiwa,2025,registration,total_population,3.2,24,,40-44
+33.18.12,3,Margorejo,age_group,45-49,laki_laki,2290,jiwa,2025,registration,total_population,3.2,24,,45-49
+33.18.12,3,Margorejo,age_group,45-49,perempuan,2525,jiwa,2025,registration,total_population,3.2,24,,45-49
+33.18.12,3,Margorejo,age_group,45-49,,4815,jiwa,2025,registration,total_population,3.2,24,,45-49
+33.18.12,3,Margorejo,age_group,50-54,laki_laki,2158,jiwa,2025,registration,total_population,3.2,24,,50-54
+33.18.12,3,Margorejo,age_group,50-54,perempuan,2315,jiwa,2025,registration,total_population,3.2,24,,50-54
+33.18.12,3,Margorejo,age_group,50-54,,4473,jiwa,2025,registration,total_population,3.2,24,,50-54
+33.18.12,3,Margorejo,age_group,55-59,laki_laki,2134,jiwa,2025,registration,total_population,3.2,24,,55-59
+33.18.12,3,Margorejo,age_group,55-59,perempuan,2231,jiwa,2025,registration,total_population,3.2,24,,55-59
+33.18.12,3,Margorejo,age_group,55-59,,4365,jiwa,2025,registration,total_population,3.2,24,,55-59
+33.18.12,3,Margorejo,age_group,60-64,laki_laki,1826,jiwa,2025,registration,total_population,3.2,24,,60-64
+33.18.12,3,Margorejo,age_group,60-64,perempuan,1926,jiwa,2025,registration,total_population,3.2,24,,60-64
+33.18.12,3,Margorejo,age_group,60-64,,3752,jiwa,2025,registration,total_population,3.2,24,,60-64
+33.18.12,3,Margorejo,age_group,65-69,laki_laki,1391,jiwa,2025,registration,total_population,3.2,24,,65-69
+33.18.12,3,Margorejo,age_group,65-69,perempuan,1495,jiwa,2025,registration,total_population,3.2,24,,65-69
+33.18.12,3,Margorejo,age_group,65-69,,2886,jiwa,2025,registration,total_population,3.2,24,,65-69
+33.18.12,3,Margorejo,age_group,70-74,laki_laki,794,jiwa,2025,registration,total_population,3.2,24,,70-74
+33.18.12,3,Margorejo,age_group,70-74,perempuan,807,jiwa,2025,registration,total_population,3.2,24,,70-74
+33.18.12,3,Margorejo,age_group,70-74,,1601,jiwa,2025,registration,total_population,3.2,24,,70-74
+33.18.12,3,Margorejo,age_group,75+,laki_laki,761,jiwa,2025,registration,total_population,3.2,24,,75+
+33.18.12,3,Margorejo,age_group,75+,perempuan,1267,jiwa,2025,registration,total_population,3.2,24,,75+
+33.18.12,3,Margorejo,age_group,75+,,2028,jiwa,2025,registration,total_population,3.2,24,,75+
+33.18.12,3,Kecamatan Margorejo,sex,laki_laki,,32572,jiwa,2025,registration,total_population,3.2,24,,Laki-laki
+33.18.12,3,Kecamatan Margorejo,sex,perempuan,,33450,jiwa,2025,registration,total_population,3.2,24,,Perempuan
+33.18.12,3,Kecamatan Margorejo,total,total,,66022,jiwa,2025,registration,total_population,3.2,24,,

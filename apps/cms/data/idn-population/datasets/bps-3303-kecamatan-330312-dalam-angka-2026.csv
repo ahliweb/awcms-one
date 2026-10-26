@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.03.12.2001,4,Karangsari,sex,laki_laki,,2442,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.12.2001,4,Karangsari,sex,perempuan,,2298,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.12.2001,4,Karangsari,total,total,,4740,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.12.2002,4,Pepedan,sex,laki_laki,,2045,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.12.2002,4,Pepedan,sex,perempuan,,1950,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.12.2002,4,Pepedan,total,total,,3995,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.12.2003,4,Pekiringan,sex,laki_laki,,2050,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.12.2003,4,Pekiringan,sex,perempuan,,2030,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.12.2003,4,Pekiringan,total,total,,4080,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.12.2004,4,Grantung,sex,laki_laki,,1357,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.12.2004,4,Grantung,sex,perempuan,,1290,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.12.2004,4,Grantung,total,total,,2647,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.12.2005,4,Rajawana,sex,laki_laki,,2464,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.12.2005,4,Rajawana,sex,perempuan,,2331,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.12.2005,4,Rajawana,total,total,,4795,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.12.2006,4,Tajug,sex,laki_laki,,1928,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.12.2006,4,Tajug,sex,perempuan,,1806,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.12.2006,4,Tajug,total,total,,3734,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.12.2007,4,Tamansari,sex,laki_laki,,3897,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.12.2007,4,Tamansari,sex,perempuan,,3691,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.12.2007,4,Tamansari,total,total,,7588,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.12.2008,4,Baleraksa,sex,laki_laki,,4406,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.12.2008,4,Baleraksa,sex,perempuan,,4185,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.12.2008,4,Baleraksa,total,total,,8591,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.12.2009,4,Tunjungmuli,sex,laki_laki,,6361,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.12.2009,4,Tunjungmuli,sex,perempuan,,5997,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.12.2009,4,Tunjungmuli,total,total,,12358,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.12.2010,4,Kramat,sex,laki_laki,,2254,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.12.2010,4,Kramat,sex,perempuan,,2068,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.12.2010,4,Kramat,total,total,,4322,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.12.2011,4,Sirau,sex,laki_laki,,2927,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.12.2011,4,Sirau,sex,perempuan,,2759,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.12.2011,4,Sirau,total,total,,5686,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.12,3,Kecamatan Karangmoncol,sex,laki_laki,,32131,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.12,3,Kecamatan Karangmoncol,sex,perempuan,,30405,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.12,3,Kecamatan Karangmoncol,total,total,,62536,jiwa,2025,registration,total_population,3.1.1,19,,

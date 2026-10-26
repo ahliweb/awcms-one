@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3302-kecamatan-330216-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.02.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pekuncen Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Banyumas",
+  "publisherDomain": "3302",
+  "publisherWebsite": "https://banyumaskab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Banyumas (https://banyumaskab.bps.go.id), publikasi \"Kecamatan Pekuncen Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3302010",
+  "publicationNumber": "33020.26012",
+  "issn": "3047-3705",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://banyumaskab.bps.go.id/id/publication/2026/09/28/60ceb018174d74265cc97339/kecamatan-pekuncen-dalam-angka-2026.html",
+  "sourceFileSha256": "374ef7cdcfb92c081a9436af0e1859dca2dd4d53b79d5a71fea60cf22b26c30b",
+  "sourceFileBytes": 10328874,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Banyumas. ISSN 2598-1358 TIM PENYUSUN KECAMATAN PEKUNCEN DALAM ANGKA 2026 Volume 23, 2026 go bp s. Penanggung Jawab Moh. Fatichuddin .id Pengarah Moh. Fatichuddin as ka b. Penyunting Aditya Aprilliofany • Dwi Asih Septi Wahyuni ht tp s: //b an yu m Pengolah Data dan Penulis Naskah Ricci Rakhman Pamuji • Dwi Asih Septi Wahyuni Penata Letak Dwi Asih Septi Wahyuni s. bp b. ka as m yu an //b s: tp ht .id go KONTRIBUTOR DATA tp s: //b an yu m as ka b. bp s. go .id Pemerintah Kecamatan Pekuncen Pemerintah Desa di Kecamatan Pekuncen Badan Pusat Statistik Dinas Perumahan dan Kawasan Permukiman Kabupaten Banyumas Dinas Kependudukan dan Pencatatan Sipil Kabupaten Banyumas Dinas Kesehatan dan Keluarga Berencana Kabupaten Banyumas Dinas Pertanian Kabupaten Banyumas Kementerian Pendidikan Dasar dan Menengah Kantor Kementerian Agama Kabupaten Banyumas ht 1. 2. 3. 4. 5. 6. 7. 8. 9. s. bp b. ka as m yu an //b s: tp ht .id go KATA PENGANTAR ht tp s: //b an yu m as ka b. bp s. go .id Kecamatan Pekuncen Dalam Angka 2026 merupakan seri publikasi BPS Kabupaten Banyumas yang menyajikan beragam jenis data baik dari BPS ataupun dinas/instansi lain. Data yang dicakup dalam publikasi ini meliputi keadaan geografi, pemerintahan, penduduk, sosial dan kesejahteraan rakyat, pertanian, pariwisata, dan lain-lain di Kecamatan Pekuncen. Publikasi ini juga menyajikan penjelasan teknis yang digunakan sehingga pengguna data akan lebih memahami informasi yang disajikan. Data yang disajikan dalam Publikasi Kecamatan Pekuncen Dalam Angka 2026 sebagian besar merupakan data dan informasi kondisi tahun 2025 dan 2026. Seiring dengan meningkatnya kebutuhan konsumen data, Publikasi Kecamatan Pekuncen Dalam Angka terus mengalami penyempurnaan baik struktur maupun muatannya. Publikasi Kecamatan Pekuncen Dalam Angka 2026 juga tersaji dalam bentuk digital yang dapat diakses melalui website BPS Kabupaten Banyumas (https://banyumaskab.bps.go.id) tanpa berbayar. Publikasi ini dapat terwujud berkat kerja sama dan partisipasi dari berbagai pihak. Ucapan terima kasih disampaikan kepada semua pihak yang telah memberikan dukungan sehingga Publikasi Kecamatan Pekuncen Dalam Angka 2026 dapat terwujud. Semoga publikasi ini dapat memberikan manfaat bagi pengguna untuk berbagai keperluan. Kami mengharapkan tanggapan dan saran dari para pengguna publikasi ini untuk perbaikan pada edisi selanjutnya. Purwokerto , September 2026 Kepala BPS Kabupaten Banyumas Moh. Fatichuddin vii s. bp b. ka as m yu an //b s: tp ht .id go",
+  "csvPath": "datasets/bps-3302-kecamatan-330216-dalam-angka-2026.csv",
+  "csvSha256": "832d4d268ca11a34c944412ef6db3f335c5af29e33a3ea094b2687fe6653cefd",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk dan Keluarga Menurut Desa/Kelurahan di Kecamatan Pekuncen, 2025 Penduduk Persentase Desa/Kelurahan Laki-Laki Perempuan Jumlah Penduduk",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pekuncen, 2025 Penduduk Kelompok Umur Jumlah Laki-Laki Perempuan",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1 is not included: its published figures do not add up (total/total/- 2025: parts sum 27912.0000 != 79708.0000 (diff 51796.0000)); the source itself is inconsistent"
+  ]
+}

@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.15.18.2001,4,Kebonagung,sex,laki_laki,,3023,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/
+33.15.18.2001,4,Kebonagung,sex,perempuan,,3044,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.18.2001,4,Kebonagung,total,total,,6067,jiwa,2025,registration,total_population,3.1,25,,
+33.15.18.2002,4,Tlogorejo,sex,laki_laki,,2452,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/
+33.15.18.2002,4,Tlogorejo,sex,perempuan,,2444,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.18.2002,4,Tlogorejo,total,total,,4896,jiwa,2025,registration,total_population,3.1,25,,
+33.15.18.2003,4,Medani,sex,laki_laki,,1219,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/
+33.15.18.2003,4,Medani,sex,perempuan,,1169,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.18.2003,4,Medani,total,total,,2388,jiwa,2025,registration,total_population,3.1,25,,
+33.15.18.2004,4,Sukorejo,sex,laki_laki,,1645,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/
+33.15.18.2004,4,Sukorejo,sex,perempuan,,1609,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.18.2004,4,Sukorejo,total,total,,3254,jiwa,2025,registration,total_population,3.1,25,,
+33.15.18.2005,4,Tanggirejo,sex,laki_laki,,867,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/
+33.15.18.2005,4,Tanggirejo,sex,perempuan,,867,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.18.2005,4,Tanggirejo,total,total,,1734,jiwa,2025,registration,total_population,3.1,25,,
+33.15.18.2006,4,Mangunsari,sex,laki_laki,,1480,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/
+33.15.18.2006,4,Mangunsari,sex,perempuan,,1496,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.18.2006,4,Mangunsari,total,total,,2976,jiwa,2025,registration,total_population,3.1,25,,
+33.15.18.2007,4,Gebangan,sex,laki_laki,,592,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/
+33.15.18.2007,4,Gebangan,sex,perempuan,,582,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.18.2007,4,Gebangan,total,total,,1174,jiwa,2025,registration,total_population,3.1,25,,
+33.15.18.2008,4,Kejawan,sex,laki_laki,,977,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/
+33.15.18.2008,4,Kejawan,sex,perempuan,,968,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.18.2008,4,Kejawan,total,total,,1945,jiwa,2025,registration,total_population,3.1,25,,
+33.15.18.2009,4,Tegowanu Wetan,sex,laki_laki,,3635,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/
+33.15.18.2009,4,Tegowanu Wetan,sex,perempuan,,3600,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.18.2009,4,Tegowanu Wetan,total,total,,7235,jiwa,2025,registration,total_population,3.1,25,,
+33.15.18.2011,4,Tajemsari,sex,laki_laki,,1588,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/
+33.15.18.2011,4,Tajemsari,sex,perempuan,,1626,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.18.2011,4,Tajemsari,total,total,,3214,jiwa,2025,registration,total_population,3.1,25,,
+33.15.18.2012,4,Karangpasar,sex,laki_laki,,1293,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/
+33.15.18.2012,4,Karangpasar,sex,perempuan,,1329,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.18.2012,4,Karangpasar,total,total,,2622,jiwa,2025,registration,total_population,3.1,25,,
+33.15.18.2013,4,Kedungwungu,sex,laki_laki,,1764,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/
+33.15.18.2013,4,Kedungwungu,sex,perempuan,,1760,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.18.2013,4,Kedungwungu,total,total,,3524,jiwa,2025,registration,total_population,3.1,25,,
+33.15.18.2014,4,Pepe,sex,laki_laki,,1721,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/
+33.15.18.2014,4,Pepe,sex,perempuan,,1663,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.18.2014,4,Pepe,total,total,,3384,jiwa,2025,registration,total_population,3.1,25,,
+33.15.18.2015,4,Curug,sex,laki_laki,,1206,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/
+33.15.18.2015,4,Curug,sex,perempuan,,1235,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.18.2015,4,Curug,total,total,,2441,jiwa,2025,registration,total_population,3.1,25,,
+33.15.18.2016,4,Cangkring,sex,laki_laki,,1079,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/
+33.15.18.2016,4,Cangkring,sex,perempuan,,1046,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.18.2016,4,Cangkring,total,total,,2125,jiwa,2025,registration,total_population,3.1,25,,
+33.15.18.2017,4,Gaji,sex,laki_laki,,1171,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/
+33.15.18.2017,4,Gaji,sex,perempuan,,1119,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.18.2017,4,Gaji,total,total,,2290,jiwa,2025,registration,total_population,3.1,25,,
+33.15.18.2018,4,Tunjungharjo,sex,laki_laki,,2387,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/
+33.15.18.2018,4,Tunjungharjo,sex,perempuan,,2311,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.18.2018,4,Tunjungharjo,total,total,,4698,jiwa,2025,registration,total_population,3.1,25,,
+33.15.18,3,Kecamatan Tegowanu,sex,laki_laki,,30652,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/
+33.15.18,3,Kecamatan Tegowanu,sex,perempuan,,30371,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+33.15.18,3,Kecamatan Tegowanu,total,total,,61023,jiwa,2025,registration,total_population,3.1,25,,

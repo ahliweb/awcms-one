@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-3403-kecamatan-340318-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "34.03.18",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Purwosari Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Gunungkidul",
+  "publisherDomain": "3403",
+  "publisherWebsite": "https://gunungkidulkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Gunungkidul (https://gunungkidulkab.bps.go.id), publikasi \"Kecamatan Purwosari Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3403130",
+  "publicationNumber": "34030.26009",
+  "issn": "2614-9818",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://gunungkidulkab.bps.go.id/id/publication/2026/09/28/86e040160714135f97d36692/kecamatan-purwosari-dalam-angka-2026.html",
+  "sourceFileSha256": "46ff2e8d47f82abdb05738ef4a1ad9fc15c9d2a77f58e1824e31dbc83b20919b",
+  "sourceFileBytes": 4896421,
+  "sourcePages": [23, 24],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Gunungkidul.",
+  "csvPath": "datasets/bps-3403-kecamatan-340318-dalam-angka-2026.csv",
+  "csvSha256": "ab988aa38b15142d7b37c21a6f921e4b79f8f0078073bf3ffe0ae0390f641bb9",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Ponjong, 2025",
+      "printedPages": [23, 24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Jumlah\": unmatched ",
+    "table 3.1: row not stored: row \"Jumlah\": unmatched "
+  ]
+}

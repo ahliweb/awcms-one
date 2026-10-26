@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3315-kecamatan-331518-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.15.18",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tegowanu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Grobogan",
+  "publisherDomain": "3315",
+  "publisherWebsite": "https://grobogankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Grobogan (https://grobogankab.bps.go.id), publikasi \"Kecamatan Tegowanu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3315180",
+  "publicationNumber": "33150.26024",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://grobogankab.bps.go.id/id/publication/2026/09/28/65fffa53b94a8b46e2a984ff/kecamatan-tegowanu-dalam-angka-2026.html",
+  "sourceFileSha256": "4020e9e55e5a06759dd0d8b159bd796af5eb62eae684d7352eb952f25d3de943",
+  "sourceFileBytes": 12159477,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Grobogan",
+  "csvPath": "datasets/bps-3315-kecamatan-331518-dalam-angka-2026.csv",
+  "csvSha256": "b3e6fdae5e2d442542facff836179d1ea14864580eef57fa7067a04800f58541",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Tegowanu , 202 5",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tegowanu , 202 5",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: the rows of region 33.15.18.2010 are not stored: sex split vs total: parts sum 5056.0000 != 6.0000 (diff 5050.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 33.15.18 are not stored: age_group (perempuan) vs sex value: parts sum 30479.0000 != 371.0000 (diff 30108.0000); the source itself is inconsistent"
+  ]
+}

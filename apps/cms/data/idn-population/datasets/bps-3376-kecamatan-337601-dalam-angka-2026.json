@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3376-kecamatan-337601-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.76.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tegal Barat Dalam Angka 2026",
+  "publisherName": "BPS Kota Tegal",
+  "publisherDomain": "3376",
+  "publisherWebsite": "https://tegalkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Tegal (https://tegalkota.bps.go.id), publikasi \"Kecamatan Tegal Barat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3376020",
+  "publicationNumber": "33760.26008",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tegalkota.bps.go.id/id/publication/2026/09/28/49bbdf28f7597ff85c1c9439/kecamatan-tegal-barat-dalam-angka-2026.html",
+  "sourceFileSha256": "450c1e0be39f8490f288e79ec73878f2794b0e4759ee231c100f05a7be5e02f9",
+  "sourceFileBytes": 8839142,
+  "sourcePages": [35, 36, 37],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Tegal.",
+  "csvPath": "datasets/bps-3376-kecamatan-337601-dalam-angka-2026.csv",
+  "csvSha256": "538901a0696d9accc3d41097a16a686306c4d147182e29c3d49e4c29d5d92677",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Tegal Barat, 2026*",
+      "printedPages": [35, 36],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tegal Barat, 2026*",
+      "printedPages": [37],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

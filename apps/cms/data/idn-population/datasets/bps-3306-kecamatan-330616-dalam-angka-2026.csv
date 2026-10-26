@@ -1,0 +1,93 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.06.16.2004,4,Kedung Pucang,sex,perempuan,,2186,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.16.2004,4,Kedung Pucang,total,total,,4365,jiwa,2025,registration,total_population,3.1,21,,
+33.06.16.2007,4,Kaliurip,sex,perempuan,,1340,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.16.2007,4,Kaliurip,total,total,,2688,jiwa,2025,registration,total_population,3.1,21,,
+33.06.16.2003,4,Kaliwader,sex,perempuan,,1160,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.16.2003,4,Kaliwader,total,total,,2364,jiwa,2025,registration,total_population,3.1,21,,
+33.06.16.2002,4,Kalitapas,sex,perempuan,,348,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.16.2002,4,Kalitapas,total,total,,710,jiwa,2025,registration,total_population,3.1,21,,
+33.06.16.2001,4,Benowo,sex,perempuan,,500,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.16.2001,4,Benowo,total,total,,1020,jiwa,2025,registration,total_population,3.1,21,,
+33.06.16.2010,4,Cacaban Kidul,sex,perempuan,,732,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.16.2010,4,Cacaban Kidul,total,total,,1489,jiwa,2025,registration,total_population,3.1,21,,
+33.06.16.2011,4,Cacaban Lor,sex,perempuan,,509,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.16.2011,4,Cacaban Lor,total,total,,1035,jiwa,2025,registration,total_population,3.1,21,,
+33.06.16.2009,4,Wadas,sex,perempuan,,773,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.16.2009,4,Wadas,total,total,,1555,jiwa,2025,registration,total_population,3.1,21,,
+33.06.16.2008,4,Kedung Loteng,sex,perempuan,,396,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.16.2008,4,Kedung Loteng,total,total,,802,jiwa,2025,registration,total_population,3.1,21,,
+33.06.16.2015,4,Bener,sex,perempuan,,1694,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.16.2015,4,Bener,total,total,,3447,jiwa,2025,registration,total_population,3.1,21,,
+33.06.16.2006,4,Kaliboto,sex,perempuan,,1532,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.16.2006,4,Kaliboto,total,total,,3006,jiwa,2025,registration,total_population,3.1,21,,
+33.06.16.2005,4,Sendangsari,sex,perempuan,,1193,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.16.2005,4,Sendangsari,total,total,,2425,jiwa,2025,registration,total_population,3.1,21,,
+33.06.16.2016,4,Karang Sari,sex,perempuan,,1319,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.16.2016,4,Karang Sari,total,total,,2665,jiwa,2025,registration,total_population,3.1,21,,
+33.06.16.2017,4,Guntur,sex,perempuan,,2303,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.16.2017,4,Guntur,total,total,,4742,jiwa,2025,registration,total_population,3.1,21,,
+33.06.16.2018,4,Legetan,sex,perempuan,,1113,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.16.2018,4,Legetan,total,total,,2263,jiwa,2025,registration,total_population,3.1,22,,
+33.06.16.2019,4,Ketosari,sex,perempuan,,1034,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.16.2019,4,Ketosari,total,total,,2129,jiwa,2025,registration,total_population,3.1,22,,
+33.06.16.2020,4,Kamijoro,sex,perempuan,,641,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.16.2020,4,Kamijoro,total,total,,1312,jiwa,2025,registration,total_population,3.1,22,,
+33.06.16.2014,4,Bleber,sex,perempuan,,447,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.16.2014,4,Bleber,total,total,,982,jiwa,2025,registration,total_population,3.1,22,,
+33.06.16.2012,4,Pekacangan,sex,perempuan,,917,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.16.2012,4,Pekacangan,total,total,,1870,jiwa,2025,registration,total_population,3.1,22,,
+33.06.16.2013,4,Medono,sex,perempuan,,662,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.16.2013,4,Medono,total,total,,1347,jiwa,2025,registration,total_population,3.1,22,,
+33.06.16.2021,4,Jati,sex,perempuan,,961,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.16.2021,4,Jati,total,total,,1915,jiwa,2025,registration,total_population,3.1,22,,
+33.06.16.2022,4,Mayung Sari,sex,perempuan,,697,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.16.2022,4,Mayung Sari,total,total,,1389,jiwa,2025,registration,total_population,3.1,22,,
+33.06.16.2023,4,Kalijambe,sex,perempuan,,1983,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.16.2023,4,Kalijambe,total,total,,3991,jiwa,2025,registration,total_population,3.1,22,,
+33.06.16.2024,4,Sukowuwuh,sex,perempuan,,1585,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.16.2024,4,Sukowuwuh,total,total,,3198,jiwa,2025,registration,total_population,3.1,22,,
+33.06.16.2025,4,Limbangan,sex,perempuan,,997,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.16.2025,4,Limbangan,total,total,,2044,jiwa,2025,registration,total_population,3.1,22,,
+33.06.16.2026,4,Nglaris,sex,perempuan,,996,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.16.2026,4,Nglaris,total,total,,1945,jiwa,2025,registration,total_population,3.1,22,,
+33.06.16.2027,4,Sidomukti,sex,perempuan,,723,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.16.2027,4,Sidomukti,total,total,,1395,jiwa,2025,registration,total_population,3.1,22,,
+33.06.16.2028,4,Ngasinan,sex,perempuan,,1053,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.16.2028,4,Ngasinan,total,total,,2130,jiwa,2025,registration,total_population,3.1,22,,
+33.06.16,3,Kecamatan Bener,sex,perempuan,,29794,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.16,3,Kecamatan Bener,total,total,,60223,jiwa,2025,registration,total_population,3.1,22,,
+33.06.16,3,Bener,age_group,0-4,perempuan,1781,jiwa,2025,registration,total_population,3.2,25,,0–4
+33.06.16,3,Bener,age_group,0-4,,3683,jiwa,2025,registration,total_population,3.2,25,,0–4
+33.06.16,3,Bener,age_group,5-9,perempuan,2078,jiwa,2025,registration,total_population,3.2,25,,5–9
+33.06.16,3,Bener,age_group,5-9,,4213,jiwa,2025,registration,total_population,3.2,25,,5–9
+33.06.16,3,Bener,age_group,10-14,perempuan,2145,jiwa,2025,registration,total_population,3.2,25,,10–14
+33.06.16,3,Bener,age_group,10-14,,4350,jiwa,2025,registration,total_population,3.2,25,,10–14
+33.06.16,3,Bener,age_group,15-19,perempuan,2103,jiwa,2025,registration,total_population,3.2,25,,15–19
+33.06.16,3,Bener,age_group,15-19,,4283,jiwa,2025,registration,total_population,3.2,25,,15–19
+33.06.16,3,Bener,age_group,20-24,perempuan,2068,jiwa,2025,registration,total_population,3.2,25,,20–24
+33.06.16,3,Bener,age_group,20-24,,4187,jiwa,2025,registration,total_population,3.2,25,,20–24
+33.06.16,3,Bener,age_group,25-29,perempuan,2281,jiwa,2025,registration,total_population,3.2,25,,25–29
+33.06.16,3,Bener,age_group,25-29,,4573,jiwa,2025,registration,total_population,3.2,25,,25–29
+33.06.16,3,Bener,age_group,30-34,perempuan,2128,jiwa,2025,registration,total_population,3.2,25,,30–34
+33.06.16,3,Bener,age_group,30-34,,4457,jiwa,2025,registration,total_population,3.2,25,,30–34
+33.06.16,3,Bener,age_group,35-39,perempuan,2077,jiwa,2025,registration,total_population,3.2,25,,35–39
+33.06.16,3,Bener,age_group,35-39,,4251,jiwa,2025,registration,total_population,3.2,25,,35–39
+33.06.16,3,Bener,age_group,40-44,perempuan,2094,jiwa,2025,registration,total_population,3.2,25,,40–44
+33.06.16,3,Bener,age_group,40-44,,4234,jiwa,2025,registration,total_population,3.2,25,,40–44
+33.06.16,3,Bener,age_group,45-49,perempuan,1847,jiwa,2025,registration,total_population,3.2,25,,45–49
+33.06.16,3,Bener,age_group,45-49,,3889,jiwa,2025,registration,total_population,3.2,25,,45–49
+33.06.16,3,Bener,age_group,50-54,perempuan,1892,jiwa,2025,registration,total_population,3.2,25,,50–54
+33.06.16,3,Bener,age_group,50-54,,3707,jiwa,2025,registration,total_population,3.2,25,,50–54
+33.06.16,3,Bener,age_group,55-59,perempuan,1974,jiwa,2025,registration,total_population,3.2,25,,55–59
+33.06.16,3,Bener,age_group,55-59,,3950,jiwa,2025,registration,total_population,3.2,25,,55–59
+33.06.16,3,Bener,age_group,60-64,perempuan,1836,jiwa,2025,registration,total_population,3.2,25,,60–64
+33.06.16,3,Bener,age_group,60-64,,3510,jiwa,2025,registration,total_population,3.2,25,,60–64
+33.06.16,3,Bener,age_group,65-69,perempuan,1385,jiwa,2025,registration,total_population,3.2,25,,65–69
+33.06.16,3,Bener,age_group,65-69,,2868,jiwa,2025,registration,total_population,3.2,25,,65–69
+33.06.16,3,Bener,age_group,70-74,perempuan,867,jiwa,2025,registration,total_population,3.2,25,,70–74
+33.06.16,3,Bener,age_group,70-74,,1800,jiwa,2025,registration,total_population,3.2,25,,70–74
+33.06.16,3,Bener,age_group,75+,perempuan,1238,jiwa,2025,registration,total_population,3.2,25,,75+
+33.06.16,3,Bener,age_group,75+,,2268,jiwa,2025,registration,total_population,3.2,25,,75+
+33.06.16,3,Kecamatan Bener,sex,perempuan,,29794,jiwa,2025,registration,total_population,3.2,25,,Perempuan
+33.06.16,3,Kecamatan Bener,total,total,,60223,jiwa,2025,registration,total_population,3.2,25,,

@@ -1,0 +1,63 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.27.03.2001,4,Gombong,sex,perempuan,,6398,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.03.2001,4,Gombong,total,total,,13147,jiwa,2025,registration,total_population,3.1,47,,
+33.27.03.2002,4,Belik,sex,perempuan,,7664,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.03.2002,4,Belik,total,total,,15824,jiwa,2025,registration,total_population,3.1,47,,
+33.27.03.2003,4,Gunungtiga,sex,perempuan,,2011,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.03.2003,4,Gunungtiga,total,total,,4086,jiwa,2025,registration,total_population,3.1,47,,
+33.27.03.2004,4,Kuta,sex,perempuan,,6235,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.03.2004,4,Kuta,total,total,,12610,jiwa,2025,registration,total_population,3.1,47,,
+33.27.03.2005,4,Badak,sex,perempuan,,5601,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.03.2005,4,Badak,total,total,,11381,jiwa,2025,registration,total_population,3.1,47,,
+33.27.03.2006,4,Gunungjaya,sex,perempuan,,5240,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.03.2006,4,Gunungjaya,total,total,,10682,jiwa,2025,registration,total_population,3.1,47,,
+33.27.03.2007,4,Simpur,sex,perempuan,,2939,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.03.2007,4,Simpur,total,total,,6000,jiwa,2025,registration,total_population,3.1,47,,
+33.27.03.2008,4,Mendelem,sex,perempuan,,9205,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.03.2008,4,Mendelem,total,total,,19044,jiwa,2025,registration,total_population,3.1,47,,
+33.27.03.2009,4,Beluk,sex,perempuan,,5790,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.03.2009,4,Beluk,total,total,,11784,jiwa,2025,registration,total_population,3.1,47,,
+33.27.03.2010,4,Bulakan,sex,perempuan,,6454,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.03.2010,4,Bulakan,total,total,,13161,jiwa,2025,registration,total_population,3.1,47,,
+33.27.03.2011,4,Sikasur,sex,perempuan,,3797,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.03.2011,4,Sikasur,total,total,,7755,jiwa,2025,registration,total_population,3.1,47,,
+33.27.03.2012,4,Kalisaleh,sex,perempuan,,1214,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.03.2012,4,Kalisaleh,total,total,,2457,jiwa,2025,registration,total_population,3.1,47,,
+33.27.03.2013,4,Sodong Basari,sex,perempuan,,2779,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.03.2013,4,Sodong Basari,total,total,,5764,jiwa,2025,registration,total_population,3.1,47,,
+33.27.03,3,Kecamatan Belik,sex,perempuan,,65327,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.03,3,Kecamatan Belik,total,total,,133695,jiwa,2025,registration,total_population,3.1,47,,
+33.27.03,3,Belik,age_group,0-4,perempuan,4723,jiwa,2025,registration,total_population,3.2,49,,0 – 4
+33.27.03,3,Belik,age_group,0-4,,9760,jiwa,2025,registration,total_population,3.2,49,,0 – 4
+33.27.03,3,Belik,age_group,5-9,perempuan,5722,jiwa,2025,registration,total_population,3.2,49,,5 – 9
+33.27.03,3,Belik,age_group,5-9,,11809,jiwa,2025,registration,total_population,3.2,49,,5 – 9
+33.27.03,3,Belik,age_group,10-14,perempuan,5437,jiwa,2025,registration,total_population,3.2,49,,10 – 14
+33.27.03,3,Belik,age_group,10-14,,11257,jiwa,2025,registration,total_population,3.2,49,,10 – 14
+33.27.03,3,Belik,age_group,15-19,perempuan,5024,jiwa,2025,registration,total_population,3.2,49,,15 – 19
+33.27.03,3,Belik,age_group,15-19,,10359,jiwa,2025,registration,total_population,3.2,49,,15 – 19
+33.27.03,3,Belik,age_group,20-24,perempuan,4951,jiwa,2025,registration,total_population,3.2,49,,20 – 24
+33.27.03,3,Belik,age_group,20-24,,10248,jiwa,2025,registration,total_population,3.2,49,,20 – 24
+33.27.03,3,Belik,age_group,25-29,perempuan,5136,jiwa,2025,registration,total_population,3.2,49,,25 – 29
+33.27.03,3,Belik,age_group,25-29,,10586,jiwa,2025,registration,total_population,3.2,49,,25 – 29
+33.27.03,3,Belik,age_group,30-34,perempuan,4997,jiwa,2025,registration,total_population,3.2,49,,30 – 34
+33.27.03,3,Belik,age_group,30-34,,10342,jiwa,2025,registration,total_population,3.2,49,,30 – 34
+33.27.03,3,Belik,age_group,35-39,perempuan,4505,jiwa,2025,registration,total_population,3.2,49,,35 – 39
+33.27.03,3,Belik,age_group,35-39,,9447,jiwa,2025,registration,total_population,3.2,49,,35 – 39
+33.27.03,3,Belik,age_group,40-44,perempuan,4870,jiwa,2025,registration,total_population,3.2,49,,40 – 44
+33.27.03,3,Belik,age_group,40-44,,9928,jiwa,2025,registration,total_population,3.2,49,,40 – 44
+33.27.03,3,Belik,age_group,45-49,perempuan,4105,jiwa,2025,registration,total_population,3.2,49,,45 – 49
+33.27.03,3,Belik,age_group,45-49,,8494,jiwa,2025,registration,total_population,3.2,49,,45 – 49
+33.27.03,3,Belik,age_group,50-54,perempuan,3690,jiwa,2025,registration,total_population,3.2,49,,50 – 54
+33.27.03,3,Belik,age_group,50-54,,7499,jiwa,2025,registration,total_population,3.2,49,,50 – 54
+33.27.03,3,Belik,age_group,55-59,perempuan,3356,jiwa,2025,registration,total_population,3.2,49,,55 – 59
+33.27.03,3,Belik,age_group,55-59,,6457,jiwa,2025,registration,total_population,3.2,49,,55 – 59
+33.27.03,3,Belik,age_group,60-64,perempuan,2816,jiwa,2025,registration,total_population,3.2,49,,60 – 64
+33.27.03,3,Belik,age_group,60-64,,5572,jiwa,2025,registration,total_population,3.2,49,,60 – 64
+33.27.03,3,Belik,age_group,65-69,perempuan,2318,jiwa,2025,registration,total_population,3.2,49,,65 – 69
+33.27.03,3,Belik,age_group,65-69,,4567,jiwa,2025,registration,total_population,3.2,49,,65 – 69
+33.27.03,3,Belik,age_group,70-74,perempuan,1580,jiwa,2025,registration,total_population,3.2,49,,70 – 74
+33.27.03,3,Belik,age_group,70-74,,3225,jiwa,2025,registration,total_population,3.2,49,,70 – 74
+33.27.03,3,Belik,age_group,75+,perempuan,2097,jiwa,2025,registration,total_population,3.2,49,,>= 75
+33.27.03,3,Belik,age_group,75+,,4145,jiwa,2025,registration,total_population,3.2,49,,>= 75
+33.27.03,3,Kecamatan Belik,sex,perempuan,,65327,jiwa,2025,registration,total_population,3.2,49,,Perempuan
+33.27.03,3,Kecamatan Belik,total,total,,133695,jiwa,2025,registration,total_population,3.2,49,,

@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.13.17.2001,4,Gumeng,sex,laki_laki,,997,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.17.2001,4,Gumeng,sex,perempuan,,1044,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.17.2001,4,Gumeng,total,total,,2041,jiwa,2025,registration,total_population,3.1,27,,
+33.13.17.2002,4,Anggrasmanis,sex,laki_laki,,1593,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.17.2002,4,Anggrasmanis,sex,perempuan,,1606,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.17.2002,4,Anggrasmanis,total,total,,3199,jiwa,2025,registration,total_population,3.1,27,,
+33.13.17.2003,4,Jenawi,sex,laki_laki,,1138,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.17.2003,4,Jenawi,sex,perempuan,,1159,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.17.2003,4,Jenawi,total,total,,2297,jiwa,2025,registration,total_population,3.1,27,,
+33.13.17.2004,4,Trengguli,sex,laki_laki,,1545,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.17.2004,4,Trengguli,sex,perempuan,,1542,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.17.2004,4,Trengguli,total,total,,3087,jiwa,2025,registration,total_population,3.1,27,,
+33.13.17.2005,4,Sidomukti,sex,laki_laki,,1701,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.17.2005,4,Sidomukti,sex,perempuan,,1644,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.17.2005,4,Sidomukti,total,total,,3345,jiwa,2025,registration,total_population,3.1,27,,
+33.13.17.2006,4,Balong,sex,laki_laki,,1719,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.17.2006,4,Balong,sex,perempuan,,1690,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.17.2006,4,Balong,total,total,,3409,jiwa,2025,registration,total_population,3.1,27,,
+33.13.17.2007,4,Seloromo,sex,laki_laki,,2077,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.17.2007,4,Seloromo,sex,perempuan,,2050,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.17.2007,4,Seloromo,total,total,,4127,jiwa,2025,registration,total_population,3.1,27,,
+33.13.17.2008,4,Menjing,sex,laki_laki,,1180,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.17.2008,4,Menjing,sex,perempuan,,1229,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.17.2008,4,Menjing,total,total,,2409,jiwa,2025,registration,total_population,3.1,27,,
+33.13.17.2009,4,Lempong,sex,laki_laki,,2273,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.17.2009,4,Lempong,sex,perempuan,,2222,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.17.2009,4,Lempong,total,total,,4495,jiwa,2025,registration,total_population,3.1,27,,
+33.13.17,3,Kecamatan Jenawi,sex,laki_laki,,14223,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.17,3,Kecamatan Jenawi,sex,perempuan,,14186,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.17,3,Kecamatan Jenawi,total,total,,28409,jiwa,2025,registration,total_population,3.1,27,,
+33.13.17,3,Jenawi,age_group,0-4,laki_laki,879,jiwa,2025,registration,total_population,3.2,29,,0-4
+33.13.17,3,Jenawi,age_group,0-4,perempuan,747,jiwa,2025,registration,total_population,3.2,29,,0-4
+33.13.17,3,Jenawi,age_group,0-4,,1626,jiwa,2025,registration,total_population,3.2,29,,0-4
+33.13.17,3,Jenawi,age_group,5-9,laki_laki,1029,jiwa,2025,registration,total_population,3.2,29,,5-9
+33.13.17,3,Jenawi,age_group,5-9,perempuan,928,jiwa,2025,registration,total_population,3.2,29,,5-9
+33.13.17,3,Jenawi,age_group,5-9,,1957,jiwa,2025,registration,total_population,3.2,29,,5-9
+33.13.17,3,Jenawi,age_group,10-14,laki_laki,1051,jiwa,2025,registration,total_population,3.2,29,,10-14
+33.13.17,3,Jenawi,age_group,10-14,perempuan,1021,jiwa,2025,registration,total_population,3.2,29,,10-14
+33.13.17,3,Jenawi,age_group,10-14,,2072,jiwa,2025,registration,total_population,3.2,29,,10-14
+33.13.17,3,Jenawi,age_group,15-19,laki_laki,1096,jiwa,2025,registration,total_population,3.2,29,,15-19
+33.13.17,3,Jenawi,age_group,15-19,perempuan,1014,jiwa,2025,registration,total_population,3.2,29,,15-19
+33.13.17,3,Jenawi,age_group,15-19,,2110,jiwa,2025,registration,total_population,3.2,29,,15-19
+33.13.17,3,Jenawi,age_group,20-24,laki_laki,1043,jiwa,2025,registration,total_population,3.2,29,,20-24
+33.13.17,3,Jenawi,age_group,20-24,perempuan,1027,jiwa,2025,registration,total_population,3.2,29,,20-24
+33.13.17,3,Jenawi,age_group,20-24,,2070,jiwa,2025,registration,total_population,3.2,29,,20-24
+33.13.17,3,Jenawi,age_group,25-29,laki_laki,1066,jiwa,2025,registration,total_population,3.2,29,,25-29
+33.13.17,3,Jenawi,age_group,25-29,perempuan,986,jiwa,2025,registration,total_population,3.2,29,,25-29
+33.13.17,3,Jenawi,age_group,25-29,,2052,jiwa,2025,registration,total_population,3.2,29,,25-29
+33.13.17,3,Jenawi,age_group,30-34,laki_laki,945,jiwa,2025,registration,total_population,3.2,29,,30-34
+33.13.17,3,Jenawi,age_group,30-34,perempuan,945,jiwa,2025,registration,total_population,3.2,29,,30-34
+33.13.17,3,Jenawi,age_group,30-34,,1890,jiwa,2025,registration,total_population,3.2,29,,30-34
+33.13.17,3,Jenawi,age_group,35-39,laki_laki,872,jiwa,2025,registration,total_population,3.2,29,,35-39
+33.13.17,3,Jenawi,age_group,35-39,perempuan,880,jiwa,2025,registration,total_population,3.2,29,,35-39
+33.13.17,3,Jenawi,age_group,35-39,,1752,jiwa,2025,registration,total_population,3.2,29,,35-39
+33.13.17,3,Jenawi,age_group,40-44,laki_laki,983,jiwa,2025,registration,total_population,3.2,29,,40-44
+33.13.17,3,Jenawi,age_group,40-44,perempuan,980,jiwa,2025,registration,total_population,3.2,29,,40-44
+33.13.17,3,Jenawi,age_group,40-44,,1963,jiwa,2025,registration,total_population,3.2,29,,40-44
+33.13.17,3,Jenawi,age_group,45-49,laki_laki,978,jiwa,2025,registration,total_population,3.2,29,,45-49
+33.13.17,3,Jenawi,age_group,45-49,perempuan,988,jiwa,2025,registration,total_population,3.2,29,,45-49
+33.13.17,3,Jenawi,age_group,45-49,,1966,jiwa,2025,registration,total_population,3.2,29,,45-49
+33.13.17,3,Jenawi,age_group,50-54,laki_laki,923,jiwa,2025,registration,total_population,3.2,29,,50-54
+33.13.17,3,Jenawi,age_group,50-54,perempuan,892,jiwa,2025,registration,total_population,3.2,29,,50-54
+33.13.17,3,Jenawi,age_group,50-54,,1815,jiwa,2025,registration,total_population,3.2,29,,50-54
+33.13.17,3,Jenawi,age_group,55-59,laki_laki,909,jiwa,2025,registration,total_population,3.2,29,,55-59
+33.13.17,3,Jenawi,age_group,55-59,perempuan,905,jiwa,2025,registration,total_population,3.2,29,,55-59
+33.13.17,3,Jenawi,age_group,55-59,,1814,jiwa,2025,registration,total_population,3.2,29,,55-59
+33.13.17,3,Jenawi,age_group,60-64,laki_laki,743,jiwa,2025,registration,total_population,3.2,29,,60-64
+33.13.17,3,Jenawi,age_group,60-64,perempuan,837,jiwa,2025,registration,total_population,3.2,29,,60-64
+33.13.17,3,Jenawi,age_group,60-64,,1580,jiwa,2025,registration,total_population,3.2,29,,60-64
+33.13.17,3,Jenawi,age_group,65-69,laki_laki,725,jiwa,2025,registration,total_population,3.2,29,,65-69
+33.13.17,3,Jenawi,age_group,65-69,perempuan,814,jiwa,2025,registration,total_population,3.2,29,,65-69
+33.13.17,3,Jenawi,age_group,65-69,,1539,jiwa,2025,registration,total_population,3.2,29,,65-69
+33.13.17,3,Jenawi,age_group,70-74,laki_laki,478,jiwa,2025,registration,total_population,3.2,29,,70-74
+33.13.17,3,Jenawi,age_group,70-74,perempuan,465,jiwa,2025,registration,total_population,3.2,29,,70-74
+33.13.17,3,Jenawi,age_group,70-74,,943,jiwa,2025,registration,total_population,3.2,29,,70-74
+33.13.17,3,Jenawi,age_group,75+,laki_laki,503,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.13.17,3,Jenawi,age_group,75+,perempuan,757,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.13.17,3,Jenawi,age_group,75+,,1260,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.13.17,3,Kecamatan Jenawi,sex,laki_laki,,14223,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+33.13.17,3,Kecamatan Jenawi,sex,perempuan,,14186,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+33.13.17,3,Kecamatan Jenawi,total,total,,28409,jiwa,2025,registration,total_population,3.2,29,,

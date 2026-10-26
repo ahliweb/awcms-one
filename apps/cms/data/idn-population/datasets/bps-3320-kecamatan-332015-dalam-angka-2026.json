@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3320-kecamatan-332015-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.20.15",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pakis Aji Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Jepara",
+  "publisherDomain": "3320",
+  "publisherWebsite": "https://jeparakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Jepara (https://jeparakab.bps.go.id), publikasi \"Kecamatan Pakis Aji Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3320091",
+  "publicationNumber": "33200.26017",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jeparakab.bps.go.id/id/publication/2026/09/28/8fe33cfe41a067d360978f74/kecamatan-pakis-aji-dalam-angka-2026.html",
+  "sourceFileSha256": "d4ea43937446ec3fc94c73693229a18da803095da2eda7746b9569461e7024ae",
+  "sourceFileBytes": 11975490,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Jepara.",
+  "csvPath": "datasets/bps-3320-kecamatan-332015-dalam-angka-2026.csv",
+  "csvSha256": "d4cb4d1e59f21ce4bbe890c5eb23b6ef84a2c44dcd4bff8bb3e0adc74a5f0b23",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pakis Aji, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"001 Lebak 7.184\": unmatched ",
+    "table 3.1: row not stored: row \"002 Bulungan 7.147\": unmatched ",
+    "table 3.1: row not stored: row \"003 Suwawal Timur 3.481\": unmatched ",
+    "table 3.1: row not stored: row \"004 Kawak 2.701\": unmatched ",
+    "table 3.1: row not stored: row \"005 Tanjung 3.673\": unmatched ",
+    "table 3.1: row not stored: row \"006 Plajan 4.288\": unmatched ",
+    "table 3.1: row not stored: row \"007 Slagi 2.067\": unmatched ",
+    "table 3.1: row not stored: row \"008 Mambak 2.724\": unmatched ",
+    "table 3.1: row not stored: row \"Pakis Aji 33.265\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}
