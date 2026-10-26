@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3275-kecamatan-327503-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.75.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bekasi Utara Dalam Angka 2026",
+  "publisherName": "BPS Kota Bekasi",
+  "publisherDomain": "3275",
+  "publisherWebsite": "https://bekasikota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Bekasi (https://bekasikota.bps.go.id), publikasi \"Kecamatan Bekasi Utara Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3275070",
+  "publicationNumber": "32750.26016",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bekasikota.bps.go.id/id/publication/2026/09/28/b4efbc1f618c298029aab93e/kecamatan-bekasi-utara-dalam-angka-2026.html",
+  "sourceFileSha256": "322f9491742dc976ed788ce01187347d5cdad4976e0f1ee8984f0a8017f70e94",
+  "sourceFileBytes": 8384642,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Bekasi.",
+  "csvPath": "datasets/bps-3275-kecamatan-327503-dalam-angka-2026.csv",
+  "csvSha256": "050509cf60d6cdc674cd7995fb1dd9fb80c9954175bb35dad5645f415994621c",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Bekasi Utara, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bekasi Utara, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

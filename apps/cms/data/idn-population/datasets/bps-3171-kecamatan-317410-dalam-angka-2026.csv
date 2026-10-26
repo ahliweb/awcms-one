@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+31.74.10.1002,4,Bintaro,sex,laki_laki,,32480,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+31.74.10.1002,4,Bintaro,sex,perempuan,,32738,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+31.74.10.1002,4,Bintaro,total,total,,65218,jiwa,2025,registration,total_population,3.1,25,,
+31.74.10.1001,4,Pesanggrahan,sex,laki_laki,,17062,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+31.74.10.1001,4,Pesanggrahan,sex,perempuan,,16927,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+31.74.10.1001,4,Pesanggrahan,total,total,,33989,jiwa,2025,registration,total_population,3.1,25,,
+31.74.10.1005,4,Ulujami,sex,laki_laki,,25370,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+31.74.10.1005,4,Ulujami,sex,perempuan,,25200,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+31.74.10.1005,4,Ulujami,total,total,,50570,jiwa,2025,registration,total_population,3.1,25,,
+31.74.10.1004,4,Petukangan Selatan,sex,laki_laki,,21394,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+31.74.10.1004,4,Petukangan Selatan,sex,perempuan,,22174,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+31.74.10.1004,4,Petukangan Selatan,total,total,,43568,jiwa,2025,registration,total_population,3.1,25,,
+31.74.10.1003,4,Petukangan Utara,sex,laki_laki,,33843,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+31.74.10.1003,4,Petukangan Utara,sex,perempuan,,34022,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+31.74.10.1003,4,Petukangan Utara,total,total,,67865,jiwa,2025,registration,total_population,3.1,25,,
+31.74.10,3,Pesanggrahan,sex,laki_laki,,130149,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+31.74.10,3,Pesanggrahan,sex,perempuan,,131061,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+31.74.10,3,Pesanggrahan,total,total,,261210,jiwa,2025,registration,total_population,3.1,25,,
+31.74.10,3,Pesanggrahan,age_group,0-10,laki_laki,20623,jiwa,2025,registration,total_population,3.2,27,,0-10
+31.74.10,3,Pesanggrahan,age_group,0-10,perempuan,19282,jiwa,2025,registration,total_population,3.2,27,,0-10
+31.74.10,3,Pesanggrahan,age_group,0-10,,39905,jiwa,2025,registration,total_population,3.2,27,,0-10
+31.74.10,3,Pesanggrahan,age_group,11-20,laki_laki,22185,jiwa,2025,registration,total_population,3.2,27,,11-20
+31.74.10,3,Pesanggrahan,age_group,11-20,perempuan,21282,jiwa,2025,registration,total_population,3.2,27,,11-20
+31.74.10,3,Pesanggrahan,age_group,11-20,,43467,jiwa,2025,registration,total_population,3.2,27,,11-20
+31.74.10,3,Pesanggrahan,age_group,21-30,laki_laki,20794,jiwa,2025,registration,total_population,3.2,27,,21-30
+31.74.10,3,Pesanggrahan,age_group,21-30,perempuan,20150,jiwa,2025,registration,total_population,3.2,27,,21-30
+31.74.10,3,Pesanggrahan,age_group,21-30,,40944,jiwa,2025,registration,total_population,3.2,27,,21-30
+31.74.10,3,Pesanggrahan,age_group,31-40,laki_laki,19249,jiwa,2025,registration,total_population,3.2,27,,31-40
+31.74.10,3,Pesanggrahan,age_group,31-40,perempuan,20356,jiwa,2025,registration,total_population,3.2,27,,31-40
+31.74.10,3,Pesanggrahan,age_group,31-40,,39605,jiwa,2025,registration,total_population,3.2,27,,31-40
+31.74.10,3,Pesanggrahan,age_group,41-50,laki_laki,21064,jiwa,2025,registration,total_population,3.2,27,,41-50
+31.74.10,3,Pesanggrahan,age_group,41-50,perempuan,22085,jiwa,2025,registration,total_population,3.2,27,,41-50
+31.74.10,3,Pesanggrahan,age_group,41-50,,43149,jiwa,2025,registration,total_population,3.2,27,,41-50
+31.74.10,3,Pesanggrahan,age_group,51-60,laki_laki,15749,jiwa,2025,registration,total_population,3.2,27,,51-60
+31.74.10,3,Pesanggrahan,age_group,51-60,perempuan,15252,jiwa,2025,registration,total_population,3.2,27,,51-60
+31.74.10,3,Pesanggrahan,age_group,51-60,,31001,jiwa,2025,registration,total_population,3.2,27,,51-60
+31.74.10,3,Pesanggrahan,age_group,61-70,laki_laki,7485,jiwa,2025,registration,total_population,3.2,27,,61-70
+31.74.10,3,Pesanggrahan,age_group,61-70,perempuan,8467,jiwa,2025,registration,total_population,3.2,27,,61-70
+31.74.10,3,Pesanggrahan,age_group,61-70,,15952,jiwa,2025,registration,total_population,3.2,27,,61-70
+31.74.10,3,Pesanggrahan,age_group,71-80,laki_laki,2943,jiwa,2025,registration,total_population,3.2,27,,71-80
+31.74.10,3,Pesanggrahan,age_group,71-80,perempuan,3419,jiwa,2025,registration,total_population,3.2,27,,71-80
+31.74.10,3,Pesanggrahan,age_group,71-80,,6362,jiwa,2025,registration,total_population,3.2,27,,71-80
+31.74.10,3,Pesanggrahan,age_group,81+,laki_laki,597,jiwa,2025,registration,total_population,3.2,27,,81+
+31.74.10,3,Pesanggrahan,age_group,81+,perempuan,768,jiwa,2025,registration,total_population,3.2,27,,81+
+31.74.10,3,Pesanggrahan,age_group,81+,,1365,jiwa,2025,registration,total_population,3.2,27,,81+
+31.74.10,3,Pesanggrahan,sex,laki_laki,,130689,jiwa,2025,registration,total_population,3.2,27,,Laki-Laki
+31.74.10,3,Pesanggrahan,sex,perempuan,,131061,jiwa,2025,registration,total_population,3.2,27,,Perempuan
+31.74.10,3,Pesanggrahan,total,total,,261750,jiwa,2025,registration,total_population,3.2,27,,

@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.07.04.2002,4,Adirejo,sex,laki_laki,,2516,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.04.2002,4,Adirejo,sex,perempuan,,2484,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.04.2002,4,Adirejo,total,total,,5000,jiwa,2025,registration,total_population,3.1,,,
+18.07.04.2003,4,Sidodadi,sex,laki_laki,,3269,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.04.2003,4,Sidodadi,sex,perempuan,,3105,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.04.2003,4,Sidodadi,total,total,,6374,jiwa,2025,registration,total_population,3.1,,,
+18.07.04.2004,4,Gondang Rejo,sex,laki_laki,,4125,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.04.2004,4,Gondang Rejo,sex,perempuan,,4019,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.04.2004,4,Gondang Rejo,total,total,,8144,jiwa,2025,registration,total_population,3.1,,,
+18.07.04.2005,4,Siraman,sex,laki_laki,,2327,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.04.2005,4,Siraman,sex,perempuan,,2272,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.04.2005,4,Siraman,total,total,,4599,jiwa,2025,registration,total_population,3.1,,,
+18.07.04.2001,4,Pekalongan,sex,laki_laki,,2244,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.04.2001,4,Pekalongan,sex,perempuan,,2208,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.04.2001,4,Pekalongan,total,total,,4452,jiwa,2025,registration,total_population,3.1,,,
+18.07.04.2006,4,Tulus Rejo,sex,laki_laki,,2019,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.04.2006,4,Tulus Rejo,sex,perempuan,,1909,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.04.2006,4,Tulus Rejo,total,total,,3928,jiwa,2025,registration,total_population,3.1,,,
+18.07.04.2007,4,Jojog,sex,laki_laki,,3034,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.04.2007,4,Jojog,sex,perempuan,,2829,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.04.2007,4,Jojog,total,total,,5863,jiwa,2025,registration,total_population,3.1,,,
+18.07.04.2008,4,Ganti Warno,sex,laki_laki,,2020,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.04.2008,4,Ganti Warno,sex,perempuan,,2040,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.04.2008,4,Ganti Warno,total,total,,4060,jiwa,2025,registration,total_population,3.1,,,
+18.07.04.2009,4,Kali Bening,sex,laki_laki,,1309,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.04.2009,4,Kali Bening,sex,perempuan,,1295,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.04.2009,4,Kali Bening,total,total,,2604,jiwa,2025,registration,total_population,3.1,,,
+18.07.04.2010,4,Wono Sari,sex,laki_laki,,1940,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.04.2010,4,Wono Sari,sex,perempuan,,1885,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.04.2010,4,Wono Sari,total,total,,3825,jiwa,2025,registration,total_population,3.1,,,
+18.07.04.2012,4,Adijaya,sex,laki_laki,,1790,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.04.2012,4,Adijaya,sex,perempuan,,1696,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.04.2012,4,Adijaya,total,total,,3486,jiwa,2025,registration,total_population,3.1,,,
+18.07.04.2011,4,Gantimulyo,sex,laki_laki,,1303,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.04.2011,4,Gantimulyo,sex,perempuan,,1320,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.04.2011,4,Gantimulyo,total,total,,2623,jiwa,2025,registration,total_population,3.1,,,
+18.07.04,3,Pekalongan,sex,laki_laki,,27896,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.04,3,Pekalongan,sex,perempuan,,27062,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.04,3,Pekalongan,total,total,,54958,jiwa,2025,registration,total_population,3.1,,,
+18.07.04,3,Pekalongan,age_group,0-4,laki_laki,1543,jiwa,2025,registration,total_population,3.2,,,0-4
+18.07.04,3,Pekalongan,age_group,0-4,perempuan,1474,jiwa,2025,registration,total_population,3.2,,,0-4
+18.07.04,3,Pekalongan,age_group,0-4,,3017,jiwa,2025,registration,total_population,3.2,,,0-4
+18.07.04,3,Pekalongan,age_group,5-9,laki_laki,2126,jiwa,2025,registration,total_population,3.2,,,5-9
+18.07.04,3,Pekalongan,age_group,5-9,perempuan,1940,jiwa,2025,registration,total_population,3.2,,,5-9
+18.07.04,3,Pekalongan,age_group,5-9,,4066,jiwa,2025,registration,total_population,3.2,,,5-9
+18.07.04,3,Pekalongan,age_group,10-14,laki_laki,2316,jiwa,2025,registration,total_population,3.2,,,10-14
+18.07.04,3,Pekalongan,age_group,10-14,perempuan,2170,jiwa,2025,registration,total_population,3.2,,,10-14
+18.07.04,3,Pekalongan,age_group,10-14,,4486,jiwa,2025,registration,total_population,3.2,,,10-14
+18.07.04,3,Pekalongan,age_group,15-19,laki_laki,2080,jiwa,2025,registration,total_population,3.2,,,15-19
+18.07.04,3,Pekalongan,age_group,15-19,perempuan,2071,jiwa,2025,registration,total_population,3.2,,,15-19
+18.07.04,3,Pekalongan,age_group,15-19,,4151,jiwa,2025,registration,total_population,3.2,,,15-19
+18.07.04,3,Pekalongan,age_group,20-24,laki_laki,2050,jiwa,2025,registration,total_population,3.2,,,20-24
+18.07.04,3,Pekalongan,age_group,20-24,perempuan,1953,jiwa,2025,registration,total_population,3.2,,,20-24
+18.07.04,3,Pekalongan,age_group,20-24,,4003,jiwa,2025,registration,total_population,3.2,,,20-24
+18.07.04,3,Pekalongan,age_group,25-29,laki_laki,2123,jiwa,2025,registration,total_population,3.2,,,25-29
+18.07.04,3,Pekalongan,age_group,25-29,perempuan,2074,jiwa,2025,registration,total_population,3.2,,,25-29
+18.07.04,3,Pekalongan,age_group,25-29,,4197,jiwa,2025,registration,total_population,3.2,,,25-29
+18.07.04,3,Pekalongan,age_group,30-34,laki_laki,1923,jiwa,2025,registration,total_population,3.2,,,30-34
+18.07.04,3,Pekalongan,age_group,30-34,perempuan,1943,jiwa,2025,registration,total_population,3.2,,,30-34
+18.07.04,3,Pekalongan,age_group,30-34,,3866,jiwa,2025,registration,total_population,3.2,,,30-34
+18.07.04,3,Pekalongan,age_group,35-39,laki_laki,1855,jiwa,2025,registration,total_population,3.2,,,35-39
+18.07.04,3,Pekalongan,age_group,35-39,perempuan,1866,jiwa,2025,registration,total_population,3.2,,,35-39
+18.07.04,3,Pekalongan,age_group,35-39,,3721,jiwa,2025,registration,total_population,3.2,,,35-39
+18.07.04,3,Pekalongan,age_group,40-44,laki_laki,1817,jiwa,2025,registration,total_population,3.2,,,40-44
+18.07.04,3,Pekalongan,age_group,40-44,perempuan,1905,jiwa,2025,registration,total_population,3.2,,,40-44
+18.07.04,3,Pekalongan,age_group,40-44,,3722,jiwa,2025,registration,total_population,3.2,,,40-44
+18.07.04,3,Pekalongan,age_group,45-49,laki_laki,2139,jiwa,2025,registration,total_population,3.2,,,45-49
+18.07.04,3,Pekalongan,age_group,45-49,perempuan,2157,jiwa,2025,registration,total_population,3.2,,,45-49
+18.07.04,3,Pekalongan,age_group,45-49,,4296,jiwa,2025,registration,total_population,3.2,,,45-49
+18.07.04,3,Pekalongan,age_group,50-54,laki_laki,2023,jiwa,2025,registration,total_population,3.2,,,50-54
+18.07.04,3,Pekalongan,age_group,50-54,perempuan,2018,jiwa,2025,registration,total_population,3.2,,,50-54
+18.07.04,3,Pekalongan,age_group,50-54,,4041,jiwa,2025,registration,total_population,3.2,,,50-54
+18.07.04,3,Pekalongan,age_group,55-59,laki_laki,1722,jiwa,2025,registration,total_population,3.2,,,55-59
+18.07.04,3,Pekalongan,age_group,55-59,perempuan,1567,jiwa,2025,registration,total_population,3.2,,,55-59
+18.07.04,3,Pekalongan,age_group,55-59,,3289,jiwa,2025,registration,total_population,3.2,,,55-59
+18.07.04,3,Pekalongan,age_group,60-64,laki_laki,1377,jiwa,2025,registration,total_population,3.2,,,60-64
+18.07.04,3,Pekalongan,age_group,60-64,perempuan,1387,jiwa,2025,registration,total_population,3.2,,,60-64
+18.07.04,3,Pekalongan,age_group,60-64,,2764,jiwa,2025,registration,total_population,3.2,,,60-64
+18.07.04,3,Pekalongan,age_group,65-69,laki_laki,1141,jiwa,2025,registration,total_population,3.2,,,65-69
+18.07.04,3,Pekalongan,age_group,65-69,perempuan,1055,jiwa,2025,registration,total_population,3.2,,,65-69
+18.07.04,3,Pekalongan,age_group,65-69,,2196,jiwa,2025,registration,total_population,3.2,,,65-69
+18.07.04,3,Pekalongan,age_group,70-74,laki_laki,803,jiwa,2025,registration,total_population,3.2,,,70-74
+18.07.04,3,Pekalongan,age_group,70-74,perempuan,706,jiwa,2025,registration,total_population,3.2,,,70-74
+18.07.04,3,Pekalongan,age_group,70-74,,1509,jiwa,2025,registration,total_population,3.2,,,70-74
+18.07.04,3,Pekalongan,age_group,75+,laki_laki,858,jiwa,2025,registration,total_population,3.2,,,>75
+18.07.04,3,Pekalongan,age_group,75+,perempuan,776,jiwa,2025,registration,total_population,3.2,,,>75
+18.07.04,3,Pekalongan,age_group,75+,,1634,jiwa,2025,registration,total_population,3.2,,,>75
+18.07.04,3,Pekalongan,sex,laki_laki,,27896,jiwa,2025,registration,total_population,3.2,,,Laki-Laki
+18.07.04,3,Pekalongan,sex,perempuan,,27062,jiwa,2025,registration,total_population,3.2,,,Perempuan
+18.07.04,3,Pekalongan,total,total,,54958,jiwa,2025,registration,total_population,3.2,,,

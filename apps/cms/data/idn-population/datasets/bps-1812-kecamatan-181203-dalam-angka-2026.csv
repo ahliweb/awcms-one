@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.12.03.2001,4,Karta,sex,laki_laki,,1863,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.03.2001,4,Karta,sex,perempuan,,1858,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.03.2001,4,Karta,total,total,,3721,jiwa,2025,registration,total_population,3.1,28,,
+18.12.03.2002,4,Karta Sari,sex,laki_laki,,1112,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.03.2002,4,Karta Sari,sex,perempuan,,1109,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.03.2002,4,Karta Sari,total,total,,2221,jiwa,2025,registration,total_population,3.1,28,,
+18.12.03.2003,4,Karta Raharja,sex,laki_laki,,2109,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.03.2003,4,Karta Raharja,sex,perempuan,,2067,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.03.2003,4,Karta Raharja,total,total,,4176,jiwa,2025,registration,total_population,3.1,28,,
+18.12.03.2004,4,Gunung Katun Tanjungan,sex,laki_laki,,825,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.03.2004,4,Gunung Katun Tanjungan,sex,perempuan,,801,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.03.2004,4,Gunung Katun Tanjungan,total,total,,1626,jiwa,2025,registration,total_population,3.1,28,,
+18.12.03.2006,4,Gedung Ratu,sex,laki_laki,,1452,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.03.2006,4,Gedung Ratu,sex,perempuan,,1306,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.03.2006,4,Gedung Ratu,total,total,,2758,jiwa,2025,registration,total_population,3.1,28,,
+18.12.03.2007,4,Kagungan Ratu,sex,laki_laki,,2490,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.03.2007,4,Kagungan Ratu,sex,perempuan,,2428,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.03.2007,4,Kagungan Ratu,total,total,,4918,jiwa,2025,registration,total_population,3.1,28,,
+18.12.03.2008,4,Marga Kencana,sex,laki_laki,,1702,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.03.2008,4,Marga Kencana,sex,perempuan,,1642,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.03.2008,4,Marga Kencana,total,total,,3344,jiwa,2025,registration,total_population,3.1,28,,
+18.12.03.2009,4,Way Sido,sex,laki_laki,,1952,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.03.2009,4,Way Sido,sex,perempuan,,1853,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.03.2009,4,Way Sido,total,total,,3805,jiwa,2025,registration,total_population,3.1,28,,
+18.12.03.2010,4,Kagungan Ratu Agung,sex,laki_laki,,1296,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.03.2010,4,Kagungan Ratu Agung,sex,perempuan,,1150,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.03.2010,4,Kagungan Ratu Agung,total,total,,2446,jiwa,2025,registration,total_population,3.1,28,,
+18.12.03.2011,4,Gading Kencana,sex,laki_laki,,1578,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.03.2011,4,Gading Kencana,sex,perempuan,,1592,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.03.2011,4,Gading Kencana,total,total,,3170,jiwa,2025,registration,total_population,3.1,28,,
+18.12.03.2012,4,Karta Raya,sex,laki_laki,,1118,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.03.2012,4,Karta Raya,sex,perempuan,,1097,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.03.2012,4,Karta Raya,total,total,,2215,jiwa,2025,registration,total_population,3.1,28,,
+18.12.03.2013,4,Karta Tanjung Selamat,sex,laki_laki,,467,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.03.2013,4,Karta Tanjung Selamat,sex,perempuan,,414,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.03.2013,4,Karta Tanjung Selamat,total,total,,881,jiwa,2025,registration,total_population,3.1,28,,
+18.12.03,3,Tulang Bawang Udik,sex,laki_laki,,18488,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.03,3,Tulang Bawang Udik,sex,perempuan,,17829,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.03,3,Tulang Bawang Udik,total,total,,36317,jiwa,2025,registration,total_population,3.1,28,,

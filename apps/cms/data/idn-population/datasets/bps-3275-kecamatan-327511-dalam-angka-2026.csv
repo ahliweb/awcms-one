@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.75.11.1001,4,Padurenan,sex,laki_laki,,30318,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.75.11.1001,4,Padurenan,sex,perempuan,,29809,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+32.75.11.1001,4,Padurenan,total,total,,60127,jiwa,2025,registration,total_population,3.1,25,,
+32.75.11.1002,4,Cimuning,sex,laki_laki,,23364,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.75.11.1002,4,Cimuning,sex,perempuan,,23591,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+32.75.11.1002,4,Cimuning,total,total,,46955,jiwa,2025,registration,total_population,3.1,25,,
+32.75.11.1003,4,Mustikajaya,sex,laki_laki,,40515,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.75.11.1003,4,Mustikajaya,sex,perempuan,,40766,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+32.75.11.1003,4,Mustikajaya,total,total,,81281,jiwa,2025,registration,total_population,3.1,25,,
+32.75.11.1004,4,Mustika Sari,sex,laki_laki,,20570,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.75.11.1004,4,Mustika Sari,sex,perempuan,,20250,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+32.75.11.1004,4,Mustika Sari,total,total,,40820,jiwa,2025,registration,total_population,3.1,25,,
+32.75.11,3,Mustikajaya,sex,laki_laki,,114767,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.75.11,3,Mustikajaya,sex,perempuan,,114416,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+32.75.11,3,Mustikajaya,total,total,,229183,jiwa,2025,registration,total_population,3.1,25,,
+32.75.11,3,Mustikajaya,age_group,0-4,laki_laki,7367,jiwa,2025,registration,total_population,3.2,27,,0 - 4
+32.75.11,3,Mustikajaya,age_group,0-4,perempuan,6900,jiwa,2025,registration,total_population,3.2,27,,0 - 4
+32.75.11,3,Mustikajaya,age_group,0-4,,14267,jiwa,2025,registration,total_population,3.2,27,,0 - 4
+32.75.11,3,Mustikajaya,age_group,5-9,laki_laki,10275,jiwa,2025,registration,total_population,3.2,27,,5 - 9
+32.75.11,3,Mustikajaya,age_group,5-9,perempuan,9631,jiwa,2025,registration,total_population,3.2,27,,5 - 9
+32.75.11,3,Mustikajaya,age_group,5-9,,19906,jiwa,2025,registration,total_population,3.2,27,,5 - 9
+32.75.11,3,Mustikajaya,age_group,10-14,laki_laki,10752,jiwa,2025,registration,total_population,3.2,27,,10 - 14
+32.75.11,3,Mustikajaya,age_group,10-14,perempuan,10087,jiwa,2025,registration,total_population,3.2,27,,10 - 14
+32.75.11,3,Mustikajaya,age_group,10-14,,20839,jiwa,2025,registration,total_population,3.2,27,,10 - 14
+32.75.11,3,Mustikajaya,age_group,15-19,laki_laki,10327,jiwa,2025,registration,total_population,3.2,27,,15 -19
+32.75.11,3,Mustikajaya,age_group,15-19,perempuan,9838,jiwa,2025,registration,total_population,3.2,27,,15 -19
+32.75.11,3,Mustikajaya,age_group,15-19,,20165,jiwa,2025,registration,total_population,3.2,27,,15 -19
+32.75.11,3,Mustikajaya,age_group,20-24,laki_laki,10176,jiwa,2025,registration,total_population,3.2,27,,20 - 24
+32.75.11,3,Mustikajaya,age_group,20-24,perempuan,9466,jiwa,2025,registration,total_population,3.2,27,,20 - 24
+32.75.11,3,Mustikajaya,age_group,20-24,,19642,jiwa,2025,registration,total_population,3.2,27,,20 - 24
+32.75.11,3,Mustikajaya,age_group,25-29,laki_laki,8921,jiwa,2025,registration,total_population,3.2,27,,25 - 29
+32.75.11,3,Mustikajaya,age_group,25-29,perempuan,9093,jiwa,2025,registration,total_population,3.2,27,,25 - 29
+32.75.11,3,Mustikajaya,age_group,25-29,,18014,jiwa,2025,registration,total_population,3.2,27,,25 - 29
+32.75.11,3,Mustikajaya,age_group,30-34,laki_laki,8572,jiwa,2025,registration,total_population,3.2,27,,30 - 34
+32.75.11,3,Mustikajaya,age_group,30-34,perempuan,8983,jiwa,2025,registration,total_population,3.2,27,,30 - 34
+32.75.11,3,Mustikajaya,age_group,30-34,,17555,jiwa,2025,registration,total_population,3.2,27,,30 - 34
+32.75.11,3,Mustikajaya,age_group,35-39,laki_laki,7898,jiwa,2025,registration,total_population,3.2,27,,35 - 39
+32.75.11,3,Mustikajaya,age_group,35-39,perempuan,8329,jiwa,2025,registration,total_population,3.2,27,,35 - 39
+32.75.11,3,Mustikajaya,age_group,35-39,,16227,jiwa,2025,registration,total_population,3.2,27,,35 - 39
+32.75.11,3,Mustikajaya,age_group,40-44,laki_laki,8798,jiwa,2025,registration,total_population,3.2,27,,40 - 44
+32.75.11,3,Mustikajaya,age_group,40-44,perempuan,9632,jiwa,2025,registration,total_population,3.2,27,,40 - 44
+32.75.11,3,Mustikajaya,age_group,40-44,,18430,jiwa,2025,registration,total_population,3.2,27,,40 - 44
+32.75.11,3,Mustikajaya,age_group,45-49,laki_laki,8894,jiwa,2025,registration,total_population,3.2,27,,45 - 49
+32.75.11,3,Mustikajaya,age_group,45-49,perempuan,9788,jiwa,2025,registration,total_population,3.2,27,,45 - 49
+32.75.11,3,Mustikajaya,age_group,45-49,,18682,jiwa,2025,registration,total_population,3.2,27,,45 - 49
+32.75.11,3,Mustikajaya,age_group,50-54,laki_laki,8080,jiwa,2025,registration,total_population,3.2,27,,50 - 54
+32.75.11,3,Mustikajaya,age_group,50-54,perempuan,8326,jiwa,2025,registration,total_population,3.2,27,,50 - 54
+32.75.11,3,Mustikajaya,age_group,50-54,,16406,jiwa,2025,registration,total_population,3.2,27,,50 - 54
+32.75.11,3,Mustikajaya,age_group,55-59,laki_laki,6483,jiwa,2025,registration,total_population,3.2,27,,55 - 59
+32.75.11,3,Mustikajaya,age_group,55-59,perempuan,6000,jiwa,2025,registration,total_population,3.2,27,,55 - 59
+32.75.11,3,Mustikajaya,age_group,55-59,,12483,jiwa,2025,registration,total_population,3.2,27,,55 - 59
+32.75.11,3,Mustikajaya,age_group,60-64,laki_laki,3866,jiwa,2025,registration,total_population,3.2,27,,60 - 64
+32.75.11,3,Mustikajaya,age_group,60-64,perempuan,3498,jiwa,2025,registration,total_population,3.2,27,,60 - 64
+32.75.11,3,Mustikajaya,age_group,60-64,,7364,jiwa,2025,registration,total_population,3.2,27,,60 - 64
+32.75.11,3,Mustikajaya,age_group,65-69,laki_laki,2221,jiwa,2025,registration,total_population,3.2,27,,65 -69
+32.75.11,3,Mustikajaya,age_group,65-69,perempuan,2227,jiwa,2025,registration,total_population,3.2,27,,65 -69
+32.75.11,3,Mustikajaya,age_group,65-69,,4448,jiwa,2025,registration,total_population,3.2,27,,65 -69
+32.75.11,3,Mustikajaya,age_group,70-74,laki_laki,1152,jiwa,2025,registration,total_population,3.2,27,,70 - 74
+32.75.11,3,Mustikajaya,age_group,70-74,perempuan,1235,jiwa,2025,registration,total_population,3.2,27,,70 - 74
+32.75.11,3,Mustikajaya,age_group,70-74,,2387,jiwa,2025,registration,total_population,3.2,27,,70 - 74
+32.75.11,3,Mustikajaya,age_group,75+,laki_laki,985,jiwa,2025,registration,total_population,3.2,27,,75+
+32.75.11,3,Mustikajaya,age_group,75+,perempuan,1383,jiwa,2025,registration,total_population,3.2,27,,75+
+32.75.11,3,Mustikajaya,age_group,75+,,2368,jiwa,2025,registration,total_population,3.2,27,,75+
+32.75.11,3,Mustikajaya,sex,laki_laki,,114767,jiwa,2025,registration,total_population,3.2,27,,Laki-Laki
+32.75.11,3,Mustikajaya,sex,perempuan,,114416,jiwa,2025,registration,total_population,3.2,27,,Perempuan
+32.75.11,3,Mustikajaya,total,total,,229183,jiwa,2025,registration,total_population,3.2,27,,

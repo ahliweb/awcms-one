@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.72.01.1001,4,Tanjungpinang Barat,sex,laki_laki,,7373,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+21.72.01.1001,4,Tanjungpinang Barat,sex,perempuan,,7398,jiwa,2025,registration,total_population,3.1,,,Perempuan
+21.72.01.1001,4,Tanjungpinang Barat,total,total,,14771,jiwa,2025,registration,total_population,3.1,,,
+21.72.01.1002,4,Kemboja,sex,laki_laki,,5904,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+21.72.01.1002,4,Kemboja,sex,perempuan,,5867,jiwa,2025,registration,total_population,3.1,,,Perempuan
+21.72.01.1002,4,Kemboja,total,total,,11771,jiwa,2025,registration,total_population,3.1,,,
+21.72.01.1003,4,Kampung Baru,sex,laki_laki,,5070,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+21.72.01.1003,4,Kampung Baru,sex,perempuan,,5049,jiwa,2025,registration,total_population,3.1,,,Perempuan
+21.72.01.1003,4,Kampung Baru,total,total,,10119,jiwa,2025,registration,total_population,3.1,,,
+21.72.01.1004,4,Bukit Cermin,sex,laki_laki,,3810,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+21.72.01.1004,4,Bukit Cermin,sex,perempuan,,3968,jiwa,2025,registration,total_population,3.1,,,Perempuan
+21.72.01.1004,4,Bukit Cermin,total,total,,7778,jiwa,2025,registration,total_population,3.1,,,
+21.72.01,3,Kecamatan Tanjungpinang Barat,sex,laki_laki,,22157,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+21.72.01,3,Kecamatan Tanjungpinang Barat,sex,perempuan,,22282,jiwa,2025,registration,total_population,3.1,,,Perempuan
+21.72.01,3,Kecamatan Tanjungpinang Barat,total,total,,44439,jiwa,2025,registration,total_population,3.1,,,
+21.72.01,3,Tanjung Pinang Barat,age_group,0-4,laki_laki,1104,jiwa,2025,registration,total_population,3.2,34,,0–4
+21.72.01,3,Tanjung Pinang Barat,age_group,0-4,perempuan,960,jiwa,2025,registration,total_population,3.2,34,,0–4
+21.72.01,3,Tanjung Pinang Barat,age_group,0-4,,2064,jiwa,2025,registration,total_population,3.2,34,,0–4
+21.72.01,3,Tanjung Pinang Barat,age_group,5-9,laki_laki,1428,jiwa,2025,registration,total_population,3.2,34,,5–9
+21.72.01,3,Tanjung Pinang Barat,age_group,5-9,perempuan,1384,jiwa,2025,registration,total_population,3.2,34,,5–9
+21.72.01,3,Tanjung Pinang Barat,age_group,5-9,,2812,jiwa,2025,registration,total_population,3.2,34,,5–9
+21.72.01,3,Tanjung Pinang Barat,age_group,10-14,laki_laki,1738,jiwa,2025,registration,total_population,3.2,34,,10–14
+21.72.01,3,Tanjung Pinang Barat,age_group,10-14,perempuan,1644,jiwa,2025,registration,total_population,3.2,34,,10–14
+21.72.01,3,Tanjung Pinang Barat,age_group,10-14,,3382,jiwa,2025,registration,total_population,3.2,34,,10–14
+21.72.01,3,Tanjung Pinang Barat,age_group,15-19,laki_laki,1915,jiwa,2025,registration,total_population,3.2,34,,15–19
+21.72.01,3,Tanjung Pinang Barat,age_group,15-19,perempuan,1765,jiwa,2025,registration,total_population,3.2,34,,15–19
+21.72.01,3,Tanjung Pinang Barat,age_group,15-19,,3680,jiwa,2025,registration,total_population,3.2,34,,15–19
+21.72.01,3,Tanjung Pinang Barat,age_group,20-24,laki_laki,1981,jiwa,2025,registration,total_population,3.2,34,,20–24
+21.72.01,3,Tanjung Pinang Barat,age_group,20-24,perempuan,1873,jiwa,2025,registration,total_population,3.2,34,,20–24
+21.72.01,3,Tanjung Pinang Barat,age_group,20-24,,3854,jiwa,2025,registration,total_population,3.2,34,,20–24
+21.72.01,3,Tanjung Pinang Barat,age_group,25-29,laki_laki,1780,jiwa,2025,registration,total_population,3.2,34,,25–29
+21.72.01,3,Tanjung Pinang Barat,age_group,25-29,perempuan,1576,jiwa,2025,registration,total_population,3.2,34,,25–29
+21.72.01,3,Tanjung Pinang Barat,age_group,25-29,,3356,jiwa,2025,registration,total_population,3.2,34,,25–29
+21.72.01,3,Tanjung Pinang Barat,age_group,30-34,laki_laki,1585,jiwa,2025,registration,total_population,3.2,34,,30–34
+21.72.01,3,Tanjung Pinang Barat,age_group,30-34,perempuan,1454,jiwa,2025,registration,total_population,3.2,34,,30–34
+21.72.01,3,Tanjung Pinang Barat,age_group,30-34,,3039,jiwa,2025,registration,total_population,3.2,34,,30–34
+21.72.01,3,Tanjung Pinang Barat,age_group,35-39,laki_laki,1320,jiwa,2025,registration,total_population,3.2,34,,35–39
+21.72.01,3,Tanjung Pinang Barat,age_group,35-39,perempuan,1412,jiwa,2025,registration,total_population,3.2,34,,35–39
+21.72.01,3,Tanjung Pinang Barat,age_group,35-39,,2732,jiwa,2025,registration,total_population,3.2,34,,35–39
+21.72.01,3,Tanjung Pinang Barat,age_group,40-44,laki_laki,1691,jiwa,2025,registration,total_population,3.2,34,,40–44
+21.72.01,3,Tanjung Pinang Barat,age_group,40-44,perempuan,1794,jiwa,2025,registration,total_population,3.2,34,,40–44
+21.72.01,3,Tanjung Pinang Barat,age_group,40-44,,3485,jiwa,2025,registration,total_population,3.2,34,,40–44
+21.72.01,3,Tanjung Pinang Barat,age_group,45-49,laki_laki,1756,jiwa,2025,registration,total_population,3.2,34,,45–49
+21.72.01,3,Tanjung Pinang Barat,age_group,45-49,perempuan,1911,jiwa,2025,registration,total_population,3.2,34,,45–49
+21.72.01,3,Tanjung Pinang Barat,age_group,45-49,,3667,jiwa,2025,registration,total_population,3.2,34,,45–49
+21.72.01,3,Tanjung Pinang Barat,age_group,50-54,laki_laki,1561,jiwa,2025,registration,total_population,3.2,34,,50–54
+21.72.01,3,Tanjung Pinang Barat,age_group,50-54,perempuan,1631,jiwa,2025,registration,total_population,3.2,34,,50–54
+21.72.01,3,Tanjung Pinang Barat,age_group,50-54,,3192,jiwa,2025,registration,total_population,3.2,34,,50–54
+21.72.01,3,Tanjung Pinang Barat,age_group,55-59,laki_laki,1369,jiwa,2025,registration,total_population,3.2,34,,55–59
+21.72.01,3,Tanjung Pinang Barat,age_group,55-59,perempuan,1296,jiwa,2025,registration,total_population,3.2,34,,55–59
+21.72.01,3,Tanjung Pinang Barat,age_group,55-59,,2665,jiwa,2025,registration,total_population,3.2,34,,55–59
+21.72.01,3,Tanjung Pinang Barat,age_group,60-64,laki_laki,1033,jiwa,2025,registration,total_population,3.2,34,,60–64
+21.72.01,3,Tanjung Pinang Barat,age_group,60-64,perempuan,1157,jiwa,2025,registration,total_population,3.2,34,,60–64
+21.72.01,3,Tanjung Pinang Barat,age_group,60-64,,2190,jiwa,2025,registration,total_population,3.2,34,,60–64
+21.72.01,3,Tanjung Pinang Barat,age_group,65-69,laki_laki,771,jiwa,2025,registration,total_population,3.2,34,,65–69
+21.72.01,3,Tanjung Pinang Barat,age_group,65-69,perempuan,920,jiwa,2025,registration,total_population,3.2,34,,65–69
+21.72.01,3,Tanjung Pinang Barat,age_group,65-69,,1691,jiwa,2025,registration,total_population,3.2,34,,65–69
+21.72.01,3,Tanjung Pinang Barat,age_group,70-74,laki_laki,544,jiwa,2025,registration,total_population,3.2,34,,70–74
+21.72.01,3,Tanjung Pinang Barat,age_group,70-74,perempuan,721,jiwa,2025,registration,total_population,3.2,34,,70–74
+21.72.01,3,Tanjung Pinang Barat,age_group,70-74,,1265,jiwa,2025,registration,total_population,3.2,34,,70–74
+21.72.01,3,Tanjung Pinang Barat,age_group,75+,laki_laki,581,jiwa,2025,registration,total_population,3.2,34,,75+
+21.72.01,3,Tanjung Pinang Barat,age_group,75+,perempuan,784,jiwa,2025,registration,total_population,3.2,34,,75+
+21.72.01,3,Tanjung Pinang Barat,age_group,75+,,1365,jiwa,2025,registration,total_population,3.2,34,,75+
+21.72.01,3,Tanjung Pinang Barat,sex,laki_laki,,22157,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+21.72.01,3,Tanjung Pinang Barat,sex,perempuan,,22282,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+21.72.01,3,Tanjung Pinang Barat,total,total,,44439,jiwa,2025,registration,total_population,3.2,34,,

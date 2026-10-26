@@ -1,0 +1,56 @@
+{
+  "datasetCode": "bps-3273-kecamatan-327307-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.73.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sukajadi Dalam Angka 2026",
+  "publisherName": "BPS Kota Bandung",
+  "publisherDomain": "3273",
+  "publisherWebsite": "https://bandungkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Bandung (https://bandungkota.bps.go.id), publikasi \"Kecamatan Sukajadi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3273240",
+  "publicationNumber": "32730.26006",
+  "issn": "2797-4626",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bandungkota.bps.go.id/id/publication/2026/09/28/67fe5fc960b740f0aeebe770/kecamatan-sukajadi-dalam-angka-2026.html",
+  "sourceFileSha256": "f6930b8fed3497b70805bcecab6f44b747f48741aae3e1b4702042aad76de843",
+  "sourceFileBytes": 1555201,
+  "sourcePages": [39, 40, 41, 95],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Bandung.",
+  "csvPath": "datasets/bps-3273-kecamatan-327307-dalam-angka-2026.csv",
+  "csvSha256": "ce50d13a13b4c41ab0cb96265e5e07de0e1b2a7c3bef66d1363f72d3fae250fa",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Sukajadi, 2025",
+      "printedPages": [39, 40],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sukajadi, 2025",
+      "printedPages": [41],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.4.5",
+      "title": "Penduduk Menurut Kelurahan dan Agama yang dianut di Kecamatan Sukajadi, 2025",
+      "printedPages": [95],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.1: row not stored: row \"Sukajadi District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Sukajadi Sukajadi District\": unmatched ",
+    "table 3.2: row not stored: row \"Dependency Ratio\": unmatched ",
+    "table 3.2: row not stored: row \"Jumlah Total\": unmatched ",
+    "table 4.4.5: row not stored: row \"Kecamatan Sukajadi Sukajadi District\": unmatched "
+  ]
+}

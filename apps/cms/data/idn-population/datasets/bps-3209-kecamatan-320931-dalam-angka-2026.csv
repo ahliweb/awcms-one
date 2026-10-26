@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.09.31.2001,4,Cikeduk,sex,laki_laki,,2874,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.31.2001,4,Cikeduk,sex,perempuan,,2730,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.31.2001,4,Cikeduk,total,total,,5604,jiwa,2025,registration,total_population,3.1,52,,
+32.09.31.2004,4,Warugede,sex,laki_laki,,2873,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.31.2004,4,Warugede,sex,perempuan,,2699,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.31.2004,4,Warugede,total,total,,5572,jiwa,2025,registration,total_population,3.1,52,,
+32.09.31.2012,4,Karangwangi,sex,laki_laki,,3588,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.31.2012,4,Karangwangi,sex,perempuan,,3547,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.31.2012,4,Karangwangi,total,total,,7135,jiwa,2025,registration,total_population,3.1,52,,
+32.09.31.2011,4,Getasan,sex,laki_laki,,2435,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.31.2011,4,Getasan,sex,perempuan,,2378,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.31.2011,4,Getasan,total,total,,4813,jiwa,2025,registration,total_population,3.1,52,,
+32.09.31.2010,4,Kejuden,sex,laki_laki,,3093,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.31.2010,4,Kejuden,sex,perempuan,,2943,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.31.2010,4,Kejuden,total,total,,6036,jiwa,2025,registration,total_population,3.1,52,,
+32.09.31.2009,4,Keduanan,sex,laki_laki,,2544,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.31.2009,4,Keduanan,sex,perempuan,,2564,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.31.2009,4,Keduanan,total,total,,5108,jiwa,2025,registration,total_population,3.1,52,,
+32.09.31.2005,4,Waruroyom,sex,laki_laki,,2697,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.31.2005,4,Waruroyom,sex,perempuan,,2589,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.31.2005,4,Waruroyom,total,total,,5286,jiwa,2025,registration,total_population,3.1,52,,
+32.09.31.2003,4,Warukawung,sex,laki_laki,,3252,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.31.2003,4,Warukawung,sex,perempuan,,3112,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.31.2003,4,Warukawung,total,total,,6364,jiwa,2025,registration,total_population,3.1,52,,
+32.09.31.2002,4,Warujaya,sex,laki_laki,,3389,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.31.2002,4,Warujaya,sex,perempuan,,3257,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.31.2002,4,Warujaya,total,total,,6646,jiwa,2025,registration,total_population,3.1,52,,
+32.09.31.2006,4,Depok,sex,laki_laki,,1908,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.31.2006,4,Depok,sex,perempuan,,1879,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.31.2006,4,Depok,total,total,,3787,jiwa,2025,registration,total_population,3.1,52,,
+32.09.31.2007,4,Kasugengan Kidul,sex,laki_laki,,4045,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.31.2007,4,Kasugengan Kidul,sex,perempuan,,3996,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.31.2007,4,Kasugengan Kidul,total,total,,8041,jiwa,2025,registration,total_population,3.1,52,,
+32.09.31.2008,4,Kasugengan Lor,sex,laki_laki,,4328,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.31.2008,4,Kasugengan Lor,sex,perempuan,,4365,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.31.2008,4,Kasugengan Lor,total,total,,8693,jiwa,2025,registration,total_population,3.1,52,,
+32.09.31,3,Kecamatan Depok,sex,laki_laki,,37026,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.31,3,Kecamatan Depok,sex,perempuan,,36059,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.31,3,Kecamatan Depok,total,total,,73085,jiwa,2025,registration,total_population,3.1,52,,
+32.09.31,3,Depok,age_group,0-4,laki_laki,2644,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.31,3,Depok,age_group,0-4,perempuan,2450,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.31,3,Depok,age_group,0-4,,5094,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.31,3,Depok,age_group,5-9,laki_laki,3174,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.31,3,Depok,age_group,5-9,perempuan,3050,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.31,3,Depok,age_group,5-9,,6224,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.31,3,Depok,age_group,10-14,laki_laki,3221,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.31,3,Depok,age_group,10-14,perempuan,3025,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.31,3,Depok,age_group,10-14,,6246,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.31,3,Depok,age_group,15-19,laki_laki,2716,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.31,3,Depok,age_group,15-19,perempuan,2661,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.31,3,Depok,age_group,15-19,,5377,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.31,3,Depok,age_group,20-24,laki_laki,2846,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.31,3,Depok,age_group,20-24,perempuan,2692,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.31,3,Depok,age_group,20-24,,5538,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.31,3,Depok,age_group,25-29,laki_laki,2929,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.31,3,Depok,age_group,25-29,perempuan,2797,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.31,3,Depok,age_group,25-29,,5726,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.31,3,Depok,age_group,30-34,laki_laki,2880,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.31,3,Depok,age_group,30-34,perempuan,2871,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.31,3,Depok,age_group,30-34,,5751,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.31,3,Depok,age_group,35-39,laki_laki,2921,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.31,3,Depok,age_group,35-39,perempuan,2905,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.31,3,Depok,age_group,35-39,,5826,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.31,3,Depok,age_group,40-44,laki_laki,3212,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.31,3,Depok,age_group,40-44,perempuan,3008,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.31,3,Depok,age_group,40-44,,6220,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.31,3,Depok,age_group,45-49,laki_laki,2936,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.31,3,Depok,age_group,45-49,perempuan,2719,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.31,3,Depok,age_group,45-49,,5655,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.31,3,Depok,age_group,50-54,laki_laki,2344,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.31,3,Depok,age_group,50-54,perempuan,2328,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.31,3,Depok,age_group,50-54,,4672,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.31,3,Depok,age_group,55-59,laki_laki,1834,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.31,3,Depok,age_group,55-59,perempuan,1724,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.31,3,Depok,age_group,55-59,,3558,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.31,3,Depok,age_group,60-64,laki_laki,1252,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.31,3,Depok,age_group,60-64,perempuan,1371,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.31,3,Depok,age_group,60-64,,2623,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.31,3,Depok,age_group,65-69,laki_laki,916,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.31,3,Depok,age_group,65-69,perempuan,1041,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.31,3,Depok,age_group,65-69,,1957,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.31,3,Depok,age_group,70-74,laki_laki,623,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.31,3,Depok,age_group,70-74,perempuan,577,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.31,3,Depok,age_group,70-74,,1200,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.31,3,Depok,age_group,75+,laki_laki,578,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.31,3,Depok,age_group,75+,perempuan,840,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.31,3,Depok,age_group,75+,,1418,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.31,3,Kecamatan Depok,sex,laki_laki,,37026,jiwa,2025,registration,total_population,3.2,54,,Laki-Laki
+32.09.31,3,Kecamatan Depok,sex,perempuan,,36059,jiwa,2025,registration,total_population,3.2,54,,Perempuan
+32.09.31,3,Kecamatan Depok,total,total,,73085,jiwa,2025,registration,total_population,3.2,54,,

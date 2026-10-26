@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-1872-kecamatan-187203-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.72.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Metro Barat Dalam Angka 2026",
+  "publisherName": "BPS Kota Metro",
+  "publisherDomain": "1872",
+  "publisherWebsite": "https://metrokota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Metro (https://metrokota.bps.go.id), publikasi \"Kecamatan Metro Barat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1872012",
+  "publicationNumber": "18720.26005",
+  "issn": "3109-225X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://metrokota.bps.go.id/id/publication/2026/09/28/5da19ace6a5b6204f5bdcc03/kecamatan-metro-barat-dalam-angka-2026.html",
+  "sourceFileSha256": "a75225eca6a4aae46c195bb1818762fc36e7c4f84e05142c4bf554aeacb4a055",
+  "sourceFileBytes": 25427859,
+  "sourcePages": [31, 32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Metro.",
+  "csvPath": "datasets/bps-1872-kecamatan-187203-dalam-angka-2026.csv",
+  "csvSha256": "b13fe8cac94d26106693f435658dd6700ed9ca074a489193eb7d08a804d3be38",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Metro Barat, 2025",
+      "printedPages": [31, 32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Metro Barat, 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Mulyojati 29,09%\": unmatched ",
+    "table 3.1: row not stored: row \"Mulyosari 12,40%\": unmatched ",
+    "table 3.1: row not stored: row \"Ganjaragung 24,44%\": unmatched ",
+    "table 3.1: row not stored: row \"Ganjarasri 34,07%\": unmatched ",
+    "table 3.1: row not stored: row \"Metro Barat 100,00%\": unmatched "
+  ]
+}

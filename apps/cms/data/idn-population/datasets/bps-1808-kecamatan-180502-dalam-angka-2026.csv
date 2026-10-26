@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.05.02.2001,4,Bujung Tenuk,sex,laki_laki,,1414,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.02.2001,4,Bujung Tenuk,sex,perempuan,,1361,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.02.2001,4,Bujung Tenuk,total,total,,2775,jiwa,2025,registration,total_population,3.1,30,,
+18.05.02.2007,4,Astra Ksetra,sex,laki_laki,,1387,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.02.2007,4,Astra Ksetra,sex,perempuan,,1332,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.02.2007,4,Astra Ksetra,total,total,,2719,jiwa,2025,registration,total_population,3.1,30,,
+18.05.02.2002,4,Ujung Gunung Ilir,sex,laki_laki,,2684,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.02.2002,4,Ujung Gunung Ilir,sex,perempuan,,2544,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.02.2002,4,Ujung Gunung Ilir,total,total,,5228,jiwa,2025,registration,total_population,3.1,30,,
+18.05.02.1008,4,Menggala Selatan,sex,laki_laki,,5838,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.02.1008,4,Menggala Selatan,sex,perempuan,,5530,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.02.1008,4,Menggala Selatan,total,total,,11368,jiwa,2025,registration,total_population,3.1,30,,
+18.05.02.1009,4,Ujung Gunung,sex,laki_laki,,5179,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.02.1009,4,Ujung Gunung,sex,perempuan,,5004,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.02.1009,4,Ujung Gunung,total,total,,10183,jiwa,2025,registration,total_population,3.1,30,,
+18.05.02.1010,4,Menggala Tengah,sex,laki_laki,,3879,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.02.1010,4,Menggala Tengah,sex,perempuan,,3751,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.02.1010,4,Menggala Tengah,total,total,,7630,jiwa,2025,registration,total_population,3.1,30,,
+18.05.02.1011,4,Menggala Kota,sex,laki_laki,,3065,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.02.1011,4,Menggala Kota,sex,perempuan,,2950,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.02.1011,4,Menggala Kota,total,total,,6015,jiwa,2025,registration,total_population,3.1,30,,
+18.05.02.2013,4,Kagungan Rahayu,sex,laki_laki,,2439,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.02.2013,4,Kagungan Rahayu,sex,perempuan,,2296,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.02.2013,4,Kagungan Rahayu,total,total,,4735,jiwa,2025,registration,total_population,3.1,30,,
+18.05.02.2014,4,Tiuh Tohou,sex,laki_laki,,1572,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.02.2014,4,Tiuh Tohou,sex,perempuan,,1533,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.02.2014,4,Tiuh Tohou,total,total,,3105,jiwa,2025,registration,total_population,3.1,30,,
+18.05.02,3,Menggala,sex,laki_laki,,27457,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.02,3,Menggala,sex,perempuan,,26301,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.02,3,Menggala,total,total,,53758,jiwa,2025,registration,total_population,3.1,30,,

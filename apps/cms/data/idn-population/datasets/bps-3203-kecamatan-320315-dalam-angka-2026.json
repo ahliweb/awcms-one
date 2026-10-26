@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3203-kecamatan-320315-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.03.15",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Campaka Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Cianjur",
+  "publisherDomain": "3203",
+  "publisherWebsite": "https://cianjurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Cianjur (https://cianjurkab.bps.go.id), publikasi \"Kecamatan Campaka Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3203110",
+  "publicationNumber": "32030.25020",
+  "issn": "2808-6775",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://cianjurkab.bps.go.id/id/publication/2026/09/28/f23ec576b656bc7df0cf138b/kecamatan-campaka-dalam-angka-2026.html",
+  "sourceFileSha256": "1e60f0727e4844746378b32b39db8b46eebf4af88b48f49e5a1c1e03864c32f6",
+  "sourceFileBytes": 5838511,
+  "sourcePages": [19, 20, 21],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Cianjur.",
+  "csvPath": "datasets/bps-3203-kecamatan-320315-dalam-angka-2026.csv",
+  "csvSha256": "a43f61f029fa2174b47b41f20cd46b4c0586e2101efbd718329b29b9275906b2",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Campaka, 2025",
+      "printedPages": [19, 20],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Campaka, 2025",
+      "printedPages": [21],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

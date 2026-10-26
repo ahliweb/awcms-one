@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3215-kecamatan-321523-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.15.23",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cilamaya Kulon Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Karawang",
+  "publisherDomain": "3215",
+  "publisherWebsite": "https://karawangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Karawang (https://karawangkab.bps.go.id), publikasi \"Kecamatan Cilamaya Kulon Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3215082",
+  "publicationNumber": "32150.26034",
+  "issn": "2828-7398",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://karawangkab.bps.go.id/id/publication/2026/09/28/e486b3b6ee5bb069b9830850/kecamatan-cilamaya-kulon-dalam-angka-2026.html",
+  "sourceFileSha256": "99482ac2cecf8278c5c114572132915c4bb70fb1b039aba90faeb69bfbf40686",
+  "sourceFileBytes": 5050547,
+  "sourcePages": [28, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Karawang.",
+  "csvPath": "datasets/bps-3215-kecamatan-321523-dalam-angka-2026.csv",
+  "csvSha256": "1642f09d8bc3c0dccd84d9b0eb40d9ab0ec9b2bc7643ad865a3d44776e239141",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Cilamaya Kulon, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cilamaya Kulon, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Desa/Village\": unmatched ",
+    "table 3.2: the rows of region 32.15.23 are not stored: age_group (perempuan) vs sex value: parts sum 35418.0000 != 35409.0000 (diff 9.0000); the source itself is inconsistent"
+  ]
+}

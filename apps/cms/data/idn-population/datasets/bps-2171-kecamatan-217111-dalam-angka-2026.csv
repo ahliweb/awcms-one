@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.71.11.1001,4,Tembesi,sex,laki_laki,,29984,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.11.1001,4,Tembesi,sex,perempuan,,29102,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.11.1001,4,Tembesi,total,total,,59086,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.11.1002,4,Sungai Binti,sex,laki_laki,,16404,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.11.1002,4,Sungai Binti,sex,perempuan,,15608,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.11.1002,4,Sungai Binti,total,total,,32012,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.11.1003,4,Sungai Lekop,sex,laki_laki,,14524,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.11.1003,4,Sungai Lekop,sex,perempuan,,13778,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.11.1003,4,Sungai Lekop,total,total,,28302,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.11.1004,4,Sagulung Kota,sex,laki_laki,,16057,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.11.1004,4,Sagulung Kota,sex,perempuan,,15434,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.11.1004,4,Sagulung Kota,total,total,,31491,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.11.1005,4,Sungai Langkai,sex,laki_laki,,26586,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.11.1005,4,Sungai Langkai,sex,perempuan,,25276,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.11.1005,4,Sungai Langkai,total,total,,51862,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.11.1006,4,Sungai Pelunggut,sex,laki_laki,,21120,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.11.1006,4,Sungai Pelunggut,sex,perempuan,,19821,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.11.1006,4,Sungai Pelunggut,total,total,,40941,jiwa,2025,registration,total_population,unnumbered-p21,21,,

@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.12.04.2002,4,Toto Mulyo,sex,laki_laki,,1657,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.04.2002,4,Toto Mulyo,sex,perempuan,,1594,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.04.2002,4,Toto Mulyo,total,total,,3251,jiwa,2025,registration,total_population,3.1,28,,
+18.12.04.2006,4,Setia Bumi,sex,laki_laki,,1855,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.04.2006,4,Setia Bumi,sex,perempuan,,1826,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.04.2006,4,Setia Bumi,total,total,,3681,jiwa,2025,registration,total_population,3.1,28,,
+18.12.04.2007,4,Gunung Terang,sex,laki_laki,,1954,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.04.2007,4,Gunung Terang,sex,perempuan,,1927,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.04.2007,4,Gunung Terang,total,total,,3881,jiwa,2025,registration,total_population,3.1,28,,
+18.12.04.2008,4,Gunung Agung,sex,laki_laki,,1365,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.04.2008,4,Gunung Agung,sex,perempuan,,1240,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.04.2008,4,Gunung Agung,total,total,,2605,jiwa,2025,registration,total_population,3.1,28,,
+18.12.04.2011,4,Kagungan Jaya,sex,laki_laki,,375,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.04.2011,4,Kagungan Jaya,sex,perempuan,,355,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.04.2011,4,Kagungan Jaya,total,total,,730,jiwa,2025,registration,total_population,3.1,28,,
+18.12.04.2012,4,Terang Mulya,sex,laki_laki,,366,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.04.2012,4,Terang Mulya,sex,perempuan,,352,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.04.2012,4,Terang Mulya,total,total,,718,jiwa,2025,registration,total_population,3.1,28,,
+18.12.04.2013,4,Terang Bumi Agung,sex,laki_laki,,873,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.04.2013,4,Terang Bumi Agung,sex,perempuan,,815,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.04.2013,4,Terang Bumi Agung,total,total,,1688,jiwa,2025,registration,total_population,3.1,28,,
+18.12.04.2015,4,Setia Agung,sex,laki_laki,,865,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.04.2015,4,Setia Agung,sex,perempuan,,815,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.04.2015,4,Setia Agung,total,total,,1680,jiwa,2025,registration,total_population,3.1,28,,
+18.12.04.2017,4,Mulyo Jadi,sex,laki_laki,,1269,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.04.2017,4,Mulyo Jadi,sex,perempuan,,1172,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.04.2017,4,Mulyo Jadi,total,total,,2441,jiwa,2025,registration,total_population,3.1,28,,
+18.12.04.2020,4,Terang Makmur,sex,laki_laki,,464,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.04.2020,4,Terang Makmur,sex,perempuan,,444,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.04.2020,4,Terang Makmur,total,total,,908,jiwa,2025,registration,total_population,3.1,28,,
+18.12.04,3,Gunung Terang,sex,laki_laki,,11043,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.04,3,Gunung Terang,sex,perempuan,,10540,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.04,3,Gunung Terang,total,total,,21583,jiwa,2025,registration,total_population,3.1,28,,

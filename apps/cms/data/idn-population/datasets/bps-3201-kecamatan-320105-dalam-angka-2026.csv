@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.01.05.2001,4,Cijayanti,sex,laki_laki,,10207,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+32.01.05.2001,4,Cijayanti,sex,perempuan,,9785,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+32.01.05.2001,4,Cijayanti,total,total,,19992,jiwa,2025,registration,total_population,3.1,35,,
+32.01.05.2009,4,Bojong Koneng,sex,laki_laki,,9142,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+32.01.05.2009,4,Bojong Koneng,sex,perempuan,,8632,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+32.01.05.2009,4,Bojong Koneng,total,total,,17774,jiwa,2025,registration,total_population,3.1,35,,
+32.01.05.2004,4,Karang Tengah,sex,laki_laki,,10580,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+32.01.05.2004,4,Karang Tengah,sex,perempuan,,9662,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+32.01.05.2004,4,Karang Tengah,total,total,,20242,jiwa,2025,registration,total_population,3.1,35,,
+32.01.05.2002,4,Sumur Batu,sex,laki_laki,,4860,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+32.01.05.2002,4,Sumur Batu,sex,perempuan,,4721,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+32.01.05.2002,4,Sumur Batu,total,total,,9581,jiwa,2025,registration,total_population,3.1,35,,
+32.01.05.2008,4,Babakan Madang,sex,laki_laki,,5446,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+32.01.05.2008,4,Babakan Madang,sex,perempuan,,5125,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+32.01.05.2008,4,Babakan Madang,total,total,,10571,jiwa,2025,registration,total_population,3.1,35,,
+32.01.05.2007,4,Citaringgul,sex,laki_laki,,4723,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+32.01.05.2007,4,Citaringgul,sex,perempuan,,4502,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+32.01.05.2007,4,Citaringgul,total,total,,9225,jiwa,2025,registration,total_population,3.1,35,,
+32.01.05.2005,4,Cipambuan,sex,laki_laki,,3309,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+32.01.05.2005,4,Cipambuan,sex,perempuan,,2934,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+32.01.05.2005,4,Cipambuan,total,total,,6243,jiwa,2025,registration,total_population,3.1,35,,
+32.01.05.2003,4,Sentul,sex,laki_laki,,9885,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+32.01.05.2003,4,Sentul,sex,perempuan,,9393,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+32.01.05.2003,4,Sentul,total,total,,19278,jiwa,2025,registration,total_population,3.1,35,,
+32.01.05,3,Babakan Madang,sex,laki_laki,,67951,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+32.01.05,3,Babakan Madang,sex,perempuan,,63912,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+32.01.05,3,Babakan Madang,total,total,,131863,jiwa,2025,registration,total_population,3.1,35,,
+32.01.05,3,Babakan Madang,age_group,0-4,laki_laki,5071,jiwa,2025,registration,total_population,3.2,37,,0-4
+32.01.05,3,Babakan Madang,age_group,0-4,perempuan,4854,jiwa,2025,registration,total_population,3.2,37,,0-4
+32.01.05,3,Babakan Madang,age_group,0-4,,9925,jiwa,2025,registration,total_population,3.2,37,,0-4
+32.01.05,3,Babakan Madang,age_group,5-9,laki_laki,6723,jiwa,2025,registration,total_population,3.2,37,,5-9
+32.01.05,3,Babakan Madang,age_group,5-9,perempuan,6209,jiwa,2025,registration,total_population,3.2,37,,5-9
+32.01.05,3,Babakan Madang,age_group,5-9,,12932,jiwa,2025,registration,total_population,3.2,37,,5-9
+32.01.05,3,Babakan Madang,age_group,10-14,laki_laki,6469,jiwa,2025,registration,total_population,3.2,37,,10-14
+32.01.05,3,Babakan Madang,age_group,10-14,perempuan,6032,jiwa,2025,registration,total_population,3.2,37,,10-14
+32.01.05,3,Babakan Madang,age_group,10-14,,12501,jiwa,2025,registration,total_population,3.2,37,,10-14
+32.01.05,3,Babakan Madang,age_group,15-19,laki_laki,5783,jiwa,2025,registration,total_population,3.2,37,,15-19
+32.01.05,3,Babakan Madang,age_group,15-19,perempuan,5321,jiwa,2025,registration,total_population,3.2,37,,15-19
+32.01.05,3,Babakan Madang,age_group,15-19,,11104,jiwa,2025,registration,total_population,3.2,37,,15-19
+32.01.05,3,Babakan Madang,age_group,20-24,laki_laki,5993,jiwa,2025,registration,total_population,3.2,37,,20-24
+32.01.05,3,Babakan Madang,age_group,20-24,perempuan,5942,jiwa,2025,registration,total_population,3.2,37,,20-24
+32.01.05,3,Babakan Madang,age_group,20-24,,11935,jiwa,2025,registration,total_population,3.2,37,,20-24
+32.01.05,3,Babakan Madang,age_group,25-29,laki_laki,5979,jiwa,2025,registration,total_population,3.2,37,,25-29
+32.01.05,3,Babakan Madang,age_group,25-29,perempuan,5607,jiwa,2025,registration,total_population,3.2,37,,25-29
+32.01.05,3,Babakan Madang,age_group,25-29,,11586,jiwa,2025,registration,total_population,3.2,37,,25-29
+32.01.05,3,Babakan Madang,age_group,30-34,laki_laki,5962,jiwa,2025,registration,total_population,3.2,37,,30-34
+32.01.05,3,Babakan Madang,age_group,30-34,perempuan,5347,jiwa,2025,registration,total_population,3.2,37,,30-34
+32.01.05,3,Babakan Madang,age_group,30-34,,11309,jiwa,2025,registration,total_population,3.2,37,,30-34
+32.01.05,3,Babakan Madang,age_group,35-39,laki_laki,5257,jiwa,2025,registration,total_population,3.2,37,,35-39
+32.01.05,3,Babakan Madang,age_group,35-39,perempuan,4922,jiwa,2025,registration,total_population,3.2,37,,35-39
+32.01.05,3,Babakan Madang,age_group,35-39,,10179,jiwa,2025,registration,total_population,3.2,37,,35-39
+32.01.05,3,Babakan Madang,age_group,40-44,laki_laki,4864,jiwa,2025,registration,total_population,3.2,37,,40-44
+32.01.05,3,Babakan Madang,age_group,40-44,perempuan,4546,jiwa,2025,registration,total_population,3.2,37,,40-44
+32.01.05,3,Babakan Madang,age_group,40-44,,9410,jiwa,2025,registration,total_population,3.2,37,,40-44
+32.01.05,3,Babakan Madang,age_group,45-49,laki_laki,4268,jiwa,2025,registration,total_population,3.2,37,,45-49
+32.01.05,3,Babakan Madang,age_group,45-49,perempuan,4212,jiwa,2025,registration,total_population,3.2,37,,45-49
+32.01.05,3,Babakan Madang,age_group,45-49,,8480,jiwa,2025,registration,total_population,3.2,37,,45-49
+32.01.05,3,Babakan Madang,age_group,50-54,laki_laki,3738,jiwa,2025,registration,total_population,3.2,37,,50-54
+32.01.05,3,Babakan Madang,age_group,50-54,perempuan,3489,jiwa,2025,registration,total_population,3.2,37,,50-54
+32.01.05,3,Babakan Madang,age_group,50-54,,7227,jiwa,2025,registration,total_population,3.2,37,,50-54
+32.01.05,3,Babakan Madang,age_group,55-59,laki_laki,2790,jiwa,2025,registration,total_population,3.2,37,,55-59
+32.01.05,3,Babakan Madang,age_group,55-59,perempuan,2632,jiwa,2025,registration,total_population,3.2,37,,55-59
+32.01.05,3,Babakan Madang,age_group,55-59,,5422,jiwa,2025,registration,total_population,3.2,37,,55-59
+32.01.05,3,Babakan Madang,age_group,60-64,laki_laki,1958,jiwa,2025,registration,total_population,3.2,37,,60-64
+32.01.05,3,Babakan Madang,age_group,60-64,perempuan,1707,jiwa,2025,registration,total_population,3.2,37,,60-64
+32.01.05,3,Babakan Madang,age_group,60-64,,3665,jiwa,2025,registration,total_population,3.2,37,,60-64
+32.01.05,3,Babakan Madang,age_group,65-69,laki_laki,1411,jiwa,2025,registration,total_population,3.2,37,,65-69
+32.01.05,3,Babakan Madang,age_group,65-69,perempuan,1317,jiwa,2025,registration,total_population,3.2,37,,65-69
+32.01.05,3,Babakan Madang,age_group,65-69,,2728,jiwa,2025,registration,total_population,3.2,37,,65-69
+32.01.05,3,Babakan Madang,age_group,70-74,laki_laki,812,jiwa,2025,registration,total_population,3.2,37,,70-74
+32.01.05,3,Babakan Madang,age_group,70-74,perempuan,784,jiwa,2025,registration,total_population,3.2,37,,70-74
+32.01.05,3,Babakan Madang,age_group,70-74,,1596,jiwa,2025,registration,total_population,3.2,37,,70-74
+32.01.05,3,Babakan Madang,age_group,75+,laki_laki,873,jiwa,2025,registration,total_population,3.2,37,,75+
+32.01.05,3,Babakan Madang,age_group,75+,perempuan,991,jiwa,2025,registration,total_population,3.2,37,,75+
+32.01.05,3,Babakan Madang,age_group,75+,,1864,jiwa,2025,registration,total_population,3.2,37,,75+
+32.01.05,3,Babakan Madang,sex,laki_laki,,67951,jiwa,2025,registration,total_population,3.2,37,,Laki-Laki
+32.01.05,3,Babakan Madang,sex,perempuan,,63912,jiwa,2025,registration,total_population,3.2,37,,Perempuan
+32.01.05,3,Babakan Madang,total,total,,131863,jiwa,2025,registration,total_population,3.2,37,,

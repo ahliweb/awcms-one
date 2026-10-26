@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+31.73.07.1001,4,Palmerah,sex,laki_laki,,38610,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+31.73.07.1001,4,Palmerah,sex,perempuan,,37922,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+31.73.07.1001,4,Palmerah,total,total,,76532,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+31.73.07.1002,4,Slipi,sex,laki_laki,,10070,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+31.73.07.1002,4,Slipi,sex,perempuan,,9904,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+31.73.07.1002,4,Slipi,total,total,,19974,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+31.73.07.1005,4,Kemanggisan,sex,laki_laki,,19051,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+31.73.07.1005,4,Kemanggisan,sex,perempuan,,19035,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+31.73.07.1005,4,Kemanggisan,total,total,,38086,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+31.73.07.1003,4,Kota Bambu Utara,sex,laki_laki,,15294,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+31.73.07.1003,4,Kota Bambu Utara,sex,perempuan,,15002,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+31.73.07.1003,4,Kota Bambu Utara,total,total,,30296,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+31.73.07.1006,4,Kota Bambu Selatan,sex,laki_laki,,13513,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+31.73.07.1006,4,Kota Bambu Selatan,sex,perempuan,,13127,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+31.73.07.1006,4,Kota Bambu Selatan,total,total,,26640,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+31.73.07.1004,4,Jati Pulo,sex,laki_laki,,17331,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+31.73.07.1004,4,Jati Pulo,sex,perempuan,,17097,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+31.73.07.1004,4,Jati Pulo,total,total,,34428,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+31.73.07,3,Palmerah,sex,laki_laki,,113869,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+31.73.07,3,Palmerah,sex,perempuan,,112087,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+31.73.07,3,Palmerah,total,total,,225956,jiwa,2025,registration,total_population,unnumbered-p28,28,,

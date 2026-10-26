@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.01.15.2002,4,Baktirasa,sex,laki_laki,,3403,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.15.2002,4,Baktirasa,sex,perempuan,,3292,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.15.2002,4,Baktirasa,total,total,,6695,jiwa,2025,registration,total_population,3.1,24,,
+18.01.15.2004,4,Sukapura,sex,laki_laki,,2314,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.15.2004,4,Sukapura,sex,perempuan,,2329,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.15.2004,4,Sukapura,total,total,,4643,jiwa,2025,registration,total_population,3.1,24,,
+18.01.15.2003,4,Mandala Sari,sex,laki_laki,,1910,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.15.2003,4,Mandala Sari,sex,perempuan,,1889,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.15.2003,4,Mandala Sari,total,total,,3799,jiwa,2025,registration,total_population,3.1,24,,
+18.01.15.2007,4,Sumber Sari,sex,laki_laki,,1289,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.15.2007,4,Sumber Sari,sex,perempuan,,1259,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.15.2007,4,Sumber Sari,total,total,,2548,jiwa,2025,registration,total_population,3.1,24,,
+18.01.15.2006,4,Marga Jasa,sex,laki_laki,,1251,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.15.2006,4,Marga Jasa,sex,perempuan,,1310,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.15.2006,4,Marga Jasa,total,total,,2561,jiwa,2025,registration,total_population,3.1,24,,
+18.01.15.2009,4,Kedaung,sex,laki_laki,,2036,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.15.2009,4,Kedaung,sex,perempuan,,2025,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.15.2009,4,Kedaung,total,total,,4061,jiwa,2025,registration,total_population,3.1,24,,
+18.01.15.2005,4,Sumber Agung,sex,laki_laki,,2123,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.15.2005,4,Sumber Agung,sex,perempuan,,2018,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.15.2005,4,Sumber Agung,total,total,,4141,jiwa,2025,registration,total_population,3.1,24,,
+18.01.15.2001,4,Kuala Sekampung,sex,laki_laki,,1832,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.15.2001,4,Kuala Sekampung,sex,perempuan,,1788,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.15.2001,4,Kuala Sekampung,total,total,,3620,jiwa,2025,registration,total_population,3.1,24,,
+18.01.15.2008,4,Bandar Agung,sex,laki_laki,,2461,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.15.2008,4,Bandar Agung,sex,perempuan,,2353,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.15.2008,4,Bandar Agung,total,total,,4814,jiwa,2025,registration,total_population,3.1,24,,
+18.01.15.2010,4,Margasari,sex,laki_laki,,530,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.15.2010,4,Margasari,sex,perempuan,,507,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.15.2010,4,Margasari,total,total,,1037,jiwa,2025,registration,total_population,3.1,24,,
+18.01.15,3,Sragi,sex,laki_laki,,19149,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.15,3,Sragi,sex,perempuan,,18770,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.15,3,Sragi,total,total,,37919,jiwa,2025,registration,total_population,3.1,24,,

@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-2171-kecamatan-217102-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "21.71.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Batu Ampar Dalam Angka 2026",
+  "publisherName": "BPS Kota Batam",
+  "publisherDomain": "2171",
+  "publisherWebsite": "https://batamkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Batam (https://batamkota.bps.go.id), publikasi \"Kecamatan Batu Ampar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.2171080",
+  "publicationNumber": "21710.26011",
+  "issn": "2987-1190",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://batamkota.bps.go.id/id/publication/2026/09/28/a70c9991198603aa7096b801/kecamatan-batu-ampar-dalam-angka-2026.html",
+  "sourceFileSha256": "fa3000f0a56fe7c13882350a4bc41ca838f60451ba16de8d623049bc4e953636",
+  "sourceFileBytes": 1918070,
+  "sourcePages": [21],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Batam.",
+  "csvPath": "datasets/bps-2171-kecamatan-217102-dalam-angka-2026.csv",
+  "csvSha256": "e73f836bf714d5f1cc23a32f148a25b1141febeaf290ef247f0330333519d957",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p21",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1 Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Batu Ampar, 2025",
+      "printedPages": [21],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table unnumbered-p21: row not stored: row \"Kecamatan Batu Ampar Batu Ampar District\": unmatched "
+  ]
+}

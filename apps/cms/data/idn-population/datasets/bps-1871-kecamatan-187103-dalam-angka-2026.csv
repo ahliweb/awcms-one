@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.71.03.1004,4,Susunan Baru,sex,laki_laki,,2811,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.03.1004,4,Susunan Baru,sex,perempuan,,2790,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.03.1004,4,Susunan Baru,total,total,,5601,jiwa,2025,registration,total_population,3.1,26,,
+18.71.03.1006,4,Sukadana Ham,sex,laki_laki,,3249,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.03.1006,4,Sukadana Ham,sex,perempuan,,3098,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.03.1006,4,Sukadana Ham,total,total,,6347,jiwa,2025,registration,total_population,3.1,26,,
+18.71.03.1002,4,Sukajawa,sex,laki_laki,,4809,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.03.1002,4,Sukajawa,sex,perempuan,,4652,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.03.1002,4,Sukajawa,total,total,,9461,jiwa,2025,registration,total_population,3.1,26,,
+18.71.03.1001,4,Gedong Air,sex,laki_laki,,7426,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.03.1001,4,Gedong Air,sex,perempuan,,7415,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.03.1001,4,Gedong Air,total,total,,14841,jiwa,2025,registration,total_population,3.1,26,,
+18.71.03.1011,4,Segala Mider,sex,laki_laki,,7291,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.03.1011,4,Segala Mider,sex,perempuan,,7446,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.03.1011,4,Segala Mider,total,total,,14737,jiwa,2025,registration,total_population,3.1,26,,
+18.71.03.1010,4,Sukajawa Baru,sex,laki_laki,,3170,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.03.1010,4,Sukajawa Baru,sex,perempuan,,3104,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.03.1010,4,Sukajawa Baru,total,total,,6274,jiwa,2025,registration,total_population,3.1,26,,
+18.71.03.1008,4,Kelapa Tiga Permai,sex,laki_laki,,2447,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.03.1008,4,Kelapa Tiga Permai,sex,perempuan,,2479,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.03.1008,4,Kelapa Tiga Permai,total,total,,4926,jiwa,2025,registration,total_population,3.1,26,,
+18.71.03,3,Tanjung Karang Barat,sex,laki_laki,,31203,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.03,3,Tanjung Karang Barat,sex,perempuan,,30984,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.03,3,Tanjung Karang Barat,total,total,,62187,jiwa,2025,registration,total_population,3.1,26,,

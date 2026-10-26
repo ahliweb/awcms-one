@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.71.19.1005,4,Sukamaju,sex,laki_laki,,3418,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.19.1005,4,Sukamaju,sex,perempuan,,3140,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.19.1005,4,Sukamaju,total,total,,6558,jiwa,2025,registration,total_population,3.1,26,,
+18.71.19.1004,4,Keteguhan,sex,laki_laki,,8026,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.19.1004,4,Keteguhan,sex,perempuan,,7426,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.19.1004,4,Keteguhan,total,total,,15452,jiwa,2025,registration,total_population,3.1,26,,
+18.71.19.1001,4,Kota Karang,sex,laki_laki,,6285,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.19.1001,4,Kota Karang,sex,perempuan,,5947,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.19.1001,4,Kota Karang,total,total,,12232,jiwa,2025,registration,total_population,3.1,26,,
+18.71.19.1006,4,Way Tataan,sex,laki_laki,,1795,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.19.1006,4,Way Tataan,sex,perempuan,,1658,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.19.1006,4,Way Tataan,total,total,,3453,jiwa,2025,registration,total_population,3.1,26,,
+18.71.19.1002,4,Kota Karang Raya,sex,laki_laki,,3464,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.19.1002,4,Kota Karang Raya,sex,perempuan,,3274,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.19.1002,4,Kota Karang Raya,total,total,,6738,jiwa,2025,registration,total_population,3.1,26,,
+18.71.19,3,Teluk Betung Timur,sex,laki_laki,,25410,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.19,3,Teluk Betung Timur,sex,perempuan,,23844,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.19,3,Teluk Betung Timur,total,total,,49254,jiwa,2025,registration,total_population,3.1,26,,

@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.15.23.2006,4,Kiara,sex,laki_laki,,3245,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.15.23.2006,4,Kiara,sex,perempuan,,3291,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.15.23.2006,4,Kiara,total,total,,6536,jiwa,2025,registration,total_population,3.1,28,,
+32.15.23.2005,4,Bayur Kidul,sex,laki_laki,,2453,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.15.23.2005,4,Bayur Kidul,sex,perempuan,,2384,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.15.23.2005,4,Bayur Kidul,total,total,,4837,jiwa,2025,registration,total_population,3.1,28,,
+32.15.23.2004,4,Bayur Lor,sex,laki_laki,,1782,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.15.23.2004,4,Bayur Lor,sex,perempuan,,1675,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.15.23.2004,4,Bayur Lor,total,total,,3457,jiwa,2025,registration,total_population,3.1,28,,
+32.15.23.2003,4,Langensari,sex,laki_laki,,2228,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.15.23.2003,4,Langensari,sex,perempuan,,2219,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.15.23.2003,4,Langensari,total,total,,4447,jiwa,2025,registration,total_population,3.1,28,,
+32.15.23.2001,4,Sukamulya,sex,laki_laki,,3367,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.15.23.2001,4,Sukamulya,sex,perempuan,,3316,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.15.23.2001,4,Sukamulya,total,total,,6683,jiwa,2025,registration,total_population,3.1,28,,
+32.15.23.2010,4,Pasirukem,sex,laki_laki,,1978,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.15.23.2010,4,Pasirukem,sex,perempuan,,1988,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.15.23.2010,4,Pasirukem,total,total,,3966,jiwa,2025,registration,total_population,3.1,28,,
+32.15.23.2012,4,Sukajaya,sex,laki_laki,,3498,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.15.23.2012,4,Sukajaya,sex,perempuan,,3419,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.15.23.2012,4,Sukajaya,total,total,,6917,jiwa,2025,registration,total_population,3.1,28,,
+32.15.23.2011,4,Pasirjaya,sex,laki_laki,,4133,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.15.23.2011,4,Pasirjaya,sex,perempuan,,4156,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.15.23.2011,4,Pasirjaya,total,total,,8289,jiwa,2025,registration,total_population,3.1,28,,
+32.15.23.2009,4,Muktijaya,sex,laki_laki,,2478,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.15.23.2009,4,Muktijaya,sex,perempuan,,2500,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.15.23.2009,4,Muktijaya,total,total,,4978,jiwa,2025,registration,total_population,3.1,28,,
+32.15.23.2002,4,Tegalurung,sex,laki_laki,,2734,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.15.23.2002,4,Tegalurung,sex,perempuan,,2645,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.15.23.2002,4,Tegalurung,total,total,,5379,jiwa,2025,registration,total_population,3.1,28,,
+32.15.23.2007,4,Manggungjaya,sex,laki_laki,,3727,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.15.23.2007,4,Manggungjaya,sex,perempuan,,3572,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.15.23.2007,4,Manggungjaya,total,total,,7299,jiwa,2025,registration,total_population,3.1,28,,
+32.15.23.2008,4,Sumurgede,sex,laki_laki,,4890,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.15.23.2008,4,Sumurgede,sex,perempuan,,4801,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.15.23.2008,4,Sumurgede,total,total,,9691,jiwa,2025,registration,total_population,3.1,28,,
+32.15.23,3,Cilamaya Kulon,sex,laki_laki,,36513,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.15.23,3,Cilamaya Kulon,sex,perempuan,,35966,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.15.23,3,Cilamaya Kulon,total,total,,72479,jiwa,2025,registration,total_population,3.1,28,,

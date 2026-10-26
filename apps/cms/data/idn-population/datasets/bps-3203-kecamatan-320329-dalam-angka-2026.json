@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3203-kecamatan-320329-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.03.29",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cijati Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Cianjur",
+  "publisherDomain": "3203",
+  "publisherWebsite": "https://cianjurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Cianjur (https://cianjurkab.bps.go.id), publikasi \"Kecamatan Cijati Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3203071",
+  "publicationNumber": "32030.25016",
+  "issn": "3109-4767",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://cianjurkab.bps.go.id/id/publication/2026/09/28/faf32b6b734357cef73b26b9/kecamatan-cijati-dalam-angka-2026.html",
+  "sourceFileSha256": "b16c7c636bbde37ddc1564faf7813b5e72d2a6d93845804e137065d6959d1594",
+  "sourceFileBytes": 6088297,
+  "sourcePages": [19, 20, 21],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Cianjur.",
+  "csvPath": "datasets/bps-3203-kecamatan-320329-dalam-angka-2026.csv",
+  "csvSha256": "e4e75fd7d3732c49f7ad33ee419c7e020ad2feec4e5ff676cd153b82325e0d82",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Cijati, 2025",
+      "printedPages": [19, 20],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cijati, 2025",
+      "printedPages": [21],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

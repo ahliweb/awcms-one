@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.12.14.2001,4,Tegalsembadra,sex,laki_laki,,2152,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.14.2001,4,Tegalsembadra,sex,perempuan,,2233,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.14.2001,4,Tegalsembadra,total,total,,4385,jiwa,2025,registration,total_population,3.1,30,,
+32.12.14.2002,4,Sukareja,sex,laki_laki,,1413,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.14.2002,4,Sukareja,sex,perempuan,,1456,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.14.2002,4,Sukareja,total,total,,2869,jiwa,2025,registration,total_population,3.1,30,,
+32.12.14.2003,4,Sukaurip,sex,laki_laki,,2869,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.14.2003,4,Sukaurip,sex,perempuan,,2983,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.14.2003,4,Sukaurip,total,total,,5852,jiwa,2025,registration,total_population,3.1,30,,
+32.12.14.2004,4,Rawadalem,sex,laki_laki,,1779,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.14.2004,4,Rawadalem,sex,perempuan,,1760,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.14.2004,4,Rawadalem,total,total,,3539,jiwa,2025,registration,total_population,3.1,30,,
+32.12.14.2005,4,Gelarmendala,sex,laki_laki,,813,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.14.2005,4,Gelarmendala,sex,perempuan,,801,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.14.2005,4,Gelarmendala,total,total,,1614,jiwa,2025,registration,total_population,3.1,30,,
+32.12.14.2006,4,Tegalurung,sex,laki_laki,,3089,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.14.2006,4,Tegalurung,sex,perempuan,,2993,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.14.2006,4,Tegalurung,total,total,,6082,jiwa,2025,registration,total_population,3.1,30,,
+32.12.14.2007,4,Balongan,sex,laki_laki,,4114,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.14.2007,4,Balongan,sex,perempuan,,4005,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.14.2007,4,Balongan,total,total,,8119,jiwa,2025,registration,total_population,3.1,30,,
+32.12.14.2009,4,Sudimampir,sex,laki_laki,,3470,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.14.2009,4,Sudimampir,sex,perempuan,,3430,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.14.2009,4,Sudimampir,total,total,,6900,jiwa,2025,registration,total_population,3.1,30,,
+32.12.14.2010,4,Sudimampir lor,sex,laki_laki,,3121,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.14.2010,4,Sudimampir lor,sex,perempuan,,3007,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.14.2010,4,Sudimampir lor,total,total,,6128,jiwa,2025,registration,total_population,3.1,30,,
+32.12.14.2008,4,Majakerta,sex,laki_laki,,2414,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.14.2008,4,Majakerta,sex,perempuan,,2387,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.14.2008,4,Majakerta,total,total,,4801,jiwa,2025,registration,total_population,3.1,30,,
+32.12.14,3,Kecamatan Balongan,sex,laki_laki,,25234,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.14,3,Kecamatan Balongan,sex,perempuan,,25055,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.14,3,Kecamatan Balongan,total,total,,50289,jiwa,2025,registration,total_population,3.1,30,,
+32.12.14,3,Balongan,age_group,0-4,laki_laki,2485,jiwa,2025,projection,total_population,3.2,32,,0-4
+32.12.14,3,Balongan,age_group,0-4,perempuan,2480,jiwa,2025,projection,total_population,3.2,32,,0-4
+32.12.14,3,Balongan,age_group,0-4,,4965,jiwa,2025,projection,total_population,3.2,32,,0-4
+32.12.14,3,Balongan,age_group,5-9,laki_laki,1928,jiwa,2025,projection,total_population,3.2,32,,5-9
+32.12.14,3,Balongan,age_group,5-9,perempuan,1939,jiwa,2025,projection,total_population,3.2,32,,5-9
+32.12.14,3,Balongan,age_group,5-9,,3867,jiwa,2025,projection,total_population,3.2,32,,5-9
+32.12.14,3,Balongan,age_group,10-14,laki_laki,2034,jiwa,2025,projection,total_population,3.2,32,,10-14
+32.12.14,3,Balongan,age_group,10-14,perempuan,2014,jiwa,2025,projection,total_population,3.2,32,,10-14
+32.12.14,3,Balongan,age_group,10-14,,4048,jiwa,2025,projection,total_population,3.2,32,,10-14
+32.12.14,3,Balongan,age_group,15-19,laki_laki,1882,jiwa,2025,projection,total_population,3.2,32,,15-19
+32.12.14,3,Balongan,age_group,15-19,perempuan,1860,jiwa,2025,projection,total_population,3.2,32,,15-19
+32.12.14,3,Balongan,age_group,15-19,,3742,jiwa,2025,projection,total_population,3.2,32,,15-19
+32.12.14,3,Balongan,age_group,20-24,laki_laki,1831,jiwa,2025,projection,total_population,3.2,32,,20-24
+32.12.14,3,Balongan,age_group,20-24,perempuan,1811,jiwa,2025,projection,total_population,3.2,32,,20-24
+32.12.14,3,Balongan,age_group,20-24,,3642,jiwa,2025,projection,total_population,3.2,32,,20-24
+32.12.14,3,Balongan,age_group,25-29,laki_laki,2112,jiwa,2025,projection,total_population,3.2,32,,25-29
+32.12.14,3,Balongan,age_group,25-29,perempuan,2054,jiwa,2025,projection,total_population,3.2,32,,25-29
+32.12.14,3,Balongan,age_group,25-29,,4166,jiwa,2025,projection,total_population,3.2,32,,25-29
+32.12.14,3,Balongan,age_group,30-34,laki_laki,2069,jiwa,2025,projection,total_population,3.2,32,,30-34
+32.12.14,3,Balongan,age_group,30-34,perempuan,1946,jiwa,2025,projection,total_population,3.2,32,,30-34
+32.12.14,3,Balongan,age_group,30-34,,4015,jiwa,2025,projection,total_population,3.2,32,,30-34
+32.12.14,3,Balongan,age_group,35-39,laki_laki,2006,jiwa,2025,projection,total_population,3.2,32,,35-39
+32.12.14,3,Balongan,age_group,35-39,perempuan,2010,jiwa,2025,projection,total_population,3.2,32,,35-39
+32.12.14,3,Balongan,age_group,35-39,,4016,jiwa,2025,projection,total_population,3.2,32,,35-39
+32.12.14,3,Balongan,age_group,40-44,laki_laki,1790,jiwa,2025,projection,total_population,3.2,32,,40-44
+32.12.14,3,Balongan,age_group,40-44,perempuan,2061,jiwa,2025,projection,total_population,3.2,32,,40-44
+32.12.14,3,Balongan,age_group,40-44,,3851,jiwa,2025,projection,total_population,3.2,32,,40-44
+32.12.14,3,Balongan,age_group,45-49,laki_laki,1741,jiwa,2025,projection,total_population,3.2,32,,45-49
+32.12.14,3,Balongan,age_group,45-49,perempuan,1999,jiwa,2025,projection,total_population,3.2,32,,45-49
+32.12.14,3,Balongan,age_group,45-49,,3740,jiwa,2025,projection,total_population,3.2,32,,45-49
+32.12.14,3,Balongan,age_group,50-54,laki_laki,1543,jiwa,2025,projection,total_population,3.2,32,,50-54
+32.12.14,3,Balongan,age_group,50-54,perempuan,1654,jiwa,2025,projection,total_population,3.2,32,,50-54
+32.12.14,3,Balongan,age_group,50-54,,3197,jiwa,2025,projection,total_population,3.2,32,,50-54
+32.12.14,3,Balongan,age_group,55-59,laki_laki,1258,jiwa,2025,projection,total_population,3.2,32,,55-59
+32.12.14,3,Balongan,age_group,55-59,perempuan,1349,jiwa,2025,projection,total_population,3.2,32,,55-59
+32.12.14,3,Balongan,age_group,55-59,,2607,jiwa,2025,projection,total_population,3.2,32,,55-59
+32.12.14,3,Balongan,age_group,60-64,laki_laki,952,jiwa,2025,projection,total_population,3.2,32,,60-64
+32.12.14,3,Balongan,age_group,60-64,perempuan,1033,jiwa,2025,projection,total_population,3.2,32,,60-64
+32.12.14,3,Balongan,age_group,60-64,,1985,jiwa,2025,projection,total_population,3.2,32,,60-64
+32.12.14,3,Balongan,age_group,65-69,laki_laki,722,jiwa,2025,projection,total_population,3.2,32,,65-69
+32.12.14,3,Balongan,age_group,65-69,perempuan,788,jiwa,2025,projection,total_population,3.2,32,,65-69
+32.12.14,3,Balongan,age_group,65-69,,1510,jiwa,2025,projection,total_population,3.2,32,,65-69
+32.12.14,3,Balongan,age_group,70-74,laki_laki,417,jiwa,2025,projection,total_population,3.2,32,,70-74
+32.12.14,3,Balongan,age_group,70-74,perempuan,447,jiwa,2025,projection,total_population,3.2,32,,70-74
+32.12.14,3,Balongan,age_group,70-74,,864,jiwa,2025,projection,total_population,3.2,32,,70-74
+32.12.14,3,Balongan,age_group,75+,laki_laki,323,jiwa,2025,projection,total_population,3.2,32,,75+
+32.12.14,3,Balongan,age_group,75+,perempuan,408,jiwa,2025,projection,total_population,3.2,32,,75+
+32.12.14,3,Balongan,age_group,75+,,731,jiwa,2025,projection,total_population,3.2,32,,75+
+32.12.14,3,Kecamatan Balongan,sex,laki_laki,,25093,jiwa,2025,projection,total_population,3.2,32,,Laki-Laki
+32.12.14,3,Kecamatan Balongan,sex,perempuan,,25853,jiwa,2025,projection,total_population,3.2,32,,Perempuan
+32.12.14,3,Kecamatan Balongan,total,total,,50946,jiwa,2025,projection,total_population,3.2,32,,

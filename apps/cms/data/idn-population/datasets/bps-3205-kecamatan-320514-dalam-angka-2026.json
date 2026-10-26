@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3205-kecamatan-320514-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.05.14",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Malangbong Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Garut",
+  "publisherDomain": "3205",
+  "publisherWebsite": "https://garutkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Garut (https://garutkab.bps.go.id), publikasi \"Kecamatan Malangbong Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3205310",
+  "publicationNumber": "32050.26046",
+  "issn": "2830-246X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://garutkab.bps.go.id/id/publication/2026/09/28/7a0c866eba70eb0faec98389/kecamatan-malangbong-dalam-angka-2026.html",
+  "sourceFileSha256": "22f65801d66a8dcb86441bf5bdf90ff29a6bf53dfaba6671d9fa5ecabbe66de3",
+  "sourceFileBytes": 7044945,
+  "sourcePages": [26, 27, 28, 29, 30],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Garut",
+  "csvPath": "datasets/bps-3205-kecamatan-320514-dalam-angka-2026.csv",
+  "csvSha256": "ec3ba6391766940afff7074e861862e3e363a35398420468e71f7b226084c176",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Malangbong, 2025",
+      "printedPages": [26, 27, 28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Malangbong 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

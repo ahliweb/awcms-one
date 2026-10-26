@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3206-kecamatan-320617-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.06.17",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sukaraja Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tasikmalaya",
+  "publisherDomain": "3206",
+  "publisherWebsite": "https://tasikmalayakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tasikmalaya (https://tasikmalayakab.bps.go.id), publikasi \"Kecamatan Sukaraja Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3206130",
+  "publicationNumber": "32060.26016",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tasikmalayakab.bps.go.id/id/publication/2026/09/28/74bdc5925b339a923190ed44/kecamatan-sukaraja-dalam-angka-2026.html",
+  "sourceFileSha256": "70f9174f97f2c778d706868d5985b4ee73b18f0f99afef307305cdec01acee2d",
+  "sourceFileBytes": 1871893,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tasikmalaya.",
+  "csvPath": "datasets/bps-3206-kecamatan-320617-dalam-angka-2026.csv",
+  "csvSha256": "81c4c17318116990302d9eb2c6e152faefc3152611b3eee626c6b7dce8e350b8",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Sukaraja, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sukaraja, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Sukaraja/ Sukaraja District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Sukaraja/ Sukaraja District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Sukaraja/ Sukaraja District\": unmatched "
+  ]
+}

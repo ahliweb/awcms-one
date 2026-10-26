@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3203-kecamatan-320332-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.03.32",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pasirkuda Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Cianjur",
+  "publisherDomain": "3203",
+  "publisherWebsite": "https://cianjurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Cianjur (https://cianjurkab.bps.go.id), publikasi \"Kecamatan Pasirkuda Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3203061",
+  "publicationNumber": "32030.25014",
+  "issn": "3109-4783",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://cianjurkab.bps.go.id/id/publication/2026/09/28/1d2c2f733709d3209308cda7/kecamatan-pasirkuda-dalam-angka-2026.html",
+  "sourceFileSha256": "81ba933dff084a31a08ff08dc97811326200e77cee1c6ad1d611b5cfad6166aa",
+  "sourceFileBytes": 5763943,
+  "sourcePages": [19, 20, 21],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Cianjur.",
+  "csvPath": "datasets/bps-3203-kecamatan-320332-dalam-angka-2026.csv",
+  "csvSha256": "ba924ff6326296bf7546c3d3ddbc3ca1d546a58f835cb3d550c2fa8826c56603",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pasirkuda, 2025",
+      "printedPages": [19, 20],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pasirkuda, 2025",
+      "printedPages": [21],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

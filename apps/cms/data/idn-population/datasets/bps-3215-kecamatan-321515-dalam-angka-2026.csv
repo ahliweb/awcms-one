@@ -1,0 +1,57 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.15.15.2009,4,Cikarang,sex,laki_laki,,4042,jiwa,2024,registration,total_population,3.1,21,,Laki-Laki/Male
+32.15.15.2009,4,Cikarang,sex,perempuan,,3997,jiwa,2024,registration,total_population,3.1,21,,Perempuan/Female
+32.15.15.2009,4,Cikarang,total,total,,8039,jiwa,2024,registration,total_population,3.1,21,,
+32.15.15.2008,4,Cikalong,sex,laki_laki,,2408,jiwa,2024,registration,total_population,3.1,21,,Laki-Laki/Male
+32.15.15.2008,4,Cikalong,sex,perempuan,,2331,jiwa,2024,registration,total_population,3.1,21,,Perempuan/Female
+32.15.15.2008,4,Cikalong,total,total,,4739,jiwa,2024,registration,total_population,3.1,21,,
+32.15.15.2007,4,Tegalsari,sex,laki_laki,,2654,jiwa,2024,registration,total_population,3.1,21,,Laki-Laki/Male
+32.15.15.2007,4,Tegalsari,sex,perempuan,,2647,jiwa,2024,registration,total_population,3.1,21,,Perempuan/Female
+32.15.15.2007,4,Tegalsari,total,total,,5301,jiwa,2024,registration,total_population,3.1,21,,
+32.15.15.2006,4,Tegalwaru,sex,laki_laki,,4072,jiwa,2024,registration,total_population,3.1,21,,Laki-Laki/Male
+32.15.15.2006,4,Tegalwaru,sex,perempuan,,3795,jiwa,2024,registration,total_population,3.1,21,,Perempuan/Female
+32.15.15.2006,4,Tegalwaru,total,total,,7867,jiwa,2024,registration,total_population,3.1,21,,
+32.15.15.2001,4,Mekarmaya,sex,laki_laki,,4025,jiwa,2024,registration,total_population,3.1,21,,Laki-Laki/Male
+32.15.15.2001,4,Mekarmaya,sex,perempuan,,3843,jiwa,2024,registration,total_population,3.1,21,,Perempuan/Female
+32.15.15.2001,4,Mekarmaya,total,total,,7868,jiwa,2024,registration,total_population,3.1,21,,
+32.15.15.2002,4,Cilamaya,sex,laki_laki,,7017,jiwa,2024,registration,total_population,3.1,21,,Laki-Laki/Male
+32.15.15.2002,4,Cilamaya,sex,perempuan,,6542,jiwa,2024,registration,total_population,3.1,21,,Perempuan/Female
+32.15.15.2002,4,Cilamaya,total,total,,13559,jiwa,2024,registration,total_population,3.1,21,,
+32.15.15.2005,4,Sukatani,sex,laki_laki,,4353,jiwa,2024,registration,total_population,3.1,21,,Laki-Laki/Male
+32.15.15.2005,4,Sukatani,sex,perempuan,,4461,jiwa,2024,registration,total_population,3.1,21,,Perempuan/Female
+32.15.15.2005,4,Sukatani,total,total,,8814,jiwa,2024,registration,total_population,3.1,21,,
+32.15.15.2012,4,Sukakerta,sex,laki_laki,,3333,jiwa,2024,registration,total_population,3.1,21,,Laki-Laki/Male
+32.15.15.2012,4,Sukakerta,sex,perempuan,,3268,jiwa,2024,registration,total_population,3.1,21,,Perempuan/Female
+32.15.15.2012,4,Sukakerta,total,total,,6601,jiwa,2024,registration,total_population,3.1,21,,
+32.15.15.2011,4,Rawagempol Kulon,sex,laki_laki,,3382,jiwa,2024,registration,total_population,3.1,21,,Laki-Laki/Male
+32.15.15.2011,4,Rawagempol Kulon,sex,perempuan,,3368,jiwa,2024,registration,total_population,3.1,21,,Perempuan/Female
+32.15.15.2011,4,Rawagempol Kulon,total,total,,6750,jiwa,2024,registration,total_population,3.1,21,,
+32.15.15.2010,4,Rawagempol Wetan,sex,laki_laki,,3172,jiwa,2024,registration,total_population,3.1,21,,Laki-Laki/Male
+32.15.15.2010,4,Rawagempol Wetan,sex,perempuan,,3201,jiwa,2024,registration,total_population,3.1,21,,Perempuan/Female
+32.15.15.2010,4,Rawagempol Wetan,total,total,,6373,jiwa,2024,registration,total_population,3.1,21,,
+32.15.15.2004,4,Muara Baru,sex,laki_laki,,1974,jiwa,2024,registration,total_population,3.1,21,,Laki-Laki/Male
+32.15.15.2004,4,Muara Baru,sex,perempuan,,1900,jiwa,2024,registration,total_population,3.1,21,,Perempuan/Female
+32.15.15.2004,4,Muara Baru,total,total,,3874,jiwa,2024,registration,total_population,3.1,21,,
+32.15.15.2003,4,Muara,sex,laki_laki,,2724,jiwa,2024,registration,total_population,3.1,21,,Laki-Laki/Male
+32.15.15.2003,4,Muara,sex,perempuan,,2490,jiwa,2024,registration,total_population,3.1,21,,Perempuan/Female
+32.15.15.2003,4,Muara,total,total,,5214,jiwa,2024,registration,total_population,3.1,21,,
+32.15.15,3,Cilamaya Wetan,sex,laki_laki,,43156,jiwa,2024,registration,total_population,3.1,21,,Laki-Laki/Male
+32.15.15,3,Cilamaya Wetan,sex,perempuan,,41843,jiwa,2024,registration,total_population,3.1,21,,Perempuan/Female
+32.15.15,3,Cilamaya Wetan,total,total,,84999,jiwa,2024,registration,total_population,3.1,21,,
+32.15.15,3,Cilamaya Wetan,age_group,0-4,,4241,jiwa,2024,registration,total_population,3.2,23,,0-4
+32.15.15,3,Cilamaya Wetan,age_group,5-9,,6810,jiwa,2024,registration,total_population,3.2,23,,5-9
+32.15.15,3,Cilamaya Wetan,age_group,10-14,,7084,jiwa,2024,registration,total_population,3.2,23,,10-14
+32.15.15,3,Cilamaya Wetan,age_group,15-19,,6331,jiwa,2024,registration,total_population,3.2,23,,15-19
+32.15.15,3,Cilamaya Wetan,age_group,20-24,,6769,jiwa,2024,registration,total_population,3.2,23,,20-24
+32.15.15,3,Cilamaya Wetan,age_group,25-29,,7130,jiwa,2024,registration,total_population,3.2,23,,25-29
+32.15.15,3,Cilamaya Wetan,age_group,30-34,,6509,jiwa,2024,registration,total_population,3.2,23,,30-34
+32.15.15,3,Cilamaya Wetan,age_group,35-39,,5868,jiwa,2024,registration,total_population,3.2,23,,35-39
+32.15.15,3,Cilamaya Wetan,age_group,40-44,,6342,jiwa,2024,registration,total_population,3.2,23,,40-44
+32.15.15,3,Cilamaya Wetan,age_group,45-49,,6242,jiwa,2024,registration,total_population,3.2,23,,45-49
+32.15.15,3,Cilamaya Wetan,age_group,50-54,,5722,jiwa,2024,registration,total_population,3.2,23,,50-54
+32.15.15,3,Cilamaya Wetan,age_group,55-59,,4986,jiwa,2024,registration,total_population,3.2,23,,55-59
+32.15.15,3,Cilamaya Wetan,age_group,60-64,,3861,jiwa,2024,registration,total_population,3.2,23,,60-64
+32.15.15,3,Cilamaya Wetan,age_group,65-69,,3107,jiwa,2024,registration,total_population,3.2,23,,65-69
+32.15.15,3,Cilamaya Wetan,age_group,70-74,,1825,jiwa,2024,registration,total_population,3.2,23,,70-74
+32.15.15,3,Cilamaya Wetan,age_group,75+,,2172,jiwa,2024,registration,total_population,3.2,23,,75+
+32.15.15,3,Cilamaya Wetan,total,total,,84999,jiwa,2024,registration,total_population,3.2,23,,

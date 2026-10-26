@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-1808-kecamatan-180518-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.05.18",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Rawajitu Timur Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tulang Bawang",
+  "publisherDomain": "1808",
+  "publisherWebsite": "https://tulangbawangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tulang Bawang (https://tulangbawangkab.bps.go.id), publikasi \"Kecamatan Rawajitu Timur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1808054",
+  "publicationNumber": "18080.26016",
+  "issn": "2829-9914",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tulangbawangkab.bps.go.id/id/publication/2026/09/28/87a342cf84a693fcf0ec7dd6/kecamatan-rawajitu-timur-dalam-angka-2026.html",
+  "sourceFileSha256": "5bdd6ecbf5e442f84b8ac31756aa2f1939506546c15587a505ee5f3143b553ef",
+  "sourceFileBytes": 10822389,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tulang Bawang.",
+  "csvPath": "datasets/bps-1808-kecamatan-180518-dalam-angka-2026.csv",
+  "csvSha256": "8059317fd5e200787e01e23455846afe2c5b9a8a52e4a22b9e13863b92daeebe",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Rawajitu Timur, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Rawajitu Timur, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Bumi Dipasena Sentosa\": unmatched ",
+    "table 3.1: row not stored: row \"Bumi Dipasena Sentosa\": unmatched ",
+    "table 3.1: the rows of region 18.05.18.2001 are not stored: sex split vs total: parts sum 1613.0000 != 1647.0000 (diff 34.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 18.05.18.2002 are not stored: sex split vs total: parts sum 1609.0000 != 1558.0000 (diff 51.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 18.05.18.2003 are not stored: sex split vs total: parts sum 1822.0000 != 2067.0000 (diff 245.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 18.05.18.2007 are not stored: sex split vs total: parts sum 2325.0000 != 2582.0000 (diff 257.0000); the source itself is inconsistent"
+  ]
+}

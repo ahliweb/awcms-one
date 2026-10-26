@@ -1,0 +1,59 @@
+{
+  "datasetCode": "bps-1805-kecamatan-180221-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.02.21",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Anak Tuha Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lampung Tengah",
+  "publisherDomain": "1805",
+  "publisherWebsite": "https://lampungtengahkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lampung Tengah (https://lampungtengahkab.bps.go.id), publikasi \"Kecamatan Anak Tuha Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1805013",
+  "publicationNumber": "1805.250008",
+  "issn": "2714-6960",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lampungtengahkab.bps.go.id/id/publication/2026/09/28/b25e62acc6503a3590caff03/kecamatan-anak-tuha-dalam-angka-2026.html",
+  "sourceFileSha256": "e4c0584c584274030ac64e3359a4d8860e23d5422f69220f8333fe844d6de1f5",
+  "sourceFileBytes": 10435676,
+  "sourcePages": [20, 21, 22],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Lampung Tengah.",
+  "csvPath": "datasets/bps-1805-kecamatan-180221-dalam-angka-2026.csv",
+  "csvSha256": "2a27ef20a9a4d7be8f9da0c0a2be805979a7de0a8ff37552128605090f35c5aa",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Anak Tuha, 2025",
+      "printedPages": [20, 21],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Anak Tuha, 2025",
+      "printedPages": [22],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Sri Katon 8.66\": unmatched ",
+    "table 3.1: row not stored: row \"Jaya Sakti 11.66\": unmatched ",
+    "table 3.1: row not stored: row \"Bumi Jaya 9.41\": unmatched ",
+    "table 3.1: row not stored: row \"Mulyo Haji 6.07\": unmatched ",
+    "table 3.1: row not stored: row \"Haji Pemanggilan 9.41\": unmatched ",
+    "table 3.1: row not stored: row \"Negara Bumi Ilir 8.76\": unmatched ",
+    "table 3.1: row not stored: row \"Bumi Aji 13.88\": unmatched ",
+    "table 3.1: row not stored: row \"Negara Aji Tua 9.83\": unmatched ",
+    "table 3.1: row not stored: row \"Negara Bumi Udik 8.99\": unmatched ",
+    "table 3.1: row not stored: row \"Negara Aji Baru 6.89\": unmatched ",
+    "table 3.1: row not stored: row \"Gunung Agung 0.88\": unmatched ",
+    "table 3.1: row not stored: row \"Tanjung Harapan 5.55\": unmatched ",
+    "table 3.1: row not stored: row \"Anak Tuha 100.00\": unmatched ",
+    "table 3.1: 24 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.2: 29 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.01.05.2001,4,Kali Asin,sex,laki_laki,,2639,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.05.2001,4,Kali Asin,sex,perempuan,,2550,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.05.2001,4,Kali Asin,total,total,,5189,jiwa,2025,registration,total_population,3.1,24,,
+18.01.05.2003,4,Lematang,sex,laki_laki,,1503,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.05.2003,4,Lematang,sex,perempuan,,1452,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.05.2003,4,Lematang,total,total,,2955,jiwa,2025,registration,total_population,3.1,24,,
+18.01.05.2008,4,Sabah Balau,sex,laki_laki,,3783,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.05.2008,4,Sabah Balau,sex,perempuan,,3641,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.05.2008,4,Sabah Balau,total,total,,7424,jiwa,2025,registration,total_population,3.1,24,,
+18.01.05.2004,4,Sukanegara,sex,laki_laki,,3572,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.05.2004,4,Sukanegara,sex,perempuan,,3474,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.05.2004,4,Sukanegara,total,total,,7046,jiwa,2025,registration,total_population,3.1,24,,
+18.01.05.2021,4,Galih Lunik,sex,laki_laki,,1476,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.05.2021,4,Galih Lunik,sex,perempuan,,1449,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.05.2021,4,Galih Lunik,total,total,,2925,jiwa,2025,registration,total_population,3.1,24,,
+18.01.05.2005,4,Serdang,sex,laki_laki,,6400,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.05.2005,4,Serdang,sex,perempuan,,6171,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.05.2005,4,Serdang,total,total,,12571,jiwa,2025,registration,total_population,3.1,24,,
+18.01.05.2006,4,Sinar Ogan,sex,laki_laki,,1236,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.05.2006,4,Sinar Ogan,sex,perempuan,,1190,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.05.2006,4,Sinar Ogan,total,total,,2426,jiwa,2025,registration,total_population,3.1,24,,
+18.01.05.2009,4,Budi Lestari,sex,laki_laki,,2477,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.05.2009,4,Budi Lestari,sex,perempuan,,2342,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.05.2009,4,Budi Lestari,total,total,,4819,jiwa,2025,registration,total_population,3.1,24,,
+18.01.05.2007,4,Jatibaru,sex,laki_laki,,5885,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.05.2007,4,Jatibaru,sex,perempuan,,5880,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.05.2007,4,Jatibaru,total,total,,11765,jiwa,2025,registration,total_population,3.1,24,,
+18.01.05.2011,4,Jati Indah,sex,laki_laki,,2522,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.05.2011,4,Jati Indah,sex,perempuan,,2416,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.05.2011,4,Jati Indah,total,total,,4938,jiwa,2025,registration,total_population,3.1,24,,
+18.01.05.2010,4,Trimulyo,sex,laki_laki,,1880,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.05.2010,4,Trimulyo,sex,perempuan,,1830,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.05.2010,4,Trimulyo,total,total,,3710,jiwa,2025,registration,total_population,3.1,24,,
+18.01.05.2013,4,Sindang Sari,sex,laki_laki,,2962,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.05.2013,4,Sindang Sari,sex,perempuan,,2952,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.05.2013,4,Sindang Sari,total,total,,5914,jiwa,2025,registration,total_population,3.1,24,,
+18.01.05.2015,4,Purwodadi Simpang,sex,laki_laki,,2731,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.05.2015,4,Purwodadi Simpang,sex,perempuan,,2678,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.05.2015,4,Purwodadi Simpang,total,total,,5409,jiwa,2025,registration,total_population,3.1,24,,
+18.01.05.2012,4,Way Galih,sex,laki_laki,,4101,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.05.2012,4,Way Galih,sex,perempuan,,4012,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.05.2012,4,Way Galih,total,total,,8113,jiwa,2025,registration,total_population,3.1,24,,
+18.01.05.2022,4,Rejomulyo,sex,laki_laki,,1455,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.05.2022,4,Rejomulyo,sex,perempuan,,1443,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.05.2022,4,Rejomulyo,total,total,,2898,jiwa,2025,registration,total_population,3.1,24,,
+18.01.05.2023,4,Sri Katon,sex,laki_laki,,1704,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.05.2023,4,Sri Katon,sex,perempuan,,1641,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.05.2023,4,Sri Katon,total,total,,3345,jiwa,2025,registration,total_population,3.1,24,,
+18.01.05,3,Tanjung Bintang,sex,laki_laki,,46326,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.05,3,Tanjung Bintang,sex,perempuan,,45121,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.05,3,Tanjung Bintang,total,total,,91447,jiwa,2025,registration,total_population,3.1,24,,

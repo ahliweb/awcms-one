@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.02.14.2003,4,Berekah,sex,laki_laki,,5021,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.14.2003,4,Berekah,sex,perempuan,,4738,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.14.2003,4,Berekah,total,total,,9759,jiwa,2025,registration,total_population,3.1,24,,
+32.02.14.2001,4,Bojonggenteng,sex,laki_laki,,5367,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.14.2001,4,Bojonggenteng,sex,perempuan,,5145,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.14.2001,4,Bojonggenteng,total,total,,10512,jiwa,2025,registration,total_population,3.1,24,,
+32.02.14.2005,4,Bojong Galing,sex,laki_laki,,3778,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.14.2005,4,Bojong Galing,sex,perempuan,,3476,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.14.2005,4,Bojong Galing,total,total,,7254,jiwa,2025,registration,total_population,3.1,24,,
+32.02.14.2002,4,Cibodas,sex,laki_laki,,4998,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.14.2002,4,Cibodas,sex,perempuan,,4798,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.14.2002,4,Cibodas,total,total,,9796,jiwa,2025,registration,total_population,3.1,24,,
+32.02.14.2004,4,Cipanengah,sex,laki_laki,,3472,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.14.2004,4,Cipanengah,sex,perempuan,,3368,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.14.2004,4,Cipanengah,total,total,,6840,jiwa,2025,registration,total_population,3.1,24,,
+32.02.14,3,Bojonggenteng,sex,laki_laki,,22636,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.14,3,Bojonggenteng,sex,perempuan,,21525,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.14,3,Bojonggenteng,total,total,,44161,jiwa,2025,registration,total_population,3.1,24,,

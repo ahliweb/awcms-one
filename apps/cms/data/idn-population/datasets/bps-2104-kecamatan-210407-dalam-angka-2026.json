@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-2104-kecamatan-210407-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "21.04.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lingga Timur Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lingga",
+  "publisherDomain": "2104",
+  "publisherWebsite": "https://linggakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lingga (https://linggakab.bps.go.id), publikasi \"Kecamatan Lingga Timur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.2104032",
+  "publicationNumber": "21040.26013",
+  "issn": "2656-2685",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://linggakab.bps.go.id/id/publication/2026/09/28/6364f682c3b904840ff76bf7/kecamatan-lingga-timur-dalam-angka-2026.html",
+  "sourceFileSha256": "a3d42979b97b27f151b5813a3b2bd7908381401ab290d9896028f8570917960c",
+  "sourceFileBytes": 11458815,
+  "sourcePages": [19, 20],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lingga.",
+  "csvPath": "datasets/bps-2104-kecamatan-210407-dalam-angka-2026.csv",
+  "csvSha256": "6a601f55a20b948053cb531e601e9678a0bd451b6a5e241e57b795362338525c",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Lingga Timur, 2025",
+      "printedPages": [19, 20],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

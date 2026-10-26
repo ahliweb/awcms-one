@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.05.30.2002,4,Menggala,sex,laki_laki,,1893,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.30.2002,4,Menggala,sex,perempuan,,1864,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+18.05.30.2002,4,Menggala,total,total,,3757,jiwa,2026,registration,total_population,3.1,32,,
+18.05.30.2005,4,Sungai Luar,sex,laki_laki,,302,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.30.2005,4,Sungai Luar,sex,perempuan,,284,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+18.05.30.2005,4,Sungai Luar,total,total,,586,jiwa,2026,registration,total_population,3.1,32,,
+18.05.30.2004,4,Kibang Pacing,sex,laki_laki,,875,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.30.2004,4,Kibang Pacing,sex,perempuan,,829,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+18.05.30.2004,4,Kibang Pacing,total,total,,1704,jiwa,2026,registration,total_population,3.1,32,,
+18.05.30.2010,4,Cempaka Jaya,sex,laki_laki,,937,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.30.2010,4,Cempaka Jaya,sex,perempuan,,918,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+18.05.30.2010,4,Cempaka Jaya,total,total,,1855,jiwa,2026,registration,total_population,3.1,32,,
+18.05.30.2009,4,Tri Makmur Jaya,sex,laki_laki,,579,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.30.2009,4,Tri Makmur Jaya,sex,perempuan,,524,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+18.05.30.2009,4,Tri Makmur Jaya,total,total,,1103,jiwa,2026,registration,total_population,3.1,32,,
+18.05.30.2006,4,Kahuripan Dalam,sex,laki_laki,,705,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.30.2006,4,Kahuripan Dalam,sex,perempuan,,631,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+18.05.30.2006,4,Kahuripan Dalam,total,total,,1336,jiwa,2026,registration,total_population,3.1,32,,
+18.05.30.2001,4,Lebuh Dalem,sex,laki_laki,,1257,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.30.2001,4,Lebuh Dalem,sex,perempuan,,1214,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+18.05.30.2001,4,Lebuh Dalem,total,total,,2471,jiwa,2026,registration,total_population,3.1,32,,
+18.05.30.2003,4,Lingai,sex,laki_laki,,552,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.30.2003,4,Lingai,sex,perempuan,,535,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+18.05.30.2003,4,Lingai,total,total,,1087,jiwa,2026,registration,total_population,3.1,32,,
+18.05.30,3,Menggala Timur,sex,laki_laki,,8077,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.30,3,Menggala Timur,sex,perempuan,,7714,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+18.05.30,3,Menggala Timur,total,total,,15791,jiwa,2026,registration,total_population,3.1,32,,
+18.05.30,3,Menggala Timur,age_group,0-4,laki_laki,585,jiwa,2026,registration,total_population,3.2,34,,0 – 4
+18.05.30,3,Menggala Timur,age_group,0-4,perempuan,527,jiwa,2026,registration,total_population,3.2,34,,0 – 4
+18.05.30,3,Menggala Timur,age_group,0-4,,1112,jiwa,2026,registration,total_population,3.2,34,,0 – 4
+18.05.30,3,Menggala Timur,age_group,5-9,laki_laki,729,jiwa,2026,registration,total_population,3.2,34,,5 – 9
+18.05.30,3,Menggala Timur,age_group,5-9,perempuan,737,jiwa,2026,registration,total_population,3.2,34,,5 – 9
+18.05.30,3,Menggala Timur,age_group,5-9,,1466,jiwa,2026,registration,total_population,3.2,34,,5 – 9
+18.05.30,3,Menggala Timur,age_group,10-14,laki_laki,818,jiwa,2026,registration,total_population,3.2,34,,10 – 14
+18.05.30,3,Menggala Timur,age_group,10-14,perempuan,737,jiwa,2026,registration,total_population,3.2,34,,10 – 14
+18.05.30,3,Menggala Timur,age_group,10-14,,1555,jiwa,2026,registration,total_population,3.2,34,,10 – 14
+18.05.30,3,Menggala Timur,age_group,15-19,laki_laki,719,jiwa,2026,registration,total_population,3.2,34,,15 – 19
+18.05.30,3,Menggala Timur,age_group,15-19,perempuan,649,jiwa,2026,registration,total_population,3.2,34,,15 – 19
+18.05.30,3,Menggala Timur,age_group,15-19,,1368,jiwa,2026,registration,total_population,3.2,34,,15 – 19
+18.05.30,3,Menggala Timur,age_group,20-24,laki_laki,637,jiwa,2026,registration,total_population,3.2,34,,20 – 24
+18.05.30,3,Menggala Timur,age_group,20-24,perempuan,606,jiwa,2026,registration,total_population,3.2,34,,20 – 24
+18.05.30,3,Menggala Timur,age_group,20-24,,1243,jiwa,2026,registration,total_population,3.2,34,,20 – 24
+18.05.30,3,Menggala Timur,age_group,25-29,laki_laki,632,jiwa,2026,registration,total_population,3.2,34,,25 – 29
+18.05.30,3,Menggala Timur,age_group,25-29,perempuan,593,jiwa,2026,registration,total_population,3.2,34,,25 – 29
+18.05.30,3,Menggala Timur,age_group,25-29,,1225,jiwa,2026,registration,total_population,3.2,34,,25 – 29
+18.05.30,3,Menggala Timur,age_group,30-34,laki_laki,609,jiwa,2026,registration,total_population,3.2,34,,30 – 34
+18.05.30,3,Menggala Timur,age_group,30-34,perempuan,654,jiwa,2026,registration,total_population,3.2,34,,30 – 34
+18.05.30,3,Menggala Timur,age_group,30-34,,1263,jiwa,2026,registration,total_population,3.2,34,,30 – 34
+18.05.30,3,Menggala Timur,age_group,35-39,laki_laki,605,jiwa,2026,registration,total_population,3.2,34,,35 – 39
+18.05.30,3,Menggala Timur,age_group,35-39,perempuan,561,jiwa,2026,registration,total_population,3.2,34,,35 – 39
+18.05.30,3,Menggala Timur,age_group,35-39,,1166,jiwa,2026,registration,total_population,3.2,34,,35 – 39
+18.05.30,3,Menggala Timur,age_group,40-44,laki_laki,584,jiwa,2026,registration,total_population,3.2,34,,40 – 44
+18.05.30,3,Menggala Timur,age_group,40-44,perempuan,564,jiwa,2026,registration,total_population,3.2,34,,40 – 44
+18.05.30,3,Menggala Timur,age_group,40-44,,1148,jiwa,2026,registration,total_population,3.2,34,,40 – 44
+18.05.30,3,Menggala Timur,age_group,45-49,laki_laki,484,jiwa,2026,registration,total_population,3.2,34,,45 – 49
+18.05.30,3,Menggala Timur,age_group,45-49,perempuan,550,jiwa,2026,registration,total_population,3.2,34,,45 – 49
+18.05.30,3,Menggala Timur,age_group,45-49,,1034,jiwa,2026,registration,total_population,3.2,34,,45 – 49
+18.05.30,3,Menggala Timur,age_group,50-54,laki_laki,491,jiwa,2026,registration,total_population,3.2,34,,50 – 54
+18.05.30,3,Menggala Timur,age_group,50-54,perempuan,453,jiwa,2026,registration,total_population,3.2,34,,50 – 54
+18.05.30,3,Menggala Timur,age_group,50-54,,944,jiwa,2026,registration,total_population,3.2,34,,50 – 54
+18.05.30,3,Menggala Timur,age_group,55-59,laki_laki,369,jiwa,2026,registration,total_population,3.2,34,,55 – 59
+18.05.30,3,Menggala Timur,age_group,55-59,perempuan,337,jiwa,2026,registration,total_population,3.2,34,,55 – 59
+18.05.30,3,Menggala Timur,age_group,55-59,,706,jiwa,2026,registration,total_population,3.2,34,,55 – 59
+18.05.30,3,Menggala Timur,age_group,60-64,laki_laki,276,jiwa,2026,registration,total_population,3.2,34,,60 – 64
+18.05.30,3,Menggala Timur,age_group,60-64,perempuan,276,jiwa,2026,registration,total_population,3.2,34,,60 – 64
+18.05.30,3,Menggala Timur,age_group,60-64,,552,jiwa,2026,registration,total_population,3.2,34,,60 – 64
+18.05.30,3,Menggala Timur,age_group,65-69,laki_laki,217,jiwa,2026,registration,total_population,3.2,34,,65 – 69
+18.05.30,3,Menggala Timur,age_group,65-69,perempuan,175,jiwa,2026,registration,total_population,3.2,34,,65 – 69
+18.05.30,3,Menggala Timur,age_group,65-69,,392,jiwa,2026,registration,total_population,3.2,34,,65 – 69
+18.05.30,3,Menggala Timur,age_group,70-74,laki_laki,124,jiwa,2026,registration,total_population,3.2,34,,70 – 74
+18.05.30,3,Menggala Timur,age_group,70-74,perempuan,117,jiwa,2026,registration,total_population,3.2,34,,70 – 74
+18.05.30,3,Menggala Timur,age_group,70-74,,241,jiwa,2026,registration,total_population,3.2,34,,70 – 74
+18.05.30,3,Menggala Timur,age_group,75+,laki_laki,198,jiwa,2026,registration,total_population,3.2,34,,>75
+18.05.30,3,Menggala Timur,age_group,75+,perempuan,178,jiwa,2026,registration,total_population,3.2,34,,>75
+18.05.30,3,Menggala Timur,age_group,75+,,376,jiwa,2026,registration,total_population,3.2,34,,>75
+18.05.30,3,Menggala Timur,sex,laki_laki,,8077,jiwa,2026,registration,total_population,3.2,34,,Laki-Laki
+18.05.30,3,Menggala Timur,sex,perempuan,,7714,jiwa,2026,registration,total_population,3.2,34,,Perempuan
+18.05.30,3,Menggala Timur,total,total,,15791,jiwa,2026,registration,total_population,3.2,34,,

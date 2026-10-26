@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.04.15.2001,4,Gedung Surian,sex,laki_laki,,1670,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.15.2001,4,Gedung Surian,sex,perempuan,,1480,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.15.2001,4,Gedung Surian,total,total,,3150,jiwa,2025,registration,total_population,3.1,30,,
+18.04.15.2002,4,Pura Mekar,sex,laki_laki,,2377,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.15.2002,4,Pura Mekar,sex,perempuan,,2298,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.15.2002,4,Pura Mekar,total,total,,4675,jiwa,2025,registration,total_population,3.1,30,,
+18.04.15.2003,4,Cipta Waras,sex,laki_laki,,1213,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.15.2003,4,Cipta Waras,sex,perempuan,,1162,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.15.2003,4,Cipta Waras,total,total,,2375,jiwa,2025,registration,total_population,3.1,30,,
+18.04.15.2004,4,Trimulyo,sex,laki_laki,,1799,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.15.2004,4,Trimulyo,sex,perempuan,,1696,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.15.2004,4,Trimulyo,total,total,,3495,jiwa,2025,registration,total_population,3.1,30,,
+18.04.15.2005,4,Mekar Jaya,sex,laki_laki,,1981,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.15.2005,4,Mekar Jaya,sex,perempuan,,1872,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.15.2005,4,Mekar Jaya,total,total,,3853,jiwa,2025,registration,total_population,3.1,30,,
+18.04.15,3,Kecamatan Gedung Surian,sex,laki_laki,,9040,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.15,3,Kecamatan Gedung Surian,sex,perempuan,,8508,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.15,3,Kecamatan Gedung Surian,total,total,,17548,jiwa,2025,registration,total_population,3.1,30,,
+18.04.15,3,Gedung Surian,age_group,0-4,laki_laki,565,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+18.04.15,3,Gedung Surian,age_group,0-4,perempuan,492,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+18.04.15,3,Gedung Surian,age_group,0-4,,1057,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+18.04.15,3,Gedung Surian,age_group,5-9,laki_laki,754,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+18.04.15,3,Gedung Surian,age_group,5-9,perempuan,754,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+18.04.15,3,Gedung Surian,age_group,5-9,,1508,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+18.04.15,3,Gedung Surian,age_group,10-14,laki_laki,789,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+18.04.15,3,Gedung Surian,age_group,10-14,perempuan,815,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+18.04.15,3,Gedung Surian,age_group,10-14,,1604,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+18.04.15,3,Gedung Surian,age_group,15-19,laki_laki,753,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+18.04.15,3,Gedung Surian,age_group,15-19,perempuan,635,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+18.04.15,3,Gedung Surian,age_group,15-19,,1388,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+18.04.15,3,Gedung Surian,age_group,20-24,laki_laki,654,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+18.04.15,3,Gedung Surian,age_group,20-24,perempuan,635,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+18.04.15,3,Gedung Surian,age_group,20-24,,1289,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+18.04.15,3,Gedung Surian,age_group,25-29,laki_laki,644,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+18.04.15,3,Gedung Surian,age_group,25-29,perempuan,638,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+18.04.15,3,Gedung Surian,age_group,25-29,,1282,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+18.04.15,3,Gedung Surian,age_group,30-34,laki_laki,700,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+18.04.15,3,Gedung Surian,age_group,30-34,perempuan,679,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+18.04.15,3,Gedung Surian,age_group,30-34,,1379,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+18.04.15,3,Gedung Surian,age_group,35-39,laki_laki,730,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+18.04.15,3,Gedung Surian,age_group,35-39,perempuan,733,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+18.04.15,3,Gedung Surian,age_group,35-39,,1463,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+18.04.15,3,Gedung Surian,age_group,40-44,laki_laki,720,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+18.04.15,3,Gedung Surian,age_group,40-44,perempuan,679,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+18.04.15,3,Gedung Surian,age_group,40-44,,1399,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+18.04.15,3,Gedung Surian,age_group,45-49,laki_laki,670,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+18.04.15,3,Gedung Surian,age_group,45-49,perempuan,629,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+18.04.15,3,Gedung Surian,age_group,45-49,,1299,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+18.04.15,3,Gedung Surian,age_group,50-54,laki_laki,530,jiwa,2025,registration,total_population,3.2,32,,50 - 54
+18.04.15,3,Gedung Surian,age_group,50-54,perempuan,530,jiwa,2025,registration,total_population,3.2,32,,50 - 54
+18.04.15,3,Gedung Surian,age_group,50-54,,1060,jiwa,2025,registration,total_population,3.2,32,,50 - 54
+18.04.15,3,Gedung Surian,age_group,55-59,laki_laki,456,jiwa,2025,registration,total_population,3.2,32,,55 - 59
+18.04.15,3,Gedung Surian,age_group,55-59,perempuan,418,jiwa,2025,registration,total_population,3.2,32,,55 - 59
+18.04.15,3,Gedung Surian,age_group,55-59,,874,jiwa,2025,registration,total_population,3.2,32,,55 - 59
+18.04.15,3,Gedung Surian,age_group,60-64,laki_laki,361,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+18.04.15,3,Gedung Surian,age_group,60-64,perempuan,294,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+18.04.15,3,Gedung Surian,age_group,60-64,,655,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+18.04.15,3,Gedung Surian,age_group,65-69,laki_laki,309,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+18.04.15,3,Gedung Surian,age_group,65-69,perempuan,245,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+18.04.15,3,Gedung Surian,age_group,65-69,,554,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+18.04.15,3,Gedung Surian,age_group,70-74,laki_laki,195,jiwa,2025,registration,total_population,3.2,32,,70 - 74
+18.04.15,3,Gedung Surian,age_group,70-74,perempuan,139,jiwa,2025,registration,total_population,3.2,32,,70 - 74
+18.04.15,3,Gedung Surian,age_group,70-74,,334,jiwa,2025,registration,total_population,3.2,32,,70 - 74
+18.04.15,3,Gedung Surian,age_group,75+,laki_laki,210,jiwa,2025,registration,total_population,3.2,32,,75+
+18.04.15,3,Gedung Surian,age_group,75+,perempuan,193,jiwa,2025,registration,total_population,3.2,32,,75+
+18.04.15,3,Gedung Surian,age_group,75+,,403,jiwa,2025,registration,total_population,3.2,32,,75+
+18.04.15,3,Kecamatan Gedung Surian,sex,laki_laki,,9040,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+18.04.15,3,Kecamatan Gedung Surian,sex,perempuan,,8508,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+18.04.15,3,Kecamatan Gedung Surian,total,total,,17548,jiwa,2025,registration,total_population,3.2,32,,

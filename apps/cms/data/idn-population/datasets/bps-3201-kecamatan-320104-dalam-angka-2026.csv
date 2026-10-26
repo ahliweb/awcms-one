@@ -1,0 +1,63 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.01.04.2004,4,Cibanon,sex,perempuan,,2778,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.04.2004,4,Cibanon,total,total,,5799,jiwa,2025,registration,total_population,3.1,34,,
+32.01.04.2001,4,Gunung Geulis,sex,perempuan,,4165,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.04.2001,4,Gunung Geulis,total,total,,8720,jiwa,2025,registration,total_population,3.1,34,,
+32.01.04.2005,4,Nagrak,sex,perempuan,,7297,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.04.2005,4,Nagrak,total,total,,15155,jiwa,2025,registration,total_population,3.1,34,,
+32.01.04.2006,4,Sukatani,sex,perempuan,,2676,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.04.2006,4,Sukatani,total,total,,5537,jiwa,2025,registration,total_population,3.1,34,,
+32.01.04.2007,4,Sukaraja,sex,perempuan,,5139,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.04.2007,4,Sukaraja,total,total,,10650,jiwa,2025,registration,total_population,3.1,34,,
+32.01.04.2008,4,Cikeas,sex,perempuan,,6431,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.04.2008,4,Cikeas,total,total,,13265,jiwa,2025,registration,total_population,3.1,34,,
+32.01.04.2012,4,Cadas Ngampar,sex,perempuan,,4274,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.04.2012,4,Cadas Ngampar,total,total,,8803,jiwa,2025,registration,total_population,3.1,34,,
+32.01.04.2013,4,Pasirlaja,sex,perempuan,,6996,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.04.2013,4,Pasirlaja,total,total,,14248,jiwa,2025,registration,total_population,3.1,34,,
+32.01.04.2011,4,Cijujung,sex,perempuan,,14418,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.04.2011,4,Cijujung,total,total,,29284,jiwa,2025,registration,total_population,3.1,34,,
+32.01.04.2010,4,Cimandala,sex,perempuan,,12851,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.04.2010,4,Cimandala,total,total,,26190,jiwa,2025,registration,total_population,3.1,34,,
+32.01.04.2009,4,Pasir Jambu,sex,perempuan,,8827,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.04.2009,4,Pasir Jambu,total,total,,17831,jiwa,2025,registration,total_population,3.1,34,,
+32.01.04.2002,4,Cilebut Timur,sex,perempuan,,10412,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.04.2002,4,Cilebut Timur,total,total,,20777,jiwa,2025,registration,total_population,3.1,34,,
+32.01.04.2003,4,Cilebut Barat,sex,perempuan,,18739,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.04.2003,4,Cilebut Barat,total,total,,37711,jiwa,2025,registration,total_population,3.1,34,,
+32.01.04,3,Sukaraja,sex,perempuan,,105003,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.04,3,Sukaraja,total,total,,213970,jiwa,2025,registration,total_population,3.1,34,,
+32.01.04,3,Sukaraja,age_group,0-4,perempuan,7152,jiwa,2025,registration,total_population,3.2,36,,0–4
+32.01.04,3,Sukaraja,age_group,0-4,,14736,jiwa,2025,registration,total_population,3.2,36,,0–4
+32.01.04,3,Sukaraja,age_group,5-9,perempuan,9028,jiwa,2025,registration,total_population,3.2,36,,5–9
+32.01.04,3,Sukaraja,age_group,5-9,,18979,jiwa,2025,registration,total_population,3.2,36,,5–9
+32.01.04,3,Sukaraja,age_group,10-14,perempuan,9155,jiwa,2025,registration,total_population,3.2,36,,10–14
+32.01.04,3,Sukaraja,age_group,10-14,,19047,jiwa,2025,registration,total_population,3.2,36,,10–14
+32.01.04,3,Sukaraja,age_group,15-19,perempuan,8299,jiwa,2025,registration,total_population,3.2,36,,15–19
+32.01.04,3,Sukaraja,age_group,15-19,,17185,jiwa,2025,registration,total_population,3.2,36,,15–19
+32.01.04,3,Sukaraja,age_group,20-24,perempuan,8781,jiwa,2025,registration,total_population,3.2,36,,20–24
+32.01.04,3,Sukaraja,age_group,20-24,,18004,jiwa,2025,registration,total_population,3.2,36,,20–24
+32.01.04,3,Sukaraja,age_group,25-29,perempuan,8589,jiwa,2025,registration,total_population,3.2,36,,25–29
+32.01.04,3,Sukaraja,age_group,25-29,,17654,jiwa,2025,registration,total_population,3.2,36,,25–29
+32.01.04,3,Sukaraja,age_group,30-34,perempuan,8527,jiwa,2025,registration,total_population,3.2,36,,30–34
+32.01.04,3,Sukaraja,age_group,30-34,,17278,jiwa,2025,registration,total_population,3.2,36,,30–34
+32.01.04,3,Sukaraja,age_group,35-39,perempuan,7797,jiwa,2025,registration,total_population,3.2,36,,35–39
+32.01.04,3,Sukaraja,age_group,35-39,,16219,jiwa,2025,registration,total_population,3.2,36,,35–39
+32.01.04,3,Sukaraja,age_group,40-44,perempuan,7936,jiwa,2025,registration,total_population,3.2,36,,40–44
+32.01.04,3,Sukaraja,age_group,40-44,,16239,jiwa,2025,registration,total_population,3.2,36,,40–44
+32.01.04,3,Sukaraja,age_group,45-49,perempuan,7734,jiwa,2025,registration,total_population,3.2,36,,45–49
+32.01.04,3,Sukaraja,age_group,45-49,,15255,jiwa,2025,registration,total_population,3.2,36,,45–49
+32.01.04,3,Sukaraja,age_group,50-54,perempuan,6838,jiwa,2025,registration,total_population,3.2,36,,50–54
+32.01.04,3,Sukaraja,age_group,50-54,,13638,jiwa,2025,registration,total_population,3.2,36,,50–54
+32.01.04,3,Sukaraja,age_group,55-59,perempuan,5279,jiwa,2025,registration,total_population,3.2,36,,55–59
+32.01.04,3,Sukaraja,age_group,55-59,,10700,jiwa,2025,registration,total_population,3.2,36,,55–59
+32.01.04,3,Sukaraja,age_group,60-64,perempuan,3746,jiwa,2025,registration,total_population,3.2,36,,60–64
+32.01.04,3,Sukaraja,age_group,60-64,,7405,jiwa,2025,registration,total_population,3.2,36,,60–64
+32.01.04,3,Sukaraja,age_group,65-69,perempuan,2719,jiwa,2025,registration,total_population,3.2,36,,65–69
+32.01.04,3,Sukaraja,age_group,65-69,,5264,jiwa,2025,registration,total_population,3.2,36,,65–69
+32.01.04,3,Sukaraja,age_group,70-74,perempuan,1577,jiwa,2025,registration,total_population,3.2,36,,70–74
+32.01.04,3,Sukaraja,age_group,70-74,,3092,jiwa,2025,registration,total_population,3.2,36,,70–74
+32.01.04,3,Sukaraja,age_group,75+,perempuan,1846,jiwa,2025,registration,total_population,3.2,36,,75+
+32.01.04,3,Sukaraja,age_group,75+,,3275,jiwa,2025,registration,total_population,3.2,36,,75+
+32.01.04,3,Sukaraja,sex,perempuan,,105003,jiwa,2025,registration,total_population,3.2,36,,Perempuan
+32.01.04,3,Sukaraja,total,total,,213970,jiwa,2025,registration,total_population,3.2,36,,

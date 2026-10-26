@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.05.32.2002,4,Karangwangi,sex,laki_laki,,2805,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.32.2002,4,Karangwangi,sex,perempuan,,2745,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.32.2002,4,Karangwangi,total,total,,5550,jiwa,2025,registration,total_population,3.1,22,,
+32.05.32.2004,4,Cijayana,sex,laki_laki,,1822,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.32.2004,4,Cijayana,sex,perempuan,,1797,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.32.2004,4,Cijayana,total,total,,3619,jiwa,2025,registration,total_population,3.1,22,,
+32.05.32.2001,4,Mekarmukti,sex,laki_laki,,2504,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.32.2001,4,Mekarmukti,sex,perempuan,,2419,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.32.2001,4,Mekarmukti,total,total,,4923,jiwa,2025,registration,total_population,3.1,22,,
+32.05.32.2003,4,Jagabaya,sex,laki_laki,,1773,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.32.2003,4,Jagabaya,sex,perempuan,,1765,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.32.2003,4,Jagabaya,total,total,,3538,jiwa,2025,registration,total_population,3.1,22,,
+32.05.32.2005,4,Mekarsari,sex,laki_laki,,1387,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.32.2005,4,Mekarsari,sex,perempuan,,1383,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.32.2005,4,Mekarsari,total,total,,2770,jiwa,2025,registration,total_population,3.1,22,,
+32.05.32,3,Kecamatan Mekarmukti,sex,laki_laki,,10291,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.32,3,Kecamatan Mekarmukti,sex,perempuan,,10109,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.32,3,Kecamatan Mekarmukti,total,total,,20400,jiwa,2025,registration,total_population,3.1,22,,
+32.05.32,3,Mekarmukti,age_group,0-4,laki_laki,760,jiwa,2025,registration,total_population,3.2,24,,0-4
+32.05.32,3,Mekarmukti,age_group,0-4,perempuan,707,jiwa,2025,registration,total_population,3.2,24,,0-4
+32.05.32,3,Mekarmukti,age_group,0-4,,1467,jiwa,2025,registration,total_population,3.2,24,,0-4
+32.05.32,3,Mekarmukti,age_group,5-9,laki_laki,932,jiwa,2025,registration,total_population,3.2,24,,5-9
+32.05.32,3,Mekarmukti,age_group,5-9,perempuan,969,jiwa,2025,registration,total_population,3.2,24,,5-9
+32.05.32,3,Mekarmukti,age_group,5-9,,1901,jiwa,2025,registration,total_population,3.2,24,,5-9
+32.05.32,3,Mekarmukti,age_group,10-14,laki_laki,963,jiwa,2025,registration,total_population,3.2,24,,10-14
+32.05.32,3,Mekarmukti,age_group,10-14,perempuan,928,jiwa,2025,registration,total_population,3.2,24,,10-14
+32.05.32,3,Mekarmukti,age_group,10-14,,1891,jiwa,2025,registration,total_population,3.2,24,,10-14
+32.05.32,3,Mekarmukti,age_group,15-19,laki_laki,839,jiwa,2025,registration,total_population,3.2,24,,15-19
+32.05.32,3,Mekarmukti,age_group,15-19,perempuan,764,jiwa,2025,registration,total_population,3.2,24,,15-19
+32.05.32,3,Mekarmukti,age_group,15-19,,1603,jiwa,2025,registration,total_population,3.2,24,,15-19
+32.05.32,3,Mekarmukti,age_group,20-24,laki_laki,836,jiwa,2025,registration,total_population,3.2,24,,20-24
+32.05.32,3,Mekarmukti,age_group,20-24,perempuan,819,jiwa,2025,registration,total_population,3.2,24,,20-24
+32.05.32,3,Mekarmukti,age_group,20-24,,1655,jiwa,2025,registration,total_population,3.2,24,,20-24
+32.05.32,3,Mekarmukti,age_group,25-29,laki_laki,916,jiwa,2025,registration,total_population,3.2,24,,25-29
+32.05.32,3,Mekarmukti,age_group,25-29,perempuan,869,jiwa,2025,registration,total_population,3.2,24,,25-29
+32.05.32,3,Mekarmukti,age_group,25-29,,1785,jiwa,2025,registration,total_population,3.2,24,,25-29
+32.05.32,3,Mekarmukti,age_group,30-34,laki_laki,751,jiwa,2025,registration,total_population,3.2,24,,30-34
+32.05.32,3,Mekarmukti,age_group,30-34,perempuan,678,jiwa,2025,registration,total_population,3.2,24,,30-34
+32.05.32,3,Mekarmukti,age_group,30-34,,1429,jiwa,2025,registration,total_population,3.2,24,,30-34
+32.05.32,3,Mekarmukti,age_group,35-39,laki_laki,613,jiwa,2025,registration,total_population,3.2,24,,35-39
+32.05.32,3,Mekarmukti,age_group,35-39,perempuan,582,jiwa,2025,registration,total_population,3.2,24,,35-39
+32.05.32,3,Mekarmukti,age_group,35-39,,1195,jiwa,2025,registration,total_population,3.2,24,,35-39
+32.05.32,3,Mekarmukti,age_group,40-44,laki_laki,560,jiwa,2025,registration,total_population,3.2,24,,40-44
+32.05.32,3,Mekarmukti,age_group,40-44,perempuan,615,jiwa,2025,registration,total_population,3.2,24,,40-44
+32.05.32,3,Mekarmukti,age_group,40-44,,1175,jiwa,2025,registration,total_population,3.2,24,,40-44
+32.05.32,3,Mekarmukti,age_group,45-49,laki_laki,595,jiwa,2025,registration,total_population,3.2,24,,45-49
+32.05.32,3,Mekarmukti,age_group,45-49,perempuan,626,jiwa,2025,registration,total_population,3.2,24,,45-49
+32.05.32,3,Mekarmukti,age_group,45-49,,1221,jiwa,2025,registration,total_population,3.2,24,,45-49
+32.05.32,3,Mekarmukti,age_group,50-54,laki_laki,702,jiwa,2025,registration,total_population,3.2,24,,50-54
+32.05.32,3,Mekarmukti,age_group,50-54,perempuan,756,jiwa,2025,registration,total_population,3.2,24,,50-54
+32.05.32,3,Mekarmukti,age_group,50-54,,1458,jiwa,2025,registration,total_population,3.2,24,,50-54
+32.05.32,3,Mekarmukti,age_group,55-59,laki_laki,564,jiwa,2025,registration,total_population,3.2,24,,55-59
+32.05.32,3,Mekarmukti,age_group,55-59,perempuan,525,jiwa,2025,registration,total_population,3.2,24,,55-59
+32.05.32,3,Mekarmukti,age_group,55-59,,1089,jiwa,2025,registration,total_population,3.2,24,,55-59
+32.05.32,3,Mekarmukti,age_group,60-64,laki_laki,413,jiwa,2025,registration,total_population,3.2,24,,60-64
+32.05.32,3,Mekarmukti,age_group,60-64,perempuan,398,jiwa,2025,registration,total_population,3.2,24,,60-64
+32.05.32,3,Mekarmukti,age_group,60-64,,811,jiwa,2025,registration,total_population,3.2,24,,60-64
+32.05.32,3,Mekarmukti,age_group,65-69,laki_laki,318,jiwa,2025,registration,total_population,3.2,24,,65-69
+32.05.32,3,Mekarmukti,age_group,65-69,perempuan,342,jiwa,2025,registration,total_population,3.2,24,,65-69
+32.05.32,3,Mekarmukti,age_group,65-69,,660,jiwa,2025,registration,total_population,3.2,24,,65-69
+32.05.32,3,Mekarmukti,age_group,70-74,laki_laki,225,jiwa,2025,registration,total_population,3.2,24,,70-74
+32.05.32,3,Mekarmukti,age_group,70-74,perempuan,208,jiwa,2025,registration,total_population,3.2,24,,70-74
+32.05.32,3,Mekarmukti,age_group,70-74,,433,jiwa,2025,registration,total_population,3.2,24,,70-74
+32.05.32,3,Mekarmukti,age_group,75+,laki_laki,304,jiwa,2025,registration,total_population,3.2,24,,75+
+32.05.32,3,Mekarmukti,age_group,75+,perempuan,323,jiwa,2025,registration,total_population,3.2,24,,75+
+32.05.32,3,Mekarmukti,age_group,75+,,627,jiwa,2025,registration,total_population,3.2,24,,75+
+32.05.32,3,Kecamatan Mekarmukti,sex,laki_laki,,10291,jiwa,2025,registration,total_population,3.2,24,,Laki-Laki
+32.05.32,3,Kecamatan Mekarmukti,sex,perempuan,,10109,jiwa,2025,registration,total_population,3.2,24,,Perempuan
+32.05.32,3,Kecamatan Mekarmukti,total,total,,20400,jiwa,2025,registration,total_population,3.2,24,,

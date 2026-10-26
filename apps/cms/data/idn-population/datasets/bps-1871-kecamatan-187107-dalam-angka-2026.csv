@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.71.07.1009,4,Gedong Pakuon,sex,laki_laki,,2362,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.07.1009,4,Gedong Pakuon,sex,perempuan,,2234,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.07.1009,4,Gedong Pakuon,total,total,,4596,jiwa,2025,registration,total_population,3.1,26,,
+18.71.07.1008,4,Talang,sex,laki_laki,,4304,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.07.1008,4,Talang,sex,perempuan,,4160,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.07.1008,4,Talang,total,total,,8464,jiwa,2025,registration,total_population,3.1,26,,
+18.71.07.1001,4,Pesawahan,sex,laki_laki,,5722,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.07.1001,4,Pesawahan,sex,perempuan,,5602,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.07.1001,4,Pesawahan,total,total,,11324,jiwa,2025,registration,total_population,3.1,26,,
+18.71.07.1002,4,Teluk Betung,sex,laki_laki,,2245,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.07.1002,4,Teluk Betung,sex,perempuan,,2258,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.07.1002,4,Teluk Betung,total,total,,4503,jiwa,2025,registration,total_population,3.1,26,,
+18.71.07.1012,4,Sumur Putri,sex,laki_laki,,3202,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.07.1012,4,Sumur Putri,sex,perempuan,,3037,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.07.1012,4,Sumur Putri,total,total,,6239,jiwa,2025,registration,total_population,3.1,26,,
+18.71.07.1013,4,Gunung Mas,sex,laki_laki,,1447,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.07.1013,4,Gunung Mas,sex,perempuan,,1531,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.07.1013,4,Gunung Mas,total,total,,2978,jiwa,2025,registration,total_population,3.1,26,,
+18.71.07,3,Teluk Betung Selatan,sex,laki_laki,,19282,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.07,3,Teluk Betung Selatan,sex,perempuan,,18822,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.07,3,Teluk Betung Selatan,total,total,,38104,jiwa,2025,registration,total_population,3.1,26,,

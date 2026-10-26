@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.02.01.1003,4,Moro,sex,laki_laki,,2079,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+21.02.01.1003,4,Moro,sex,perempuan,,1956,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+21.02.01.1003,4,Moro,total,total,,4035,jiwa,2025,registration,total_population,3.1,,,
+21.02.01.2004,4,Pauh,sex,laki_laki,,663,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+21.02.01.2004,4,Pauh,sex,perempuan,,627,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+21.02.01.2004,4,Pauh,total,total,,1290,jiwa,2025,registration,total_population,3.1,,,
+21.02.01.2009,4,Jang,sex,laki_laki,,1093,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+21.02.01.2009,4,Jang,sex,perempuan,,939,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+21.02.01.2009,4,Jang,total,total,,2032,jiwa,2025,registration,total_population,3.1,,,
+21.02.01.1010,4,Moro Timur,sex,laki_laki,,1580,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+21.02.01.1010,4,Moro Timur,sex,perempuan,,1564,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+21.02.01.1010,4,Moro Timur,total,total,,3144,jiwa,2025,registration,total_population,3.1,,,
+21.02.01.2014,4,Pulau Moro,sex,laki_laki,,482,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+21.02.01.2014,4,Pulau Moro,sex,perempuan,,448,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+21.02.01.2014,4,Pulau Moro,total,total,,930,jiwa,2025,registration,total_population,3.1,,,
+21.02.01,3,Moro,sex,laki_laki,,5897,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+21.02.01,3,Moro,sex,perempuan,,5534,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+21.02.01,3,Moro,total,total,,11431,jiwa,2025,registration,total_population,3.1,,,

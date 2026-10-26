@@ -1,0 +1,196 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.04.04,3,Singkep Barat,total,total,,13939,jiwa,2025,registration,total_population,3.1.1,64,,
+21.04.10,3,Kepulauan Posek,total,total,,3228,jiwa,2025,registration,total_population,3.1.1,64,,
+21.04.01,3,Singkep,total,total,,23181,jiwa,2025,registration,total_population,3.1.1,64,,
+21.04.09,3,Singkep Selatan,total,total,,2808,jiwa,2025,registration,total_population,3.1.1,64,,
+21.04.06,3,Singkep Pesisir,total,total,,4874,jiwa,2025,registration,total_population,3.1.1,64,,
+21.04.02,3,Lingga,total,total,,12730,jiwa,2025,registration,total_population,3.1.1,64,,
+21.04.08,3,Selayar,total,total,,3474,jiwa,2025,registration,total_population,3.1.1,64,,
+21.04.07,3,Lingga Timur,total,total,,5258,jiwa,2025,registration,total_population,3.1.1,64,,
+21.04.05,3,Lingga Utara,total,total,,10295,jiwa,2025,registration,total_population,3.1.1,64,,
+21.04.03,3,Senayang,total,total,,6246,jiwa,2025,registration,total_population,3.1.1,64,,
+21.04.13,3,Bakung Serumpun,total,total,,7753,jiwa,2025,registration,total_population,3.1.1,64,,
+21.04.12,3,Temiang Pesisir,total,total,,3610,jiwa,2025,registration,total_population,3.1.1,64,,
+21.04.11,3,Katang Bidare,total,total,,4076,jiwa,2025,registration,total_population,3.1.1,64,,
+21.04,2,Kabupaten Lingga,total,total,,101472,jiwa,2025,registration,total_population,3.1.1,64,,
+21.04,2,Kabupaten Lingga,age_group,0-4,laki_laki,4.21,ribu_jiwa,2025,registration,total_population,3.1.2,67,,0–4
+21.04,2,Kabupaten Lingga,age_group,0-4,perempuan,4.05,ribu_jiwa,2025,registration,total_population,3.1.2,67,,0–4
+21.04,2,Kabupaten Lingga,age_group,0-4,,8.26,ribu_jiwa,2025,registration,total_population,3.1.2,67,,0–4
+21.04,2,Kabupaten Lingga,age_group,5-9,laki_laki,4.19,ribu_jiwa,2025,registration,total_population,3.1.2,67,,5–9
+21.04,2,Kabupaten Lingga,age_group,5-9,perempuan,3.92,ribu_jiwa,2025,registration,total_population,3.1.2,67,,5–9
+21.04,2,Kabupaten Lingga,age_group,5-9,,8.11,ribu_jiwa,2025,registration,total_population,3.1.2,67,,5–9
+21.04,2,Kabupaten Lingga,age_group,10-14,laki_laki,4.34,ribu_jiwa,2025,registration,total_population,3.1.2,67,,10–14
+21.04,2,Kabupaten Lingga,age_group,10-14,perempuan,4.14,ribu_jiwa,2025,registration,total_population,3.1.2,67,,10–14
+21.04,2,Kabupaten Lingga,age_group,10-14,,8.48,ribu_jiwa,2025,registration,total_population,3.1.2,67,,10–14
+21.04,2,Kabupaten Lingga,age_group,15-19,laki_laki,4.06,ribu_jiwa,2025,registration,total_population,3.1.2,67,,15–19
+21.04,2,Kabupaten Lingga,age_group,15-19,perempuan,3.82,ribu_jiwa,2025,registration,total_population,3.1.2,67,,15–19
+21.04,2,Kabupaten Lingga,age_group,15-19,,7.88,ribu_jiwa,2025,registration,total_population,3.1.2,67,,15–19
+21.04,2,Kabupaten Lingga,age_group,20-24,laki_laki,4.53,ribu_jiwa,2025,registration,total_population,3.1.2,67,,20–24
+21.04,2,Kabupaten Lingga,age_group,20-24,perempuan,4.41,ribu_jiwa,2025,registration,total_population,3.1.2,67,,20–24
+21.04,2,Kabupaten Lingga,age_group,20-24,,8.94,ribu_jiwa,2025,registration,total_population,3.1.2,67,,20–24
+21.04,2,Kabupaten Lingga,age_group,25-29,laki_laki,3.69,ribu_jiwa,2025,registration,total_population,3.1.2,67,,25–29
+21.04,2,Kabupaten Lingga,age_group,25-29,perempuan,3.64,ribu_jiwa,2025,registration,total_population,3.1.2,67,,25–29
+21.04,2,Kabupaten Lingga,age_group,25-29,,7.33,ribu_jiwa,2025,registration,total_population,3.1.2,67,,25–29
+21.04,2,Kabupaten Lingga,age_group,30-34,laki_laki,3.52,ribu_jiwa,2025,registration,total_population,3.1.2,67,,30–34
+21.04,2,Kabupaten Lingga,age_group,30-34,perempuan,3.42,ribu_jiwa,2025,registration,total_population,3.1.2,67,,30–34
+21.04,2,Kabupaten Lingga,age_group,30-34,,6.94,ribu_jiwa,2025,registration,total_population,3.1.2,67,,30–34
+21.04,2,Kabupaten Lingga,age_group,35-39,laki_laki,4.03,ribu_jiwa,2025,registration,total_population,3.1.2,67,,35–39
+21.04,2,Kabupaten Lingga,age_group,35-39,perempuan,3.78,ribu_jiwa,2025,registration,total_population,3.1.2,67,,35–39
+21.04,2,Kabupaten Lingga,age_group,35-39,,7.81,ribu_jiwa,2025,registration,total_population,3.1.2,67,,35–39
+21.04,2,Kabupaten Lingga,age_group,40-44,laki_laki,4.18,ribu_jiwa,2025,registration,total_population,3.1.2,67,,40–44
+21.04,2,Kabupaten Lingga,age_group,40-44,perempuan,3.73,ribu_jiwa,2025,registration,total_population,3.1.2,67,,40–44
+21.04,2,Kabupaten Lingga,age_group,40-44,,7.91,ribu_jiwa,2025,registration,total_population,3.1.2,67,,40–44
+21.04,2,Kabupaten Lingga,age_group,45-49,laki_laki,3.88,ribu_jiwa,2025,registration,total_population,3.1.2,67,,45–49
+21.04,2,Kabupaten Lingga,age_group,45-49,perempuan,3.25,ribu_jiwa,2025,registration,total_population,3.1.2,67,,45–49
+21.04,2,Kabupaten Lingga,age_group,45-49,,7.12,ribu_jiwa,2025,registration,total_population,3.1.2,67,,45–49
+21.04,2,Kabupaten Lingga,age_group,50-54,laki_laki,3.38,ribu_jiwa,2025,registration,total_population,3.1.2,67,,50–54
+21.04,2,Kabupaten Lingga,age_group,50-54,perempuan,2.96,ribu_jiwa,2025,registration,total_population,3.1.2,67,,50–54
+21.04,2,Kabupaten Lingga,age_group,50-54,,6.34,ribu_jiwa,2025,registration,total_population,3.1.2,67,,50–54
+21.04,2,Kabupaten Lingga,age_group,55-59,laki_laki,2.74,ribu_jiwa,2025,registration,total_population,3.1.2,67,,55–59
+21.04,2,Kabupaten Lingga,age_group,55-59,perempuan,2.49,ribu_jiwa,2025,registration,total_population,3.1.2,67,,55–59
+21.04,2,Kabupaten Lingga,age_group,55-59,,5.23,ribu_jiwa,2025,registration,total_population,3.1.2,67,,55–59
+21.04,2,Kabupaten Lingga,age_group,60-64,laki_laki,2.35,ribu_jiwa,2025,registration,total_population,3.1.2,67,,60–64
+21.04,2,Kabupaten Lingga,age_group,60-64,perempuan,2.23,ribu_jiwa,2025,registration,total_population,3.1.2,67,,60–64
+21.04,2,Kabupaten Lingga,age_group,60-64,,4.59,ribu_jiwa,2025,registration,total_population,3.1.2,67,,60–64
+21.04,2,Kabupaten Lingga,age_group,65-69,laki_laki,1.93,ribu_jiwa,2025,registration,total_population,3.1.2,67,,65–69
+21.04,2,Kabupaten Lingga,age_group,65-69,perempuan,1.78,ribu_jiwa,2025,registration,total_population,3.1.2,67,,65–69
+21.04,2,Kabupaten Lingga,age_group,65-69,,3.71,ribu_jiwa,2025,registration,total_population,3.1.2,67,,65–69
+21.04,2,Kabupaten Lingga,age_group,70-74,laki_laki,1.37,ribu_jiwa,2025,registration,total_population,3.1.2,67,,70–74
+21.04,2,Kabupaten Lingga,age_group,70-74,perempuan,1.27,ribu_jiwa,2025,registration,total_population,3.1.2,67,,70–74
+21.04,2,Kabupaten Lingga,age_group,70-74,,2.64,ribu_jiwa,2025,registration,total_population,3.1.2,67,,70–74
+21.04,2,Kabupaten Lingga,age_group,75+,laki_laki,1.3,ribu_jiwa,2025,registration,total_population,3.1.2,67,,75+
+21.04,2,Kabupaten Lingga,age_group,75+,perempuan,1.3,ribu_jiwa,2025,registration,total_population,3.1.2,67,,75+
+21.04,2,Kabupaten Lingga,age_group,75+,,2.59,ribu_jiwa,2025,registration,total_population,3.1.2,67,,75+
+21.04,2,Kabupaten Lingga,sex,laki_laki,,53.7,ribu_jiwa,2025,registration,total_population,3.1.2,67,,Laki-Laki
+21.04,2,Kabupaten Lingga,sex,perempuan,,50.18,ribu_jiwa,2025,registration,total_population,3.1.2,67,,Perempuan
+21.04,2,Kabupaten Lingga,total,total,,103.88,ribu_jiwa,2025,registration,total_population,3.1.2,67,,
+21.04.04,3,Singkep Barat,religion,islam,,12887,jiwa,2025,registration,total_population,4.3.1,131,,Islam
+21.04.04,3,Singkep Barat,religion,kristen,,107,jiwa,2025,registration,total_population,4.3.1,131,,Protestan
+21.04.04,3,Singkep Barat,religion,katolik,,24,jiwa,2025,registration,total_population,4.3.1,131,,Katolik
+21.04.04,3,Singkep Barat,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Hindu
+21.04.04,3,Singkep Barat,religion,buddha,,864,jiwa,2025,registration,total_population,4.3.1,131,,Budha
+21.04.04,3,Singkep Barat,religion,lainnya,,9,jiwa,2025,registration,total_population,4.3.1,131,,Lainnya
+21.04.10,3,Kepulauan Posek,religion,islam,,3013,jiwa,2025,registration,total_population,4.3.1,131,,Islam
+21.04.10,3,Kepulauan Posek,religion,kristen,,4,jiwa,2025,registration,total_population,4.3.1,131,,Protestan
+21.04.10,3,Kepulauan Posek,religion,katolik,,3,jiwa,2025,registration,total_population,4.3.1,131,,Katolik
+21.04.10,3,Kepulauan Posek,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Hindu
+21.04.10,3,Kepulauan Posek,religion,buddha,,196,jiwa,2025,registration,total_population,4.3.1,131,,Budha
+21.04.10,3,Kepulauan Posek,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Lainnya
+21.04.01,3,Singkep,religion,islam,,20847,jiwa,2025,registration,total_population,4.3.1,131,,Islam
+21.04.01,3,Singkep,religion,kristen,,438,jiwa,2025,registration,total_population,4.3.1,131,,Protestan
+21.04.01,3,Singkep,religion,katolik,,123,jiwa,2025,registration,total_population,4.3.1,131,,Katolik
+21.04.01,3,Singkep,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,131,,Hindu
+21.04.01,3,Singkep,religion,buddha,,1738,jiwa,2025,registration,total_population,4.3.1,131,,Budha
+21.04.01,3,Singkep,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,131,,Lainnya
+21.04.09,3,Singkep Selatan,religion,islam,,2803,jiwa,2025,registration,total_population,4.3.1,131,,Islam
+21.04.09,3,Singkep Selatan,religion,kristen,,5,jiwa,2025,registration,total_population,4.3.1,131,,Protestan
+21.04.09,3,Singkep Selatan,religion,katolik,,5,jiwa,2025,registration,total_population,4.3.1,131,,Katolik
+21.04.09,3,Singkep Selatan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Hindu
+21.04.09,3,Singkep Selatan,religion,buddha,,7,jiwa,2025,registration,total_population,4.3.1,131,,Budha
+21.04.09,3,Singkep Selatan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Lainnya
+21.04.06,3,Singkep Pesisir,religion,islam,,4744,jiwa,2025,registration,total_population,4.3.1,131,,Islam
+21.04.06,3,Singkep Pesisir,religion,kristen,,5,jiwa,2025,registration,total_population,4.3.1,131,,Protestan
+21.04.06,3,Singkep Pesisir,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Katolik
+21.04.06,3,Singkep Pesisir,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Hindu
+21.04.06,3,Singkep Pesisir,religion,buddha,,109,jiwa,2025,registration,total_population,4.3.1,131,,Budha
+21.04.06,3,Singkep Pesisir,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Lainnya
+21.04.02,3,Lingga,religion,islam,,11647,jiwa,2025,registration,total_population,4.3.1,131,,Islam
+21.04.02,3,Lingga,religion,kristen,,477,jiwa,2025,registration,total_population,4.3.1,131,,Protestan
+21.04.02,3,Lingga,religion,katolik,,101,jiwa,2025,registration,total_population,4.3.1,131,,Katolik
+21.04.02,3,Lingga,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Hindu
+21.04.02,3,Lingga,religion,buddha,,394,jiwa,2025,registration,total_population,4.3.1,131,,Budha
+21.04.02,3,Lingga,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,131,,Lainnya
+21.04.08,3,Selayar,religion,islam,,3202,jiwa,2025,registration,total_population,4.3.1,131,,Islam
+21.04.08,3,Selayar,religion,kristen,,137,jiwa,2025,registration,total_population,4.3.1,131,,Protestan
+21.04.08,3,Selayar,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,131,,Katolik
+21.04.08,3,Selayar,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Hindu
+21.04.08,3,Selayar,religion,buddha,,141,jiwa,2025,registration,total_population,4.3.1,131,,Budha
+21.04.08,3,Selayar,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Lainnya
+21.04.07,3,Lingga Timur,religion,islam,,5189,jiwa,2025,registration,total_population,4.3.1,131,,Islam
+21.04.07,3,Lingga Timur,religion,kristen,,23,jiwa,2025,registration,total_population,4.3.1,131,,Protestan
+21.04.07,3,Lingga Timur,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Katolik
+21.04.07,3,Lingga Timur,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Hindu
+21.04.07,3,Lingga Timur,religion,buddha,,37,jiwa,2025,registration,total_population,4.3.1,131,,Budha
+21.04.07,3,Lingga Timur,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,131,,Lainnya
+21.04.05,3,Lingga Utara,religion,islam,,9381,jiwa,2025,registration,total_population,4.3.1,131,,Islam
+21.04.05,3,Lingga Utara,religion,kristen,,239,jiwa,2025,registration,total_population,4.3.1,131,,Protestan
+21.04.05,3,Lingga Utara,religion,katolik,,176,jiwa,2025,registration,total_population,4.3.1,131,,Katolik
+21.04.05,3,Lingga Utara,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Hindu
+21.04.05,3,Lingga Utara,religion,buddha,,553,jiwa,2025,registration,total_population,4.3.1,131,,Budha
+21.04.05,3,Lingga Utara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Lainnya
+21.04.03,3,Senayang,religion,islam,,5643,jiwa,2025,registration,total_population,4.3.1,131,,Islam
+21.04.03,3,Senayang,religion,kristen,,72,jiwa,2025,registration,total_population,4.3.1,131,,Protestan
+21.04.03,3,Senayang,religion,katolik,,282,jiwa,2025,registration,total_population,4.3.1,131,,Katolik
+21.04.03,3,Senayang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Hindu
+21.04.03,3,Senayang,religion,buddha,,250,jiwa,2025,registration,total_population,4.3.1,131,,Budha
+21.04.03,3,Senayang,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,131,,Lainnya
+21.04.13,3,Bakung Serumpun,religion,islam,,6899,jiwa,2025,registration,total_population,4.3.1,131,,Islam
+21.04.13,3,Bakung Serumpun,religion,kristen,,149,jiwa,2025,registration,total_population,4.3.1,131,,Protestan
+21.04.13,3,Bakung Serumpun,religion,katolik,,249,jiwa,2025,registration,total_population,4.3.1,131,,Katolik
+21.04.13,3,Bakung Serumpun,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,131,,Hindu
+21.04.13,3,Bakung Serumpun,religion,buddha,,433,jiwa,2025,registration,total_population,4.3.1,131,,Budha
+21.04.13,3,Bakung Serumpun,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,131,,Lainnya
+21.04.12,3,Temiang Pesisir,religion,islam,,3311,jiwa,2025,registration,total_population,4.3.1,131,,Islam
+21.04.12,3,Temiang Pesisir,religion,kristen,,140,jiwa,2025,registration,total_population,4.3.1,131,,Protestan
+21.04.12,3,Temiang Pesisir,religion,katolik,,158,jiwa,2025,registration,total_population,4.3.1,131,,Katolik
+21.04.12,3,Temiang Pesisir,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Hindu
+21.04.12,3,Temiang Pesisir,religion,buddha,,29,jiwa,2025,registration,total_population,4.3.1,131,,Budha
+21.04.12,3,Temiang Pesisir,religion,lainnya,,7,jiwa,2025,registration,total_population,4.3.1,131,,Lainnya
+21.04.11,3,Katang Bidare,religion,islam,,3860,jiwa,2025,registration,total_population,4.3.1,131,,Islam
+21.04.11,3,Katang Bidare,religion,kristen,,74,jiwa,2025,registration,total_population,4.3.1,131,,Protestan
+21.04.11,3,Katang Bidare,religion,katolik,,8,jiwa,2025,registration,total_population,4.3.1,131,,Katolik
+21.04.11,3,Katang Bidare,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Hindu
+21.04.11,3,Katang Bidare,religion,buddha,,102,jiwa,2025,registration,total_population,4.3.1,131,,Budha
+21.04.11,3,Katang Bidare,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,131,,Lainnya
+21.04,2,Kabupaten Lingga,religion,islam,,93426,jiwa,2025,registration,total_population,4.3.1,131,,Islam
+21.04,2,Kabupaten Lingga,religion,kristen,,1870,jiwa,2025,registration,total_population,4.3.1,131,,Protestan
+21.04,2,Kabupaten Lingga,religion,katolik,,1130,jiwa,2025,registration,total_population,4.3.1,131,,Katolik
+21.04,2,Kabupaten Lingga,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,131,,Hindu
+21.04,2,Kabupaten Lingga,religion,buddha,,4853,jiwa,2025,registration,total_population,4.3.1,131,,Budha
+21.04,2,Kabupaten Lingga,religion,lainnya,,26,jiwa,2025,registration,total_population,4.3.1,131,,Lainnya
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/padi_padian,,82225,rupiah,2024,survey_estimate,per_capita,10.1,240,,Padi-padian
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/padi_padian,,95940,rupiah,2025,survey_estimate,per_capita,10.1,240,,Padi-padian
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/umbi_umbian,,5270,rupiah,2024,survey_estimate,per_capita,10.1,240,,Umbi-umbian
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/umbi_umbian,,5161,rupiah,2025,survey_estimate,per_capita,10.1,240,,Umbi-umbian
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,109072,rupiah,2024,survey_estimate,per_capita,10.1,240,,Ikan/udang/cumi/kerang
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,105140,rupiah,2025,survey_estimate,per_capita,10.1,240,,Ikan/udang/cumi/kerang
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/daging,,27942,rupiah,2024,survey_estimate,per_capita,10.1,240,,Daging
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/daging,,26106,rupiah,2025,survey_estimate,per_capita,10.1,240,,Daging
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/telur_dan_susu,,32225,rupiah,2024,survey_estimate,per_capita,10.1,240,,Telur dan susu
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/telur_dan_susu,,35693,rupiah,2025,survey_estimate,per_capita,10.1,240,,Telur dan susu
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/sayur_sayuran,,58214,rupiah,2024,survey_estimate,per_capita,10.1,240,,Sayur-sayuran
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/sayur_sayuran,,70301,rupiah,2025,survey_estimate,per_capita,10.1,240,,Sayur-sayuran
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/kacang_kacangan,,8747,rupiah,2024,survey_estimate,per_capita,10.1,240,,Kacang-kacangan
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/kacang_kacangan,,10184,rupiah,2025,survey_estimate,per_capita,10.1,240,,Kacang-kacangan
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/buah_buahan,,37766,rupiah,2024,survey_estimate,per_capita,10.1,240,,Buah-buahan
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/buah_buahan,,47656,rupiah,2025,survey_estimate,per_capita,10.1,240,,Buah-buahan
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19705,rupiah,2024,survey_estimate,per_capita,10.1,240,,Minyak dan kelapa
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/minyak_dan_kelapa,,26063,rupiah,2025,survey_estimate,per_capita,10.1,240,,Minyak dan kelapa
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/bahan_minuman,,28141,rupiah,2024,survey_estimate,per_capita,10.1,240,,Bahan minuman
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/bahan_minuman,,27237,rupiah,2025,survey_estimate,per_capita,10.1,240,,Bahan minuman
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/bumbu_bumbuan,,28321,rupiah,2024,survey_estimate,per_capita,10.1,240,,Bumbu-bumbuan
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/bumbu_bumbuan,,27601,rupiah,2025,survey_estimate,per_capita,10.1,240,,Bumbu-bumbuan
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/konsumsi_lainnya,,16984,rupiah,2024,survey_estimate,per_capita,10.1,240,,Konsumsi lainnya
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/konsumsi_lainnya,,14464,rupiah,2025,survey_estimate,per_capita,10.1,240,,Konsumsi lainnya
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,184335,rupiah,2024,survey_estimate,per_capita,10.1,240,,Makanan dan minuman jadi
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,200568,rupiah,2025,survey_estimate,per_capita,10.1,240,,Makanan dan minuman jadi
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/rokok,,83217,rupiah,2024,survey_estimate,per_capita,10.1,240,,Rokok
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/rokok,,81527,rupiah,2025,survey_estimate,per_capita,10.1,240,,Rokok
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/jumlah_makanan,,722164,rupiah,2024,survey_estimate,per_capita,10.1,240,,Jumlah makanan
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/jumlah_makanan,,773641,rupiah,2025,survey_estimate,per_capita,10.1,240,,Jumlah makanan
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,344261,rupiah,2024,survey_estimate,per_capita,10.1,240,,Perumahan dan fasilitas rumah tangga
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,334894,rupiah,2025,survey_estimate,per_capita,10.1,240,,Perumahan dan fasilitas rumah tangga
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,145073,rupiah,2024,survey_estimate,per_capita,10.1,240,,Aneka barang dan jasa
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,161889,rupiah,2025,survey_estimate,per_capita,10.1,240,,Aneka barang dan jasa
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,39138,rupiah,2024,survey_estimate,per_capita,10.1,240,,"Pakaian, alas kaki, dan tutup kepala"
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,36900,rupiah,2025,survey_estimate,per_capita,10.1,240,,"Pakaian, alas kaki, dan tutup kepala"
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/barang_tahan_lama,,28280,rupiah,2024,survey_estimate,per_capita,10.1,240,,Barang tahan lama
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/barang_tahan_lama,,25089,rupiah,2025,survey_estimate,per_capita,10.1,240,,Barang tahan lama
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,58679,rupiah,2024,survey_estimate,per_capita,10.1,240,,"Pajak, pungutan, dan asuransi"
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,61269,rupiah,2025,survey_estimate,per_capita,10.1,240,,"Pajak, pungutan, dan asuransi"
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,24820,rupiah,2024,survey_estimate,per_capita,10.1,240,,Keperluan pesta dan upacara/kenduri
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,30395,rupiah,2025,survey_estimate,per_capita,10.1,240,,Keperluan pesta dan upacara/kenduri
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,640251,rupiah,2024,survey_estimate,per_capita,10.1,240,,Jumlah bukan makanan
+21.04,2,Kabupaten Lingga,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,650436,rupiah,2025,survey_estimate,per_capita,10.1,240,,Jumlah bukan makanan
+21.04,2,Kabupaten Lingga,expenditure,total,,1362415,rupiah,2024,survey_estimate,per_capita,10.1,240,,
+21.04,2,Kabupaten Lingga,expenditure,total,,1424077,rupiah,2025,survey_estimate,per_capita,10.1,240,,

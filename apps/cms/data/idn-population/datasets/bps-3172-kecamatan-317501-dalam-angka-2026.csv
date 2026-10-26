@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+31.75.01.1005,4,Kebon Manggis,sex,laki_laki,,9385,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.75.01.1005,4,Kebon Manggis,sex,perempuan,,9224,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.75.01.1005,4,Kebon Manggis,total,total,,18609,jiwa,2025,registration,total_population,3.1,28,,
+31.75.01.1001,4,Pisangan Baru,sex,laki_laki,,18784,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.75.01.1001,4,Pisangan Baru,sex,perempuan,,18616,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.75.01.1001,4,Pisangan Baru,total,total,,37400,jiwa,2025,registration,total_population,3.1,28,,
+31.75.01.1003,4,Kayumanis,sex,laki_laki,,14426,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.75.01.1003,4,Kayumanis,sex,perempuan,,14830,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.75.01.1003,4,Kayumanis,total,total,,29256,jiwa,2025,registration,total_population,3.1,28,,
+31.75.01.1006,4,Utan Kayu Selatan,sex,laki_laki,,19643,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.75.01.1006,4,Utan Kayu Selatan,sex,perempuan,,19768,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.75.01.1006,4,Utan Kayu Selatan,total,total,,39411,jiwa,2025,registration,total_population,3.1,28,,
+31.75.01.1002,4,Utan Kayu Utara,sex,laki_laki,,16320,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.75.01.1002,4,Utan Kayu Utara,sex,perempuan,,16268,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.75.01.1002,4,Utan Kayu Utara,total,total,,32588,jiwa,2025,registration,total_population,3.1,28,,
+31.75.01,3,Kecamatan Matraman,sex,laki_laki,,89691,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.75.01,3,Kecamatan Matraman,sex,perempuan,,89959,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.75.01,3,Kecamatan Matraman,total,total,,179650,jiwa,2025,registration,total_population,3.1,28,,
+31.75.01,3,Matraman,age_group,0-4,laki_laki,5129,jiwa,2025,registration,total_population,3.2,30,,0-4
+31.75.01,3,Matraman,age_group,0-4,perempuan,4774,jiwa,2025,registration,total_population,3.2,30,,0-4
+31.75.01,3,Matraman,age_group,0-4,,9903,jiwa,2025,registration,total_population,3.2,30,,0-4
+31.75.01,3,Matraman,age_group,5-9,laki_laki,6923,jiwa,2025,registration,total_population,3.2,30,,5-9
+31.75.01,3,Matraman,age_group,5-9,perempuan,6469,jiwa,2025,registration,total_population,3.2,30,,5-9
+31.75.01,3,Matraman,age_group,5-9,,13392,jiwa,2025,registration,total_population,3.2,30,,5-9
+31.75.01,3,Matraman,age_group,10-14,laki_laki,7277,jiwa,2025,registration,total_population,3.2,30,,10-14
+31.75.01,3,Matraman,age_group,10-14,perempuan,6917,jiwa,2025,registration,total_population,3.2,30,,10-14
+31.75.01,3,Matraman,age_group,10-14,,14194,jiwa,2025,registration,total_population,3.2,30,,10-14
+31.75.01,3,Matraman,age_group,15-19,laki_laki,6942,jiwa,2025,registration,total_population,3.2,30,,15-19
+31.75.01,3,Matraman,age_group,15-19,perempuan,6536,jiwa,2025,registration,total_population,3.2,30,,15-19
+31.75.01,3,Matraman,age_group,15-19,,13478,jiwa,2025,registration,total_population,3.2,30,,15-19
+31.75.01,3,Matraman,age_group,20-24,laki_laki,7601,jiwa,2025,registration,total_population,3.2,30,,20-24
+31.75.01,3,Matraman,age_group,20-24,perempuan,6869,jiwa,2025,registration,total_population,3.2,30,,20-24
+31.75.01,3,Matraman,age_group,20-24,,14470,jiwa,2025,registration,total_population,3.2,30,,20-24
+31.75.01,3,Matraman,age_group,25-29,laki_laki,7230,jiwa,2025,registration,total_population,3.2,30,,25-29
+31.75.01,3,Matraman,age_group,25-29,perempuan,6893,jiwa,2025,registration,total_population,3.2,30,,25-29
+31.75.01,3,Matraman,age_group,25-29,,14123,jiwa,2025,registration,total_population,3.2,30,,25-29
+31.75.01,3,Matraman,age_group,30-34,laki_laki,6632,jiwa,2025,registration,total_population,3.2,30,,30-34
+31.75.01,3,Matraman,age_group,30-34,perempuan,6861,jiwa,2025,registration,total_population,3.2,30,,30-34
+31.75.01,3,Matraman,age_group,30-34,,13493,jiwa,2025,registration,total_population,3.2,30,,30-34
+31.75.01,3,Matraman,age_group,35-39,laki_laki,6353,jiwa,2025,registration,total_population,3.2,30,,35-39
+31.75.01,3,Matraman,age_group,35-39,perempuan,6182,jiwa,2025,registration,total_population,3.2,30,,35-39
+31.75.01,3,Matraman,age_group,35-39,,12535,jiwa,2025,registration,total_population,3.2,30,,35-39
+31.75.01,3,Matraman,age_group,40-44,laki_laki,6852,jiwa,2025,registration,total_population,3.2,30,,40-44
+31.75.01,3,Matraman,age_group,40-44,perempuan,7012,jiwa,2025,registration,total_population,3.2,30,,40-44
+31.75.01,3,Matraman,age_group,40-44,,13864,jiwa,2025,registration,total_population,3.2,30,,40-44
+31.75.01,3,Matraman,age_group,45-49,laki_laki,6665,jiwa,2025,registration,total_population,3.2,30,,45-49
+31.75.01,3,Matraman,age_group,45-49,perempuan,7026,jiwa,2025,registration,total_population,3.2,30,,45-49
+31.75.01,3,Matraman,age_group,45-49,,13691,jiwa,2025,registration,total_population,3.2,30,,45-49
+31.75.01,3,Matraman,age_group,50-54,laki_laki,6446,jiwa,2025,registration,total_population,3.2,30,,50-54
+31.75.01,3,Matraman,age_group,50-54,perempuan,6598,jiwa,2025,registration,total_population,3.2,30,,50-54
+31.75.01,3,Matraman,age_group,50-54,,13044,jiwa,2025,registration,total_population,3.2,30,,50-54
+31.75.01,3,Matraman,age_group,55-59,laki_laki,5684,jiwa,2025,registration,total_population,3.2,30,,55-59
+31.75.01,3,Matraman,age_group,55-59,perempuan,5898,jiwa,2025,registration,total_population,3.2,30,,55-59
+31.75.01,3,Matraman,age_group,55-59,,11582,jiwa,2025,registration,total_population,3.2,30,,55-59
+31.75.01,3,Matraman,age_group,60-64,laki_laki,4280,jiwa,2025,registration,total_population,3.2,30,,60-64
+31.75.01,3,Matraman,age_group,60-64,perempuan,4668,jiwa,2025,registration,total_population,3.2,30,,60-64
+31.75.01,3,Matraman,age_group,60-64,,8948,jiwa,2025,registration,total_population,3.2,30,,60-64
+31.75.01,3,Matraman,age_group,65-69,laki_laki,2803,jiwa,2025,registration,total_population,3.2,30,,65-69
+31.75.01,3,Matraman,age_group,65-69,perempuan,3187,jiwa,2025,registration,total_population,3.2,30,,65-69
+31.75.01,3,Matraman,age_group,65-69,,5990,jiwa,2025,registration,total_population,3.2,30,,65-69
+31.75.01,3,Matraman,age_group,70-75,laki_laki,1619,jiwa,2025,registration,total_population,3.2,30,,70-75
+31.75.01,3,Matraman,age_group,70-75,perempuan,2006,jiwa,2025,registration,total_population,3.2,30,,70-75
+31.75.01,3,Matraman,age_group,70-75,,3625,jiwa,2025,registration,total_population,3.2,30,,70-75
+31.75.01,3,Matraman,age_group,75+,laki_laki,1255,jiwa,2025,registration,total_population,3.2,30,,75+
+31.75.01,3,Matraman,age_group,75+,perempuan,2063,jiwa,2025,registration,total_population,3.2,30,,75+
+31.75.01,3,Matraman,age_group,75+,,3318,jiwa,2025,registration,total_population,3.2,30,,75+
+31.75.01,3,Kecamatan Matraman,sex,laki_laki,,89691,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+31.75.01,3,Kecamatan Matraman,sex,perempuan,,89959,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+31.75.01,3,Kecamatan Matraman,total,total,,179650,jiwa,2025,registration,total_population,3.2,30,,

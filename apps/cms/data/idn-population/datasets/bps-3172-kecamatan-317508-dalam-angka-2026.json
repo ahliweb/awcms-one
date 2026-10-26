@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3172-kecamatan-317508-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "31.75.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Makasar Dalam Angka 2026",
+  "publisherName": "BPS Kota Jakarta Timur",
+  "publisherDomain": "3172",
+  "publisherWebsite": "https://jaktimkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Jakarta Timur (https://jaktimkota.bps.go.id), publikasi \"Kecamatan Makasar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3172040",
+  "publicationNumber": "31720.25010",
+  "issn": "0852-2065",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jaktimkota.bps.go.id/id/publication/2026/09/28/74307fbab13ceb713a82341a/kecamatan-makasar-dalam-angka-2026.html",
+  "sourceFileSha256": "79d6b1fc17152978fe64a1a1e51c6228e7d58c264a477e656b956b5c6d801b99",
+  "sourceFileBytes": 5211750,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kota Jakarta Timur.",
+  "csvPath": "datasets/bps-3172-kecamatan-317508-dalam-angka-2026.csv",
+  "csvSha256": "7c860bca18a80b32d8d16ccb75631f837bfe5a4cff36e0f1c22d713d55be12e2",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Makasar, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Makasar, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Halim Perdana Kusumah\": unmatched ",
+    "table 3.1: row not stored: row \"Halim Perdana Kusumah\": unmatched "
+  ]
+}

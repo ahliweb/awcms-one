@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3274-kecamatan-327403-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.74.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Harjamukti Dalam Angka 2026",
+  "publisherName": "BPS Kota Cirebon",
+  "publisherDomain": "3274",
+  "publisherWebsite": "https://cirebonkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Cirebon (https://cirebonkota.bps.go.id), publikasi \"Kecamatan Harjamukti Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3274010",
+  "publicationNumber": null,
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://cirebonkota.bps.go.id/id/publication/2026/09/28/798be350b026770fe03bd5cb/kecamatan-harjamukti-dalam-angka-2026.html",
+  "sourceFileSha256": "b9a366a59fe59d4d2e668b2743ead3e3ba963d104616f0c771cb0e3e112bf3fd",
+  "sourceFileBytes": 8551289,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Cirebon",
+  "csvPath": "datasets/bps-3274-kecamatan-327403-dalam-angka-2026.csv",
+  "csvSha256": "127c9e5e131efea55d446298eb7ad4650258da66e514a9b42592ea61cd41f732",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Harjamukti , 202 5",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Harjamukti , 202 5",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"Nama Kecamatan\": unmatched ",
+    "table 3.2: 47 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

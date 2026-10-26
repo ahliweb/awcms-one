@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+19.02.04.2002,4,Batu Itam,sex,laki_laki,,1371,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.04.2002,4,Batu Itam,sex,perempuan,,1317,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.04.2002,4,Batu Itam,total,total,,2688,jiwa,2025,registration,total_population,3.1,27,,
+19.02.04.2003,4,Terong,sex,laki_laki,,1429,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.04.2003,4,Terong,sex,perempuan,,1401,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.04.2003,4,Terong,total,total,,2830,jiwa,2025,registration,total_population,3.1,27,,
+19.02.04.2004,4,Air Seruk,sex,laki_laki,,3287,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.04.2004,4,Air Seruk,sex,perempuan,,3168,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.04.2004,4,Air Seruk,total,total,,6455,jiwa,2025,registration,total_population,3.1,27,,
+19.02.04.2006,4,Air Selumar,sex,laki_laki,,1786,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.04.2006,4,Air Selumar,sex,perempuan,,1712,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.04.2006,4,Air Selumar,total,total,,3498,jiwa,2025,registration,total_population,3.1,27,,
+19.02.04.2005,4,Tanjung Binga,sex,laki_laki,,3417,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.04.2005,4,Tanjung Binga,sex,perempuan,,3250,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.04.2005,4,Tanjung Binga,total,total,,6667,jiwa,2025,registration,total_population,3.1,27,,
+19.02.04.2008,4,Keciput,sex,laki_laki,,1359,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.04.2008,4,Keciput,sex,perempuan,,1301,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.04.2008,4,Keciput,total,total,,2660,jiwa,2025,registration,total_population,3.1,27,,
+19.02.04.2001,4,Sijuk,sex,laki_laki,,1645,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.04.2001,4,Sijuk,sex,perempuan,,1603,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.04.2001,4,Sijuk,total,total,,3248,jiwa,2025,registration,total_population,3.1,27,,
+19.02.04.2007,4,Sungai Padang,sex,laki_laki,,1297,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.04.2007,4,Sungai Padang,sex,perempuan,,1213,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.04.2007,4,Sungai Padang,total,total,,2510,jiwa,2025,registration,total_population,3.1,27,,
+19.02.04.2010,4,Tanjong Tinggi,sex,laki_laki,,588,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.04.2010,4,Tanjong Tinggi,sex,perempuan,,582,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.04.2010,4,Tanjong Tinggi,total,total,,1170,jiwa,2025,registration,total_population,3.1,27,,
+19.02.04.2009,4,Pelepak Pute,sex,laki_laki,,1065,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.04.2009,4,Pelepak Pute,sex,perempuan,,945,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.04.2009,4,Pelepak Pute,total,total,,2010,jiwa,2025,registration,total_population,3.1,27,,
+19.02.04,3,Kecamatan Sijuk,sex,laki_laki,,17244,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.04,3,Kecamatan Sijuk,sex,perempuan,,16492,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.04,3,Kecamatan Sijuk,total,total,,33736,jiwa,2025,registration,total_population,3.1,27,,
+19.02.04,3,Sijuk,age_group,0-4,laki_laki,1154,jiwa,2025,registration,total_population,3.2,29,,0–4
+19.02.04,3,Sijuk,age_group,0-4,perempuan,1094,jiwa,2025,registration,total_population,3.2,29,,0–4
+19.02.04,3,Sijuk,age_group,0-4,,2248,jiwa,2025,registration,total_population,3.2,29,,0–4
+19.02.04,3,Sijuk,age_group,5-9,laki_laki,1245,jiwa,2025,registration,total_population,3.2,29,,5–9
+19.02.04,3,Sijuk,age_group,5-9,perempuan,1261,jiwa,2025,registration,total_population,3.2,29,,5–9
+19.02.04,3,Sijuk,age_group,5-9,,2506,jiwa,2025,registration,total_population,3.2,29,,5–9
+19.02.04,3,Sijuk,age_group,10-14,laki_laki,1477,jiwa,2025,registration,total_population,3.2,29,,10–14
+19.02.04,3,Sijuk,age_group,10-14,perempuan,1386,jiwa,2025,registration,total_population,3.2,29,,10–14
+19.02.04,3,Sijuk,age_group,10-14,,2863,jiwa,2025,registration,total_population,3.2,29,,10–14
+19.02.04,3,Sijuk,age_group,15-19,laki_laki,1380,jiwa,2025,registration,total_population,3.2,29,,15–19
+19.02.04,3,Sijuk,age_group,15-19,perempuan,1384,jiwa,2025,registration,total_population,3.2,29,,15–19
+19.02.04,3,Sijuk,age_group,15-19,,2764,jiwa,2025,registration,total_population,3.2,29,,15–19
+19.02.04,3,Sijuk,age_group,20-24,laki_laki,1517,jiwa,2025,registration,total_population,3.2,29,,20–24
+19.02.04,3,Sijuk,age_group,20-24,perempuan,1438,jiwa,2025,registration,total_population,3.2,29,,20–24
+19.02.04,3,Sijuk,age_group,20-24,,2955,jiwa,2025,registration,total_population,3.2,29,,20–24
+19.02.04,3,Sijuk,age_group,25-29,laki_laki,1410,jiwa,2025,registration,total_population,3.2,29,,25–29
+19.02.04,3,Sijuk,age_group,25-29,perempuan,1334,jiwa,2025,registration,total_population,3.2,29,,25–29
+19.02.04,3,Sijuk,age_group,25-29,,2744,jiwa,2025,registration,total_population,3.2,29,,25–29
+19.02.04,3,Sijuk,age_group,30-34,laki_laki,1250,jiwa,2025,registration,total_population,3.2,29,,30–34
+19.02.04,3,Sijuk,age_group,30-34,perempuan,1214,jiwa,2025,registration,total_population,3.2,29,,30–34
+19.02.04,3,Sijuk,age_group,30-34,,2464,jiwa,2025,registration,total_population,3.2,29,,30–34
+19.02.04,3,Sijuk,age_group,35-39,laki_laki,1275,jiwa,2025,registration,total_population,3.2,29,,35–39
+19.02.04,3,Sijuk,age_group,35-39,perempuan,1166,jiwa,2025,registration,total_population,3.2,29,,35–39
+19.02.04,3,Sijuk,age_group,35-39,,2441,jiwa,2025,registration,total_population,3.2,29,,35–39
+19.02.04,3,Sijuk,age_group,40-44,laki_laki,1341,jiwa,2025,registration,total_population,3.2,29,,40–44
+19.02.04,3,Sijuk,age_group,40-44,perempuan,1269,jiwa,2025,registration,total_population,3.2,29,,40–44
+19.02.04,3,Sijuk,age_group,40-44,,2610,jiwa,2025,registration,total_population,3.2,29,,40–44
+19.02.04,3,Sijuk,age_group,45-49,laki_laki,1463,jiwa,2025,registration,total_population,3.2,29,,45–49
+19.02.04,3,Sijuk,age_group,45-49,perempuan,1247,jiwa,2025,registration,total_population,3.2,29,,45–49
+19.02.04,3,Sijuk,age_group,45-49,,2710,jiwa,2025,registration,total_population,3.2,29,,45–49
+19.02.04,3,Sijuk,age_group,50-54,laki_laki,1075,jiwa,2025,registration,total_population,3.2,29,,50–54
+19.02.04,3,Sijuk,age_group,50-54,perempuan,1014,jiwa,2025,registration,total_population,3.2,29,,50–54
+19.02.04,3,Sijuk,age_group,50-54,,2089,jiwa,2025,registration,total_population,3.2,29,,50–54
+19.02.04,3,Sijuk,age_group,55-59,laki_laki,845,jiwa,2025,registration,total_population,3.2,29,,55–59
+19.02.04,3,Sijuk,age_group,55-59,perempuan,771,jiwa,2025,registration,total_population,3.2,29,,55–59
+19.02.04,3,Sijuk,age_group,55-59,,1616,jiwa,2025,registration,total_population,3.2,29,,55–59
+19.02.04,3,Sijuk,age_group,60-64,laki_laki,687,jiwa,2025,registration,total_population,3.2,29,,60–64
+19.02.04,3,Sijuk,age_group,60-64,perempuan,691,jiwa,2025,registration,total_population,3.2,29,,60–64
+19.02.04,3,Sijuk,age_group,60-64,,1378,jiwa,2025,registration,total_population,3.2,29,,60–64
+19.02.04,3,Sijuk,age_group,65-69,laki_laki,493,jiwa,2025,registration,total_population,3.2,29,,65–69
+19.02.04,3,Sijuk,age_group,65-69,perempuan,463,jiwa,2025,registration,total_population,3.2,29,,65–69
+19.02.04,3,Sijuk,age_group,65-69,,956,jiwa,2025,registration,total_population,3.2,29,,65–69
+19.02.04,3,Sijuk,age_group,70-74,laki_laki,319,jiwa,2025,registration,total_population,3.2,29,,70–74
+19.02.04,3,Sijuk,age_group,70-74,perempuan,363,jiwa,2025,registration,total_population,3.2,29,,70–74
+19.02.04,3,Sijuk,age_group,70-74,,682,jiwa,2025,registration,total_population,3.2,29,,70–74
+19.02.04,3,Sijuk,age_group,75+,laki_laki,313,jiwa,2025,registration,total_population,3.2,29,,75+
+19.02.04,3,Sijuk,age_group,75+,perempuan,397,jiwa,2025,registration,total_population,3.2,29,,75+
+19.02.04,3,Sijuk,age_group,75+,,710,jiwa,2025,registration,total_population,3.2,29,,75+
+19.02.04,3,Kecamatan Sijuk,sex,laki_laki,,17244,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+19.02.04,3,Kecamatan Sijuk,sex,perempuan,,16492,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+19.02.04,3,Kecamatan Sijuk,total,total,,33736,jiwa,2025,registration,total_population,3.2,29,,

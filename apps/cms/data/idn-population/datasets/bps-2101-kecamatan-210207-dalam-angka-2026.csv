@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.02.07.2003,4,Sungai Ungar Utara,sex,laki_laki,,1210,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.02.07.2003,4,Sungai Ungar Utara,sex,perempuan,,1162,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.02.07.2003,4,Sungai Ungar Utara,total,total,,2372,jiwa,2025,registration,total_population,3.1,32,,
+21.02.07.1012,4,Tanjung Berlian Kota,sex,laki_laki,,2130,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.02.07.1012,4,Tanjung Berlian Kota,sex,perempuan,,1982,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.02.07.1012,4,Tanjung Berlian Kota,total,total,,4112,jiwa,2025,registration,total_population,3.1,32,,
+21.02.07.2004,4,Teluk Radang,sex,laki_laki,,1062,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.02.07.2004,4,Teluk Radang,sex,perempuan,,1008,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.02.07.2004,4,Teluk Radang,total,total,,2070,jiwa,2025,registration,total_population,3.1,32,,
+21.02.07.2013,4,Tanjung Berlian Barat,sex,laki_laki,,1389,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.02.07.2013,4,Tanjung Berlian Barat,sex,perempuan,,1299,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.02.07.2013,4,Tanjung Berlian Barat,total,total,,2688,jiwa,2025,registration,total_population,3.1,32,,
+21.02.07.2010,4,Perayun,sex,laki_laki,,937,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.02.07.2010,4,Perayun,sex,perempuan,,894,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.02.07.2010,4,Perayun,total,total,,1831,jiwa,2025,registration,total_population,3.1,32,,
+21.02.07,3,Kundur Utara,sex,laki_laki,,6728,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.02.07,3,Kundur Utara,sex,perempuan,,6345,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.02.07,3,Kundur Utara,total,total,,13073,jiwa,2025,registration,total_population,3.1,32,,

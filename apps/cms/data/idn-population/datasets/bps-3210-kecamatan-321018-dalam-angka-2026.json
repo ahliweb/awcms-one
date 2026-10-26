@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3210-kecamatan-321018-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.10.18",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Panyingkiran Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Majalengka",
+  "publisherDomain": "3210",
+  "publisherWebsite": "https://majalengkakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Majalengka (https://majalengkakab.bps.go.id), publikasi \"Kecamatan Panyingkiran Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3210010",
+  "publicationNumber": "32100.26025",
+  "issn": "2747-1098",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://majalengkakab.bps.go.id/id/publication/2026/09/28/9efcf4baffb7f30ac49a752a/kecamatan-panyingkiran-dalam-angka-2026.html",
+  "sourceFileSha256": "b4793b379072b459126f8bafe23e8305aa84fa5b231ed9ee17ed6da17b61f293",
+  "sourceFileBytes": 21327083,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Majalengka.",
+  "csvPath": "datasets/bps-3210-kecamatan-321018-dalam-angka-2026.csv",
+  "csvSha256": "1ccbda5634bfbb68d0fbf00bef5e462bbefc8a5de3ccfce69a9868c4df8cbb53",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Panyingkiran, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Panyingkiran, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

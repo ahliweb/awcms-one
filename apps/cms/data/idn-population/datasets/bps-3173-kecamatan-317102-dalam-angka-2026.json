@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3173-kecamatan-317102-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "31.71.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sawah Besar Dalam Angka 2026",
+  "publisherName": "BPS Kota Jakarta Pusat",
+  "publisherDomain": "3173",
+  "publisherWebsite": "https://jakpuskota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Jakarta Pusat (https://jakpuskota.bps.go.id), publikasi \"Kecamatan Sawah Besar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3173070",
+  "publicationNumber": "31730.26011",
+  "issn": "0852-2189",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jakpuskota.bps.go.id/id/publication/2026/09/28/cc909ab7a3e309d070ec9a9c/kecamatan-sawah-besar-dalam-angka-2026.html",
+  "sourceFileSha256": "b5e1ec0018269295de3a209cad978d732720b37ae7e27543f54fc900d33f5243",
+  "sourceFileBytes": 14043201,
+  "sourcePages": [29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Jakarta Pusat.",
+  "csvPath": "datasets/bps-3173-kecamatan-317102-dalam-angka-2026.csv",
+  "csvSha256": "2eb98e81d8704c11d2fe17dc112c9f9708c57621189f641f661b24e4ed9325ab",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Sawah Besar , 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

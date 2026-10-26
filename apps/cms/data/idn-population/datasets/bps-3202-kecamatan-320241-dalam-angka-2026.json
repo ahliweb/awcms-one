@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3202-kecamatan-320241-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.02.41",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sagaranten Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sukabumi BPS-Statistics of Sukabumi Regency Sumber Ilustrasi",
+  "publisherDomain": "3202",
+  "publisherWebsite": "https://sukabumikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sukabumi BPS-Statistics of Sukabumi Regency Sumber Ilustrasi (https://sukabumikab.bps.go.id), publikasi \"Kecamatan Sagaranten Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3202080",
+  "publicationNumber": "32020.26014",
+  "issn": "2797-7927",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sukabumikab.bps.go.id/id/publication/2026/09/28/fb9f9b6b89877b6ea9a273ed/kecamatan-sagaranten-dalam-angka-2026.html",
+  "sourceFileSha256": "4e1e7763ddf1e3d6b429a443b1108ef6ccf6613480061abf033f206a4405dc8f",
+  "sourceFileBytes": 6117367,
+  "sourcePages": [24, 25],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sukabumi.",
+  "csvPath": "datasets/bps-3202-kecamatan-320241-dalam-angka-2026.csv",
+  "csvSha256": "65ceb3fdb81657ca4ecce2afcf4ab83239c067da0868ce217b7591fb6e5da3cc",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Jumlah Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Sagaranten, 2025",
+      "printedPages": [24, 25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

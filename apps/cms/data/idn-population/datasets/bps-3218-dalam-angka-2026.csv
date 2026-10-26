@@ -1,0 +1,113 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.18.03,3,Cimerak,religion,islam,,49067,jiwa,2025,registration,total_population,4.3.1,131,,Islam
+32.18.03,3,Cimerak,religion,kristen,,30,jiwa,2025,registration,total_population,4.3.1,131,,Protestan
+32.18.03,3,Cimerak,religion,katolik,,4,jiwa,2025,registration,total_population,4.3.1,131,,Katolik
+32.18.03,3,Cimerak,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Hindu
+32.18.03,3,Cimerak,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,131,,Budha
+32.18.03,3,Cimerak,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Lainnya
+32.18.02,3,Cijulang,religion,islam,,28451,jiwa,2025,registration,total_population,4.3.1,131,,Islam
+32.18.02,3,Cijulang,religion,kristen,,4,jiwa,2025,registration,total_population,4.3.1,131,,Protestan
+32.18.02,3,Cijulang,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Katolik
+32.18.02,3,Cijulang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Hindu
+32.18.02,3,Cijulang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Budha
+32.18.02,3,Cijulang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Lainnya
+32.18.04,3,Cigugur,religion,islam,,51485,jiwa,2025,registration,total_population,4.3.1,131,,Islam
+32.18.04,3,Cigugur,religion,kristen,,2,jiwa,2025,registration,total_population,4.3.1,131,,Protestan
+32.18.04,3,Cigugur,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Katolik
+32.18.04,3,Cigugur,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Hindu
+32.18.04,3,Cigugur,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,131,,Budha
+32.18.04,3,Cigugur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Lainnya
+32.18.05,3,Langkaplancar,religion,islam,,24178,jiwa,2025,registration,total_population,4.3.1,131,,Islam
+32.18.05,3,Langkaplancar,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Protestan
+32.18.05,3,Langkaplancar,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Katolik
+32.18.05,3,Langkaplancar,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Hindu
+32.18.05,3,Langkaplancar,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Budha
+32.18.05,3,Langkaplancar,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Lainnya
+32.18.01,3,Parigi,religion,islam,,54102,jiwa,2025,registration,total_population,4.3.1,131,,Islam
+32.18.01,3,Parigi,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Protestan
+32.18.01,3,Parigi,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Katolik
+32.18.01,3,Parigi,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Hindu
+32.18.01,3,Parigi,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Budha
+32.18.01,3,Parigi,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Lainnya
+32.18.10,3,Sidamulih,religion,islam,,34355,jiwa,2025,registration,total_population,4.3.1,131,,Islam
+32.18.10,3,Sidamulih,religion,kristen,,2,jiwa,2025,registration,total_population,4.3.1,131,,Protestan
+32.18.10,3,Sidamulih,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Katolik
+32.18.10,3,Sidamulih,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Hindu
+32.18.10,3,Sidamulih,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,131,,Budha
+32.18.10,3,Sidamulih,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Lainnya
+32.18.09,3,Pangandaran,religion,islam,,71942,jiwa,2025,registration,total_population,4.3.1,131,,Islam
+32.18.09,3,Pangandaran,religion,kristen,,7,jiwa,2025,registration,total_population,4.3.1,131,,Protestan
+32.18.09,3,Pangandaran,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Katolik
+32.18.09,3,Pangandaran,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Hindu
+32.18.09,3,Pangandaran,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Budha
+32.18.09,3,Pangandaran,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Lainnya
+32.18.08,3,Kalipucang,religion,islam,,40405,jiwa,2025,registration,total_population,4.3.1,131,,Islam
+32.18.08,3,Kalipucang,religion,kristen,,18,jiwa,2025,registration,total_population,4.3.1,131,,Protestan
+32.18.08,3,Kalipucang,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Katolik
+32.18.08,3,Kalipucang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Hindu
+32.18.08,3,Kalipucang,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,131,,Budha
+32.18.08,3,Kalipucang,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,131,,Lainnya
+32.18.07,3,Padaherang,religion,islam,,62983,jiwa,2025,registration,total_population,4.3.1,131,,Islam
+32.18.07,3,Padaherang,religion,kristen,,242,jiwa,2025,registration,total_population,4.3.1,131,,Protestan
+32.18.07,3,Padaherang,religion,katolik,,58,jiwa,2025,registration,total_population,4.3.1,131,,Katolik
+32.18.07,3,Padaherang,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,131,,Hindu
+32.18.07,3,Padaherang,religion,buddha,,13,jiwa,2025,registration,total_population,4.3.1,131,,Budha
+32.18.07,3,Padaherang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Lainnya
+32.18.06,3,Mangunjaya,religion,islam,,31571,jiwa,2025,registration,total_population,4.3.1,131,,Islam
+32.18.06,3,Mangunjaya,religion,kristen,,46,jiwa,2025,registration,total_population,4.3.1,131,,Protestan
+32.18.06,3,Mangunjaya,religion,katolik,,8,jiwa,2025,registration,total_population,4.3.1,131,,Katolik
+32.18.06,3,Mangunjaya,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Hindu
+32.18.06,3,Mangunjaya,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Budha
+32.18.06,3,Mangunjaya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,131,nil,Lainnya
+32.18,2,Kabupaten Pangandaran,religion,islam,,448539,jiwa,2025,registration,total_population,4.3.1,131,,Islam
+32.18,2,Kabupaten Pangandaran,religion,kristen,,351,jiwa,2025,registration,total_population,4.3.1,131,,Protestan
+32.18,2,Kabupaten Pangandaran,religion,katolik,,70,jiwa,2025,registration,total_population,4.3.1,131,,Katolik
+32.18,2,Kabupaten Pangandaran,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,131,,Hindu
+32.18,2,Kabupaten Pangandaran,religion,buddha,,18,jiwa,2025,registration,total_population,4.3.1,131,,Budha
+32.18,2,Kabupaten Pangandaran,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,131,,Lainnya
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/padi_padian,,91751,rupiah,2024,survey_estimate,per_capita,10.1,313,,Padi-padian
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/padi_padian,,104797,rupiah,2025,survey_estimate,per_capita,10.1,313,,Padi-padian
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/umbi_umbian,,10970,rupiah,2024,survey_estimate,per_capita,10.1,313,,Umbi-umbian
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/umbi_umbian,,10113,rupiah,2025,survey_estimate,per_capita,10.1,313,,Umbi-umbian
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,56769,rupiah,2024,survey_estimate,per_capita,10.1,313,,Ikan/udang/cumi/kerang
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,56233,rupiah,2025,survey_estimate,per_capita,10.1,313,,Ikan/udang/cumi/kerang
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/daging,,35774,rupiah,2024,survey_estimate,per_capita,10.1,313,,Daging
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/daging,,39387,rupiah,2025,survey_estimate,per_capita,10.1,313,,Daging
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/telur_dan_susu,,26570,rupiah,2024,survey_estimate,per_capita,10.1,313,,Telur dan susu
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/telur_dan_susu,,27699,rupiah,2025,survey_estimate,per_capita,10.1,313,,Telur dan susu
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/sayur_sayuran,,59386,rupiah,2024,survey_estimate,per_capita,10.1,313,,Sayur-sayuran
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/sayur_sayuran,,67748,rupiah,2025,survey_estimate,per_capita,10.1,313,,Sayur-sayuran
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/kacang_kacangan,,16265,rupiah,2024,survey_estimate,per_capita,10.1,313,,Kacang-kacangan
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/kacang_kacangan,,14812,rupiah,2025,survey_estimate,per_capita,10.1,313,,Kacang-kacangan
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/buah_buahan,,32986,rupiah,2024,survey_estimate,per_capita,10.1,313,,Buah-buahan
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/buah_buahan,,47894,rupiah,2025,survey_estimate,per_capita,10.1,313,,Buah-buahan
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16278,rupiah,2024,survey_estimate,per_capita,10.1,313,,Minyak dan kelapa
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19665,rupiah,2025,survey_estimate,per_capita,10.1,313,,Minyak dan kelapa
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/bahan_minuman,,24058,rupiah,2024,survey_estimate,per_capita,10.1,313,,Bahan minuman
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/bahan_minuman,,27868,rupiah,2025,survey_estimate,per_capita,10.1,313,,Bahan minuman
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/bumbu_bumbuan,,17033,rupiah,2024,survey_estimate,per_capita,10.1,313,,Bumbu-bumbuan
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/bumbu_bumbuan,,17005,rupiah,2025,survey_estimate,per_capita,10.1,313,,Bumbu-bumbuan
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/konsumsi_lainnya,,13263,rupiah,2024,survey_estimate,per_capita,10.1,313,,Konsumsi lainnya
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/konsumsi_lainnya,,12860,rupiah,2025,survey_estimate,per_capita,10.1,313,,Konsumsi lainnya
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,205690,rupiah,2024,survey_estimate,per_capita,10.1,313,,Makanan dan minuman jadi
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,215103,rupiah,2025,survey_estimate,per_capita,10.1,313,,Makanan dan minuman jadi
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/rokok,,113962,rupiah,2024,survey_estimate,per_capita,10.1,313,,Rokok
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/rokok,,103427,rupiah,2025,survey_estimate,per_capita,10.1,313,,Rokok
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/jumlah_makanan,,720756,rupiah,2024,survey_estimate,per_capita,10.1,313,,Jumlah makanan
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/jumlah_makanan,,764611,rupiah,2025,survey_estimate,per_capita,10.1,313,,Jumlah makanan
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,302061,rupiah,2024,survey_estimate,per_capita,10.1,313,,Perumahan dan fasilitas rumah tangga
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,293721,rupiah,2025,survey_estimate,per_capita,10.1,313,,Perumahan dan fasilitas rumah tangga
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,116859,rupiah,2024,survey_estimate,per_capita,10.1,313,,Aneka barang dan jasa
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,139435,rupiah,2025,survey_estimate,per_capita,10.1,313,,Aneka barang dan jasa
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,36195,rupiah,2024,survey_estimate,per_capita,10.1,313,,"Pakaian, alas kaki, dan tutup kepala"
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,37943,rupiah,2025,survey_estimate,per_capita,10.1,313,,"Pakaian, alas kaki, dan tutup kepala"
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/barang_tahan_lama,,44244,rupiah,2024,survey_estimate,per_capita,10.1,313,,Barang tahan lama
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/barang_tahan_lama,,54075,rupiah,2025,survey_estimate,per_capita,10.1,313,,Barang tahan lama
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,51251,rupiah,2024,survey_estimate,per_capita,10.1,313,,"Pajak, pungutan, dan asuransi"
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,55359,rupiah,2025,survey_estimate,per_capita,10.1,313,,"Pajak, pungutan, dan asuransi"
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,22274,rupiah,2024,survey_estimate,per_capita,10.1,313,,Keperluan pesta dan upacara/kenduri
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,35445,rupiah,2025,survey_estimate,per_capita,10.1,313,,Keperluan pesta dan upacara/kenduri
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,572884,rupiah,2024,survey_estimate,per_capita,10.1,313,,Jumlah bukan makanan
+32.18,2,Kabupaten Pangandaran,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,615978,rupiah,2025,survey_estimate,per_capita,10.1,313,,Jumlah bukan makanan
+32.18,2,Kabupaten Pangandaran,expenditure,total,,1293640,rupiah,2024,survey_estimate,per_capita,10.1,313,,
+32.18,2,Kabupaten Pangandaran,expenditure,total,,1380589,rupiah,2025,survey_estimate,per_capita,10.1,313,,

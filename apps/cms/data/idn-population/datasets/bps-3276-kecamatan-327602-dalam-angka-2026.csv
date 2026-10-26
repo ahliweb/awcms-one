@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.76.02.1008,4,Curug,sex,laki_laki,,11175,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+32.76.02.1008,4,Curug,sex,perempuan,,11288,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+32.76.02.1008,4,Curug,total,total,,22463,jiwa,2025,registration,total_population,3.1,22,,
+32.76.02.1007,4,Harjamukti,sex,laki_laki,,12713,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+32.76.02.1007,4,Harjamukti,sex,perempuan,,12775,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+32.76.02.1007,4,Harjamukti,total,total,,25488,jiwa,2025,registration,total_population,3.1,22,,
+32.76.02.1012,4,Cisalak Pasar,sex,laki_laki,,12546,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+32.76.02.1012,4,Cisalak Pasar,sex,perempuan,,12609,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+32.76.02.1012,4,Cisalak Pasar,total,total,,25155,jiwa,2025,registration,total_population,3.1,22,,
+32.76.02.1010,4,Mekarsari,sex,laki_laki,,24111,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+32.76.02.1010,4,Mekarsari,sex,perempuan,,24525,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+32.76.02.1010,4,Mekarsari,total,total,,48636,jiwa,2025,registration,total_population,3.1,22,,
+32.76.02.1009,4,Tugu,sex,laki_laki,,42999,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+32.76.02.1009,4,Tugu,sex,perempuan,,43053,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+32.76.02.1009,4,Tugu,total,total,,86052,jiwa,2025,registration,total_population,3.1,22,,
+32.76.02.1011,4,Pasir Gunung Selatan,sex,laki_laki,,18645,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+32.76.02.1011,4,Pasir Gunung Selatan,sex,perempuan,,16320,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+32.76.02.1011,4,Pasir Gunung Selatan,total,total,,34965,jiwa,2025,registration,total_population,3.1,22,,
+32.76.02,3,Kecamatan Cimanggis,sex,laki_laki,,122189,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+32.76.02,3,Kecamatan Cimanggis,sex,perempuan,,120570,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+32.76.02,3,Kecamatan Cimanggis,total,total,,242759,jiwa,2025,registration,total_population,3.1,22,,
+32.76.02,3,Cimanggis,age_group,0-4,laki_laki,7718,jiwa,2025,registration,total_population,3.2,25,,0-4
+32.76.02,3,Cimanggis,age_group,0-4,perempuan,7193,jiwa,2025,registration,total_population,3.2,25,,0-4
+32.76.02,3,Cimanggis,age_group,0-4,,14911,jiwa,2025,registration,total_population,3.2,25,,0-4
+32.76.02,3,Cimanggis,age_group,5-9,laki_laki,9922,jiwa,2025,registration,total_population,3.2,25,,5-9
+32.76.02,3,Cimanggis,age_group,5-9,perempuan,9624,jiwa,2025,registration,total_population,3.2,25,,5-9
+32.76.02,3,Cimanggis,age_group,5-9,,19546,jiwa,2025,registration,total_population,3.2,25,,5-9
+32.76.02,3,Cimanggis,age_group,10-14,laki_laki,9740,jiwa,2025,registration,total_population,3.2,25,,10-14
+32.76.02,3,Cimanggis,age_group,10-14,perempuan,9189,jiwa,2025,registration,total_population,3.2,25,,10-14
+32.76.02,3,Cimanggis,age_group,10-14,,18929,jiwa,2025,registration,total_population,3.2,25,,10-14
+32.76.02,3,Cimanggis,age_group,15-19,laki_laki,9366,jiwa,2025,registration,total_population,3.2,25,,15-19
+32.76.02,3,Cimanggis,age_group,15-19,perempuan,8469,jiwa,2025,registration,total_population,3.2,25,,15-19
+32.76.02,3,Cimanggis,age_group,15-19,,17835,jiwa,2025,registration,total_population,3.2,25,,15-19
+32.76.02,3,Cimanggis,age_group,20-24,laki_laki,10922,jiwa,2025,registration,total_population,3.2,25,,20-24
+32.76.02,3,Cimanggis,age_group,20-24,perempuan,8988,jiwa,2025,registration,total_population,3.2,25,,20-24
+32.76.02,3,Cimanggis,age_group,20-24,,19910,jiwa,2025,registration,total_population,3.2,25,,20-24
+32.76.02,3,Cimanggis,age_group,25-29,laki_laki,10213,jiwa,2025,registration,total_population,3.2,25,,25-29
+32.76.02,3,Cimanggis,age_group,25-29,perempuan,9675,jiwa,2025,registration,total_population,3.2,25,,25-29
+32.76.02,3,Cimanggis,age_group,25-29,,19888,jiwa,2025,registration,total_population,3.2,25,,25-29
+32.76.02,3,Cimanggis,age_group,30-34,laki_laki,9755,jiwa,2025,registration,total_population,3.2,25,,30-34
+32.76.02,3,Cimanggis,age_group,30-34,perempuan,9900,jiwa,2025,registration,total_population,3.2,25,,30-34
+32.76.02,3,Cimanggis,age_group,30-34,,19655,jiwa,2025,registration,total_population,3.2,25,,30-34
+32.76.02,3,Cimanggis,age_group,35-39,laki_laki,8756,jiwa,2025,registration,total_population,3.2,25,,35-39
+32.76.02,3,Cimanggis,age_group,35-39,perempuan,9182,jiwa,2025,registration,total_population,3.2,25,,35-39
+32.76.02,3,Cimanggis,age_group,35-39,,17938,jiwa,2025,registration,total_population,3.2,25,,35-39
+32.76.02,3,Cimanggis,age_group,40-44,laki_laki,9332,jiwa,2025,registration,total_population,3.2,25,,40-44
+32.76.02,3,Cimanggis,age_group,40-44,perempuan,9939,jiwa,2025,registration,total_population,3.2,25,,40-44
+32.76.02,3,Cimanggis,age_group,40-44,,19271,jiwa,2025,registration,total_population,3.2,25,,40-44
+32.76.02,3,Cimanggis,age_group,45-49,laki_laki,9373,jiwa,2025,registration,total_population,3.2,25,,45-49
+32.76.02,3,Cimanggis,age_group,45-49,perempuan,9172,jiwa,2025,registration,total_population,3.2,25,,45-49
+32.76.02,3,Cimanggis,age_group,45-49,,18545,jiwa,2025,registration,total_population,3.2,25,,45-49
+32.76.02,3,Cimanggis,age_group,50-54,laki_laki,7777,jiwa,2025,registration,total_population,3.2,25,,50-54
+32.76.02,3,Cimanggis,age_group,50-54,perempuan,8016,jiwa,2025,registration,total_population,3.2,25,,50-54
+32.76.02,3,Cimanggis,age_group,50-54,,15793,jiwa,2025,registration,total_population,3.2,25,,50-54
+32.76.02,3,Cimanggis,age_group,55-59,laki_laki,6582,jiwa,2025,registration,total_population,3.2,25,,55-59
+32.76.02,3,Cimanggis,age_group,55-59,perempuan,7085,jiwa,2025,registration,total_population,3.2,25,,55-59
+32.76.02,3,Cimanggis,age_group,55-59,,13667,jiwa,2025,registration,total_population,3.2,25,,55-59
+32.76.02,3,Cimanggis,age_group,60-64,laki_laki,4899,jiwa,2025,registration,total_population,3.2,25,,60-64
+32.76.02,3,Cimanggis,age_group,60-64,perempuan,5919,jiwa,2025,registration,total_population,3.2,25,,60-64
+32.76.02,3,Cimanggis,age_group,60-64,,10818,jiwa,2025,registration,total_population,3.2,25,,60-64
+32.76.02,3,Cimanggis,age_group,65-69,laki_laki,3864,jiwa,2025,registration,total_population,3.2,25,,65-69
+32.76.02,3,Cimanggis,age_group,65-69,perempuan,4202,jiwa,2025,registration,total_population,3.2,25,,65-69
+32.76.02,3,Cimanggis,age_group,65-69,,8066,jiwa,2025,registration,total_population,3.2,25,,65-69
+32.76.02,3,Cimanggis,age_group,70-74,laki_laki,2426,jiwa,2025,registration,total_population,3.2,25,,70-74
+32.76.02,3,Cimanggis,age_group,70-74,perempuan,2277,jiwa,2025,registration,total_population,3.2,25,,70-74
+32.76.02,3,Cimanggis,age_group,70-74,,4703,jiwa,2025,registration,total_population,3.2,25,,70-74
+32.76.02,3,Cimanggis,age_group,75+,laki_laki,1544,jiwa,2025,registration,total_population,3.2,25,,>75
+32.76.02,3,Cimanggis,age_group,75+,perempuan,1740,jiwa,2025,registration,total_population,3.2,25,,>75
+32.76.02,3,Cimanggis,age_group,75+,,3284,jiwa,2025,registration,total_population,3.2,25,,>75
+32.76.02,3,Kecamatan Cimanggis,sex,laki_laki,,122189,jiwa,2025,registration,total_population,3.2,25,,Laki-Laki
+32.76.02,3,Kecamatan Cimanggis,sex,perempuan,,120570,jiwa,2025,registration,total_population,3.2,25,,Perempuan
+32.76.02,3,Kecamatan Cimanggis,total,total,,242759,jiwa,2025,registration,total_population,3.2,25,,

@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.79.02.2006,4,Binangun,sex,laki_laki,,2682,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.79.02.2006,4,Binangun,sex,perempuan,,2709,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.79.02.2006,4,Binangun,total,total,,5391,jiwa,2025,registration,total_population,3.1,28,,
+32.79.02.2004,4,Batulawang,sex,laki_laki,,2181,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.79.02.2004,4,Batulawang,sex,perempuan,,2172,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.79.02.2004,4,Batulawang,total,total,,4353,jiwa,2025,registration,total_population,3.1,28,,
+32.79.02.2005,4,Karyamukti,sex,laki_laki,,3086,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.79.02.2005,4,Karyamukti,sex,perempuan,,2972,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.79.02.2005,4,Karyamukti,total,total,,6058,jiwa,2025,registration,total_population,3.1,28,,
+32.79.02.2003,4,Mulyasari,sex,laki_laki,,3443,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.79.02.2003,4,Mulyasari,sex,perempuan,,3418,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.79.02.2003,4,Mulyasari,total,total,,6861,jiwa,2025,registration,total_population,3.1,28,,
+32.79.02.1002,4,Pataruman,sex,laki_laki,,8423,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.79.02.1002,4,Pataruman,sex,perempuan,,8251,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.79.02.1002,4,Pataruman,total,total,,16674,jiwa,2025,registration,total_population,3.1,28,,
+32.79.02.1001,4,Hegarsari,sex,laki_laki,,7534,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.79.02.1001,4,Hegarsari,sex,perempuan,,7480,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.79.02.1001,4,Hegarsari,total,total,,15014,jiwa,2025,registration,total_population,3.1,28,,
+32.79.02.2007,4,Sukamukti,sex,laki_laki,,2133,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.79.02.2007,4,Sukamukti,sex,perempuan,,2140,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.79.02.2007,4,Sukamukti,total,total,,4273,jiwa,2025,registration,total_population,3.1,28,,
+32.79.02.2008,4,Sinartanjung,sex,laki_laki,,2214,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.79.02.2008,4,Sinartanjung,sex,perempuan,,2228,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.79.02.2008,4,Sinartanjung,total,total,,4442,jiwa,2025,registration,total_population,3.1,28,,
+32.79.02,3,Kecamatan Pataruman,sex,laki_laki,,31696,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.79.02,3,Kecamatan Pataruman,sex,perempuan,,31370,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.79.02,3,Kecamatan Pataruman,total,total,,63066,jiwa,2025,registration,total_population,3.1,28,,
+32.79.02,3,Pataruman,age_group,0-4,laki_laki,2173,jiwa,2025,registration,total_population,3.2,30,,0-4
+32.79.02,3,Pataruman,age_group,0-4,perempuan,1986,jiwa,2025,registration,total_population,3.2,30,,0-4
+32.79.02,3,Pataruman,age_group,0-4,,4159,jiwa,2025,registration,total_population,3.2,30,,0-4
+32.79.02,3,Pataruman,age_group,5-9,laki_laki,2506,jiwa,2025,registration,total_population,3.2,30,,5-9
+32.79.02,3,Pataruman,age_group,5-9,perempuan,2369,jiwa,2025,registration,total_population,3.2,30,,5-9
+32.79.02,3,Pataruman,age_group,5-9,,4875,jiwa,2025,registration,total_population,3.2,30,,5-9
+32.79.02,3,Pataruman,age_group,10-14,laki_laki,2518,jiwa,2025,registration,total_population,3.2,30,,10-14
+32.79.02,3,Pataruman,age_group,10-14,perempuan,2336,jiwa,2025,registration,total_population,3.2,30,,10-14
+32.79.02,3,Pataruman,age_group,10-14,,4854,jiwa,2025,registration,total_population,3.2,30,,10-14
+32.79.02,3,Pataruman,age_group,15-19,laki_laki,2517,jiwa,2025,registration,total_population,3.2,30,,15-19
+32.79.02,3,Pataruman,age_group,15-19,perempuan,2416,jiwa,2025,registration,total_population,3.2,30,,15-19
+32.79.02,3,Pataruman,age_group,15-19,,4933,jiwa,2025,registration,total_population,3.2,30,,15-19
+32.79.02,3,Pataruman,age_group,20-24,laki_laki,2575,jiwa,2025,registration,total_population,3.2,30,,20-24
+32.79.02,3,Pataruman,age_group,20-24,perempuan,2507,jiwa,2025,registration,total_population,3.2,30,,20-24
+32.79.02,3,Pataruman,age_group,20-24,,5082,jiwa,2025,registration,total_population,3.2,30,,20-24
+32.79.02,3,Pataruman,age_group,25-29,laki_laki,2609,jiwa,2025,registration,total_population,3.2,30,,25-29
+32.79.02,3,Pataruman,age_group,25-29,perempuan,2416,jiwa,2025,registration,total_population,3.2,30,,25-29
+32.79.02,3,Pataruman,age_group,25-29,,5025,jiwa,2025,registration,total_population,3.2,30,,25-29
+32.79.02,3,Pataruman,age_group,30-34,laki_laki,2507,jiwa,2025,registration,total_population,3.2,30,,30-34
+32.79.02,3,Pataruman,age_group,30-34,perempuan,2311,jiwa,2025,registration,total_population,3.2,30,,30-34
+32.79.02,3,Pataruman,age_group,30-34,,4818,jiwa,2025,registration,total_population,3.2,30,,30-34
+32.79.02,3,Pataruman,age_group,35-39,laki_laki,2145,jiwa,2025,registration,total_population,3.2,30,,35-39
+32.79.02,3,Pataruman,age_group,35-39,perempuan,2048,jiwa,2025,registration,total_population,3.2,30,,35-39
+32.79.02,3,Pataruman,age_group,35-39,,4193,jiwa,2025,registration,total_population,3.2,30,,35-39
+32.79.02,3,Pataruman,age_group,40-44,laki_laki,2382,jiwa,2025,registration,total_population,3.2,30,,40-44
+32.79.02,3,Pataruman,age_group,40-44,perempuan,2281,jiwa,2025,registration,total_population,3.2,30,,40-44
+32.79.02,3,Pataruman,age_group,40-44,,4663,jiwa,2025,registration,total_population,3.2,30,,40-44
+32.79.02,3,Pataruman,age_group,45-49,laki_laki,2042,jiwa,2025,registration,total_population,3.2,30,,45-49
+32.79.02,3,Pataruman,age_group,45-49,perempuan,2036,jiwa,2025,registration,total_population,3.2,30,,45-49
+32.79.02,3,Pataruman,age_group,45-49,,4078,jiwa,2025,registration,total_population,3.2,30,,45-49
+32.79.02,3,Pataruman,age_group,50-54,laki_laki,1779,jiwa,2025,registration,total_population,3.2,30,,50-54
+32.79.02,3,Pataruman,age_group,50-54,perempuan,2003,jiwa,2025,registration,total_population,3.2,30,,50-54
+32.79.02,3,Pataruman,age_group,50-54,,3782,jiwa,2025,registration,total_population,3.2,30,,50-54
+32.79.02,3,Pataruman,age_group,55-59,laki_laki,1751,jiwa,2025,registration,total_population,3.2,30,,55-59
+32.79.02,3,Pataruman,age_group,55-59,perempuan,1883,jiwa,2025,registration,total_population,3.2,30,,55-59
+32.79.02,3,Pataruman,age_group,55-59,,3634,jiwa,2025,registration,total_population,3.2,30,,55-59
+32.79.02,3,Pataruman,age_group,60-64,laki_laki,1521,jiwa,2025,registration,total_population,3.2,30,,60-64
+32.79.02,3,Pataruman,age_group,60-64,perempuan,1745,jiwa,2025,registration,total_population,3.2,30,,60-64
+32.79.02,3,Pataruman,age_group,60-64,,3266,jiwa,2025,registration,total_population,3.2,30,,60-64
+32.79.02,3,Pataruman,age_group,65-69,laki_laki,1243,jiwa,2025,registration,total_population,3.2,30,,65-69
+32.79.02,3,Pataruman,age_group,65-69,perempuan,1342,jiwa,2025,registration,total_population,3.2,30,,65-69
+32.79.02,3,Pataruman,age_group,65-69,,2585,jiwa,2025,registration,total_population,3.2,30,,65-69
+32.79.02,3,Pataruman,age_group,70-74,laki_laki,811,jiwa,2025,registration,total_population,3.2,30,,70-74
+32.79.02,3,Pataruman,age_group,70-74,perempuan,841,jiwa,2025,registration,total_population,3.2,30,,70-74
+32.79.02,3,Pataruman,age_group,70-74,,1652,jiwa,2025,registration,total_population,3.2,30,,70-74
+32.79.02,3,Pataruman,age_group,75+,laki_laki,617,jiwa,2025,registration,total_population,3.2,30,,75 KE ATAS
+32.79.02,3,Pataruman,age_group,75+,perempuan,850,jiwa,2025,registration,total_population,3.2,30,,75 KE ATAS
+32.79.02,3,Pataruman,age_group,75+,,1467,jiwa,2025,registration,total_population,3.2,30,,75 KE ATAS
+32.79.02,3,Kecamatan Pataruman,sex,laki_laki,,31696,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+32.79.02,3,Kecamatan Pataruman,sex,perempuan,,31370,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+32.79.02,3,Kecamatan Pataruman,total,total,,63066,jiwa,2025,registration,total_population,3.2,30,,

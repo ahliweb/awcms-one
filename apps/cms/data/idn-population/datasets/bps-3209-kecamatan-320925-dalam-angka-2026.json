@@ -1,0 +1,52 @@
+{
+  "datasetCode": "bps-3209-kecamatan-320925-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.09.25",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Panguragan Dalam Angka 2026",
+  "publisherName": "BPS BPS Kabupaten Cirebon",
+  "publisherDomain": "3209",
+  "publisherWebsite": "https://cirebonkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS BPS Kabupaten Cirebon (https://cirebonkab.bps.go.id), publikasi \"Kecamatan Panguragan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3209201",
+  "publicationNumber": "32090.26039",
+  "issn": "2714-9102",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://cirebonkab.bps.go.id/id/publication/2026/09/28/7d9948fab0f8a6b7f5d9a930/kecamatan-panguragan-dalam-angka-2026.html",
+  "sourceFileSha256": "2339e89b30ecca1d178f73574a121b5bde54d4f03d5fe58c2868644b11607502",
+  "sourceFileBytes": 21019395,
+  "sourcePages": [52, 53, 54],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Cirebon.",
+  "csvPath": "datasets/bps-3209-kecamatan-320925-dalam-angka-2026.csv",
+  "csvSha256": "34be0a184bbfcb7d9902dee14e2269b20a20ed1db50c30b0c27b9f28ebbadda5",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Panguragan, 2025",
+      "printedPages": [52, 53],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Panguragan, 2025",
+      "printedPages": [54],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"002 Panguragan Kulon\": unmatched ",
+    "table 3.1: row not stored: row \"003 Panguragan Wetan\": unmatched ",
+    "table 3.1: row not stored: row \"004 Panguragan Lor\": unmatched ",
+    "table 3.1: row not stored: row \"005 Panguragan\": unmatched ",
+    "table 3.1: row not stored: row \"002 Panguragan Kulon\": unmatched ",
+    "table 3.1: row not stored: row \"003 Panguragan Wetan\": unmatched ",
+    "table 3.1: row not stored: row \"004 Panguragan Lor\": unmatched ",
+    "table 3.1: row not stored: row \"005 Panguragan\": unmatched "
+  ]
+}

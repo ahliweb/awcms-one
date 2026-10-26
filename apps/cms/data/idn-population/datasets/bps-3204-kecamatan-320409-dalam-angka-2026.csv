@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.04.09.1004,4,Sulaiman,sex,laki_laki,,2243,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.09.1004,4,Sulaiman,sex,perempuan,,2207,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.09.1004,4,Sulaiman,total,total,,4450,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.09.2003,4,Sukamenak,sex,laki_laki,,15226,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.09.2003,4,Sukamenak,sex,perempuan,,14961,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.09.2003,4,Sukamenak,total,total,,30187,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.09.2005,4,Sayati,sex,laki_laki,,16717,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.09.2005,4,Sayati,sex,perempuan,,16712,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.09.2005,4,Sayati,total,total,,33429,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.09.2002,4,Margahayu Selatan,sex,laki_laki,,17202,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.09.2002,4,Margahayu Selatan,sex,perempuan,,16982,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.09.2002,4,Margahayu Selatan,total,total,,34184,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.09.2001,4,Margahayu Tengah,sex,laki_laki,,9695,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.09.2001,4,Margahayu Tengah,sex,perempuan,,9697,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.09.2001,4,Margahayu Tengah,total,total,,19392,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.09,3,Kecamatan Margahayu,sex,laki_laki,,61083,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.09,3,Kecamatan Margahayu,sex,perempuan,,60559,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.09,3,Kecamatan Margahayu,total,total,,121642,jiwa,2025,registration,total_population,unnumbered-p28,28,,

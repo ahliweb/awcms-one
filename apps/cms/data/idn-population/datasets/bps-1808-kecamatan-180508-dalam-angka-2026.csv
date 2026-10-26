@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.05.08.2001,4,Banjar Agung,sex,laki_laki,,2207,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.08.2001,4,Banjar Agung,sex,perempuan,,2155,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+18.05.08.2001,4,Banjar Agung,total,total,,4362,jiwa,2026,registration,total_population,3.1,32,,
+18.05.08.2010,4,Tunggal Warga,sex,laki_laki,,3135,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.08.2010,4,Tunggal Warga,sex,perempuan,,3005,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+18.05.08.2010,4,Tunggal Warga,total,total,,6140,jiwa,2026,registration,total_population,3.1,32,,
+18.05.08.2011,4,Dwi Warga Tunggal Jaya,sex,laki_laki,,5194,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.08.2011,4,Dwi Warga Tunggal Jaya,sex,perempuan,,5085,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+18.05.08.2011,4,Dwi Warga Tunggal Jaya,total,total,,10279,jiwa,2026,registration,total_population,3.1,32,,
+18.05.08.2009,4,Moris Jaya,sex,laki_laki,,2183,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.08.2009,4,Moris Jaya,sex,perempuan,,2070,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+18.05.08.2009,4,Moris Jaya,total,total,,4253,jiwa,2026,registration,total_population,3.1,32,,
+18.05.08.2019,4,Tri Mulya Jaya,sex,laki_laki,,843,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.08.2019,4,Tri Mulya Jaya,sex,perempuan,,799,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+18.05.08.2019,4,Tri Mulya Jaya,total,total,,1642,jiwa,2026,registration,total_population,3.1,32,,
+18.05.08.2020,4,Tri Mukti Jaya,sex,laki_laki,,791,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.08.2020,4,Tri Mukti Jaya,sex,perempuan,,776,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+18.05.08.2020,4,Tri Mukti Jaya,total,total,,1567,jiwa,2026,registration,total_population,3.1,32,,
+18.05.08.2021,4,Tri Tunggal Jaya,sex,laki_laki,,4151,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.08.2021,4,Tri Tunggal Jaya,sex,perempuan,,3950,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+18.05.08.2021,4,Tri Tunggal Jaya,total,total,,8101,jiwa,2026,registration,total_population,3.1,32,,
+18.05.08.2022,4,Warga Makmur Jaya,sex,laki_laki,,2053,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.08.2022,4,Warga Makmur Jaya,sex,perempuan,,2004,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+18.05.08.2022,4,Warga Makmur Jaya,total,total,,4057,jiwa,2026,registration,total_population,3.1,32,,
+18.05.08.2023,4,Warga Indah Jaya,sex,laki_laki,,573,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.08.2023,4,Warga Indah Jaya,sex,perempuan,,528,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+18.05.08.2023,4,Warga Indah Jaya,total,total,,1101,jiwa,2026,registration,total_population,3.1,32,,
+18.05.08.2024,4,Banjar Dewa,sex,laki_laki,,1490,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.08.2024,4,Banjar Dewa,sex,perempuan,,1438,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+18.05.08.2024,4,Banjar Dewa,total,total,,2928,jiwa,2026,registration,total_population,3.1,32,,
+18.05.08,3,Banjar Agung,sex,laki_laki,,23808,jiwa,2026,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.08,3,Banjar Agung,sex,perempuan,,22940,jiwa,2026,registration,total_population,3.1,32,,Perempuan/Female
+18.05.08,3,Banjar Agung,total,total,,46748,jiwa,2026,registration,total_population,3.1,32,,
+18.05.08,3,Banjar Agung,age_group,0-4,laki_laki,1586,jiwa,2026,registration,total_population,3.2,34,,0 – 4
+18.05.08,3,Banjar Agung,age_group,0-4,perempuan,1462,jiwa,2026,registration,total_population,3.2,34,,0 – 4
+18.05.08,3,Banjar Agung,age_group,0-4,,3048,jiwa,2026,registration,total_population,3.2,34,,0 – 4
+18.05.08,3,Banjar Agung,age_group,5-9,laki_laki,2294,jiwa,2026,registration,total_population,3.2,34,,5 – 9
+18.05.08,3,Banjar Agung,age_group,5-9,perempuan,2064,jiwa,2026,registration,total_population,3.2,34,,5 – 9
+18.05.08,3,Banjar Agung,age_group,5-9,,4358,jiwa,2026,registration,total_population,3.2,34,,5 – 9
+18.05.08,3,Banjar Agung,age_group,10-14,laki_laki,2313,jiwa,2026,registration,total_population,3.2,34,,10 – 14
+18.05.08,3,Banjar Agung,age_group,10-14,perempuan,2211,jiwa,2026,registration,total_population,3.2,34,,10 – 14
+18.05.08,3,Banjar Agung,age_group,10-14,,4524,jiwa,2026,registration,total_population,3.2,34,,10 – 14
+18.05.08,3,Banjar Agung,age_group,15-19,laki_laki,2081,jiwa,2026,registration,total_population,3.2,34,,15 – 19
+18.05.08,3,Banjar Agung,age_group,15-19,perempuan,1896,jiwa,2026,registration,total_population,3.2,34,,15 – 19
+18.05.08,3,Banjar Agung,age_group,15-19,,3977,jiwa,2026,registration,total_population,3.2,34,,15 – 19
+18.05.08,3,Banjar Agung,age_group,20-24,laki_laki,1833,jiwa,2026,registration,total_population,3.2,34,,20 – 24
+18.05.08,3,Banjar Agung,age_group,20-24,perempuan,1850,jiwa,2026,registration,total_population,3.2,34,,20 – 24
+18.05.08,3,Banjar Agung,age_group,20-24,,3683,jiwa,2026,registration,total_population,3.2,34,,20 – 24
+18.05.08,3,Banjar Agung,age_group,25-29,laki_laki,1693,jiwa,2026,registration,total_population,3.2,34,,25 – 29
+18.05.08,3,Banjar Agung,age_group,25-29,perempuan,1754,jiwa,2026,registration,total_population,3.2,34,,25 – 29
+18.05.08,3,Banjar Agung,age_group,25-29,,3447,jiwa,2026,registration,total_population,3.2,34,,25 – 29
+18.05.08,3,Banjar Agung,age_group,30-34,laki_laki,1746,jiwa,2026,registration,total_population,3.2,34,,30 – 34
+18.05.08,3,Banjar Agung,age_group,30-34,perempuan,1904,jiwa,2026,registration,total_population,3.2,34,,30 – 34
+18.05.08,3,Banjar Agung,age_group,30-34,,3650,jiwa,2026,registration,total_population,3.2,34,,30 – 34
+18.05.08,3,Banjar Agung,age_group,35-39,laki_laki,1834,jiwa,2026,registration,total_population,3.2,34,,35 – 39
+18.05.08,3,Banjar Agung,age_group,35-39,perempuan,1920,jiwa,2026,registration,total_population,3.2,34,,35 – 39
+18.05.08,3,Banjar Agung,age_group,35-39,,3754,jiwa,2026,registration,total_population,3.2,34,,35 – 39
+18.05.08,3,Banjar Agung,age_group,40-44,laki_laki,1799,jiwa,2026,registration,total_population,3.2,34,,40 – 44
+18.05.08,3,Banjar Agung,age_group,40-44,perempuan,1770,jiwa,2026,registration,total_population,3.2,34,,40 – 44
+18.05.08,3,Banjar Agung,age_group,40-44,,3569,jiwa,2026,registration,total_population,3.2,34,,40 – 44
+18.05.08,3,Banjar Agung,age_group,45-49,laki_laki,1541,jiwa,2026,registration,total_population,3.2,34,,45 – 49
+18.05.08,3,Banjar Agung,age_group,45-49,perempuan,1544,jiwa,2026,registration,total_population,3.2,34,,45 – 49
+18.05.08,3,Banjar Agung,age_group,45-49,,3085,jiwa,2026,registration,total_population,3.2,34,,45 – 49
+18.05.08,3,Banjar Agung,age_group,50-54,laki_laki,1336,jiwa,2026,registration,total_population,3.2,34,,50 – 54
+18.05.08,3,Banjar Agung,age_group,50-54,perempuan,1273,jiwa,2026,registration,total_population,3.2,34,,50 – 54
+18.05.08,3,Banjar Agung,age_group,50-54,,2609,jiwa,2026,registration,total_population,3.2,34,,50 – 54
+18.05.08,3,Banjar Agung,age_group,55-59,laki_laki,1130,jiwa,2026,registration,total_population,3.2,34,,55 – 59
+18.05.08,3,Banjar Agung,age_group,55-59,perempuan,1042,jiwa,2026,registration,total_population,3.2,34,,55 – 59
+18.05.08,3,Banjar Agung,age_group,55-59,,2172,jiwa,2026,registration,total_population,3.2,34,,55 – 59
+18.05.08,3,Banjar Agung,age_group,60-64,laki_laki,817,jiwa,2026,registration,total_population,3.2,34,,60 – 64
+18.05.08,3,Banjar Agung,age_group,60-64,perempuan,774,jiwa,2026,registration,total_population,3.2,34,,60 – 64
+18.05.08,3,Banjar Agung,age_group,60-64,,1591,jiwa,2026,registration,total_population,3.2,34,,60 – 64
+18.05.08,3,Banjar Agung,age_group,65-69,laki_laki,621,jiwa,2026,registration,total_population,3.2,34,,65 – 69
+18.05.08,3,Banjar Agung,age_group,65-69,perempuan,430,jiwa,2026,registration,total_population,3.2,34,,65 – 69
+18.05.08,3,Banjar Agung,age_group,65-69,,1051,jiwa,2026,registration,total_population,3.2,34,,65 – 69
+18.05.08,3,Banjar Agung,age_group,70-74,laki_laki,369,jiwa,2026,registration,total_population,3.2,34,,70 – 74
+18.05.08,3,Banjar Agung,age_group,70-74,perempuan,291,jiwa,2026,registration,total_population,3.2,34,,70 – 74
+18.05.08,3,Banjar Agung,age_group,70-74,,660,jiwa,2026,registration,total_population,3.2,34,,70 – 74
+18.05.08,3,Banjar Agung,age_group,75+,laki_laki,376,jiwa,2026,registration,total_population,3.2,34,,>75
+18.05.08,3,Banjar Agung,age_group,75+,perempuan,314,jiwa,2026,registration,total_population,3.2,34,,>75
+18.05.08,3,Banjar Agung,age_group,75+,,690,jiwa,2026,registration,total_population,3.2,34,,>75
+18.05.08,3,Banjar Agung,sex,laki_laki,,23369,jiwa,2026,registration,total_population,3.2,34,,Laki-Laki
+18.05.08,3,Banjar Agung,sex,perempuan,,22499,jiwa,2026,registration,total_population,3.2,34,,Perempuan
+18.05.08,3,Banjar Agung,total,total,,45868,jiwa,2026,registration,total_population,3.2,34,,

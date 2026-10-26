@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.07.01.2011,4,Imbanagara Raya,sex,laki_laki,,3826,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.01.2011,4,Imbanagara Raya,sex,perempuan,,3805,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.01.2011,4,Imbanagara Raya,total,total,,7631,jiwa,2025,registration,total_population,3.1,34,,
+32.07.01.2009,4,Cisadap,sex,laki_laki,,3370,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.01.2009,4,Cisadap,sex,perempuan,,3250,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.01.2009,4,Cisadap,total,total,,6620,jiwa,2025,registration,total_population,3.1,34,,
+32.07.01.2010,4,Imbanagara,sex,laki_laki,,4056,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.01.2010,4,Imbanagara,sex,perempuan,,3940,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.01.2010,4,Imbanagara,total,total,,7996,jiwa,2025,registration,total_population,3.1,34,,
+32.07.01.1007,4,Sindangrasa,sex,laki_laki,,5664,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.01.1007,4,Sindangrasa,sex,perempuan,,5589,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.01.1007,4,Sindangrasa,total,total,,11253,jiwa,2025,registration,total_population,3.1,34,,
+32.07.01.2012,4,Panyingkiran,sex,laki_laki,,3453,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.01.2012,4,Panyingkiran,sex,perempuan,,3451,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.01.2012,4,Panyingkiran,total,total,,6904,jiwa,2025,registration,total_population,3.1,34,,
+32.07.01.2008,4,Pawindan,sex,laki_laki,,2672,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.01.2008,4,Pawindan,sex,perempuan,,2607,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.01.2008,4,Pawindan,total,total,,5279,jiwa,2025,registration,total_population,3.1,34,,
+32.07.01.1006,4,Linggasari,sex,laki_laki,,4249,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.01.1006,4,Linggasari,sex,perempuan,,4050,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.01.1006,4,Linggasari,total,total,,8299,jiwa,2025,registration,total_population,3.1,34,,
+32.07.01.1001,4,Ciamis,sex,laki_laki,,8493,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.01.1001,4,Ciamis,sex,perempuan,,8992,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.01.1001,4,Ciamis,total,total,,17485,jiwa,2025,registration,total_population,3.1,34,,
+32.07.01.1005,4,Benteng,sex,laki_laki,,2679,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.01.1005,4,Benteng,sex,perempuan,,2611,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.01.1005,4,Benteng,total,total,,5290,jiwa,2025,registration,total_population,3.1,34,,
+32.07.01.1004,4,Cigembor,sex,laki_laki,,2529,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.01.1004,4,Cigembor,sex,perempuan,,2598,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.01.1004,4,Cigembor,total,total,,5127,jiwa,2025,registration,total_population,3.1,34,,
+32.07.01.1002,4,Kertasari,sex,laki_laki,,5823,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.01.1002,4,Kertasari,sex,perempuan,,5874,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.01.1002,4,Kertasari,total,total,,11697,jiwa,2025,registration,total_population,3.1,34,,
+32.07.01.1003,4,Maleber,sex,laki_laki,,5427,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.01.1003,4,Maleber,sex,perempuan,,5227,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.01.1003,4,Maleber,total,total,,10654,jiwa,2025,registration,total_population,3.1,34,,
+32.07.01,3,Kecamatan Ciamis,sex,laki_laki,,52241,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.01,3,Kecamatan Ciamis,sex,perempuan,,51994,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.01,3,Kecamatan Ciamis,total,total,,104235,jiwa,2025,registration,total_population,3.1,34,,
+32.07.01,3,Ciamis,age_group,0-4,laki_laki,3113,jiwa,2025,registration,total_population,3.2,36,,00-04
+32.07.01,3,Ciamis,age_group,0-4,perempuan,2803,jiwa,2025,registration,total_population,3.2,36,,00-04
+32.07.01,3,Ciamis,age_group,0-4,,5916,jiwa,2025,registration,total_population,3.2,36,,00-04
+32.07.01,3,Ciamis,age_group,5-9,laki_laki,3735,jiwa,2025,registration,total_population,3.2,36,,05-09
+32.07.01,3,Ciamis,age_group,5-9,perempuan,3490,jiwa,2025,registration,total_population,3.2,36,,05-09
+32.07.01,3,Ciamis,age_group,5-9,,7225,jiwa,2025,registration,total_population,3.2,36,,05-09
+32.07.01,3,Ciamis,age_group,10-14,laki_laki,3969,jiwa,2025,registration,total_population,3.2,36,,10-14
+32.07.01,3,Ciamis,age_group,10-14,perempuan,3707,jiwa,2025,registration,total_population,3.2,36,,10-14
+32.07.01,3,Ciamis,age_group,10-14,,7676,jiwa,2025,registration,total_population,3.2,36,,10-14
+32.07.01,3,Ciamis,age_group,15-19,laki_laki,4122,jiwa,2025,registration,total_population,3.2,36,,15-19
+32.07.01,3,Ciamis,age_group,15-19,perempuan,3804,jiwa,2025,registration,total_population,3.2,36,,15-19
+32.07.01,3,Ciamis,age_group,15-19,,7926,jiwa,2025,registration,total_population,3.2,36,,15-19
+32.07.01,3,Ciamis,age_group,20-24,laki_laki,4314,jiwa,2025,registration,total_population,3.2,36,,20-24
+32.07.01,3,Ciamis,age_group,20-24,perempuan,4017,jiwa,2025,registration,total_population,3.2,36,,20-24
+32.07.01,3,Ciamis,age_group,20-24,,8331,jiwa,2025,registration,total_population,3.2,36,,20-24
+32.07.01,3,Ciamis,age_group,25-29,laki_laki,4137,jiwa,2025,registration,total_population,3.2,36,,25-29
+32.07.01,3,Ciamis,age_group,25-29,perempuan,3961,jiwa,2025,registration,total_population,3.2,36,,25-29
+32.07.01,3,Ciamis,age_group,25-29,,8098,jiwa,2025,registration,total_population,3.2,36,,25-29
+32.07.01,3,Ciamis,age_group,30-34,laki_laki,3776,jiwa,2025,registration,total_population,3.2,36,,30-34
+32.07.01,3,Ciamis,age_group,30-34,perempuan,3694,jiwa,2025,registration,total_population,3.2,36,,30-34
+32.07.01,3,Ciamis,age_group,30-34,,7470,jiwa,2025,registration,total_population,3.2,36,,30-34
+32.07.01,3,Ciamis,age_group,35-39,laki_laki,3385,jiwa,2025,registration,total_population,3.2,36,,35-39
+32.07.01,3,Ciamis,age_group,35-39,perempuan,3343,jiwa,2025,registration,total_population,3.2,36,,35-39
+32.07.01,3,Ciamis,age_group,35-39,,6728,jiwa,2025,registration,total_population,3.2,36,,35-39
+32.07.01,3,Ciamis,age_group,40-44,laki_laki,3703,jiwa,2025,registration,total_population,3.2,36,,40-44
+32.07.01,3,Ciamis,age_group,40-44,perempuan,3546,jiwa,2025,registration,total_population,3.2,36,,40-44
+32.07.01,3,Ciamis,age_group,40-44,,7249,jiwa,2025,registration,total_population,3.2,36,,40-44
+32.07.01,3,Ciamis,age_group,45-49,laki_laki,3485,jiwa,2025,registration,total_population,3.2,36,,45-49
+32.07.01,3,Ciamis,age_group,45-49,perempuan,3515,jiwa,2025,registration,total_population,3.2,36,,45-49
+32.07.01,3,Ciamis,age_group,45-49,,7000,jiwa,2025,registration,total_population,3.2,36,,45-49
+32.07.01,3,Ciamis,age_group,50-54,laki_laki,3231,jiwa,2025,registration,total_population,3.2,36,,50-54
+32.07.01,3,Ciamis,age_group,50-54,perempuan,3435,jiwa,2025,registration,total_population,3.2,36,,50-54
+32.07.01,3,Ciamis,age_group,50-54,,6666,jiwa,2025,registration,total_population,3.2,36,,50-54
+32.07.01,3,Ciamis,age_group,55-59,laki_laki,3173,jiwa,2025,registration,total_population,3.2,36,,55-59
+32.07.01,3,Ciamis,age_group,55-59,perempuan,3405,jiwa,2025,registration,total_population,3.2,36,,55-59
+32.07.01,3,Ciamis,age_group,55-59,,6578,jiwa,2025,registration,total_population,3.2,36,,55-59
+32.07.01,3,Ciamis,age_group,60-64,laki_laki,2698,jiwa,2025,registration,total_population,3.2,36,,60-64
+32.07.01,3,Ciamis,age_group,60-64,perempuan,2994,jiwa,2025,registration,total_population,3.2,36,,60-64
+32.07.01,3,Ciamis,age_group,60-64,,5692,jiwa,2025,registration,total_population,3.2,36,,60-64
+32.07.01,3,Ciamis,age_group,65-69,laki_laki,2249,jiwa,2025,registration,total_population,3.2,36,,65-69
+32.07.01,3,Ciamis,age_group,65-69,perempuan,2413,jiwa,2025,registration,total_population,3.2,36,,65-69
+32.07.01,3,Ciamis,age_group,65-69,,4662,jiwa,2025,registration,total_population,3.2,36,,65-69
+32.07.01,3,Ciamis,age_group,70-74,laki_laki,1506,jiwa,2025,registration,total_population,3.2,36,,70-74
+32.07.01,3,Ciamis,age_group,70-74,perempuan,1629,jiwa,2025,registration,total_population,3.2,36,,70-74
+32.07.01,3,Ciamis,age_group,70-74,,3135,jiwa,2025,registration,total_population,3.2,36,,70-74
+32.07.01,3,Ciamis,age_group,75+,laki_laki,1645,jiwa,2025,registration,total_population,3.2,36,,>75
+32.07.01,3,Ciamis,age_group,75+,perempuan,2238,jiwa,2025,registration,total_population,3.2,36,,>75
+32.07.01,3,Ciamis,age_group,75+,,3883,jiwa,2025,registration,total_population,3.2,36,,>75
+32.07.01,3,Kecamatan Ciamis,sex,laki_laki,,52241,jiwa,2025,registration,total_population,3.2,36,,Laki-Laki
+32.07.01,3,Kecamatan Ciamis,sex,perempuan,,51994,jiwa,2025,registration,total_population,3.2,36,,Perempuan
+32.07.01,3,Kecamatan Ciamis,total,total,,104235,jiwa,2025,registration,total_population,3.2,36,,

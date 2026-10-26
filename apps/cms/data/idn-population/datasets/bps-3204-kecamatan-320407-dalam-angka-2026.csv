@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.04.07.2006,4,Girimekar,sex,laki_laki,,7368,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.07.2006,4,Girimekar,sex,perempuan,,7132,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.07.2006,4,Girimekar,total,total,,14500,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.07.2001,4,Jatiendah,sex,laki_laki,,9491,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.07.2001,4,Jatiendah,sex,perempuan,,9350,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.07.2001,4,Jatiendah,total,total,,18841,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.07.2004,4,Melatiwangi,sex,laki_laki,,2725,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.07.2004,4,Melatiwangi,sex,perempuan,,2638,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.07.2004,4,Melatiwangi,total,total,,5363,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.07.2003,4,Cipanjalu,sex,laki_laki,,3244,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.07.2003,4,Cipanjalu,sex,perempuan,,3106,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.07.2003,4,Cipanjalu,total,total,,6350,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.07.2005,4,Ciporeat,sex,laki_laki,,3130,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.07.2005,4,Ciporeat,sex,perempuan,,3111,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.07.2005,4,Ciporeat,total,total,,6241,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.07.2002,4,Cilengkrang,sex,laki_laki,,2495,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.07.2002,4,Cilengkrang,sex,perempuan,,2399,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.07.2002,4,Cilengkrang,total,total,,4894,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.07,3,Kecamatan Cilengkrang,sex,laki_laki,,28453,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.07,3,Kecamatan Cilengkrang,sex,perempuan,,27736,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.07,3,Kecamatan Cilengkrang,total,total,,56189,jiwa,2025,registration,total_population,unnumbered-p28,28,,

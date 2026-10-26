@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.05.39.2003,4,Cigawir,sex,laki_laki,,3492,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.39.2003,4,Cigawir,sex,perempuan,,3246,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.39.2003,4,Cigawir,total,total,,6738,jiwa,2025,registration,total_population,3.1,22,,
+32.05.39.2002,4,Putrajawa,sex,laki_laki,,4268,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.39.2002,4,Putrajawa,sex,perempuan,,3987,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.39.2002,4,Putrajawa,total,total,,8255,jiwa,2025,registration,total_population,3.1,22,,
+32.05.39.2006,4,Mekarsari,sex,laki_laki,,3618,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.39.2006,4,Mekarsari,sex,perempuan,,3297,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.39.2006,4,Mekarsari,total,total,,6915,jiwa,2025,registration,total_population,3.1,22,,
+32.05.39.2001,4,Selaawi,sex,laki_laki,,2659,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.39.2001,4,Selaawi,sex,perempuan,,2648,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.39.2001,4,Selaawi,total,total,,5307,jiwa,2025,registration,total_population,3.1,22,,
+32.05.39.2005,4,Cirapuhan,sex,laki_laki,,5091,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.39.2005,4,Cirapuhan,sex,perempuan,,4800,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.39.2005,4,Cirapuhan,total,total,,9891,jiwa,2025,registration,total_population,3.1,22,,
+32.05.39.2007,4,Samida,sex,laki_laki,,2771,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.39.2007,4,Samida,sex,perempuan,,2620,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.39.2007,4,Samida,total,total,,5391,jiwa,2025,registration,total_population,3.1,22,,
+32.05.39.2004,4,Pelitaasih,sex,laki_laki,,1953,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.39.2004,4,Pelitaasih,sex,perempuan,,1866,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.39.2004,4,Pelitaasih,total,total,,3819,jiwa,2025,registration,total_population,3.1,22,,
+32.05.39,3,Kecamatan Selaawi,sex,laki_laki,,23852,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.39,3,Kecamatan Selaawi,sex,perempuan,,22464,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.39,3,Kecamatan Selaawi,total,total,,46316,jiwa,2025,registration,total_population,3.1,22,,
+32.05.39,3,Selaawi,age_group,0-4,laki_laki,1654,jiwa,2025,registration,total_population,3.2,24,,0-4
+32.05.39,3,Selaawi,age_group,0-4,perempuan,1578,jiwa,2025,registration,total_population,3.2,24,,0-4
+32.05.39,3,Selaawi,age_group,0-4,,3232,jiwa,2025,registration,total_population,3.2,24,,0-4
+32.05.39,3,Selaawi,age_group,5-9,laki_laki,2029,jiwa,2025,registration,total_population,3.2,24,,5-9
+32.05.39,3,Selaawi,age_group,5-9,perempuan,1852,jiwa,2025,registration,total_population,3.2,24,,5-9
+32.05.39,3,Selaawi,age_group,5-9,,3881,jiwa,2025,registration,total_population,3.2,24,,5-9
+32.05.39,3,Selaawi,age_group,10-14,laki_laki,2077,jiwa,2025,registration,total_population,3.2,24,,10-14
+32.05.39,3,Selaawi,age_group,10-14,perempuan,1930,jiwa,2025,registration,total_population,3.2,24,,10-14
+32.05.39,3,Selaawi,age_group,10-14,,4007,jiwa,2025,registration,total_population,3.2,24,,10-14
+32.05.39,3,Selaawi,age_group,15-19,laki_laki,2012,jiwa,2025,registration,total_population,3.2,24,,15-19
+32.05.39,3,Selaawi,age_group,15-19,perempuan,1912,jiwa,2025,registration,total_population,3.2,24,,15-19
+32.05.39,3,Selaawi,age_group,15-19,,3924,jiwa,2025,registration,total_population,3.2,24,,15-19
+32.05.39,3,Selaawi,age_group,20-24,laki_laki,2332,jiwa,2025,registration,total_population,3.2,24,,20-24
+32.05.39,3,Selaawi,age_group,20-24,perempuan,2160,jiwa,2025,registration,total_population,3.2,24,,20-24
+32.05.39,3,Selaawi,age_group,20-24,,4492,jiwa,2025,registration,total_population,3.2,24,,20-24
+32.05.39,3,Selaawi,age_group,25-29,laki_laki,2149,jiwa,2025,registration,total_population,3.2,24,,25-29
+32.05.39,3,Selaawi,age_group,25-29,perempuan,1959,jiwa,2025,registration,total_population,3.2,24,,25-29
+32.05.39,3,Selaawi,age_group,25-29,,4108,jiwa,2025,registration,total_population,3.2,24,,25-29
+32.05.39,3,Selaawi,age_group,30-34,laki_laki,1816,jiwa,2025,registration,total_population,3.2,24,,30-34
+32.05.39,3,Selaawi,age_group,30-34,perempuan,1552,jiwa,2025,registration,total_population,3.2,24,,30-34
+32.05.39,3,Selaawi,age_group,30-34,,3368,jiwa,2025,registration,total_population,3.2,24,,30-34
+32.05.39,3,Selaawi,age_group,35-39,laki_laki,1352,jiwa,2025,registration,total_population,3.2,24,,35-39
+32.05.39,3,Selaawi,age_group,35-39,perempuan,1286,jiwa,2025,registration,total_population,3.2,24,,35-39
+32.05.39,3,Selaawi,age_group,35-39,,2638,jiwa,2025,registration,total_population,3.2,24,,35-39
+32.05.39,3,Selaawi,age_group,40-44,laki_laki,1542,jiwa,2025,registration,total_population,3.2,24,,40-44
+32.05.39,3,Selaawi,age_group,40-44,perempuan,1541,jiwa,2025,registration,total_population,3.2,24,,40-44
+32.05.39,3,Selaawi,age_group,40-44,,3083,jiwa,2025,registration,total_population,3.2,24,,40-44
+32.05.39,3,Selaawi,age_group,45-49,laki_laki,1502,jiwa,2025,registration,total_population,3.2,24,,45-49
+32.05.39,3,Selaawi,age_group,45-49,perempuan,1420,jiwa,2025,registration,total_population,3.2,24,,45-49
+32.05.39,3,Selaawi,age_group,45-49,,2922,jiwa,2025,registration,total_population,3.2,24,,45-49
+32.05.39,3,Selaawi,age_group,50-54,laki_laki,1451,jiwa,2025,registration,total_population,3.2,24,,50-54
+32.05.39,3,Selaawi,age_group,50-54,perempuan,1428,jiwa,2025,registration,total_population,3.2,24,,50-54
+32.05.39,3,Selaawi,age_group,50-54,,2879,jiwa,2025,registration,total_population,3.2,24,,50-54
+32.05.39,3,Selaawi,age_group,55-59,laki_laki,1219,jiwa,2025,registration,total_population,3.2,24,,55-59
+32.05.39,3,Selaawi,age_group,55-59,perempuan,1121,jiwa,2025,registration,total_population,3.2,24,,55-59
+32.05.39,3,Selaawi,age_group,55-59,,2340,jiwa,2025,registration,total_population,3.2,24,,55-59
+32.05.39,3,Selaawi,age_group,60-64,laki_laki,975,jiwa,2025,registration,total_population,3.2,24,,60-64
+32.05.39,3,Selaawi,age_group,60-64,perempuan,1007,jiwa,2025,registration,total_population,3.2,24,,60-64
+32.05.39,3,Selaawi,age_group,60-64,,1982,jiwa,2025,registration,total_population,3.2,24,,60-64
+32.05.39,3,Selaawi,age_group,65-69,laki_laki,769,jiwa,2025,registration,total_population,3.2,24,,65-69
+32.05.39,3,Selaawi,age_group,65-69,perempuan,666,jiwa,2025,registration,total_population,3.2,24,,65-69
+32.05.39,3,Selaawi,age_group,65-69,,1435,jiwa,2025,registration,total_population,3.2,24,,65-69
+32.05.39,3,Selaawi,age_group,70-74,laki_laki,401,jiwa,2025,registration,total_population,3.2,24,,70-74
+32.05.39,3,Selaawi,age_group,70-74,perempuan,427,jiwa,2025,registration,total_population,3.2,24,,70-74
+32.05.39,3,Selaawi,age_group,70-74,,828,jiwa,2025,registration,total_population,3.2,24,,70-74
+32.05.39,3,Selaawi,age_group,75+,laki_laki,572,jiwa,2025,registration,total_population,3.2,24,,75+
+32.05.39,3,Selaawi,age_group,75+,perempuan,625,jiwa,2025,registration,total_population,3.2,24,,75+
+32.05.39,3,Selaawi,age_group,75+,,1197,jiwa,2025,registration,total_population,3.2,24,,75+
+32.05.39,3,Kecamatan Selaawi,sex,laki_laki,,23852,jiwa,2025,registration,total_population,3.2,24,,Laki-Laki
+32.05.39,3,Kecamatan Selaawi,sex,perempuan,,22464,jiwa,2025,registration,total_population,3.2,24,,Perempuan
+32.05.39,3,Kecamatan Selaawi,total,total,,46316,jiwa,2025,registration,total_population,3.2,24,,

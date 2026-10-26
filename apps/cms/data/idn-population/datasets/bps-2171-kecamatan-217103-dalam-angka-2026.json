@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-2171-kecamatan-217103-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "21.71.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sekupang Dalam Angka 2026",
+  "publisherName": "BPS Kota Batam",
+  "publisherDomain": "2171",
+  "publisherWebsite": "https://batamkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Batam (https://batamkota.bps.go.id), publikasi \"Kecamatan Sekupang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.2171060",
+  "publicationNumber": "21710.26009",
+  "issn": "2987-4653",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://batamkota.bps.go.id/id/publication/2026/09/28/bdfe1c119ef01fcb930c87ec/kecamatan-sekupang-dalam-angka-2026.html",
+  "sourceFileSha256": "b2aa800d5dfcfc39464ac97fb5537c49afacb52bb52eaa90766c8e6ff6d4cc5b",
+  "sourceFileBytes": 8165129,
+  "sourcePages": [21],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Batam.",
+  "csvPath": "datasets/bps-2171-kecamatan-217103-dalam-angka-2026.csv",
+  "csvSha256": "b1272371117041b8c5f3cbfde3f266253c1530de0207ec32785ab51a216485d6",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p21",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1 Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Sekupang, 2025",
+      "printedPages": [21],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table unnumbered-p21: row not stored: row \"Kecamatan Sekupang Sekupang District\": unmatched "
+  ]
+}

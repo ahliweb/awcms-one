@@ -1,0 +1,61 @@
+{
+  "datasetCode": "bps-2172-kecamatan-217204-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "21.72.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bukit Bestari Dalam Angka 2026",
+  "publisherName": "BPS Kota Tanjung Pinang",
+  "publisherDomain": "2172",
+  "publisherWebsite": "https://tanjungpinangkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Tanjung Pinang (https://tanjungpinangkota.bps.go.id), publikasi \"Kecamatan Bukit Bestari Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.2172010",
+  "publicationNumber": "21720.26009",
+  "issn": "2723-4790",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tanjungpinangkota.bps.go.id/id/publication/2026/09/28/cdff14fa2acd0852f4956c58/kecamatan-bukit-bestari-dalam-angka-2026.html",
+  "sourceFileSha256": "371781a5d407b99a4dbe1acd538c96ebea0944b591d0085012feea4f579066e6",
+  "sourceFileBytes": 4389482,
+  "sourcePages": [26, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Tanjungpinang.",
+  "csvPath": "datasets/bps-2172-kecamatan-217204-dalam-angka-2026.csv",
+  "csvSha256": "5365304d0ae8741ccd4f3c3dc382e32efa886c1e97438bbe792b4fc07f8ffcef",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Bukit Bestari, 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bukit Bestari, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kec. Bukit Bestari Bukit Bestari District\": unmatched ",
+    "table 3.2: row not stored: row \"0─4\": unmatched ",
+    "table 3.2: row not stored: row \"5─9\": unmatched ",
+    "table 3.2: row not stored: row \"10─14\": unmatched ",
+    "table 3.2: row not stored: row \"15─19\": unmatched ",
+    "table 3.2: row not stored: row \"20─24\": unmatched ",
+    "table 3.2: row not stored: row \"25─29\": unmatched ",
+    "table 3.2: row not stored: row \"30─34\": unmatched ",
+    "table 3.2: row not stored: row \"35─39\": unmatched ",
+    "table 3.2: row not stored: row \"40─44\": unmatched ",
+    "table 3.2: row not stored: row \"45─49\": unmatched ",
+    "table 3.2: row not stored: row \"50─54\": unmatched ",
+    "table 3.2: row not stored: row \"55─59\": unmatched ",
+    "table 3.2: row not stored: row \"60─64\": unmatched ",
+    "table 3.2: row not stored: row \"65─69\": unmatched ",
+    "table 3.2: row not stored: row \"70─74\": unmatched ",
+    "table 3.2: row not stored: row \"Kec. Bukit Bestari Bukit Bestari District\": unmatched "
+  ]
+}

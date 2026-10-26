@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.04.21.2001,4,Argomulyo,sex,laki_laki,,891,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.21.2001,4,Argomulyo,sex,perempuan,,773,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.21.2001,4,Argomulyo,total,total,,1664,jiwa,2025,registration,total_population,3.1,30,,
+18.04.21.2002,4,Batu Kebayan,sex,laki_laki,,634,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.21.2002,4,Batu Kebayan,sex,perempuan,,567,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.21.2002,4,Batu Kebayan,total,total,,1201,jiwa,2025,registration,total_population,3.1,30,,
+18.04.21.2003,4,Atar Bawang,sex,laki_laki,,615,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.21.2003,4,Atar Bawang,sex,perempuan,,546,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.21.2003,4,Atar Bawang,total,total,,1161,jiwa,2025,registration,total_population,3.1,30,,
+18.04.21.2004,4,Campang Tiga,sex,laki_laki,,679,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.21.2004,4,Campang Tiga,sex,perempuan,,625,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.21.2004,4,Campang Tiga,total,total,,1304,jiwa,2025,registration,total_population,3.1,30,,
+18.04.21.2005,4,Luas,sex,laki_laki,,1073,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.21.2005,4,Luas,sex,perempuan,,941,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.21.2005,4,Luas,total,total,,2014,jiwa,2025,registration,total_population,3.1,30,,
+18.04.21.2006,4,Bakhu,sex,laki_laki,,1273,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.21.2006,4,Bakhu,sex,perempuan,,1191,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.21.2006,4,Bakhu,total,total,,2464,jiwa,2025,registration,total_population,3.1,30,,
+18.04.21.2007,4,Way Ngison,sex,laki_laki,,844,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.21.2007,4,Way Ngison,sex,perempuan,,787,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.21.2007,4,Way Ngison,total,total,,1631,jiwa,2025,registration,total_population,3.1,30,,
+18.04.21.2008,4,Kubu Liku Jaya,sex,laki_laki,,796,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.21.2008,4,Kubu Liku Jaya,sex,perempuan,,782,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.21.2008,4,Kubu Liku Jaya,total,total,,1578,jiwa,2025,registration,total_population,3.1,30,,
+18.04.21.2009,4,Sumber Rejo,sex,laki_laki,,197,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.21.2009,4,Sumber Rejo,sex,perempuan,,168,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.21.2009,4,Sumber Rejo,total,total,,365,jiwa,2025,registration,total_population,3.1,30,,
+18.04.21.2010,4,Atar Kuwau,sex,laki_laki,,346,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.21.2010,4,Atar Kuwau,sex,perempuan,,303,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.21.2010,4,Atar Kuwau,total,total,,649,jiwa,2025,registration,total_population,3.1,30,,
+18.04.21,3,Batu Ketulis,sex,laki_laki,,7348,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.21,3,Batu Ketulis,sex,perempuan,,6683,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.21,3,Batu Ketulis,total,total,,14031,jiwa,2025,registration,total_population,3.1,30,,
+18.04.21,3,Batu Ketulis,age_group,0-4,laki_laki,456,jiwa,2025,registration,total_population,3.2,32,,0-4
+18.04.21,3,Batu Ketulis,age_group,0-4,perempuan,470,jiwa,2025,registration,total_population,3.2,32,,0-4
+18.04.21,3,Batu Ketulis,age_group,0-4,,926,jiwa,2025,registration,total_population,3.2,32,,0-4
+18.04.21,3,Batu Ketulis,age_group,5-9,laki_laki,607,jiwa,2025,registration,total_population,3.2,32,,5-9
+18.04.21,3,Batu Ketulis,age_group,5-9,perempuan,611,jiwa,2025,registration,total_population,3.2,32,,5-9
+18.04.21,3,Batu Ketulis,age_group,5-9,,1218,jiwa,2025,registration,total_population,3.2,32,,5-9
+18.04.21,3,Batu Ketulis,age_group,10-14,laki_laki,640,jiwa,2025,registration,total_population,3.2,32,,10-14
+18.04.21,3,Batu Ketulis,age_group,10-14,perempuan,568,jiwa,2025,registration,total_population,3.2,32,,10-14
+18.04.21,3,Batu Ketulis,age_group,10-14,,1208,jiwa,2025,registration,total_population,3.2,32,,10-14
+18.04.21,3,Batu Ketulis,age_group,15-19,laki_laki,602,jiwa,2025,registration,total_population,3.2,32,,15-19
+18.04.21,3,Batu Ketulis,age_group,15-19,perempuan,573,jiwa,2025,registration,total_population,3.2,32,,15-19
+18.04.21,3,Batu Ketulis,age_group,15-19,,1175,jiwa,2025,registration,total_population,3.2,32,,15-19
+18.04.21,3,Batu Ketulis,age_group,20-24,laki_laki,545,jiwa,2025,registration,total_population,3.2,32,,20-24
+18.04.21,3,Batu Ketulis,age_group,20-24,perempuan,524,jiwa,2025,registration,total_population,3.2,32,,20-24
+18.04.21,3,Batu Ketulis,age_group,20-24,,1069,jiwa,2025,registration,total_population,3.2,32,,20-24
+18.04.21,3,Batu Ketulis,age_group,25-29,laki_laki,554,jiwa,2025,registration,total_population,3.2,32,,25-29
+18.04.21,3,Batu Ketulis,age_group,25-29,perempuan,563,jiwa,2025,registration,total_population,3.2,32,,25-29
+18.04.21,3,Batu Ketulis,age_group,25-29,,1117,jiwa,2025,registration,total_population,3.2,32,,25-29
+18.04.21,3,Batu Ketulis,age_group,30-34,laki_laki,522,jiwa,2025,registration,total_population,3.2,32,,30-34
+18.04.21,3,Batu Ketulis,age_group,30-34,perempuan,468,jiwa,2025,registration,total_population,3.2,32,,30-34
+18.04.21,3,Batu Ketulis,age_group,30-34,,990,jiwa,2025,registration,total_population,3.2,32,,30-34
+18.04.21,3,Batu Ketulis,age_group,35-39,laki_laki,595,jiwa,2025,registration,total_population,3.2,32,,35-39
+18.04.21,3,Batu Ketulis,age_group,35-39,perempuan,544,jiwa,2025,registration,total_population,3.2,32,,35-39
+18.04.21,3,Batu Ketulis,age_group,35-39,,1139,jiwa,2025,registration,total_population,3.2,32,,35-39
+18.04.21,3,Batu Ketulis,age_group,40-44,laki_laki,580,jiwa,2025,registration,total_population,3.2,32,,40-44
+18.04.21,3,Batu Ketulis,age_group,40-44,perempuan,524,jiwa,2025,registration,total_population,3.2,32,,40-44
+18.04.21,3,Batu Ketulis,age_group,40-44,,1104,jiwa,2025,registration,total_population,3.2,32,,40-44
+18.04.21,3,Batu Ketulis,age_group,45-49,laki_laki,543,jiwa,2025,registration,total_population,3.2,32,,45-49
+18.04.21,3,Batu Ketulis,age_group,45-49,perempuan,427,jiwa,2025,registration,total_population,3.2,32,,45-49
+18.04.21,3,Batu Ketulis,age_group,45-49,,970,jiwa,2025,registration,total_population,3.2,32,,45-49
+18.04.21,3,Batu Ketulis,age_group,50-54,laki_laki,420,jiwa,2025,registration,total_population,3.2,32,,50-54
+18.04.21,3,Batu Ketulis,age_group,50-54,perempuan,402,jiwa,2025,registration,total_population,3.2,32,,50-54
+18.04.21,3,Batu Ketulis,age_group,50-54,,822,jiwa,2025,registration,total_population,3.2,32,,50-54
+18.04.21,3,Batu Ketulis,age_group,55-59,laki_laki,386,jiwa,2025,registration,total_population,3.2,32,,55-59
+18.04.21,3,Batu Ketulis,age_group,55-59,perempuan,275,jiwa,2025,registration,total_population,3.2,32,,55-59
+18.04.21,3,Batu Ketulis,age_group,55-59,,661,jiwa,2025,registration,total_population,3.2,32,,55-59
+18.04.21,3,Batu Ketulis,age_group,60-64,laki_laki,298,jiwa,2025,registration,total_population,3.2,32,,60-64
+18.04.21,3,Batu Ketulis,age_group,60-64,perempuan,260,jiwa,2025,registration,total_population,3.2,32,,60-64
+18.04.21,3,Batu Ketulis,age_group,60-64,,558,jiwa,2025,registration,total_population,3.2,32,,60-64
+18.04.21,3,Batu Ketulis,age_group,65-69,laki_laki,256,jiwa,2025,registration,total_population,3.2,32,,65-69
+18.04.21,3,Batu Ketulis,age_group,65-69,perempuan,188,jiwa,2025,registration,total_population,3.2,32,,65-69
+18.04.21,3,Batu Ketulis,age_group,65-69,,444,jiwa,2025,registration,total_population,3.2,32,,65-69
+18.04.21,3,Batu Ketulis,age_group,70-74,laki_laki,137,jiwa,2025,registration,total_population,3.2,32,,70-74
+18.04.21,3,Batu Ketulis,age_group,70-74,perempuan,119,jiwa,2025,registration,total_population,3.2,32,,70-74
+18.04.21,3,Batu Ketulis,age_group,70-74,,256,jiwa,2025,registration,total_population,3.2,32,,70-74
+18.04.21,3,Batu Ketulis,age_group,75+,laki_laki,207,jiwa,2025,registration,total_population,3.2,32,,75+
+18.04.21,3,Batu Ketulis,age_group,75+,perempuan,167,jiwa,2025,registration,total_population,3.2,32,,75+
+18.04.21,3,Batu Ketulis,age_group,75+,,374,jiwa,2025,registration,total_population,3.2,32,,75+
+18.04.21,3,Batu Ketulis,sex,laki_laki,,7348,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+18.04.21,3,Batu Ketulis,sex,perempuan,,6683,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+18.04.21,3,Batu Ketulis,total,total,,14031,jiwa,2025,registration,total_population,3.2,32,,

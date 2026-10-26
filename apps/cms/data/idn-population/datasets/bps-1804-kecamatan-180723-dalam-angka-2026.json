@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-1804-kecamatan-180723-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.07.23",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Way Bungur Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lampung Timur",
+  "publisherDomain": "1804",
+  "publisherWebsite": "https://lampungtimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lampung Timur (https://lampungtimurkab.bps.go.id), publikasi \"Kecamatan Way Bungur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1804121",
+  "publicationNumber": "18040.26033",
+  "issn": "2797-5746",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lampungtimurkab.bps.go.id/id/publication/2026/09/28/4ba9f56a0e8069aa3b84169f/kecamatan-way-bungur-dalam-angka-2026.html",
+  "sourceFileSha256": "93ef03748daae42bacc926aae8f6e4ecc0af6b0a3fbad826e6b5a11100afb516",
+  "sourceFileBytes": 7822855,
+  "sourcePages": [],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lampung Timur.",
+  "csvPath": "datasets/bps-1804-kecamatan-180723-dalam-angka-2026.csv",
+  "csvSha256": "14d6ca40fcaae798059dd8d1dbac6b7c1fad1a4d7c7be378604fe5294e7cb6fa",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio ───── Jenis Kelamin Penduduk Menurut Desa di Kecamatan Way Bungur, 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di ───── Kecamatan Way Bungur, 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "cross-table disagreement, both stored as published: 18.07.23 sex/laki_laki/ 2025: 15112 (table 3.1) vs 13917 (table 3.2)",
+    "cross-table disagreement, both stored as published: 18.07.23 sex/perempuan/ 2025: 14717 (table 3.1) vs 13605 (table 3.2)",
+    "cross-table disagreement, both stored as published: 18.07.23 total/total/ 2025: 29829 (table 3.1) vs 27522 (table 3.2)"
+  ]
+}

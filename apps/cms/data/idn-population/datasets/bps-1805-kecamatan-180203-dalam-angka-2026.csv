@@ -1,0 +1,100 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.02.03.2001,4,Purwosari,sex,laki_laki,,1890,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+18.02.03.2001,4,Purwosari,sex,perempuan,,1734,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.03.2001,4,Purwosari,total,total,,3624,jiwa,2025,registration,total_population,3.1,37,,
+18.02.03.2019,4,Mojokerto,sex,laki_laki,,1969,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+18.02.03.2019,4,Mojokerto,sex,perempuan,,1840,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.03.2019,4,Mojokerto,total,total,,3809,jiwa,2025,registration,total_population,3.1,37,,
+18.02.03.2002,4,Sendang Ayu,sex,laki_laki,,3102,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+18.02.03.2002,4,Sendang Ayu,sex,perempuan,,2919,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.03.2002,4,Sendang Ayu,total,total,,6021,jiwa,2025,registration,total_population,3.1,37,,
+18.02.03.2004,4,Surabaya,sex,laki_laki,,2090,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+18.02.03.2004,4,Surabaya,sex,perempuan,,2024,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.03.2004,4,Surabaya,total,total,,4114,jiwa,2025,registration,total_population,3.1,37,,
+18.02.03.2003,4,Bandarsari,sex,laki_laki,,2849,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+18.02.03.2003,4,Bandarsari,sex,perempuan,,2667,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.03.2003,4,Bandarsari,total,total,,5516,jiwa,2025,registration,total_population,3.1,37,,
+18.02.03.2009,4,Sri Agung,sex,laki_laki,,1644,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+18.02.03.2009,4,Sri Agung,sex,perempuan,,1518,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.03.2009,4,Sri Agung,total,total,,3162,jiwa,2025,registration,total_population,3.1,37,,
+18.02.03.2006,4,Kota Baru,sex,laki_laki,,1932,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+18.02.03.2006,4,Kota Baru,sex,perempuan,,1855,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.03.2006,4,Kota Baru,total,total,,3787,jiwa,2025,registration,total_population,3.1,37,,
+18.02.03.2005,4,Margorejo,sex,laki_laki,,2489,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+18.02.03.2005,4,Margorejo,sex,perempuan,,2332,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.03.2005,4,Margorejo,total,total,,4821,jiwa,2025,registration,total_population,3.1,37,,
+18.02.03.2007,4,Karang Tanjung,sex,laki_laki,,1744,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+18.02.03.2007,4,Karang Tanjung,sex,perempuan,,1733,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.03.2007,4,Karang Tanjung,total,total,,3477,jiwa,2025,registration,total_population,3.1,37,,
+18.02.03.2008,4,Kuripan,sex,laki_laki,,2972,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+18.02.03.2008,4,Kuripan,sex,perempuan,,2892,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.03.2008,4,Kuripan,total,total,,5864,jiwa,2025,registration,total_population,3.1,37,,
+18.02.03.2010,4,Haduyang Ratu,sex,laki_laki,,2030,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+18.02.03.2010,4,Haduyang Ratu,sex,perempuan,,1900,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.03.2010,4,Haduyang Ratu,total,total,,3930,jiwa,2025,registration,total_population,3.1,37,,
+18.02.03.2011,4,Padang Ratu,sex,laki_laki,,1638,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+18.02.03.2011,4,Padang Ratu,sex,perempuan,,1584,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.03.2011,4,Padang Ratu,total,total,,3222,jiwa,2025,registration,total_population,3.1,37,,
+18.02.03.2018,4,Karang Sari,sex,laki_laki,,1066,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+18.02.03.2018,4,Karang Sari,sex,perempuan,,1034,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.03.2018,4,Karang Sari,total,total,,2100,jiwa,2025,registration,total_population,3.1,37,,
+18.02.03.2020,4,Sumbersari,sex,laki_laki,,697,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+18.02.03.2020,4,Sumbersari,sex,perempuan,,653,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.03.2020,4,Sumbersari,total,total,,1350,jiwa,2025,registration,total_population,3.1,37,,
+18.02.03.2021,4,Purworejo,sex,laki_laki,,1715,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+18.02.03.2021,4,Purworejo,sex,perempuan,,1598,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.03.2021,4,Purworejo,total,total,,3313,jiwa,2025,registration,total_population,3.1,37,,
+18.02.03,3,Padang Ratu,sex,laki_laki,,29827,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+18.02.03,3,Padang Ratu,sex,perempuan,,28283,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.03,3,Padang Ratu,total,total,,58110,jiwa,2025,registration,total_population,3.1,37,,
+18.02.03,3,Padang Ratu,age_group,0-4,laki_laki,2045,jiwa,2025,registration,total_population,3.2,39,,0-4
+18.02.03,3,Padang Ratu,age_group,0-4,perempuan,1928,jiwa,2025,registration,total_population,3.2,39,,0-4
+18.02.03,3,Padang Ratu,age_group,0-4,,3973,jiwa,2025,registration,total_population,3.2,39,,0-4
+18.02.03,3,Padang Ratu,age_group,5-9,laki_laki,2466,jiwa,2025,registration,total_population,3.2,39,,5-9
+18.02.03,3,Padang Ratu,age_group,5-9,perempuan,2318,jiwa,2025,registration,total_population,3.2,39,,5-9
+18.02.03,3,Padang Ratu,age_group,5-9,,4784,jiwa,2025,registration,total_population,3.2,39,,5-9
+18.02.03,3,Padang Ratu,age_group,10-14,laki_laki,2635,jiwa,2025,registration,total_population,3.2,39,,10-14
+18.02.03,3,Padang Ratu,age_group,10-14,perempuan,2440,jiwa,2025,registration,total_population,3.2,39,,10-14
+18.02.03,3,Padang Ratu,age_group,10-14,,5075,jiwa,2025,registration,total_population,3.2,39,,10-14
+18.02.03,3,Padang Ratu,age_group,15-19,laki_laki,2136,jiwa,2025,registration,total_population,3.2,39,,15-19
+18.02.03,3,Padang Ratu,age_group,15-19,perempuan,1963,jiwa,2025,registration,total_population,3.2,39,,15-19
+18.02.03,3,Padang Ratu,age_group,15-19,,4099,jiwa,2025,registration,total_population,3.2,39,,15-19
+18.02.03,3,Padang Ratu,age_group,20-24,laki_laki,2072,jiwa,2025,registration,total_population,3.2,39,,20-24
+18.02.03,3,Padang Ratu,age_group,20-24,perempuan,1978,jiwa,2025,registration,total_population,3.2,39,,20-24
+18.02.03,3,Padang Ratu,age_group,20-24,,4050,jiwa,2025,registration,total_population,3.2,39,,20-24
+18.02.03,3,Padang Ratu,age_group,25-29,laki_laki,2313,jiwa,2025,registration,total_population,3.2,39,,25-29
+18.02.03,3,Padang Ratu,age_group,25-29,perempuan,2188,jiwa,2025,registration,total_population,3.2,39,,25-29
+18.02.03,3,Padang Ratu,age_group,25-29,,4501,jiwa,2025,registration,total_population,3.2,39,,25-29
+18.02.03,3,Padang Ratu,age_group,30-34,laki_laki,2188,jiwa,2025,registration,total_population,3.2,39,,30-34
+18.02.03,3,Padang Ratu,age_group,30-34,perempuan,2018,jiwa,2025,registration,total_population,3.2,39,,30-34
+18.02.03,3,Padang Ratu,age_group,30-34,,4206,jiwa,2025,registration,total_population,3.2,39,,30-34
+18.02.03,3,Padang Ratu,age_group,35-39,laki_laki,2234,jiwa,2025,registration,total_population,3.2,39,,35-39
+18.02.03,3,Padang Ratu,age_group,35-39,perempuan,2118,jiwa,2025,registration,total_population,3.2,39,,35-39
+18.02.03,3,Padang Ratu,age_group,35-39,,4352,jiwa,2025,registration,total_population,3.2,39,,35-39
+18.02.03,3,Padang Ratu,age_group,40-44,laki_laki,2254,jiwa,2025,registration,total_population,3.2,39,,40-44
+18.02.03,3,Padang Ratu,age_group,40-44,perempuan,2143,jiwa,2025,registration,total_population,3.2,39,,40-44
+18.02.03,3,Padang Ratu,age_group,40-44,,4397,jiwa,2025,registration,total_population,3.2,39,,40-44
+18.02.03,3,Padang Ratu,age_group,45-49,laki_laki,2171,jiwa,2025,registration,total_population,3.2,39,,45-49
+18.02.03,3,Padang Ratu,age_group,45-49,perempuan,2006,jiwa,2025,registration,total_population,3.2,39,,45-49
+18.02.03,3,Padang Ratu,age_group,45-49,,4177,jiwa,2025,registration,total_population,3.2,39,,45-49
+18.02.03,3,Padang Ratu,age_group,50-54,laki_laki,1639,jiwa,2025,registration,total_population,3.2,39,,50-54
+18.02.03,3,Padang Ratu,age_group,50-54,perempuan,1766,jiwa,2025,registration,total_population,3.2,39,,50-54
+18.02.03,3,Padang Ratu,age_group,50-54,,3405,jiwa,2025,registration,total_population,3.2,39,,50-54
+18.02.03,3,Padang Ratu,age_group,55-59,laki_laki,1461,jiwa,2025,registration,total_population,3.2,39,,55-59
+18.02.03,3,Padang Ratu,age_group,55-59,perempuan,1389,jiwa,2025,registration,total_population,3.2,39,,55-59
+18.02.03,3,Padang Ratu,age_group,55-59,,2850,jiwa,2025,registration,total_population,3.2,39,,55-59
+18.02.03,3,Padang Ratu,age_group,60-64,laki_laki,1382,jiwa,2025,registration,total_population,3.2,39,,60-64
+18.02.03,3,Padang Ratu,age_group,60-64,perempuan,1379,jiwa,2025,registration,total_population,3.2,39,,60-64
+18.02.03,3,Padang Ratu,age_group,60-64,,2761,jiwa,2025,registration,total_population,3.2,39,,60-64
+18.02.03,3,Padang Ratu,age_group,65-69,laki_laki,1046,jiwa,2025,registration,total_population,3.2,39,,65-69
+18.02.03,3,Padang Ratu,age_group,65-69,perempuan,961,jiwa,2025,registration,total_population,3.2,39,,65-69
+18.02.03,3,Padang Ratu,age_group,65-69,,2007,jiwa,2025,registration,total_population,3.2,39,,65-69
+18.02.03,3,Padang Ratu,age_group,70-74,laki_laki,748,jiwa,2025,registration,total_population,3.2,39,,70-74
+18.02.03,3,Padang Ratu,age_group,70-74,perempuan,612,jiwa,2025,registration,total_population,3.2,39,,70-74
+18.02.03,3,Padang Ratu,age_group,70-74,,1360,jiwa,2025,registration,total_population,3.2,39,,70-74
+18.02.03,3,Padang Ratu,age_group,75+,laki_laki,1037,jiwa,2025,registration,total_population,3.2,39,,75+
+18.02.03,3,Padang Ratu,age_group,75+,perempuan,1076,jiwa,2025,registration,total_population,3.2,39,,75+
+18.02.03,3,Padang Ratu,age_group,75+,,2113,jiwa,2025,registration,total_population,3.2,39,,75+
+18.02.03,3,Padang Ratu,sex,laki_laki,,29827,jiwa,2025,registration,total_population,3.2,39,,Laki-Laki
+18.02.03,3,Padang Ratu,sex,perempuan,,28283,jiwa,2025,registration,total_population,3.2,39,,Perempuan
+18.02.03,3,Padang Ratu,total,total,,58110,jiwa,2025,registration,total_population,3.2,39,,

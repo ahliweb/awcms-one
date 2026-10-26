@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3203-kecamatan-320307-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.03.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Karangtengah Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Cianjur",
+  "publisherDomain": "3203",
+  "publisherWebsite": "https://cianjurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Cianjur (https://cianjurkab.bps.go.id), publikasi \"Kecamatan Karangtengah Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3203190",
+  "publicationNumber": "32030.25031",
+  "issn": "3109-4686",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://cianjurkab.bps.go.id/id/publication/2026/09/28/8d04424dbe1a6e0be149fa7e/kecamatan-karangtengah-dalam-angka-2026.html",
+  "sourceFileSha256": "31058a59fc403f8b0f194dcfb4a7b6de8383c9a1e8dda6f5b1585b93ed2193b3",
+  "sourceFileBytes": 5834671,
+  "sourcePages": [19, 20, 21],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Cianjur.",
+  "csvPath": "datasets/bps-3203-kecamatan-320307-dalam-angka-2026.csv",
+  "csvSha256": "e2811363e45f6de3c5191f398820e11d190cd4f611b7365055148bb3be90a5f5",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Karangtengah, 2025",
+      "printedPages": [19, 20],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Karangtengah, 2025",
+      "printedPages": [21],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

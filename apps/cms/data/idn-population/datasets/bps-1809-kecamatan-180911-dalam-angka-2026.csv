@@ -1,0 +1,145 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.09.11,3,Way Ratai,age_group,0-5,laki_laki,1514,jiwa,2025,registration,total_population,3.2,32,,0-5
+18.09.11,3,Way Ratai,age_group,0-5,perempuan,1389,jiwa,2025,registration,total_population,3.2,32,,0-5
+18.09.11,3,Way Ratai,age_group,0-5,,2903,jiwa,2025,registration,total_population,3.2,32,,0-5
+18.09.11,3,Way Ratai,age_group,6-10,laki_laki,1650,jiwa,2025,registration,total_population,3.2,32,,6-10
+18.09.11,3,Way Ratai,age_group,6-10,perempuan,1534,jiwa,2025,registration,total_population,3.2,32,,6-10
+18.09.11,3,Way Ratai,age_group,6-10,,3184,jiwa,2025,registration,total_population,3.2,32,,6-10
+18.09.11,3,Way Ratai,age_group,11-17,laki_laki,2312,jiwa,2025,registration,total_population,3.2,32,,11-17
+18.09.11,3,Way Ratai,age_group,11-17,perempuan,2286,jiwa,2025,registration,total_population,3.2,32,,11-17
+18.09.11,3,Way Ratai,age_group,11-17,,4598,jiwa,2025,registration,total_population,3.2,32,,11-17
+18.09.11,3,Way Ratai,age_group,18-22,laki_laki,1377,jiwa,2025,registration,total_population,3.2,32,,18-22
+18.09.11,3,Way Ratai,age_group,18-22,perempuan,1316,jiwa,2025,registration,total_population,3.2,32,,18-22
+18.09.11,3,Way Ratai,age_group,18-22,,2693,jiwa,2025,registration,total_population,3.2,32,,18-22
+18.09.11,3,Way Ratai,age_group,23-27,laki_laki,1513,jiwa,2025,registration,total_population,3.2,32,,23-27
+18.09.11,3,Way Ratai,age_group,23-27,perempuan,1365,jiwa,2025,registration,total_population,3.2,32,,23-27
+18.09.11,3,Way Ratai,age_group,23-27,,2878,jiwa,2025,registration,total_population,3.2,32,,23-27
+18.09.11,3,Way Ratai,age_group,28-32,laki_laki,1411,jiwa,2025,registration,total_population,3.2,32,,28-32
+18.09.11,3,Way Ratai,age_group,28-32,perempuan,1299,jiwa,2025,registration,total_population,3.2,32,,28-32
+18.09.11,3,Way Ratai,age_group,28-32,,2710,jiwa,2025,registration,total_population,3.2,32,,28-32
+18.09.11,3,Way Ratai,age_group,33-38,laki_laki,1576,jiwa,2025,registration,total_population,3.2,32,,33-38
+18.09.11,3,Way Ratai,age_group,33-38,perempuan,1426,jiwa,2025,registration,total_population,3.2,32,,33-38
+18.09.11,3,Way Ratai,age_group,33-38,,3002,jiwa,2025,registration,total_population,3.2,32,,33-38
+18.09.11,3,Way Ratai,age_group,39-43,laki_laki,1683,jiwa,2025,registration,total_population,3.2,32,,39-43
+18.09.11,3,Way Ratai,age_group,39-43,perempuan,1632,jiwa,2025,registration,total_population,3.2,32,,39-43
+18.09.11,3,Way Ratai,age_group,39-43,,3315,jiwa,2025,registration,total_population,3.2,32,,39-43
+18.09.11,3,Way Ratai,age_group,44-48,laki_laki,1442,jiwa,2025,registration,total_population,3.2,32,,44-48
+18.09.11,3,Way Ratai,age_group,44-48,perempuan,1313,jiwa,2025,registration,total_population,3.2,32,,44-48
+18.09.11,3,Way Ratai,age_group,44-48,,2755,jiwa,2025,registration,total_population,3.2,32,,44-48
+18.09.11,3,Way Ratai,age_group,49-53,laki_laki,1230,jiwa,2025,registration,total_population,3.2,32,,49-53
+18.09.11,3,Way Ratai,age_group,49-53,perempuan,1147,jiwa,2025,registration,total_population,3.2,32,,49-53
+18.09.11,3,Way Ratai,age_group,49-53,,2377,jiwa,2025,registration,total_population,3.2,32,,49-53
+18.09.11,3,Way Ratai,age_group,54-58,laki_laki,963,jiwa,2025,registration,total_population,3.2,32,,54-58
+18.09.11,3,Way Ratai,age_group,54-58,perempuan,924,jiwa,2025,registration,total_population,3.2,32,,54-58
+18.09.11,3,Way Ratai,age_group,54-58,,1887,jiwa,2025,registration,total_population,3.2,32,,54-58
+18.09.11,3,Way Ratai,age_group,59-63,laki_laki,742,jiwa,2025,registration,total_population,3.2,32,,59-63
+18.09.11,3,Way Ratai,age_group,59-63,perempuan,846,jiwa,2025,registration,total_population,3.2,32,,59-63
+18.09.11,3,Way Ratai,age_group,59-63,,1588,jiwa,2025,registration,total_population,3.2,32,,59-63
+18.09.11,3,Way Ratai,age_group,64-68,laki_laki,736,jiwa,2025,registration,total_population,3.2,32,,64-68
+18.09.11,3,Way Ratai,age_group,64-68,perempuan,668,jiwa,2025,registration,total_population,3.2,32,,64-68
+18.09.11,3,Way Ratai,age_group,64-68,,1404,jiwa,2025,registration,total_population,3.2,32,,64-68
+18.09.11,3,Way Ratai,age_group,69-73,laki_laki,521,jiwa,2025,registration,total_population,3.2,32,,69-73
+18.09.11,3,Way Ratai,age_group,69-73,perempuan,421,jiwa,2025,registration,total_population,3.2,32,,69-73
+18.09.11,3,Way Ratai,age_group,69-73,,942,jiwa,2025,registration,total_population,3.2,32,,69-73
+18.09.11,3,Way Ratai,age_group,74+,laki_laki,853,jiwa,2025,registration,total_population,3.2,32,,>74
+18.09.11,3,Way Ratai,age_group,74+,perempuan,678,jiwa,2025,registration,total_population,3.2,32,,>74
+18.09.11,3,Way Ratai,age_group,74+,,1531,jiwa,2025,registration,total_population,3.2,32,,>74
+18.09.11,3,Way Ratai,sex,laki_laki,,19523,jiwa,2025,registration,total_population,3.2,32,,Laki-laki/Male
+18.09.11,3,Way Ratai,sex,perempuan,,18244,jiwa,2025,registration,total_population,3.2,32,,Perempuan/Female
+18.09.11,3,Way Ratai,total,total,,37767,jiwa,2025,registration,total_population,3.2,32,,
+18.09.11.2005,4,Sumber Jaya,religion,islam,,4797,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.11.2005,4,Sumber Jaya,religion,kristen,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Kristen/
+18.09.11.2005,4,Sumber Jaya,religion,katolik,,8,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.11.2005,4,Sumber Jaya,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.11.2002,4,Bunut Seberang,religion,islam,,3468,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.11.2002,4,Bunut Seberang,religion,kristen,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Kristen/
+18.09.11.2002,4,Bunut Seberang,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.11.2002,4,Bunut Seberang,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.11.2004,4,Ceringin Asri,religion,islam,,2791,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.11.2004,4,Ceringin Asri,religion,kristen,,2,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.11.2004,4,Ceringin Asri,religion,katolik,,4,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.11.2004,4,Ceringin Asri,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.11.2007,4,Poncorejo,religion,islam,,1923,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.11.2007,4,Poncorejo,religion,kristen,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Kristen/
+18.09.11.2007,4,Poncorejo,religion,katolik,,16,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.11.2007,4,Poncorejo,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.11.2008,4,Gunung Rejo,religion,islam,,3453,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.11.2008,4,Gunung Rejo,religion,kristen,,9,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.11.2008,4,Gunung Rejo,religion,katolik,,7,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.11.2008,4,Gunung Rejo,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.11.2006,4,Mulyosari,religion,islam,,2779,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.11.2006,4,Mulyosari,religion,kristen,,15,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.11.2006,4,Mulyosari,religion,katolik,,20,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.11.2006,4,Mulyosari,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.11.2003,4,Wates Way Ratai,religion,islam,,4803,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.11.2003,4,Wates Way Ratai,religion,kristen,,47,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.11.2003,4,Wates Way Ratai,religion,katolik,,28,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.11.2003,4,Wates Way Ratai,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.11.2001,4,Bunut,religion,islam,,4517,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.11.2001,4,Bunut,religion,kristen,,17,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.11.2001,4,Bunut,religion,katolik,,4,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.11.2001,4,Bunut,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.11.2009,4,Pesawaran Indah,religion,islam,,3613,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.11.2009,4,Pesawaran Indah,religion,kristen,,3,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.11.2009,4,Pesawaran Indah,religion,katolik,,157,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.11.2009,4,Pesawaran Indah,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.11.2010,4,Harapan Jaya,religion,islam,,2621,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.11.2010,4,Harapan Jaya,religion,kristen,,34,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.11.2010,4,Harapan Jaya,religion,katolik,,1,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.11.2010,4,Harapan Jaya,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.11.2011,4,Kalirejo,religion,islam,,2581,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.11.2011,4,Kalirejo,religion,kristen,,11,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.11.2011,4,Kalirejo,religion,katolik,,21,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.11.2011,4,Kalirejo,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.11,3,Way Ratai,religion,islam,,37346,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.11,3,Way Ratai,religion,kristen,,138,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.11,3,Way Ratai,religion,katolik,,266,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.11,3,Way Ratai,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.11.2005,4,Sumber Jaya,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.11.2005,4,Sumber Jaya,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.11.2005,4,Sumber Jaya,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.11.2005,4,Sumber Jaya,total,total,,4805,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.11.2002,4,Bunut Seberang,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.11.2002,4,Bunut Seberang,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.11.2002,4,Bunut Seberang,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.11.2002,4,Bunut Seberang,total,total,,3468,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.11.2004,4,Ceringin Asri,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.11.2004,4,Ceringin Asri,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.11.2004,4,Ceringin Asri,religion,kepercayaan,,4,jiwa,2025,registration,total_population,4.4.3,57,,Kepercayaan/
+18.09.11.2004,4,Ceringin Asri,total,total,,2801,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.11.2007,4,Poncorejo,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.11.2007,4,Poncorejo,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.11.2007,4,Poncorejo,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.11.2007,4,Poncorejo,total,total,,1939,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.11.2008,4,Gunung Rejo,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.11.2008,4,Gunung Rejo,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.11.2008,4,Gunung Rejo,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.11.2008,4,Gunung Rejo,total,total,,3469,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.11.2006,4,Mulyosari,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.11.2006,4,Mulyosari,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.11.2006,4,Mulyosari,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.11.2006,4,Mulyosari,total,total,,2814,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.11.2003,4,Wates Way Ratai,religion,buddha,,10,jiwa,2025,registration,total_population,4.4.3,57,,Budha/
+18.09.11.2003,4,Wates Way Ratai,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.11.2003,4,Wates Way Ratai,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.11.2003,4,Wates Way Ratai,total,total,,4888,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.11.2001,4,Bunut,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.11.2001,4,Bunut,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.11.2001,4,Bunut,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.11.2001,4,Bunut,total,total,,4538,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.11.2009,4,Pesawaran Indah,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.11.2009,4,Pesawaran Indah,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.11.2009,4,Pesawaran Indah,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.11.2009,4,Pesawaran Indah,total,total,,3773,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.11.2010,4,Harapan Jaya,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.11.2010,4,Harapan Jaya,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.11.2010,4,Harapan Jaya,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.11.2010,4,Harapan Jaya,total,total,,2656,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.11.2011,4,Kalirejo,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.11.2011,4,Kalirejo,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.11.2011,4,Kalirejo,religion,kepercayaan,,3,jiwa,2025,registration,total_population,4.4.3,57,,Kepercayaan/
+18.09.11.2011,4,Kalirejo,total,total,,2616,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.11,3,Way Ratai,religion,buddha,,10,jiwa,2025,registration,total_population,4.4.3,57,,Budha/
+18.09.11,3,Way Ratai,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.11,3,Way Ratai,religion,kepercayaan,,7,jiwa,2025,registration,total_population,4.4.3,57,,Kepercayaan/
+18.09.11,3,Way Ratai,total,total,,37767,jiwa,2025,registration,total_population,4.4.3,57,,

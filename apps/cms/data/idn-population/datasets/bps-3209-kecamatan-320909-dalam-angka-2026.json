@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3209-kecamatan-320909-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.09.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sedong Dalam Angka 2026",
+  "publisherName": "BPS BPS Kabupaten Cirebon",
+  "publisherDomain": "3209",
+  "publisherWebsite": "https://cirebonkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS BPS Kabupaten Cirebon (https://cirebonkab.bps.go.id), publikasi \"Kecamatan Sedong Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3209070",
+  "publicationNumber": "32090.26017",
+  "issn": "2656-7911",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://cirebonkab.bps.go.id/id/publication/2026/09/28/79781a76cc1f7faaa5717479/kecamatan-sedong-dalam-angka-2026.html",
+  "sourceFileSha256": "991ebab8db5622f338cd2b1841a55cb8f700834c645c3514341d74f0bcb07f0f",
+  "sourceFileBytes": 8855578,
+  "sourcePages": [52, 53, 54],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Cirebon.",
+  "csvPath": "datasets/bps-3209-kecamatan-320909-dalam-angka-2026.csv",
+  "csvSha256": "4a52bcfa1f9cad9f0a6ed51251bdd68735ba02da2942a4f1a6958cbbec2ff676",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sedong, 2025",
+      "printedPages": [52, 53],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sedong, 2025",
+      "printedPages": [54],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.01.15.2004,4,Kuala Sempang,sex,laki_laki,,1064,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+21.01.15.2004,4,Kuala Sempang,sex,perempuan,,982,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+21.01.15.2004,4,Kuala Sempang,total,total,,2046,jiwa,2025,registration,total_population,3.1,23,,
+21.01.15.2001,4,Busung,sex,laki_laki,,929,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+21.01.15.2001,4,Busung,sex,perempuan,,889,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+21.01.15.2001,4,Busung,total,total,,1818,jiwa,2025,registration,total_population,3.1,23,,
+21.01.15.2002,4,Teluk Sasah,sex,laki_laki,,4572,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+21.01.15.2002,4,Teluk Sasah,sex,perempuan,,4472,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+21.01.15.2002,4,Teluk Sasah,total,total,,9044,jiwa,2025,registration,total_population,3.1,23,,
+21.01.15.1003,4,Teluk Lobam,sex,laki_laki,,1466,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+21.01.15.1003,4,Teluk Lobam,sex,perempuan,,1463,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+21.01.15.1003,4,Teluk Lobam,total,total,,2929,jiwa,2025,registration,total_population,3.1,23,,
+21.01.15.1005,4,Tanjung permai,sex,laki_laki,,2514,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+21.01.15.1005,4,Tanjung permai,sex,perempuan,,2490,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+21.01.15.1005,4,Tanjung permai,total,total,,5004,jiwa,2025,registration,total_population,3.1,23,,
+21.01.15,3,Seri Kuala Lobam,sex,laki_laki,,10545,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+21.01.15,3,Seri Kuala Lobam,sex,perempuan,,10296,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+21.01.15,3,Seri Kuala Lobam,total,total,,20841,jiwa,2025,registration,total_population,3.1,23,,
+21.01.15,3,Seri Kuala Lobam,age_group,0-4,laki_laki,707,jiwa,2025,registration,total_population,3.2,25,,0-4
+21.01.15,3,Seri Kuala Lobam,age_group,0-4,perempuan,645,jiwa,2025,registration,total_population,3.2,25,,0-4
+21.01.15,3,Seri Kuala Lobam,age_group,0-4,,1352,jiwa,2025,registration,total_population,3.2,25,,0-4
+21.01.15,3,Seri Kuala Lobam,age_group,5-9,laki_laki,1035,jiwa,2025,registration,total_population,3.2,25,,5-9
+21.01.15,3,Seri Kuala Lobam,age_group,5-9,perempuan,1032,jiwa,2025,registration,total_population,3.2,25,,5-9
+21.01.15,3,Seri Kuala Lobam,age_group,5-9,,2067,jiwa,2025,registration,total_population,3.2,25,,5-9
+21.01.15,3,Seri Kuala Lobam,age_group,10-14,laki_laki,1081,jiwa,2025,registration,total_population,3.2,25,,10-14
+21.01.15,3,Seri Kuala Lobam,age_group,10-14,perempuan,1010,jiwa,2025,registration,total_population,3.2,25,,10-14
+21.01.15,3,Seri Kuala Lobam,age_group,10-14,,2091,jiwa,2025,registration,total_population,3.2,25,,10-14
+21.01.15,3,Seri Kuala Lobam,age_group,15-19,laki_laki,1102,jiwa,2025,registration,total_population,3.2,25,,15-19
+21.01.15,3,Seri Kuala Lobam,age_group,15-19,perempuan,1097,jiwa,2025,registration,total_population,3.2,25,,15-19
+21.01.15,3,Seri Kuala Lobam,age_group,15-19,,2199,jiwa,2025,registration,total_population,3.2,25,,15-19
+21.01.15,3,Seri Kuala Lobam,age_group,20-24,laki_laki,990,jiwa,2025,registration,total_population,3.2,25,,20-24
+21.01.15,3,Seri Kuala Lobam,age_group,20-24,perempuan,979,jiwa,2025,registration,total_population,3.2,25,,20-24
+21.01.15,3,Seri Kuala Lobam,age_group,20-24,,1969,jiwa,2025,registration,total_population,3.2,25,,20-24
+21.01.15,3,Seri Kuala Lobam,age_group,25-29,laki_laki,739,jiwa,2025,registration,total_population,3.2,25,,25-29
+21.01.15,3,Seri Kuala Lobam,age_group,25-29,perempuan,713,jiwa,2025,registration,total_population,3.2,25,,25-29
+21.01.15,3,Seri Kuala Lobam,age_group,25-29,,1452,jiwa,2025,registration,total_population,3.2,25,,25-29
+21.01.15,3,Seri Kuala Lobam,age_group,30-34,laki_laki,686,jiwa,2025,registration,total_population,3.2,25,,30-34
+21.01.15,3,Seri Kuala Lobam,age_group,30-34,perempuan,738,jiwa,2025,registration,total_population,3.2,25,,30-34
+21.01.15,3,Seri Kuala Lobam,age_group,30-34,,1424,jiwa,2025,registration,total_population,3.2,25,,30-34
+21.01.15,3,Seri Kuala Lobam,age_group,35-39,laki_laki,789,jiwa,2025,registration,total_population,3.2,25,,35-39
+21.01.15,3,Seri Kuala Lobam,age_group,35-39,perempuan,854,jiwa,2025,registration,total_population,3.2,25,,35-39
+21.01.15,3,Seri Kuala Lobam,age_group,35-39,,1643,jiwa,2025,registration,total_population,3.2,25,,35-39
+21.01.15,3,Seri Kuala Lobam,age_group,40-44,laki_laki,969,jiwa,2025,registration,total_population,3.2,25,,40-44
+21.01.15,3,Seri Kuala Lobam,age_group,40-44,perempuan,1058,jiwa,2025,registration,total_population,3.2,25,,40-44
+21.01.15,3,Seri Kuala Lobam,age_group,40-44,,2027,jiwa,2025,registration,total_population,3.2,25,,40-44
+21.01.15,3,Seri Kuala Lobam,age_group,45-49,laki_laki,985,jiwa,2025,registration,total_population,3.2,25,,45-49
+21.01.15,3,Seri Kuala Lobam,age_group,45-49,perempuan,1021,jiwa,2025,registration,total_population,3.2,25,,45-49
+21.01.15,3,Seri Kuala Lobam,age_group,45-49,,2006,jiwa,2025,registration,total_population,3.2,25,,45-49
+21.01.15,3,Seri Kuala Lobam,age_group,50-54,laki_laki,656,jiwa,2025,registration,total_population,3.2,25,,50-54
+21.01.15,3,Seri Kuala Lobam,age_group,50-54,perempuan,480,jiwa,2025,registration,total_population,3.2,25,,50-54
+21.01.15,3,Seri Kuala Lobam,age_group,50-54,,1136,jiwa,2025,registration,total_population,3.2,25,,50-54
+21.01.15,3,Seri Kuala Lobam,age_group,55-59,laki_laki,347,jiwa,2025,registration,total_population,3.2,25,,55-59
+21.01.15,3,Seri Kuala Lobam,age_group,55-59,perempuan,269,jiwa,2025,registration,total_population,3.2,25,,55-59
+21.01.15,3,Seri Kuala Lobam,age_group,55-59,,616,jiwa,2025,registration,total_population,3.2,25,,55-59
+21.01.15,3,Seri Kuala Lobam,age_group,60-64,laki_laki,203,jiwa,2025,registration,total_population,3.2,25,,60-64
+21.01.15,3,Seri Kuala Lobam,age_group,60-64,perempuan,161,jiwa,2025,registration,total_population,3.2,25,,60-64
+21.01.15,3,Seri Kuala Lobam,age_group,60-64,,364,jiwa,2025,registration,total_population,3.2,25,,60-64
+21.01.15,3,Seri Kuala Lobam,age_group,65-69,laki_laki,125,jiwa,2025,registration,total_population,3.2,25,,65-69
+21.01.15,3,Seri Kuala Lobam,age_group,65-69,perempuan,95,jiwa,2025,registration,total_population,3.2,25,,65-69
+21.01.15,3,Seri Kuala Lobam,age_group,65-69,,220,jiwa,2025,registration,total_population,3.2,25,,65-69
+21.01.15,3,Seri Kuala Lobam,age_group,70-74,laki_laki,72,jiwa,2025,registration,total_population,3.2,25,,70-74
+21.01.15,3,Seri Kuala Lobam,age_group,70-74,perempuan,82,jiwa,2025,registration,total_population,3.2,25,,70-74
+21.01.15,3,Seri Kuala Lobam,age_group,70-74,,154,jiwa,2025,registration,total_population,3.2,25,,70-74
+21.01.15,3,Seri Kuala Lobam,age_group,75+,laki_laki,59,jiwa,2025,registration,total_population,3.2,25,,>75
+21.01.15,3,Seri Kuala Lobam,age_group,75+,perempuan,62,jiwa,2025,registration,total_population,3.2,25,,>75
+21.01.15,3,Seri Kuala Lobam,age_group,75+,,121,jiwa,2025,registration,total_population,3.2,25,,>75
+21.01.15,3,Seri Kuala Lobam,sex,laki_laki,,10545,jiwa,2025,registration,total_population,3.2,25,,Laki-Laki
+21.01.15,3,Seri Kuala Lobam,sex,perempuan,,10296,jiwa,2025,registration,total_population,3.2,25,,Perempuan
+21.01.15,3,Seri Kuala Lobam,total,total,,20841,jiwa,2025,registration,total_population,3.2,25,,

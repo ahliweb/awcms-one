@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.06.20.2006,4,Gisting Atas,sex,laki_laki,,4262,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.20.2006,4,Gisting Atas,sex,perempuan,,4103,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.20.2006,4,Gisting Atas,total,total,,8365,jiwa,2025,registration,total_population,3.1,27,,
+18.06.20.2005,4,Gisting Bawah,sex,laki_laki,,3882,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.20.2005,4,Gisting Bawah,sex,perempuan,,3718,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.20.2005,4,Gisting Bawah,total,total,,7600,jiwa,2025,registration,total_population,3.1,27,,
+18.06.20.2004,4,Purwodadi,sex,laki_laki,,3553,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.20.2004,4,Purwodadi,sex,perempuan,,3381,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.20.2004,4,Purwodadi,total,total,,6934,jiwa,2025,registration,total_population,3.1,27,,
+18.06.20.2003,4,Kuta Dalom,sex,laki_laki,,2079,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.20.2003,4,Kuta Dalom,sex,perempuan,,1984,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.20.2003,4,Kuta Dalom,total,total,,4063,jiwa,2025,registration,total_population,3.1,27,,
+18.06.20.2001,4,Banjarmanis,sex,laki_laki,,1239,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.20.2001,4,Banjarmanis,sex,perempuan,,1191,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.20.2001,4,Banjarmanis,total,total,,2430,jiwa,2025,registration,total_population,3.1,27,,
+18.06.20.2002,4,Campang,sex,laki_laki,,2144,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.20.2002,4,Campang,sex,perempuan,,1951,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.20.2002,4,Campang,total,total,,4095,jiwa,2025,registration,total_population,3.1,27,,
+18.06.20.2007,4,Sidokaton,sex,laki_laki,,802,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.20.2007,4,Sidokaton,sex,perempuan,,744,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.20.2007,4,Sidokaton,total,total,,1546,jiwa,2025,registration,total_population,3.1,27,,
+18.06.20.2009,4,Gisting Permai,sex,laki_laki,,2361,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.20.2009,4,Gisting Permai,sex,perempuan,,2275,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.20.2009,4,Gisting Permai,total,total,,4636,jiwa,2025,registration,total_population,3.1,27,,
+18.06.20,3,Gisting,age_group,0-4,laki_laki,1349,jiwa,2025,registration,total_population,3.2,29,,0-4
+18.06.20,3,Gisting,age_group,0-4,perempuan,1223,jiwa,2025,registration,total_population,3.2,29,,0-4
+18.06.20,3,Gisting,age_group,0-4,,2572,jiwa,2025,registration,total_population,3.2,29,,0-4
+18.06.20,3,Gisting,age_group,5-9,laki_laki,1814,jiwa,2025,registration,total_population,3.2,29,,5-9
+18.06.20,3,Gisting,age_group,5-9,perempuan,1754,jiwa,2025,registration,total_population,3.2,29,,5-9
+18.06.20,3,Gisting,age_group,5-9,,3568,jiwa,2025,registration,total_population,3.2,29,,5-9
+18.06.20,3,Gisting,age_group,10-14,laki_laki,1987,jiwa,2025,registration,total_population,3.2,29,,10-14
+18.06.20,3,Gisting,age_group,10-14,perempuan,1838,jiwa,2025,registration,total_population,3.2,29,,10-14
+18.06.20,3,Gisting,age_group,10-14,,3825,jiwa,2025,registration,total_population,3.2,29,,10-14
+18.06.20,3,Gisting,age_group,15-19,laki_laki,1838,jiwa,2025,registration,total_population,3.2,29,,15-19
+18.06.20,3,Gisting,age_group,15-19,perempuan,1797,jiwa,2025,registration,total_population,3.2,29,,15-19
+18.06.20,3,Gisting,age_group,15-19,,3635,jiwa,2025,registration,total_population,3.2,29,,15-19
+18.06.20,3,Gisting,age_group,20-24,laki_laki,1628,jiwa,2025,registration,total_population,3.2,29,,20-24
+18.06.20,3,Gisting,age_group,20-24,perempuan,1605,jiwa,2025,registration,total_population,3.2,29,,20-24
+18.06.20,3,Gisting,age_group,20-24,,3233,jiwa,2025,registration,total_population,3.2,29,,20-24
+18.06.20,3,Gisting,age_group,25-29,laki_laki,1745,jiwa,2025,registration,total_population,3.2,29,,25-29
+18.06.20,3,Gisting,age_group,25-29,perempuan,1592,jiwa,2025,registration,total_population,3.2,29,,25-29
+18.06.20,3,Gisting,age_group,25-29,,3337,jiwa,2025,registration,total_population,3.2,29,,25-29
+18.06.20,3,Gisting,age_group,30-34,laki_laki,1555,jiwa,2025,registration,total_population,3.2,29,,30-34
+18.06.20,3,Gisting,age_group,30-34,perempuan,1496,jiwa,2025,registration,total_population,3.2,29,,30-34
+18.06.20,3,Gisting,age_group,30-34,,3051,jiwa,2025,registration,total_population,3.2,29,,30-34
+18.06.20,3,Gisting,age_group,35-39,laki_laki,1536,jiwa,2025,registration,total_population,3.2,29,,35-39
+18.06.20,3,Gisting,age_group,35-39,perempuan,1477,jiwa,2025,registration,total_population,3.2,29,,35-39
+18.06.20,3,Gisting,age_group,35-39,,3013,jiwa,2025,registration,total_population,3.2,29,,35-39
+18.06.20,3,Gisting,age_group,40-44,laki_laki,1551,jiwa,2025,registration,total_population,3.2,29,,40-44
+18.06.20,3,Gisting,age_group,40-44,perempuan,1558,jiwa,2025,registration,total_population,3.2,29,,40-44
+18.06.20,3,Gisting,age_group,40-44,,3109,jiwa,2025,registration,total_population,3.2,29,,40-44
+18.06.20,3,Gisting,age_group,45-49,laki_laki,1814,jiwa,2025,registration,total_population,3.2,29,,45-49
+18.06.20,3,Gisting,age_group,45-49,perempuan,1651,jiwa,2025,registration,total_population,3.2,29,,45-49
+18.06.20,3,Gisting,age_group,45-49,,3465,jiwa,2025,registration,total_population,3.2,29,,45-49
+18.06.20,3,Gisting,age_group,50-54,laki_laki,1489,jiwa,2025,registration,total_population,3.2,29,,50-54
+18.06.20,3,Gisting,age_group,50-54,perempuan,1395,jiwa,2025,registration,total_population,3.2,29,,50-54
+18.06.20,3,Gisting,age_group,50-54,,2884,jiwa,2025,registration,total_population,3.2,29,,50-54
+18.06.20,3,Gisting,age_group,55-59,laki_laki,1239,jiwa,2025,registration,total_population,3.2,29,,55-59
+18.06.20,3,Gisting,age_group,55-59,perempuan,1122,jiwa,2025,registration,total_population,3.2,29,,55-59
+18.06.20,3,Gisting,age_group,55-59,,2361,jiwa,2025,registration,total_population,3.2,29,,55-59
+18.06.20,3,Gisting,age_group,60-64,laki_laki,948,jiwa,2025,registration,total_population,3.2,29,,60-64
+18.06.20,3,Gisting,age_group,60-64,perempuan,1018,jiwa,2025,registration,total_population,3.2,29,,60-64
+18.06.20,3,Gisting,age_group,60-64,,1966,jiwa,2025,registration,total_population,3.2,29,,60-64
+18.06.20,3,Gisting,age_group,65-69,laki_laki,742,jiwa,2025,registration,total_population,3.2,29,,65-69
+18.06.20,3,Gisting,age_group,65-69,perempuan,755,jiwa,2025,registration,total_population,3.2,29,,65-69
+18.06.20,3,Gisting,age_group,65-69,,1497,jiwa,2025,registration,total_population,3.2,29,,65-69
+18.06.20,3,Gisting,age_group,70-74,laki_laki,510,jiwa,2025,registration,total_population,3.2,29,,70-74
+18.06.20,3,Gisting,age_group,70-74,perempuan,455,jiwa,2025,registration,total_population,3.2,29,,70-74
+18.06.20,3,Gisting,age_group,70-74,,965,jiwa,2025,registration,total_population,3.2,29,,70-74
+18.06.20,3,Gisting,age_group,75+,laki_laki,671,jiwa,2025,registration,total_population,3.2,29,,75+
+18.06.20,3,Gisting,age_group,75+,perempuan,674,jiwa,2025,registration,total_population,3.2,29,,75+
+18.06.20,3,Gisting,age_group,75+,,1345,jiwa,2025,registration,total_population,3.2,29,,75+
+18.06.20,3,Gisting,sex,laki_laki,,22416,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+18.06.20,3,Gisting,sex,perempuan,,21410,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+18.06.20,3,Gisting,total,total,,43826,jiwa,2025,registration,total_population,3.2,29,,

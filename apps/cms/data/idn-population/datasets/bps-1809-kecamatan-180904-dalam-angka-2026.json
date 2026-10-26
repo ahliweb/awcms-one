@@ -1,0 +1,56 @@
+{
+  "datasetCode": "bps-1809-kecamatan-180904-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.09.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Way Lima Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pesawaran",
+  "publisherDomain": "1809",
+  "publisherWebsite": "https://pesawarankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pesawaran (https://pesawarankab.bps.go.id), publikasi \"Kecamatan Way Lima Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1809040",
+  "publicationNumber": "18090.26011",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pesawarankab.bps.go.id/id/publication/2026/09/28/d64f60fa0247f6b195a5bb1e/kecamatan-way-lima-dalam-angka-2026.html",
+  "sourceFileSha256": "4c804d562e340832e2208f79f98420ca79b566e7d710ce6296f23163136456d5",
+  "sourceFileBytes": 10814125,
+  "sourcePages": [30, 31, 32, 56, 57],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pesawaran.",
+  "csvPath": "datasets/bps-1809-kecamatan-180904-dalam-angka-2026.csv",
+  "csvSha256": "a16f90a3a98c0056cdbdd56c4ebf438c6a949ed725d69ad386a20f01f2914832",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Way Lima, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Way Lima, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.4.3",
+      "title": "Jumlah Penduduk Menurut Desa dan Agama yang Dianut di Kecamatan Way Lima, 2025",
+      "printedPages": [56, 57],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.1: row not stored: row \"Gedung Dalam\": unmatched ",
+    "table 3.1: row not stored: row \"Gedung Dalam\": unmatched ",
+    "table 4.4.3: row not stored: row \"Gedung Dalam\": unmatched ",
+    "table 4.4.3: row not stored: row \"Gedung Dalam\": unmatched ",
+    "table 4.4.3: the rows of region 18.09.04.2004 are not stored: religion vs total: parts sum 996.0000 != 956.0000 (diff 40.0000); the source itself is inconsistent"
+  ]
+}

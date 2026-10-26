@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.18.10.2003,4,SUKARESIK,sex,laki_laki,,2899,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.10.2003,4,SUKARESIK,sex,perempuan,,3002,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.10.2003,4,SUKARESIK,total,total,,5901,jiwa,2025,registration,total_population,3.1,30,,
+32.18.10.2004,4,CIKEMBULAN,sex,laki_laki,,2517,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.10.2004,4,CIKEMBULAN,sex,perempuan,,2598,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.10.2004,4,CIKEMBULAN,total,total,,5115,jiwa,2025,registration,total_population,3.1,30,,
+32.18.10.2005,4,PAJATEN,sex,laki_laki,,3001,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.10.2005,4,PAJATEN,sex,perempuan,,3028,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.10.2005,4,PAJATEN,total,total,,6029,jiwa,2025,registration,total_population,3.1,30,,
+32.18.10.2001,4,SIDAMULIH,sex,laki_laki,,2401,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.10.2001,4,SIDAMULIH,sex,perempuan,,2380,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.10.2001,4,SIDAMULIH,total,total,,4781,jiwa,2025,registration,total_population,3.1,30,,
+32.18.10.2002,4,CIKALONG,sex,laki_laki,,1601,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.10.2002,4,CIKALONG,sex,perempuan,,1697,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.10.2002,4,CIKALONG,total,total,,3298,jiwa,2025,registration,total_population,3.1,30,,
+32.18.10.2006,4,KERSARATU,sex,laki_laki,,1263,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.10.2006,4,KERSARATU,sex,perempuan,,1277,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.10.2006,4,KERSARATU,total,total,,2540,jiwa,2025,registration,total_population,3.1,30,,
+32.18.10.2007,4,KALIJATI,sex,laki_laki,,2130,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.10.2007,4,KALIJATI,sex,perempuan,,2090,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.10.2007,4,KALIJATI,total,total,,4220,jiwa,2025,registration,total_population,3.1,30,,
+32.18.10,3,Kecamatan Sidamulih,sex,laki_laki,,15812,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.18.10,3,Kecamatan Sidamulih,sex,perempuan,,16072,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.18.10,3,Kecamatan Sidamulih,total,total,,31884,jiwa,2025,registration,total_population,3.1,30,,
+32.18.10,3,Sidamulih,age_group,0-4,laki_laki,841,jiwa,2025,registration,total_population,3.2,32,,0–4
+32.18.10,3,Sidamulih,age_group,0-4,perempuan,893,jiwa,2025,registration,total_population,3.2,32,,0–4
+32.18.10,3,Sidamulih,age_group,0-4,,1734,jiwa,2025,registration,total_population,3.2,32,,0–4
+32.18.10,3,Sidamulih,age_group,5-9,laki_laki,1160,jiwa,2025,registration,total_population,3.2,32,,5–9
+32.18.10,3,Sidamulih,age_group,5-9,perempuan,1068,jiwa,2025,registration,total_population,3.2,32,,5–9
+32.18.10,3,Sidamulih,age_group,5-9,,2228,jiwa,2025,registration,total_population,3.2,32,,5–9
+32.18.10,3,Sidamulih,age_group,10-14,laki_laki,1107,jiwa,2025,registration,total_population,3.2,32,,10–14
+32.18.10,3,Sidamulih,age_group,10-14,perempuan,1083,jiwa,2025,registration,total_population,3.2,32,,10–14
+32.18.10,3,Sidamulih,age_group,10-14,,2190,jiwa,2025,registration,total_population,3.2,32,,10–14
+32.18.10,3,Sidamulih,age_group,15-19,laki_laki,1159,jiwa,2025,registration,total_population,3.2,32,,15–19
+32.18.10,3,Sidamulih,age_group,15-19,perempuan,1082,jiwa,2025,registration,total_population,3.2,32,,15–19
+32.18.10,3,Sidamulih,age_group,15-19,,2241,jiwa,2025,registration,total_population,3.2,32,,15–19
+32.18.10,3,Sidamulih,age_group,20-24,laki_laki,1109,jiwa,2025,registration,total_population,3.2,32,,20–24
+32.18.10,3,Sidamulih,age_group,20-24,perempuan,1018,jiwa,2025,registration,total_population,3.2,32,,20–24
+32.18.10,3,Sidamulih,age_group,20-24,,2127,jiwa,2025,registration,total_population,3.2,32,,20–24
+32.18.10,3,Sidamulih,age_group,25-29,laki_laki,1177,jiwa,2025,registration,total_population,3.2,32,,25–29
+32.18.10,3,Sidamulih,age_group,25-29,perempuan,1128,jiwa,2025,registration,total_population,3.2,32,,25–29
+32.18.10,3,Sidamulih,age_group,25-29,,2305,jiwa,2025,registration,total_population,3.2,32,,25–29
+32.18.10,3,Sidamulih,age_group,30-34,laki_laki,1263,jiwa,2025,registration,total_population,3.2,32,,30–34
+32.18.10,3,Sidamulih,age_group,30-34,perempuan,1188,jiwa,2025,registration,total_population,3.2,32,,30–34
+32.18.10,3,Sidamulih,age_group,30-34,,2451,jiwa,2025,registration,total_population,3.2,32,,30–34
+32.18.10,3,Sidamulih,age_group,35-39,laki_laki,1033,jiwa,2025,registration,total_population,3.2,32,,35–39
+32.18.10,3,Sidamulih,age_group,35-39,perempuan,1032,jiwa,2025,registration,total_population,3.2,32,,35–39
+32.18.10,3,Sidamulih,age_group,35-39,,2065,jiwa,2025,registration,total_population,3.2,32,,35–39
+32.18.10,3,Sidamulih,age_group,40-44,laki_laki,1102,jiwa,2025,registration,total_population,3.2,32,,40–44
+32.18.10,3,Sidamulih,age_group,40-44,perempuan,1063,jiwa,2025,registration,total_population,3.2,32,,40–44
+32.18.10,3,Sidamulih,age_group,40-44,,2165,jiwa,2025,registration,total_population,3.2,32,,40–44
+32.18.10,3,Sidamulih,age_group,45-49,laki_laki,989,jiwa,2025,registration,total_population,3.2,32,,45–49
+32.18.10,3,Sidamulih,age_group,45-49,perempuan,1028,jiwa,2025,registration,total_population,3.2,32,,45–49
+32.18.10,3,Sidamulih,age_group,45-49,,2017,jiwa,2025,registration,total_population,3.2,32,,45–49
+32.18.10,3,Sidamulih,age_group,50-54,laki_laki,1008,jiwa,2025,registration,total_population,3.2,32,,50–54
+32.18.10,3,Sidamulih,age_group,50-54,perempuan,1108,jiwa,2025,registration,total_population,3.2,32,,50–54
+32.18.10,3,Sidamulih,age_group,50-54,,2116,jiwa,2025,registration,total_population,3.2,32,,50–54
+32.18.10,3,Sidamulih,age_group,55-59,laki_laki,921,jiwa,2025,registration,total_population,3.2,32,,55–59
+32.18.10,3,Sidamulih,age_group,55-59,perempuan,1084,jiwa,2025,registration,total_population,3.2,32,,55–59
+32.18.10,3,Sidamulih,age_group,55-59,,2005,jiwa,2025,registration,total_population,3.2,32,,55–59
+32.18.10,3,Sidamulih,age_group,60-64,laki_laki,877,jiwa,2025,registration,total_population,3.2,32,,60–64
+32.18.10,3,Sidamulih,age_group,60-64,perempuan,1019,jiwa,2025,registration,total_population,3.2,32,,60–64
+32.18.10,3,Sidamulih,age_group,60-64,,1896,jiwa,2025,registration,total_population,3.2,32,,60–64
+32.18.10,3,Sidamulih,age_group,65-69,laki_laki,776,jiwa,2025,registration,total_population,3.2,32,,65–69
+32.18.10,3,Sidamulih,age_group,65-69,perempuan,921,jiwa,2025,registration,total_population,3.2,32,,65–69
+32.18.10,3,Sidamulih,age_group,65-69,,1697,jiwa,2025,registration,total_population,3.2,32,,65–69
+32.18.10,3,Sidamulih,age_group,70-74,laki_laki,655,jiwa,2025,registration,total_population,3.2,32,,70–74
+32.18.10,3,Sidamulih,age_group,70-74,perempuan,632,jiwa,2025,registration,total_population,3.2,32,,70–74
+32.18.10,3,Sidamulih,age_group,70-74,,1287,jiwa,2025,registration,total_population,3.2,32,,70–74
+32.18.10,3,Sidamulih,age_group,75+,laki_laki,635,jiwa,2025,registration,total_population,3.2,32,,75+
+32.18.10,3,Sidamulih,age_group,75+,perempuan,725,jiwa,2025,registration,total_population,3.2,32,,75+
+32.18.10,3,Sidamulih,age_group,75+,,1360,jiwa,2025,registration,total_population,3.2,32,,75+
+32.18.10,3,Kecamatan Sidamulih,sex,laki_laki,,15812,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+32.18.10,3,Kecamatan Sidamulih,sex,perempuan,,16072,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+32.18.10,3,Kecamatan Sidamulih,total,total,,31884,jiwa,2025,registration,total_population,3.2,32,,

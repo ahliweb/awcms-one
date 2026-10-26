@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-3205-kecamatan-320508-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.05.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pasirwangi Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Garut",
+  "publisherDomain": "3205",
+  "publisherWebsite": "https://garutkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Garut (https://garutkab.bps.go.id), publikasi \"Kecamatan Pasirwangi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3205171",
+  "publicationNumber": "32050.26027",
+  "issn": "2830-0777",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://garutkab.bps.go.id/id/publication/2026/09/28/7b8940ad1b65b7939db25072/kecamatan-pasirwangi-dalam-angka-2026.html",
+  "sourceFileSha256": "e4733918a282bc1fec017eec57a4797e42d4b9e4bb527e0d8e4e883bd3151887",
+  "sourceFileBytes": 5784070,
+  "sourcePages": [24, 25, 26],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Garut",
+  "csvPath": "datasets/bps-3205-kecamatan-320508-dalam-angka-2026.csv",
+  "csvSha256": "7eaf949798da054f2a0798dd1fe953a760ee596fa3e56d9803a6bbdf3fe764cc",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pasirwangi, 2025",
+      "printedPages": [24, 25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pasirwangi 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"8. Sirnajaya\": unmatched ",
+    "table 3.1: row not stored: row \"11. Padaawas\": unmatched ",
+    "table 3.1: row not stored: row \"8. Sirnajaya\": unmatched ",
+    "table 3.1: row not stored: row \"11. Padaawas\": unmatched "
+  ]
+}

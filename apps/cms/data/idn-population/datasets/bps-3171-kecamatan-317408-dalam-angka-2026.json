@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3171-kecamatan-317408-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "31.74.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pancoran Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten",
+  "publisherDomain": "3171",
+  "publisherWebsite": "https://jakselkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten (https://jakselkota.bps.go.id), publikasi \"Kecamatan Pancoran Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "31710.26012",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jakselkota.bps.go.id/id/publication/2026/09/28/0d3c2c49e0de7cfddee9d502/kecamatan-pancoran-dalam-angka-2026.html",
+  "sourceFileSha256": "4a6bb7b422a71b04082ef5c304ddbc4f6bda183d727338c6518df2a6fea92842",
+  "sourceFileBytes": 19898314,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota Jakarta Selatan.",
+  "csvPath": "datasets/bps-3171-kecamatan-317408-dalam-angka-2026.csv",
+  "csvSha256": "9223dd6fed915c8790a6f0d865458ef0cdfb6feacffa4a04de71c71450fb6737",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pancoran, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pancoran, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: the rows of region 31.74.08.1006 are not stored: sex split vs total: parts sum 12038.0000 != 23697.0000 (diff 11659.0000); the source itself is inconsistent"
+  ]
+}
