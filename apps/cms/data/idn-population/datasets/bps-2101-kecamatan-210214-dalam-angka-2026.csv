@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.02.14.2001,4,Sugie,sex,laki_laki,,854,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.02.14.2001,4,Sugie,sex,perempuan,,784,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.02.14.2001,4,Sugie,total,total,,1638,jiwa,2025,registration,total_population,3.1,32,,
+21.02.14.2003,4,Keban,sex,laki_laki,,672,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.02.14.2003,4,Keban,sex,perempuan,,670,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.02.14.2003,4,Keban,total,total,,1342,jiwa,2025,registration,total_population,3.1,32,,
+21.02.14.2007,4,Selat Mie,sex,laki_laki,,736,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.02.14.2007,4,Selat Mie,sex,perempuan,,679,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.02.14.2007,4,Selat Mie,total,total,,1415,jiwa,2025,registration,total_population,3.1,32,,
+21.02.14.2005,4,Tanjung Pelanduk,sex,laki_laki,,427,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.02.14.2005,4,Tanjung Pelanduk,sex,perempuan,,385,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.02.14.2005,4,Tanjung Pelanduk,total,total,,812,jiwa,2025,registration,total_population,3.1,32,,
+21.02.14.2002,4,Niur Permai,sex,laki_laki,,595,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.02.14.2002,4,Niur Permai,sex,perempuan,,618,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.02.14.2002,4,Niur Permai,total,total,,1213,jiwa,2025,registration,total_population,3.1,32,,
+21.02.14.2004,4,Rawa Jaya,sex,laki_laki,,496,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.02.14.2004,4,Rawa Jaya,sex,perempuan,,477,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.02.14.2004,4,Rawa Jaya,total,total,,973,jiwa,2025,registration,total_population,3.1,32,,
+21.02.14.2006,4,Buluh Patah,sex,laki_laki,,412,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.02.14.2006,4,Buluh Patah,sex,perempuan,,386,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.02.14.2006,4,Buluh Patah,total,total,,798,jiwa,2025,registration,total_population,3.1,32,,
+21.02.14,3,Sugie Besar,sex,laki_laki,,4192,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.02.14,3,Sugie Besar,sex,perempuan,,3999,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.02.14,3,Sugie Besar,total,total,,8191,jiwa,2025,registration,total_population,3.1,32,,
+21.02.14,3,Sugie Besar,age_group,0-4,laki_laki,248,jiwa,2025,registration,total_population,3.2,34,,0–4
+21.02.14,3,Sugie Besar,age_group,0-4,perempuan,239,jiwa,2025,registration,total_population,3.2,34,,0–4
+21.02.14,3,Sugie Besar,age_group,0-4,,487,jiwa,2025,registration,total_population,3.2,34,,0–4
+21.02.14,3,Sugie Besar,age_group,5-9,laki_laki,300,jiwa,2025,registration,total_population,3.2,34,,5–9
+21.02.14,3,Sugie Besar,age_group,5-9,perempuan,317,jiwa,2025,registration,total_population,3.2,34,,5–9
+21.02.14,3,Sugie Besar,age_group,5-9,,617,jiwa,2025,registration,total_population,3.2,34,,5–9
+21.02.14,3,Sugie Besar,age_group,10-14,laki_laki,403,jiwa,2025,registration,total_population,3.2,34,,10–14
+21.02.14,3,Sugie Besar,age_group,10-14,perempuan,347,jiwa,2025,registration,total_population,3.2,34,,10–14
+21.02.14,3,Sugie Besar,age_group,10-14,,750,jiwa,2025,registration,total_population,3.2,34,,10–14
+21.02.14,3,Sugie Besar,age_group,15-19,laki_laki,324,jiwa,2025,registration,total_population,3.2,34,,15–19
+21.02.14,3,Sugie Besar,age_group,15-19,perempuan,340,jiwa,2025,registration,total_population,3.2,34,,15–19
+21.02.14,3,Sugie Besar,age_group,15-19,,664,jiwa,2025,registration,total_population,3.2,34,,15–19
+21.02.14,3,Sugie Besar,age_group,20-24,laki_laki,352,jiwa,2025,registration,total_population,3.2,34,,20–24
+21.02.14,3,Sugie Besar,age_group,20-24,perempuan,351,jiwa,2025,registration,total_population,3.2,34,,20–24
+21.02.14,3,Sugie Besar,age_group,20-24,,703,jiwa,2025,registration,total_population,3.2,34,,20–24
+21.02.14,3,Sugie Besar,age_group,25-29,laki_laki,267,jiwa,2025,registration,total_population,3.2,34,,25–29
+21.02.14,3,Sugie Besar,age_group,25-29,perempuan,274,jiwa,2025,registration,total_population,3.2,34,,25–29
+21.02.14,3,Sugie Besar,age_group,25-29,,541,jiwa,2025,registration,total_population,3.2,34,,25–29
+21.02.14,3,Sugie Besar,age_group,30-34,laki_laki,294,jiwa,2025,registration,total_population,3.2,34,,30–34
+21.02.14,3,Sugie Besar,age_group,30-34,perempuan,260,jiwa,2025,registration,total_population,3.2,34,,30–34
+21.02.14,3,Sugie Besar,age_group,30-34,,554,jiwa,2025,registration,total_population,3.2,34,,30–34
+21.02.14,3,Sugie Besar,age_group,35-39,laki_laki,324,jiwa,2025,registration,total_population,3.2,34,,35–39
+21.02.14,3,Sugie Besar,age_group,35-39,perempuan,272,jiwa,2025,registration,total_population,3.2,34,,35–39
+21.02.14,3,Sugie Besar,age_group,35-39,,596,jiwa,2025,registration,total_population,3.2,34,,35–39
+21.02.14,3,Sugie Besar,age_group,40-44,laki_laki,361,jiwa,2025,registration,total_population,3.2,34,,40–44
+21.02.14,3,Sugie Besar,age_group,40-44,perempuan,333,jiwa,2025,registration,total_population,3.2,34,,40–44
+21.02.14,3,Sugie Besar,age_group,40-44,,694,jiwa,2025,registration,total_population,3.2,34,,40–44
+21.02.14,3,Sugie Besar,age_group,45-49,laki_laki,377,jiwa,2025,registration,total_population,3.2,34,,45–49
+21.02.14,3,Sugie Besar,age_group,45-49,perempuan,322,jiwa,2025,registration,total_population,3.2,34,,45–49
+21.02.14,3,Sugie Besar,age_group,45-49,,699,jiwa,2025,registration,total_population,3.2,34,,45–49
+21.02.14,3,Sugie Besar,age_group,50-54,laki_laki,299,jiwa,2025,registration,total_population,3.2,34,,50–54
+21.02.14,3,Sugie Besar,age_group,50-54,perempuan,241,jiwa,2025,registration,total_population,3.2,34,,50–54
+21.02.14,3,Sugie Besar,age_group,50-54,,540,jiwa,2025,registration,total_population,3.2,34,,50–54
+21.02.14,3,Sugie Besar,age_group,55-59,laki_laki,174,jiwa,2025,registration,total_population,3.2,34,,55–59
+21.02.14,3,Sugie Besar,age_group,55-59,perempuan,168,jiwa,2025,registration,total_population,3.2,34,,55–59
+21.02.14,3,Sugie Besar,age_group,55-59,,342,jiwa,2025,registration,total_population,3.2,34,,55–59
+21.02.14,3,Sugie Besar,age_group,60-64,laki_laki,159,jiwa,2025,registration,total_population,3.2,34,,60–64
+21.02.14,3,Sugie Besar,age_group,60-64,perempuan,171,jiwa,2025,registration,total_population,3.2,34,,60–64
+21.02.14,3,Sugie Besar,age_group,60-64,,330,jiwa,2025,registration,total_population,3.2,34,,60–64
+21.02.14,3,Sugie Besar,age_group,65-69,laki_laki,128,jiwa,2025,registration,total_population,3.2,34,,65–69
+21.02.14,3,Sugie Besar,age_group,65-69,perempuan,138,jiwa,2025,registration,total_population,3.2,34,,65–69
+21.02.14,3,Sugie Besar,age_group,65-69,,266,jiwa,2025,registration,total_population,3.2,34,,65–69
+21.02.14,3,Sugie Besar,age_group,70-74,laki_laki,83,jiwa,2025,registration,total_population,3.2,34,,70–74
+21.02.14,3,Sugie Besar,age_group,70-74,perempuan,103,jiwa,2025,registration,total_population,3.2,34,,70–74
+21.02.14,3,Sugie Besar,age_group,70-74,,186,jiwa,2025,registration,total_population,3.2,34,,70–74
+21.02.14,3,Sugie Besar,age_group,75+,laki_laki,99,jiwa,2025,registration,total_population,3.2,34,,75+
+21.02.14,3,Sugie Besar,age_group,75+,perempuan,123,jiwa,2025,registration,total_population,3.2,34,,75+
+21.02.14,3,Sugie Besar,age_group,75+,,222,jiwa,2025,registration,total_population,3.2,34,,75+
+21.02.14,3,Sugie Besar,sex,laki_laki,,4192,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+21.02.14,3,Sugie Besar,sex,perempuan,,3999,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+21.02.14,3,Sugie Besar,total,total,,8191,jiwa,2025,registration,total_population,3.2,34,,

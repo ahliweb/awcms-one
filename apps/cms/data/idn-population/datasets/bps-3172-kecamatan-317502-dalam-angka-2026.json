@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3172-kecamatan-317502-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "31.75.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pulo Gadung Dalam Angka 2026",
+  "publisherName": "BPS Kota Jakarta Timur",
+  "publisherDomain": "3172",
+  "publisherWebsite": "https://jaktimkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Jakarta Timur (https://jaktimkota.bps.go.id), publikasi \"Kecamatan Pulo Gadung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3172090",
+  "publicationNumber": "31720.25015",
+  "issn": "0852-2065",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jaktimkota.bps.go.id/id/publication/2026/09/28/1d6c64f29341c229b6e6d30e/kecamatan-pulo-gadung-dalam-angka-2026.html",
+  "sourceFileSha256": "588a76a7a8a5caae8c3f137ea8bf38bab561f22fbf18b73f63465d79cd0919ac",
+  "sourceFileBytes": 5381157,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Jakarta Timur.",
+  "csvPath": "datasets/bps-3172-kecamatan-317502-dalam-angka-2026.csv",
+  "csvSha256": "84023df181cac841d8f84a8e0d34553d91132b99b9397ecb1f9ebed749aebb9d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Pulo Gadung, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pulo Gadung, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

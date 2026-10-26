@@ -1,0 +1,51 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.02.13.2004,4,Gunung Agung,sex,perempuan,,5680,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.13.2004,4,Gunung Agung,total,total,,11599,jiwa,2025,registration,total_population,3.1,37,,
+18.02.13.2005,4,Bandar Agung,sex,perempuan,,3936,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.13.2005,4,Bandar Agung,total,total,,7871,jiwa,2025,registration,total_population,3.1,37,,
+18.02.13.2006,4,Bandar Sakti,sex,perempuan,,2604,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.13.2006,4,Bandar Sakti,total,total,,5241,jiwa,2025,registration,total_population,3.1,37,,
+18.02.13.2007,4,Tanjung Anom,sex,perempuan,,2233,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.13.2007,4,Tanjung Anom,total,total,,4561,jiwa,2025,registration,total_population,3.1,37,,
+18.02.13.2003,4,Gunung Batin Baru,sex,perempuan,,5490,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.13.2003,4,Gunung Batin Baru,total,total,,11324,jiwa,2025,registration,total_population,3.1,37,,
+18.02.13.2001,4,Gunung Batin Udik,sex,perempuan,,5104,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.13.2001,4,Gunung Batin Udik,total,total,,10302,jiwa,2025,registration,total_population,3.1,37,,
+18.02.13.2002,4,Gunung Batin Ilir,sex,perempuan,,879,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.13.2002,4,Gunung Batin Ilir,total,total,,1749,jiwa,2025,registration,total_population,3.1,37,,
+18.02.13,3,Terusan Nunyai,sex,perempuan,,25926,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.13,3,Terusan Nunyai,total,total,,52647,jiwa,2025,registration,total_population,3.1,37,,
+18.02.13,3,Terusan Nunyai,age_group,0-4,perempuan,1632,jiwa,2025,registration,total_population,3.2,39,,0–4
+18.02.13,3,Terusan Nunyai,age_group,0-4,,3509,jiwa,2025,registration,total_population,3.2,39,,0–4
+18.02.13,3,Terusan Nunyai,age_group,5-9,perempuan,2207,jiwa,2025,registration,total_population,3.2,39,,5–9
+18.02.13,3,Terusan Nunyai,age_group,5-9,,4574,jiwa,2025,registration,total_population,3.2,39,,5–9
+18.02.13,3,Terusan Nunyai,age_group,10-14,perempuan,2403,jiwa,2025,registration,total_population,3.2,39,,10–14
+18.02.13,3,Terusan Nunyai,age_group,10-14,,4894,jiwa,2025,registration,total_population,3.2,39,,10–14
+18.02.13,3,Terusan Nunyai,age_group,15-19,perempuan,1961,jiwa,2025,registration,total_population,3.2,39,,15–19
+18.02.13,3,Terusan Nunyai,age_group,15-19,,4007,jiwa,2025,registration,total_population,3.2,39,,15–19
+18.02.13,3,Terusan Nunyai,age_group,20-24,perempuan,1879,jiwa,2025,registration,total_population,3.2,39,,20–24
+18.02.13,3,Terusan Nunyai,age_group,20-24,,3839,jiwa,2025,registration,total_population,3.2,39,,20–24
+18.02.13,3,Terusan Nunyai,age_group,25-29,perempuan,2111,jiwa,2025,registration,total_population,3.2,39,,25–29
+18.02.13,3,Terusan Nunyai,age_group,25-29,,4306,jiwa,2025,registration,total_population,3.2,39,,25–29
+18.02.13,3,Terusan Nunyai,age_group,30-34,perempuan,1974,jiwa,2025,registration,total_population,3.2,39,,30–34
+18.02.13,3,Terusan Nunyai,age_group,30-34,,3937,jiwa,2025,registration,total_population,3.2,39,,30–34
+18.02.13,3,Terusan Nunyai,age_group,35-39,perempuan,1928,jiwa,2025,registration,total_population,3.2,39,,35–39
+18.02.13,3,Terusan Nunyai,age_group,35-39,,3953,jiwa,2025,registration,total_population,3.2,39,,35–39
+18.02.13,3,Terusan Nunyai,age_group,40-44,perempuan,2125,jiwa,2025,registration,total_population,3.2,39,,40–44
+18.02.13,3,Terusan Nunyai,age_group,40-44,,4161,jiwa,2025,registration,total_population,3.2,39,,40–44
+18.02.13,3,Terusan Nunyai,age_group,45-49,perempuan,1872,jiwa,2025,registration,total_population,3.2,39,,45–49
+18.02.13,3,Terusan Nunyai,age_group,45-49,,3721,jiwa,2025,registration,total_population,3.2,39,,45–49
+18.02.13,3,Terusan Nunyai,age_group,50-54,perempuan,1684,jiwa,2025,registration,total_population,3.2,39,,50–54
+18.02.13,3,Terusan Nunyai,age_group,50-54,,3215,jiwa,2025,registration,total_population,3.2,39,,50–54
+18.02.13,3,Terusan Nunyai,age_group,55-59,perempuan,1390,jiwa,2025,registration,total_population,3.2,39,,55–59
+18.02.13,3,Terusan Nunyai,age_group,55-59,,2837,jiwa,2025,registration,total_population,3.2,39,,55–59
+18.02.13,3,Terusan Nunyai,age_group,60-64,perempuan,1070,jiwa,2025,registration,total_population,3.2,39,,60–64
+18.02.13,3,Terusan Nunyai,age_group,60-64,,2188,jiwa,2025,registration,total_population,3.2,39,,60–64
+18.02.13,3,Terusan Nunyai,age_group,65-69,perempuan,748,jiwa,2025,registration,total_population,3.2,39,,65–69
+18.02.13,3,Terusan Nunyai,age_group,65-69,,1593,jiwa,2025,registration,total_population,3.2,39,,65–69
+18.02.13,3,Terusan Nunyai,age_group,70-74,perempuan,396,jiwa,2025,registration,total_population,3.2,39,,70–74
+18.02.13,3,Terusan Nunyai,age_group,70-74,,930,jiwa,2025,registration,total_population,3.2,39,,70–74
+18.02.13,3,Terusan Nunyai,age_group,75+,perempuan,546,jiwa,2025,registration,total_population,3.2,39,,75+
+18.02.13,3,Terusan Nunyai,age_group,75+,,983,jiwa,2025,registration,total_population,3.2,39,,75+
+18.02.13,3,Terusan Nunyai,sex,perempuan,,25926,jiwa,2025,registration,total_population,3.2,39,,Perempuan
+18.02.13,3,Terusan Nunyai,total,total,,52647,jiwa,2025,registration,total_population,3.2,39,,

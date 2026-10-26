@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3201-kecamatan-320133-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.01.33",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Ciseeng Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bogor",
+  "publisherDomain": "3201",
+  "publisherWebsite": "https://bogorkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bogor (https://bogorkab.bps.go.id), publikasi \"Kecamatan Ciseeng Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3201241",
+  "publicationNumber": "32010.26040",
+  "issn": "2807-9612",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bogorkab.bps.go.id/id/publication/2026/09/28/b945c3c4e84a1f337d245f22/kecamatan-ciseeng-dalam-angka-2026.html",
+  "sourceFileSha256": "a4f9c9ea4f98cc5ba23fd4ed5769bb11fb728242f2852c04efe902ca38224c09",
+  "sourceFileBytes": 8435819,
+  "sourcePages": [36, 37, 38],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bogor.",
+  "csvPath": "datasets/bps-3201-kecamatan-320133-dalam-angka-2026.csv",
+  "csvSha256": "b8d8c17d94807690adb80e09ca2f3ce28e81c8ddba037412b3ac5a305941a13f",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk menurut Desadi Kecamatan Ciseeng, 2025",
+      "printedPages": [36, 37],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Ciseeng, 2025",
+      "printedPages": [38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

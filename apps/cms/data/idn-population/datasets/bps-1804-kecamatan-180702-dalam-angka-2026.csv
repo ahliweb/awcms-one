@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.07.02.2006,4,Karyatani,sex,laki_laki,,3262,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.02.2006,4,Karyatani,sex,perempuan,,3237,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.02.2006,4,Karyatani,total,total,,6499,jiwa,2025,registration,total_population,3.1,,,
+18.07.02.2005,4,Karya Makmur,sex,laki_laki,,1627,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.02.2005,4,Karya Makmur,sex,perempuan,,1561,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.02.2005,4,Karya Makmur,total,total,,3188,jiwa,2025,registration,total_population,3.1,,,
+18.07.02.2004,4,Bandar Negeri,sex,laki_laki,,2398,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.02.2004,4,Bandar Negeri,sex,perempuan,,2297,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.02.2004,4,Bandar Negeri,total,total,,4695,jiwa,2025,registration,total_population,3.1,,,
+18.07.02.2011,4,Maringgai,sex,laki_laki,,2282,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.02.2011,4,Maringgai,sex,perempuan,,2248,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.02.2011,4,Maringgai,total,total,,4530,jiwa,2025,registration,total_population,3.1,,,
+18.07.02.2002,4,Muara Gading Mas,sex,laki_laki,,5817,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.02.2002,4,Muara Gading Mas,sex,perempuan,,5326,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.02.2002,4,Muara Gading Mas,total,total,,11143,jiwa,2025,registration,total_population,3.1,,,
+18.07.02,3,Labuhan Maringgai,sex,laki_laki,,6405,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.02,3,Labuhan Maringgai,sex,perempuan,,6026,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.02,3,Labuhan Maringgai,total,total,,12431,jiwa,2025,registration,total_population,3.1,,,
+18.07.02,3,Labuhan Maringgai,age_group,0-4,laki_laki,2640,jiwa,2025,registration,total_population,3.2,,,0-4
+18.07.02,3,Labuhan Maringgai,age_group,0-4,perempuan,2525,jiwa,2025,registration,total_population,3.2,,,0-4
+18.07.02,3,Labuhan Maringgai,age_group,0-4,,5165,jiwa,2025,registration,total_population,3.2,,,0-4
+18.07.02,3,Labuhan Maringgai,age_group,5-9,laki_laki,3640,jiwa,2025,registration,total_population,3.2,,,5-9
+18.07.02,3,Labuhan Maringgai,age_group,5-9,perempuan,3254,jiwa,2025,registration,total_population,3.2,,,5-9
+18.07.02,3,Labuhan Maringgai,age_group,5-9,,6894,jiwa,2025,registration,total_population,3.2,,,5-9
+18.07.02,3,Labuhan Maringgai,age_group,10-14,laki_laki,3679,jiwa,2025,registration,total_population,3.2,,,10-14
+18.07.02,3,Labuhan Maringgai,age_group,10-14,perempuan,3559,jiwa,2025,registration,total_population,3.2,,,10-14
+18.07.02,3,Labuhan Maringgai,age_group,10-14,,7238,jiwa,2025,registration,total_population,3.2,,,10-14
+18.07.02,3,Labuhan Maringgai,age_group,15-19,laki_laki,3555,jiwa,2025,registration,total_population,3.2,,,15-19
+18.07.02,3,Labuhan Maringgai,age_group,15-19,perempuan,3330,jiwa,2025,registration,total_population,3.2,,,15-19
+18.07.02,3,Labuhan Maringgai,age_group,15-19,,6885,jiwa,2025,registration,total_population,3.2,,,15-19
+18.07.02,3,Labuhan Maringgai,age_group,20-24,laki_laki,3274,jiwa,2025,registration,total_population,3.2,,,20-24
+18.07.02,3,Labuhan Maringgai,age_group,20-24,perempuan,3145,jiwa,2025,registration,total_population,3.2,,,20-24
+18.07.02,3,Labuhan Maringgai,age_group,20-24,,6419,jiwa,2025,registration,total_population,3.2,,,20-24
+18.07.02,3,Labuhan Maringgai,age_group,25-29,laki_laki,3492,jiwa,2025,registration,total_population,3.2,,,25-29
+18.07.02,3,Labuhan Maringgai,age_group,25-29,perempuan,3212,jiwa,2025,registration,total_population,3.2,,,25-29
+18.07.02,3,Labuhan Maringgai,age_group,25-29,,6704,jiwa,2025,registration,total_population,3.2,,,25-29
+18.07.02,3,Labuhan Maringgai,age_group,30-34,laki_laki,3158,jiwa,2025,registration,total_population,3.2,,,30-34
+18.07.02,3,Labuhan Maringgai,age_group,30-34,perempuan,2952,jiwa,2025,registration,total_population,3.2,,,30-34
+18.07.02,3,Labuhan Maringgai,age_group,30-34,,6110,jiwa,2025,registration,total_population,3.2,,,30-34
+18.07.02,3,Labuhan Maringgai,age_group,35-39,laki_laki,2939,jiwa,2025,registration,total_population,3.2,,,35-39
+18.07.02,3,Labuhan Maringgai,age_group,35-39,perempuan,2892,jiwa,2025,registration,total_population,3.2,,,35-39
+18.07.02,3,Labuhan Maringgai,age_group,35-39,,5831,jiwa,2025,registration,total_population,3.2,,,35-39
+18.07.02,3,Labuhan Maringgai,age_group,40-44,laki_laki,3102,jiwa,2025,registration,total_population,3.2,,,40-44
+18.07.02,3,Labuhan Maringgai,age_group,40-44,perempuan,3064,jiwa,2025,registration,total_population,3.2,,,40-44
+18.07.02,3,Labuhan Maringgai,age_group,40-44,,6166,jiwa,2025,registration,total_population,3.2,,,40-44
+18.07.02,3,Labuhan Maringgai,age_group,45-49,laki_laki,2865,jiwa,2025,registration,total_population,3.2,,,45-49
+18.07.02,3,Labuhan Maringgai,age_group,45-49,perempuan,2875,jiwa,2025,registration,total_population,3.2,,,45-49
+18.07.02,3,Labuhan Maringgai,age_group,45-49,,5740,jiwa,2025,registration,total_population,3.2,,,45-49
+18.07.02,3,Labuhan Maringgai,age_group,50-54,laki_laki,2504,jiwa,2025,registration,total_population,3.2,,,50-54
+18.07.02,3,Labuhan Maringgai,age_group,50-54,perempuan,2543,jiwa,2025,registration,total_population,3.2,,,50-54
+18.07.02,3,Labuhan Maringgai,age_group,50-54,,5047,jiwa,2025,registration,total_population,3.2,,,50-54
+18.07.02,3,Labuhan Maringgai,age_group,55-59,laki_laki,2111,jiwa,2025,registration,total_population,3.2,,,55-59
+18.07.02,3,Labuhan Maringgai,age_group,55-59,perempuan,1972,jiwa,2025,registration,total_population,3.2,,,55-59
+18.07.02,3,Labuhan Maringgai,age_group,55-59,,4083,jiwa,2025,registration,total_population,3.2,,,55-59
+18.07.02,3,Labuhan Maringgai,age_group,60-64,laki_laki,1686,jiwa,2025,registration,total_population,3.2,,,60-64
+18.07.02,3,Labuhan Maringgai,age_group,60-64,perempuan,1560,jiwa,2025,registration,total_population,3.2,,,60-64
+18.07.02,3,Labuhan Maringgai,age_group,60-64,,3246,jiwa,2025,registration,total_population,3.2,,,60-64
+18.07.02,3,Labuhan Maringgai,age_group,65-69,laki_laki,1197,jiwa,2025,registration,total_population,3.2,,,65-69
+18.07.02,3,Labuhan Maringgai,age_group,65-69,perempuan,1086,jiwa,2025,registration,total_population,3.2,,,65-69
+18.07.02,3,Labuhan Maringgai,age_group,65-69,,2283,jiwa,2025,registration,total_population,3.2,,,65-69
+18.07.02,3,Labuhan Maringgai,age_group,70-74,laki_laki,789,jiwa,2025,registration,total_population,3.2,,,70-74
+18.07.02,3,Labuhan Maringgai,age_group,70-74,perempuan,751,jiwa,2025,registration,total_population,3.2,,,70-74
+18.07.02,3,Labuhan Maringgai,age_group,70-74,,1540,jiwa,2025,registration,total_population,3.2,,,70-74
+18.07.02,3,Labuhan Maringgai,age_group,75+,laki_laki,1253,jiwa,2025,registration,total_population,3.2,,,>75
+18.07.02,3,Labuhan Maringgai,age_group,75+,perempuan,1192,jiwa,2025,registration,total_population,3.2,,,>75
+18.07.02,3,Labuhan Maringgai,age_group,75+,,2445,jiwa,2025,registration,total_population,3.2,,,>75
+18.07.02,3,Labuhan Maringgai,sex,laki_laki,,41884,jiwa,2025,registration,total_population,3.2,,,Laki-Laki
+18.07.02,3,Labuhan Maringgai,sex,perempuan,,39912,jiwa,2025,registration,total_population,3.2,,,Perempuan
+18.07.02,3,Labuhan Maringgai,total,total,,81796,jiwa,2025,registration,total_population,3.2,,,

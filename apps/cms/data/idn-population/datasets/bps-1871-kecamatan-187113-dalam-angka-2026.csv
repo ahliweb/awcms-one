@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.71.13.1005,4,Sumber Agung,sex,laki_laki,,2884,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.13.1005,4,Sumber Agung,sex,perempuan,,2868,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.13.1005,4,Sumber Agung,total,total,,5752,jiwa,2025,registration,total_population,3.1,26,,
+18.71.13.1006,4,Kedaung,sex,laki_laki,,2262,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.13.1006,4,Kedaung,sex,perempuan,,2229,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.13.1006,4,Kedaung,total,total,,4491,jiwa,2025,registration,total_population,3.1,26,,
+18.71.13.1007,4,Pinang Jaya,sex,laki_laki,,4456,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.13.1007,4,Pinang Jaya,sex,perempuan,,4393,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.13.1007,4,Pinang Jaya,total,total,,8849,jiwa,2025,registration,total_population,3.1,26,,
+18.71.13.1010,4,Beringin Raya,sex,laki_laki,,6564,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.13.1010,4,Beringin Raya,sex,perempuan,,6820,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.13.1010,4,Beringin Raya,total,total,,13384,jiwa,2025,registration,total_population,3.1,26,,
+18.71.13.1001,4,Sumber Rejo,sex,laki_laki,,5948,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.13.1001,4,Sumber Rejo,sex,perempuan,,5802,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.13.1001,4,Sumber Rejo,total,total,,11750,jiwa,2025,registration,total_population,3.1,26,,
+18.71.13.1004,4,Kemiling Permai,sex,laki_laki,,6987,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.13.1004,4,Kemiling Permai,sex,perempuan,,6869,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.13.1004,4,Kemiling Permai,total,total,,13856,jiwa,2025,registration,total_population,3.1,26,,
+18.71.13.1008,4,Sumberrejo Sejahtera,sex,laki_laki,,5836,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.13.1008,4,Sumberrejo Sejahtera,sex,perempuan,,5593,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.13.1008,4,Sumberrejo Sejahtera,total,total,,11429,jiwa,2025,registration,total_population,3.1,26,,
+18.71.13.1003,4,Beringin Jaya,sex,laki_laki,,4928,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.13.1003,4,Beringin Jaya,sex,perempuan,,4943,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.13.1003,4,Beringin Jaya,total,total,,9871,jiwa,2025,registration,total_population,3.1,26,,
+18.71.13.1009,4,Kemiling Raya,sex,laki_laki,,4230,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.13.1009,4,Kemiling Raya,sex,perempuan,,4078,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.13.1009,4,Kemiling Raya,total,total,,8308,jiwa,2025,registration,total_population,3.1,26,,
+18.71.13,3,Kemiling,sex,laki_laki,,44095,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.13,3,Kemiling,sex,perempuan,,43595,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.13,3,Kemiling,total,total,,87690,jiwa,2025,registration,total_population,3.1,26,,

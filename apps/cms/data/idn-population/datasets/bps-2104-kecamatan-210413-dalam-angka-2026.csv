@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.04.13.2001,4,Batu Belubang,sex,laki_laki,,838,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.13.2001,4,Batu Belubang,sex,perempuan,,741,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.13.2001,4,Batu Belubang,total,total,,1579,jiwa,2025,registration,total_population,3.1,19,,
+21.04.13.2002,4,Cempa,sex,laki_laki,,429,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.13.2002,4,Cempa,sex,perempuan,,384,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.13.2002,4,Cempa,total,total,,813,jiwa,2025,registration,total_population,3.1,19,,
+21.04.13.2004,4,Tanjung Kelit,sex,laki_laki,,858,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.13.2004,4,Tanjung Kelit,sex,perempuan,,771,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.13.2004,4,Tanjung Kelit,total,total,,1629,jiwa,2025,registration,total_population,3.1,19,,
+21.04.13.2003,4,Pasir Panjang,sex,laki_laki,,641,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.13.2003,4,Pasir Panjang,sex,perempuan,,599,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.13.2003,4,Pasir Panjang,total,total,,1240,jiwa,2025,registration,total_population,3.1,19,,
+21.04.13.2005,4,Tanjung Lipat,sex,laki_laki,,410,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.13.2005,4,Tanjung Lipat,sex,perempuan,,375,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.13.2005,4,Tanjung Lipat,total,total,,785,jiwa,2025,registration,total_population,3.1,19,,
+21.04.13.2006,4,Rejai,sex,laki_laki,,892,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.13.2006,4,Rejai,sex,perempuan,,815,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.13.2006,4,Rejai,total,total,,1707,jiwa,2025,registration,total_population,3.1,19,,
+21.04.13,3,Kecamatan Bakung Serumpun,sex,laki_laki,,4068,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.13,3,Kecamatan Bakung Serumpun,sex,perempuan,,3685,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.13,3,Kecamatan Bakung Serumpun,total,total,,7753,jiwa,2025,registration,total_population,3.1,19,,

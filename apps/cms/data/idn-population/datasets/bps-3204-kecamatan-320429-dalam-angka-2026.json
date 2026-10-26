@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3204-kecamatan-320429-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.04.29",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Ciparay Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bandung",
+  "publisherDomain": "3204",
+  "publisherWebsite": "https://bandungkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bandung (https://bandungkab.bps.go.id), publikasi \"Kecamatan Ciparay Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3204130",
+  "publicationNumber": "32040.26020",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bandungkab.bps.go.id/id/publication/2026/09/28/9dd44fe6d5db6cd554d2c40b/kecamatan-ciparay-dalam-angka-2026.html",
+  "sourceFileSha256": "597c6d73ffeab1516b658ad3a5ae4defacbef57e8b20a3ad0277c877406799ec",
+  "sourceFileBytes": 7674202,
+  "sourcePages": [28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bandung.",
+  "csvPath": "datasets/bps-3204-kecamatan-320429-dalam-angka-2026.csv",
+  "csvSha256": "eaa7632b2c490f6e355fb7ec32040de1dffa4b3aa64c5fb1e895e50e0fc3f542",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p28",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1 Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Ciparay , 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

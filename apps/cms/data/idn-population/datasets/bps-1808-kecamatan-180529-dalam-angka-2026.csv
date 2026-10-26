@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.05.29.2008,4,Jaya Makmur,sex,laki_laki,,1340,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.29.2008,4,Jaya Makmur,sex,perempuan,,1252,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.29.2008,4,Jaya Makmur,total,total,,2592,jiwa,2025,registration,total_population,3.1,32,,
+18.05.29.2003,4,Kahuripan Jaya,sex,laki_laki,,999,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.29.2003,4,Kahuripan Jaya,sex,perempuan,,954,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.29.2003,4,Kahuripan Jaya,total,total,,1953,jiwa,2025,registration,total_population,3.1,32,,
+18.05.29.2004,4,Bawang Sakti Jaya,sex,laki_laki,,782,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.29.2004,4,Bawang Sakti Jaya,sex,perempuan,,742,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.29.2004,4,Bawang Sakti Jaya,total,total,,1524,jiwa,2025,registration,total_population,3.1,32,,
+18.05.29.2009,4,Bawang Tirto Mulyo,sex,laki_laki,,990,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.29.2009,4,Bawang Tirto Mulyo,sex,perempuan,,974,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.29.2009,4,Bawang Tirto Mulyo,total,total,,1964,jiwa,2025,registration,total_population,3.1,32,,
+18.05.29.2007,4,Mekar Indah Jaya,sex,laki_laki,,531,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.29.2007,4,Mekar Indah Jaya,sex,perempuan,,483,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.29.2007,4,Mekar Indah Jaya,total,total,,1014,jiwa,2025,registration,total_population,3.1,32,,
+18.05.29.2005,4,Mekar Jaya,sex,laki_laki,,385,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.29.2005,4,Mekar Jaya,sex,perempuan,,361,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.29.2005,4,Mekar Jaya,total,total,,746,jiwa,2025,registration,total_population,3.1,32,,
+18.05.29.2006,4,Balai Murni Jaya,sex,laki_laki,,512,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.29.2006,4,Balai Murni Jaya,sex,perempuan,,491,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.29.2006,4,Balai Murni Jaya,total,total,,1003,jiwa,2025,registration,total_population,3.1,32,,
+18.05.29.2010,4,Karya Murni Jaya,sex,laki_laki,,584,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.29.2010,4,Karya Murni Jaya,sex,perempuan,,596,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.29.2010,4,Karya Murni Jaya,total,total,,1180,jiwa,2025,registration,total_population,3.1,32,,
+18.05.29.2002,4,Panca Karsa Purna Jaya,sex,laki_laki,,1280,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.29.2002,4,Panca Karsa Purna Jaya,sex,perempuan,,1216,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.29.2002,4,Panca Karsa Purna Jaya,total,total,,2496,jiwa,2025,registration,total_population,3.1,32,,
+18.05.29.2001,4,Panca Mulia,sex,laki_laki,,911,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.29.2001,4,Panca Mulia,sex,perempuan,,876,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.29.2001,4,Panca Mulia,total,total,,1787,jiwa,2025,registration,total_population,3.1,32,,
+18.05.29,3,Banjar Baru,sex,laki_laki,,8314,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.29,3,Banjar Baru,sex,perempuan,,7945,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.29,3,Banjar Baru,total,total,,16259,jiwa,2025,registration,total_population,3.1,32,,
+18.05.29,3,Banjar Baru,age_group,0-4,laki_laki,478,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+18.05.29,3,Banjar Baru,age_group,0-4,perempuan,447,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+18.05.29,3,Banjar Baru,age_group,0-4,,925,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+18.05.29,3,Banjar Baru,age_group,5-9,laki_laki,687,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+18.05.29,3,Banjar Baru,age_group,5-9,perempuan,649,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+18.05.29,3,Banjar Baru,age_group,5-9,,1336,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+18.05.29,3,Banjar Baru,age_group,10-14,laki_laki,767,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+18.05.29,3,Banjar Baru,age_group,10-14,perempuan,670,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+18.05.29,3,Banjar Baru,age_group,10-14,,1437,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+18.05.29,3,Banjar Baru,age_group,15-19,laki_laki,700,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+18.05.29,3,Banjar Baru,age_group,15-19,perempuan,670,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+18.05.29,3,Banjar Baru,age_group,15-19,,1370,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+18.05.29,3,Banjar Baru,age_group,20-24,laki_laki,618,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+18.05.29,3,Banjar Baru,age_group,20-24,perempuan,580,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+18.05.29,3,Banjar Baru,age_group,20-24,,1198,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+18.05.29,3,Banjar Baru,age_group,25-29,laki_laki,618,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+18.05.29,3,Banjar Baru,age_group,25-29,perempuan,601,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+18.05.29,3,Banjar Baru,age_group,25-29,,1219,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+18.05.29,3,Banjar Baru,age_group,30-34,laki_laki,633,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+18.05.29,3,Banjar Baru,age_group,30-34,perempuan,604,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+18.05.29,3,Banjar Baru,age_group,30-34,,1237,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+18.05.29,3,Banjar Baru,age_group,35-39,laki_laki,643,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+18.05.29,3,Banjar Baru,age_group,35-39,perempuan,632,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+18.05.29,3,Banjar Baru,age_group,35-39,,1275,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+18.05.29,3,Banjar Baru,age_group,40-44,laki_laki,628,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+18.05.29,3,Banjar Baru,age_group,40-44,perempuan,621,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+18.05.29,3,Banjar Baru,age_group,40-44,,1249,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+18.05.29,3,Banjar Baru,age_group,45-49,laki_laki,567,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+18.05.29,3,Banjar Baru,age_group,45-49,perempuan,557,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+18.05.29,3,Banjar Baru,age_group,45-49,,1124,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+18.05.29,3,Banjar Baru,age_group,50-54,laki_laki,505,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+18.05.29,3,Banjar Baru,age_group,50-54,perempuan,530,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+18.05.29,3,Banjar Baru,age_group,50-54,,1035,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+18.05.29,3,Banjar Baru,age_group,55-59,laki_laki,414,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+18.05.29,3,Banjar Baru,age_group,55-59,perempuan,415,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+18.05.29,3,Banjar Baru,age_group,55-59,,829,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+18.05.29,3,Banjar Baru,age_group,60-64,laki_laki,361,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+18.05.29,3,Banjar Baru,age_group,60-64,perempuan,300,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+18.05.29,3,Banjar Baru,age_group,60-64,,661,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+18.05.29,3,Banjar Baru,age_group,65-69,laki_laki,258,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+18.05.29,3,Banjar Baru,age_group,65-69,perempuan,247,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+18.05.29,3,Banjar Baru,age_group,65-69,,505,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+18.05.29,3,Banjar Baru,age_group,70-74,laki_laki,183,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+18.05.29,3,Banjar Baru,age_group,70-74,perempuan,178,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+18.05.29,3,Banjar Baru,age_group,70-74,,361,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+18.05.29,3,Banjar Baru,age_group,75+,laki_laki,254,jiwa,2025,registration,total_population,3.2,34,,>75
+18.05.29,3,Banjar Baru,age_group,75+,perempuan,244,jiwa,2025,registration,total_population,3.2,34,,>75
+18.05.29,3,Banjar Baru,age_group,75+,,498,jiwa,2025,registration,total_population,3.2,34,,>75
+18.05.29,3,Banjar Baru,sex,laki_laki,,8314,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+18.05.29,3,Banjar Baru,sex,perempuan,,7945,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+18.05.29,3,Banjar Baru,total,total,,16259,jiwa,2025,registration,total_population,3.2,34,,

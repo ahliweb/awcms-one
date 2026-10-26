@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.04.11.2005,4,Pulau Medang,sex,laki_laki,,456,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.11.2005,4,Pulau Medang,sex,perempuan,,362,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.11.2005,4,Pulau Medang,total,total,,818,jiwa,2025,registration,total_population,3.1,19,,
+21.04.11.2004,4,Pulau Duyung,sex,laki_laki,,225,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.11.2004,4,Pulau Duyung,sex,perempuan,,193,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.11.2004,4,Pulau Duyung,total,total,,418,jiwa,2025,registration,total_population,3.1,19,,
+21.04.11.2002,4,Mensanak,sex,laki_laki,,666,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.11.2002,4,Mensanak,sex,perempuan,,554,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.11.2002,4,Mensanak,total,total,,1220,jiwa,2025,registration,total_population,3.1,19,,
+21.04.11.2003,4,Pulau Bukit,sex,laki_laki,,352,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.11.2003,4,Pulau Bukit,sex,perempuan,,352,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.11.2003,4,Pulau Bukit,total,total,,704,jiwa,2025,registration,total_population,3.1,19,,
+21.04.11.2001,4,Benan,sex,laki_laki,,476,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.11.2001,4,Benan,sex,perempuan,,440,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.11.2001,4,Benan,total,total,,916,jiwa,2025,registration,total_population,3.1,19,,
+21.04.11,3,Kecamatan Katang Bidare,sex,laki_laki,,2175,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.11,3,Kecamatan Katang Bidare,sex,perempuan,,1901,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.11,3,Kecamatan Katang Bidare,total,total,,4076,jiwa,2025,registration,total_population,3.1,19,,

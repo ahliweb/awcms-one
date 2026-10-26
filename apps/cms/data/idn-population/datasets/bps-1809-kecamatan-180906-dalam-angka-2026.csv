@@ -1,0 +1,181 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.09.06.2020,4,Sukamaju,sex,laki_laki,,1125,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.06.2020,4,Sukamaju,sex,perempuan,,1015,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.06.2020,4,Sukamaju,total,total,,2140,jiwa,2025,registration,total_population,3.1,30,,
+18.09.06.2001,4,Bawang,sex,laki_laki,,915,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.06.2001,4,Bawang,sex,perempuan,,882,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.06.2001,4,Bawang,total,total,,1797,jiwa,2025,registration,total_population,3.1,30,,
+18.09.06.2017,4,Pagar Jaya,sex,laki_laki,,818,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.06.2017,4,Pagar Jaya,sex,perempuan,,715,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.06.2017,4,Pagar Jaya,total,total,,1533,jiwa,2025,registration,total_population,3.1,30,,
+18.09.06.2019,4,Pulau Legundi,sex,laki_laki,,954,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.06.2019,4,Pulau Legundi,sex,perempuan,,891,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.06.2019,4,Pulau Legundi,total,total,,1845,jiwa,2025,registration,total_population,3.1,30,,
+18.09.06.2016,4,Sukarame,sex,laki_laki,,885,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.06.2016,4,Sukarame,sex,perempuan,,846,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.06.2016,4,Sukarame,total,total,,1731,jiwa,2025,registration,total_population,3.1,30,,
+18.09.06.2006,4,Kota Jawa,sex,laki_laki,,601,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.06.2006,4,Kota Jawa,sex,perempuan,,635,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.06.2006,4,Kota Jawa,total,total,,1236,jiwa,2025,registration,total_population,3.1,30,,
+18.09.06.2005,4,Rusaba,sex,laki_laki,,328,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.06.2005,4,Rusaba,sex,perempuan,,342,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.06.2005,4,Rusaba,total,total,,670,jiwa,2025,registration,total_population,3.1,30,,
+18.09.06.2004,4,Sukajaya Pidada,sex,laki_laki,,306,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.06.2004,4,Sukajaya Pidada,sex,perempuan,,294,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.06.2004,4,Sukajaya Pidada,total,total,,600,jiwa,2025,registration,total_population,3.1,30,,
+18.09.06.2003,4,Batu Raja,sex,laki_laki,,901,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.06.2003,4,Batu Raja,sex,perempuan,,780,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.06.2003,4,Batu Raja,total,total,,1681,jiwa,2025,registration,total_population,3.1,30,,
+18.09.06.2002,4,Banding Agung,sex,laki_laki,,476,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.06.2002,4,Banding Agung,sex,perempuan,,471,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.06.2002,4,Banding Agung,total,total,,947,jiwa,2025,registration,total_population,3.1,30,,
+18.09.06.2021,4,Bangun Rejo,sex,laki_laki,,1049,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.06.2021,4,Bangun Rejo,sex,perempuan,,1004,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.06.2021,4,Bangun Rejo,total,total,,2053,jiwa,2025,registration,total_population,3.1,30,,
+18.09.06,3,Punduh Pidada,sex,laki_laki,,8358,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.06,3,Punduh Pidada,sex,perempuan,,7875,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.06,3,Punduh Pidada,total,total,,16233,jiwa,2025,registration,total_population,3.1,30,,
+18.09.06,3,Punduh Pidada,age_group,0-5,laki_laki,690,jiwa,2025,registration,total_population,3.2,32,,0-5
+18.09.06,3,Punduh Pidada,age_group,0-5,perempuan,594,jiwa,2025,registration,total_population,3.2,32,,0-5
+18.09.06,3,Punduh Pidada,age_group,0-5,,1284,jiwa,2025,registration,total_population,3.2,32,,0-5
+18.09.06,3,Punduh Pidada,age_group,6-10,laki_laki,725,jiwa,2025,registration,total_population,3.2,32,,6-10
+18.09.06,3,Punduh Pidada,age_group,6-10,perempuan,783,jiwa,2025,registration,total_population,3.2,32,,6-10
+18.09.06,3,Punduh Pidada,age_group,6-10,,1508,jiwa,2025,registration,total_population,3.2,32,,6-10
+18.09.06,3,Punduh Pidada,age_group,11-17,laki_laki,1135,jiwa,2025,registration,total_population,3.2,32,,11-17
+18.09.06,3,Punduh Pidada,age_group,11-17,perempuan,1040,jiwa,2025,registration,total_population,3.2,32,,11-17
+18.09.06,3,Punduh Pidada,age_group,11-17,,2175,jiwa,2025,registration,total_population,3.2,32,,11-17
+18.09.06,3,Punduh Pidada,age_group,18-22,laki_laki,546,jiwa,2025,registration,total_population,3.2,32,,18-22
+18.09.06,3,Punduh Pidada,age_group,18-22,perempuan,541,jiwa,2025,registration,total_population,3.2,32,,18-22
+18.09.06,3,Punduh Pidada,age_group,18-22,,1087,jiwa,2025,registration,total_population,3.2,32,,18-22
+18.09.06,3,Punduh Pidada,age_group,23-27,laki_laki,602,jiwa,2025,registration,total_population,3.2,32,,23-27
+18.09.06,3,Punduh Pidada,age_group,23-27,perempuan,520,jiwa,2025,registration,total_population,3.2,32,,23-27
+18.09.06,3,Punduh Pidada,age_group,23-27,,1122,jiwa,2025,registration,total_population,3.2,32,,23-27
+18.09.06,3,Punduh Pidada,age_group,28-32,laki_laki,584,jiwa,2025,registration,total_population,3.2,32,,28-32
+18.09.06,3,Punduh Pidada,age_group,28-32,perempuan,558,jiwa,2025,registration,total_population,3.2,32,,28-32
+18.09.06,3,Punduh Pidada,age_group,28-32,,1142,jiwa,2025,registration,total_population,3.2,32,,28-32
+18.09.06,3,Punduh Pidada,age_group,33-38,laki_laki,695,jiwa,2025,registration,total_population,3.2,32,,33-38
+18.09.06,3,Punduh Pidada,age_group,33-38,perempuan,721,jiwa,2025,registration,total_population,3.2,32,,33-38
+18.09.06,3,Punduh Pidada,age_group,33-38,,1416,jiwa,2025,registration,total_population,3.2,32,,33-38
+18.09.06,3,Punduh Pidada,age_group,39-43,laki_laki,749,jiwa,2025,registration,total_population,3.2,32,,39-43
+18.09.06,3,Punduh Pidada,age_group,39-43,perempuan,707,jiwa,2025,registration,total_population,3.2,32,,39-43
+18.09.06,3,Punduh Pidada,age_group,39-43,,1456,jiwa,2025,registration,total_population,3.2,32,,39-43
+18.09.06,3,Punduh Pidada,age_group,44-48,laki_laki,585,jiwa,2025,registration,total_population,3.2,32,,44-48
+18.09.06,3,Punduh Pidada,age_group,44-48,perempuan,529,jiwa,2025,registration,total_population,3.2,32,,44-48
+18.09.06,3,Punduh Pidada,age_group,44-48,,1114,jiwa,2025,registration,total_population,3.2,32,,44-48
+18.09.06,3,Punduh Pidada,age_group,49-53,laki_laki,481,jiwa,2025,registration,total_population,3.2,32,,49-53
+18.09.06,3,Punduh Pidada,age_group,49-53,perempuan,431,jiwa,2025,registration,total_population,3.2,32,,49-53
+18.09.06,3,Punduh Pidada,age_group,49-53,,912,jiwa,2025,registration,total_population,3.2,32,,49-53
+18.09.06,3,Punduh Pidada,age_group,54-58,laki_laki,405,jiwa,2025,registration,total_population,3.2,32,,54-58
+18.09.06,3,Punduh Pidada,age_group,54-58,perempuan,378,jiwa,2025,registration,total_population,3.2,32,,54-58
+18.09.06,3,Punduh Pidada,age_group,54-58,,783,jiwa,2025,registration,total_population,3.2,32,,54-58
+18.09.06,3,Punduh Pidada,age_group,59-63,laki_laki,346,jiwa,2025,registration,total_population,3.2,32,,59-63
+18.09.06,3,Punduh Pidada,age_group,59-63,perempuan,356,jiwa,2025,registration,total_population,3.2,32,,59-63
+18.09.06,3,Punduh Pidada,age_group,59-63,,702,jiwa,2025,registration,total_population,3.2,32,,59-63
+18.09.06,3,Punduh Pidada,age_group,64-68,laki_laki,289,jiwa,2025,registration,total_population,3.2,32,,64-68
+18.09.06,3,Punduh Pidada,age_group,64-68,perempuan,286,jiwa,2025,registration,total_population,3.2,32,,64-68
+18.09.06,3,Punduh Pidada,age_group,64-68,,575,jiwa,2025,registration,total_population,3.2,32,,64-68
+18.09.06,3,Punduh Pidada,age_group,69-73,laki_laki,228,jiwa,2025,registration,total_population,3.2,32,,69-73
+18.09.06,3,Punduh Pidada,age_group,69-73,perempuan,188,jiwa,2025,registration,total_population,3.2,32,,69-73
+18.09.06,3,Punduh Pidada,age_group,69-73,,416,jiwa,2025,registration,total_population,3.2,32,,69-73
+18.09.06,3,Punduh Pidada,age_group,74+,laki_laki,298,jiwa,2025,registration,total_population,3.2,32,,>74
+18.09.06,3,Punduh Pidada,age_group,74+,perempuan,243,jiwa,2025,registration,total_population,3.2,32,,>74
+18.09.06,3,Punduh Pidada,age_group,74+,,541,jiwa,2025,registration,total_population,3.2,32,,>74
+18.09.06,3,Punduh Pidada,sex,laki_laki,,8358,jiwa,2025,registration,total_population,3.2,32,,Laki-laki/Male
+18.09.06,3,Punduh Pidada,sex,perempuan,,7875,jiwa,2025,registration,total_population,3.2,32,,Perempuan/Female
+18.09.06,3,Punduh Pidada,total,total,,16233,jiwa,2025,registration,total_population,3.2,32,,
+18.09.06.2020,4,Sukamaju,religion,islam,,2099,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.06.2020,4,Sukamaju,religion,kristen,,23,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.06.2020,4,Sukamaju,religion,katolik,,17,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.06.2020,4,Sukamaju,religion,hindu,,1,jiwa,2025,registration,total_population,4.4.3,56,,Hindu/
+18.09.06.2001,4,Bawang,religion,islam,,1781,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.06.2001,4,Bawang,religion,kristen,,11,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.06.2001,4,Bawang,religion,katolik,,2,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.06.2001,4,Bawang,religion,hindu,,3,jiwa,2025,registration,total_population,4.4.3,56,,Hindu/
+18.09.06.2017,4,Pagar Jaya,religion,islam,,1533,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.06.2017,4,Pagar Jaya,religion,kristen,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Kristen/
+18.09.06.2017,4,Pagar Jaya,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.06.2017,4,Pagar Jaya,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.06.2019,4,Pulau Legundi,religion,islam,,1845,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.06.2019,4,Pulau Legundi,religion,kristen,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Kristen/
+18.09.06.2019,4,Pulau Legundi,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.06.2019,4,Pulau Legundi,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.06.2016,4,Sukarame,religion,islam,,1731,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.06.2016,4,Sukarame,religion,kristen,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Kristen/
+18.09.06.2016,4,Sukarame,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.06.2016,4,Sukarame,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.06.2006,4,Kota Jawa,religion,islam,,1236,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.06.2006,4,Kota Jawa,religion,kristen,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Kristen/
+18.09.06.2006,4,Kota Jawa,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.06.2006,4,Kota Jawa,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.06.2005,4,Rusaba,religion,islam,,670,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.06.2005,4,Rusaba,religion,kristen,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Kristen/
+18.09.06.2005,4,Rusaba,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.06.2005,4,Rusaba,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.06.2004,4,Sukajaya Pidada,religion,islam,,564,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.06.2004,4,Sukajaya Pidada,religion,kristen,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Kristen/
+18.09.06.2004,4,Sukajaya Pidada,religion,katolik,,36,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.06.2004,4,Sukajaya Pidada,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.06.2003,4,Batu Raja,religion,islam,,1677,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.06.2003,4,Batu Raja,religion,kristen,,4,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.06.2003,4,Batu Raja,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.06.2003,4,Batu Raja,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.06.2002,4,Banding Agung,religion,islam,,947,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.06.2002,4,Banding Agung,religion,kristen,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Kristen/
+18.09.06.2002,4,Banding Agung,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.06.2002,4,Banding Agung,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.06.2021,4,Bangun Rejo,religion,islam,,1984,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.06.2021,4,Bangun Rejo,religion,kristen,,23,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.06.2021,4,Bangun Rejo,religion,katolik,,40,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.06.2021,4,Bangun Rejo,religion,hindu,,6,jiwa,2025,registration,total_population,4.4.3,56,,Hindu/
+18.09.06,3,Punduh Pidada,religion,islam,,16067,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.06,3,Punduh Pidada,religion,kristen,,61,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.06,3,Punduh Pidada,religion,katolik,,95,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.06,3,Punduh Pidada,religion,hindu,,10,jiwa,2025,registration,total_population,4.4.3,56,,Hindu/
+18.09.06.2020,4,Sukamaju,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.06.2020,4,Sukamaju,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.06.2020,4,Sukamaju,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.06.2020,4,Sukamaju,total,total,,2140,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.06.2001,4,Bawang,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.06.2001,4,Bawang,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.06.2001,4,Bawang,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.06.2001,4,Bawang,total,total,,1797,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.06.2017,4,Pagar Jaya,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.06.2017,4,Pagar Jaya,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.06.2017,4,Pagar Jaya,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.06.2017,4,Pagar Jaya,total,total,,1533,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.06.2019,4,Pulau Legundi,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.06.2019,4,Pulau Legundi,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.06.2019,4,Pulau Legundi,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.06.2019,4,Pulau Legundi,total,total,,1845,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.06.2016,4,Sukarame,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.06.2016,4,Sukarame,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.06.2016,4,Sukarame,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.06.2016,4,Sukarame,total,total,,1731,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.06.2006,4,Kota Jawa,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.06.2006,4,Kota Jawa,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.06.2006,4,Kota Jawa,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.06.2006,4,Kota Jawa,total,total,,1236,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.06.2005,4,Rusaba,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.06.2005,4,Rusaba,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.06.2005,4,Rusaba,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.06.2005,4,Rusaba,total,total,,670,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.06.2004,4,Sukajaya Pidada,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.06.2004,4,Sukajaya Pidada,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.06.2004,4,Sukajaya Pidada,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.06.2004,4,Sukajaya Pidada,total,total,,600,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.06.2003,4,Batu Raja,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.06.2003,4,Batu Raja,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.06.2003,4,Batu Raja,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.06.2003,4,Batu Raja,total,total,,1681,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.06.2002,4,Banding Agung,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.06.2002,4,Banding Agung,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.06.2002,4,Banding Agung,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.06.2002,4,Banding Agung,total,total,,947,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.06.2021,4,Bangun Rejo,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.06.2021,4,Bangun Rejo,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.06.2021,4,Bangun Rejo,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.06.2021,4,Bangun Rejo,total,total,,2053,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.06,3,Punduh Pidada,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.06,3,Punduh Pidada,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.06,3,Punduh Pidada,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.06,3,Punduh Pidada,total,total,,16233,jiwa,2025,registration,total_population,4.4.3,57,,

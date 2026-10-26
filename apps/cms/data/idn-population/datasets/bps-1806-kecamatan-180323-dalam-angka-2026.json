@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1806-kecamatan-180323-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.03.23",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Blambangan Pagar Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lampung Utara",
+  "publisherDomain": "1806",
+  "publisherWebsite": "https://lampungutarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lampung Utara (https://lampungutarakab.bps.go.id), publikasi \"Kecamatan Blambangan Pagar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1806052",
+  "publicationNumber": "18060.26017",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lampungutarakab.bps.go.id/id/publication/2026/09/28/3ca36ebbb6d9f93c85d9a37d/kecamatan-blambangan-pagar-dalam-angka-2026.html",
+  "sourceFileSha256": "a1ba561ac167dfce4c69064932996c0eefda7eaf198b797e25056e5ec0fea0a5",
+  "sourceFileBytes": 9036428,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lampung Utara.",
+  "csvPath": "datasets/bps-1806-kecamatan-180323-dalam-angka-2026.csv",
+  "csvSha256": "d62310add95656bf48879f39d12116ab8aa5b694b1a6e53164cc8daaa57768cb",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Blambangan Pagar, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Blambangan Pagar, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

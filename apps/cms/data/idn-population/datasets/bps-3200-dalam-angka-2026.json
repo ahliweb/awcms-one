@@ -1,0 +1,58 @@
+{
+  "datasetCode": "bps-3200-dalam-angka-2026",
+  "publicationSeries": "provinsi_dalam_angka",
+  "coverageRegionCode": "32",
+  "coverageRegionLevel": 1,
+  "publicationTitle": "Provinsi Jawa Barat Dalam Angka 2026",
+  "publisherName": "BPS Provinsi Jawa Barat",
+  "publisherDomain": "3200",
+  "publisherWebsite": "https://jabar.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Provinsi Jawa Barat (https://jabar.bps.go.id), publikasi \"Provinsi Jawa Barat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.32",
+  "publicationNumber": "32000.260003",
+  "issn": "0215-2169",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://jabar.bps.go.id/id/publication/2026/02/27/2f027354da10870634aa1648/provinsi-jawa-barat-dalam-angka-2026.html",
+  "sourceFileSha256": "8402fdd884206a8c0c74c82ff973439b49103e127ea32393abf28b1c9df9a60d",
+  "sourceFileBytes": 16509129,
+  "sourcePages": [121, 126, 302],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Provinsi Jawa Barat.",
+  "csvPath": "datasets/bps-3200-dalam-angka-2026.csv",
+  "csvSha256": "2e19054b25a5803550ab298962b8d3d1c0b0189d9424d58482d4e73432567b4e",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Kabupaten/ Kota di Provinsi Jawa Barat, 2020, 2025 dan 2026",
+      "printedPages": [121],
+      "referenceYears": [2026],
+      "figureBasis": "projection",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Provinsi Jawa Barat (ribu jiwa), 2025 dan 2026",
+      "printedPages": [126],
+      "referenceYears": [2025, 2026],
+      "figureBasis": "projection",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "4.5.4",
+      "title": "Jumlah Penduduk Menurut Kabupaten/Kota dan Agama yang Dianut di Provinsi Jawa Barat, 2025",
+      "printedPages": [302],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "Per-capita expenditure by commodity group (10.1): no table with this title was found in the publication",
+    "table 3.2.14 (employed-by-industry) could not be read reliably and is not included (row \"Bogor\": ambiguous 32.01,32.71)"
+  ]
+}

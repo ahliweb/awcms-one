@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3218-kecamatan-321801-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.18.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Parigi Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pangandaran",
+  "publisherDomain": "3218",
+  "publisherWebsite": "https://pangandarankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pangandaran (https://pangandarankab.bps.go.id), publikasi \"Kecamatan Parigi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3218050",
+  "publicationNumber": "32180.26012",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pangandarankab.bps.go.id/id/publication/2026/09/28/144a24da8d7c60ec957758f2/kecamatan-parigi-dalam-angka-2026.html",
+  "sourceFileSha256": "dd0836bd4a40bcedc57d06cd69ef0dd329e1f694438b713562aff3b9404e8446",
+  "sourceFileBytes": 3554164,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pangandaran.",
+  "csvPath": "datasets/bps-3218-kecamatan-321801-dalam-angka-2026.csv",
+  "csvSha256": "8020e896da540eabd454975a838ac228ea1a30a1b89ea392ed99432e82945fcb",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Parigi, 2026",
+      "printedPages": [30, 31],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Parigi, 2026",
+      "printedPages": [32],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

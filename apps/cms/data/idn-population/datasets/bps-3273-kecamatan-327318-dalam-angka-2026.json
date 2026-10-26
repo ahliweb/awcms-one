@@ -1,0 +1,60 @@
+{
+  "datasetCode": "bps-3273-kecamatan-327318-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.73.18",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cibeunying Kaler Dalam Angka 2026",
+  "publisherName": "BPS Kota Bandung",
+  "publisherDomain": "3273",
+  "publisherWebsite": "https://bandungkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Bandung (https://bandungkota.bps.go.id), publikasi \"Kecamatan Cibeunying Kaler Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3273220",
+  "publicationNumber": "32730.26029",
+  "issn": "2797-4839",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bandungkota.bps.go.id/id/publication/2026/09/28/7ed007a4525935416d9d718c/kecamatan-cibeunying-kaler-dalam-angka-2026.html",
+  "sourceFileSha256": "b467ea409e2057650544a7047a37b39614515ed1d72a3f353eb340f81b045d8b",
+  "sourceFileBytes": 8933185,
+  "sourcePages": [37, 38, 39, 91],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Bandung.",
+  "csvPath": "datasets/bps-3273-kecamatan-327318-dalam-angka-2026.csv",
+  "csvSha256": "5ea63786c918d2b779584a03dd9aa66edea720018f810e85a6430ef7530b47d8",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Cibeunying Kaler, 2025",
+      "printedPages": [37, 38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cibeunying Kaler, 2025",
+      "printedPages": [39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.4.5",
+      "title": "Penduduk Menurut Kelurahan dan Agama yang dianut di Kecamatan Cibeunying Kaler, 2025",
+      "printedPages": [91],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.1: row not stored: row \"Cihaurgelis\": unmatched ",
+    "table 3.1: row not stored: row \"Cibeunying Kaler District\": unmatched ",
+    "table 3.1: row not stored: row \"Cihaurgelis\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Cibeunying Kaler Cibeunying Kaler District\": unmatched ",
+    "table 3.2: row not stored: row \"Dependency Ratio\": unmatched ",
+    "table 3.2: row not stored: row \"Jumlah Total\": unmatched ",
+    "table 4.4.5: row not stored: row \"Cihaurgelis\": unmatched ",
+    "table 4.4.5: row not stored: row \"Kecamatan Cibeunying\": unmatched ",
+    "table 4.4.5: row not stored: row \"Kaler Cibeunying Kaler District\": unmatched "
+  ]
+}

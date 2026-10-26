@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.02.20.2003,4,Caringin Nunggal,sex,laki_laki,,3167,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.20.2003,4,Caringin Nunggal,sex,perempuan,,3021,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.20.2003,4,Caringin Nunggal,total,total,,6188,jiwa,2025,registration,total_population,3.1,24,,
+32.02.20.2001,4,Waluran,sex,laki_laki,,2684,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.20.2001,4,Waluran,sex,perempuan,,2483,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.20.2001,4,Waluran,total,total,,5167,jiwa,2025,registration,total_population,3.1,24,,
+32.02.20.2002,4,Sukamukti,sex,laki_laki,,2429,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.20.2002,4,Sukamukti,sex,perempuan,,2391,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.20.2002,4,Sukamukti,total,total,,4820,jiwa,2025,registration,total_population,3.1,24,,
+32.02.20.2004,4,Mekar Mukti,sex,laki_laki,,3519,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.20.2004,4,Mekar Mukti,sex,perempuan,,3360,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.20.2004,4,Mekar Mukti,total,total,,6879,jiwa,2025,registration,total_population,3.1,24,,
+32.02.20.2006,4,Waluran Mandiri,sex,laki_laki,,3138,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.20.2006,4,Waluran Mandiri,sex,perempuan,,3076,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.20.2006,4,Waluran Mandiri,total,total,,6214,jiwa,2025,registration,total_population,3.1,24,,
+32.02.20.2005,4,Mangunjaya,sex,laki_laki,,2344,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.20.2005,4,Mangunjaya,sex,perempuan,,2273,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.20.2005,4,Mangunjaya,total,total,,4617,jiwa,2025,registration,total_population,3.1,24,,
+32.02.20,3,Waluran,sex,laki_laki,,17281,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.20,3,Waluran,sex,perempuan,,16604,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.20,3,Waluran,total,total,,33885,jiwa,2025,registration,total_population,3.1,24,,

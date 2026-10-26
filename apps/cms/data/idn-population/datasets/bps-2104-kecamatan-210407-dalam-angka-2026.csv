@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.04.07.2001,4,Bukit Langkap,sex,laki_laki,,209,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.07.2001,4,Bukit Langkap,sex,perempuan,,203,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.07.2001,4,Bukit Langkap,total,total,,412,jiwa,2025,registration,total_population,3.1,19,,
+21.04.07.2004,4,Kerandin,sex,laki_laki,,378,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.07.2004,4,Kerandin,sex,perempuan,,362,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.07.2004,4,Kerandin,total,total,,740,jiwa,2025,registration,total_population,3.1,19,,
+21.04.07.2003,4,Pekaka,sex,laki_laki,,275,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.07.2003,4,Pekaka,sex,perempuan,,273,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.07.2003,4,Pekaka,total,total,,548,jiwa,2025,registration,total_population,3.1,19,,
+21.04.07.2002,4,Keton,sex,laki_laki,,154,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.07.2002,4,Keton,sex,perempuan,,143,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.07.2002,4,Keton,total,total,,297,jiwa,2025,registration,total_population,3.1,19,,
+21.04.07.2005,4,Sungai Pinang,sex,laki_laki,,605,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.07.2005,4,Sungai Pinang,sex,perempuan,,533,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.07.2005,4,Sungai Pinang,total,total,,1138,jiwa,2025,registration,total_population,3.1,19,,
+21.04.07.2006,4,Kudung,sex,laki_laki,,507,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.07.2006,4,Kudung,sex,perempuan,,469,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.07.2006,4,Kudung,total,total,,976,jiwa,2025,registration,total_population,3.1,19,,
+21.04.07.2008,4,Belungkur,sex,laki_laki,,291,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.07.2008,4,Belungkur,sex,perempuan,,272,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.07.2008,4,Belungkur,total,total,,563,jiwa,2025,registration,total_population,3.1,19,,
+21.04.07.2007,4,Teluk,sex,laki_laki,,306,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.07.2007,4,Teluk,sex,perempuan,,278,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.07.2007,4,Teluk,total,total,,584,jiwa,2025,registration,total_population,3.1,19,,
+21.04.07,3,Kecamatan Lingga Timur,sex,laki_laki,,2725,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.07,3,Kecamatan Lingga Timur,sex,perempuan,,2533,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.07,3,Kecamatan Lingga Timur,total,total,,5258,jiwa,2025,registration,total_population,3.1,19,,

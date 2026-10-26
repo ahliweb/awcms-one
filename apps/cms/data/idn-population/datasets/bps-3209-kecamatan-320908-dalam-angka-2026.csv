@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.09.08.2013,4,Kaligawe,sex,laki_laki,,1880,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.08.2013,4,Kaligawe,sex,perempuan,,1824,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.08.2013,4,Kaligawe,total,total,,3704,jiwa,2025,registration,total_population,3.1,52,,
+32.09.08.2012,4,Kaligawe Wetan,sex,laki_laki,,1411,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.08.2012,4,Kaligawe Wetan,sex,perempuan,,1393,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.08.2012,4,Kaligawe Wetan,total,total,,2804,jiwa,2025,registration,total_population,3.1,52,,
+32.09.08.2011,4,Curug Wetan,sex,laki_laki,,1975,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.08.2011,4,Curug Wetan,sex,perempuan,,1954,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.08.2011,4,Curug Wetan,total,total,,3929,jiwa,2025,registration,total_population,3.1,52,,
+32.09.08.2010,4,Curug,sex,laki_laki,,1887,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.08.2010,4,Curug,sex,perempuan,,1756,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.08.2010,4,Curug,total,total,,3643,jiwa,2025,registration,total_population,3.1,52,,
+32.09.08.2005,4,Wilulang,sex,laki_laki,,576,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.08.2005,4,Wilulang,sex,perempuan,,536,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.08.2005,4,Wilulang,total,total,,1112,jiwa,2025,registration,total_population,3.1,52,,
+32.09.08.2003,4,Susukan Agung,sex,laki_laki,,1876,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.08.2003,4,Susukan Agung,sex,perempuan,,1844,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.08.2003,4,Susukan Agung,total,total,,3720,jiwa,2025,registration,total_population,3.1,52,,
+32.09.08.2002,4,Susukan Lebak,sex,laki_laki,,1517,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.08.2002,4,Susukan Lebak,sex,perempuan,,1429,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.08.2002,4,Susukan Lebak,total,total,,2946,jiwa,2025,registration,total_population,3.1,52,,
+32.09.08.2004,4,Susukan Tonggoh,sex,laki_laki,,1168,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.08.2004,4,Susukan Tonggoh,sex,perempuan,,1088,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.08.2004,4,Susukan Tonggoh,total,total,,2256,jiwa,2025,registration,total_population,3.1,52,,
+32.09.08.2006,4,Sampih,sex,laki_laki,,1687,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.08.2006,4,Sampih,sex,perempuan,,1605,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.08.2006,4,Sampih,total,total,,3292,jiwa,2025,registration,total_population,3.1,52,,
+32.09.08.2007,4,Pasawahan,sex,laki_laki,,1003,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.08.2007,4,Pasawahan,sex,perempuan,,908,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.08.2007,4,Pasawahan,total,total,,1911,jiwa,2025,registration,total_population,3.1,52,,
+32.09.08.2008,4,Ciawi Asih,sex,laki_laki,,2725,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.08.2008,4,Ciawi Asih,sex,perempuan,,2745,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.08.2008,4,Ciawi Asih,total,total,,5470,jiwa,2025,registration,total_population,3.1,52,,
+32.09.08.2009,4,Ciawijapura,sex,laki_laki,,2381,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.08.2009,4,Ciawijapura,sex,perempuan,,2282,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.08.2009,4,Ciawijapura,total,total,,4663,jiwa,2025,registration,total_population,3.1,52,,
+32.09.08,3,Kecamatan Susukan Lebak,sex,laki_laki,,22910,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.08,3,Kecamatan Susukan Lebak,sex,perempuan,,22060,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.08,3,Kecamatan Susukan Lebak,total,total,,44970,jiwa,2025,registration,total_population,3.1,52,,
+32.09.08,3,Susukan Lebak,age_group,0-4,laki_laki,1520,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.08,3,Susukan Lebak,age_group,0-4,perempuan,1440,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.08,3,Susukan Lebak,age_group,0-4,,2960,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.08,3,Susukan Lebak,age_group,5-9,laki_laki,1963,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.08,3,Susukan Lebak,age_group,5-9,perempuan,1809,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.08,3,Susukan Lebak,age_group,5-9,,3772,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.08,3,Susukan Lebak,age_group,10-14,laki_laki,1995,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.08,3,Susukan Lebak,age_group,10-14,perempuan,1779,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.08,3,Susukan Lebak,age_group,10-14,,3774,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.08,3,Susukan Lebak,age_group,15-19,laki_laki,1812,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.08,3,Susukan Lebak,age_group,15-19,perempuan,1741,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.08,3,Susukan Lebak,age_group,15-19,,3553,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.08,3,Susukan Lebak,age_group,20-24,laki_laki,1753,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.08,3,Susukan Lebak,age_group,20-24,perempuan,1760,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.08,3,Susukan Lebak,age_group,20-24,,3513,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.08,3,Susukan Lebak,age_group,25-29,laki_laki,1846,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.08,3,Susukan Lebak,age_group,25-29,perempuan,1748,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.08,3,Susukan Lebak,age_group,25-29,,3594,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.08,3,Susukan Lebak,age_group,30-34,laki_laki,1661,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.08,3,Susukan Lebak,age_group,30-34,perempuan,1617,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.08,3,Susukan Lebak,age_group,30-34,,3278,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.08,3,Susukan Lebak,age_group,35-39,laki_laki,1553,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.08,3,Susukan Lebak,age_group,35-39,perempuan,1471,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.08,3,Susukan Lebak,age_group,35-39,,3024,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.08,3,Susukan Lebak,age_group,40-44,laki_laki,1812,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.08,3,Susukan Lebak,age_group,40-44,perempuan,1719,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.08,3,Susukan Lebak,age_group,40-44,,3531,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.08,3,Susukan Lebak,age_group,45-49,laki_laki,1656,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.08,3,Susukan Lebak,age_group,45-49,perempuan,1585,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.08,3,Susukan Lebak,age_group,45-49,,3241,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.08,3,Susukan Lebak,age_group,50-54,laki_laki,1512,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.08,3,Susukan Lebak,age_group,50-54,perempuan,1429,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.08,3,Susukan Lebak,age_group,50-54,,2941,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.08,3,Susukan Lebak,age_group,55-59,laki_laki,1167,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.08,3,Susukan Lebak,age_group,55-59,perempuan,1108,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.08,3,Susukan Lebak,age_group,55-59,,2275,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.08,3,Susukan Lebak,age_group,60-64,laki_laki,957,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.08,3,Susukan Lebak,age_group,60-64,perempuan,965,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.08,3,Susukan Lebak,age_group,60-64,,1922,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.08,3,Susukan Lebak,age_group,65-69,laki_laki,751,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.08,3,Susukan Lebak,age_group,65-69,perempuan,783,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.08,3,Susukan Lebak,age_group,65-69,,1534,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.08,3,Susukan Lebak,age_group,70-74,laki_laki,433,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.08,3,Susukan Lebak,age_group,70-74,perempuan,456,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.08,3,Susukan Lebak,age_group,70-74,,889,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.08,3,Susukan Lebak,age_group,75+,laki_laki,519,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.08,3,Susukan Lebak,age_group,75+,perempuan,650,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.08,3,Susukan Lebak,age_group,75+,,1169,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.08,3,Kecamatan Susukan Lebak,sex,laki_laki,,22910,jiwa,2025,registration,total_population,3.2,54,,Laki-Laki
+32.09.08,3,Kecamatan Susukan Lebak,sex,perempuan,,22060,jiwa,2025,registration,total_population,3.2,54,,Perempuan
+32.09.08,3,Kecamatan Susukan Lebak,total,total,,44970,jiwa,2025,registration,total_population,3.2,54,,

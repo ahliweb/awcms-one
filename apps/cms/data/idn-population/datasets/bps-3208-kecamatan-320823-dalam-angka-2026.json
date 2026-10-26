@@ -1,0 +1,52 @@
+{
+  "datasetCode": "bps-3208-kecamatan-320823-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.08.23",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Japara Dalam Angka 2026",
+  "publisherName": "BPS JaparaX",
+  "publisherDomain": "3208",
+  "publisherWebsite": "https://kuningankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS JaparaX (https://kuningankab.bps.go.id), publikasi \"Kecamatan Japara Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3208161",
+  "publicationNumber": "32080.25004",
+  "issn": "2830-4276",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kuningankab.bps.go.id/id/publication/2026/09/28/ba496aa1fc8596f61480a4a7/kecamatan-japara-dalam-angka-2026.html",
+  "sourceFileSha256": "86ac0c2066492333466727acba8f68281583acb3014d5c23890137a63d98b100",
+  "sourceFileBytes": 2794134,
+  "sourcePages": [35, 36, 37, 38],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Kuningan.",
+  "csvPath": "datasets/bps-3208-kecamatan-320823-dalam-angka-2026.csv",
+  "csvSha256": "cca11743b1ef1be4f6cf097936d8a4ee2dec46839258a881941b902dc2891cc3",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Japara, 2025",
+      "printedPages": [35, 36, 37],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Japara, 2025",
+      "printedPages": [38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1.1: row not stored: row \"Kecamatan Japara Japara District\": unmatched ",
+    "table 3.1.1: row not stored: row \"Kecamatan Japara Japara District\": unmatched ",
+    "table 3.1.1: row not stored: row \"2024\": unmatched ",
+    "table 3.1.1: row not stored: row \"Kecamatan Japara Japara District\": unmatched ",
+    "table 3.1.1: row not stored: row \"2024\": unmatched ",
+    "table 3.1.2: row not stored: row \"75++\": unmatched ",
+    "table 3.1.2: row not stored: row \"Kecamatan Japara Japara District\": unmatched ",
+    "table 3.1.2: row not stored: row \"2024\": unmatched "
+  ]
+}

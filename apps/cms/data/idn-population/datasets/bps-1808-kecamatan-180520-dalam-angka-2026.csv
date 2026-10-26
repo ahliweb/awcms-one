@@ -1,0 +1,88 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.05.20.2002,4,Ringin Sari,sex,laki_laki,,2585,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.20.2002,4,Ringin Sari,sex,perempuan,,2406,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.20.2002,4,Ringin Sari,total,total,,4991,jiwa,2025,registration,total_population,3.1,32,,
+18.05.20.2004,4,Catur Karya Buana Jaya,sex,laki_laki,,2493,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.20.2004,4,Catur Karya Buana Jaya,sex,perempuan,,2319,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.20.2004,4,Catur Karya Buana Jaya,total,total,,4812,jiwa,2025,registration,total_population,3.1,32,,
+18.05.20.2001,4,Bujuk Agung,sex,laki_laki,,1712,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.20.2001,4,Bujuk Agung,sex,perempuan,,1592,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.20.2001,4,Bujuk Agung,total,total,,3304,jiwa,2025,registration,total_population,3.1,32,,
+18.05.20.2003,4,Suka Maju,sex,laki_laki,,1238,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.20.2003,4,Suka Maju,sex,perempuan,,1180,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.20.2003,4,Suka Maju,total,total,,2418,jiwa,2025,registration,total_population,3.1,32,,
+18.05.20.2006,4,Penawar Jaya,sex,laki_laki,,2114,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.20.2006,4,Penawar Jaya,sex,perempuan,,2076,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.20.2006,4,Penawar Jaya,total,total,,4190,jiwa,2025,registration,total_population,3.1,32,,
+18.05.20.2005,4,Purwa Jaya,sex,laki_laki,,2345,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.20.2005,4,Purwa Jaya,sex,perempuan,,2276,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.20.2005,4,Purwa Jaya,total,total,,4621,jiwa,2025,registration,total_population,3.1,32,,
+18.05.20.2008,4,Sumber Makmur,sex,laki_laki,,1053,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.20.2008,4,Sumber Makmur,sex,perempuan,,976,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.20.2008,4,Sumber Makmur,total,total,,2029,jiwa,2025,registration,total_population,3.1,32,,
+18.05.20.2009,4,Tri Tunggal Jaya,sex,laki_laki,,1469,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.20.2009,4,Tri Tunggal Jaya,sex,perempuan,,1356,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.20.2009,4,Tri Tunggal Jaya,total,total,,2825,jiwa,2025,registration,total_population,3.1,32,,
+18.05.20.2010,4,Agung Jaya,sex,laki_laki,,2473,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.20.2010,4,Agung Jaya,sex,perempuan,,2278,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.20.2010,4,Agung Jaya,total,total,,4751,jiwa,2025,registration,total_population,3.1,32,,
+18.05.20.2011,4,Penawar Rejo,sex,laki_laki,,2127,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.20.2011,4,Penawar Rejo,sex,perempuan,,2015,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.20.2011,4,Penawar Rejo,total,total,,4142,jiwa,2025,registration,total_population,3.1,32,,
+18.05.20.2012,4,Mekar Jaya,sex,laki_laki,,807,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.20.2012,4,Mekar Jaya,sex,perempuan,,767,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.20.2012,4,Mekar Jaya,total,total,,1574,jiwa,2025,registration,total_population,3.1,32,,
+18.05.20,3,Banjar Margo,sex,laki_laki,,22235,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.20,3,Banjar Margo,sex,perempuan,,21062,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.20,3,Banjar Margo,total,total,,43297,jiwa,2025,registration,total_population,3.1,32,,
+18.05.20,3,Banjar Margo,age_group,0-4,laki_laki,1325,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+18.05.20,3,Banjar Margo,age_group,0-4,perempuan,1280,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+18.05.20,3,Banjar Margo,age_group,0-4,,2605,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+18.05.20,3,Banjar Margo,age_group,5-9,laki_laki,1867,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+18.05.20,3,Banjar Margo,age_group,5-9,perempuan,1784,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+18.05.20,3,Banjar Margo,age_group,5-9,,3651,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+18.05.20,3,Banjar Margo,age_group,10-14,laki_laki,2119,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+18.05.20,3,Banjar Margo,age_group,10-14,perempuan,1977,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+18.05.20,3,Banjar Margo,age_group,10-14,,4096,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+18.05.20,3,Banjar Margo,age_group,15-19,laki_laki,1981,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+18.05.20,3,Banjar Margo,age_group,15-19,perempuan,1875,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+18.05.20,3,Banjar Margo,age_group,15-19,,3856,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+18.05.20,3,Banjar Margo,age_group,20-24,laki_laki,1623,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+18.05.20,3,Banjar Margo,age_group,20-24,perempuan,1527,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+18.05.20,3,Banjar Margo,age_group,20-24,,3150,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+18.05.20,3,Banjar Margo,age_group,25-29,laki_laki,1658,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+18.05.20,3,Banjar Margo,age_group,25-29,perempuan,1607,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+18.05.20,3,Banjar Margo,age_group,25-29,,3265,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+18.05.20,3,Banjar Margo,age_group,30-34,laki_laki,1761,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+18.05.20,3,Banjar Margo,age_group,30-34,perempuan,1662,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+18.05.20,3,Banjar Margo,age_group,30-34,,3423,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+18.05.20,3,Banjar Margo,age_group,35-39,laki_laki,1745,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+18.05.20,3,Banjar Margo,age_group,35-39,perempuan,1722,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+18.05.20,3,Banjar Margo,age_group,35-39,,3467,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+18.05.20,3,Banjar Margo,age_group,40-44,laki_laki,1634,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+18.05.20,3,Banjar Margo,age_group,40-44,perempuan,1646,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+18.05.20,3,Banjar Margo,age_group,40-44,,3280,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+18.05.20,3,Banjar Margo,age_group,45-49,laki_laki,1564,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+18.05.20,3,Banjar Margo,age_group,45-49,perempuan,1450,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+18.05.20,3,Banjar Margo,age_group,45-49,,3014,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+18.05.20,3,Banjar Margo,age_group,50-54,laki_laki,1263,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+18.05.20,3,Banjar Margo,age_group,50-54,perempuan,1340,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+18.05.20,3,Banjar Margo,age_group,50-54,,2603,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+18.05.20,3,Banjar Margo,age_group,55-59,laki_laki,1047,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+18.05.20,3,Banjar Margo,age_group,55-59,perempuan,934,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+18.05.20,3,Banjar Margo,age_group,55-59,,1981,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+18.05.20,3,Banjar Margo,age_group,60-64,laki_laki,883,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+18.05.20,3,Banjar Margo,age_group,60-64,perempuan,821,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+18.05.20,3,Banjar Margo,age_group,60-64,,1704,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+18.05.20,3,Banjar Margo,age_group,65-69,laki_laki,671,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+18.05.20,3,Banjar Margo,age_group,65-69,perempuan,576,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+18.05.20,3,Banjar Margo,age_group,65-69,,1247,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+18.05.20,3,Banjar Margo,age_group,70-74,laki_laki,466,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+18.05.20,3,Banjar Margo,age_group,70-74,perempuan,354,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+18.05.20,3,Banjar Margo,age_group,70-74,,820,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+18.05.20,3,Banjar Margo,age_group,75+,laki_laki,628,jiwa,2025,registration,total_population,3.2,34,,>75
+18.05.20,3,Banjar Margo,age_group,75+,perempuan,507,jiwa,2025,registration,total_population,3.2,34,,>75
+18.05.20,3,Banjar Margo,age_group,75+,,1135,jiwa,2025,registration,total_population,3.2,34,,>75
+18.05.20,3,Banjar Margo,sex,laki_laki,,22235,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+18.05.20,3,Banjar Margo,sex,perempuan,,21062,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+18.05.20,3,Banjar Margo,total,total,,43297,jiwa,2025,registration,total_population,3.2,34,,

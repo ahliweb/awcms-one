@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.76.05.1001,4,Sukmajaya,sex,laki_laki,,17701,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.05.1001,4,Sukmajaya,sex,perempuan,,17948,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.05.1001,4,Sukmajaya,total,total,,35649,jiwa,2025,registration,total_population,3.1,19,,
+32.76.05.1010,4,Tirtajaya,sex,laki_laki,,12231,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.05.1010,4,Tirtajaya,sex,perempuan,,12115,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.05.1010,4,Tirtajaya,total,total,,24346,jiwa,2025,registration,total_population,3.1,19,,
+32.76.05.1004,4,Mekarjaya,sex,laki_laki,,28439,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.05.1004,4,Mekarjaya,sex,perempuan,,29728,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.05.1004,4,Mekarjaya,total,total,,58167,jiwa,2025,registration,total_population,3.1,19,,
+32.76.05.1003,4,Abadijaya,sex,laki_laki,,30162,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.05.1003,4,Abadijaya,sex,perempuan,,30713,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.05.1003,4,Abadijaya,total,total,,60875,jiwa,2025,registration,total_population,3.1,19,,
+32.76.05.1005,4,Baktijaya,sex,laki_laki,,28452,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.05.1005,4,Baktijaya,sex,perempuan,,29000,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.05.1005,4,Baktijaya,total,total,,57452,jiwa,2025,registration,total_population,3.1,19,,
+32.76.05.1008,4,Cisalak,sex,laki_laki,,8575,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.05.1008,4,Cisalak,sex,perempuan,,8634,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.05.1008,4,Cisalak,total,total,,17209,jiwa,2025,registration,total_population,3.1,19,,
+32.76.05,3,Kecamatan Sukmajaya,sex,laki_laki,,125560,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.05,3,Kecamatan Sukmajaya,sex,perempuan,,128138,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.05,3,Kecamatan Sukmajaya,total,total,,253698,jiwa,2025,registration,total_population,3.1,19,,
+32.76.05,3,Sukmajaya,age_group,0-4,laki_laki,7091,jiwa,2025,registration,total_population,3.2,22,,0-4
+32.76.05,3,Sukmajaya,age_group,0-4,perempuan,6584,jiwa,2025,registration,total_population,3.2,22,,0-4
+32.76.05,3,Sukmajaya,age_group,0-4,,13675,jiwa,2025,registration,total_population,3.2,22,,0-4
+32.76.05,3,Sukmajaya,age_group,5-9,laki_laki,10140,jiwa,2025,registration,total_population,3.2,22,,5-9
+32.76.05,3,Sukmajaya,age_group,5-9,perempuan,9748,jiwa,2025,registration,total_population,3.2,22,,5-9
+32.76.05,3,Sukmajaya,age_group,5-9,,19888,jiwa,2025,registration,total_population,3.2,22,,5-9
+32.76.05,3,Sukmajaya,age_group,10-14,laki_laki,11007,jiwa,2025,registration,total_population,3.2,22,,10-14
+32.76.05,3,Sukmajaya,age_group,10-14,perempuan,10471,jiwa,2025,registration,total_population,3.2,22,,10-14
+32.76.05,3,Sukmajaya,age_group,10-14,,21478,jiwa,2025,registration,total_population,3.2,22,,10-14
+32.76.05,3,Sukmajaya,age_group,15-19,laki_laki,10702,jiwa,2025,registration,total_population,3.2,22,,15-19
+32.76.05,3,Sukmajaya,age_group,15-19,perempuan,9826,jiwa,2025,registration,total_population,3.2,22,,15-19
+32.76.05,3,Sukmajaya,age_group,15-19,,20528,jiwa,2025,registration,total_population,3.2,22,,15-19
+32.76.05,3,Sukmajaya,age_group,20-24,laki_laki,10185,jiwa,2025,registration,total_population,3.2,22,,20-24
+32.76.05,3,Sukmajaya,age_group,20-24,perempuan,9728,jiwa,2025,registration,total_population,3.2,22,,20-24
+32.76.05,3,Sukmajaya,age_group,20-24,,19913,jiwa,2025,registration,total_population,3.2,22,,20-24
+32.76.05,3,Sukmajaya,age_group,25-29,laki_laki,9634,jiwa,2025,registration,total_population,3.2,22,,25-29
+32.76.05,3,Sukmajaya,age_group,25-29,perempuan,9342,jiwa,2025,registration,total_population,3.2,22,,25-29
+32.76.05,3,Sukmajaya,age_group,25-29,,18976,jiwa,2025,registration,total_population,3.2,22,,25-29
+32.76.05,3,Sukmajaya,age_group,30-34,laki_laki,8860,jiwa,2025,registration,total_population,3.2,22,,30-34
+32.76.05,3,Sukmajaya,age_group,30-34,perempuan,9012,jiwa,2025,registration,total_population,3.2,22,,30-34
+32.76.05,3,Sukmajaya,age_group,30-34,,17872,jiwa,2025,registration,total_population,3.2,22,,30-34
+32.76.05,3,Sukmajaya,age_group,35-39,laki_laki,8607,jiwa,2025,registration,total_population,3.2,22,,35-39
+32.76.05,3,Sukmajaya,age_group,35-39,perempuan,9153,jiwa,2025,registration,total_population,3.2,22,,35-39
+32.76.05,3,Sukmajaya,age_group,35-39,,17760,jiwa,2025,registration,total_population,3.2,22,,35-39
+32.76.05,3,Sukmajaya,age_group,40-44,laki_laki,10189,jiwa,2025,registration,total_population,3.2,22,,40-44
+32.76.05,3,Sukmajaya,age_group,40-44,perempuan,10790,jiwa,2025,registration,total_population,3.2,22,,40-44
+32.76.05,3,Sukmajaya,age_group,40-44,,20979,jiwa,2025,registration,total_population,3.2,22,,40-44
+32.76.05,3,Sukmajaya,age_group,45-49,laki_laki,10139,jiwa,2025,registration,total_population,3.2,22,,45-49
+32.76.05,3,Sukmajaya,age_group,45-49,perempuan,10281,jiwa,2025,registration,total_population,3.2,22,,45-49
+32.76.05,3,Sukmajaya,age_group,45-49,,20420,jiwa,2025,registration,total_population,3.2,22,,45-49
+32.76.05,3,Sukmajaya,age_group,50-54,laki_laki,8759,jiwa,2025,registration,total_population,3.2,22,,50-54
+32.76.05,3,Sukmajaya,age_group,50-54,perempuan,9274,jiwa,2025,registration,total_population,3.2,22,,50-54
+32.76.05,3,Sukmajaya,age_group,50-54,,18033,jiwa,2025,registration,total_population,3.2,22,,50-54
+32.76.05,3,Sukmajaya,age_group,55-59,laki_laki,7070,jiwa,2025,registration,total_population,3.2,22,,55-59
+32.76.05,3,Sukmajaya,age_group,55-59,perempuan,7422,jiwa,2025,registration,total_population,3.2,22,,55-59
+32.76.05,3,Sukmajaya,age_group,55-59,,14492,jiwa,2025,registration,total_population,3.2,22,,55-59
+32.76.05,3,Sukmajaya,age_group,60-64,laki_laki,4957,jiwa,2025,registration,total_population,3.2,22,,60-64
+32.76.05,3,Sukmajaya,age_group,60-64,perempuan,5793,jiwa,2025,registration,total_population,3.2,22,,60-64
+32.76.05,3,Sukmajaya,age_group,60-64,,10750,jiwa,2025,registration,total_population,3.2,22,,60-64
+32.76.05,3,Sukmajaya,age_group,65-69,laki_laki,3616,jiwa,2025,registration,total_population,3.2,22,,65-69
+32.76.05,3,Sukmajaya,age_group,65-69,perempuan,4678,jiwa,2025,registration,total_population,3.2,22,,65-69
+32.76.05,3,Sukmajaya,age_group,65-69,,8294,jiwa,2025,registration,total_population,3.2,22,,65-69
+32.76.05,3,Sukmajaya,age_group,70-74,laki_laki,2444,jiwa,2025,registration,total_population,3.2,22,,70-74
+32.76.05,3,Sukmajaya,age_group,70-74,perempuan,3176,jiwa,2025,registration,total_population,3.2,22,,70-74
+32.76.05,3,Sukmajaya,age_group,70-74,,5620,jiwa,2025,registration,total_population,3.2,22,,70-74
+32.76.05,3,Sukmajaya,age_group,75+,laki_laki,2160,jiwa,2025,registration,total_population,3.2,22,,>75
+32.76.05,3,Sukmajaya,age_group,75+,perempuan,2860,jiwa,2025,registration,total_population,3.2,22,,>75
+32.76.05,3,Sukmajaya,age_group,75+,,5020,jiwa,2025,registration,total_population,3.2,22,,>75
+32.76.05,3,Kecamatan Sukmajaya,sex,laki_laki,,125560,jiwa,2025,registration,total_population,3.2,22,,Laki-Laki
+32.76.05,3,Kecamatan Sukmajaya,sex,perempuan,,128138,jiwa,2025,registration,total_population,3.2,22,,Perempuan
+32.76.05,3,Kecamatan Sukmajaya,total,total,,253698,jiwa,2025,registration,total_population,3.2,22,,

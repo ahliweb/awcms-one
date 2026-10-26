@@ -1,0 +1,43 @@
+{
+  "datasetCode": "bps-3173-kecamatan-317105-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "31.71.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cempaka Putih Dalam Angka 2026",
+  "publisherName": "BPS Kota Jakarta Pusat",
+  "publisherDomain": "3173",
+  "publisherWebsite": "https://jakpuskota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Jakarta Pusat (https://jakpuskota.bps.go.id), publikasi \"Kecamatan Cempaka Putih Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3173050",
+  "publicationNumber": "31730.26009",
+  "issn": "0852-2162",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jakpuskota.bps.go.id/id/publication/2026/09/28/139ab9f5dafdc59275a8be41/kecamatan-cempaka-putih-dalam-angka-2026.html",
+  "sourceFileSha256": "99d9b9b3a43d2e453436f7471328e10d2a6434bcb5bc4bcf5fa8c8ab4df014c2",
+  "sourceFileBytes": 13648758,
+  "sourcePages": [31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Jakarta Pusat.",
+  "csvPath": "datasets/bps-3173-kecamatan-317105-dalam-angka-2026.csv",
+  "csvSha256": "5e38bdc9b012d33bd1f3bbe669795e0f033c2d708d723f087353434fee173e6a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Cempaka Putih , 2025",
+      "printedPages": [31, 32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Cempaka Putih\": unmatched ",
+    "table 3.1: row not stored: row \"Cempaka Putih\": unmatched ",
+    "table 3.1: row not stored: row \"Cempaka Putih\": unmatched ",
+    "table 3.1: the rows of region 31.71.05.1002 are not stored: sex split vs total: parts sum 84292.0000 != 42146.0000 (diff 42146.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 31.71.05.1001 are not stored: sex split vs total: parts sum 54400.0000 != 27200.0000 (diff 27200.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 31.71.05.1003 are not stored: sex split vs total: parts sum 51796.0000 != 25898.0000 (diff 25898.0000); the source itself is inconsistent"
+  ]
+}

@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.01.14.2008,4,Sumur,sex,laki_laki,,3087,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.14.2008,4,Sumur,sex,perempuan,,2963,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.14.2008,4,Sumur,total,total,,6050,jiwa,2025,registration,total_population,3.1,24,,
+18.01.14.2007,4,Ruguk,sex,laki_laki,,3277,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.14.2007,4,Ruguk,sex,perempuan,,3112,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.14.2007,4,Ruguk,total,total,,6389,jiwa,2025,registration,total_population,3.1,24,,
+18.01.14.2006,4,Tri Dharma Yoga,sex,laki_laki,,776,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.14.2006,4,Tri Dharma Yoga,sex,perempuan,,753,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.14.2006,4,Tri Dharma Yoga,total,total,,1529,jiwa,2025,registration,total_population,3.1,24,,
+18.01.14.2005,4,Legundi,sex,laki_laki,,1740,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.14.2005,4,Legundi,sex,perempuan,,1689,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.14.2005,4,Legundi,total,total,,3429,jiwa,2025,registration,total_population,3.1,24,,
+18.01.14.2004,4,Ketapang,sex,laki_laki,,3351,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.14.2004,4,Ketapang,sex,perempuan,,3332,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.14.2004,4,Ketapang,total,total,,6683,jiwa,2025,registration,total_population,3.1,24,,
+18.01.14.2001,4,Bangunrejo,sex,laki_laki,,1516,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.14.2001,4,Bangunrejo,sex,perempuan,,1549,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.14.2001,4,Bangunrejo,total,total,,3065,jiwa,2025,registration,total_population,3.1,24,,
+18.01.14.2003,4,Karang Sari,sex,laki_laki,,2231,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.14.2003,4,Karang Sari,sex,perempuan,,2124,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.14.2003,4,Karang Sari,total,total,,4355,jiwa,2025,registration,total_population,3.1,24,,
+18.01.14.2002,4,Sripendowo,sex,laki_laki,,1760,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.14.2002,4,Sripendowo,sex,perempuan,,1711,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.14.2002,4,Sripendowo,total,total,,3471,jiwa,2025,registration,total_population,3.1,24,,
+18.01.14.2009,4,Sumber Nadi,sex,laki_laki,,656,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.14.2009,4,Sumber Nadi,sex,perempuan,,624,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.14.2009,4,Sumber Nadi,total,total,,1280,jiwa,2025,registration,total_population,3.1,24,,
+18.01.14.2013,4,Taman Sari,sex,laki_laki,,1695,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.14.2013,4,Taman Sari,sex,perempuan,,1640,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.14.2013,4,Taman Sari,total,total,,3335,jiwa,2025,registration,total_population,3.1,24,,
+18.01.14.2014,4,Kemukus,sex,laki_laki,,1091,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.14.2014,4,Kemukus,sex,perempuan,,1123,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.14.2014,4,Kemukus,total,total,,2214,jiwa,2025,registration,total_population,3.1,24,,
+18.01.14.2015,4,Lebung Nala,sex,laki_laki,,790,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.14.2015,4,Lebung Nala,sex,perempuan,,768,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.14.2015,4,Lebung Nala,total,total,,1558,jiwa,2025,registration,total_population,3.1,24,,
+18.01.14.2010,4,Sidoasih,sex,laki_laki,,1359,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.14.2010,4,Sidoasih,sex,perempuan,,1319,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.14.2010,4,Sidoasih,total,total,,2678,jiwa,2025,registration,total_population,3.1,24,,
+18.01.14.2011,4,Pematang Pasir,sex,laki_laki,,2371,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.14.2011,4,Pematang Pasir,sex,perempuan,,2245,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.14.2011,4,Pematang Pasir,total,total,,4616,jiwa,2025,registration,total_population,3.1,24,,
+18.01.14.2012,4,Berundung,sex,laki_laki,,1420,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.14.2012,4,Berundung,sex,perempuan,,1368,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.14.2012,4,Berundung,total,total,,2788,jiwa,2025,registration,total_population,3.1,24,,
+18.01.14.2016,4,Sidoluhur,sex,laki_laki,,904,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.14.2016,4,Sidoluhur,sex,perempuan,,851,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.14.2016,4,Sidoluhur,total,total,,1755,jiwa,2025,registration,total_population,3.1,24,,
+18.01.14.2017,4,Wai Sidomukti,sex,laki_laki,,997,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.14.2017,4,Wai Sidomukti,sex,perempuan,,988,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.14.2017,4,Wai Sidomukti,total,total,,1985,jiwa,2025,registration,total_population,3.1,24,,
+18.01.14,3,Ketapang,sex,laki_laki,,29021,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.14,3,Ketapang,sex,perempuan,,28159,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.14,3,Ketapang,total,total,,57180,jiwa,2025,registration,total_population,3.1,24,,

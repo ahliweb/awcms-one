@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.14.02.2004,4,Cirende,sex,laki_laki,,1173,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.02.2004,4,Cirende,sex,perempuan,,1151,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.02.2004,4,Cirende,total,total,,2324,jiwa,2025,registration,total_population,3.1,22,,
+32.14.02.2003,4,Benteng,sex,laki_laki,,2841,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.02.2003,4,Benteng,sex,perempuan,,2849,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.02.2003,4,Benteng,total,total,,5690,jiwa,2025,registration,total_population,3.1,22,,
+32.14.02.2001,4,Campaka,sex,laki_laki,,3504,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.02.2001,4,Campaka,sex,perempuan,,3473,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.02.2001,4,Campaka,total,total,,6977,jiwa,2025,registration,total_population,3.1,22,,
+32.14.02.2002,4,Campakasari,sex,laki_laki,,3389,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.02.2002,4,Campakasari,sex,perempuan,,3342,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.02.2002,4,Campakasari,total,total,,6731,jiwa,2025,registration,total_population,3.1,22,,
+32.14.02.2009,4,Cijunti,sex,laki_laki,,2931,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.02.2009,4,Cijunti,sex,perempuan,,2893,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.02.2009,4,Cijunti,total,total,,5824,jiwa,2025,registration,total_population,3.1,22,,
+32.14.02.2010,4,Cisaat,sex,laki_laki,,2332,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.02.2010,4,Cisaat,sex,perempuan,,2295,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.02.2010,4,Cisaat,total,total,,4627,jiwa,2025,registration,total_population,3.1,22,,
+32.14.02.2008,4,Cimahi,sex,laki_laki,,3144,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.02.2008,4,Cimahi,sex,perempuan,,3127,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.02.2008,4,Cimahi,total,total,,6271,jiwa,2025,registration,total_population,3.1,22,,
+32.14.02.2005,4,Cikumpay,sex,laki_laki,,4254,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.02.2005,4,Cikumpay,sex,perempuan,,4155,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.02.2005,4,Cikumpay,total,total,,8409,jiwa,2025,registration,total_population,3.1,22,,
+32.14.02.2006,4,Cijaya,sex,laki_laki,,2611,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.02.2006,4,Cijaya,sex,perempuan,,2602,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.02.2006,4,Cijaya,total,total,,5213,jiwa,2025,registration,total_population,3.1,22,,
+32.14.02.2007,4,Kertamukti,sex,laki_laki,,2375,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.02.2007,4,Kertamukti,sex,perempuan,,2303,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.02.2007,4,Kertamukti,total,total,,4678,jiwa,2025,registration,total_population,3.1,22,,
+32.14.02,3,Kecamatan Campaka,sex,laki_laki,,28554,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.02,3,Kecamatan Campaka,sex,perempuan,,28190,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.02,3,Kecamatan Campaka,total,total,,56744,jiwa,2025,registration,total_population,3.1,22,,

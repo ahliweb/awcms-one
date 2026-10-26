@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+19.06.06.2004,4,Lintang,sex,laki_laki,,1541,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+19.06.06.2004,4,Lintang,sex,perempuan,,1530,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+19.06.06.2004,4,Lintang,total,total,,3071,jiwa,2025,registration,total_population,3.1,18,,
+19.06.06.2003,4,Aik Madu,sex,laki_laki,,557,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+19.06.06.2003,4,Aik Madu,sex,perempuan,,540,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+19.06.06.2003,4,Aik Madu,total,total,,1097,jiwa,2025,registration,total_population,3.1,18,,
+19.06.06.2002,4,Renggiang,sex,laki_laki,,1028,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+19.06.06.2002,4,Renggiang,sex,perempuan,,942,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+19.06.06.2002,4,Renggiang,total,total,,1970,jiwa,2025,registration,total_population,3.1,18,,
+19.06.06.2001,4,Simpang Tiga,sex,laki_laki,,865,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+19.06.06.2001,4,Simpang Tiga,sex,perempuan,,767,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+19.06.06.2001,4,Simpang Tiga,total,total,,1632,jiwa,2025,registration,total_population,3.1,18,,
+19.06.06,3,Simpang Renggiang,sex,laki_laki,,3991,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+19.06.06,3,Simpang Renggiang,sex,perempuan,,3779,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+19.06.06,3,Simpang Renggiang,total,total,,7770,jiwa,2025,registration,total_population,3.1,18,,
+19.06.06,3,Simpang Renggiang,age_group,0-4,laki_laki,236,jiwa,2025,registration,total_population,3.2,20,,0-4
+19.06.06,3,Simpang Renggiang,age_group,0-4,perempuan,217,jiwa,2025,registration,total_population,3.2,20,,0-4
+19.06.06,3,Simpang Renggiang,age_group,0-4,,453,jiwa,2025,registration,total_population,3.2,20,,0-4
+19.06.06,3,Simpang Renggiang,age_group,5-9,laki_laki,265,jiwa,2025,registration,total_population,3.2,20,,5-9
+19.06.06,3,Simpang Renggiang,age_group,5-9,perempuan,280,jiwa,2025,registration,total_population,3.2,20,,5-9
+19.06.06,3,Simpang Renggiang,age_group,5-9,,545,jiwa,2025,registration,total_population,3.2,20,,5-9
+19.06.06,3,Simpang Renggiang,age_group,10-14,laki_laki,314,jiwa,2025,registration,total_population,3.2,20,,10-14
+19.06.06,3,Simpang Renggiang,age_group,10-14,perempuan,305,jiwa,2025,registration,total_population,3.2,20,,10-14
+19.06.06,3,Simpang Renggiang,age_group,10-14,,619,jiwa,2025,registration,total_population,3.2,20,,10-14
+19.06.06,3,Simpang Renggiang,age_group,15-19,laki_laki,265,jiwa,2025,registration,total_population,3.2,20,,15-19
+19.06.06,3,Simpang Renggiang,age_group,15-19,perempuan,280,jiwa,2025,registration,total_population,3.2,20,,15-19
+19.06.06,3,Simpang Renggiang,age_group,15-19,,545,jiwa,2025,registration,total_population,3.2,20,,15-19
+19.06.06,3,Simpang Renggiang,age_group,20-24,laki_laki,302,jiwa,2025,registration,total_population,3.2,20,,20-24
+19.06.06,3,Simpang Renggiang,age_group,20-24,perempuan,295,jiwa,2025,registration,total_population,3.2,20,,20-24
+19.06.06,3,Simpang Renggiang,age_group,20-24,,597,jiwa,2025,registration,total_population,3.2,20,,20-24
+19.06.06,3,Simpang Renggiang,age_group,25-29,laki_laki,350,jiwa,2025,registration,total_population,3.2,20,,25-29
+19.06.06,3,Simpang Renggiang,age_group,25-29,perempuan,339,jiwa,2025,registration,total_population,3.2,20,,25-29
+19.06.06,3,Simpang Renggiang,age_group,25-29,,689,jiwa,2025,registration,total_population,3.2,20,,25-29
+19.06.06,3,Simpang Renggiang,age_group,30-34,laki_laki,334,jiwa,2025,registration,total_population,3.2,20,,30-34
+19.06.06,3,Simpang Renggiang,age_group,30-34,perempuan,272,jiwa,2025,registration,total_population,3.2,20,,30-34
+19.06.06,3,Simpang Renggiang,age_group,30-34,,606,jiwa,2025,registration,total_population,3.2,20,,30-34
+19.06.06,3,Simpang Renggiang,age_group,35-39,laki_laki,267,jiwa,2025,registration,total_population,3.2,20,,35-39
+19.06.06,3,Simpang Renggiang,age_group,35-39,perempuan,252,jiwa,2025,registration,total_population,3.2,20,,35-39
+19.06.06,3,Simpang Renggiang,age_group,35-39,,519,jiwa,2025,registration,total_population,3.2,20,,35-39
+19.06.06,3,Simpang Renggiang,age_group,40-44,laki_laki,354,jiwa,2025,registration,total_population,3.2,20,,40-44
+19.06.06,3,Simpang Renggiang,age_group,40-44,perempuan,319,jiwa,2025,registration,total_population,3.2,20,,40-44
+19.06.06,3,Simpang Renggiang,age_group,40-44,,673,jiwa,2025,registration,total_population,3.2,20,,40-44
+19.06.06,3,Simpang Renggiang,age_group,45-49,laki_laki,356,jiwa,2025,registration,total_population,3.2,20,,45-49
+19.06.06,3,Simpang Renggiang,age_group,45-49,perempuan,323,jiwa,2025,registration,total_population,3.2,20,,45-49
+19.06.06,3,Simpang Renggiang,age_group,45-49,,679,jiwa,2025,registration,total_population,3.2,20,,45-49
+19.06.06,3,Simpang Renggiang,age_group,50-54,laki_laki,305,jiwa,2025,registration,total_population,3.2,20,,50-54
+19.06.06,3,Simpang Renggiang,age_group,50-54,perempuan,251,jiwa,2025,registration,total_population,3.2,20,,50-54
+19.06.06,3,Simpang Renggiang,age_group,50-54,,556,jiwa,2025,registration,total_population,3.2,20,,50-54
+19.06.06,3,Simpang Renggiang,age_group,55-59,laki_laki,218,jiwa,2025,registration,total_population,3.2,20,,55-59
+19.06.06,3,Simpang Renggiang,age_group,55-59,perempuan,188,jiwa,2025,registration,total_population,3.2,20,,55-59
+19.06.06,3,Simpang Renggiang,age_group,55-59,,406,jiwa,2025,registration,total_population,3.2,20,,55-59
+19.06.06,3,Simpang Renggiang,age_group,60-64,laki_laki,164,jiwa,2025,registration,total_population,3.2,20,,60-64
+19.06.06,3,Simpang Renggiang,age_group,60-64,perempuan,162,jiwa,2025,registration,total_population,3.2,20,,60-64
+19.06.06,3,Simpang Renggiang,age_group,60-64,,326,jiwa,2025,registration,total_population,3.2,20,,60-64
+19.06.06,3,Simpang Renggiang,age_group,65-69,laki_laki,113,jiwa,2025,registration,total_population,3.2,20,,65-69
+19.06.06,3,Simpang Renggiang,age_group,65-69,perempuan,127,jiwa,2025,registration,total_population,3.2,20,,65-69
+19.06.06,3,Simpang Renggiang,age_group,65-69,,240,jiwa,2025,registration,total_population,3.2,20,,65-69
+19.06.06,3,Simpang Renggiang,age_group,70-74,laki_laki,78,jiwa,2025,registration,total_population,3.2,20,,70-74
+19.06.06,3,Simpang Renggiang,age_group,70-74,perempuan,65,jiwa,2025,registration,total_population,3.2,20,,70-74
+19.06.06,3,Simpang Renggiang,age_group,70-74,,143,jiwa,2025,registration,total_population,3.2,20,,70-74
+19.06.06,3,Simpang Renggiang,age_group,75+,laki_laki,70,jiwa,2025,registration,total_population,3.2,20,,>75
+19.06.06,3,Simpang Renggiang,age_group,75+,perempuan,104,jiwa,2025,registration,total_population,3.2,20,,>75
+19.06.06,3,Simpang Renggiang,age_group,75+,,174,jiwa,2025,registration,total_population,3.2,20,,>75
+19.06.06,3,Simpang Renggiang,sex,laki_laki,,3991,jiwa,2025,registration,total_population,3.2,20,,Laki-Laki
+19.06.06,3,Simpang Renggiang,sex,perempuan,,3779,jiwa,2025,registration,total_population,3.2,20,,Perempuan
+19.06.06,3,Simpang Renggiang,total,total,,7770,jiwa,2025,registration,total_population,3.2,20,,

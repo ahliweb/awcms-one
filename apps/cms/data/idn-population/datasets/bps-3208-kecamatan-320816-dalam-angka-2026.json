@@ -1,0 +1,60 @@
+{
+  "datasetCode": "bps-3208-kecamatan-320816-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.08.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kramatmulya Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kuningan",
+  "publisherDomain": "3208",
+  "publisherWebsite": "https://kuningankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kuningan (https://kuningankab.bps.go.id), publikasi \"Kecamatan Kramatmulya Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3208150",
+  "publicationNumber": "32080.25035",
+  "issn": "2597-8411",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kuningankab.bps.go.id/id/publication/2026/09/28/4b412ba3f1e3960e7d42946b/kecamatan-kramatmulya-dalam-angka-2026.html",
+  "sourceFileSha256": "3cc27c8bb1c7eef22dda8c8b7ba0fb921cfe06e8df3bafbf8c11b81b4f70ed30",
+  "sourceFileBytes": 3029035,
+  "sourcePages": [37, 38, 39, 40, 133],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Kuningan.",
+  "csvPath": "datasets/bps-3208-kecamatan-320816-dalam-angka-2026.csv",
+  "csvSha256": "a423ff4ac43dc00cf82d853f63f49ac04a08881de53d33bf17866b0b4dac1029",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Kramatmulya 2025",
+      "printedPages": [37, 38, 39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kramatmulya, 2025",
+      "printedPages": [40],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Desa dan Agama yang Dianut di Kecamatan Kramatmulya, 2025",
+      "printedPages": [133],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.1.1: row not stored: row \"Kecamatan Kramatmulya Kramatmulya District\": unmatched ",
+    "table 3.1.1: row not stored: row \"Kecamatan Kramatmulya Kramatmulya District\": unmatched ",
+    "table 3.1.1: row not stored: row \"Kecamatan Kramatmulya Kramatmulya District 2024\": unmatched ",
+    "table 3.1.2: row not stored: row \"75++\": unmatched ",
+    "table 3.1.2: row not stored: row \"Kecamatan Kramatmulya Kramatmulya District\": unmatched ",
+    "table 4.3.1: row not stored: row \"Kecamatan Kramatmulya Kramatmulya District\": unmatched ",
+    "table 4.3.1: row not stored: row \"2024\": unmatched ",
+    "table 4.3.1: row not stored: row \"2023\": unmatched ",
+    "table 4.3.1: row not stored: row \"2022\": unmatched "
+  ]
+}

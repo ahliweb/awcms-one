@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3271-kecamatan-327102-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.71.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bogor Timur Dalam Angka 2026",
+  "publisherName": "BPS Kota Bogor",
+  "publisherDomain": "3271",
+  "publisherWebsite": "https://bogorkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Bogor (https://bogorkota.bps.go.id), publikasi \"Kecamatan Bogor Timur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3271020",
+  "publicationNumber": "32710.25007",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bogorkota.bps.go.id/id/publication/2026/09/28/75a76944ffd22d262feb25fa/kecamatan-bogor-timur-dalam-angka-2026.html",
+  "sourceFileSha256": "a81d2dba9495ea669394454295ccb96fd1544fae756ab84c2856b03e1b6cbdf7",
+  "sourceFileBytes": 15809242,
+  "sourcePages": [38, 39, 40],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Bogor.",
+  "csvPath": "datasets/bps-3271-kecamatan-327102-dalam-angka-2026.csv",
+  "csvSha256": "f496e2515f3b8c5026a63ef1174aa1dbca783d25a8e85e0b8586d9f9ee786692",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Bogor Timur, 2025",
+      "printedPages": [38, 39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bogor Timur, 2025",
+      "printedPages": [40],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.6 (religion-by-region) could not be read reliably and is not included (religion column 4 header \"Katholik\" not recognised)"
+  ]
+}

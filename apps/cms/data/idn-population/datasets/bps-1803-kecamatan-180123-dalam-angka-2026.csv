@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.01.23.2004,4,Pamulihan,sex,laki_laki,,929,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.23.2004,4,Pamulihan,sex,perempuan,,920,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.23.2004,4,Pamulihan,total,total,,1849,jiwa,2025,registration,total_population,3.1,24,,
+18.01.23.2005,4,Purwodadi,sex,laki_laki,,1422,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.23.2005,4,Purwodadi,sex,perempuan,,1343,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.23.2005,4,Purwodadi,total,total,,2765,jiwa,2025,registration,total_population,3.1,24,,
+18.01.23.2006,4,Sukamaju,sex,laki_laki,,1354,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.23.2006,4,Sukamaju,sex,perempuan,,1247,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.23.2006,4,Sukamaju,total,total,,2601,jiwa,2025,registration,total_population,3.1,24,,
+18.01.23.2007,4,Banjarsari,sex,laki_laki,,2325,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.23.2007,4,Banjarsari,sex,perempuan,,2162,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.23.2007,4,Banjarsari,total,total,,4487,jiwa,2025,registration,total_population,3.1,24,,
+18.01.23.2008,4,Karang Pucung,sex,laki_laki,,3301,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.23.2008,4,Karang Pucung,sex,perempuan,,3153,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.23.2008,4,Karang Pucung,total,total,,6454,jiwa,2025,registration,total_population,3.1,24,,
+18.01.23.2003,4,Talang Way Sulan,sex,laki_laki,,1451,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.23.2003,4,Talang Way Sulan,sex,perempuan,,1367,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.23.2003,4,Talang Way Sulan,total,total,,2818,jiwa,2025,registration,total_population,3.1,24,,
+18.01.23.2002,4,Sumber Agung,sex,laki_laki,,1421,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.23.2002,4,Sumber Agung,sex,perempuan,,1340,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.23.2002,4,Sumber Agung,total,total,,2761,jiwa,2025,registration,total_population,3.1,24,,
+18.01.23.2001,4,Mekar Sari,sex,laki_laki,,1470,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.23.2001,4,Mekar Sari,sex,perempuan,,1352,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.23.2001,4,Mekar Sari,total,total,,2822,jiwa,2025,registration,total_population,3.1,24,,
+18.01.23,3,Way Sulan,sex,laki_laki,,13673,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.23,3,Way Sulan,sex,perempuan,,12884,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.23,3,Way Sulan,total,total,,26557,jiwa,2025,registration,total_population,3.1,24,,

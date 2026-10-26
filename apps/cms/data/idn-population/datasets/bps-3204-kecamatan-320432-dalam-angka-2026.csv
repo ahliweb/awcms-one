@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.04.32.1004,4,Jelekong,sex,laki_laki,,14188,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.32.1004,4,Jelekong,sex,perempuan,,13448,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.32.1004,4,Jelekong,total,total,,27636,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.32.1003,4,Manggahang,sex,laki_laki,,21363,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.32.1003,4,Manggahang,sex,perempuan,,20727,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.32.1003,4,Manggahang,total,total,,42090,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.32.1001,4,Baleendah,sex,laki_laki,,32024,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.32.1001,4,Baleendah,sex,perempuan,,31699,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.32.1001,4,Baleendah,total,total,,63723,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.32.1002,4,Andir,sex,laki_laki,,18280,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.32.1002,4,Andir,sex,perempuan,,17737,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.32.1002,4,Andir,total,total,,36017,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.32.2007,4,Malakasari,sex,laki_laki,,8338,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.32.2007,4,Malakasari,sex,perempuan,,7987,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.32.2007,4,Malakasari,total,total,,16325,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.32.2005,4,Bojongmalaka,sex,laki_laki,,13539,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.32.2005,4,Bojongmalaka,sex,perempuan,,13082,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.32.2005,4,Bojongmalaka,total,total,,26621,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.32.2006,4,Rancamanyar,sex,laki_laki,,22958,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.32.2006,4,Rancamanyar,sex,perempuan,,22461,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.32.2006,4,Rancamanyar,total,total,,45419,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.32.1008,4,Wargamekar,sex,laki_laki,,12827,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.32.1008,4,Wargamekar,sex,perempuan,,12292,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.32.1008,4,Wargamekar,total,total,,25119,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.32,3,Kecamatan Baleendah,sex,laki_laki,,143517,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.32,3,Kecamatan Baleendah,sex,perempuan,,139433,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.32,3,Kecamatan Baleendah,total,total,,282950,jiwa,2025,registration,total_population,unnumbered-p28,28,,

@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3217-kecamatan-321714-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.17.14",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sindangkerta Dalam Angka 2026",
+  "publisherName": "BPS KabupatenBandung Barat",
+  "publisherDomain": "3217",
+  "publisherWebsite": "https://bandungbaratkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KabupatenBandung Barat (https://bandungbaratkab.bps.go.id), publikasi \"Kecamatan Sindangkerta Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3217030",
+  "publicationNumber": "32170.26007",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bandungbaratkab.bps.go.id/id/publication/2026/09/28/dd88bc893f98787688f2f619/kecamatan-sindangkerta-dalam-angka-2026.html",
+  "sourceFileSha256": "1ed0e604d4e2f74732dfd1f6f084f0cbc59b42ad460540ee4ed517830c9e7249",
+  "sourceFileBytes": 14410056,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bandung Barat.",
+  "csvPath": "datasets/bps-3217-kecamatan-321714-dalam-angka-2026.csv",
+  "csvSha256": "d2c4b8a41aa47215a72b6543c7517df4e7b2f23fa7663f7f4af9d0bcd69b1a66",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Sindangkerta, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sindangkerta, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Sindangkerta 100.00\": unmatched ",
+    "table 3.2: the rows of region 32.17.14 are not stored: age_group (perempuan) vs sex value: parts sum 40209.0000 != 41666.0000 (diff 1457.0000); the source itself is inconsistent"
+  ]
+}

@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+31.73.06.1004,4,Kamal,sex,laki_laki,,36663,jiwa,2025,registration,total_population,1.2,30,,Laki-Laki/Male
+31.73.06.1004,4,Kamal,sex,perempuan,,35404,jiwa,2025,registration,total_population,1.2,30,,Perempuan/Female
+31.73.06.1004,4,Kamal,total,total,,72067,jiwa,2025,registration,total_population,1.2,30,,
+31.73.06.1003,4,Tegal Alur,sex,laki_laki,,53884,jiwa,2025,registration,total_population,1.2,30,,Laki-Laki/Male
+31.73.06.1003,4,Tegal Alur,sex,perempuan,,53088,jiwa,2025,registration,total_population,1.2,30,,Perempuan/Female
+31.73.06.1003,4,Tegal Alur,total,total,,106972,jiwa,2025,registration,total_population,1.2,30,,
+31.73.06.1005,4,Pegadungan,sex,laki_laki,,49883,jiwa,2025,registration,total_population,1.2,30,,Laki-Laki/Male
+31.73.06.1005,4,Pegadungan,sex,perempuan,,50135,jiwa,2025,registration,total_population,1.2,30,,Perempuan/Female
+31.73.06.1005,4,Pegadungan,total,total,,100018,jiwa,2025,registration,total_population,1.2,30,,
+31.73.06.1001,4,Kalideres,sex,laki_laki,,46547,jiwa,2025,registration,total_population,1.2,30,,Laki-Laki/Male
+31.73.06.1001,4,Kalideres,sex,perempuan,,45543,jiwa,2025,registration,total_population,1.2,30,,Perempuan/Female
+31.73.06.1001,4,Kalideres,total,total,,92090,jiwa,2025,registration,total_population,1.2,30,,
+31.73.06.1002,4,Semanan,sex,laki_laki,,47341,jiwa,2025,registration,total_population,1.2,30,,Laki-Laki/Male
+31.73.06.1002,4,Semanan,sex,perempuan,,45692,jiwa,2025,registration,total_population,1.2,30,,Perempuan/Female
+31.73.06.1002,4,Semanan,total,total,,93033,jiwa,2025,registration,total_population,1.2,30,,
+31.73.06,3,KALIDERES,sex,laki_laki,,234318,jiwa,2025,registration,total_population,1.2,30,,Laki-Laki/Male
+31.73.06,3,KALIDERES,sex,perempuan,,229862,jiwa,2025,registration,total_population,1.2,30,,Perempuan/Female
+31.73.06,3,KALIDERES,total,total,,464180,jiwa,2025,registration,total_population,1.2,30,,

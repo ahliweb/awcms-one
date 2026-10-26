@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+31.73.02.1002,4,Tanjung Duren Utara,sex,laki_laki,,9390,jiwa,2025,registration,total_population,3.3,29,,Laki-Laki/Male
+31.73.02.1002,4,Tanjung Duren Utara,sex,perempuan,,10030,jiwa,2025,registration,total_population,3.3,29,,Perempuan/Female
+31.73.02.1002,4,Tanjung Duren Utara,total,total,,19420,jiwa,2025,registration,total_population,3.3,29,,
+31.73.02.1005,4,Tanjung Duren Selatan,sex,laki_laki,,14529,jiwa,2025,registration,total_population,3.3,29,,Laki-Laki/Male
+31.73.02.1005,4,Tanjung Duren Selatan,sex,perempuan,,15282,jiwa,2025,registration,total_population,3.3,29,,Perempuan/Female
+31.73.02.1005,4,Tanjung Duren Selatan,total,total,,29811,jiwa,2025,registration,total_population,3.3,29,,
+31.73.02.1003,4,Tomang,sex,laki_laki,,17118,jiwa,2025,registration,total_population,3.3,29,,Laki-Laki/Male
+31.73.02.1003,4,Tomang,sex,perempuan,,17389,jiwa,2025,registration,total_population,3.3,29,,Perempuan/Female
+31.73.02.1003,4,Tomang,total,total,,34507,jiwa,2025,registration,total_population,3.3,29,,
+31.73.02.1001,4,Grogol,sex,laki_laki,,9652,jiwa,2025,registration,total_population,3.3,29,,Laki-Laki/Male
+31.73.02.1001,4,Grogol,sex,perempuan,,9817,jiwa,2025,registration,total_population,3.3,29,,Perempuan/Female
+31.73.02.1001,4,Grogol,total,total,,19469,jiwa,2025,registration,total_population,3.3,29,,
+31.73.02.1004,4,Jelambar,sex,laki_laki,,16953,jiwa,2025,registration,total_population,3.3,29,,Laki-Laki/Male
+31.73.02.1004,4,Jelambar,sex,perempuan,,17619,jiwa,2025,registration,total_population,3.3,29,,Perempuan/Female
+31.73.02.1004,4,Jelambar,total,total,,34572,jiwa,2025,registration,total_population,3.3,29,,
+31.73.02.1007,4,Wijaya Kusuma,sex,laki_laki,,23915,jiwa,2025,registration,total_population,3.3,29,,Laki-Laki/Male
+31.73.02.1007,4,Wijaya Kusuma,sex,perempuan,,23440,jiwa,2025,registration,total_population,3.3,29,,Perempuan/Female
+31.73.02.1007,4,Wijaya Kusuma,total,total,,47355,jiwa,2025,registration,total_population,3.3,29,,
+31.73.02.1006,4,Jelambar Baru,sex,laki_laki,,22507,jiwa,2025,registration,total_population,3.3,29,,Laki-Laki/Male
+31.73.02.1006,4,Jelambar Baru,sex,perempuan,,22817,jiwa,2025,registration,total_population,3.3,29,,Perempuan/Female
+31.73.02.1006,4,Jelambar Baru,total,total,,45324,jiwa,2025,registration,total_population,3.3,29,,
+31.73.02,3,Grogol Petamburan,sex,laki_laki,,114064,jiwa,2025,registration,total_population,3.3,29,,Laki-Laki/Male
+31.73.02,3,Grogol Petamburan,sex,perempuan,,116394,jiwa,2025,registration,total_population,3.3,29,,Perempuan/Female
+31.73.02,3,Grogol Petamburan,total,total,,230458,jiwa,2025,registration,total_population,3.3,29,,

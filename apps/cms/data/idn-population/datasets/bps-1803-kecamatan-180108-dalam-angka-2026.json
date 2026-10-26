@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1803-kecamatan-180108-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.01.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Katibung Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lampung Selatan",
+  "publisherDomain": "1803",
+  "publisherWebsite": "https://lampungselatankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lampung Selatan (https://lampungselatankab.bps.go.id), publikasi \"Kecamatan Katibung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1803090",
+  "publicationNumber": "18030.26011",
+  "issn": "3109-3140",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lampungselatankab.bps.go.id/id/publication/2026/09/28/888fa43bf68fcc7676bfa06f/kecamatan-katibung-dalam-angka-2026.html",
+  "sourceFileSha256": "ad61938612e4fd7c44f1d0922adf781181e7bf454ba1fcbfdf7ea51b314bde24",
+  "sourceFileBytes": 5983752,
+  "sourcePages": [24],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lampung Selatan",
+  "csvPath": "datasets/bps-1803-kecamatan-180108-dalam-angka-2026.csv",
+  "csvSha256": "bd144c791a13ba955a513f6cc2338fc42994e41e6daf5d4b831b42eb8e045e31",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Katibung, 2025",
+      "printedPages": [24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

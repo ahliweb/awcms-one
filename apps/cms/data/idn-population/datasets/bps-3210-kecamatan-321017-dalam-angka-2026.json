@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3210-kecamatan-321017-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.10.17",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sumberjaya Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Majalengka",
+  "publisherDomain": "3210",
+  "publisherWebsite": "https://majalengkakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Majalengka (https://majalengkakab.bps.go.id), publikasi \"Kecamatan Sumberjaya Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3210210",
+  "publicationNumber": "32100.26030",
+  "issn": "2747-1098",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://majalengkakab.bps.go.id/id/publication/2026/09/28/86ff6600241ed741d9c1c2dc/kecamatan-sumberjaya-dalam-angka-2026.html",
+  "sourceFileSha256": "5ca4b260a443351f067f4352112baba759d42f486b3c5067b1e18096c62456b0",
+  "sourceFileBytes": 22806323,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Majalengka.",
+  "csvPath": "datasets/bps-3210-kecamatan-321017-dalam-angka-2026.csv",
+  "csvSha256": "67d09284a54fcc4d5127a683cd3a1f8d7cf31b8c408249626324f7466164647c",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sumberjaya, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sumberjaya, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: the rows of region 32.10.17.2013 are not stored: sex split vs total: parts sum 72806.0000 != 5108.0000 (diff 67698.0000); the source itself is inconsistent"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-2105-kecamatan-210503-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "21.05.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Siantan Timur Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kepulauan Anambas",
+  "publisherDomain": "2105",
+  "publisherWebsite": "https://anambaskab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kepulauan Anambas (https://anambaskab.bps.go.id), publikasi \"Kecamatan Siantan Timur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "21050.26009",
+  "issn": "2721-7396",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://anambaskab.bps.go.id/id/publication/2026/09/28/2a6625ff27da9a988a65548d/kecamatan-siantan-timur-dalam-angka-2026.html",
+  "sourceFileSha256": "23b762284ea8a2eee8b08bca5fcf2cca1af07f893f90b916d9fdf70c484e4f3a",
+  "sourceFileBytes": 8423222,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kepulauan Anambas.",
+  "csvPath": "datasets/bps-2105-kecamatan-210503-dalam-angka-2026.csv",
+  "csvSha256": "c81e6bf6fed3b9874791f597a250f4b6de19a370d9546e5f1f8f1ac9432c11fa",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Siantan Timur, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Siantan Timur, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3279-kecamatan-327903-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.79.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Purwaharja Dalam Angka 2026",
+  "publisherName": "BPS Kota Banjar",
+  "publisherDomain": "3279",
+  "publisherWebsite": "https://banjarkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Banjar (https://banjarkota.bps.go.id), publikasi \"Kecamatan Purwaharja Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3279020",
+  "publicationNumber": "32790.26006",
+  "issn": "2407-6937",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://banjarkota.bps.go.id/id/publication/2026/09/28/e89064c8a2cf7edd2bb70278/kecamatan-purwaharja-dalam-angka-2026.html",
+  "sourceFileSha256": "3618854cd274f4f7d8bc4088e040374b5df3b1dee75dc424ec9985e1dbdf30c0",
+  "sourceFileBytes": 10714029,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Banjar.",
+  "csvPath": "datasets/bps-3279-kecamatan-327903-dalam-angka-2026.csv",
+  "csvSha256": "ba08fc1753ffeed7b5cd436f59c27409592804c9d7936020c35421ce23e2ffd9",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Purwaharja, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Purwaharja, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 32.79.03 are not stored: age_group vs total: parts sum 24774.0000 != 25307.0000 (diff 533.0000); the source itself is inconsistent"
+  ]
+}

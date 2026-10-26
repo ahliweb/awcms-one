@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.17.09.2007,4,Selacau,sex,laki_laki,,7295,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+32.17.09.2007,4,Selacau,sex,perempuan,,7118,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+32.17.09.2007,4,Selacau,total,total,,14413,jiwa,2025,registration,total_population,3.1,26,,
+32.17.09.2002,4,Batujajar Barat,sex,laki_laki,,9359,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+32.17.09.2002,4,Batujajar Barat,sex,perempuan,,9159,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+32.17.09.2002,4,Batujajar Barat,total,total,,18518,jiwa,2025,registration,total_population,3.1,26,,
+32.17.09.2001,4,Batujajar Timur,sex,laki_laki,,9190,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+32.17.09.2001,4,Batujajar Timur,sex,perempuan,,8861,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+32.17.09.2001,4,Batujajar Timur,total,total,,18051,jiwa,2025,registration,total_population,3.1,26,,
+32.17.09.2010,4,Giriasih,sex,laki_laki,,6345,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+32.17.09.2010,4,Giriasih,sex,perempuan,,6225,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+32.17.09.2010,4,Giriasih,total,total,,12570,jiwa,2025,registration,total_population,3.1,26,,
+32.17.09.2004,4,Galanggang,sex,laki_laki,,11797,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+32.17.09.2004,4,Galanggang,sex,perempuan,,11501,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+32.17.09.2004,4,Galanggang,total,total,,23298,jiwa,2025,registration,total_population,3.1,26,,
+32.17.09.2008,4,Pangauban,sex,laki_laki,,9762,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+32.17.09.2008,4,Pangauban,sex,perempuan,,9371,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+32.17.09.2008,4,Pangauban,total,total,,19133,jiwa,2025,registration,total_population,3.1,26,,
+32.17.09.2005,4,Cangkorah,sex,laki_laki,,6932,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+32.17.09.2005,4,Cangkorah,sex,perempuan,,6623,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+32.17.09.2005,4,Cangkorah,total,total,,13555,jiwa,2025,registration,total_population,3.1,26,,
+32.17.09,3,Batujajar,sex,laki_laki,,60680,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+32.17.09,3,Batujajar,sex,perempuan,,58858,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+32.17.09,3,Batujajar,total,total,,119538,jiwa,2025,registration,total_population,3.1,26,,
+32.17.09,3,Batujajar,age_group,0-4,laki_laki,4290,jiwa,2025,registration,total_population,3.2,28,,<5
+32.17.09,3,Batujajar,age_group,0-4,perempuan,3881,jiwa,2025,registration,total_population,3.2,28,,<5
+32.17.09,3,Batujajar,age_group,0-4,,8171,jiwa,2025,registration,total_population,3.2,28,,<5
+32.17.09,3,Batujajar,age_group,5-9,laki_laki,5318,jiwa,2025,registration,total_population,3.2,28,,5-9
+32.17.09,3,Batujajar,age_group,5-9,perempuan,5073,jiwa,2025,registration,total_population,3.2,28,,5-9
+32.17.09,3,Batujajar,age_group,5-9,,10391,jiwa,2025,registration,total_population,3.2,28,,5-9
+32.17.09,3,Batujajar,age_group,10-14,laki_laki,5587,jiwa,2025,registration,total_population,3.2,28,,10-14
+32.17.09,3,Batujajar,age_group,10-14,perempuan,5036,jiwa,2025,registration,total_population,3.2,28,,10-14
+32.17.09,3,Batujajar,age_group,10-14,,10623,jiwa,2025,registration,total_population,3.2,28,,10-14
+32.17.09,3,Batujajar,age_group,15-19,laki_laki,5183,jiwa,2025,registration,total_population,3.2,28,,15-19
+32.17.09,3,Batujajar,age_group,15-19,perempuan,4880,jiwa,2025,registration,total_population,3.2,28,,15-19
+32.17.09,3,Batujajar,age_group,15-19,,10063,jiwa,2025,registration,total_population,3.2,28,,15-19
+32.17.09,3,Batujajar,age_group,20-24,laki_laki,5039,jiwa,2025,registration,total_population,3.2,28,,20-24
+32.17.09,3,Batujajar,age_group,20-24,perempuan,4974,jiwa,2025,registration,total_population,3.2,28,,20-24
+32.17.09,3,Batujajar,age_group,20-24,,10013,jiwa,2025,registration,total_population,3.2,28,,20-24
+32.17.09,3,Batujajar,age_group,25-29,laki_laki,4735,jiwa,2025,registration,total_population,3.2,28,,25-29
+32.17.09,3,Batujajar,age_group,25-29,perempuan,4536,jiwa,2025,registration,total_population,3.2,28,,25-29
+32.17.09,3,Batujajar,age_group,25-29,,9271,jiwa,2025,registration,total_population,3.2,28,,25-29
+32.17.09,3,Batujajar,age_group,30-49,laki_laki,17922,jiwa,2025,registration,total_population,3.2,28,,30-49
+32.17.09,3,Batujajar,age_group,30-49,perempuan,17671,jiwa,2025,registration,total_population,3.2,28,,30-49
+32.17.09,3,Batujajar,age_group,30-49,,35593,jiwa,2025,registration,total_population,3.2,28,,30-49
+32.17.09,3,Batujajar,age_group,50-64,laki_laki,9004,jiwa,2025,registration,total_population,3.2,28,,50-64
+32.17.09,3,Batujajar,age_group,50-64,perempuan,8762,jiwa,2025,registration,total_population,3.2,28,,50-64
+32.17.09,3,Batujajar,age_group,50-64,,17766,jiwa,2025,registration,total_population,3.2,28,,50-64
+32.17.09,3,Batujajar,age_group,65+,laki_laki,3602,jiwa,2025,registration,total_population,3.2,28,,65+
+32.17.09,3,Batujajar,age_group,65+,perempuan,4045,jiwa,2025,registration,total_population,3.2,28,,65+
+32.17.09,3,Batujajar,age_group,65+,,7647,jiwa,2025,registration,total_population,3.2,28,,65+
+32.17.09,3,Batujajar,sex,laki_laki,,60680,jiwa,2025,registration,total_population,3.2,28,,Laki-Laki
+32.17.09,3,Batujajar,sex,perempuan,,58858,jiwa,2025,registration,total_population,3.2,28,,Perempuan
+32.17.09,3,Batujajar,total,total,,119538,jiwa,2025,registration,total_population,3.2,28,,

@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-1804-kecamatan-180716-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.07.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mataram Baru Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lampung Timur",
+  "publisherDomain": "1804",
+  "publisherWebsite": "https://lampungtimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lampung Timur (https://lampungtimurkab.bps.go.id), publikasi \"Kecamatan Mataram Baru Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1804071",
+  "publicationNumber": "18040.26020",
+  "issn": "2797-5290",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lampungtimurkab.bps.go.id/id/publication/2026/09/28/68ba3359dacc9833f5ed8311/kecamatan-mataram-baru-dalam-angka-2026.html",
+  "sourceFileSha256": "47e8b28e5d356c34087f6f8ec4f8cd1e6cf91fa0dda1a1c0a1ab439373893142",
+  "sourceFileBytes": 7792981,
+  "sourcePages": [],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lampung Timur.",
+  "csvPath": "datasets/bps-1804-kecamatan-180716-dalam-angka-2026.csv",
+  "csvSha256": "b16ff2e71aa2de00d262ca53599310d110238b9c29afceee989b237af6f7c432",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio ───── Jenis Kelamin Penduduk Menurut Desa di Kecamatan Mataram Baru, 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di ───── Kecamatan Mataram Baru, 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "cross-table disagreement, both stored as published: 18.07.16 sex/laki_laki/ 2025: 5130 (table 3.1) vs 16003 (table 3.2)",
+    "cross-table disagreement, both stored as published: 18.07.16 sex/perempuan/ 2025: 5000 (table 3.1) vs 15777 (table 3.2)",
+    "cross-table disagreement, both stored as published: 18.07.16 total/total/ 2025: 10130 (table 3.1) vs 31780 (table 3.2)"
+  ]
+}

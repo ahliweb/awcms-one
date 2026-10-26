@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+19.03.06.2001,4,Sadai,sex,laki_laki,,1734,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.03.06.2001,4,Sadai,sex,perempuan,,1628,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.03.06.2001,4,Sadai,total,total,,3362,jiwa,2025,registration,total_population,3.1,31,,
+19.03.06.2003,4,Pasir Putih,sex,laki_laki,,2488,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.03.06.2003,4,Pasir Putih,sex,perempuan,,2355,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.03.06.2003,4,Pasir Putih,total,total,,4843,jiwa,2025,registration,total_population,3.1,31,,
+19.03.06.2002,4,Tukak,sex,laki_laki,,664,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.03.06.2002,4,Tukak,sex,perempuan,,600,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.03.06.2002,4,Tukak,total,total,,1264,jiwa,2025,registration,total_population,3.1,31,,
+19.03.06.2004,4,Tiram,sex,laki_laki,,1242,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.03.06.2004,4,Tiram,sex,perempuan,,1102,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.03.06.2004,4,Tiram,total,total,,2344,jiwa,2025,registration,total_population,3.1,31,,
+19.03.06.2005,4,Bukit Terap,sex,laki_laki,,1358,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.03.06.2005,4,Bukit Terap,sex,perempuan,,1290,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.03.06.2005,4,Bukit Terap,total,total,,2648,jiwa,2025,registration,total_population,3.1,31,,
+19.03.06,3,Tukak Sadai,sex,laki_laki,,7486,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.03.06,3,Tukak Sadai,sex,perempuan,,6975,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.03.06,3,Tukak Sadai,total,total,,14461,jiwa,2025,registration,total_population,3.1,31,,
+19.03.06,3,Tukak Sadai,age_group,0-4,laki_laki,489,jiwa,2025,registration,total_population,3.2,33,,0–4
+19.03.06,3,Tukak Sadai,age_group,0-4,perempuan,451,jiwa,2025,registration,total_population,3.2,33,,0–4
+19.03.06,3,Tukak Sadai,age_group,0-4,,940,jiwa,2025,registration,total_population,3.2,33,,0–4
+19.03.06,3,Tukak Sadai,age_group,5-9,laki_laki,733,jiwa,2025,registration,total_population,3.2,33,,5–9
+19.03.06,3,Tukak Sadai,age_group,5-9,perempuan,670,jiwa,2025,registration,total_population,3.2,33,,5–9
+19.03.06,3,Tukak Sadai,age_group,5-9,,1403,jiwa,2025,registration,total_population,3.2,33,,5–9
+19.03.06,3,Tukak Sadai,age_group,10-14,laki_laki,761,jiwa,2025,registration,total_population,3.2,33,,10–14
+19.03.06,3,Tukak Sadai,age_group,10-14,perempuan,712,jiwa,2025,registration,total_population,3.2,33,,10–14
+19.03.06,3,Tukak Sadai,age_group,10-14,,1473,jiwa,2025,registration,total_population,3.2,33,,10–14
+19.03.06,3,Tukak Sadai,age_group,15-19,laki_laki,691,jiwa,2025,registration,total_population,3.2,33,,15–19
+19.03.06,3,Tukak Sadai,age_group,15-19,perempuan,653,jiwa,2025,registration,total_population,3.2,33,,15–19
+19.03.06,3,Tukak Sadai,age_group,15-19,,1344,jiwa,2025,registration,total_population,3.2,33,,15–19
+19.03.06,3,Tukak Sadai,age_group,20-24,laki_laki,622,jiwa,2025,registration,total_population,3.2,33,,20–24
+19.03.06,3,Tukak Sadai,age_group,20-24,perempuan,613,jiwa,2025,registration,total_population,3.2,33,,20–24
+19.03.06,3,Tukak Sadai,age_group,20-24,,1235,jiwa,2025,registration,total_population,3.2,33,,20–24
+19.03.06,3,Tukak Sadai,age_group,25-29,laki_laki,552,jiwa,2025,registration,total_population,3.2,33,,25–29
+19.03.06,3,Tukak Sadai,age_group,25-29,perempuan,513,jiwa,2025,registration,total_population,3.2,33,,25–29
+19.03.06,3,Tukak Sadai,age_group,25-29,,1065,jiwa,2025,registration,total_population,3.2,33,,25–29
+19.03.06,3,Tukak Sadai,age_group,30-34,laki_laki,557,jiwa,2025,registration,total_population,3.2,33,,30–34
+19.03.06,3,Tukak Sadai,age_group,30-34,perempuan,531,jiwa,2025,registration,total_population,3.2,33,,30–34
+19.03.06,3,Tukak Sadai,age_group,30-34,,1088,jiwa,2025,registration,total_population,3.2,33,,30–34
+19.03.06,3,Tukak Sadai,age_group,35-39,laki_laki,595,jiwa,2025,registration,total_population,3.2,33,,35–39
+19.03.06,3,Tukak Sadai,age_group,35-39,perempuan,643,jiwa,2025,registration,total_population,3.2,33,,35–39
+19.03.06,3,Tukak Sadai,age_group,35-39,,1238,jiwa,2025,registration,total_population,3.2,33,,35–39
+19.03.06,3,Tukak Sadai,age_group,40-44,laki_laki,621,jiwa,2025,registration,total_population,3.2,33,,40–44
+19.03.06,3,Tukak Sadai,age_group,40-44,perempuan,562,jiwa,2025,registration,total_population,3.2,33,,40–44
+19.03.06,3,Tukak Sadai,age_group,40-44,,1183,jiwa,2025,registration,total_population,3.2,33,,40–44
+19.03.06,3,Tukak Sadai,age_group,45-49,laki_laki,558,jiwa,2025,registration,total_population,3.2,33,,45–49
+19.03.06,3,Tukak Sadai,age_group,45-49,perempuan,466,jiwa,2025,registration,total_population,3.2,33,,45–49
+19.03.06,3,Tukak Sadai,age_group,45-49,,1024,jiwa,2025,registration,total_population,3.2,33,,45–49
+19.03.06,3,Tukak Sadai,age_group,50-54,laki_laki,423,jiwa,2025,registration,total_population,3.2,33,,50–54
+19.03.06,3,Tukak Sadai,age_group,50-54,perempuan,386,jiwa,2025,registration,total_population,3.2,33,,50–54
+19.03.06,3,Tukak Sadai,age_group,50-54,,809,jiwa,2025,registration,total_population,3.2,33,,50–54
+19.03.06,3,Tukak Sadai,age_group,55-59,laki_laki,300,jiwa,2025,registration,total_population,3.2,33,,55–59
+19.03.06,3,Tukak Sadai,age_group,55-59,perempuan,271,jiwa,2025,registration,total_population,3.2,33,,55–59
+19.03.06,3,Tukak Sadai,age_group,55-59,,571,jiwa,2025,registration,total_population,3.2,33,,55–59
+19.03.06,3,Tukak Sadai,age_group,60-64,laki_laki,256,jiwa,2025,registration,total_population,3.2,33,,60–64
+19.03.06,3,Tukak Sadai,age_group,60-64,perempuan,217,jiwa,2025,registration,total_population,3.2,33,,60–64
+19.03.06,3,Tukak Sadai,age_group,60-64,,473,jiwa,2025,registration,total_population,3.2,33,,60–64
+19.03.06,3,Tukak Sadai,age_group,65-69,laki_laki,146,jiwa,2025,registration,total_population,3.2,33,,65–69
+19.03.06,3,Tukak Sadai,age_group,65-69,perempuan,112,jiwa,2025,registration,total_population,3.2,33,,65–69
+19.03.06,3,Tukak Sadai,age_group,65-69,,258,jiwa,2025,registration,total_population,3.2,33,,65–69
+19.03.06,3,Tukak Sadai,age_group,70-74,laki_laki,73,jiwa,2025,registration,total_population,3.2,33,,70–74
+19.03.06,3,Tukak Sadai,age_group,70-74,perempuan,65,jiwa,2025,registration,total_population,3.2,33,,70–74
+19.03.06,3,Tukak Sadai,age_group,70-74,,138,jiwa,2025,registration,total_population,3.2,33,,70–74
+19.03.06,3,Tukak Sadai,age_group,75+,laki_laki,109,jiwa,2025,registration,total_population,3.2,33,,75+
+19.03.06,3,Tukak Sadai,age_group,75+,perempuan,110,jiwa,2025,registration,total_population,3.2,33,,75+
+19.03.06,3,Tukak Sadai,age_group,75+,,219,jiwa,2025,registration,total_population,3.2,33,,75+
+19.03.06,3,Tukak Sadai,sex,laki_laki,,7486,jiwa,2025,registration,total_population,3.2,33,,Laki-Laki
+19.03.06,3,Tukak Sadai,sex,perempuan,,6975,jiwa,2025,registration,total_population,3.2,33,,Perempuan
+19.03.06,3,Tukak Sadai,total,total,,14461,jiwa,2025,registration,total_population,3.2,33,,

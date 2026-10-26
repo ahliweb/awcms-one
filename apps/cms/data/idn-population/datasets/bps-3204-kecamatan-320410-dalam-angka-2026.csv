@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.04.10.2006,4,Cigondewah Hilir,sex,laki_laki,,7638,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.10.2006,4,Cigondewah Hilir,sex,perempuan,,7346,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.10.2006,4,Cigondewah Hilir,total,total,,14984,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.10.2002,4,Lagadar,sex,laki_laki,,14064,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.10.2002,4,Lagadar,sex,perempuan,,13395,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.10.2002,4,Lagadar,total,total,,27459,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.10.2001,4,Margaasih,sex,laki_laki,,13526,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.10.2001,4,Margaasih,sex,perempuan,,13165,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.10.2001,4,Margaasih,total,total,,26691,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.10.2004,4,Mekarrahayu,sex,laki_laki,,18682,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.10.2004,4,Mekarrahayu,sex,perempuan,,18651,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.10.2004,4,Mekarrahayu,total,total,,37333,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.10.2003,4,Nanjung,sex,laki_laki,,10335,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.10.2003,4,Nanjung,sex,perempuan,,9863,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.10.2003,4,Nanjung,total,total,,20198,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.10.2005,4,Rahayu,sex,laki_laki,,15241,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.10.2005,4,Rahayu,sex,perempuan,,14891,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.10.2005,4,Rahayu,total,total,,30132,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.10,3,Kecamatan Margaasih,sex,laki_laki,,79486,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.10,3,Kecamatan Margaasih,sex,perempuan,,77311,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.10,3,Kecamatan Margaasih,total,total,,156797,jiwa,2025,registration,total_population,unnumbered-p28,28,,

@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+19.03.07.2001,4,Batu Betumpang,sex,laki_laki,,1699,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.03.07.2001,4,Batu Betumpang,sex,perempuan,,1579,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.03.07.2001,4,Batu Betumpang,total,total,,3278,jiwa,2025,registration,total_population,3.1,31,,
+19.03.07.2003,4,Panca tunggal,sex,laki_laki,,731,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.03.07.2003,4,Panca tunggal,sex,perempuan,,686,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.03.07.2003,4,Panca tunggal,total,total,,1417,jiwa,2025,registration,total_population,3.1,31,,
+19.03.07.2005,4,Fajar Indah,sex,laki_laki,,1319,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.03.07.2005,4,Fajar Indah,sex,perempuan,,1167,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.03.07.2005,4,Fajar Indah,total,total,,2486,jiwa,2025,registration,total_population,3.1,31,,
+19.03.07.2002,4,Sukajaya,sex,laki_laki,,625,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.03.07.2002,4,Sukajaya,sex,perempuan,,511,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.03.07.2002,4,Sukajaya,total,total,,1136,jiwa,2025,registration,total_population,3.1,31,,
+19.03.07.2004,4,Sumber Jaya Permai,sex,laki_laki,,1016,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.03.07.2004,4,Sumber Jaya Permai,sex,perempuan,,953,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.03.07.2004,4,Sumber Jaya Permai,total,total,,1969,jiwa,2025,registration,total_population,3.1,31,,
+19.03.07,3,Pulau Besar,sex,laki_laki,,5390,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.03.07,3,Pulau Besar,sex,perempuan,,4896,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.03.07,3,Pulau Besar,total,total,,10286,jiwa,2025,registration,total_population,3.1,31,,
+19.03.07,3,Pulau Besar,age_group,0-4,laki_laki,342,jiwa,2025,registration,total_population,3.2,33,,0–4
+19.03.07,3,Pulau Besar,age_group,0-4,perempuan,313,jiwa,2025,registration,total_population,3.2,33,,0–4
+19.03.07,3,Pulau Besar,age_group,0-4,,655,jiwa,2025,registration,total_population,3.2,33,,0–4
+19.03.07,3,Pulau Besar,age_group,5-9,laki_laki,450,jiwa,2025,registration,total_population,3.2,33,,5–9
+19.03.07,3,Pulau Besar,age_group,5-9,perempuan,388,jiwa,2025,registration,total_population,3.2,33,,5–9
+19.03.07,3,Pulau Besar,age_group,5-9,,838,jiwa,2025,registration,total_population,3.2,33,,5–9
+19.03.07,3,Pulau Besar,age_group,10-14,laki_laki,464,jiwa,2025,registration,total_population,3.2,33,,10–14
+19.03.07,3,Pulau Besar,age_group,10-14,perempuan,464,jiwa,2025,registration,total_population,3.2,33,,10–14
+19.03.07,3,Pulau Besar,age_group,10-14,,928,jiwa,2025,registration,total_population,3.2,33,,10–14
+19.03.07,3,Pulau Besar,age_group,15-19,laki_laki,427,jiwa,2025,registration,total_population,3.2,33,,15–19
+19.03.07,3,Pulau Besar,age_group,15-19,perempuan,411,jiwa,2025,registration,total_population,3.2,33,,15–19
+19.03.07,3,Pulau Besar,age_group,15-19,,838,jiwa,2025,registration,total_population,3.2,33,,15–19
+19.03.07,3,Pulau Besar,age_group,20-24,laki_laki,454,jiwa,2025,registration,total_population,3.2,33,,20–24
+19.03.07,3,Pulau Besar,age_group,20-24,perempuan,399,jiwa,2025,registration,total_population,3.2,33,,20–24
+19.03.07,3,Pulau Besar,age_group,20-24,,853,jiwa,2025,registration,total_population,3.2,33,,20–24
+19.03.07,3,Pulau Besar,age_group,25-29,laki_laki,431,jiwa,2025,registration,total_population,3.2,33,,25–29
+19.03.07,3,Pulau Besar,age_group,25-29,perempuan,405,jiwa,2025,registration,total_population,3.2,33,,25–29
+19.03.07,3,Pulau Besar,age_group,25-29,,836,jiwa,2025,registration,total_population,3.2,33,,25–29
+19.03.07,3,Pulau Besar,age_group,30-34,laki_laki,410,jiwa,2025,registration,total_population,3.2,33,,30–34
+19.03.07,3,Pulau Besar,age_group,30-34,perempuan,374,jiwa,2025,registration,total_population,3.2,33,,30–34
+19.03.07,3,Pulau Besar,age_group,30-34,,784,jiwa,2025,registration,total_population,3.2,33,,30–34
+19.03.07,3,Pulau Besar,age_group,35-39,laki_laki,428,jiwa,2025,registration,total_population,3.2,33,,35–39
+19.03.07,3,Pulau Besar,age_group,35-39,perempuan,416,jiwa,2025,registration,total_population,3.2,33,,35–39
+19.03.07,3,Pulau Besar,age_group,35-39,,844,jiwa,2025,registration,total_population,3.2,33,,35–39
+19.03.07,3,Pulau Besar,age_group,40-44,laki_laki,448,jiwa,2025,registration,total_population,3.2,33,,40–44
+19.03.07,3,Pulau Besar,age_group,40-44,perempuan,369,jiwa,2025,registration,total_population,3.2,33,,40–44
+19.03.07,3,Pulau Besar,age_group,40-44,,817,jiwa,2025,registration,total_population,3.2,33,,40–44
+19.03.07,3,Pulau Besar,age_group,45-49,laki_laki,386,jiwa,2025,registration,total_population,3.2,33,,45–49
+19.03.07,3,Pulau Besar,age_group,45-49,perempuan,362,jiwa,2025,registration,total_population,3.2,33,,45–49
+19.03.07,3,Pulau Besar,age_group,45-49,,748,jiwa,2025,registration,total_population,3.2,33,,45–49
+19.03.07,3,Pulau Besar,age_group,50-54,laki_laki,294,jiwa,2025,registration,total_population,3.2,33,,50–54
+19.03.07,3,Pulau Besar,age_group,50-54,perempuan,290,jiwa,2025,registration,total_population,3.2,33,,50–54
+19.03.07,3,Pulau Besar,age_group,50-54,,584,jiwa,2025,registration,total_population,3.2,33,,50–54
+19.03.07,3,Pulau Besar,age_group,55-59,laki_laki,268,jiwa,2025,registration,total_population,3.2,33,,55–59
+19.03.07,3,Pulau Besar,age_group,55-59,perempuan,236,jiwa,2025,registration,total_population,3.2,33,,55–59
+19.03.07,3,Pulau Besar,age_group,55-59,,504,jiwa,2025,registration,total_population,3.2,33,,55–59
+19.03.07,3,Pulau Besar,age_group,60-64,laki_laki,219,jiwa,2025,registration,total_population,3.2,33,,60–64
+19.03.07,3,Pulau Besar,age_group,60-64,perempuan,183,jiwa,2025,registration,total_population,3.2,33,,60–64
+19.03.07,3,Pulau Besar,age_group,60-64,,402,jiwa,2025,registration,total_population,3.2,33,,60–64
+19.03.07,3,Pulau Besar,age_group,65-69,laki_laki,175,jiwa,2025,registration,total_population,3.2,33,,65–69
+19.03.07,3,Pulau Besar,age_group,65-69,perempuan,125,jiwa,2025,registration,total_population,3.2,33,,65–69
+19.03.07,3,Pulau Besar,age_group,65-69,,300,jiwa,2025,registration,total_population,3.2,33,,65–69
+19.03.07,3,Pulau Besar,age_group,70-74,laki_laki,85,jiwa,2025,registration,total_population,3.2,33,,70–74
+19.03.07,3,Pulau Besar,age_group,70-74,perempuan,55,jiwa,2025,registration,total_population,3.2,33,,70–74
+19.03.07,3,Pulau Besar,age_group,70-74,,140,jiwa,2025,registration,total_population,3.2,33,,70–74
+19.03.07,3,Pulau Besar,age_group,75+,laki_laki,109,jiwa,2025,registration,total_population,3.2,33,,75+
+19.03.07,3,Pulau Besar,age_group,75+,perempuan,106,jiwa,2025,registration,total_population,3.2,33,,75+
+19.03.07,3,Pulau Besar,age_group,75+,,215,jiwa,2025,registration,total_population,3.2,33,,75+
+19.03.07,3,Pulau Besar,sex,laki_laki,,5390,jiwa,2025,registration,total_population,3.2,33,,Laki-Laki
+19.03.07,3,Pulau Besar,sex,perempuan,,4896,jiwa,2025,registration,total_population,3.2,33,,Perempuan
+19.03.07,3,Pulau Besar,total,total,,10286,jiwa,2025,registration,total_population,3.2,33,,

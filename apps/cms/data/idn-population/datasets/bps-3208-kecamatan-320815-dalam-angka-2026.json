@@ -1,0 +1,60 @@
+{
+  "datasetCode": "bps-3208-kecamatan-320815-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.08.15",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Selajambe Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kuningan",
+  "publisherDomain": "3208",
+  "publisherWebsite": "https://kuningankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kuningan (https://kuningankab.bps.go.id), publikasi \"Kecamatan Selajambe Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3208040",
+  "publicationNumber": "32080.25007",
+  "issn": "2830-4101",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kuningankab.bps.go.id/id/publication/2026/09/28/23fb003e9176d8639f7437d3/kecamatan-selajambe-dalam-angka-2026.html",
+  "sourceFileSha256": "d3650c082d98765769d84b8bd07d933c2c4a1855e913c84b2f7cf30622e6effb",
+  "sourceFileBytes": 2972455,
+  "sourcePages": [35, 36, 37, 38, 139],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Kuningan.",
+  "csvPath": "datasets/bps-3208-kecamatan-320815-dalam-angka-2026.csv",
+  "csvSha256": "3c35e24ff72583cd0233bef5d48c9324fd6055c408b050a62b324f7646f98106",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Selajambe, 2025",
+      "printedPages": [35, 36, 37],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Selajambe, 2025",
+      "printedPages": [38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Desa dan Agama yang Dianut di Kecamatan Selajambe, 2025",
+      "printedPages": [139],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.1.1: row not stored: row \"Kecamatan Selajambe Selajambe District\": unmatched ",
+    "table 3.1.1: row not stored: row \"Kecamatan Selajambe Selajambe District\": unmatched ",
+    "table 3.1.1: row not stored: row \"Kecamatan Selajambe Selajambe District\": unmatched ",
+    "table 3.1.2: row not stored: row \"75++\": unmatched ",
+    "table 3.1.2: row not stored: row \"Kecamatan Selajambe Selajambe District\": unmatched ",
+    "table 4.3.1: row not stored: row \"Kecamatan Selajambe Selajambe District\": unmatched ",
+    "table 4.3.1: row not stored: row \"2024\": unmatched ",
+    "table 4.3.1: row not stored: row \"2023\": unmatched ",
+    "table 4.3.1: row not stored: row \"2022\": unmatched "
+  ]
+}

@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.07.19.2002,4,Sidamulih,sex,laki_laki,,1758,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.19.2002,4,Sidamulih,sex,perempuan,,1828,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.19.2002,4,Sidamulih,total,total,,3586,jiwa,2025,registration,total_population,3.1,34,,
+32.07.19.2008,4,Margajaya,sex,laki_laki,,2077,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.19.2008,4,Margajaya,sex,perempuan,,2062,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.19.2008,4,Margajaya,total,total,,4139,jiwa,2025,registration,total_population,3.1,34,,
+32.07.19.2006,4,Neglasari,sex,laki_laki,,3404,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.19.2006,4,Neglasari,sex,perempuan,,3530,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.19.2006,4,Neglasari,total,total,,6934,jiwa,2025,registration,total_population,3.1,34,,
+32.07.19.2001,4,Pamarican,sex,laki_laki,,2841,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.19.2001,4,Pamarican,sex,perempuan,,2912,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.19.2001,4,Pamarican,total,total,,5753,jiwa,2025,registration,total_population,3.1,34,,
+32.07.19.2010,4,Sukahurip,sex,laki_laki,,2629,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.19.2010,4,Sukahurip,sex,perempuan,,2627,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.19.2010,4,Sukahurip,total,total,,5256,jiwa,2025,registration,total_population,3.1,34,,
+32.07.19.2003,4,Kertahayu,sex,laki_laki,,4316,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.19.2003,4,Kertahayu,sex,perempuan,,4215,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.19.2003,4,Kertahayu,total,total,,8531,jiwa,2025,registration,total_population,3.1,34,,
+32.07.19.2011,4,Sukajadi,sex,laki_laki,,3259,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.19.2011,4,Sukajadi,sex,perempuan,,3122,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.19.2011,4,Sukajadi,total,total,,6381,jiwa,2025,registration,total_population,3.1,34,,
+32.07.19.2004,4,Sukamukti,sex,laki_laki,,2585,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.19.2004,4,Sukamukti,sex,perempuan,,2557,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.19.2004,4,Sukamukti,total,total,,5142,jiwa,2025,registration,total_population,3.1,34,,
+32.07.19.2012,4,Sidaharja,sex,laki_laki,,2093,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.19.2012,4,Sidaharja,sex,perempuan,,1964,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.19.2012,4,Sidaharja,total,total,,4057,jiwa,2025,registration,total_population,3.1,34,,
+32.07.19.2005,4,Bangunsari,sex,laki_laki,,3929,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.19.2005,4,Bangunsari,sex,perempuan,,4001,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.19.2005,4,Bangunsari,total,total,,7930,jiwa,2025,registration,total_population,3.1,34,,
+32.07.19.2009,4,Sukajaya,sex,laki_laki,,2199,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.19.2009,4,Sukajaya,sex,perempuan,,2291,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.19.2009,4,Sukajaya,total,total,,4490,jiwa,2025,registration,total_population,3.1,34,,
+32.07.19.2007,4,Bantarsari,sex,laki_laki,,1245,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.19.2007,4,Bantarsari,sex,perempuan,,1321,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.19.2007,4,Bantarsari,total,total,,2566,jiwa,2025,registration,total_population,3.1,34,,
+32.07.19.2013,4,Pasirnagara,sex,laki_laki,,1800,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.19.2013,4,Pasirnagara,sex,perempuan,,1752,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.19.2013,4,Pasirnagara,total,total,,3552,jiwa,2025,registration,total_population,3.1,34,,
+32.07.19.2014,4,Mekarmulya,sex,laki_laki,,1786,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.19.2014,4,Mekarmulya,sex,perempuan,,1763,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.19.2014,4,Mekarmulya,total,total,,3549,jiwa,2025,registration,total_population,3.1,34,,
+32.07.19,3,Kecamatan Pamarican,sex,laki_laki,,35921,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.19,3,Kecamatan Pamarican,sex,perempuan,,35945,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.19,3,Kecamatan Pamarican,total,total,,71866,jiwa,2025,registration,total_population,3.1,34,,

@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.09.16.2001,4,Desa Bobos,sex,laki_laki,,2539,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.16.2001,4,Desa Bobos,sex,perempuan,,2556,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.16.2001,4,Desa Bobos,total,total,,5095,jiwa,2025,registration,total_population,3.1,52,,
+32.09.16.2002,4,Desa Cikalahang,sex,laki_laki,,4162,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.16.2002,4,Desa Cikalahang,sex,perempuan,,4131,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.16.2002,4,Desa Cikalahang,total,total,,8293,jiwa,2025,registration,total_population,3.1,52,,
+32.09.16.2003,4,Desa Mandala,sex,laki_laki,,3091,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.16.2003,4,Desa Mandala,sex,perempuan,,3039,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.16.2003,4,Desa Mandala,total,total,,6130,jiwa,2025,registration,total_population,3.1,52,,
+32.09.16.2007,4,Desa Cisaat,sex,laki_laki,,3275,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.16.2007,4,Desa Cisaat,sex,perempuan,,3195,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.16.2007,4,Desa Cisaat,total,total,,6470,jiwa,2025,registration,total_population,3.1,52,,
+32.09.16.2009,4,Desa Sindangjawa,sex,laki_laki,,3355,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.16.2009,4,Desa Sindangjawa,sex,perempuan,,3198,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.16.2009,4,Desa Sindangjawa,total,total,,6553,jiwa,2025,registration,total_population,3.1,52,,
+32.09.16.2008,4,Desa Sindangmekar,sex,laki_laki,,4038,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.16.2008,4,Desa Sindangmekar,sex,perempuan,,3953,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.16.2008,4,Desa Sindangmekar,total,total,,7991,jiwa,2025,registration,total_population,3.1,52,,
+32.09.16.2006,4,Desa Cangkoak,sex,laki_laki,,3887,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.16.2006,4,Desa Cangkoak,sex,perempuan,,3789,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.16.2006,4,Desa Cangkoak,total,total,,7676,jiwa,2025,registration,total_population,3.1,52,,
+32.09.16.2010,4,Desa Kepunduan,sex,laki_laki,,1047,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.16.2010,4,Desa Kepunduan,sex,perempuan,,976,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.16.2010,4,Desa Kepunduan,total,total,,2023,jiwa,2025,registration,total_population,3.1,52,,
+32.09.16.2005,4,Desa Balad,sex,laki_laki,,2870,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.16.2005,4,Desa Balad,sex,perempuan,,2776,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.16.2005,4,Desa Balad,total,total,,5646,jiwa,2025,registration,total_population,3.1,52,,
+32.09.16.2004,4,Desa Dukupuntang,sex,laki_laki,,2720,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.16.2004,4,Desa Dukupuntang,sex,perempuan,,2644,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.16.2004,4,Desa Dukupuntang,total,total,,5364,jiwa,2025,registration,total_population,3.1,52,,
+32.09.16.2012,4,Desa Cipanas,sex,laki_laki,,2594,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.16.2012,4,Desa Cipanas,sex,perempuan,,2540,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.16.2012,4,Desa Cipanas,total,total,,5134,jiwa,2025,registration,total_population,3.1,52,,
+32.09.16.2011,4,Desa Girinata,sex,laki_laki,,2532,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.16.2011,4,Desa Girinata,sex,perempuan,,2578,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.16.2011,4,Desa Girinata,total,total,,5110,jiwa,2025,registration,total_population,3.1,52,,
+32.09.16.2013,4,Desa Kedongdong Kidul,sex,laki_laki,,1323,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.16.2013,4,Desa Kedongdong Kidul,sex,perempuan,,1332,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.16.2013,4,Desa Kedongdong Kidul,total,total,,2655,jiwa,2025,registration,total_population,3.1,52,,
+32.09.16,3,Kecamatan Dukupuntang,sex,laki_laki,,37433,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.16,3,Kecamatan Dukupuntang,sex,perempuan,,36707,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.16,3,Kecamatan Dukupuntang,total,total,,74140,jiwa,2025,registration,total_population,3.1,52,,
+32.09.16,3,Dukupuntang,age_group,0-4,laki_laki,2654,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.16,3,Dukupuntang,age_group,0-4,perempuan,2519,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.16,3,Dukupuntang,age_group,0-4,,5173,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.16,3,Dukupuntang,age_group,5-9,laki_laki,3163,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.16,3,Dukupuntang,age_group,5-9,perempuan,2948,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.16,3,Dukupuntang,age_group,5-9,,6111,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.16,3,Dukupuntang,age_group,10-14,laki_laki,3100,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.16,3,Dukupuntang,age_group,10-14,perempuan,3026,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.16,3,Dukupuntang,age_group,10-14,,6126,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.16,3,Dukupuntang,age_group,15-19,laki_laki,2759,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.16,3,Dukupuntang,age_group,15-19,perempuan,2758,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.16,3,Dukupuntang,age_group,15-19,,5517,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.16,3,Dukupuntang,age_group,20-24,laki_laki,3014,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.16,3,Dukupuntang,age_group,20-24,perempuan,2873,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.16,3,Dukupuntang,age_group,20-24,,5887,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.16,3,Dukupuntang,age_group,25-29,laki_laki,2994,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.16,3,Dukupuntang,age_group,25-29,perempuan,2921,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.16,3,Dukupuntang,age_group,25-29,,5915,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.16,3,Dukupuntang,age_group,30-34,laki_laki,2902,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.16,3,Dukupuntang,age_group,30-34,perempuan,2762,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.16,3,Dukupuntang,age_group,30-34,,5664,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.16,3,Dukupuntang,age_group,35-39,laki_laki,2757,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.16,3,Dukupuntang,age_group,35-39,perempuan,2656,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.16,3,Dukupuntang,age_group,35-39,,5413,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.16,3,Dukupuntang,age_group,40-44,laki_laki,2845,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.16,3,Dukupuntang,age_group,40-44,perempuan,2895,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.16,3,Dukupuntang,age_group,40-44,,5740,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.16,3,Dukupuntang,age_group,45-49,laki_laki,2797,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.16,3,Dukupuntang,age_group,45-49,perempuan,2652,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.16,3,Dukupuntang,age_group,45-49,,5449,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.16,3,Dukupuntang,age_group,50-54,laki_laki,2379,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.16,3,Dukupuntang,age_group,50-54,perempuan,2418,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.16,3,Dukupuntang,age_group,50-54,,4797,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.16,3,Dukupuntang,age_group,55-59,laki_laki,1908,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.16,3,Dukupuntang,age_group,55-59,perempuan,1784,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.16,3,Dukupuntang,age_group,55-59,,3692,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.16,3,Dukupuntang,age_group,60-64,laki_laki,1389,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.16,3,Dukupuntang,age_group,60-64,perempuan,1395,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.16,3,Dukupuntang,age_group,60-64,,2784,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.16,3,Dukupuntang,age_group,65-69,laki_laki,1129,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.16,3,Dukupuntang,age_group,65-69,perempuan,1221,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.16,3,Dukupuntang,age_group,65-69,,2350,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.16,3,Dukupuntang,age_group,70-74,laki_laki,706,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.16,3,Dukupuntang,age_group,70-74,perempuan,763,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.16,3,Dukupuntang,age_group,70-74,,1469,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.16,3,Dukupuntang,age_group,75+,laki_laki,937,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.16,3,Dukupuntang,age_group,75+,perempuan,1116,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.16,3,Dukupuntang,age_group,75+,,2053,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.16,3,Kecamatan Dukupuntang,sex,laki_laki,,37433,jiwa,2025,registration,total_population,3.2,54,,Laki-Laki
+32.09.16,3,Kecamatan Dukupuntang,sex,perempuan,,36707,jiwa,2025,registration,total_population,3.2,54,,Perempuan
+32.09.16,3,Kecamatan Dukupuntang,total,total,,74140,jiwa,2025,registration,total_population,3.2,54,,

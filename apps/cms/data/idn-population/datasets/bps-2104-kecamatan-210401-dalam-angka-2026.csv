@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.04.01.1001,4,Dabo,sex,laki_laki,,3743,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.01.1001,4,Dabo,sex,perempuan,,3810,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.01.1001,4,Dabo,total,total,,7553,jiwa,2025,registration,total_population,3.1,19,,
+21.04.01.2008,4,Batu Berdaun,sex,laki_laki,,1884,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.01.2008,4,Batu Berdaun,sex,perempuan,,1835,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.01.2008,4,Batu Berdaun,total,total,,3719,jiwa,2025,registration,total_population,3.1,19,,
+21.04.01.1007,4,Dabo Lama,sex,laki_laki,,1965,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.01.1007,4,Dabo Lama,sex,perempuan,,1939,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.01.1007,4,Dabo Lama,total,total,,3904,jiwa,2025,registration,total_population,3.1,19,,
+21.04.01.2010,4,Batu Kacang,sex,laki_laki,,954,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.01.2010,4,Batu Kacang,sex,perempuan,,892,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.01.2010,4,Batu Kacang,total,total,,1846,jiwa,2025,registration,total_population,3.1,19,,
+21.04.01.2009,4,Tanjung Harapan,sex,laki_laki,,1512,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.01.2009,4,Tanjung Harapan,sex,perempuan,,1516,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.01.2009,4,Tanjung Harapan,total,total,,3028,jiwa,2025,registration,total_population,3.1,19,,
+21.04.01.1012,4,Sungai Lumpur,sex,laki_laki,,1625,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.01.1012,4,Sungai Lumpur,sex,perempuan,,1506,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.01.1012,4,Sungai Lumpur,total,total,,3131,jiwa,2025,registration,total_population,3.1,19,,
+21.04.01,3,Kecamatan Singkep,sex,laki_laki,,11683,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.01,3,Kecamatan Singkep,sex,perempuan,,11498,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.01,3,Kecamatan Singkep,total,total,,23181,jiwa,2025,registration,total_population,3.1,19,,

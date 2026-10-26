@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3174-kecamatan-317307-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "31.73.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Palmerah Dalam Angka 2026",
+  "publisherName": "BPS Kota Jakarta Barat",
+  "publisherDomain": "3174",
+  "publisherWebsite": "https://jakbarkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Jakarta Barat (https://jakbarkota.bps.go.id), publikasi \"Kecamatan Palmerah Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3174030",
+  "publicationNumber": "31740.2607",
+  "issn": "0852-2286",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jakbarkota.bps.go.id/id/publication/2026/09/28/4627ac688ce068fba056d271/kecamatan-palmerah-dalam-angka-2026.html",
+  "sourceFileSha256": "50ca5fb1b4dce71b7732b35d9e2cec62e2b305c29057bedec576cac168f1d80c",
+  "sourceFileBytes": 13489462,
+  "sourcePages": [28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Jakarta Barat.",
+  "csvPath": "datasets/bps-3174-kecamatan-317307-dalam-angka-2026.csv",
+  "csvSha256": "a941fe2c57c1b9d826700649134e8bf24917e6c0b479f5e8f379e0d342670f1c",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p28",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1 Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Palmerah, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

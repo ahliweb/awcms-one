@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.78.10.1001,4,Sukanagara,sex,laki_laki,,4882,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+32.78.10.1001,4,Sukanagara,sex,perempuan,,4775,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+32.78.10.1001,4,Sukanagara,total,total,,9657,jiwa,2025,registration,total_population,3.1,32,,
+32.78.10.1002,4,Sukamenak,sex,laki_laki,,4652,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+32.78.10.1002,4,Sukamenak,sex,perempuan,,4333,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+32.78.10.1002,4,Sukamenak,total,total,,8985,jiwa,2025,registration,total_population,3.1,32,,
+32.78.10.1003,4,Purbaratu,sex,laki_laki,,3324,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+32.78.10.1003,4,Purbaratu,sex,perempuan,,3318,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+32.78.10.1003,4,Purbaratu,total,total,,6642,jiwa,2025,registration,total_population,3.1,32,,
+32.78.10.1004,4,Sukaasih,sex,laki_laki,,3447,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+32.78.10.1004,4,Sukaasih,sex,perempuan,,3345,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+32.78.10.1004,4,Sukaasih,total,total,,6792,jiwa,2025,registration,total_population,3.1,32,,
+32.78.10.1005,4,Sukajaya,sex,laki_laki,,3896,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+32.78.10.1005,4,Sukajaya,sex,perempuan,,3634,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+32.78.10.1005,4,Sukajaya,total,total,,7530,jiwa,2025,registration,total_population,3.1,32,,
+32.78.10.1006,4,Singkup,sex,laki_laki,,4169,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+32.78.10.1006,4,Singkup,sex,perempuan,,4043,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+32.78.10.1006,4,Singkup,total,total,,8212,jiwa,2025,registration,total_population,3.1,32,,
+32.78.10,3,Purbaratu,sex,laki_laki,,24370,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+32.78.10,3,Purbaratu,sex,perempuan,,23448,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+32.78.10,3,Purbaratu,total,total,,47818,jiwa,2025,registration,total_population,3.1,32,,
+32.78.10,3,Purbaratu,age_group,0-4,laki_laki,1697,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+32.78.10,3,Purbaratu,age_group,0-4,perempuan,1601,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+32.78.10,3,Purbaratu,age_group,0-4,,3298,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+32.78.10,3,Purbaratu,age_group,5-9,laki_laki,1988,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+32.78.10,3,Purbaratu,age_group,5-9,perempuan,1944,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+32.78.10,3,Purbaratu,age_group,5-9,,3932,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+32.78.10,3,Purbaratu,age_group,10-14,laki_laki,1991,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+32.78.10,3,Purbaratu,age_group,10-14,perempuan,1866,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+32.78.10,3,Purbaratu,age_group,10-14,,3857,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+32.78.10,3,Purbaratu,age_group,15-19,laki_laki,1925,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+32.78.10,3,Purbaratu,age_group,15-19,perempuan,1807,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+32.78.10,3,Purbaratu,age_group,15-19,,3732,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+32.78.10,3,Purbaratu,age_group,20-24,laki_laki,1996,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+32.78.10,3,Purbaratu,age_group,20-24,perempuan,1856,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+32.78.10,3,Purbaratu,age_group,20-24,,3852,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+32.78.10,3,Purbaratu,age_group,25-29,laki_laki,1997,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+32.78.10,3,Purbaratu,age_group,25-29,perempuan,1844,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+32.78.10,3,Purbaratu,age_group,25-29,,3841,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+32.78.10,3,Purbaratu,age_group,30-34,laki_laki,1806,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+32.78.10,3,Purbaratu,age_group,30-34,perempuan,1774,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+32.78.10,3,Purbaratu,age_group,30-34,,3580,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+32.78.10,3,Purbaratu,age_group,35-39,laki_laki,1699,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+32.78.10,3,Purbaratu,age_group,35-39,perempuan,1604,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+32.78.10,3,Purbaratu,age_group,35-39,,3303,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+32.78.10,3,Purbaratu,age_group,40-44,laki_laki,1797,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+32.78.10,3,Purbaratu,age_group,40-44,perempuan,1615,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+32.78.10,3,Purbaratu,age_group,40-44,,3412,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+32.78.10,3,Purbaratu,age_group,45-49,laki_laki,1706,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+32.78.10,3,Purbaratu,age_group,45-49,perempuan,1502,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+32.78.10,3,Purbaratu,age_group,45-49,,3208,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+32.78.10,3,Purbaratu,age_group,50-54,laki_laki,1433,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+32.78.10,3,Purbaratu,age_group,50-54,perempuan,1419,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+32.78.10,3,Purbaratu,age_group,50-54,,2852,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+32.78.10,3,Purbaratu,age_group,55-59,laki_laki,1236,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+32.78.10,3,Purbaratu,age_group,55-59,perempuan,1285,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+32.78.10,3,Purbaratu,age_group,55-59,,2521,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+32.78.10,3,Purbaratu,age_group,60-64,laki_laki,1066,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+32.78.10,3,Purbaratu,age_group,60-64,perempuan,1079,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+32.78.10,3,Purbaratu,age_group,60-64,,2145,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+32.78.10,3,Purbaratu,age_group,65-69,laki_laki,830,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+32.78.10,3,Purbaratu,age_group,65-69,perempuan,904,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+32.78.10,3,Purbaratu,age_group,65-69,,1734,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+32.78.10,3,Purbaratu,age_group,70-74,laki_laki,563,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+32.78.10,3,Purbaratu,age_group,70-74,perempuan,532,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+32.78.10,3,Purbaratu,age_group,70-74,,1095,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+32.78.10,3,Purbaratu,age_group,75+,laki_laki,640,jiwa,2025,registration,total_population,3.2,34,,75 +
+32.78.10,3,Purbaratu,age_group,75+,perempuan,816,jiwa,2025,registration,total_population,3.2,34,,75 +
+32.78.10,3,Purbaratu,age_group,75+,,1456,jiwa,2025,registration,total_population,3.2,34,,75 +

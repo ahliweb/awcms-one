@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.77.02.1001,4,Baros,sex,laki_laki,,10460,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.77.02.1001,4,Baros,sex,perempuan,,10338,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.77.02.1001,4,Baros,total,total,,20798,jiwa,2025,registration,total_population,3.1,30,,
+32.77.02.1002,4,Cigugur Tengah,sex,laki_laki,,24176,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.77.02.1002,4,Cigugur Tengah,sex,perempuan,,23602,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.77.02.1002,4,Cigugur Tengah,total,total,,47778,jiwa,2025,registration,total_population,3.1,30,,
+32.77.02.1003,4,Karangmekar,sex,laki_laki,,8291,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.77.02.1003,4,Karangmekar,sex,perempuan,,8460,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.77.02.1003,4,Karangmekar,total,total,,16751,jiwa,2025,registration,total_population,3.1,30,,
+32.77.02.1004,4,Setiamanah,sex,laki_laki,,12066,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.77.02.1004,4,Setiamanah,sex,perempuan,,12123,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.77.02.1004,4,Setiamanah,total,total,,24189,jiwa,2025,registration,total_population,3.1,30,,
+32.77.02.1005,4,Padasuka,sex,laki_laki,,21429,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.77.02.1005,4,Padasuka,sex,perempuan,,21391,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.77.02.1005,4,Padasuka,total,total,,42820,jiwa,2025,registration,total_population,3.1,30,,
+32.77.02.1006,4,Cimahi,sex,laki_laki,,7027,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.77.02.1006,4,Cimahi,sex,perempuan,,6960,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.77.02.1006,4,Cimahi,total,total,,13987,jiwa,2025,registration,total_population,3.1,30,,
+32.77.02,3,Cimahi Tengah,sex,laki_laki,,83449,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.77.02,3,Cimahi Tengah,sex,perempuan,,82874,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.77.02,3,Cimahi Tengah,total,total,,166323,jiwa,2025,registration,total_population,3.1,30,,
+32.77.02,3,Cimahi Tengah,age_group,0-4,laki_laki,4940,jiwa,2025,registration,total_population,3.2,32,,0-4
+32.77.02,3,Cimahi Tengah,age_group,0-4,perempuan,4656,jiwa,2025,registration,total_population,3.2,32,,0-4
+32.77.02,3,Cimahi Tengah,age_group,0-4,,9596,jiwa,2025,registration,total_population,3.2,32,,0-4
+32.77.02,3,Cimahi Tengah,age_group,5-9,laki_laki,6602,jiwa,2025,registration,total_population,3.2,32,,5-9
+32.77.02,3,Cimahi Tengah,age_group,5-9,perempuan,6290,jiwa,2025,registration,total_population,3.2,32,,5-9
+32.77.02,3,Cimahi Tengah,age_group,5-9,,12892,jiwa,2025,registration,total_population,3.2,32,,5-9
+32.77.02,3,Cimahi Tengah,age_group,10-14,laki_laki,6866,jiwa,2025,registration,total_population,3.2,32,,10-14
+32.77.02,3,Cimahi Tengah,age_group,10-14,perempuan,6439,jiwa,2025,registration,total_population,3.2,32,,10-14
+32.77.02,3,Cimahi Tengah,age_group,10-14,,13305,jiwa,2025,registration,total_population,3.2,32,,10-14
+32.77.02,3,Cimahi Tengah,age_group,15-19,laki_laki,6900,jiwa,2025,registration,total_population,3.2,32,,15-19
+32.77.02,3,Cimahi Tengah,age_group,15-19,perempuan,6551,jiwa,2025,registration,total_population,3.2,32,,15-19
+32.77.02,3,Cimahi Tengah,age_group,15-19,,13451,jiwa,2025,registration,total_population,3.2,32,,15-19
+32.77.02,3,Cimahi Tengah,age_group,20-24,laki_laki,7436,jiwa,2025,registration,total_population,3.2,32,,20-24
+32.77.02,3,Cimahi Tengah,age_group,20-24,perempuan,6910,jiwa,2025,registration,total_population,3.2,32,,20-24
+32.77.02,3,Cimahi Tengah,age_group,20-24,,14346,jiwa,2025,registration,total_population,3.2,32,,20-24
+32.77.02,3,Cimahi Tengah,age_group,25-29,laki_laki,7039,jiwa,2025,registration,total_population,3.2,32,,25-29
+32.77.02,3,Cimahi Tengah,age_group,25-29,perempuan,6665,jiwa,2025,registration,total_population,3.2,32,,25-29
+32.77.02,3,Cimahi Tengah,age_group,25-29,,13704,jiwa,2025,registration,total_population,3.2,32,,25-29
+32.77.02,3,Cimahi Tengah,age_group,30-34,laki_laki,6322,jiwa,2025,registration,total_population,3.2,32,,30-34
+32.77.02,3,Cimahi Tengah,age_group,30-34,perempuan,6132,jiwa,2025,registration,total_population,3.2,32,,30-34
+32.77.02,3,Cimahi Tengah,age_group,30-34,,12454,jiwa,2025,registration,total_population,3.2,32,,30-34
+32.77.02,3,Cimahi Tengah,age_group,35-39,laki_laki,5498,jiwa,2025,registration,total_population,3.2,32,,35-39
+32.77.02,3,Cimahi Tengah,age_group,35-39,perempuan,5307,jiwa,2025,registration,total_population,3.2,32,,35-39
+32.77.02,3,Cimahi Tengah,age_group,35-39,,10805,jiwa,2025,registration,total_population,3.2,32,,35-39
+32.77.02,3,Cimahi Tengah,age_group,40-44,laki_laki,6092,jiwa,2025,registration,total_population,3.2,32,,40-44
+32.77.02,3,Cimahi Tengah,age_group,40-44,perempuan,6001,jiwa,2025,registration,total_population,3.2,32,,40-44
+32.77.02,3,Cimahi Tengah,age_group,40-44,,12093,jiwa,2025,registration,total_population,3.2,32,,40-44
+32.77.02,3,Cimahi Tengah,age_group,45-49,laki_laki,6278,jiwa,2025,registration,total_population,3.2,32,,45-49
+32.77.02,3,Cimahi Tengah,age_group,45-49,perempuan,6598,jiwa,2025,registration,total_population,3.2,32,,45-49
+32.77.02,3,Cimahi Tengah,age_group,45-49,,12876,jiwa,2025,registration,total_population,3.2,32,,45-49
+32.77.02,3,Cimahi Tengah,age_group,50-54,laki_laki,5880,jiwa,2025,registration,total_population,3.2,32,,50-54
+32.77.02,3,Cimahi Tengah,age_group,50-54,perempuan,6040,jiwa,2025,registration,total_population,3.2,32,,50-54
+32.77.02,3,Cimahi Tengah,age_group,50-54,,11920,jiwa,2025,registration,total_population,3.2,32,,50-54
+32.77.02,3,Cimahi Tengah,age_group,55-59,laki_laki,4964,jiwa,2025,registration,total_population,3.2,32,,55-59
+32.77.02,3,Cimahi Tengah,age_group,55-59,perempuan,5089,jiwa,2025,registration,total_population,3.2,32,,55-59
+32.77.02,3,Cimahi Tengah,age_group,55-59,,10053,jiwa,2025,registration,total_population,3.2,32,,55-59
+32.77.02,3,Cimahi Tengah,age_group,60-64,laki_laki,3340,jiwa,2025,registration,total_population,3.2,32,,60-64
+32.77.02,3,Cimahi Tengah,age_group,60-64,perempuan,3679,jiwa,2025,registration,total_population,3.2,32,,60-64
+32.77.02,3,Cimahi Tengah,age_group,60-64,,7019,jiwa,2025,registration,total_population,3.2,32,,60-64
+32.77.02,3,Cimahi Tengah,age_group,65-69,laki_laki,2537,jiwa,2025,registration,total_population,3.2,32,,65-69
+32.77.02,3,Cimahi Tengah,age_group,65-69,perempuan,2703,jiwa,2025,registration,total_population,3.2,32,,65-69
+32.77.02,3,Cimahi Tengah,age_group,65-69,,5240,jiwa,2025,registration,total_population,3.2,32,,65-69
+32.77.02,3,Cimahi Tengah,age_group,70-74,laki_laki,1461,jiwa,2025,registration,total_population,3.2,32,,70-74
+32.77.02,3,Cimahi Tengah,age_group,70-74,perempuan,1736,jiwa,2025,registration,total_population,3.2,32,,70-74
+32.77.02,3,Cimahi Tengah,age_group,70-74,,3197,jiwa,2025,registration,total_population,3.2,32,,70-74
+32.77.02,3,Cimahi Tengah,age_group,75+,laki_laki,1294,jiwa,2025,registration,total_population,3.2,32,,75+
+32.77.02,3,Cimahi Tengah,age_group,75+,perempuan,2078,jiwa,2025,registration,total_population,3.2,32,,75+
+32.77.02,3,Cimahi Tengah,age_group,75+,,3372,jiwa,2025,registration,total_population,3.2,32,,75+
+32.77.02,3,Cimahi Tengah,sex,laki_laki,,83449,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+32.77.02,3,Cimahi Tengah,sex,perempuan,,82874,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+32.77.02,3,Cimahi Tengah,total,total,,166323,jiwa,2025,registration,total_population,3.2,32,,

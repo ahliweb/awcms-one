@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+19.04.05.2005,4,Belilik,sex,laki_laki,,1441,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.05.2005,4,Belilik,sex,perempuan,,1276,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.05.2005,4,Belilik,total,total,,2717,jiwa,2025,registration,total_population,3.1,33,,
+19.04.05.2001,4,Namang,sex,laki_laki,,1613,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.05.2001,4,Namang,sex,perempuan,,1484,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.05.2001,4,Namang,total,total,,3097,jiwa,2025,registration,total_population,3.1,33,,
+19.04.05.2004,4,Jelutung,sex,laki_laki,,1644,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.05.2004,4,Jelutung,sex,perempuan,,1554,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.05.2004,4,Jelutung,total,total,,3198,jiwa,2025,registration,total_population,3.1,33,,
+19.04.05.2002,4,Cambai,sex,laki_laki,,888,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.05.2002,4,Cambai,sex,perempuan,,769,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.05.2002,4,Cambai,total,total,,1657,jiwa,2025,registration,total_population,3.1,33,,
+19.04.05.2003,4,Kayu Besi,sex,laki_laki,,961,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.05.2003,4,Kayu Besi,sex,perempuan,,957,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.05.2003,4,Kayu Besi,total,total,,1918,jiwa,2025,registration,total_population,3.1,33,,
+19.04.05.2008,4,Bukit Kijang,sex,laki_laki,,703,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.05.2008,4,Bukit Kijang,sex,perempuan,,632,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.05.2008,4,Bukit Kijang,total,total,,1335,jiwa,2025,registration,total_population,3.1,33,,
+19.04.05.2009,4,Cambai Selatan,sex,laki_laki,,861,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.05.2009,4,Cambai Selatan,sex,perempuan,,842,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.05.2009,4,Cambai Selatan,total,total,,1703,jiwa,2025,registration,total_population,3.1,33,,
+19.04.05,3,Kecamatan Namang,sex,laki_laki,,9487,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+19.04.05,3,Kecamatan Namang,sex,perempuan,,8753,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+19.04.05,3,Kecamatan Namang,total,total,,18240,jiwa,2025,registration,total_population,3.1,33,,
+19.04.05,3,Namang,age_group,0-4,laki_laki,664,jiwa,2025,registration,total_population,3.2,35,,0-4
+19.04.05,3,Namang,age_group,0-4,perempuan,597,jiwa,2025,registration,total_population,3.2,35,,0-4
+19.04.05,3,Namang,age_group,0-4,,1261,jiwa,2025,registration,total_population,3.2,35,,0-4
+19.04.05,3,Namang,age_group,5-9,laki_laki,842,jiwa,2025,registration,total_population,3.2,35,,5-9
+19.04.05,3,Namang,age_group,5-9,perempuan,778,jiwa,2025,registration,total_population,3.2,35,,5-9
+19.04.05,3,Namang,age_group,5-9,,1620,jiwa,2025,registration,total_population,3.2,35,,5-9
+19.04.05,3,Namang,age_group,10-14,laki_laki,937,jiwa,2025,registration,total_population,3.2,35,,10-14
+19.04.05,3,Namang,age_group,10-14,perempuan,855,jiwa,2025,registration,total_population,3.2,35,,10-14
+19.04.05,3,Namang,age_group,10-14,,1792,jiwa,2025,registration,total_population,3.2,35,,10-14
+19.04.05,3,Namang,age_group,15-19,laki_laki,899,jiwa,2025,registration,total_population,3.2,35,,15-19
+19.04.05,3,Namang,age_group,15-19,perempuan,779,jiwa,2025,registration,total_population,3.2,35,,15-19
+19.04.05,3,Namang,age_group,15-19,,1678,jiwa,2025,registration,total_population,3.2,35,,15-19
+19.04.05,3,Namang,age_group,20-24,laki_laki,764,jiwa,2025,registration,total_population,3.2,35,,20-24
+19.04.05,3,Namang,age_group,20-24,perempuan,742,jiwa,2025,registration,total_population,3.2,35,,20-24
+19.04.05,3,Namang,age_group,20-24,,1506,jiwa,2025,registration,total_population,3.2,35,,20-24
+19.04.05,3,Namang,age_group,25-29,laki_laki,721,jiwa,2025,registration,total_population,3.2,35,,25-29
+19.04.05,3,Namang,age_group,25-29,perempuan,688,jiwa,2025,registration,total_population,3.2,35,,25-29
+19.04.05,3,Namang,age_group,25-29,,1409,jiwa,2025,registration,total_population,3.2,35,,25-29
+19.04.05,3,Namang,age_group,30-34,laki_laki,675,jiwa,2025,registration,total_population,3.2,35,,30-34
+19.04.05,3,Namang,age_group,30-34,perempuan,660,jiwa,2025,registration,total_population,3.2,35,,30-34
+19.04.05,3,Namang,age_group,30-34,,1335,jiwa,2025,registration,total_population,3.2,35,,30-34
+19.04.05,3,Namang,age_group,35-39,laki_laki,900,jiwa,2025,registration,total_population,3.2,35,,35-39
+19.04.05,3,Namang,age_group,35-39,perempuan,814,jiwa,2025,registration,total_population,3.2,35,,35-39
+19.04.05,3,Namang,age_group,35-39,,1714,jiwa,2025,registration,total_population,3.2,35,,35-39
+19.04.05,3,Namang,age_group,40-44,laki_laki,756,jiwa,2025,registration,total_population,3.2,35,,40-44
+19.04.05,3,Namang,age_group,40-44,perempuan,730,jiwa,2025,registration,total_population,3.2,35,,40-44
+19.04.05,3,Namang,age_group,40-44,,1486,jiwa,2025,registration,total_population,3.2,35,,40-44
+19.04.05,3,Namang,age_group,45-49,laki_laki,673,jiwa,2025,registration,total_population,3.2,35,,45-49
+19.04.05,3,Namang,age_group,45-49,perempuan,540,jiwa,2025,registration,total_population,3.2,35,,45-49
+19.04.05,3,Namang,age_group,45-49,,1213,jiwa,2025,registration,total_population,3.2,35,,45-49
+19.04.05,3,Namang,age_group,50-54,laki_laki,492,jiwa,2025,registration,total_population,3.2,35,,50-54
+19.04.05,3,Namang,age_group,50-54,perempuan,447,jiwa,2025,registration,total_population,3.2,35,,50-54
+19.04.05,3,Namang,age_group,50-54,,939,jiwa,2025,registration,total_population,3.2,35,,50-54
+19.04.05,3,Namang,age_group,55-59,laki_laki,361,jiwa,2025,registration,total_population,3.2,35,,55-59
+19.04.05,3,Namang,age_group,55-59,perempuan,332,jiwa,2025,registration,total_population,3.2,35,,55-59
+19.04.05,3,Namang,age_group,55-59,,693,jiwa,2025,registration,total_population,3.2,35,,55-59
+19.04.05,3,Namang,age_group,60-64,laki_laki,289,jiwa,2025,registration,total_population,3.2,35,,60-64
+19.04.05,3,Namang,age_group,60-64,perempuan,278,jiwa,2025,registration,total_population,3.2,35,,60-64
+19.04.05,3,Namang,age_group,60-64,,567,jiwa,2025,registration,total_population,3.2,35,,60-64
+19.04.05,3,Namang,age_group,65-69,laki_laki,247,jiwa,2025,registration,total_population,3.2,35,,65-69
+19.04.05,3,Namang,age_group,65-69,perempuan,227,jiwa,2025,registration,total_population,3.2,35,,65-69
+19.04.05,3,Namang,age_group,65-69,,474,jiwa,2025,registration,total_population,3.2,35,,65-69
+19.04.05,3,Namang,age_group,70-74,laki_laki,143,jiwa,2025,registration,total_population,3.2,35,,70-74
+19.04.05,3,Namang,age_group,70-74,perempuan,122,jiwa,2025,registration,total_population,3.2,35,,70-74
+19.04.05,3,Namang,age_group,70-74,,265,jiwa,2025,registration,total_population,3.2,35,,70-74
+19.04.05,3,Namang,age_group,75+,laki_laki,124,jiwa,2025,registration,total_population,3.2,35,,75 +
+19.04.05,3,Namang,age_group,75+,perempuan,164,jiwa,2025,registration,total_population,3.2,35,,75 +
+19.04.05,3,Namang,age_group,75+,,288,jiwa,2025,registration,total_population,3.2,35,,75 +
+19.04.05,3,Namang,sex,laki_laki,,9487,jiwa,2025,registration,total_population,3.2,35,,Laki-Laki
+19.04.05,3,Namang,sex,perempuan,,8753,jiwa,2025,registration,total_population,3.2,35,,Perempuan
+19.04.05,3,Namang,total,total,,18240,jiwa,2025,registration,total_population,3.2,35,,

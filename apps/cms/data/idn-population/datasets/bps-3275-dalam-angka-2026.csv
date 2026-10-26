@@ -1,0 +1,202 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.75.08,3,Pondok Gede,total,total,,252528,jiwa,2025,survey_estimate,total_population,3.1.1,45,,
+32.75.10,3,Jatisampurna,total,total,,134556,jiwa,2025,survey_estimate,total_population,3.1.1,45,,
+32.75.12,3,Pondok Melati,total,total,,131689,jiwa,2025,survey_estimate,total_population,3.1.1,45,,
+32.75.09,3,Jatiasih,total,total,,274140,jiwa,2025,survey_estimate,total_population,3.1.1,45,,
+32.75.07,3,Bantargebang,total,total,,112760,jiwa,2025,survey_estimate,total_population,3.1.1,45,,
+32.75.11,3,Mustikajaya,total,total,,244735,jiwa,2025,survey_estimate,total_population,3.1.1,45,,
+32.75.01,3,Bekasi Timur,total,total,,260837,jiwa,2025,survey_estimate,total_population,3.1.1,45,,
+32.75.05,3,Rawalumbu,total,total,,226075,jiwa,2025,survey_estimate,total_population,3.1.1,45,,
+32.75.04,3,Bekasi Selatan,total,total,,213535,jiwa,2025,survey_estimate,total_population,3.1.1,45,,
+32.75.02,3,Bekasi Barat,total,total,,285110,jiwa,2025,survey_estimate,total_population,3.1.1,45,,
+32.75.06,3,Medansatria,total,total,,161962,jiwa,2025,survey_estimate,total_population,3.1.1,45,,
+32.75.03,3,Bekasi Utara,total,total,,350345,jiwa,2025,survey_estimate,total_population,3.1.1,45,,
+32.75,2,Kota Bekasi,total,total,,2648272,jiwa,2025,survey_estimate,total_population,3.1.1,45,,
+32.75,2,Kota Bekasi,age_group,0-4,laki_laki,99956,jiwa,2025,survey_estimate,total_population,3.1.2,48,,0–4
+32.75,2,Kota Bekasi,age_group,0-4,perempuan,96008,jiwa,2025,survey_estimate,total_population,3.1.2,48,,0–4
+32.75,2,Kota Bekasi,age_group,0-4,,195964,jiwa,2025,survey_estimate,total_population,3.1.2,48,,0–4
+32.75,2,Kota Bekasi,age_group,5-9,laki_laki,100394,jiwa,2025,survey_estimate,total_population,3.1.2,48,,5–9
+32.75,2,Kota Bekasi,age_group,5-9,perempuan,95461,jiwa,2025,survey_estimate,total_population,3.1.2,48,,5–9
+32.75,2,Kota Bekasi,age_group,5-9,,195855,jiwa,2025,survey_estimate,total_population,3.1.2,48,,5–9
+32.75,2,Kota Bekasi,age_group,10-14,laki_laki,96860,jiwa,2025,survey_estimate,total_population,3.1.2,48,,10–14
+32.75,2,Kota Bekasi,age_group,10-14,perempuan,93374,jiwa,2025,survey_estimate,total_population,3.1.2,48,,10–14
+32.75,2,Kota Bekasi,age_group,10-14,,190234,jiwa,2025,survey_estimate,total_population,3.1.2,48,,10–14
+32.75,2,Kota Bekasi,age_group,15-19,laki_laki,105108,jiwa,2025,survey_estimate,total_population,3.1.2,48,,15–19
+32.75,2,Kota Bekasi,age_group,15-19,perempuan,99185,jiwa,2025,survey_estimate,total_population,3.1.2,48,,15–19
+32.75,2,Kota Bekasi,age_group,15-19,,204293,jiwa,2025,survey_estimate,total_population,3.1.2,48,,15–19
+32.75,2,Kota Bekasi,age_group,20-24,laki_laki,100607,jiwa,2025,survey_estimate,total_population,3.1.2,48,,20–24
+32.75,2,Kota Bekasi,age_group,20-24,perempuan,94460,jiwa,2025,survey_estimate,total_population,3.1.2,48,,20–24
+32.75,2,Kota Bekasi,age_group,20-24,,195067,jiwa,2025,survey_estimate,total_population,3.1.2,48,,20–24
+32.75,2,Kota Bekasi,age_group,25-29,laki_laki,101386,jiwa,2025,survey_estimate,total_population,3.1.2,48,,25–29
+32.75,2,Kota Bekasi,age_group,25-29,perempuan,99138,jiwa,2025,survey_estimate,total_population,3.1.2,48,,25–29
+32.75,2,Kota Bekasi,age_group,25-29,,200524,jiwa,2025,survey_estimate,total_population,3.1.2,48,,25–29
+32.75,2,Kota Bekasi,age_group,30-34,laki_laki,108340,jiwa,2025,survey_estimate,total_population,3.1.2,48,,30–34
+32.75,2,Kota Bekasi,age_group,30-34,perempuan,109948,jiwa,2025,survey_estimate,total_population,3.1.2,48,,30–34
+32.75,2,Kota Bekasi,age_group,30-34,,218288,jiwa,2025,survey_estimate,total_population,3.1.2,48,,30–34
+32.75,2,Kota Bekasi,age_group,35-39,laki_laki,112700,jiwa,2025,survey_estimate,total_population,3.1.2,48,,35–39
+32.75,2,Kota Bekasi,age_group,35-39,perempuan,112743,jiwa,2025,survey_estimate,total_population,3.1.2,48,,35–39
+32.75,2,Kota Bekasi,age_group,35-39,,225443,jiwa,2025,survey_estimate,total_population,3.1.2,48,,35–39
+32.75,2,Kota Bekasi,age_group,40-44,laki_laki,104874,jiwa,2025,survey_estimate,total_population,3.1.2,48,,40–44
+32.75,2,Kota Bekasi,age_group,40-44,perempuan,104166,jiwa,2025,survey_estimate,total_population,3.1.2,48,,40–44
+32.75,2,Kota Bekasi,age_group,40-44,,209040,jiwa,2025,survey_estimate,total_population,3.1.2,48,,40–44
+32.75,2,Kota Bekasi,age_group,45-49,laki_laki,97372,jiwa,2025,survey_estimate,total_population,3.1.2,48,,45–49
+32.75,2,Kota Bekasi,age_group,45-49,perempuan,98790,jiwa,2025,survey_estimate,total_population,3.1.2,48,,45–49
+32.75,2,Kota Bekasi,age_group,45-49,,196162,jiwa,2025,survey_estimate,total_population,3.1.2,48,,45–49
+32.75,2,Kota Bekasi,age_group,50-54,laki_laki,83594,jiwa,2025,survey_estimate,total_population,3.1.2,48,,50–54
+32.75,2,Kota Bekasi,age_group,50-54,perempuan,85571,jiwa,2025,survey_estimate,total_population,3.1.2,48,,50–54
+32.75,2,Kota Bekasi,age_group,50-54,,169165,jiwa,2025,survey_estimate,total_population,3.1.2,48,,50–54
+32.75,2,Kota Bekasi,age_group,55-59,laki_laki,72579,jiwa,2025,survey_estimate,total_population,3.1.2,48,,55–59
+32.75,2,Kota Bekasi,age_group,55-59,perempuan,76260,jiwa,2025,survey_estimate,total_population,3.1.2,48,,55–59
+32.75,2,Kota Bekasi,age_group,55-59,,148839,jiwa,2025,survey_estimate,total_population,3.1.2,48,,55–59
+32.75,2,Kota Bekasi,age_group,60-64,laki_laki,58464,jiwa,2025,survey_estimate,total_population,3.1.2,48,,60–64
+32.75,2,Kota Bekasi,age_group,60-64,perempuan,64222,jiwa,2025,survey_estimate,total_population,3.1.2,48,,60–64
+32.75,2,Kota Bekasi,age_group,60-64,,122686,jiwa,2025,survey_estimate,total_population,3.1.2,48,,60–64
+32.75,2,Kota Bekasi,age_group,65-69,laki_laki,43308,jiwa,2025,survey_estimate,total_population,3.1.2,48,,65–69
+32.75,2,Kota Bekasi,age_group,65-69,perempuan,44890,jiwa,2025,survey_estimate,total_population,3.1.2,48,,65–69
+32.75,2,Kota Bekasi,age_group,65-69,,88198,jiwa,2025,survey_estimate,total_population,3.1.2,48,,65–69
+32.75,2,Kota Bekasi,age_group,70-74,laki_laki,27284,jiwa,2025,survey_estimate,total_population,3.1.2,48,,70–74
+32.75,2,Kota Bekasi,age_group,70-74,perempuan,26850,jiwa,2025,survey_estimate,total_population,3.1.2,48,,70–74
+32.75,2,Kota Bekasi,age_group,70-74,,54134,jiwa,2025,survey_estimate,total_population,3.1.2,48,,70–74
+32.75,2,Kota Bekasi,age_group,75+,laki_laki,15886,jiwa,2025,survey_estimate,total_population,3.1.2,48,,75+
+32.75,2,Kota Bekasi,age_group,75+,perempuan,18494,jiwa,2025,survey_estimate,total_population,3.1.2,48,,75+
+32.75,2,Kota Bekasi,age_group,75+,,34380,jiwa,2025,survey_estimate,total_population,3.1.2,48,,75+
+32.75,2,Kota Bekasi,sex,laki_laki,,1328712,jiwa,2025,survey_estimate,total_population,3.1.2,48,,Laki-Laki
+32.75,2,Kota Bekasi,sex,perempuan,,1319560,jiwa,2025,survey_estimate,total_population,3.1.2,48,,Perempuan
+32.75,2,Kota Bekasi,total,total,,2648272,jiwa,2025,survey_estimate,total_population,3.1.2,48,,
+32.75.08,3,Pondok Gede,religion,islam,,213147,jiwa,2025,registration,total_population,4.3.1,106,,Islam
+32.75.08,3,Pondok Gede,religion,kristen,,15084,jiwa,2025,registration,total_population,4.3.1,106,,Protestan
+32.75.08,3,Pondok Gede,religion,katolik,,5159,jiwa,2025,registration,total_population,4.3.1,106,,Katolik
+32.75.08,3,Pondok Gede,religion,hindu,,433,jiwa,2025,registration,total_population,4.3.1,106,,Hindu
+32.75.08,3,Pondok Gede,religion,buddha,,684,jiwa,2025,registration,total_population,4.3.1,106,,Budha
+32.75.08,3,Pondok Gede,religion,khonghucu,,7,jiwa,2025,registration,total_population,4.3.1,106,,
+32.75.08,3,Pondok Gede,religion,lainnya,,8,jiwa,2025,registration,total_population,4.3.1,106,,Lainnya
+32.75.10,3,Jatisampurna,religion,islam,,109686,jiwa,2025,registration,total_population,4.3.1,106,,Islam
+32.75.10,3,Jatisampurna,religion,kristen,,8502,jiwa,2025,registration,total_population,4.3.1,106,,Protestan
+32.75.10,3,Jatisampurna,religion,katolik,,3452,jiwa,2025,registration,total_population,4.3.1,106,,Katolik
+32.75.10,3,Jatisampurna,religion,hindu,,337,jiwa,2025,registration,total_population,4.3.1,106,,Hindu
+32.75.10,3,Jatisampurna,religion,buddha,,455,jiwa,2025,registration,total_population,4.3.1,106,,Budha
+32.75.10,3,Jatisampurna,religion,khonghucu,,10,jiwa,2025,registration,total_population,4.3.1,106,,
+32.75.10,3,Jatisampurna,religion,lainnya,,289,jiwa,2025,registration,total_population,4.3.1,106,,Lainnya
+32.75.12,3,Pondok Melati,religion,islam,,112650,jiwa,2025,registration,total_population,4.3.1,106,,Islam
+32.75.12,3,Pondok Melati,religion,kristen,,12334,jiwa,2025,registration,total_population,4.3.1,106,,Protestan
+32.75.12,3,Pondok Melati,religion,katolik,,7409,jiwa,2025,registration,total_population,4.3.1,106,,Katolik
+32.75.12,3,Pondok Melati,religion,hindu,,320,jiwa,2025,registration,total_population,4.3.1,106,,Hindu
+32.75.12,3,Pondok Melati,religion,buddha,,693,jiwa,2025,registration,total_population,4.3.1,106,,Budha
+32.75.12,3,Pondok Melati,religion,khonghucu,,18,jiwa,2025,registration,total_population,4.3.1,106,,
+32.75.12,3,Pondok Melati,religion,lainnya,,4,jiwa,2025,registration,total_population,4.3.1,106,,Lainnya
+32.75.09,3,Jatiasih,religion,islam,,228235,jiwa,2025,registration,total_population,4.3.1,106,,Islam
+32.75.09,3,Jatiasih,religion,kristen,,16501,jiwa,2025,registration,total_population,4.3.1,106,,Protestan
+32.75.09,3,Jatiasih,religion,katolik,,4919,jiwa,2025,registration,total_population,4.3.1,106,,Katolik
+32.75.09,3,Jatiasih,religion,hindu,,416,jiwa,2025,registration,total_population,4.3.1,106,,Hindu
+32.75.09,3,Jatiasih,religion,buddha,,975,jiwa,2025,registration,total_population,4.3.1,106,,Budha
+32.75.09,3,Jatiasih,religion,khonghucu,,3,jiwa,2025,registration,total_population,4.3.1,106,,
+32.75.09,3,Jatiasih,religion,lainnya,,92,jiwa,2025,registration,total_population,4.3.1,106,,Lainnya
+32.75.07,3,Bantargebang,religion,islam,,114871,jiwa,2025,registration,total_population,4.3.1,106,,Islam
+32.75.07,3,Bantargebang,religion,kristen,,3613,jiwa,2025,registration,total_population,4.3.1,106,,Protestan
+32.75.07,3,Bantargebang,religion,katolik,,1047,jiwa,2025,registration,total_population,4.3.1,106,,Katolik
+32.75.07,3,Bantargebang,religion,hindu,,38,jiwa,2025,registration,total_population,4.3.1,106,,Hindu
+32.75.07,3,Bantargebang,religion,buddha,,349,jiwa,2025,registration,total_population,4.3.1,106,,Budha
+32.75.07,3,Bantargebang,religion,khonghucu,,5,jiwa,2025,registration,total_population,4.3.1,106,,
+32.75.07,3,Bantargebang,religion,lainnya,,9,jiwa,2025,registration,total_population,4.3.1,106,,Lainnya
+32.75.11,3,Mustikajaya,religion,islam,,208293,jiwa,2025,registration,total_population,4.3.1,106,,Islam
+32.75.11,3,Mustikajaya,religion,kristen,,15518,jiwa,2025,registration,total_population,4.3.1,106,,Protestan
+32.75.11,3,Mustikajaya,religion,katolik,,4061,jiwa,2025,registration,total_population,4.3.1,106,,Katolik
+32.75.11,3,Mustikajaya,religion,hindu,,293,jiwa,2025,registration,total_population,4.3.1,106,,Hindu
+32.75.11,3,Mustikajaya,religion,buddha,,950,jiwa,2025,registration,total_population,4.3.1,106,,Budha
+32.75.11,3,Mustikajaya,religion,khonghucu,,5,jiwa,2025,registration,total_population,4.3.1,106,,
+32.75.11,3,Mustikajaya,religion,lainnya,,63,jiwa,2025,registration,total_population,4.3.1,106,,Lainnya
+32.75.01,3,Bekasi Timur,religion,islam,,241269,jiwa,2025,registration,total_population,4.3.1,106,,Islam
+32.75.01,3,Bekasi Timur,religion,kristen,,21282,jiwa,2025,registration,total_population,4.3.1,106,,Protestan
+32.75.01,3,Bekasi Timur,religion,katolik,,6720,jiwa,2025,registration,total_population,4.3.1,106,,Katolik
+32.75.01,3,Bekasi Timur,religion,hindu,,335,jiwa,2025,registration,total_population,4.3.1,106,,Hindu
+32.75.01,3,Bekasi Timur,religion,buddha,,6279,jiwa,2025,registration,total_population,4.3.1,106,,Budha
+32.75.01,3,Bekasi Timur,religion,khonghucu,,15,jiwa,2025,registration,total_population,4.3.1,106,,
+32.75.01,3,Bekasi Timur,religion,lainnya,,6,jiwa,2025,registration,total_population,4.3.1,106,,Lainnya
+32.75.05,3,Rawalumbu,religion,islam,,193661,jiwa,2025,registration,total_population,4.3.1,106,,Islam
+32.75.05,3,Rawalumbu,religion,kristen,,24396,jiwa,2025,registration,total_population,4.3.1,106,,Protestan
+32.75.05,3,Rawalumbu,religion,katolik,,6311,jiwa,2025,registration,total_population,4.3.1,106,,Katolik
+32.75.05,3,Rawalumbu,religion,hindu,,370,jiwa,2025,registration,total_population,4.3.1,106,,Hindu
+32.75.05,3,Rawalumbu,religion,buddha,,2354,jiwa,2025,registration,total_population,4.3.1,106,,Budha
+32.75.05,3,Rawalumbu,religion,khonghucu,,12,jiwa,2025,registration,total_population,4.3.1,106,,
+32.75.05,3,Rawalumbu,religion,lainnya,,18,jiwa,2025,registration,total_population,4.3.1,106,,Lainnya
+32.75.04,3,Bekasi Selatan,religion,islam,,193376,jiwa,2025,registration,total_population,4.3.1,106,,Islam
+32.75.04,3,Bekasi Selatan,religion,kristen,,18581,jiwa,2025,registration,total_population,4.3.1,106,,Protestan
+32.75.04,3,Bekasi Selatan,religion,katolik,,6396,jiwa,2025,registration,total_population,4.3.1,106,,Katolik
+32.75.04,3,Bekasi Selatan,religion,hindu,,396,jiwa,2025,registration,total_population,4.3.1,106,,Hindu
+32.75.04,3,Bekasi Selatan,religion,buddha,,1201,jiwa,2025,registration,total_population,4.3.1,106,,Budha
+32.75.04,3,Bekasi Selatan,religion,khonghucu,,16,jiwa,2025,registration,total_population,4.3.1,106,,
+32.75.04,3,Bekasi Selatan,religion,lainnya,,5,jiwa,2025,registration,total_population,4.3.1,106,,Lainnya
+32.75.02,3,Bekasi Barat,religion,islam,,246885,jiwa,2025,registration,total_population,4.3.1,106,,Islam
+32.75.02,3,Bekasi Barat,religion,kristen,,17440,jiwa,2025,registration,total_population,4.3.1,106,,Protestan
+32.75.02,3,Bekasi Barat,religion,katolik,,5974,jiwa,2025,registration,total_population,4.3.1,106,,Katolik
+32.75.02,3,Bekasi Barat,religion,hindu,,371,jiwa,2025,registration,total_population,4.3.1,106,,Hindu
+32.75.02,3,Bekasi Barat,religion,buddha,,1337,jiwa,2025,registration,total_population,4.3.1,106,,Budha
+32.75.02,3,Bekasi Barat,religion,khonghucu,,8,jiwa,2025,registration,total_population,4.3.1,106,,
+32.75.02,3,Bekasi Barat,religion,lainnya,,10,jiwa,2025,registration,total_population,4.3.1,106,,Lainnya
+32.75.06,3,Medansatria,religion,islam,,136565,jiwa,2025,registration,total_population,4.3.1,106,,Islam
+32.75.06,3,Medansatria,religion,kristen,,15568,jiwa,2025,registration,total_population,4.3.1,106,,Protestan
+32.75.06,3,Medansatria,religion,katolik,,6583,jiwa,2025,registration,total_population,4.3.1,106,,Katolik
+32.75.06,3,Medansatria,religion,hindu,,294,jiwa,2025,registration,total_population,4.3.1,106,,Hindu
+32.75.06,3,Medansatria,religion,buddha,,3238,jiwa,2025,registration,total_population,4.3.1,106,,Budha
+32.75.06,3,Medansatria,religion,khonghucu,,26,jiwa,2025,registration,total_population,4.3.1,106,,
+32.75.06,3,Medansatria,religion,lainnya,,5,jiwa,2025,registration,total_population,4.3.1,106,,Lainnya
+32.75.03,3,Bekasi Utara,religion,islam,,310740,jiwa,2025,registration,total_population,4.3.1,106,,Islam
+32.75.03,3,Bekasi Utara,religion,kristen,,25173,jiwa,2025,registration,total_population,4.3.1,106,,Protestan
+32.75.03,3,Bekasi Utara,religion,katolik,,7706,jiwa,2025,registration,total_population,4.3.1,106,,Katolik
+32.75.03,3,Bekasi Utara,religion,hindu,,553,jiwa,2025,registration,total_population,4.3.1,106,,Hindu
+32.75.03,3,Bekasi Utara,religion,buddha,,3490,jiwa,2025,registration,total_population,4.3.1,106,,Budha
+32.75.03,3,Bekasi Utara,religion,khonghucu,,8,jiwa,2025,registration,total_population,4.3.1,106,,
+32.75.03,3,Bekasi Utara,religion,lainnya,,17,jiwa,2025,registration,total_population,4.3.1,106,,Lainnya
+32.75,2,Kota Bekasi,religion,islam,,2309378,jiwa,2025,registration,total_population,4.3.1,106,,Islam
+32.75,2,Kota Bekasi,religion,kristen,,193992,jiwa,2025,registration,total_population,4.3.1,106,,Protestan
+32.75,2,Kota Bekasi,religion,katolik,,65737,jiwa,2025,registration,total_population,4.3.1,106,,Katolik
+32.75,2,Kota Bekasi,religion,hindu,,4156,jiwa,2025,registration,total_population,4.3.1,106,,Hindu
+32.75,2,Kota Bekasi,religion,buddha,,22005,jiwa,2025,registration,total_population,4.3.1,106,,Budha
+32.75,2,Kota Bekasi,religion,khonghucu,,133,jiwa,2025,registration,total_population,4.3.1,106,,
+32.75,2,Kota Bekasi,religion,lainnya,,526,jiwa,2025,registration,total_population,4.3.1,106,,Lainnya
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/padi_padian,,93275,rupiah,2024,survey_estimate,per_capita,10.1,211,,Padi-padian
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/padi_padian,,76811,rupiah,2025,survey_estimate,per_capita,10.1,211,,Padi-padian
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/umbi_umbian,,10872,rupiah,2024,survey_estimate,per_capita,10.1,211,,Umbi-umbian
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/umbi_umbian,,11699,rupiah,2025,survey_estimate,per_capita,10.1,211,,Umbi-umbian
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,90270,rupiah,2024,survey_estimate,per_capita,10.1,211,,Ikan/udang/cumi/kerang
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,84977,rupiah,2025,survey_estimate,per_capita,10.1,211,,Ikan/udang/cumi/kerang
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/daging,,82035,rupiah,2024,survey_estimate,per_capita,10.1,211,,Daging
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/daging,,76651,rupiah,2025,survey_estimate,per_capita,10.1,211,,Daging
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/telur_dan_susu,,78845,rupiah,2024,survey_estimate,per_capita,10.1,211,,Telur dan susu
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/telur_dan_susu,,65880,rupiah,2025,survey_estimate,per_capita,10.1,211,,Telur dan susu
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/sayur_sayuran,,88743,rupiah,2024,survey_estimate,per_capita,10.1,211,,Sayur-sayuran
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/sayur_sayuran,,90919,rupiah,2025,survey_estimate,per_capita,10.1,211,,Sayur-sayuran
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/kacang_kacangan,,21944,rupiah,2024,survey_estimate,per_capita,10.1,211,,Kacang-kacangan
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/kacang_kacangan,,20688,rupiah,2025,survey_estimate,per_capita,10.1,211,,Kacang-kacangan
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/buah_buahan,,69859,rupiah,2024,survey_estimate,per_capita,10.1,211,,Buah-buahan
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/buah_buahan,,79923,rupiah,2025,survey_estimate,per_capita,10.1,211,,Buah-buahan
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/minyak_dan_kelapa,,24224,rupiah,2024,survey_estimate,per_capita,10.1,211,,Minyak dan kelapa
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/minyak_dan_kelapa,,22745,rupiah,2025,survey_estimate,per_capita,10.1,211,,Minyak dan kelapa
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/bahan_minuman,,26972,rupiah,2024,survey_estimate,per_capita,10.1,211,,Bahan minuman
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/bahan_minuman,,27661,rupiah,2025,survey_estimate,per_capita,10.1,211,,Bahan minuman
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/bumbu_bumbuan,,23377,rupiah,2024,survey_estimate,per_capita,10.1,211,,Bumbu-bumbuan
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/bumbu_bumbuan,,21260,rupiah,2025,survey_estimate,per_capita,10.1,211,,Bumbu-bumbuan
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/konsumsi_lainnya,,21152,rupiah,2024,survey_estimate,per_capita,10.1,211,,Konsumsi lainnya
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/konsumsi_lainnya,,19780,rupiah,2025,survey_estimate,per_capita,10.1,211,,Konsumsi lainnya
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,476316,rupiah,2024,survey_estimate,per_capita,10.1,211,,Makanan dan minuman jadi
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,440420,rupiah,2025,survey_estimate,per_capita,10.1,211,,Makanan dan minuman jadi
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/rokok,,116506,rupiah,2024,survey_estimate,per_capita,10.1,211,,Rokok
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/rokok,,88455,rupiah,2025,survey_estimate,per_capita,10.1,211,,Rokok
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/jumlah_makanan,,1224390,rupiah,2024,survey_estimate,per_capita,10.1,211,,Jumlah makanan
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/jumlah_makanan,,1127870,rupiah,2025,survey_estimate,per_capita,10.1,211,,Jumlah makanan
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,956539,rupiah,2024,survey_estimate,per_capita,10.1,211,,Perumahan dan fasilitas rumah tangga
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,867365,rupiah,2025,survey_estimate,per_capita,10.1,211,,Perumahan dan fasilitas rumah tangga
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,514784,rupiah,2024,survey_estimate,per_capita,10.1,211,,Aneka barang dan jasa
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,495693,rupiah,2025,survey_estimate,per_capita,10.1,211,,Aneka barang dan jasa
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,75557,rupiah,2024,survey_estimate,per_capita,10.1,211,,"Pakaian, alas kaki, dan tutup kepala"
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,60882,rupiah,2025,survey_estimate,per_capita,10.1,211,,"Pakaian, alas kaki, dan tutup kepala"
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/barang_tahan_lama,,134641,rupiah,2024,survey_estimate,per_capita,10.1,211,,Barang tahan lama
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/barang_tahan_lama,,86278,rupiah,2025,survey_estimate,per_capita,10.1,211,,Barang tahan lama
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,154426,rupiah,2024,survey_estimate,per_capita,10.1,211,,"Pajak, pungutan, dan asuransi"
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,151531,rupiah,2025,survey_estimate,per_capita,10.1,211,,"Pajak, pungutan, dan asuransi"
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,72368,rupiah,2024,survey_estimate,per_capita,10.1,211,,Keperluan pesta dan upacara/kenduri
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,37599,rupiah,2025,survey_estimate,per_capita,10.1,211,,Keperluan pesta dan upacara/kenduri
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1908315,rupiah,2024,survey_estimate,per_capita,10.1,211,,Jumlah bukan makanan
+32.75,2,Kota Bekasi,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1699347,rupiah,2025,survey_estimate,per_capita,10.1,211,,Jumlah bukan makanan
+32.75,2,Kota Bekasi,expenditure,total,,3132705,rupiah,2024,survey_estimate,per_capita,10.1,211,,
+32.75,2,Kota Bekasi,expenditure,total,,2827217,rupiah,2025,survey_estimate,per_capita,10.1,211,,

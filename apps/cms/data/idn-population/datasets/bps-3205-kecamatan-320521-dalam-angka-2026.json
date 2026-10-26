@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3205-kecamatan-320521-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.05.21",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sukaresmi Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Garut",
+  "publisherDomain": "3205",
+  "publisherWebsite": "https://garutkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Garut (https://garutkab.bps.go.id), publikasi \"Kecamatan Sukaresmi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3205161",
+  "publicationNumber": "32050.26025",
+  "issn": "2830-1285",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://garutkab.bps.go.id/id/publication/2026/09/28/30bdf5465a61927eb3e310a6/kecamatan-sukaresmi-dalam-angka-2026.html",
+  "sourceFileSha256": "0a2d4fa9bdc3d6fd9fc061df2df997a55426f052bf246572d767d34b9e8bdb5e",
+  "sourceFileBytes": 5128758,
+  "sourcePages": [22, 23, 24],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Garut",
+  "csvPath": "datasets/bps-3205-kecamatan-320521-dalam-angka-2026.csv",
+  "csvSha256": "e5c19d4bf2735594946dedd549efe56a29b44ed347f469515b86474db47d4bd5",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sukaresmi, 2025",
+      "printedPages": [22, 23],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sukaresmi 2025",
+      "printedPages": [24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

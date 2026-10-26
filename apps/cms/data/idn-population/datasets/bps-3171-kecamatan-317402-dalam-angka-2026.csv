@@ -1,0 +1,47 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+31.74.02.1001,4,Setiabudi,sex,laki_laki,,1638,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+31.74.02.1001,4,Setiabudi,sex,perempuan,,1669,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+31.74.02.1001,4,Setiabudi,total,total,,3307,jiwa,2025,registration,total_population,3.1,27,,
+31.74.02.1002,4,Karet Semanggi,sex,laki_laki,,1711,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+31.74.02.1002,4,Karet Semanggi,sex,perempuan,,1652,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+31.74.02.1002,4,Karet Semanggi,total,total,,3363,jiwa,2025,registration,total_population,3.1,27,,
+31.74.02.1003,4,Karet Kuningan,sex,laki_laki,,9500,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+31.74.02.1003,4,Karet Kuningan,sex,perempuan,,9604,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+31.74.02.1003,4,Karet Kuningan,total,total,,19104,jiwa,2025,registration,total_population,3.1,27,,
+31.74.02.1004,4,Karet,sex,laki_laki,,5467,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+31.74.02.1004,4,Karet,sex,perempuan,,5378,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+31.74.02.1004,4,Karet,total,total,,10845,jiwa,2025,registration,total_population,3.1,27,,
+31.74.02.1005,4,Menteng Atas,sex,laki_laki,,15773,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+31.74.02.1005,4,Menteng Atas,sex,perempuan,,16087,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+31.74.02.1005,4,Menteng Atas,total,total,,31860,jiwa,2025,registration,total_population,3.1,27,,
+31.74.02.1006,4,Pasar Manggis,sex,laki_laki,,15874,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+31.74.02.1006,4,Pasar Manggis,sex,perempuan,,15698,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+31.74.02.1006,4,Pasar Manggis,total,total,,31572,jiwa,2025,registration,total_population,3.1,27,,
+31.74.02.1008,4,Kuningan Timur,sex,laki_laki,,3394,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+31.74.02.1008,4,Kuningan Timur,sex,perempuan,,3405,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+31.74.02.1008,4,Kuningan Timur,total,total,,6799,jiwa,2025,registration,total_population,3.1,27,,
+31.74.02,3,Setiabudi,age_group,0-10,laki_laki,7799,jiwa,2025,registration,total_population,3.2,29,,0-10
+31.74.02,3,Setiabudi,age_group,0-10,perempuan,7332,jiwa,2025,registration,total_population,3.2,29,,0-10
+31.74.02,3,Setiabudi,age_group,0-10,,15131,jiwa,2025,registration,total_population,3.2,29,,0-10
+31.74.02,3,Setiabudi,age_group,11-20,perempuan,8322,jiwa,2025,registration,total_population,3.2,29,,11-20
+31.74.02,3,Setiabudi,age_group,11-20,,17332,jiwa,2025,registration,total_population,3.2,29,,11-20
+31.74.02,3,Setiabudi,age_group,21-30,laki_laki,8696,jiwa,2025,registration,total_population,3.2,29,,21-30
+31.74.02,3,Setiabudi,age_group,21-30,perempuan,8331,jiwa,2025,registration,total_population,3.2,29,,21-30
+31.74.02,3,Setiabudi,age_group,21-30,,17027,jiwa,2025,registration,total_population,3.2,29,,21-30
+31.74.02,3,Setiabudi,age_group,31-40,laki_laki,8043,jiwa,2025,registration,total_population,3.2,29,,31-40
+31.74.02,3,Setiabudi,age_group,31-40,perempuan,8285,jiwa,2025,registration,total_population,3.2,29,,31-40
+31.74.02,3,Setiabudi,age_group,31-40,,16328,jiwa,2025,registration,total_population,3.2,29,,31-40
+31.74.02,3,Setiabudi,age_group,41-50,laki_laki,8742,jiwa,2025,registration,total_population,3.2,29,,41-50
+31.74.02,3,Setiabudi,age_group,41-50,,18022,jiwa,2025,registration,total_population,3.2,29,,41-50
+31.74.02,3,Setiabudi,age_group,51-60,laki_laki,7457,jiwa,2025,registration,total_population,3.2,29,,51-60
+31.74.02,3,Setiabudi,age_group,51-60,perempuan,7511,jiwa,2025,registration,total_population,3.2,29,,51-60
+31.74.02,3,Setiabudi,age_group,51-60,,14968,jiwa,2025,registration,total_population,3.2,29,,51-60
+31.74.02,3,Setiabudi,age_group,61-70,laki_laki,3989,jiwa,2025,registration,total_population,3.2,29,,61-70
+31.74.02,3,Setiabudi,age_group,61-70,perempuan,4399,jiwa,2025,registration,total_population,3.2,29,,61-70
+31.74.02,3,Setiabudi,age_group,61-70,,8397,jiwa,2025,registration,total_population,3.2,29,,61-70
+31.74.02,3,Setiabudi,age_group,71-80,laki_laki,1384,jiwa,2025,registration,total_population,3.2,29,,71-80
+31.74.02,3,Setiabudi,age_group,71-80,perempuan,1689,jiwa,2025,registration,total_population,3.2,29,,71-80
+31.74.02,3,Setiabudi,age_group,71-80,,3073,jiwa,2025,registration,total_population,3.2,29,,71-80
+31.74.02,3,Setiabudi,age_group,81+,laki_laki,292,jiwa,2025,registration,total_population,3.2,29,,81+
+31.74.02,3,Setiabudi,age_group,81+,perempuan,538,jiwa,2025,registration,total_population,3.2,29,,81+
+31.74.02,3,Setiabudi,age_group,81+,,830,jiwa,2025,registration,total_population,3.2,29,,81+

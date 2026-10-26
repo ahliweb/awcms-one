@@ -1,0 +1,103 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.71.01.1007,4,Mulyaharja,sex,laki_laki,,13570,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+32.71.01.1007,4,Mulyaharja,sex,perempuan,,12830,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+32.71.01.1007,4,Mulyaharja,total,total,,26400,jiwa,2025,registration,total_population,3.1,38,,
+32.71.01.1005,4,Pamoyanan,sex,laki_laki,,9794,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+32.71.01.1005,4,Pamoyanan,sex,perempuan,,9452,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+32.71.01.1005,4,Pamoyanan,total,total,,19246,jiwa,2025,registration,total_population,3.1,38,,
+32.71.01.1006,4,Ranggamekar,sex,laki_laki,,8955,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+32.71.01.1006,4,Ranggamekar,sex,perempuan,,8580,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+32.71.01.1006,4,Ranggamekar,total,total,,17535,jiwa,2025,registration,total_population,3.1,38,,
+32.71.01.1014,4,Genteng,sex,laki_laki,,5431,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+32.71.01.1014,4,Genteng,sex,perempuan,,5141,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+32.71.01.1014,4,Genteng,total,total,,10572,jiwa,2025,registration,total_population,3.1,38,,
+32.71.01.1011,4,Kertamaya,sex,laki_laki,,4084,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+32.71.01.1011,4,Kertamaya,sex,perempuan,,3746,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+32.71.01.1011,4,Kertamaya,total,total,,7830,jiwa,2025,registration,total_population,3.1,38,,
+32.71.01.1010,4,Rancamaya,sex,laki_laki,,4561,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+32.71.01.1010,4,Rancamaya,sex,perempuan,,4205,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+32.71.01.1010,4,Rancamaya,total,total,,8766,jiwa,2025,registration,total_population,3.1,38,,
+32.71.01.1009,4,Bojongkerta,sex,laki_laki,,6339,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+32.71.01.1009,4,Bojongkerta,sex,perempuan,,5969,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+32.71.01.1009,4,Bojongkerta,total,total,,12308,jiwa,2025,registration,total_population,3.1,38,,
+32.71.01.1012,4,Harjasari,sex,laki_laki,,7511,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+32.71.01.1012,4,Harjasari,sex,perempuan,,7294,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+32.71.01.1012,4,Harjasari,total,total,,14805,jiwa,2025,registration,total_population,3.1,38,,
+32.71.01.1013,4,Muarasari,sex,laki_laki,,6389,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+32.71.01.1013,4,Muarasari,sex,perempuan,,6165,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+32.71.01.1013,4,Muarasari,total,total,,12554,jiwa,2025,registration,total_population,3.1,38,,
+32.71.01.1015,4,Pakuan,sex,laki_laki,,2858,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+32.71.01.1015,4,Pakuan,sex,perempuan,,2879,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+32.71.01.1015,4,Pakuan,total,total,,5737,jiwa,2025,registration,total_population,3.1,38,,
+32.71.01.1016,4,Cipaku,sex,laki_laki,,7511,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+32.71.01.1016,4,Cipaku,sex,perempuan,,7158,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+32.71.01.1016,4,Cipaku,total,total,,14669,jiwa,2025,registration,total_population,3.1,38,,
+32.71.01.1004,4,Lawanggintung,sex,laki_laki,,4494,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+32.71.01.1004,4,Lawanggintung,sex,perempuan,,4356,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+32.71.01.1004,4,Lawanggintung,total,total,,8850,jiwa,2025,registration,total_population,3.1,38,,
+32.71.01.1001,4,Batutulis,sex,laki_laki,,5277,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+32.71.01.1001,4,Batutulis,sex,perempuan,,5242,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+32.71.01.1001,4,Batutulis,total,total,,10519,jiwa,2025,registration,total_population,3.1,38,,
+32.71.01.1002,4,Bondongan,sex,laki_laki,,7825,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+32.71.01.1002,4,Bondongan,sex,perempuan,,7446,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+32.71.01.1002,4,Bondongan,total,total,,15271,jiwa,2025,registration,total_population,3.1,38,,
+32.71.01.1003,4,Empang,sex,laki_laki,,8850,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+32.71.01.1003,4,Empang,sex,perempuan,,8978,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+32.71.01.1003,4,Empang,total,total,,17828,jiwa,2025,registration,total_population,3.1,38,,
+32.71.01.1008,4,Cikaret,sex,laki_laki,,12061,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+32.71.01.1008,4,Cikaret,sex,perempuan,,11513,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+32.71.01.1008,4,Cikaret,total,total,,23574,jiwa,2025,registration,total_population,3.1,38,,
+32.71.01,3,Bogor Selatan,sex,laki_laki,,115510,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+32.71.01,3,Bogor Selatan,sex,perempuan,,110954,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+32.71.01,3,Bogor Selatan,total,total,,226464,jiwa,2025,registration,total_population,3.1,38,,
+32.71.01,3,Bogor Selatan,age_group,0-4,laki_laki,8456,jiwa,2025,registration,total_population,3.2,40,,0-4
+32.71.01,3,Bogor Selatan,age_group,0-4,perempuan,8005,jiwa,2025,registration,total_population,3.2,40,,0-4
+32.71.01,3,Bogor Selatan,age_group,0-4,,16461,jiwa,2025,registration,total_population,3.2,40,,0-4
+32.71.01,3,Bogor Selatan,age_group,5-9,laki_laki,10639,jiwa,2025,registration,total_population,3.2,40,,5-9
+32.71.01,3,Bogor Selatan,age_group,5-9,perempuan,9942,jiwa,2025,registration,total_population,3.2,40,,5-9
+32.71.01,3,Bogor Selatan,age_group,5-9,,20581,jiwa,2025,registration,total_population,3.2,40,,5-9
+32.71.01,3,Bogor Selatan,age_group,10-14,laki_laki,10396,jiwa,2025,registration,total_population,3.2,40,,10-14
+32.71.01,3,Bogor Selatan,age_group,10-14,perempuan,9656,jiwa,2025,registration,total_population,3.2,40,,10-14
+32.71.01,3,Bogor Selatan,age_group,10-14,,20052,jiwa,2025,registration,total_population,3.2,40,,10-14
+32.71.01,3,Bogor Selatan,age_group,15-19,laki_laki,9370,jiwa,2025,registration,total_population,3.2,40,,15-19
+32.71.01,3,Bogor Selatan,age_group,15-19,perempuan,8758,jiwa,2025,registration,total_population,3.2,40,,15-19
+32.71.01,3,Bogor Selatan,age_group,15-19,,18128,jiwa,2025,registration,total_population,3.2,40,,15-19
+32.71.01,3,Bogor Selatan,age_group,20-24,laki_laki,9592,jiwa,2025,registration,total_population,3.2,40,,20-24
+32.71.01,3,Bogor Selatan,age_group,20-24,perempuan,9050,jiwa,2025,registration,total_population,3.2,40,,20-24
+32.71.01,3,Bogor Selatan,age_group,20-24,,18642,jiwa,2025,registration,total_population,3.2,40,,20-24
+32.71.01,3,Bogor Selatan,age_group,25-29,laki_laki,9574,jiwa,2025,registration,total_population,3.2,40,,25-29
+32.71.01,3,Bogor Selatan,age_group,25-29,perempuan,9302,jiwa,2025,registration,total_population,3.2,40,,25-29
+32.71.01,3,Bogor Selatan,age_group,25-29,,18876,jiwa,2025,registration,total_population,3.2,40,,25-29
+32.71.01,3,Bogor Selatan,age_group,30-34,laki_laki,9522,jiwa,2025,registration,total_population,3.2,40,,30-34
+32.71.01,3,Bogor Selatan,age_group,30-34,perempuan,8928,jiwa,2025,registration,total_population,3.2,40,,30-34
+32.71.01,3,Bogor Selatan,age_group,30-34,,18450,jiwa,2025,registration,total_population,3.2,40,,30-34
+32.71.01,3,Bogor Selatan,age_group,35-39,laki_laki,8605,jiwa,2025,registration,total_population,3.2,40,,35-39
+32.71.01,3,Bogor Selatan,age_group,35-39,perempuan,7929,jiwa,2025,registration,total_population,3.2,40,,35-39
+32.71.01,3,Bogor Selatan,age_group,35-39,,16534,jiwa,2025,registration,total_population,3.2,40,,35-39
+32.71.01,3,Bogor Selatan,age_group,40-44,laki_laki,8711,jiwa,2025,registration,total_population,3.2,40,,40-44
+32.71.01,3,Bogor Selatan,age_group,40-44,perempuan,8262,jiwa,2025,registration,total_population,3.2,40,,40-44
+32.71.01,3,Bogor Selatan,age_group,40-44,,16973,jiwa,2025,registration,total_population,3.2,40,,40-44
+32.71.01,3,Bogor Selatan,age_group,45-49,laki_laki,7956,jiwa,2025,registration,total_population,3.2,40,,45-49
+32.71.01,3,Bogor Selatan,age_group,45-49,perempuan,7819,jiwa,2025,registration,total_population,3.2,40,,45-49
+32.71.01,3,Bogor Selatan,age_group,45-49,,15775,jiwa,2025,registration,total_population,3.2,40,,45-49
+32.71.01,3,Bogor Selatan,age_group,50-54,laki_laki,6881,jiwa,2025,registration,total_population,3.2,40,,50-54
+32.71.01,3,Bogor Selatan,age_group,50-54,perempuan,6666,jiwa,2025,registration,total_population,3.2,40,,50-54
+32.71.01,3,Bogor Selatan,age_group,50-54,,13547,jiwa,2025,registration,total_population,3.2,40,,50-54
+32.71.01,3,Bogor Selatan,age_group,55-59,laki_laki,5550,jiwa,2025,registration,total_population,3.2,40,,55-59
+32.71.01,3,Bogor Selatan,age_group,55-59,perempuan,5369,jiwa,2025,registration,total_population,3.2,40,,55-59
+32.71.01,3,Bogor Selatan,age_group,55-59,,10919,jiwa,2025,registration,total_population,3.2,40,,55-59
+32.71.01,3,Bogor Selatan,age_group,60-64,laki_laki,3835,jiwa,2025,registration,total_population,3.2,40,,60-64
+32.71.01,3,Bogor Selatan,age_group,60-64,perempuan,4064,jiwa,2025,registration,total_population,3.2,40,,60-64
+32.71.01,3,Bogor Selatan,age_group,60-64,,7899,jiwa,2025,registration,total_population,3.2,40,,60-64
+32.71.01,3,Bogor Selatan,age_group,65-69,laki_laki,2972,jiwa,2025,registration,total_population,3.2,40,,65-69
+32.71.01,3,Bogor Selatan,age_group,65-69,perempuan,3145,jiwa,2025,registration,total_population,3.2,40,,65-69
+32.71.01,3,Bogor Selatan,age_group,65-69,,6117,jiwa,2025,registration,total_population,3.2,40,,65-69
+32.71.01,3,Bogor Selatan,age_group,70-74,laki_laki,1888,jiwa,2025,registration,total_population,3.2,40,,70-74
+32.71.01,3,Bogor Selatan,age_group,70-74,perempuan,1945,jiwa,2025,registration,total_population,3.2,40,,70-74
+32.71.01,3,Bogor Selatan,age_group,70-74,,3833,jiwa,2025,registration,total_population,3.2,40,,70-74
+32.71.01,3,Bogor Selatan,age_group,75+,laki_laki,1563,jiwa,2025,registration,total_population,3.2,40,,>75
+32.71.01,3,Bogor Selatan,age_group,75+,perempuan,2114,jiwa,2025,registration,total_population,3.2,40,,>75
+32.71.01,3,Bogor Selatan,age_group,75+,,3677,jiwa,2025,registration,total_population,3.2,40,,>75
+32.71.01,3,Bogor Selatan,sex,laki_laki,,115510,jiwa,2025,registration,total_population,3.2,40,,Laki-Laki
+32.71.01,3,Bogor Selatan,sex,perempuan,,110954,jiwa,2025,registration,total_population,3.2,40,,Perempuan
+32.71.01,3,Bogor Selatan,total,total,,226464,jiwa,2025,registration,total_population,3.2,40,,

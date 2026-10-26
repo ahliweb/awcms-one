@@ -1,0 +1,98 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.02,2,Kabupaten Lampung Tengah,age_group,0-4,laki_laki,39950,jiwa,2025,registration,total_population,3.1.2,86,,0–4
+18.02,2,Kabupaten Lampung Tengah,age_group,0-4,perempuan,37613,jiwa,2025,registration,total_population,3.1.2,86,,0–4
+18.02,2,Kabupaten Lampung Tengah,age_group,0-4,,77563,jiwa,2025,registration,total_population,3.1.2,86,,0–4
+18.02,2,Kabupaten Lampung Tengah,age_group,5-9,laki_laki,58546,jiwa,2025,registration,total_population,3.1.2,86,,5–9
+18.02,2,Kabupaten Lampung Tengah,age_group,5-9,perempuan,54480,jiwa,2025,registration,total_population,3.1.2,86,,5–9
+18.02,2,Kabupaten Lampung Tengah,age_group,5-9,,113026,jiwa,2025,registration,total_population,3.1.2,86,,5–9
+18.02,2,Kabupaten Lampung Tengah,age_group,10-14,laki_laki,62474,jiwa,2025,registration,total_population,3.1.2,86,,10–14
+18.02,2,Kabupaten Lampung Tengah,age_group,10-14,perempuan,58559,jiwa,2025,registration,total_population,3.1.2,86,,10–14
+18.02,2,Kabupaten Lampung Tengah,age_group,10-14,,121033,jiwa,2025,registration,total_population,3.1.2,86,,10–14
+18.02,2,Kabupaten Lampung Tengah,age_group,15-19,laki_laki,52002,jiwa,2025,registration,total_population,3.1.2,86,,15–19
+18.02,2,Kabupaten Lampung Tengah,age_group,15-19,perempuan,49984,jiwa,2025,registration,total_population,3.1.2,86,,15–19
+18.02,2,Kabupaten Lampung Tengah,age_group,15-19,,101986,jiwa,2025,registration,total_population,3.1.2,86,,15–19
+18.02,2,Kabupaten Lampung Tengah,age_group,20-24,laki_laki,51612,jiwa,2025,registration,total_population,3.1.2,86,,20–24
+18.02,2,Kabupaten Lampung Tengah,age_group,20-24,perempuan,49897,jiwa,2025,registration,total_population,3.1.2,86,,20–24
+18.02,2,Kabupaten Lampung Tengah,age_group,20-24,,101509,jiwa,2025,registration,total_population,3.1.2,86,,20–24
+18.02,2,Kabupaten Lampung Tengah,age_group,25-29,laki_laki,55269,jiwa,2025,registration,total_population,3.1.2,86,,25–29
+18.02,2,Kabupaten Lampung Tengah,age_group,25-29,perempuan,52970,jiwa,2025,registration,total_population,3.1.2,86,,25–29
+18.02,2,Kabupaten Lampung Tengah,age_group,25-29,,108239,jiwa,2025,registration,total_population,3.1.2,86,,25–29
+18.02,2,Kabupaten Lampung Tengah,age_group,30-34,laki_laki,51562,jiwa,2025,registration,total_population,3.1.2,86,,30–34
+18.02,2,Kabupaten Lampung Tengah,age_group,30-34,perempuan,50015,jiwa,2025,registration,total_population,3.1.2,86,,30–34
+18.02,2,Kabupaten Lampung Tengah,age_group,30-34,,101577,jiwa,2025,registration,total_population,3.1.2,86,,30–34
+18.02,2,Kabupaten Lampung Tengah,age_group,35-39,laki_laki,50963,jiwa,2025,registration,total_population,3.1.2,86,,35–39
+18.02,2,Kabupaten Lampung Tengah,age_group,35-39,perempuan,51338,jiwa,2025,registration,total_population,3.1.2,86,,35–39
+18.02,2,Kabupaten Lampung Tengah,age_group,35-39,,102301,jiwa,2025,registration,total_population,3.1.2,86,,35–39
+18.02,2,Kabupaten Lampung Tengah,age_group,40-44,laki_laki,53227,jiwa,2025,registration,total_population,3.1.2,86,,40–44
+18.02,2,Kabupaten Lampung Tengah,age_group,40-44,perempuan,53666,jiwa,2025,registration,total_population,3.1.2,86,,40–44
+18.02,2,Kabupaten Lampung Tengah,age_group,40-44,,106893,jiwa,2025,registration,total_population,3.1.2,86,,40–44
+18.02,2,Kabupaten Lampung Tengah,age_group,45-49,laki_laki,54451,jiwa,2025,registration,total_population,3.1.2,86,,45–49
+18.02,2,Kabupaten Lampung Tengah,age_group,45-49,perempuan,53517,jiwa,2025,registration,total_population,3.1.2,86,,45–49
+18.02,2,Kabupaten Lampung Tengah,age_group,45-49,,107968,jiwa,2025,registration,total_population,3.1.2,86,,45–49
+18.02,2,Kabupaten Lampung Tengah,age_group,50-54,laki_laki,47395,jiwa,2025,registration,total_population,3.1.2,86,,50–54
+18.02,2,Kabupaten Lampung Tengah,age_group,50-54,perempuan,46293,jiwa,2025,registration,total_population,3.1.2,86,,50–54
+18.02,2,Kabupaten Lampung Tengah,age_group,50-54,,93688,jiwa,2025,registration,total_population,3.1.2,86,,50–54
+18.02,2,Kabupaten Lampung Tengah,age_group,55-59,laki_laki,39185,jiwa,2025,registration,total_population,3.1.2,86,,55–59
+18.02,2,Kabupaten Lampung Tengah,age_group,55-59,perempuan,36828,jiwa,2025,registration,total_population,3.1.2,86,,55–59
+18.02,2,Kabupaten Lampung Tengah,age_group,55-59,,76013,jiwa,2025,registration,total_population,3.1.2,86,,55–59
+18.02,2,Kabupaten Lampung Tengah,age_group,60-64,laki_laki,33801,jiwa,2025,registration,total_population,3.1.2,86,,60–64
+18.02,2,Kabupaten Lampung Tengah,age_group,60-64,perempuan,33135,jiwa,2025,registration,total_population,3.1.2,86,,60–64
+18.02,2,Kabupaten Lampung Tengah,age_group,60-64,,66936,jiwa,2025,registration,total_population,3.1.2,86,,60–64
+18.02,2,Kabupaten Lampung Tengah,age_group,65-69,laki_laki,25745,jiwa,2025,registration,total_population,3.1.2,86,,65–69
+18.02,2,Kabupaten Lampung Tengah,age_group,65-69,perempuan,23647,jiwa,2025,registration,total_population,3.1.2,86,,65–69
+18.02,2,Kabupaten Lampung Tengah,age_group,65-69,,49392,jiwa,2025,registration,total_population,3.1.2,86,,65–69
+18.02,2,Kabupaten Lampung Tengah,age_group,70-74,laki_laki,17623,jiwa,2025,registration,total_population,3.1.2,86,,70–74
+18.02,2,Kabupaten Lampung Tengah,age_group,70-74,perempuan,14802,jiwa,2025,registration,total_population,3.1.2,86,,70–74
+18.02,2,Kabupaten Lampung Tengah,age_group,70-74,,32425,jiwa,2025,registration,total_population,3.1.2,86,,70–74
+18.02,2,Kabupaten Lampung Tengah,age_group,75+,laki_laki,24025,jiwa,2025,registration,total_population,3.1.2,86,,75+
+18.02,2,Kabupaten Lampung Tengah,age_group,75+,perempuan,24229,jiwa,2025,registration,total_population,3.1.2,86,,75+
+18.02,2,Kabupaten Lampung Tengah,age_group,75+,,48254,jiwa,2025,registration,total_population,3.1.2,86,,75+
+18.02,2,Lampung Tengah,sex,laki_laki,,717830,jiwa,2025,registration,total_population,3.1.2,86,,Laki-Laki
+18.02,2,Lampung Tengah,sex,perempuan,,690973,jiwa,2025,registration,total_population,3.1.2,86,,Perempuan
+18.02,2,Lampung Tengah,total,total,,1408803,jiwa,2025,registration,total_population,3.1.2,86,,
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/padi_padian,,85323,rupiah,2025,survey_estimate,per_capita,10.1,423,,Padi-padian
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/padi_padian,,95274,rupiah,2024,survey_estimate,per_capita,10.1,423,,Padi-padian
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/umbi_umbian,,4628,rupiah,2025,survey_estimate,per_capita,10.1,423,,Umbi-umbian
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/umbi_umbian,,6112,rupiah,2024,survey_estimate,per_capita,10.1,423,,Umbi-umbian
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,47394,rupiah,2025,survey_estimate,per_capita,10.1,423,,Ikan/udang/cumi/kerang
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,48235,rupiah,2024,survey_estimate,per_capita,10.1,423,,Ikan/udang/cumi/kerang
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/daging,,25478,rupiah,2025,survey_estimate,per_capita,10.1,423,,Daging
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/daging,,30206,rupiah,2024,survey_estimate,per_capita,10.1,423,,Daging
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/telur_dan_susu,,28048,rupiah,2025,survey_estimate,per_capita,10.1,423,,Telur dan susu
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/telur_dan_susu,,35769,rupiah,2024,survey_estimate,per_capita,10.1,423,,Telur dan susu
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/sayur_sayuran,,70220,rupiah,2025,survey_estimate,per_capita,10.1,423,,Sayur-sayuran
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/sayur_sayuran,,69670,rupiah,2024,survey_estimate,per_capita,10.1,423,,Sayur-sayuran
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/kacang_kacangan,,17646,rupiah,2025,survey_estimate,per_capita,10.1,423,,Kacang-kacangan
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/kacang_kacangan,,18772,rupiah,2024,survey_estimate,per_capita,10.1,423,,Kacang-kacangan
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/buah_buahan,,35148,rupiah,2025,survey_estimate,per_capita,10.1,423,,Buah-buahan
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/buah_buahan,,36670,rupiah,2024,survey_estimate,per_capita,10.1,423,,Buah-buahan
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/minyak_dan_kelapa,,24393,rupiah,2025,survey_estimate,per_capita,10.1,423,,Minyak dan kelapa
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/minyak_dan_kelapa,,21863,rupiah,2024,survey_estimate,per_capita,10.1,423,,Minyak dan kelapa
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/bahan_minuman,,20506,rupiah,2025,survey_estimate,per_capita,10.1,423,,Bahan minuman
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/bahan_minuman,,21676,rupiah,2024,survey_estimate,per_capita,10.1,423,,Bahan minuman
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/bumbu_bumbuan,,15319,rupiah,2025,survey_estimate,per_capita,10.1,423,,Bumbu-bumbuan
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/bumbu_bumbuan,,17617,rupiah,2024,survey_estimate,per_capita,10.1,423,,Bumbu-bumbuan
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/konsumsi_lainnya,,10913,rupiah,2025,survey_estimate,per_capita,10.1,423,,Konsumsi lainnya
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/konsumsi_lainnya,,11694,rupiah,2024,survey_estimate,per_capita,10.1,423,,Konsumsi lainnya
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,162056,rupiah,2025,survey_estimate,per_capita,10.1,423,,Makanan dan minuman jadi
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,167289,rupiah,2024,survey_estimate,per_capita,10.1,423,,Makanan dan minuman jadi
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/rokok,,96708,rupiah,2025,survey_estimate,per_capita,10.1,423,,Rokok
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/rokok,,86696,rupiah,2024,survey_estimate,per_capita,10.1,423,,Rokok
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/jumlah_makanan,,643779,rupiah,2025,survey_estimate,per_capita,10.1,423,,Jumlah makanan
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/jumlah_makanan,,667769,rupiah,2024,survey_estimate,per_capita,10.1,423,,Jumlah makanan
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,242086,rupiah,2025,survey_estimate,per_capita,10.1,423,,Perumahan dan fasilitas rumah tangga
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,248008,rupiah,2024,survey_estimate,per_capita,10.1,423,,Perumahan dan fasilitas rumah tangga
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,120235,rupiah,2025,survey_estimate,per_capita,10.1,423,,Aneka barang dan jasa
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,112453,rupiah,2024,survey_estimate,per_capita,10.1,423,,Aneka barang dan jasa
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,34177,rupiah,2025,survey_estimate,per_capita,10.1,423,,"Pakaian, alas kaki, dan tutup kepala"
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,37223,rupiah,2024,survey_estimate,per_capita,10.1,423,,"Pakaian, alas kaki, dan tutup kepala"
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/barang_tahan_lama,,45070,rupiah,2025,survey_estimate,per_capita,10.1,423,,Barang tahan lama
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/barang_tahan_lama,,53224,rupiah,2024,survey_estimate,per_capita,10.1,423,,Barang tahan lama
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,39831,rupiah,2025,survey_estimate,per_capita,10.1,423,,"Pajak, pungutan, dan asuransi"
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,41013,rupiah,2024,survey_estimate,per_capita,10.1,423,,"Pajak, pungutan, dan asuransi"
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,14318,rupiah,2025,survey_estimate,per_capita,10.1,423,,Keperluan pesta dan upacara/kenduri
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,25666,rupiah,2024,survey_estimate,per_capita,10.1,423,,Keperluan pesta dan upacara/kenduri
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,495717,rupiah,2025,survey_estimate,per_capita,10.1,423,,Jumlah bukan makanan
+18.02,2,Kabupaten Lampung Tengah,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,517588,rupiah,2024,survey_estimate,per_capita,10.1,423,,Jumlah bukan makanan
+18.02,2,Kabupaten Lampung Tengah,expenditure,total,,1139496,rupiah,2025,survey_estimate,per_capita,10.1,423,,
+18.02,2,Kabupaten Lampung Tengah,expenditure,total,,1185356,rupiah,2024,survey_estimate,per_capita,10.1,423,,

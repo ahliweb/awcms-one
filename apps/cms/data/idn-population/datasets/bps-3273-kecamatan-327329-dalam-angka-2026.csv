@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.73.29.1001,4,Cisaranten Wetan,sex,laki_laki,,3380,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+32.73.29.1001,4,Cisaranten Wetan,sex,perempuan,,3290,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+32.73.29.1001,4,Cisaranten Wetan,total,total,,6670,jiwa,2025,registration,total_population,3.1,38,,
+32.73.29.1004,4,Babakan Penghulu,sex,laki_laki,,3917,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+32.73.29.1004,4,Babakan Penghulu,sex,perempuan,,3880,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+32.73.29.1004,4,Babakan Penghulu,total,total,,7797,jiwa,2025,registration,total_population,3.1,38,,
+32.73.29.1002,4,Pakemitan,sex,laki_laki,,3477,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+32.73.29.1002,4,Pakemitan,sex,perempuan,,3242,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+32.73.29.1002,4,Pakemitan,total,total,,6719,jiwa,2025,registration,total_population,3.1,38,,
+32.73.29.1003,4,Sukamulya,sex,laki_laki,,2839,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+32.73.29.1003,4,Sukamulya,sex,perempuan,,2809,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+32.73.29.1003,4,Sukamulya,total,total,,5648,jiwa,2025,registration,total_population,3.1,38,,
+32.73.29,3,Cinambo,age_group,0-4,laki_laki,910,jiwa,2025,registration,total_population,3.2,40,,0-4
+32.73.29,3,Cinambo,age_group,0-4,perempuan,879,jiwa,2025,registration,total_population,3.2,40,,0-4
+32.73.29,3,Cinambo,age_group,0-4,,1789,jiwa,2025,registration,total_population,3.2,40,,0-4
+32.73.29,3,Cinambo,age_group,5-9,laki_laki,1174,jiwa,2025,registration,total_population,3.2,40,,5-9
+32.73.29,3,Cinambo,age_group,5-9,perempuan,1033,jiwa,2025,registration,total_population,3.2,40,,5-9
+32.73.29,3,Cinambo,age_group,5-9,,2207,jiwa,2025,registration,total_population,3.2,40,,5-9
+32.73.29,3,Cinambo,age_group,10-14,laki_laki,1152,jiwa,2025,registration,total_population,3.2,40,,10-14
+32.73.29,3,Cinambo,age_group,10-14,perempuan,1127,jiwa,2025,registration,total_population,3.2,40,,10-14
+32.73.29,3,Cinambo,age_group,10-14,,2279,jiwa,2025,registration,total_population,3.2,40,,10-14
+32.73.29,3,Cinambo,age_group,15-19,laki_laki,1051,jiwa,2025,registration,total_population,3.2,40,,15-19
+32.73.29,3,Cinambo,age_group,15-19,perempuan,966,jiwa,2025,registration,total_population,3.2,40,,15-19
+32.73.29,3,Cinambo,age_group,15-19,,2017,jiwa,2025,registration,total_population,3.2,40,,15-19
+32.73.29,3,Cinambo,age_group,20-24,laki_laki,1240,jiwa,2025,registration,total_population,3.2,40,,20-24
+32.73.29,3,Cinambo,age_group,20-24,perempuan,994,jiwa,2025,registration,total_population,3.2,40,,20-24
+32.73.29,3,Cinambo,age_group,20-24,,2234,jiwa,2025,registration,total_population,3.2,40,,20-24
+32.73.29,3,Cinambo,age_group,25-29,laki_laki,1161,jiwa,2025,registration,total_population,3.2,40,,25-29
+32.73.29,3,Cinambo,age_group,25-29,perempuan,1145,jiwa,2025,registration,total_population,3.2,40,,25-29
+32.73.29,3,Cinambo,age_group,25-29,,2306,jiwa,2025,registration,total_population,3.2,40,,25-29
+32.73.29,3,Cinambo,age_group,30-34,laki_laki,1115,jiwa,2025,registration,total_population,3.2,40,,30-34
+32.73.29,3,Cinambo,age_group,30-34,perempuan,1122,jiwa,2025,registration,total_population,3.2,40,,30-34
+32.73.29,3,Cinambo,age_group,30-34,,2237,jiwa,2025,registration,total_population,3.2,40,,30-34
+32.73.29,3,Cinambo,age_group,35-39,laki_laki,921,jiwa,2025,registration,total_population,3.2,40,,35-39
+32.73.29,3,Cinambo,age_group,35-39,perempuan,892,jiwa,2025,registration,total_population,3.2,40,,35-39
+32.73.29,3,Cinambo,age_group,35-39,,1813,jiwa,2025,registration,total_population,3.2,40,,35-39
+32.73.29,3,Cinambo,age_group,40-44,laki_laki,970,jiwa,2025,registration,total_population,3.2,40,,40-44
+32.73.29,3,Cinambo,age_group,40-44,perempuan,1016,jiwa,2025,registration,total_population,3.2,40,,40-44
+32.73.29,3,Cinambo,age_group,40-44,,1986,jiwa,2025,registration,total_population,3.2,40,,40-44
+32.73.29,3,Cinambo,age_group,45-49,laki_laki,1026,jiwa,2025,registration,total_population,3.2,40,,45-49
+32.73.29,3,Cinambo,age_group,45-49,perempuan,1073,jiwa,2025,registration,total_population,3.2,40,,45-49
+32.73.29,3,Cinambo,age_group,45-49,,2099,jiwa,2025,registration,total_population,3.2,40,,45-49
+32.73.29,3,Cinambo,age_group,50-54,laki_laki,929,jiwa,2025,registration,total_population,3.2,40,,50-54
+32.73.29,3,Cinambo,age_group,50-54,perempuan,876,jiwa,2025,registration,total_population,3.2,40,,50-54
+32.73.29,3,Cinambo,age_group,50-54,,1805,jiwa,2025,registration,total_population,3.2,40,,50-54
+32.73.29,3,Cinambo,age_group,55-59,laki_laki,672,jiwa,2025,registration,total_population,3.2,40,,55-59
+32.73.29,3,Cinambo,age_group,55-59,perempuan,695,jiwa,2025,registration,total_population,3.2,40,,55-59
+32.73.29,3,Cinambo,age_group,55-59,,1367,jiwa,2025,registration,total_population,3.2,40,,55-59
+32.73.29,3,Cinambo,age_group,60-64,laki_laki,452,jiwa,2025,registration,total_population,3.2,40,,60-64
+32.73.29,3,Cinambo,age_group,60-64,perempuan,530,jiwa,2025,registration,total_population,3.2,40,,60-64
+32.73.29,3,Cinambo,age_group,60-64,,982,jiwa,2025,registration,total_population,3.2,40,,60-64
+32.73.29,3,Cinambo,age_group,65-69,laki_laki,387,jiwa,2025,registration,total_population,3.2,40,,65-69
+32.73.29,3,Cinambo,age_group,65-69,perempuan,409,jiwa,2025,registration,total_population,3.2,40,,65-69
+32.73.29,3,Cinambo,age_group,65-69,,796,jiwa,2025,registration,total_population,3.2,40,,65-69
+32.73.29,3,Cinambo,age_group,70-74,laki_laki,240,jiwa,2025,registration,total_population,3.2,40,,70-74
+32.73.29,3,Cinambo,age_group,70-74,perempuan,226,jiwa,2025,registration,total_population,3.2,40,,70-74
+32.73.29,3,Cinambo,age_group,70-74,,466,jiwa,2025,registration,total_population,3.2,40,,70-74
+32.73.29,3,Cinambo,age_group,75+,laki_laki,213,jiwa,2025,registration,total_population,3.2,40,,75+
+32.73.29,3,Cinambo,age_group,75+,perempuan,238,jiwa,2025,registration,total_population,3.2,40,,75+
+32.73.29,3,Cinambo,age_group,75+,,451,jiwa,2025,registration,total_population,3.2,40,,75+
+32.73.29.1001,4,Cisaranten Wetan,religion,islam,,6441,jiwa,2025,registration,total_population,4.4.5,92,,Islam
+32.73.29.1001,4,Cisaranten Wetan,religion,kristen,,154,jiwa,2025,registration,total_population,4.4.5,92,,Protestan
+32.73.29.1001,4,Cisaranten Wetan,religion,katolik,,67,jiwa,2025,registration,total_population,4.4.5,92,,Catholic
+32.73.29.1001,4,Cisaranten Wetan,religion,hindu,,4,jiwa,2025,registration,total_population,4.4.5,92,,Hindu
+32.73.29.1001,4,Cisaranten Wetan,religion,buddha,,4,jiwa,2025,registration,total_population,4.4.5,92,,Budha
+32.73.29.1001,4,Cisaranten Wetan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,92,nil,Lainnya
+32.73.29.1004,4,Babakan Penghulu,religion,islam,,7458,jiwa,2025,registration,total_population,4.4.5,92,,Islam
+32.73.29.1004,4,Babakan Penghulu,religion,kristen,,248,jiwa,2025,registration,total_population,4.4.5,92,,Protestan
+32.73.29.1004,4,Babakan Penghulu,religion,katolik,,80,jiwa,2025,registration,total_population,4.4.5,92,,Catholic
+32.73.29.1004,4,Babakan Penghulu,religion,hindu,,1,jiwa,2025,registration,total_population,4.4.5,92,,Hindu
+32.73.29.1004,4,Babakan Penghulu,religion,buddha,,10,jiwa,2025,registration,total_population,4.4.5,92,,Budha
+32.73.29.1004,4,Babakan Penghulu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,92,nil,Lainnya
+32.73.29.1002,4,Pakemitan,religion,islam,,6326,jiwa,2025,registration,total_population,4.4.5,92,,Islam
+32.73.29.1002,4,Pakemitan,religion,kristen,,230,jiwa,2025,registration,total_population,4.4.5,92,,Protestan
+32.73.29.1002,4,Pakemitan,religion,katolik,,122,jiwa,2025,registration,total_population,4.4.5,92,,Catholic
+32.73.29.1002,4,Pakemitan,religion,hindu,,27,jiwa,2025,registration,total_population,4.4.5,92,,Hindu
+32.73.29.1002,4,Pakemitan,religion,buddha,,14,jiwa,2025,registration,total_population,4.4.5,92,,Budha
+32.73.29.1002,4,Pakemitan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,92,nil,Lainnya
+32.73.29.1003,4,Sukamulya,religion,islam,,5521,jiwa,2025,registration,total_population,4.4.5,92,,Islam
+32.73.29.1003,4,Sukamulya,religion,kristen,,77,jiwa,2025,registration,total_population,4.4.5,92,,Protestan
+32.73.29.1003,4,Sukamulya,religion,katolik,,20,jiwa,2025,registration,total_population,4.4.5,92,,Catholic
+32.73.29.1003,4,Sukamulya,religion,hindu,,4,jiwa,2025,registration,total_population,4.4.5,92,,Hindu
+32.73.29.1003,4,Sukamulya,religion,buddha,,26,jiwa,2025,registration,total_population,4.4.5,92,,Budha
+32.73.29.1003,4,Sukamulya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,92,nil,Lainnya

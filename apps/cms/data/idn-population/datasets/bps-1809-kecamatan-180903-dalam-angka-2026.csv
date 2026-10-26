@@ -1,0 +1,233 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.09.03.2007,4,Kresno Widodo,sex,laki_laki,,2742,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.03.2007,4,Kresno Widodo,sex,perempuan,,2708,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.03.2007,4,Kresno Widodo,total,total,,5450,jiwa,2025,registration,total_population,3.1,30,,
+18.09.03.2006,4,Gedung Gumanti,sex,laki_laki,,2912,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.03.2006,4,Gedung Gumanti,sex,perempuan,,2772,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.03.2006,4,Gedung Gumanti,total,total,,5684,jiwa,2025,registration,total_population,3.1,30,,
+18.09.03.2002,4,Kejadian,sex,laki_laki,,980,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.03.2002,4,Kejadian,sex,perempuan,,971,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.03.2002,4,Kejadian,total,total,,1951,jiwa,2025,registration,total_population,3.1,30,,
+18.09.03.2001,4,Bumi Agung,sex,laki_laki,,4360,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.03.2001,4,Bumi Agung,sex,perempuan,,4188,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.03.2001,4,Bumi Agung,total,total,,8548,jiwa,2025,registration,total_population,3.1,30,,
+18.09.03.2003,4,Batang Hari Ogan,sex,laki_laki,,1609,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.03.2003,4,Batang Hari Ogan,sex,perempuan,,1618,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.03.2003,4,Batang Hari Ogan,total,total,,3227,jiwa,2025,registration,total_population,3.1,30,,
+18.09.03.2013,4,Rejo Agung,sex,laki_laki,,3549,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.03.2013,4,Rejo Agung,sex,perempuan,,3322,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.03.2013,4,Rejo Agung,total,total,,6871,jiwa,2025,registration,total_population,3.1,30,,
+18.09.03.2014,4,Kota Agung,sex,laki_laki,,1254,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.03.2014,4,Kota Agung,sex,perempuan,,1211,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.03.2014,4,Kota Agung,total,total,,2465,jiwa,2025,registration,total_population,3.1,30,,
+18.09.03.2004,4,Negara Ratu Wates,sex,laki_laki,,483,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.03.2004,4,Negara Ratu Wates,sex,perempuan,,466,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.03.2004,4,Negara Ratu Wates,total,total,,949,jiwa,2025,registration,total_population,3.1,30,,
+18.09.03.2005,4,Gunung Sugih Baru,sex,laki_laki,,845,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.03.2005,4,Gunung Sugih Baru,sex,perempuan,,798,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.03.2005,4,Gunung Sugih Baru,total,total,,1643,jiwa,2025,registration,total_population,3.1,30,,
+18.09.03.2012,4,Margo Mulyo,sex,laki_laki,,2218,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.03.2012,4,Margo Mulyo,sex,perempuan,,2192,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.03.2012,4,Margo Mulyo,total,total,,4410,jiwa,2025,registration,total_population,3.1,30,,
+18.09.03.2015,4,Tri Mulyo,sex,laki_laki,,3623,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.03.2015,4,Tri Mulyo,sex,perempuan,,3410,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.03.2015,4,Tri Mulyo,total,total,,7033,jiwa,2025,registration,total_population,3.1,30,,
+18.09.03.2008,4,Sinar Jati,sex,laki_laki,,697,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.03.2008,4,Sinar Jati,sex,perempuan,,686,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.03.2008,4,Sinar Jati,total,total,,1383,jiwa,2025,registration,total_population,3.1,30,,
+18.09.03.2009,4,Margo Rejo,sex,laki_laki,,2460,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.03.2009,4,Margo Rejo,sex,perempuan,,2326,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.03.2009,4,Margo Rejo,total,total,,4786,jiwa,2025,registration,total_population,3.1,30,,
+18.09.03.2010,4,Gerning,sex,laki_laki,,2268,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.03.2010,4,Gerning,sex,perempuan,,2158,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.03.2010,4,Gerning,total,total,,4426,jiwa,2025,registration,total_population,3.1,30,,
+18.09.03.2011,4,Panca Bakti,sex,laki_laki,,729,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.03.2011,4,Panca Bakti,sex,perempuan,,764,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.03.2011,4,Panca Bakti,total,total,,1493,jiwa,2025,registration,total_population,3.1,30,,
+18.09.03.2016,4,Sriwedari,sex,laki_laki,,1337,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.03.2016,4,Sriwedari,sex,perempuan,,1305,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.03.2016,4,Sriwedari,total,total,,2642,jiwa,2025,registration,total_population,3.1,30,,
+18.09.03,3,Tegineneng,sex,laki_laki,,32066,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.03,3,Tegineneng,sex,perempuan,,30895,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.03,3,Tegineneng,total,total,,62961,jiwa,2025,registration,total_population,3.1,30,,
+18.09.03,3,Tegineneng,age_group,0-5,laki_laki,2530,jiwa,2025,registration,total_population,3.2,32,,0-5
+18.09.03,3,Tegineneng,age_group,0-5,perempuan,2355,jiwa,2025,registration,total_population,3.2,32,,0-5
+18.09.03,3,Tegineneng,age_group,0-5,,4885,jiwa,2025,registration,total_population,3.2,32,,0-5
+18.09.03,3,Tegineneng,age_group,6-10,laki_laki,2697,jiwa,2025,registration,total_population,3.2,32,,6-10
+18.09.03,3,Tegineneng,age_group,6-10,perempuan,2448,jiwa,2025,registration,total_population,3.2,32,,6-10
+18.09.03,3,Tegineneng,age_group,6-10,,5145,jiwa,2025,registration,total_population,3.2,32,,6-10
+18.09.03,3,Tegineneng,age_group,11-17,laki_laki,3916,jiwa,2025,registration,total_population,3.2,32,,11-17
+18.09.03,3,Tegineneng,age_group,11-17,perempuan,3780,jiwa,2025,registration,total_population,3.2,32,,11-17
+18.09.03,3,Tegineneng,age_group,11-17,,7696,jiwa,2025,registration,total_population,3.2,32,,11-17
+18.09.03,3,Tegineneng,age_group,18-22,laki_laki,2112,jiwa,2025,registration,total_population,3.2,32,,18-22
+18.09.03,3,Tegineneng,age_group,18-22,perempuan,2076,jiwa,2025,registration,total_population,3.2,32,,18-22
+18.09.03,3,Tegineneng,age_group,18-22,,4188,jiwa,2025,registration,total_population,3.2,32,,18-22
+18.09.03,3,Tegineneng,age_group,23-27,laki_laki,2357,jiwa,2025,registration,total_population,3.2,32,,23-27
+18.09.03,3,Tegineneng,age_group,23-27,perempuan,2255,jiwa,2025,registration,total_population,3.2,32,,23-27
+18.09.03,3,Tegineneng,age_group,23-27,,4612,jiwa,2025,registration,total_population,3.2,32,,23-27
+18.09.03,3,Tegineneng,age_group,28-32,laki_laki,2336,jiwa,2025,registration,total_population,3.2,32,,28-32
+18.09.03,3,Tegineneng,age_group,28-32,perempuan,2212,jiwa,2025,registration,total_population,3.2,32,,28-32
+18.09.03,3,Tegineneng,age_group,28-32,,4548,jiwa,2025,registration,total_population,3.2,32,,28-32
+18.09.03,3,Tegineneng,age_group,33-38,laki_laki,2645,jiwa,2025,registration,total_population,3.2,32,,33-38
+18.09.03,3,Tegineneng,age_group,33-38,perempuan,2581,jiwa,2025,registration,total_population,3.2,32,,33-38
+18.09.03,3,Tegineneng,age_group,33-38,,5226,jiwa,2025,registration,total_population,3.2,32,,33-38
+18.09.03,3,Tegineneng,age_group,39-43,laki_laki,2515,jiwa,2025,registration,total_population,3.2,32,,39-43
+18.09.03,3,Tegineneng,age_group,39-43,perempuan,2493,jiwa,2025,registration,total_population,3.2,32,,39-43
+18.09.03,3,Tegineneng,age_group,39-43,,5008,jiwa,2025,registration,total_population,3.2,32,,39-43
+18.09.03,3,Tegineneng,age_group,44-48,laki_laki,2523,jiwa,2025,registration,total_population,3.2,32,,44-48
+18.09.03,3,Tegineneng,age_group,44-48,perempuan,2440,jiwa,2025,registration,total_population,3.2,32,,44-48
+18.09.03,3,Tegineneng,age_group,44-48,,4963,jiwa,2025,registration,total_population,3.2,32,,44-48
+18.09.03,3,Tegineneng,age_group,49-53,laki_laki,2205,jiwa,2025,registration,total_population,3.2,32,,49-53
+18.09.03,3,Tegineneng,age_group,49-53,perempuan,2173,jiwa,2025,registration,total_population,3.2,32,,49-53
+18.09.03,3,Tegineneng,age_group,49-53,,4378,jiwa,2025,registration,total_population,3.2,32,,49-53
+18.09.03,3,Tegineneng,age_group,54-58,laki_laki,1741,jiwa,2025,registration,total_population,3.2,32,,54-58
+18.09.03,3,Tegineneng,age_group,54-58,perempuan,1659,jiwa,2025,registration,total_population,3.2,32,,54-58
+18.09.03,3,Tegineneng,age_group,54-58,,3400,jiwa,2025,registration,total_population,3.2,32,,54-58
+18.09.03,3,Tegineneng,age_group,59-63,laki_laki,1366,jiwa,2025,registration,total_population,3.2,32,,59-63
+18.09.03,3,Tegineneng,age_group,59-63,perempuan,1325,jiwa,2025,registration,total_population,3.2,32,,59-63
+18.09.03,3,Tegineneng,age_group,59-63,,2691,jiwa,2025,registration,total_population,3.2,32,,59-63
+18.09.03,3,Tegineneng,age_group,64-68,laki_laki,1131,jiwa,2025,registration,total_population,3.2,32,,64-68
+18.09.03,3,Tegineneng,age_group,64-68,perempuan,1158,jiwa,2025,registration,total_population,3.2,32,,64-68
+18.09.03,3,Tegineneng,age_group,64-68,,2289,jiwa,2025,registration,total_population,3.2,32,,64-68
+18.09.03,3,Tegineneng,age_group,69-73,laki_laki,781,jiwa,2025,registration,total_population,3.2,32,,69-73
+18.09.03,3,Tegineneng,age_group,69-73,perempuan,758,jiwa,2025,registration,total_population,3.2,32,,69-73
+18.09.03,3,Tegineneng,age_group,69-73,,1539,jiwa,2025,registration,total_population,3.2,32,,69-73
+18.09.03,3,Tegineneng,age_group,74+,laki_laki,1211,jiwa,2025,registration,total_population,3.2,32,,>74
+18.09.03,3,Tegineneng,age_group,74+,perempuan,1182,jiwa,2025,registration,total_population,3.2,32,,>74
+18.09.03,3,Tegineneng,age_group,74+,,2393,jiwa,2025,registration,total_population,3.2,32,,>74
+18.09.03.2007,4,Kresno Widodo,religion,islam,,5213,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.03.2007,4,Kresno Widodo,religion,kristen,,183,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.03.2007,4,Kresno Widodo,religion,katolik,,54,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.03.2007,4,Kresno Widodo,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.03.2006,4,Gedung Gumanti,religion,islam,,5618,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.03.2006,4,Gedung Gumanti,religion,kristen,,11,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.03.2006,4,Gedung Gumanti,religion,katolik,,55,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.03.2006,4,Gedung Gumanti,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.03.2002,4,Kejadian,religion,islam,,1947,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.03.2002,4,Kejadian,religion,kristen,,3,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.03.2002,4,Kejadian,religion,katolik,,1,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.03.2002,4,Kejadian,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.03.2001,4,Bumi Agung,religion,islam,,8277,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.03.2001,4,Bumi Agung,religion,kristen,,120,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.03.2001,4,Bumi Agung,religion,katolik,,138,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.03.2001,4,Bumi Agung,religion,hindu,,8,jiwa,2025,registration,total_population,4.4.3,56,,Hindu/
+18.09.03.2003,4,Batang Hari Ogan,religion,islam,,3227,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.03.2003,4,Batang Hari Ogan,religion,kristen,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Kristen/
+18.09.03.2003,4,Batang Hari Ogan,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.03.2003,4,Batang Hari Ogan,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.03.2013,4,Rejo Agung,religion,islam,,6787,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.03.2013,4,Rejo Agung,religion,kristen,,36,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.03.2013,4,Rejo Agung,religion,katolik,,39,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.03.2013,4,Rejo Agung,religion,hindu,,3,jiwa,2025,registration,total_population,4.4.3,56,,Hindu/
+18.09.03.2014,4,Kota Agung,religion,islam,,2402,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.03.2014,4,Kota Agung,religion,kristen,,59,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.03.2014,4,Kota Agung,religion,katolik,,4,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.03.2014,4,Kota Agung,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.03.2004,4,Negara Ratu Wates,religion,islam,,941,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.03.2004,4,Negara Ratu Wates,religion,kristen,,8,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.03.2004,4,Negara Ratu Wates,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.03.2004,4,Negara Ratu Wates,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.03.2005,4,Gunung Sugih Baru,religion,islam,,1643,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.03.2005,4,Gunung Sugih Baru,religion,kristen,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Kristen/
+18.09.03.2005,4,Gunung Sugih Baru,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.03.2005,4,Gunung Sugih Baru,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.03.2012,4,Margo Mulyo,religion,islam,,4239,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.03.2012,4,Margo Mulyo,religion,kristen,,40,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.03.2012,4,Margo Mulyo,religion,katolik,,130,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.03.2012,4,Margo Mulyo,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.03.2015,4,Tri Mulyo,religion,islam,,6966,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.03.2015,4,Tri Mulyo,religion,kristen,,64,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.03.2015,4,Tri Mulyo,religion,katolik,,3,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.03.2015,4,Tri Mulyo,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.03.2008,4,Sinar Jati,religion,islam,,1366,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.03.2008,4,Sinar Jati,religion,kristen,,14,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.03.2008,4,Sinar Jati,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.03.2008,4,Sinar Jati,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.03.2009,4,Margo Rejo,religion,islam,,4086,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.03.2009,4,Margo Rejo,religion,kristen,,18,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.03.2009,4,Margo Rejo,religion,katolik,,306,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.03.2009,4,Margo Rejo,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.03.2010,4,Gerning,religion,islam,,4387,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.03.2010,4,Gerning,religion,kristen,,6,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.03.2010,4,Gerning,religion,katolik,,23,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.03.2010,4,Gerning,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.03.2011,4,Panca Bakti,religion,islam,,1479,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.03.2011,4,Panca Bakti,religion,kristen,,5,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.03.2011,4,Panca Bakti,religion,katolik,,5,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.03.2011,4,Panca Bakti,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.03.2016,4,Sriwedari,religion,islam,,2299,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.03.2016,4,Sriwedari,religion,kristen,,324,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.03.2016,4,Sriwedari,religion,katolik,,16,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.03.2016,4,Sriwedari,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.03,3,Tegineneng,religion,islam,,60877,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.03,3,Tegineneng,religion,kristen,,891,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.03,3,Tegineneng,religion,katolik,,774,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.03,3,Tegineneng,religion,hindu,,11,jiwa,2025,registration,total_population,4.4.3,56,,Hindu/
+18.09.03.2007,4,Kresno Widodo,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.03.2007,4,Kresno Widodo,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.03.2007,4,Kresno Widodo,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.03.2007,4,Kresno Widodo,total,total,,5450,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.03.2006,4,Gedung Gumanti,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.03.2006,4,Gedung Gumanti,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.03.2006,4,Gedung Gumanti,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.03.2006,4,Gedung Gumanti,total,total,,5684,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.03.2002,4,Kejadian,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.03.2002,4,Kejadian,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.03.2002,4,Kejadian,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.03.2002,4,Kejadian,total,total,,1951,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.03.2001,4,Bumi Agung,religion,buddha,,1,jiwa,2025,registration,total_population,4.4.3,57,,Budha/
+18.09.03.2001,4,Bumi Agung,religion,khonghucu,,2,jiwa,2025,registration,total_population,4.4.3,57,,Khonghucu/
+18.09.03.2001,4,Bumi Agung,religion,kepercayaan,,2,jiwa,2025,registration,total_population,4.4.3,57,,Kepercayaan/
+18.09.03.2001,4,Bumi Agung,total,total,,8548,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.03.2003,4,Batang Hari Ogan,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.03.2003,4,Batang Hari Ogan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.03.2003,4,Batang Hari Ogan,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.03.2003,4,Batang Hari Ogan,total,total,,3227,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.03.2013,4,Rejo Agung,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.03.2013,4,Rejo Agung,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.03.2013,4,Rejo Agung,religion,kepercayaan,,6,jiwa,2025,registration,total_population,4.4.3,57,,Kepercayaan/
+18.09.03.2013,4,Rejo Agung,total,total,,6871,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.03.2014,4,Kota Agung,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.03.2014,4,Kota Agung,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.03.2014,4,Kota Agung,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.03.2014,4,Kota Agung,total,total,,2465,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.03.2004,4,Negara Ratu Wates,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.03.2004,4,Negara Ratu Wates,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.03.2004,4,Negara Ratu Wates,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.03.2004,4,Negara Ratu Wates,total,total,,949,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.03.2005,4,Gunung Sugih Baru,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.03.2005,4,Gunung Sugih Baru,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.03.2005,4,Gunung Sugih Baru,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.03.2005,4,Gunung Sugih Baru,total,total,,1643,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.03.2012,4,Margo Mulyo,religion,buddha,,1,jiwa,2025,registration,total_population,4.4.3,57,,Budha/
+18.09.03.2012,4,Margo Mulyo,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.03.2012,4,Margo Mulyo,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.03.2012,4,Margo Mulyo,total,total,,4410,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.03.2015,4,Tri Mulyo,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.03.2015,4,Tri Mulyo,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.03.2015,4,Tri Mulyo,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.03.2015,4,Tri Mulyo,total,total,,7033,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.03.2008,4,Sinar Jati,religion,buddha,,3,jiwa,2025,registration,total_population,4.4.3,57,,Budha/
+18.09.03.2008,4,Sinar Jati,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.03.2008,4,Sinar Jati,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.03.2008,4,Sinar Jati,total,total,,1383,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.03.2009,4,Margo Rejo,religion,buddha,,376,jiwa,2025,registration,total_population,4.4.3,57,,Budha/
+18.09.03.2009,4,Margo Rejo,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.03.2009,4,Margo Rejo,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.03.2009,4,Margo Rejo,total,total,,4786,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.03.2010,4,Gerning,religion,buddha,,10,jiwa,2025,registration,total_population,4.4.3,57,,Budha/
+18.09.03.2010,4,Gerning,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.03.2010,4,Gerning,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.03.2010,4,Gerning,total,total,,4426,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.03.2011,4,Panca Bakti,religion,buddha,,4,jiwa,2025,registration,total_population,4.4.3,57,,Budha/
+18.09.03.2011,4,Panca Bakti,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.03.2011,4,Panca Bakti,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.03.2011,4,Panca Bakti,total,total,,1493,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.03.2016,4,Sriwedari,religion,buddha,,3,jiwa,2025,registration,total_population,4.4.3,57,,Budha/
+18.09.03.2016,4,Sriwedari,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.03.2016,4,Sriwedari,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.03.2016,4,Sriwedari,total,total,,2642,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.03,3,Tegineneng,religion,buddha,,398,jiwa,2025,registration,total_population,4.4.3,57,,Budha/
+18.09.03,3,Tegineneng,religion,khonghucu,,2,jiwa,2025,registration,total_population,4.4.3,57,,Khonghucu/
+18.09.03,3,Tegineneng,religion,kepercayaan,,8,jiwa,2025,registration,total_population,4.4.3,57,,Kepercayaan/
+18.09.03,3,Tegineneng,total,total,,62961,jiwa,2025,registration,total_population,4.4.3,57,,

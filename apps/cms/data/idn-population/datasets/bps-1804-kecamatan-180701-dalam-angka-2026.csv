@@ -1,0 +1,109 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.07.01.2004,4,Raja Basa Batanghari,sex,laki_laki,,734,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.01.2004,4,Raja Basa Batanghari,sex,perempuan,,682,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.01.2004,4,Raja Basa Batanghari,total,total,,1416,jiwa,2025,registration,total_population,3.1,,,
+18.07.01.2001,4,Sukadana,sex,laki_laki,,2838,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.01.2001,4,Sukadana,sex,perempuan,,2761,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.01.2001,4,Sukadana,total,total,,5599,jiwa,2025,registration,total_population,3.1,,,
+18.07.01.2002,4,Pakuan Aji,sex,laki_laki,,5638,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.01.2002,4,Pakuan Aji,sex,perempuan,,5567,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.01.2002,4,Pakuan Aji,total,total,,11205,jiwa,2025,registration,total_population,3.1,,,
+18.07.01.2003,4,Bumi Nabung Udik,sex,laki_laki,,785,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.01.2003,4,Bumi Nabung Udik,sex,perempuan,,771,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.01.2003,4,Bumi Nabung Udik,total,total,,1556,jiwa,2025,registration,total_population,3.1,,,
+18.07.01.2014,4,Sukadana Timur,sex,laki_laki,,1806,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.01.2014,4,Sukadana Timur,sex,perempuan,,1742,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.01.2014,4,Sukadana Timur,total,total,,3548,jiwa,2025,registration,total_population,3.1,,,
+18.07.01.2009,4,Surabaya Udik,sex,laki_laki,,1780,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.01.2009,4,Surabaya Udik,sex,perempuan,,1690,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.01.2009,4,Surabaya Udik,total,total,,3470,jiwa,2025,registration,total_population,3.1,,,
+18.07.01.2015,4,Rantau Jaya Udik II,sex,laki_laki,,2701,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.01.2015,4,Rantau Jaya Udik II,sex,perempuan,,2583,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.01.2015,4,Rantau Jaya Udik II,total,total,,5284,jiwa,2025,registration,total_population,3.1,,,
+18.07.01.2011,4,Muara Jaya,sex,laki_laki,,2430,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.01.2011,4,Muara Jaya,sex,perempuan,,2396,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.01.2011,4,Muara Jaya,total,total,,4826,jiwa,2025,registration,total_population,3.1,,,
+18.07.01.2010,4,Rantau Jaya Udik,sex,laki_laki,,1131,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.01.2010,4,Rantau Jaya Udik,sex,perempuan,,1041,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.01.2010,4,Rantau Jaya Udik,total,total,,2172,jiwa,2025,registration,total_population,3.1,,,
+18.07.01.2008,4,Pasar Sukadana,sex,laki_laki,,4238,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.01.2008,4,Pasar Sukadana,sex,perempuan,,4174,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.01.2008,4,Pasar Sukadana,total,total,,8412,jiwa,2025,registration,total_population,3.1,,,
+18.07.01.2007,4,Mataram Marga,sex,laki_laki,,1636,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.01.2007,4,Mataram Marga,sex,perempuan,,1567,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.01.2007,4,Mataram Marga,total,total,,3203,jiwa,2025,registration,total_population,3.1,,,
+18.07.01.2012,4,Sukadana Ilir,sex,laki_laki,,3426,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.01.2012,4,Sukadana Ilir,sex,perempuan,,3249,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.01.2012,4,Sukadana Ilir,total,total,,6675,jiwa,2025,registration,total_population,3.1,,,
+18.07.01.2005,4,Negara Nabung,sex,laki_laki,,2040,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.01.2005,4,Negara Nabung,sex,perempuan,,1976,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.01.2005,4,Negara Nabung,total,total,,4016,jiwa,2025,registration,total_population,3.1,,,
+18.07.01.2013,4,Bumi Ayu,sex,laki_laki,,1531,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.01.2013,4,Bumi Ayu,sex,perempuan,,1509,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.01.2013,4,Bumi Ayu,total,total,,3040,jiwa,2025,registration,total_population,3.1,,,
+18.07.01.2017,4,Putra Aji I,sex,laki_laki,,1184,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.01.2017,4,Putra Aji I,sex,perempuan,,1169,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.01.2017,4,Putra Aji I,total,total,,2353,jiwa,2025,registration,total_population,3.1,,,
+18.07.01.2018,4,Sukadana Selatan,sex,laki_laki,,899,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.01.2018,4,Sukadana Selatan,sex,perempuan,,827,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.01.2018,4,Sukadana Selatan,total,total,,1726,jiwa,2025,registration,total_population,3.1,,,
+18.07.01.2020,4,Sukadana Tengah,sex,laki_laki,,2164,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.01.2020,4,Sukadana Tengah,sex,perempuan,,2068,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.01.2020,4,Sukadana Tengah,total,total,,4232,jiwa,2025,registration,total_population,3.1,,,
+18.07.01.2019,4,Sukadana Jaya,sex,laki_laki,,1913,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.01.2019,4,Sukadana Jaya,sex,perempuan,,1892,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.01.2019,4,Sukadana Jaya,total,total,,3805,jiwa,2025,registration,total_population,3.1,,,
+18.07.01,3,Sukadana,sex,laki_laki,,40555,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+18.07.01,3,Sukadana,sex,perempuan,,39296,jiwa,2025,registration,total_population,3.1,,,Perempuan
+18.07.01,3,Sukadana,total,total,,79851,jiwa,2025,registration,total_population,3.1,,,
+18.07.01,3,Sukadana,age_group,0-4,laki_laki,2393,jiwa,2025,registration,total_population,3.2,,,0-4
+18.07.01,3,Sukadana,age_group,0-4,perempuan,2355,jiwa,2025,registration,total_population,3.2,,,0-4
+18.07.01,3,Sukadana,age_group,0-4,,4748,jiwa,2025,registration,total_population,3.2,,,0-4
+18.07.01,3,Sukadana,age_group,5-9,laki_laki,3254,jiwa,2025,registration,total_population,3.2,,,5-9
+18.07.01,3,Sukadana,age_group,5-9,perempuan,3041,jiwa,2025,registration,total_population,3.2,,,5-9
+18.07.01,3,Sukadana,age_group,5-9,,6295,jiwa,2025,registration,total_population,3.2,,,5-9
+18.07.01,3,Sukadana,age_group,10-14,laki_laki,3421,jiwa,2025,registration,total_population,3.2,,,10-14
+18.07.01,3,Sukadana,age_group,10-14,perempuan,3228,jiwa,2025,registration,total_population,3.2,,,10-14
+18.07.01,3,Sukadana,age_group,10-14,,6649,jiwa,2025,registration,total_population,3.2,,,10-14
+18.07.01,3,Sukadana,age_group,15-19,laki_laki,3263,jiwa,2025,registration,total_population,3.2,,,15-19
+18.07.01,3,Sukadana,age_group,15-19,perempuan,3154,jiwa,2025,registration,total_population,3.2,,,15-19
+18.07.01,3,Sukadana,age_group,15-19,,6417,jiwa,2025,registration,total_population,3.2,,,15-19
+18.07.01,3,Sukadana,age_group,20-24,laki_laki,2934,jiwa,2025,registration,total_population,3.2,,,20-24
+18.07.01,3,Sukadana,age_group,20-24,perempuan,2768,jiwa,2025,registration,total_population,3.2,,,20-24
+18.07.01,3,Sukadana,age_group,20-24,,5702,jiwa,2025,registration,total_population,3.2,,,20-24
+18.07.01,3,Sukadana,age_group,25-29,laki_laki,3103,jiwa,2025,registration,total_population,3.2,,,25-29
+18.07.01,3,Sukadana,age_group,25-29,perempuan,2882,jiwa,2025,registration,total_population,3.2,,,25-29
+18.07.01,3,Sukadana,age_group,25-29,,5985,jiwa,2025,registration,total_population,3.2,,,25-29
+18.07.01,3,Sukadana,age_group,30-34,laki_laki,2979,jiwa,2025,registration,total_population,3.2,,,30-34
+18.07.01,3,Sukadana,age_group,30-34,perempuan,2845,jiwa,2025,registration,total_population,3.2,,,30-34
+18.07.01,3,Sukadana,age_group,30-34,,5824,jiwa,2025,registration,total_population,3.2,,,30-34
+18.07.01,3,Sukadana,age_group,35-39,laki_laki,2936,jiwa,2025,registration,total_population,3.2,,,35-39
+18.07.01,3,Sukadana,age_group,35-39,perempuan,2888,jiwa,2025,registration,total_population,3.2,,,35-39
+18.07.01,3,Sukadana,age_group,35-39,,5824,jiwa,2025,registration,total_population,3.2,,,35-39
+18.07.01,3,Sukadana,age_group,40-44,laki_laki,3152,jiwa,2025,registration,total_population,3.2,,,40-44
+18.07.01,3,Sukadana,age_group,40-44,perempuan,3266,jiwa,2025,registration,total_population,3.2,,,40-44
+18.07.01,3,Sukadana,age_group,40-44,,6418,jiwa,2025,registration,total_population,3.2,,,40-44
+18.07.01,3,Sukadana,age_group,45-49,laki_laki,2970,jiwa,2025,registration,total_population,3.2,,,45-49
+18.07.01,3,Sukadana,age_group,45-49,perempuan,3039,jiwa,2025,registration,total_population,3.2,,,45-49
+18.07.01,3,Sukadana,age_group,45-49,,6009,jiwa,2025,registration,total_population,3.2,,,45-49
+18.07.01,3,Sukadana,age_group,50-54,laki_laki,2735,jiwa,2025,registration,total_population,3.2,,,50-54
+18.07.01,3,Sukadana,age_group,50-54,perempuan,2634,jiwa,2025,registration,total_population,3.2,,,50-54
+18.07.01,3,Sukadana,age_group,50-54,,5369,jiwa,2025,registration,total_population,3.2,,,50-54
+18.07.01,3,Sukadana,age_group,55-59,laki_laki,2058,jiwa,2025,registration,total_population,3.2,,,55-59
+18.07.01,3,Sukadana,age_group,55-59,perempuan,1890,jiwa,2025,registration,total_population,3.2,,,55-59
+18.07.01,3,Sukadana,age_group,55-59,,3948,jiwa,2025,registration,total_population,3.2,,,55-59
+18.07.01,3,Sukadana,age_group,60-64,laki_laki,1666,jiwa,2025,registration,total_population,3.2,,,60-64
+18.07.01,3,Sukadana,age_group,60-64,perempuan,1779,jiwa,2025,registration,total_population,3.2,,,60-64
+18.07.01,3,Sukadana,age_group,60-64,,3445,jiwa,2025,registration,total_population,3.2,,,60-64
+18.07.01,3,Sukadana,age_group,65-69,laki_laki,1382,jiwa,2025,registration,total_population,3.2,,,65-69
+18.07.01,3,Sukadana,age_group,65-69,perempuan,1395,jiwa,2025,registration,total_population,3.2,,,65-69
+18.07.01,3,Sukadana,age_group,65-69,,2777,jiwa,2025,registration,total_population,3.2,,,65-69
+18.07.01,3,Sukadana,age_group,70-74,laki_laki,932,jiwa,2025,registration,total_population,3.2,,,70-74
+18.07.01,3,Sukadana,age_group,70-74,perempuan,913,jiwa,2025,registration,total_population,3.2,,,70-74
+18.07.01,3,Sukadana,age_group,70-74,,1845,jiwa,2025,registration,total_population,3.2,,,70-74
+18.07.01,3,Sukadana,age_group,75+,laki_laki,1377,jiwa,2025,registration,total_population,3.2,,,>75
+18.07.01,3,Sukadana,age_group,75+,perempuan,1219,jiwa,2025,registration,total_population,3.2,,,>75
+18.07.01,3,Sukadana,age_group,75+,,2596,jiwa,2025,registration,total_population,3.2,,,>75
+18.07.01,3,Sukadana,sex,laki_laki,,40555,jiwa,2025,registration,total_population,3.2,,,Laki-Laki
+18.07.01,3,Sukadana,sex,perempuan,,39296,jiwa,2025,registration,total_population,3.2,,,Perempuan
+18.07.01,3,Sukadana,total,total,,79851,jiwa,2025,registration,total_population,3.2,,,

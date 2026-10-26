@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.76.07.1002,4,Cipayung Jaya,sex,laki_laki,,11499,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.07.1002,4,Cipayung Jaya,sex,perempuan,,11364,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.07.1002,4,Cipayung Jaya,total,total,,22863,jiwa,2025,registration,total_population,3.1,19,,
+32.76.07.1004,4,Bojong Pondok Terong,sex,laki_laki,,20694,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.07.1004,4,Bojong Pondok Terong,sex,perempuan,,20293,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.07.1004,4,Bojong Pondok Terong,total,total,,40987,jiwa,2025,registration,total_population,3.1,19,,
+32.76.07.1005,4,Pondok Jaya,sex,laki_laki,,14969,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.07.1005,4,Pondok Jaya,sex,perempuan,,14784,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.07.1005,4,Pondok Jaya,total,total,,29753,jiwa,2025,registration,total_population,3.1,19,,
+32.76.07.1003,4,Ratu Jaya,sex,laki_laki,,22699,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.07.1003,4,Ratu Jaya,sex,perempuan,,22536,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.07.1003,4,Ratu Jaya,total,total,,45235,jiwa,2025,registration,total_population,3.1,19,,
+32.76.07.1001,4,Cipayung,sex,laki_laki,,17596,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.07.1001,4,Cipayung,sex,perempuan,,17321,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.07.1001,4,Cipayung,total,total,,34917,jiwa,2025,registration,total_population,3.1,19,,
+32.76.07,3,Kecamatan Cipayung,sex,laki_laki,,87457,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.07,3,Kecamatan Cipayung,sex,perempuan,,86298,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.07,3,Kecamatan Cipayung,total,total,,173755,jiwa,2025,registration,total_population,3.1,19,,
+32.76.07,3,Cipayung,age_group,0-4,laki_laki,5867,jiwa,2025,registration,total_population,3.2,22,,0-4
+32.76.07,3,Cipayung,age_group,0-4,perempuan,5548,jiwa,2025,registration,total_population,3.2,22,,0-4
+32.76.07,3,Cipayung,age_group,0-4,,11415,jiwa,2025,registration,total_population,3.2,22,,0-4
+32.76.07,3,Cipayung,age_group,5-9,laki_laki,7718,jiwa,2025,registration,total_population,3.2,22,,5-9
+32.76.07,3,Cipayung,age_group,5-9,perempuan,7247,jiwa,2025,registration,total_population,3.2,22,,5-9
+32.76.07,3,Cipayung,age_group,5-9,,14965,jiwa,2025,registration,total_population,3.2,22,,5-9
+32.76.07,3,Cipayung,age_group,10-14,laki_laki,8034,jiwa,2025,registration,total_population,3.2,22,,10-14
+32.76.07,3,Cipayung,age_group,10-14,perempuan,7525,jiwa,2025,registration,total_population,3.2,22,,10-14
+32.76.07,3,Cipayung,age_group,10-14,,15559,jiwa,2025,registration,total_population,3.2,22,,10-14
+32.76.07,3,Cipayung,age_group,15-19,laki_laki,7532,jiwa,2025,registration,total_population,3.2,22,,15-19
+32.76.07,3,Cipayung,age_group,15-19,perempuan,7126,jiwa,2025,registration,total_population,3.2,22,,15-19
+32.76.07,3,Cipayung,age_group,15-19,,14658,jiwa,2025,registration,total_population,3.2,22,,15-19
+32.76.07,3,Cipayung,age_group,20-24,laki_laki,7549,jiwa,2025,registration,total_population,3.2,22,,20-24
+32.76.07,3,Cipayung,age_group,20-24,perempuan,7188,jiwa,2025,registration,total_population,3.2,22,,20-24
+32.76.07,3,Cipayung,age_group,20-24,,14737,jiwa,2025,registration,total_population,3.2,22,,20-24
+32.76.07,3,Cipayung,age_group,25-29,laki_laki,7084,jiwa,2025,registration,total_population,3.2,22,,25-29
+32.76.07,3,Cipayung,age_group,25-29,perempuan,6950,jiwa,2025,registration,total_population,3.2,22,,25-29
+32.76.07,3,Cipayung,age_group,25-29,,14034,jiwa,2025,registration,total_population,3.2,22,,25-29
+32.76.07,3,Cipayung,age_group,30-34,laki_laki,6772,jiwa,2025,registration,total_population,3.2,22,,30-34
+32.76.07,3,Cipayung,age_group,30-34,perempuan,6651,jiwa,2025,registration,total_population,3.2,22,,30-34
+32.76.07,3,Cipayung,age_group,30-34,,13423,jiwa,2025,registration,total_population,3.2,22,,30-34
+32.76.07,3,Cipayung,age_group,35-39,laki_laki,6193,jiwa,2025,registration,total_population,3.2,22,,35-39
+32.76.07,3,Cipayung,age_group,35-39,perempuan,6179,jiwa,2025,registration,total_population,3.2,22,,35-39
+32.76.07,3,Cipayung,age_group,35-39,,12372,jiwa,2025,registration,total_population,3.2,22,,35-39
+32.76.07,3,Cipayung,age_group,40-44,laki_laki,6742,jiwa,2025,registration,total_population,3.2,22,,40-44
+32.76.07,3,Cipayung,age_group,40-44,perempuan,6940,jiwa,2025,registration,total_population,3.2,22,,40-44
+32.76.07,3,Cipayung,age_group,40-44,,13682,jiwa,2025,registration,total_population,3.2,22,,40-44
+32.76.07,3,Cipayung,age_group,45-49,laki_laki,6519,jiwa,2025,registration,total_population,3.2,22,,45-49
+32.76.07,3,Cipayung,age_group,45-49,perempuan,6756,jiwa,2025,registration,total_population,3.2,22,,45-49
+32.76.07,3,Cipayung,age_group,45-49,,13275,jiwa,2025,registration,total_population,3.2,22,,45-49
+32.76.07,3,Cipayung,age_group,50-54,laki_laki,5798,jiwa,2025,registration,total_population,3.2,22,,50-54
+32.76.07,3,Cipayung,age_group,50-54,perempuan,5791,jiwa,2025,registration,total_population,3.2,22,,50-54
+32.76.07,3,Cipayung,age_group,50-54,,11589,jiwa,2025,registration,total_population,3.2,22,,50-54
+32.76.07,3,Cipayung,age_group,55-59,laki_laki,4508,jiwa,2025,registration,total_population,3.2,22,,55-59
+32.76.07,3,Cipayung,age_group,55-59,perempuan,4661,jiwa,2025,registration,total_population,3.2,22,,55-59
+32.76.07,3,Cipayung,age_group,55-59,,9169,jiwa,2025,registration,total_population,3.2,22,,55-59
+32.76.07,3,Cipayung,age_group,60-64,laki_laki,3177,jiwa,2025,registration,total_population,3.2,22,,60-64
+32.76.07,3,Cipayung,age_group,60-64,perempuan,3299,jiwa,2025,registration,total_population,3.2,22,,60-64
+32.76.07,3,Cipayung,age_group,60-64,,6476,jiwa,2025,registration,total_population,3.2,22,,60-64
+32.76.07,3,Cipayung,age_group,65-69,laki_laki,2027,jiwa,2025,registration,total_population,3.2,22,,65-69
+32.76.07,3,Cipayung,age_group,65-69,perempuan,2268,jiwa,2025,registration,total_population,3.2,22,,65-69
+32.76.07,3,Cipayung,age_group,65-69,,4295,jiwa,2025,registration,total_population,3.2,22,,65-69
+32.76.07,3,Cipayung,age_group,70-74,laki_laki,1071,jiwa,2025,registration,total_population,3.2,22,,70-74
+32.76.07,3,Cipayung,age_group,70-74,perempuan,1121,jiwa,2025,registration,total_population,3.2,22,,70-74
+32.76.07,3,Cipayung,age_group,70-74,,2192,jiwa,2025,registration,total_population,3.2,22,,70-74
+32.76.07,3,Cipayung,age_group,75+,laki_laki,866,jiwa,2025,registration,total_population,3.2,22,,75+
+32.76.07,3,Cipayung,age_group,75+,perempuan,1048,jiwa,2025,registration,total_population,3.2,22,,75+
+32.76.07,3,Cipayung,age_group,75+,,1914,jiwa,2025,registration,total_population,3.2,22,,75+
+32.76.07,3,Kecamatan Cipayung,sex,laki_laki,,87457,jiwa,2025,registration,total_population,3.2,22,,Laki-Laki
+32.76.07,3,Kecamatan Cipayung,sex,perempuan,,86298,jiwa,2025,registration,total_population,3.2,22,,Perempuan
+32.76.07,3,Kecamatan Cipayung,total,total,,173755,jiwa,2025,registration,total_population,3.2,22,,

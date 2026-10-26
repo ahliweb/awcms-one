@@ -1,0 +1,57 @@
+{
+  "datasetCode": "bps-3208-kecamatan-320807-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.08.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lebakwangi Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kuningan",
+  "publisherDomain": "3208",
+  "publisherWebsite": "https://kuningankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kuningan (https://kuningankab.bps.go.id), publikasi \"Kecamatan Lebakwangi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3208110",
+  "publicationNumber": "32080.25016",
+  "issn": "2597-8381",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kuningankab.bps.go.id/id/publication/2026/09/28/2bb8360f92c735a391083c27/kecamatan-lebakwangi-dalam-angka-2026.html",
+  "sourceFileSha256": "58dfcfceda04e5f3152ec860de5276e3800ce0e179230ce9699e91604377774a",
+  "sourceFileBytes": 3144443,
+  "sourcePages": [37, 38, 39, 40],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Kuningan.",
+  "csvPath": "datasets/bps-3208-kecamatan-320807-dalam-angka-2026.csv",
+  "csvSha256": "1450a3d0a962efbf1f0d4206d33c46fb8da72e9d83d61bb416d786bfe9d9819a",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Lebakwangi 2025",
+      "printedPages": [37, 38, 39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Lebakwangi, 2025",
+      "printedPages": [40],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1.1: row not stored: row \"Kecamatan Lebakwangi Lebakwangi District\": unmatched ",
+    "table 3.1.1: row not stored: row \"2024\": unmatched ",
+    "table 3.1.1: row not stored: row \"2023\": unmatched ",
+    "table 3.1.1: row not stored: row \"Lebakwangi District\": unmatched ",
+    "table 3.1.1: row not stored: row \"2024 100,00%\": unmatched ",
+    "table 3.1.1: row not stored: row \"2023\": unmatched ",
+    "table 3.1.1: row not stored: row \"Kecamatan Lebakwangi Lebakwangi District\": unmatched ",
+    "table 3.1.1: row not stored: row \"2024\": unmatched ",
+    "table 3.1.1: row not stored: row \"2023\": unmatched ",
+    "table 3.1.2: row not stored: row \"75++\": unmatched ",
+    "table 3.1.2: row not stored: row \"Kecamatan Lebakwangi Lebakwangi District\": unmatched ",
+    "table 3.1.2: row not stored: row \"2024\": unmatched ",
+    "table 3.1.2: row not stored: row \"2023\": unmatched "
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-3207-kecamatan-320710-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.07.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Panawangan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Ciamis",
+  "publisherDomain": "3207",
+  "publisherWebsite": "https://ciamiskab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Ciamis (https://ciamiskab.bps.go.id), publikasi \"Kecamatan Panawangan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3207270",
+  "publicationNumber": "32070.26026",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://ciamiskab.bps.go.id/id/publication/2026/09/28/4df4ef38ea2a35e877a51ba6/kecamatan-panawangan-dalam-angka-2026.html",
+  "sourceFileSha256": "4d2a81737fb7d4ee15880fe3bb602ab2171b23bce28e69c4a7451e031c00b35c",
+  "sourceFileBytes": 11991480,
+  "sourcePages": [34, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Ciamis.",
+  "csvPath": "datasets/bps-3207-kecamatan-320710-dalam-angka-2026.csv",
+  "csvSha256": "85ac0e6f90d21c8179c12dc2529e88145d30da59d133d2b5aac5f885b2e8e1cc",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Panawangan, 2025",
+      "printedPages": [34, 35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2 (age-by-sex) could not be read reliably and is not included (figures with three or more decimals: the separator convention of this table is unclear (',' used as a thousands mark?))",
+    "table 3.1: 49 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

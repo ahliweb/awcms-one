@@ -1,0 +1,64 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.72.03.1001,4,Tanjungpinang Kota,sex,laki_laki,,2241,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+21.72.03.1001,4,Tanjungpinang Kota,sex,perempuan,,2361,jiwa,2025,registration,total_population,3.1,28,,Perempuan/
+21.72.03.1001,4,Tanjungpinang Kota,total,total,,4602,jiwa,2025,registration,total_population,3.1,28,,
+21.72.03.1004,4,Penyengat,sex,laki_laki,,1178,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+21.72.03.1004,4,Penyengat,sex,perempuan,,1160,jiwa,2025,registration,total_population,3.1,28,,Perempuan/
+21.72.03.1004,4,Penyengat,total,total,,2338,jiwa,2025,registration,total_population,3.1,28,,
+21.72.03.1005,4,Kampung Bugis,sex,laki_laki,,4641,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+21.72.03.1005,4,Kampung Bugis,sex,perempuan,,4279,jiwa,2025,registration,total_population,3.1,28,,Perempuan/
+21.72.03.1005,4,Kampung Bugis,total,total,,8920,jiwa,2025,registration,total_population,3.1,28,,
+21.72.03.1003,4,Senggarang,sex,laki_laki,,2006,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+21.72.03.1003,4,Senggarang,sex,perempuan,,1815,jiwa,2025,registration,total_population,3.1,28,,Perempuan/
+21.72.03.1003,4,Senggarang,total,total,,3821,jiwa,2025,registration,total_population,3.1,28,,
+21.72.03,3,Kecamatan Tanjungpinang Kota,sex,laki_laki,,10066,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+21.72.03,3,Kecamatan Tanjungpinang Kota,sex,perempuan,,9615,jiwa,2025,registration,total_population,3.1,28,,Perempuan/
+21.72.03,3,Kecamatan Tanjungpinang Kota,total,total,,19681,jiwa,2025,registration,total_population,3.1,28,,
+21.72.03,3,Tanjung Pinang Kota,age_group,0-4,laki_laki,553,jiwa,2025,registration,total_population,3.2,30,,0-4
+21.72.03,3,Tanjung Pinang Kota,age_group,0-4,perempuan,510,jiwa,2025,registration,total_population,3.2,30,,0-4
+21.72.03,3,Tanjung Pinang Kota,age_group,0-4,,1063,jiwa,2025,registration,total_population,3.2,30,,0-4
+21.72.03,3,Tanjung Pinang Kota,age_group,5-9,laki_laki,698,jiwa,2025,registration,total_population,3.2,30,,5-9
+21.72.03,3,Tanjung Pinang Kota,age_group,5-9,perempuan,675,jiwa,2025,registration,total_population,3.2,30,,5-9
+21.72.03,3,Tanjung Pinang Kota,age_group,5-9,,1373,jiwa,2025,registration,total_population,3.2,30,,5-9
+21.72.03,3,Tanjung Pinang Kota,age_group,10-14,laki_laki,810,jiwa,2025,registration,total_population,3.2,30,,10-14
+21.72.03,3,Tanjung Pinang Kota,age_group,10-14,perempuan,717,jiwa,2025,registration,total_population,3.2,30,,10-14
+21.72.03,3,Tanjung Pinang Kota,age_group,10-14,,1527,jiwa,2025,registration,total_population,3.2,30,,10-14
+21.72.03,3,Tanjung Pinang Kota,age_group,15-19,laki_laki,902,jiwa,2025,registration,total_population,3.2,30,,15-19
+21.72.03,3,Tanjung Pinang Kota,age_group,15-19,perempuan,738,jiwa,2025,registration,total_population,3.2,30,,15-19
+21.72.03,3,Tanjung Pinang Kota,age_group,15-19,,1640,jiwa,2025,registration,total_population,3.2,30,,15-19
+21.72.03,3,Tanjung Pinang Kota,age_group,20-24,laki_laki,850,jiwa,2025,registration,total_population,3.2,30,,20-24
+21.72.03,3,Tanjung Pinang Kota,age_group,20-24,perempuan,824,jiwa,2025,registration,total_population,3.2,30,,20-24
+21.72.03,3,Tanjung Pinang Kota,age_group,20-24,,1674,jiwa,2025,registration,total_population,3.2,30,,20-24
+21.72.03,3,Tanjung Pinang Kota,age_group,25-29,laki_laki,749,jiwa,2025,registration,total_population,3.2,30,,25-29
+21.72.03,3,Tanjung Pinang Kota,age_group,25-29,perempuan,676,jiwa,2025,registration,total_population,3.2,30,,25-29
+21.72.03,3,Tanjung Pinang Kota,age_group,25-29,,1425,jiwa,2025,registration,total_population,3.2,30,,25-29
+21.72.03,3,Tanjung Pinang Kota,age_group,30-34,laki_laki,738,jiwa,2025,registration,total_population,3.2,30,,30-34
+21.72.03,3,Tanjung Pinang Kota,age_group,30-34,perempuan,664,jiwa,2025,registration,total_population,3.2,30,,30-34
+21.72.03,3,Tanjung Pinang Kota,age_group,30-34,,1402,jiwa,2025,registration,total_population,3.2,30,,30-34
+21.72.03,3,Tanjung Pinang Kota,age_group,35-39,laki_laki,667,jiwa,2025,registration,total_population,3.2,30,,35-39
+21.72.03,3,Tanjung Pinang Kota,age_group,35-39,perempuan,639,jiwa,2025,registration,total_population,3.2,30,,35-39
+21.72.03,3,Tanjung Pinang Kota,age_group,35-39,,1306,jiwa,2025,registration,total_population,3.2,30,,35-39
+21.72.03,3,Tanjung Pinang Kota,age_group,40-44,laki_laki,750,jiwa,2025,registration,total_population,3.2,30,,40-44
+21.72.03,3,Tanjung Pinang Kota,age_group,40-44,perempuan,738,jiwa,2025,registration,total_population,3.2,30,,40-44
+21.72.03,3,Tanjung Pinang Kota,age_group,40-44,,1488,jiwa,2025,registration,total_population,3.2,30,,40-44
+21.72.03,3,Tanjung Pinang Kota,age_group,45-49,laki_laki,738,jiwa,2025,registration,total_population,3.2,30,,45-49
+21.72.03,3,Tanjung Pinang Kota,age_group,45-49,perempuan,724,jiwa,2025,registration,total_population,3.2,30,,45-49
+21.72.03,3,Tanjung Pinang Kota,age_group,45-49,,1462,jiwa,2025,registration,total_population,3.2,30,,45-49
+21.72.03,3,Tanjung Pinang Kota,age_group,50-54,laki_laki,662,jiwa,2025,registration,total_population,3.2,30,,50-54
+21.72.03,3,Tanjung Pinang Kota,age_group,50-54,perempuan,606,jiwa,2025,registration,total_population,3.2,30,,50-54
+21.72.03,3,Tanjung Pinang Kota,age_group,50-54,,1268,jiwa,2025,registration,total_population,3.2,30,,50-54
+21.72.03,3,Tanjung Pinang Kota,age_group,55-59,laki_laki,505,jiwa,2025,registration,total_population,3.2,30,,55-59
+21.72.03,3,Tanjung Pinang Kota,age_group,55-59,perempuan,501,jiwa,2025,registration,total_population,3.2,30,,55-59
+21.72.03,3,Tanjung Pinang Kota,age_group,55-59,,1006,jiwa,2025,registration,total_population,3.2,30,,55-59
+21.72.03,3,Tanjung Pinang Kota,age_group,60-64,laki_laki,472,jiwa,2025,registration,total_population,3.2,30,,60-64
+21.72.03,3,Tanjung Pinang Kota,age_group,60-64,perempuan,497,jiwa,2025,registration,total_population,3.2,30,,60-64
+21.72.03,3,Tanjung Pinang Kota,age_group,60-64,,969,jiwa,2025,registration,total_population,3.2,30,,60-64
+21.72.03,3,Tanjung Pinang Kota,age_group,65-69,laki_laki,430,jiwa,2025,registration,total_population,3.2,30,,65-69
+21.72.03,3,Tanjung Pinang Kota,age_group,65-69,perempuan,409,jiwa,2025,registration,total_population,3.2,30,,65-69
+21.72.03,3,Tanjung Pinang Kota,age_group,65-69,,839,jiwa,2025,registration,total_population,3.2,30,,65-69
+21.72.03,3,Tanjung Pinang Kota,age_group,70-74,laki_laki,269,jiwa,2025,registration,total_population,3.2,30,,70-74
+21.72.03,3,Tanjung Pinang Kota,age_group,70-74,perempuan,321,jiwa,2025,registration,total_population,3.2,30,,70-74
+21.72.03,3,Tanjung Pinang Kota,age_group,70-74,,590,jiwa,2025,registration,total_population,3.2,30,,70-74
+21.72.03,3,Tanjung Pinang Kota,age_group,75+,laki_laki,273,jiwa,2025,registration,total_population,3.2,30,,75+
+21.72.03,3,Tanjung Pinang Kota,age_group,75+,perempuan,376,jiwa,2025,registration,total_population,3.2,30,,75+
+21.72.03,3,Tanjung Pinang Kota,age_group,75+,,649,jiwa,2025,registration,total_population,3.2,30,,75+

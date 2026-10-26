@@ -1,0 +1,88 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.09.10.2004,4,Munjul,sex,laki_laki,,5665,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.10.2004,4,Munjul,sex,perempuan,,5387,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.10.2004,4,Munjul,total,total,,11052,jiwa,2025,registration,total_population,3.1,52,,
+32.09.10.2005,4,Sidamulya,sex,laki_laki,,3409,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.10.2005,4,Sidamulya,sex,perempuan,,3216,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.10.2005,4,Sidamulya,total,total,,6625,jiwa,2025,registration,total_population,3.1,52,,
+32.09.10.2006,4,Mertapada Kulon,sex,laki_laki,,3236,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.10.2006,4,Mertapada Kulon,sex,perempuan,,3031,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.10.2006,4,Mertapada Kulon,total,total,,6267,jiwa,2025,registration,total_population,3.1,52,,
+32.09.10.2007,4,Mertapada Wetan,sex,laki_laki,,5091,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.10.2007,4,Mertapada Wetan,sex,perempuan,,4842,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.10.2007,4,Mertapada Wetan,total,total,,9933,jiwa,2025,registration,total_population,3.1,52,,
+32.09.10.2008,4,Buntet,sex,laki_laki,,4637,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.10.2008,4,Buntet,sex,perempuan,,4358,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.10.2008,4,Buntet,total,total,,8995,jiwa,2025,registration,total_population,3.1,52,,
+32.09.10.2009,4,Kanci Kulon,sex,laki_laki,,3925,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.10.2009,4,Kanci Kulon,sex,perempuan,,3762,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.10.2009,4,Kanci Kulon,total,total,,7687,jiwa,2025,registration,total_population,3.1,52,,
+32.09.10.2010,4,Kanci,sex,laki_laki,,3661,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.10.2010,4,Kanci,sex,perempuan,,3603,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.10.2010,4,Kanci,total,total,,7264,jiwa,2025,registration,total_population,3.1,52,,
+32.09.10.2011,4,Astanajapura,sex,laki_laki,,4591,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.10.2011,4,Astanajapura,sex,perempuan,,4275,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.10.2011,4,Astanajapura,total,total,,8866,jiwa,2025,registration,total_population,3.1,52,,
+32.09.10.2012,4,Kendal,sex,laki_laki,,2564,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.10.2012,4,Kendal,sex,perempuan,,2399,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.10.2012,4,Kendal,total,total,,4963,jiwa,2025,registration,total_population,3.1,52,,
+32.09.10.2013,4,Japura Kidul,sex,laki_laki,,4810,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.10.2013,4,Japura Kidul,sex,perempuan,,4606,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.10.2013,4,Japura Kidul,total,total,,9416,jiwa,2025,registration,total_population,3.1,52,,
+32.09.10.2014,4,Japurabakti,sex,laki_laki,,5169,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.10.2014,4,Japurabakti,sex,perempuan,,4945,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.10.2014,4,Japurabakti,total,total,,10114,jiwa,2025,registration,total_population,3.1,52,,
+32.09.10,3,Kecamatan Astanajapura,sex,laki_laki,,46758,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.10,3,Kecamatan Astanajapura,sex,perempuan,,44424,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.10,3,Kecamatan Astanajapura,total,total,,91182,jiwa,2025,registration,total_population,3.1,52,,
+32.09.10,3,Astanajapura,age_group,0-4,laki_laki,3631,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.10,3,Astanajapura,age_group,0-4,perempuan,3415,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.10,3,Astanajapura,age_group,0-4,,7046,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.10,3,Astanajapura,age_group,5-9,laki_laki,4580,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.10,3,Astanajapura,age_group,5-9,perempuan,4234,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.10,3,Astanajapura,age_group,5-9,,8814,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.10,3,Astanajapura,age_group,10-14,laki_laki,4196,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.10,3,Astanajapura,age_group,10-14,perempuan,4001,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.10,3,Astanajapura,age_group,10-14,,8197,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.10,3,Astanajapura,age_group,15-19,laki_laki,3474,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.10,3,Astanajapura,age_group,15-19,perempuan,3440,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.10,3,Astanajapura,age_group,15-19,,6914,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.10,3,Astanajapura,age_group,20-24,laki_laki,3592,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.10,3,Astanajapura,age_group,20-24,perempuan,3453,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.10,3,Astanajapura,age_group,20-24,,7045,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.10,3,Astanajapura,age_group,25-29,laki_laki,4087,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.10,3,Astanajapura,age_group,25-29,perempuan,3648,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.10,3,Astanajapura,age_group,25-29,,7735,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.10,3,Astanajapura,age_group,30-34,laki_laki,3976,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.10,3,Astanajapura,age_group,30-34,perempuan,3781,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.10,3,Astanajapura,age_group,30-34,,7757,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.10,3,Astanajapura,age_group,35-39,laki_laki,3803,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.10,3,Astanajapura,age_group,35-39,perempuan,3486,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.10,3,Astanajapura,age_group,35-39,,7289,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.10,3,Astanajapura,age_group,40-44,laki_laki,3777,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.10,3,Astanajapura,age_group,40-44,perempuan,3280,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.10,3,Astanajapura,age_group,40-44,,7057,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.10,3,Astanajapura,age_group,45-49,laki_laki,3080,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.10,3,Astanajapura,age_group,45-49,perempuan,2844,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.10,3,Astanajapura,age_group,45-49,,5924,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.10,3,Astanajapura,age_group,50-54,laki_laki,2429,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.10,3,Astanajapura,age_group,50-54,perempuan,2423,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.10,3,Astanajapura,age_group,50-54,,4852,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.10,3,Astanajapura,age_group,55-59,laki_laki,2017,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.10,3,Astanajapura,age_group,55-59,perempuan,2017,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.10,3,Astanajapura,age_group,55-59,,4034,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.10,3,Astanajapura,age_group,60-64,laki_laki,1470,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.10,3,Astanajapura,age_group,60-64,perempuan,1590,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.10,3,Astanajapura,age_group,60-64,,3060,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.10,3,Astanajapura,age_group,65-69,laki_laki,1160,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.10,3,Astanajapura,age_group,65-69,perempuan,1207,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.10,3,Astanajapura,age_group,65-69,,2367,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.10,3,Astanajapura,age_group,70-74,laki_laki,756,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.10,3,Astanajapura,age_group,70-74,perempuan,676,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.10,3,Astanajapura,age_group,70-74,,1432,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.10,3,Astanajapura,age_group,75+,laki_laki,730,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.10,3,Astanajapura,age_group,75+,perempuan,929,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.10,3,Astanajapura,age_group,75+,,1659,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.10,3,Kecamatan Astanajapura,sex,laki_laki,,46758,jiwa,2025,registration,total_population,3.2,54,,Laki-Laki
+32.09.10,3,Kecamatan Astanajapura,sex,perempuan,,44424,jiwa,2025,registration,total_population,3.2,54,,Perempuan
+32.09.10,3,Kecamatan Astanajapura,total,total,,91182,jiwa,2025,registration,total_population,3.2,54,,
