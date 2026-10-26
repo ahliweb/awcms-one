@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3324-kecamatan-332410-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.24.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pegandon Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kendal",
+  "publisherDomain": "3324",
+  "publisherWebsite": "https://kendalkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kendal (https://kendalkab.bps.go.id), publikasi \"Kecamatan Pegandon Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "33240.26016",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kendalkab.bps.go.id/id/publication/2026/09/28/18a88b23fa965813f795f804/kecamatan-pegandon-dalam-angka-2026.html",
+  "sourceFileSha256": "181ae8e48421e7e380f7d764ad65c4582554f808e3e3599075c104a4b9704f03",
+  "sourceFileBytes": 8444375,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kendal.",
+  "csvPath": "datasets/bps-3324-kecamatan-332410-dalam-angka-2026.csv",
+  "csvSha256": "bfe5552549abdc236e67fd6d381b3447bc28390a694d8b257f7970c80df050e2",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Pegandon, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pegandon, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Pegandon Pegandon District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Pegandon Pegandon District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Pegandon Pegandon District\": unmatched "
+  ]
+}

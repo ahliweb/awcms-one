@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3324-kecamatan-332411-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.24.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Gemuh Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kendal",
+  "publisherDomain": "3324",
+  "publisherWebsite": "https://kendalkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kendal (https://kendalkab.bps.go.id), publikasi \"Kecamatan Gemuh Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "33240.26018",
+  "issn": "2614-9184",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kendalkab.bps.go.id/id/publication/2026/09/28/950415339e3b1b7c16fe898e/kecamatan-gemuh-dalam-angka-2026.html",
+  "sourceFileSha256": "b3d1879064bb9af63fdfbc24afcf64a956f0d9881b7ac64a7f4568a374f6b2b3",
+  "sourceFileBytes": 6928354,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kendal.",
+  "csvPath": "datasets/bps-3324-kecamatan-332411-dalam-angka-2026.csv",
+  "csvSha256": "93e2e464ccb8415e505868bd61b2e05ff77347734b26c3dd5b83f0547cf255f3",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Gemuh, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Gemuh, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Gemuh Gemuh District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Gemuh Gemuh District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Gemuh Gemuh District\": unmatched "
+  ]
+}

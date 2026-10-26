@@ -1,0 +1,54 @@
+{
+  "datasetCode": "bps-3308-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "33.08",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Magelang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Magelang",
+  "publisherDomain": "3308",
+  "publisherWebsite": "https://magelangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Magelang (https://magelangkab.bps.go.id), publikasi \"Kabupaten Magelang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3308",
+  "publicationNumber": "33080.26003",
+  "issn": "2338-8048",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://magelangkab.bps.go.id/id/publication/2026/02/27/2f404432e2016d012e59e833/kabupaten-magelang-dalam-angka-2026.html",
+  "sourceFileSha256": "4927d75a1647e42e786f853044c5f47f6ad4914cb2174015ff487a90443ddf5c",
+  "sourceFileBytes": 3840976,
+  "sourcePages": [82, 179],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Magelang.",
+  "csvPath": "datasets/bps-3308-dalam-angka-2026.csv",
+  "csvSha256": "d397286248579d47f3ae0b5938d5205aea3cee24099ad134df6b528abf8813fd",
+  "tablesUsed": [
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Magelang, 2025",
+      "printedPages": [82],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Magelang, 2025",
+      "printedPages": [179],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "Per-capita expenditure by commodity group (10.1): no table with this title was found in the publication",
+    "table unnumbered-p80 (total-by-region) could not be read reliably and is not included (population unit not stated in the heading)",
+    "table 4.3.1: row not stored: row \"2025 Kabupaten\": unmatched ",
+    "table 4.3.1: row not stored: row \"2024 Magelang\": unmatched ",
+    "table 4.3.1: row not stored: row \"2023\": unmatched "
+  ]
+}

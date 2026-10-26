@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3328-kecamatan-332811-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.28.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Adiwerna Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tegal",
+  "publisherDomain": "3328",
+  "publisherWebsite": "https://tegalkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tegal (https://tegalkab.bps.go.id), publikasi \"Kecamatan Adiwerna Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3328120",
+  "publicationNumber": "33280.24019",
+  "issn": "2621-1807",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tegalkab.bps.go.id/id/publication/2026/09/28/bfcdfecdadc788b8d37fdd4c/kecamatan-adiwerna-dalam-angka-2026.html",
+  "sourceFileSha256": "26b421a406d25bac34f553f7a25f650e1424f5c55923ac80c70323be4b90c5ed",
+  "sourceFileBytes": 7008964,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tegal.",
+  "csvPath": "datasets/bps-3328-kecamatan-332811-dalam-angka-2026.csv",
+  "csvSha256": "cad1801637dbdab845053272b564d10de68fa40d028e0a2de4db083bff1aee23",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Adiwerna, 2026",
+      "printedPages": [32, 33],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Adiwerna, 2026",
+      "printedPages": [34],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

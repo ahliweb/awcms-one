@@ -1,0 +1,89 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.06.09.2006,4,Purwosari,sex,perempuan,,1192,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.09.2006,4,Purwosari,total,total,,2353,jiwa,2025,registration,total_population,3.1,21,,
+33.06.09.2005,4,Karangwuluh,sex,perempuan,,640,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.09.2005,4,Karangwuluh,total,total,,1277,jiwa,2025,registration,total_population,3.1,21,,
+33.06.09.2001,4,Kebondalem,sex,perempuan,,429,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.09.2001,4,Kebondalem,total,total,,862,jiwa,2025,registration,total_population,3.1,21,,
+33.06.09.2003,4,Kiyangkongrejo,sex,perempuan,,693,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.09.2003,4,Kiyangkongrejo,total,total,,1382,jiwa,2025,registration,total_population,3.1,21,,
+33.06.09.2012,4,Pringgowijayan,sex,perempuan,,816,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.09.2012,4,Pringgowijayan,total,total,,1624,jiwa,2025,registration,total_population,3.1,21,,
+33.06.09.2004,4,Suren,sex,perempuan,,1875,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.09.2004,4,Suren,total,total,,3837,jiwa,2025,registration,total_population,3.1,21,,
+33.06.09.2007,4,Kepuh,sex,perempuan,,704,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.09.2007,4,Kepuh,total,total,,1380,jiwa,2025,registration,total_population,3.1,21,,
+33.06.09.2008,4,Majir,sex,perempuan,,907,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.09.2008,4,Majir,total,total,,1830,jiwa,2025,registration,total_population,3.1,21,,
+33.06.09.1014,4,Semawung Daleman,sex,perempuan,,1897,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.09.1014,4,Semawung Daleman,total,total,,3678,jiwa,2025,registration,total_population,3.1,21,,
+33.06.09.1010,4,Semawung Kembaran,sex,perempuan,,1062,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.09.1010,4,Semawung Kembaran,total,total,,2165,jiwa,2025,registration,total_population,3.1,21,,
+33.06.09.2011,4,Kuwurejo,sex,perempuan,,703,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.09.2011,4,Kuwurejo,total,total,,1479,jiwa,2025,registration,total_population,3.1,21,,
+33.06.09.2013,4,Sidarum,sex,perempuan,,670,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.09.2013,4,Sidarum,total,total,,1306,jiwa,2025,registration,total_population,3.1,21,,
+33.06.09.1009,4,Bayem,sex,perempuan,,1191,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.09.1009,4,Bayem,total,total,,2383,jiwa,2025,registration,total_population,3.1,21,,
+33.06.09.1017,4,Katerban,sex,perempuan,,2174,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.09.1017,4,Katerban,total,total,,4387,jiwa,2025,registration,total_population,3.1,22,,
+33.06.09.1016,4,Kutoarjo,sex,perempuan,,5652,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.09.1016,4,Kutoarjo,total,total,,11133,jiwa,2025,registration,total_population,3.1,22,,
+33.06.09.1015,4,Bandung,sex,perempuan,,1295,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.09.1015,4,Bandung,total,total,,2565,jiwa,2025,registration,total_population,3.1,22,,
+33.06.09.2021,4,Sokoharjo,sex,perempuan,,487,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.09.2021,4,Sokoharjo,total,total,,975,jiwa,2025,registration,total_population,3.1,22,,
+33.06.09.2018,4,Pacor,sex,perempuan,,1119,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.09.2018,4,Pacor,total,total,,2288,jiwa,2025,registration,total_population,3.1,22,,
+33.06.09.2019,4,Tunggorono,sex,perempuan,,840,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.09.2019,4,Tunggorono,total,total,,1703,jiwa,2025,registration,total_population,3.1,22,,
+33.06.09.2020,4,Tepus Kulon,sex,perempuan,,820,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.09.2020,4,Tepus Kulon,total,total,,1630,jiwa,2025,registration,total_population,3.1,22,,
+33.06.09.2024,4,Tepus Wetan,sex,perempuan,,812,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.09.2024,4,Tepus Wetan,total,total,,1636,jiwa,2025,registration,total_population,3.1,22,,
+33.06.09.2022,4,Kemadu Lor,sex,perempuan,,379,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.09.2022,4,Kemadu Lor,total,total,,767,jiwa,2025,registration,total_population,3.1,22,,
+33.06.09.2023,4,Kaligesing,sex,perempuan,,788,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.09.2023,4,Kaligesing,total,total,,1608,jiwa,2025,registration,total_population,3.1,22,,
+33.06.09.2026,4,Karangrejo,sex,perempuan,,645,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.09.2026,4,Karangrejo,total,total,,1321,jiwa,2025,registration,total_population,3.1,22,,
+33.06.09.2025,4,Wirun,sex,perempuan,,2422,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.09.2025,4,Wirun,total,total,,4863,jiwa,2025,registration,total_population,3.1,22,,
+33.06.09.2027,4,Tursino,sex,perempuan,,1034,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.09.2027,4,Tursino,total,total,,2114,jiwa,2025,registration,total_population,3.1,22,,
+33.06.09,3,Kecamatan Kutoarjo,sex,perempuan,,31672,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.09,3,Kecamatan Kutoarjo,total,total,,63388,jiwa,2025,registration,total_population,3.1,22,,
+33.06.09,3,Kutoarjo,age_group,0-4,perempuan,1554,jiwa,2025,registration,total_population,3.2,25,,0–4
+33.06.09,3,Kutoarjo,age_group,0-4,,3246,jiwa,2025,registration,total_population,3.2,25,,0–4
+33.06.09,3,Kutoarjo,age_group,5-9,perempuan,1991,jiwa,2025,registration,total_population,3.2,25,,5–9
+33.06.09,3,Kutoarjo,age_group,5-9,,4073,jiwa,2025,registration,total_population,3.2,25,,5–9
+33.06.09,3,Kutoarjo,age_group,10-14,perempuan,2223,jiwa,2025,registration,total_population,3.2,25,,10–14
+33.06.09,3,Kutoarjo,age_group,10-14,,4596,jiwa,2025,registration,total_population,3.2,25,,10–14
+33.06.09,3,Kutoarjo,age_group,15-19,perempuan,2315,jiwa,2025,registration,total_population,3.2,25,,15–19
+33.06.09,3,Kutoarjo,age_group,15-19,,4741,jiwa,2025,registration,total_population,3.2,25,,15–19
+33.06.09,3,Kutoarjo,age_group,20-24,perempuan,2291,jiwa,2025,registration,total_population,3.2,25,,20–24
+33.06.09,3,Kutoarjo,age_group,20-24,,4761,jiwa,2025,registration,total_population,3.2,25,,20–24
+33.06.09,3,Kutoarjo,age_group,25-29,perempuan,2253,jiwa,2025,registration,total_population,3.2,25,,25–29
+33.06.09,3,Kutoarjo,age_group,25-29,,4772,jiwa,2025,registration,total_population,3.2,25,,25–29
+33.06.09,3,Kutoarjo,age_group,30-34,perempuan,2094,jiwa,2025,registration,total_population,3.2,25,,30–34
+33.06.09,3,Kutoarjo,age_group,30-34,,4385,jiwa,2025,registration,total_population,3.2,25,,30–34
+33.06.09,3,Kutoarjo,age_group,35-39,perempuan,2042,jiwa,2025,registration,total_population,3.2,25,,35–39
+33.06.09,3,Kutoarjo,age_group,35-39,,4079,jiwa,2025,registration,total_population,3.2,25,,35–39
+33.06.09,3,Kutoarjo,age_group,40-44,perempuan,2230,jiwa,2025,registration,total_population,3.2,25,,40–44
+33.06.09,3,Kutoarjo,age_group,40-44,,4485,jiwa,2025,registration,total_population,3.2,25,,40–44
+33.06.09,3,Kutoarjo,age_group,45-49,perempuan,2094,jiwa,2025,registration,total_population,3.2,25,,45–49
+33.06.09,3,Kutoarjo,age_group,45-49,,4314,jiwa,2025,registration,total_population,3.2,25,,45–49
+33.06.09,3,Kutoarjo,age_group,50-54,perempuan,2058,jiwa,2025,registration,total_population,3.2,25,,50–54
+33.06.09,3,Kutoarjo,age_group,50-54,,4065,jiwa,2025,registration,total_population,3.2,25,,50–54
+33.06.09,3,Kutoarjo,age_group,55-59,perempuan,2333,jiwa,2025,registration,total_population,3.2,25,,55–59
+33.06.09,3,Kutoarjo,age_group,55-59,,4326,jiwa,2025,registration,total_population,3.2,25,,55–59
+33.06.09,3,Kutoarjo,age_group,60-64,perempuan,2081,jiwa,2025,registration,total_population,3.2,25,,60–64
+33.06.09,3,Kutoarjo,age_group,60-64,,3939,jiwa,2025,registration,total_population,3.2,25,,60–64
+33.06.09,3,Kutoarjo,age_group,65-69,perempuan,1766,jiwa,2025,registration,total_population,3.2,25,,65–69
+33.06.09,3,Kutoarjo,age_group,65-69,,3376,jiwa,2025,registration,total_population,3.2,25,,65–69
+33.06.09,3,Kutoarjo,age_group,70-74,perempuan,1068,jiwa,2025,registration,total_population,3.2,25,,70–74
+33.06.09,3,Kutoarjo,age_group,70-74,,2044,jiwa,2025,registration,total_population,3.2,25,,70–74
+33.06.09,3,Kutoarjo,age_group,75+,perempuan,1279,jiwa,2025,registration,total_population,3.2,25,,75+
+33.06.09,3,Kutoarjo,age_group,75+,,2186,jiwa,2025,registration,total_population,3.2,25,,75+
+33.06.09,3,Kecamatan Kutoarjo,sex,perempuan,,31672,jiwa,2025,registration,total_population,3.2,25,,Perempuan
+33.06.09,3,Kecamatan Kutoarjo,total,total,,63388,jiwa,2025,registration,total_population,3.2,25,,

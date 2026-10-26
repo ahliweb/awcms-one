@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3313-kecamatan-331302-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.13.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jatiyoso Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Karanganyar",
+  "publisherDomain": "3313",
+  "publisherWebsite": "https://karanganyarkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Karanganyar (https://karanganyarkab.bps.go.id), publikasi \"Kecamatan Jatiyoso Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3313020",
+  "publicationNumber": "33130.26007",
+  "issn": "2614-9605",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://karanganyarkab.bps.go.id/id/publication/2026/09/28/0f1d0b9e811db991b60e51a0/kecamatan-jatiyoso-dalam-angka-2026.html",
+  "sourceFileSha256": "e07f4548f1103512395e96fcef02f780b50fe1fd15f97563a3570cccf39107f2",
+  "sourceFileBytes": 8233964,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Karanganyar.",
+  "csvPath": "datasets/bps-3313-kecamatan-331302-dalam-angka-2026.csv",
+  "csvSha256": "5bd384f52ba4322a084534ef47e8e41b0d7f5431ff2ed4bb63e2c9ed6f6adde2",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Jatiyoso, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Jatiyoso, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

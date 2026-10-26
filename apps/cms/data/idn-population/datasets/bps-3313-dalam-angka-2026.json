@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3313-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "33.13",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Karanganyar Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Karanganyar",
+  "publisherDomain": "3313",
+  "publisherWebsite": "https://karanganyarkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Karanganyar (https://karanganyarkab.bps.go.id), publikasi \"Kabupaten Karanganyar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3313",
+  "publicationNumber": "33130.26003",
+  "issn": "0215-6172",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://karanganyarkab.bps.go.id/id/publication/2026/02/27/315343cb1652672a8058559c/kabupaten-karanganyar-dalam-angka-2026.html",
+  "sourceFileSha256": "1304e51d519337710766533587240581b9118d9835e774ce3a86b40f3434e482",
+  "sourceFileBytes": 3743568,
+  "sourcePages": [69],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Karanganyar.",
+  "csvPath": "datasets/bps-3313-dalam-angka-2026.csv",
+  "csvSha256": "6ccdc1cf9f4a6137a295f8f7a379c06b50cf10957145494369f4c7d41e5361f4",
+  "tablesUsed": [
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk dan Rasio Jenis Kelamin Hasil Proyeksi SP2020 Menurut Kecamatan di Kabupaten Karanganyar, 2025",
+      "printedPages": [69],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "Per-capita expenditure by commodity group (10.1): no table with this title was found in the publication",
+    "table 3.1.1 (total-by-region) could not be read reliably and is not included (population unit not stated in the heading)",
+    "table 4.3.1 (religion-by-region) could not be read reliably and is not included (basis not determinable)",
+    "table 3.1.2: row not stored: row \"Karanganyar Hasil Proyeksi / Projection Result\": unmatched "
+  ]
+}

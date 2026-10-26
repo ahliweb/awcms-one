@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3324-kecamatan-332420-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.24.20",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kaliwungu Selatan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kendal",
+  "publisherDomain": "3324",
+  "publisherWebsite": "https://kendalkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kendal (https://kendalkab.bps.go.id), publikasi \"Kecamatan Kaliwungu Selatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3324081",
+  "publicationNumber": "33240.26014",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kendalkab.bps.go.id/id/publication/2026/09/28/4181752baa3bae7bb8516e98/kecamatan-kaliwungu-selatan-dalam-angka-2026.html",
+  "sourceFileSha256": "dae948c1d87b9731f6d5066932ce1290adb3edc12bd47a476ad19fa5fba1113d",
+  "sourceFileBytes": 7405111,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kendal.",
+  "csvPath": "datasets/bps-3324-kecamatan-332420-dalam-angka-2026.csv",
+  "csvSha256": "3086e5b7252016bd372b80a25162ae9e7949051dca992b4c4e4d0fe9cdd68af1",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Kaliwungu Selatan, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kaliwungu Selatan, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Kaliwungu Selatan Kaliwungu Selatan District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Kaliwungu Selatan Kaliwungu Selatan District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Kaliwungu Selatan Kaliwungu Selatan District\": unmatched "
+  ]
+}

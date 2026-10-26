@@ -1,0 +1,97 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.26.07.2001,4,GUTOMO,sex,laki_laki,,1566,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.07.2001,4,GUTOMO,sex,perempuan,,1519,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.07.2001,4,GUTOMO,total,total,,3085,jiwa,2025,registration,total_population,3.1,34,,
+33.26.07.2002,4,LIMBANGAN,sex,laki_laki,,1410,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.07.2002,4,LIMBANGAN,sex,perempuan,,1400,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.07.2002,4,LIMBANGAN,total,total,,2810,jiwa,2025,registration,total_population,3.1,34,,
+33.26.07.2003,4,KARANGGONDANG,sex,laki_laki,,1288,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.07.2003,4,KARANGGONDANG,sex,perempuan,,1235,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.07.2003,4,KARANGGONDANG,total,total,,2523,jiwa,2025,registration,total_population,3.1,34,,
+33.26.07.2004,4,LOLONG,sex,laki_laki,,1139,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.07.2004,4,LOLONG,sex,perempuan,,1094,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.07.2004,4,LOLONG,total,total,,2233,jiwa,2025,registration,total_population,3.1,34,,
+33.26.07.2005,4,PEDAWANG,sex,laki_laki,,1467,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.07.2005,4,PEDAWANG,sex,perempuan,,1441,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.07.2005,4,PEDAWANG,total,total,,2908,jiwa,2025,registration,total_population,3.1,34,,
+33.26.07.2006,4,PODODADI,sex,laki_laki,,2426,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.07.2006,4,PODODADI,sex,perempuan,,2262,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.07.2006,4,PODODADI,total,total,,4688,jiwa,2025,registration,total_population,3.1,34,,
+33.26.07.2008,4,KARANGSARI,sex,laki_laki,,2887,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.07.2008,4,KARANGSARI,sex,perempuan,,2836,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.07.2008,4,KARANGSARI,total,total,,5723,jiwa,2025,registration,total_population,3.1,34,,
+33.26.07.2009,4,KULU,sex,laki_laki,,1574,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.07.2009,4,KULU,sex,perempuan,,1561,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.07.2009,4,KULU,total,total,,3135,jiwa,2025,registration,total_population,3.1,34,,
+33.26.07.2010,4,BANJAREJO,sex,laki_laki,,1437,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.07.2010,4,BANJAREJO,sex,perempuan,,1402,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.07.2010,4,BANJAREJO,total,total,,2839,jiwa,2025,registration,total_population,3.1,34,,
+33.26.07.2011,4,WONOSARI,sex,laki_laki,,1437,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.07.2011,4,WONOSARI,sex,perempuan,,1362,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.07.2011,4,WONOSARI,total,total,,2799,jiwa,2025,registration,total_population,3.1,34,,
+33.26.07.2012,4,SOKOSARI,sex,laki_laki,,1258,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.07.2012,4,SOKOSARI,sex,perempuan,,1226,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.07.2012,4,SOKOSARI,total,total,,2484,jiwa,2025,registration,total_population,3.1,34,,
+33.26.07.2013,4,SIDOMUKTI,sex,laki_laki,,1808,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.07.2013,4,SIDOMUKTI,sex,perempuan,,1637,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.07.2013,4,SIDOMUKTI,total,total,,3445,jiwa,2025,registration,total_population,3.1,34,,
+33.26.07.2014,4,KAYUGERITAN,sex,laki_laki,,1608,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.07.2014,4,KAYUGERITAN,sex,perempuan,,1589,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.07.2014,4,KAYUGERITAN,total,total,,3197,jiwa,2025,registration,total_population,3.1,34,,
+33.26.07.2015,4,KUTOSARI,sex,laki_laki,,1316,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.07.2015,4,KUTOSARI,sex,perempuan,,1227,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.07.2015,4,KUTOSARI,total,total,,2543,jiwa,2025,registration,total_population,3.1,34,,
+33.26.07,3,Kecamatan Karanganyar,sex,laki_laki,,25186,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.07,3,Kecamatan Karanganyar,sex,perempuan,,24335,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.07,3,Kecamatan Karanganyar,total,total,,49521,jiwa,2025,registration,total_population,3.1,34,,
+33.26.07,3,Karanganyar,age_group,0-4,laki_laki,1779,jiwa,2025,registration,total_population,3.2,36,,0 - 4
+33.26.07,3,Karanganyar,age_group,0-4,perempuan,1695,jiwa,2025,registration,total_population,3.2,36,,0 - 4
+33.26.07,3,Karanganyar,age_group,0-4,,3474,jiwa,2025,registration,total_population,3.2,36,,0 - 4
+33.26.07,3,Karanganyar,age_group,5-9,laki_laki,2189,jiwa,2025,registration,total_population,3.2,36,,5 - 9
+33.26.07,3,Karanganyar,age_group,5-9,perempuan,1991,jiwa,2025,registration,total_population,3.2,36,,5 - 9
+33.26.07,3,Karanganyar,age_group,5-9,,4180,jiwa,2025,registration,total_population,3.2,36,,5 - 9
+33.26.07,3,Karanganyar,age_group,10-14,laki_laki,2083,jiwa,2025,registration,total_population,3.2,36,,10 - 14
+33.26.07,3,Karanganyar,age_group,10-14,perempuan,1956,jiwa,2025,registration,total_population,3.2,36,,10 - 14
+33.26.07,3,Karanganyar,age_group,10-14,,4039,jiwa,2025,registration,total_population,3.2,36,,10 - 14
+33.26.07,3,Karanganyar,age_group,15-19,laki_laki,1843,jiwa,2025,registration,total_population,3.2,36,,15 - 19
+33.26.07,3,Karanganyar,age_group,15-19,perempuan,1726,jiwa,2025,registration,total_population,3.2,36,,15 - 19
+33.26.07,3,Karanganyar,age_group,15-19,,3569,jiwa,2025,registration,total_population,3.2,36,,15 - 19
+33.26.07,3,Karanganyar,age_group,20-24,laki_laki,1822,jiwa,2025,registration,total_population,3.2,36,,20 - 24
+33.26.07,3,Karanganyar,age_group,20-24,perempuan,1666,jiwa,2025,registration,total_population,3.2,36,,20 - 24
+33.26.07,3,Karanganyar,age_group,20-24,,3488,jiwa,2025,registration,total_population,3.2,36,,20 - 24
+33.26.07,3,Karanganyar,age_group,25-29,laki_laki,2045,jiwa,2025,registration,total_population,3.2,36,,25 - 29
+33.26.07,3,Karanganyar,age_group,25-29,perempuan,1977,jiwa,2025,registration,total_population,3.2,36,,25 - 29
+33.26.07,3,Karanganyar,age_group,25-29,,4022,jiwa,2025,registration,total_population,3.2,36,,25 - 29
+33.26.07,3,Karanganyar,age_group,30-34,laki_laki,2164,jiwa,2025,registration,total_population,3.2,36,,30 - 34
+33.26.07,3,Karanganyar,age_group,30-34,perempuan,1990,jiwa,2025,registration,total_population,3.2,36,,30 - 34
+33.26.07,3,Karanganyar,age_group,30-34,,4154,jiwa,2025,registration,total_population,3.2,36,,30 - 34
+33.26.07,3,Karanganyar,age_group,35-39,laki_laki,1938,jiwa,2025,registration,total_population,3.2,36,,35 - 39
+33.26.07,3,Karanganyar,age_group,35-39,perempuan,1853,jiwa,2025,registration,total_population,3.2,36,,35 - 39
+33.26.07,3,Karanganyar,age_group,35-39,,3791,jiwa,2025,registration,total_population,3.2,36,,35 - 39
+33.26.07,3,Karanganyar,age_group,40-44,laki_laki,1837,jiwa,2025,registration,total_population,3.2,36,,40 - 44
+33.26.07,3,Karanganyar,age_group,40-44,perempuan,1743,jiwa,2025,registration,total_population,3.2,36,,40 - 44
+33.26.07,3,Karanganyar,age_group,40-44,,3580,jiwa,2025,registration,total_population,3.2,36,,40 - 44
+33.26.07,3,Karanganyar,age_group,45-49,laki_laki,1633,jiwa,2025,registration,total_population,3.2,36,,45 - 49
+33.26.07,3,Karanganyar,age_group,45-49,perempuan,1496,jiwa,2025,registration,total_population,3.2,36,,45 - 49
+33.26.07,3,Karanganyar,age_group,45-49,,3129,jiwa,2025,registration,total_population,3.2,36,,45 - 49
+33.26.07,3,Karanganyar,age_group,50-54,laki_laki,1391,jiwa,2025,registration,total_population,3.2,36,,50 - 54
+33.26.07,3,Karanganyar,age_group,50-54,perempuan,1417,jiwa,2025,registration,total_population,3.2,36,,50 - 54
+33.26.07,3,Karanganyar,age_group,50-54,,2808,jiwa,2025,registration,total_population,3.2,36,,50 - 54
+33.26.07,3,Karanganyar,age_group,55-59,laki_laki,1225,jiwa,2025,registration,total_population,3.2,36,,55 - 59
+33.26.07,3,Karanganyar,age_group,55-59,perempuan,1319,jiwa,2025,registration,total_population,3.2,36,,55 - 59
+33.26.07,3,Karanganyar,age_group,55-59,,2544,jiwa,2025,registration,total_population,3.2,36,,55 - 59
+33.26.07,3,Karanganyar,age_group,60-64,laki_laki,1115,jiwa,2025,registration,total_population,3.2,36,,60 - 64
+33.26.07,3,Karanganyar,age_group,60-64,perempuan,1186,jiwa,2025,registration,total_population,3.2,36,,60 - 64
+33.26.07,3,Karanganyar,age_group,60-64,,2301,jiwa,2025,registration,total_population,3.2,36,,60 - 64
+33.26.07,3,Karanganyar,age_group,65-69,laki_laki,892,jiwa,2025,registration,total_population,3.2,36,,65 - 69
+33.26.07,3,Karanganyar,age_group,65-69,perempuan,895,jiwa,2025,registration,total_population,3.2,36,,65 - 69
+33.26.07,3,Karanganyar,age_group,65-69,,1787,jiwa,2025,registration,total_population,3.2,36,,65 - 69
+33.26.07,3,Karanganyar,age_group,70-74,laki_laki,604,jiwa,2025,registration,total_population,3.2,36,,70 - 74
+33.26.07,3,Karanganyar,age_group,70-74,perempuan,594,jiwa,2025,registration,total_population,3.2,36,,70 - 74
+33.26.07,3,Karanganyar,age_group,70-74,,1198,jiwa,2025,registration,total_population,3.2,36,,70 - 74
+33.26.07,3,Karanganyar,age_group,75+,laki_laki,626,jiwa,2025,registration,total_population,3.2,36,,>75
+33.26.07,3,Karanganyar,age_group,75+,perempuan,831,jiwa,2025,registration,total_population,3.2,36,,>75
+33.26.07,3,Karanganyar,age_group,75+,,1457,jiwa,2025,registration,total_population,3.2,36,,>75
+33.26.07,3,Kecamatan Karanganyar,sex,laki_laki,,25186,jiwa,2025,registration,total_population,3.2,36,,Laki-Laki
+33.26.07,3,Kecamatan Karanganyar,sex,perempuan,,24335,jiwa,2025,registration,total_population,3.2,36,,Perempuan
+33.26.07,3,Kecamatan Karanganyar,total,total,,49521,jiwa,2025,registration,total_population,3.2,36,,

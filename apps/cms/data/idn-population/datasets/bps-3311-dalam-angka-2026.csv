@@ -1,0 +1,189 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.11,2,Kabupaten Sukoharjo,age_group,0-4,laki_laki,26251,jiwa,2025,registration,total_population,3.1.2,50,,0–4
+33.11,2,Kabupaten Sukoharjo,age_group,0-4,perempuan,24725,jiwa,2025,registration,total_population,3.1.2,50,,0–4
+33.11,2,Kabupaten Sukoharjo,age_group,0-4,,50976,jiwa,2025,registration,total_population,3.1.2,50,,0–4
+33.11,2,Kabupaten Sukoharjo,age_group,5-9,laki_laki,34079,jiwa,2025,registration,total_population,3.1.2,50,,5–9
+33.11,2,Kabupaten Sukoharjo,age_group,5-9,perempuan,32056,jiwa,2025,registration,total_population,3.1.2,50,,5–9
+33.11,2,Kabupaten Sukoharjo,age_group,5-9,,66135,jiwa,2025,registration,total_population,3.1.2,50,,5–9
+33.11,2,Kabupaten Sukoharjo,age_group,10-14,laki_laki,35810,jiwa,2025,registration,total_population,3.1.2,50,,10–14
+33.11,2,Kabupaten Sukoharjo,age_group,10-14,perempuan,33974,jiwa,2025,registration,total_population,3.1.2,50,,10–14
+33.11,2,Kabupaten Sukoharjo,age_group,10-14,,69784,jiwa,2025,registration,total_population,3.1.2,50,,10–14
+33.11,2,Kabupaten Sukoharjo,age_group,15-19,laki_laki,37022,jiwa,2025,registration,total_population,3.1.2,50,,15–19
+33.11,2,Kabupaten Sukoharjo,age_group,15-19,perempuan,34854,jiwa,2025,registration,total_population,3.1.2,50,,15–19
+33.11,2,Kabupaten Sukoharjo,age_group,15-19,,71876,jiwa,2025,registration,total_population,3.1.2,50,,15–19
+33.11,2,Kabupaten Sukoharjo,age_group,20-24,laki_laki,34999,jiwa,2025,registration,total_population,3.1.2,50,,20–24
+33.11,2,Kabupaten Sukoharjo,age_group,20-24,perempuan,33373,jiwa,2025,registration,total_population,3.1.2,50,,20–24
+33.11,2,Kabupaten Sukoharjo,age_group,20-24,,68372,jiwa,2025,registration,total_population,3.1.2,50,,20–24
+33.11,2,Kabupaten Sukoharjo,age_group,25-29,laki_laki,34067,jiwa,2025,registration,total_population,3.1.2,50,,25–29
+33.11,2,Kabupaten Sukoharjo,age_group,25-29,perempuan,32849,jiwa,2025,registration,total_population,3.1.2,50,,25–29
+33.11,2,Kabupaten Sukoharjo,age_group,25-29,,66916,jiwa,2025,registration,total_population,3.1.2,50,,25–29
+33.11,2,Kabupaten Sukoharjo,age_group,30-34,laki_laki,32563,jiwa,2025,registration,total_population,3.1.2,50,,30–34
+33.11,2,Kabupaten Sukoharjo,age_group,30-34,perempuan,32038,jiwa,2025,registration,total_population,3.1.2,50,,30–34
+33.11,2,Kabupaten Sukoharjo,age_group,30-34,,64601,jiwa,2025,registration,total_population,3.1.2,50,,30–34
+33.11,2,Kabupaten Sukoharjo,age_group,35-39,laki_laki,30420,jiwa,2025,registration,total_population,3.1.2,50,,35–39
+33.11,2,Kabupaten Sukoharjo,age_group,35-39,perempuan,30068,jiwa,2025,registration,total_population,3.1.2,50,,35–39
+33.11,2,Kabupaten Sukoharjo,age_group,35-39,,60488,jiwa,2025,registration,total_population,3.1.2,50,,35–39
+33.11,2,Kabupaten Sukoharjo,age_group,40-44,laki_laki,35558,jiwa,2025,registration,total_population,3.1.2,50,,40–44
+33.11,2,Kabupaten Sukoharjo,age_group,40-44,perempuan,35179,jiwa,2025,registration,total_population,3.1.2,50,,40–44
+33.11,2,Kabupaten Sukoharjo,age_group,40-44,,70737,jiwa,2025,registration,total_population,3.1.2,50,,40–44
+33.11,2,Kabupaten Sukoharjo,age_group,45-49,laki_laki,34968,jiwa,2025,registration,total_population,3.1.2,50,,45–49
+33.11,2,Kabupaten Sukoharjo,age_group,45-49,perempuan,35094,jiwa,2025,registration,total_population,3.1.2,50,,45–49
+33.11,2,Kabupaten Sukoharjo,age_group,45-49,,70062,jiwa,2025,registration,total_population,3.1.2,50,,45–49
+33.11,2,Kabupaten Sukoharjo,age_group,50-54,laki_laki,30330,jiwa,2025,registration,total_population,3.1.2,50,,50–54
+33.11,2,Kabupaten Sukoharjo,age_group,50-54,perempuan,31465,jiwa,2025,registration,total_population,3.1.2,50,,50–54
+33.11,2,Kabupaten Sukoharjo,age_group,50-54,,61795,jiwa,2025,registration,total_population,3.1.2,50,,50–54
+33.11,2,Kabupaten Sukoharjo,age_group,55-59,laki_laki,27662,jiwa,2025,registration,total_population,3.1.2,50,,55–59
+33.11,2,Kabupaten Sukoharjo,age_group,55-59,perempuan,29472,jiwa,2025,registration,total_population,3.1.2,50,,55–59
+33.11,2,Kabupaten Sukoharjo,age_group,55-59,,57134,jiwa,2025,registration,total_population,3.1.2,50,,55–59
+33.11,2,Kabupaten Sukoharjo,age_group,60-64,laki_laki,22867,jiwa,2025,registration,total_population,3.1.2,50,,60–64
+33.11,2,Kabupaten Sukoharjo,age_group,60-64,perempuan,25356,jiwa,2025,registration,total_population,3.1.2,50,,60–64
+33.11,2,Kabupaten Sukoharjo,age_group,60-64,,48223,jiwa,2025,registration,total_population,3.1.2,50,,60–64
+33.11,2,Kabupaten Sukoharjo,age_group,65-69,laki_laki,18337,jiwa,2025,registration,total_population,3.1.2,50,,65–69
+33.11,2,Kabupaten Sukoharjo,age_group,65-69,perempuan,19703,jiwa,2025,registration,total_population,3.1.2,50,,65–69
+33.11,2,Kabupaten Sukoharjo,age_group,65-69,,38040,jiwa,2025,registration,total_population,3.1.2,50,,65–69
+33.11,2,Kabupaten Sukoharjo,age_group,70-74,laki_laki,11851,jiwa,2025,registration,total_population,3.1.2,50,,70–74
+33.11,2,Kabupaten Sukoharjo,age_group,70-74,perempuan,12125,jiwa,2025,registration,total_population,3.1.2,50,,70–74
+33.11,2,Kabupaten Sukoharjo,age_group,70-74,,23976,jiwa,2025,registration,total_population,3.1.2,50,,70–74
+33.11,2,Kabupaten Sukoharjo,age_group,75+,laki_laki,12441,jiwa,2025,registration,total_population,3.1.2,50,,75+
+33.11,2,Kabupaten Sukoharjo,age_group,75+,perempuan,17054,jiwa,2025,registration,total_population,3.1.2,50,,75+
+33.11,2,Kabupaten Sukoharjo,age_group,75+,,29495,jiwa,2025,registration,total_population,3.1.2,50,,75+
+33.11,2,Kabupaten Sukoharjo,sex,laki_laki,,459225,jiwa,2025,registration,total_population,3.1.2,50,,Laki-Laki
+33.11,2,Kabupaten Sukoharjo,sex,perempuan,,459385,jiwa,2025,registration,total_population,3.1.2,50,,Perempuan
+33.11,2,Kabupaten Sukoharjo,total,total,,918610,jiwa,2025,registration,total_population,3.1.2,50,,
+33.11.01,3,Weru,religion,islam,,57306,jiwa,2025,registration,total_population,4.3.1,124,,Islam
+33.11.01,3,Weru,religion,kristen,,431,jiwa,2025,registration,total_population,4.3.1,124,,Protestan
+33.11.01,3,Weru,religion,katolik,,114,jiwa,2025,registration,total_population,4.3.1,124,,Katolik
+33.11.01,3,Weru,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,124,,Hindu
+33.11.01,3,Weru,religion,buddha,,4,jiwa,2025,registration,total_population,4.3.1,124,,Budha
+33.11.01,3,Weru,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,124,nil,Khonghucu
+33.11.01,3,Weru,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,124,nil,Kepercayaan
+33.11.02,3,Bulu,religion,islam,,36697,jiwa,2025,registration,total_population,4.3.1,124,,Islam
+33.11.02,3,Bulu,religion,kristen,,296,jiwa,2025,registration,total_population,4.3.1,124,,Protestan
+33.11.02,3,Bulu,religion,katolik,,66,jiwa,2025,registration,total_population,4.3.1,124,,Katolik
+33.11.02,3,Bulu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,124,nil,Hindu
+33.11.02,3,Bulu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,124,nil,Budha
+33.11.02,3,Bulu,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,124,nil,Khonghucu
+33.11.02,3,Bulu,religion,kepercayaan,,2,jiwa,2025,registration,total_population,4.3.1,124,,Kepercayaan
+33.11.03,3,Tawangsari,religion,islam,,56318,jiwa,2025,registration,total_population,4.3.1,124,,Islam
+33.11.03,3,Tawangsari,religion,kristen,,490,jiwa,2025,registration,total_population,4.3.1,124,,Protestan
+33.11.03,3,Tawangsari,religion,katolik,,97,jiwa,2025,registration,total_population,4.3.1,124,,Katolik
+33.11.03,3,Tawangsari,religion,hindu,,38,jiwa,2025,registration,total_population,4.3.1,124,,Hindu
+33.11.03,3,Tawangsari,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,124,nil,Budha
+33.11.03,3,Tawangsari,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,124,nil,Khonghucu
+33.11.03,3,Tawangsari,religion,kepercayaan,,7,jiwa,2025,registration,total_population,4.3.1,124,,Kepercayaan
+33.11.04,3,Sukoharjo,religion,islam,,97835,jiwa,2025,registration,total_population,4.3.1,124,,Islam
+33.11.04,3,Sukoharjo,religion,kristen,,1924,jiwa,2025,registration,total_population,4.3.1,124,,Protestan
+33.11.04,3,Sukoharjo,religion,katolik,,754,jiwa,2025,registration,total_population,4.3.1,124,,Katolik
+33.11.04,3,Sukoharjo,religion,hindu,,28,jiwa,2025,registration,total_population,4.3.1,124,,Hindu
+33.11.04,3,Sukoharjo,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,124,,Budha
+33.11.04,3,Sukoharjo,religion,khonghucu,,4,jiwa,2025,registration,total_population,4.3.1,124,,Khonghucu
+33.11.04,3,Sukoharjo,religion,kepercayaan,,9,jiwa,2025,registration,total_population,4.3.1,124,,Kepercayaan
+33.11.05,3,Nguter,religion,islam,,55474,jiwa,2025,registration,total_population,4.3.1,124,,Islam
+33.11.05,3,Nguter,religion,kristen,,422,jiwa,2025,registration,total_population,4.3.1,124,,Protestan
+33.11.05,3,Nguter,religion,katolik,,113,jiwa,2025,registration,total_population,4.3.1,124,,Katolik
+33.11.05,3,Nguter,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,124,,Hindu
+33.11.05,3,Nguter,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,124,nil,Budha
+33.11.05,3,Nguter,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,124,nil,Khonghucu
+33.11.05,3,Nguter,religion,kepercayaan,,4,jiwa,2025,registration,total_population,4.3.1,124,,Kepercayaan
+33.11.06,3,Bendosari,religion,islam,,64523,jiwa,2025,registration,total_population,4.3.1,124,,Islam
+33.11.06,3,Bendosari,religion,kristen,,431,jiwa,2025,registration,total_population,4.3.1,124,,Protestan
+33.11.06,3,Bendosari,religion,katolik,,344,jiwa,2025,registration,total_population,4.3.1,124,,Katolik
+33.11.06,3,Bendosari,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,124,,Hindu
+33.11.06,3,Bendosari,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,124,,Budha
+33.11.06,3,Bendosari,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,124,nil,Khonghucu
+33.11.06,3,Bendosari,religion,kepercayaan,,11,jiwa,2025,registration,total_population,4.3.1,124,,Kepercayaan
+33.11.07,3,Polokarto,religion,islam,,88677,jiwa,2025,registration,total_population,4.3.1,124,,Islam
+33.11.07,3,Polokarto,religion,kristen,,251,jiwa,2025,registration,total_population,4.3.1,124,,Protestan
+33.11.07,3,Polokarto,religion,katolik,,138,jiwa,2025,registration,total_population,4.3.1,124,,Katolik
+33.11.07,3,Polokarto,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,124,,Hindu
+33.11.07,3,Polokarto,religion,buddha,,12,jiwa,2025,registration,total_population,4.3.1,124,,Budha
+33.11.07,3,Polokarto,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,124,nil,Khonghucu
+33.11.07,3,Polokarto,religion,kepercayaan,,4,jiwa,2025,registration,total_population,4.3.1,124,,Kepercayaan
+33.11.08,3,Mojolaban,religion,islam,,89697,jiwa,2025,registration,total_population,4.3.1,124,,Islam
+33.11.08,3,Mojolaban,religion,kristen,,2125,jiwa,2025,registration,total_population,4.3.1,124,,Protestan
+33.11.08,3,Mojolaban,religion,katolik,,1413,jiwa,2025,registration,total_population,4.3.1,124,,Katolik
+33.11.08,3,Mojolaban,religion,hindu,,49,jiwa,2025,registration,total_population,4.3.1,124,,Hindu
+33.11.08,3,Mojolaban,religion,buddha,,56,jiwa,2025,registration,total_population,4.3.1,124,,Budha
+33.11.08,3,Mojolaban,religion,khonghucu,,3,jiwa,2025,registration,total_population,4.3.1,124,,Khonghucu
+33.11.08,3,Mojolaban,religion,kepercayaan,,6,jiwa,2025,registration,total_population,4.3.1,124,,Kepercayaan
+33.11.09,3,Grogol,religion,islam,,107794,jiwa,2025,registration,total_population,4.3.1,124,,Islam
+33.11.09,3,Grogol,religion,kristen,,10127,jiwa,2025,registration,total_population,4.3.1,124,,Protestan
+33.11.09,3,Grogol,religion,katolik,,3649,jiwa,2025,registration,total_population,4.3.1,124,,Katolik
+33.11.09,3,Grogol,religion,hindu,,77,jiwa,2025,registration,total_population,4.3.1,124,,Hindu
+33.11.09,3,Grogol,religion,buddha,,379,jiwa,2025,registration,total_population,4.3.1,124,,Budha
+33.11.09,3,Grogol,religion,khonghucu,,14,jiwa,2025,registration,total_population,4.3.1,124,,Khonghucu
+33.11.09,3,Grogol,religion,kepercayaan,,6,jiwa,2025,registration,total_population,4.3.1,124,,Kepercayaan
+33.11.10,3,Baki,religion,islam,,68584,jiwa,2025,registration,total_population,4.3.1,124,,Islam
+33.11.10,3,Baki,religion,kristen,,2825,jiwa,2025,registration,total_population,4.3.1,124,,Protestan
+33.11.10,3,Baki,religion,katolik,,1672,jiwa,2025,registration,total_population,4.3.1,124,,Katolik
+33.11.10,3,Baki,religion,hindu,,30,jiwa,2025,registration,total_population,4.3.1,124,,Hindu
+33.11.10,3,Baki,religion,buddha,,75,jiwa,2025,registration,total_population,4.3.1,124,,Budha
+33.11.10,3,Baki,religion,khonghucu,,5,jiwa,2025,registration,total_population,4.3.1,124,,Khonghucu
+33.11.10,3,Baki,religion,kepercayaan,,6,jiwa,2025,registration,total_population,4.3.1,124,,Kepercayaan
+33.11.11,3,Gatak,religion,islam,,52459,jiwa,2025,registration,total_population,4.3.1,124,,Islam
+33.11.11,3,Gatak,religion,kristen,,1431,jiwa,2025,registration,total_population,4.3.1,124,,Protestan
+33.11.11,3,Gatak,religion,katolik,,1002,jiwa,2025,registration,total_population,4.3.1,124,,Katolik
+33.11.11,3,Gatak,religion,hindu,,16,jiwa,2025,registration,total_population,4.3.1,124,,Hindu
+33.11.11,3,Gatak,religion,buddha,,18,jiwa,2025,registration,total_population,4.3.1,124,,Budha
+33.11.11,3,Gatak,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,124,nil,Khonghucu
+33.11.11,3,Gatak,religion,kepercayaan,,10,jiwa,2025,registration,total_population,4.3.1,124,,Kepercayaan
+33.11.12,3,Kartasura,religion,islam,,103531,jiwa,2025,registration,total_population,4.3.1,124,,Islam
+33.11.12,3,Kartasura,religion,kristen,,6004,jiwa,2025,registration,total_population,4.3.1,124,,Protestan
+33.11.12,3,Kartasura,religion,katolik,,2566,jiwa,2025,registration,total_population,4.3.1,124,,Katolik
+33.11.12,3,Kartasura,religion,hindu,,94,jiwa,2025,registration,total_population,4.3.1,124,,Hindu
+33.11.12,3,Kartasura,religion,buddha,,42,jiwa,2025,registration,total_population,4.3.1,124,,Budha
+33.11.12,3,Kartasura,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,124,nil,Khonghucu
+33.11.12,3,Kartasura,religion,kepercayaan,,7,jiwa,2025,registration,total_population,4.3.1,124,,Kepercayaan
+33.11,2,Kabupaten Sukoharjo,religion,islam,,878895,jiwa,2025,registration,total_population,4.3.1,124,,Islam
+33.11,2,Kabupaten Sukoharjo,religion,kristen,,26757,jiwa,2025,registration,total_population,4.3.1,124,,Protestan
+33.11,2,Kabupaten Sukoharjo,religion,katolik,,11928,jiwa,2025,registration,total_population,4.3.1,124,,Katolik
+33.11,2,Kabupaten Sukoharjo,religion,hindu,,340,jiwa,2025,registration,total_population,4.3.1,124,,Hindu
+33.11,2,Kabupaten Sukoharjo,religion,buddha,,592,jiwa,2025,registration,total_population,4.3.1,124,,Budha
+33.11,2,Kabupaten Sukoharjo,religion,khonghucu,,26,jiwa,2025,registration,total_population,4.3.1,124,,Khonghucu
+33.11,2,Kabupaten Sukoharjo,religion,kepercayaan,,72,jiwa,2025,registration,total_population,4.3.1,124,,Kepercayaan
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/padi_padian,,79401,rupiah,2024,survey_estimate,per_capita,10.1,255,,Padi-padian
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/padi_padian,,75419,rupiah,2025,survey_estimate,per_capita,10.1,255,,Padi-padian
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/umbi_umbian,,5284,rupiah,2024,survey_estimate,per_capita,10.1,255,,Umbi-umbian
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/umbi_umbian,,6230,rupiah,2025,survey_estimate,per_capita,10.1,255,,Umbi-umbian
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,26184,rupiah,2024,survey_estimate,per_capita,10.1,255,,Ikan/udang/cumi/kerang
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,22112,rupiah,2025,survey_estimate,per_capita,10.1,255,,Ikan/udang/cumi/kerang
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/daging,,28699,rupiah,2024,survey_estimate,per_capita,10.1,255,,Daging
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/daging,,29749,rupiah,2025,survey_estimate,per_capita,10.1,255,,Daging
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/telur_dan_susu,,39389,rupiah,2024,survey_estimate,per_capita,10.1,255,,Telur dan susu
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/telur_dan_susu,,36492,rupiah,2025,survey_estimate,per_capita,10.1,255,,Telur dan susu
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/sayur_sayuran,,52211,rupiah,2024,survey_estimate,per_capita,10.1,255,,Sayur-sayuran
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/sayur_sayuran,,55618,rupiah,2025,survey_estimate,per_capita,10.1,255,,Sayur-sayuran
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/kacang_kacangan,,17879,rupiah,2024,survey_estimate,per_capita,10.1,255,,Kacang-kacangan
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/kacang_kacangan,,18826,rupiah,2025,survey_estimate,per_capita,10.1,255,,Kacang-kacangan
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/buah_buahan,,39507,rupiah,2024,survey_estimate,per_capita,10.1,255,,Buah-buahan
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/buah_buahan,,40370,rupiah,2025,survey_estimate,per_capita,10.1,255,,Buah-buahan
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16679,rupiah,2024,survey_estimate,per_capita,10.1,255,,Minyak dan kelapa
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/minyak_dan_kelapa,,18151,rupiah,2025,survey_estimate,per_capita,10.1,255,,Minyak dan kelapa
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/bahan_minuman,,22543,rupiah,2024,survey_estimate,per_capita,10.1,255,,Bahan minuman
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/bahan_minuman,,21646,rupiah,2025,survey_estimate,per_capita,10.1,255,,Bahan minuman
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/bumbu_bumbuan,,12614,rupiah,2024,survey_estimate,per_capita,10.1,255,,Bumbu-bumbuan
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/bumbu_bumbuan,,12994,rupiah,2025,survey_estimate,per_capita,10.1,255,,Bumbu-bumbuan
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/konsumsi_lainnya,,9899,rupiah,2024,survey_estimate,per_capita,10.1,255,,Konsumsi lainnya
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/konsumsi_lainnya,,10680,rupiah,2025,survey_estimate,per_capita,10.1,255,,Konsumsi lainnya
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,242554,rupiah,2024,survey_estimate,per_capita,10.1,255,,Makanan dan minuman jadi
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,238702,rupiah,2025,survey_estimate,per_capita,10.1,255,,Makanan dan minuman jadi
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/rokok,,71140,rupiah,2024,survey_estimate,per_capita,10.1,255,,Rokok
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/rokok,,56096,rupiah,2025,survey_estimate,per_capita,10.1,255,,Rokok
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/jumlah_makanan,,663983,rupiah,2024,survey_estimate,per_capita,10.1,255,,Jumlah makanan
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/jumlah_makanan,,643085,rupiah,2025,survey_estimate,per_capita,10.1,255,,Jumlah makanan
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,391981,rupiah,2024,survey_estimate,per_capita,10.1,255,,Perumahan dan fasilitas rumah tangga
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,392743,rupiah,2025,survey_estimate,per_capita,10.1,255,,Perumahan dan fasilitas rumah tangga
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,198153,rupiah,2024,survey_estimate,per_capita,10.1,255,,Aneka barang dan jasa
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,235572,rupiah,2025,survey_estimate,per_capita,10.1,255,,Aneka barang dan jasa
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,25472,rupiah,2024,survey_estimate,per_capita,10.1,255,,"Pakaian, alas kaki, dan tutup kepala"
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,27427,rupiah,2025,survey_estimate,per_capita,10.1,255,,"Pakaian, alas kaki, dan tutup kepala"
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/barang_tahan_lama,,76591,rupiah,2024,survey_estimate,per_capita,10.1,255,,Barang tahan lama
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/barang_tahan_lama,,46051,rupiah,2025,survey_estimate,per_capita,10.1,255,,Barang tahan lama
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,74685,rupiah,2024,survey_estimate,per_capita,10.1,255,,"Pajak, pungutan, dan asuransi"
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,69190,rupiah,2025,survey_estimate,per_capita,10.1,255,,"Pajak, pungutan, dan asuransi"
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,42458,rupiah,2024,survey_estimate,per_capita,10.1,255,,Keperluan pesta dan upacara/kenduri
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,48910,rupiah,2025,survey_estimate,per_capita,10.1,255,,Keperluan pesta dan upacara/kenduri
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,809340,rupiah,2024,survey_estimate,per_capita,10.1,255,,Jumlah bukan makanan
+33.11,2,Kabupaten Sukoharjo,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,819893,rupiah,2025,survey_estimate,per_capita,10.1,255,,Jumlah bukan makanan
+33.11,2,Kabupaten Sukoharjo,expenditure,total,,1473322,rupiah,2024,survey_estimate,per_capita,10.1,255,,
+33.11,2,Kabupaten Sukoharjo,expenditure,total,,1462978,rupiah,2025,survey_estimate,per_capita,10.1,255,,

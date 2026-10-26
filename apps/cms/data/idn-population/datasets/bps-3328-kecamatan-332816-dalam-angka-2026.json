@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3328-kecamatan-332816-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.28.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Suradadi Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tegal",
+  "publisherDomain": "3328",
+  "publisherWebsite": "https://tegalkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tegal (https://tegalkab.bps.go.id), publikasi \"Kecamatan Suradadi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3328170",
+  "publicationNumber": "33280.26023",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tegalkab.bps.go.id/id/publication/2026/09/28/b906bb5845a3b435dd658407/kecamatan-suradadi-dalam-angka-2026.html",
+  "sourceFileSha256": "e2b1a7acee45e1b35cf9e76a95e1b8ed25034489e73ed1b6fb4cb3c21c7e845a",
+  "sourceFileBytes": 4776306,
+  "sourcePages": [34, 35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tegal.",
+  "csvPath": "datasets/bps-3328-kecamatan-332816-dalam-angka-2026.csv",
+  "csvSha256": "5d58c624e4aa5fd9585271d0182ee3e8047005c864887cb07694a2c5f2ffdb73",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Suradadi, 2026",
+      "printedPages": [34, 35],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Suradadi, 2026",
+      "printedPages": [36],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Sidoharjo\": unmatched ",
+    "table 3.1: row not stored: row \"Sidoharjo\": unmatched "
+  ]
+}

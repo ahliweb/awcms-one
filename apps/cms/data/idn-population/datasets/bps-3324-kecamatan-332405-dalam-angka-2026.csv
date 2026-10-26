@@ -1,0 +1,59 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.24.05.2001,4,Cening,sex,perempuan,,1847,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.05.2001,4,Cening,total,total,,3710,jiwa,2025,registration,total_population,3.1,27,,
+33.24.05.2002,4,Sukodadi,sex,perempuan,,980,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.05.2002,4,Sukodadi,total,total,,1972,jiwa,2025,registration,total_population,3.1,27,,
+33.24.05.2003,4,Kaliputih,sex,perempuan,,2979,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.05.2003,4,Kaliputih,total,total,,6029,jiwa,2025,registration,total_population,3.1,27,,
+33.24.05.2004,4,Getas,sex,perempuan,,3490,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.05.2004,4,Getas,total,total,,7003,jiwa,2025,registration,total_population,3.1,27,,
+33.24.05.2005,4,Banyuringin,sex,perempuan,,2045,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.05.2005,4,Banyuringin,total,total,,4099,jiwa,2025,registration,total_population,3.1,27,,
+33.24.05.2006,4,Kedungsari,sex,perempuan,,1805,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.05.2006,4,Kedungsari,total,total,,3621,jiwa,2025,registration,total_population,3.1,27,,
+33.24.05.2007,4,Ngareanak,sex,perempuan,,1436,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.05.2007,4,Ngareanak,total,total,,2832,jiwa,2025,registration,total_population,3.1,27,,
+33.24.05.2008,4,Singorojo,sex,perempuan,,2678,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.05.2008,4,Singorojo,total,total,,5441,jiwa,2025,registration,total_population,3.1,27,,
+33.24.05.2009,4,Cacaban,sex,perempuan,,433,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.05.2009,4,Cacaban,total,total,,899,jiwa,2025,registration,total_population,3.1,27,,
+33.24.05.2010,4,Kalirejo,sex,perempuan,,1343,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.05.2010,4,Kalirejo,total,total,,2735,jiwa,2025,registration,total_population,3.1,27,,
+33.24.05.2011,4,Merbuh,sex,perempuan,,2484,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.05.2011,4,Merbuh,total,total,,4987,jiwa,2025,registration,total_population,3.1,27,,
+33.24.05.2012,4,Trayu,sex,perempuan,,1334,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.05.2012,4,Trayu,total,total,,2691,jiwa,2025,registration,total_population,3.1,27,,
+33.24.05.2013,4,Kertosari,sex,perempuan,,5558,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.05.2013,4,Kertosari,total,total,,11266,jiwa,2025,registration,total_population,3.1,27,,
+33.24.05,3,Singorojo,age_group,0-4,perempuan,1620,jiwa,2025,registration,total_population,3.2,29,,00 – 04
+33.24.05,3,Singorojo,age_group,0-4,,3440,jiwa,2025,registration,total_population,3.2,29,,00 – 04
+33.24.05,3,Singorojo,age_group,5-9,perempuan,2026,jiwa,2025,registration,total_population,3.2,29,,05 – 09
+33.24.05,3,Singorojo,age_group,5-9,,4238,jiwa,2025,registration,total_population,3.2,29,,05 – 09
+33.24.05,3,Singorojo,age_group,10-14,perempuan,2199,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+33.24.05,3,Singorojo,age_group,10-14,,4433,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+33.24.05,3,Singorojo,age_group,15-19,perempuan,2089,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+33.24.05,3,Singorojo,age_group,15-19,,4347,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+33.24.05,3,Singorojo,age_group,20-24,perempuan,2024,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+33.24.05,3,Singorojo,age_group,20-24,,4172,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+33.24.05,3,Singorojo,age_group,25-29,perempuan,2117,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+33.24.05,3,Singorojo,age_group,25-29,,4215,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+33.24.05,3,Singorojo,age_group,30-34,perempuan,2081,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+33.24.05,3,Singorojo,age_group,30-34,,4166,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+33.24.05,3,Singorojo,age_group,35-39,perempuan,2114,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+33.24.05,3,Singorojo,age_group,35-39,,4262,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+33.24.05,3,Singorojo,age_group,40-44,perempuan,2117,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+33.24.05,3,Singorojo,age_group,40-44,,4308,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+33.24.05,3,Singorojo,age_group,45-49,perempuan,2023,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+33.24.05,3,Singorojo,age_group,45-49,,4058,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+33.24.05,3,Singorojo,age_group,50-54,perempuan,1846,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+33.24.05,3,Singorojo,age_group,50-54,,3609,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+33.24.05,3,Singorojo,age_group,55-59,perempuan,1703,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+33.24.05,3,Singorojo,age_group,55-59,,3301,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+33.24.05,3,Singorojo,age_group,60-64,perempuan,1518,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+33.24.05,3,Singorojo,age_group,60-64,,2955,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+33.24.05,3,Singorojo,age_group,65-69,perempuan,1344,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+33.24.05,3,Singorojo,age_group,65-69,,2588,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+33.24.05,3,Singorojo,age_group,70-74,perempuan,698,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+33.24.05,3,Singorojo,age_group,70-74,,1529,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+33.24.05,3,Singorojo,age_group,75+,perempuan,893,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.24.05,3,Singorojo,age_group,75+,,1664,jiwa,2025,registration,total_population,3.2,29,,> 75

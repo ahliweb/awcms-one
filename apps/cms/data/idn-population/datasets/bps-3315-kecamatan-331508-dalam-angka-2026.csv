@@ -1,0 +1,97 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.15.08.2001,4,Keyongan,sex,laki_laki,,2797,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.08.2001,4,Keyongan,sex,perempuan,,2713,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+33.15.08.2001,4,Keyongan,total,total,,5510,jiwa,2025,registration,total_population,3.1,25,,
+33.15.08.2002,4,Suwatu,sex,laki_laki,,1313,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.08.2002,4,Suwatu,sex,perempuan,,1318,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+33.15.08.2002,4,Suwatu,total,total,,2631,jiwa,2025,registration,total_population,3.1,25,,
+33.15.08.2003,4,Nglinduk,sex,laki_laki,,1960,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.08.2003,4,Nglinduk,sex,perempuan,,1966,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+33.15.08.2003,4,Nglinduk,total,total,,3926,jiwa,2025,registration,total_population,3.1,25,,
+33.15.08.2004,4,Pelem,sex,laki_laki,,3889,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.08.2004,4,Pelem,sex,perempuan,,3908,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+33.15.08.2004,4,Pelem,total,total,,7797,jiwa,2025,registration,total_population,3.1,25,,
+33.15.08.2005,4,Sulursari,sex,laki_laki,,3525,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.08.2005,4,Sulursari,sex,perempuan,,3406,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+33.15.08.2005,4,Sulursari,total,total,,6931,jiwa,2025,registration,total_population,3.1,25,,
+33.15.08.2006,4,Tlogotirto,sex,laki_laki,,2700,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.08.2006,4,Tlogotirto,sex,perempuan,,2712,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+33.15.08.2006,4,Tlogotirto,total,total,,5412,jiwa,2025,registration,total_population,3.1,25,,
+33.15.08.2007,4,Gabus,sex,laki_laki,,2037,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.08.2007,4,Gabus,sex,perempuan,,2028,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+33.15.08.2007,4,Gabus,total,total,,4065,jiwa,2025,registration,total_population,3.1,25,,
+33.15.08.2008,4,Pandanharum,sex,laki_laki,,3841,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.08.2008,4,Pandanharum,sex,perempuan,,3749,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+33.15.08.2008,4,Pandanharum,total,total,,7590,jiwa,2025,registration,total_population,3.1,25,,
+33.15.08.2009,4,Tunggulrejo,sex,laki_laki,,3281,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.08.2009,4,Tunggulrejo,sex,perempuan,,3245,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+33.15.08.2009,4,Tunggulrejo,total,total,,6526,jiwa,2025,registration,total_population,3.1,25,,
+33.15.08.2010,4,Tahunan,sex,laki_laki,,2633,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.08.2010,4,Tahunan,sex,perempuan,,2602,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+33.15.08.2010,4,Tahunan,total,total,,5235,jiwa,2025,registration,total_population,3.1,25,,
+33.15.08.2011,4,Bendoharjo,sex,laki_laki,,3023,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.08.2011,4,Bendoharjo,sex,perempuan,,3010,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+33.15.08.2011,4,Bendoharjo,total,total,,6033,jiwa,2025,registration,total_population,3.1,25,,
+33.15.08.2012,4,Kalipang,sex,laki_laki,,1958,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.08.2012,4,Kalipang,sex,perempuan,,1932,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+33.15.08.2012,4,Kalipang,total,total,,3890,jiwa,2025,registration,total_population,3.1,25,,
+33.15.08.2013,4,Karangrejo,sex,laki_laki,,2411,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.08.2013,4,Karangrejo,sex,perempuan,,2455,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+33.15.08.2013,4,Karangrejo,total,total,,4866,jiwa,2025,registration,total_population,3.1,25,,
+33.15.08.2014,4,Banjarejo,sex,laki_laki,,3025,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.08.2014,4,Banjarejo,sex,perempuan,,3015,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+33.15.08.2014,4,Banjarejo,total,total,,6040,jiwa,2025,registration,total_population,3.1,25,,
+33.15.08,3,Kecamatan Gabus,sex,laki_laki,,38393,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+33.15.08,3,Kecamatan Gabus,sex,perempuan,,38059,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+33.15.08,3,Kecamatan Gabus,total,total,,76452,jiwa,2025,registration,total_population,3.1,25,,
+33.15.08,3,Gabus,age_group,0-4,laki_laki,2284,jiwa,2025,registration,total_population,3.2,27,,0 - 4
+33.15.08,3,Gabus,age_group,0-4,perempuan,2144,jiwa,2025,registration,total_population,3.2,27,,0 - 4
+33.15.08,3,Gabus,age_group,0-4,,4428,jiwa,2025,registration,total_population,3.2,27,,0 - 4
+33.15.08,3,Gabus,age_group,5-9,laki_laki,2667,jiwa,2025,registration,total_population,3.2,27,,5 - 9
+33.15.08,3,Gabus,age_group,5-9,perempuan,2549,jiwa,2025,registration,total_population,3.2,27,,5 - 9
+33.15.08,3,Gabus,age_group,5-9,,5216,jiwa,2025,registration,total_population,3.2,27,,5 - 9
+33.15.08,3,Gabus,age_group,10-14,laki_laki,2837,jiwa,2025,registration,total_population,3.2,27,,10 - 14
+33.15.08,3,Gabus,age_group,10-14,perempuan,2711,jiwa,2025,registration,total_population,3.2,27,,10 - 14
+33.15.08,3,Gabus,age_group,10-14,,5548,jiwa,2025,registration,total_population,3.2,27,,10 - 14
+33.15.08,3,Gabus,age_group,15-19,laki_laki,2758,jiwa,2025,registration,total_population,3.2,27,,15 - 19
+33.15.08,3,Gabus,age_group,15-19,perempuan,2611,jiwa,2025,registration,total_population,3.2,27,,15 - 19
+33.15.08,3,Gabus,age_group,15-19,,5369,jiwa,2025,registration,total_population,3.2,27,,15 - 19
+33.15.08,3,Gabus,age_group,20-24,laki_laki,2728,jiwa,2025,registration,total_population,3.2,27,,20 - 24
+33.15.08,3,Gabus,age_group,20-24,perempuan,2675,jiwa,2025,registration,total_population,3.2,27,,20 - 24
+33.15.08,3,Gabus,age_group,20-24,,5403,jiwa,2025,registration,total_population,3.2,27,,20 - 24
+33.15.08,3,Gabus,age_group,25-29,laki_laki,2953,jiwa,2025,registration,total_population,3.2,27,,25 - 29
+33.15.08,3,Gabus,age_group,25-29,perempuan,2919,jiwa,2025,registration,total_population,3.2,27,,25 - 29
+33.15.08,3,Gabus,age_group,25-29,,5872,jiwa,2025,registration,total_population,3.2,27,,25 - 29
+33.15.08,3,Gabus,age_group,30-34,laki_laki,2844,jiwa,2025,registration,total_population,3.2,27,,30 - 34
+33.15.08,3,Gabus,age_group,30-34,perempuan,2637,jiwa,2025,registration,total_population,3.2,27,,30 - 34
+33.15.08,3,Gabus,age_group,30-34,,5481,jiwa,2025,registration,total_population,3.2,27,,30 - 34
+33.15.08,3,Gabus,age_group,35-39,laki_laki,2760,jiwa,2025,registration,total_population,3.2,27,,35 - 39
+33.15.08,3,Gabus,age_group,35-39,perempuan,2688,jiwa,2025,registration,total_population,3.2,27,,35 - 39
+33.15.08,3,Gabus,age_group,35-39,,5448,jiwa,2025,registration,total_population,3.2,27,,35 - 39
+33.15.08,3,Gabus,age_group,40-44,laki_laki,2650,jiwa,2025,registration,total_population,3.2,27,,40 - 44
+33.15.08,3,Gabus,age_group,40-44,perempuan,2663,jiwa,2025,registration,total_population,3.2,27,,40 - 44
+33.15.08,3,Gabus,age_group,40-44,,5313,jiwa,2025,registration,total_population,3.2,27,,40 - 44
+33.15.08,3,Gabus,age_group,45-49,laki_laki,2546,jiwa,2025,registration,total_population,3.2,27,,45 - 49
+33.15.08,3,Gabus,age_group,45-49,perempuan,2529,jiwa,2025,registration,total_population,3.2,27,,45 - 49
+33.15.08,3,Gabus,age_group,45-49,,5075,jiwa,2025,registration,total_population,3.2,27,,45 - 49
+33.15.08,3,Gabus,age_group,50-54,laki_laki,2589,jiwa,2025,registration,total_population,3.2,27,,50 - 54
+33.15.08,3,Gabus,age_group,50-54,perempuan,2574,jiwa,2025,registration,total_population,3.2,27,,50 - 54
+33.15.08,3,Gabus,age_group,50-54,,5163,jiwa,2025,registration,total_population,3.2,27,,50 - 54
+33.15.08,3,Gabus,age_group,55-59,laki_laki,2428,jiwa,2025,registration,total_population,3.2,27,,55 - 59
+33.15.08,3,Gabus,age_group,55-59,perempuan,2449,jiwa,2025,registration,total_population,3.2,27,,55 - 59
+33.15.08,3,Gabus,age_group,55-59,,4877,jiwa,2025,registration,total_population,3.2,27,,55 - 59
+33.15.08,3,Gabus,age_group,60-64,laki_laki,2227,jiwa,2025,registration,total_population,3.2,27,,60 - 64
+33.15.08,3,Gabus,age_group,60-64,perempuan,2345,jiwa,2025,registration,total_population,3.2,27,,60 - 64
+33.15.08,3,Gabus,age_group,60-64,,4572,jiwa,2025,registration,total_population,3.2,27,,60 - 64
+33.15.08,3,Gabus,age_group,65-69,laki_laki,1743,jiwa,2025,registration,total_population,3.2,27,,65 - 69
+33.15.08,3,Gabus,age_group,65-69,perempuan,1818,jiwa,2025,registration,total_population,3.2,27,,65 - 69
+33.15.08,3,Gabus,age_group,65-69,,3561,jiwa,2025,registration,total_population,3.2,27,,65 - 69
+33.15.08,3,Gabus,age_group,70-74,laki_laki,1151,jiwa,2025,registration,total_population,3.2,27,,70 - 74
+33.15.08,3,Gabus,age_group,70-74,perempuan,1060,jiwa,2025,registration,total_population,3.2,27,,70 - 74
+33.15.08,3,Gabus,age_group,70-74,,2211,jiwa,2025,registration,total_population,3.2,27,,70 - 74
+33.15.08,3,Gabus,age_group,75+,laki_laki,1228,jiwa,2025,registration,total_population,3.2,27,,75 +
+33.15.08,3,Gabus,age_group,75+,perempuan,1687,jiwa,2025,registration,total_population,3.2,27,,75 +
+33.15.08,3,Gabus,age_group,75+,,2915,jiwa,2025,registration,total_population,3.2,27,,75 +
+33.15.08,3,Kecamatan Gabus,sex,laki_laki,,38393,jiwa,2025,registration,total_population,3.2,27,,Laki-Laki
+33.15.08,3,Kecamatan Gabus,sex,perempuan,,38059,jiwa,2025,registration,total_population,3.2,27,,Perempuan
+33.15.08,3,Kecamatan Gabus,total,total,,76452,jiwa,2025,registration,total_population,3.2,27,,

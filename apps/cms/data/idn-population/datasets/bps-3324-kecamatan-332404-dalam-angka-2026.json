@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3324-kecamatan-332404-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.24.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Patean Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kendal",
+  "publisherDomain": "3324",
+  "publisherWebsite": "https://kendalkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kendal (https://kendalkab.bps.go.id), publikasi \"Kecamatan Patean Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3324040",
+  "publicationNumber": "33240.26009",
+  "issn": "2621-167X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kendalkab.bps.go.id/id/publication/2026/09/28/41e887e35e3981954834f260/kecamatan-patean-dalam-angka-2026.html",
+  "sourceFileSha256": "ad907ba066e068aed964653c242dc542a185f50ff8b132a00457d981e4e07b86",
+  "sourceFileBytes": 6291854,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kendal.",
+  "csvPath": "datasets/bps-3324-kecamatan-332404-dalam-angka-2026.csv",
+  "csvSha256": "9e9a592cc0330bdd845216d91aedc0d98b07db0e943ced1e608d86f22b91722e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Patean, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Patean, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Patean Patean District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Patean Patean District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Patean Patean District\": unmatched "
+  ]
+}

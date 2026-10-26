@@ -1,0 +1,52 @@
+{
+  "datasetCode": "bps-3300-dalam-angka-2026",
+  "publicationSeries": "provinsi_dalam_angka",
+  "coverageRegionCode": "33",
+  "coverageRegionLevel": 1,
+  "publicationTitle": "Provinsi Jawa Tengah Dalam Angka 2026",
+  "publisherName": "BPS Provinsi Jawa Tengah",
+  "publisherDomain": "3300",
+  "publisherWebsite": "https://jateng.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Provinsi Jawa Tengah (https://jateng.bps.go.id), publikasi \"Provinsi Jawa Tengah Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.33",
+  "publicationNumber": "33000.26008",
+  "issn": "0215-2177",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://jateng.bps.go.id/id/publication/2026/02/27/c15d76de2a762acd2303c346/provinsi-jawa-tengah-dalam-angka-2026.html",
+  "sourceFileSha256": "65c2470df296a17512184a204b3f7e9c8ff474daba4b8772cef87153c08165a4",
+  "sourceFileBytes": 11377156,
+  "sourcePages": [149, 215, 454],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Provinsi Jawa Tengah.",
+  "csvPath": "datasets/bps-3300-dalam-angka-2026.csv",
+  "csvSha256": "c848e66d3d7492f05d07933d6484bc1f5d177b922f4538795d7ccf32f8e0b657",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p149",
+      "title": "3.1.1 Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Kabupaten/ Kota di Provinsi Jawa Tengah, 2020, 2025, dan 2026",
+      "printedPages": [149],
+      "referenceYears": [2026],
+      "figureBasis": "projection",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "unnumbered-p454",
+      "title": "4.5.4 Jumlah Penduduk Menurut Kabupaten/Kota dan Agama yang Dianut di Provinsi Jawa Tengah, 2025",
+      "printedPages": [454],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Per-capita expenditure by commodity group (10.1): no table with this title was found in the publication",
+    "table unnumbered-p202 (employed-by-industry) could not be read reliably and is not included (row \"8. Magelang\": ambiguous 33.08,33.71)",
+    "table unnumbered-p215: age group by industry cross-tab columns are not stored (only the per-age average)",
+    "table unnumbered-p215: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

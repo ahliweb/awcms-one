@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3323-kecamatan-332308-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.23.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Parakan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Temanggung",
+  "publisherDomain": "3323",
+  "publisherWebsite": "https://temanggungkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Temanggung (https://temanggungkab.bps.go.id), publikasi \"Kecamatan Parakan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3323010",
+  "publicationNumber": "33230.26011",
+  "issn": "2807-4742",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://temanggungkab.bps.go.id/id/publication/2026/09/28/b7283c3d16af970f8ab15806/kecamatan-parakan-dalam-angka-2026.html",
+  "sourceFileSha256": "75335bdb995afac80fa86034458b9914d42c62ef21c5414a4e12908a7dd6e30e",
+  "sourceFileBytes": 7539075,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Temanggunng",
+  "csvPath": "datasets/bps-3323-kecamatan-332308-dalam-angka-2026.csv",
+  "csvSha256": "141156713f5def970ed9af379f136fcfed3769906c378891bb4d5ca9f92c6f2d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Parakan, 2026",
+      "printedPages": [25, 26],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Parakan, 2026",
+      "printedPages": [27],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

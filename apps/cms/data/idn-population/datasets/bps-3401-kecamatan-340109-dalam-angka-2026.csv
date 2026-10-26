@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+34.01.09,3,Girimulyo,sex,laki_laki,,12226,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+34.01.09,3,Girimulyo,sex,perempuan,,12509,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+34.01.09,3,Girimulyo,total,total,,24735,jiwa,2025,registration,total_population,3.1,21,,
+34.01.09,3,Girimulyo,age_group,0-4,laki_laki,697,jiwa,2025,registration,total_population,3.2,23,,0 – 4
+34.01.09,3,Girimulyo,age_group,0-4,perempuan,577,jiwa,2025,registration,total_population,3.2,23,,0 – 4
+34.01.09,3,Girimulyo,age_group,0-4,,1274,jiwa,2025,registration,total_population,3.2,23,,0 – 4
+34.01.09,3,Girimulyo,age_group,5-9,laki_laki,791,jiwa,2025,registration,total_population,3.2,23,,5 – 9
+34.01.09,3,Girimulyo,age_group,5-9,perempuan,676,jiwa,2025,registration,total_population,3.2,23,,5 – 9
+34.01.09,3,Girimulyo,age_group,5-9,,1467,jiwa,2025,registration,total_population,3.2,23,,5 – 9
+34.01.09,3,Girimulyo,age_group,10-14,laki_laki,824,jiwa,2025,registration,total_population,3.2,23,,10 – 14
+34.01.09,3,Girimulyo,age_group,10-14,perempuan,776,jiwa,2025,registration,total_population,3.2,23,,10 – 14
+34.01.09,3,Girimulyo,age_group,10-14,,1600,jiwa,2025,registration,total_population,3.2,23,,10 – 14
+34.01.09,3,Girimulyo,age_group,15-19,laki_laki,751,jiwa,2025,registration,total_population,3.2,23,,15 – 19
+34.01.09,3,Girimulyo,age_group,15-19,perempuan,743,jiwa,2025,registration,total_population,3.2,23,,15 – 19
+34.01.09,3,Girimulyo,age_group,15-19,,1494,jiwa,2025,registration,total_population,3.2,23,,15 – 19
+34.01.09,3,Girimulyo,age_group,20-24,laki_laki,801,jiwa,2025,registration,total_population,3.2,23,,20 – 24
+34.01.09,3,Girimulyo,age_group,20-24,perempuan,853,jiwa,2025,registration,total_population,3.2,23,,20 – 24
+34.01.09,3,Girimulyo,age_group,20-24,,1654,jiwa,2025,registration,total_population,3.2,23,,20 – 24
+34.01.09,3,Girimulyo,age_group,25-29,laki_laki,874,jiwa,2025,registration,total_population,3.2,23,,25 – 29
+34.01.09,3,Girimulyo,age_group,25-29,perempuan,836,jiwa,2025,registration,total_population,3.2,23,,25 – 29
+34.01.09,3,Girimulyo,age_group,25-29,,1710,jiwa,2025,registration,total_population,3.2,23,,25 – 29
+34.01.09,3,Girimulyo,age_group,30-34,laki_laki,807,jiwa,2025,registration,total_population,3.2,23,,30 – 34
+34.01.09,3,Girimulyo,age_group,30-34,perempuan,874,jiwa,2025,registration,total_population,3.2,23,,30 – 34
+34.01.09,3,Girimulyo,age_group,30-34,,1681,jiwa,2025,registration,total_population,3.2,23,,30 – 34
+34.01.09,3,Girimulyo,age_group,35-39,laki_laki,798,jiwa,2025,registration,total_population,3.2,23,,35 – 39
+34.01.09,3,Girimulyo,age_group,35-39,perempuan,744,jiwa,2025,registration,total_population,3.2,23,,35 – 39
+34.01.09,3,Girimulyo,age_group,35-39,,1542,jiwa,2025,registration,total_population,3.2,23,,35 – 39
+34.01.09,3,Girimulyo,age_group,40-44,laki_laki,909,jiwa,2025,registration,total_population,3.2,23,,40 – 44
+34.01.09,3,Girimulyo,age_group,40-44,perempuan,858,jiwa,2025,registration,total_population,3.2,23,,40 – 44
+34.01.09,3,Girimulyo,age_group,40-44,,1767,jiwa,2025,registration,total_population,3.2,23,,40 – 44
+34.01.09,3,Girimulyo,age_group,45-49,laki_laki,830,jiwa,2025,registration,total_population,3.2,23,,45 – 49
+34.01.09,3,Girimulyo,age_group,45-49,perempuan,776,jiwa,2025,registration,total_population,3.2,23,,45 – 49
+34.01.09,3,Girimulyo,age_group,45-49,,1606,jiwa,2025,registration,total_population,3.2,23,,45 – 49
+34.01.09,3,Girimulyo,age_group,50-54,laki_laki,760,jiwa,2025,registration,total_population,3.2,23,,50 – 54
+34.01.09,3,Girimulyo,age_group,50-54,perempuan,829,jiwa,2025,registration,total_population,3.2,23,,50 – 54
+34.01.09,3,Girimulyo,age_group,50-54,,1589,jiwa,2025,registration,total_population,3.2,23,,50 – 54
+34.01.09,3,Girimulyo,age_group,55-59,laki_laki,841,jiwa,2025,registration,total_population,3.2,23,,55 – 59
+34.01.09,3,Girimulyo,age_group,55-59,perempuan,897,jiwa,2025,registration,total_population,3.2,23,,55 – 59
+34.01.09,3,Girimulyo,age_group,55-59,,1738,jiwa,2025,registration,total_population,3.2,23,,55 – 59
+34.01.09,3,Girimulyo,age_group,60-64,laki_laki,747,jiwa,2025,registration,total_population,3.2,23,,60 – 64
+34.01.09,3,Girimulyo,age_group,60-64,perempuan,815,jiwa,2025,registration,total_population,3.2,23,,60 – 64
+34.01.09,3,Girimulyo,age_group,60-64,,1562,jiwa,2025,registration,total_population,3.2,23,,60 – 64
+34.01.09,3,Girimulyo,age_group,65-69,laki_laki,615,jiwa,2025,registration,total_population,3.2,23,,65 – 69
+34.01.09,3,Girimulyo,age_group,65-69,perempuan,766,jiwa,2025,registration,total_population,3.2,23,,65 – 69
+34.01.09,3,Girimulyo,age_group,65-69,,1381,jiwa,2025,registration,total_population,3.2,23,,65 – 69
+34.01.09,3,Girimulyo,age_group,70-74,laki_laki,491,jiwa,2025,registration,total_population,3.2,23,,70 – 74
+34.01.09,3,Girimulyo,age_group,70-74,perempuan,561,jiwa,2025,registration,total_population,3.2,23,,70 – 74
+34.01.09,3,Girimulyo,age_group,70-74,,1052,jiwa,2025,registration,total_population,3.2,23,,70 – 74
+34.01.09,3,Girimulyo,age_group,75+,laki_laki,685,jiwa,2025,registration,total_population,3.2,23,,> 75
+34.01.09,3,Girimulyo,age_group,75+,perempuan,906,jiwa,2025,registration,total_population,3.2,23,,> 75
+34.01.09,3,Girimulyo,age_group,75+,,1591,jiwa,2025,registration,total_population,3.2,23,,> 75
+34.01.09,3,Girimulyo,sex,laki_laki,,12221,jiwa,2025,registration,total_population,3.2,23,,Laki-Laki
+34.01.09,3,Girimulyo,sex,perempuan,,12487,jiwa,2025,registration,total_population,3.2,23,,Perempuan
+34.01.09,3,Girimulyo,total,total,,24708,jiwa,2025,registration,total_population,3.2,23,,

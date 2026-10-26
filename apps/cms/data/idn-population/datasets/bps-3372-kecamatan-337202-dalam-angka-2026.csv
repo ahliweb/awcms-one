@@ -1,0 +1,57 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.72.02.1001,4,Joyotakan,religion,islam,,7000,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.02.1001,4,Joyotakan,religion,kristen,,799,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.02.1001,4,Joyotakan,religion,katolik,,314,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.02.1001,4,Joyotakan,religion,hindu,,1,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.02.1002,4,Danukusuman,religion,islam,,7170,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.02.1002,4,Danukusuman,religion,kristen,,2390,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.02.1002,4,Danukusuman,religion,katolik,,594,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.02.1002,4,Danukusuman,religion,hindu,,8,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.02.1003,4,Serengan,religion,islam,,8242,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.02.1003,4,Serengan,religion,kristen,,1718,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.02.1003,4,Serengan,religion,katolik,,1019,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.02.1003,4,Serengan,religion,hindu,,0,jiwa,2025,registration,total_population,3.1.6,59,nil,Hindu
+33.72.02.1004,4,Tipes,religion,islam,,9932,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.02.1004,4,Tipes,religion,kristen,,1436,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.02.1004,4,Tipes,religion,katolik,,991,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.02.1004,4,Tipes,religion,hindu,,0,jiwa,2025,registration,total_population,3.1.6,59,nil,Hindu
+33.72.02.1005,4,Kratonan,religion,islam,,4171,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.02.1005,4,Kratonan,religion,kristen,,893,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.02.1005,4,Kratonan,religion,katolik,,308,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.02.1005,4,Kratonan,religion,hindu,,1,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.02.1006,4,Jayengan,religion,islam,,3037,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.02.1006,4,Jayengan,religion,kristen,,621,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.02.1006,4,Jayengan,religion,katolik,,218,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.02.1006,4,Jayengan,religion,hindu,,0,jiwa,2025,registration,total_population,3.1.6,59,nil,Hindu
+33.72.02.1007,4,Kemlayan,religion,islam,,2654,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.02.1007,4,Kemlayan,religion,kristen,,575,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.02.1007,4,Kemlayan,religion,katolik,,437,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.02.1007,4,Kemlayan,religion,hindu,,7,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.02,3,Kecamatan Serengan,religion,islam,,42206,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.02,3,Kecamatan Serengan,religion,kristen,,8432,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.02,3,Kecamatan Serengan,religion,katolik,,3881,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.02,3,Kecamatan Serengan,religion,hindu,,17,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.02.1001,4,Joyotakan,religion,buddha,,4,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.02.1001,4,Joyotakan,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Konghucu
+33.72.02.1001,4,Joyotakan,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Kepercayaan
+33.72.02.1002,4,Danukusuman,religion,buddha,,50,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.02.1002,4,Danukusuman,religion,khonghucu,,5,jiwa,2025,registration,total_population,3.1.6,60,,Konghucu
+33.72.02.1002,4,Danukusuman,religion,kepercayaan,,5,jiwa,2025,registration,total_population,3.1.6,60,,Kepercayaan
+33.72.02.1003,4,Serengan,religion,buddha,,17,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.02.1003,4,Serengan,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Konghucu
+33.72.02.1003,4,Serengan,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Kepercayaan
+33.72.02.1004,4,Tipes,religion,buddha,,31,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.02.1004,4,Tipes,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Konghucu
+33.72.02.1004,4,Tipes,religion,kepercayaan,,1,jiwa,2025,registration,total_population,3.1.6,60,,Kepercayaan
+33.72.02.1005,4,Kratonan,religion,buddha,,13,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.02.1005,4,Kratonan,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Konghucu
+33.72.02.1005,4,Kratonan,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Kepercayaan
+33.72.02.1006,4,Jayengan,religion,buddha,,42,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.02.1006,4,Jayengan,religion,khonghucu,,1,jiwa,2025,registration,total_population,3.1.6,60,,Konghucu
+33.72.02.1006,4,Jayengan,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Kepercayaan
+33.72.02.1007,4,Kemlayan,religion,buddha,,42,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.02.1007,4,Kemlayan,religion,khonghucu,,4,jiwa,2025,registration,total_population,3.1.6,60,,Konghucu
+33.72.02.1007,4,Kemlayan,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Kepercayaan
+33.72.02,3,Kecamatan Serengan,religion,buddha,,199,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.02,3,Kecamatan Serengan,religion,khonghucu,,10,jiwa,2025,registration,total_population,3.1.6,60,,Konghucu
+33.72.02,3,Kecamatan Serengan,religion,kepercayaan,,6,jiwa,2025,registration,total_population,3.1.6,60,,Kepercayaan

@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3301-kecamatan-330105-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.01.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Nusawungu Dalam Angka 2026",
+  "publisherName": "BPS KABUPATEN CILACAP",
+  "publisherDomain": "3301",
+  "publisherWebsite": "https://cilacapkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KABUPATEN CILACAP (https://cilacapkab.bps.go.id), publikasi \"Kecamatan Nusawungu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3301200",
+  "publicationNumber": "33010.25029",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://cilacapkab.bps.go.id/id/publication/2026/09/28/c7233e5f3bfb535150799dcc/kecamatan-nusawungu-dalam-angka-2026.html",
+  "sourceFileSha256": "f5ffad1c77e4479d594f4e41ae0d78da89400fee96ca13fe8038924054278fd8",
+  "sourceFileBytes": 6019945,
+  "sourcePages": [7, 8, 9],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Cilacap.",
+  "csvPath": "datasets/bps-3301-kecamatan-330105-dalam-angka-2026.csv",
+  "csvSha256": "be66e3f3ff590fd88c9440562f0e27add16e6b704ff6ad9f85c3f7dfb51cdf34",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Nusawungu, 2025",
+      "printedPages": [7, 8],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Nusawungu, 2025",
+      "printedPages": [9],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"9. Purwadadi\": unmatched ",
+    "table 3.1: row not stored: row \"9. Purwadadi\": unmatched "
+  ]
+}

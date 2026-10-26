@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3471-kecamatan-347107-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "34.71.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Wirobrajan Dalam Angka 2026",
+  "publisherName": "BPS Kota Yogyakarta",
+  "publisherDomain": "3471",
+  "publisherWebsite": "https://jogjakota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Yogyakarta (https://jogjakota.bps.go.id), publikasi \"Kecamatan Wirobrajan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "34710",
+  "issn": "2614-9982",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jogjakota.bps.go.id/id/publication/2026/09/28/a904d40cd018bb15f37d3fb0/kecamatan-wirobrajan-dalam-angka-2026.html",
+  "sourceFileSha256": "0e012fa647c96625b5d1b2d35ca33850009d57a130d8a2a2e508a9ee00f0b721",
+  "sourceFileBytes": 10097169,
+  "sourcePages": [31, 32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Yogyakarta.",
+  "csvPath": "datasets/bps-3471-kecamatan-347107-dalam-angka-2026.csv",
+  "csvSha256": "7c8779e4db806f26479b31876ee4757195ad6ea9eff6c12366620dfa25eb623c",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Wirobrajan, 2025",
+      "printedPages": [31, 32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Wirobrajan, 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "cross-table disagreement, both stored as published: 34.71.07 sex/laki_laki/ 2025: 13854 (table 3.1) vs 13785 (table 3.2)",
+    "cross-table disagreement, both stored as published: 34.71.07 sex/perempuan/ 2025: 14417 (table 3.1) vs 14413 (table 3.2)",
+    "cross-table disagreement, both stored as published: 34.71.07 total/total/ 2025: 28271 (table 3.1) vs 28198 (table 3.2)"
+  ]
+}

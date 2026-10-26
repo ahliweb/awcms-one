@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3327-kecamatan-332701-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.27.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Moga Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pemalang",
+  "publisherDomain": "3327",
+  "publisherWebsite": "https://pemalangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pemalang (https://pemalangkab.bps.go.id), publikasi \"Kecamatan Moga Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3327010",
+  "publicationNumber": "33270.26009",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pemalangkab.bps.go.id/id/publication/2026/09/28/010e7a3f75fb3ae2d756420e/kecamatan-moga-dalam-angka-2026.html",
+  "sourceFileSha256": "d07508b105d32b25c05e9edabb2b112942a3dd9df5997338a8f80ba130245549",
+  "sourceFileBytes": 25050711,
+  "sourcePages": [45, 46, 47],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pemalang.",
+  "csvPath": "datasets/bps-3327-kecamatan-332701-dalam-angka-2026.csv",
+  "csvSha256": "f7eccd9fc8b51ca1b72543a359d1e330673617264566e7fe883761d1cac6c6a0",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Moga, 2025",
+      "printedPages": [45, 46],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Moga, 2025",
+      "printedPages": [47],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Gendowang\": unmatched ",
+    "table 3.1: row not stored: row \"Gendowang\": unmatched ",
+    "table 3.2: the rows of region 33.27.01 are not stored: age_group vs total: parts sum 81347.0000 != 82347.0000 (diff 1000.0000); the source itself is inconsistent"
+  ]
+}

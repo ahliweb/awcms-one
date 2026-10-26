@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+34.01.07.2001,4,Tawangsari,sex,laki_laki,,2486,jiwa,2025,registration,total_population,3.1.1,23,,Laki-Laki/Male
+34.01.07.2001,4,Tawangsari,sex,perempuan,,2484,jiwa,2025,registration,total_population,3.1.1,23,,Perempuan/Female
+34.01.07.2001,4,Tawangsari,total,total,,4970,jiwa,2025,registration,total_population,3.1.1,23,,
+34.01.07.2002,4,Karangsari,sex,laki_laki,,5489,jiwa,2025,registration,total_population,3.1.1,23,,Laki-Laki/Male
+34.01.07.2002,4,Karangsari,sex,perempuan,,5715,jiwa,2025,registration,total_population,3.1.1,23,,Perempuan/Female
+34.01.07.2002,4,Karangsari,total,total,,11204,jiwa,2025,registration,total_population,3.1.1,23,,
+34.01.07.2003,4,Kedungsari,sex,laki_laki,,2318,jiwa,2025,registration,total_population,3.1.1,23,,Laki-Laki/Male
+34.01.07.2003,4,Kedungsari,sex,perempuan,,2394,jiwa,2025,registration,total_population,3.1.1,23,,Perempuan/Female
+34.01.07.2003,4,Kedungsari,total,total,,4712,jiwa,2025,registration,total_population,3.1.1,23,,
+34.01.07.2004,4,Margosari,sex,laki_laki,,3325,jiwa,2025,registration,total_population,3.1.1,23,,Laki-Laki/Male
+34.01.07.2004,4,Margosari,sex,perempuan,,3355,jiwa,2025,registration,total_population,3.1.1,23,,Perempuan/Female
+34.01.07.2004,4,Margosari,total,total,,6680,jiwa,2025,registration,total_population,3.1.1,23,,
+34.01.07.2005,4,Pengasih,sex,laki_laki,,5069,jiwa,2025,registration,total_population,3.1.1,23,,Laki-Laki/Male
+34.01.07.2005,4,Pengasih,sex,perempuan,,5123,jiwa,2025,registration,total_population,3.1.1,23,,Perempuan/Female
+34.01.07.2005,4,Pengasih,total,total,,10192,jiwa,2025,registration,total_population,3.1.1,23,,
+34.01.07.2006,4,Sendangsari,sex,laki_laki,,5048,jiwa,2025,registration,total_population,3.1.1,23,,Laki-Laki/Male
+34.01.07.2006,4,Sendangsari,sex,perempuan,,5219,jiwa,2025,registration,total_population,3.1.1,23,,Perempuan/Female
+34.01.07.2006,4,Sendangsari,total,total,,10267,jiwa,2025,registration,total_population,3.1.1,23,,
+34.01.07.2007,4,Sidomulyo,sex,laki_laki,,2705,jiwa,2025,registration,total_population,3.1.1,23,,Laki-Laki/Male
+34.01.07.2007,4,Sidomulyo,sex,perempuan,,2831,jiwa,2025,registration,total_population,3.1.1,23,,Perempuan/Female
+34.01.07.2007,4,Sidomulyo,total,total,,5536,jiwa,2025,registration,total_population,3.1.1,23,,
+34.01.07,3,Pengasih,sex,laki_laki,,26440,jiwa,2025,registration,total_population,3.1.1,23,,Laki-Laki/Male
+34.01.07,3,Pengasih,sex,perempuan,,27121,jiwa,2025,registration,total_population,3.1.1,23,,Perempuan/Female
+34.01.07,3,Pengasih,total,total,,53561,jiwa,2025,registration,total_population,3.1.1,23,,
+34.01.07,3,Pengasih,age_group,0-4,laki_laki,1446,jiwa,2025,registration,total_population,3.1.2,25,,0 – 4
+34.01.07,3,Pengasih,age_group,0-4,perempuan,1227,jiwa,2025,registration,total_population,3.1.2,25,,0 – 4
+34.01.07,3,Pengasih,age_group,0-4,,2673,jiwa,2025,registration,total_population,3.1.2,25,,0 – 4
+34.01.07,3,Pengasih,age_group,5-9,laki_laki,1780,jiwa,2025,registration,total_population,3.1.2,25,,5 – 9
+34.01.07,3,Pengasih,age_group,5-9,perempuan,1721,jiwa,2025,registration,total_population,3.1.2,25,,5 – 9
+34.01.07,3,Pengasih,age_group,5-9,,3501,jiwa,2025,registration,total_population,3.1.2,25,,5 – 9
+34.01.07,3,Pengasih,age_group,10-14,laki_laki,1969,jiwa,2025,registration,total_population,3.1.2,25,,10 – 14
+34.01.07,3,Pengasih,age_group,10-14,perempuan,1799,jiwa,2025,registration,total_population,3.1.2,25,,10 – 14
+34.01.07,3,Pengasih,age_group,10-14,,3768,jiwa,2025,registration,total_population,3.1.2,25,,10 – 14
+34.01.07,3,Pengasih,age_group,15-19,laki_laki,2059,jiwa,2025,registration,total_population,3.1.2,25,,15 – 19
+34.01.07,3,Pengasih,age_group,15-19,perempuan,1977,jiwa,2025,registration,total_population,3.1.2,25,,15 – 19
+34.01.07,3,Pengasih,age_group,15-19,,4036,jiwa,2025,registration,total_population,3.1.2,25,,15 – 19
+34.01.07,3,Pengasih,age_group,20-24,laki_laki,1863,jiwa,2025,registration,total_population,3.1.2,25,,20 – 24
+34.01.07,3,Pengasih,age_group,20-24,perempuan,1852,jiwa,2025,registration,total_population,3.1.2,25,,20 – 24
+34.01.07,3,Pengasih,age_group,20-24,,3715,jiwa,2025,registration,total_population,3.1.2,25,,20 – 24
+34.01.07,3,Pengasih,age_group,25-29,laki_laki,1860,jiwa,2025,registration,total_population,3.1.2,25,,25 – 29
+34.01.07,3,Pengasih,age_group,25-29,perempuan,1972,jiwa,2025,registration,total_population,3.1.2,25,,25 – 29
+34.01.07,3,Pengasih,age_group,25-29,,3832,jiwa,2025,registration,total_population,3.1.2,25,,25 – 29
+34.01.07,3,Pengasih,age_group,30-34,laki_laki,1966,jiwa,2025,registration,total_population,3.1.2,25,,30 – 34
+34.01.07,3,Pengasih,age_group,30-34,perempuan,1960,jiwa,2025,registration,total_population,3.1.2,25,,30 – 34
+34.01.07,3,Pengasih,age_group,30-34,,3926,jiwa,2025,registration,total_population,3.1.2,25,,30 – 34
+34.01.07,3,Pengasih,age_group,35-39,laki_laki,1664,jiwa,2025,registration,total_population,3.1.2,25,,35 – 39
+34.01.07,3,Pengasih,age_group,35-39,perempuan,1764,jiwa,2025,registration,total_population,3.1.2,25,,35 – 39
+34.01.07,3,Pengasih,age_group,35-39,,3428,jiwa,2025,registration,total_population,3.1.2,25,,35 – 39
+34.01.07,3,Pengasih,age_group,40-44,laki_laki,1931,jiwa,2025,registration,total_population,3.1.2,25,,40 – 44
+34.01.07,3,Pengasih,age_group,40-44,perempuan,1984,jiwa,2025,registration,total_population,3.1.2,25,,40 – 44
+34.01.07,3,Pengasih,age_group,40-44,,3915,jiwa,2025,registration,total_population,3.1.2,25,,40 – 44
+34.01.07,3,Pengasih,age_group,45-49,laki_laki,1879,jiwa,2025,registration,total_population,3.1.2,25,,45 – 49
+34.01.07,3,Pengasih,age_group,45-49,perempuan,1897,jiwa,2025,registration,total_population,3.1.2,25,,45 – 49
+34.01.07,3,Pengasih,age_group,45-49,,3776,jiwa,2025,registration,total_population,3.1.2,25,,45 – 49
+34.01.07,3,Pengasih,age_group,50-54,laki_laki,1753,jiwa,2025,registration,total_population,3.1.2,25,,50 – 54
+34.01.07,3,Pengasih,age_group,50-54,perempuan,1778,jiwa,2025,registration,total_population,3.1.2,25,,50 – 54
+34.01.07,3,Pengasih,age_group,50-54,,3531,jiwa,2025,registration,total_population,3.1.2,25,,50 – 54
+34.01.07,3,Pengasih,age_group,55-59,laki_laki,1668,jiwa,2025,registration,total_population,3.1.2,25,,55 – 59
+34.01.07,3,Pengasih,age_group,55-59,perempuan,1878,jiwa,2025,registration,total_population,3.1.2,25,,55 – 59
+34.01.07,3,Pengasih,age_group,55-59,,3546,jiwa,2025,registration,total_population,3.1.2,25,,55 – 59
+34.01.07,3,Pengasih,age_group,60-64,laki_laki,1525,jiwa,2025,registration,total_population,3.1.2,25,,60 – 64
+34.01.07,3,Pengasih,age_group,60-64,perempuan,1680,jiwa,2025,registration,total_population,3.1.2,25,,60 – 64
+34.01.07,3,Pengasih,age_group,60-64,,3205,jiwa,2025,registration,total_population,3.1.2,25,,60 – 64
+34.01.07,3,Pengasih,age_group,65-69,laki_laki,1293,jiwa,2025,registration,total_population,3.1.2,25,,65 – 69
+34.01.07,3,Pengasih,age_group,65-69,perempuan,1320,jiwa,2025,registration,total_population,3.1.2,25,,65 – 69
+34.01.07,3,Pengasih,age_group,65-69,,2613,jiwa,2025,registration,total_population,3.1.2,25,,65 – 69
+34.01.07,3,Pengasih,age_group,70-74,laki_laki,841,jiwa,2025,registration,total_population,3.1.2,25,,70 – 74
+34.01.07,3,Pengasih,age_group,70-74,perempuan,859,jiwa,2025,registration,total_population,3.1.2,25,,70 – 74
+34.01.07,3,Pengasih,age_group,70-74,,1700,jiwa,2025,registration,total_population,3.1.2,25,,70 – 74
+34.01.07,3,Pengasih,age_group,75+,laki_laki,943,jiwa,2025,registration,total_population,3.1.2,25,,> 75
+34.01.07,3,Pengasih,age_group,75+,perempuan,1453,jiwa,2025,registration,total_population,3.1.2,25,,> 75
+34.01.07,3,Pengasih,age_group,75+,,2396,jiwa,2025,registration,total_population,3.1.2,25,,> 75
+34.01.07,3,Pengasih,sex,laki_laki,,26440,jiwa,2025,registration,total_population,3.1.2,25,,Laki-Laki
+34.01.07,3,Pengasih,sex,perempuan,,27121,jiwa,2025,registration,total_population,3.1.2,25,,Perempuan
+34.01.07,3,Pengasih,total,total,,53561,jiwa,2025,registration,total_population,3.1.2,25,,

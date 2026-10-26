@@ -1,0 +1,217 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.74.14,3,Mijen,total,total,,96357,jiwa,2025,projection,total_population,3.1.1,71,,
+33.74.12,3,Gunungpati,total,total,,102429,jiwa,2025,projection,total_population,3.1.1,71,,
+33.74.11,3,Banyumanik,total,total,,144087,jiwa,2025,projection,total_population,3.1.1,71,,
+33.74.09,3,Gajah Mungkur,total,total,,56328,jiwa,2025,projection,total_population,3.1.1,71,,
+33.74.07,3,Semarang Selatan,total,total,,61981,jiwa,2025,projection,total_population,3.1.1,71,,
+33.74.08,3,Candisari,total,total,,75396,jiwa,2025,projection,total_population,3.1.1,71,,
+33.74.10,3,Tembalang,total,total,,204865,jiwa,2025,projection,total_population,3.1.1,71,,
+33.74.06,3,Pedurungan,total,total,,198452,jiwa,2025,projection,total_population,3.1.1,71,,
+33.74.05,3,Genuk,total,total,,141033,jiwa,2025,projection,total_population,3.1.1,71,,
+33.74.04,3,Gayamsari,total,total,,70381,jiwa,2025,projection,total_population,3.1.1,71,,
+33.74.03,3,Semarang Timur,total,total,,66482,jiwa,2025,projection,total_population,3.1.1,71,,
+33.74.02,3,Semarang Utara,total,total,,117865,jiwa,2025,projection,total_population,3.1.1,71,,
+33.74.01,3,Semarang Tengah,total,total,,55213,jiwa,2025,projection,total_population,3.1.1,71,,
+33.74.13,3,Semarang Barat,total,total,,149357,jiwa,2025,projection,total_population,3.1.1,71,,
+33.74.16,3,Tugu,total,total,,34398,jiwa,2025,projection,total_population,3.1.1,71,,
+33.74.15,3,Ngaliyan,total,total,,147797,jiwa,2025,projection,total_population,3.1.1,71,,
+33.74,2,Kota Semarang,total,total,,1722421,jiwa,2025,projection,total_population,3.1.1,71,,
+33.74,2,Kota Semarang,age_group,0-4,laki_laki,58107,jiwa,2025,projection,total_population,3.1.3,75,,0–4
+33.74,2,Kota Semarang,age_group,0-4,perempuan,55817,jiwa,2025,projection,total_population,3.1.3,75,,0–4
+33.74,2,Kota Semarang,age_group,0-4,,113924,jiwa,2025,projection,total_population,3.1.3,75,,0–4
+33.74,2,Kota Semarang,age_group,5-9,laki_laki,60107,jiwa,2025,projection,total_population,3.1.3,75,,5–9
+33.74,2,Kota Semarang,age_group,5-9,perempuan,57108,jiwa,2025,projection,total_population,3.1.3,75,,5–9
+33.74,2,Kota Semarang,age_group,5-9,,117215,jiwa,2025,projection,total_population,3.1.3,75,,5–9
+33.74,2,Kota Semarang,age_group,10-14,laki_laki,63281,jiwa,2025,projection,total_population,3.1.3,75,,10–14
+33.74,2,Kota Semarang,age_group,10-14,perempuan,59945,jiwa,2025,projection,total_population,3.1.3,75,,10–14
+33.74,2,Kota Semarang,age_group,10-14,,123226,jiwa,2025,projection,total_population,3.1.3,75,,10–14
+33.74,2,Kota Semarang,age_group,15-19,laki_laki,65455,jiwa,2025,projection,total_population,3.1.3,75,,15–19
+33.74,2,Kota Semarang,age_group,15-19,perempuan,61718,jiwa,2025,projection,total_population,3.1.3,75,,15–19
+33.74,2,Kota Semarang,age_group,15-19,,127173,jiwa,2025,projection,total_population,3.1.3,75,,15–19
+33.74,2,Kota Semarang,age_group,20-24,laki_laki,66912,jiwa,2025,projection,total_population,3.1.3,75,,20–24
+33.74,2,Kota Semarang,age_group,20-24,perempuan,63570,jiwa,2025,projection,total_population,3.1.3,75,,20–24
+33.74,2,Kota Semarang,age_group,20-24,,130482,jiwa,2025,projection,total_population,3.1.3,75,,20–24
+33.74,2,Kota Semarang,age_group,25-29,laki_laki,64368,jiwa,2025,projection,total_population,3.1.3,75,,25–29
+33.74,2,Kota Semarang,age_group,25-29,perempuan,62697,jiwa,2025,projection,total_population,3.1.3,75,,25–29
+33.74,2,Kota Semarang,age_group,25-29,,127065,jiwa,2025,projection,total_population,3.1.3,75,,25–29
+33.74,2,Kota Semarang,age_group,30-34,laki_laki,64606,jiwa,2025,projection,total_population,3.1.3,75,,30–34
+33.74,2,Kota Semarang,age_group,30-34,perempuan,65073,jiwa,2025,projection,total_population,3.1.3,75,,30–34
+33.74,2,Kota Semarang,age_group,30-34,,129679,jiwa,2025,projection,total_population,3.1.3,75,,30–34
+33.74,2,Kota Semarang,age_group,35-39,laki_laki,65603,jiwa,2025,projection,total_population,3.1.3,75,,35–39
+33.74,2,Kota Semarang,age_group,35-39,perempuan,66556,jiwa,2025,projection,total_population,3.1.3,75,,35–39
+33.74,2,Kota Semarang,age_group,35-39,,132159,jiwa,2025,projection,total_population,3.1.3,75,,35–39
+33.74,2,Kota Semarang,age_group,40-44,laki_laki,66326,jiwa,2025,projection,total_population,3.1.3,75,,40–44
+33.74,2,Kota Semarang,age_group,40-44,perempuan,67962,jiwa,2025,projection,total_population,3.1.3,75,,40–44
+33.74,2,Kota Semarang,age_group,40-44,,134288,jiwa,2025,projection,total_population,3.1.3,75,,40–44
+33.74,2,Kota Semarang,age_group,45-49,laki_laki,64953,jiwa,2025,projection,total_population,3.1.3,75,,45–49
+33.74,2,Kota Semarang,age_group,45-49,perempuan,67741,jiwa,2025,projection,total_population,3.1.3,75,,45–49
+33.74,2,Kota Semarang,age_group,45-49,,132694,jiwa,2025,projection,total_population,3.1.3,75,,45–49
+33.74,2,Kota Semarang,age_group,50-54,laki_laki,57135,jiwa,2025,projection,total_population,3.1.3,75,,50–54
+33.74,2,Kota Semarang,age_group,50-54,perempuan,60932,jiwa,2025,projection,total_population,3.1.3,75,,50–54
+33.74,2,Kota Semarang,age_group,50-54,,118067,jiwa,2025,projection,total_population,3.1.3,75,,50–54
+33.74,2,Kota Semarang,age_group,55-59,laki_laki,49318,jiwa,2025,projection,total_population,3.1.3,75,,55–59
+33.74,2,Kota Semarang,age_group,55-59,perempuan,54408,jiwa,2025,projection,total_population,3.1.3,75,,55–59
+33.74,2,Kota Semarang,age_group,55-59,,103726,jiwa,2025,projection,total_population,3.1.3,75,,55–59
+33.74,2,Kota Semarang,age_group,60-64,laki_laki,40437,jiwa,2025,projection,total_population,3.1.3,75,,60–64
+33.74,2,Kota Semarang,age_group,60-64,perempuan,46088,jiwa,2025,projection,total_population,3.1.3,75,,60–64
+33.74,2,Kota Semarang,age_group,60-64,,86525,jiwa,2025,projection,total_population,3.1.3,75,,60–64
+33.74,2,Kota Semarang,age_group,65-69,laki_laki,31061,jiwa,2025,projection,total_population,3.1.3,75,,65–69
+33.74,2,Kota Semarang,age_group,65-69,perempuan,35622,jiwa,2025,projection,total_population,3.1.3,75,,65–69
+33.74,2,Kota Semarang,age_group,65-69,,66683,jiwa,2025,projection,total_population,3.1.3,75,,65–69
+33.74,2,Kota Semarang,age_group,70-74,laki_laki,20180,jiwa,2025,projection,total_population,3.1.3,75,,70–74
+33.74,2,Kota Semarang,age_group,70-74,perempuan,24668,jiwa,2025,projection,total_population,3.1.3,75,,70–74
+33.74,2,Kota Semarang,age_group,70-74,,44848,jiwa,2025,projection,total_population,3.1.3,75,,70–74
+33.74,2,Kota Semarang,age_group,75+,laki_laki,13788,jiwa,2025,projection,total_population,3.1.3,75,,75+
+33.74,2,Kota Semarang,age_group,75+,perempuan,20879,jiwa,2025,projection,total_population,3.1.3,75,,75+
+33.74,2,Kota Semarang,age_group,75+,,34667,jiwa,2025,projection,total_population,3.1.3,75,,75+
+33.74,2,Kota Semarang,sex,laki_laki,,851637,jiwa,2025,projection,total_population,3.1.3,75,,Laki-Laki
+33.74,2,Kota Semarang,sex,perempuan,,870784,jiwa,2025,projection,total_population,3.1.3,75,,Perempuan
+33.74,2,Kota Semarang,total,total,,1722421,jiwa,2025,projection,total_population,3.1.3,75,,
+33.74.14,3,Mijen,religion,islam,,78988,jiwa,2025,registration,total_population,4.3.1,166,,Islam
+33.74.14,3,Mijen,religion,kristen,,3514,jiwa,2025,registration,total_population,4.3.1,166,,Protestan
+33.74.14,3,Mijen,religion,katolik,,1809,jiwa,2025,registration,total_population,4.3.1,166,,Katolik
+33.74.14,3,Mijen,religion,hindu,,67,jiwa,2025,registration,total_population,4.3.1,166,,Hindu
+33.74.14,3,Mijen,religion,buddha,,101,jiwa,2025,registration,total_population,4.3.1,166,,Budha
+33.74.14,3,Mijen,religion,lainnya,,7,jiwa,2025,registration,total_population,4.3.1,166,,Lainnya
+33.74.12,3,Gunung Pati,religion,islam,,100536,jiwa,2025,registration,total_population,4.3.1,166,,Islam
+33.74.12,3,Gunung Pati,religion,kristen,,2044,jiwa,2025,registration,total_population,4.3.1,166,,Protestan
+33.74.12,3,Gunung Pati,religion,katolik,,1448,jiwa,2025,registration,total_population,4.3.1,166,,Katolik
+33.74.12,3,Gunung Pati,religion,hindu,,49,jiwa,2025,registration,total_population,4.3.1,166,,Hindu
+33.74.12,3,Gunung Pati,religion,buddha,,83,jiwa,2025,registration,total_population,4.3.1,166,,Budha
+33.74.12,3,Gunung Pati,religion,lainnya,,14,jiwa,2025,registration,total_population,4.3.1,166,,Lainnya
+33.74.11,3,Banyumanik,religion,islam,,125614,jiwa,2025,registration,total_population,4.3.1,166,,Islam
+33.74.11,3,Banyumanik,religion,kristen,,9556,jiwa,2025,registration,total_population,4.3.1,166,,Protestan
+33.74.11,3,Banyumanik,religion,katolik,,10016,jiwa,2025,registration,total_population,4.3.1,166,,Katolik
+33.74.11,3,Banyumanik,religion,hindu,,165,jiwa,2025,registration,total_population,4.3.1,166,,Hindu
+33.74.11,3,Banyumanik,religion,buddha,,328,jiwa,2025,registration,total_population,4.3.1,166,,Budha
+33.74.11,3,Banyumanik,religion,lainnya,,29,jiwa,2025,registration,total_population,4.3.1,166,,Lainnya
+33.74.09,3,Gajah Mungkur,religion,islam,,48932,jiwa,2025,registration,total_population,4.3.1,166,,Islam
+33.74.09,3,Gajah Mungkur,religion,kristen,,4232,jiwa,2025,registration,total_population,4.3.1,166,,Protestan
+33.74.09,3,Gajah Mungkur,religion,katolik,,4243,jiwa,2025,registration,total_population,4.3.1,166,,Katolik
+33.74.09,3,Gajah Mungkur,religion,hindu,,47,jiwa,2025,registration,total_population,4.3.1,166,,Hindu
+33.74.09,3,Gajah Mungkur,religion,buddha,,274,jiwa,2025,registration,total_population,4.3.1,166,,Budha
+33.74.09,3,Gajah Mungkur,religion,lainnya,,13,jiwa,2025,registration,total_population,4.3.1,166,,Lainnya
+33.74.07,3,Semarang Selatan,religion,islam,,55016,jiwa,2025,registration,total_population,4.3.1,166,,Islam
+33.74.07,3,Semarang Selatan,religion,kristen,,5140,jiwa,2025,registration,total_population,4.3.1,166,,Protestan
+33.74.07,3,Semarang Selatan,religion,katolik,,4883,jiwa,2025,registration,total_population,4.3.1,166,,Katolik
+33.74.07,3,Semarang Selatan,religion,hindu,,32,jiwa,2025,registration,total_population,4.3.1,166,,Hindu
+33.74.07,3,Semarang Selatan,religion,buddha,,254,jiwa,2025,registration,total_population,4.3.1,166,,Budha
+33.74.07,3,Semarang Selatan,religion,lainnya,,19,jiwa,2025,registration,total_population,4.3.1,166,,Lainnya
+33.74.08,3,Candisari,religion,islam,,65758,jiwa,2025,registration,total_population,4.3.1,166,,Islam
+33.74.08,3,Candisari,religion,kristen,,4857,jiwa,2025,registration,total_population,4.3.1,166,,Protestan
+33.74.08,3,Candisari,religion,katolik,,5422,jiwa,2025,registration,total_population,4.3.1,166,,Katolik
+33.74.08,3,Candisari,religion,hindu,,70,jiwa,2025,registration,total_population,4.3.1,166,,Hindu
+33.74.08,3,Candisari,religion,buddha,,197,jiwa,2025,registration,total_population,4.3.1,166,,Budha
+33.74.08,3,Candisari,religion,lainnya,,6,jiwa,2025,registration,total_population,4.3.1,166,,Lainnya
+33.74.10,3,Tembalang,religion,islam,,176237,jiwa,2025,registration,total_population,4.3.1,166,,Islam
+33.74.10,3,Tembalang,religion,kristen,,11073,jiwa,2025,registration,total_population,4.3.1,166,,Protestan
+33.74.10,3,Tembalang,religion,katolik,,7800,jiwa,2025,registration,total_population,4.3.1,166,,Katolik
+33.74.10,3,Tembalang,religion,hindu,,225,jiwa,2025,registration,total_population,4.3.1,166,,Hindu
+33.74.10,3,Tembalang,religion,buddha,,304,jiwa,2025,registration,total_population,4.3.1,166,,Budha
+33.74.10,3,Tembalang,religion,lainnya,,14,jiwa,2025,registration,total_population,4.3.1,166,,Lainnya
+33.74.06,3,Pedurungan,religion,islam,,171622,jiwa,2025,registration,total_population,4.3.1,166,,Islam
+33.74.06,3,Pedurungan,religion,kristen,,16700,jiwa,2025,registration,total_population,4.3.1,166,,Protestan
+33.74.06,3,Pedurungan,religion,katolik,,10462,jiwa,2025,registration,total_population,4.3.1,166,,Katolik
+33.74.06,3,Pedurungan,religion,hindu,,111,jiwa,2025,registration,total_population,4.3.1,166,,Hindu
+33.74.06,3,Pedurungan,religion,buddha,,930,jiwa,2025,registration,total_population,4.3.1,166,,Budha
+33.74.06,3,Pedurungan,religion,lainnya,,51,jiwa,2025,registration,total_population,4.3.1,166,,Lainnya
+33.74.05,3,Genuk,religion,islam,,125352,jiwa,2025,registration,total_population,4.3.1,166,,Islam
+33.74.05,3,Genuk,religion,kristen,,3106,jiwa,2025,registration,total_population,4.3.1,166,,Protestan
+33.74.05,3,Genuk,religion,katolik,,1522,jiwa,2025,registration,total_population,4.3.1,166,,Katolik
+33.74.05,3,Genuk,religion,hindu,,16,jiwa,2025,registration,total_population,4.3.1,166,,Hindu
+33.74.05,3,Genuk,religion,buddha,,122,jiwa,2025,registration,total_population,4.3.1,166,,Budha
+33.74.05,3,Genuk,religion,lainnya,,31,jiwa,2025,registration,total_population,4.3.1,166,,Lainnya
+33.74.04,3,Gayamsari,religion,islam,,64851,jiwa,2025,registration,total_population,4.3.1,166,,Islam
+33.74.04,3,Gayamsari,religion,kristen,,4071,jiwa,2025,registration,total_population,4.3.1,166,,Protestan
+33.74.04,3,Gayamsari,religion,katolik,,2225,jiwa,2025,registration,total_population,4.3.1,166,,Katolik
+33.74.04,3,Gayamsari,religion,hindu,,8,jiwa,2025,registration,total_population,4.3.1,166,,Hindu
+33.74.04,3,Gayamsari,religion,buddha,,234,jiwa,2025,registration,total_population,4.3.1,166,,Budha
+33.74.04,3,Gayamsari,religion,lainnya,,13,jiwa,2025,registration,total_population,4.3.1,166,,Lainnya
+33.74.03,3,Semarang Timur,religion,islam,,49884,jiwa,2025,registration,total_population,4.3.1,166,,Islam
+33.74.03,3,Semarang Timur,religion,kristen,,10469,jiwa,2025,registration,total_population,4.3.1,166,,Protestan
+33.74.03,3,Semarang Timur,religion,katolik,,6129,jiwa,2025,registration,total_population,4.3.1,166,,Katolik
+33.74.03,3,Semarang Timur,religion,hindu,,12,jiwa,2025,registration,total_population,4.3.1,166,,Hindu
+33.74.03,3,Semarang Timur,religion,buddha,,1478,jiwa,2025,registration,total_population,4.3.1,166,,Budha
+33.74.03,3,Semarang Timur,religion,lainnya,,66,jiwa,2025,registration,total_population,4.3.1,166,,Lainnya
+33.74.02,3,Semarang Utara,religion,islam,,99342,jiwa,2025,registration,total_population,4.3.1,166,,Islam
+33.74.02,3,Semarang Utara,religion,kristen,,10437,jiwa,2025,registration,total_population,4.3.1,166,,Protestan
+33.74.02,3,Semarang Utara,religion,katolik,,6340,jiwa,2025,registration,total_population,4.3.1,166,,Katolik
+33.74.02,3,Semarang Utara,religion,hindu,,21,jiwa,2025,registration,total_population,4.3.1,166,,Hindu
+33.74.02,3,Semarang Utara,religion,buddha,,1462,jiwa,2025,registration,total_population,4.3.1,166,,Budha
+33.74.02,3,Semarang Utara,religion,lainnya,,37,jiwa,2025,registration,total_population,4.3.1,166,,Lainnya
+33.74.01,3,Semarang Tengah,religion,islam,,37785,jiwa,2025,registration,total_population,4.3.1,166,,Islam
+33.74.01,3,Semarang Tengah,religion,kristen,,9220,jiwa,2025,registration,total_population,4.3.1,166,,Protestan
+33.74.01,3,Semarang Tengah,religion,katolik,,6539,jiwa,2025,registration,total_population,4.3.1,166,,Katolik
+33.74.01,3,Semarang Tengah,religion,hindu,,31,jiwa,2025,registration,total_population,4.3.1,166,,Hindu
+33.74.01,3,Semarang Tengah,religion,buddha,,2716,jiwa,2025,registration,total_population,4.3.1,166,,Budha
+33.74.01,3,Semarang Tengah,religion,lainnya,,55,jiwa,2025,registration,total_population,4.3.1,166,,Lainnya
+33.74.13,3,Semarang Barat,religion,islam,,126594,jiwa,2025,registration,total_population,4.3.1,166,,Islam
+33.74.13,3,Semarang Barat,religion,kristen,,14193,jiwa,2025,registration,total_population,4.3.1,166,,Protestan
+33.74.13,3,Semarang Barat,religion,katolik,,9688,jiwa,2025,registration,total_population,4.3.1,166,,Katolik
+33.74.13,3,Semarang Barat,religion,hindu,,132,jiwa,2025,registration,total_population,4.3.1,166,,Hindu
+33.74.13,3,Semarang Barat,religion,buddha,,941,jiwa,2025,registration,total_population,4.3.1,166,,Budha
+33.74.13,3,Semarang Barat,religion,lainnya,,51,jiwa,2025,registration,total_population,4.3.1,166,,Lainnya
+33.74.16,3,Tugu,religion,islam,,32623,jiwa,2025,registration,total_population,4.3.1,166,,Islam
+33.74.16,3,Tugu,religion,kristen,,701,jiwa,2025,registration,total_population,4.3.1,166,,Protestan
+33.74.16,3,Tugu,religion,katolik,,434,jiwa,2025,registration,total_population,4.3.1,166,,Katolik
+33.74.16,3,Tugu,religion,hindu,,6,jiwa,2025,registration,total_population,4.3.1,166,,Hindu
+33.74.16,3,Tugu,religion,buddha,,81,jiwa,2025,registration,total_population,4.3.1,166,,Budha
+33.74.16,3,Tugu,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,166,,Lainnya
+33.74.15,3,Ngaliyan,religion,islam,,133749,jiwa,2025,registration,total_population,4.3.1,166,,Islam
+33.74.15,3,Ngaliyan,religion,kristen,,6127,jiwa,2025,registration,total_population,4.3.1,166,,Protestan
+33.74.15,3,Ngaliyan,religion,katolik,,4338,jiwa,2025,registration,total_population,4.3.1,166,,Katolik
+33.74.15,3,Ngaliyan,religion,hindu,,126,jiwa,2025,registration,total_population,4.3.1,166,,Hindu
+33.74.15,3,Ngaliyan,religion,buddha,,100,jiwa,2025,registration,total_population,4.3.1,166,,Budha
+33.74.15,3,Ngaliyan,religion,lainnya,,15,jiwa,2025,registration,total_population,4.3.1,166,,Lainnya
+33.74,2,Kota Semarang,religion,islam,,1492883,jiwa,2025,registration,total_population,4.3.1,166,,Islam
+33.74,2,Kota Semarang,religion,kristen,,115440,jiwa,2025,registration,total_population,4.3.1,166,,Protestan
+33.74,2,Kota Semarang,religion,katolik,,83298,jiwa,2025,registration,total_population,4.3.1,166,,Katolik
+33.74,2,Kota Semarang,religion,hindu,,1118,jiwa,2025,registration,total_population,4.3.1,166,,Hindu
+33.74,2,Kota Semarang,religion,buddha,,9605,jiwa,2025,registration,total_population,4.3.1,166,,Budha
+33.74,2,Kota Semarang,religion,lainnya,,424,jiwa,2025,registration,total_population,4.3.1,166,,Lainnya
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/padi_padian,,84756,rupiah,2024,survey_estimate,per_capita,10.1,371,,Padi-padian
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/padi_padian,,74814,rupiah,2025,survey_estimate,per_capita,10.1,371,,Padi-padian
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/umbi_umbian,,6490,rupiah,2024,survey_estimate,per_capita,10.1,371,,Umbi-umbian
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/umbi_umbian,,8372,rupiah,2025,survey_estimate,per_capita,10.1,371,,Umbi-umbian
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,51977,rupiah,2024,survey_estimate,per_capita,10.1,371,,Ikan/udang/cumi/kerang
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,56155,rupiah,2025,survey_estimate,per_capita,10.1,371,,Ikan/udang/cumi/kerang
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/daging,,52260,rupiah,2024,survey_estimate,per_capita,10.1,371,,Daging
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/daging,,57981,rupiah,2025,survey_estimate,per_capita,10.1,371,,Daging
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/telur_dan_susu,,55708,rupiah,2024,survey_estimate,per_capita,10.1,371,,Telur dan susu
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/telur_dan_susu,,66408,rupiah,2025,survey_estimate,per_capita,10.1,371,,Telur dan susu
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/sayur_sayuran,,71760,rupiah,2024,survey_estimate,per_capita,10.1,371,,Sayur-sayuran
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/sayur_sayuran,,78905,rupiah,2025,survey_estimate,per_capita,10.1,371,,Sayur-sayuran
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/kacang_kacangan,,23728,rupiah,2024,survey_estimate,per_capita,10.1,371,,Kacang-kacangan
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/kacang_kacangan,,20875,rupiah,2025,survey_estimate,per_capita,10.1,371,,Kacang-kacangan
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/buah_buahan,,53466,rupiah,2024,survey_estimate,per_capita,10.1,371,,Buah-buahan
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/buah_buahan,,59871,rupiah,2025,survey_estimate,per_capita,10.1,371,,Buah-buahan
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19894,rupiah,2024,survey_estimate,per_capita,10.1,371,,Minyak dan kelapa
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,23214,rupiah,2025,survey_estimate,per_capita,10.1,371,,Minyak dan kelapa
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/bahan_minuman,,22962,rupiah,2024,survey_estimate,per_capita,10.1,371,,Bahan minuman
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/bahan_minuman,,24498,rupiah,2025,survey_estimate,per_capita,10.1,371,,Bahan minuman
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/bumbu_bumbuan,,17933,rupiah,2024,survey_estimate,per_capita,10.1,371,,Bumbu-bumbuan
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/bumbu_bumbuan,,19218,rupiah,2025,survey_estimate,per_capita,10.1,371,,Bumbu-bumbuan
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/konsumsi_lainnya,,16533,rupiah,2024,survey_estimate,per_capita,10.1,371,,Konsumsi lainnya
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/konsumsi_lainnya,,15453,rupiah,2025,survey_estimate,per_capita,10.1,371,,Konsumsi lainnya
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,357543,rupiah,2024,survey_estimate,per_capita,10.1,371,,Makanan dan minuman jadi
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,344972,rupiah,2025,survey_estimate,per_capita,10.1,371,,Makanan dan minuman jadi
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/rokok,,79775,rupiah,2024,survey_estimate,per_capita,10.1,371,,Rokok
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/rokok,,79539,rupiah,2025,survey_estimate,per_capita,10.1,371,,Rokok
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/jumlah_makanan,,914784,rupiah,2024,survey_estimate,per_capita,10.1,371,,Jumlah makanan
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/jumlah_makanan,,930276,rupiah,2025,survey_estimate,per_capita,10.1,371,,Jumlah makanan
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,683777,rupiah,2024,survey_estimate,per_capita,10.1,371,,Perumahan dan fasilitas rumah tangga
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,714786,rupiah,2025,survey_estimate,per_capita,10.1,371,,Perumahan dan fasilitas rumah tangga
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,334608,rupiah,2024,survey_estimate,per_capita,10.1,371,,Aneka barang dan jasa
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,364739,rupiah,2025,survey_estimate,per_capita,10.1,371,,Aneka barang dan jasa
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,45194,rupiah,2024,survey_estimate,per_capita,10.1,371,,"Pakaian, alas kaki, dan tutup kepala"
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,45920,rupiah,2025,survey_estimate,per_capita,10.1,371,,"Pakaian, alas kaki, dan tutup kepala"
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/barang_tahan_lama,,64586,rupiah,2024,survey_estimate,per_capita,10.1,371,,Barang tahan lama
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/barang_tahan_lama,,117150,rupiah,2025,survey_estimate,per_capita,10.1,371,,Barang tahan lama
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,110621,rupiah,2024,survey_estimate,per_capita,10.1,371,,"Pajak, pungutan, dan asuransi"
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,111978,rupiah,2025,survey_estimate,per_capita,10.1,371,,"Pajak, pungutan, dan asuransi"
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,84205,rupiah,2024,survey_estimate,per_capita,10.1,371,,Keperluan pesta dan upacara/kenduri
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,32131,rupiah,2025,survey_estimate,per_capita,10.1,371,,Keperluan pesta dan upacara/kenduri
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1322990,rupiah,2024,survey_estimate,per_capita,10.1,371,,Jumlah bukan makanan
+33.74,2,Kota Semarang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1386703,rupiah,2025,survey_estimate,per_capita,10.1,371,,Jumlah bukan makanan
+33.74,2,Kota Semarang,expenditure,total,,2237774,rupiah,2024,survey_estimate,per_capita,10.1,371,,
+33.74,2,Kota Semarang,expenditure,total,,2316979,rupiah,2025,survey_estimate,per_capita,10.1,371,,

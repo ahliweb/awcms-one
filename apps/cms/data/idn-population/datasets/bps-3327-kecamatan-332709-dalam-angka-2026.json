@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-3327-kecamatan-332709-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.27.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Taman Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pemalang",
+  "publisherDomain": "3327",
+  "publisherWebsite": "https://pemalangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pemalang (https://pemalangkab.bps.go.id), publikasi \"Kecamatan Taman Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3327090",
+  "publicationNumber": "33270.26016",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pemalangkab.bps.go.id/id/publication/2026/09/28/ddc837270b9b54c7830b696b/kecamatan-taman-dalam-angka-2026.html",
+  "sourceFileSha256": "adc391e19cad341f61d6ee47ad486fc5f2f19107466b14e98e1e69996e24b28c",
+  "sourceFileBytes": 22175689,
+  "sourcePages": [48],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pemalang.",
+  "csvPath": "datasets/bps-3327-kecamatan-332709-dalam-angka-2026.csv",
+  "csvSha256": "19e50d4146aaa4612206b4632a9ade60dc9e5aef3699d480a8fa5ef9d2df2cec",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Taman. 2025",
+      "printedPages": [48],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per desa/kelurahan (Kecamatan 3.1.1): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"Kecamatan Moga\": unmatched "
+  ]
+}

@@ -1,0 +1,61 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.03.08.2001,4,Karangturi,sex,laki_laki,,1630,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.08.2001,4,Karangturi,sex,perempuan,,1604,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.08.2001,4,Karangturi,total,total,,3234,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.08.2002,4,Onje,sex,laki_laki,,2443,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.08.2002,4,Onje,sex,perempuan,,2393,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.08.2002,4,Onje,total,total,,4836,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.08.2003,4,Sindang,sex,laki_laki,,1909,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.08.2003,4,Sindang,sex,perempuan,,1876,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.08.2003,4,Sindang,total,total,,3785,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.08.2004,4,Tangkisan,sex,laki_laki,,3012,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.08.2004,4,Tangkisan,sex,perempuan,,2838,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.08.2004,4,Tangkisan,total,total,,5850,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.08.2005,4,Kradenan,sex,laki_laki,,1385,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.08.2005,4,Kradenan,sex,perempuan,,1346,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.08.2005,4,Kradenan,total,total,,2731,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.08.2006,4,Lambur,sex,laki_laki,,1625,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.08.2006,4,Lambur,sex,perempuan,,1557,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.08.2006,4,Lambur,total,total,,3182,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.08.2007,4,Selaganggeng,sex,laki_laki,,2252,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.08.2007,4,Selaganggeng,sex,perempuan,,2137,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.08.2007,4,Selaganggeng,total,total,,4389,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.08.2008,4,Mangunegara,sex,laki_laki,,1996,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.08.2008,4,Mangunegara,sex,perempuan,,1949,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.08.2008,4,Mangunegara,total,total,,3945,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.08.2009,4,Karang Nangka,sex,laki_laki,,1915,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.08.2009,4,Karang Nangka,sex,perempuan,,1828,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.08.2009,4,Karang Nangka,total,total,,3743,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.08.2010,4,Mrebet,sex,laki_laki,,1398,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.08.2010,4,Mrebet,sex,perempuan,,1360,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.08.2010,4,Mrebet,total,total,,2758,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.08.2011,4,Bojong,sex,laki_laki,,2242,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.08.2011,4,Bojong,sex,perempuan,,2198,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.08.2011,4,Bojong,total,total,,4440,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.08.2012,4,Serayu Karanganyar,sex,laki_laki,,1461,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.08.2012,4,Serayu Karanganyar,sex,perempuan,,1419,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.08.2012,4,Serayu Karanganyar,total,total,,2880,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.08.2013,4,Serayu Larangan,sex,laki_laki,,2205,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.08.2013,4,Serayu Larangan,sex,perempuan,,2148,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.08.2013,4,Serayu Larangan,total,total,,4353,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.08.2014,4,Campakoah,sex,laki_laki,,1616,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.08.2014,4,Campakoah,sex,perempuan,,1508,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.08.2014,4,Campakoah,total,total,,3124,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.08.2015,4,Pager Andong,sex,laki_laki,,2366,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.08.2015,4,Pager Andong,sex,perempuan,,2248,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.08.2015,4,Pager Andong,total,total,,4614,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.08.2016,4,Cipaku,sex,laki_laki,,4541,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.08.2016,4,Cipaku,sex,perempuan,,4450,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.08.2016,4,Cipaku,total,total,,8991,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.08.2017,4,Binangun,sex,laki_laki,,2369,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.08.2017,4,Binangun,sex,perempuan,,2255,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.08.2017,4,Binangun,total,total,,4624,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.08.2018,4,Pengalusan,sex,laki_laki,,3755,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.08.2018,4,Pengalusan,sex,perempuan,,3556,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.08.2018,4,Pengalusan,total,total,,7311,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.08.2019,4,Sangkanayu,sex,laki_laki,,2965,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.08.2019,4,Sangkanayu,sex,perempuan,,2751,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.08.2019,4,Sangkanayu,total,total,,5716,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.08,3,Kecamatan Mrebet,sex,laki_laki,,43085,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.08,3,Kecamatan Mrebet,sex,perempuan,,41421,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.08,3,Kecamatan Mrebet,total,total,,84506,jiwa,2025,registration,total_population,3.1.1,19,,
