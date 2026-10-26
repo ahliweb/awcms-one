@@ -303,16 +303,35 @@ async function extractPdfInner(opt: ExtractOptions): Promise<ExtractOutcome> {
   let droppedByChecks: string | null = null;
   let report = runChecks(all, index);
   if (opt.dropFailedTables && report.failures.length > 0) {
-    // a table whose own figures contradict each other (a printing error in the source) is
-    // left out whole and recorded; the rest of the publication is still usable
-    const bad = new Set(report.failures.map((f) => f.sourceTable));
-    for (const t of bad) {
-      const sample = report.failures.find((f) => f.sourceTable === t)!;
-      gaps.push(`table ${t} is not included: its published figures do not add up (${sample.detail}); the source itself is inconsistent`);
+    // Source printing errors. A row whose own figures contradict each other (its sex split or age
+    // bands do not add up to its own total) is left out WITH that region's rows of that table; the
+    // rest of the table is kept. A parent that does not equal the sum of its children cannot be
+    // pinned on one row, so that whole table is left out. Everything dropped is recorded.
+    const perRegion = new Set(["sex-sum", "age_group-sum", "religion-sum", "occupation-sum"]);
+    const isRowCheck = (c: string) => perRegion.has(c) || c.startsWith("age_group-by-") || c.startsWith("religion-by-") || c.startsWith("occupation-by-");
+    const dropRows = new Map<string, string>();
+    for (const f of report.failures) {
+      if (isRowCheck(f.check)) dropRows.set(`${f.sourceTable}|${f.region}`, f.detail);
     }
-    droppedByChecks = `source tables fail their own consistency checks: ${report.failures[0]!.detail}`;
-    all = all.filter((r) => !bad.has(r.source_table));
-    report = runChecks(all, index);
+    if (dropRows.size > 0) {
+      for (const [k, detail] of dropRows) {
+        const [t, region] = k.split("|");
+        gaps.push(`table ${t}: the rows of region ${region} are not stored: ${detail}; the source itself is inconsistent`);
+      }
+      droppedByChecks = `source tables fail their own consistency checks: ${[...dropRows.values()][0]}`;
+      all = all.filter((r) => !dropRows.has(`${r.source_table}|${r.region_code}`));
+      report = runChecks(all, index);
+    }
+    if (report.failures.length > 0) {
+      const bad = new Set(report.failures.map((f) => f.sourceTable));
+      for (const t of bad) {
+        const sample = report.failures.find((f) => f.sourceTable === t)!;
+        gaps.push(`table ${t} is not included: its published figures do not add up (${sample.detail}); the source itself is inconsistent`);
+      }
+      droppedByChecks = `source tables fail their own consistency checks: ${report.failures[0]!.detail}`;
+      all = all.filter((r) => !bad.has(r.source_table));
+      report = runChecks(all, index);
+    }
   }
   const dd = dedupe(all);
   report.keyCollisions = dd.report.keyCollisions;
@@ -334,7 +353,12 @@ async function extractPdfInner(opt: ExtractOptions): Promise<ExtractOutcome> {
 
   const blocking: string[] = [...problems];
   for (const f of report.failures) blocking.push(`check ${f.check} [${f.sourceTable}] region ${f.region}: ${f.detail}`);
-  for (const c of report.conflicts) blocking.push(`cross-table conflict: ${c}`);
+  // Two tables of one yearbook that print different figures for the same thing are both stored under
+  // their own source_table (the importer only warns); in strict mode they still block.
+  for (const c of report.conflicts) {
+    if (opt.dropFailedTables) gaps.push(`cross-table disagreement, both stored as published: ${c}`);
+    else blocking.push(`cross-table conflict: ${c}`);
+  }
   for (const r of all) if (r.category.length > 80) blocking.push(`category key longer than 80 characters: ${r.category}`);
   if (all.length === 0) blocking.push("no rows extracted");
   const pageUrl = opt.url ?? rec?.pageUrl ?? undefined;
@@ -461,7 +485,7 @@ async function main(): Promise<number> {
   const outDir = resolve(arg("out") ?? DEFAULT_OUT);
   const reviewDir = join(cdir, "review");
   const records = loadStateRecords(cdir);
-  const dropFailedTables = flag("drop-failed-tables");
+  const dropFailedTables = flag("drop-failed-tables") || (flag("from-state") && !flag("strict"));
   if (flag("backfill-ledger")) {
     // PDFs that were archived and deleted after a dataset was written: record them from state.json + the dataset on disk
     const existing = existsSync(join(cdir, "extract-results.json")) ? (JSON.parse(readFileSync(join(cdir, "extract-results.json"), "utf8")) as LedgerRecord[]) : [];

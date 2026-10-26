@@ -68,8 +68,13 @@ interface Found {
 
 type RowKind = "kabkota" | "kecamatan" | "kelurahan" | null;
 
+/** The printed table number, or - for the yearbooks that print none - a stable id from the printed page. */
+export function tableIdOf(info: PageInfo): string {
+  return info.tableNumber ?? `unnumbered-p${info.printedPage ?? info.page.no}`;
+}
+
 export function rowKindOf(headKey: string): RowKind {
-  const m = /(?:menurut|dan)(kabupaten\/kota|kecamatan|kelurahan|desa\/kelurahan|desa)/.exec(headKey);
+  const m = /(?:menurut|dan)(kabupaten\/kota|kecamatan|kelurahan|desa\/kelurahan|desa|gampong)/.exec(headKey);
   if (!m) return null;
   if (m[1] === "kabupaten/kota") return "kabkota";
   if (m[1] === "kecamatan") return "kecamatan";
@@ -81,6 +86,26 @@ function levelOk(kind: RowKind, coverageLevel: number): boolean {
   if (kind === "kabkota") return coverageLevel === 1;
   if (kind === "kecamatan") return coverageLevel === 2;
   return coverageLevel >= 2;
+}
+
+/**
+ * Fallback basis for a table that states none itself: the source line sometimes lands on one of the
+ * next two pages of the yearbook (a table that runs over without a "Lanjutan" heading). Used only when
+ * those pages name registration OR projection, never both.
+ */
+export function nearBasis(ctx: Ctx, found: Found): string | null {
+  const lastPage = found.pages[found.pages.length - 1]!;
+  const near: PageInfo[] = [...found.pages];
+  for (let k = ctx.infos.indexOf(lastPage) + 1; k < ctx.infos.length && near.length < found.pages.length + 4; k++) {
+    const next = ctx.infos[k]!;
+    if (next.page.no !== near[near.length - 1]!.page.no + 1) break;
+    if (!next.continued && next.tableNumber !== null) break; // the next numbered table starts here
+    near.push(next);
+  }
+  const t = near.map((i) => i.notesKey).join("");
+  const reg = /registrasi|dkb|siak|catatansipil|dukcapil|kementerianagama/.test(t);
+  const proj = /proyeksi/.test(t);
+  return reg && !proj ? "registration" : proj && !reg ? "projection" : null;
 }
 
 /** The first non-continuation page whose title matches, with its "Lanjutan" pages. */
@@ -114,7 +139,7 @@ export function indonesianTitle(head: string): string {
 function blank(id: string, found: Found): TableResult {
   return {
     id,
-    table: found.start.tableNumber ?? "unnumbered",
+    table: tableIdOf(found.start),
     title: indonesianTitle(found.start.head),
     printedPages: [],
     referenceYears: [],
@@ -225,7 +250,7 @@ function sexColumns(info: PageInfo, firstData: number, titleYear: number | null)
   return cols;
 }
 
-const DISTRICT_TOTAL = /^jumlah\s+di\s+(?:kecamatan|kelurahan|desa)\s+(.+?)(?:\s+total\s+in\b.*)?$/i;
+const DISTRICT_TOTAL = /^jumlah\s+di\s+(?:kecamatan|kelurahan|desa|gampong)\s+(.+?)(?:\s+total\s+in\b.*)?$/i;
 
 interface RegionState {
   hint: KindHint;
@@ -282,9 +307,20 @@ function rowRegion(
 }
 
 /** Age/religion/total row classification for rows that are not regions. */
-function categoryOfRow(label: string): { dimension: string; category: string } | null {
-  const age = ageBandKey(label.replace(/^\s*\d{1,3}\.\s*(?=\d)/, ""));
+/**
+ * An age-band row. Some yearbooks print the open last band as a bare "75" (the "+" is
+ * lost); a lone number is read as that open band only when it directly follows the band
+ * "(n-5)-(n-1)", which is what the arithmetic of the table requires (the rows then add up).
+ */
+export function categoryOfRow(label: string, prevBand: string | null = null): { dimension: string; category: string } | null {
+  const clean = label.replace(/^\s*\d{1,3}\.\s*(?=\d)/, "");
+  const age = ageBandKey(clean);
   if (age) return { dimension: "age_group", category: age };
+  const lone = /^\s*(\d{2,3})\s*$/.exec(clean);
+  if (lone && prevBand) {
+    const n = Number(lone[1]);
+    if (prevBand === `${n - 5}-${n - 1}`) return { dimension: "age_group", category: `${n}+` };
+  }
   return null;
 }
 
@@ -313,7 +349,7 @@ export function totalByRegion(ctx: Ctx): TableResult | null {
   if (!found) return null;
   const res = blank("total-by-region", found);
   const info = found.start;
-  const tbl = info.tableNumber ?? "unnumbered";
+  const tbl = tableIdOf(info);
   const L = labelColumnCount(info);
   const hw = headerWords(info, 70);
   const yearWords = hw.filter((w) => /^(?:19|20)\d{2}$/.test(w.text) && cx(w) > info.markers[1]!.cx - 30);
@@ -351,7 +387,7 @@ export function totalByRegion(ctx: Ctx): TableResult | null {
       : rowRegion(ctx, row, st, ctx.coverage, ctx.soft ? res.gaps : res.problems);
     if (r === "skip" || r === null || !row.hasNum) continue;
     for (const c of cols) {
-      const basis = isRegistration ? "registration" : basisOf(found.pages, c.year, ctx.defaultBasis);
+      const basis = isRegistration ? "registration" : basisOf(found.pages, c.year, ctx.defaultBasis ?? nearBasis(ctx, found));
       if (!basis) {
         res.problems.push(`basis of ${c.year} not determinable`);
         continue;
@@ -369,7 +405,7 @@ export function villageSex(ctx: Ctx, nth = 0): TableResult | null {
   return sexTable(
     ctx,
     "sex-by-village",
-    (k) => /^(jumlah)?penduduk,?(laju|distribusi)/.test(k) && /menurut(desa\/kelurah\s*an|desa\/kelurahan|kelurahan|desa)/.test(k),
+    (k) => /^(jumlah)?penduduk,?(laju|distribusi)/.test(k) && /menurut(desa\/kelurah\s*an|desa\/kelurahan|kelurahan|desa|gampong)/.test(k),
     "region",
     nth
   );
@@ -386,7 +422,7 @@ export function sexTable(
   const found = findTable(ctx, test, nth);
   if (!found) return null;
   const res = blank(id, found);
-  const tbl = found.start.tableNumber ?? "unnumbered";
+  const tbl = tableIdOf(found.start);
   for (const info of found.pages) {
     const L = labelColumnCount(info);
     const unit = unitOfHead(found.start, rowMode === "religion" || ctx.soft ? "jiwa" : undefined);
@@ -397,13 +433,15 @@ export function sexTable(
     const ty = titleYears(found.start);
     const cols = sexColumns(info, L, ty.length === 1 ? ty[0]! : null);
     const st: RegionState = { hint: null, district: null };
+    let prevBand: string | null = null;
     for (const row of readBody(info, L)) {
       if (!row.hasNum) continue;
       const label = (row.label2 || row.label1).trim();
       let dimBase: { dimension: string; category: string } | null = null;
       let region: { code: string; name: string } | null = null;
       if (rowMode === "age") {
-        dimBase = categoryOfRow(label);
+        dimBase = categoryOfRow(label, prevBand);
+        if (dimBase) prevBand = dimBase.category;
         if (!dimBase) {
           if (totalLabel(label)) {
             dimBase = { dimension: "total", category: "total" };
@@ -439,7 +477,7 @@ export function sexTable(
           res.problems.push("year of a column not determinable");
           continue;
         }
-        const basis = basisOf(found.pages, c.year, ctx.defaultBasis);
+        const basis = basisOf(found.pages, c.year, ctx.defaultBasis ?? nearBasis(ctx, found));
         if (!basis) {
           res.problems.push(`basis of ${c.year} not determinable`);
           continue;
@@ -475,14 +513,14 @@ export function ageByRegionColumns(ctx: Ctx): TableResult | null {
   const found = findTable(ctx, (k) => /menurutkelompokumurdan(kabupaten\/kota|kecamatan)/.test(k));
   if (!found) return null;
   const res = blank("age-by-region", found);
-  const tbl = found.start.tableNumber ?? "unnumbered";
+  const tbl = tableIdOf(found.start);
   const unit = unitOfHead(found.start);
   const ty = titleYears(found.start);
   if (!unit || unit === "rupiah" || ty.length !== 1) {
     res.problems.push("unit or year not determinable");
     return res;
   }
-  const basis = basisOf(found.pages, ty[0]!, ctx.defaultBasis);
+  const basis = basisOf(found.pages, ty[0]!, ctx.defaultBasis ?? nearBasis(ctx, found));
   if (!basis) {
     res.problems.push("basis not determinable");
     return res;
@@ -503,10 +541,12 @@ export function ageByRegionColumns(ctx: Ctx): TableResult | null {
       if (r.status === "ok") regionOf.set(k, { code: r.code!, name });
       else res.problems.push(`column header "${name}": ${r.status} ${r.candidates.join(",")}`);
     }
+    let prevBand: string | null = null;
     for (const row of readBody(info, 1)) {
       if (!row.hasNum) continue;
       const label = row.label1.trim();
-      const band = categoryOfRow(label);
+      const band = categoryOfRow(label, prevBand);
+      if (band) prevBand = band.category;
       const isTotal = totalLabel(label);
       if (!band && !isTotal) continue;
       for (const [k, region] of regionOf) {
@@ -523,16 +563,16 @@ export function ageByRegionColumns(ctx: Ctx): TableResult | null {
 
 /** 4.5.4 / 4.3.1: religion columns, region rows (columns may continue over pages). */
 export function religionByRegion(ctx: Ctx, nth = 0): TableResult | null {
-  const found = findTable(ctx, (k) => (/penduduk.*menurut(kabupaten\/kota|kecamatan|kelurahan|desa)danagama/.test(k) || /penduduk.*menurutagama(\/alirankepercayaan)?dan(desa\/kelurahan|kelurahan|desa)/.test(k)), nth);
+  const found = findTable(ctx, (k) => (/penduduk.*menurut(kabupaten\/kota|kecamatan|kelurahan|desa|gampong)danagama/.test(k) || /penduduk.*menurutagama(\/alirankepercayaan)?dan(desa\/kelurahan|kelurahan|desa|gampong)/.test(k)), nth);
   if (!found) return null;
   const res = blank("religion-by-region", found);
-  const tbl = found.start.tableNumber ?? "unnumbered";
+  const tbl = tableIdOf(found.start);
   const ty = titleYears(found.start);
   if (ty.length !== 1) {
     res.problems.push("year not determinable");
     return res;
   }
-  const basis = basisOf(found.pages, ty[0]!, ctx.defaultBasis);
+  const basis = basisOf(found.pages, ty[0]!, ctx.defaultBasis ?? nearBasis(ctx, found));
   if (!basis) {
     res.problems.push("basis not determinable");
     return res;
@@ -637,14 +677,14 @@ export function wageByAge(ctx: Ctx): TableResult | null {
 
 function industryColumns(ctx: Ctx, found: Found, res: TableResult, kind: "employed" | "wage", rows: "region" | "age"): TableResult {
   const info = found.start;
-  const tbl = info.tableNumber ?? "unnumbered";
+  const tbl = tableIdOf(info);
   const ty = titleYears(info);
   if (ty.length !== 1) {
     res.problems.push("year not determinable");
     return res;
   }
   const year = ty[0]!;
-  const basis = basisOf(found.pages, year, ctx.defaultBasis);
+  const basis = basisOf(found.pages, year, ctx.defaultBasis ?? nearBasis(ctx, found));
   if (!basis) {
     res.problems.push("basis not determinable");
     return res;
@@ -726,7 +766,7 @@ export function expenditureTable(ctx: Ctx): TableResult | null {
   if (!found) return null;
   const res = blank("expenditure-by-commodity", found);
   const info = found.start;
-  const tbl = info.tableNumber ?? "unnumbered";
+  const tbl = tableIdOf(info);
   const hw = headerWords(info, 45);
   const years = new Map<number, number>();
   for (const w of hw) {
@@ -742,7 +782,7 @@ export function expenditureTable(ctx: Ctx): TableResult | null {
     const indo = indonesianPart(row.label1).trim();
     const key = totalLabel(indo) ? "total" : `kelompok_komoditas/${snakeCase(indo)}`;
     for (const [k, year] of years) {
-      const basis = basisOf(found.pages, year, ctx.defaultBasis) ?? "survey_estimate";
+      const basis = basisOf(found.pages, year, ctx.defaultBasis ?? nearBasis(ctx, found)) ?? "survey_estimate";
       const o = mk(info, tbl, region, "expenditure", key, "", row.cells[k], "rupiah", year, basis, "per_capita", totalLabel(indo) ? "" : indo);
       if (o) res.rows.push(o);
     }
@@ -759,6 +799,13 @@ function finish(res: TableResult, infos: PageInfo[]): void {
     res.problems.push("rupiah figures printed with a three-digit decimal part: the table uses ',' as a thousands mark and is not read");
   }
   const people = res.rows.filter((r) => r.unit === "jiwa" && r.dimension !== "occupation" && r.universe !== "employed_15_plus");
+  // A persons table whose only "decimals" are exactly three digits ("1,180" among "1.234"): the comma is
+  // a thousands mark, decided from the whole table (no cell has a 1-2 digit decimal), never from one cell.
+  const fractional = people.filter((r) => r.unit === "jiwa" && r.value.includes("."));
+  if (fractional.length > 0 && fractional.length < people.length && fractional.every((r) => /^\d+\.\d{3}$/.test(r.value))) {
+    for (const r of fractional) r.value = r.value.replace(".", "");
+    res.gaps.push(`${fractional.length} figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers`);
+  }
   if (people.some((r) => /\.\d{3,}$/.test(r.value))) {
     res.problems.push("figures with three or more decimals: the separator convention of this table is unclear (',' used as a thousands mark?)");
   } else if (people.some((r) => r.value.includes("."))) {
